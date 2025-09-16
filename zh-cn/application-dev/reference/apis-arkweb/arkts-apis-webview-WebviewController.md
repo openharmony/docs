@@ -174,7 +174,7 @@ static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -221,7 +221,7 @@ static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -272,7 +272,7 @@ loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -444,7 +444,7 @@ data数据必须使用base64编码或将内容中的任何#字符编码为%23。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -631,7 +631,7 @@ accessForward(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -676,7 +676,7 @@ forward(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -734,7 +734,7 @@ accessBackward(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -779,7 +779,7 @@ backward(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -824,7 +824,7 @@ onActive(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -870,7 +870,7 @@ onInactive(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -914,7 +914,7 @@ refresh(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -970,7 +970,7 @@ accessStep(step: number): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1017,7 +1017,7 @@ clearHistory(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1082,7 +1082,7 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1255,7 +1255,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1355,7 +1355,7 @@ runJavaScript(script: string): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1440,7 +1440,7 @@ runJavaScriptExt(script: string | ArrayBuffer, callback : AsyncCallback\<JsMessa
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1660,7 +1660,7 @@ runJavaScriptExt(script: string | ArrayBuffer): Promise\<JsMessageExt>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1857,7 +1857,7 @@ deleteJavaScriptRegister(name: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1962,7 +1962,7 @@ zoom(factor: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2016,7 +2016,7 @@ searchAllAsync(searchString: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2079,7 +2079,7 @@ clearMatches(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2131,7 +2131,7 @@ searchNext(forward: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2178,7 +2178,7 @@ clearSslCache(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2222,7 +2222,7 @@ clearClientAuthenticationCache(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2278,7 +2278,7 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2307,7 +2307,7 @@ postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2462,7 +2462,7 @@ requestFocus(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2506,7 +2506,7 @@ zoomIn(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2551,7 +2551,7 @@ zoomOut(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2602,7 +2602,7 @@ getWebId(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2655,7 +2655,7 @@ getUserAgent(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2738,7 +2738,7 @@ getTitle(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2789,7 +2789,7 @@ getPageHeight(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2842,7 +2842,7 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2909,7 +2909,7 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2969,7 +2969,7 @@ getUrl(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3014,7 +3014,7 @@ stop(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3066,7 +3066,7 @@ backOrForward(step: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3120,7 +3120,7 @@ scrollTo(x:number, y:number, duration?:number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3204,7 +3204,7 @@ scrollBy(deltaX:number, deltaY:number,duration?:number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3296,7 +3296,7 @@ scrollByWithResult(deltaX: number, deltaY: number): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3378,7 +3378,7 @@ slideScroll(vx:number, vy:number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3453,7 +3453,7 @@ getOriginalUrl(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3504,7 +3504,7 @@ getFavicon(): image.PixelMap
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3556,7 +3556,7 @@ setNetworkAvailable(enable: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3630,7 +3630,7 @@ hasImage(callback: AsyncCallback\<boolean>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3687,7 +3687,7 @@ hasImage(): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3746,7 +3746,7 @@ removeCache(clearRom: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3801,7 +3801,7 @@ static removeAllCache(clearRom: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3851,7 +3851,7 @@ pageUp(top: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3934,7 +3934,7 @@ pageDown(bottom: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4024,7 +4024,7 @@ getBackForwardEntries(): BackForwardList
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4074,7 +4074,7 @@ serializeWebState(): Uint8Array
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4150,7 +4150,7 @@ restoreWebState(state: Uint8Array): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4234,7 +4234,7 @@ static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4295,7 +4295,7 @@ getCertificate(): Promise<Array<cert.X509Cert>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4456,7 +4456,7 @@ getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4618,7 +4618,7 @@ setAudioMuted(mute: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4801,7 +4801,7 @@ static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHead
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -4906,7 +4906,7 @@ static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: numb
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -4958,7 +4958,7 @@ setCustomUserAgent(userAgent: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -5011,7 +5011,7 @@ setDownloadDelegate(delegate: WebDownloadDelegate): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -5062,7 +5062,7 @@ startDownload(url: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -5124,7 +5124,7 @@ getCustomUserAgent(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -5230,7 +5230,7 @@ static setUserAgentForHosts(userAgent: string, hosts: Array\<string>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5289,7 +5289,7 @@ static setConnectionTimeout(timeout: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -5346,7 +5346,7 @@ static warmupServiceWorker(url: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -5376,7 +5376,7 @@ export default class EntryAbility extends UIAbility {
 enableSafeBrowsing(enable: boolean): void
 
 启用检查网站安全风险的功能，非法和欺诈网站是强制启用的，不能通过此功能禁用。
-本功能默认不生效，OpenHarmony只提供恶意网址拦截页WebUI，网址风险检测以及显示WebUI的功能由Vendor实现。推荐在WebContentsObserver中监听跳转[DidStartNavigation](https://gitcode.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidStartNavigation)、[DidRedirectNavigation](https://gitcode.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidRedirectNavigation)进行检测。
+本功能默认不生效，OpenHarmony只提供恶意网址拦截页WebUI，网址风险检测以及显示WebUI的功能由Vendor实现。推荐在WebContentsObserver中监听跳转[DidStartNavigation](https://gitcode.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h)、[DidRedirectNavigation](https://gitcode.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h)进行检测。
 
 > **说明：**
 > 
@@ -5392,7 +5392,7 @@ enableSafeBrowsing(enable: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -5483,7 +5483,7 @@ enableIntelligentTrackingPrevention(enable: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -5538,7 +5538,7 @@ isIntelligentTrackingPreventionEnabled(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -5592,7 +5592,7 @@ static addIntelligentTrackingPreventionBypassingList(hostList: Array\<string>): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
@@ -5646,7 +5646,7 @@ static removeIntelligentTrackingPreventionBypassingList(hostList: Array\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
@@ -5694,7 +5694,7 @@ static clearIntelligentTrackingPreventionBypassingList(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
@@ -5778,7 +5778,7 @@ enableAdsBlock(enable: boolean): void
 >
 > 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -5835,7 +5835,7 @@ isAdsBlockEnabled() : boolean
 >
 > 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -5891,7 +5891,7 @@ isAdsBlockEnabledForCurPage() : boolean
 >
 > 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
@@ -5942,7 +5942,7 @@ static setRenderProcessMode(mode: RenderProcessMode): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
@@ -6032,7 +6032,7 @@ terminateRenderProcess(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -6079,7 +6079,7 @@ postUrl(url: string, postData: ArrayBuffer): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6155,7 +6155,7 @@ createWebPrintDocumentAdapter(jobName: string): print.PrintDocumentAdapter
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                                    |
 | -------- | -------------------------------------------------------------------------- |
@@ -6206,7 +6206,7 @@ isIncognitoMode(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                                    |
 | -------- | -------------------------------------------------------------------------- |
@@ -6257,7 +6257,7 @@ getSecurityLevel(): SecurityLevel
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6304,7 +6304,7 @@ setScrollable(enable: boolean, type?: ScrollType): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6355,7 +6355,7 @@ getScrollable(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6406,7 +6406,7 @@ setPrintBackground(enable: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6456,7 +6456,7 @@ getPrintBackground(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6506,7 +6506,7 @@ getLastJavascriptProxyCallingFrameUrl(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6786,7 +6786,7 @@ stopAllMedia(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6830,7 +6830,7 @@ pauseAllMedia(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6874,7 +6874,7 @@ resumeAllMedia(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6918,7 +6918,7 @@ closeAllMediaPresentations(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -6968,7 +6968,7 @@ getMediaPlaybackState(): MediaPlaybackState
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -7019,7 +7019,7 @@ setWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -7065,7 +7065,7 @@ clearWebSchemeHandler(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -7116,7 +7116,7 @@ setServiceWorkerWebSchemeHandler(scheme: string, handler: WebSchemeHandler): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -7192,7 +7192,7 @@ startCamera(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -7316,7 +7316,7 @@ stopCamera(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -7336,7 +7336,7 @@ closeCamera(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -7371,7 +7371,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -7932,7 +7932,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](./arkts-apis-we
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -8206,7 +8206,7 @@ static setHostIP(hostName: string, address: string, aliveTime: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -8232,7 +8232,7 @@ static clearHostIP(hostName: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -8355,7 +8355,7 @@ setUrlTrustList(urlTrustList: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -8464,7 +8464,7 @@ setPathAllowingUniversalAccess(pathList: Array\<string\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
@@ -8618,7 +8618,7 @@ setBackForwardCacheOptions(options: BackForwardCacheOptions): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -8675,7 +8675,7 @@ trimMemoryByPressureLevel(level: PressureLevel): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -8728,7 +8728,7 @@ createPdf(configuration: PdfConfiguration, callback: AsyncCallback\<PdfData\>): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -8811,7 +8811,7 @@ createPdf(configuration: PdfConfiguration): Promise\<PdfData\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -9061,7 +9061,7 @@ getLastHitTest(): HitTestValue
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -9316,7 +9316,7 @@ static setWebDebuggingAccess(webDebuggingAccess: boolean, port: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -9366,7 +9366,7 @@ getProgress(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -9414,7 +9414,7 @@ getHitTest(): WebHitTestType
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -9469,7 +9469,7 @@ getHitTestValue(): HitTestValue
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -9527,7 +9527,7 @@ avoidVisibleViewportBottom(avoidHeight: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -10100,6 +10100,40 @@ static getActiveWebEngineVersion(): ArkWebEngineVersion
 **示例：**
 
 请参考[setActiveWebEngineVersion](#setactivewebengineversion20)。
+
+## isActiveWebEngineEvergreen<sup>21+</sup>
+
+static isActiveWebEngineEvergreen(): boolean
+
+判断当前系统是否正在使用常青内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------ | ------ |
+| boolean | 表示是否正在使用常青内核。正在使用返回true，否则返回false。 |
+
+**示例：**
+
+本示例以EntryAbility为例，实现了在Ability创建阶段判断应用是否正在使用常青内核的功能。
+
+```ts
+// xxx.ets
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate")
+    if (webview.WebviewController.isActiveWebEngineEvergreen()) {
+      console.log("Active Web Engine is Evergreen")
+    }
+    console.log("EntryAbility onCreate done")
+  }
+}
+```
 
 ## setAutoPreconnect<sup>21+</sup>
 

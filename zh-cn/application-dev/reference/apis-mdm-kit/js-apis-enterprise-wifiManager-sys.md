@@ -71,10 +71,10 @@ let wantTemp: Want = {
 
 wifiManager.isWifiActive(wantTemp, (err, result) => {
   if (err) {
-    console.error(`Failed to query the wifi is active or not. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query whether the wifi is active or not. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  console.info(`Succeeded in querying the wifi is active or not, result : ${result}`);
+  console.info(`Succeeded in querying whether the wifi is active or not, result : ${result}`);
 });
 ```
 
@@ -130,9 +130,9 @@ let wantTemp: Want = {
 };
 
 wifiManager.isWifiActive(wantTemp).then((result) => {
-  console.info(`Succeeded in querying the wifi is active or not, result : ${result}`);
+  console.info(`Succeeded in querying whether the wifi is active or not, result : ${result}`);
 }).catch((err: BusinessError) => {
-  console.error(`Failed to query the wifi is active or not. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to query whether the wifi is active or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -313,7 +313,7 @@ let wantTemp: Want = {
 };
 try {
   let result: boolean = wifiManager.isWifiDisabled(wantTemp);
-  console.info(`Succeeded in querying the wifi is disabled or not, result : ${result}`);
+  console.info(`Succeeded in querying whether the wifi is disabled or not, result : ${result}`);
 } catch (err) {
   console.error(`Failed to query the wifi is disabled or not. Code: ${err.code}, message: ${err.message}`);
 };

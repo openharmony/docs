@@ -18,7 +18,7 @@
 >
 > - 在下载过程中，下载的进程会通过WebDownloadDelegate通知给使用者，使用者可以通过参数WebDownloadItem来操作下载任务。
 >
-> - 当前WebDownloadItem支持的下载文件名最长长度为255字节<!--RP--><!--RPEnd-->。
+> - 当前WebDownloadItem支持的下载文件名最长长度为255字节<!--RP1--><!--RP1End-->。
 
 ## 导入模块
 
@@ -899,7 +899,7 @@ static deserialize(serializedData: Uint8Array): WebDownloadItem
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -987,7 +987,7 @@ start(downloadPath: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1145,7 +1145,7 @@ pause(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
@@ -1241,7 +1241,7 @@ resume(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |

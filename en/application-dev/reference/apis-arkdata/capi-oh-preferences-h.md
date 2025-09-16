@@ -1,4 +1,10 @@
 # oh_preferences.h
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @yanhuii-->
+<!--Designer: @houpengtao1-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 
@@ -346,7 +352,7 @@ Subscribes to data changes of the specified keys. If the value of the specified 
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [OH_Preferences](capi-preferences-oh-preferences.md) *preference         | Pointer to the [OH_Preferences](capi-preferences-oh-preferences.md) instance.|
 | void *context                                                | Pointer to the application context.                                          |
-| [OH_PreferencesDataObserver](#oh_preferencesdataobserver) observer | [OH_PreferencesDataObserver](capi-oh-preferences-h.md#oh_preferencesdataobserver) callback to register.|
+| [OH_PreferencesDataObserver](#oh_preferencesdataobserver) observer | [OH_PreferencesDataObserver](capi-oh-preferences-h.md#oh_preferencesdataobserver) callback to be invoked when data changes.|
 | const char *keys[]                                           | Pointer to the keys of the data to be observed.                                         |
 | uint32_t keyCount                                            | Number of keys observed.                                       |
 
@@ -376,7 +382,7 @@ Unsubscribes from data changes of the specified keys.
 | [OH_Preferences](capi-preferences-oh-preferences.md) *preference         | Pointer to the [OH_Preferences](capi-preferences-oh-preferences.md) instance.|
 | void *context                                                | Pointer to the application context.                                          |
 | [OH_PreferencesDataObserver](#oh_preferencesdataobserver) observer | [OH_PreferencesDataObserver](capi-oh-preferences-h.md#oh_preferencesdataobserver) callback to unregister.|
-| const char *keys[]                                           | Pointer to the keys of the values whose changes are not observed.                                     |
+| const char *keys[]                                           | Pointer to the keys whose changes are not observed.                                     |
 | uint32_t keyCount                                            | Number of keys.                                   |
 
 **Returns**

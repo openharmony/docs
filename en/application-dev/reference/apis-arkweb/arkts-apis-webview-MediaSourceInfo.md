@@ -1,4 +1,10 @@
 # Class (MediaSourceInfo)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zhangyao75477-->
+<!--Designer: @qiu-gongkai-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements a **MediaSourceInfo** object to provide the information about the media source.
 
@@ -14,8 +20,8 @@ Implements a **MediaSourceInfo** object to provide the information about the med
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name| Type| Mandatory| Description|
-|------|------|------|------|
-| type<sup>12+</sup> | [SourceType](./arkts-apis-webview-e.md#sourcetype12) | Yes| Type of the media source.|
-| source<sup>12+</sup> | string | Yes| Address of the media source.|
-| format<sup>12+</sup> | string | Yes| Format of the media source, which may be empty. You need to determine the format by yourself.|
+| Name| Type| Read-Only| Optional| Description|
+|------|------|------|------|------|
+| type<sup>12+</sup> | [SourceType](./arkts-apis-webview-e.md#sourcetype12) | No| No| Type of the media source.|
+| source<sup>12+</sup> | string | No| No| Address of the media source.|
+| format<sup>12+</sup> | string | No| No| Format of the media source, which may be empty. You need to determine the format by yourself.|

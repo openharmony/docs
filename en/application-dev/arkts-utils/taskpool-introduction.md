@@ -1,6 +1,12 @@
 # TaskPool
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @wang_zhaoyong-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
-TaskPool is designed to provide a multithreaded runtime environment for applications. It helps reduce overall resource consumption and improve system performance. It also frees you from caring about the lifecycle of thread instances. For details about the APIs and their usage, see [TaskPool](../reference/apis-arkts/js-apis-taskpool.md).
+TaskPool is designed to provide a multithreaded runtime environment for applications. It helps reduce overall resource consumption and improve system performance. You do not need to manage the thread lifecycle. For details about the APIs and their usage, see [TaskPool](../reference/apis-arkts/js-apis-taskpool.md).
 
 ## TaskPool Operating Mechanism
 
@@ -16,11 +22,13 @@ With TaskPool, you can submit tasks in the host thread to the task queue. The sy
 
 - Starting from API version 11, when passing instances with methods across concurrent instances, the class must be decorated with [@Sendable](arkts-sendable.md#sendable-decorator) and are supported only in .ets files.
 
-- A task function (except [LongTask](../reference/apis-arkts/js-apis-taskpool.md#longtask12)) must finish the execution in a TaskPool's worker thread within 3 minutes (excluding the time used for Promise or async/await asynchronous call, such as the duration of I/O tasks like network download and file read/write operation). Otherwise, it is forcibly terminated.
+- A task function (except [LongTask](../reference/apis-arkts/js-apis-taskpool.md#longtask12)) must finish the execution in a TaskPool's worker thread within 3 minutes. Otherwise, it is forcibly terminated. Note that the 3-minute limit only applies to the synchronous running duration of the TaskPool thread, excluding the waiting duration of asynchronous operations (such as Promise or async/await calls). For example, when database insert, delete, and update operations are asynchronous, only the actual CPU processing time (such as SQL parsing) is counted, excluding network transmission or disk I/O waiting time. For synchronous database insert, delete, and update operations, the entire operation duration (including I/O blocking time) is counted. You can obtain the asynchronous I/O duration and CPU duration of the current task through the **ioDuration** and **cpuDuration** properties of [Task](../reference/apis-arkts/js-apis-taskpool.md#task).
 
 - Parameters of functions implementing tasks must be of types supported by serialization. For details, see [Inter-Thread Communication](interthread-communication-overview.md). Currently, complex types decorated with [@State](../ui/state-management/arkts-state.md), [@Prop](../ui/state-management/arkts-prop.md), and [@Link](../ui/state-management/arkts-link.md) are not supported.
 
 - Parameters of the ArrayBuffer type are transferred in TaskPool by default. You can set the transfer list by calling [setTransferList()](../reference/apis-arkts/js-apis-taskpool.md#settransferlist10). If you need to call a task that uses ArrayBuffer as a parameter multiple times, call [setCloneList()](../reference/apis-arkts/js-apis-taskpool.md#setclonelist11) to change the transfer behavior of ArrayBuffer in the thread to pass-by-copy, avoiding affecting the original object.
+
+In addition to the preceding precautions, pay attention to [concurrency precautions](multi-thread-concurrency-overview.md#concurrency-precautions).
 
   ```ts
   import { taskpool } from '@kit.ArkTS';
@@ -47,7 +55,7 @@ With TaskPool, you can submit tasks in the host thread to the task queue. The sy
   }
   ```
 
-- The context objects in different threads are different. Therefore, a TaskPool's worker threads can use only thread-safe libraries. For example, non-thread-safe UI-related libraries cannot be used.
+- The context objects in different threads are different. Therefore, TaskPool worker threads can use only thread-safe libraries. For example, non-thread-safe UI-related libraries cannot be used.
 
 - A maximum of 16 MB data can be serialized.
 
@@ -63,20 +71,18 @@ With TaskPool, you can submit tasks in the host thread to the task queue. The sy
 
 ## \@Concurrent Decorator
 
-To pass function verification, concurrent functions executed in a [TaskPool](../reference/apis-arkts/js-apis-taskpool.md) must be decorated using \@Concurrent.
+To pass function verification, concurrent functions executed in a [TaskPool](../reference/apis-arkts/js-apis-taskpool.md) must be decorated using @Concurrent.
 
 > **NOTE**
 >
 > Since API version 9, the @Concurrent decorator can be used to declare and verify concurrent functions.
-
-### Decorator Description
 
 | \@Concurrent Decorator| Description|
 | -------- | -------- |
 | Decorator parameters| None.|
 | Use scenario| Used only in projects of the stage model and only in .ets files.|
 | Decorated function types| Used for async functions or regular functions. It cannot be used for generators, arrow functions, or class methods. It does not support class member functions or anonymous functions.|
-| Variable types in decorated functions| Local variables, parameters, and variables imported via **import** are allowed. Closure variables are prohibited.|
+| Variable types in decorated functions| Local variables, parameters, and variables imported through **import** are allowed. Closure variables cannot be used.|
 | Return value types in decorated functions| Supported types are listed in [Inter-Thread Communication](interthread-communication-overview.md).|
 
 > **NOTE**
@@ -93,9 +99,9 @@ To pass function verification, concurrent functions executed in a [TaskPool](../
 > }
 > ```
 
-### Decorator Usage Examples
+## Decorator Usage Examples
 
-#### General Use of Concurrent Functions
+### General Use of Concurrent Functions
 
 A concurrent function that calculates the sum of two numbers is executed by TaskPool and returns the result.
 
@@ -114,7 +120,7 @@ async function concurrentFunc(): Promise<void> {
     const task: taskpool.Task = new taskpool.Task(add, 1, 2);
     console.info(`taskpool res is: ${await taskpool.execute(task)}`); // Output: taskpool res is: 3
   } catch (e) {
-    console.error(`taskpool execute error is: ${e}}`);
+    console.error(`taskpool execute error is: ${e}`);
   }
 }
 
@@ -139,11 +145,11 @@ struct Index {
   }
 }
 ```
-<!-- @[concurrent_taskpool_common_usage](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/generaluse.ets) -->
+<!-- @[concurrent_taskpool_common_usage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/generaluse.ets) -->
 
-#### Concurrent Functions Returning Promises
+### Concurrent Functions Returning Promises
 
-Pay attention to the Promises returned by concurrent functions. In the following example, **testPromise** and **testPromise1** handle these Promises and return results.
+Pay attention to Promises returned by concurrent functions. In the following example, **testPromise** and **testPromise1** handle these Promises and return results.
 
 Example:
 
@@ -251,11 +257,11 @@ struct Index {
   }
 }
 ```
-<!-- @[concurrent_taskpool_promise_return](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/returnpromise.ets) -->
+<!-- @[concurrent_taskpool_promise_return](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/returnpromise.ets) -->
 
-#### Using Custom Classes or Functions in Concurrent Functions
+### Using Custom Classes or Functions in Concurrent Functions
 
-Custom classes or functions used in concurrent functions must be defined in separate files. Otherwise, they will be considered as closures, as shown in the following example.
+Custom classes or functions used in concurrent functions must be defined in separate files. Otherwise, they may be considered as closures. The following is an example.
 
 Example:
 
@@ -333,7 +339,7 @@ struct Index {
   }
 }
 ```
-<!-- @[concurrent_taskpool_custom_class_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/customclasses.ets) -->
+<!-- @[concurrent_taskpool_custom_class_function](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/customclasses.ets) -->
 
 ```ts
 // Test.ets
@@ -353,11 +359,11 @@ export class MyTestB {
   static nameStr:string = 'MyTestB';
 }
 ```
-<!-- @[concurrent_taskpool_test_resources](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/Test.ets) -->
+<!-- @[concurrent_taskpool_test_resources](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/Test.ets) -->
 
-#### Using Promises in Concurrent Asynchronous Functions
+### Using Promises in Concurrent Asynchronous Functions
 
-If Promise is used in concurrent asynchronous functions, you are advised to use await to enable TaskPool to capture any exceptions that may occur within the Promise. The recommended usage is shown in the following example.
+If Promise is used in concurrent asynchronous functions, you are advised to use **await**. In this way, TaskPool can capture exceptions in Promise. The recommended usage is shown in the following example.
 
 Example:
 
@@ -369,21 +375,21 @@ async function testPromiseError() {
   await new Promise<number>((resolve, reject) => {
     resolve(1);
   }).then(() => {
-    throw new Error('testPromise Error');
+    throw new Error('testPromise error');
   })
 }
 
 @Concurrent
 async function testPromiseError1() {
   await new Promise<string>((resolve, reject) => {
-    reject('testPromiseError1 Error msg');
+    reject('testPromiseError1 error msg');
   })
 }
 
 @Concurrent
 function testPromiseError2() {
   return new Promise<string>((resolve, reject) => {
-    reject('testPromiseError2 Error msg');
+    reject('testPromiseError2 error msg');
   })
 }
 
@@ -395,17 +401,17 @@ async function testConcurrentFunc() {
   taskpool.execute(task1).then((d: object) => {
     console.info(`task1 res is: ${d}`);
   }).catch((e: object) => {
-    console.error(`task1 catch e: ${e}`); // task1 catch e: Error: testPromise Error
+    console.error(`task1 catch e: ${e}`); // task1 catch e: Error: testPromise error
   })
   taskpool.execute(task2).then((d: object) => {
     console.info(`task2 res is: ${d}`);
   }).catch((e: object) => {
-    console.error(`task2 catch e: ${e}`); // task2 catch e: testPromiseError1 Error msg
+    console.error(`task2 catch e: ${e}`); // task2 catch e: testPromiseError1 error msg
   })
   taskpool.execute(task3).then((d: object) => {
     console.info(`task3 res is: ${d}`);
   }).catch((e: object) => {
-    console.error(`task3 catch e: ${e}`); // task3 catch e: testPromiseError2 Error msg
+    console.error(`task3 catch e: ${e}`); // task3 catch e: testPromiseError2 error msg
   })
 }
 
@@ -430,7 +436,7 @@ struct Index {
   }
 }
 ```
-<!-- @[concurrent_taskpool_async_promise_usage](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/asynchronousfunctions.ets) -->
+<!-- @[concurrent_taskpool_async_promise_usage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/asynchronousfunctions.ets) -->
 
 ## TaskPool Scaling Mechanism
 
@@ -440,7 +446,7 @@ Generally, when you submit tasks to the task queue, an expansion check is trigge
 
 ### Contraction Mechanism
 
-After expansion, TaskPool creates multiple worker threads. However, when the number of tasks decreases, these threads become idle, leading to resource wastage. Therefore, TaskPool provides a contraction mechanism. TaskPool employs a timer to periodically check the current load. The timer is triggered every 30 seconds, and each time it attempts to release idle worker threads. A thread can be released if it meets the following conditions:
+After expansion, TaskPool creates multiple worker threads. However, when the number of tasks decreases, these threads become idle, leading to resource wastage. Therefore, TaskPool provides a contraction mechanism. TaskPool uses a timer to detect the current load every 30 seconds and attempts to release idle worker threads. A thread can be released if it meets the following conditions:
 
 - The thread has been idle for at least 30 seconds.
 

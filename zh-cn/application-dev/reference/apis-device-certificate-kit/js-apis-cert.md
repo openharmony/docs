@@ -38,8 +38,8 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 | ERR_CERT_NOT_YET_VALID                | 19030003 | 证书尚未生效。  <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。              |
 | ERR_CERT_HAS_EXPIRED                  | 19030004 | 证书过期。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
 | ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY | 19030005 | 无法获取证书的颁发者。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
-| ERR_KEYUSAGE_NO_CERTSIGN              | 19030006 | 证书的秘钥用途不含证书签名。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-| ERR_KEYUSAGE_NO_DIGITAL_SIGNATURE     | 19030007 |  证书的秘钥用途不含数字签名。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| ERR_KEYUSAGE_NO_CERTSIGN              | 19030006 | 证书的密钥用途不含证书签名。 <br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| ERR_KEYUSAGE_NO_DIGITAL_SIGNATURE     | 19030007 |  证书的密钥用途不含数字签名。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 | ERR_MAYBE_WRONG_PASSWORD<sup>18+</sup>              | 19030008 | 私钥密码错误。 <br> **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。        |
 
 ## DataBlob
@@ -269,7 +269,7 @@ RSA私钥生成CSR时的配置参数，包含主体、扩展、摘要算法、�
 | publicKeyAlgID | string | 否  | 是 |指定证书公钥的算法。 |
 | subjectAlternativeNames<sup>12+</sup> | Array\<[GeneralName](#generalname12)> | 否  | 是 |指定证书主体名称。 |
 | matchAllSubjectAltNames<sup>12+</sup> | boolean | 否  | 是 |指定是否需要匹配证书主体名称。true为需要，false为不需要。 |
-| authorityKeyIdentifier<sup>12+</sup> | Uint8Array | 否  | 是 |指定证书颁发机构秘钥。 |
+| authorityKeyIdentifier<sup>12+</sup> | Uint8Array | 否  | 是 |指定证书颁发机构密钥。 |
 | minPathLenConstraint<sup>12+</sup> | number | 否  | 是 |指定证书CA路径长度。 |
 | extendedKeyUsage<sup>12+</sup> | Array\<string> | 否  | 是 |指定证书扩展用途。 |
 | nameConstraints<sup>12+</sup> | Uint8Array | 否  | 是 |指定证书的使用者名称。 |
@@ -2052,7 +2052,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
 
 getKeyUsage() : DataBlob
 
-表示获取X509证书秘钥用途。
+表示获取X509证书密钥用途。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2062,7 +2062,7 @@ getKeyUsage() : DataBlob
 
 | 类型                  | 说明                 |
 | --------------------- | -------------------- |
-| [DataBlob](#datablob) | 表示X509证书秘钥用途。 |
+| [DataBlob](#datablob) | 表示X509证书密钥用途。 |
 
 **错误码：**
 
@@ -2124,7 +2124,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
 
 getExtKeyUsage() : DataArray
 
-表示获取X509证书扩展秘钥用途。
+表示获取X509证书扩展密钥用途。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2134,7 +2134,7 @@ getExtKeyUsage() : DataArray
 
 | 类型                    | 说明                     |
 | ----------------------- | ------------------------ |
-| [DataArray](#dataarray) | 表示X509证书扩展秘钥用途。 |
+| [DataArray](#dataarray) | 表示X509证书扩展密钥用途。 |
 
 **错误码：**
 
@@ -5055,7 +5055,6 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
@@ -6728,7 +6727,6 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CRLEntry>>) : void
 
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
@@ -10483,7 +10481,6 @@ parsePkcs12(data: Uint8Array, config: Pkcs12ParsingConfig): Pkcs12Data
 
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 function doTestParsePkcs12() {
   try {

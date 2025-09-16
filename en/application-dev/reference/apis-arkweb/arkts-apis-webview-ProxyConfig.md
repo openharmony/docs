@@ -1,4 +1,10 @@
 # Class (ProxyConfig)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements a **ProxyConfig** object to configure proxies.
 

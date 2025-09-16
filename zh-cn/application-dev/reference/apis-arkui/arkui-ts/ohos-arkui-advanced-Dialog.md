@@ -3,7 +3,7 @@
 <!--Subsystem: ArkUI-->
 <!--Owner: @fengluochenai-->
 <!--Designer: @YanSanzo-->
-<!--Tester: @tinygreyy-->
+<!--Tester: @ybhou1993-->
 <!--Adviser: @HelloCrease-->
 
 
@@ -198,15 +198,15 @@ PopoverDialog({visible: boolean, popover: PopoverOptions, targetBuilder: Callbac
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                      | 类型                                                         | 必填 | 说明                                                                                                                             |
-| ------------------------- | ------------------------------------------------------------ | ---- |--------------------------------------------------------------------------------------------------------------------------------|
-| value                     | [ResourceStr](ts-types.md#resourcestr)                       | 是   | 按钮的内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                     |
-| action                    | ()&nbsp;=&gt;&nbsp;void                                      | 否   | 按钮的点击事件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                   |
-| background                | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 按钮的背景色。<br/>默认值跟随buttonStyle。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                |
-| fontColor                 | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 按钮的字体颜色。<br/>默认值跟随buttonStyle。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                               |
-| buttonStyle<sup>12+</sup> | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否   | 按钮的样式。<br/>默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| role<sup>12+</sup>        | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明) | 否   | 按钮的角色。<br/>默认值：ButtonRole.NORMAL<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                          |
-| defaultFocus<sup>18+</sup> | boolean | 否   | 按钮是否设置默认焦点。<br/>true：按钮是默认焦点。<br/>false：按钮不是默认焦点。<br/>默认值：false <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。          |
+| 名称                      | 类型                                                         | 只读 | 可选 | 说明                                                                                                                             |
+| ------------------------- | ------------------------------------------------------------ |---|---|--------------------------------------------------------------------------------------------------------------------------------|
+| value                     | [ResourceStr](ts-types.md#resourcestr)                       | 否 | 否 | 按钮的内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                     |
+| action                    | ()&nbsp;=&gt;&nbsp;void                                      | 否 | 是 | 按钮的点击事件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                   |
+| background                | [ResourceColor](ts-types.md#resourcecolor)                   | 否 | 是 | 按钮的背景色。<br/>默认值跟随buttonStyle。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                |
+| fontColor                 | [ResourceColor](ts-types.md#resourcecolor)                   | 否 | 是 | 按钮的字体颜色。<br/>默认值跟随buttonStyle。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                               |
+| buttonStyle<sup>12+</sup> | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否 | 是 | 按钮的样式。<br/>默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| role<sup>12+</sup>        | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明) | 否 | 是 | 按钮的角色。<br/>默认值：ButtonRole.NORMAL<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                          |
+| defaultFocus<sup>18+</sup> | boolean | 否 | 是 | 按钮是否设置默认焦点。<br/>true：按钮是默认焦点。<br/>false：按钮不是默认焦点。<br/>默认值：false <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。          |
 
 >  **说明：**
 >

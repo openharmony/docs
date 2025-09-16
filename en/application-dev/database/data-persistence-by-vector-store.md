@@ -1,4 +1,10 @@
 # Persisting Vector Store Data (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @cuile44; @baijidong-->
+<!--Designer: @houpengtao1-->
+<!--Tester: @logic42-->
+<!--Adviser: @ge-yafang-->
 
 
 ## When to Use
@@ -474,6 +480,8 @@ The following lists only the APIs for persisting vector store data. For details 
 
     ```ts
     try {
+      // Close the store object before deleting the database. Otherwise, the next call to getRdbStore() will fail.
+      await store!.close();
       await relationalStore.deleteRdbStore(this.context, STORE_CONFIG);
     } catch (err) {
       console.error(`delete rdbStore failed, code is ${err.code},message is ${err.message}`);

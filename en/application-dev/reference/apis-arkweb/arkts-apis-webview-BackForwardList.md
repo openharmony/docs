@@ -1,4 +1,10 @@
 # Interface (BackForwardList)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Defines the backforward list of the current WebView.
 
@@ -74,7 +80,7 @@ struct WebComponent {
           try {
             let list = this.controller.getBackForwardEntries();
             let historyItem = list.getItemAtIndex(list.currentIndex);
-            console.log("HistoryItem: " + JSON.stringify(historyItem));
+            console.info("HistoryItem: " + JSON.stringify(historyItem));
             this.icon = historyItem.icon;
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);

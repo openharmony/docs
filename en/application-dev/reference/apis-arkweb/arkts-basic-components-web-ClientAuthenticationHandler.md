@@ -1,4 +1,10 @@
 # Class (ClientAuthenticationHandler)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements a **ClientAuthenticationHandler** object returned by the **Web** component. For details about the sample code, see [onClientAuthenticationRequest](./arkts-basic-components-web-events.md#onclientauthenticationrequest9).
 
@@ -50,6 +56,19 @@ Instructs the **Web** component to use the specified credentials (obtained from 
 | Name    | Type  | Mandatory  | Description   |
 | ------- | ------ | ---- | ------- |
 | authUri | string | Yes   | Key value of the credentials.|
+
+The following table lists the supported certificate signature algorithms and key lengths.
+| Signature Algorithm    | Key Length  | 
+| ------- | ------ |
+| SSL_SIGN_RSA_PKCS1_SHA256 | 1024 (supported since API version 18), 2048, 3072, and 4096| 
+| SSL_SIGN_RSA_PKCS1_SHA384 | 1024 (supported since API version 18), 2048, 3072, and 4096| 
+| SSL_SIGN_RSA_PKCS1_SHA512 | 1024 (supported since API version 18), 2048, 3072, and 4096| 
+| SSL_SIGN_RSA_PSS_SHA256 | 1024 (supported since API version 18), 2048, 3072, and 4096| 
+| SSL_SIGN_RSA_PSS_SHA384 | 1024 (supported since API version 18), 2048, 3072, and 4096| 
+| SSL_SIGN_RSA_PSS_SHA512 | 1024 (supported since API version 18), 2048, 3072, and 4096| 
+| SSL_SIGN_ECDSA_SECP256R1_SHA256 | 256 | 
+| SSL_SIGN_ECDSA_SECP384R1_SHA384 | 384 | 
+| SSL_SIGN_ECDSA_SECP521R1_SHA512 | 521 | 
 
 ## cancel<sup>9+</sup>
 

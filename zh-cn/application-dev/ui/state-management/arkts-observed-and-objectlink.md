@@ -513,7 +513,7 @@ struct Index {
 
 > **说明：**
 >
-> NextID是用来在[ForEach循环渲染](./arkts-rendering-control-foreach.md)过程中，为每个数组元素生成一个唯一且持久的键值，标识对应的组件。
+> NextID是用来在[ForEach循环渲染](../rendering-control/arkts-rendering-control-foreach.md)过程中，为每个数组元素生成一个唯一且持久的键值，标识对应的组件。
 
 ```ts
 let NextID: number = 1;

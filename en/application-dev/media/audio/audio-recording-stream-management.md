@@ -1,4 +1,10 @@
 # Audio Recording Stream Management
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 An audio recording application must notice audio stream state changes and perform corresponding operations. For example, when detecting that the user stops recording, the application must notify the user that the recording finishes.
 

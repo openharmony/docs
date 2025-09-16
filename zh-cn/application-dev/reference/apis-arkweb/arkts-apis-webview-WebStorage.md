@@ -40,7 +40,7 @@ static deleteOrigin(origin: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -183,7 +183,7 @@ static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -247,7 +247,7 @@ static getOrigins(): Promise\<Array\<WebStorageOrigin>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -312,7 +312,7 @@ static getOriginQuota(origin: string, callback: AsyncCallback\<number>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -379,7 +379,7 @@ static getOriginQuota(origin: string): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -441,7 +441,7 @@ static getOriginUsage(origin: string, callback: AsyncCallback\<number>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -508,7 +508,7 @@ static getOriginUsage(origin: string): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                              |
 | -------- | ----------------------------------------------------- |

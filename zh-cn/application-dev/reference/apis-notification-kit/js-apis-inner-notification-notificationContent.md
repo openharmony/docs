@@ -40,6 +40,7 @@
 | text           | string |  否  |  否  | 通知内容（不可为空字符串，大小不超过3072字节，超出部分会被截断）。         |
 | additionalText | string |  否  |  是  | 通知附加内容，是对通知内容的补充（大小不超过3072字节，超出部分会被截断）。   |
 | lockscreenPicture<sup>12+</sup> | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) |  否  |  是  | 通知在锁屏界面显示的图片。当前仅支持实况窗类型通知。图标像素的总字节数不超过192KB（图标像素的总字节数通过[getPixelBytesNumber](../apis-image-kit/arkts-apis-image-PixelMap.md#getpixelbytesnumber7)获取），建议图标像素长宽为128*128。实际显示效果依赖于设备能力和通知中心UI样式。   |
+| structuredText<sup>21+</sup> | Map<string, string> |  否  |  是  | 通知结构化字段。当前仅支持服务提醒类短信在通知中心结构化展示。（key/value大小不超过512字节，超出部分会被截断，最多支持3对结构化数据，超出部分会被忽略。）   |
 
 ## NotificationLongTextContent
 

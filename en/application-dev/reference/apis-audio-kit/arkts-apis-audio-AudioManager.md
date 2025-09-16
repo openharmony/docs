@@ -1,4 +1,10 @@
 # Interface (AudioManager)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -696,7 +702,7 @@ When the minimum volume of a stream cannot be set to 0, muting the stream is not
 | Name    | Type                               | Mandatory| Description                                 |
 | ---------- | ----------------------------------- | ---- | ------------------------------------- |
 | volumeType | [AudioVolumeType](arkts-apis-audio-e.md#audiovolumetype) | Yes  | Audio stream type.                         |
-| mute       | boolean                             | Yes  | Whether to mute the stream. The value **true** means to mute the stream, and **false** means the opposite.|
+| mute       | boolean                             | Yes  | Whether to mute the stream. **true** to mute, **false** otherwise.|
 | callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
@@ -732,7 +738,7 @@ When the minimum volume of a stream cannot be set to 0, muting the stream is not
 | Name    | Type                               | Mandatory| Description                                 |
 | ---------- | ----------------------------------- | ---- | ------------------------------------- |
 | volumeType | [AudioVolumeType](arkts-apis-audio-e.md#audiovolumetype) | Yes  | Audio stream type.                         |
-| mute       | boolean                             | Yes  | Whether to mute the stream. The value **true** means to mute the stream, and **false** means the opposite.|
+| mute       | boolean                             | Yes  | Whether to mute the stream. **true** to mute, **false** otherwise.|
 
 **Return value**
 
@@ -804,7 +810,7 @@ Checks whether a stream is muted. This API uses a promise to return the result.
 
 | Type                  | Description                                                  |
 | ---------------------- | ------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the stream is muted, and **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result, indicating whether the stream is muted. **true** if muted, **false** otherwise.|
 
 **Example**
 
@@ -869,7 +875,7 @@ Checks whether a stream is active. This API uses a promise to return the result.
 
 | Type                  | Description                                                    |
 | ---------------------- | -------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the stream is active, and **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result, indicating whether the stream is active. **true** if active, **false** otherwise.|
 
 **Example**
 
@@ -1092,7 +1098,7 @@ Sets a device to the active state. This API uses an asynchronous callback to ret
 | Name    | Type                                 | Mandatory| Description         |
 | ---------- | ------------------------------------- | ---- |-------------|
 | deviceType | [ActiveDeviceType](arkts-apis-audio-e.md#activedevicetypedeprecated) | Yes  | Active audio device type.  |
-| active     | boolean                               | Yes  | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite.|
+| active     | boolean                               | Yes  | Active state to set. **true** to set the device to the active state, **false** otherwise.|
 | callback   | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
@@ -1126,7 +1132,7 @@ Sets a device to the active state. This API uses a promise to return the result.
 | Name    | Type                                 | Mandatory| Description              |
 | ---------- | ------------------------------------- | ---- | ------------------ |
 | deviceType | [ActiveDeviceType](arkts-apis-audio-e.md#activedevicetypedeprecated) | Yes  | Active audio device type.|
-| active     | boolean                               | Yes  | Active state to set. The value **true** means to set the device to the active state, and **false** means the opposite.|
+| active     | boolean                               | Yes  | Active state to set. **true** to set the device to the active state, **false** otherwise.|
 
 **Return value**
 
@@ -1198,7 +1204,7 @@ Checks whether a device is active. This API uses a promise to return the result.
 
 | Type                  | Description                                  |
 | ---------------------- |---------------------------------------|
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the device is active, and **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result, indicating whether the device is active. **true** if active, **false** otherwise.|
 
 **Example**
 
@@ -1226,7 +1232,7 @@ Mutes or unmutes the microphone. This API uses an asynchronous callback to retur
 
 | Name  | Type                     | Mandatory| Description                                         |
 | -------- | ------------------------- | ---- | --------------------------------------------- |
-| mute     | boolean                   | Yes  | Mute status to set. The value **true** means to mute the microphone, and **false** means the opposite.|
+| mute     | boolean                   | Yes  | Mute status to set. **true** to mute, **false** otherwise.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
@@ -1261,7 +1267,7 @@ Mutes or unmutes the microphone. This API uses a promise to return the result.
 
 | Name| Type   | Mandatory| Description                                         |
 | ------ | ------- | ---- | --------------------------------------------- |
-| mute   | boolean | Yes  | Mute status to set. The value **true** means to mute the microphone, and **false** means the opposite.|
+| mute   | boolean | Yes  | Mute status to set. **true** to mute, **false** otherwise.|
 
 **Return value**
 
@@ -1329,7 +1335,7 @@ Checks whether the microphone is muted. This API uses a promise to return the re
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the microphone is muted, and **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result, indicating whether the microphone is muted. **true** if muted, **false** otherwise.|
 
 **Example**
 
@@ -1435,19 +1441,19 @@ Same as [on('audioInterrupt')](arkts-apis-audio-AudioRenderer.md#onaudiointerrup
 import { audio } from '@kit.AudioKit';
 
 let interAudioInterrupt: audio.AudioInterrupt = {
-  streamUsage:2,
-  contentType:0,
-  pauseWhenDucked:true
+  streamUsage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+  contentType: audio.ContentType.CONTENT_TYPE_UNKNOWN,
+  pauseWhenDucked: true
 };
 
 audioManager.on('interrupt', interAudioInterrupt, (interruptAction: audio.InterruptAction) => {
   if (interruptAction.actionType === 0) {
     console.info('An event to gain the audio focus starts.');
-    console.info(`Focus gain event: ${interruptAction} `);
+    console.info(`Focus hint: ${interruptAction.hint} `);
   }
   if (interruptAction.actionType === 1) {
     console.info('An audio interruption event starts.');
-    console.info(`Audio interruption event: ${interruptAction} `);
+    console.info(`Audio interruption hint: ${interruptAction.hint} `);
   }
 });
 ```
@@ -1478,9 +1484,9 @@ Unsubscribes from the audio interruption event. This API uses an asynchronous ca
 import { audio } from '@kit.AudioKit';
 
 let interAudioInterrupt: audio.AudioInterrupt = {
-  streamUsage:2,
-  contentType:0,
-  pauseWhenDucked:true
+  streamUsage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+  contentType: audio.ContentType.CONTENT_TYPE_UNKNOWN,
+  pauseWhenDucked: true
 };
 
 // Cancel all subscriptions to the event.
@@ -1490,11 +1496,11 @@ audioManager.off('interrupt', interAudioInterrupt);
 let interruptCallback = (interruptAction: audio.InterruptAction) => {
   if (interruptAction.actionType === 0) {
     console.info('An event to gain the audio focus starts.');
-    console.info(`Focus gain event: ${interruptAction} `);
+    console.info(`Focus hint: ${interruptAction.hint} `);
   }
   if (interruptAction.actionType === 1) {
     console.info('An audio interruption event starts.');
-    console.info(`Audio interruption event: ${interruptAction} `);
+    console.info(`Audio interruption hint: ${interruptAction.hint} `);
   }
 };
 

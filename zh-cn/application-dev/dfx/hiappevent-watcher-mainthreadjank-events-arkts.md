@@ -27,10 +27,12 @@
 1. 新建一个ArkTS应用工程，编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，导入依赖模块，示例代码如下：
 
    ```ts
-   import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+    import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+    import { buffer, util } from '@kit.ArkTS'
+    import { fileIo as fs } from '@kit.CoreFileKit';
    ```
 
-2. 编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，在onForeground函数中添加系统事件的订阅，示例代码如下：
+2. 编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，可在onCreate、onForeground等其他接口中添加系统事件的订阅（结合业务需求，在合适的位置添加订阅方法），示例代码如下：
 
    ```ts
     hiAppEvent.addWatcher({
@@ -66,20 +68,31 @@
             // 开发者可以获取主线程处理开始和结束时间
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.begin_time=${eventInfo.params['begin_time']}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.end_time=${eventInfo.params['end_time']}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.log_over_limit=${eventInfo.params['log_over_limit']}`);
+            // 开发者可以获取到主线程超时事件时，任务执行的开始时间（主线程超时采集堆栈参数）
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.app_start_jiffies_time=${JSON.stringify(eventInfo.params['app_start_jiffies_time'])}`);
+            // 开发者可以获取到生成的主线程超时日志文件中，打印最多次的调用栈（主线程超时采集堆栈参数）
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.heaviest_stack=${eventInfo.params['heaviest_stack']}`);
+
             // 开发者可以获取到主线程超时事件发生时的故障日志文件
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.log_over_limit=${eventInfo.params['log_over_limit']}`);
-            // 开发者可以获取到主线程超时事件时，任务执行的开始时间
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.app_start_jiffies_time=${JSON.stringify(eventInfo.params['app_start_jiffies_time'])}`);
-            // 开发者可以获取到生成的主线程超时日志文件中，打印最多次的调用栈
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.heaviest_stack=${eventInfo.params['heaviest_stack']}`);
+            // 开发者可以通过以下方式移动文件到新的目录
+            let path: string = String(eventInfo.params['external_log']);
+            // 自定义的新的存储路径
+            let targetPath: string = "";
+            if (path.endsWith(".txt")) {
+              targetPath= "/data/storage/el2/base/mainThreadJank.txt";
+            } else if (path.endsWith(".trace")) {
+              targetPath= "/data/storage/el2/base/mainThreadJank.trace";
+            }
+            fs.copyFileSync(path.toString(), targetPath.toString());
           }
         }
       }
     });
    ```
 
-3. 该步骤用于模拟主线程超时事件。
+3. 该步骤用于模拟主线程超时采样栈事件。
 
    编辑工程中的“entry > src > main > ets  > pages> Index.ets”文件，示例代码如下：
 
@@ -172,7 +185,29 @@
                .onClick(() => {
                  wait150ms();
                })
-             //触发500ms超时事件按钮
+           }.width('100%')
+         }
+         .height('100%')
+         .width('100%')
+       }
+     }
+   ```
+
+5. 该步骤可用于模拟主线程超时采样trace事件。
+
+   编辑工程中的“entry > src > main > ets  > pages> Index.ets”文件，添加按钮并在其onClick函数触发主线程超时采集trace功能，具体如下：
+
+   > **注意：**
+   >
+   > 启动主线程超时检测抓取trace的功能的前提是开发者使用nolog版本并且关闭开发者模式。
+
+   ```ts
+     @Entry
+     @Component
+     struct Index {
+       build() {
+         RelativeContainer() {
+           Column() {
              Button("timeOut500", { stateEffect:true, type: ButtonType.Capsule})
                .width('75%')
                .height(50)
@@ -180,7 +215,8 @@
                .fontSize(20)
                .fontWeight(FontWeight.Bold)
                .onClick(() => {
-                 wait500ms();
+                 let t = Date.now();
+                 while (Date.now() - t <= 500) {}
                })
            }.width('100%')
          }
@@ -190,7 +226,9 @@
      }
    ```
 
-5. 点击DevEco Studio界面中的运行按钮，运行应用工程，连续点击两次触发超时的按钮，会触发主线程超时事件。
+6. 点击DevEco Studio界面中的运行按钮，运行应用工程。
+
+  由于主线程超时触发的条件是连续两次检测到超时事件后，才会开启采集堆栈，因此用户可以多次尝试：连续快速点击两次触发超时的按钮，触发主线程超时事件。
 
 ### 验证观察者是否订阅到主线程超时事件
 
@@ -209,7 +247,7 @@
     HiAppEvent eventInfo.params.uid=20020150
     HiAppEvent eventInfo.params.begin_time=1717593620016
     HiAppEvent eventInfo.params.end_time=1717593620518
-    HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_20240613211739_40986.txt"]
+    HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_20240613211739_40986.XXX"]
     HiAppEvent eventInfo.params.log_over_limit=false
     HiAppEvent eventInfo.params.app_start_jiffies_time=XXXX
     HiAppEvent eventInfo.params.heaviest_stack=XXXX

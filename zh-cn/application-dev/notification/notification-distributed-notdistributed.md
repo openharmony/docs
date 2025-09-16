@@ -86,7 +86,7 @@
           additionalText: 'test_additionalText'
         }
       },
-      // 仅当应用在跨设备协同管控名单中且未配置notDistributed字段时，forceDistributed才会生效,且当forceDistributed为false按照协同管控名单显示
+      // 仅当应用在跨设备协同管控名单中且notDistributed为false时，forceDistributed才会生效,且当forceDistributed为false按照协同管控名单显示
       notDistributed: false,
       forceDistributed: true
     };

@@ -208,6 +208,10 @@
 | [Input_Result OH_Input_SetAxisEventGlobalY(struct Input_AxisEvent* axisEvent, int32_t globalY)](#oh_input_setaxiseventglobaly) | - | 设置轴事件以主屏左上角为原点的全局坐标系的Y坐标。 |
 | [Input_Result OH_Input_GetAxisEventGlobalY(const Input_AxisEvent* axisEvent, int32_t* globalY)](#oh_input_getaxiseventglobaly) | - | 获取轴事件以主屏左上角为原点的全局坐标系的Y坐标。 |
 | [Input_Result OH_Input_GetPointerLocation(int32_t *displayId, double *displayX, double *displayY)](#oh_input_getpointerlocation) | - | 获取鼠标在屏幕上的坐标点。 |
+| [Input_Result OH_Input_GetKeyEventId(const struct Input_KeyEvent* keyEvent, int32_t* eventId)](#oh_input_getkeyeventid) | - | 获取按键事件的Id。 |
+| [Input_Result OH_Input_AddKeyEventHook(Input_KeyEventCallback callback)](#oh_input_addkeyeventhook) | - | 添加一个按键事件拦截钩子函数。 |
+| [Input_Result OH_Input_RemoveKeyEventHook(Input_KeyEventCallback callback)](#oh_input_removekeyeventhook) | - | 移除按键事件拦截钩子函数。 |
+| [Input_Result OH_Input_DispatchToNextHandler(int32_t eventId)](#oh_input_dispatchtonexthandler) | - | 重新分发按键事件。 |
 
 ## 枚举类型说明
 
@@ -403,7 +407,7 @@ enum Input_Result
 | INPUT_PERMISSION_DENIED = 201 | 权限验证失败。 |
 | INPUT_NOT_SYSTEM_APPLICATION = 202 | 非系统应用。 |
 | INPUT_PARAMETER_ERROR = 401 | 参数检查失败。 |
-| INPUT_DEVICE_NOT_SUPPORTED = 801 | 表示功能不受支持。<br>**起始版本：** 14。|
+| INPUT_DEVICE_NOT_SUPPORTED = 801 | 表示不支持该功能。<br>**起始版本：** 14。|
 | INPUT_SERVICE_EXCEPTION = 3800001 | 服务异常。 |
 | INPUT_REPEAT_INTERCEPTOR = 4200001 | 应用创建拦截后，再次执行创建拦截的操作。 |
 | INPUT_OCCUPIED_BY_SYSTEM = 4200002 | 已经被系统应用占用。<br>**起始版本：** 14。 |
@@ -1976,7 +1980,7 @@ Input_Result OH_Input_RequestInjection(Input_InjectAuthorizeCallback callback)
 
 | 类型 | 说明 |
 | -- | -- |
-| [Input_Result](capi-oh-input-manager-h.md#input_result) | 返回结果码，参见[Input_Result](capi-oh-input-manager-h.md#input_result)。<br>      INPUT_SUCCESS = 0 申请授权成功，等待用户授权结果并回调授权状态。<br>      INPUT_PARAMETER_ERROR = 401  参数错误，参数callback为空。<br>      INPUT_DEVICE_NOT_SUPPORTED = 801  设备不支持。<br>      INPUT_SERVICE_EXCEPTION = 3800001  服务器错误。<br>      INPUT_INJECTION_AUTHORIZING =  3900005 正在授权中。<br>      INPUT_INJECTION_OPERATION_FREQUENT = 3900006 重复请求（当前应用连续申请授权弹窗成功，间隔时间不超过3秒）。<br>      INPUT_INJECTION_AUTHORIZED = 3900007 当前应用已经授权。<br>      INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008   其它应用已经授权。 |
+| [Input_Result](capi-oh-input-manager-h.md#input_result) | 返回结果码，参见[Input_Result](capi-oh-input-manager-h.md#input_result)。<br>      INPUT_SUCCESS = 0 申请授权成功，等待用户授权结果并回调授权状态。<br>      INPUT_PARAMETER_ERROR = 401  参数错误，参数callback为空。<br>      INPUT_DEVICE_NOT_SUPPORTED = 801  表示不支持该功能。<br>      INPUT_SERVICE_EXCEPTION = 3800001  服务器错误。<br>      INPUT_INJECTION_AUTHORIZING =  3900005 正在授权中。<br>      INPUT_INJECTION_OPERATION_FREQUENT = 3900006 重复请求（当前应用连续申请授权弹窗成功，间隔时间不超过3秒）。<br>      INPUT_INJECTION_AUTHORIZED = 3900007 当前应用已经授权。<br>      INPUT_INJECTION_AUTHORIZED_OTHERS = 3900008   其它应用已经授权。 |
 
 ### OH_Input_QueryAuthorizedStatus()
 
@@ -3275,7 +3279,7 @@ Input_Result OH_Input_AddHotkeyMonitor(const Input_Hotkey* hotkey, Input_HotkeyC
 
 | 类型 | 说明 |
 | -- | -- |
-| [Input_Result](#input_result) | OH_Input_AddHotkeyMonitor 函数错误码。<br>         [INPUT_SUCCESS](#input_result) 表示订阅组合按键成功。<br>         [INPUT_PARAMETER_ERROR](#input_result) 参数检查失败。<br>         [INPUT_OCCUPIED_BY_SYSTEM](#input_result) 该快捷键已被系统占用，可以通过接口[OH_Input_GetAllSystemHotkeys](#oh_input_getallsystemhotkeys)查询所有的系统快捷键。<br>         [INPUT_OCCUPIED_BY_OTHER](#input_result) 已被抢占订阅。<br>         [INPUT_DEVICE_NOT_SUPPORTED](#input_result) 表示功能不受支持。 |
+| [Input_Result](#input_result) | OH_Input_AddHotkeyMonitor 函数错误码。<br>         [INPUT_SUCCESS](#input_result) 表示订阅组合按键成功。<br>         [INPUT_PARAMETER_ERROR](#input_result) 参数检查失败。<br>         [INPUT_OCCUPIED_BY_SYSTEM](#input_result) 该快捷键已被系统占用，可以通过接口[OH_Input_GetAllSystemHotkeys](#oh_input_getallsystemhotkeys)查询所有的系统快捷键。<br>         [INPUT_OCCUPIED_BY_OTHER](#input_result) 已被抢占订阅。<br>         [INPUT_DEVICE_NOT_SUPPORTED](#input_result) 表示不支持该功能。 |
 
 ### OH_Input_RemoveHotkeyMonitor()
 
@@ -4189,3 +4193,118 @@ Input_Result OH_Input_GetPointerLocation(int32_t *displayId, double *displayX, d
 | 类型 | 说明 |
 | -- | -- |
 | [Input_Result](#input_result) | OH_Input_GetPointerLocation的执行结果：<br>      [INPUT_SUCCESS](#input_result) 表示查询成功。<br>      [INPUT_PARAMETER_ERROR](#input_result) 表示参数错误。<br>      [INPUT_SERVICE_EXCEPTION](#input_result) 表示服务异常。<br>      [INPUT_APP_NOT_FOCUSED](#input_result) 表示当前应用不是焦点应用。<br>      [INPUT_DEVICE_NO_POINTER](#input_result) 表示无鼠标类输入外设。 |
+
+
+### OH_Input_GetKeyEventId()
+
+```
+Input_Result OH_Input_GetKeyEventId(const struct Input_KeyEvent* keyEvent, int32_t* eventId)
+```
+
+**描述**
+
+获取按键事件的Id。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Input_KeyEvent](capi-input-input-keyevent.md)* keyEvent | 按键事件对象，通过[OH_Input_CreateKeyEvent](#oh_input_createkeyevent)接口可以创建按键事件对象。<br>使用完需使用[OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent)接口销毁按键事件对象。 |
+| int32_t* eventId | 按键事件的Id。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Input_Result](#input_result) | OH_Input_GetKeyEventId的执行结果：<br> [INPUT_SUCCESS](#input_result) 表示操作成功。<br> [INPUT_PARAMETER_ERROR](#input_result) 表示参数检查失败。 |
+
+
+### OH_Input_AddKeyEventHook()
+
+```
+Input_Result OH_Input_AddKeyEventHook(Input_KeyEventCallback callback)
+```
+
+**描述**
+
+添加一个按键事件拦截钩子函数。
+
+添加后可以通过[OH_Input_RemoveKeyEventHook](#oh_input_removekeyeventhook)接口移除。一个进程仅支持设置一个钩子，一个应用支持多个钩子函数，后添加的生效优先级更高。
+
+<!--RP1--><!--RP1End-->
+
+**需要权限：** ohos.permission.HOOK_KEY_EVENT
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Input_KeyEventCallback](#input_keyeventcallback) callback | 钩子函数，用于拦截待分发的所有按键事件。<br> 按键事件的优先级可以通过[OH_Input_GetKeyEventId](#oh_input_getkeyeventid)获取，按键事件的Id越小优先级越高。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Input_Result](#input_result) | OH_Input_AddKeyEventHook的执行结果：<br> [INPUT_SUCCESS](#input_result) 表示操作成功。<br>  [INPUT_PARAMETER_ERROR](#input_result) 表示参数检查失败。<br>  [INPUT_DEVICE_NOT_SUPPORTED](#input_result) 表示不支持该功能。 <br>  [INPUT_PERMISSION_DENIED](#input_result) 表示权限验证失败。<br>  [INPUT_REPEAT_INTERCEPTOR](#input_result) 表示重复设置钩子。一个进程仅支持设置一个钩子。<br>  [INPUT_SERVICE_EXCEPTION](#input_result) 表示服务异常，请重试。 |
+
+
+### OH_Input_RemoveKeyEventHook()
+
+```
+Input_Result OH_Input_RemoveKeyEventHook(Input_KeyEventCallback callback)
+```
+
+**描述**
+
+移除按键事件拦截钩子函数。
+
+通常与[OH_Input_AddKeyEventHook](#oh_input_addkeyeventhook)接口配合使用。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Input_KeyEventCallback](#input_keyeventcallback) callback | 钩子函数，用于拦截待分发的所有按键事件。<br> 按键事件的优先级可以通过[OH_Input_GetKeyEventId](#oh_input_getkeyeventid)获取，按键事件的Id越小优先级越高。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Input_Result](#input_result) | OH_Input_RemoveKeyEventHook的执行结果：<br>  [INPUT_SUCCESS](#input_result) 表示操作成功。如果之前没有添加对应钩子，移除时也会返回成功。<br>  [INPUT_PARAMETER_ERROR](#input_result) 表示参数检查失败。<br>  [INPUT_SERVICE_EXCEPTION](#input_result) 表示服务异常，请重试。 |
+
+
+### OH_Input_DispatchToNextHandler()
+
+```
+Input_Result OH_Input_DispatchToNextHandler(int32_t eventId)
+```
+
+**描述**
+
+重新分发按键事件。
+
+只有被钩子拦截的按键事件才能被重新分发，重新分发的事件必须保持原有优先级顺序，按键事件的优先级可以通过[OH_Input_GetKeyEventId](#oh_input_getkeyeventid)获取，按键事件的Id越小优先级越高。<br>
+调用该接口后，按键事件可在3秒内重新分发。如果超过3秒，将返回[INPUT_PARAMETER_ERROR](#input_result)。<br>
+重新分发的事件需要保证配对关系。如果重新分发了一个或多个按键按下事件[KEY_ACTION_DOWN](#input_keyeventaction)，再重新分发按键抬起事件[KEY_ACTION_UP](#input_keyeventaction)或按键动作取消事件[KEY_ACTION_CANCEL](#input_keyeventaction)可以成功。<br>
+如果仅分发[KEY_ACTION_UP](#input_keyeventaction)或[KEY_ACTION_CANCEL](#input_keyeventaction)按键事件，接口可以调用成功，但不会执行实际的分发动作。<br>
+如果分发的事件未被钩子拦截，函数调用会成功，但不会执行实际的分发动作。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| int32_t eventId | 按键事件的Id。可以通过[OH_Input_GetKeyEventId](#oh_input_getkeyeventid)接口获取。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Input_Result](#input_result) | OH_Input_DispatchToNextHandler的执行结果：<br>  [INPUT_SUCCESS](#input_result) 表示操作成功。<br>  [INPUT_PARAMETER_ERROR](#input_result) 表示参数检查失败。可通过[OH_Input_GetKeyEventId](#oh_input_getkeyeventid)查看传入的eventId是否准确。<br>  [INPUT_SERVICE_EXCEPTION](#input_result) 表示服务异常，请重试。 |

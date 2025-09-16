@@ -1,5 +1,12 @@
 # 发布实况窗类型通知（仅对系统应用开放）
 
+<!--Kit: Notification Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @fang-jinxu-->
+
 实况窗类型的通知可以让用户实时感知当前任务的进度。主要用于展示录音、录屏、音视频播放、计时、通话等长时任务的实时进展。此类通知不会进行持久化存储，其生命周期与通知发布方的生命周期一致。
 
 **表1** 基础类型通知中的内容分类

@@ -30,11 +30,11 @@ import { ArcList, ArcListAttribute } from '@kit.ArkUI';
 >
 > - 按子组件的顺序依次递增。  
 >
-> - [if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)语句中，只有条件成立的分支内的子组件会参与索引值计算，条件不成立的分支内子组件不计算索引值。  
+> - [if/else](../../../ui/rendering-control/arkts-rendering-control-ifelse.md)语句中，只有条件成立的分支内的子组件会参与索引值计算，条件不成立的分支内子组件不计算索引值。  
 >
-> - [ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)/[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)语句中，会计算展开所有子节点索引值。  
+> - [ForEach](../../../ui/rendering-control/arkts-rendering-control-foreach.md)/[LazyForEach](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md)语句中，会计算展开所有子节点索引值。  
 >
-> - [if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)和[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)发生变化以后，会更新子节点索引值。  
+> - [if/else](../../../ui/rendering-control/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/rendering-control/arkts-rendering-control-foreach.md)和[LazyForEach](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md)发生变化以后，会更新子节点索引值。  
 >
 > - ArcList子组件[visibility](ts-universal-attributes-visibility.md#visibility)属性设置为Hidden或None依然会计算索引值。  
 

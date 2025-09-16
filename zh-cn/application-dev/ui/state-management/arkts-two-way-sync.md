@@ -57,8 +57,8 @@
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = ''
-  controller: TextInputController = new TextInputController()
+  @State text: string = '';
+  controller: TextInputController = new TextInputController();
 
   build() {
     Column({ space: 20 }) {

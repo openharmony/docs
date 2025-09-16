@@ -20,7 +20,7 @@
 ## 子组件
 
 仅支持[ListItem](ts-container-listitem.md)、[ListItemGroup](ts-container-listitemgroup.md)子组件和自定义组件。自定义组件在List下使用时，建议使用ListItem或ListItemGroup作为自定组件的顶层组件，不建议给自定义组件设置属性和事件方法。
-支持通过渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）动态生成子组件，更推荐使用LazyForEach或Repeat以优化性能。
+支持通过渲染控制类型（[if/else](../../../ui/rendering-control/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/rendering-control/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/rendering-control/arkts-new-rendering-control-repeat.md)）动态生成子组件，更推荐使用LazyForEach或Repeat以优化性能。
 
 > **说明：**
 >
@@ -34,7 +34,7 @@
 >
 > - ForEach/LazyForEach/Repeat语句中，会计算展开所有子节点索引值。
 >
-> - [if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)发生变化以后，会更新子节点索引值。
+> - [if/else](../../../ui/rendering-control/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/rendering-control/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/rendering-control/arkts-new-rendering-control-repeat.md)发生变化以后，会更新子节点索引值。
 >
 > - ListItemGroup作为一个整体计算一个索引值，ListItemGroup内部的ListItem不计算索引值。
 >
@@ -477,7 +477,7 @@ maintainVisibleContentPosition(enabled: boolean)
 
 > **说明：** 
 > - 只有使用LazyForEach在显示区域外插入或删除数据时，属性设置为true才能保持可见内容位置不变。使用ForEach插入或删除数据、使用LazyForEach重新加载数据时，即使maintainVisibleContentPosition属性设置为true，可见区内容位置也会跟随变化。
-> - 从API version 20开始，使用[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)在懒加载场景下，显示区域外插入或删除数据时，属性设置为true也能保持可见内容位置不变。
+> - 从API version 20开始，使用[Repeat](../../../ui/rendering-control/arkts-new-rendering-control-repeat.md)在懒加载场景下，显示区域外插入或删除数据时，属性设置为true也能保持可见内容位置不变。
 > - maintainVisibleContentPosition属性设置为true后，在显示区域上方插入或删除数据，会触发onDidScroll、onScrollIndex事件。
 > - maintainVisibleContentPosition属性设置为true后，在多列场景下，一次插入或删除整行数据，可以保持可见内容位置不变，如果不是插入或删除整行数据，可见内容位置还是会发生变化。
 

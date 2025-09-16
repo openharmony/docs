@@ -1,4 +1,10 @@
 # Worker
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @wang_zhaoyong-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 Worker primarily provides a multithreaded runtime environment for applications, allowing them to separate from the host thread during execution. This enables scripts to run in background threads for time-consuming operations, avoiding blocking the host thread during compute-intensive or high-latency tasks. For details about the APIs and their usage, see [Worker](../reference/apis-arkts/js-apis-worker.md).
 
@@ -9,7 +15,7 @@ Worker primarily provides a multithreaded runtime environment for applications, 
 
 ![worker](figures/worker.png)
 
-The thread that creates a Worker is referred to as the host thread (not limited to the main thread; Worker threads can also create its child Workers). The Worker thread (also called actor thread) is the thread on which the Worker itself runs. Each Worker thread and the host thread have independent instances, including separate execution environments, objects, and code segments. Therefore, there is a certain memory overhead associated with starting each Worker, and the number of Worker threads should be limited. Worker threads and the host thread communicate through a message-passing mechanism, using serialization to complete the exchange of commands and data.
+The thread that creates a Worker is referred to as the host thread (not limited to the main thread; Worker threads can also create its child Workers). The Worker thread (also called actor thread) is the thread on which the Worker itself runs. Each Worker thread and the host thread have independent instances, including separate execution environments, objects, and code segments. Therefore, there is a certain memory overhead associated with starting each Worker, and the number of Worker threads should be limited. Worker threads and the host thread communicate through a message-passing mechanism, using serialization, reference passing, or ownership transfer to complete the exchange of commands and data.
 
 
 ## Precautions for Worker
@@ -20,10 +26,13 @@ The thread that creates a Worker is referred to as the host thread (not limited 
 - The context objects in different threads are different. Therefore, Worker threads can use only thread-safe libraries. For example, non-thread-safe UI-related libraries cannot be used in Worker threads.
 - A maximum of 16 MB data can be serialized at a time.
 - When using the Worker module, you are advised to register the **onAllErrors** callback in the host thread in API version 18 or later to capture various exceptions that may occur during the lifecycle of the Worker thread. In versions earlier than API version 18, register the **onerror** callback. If neither of them is registered, JS crash occurs when the Worker thread is abnormal. Note that the **onerror** callback can only capture synchronous exceptions within the **onmessage** callback. Once an exception is captured, the Worker thread will proceed to the destruction process and cannot be used. For details, see [Behavior Differences Between onAllErrors and onerror](#behavior-differences-between-onallerrors-and-onerror).
-- Worker thread files cannot be used across HAPs.
+- Worker thread files cannot be shared among multiple HAPs.
 - Before referencing a Worker in a HAR or HSP, configure the dependency on the HAR or HSP. For details, see [Referencing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-har-import).
 - [AppStorage](../ui/state-management/arkts-appstorage.md) cannot be used in Worker threads.
 - Starting from API version 18, the priority of the Worker thread can be specified in the [WorkerOptions](../reference/apis-arkts/js-apis-worker.md#workeroptions) parameter of the constructor.
+- Do not use the **export** syntax to export any content in the Worker file. Otherwise, a JS crash may occur.
+
+In addition to the preceding precautions, pay attention to [concurrency precautions](multi-thread-concurrency-overview.md#concurrency-precautions).
 
 ### Precautions for Creating a Worker
 
@@ -42,7 +51,7 @@ The Worker thread file must be placed in the ***{moduleName}*/src/main/ets/** di
     }
   }
   ```
-  <!-- @[manual_create_worker](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/build-profile.json5) -->
+  <!-- @[manual_create_worker](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/build-profile.json5) -->
 
   FA model:
 
@@ -61,20 +70,17 @@ The Worker thread file must be placed in the ***{moduleName}*/src/main/ets/** di
 
 ### Precautions for File URLs
 
-Before calling an API of the Worker module, you must create a Worker object. The constructor is related to the API version and requires the URL to the Worker thread file to be passed in **scriptURL**.
+  Before calling an API of the Worker module, you must create a Worker object. The constructor is related to the API version and requires the URL to the Worker thread file to be passed in **scriptURL**.
 
+<!--code_no_check-->
 ```ts
 // Import the module.
 import { worker } from '@kit.ArkTS';
 
-// Use the following function in API version 9 and later versions:
 const worker1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ets');
-// Use the following function in API version 8 and earlier versions:
-const worker2: worker.Worker = new worker.Worker('entry/ets/workers/worker.ets');
 ```
 
-
-#### File URL Rules in Stage Model
+**File URL Rules in Stage Model**
 
 The requirements for **scriptURL** in the constructor are as follows:
 
@@ -131,10 +137,9 @@ const workerStage4: worker.ThreadWorker = new worker.ThreadWorker('@har/ets/work
 const workerStage5: worker.ThreadWorker = new worker.ThreadWorker('../../workers/worker.ets');
 ```
 
+**File URL Rules in FA Model**
 
-#### File URL Rules in FA Model
-
-**scriptURL** in the constructor is the relative path from the Worker thread file to "{moduleName}/src/main/ets/MainAbility".
+  **scriptURL** in the constructor is the relative path from the Worker thread file to "{moduleName}/src/main/ets/MainAbility".
 
 ```ts
 import { worker } from '@kit.ArkTS';
@@ -154,7 +159,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
 
 ### Precautions for Lifecycle Management
 
-- Creating and destroying Worker consume system resources. Therefore, you are advised to manage created Workers efficiently and reuse them when possible. Idle Workers still occupy resources. When a Worker is no longer needed, call [terminate()](../reference/apis-arkts/js-apis-worker.md#terminate9) or [close()](../reference/apis-arkts/js-apis-worker.md#close9) to destroy it actively. If a Worker is in a non-running state such as destroyed or being destroyed, calling its functional interfaces will throw corresponding errors.
+- Creating and destroying Workers consume system resources. Therefore, you are advised to manage created Workers efficiently and reuse them when possible. Idle Workers still occupy resources. When a Worker is no longer needed, call [terminate()](../reference/apis-arkts/js-apis-worker.md#terminate9) or [close()](../reference/apis-arkts/js-apis-worker.md#close9) to destroy it actively. If a Worker is in a non-running state such as destroyed or being destroyed, calling its functional interfaces will throw corresponding errors.
 
 
 - The number of Workers is determined by the memory management policy, with a set memory threshold being the smaller of 1.5 GB and 60% of the device's physical memory. Under memory constraints, a maximum of 64 Workers can run simultaneously. If an attempt is made to create more Workers than this limit, the system displays the error message "Worker initialization failure, the number of Workers exceeds the maximum." The actual number of running Workers will be adjusted in real time based on current memory usage. When the cumulative memory usage of all Workers and the main thread exceeds the set threshold, Out of Memory (OOM) error occurs, and applications may crash.
@@ -219,7 +224,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
                 // Create a Worker object.
                 let workerInstance = new worker.ThreadWorker('entry/ets/workers/worker.ets');
 
-                // Register the onmessage callback. When the host thread receives a message from the Worker thread through the workerPort.postMessage interface, this callback is invoked and executed in the host thread.
+                // Register the onmessage callback to capture the message sent by the Worker thread through the workerPort.postMessage API. This callback is executed in the host thread.
                 workerInstance.onmessage = (e: MessageEvents) => {
                   let data: string = e.data;
                   console.info('workerInstance onmessage is: ', data);
@@ -250,7 +255,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
         }
       }
       ```
-      <!-- @[create_worker_object_register_callback_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/basicusage.ets) -->
+      <!-- @[create_worker_object_register_callback_function](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/basicusage.ets) -->
 
 4. Register the callback functions in the Worker thread file.
 
@@ -265,7 +270,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
         let data: string = e.data;
         console.info('workerPort onmessage is: ', data);
 
-        // Send a message to the main thread.
+        // Send a message to the host thread.
         workerPort.postMessage('2');
       }
 
@@ -279,7 +284,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
         console.error('workerPort onerror err is: ', err.message);
       }
       ```
-      <!-- @[register_callback_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/workers/worker.ets) -->
+      <!-- @[register_callback_function](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/workers/worker.ets) -->
 
 
 ## Loading Worker Across HARs
@@ -295,7 +300,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
      workerPort.postMessage('worker thread post message to main thread');
    }
    ```
-   <!-- @[create_har_worker](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/har/src/main/ets/workers/worker.ets) -->
+   <!-- @[create_har_worker](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/har/src/main/ets/workers/worker.ets) -->
 
 3. Configure the dependency of the HAR in the **oh-package.json5** file of the entry module.
 
@@ -313,7 +318,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
      }
    }
    ```
-   <!-- @[config_har_dependency](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/oh-package.json5) -->
+   <!-- @[config_har_dependency](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/oh-package.json5) -->
 
 4. Load the Worker thread file from the HAR in the entry module.
 
@@ -350,25 +355,24 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
      }
    }
    ```
-   <!-- @[load_har_worker](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/crosshar.ets) -->
+   <!-- @[load_har_worker](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/crosshar.ets) -->
 
 
 ## Multi-Level Worker Lifecycle Management
-Multi-level Workers can be created. That is, a hierarchical thread relationship is formed by the mechanism of creating child Workers through parent Workers. The lifecycle of Worker threads should be manually managed. Therefore, it is important to properly manage the lifecycle of multi-level Workers. If a parent Worker is destroyed without terminating its child Workers, unpredictable results may occur. Ensure the lifecycle of child Workers always remains within the lifecycle of the parent Worker and that all child Workers are terminated before destroying the parent Worker.
+Multi-level Workers can be created. That is, a hierarchical thread relationship is formed by the mechanism of creating child Workers through parent Workers. The lifecycle of Worker threads should be manually managed. Therefore, it is important to properly manage the lifecycle of multi-level Workers. If a parent Worker is destroyed without terminating its child Workers, unpredictable results may occur. Therefore, ensure that the lifecycle of child Workers is within the lifecycle of the parent Worker. Before destroying the parent Worker, destroy all child Workers to prevent unexpected results.
 
 
 ### Recommended Usage Example
 
 ```ts
-// Create a Worker thread (parent Worker) in the main thread, and create a Worker thread (child Worker) in the parent Worker.
-// main thread
+// Create a Worker thread (parent Worker) in the host thread, and create a Worker thread (child Worker) in the parent Worker.
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
-// Create a parent Worker object in the main thread.
+// Create a parent Worker object in the host thread.
 const parentworker = new worker.ThreadWorker('entry/ets/workers/parentworker.ets');
 
 parentworker.onmessage = (e: MessageEvents) => {
-  console.info('The main thread receives a message from the parent Worker' + e.data);
+  console.info('The host thread receives a message from the parent Worker' + e.data);
 }
 
 parentworker.onexit = () => {
@@ -376,28 +380,28 @@ parentworker.onexit = () => {
 }
 
 parentworker.onAllErrors = (err: ErrorEvent) => {
-  console.error('The main thread receives an error from the parent Worker ' + err);
+  console.error('The host thread receives an error from the parent Worker' + err.message);
 }
 
-parentworker.postMessage('The main thread sends a message to the parent Worker - recommended example');
+parentworker.postMessage('The host thread sends a message to the parent Worker - recommended example');
 ```
-<!-- @[recommended_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/recommend.ets) -->
+<!-- @[recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/recommend.ets) -->
 
 ```ts
 // parentworker.ets
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
-// Create an object in the parent Worker for communicating with the main thread.
+// Create an object in the parent Worker for communicating with the host thread.
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
 workerPort.onmessage = (e : MessageEvents) => {
-  if (e.data == 'The main thread sends a message to the parent Worker - recommended example') {
+  if (e.data == 'The host thread sends a message to the parent Worker - recommended example') {
     let childworker = new worker.ThreadWorker('entry/ets/workers/childworker.ets');
 
     childworker.onmessage = (e: MessageEvents) => {
       console.info('The parent Worker receives a message from the child Worker' + e.data);
       if (e.data == 'The child Worker sends information to the parent Worker') {
-        workerPort.postMessage('The parent Worker sends a message to the main thread');
+        workerPort.postMessage('The parent Worker sends a message to the host thread');
       }
     }
 
@@ -408,14 +412,14 @@ workerPort.onmessage = (e : MessageEvents) => {
     }
 
     childworker.onAllErrors = (err: ErrorEvent) => {
-      console.error('An error occurred on the child Worker' + err);
+      console.error('An error occurred on the child Worker' + err.message);
     }
 
     childworker.postMessage('The parent Worker sends a message to the child Worker - recommended example');
   }
 }
 ```
-<!-- @[recommended_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/recommendworkers/parentworker.ets) -->
+<!-- @[recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/recommendworkers/parentworker.ets) -->
 
 ```ts
 // childworker.ets
@@ -432,7 +436,7 @@ workerPort.onmessage = (e: MessageEvents) => {
   }
 }
 ```
-<!-- @[recommended_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/recommendworkers/childworker.ets) -->
+<!-- @[recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/recommendworkers/childworker.ets) -->
 
 
 ### Not Recommended Example
@@ -440,13 +444,12 @@ workerPort.onmessage = (e: MessageEvents) => {
 It is not recommended that a child Worker send messages to the parent Worker after the parent Worker is destroyed.
 
 ```ts
-// main thread
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 const parentworker = new worker.ThreadWorker('entry/ets/workers/parentworker.ets');
 
 parentworker.onmessage = (e: MessageEvents) => {
-  console.info('The main thread receives a message from the parent Worker' + e.data);
+  console.info('The host thread receives a message from the parent Worker' + e.data);
 }
 
 parentworker.onexit = () => {
@@ -454,12 +457,12 @@ parentworker.onexit = () => {
 }
 
 parentworker.onAllErrors = (err: ErrorEvent) => {
-  console.error('The main thread receives an error from the parent Worker ' + err);
+  console.error('The host thread receives an error from the parent Worker' + err.message);
 }
 
-parentworker.postMessage('The main thread sends a message to the parent Worker');
+parentworker.postMessage('The host thread sends a message to the parent Worker');
 ```
-<!-- @[not_recommended_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/notrecommendedone.ets) -->
+<!-- @[not_recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/notrecommendedone.ets) -->
 
 ```ts
 // parentworker.ets
@@ -468,7 +471,7 @@ import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
 workerPort.onmessage = (e : MessageEvents) => {
-  console.info('The parent Worker receives a message from the main thread' + e.data);
+  console.info('The parent Worker receives a message from the host thread' + e.data);
 
   let childworker = new worker.ThreadWorker('entry/ets/workers/childworker.ets')
 
@@ -478,11 +481,11 @@ workerPort.onmessage = (e : MessageEvents) => {
 
   childworker.onexit = () => {
     console.info('The child Worker exits');
-    workerPort.postMessage('The parent Worker sends a message to the main thread');
+    workerPort.postMessage('The parent Worker sends a message to the host thread');
   }
 
   childworker.onAllErrors = (err: ErrorEvent) => {
-    console.error('An error occurred on the child Worker' + err);
+    console.error('An error occurred on the child Worker' + err.message);
   }
 
   childworker.postMessage('The parent Worker sends a message to the child Worker');
@@ -491,7 +494,7 @@ workerPort.onmessage = (e : MessageEvents) => {
   workerPort.close();
 }
 ```
-<!-- @[not_recommended_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/notrecommendedoneworker/parentworker.ets) -->
+<!-- @[not_recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/notrecommendedoneworker/parentworker.ets) -->
 
 ```ts
 // childworker.ets
@@ -509,18 +512,17 @@ workerPort.onmessage = (e: MessageEvents) => {
   }, 1000);
 }
 ```
-<!-- @[not_recommended_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/notrecommendedoneworker/childworker.ets) -->
+<!-- @[not_recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/notrecommendedoneworker/childworker.ets) -->
 
-You are not advised to create a child Worker in the parent Worker when the parent Worker is initiating the destruction operation. Furthermore, avoid creating a child Worker in the parent Worker if there is any uncertainty about whether the parent Worker is initiating the destruction operation. Ensure that the parent Worker remains active before the child Worker is successfully created.
+You are not advised to create a child Worker in the parent Worker when the parent Worker is initiating the destruction operation. Before creating a child Worker thread, ensure that the parent Worker thread is always alive. You are advised to create a child Worker when the parent Worker does not initiate the destruction operation.
 
 ```ts
-// main thread
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 const parentworker = new worker.ThreadWorker('entry/ets/workers/parentworker.ets');
 
 parentworker.onmessage = (e: MessageEvents) => {
-  console.info('The main thread receives a message from the parent Worker' + e.data);
+  console.info('The host thread receives a message from the parent Worker' + e.data);
 }
 
 parentworker.onexit = () => {
@@ -528,12 +530,12 @@ parentworker.onexit = () => {
 }
 
 parentworker.onAllErrors = (err: ErrorEvent) => {
-  console.error('The main thread receives an error from the parent Worker ' + err);
+  console.error('The host thread receives an error from the parent Worker' + err.message);
 }
 
-parentworker.postMessage('The main thread sends a message to the parent Worker');
+parentworker.postMessage('The host thread sends a message to the parent Worker');
 ```
-<!-- @[not_recommended_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/notrecommendedtwo.ets) -->
+<!-- @[not_recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/notrecommendedtwo.ets) -->
 
 ```ts
 // parentworker.ets
@@ -542,7 +544,7 @@ import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
 workerPort.onmessage = (e : MessageEvents) => {
-  console.info('The parent Worker receives a message from the main thread' + e.data);
+  console.info('The parent Worker receives a message from the host thread' + e.data);
 
   // Create a child Worker after the parent Worker is destroyed. The behavior is unpredictable.
   workerPort.close();
@@ -558,17 +560,17 @@ workerPort.onmessage = (e : MessageEvents) => {
 
   childworker.onexit = () => {
     console.info('The child Worker exits');
-    workerPort.postMessage('The parent Worker sends a message to the main thread');
+    workerPort.postMessage('The parent Worker sends a message to the host thread');
   }
 
   childworker.onAllErrors = (err: ErrorEvent) => {
-    console.error('An error occurred on the child Worker' + err);
+    console.error('An error occurred on the child Worker' + err.message);
   }
 
   childworker.postMessage('The parent Worker sends a message to the child Worker');
 }
 ```
-<!-- @[not_recommended_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/notrecommendedtwoworker/parentworker.ets) -->
+<!-- @[not_recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/notrecommendedtwoworker/parentworker.ets) -->
 
 ```ts
 // childworker.ets
@@ -580,4 +582,4 @@ workerPort.onmessage = (e: MessageEvents) => {
   console.info('The child Worker receives a message' + e.data);
 }
 ```
-<!-- @[not_recommended_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/notrecommendedtwoworker/childworker.ets) -->
+<!-- @[not_recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/notrecommendedtwoworker/childworker.ets) -->

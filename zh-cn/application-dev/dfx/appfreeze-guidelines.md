@@ -57,7 +57,7 @@
 
 ### 生命周期切换超时
 
-**概述**：生命周期切换超时分为[Ability生命周期](../application-models/uiability-lifecycle.md)切换超时和[PageAbility生命周期](../application-models/pageability-lifecycle.md)切换超时。
+**概述**：生命周期切换超时分为[UIAbility生命周期](../application-models/uiability-lifecycle.md)切换超时和[PageAbility生命周期](../application-models/pageability-lifecycle.md)切换超时。
 
 该故障发生在生命周期切换过程中，影响应用内Ability的切换或者不同PageAbility之间的切换。
 
@@ -245,6 +245,8 @@ Tid:13680, Name:les.freezedebug
 > **说明：**
 >
 > 在整机高负载情况（如CPU高负载）下，采用低开销方式获取调用栈时，可能损失函数名信息。
+>
+> 从API version 21开始，出现'Failed to dump normal stacktrace'字样时，系统采取轻量化的frame pointer回溯模式。栈回溯可能中断在非使能frame pointer的库（在GCC编译使用 -fomit-frame-pointer 选项时，编译产物会非使能frame pointer），以及受轻量化的限制，单个线程的回栈层数不会超过50层。
 
 ### 对端信息（与当前故障进程通信的进程信息）
 

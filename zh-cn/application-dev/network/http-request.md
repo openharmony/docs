@@ -232,12 +232,12 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
     
     // 订阅HTTP流式响应数据接收进度事件，下载服务器的数据时，可以通过该回调获取数据下载进度。
     httpRequest.on('dataReceiveProgress', (data: http.DataReceiveProgressInfo) => {
-      console.log("dataReceiveProgress receiveSize:" + data.receiveSize + ", totalSize:" + data.totalSize);
+      console.info("dataReceiveProgress receiveSize:" + data.receiveSize + ", totalSize:" + data.totalSize);
     });
 
     // 订阅HTTP流式响应数据发送进度事件，向服务器上传数据时，可以通过该回调获取数据上传进度。
     httpRequest.on('dataSendProgress', (data: http.DataSendProgressInfo) => {
-      console.log("dataSendProgress receiveSize:" + data.sendSize + ", totalSize:" + data.totalSize);
+      console.info("dataSendProgress receiveSize:" + data.sendSize + ", totalSize:" + data.totalSize);
     });
     ```
 

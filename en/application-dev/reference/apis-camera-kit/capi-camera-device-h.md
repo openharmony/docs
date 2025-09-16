@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
@@ -55,7 +56,7 @@ Obtains the sensor direction of a camera device.
 
 | Type| Description|
 | -- | -- |
-| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | **CAMERA_OK**: The operation is successful.<br>**CAMERA_CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.<br>**CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.|
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | **CAMERA_OK**: The operation is successful.<br>         **CAMERA_CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.<br>         **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.|
 
 ### OH_CameraDevice_GetHostDeviceName()
 
@@ -81,7 +82,7 @@ Obtains the name of a remote device.
 
 | Type| Description|
 | -- | -- |
-| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | **CAMERA_OK**: The operation is successful, and the remote device name is returned.<br>**CAMERA_CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.<br>**CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.|
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | **CAMERA_OK**: The operation is successful, and the remote device name is returned.<br>         **CAMERA_CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.<br>         **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.|
 
 ### OH_CameraDevice_GetHostDeviceType()
 
@@ -107,4 +108,4 @@ Obtains the type of a remote device.
 
 | Type| Description|
 | -- | -- |
-| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | **CAMERA_OK**: The operation is successful, and the remote device name is returned.<br>**CAMERA_CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.<br>**CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.|
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | **CAMERA_OK**: The operation is successful, and the remote device name is returned.<br>         **CAMERA_CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.<br>         **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.|

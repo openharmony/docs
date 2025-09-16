@@ -477,6 +477,8 @@ struct Index {
 
 打开代理通道函数的入参，包括对端设备的MAC地址和监听服务的UUID。
 
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
 | 名称       | 类型                                       | 只读   | 可选   | 说明       |
 | --------- | ---------------------------------------- | ---- | ---- | -------- |
 | linkType | [LinkType](#linktype) | 否 | 否    | 代理通道的链路类型。 |

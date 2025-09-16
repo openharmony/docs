@@ -1,4 +1,10 @@
 # Class (JsGeolocation)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zhang-yinglie-->
+<!--Designer: @handyohos-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements the **PermissionRequest** object. For details about the sample code, see [onGeolocationShow](./arkts-basic-components-web-events.md#ongeolocationshow).
 

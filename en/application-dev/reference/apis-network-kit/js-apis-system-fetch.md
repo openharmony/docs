@@ -1,4 +1,4 @@
-# @system.fetch (Data Request)
+# @system.fetch (Data Request) (Deprecated)
 
 > **NOTE**
 > - The APIs of this module are no longer maintained since API version 6. You are advised to use [`@ohos.net.http`](js-apis-http.md).

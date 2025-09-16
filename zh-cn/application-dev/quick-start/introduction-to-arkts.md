@@ -1948,11 +1948,11 @@ class MyClass {
 
 > **注意**
 > 
-> HarmonyOS应用开发中，在[release模式下构建](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-har#section19788284410)源码HAR，并同时开启混淆时，由于编译产物为JS文件，而在JS中没有注解的实现机制，因此会在编译过程中被移除，导致无法通过注解实现AOP插桩。
+> 应用开发中，在[release模式下构建](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-har#section19788284410)源码HAR，并同时[开启混淆](../../application-dev/arkts-utils/source-obfuscation.md)时，由于编译产物为JS文件，而在JS中没有注解的实现机制，因此会在编译过程中被移除，导致无法通过注解实现AOP插桩。
 >
 > 为避免因此引起的功能异常，禁止在JS HAR(编译产物中存在JS的HAR包)中使用注解。
 >
-> 如果需要在release模式并且开启混淆的情况下构建含有注解的HAR包，可以构建[TS HAR](har-package.md#编译生成ts文件)或者[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-har#section16598338112415)。
+> 如果需要在release模式并且开启混淆的情况下构建含有注解的HAR包，可以构建[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-har#section16598338112415)。
 
 ### 用户自定义注解
 

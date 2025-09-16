@@ -129,7 +129,8 @@ struct AxisEventExample {
                 'AxisEvent:' + '\n  action:' + event.action + '\n  displayX:' + event.displayX + '\n  displayY:' +
                 event.displayY + '\n  windowX:' + event.windowX + '\n  windowY:' + event.windowY + '\n  x:' + event.x +
                   '\n  y:' + event.y + '\n VerticalAxisValue:' + event.getVerticalAxisValue() +
-                  '\n HorizontalAxisValue:' + event.getHorizontalAxisValue()
+                  '\n HorizontalAxisValue:' + event.getHorizontalAxisValue() + '\n axisPinch:' + event.axisPinch +
+                  '\n PinchAxisScaleValue:' + event.getPinchAxisScaleValue();
             }
           })
       }.margin(20)

@@ -173,7 +173,7 @@ onWindowStageDestroy(): void
 
 当WindowStage销毁后，系统触发该回调。该回调用于通知开发者WindowStage对象已被销毁，不能再继续使用。
 
-仅当UIAbility正常退出时会触发该回调，异常退出场景（例如低内存查杀）不会触发该回调。
+仅当UIAbility正常退出时会触发该回调，异常退出场景（例如低内存终止进程）不会触发该回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -241,7 +241,7 @@ onDestroy(): void | Promise&lt;void&gt;
 > **说明：**
 >
 > - 在执行完onDestroy生命周期回调后，应用可能会退出，从而导致其中的异步函数（比如异步写入数据库）未能正确执行。在此情况下，推荐使用Promise异步回调。
-> - 该回调仅在UIAbility正常退出时触发，当UIAbility异常退出（例如低内存查杀）时，该回调将不被触发。
+> - 该回调仅在UIAbility正常退出时触发，当UIAbility异常退出（例如低内存终止进程）时，该回调将不被触发。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 

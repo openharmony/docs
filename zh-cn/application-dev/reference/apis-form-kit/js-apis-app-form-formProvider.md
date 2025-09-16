@@ -344,7 +344,7 @@ try {
 
 getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 
-获取设备上当前应用程序的卡片信息，使用Promise异步回调。
+获取设备上当前应用符合条件的卡片信息，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

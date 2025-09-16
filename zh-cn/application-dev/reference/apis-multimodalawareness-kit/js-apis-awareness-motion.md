@@ -80,7 +80,6 @@ on(type: 'operatingHandChanged', callback: Callback&lt;OperatingHandStatus&gt;):
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { Callback } from '@ohos.base';
 
 let callback:Callback<motion.OperatingHandStatus> = (data:motion.OperatingHandStatus) => {
     console.info('callback succeeded' + data);
@@ -210,7 +209,6 @@ on(type: 'holdingHandChanged', callback: Callback&lt;HoldingHandStatus&gt;): voi
 
 ```typescript
 import { BusinessError } from '@kit.BasicServicesKit';
-import { Callback } from '@ohos.base';
 
 let callback:Callback<motion.HoldingHandStatus> = (data:motion.HoldingHandStatus) => {
   console.info('callback succeeded: ' + data);

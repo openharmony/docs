@@ -2071,7 +2071,7 @@ const char* OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT
 **描述**
 在视频编码中获取长期参考帧的最大个数的键，值类型为int32_t。 
 
-可以通过[OH_AVCapability_GetFeatureProperties](capi-native-avcapability-h.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_LONG_TERM_REFERENCE](capi-native-avcapability-h.md#oh_avcapabilityfeature-1)来查询这个最大值。
+可以通过[OH_AVCapability_GetFeatureProperties](capi-native-avcapability-h.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_LONG_TERM_REFERENCE](capi-native-avcapability-h.md#oh_avcapabilityfeature)来查询这个最大值。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2782,7 +2782,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_ENABLE_TEMPORAL_SCALABILITY
 使能分层编码的键，值类型为int32_t，1表示使能，0表示不使能，默认值为0。配置非0值将按照配置1处理，表示使能。
 
 使用前可以通过[OH_AVCapability_IsFeatureSupported](capi-native-avcapability-h.md#oh_avcapability_isfeaturesupported)接口和枚举值
-[VIDEO_ENCODER_TEMPORAL_SCALABILITY](capi-native-avcapability-h.md#oh_avcapabilityfeature-1)来查询当前视频编码器是否支持分层编码。
+[VIDEO_ENCODER_TEMPORAL_SCALABILITY](capi-native-avcapability-h.md#oh_avcapabilityfeature)来查询当前视频编码器是否支持分层编码。
 详情请参见：[时域可分层视频编码](../../media/avcodec/video-encoding-temporal-scalability.md#接口介绍)。
 
 该键是可选的且只用于视频编码，在Configure阶段使用。
@@ -2800,7 +2800,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT
 **描述**
 描述长期参考帧个数的键，值类型为int32_t，必须在支持的值范围内使用。 
 
-使用前可以通过[OH_AVCapability_GetFeatureProperties](capi-native-avcapability-h.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_LONG_TERM_REFERENCE](capi-native-avcapability-h.md#oh_avcapabilityfeature-1)来查询支持的LTR数目。 
+使用前可以通过[OH_AVCapability_GetFeatureProperties](capi-native-avcapability-h.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_LONG_TERM_REFERENCE](capi-native-avcapability-h.md#oh_avcapabilityfeature)来查询支持的LTR数目。 
 
 该键是可选的且只用于视频编码，在Configure阶段使用。
 
@@ -3312,7 +3312,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_ENABLE_B_FRAME
 
 该键值是可选的且只用于视频编码，默认值为0。
 
-使用前可以通过[OH_AVCapability_isFeatureSupported](capi-native-avcapability-h.md#oh_avcapability_isfeaturesupported)接口和枚举值[VIDEO_ENCODER_B_FRAME](capi-native-avcapability-h.md#oh_avcapabilityfeature-1)来查询平台是否支持该特性。 
+使用前可以通过[OH_AVCapability_isFeatureSupported](capi-native-avcapability-h.md#oh_avcapability_isfeaturesupported)接口和枚举值[VIDEO_ENCODER_B_FRAME](capi-native-avcapability-h.md#oh_avcapabilityfeature)来查询平台是否支持该特性。 
 
 该键是可选的且只用于视频编码，在Configure阶段使用。
 
@@ -3328,9 +3328,9 @@ const char* OH_MD_KEY_VIDEO_ENCODER_MAX_B_FRAMES
 **描述**
 在视频编码中获取B帧编码支持最大B帧数量的键，值类型为int32_t。
 
-使用前可以通过[OH_AVCapability_GetFeatureProperties](capi-native-avcapability-h.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_B_FRAME](capi-native-avcapability-h.md#oh_avcapabilityfeature-1)来查询平台是否支持B帧编码。
+使用前可以通过[OH_AVCapability_GetFeatureProperties](capi-native-avcapability-h.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_B_FRAME](capi-native-avcapability-h.md#oh_avcapabilityfeature)来查询平台是否支持B帧编码。
 
-通过[OH_AVCapability_GetFeatureProperties](capi-native-avcapability-h.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_B_FRAME](capi-native-avcapability-h.md#oh_avcapabilityfeature-1)获取[OH_AVFormat](_core.md#oh_avformat)句柄。
+通过[OH_AVCapability_GetFeatureProperties](capi-native-avcapability-h.md#oh_avcapability_getfeatureproperties)接口和枚举值[VIDEO_ENCODER_B_FRAME](capi-native-avcapability-h.md#oh_avcapabilityfeature)获取[OH_AVFormat](_core.md#oh_avformat)句柄。
 
 通过[OH_AVFormat_GetIntValue](_core.md#oh_avformat_getintvalue)接口查询支持的B帧数目。
 

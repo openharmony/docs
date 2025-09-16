@@ -632,8 +632,14 @@ getValue(columnIndex: number): ValueType
 **示例：**
 
 ```ts
-if (resultSet != undefined) {
-  const codes = (resultSet as relationalStore.ResultSet).getValue((resultSet as relationalStore.ResultSet).getColumnIndex("BIGINT_COLUMN"));
+if (resultSet !== undefined) {
+  while (resultSet.goToNextRow()) {
+    const colIndex = resultSet.getColumnIndex("NAME");
+    if (colIndex > -1) {
+      const name = resultSet.getValue(colIndex);
+      console.info(`Get value success, name is ${name}`);
+    }
+  }
 }
 ```
 
@@ -798,8 +804,14 @@ getLong(columnIndex: number): number
 **示例：**
 
 ```ts
-if (resultSet != undefined) {
-  const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
+if (resultSet !== undefined) {
+  while (resultSet.goToNextRow()) {
+    const colIndex = resultSet.getColumnIndex("AGE");
+    if (colIndex > -1) {
+      const age = resultSet.getLong(colIndex);
+      console.info(`Get long success, age is ${age}`);
+    }
+  }
 }
 ```
 
@@ -853,8 +865,14 @@ getDouble(columnIndex: number): number
 **示例：**
 
 ```ts
-if (resultSet != undefined) {
-  const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
+if (resultSet !== undefined) {
+  while (resultSet.goToNextRow()) {
+    const colIndex = resultSet.getColumnIndex("SALARY");
+    if (colIndex > -1) {
+      const salary = resultSet.getDouble(colIndex);
+      console.info(`Get double success, salary is ${salary}`);
+    }
+  }
 }
 ```
 
@@ -1227,8 +1245,14 @@ isColumnNull(columnIndex: number): boolean
 **示例：**
 
 ```ts
-if (resultSet != undefined) {
-  const isColumnNull = (resultSet as relationalStore.ResultSet).isColumnNull((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
+if (resultSet !== undefined) {
+  while (resultSet.goToNextRow()) {
+    const colIndex = resultSet.getColumnIndex("CODES");
+    if (colIndex > -1) {
+      const isColumnNull = resultSet.isColumnNull(colIndex);
+      console.info(`Column is null: ${isColumnNull}`);
+    }
+  }
 }
 ```
 

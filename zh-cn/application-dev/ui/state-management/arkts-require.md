@@ -96,7 +96,7 @@ struct Child {
 ```
 
 
-使用\@ComponentV2修饰的自定义组件ChildPage通过父组件ParentPage进行初始化，因为有\@Require装饰\@Param，所以父组件必须进行构造赋值。
+使用[\@ComponentV2](./arkts-new-componentV2.md)修饰的自定义组件ChildPage通过父组件ParentPage进行初始化，因为有\@Require装饰\@Param，所以父组件必须进行构造赋值。
 
 ```ts
 @ObservedV2

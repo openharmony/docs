@@ -168,3 +168,6 @@
       }
   }
 ```
+
+### onControllerAttached与javaScriptOnDocumentStart的执行顺序是什么？
+[javaScriptOnDocumentStart](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#javascriptondocumentstart11)在[onControllerAttached](../reference/apis-arkweb/arkts-basic-components-web-events.md#oncontrollerattached10)之后执行。 

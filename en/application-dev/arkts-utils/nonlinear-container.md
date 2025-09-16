@@ -1,4 +1,10 @@
 # Nonlinear Containers
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 
 Nonlinear containers, underpinned by hash tables or red-black trees, implement a data structure that enables quick lookup operations. There are several types of nonlinear containers: HashMap, HashSet, TreeMap, TreeSet, LightWeightMap, LightWeightSet, and PlainArray. The types of **key** and **value** in nonlinear containers comply with the ECMA standard.
@@ -12,16 +18,16 @@ Nonlinear containers, underpinned by hash tables or red-black trees, implement a
 | TreeMap | Stores a collection of KV pairs with unique keys. It allows users to customize sorting methods. It is suitable for scenarios requiring ordered storage of KV pairs.|
 | TreeSet | Stores a collection of unique values. It allows users to customize sorting methods but does not recommend storing null values. It is suitable for scenarios requiring ordered storage of collections.|
 | LightWeightMap | Stores a collection of KV pairs with unique keys. It uses a more lightweight structure, occupying less memory. It is recommended for scenarios with limited memory and the need to store KV pairs.|
-| LightWeightSet |  Stores a collection of unique values. It uses a more lightweight structure, occupying less memory. It is useful for creating non-redundant collections or removing duplicates.|
+| LightWeightSet | Stores a collection of unique values. It uses a more lightweight structure, occupying less memory. It is useful for creating non-redundant collections or removing duplicates.|
 | PlainArray | Stores a collection of KV pairs with unique keys, where keys are of the number type. It uses a lightweight structure and a binary search algorithm for key lookup. It is suitable for storing KV pairs with number-type keys.|
 
 ## HashMap
 
 [HashMap](../reference/apis-arkts/js-apis-hashmap.md) is used to store a collection of KV pairs with unique keys. Each key corresponds to a value.
 
-Defined by generics, HashMap uses the hash code of the key to determine the storage location, enabling quick access to KV pairs. The initial capacity is 16, and it supports dynamic resizing, doubling its size each time. HashMap is implemented using a hash table with a chain address conflict resolution strategy.
+Defined by generics, it determines storage locations based on the key's hash code, enabling rapid access. The initial capacity is 16, and it supports dynamic resizing, doubling its size each time. HashMap is implemented using a hash table with a chain address conflict resolution strategy.
 
-HashMap is faster in accessing data than [TreeMap](../reference/apis-arkts/js-apis-treemap.md), because the former accesses the keys based on the hash codes, whereas the latter stores and accesses the keys in sorted order.
+HashMap is faster in accessing data than [TreeMap](../reference/apis-arkts/js-apis-treemap.md) because the former accesses the keys based on the hash codes, whereas the latter stores and accesses the keys in sorted order.
 
 [HashSet](../reference/apis-arkts/js-apis-hashset.md) is implemented based on HashMap. HashMap takes **key** and **value** as input parameters. In HashSet, only the **value** object is processed.
 
@@ -47,11 +53,11 @@ Common APIs for adding, removing, modifying, and accessing elements in HashMap a
 
 [HashSet](../reference/apis-arkts/js-apis-hashset.md) is used to store a collection of unique values.
 
-Defined by generics, HashSet uses the hash code of the value to determine the storage location, enabling quick access to the value. The initial capacity is 16, and it supports dynamic resizing, doubling its size each time. The type of **value** must comply with the ECMA standard. HashSet is implemented based on [HashMap](../reference/apis-arkts/js-apis-hashmap.md) and processes only the **value** object. The underlying data structure is consistent with HashMap.
+Defined by generics, HashSet uses the hash code of the value to determine the storage location, enabling quick access to the value. The initial capacity is 16, and it supports dynamic resizing, doubling its size each time. The type of **value** complies with the ECMA standard. HashSet is implemented based on [HashMap](../reference/apis-arkts/js-apis-hashmap.md) and processes only value objects. The underlying data structure of HashSet is the same as that of HashMap.
 
 Compared with [TreeSet](../reference/apis-arkts/js-apis-treeset.md), which stores data in an ordered manner and allows users to define sorting functions, HashSet stores data in an unordered manner and does not support custom sorting. Neither allows duplicate elements, but HashSet permits null values, whereas TreeSet does not recommend storing null values as it may affect sorting results.
 
-You are advised to use HashSet when you need to create non-redundant collections or remove duplicates.
+You are advised to use HashSet when you need to remove duplicates or ensure the uniqueness of elements.
 
 Common APIs for adding, removing, modifying, and accessing elements in HashSet are as follows:
 
@@ -62,21 +68,21 @@ Common APIs for adding, removing, modifying, and accessing elements in HashSet a
 | Accessing elements| entries() | Returns an iterator object containing array-like KV pairs, where both keys and values are the same.|
 | Accessing elements| forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object) | Iterates over all elements in the set.|
 | Accessing elements| \[Symbol.iterator]():IterableIterator&lt;T&gt; | Creates an iterator for data access.|
-| Modifying elements| forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object) | Modifies all elements in the set through iteration.|
-| Removing elements| remove(value: T) | Removes the matching value from the set.|
+| Modifying elements| forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object) | Operates on elements in the set through traversal, which may include but is not limited to modifying elements.|
+| Removing elements| remove(value: T) | Removes a specified element.|
 | Removing elements| clear() | Clears the entire set.|
 
 ## TreeMap
 
 [TreeMap](../reference/apis-arkts/js-apis-treemap.md) is used to store a collection of KV pairs with unique keys. Each key corresponds to a value.
 
-Defined by generics, TreeMap stores keys in an ordered manner. TreeMap is implemented using a red-black tree, enabling fast insertion and removal. The type of **key** complies with the ECMA standard.
+Keys in TreeMap are stored in an ordered manner based on the generic definition. TreeMap is implemented using a red-black tree, enabling fast insertion and removal. The **key** type must meet the ECMA standard.
 
 Compared with [HashMap](../reference/apis-arkts/js-apis-hashmap.md), which provides faster access based on the key's hash code, TreeMap is ordered and thus less efficient.
 
 You are advised to use TreeMap when you need to store KV pairs in sorted order.
 
-Common APIs for adding, removing, modifying, and accessing elements in TreeMap are as follows:
+Common APIs for adding, removing, modifying, and accessing elements in TreeMap are as follows.
 
 | Operation| API| Description|
 | --------- | ------- | ------- |
@@ -90,7 +96,7 @@ Common APIs for adding, removing, modifying, and accessing elements in TreeMap a
 | Accessing elements| forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object) | Iterates over all elements in the map.|
 | Accessing elements| \[Symbol.iterator]():IterableIterator&lt;[K,V]&gt; | Creates an iterator for data access.|
 | Modifying elements| replace(key: K, newValue: V) | Modifies the value corresponding to the specified key.|
-| Modifying elements| forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object) | Modifies all elements in the map through iteration.|
+| Modifying elements| forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object) | Operates on elements in the map through traversal, which may include but is not limited to modifying elements.|
 | Removing elements| remove(key: K) | Removes the KV pair matching the specified key from the map.|
 | Removing elements| clear() | Clears the entire map.|
 
@@ -98,11 +104,11 @@ Common APIs for adding, removing, modifying, and accessing elements in TreeMap a
 
 [TreeSet](../reference/apis-arkts/js-apis-treeset.md) is used to store a collection of unique values.
 
-Defined by generics, TreeSet stores values in an ordered manner. TreeSet is implemented using a red-black tree, enabling fast insertion and removal. The type of **value** complies with the ECMA standard.
+Defined by generics, TreeSet stores values in an ordered manner. TreeSet is implemented using a red-black tree, enabling fast insertion and removal. The **value** type complies with the ECMA standard.
 
-TreeSet is based on [TreeMap](../reference/apis-arkts/js-apis-treemap.md) and processes only the **value** object. It allows for ordered storage of a collection of values and can be sorted according to a custom sorting function.
+TreeSet is implemented based on [TreeMap](../reference/apis-arkts/js-apis-treemap.md). It only processes value objects. It allows for ordered storage of a collection of values and can be sorted according to a custom sorting function. It allows for ordered storage of a collection of values and can be sorted according to a custom sorting function.
 
-Compared with [HashSet](../reference/apis-arkts/js-apis-hashset.md), which stores data in an unordered manner, TreeSet stores data in an ordered manner. Neither allows duplicate elements, but HashSet permits null values, whereas TreeSet does not recommend storing null values as it may affect sorting results.
+Compared with [HashSet](../reference/apis-arkts/js-apis-hashset.md), which stores data in an unordered manner, TreeSet stores data in an ordered manner. Both of them allow only unique elements. However, null values are allowed in HashSet, but not in TreeSet because null values may affect the order of elements in the container.
 
 You are advised to use TreeSet when you need to store data in sorted order.
 
@@ -117,8 +123,8 @@ Common APIs for adding, removing, modifying, and accessing elements in TreeSet a
 | Accessing elements| getLastValue() | Obtains the last value in the set.|
 | Accessing elements| forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object) | Iterates over all elements in the set.|
 | Accessing elements| \[Symbol.iterator]():IterableIterator&lt;T&gt; | Creates an iterator for data access.|
-| Modifying elements| forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object) | Modifies all elements in the set through iteration.|
-| Removing elements| remove(value: T) | Removes the matching value from the set.|
+| Modifying elements| forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object) | Operates on elements in the set through traversal, which may include but is not limited to modifying elements.|
+| Removing elements| remove(value: T) | Removes a specified element.|
 | Removing elements| clear() | Clears the entire set.|
 
 ## LightWeightMap
@@ -127,9 +133,9 @@ Common APIs for adding, removing, modifying, and accessing elements in TreeSet a
 
 The default initial capacity is 8, and it supports dynamic resizing, doubling its size each time.
 
-LightWeightMap and [HashMap](../reference/apis-arkts/js-apis-hashmap.md) are both used to store KV pairs, but LightWeightMap occupies less memory.
+Compared with [HashMap](../reference/apis-arkts/js-apis-hashmap.md), which can also store key-value pairs, LightWeightMap occupies less memory.
 
-You are advised to use LightWeightMap when you need to store and access KV pairs.
+You are advised to use LightWeightMap when you need to store KV pairs with associations.
 
 Common APIs for adding, removing, modifying, and accessing elements in LightWeightMap are as follows:
 
@@ -147,7 +153,7 @@ Common APIs for adding, removing, modifying, and accessing elements in LightWeig
 | Accessing elements| forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object) | Iterates over all elements in the map.|
 | Accessing elements| \[Symbol.iterator]():IterableIterator&lt;[K,V]&gt; | Creates an iterator for data access.|
 | Modifying elements| setValueAt(index: number, newValue: V) | Modifies the value at the specified index.|
-| Modifying elements| forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object) | Modifies all elements in the map through iteration.|
+| Modifying elements| forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object) | Operates on elements in the map through traversal, which may include but is not limited to modifying elements.|
 | Removing elements| remove(key: K) | Removes the KV pair matching the specified key from the map.|
 | Removing elements| removeAt(index: number) | Removes the KV pair at the specified index from the map.|
 | Removing elements| clear() | Clears the entire map.|
@@ -158,13 +164,13 @@ Common APIs for adding, removing, modifying, and accessing elements in LightWeig
 
 Defined by generics, LightWeightSet uses a more lightweight structure. The default initial capacity is 8, and it supports dynamic resizing, doubling its size each time. The lookup of values relies on hash codes and binary search algorithms, storing hash codes in an array and mapping them to values in other arrays. The type of **value** complies with the ECMA standard.
 
-LightWeightSet identifies unique values based on hash at the underlying layer, with a conflict resolution strategy of linear probing and a lookup strategy based on binary search.
+LightWeightSet identifies unique values based on the hash table structure at the underlying layer, with a conflict resolution strategy of linear probing and a lookup strategy based on binary search.
 
 LightWeightSet and [HashSet](../reference/apis-arkts/js-apis-hashset.md) are both used to store unique values, but LightWeightSet occupies less memory.
 
 You are advised to use LightWeightSet when you need a collection that contains unique elements or need to deduplicate a collection with limited memory.
 
-Common APIs for adding, removing, modifying, and accessing elements in LightWeightSet are as follows:
+Common APIs for adding, removing, modifying, and accessing elements in LightWeightSet are as follows.  
 
 | Operation| API| Description|
 | --------- | ------- | ------- |
@@ -175,8 +181,8 @@ Common APIs for adding, removing, modifying, and accessing elements in LightWeig
 | Accessing elements| entries() | Returns an iterator object containing array-like KV pairs, where both keys and values are the same.|
 | Accessing elements| forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object) | Iterates over all elements in the set.|
 | Accessing elements| \[Symbol.iterator]():IterableIterator&lt;T&gt; | Creates an iterator for data access.|
-| Modifying elements| forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object) | Modifies all elements in the set through iteration.|
-| Removing elements| remove(key: K) | Removes the KV pair matching the specified key from the set.|
+| Modifying elements| forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object) | Operates on elements in the set through traversal, which may include but is not limited to modifying elements.|
+| Removing elements| remove(key: K) | Removes a specified element.|
 | Removing elements| removeAt(index: number) | Removes the value at the specified index from the set.|
 | Removing elements| clear() | Clears the entire set.|
 
@@ -186,11 +192,11 @@ Common APIs for adding, removing, modifying, and accessing elements in LightWeig
 
 The default initial capacity is 16, and it supports dynamic resizing, doubling its size each time.
 
-PlainArray and [LightWeightMap](../reference/apis-arkts/js-apis-lightweightmap.md) are both used to store KV pairs with a lightweight structure, but PlainArray's keys can only be of the number type.
+PlainArray and [LightWeightMap](../reference/apis-arkts/js-apis-lightweightmap.md) are both used to store KV pairs with a lightweight structure. However, the key value type of PlainArray is restricted to **number**.
 
 You are advised to use PlainArray when you need to store KV pairs whose keys are of the number type.
 
-Common APIs for adding, removing, modifying, and accessing elements in PlainArray are as follows:
+Common APIs for adding, deleting, modifying, and accessing elements in PlainArray are as follows  
 
 | Operation| API| Description|
 | --------- | ------- | ------- |
@@ -203,7 +209,7 @@ Common APIs for adding, removing, modifying, and accessing elements in PlainArra
 | Accessing elements| forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object) | Iterates over all elements in the PlainArray.|
 | Accessing elements| \[Symbol.iterator]():IterableIterator&lt;[number, T]&gt; | Creates an iterator for data access.|
 | Modifying elements| setValueAt(index:number, value: T) | Modifies the value at the specified index.|
-| Modifying elements| forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object) | Modifies all elements in the PlainArray through iteration.|
+| Modifying elements| forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray\<T>) => void, thisArg?: Object) | Operates on elements in the PlainArray through traversal, which may include but is not limited to modifying elements.|
 | Removing elements| remove(key: number) | Removes the KV pair matching the specified key.|
 | Removing elements| removeAt(index: number) | Removes the KV pair at the specified index.|
 | Removing elements| removeRangeFrom(index: number, size: number) | Removes elements within the specified range in the PlainArray.|

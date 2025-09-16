@@ -18,7 +18,7 @@ OpenHarmony 6.0 Release版本进一步增强ArkUI组件能力，提供更安全�
 
 - 新增支持互动卡片。（[指南](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/form/arkts-ui-liveform-overview.md)）
 
-- 新增支持Kiosk模式。Kiosk模式是一种特殊的设备锁定模式，可以确保设备界面只服务于特定的交互场景。（[指南](https://gitcode.com/RayShih/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-kioskManager.md)）
+- 新增支持Kiosk模式。Kiosk模式是一种特殊的设备锁定模式，可以确保设备界面只服务于特定的交互场景。（[指南](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-kioskManager.md)）
 
 - 应用启动框架支持在feature类型的HAP中配置，以及支持添加任务匹配规则。（[指南](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/application-models/app-startup.md#%E6%94%AF%E6%8C%81%E7%9A%84%E8%8C%83%E5%9B%B4)）
 
@@ -103,7 +103,7 @@ OpenHarmony 6.0 Release版本进一步增强ArkUI组件能力，提供更安全�
 
 ### 分布式软总线
 
-新开放底层连接能力接口，实现连接能力提升。（[指南](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/distributedservice/linnkEnhance_development-guide.md)）
+新开放底层连接能力接口，实现连接能力提升。（[指南](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/distributedservice/linkEnhance_development-guide.md)）
 
 
 ### 分布式服务
@@ -325,6 +325,8 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 | Hi3516解决方案-Linux（二进制）  | 6.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/6.0-Release/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/6.0-Release/hispark_taurus_Linux.tar.gz.sha256) | 235.1 MB |
 | RK3568标准系统解决方案（二进制）ROM包        | 6.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/6.0-Release/dayu200_standard_arm32_rom.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/6.0-Release/dayu200_standard_arm32_rom.tar.gz.sha256) | 	3.6 GB |
 | RK3568标准系统解决方案（二进制）XTS包        | 6.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/6.0-Release/dayu200_standard_arm32_xts.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/6.0-Release/dayu200_standard_arm32_xts.tar.gz.sha256) | 	4.1 GB |
+| 标准系统Public SDK包（Mac）             | 6.0.0.47 | [站点](https://repo.huaweicloud.com/openharmony/os/6.0-Release/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/6.0-Release/ohos-sdk-mac-public.tar.gz.sha256) | 1.3 GB |
+| 标准系统Public SDK包（Mac-M1）             | 6.0.0.47  | [站点](https://repo.huaweicloud.com/openharmony/os/6.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/6.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 1.2 GB |
 | 标准系统Public SDK包（Windows/Linux）   | 6.0.0.47   | [站点](https://repo.huaweicloud.com/openharmony/os/6.0-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/6.0-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) | 	2.3 GB |
 
 

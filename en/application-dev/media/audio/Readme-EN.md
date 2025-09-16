@@ -1,4 +1,10 @@
 # Audio Kit
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 - [Introduction to Audio Kit](audio-kit-intro.md)
 - [Selecting the Appropriate Audio Stream Types](using-right-streamusage-and-sourcetype.md)

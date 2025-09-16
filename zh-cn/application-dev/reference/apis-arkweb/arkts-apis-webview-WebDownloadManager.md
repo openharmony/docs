@@ -28,6 +28,10 @@ static setDownloadDelegate(delegate: WebDownloadDelegate): void
 
 设置用于接收从WebDownloadManager触发的下载进度的委托。
 
+> **说明：**
+>
+>在调用本接口前，若尚未创建Web组件且未执行initializeWebEngine方法完成Web内核初始化，必须先调用initializeWebEngine方法进行初始化，否则接口调用无效。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -131,6 +135,10 @@ static resumeDownload(webDownloadItem: WebDownloadItem): void
 
 恢复一个失败的下载任务。
 
+> **说明：**
+>
+>在调用本接口前，若尚未创建Web组件且未执行initializeWebEngine方法完成Web内核初始化，必须先调用initializeWebEngine方法进行初始化，否则接口调用无效。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -141,7 +149,7 @@ static resumeDownload(webDownloadItem: WebDownloadItem): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |

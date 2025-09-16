@@ -1,4 +1,10 @@
 # ArkTS
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @flyingwolf-->
+<!--Designer: @flyingwolf-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 - [Introduction to ArkTS](arkts-overview.md)
 - ArkTS Common Library<!--arkts-utils-->
@@ -86,6 +92,7 @@
         - [Statically Loading Native Modules](arkts-import-native-module.md)
         - [Loading Modules Using Node-API](load-module-base-nodeapi.md)
         - [Side Effects and Optimization of Module Loading](arkts-module-side-effects.md)
+    - [ArkTS Runtime FAQs](arkts-runtime-faq.md)
 - ArkTS Compilation Toolchain<!--arkts-compilation-tool-chain-->
     - [Overview of the ArkTS Compilation Toolchain](compilation-tool-chain-overview.md)
     - Ark Bytecode<!--arkts-bytecode-->

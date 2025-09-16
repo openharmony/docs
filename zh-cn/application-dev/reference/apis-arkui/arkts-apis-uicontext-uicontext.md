@@ -1752,7 +1752,7 @@ struct ComponentPage {
           inspectorStr = JSON.stringify(JSON.parse(inspectorStr)['$children'][0]);
           console.info(`result3: ${inspectorStr}`);
         } catch(e) {
-          console.info(`getFilteredInspectorTreeById error: ${e}`);
+          console.error(`getFilteredInspectorTreeById error: ${e}`);
         }
       })
     }
@@ -2525,7 +2525,7 @@ openBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheetOp
 | ------- | ---------------------------------------- | ---- | ------- |
 | bindSheetContent | [ComponentContent\<T>](js-apis-arkui-ComponentContent.md) | 是 | 半模态页面中显示的组件内容。 |
 | sheetOptions | [SheetOptions](arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions) | 否    |   半模态页面样式。<br/>**说明：** <br/>1. 不支持设置SheetOptions.uiContext，该属性的值固定为当前实例的UIContext。<br/>2. 若不传递targetId，则不支持设置SheetOptions.preferType为POPUP样式，若设置了POPUP样式则使用CENTER样式替代。<br/>3. 若不传递targetId，则不支持设置SheetOptions.mode为EMBEDDED模式，默认为OVERLAY模式。<br/>4. 其余属性的默认值参考[SheetOptions](arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)文档。 |
-| targetId | number | 否    |   需要绑定组件的ID，若不指定则不绑定任何组件。 |
+| targetId | number | 否    |   需要绑定组件的ID，若不指定则不绑定任何组件。id不存在时返回错误码120004。 |
 
 **返回值：**
 
@@ -3457,7 +3457,7 @@ export default class EntryAbility extends UIAbility {
 
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', err.message);
         return;
       }
       UIContext.setResourceManagerCacheMaxCountForHSP(5);

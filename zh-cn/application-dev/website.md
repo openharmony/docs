@@ -460,13 +460,13 @@
             - [数据对象状态变量的迁移指导](ui/state-management/arkts-v1-v2-migration-inner-class.md)
             - [应用内状态变量和其他场景迁移指导](ui/state-management/arkts-v1-v2-migration-application-and-others.md)
         - 学习UI范式渲染控制<!--arkts-rendering-control-->
-          - [渲染控制概述](ui/state-management/arkts-rendering-control-overview.md)
-          - [if/else：条件渲染](ui/state-management/arkts-rendering-control-ifelse.md)
-          - [ForEach：循环渲染](ui/state-management/arkts-rendering-control-foreach.md)
-          - [LazyForEach：数据懒加载](ui/state-management/arkts-rendering-control-lazyforeach.md)
-          - [Repeat：可复用的循环渲染](ui/state-management/arkts-new-rendering-control-repeat.md)
-          - [LazyForEach迁移Repeat指导文档](ui/state-management/arkts-lazyForEach-repeat-migration-guide.md)
-          - [ContentSlot：混合开发](ui/state-management/arkts-rendering-control-contentslot.md)
+          - [渲染控制概述](ui/rendering-control/arkts-rendering-control-overview.md)
+          - [if/else：条件渲染](ui/rendering-control/arkts-rendering-control-ifelse.md)
+          - [ForEach：循环渲染](ui/rendering-control/arkts-rendering-control-foreach.md)
+          - [LazyForEach：数据懒加载](ui/rendering-control/arkts-rendering-control-lazyforeach.md)
+          - [Repeat：可复用的循环渲染](ui/rendering-control/arkts-new-rendering-control-repeat.md)
+          - [LazyForEach迁移Repeat指导文档](ui/rendering-control/arkts-lazyforeach-repeat-migration-guide.md)
+          - [ContentSlot：混合开发](ui/rendering-control/arkts-rendering-control-contentslot.md)
         - 设置组件导航和页面路由<!--arkts-set-navigation-routing-->
           - [组件导航和页面路由概述](ui/arkts-navigation-introduction.md)
           - [组件导航(Navigation) (推荐)](ui/arkts-navigation-navigation.md)
@@ -925,6 +925,7 @@
       - [在自绘编辑框中使用输入法(C/C++)](inputmethod/use-inputmethod-in-custom-edit-box-ndk.md)
       - [输入法应用沉浸模式](inputmethod/inputmethod-immersive-mode-guide.md)
       - [通过hdc命令管理输入法](inputmethod/inputmethod-hdc-commands-guide.md)
+      - [不可获焦窗口中输入框与输入法交互指南](inputmethod/use-inputmethod-in-not-focusable-window.md)
     - IPC Kit（进程间通信服务）<!--ipc-kit-->
       - [IPC Kit简介](ipc/ipc-rpc-overview.md)
       - [IPC与RPC通信开发指导(ArkTS)](ipc/ipc-rpc-development-guideline.md)
@@ -955,13 +956,13 @@
               - [概述](internationalization/i18n-display-overview.md)
               - [本地化语言与地区名称](internationalization/i18n-language-region-display.md)
               - [本地化时区名称](internationalization/i18n-time-zone-display.md)
-      - 应用本地化<!--i10n-->
+      - 应用本地化<!--l10n-->
           - [提供多语言资源](internationalization/l10n-multilingual-resources.md)
-          - 提升可翻译性<!--i10n-translation-->
+          - 提升可翻译性<!--l10n-translation-->
               - [避免硬编码与拼接](internationalization/l10n-hard-coding-concatenate.md)
               - [提供翻译场景](internationalization/l10n-translation-scene.md)
               - [支持单复数](internationalization/l10n-singular-plural.md)
-      - 本地化测试<!--i10n-testing-->
+      - 本地化测试<!--l10n-testing-->
           - 伪本地化测试<!--pseudo-i18n-testing-->
               - [伪本地化测试概述](internationalization/pseudo-i18n-testing-overview.md)
               - [翻译伪本地化测试](internationalization/pseudo-i18n-testing-translation.md)
@@ -1680,6 +1681,7 @@
         - [相机启动恢复实践(ArkTS)](media/camera/camera-background-recovery.md)
         - [自动切换摄像头实践(ArkTS)](media/camera/camera-auto-switch.md)
         - [白平衡设置(ArkTS)](media/camera/camera-whitebalance.md)
+        - [压力管控(ArkTS)](media/camera/camera-system-pressure.md)
         <!--Del-->
         - [高性能拍照(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo.md)
         - [高性能拍照实践(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo-case.md)
@@ -1700,6 +1702,7 @@
         - [录像实践(C/C++)](media/camera/native-camera-recording-case.md)
         - [元数据(C/C++)](media/camera/native-camera-metadata.md)
         - [手电筒使用(C/C++)](media/camera/native-camera-torch-use.md)
+        - [压力管控(C++)](media/camera/native-camera-system-pressure.md)
     - DRM Kit（数字版权保护服务）<!--drm-kit-->
       - [DRM Kit 简介](media/drm/drm-overview.md)
       - [数字版权保护(ArkTS)](media/drm/drm-arkts-dev-guide.md)
@@ -1780,6 +1783,7 @@
           - [使用AVRecorder录制视频(C/C++)](media/media/using-ndk-avrecorder-for-video-recording.md)
           - [使用AVScreenCapture录屏取码流(C/C++)](media/media/using-avscreencapture-for-buffer.md)
           - [使用AVScreenCapture录屏写文件(C/C++)](media/media/using-avscreencapture-for-file.md)
+          - [屏幕录制支持矩形区域录制(C/C++)](media/media/video-supports-rectangular-area-recording.md)
         - 媒体信息查询<!--media-info-c-->
           - [使用AVMetadataExtractor获取元数据(C/C++)](media/media/using-ndk-avmetadataextractor-for-media.md)
           - [使用AVImageGenerator获取视频帧(C/C++)](media/media/using-ndk-avimagegenerator-for-video.md)
@@ -2157,7 +2161,7 @@
           - [@ohos.app.ability.application (应用工具类)](reference/apis-ability-kit/js-apis-app-ability-application.md)
           - [@ohos.app.ability.ApplicationStateChangeCallback (应用前后台状态变化监听器)](reference/apis-ability-kit/js-apis-app-ability-applicationStateChangeCallback.md)
           - [@ohos.app.ability.AppServiceExtensionAbility (应用后台服务扩展组件)](reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)
-          - [@ohos.app.ability.AtomicServiceOptions (EmbeddableUIAbility启动可选参数)](reference/apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md)
+          - [@ohos.app.ability.AtomicServiceOptions (openAtomicService可选参数)](reference/apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md)
           - [@ohos.app.ability.autoFillManager (自动填充框架)](reference/apis-ability-kit/js-apis-app-ability-autoFillManager.md)
           - [@ohos.app.ability.ChildProcess (子进程基类)](reference/apis-ability-kit/js-apis-app-ability-childProcess.md)
           - [@ohos.app.ability.childProcessManager (子进程管理)](reference/apis-ability-kit/js-apis-app-ability-childProcessManager.md)
@@ -2166,6 +2170,7 @@
           - [@ohos.app.ability.common (Ability公共模块)](reference/apis-ability-kit/js-apis-app-ability-common.md)
           - [@ohos.app.ability.CompletionHandler (拉起应用结果的操作类)](reference/apis-ability-kit/js-apis-app-ability-completionHandler.md)
           - [@ohos.app.ability.CompletionHandlerForAtomicService (打开原子化服务结果的操作类)](reference/apis-ability-kit/js-apis-app-ability-CompletionHandlerForAtomicService.md)
+          - [@ohos.app.ability.CompletionHandlerForAbilityStartCallback (拉起应用结果回调的操作类)](reference/apis-ability-kit/js-apis-app-ability-CompletionHandlerForAbilityStartCallback.md)
           - [@ohos.app.ability.contextConstant (Context相关常量)](reference/apis-ability-kit/js-apis-app-ability-contextConstant.md)
           - [@ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility)](reference/apis-ability-kit/js-apis-app-ability-embeddableUIAbility.md)
           - [@ohos.app.ability.EmbeddedUIExtensionAbility (跨进程界面嵌入扩展能力)](reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)
@@ -2980,6 +2985,7 @@
           - [ImageAnimator](reference/apis-arkui/arkui-ts/ts-basic-components-imageanimator.md)
           - [Video](reference/apis-arkui/arkui-ts/ts-media-components-video.md)
           - [图像类型定义](reference/apis-arkui/arkui-ts/ts-image-common.md)
+          - [SVG新增解析能力](reference/apis-arkui/arkui-ts/ts-image-svg2-capabilities.md)
           <!--Del-->
           - [Image (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-image-sys.md)
           - [MediaCachedImage (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-mediacachedimage-sys.md)
@@ -3977,6 +3983,7 @@
       - Data Protection Kit（数据保护服务）<!--data-protection-api-->
         - ArkTS API<!--data-protection-arkts-->
           - [@ohos.dlpPermission (数据防泄漏)](reference/apis-data-protection-kit/js-apis-dlppermission.md)
+          - [@ohos.security.identifySensitiveContent (识别敏感内容)](reference/apis-data-protection-kit/js-apis-identifySensitiveContent.md)
           <!--Del-->
           - [@ohos.dlpPermission (数据防泄漏)(系统接口)](reference/apis-data-protection-kit/js-apis-dlppermission-sys.md)
           <!--DelEnd-->
@@ -4130,7 +4137,7 @@
           - [增强连接错误码](reference/apis-distributedservice-kit/errorcode-link-enhance.md)
           - [代理通道管理错误码](reference/apis-distributedservice-kit/errorcode_proxyChannelManager.md)
         - C API<!--distributed-service-c-->
-          - 模块<!--distributed-service-moudle-->
+          - 模块<!--distributed-service-module-->
             - [DeviceManager](reference/apis-distributedservice-kit/capi-devicemanager.md)
           - 头文件<!--distributed-service-headerfile-->
             - [oh_device_manager.h](reference/apis-distributedservice-kit/capi-oh-device-manager-h.md)
@@ -4297,12 +4304,14 @@
             - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)](reference/apis-basic-services-kit/js-apis-app-ability-PrintExtensionAbility.md)
             - [@ohos.pasteboard (剪贴板)](reference/apis-basic-services-kit/js-apis-pasteboard.md)
             - [@ohos.print (打印)](reference/apis-basic-services-kit/js-apis-print.md)
+            - [@ohos.scan (扫描)](reference/apis-basic-services-kit/js-apis-scan.md)
             - [@ohos.request (上传下载)](reference/apis-basic-services-kit/js-apis-request.md)
             - [@ohos.request.cacheDownload (缓存下载)](reference/apis-basic-services-kit/js-apis-request-cacheDownload.md)
             - [@ohos.zlib (Zip模块)](reference/apis-basic-services-kit/js-apis-zlib.md)
             <!--Del-->
             - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)(系统接口)](reference/apis-basic-services-kit/js-apis-app-ability-PrintExtensionAbility-sys.md)
             - [@ohos.print (打印)(系统接口)](reference/apis-basic-services-kit/js-apis-print-sys.md)
+            - [@ohos.scan (打印)(系统接口)](reference/apis-basic-services-kit/js-apis-scan-sys.md)
             - [@ohos.request (上传下载)(系统接口)](reference/apis-basic-services-kit/js-apis-request-sys.md)
             - [@ohos.selectionInput.SelectionExtensionAbility (划词扩展能力)(系统接口)](reference/apis-basic-services-kit/js-apis-selectionInput-selectionExtensionAbility-sys.md)
             - [@ohos.selectionInput.SelectionExtensionContext (划词扩展上下文)(系统接口)](reference/apis-basic-services-kit/js-apis-selectionInput-selectionExtensionContext-sys.md)
@@ -4821,14 +4830,14 @@
         - 模块<!--avcodec-module-->
           - [AVCapability](reference/apis-avcodec-kit/capi-avcapability.md)
           - [AudioCodec](reference/apis-avcodec-kit/capi-audiocodec.md)
-          - [AVDemuxer](reference/apis-avcodec-kit/_a_v_demuxer.md)
-          - [AVMuxer](reference/apis-avcodec-kit/_a_v_muxer.md)
-          - [AVSource](reference/apis-avcodec-kit/_a_v_source.md)
           - [CodecBase](reference/apis-avcodec-kit/_codec_base.md)
           - [Core](reference/apis-avcodec-kit/_core.md)
           - [VideoDecoder](reference/apis-avcodec-kit/_video_decoder.md)
           - [VideoEncoder](reference/apis-avcodec-kit/_video_encoder.md)
-          - [Multimedia_Drm](reference/apis-avcodec-kit/_multimedia___drm.md)
+          - [AVDemuxer](reference/apis-avcodec-kit/capi-avdemuxer.md)
+          - [AVMuxer](reference/apis-avcodec-kit/capi-avmuxer.md)
+          - [AVSource](reference/apis-avcodec-kit/capi-avsource.md)
+          - [Multimedia_Drm](reference/apis-avcodec-kit/capi-multimedia-drm.md)
         - 头文件<!--avcodec-headerfile-->
           - [native_avcapability.h](reference/apis-avcodec-kit/capi-native-avcapability-h.md)
           - [native_avcodec_audiocodec.h](reference/apis-avcodec-kit/capi-native-avcodec-audiocodec-h.md)
@@ -4839,13 +4848,13 @@
           - [native_avcodec_base.h](reference/apis-avcodec-kit/native__avcodec__base_8h.md)
           - [native_avcodec_videodecoder.h](reference/apis-avcodec-kit/native__avcodec__videodecoder_8h.md)
           - [native_avcodec_videoencoder.h](reference/apis-avcodec-kit/native__avcodec__videoencoder_8h.md)
-          - [native_avdemuxer.h](reference/apis-avcodec-kit/native__avdemuxer_8h.md)
           - [native_averrors.h](reference/apis-avcodec-kit/native__averrors_8h.md)
           - [native_avformat.h](reference/apis-avcodec-kit/native__avformat_8h.md)
           - [native_avmemory.h](reference/apis-avcodec-kit/native__avmemory_8h.md)
-          - [native_avmuxer.h](reference/apis-avcodec-kit/native__avmuxer_8h.md)
-          - [native_avsource.h](reference/apis-avcodec-kit/native__avsource_8h.md)
-          - [native_cencinfo.h](reference/apis-avcodec-kit/native__cencinfo_8h.md)
+          - [native_avdemuxer.h](reference/apis-avcodec-kit/capi-native-avdemuxer-h.md)
+          - [native_avmuxer.h](reference/apis-avcodec-kit/capi-native-avmuxer-h.md)
+          - [native_avsource.h](reference/apis-avcodec-kit/capi-native-avsource-h.md)
+          - [native_cencinfo.h](reference/apis-avcodec-kit/capi-native-cencinfo-h.md)
         - 结构体<!--avcodec-struct-->
           - [OH_AVRange](reference/apis-avcodec-kit/capi-avcapability-oh-avrange.md)
           - [OH_AVCapability](reference/apis-avcodec-kit/capi-avcapability-oh-avcapability.md)
@@ -4855,7 +4864,13 @@
           - [OH_AVCodecCallback](reference/apis-avcodec-kit/_o_h___a_v_codec_callback.md)
           - [OH_AVDataSource](reference/apis-avcodec-kit/_o_h___a_v_data_source.md)
           - [OH_AVDataSourceExt](reference/apis-avcodec-kit/_o_h___a_v_data_source_ext.md)
-          - [DrmSubsample](reference/apis-avcodec-kit/_drm_subsample.md)
+          - [OH_AVDemuxer](reference/apis-avcodec-kit/capi-avdemuxer-oh-avdemuxer.md)
+          - [DRM_MediaKeySystemInfo](reference/apis-avcodec-kit/capi-avdemuxer-drm-mediakeysysteminfo.md)
+          - [OH_AVMuxer](reference/apis-avcodec-kit/capi-avmuxer-oh-avmuxer.md)
+          - [OH_AVSource](reference/apis-avcodec-kit/capi-avsource-oh-avsource.md)
+          - [DrmSubsample](reference/apis-avcodec-kit/capi-multimedia-drm-drmsubsample.md)
+          - [OH_AVBuffer](reference/apis-avcodec-kit/capi-multimedia-drm-oh-avbuffer.md)
+          - [OH_AVCencInfo](reference/apis-avcodec-kit/capi-multimedia-drm-oh-avcencinfo.md)
         - 已停止维护的接口<!--avcodec-arkts-dep-->
           - 模块<!--avcodec-module-arkts-dep-->
             - [AudioDecoder](reference/apis-avcodec-kit/_audio_decoder.md)

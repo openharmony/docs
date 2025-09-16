@@ -30,15 +30,15 @@ Too many MediaKeySystem instances.
 
 **Description**
 
-The number of **MediaKeySystem** instances reaches the upper limit (64).
+The number of MediaKeySystem instances reaches the upper limit (64).
 
 **Possible Causes**
 
-Invalid **MediaKeySystem** instances are not released in time.
+Invalid MediaKeySystem instances are not released in time.
 
 **Procedure**
 
-Release **MediaKeySystem** instances that are no longer used.
+Release MediaKeySystem instances that are no longer used.
 
 ## 24700104 Too Many MediaKeySession Instances
 
@@ -48,15 +48,15 @@ Too many MediaKeySession instances.
 
 **Description**
 
-The number of **MediaKeySession** instances reaches the upper limit (64).
+The number of MediaKeySession instances reaches the upper limit (64).
 
 **Possible Causes**
 
-Invalid **MediaKeySession** instances are not released in time.
+Invalid MediaKeySession instances are not released in time.
 
 **Procedure**
 
-Release **MediaKeySession** instances that are no longer used.
+Release MediaKeySession instances that are no longer used.
 
 ## 24700201 Service Error
 

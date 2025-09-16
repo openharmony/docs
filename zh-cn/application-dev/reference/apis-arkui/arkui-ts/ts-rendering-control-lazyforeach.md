@@ -10,7 +10,7 @@
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-开发者指南见：[LazyForEach开发者指南](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)。
+开发者指南见：[LazyForEach开发者指南](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md)。
 在大量子组件的的场景下，LazyForEach与缓存列表项、动态预加载、组件复用等方法配合使用，可以进一步提升滑动帧率并降低应用内存占用。最佳实践请参考[优化长列表加载慢丢帧问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-best-practices-long-list)。
 
 ## 接口
@@ -34,6 +34,10 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 > **说明：** 
 >
 > 应避免在`keyGenerator`和`itemGenerator`函数中执行耗时操作，以此来减少应用滑动时卡顿丢帧问题，最佳实践请参考[主线程耗时操作优化-循环渲染](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-time-optimization-of-the-main-thread#section4551193714439)。例如，不推荐使用JSON.stringify函数。在复杂的业务场景中，使用JSON.stringify会对item对象进行序列化，该过程会消耗大量时间与计算资源，从而降低页面性能，最佳实践请参考[懒加载优化性能-键值生成规则](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-lazyforeach-optimization#section68711519072)。
+
+## 属性
+
+支持[拖拽排序](./ts-universal-attributes-drag-sorting.md)属性。
 
 ## IDataSource
 
@@ -210,9 +214,7 @@ onDataChanged(index: number): void
 
 onDataAdd(index: number): void
 
-通知组件index的位置有数据添加。添加数据完成后调用
-
-**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+通知组件index的位置有数据添加。添加数据完成后调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -290,6 +292,7 @@ onDatasetChange(dataOperations: DataOperation[]): void
 > **说明：** 
 >
 > onDatasetChange接口不能与其他DataChangeListener的更新接口混用。例如，在同一个LazyForEach中，调用过onDataAdd接口后，不能再调用onDatasetChange接口；反之，调用过onDatasetChange接口后，也不能调用onDataAdd等其他更新接口。页面中不同LazyForEach之间互不影响。在同一个onDatasetChange批量处理数据时，如果多个DataOperation操作同一个index，只有第一个DataOperation生效。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

@@ -1192,6 +1192,7 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 **示例：**
 
 ```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 // 根据关键规范构造EccCommonSpec结构体。EccCommonSpec结构体定义了ECC私钥和公钥的公共参数。
 function genEccCommonSpec(): cryptoFramework.ECCCommonParamsSpec {
   let fieldFp: cryptoFramework.ECFieldFp = {
@@ -2337,7 +2338,6 @@ convertPemKeySync(pubKey: string | null, priKey: string | null): KeyPair
 
 ```ts
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let priKeyPkcs1Str1024: string  =
   "-----BEGIN RSA PRIVATE KEY-----\n"
@@ -2416,7 +2416,6 @@ convertPemKeySync(pubKey: string | null, priKey: string | null, password: string
 
 ```ts
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let priKeyPkcs1EncodingStr : string =
   "-----BEGIN RSA PRIVATE KEY-----\n"
@@ -2790,7 +2789,6 @@ API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从A
 
 ```ts
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 // 配置DSA1024公钥和私钥中包含的公共参数。
 function genDsa1024CommonSpecBigE() {
@@ -5117,7 +5115,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 | 类型              | 说明                           |
 | ----------------- | ------------------------------ |
-| Promise\<boolean> | 异步返回值，代表验签是否通过。 |
+| Promise\<boolean> | 异步返回值，代表验签是否通过。true为通过，false为不通过。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -5150,7 +5148,7 @@ verifySync(data: DataBlob | null, signatureData: DataBlob): boolean
 
 | 类型              | 说明                           |
 | ----------------- | ------------------------------ |
-| boolean | 同步返回值，表示验签是否成功。 |
+| boolean | 同步返回值，表示验签是否通过。true为通过，false为不通过。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -5302,7 +5300,6 @@ recover(signatureData: DataBlob): Promise\<DataBlob | null>
 
 ```ts
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
-import { buffer } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function genKeyPairByData(pubKeyData: Uint8Array, priKeyData: Uint8Array) {
@@ -5630,7 +5627,6 @@ generateSecretSync(priKey: PriKey, pubKey: PubKey): DataBlob
 
 ```ts
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 async function testGenerateSecret() {
   let eccGen = cryptoFramework.createAsyKeyGenerator('ECC256');
@@ -5669,7 +5665,6 @@ async function testGenerateSecret() {
 
 ```ts
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 async function testGenerateSecretSync() {
   let eccGen = cryptoFramework.createAsyKeyGenerator('ECC256');
@@ -6496,8 +6491,7 @@ API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function  testGetMacLength()
-{
+function testGetMacLength() {
   let mac = cryptoFramework.createMac('SHA256');
   console.info('Mac algName is: ' + mac.algName);
   let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]);
