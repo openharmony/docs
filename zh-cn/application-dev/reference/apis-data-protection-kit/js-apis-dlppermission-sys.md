@@ -441,7 +441,7 @@ try {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| dlpProperty | [DLPProperty](#dlpproperty) | 否 | 否 | 表示DLP文件授权相关信息。 |
+| dlpProperty | [DLPProperty](js-apis-dlppermission.md#dlpproperty21) | 否 | 否 | 表示DLP文件授权相关信息。 |
 
 ### addDLPLinkFile
 
@@ -1558,7 +1558,7 @@ generateDLPFile(plaintextFd: number, ciphertextFd: number, property: DLPProperty
 | -------- | -------- | -------- | -------- |
 | plaintextFd | number | 是 | 待加密明文文件的fd。 |
 | ciphertextFd | number | 是 | 目标加密文件的fd。 |
-| property | [DLPProperty](#dlpproperty) | 是 | 授权用户信息：授权用户列表、owner账号、联系人账号。 |
+| property | [DLPProperty](js-apis-dlppermission.md#dlpproperty21) | 是 | 授权用户信息：授权用户列表、owner账号、联系人账号。 |
 
 **返回值：**
 
@@ -1642,7 +1642,7 @@ DLP管理应用调用该接口，将明文文件加密生成权限受控文件�
 | -------- | -------- | -------- | -------- |
 | plaintextFd | number | 是 | 待加密明文文件的fd。 |
 | ciphertextFd | number | 是 | 目标加密文件的fd。 |
-| property | [DLPProperty](#dlpproperty) | 是 | 授权用户信息：授权用户列表、owner账号、联系人账号。 |
+| property | [DLPProperty](js-apis-dlppermission.md#dlpproperty21) | 是 | 授权用户信息：授权用户列表、owner账号、联系人账号。 |
 | callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | 是 | 回调函数。返回DLPFile对象。 |
 
 **错误码：**
