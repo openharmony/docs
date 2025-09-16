@@ -6,20 +6,19 @@
 <!--Tester: @xchaosioda-->
 <!--Adviser: @zengyawen-->
 
-Image Kit提供**ArkTS接口**和**C接口**。在遇到特殊情况时（例如输入参数无效、内存不足或函数无法处理请求等），系统会通过异常（ArkTS）或错误码（C接口）来反馈错误。开发者需要在应用层合理捕获和处理这些错误，以避免应用崩溃或出现未定义行为。在[Image错误码](../../../reference/apis-image-kit/errorcode-image.md)中给出了Image Kit错误码对应的错误信息、可能原因、处理步骤。但由于部分场景引发错误的原因较为复杂，还需要开发者结合日志进一步定位。例如：401 参数错误，可能是函数入参存在问题，也可能是由于缺少特定的文件读写权限导致无法访问或修改图片文件（Image Kit不感知权限，表现为传入文件异常的参数错误）。
+Image Kit提供**ArkTS接口**和**C接口**。在遇到特殊情况时（例如输入参数无效、内存不足或函数无法处理请求等），系统会通过异常（ArkTS）或错误码（C接口）来反馈错误。开发者需要在应用层合理捕获和处理这些错误，以避免应用崩溃或出现未定义行为。在[Image错误码](../../../reference/apis-image-kit/errorcode-image.md)中给出了Image Kit错误码对应的错误信息、可能原因、处理步骤。但由于部分场景引发错误的原因较为复杂，还需要开发者结合日志进一步定位。例如：401参数错误，可能是函数入参存在问题，也可能是由于缺少特定的文件读写权限导致无法访问或修改图片文件（Image Kit不感知权限，表现为传入文件异常的参数错误）。
 
 ## ArkTS接口异常处理
 
 ArkTS接口调用时，如果传入的参数不符合要求，或者底层执行过程中出现不可恢复的错误，系统会返回或抛出[BusinessError](../../../reference/apis-basic-services-kit/js-apis-base.md#businesserror)异常，又或者在异步场景中返回一个[Promise](../../../arkts-utils/async-concurrency-overview.md#promise)的rejected状态。如果开发者忽略了异常处理，可能会出现功能问题或数据丢失，甚至直接导致应用崩溃。
 
-典型的ArkTS接口形态及API示例和处理方法示例如下所示。
+典型的ArkTS接口形态及API示例和处理方法如下所示。
 
 | 接口形态          | 示例API                                                                                                       | 处理方式                                    |
 | ------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
 | **Promise异步接口** | `getImageInfo(): Promise<ImageInfo>`、`modifyImageProperty(key: PropertyKey, value: string): Promise<void>` | 使用`await`+`try/catch`，或`promise.catch`捕获`BusinessError`。|
 | **AsyncCallback异步接口**       | `getImageInfo(callback: AsyncCallback<ImageInfo>): void`                                        | 使用回调函数[AsyncCallback](../../../reference/apis-basic-services-kit/js-apis-base.md#asynccallback)的参数获取`BusinessError`。             |
 | **同步接口**       | `getImageInfoSync(): ImageInfo`                                                                              | 使用`try/catch`捕获同步`BusinessError`。    |
-
 
 1. AsyncCallback异步接口示例。
 
@@ -88,7 +87,7 @@ ArkTS接口调用时，如果传入的参数不符合要求，或者底层执行
 
 ## C接口异常处理
 
-C接口统一通过[Image错误码](../../../reference/apis-image-kit/errorcode-image.md)来表示函数执行结果。返回IMAGE_SUCCESS（0）表示执行成功，返回非零值表示发生错误。开发者应在调用后立即检查返回值，并进行必要的错误处理，如日志记录、资源释放等。这里给出C接口异常处理的典型示例：
+C接口统一通过[Image错误码](../../../reference/apis-image-kit/errorcode-image.md)来表示函数执行结果。返回IMAGE_SUCCESS（0）表示执行成功，返回非零值表示发生错误。开发者应在调用后立即检查返回值，并进行必要的错误处理，如日志记录、资源释放等。C接口异常处理的典型示例如下所示。
 
 1. 通过ImageInfo获取图像信息。
 
@@ -96,7 +95,6 @@ C接口统一通过[Image错误码](../../../reference/apis-image-kit/errorcode-
 
    ```cpp
    // 需要在src/main/cpp/CMakeLists.txt文件中链接so库文件：target_link_libraries(entry PUBLIC libhilog_ndk.z.so libpixelmap.so)。
-   #include <string>
    #include <hilog/log.h>
    #include <multimedia/image_framework/image/pixelmap_native.h>
 
@@ -122,7 +120,7 @@ C接口统一通过[Image错误码](../../../reference/apis-image-kit/errorcode-
            return;
        }
 
-       // 获取图片的宽，高，像素格式，透明度等信息。
+       // 获取图片的宽、高、像素格式和透明度等信息。
        uint32_t width, height, rowStride;
        int32_t pixelFormat, alphaType;
        OH_PixelmapImageInfo_GetWidth(imageInfo, &width);
@@ -173,4 +171,3 @@ C接口统一通过[Image错误码](../../../reference/apis-image-kit/errorcode-
                    valueStr.c_str());
    }
    ```
-
