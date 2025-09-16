@@ -12,49 +12,50 @@
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/arkts-apis-camera.md)。
+详细的API说明请参考[Camera](../../reference/apis-camera-kit/arkts-apis-camera.md)。
 
 1. 导入camera接口，接口中提供了相机相关的属性和方法，导入方法如下。
 
-```ts
-import { camera } from '@kit.CameraKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-```
-2. 通过[VideoSession](../../reference/apis-camera-kit/arkts-apis-camera-VideoSession.md)的[isControlCenterSupported](../../reference/apis-camera-kit/arkts-apis-camera-ControlCenterQuery.md#iscontrolcentersupported20)接口，查询当前设备及当前场景是否支持相机控制器。
+  ```ts
+  import { camera } from '@kit.CameraKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  ```
 
-```ts
-function isControlCenterSupported(videoSession: camera.VideoSession): boolean {
+2. 通过[isControlCenterSupported](../../reference/apis-camera-kit/arkts-apis-camera-ControlCenterQuery.md#iscontrolcentersupported20)接口，查询当前设备及当前场景是否支持相机控制器。
+
+  ```ts
+  function isControlCenterSupported(videoSession: camera.VideoSession): boolean {
     let isSupported: boolean = videoSession.isControlCenterSupported();
     return isSupported;
-}
-```
+  }
+  ```
 
-3. 通过[VideoSesssion](../../reference/apis-camera-kit/arkts-apis-camera-VideoSession.md)的[getSupportedEffectTypes](../../reference/apis-camera-kit/arkts-apis-camera-ControlCenterQuery.md#getsupportedeffecttypes20)接口，查询当前设备及当前场景下，相机控制器支持的效果类型。
+3. 通过[getSupportedEffectTypes](../../reference/apis-camera-kit/arkts-apis-camera-ControlCenterQuery.md#getsupportedeffecttypes20)接口，查询当前设备及当前场景下，相机控制器支持的效果类型。
 
-```ts
-function getSupportedEffectTypes(videoSession: camera.VideoSession): Array<camera.ControlCenterEffectType> {
+  ```ts
+  function getSupportedEffectTypes(videoSession: camera.VideoSession): Array<camera.ControlCenterEffectType> {
     let effectTypes: Array<camera.ControlCenterEffectType> = [];
     effectTypes = videoSession.getSupportedEffectTypes();
     return effectTypes;
-}
-```
+  }
+  ```
 
-4. 若当前设备及当前场景支持相机控制器，通过[VideoSesssion](../../reference/apis-camera-kit/arkts-apis-camera-VideoSession.md)的[enableControlCenter](../../reference/apis-camera-kit/arkts-apis-camera-ControlCenter.md#enablecontrolcenter20)接口，可以使能或关闭相机控制器。
+4. 若当前设备及当前场景支持相机控制器，通过[enableControlCenter](../../reference/apis-camera-kit/arkts-apis-camera-ControlCenter.md#enablecontrolcenter20)接口，可以使能或关闭相机控制器。
 
-```ts
-function enableControlCenter(videoSession: camera.VideoSession, enable: boolean): void {
+  ```ts
+  function enableControlCenter(videoSession: camera.VideoSession, enable: boolean): void {
     let isSupported: boolean = videoSession.isControlCenterSupported();
     if (isSupported) {
         videoSession.enableControlCenter(enable);
     }
-}
-```
+  }
+  ```
 
-使能相机控制器后，可以在状态栏看到新增的视频效果图标。
+5. 使能相机控制器后，可以在状态栏看到新增的视频效果图标。
 
 ![camera-control-center-status](figures/camera-control-center-status.png)
 
-点击视频效果图标，在弹出的二级页面中，用户可调节控制器支持的效果，如图所示为美颜和背景虚化。
+6. 点击`视频效果`图标，在弹出的二级页面中，用户可调节控制器支持的效果，如图所示为`美颜`和`背景虚化`。
 
 ![camera-control-center](figures/camera-control-center.png)
 
