@@ -29,7 +29,7 @@ MetadataBinding（记忆链接）指由第三方应用提供[鸿蒙App Linking�
   
 ## 约束与限制
 
-  - 鸿蒙App Linking链接的最大字节数为99。
+  - 鸿蒙App Linking链接的最大字节数为128。
 
 ## 开发步骤
 
