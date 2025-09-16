@@ -4,7 +4,7 @@
 <!--Owner: @yp99ustc-->
 <!--Designer: @LongLie-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 Web页面出现白屏的原因众多，本文列举了若干常见白屏问题的排查步骤，供开发者快速定位。
 
