@@ -4292,7 +4292,7 @@ static customizeSchemes(schemes: Array\<WebCustomScheme\>, lazyInitWebEngine: bo
 | 参数名   | 类型    | 必填 | 说明                      |
 | -------- | ------- | ---- | -------------------------------------- |
 | schemes | Array\<[WebCustomScheme](./arkts-apis-webview-i.md#webcustomscheme)\> | 是   | 自定义协议配置，最多支持同时配置10个自定义协议。 |
-| lazyInitWebEngine | boolean | 是 | 表示接口内部是否跳过初始化WebEngine。<br>true表示接口内部跳过初始化WebEngine，并将注册的方案暂存，当它真正初始化时，这些方案将传递给WebEngine。false表示接口内部自动进行WebEngine初始化。 |
+| lazyInitWebEngine | boolean | 是 | 表示接口内部是否跳过初始化WebEngine。<br>true表示接口内部跳过初始化WebEngine，并将注册的Schemes暂存，当它真正初始化时，这些Schemes将传递给WebEngine。false表示接口内部自动进行WebEngine初始化。 |
 
 **错误码：**
 
