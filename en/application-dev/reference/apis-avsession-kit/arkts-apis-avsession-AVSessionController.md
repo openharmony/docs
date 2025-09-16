@@ -2,8 +2,9 @@
 <!--Kit: AVSession Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @ccfriend; @liao_qian-->
-<!--SE: @ccfriend-->
-<!--TSE: @chenmingxi1_huawei-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -42,7 +43,7 @@ avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSe
   currentAVSession = data;
   sessionId = currentAVSession.sessionId;
   AVSessionController = await currentAVSession.getController();
-  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+  console.info(`CreateAVSession : SUCCESS :sessionId = ${sessionId}`);
 }).catch((err: BusinessError) => {
   console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -731,7 +732,7 @@ Checks whether the session is activated. This API uses a promise to return the r
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise<boolean\> | Promise used to return the activation state. If the session is activated, **true** is returned; otherwise, **false** is returned.|
+| Promise<boolean\> | Promise used to return the result indicating whether the session is activated. **true** if activated, **false** otherwise.|
 
 **Error codes**
 
@@ -767,7 +768,7 @@ Checks whether the session is activated. This API uses an asynchronous callback 
 
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<boolean\> | Yes  | Callback used to return the activation state. If the session is activated, **true** is returned; otherwise, **false** is returned.|
+| callback | AsyncCallback<boolean\> | Yes  | Callback used to return the result indicating whether the session is activated. **true** if activated, **false** otherwise.|
 
 **Error codes**
 
@@ -1098,9 +1099,9 @@ avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSe
   currentAVSession = data;
   sessionId = currentAVSession.sessionId;
   controller = await currentAVSession.getController();
-  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+  console.info(`CreateAVSession : SUCCESS :sessionId = ${sessionId}`);
 }).catch((err: BusinessError) => {
-  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+  console.error(`CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}`)
 });
 let commandName = "my_command";
 if (controller !== undefined) {
@@ -1158,9 +1159,9 @@ avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSe
   currentAVSession = data;
   sessionId = currentAVSession.sessionId;
   controller = await currentAVSession.getController();
-  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+  console.info(`CreateAVSession : SUCCESS :sessionId = ${sessionId}`);
 }).catch((err: BusinessError) => {
-  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+  console.error(`CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}`)
 });
 let commandName = "my_command";
 if (controller !== undefined) {
@@ -1200,7 +1201,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 6600101  | Session service exception. |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist.                                  |
 | 6600103  | The session controller does not exist.                       |
 
@@ -1213,13 +1214,13 @@ import { avSession } from '@kit.AVSessionKit';
 let tag: string = "createNewSession";
 let sessionId: string = "";
 let controller:avSession.AVSessionController | undefined = undefined;
-avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession) => {
   currentAVSession = data;
   sessionId = currentAVSession.sessionId;
   controller = await currentAVSession.getController();
-  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+  console.info(`CreateAVSession : SUCCESS :sessionId = ${sessionId}`);
 }).catch((err: BusinessError) => {
-  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+  console.error(`CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}`)
 });
 
 if (controller !== undefined) {
@@ -1269,9 +1270,9 @@ avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSe
   currentAVSession = data;
   sessionId = currentAVSession.sessionId;
   controller = await currentAVSession.getController();
-  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+  console.info(`CreateAVSession : SUCCESS :sessionId = ${sessionId}`);
 }).catch((err: BusinessError) => {
-  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+  console.error(`CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}`)
 });
 if (controller !== undefined) {
   (controller as avSession.AVSessionController).getExtras().then((extras) => {
@@ -1322,9 +1323,9 @@ avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSe
   currentAVSession = data;
   sessionId = currentAVSession.sessionId;
   controller = await currentAVSession.getController();
-  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+  console.info(`CreateAVSession : SUCCESS :sessionId = ${sessionId}`);
 }).catch((err: BusinessError) => {
-  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+  console.error(`CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}`)
 });
 if (controller !== undefined) {
   (controller as avSession.AVSessionController).getExtras((err, extras) => {
@@ -1414,9 +1415,9 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Event type. The event **'metadataChange'** is triggered when the session metadata changes.|
-| filter   | Array\<keyof&nbsp;[AVMetadata](arkts-apis-avsession-i.md#avmetadata10)\>&nbsp;&#124;&nbsp;'all' | Yes  | The value **'all'** indicates that any metadata field change will trigger the event, and **Array<keyof&nbsp;[AVMetadata](arkts-apis-avsession-i.md#avmetadata10)\>** indicates that only changes to the listed metadata field will trigger the event.|
-| callback | (data: [AVMetadata](arkts-apis-avsession-i.md#avmetadata10)) => void                    | Yes  | Callback used for subscription. The **data** parameter in the callback indicates the changed metadata.                        |
+| type     | string                                                       | Yes  | Event type. The event **'metadataChange'** is triggered when the session metadata requires an update.<br>"Requires an update" means the corresponding property value has been reset, regardless of whether the new value matches the old one.|
+| filter   | Array\<keyof&nbsp;[AVMetadata](arkts-apis-avsession-i.md#avmetadata10)\>&nbsp;&#124;&nbsp;'all' | Yes  | The value **'all'** indicates monitoring for updates to all metadata fields, and **Array<keyof&nbsp;[AVMetadata](arkts-apis-avsession-i.md#avmetadata10)\>** indicates monitoring for updates to the fields specified in the array.|
+| callback | (data: [AVMetadata](arkts-apis-avsession-i.md#avmetadata10)) => void                    | Yes  | Callback used for subscription. The **data** parameter in the callback indicates the metadata that requires an update, but not the complete current metadata set.  |
 
 **Error codes**
 
@@ -1456,7 +1457,7 @@ Unsubscribes from metadata change events. If a callback is specified, the corres
 | Name  | Type                                              | Mandatory| Description                                                   |
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------ |
 | type     | string                                           | Yes  | Event type, which is **'metadataChange'** in this case.        |
-| callback | (data: [AVMetadata](arkts-apis-avsession-i.md#avmetadata10)) => void        | No  | Callback used for subscription. The **data** parameter in the callback indicates the changed metadata.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                        |
+| callback | (data: [AVMetadata](arkts-apis-avsession-i.md#avmetadata10)) => void        | No  | Callback used for subscription. The **data** parameter in the callback indicates the metadata that requires an update, but not the complete current metadata set.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                        |
 
 **Error codes**
 
@@ -1490,9 +1491,9 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 
 | Name  | Type      | Mandatory| Description     |
 | --------| -----------|-----|------------|
-| type     | string    | Yes  | Event type. The event **'playbackStateChange'** is triggered when the playback state changes.|
-| filter   | Array\<keyof&nbsp;[AVPlaybackState](arkts-apis-avsession-i.md#avplaybackstate10)\>&nbsp;&#124;&nbsp;'all' | Yes  | The value **'all'** indicates that any playback state field change will trigger the event, and **Array<keyof&nbsp;[AVPlaybackState](arkts-apis-avsession-i.md#avplaybackstate10)\>** indicates that only changes to the listed playback state field will trigger the event.|
-| callback | (state: [AVPlaybackState](arkts-apis-avsession-i.md#avplaybackstate10)) => void       | Yes  | Callback used for subscription. The **state** parameter in the callback indicates the changed playback state.|
+| type     | string    | Yes  | Event type. The event **'playbackStateChange'** is triggered when the playback state requires an update.<br>"Requires an update" means the corresponding property value has been reset, regardless of whether the new value matches the old one.|
+| filter   | Array\<keyof&nbsp;[AVPlaybackState](arkts-apis-avsession-i.md#avplaybackstate10)\>&nbsp;&#124;&nbsp;'all' | Yes  | The value **'all'** indicates monitoring for updates to all playback state fields, and **Array<keyof&nbsp;[AVPlaybackState](arkts-apis-avsession-i.md#avplaybackstate10)\>** indicates monitoring for updates to the fields specified in the array.|
+| callback | (state: [AVPlaybackState](arkts-apis-avsession-i.md#avplaybackstate10)) => void       | Yes  | Callback function, where the **state** parameter indicates the playback state that requires an update, but not the complete current playback state set.|
 
 **Error codes**
 
@@ -1531,7 +1532,7 @@ Unsubscribes from playback state change events. If a callback is specified, the 
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string                                                       | Yes  | Event type, which is **'playbackStateChange'** in this case.   |
-| callback | (state: [AVPlaybackState](arkts-apis-avsession-i.md#avplaybackstate10)) => void         | No  | Callback function, where the **state** parameter indicates the new playback state.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                     |
+| callback | (state: [AVPlaybackState](arkts-apis-avsession-i.md#avplaybackstate10)) => void         | No  | Callback function, where the **state** parameter indicates the playback state that requires an update, but not the complete current playback state set.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                    |
 
 **Error codes**
 
@@ -1786,7 +1787,7 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                      | Yes  | Event type. The event **'activeStateChange'** is triggered when the activation state of the session changes.|
-| callback | (isActive: boolean) => void | Yes  | Callback used for subscription. The **isActive** parameter in the callback specifies whether the session is activated. The value **true** means that the service is activated, and **false** means the opposite.                  |
+| callback | (isActive: boolean) => void | Yes  | Callback used for subscription. The **isActive** parameter in the callback specifies whether the session is activated. **true** if activated, **false** otherwise.                  |
 
 **Error codes**
 
@@ -1821,7 +1822,7 @@ Unsubscribes from session activation state change events. If a callback is speci
 | Name  | Type                       | Mandatory| Description                                                     |
 | -------- | --------------------------- | ---- | ----------------------------------------------------- |
 | type     | string                      | Yes  | Event type, which is **'activeStateChange'** in this case.     |
-| callback | (isActive: boolean) => void | No  | Callback used for unsubscription. The **isActive** parameter in the callback specifies whether the session is activated. The value **true** means that the session is activated, and **false** means the opposite.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                  |
+| callback | (isActive: boolean) => void | No  | Callback used for unsubscription. The **isActive** parameter in the callback specifies whether the session is activated. **true** if activated, **false** otherwise.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                  |
 
 **Error codes**
 
@@ -2244,9 +2245,9 @@ avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSe
   currentAVSession = data;
   sessionId = currentAVSession.sessionId;
   controller = await currentAVSession.getController();
-  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+  console.info(`CreateAVSession : SUCCESS :sessionId = ${sessionId}`);
 }).catch((err: BusinessError) => {
-  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+  console.error(`CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}`)
 });
 if (controller !== undefined) {
   (controller as avSession.AVSessionController).on('extrasChange', (extras) => {
@@ -2311,7 +2312,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 6600101  | Session service exception. |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600103  | The session controller does not exist.                       |
 
 **Example**
@@ -2361,7 +2362,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 6600101  | Session service exception. |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600103  | The session controller does not exist.                       |
 
 **Example**
@@ -2725,7 +2726,7 @@ Checks whether the session is activated. This API returns the result synchronous
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| boolean | Returns **true** is returned if the session is activated; returns **false** otherwise.|
+| boolean | Check result for whether the session is activated. **true** if activated, **false** otherwise.|
 
 **Error codes**
 

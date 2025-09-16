@@ -2,8 +2,9 @@
 <!--Kit: AVSession Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @ccfriend; @liao_qian-->
-<!--SE: @ccfriend-->
-<!--TSE: @chenmingxi1_huawei-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -22,7 +23,7 @@ import { avSession } from '@kit.AVSessionKit';
 
 constructor(context: Context)
 
-Creates an AVCastPickerHelper instance. For details about how to obtain the context, see [getContext](../apis-arkui/arkts-apis-uicontext-uicontext.md#gethostcontext12).
+Creates an AVCastPickerHelper instance. For details about how to obtain the context, see [getHostContext](../apis-arkui/arkts-apis-uicontext-uicontext.md#gethostcontext12).
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -106,6 +107,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 ```ts
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { avSession } from '@kit.AVSessionKit';
 
 async function avCastPicker(context: common.Context) {
   let avCastPickerOptions : avSession.AVCastPickerOptions = {
@@ -153,6 +155,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 ```ts
 import { common } from '@kit.AbilityKit';
 import { AVCastPickerState } from '@kit.AVSessionKit';
+import { avSession } from '@kit.AVSessionKit';
 
 async function onPickerStateChange(context: common.Context) {
   let avCastPicker = new avSession.AVCastPickerHelper(context);
@@ -192,6 +195,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 import { common } from '@kit.AbilityKit';
+import { avSession } from '@kit.AVSessionKit';
 
 async function onPickerStateChange(context: common.Context) {
   let avCastPicker = new avSession.AVCastPickerHelper(context);

@@ -45,33 +45,44 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
    ```ts
    async function startMetadataOutput(previewOutput: camera.PreviewOutput, metadataOutput: camera.MetadataOutput, cameraManager: camera.CameraManager): Promise<void> {
      let cameraArray: Array<camera.CameraDevice> = [];
-     cameraArray = cameraManager.getSupportedCameras();
-     if (cameraArray.length == 0) {
-       console.error('no camera.');
-       return;
+     try {
+       cameraArray = cameraManager.getSupportedCameras();
+       if (cameraArray.length == 0) {
+         console.error('no camera.');
+         return;
+       }
+       // In this sample code, the first camera is selected. You need to select a camera as required.
+       const cameraDevice: camera.CameraDevice = cameraArray[0];
+       // Obtain the supported modes.
+       let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraDevice);
+       let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
+       if (!isSupportPhotoMode) {
+         console.error('photo mode not support');
+         return;
+       }
+       let cameraInput: camera.CameraInput | undefined = undefined;
+       cameraInput = cameraManager.createCameraInput(cameraDevice);
+       if (cameraInput === undefined) {
+         console.error('cameraInput is undefined');
+         return;
+       }
+       // Open the camera.
+       await cameraInput.open();
+       let session = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+       if (!session) {
+         console.error('session is null');
+         return;
+       }
+       let photoSession: camera.PhotoSession = session as camera.PhotoSession;
+       photoSession.beginConfig();
+       photoSession.addInput(cameraInput);
+       photoSession.addOutput(previewOutput);
+       photoSession.addOutput(metadataOutput);
+       await photoSession.commitConfig();
+       await photoSession.start();
+     } catch (error) {
+       console.error('startMetadataOutput call failed');
      }
-     // Obtain the supported modes.
-     let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
-     let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
-     if (!isSupportPhotoMode) {
-       console.error('photo mode not support');
-       return;
-     }
-     let cameraInput: camera.CameraInput | undefined = undefined;
-     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
-     if (cameraInput === undefined) {
-       console.error('cameraInput is undefined');
-       return;
-     }
-     // Open the camera.
-     await cameraInput.open();
-     let session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
-     session.beginConfig();
-     session.addInput(cameraInput);
-     session.addOutput(previewOutput);
-     session.addOutput(metadataOutput);
-     await session.commitConfig();
-     await session.start();
    }
    ```
 

@@ -988,7 +988,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function isDepthFusionSupported(DepthFusionQuery: camera.DepthFusionQuery): void {
   try {
     let isSupperted: boolean = DepthFusionQuery.isDepthFusionSupported();
-    console.info('Promise returned to indicate that isDepthFusionSupported method execution success.');
+    console.info('Indicate that isDepthFusionSupported method execution success.');
   } catch (error) {
     let err = error as BusinessError;
     console.error(`Failed to depth fusion query  isDepthFusionSupported, error code: ${err.code}.`);
@@ -1213,7 +1213,13 @@ async function preview(context: common.BaseContext, cameraDevice: camera.CameraD
   session.addOutput(previewOutput);
   session.addOutput(photoOutput);
   await session.commitConfig();
-  await session.start();
+  try {
+    await session.start();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`start session failed. error code: ${err.code}`);
+  }
   previewOutput.addDeferredSurface(previewSurfaceId);
 }
 ```
@@ -1969,6 +1975,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 
 ```ts
 import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function isQuickThumbnailSupported(context: common.BaseContext, mode: camera.SceneMode, photoProfile: camera.Profile): Promise<boolean> {
   let cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -1978,12 +1985,22 @@ async function isQuickThumbnailSupported(context: common.BaseContext, mode: came
   // Start configuration for the session.
   session.beginConfig();
   // Add a CameraInput instance to the session.
+  if (cameras.length <= 0) {
+    console.info('Get supported cameras is null or [].');
+    return false;
+  }
   let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
   await cameraInput.open();
   session.addInput(cameraInput);
   // Add a PhotoOutput instance to the session.
   let photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
-  session.addOutput(photoOutput);
+  try {
+    session.addOutput(photoOutput);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`AddOutput called failed. error code: ${err.code}`);
+    return false;
+  }
   let isSupported: boolean = photoOutput.isQuickThumbnailSupported();
   return isSupported;
 }
@@ -4624,6 +4641,10 @@ function unregisterLcdFlashStatus(nightPhotoSession: camera.NightPhotoSession): 
 HighResolutionPhotoSession extends Session, AutoExposure, Focus
 
 Implements a high-resolution photo session, which sets the parameters of the high-resolution photo mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
+
+> **NOTE**
+>
+> In high-resolution photo capture scenarios, the physical camera lens must be used instead of the logical lens.
 
 ### on('error')<sup>12+</sup>
 

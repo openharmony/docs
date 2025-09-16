@@ -38,9 +38,13 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager, 
      cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
+     if (!cameraOutputCapability || !cameraOutputCapability.photoProfiles) {
+       return;
+     }
      let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
-     if (!photoProfilesArray) {
-       console.error("createOutput photoProfilesArray == null || undefined");
+     if (!photoProfilesArray || photoProfilesArray.length === 0) {
+       console.error("photoProfilesArray is null or []");
+       return;
      }
      let photoOutput: camera.PhotoOutput | undefined = undefined;
      try {

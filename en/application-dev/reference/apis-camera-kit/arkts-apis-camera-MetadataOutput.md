@@ -93,7 +93,7 @@ function startMetadataOutput(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.start().then(() => {
     console.info('Callback returned with metadata output started.');
   }).catch((error: BusinessError) => {
-    console.error(`Failed to metadata output stop, error code: ${error.code}`);
+    console.error(`Failed to metadata output start, error code: ${error.code}`);
   });
 }
 ```

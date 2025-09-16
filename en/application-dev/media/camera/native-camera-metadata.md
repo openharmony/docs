@@ -50,7 +50,7 @@ Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API ref
        }
        Camera_MetadataObjectType* metaDataObjectType = nullptr;
        bool isSupported = false;
-       for (int index = 0; index < cameraOutputCapability->metadataProfilesSize; index++) {
+       for (uint32_t index = 0; index < cameraOutputCapability->metadataProfilesSize; index++) {
            if (cameraOutputCapability->supportedMetadataObjectTypes[index] != nullptr &&
                *cameraOutputCapability->supportedMetadataObjectTypes[index] == FACE_DETECTION) {
                metaDataObjectType = *cameraOutputCapability->supportedMetadataObjectTypes;
