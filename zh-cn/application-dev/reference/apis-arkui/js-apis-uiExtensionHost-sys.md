@@ -230,6 +230,8 @@ export default class EntryAbility extends UIExtensionAbility {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**系统接口：** 此接口为系统接口。
+
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | properties          | [UIExtensionHostWindowProxyProperties](#uiextensionhostwindowproxyproperties) |  否  |  否  | UIExtensionComponent组件以及宿主窗口的信息。<br/>**约束：** 由于架构约束，不建议在[onSessionCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)阶段同步获取该值，建议在收到[on('windowSizeChange')](../apis-arkui/js-apis-uiExtensionHost-sys.md#onwindowsizechange)回调之后获取。 |
