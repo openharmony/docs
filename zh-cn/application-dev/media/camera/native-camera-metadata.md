@@ -91,7 +91,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
     Camera_ErrorCode StartSession(Camera_CaptureSession* captureSession, Camera_Input* cameraInput,
         Camera_PreviewOutput* previewOutput, Camera_PhotoOutput* photoOutput, Camera_MetadataOutput* metadataOutput)
     {
-        //开始配置Session
+        // 开始配置Session。
         Camera_ErrorCode ret = OH_CaptureSession_BeginConfig(captureSession);
         if (ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_BeginConfig failed.");
