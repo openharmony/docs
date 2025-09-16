@@ -61,7 +61,7 @@
 | \@Provide变量装饰器 | 说明                                       |
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。|
-| 同步类型           | 双向同步。<br/>从\@Provide变量到所有\@Consume变量以及相反的方向的数据同步。双向同步的操作与\@State和\@Link的组合相同。 |
+| 同步类型           | 双向同步。<br/>从\@Provide变量到所有\@Consume变量以及相反方向的数据同步。双向同步的操作与\@State和\@Link的组合相同。 |
 | 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>API version 10开始支持[Date类型](#装饰date类型变量)。<br/>API version 11及以上支持[Map](#装饰map类型变量)、[Set](#装饰set类型变量)类型、undefined和null类型、ArkUI框架定义的联合类型[Length](../../reference/apis-arkui/arkui-ts/ts-types.md#length)、[ResourceStr](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcestr)、[ResourceColor](../../reference/apis-arkui/arkui-ts/ts-types.md#resourcecolor)类型以及这些类型的联合类型，示例见[@Provide和Consume支持联合类型实例](#provide和consume支持联合类型实例)。<br/>支持类型的场景请参考[观察变化](#观察变化)。|
 | 不允许装饰的变量类型 | 不支持装饰Function类型。      |
 | 被装饰变量的初始值      | 必须本地初始化。                                    |
@@ -420,25 +420,32 @@ struct Child {
   build() {
     Column() {
       ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
-        Text(`${item[0]}`).fontSize(30)
-        Text(`${item[1]}`).fontSize(30)
+        Text(`${item[0]}`)
+          .fontSize(30)
+        Text(`${item[1]}`)
+          .fontSize(30)
         Divider()
       })
-      Button('Consume init Map').onClick(() => {
-        this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c']])
-      })
-      Button('Consume set new one').onClick(() => {
-        this.message.set(4, 'd')
-      })
-      Button('Consume clear').onClick(() => {
-        this.message.clear()
-      })
-      Button('Consume replace the first item').onClick(() => {
-        this.message.set(0, 'aa')
-      })
-      Button('Consume delete the first item').onClick(() => {
-        this.message.delete(0)
-      })
+      Button('Consume init Map')
+        .onClick(() => {
+          this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
+        })
+      Button('Consume set new one')
+        .onClick(() => {
+          this.message.set(4, 'd');
+        })
+      Button('Consume clear')
+        .onClick(() => {
+          this.message.clear();
+        })
+      Button('Consume replace the first item')
+        .onClick(() => {
+          this.message.set(0, 'aa');
+        })
+      Button('Consume delete the first item')
+        .onClick(() => {
+          this.message.delete(0);
+        })
     }
   }
 }
@@ -452,9 +459,10 @@ struct MapSample {
   build() {
     Row() {
       Column() {
-        Button('Provide init Map').onClick(() => {
-          this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c'], [4, 'd']])
-        })
+        Button('Provide init Map')
+          .onClick(() => {
+            this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c'], [4, 'd']]);
+          })
         Child()
       }
       .width('100%')
@@ -480,21 +488,26 @@ struct Child {
   build() {
     Column() {
       ForEach(Array.from(this.message.entries()), (item: [number, number]) => {
-        Text(`${item[0]}`).fontSize(30)
+        Text(`${item[0]}`)
+          .fontSize(30)
         Divider()
       })
-      Button('Consume init set').onClick(() => {
-        this.message = new Set([0, 1, 2, 3, 4])
-      })
-      Button('Consume set new one').onClick(() => {
-        this.message.add(5)
-      })
-      Button('Consume clear').onClick(() => {
-        this.message.clear()
-      })
-      Button('Consume delete the first one').onClick(() => {
-        this.message.delete(0)
-      })
+      Button('Consume init set')
+        .onClick(() => {
+          this.message = new Set([0, 1, 2, 3, 4]);
+        })
+      Button('Consume set new one')
+        .onClick(() => {
+          this.message.add(5);
+        })
+      Button('Consume clear')
+        .onClick(() => {
+          this.message.clear();
+        })
+      Button('Consume delete the first one')
+        .onClick(() => {
+          this.message.delete(0);
+        })
     }
     .width('100%')
   }
@@ -509,9 +522,10 @@ struct SetSample {
   build() {
     Row() {
       Column() {
-        Button('Provide init set').onClick(() => {
-          this.message = new Set([0, 1, 2, 3, 4, 5])
-        })
+        Button('Provide init set')
+          .onClick(() => {
+            this.message = new Set([0, 1, 2, 3, 4, 5]);
+          })
         Child()
       }
       .width('100%')
@@ -534,12 +548,12 @@ struct Child {
     Column() {
       Button(`child increase the day by 1`)
         .onClick(() => {
-          this.selectedDate.setDate(this.selectedDate.getDate() + 1)
+          this.selectedDate.setDate(this.selectedDate.getDate() + 1);
         })
       Button('child update the new date')
         .margin(10)
         .onClick(() => {
-          this.selectedDate = new Date('2023-09-09')
+          this.selectedDate = new Date('2023-09-09');
         })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -560,12 +574,12 @@ struct Parent {
       Button('parent increase the day by 1')
         .margin(10)
         .onClick(() => {
-          this.selectedDate.setDate(this.selectedDate.getDate() + 1)
+          this.selectedDate.setDate(this.selectedDate.getDate() + 1);
         })
       Button('parent update the new date')
         .margin(10)
         .onClick(() => {
-          this.selectedDate = new Date('2023-07-07')
+          this.selectedDate = new Date('2023-07-07');
         })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -736,7 +750,7 @@ struct Parent {
           // 点击change provideOne按钮，provideOne和子组件中的textOne属性会同时变化
           Button('change provideOne')
             .onClick(() => {
-              this.provideOne = undefined; 
+              this.provideOne = undefined;
             })
           // 点击change provideTwo按钮，provideTwo和子组件中的textTwo属性会同时变化
           Button('change provideTwo')
@@ -791,6 +805,11 @@ struct Child {
 - @Consume装饰的属性设置的默认值仅在祖先组件没有匹配结果时才生效，有匹配结果时无影响。
 
 ### \@Consume在跨BuilderNode场景下和\@Provide建立双向同步
+
+> **说明：**
+>
+> 从API version 20开始，支持跨BuilderNode配对\@Provide/\@Consume。
+
 BuilderNode支持\@Provide/\@Consume，需注意：
 1. 在BuilderNode子树中定义的\@Consume需要设置默认值，或者在子树中已存在配对的\@Provide，否则会发生运行时报错。
 2. BuilderNode上树后，设置默认值的\@Consume会向上查找\@Provide，根据key的匹配规则找到最近的\@Provide后，会和\@Provide建立双向同步关系。如果找不到配对的\@Provide，则\@Consume仍使用默认值。
