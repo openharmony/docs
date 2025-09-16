@@ -109,7 +109,6 @@
    OH_UdmfRecord* record = OH_UdmfRecord_Create();
    OH_UdmfRecord_AddPlainText(record, plainText);
    
-   
    // 3. 创建OH_UdmfData对象，并向OH_UdmfData中添加OH_UdmfRecord
    OH_UdmfData* data = OH_UdmfData_Create();
    OH_UdmfData_AddRecord(data, record);
