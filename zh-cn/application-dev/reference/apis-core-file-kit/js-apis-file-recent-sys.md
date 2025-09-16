@@ -17,7 +17,7 @@
 ## 导入模块
 
 ```js
-import recent from '@ohos.file.recent';
+import { recent } from '@kit.CoreFileKit';
 ```
 
 ## recent.add
