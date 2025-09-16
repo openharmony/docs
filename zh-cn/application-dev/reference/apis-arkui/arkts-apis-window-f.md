@@ -240,7 +240,7 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    windowStage.loadContent('pages/Index', (err) => {
+    windowStage.loadContent('pages/Index', (err: BusinessError) => {
       windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
         let storage: LocalStorage = new LocalStorage();
         subWindow.loadContent('pages/Index', storage, (err: BusinessError) => {
@@ -258,8 +258,12 @@ export default class EntryAbility extends UIAbility {
               console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
             }
           });
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to load content for sub window. Cause code: ${err.code}, message: ${err.message}`);
         });
       });
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to load content for main window. Cause code: ${err.code}, message: ${err.message}`);
     });
   }
   //...
@@ -312,7 +316,7 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    windowStage.loadContent('pages/Index', (err) => {
+    windowStage.loadContent('pages/Index', (err: BusinessError) => {
       windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
         let storage: LocalStorage = new LocalStorage();
         subWindow.loadContent('pages/Index', storage, (err: BusinessError) => {
@@ -327,8 +331,12 @@ export default class EntryAbility extends UIAbility {
               console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
             }
           });
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to load content for sub window. Cause code: ${err.code}, message: ${err.message}`);
         });
       });
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to load content for main window. Cause code: ${err.code}, message: ${err.message}`);
     });
   }
   //...
