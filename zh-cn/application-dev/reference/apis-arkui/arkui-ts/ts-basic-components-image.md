@@ -2301,7 +2301,7 @@ struct Index {
 
 ### 示例27（使用ContentTransition属性实现图片淡入淡出切换效果）
 
-该示例演示了在点击图片切换图源时，通过设置[contentTransition](#contenttransition21)属性为 淡入淡出效果，实现图片的平滑过渡。
+该示例演示了在点击图片切换图源时，通过设置[contentTransition](#contenttransition21)属性为淡入淡出效果，实现图片的平滑过渡。
 
 ```ts
 @Entry
@@ -2309,6 +2309,7 @@ struct Index {
 struct ImageExample {
   // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
   @State imageResource: Resource = $r('app.media.icon');
+
   build() {
     Row() {
       Column() {
@@ -2317,7 +2318,7 @@ struct ImageExample {
           .height(200)
           // 启用淡入淡出过渡效果。
           .contentTransition(ContentTransitionEffect.OPACITY)
-          .onClick(()=>{
+          .onClick(() => {
             // $r('app.media.cloud1')需要替换为开发者所需的图像资源文件。
             this.imageResource = $r('app.media.cloud1')
           })
