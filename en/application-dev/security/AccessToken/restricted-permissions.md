@@ -610,7 +610,7 @@ Allows an application to customize the icon and text of **SaveButton**.
 
 ## ohos.permission.GET_ABILITY_INFO
 
-Allows an application to query **Ability** information based on the URI.
+Allows an application to obtain **Ability** information based on a URI or the file type.
 
 <!--RP42--><!--RP42End-->
 
