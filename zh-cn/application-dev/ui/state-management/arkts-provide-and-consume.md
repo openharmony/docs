@@ -941,7 +941,7 @@ struct Child {
 
 ```ts
 class Tmp {
-  a: string = ''
+  a: string = '';
 }
 
 @Entry
@@ -1005,7 +1005,7 @@ struct CustomWidgetChild {
 
 ```ts
 class Tmp {
-  name: string = ''
+  name: string = '';
 }
 
 @Entry
