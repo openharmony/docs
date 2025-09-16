@@ -78,7 +78,7 @@ struct Page {
 
   @Computed
   get fullName() {
-    console.info(`fullName`);
+    console.info('fullName');
     // 不推荐在@Computed的计算中做赋值逻辑，因为@Computed本质是一个getter访问器，用来节约重复计算
     // 在这个例子中，fullNameRequestCount仅代表@Computed计算次数，不能代表fullName被访问的次数
     this.fullNameRequestCount++;
@@ -112,14 +112,14 @@ struct Page {
 
   @Computed
   get fullName1() {
-    console.info(`fullName1`);
+    console.info('fullName1');
     this.lastName += 'a'; // 错误，不能改变参与计算的属性
     return this.firstName + ' ' + this.lastName;
   }
 
   @Computed
   get fullName2() {
-    console.info(`fullName2`);
+    console.info('fullName2');
     this.firstName += 'a'; // 错误，不能改变参与计算的属性
     return this.firstName + ' ' + this.lastName;
   }
@@ -357,19 +357,22 @@ struct Index {
 
   build() {
     Column() {
-      Text(`Shopping List: `).fontSize(30)
+      Text(`Shopping List: `)
+        .fontSize(30)
       ForEach(this.shoppingBasket, (item: Article) => {
         Row() {
           Text(`unitPrice: ${item.unitPrice}`)
-          Button('-').onClick(() => {
-            if (item.quantity > 0) {
-              item.quantity--;
-            }
-          })
+          Button('-')
+            .onClick(() => {
+              if (item.quantity > 0) {
+                item.quantity--;
+              }
+            })
           Text(`quantity: ${item.quantity}`)
-          Button('+').onClick(() => {
-            item.quantity++;
-          })
+          Button('+')
+            .onClick(() => {
+              item.quantity++;
+            })
         }
 
         Divider()
@@ -386,8 +389,10 @@ struct Child {
 
   build() {
     Row() {
-      Text(`Total: ${this.total} `).fontSize(30)
-      Text(`Discount: ${this.qualifiesForDiscount} `).fontSize(30)
+      Text(`Total: ${this.total} `)
+        .fontSize(30)
+      Text(`Discount: ${this.qualifiesForDiscount} `)
+        .fontSize(30)
     }
   }
 }
