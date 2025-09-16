@@ -260,8 +260,8 @@ async function PackToDataFromPixelmapSequence(context : Context) {
     disposalTypes: [3, 2, 3], // 指定GIF编码中3帧的帧过渡模式分别为3（恢复到之前的状态）、2（恢复背景色)、3(恢复到之前的状态)。
     loopCount: 0 // 指定GIF编码中循环次数为无限循环。
   };
-  let Packer = image.createImagePacker();
-  Packer.packToDataFromPixelmapSequence(pixelMapList, ops)
+  let packer = image.createImagePacker();
+  packer.packToDataFromPixelmapSequence(pixelMapList, ops)
     .then((data: ArrayBuffer) => {
       console.info('Succeeded in packing.');
     }).catch((error: BusinessError) => {
@@ -696,8 +696,8 @@ async function PackToFile(context : Context) {
     disposalTypes: [3, 2, 3], // 指定GIF编码中3帧的帧过渡模式分别为3（恢复到之前的状态）、2（恢复背景色)、3(恢复到之前的状态)。
     loopCount: 0 // 指定GIF编码中循环次数为无限循环。
   };
-  let Packer = image.createImagePacker();
-  Packer.packToFileFromPixelmapSequence(pixelMapList, file.fd, ops)
+  let packer = image.createImagePacker();
+  packer.packToFileFromPixelmapSequence(pixelMapList, file.fd, ops)
     .then(() => {
       console.info('Succeeded in packToFileMultiFrames.');
     }).catch((error: BusinessError) => {
