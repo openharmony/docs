@@ -81,24 +81,22 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
 }
 
 async function cameraShootingCase(context: Context, surfaceId: string): Promise<void> {
-  // Create a CameraManager object.
   try {
+    // Create a CameraManager object.
     let cameraManager: camera.CameraManager = camera.getCameraManager(context);
-  } catch (error) {
-    let err = error as BusinessError;
-    console.error(`camera.getCameraManager failed, err: ${err.code}`);
-    return;
-  }
-
-  // Listen for camera status changes.
-  cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
-    if (err !== undefined && err.code !== 0) {
-      console.error('cameraStatus with errorCode = ' + err.code);
+    if (!cameraManager) {
+      console.error("camera.getCameraManager error");
       return;
     }
-    console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
-    console.info(`status: ${cameraStatusInfo.status}`);
-  });
+    // Listen for camera status changes.
+    cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
+      if (err !== undefined && err.code !== 0) {
+        console.error('cameraStatus with errorCode = ' + err.code);
+        return;
+      }
+      console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
+      console.info(`status: ${cameraStatusInfo.status}`);
+    });
 
     // Obtain the camera list.
     let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
@@ -286,18 +284,18 @@ async function cameraShootingCase(context: Context, surfaceId: string): Promise<
 
 async function releaseResources(): Promise<void> {
   // Stop the session.
-  await resources.photoSession?.stop().catch((e: BusinessError) => {console.error('Failed to stop session: ', e)});
+  await resources.photoSession?.stop().catch((e: BusinessError) => {console.error('Failed to stop the session:', e)});
 
   // Release the camera input stream.
-  await resources.cameraInput?.close().catch((e: BusinessError) => {console.error('Failed to close the camera: ', e)});
+  await resources.cameraInput?.close().catch((e: BusinessError) => {console.error('Failed to close the camera:', e)});
 
   // Release the preview output stream.
-  await resources.previewOutput?.release().catch((e: BusinessError) => {console.error('Failed to stop the preview stream: ', e)});
+  await resources.previewOutput?.release().catch((e: BusinessError) => {console.error('Failed to stop the preview stream:', e)});
 
   // Release the photo output stream.
-  await resources.photoOutput?.release().catch((e: BusinessError) => {console.error('Stop Photo Stream Failure: ', e)});
+  await resources.photoOutput?.release().catch((e: BusinessError) => {console.error('Failed to stop the photo stream:', e)});
 
   // Release the session.
-  await resources.photoSession?.release().catch((e: BusinessError) => {console.error('Failed to release session: ', e)});
+  await resources.photoSession?.release().catch((e: BusinessError) => {console.error('Failed to release the session:', e)});
 }
 ```
