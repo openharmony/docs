@@ -490,7 +490,7 @@
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | 短语音消息的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_CAMCORDER<sup>13+</sup>          | 13     | 录像的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_UNPROCESSED<sup>14+</sup>     | 14 |  麦克风纯净录音的音频源（系统不做任何算法处理）。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
-| SOURCE_TYPE_LIVE<sup>20+</sup>     | 17 |  直播场景的音频源，在支持平台上会提供系统回声消除能力。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
+| SOURCE_TYPE_LIVE<sup>20+</sup>     | 17 |  直播场景的音频源，在支持的设备上会提供系统回声消除能力。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 
 ## AudioScene<sup>8+</sup>
 
