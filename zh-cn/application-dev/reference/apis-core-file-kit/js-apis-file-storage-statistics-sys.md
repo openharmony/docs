@@ -62,7 +62,7 @@ getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
   import { volumeManager } from '@kit.CoreFileKit';
   import { BusinessError } from '@ohos.base';
 
-  volumemanager.getAllVolumes().then((volumes: Array<volumeManager.Volume>) => {
+  volumeManager.getAllVolumes().then((volumes: Array<volumeManager.Volume>) => {
     if (volumes == null || volumes.length <= 0) {
       console.error("volumes is null or length is invalid");
       return;
