@@ -8448,7 +8448,7 @@ async function GetRelationshipExample(context: Context) {
     let relationship: string | undefined = await analysisAlbum?.getRelationship();
     console.info(`getRelationship ${relationship}`);
   } catch (err) {
-    console.error(`relationship error: ${err}`);
+    console.error(`getRelationship error: ${err}`);
   }
 }
 ```
