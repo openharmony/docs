@@ -315,7 +315,7 @@ getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
 
   | 类型                               | 说明                       |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)&gt; | Promise对象，返回当前所有可获得的卷设备信息。 |
+  | Promise&lt;[Volume](#volume)&gt; | Promise对象，返回当前uuid的卷设备信息。 |
 
 **错误码：**
 
@@ -406,7 +406,7 @@ getVolumeById(volumeId: string): Promise&lt;Volume&gt;
 
   | 类型                               | 说明                       |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)&gt; | Promise对象，返回当前所有可获得的卷设备信息。 |
+  | Promise&lt;[Volume](#volume)&gt; | Promise对象，返回当前id的卷设备信息。 |
 
 **错误码：**
 
