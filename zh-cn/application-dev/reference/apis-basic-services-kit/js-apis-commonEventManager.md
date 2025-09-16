@@ -1,5 +1,12 @@
 # @ohos.commonEventManager (公共事件模块)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @fang-jinxu-->
+
 本模块提供了公共事件相关的能力，包括发布公共事件、订阅公共事件、以及退订公共事件。
 
 > **说明：**
