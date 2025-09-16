@@ -51,7 +51,7 @@ constructor(value: string | ImageAttachment | CustomSpan , styles?: Array\<Style
 
 | 名称  |   类型   |   只读   |   可选   |   说明   |
 | ------ | ------ | ------ | ------ | -------------- |
-| length | number |  是   | 否   | 属性字符串字符的长度。<br/>**说明：** <br/>属性字符串中的ImageAttachment和CustomSpan长度都计为1个字符。 |
+| length | number |  是   | 否   | 属性字符串字符的长度。<br/>**说明：** <br/>属性字符串中的ImageAttachment和CustomSpan长度都计为1。 |
 
 ### getString
 
