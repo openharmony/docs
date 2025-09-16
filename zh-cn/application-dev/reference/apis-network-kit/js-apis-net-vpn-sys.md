@@ -27,7 +27,7 @@ createVpnConnection(context: AbilityContext): VpnConnection
 
 | 参数名  | 类型                                                                             | 必填 | 说明         |
 | ------- | -------------------------------------------------------------------------------- | ---- | ------------ |
-| context | [AbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontext) | 是   | 指定 context。 |
+| context | [AbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 是   | 指定 context。 |
 
 **返回值：**
 
@@ -500,16 +500,16 @@ VPN 配置参数。
 
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
 
-| 名称                | 类型                                                           | 必填 | 说明                                |
-| ------------------- | -------------------------------------------------------------- | ---- | ----------------------------------- |
-| addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress)\> | 是   | VPN 虚拟网卡的 IP 地址。            |
-| routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | 否   | VPN 虚拟网卡的路由信息。            |
-| dnsAddresses        | Array\<string\>                                                | 否   | DNS 服务器地址信息。                |
-| searchDomains       | Array\<string\>                                                | 否   | DNS 的搜索域列表。                  |
-| mtu                 | number                                                         | 否   | 最大传输单元 MTU 值(单位:字节)。     |
-| isIPv4Accepted      | boolean                                                        | 否   | 是否支持 IPV4, 默认值为 true。      |
-| isIPv6Accepted      | boolean                                                        | 否   | 是否支持 IPV6, 默认值为 flase。     |
-| isLegacy            | boolean                                                        | 否   | 是否支持内置 VPN, 默认值为 flase。   |
-| isBlocking          | boolean                                                        | 否   | 是否阻塞模式, 默认值为 flase。       |
-| trustedApplications | Array\<string\>                                                | 否   | 白名单信息, string 类型表示的包名。  |
-| blockedApplications | Array\<string\>                                                | 否   | 黑名单信息, string 类型表示的包名。  |
+| 名称                | 类型                                                           | 只读 |可选| 说明                                |
+| ------------------- | -------------------------------------------------------------- | ---- | ---|----------------------------------- |
+| addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress)\> | 否   |否| VPN 虚拟网卡的 IP 地址。            |
+| routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | 否   |是 |VPN 虚拟网卡的路由信息。            |
+| dnsAddresses        | Array\<string\>                                                | 否   |是 |DNS 服务器地址信息。                |
+| searchDomains       | Array\<string\>                                                | 否   | 是|DNS 的搜索域列表。                  |
+| mtu                 | number                                                         | 否   |是 |最大传输单元 MTU 值(单位:字节)。     |
+| isIPv4Accepted      | boolean                                                        | 否   | 是| 是否支持 IPV4, 默认值为 true。      |
+| isIPv6Accepted      | boolean                                                        | 否   |是 |是否支持 IPV6, 默认值为 flase。     |
+| isLegacy            | boolean                                                        | 否   |是 |是否支持内置 VPN, 默认值为 flase。   |
+| isBlocking          | boolean                                                        | 否   |是 |是否阻塞模式, 默认值为 flase。       |
+| trustedApplications | Array\<string\>                                                | 否   |是 |白名单信息, string 类型表示的包名。  |
+| blockedApplications | Array\<string\>                                                | 否   |是 |黑名单信息, string 类型表示的包名。  |
