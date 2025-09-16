@@ -11,7 +11,9 @@
 
 HiLog模块日志接口定义，通过这些接口实现日志打印相关功能。用户输出日志时，先定义日志所属业务领域、日志TAG，然后按照类型、级别选择对应API，指定参数隐私标识输出日志内容。<br> 业务领域：指定日志所对应的业务领域，用户自定义使用，用于标识业务的子系统、模块。16进制整数，范围0x0~0xFFFF，超出范围则日志无法打印。<br> 日志TAG：字符串常量，用于标识调用所在的类或者业务。<br> 日志级别：DEBUG、INFO、WARN、ERROR、FATAL。<br> 参数格式：类printf的%方式，包括格式字符串（包括参数类型标识）和变参。<br> 隐私参数标识：在格式字符串每个参数中%符号后类型前增加{public}、{private}标识。注意：每个参数未指定隐私标识时，缺省为隐私。
 
-**库：** libhilog.so
+**引用文件：**  <hilog/log.h>
+
+**库：** libhilog_ndk.z.so
 
 **系统能力：** SystemCapability.HiviewDFX.HiLog
 
@@ -99,15 +101,15 @@ enum PreferStrategy
 
 **描述**
 
-偏好策略。在[OH_LOG_SetLogLevel](#oh_log_setloglevel)中使用。不同策略，实际生效的最低日志级别也不同。<br>
+偏好策略。在[OH_LOG_SetLogLevel](#oh_log_setloglevel)中使用。不同策略，实际生效的最低日志级别也不同。
 
 **起始版本：** 21
 
 | 枚举项 | 描述 |
 | -- | -- |
-| UNSET_LOGLEVEL = 0 | 清除设置, 实际生效的最低日志级别是系统控制的最低级别 |
-| PREFER_CLOSE_LOG = 1 | 实际生效的最低日志级别是新设置的级别和系统控制的最低级别两个值的较大值 |
-| PREFER_OPEN_LOG = 2 | 实际生效的最低日志级别是新设置的级别和系统控制的最低级别两个值的较小值 |
+| UNSET_LOGLEVEL = 0 | 清除设置, 实际生效的最低日志级别是系统控制的最低级别。 |
+| PREFER_CLOSE_LOG = 1 | 实际生效的最低日志级别是新设置的级别和系统控制的最低级别两个值的较大值。 |
+| PREFER_OPEN_LOG = 2 | 实际生效的最低日志级别是新设置的级别和系统控制的最低级别两个值的较小值。 |
 
 ## 函数说明
 
@@ -457,7 +459,9 @@ void OH_LOG_SetLogLevel(LogLevel level, PreferStrategy prefer)
 
 **描述**
 
-设置当前应用程序进程的最低日志级别。可以配置不同的偏好策略。
+设置当前应用程序进程的最低日志级别。
+
+可通过prefer参数配置不同的偏好策略。如果选择策略PREFER_CLOSE_LOG，等同于调用OH_LOG_SetMinLogLevel。
 
 **起始版本：** 21
 

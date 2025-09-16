@@ -262,7 +262,7 @@ hilog -a 8
    11-15 16:04:08.603   506   506 I I02C01/CustCarrierMount: MountCarrierToShared start
    11-15 16:04:08.604   506   506 I I02C01/CustCarrierMount: success to mount carrier to shared
    11-15 16:04:15.394   972   972 I I02C01/CustCarrierMount: UpdateCotaOpkeyLink start
-   11-15 16:04:15.396   972   972 W I02C01/CustCarrierMount: not exsit CUST_GLOBAL_CARRIER_DIR or COTA_PARAM_CARRIER_DIR
+   11-15 16:04:15.396   972   972 W I02C01/CustCarrierMount: not exist CUST_GLOBAL_CARRIER_DIR or COTA_PARAM_CARRIER_DIR
    11-15 16:04:15.887   972   972 I I02C01/CustCarrierMount: success to update cota carrier
    11-15 16:04:48.749  5777  5901 I A00001/HiAI_Metadata: metadata is null
    11-15 16:04:48.749  5777  5901 I A00001/HiAI_PluginAbilityInfo: abilityInfo is null
