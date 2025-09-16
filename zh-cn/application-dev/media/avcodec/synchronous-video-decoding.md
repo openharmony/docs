@@ -184,7 +184,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     送入输入队列进行解码，示例中的变量说明如下：
     - size、offset、pts、frameData：输入尺寸、偏移量、时间戳、帧数据等字段信息，获取方式可以参考[媒体数据解析](./audio-video-demuxer.md#开发步骤)“步骤-9：开始解封装，循环获取sample”。
-    - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags)。
+    - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/capi-native-avbuffer-info-h.md#oh_avcodecbufferflags)。
 
     ```c++
     bool DecoderInput(OH_AVCodec *videoDec, int64_t timeoutUs)
