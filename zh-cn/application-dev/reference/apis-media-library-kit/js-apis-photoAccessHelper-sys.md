@@ -8186,7 +8186,37 @@ setRelationship(relationship: string): Promise&lt;void&gt;
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| relationship | string | 是   | 需要设置的人物关系名称。 |
+| relationship | string | 是   | 需要设置的人物关系名称。 <br>支持设置为空字符串，功能为取消当前设置的人物关系。|
+
+支持的人物关系名称范围：
+
+| 唯一标识        | 中文      | 英文      |
+| ---------- | ------- | ---- | 
+| me | 我 | Me   |
+| son | 儿子 | Son   |
+| daughter | 女儿 | Daughter   |
+| wife | 妻子 | Wife   |
+| husband | 丈夫 | Husband   |
+| father | 爸爸 | Father   |
+| mother | 妈妈 | Mother   |
+| colleague | 同事 | Colleague   |
+| friend | 朋友 | Friend   |
+| classmate | 同学 | Classmate   |
+| best_friend_female | 闺蜜 | Best friend (female)   |
+| boyfriend | 男朋友 | Boyfriend   |
+| girlfriend | 女朋友 | Girlfriend   |
+| family | 家人 | Family   |
+| maternal_grandfather | 外公 | Maternal grandfather   |
+| maternal_grandmother | 外婆 | Maternal grandmother   |
+| paternal_grandfather | 爷爷 | Paternal grandfather   |
+| paternal_grandmother | 奶奶 | Paternal grandmother   |
+| older_brother | 哥哥 | Older brother   |
+| older_sister | 姐姐 | Older sister   |
+| younger_brother | 弟弟 | Younger brother   |
+| younger_sister | 妹妹 | Younger sister   |
+| relative | 亲戚 | Relative   |
+| other | 其他 | Other   |
+
 
 **返回值：**
 
