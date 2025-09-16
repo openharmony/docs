@@ -10284,17 +10284,22 @@ setSiteIsolationMode(mode: SiteIsolationMode): void
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
 
-  aboutToAppear() {
+  build() {
     Column() {
       Button('setSiteIsolationMode')
         .onClick(() => {
-          webview.WebviewController.setSiteIsolationMode(web_webview.SiteIsolationMode.PARTIAL);          
+          try {
+            webview.WebviewController.setSiteIsolationMode(webview.SiteIsolationMode.PARTIAL);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
