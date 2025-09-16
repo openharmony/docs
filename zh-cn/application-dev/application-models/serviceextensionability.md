@@ -24,7 +24,7 @@ ServiceExtensionAbility可以被其他组件启动或连接，并根据调用者
 
 - Service一旦通过start的方式被拉起，将不会自动退出，系统应用可以调用[stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#stopserviceextensionability)方法将Service退出。
 
-- 只能在主线程线程中执行connect/disconnect操作，不要在Worker、TaskPool等子线程中执行connect/disconnect操作。
+- 只能在主线程中执行connect/disconnect操作，不要在Worker、TaskPool等子线程中执行connect/disconnect操作。
 
 > **说明：**
 >
