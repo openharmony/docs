@@ -137,6 +137,14 @@ ArkUI事件响应链通过触摸测试进行收集，遵循右子树（按组件
 
      ![hitTestModeTransparent](figures/hitTestModeTransparent.png)
 
+   - HitTestMode.BLOCK_HIERARCHY（从API version 20开始支持）: 自身和子节点响应触摸测试，阻止所有优先级较低的兄弟节点和父节点参与触摸测试。
+
+     ![hitTestModeBLOCK_HIERARCHY.png](figures/hitTestModeBLOCK_HIERARCHY.png)
+
+   - HitTestMode.BLOCK_DESCENDANTS（从API version 20开始支持）: 自身不响应触摸测试，并且所有的后代（孩子，孙子等）也不响应触摸测试，不会影响祖先节点的触摸测试。
+
+     ![hitTestModeBLOCK_DESCENDANTS.png](figures/hitTestModeBLOCK_DESCENDANTS.png)
+
 3. 自定义事件拦截
 
    当用户执行按下操作时，将触发组件上绑定的[自定义事件拦截](../reference/apis-arkui/arkui-ts/ts-universal-attributes-on-touch-intercept.md)的回调。开发者可根据应用状态，动态调整组件的hitTestBehavior属性，进而影响触控测试的流程。
