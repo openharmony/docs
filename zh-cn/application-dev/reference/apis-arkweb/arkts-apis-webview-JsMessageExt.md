@@ -4,7 +4,7 @@
 <!--Owner: @aohui-->
 <!--Designer: @yaomingliu-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 [runJavaScriptExt](./arkts-apis-webview-WebviewController.md#runjavascriptext10)接口执行脚本返回的数据对象。
 

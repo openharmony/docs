@@ -4,7 +4,7 @@
 <!--Owner: @zhang-yinglie-->
 <!--Designer: @handyohos-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 Web组件返回授权或拒绝权限功能的对象。示例代码参考[onGeolocationShow事件](./arkts-basic-components-web-events.md#ongeolocationshow)。
 
