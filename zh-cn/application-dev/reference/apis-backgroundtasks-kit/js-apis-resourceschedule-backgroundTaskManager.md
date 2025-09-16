@@ -265,7 +265,7 @@ try {
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
 
-申请长时任务，支持申请一种类型，使用callback异步回调。长时任务申请成功后，会有通知栏消息，没有提示音。
+申请长时任务，支持申请一种类型，使用callback异步回调。长时任务申请成功后，会有通知栏消息，没有提示音（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型，没有通知）。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -356,7 +356,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
-申请长时任务，支持申请一种类型，使用promise异步回调。长时任务申请成功后，会有通知栏消息，没有提示音。
+申请长时任务，支持申请一种类型，使用promise异步回调。长时任务申请成功后，会有通知栏消息，没有提示音（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型，没有通知）。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -565,7 +565,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent): Promise&lt;ContinuousTaskNotification&gt;
 
-申请长时任务，支持申请多种类型，使用promise异步回调。长时任务申请成功后，会有通知栏消息，没有提示音。
+申请长时任务，支持申请多种类型，使用promise异步回调。长时任务申请成功后，会有通知栏消息，没有提示音（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型，没有通知）。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -699,7 +699,8 @@ export default class EntryAbility extends UIAbility {
 
 updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;ContinuousTaskNotification&gt;
 
-更新长时任务类型，使用promise异步回调。长时任务更新成功后，会有通知栏消息，没有提示音。
+更新长时任务类型，使用promise异步回调。长时任务更新成功后，会有通知栏消息，没有提示音（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型，没有通知）。
+</br>更新长时任务时，需要已经存在长时任务，否则更新失败。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1167,7 +1168,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promise&lt;ContinuousTaskNotification&gt;
 
-申请长时任务，支持一个UIAbility下申请多个长时任务，使用promise异步回调。</br>同一时间最多可存在10个，长时任务申请成功后，会有通知栏消息，没有提示音（如果长时任务类型包含TASK_KEEPING类型，系统应用的VOIP类型和系统应用的AUDIO_RECORDING，则没有通知）。
+申请长时任务，支持一个UIAbility下申请多个长时任务，使用promise异步回调。</br>同一时间最多可存在10个，长时任务申请成功后，会有通知栏消息，没有提示音（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型，没有通知）。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1264,7 +1265,7 @@ export default class EntryAbility extends UIAbility {
 
 updateBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promise&lt;ContinuousTaskNotification&gt;
 
-更新长时任务，支持更新对应的长时任务信息，使用promise异步回调。</br>长时任务更新成功后，会有通知栏消息，没有提示音（如果长时任务类型包含TASK_KEEPING类型，系统应用的VOIP类型和系统应用的AUDIO_RECORDING，则没有通知）。</br>传入的continuousTaskId必须存在，否则更新失败。</br>已经合并的任务，同类型只能更新want，非同类型更新失败，返回错误码。</br>待更新任务包含上传下载类型，且需要更新的类型也包含上传下载类型，则直接返回成功，不做任何操作。
+更新长时任务，支持更新对应的长时任务信息，使用promise异步回调。</br>长时任务更新成功后，会有通知栏消息，没有提示音（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型，没有通知）。</br>传入的continuousTaskId必须存在，否则更新失败。</br>已经合并的任务，同类型只能更新want，非同类型更新失败，返回错误码。</br>待更新任务包含上传下载类型，且需要更新的类型也包含上传下载类型，则直接返回成功，不做任何操作。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1448,7 +1449,7 @@ export default class EntryAbility extends UIAbility {
 | BLUETOOTH_INTERACTION   | 5    | 蓝牙相关业务。                  |
 | MULTI_DEVICE_CONNECTION | 6    | 多设备互联。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
 | VOIP<sup>13+</sup> | 8    | 音视频通话。                 |
-| TASK_KEEPING            | 9    | 计算任务（仅对2in1设备开放）。<br/>**说明：** 申请该类型长时任务不发送通知。        |
+| TASK_KEEPING            | 9    | 计算任务（仅对2in1设备开放）。        |
 
 ## ContinuousTaskNotification<sup>12+</sup>
 
@@ -1582,7 +1583,7 @@ export default class EntryAbility extends UIAbility {
 </br>1、申请任务时，需要通过combinedTaskNotification参数传入true指定可以合并通知，否则不能合并通知。
    如：所涉及的长时任务combinedTaskNotification参数都必须为true，且主类型和子类型申请个数和类型需完全匹配。
 </br>2、合并的通知的任务，必须主类型、子类型都相同。
-</br>3、如果该任务本身没有通知（长时任务类型包含TASK_KEEPING类型，系统应用的VOIP类型和系统应用的AUDIO_RECORDING）、则不支持合并。
+</br>3、如果该任务本身没有通知（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型）、则不支持合并。
 </br>4、如果任务类型里，包含了上传下载，则不支持合并。
 </br>5、合并通知后不能取消合并，本身合并的不能改成不合并。
 </br>6、如果需要合并，但传入的长时任务ID非法，则不支持合并。
@@ -1613,7 +1614,7 @@ isModeSupported?(): boolean;
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| boolean | 是否支持TASK_KEEPING类型。 <br/>true表示支持，false表示不支持。|
+| boolean | 是否支持TASK_KEEPING类型。true表示支持，false表示不支持。|
 
 **错误码**：
 
@@ -1638,7 +1639,7 @@ isModeSupported?(): boolean;
 | MODE_ALLOW_BLUETOOTH_AWARE      | 5         | 蓝牙相关业务。            |
 | MODE_MULTI_DEVICE_CONNECTION    | 6         | 多设备互联。            |
 | MODE_ALLOW_WIFI_AWARE           | 7         | WIFI相关业务。            |
-| MODE_TASK_KEEPING               | 9         | 计算任务（仅对2in1设备，或者申请ACL权限的应用开放）。<br/>**说明：** 申请该类型长时任务不发送通知。 |
+| MODE_TASK_KEEPING               | 9         | 计算任务（仅对2in1设备，或者申请ACL权限的应用开放）。 |
 | MODE_AV_PLAYBACK_AND_RECORD     | 10        | 音视频播放、录制和通话。              |
 
 ## ContinuousTaskSubmode<sup>21+</sup>
