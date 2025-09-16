@@ -133,7 +133,7 @@
 
            // 纯文本类型
            if (strcmp(recordType, UDMF_META_PLAIN_TEXT) == 0) {
-              // 创建纯文本类型的Uds对象
+               // 创建纯文本类型的Uds对象
                udsText = OH_UdsPlainText_Create();
                if (udsText != nullptr) {
                 // 从record中获取纯文本类型的Uds对象
