@@ -852,7 +852,7 @@ console.info(`Succeeded in getting the screen rotation lock status. isLocked: ${
 
 setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 
-设置自动转屏开关是否锁定，使用Promise异步回调。
+设置自动转屏开关是否锁定，使用Promise异步回调。仅在支持跟随sensor旋转的设备生效。
 
 **系统接口：** 此接口为系统接口。
 
@@ -898,7 +898,7 @@ screen.setScreenRotationLocked(isLocked).then(() => {
 
 setScreenRotationLocked(isLocked: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置自动转屏开关是否锁定，使用callback异步回调，不适用于2in1设备。
+设置自动转屏开关是否锁定，使用callback异步回调，不适用于2in1设备。仅在支持跟随sensor旋转的设备生效。
 
 **系统接口：** 此接口为系统接口。
 
