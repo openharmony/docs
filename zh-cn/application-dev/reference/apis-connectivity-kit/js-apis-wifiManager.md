@@ -377,7 +377,7 @@ getScanInfoList(): Array&lt;WifiScanInfo&gt;
 	
 ```
 
-## wifiManager.WifiScanInfo<sup>9+</sup>
+## WifiScanInfo<sup>9+</sup>
 
 WLAN热点信息。
 
@@ -415,7 +415,7 @@ Wi-Fi 设备地址（MAC/bssid）类型。
 | RANDOM_DEVICE_ADDRESS | 0 | 随机设备地址。 |
 | REAL_DEVICE_ADDRESS | 1 | 真实设备地址。 |
 
-## wifiManager.WifiSecurityType<sup>9+</sup>
+## WifiSecurityType<sup>9+</sup>
 
 表示加密类型的枚举。
 
@@ -497,7 +497,7 @@ WLAN热点信息。
 | WIDTH_INVALID | 5 | 无效值 |
 
 
-## wifiManager.WifiDeviceConfig<sup>9+</sup>
+## WifiDeviceConfig<sup>9+</sup>
 
 WLAN配置信息。
 
@@ -1361,7 +1361,7 @@ getLinkedInfoSync(): WifiLinkedInfo;
   }
 ```
 
-## wifiManager.WifiLinkedInfo<sup>9+</sup>
+## WifiLinkedInfo<sup>9+</sup>
 
 提供WLAN连接的相关信息。
 
