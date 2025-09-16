@@ -1,4 +1,10 @@
 # @ohos.multimedia.avVolumePanel (Volume Panel)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @ccfriend; @liao_qian-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 The module provides the capability of displaying the system volume panel for users to adjust the volume.
 
@@ -36,8 +42,8 @@ Volume panel, which can be used to display the volume adjustment panel in your a
 
 | Name| Type| Mandatory| Decorator | Description                                                                                                                                                                                                   |
 | -------- | -------- | -------- |--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|volumeLevel | number | No| \@Prop | Target volume. The value must be between the minimum volume and the maximum volume supported by the device. If the value is greater than the maximum volume supported, the maximum volume is used. If the value is less than the minimum volume supported, the minimum volume is used. For details about how to obtain the maximum value, minimum value, and current value, see [AudioVolumeGroupManager](../apis-audio-kit/arkts-apis-audio-AudioVolumeGroupManager.md).|
-|volumeParameter | [AVVolumePanelParameter](#avvolumepanelparameter)  | No| \@Prop | Custom parameter of the volume panel. If this parameter is not passed in, the system volume bar is invoked.                                                                                                                                                                     |
+|volumeLevel | number | No| \@Prop | Target volume.<br>The value must be between the minimum volume and the maximum volume supported by the device.<br>If the value is greater than the maximum volume supported, the maximum volume is used.<br>If the value is less than the minimum volume supported, the minimum volume is used.<br>For details about how to obtain the maximum value, minimum value, and current value, see [AudioVolumeGroupManager](../apis-audio-kit/arkts-apis-audio-AudioVolumeGroupManager.md).|
+|volumeParameter | [AVVolumePanelParameter](#avvolumepanelparameter)  | No| \@Prop |Custom parameter of the volume panel.<br>If this parameter is not set, the volume bar appears at the system default location.|
 
 ## AVVolumePanelParameter
 
@@ -49,7 +55,7 @@ Describes the volume panel parameters.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-|position | [Position](../apis-arkui/arkui-ts/ts-types.md#position) | No| Position of the volume panel. If this parameter is not passed in, the system volume bar position is used.|
+|position | [Position](../apis-arkui/arkui-ts/ts-types.md#position) | No| Position of the volume panel.<br>If this parameter is not set, the volume bar appears at the system default location.<br>If this parameter is set to a position within the screen, the volume bar appears at the specified location.<br>If this parameter is set to a position outside the screen, such as (-1, -1), the system volume bar is not displayed. In this case, you should consider implementing a custom volume bar.|
 
 ## Events
 
@@ -62,7 +68,7 @@ The [universal events](../apis-arkui/arkui-ts/ts-component-general-events.md) ar
 
 ## Example
 
-Refer to the sample code below to develop a volume panel:
+To see how the volume panel works, refer to the sample code below. To experience the volume adjustment, you'll need to change the **volume** value or press the volume buttons.
 
 ```ts
 import { AVVolumePanel } from '@kit.AudioKit';

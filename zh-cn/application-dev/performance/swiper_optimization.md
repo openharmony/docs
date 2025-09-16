@@ -13,7 +13,7 @@
 
 - 如果该页面使用了@Component 装饰的自定义组件，那么自定义组件的 build 函数会被执行并创建内部的 UI 组件；
 
-- 如果使用了[LazyForEach](../ui/state-management/arkts-rendering-control-lazyforeach.md)，会执行 LazyForEach 的 UI 生成函数生成 UI 组件；
+- 如果使用了[LazyForEach](../ui/rendering-control/arkts-rendering-control-lazyforeach.md)，会执行 LazyForEach 的 UI 生成函数生成 UI 组件；
 
 - 在 UI 组件构建完成后，会对 UI 组件进行布局测算和绘制。
 
@@ -48,7 +48,7 @@ Swiper 共 5 页，当开发者设置了 cachedCount 属性为 1 且 loop 属性
  Swiper 共 5 页，当开发者设置了 cachedCount 属性为 1 且 loop 属性为 true 时，预加载的结果如下：\
  ![loop=true](figures/swiper_loop_true.png)
 
-- Swiper 组件的子组件使用[LazyForEach](../ui/state-management/arkts-rendering-control-lazyforeach.md)动态加载和销毁组件。
+- Swiper 组件的子组件使用[LazyForEach](../ui/rendering-control/arkts-rendering-control-lazyforeach.md)动态加载和销毁组件。
 
 **示例**
 

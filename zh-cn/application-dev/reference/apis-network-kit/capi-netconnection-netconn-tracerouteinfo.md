@@ -1,5 +1,12 @@
 # NetConn_TraceRouteInfo
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 ## 概述
 
 定义跟踪路由信息。
@@ -18,4 +25,4 @@
 | -- | -- |
 | uint8_t jumpNo | 跳数。 |
 | char address[[NETCONN_MAX_STR_LEN]](capi-net-connection-type-h.md#宏定义) | 主机名或地址。 |
-| uint32_t rtt[[NETCONN_MAX_RTT_NUM]](capi-net-connection-type-h.md#宏定义) | 往返时间（单位：毫秒）。 |
+| uint32_t rtt[[NETCONN_MAX_RTT_NUM]](capi-net-connection-type-h.md#宏定义) | 往返时间（单位：毫秒)，包含最大、最小、平均、标准差。 |

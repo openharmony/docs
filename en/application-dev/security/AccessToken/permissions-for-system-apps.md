@@ -5120,9 +5120,25 @@ Allows a system application to set the certificate status of independent binary 
 
 **Valid since**: 20
 
+## ohos.permission.MANAGE_SELF_SKILLS
+
+Allows an application to manage its skills configuration.
+
+With this permission, the application can extend its implicit matching capabilities, such as opening specific file types.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Supported devices**: PC/2in1
+
+**Valid since**: 22
+
 ## ohos.permission.DATA_IDENTIFY_ANONYMIZE
 
-Allows the system application to invoke the data identification capability.
+Allows the system app to invoke the data identification and anonymization capability.
 
 **Permission level**: system_basic
 

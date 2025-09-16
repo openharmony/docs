@@ -1,5 +1,10 @@
 # Interface (MediaKeySystem)
-
+<!--Kit: Drm Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qin_wei_jie-->
+<!--Designer: @chris2981-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -415,8 +420,8 @@ Subscribes to events indicating that the application requires a DRM certificate.
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The event can be listened for when a MediaKeySystem instance is created. This event is triggered when the application requests a DRM certificate.|
-| callback | (eventInfo: \<[EventInfo](arkts-apis-drm-i.md#eventinfo)\>) => void  | Yes  | Callback used to return the event information. If this event callback is returned, a DRM certificate must be requested.                |
+| type     | string               | Yes  | Event type. The event can be listened for when a MediaKeySystem instance is created by calling [createMediaKeySystem](arkts-apis-drm-f.md#drmcreatemediakeysystem). This event is triggered when the application requests a DRM certificate.|
+| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void  | Yes  | Callback used to return the event information. If this event callback is returned, a DRM certificate must be requested.                |
 
 **Error codes**
 
@@ -452,8 +457,8 @@ Unsubscribes from events indicating that the application requests a DRM certific
 
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
-| type     | string               | Yes  | Event type. The event can be listened for when a MediaKeySystem instance is created.|
-| callback | (eventInfo: \<[EventInfo](arkts-apis-drm-i.md#eventinfo)\>) => void  | No  | Callback used to return the event information.                 |
+| type     | string               | Yes  | Event type. The event can be listened for when a MediaKeySystem instance is created by calling [createMediaKeySystem](arkts-apis-drm-f.md#drmcreatemediakeysystem).|
+| callback | (eventInfo: [EventInfo](arkts-apis-drm-i.md#eventinfo)) => void  | No  | Callback used to return the event information.                 |
 
 **Error codes**
 
@@ -467,6 +472,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 **Example**
 
 ```ts
+import { drm } from '@kit.DrmKit';
 let mediaKeySystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 mediaKeySystem.off('keySystemRequired');
 ```

@@ -55,9 +55,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // getAllActiveIfaces获取所有活动的网络设备名称
 ethernet.getAllActiveIfaces().then((data: string[]) => {
-  console.log("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
+  console.info("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
   for (let i = 0; i < data.length; i++) {
-    console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
+    console.info("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
   }
 }).catch((error:BusinessError) => {
   console.error("getAllActiveIfaces promise error = " + JSON.stringify(error));
@@ -65,19 +65,19 @@ ethernet.getAllActiveIfaces().then((data: string[]) => {
 
 // isIfaceActive判断指定网口是否已激活
 ethernet.isIfaceActive("eth0").then((data: number) => {
-  console.log("isIfaceActive promise = " + JSON.stringify(data));
+  console.info("isIfaceActive promise = " + JSON.stringify(data));
 }).catch((error: BusinessError) => {
   console.error("isIfaceActive promise error = " + JSON.stringify(error));
 });
 
 // getIfaceConfig获取指定以太网的网络属性
 ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => {
-  console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
-  console.log("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
-  console.log("getIfaceConfig promise route = " + JSON.stringify(data.route));
-  console.log("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
-  console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
-  console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
+  console.info("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
+  console.info("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
+  console.info("getIfaceConfig promise route = " + JSON.stringify(data.route));
+  console.info("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
+  console.info("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
+  console.info("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
 }).catch((error: BusinessError) => {
   console.error("getIfaceConfig promise error = " + JSON.stringify(error));
 });
@@ -101,9 +101,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // getAllActiveIfaces获取所有活动的网络设备名称
 ethernet.getAllActiveIfaces().then((data: string[]) => {
-  console.log("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
+  console.info("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
   for (let i = 0; i < data.length; i++) {
-    console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
+    console.info("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
   }
 }).catch((error:BusinessError) => {
   console.error("getAllActiveIfaces promise error = " + JSON.stringify(error));
@@ -111,7 +111,7 @@ ethernet.getAllActiveIfaces().then((data: string[]) => {
 
 // isIfaceActive判断指定网口是否已激活
 ethernet.isIfaceActive("eth0").then((data: number) => {
-  console.log("isIfaceActive promise = " + JSON.stringify(data));
+  console.info("isIfaceActive promise = " + JSON.stringify(data));
 }).catch((error: BusinessError) => {
   console.error("isIfaceActive promise error = " + JSON.stringify(error));
 });
@@ -129,19 +129,19 @@ let config: ethernet.InterfaceConfiguration = {
 const setConfigPromise = ethernet.setIfaceConfig("eth0", config);
 
 setConfigPromise.then(() => {
-  console.log("setIfaceConfig promise ok");
+  console.info("setIfaceConfig promise ok");
 }).catch((error: BusinessError)  => {
   console.error("setIfaceConfig promise error = " + JSON.stringify(error));
 });
 
 // getIfaceConfig获取指定以太网的网络属性
 ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => {
-  console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
-  console.log("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
-  console.log("getIfaceConfig promise route = " + JSON.stringify(data.route));
-  console.log("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
-  console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
-  console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
+  console.info("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
+  console.info("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
+  console.info("getIfaceConfig promise route = " + JSON.stringify(data.route));
+  console.info("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
+  console.info("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
+  console.info("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
 }).catch((error: BusinessError) => {
   console.error("getIfaceConfig promise error = " + JSON.stringify(error));
 });
@@ -167,7 +167,7 @@ class EthernetData{
 }
 
 ethernet.on('interfaceStateChange', (data: EthernetData) => {
-  console.log(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 
 // 取消事件订阅

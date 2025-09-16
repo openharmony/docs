@@ -83,7 +83,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName: string = '';
 try {
-  metadataBinding.on('operationSubmitMetadata', bundleName, (event: number) =>{
+  metadataBinding.on('operationSubmitMetadata', bundleName, (event: number) => {
     if (event == 1) {
       console.info("The screenshot request is intercepted and the app link is obtained");
     }
@@ -125,7 +125,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName: string = '';
 try {
-  metadataBinding.off('operationSubmitMetadata', bundleName, (event: number)=>{});
+  metadataBinding.off('operationSubmitMetadata', bundleName, (event: number) => {
+  });
 } catch (error) {
   console.error("unsubscript screenshot event" + error);
 }

@@ -1,4 +1,10 @@
 # @ohos.util.Queue (Linear Container Queue)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 Queue follows the principle of First In First Out (FIFO). It supports insertion of elements at the end and removal from the front of the queue. Queue is implemented based on the queue data structure.
 
@@ -12,6 +18,8 @@ This topic uses the following to identify the use of generics:<br>
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> Container classes, implemented in static languages, have restrictions on storage locations and properties, and do not support custom properties or methods.
 
 
 ## Modules to Import
@@ -29,7 +37,7 @@ import { Queue } from '@kit.ArkTS';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | Yes| No| Number of elements in a Queue.|
 
@@ -55,7 +63,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let queue : Queue<number | string | Object> = new Queue();
+let queue = new Queue<number | string | Object>();
 ```
 
 
@@ -96,13 +104,14 @@ class C1 {
   name: string = ""
   age: string = ""
 }
-let queue : Queue<number | string | C1 | number[]> = new Queue();
+let queue = new Queue<number | string | C1 | number[]>();
 let result = queue.add("a");
 let result1 = queue.add(1);
 let b = [1, 2, 3];
 let result2 = queue.add(b);
 let c : C1 = {name : "Dylan", age : "13"};
 let result3 = queue.add(c);
+console.info("result:", queue.length);  // result: 4
 ```
 
 ### pop
@@ -132,13 +141,14 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let queue : Queue<number> = new Queue();
+let queue = new Queue<number>();
 queue.add(2);
 queue.add(4);
 queue.add(5);
 queue.add(2);
 queue.add(4);
 let result = queue.pop();
+console.info("result:", result);  // result: 2
 ```
 
 ### getFirst
@@ -168,12 +178,13 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let queue : Queue<number> = new Queue();
+let queue = new Queue<number>();
 queue.add(2);
 queue.add(4);
 queue.add(5);
 queue.add(2);
 let result = queue.getFirst();
+console.info("result:", result);  // result: 2
 ```
 
 ### forEach
@@ -181,7 +192,7 @@ let result = queue.getFirst();
 forEach(callbackFn: (value: T, index?: number, Queue?: Queue&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the elements in this Queue and obtain their indexes.
+Uses a callback to traverse each element in the **Queue** instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -194,7 +205,7 @@ Uses a callback to traverse the elements in this Queue and obtain their indexes.
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the Queue.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackFn
+callbackfn parameters
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -214,14 +225,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let queue : Queue<number> = new Queue();
+let queue = new Queue<number>();
 queue.add(2);
 queue.add(4);
 queue.add(5);
 queue.add(4);
-queue.forEach((value : number, index ?: number) : void => {
-  console.log("value:" + value, "index:" + index);
+queue.forEach((value: number, index: number): void => {
+  console.info("value:" + value, "index:" + index);
 });
+// value:2 index:0
+// value:4 index:1
+// value:5 index:2
+// value:4 index:3
 ```
 
 ### [Symbol.iterator]
@@ -250,23 +265,30 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 **Example**
 ```ts
-let queue : Queue<number> = new Queue();
+let queue = new Queue<number>();
 queue.add(2);
 queue.add(4);
 queue.add(5);
 queue.add(4);
 
 // Method 1:
-while(queue.length) {
-  let item = queue.pop();
-  console.log("value:" + item);
+for (let value of queue) {
+  console.info("value:", value);
 }
+// value: 2
+// value: 4
+// value: 5
+// value: 4
 
 // Method 2:
 let iter = queue[Symbol.iterator]();
 let temp: IteratorResult<number> = iter.next().value;
 while(temp != undefined) {
-  console.log("value:" + temp);
+  console.info("value: " + temp);
   temp = iter.next().value;
 }
+// value: 2
+// value: 4
+// value: 5
+// value: 4
 ```

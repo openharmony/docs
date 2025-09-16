@@ -52,6 +52,7 @@ getAllSessionDescriptors(): Promise\<Array\<Readonly\<AVSessionDescriptor>>>
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 201 | permission denied. |
+| 202 | Not System App. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -717,7 +718,7 @@ on(type: 'sessionDestroy', callback: (session: AVSessionDescriptor) => void): vo
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 201 | permission denied. |
+| 202 | Not System App. |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 

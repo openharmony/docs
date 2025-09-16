@@ -1,4 +1,10 @@
 # Class (HttpAuthHandler)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements the **HttpAuthHandler** object. For details about the sample code, see [onHttpAuthRequest](./arkts-basic-components-web-events.md#onhttpauthrequest9).
 

@@ -67,7 +67,7 @@ OH_AVMuxer *OH_AVMuxer_Create(int32_t fd, OH_AVOutputFormat format)
 | 参数项 | 描述 |
 | -- | -- |
 | int32_t fd | 用读写方式打开（O_RDWR），由调用者关闭该fd。 |
-| [OH_AVOutputFormat](capi-native-avcodec-base-h.md#oh_avoutputformat) format | 封装输出的文件格式。 |
+| [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat) format | 封装输出的文件格式。 |
 
 **返回：**
 

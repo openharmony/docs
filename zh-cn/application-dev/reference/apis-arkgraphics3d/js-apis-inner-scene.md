@@ -29,8 +29,7 @@ import { SceneResourceParameters, SceneNodeParameters, RaycastResult, RaycastPar
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { Shader, SceneResourceParameters, SceneResourceFactory, Scene } from '@kit.ArkGraphics3D';
 
 function createShaderPromise(): Promise<Shader> {
   return new Promise((resolve, reject) => {
@@ -63,8 +62,7 @@ function createShaderPromise(): Promise<Shader> {
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { SceneNodeParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function createNodePromise() : Promise<Node> {
   return new Promise((resolve, reject) => {
@@ -92,9 +90,9 @@ function createNodePromise() : Promise<Node> {
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| node | [Node](js-apis-inner-scene-nodes.md#node) | 是 | 否 | 被射线击中的3D场景节点，可通过该节点操作目标物体（如移动、旋转、隐藏）。 |
-| centerDistance | number | 是 | 否 | 命中物体包围盒中心到摄像机中心的距离，取值范围大于0。 |
-| hitPosition | [Position3](js-apis-inner-scene-types.md#position3) | 是 | 否 | 射线与物体碰撞点的精确世界坐标（{x: number, y: number, z: number}）。 |
+| node | [Node](js-apis-inner-scene-nodes.md#node) | 否 | 否 | 被射线击中的3D场景节点，可通过该节点操作目标物体（如移动、旋转、隐藏）。 |
+| centerDistance | number | 否 | 否 | 命中物体包围盒中心到摄像机中心的距离，取值范围大于0。 |
+| hitPosition | [Position3](js-apis-inner-scene-types.md#position3) | 否 | 否 | 射线与物体碰撞点的精确世界坐标（{x: number, y: number, z: number}）。 |
 
 
 ## RaycastParameters<sup>20+</sup>
@@ -128,8 +126,7 @@ createShader(params: SceneResourceParameters): Promise\<Shader>
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext, RenderResourceFactory } from '@kit.ArkGraphics3D';
+import { Shader, SceneResourceParameters, Scene, RenderContext, RenderResourceFactory } from '@kit.ArkGraphics3D';
 
 function createShaderResource(): Promise<Shader> {
   const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
@@ -165,8 +162,7 @@ createImage(params: SceneResourceParameters): Promise\<Image>
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext, RenderResourceFactory } from '@kit.ArkGraphics3D';
+import { Image, SceneResourceParameters, Scene, RenderContext, RenderResourceFactory } from '@kit.ArkGraphics3D';
 
 function createImageResource(): Promise<Image> {
   const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
@@ -203,10 +199,8 @@ createMesh(params: SceneResourceParameters, geometry: GeometryDefinition): Promi
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node }  from '@kit.ArkGraphics3D';
-import { CustomGeometry, PrimitiveTopology, RenderContext, RenderResourceFactory,
-  MeshResource } from '@ohos.graphics.scene';
+import { SceneResourceParameters, Scene, CustomGeometry, PrimitiveTopology, RenderContext, RenderResourceFactory,
+  MeshResource }  from '@kit.ArkGraphics3D';
 
 function createMeshResource(): Promise<MeshResource> {
   const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
@@ -292,9 +286,7 @@ createSampler(params:SceneResourceParameters): Promise\<Sampler>
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext, RenderResourceFactory,
-  Sampler } from '@kit.ArkGraphics3D';
+import { SceneResourceParameters, Scene, RenderContext, RenderResourceFactory, Sampler } from '@kit.ArkGraphics3D';
 
 function createSamplerResource(): Promise<Sampler> {
   const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
@@ -330,9 +322,7 @@ createScene(uri?: ResourceStr): Promise\<Scene>
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
-import { RenderContext, RenderResourceFactory } from '@ohos.graphics.scene';
+import { Scene, RenderContext, RenderResourceFactory } from '@kit.ArkGraphics3D';
 
 // fromFile=true：从指定glb文件加载场景，fromFile=false：创建一个空场景，此参数是为了示例展示两种常见场景创建方式
 function createScenePromise(fromFile: boolean = false): Promise<Scene> {
@@ -374,8 +364,7 @@ createCamera(params: SceneNodeParameters): Promise\<Camera>
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { SceneNodeParameters, Camera, SceneResourceFactory, Scene } from '@kit.ArkGraphics3D';
 
 function createCameraPromise(): Promise<Camera> {
   return new Promise((resolve, reject) => {
@@ -415,8 +404,7 @@ createLight(params: SceneNodeParameters, lightType: LightType): Promise\<Light>
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { SceneNodeParameters, LightType, Light, SceneResourceFactory, Scene } from '@kit.ArkGraphics3D';
 
 function createLightPromise() : Promise<Light> {
   return new Promise((resolve, reject) => {
@@ -455,8 +443,7 @@ createNode(params: SceneNodeParameters): Promise\<Node>
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { SceneNodeParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
 
 function createNodePromise(): Promise<Node> {
   return new Promise((resolve, reject) => {
@@ -497,8 +484,7 @@ createMaterial(params: SceneResourceParameters, materialType: MaterialType): Pro
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { MaterialType, Material, SceneResourceParameters, SceneResourceFactory, Scene } from '@kit.ArkGraphics3D';
 
 function createMaterialPromise() : Promise<Material> {
   return new Promise((resolve, reject) => {
@@ -537,8 +523,7 @@ createEnvironment(params: SceneResourceParameters): Promise\<Environment>
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { Environment, SceneResourceParameters, SceneResourceFactory, Scene } from '@kit.ArkGraphics3D';
 
 function createEnvironmentPromise(): Promise<Environment> {
   return new Promise((resolve, reject) => {
@@ -579,10 +564,7 @@ createGeometry(params: SceneNodeParameters, mesh:MeshResource): Promise\<Geometr
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry,
-  MeshResource} from '@kit.ArkGraphics3D';
-import { CubeGeometry } from '@ohos.graphics.scene';
+import { SceneResourceFactory, Scene, Geometry, CubeGeometry } from '@kit.ArkGraphics3D';
 
 function createGeometryPromise() : Promise<Geometry> {
   return new Promise((resolve, reject) => {
@@ -609,8 +591,6 @@ function createGeometryPromise() : Promise<Geometry> {
 ## SceneComponent<sup>20+</sup>
 表示基础场景组件，用于描述场景节点的组件信息，包括组件名称及其对应的属性集合。
 
-### 属性
-
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
@@ -635,9 +615,7 @@ getRenderResourceFactory() : RenderResourceFactory
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext,
-  RenderResourceFactory } from '@kit.ArkGraphics3D';
+import { Scene, RenderContext, RenderResourceFactory } from '@kit.ArkGraphics3D';
 
 function getRenderResourceFactory(): void {
   const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
@@ -669,9 +647,7 @@ loadPlugin(name: string): Promise\<boolean>
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext,
-  RenderResourceFactory } from '@kit.ArkGraphics3D';
+import { Scene, RenderContext } from '@kit.ArkGraphics3D';
 
 function loadPlugin(): Promise<boolean> {
   const renderContext: RenderContext | null = Scene.getDefaultRenderContext();
@@ -703,9 +679,7 @@ registerResourcePath(protocol: string, uri: string): boolean
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderContext,
-  RenderResourceFactory } from '@kit.ArkGraphics3D';
+import { Scene, RenderContext } from '@kit.ArkGraphics3D';
 
 function registerResourcePath(): void {
   // 创建shader资源，路径和文件名可根据项目实际资源自定义
@@ -769,8 +743,7 @@ static load(uri?: ResourceStr): Promise\<Scene>
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { Scene } from '@kit.ArkGraphics3D';
 
 function loadModel(): void {
   // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
@@ -799,8 +772,7 @@ getNodeByPath(path: string, type?: NodeType): Node | null
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { Scene, Node } from '@kit.ArkGraphics3D';
 
 function getNode(): void {
   // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
@@ -828,8 +800,7 @@ getResourceFactory(): SceneResourceFactory
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { SceneResourceFactory, Scene } from '@kit.ArkGraphics3D';
 
 function getFactory(): void {
   // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
@@ -852,8 +823,7 @@ destroy(): void
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { Scene } from '@kit.ArkGraphics3D';
 
 function destroy(): void {
   // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
@@ -888,8 +858,7 @@ importNode(name: string, node: Node, parent: Node | null): Node
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource} from '@kit.ArkGraphics3D';
+import { Scene } from '@kit.ArkGraphics3D';
 
 function ImportNodeTest() {
   Scene.load().then(async (result: Scene | undefined) => {
@@ -931,8 +900,7 @@ importScene(name: string, scene: Scene, parent: Node | null): Node
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource} from '@kit.ArkGraphics3D';
+import { Scene } from '@kit.ArkGraphics3D';
 
 function ImportSceneTest() {
   Scene.load().then(async (result: Scene | undefined) => {
@@ -966,8 +934,7 @@ renderFrame(params?: RenderParameters): boolean
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource} from '@kit.ArkGraphics3D';
+import { Scene } from '@kit.ArkGraphics3D';
 
 function RenderFrameTest() {
   // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
@@ -1002,10 +969,7 @@ createComponent(node: Node, name: string): Promise\<SceneComponent>
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
-import { SceneComponent } from '@ohos.graphics.scene';
-
+import { Scene, SceneComponent } from '@kit.ArkGraphics3D';
 
 function createComponentTest(): Promise<SceneComponent> {
   // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
@@ -1046,8 +1010,7 @@ getComponent(node: Node, name: string): SceneComponent | null
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource, SceneComponent } from '@kit.ArkGraphics3D';
+import { Scene } from '@kit.ArkGraphics3D';
 
 function getComponentTest() {
   // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
@@ -1082,8 +1045,7 @@ static getDefaultRenderContext(): RenderContext | null
 
 **示例：**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource, SceneComponent, RenderContext } from '@kit.ArkGraphics3D';
+import { Scene, RenderContext } from '@kit.ArkGraphics3D';
 
 function getDefaultRenderContextTest() {
   console.info("TEST getDefaultRenderContextTest");

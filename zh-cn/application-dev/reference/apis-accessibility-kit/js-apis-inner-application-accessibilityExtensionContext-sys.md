@@ -261,7 +261,7 @@ unholdRunningLockSync(): void
 
 **错误码：**
 
-以以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
@@ -611,7 +611,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowId: number = 10;
 
-axContext.getRootInActiveWindow(windowId)..then((element: AccessibilityElement) => {
+axContext.getRootInActiveWindow(windowId).then((element: AccessibilityElement) => {
   console.info("AccessibilityElement.checkable: " + element.checkable)
   console.info("AccessibilityElement.checked: " + element.checked)
   console.info("AccessibilityElement.clickable: " + element.clickable)
@@ -1106,7 +1106,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowId: number = 10;
 
-axContext.getRootInActiveWindow(windowId)..then((root: AccessibilityElement) => {
+axContext.getRootInActiveWindow(windowId).then((root: AccessibilityElement) => {
     root.findElementByContent('connect').then((elements: AccessibilityElement[]) => {
         console.log("findElementByContent size=" + elements.length)
     }).catch((err) => {

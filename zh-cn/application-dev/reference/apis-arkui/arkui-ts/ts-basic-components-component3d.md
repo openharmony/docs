@@ -209,12 +209,14 @@ GLTF模型加载示例。 <br/>
 @Entry
 @Component
 struct Index {
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   scene: SceneOptions = { scene: $rawfile('gltf/DamagedHelmet/glTF/DamagedHelmet.gltf'), modelType: ModelType.SURFACE};
   build() {
     Row() {
       Column() {
         Text('GLTF Example')
         Component3D( this.scene )
+        // 绑定环境资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
           .environment($rawfile('gltf/Environment/glTF/Environment.gltf'))
           .renderWidth('90%').renderHeight('90%')
       }.width('100%')
@@ -249,6 +251,7 @@ function TickFrame() {
 @Entry
 @Component
 struct Index {
+  // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
   scene: SceneOptions = { scene: $rawfile('gltf/DamagedHelmet/glTF/DamagedHelmet.gltf'), modelType: ModelType.SURFACE};
   backAnimator: AnimatorResult = this.getUIContext().createAnimator({
     duration: 2000,
@@ -276,9 +279,12 @@ struct Index {
       Column() {
         Text('custom rendering')
         Component3D()
+          // 绑定自定义shader脚本，路径和文件名可根据项目实际资源自定义
           .shader($rawfile('assets/app/shaders/shader/London.shader'))
+          // 绑定贴图资源作为shader输入纹理，路径和文件名可根据项目实际资源自定义
           .shaderImageTexture($rawfile('assets/London.jpg'))
           .shaderInputBuffer(this.timeDelta)
+          // 绑定自定义渲染流程文件（如.rng），路径和文件名可根据项目实际资源自定义
           .customRender($rawfile('assets/app/rendernodegraphs/London.rng'), true)
           .renderWidth('90%').renderHeight('90%')
           .onAppear(() => {

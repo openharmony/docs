@@ -344,7 +344,7 @@ struct Son {
   }
   ```
 
-- 不允许使用switch语法，当需要使用条件判断时，请使用[if](./arkts-rendering-control-ifelse.md)。示例如下。
+- 不允许使用switch语法，当需要使用条件判断时，请使用[if](../rendering-control/arkts-rendering-control-ifelse.md)。示例如下。
 
   ```ts
   build() {

@@ -33,7 +33,7 @@ createAppAccountManager(): AppAccountManager
 
 | 类型                | 说明           |
 | ----------------- | ------------ |
-| AppAccountManager | 应用账号管理器对象。 |
+| [AppAccountManager](#appaccountmanager) | 应用账号管理器对象。 |
 
 **示例：**
   ```ts
@@ -42,7 +42,7 @@ createAppAccountManager(): AppAccountManager
 
 ## AppAccountManager
 
-应用账号管理器类。
+应用账号管理器，可用于管理应用自身的账号信息。
 
 ### createAccount<sup>9+</sup>
 
@@ -5023,9 +5023,9 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称               | 类型            | 只读  | 可选   | 说明              |
 | -------------------- | -------------- | -----| ----- | ---------------- |
-| authType<sup>9+</sup>             | string         | 否 | 否    | 令牌的鉴权类型。   |
-| token<sup>9+</sup>                | string         | 否 | 否    | 令牌的取值。       |
-| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | 否 | 是    | 令牌所属的账号信息，默认为空。|
+| authType            | string         | 否 | 否    | 令牌的鉴权类型。   |
+| token               | string         | 否 | 否    | 令牌的取值。       |
+| account | [AppAccountInfo](#appaccountinfo) | 否 | 是    | 令牌所属的账号信息，默认为空。|
 
 ## OAuthTokenInfo<sup>(deprecated)</sup>
 
@@ -5542,7 +5542,7 @@ checkAccountRemovable(name: string, callback: AuthCallback): void
 
 ### getRemoteObject<sup>9+</sup>
 
-getRemoteObject(): rpc.RemoteObject;
+getRemoteObject(): rpc.RemoteObject
 
 获取认证器的远程对象，不可以重载实现。
 

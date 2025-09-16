@@ -1,4 +1,10 @@
 # Sharing Data Using DataShareExtensionAbility (ArkTS) (for System Applications Only)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @woodenarow-->
+<!--Designer: @woodenarow; @xuelei3-->
+<!--Tester: @chenwan188; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 
 ## When to Use
@@ -34,15 +40,17 @@ There are two roles in **DataShare**:
 
 The [DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md) provides the following APIs. You can override these APIs as required.
 
-- **onCreate**: called by the server to initialize service logic when the DataShare client connects to the DataShareExtensionAbility server.
-- **insert**: called to insert data upon the request of the client. Data insertion must be implemented in this callback on the server.
-- **update**: called to update data upon the request of the client. Data update must be implemented in this callback on the server.
-- **batchUpdate**: called to update batch data upon the request of the client. Batch data update must be implemented in this callback on the server.
-- **delete**: called to delete data upon the request of the client. Data deletion must be implemented in this callback on the server.
-- **query**: called to query data upon the request of the client. Data query must be implemented in this callback on the server.
-- **batchInsert**: called to batch insert data upon the request of the client. Batch data insertion must be implemented in this callback on the server.
-- **normalizeUri**: converts the URI provided by the client to the URI used by the server.
-- **denormalizeUri**: converts the URI used by the server to the initial URI passed by the client.
+| API                                    | Description                  |
+| ---------------------------------------- | -------------------- |
+| onCreate(want: Want, callback: AsyncCallback&lt;void&gt;): void | Called by the server to initialize service logic when the DataShare client connects to the DataShareExtensionAbility server.        |
+| insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void | Inserts data. This API is called when the client requests to insert data.        |
+| update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void | Updates data. This API is called when the client requests to update data.        |
+| batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Promise&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt; | Batch updates data. This API is called when the client requests to batch update data.   |
+| delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;number&gt;): void | Deletes data. This API is called when the client requests to delete data.   |
+| query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;DataShareResultSet&gt;): void | Queries data. This API is called when the client requests to query data.          |
+| batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void | Batch inserts data. This API is called when the client requests to batch insert data.   |
+| normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void | Normalizes a URI. This API is called when the URI provided by the client is converted to the URI used by the server.   |
+| denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void | Denormalizes a URI. This API is called when the URI used by the server is converted to the URI provided by the client.   |
 
 Before implementing a **DataShare** service, you need to create a **DataShareExtensionAbility** object in the DevEco Studio project as follows:
 
@@ -53,9 +61,9 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
 3. In the **DataShareExtAbility.ets** file, import the **DataShareExtensionAbility** module. You can override the service implementation as required. For example, if the data provider provides only the insert, delete, and query services, you can override only these APIs and import the dependency modules. If permission verification is required, override the callbacks using [getCallingPid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingpid), [getCallingUid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallinguid), and [getCallingTokenId](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid8) provided by the IPC module to obtain the data consumer information for permission verification.
    
    ```ts
-   import { DataShareExtensionAbility, dataShare, dataSharePredicates, relationalStore, DataShareResultSet } from '@kit.ArkData';
+   import { DataShareExtensionAbility, dataShare, dataSharePredicates, relationalStore, DataShareResultSet, ValuesBucket } from '@kit.ArkData';
    import { Want } from '@kit.AbilityKit';
-   import { BusinessError } from '@kit.BasicServicesKit'
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 4. Implement the data provider services. For example, implement data storage of the data provider by creating and using a database, reading and writing files, or accessing the network.
@@ -81,7 +89,11 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
        }, (err:BusinessError, data:relationalStore.RdbStore) => {
          rdbStore = data;
          rdbStore.executeSql(DDL_TBL_CREATE, [], (err) => {
-           console.info(`DataShareExtAbility onCreate, executeSql done err:${err}`);
+           if (err) {
+             console.error(`ExecuteSql failed, code is ${err.code}, message is ${err.message}`);
+             return;
+           }
+           console.info('DataShareExtAbility onCreate, executeSql done.');
          });
          if (callback) {
            callback();
@@ -92,7 +104,8 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
      // Override query().
      query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array<string>, callback: Function) {
        if (predicates === null || predicates === undefined) {
-         console.info('invalid predicates');
+         console.error('invalid predicates');
+         return;
        }
        try {
          rdbStore.query(TBL_NAME, predicates, columns, (err:BusinessError, resultSet:relationalStore.ResultSet) => {
@@ -105,7 +118,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
          });
        } catch (err) {
          let code = (err as BusinessError).code;
-         let message = (err as BusinessError).message
+         let message = (err as BusinessError).message;
          console.error(`Failed to query. Code:${code},message:${message}`);
        }
      }
@@ -123,7 +136,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
              console.info('Update row count is ' + rows);
              result.push(rows);
            }).catch((err:BusinessError) => {
-             console.info('Update failed, err is ' + JSON.stringify(err));
+             console.error('Update failed, err is ' + JSON.stringify(err));
              result.push(-1)
            })
          }
@@ -134,9 +147,10 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
 
      batchInsert(uri: string, valueBuckets:Array<ValuesBucket>, callback:Function) {
        if (valueBuckets == null || valueBuckets.length == undefined) {
+        console.error('invalid valueBuckets');
         return;
        }
-       let resultNum = valueBuckets.length
+       let resultNum = valueBuckets.length;
        rdbStore.batchInsert(TBL_NAME, valueBuckets, (err, ret) => {
         if (callback !== undefined) {
           callback(err, ret);
@@ -180,7 +194,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    | exported | Whether it is visible to other applications. Data sharing is allowed only when the value is **true**.| Yes|
    | readPermission | Permission required for accessing data. If this parameter is not set, read permission verification is not performed by default.<br>**NOTE**: The permission constraints for **DataShareExtensionAbility** are different from that for silent access. It is important to understand the difference and prevent confusion. For details, see [Silent Access via DatamgrService](share-data-by-silent-access.md).| No|
    | writePermission | Permission required for modifying data. If this parameter is not set, write permission verification is not performed by default.<br>**NOTE**: The permission constraints for **DataShareExtensionAbility** are different from that for silent access. It is important to understand the difference and prevent confusion. For details, see [Silent Access via DatamgrService](share-data-by-silent-access.md).| No|
-   | metadata   | Silent access configuration, which includes the following:<br>**name**: identifies the configuration, which has a fixed value of **ohos.extension.dataShare**.<br>**resource**: has a fixed value of **$profile:data_share_config**, which indicates that the profile name is **data_share_config.json**. | **metadata** is mandatory when the ability launch type is **singleton**. For details about the ability launch type, see **launchType** in the [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute).|
+   | metadata   | Silent access configuration, which includes the following:<br> **name**: identifies the configuration, which has a fixed value of **ohos.extension.dataShare**.<br> **resource**: has a fixed value of **$profile:data_share_config**, which indicates that the profile name is **data_share_config.json**.| **metadata** is mandatory when the ability launch type is **singleton**. For details about the ability launch type, see **launchType** in the [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute).|
 
    **module.json5 example**
    
@@ -258,7 +272,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    let dseUri = ('datashare:///com.ohos.settingsdata.DataAbility');
    ```
 
-3. Create a **DataShareHelper** instance.
+3. Use **createDataShareHelper()** to pass the URI to create a **DataShareHelper** object.
    
    ```ts
    let dsHelper: dataShare.DataShareHelper | undefined = undefined;
@@ -274,7 +288,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    }
    ```
 
-4. Use the APIs provided by **DataShareHelper** to access the services provided by the provider, for example, adding, deleting, modifying, and querying data.
+4. After obtaining the **DataShareHelper** object, use the APIs provided by the object (such as **insert()**, **delete()**, **update()**, or **query()**) to access the provider data.
    
    ```ts
    // Construct a piece of data.
@@ -300,12 +314,12 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    let operation1: dataShare.UpdateOperation = {
      values: valuesBucket,
      predicates: predicates
-   }
+   };
    operations1.push(operation1);
    let operation2: dataShare.UpdateOperation = {
      values: updateBucket,
      predicates: predicates
-   }
+   };
    operations2.push(operation2);
    record["uri1"] = operations1;
    record["uri2"] = operations2;
@@ -333,7 +347,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
         let a = Object.entries(data);
         for (let i = 0; i < a.length; i++) {
           let key = a[i][0];
-          let values = a[i][1]
+          let values = a[i][1];
           console.info(`Update uri:${key}`);
           for (const value of values) {
             console.info(`Update result:${value}`);

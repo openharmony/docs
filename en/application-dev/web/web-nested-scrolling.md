@@ -1,4 +1,10 @@
 # Implementing Nested Scrolling
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zourongchun-->
+<!--Designer: @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 There may be times when you want to implement nested scrolling for the **Web** component. A typical use case is a page that contains multiple scrollable areas including the **Web** component, whose scrolling is intrinsically linked with the scroll positions in other areas. To implement nested scrolling between **Web** components and ArkUI scrollable containers ([Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md), [List](../reference/apis-arkui/arkui-ts/ts-container-list.md), [Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md), [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md), [Tabs](../reference/apis-arkui/arkui-ts/ts-container-tabs.md), [WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md), [Refresh](../reference/apis-arkui/arkui-ts/ts-container-refresh.md) and [bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)), you should set the ArkUI [NestedScrollMode](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) attribute for the **Web** components after receiving the scrolling gesture events.
 
@@ -36,8 +42,8 @@ struct NestedScroll {
       Column() {
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .nestedScroll({
-            scrollUp: NestedScrollMode.PARENT_FIRST,// Scroll up the parent component first.
-            scrollDown: NestedScrollMode.SELF_FIRST,// Scroll down the child component first.
+            scrollUp: NestedScrollMode.PARENT_FIRST,//Scroll up the parent component first.
+            scrollDown: NestedScrollMode.SELF_FIRST,//Scroll down the child component first.
           }).height("100%")
         Repeat<number>(this.arr)
           .each((item: RepeatItem<number>) => {
@@ -113,20 +119,18 @@ HTML file to be loaded:
 1. Disable the scrolling gestures of the **Web** component.
 
     (1) Call [setScrollable](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setscrollable12) to disable touch scrolling.
-
     ```ts
     this.webController.setScrollable(false, webview.ScrollType.EVENT);
     ```
     (2) Call [onGestureRecognizerJudgeBegin](../reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md#ongesturerecognizerjudgebegin13) to disable the scrolling gesture of the **Web** component.
-
-		```ts
-		.onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer, others: Array<GestureRecognizer>) => {
-		if (current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
-			return GestureJudgeResult.REJECT;
-		}
-		return GestureJudgeResult.CONTINUE;
-		})
-		```
+    ```ts
+    .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer, otherArray<GestureRecognizer>) => {
+      if (current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+        return GestureJudgeResult.REJECT;
+      }
+      return GestureJudgeResult.CONTINUE;
+    })
+    ```
 2. Disable the gestures of the [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) component.
     ```ts
 	  .enableScrollInteraction(false)
@@ -141,15 +145,15 @@ HTML file to be loaded:
 	
 	(1) Obtain the height, content height, and current scrolling offset of the **Web** component.
 	
-	(2) Scroll to the top boundary: **webController.getScrollOffset() == 0**;
+	(2) Scroll to the top boundary: **webController.getPageOffset().y == 0**;
 	
-	(3) Scroll to the bottom boundary: **webController.getScrollOffset().y + this.webHeight >= webController.getPageHeight()**;
+	(3) Scroll to the bottom boundary: **webController.getPageOffset().y + this.webHeight >= webController.getPageHeight()**;
 	
 	(4) Height of the **Web** component: **webController.[getPageHeight()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#getpageheight)**;
 	
 	(5) Height of the **Web** component window: **webController?.[runJavaScriptExt](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#runjavascriptext10)('window. innerHeight')**;
 	
-	(6) Scrolling offset of the **Web** component: **webController.[getScrollOffset()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#getscrolloffset13)**;
+	(6) Scrolling offset of the **Web** component: **webController.[getPageOffset()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#getpageoffset20)**;
 5. Disable the scrolling feature of the **Scroll** component.
 	
 	Bind the **Scroll** component to the [onScrollFrameBegin](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#onscrollframebegin9) event and set the remaining scrolling offset to **0**. Then the **Scroll** component does not scroll, and the inertial scrolling animation does not stop.
@@ -161,6 +165,11 @@ HTML file to be loaded:
     ```ts
 	  this.webController.scrollBy(0, offset)
     ```
+8. Set [bypassVsyncCondition](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#bypassvsynccondition20) of the **Web** component to **WebBypassVsyncCondition.SCROLLBY_FROM_ZERO_OFFSET** to accelerate the drawing of the first scrolling frame.
+    ```ts
+	  .bypassVsyncCondition(WebBypassVsyncCondition.SCROLLBY_FROM_ZERO_OFFSET)
+    ```
+
 **Complete Code**
 ```ts
 // xxx.ets
@@ -174,7 +183,6 @@ struct Index {
   private webController: webview.WebviewController = new webview.WebviewController()
   private isWebAtEnd:boolean = false
   private webHeight:number = 0
-  private scrollTop:number = 0
   @Local arr: Array<number> = []
 
   aboutToAppear(): void {
@@ -198,9 +206,9 @@ struct Index {
     }
   }
 
-  getWebScrollTop() {
+  checkScrollBottom() {
   	this.isWebAtEnd = false;
-  	if (this.webController.getScrollOffset().y + this.webHeight >= this.webController.getPageHeight()) {
+  	if (this.webController.getPageOffset().y + this.webHeight >= this.webController.getPageHeight()) {
   	  this.isWebAtEnd = true;
   	}
   }
@@ -212,6 +220,7 @@ struct Index {
           src: $rawfile("index.html"),
           controller: this.webController,
         }).height("100%")
+          .bypassVsyncCondition(WebBypassVsyncCondition.SCROLLBY_FROM_ZERO_OFFSET)
           .onPageEnd(() => {
             this.webController.setScrollable(false, webview.ScrollType.EVENT);
             this.getWebHeight();
@@ -241,7 +250,7 @@ struct Index {
       }
     }
     .onScrollFrameBegin((offset: number, state: ScrollState)=>{
-      this.getWebScrollTop();
+      this.checkScrollBottom();
       if (offset > 0) {
         if (!this.isWebAtEnd) {
           this.webController.scrollBy(0, offset)

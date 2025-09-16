@@ -1094,7 +1094,7 @@ struct WebComponent {
         .onClick(() => {
           webview.WebCookieManager.clearAllCookies()
             .then(() => {
-              console.log("clearAllCookies success!");
+              console.info("clearAllCookies success!");
             })
             .catch((error: BusinessError) => {
               console.error("error: " + error);

@@ -59,6 +59,7 @@
 | [uint32_t OH_NativeArkWeb_SetBlanklessLoadingCacheCapacity(uint32_t capacity)](#oh_nativearkweb_setblanklessloadingcachecapacity) | - | 设置无白屏加载方案的持久化缓存容量，返回实际生效值。默认缓存容量为30MB，最大值为100MB。当实际缓存超过容量时，将采用淘汰不常用的过渡帧的方式清理。 |
 | [void OH_NativeArkWeb_SetActiveWebEngineVersion(ArkWebEngineVersion webEngineVersion)](#oh_nativearkweb_setactivewebengineversion) | - | 设置ArkWeb内核版本。若系统不支持指定版本，则设置无效。该接口为全局静态方法，须在调用initializeWebEngine前执行，若已加载任何Web组件，则该设置无效。 |
 | [ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion()](#oh_nativearkweb_getactivewebengineversion) | - | 获取当前使用的ArkWeb内核版本。 |
+| [bool OH_NativeArkWeb_IsActiveWebEngineEvergreen()](#oh_nativearkweb_isactivewebengineevergreen) | - | 判断应用所使用ArkWeb内核是否是常青内核。 |
 
 ## 枚举类型说明
 
@@ -84,6 +85,7 @@ ArkWeb内核版本，请参考[M114内核在OpenHarmony6.0系统上的适配指�
 | SYSTEM_DEFAULT = 0   | 系统默认内核，OpenHarmony 6.0版本默认为M132。           |
 | ARKWEB_M114 = 1      | OpenHarmony 6.0版本的遗留内核。开发者可选择此遗留内核，若系统版本上不存在此内核则设置无效。 |
 | ARKWEB_M132 = 2      | OpenHarmony 6.0版本的常青内核，M132为此版本的默认内核。若系统版本上不存在此内核则设置无效。    |
+| ARKWEB_EVERGREEN = 99999 | 常青内核，系统的最新内核。开发者可选择在每个系统版本上都使用最新的内核，OpenHarmony 6.0及之后所有系统版本都生效。 |
 
 ## 函数说明
 
@@ -571,3 +573,21 @@ ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion()
 | 类型 | 说明 |
 | -- | -- |
 | ArkWebEngineVersion | 返回由[ArkWebEngineVersion](#arkwebengineversion)枚举所定义的当前使用的ArkWeb内核版本。 |
+
+### OH_NativeArkWeb_IsActiveWebEngineEvergreen()
+
+```
+bool OH_NativeArkWeb_IsActiveWebEngineEvergreen()
+```
+
+**描述：**
+
+判断应用所使用ArkWeb内核是否是常青内核。
+
+**起始版本：** 21
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| bool | 表示当前应用所使用内核是否为常青内核。true表示当前应用所使用内核是常青内核，false表示当前应用所使用内核不是常青内核。 |

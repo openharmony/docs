@@ -189,7 +189,7 @@ access(path: string, mode?: AccessModeType): Promise&lt;boolean&gt;
   });
   ```
 
-## fs.access
+## fs.access<sup>12+</sup>
 
 access(path: string, mode: AccessModeType, flag: AccessFlagType): Promise&lt;boolean&gt;
 
@@ -330,7 +330,7 @@ accessSync(path: string, mode?: AccessModeType): boolean
   }
   ```
 
-## fs.accessSync
+## fs.accessSync<sup>12+</sup>
 
 accessSync(path: string, mode: AccessModeType, flag: AccessFlagType): boolean
 
@@ -1510,7 +1510,7 @@ open(path: string, mode: number, callback: AsyncCallback&lt;File&gt;): void
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                          | 是   | 文件或目录的应用沙箱路径或URI。                                   |
 | mode  | number | 是   | 打开文件或目录的[选项](#openmode)，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读打开。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写打开。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写打开。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果文件存在且文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式打开文件。 |
-| callback     | AsyncCallback&lt;void&gt;                          | 是   | 异步打开文件之后的回调。                                   |
+| callback     | AsyncCallback&lt;[File](#file)&gt;                          | 是   | 异步打开文件之后的回调。                                   |
 
 **错误码：**
 
@@ -1546,7 +1546,7 @@ open(path: string, callback: AsyncCallback&lt;File&gt;): void
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                          | 是   | 文件或目录的应用沙箱路径或URI。                                   |
-| callback     | AsyncCallback&lt;void&gt;                          | 是   | 异步打开文件之后的回调。                                   |
+| callback     | AsyncCallback&lt;[File](#file)&gt;                          | 是   | 异步打开文件之后的回调。                                   |
 
 **错误码：**
 
@@ -2311,7 +2311,7 @@ next(): ReaderIteratorResult
 
   | 类型                    | 说明         |
   | --------------------- | ---------- |
-  | [ReaderIteratorResult](#readeriteratorresult) | 文件读取迭代器返回结果。 |
+  | [ReaderIteratorResult](#readeriteratorresult11) | 文件读取迭代器返回结果。 |
 
 **错误码：**
 
@@ -2339,7 +2339,7 @@ next(): ReaderIteratorResult
   });
   ```
 
-## ReaderIteratorResult
+## ReaderIteratorResult<sup>11+</sup>
 
 文件读取迭代器返回结果，支持ReaderIterator接口使用。
 
@@ -3663,7 +3663,7 @@ createRandomAccessFile(file: string | File, mode?: number): Promise&lt;RandomAcc
 
   | 类型                                | 说明        |
   | --------------------------------- | --------- |
-  | Promise&lt;[RandomAccessFile](#randomaccessfile)&gt; | Promise对象。返回RandomAccessFile对象的结果。 |
+  | Promise&lt;[RandomAccessFile](#randomaccessfile10)&gt; | Promise对象。返回RandomAccessFile对象的结果。 |
 
 **错误码：**
 
@@ -3698,7 +3698,7 @@ createRandomAccessFile(file: string | File, callback: AsyncCallback&lt;RandomAcc
 |  参数名    | 类型     | 必填   | 说明                          |
 | ------------ | ------ | ------ | ------------------------------------------------------------ |
 |     file     | string \| [File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象。 |
-| callback | AsyncCallback&lt;[RandomAccessFile](#randomaccessfile)&gt; | 是   | 异步创建RandomAccessFile对象之后的回调。                                   |
+| callback | AsyncCallback&lt;[RandomAccessFile](#randomaccessfile10)&gt; | 是   | 异步创建RandomAccessFile对象之后的回调。                                   |
 
 **错误码：**
 
@@ -3734,7 +3734,7 @@ createRandomAccessFile(file: string | File, mode: number, callback: AsyncCallbac
 | ------------ | ------ | ------ | ------------------------------------------------------------ |
 |     file     | string \| [File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象。 |
 |     mode     | number | 是   | 创建文件RandomAccessFile对象的[选项](#openmode)，仅当传入文件沙箱路径时生效，必须指定如下选项中的一个，默认以只读方式创建：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读创建。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写创建。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写创建。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果RandomAccessFile对象存在且对应文件具有写权限，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到RandomAccessFile对象末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式创建RandomAccessFile对象。 |
-| callback | AsyncCallback&lt;[RandomAccessFile](#randomaccessfile)&gt; | 是   | 异步创建RandomAccessFile对象之后的回调。                                   |
+| callback | AsyncCallback&lt;[RandomAccessFile](#randomaccessfile10)&gt; | 是   | 异步创建RandomAccessFile对象之后的回调。                                   |
 
 **错误码：**
 
@@ -3776,7 +3776,7 @@ createRandomAccessFile(file: string | File, mode?: number, options?: RandomAcces
 
   | 类型                                | 说明        |
   | --------------------------------- | --------- |
-  | Promise&lt;[RandomAccessFile](#randomaccessfile)&gt; | Promise对象。返回RandomAccessFile对象的结果。 |
+  | Promise&lt;[RandomAccessFile](#randomaccessfile10)&gt; | Promise对象。返回RandomAccessFile对象的结果。 |
 
 **错误码：**
 
@@ -3815,7 +3815,7 @@ createRandomAccessFileSync(file: string | File, mode?: number): RandomAccessFile
 
   | 类型                | 说明        |
   | ------------------ | --------- |
-  | [RandomAccessFile](#randomaccessfile) | 返回RandomAccessFile对象。 |
+  | [RandomAccessFile](#randomaccessfile10) | 返回RandomAccessFile对象。 |
 
 **错误码：**
 
@@ -3851,7 +3851,7 @@ createRandomAccessFileSync(file: string | File, mode?: number,
 
   | 类型                | 说明        |
   | ------------------ | --------- |
-  | [RandomAccessFile](#randomaccessfile) | 返回RandomAccessFile对象。 |
+  | [RandomAccessFile](#randomaccessfile10) | 返回RandomAccessFile对象。 |
 
 **错误码：**
 
@@ -4464,8 +4464,8 @@ let pathDir = context.filesDir;
 
 let file = new fs.AtomicFile(`${pathDir}/write.txt`);
 try {
-  let writeSream = file.startWrite();
-  writeSream.write("hello, world", "utf-8", ()=> {
+  let writeStream = file.startWrite();
+  writeStream.write("hello, world", "utf-8", ()=> {
     console.info('AtomicFile write succeed!');
   })
 } catch (err) {
@@ -5589,7 +5589,7 @@ onStatus(networkId: string, status: number): void;
   | networkId   | string | 是    | 设备的网络Id。                             |
   | status | number | 是    | 分布式文件系统的状态码（以connectDfs回调onStatus的特定错误码作为入参）。触发场景为connectDfs调用过程中出现对端设备异常，对应错误码为：<br/>-&nbsp;[13900046](errorcode-filemanagement.md#13900046-软件造成连接中断)：软件造成连接中断。
 
-## RandomAccessFile
+## RandomAccessFile<sup>10+</sup>
 
 随机读写文件流。在调用RandomAccessFile的方法前，需要先通过createRandomAccessFile()方法（同步或异步）来构建一个RandomAccessFile实例。
 
@@ -6187,7 +6187,7 @@ open接口flags参数常量。文件打开标签。
 | bytesRead    | number | 是    | 否    | 可读流已经读取的字节数。 |
 | path    | string | 是    | 否    | 当前可读流对应的文件路径。 |
 
-### Seek
+### Seek<sup>12+</sup>
 
 seek(offset: number, whence?: WhenceType): number
 
@@ -6223,7 +6223,7 @@ seek(offset: number, whence?: WhenceType): number
   rs.close();
   ```
 
-### close
+### close<sup>12+</sup>
 
 close(): void
 
@@ -6254,7 +6254,7 @@ close(): void
 | bytesWritten    | number | 是    | 否    | 可写流已经写入的字节数。 |
 | path    | string | 是    | 否    | 当前可写流对应的文件路径。 |
 
-### Seek
+### Seek<sup>12+</sup>
 
 seek(offset: number, whence?: WhenceType): number;
 
@@ -6289,7 +6289,7 @@ seek(offset: number, whence?: WhenceType): number;
   ws.close();
   ```
 
-### close
+### close<sup>12+</sup>
 
 close(): void
 

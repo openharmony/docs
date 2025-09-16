@@ -90,7 +90,7 @@
 
 **参考链接**
 
-[ForEach：循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)
+[ForEach：循环渲染](../ui/rendering-control/arkts-rendering-control-foreach.md)
 
 ## CustomDialog，Popup等弹窗如何与页面解耦，最佳实践是什么样的(API 10)
 

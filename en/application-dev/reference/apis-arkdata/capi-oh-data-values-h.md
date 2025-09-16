@@ -1,4 +1,10 @@
 # oh_data_values.h
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 
@@ -462,7 +468,7 @@ Checks whether a value is null.
 | ------------------------------------------------ | ------------------------------------------------------------ |
 | [OH_Data_Values](capi-rdb-oh-data-values.md) *values | Pointer to the [OH_Data_Values](capi-rdb-oh-data-values.md) instance.|
 | int index                                        | Index of the value to check, which starts from 0 in **values**.                      |
-| bool *val                                        | Pointer to the check result. The value **true** means the value is null, and the value **false** means the opposite.                 |
+| bool *val                                        | Pointer to the check result. The value **true** means the value is empty, and the value **false** means the opposite.                 |
 
 **Returns**
 
@@ -748,7 +754,7 @@ Obtains the length of the unlimited integer from an **OH_Data_Values** instance.
 ### OH_Values_GetUnlimitedInt()
 
 ```
-int OH_Values_GetUnlimitedInt(OH_Data_Values *values, int index, int *sign, uint64_t *trueForm, size_t inLen,size_t *outLen)
+int OH_Values_GetUnlimitedInt(OH_Data_Values *values, int index, int *sign, uint64_t *trueForm, size_t inLen, size_t *outLen)
 ```
 
 **Description**
