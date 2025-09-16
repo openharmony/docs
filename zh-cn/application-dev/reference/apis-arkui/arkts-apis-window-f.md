@@ -241,9 +241,15 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err: BusinessError) => {
+      if (err.code) {
+        console.error(`Failed to load content for main window. Cause code: ${err.code}, message: ${err.message}`);
+      }
       windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
         let storage: LocalStorage = new LocalStorage();
         subWindow.loadContent('pages/Index', storage, (err: BusinessError) => {
+          if (err.code) {
+            console.error(`Failed to load content for sub window. Cause code: ${err.code}, message: ${err.message}`);
+          }
           subWindow.showWindow().then(() => {
             try {
               window.getLastWindow(this.context, (err: BusinessError, topWindow) => {
@@ -258,12 +264,8 @@ export default class EntryAbility extends UIAbility {
               console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
             }
           });
-        }).catch((err: BusinessError) => {
-          console.error(`Failed to load content for sub window. Cause code: ${err.code}, message: ${err.message}`);
         });
       });
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to load content for main window. Cause code: ${err.code}, message: ${err.message}`);
     });
   }
   //...
@@ -317,9 +319,15 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err: BusinessError) => {
+      if (err.code) {
+        console.error(`Failed to load content for main window. Cause code: ${err.code}, message: ${err.message}`);
+      }
       windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
         let storage: LocalStorage = new LocalStorage();
         subWindow.loadContent('pages/Index', storage, (err: BusinessError) => {
+          if (err.code) {
+            console.error(`Failed to load content for sub window. Cause code: ${err.code}, message: ${err.message}`);
+          }
           subWindow.showWindow().then(() => {
             try {
               window.getLastWindow(this.context).then((topWindow) => {
@@ -331,12 +339,8 @@ export default class EntryAbility extends UIAbility {
               console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
             }
           });
-        }).catch((err: BusinessError) => {
-          console.error(`Failed to load content for sub window. Cause code: ${err.code}, message: ${err.message}`);
         });
       });
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to load content for main window. Cause code: ${err.code}, message: ${err.message}`);
     });
   }
   //...
@@ -398,6 +402,9 @@ export default class EntryAbility extends UIAbility {
 
     try {
       windowStage.loadContent('pages/Index', (err) => {
+        if (err.code) {
+          console.error(`Failed to load content for main window. Cause code: ${err.code}, message: ${err.message}`);
+        }
         // 获取应用主窗及ID
         windowStage.getMainWindow().then((data) => {
           if (data == null) {
@@ -421,7 +428,7 @@ export default class EntryAbility extends UIAbility {
           subWindowId = subWindow.getWindowProperties().id;
           subWindow.resize(500, 500);
           subWindow.showWindow();
-          subWindow.SetUIContent('pages/Index');
+          subWindow.setUIContent('pages/Index');
 
           // 监听Window状态，确保已经就绪
           subWindow.on("windowEvent", (windowEvent) => {
