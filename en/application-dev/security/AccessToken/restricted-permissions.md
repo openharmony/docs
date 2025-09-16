@@ -742,6 +742,22 @@ Allows an application to detect the network and obtain the TraceRoute informatio
 
 **Since**: 20
 
+## ohos.permission.SET_SYSTEMSHARE_APPLAUNCHTRUSTLIST
+
+Allows an application to set the trust list of target applications for system sharing.
+
+With this permission, the application can choose the target applications for system sharing.
+
+<!--RP53--><!--RP53End-->
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Device**：Phone | PC/2in1 | Tablet
+
+**Since**：21
+
 ## ohos.permission.HOOK_KEY_EVENT
 
 Allows an application to intercept keyboard input events.
