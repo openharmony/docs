@@ -1340,7 +1340,7 @@ generateDLPFileForEnterprise(plaintextFd: number, dlpFd: number, property: DLPPr
 | plaintextFd | number | 是 | 明文文件的fd。 |
 | dlpFd | number | 是 | 加密文件的fd。 |
 | property | [DLPProperty](#dlpproperty) | 是 | DLP文件通用策略。 |
-| customProperty | [CustomProperty](#customproperty20) | 是 | 企业定制策略。 |
+| customProperty | [CustomProperty](#customproperty21) | 是 | 企业定制策略。 |
 
 **返回值：**
 
