@@ -104,8 +104,11 @@
    // 2. 创建OH_UdmfRecord对象，并向OH_UdmfRecord中添加文本类型数据
    OH_UdsPlainText* plainText = OH_UdsPlainText_Create();
    OH_UdsPlainText_SetContent(plainText, "Hello world!");
+   OH_UdsHtml* udsHtml = OH_UdsHtml_Create();
+   OH_UdsHtml_SetContent(udsHtml, "hello world");
    OH_UdmfRecord* record = OH_UdmfRecord_Create();
    OH_UdmfRecord_AddPlainText(record, plainText);
+   
    
    // 3. 创建OH_UdmfData对象，并向OH_UdmfData中添加OH_UdmfRecord
    OH_UdmfData* data = OH_UdmfData_Create();

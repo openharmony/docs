@@ -140,6 +140,8 @@
    // 11. 获取OH_UdmfData中的所有OH_UdmfRecord。
    unsigned int recordCount = 0;
    OH_UdmfRecord** getRecords = OH_UdmfData_GetRecords(getData, &recordCount);
+   OH_UdsPlainText* udsText = nullptr;
+   OH_UdsHtml* udsHtml = nullptr;
 
    // 12. 遍历OH_UdmfRecord。
    for (unsigned int recordIndex = 0; recordIndex < recordCount; ++recordIndex) {
@@ -156,7 +158,7 @@
            // 纯文本类型
            if (strcmp(recordType, UDMF_META_PLAIN_TEXT) == 0) {
                // 创建纯文本类型的Uds对象
-               OH_UdsPlainText* udsText = OH_UdsPlainText_Create();
+               udsText = OH_UdsPlainText_Create();
                // 从record中获取纯文本类型的Uds对象
                OH_UdmfRecord_GetPlainText(record, udsText);
                // 从Uds对象中获取内容
@@ -165,7 +167,7 @@
            // HTML类型
            else if (strcmp(recordType, UDMF_META_HTML) == 0) {
                // 创建HTML类型的Uds对象
-               OH_UdsHtml* udsHtml = OH_UdsHtml_Create();
+               udsHtml = OH_UdsHtml_Create();
                // 从record中获取HTML类型的Uds对象
                OH_UdmfRecord_GetHtml(record, udsHtml);
                // 从Uds对象中获取内容
