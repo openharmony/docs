@@ -43,7 +43,7 @@ enum AudioChannelSet : uint64_t
 
 **废弃版本：** 11
 
-**替代接口：** [OH_AudioChannelSet](_core.md#oh_audiochannelset-1)
+**替代接口：** [OH_AudioChannelSet](capi-native-audio-channel-layout-h.md#oh_audiochannelset)
 
 | 枚举项 | 描述 |
 | -- | -- |
@@ -114,7 +114,7 @@ enum AudioChannelLayout : uint64_t
 
 **废弃版本：** 11
 
-**替代接口：** [OH_AudioChannelLayout](_core.md#oh_audiochannellayout-1)
+**替代接口：** [OH_AudioChannelLayout](capi-native-audio-channel-layout-h.md#oh_audiochannellayout)
 
 | 枚举项 | 描述 |
 | -- | -- |
