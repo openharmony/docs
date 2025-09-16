@@ -5135,3 +5135,17 @@ With this permission, the application can extend its implicit matching capabilit
 **Supported devices**: PC/2in1
 
 **Valid since**: 22
+
+## ohos.permission.DATA_IDENTIFY_ANONYMIZE
+
+Allows the system app to invoke the data identification and anonymization capability.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Supported devices**: PC/2in1 | Phone | Tablet | TV | Car
+
+**Valid since**：21
