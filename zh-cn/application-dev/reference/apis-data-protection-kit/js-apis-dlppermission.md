@@ -1346,7 +1346,7 @@ generateDLPFileForEnterprise(plaintextFd: number, dlpFd: number, property: DLPPr
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1355,7 +1355,6 @@ generateDLPFileForEnterprise(plaintextFd: number, dlpFd: number, property: DLPPr
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permission denied. |
-| 202 | Non-system applications use system APIs. |
 | 19100001 | Invalid parameter value. |
 | 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
 | 19100003 | Credential task time out. |
@@ -1363,7 +1362,8 @@ generateDLPFileForEnterprise(plaintextFd: number, dlpFd: number, property: DLPPr
 | 19100005 | Credential authentication server error. |
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | The system ability works abnormally. |
-
+| 19100014 | Account not logged in. |
+  
 **示例：**
 
 ```ts
@@ -1428,7 +1428,7 @@ decryptDlpFile(dlpFd: number, plaintextFd: number): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1437,7 +1437,6 @@ decryptDlpFile(dlpFd: number, plaintextFd: number): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permission denied. |
-| 202 | Non-system applications use system APIs. |
 | 19100001 | Invalid parameter value. |
 | 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
 | 19100003 | Credential task time out. |
@@ -1447,6 +1446,7 @@ decryptDlpFile(dlpFd: number, plaintextFd: number): Promise&lt;void&gt;
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | The system ability works abnormally. |
 | 19100013 | The user does not have the permission. |
+| 19100014 | Account not logged in. |
 
 **示例：**
 
@@ -1505,7 +1505,6 @@ queryDlpPolicy(dlpFd: number): Promise&lt;string&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permission denied. |
-| 202 | Non-system applications use system APIs. |
 | 19100001 | Invalid parameter value. |
 | 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
 | 19100003 | Credential task time out. |
@@ -1515,6 +1514,7 @@ queryDlpPolicy(dlpFd: number): Promise&lt;string&gt;
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | The system ability works abnormally. |
 | 19100013 | The user does not have the permission. |
+| 19100014 | Account not logged in. |
 
 **示例：**
 
@@ -1552,7 +1552,7 @@ async function ExampleFunction(dlpFilePath: string) {
 | NOT_OPEN | 0 | 表示超过权限管控时间后，用户无权限打开DLP文件。 |
 | OPEN | 1 | 表示超过权限管控时间后，登录账号的用户拥有编辑权限。 |
   
-## AccountType
+## AccountType<sup>21+</sup>
 
 授权账号类型的枚举。
 
@@ -1562,7 +1562,7 @@ async function ExampleFunction(dlpFilePath: string) {
 | -------- | -------- | -------- |
 | CLOUD_ACCOUNT | 1 | 表示云账号。 |
 | DOMAIN_ACCOUNT | 2 | 表示域账号。 |
-| ENTERPRISE_ACCOUNT | 2 | 表示企业账号。 |
+| ENTERPRISE_ACCOUNT | 4 | 表示企业账号。 |
 
 ## CustomProperty<sup>21+</sup>
 
@@ -1575,7 +1575,7 @@ async function ExampleFunction(dlpFilePath: string) {
 | -------- | -------- | -------- | -------- | -------- |
 | enterprise | string | 否 | 否 | 表示企业定制策略的json字符串。长度不超过4M（单位：兆）。 |
 
-## DLPProperty
+## DLPProperty<sup>21+</sup>
 
 表示授权相关信息。
 
@@ -1591,11 +1591,12 @@ async function ExampleFunction(dlpFilePath: string) {
 | contactAccount | string | 否 | 否 | 表示联系人账号。不超过255字节。 |
 | offlineAccess | boolean | 否 | 否 | 表示是否是离线打开。true表示允许离线打开，false表示不可离线打开。 |
 | everyoneAccessList | Array&lt;[DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess)&gt; | 否 | 是 | 表示授予所有人的权限，默认为空。 |
-| expireTime<sup>11+</sup> | number | 否 | 是 | 表示文件权限到期时间戳，默认为空。 |
-| actionUponExpiry<sup>20+</sup> | [ActionType](#actiontype20) | 否 | 是 | 表示到期后文件是否允许打开（打开后拥有编辑权限），仅在expireTime不为空时生效。 |
-| appId | string | 否 | 是 | 表示文件的标识。不超过255字节。 |
-
-## AuthUser
+| expireTime<sup>21+</sup> | number | 否 | 是 | 表示文件权限到期时间戳，默认为空。 |
+| actionUponExpiry<sup>21+</sup> | [ActionType](#actiontype20) | 否 | 是 | 表示到期后文件是否允许打开（打开后拥有编辑权限），仅在expireTime不为空时生效。 |
+| fileId | string | 否 | 是 | 表示文件的标识。不超过255字节。 |
+| allowedOpenCount | number | 否 | 是 | 表示允许打开的次数 |
+ 
+## AuthUser<sup>21+</sup>
 
 表示授权用户数据。
 
