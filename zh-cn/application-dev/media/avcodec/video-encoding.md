@@ -349,7 +349,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 配置视频帧速率。
     double frameRate = 30.0;
     // 配置视频YUV值范围标志。
-    bool rangeFlag = false;
+    int32_t rangeFlag = 0;
     // 配置视频原色。
     int32_t primary = static_cast<int32_t>(OH_ColorPrimary::COLOR_PRIMARY_BT709);
     // 配置传输特性。
