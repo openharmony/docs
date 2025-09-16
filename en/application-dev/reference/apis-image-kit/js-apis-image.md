@@ -1275,7 +1275,7 @@ Since API version 11, PixelMap supports cross-thread calls through workers. If a
 
 Before calling any API in PixelMap, you must use [image.createPixelMap](#imagecreatepixelmap8) to create a PixelMap object.
 
-To develop an atomic service, use [ImageSoure](#imagesource) to create a PixelMap object.
+To develop an atomic service, use [ImageSource](#imagesource) to create a PixelMap object.
 
 ### Properties
 
