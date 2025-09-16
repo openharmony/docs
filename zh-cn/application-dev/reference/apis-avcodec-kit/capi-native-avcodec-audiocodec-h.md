@@ -77,7 +77,7 @@ OH_AVCodec *OH_AudioCodec_CreateByMime(const char *mime, bool isEncoder)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const char *mime | MIME类型描述字符串，请参阅请参阅[AVCODEC_MIMETYPE](_codec_base.md#变量)。 |
+| const char *mime | MIME类型描述字符串，请参阅[AVCODEC_MIMETYPE](_codec_base.md#变量)。 |
 | bool isEncoder | true表示需要创建编码器，false表示需要创建解码器。 |
 
 **返回：**
