@@ -64,6 +64,7 @@
   - [应用事件打点错误码](errorcode-hiappevent.md)
   - [HiDebug错误码](errorcode-hiviewdfx-hidebug.md)
   - [HiDebug CpuUsage错误码](errorcode-hiviewdfx-hidebug-cpuusage.md)
+  - [HiDebug Trace错误码](errorcode-hiviewdfx-hidebug-trace.md)
   - [HiCollie错误码](errorcode-hiviewdfx-hicollie.md)
   - [JsLeakWatcher错误码](errorcode-jsleakwatcher.md)
     <!--Del-->
