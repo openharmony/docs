@@ -111,7 +111,7 @@ let focusDirection: FocusDirection;
 
 ## ElementAttributeKeys<sup>10+</sup>
 
-type ElementAttributeKeys = keyof ElementAttributeValues;
+type ElementAttributeKeys = keyof ElementAttributeValues
 
 表示[ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)的属性名称。
 
@@ -119,7 +119,7 @@ type ElementAttributeKeys = keyof ElementAttributeValues;
 
 | 类型      |         说明             |
 | ------- | -------------------------------------------------|
-| keyof ElementAttributeValues | 表示[ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)中所有属性名组成的联合类型。 |
+| keyof [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues) | 表示[ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)中所有属性名组成的联合类型。 |
 
 **示例：**
 
