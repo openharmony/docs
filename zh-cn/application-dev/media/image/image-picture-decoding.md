@@ -116,9 +116,10 @@
       ```ts
       import { BusinessError } from '@kit.BasicServicesKit';
       import { image } from '@kit.ImageKit';
+
       // 创建ImageSource，请选择3中合适的方法替换。
-      let fd : number = 0;
-      let imageSource : image.ImageSource = image.createImageSource(fd);
+      let fd: number = 0;
+      let imageSource: image.ImageSource = image.createImageSource(fd);
       // 配置解码选项参数。
       let options: image.DecodingOptionsForPicture = {
         desiredAuxiliaryPictures: [image.AuxiliaryPictureType.GAINMAP] // GAINMAP为需要解码的辅助图类型。
@@ -129,12 +130,12 @@
         let type: image.AuxiliaryPictureType = image.AuxiliaryPictureType.GAINMAP;
         let auxPicture: image.AuxiliaryPicture | null = picture.getAuxiliaryPicture(type);
         // 获取辅助图信息。
-        if(auxPicture != null) {
+        if (auxPicture != null) {
           let auxInfo: image.AuxiliaryPictureInfo = auxPicture.getAuxiliaryPictureInfo();
           console.info('GetAuxiliaryPictureInfo Type: ' + auxInfo.auxiliaryPictureType +
             ' height: ' + auxInfo.size.height + ' width: ' + auxInfo.size.width +
-            ' rowStride: ' +  auxInfo.rowStride +  ' pixelFormat: ' + auxInfo.pixelFormat +
-            ' colorSpace: ' +  auxInfo.colorSpace);
+            ' rowStride: ' + auxInfo.rowStride + ' pixelFormat: ' + auxInfo.pixelFormat +
+            ' colorSpace: ' + auxInfo.colorSpace);
           // 将辅助图数据读到ArrayBuffer。
           auxPicture.readPixelsToBuffer().then((pixelsBuffer: ArrayBuffer) => {
             console.info('Read pixels to buffer success.');
