@@ -53,7 +53,7 @@ getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  volumeManager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+  volumeManager.getAllVolumes().then((volumes: Array<volumeManager.Volume>) => {
     // do something with volumes, which is an array
   }).catch((error: BusinessError) => {
     console.error("getAllVolumes failed");
@@ -94,7 +94,7 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  volumeManager.getAllVolumes((error: BusinessError, volumes: Array<volumemanager.Volume>) => {
+  volumeManager.getAllVolumes((error: BusinessError, volumes: Array<volumeManager.Volume>) => {
     // do something
   });
   ```
@@ -335,7 +335,7 @@ getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
   let uuid: string = "";
-  volumeManager.getVolumeByUuid(uuid).then((volume: volumemanager.Volume) => {
+  volumeManager.getVolumeByUuid(uuid).then((volume: volumeManager.Volume) => {
     console.info("getVolumeByUuid successfully:" + JSON.stringify(volume));
   }).catch((error: BusinessError) => {
     console.error("getVolumeByUuid failed with error:" + JSON.stringify(error));
@@ -379,7 +379,7 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
   ```ts
   import { BusinessError } from '@ohos.base';
   let uuid: string = "";
-  volumeManager.getVolumeByUuid(uuid, (error: BusinessError, volume: volumemanager.Volume) => {
+  volumeManager.getVolumeByUuid(uuid, (error: BusinessError, volume: volumeManager.Volume) => {
     // do something    
   });
   ```
@@ -426,7 +426,7 @@ getVolumeById(volumeId: string): Promise&lt;Volume&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
-  volumeManager.getVolumeById(volumeId).then((volume: volumemanager.Volume) => {
+  volumeManager.getVolumeById(volumeId).then((volume: volumeManager.Volume) => {
     console.info("getVolumeById successfully:" + JSON.stringify(volume));
   }).catch((error: BusinessError) => {
     console.error("getVolumeById failed with error:" + JSON.stringify(error));
@@ -470,7 +470,7 @@ getVolumeById(volumeId: string, callback: AsyncCallback&lt;Volume&gt;): void
   ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
-  volumeManager.getVolumeById(volumeId, (error: BusinessError, volume: volumemanager.Volume) => {
+  volumeManager.getVolumeById(volumeId, (error: BusinessError, volume: volumeManager.Volume) => {
     // do something    
   });
   ```
