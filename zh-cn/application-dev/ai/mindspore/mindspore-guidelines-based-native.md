@@ -484,7 +484,7 @@ struct Index {
         .width('40%')
         .height('5%')
         .onClick(() => {
-
+          let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
           let float32View = new Float32Array(this.modelInputHeight * this.modelInputWidth * 3);
           // 图像输入和预处理。
           // 调用c++的runDemo方法，完成图像输入和预处理后的buffer数据保存在float32View，具体可见上文图像输入和预处理中float32View的定义和处理。
