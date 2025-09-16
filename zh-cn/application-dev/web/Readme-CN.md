@@ -1,4 +1,13 @@
 # ArkWeb（方舟Web）
+<<<<<<< HEAD
+=======
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc-->
+<!--Designer: @ctqctq99-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloShuo-->
+>>>>>>> c6ead2e... 修改web文档adviser
 
 - [ArkWeb简介](web-component-overview.md)
 - [ArkWeb进程](web_component_process.md)
