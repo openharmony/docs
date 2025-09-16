@@ -163,7 +163,7 @@
                 // 从record中获取纯文本类型的Uds对象
                 OH_UdmfRecord_GetPlainText(record, udsText);
                 // 从Uds对象中获取内容
-                const char* content = OH_UdsPlainText_GetContent(udsText)
+                const char* content = OH_UdsPlainText_GetContent(udsText);
                }
            }
            // HTML类型
