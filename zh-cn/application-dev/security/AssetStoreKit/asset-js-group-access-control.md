@@ -16,7 +16,7 @@
 
 ## 前置条件
 
-在应用配置文件app.json5中，配置群组ID，如：demo_group_id。
+在应用配置文件app.json5中，配置群组ID，如：demo_group_id。群组可支持配置多个群组ID。
 
 ```json
 {
