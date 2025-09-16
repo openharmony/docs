@@ -103,7 +103,6 @@ SysCap，全称SystemCapability，即系统能力，指操作系统中每一个�
 - SystemCapability.Notification.CommonEvent
 - SystemCapability.Notification.Notification
 - SystemCapability.Notification.ReminderAgent
-- SystemCapability.Notification.NotificationSettings
 - SystemCapability.Notification.Emitter
 - SystemCapability.Resourceschedule.Ffrt.Core
 - SystemCapability.Ability.Form
