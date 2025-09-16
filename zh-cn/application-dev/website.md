@@ -4206,7 +4206,6 @@
             - [WebSocket_OpenResult](reference/apis-network-kit/capi-netstack-websocket-openresult.md)
             - [WebSocket_Header](reference/apis-network-kit/capi-netstack-websocket-header.md)
             - [WebSocket_RequestOptions](reference/apis-network-kit/capi-netstack-websocket-requestoptions.md)
-            - [WebSocket_RequestOptions](reference/apis-network-kit/capi-netstack-websocket-requestoptions.md)
             - [Http_Buffer](reference/apis-network-kit/capi-netstack-http-buffer.md)
             - [Http_HeaderValue](reference/apis-network-kit/capi-netstack-http-headervalue.md)
             - [Http_HeaderEntry](reference/apis-network-kit/capi-netstack-http-headerentry.md)
