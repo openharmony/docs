@@ -748,7 +748,7 @@ Allows an application to set the trust list of target applications for system sh
 
 With this permission, the application can choose the target applications for system sharing.
 
-<!--RP51--><!--RP51End-->
+<!--RP53--><!--RP53End-->
 
 **Permission level**：system_basic
 
