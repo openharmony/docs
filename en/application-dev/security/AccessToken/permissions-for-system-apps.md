@@ -5123,6 +5123,7 @@ Allows a system application to set the certificate status of independent binary 
 ## ohos.permission.MANAGE_SELF_SKILLS
 
 Allows an application to manage its skills configuration.
+
 With this permission, the application can extend its implicit matching capabilities, such as opening specific file types.
 
 **Permission level**: system_basic
