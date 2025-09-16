@@ -25,6 +25,7 @@ AudioCapturer是音频采集器，用于录制PCM（Pulse Code Modulation）音�
 1. 配置音频采集参数并创建AudioCapturer实例，音频采集参数的详细信息可以查看[AudioCapturerOptions](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiocaptureroptions8)。
 
    > **说明：**
+   >
    > 当设置Mic音频源（即[SourceType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8)为SOURCE_TYPE_MIC、SOURCE_TYPE_VOICE_RECOGNITION、SOURCE_TYPE_VOICE_COMMUNICATION、SOURCE_TYPE_VOICE_MESSAGE、SOURCE_TYPE_LIVE（从API 20开始支持））时，需要申请麦克风权限ohos.permission.MICROPHONE，申请方式参考：[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 
    ```ts
@@ -337,4 +338,5 @@ struct Index {
 ### 回声消除功能
 
 回声消除功能可在支持的平台上有效消除录音过程中的回声干扰，提升音频采集质量。开发者可通过指定特定的Mic音频源[SourceType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8)（如SOURCE_TYPE_VOICE_COMMUNICATION或SOURCE_TYPE_LIVE）来启用该功能，系统将会自动对采集的音频信号进行回声消除处理。
+
 在启用前，建议先调用[isAcousticEchoCancelerSupported](../../reference//apis-audio-kit/arkts-apis-audio-AudioStreamManager.md#isaudioloopbacksupported20)接口查询当前设备对音频输入源类型[SourceType](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8)（从API 20开始支持）是否支持回声消除功能，以确保功能的可用性。若支持，则可在创建音频录制构造器时设置相应的Mic音频源,从而激活回声消除处理流程。
