@@ -12,7 +12,7 @@
 > - 本Interface首批接口从API version 9开始支持。
 
 图像创建模块，用于请求图像数据区域，并开放给应用编译图像数据的能力。
-在调用以下方法前需要先创建ImageCreator实例，ImageCreator不支持多线程。
+在调用以下方法前需要先通过[createImageCreator](arkts-apis-image-f.md#imagecreateimagecreator11)创建ImageCreator实例，ImageCreator不支持多线程。
 
 ## 导入模块
 
@@ -26,7 +26,7 @@ import { image } from '@kit.ImageKit';
 
 | 名称     | 类型                         | 只读 | 可选 | 说明               |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
-| capacity<sup>9+</sup> | number                       | 是   | 否   | 同时访问的图像数。 |
+| capacity<sup>9+</sup> | number                       | 是   | 否   | 同时访问的图像数。该参数仅作为期望值，实际capacity由设备硬件决定。 |
 | format<sup>9+</sup>   | [ImageFormat](arkts-apis-image-e.md#imageformat9) | 是   | 否   | 图像格式。         |
 
 ## dequeueImage<sup>9+</sup>
@@ -48,13 +48,15 @@ dequeueImage(callback: AsyncCallback\<Image>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-creator.dequeueImage((err: BusinessError, img: image.Image) => {
-  if (err) {
-    console.error(`Failed to dequeue the Image.code ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in dequeuing the Image.');
-  }
-});
+async function DequeueImage(creator : image.ImageCreator) {
+  creator.dequeueImage((err: BusinessError, img: image.Image) => {
+    if (err) {
+      console.error(`Failed to dequeue the Image.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in dequeuing the Image.');
+    }
+  });
+}
 ```
 
 ## dequeueImage<sup>9+</sup>
@@ -76,16 +78,18 @@ dequeueImage(): Promise\<Image>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-creator.dequeueImage().then((img: image.Image) => {
-  console.info('Succeeded in dequeuing the Image.');
-}).catch((error: BusinessError) => {
-  console.error(`Failed to dequeue the Image.code ${error.code},message is ${error.message}`);
-})
+async function DequeueImage(creator : image.ImageCreator) {
+  creator.dequeueImage().then((img: image.Image) => {
+    console.info('Succeeded in dequeuing the Image.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to dequeue the Image.code ${error.code},message is ${error.message}`);
+  })
+}
 ```
 
 ## queueImage<sup>9+</sup>
 
-queueImage(interface: Image, callback: AsyncCallback\<void>): void
+queueImage(image: Image, callback: AsyncCallback\<void>): void
 
 将绘制好的图片放入队列，并使用callback返回结果。
 
@@ -95,7 +99,7 @@ queueImage(interface: Image, callback: AsyncCallback\<void>): void
 
 | 参数名        | 类型                     | 必填 | 说明                 |
 | ------------- | -------------------------| ---- | -------------------- |
-| interface     | [Image](arkts-apis-image-Image.md)                    | 是   | 绘制好的buffer图像。 |
+| image     | [Image](arkts-apis-image-Image.md)                    | 是   | 绘制好的buffer图像。 |
 | callback      | AsyncCallback\<void>     | 是   | 回调函数，当将图片放入队列成功，err为undefined，否则为错误对象。  |
 
 **示例：**
@@ -103,30 +107,32 @@ queueImage(interface: Image, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-creator.dequeueImage().then((img: image.Image) => {
-  //绘制图片。
-  img.getComponent(4).then((component : image.Component) => {
-    let bufferArr: Uint8Array = new Uint8Array(component.byteBuffer);
-    for (let i = 0; i < bufferArr.length; i += 4) {
-      bufferArr[i] = 0; //B
-      bufferArr[i + 1] = 0; //G
-      bufferArr[i + 2] = 255; //R
-      bufferArr[i + 3] = 255; //A
-    }
+async function QueueImage(creator : image.ImageCreator) {
+  creator.dequeueImage().then((img: image.Image) => {
+    // 绘制图片。
+    img.getComponent(4).then((component : image.Component) => {
+      let bufferArr: Uint8Array = new Uint8Array(component.byteBuffer);
+      for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 0; // B
+        bufferArr[i + 1] = 0; // G
+        bufferArr[i + 2] = 255; // R
+        bufferArr[i + 3] = 255; // A
+      }
+    })
+    creator.queueImage(img, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to queue the Image.code ${err.code},message is ${err.message}`);
+      } else {
+        console.info('Succeeded in queuing the Image.');
+      }
+    })
   })
-  creator.queueImage(img, (err: BusinessError) => {
-    if (err) {
-      console.error(`Failed to queue the Image.code ${err.code},message is ${err.message}`);
-    } else {
-      console.info('Succeeded in queuing the Image.');
-    }
-  })
-})
+}
 ```
 
 ## queueImage<sup>9+</sup>
 
-queueImage(interface: Image): Promise\<void>
+queueImage(image: Image): Promise\<void>
 
 将绘制好的图片放入队列，并使用promise返回结果。
 
@@ -136,7 +142,7 @@ queueImage(interface: Image): Promise\<void>
 
 | 参数名          | 类型     | 必填 | 说明                |
 | ------------- | --------| ---- | ------------------- |
-| interface     | [Image](arkts-apis-image-Image.md)   | 是   | 绘制好的buffer图像。 |
+| image     | [Image](arkts-apis-image-Image.md)   | 是   | 绘制好的buffer图像。 |
 
 **返回值：**
 
@@ -149,24 +155,25 @@ queueImage(interface: Image): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-creator.dequeueImage().then((img: image.Image) => {
-  //绘制图片。
-  img.getComponent(4).then((component: image.Component) => {
-    let bufferArr: Uint8Array = new Uint8Array(component.byteBuffer);
-    for (let i = 0; i < bufferArr.length; i += 4) {
-      bufferArr[i] = 0; //B
-      bufferArr[i + 1] = 0; //G
-      bufferArr[i + 2] = 255; //R
-      bufferArr[i + 3] = 255; //A
-    }
+async function QueueImage(creator : image.ImageCreator) {
+  creator.dequeueImage().then((img: image.Image) => {
+    // 绘制图片。
+    img.getComponent(4).then((component: image.Component) => {
+      let bufferArr: Uint8Array = new Uint8Array(component.byteBuffer);
+      for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 0; // B
+        bufferArr[i + 1] = 0; // G
+        bufferArr[i + 2] = 255; // R
+        bufferArr[i + 3] = 255; // A
+      }
+    })
+    creator.queueImage(img).then(() => {
+      console.info('Succeeded in queuing the Image.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to queue the Image.code ${error.code},message is ${error.message}`);
+    })
   })
-  creator.queueImage(img).then(() => {
-    console.info('Succeeded in queuing the Image.');
-  }).catch((error: BusinessError) => {
-    console.error(`Failed to queue the Image.code ${error.code},message is ${error.message}`);
-  })
-})
-
+}
 ```
 
 ## on<sup>9+</sup>
@@ -189,13 +196,15 @@ on(type: 'imageRelease', callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-creator.on('imageRelease', (err: BusinessError) => {
-  if (err) {
-    console.error(`Failed to get the imageRelease callback.code ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in getting imageRelease callback.');
-  }
-})
+async function On(creator : image.ImageCreator) {
+  creator.on('imageRelease', (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to get the imageRelease callback.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in getting imageRelease callback.');
+    }
+  })
+}
 ```
 
 ## off<sup>13+</sup>
@@ -216,11 +225,13 @@ off(type: 'imageRelease', callback?: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-let callbackFunc = ()=>{
-    // do something.
+async function Off(creator : image.ImageCreator) {
+  let callbackFunc = ()=>{
+      // 实现回调函数逻辑。
+  }
+  creator.on('imageRelease', callbackFunc)
+  creator.off('imageRelease', callbackFunc)
 }
-creator.on('imageRelease', callbackFunc)
-creator.off('imageRelease', callbackFunc)
 ```
 
 ## release<sup>9+</sup>
@@ -244,13 +255,15 @@ ArkTS有内存回收机制，ImageCreator对象不调用release方法，内存�
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-creator.release((err: BusinessError) => {
-  if (err) {
-    console.error(`Failed to release the creator.code ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in releasing creator.');
-  }
-});
+async function Release(creator : image.ImageCreator) {
+  creator.release((err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to release the creator.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in releasing creator.');
+    }
+  });
+}
 ```
 
 ## release<sup>9+</sup>
@@ -274,9 +287,11 @@ ArkTS有内存回收机制，ImageCreator对象不调用release方法，内存�
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-creator.release().then(() => {
-  console.info('Succeeded in releasing creator.');
-}).catch((error: BusinessError) => {
-  console.error(`Failed to release the creator.code ${error.code},message is ${error.message}`);
-})
+async function Release(creator : image.ImageCreator) {
+  creator.release().then(() => {
+    console.info('Succeeded in releasing creator.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to release the creator.code ${error.code},message is ${error.message}`);
+  })
+}
 ```

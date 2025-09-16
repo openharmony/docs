@@ -1,4 +1,10 @@
 # avtranscoder_base.h
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
@@ -34,7 +40,7 @@ The file declares the struct and enums used by the AVTranscoder.
 | Name| typedef Keyword| Description|
 | -- | -- | -- |
 | [typedef void (\*OH_AVTranscoder_OnStateChange)(OH_AVTranscoder *transcoder, OH_AVTranscoder_State state, void *userData)](#oh_avtranscoder_onstatechange) | OH_AVTranscoder_OnStateChange | Defines a callback invoked when the state of the transcoding process changes.|
-| [typedef void (\*OH_AVTranscoder_OnError)(OH_AVTranscoder *transcoder, int32_t errorCode, const char *errorMsg,void *userData)](#oh_avtranscoder_onerror) | OH_AVTranscoder_OnError | Defines a callback invoked when an error occurs during the transcoding process.|
+| [typedef void (\*OH_AVTranscoder_OnError)(OH_AVTranscoder *transcoder, int32_t errorCode, const char *errorMsg, void *userData)](#oh_avtranscoder_onerror) | OH_AVTranscoder_OnError | Defines a callback invoked when an error occurs during the transcoding process.|
 | [typedef void (\*OH_AVTranscoder_OnProgressUpdate)(OH_AVTranscoder *transcoder, int32_t progress, void *userData)](#oh_avtranscoder_onprogressupdate) | OH_AVTranscoder_OnProgressUpdate | Defines a callback invoked when the progress of the transcoding process is updated.|
 
 ## Enum Description

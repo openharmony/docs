@@ -1,32 +1,38 @@
 # \@Local Decorator: Representing the Internal State of Components
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 You can use \@Local, a variable decorator in state management V2, to observe the variable changes in custom components decorated by \@ComponentV2.
-
 
 Before reading this topic, you are advised to read [\@ComponentV2](./arkts-new-componentV2.md).
 
 >**NOTE**
 >
->The \@Local decorator is supported since API version 12.
+> The \@Local decorator is supported since API version 12.
 >
+> This decorator can be used in atomic services since API version 12.
 
 ## Overview
 
-\@Local indicates the internal state of a component, which enables the variables in the custom component to observe changes:
+\@Local establishes the internal state of custom components with change observation capabilities.
 
-- Variables decorated by \@Local cannot be initialized externally. They must be initialized inside the component.
+- Variables decorated by \@Local must be initialized inside the component declaration. They cannot be initialized externally..
 
 - When a variable decorated by \@Local changes, the component that uses the variable is re-rendered.
 
-- \@Local can observe basic types such as number, boolean, string, object, and class and built-in types such as Array, Set, Map, and Date.
+- \@Local supports the following types: Primitive types: number, boolean, string<br>Object types: object, class<br>Built-in types: [Array](#decorating-variables-of-the-array-type), [Set](#decorating-variables-of-the-set-type), [Map](#decorating-variables-of-the-map-type), [Date](#decorating-variables-of-the-date-type)
 
-- \@Local can observe only the variable it decorates. If the decorated variable is of the simple type, it can observe value changes to the variable; if the decorated variable is of the object type, it can observe value changes to the entire object; if the decorated variable is of the array type, it can observe changes of the entire array and its items; if the decorated variable is of the built-in types, such as Array, Set, Map, and Date, it can observe changes caused by calling the APIs. For details, see [Observed Changes](#observed-changes).
+- \@Local can observe only the variable it decorates. If the decorated variable is of the primitive type, it can observe value changes to the variable; if the decorated variable is of the object type, it can observe value changes to the entire object; if the decorated variable is of the array type, it can observe changes of the entire array and its items; if the decorated variable is of the built-in types, such as Array, Set, Map, and Date, it can observe changes caused by calling the APIs. For details, see [Observed Changes](#observed-changes).
 
-- \@Local supports null, undefined, and union types.
+- \@Local supports **null**, **undefined**, and [union types](#decorating-variables-of-the-union-type).
 
-## Limitations of the \@State decorator in State Management V1
+## Limitations of the \@State Decorator in State Management V1
 
-State management V1 uses the [\@State](arkts-state.md) decorator to define state variables in a class. However, because the \@State decorator allows variables to be initialized externally, it cannot accurately express the semantics that the internal state of the component cannot be modified externally.
+In state management V1, the [\@State decorator](arkts-state.md) is used to define basic state variables within components. While these variables are typically used as internal state of components, their design presents a critical limitation: \@State decorated variables can be initialized externally, which means there is no guarantee their initial values will match the component's internal definitions. This creates potential inconsistencies in component state management.
 
 ```ts
 class ComponentInfo {
@@ -41,7 +47,7 @@ class ComponentInfo {
 }
 @Component
 struct Child {
-  @State componentInfo: ComponentInfo = new ComponentInfo("Child", 1, "Hello World");
+  @State componentInfo: ComponentInfo = new ComponentInfo('Child', 1, 'Hello World'); // componentInfo provided by the parent component will override this initial value.
 
   build() {
     Column() {
@@ -54,13 +60,13 @@ struct Child {
 struct Index {
   build() {
     Column() {
-      Child({componentInfo: new ComponentInfo("Unknown", 0, "Error")})
+      Child({componentInfo: new ComponentInfo('Unknown', 0, 'Error')})
     }
   }
 }
 ```
 
-In the preceding code, the initialization of the **Child** component can pass in a new value to overwrite the local value of **componentInfo** that the component wants to use as an internal state variable. However, the **Child** component cannot detect that **componentInfo** has been initialized externally, which is inconvenient for managing the internal state of the component. This is where \@Local, a decorator that represents the internal state of components, comes into the picture.
+In the preceding code, the \@State decorated **componentInfo** variable in the **Child** component can be overridden during initialization through parameter passing by the parent component. However, the **Child** component remains unaware that its supposedly "internal" state has been modified externally�a scenario that complicates state management within components. This is where \@Local, a decorator that represents the internal state of components, comes into the picture.
 
 ## Decorator Description
 
@@ -72,10 +78,10 @@ In the preceding code, the initialization of the **Child** component can pass in
 
 ## Variable Passing
 
-| Passing Rules      | Description                                                     |
-| -------------- | --------------------------------------------------------- |
-| Initialization from the parent component| Variables decorated by \@Local can only be initialized locally.|
-| Child component initialization  | Variables decorated by \@Local can initialize variables decorated by \@Param in the child components.   |
+| Behavior      | Description                                                        |
+| -------------- | ------------------------------------------------------------ |
+| Initialization from the parent component| Variables decorated by \@Local can only be initialized locally.   |
+| Child component initialization  | Variables decorated by \@Local can initialize variables decorated by [\@Param](arkts-new-param.md) in child components.|
 
 ## Observed Changes
 
@@ -88,18 +94,18 @@ Variables decorated by \@Local are observable. When a decorated variable changes
   @ComponentV2
   struct Index {
     @Local count: number = 0;
-    @Local message: string = "Hello";
+    @Local message: string = 'Hello';
     @Local flag: boolean = false;
     build() {
       Column() {
         Text(`${this.count}`)
         Text(`${this.message}`)
         Text(`${this.flag}`)
-        Button("change Local")
+        Button('change Local')
           .onClick(()=>{
-            // When @Local decorates a simple type, it can observe value changes to the variable.
+            // For variables of primitive types, @Local can observe value changes to variables.
             this.count++;
-            this.message += " World";
+            this.message += ' World';
             this.flag = !this.flag;
         })
       }
@@ -107,7 +113,7 @@ Variables decorated by \@Local are observable. When a decorated variable changes
   }
   ```
 
-- When the decorated variable is of a class object type, only the overall value changes to the class object can be observed. To observe value changes to the member properties in the class object, you'll need the \@ObservedV2 and \@Trace decorators. Note that \@Local cannot be used together with the instance objects of the \@Observed decorated class.
+- When \@Local is used to decorate a variable of the class object type, only changes to the overall assignment of the class object can be observed. Direct observation of changes to class member property assignments is not supported. Observing class member properties requires the [\@ObservedV2](arkts-new-observedV2-and-trace.md) and [\@Trace](arkts-new-observedV2-and-trace.md) decorators. Note that before API version 19, \@Local cannot be used with class instance objects decorated by [\@Observed](./arkts-observed-and-objectlink.md). Since from API version 19, partial mixed usage of state management V1 and V2 is supported, allowing \@Local and \@Observed to be used together. For details, see [Mixing Use of State Management V1 and V2](../state-management/arkts-v1-v2-mixusage.md).
 
     ```ts
     class RawObject {
@@ -126,38 +132,38 @@ Variables decorated by \@Local are observable. When a decorated variable changes
     @Entry
     @ComponentV2
     struct Index {
-      @Local rawObject: RawObject = new RawObject("rawObject");
-      @Local observedObject: ObservedObject = new ObservedObject("observedObject");
+      @Local rawObject: RawObject = new RawObject('rawObject');
+      @Local observedObject: ObservedObject = new ObservedObject('observedObject');
       build() {
         Column() {
           Text(`${this.rawObject.name}`)
           Text(`${this.observedObject.name}`)
-          Button("change object")
+          Button('change object')
             .onClick(() => {
-              // Value changes to the class object can be observed.
-              this.rawObject = new RawObject("new rawObject");
-              this.observedObject = new ObservedObject("new observedObject");
+              // Changes to the overall assignment of the class object can be observed.
+              this.rawObject = new RawObject('new rawObject');
+              this.observedObject = new ObservedObject('new observedObject');
           })
-          Button("change name")
+          Button('change name')
             .onClick(() => {
-              // @Local does not have the capability of observing class object property. Therefore, value changes of rawObject.name cannot be observed.
-              this.rawObject.name = "new rawObject name";
+              // @Local does not support observation of changes to class member property assignments. Therefore, value changes of rawObject.name cannot be observed.
+              this.rawObject.name = 'new rawObject name';
               // The name property of ObservedObject is decorated by @Trace. Therefore, value changes of observedObject.name can be observed.
-              this.observedObject.name = "new observedObject name";
+              this.observedObject.name = 'new observedObject name';
           })
         }
       }
     }
     ```
 
-- When the decorated variable is of a simple array type, changes of the entire array or its items can be observed.
+- When @Local is used to decorate an array of a primitive type, changes to both the entire array and individual array items can be observed.
 
     ```ts
     @Entry
     @ComponentV2
     struct Index {
-      @Local numArr: number[] = [1,2,3,4,5];
-      @Local dimensionTwo: number[][] = [[1,2,3],[4,5,6]];
+      @Local numArr: number[] = [1,2,3,4,5];  // @Local decorated 1D array
+      @Local dimensionTwo: number[][] = [[1,2,3],[4,5,6]]; // @Local decorated 2D array
     
       build() {
         Column() {
@@ -166,14 +172,14 @@ Variables decorated by \@Local are observable. When a decorated variable changes
           Text(`${this.numArr[2]}`)
           Text(`${this.dimensionTwo[0][0]}`)
           Text(`${this.dimensionTwo[1][1]}`)
-          Button("change array item")
+          Button('change array item') // Button 1: modifies specific elements in the array.
             .onClick(() => {
               this.numArr[0]++;
               this.numArr[1] += 2;
               this.dimensionTwo[0][0] = 0;
               this.dimensionTwo[1][1] = 0;
             })
-          Button("change whole array")
+          Button('change whole array') // Button 2: replaces the entire array.
             .onClick(() => {
               this.numArr = [5,4,3,2,1];
               this.dimensionTwo = [[7,8,9],[0,1,2]];
@@ -183,7 +189,7 @@ Variables decorated by \@Local are observable. When a decorated variable changes
     }
     ```
     
-- When the decorated variable is of a nested type or an object array, changes of lower-level object properties cannot be observed. Observation of these lower-level object properties requires use of \@ObservedV2 and \@Trace decorators.
+- When \@Local is used to decorate a nested class or object array, changes of lower-level object properties cannot be observed. Observation of these lower-level object properties requires use of \@ObservedV2 and \@Trace decorators.
 
   ```ts
   @ObservedV2
@@ -207,8 +213,8 @@ Variables decorated by \@Local are observable. When a decorated variable changes
   @Entry
   @ComponentV2
   struct Index {
-    @Local infoArr: Info[] = [new Info("Ocean", 28, 120), new Info("Mountain", 26, 20)];
-    @Local originInfo: Info = new Info("Origin", 0, 0);
+    @Local infoArr: Info[] = [new Info('Ocean', 28, 120), new Info('Mountain', 26, 20)];
+    @Local originInfo: Info = new Info('Origin', 0, 0);
     build() {
       Column() {
         ForEach(this.infoArr, (info: Info) => {
@@ -221,17 +227,17 @@ Variables decorated by \@Local are observable. When a decorated variable changes
             Text(`Origin name: ${this.originInfo.name}`)
             Text(`Origin region: ${this.originInfo.region.x}-${this.originInfo.region.y}`)
         }
-        Button("change infoArr item")
+        Button('change infoArr item')
           .onClick(() => {
             // Because the name property is decorated by @Trace, it can be observed.
-            this.infoArr[0].name = "Win";
+            this.infoArr[0].name = 'Win';
           })
-        Button("change originInfo")
+        Button('change originInfo')
           .onClick(() => {
             // Because the originInfo variable is decorated by @Local, it can be observed.
-            this.originInfo = new Info("Origin", 100, 100);
+            this.originInfo = new Info('Origin', 100, 100);
           })
-        Button("change originInfo region")
+        Button('change originInfo region')
           .onClick(() => {
             // Because the x and y properties are decorated by @Trace, it can be observed.
             this.originInfo.region.x = 25;
@@ -242,11 +248,11 @@ Variables decorated by \@Local are observable. When a decorated variable changes
   }
   ```
 
-- When the decorated variable is of a built-in type, you can observe the overall value changes of the variable and the changes caused by calling the APIs listed below. 
+- When \@Local is used to decorate a variable of a built-in type, changes caused by both variable reassignment and API calls can be observed.
 
-  | Type | Observable APIs                                             |
+  | Type | Change-Triggering API                                             |
   | ----- | ------------------------------------------------------------ |
-  | Array | push, pop, shift, unshift, splice, copyWithin, fill, reverse, sort|
+  | Array | push, pop, shift, unshift, splice, copyWithin, fill, reverse, sort |
   | Date  | setFullYear, setMonth, setDate, setHours, setMinutes, setSeconds, setMilliseconds, setTime, setUTCFullYear, setUTCMonth, setUTCDate, setUTCHours, setUTCMinutes, setUTCSeconds, setUTCMilliseconds |
   | Map   | set, clear, delete                                           |
   | Set   | add, clear, delete                                           |
@@ -255,50 +261,50 @@ Variables decorated by \@Local are observable. When a decorated variable changes
 
 The \@Local decorator has the following constraints:
 
-- The \@Local decorator can be used only in custom components decorated by \@ComponentV2.
+- \@Local can be used only in custom components decorated by [\@ComponentV2](arkts-new-componentV2.md).
 
   ```ts
   @ComponentV2
   struct MyComponent {
-    @Local message: string = "Hello World"; // Correct usage.
+    @Local message: string = 'Hello World'; // Correct usage.
     build() {
     }
   }
   @Component
   struct TestComponent {
-    @Local message: string = "Hello World"; // Incorrect usage. An error is reported during compilation.
+    @Local message: string = 'Hello World'; // Incorrect usage. An error is reported at compile time.
     build() {
     }
   }
   ```
 
-- The variable decorated by \@Local indicates the internal state of the component and cannot be initialized externally.
+- \@Local decorated variables represent internal state of components and cannot be initialized externally.
 
   ```ts
   @ComponentV2
   struct ChildComponent {
-    @Local message: string = "Hello World";
+    @Local message: string = 'Hello World';
     build() {
     }
   }
   @ComponentV2
   struct MyComponent {
     build() {
-      ChildComponent({ message: "Hello" }) // Incorrect usage. An error is reported during compilation.
+      ChildComponent({ message: 'Hello' }) // Incorrect usage. An error is reported at compile time.
     }
   }
   ```
 
 ## Comparison Between \@Local and \@State
 
-The following table compares the usage and functions of \@Local and \@State.
+The following table compares the usage and functionality of \@Local and \@State.
 
 |                    | \@State                      | \@Local                         |
 | ------------------ | ---------------------------- | --------------------------------- |
-| Parameter              | None.                         | None.                      |
-| Initialization from the parent component        | Optional.                 | External initialization is not allowed.          |
-| Observation capability| Variables and top-level member properties can be observed, but lower-level member properties cannot.| The variable itself can be observed. Lower-level observation requires use of \@Trace decorator.|
-| Data Transfer| It can be used as a data source to synchronize with the state variables in a child component.| It can be used as a data source to synchronize with the state variables in a child component.|
+| Feature              | None.                         | None.                      |
+| Initialization from the parent component        | Optional.                 | Not allowed.          |
+| Observation capability| Variables and top-level member properties can be observed, but lower-level member properties cannot.| The variable itself can be observed. Lower-level observation requires use of the \@Trace decorator.|
+| Data transfer| It can be used as a data source to synchronize with the state variables in a child component.| It can be used as a data source to synchronize with the state variables in a child component.|
 
 ## Use Scenarios
 
@@ -319,50 +325,88 @@ class Info {
 @Entry
 @ComponentV2
 struct Index {
-  info: Info = new Info("Tom", 25);
-  @Local localInfo: Info = new Info("Tom", 25);
+  info: Info = new Info('Tom', 25);
+  @Local localInfo: Info = new Info('Tom', 25);
   build() {
     Column() {
       Text(`info: ${this.info.name}-${this.info.age}`) // Text1
       Text(`localInfo: ${this.localInfo.name}-${this.localInfo.age}`) // Text2
-      Button("change info&localInfo")
+      Button('change info&localInfo')
         .onClick(() => {
-          this.info = new Info("Lucy", 18); // Text1 is not updated.
-          this.localInfo = new Info("Lucy", 18); // Text2 is updated.
+          this.info = new Info('Lucy', 18); // Text1 is not updated.
+          this.localInfo = new Info('Lucy', 18); // Text2 is updated.
       })
     }
   }
 }
 ```
 
+### Decorating Variables of the Array Type
+
+When the decorated object is of the **Array** type, the following can be observed: (1) complete array reassignment; (2) array item changes caused by calling **push**, **pop**, **shift**, **unshift**, **splice**, **copyWithin**, **fill**, **reverse**, or **sort**.
+
+```ts
+@Entry
+@ComponentV2
+struct Index {
+  @Local count: number[] = [1,2,3];
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(this.count, (item: number) => {
+          Text(`${item}`).fontSize(30)
+          Divider()
+        })
+        Button('init array').onClick(() => {
+          this.count = [9,8,7];
+        })
+        Button('push').onClick(() => {
+          this.count.push(0);
+        })
+        Button('reverse').onClick(() => {
+          this.count.reverse();
+        })
+        Button('fill').onClick(() => {
+          this.count.fill(6);
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+
+
 ### Decorating Variables of the Date Type
 
-When the decorated object is of the **Date** type, the overall value changes of **Date** can be observed. In addition, you can call the following APIs to update **Date** properties: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**.
+When the decorated object is of the **Date** type, the following changes can be observed: (1) complete **Date** object reassignment; (2) property changes caused by calling **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, or **setUTCMilliseconds**.
 
 ```ts
 @Entry
 @ComponentV2
 struct DatePickerExample {
-  @Local selectedDate: Date = new Date('2021-08-08');
+  @Local selectedDate: Date = new Date('2021-08-08'); // @Local decorated Date object
 
   build() {
     Column() {
-      Button('set selectedDate to 2023-07-08')
+      Button('set selectedDate to 2023-07-08') // Button 1: updates the date by creating an object.
         .margin(10)
         .onClick(() => {
           this.selectedDate = new Date('2023-07-08');
         })
-      Button('increase the year by 1')
+      Button('increase the year by 1') // Button 2: increases the year by 1.
         .margin(10)
         .onClick(() => {
           this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
         })
-      Button('increase the month by 1')
-        .margin(10)
+      Button('increase the month by 1') // Button 3: increases the month by 1.
         .onClick(() => {
           this.selectedDate.setMonth(this.selectedDate.getMonth() + 1);
         })
-      Button('increase the day by 1')
+      Button('increase the day by 1') // Button 4: increases the date by 1.
         .margin(10)
         .onClick(() => {
           this.selectedDate.setDate(this.selectedDate.getDate() + 1);
@@ -379,35 +423,35 @@ struct DatePickerExample {
 
 ### Decorating Variables of the Map Type
 
-When the decorated object is of the **Map** type, the overall value changes of **Map** can be observed. In addition, you can call the set, clear, and delete interfaces to update the data in **Map**.
+When the decorated object is of the **Map** type, the following changes can be observed: (1) complete **Map** object reassignment; (2) changes caused by calling **set**, **clear**, or **delete**.
 
 ```ts
 @Entry
 @ComponentV2
 struct MapSample {
-  @Local message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+  @Local message: Map<number, string> = new Map([[0, 'a'], [1, 'b'], [3, 'c']]); // @Local decorated Map object
 
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+        ForEach(Array.from(this.message.entries()), (item: [number, string]) => { // Iterate over the key-value pairs of the Map object and render the UI.
           Text(`${item[0]}`).fontSize(30)
           Text(`${item[1]}`).fontSize(30)
           Divider()
         })
-        Button('init map').onClick(() => {
-          this.message = new Map([[0, "a"], [1, "b"], [3, "c"]]);
+        Button('init map').onClick(() => { // Button 1: resets the Map object to its initial state.
+          this.message = new Map([[0, 'a'], [1, 'b'], [3, 'c']]);
         })
-        Button('set new one').onClick(() => {
-          this.message.set(4, "d");
+        Button('set new one').onClick(() => { // Button 2: adds a key-value pair (4, "d").
+          this.message.set(4, 'd');
         })
-        Button('clear').onClick(() => {
+        Button('clear').onClick(() => { // Button 3: clears the Map object.
           this.message.clear();
         })
-        Button('replace the first one').onClick(() => {
-          this.message.set(0, "aa");
+        Button('replace the first one').onClick(() => { // Button 4: updates or adds the element with key 0.
+          this.message.set(0, 'aa');
         })
-        Button('delete the first one').onClick(() => {
+        Button('delete the first one').onClick(() => { // Button 5: deletes the element with key 0.
           this.message.delete(0);
         })
       }
@@ -420,7 +464,7 @@ struct MapSample {
 
 ### Decorating Variables of the Set Type
 
-When the decorated object is **Set**, the overall value changes of **Set** can be observed. In addition, you can call the add, clear, and delete interfaces to update the data in **Set**.
+When the decorated object is of the **Set** type, the following changes can be observed: (1) complete **Set** object reassignment; (2) changes caused by calling **add**, **clear**, or **delete**.
 
 ```ts
 @Entry
@@ -431,20 +475,20 @@ struct SetSample {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+        ForEach(Array.from(this.message.entries()), (item: [number, string]) => { // Iterate over the key-value pairs of the Set object and render the UI.
           Text(`${item[0]}`).fontSize(30)
           Divider()
         })
-        Button('init set').onClick(() => {
+        Button('init set').onClick(() => { // Button 1: updates the Set object to its initial state.
           this.message = new Set([0, 1, 2, 3, 4]);
         })
-        Button('set new one').onClick(() => {
+        Button('set new one').onClick(() => { // Button 2: adds element 5.
           this.message.add(5);
         })
-        Button('clear').onClick(() => {
+        Button('clear').onClick(() => { // Button 3: clears the Set object.
           this.message.clear();
         })
-        Button('delete the first one').onClick(() => {
+        Button('delete the first one').onClick(() => { // Button 4: deletes element 0.
           this.message.delete(0);
         })
       }
@@ -455,24 +499,24 @@ struct SetSample {
 }
 ```
 
-### Union Type
+### Decorating Variables of the Union Type
 
-\@Local supports null, undefined, and union types. In the following example, the **count** type is **number | undefined**. If you click to change the **count** type, the UI will be re-rendered accordingly.
+\@Local supports **null**, **undefined**, and union types. In the following example, **count** is of the **number | undefined** type. Clicking the buttons to change the type of **count** will trigger UI re-rendering.
 
 ```ts
 @Entry
 @ComponentV2
 struct Index {
-  @Local count: number | undefined = 10;
+  @Local count: number | undefined = 10; // @Local decorated variable of the union type
 
   build() {
     Column() {
       Text(`count(${this.count})`)
-      Button("change to undefined")
+      Button('change to undefined') // Button 1: sets count to undefined.
         .onClick(() => {
           this.count = undefined;
         })
-      Button("change to number")
+      Button('change to number') // Button 2: updates count to number 10.
         .onClick(() => {
           this.count = 10;
       })
@@ -483,7 +527,7 @@ struct Index {
 
 ## FAQs
 
-### Repeated Value Changes to State Variables by Complex Constants Trigger Re-rendering
+### Repeated Assignment of Complex Type Constants to State Variables Triggers Re-rendering
 
 ```ts
 @Entry
@@ -492,9 +536,9 @@ struct Index {
   list: string[][] = [['a'], ['b'], ['c']];
   @Local dataObjFromList: string[] = this.list[0];
 
-  @Monitor("dataObjFromList")
+  @Monitor('dataObjFromList')
   onStrChange(monitor: IMonitor) {
-    console.log("dataObjFromList has changed");
+    console.info('dataObjFromList has changed');
   }
 
   build() {
@@ -508,11 +552,11 @@ struct Index {
 }
 ```
 
-In the preceding example, each time you click Button('change to self'), the same constant of the **Array** type is assigned to a state variable of the same type, triggering re-rendering. This is because in state management V2, a proxy is added to Date, Map, Set, and Array that use state variable decorators such as @Trace and @Local to observe changes invoked by APIs. 
-**dataObjFromList** is of a **Proxy** type but **list[0]** is of an **Array** type. As a result, when **list[0]** is assigned to **dataObjFromList**, the value changes trigger re-rendering. 
-To avoid unnecessary value changes and re-renders, use [UIUtils.getTarget()](./arkts-new-getTarget.md) to obtain the original value and determine whether the original and new values are the same. If they are the same, do not perform value changes.
+In the preceding example, every time the **Button('change to self')** component is clicked, assigning the same constant of type Array to a state variable of type Array triggers UI re-rendering. This is because in state management V2, a proxy is added to variables of the Date, Map, Set, and Array type decorated with state variable decorators, such as @Trace and @Local, to observe changes caused by API calls. 
+When **list[0]** is reassigned, **dataObjFromList** is already of type Proxy, while **list[0]** is of type Array. Due to the type mismatch, the assignment and re-rendering are triggered.
+To avoid unnecessary assignments and re-renders, use [UIUtils.getTarget()](./arkts-new-getTarget.md) to obtain the original value and compare it with the new value. If they are the same, skip the assignment.
 
-Example of Using **UIUtils.getTarget()**
+Example of using **UIUtils.getTarget()**:
 
 ```ts
 import { UIUtils } from '@ohos.arkui.StateManagement';
@@ -523,9 +567,9 @@ struct Index {
   list: string[][] = [['a'], ['b'], ['c']];
   @Local dataObjFromList: string[] = this.list[0];
 
-  @Monitor("dataObjFromList")
+  @Monitor('dataObjFromList')
   onStrChange(monitor: IMonitor) {
-    console.log("dataObjFromList has changed");
+    console.info('dataObjFromList has changed');
   }
 
   build() {
@@ -562,7 +606,7 @@ struct Index {
           this.w = 100;
           this.h = 100;
           this.message = 'Hello World';
-          animateTo({
+          this.getUIContext().animateTo({
             duration: 1000
           }, () => {
             this.w = 200;
@@ -581,7 +625,7 @@ struct Index {
 }
 ```
 
-In the preceding code, the length and width of the green rectangle are expected to change from **100** to **200** and the string is expected to change from **Hello World** to **Hello ArkUI**. However, **animateTo** is incompatible with V2 in the refresh mechanism. Therefore, the extra change does not take effect. As a result, the length and width of the green rectangle actually change from **50** to **200** and the string changes from **Hello** to **Hello ArkUI**.
+In the above code, the expected animation effect is as follows: The green rectangle transitions from 100 x 100 to 200 x 200, and the text changes from **Hello World** to **Hello ArkUI**. However, due to the current incompatibility between **animateTo** and state management V2's update mechanism, the additional modifications before the animation do not take effect. The actual animation effect is as follows: The green rectangle transitions from 50 x 50 to 200 x 200, and the text changes from **Hello** to **Hello ArkUI**.
 
 ![arkts-new-local-animateTo-1](figures/arkts-new-local-animateTo-1.gif)
 
@@ -594,7 +638,7 @@ struct Index {
   @Local w: number = 50; // Width.
   @Local h: number = 50; // Height.
   @Local message: string = 'Hello';
-
+  
   build() {
     Column() {
       Button('change size')
@@ -608,7 +652,7 @@ struct Index {
             duration: 0
           }, () => {
           })
-          animateTo({
+          this.getUIContext().animateTo({
             duration: 1000
           }, () => {
             this.w = 200;
@@ -627,8 +671,6 @@ struct Index {
 }
 ```
 
-Use [animateToImmediately](../../reference/apis-arkui/arkui-ts/ts-explicit-animatetoimmediately.md) whose **duration** is **0** to refresh the extra change and then execute the original animation to achieve the expected effect.
+Use [animateToImmediately](../../reference/apis-arkui/arkui-ts/ts-explicit-animatetoimmediately.md) with **duration** of **0** to apply the additional modifications and then execute the original animation to achieve the expected effect.
 
 ![arkts-new-local-animateTo-2](figures/arkts-new-local-animateTo-2.gif)
-
-You are advised to use the **animateTo** API with caution in state management V2.

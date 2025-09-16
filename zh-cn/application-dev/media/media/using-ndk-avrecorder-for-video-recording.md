@@ -270,7 +270,9 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
    OHNativeWindow *window = nullptr;
    int resultCode = OH_AVRecorder_GetInputSurface(g_avRecorder, &window);
    uint64_t surfaceId = 0;
-   OH_NativeWindow_GetSurfaceId(window, &surfaceId);
+   if (resultCode == AV_ERR_OK && window != nullptr) {
+      OH_NativeWindow_GetSurfaceId(window, &surfaceId);
+   }
    ```
 
 5. 初始化视频数据输入源。该步骤需要在输入源模块完成，以相机为例，需要创建录像输出流，包括创建Camera对象、获取相机列表、创建相机输入流等，相机详细步骤请参考[相机-录像方案](../camera/native-camera-recording.md)。

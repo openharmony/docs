@@ -22,8 +22,8 @@
    #include <cstdint>
    #include <cstdlib>
    #include <cstring>
-   #include <string.h>
    #include <memory>
+   #include <mutex>
    #include "hilog/log.h"
    #include "napi/native_api.h"
    #include <ohcamera/camera.h>
@@ -91,6 +91,7 @@
    
    // 方式二：调用媒体库接口请求图像资源。
    // 图像源准备就绪时调用。
+   std::mutex g_mediaAssetMutex;
    OH_MediaAsset* g_mediaAsset_;
    void OnImageDataPrepared(MediaLibrary_ErrorCode result, MediaLibrary_RequestId requestId,
                             MediaLibrary_MediaQuality mediaQuality, MediaLibrary_MediaContentType type,
@@ -127,9 +128,10 @@
        auto buffer = std::make_unique<uint8_t[]>(bufferSize);
        imageErr = OH_ImagePackerNative_PackToDataFromPixelmap(imagePacker, options, pixelmapNative, buffer.get(), &bufferSize);
        OH_LOG_INFO(LOG_APP, "OnImageDataPrepared: packToData ret code:%{public}u outsize:%{public}zu", imageErr, bufferSize);
+       std::lock_guard<std::mutex> lock(g_mediaAssetMutex);
        if (g_mediaAsset_ == nullptr) {
-           OH_LOG_ERROR(LOG_APP,  "OnImageDataPrepared: get current mediaAsset failed!");
-           return;
+         OH_LOG_ERROR(LOG_APP,  "OnImageDataPrepared: get current mediaAsset failed!");
+         return;
        }
        // 调用媒体库接口通过buffer存图。
        OH_MediaAssetChangeRequest* changeRequest = OH_MediaAssetChangeRequest_Create(g_mediaAsset_);
@@ -178,6 +180,7 @@
        // 处理方式一：调用媒体库接口落盘图片，先保存一阶段图，二阶段图就绪后媒体库会主动帮应用替换落盘图片。
        // mediaLibSavePhoto(mediaAsset);
        // 处理方式二：调用媒体库接口请求图像资源，获取一阶段图或二阶段图buffer，业务处理后通过buffer存图。
+       std::lock_guard<std::mutex> lock(g_mediaAssetMutex);
        g_mediaAsset_ = mediaAsset;
        mediaLibRequestBuffer(mediaAsset);
    }

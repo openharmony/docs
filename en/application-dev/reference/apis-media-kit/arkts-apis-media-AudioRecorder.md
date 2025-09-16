@@ -1,4 +1,10 @@
 # Deprecated Interface (AudioRecorder, deprecated)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -30,7 +36,7 @@ Prepares for recording.
 
 | Name| Type                                       | Mandatory| Description                                                        |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| config | [AudioRecorderConfig](arkts-apis-media-i.md#audiorecorderconfigdeprecated) | Yes  | Audio recording parameters, including the audio output URI, encoding format, sampling rate, number of audio channels, and output format.|
+| config | [AudioRecorderConfig](arkts-apis-media-i.md#audiorecorderconfigdeprecated) | Yes  | Audio recording parameters, including the audio output URI, encoding format, sample rate, audio channel count, and output format.|
 
 **Error codes**
 
@@ -45,8 +51,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 let audioRecorderConfig: media.AudioRecorderConfig = {
   audioEncoder : media.AudioEncoder.AAC_LC,
-  audioEncodeBitRate : 22050,
-  audioSampleRate : 22050,
+  audioEncodeBitRate : 64000,
+  audioSampleRate : 44100,
   numberOfChannels : 2,
   format : media.AudioOutputFormat.AAC_ADTS,
   uri : 'fd://1',       // The file must be created by the caller and granted with proper permissions.
@@ -214,8 +220,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let audioRecorder: media.AudioRecorder = media.createAudioRecorder(); // Create an AudioRecorder instance.
 let audioRecorderConfig: media.AudioRecorderConfig = {
   audioEncoder : media.AudioEncoder.AAC_LC,
-  audioEncodeBitRate : 22050,
-  audioSampleRate : 22050,
+  audioEncodeBitRate : 64000,
+  audioSampleRate : 44100,
   numberOfChannels : 2,
   format : media.AudioOutputFormat.AAC_ADTS,
   uri : 'fd://xx',  // The file must be created by the caller and granted with proper permissions.

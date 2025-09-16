@@ -1,4 +1,10 @@
 # ShortcutInfo
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The module describes the shortcut information defined in the [module.json5](../../quick-start/module-configuration-file.md#shortcuts) file of an application. The information can be obtained by running [getAllShortcutInfoForSelf](js-apis-shortcutManager.md#shortcutmanagergetallshortcutinfoforself)<!--Del--> or [getShortcutInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetshortcutinfo9)<!--DelEnd-->.
 
@@ -44,7 +50,7 @@ Describes the configuration information for a shortcut.
 | wants               | Array\<[ShortcutWant](#shortcutwant)>     | No | Yes | A collection of target Wants information defined within the shortcut.|
 | appIndex            | number                                    | No | No | Index of the application clone to which the shortcut belongs.|
 | sourceType          | number                                    | No | No | Source type of the shortcut. The value **0** means a custom shortcut, and **1** means a static shortcut.|
-| visible             | boolean                                   | No | Yes | Whether the shortcut is visible. The value **true** means that the shortcut is visible, and **false** means the opposite. The default value is **true**.|
+| visible             | boolean                                   | No | Yes | Whether the shortcut is visible. **true** if visible, **false** otherwise. The default value is **true**.|
 
 ## ParameterItem
 

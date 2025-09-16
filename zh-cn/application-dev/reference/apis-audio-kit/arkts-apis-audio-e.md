@@ -285,7 +285,7 @@
 | STREAM_USAGE_UNKNOWN                      | 0      | 未知类型。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | STREAM_USAGE_MEDIA<sup>(deprecated)</sup> | 1      | 媒体。<br/> 从API version 7开始支持，从API version 10开始废弃，建议使用该枚举中的STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_GAME或STREAM_USAGE_AUDIOBOOK替代。 |
 | STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | 音乐。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | VoIP语音通话。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | VoIP语音通话（该流类型起播时，会触发开启3A算法）。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | 语音播报。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | 闹钟。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | 语音消息。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -297,7 +297,7 @@
 | STREAM_USAGE_GAME<sup>10+</sup>           | 11     | 游戏。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | 有声读物（包括听书、相声、评书）、听新闻、播客等。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | 导航。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| STREAM_USAGE_VIDEO_COMMUNICATION<sup>12+</sup>     | 17     | VoIP视频通话。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| STREAM_USAGE_VIDEO_COMMUNICATION<sup>12+</sup>     | 17     | VoIP视频通话（该流类型起播时，会触发开启3A算法）。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## AudioState<sup>8+</sup>
 
@@ -432,16 +432,14 @@
 
 表示流设备变更原因的枚举。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 | 名称                                        |  值     | 说明              |
 |:------------------------------------------| :----- |:----------------|
-| REASON_UNKNOWN | 0 | 未知原因。           |
-| REASON_NEW_DEVICE_AVAILABLE | 1 | 新设备可用。         |
-| REASON_OLD_DEVICE_UNAVAILABLE | 2 | 旧设备不可用。报告此原因时，应考虑暂停音频播放。 |
-| REASON_OVERRODE | 3 | 强选。 |
+| REASON_UNKNOWN | 0 | 未知原因。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| REASON_NEW_DEVICE_AVAILABLE | 1 | 新设备可用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| REASON_OLD_DEVICE_UNAVAILABLE | 2 | 旧设备不可用。报告此原因时，应考虑暂停音频播放。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| REASON_OVERRODE | 3 | 强选。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | REASON_SESSION_ACTIVATED<sup>20+</sup> | 4 | 音频会话已激活。 |
 | REASON_STREAM_PRIORITY_CHANGED<sup>20+</sup> | 5 | 更高优先级的音频流出现导致的系统设备切换。 |
 
@@ -488,7 +486,7 @@
 | SOURCE_TYPE_MIC                              | 0      | Mic音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | 语音识别源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
 | SOURCE_TYPE_PLAYBACK_CAPTURE<sup>(deprecated)</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture <br/> 从API version 10开始支持，从API version 12开始废弃，建议使用[录屏接口AVScreenCapture](../apis-media-kit/capi-avscreencapture.md)替代。  |
-| SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
+| SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源（单独启动录制不会开启3A算法，需同时使用[STREAM_USAGE_VOICE_COMMUNICATION](#streamusage)或[STREAM_USAGE_VIDEO_COMMUNICATION](#streamusage)类型的AudioRender起播才会触发开启3A算法）。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | 短语音消息的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_CAMCORDER<sup>13+</sup>          | 13     | 录像的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_UNPROCESSED<sup>14+</sup>     | 14 |  麦克风纯净录音的音频源（系统不做任何算法处理）。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
@@ -645,3 +643,28 @@
 | UNAVAILABLE_SCENE  | -1     | 表示返听由于音频场景而不可用（如音频焦点、低时延管控）。 |
 | AVAILABLE_IDLE     |  0     | 表示返听可用。     |
 | AVAILABLE_RUNNING  |  1     | 表示返听运行中。   |
+
+## AudioLoopbackReverbPreset<sup>21+</sup>
+
+表示返听混响模式的枚举。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+| 名称      | 值     | 说明             |
+| --------- | ------ | ---------------- |
+| ORIGINAL  | 1     | 保持原始混响，不进行任何增强。   |
+| KTV       | 2     | 提供类似KTV的混响效果。 |
+| THEATER   | 3     | 提供类似剧场的混响效果（默认的混响模式）。 |
+| CONCERT   | 4     | 提供类似演唱会的混响效果。   |
+
+## AudioLoopbackEqualizerPreset<sup>21+</sup>
+
+表示返听均衡器类型的枚举。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+| 名称      | 值     | 说明             |
+| --------- | ------ | ---------------- |
+| FLAT   | 1     | 保持原始声音，不进行均衡调节。|
+| FULL   | 2     | 使人声更饱满（默认的均衡器类型）。|
+| BRIGHT | 3     | 使人声更明亮。|

@@ -6,7 +6,7 @@
 <!--Tester: @xchaosioda-->
 <!--Adviser: @zengyawen-->
 
-手电筒模式的使用是通过操作手机启用手电筒功能，使设备的手电筒功能持续保持常亮状态。
+手电筒模式的使用是通过操作设备启用手电筒功能，使设备的手电筒功能持续保持常亮状态。
 
 在使用相机应用并操作手电筒功能时，存在以下几种情况说明：
 
@@ -25,7 +25,7 @@
     import { BusinessError } from '@kit.BasicServicesKit';
     ```
 
-2. 通过[CameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md)类中的[isTorchSupported](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#istorchsupported11)方法，检测当前设备是否支持手电筒功能。
+2. 通过[CameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md)中的[isTorchSupported](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#istorchsupported11)方法，检测当前设备是否支持手电筒功能。
 
     ```ts
     function isTorchSupported(cameraManager: camera.CameraManager) : boolean {
@@ -41,7 +41,7 @@
     }
     ```
 
-3. 通过[CameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md)类中的[isTorchModeSupported](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#istorchmodesupported11)方法，检测是否支持指定的手电筒模式[TorchMode](../../reference/apis-camera-kit/arkts-apis-camera-e.md#torchmode11)。
+3. 通过[CameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md)中的[isTorchModeSupported](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#istorchmodesupported11)方法，检测是否支持指定的手电筒模式[TorchMode](../../reference/apis-camera-kit/arkts-apis-camera-e.md#torchmode11)。
 
     ```ts
     function isTorchModeSupported(cameraManager: camera.CameraManager, torchMode: camera.TorchMode) : boolean {
@@ -56,7 +56,7 @@
     }
     ```
 
-4. 通过[CameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md)类中的[setTorchMode](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#settorchmode11)方法，设置当前设备的手电筒模式。以及通过[CameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md)类中的[getTorchMode](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#gettorchmode11)方法，获取当前设备的手电筒模式。
+4. 通过[CameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md)中的[setTorchMode](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#settorchmode11)方法，设置当前设备的手电筒模式。以及通过[CameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md)中的[getTorchMode](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#gettorchmode11)方法，获取当前设备的手电筒模式。
 
     > **说明：**
     > 在使用[getTorchMode](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#gettorchmode11)方法前，需要先注册监听手电筒的状态变化，请参考[状态监听](camera-torch-use.md#状态监听)。

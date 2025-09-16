@@ -399,7 +399,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
-DAHelper.normalizeUri('dataability:///com.example.DataAbility',).then((data) => {
+DAHelper.normalizeUri('dataability:///com.example.DataAbility').then((data) => {
     console.info(`normalizeUri data: ${JSON.stringify(data)}`);
 });
 ```
@@ -472,7 +472,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
-DAHelper.denormalizeUri('dataability:///com.example.DataAbility',).then((data) => {
+DAHelper.denormalizeUri('dataability:///com.example.DataAbility').then((data) => {
     console.info(`denormalizeUri data: ${JSON.stringify(data)}`);
 });
 ```

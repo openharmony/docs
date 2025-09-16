@@ -4,7 +4,7 @@
 <!--Owner: @michael_woo888-->
 <!--Designer: @dongqingran; @wulong158-->
 <!--Tester: @wanghong1997-->
-<!--Adviser: @huipeizi-->
+<!--Adviser: @fang-jinxu-->
 
 本模块提供通知管理的能力，包括发布、更新、取消通知，创建、获取、移除通知渠道，获取发布通知应用的使能状态，获取通知的相关信息等。
 
@@ -894,9 +894,9 @@ setBadgeNumber(badgeNumber: number): Promise\<void\>
 
 设定角标个数，在应用的桌面图标上呈现。使用Promise异步回调。
 
-该接口不支持wearable设备。
-
 **系统能力**：SystemCapability.Notification.Notification
+
+**设备行为差异**：该接口在Wearable中返回801错误码，在其他设备类型中可正常调用。
 
 **参数：**
 
@@ -942,9 +942,9 @@ setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 
 设定角标个数，在应用的桌面图标上呈现。使用callback异步回调。
 
-该接口不支持wearable设备。
-
 **系统能力**：SystemCapability.Notification.Notification
+
+**设备行为差异**：该接口在Wearable中返回801错误码，在其他设备类型中可正常调用。
 
 **参数：**
 
@@ -1611,9 +1611,9 @@ openNotificationSettings(context: UIAbilityContext): Promise\<void\>
 
 拉起应用的通知设置界面，该页面以半模态形式呈现，可用于设置通知开关、通知提醒方式等。使用Promise异步回调。
 
-该接口不支持wearable设备。
-
 **模型约束**：此接口仅可在Stage模型下使用。
+
+**设备行为差异**：该接口在Wearable中返回801错误码，在其他设备类型中可正常调用。
 
 **系统能力**：SystemCapability.Notification.NotificationSettings
 

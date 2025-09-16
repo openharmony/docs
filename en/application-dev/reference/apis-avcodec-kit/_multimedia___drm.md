@@ -3,7 +3,7 @@
 
 ## Overview
 
-The Multimedia_Drm module provides APIs for you to set decryption parameters. After a DRM instance and session are created, you can decrypt a DRM encrypted program.
+The module provides APIs for you to set decryption parameters. After a DRM instance and session are created, you can decrypt a DRM encrypted program.
 
 For details about the development guide and sample, see [Media Data Demultiplexing](../../media/avcodec/audio-video-demuxer.md).
 
@@ -61,8 +61,8 @@ For details about the development guide and sample, see [Media Data Demultiplexi
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_AVCencInfo](#oh_avcencinfo) \* [OH_AVCencInfo_Create](#oh_avcencinfo_create) () | Creates an **OH_AVCencInfo** instance for setting the CENC information.| 
-| OH_AVErrCode [OH_AVCencInfo_Destroy](#oh_avcencinfo_destroy) ([OH_AVCencInfo](#oh_avcencinfo) \*cencInfo) | Destroys an **OH_AVCencInfo** instance and clears internal resources.| 
+| [OH_AVCencInfo](#oh_avcencinfo) \* [OH_AVCencInfo_Create](#oh_avcencinfo_create) () | Creates an OH_AVCencInfo instance for setting the CENC information.| 
+| OH_AVErrCode [OH_AVCencInfo_Destroy](#oh_avcencinfo_destroy) ([OH_AVCencInfo](#oh_avcencinfo) \*cencInfo) | Destroys an OH_AVCencInfo instance and clears internal resources.| 
 | OH_AVErrCode [OH_AVCencInfo_SetAlgorithm](#oh_avcencinfo_setalgorithm) ([OH_AVCencInfo](#oh_avcencinfo) \*cencInfo, enum [DrmCencAlgorithm](#drmcencalgorithm) algo) | Sets an encryption algorithm of the CENC information.| 
 | OH_AVErrCode [OH_AVCencInfo_SetKeyIdAndIv](#oh_avcencinfo_setkeyidandiv) ([OH_AVCencInfo](#oh_avcencinfo) \*cencInfo, uint8_t \*keyId, uint32_t keyIdLen, uint8_t \*iv, uint32_t ivLen) | Sets the key ID and IV in the CENC information.| 
 | OH_AVErrCode [OH_AVCencInfo_SetSubsampleInfo](#oh_avcencinfo_setsubsampleinfo) ([OH_AVCencInfo](#oh_avcencinfo) \*cencInfo, uint32_t encryptedBlockCount, uint32_t skippedBlockCount, uint32_t firstEncryptedOffset, uint32_t subsampleCount, [DrmSubsample](_drm_subsample.md) \*subsamples) | Sets the subsample information in the CENC information.| 
@@ -234,7 +234,7 @@ OH_AVCencInfo* OH_AVCencInfo_Create ()
 
 **Description**
 
-Creates an **OH_AVCencInfo** instance for setting the CENC information.
+Creates an OH_AVCencInfo instance for setting the CENC information.
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 
@@ -242,7 +242,7 @@ Creates an **OH_AVCencInfo** instance for setting the CENC information.
 
 **Returns**
 
-Returns the pointer to the **OH_AVCencInfo** instance created if the operation is successful; returns a null pointer otherwise.
+Pointer to the OH_AVCencInfo instance created. If the operation fails, nullptr is returned.
 
 The possible causes of an operation failure are as follows: The application address space is full, or the data in the object fails to be initialized.
 
@@ -255,9 +255,9 @@ OH_AVErrCode OH_AVCencInfo_Destroy (OH_AVCencInfo * cencInfo)
 
 **Description**
 
-Destroys an **OH_AVCencInfo** instance and clears internal resources.
+Destroys an OH_AVCencInfo instance and clears internal resources.
 
-An instance can be destroyed only once. Do not use the instance until it is created again. You are advised to set the instance pointer to a null pointer once the instance is destroyed.
+An instance can be destroyed only once. Do not use the instance until it is created again. You are advised to set the instance pointer to nullptr once the instance is destroyed.
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 
@@ -267,11 +267,11 @@ An instance can be destroyed only once. Do not use the instance until it is crea
 
 | Name| Description| 
 | -------- | -------- |
-| cencInfo | Pointer to an **OH_AVCencInfo** instance.| 
+| cencInfo | Pointer to an OH_AVCencInfo instance.| 
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
+One of the following result codes defined in [OH_AVErrCode](_core.md#oh_averrcode):
 
 **AV_ERR_OK** (value: 0): The operation is successful.
 
@@ -296,12 +296,12 @@ Sets an encryption algorithm of the CENC information.
 
 | Name| Description| 
 | -------- | -------- |
-| cencInfo | Pointer to an **OH_AVCencInfo** instance.| 
+| cencInfo | Pointer to an OH_AVCencInfo instance.| 
 | algo | Encryption algorithm.| 
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
+One of the following result codes defined in [OH_AVErrCode](_core.md#oh_averrcode):
 
 **AV_ERR_OK** (value: 0): The operation is successful.
 
@@ -326,12 +326,12 @@ Sets the CENC information to an AVBuffer.
 
 | Name| Description| 
 | -------- | -------- |
-| cencInfo | Pointer to an **OH_AVCencInfo** instance.| 
+| cencInfo | Pointer to an OH_AVCencInfo instance.| 
 | buffer | Pointer to the frame buffer that carries data.| 
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
+One of the following result codes defined in [OH_AVErrCode](_core.md#oh_averrcode):
 
 **AV_ERR_OK** (value: 0): The operation is successful.
 
@@ -356,7 +356,7 @@ Sets the key ID and IV in the CENC information.
 
 | Name| Description| 
 | -------- | -------- |
-| cencInfo | Pointer to an **OH_AVCencInfo** instance.| 
+| cencInfo | Pointer to an OH_AVCencInfo instance.| 
 | keyId | Pointer to the key ID.| 
 | keyIdLen | Length of the key ID.| 
 | iv | Pointer to the IV.| 
@@ -364,7 +364,7 @@ Sets the key ID and IV in the CENC information.
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
+One of the following result codes defined in [OH_AVErrCode](_core.md#oh_averrcode):
 
 **AV_ERR_OK** (value: 0): The operation is successful.
 
@@ -389,12 +389,12 @@ Sets the CENC information mode.
 
 | Name| Description| 
 | -------- | -------- |
-| cencInfo | Pointer to an **OH_AVCencInfo** instance.| 
+| cencInfo | Pointer to an OH_AVCencInfo instance.| 
 | mode | CENC information mode, indicating whether the key ID, IV, and subsample are set.| 
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
+One of the following result codes defined in [OH_AVErrCode](_core.md#oh_averrcode):
 
 **AV_ERR_OK** (value: 0): The operation is successful.
 
@@ -419,7 +419,7 @@ Sets the subsample information in the CENC information.
 
 | Name| Description| 
 | -------- | -------- |
-| cencInfo | Pointer to an **OH_AVCencInfo** instance.| 
+| cencInfo | Pointer to an OH_AVCencInfo instance.| 
 | encryptedBlockCount | Number of encrypted blocks.| 
 | skippedBlockCount | Number of non-encrypted blocks.| 
 | firstEncryptedOffset | Offset of the first encrypted payload.| 
@@ -428,7 +428,7 @@ Sets the subsample information in the CENC information.
 
 **Returns**
 
-Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
+One of the following result codes defined in [OH_AVErrCode](_core.md#oh_averrcode):
 
 **AV_ERR_OK** (value: 0): The operation is successful.
 

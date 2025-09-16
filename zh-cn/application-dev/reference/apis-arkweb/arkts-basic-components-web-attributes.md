@@ -56,7 +56,7 @@ domStorageAccess(domStorageAccess: boolean)
 
 fileAccess(fileAccess: boolean)
 
-设置是否开启应用中文件系统的访问。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中rawfile路径的文件不受该属性影响而限制访问。
+设置是否开启应用中文件系统的访问。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中的文件不受该属性影响而被限制访问。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -64,7 +64,7 @@ fileAccess(fileAccess: boolean)
 
 | 参数名        | 类型    | 必填   | 说明                   |
 | ---------- | ------- | ---- | ---------------------- |
-| fileAccess | boolean | 是    | 设置是否开启应用中文件系统的访问。<br>true表示启动应用中文件系统的访问。false表示不启用应用中文件系统的访问。<br>API version 11及以前：默认值：true。<br>API version 12及以后：默认值：false，同时，当fileAccess为false的时候，仅只读资源目录`/data/storage/el1/bundle/entry/resources/resfile`里面的file协议资源依然可以访问，不受fileAccess管控。 |
+| fileAccess | boolean | 是    | 设置是否开启应用中文件系统的访问。<br>true表示开启应用中文件系统的访问。false表示不开启应用中文件系统的访问。<br>API version 11及以前：默认值：true。<br>API version 12及以后：默认值：false，同时，当fileAccess为false的时候，仅只读资源目录`/data/storage/el1/bundle/entry/resources/resfile`里面的资源依然可以通过file协议访问，不受fileAccess管控。 |
 
 **示例：**
 
@@ -152,18 +152,18 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
     }
 
     test(data1: string, data2: string, data3: string): string {
-      console.log("data1:" + data1);
-      console.log("data2:" + data2);
-      console.log("data3:" + data3);
+      console.info("data1:" + data1);
+      console.info("data2:" + data2);
+      console.info("data3:" + data3);
       return "AceString";
     }
 
     asyncTest(data: string): void {
-      console.log("async data:" + data);
+      console.info("async data:" + data);
     }
 
     toString(): void {
-      console.log('toString' + "interface instead.");
+      console.info('toString' + "interface instead.");
     }
   }
 
@@ -208,7 +208,7 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 | 参数名              | 类型    | 必填   | 说明                |
 | ---------------- | ------- | ---- | ------------------- |
-| javaScriptAccess | boolean | 是    | 是否允许执行JavaScript脚本。<br>true表示允许执行JavaScript脚本，false表示不允许执行JavaScript脚本。<br>默认值：true。<br>传入undefined与null时为false。 |
+| javaScriptAccess | boolean | 是    | 是否允许执行JavaScript脚本。<br>true表示允许执行JavaScript脚本，false表示不允许执行JavaScript脚本。<br>传入undefined或null时不允许执行JavaScript脚本。 |
 
 **示例：**
 
@@ -267,7 +267,7 @@ overScrollMode(mode: OverScrollMode)
 
 mixedMode(mixedMode: MixedMode)
 
-设定当安全源尝试从非安全源加载资源时的行为，默认值为 MixedMode.None，即禁止安全源从非安全源加载内容。
+设定当安全源尝试从非安全源加载资源时的行为。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -275,7 +275,7 @@ mixedMode(mixedMode: MixedMode)
 
 | 参数名       | 类型                        | 必填   | 说明      |
 | --------- | --------------------------- | ---- | --------- |
-| mixedMode | [MixedMode](./arkts-basic-components-web-e.md#mixedmode) | 是    | 要设置的混合内容。<br>默认值：`MixedMode.None`，表示不允许安全来源（secure origin）加载不安全来源（insecure origin）的内容。 |
+| mixedMode | [MixedMode](./arkts-basic-components-web-e.md#mixedmode) | 是    | 要设置的混合内容模式。 |
 
 **示例：**
 
@@ -610,7 +610,7 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
             height:6000px;
             padding-right:170px;
             padding-left:170px;
-            border:5px solid blueviolet
+            border:5px solid blueviolet;
           }
       </style>
   </head>
@@ -692,7 +692,7 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
             height:6000px;
             padding-right:170px;
             padding-left:170px;
-            border:5px solid blueviolet
+            border:5px solid blueviolet;
           }
       </style>
   </head>
@@ -714,7 +714,7 @@ cacheMode(cacheMode: CacheMode)
 
 | 参数名       | 类型                        | 必填   | 说明      |
 | --------- | --------------------------- | ---- | --------- |
-| cacheMode | [CacheMode](./arkts-basic-components-web-e.md#cachemode) | 是    | 要设置的缓存模式。<br>默认值：`CacheMode.Default`。 |
+| cacheMode | [CacheMode](./arkts-basic-components-web-e.md#cachemode) | 是    | 要设置的缓存模式。 |
 
 **示例：**
 
@@ -853,7 +853,7 @@ blockNetwork(block: boolean)
 
 | 参数名   | 类型    | 必填   | 说明                |
 | ----- | ------- | ---- | ------------------- |
-| block | boolean | 是    | 设置Web组件是否阻止从网络加载资源。<br>true表示设置Web组件阻止从网络加载资源，false表示设置Web组件不阻止从网络加载资源。<br>默认值：false。 |
+| block | boolean | 是    | 设置Web组件是否允许从网络加载资源。<br>true表示不允许从网络加载资源，false表示允许从网络加载资源。<br>传入undefined或null时不允许从网络加载资源。 |
 
 **示例：**
 
@@ -1356,60 +1356,88 @@ allowWindowOpenMethod(flag: boolean)
 
   ```ts
   // xxx.ets
-  import { webview } from '@kit.ArkWeb';
+import { webview } from '@kit.ArkWeb';
 
-  // 在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
-  @CustomDialog
-  struct NewWebViewComp {
+// 在同一界面有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
+@CustomDialog
+struct NewWebViewComp {
     controller?: CustomDialogController;
     webviewController1: webview.WebviewController = new webview.WebviewController();
 
     build() {
-      Column() {
-        Web({ src: "", controller: this.webviewController1 })
-          .javaScriptAccess(true)
-          .multiWindowAccess(false)
-          .onWindowExit(() => {
-            console.info("NewWebViewComp onWindowExit");
-            if (this.controller) {
-              this.controller.close();
-            }
-          })
-      }
+        Column() {
+            Web({ src: "", controller: this.webviewController1 })
+                .javaScriptAccess(true)
+                .multiWindowAccess(false)
+                .onWindowExit(() => {
+                    console.info("NewWebViewComp onWindowExit");
+                    if (this.controller) {
+                        this.controller.close();
+                    }
+                })
+                .onActivateContent(() => {
+                    //该Web需要展示到前台，建议应用在这里进行tab或window切换的动作
+                    console.info("NewWebViewComp onActivateContent")
+                })
+        }
     }
-  }
+}
 
-  @Entry
-  @Component
-  struct WebComponent {
+@Entry
+@Component
+struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
     dialogController: CustomDialogController | null = null;
 
     build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .javaScriptAccess(true)
-          // 需要使能multiWindowAccess
-          .multiWindowAccess(true)
-          .allowWindowOpenMethod(true)
-          .onWindowNew((event) => {
-            if (this.dialogController) {
-              this.dialogController.close();
-            }
-            let popController: webview.WebviewController = new webview.WebviewController();
-            this.dialogController = new CustomDialogController({
-              builder: NewWebViewComp({ webviewController1: popController })
-            })
-            this.dialogController.open();
-            // 将新窗口对应WebviewController返回给Web内核。
-            // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
-            // 如果没有创建新窗口，调用event.handler.setWebController接口时设置成null，通知Web没有创建新窗口。
-            event.handler.setWebController(popController);
-          })
-      }
+        Column() {
+            Web({ src: $rawfile("index.html"), controller: this.controller })
+                .javaScriptAccess(true)
+                // 需要使能multiWindowAccess
+                .multiWindowAccess(true)
+                .allowWindowOpenMethod(true)
+                .onWindowNew((event) => {
+                    if (this.dialogController) {
+                        this.dialogController.close()
+                    }
+                    let popController: webview.WebviewController = new webview.WebviewController();
+                    this.dialogController = new CustomDialogController({
+                        builder: NewWebViewComp({ webviewController1: popController }),
+                        // isModal设置为false，防止新窗口被销毁而无法触发onActivateContent回调
+                        isModal: false
+                    })
+                    this.dialogController.open();
+                    // 将新窗口对应WebviewController返回给Web内核。
+                    // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
+                    // 如果没有创建新窗口，调用event.handler.setWebController接口时设置成null，通知Web没有创建新窗口。
+                    event.handler.setWebController(popController);
+                })
+        }
     }
-  }
+}
   ```
+**HTML示例：**
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<body>
+<div>
+    <button type="button" onclick="delayOpenwindow(5000)">delayOpenwindow_5s</button>
+</div>
+
+<script>
+    function openwindowAll(){
+        open("https://www.example.com","_blank","height=400,width=600,top=100,left=100,scrollbars=no")
+    }
+    function delayOpenwindow(t){
+        setTimeout(openwindowAll, t);
+    }
+</script>
+</body>
+</html>
+```
 
 ## mediaOptions<sup>10+</sup>
 
@@ -2039,7 +2067,7 @@ enableNativeEmbedMode(mode: boolean)
 
 | 参数名   | 类型                      | 必填   | 说明             |
 | ----- | ---------------------------------------- | ---- | ---------------- |
-| mode |  boolean | 是    | 是否开启同层渲染功能。<br>true表示开启同层渲染功能，false表示不开启同层渲染功能。<br>默认值：false。 |
+| mode |  boolean | 是    | 是否开启同层渲染功能。<br>true表示开启同层渲染功能，false表示不开启同层渲染功能。|
 
 **示例：**
 
@@ -2111,7 +2139,7 @@ forceDisplayScrollBar(enabled: boolean)
           height:2560px;
           padding-right:170px;
           padding-left:170px;
-          border:5px solid blueviolet
+          border:5px solid blueviolet;
         }
       </style>
   </head>
@@ -2130,6 +2158,8 @@ registerNativeEmbedRule(tag: string, type: string)
 
 本接口同样受enableNativeEmbedMode接口控制，在未使能同层渲染时本接口无效。在不使用本接口的情况下，ArkWeb内核默认将"native/"前缀类型的<embed\>标签识别为同层标签。
 
+具体使用详情请参考[同层渲染](../../web/web-same-layer.md#web页面中同层渲染输入框)指南。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -2144,21 +2174,124 @@ registerNativeEmbedRule(tag: string, type: string)
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { NodeController, BuilderNode, NodeRenderType, FrameNode, UIContext } from '@kit.ArkUI';
+
+  declare class Params {
+    text: string;
+    width: number;
+    height: number;
+  }
+
+  declare class NodeControllerParams {
+    surfaceId: string;
+    renderType: NodeRenderType;
+    width: number;
+    height: number;
+  }
+
+  class MyNodeController extends NodeController {
+    private rootNode: BuilderNode<[Params]> | undefined | null;
+    private surfaceId_: string = "";
+    private renderType_: NodeRenderType = NodeRenderType.RENDER_TYPE_DISPLAY;
+    private width_: number = 0;
+    private height_: number = 0;
+
+    setRenderOption(params: NodeControllerParams) {
+      this.surfaceId_ = params.surfaceId;
+      this.renderType_ = params.renderType;
+      this.width_ = params.width;
+      this.height_ = params.height;
+    }
+
+    makeNode(uiContext: UIContext): FrameNode | null {
+      this.rootNode = new BuilderNode(uiContext, { surfaceId: this.surfaceId_, type: this.renderType_ });
+      this.rootNode.build(wrapBuilder(ButtonBuilder), { text: "myButton", width: this.width_, height: this.height_ });
+      return this.rootNode.getFrameNode();
+    }
+
+    postInputEvent(event: TouchEvent | MouseEvent | undefined): boolean {
+      return this.rootNode?.postInputEvent(event) as boolean;
+    }
+  }
+
+  @Component
+  struct ButtonComponent {
+    @Prop params: Params;
+    @State bkColor: Color = Color.Red;
+
+    build() {
+      Column() {
+        Button(this.params.text)
+          .height(50)
+          .width(200)
+          .border({ width: 2, color: Color.Red })
+          .backgroundColor(this.bkColor)
+      }
+      .width(this.params.width)
+      .height(this.params.height)
+    }
+  }
+
+  @Builder
+  function ButtonBuilder(params: Params) {
+    ButtonComponent({ params: params })
+      .backgroundColor(Color.Green)
+  }
 
   @Entry
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
+    private nodeController: MyNodeController = new MyNodeController();
+    uiContext: UIContext = this.getUIContext();
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .enableNativeEmbedMode(true)
-          .registerNativeEmbedRule("object", "application/view")
+        Stack() {
+          NodeContainer(this.nodeController)
+          Web({ src: $rawfile('index.html'), controller: this.controller })
+             // 配置同层渲染开关开启。
+            .enableNativeEmbedMode(true)
+             // 注册同层标签为<object>，类型为"native"前缀。
+            .registerNativeEmbedRule("object", "native")
+             // 获取<object>标签的生命周期变化数据。
+            .onNativeEmbedLifecycleChange((object) => {
+              if (object.status == NativeEmbedStatus.CREATE) {
+                this.nodeController.setRenderOption({
+                  surfaceId: object.surfaceId as string,
+                  renderType: NodeRenderType.RENDER_TYPE_TEXTURE,
+                  width: this.uiContext!.px2vp(object.info?.width),
+                  height: this.uiContext!.px2vp(object.info?.height)
+                });
+                this.nodeController.rebuild();
+              }
+            })
+        }
       }
     }
   }
   ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>同层渲染测试</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+  <div>
+      <div id="bodyId">
+          <object id="nativeButton" type ="native/button" width="300" height="300" style="background-color:red">
+          </object>
+      </div>
+  </div>
+  </body>
+  </html>
+  ```
+
 ## defaultTextEncodingFormat<sup>12+</sup>
 
 defaultTextEncodingFormat(textEncodingFormat: string)
@@ -2195,20 +2328,20 @@ defaultTextEncodingFormat(textEncodingFormat: string)
     }
   }
   ```
-
-```html
-<!--index.html-->
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>My test html5 page</title>
-</head>
-<body>
-    <p>hello world, 你好世界!</p>
-</body>
-</html>
-```
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <meta name="viewport" content="width=device-width" />
+      <title>My test html5 page</title>
+  </head>
+  <body>
+      <p>hello world, 你好世界!</p>
+  </body>
+  </html>
+  ```
 ## metaViewport<sup>12+</sup>
 
 metaViewport(enabled: boolean)
@@ -2217,11 +2350,11 @@ metaViewport(enabled: boolean)
 
 > **说明：**
 >
-> - 如果设备为2in1，不支持viewport属性。设置为true或者false均不会解析viewport属性，进行默认布局。
-> - 如果设备为Tablet，设置为true或false均会解析meta标签viewport-fit属性。当`viewport-fit=cover`时，可通过CSS属性获取安全区域大小。
 > - 当前通过User-Agent中是否含有"Mobile"字段来判断是否开启前端HTML页面中meta标签的viewport属性。当User-Agent中不含有"Mobile"字段时，meta标签中viewport属性默认关闭，此时可通过显性设置metaViewport属性为true来覆盖关闭状态。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**设备行为差异：** 该接口在Phone、Wearable、TV设备中可正常调用，在PC/2in1设备中无效果，在Tablet设备中，设置为true或false均会解析meta标签viewport-fit属性。当`viewport-fit=cover`时，可通过CSS属性获取安全区域大小。
 
 **参数：**
 
@@ -2248,7 +2381,7 @@ struct WebComponent {
   }
 }
   ```
-
+加载的html文件。
 ```html
 <!--index.html-->
 <!DOCTYPE html>
@@ -2279,6 +2412,8 @@ textAutosizing(textAutosizing: boolean)
 > - 4. 前端无metaViewport设置，或metaViewport设置中无"width"和"initial-scale"属性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**设备行为差异：** 该接口在PC/2in1设备中无效果，在其他设备中可正常调用。
 
 **参数：**
 
@@ -2370,10 +2505,10 @@ onAdsBlocked(callback: OnAdsBlockedCallback)
         Web({ src: 'https://www.example.com', controller: this.controller })
         .onAdsBlocked((details: AdsBlockedDetails) => {
           if (details) {
-            console.log(' Blocked ' + details.adsBlocked.length + ' in ' + details.url);
+            console.info(' Blocked ' + details.adsBlocked.length + ' in ' + details.url);
             let adList: Array<string> = Array.from(new Set(details.adsBlocked));
             this.totalAdsBlockCounts += adList.length;
-            console.log('Total blocked counts :' + this.totalAdsBlockCounts);
+            console.info('Total blocked counts :' + this.totalAdsBlockCounts);
           }
         })
       }
@@ -2506,19 +2641,19 @@ struct WebComponent {
   onMenuItemClick(menuItem: TextMenuItem, textRange: TextRange): boolean {
     if (menuItem.id.equals(TextMenuItemId.CUT)) {
       // 用户自定义行为
-      console.log("拦截 id：CUT")
+      console.info("拦截 id：CUT")
       return true; // 返回true不执行系统回调
     } else if (menuItem.id.equals(TextMenuItemId.COPY)) {
       // 用户自定义行为
-      console.log("不拦截 id：COPY")
+      console.info("不拦截 id：COPY")
       return false; // 返回false执行系统回调
     } else if (menuItem.id.equals(TextMenuItemId.of('customItem1'))) {
       // 用户自定义行为
-      console.log("拦截 id：customItem1")
+      console.info("拦截 id：customItem1")
       return true;// 用户自定义菜单选项返回true时点击后不关闭菜单，返回false时关闭菜单
     } else if (menuItem.id.equals((TextMenuItemId.of($r('app.string.customItem2'))))){
       // 用户自定义行为
-      console.log("拦截 id：app.string.customItem2")
+      console.info("拦截 id：app.string.customItem2")
       return true;
     }
     return false;// 返回默认值false
@@ -2801,7 +2936,7 @@ blurOnKeyboardHideMode(mode: BlurOnKeyboardHideMode)
     <script>
       const inputElement = document.getElementById('input_a');
       inputElement.addEventListener('blur', function() {
-        console.log('Input has lost focus');
+        console.info('Input has lost focus');
       });
     </script>
   </body>
@@ -2824,7 +2959,7 @@ enableFollowSystemFontWeight(follow: boolean)
 
 | 参数名       | 类型                             | 必填 | 说明                                |
 | ------------ | ------------------------------- | ---- | ----------------------------------- |
-| follow | boolean | 是    | 设置Web组件是否开启字重跟随系统设置变化。<br>true表示字重跟随系统设置中的字体粗细变化，系统设置改变时字重跟随变化。false表示字重不再跟随系统设置中的字体粗细变化，系统设置改变时维持当前字重不变。<br>默认值：false。 |
+| follow | boolean | 是    | 设置Web组件是否开启字重跟随系统设置变化。<br>true表示字重跟随系统设置中的字体粗细变化，系统设置改变时字重跟随变化。false表示字重不再跟随系统设置中的字体粗细变化，系统设置改变时维持当前字重不变。 |
 
 **示例：**
 
@@ -3177,6 +3312,56 @@ gestureFocusMode(mode: GestureFocusMode)
   </head>
   <body>
     <input type="text" placeholder="Text">
+  </body>
+  </html>
+  ```
+
+## forceEnableZoom<sup>21+</sup>
+
+forceEnableZoom(enable: boolean)
+
+设置Web组件是否启用强制缩放功能。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名        | 类型    | 必填   | 说明          |
+| ---------- | ------- | ---- | ------------- |
+| enable | boolean | 是    | 设置是否遵从网页中`<meta name="viewport">`标签设置的缩放限制。<br>设置为`true`时，不遵从网页缩放限制；设置为`false`时，遵从网页缩放限制。<br>传入`undefined`与`null`时为`false`。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .forceEnableZoom(true)
+      }
+    }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>测试网页</title>
+  </head>
+  <body>
+    <h1>forceEnableZoom Demo</h1>
+    <span>You can scale page when forceEnableZoom is true.</span>
   </body>
   </html>
   ```

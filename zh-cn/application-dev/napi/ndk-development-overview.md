@@ -1,6 +1,12 @@
 # NDK开发导读
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @liyiming13-->
+<!--Designer: @huang_huijin-->
+<!--Tester: @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
-NDK（Native Development Kit）是OpenHarmony SDK提供的Native API、相应编译脚本和编译工具链的集合，方便开发者使用C或C++语言实现应用的关键功能。NDK只覆盖了OpenHarmony一些基础的底层能力，如C运行时基础库libc、图形库、窗口系统、多媒体、压缩库、面向ArkTS/JS与C跨语言的Node-API等，并没有提供ArkTS/JS API的完整能力。
+NDK（Native Development Kit）是OpenHarmony SDK提供的Native API、相应编译脚本和编译工具链的集合，方便开发者使用C或C++语言实现应用的关键功能。NDK只覆盖了OpenHarmony一些基础的底层能力，如C运行时基础库libc、图形库、窗口系统、多媒体、压缩库、面向ArkTS/JS与C跨语言的Node-API等，没有提供ArkTS/JS API的完整能力。
 
 
 运行态，开发者可以使用NDK中的Node-API接口，访问、创建、操作JS对象；也允许JS对象使用Native动态库。
@@ -28,17 +34,6 @@ NDK（Native Development Kit）是OpenHarmony SDK提供的Native API、相应编
 为顺利进行NDK开发，开发者需要先掌握必要的基本概念及基础知识。
 
 
-### NDK基本概念
-
-- **[Node-API](napi-introduction.md)**
-
-  曾用名NAPI，是OpenHarmony中提供ArkTS/JS与C/C++跨语言调用的接口，是NDK接口中的一部分。该接口是在Node.js提供的Node-API基础上扩展而来，但与Node.js中的Node-API不完全兼容。
-
-- **C API**
-
-  OpenHarmony NDK的曾用名，不再使用。
-
-
 ### 前置知识
 
 - **Linux C语言编程知识**
@@ -53,6 +48,8 @@ NDK（Native Development Kit）是OpenHarmony SDK提供的Native API、相应编
 - **Clang/LLVM编译器使用知识**
   具备一定的Clang/LLVM编译器基础知识，能够帮助开发者编译出更优的Native动态库。
 
+- **[Node-API](napi-introduction.md)**
+  曾用名NAPI，是OpenHarmony中提供ArkTS/JS与C/C++跨语言调用的接口，该接口基于Node.js的Node-API扩展而来，但不完全兼容。
 
 ### NDK目录简介
 
@@ -78,20 +75,20 @@ NDK（Native Development Kit）是OpenHarmony SDK提供的Native API、相应编
 
 ## NDK常用模块
 
-下表介绍了NDK的常用模块。
+下表介绍了NDK的常用模块及其功能简介。
 
 
-| 模块 | 模块简介 | 
+| 模块 | 模块简介 |
 | -------- | -------- |
-| 标准C库 | 以musl为基础提供的标准C库接口。 | 
-| 标准C++库 | C++运行时库libc++_shared。 | 
-| 日志 | 打印日志到系统的HiLog接口。 | 
-| Node-API | 当需要实现ArkTS/JS和C/C++之间的交互时，可以使用Node-API。 | 
-| FFRT | 基于任务的并发编程框架。 | 
-| libuv | 三方异步IO库。 | 
-| zlib | zlib库，提供基本的数据压缩、解压接口。 | 
-| Rawfile | 应用资源访问接口，可以读取应用中打包的各种资源。 | 
-| XComponent | ArkUI XComponent组件提供surface与触屏事件等接口，方便开发者开发高性能图形应用。 | 
-| Drawing | 系统提供的2D图形库，可以在surface进行绘制。 | 
-| OpenGL | 系统提供的OpenGL 3D图形接口。 | 
-| OpenSL ES | 用于2D、3D音频加速的接口库。 | 
+| 标准C库 | 基于musl提供的标准C库接口。 |
+| 标准C++库 | C++运行时库接口，提供C++运行时能力。 |
+| 日志 | 提供向系统输出HiLog日志接口。 |
+| Node-API | 支持ArkTS/JS和C/C++之间的交互接口。 |
+| FFRT | 基于任务的并发编程框架。 |
+| libuv | 第三方异步IO库。 |
+| zlib | 提供基础数据压缩与解压功能的zlib库。 |
+| Rawfile | 提供访问应用内置资源的接口，可用于读取应用中打包的各种资源。 |
+| XComponent | ArkUI XComponent组件，提供surface与触屏事件等接口，便于开发高性能图形应用。 |
+| Drawing | 系统提供的2D图形库，支持在surface进行绘制。 |
+| OpenGL | 系统提供的OpenGL 3D图形接口。 |
+| OpenSL ES | 支持2D、3D音频加速的接口。 |

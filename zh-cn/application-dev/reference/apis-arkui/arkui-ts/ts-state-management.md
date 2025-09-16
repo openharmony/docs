@@ -4,7 +4,7 @@
 <!--Owner: @zzq212050299-->
 <!--Designer: @s10021109-->
 <!--Tester: @TerryTsao-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @zhang_yixin13-->
 
 状态管理模块提供了应用程序的数据存储能力、持久化数据管理能力、UIAbility数据存储能力和应用程序需要的环境状态。
 
@@ -31,9 +31,9 @@ AppStorage具体UI使用说明，详见[AppStorage(应用全局的UI状态存储
 
 static ref\<T\>(propName: string): AbstractProperty\<T\>&nbsp;|&nbsp;undefined
 
-如果给定的propName在[AppStorage](../../../ui/state-management/arkts-appstorage.md)中存在，则获得AppStorage中propName对应数据的引用。否则，返回undefined。
+如果给定的propName在[AppStorage](../../../ui/state-management/arkts-appstorage.md)中存在，则返回AppStorage中propName对应属性的引用。否则，返回undefined。
 
-与[link](#link10)的功能基本一致，但不需要手动释放返回的[AbstractProperty](#abstractproperty)类型的变量。
+与[link](#link10)的功能基本一致，但不需要手动释放返回的[AbstractProperty](#abstractproperty12)类型的变量。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -49,7 +49,7 @@ static ref\<T\>(propName: string): AbstractProperty\<T\>&nbsp;|&nbsp;undefined
 
 | 类型                                   | 说明                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
-| [AbstractProperty&lt;T&gt;](#abstractproperty) \| undefined | AppStorage中propName对应属性的引用，如果AppStorage中不存在对应的propName，则返回undefined。 |
+| [AbstractProperty&lt;T&gt;](#abstractproperty12) \| undefined | AppStorage中propName对应属性的引用，如果AppStorage中不存在对应的propName，则返回undefined。 |
 
 **示例：**
 
@@ -64,9 +64,9 @@ refToPropA1?.set(48); // 同步修改AppStorage: refToPropA1.get() == refToPropA
 
 static setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&lt;T&gt;
 
-与[ref](#ref12)接口类似，如果给定的propName在[AppStorage](../../../ui/state-management/arkts-appstorage.md)中存在，则获得AppStorage中propName对应数据的引用。如果不存在，则使用defaultValue在AppStorage中创建和初始化propName对应的属性，并返回其引用。defaultValue须为T类型，可以为null或undefined。
+与[ref](#ref12)接口类似，如果给定的propName在[AppStorage](../../../ui/state-management/arkts-appstorage.md)中存在，则返回AppStorage中propName对应属性的引用。如果不存在，则使用defaultValue在AppStorage中创建和初始化propName对应的属性，并返回其引用。defaultValue须为T类型，可以为null或undefined。
 
-与[setAndLink](#setandlink10)的功能基本一致，但不需要手动释放返回的[AbstractProperty](#abstractproperty)类型的变量。
+与[setAndLink](#setandlink10)的功能基本一致，但不需要手动释放返回的[AbstractProperty](#abstractproperty12)类型的变量。
 
 > **说明：**<br/>
 > 从API version 12开始，AppStorage支持[Map](../../../ui/state-management/arkts-appstorage.md#装饰map类型变量)、[Set](../../../ui/state-management/arkts-appstorage.md#装饰set类型变量)、[Date类型](../../../ui/state-management/arkts-appstorage.md#装饰date类型变量)，支持null、undefined以及[联合类型](../../../ui/state-management/arkts-appstorage.md#appstorage支持联合类型)。
@@ -80,13 +80,13 @@ static setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&l
 | 参数名       | 类型   | 必填 | 说明                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | AppStorage中的属性名。                                       |
-| defaultValue | T      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化对应的propName，defaultValue可以为null或undefined。 |
+| defaultValue | T      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化propName对应属性的值，defaultValue可以为null或undefined。 |
 
 **返回值：**
 
 | 类型                      | 说明                                                         |
 | ------------------------- | ------------------------------------------------------------ |
-| [AbstractProperty&lt;T&gt;](#abstractproperty) | AbstractProperty&lt;T&gt;的实例，为AppStorage中propName对应属性的引用。 |
+| [AbstractProperty&lt;T&gt;](#abstractproperty12) | AbstractProperty&lt;T&gt;的实例，为AppStorage中propName对应属性的引用。 |
 
 **示例：**
 
@@ -148,7 +148,7 @@ static setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 | 参数名       | 类型   | 必填 | 说明                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | AppStorage中的属性名。                                       |
-| defaultValue | T      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化对应的propName，从API version 12开始，defaultValue可以为null或undefined。 |
+| defaultValue | T      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化propName对应属性的值，从API version 12开始，defaultValue可以为null或undefined。 |
 
 **返回值：**
 
@@ -212,7 +212,7 @@ static setAndProp&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 | 参数名       | 类型   | 必填 | 说明                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | AppStorage中的属性名。                                       |
-| defaultValue | T      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化对应的propName，从API version 12开始，defaultValue可以为null或undefined。 |
+| defaultValue | T      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化propName对应属性的值，从API version 12开始，defaultValue可以为null或undefined。 |
 
 **返回值：**
 
@@ -505,7 +505,7 @@ static SetAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 | 参数名       | 类型   | 必填 | 说明                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | AppStorage中的属性名。                                       |
-| defaultValue | T      | 是   | 当propName在AppStorage中不存在，使用defaultValue在AppStorage中初始化对应的propName，defaultValue不能为null或undefined。 |
+| defaultValue | T      | 是   | 当propName在AppStorage中不存在，使用defaultValue在AppStorage中初始化propName对应属性的值，defaultValue不能为null或undefined。 |
 
 **返回值：**
 
@@ -568,7 +568,7 @@ static SetAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstrac
 | 参数名       | 类型   | 必填 | 说明                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | AppStorage中的属性名。                                       |
-| defaultValue | S      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化对应的propName，defaultValue不能为null或undefined。 |
+| defaultValue | S      | 是   | 当propName在AppStorage中不存在时，使用defaultValue在AppStorage中初始化propName对应属性的值，defaultValue不能为null或undefined。 |
 
 **返回值：**
 
@@ -674,7 +674,7 @@ let res1: boolean = AppStorage.Set('PropB', 47) // false
 
 static SetOrCreate&lt;T&gt;(propName: string, newValue: T): void
 
-如果propName已经在[AppStorage](../../../ui/state-management/arkts-appstorage.md)中存在，则设置propName对应是属性的值为newValue。如果不存在，则创建propName属性，值为newValue。
+如果propName已经在[AppStorage](../../../ui/state-management/arkts-appstorage.md)中存在，则设置propName对应的属性值为newValue。如果不存在，则创建propName属性，值为newValue。
 
 newValue不能为null或undefined。
 
@@ -886,7 +886,7 @@ constructor(initializingProperties?: Object)
 
 | 参数名                    | 类型     | 必填   | 说明                                     |
 | ---------------------- | ------ | ---- | ---------------------------------------- |
-| initializingProperties | Object | 否    | 用initializingProperties包含的属性和数值初始化LocalStorage。initializingProperties不能为undefined。 |
+| initializingProperties | Object | 否    | 用initializingProperties包含的属性和数值初始化LocalStorage。initializingProperties不能为undefined。默认值为空对象，即初始化时不在LocalStorage中新增属性。 |
 
 **示例：**
 ```ts
@@ -1066,11 +1066,11 @@ let res2: boolean = storage.setOrCreate('PropB', null); // true (API12及之后�
 
 ### ref<sup>12+</sup>
 
-public ref\<T\>(propName: string): AbstractProperty\<T\>&nbsp;|&nbsp;undefined
+ref\<T\>(propName: string): AbstractProperty\<T\>&nbsp;|&nbsp;undefined
 
-如果给定的propName在[LocalStorage](../../../ui/state-management/arkts-localstorage.md)中存在，则获得LocalStorage中propName对应数据的引用。否则，返回undefined。
+如果给定的propName在[LocalStorage](../../../ui/state-management/arkts-localstorage.md)中存在，则返回LocalStorage中propName对应属性的引用。否则，返回undefined。
 
-与[link](#link9)的功能基本一致，但不需要手动释放返回的[AbstractProperty](#abstractproperty)类型的变量。
+与[link](#link9)的功能基本一致，但不需要手动释放返回的[AbstractProperty](#abstractproperty12)类型的变量。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1086,7 +1086,7 @@ public ref\<T\>(propName: string): AbstractProperty\<T\>&nbsp;|&nbsp;undefined
 
 | 类型                                   | 说明                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
-| [AbstractProperty&lt;T&gt;](#abstractproperty) \| undefined | LocalStorage中propName对应属性的引用，如果LocalStorage中不存在对应的propName，则返回undefined。 |
+| [AbstractProperty&lt;T&gt;](#abstractproperty12) \| undefined | LocalStorage中propName对应属性的引用，如果LocalStorage中不存在对应的propName，则返回undefined。 |
 
 **示例：**
 
@@ -1100,11 +1100,11 @@ refToPropA1?.set(48); // refToPropA1.get() == refToPropA2.get() == 48
 
 ### setAndRef<sup>12+</sup>
 
-public setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&lt;T&gt;
+setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&lt;T&gt;
 
-与[ref](#ref12-1)接口类似，如果给定的propName在[LocalStorage](../../../ui/state-management/arkts-localstorage.md)中存在，则获得LocalStorage中propName对应数据的引用。如果不存在，则使用defaultValue在LocalStorage中创建和初始化propName对应的属性，并返回其引用。defaultValue须为T类型，可以为null或undefined。
+与[ref](#ref12-1)接口类似，如果给定的propName在[LocalStorage](../../../ui/state-management/arkts-localstorage.md)中存在，则返回LocalStorage中propName对应属性的引用。如果不存在，则使用defaultValue在LocalStorage中创建和初始化propName对应的属性，并返回其引用。defaultValue须为T类型，可以为null或undefined。
 
-与[setAndLink](#setandlink9)的功能基本一致，但不需要手动释放返回的[AbstractProperty](#abstractproperty)类型的变量。
+与[setAndLink](#setandlink9)的功能基本一致，但不需要手动释放返回的[AbstractProperty](#abstractproperty12)类型的变量。
 
 > **说明：**<br/>
 > 从API version 12开始，LocalStorage支持[Map](../../../ui/state-management/arkts-localstorage.md#装饰map类型变量)、[Set](../../../ui/state-management/arkts-localstorage.md#装饰set类型变量)、[Date类型](../../../ui/state-management/arkts-localstorage.md#装饰date类型变量)，支持null、undefined以及[联合类型](../../../ui/state-management/arkts-localstorage.md#localstorage支持联合类型)。
@@ -1118,13 +1118,13 @@ public setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&l
 | 参数名       | 类型   | 必填 | 说明                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | LocalStorage中的属性名。                                     |
-| defaultValue | T      | 是   | 当propName在LocalStorage中不存在时，使用defaultValue在LocalStorage中初始化对应的propName，defaultValue可以为null或undefined。 |
+| defaultValue | T      | 是   | 当propName在LocalStorage中不存在时，使用defaultValue在LocalStorage中初始化propName对应属性的值，defaultValue可以为null或undefined。 |
 
 **返回值：**
 
 | 类型                      | 说明                                                         |
 | ------------------------- | ------------------------------------------------------------ |
-| [AbstractProperty&lt;T&gt;](#abstractproperty) | AbstractProperty&lt;T&gt;的实例，为LocalStorage中propName对应属性的引用。 |
+| [AbstractProperty&lt;T&gt;](#abstractproperty12) | AbstractProperty&lt;T&gt;的实例，为LocalStorage中propName对应属性的引用。 |
 
 **示例：**
 
@@ -1194,7 +1194,7 @@ setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProper
 | 参数名       | 类型   | 必填 | 说明                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | LocalStorage中的属性名。                                     |
-| defaultValue | T      | 是   | 当propName在LocalStorage中不存在时，使用defaultValue在LocalStorage中初始化对应的propName，从API version 12开始defaultValue可以为null或undefined。 |
+| defaultValue | T      | 是   | 当propName在LocalStorage中不存在时，使用defaultValue在LocalStorage中初始化propName对应属性的值，从API version 12开始defaultValue可以为null或undefined。 |
 
 **返回值：**
 
@@ -1266,7 +1266,7 @@ setAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProper
 | 参数名       | 类型   | 必填 | 说明                                                     |
 | ------------ | ------ | ---- | ------------------------------------------------------------ |
 | propName     | string | 是   | LocalStorage中的属性名。                                     |
-| defaultValue | S      | 是   | 当propName在LocalStorage中不存在，使用defaultValue在LocalStorage中初始化对应的propName，从API version 12开始defaultValue可以为null或undefined。 |
+| defaultValue | S      | 是   | 当propName在LocalStorage中不存在，使用defaultValue在LocalStorage中初始化propName对应属性的值，从API version 12开始defaultValue可以为null或undefined。 |
 
 **返回值：**
 
@@ -1440,7 +1440,7 @@ static GetShared(): LocalStorage
 let storage: LocalStorage = LocalStorage.GetShared();
 ```
 
-## AbstractProperty
+## AbstractProperty<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1632,9 +1632,9 @@ let link = AppStorage.setAndLink('PropB', 49); // PropA -> 47, PropB -> 49
 link.aboutToBeDeleted();
 ```
 
-### info
+### info<sup>10+</sup>
 
-info(): string;
+info(): string
 
 返回属性名称。
 
@@ -1836,7 +1836,7 @@ PersistentStorage.DeleteProp('highScore');
 
 ### PersistProps<sup>(deprecated)</sup>
 
-static PersistProps(properties: {key: string, defaultValue: any;}[]): void
+static PersistProps(properties: {key: string; defaultValue: any;}[]): void
 
 行为和[PersistProp](#persistpropdeprecated)类似，不同在于可以一次性持久化多个数据，适合在应用启动的时候初始化。
 
@@ -1849,7 +1849,7 @@ static PersistProps(properties: {key: string, defaultValue: any;}[]): void
 
 | 参数名     | 类型                               | 必填 | 说明                                                     |
 | ---------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| properties | {key: string, defaultValue: any}[] | 是   | 持久化数组，启动key为属性名，defaultValue为默认值。规则同PersistProp。 |
+| properties | {key: string; defaultValue: any}[] | 是   | 持久化数组，启动key为属性名，defaultValue为默认值。规则同PersistProp。 |
 
 **示例：**
 
@@ -2034,7 +2034,7 @@ static EnvProps(props: {key: string; defaultValue: any;}[]): void
 
 | 参数名 | 类型                                              | 必填 | 说明                             |
 | ------ | ------------------------------------------------- | ---- | ------------------------------------ |
-| props  | {key:&nbsp;string,&nbsp;defaultValue:&nbsp;any}[] | 是   | 系统环境变量和默认值的键值对的数组。 |
+| props  | {key:&nbsp;string; &nbsp;defaultValue:&nbsp;any}[] | 是   | 系统环境变量和默认值的键值对的数组。 |
 
 **示例：**
 ```ts
@@ -2079,32 +2079,8 @@ let keys: Array<string> = Environment.Keys(); // keys 包含 accessibilityEnable
 | key                  | 类型            | 说明                                                         |
 | -------------------- | --------------- | ------------------------------------------------------------ |
 | accessibilityEnabled | string          | 无障碍屏幕朗读是否启用。当无法获取环境变量中的accessibilityEnabled的值时，将通过envProp、envProps等接口传入的开发者指定的默认值添加到AppStorage中。 |
-| colorMode            | ColorMode       | 深浅色模式，可选值为：<br/>-&nbsp;ColorMode.LIGHT：浅色模式；<br/>-&nbsp;ColorMode.DARK：深色模式。 |
+| colorMode            | [ColorMode](./ts-state-management-environment-variables.md#colormode)       | 深浅色模式，可选值为：<br/>-&nbsp;ColorMode.LIGHT：浅色模式；<br/>-&nbsp;ColorMode.DARK：深色模式。 |
 | fontScale            | number          | 字体大小比例。                                               |
 | fontWeightScale      | number          | 字重比例。                                                   |
-| layoutDirection      | LayoutDirection | 布局方向类型，可选值为：<br/>-&nbsp;LayoutDirection.LTR：从左到右；<br/>-&nbsp;LayoutDirection.RTL：从右到左。<br/>-&nbsp;Auto：跟随系统。 |
+| layoutDirection      | [LayoutDirection](./ts-state-management-environment-variables.md#layoutdirection) | 布局方向类型，可选值为：<br/>-&nbsp;LayoutDirection.LTR：从左到右；<br/>-&nbsp;LayoutDirection.RTL：从右到左。<br/>-&nbsp;Auto：跟随系统。 |
 | languageCode         | string          | 当前系统语言，小写字母，例如zh。                             |
-
-### ColorMode
-
-系统当前深浅色模式
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称  | 值    | 说明      |
-| ----- | -----| ----------|
-| LIGHT | 0    | 浅色模式。 |
-| DARK  | 1    | 深色模式。 |
-
-
-### LayoutDirection
-
-系统的布局方向类型
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称  | 值    | 说明      |
-| ----- | -----| ----------|
-| LTR   | 0    | 从左向右布局。 |
-| RTL   | 1    | 从右向左布局。 |
-| AUTO  | 2    | 自动布局，跟随系统。 |

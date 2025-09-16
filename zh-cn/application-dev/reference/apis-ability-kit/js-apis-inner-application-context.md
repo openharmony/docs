@@ -1,6 +1,13 @@
 # Context (Stage模型的上下文基类)
 
-Context模块继承自[BaseContext](js-apis-inner-application-baseContext.md)，提供了Ability或Application的上下文的基础能力，包括访问特定应用程序的资源等。
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+Context是Stage模型的上下文基类，主要用于访问特定应用程序的资源，以及执行应用级操作的回调。
 
 > **说明：**
 >
@@ -110,7 +117,7 @@ export default class EntryAbility extends UIAbility {
 
 getApplicationContext(): ApplicationContext
 
-获取本应用的应用上下文。
+获取当前应用上下文。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -120,7 +127,7 @@ getApplicationContext(): ApplicationContext
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [ApplicationContext](js-apis-inner-application-applicationContext.md) | 应用上下文Context。 |
+| [ApplicationContext](js-apis-inner-application-applicationContext.md) | 应用上下文。 |
 
 **错误码**：
 
@@ -153,7 +160,7 @@ export default class EntryAbility extends UIAbility {
 
 getGroupDir(dataGroupID: string): Promise\<string>
 
-通过使用应用中的Group ID获取对应的共享目录，使用Promise异步回调。
+通过应用中的Group ID获取对应的共享目录，使用Promise异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -163,7 +170,7 @@ getGroupDir(dataGroupID: string): Promise\<string>
 
 | 参数名       | 类型                     | 必填   | 说明            |
 | -------- | ---------------------- | ---- | ------------- |
-| dataGroupID | string | 是    | 原子化服务应用项目创建时，系统会指定分配唯一Group ID。 |
+| [dataGroupID](../apis-arkdata/js-apis-data-preferences.md#options10) | string | 是    | 原子化服务类型的应用创建时，系统会指定分配唯一Group ID。 |
 
 **返回值：**
 
@@ -206,7 +213,7 @@ export default class EntryAbility extends UIAbility {
 
 getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 
-通过使用应用中的Group ID获取对应的共享目录，使用callback异步回调。
+通过应用中的Group ID获取对应的共享目录，使用callback异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -216,7 +223,7 @@ getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 
 | 参数名       | 类型                     | 必填   | 说明            |
 | -------- | ---------------------- | ---- | ------------- |
-| dataGroupID | string | 是    | 原子化服务应用项目创建时，系统会指定分配唯一Group ID。 |
+| [dataGroupID](../apis-arkdata/js-apis-data-preferences.md#options10) | string | 是    | 原子化服务类型的应用创建时，系统会指定分配唯一Group ID。 |
 | callback | AsyncCallback\<string> | 是    | 以callback方式返回对应的共享目录。如果不存在则返回为空，仅支持应用el2加密级别。|
 
 **错误码：**
@@ -254,7 +261,7 @@ export default class EntryAbility extends UIAbility {
 
 createAreaModeContext(areaMode: contextConstant.AreaMode): Context
 
-当应用需要将不同类型的信息存放在不同目录下时，可以根据指定的数据加密级别创建应用上下文，以获取相应的路径。
+创建特定数据加密级别的应用上下文。开发者可以调用该接口创建不同加密级别的上下文，从而获取对应的沙箱路径。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -296,7 +303,7 @@ export default class EntryAbility extends UIAbility {
 
 createDisplayContext(displayId: number): Context
 
-根据指定的物理屏幕ID创建应用上下文，以便于获取和使用其他带有屏幕信息（包括屏幕密度[ScreenDensity](../apis-localization-kit/js-apis-resource-manager.md#screendensity)和屏幕方向[Direction](../apis-localization-kit/js-apis-resource-manager.md#direction)）的应用上下文。
+根据指定的物理屏幕ID创建带有屏幕信息（包括屏幕密度[ScreenDensity](../apis-localization-kit/js-apis-resource-manager.md#screendensity)和屏幕方向[Direction](../apis-localization-kit/js-apis-resource-manager.md#direction)）的应用上下文。
 
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -306,7 +313,7 @@ createDisplayContext(displayId: number): Context
 
 | 参数名   | 类型                                                         | 必填 | 说明                     |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------ |
-| displayId | number | 是    | 物理屏幕ID。 |
+| [displayId](../apis-arkui/arkts-apis-window-i.md#windowproperties) | number | 是    | 物理屏幕ID。 |
 
 **返回值：**
 

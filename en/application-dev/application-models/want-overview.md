@@ -14,10 +14,10 @@
 
 - **Explicit Want**: If **abilityName** and **bundleName** are specified in the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter when starting an application component, explicit Want is used.
   
-    Explicit Want is usually used to start another application component in the same application. You can use the bundle name and ability name in the **Want** object to specify the target component. When there is an explicit object to process the request, explicit Want is a simple and effective way to start the target application component.
+    Explicit Want is usually used to start another application component in the same application. You can use the bundle name and ability name in the Want object to specify the target component. When there is an explicit object to process the request, explicit Want is a simple and effective way to start the target application component.
     > **NOTE**
     >
-    > Since API version 12, it is not recommended that third-party applications start other applications by specifying an ability (implicit Want mode). Instead, the [linking mode](app-startup-overview.md#application-links) is recommended.
+    > Starting from API version 12, it is not recommended that third-party applications start other applications by specifying an ability (implicit Want mode). Instead, the [linking mode](app-startup-overview.md#application-links) is recommended.
   
   ```ts
   import { Want } from '@kit.AbilityKit';

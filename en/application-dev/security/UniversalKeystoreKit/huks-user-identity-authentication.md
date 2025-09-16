@@ -1,20 +1,28 @@
 # HUKS Access Control Development
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
 
 For details about scenarios and related concepts, see [HUKS Access Control Overview](huks-identity-authentication-overview.md).
 
-
 ## How to Develop
 
-1. Generate a key, enable fingerprint authentication for key access, and set related parameters.
-   When a key is generated or imported, set [HuksUserAuthType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksuserauthtype9), [HuksAuthAccessType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksauthaccesstype9), and [HuksChallengeType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukschallengetype9).
+### Generating a Key
+
+Specify the fingerprint access control type and related properties.
+
+When a key is generated or imported, set [HuksUserAuthType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksuserauthtype9), [HuksAuthAccessType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksauthaccesstype9), and [HuksChallengeType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukschallengetype9).
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 
 /*
-* Set the key alias and encapsulate the key property set.
-*/
+ * Set the key alias and encapsulate the key property set.
+ */
 let keyAlias = 'test_sm4_key_alias';
 let properties: Array<huks.HuksParam> = [{
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -56,11 +64,11 @@ let huksOptions: huks.HuksOptions = {
 /*
  * Generate a key.
  */
-class throwObject {
+class ThrowObject {
   isThrow: boolean = false
 }
 
-function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
   return new Promise<void>((resolve, reject) => {
     try {
       huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
@@ -79,7 +87,7 @@ function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwO
 
 async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise generateKeyItem`);
-  let throwObject: throwObject = { isThrow: false };
+  let throwObject: ThrowObject = { isThrow: false };
   try {
     await generateKeyItem(keyAlias, huksOptions, throwObject)
       .then((data) => {
@@ -102,7 +110,9 @@ async function TestGenKeyForFingerprintAccessControl() {
 }
 ```
 
-2. Initialize a key session to initiate fingerprint authentication. If the authentication is successful, an authentication token (**AuthToken**) is returned.
+### Initializing a Key Session
+
+Initiate fingerprint authentication to obtain the access token.
    
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
@@ -111,7 +121,7 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 /*
  * Set the key alias and encapsulate the key property set.
  */
-let IV = '1234567890123456';
+let IV = '1234567890123456'; // Replace this example code with a random value in practice.
 let srcKeyAlias = 'test_sm4_key_alias';
 let handle: number;
 let challenge: Uint8Array;
@@ -152,11 +162,11 @@ let huksOptions: huks.HuksOptions = {
   inData: new Uint8Array(new Array())
 }
 
-class throwObject {
+class ThrowObject {
   isThrow: boolean = false
 }
 
-function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
   return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
     try {
       huks.initSession(keyAlias, huksOptions, (error, data) => {
@@ -175,7 +185,7 @@ function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObjec
 /* Initialize the session in the HUKS and obtain the challenge value. */
 async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise doInit`);
-  let throwObject: throwObject = { isThrow: false };
+  let throwObject: ThrowObject = { isThrow: false };
   try {
     await initSession(keyAlias, huksOptions, throwObject)
       .then((data) => {
@@ -243,24 +253,26 @@ async function testInitAndAuthFinger() {
 }
 ```
 
-3. Pass in **AuthToken** to perform data operations.
+### Passing in the Access Token
+
+Perform data operations.
    
 ```ts
 /*
-* The following uses a 128-bit SM4 key as an example.
-*/
+ * The following uses a 128-bit SM4 key as an example.
+ */
 import { huks } from '@kit.UniversalKeystoreKit';
 
 /*
-* Determine the key property set to be encapsulated.
-*/
-let IV = '1234567890123456';
+ * Determine the key property set to be encapsulated.
+ */
+let IV = '1234567890123456'; // Replace this example code with a random value in practice.
 let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string';
 let handle: number;
 let fingerAuthToken: Uint8Array;
 let finishOutData: Uint8Array;
 
-class throwObject {
+class ThrowObject {
   isThrow: boolean = false;
 }
 
@@ -310,7 +322,15 @@ function StringToUint8Array(str: string) {
   return new Uint8Array(arr);
 }
 
-function updateSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: throwObject) {
+function Uint8ArrayToString(dataArray: Uint8Array) {
+  let dataString = '';
+  for (let i = 0; i < dataArray.length; i++) {
+    dataString += String.fromCharCode(dataArray[i]);
+  }
+  return dataString;
+}
+
+function updateSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: ThrowObject) {
   return new Promise<huks.HuksReturnResult>((resolve, reject) => {
     try {
       huks.updateSession(handle, huksOptions, token, (error, data) => {
@@ -329,7 +349,7 @@ function updateSession(handle: number, huksOptions: huks.HuksOptions, token: Uin
 
 async function publicUpdateFunc(handle: number, token: Uint8Array, huksOptions: huks.HuksOptions) {
   console.info(`enter promise doUpdate`);
-  let throwObject: throwObject = { isThrow: false };
+  let throwObject: ThrowObject = { isThrow: false };
   try {
     await updateSession(handle, huksOptions, token, throwObject)
       .then((data) => {
@@ -347,7 +367,7 @@ async function publicUpdateFunc(handle: number, token: Uint8Array, huksOptions: 
   }
 }
 
-function finishSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: throwObject) {
+function finishSession(handle: number, huksOptions: huks.HuksOptions, token: Uint8Array, throwObject: ThrowObject) {
   return new Promise<huks.HuksReturnResult>((resolve, reject) => {
     try {
       huks.finishSession(handle, huksOptions, token, (error, data) => {
@@ -366,7 +386,7 @@ function finishSession(handle: number, huksOptions: huks.HuksOptions, token: Uin
 
 async function publicFinishFunc(handle: number, token: Uint8Array, huksOptions: huks.HuksOptions) {
   console.info(`enter promise doFinish`);
-  let throwObject: throwObject = { isThrow: false };
+  let throwObject: ThrowObject = { isThrow: false };
   try {
     await finishSession(handle, huksOptions, token, throwObject)
       .then((data) => {
@@ -387,11 +407,11 @@ async function publicFinishFunc(handle: number, token: Uint8Array, huksOptions: 
 
 async function testSm4Cipher() {
   encryptOptions.inData = StringToUint8Array(cipherInData);
-  /* Pass in AuthToken. */
+  /* Pass in the access token. */
   await publicUpdateFunc(handle, fingerAuthToken, encryptOptions);
-  /* Pass in AuthToken. */
+  /* Pass in the access token. */
   await publicFinishFunc(handle, fingerAuthToken, encryptOptions);
-  if (finishOutData === StringToUint8Array(cipherInData)) {
+  if (Uint8ArrayToString(finishOutData) == cipherInData) {
     console.info('test finish encrypt error ');
   } else {
     console.info('test finish encrypt success');

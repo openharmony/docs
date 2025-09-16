@@ -7,9 +7,6 @@
 <!--Adviser: @zhang_yixin13-->
 
 
-前两个小节介绍的LocalStorage和AppStorage都是运行时的内存，但是在应用退出再次启动后，依然能保存选定的结果，是应用开发中十分常见的现象，这就需要用到PersistentStorage。
-
-
 PersistentStorage是应用程序中的可选单例对象。此对象的作用是持久化存储选定的AppStorage属性，以确保这些属性在应用程序重新启动时的值与应用程序关闭时的值相同。
 
 
@@ -17,27 +14,25 @@ PersistentStorage提供状态变量持久化的能力，但是需要注意，其
 
 ## 概述
 
-PersistentStorage将选定的AppStorage属性保留在设备磁盘上。应用程序通过API，以决定哪些AppStorage属性应借助PersistentStorage持久化。UI和业务逻辑不直接访问PersistentStorage中的属性，所有属性访问都是对AppStorage的访问，AppStorage中的更改会自动同步到PersistentStorage。
-
-PersistentStorage和AppStorage中的属性建立双向同步。应用开发通常通过AppStorage访问PersistentStorage，另外还有一些接口可以用于管理持久化属性，但是业务逻辑始终是通过AppStorage获取和设置属性的。
+PersistentStorage将选定的AppStorage属性保留在设备磁盘上。应用程序通过API，以决定哪些属性应借助PersistentStorage持久化。PersistentStorage和AppStorage中的属性建立了双向同步，UI和业务逻辑不直接访问PersistentStorage中的属性，所有属性访问都是对AppStorage的访问，AppStorage中的更改会自动同步到PersistentStorage。
 
 PersistentStorage的存储路径为module级别，即哪个module调用了PersistentStorage，数据副本存入对应module的持久化文件中。如果多个module使用相同的key，则数据归属到最先使用PersistentStorage的module里。
 
 PersistentStorage的存储路径在应用第一个ability启动时就已确定，为该ability所属的module。如果一个ability调用了PersistentStorage，并且该ability能被不同的module拉起，那么ability存在多少种启动方式，就会有多少份数据副本。
 
-PersistentStorage功能上耦合了AppStorage，并且数据在不同module中使用也会有问题，因此推荐开发者使用PersistenceV2的globalConnect接口替换掉PersistentStorage的persistProp接口。PersistentStorage向PersistenceV2迁移的方案见[PersistentStorage->PersistenceV2](arkts-v1-v2-migration-application-and-others.md#persistentstorage-persistencev2)。PersistenceV2相关介绍参考文档[PersistenceV2](arkts-new-persistencev2.md)。
+PersistentStorage功能上耦合了AppStorage，并且数据在不同module中使用也会有问题，因此推荐开发者使用[PersistenceV2](arkts-new-persistencev2.md)的globalConnect接口替换掉PersistentStorage的persistProp接口。PersistentStorage向PersistenceV2迁移的方案见[PersistentStorage->PersistenceV2](arkts-v1-v2-migration-application-and-others.md#persistentstorage-persistencev2)。
 
 ## 限制条件
 
 PersistentStorage允许的类型和值有：
 
-- `number, string, boolean, enum` 等简单类型。
-- 可以被`JSON.stringify()`和`JSON.parse()`重构的对象，但是对象中的成员方法不支持持久化。
-- API12及以上支持Map类型，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。且更新的值被持久化存储。详见[装饰Map类型变量](#装饰map类型变量)。
-- API12及以上支持Set类型，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。且更新的值被持久化存储。详见[装饰Set类型变量](#装饰set类型变量)。
-- API12及以上支持Date类型，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。且更新的值被持久化存储。详见[装饰Date类型变量](#装饰date类型变量)。
-- API12及以上支持`undefined` 和 `null`。
-- API12及以上[支持联合类型](#支持联合类型)。
+- `number`，`string`，`boolean`，`enum` 等简单类型。
+- 可以被`JSON.stringify()`和`JSON.parse()`重构的对象（但是对象中的成员方法不支持持久化）。
+- API version 12及以上支持Map类型，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`、`clear`、`delete` 更新Map的值，且更新的值被持久化存储。详见[持久化Map类型变量](#持久化map类型变量)。
+- API version 12及以上支持Set类型，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`、`clear`、`delete` 更新Set的值，且更新的值被持久化存储。详见[持久化Set类型变量](#持久化set类型变量)。
+- API version 12及以上支持Date类型，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`、`setMonth`、`setDate`、`setHours`、`setMinutes`、`setSeconds`、`setMilliseconds`、`setTime`、`setUTCFullYear`、`setUTCMonth`、`setUTCDate`、`setUTCHours`、`setUTCMinutes`、`setUTCSeconds`、`setUTCMilliseconds` 更新Date的属性，且更新的值被持久化存储。详见[持久化Date类型变量](#持久化date类型变量)。
+- API version 12及以上支持`undefined` 和 `null`。
+- API version 12及以上[支持联合类型](#持久化联合类型变量)。
 
 PersistentStorage不允许的类型和值有：
 
@@ -168,31 +163,31 @@ if (AppStorage.get('aProp') > 50) {
 
 示例代码在读取PersistentStorage存储的数据后，判断“aProp”的值是否大于50，如果大于50，则使用AppStorage的接口将其设置为47。
 
-### 支持联合类型
+### 持久化联合类型变量
 
-PersistentStorage支持联合类型和undefined和null，在下面的示例中，使用persistProp方法初始化"P"为undefined。通过@StorageLink("P")绑定变量p，类型为number | undefined | null，点击Button改变P的值，视图会随之刷新。且P的值被持久化存储。
+PersistentStorage支持联合类型和undefined和null，在下面的示例中，使用persistProp方法初始化“P”为undefined。通过@StorageLink('P')绑定变量p，类型为number | undefined | null，点击Button改变P的值，视图会随之刷新。且P的值被持久化存储。
 
 ```ts
-PersistentStorage.persistProp("P", undefined);
+PersistentStorage.persistProp('P', undefined);
 
 @Entry
 @Component
 struct TestCase6 {
-  @StorageLink("P") p: number | undefined | null = 10;
+  @StorageLink('P') p: number | undefined | null = 10;
 
   build() {
     Row() {
       Column() {
-        Text(this.p + "")
+        Text(this.p + '')
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        Button("changeToNumber").onClick(() => {
+        Button('changeToNumber').onClick(() => {
           this.p = 10;
         })
-        Button("changeTo undefined").onClick(() => {
+        Button('changeTo undefined').onClick(() => {
           this.p = undefined;
         })
-        Button("changeTo null").onClick(() => {
+        Button('changeTo null').onClick(() => {
           this.p = null;
         })
       }  
@@ -204,17 +199,17 @@ struct TestCase6 {
 ```
 
 
-### 装饰Date类型变量
+### 持久化Date类型变量
 
 在下面的示例中，@StorageLink装饰的persistedDate类型为Date，点击Button改变persistedDate的值，视图会随之刷新。且persistedDate的值被持久化存储。
 
 ```ts
-PersistentStorage.persistProp("persistedDate", new Date());
+PersistentStorage.persistProp('persistedDate', new Date());
 
 @Entry
 @Component
 struct PersistedDate {
-  @StorageLink("persistedDate") persistedDate: Date = new Date();
+  @StorageLink('persistedDate') persistedDate: Date = new Date();
 
   updateDate() {
     this.persistedDate = new Date();
@@ -263,20 +258,20 @@ struct PersistedDate {
 }
 ```
 
-### 装饰Map类型变量
+### 持久化Map类型变量
 
 在下面的示例中，@StorageLink装饰的persistedMapString类型为Map\<number, string\>，点击Button改变persistedMapString的值，视图会随之刷新。且persistedMapString的值被持久化存储。
 
 ```ts
-PersistentStorage.persistProp("persistedMapString", new Map<number, string>([]));
+PersistentStorage.persistProp('persistedMapString', new Map<number, string>([]));
 
 @Entry
 @Component
 struct PersistedMap {
-  @StorageLink("persistedMapString") persistedMapString: Map<number, string> = new Map<number, string>([]);
+  @StorageLink('persistedMapString') persistedMapString: Map<number, string> = new Map<number, string>([]);
 
   persistMapString() {
-    this.persistedMapString = new Map<number, string>([[3, "one"], [6, "two"], [9, "three"]]);
+    this.persistedMapString = new Map<number, string>([[3, 'one'], [6, 'two'], [9, 'three']]);
   }
 
   build() {
@@ -291,7 +286,7 @@ struct PersistedMap {
 
           Button() {
             Text('Persist Map String')
-              .fontSize(25)
+              .fontSize(20)
               .fontWeight(FontWeight.Bold)
               .fontColor(Color.White)
           }
@@ -313,17 +308,17 @@ struct PersistedMap {
 }
 ```
 
-### 装饰Set类型变量
+### 持久化Set类型变量
 
 在下面的示例中，@StorageLink装饰的persistedSet类型为Set\<number\>，点击Button改变persistedSet的值，视图会随之刷新。且persistedSet的值被持久化存储。
 
 ```ts
-PersistentStorage.persistProp("persistedSet", new Set<number>([]));
+PersistentStorage.persistProp('persistedSet', new Set<number>([]));
 
 @Entry
 @Component
 struct PersistedSet {
-  @StorageLink("persistedSet") persistedSet: Set<number> = new Set<number>([]);
+  @StorageLink('persistedSet') persistedSet: Set<number> = new Set<number>([]);
 
   persistSet() {
     this.persistedSet = new Set<number>([33, 1, 3]);

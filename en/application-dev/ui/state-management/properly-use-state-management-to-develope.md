@@ -1,4 +1,10 @@
 # Proper Use of State Management
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 Managing state in applications can be a tricky task. You may find the UI not refreshed as expected, or the re-renders slowing down your application. This topic explores some best practices for managing state, through typical correct and incorrect usage examples.
 
@@ -28,7 +34,7 @@ struct Index {
   }
 
   isRenderText(index: number) : number {
-    console.log(`index ${index} is rendered`);
+    console.info(`index ${index} is rendered`);
     return 1;
   }
 
@@ -90,7 +96,7 @@ Below you can see how the preceding code snippet works.
 
 In this example, a total of 20 records are displayed on the page through **ForEach**. When you click the **Text** component of **age** in one of the records, the **Text** components of **age** in other 19 records are also re-rendered - reflected by the logs generated for the components of **age**. However, because the **age** values of the other 19 records do not change, the re-rendering of these records is actually redundant.
 
-This redundant re-rendering is due to a characteristic of state management. Assume that there is an @State decorated number array **Num[]**. This array contains 20 elements whose values are 0 to 19, respectively. Each of the 20 elements is bound to a **Text** component. When one of the elements is changed, all components bound to the elements are re-rendered, regardless of whether the other elements are changed or not.
+This redundant re-rendering is due to a characteristic of state management. Assume that there is an [@State](./arkts-state.md) decorated number array **Num[]**. This array contains 20 elements whose values are 0 to 19, respectively. Each of the 20 elements is bound to a **Text** component. When one of the elements is changed, all components bound to the elements are re-rendered, regardless of whether the other elements are changed or not.
 
 This seemly bug, commonly known as "redundant re-render", is widely observed in simple array, and can adversely affect the UI re-rendering performance when the arrays are large. To make your rendering process run smoothly, it is crucial to reduce redundant re-renders and update components only when necessary.
 
@@ -117,7 +123,7 @@ struct Information {
   @ObjectLink info: Info;
   @State index: number = 0;
   isRenderText(index: number) : number {
-    console.log(`index ${index} is rendered`);
+    console.info(`index ${index} is rendered`);
     return 1;
   }
 
@@ -209,7 +215,7 @@ During development, we sometimes define a large object that contains many style-
 
 ```typescript
 @Observed
-class UIStyle {
+class UiStyle {
   translateX: number = 0;
   translateY: number = 0;
   scaleX: number = 0.3;
@@ -228,9 +234,9 @@ class UIStyle {
 }
 @Component
 struct SpecialImage {
-  @ObjectLink uiStyle: UIStyle;
+  @ObjectLink uiStyle: UiStyle;
   private isRenderSpecialImage() : number { // A function indicating whether the component is rendered.
-    console.log("SpecialImage is rendered");
+    console.info("SpecialImage is rendered");
     return 1;
   }
   build() {
@@ -247,24 +253,25 @@ struct SpecialImage {
 }
 @Component
 struct PageChild {
-  @ObjectLink uiStyle: UIStyle
+  @ObjectLink uiStyle: UiStyle
   // The following function is used to display whether the component is rendered.
   private isRenderColumn() : number {
-    console.log("Column is rendered");
+    console.info("Column is rendered");
     return 1;
   }
   private isRenderStack() : number {
-    console.log("Stack is rendered");
+    console.info("Stack is rendered");
     return 1;
   }
   private isRenderImage() : number {
-    console.log("Image is rendered");
+    console.info("Image is rendered");
     return 1;
   }
   private isRenderText() : number {
-    console.log("Text is rendered");
+    console.info("Text is rendered");
     return 1;
   }
+
   build() {
     Column() {
       SpecialImage({
@@ -272,15 +279,15 @@ struct PageChild {
       })
       Stack() {
         Column() {
-            Image($r('app.media.icon')) // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-              .opacity(this.uiStyle.alpha)
-              .scale({
-                x: this.uiStyle.scaleX,
-                y: this.uiStyle.scaleY
-              })
-              .padding(this.isRenderImage())
-              .width(300)
-              .height(300)
+          Image($r('app.media.icon')) // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+            .opacity(this.uiStyle.alpha)
+            .scale({
+              x: this.uiStyle.scaleX,
+              y: this.uiStyle.scaleY
+            })
+            .padding(this.isRenderImage())
+            .width(300)
+            .height(300)
         }
         .width('100%')
         .position({ y: -80 })
@@ -317,7 +324,7 @@ struct PageChild {
           .backgroundColor("#FF007DFF")
           .margin({ bottom: 10 })
           .onClick(() => {
-            animateTo({
+            this.getUIContext().animateTo({
               duration: 500
             },() => {
               this.uiStyle.translateY = (this.uiStyle.translateY + 180) % 250;
@@ -348,7 +355,7 @@ struct PageChild {
 @Entry
 @Component
 struct Page {
-  @State uiStyle: UIStyle = new UIStyle();
+  @State uiStyle: UiStyle = new UiStyle();
   build() {
     Stack() {
       PageChild({
@@ -368,7 +375,7 @@ Click the **Move** button before optimization. The duration for updating dirty n
 
 ![img](figures/properly-use-state-management-to-develope-11.PNG)
 
-In the above example, **uiStyle** defines multiple properties, which are each associated with multiple components. When some of these properties are changed at the click of a button, all the components associated with **uiStyle** are re-rendered, even though they do not need to (because the properties of these components are not changed). The re-renders of these components can be observed through a series of defined **isRender** functions. When **Move** is clicked to perform the translation animation, the value of **translateY** changes multiple times. As a result, redundant re-renders occur at each frame, which greatly worsen the application performance.
+In the above example, **UiStyle** defines multiple properties, each associated with different components. When some of these properties are changed at the click of a button, all the components associated with **uiStyle** are re-rendered, even though they do not need to (because the properties of these components are not changed). The re-renders of these components can be observed through a series of defined **isRender** functions. When **Move** is clicked to perform the translation animation, the value of **translateY** changes multiple times. As a result, redundant re-renders occur at each frame, which greatly worsen the application performance.
 
 Such redundant re-renders result from an update mechanism of the state management: If multiple properties of a class are bound to different components through an object of the class, then, if any of the properties is changed, the component associated with the property is re-rendered, together with components associated with the other properties, even though the other properties do not change.
 
@@ -415,7 +422,7 @@ class NeedRenderTranslate { // Properties used together can be classified into t
   public translateY: number = 0;
 }
 @Observed
-class UIStyle {
+class UiStyle {
   // Use the NeedRenderxxx class.
   needRenderTranslate: NeedRenderTranslate = new NeedRenderTranslate();
   needRenderFontSize: NeedRenderFontSize = new NeedRenderFontSize();
@@ -428,14 +435,14 @@ class UIStyle {
 }
 @Component
 struct SpecialImage {
-  @ObjectLink uiStyle : UIStyle;
+  @ObjectLink uiStyle : UiStyle;
   @ObjectLink needRenderImage: NeedRenderImage // Receive a new class from its parent component.
   private isRenderSpecialImage() : number { // A function indicating whether the component is rendered.
-    console.log("SpecialImage is rendered");
+    console.info("SpecialImage is rendered");
     return 1;
   }
   build() {
-    Image($r('app.media.icon')) // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+    Image($r('app.media.background')) // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
       .width(this.needRenderImage.imageWidth) // Use this.needRenderImage.xxx.
       .height(this.needRenderImage.imageHeight)
       .margin({top:20})
@@ -448,7 +455,7 @@ struct SpecialImage {
 }
 @Component
 struct PageChild {
-  @ObjectLink uiStyle: UIStyle;
+  @ObjectLink uiStyle: UiStyle;
   @ObjectLink needRenderTranslate: NeedRenderTranslate; // Receive the newly defined instance of the NeedRenderxxx class from its parent component.
   @ObjectLink needRenderFontSize: NeedRenderFontSize;
   @ObjectLink needRenderBorderRadius: NeedRenderBorderRadius;
@@ -458,21 +465,22 @@ struct PageChild {
   @ObjectLink needRenderScale: NeedRenderScale;
   // The following function is used to display whether the component is rendered.
   private isRenderColumn() : number {
-    console.log("Column is rendered");
+    console.info("Column is rendered");
     return 1;
   }
   private isRenderStack() : number {
-    console.log("Stack is rendered");
+    console.info("Stack is rendered");
     return 1;
   }
   private isRenderImage() : number {
-    console.log("Image is rendered");
+    console.info("Image is rendered");
     return 1;
   }
   private isRenderText() : number {
-    console.log("Text is rendered");
+    console.info("Text is rendered");
     return 1;
   }
+
   build() {
     Column() {
       SpecialImage({
@@ -481,7 +489,7 @@ struct PageChild {
       })
       Stack() {
         Column() {
-          Image($r('app.media.icon')) // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+          Image($r('app.media.background')) // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
             .opacity(this.needRenderAlpha.alpha)
             .scale({
               x: this.needRenderScale.scaleX, // Use this.needRenderXxx.xxx.
@@ -528,7 +536,7 @@ struct PageChild {
           .backgroundColor("#FF007DFF")
           .margin({ bottom: 10 })
           .onClick(() => {
-            animateTo({
+            this.getUIContext().animateTo({
               duration: 500
             }, () => {
               this.needRenderTranslate.translateY = (this.needRenderTranslate.translateY + 180) % 250;
@@ -567,7 +575,7 @@ struct PageChild {
 @Entry
 @Component
 struct Page {
-  @State uiStyle: UIStyle = new UIStyle();
+  @State uiStyle: UiStyle = new UiStyle();
   build() {
     Stack() {
       PageChild({
@@ -598,13 +606,13 @@ After the optimization, the 15 attributes previously in one class are divided in
 - Properties that are frequently used together can be divided into the same new child class, that is, **NeedRenderScale**, **NeedRenderTranslate**, **NeedRenderPos**, and **NeedRenderSize** in the example. This mode of division is applicable to the scenario where properties often appear in pairs or are applied to the same style, for example, **.translate**, **.position**, and **.scale** (which usually receive an object as a parameter).
 - Properties that may be used in different places should be divided into a new child class, that is, **NeedRenderAlpha**, **NeedRenderBorderRadius**, and **NeedRenderFontSize** in the example. This mode of division is applicable to the scenario where a property works on multiple components or works on their own, for example, **.opacity** and **.borderRadius** (which usually work on their own).
 
-As in combination of properties, the principle behind division of properties is that changes to properties of objects nested more than two levels deep cannot be observed. Yet, you can use @Observed and @ObjectLink to transfer level-2 objects between parent and child nodes to observe property changes at level 2 and precisely control the render scope. <!--Del-->For details about the division of properties, see [Precisely Controlling Render Scope](https://gitee.com/openharmony/docs/blob/master/en/application-dev/performance/precisely-control-render-scope.md).<!--DelEnd-->
+As in combination of properties, the principle behind division of properties is that changes to properties of objects nested more than two levels deep cannot be observed. However, you can use [@Observed](./arkts-observed-and-objectlink.md) and [@ObjectLink](./arkts-observed-and-objectlink.md) to pass level-2 objects between parent and child nodes. This allows you to observe property changes at level 2 and precisely control the render scope. <!--Del-->For details about the division of properties, see [Precisely Controlling Render Scope](../../performance/precisely-control-render-scope.md).<!--DelEnd-->
 
-@Track decorator can also precisely control the render scope, which does not involve division of properties.
+The [@Track](./arkts-track.md) decorator can also precisely control the render scope, and it does not involve division of properties.
 
 ```ts
 @Observed
-class UIStyle {
+class UiStyle {
   @Track translateX: number = 0;
   @Track translateY: number = 0;
   @Track scaleX: number = 0.3;
@@ -623,13 +631,13 @@ class UIStyle {
 }
 @Component
 struct SpecialImage {
-  @ObjectLink uiStyle: UIStyle;
+  @ObjectLink uiStyle: UiStyle;
   private isRenderSpecialImage() : number { // A function indicating whether the component is rendered.
-    console.log("SpecialImage is rendered");
+    console.info("SpecialImage is rendered");
     return 1;
   }
   build() {
-    Image($r('app.media.icon')) // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+    Image($r('app.media.foreground')) // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
       .width(this.uiStyle.imageWidth)
       .height(this.uiStyle.imageHeight)
       .margin({ top: 20 })
@@ -642,24 +650,25 @@ struct SpecialImage {
 }
 @Component
 struct PageChild {
-  @ObjectLink uiStyle: UIStyle
+  @ObjectLink uiStyle: UiStyle
   // The following function is used to display whether the component is rendered.
   private isRenderColumn() : number {
-    console.log("Column is rendered");
+    console.info("Column is rendered");
     return 1;
   }
   private isRenderStack() : number {
-    console.log("Stack is rendered");
+    console.info("Stack is rendered");
     return 1;
   }
   private isRenderImage() : number {
-    console.log("Image is rendered");
+    console.info("Image is rendered");
     return 1;
   }
   private isRenderText() : number {
-    console.log("Text is rendered");
+    console.info("Text is rendered");
     return 1;
   }
+
   build() {
     Column() {
       SpecialImage({
@@ -667,15 +676,15 @@ struct PageChild {
       })
       Stack() {
         Column() {
-            Image($r('app.media.icon')) // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-              .opacity(this.uiStyle.alpha)
-              .scale({
-                x: this.uiStyle.scaleX,
-                y: this.uiStyle.scaleY
-              })
-              .padding(this.isRenderImage())
-              .width(300)
-              .height(300)
+          Image($r('app.media.foreground')) // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+            .opacity(this.uiStyle.alpha)
+            .scale({
+              x: this.uiStyle.scaleX,
+              y: this.uiStyle.scaleY
+            })
+            .padding(this.isRenderImage())
+            .width(300)
+            .height(300)
         }
         .width('100%')
         .position({ y: -80 })
@@ -712,7 +721,7 @@ struct PageChild {
           .backgroundColor("#FF007DFF")
           .margin({ bottom: 10 })
           .onClick(() => {
-            animateTo({
+            this.getUIContext().animateTo({
               duration: 500
             },() => {
               this.uiStyle.translateY = (this.uiStyle.translateY + 180) % 250;
@@ -743,7 +752,7 @@ struct PageChild {
 @Entry
 @Component
 struct Page {
-  @State uiStyle: UIStyle = new UIStyle();
+  @State uiStyle: UiStyle = new UiStyle();
   build() {
     Stack() {
       PageChild({
@@ -832,11 +841,11 @@ struct CompList {
   @ObjectLink@Watch('changeChildList') childList: ChildList;
 
   changeChildList() {
-    console.log('CompList ChildList change');
+    console.info('CompList ChildList change');
   }
 
   isRenderCompChild(index: number) : number {
-    console.log("Comp Child is render" + index);
+    console.info("Comp Child is render" + index);
     return 1;
   }
 
@@ -997,11 +1006,11 @@ struct CompList {
   @ObjectLink@Watch('changeChildList') childList: ChildList;
 
   changeChildList() {
-    console.log('CompList ChildList change');
+    console.info('CompList ChildList change');
   }
 
   isRenderCompChild(index: number) : number {
-    console.log("Comp Child is render" + index);
+    console.info("Comp Child is render" + index);
     return 1;
   }
 
@@ -1349,7 +1358,7 @@ struct ChildComponent {
     Column() {
       Text(this.data.message).fontSize(20)
         .onAppear(() => {
-          console.info("text appear:" + this.data.message)
+          console.info("text appear:" + this.data.message);
         })
       Image(this.data.imgSrc)
         .width(100)
@@ -1399,7 +1408,7 @@ struct Page {
           for (let i = 0; i < this.styleList.length; i++) {
             this.styleList[i].fontSize++;
           }
-          console.log("change font size");
+          console.info("change font size");
         })
       List() {
         ForEach(this.styleList, (item: TextStyles) => {
@@ -1456,7 +1465,7 @@ struct Page {
           for (let i = 0; i < this.styleList.length; i++) {
             this.styleList[i].fontSize++;
           }
-          console.log("change font size");
+          console.info("change font size");
         })
       List() {
         ForEach(this.styleList, (item: TextStyles) => {
@@ -1477,3 +1486,7 @@ Below you can see how the preceding code snippet works.
 When @ObjectLink is used to accept the input item, the **textStyle** variable in the **TextComponent** component can be observed. For @ObjectLink, parameters are passed by reference. Therefore, when the value of **fontSize** in **styleList** is changed in the parent component, this update is properly observed and synced to the corresponding list item in **ForEach**, leading to UI re-rendering.
 
 This is a practical mode of using state management for UI re-rendering.
+
+
+
+<!--no_check-->

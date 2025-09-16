@@ -3,7 +3,7 @@
 <!--Subsystem: ArkUI-->
 <!--Owner: @fengluochenai-->
 <!--Designer: @YanSanzo-->
-<!--Tester: @tinygreyy-->
+<!--Tester: @ybhou1993-->
 <!--Adviser: @HelloCrease-->
 
 
@@ -17,7 +17,6 @@
 >
 > 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
@@ -44,6 +43,8 @@ TreeView({ treeController: TreeController })
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -58,6 +59,8 @@ TreeView({ treeController: TreeController })
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 
 ### addNode
 
@@ -69,6 +72,8 @@ addNode(nodeParam?: NodeParam): TreeController
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：**
 
@@ -92,6 +97,8 @@ removeNode(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 
 ### modifyNode
 
@@ -104,6 +111,8 @@ modifyNode(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 
 ### buildDone
 
@@ -114,6 +123,8 @@ buildDone(): void
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 
 ### refreshNode
@@ -126,11 +137,13 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名  | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| parentId | number | 是 | 父节点Id。 |
+| parentId | number | 是 | 父节点Id。<br />取值范围：大于等于-1。 |
 | parentSubTitle | [ResourceStr](ts-types.md#resourcestr) | 是 | 父节点副文本。 |
 | currentSubtitle | [ResourceStr](ts-types.md#resourcestr) | 是 | 当前节点副文本。 |
 
@@ -138,25 +151,29 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明                                                                                                                                               |
-| -------- | -------- | -------- |--------------------------------------------------------------------------------------------------------------------------------------------------|
-| parentNodeId | number | 否 | 父节点。<br />取值范围：大于等于-1。<br />默认值：-1，根节点id值为-1。若设置数值小于-1，做不生效处理。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                               |
-| currentNodeId | number | 否 | 当前子节点。<br />取值范围：大于等于-1。<br />不能为根节点id，不能为null，否则会抛出异常。且不能设置两个相同的currentNodeId。<br />默认值：-1 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| isFolder | boolean | 否 | 是否是目录。默认值：false。true：是目录，false：不是目录。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                         |
-| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标。<br/>默认值：空字符串  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                           |
-| symbolIconStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol图标，优先级大于icon。<br/>默认值：undefined <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                       |
-| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 选中图标。<br/>默认值：空字符串  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                         |
-| symbolSelectedIconStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol选中图标，优先级大于selectedIcon。<br/>默认值：undefined <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                             |
-| editIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 编辑图标。<br/>默认值：空字符串  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                         |
-| symbolEditIconStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol编辑图标，优先级大于editIcon。<br/>默认值：undefined <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                 |
-| primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 主标题。<br/>默认值：空字符串  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                          |
-| secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题。<br/>默认值：空字符串 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                           |
-| container | ()&nbsp;=&gt;&nbsp;void | 否 | 绑定在节点上的右键子组件，子组件由@Builder修饰。<br/>默认值：()&nbsp;=&gt;&nbsp;void <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                |
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
+| 名称 | 类型 | 只读 | 可选 | 说明                                                                                                                                               |
+| -------- | -------- |---|---|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| parentNodeId | number | 否 | 是 | 父节点Id。<br />取值范围：大于等于-1。<br />默认值：-1，根节点id值为-1。若设置数值小于-1，做不生效处理。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                               |
+| currentNodeId | number | 否 | 是 | 当前子节点Id。<br />取值范围：大于等于-1。<br />不能为根节点id，不能为null，否则会抛出异常。且不能设置两个相同的currentNodeId。<br />默认值：-1 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| isFolder | boolean | 否 | 是 | 是否是目录。<br />默认值：false<br />true：是目录，false：不是目录。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                         |
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 是 | 图标。<br/>默认值：空字符串  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                           |
+| symbolIconStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | 否 | 是 | Symbol图标，优先级大于icon。<br/>默认值：undefined <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                       |
+| selectedIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 是 | 选中图标。<br/>默认值：空字符串  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                         |
+| symbolSelectedIconStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | 否 | 是 | Symbol选中图标，优先级大于selectedIcon。<br/>默认值：undefined <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                             |
+| editIcon | [ResourceStr](ts-types.md#resourcestr) | 否 | 是 | 编辑图标。<br/>默认值：空字符串  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                         |
+| symbolEditIconStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | 否 | 是 | Symbol编辑图标，优先级大于editIcon。<br/>默认值：undefined <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                 |
+| primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 是 | 主标题。<br/>默认值：空字符串  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                          |
+| secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 是 | 副标题。<br/>默认值：空字符串 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                           |
+| container | ()&nbsp;=&gt;&nbsp;void | 否 | 是 | 绑定在节点上的右键子组件，子组件由@Builder修饰。<br/>默认值：()&nbsp;=&gt;&nbsp;void <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                |
 
 
 ## TreeListenerManager
 
 树视图组件的监听器，可以将此对象绑定至树视图组件，然后通过它监听树的节点的变化，同一个监听器不可以控制多个树视图组件。
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。 
 
 
 ### getInstance
@@ -168,6 +185,8 @@ static getInstance(): TreeListenerManager
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **返回值**:
 
@@ -185,6 +204,8 @@ getTreeListener(): TreeListener
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **返回值**:
 
@@ -208,6 +229,8 @@ on(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void): v
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名  | 类型 | 必填 | 说明 |
@@ -225,6 +248,8 @@ once(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void):
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：**
 
@@ -245,6 +270,8 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 **参数：**
 
 | 参数名  | 类型 | 必填 | 说明 |
@@ -257,6 +284,8 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -272,11 +301,13 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明                                       |
-| -------- | -------- | -------- |------------------------------------------|
-| currentNodeId | number | 是 | 返回当前子节点id。<br />取值范围：大于等于0。              |
-| parentNodeId | number | 否 | 返回当前父节点id。<br />取值范围：大于等于-1。<br />默认值：-1 |
-| childIndex | number | 否 | 返回子索引。<br />取值范围：大于等于-1。<br />默认值：-1   |
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
+| 名称 | 类型 | 只读 | 可选 | 说明                                       |
+| -------- | -------- |---|---|------------------------------------------|
+| currentNodeId | number | 否 | 否 | 返回当前子节点id。<br />取值范围：大于等于0。              |
+| parentNodeId | number | 否 | 是 | 返回当前父节点id。<br />取值范围：大于等于-1。<br />默认值：-1 |
+| childIndex | number | 否 | 是 | 返回子索引。<br />取值范围：大于等于-1。<br />默认值：-1   |
 
 ## 事件
 不支持[通用事件](ts-component-general-events.md)。

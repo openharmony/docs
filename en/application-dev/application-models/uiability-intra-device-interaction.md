@@ -1,5 +1,11 @@
 # Starting UIAbility in the Same Application
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @altay-->
+<!--Designer: @altay-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) is the minimum unit that can be scheduled by the system. Redirection between functional modules in a device involves starting of specific UIAbility components, which belong to the same or a different application (for example, starting the UIAbility of a third-party payment application).
 
@@ -328,7 +334,6 @@ This section describes how to start a specified page in both modes: [cold start]
 
 When the initiator [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) starts another UIAbility, it usually needs to redirect to a specified page of the target UIAbility. For example, with FuncAbility, which contains two pages, starting FuncAbility means to redirect to either of the pages: Index (corresponding to the home page) and Second (corresponding to feature A page). You can configure the specified page URL in the want parameter by adding a custom parameter to parameters in [want](../reference/apis-ability-kit/js-apis-app-ability-want.md). For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 
-
 ```ts
 import { common, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -381,7 +386,6 @@ struct Page_UIAbilityComponentsInteractive {
 
 In cold start mode, obtain the parameters from the initiator [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) through the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate) callback of the target UIAbility. Then, in the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) callback of the target UIAbility, parse the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter passed by the EntryAbility to obtain the URL of the page to be loaded, and pass the URL to the [windowStage.loadContent()](../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9) method.
 
-
 ```ts
 import { AbilityConstant, Want, UIAbility } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -432,7 +436,7 @@ An example scenario is as follows:
 
 The development procedure is as follows:
 
-1. When the UIAbility instance of the SMS application is cold started, call [getUIContext()](../reference/apis-arkui/arkts-apis-window-Window.md#getuicontext10) in the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) lifecycle callback to obtain the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md).
+1. When the UIAbility instance of the SMS application is cold started, call [getUIContext()](../reference/apis-arkui/arkts-apis-window-Window.md#getuicontext10) in the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) lifecycle callback to obtain the [UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md).
 
     ```ts
     import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -476,36 +480,125 @@ The development procedure is as follows:
     }
     ```
 
-2. Parse the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter passed in the [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onnewwant) callback of the UIAbility of the SMS application, call [getRouter()](../reference/apis-arkui/js-apis-arkui-UIContext.md#getrouter) in the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md) class to obtain a [Router](../reference/apis-arkui/js-apis-arkui-UIContext.md#router) instance, and specify the target page. When the UIAbility instance of the SMS application is started again, the specified page of the UIAbility instance of the SMS application is displayed.
+2. In the [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onnewwant) callback of the UIAbility instance of the SMS application, set the value of the global variable **nameForNavi** through AppStorage, and perform the specified page navigation. When the UIAbility instance of the SMS application is started again, the specified page of the UIAbility instance of the SMS application is displayed.
 
-    ```ts
-    import { AbilityConstant, Want, UIAbility } from '@kit.AbilityKit';
-    import { hilog } from '@kit.PerformanceAnalysisKit';
-    import type { Router, UIContext } from '@kit.ArkUI';
-    import type { BusinessError } from '@kit.BasicServicesKit';
-   
-    const DOMAIN_NUMBER: number = 0xFF00;
-    const TAG: string = '[EntryAbility]';
+    1. Import the required modules, and set the global variable **nameForNavi** in the **onNewWant()** lifecycle callback.
 
-    export default class EntryAbility extends UIAbility {
-      funcAbilityWant: Want | undefined = undefined;
-      uiContext: UIContext | undefined = undefined;
-      // ...
-      onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-        if (want?.parameters?.router && want.parameters.router === 'funcA') {
-          let funcAUrl = 'pages/Page_HotStartUp';
-          if (this.uiContext) {
-            let router: Router = this.uiContext.getRouter();
-            router.pushUrl({
-              url: funcAUrl
-            }).catch((err: BusinessError) => {
-              hilog.error(DOMAIN_NUMBER, TAG, `Failed to push url. Code is ${err.code}, message is ${err.message}`);
-            });
+        ```ts
+        import { AbilityConstant, Want, UIAbility } from '@kit.AbilityKit';
+        import { hilog } from '@kit.PerformanceAnalysisKit';
+
+        const DOMAIN_NUMBER: number = 0xFF00;
+        const TAG: string = '[EntryAbility]';
+
+        export default class EntryAbility extends UIAbility {
+          // ...
+          onNewWant(want: Want, launchParam: AbilityConstant.   LaunchParam): void {
+            hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'onNewWant');
+            AppStorage.setOrCreate<string>('nameForNavi', 'pageOne'); 
           }
         }
-      }
-    }
-    ```
+        ```
+
+    2. When the Index page is displayed, trigger the **onPageShow** callback to obtain the value of **nameForNavi**, and execute the page navigation.
+
+        ```ts
+        // Index.ets
+        @Entry
+        @Component
+        struct Index {
+          @State message: string = 'Index';
+          pathStack: NavPathStack = new NavPathStack();
+
+          onPageShow(): void {
+            let somePage = AppStorage.get<string>('nameForNavi')
+            if (somePage) {
+              this.pathStack.pushPath({ name: somePage }, false);
+              AppStorage.delete('nameForNavi');
+            }
+          }
+
+          build() {
+            Navigation(this.pathStack) {
+              Text(this.message)
+                .id('Index')
+                .fontSize($r('app.float.page_text_font_size'))
+                .fontWeight(FontWeight.Bold)
+                .alignRules({
+                  center: { anchor: '__container__', align: VerticalAlign.Center },
+                  middle: { anchor: '__container__', align: HorizontalAlign.Center }
+                })
+            }
+            .mode(NavigationMode.Stack)
+            .height('100%')
+            .width('100%')
+          }
+        }
+        ```
+
+    3. Implement the **Navigation** subpage.
+
+        ```ts
+        // PageOne.ets
+        @Builder
+        export function PageOneBuilder() {
+          PageOne();
+        }
+
+        @Component
+        export struct PageOne {
+          @State message: string = 'PageOne';
+          pathStack: NavPathStack = new NavPathStack();
+
+          build() {
+            NavDestination() {
+              Text(this.message)
+                .id('PageOne')
+                .fontSize($r('app.float.page_text_font_size'))
+                .fontWeight(FontWeight.Bold)
+                .alignRules({
+                  center: { anchor: '__container__', align: VerticalAlign.Center },
+                  middle: { anchor: '__container__', align: HorizontalAlign.Center }
+                })
+            }
+            .onReady((context: NavDestinationContext) => {
+              this.pathStack = context.pathStack;
+            })
+            .height('100%')
+            .width('100%')
+          }
+        }
+        ```
+
+    4. Configure subpages in the system configuration file **route_map.json**. For details, see [System Routing Table](../ui/arkts-navigation-navigation.md#system-routing-table).
+
+        ```ts
+        // route_map.json
+        {
+          "routerMap": [
+            {
+              "name": "pageOne",
+              "pageSourceFile": "src/main/ets/pages/PageOne.ets",
+              "buildFunction": "PageOneBuilder",
+              "data": {
+                "description": "this is pageOne"
+              }
+            }
+          ]
+        }
+        ```
+
+    5. Configure **routerMap** in the [module.json5](../quick-start/module-configuration-file.md#routermap) file.
+
+        ```ts
+        // module.json5
+        {
+          "module":{
+            // ...
+            "routerMap": "$profile:route_map",
+          }
+        }
+        ```
 
 > **NOTE**
 >
@@ -679,7 +772,6 @@ For the CalleeAbility, implement the callback to receive data and the methods to
 
    The data formats sent and received by the CallerAbility and CalleeAbility must be consistent. In the following example, the data formats are number and string.
 
-
     ```ts
     import { rpc } from '@kit.IPCKit';
 
@@ -714,7 +806,6 @@ For the CalleeAbility, implement the callback to receive data and the methods to
 4. Implement [Callee.on](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#on) and [Callee.off](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#off).
 
    The time to register a listener for the CalleeAbility depends on your application. The data sent and received before the listener is registered and that after the listener is deregistered are not processed. In the following example, the 'MSG_SEND_METHOD' listener is registered in [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate) of the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) and deregistered in [onDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#ondestroy). After receiving parcelable data, the application processes the data and returns the data result. You need to implement processing based on service requirements. The sample code is as follows:
-
 
     ```ts
     import { AbilityConstant, UIAbility, Want, Caller } from '@kit.AbilityKit';
@@ -813,7 +904,6 @@ For the CalleeAbility, implement the callback to receive data and the methods to
 2. Obtain the [Caller](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#caller) object.
 
    The [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) attribute implements [startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall) to obtain the Caller object for communication. The following example uses **this.context** to obtain the UIAbilityContext, uses **startAbilityByCall** to start the CalleeAbility, obtain the Caller object, and register the [onRelease](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onrelease) listener of the CallerAbility. You need to implement processing based on service requirements.
-
 
     ```ts
     import { common, Want, Caller } from '@kit.AbilityKit';

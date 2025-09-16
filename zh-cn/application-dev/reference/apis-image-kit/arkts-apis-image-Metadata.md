@@ -52,11 +52,10 @@ getProperties(key: Array\<string>): Promise\<Record\<string, string | null>>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
 async function GetProperties(context: Context) {
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); //图片包含exif metadata。
+  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); // 图片包含exif metadata。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -69,7 +68,7 @@ async function GetProperties(context: Context) {
     await metaData.getProperties(["ImageWidth", "ImageLength"]).then((data2) => {
       console.info('Get properties ',JSON.stringify(data2));
     }).catch((error: BusinessError) => {
-      console.error('Get properties failed error.code: ' +JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
+      console.error(`Get properties failed error.code is ${error.code}, error.message is ${error.message}`);
     });
   } else {
     console.error('Metadata is null.');
@@ -110,11 +109,10 @@ setProperties(records: Record\<string, string | null>): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
 async function SetProperties(context: Context) {
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); //图片包含exif metadata。
+  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); // 图片包含exif metadata。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -129,9 +127,9 @@ async function SetProperties(context: Context) {
       "ImageLength": "300"
     };
     await metaData.setProperties(setkey).then(async () => {
-      console.info('Set auxpictureobj properties success.');
+      console.info('Set AuxPictureObj properties success.');
     }).catch((error: BusinessError) => {
-      console.error('Failed to set metadata Properties. code is ${error.code}, message is ${error.message}');
+      console.error(`Failed to set metadata Properties. code is ${error.code}, message is ${error.message}`);
     })
   } else {
     console.error('AuxPictureObj metadata is null. ');
@@ -157,11 +155,10 @@ getAllProperties(): Promise\<Record<string, string | null>>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
 async function GetAllProperties(context: Context) {
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); //图片包含exif metadata。
+  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); // 图片包含exif metadata。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -174,9 +171,9 @@ async function GetAllProperties(context: Context) {
     await metaData.getAllProperties().then((data2) => {
       const count = Object.keys(data2).length;
       console.info('Metadata have ', count, ' properties');
-      console.info('Get metadata all properties: ', JSON.stringify(data2));
+      console.info(`Get metadata all properties: ${data2}`);
     }).catch((error: BusinessError) => {
-      console.error('Get metadata all properties failed error.code: ' +JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
+      console.error(`Get metadata all properties failed error.code is ${error.code}, error.message is ${error.message}`);
     });
   } else {
     console.error('Metadata is null.');
@@ -202,11 +199,10 @@ clone(): Promise\<Metadata>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
-async function clone(context: Context) {
+async function Clone(context: Context) {
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); //图片包含exif metadata。
+  const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); // 图片包含exif metadata。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -218,9 +214,9 @@ async function clone(context: Context) {
   if (metaData != null) {
     let new_metadata: image.Metadata = await metaData.clone();
     new_metadata.getProperties(["ImageWidth"]).then((data1) => {
-      console.info('Clone new_metadata and get Properties.', JSON.stringify(data1));
+      console.info(`Clone new_metadata and get Properties: ${data1}`);
     }).catch((err: BusinessError) => {
-      console.error('Clone new_metadata failed.', JSON.stringify(err));
+      console.error(`Clone new_metadata failed, error : ${err}`);
     });
   } else {
     console.error('Metadata is null.');

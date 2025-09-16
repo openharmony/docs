@@ -6,7 +6,7 @@
 <!--Tester: @lxl007-->
 <!--Adviser: @HelloCrease-->
 
-创建并显示文本提示框、对话框、操作菜单以及自定义弹窗。
+创建并显示即时反馈、对话框、操作菜单以及自定义弹窗。
 
 > **说明：**
 >
@@ -20,7 +20,7 @@
 
 showToast(options: promptAction.ShowToastOptions): void
 
-创建并显示文本提示框。
+创建并显示即时反馈。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -30,7 +30,7 @@ showToast(options: promptAction.ShowToastOptions): void
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | 是    | 文本弹窗选项。 |
+| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | 是    | Toast选项。 |
 
 **错误码：**
 
@@ -43,7 +43,7 @@ showToast(options: promptAction.ShowToastOptions): void
 
 **示例：**
 
-该示例通过调用showToast接口，显示文本提示框。
+该示例通过调用showToast接口，创建并显示即时反馈。
 
 ```ts
 import { PromptAction } from '@kit.ArkUI';
@@ -78,7 +78,7 @@ struct Index {
 
 openToast(options: promptAction.ShowToastOptions): Promise&lt;number&gt;
 
-显示文本提示框并通过Promise返回其id。
+显示即时反馈。使用Promise异步回调返回即时反馈的id，可供closeToast使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -88,13 +88,13 @@ openToast(options: promptAction.ShowToastOptions): Promise&lt;number&gt;
 
 | 参数名  | 类型                                                         | 必填 | 说明           |
 | ------- | ------------------------------------------------------------ | ---- | -------------- |
-| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | 是   | 文本弹窗选项。 |
+| options | [promptAction.ShowToastOptions](js-apis-promptAction.md#showtoastoptions) | 是   | Toast选项。 |
 
 **返回值**
 
 | 类型             | 说明                                 |
 | ---------------- | ------------------------------------ |
-| Promise&lt;number&gt; | 返回供closeToast使用的文本提示框id。 |
+| Promise&lt;number&gt; | Promise对象。返回即时反馈的id，可供closeToast使用。 |
 
 **错误码：**
 
@@ -107,7 +107,7 @@ openToast(options: promptAction.ShowToastOptions): Promise&lt;number&gt;
 
 **示例：**
 
-该示例通过调用openToast和closeToast接口，展示了弹出以及关闭文本提示框的功能。
+该示例通过调用openToast和closeToast接口，展示了弹出以及关闭Toast的功能。
 
 ```ts
 import { PromptAction } from '@kit.ArkUI';
@@ -155,7 +155,7 @@ struct Index {
 
 closeToast(toastId: number): void
 
-关闭文本提示框。
+关闭即时反馈。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -165,7 +165,7 @@ closeToast(toastId: number): void
 
 | 参数名  | 类型   | 必填 | 说明                          |
 | ------- | ------ | ---- | ----------------------------- |
-| toastId | number | 是   | openToast返回的文本提示框id。 |
+| toastId | number | 是   | openToast返回的id。 |
 
 **错误码：**
 
@@ -185,7 +185,7 @@ closeToast(toastId: number): void
 
 showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;promptAction.ShowDialogSuccessResponse&gt;): void
 
-创建并显示对话框，对话框响应结果异步返回。
+创建并显示对话框，对话框响应结果使用callback异步回调返回。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -196,7 +196,7 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 | 参数名      | 类型                                       | 必填   | 说明           |
 | -------- | ---------------------------------------- | ---- | ------------ |
 | options  | [promptAction.ShowDialogOptions](js-apis-promptAction.md#showdialogoptions) | 是    | 页面显示对话框信息描述。 |
-| callback | AsyncCallback&lt;[promptAction.ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | 是    | 对话框响应结果回调。   |
+| callback | AsyncCallback&lt;[promptAction.ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | 是    | 回调函数。弹出对话框成功，err为undefined，data为获取到的对话框响应结果，否则为错误对象。 |
 
 **错误码：**
 
@@ -260,7 +260,7 @@ struct Index {
 
 showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.ShowDialogSuccessResponse&gt;
 
-创建并显示对话框，通过Promise获取对话框响应结果。
+创建并显示对话框，使用Promise异步回调获取对话框的响应结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -276,7 +276,7 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 
 | 类型                                       | 说明       |
 | ---------------------------------------- | -------- |
-| Promise&lt;[promptAction.ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | 对话框响应结果。 |
+| Promise&lt;[promptAction.ShowDialogSuccessResponse](js-apis-promptAction.md#showdialogsuccessresponse)&gt; | Promise对象，返回对话框的响应结果。 |
 
 **错误码：**
 
@@ -344,7 +344,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 | 参数名   | 类型                                                         | 必填 | 说明               |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | 是   | 操作菜单选项。     |
-| callback | AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | 是   | 菜单响应结果回调。 |
+| callback | AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | 是   | 回调函数。弹出操作菜单成功，err为undefined，data为获取到的操作菜单响应结果，否则为错误对象。 |
 
 **错误码：**
 
@@ -405,7 +405,7 @@ struct Index {
 
 showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction.ActionMenuSuccessResponse&gt;
 
-创建并显示操作菜单，通过Promise获取菜单响应结果。
+创建并显示操作菜单，通过Promise异步回调获取菜单的响应结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -421,7 +421,7 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | 菜单响应结果。 |
+| Promise&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | Promise对象，返回菜单的响应结果。 |
 
 **错误码：**
 
@@ -493,7 +493,7 @@ openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    返回Promise对象。 |
+|   Promise&lt;void&gt;           |    Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -546,7 +546,7 @@ struct Index {
       onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
       },
       onConfigurationUpdated: (config: Configuration): void => {
-        console.log("onConfigurationUpdated " + JSON.stringify(config));
+        console.info(`onConfigurationUpdated ${config}`);
         this.getUIContext().getHostContext()?.getApplicationContext().resourceManager.getConfiguration((err,
           config) => {
           // 调用ComponentContent的update更新colorMode信息
@@ -628,7 +628,7 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    返回Promise对象。 |
+|   Promise&lt;void&gt;           |    Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -726,7 +726,7 @@ closeCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>): Promi
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    返回Promise对象。 |
+|   Promise&lt;void&gt;           |    Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -824,7 +824,7 @@ updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, optio
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    返回Promise对象。 |
+|   Promise&lt;void&gt;           |    Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -906,7 +906,7 @@ struct Index {
 
 openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 
-创建并弹出自定义弹窗。通过Promise异步回调返回供closeCustomDialog使用的对话框id。暂不支持isModal = true与showInSubWindow = true同时使用。如果同时设置为true时，则只生效showInSubWindow = true。
+创建并弹出自定义弹窗。使用Promise异步回调返回对话框的id，可供closeCustomDialog使用。暂不支持isModal = true与showInSubWindow = true同时使用。如果同时设置为true时，则只生效showInSubWindow = true。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -922,7 +922,7 @@ openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 
 | 类型                | 说明                                    |
 | ------------------- | --------------------------------------- |
-| Promise&lt;number&gt; | 返回供closeCustomDialog使用的对话框id。 |
+| Promise&lt;number&gt; | Promise对象。返回对话框id，可供closeCustomDialog使用。 |
 
 **错误码：**
 
@@ -937,7 +937,7 @@ openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 
 presentCustomDialog(builder: CustomBuilder \| CustomBuilderWithId, controller?: promptAction.DialogController, options?: promptAction.DialogOptions): Promise\<number>
 
-创建并弹出自定义弹窗。通过Promise异步回调返回供closeCustomDialog使用的对话框id。
+创建并弹出自定义弹窗。使用Promise异步回调返回对话框的id，可供closeCustomDialog使用。
 
 支持在自定义弹窗内容中持有弹窗ID进行对应操作。支持传入弹窗控制器与自定义弹窗绑定，后续可以通过控制器控制自定义弹窗。
 
@@ -959,7 +959,7 @@ presentCustomDialog(builder: CustomBuilder \| CustomBuilderWithId, controller?: 
 
 | 类型                | 说明                                    |
 | ------------------- | --------------------------------------- |
-| Promise&lt;number&gt; | 返回自定义弹窗ID。 |
+| Promise&lt;number&gt; | Promise对象。返回自定义弹窗ID。 |
 
 **错误码：**
 
@@ -1109,8 +1109,8 @@ struct Index {
                 this.customDialogComponent()
               },
               onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
-                console.info("reason" + JSON.stringify(dismissDialogAction.reason));
-                console.log("dialog onWillDismiss");
+                console.info(`reason ${dismissDialogAction.reason}`);
+                console.info('dialog onWillDismiss');
                 if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
                   dismissDialogAction.dismiss();
                 }
@@ -1214,8 +1214,6 @@ struct Index {
 ## getBottomOrder<sup>18+</sup>
 
 getBottomOrder(): LevelOrder
-
-返回最底层显示的弹窗的顺序。
 
 获取最底层显示的弹窗的顺序，可以在下一个弹窗时指定期望的顺序。
 
@@ -1321,7 +1319,7 @@ openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, 
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    返回Promise对象。 |
+|   Promise&lt;void&gt;           |    Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1448,7 +1446,7 @@ updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupComm
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    返回Promise对象。 |
+|   Promise&lt;void&gt;           |    Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1484,7 +1482,7 @@ closePopup\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    返回Promise对象。 |
+|   Promise&lt;void&gt;           |    Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1532,7 +1530,7 @@ openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, o
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    返回Promise对象。 |
+|   Promise&lt;void&gt;           |    Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1628,7 +1626,7 @@ updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOption
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    返回Promise对象。 |
+|   Promise&lt;void&gt;           |    Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1718,7 +1716,7 @@ closeMenu\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    返回Promise对象。 |
+|   Promise&lt;void&gt;           |    Promise对象，无返回结果。 |
 
 **错误码：**
 

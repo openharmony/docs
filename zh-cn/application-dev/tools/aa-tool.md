@@ -1,10 +1,17 @@
 # aa工具
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @lidongrui-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 Ability assistant（Ability助手，简称为aa），是用于启动应用和启动测试用例的工具，为开发者提供基本的应用调试和测试能力，例如启动应用组件、强制停止进程、打印应用组件相关信息等。
 
 ## 环境要求
 
-在使用本工具前，开发者需要先获取<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->，执行hdc shell。
+在使用本工具前，开发者需要先获取[hdc工具](../dfx/hdc.md#环境准备)，执行hdc shell。
 
 本文中命令介绍均基于交互式命令环境。如果直接执行hdc shell [aa命令]，则需要采用""来包裹aa命令，确保命令中的传参能被正确识别。示例如下：
 
@@ -75,6 +82,8 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
   | -R | 可选参数，调试时是否开启多线程错误检测。携带该参数代表开启，不携带代表关闭。<br>**说明：** 从API version 14开始，支持该参数。 |
   | -S | 可选参数，调试时是否进入应用沙箱。携带该参数代表进入，不携带代表不进入。 |
   | -D | 可选参数，调试模式。        |
+  | -N | 可选参数，使能启动阶段调试。        |
+  | -C | 可选参数，使能ASan调试。        |
   | -p | 可选参数，调优命令。命令由调用方自定义。        |
   | -W | 可选参数，调优命令。用于测量UIAbility从启动到切换至前台状态耗时。<br>**说明：** <br>&emsp; - 从API version 20开始支持，支持该参数。<br>&emsp; - 仅当显式启动UIAbility（必须携带-b和-a参数）时，该参数生效。<br>**正常情况的返回信息如下：** <br>&emsp; - StartMode：UIAbility启动模式，值：Cold（冷启动）/Hot（热启动）。<br>&emsp; - BundleName：目标应用bundleName。<br>&emsp; - AbilityName：目标应用abilityName。<br>&emsp; - ModuleName：目标应用moduleName，命令中带有"-m"参数时会打印moduleName，否则不打印。<br>&emsp; - TotalTime：<br>&emsp;&emsp;&emsp; 冷启动场景下，系统侧接收到aa启动UIAbility请求到该UIAbility完成首帧绘制的耗时，单位毫秒（ms）。<br>&emsp;&emsp;&emsp; 热启动场景下，系统侧接收到aa启动UIAbility请求到该UIAbility状态切换至前台的耗时，单位毫秒（ms）。<br>&emsp; - WaitTime：命令启动到命令执行结束的耗时，单位毫秒（ms）。<br>**异常情况的返回信息如下：**<br>&emsp; - "The wait option does not support starting implict" ：不支持隐式启动。 <br>&emsp; - "The wait option does not support starting non-uiability" ：不支持启动非UIAbility组件。   |
 
@@ -279,8 +288,15 @@ aa dump -a
 通过bundleName强制停止一个进程。
 
 ```bash
-aa force-stop <bundleName>
+aa force-stop <bundle-name> [-p pid] [-r kill-reason]
 ```
+
+  **强制停止进程命令参数列表**
+
+  | 参数 | 参数说明              |
+  | -------- |-------------------|
+  | -p | 指定pid，需要与-r配合使用，两者共同设置指定pid的进程退出原因。 |
+  | -r | 指定进程退出原因，需要与-p配合使用，两者共同设置指定pid的进程退出原因。 |
 
   **返回值**：
 
@@ -702,7 +718,9 @@ The current device is not in developer mode.
 
 **处理步骤**
 
-在设置中打开开发者模式。
+在设置中打开开发者模式。操作如下：
+
+查看设备的“设置 > 系统”中是否有“开发者选项”。如果不存在，可在“设置 > 关于本机”连续七次单击“版本号”，直到提示“开启开发者模式”，点击“确认开启”后输入PIN码（如果已设置），设备将自动重启。请等待设备完成重启后，可以在“设置 > 系统”中查看。
 
 ### 10106002 不支持release签名的应用程序
 
@@ -720,7 +738,7 @@ aa start命令的参数wl、wt、wh、ww或aa test命令不支持release签名�
 
 **处理步骤**
 
-使用Debug签名证书重新签名，安装新签名出的HAP后，再尝试执行该该命令。
+使用Debug签名证书重新签名，安装新签名出的HAP后，再尝试执行该命令。
 
 ### 10100101 获取应用信息失败
 
@@ -1108,5 +1126,5 @@ Cannot debug applications using a release certificate.
 
 **处理步骤**
 
-使用Debug签名证书重新签名，安装新签名出的HAP后，再尝试执行该该命令。
+使用Debug签名证书重新签名，安装新签名出的HAP后，再尝试执行该命令。
 签名工具及签名证书的生成方式可以参考：[签名工具指导](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)。

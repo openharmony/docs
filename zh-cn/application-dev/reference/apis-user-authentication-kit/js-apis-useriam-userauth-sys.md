@@ -28,7 +28,7 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 
 | 名称           | 类型                               | 必填 | 说明                                                         |
 | -------------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| userId<sup>18+</sup> | number | 否   |要认证的目标用户ID，值为大于等于0的正整数。默认值为当前用户的ID。|
+| userId<sup>18+</sup> | number | 否   |要认证的目标用户ID，值为大于等于0的正整数。默认值为当前用户的ID。<br>**系统接口**: 此接口为系统接口。|
 
 ## WindowModeType<sup>10+</sup>
 
@@ -333,7 +333,7 @@ try {
 
 | 名称        | 值   | 说明       |
 | ----------- | ---- | ---------- |
-| PRIVATE_PIN<sup>14+</sup>  | 16   | 隐私口令。 |
+| PRIVATE_PIN<sup>14+</sup>  | 16   | 隐私口令。<br>**系统接口**: 此接口为系统接口。 |
 
 **示例：**
 
@@ -390,7 +390,7 @@ queryReusableAuthResult(authParam: AuthParam): Uint8Array
 
 | 参数名  | 类型   | 必填 | 说明                 |
 | ------- | ------ | ---- | -------------------- |
-| authParam | [userAuth.AuthParam](js-apis-useriam-userauth.md#authparam10) | 是 | 用户认证相关参数。|
+| authParam | [AuthParam](js-apis-useriam-userauth.md#authparam10) | 是 | 用户认证相关参数。|
 
 **返回值：**
 

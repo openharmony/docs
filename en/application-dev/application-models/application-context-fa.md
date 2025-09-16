@@ -13,7 +13,7 @@ To use the context in the FA model, first import the **featureAbility** module.
 import featureAbility from '@ohos.ability.featureAbility';
 ```
 
-Then, call **getContext()** to obtain the **Context** object:
+Then, call **getContext()** to obtain the Context object:
 
 
 ```ts

@@ -1,5 +1,12 @@
 # 发布文本类型通知
 
+<!--Kit: Notification Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @fang-jinxu-->
+
 文本类型通知主要应用于发送短信息、提示信息等，支持普通文本类型和多行文本类型。
 
 **表1** 基础类型通知中的内容分类

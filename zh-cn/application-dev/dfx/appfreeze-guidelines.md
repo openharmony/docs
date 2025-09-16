@@ -4,7 +4,7 @@
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @rr_cn-->
 <!--Designer: @peterhuangyu-->
-<!--Tester: @gcw_KuLfPSbe-->
+<!--Tester: @gcw_KuLfPSbe;@lipengpeng97-->
 <!--Adviser: @foryourself-->
 
 ## 简介
@@ -40,6 +40,7 @@
 检测原理如下图：
 
 **图1**
+
 ![thread_block](figures/thread_block.png)
 
 ### APP_INPUT_BLOCK 用户输入响应超时
@@ -51,11 +52,12 @@
 检测原理如下图：
 
 **图2**
+
 ![app_input_block](figures/app_input_block.png)
 
 ### 生命周期切换超时
 
-**概述**：生命周期切换超时分为[Ability生命周期](../application-models/uiability-lifecycle.md)切换超时和[PageAbility生命周期](../application-models/pageability-lifecycle.md)切换超时。
+**概述**：生命周期切换超时分为[UIAbility生命周期](../application-models/uiability-lifecycle.md)切换超时和[PageAbility生命周期](../application-models/pageability-lifecycle.md)切换超时。
 
 该故障发生在生命周期切换过程中，影响应用内Ability的切换或者不同PageAbility之间的切换。
 
@@ -84,7 +86,7 @@ DevEco Studio会收集设备/data/log/faultlog/faultlogger/路径下的进程崩
 
 **方式二：通过HiAppEvent接口订阅**
 
-HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hiappevent-intro.md)。参考[订阅应用冻屏事件（ArkTS）](hiappevent-watcher-freeze-events-arkts.md)或[订阅应用冻屏事件（C/C++）](hiappevent-watcher-freeze-events-ndk.md)完成应用冻屏事件订阅，并通过事件的[external_log](hiappevent-watcher-crash-events.md#事件字段说明)字段读取故障日志文件内容。
+HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hiappevent-intro.md)。参考[订阅应用冻屏事件（ArkTS）](hiappevent-watcher-freeze-events-arkts.md)或[订阅应用冻屏事件（C/C++）](hiappevent-watcher-freeze-events-ndk.md)完成应用冻屏事件订阅，并通过事件的[external_log](hiappevent-watcher-freeze-events.md#事件字段说明)字段读取故障日志文件内容。
 
 **方式三：通过hdc获取日志，需打开开发者选项**
 
@@ -131,11 +133,11 @@ PID:13680
 UID:20020177
 PACKAGE_NAME:com.samples.freezedebug
 PROCESS_NAME:com.samples.freezedebug
-NOTE: Current fault may be caused by system issue, you may ignore it and analysis other faults.
+NOTE: Current fault may be caused by the system's low memory or thermal throttling, you may ignore it and analysis other faults.
 ***
 ```
 
-从API版本21开始，当整机资源告警（如可用内存不足500M，机壳温度超过46℃）时，会输出NOTE行。出现此行时，开发者可以忽略应用冻屏故障。在之前的API版本中，无论整机资源状态如何，均无此行输出。
+从API version 20开始，当整机资源告警（如整机低内存或热限频）时，会输出NOTE行。出现此行时，开发者可以忽略应用冻屏故障。在之前的API版本中，无论整机资源状态如何，均无此行输出。
 
 三种AppFreeze事件都包含以下几部分信息，具体解释如下：
 
@@ -144,7 +146,7 @@ NOTE: Current fault may be caused by system issue, you may ignore it and analysi
 | Reason | 应用无响应原因，与应用无响应检测能力点对应。 |
 | PID | 发生故障时的pid。 |
 | PACKAGE_NAME | 应用进程包名。 |
-|[Page switch history](./cppcrash-guidelines.md#有页面切换轨迹的故障场景日志规格)| 从API 21开始，维测进程会记录应用切换历史。应用发生故障后，生成的故障文件将包含页面切换历史轨迹。如果维测服务进程出现故障或未缓存切换轨迹，则不包含此字段。|
+|[Page switch history](./cppcrash-guidelines.md#有页面切换轨迹的故障场景日志规格)| 从API 20开始，维测进程会记录应用切换历史。应用发生故障后，生成的故障文件将包含页面切换历史轨迹。如果维测服务进程出现故障或未缓存切换轨迹，则不包含此字段。|
 
 ### 日志主干通用信息
 
@@ -160,7 +162,7 @@ PACKAGE_NAME = com.samples.freezedebug
 PROCESS_NAME = com.samples.freezedebug
 eventLog_action = ffrt,t,GpuStack,cmd:m,hot
 eventLog_interval = 10
-MSG = 
+MSG =
 Fault time:2025/06/28-14:08:34
 App main thread is not response!
 Main handler dump start time: 2025-06-28 14:08:34.067
@@ -241,7 +243,10 @@ Tid:13680, Name:les.freezedebug
 ```
 
 > **说明：**
-> 在整机高负载情况（如CPU高负载）下，采用低开销方式获取调用栈时，可能损失函数名称和build-id信息；获取用户栈失败时，build-id会为空，导致freeze堆栈只有so级别堆栈。
+>
+> 在整机高负载情况（如CPU高负载）下，采用低开销方式获取调用栈时，可能损失函数名信息。
+>
+> 从API version 21开始，出现'Failed to dump normal stacktrace'字样时，系统采取轻量化的frame pointer回溯模式。栈回溯可能中断在非使能frame pointer的库（在GCC编译使用 -fomit-frame-pointer 选项时，编译产物会非使能frame pointer），以及受轻量化的限制，单个线程的回栈层数不会超过50层。
 
 ### 对端信息（与当前故障进程通信的进程信息）
 
@@ -323,9 +328,9 @@ Total: 22.45%; User Space: 13.64%; Kernel Space: 8.81%; iowait: 0.33%; irq: 0.07
 Details of Processes:
     PID   Total Usage      User Space    Kernel Space    Page Fault Minor    Page Fault Major    Name
     13680      8.86%           8.31%          0.55%            4711                6637            com.samples.freezedebug
-    644        2.55%           1.40%          1.15%          210104                7391            hiview         
-    600        0.89%           0.78%          0.10%           60192                 514            hilogd         
-    1685       0.53%           0.31%          0.22%          879838               59636            foundation     
+    644        2.55%           1.40%          1.15%          210104                7391            hiview
+    600        0.89%           0.78%          0.10%           60192                 514            hilogd
+    1685       0.53%           0.31%          0.22%          879838               59636            foundation
 ```
 
 | | |
@@ -353,7 +358,7 @@ ReclaimAvailBuffer:                    4676608 kB
 
 ## 日志差异性信息
 
-1. 生命周期超时事件
+生命周期超时事件
 
 ```
 DOMAIN:AAFWK

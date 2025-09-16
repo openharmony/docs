@@ -1,4 +1,10 @@
 # @ohos.uiExtensionHost (系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @chbchb12-->
+<!--Designer: @stupidb-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 仅用于在有进程隔离诉求的UIExtensionComponent组件中为提供方应用提供宿主应用的窗口信息和组件本身的信息。
 
@@ -26,7 +32,7 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -70,7 +76,7 @@ on(type: 'avoidAreaChange', callback: Callback<{ type: window.AvoidAreaType, are
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
@@ -108,7 +114,7 @@ off(type: 'avoidAreaChange', callback?: Callback<{ type: window.AvoidAreaType, a
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
@@ -144,7 +150,7 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
@@ -182,7 +188,7 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
@@ -218,7 +224,7 @@ properties: UIExtensionHostWindowProxyProperties
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 参数名     | 类型                                 | 说明                             |
 | ---------- | ------------------------------------ | -------------------------------- |
@@ -244,14 +250,18 @@ export default class EntryAbility extends UIExtensionAbility {
 
 hideNonSecureWindows(shouldHide: boolean): Promise&lt;void&gt;
 
-设置是否隐藏不安全窗口。
+设置是否隐藏不安全窗口，使用Promise异步回调。
 > **说明：**
 >
-> 不安全窗口是指可能遮挡UIExtensionComponent的窗口类型，如全局悬浮窗、宿主子窗口和宿主创建的Dialog窗口（不包括系统应用创建的上述类型窗口）。当UIExtensionComponent组件被用来显示敏感操作提示内容时，可以选择隐藏不安全窗口，保护敏感操作提示内容不会被遮挡。当UIExtensionComponent不显示或销毁时需要让不安全窗口重新显示。使用CreateModalUIExtension接口创建的UIExtensionComponent会默认隐藏不安全窗口，若要取消隐藏，需要申请ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS权限，并调用本接口将shouldHide设为false。
+> - 不安全窗口是指可能遮挡[EmbeddedComponent](arkui-ts/ts-container-embedded-component.md)（或[UIExtensionComponent](arkui-ts/ts-container-ui-extension-component-sys.md)）组件的窗口，如全局悬浮窗、宿主子窗口和宿主创建的Dialog窗口（不包括系统应用创建的上述类型窗口）。
+> - 当EmbeddedComponent（或UIExtensionComponent）组件被用来显示敏感操作提示内容时，可以选择隐藏不安全窗口，保护敏感操作提示内容不会被遮挡。当EmbeddedComponent（或UIExtensionComponent）组件不显示或销毁时，不安全窗口会重新显示。
+> - 针对PC/2in1设备，当调用hideNonSecureWindows(true)时，不安全窗口中的全局悬浮窗不会被隐藏。
+
+**需要权限**：ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -312,7 +322,7 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口：** 此接口为系统接口，三方应用不支持调用。
+**系统接口：** 此接口为系统接口。
 
 **模型约束：** StageModelOnly
 
@@ -336,7 +346,7 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 401 | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
-| 801 | Capability not supported on this device. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 
 **示例：**
@@ -397,7 +407,7 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -415,9 +425,9 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------------- |
-| 1300002 | This window state is abnormal.                 |
+| 1300002 | The UIExtension window proxy is abnormal.      |
 | 1300003 | This window manager service works abnormally.  |
-| 1300008 | The operation is on invalid display. |
+| 1300008 | The display device is abnormal. |
 
 **示例：**
 
@@ -459,7 +469,7 @@ hidePrivacyContentForHost(shouldHide: boolean): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -481,7 +491,7 @@ hidePrivacyContentForHost(shouldHide: boolean): Promise&lt;void&gt;
 | -------- | ------------------------------------------------------------ |
 | 202      | Permission verification failed. A non-system application calls a system API. |
 | 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameters types. <br> 3. Parameter verification failed. |
-| 1300002  | The UIExtension window proxy is abnormal.                    |
+| 1300002  | Abnormal state. Possible causes: <br> 1. The UIExtension window proxy is abnormal. <br> 2. Not the UIExtensionAbility process calling.                    |
 
 **示例：**
 
@@ -509,7 +519,7 @@ export default class EntryAbility extends UIExtensionAbility {
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统接口**：此接口为系统接口
+**系统接口**：此接口为系统接口。
 
 | 名称                         | 类型        | 必填      | 说明                             |
 | ------------------------------ | ----------- | -------------------------------- | -------------------------------- |

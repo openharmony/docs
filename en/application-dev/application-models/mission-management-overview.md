@@ -10,28 +10,28 @@ Before getting started with the development of mission management, be familiar w
 
 - MissionList: a list of missions started from the home screen. It records the startup relationship between missions. In a MissionList, a mission is started by the mission above it, and the mission at the bottom is started by the home screen.
 
-- MissionListManager: system mission management module that maintains all the MissionLists and is consistent with the list in **Recents**.
+- MissionListManager: system mission management module that maintains all the MissionLists and is consistent with the list in the recent task list.
   
   **Figure 1** Mission management
   
   ![mission-list-manager](figures/mission-list-manager.png)
 
 
-Missions are managed by system applications (such as home screen), rather than third-party applications. Users interact with missions through **Recents**. After creating a mission, users can perform the following operations on **Recents**:
+Missions are managed by system applications (such as home screen), rather than third-party applications. Users interact with missions through the recent task list. After creating a mission, users can perform the following operations in the recent task list:
 
 
 - Delete a mission.
 
-- Lock or unlock a mission. (Locked missions are not cleared when users attempt to clear all missions in **Recents**.)
+- Lock or unlock a mission. (Locked missions are not cleared when users attempt to clear all missions in the recent task list.)
 
-- Clear all missions in **Recents**.
+- Clear all missions in the recent task list.
 
 - Switch a mission to the foreground.
 
 
 A UIAbility instance corresponds to an independent mission. Therefore, when an application calls [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability) to start a UIAbility, a mission is created.
 
-1. To call [missionManager](../reference/apis-ability-kit/js-apis-application-missionManager-sys.md) to manage missions, the home screen application must request the **ohos.permission.MANAGE_MISSIONS** permission. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+1. To call [missionManager](../reference/apis-ability-kit/js-apis-application-missionManager-sys.md) to manage missions, the home screen application must request the ohos.permission.MANAGE_MISSIONS permission. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 2. You can use **missionManager** to manage missions, for example, listening for mission changes, obtaining mission information or snapshots, and clearing, locking, or unlocking missions.
 
@@ -59,11 +59,11 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
       },
       // Listen for mission snapshot changes.
       onMissionSnapshotChanged: (mission: number) => {
-        hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionMovedToFront-------');
+        hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionSnapshotChanged-------');
       },
       // Listen for switching the mission to the foreground.
       onMissionMovedToFront: (mission: number) => {
-        hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionClosed-------');
+        hilog.info(DOMAIN_NUMBER, TAG, '--------onMissionMovedToFront-------');
       },
       // Listen for mission icon changes.
       onMissionIconUpdated: (mission: number, icon: image.PixelMap) => {
@@ -99,7 +99,7 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
         hilog.info(DOMAIN_NUMBER, TAG, `size = ${missions.length}.`);
         hilog.info(DOMAIN_NUMBER, TAG, `missions = ${JSON.stringify(missions)}.`);
 
-        //Check whether Recents in the system contains etsclock.
+        //Check whether the recent task list contains etsclock.
         for (let i = 0; i < missions.length; i++) {
           if (missions[i].want.bundleName === 'ohos.samples.etsclock') {
             this.getUIContext().getPromptAction().showToast({
@@ -132,13 +132,14 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
     missionManager.getMissionSnapShot('', this.missionId,
       (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
         if (error === null) {
+          hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
           this.getUIContext().getPromptAction().showToast({
             message: 'obtain_snapshot_success_toast'
           });
+        } else {
+          hilog.error(DOMAIN_NUMBER, TAG,
+              `getMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
         }
-        hilog.error(DOMAIN_NUMBER, TAG,
-          `getMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
-        hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
       });
     ```
     ```ts
@@ -146,13 +147,14 @@ A UIAbility instance corresponds to an independent mission. Therefore, when an a
     missionManager.getLowResolutionMissionSnapShot('', this.missionId,
       (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
         if (error === null) {
+          hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
           this.getUIContext().getPromptAction().showToast({
             message: 'obtain_low_snapshot_success_toast'
           });
+        } else {
+          hilog.error(DOMAIN_NUMBER, TAG,
+              `getLowResolutionMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
         }
-        hilog.error(DOMAIN_NUMBER, TAG,
-          `getLowResolutionMissionSnapShot is called, error code: ${error.code}, error msg: ${error.message}.`);
-        hilog.info(DOMAIN_NUMBER, TAG, `bundleName = ${snapshot.ability.bundleName}.`);
       });
     ```
     ```ts

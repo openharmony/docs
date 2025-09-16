@@ -1,5 +1,10 @@
 #  Using WebGL to Draw Graphics
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @samhu1989-->
+<!--Designer: @shi-yang-2012-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @ge-yafang-->
 ## When to Use
 
 Web Graphics Library (WebGL) is used for rendering interactive 2D graphics. WebGL used in OpenHarmony is based on OpenGL for Embedded Systems (OpenGL ES). It can be used in the HTML5 **\<canvas>** element without using plug-ins and supports cross-platform. WebGL is programmed by JavaScript code. Its APIs can implement graphics rendering and acceleration by using GPU hardware provided by the user equipment. For more information, see [WebGL™](https://www.khronos.org/registry/webgl/specs/latest/1.0/).
@@ -28,9 +33,9 @@ There are vertex shaders and fragment shaders. The interaction between vertex sh
 
 Rasterization is the process of converting the coordinates in a 2D space output by the vertex shader into pixels to be processed and passing the pixels to the fragment shader.
 
-### Frame buffer
+### Frame Buffer
 
-The frame buffer provides an alternative rendering target for the drawing buffer. They are a collection of colors, letters, depths, and template buffers and are usually used to render images.
+The frame buffer provides an alternative rendering target for the drawing buffer. They are a collection of colors, depths, and template buffers and are usually used to render images.
 
 ###  Texture
 
@@ -55,8 +60,8 @@ A texture is an image that can be applied to the surface of a 3D model. Textures
 | GLubyte    | octet              | Unsigned integer represented by 2's complement of 8 bits (one byte).                |
 | GLushort   | unsigned short     | Unsigned integer represented by 2's complement of 16 bits.                         |
 | GLuint    | unsigned short     | Signed integer represented by 2's complement of 32 bits.                       |
-| GLfloat   | unrestricted float | 32-bit IEEE floating point number.                            |
-| GLclampf   | unrestricted float | 32-bit IEEE floating point number.                                     |
+| GLfloat   | unrestricted float | 32-bit IEEE floating-point number.                            |
+| GLclampf   | unrestricted float | 32-bit IEEE floating-point number.                                     |
 
 ### Available APIs
 

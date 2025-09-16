@@ -1,4 +1,10 @@
 # 屏幕错误码
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 > **说明：**
 >
@@ -19,6 +25,7 @@ Invalid display or screen.
 1. 在操作虚拟屏前，检查该虚拟屏是否已经存在，确保已创建该虚拟屏。
 2. 在操作虚拟屏前，检查虚拟屏是否已被销毁，确保其未被销毁，再进行相关操作。
 
+<!--Del-->
 ## 1400002 无权限操作
 **错误信息**<br>
 Unauthorized operation.
@@ -31,6 +38,7 @@ Unauthorized operation.
 
 **处理步骤**<br>
 请检查是否非法操作了别的进程的对象，删除相关非法操作。
+<!--DelEnd-->
 
 ## 1400003 系统服务工作异常
 **错误信息**<br>
@@ -45,3 +53,16 @@ This display manager service works abnormally.
 
 **处理步骤**<br>
 系统服务内部工作异常，请稍候重试，或者重启设备尝试。
+
+## 1400004 参数异常
+**错误信息**<br>
+Parameter error. 
+
+**错误描述**<br>
+当传入参数异常时，会报此错误码。
+
+**可能原因**<br>
+参数的值超出允许的范围。
+
+**处理步骤**<br>
+在对屏幕进行操作前，检查传入参数是否有效，确保参数有效再进行相关操作。

@@ -1,10 +1,17 @@
 # Anonymous Key Attestation (ArkTS)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
+
 Ensure network connection during the operation.
 
 ## How to Develop
 
-1. Set the key alias (**keyAlias**), which cannot exceed 128 bytes.
+1. Specify the key alias. For details about the naming rules, see [Key Generation Overview and Algorithm Specifications](huks-key-generation-overview.md).
 
 2. Initializes a parameter set.
 
@@ -12,7 +19,7 @@ Ensure network connection during the operation.
 
 3. Generate an asymmetric key. For details, see [Key Generation](huks-key-generation-overview.md).
 
-4. Use [huks.anonAttestKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksanonattestkeyitem11) with the key alias and parameter set to perform key attestation.
+4. Use [anonAttestKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksanonattestkeyitem11) with the key alias and parameter set to perform key attestation.
 
 ```ts
 /*
@@ -20,9 +27,16 @@ Ensure network connection during the operation.
  */
 import { huks } from '@kit.UniversalKeystoreKit';
 
+function StringToUint8Array(str: string) {
+  let arr: number[] = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
 /* 1. Set the key alias. */
 let keyAliasString = "key anon attest";
-let aliasString = keyAliasString;
 let aliasUint8 = StringToUint8Array(keyAliasString);
 let securityLevel = StringToUint8Array('sec_level');
 let challenge = StringToUint8Array('challenge_data');
@@ -90,14 +104,6 @@ let anonAttestKeyProperties: Array<huks.HuksParam> = [
 let huksOptions: huks.HuksOptions = {
   properties: anonAttestKeyProperties
 };
-
-function StringToUint8Array(str: string) {
-  let arr: number[] = [];
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr.push(str.charCodeAt(i));
-  }
-  return new Uint8Array(arr);
-}
 
 function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
   return new Promise<void>((resolve, reject) => {
@@ -179,8 +185,8 @@ async function publicAnonAttestKey(keyAlias: string, huksOptions: huks.HuksOptio
 }
 
 async function AnonAttestKeyTest() {
-  await publicGenKeyFunc(aliasString, genOptions);
-  await publicAnonAttestKey(aliasString, huksOptions);
+  await publicGenKeyFunc(keyAliasString, genOptions);
+  await publicAnonAttestKey(keyAliasString, huksOptions);
   console.info('anon attest certChain data: ' + anonAttestCertChain)
 }
 ```

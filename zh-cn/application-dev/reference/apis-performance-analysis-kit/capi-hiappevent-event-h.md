@@ -10,6 +10,7 @@
 ## 概述
 
 定义所有预定义事件的事件名称。除了与特定应用关联的自定义事件之外，开发者还可以使用预定义事件进行打点。
+
 **引用文件：** &lt;hiappevent/hiappevent_event.h&gt;
 
 **库：** libhiappevent_ndk.z.so
@@ -24,8 +25,8 @@
 
 ### 宏定义
 
-| 名称                                                                                                         | 描述                            |
-|------------------------------------------------------------------------------------------------------------|-------------------------------|
+| 名称 | 描述 |
+| -- | -- |
 | [EVENT_USER_LOGIN](#event_user_login) "hiappevent.user_login"                                              | 用户登录事件。<br>**起始版本：** 8        |
 | [EVENT_USER_LOGOUT](#event_user_logout) "hiappevent.user_logout"                                           | 用户登出事件。<br>**起始版本：** 8        |
 | [EVENT_DISTRIBUTED_SERVICE_START](#event_distributed_service_start) "hiappevent.distributed_service_start" | 分布式服务事件。<br>**起始版本：** 8       |
@@ -223,6 +224,4 @@ CPU高负载事件。
 OS作用域。
 
 **起始版本：** 12
-
-
 

@@ -1,5 +1,12 @@
 # USB Device Management
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 ## When to Use
 
 When a USB device is inserted, you can use **usbManager** to obtain basic information about the USB device, such as the device type and supported functions. The host communicates with the USB device through the encapsulated pipe. In OpenHarmony, the USB management service is the core component that manages the connection and communication with USB devices. With the USB management service, applications can detect the USB connection and disconnection, manage permission requests and device configurations of USB devices, and perform data transfer and device control.
@@ -25,8 +32,8 @@ When a USB device is inserted, you can use **usbManager** to obtain basic inform
 ### Environment Setup
 
 - Install [DevEco Studio](https://developer.huawei.com/consumer/en/download/) 4.1 or later on the PC.
-- Update the public SDK to API version 16 or later. For details, see [Update Guide](https://gitee.com/openharmony/docs/blob/master/en/application-dev/faqs/full-sdk-switch-guide.md).
-- Install hdc on the PC. You can use it to interact with a real device or the Emulator on Windows, Linux, or macOS. For details, see [HDC Configuration](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/hdc).
+- Update the public SDK to API version 16 or later.<!--Del--> For details, see [Switching to Full SDK](../../../../faqs/full-sdk-switch-guide.md).<!--DelEnd-->
+- Install hdc on the PC. You can use it to interact with a real device or the Emulator on Windows, Linux, or macOS.
 - Use a USB cable to connect an OpenHarmony device to the PC.
 
 ## How to Develop
@@ -72,6 +79,11 @@ A USB device can be used as a host to connect to a device for management. The pr
    ```ts
    // Obtain the USB device list.
    let deviceList : Array<usbManager.USBDevice> = usbManager.getDevices();
+   console.info(`deviceList: ${deviceList}`);
+   if(deviceList.length === 0) {
+     console.error('deviceList is empty');
+     return;
+   }
    /*
    Example deviceList structure:
    [

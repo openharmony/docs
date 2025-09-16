@@ -1,11 +1,30 @@
 # EventHub
 
-The **EventHub** module provides APIs to subscribe to, unsubscribe from, and trigger events.
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+EventHub is an event communication mechanism based on the publish-subscribe pattern. It decouples senders and subscribers through event names, supporting efficient data transfer and state synchronization between different service modules. It is primarily used for [data communication between UIAbility components and UI pages](../../application-models/uiability-data-sync-with-ui.md).
+
+Different Context objects have different EventHub objects, and different EventHub objects cannot communicate directly with each other. Event subscription, unsubscription, and triggering all take place on a specific EventHub object.
+
+Since Worker and TaskPool implement [multithreaded concurrency](../../arkts-utils/multi-thread-concurrency-overview.md#multithreaded-concurrency-models) through the actor model, where different virtual machine instances have exclusive memory, EventHub objects cannot be used for inter-thread data communication.
+
 
 > **NOTE**
 >
 >  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 >  - The APIs of this module can be used only in the stage model.
+
+## Constraints
+
+- EventHub cannot be used for data communication between processes.
+- EventHub cannot be used for data communication between Worker or TaskPool threads. Instead, use [Emitter for inter-thread communication](../../basic-services/common-event/itc-with-emitter.md).
+- Data communication between EventHub objects of different Context objects within the same thread is not supported.
+- A Context object converted by [sendableContextManager](js-apis-app-ability-sendableContextManager.md) is considered different from the original Context object, and data communication between their EventHub objects is not supported.
 
 ## Modules to Import
 
@@ -15,10 +34,10 @@ import { common } from '@kit.AbilityKit';
 
 ## Usage
 
-Before using any APIs in the **EventHub**, you must obtain an **EventHub** instance through the member variable **context** of the **UIAbility** instance.
+You need to obtain an EventHub object through a Context object. The following example demonstrates how to obtain the EventHub object of a UIAbility instance's Context object.
 
 ```ts
-import { UIAbility } from '@kit.AbilityKit';
+import { common, UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   eventFunc() {
@@ -26,11 +45,15 @@ export default class EntryAbility extends UIAbility {
   }
 
   onCreate() {
+    // Method 1 (recommended)
     this.context.eventHub.on('myEvent', this.eventFunc);
+
+    // Method 2
+    let eventhub = this.context.eventHub as common.EventHub;
+    eventhub.on('myEvent', this.eventFunc);
   }
 }
 ```
-EventHub is not a global event center. Different context objects have different EventHub objects. Event subscription, unsubscription, and triggering are performed on a specific EventHub object. Therefore, EventHub cannot be used for event transmission between VMs or processes.
 
 ## EventHub.on
 
@@ -39,7 +62,7 @@ on(event: string, callback: Function): void;
 Subscribes to an event.
 > **NOTE**
 >
->  When the callback is triggered by **emit**, the invoker is the **EventHub** object. To change the direction of **this** in **callback**, use an arrow function.
+>  When the callback is triggered by **emit**, the invoker is the EventHub object. To change the direction of **this** in **callback**, use an arrow function.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -61,7 +84,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example 1**
-When the callback is triggered by **emit**, the invoker is the **EventHub** object. The **EventHub** object does not have the **value** property. Therefore, the result **undefined** is returned.
+When the callback is triggered by **emit**, the invoker is the EventHub object. The EventHub object does not have the **value** property. Therefore, the result **undefined** is returned.
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -99,7 +122,7 @@ export default class EntryAbility extends UIAbility {
 ```
 
 **Example 2**
-When the callback uses an arrow function, the invoker is the **EntryAbility** object. The **EntryAbility** object has the **value** property. Therefore, the result **12** is returned.
+When the callback uses an arrow function, the invoker is the EntryAbility object. The EntryAbility object has the **value** property. Therefore, the result **12** is returned.
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';

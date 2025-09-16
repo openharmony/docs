@@ -25,7 +25,7 @@ import { image } from '@kit.ImageKit';
 
 | 名称     | 类型               | 只读 | 可选 | 说明                                               |
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
-| clipRect<sup>9+</sup> | [Region](arkts-apis-image-i.md#region8) | 是   | 是   | 要裁剪的图像区域。                                 |
+| clipRect<sup>9+</sup> | [Region](arkts-apis-image-i.md#region8) | 否   | 否   | 要裁剪的图像区域。                                 |
 | size<sup>9+</sup>     | [Size](arkts-apis-image-i.md#size)      | 是   | 否   | 图像大小。如果image对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的size中的宽高分别对应YUV图像的宽高； 如果image对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的文件，size中的宽等于JPEG文件大小，高等于1。image对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。相机预览与拍照最佳实践请参考[双路预览(ArkTS)](../../media/camera/camera-dual-channel-preview.md)与[拍照实现方案(ArkTS)](../../media/camera/camera-shooting-case.md)。                                |
 | format<sup>9+</sup>    | number             | 是   | 否   | 图像格式，参考[OH_NativeBuffer_Format](../apis-arkgraphics2d/capi-native-buffer-h.md#oh_nativebuffer_format)。 |
 | timestamp<sup>12+</sup> | number         | 是      | 否   | 图像时间戳。时间戳以纳秒为单位，通常是单调递增的。时间戳的具体含义和基准取决于图像的生产者，在相机预览/拍照场景，生产者就是相机。来自不同生产者的图像的时间戳可能有不同的含义和基准，因此可能无法进行比较。如果要获取某张照片的生成时间，可以通过[getImageProperty](arkts-apis-image-ImageSource.md#getimageproperty11)接口读取相关的EXIF信息。|
@@ -50,13 +50,15 @@ getComponent(componentType: ComponentType, callback: AsyncCallback\<Component>):
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-img.getComponent(4, (err: BusinessError, component: image.Component) => {
-  if (err) {
-    console.error(`Failed to get the component.code ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in getting component.');
-  }
-})
+async function GetComponent(img : image.Image) {
+  img.getComponent(image.ComponentType.JPEG, (err: BusinessError, component: image.Component) => {
+    if (err) {
+      console.error(`Failed to get the component.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in getting component.');
+    }
+  })
+}
 ```
 
 ## getComponent<sup>9+</sup>
@@ -84,11 +86,13 @@ getComponent(componentType: ComponentType): Promise\<Component>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-img.getComponent(4).then((component: image.Component) => {
-  console.info('Succeeded in getting component.');
-}).catch((error: BusinessError) => {
-  console.error(`Failed to get the component.code ${error.code},message is ${error.message}`);
-})
+async function GetComponent(img : image.Image) {
+  img.getComponent(image.ComponentType.JPEG).then((component: image.Component) => {
+    console.info('Succeeded in getting component.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to get the component.code ${error.code},message is ${error.message}`);
+  })
+}
 ```
 
 ## release<sup>9+</sup>
@@ -114,13 +118,15 @@ ArkTS有内存回收机制，Image对象不调用release方法，内存最终也
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-img.release((err: BusinessError) => {
-  if (err) {
-    console.error(`Failed to release the image instance.code ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in releasing the image instance.');
-  }
-})
+async function Release(img : image.Image) {
+  img.release((err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to release the image instance.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in releasing the image instance.');
+    }
+  })
+}
 ```
 
 ## release<sup>9+</sup>
@@ -146,9 +152,11 @@ ArkTS有内存回收机制，Image对象不调用release方法，内存最终也
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-img.release().then(() => {
-  console.info('Succeeded in releasing the image instance.');
-}).catch((error: BusinessError) => {
-  console.error(`Failed to release the image instance.code ${error.code},message is ${error.message}`);
-})
+async function Release(img : image.Image) {
+  img.release().then(() => {
+    console.info('Succeeded in releasing the image instance.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to release the image instance.code ${error.code},message is ${error.message}`);
+  })
+}
 ```

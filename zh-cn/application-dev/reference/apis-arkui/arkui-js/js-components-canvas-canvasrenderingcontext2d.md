@@ -555,6 +555,7 @@ export default {
     const el = this.$refs.canvas;
     const ctx = el.getContext('2d');
     var img = new Image();
+    // 'common/image/example.jpg'需要替换为开发者所需的图像资源文件
     img.src = 'common/image/example.jpg';
     img.onload = function() {
     ctx.imageSmoothingEnabled = false;
@@ -1024,6 +1025,7 @@ createPattern(image: Image, repetition: string): Object
       const el = this.$refs.canvas;
       const ctx = el.getContext('2d');
       var img = new Image();
+      // 'common/images/example.jpg'需要替换为开发者所需的图像资源文件
       img.src = 'common/images/example.jpg';
       var pat = ctx.createPattern(img, 'repeat');
       ctx.fillStyle = pat;
@@ -1644,6 +1646,7 @@ drawImage(image: Image | PixelMap, sx: number, sy: number, sWidth: number, sHeig
       var test = this.$refs.canvas;
       var ctx = test.getContext('2d');
       var img = new Image();
+      // 'common/image/test.jpg'需要替换为开发者所需的图像资源文件
       img.src = 'common/image/test.jpg';
       ctx.drawImage(img, 0, 0, 200, 200, 10, 10, 200, 200);
     }
@@ -1856,7 +1859,7 @@ createImageData(width: number, height: number): ImageData
 
 ### createImageData
 
-createImageData(imagedata: ImageData): ImageData
+createImageData(imageData: ImageData): ImageData
 
 创建新的ImageData对象，请参考[ImageData对象](js-components-canvas-imagedata.md)。
 
@@ -1866,7 +1869,7 @@ createImageData(imagedata: ImageData): ImageData
 
 | 参数名        | 类型     | 必填     | 说明                |
 | --------- | ------ | ------ |----------------- |
-| imagedata | [ImageData](js-components-canvas-imagedata.md) | 是 |复制现有的ImageData对象。 |
+| imageData | [ImageData](js-components-canvas-imagedata.md) | 是 |复制现有的ImageData对象。 |
 
 **返回值：**
 
@@ -1944,7 +1947,7 @@ putImageData(imageData: ImageData, dx: number, dy: number, dirtyX: number, dirty
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型    | 必填 | 说明                         |
 | ------ | ------- | ---- | ---------------------------- |
@@ -1956,11 +1959,54 @@ putImageData(imageData: ImageData, dx: number, dy: number, dirtyX: number, dirty
 | dirtyWidth  | number | 是 | 源图像数据矩形裁切范围的宽度。               |
 | dirtyHeight | number | 是 | 源图像数据矩形裁切范围的高度。               |
 
-**示例：** 
+**示例：**
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas id="getImageData" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    <canvas id="putImageData" style="width: 200px; height: 150px; background-color: #D5D5D5;"></canvas>
+  </div>
+  ```
+
+  ```js
+  //xxx.js
+  export default {
+      onShow() {
+          const test = this.$element('putImageData')
+          const ctx = test.getContext('2d');
+          var imgData = ctx.createImageData(100, 100);
+          for (var i = 0; i < imgData.data.length; i += 4) {
+              imgData.data[i + 0] = 39;
+              imgData.data[i + 1] = 135;
+              imgData.data[i + 2] = 217;
+              imgData.data[i + 3] = 255;
+          }
+          ctx.putImageData(imgData, 10, 10, 0, 0, 100, 50);
+      }
+  }
+  ```
+![jsCanvasPutimagedata](figures/jsCanvasPutimagedata.png)
+
+### putImageData
+
+putImageData(imageData: ImageData, dx: number, dy: number): void
+
+使用ImageData数据填充新的矩形区域。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                         |
+| ------ | ------- | ---- | ---------------------------- |
+| imageData   | [ImageData](js-components-canvas-imagedata.md) | 是 | 包含像素值的ImageData对象。            |
+| dx          | number | 是 | 填充区域在x轴方向的偏移量。                |
+| dy          | number | 是 | 填充区域在y轴方向的偏移量。                |
+
+**示例：**
+  ```html
+  <!-- xxx.hml -->
+  <div>
+    <canvas id="putImageData" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
   </div>
   ```
 
@@ -1968,7 +2014,7 @@ putImageData(imageData: ImageData, dx: number, dy: number, dirtyX: number, dirty
   //xxx.js
   export default {
     onShow() {
-      const test = this.$element('getImageData')
+      const test = this.$element('putImageData')
       const ctx = test.getContext('2d');
       var imgData = ctx.createImageData(100, 100);
       for (var i = 0; i < imgData.data.length; i += 4) {

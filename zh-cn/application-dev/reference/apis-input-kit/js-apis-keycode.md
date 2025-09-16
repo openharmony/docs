@@ -7,7 +7,7 @@
 <!--Tester: @Lyuxin-->
 <!--Adviser: @Brilliantry_Rui-->
 
-按键设备的键码值，按键设备包括键盘、电源键、拍照键等。
+按键设备的键值，按键设备包括键盘、光盘、游戏手柄等。
 
 > **说明：**
 > 
@@ -21,7 +21,7 @@ import { KeyCode } from '@kit.InputKit';
 
 ## KeyCode
 
-键码值。
+键值。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -374,4 +374,4 @@ import { KeyCode } from '@kit.InputKit';
 | KEYCODE_DAGGER_CLICK<sup>18+</sup> | 3211 | 智能手表智感窗按键单击。 |
 | KEYCODE_DAGGER_DOUBLE_CLICK<sup>18+</sup> | 3212 | 智能手表智感窗按键双击。 |
 | KEYCODE_DAGGER_LONG_PRESS<sup>18+</sup> | 3213 | 智能手表智感窗按键长按。 |
-| KEYCODE_DIV<sup>20+</sup> | 3220 | 智能手表左按键，仅支持智能穿戴设备使用。 |
+| KEYCODE_DIV<sup>20+</sup> | 3220 | 智能手表左按键。 |

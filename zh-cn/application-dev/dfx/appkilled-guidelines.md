@@ -1,5 +1,12 @@
 # App Killed（应用查杀）检测
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @xuxinao-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## 简介
 
 应用闪退指应用在使用过程中突然异常终止。当应用行为异常，比如消耗过多CPU、内存等系统资源时，系统为了保持整机健康状态，会按照规则挑选应用进行查杀，通常通过服务进程向应用发送SIGKILL信号（信号值是9）来实现查杀的。操作系统对SIGKILL的默认行为是不生成栈日志等维测信息的，导致应用闪退时faultlogger中无日志。
@@ -54,7 +61,7 @@
 
 应用可以通过两种方式感知到被异常查杀。
 
-1. 从元能力的Ability的onCreate回调参数中获取查杀原因。具体为LaunchParam启动参数中的LastExitReason字段，请参考[元能力LastExitReason章节](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md)。
+1. 从元能力的Ability的onCreate回调参数中获取查杀原因。具体为LaunchParam启动参数中的LastExitReason字段，请参考[元能力LastExitReason章节](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#lastexitreason)。
 
 2. 通过HiAppEvent订阅APP_KILLED事件。订阅方式请参考[HiAppEvent章节](hiappevent-watcher-app-killed-events.md)。
 

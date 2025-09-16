@@ -1,4 +1,10 @@
 # ExtensionAbility Component
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yewei0794-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 
 [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) components are application components for specific scenarios. Each ExtensionAbility component corresponds to a specific real-world scenario. For example, [FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md) is used for widget scenarios, [InputMethodExtensionAbility](../reference/apis-ime-kit/js-apis-inputmethod-extension-ability.md) is used for input method scenarios, and [WorkSchedulerExtensionAbility](../reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md) is used for deferred task scenarios. You can use ExtensionAbility components of different types in your application to add new capabilities and interact more deeply with the system or other applications.

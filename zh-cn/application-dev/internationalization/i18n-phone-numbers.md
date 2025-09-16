@@ -1,5 +1,12 @@
 # 电话号码格式化
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--Designer: @sunyaozu-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 使用场景
 
 不同国家和地区的电话号码在号码位数、组合方式、呈现方式等都存在差异。同时，在不同环境和条件下，电话号码可能存在不同的拨打方式和号码格式。例如，在中国境内跨地区打电话，通常需要先输入“0”，再拨打区号和八位电话号码，而在香港或澳门拨打电话时，需要不同的拨号方式。
@@ -31,7 +38,7 @@
 4. 判断电话号码正确性和号码归属地。
    ```ts
    let isValidNumber: boolean = phoneNumberFormat.isValidNumber(phoneNumber: string); // 判断电话号码正确性
-   let locationName: string = phoneNumberFormat.getLocationName(number: string, locale: string); // 获取号码归属地
+   let locationName: string = phoneNumberFormat.getLocationName(phoneNumber: string, locale: string); // 获取号码归属地
    ```
 
 **电话号码格式化选项**

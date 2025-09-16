@@ -44,114 +44,144 @@
   ![创建2](figures/创建2.jpg)
 
 
-## 形状视口viewport
+## 形状视口viewPort
 
 
 ```ts
 viewPort(value: { x?: number | string, y?: number | string, width?: number | string, height?: number | string })
 ```
 
-形状视口viewport指定用户空间中的一个矩形，该矩形映射到为关联的SVG元素建立的视区边界。viewport属性的值包含x、y、width和height四个可选参数，x和y表示视区的左上角坐标，width和height表示其尺寸。
+形状视口viewPort指定用户空间中的一个矩形，该矩形映射到为关联的SVG元素建立的视区边界。viewPort属性的值包含x、y、width和height四个可选参数，x和y表示视区的左上角坐标，width和height表示其尺寸。
 
-以下三个示例说明如何使用viewport：
+以下三个示例说明如何使用viewPort：
 
 - 通过形状视口对图形进行放大与缩小。
 
   ```ts
-  class tmp{
-    x:number = 0
-    y:number = 0
-    width:number = 75
-    height:number = 75
+  class tmp {
+    x: number = 0
+    y: number = 0
+    width: number = 75
+    height: number = 75
   }
-  let viep:tmp = new tmp()
 
-  class tmp1{
+  class tmp1 {
     x:number = 0
     y:number = 0
     width:number = 300
     height:number = 300
   }
-  let viep1:tmp1 = new tmp1()
 
-  // 画一个宽高都为75的圆
-  Text('原始尺寸Circle组件')
-  Circle({width: 75, height: 75}).fill('#E87361')
+  @Entry
+  @Component
+  struct Index {
+    viep: tmp = new tmp();
+    viep1: tmp1 = new tmp1();
 
-  Row({space:10}) {
-    Column() {
-      // 创建一个宽高都为150的shape组件，背景色为黄色，一个宽高都为75的viewport。用一个蓝色的矩形来填充viewport，在viewport中绘制一个直径为75的圆。
-      // 绘制结束，viewport会根据组件宽高放大两倍
-      Text('shape内放大的Circle组件')
-      Shape() {
-        Rect().width('100%').height('100%').fill('#0097D4')
-        Circle({width: 75, height: 75}).fill('#E87361')
+    build() {
+      Column() {
+        // 画一个宽高都为75的圆
+        Text('原始尺寸Circle组件')
+        Circle({ width: 75, height: 75 }).fill('#E87361')
+
+        Row({ space: 10 }) {
+          Column() {
+            // 创建一个宽高都为150的shape组件，背景色为黄色，一个宽高都为75的viewPort。
+            // 用一个蓝色的矩形来填充viewPort，在viewPort中绘制一个直径为75的圆。
+            // 绘制结束，viewPort会根据组件宽高放大两倍。
+            Text('shape内放大的Circle组件')
+            Shape() {
+              Rect().width('100%').height('100%').fill('#0097D4')
+              Circle({ width: 75, height: 75 }).fill('#E87361')
+            }
+            .viewPort(this.viep)
+            .width(150)
+            .height(150)
+            .backgroundColor('#F5DC62')
+          }
+
+          Column() {
+            // 创建一个宽高都为150的shape组件，背景色为黄色，一个宽高都为300的viewPort。
+            // 用一个绿色的矩形来填充viewPort，在viewPort中绘制一个直径为75的圆。
+            // 绘制结束，viewPort会根据组件宽高缩小两倍。
+            Text('Shape内缩小的Circle组件')
+            Shape() {
+              Rect().width('100%').height('100%').fill('#BDDB69')
+              Circle({width: 75, height: 75}).fill('#E87361')
+            }
+            .viewPort(this.viep1)
+            .width(150)
+            .height(150)
+            .backgroundColor('#F5DC62')
+          }
+        }
       }
-      .viewPort(viep)
-      .width(150)
-      .height(150)
-      .backgroundColor('#F5DC62')
-    }
-    Column() {
-      // 创建一个宽高都为150的shape组件，背景色为黄色，一个宽高都为300的viewport。用一个绿色的矩形来填充viewport，在viewport中绘制一个直径为75的圆。
-      // 绘制结束，viewport会根据组件宽高缩小两倍。
-      Text('Shape内缩小的Circle组件')
-      Shape() {
-        Rect().width('100%').height('100%').fill('#BDDB69')
-        Circle({width: 75, height: 75}).fill('#E87361')
-      }
-      .viewPort(viep1)
-      .width(150)
-      .height(150)
-      .backgroundColor('#F5DC62')
     }
   }
   ```
 
   ![2023032401632](figures/2023032401632.jpg)
 
-- 创建一个宽高都为300的shape组件，背景色为黄色，创建一个宽高都为300的viewport。用一个蓝色的矩形来填充viewport，在viewport中绘制一个半径为75的圆。
+- 创建一个宽高都为300的shape组件，背景色为黄色，创建一个宽高都为300的viewPort。用一个蓝色的矩形来填充viewPort，在viewPort中绘制一个半径为75的圆。
 
   ```ts
-  class tmp{
-    x:number = 0
-    y:number = 0
-    width:number = 300
-    height:number = 300
+  class tmp {
+    x: number = 0
+    y: number = 0
+    width: number = 300
+    height: number = 300
   }
-  let viep:tmp = new tmp()
 
-  Shape() {
-    Rect().width("100%").height("100%").fill("#0097D4")
-    Circle({ width: 150, height: 150 }).fill("#E87361")
+  @Entry
+  @Component
+  struct Index {
+    viep: tmp = new tmp();
+
+    build() {
+      Column() {
+        Shape() {
+          Rect().width("100%").height("100%").fill("#0097D4")
+          Circle({ width: 150, height: 150 }).fill("#E87361")
+        }
+        .viewPort(this.viep)
+        .width(300)
+        .height(300)
+        .backgroundColor("#F5DC62")
+      }
+    }
   }
-    .viewPort(viep)
-    .width(300)
-    .height(300)
-    .backgroundColor("#F5DC62")
   ```
 
   ![viewport（2）](figures/viewport（2）.jpg)
 
-- 创建一个宽高都为300的shape组件，背景色为黄色，创建一个宽高都为300的viewport。用一个蓝色的矩形来填充viewport，在viewport中绘制一个半径为75的圆，将viewport向右方和下方各平移150。
+- 创建一个宽高都为300的shape组件，背景色为黄色，创建一个宽高都为300的viewPort。用一个蓝色的矩形来填充viewPort，在viewPort中绘制一个半径为75的圆，将viewPort向右方和下方各平移150。
 
   ```ts
-  class tmp{
-    x:number = -150
-    y:number = -150
-    width:number = 300
-    height:number = 300
+  class tmp {
+    x: number = -150
+    y: number = -150
+    width: number = 300
+    height: number = 300
   }
-  let viep:tmp = new tmp()
 
-  Shape() {
-    Rect().width("100%").height("100%").fill("#0097D4")
-    Circle({ width: 150, height: 150 }).fill("#E87361")
+  @Entry
+  @Component
+  struct Index {
+    viep: tmp = new tmp();
+
+    build() {
+      Column() {
+        Shape() {
+          Rect().width("100%").height("100%").fill("#0097D4")
+          Circle({ width: 150, height: 150 }).fill("#E87361")
+        }
+        .viewPort(this.viep)
+        .width(300)
+        .height(300)
+        .backgroundColor("#F5DC62")
+      }
+    }
   }
-    .viewPort(viep)
-    .width(300)
-    .height(300)
-    .backgroundColor("#F5DC62")
   ```
 
   ![viewport（3）](figures/viewport（3）.jpg)
@@ -336,6 +366,7 @@ struct Index {
   @State meshArray: Array<number> = [0, 0, 50, 0, 410, 0, 0, 180, 50, 180, 410, 180, 0, 360, 50, 360, 410, 360]
 
   aboutToAppear(): void {
+    // "common/image/tree.png"需要替换为开发者所需的图像资源文件
     let img: ImageBitmap = new ImageBitmap("common/image/tree.png")
     ctx.drawImage(img, 0, 0, 100, 100)
     this.pixelMap = ctx.getPixelMap(0, 0, 150, 150)
@@ -348,6 +379,7 @@ struct Index {
         .width(150)
         .height(150)
         .onClick(() => {
+          // "common/image/foreground.png"需要替换为开发者所需的图像资源文件
           let img: ImageBitmap = new ImageBitmap("common/image/foreground.png")
           ctx.drawImage(img, 0, 0, 100, 100)
           this.pixelMap = ctx.getPixelMap(1, 1, 150, 150)
@@ -482,3 +514,27 @@ struct Index {
   ```
 
   ![场景2](figures/场景2.jpg)
+
+### UI视觉属性作用效果
+
+>  **说明：**
+>
+> [backgroundColor](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md)、[linearGradient](../reference/apis-arkui/arkui-ts/ts-universal-attributes-gradient-color.md)等通用属性作用于组件的背景区域，而不会在组件具体的内容区域生效。
+
+
+  ```ts
+  @Entry
+  @Component
+  struct CircleExample {
+    build() {
+      Column({ space: 10 }) {
+        //绘制一个直径为150的圆
+        Circle()
+          .width(150)
+          .height(200)
+          .backgroundColor(Color.Pink) // 会生效在一个150*200大小的矩形区域，而非仅在绘制的一个直径为150的圆形区域
+      }.width('100%')
+    }
+  }
+  ```
+  ![场景3](figures/VirtualEffect.jpg)

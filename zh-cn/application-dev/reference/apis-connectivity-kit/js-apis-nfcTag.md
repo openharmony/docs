@@ -50,7 +50,7 @@
         "requestPermissions": [
             {
                 "name": "ohos.permission.NFC_TAG",
-                "reason": "$string:app_name",
+                "reason": "$string:app_name"
             }
         ]
     }
@@ -88,7 +88,7 @@ export default class EntryAbility extends UIAbility {
         } catch (error) {
             console.error("tag.getTagInfo catch error: " + error);
         }
-        if (tagInfo == null || tagInfo == undefined) {
+        if (tagInfo == null) {
             console.error("no TagInfo to be created, ignore it.");
             return;
         }
@@ -687,7 +687,7 @@ export default class MainAbility extends UIAbility {
         try {
             tag.unregisterForegroundDispatch(elementName);
         } catch (e) {
-            console.error("registerForegroundDispatch error: " + (e as BusinessError).message);
+            console.error("unregisterForegroundDispatch error: " + (e as BusinessError).message);
         }
     }
 
@@ -696,7 +696,7 @@ export default class MainAbility extends UIAbility {
         try {
             tag.unregisterForegroundDispatch(elementName);
         } catch (e) {
-            console.error("registerForegroundDispatch error: " + (e as BusinessError).message);
+            console.error("unregisterForegroundDispatch error: " + (e as BusinessError).message);
         }
     }
 
@@ -1135,7 +1135,7 @@ try {
 
 createNdefMessage(data: number[]): [NdefMessage](js-apis-nfctech.md#ndefmessage9)
 
-使用原始字节数据创建NDEF标签的Message。该数据必须符合NDEF Record数据格式，如果不符合格式，则返回的NdeMessage数据对象，所包含的NDE Record列表会为空。
+使用原始字节数据创建NDEF标签的Message。该数据必须符合NDEF Record数据格式，如果不符合格式，则返回的NdefMessage数据对象，所包含的NDE Record列表会为空。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
@@ -1228,7 +1228,7 @@ NFC服务在读取到标签时给出的对象，通过改对象属性，应用�
 
 **需要权限：** ohos.permission.NFC_TAG
 
-| **名称**                      | **类型**                                                      | **可读** | **可写** | **说明**                                                                                     |
+| **名称**                      | **类型**                                                      | **只读** | **可选** | **说明**                                                                                     |
 | ----------------------------- | ------------------------------------------------------------- | -------- | -------- | -------------------------------------------------------------------------------------------- |
 | uid<sup>9+</sup>              | number[]                                                      | 是       | 否       | 标签的uid，每个number值是十六进制表示，范围是0x00~0xFF。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                     |
 | technology<sup>9+</sup>       | number[]                                                      | 是       | 否       | 支持的技术类型，每个number值表示所支持技术类型的常量值。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                     |
@@ -1241,7 +1241,7 @@ NDEF标签Record属性的定义，参考NDEF标签技术规范《NFCForum-TS-NDE
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| **名称** | **类型** | **可读** | **可写** | **说明**                                                                                  |
+| **名称** | **类型** | **只读** | **可选** | **说明**                                                                                  |
 | -------- | -------- | -------- | -------- | ----------------------------------------------------------------------------------------- |
 | tnf      | number   | 是       | 否       | NDEF Record的TNF(Type Name Field)。                                                       |
 | rtdType  | number[] | 是       | 否       | NDEF Record的RTD(Record Type Definition)类型值，每个number十六进制表示，范围是0x00~0xFF。 |
@@ -1263,7 +1263,7 @@ NFC Tag有多种不同的技术类型，定义常量描述不同的技术类型�
 | NDEF<sup>7+</sup>                         |  number | 6      | NDEF技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
 | NDEF_FORMATABLE<sup>9+</sup> |  number | 7      | 可以格式化的NDEF技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
 | MIFARE_CLASSIC<sup>7+</sup>               |  number | 8      | MIFARE Classic技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
-| MIFARE_ULTRALIGHT<sup>7+</sup>            |  number | 9      | MIFARE Utralight技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| MIFARE_ULTRALIGHT<sup>7+</sup>            |  number | 9      | MIFARE Ultralight技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
 | NFC_BARCODE<sup>18+</sup>    |  number | 10     | BARCODE技术。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。               |
 
 ## TnfType<sup>9+</sup>

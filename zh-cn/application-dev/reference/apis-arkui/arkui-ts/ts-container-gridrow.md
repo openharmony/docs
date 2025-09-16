@@ -132,10 +132,10 @@ GridRow(option?: GridRowOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型   | 必填   | 说明                                     |
-| ----- | ------ | ---- | ---------------------------------------- |
-| value  | Array&lt;string&gt; | 否  | 设置断点位置的单调递增数组。<br>默认值：["320vp", "600vp", "840vp"] <br />非法值：按默认值处理。<br />单位：vp    |
-| reference  | [BreakpointsReference](#breakpointsreference枚举说明) | 否    | 断点切换参照物。<br>默认值：BreakpointsReference.WindowSize <br />非法值：按默认值处理。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| value  | Array&lt;string&gt; | 否 | 是  | 设置断点位置的单调递增数组。<br>默认值：["320vp", "600vp", "840vp"] <br />非法值：按默认值处理。<br />单位：vp    |
+| reference  | [BreakpointsReference](#breakpointsreference枚举说明) | 否 | 是   | 断点切换参照物。<br>默认值：BreakpointsReference.WindowSize <br />非法值：按默认值处理。 |
 <!--code_no_check-->
 ```ts
   // 启用xs、sm、md共3个断点
@@ -181,7 +181,7 @@ GridRow(option?: GridRowOptions)
 * 栅格子组件仅能通过span、offset计算子组件位置与大小。多个子组件span超过规定列数时自动换行。
 * 单个元素span大小超过最大列数时后台默认span为最大column数。
 * 新一行的Offset加上子组件的span超过总列数时，将下一个子组件在新的一行放置。
-* 例：Item1: GridCol({ span: 6})， Item2: GridCol({ span: 8, offset:11})  
+* 例：Item1: GridCol({ span: 6 })， Item2: GridCol({ span: 8, offset:11 })  
 
 |1      | 2     | 3     | 4     | 5     | 6     | 7     | 8     | 9     | 10    | 11    | 12    |
 | ----- | ------ | ---- | ---- | -----|-----|---------|--------|------|------- |------- |------- |
@@ -232,7 +232,7 @@ onBreakpointChange(callback: (breakpoints: string) => void)
 
 | 参数名   | 类型   | 必填   | 说明   |
 | ----- | ------ | ---- | ---------------------------------------- |
-|breakpoints| string |否|取值为`"xs"`、`"sm"`、`"md"`、`"lg"`、`"xl"`、`"xxl"`。|
+|callback| (breakpoints: string) => void |是|breakpoints取值为`"xs"`、`"sm"`、`"md"`、`"lg"`、`"xl"`、`"xxl"`。|
 
 ## 示例
 

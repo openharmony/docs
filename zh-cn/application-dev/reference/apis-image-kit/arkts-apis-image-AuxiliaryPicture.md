@@ -50,11 +50,9 @@ writePixelsFromBuffer(data: ArrayBuffer): Promise\<void>
 **示例:**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
 async function WritePixelsFromBuffer(context: Context) {
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); //需要支持hdr的图片。
+  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); // 需要支持hdr的图片。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -90,11 +88,10 @@ readPixelsToBuffer(): Promise\<ArrayBuffer>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
 async function ReadPixelsToBuffer(context: Context) {
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); //需要支持hdr的图片。
+  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); // 需要支持hdr的图片。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -106,7 +103,7 @@ async function ReadPixelsToBuffer(context: Context) {
     await auxPictureObj.readPixelsToBuffer().then((pixelsBuffer: ArrayBuffer) => {
       console.info('Read pixels to buffer success.' );
     }).catch((error: BusinessError) => {
-      console.error('Read pixels to buffer failed error.code: ' + JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
+      console.error(`Read pixels to buffer failed error.code: ${error.code}, error.message: ${error.message}`);
     });
   } else {
     console.error('AuxPictureObj is null.');
@@ -131,9 +128,7 @@ getType(): AuxiliaryPictureType
 **示例：**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
-async function GetAuxiliaryPictureType() {
+async function GetAuxiliaryPictureType(auxPictureObj : image.AuxiliaryPicture) {
   if (auxPictureObj != null) {
     let type: image.AuxiliaryPictureType = auxPictureObj.getType();
     console.info('Success get auxiliary picture type ' +  JSON.stringify(type));
@@ -177,11 +172,10 @@ setMetadata(metadataType: MetadataType, metadata: Metadata): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
-async function SetAuxPictureObjMetadata(exifContext: Context) {
+async function SetAuxPictureObjMetadata(exifContext: Context, auxPictureObj: image.AuxiliaryPicture) {
   const exifResourceMgr = exifContext.resourceManager;
-  const exifRawFile = await exifResourceMgr.getRawFileContent("exif.jpg");//图片包含exif metadata。
+  const exifRawFile = await exifResourceMgr.getRawFileContent("exif.jpg");// 图片包含exif metadata。
   let exifOps: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -200,7 +194,7 @@ async function SetAuxPictureObjMetadata(exifContext: Context) {
     auxPictureObj.setMetadata(metadataType, exifMetaData).then(() => {
       console.info('Set metadata success');
     }).catch((error: BusinessError) => {
-      console.error('Set metadata failed.error.code: ${error.code}, error.message: ${error.message}');
+      console.error(`Set metadata failed.error.code: ${error.code}, error.message: ${error.message}`);
     });
   } else {
     console.error('AuxPictureObjMetaData is null');
@@ -240,19 +234,17 @@ getMetadata(metadataType: MetadataType): Promise\<Metadata>
 **示例：**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
-async function GetAuxPictureObjMetadata() {
+async function GetAuxPictureObjMetadata(auxPictureObj: image.AuxiliaryPicture) {
   if (auxPictureObj != null) {
     let metadataType: image.MetadataType = image.MetadataType.EXIF_METADATA;
     let auxPictureObjMetaData: image.Metadata | null = await auxPictureObj.getMetadata(metadataType);
     if (auxPictureObjMetaData != null) {
-      console.info('Get auxpictureobj Metadata success' );
+      console.info('Get AuxPictureObj Metadata success' );
     } else {
-      console.error('Get auxpictureobj Metadata failed');
+      console.error('Get AuxPictureObj Metadata failed');
     }
   } else {
-    console.error('Get auxpictureobj is null.');
+    console.error('Get AuxPictureObj is null.');
   }
 }
 ```
@@ -274,9 +266,7 @@ getAuxiliaryPictureInfo(): AuxiliaryPictureInfo
 **示例：**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
-async function GetAuxiliaryPictureInfo() {
+async function GetAuxiliaryPictureInfo(auxPictureObj: image.AuxiliaryPicture) {
   if(auxPictureObj != null) {
     let auxinfo: image.AuxiliaryPictureInfo = auxPictureObj.getAuxiliaryPictureInfo();
     console.info('GetAuxiliaryPictureInfo Type: ' + auxinfo.auxiliaryPictureType +
@@ -315,9 +305,8 @@ setAuxiliaryPictureInfo(info: AuxiliaryPictureInfo): void
 
 ```ts
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
-import { image } from '@kit.ImageKit';
 
-async function SetAuxiliaryPictureInfo() {
+async function SetAuxiliaryPictureInfo(auxPictureObj: image.AuxiliaryPicture) {
   if(auxPictureObj != null) {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let info: image.AuxiliaryPictureInfo = {
@@ -343,9 +332,7 @@ release():void
 **示例：**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
-async function Release() {
+async function Release(auxPictureObj: image.AuxiliaryPicture) {
   let funcName = "Release";
   if (auxPictureObj != null) {
     auxPictureObj.release();

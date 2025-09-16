@@ -1,4 +1,10 @@
 # Interface (AudioLoopback)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -185,13 +191,13 @@ Enables or disables audio loopback. This API uses a promise to return the result
 
 | Name| Type  | Mandatory| Description                                               |
 | :----- | :----- | :--- | :-------------------------------------------------- |
-| enable   | boolean | Yes  | Whether to enable or disable audio loopback. The value **true** means to enable audio loopback, and **false** means the opposite.|
+| enable   | boolean | Yes  | Whether to enable or disable audio loopback. **true** to enable, **false** otherwise.|
 
 **Return value**
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** is returned if the API is called successfully, and **false** is returned otherwise.|
+| Promise\<boolean> | Promise used to return the result, indicating whether the API call is successful. **true** is successful, **false** otherwise.|
 
 **Error codes**
 
@@ -216,4 +222,132 @@ audioLoopback.enable(true).then((isSuccess) => {
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
+```
+
+## setReverbPreset<sup>21+</sup>
+
+setReverbPreset(preset: AudioLoopbackReverbPreset): boolean
+
+Sets the reverb mode for audio loopback.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                               |
+| :----- | :----- | :--- | :-------------------------------------------------- |
+| preset   | [AudioLoopbackReverbPreset](arkts-apis-audio-e.md#audioloopbackreverbpreset21) | Yes  | Reverb mode.|
+
+**Return value**
+
+| Type                                             | Description                               |
+| :------------------------------------------------ | :---------------------------------- |
+| boolean | Setting result. **true** if successful, **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | -------------------------------|
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+  audioLoopback.setReverbPreset(audio.AudioLoopbackReverbPreset.THEATER);
+} catch (err) {
+  console.error(`setReverbPreset :ERROR: ${err}`);
+}
+```
+
+## getReverbPreset<sup>21+</sup>
+
+getReverbPreset(): AudioLoopbackReverbPreset
+
+Obtains the reverb mode of audio loopback.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Return value**
+
+| Type                                             | Description                               |
+| :------------------------------------------------ | :---------------------------------- |
+| [AudioLoopbackReverbPreset](arkts-apis-audio-e.md#audioloopbackreverbpreset21) | Reverb mode.<br>If no reverb mode has been set, the default reverb mode is **THEATER**.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+  let reverbPreset = audioLoopback.getReverbPreset();
+} catch (err) {
+  console.error(`getReverbPreset:ERROR: ${err}`);
+}
+```
+
+## setEqualizerPreset<sup>21+</sup>
+
+setEqualizerPreset(preset: AudioLoopbackEqualizerPreset): boolean
+
+Sets the equalizer type for audio loopback.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                               |
+| :----- | :----- | :--- | :-------------------------------------------------- |
+| preset   | [AudioLoopbackEqualizerPreset](arkts-apis-audio-e.md#audioloopbackequalizerpreset21) | Yes  | Equalizer type.|
+
+**Return value**
+
+| Type                                             | Description                               |
+| :------------------------------------------------ | :---------------------------------- |
+| boolean | Setting result. **true** if successful, **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | -------------------------------|
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+  audioLoopback.setEqualizerPreset(audio.AudioLoopbackEqualizerPreset.FULL);
+} catch (err) {
+  console.error(`setEqualizerPreset :ERROR: ${err}`);
+}
+```
+
+## getEqualizerPreset<sup>21+</sup>
+
+getEqualizerPreset(): AudioLoopbackEqualizerPreset
+
+Obtains the equalizer type of audio loopback.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Return value**
+
+| Type                                             | Description                               |
+| :------------------------------------------------ | :---------------------------------- |
+| [AudioLoopbackEqualizerPreset](arkts-apis-audio-e.md#audioloopbackequalizerpreset21) | Equalizer type.<br>If no equalizer type has been set, the default equalizer type is **FULL**.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+  let reverbPreset = audioLoopback.getEqualizerPreset();
+} catch (err) {
+  console.error(`getEqualizerPreset:ERROR: ${err}`);
+}
 ```

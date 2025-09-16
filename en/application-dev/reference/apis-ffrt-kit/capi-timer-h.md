@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## Overview
 
@@ -27,6 +28,7 @@ The **timer.h** file declares the timer APIs in C.
 | Name| Description|
 | -- | -- |
 | [FFRT_C_API ffrt_timer_t ffrt_timer_start(ffrt_qos_t qos, uint64_t timeout, void* data, ffrt_timer_cb cb, bool repeat)](#ffrt_timer_start) | Starts the timer.|
+| [FFRT_C_API int ffrt_timer_stop(ffrt_qos_t qos, ffrt_timer_t handle)](#ffrt_timer_stop) | Stops the timer.|
 
 ## Function Description
 
@@ -58,3 +60,29 @@ Starts the timer.
 | Type                         | Description|
 |-----------------------------| -- |
 | FFRT_C_API [ffrt_timer_t](capi-type-def-h.md#variables)| Returns the timer handle.|
+
+### ffrt_timer_stop()
+
+```
+FFRT_C_API int ffrt_timer_stop(ffrt_qos_t qos, ffrt_timer_t handle)
+```
+
+**Description**
+
+Stops the timer.
+
+**Since**: 12
+
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| ffrt_qos_t qos | QoS.|
+| ffrt_timer_t handle | Handle to the timer.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| FFRT_C_API int | Returns **0** if the timer is stopped successfully;<br>          returns **-1** otherwise.|

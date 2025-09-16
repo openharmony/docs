@@ -37,9 +37,8 @@ getMainPixelmap(): PixelMap
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
-async function GetMainPixelmap() {
+async function GetMainPixelmap(pictureObj : image.Picture) {
   let funcName = "getMainPixelmap";
   if (pictureObj != null) {
     let mainPixelmap: image.PixelMap = pictureObj.getMainPixelmap();
@@ -49,7 +48,7 @@ async function GetMainPixelmap() {
           console.info('GetMainPixelmap information height:' + imageInfo.size.height + ' width:' + imageInfo.size.width);
         }
       }).catch((error: BusinessError) => {
-        console.error(funcName, 'Failed error.code: ${error.code} ,error.message: ${error.message}');
+        console.error(funcName, `Failed error.code: ${error.code} ,error.message: ${error.message}`);
       });
     }
   } else {
@@ -85,19 +84,18 @@ getHdrComposedPixelmap(): Promise\<PixelMap>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
-async function GetHdrComposedPixelmap() {
+async function GetHdrComposedPixelmap(pictureObj : image.Picture) {
   let funcName = "getHdrComposedPixelmap";
-  if (pictureObj != null) { //图片包含Hdr图。
+  if (pictureObj != null) { // 图片包含Hdr图。
     let hdrComposedPixelmap: image.PixelMap = await pictureObj.getHdrComposedPixelmap();
     if (hdrComposedPixelmap != null) {
       hdrComposedPixelmap.getImageInfo().then((imageInfo: image.ImageInfo) => {
         if (imageInfo != null) {
-          console.info('GetHdrComposedPixelmap information height:' + imageInfo.size.height + ' width:' + imageInfo.size.width);
+          console.info(`GetHdrComposedPixelmap information height:${imageInfo.size.height} width:${imageInfo.size.width}`);
         }
       }).catch((error: BusinessError) => {
-        console.error(funcName, 'Failed error.code: ${error.code} ,error.message: ${error.message}');
+        console.error(funcName, `Failed error.code: ${error.code} ,error.message: ${error.message}`);
       });
     }
   } else {
@@ -124,21 +122,20 @@ getGainmapPixelmap(): PixelMap | null
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
-async function GetGainmapPixelmap() {
+async function GetGainmapPixelmap(pictureObj : image.Picture) {
   let funcName = "getGainmapPixelmap";
-  if (pictureObj != null) { //图片包含增益图。
+  if (pictureObj != null) { // 图片包含增益图。
     let gainPixelmap: image.PixelMap | null = pictureObj.getGainmapPixelmap();
     if (gainPixelmap != null) {
       gainPixelmap.getImageInfo().then((imageInfo: image.ImageInfo) => {
         if (imageInfo != null) {
-          console.info('GetGainmapPixelmap information height:' + imageInfo.size.height + ' width:' + imageInfo.size.width);
+          console.info(`GetGainmapPixelmap information height:${imageInfo.size.height} width:${imageInfo.size.width}`);
         } else {
           console.error('GainPixelmap is null');
         }
       }).catch((error: BusinessError) => {
-        console.error(funcName, 'Failed error.code: ${error.code} ,error.message: ${error.message}');
+        console.error(funcName, `Failed error.code: ${error.code} ,error.message: ${error.message}`);
       });
     } else {
       console.info('GainPixelmap is null');
@@ -175,18 +172,16 @@ setAuxiliaryPicture(type: AuxiliaryPictureType, auxiliaryPicture: AuxiliaryPictu
 **示例：**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
 async function SetAuxiliaryPicture(context: Context) {
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg");//需要支持hdr的图片。
+  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg");// 需要支持hdr的图片。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }
   let imageSource: image.ImageSource = image.createImageSource(rawFile.buffer as ArrayBuffer, ops);
   let pixelMap: image.PixelMap = await imageSource.createPixelMap();
-  let auxPicture: image.Picture = image.createPicture(pixelMap);
-  if (auxPicture != null) {
+  let pictureObj: image.Picture = image.createPicture(pixelMap);
+  if (pictureObj != null) {
     console.info('Create picture succeeded');
   } else {
     console.error('Create picture failed');
@@ -194,7 +189,7 @@ async function SetAuxiliaryPicture(context: Context) {
 
   if (pictureObj != null) {
     let type: image.AuxiliaryPictureType = image.AuxiliaryPictureType.GAINMAP;
-    let auxPictureObj: image.AuxiliaryPicture | null = await auxPicture.getAuxiliaryPicture(type);
+    let auxPictureObj: image.AuxiliaryPicture | null = pictureObj.getAuxiliaryPicture(type);
     if (auxPictureObj != null) {
       pictureObj.setAuxiliaryPicture(type, auxPictureObj);
     }
@@ -233,9 +228,7 @@ getAuxiliaryPicture(type: AuxiliaryPictureType): AuxiliaryPicture | null
 **示例：**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
-async function GetAuxiliaryPicture() {
+async function GetAuxiliaryPicture(pictureObj : image.Picture) {
   if (pictureObj != null) {
     let type: image.AuxiliaryPictureType = image.AuxiliaryPictureType.GAINMAP;
     let auxPictureObj: image.AuxiliaryPicture | null = pictureObj.getAuxiliaryPicture(type);
@@ -277,11 +270,10 @@ setMetadata(metadataType: MetadataType, metadata: Metadata): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
 async function SetPictureObjMetadata(exifContext: Context) {
   const exifResourceMgr = exifContext.resourceManager;
-  const exifRawFile = await exifResourceMgr.getRawFileContent("exif.jpg");//含有exif metadata的图片。
+  const exifRawFile = await exifResourceMgr.getRawFileContent("exif.jpg");// 含有exif metadata的图片。
   let exifOps: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -294,16 +286,16 @@ async function SetPictureObjMetadata(exifContext: Context) {
     console.error('Create picture failed');
   }
 
-  if (pictureObj != null) {
+  if (exifPictureObj != null) {
     let metadataType: image.MetadataType = image.MetadataType.EXIF_METADATA;
     let exifMetaData: image.Metadata = await exifPictureObj.getMetadata(metadataType);
-    pictureObj.setMetadata(metadataType, exifMetaData).then(() => {
+    exifPictureObj.setMetadata(metadataType, exifMetaData).then(() => {
       console.info('Set metadata success');
     }).catch((error: BusinessError) => {
       console.error('Failed to set metadata. error.code: ' +JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
     });
   } else {
-    console.error('PictureObj is null');
+    console.error('exifPictureOb is null');
   }
 }
 ```
@@ -340,9 +332,7 @@ getMetadata(metadataType: MetadataType): Promise\<Metadata>
 **示例：**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
-async function GetPictureObjMetadataProperties() {
+async function GetPictureObjMetadataProperties(pictureObj : image.Picture) {
   if (pictureObj != null) {
     let metadataType: image.MetadataType = image.MetadataType.EXIF_METADATA;
     let pictureObjMetaData: image.Metadata = await pictureObj.getMetadata(metadataType);
@@ -384,7 +374,6 @@ marshalling(sequence: rpc.MessageSequence): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 import { rpc } from '@kit.IPCKit';
 
 class MySequence implements rpc.Parcelable {
@@ -405,22 +394,22 @@ class MySequence implements rpc.Parcelable {
   unmarshalling(messageSequence : rpc.MessageSequence) {
     this.picture = image.createPictureFromParcel(messageSequence);
     this.picture.getMainPixelmap().getImageInfo().then((imageInfo : image.ImageInfo) => {
-      console.info('Unmarshalling to get mainPixelmap information height:' + imageInfo.size.height + ' width:' + imageInfo.size.width);
+      console.info(`Unmarshalling to get mainPixelmap information height:${imageInfo.size.height} width:${imageInfo.size.width}`);
     }).catch((error: BusinessError) => {
-      console.error('Unmarshalling failed error.code: ${error.code} ,error.message: ${error.message}');
+      console.error(`Unmarshalling failed error.code: ${error.code} ,error.message: ${error.message}`);
     });
     return true;
   }
 }
 
-async function Marshalling_UnMarshalling() {
+async function Marshalling_UnMarshalling(pictureObj : image.Picture) {
   if (pictureObj != null) {
     let parcelable: MySequence = new MySequence(pictureObj);
     let data: rpc.MessageSequence = rpc.MessageSequence.create();
-    // marshalling.
+    // 序列化。
     data.writeParcelable(parcelable);
     let ret: MySequence = new MySequence(pictureObj);
-    // unmarshalling.
+    // 反序列化。
     data.readParcelable(ret);
   } else {
     console.error('PictureObj is null');
@@ -439,9 +428,7 @@ release(): void
 **示例：**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
-async function Release() {
+async function Release(pictureObj : image.Picture) {
   let funcName = "Release";
   if (pictureObj != null) {
     pictureObj.release();

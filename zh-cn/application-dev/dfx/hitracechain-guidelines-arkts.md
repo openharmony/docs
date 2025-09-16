@@ -3,7 +3,7 @@
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
 <!--Owner: @qq_437963121-->
-<!--Designer: @MontSaintMichel-->
+<!--Designer: @kutcherzhou1; @MontSaintMichel-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @foryourself-->
 
@@ -11,18 +11,18 @@
 
 分布式跟踪接口由HiTraceChain模块提供，详细API请参考[分布式跟踪ArkTS API](../reference/apis-performance-analysis-kit/js-apis-hitracechain.md)。
 
-| 接口名 | 描述 | 
+| 接口名 | 描述 |
 | -------- | -------- |
-| hiTraceChain.begin(name: string, flags?: number = HiTraceFlag.DEFAULT): HiTraceId | 开始跟踪，并返回创建的HiTraceId。 | 
-| hiTraceChain.end(id: HiTraceId): void | 结束跟踪。 | 
-| hiTraceChain.getId(): HiTraceId | 获取跟踪标识。 | 
-| hiTraceChain.setId(id: HiTraceId): void | 设置跟踪标识。 | 
-| hiTraceChain.clearId(): void | 清除跟踪标识。 | 
-| hiTraceChain.createSpan(): HiTraceId | 创建跟踪分支。创建一个HiTraceId，使用当前线程TLS中的chainId、spanId初始化HiTraceId的chainId、parentSpanId，并为HiTraceId生成一个新的spanId，返回该HiTraceId。 | 
-| hiTraceChain.isValid(id: HiTraceId): boolean | 判断HiTraceId是否有效。<br/>true：HiTraceId有效；false：HiTraceId无效。 | 
-| hiTraceChain.isFlagEnabled(id: HiTraceId, flag: HiTraceFlag): boolean | 判断HiTraceId中指定的跟踪标志是否已启用。<br/>true：指定的跟踪标志已启用；false：指定的跟踪标志未启用。 | 
-| hiTraceChain.enableFlag(id: HiTraceId, flag: HiTraceFlag): void | 启用HiTraceId中指定的跟踪标志。 | 
-| hiTraceChain.tracepoint(mode: HiTraceCommunicationMode, type: HiTraceTracepointType, id: HiTraceId, msg?: string): void | HiTraceMeter打点信息埋点。 | 
+| hiTraceChain.begin(name: string, flags?: number = HiTraceFlag.DEFAULT): HiTraceId | 开始跟踪，并返回创建的HiTraceId。 |
+| hiTraceChain.end(id: HiTraceId): void | 结束跟踪。 |
+| hiTraceChain.getId(): HiTraceId | 获取跟踪标识。 |
+| hiTraceChain.setId(id: HiTraceId): void | 设置跟踪标识。 |
+| hiTraceChain.clearId(): void | 清除跟踪标识。 |
+| hiTraceChain.createSpan(): HiTraceId | 创建跟踪分支。创建一个HiTraceId，使用当前线程TLS中的chainId、spanId初始化HiTraceId的chainId、parentSpanId，并为HiTraceId生成一个新的spanId，返回该HiTraceId。 |
+| hiTraceChain.isValid(id: HiTraceId): boolean | 判断HiTraceId是否有效。<br/>true：HiTraceId有效；false：HiTraceId无效。 |
+| hiTraceChain.isFlagEnabled(id: HiTraceId, flag: HiTraceFlag): boolean | 判断HiTraceId中指定的跟踪标志是否已启用。<br/>true：指定的跟踪标志已启用；false：指定的跟踪标志未启用。 |
+| hiTraceChain.enableFlag(id: HiTraceId, flag: HiTraceFlag): void | 启用HiTraceId中指定的跟踪标志。 |
+| hiTraceChain.tracepoint(mode: HiTraceCommunicationMode, type: HiTraceTracepointType, id: HiTraceId, msg?: string): void | HiTraceMeter跟踪信息埋点。 |
 
 
 ## 开发步骤
@@ -202,7 +202,7 @@ async/await和promise/then异步任务支持HiTraceChain自动传递，示例结
       - hilog日志前附加的[chainId spanId parentSpanId]格式的信息即为HiTraceId信息，例如[a92ab116052648e 2ddfb70 3457eff]表示跟踪链标识chainId值为a92ab116052648e，分支标识spanId值为2ddfb70，父分支标识parentSpanId值为3457eff。
       - 示例得到的跟踪链标识chainId值为a92ab116052648e，可使用chainId值过滤日志，查看业务完整的调用链hilog日志。
       - promise/then和async/await异步机制都会自动传递HiTraceId，并生成分支标识，例如示例hilog日志中的3457eff、2ddfb70、225a1d9等，均为异步任务自动生成的分支标识。
-      - hiTraceChain.end和hiTraceChain.clear都可以结束跟踪，跟踪结束后，hilog日志不再携带HiTraceId信息。
+      - hiTraceChain.end()和hiTraceChain.clear()都可以结束跟踪，跟踪结束后，hilog日志不再携带HiTraceId信息。
 
    - 在DevEco Studio Terminal窗口查看trace数据，HiTraceChain跟踪开启期间，HiTraceMeter打点得到的trace日志会自动携带HiTraceId信息。
 
@@ -213,7 +213,7 @@ async/await和promise/then异步任务支持HiTraceChain自动传递，示例结
 
 ### 异步宏任务setInterval和setTimeout中使用HiTraceChain
 
-异步宏任务setInterval和setTimeout不支持HiTraceChain自动传递，以下示例说明如何使用hiTraceChain.getId、hiTraceChain.setId接口传递HiTraceId，如何使用hiTraceChain.createSpan接口创建分支标识，进行分布式跟踪。
+异步宏任务setInterval和setTimeout不支持HiTraceChain自动传递，以下示例说明如何使用hiTraceChain.getId()、hiTraceChain.setId()接口传递HiTraceId，如何使用hiTraceChain.createSpan()接口创建分支标识，进行分布式跟踪。
 
 1. 在DevEco Studio中新建工程，选择“Empty Ability”，工程的目录结构如下：
 

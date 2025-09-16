@@ -1,5 +1,12 @@
 # 字符处理
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--Designer: @sunyaozu-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 使用场景
 
 不同语言中字符规则差异较大，通常很难从对应文本中提取需要的信息。通过字符处理，可以在不同语言规则下，以相似的逻辑处理文本。
@@ -22,13 +29,13 @@
 2. 判断字符属性。
 
    ```ts
-   let isDigit: boolean = i18n.Unicode.isDigit(char: string);
+   let isDigit: boolean = i18n.Unicode.isDigit(ch: string);
    ```
 
 3. 以一般类别值为例，获取字符类型。
 
    ```ts
-   let unicodeType: string = i18n.Unicode.getType(char: string);
+   let unicodeType: string = i18n.Unicode.getType(ch: string);
    ```
 
 **开发实例**

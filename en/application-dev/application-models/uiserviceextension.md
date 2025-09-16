@@ -1,8 +1,15 @@
 # Using UIServiceExtensionAbility for System Floating Windows
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhangyafei-echo-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 ## Overview
 
-Starting from API version 14, applications can leverage the UI (such as preview UI) and background service capabilities provided by the [UIServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md). This component, classified as a floating window component of [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) of the UI Service type, encapsulates a [UIServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiserviceExtensionContext-sys.md). This context offers a wide range of APIs for external use.
+The UIServiceExtensionAbility is an extension service component that includes a User Interface (UI). System applications can use the UIServiceExtensionAbility to implement a service capability with specific functions and a UI, and then expose this UI service for other third-party applications to call.
 
 In this document, the component that starts or connects to a UIServiceExtensionAbility is called the client, and the UIServiceExtensionAbility is called the server.
 
@@ -14,8 +21,6 @@ An application can use a UIServiceExtensionAbility in two modes:
 
 - This API takes effect only for 2-in-1 devices.
 
-- Third-party applications can use a UIServiceExtensionAbility but cannot implement a UIServiceExtensionAbility. (The implementation requires system permissions.)
-
 - Third-party applications can connect to a UIServiceExtensionAbility provided by a system application only when they gain focus in the foreground.
 
 - The UIServiceExtensionAbility lifecycle is closely related to the window it binds. It is destroyed once the window is destroyed.
@@ -26,7 +31,7 @@ An application can use a UIServiceExtensionAbility in two modes:
 An application (client) calls [startUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startuiserviceextensionability14) to start a UIServiceExtensionAbility. Once the UIServiceExtensionAbility is started, its lifecycle is independent of the client. Even if the client is destroyed, the background service remains alive. However, the service is destroyed if the window fails to be created or is destroyed.
 
 
-For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
+The following example uses the **startUIServiceExtensionAbility** API to start a UIServiceExtensionAbility. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 
 ```ts
 import { common, Want } from '@kit.AbilityKit';
@@ -39,13 +44,13 @@ struct Index {
     Column() {
       Row() {
         // Create a Start button.
-        Button('start ability')
+        Button('start UIServiceExtensionAbility')
           .enabled(true)
           .onClick(() => {
             let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             let startWant: Want = {
-              bundleName: 'com.acts.uiserviceextensionability',
-              abilityName: 'UiServiceExtAbility',
+              bundleName: 'com.acts.uiserviceextensionability', // This is just an example. Replace it with the actual bundle name of your UIServiceExtensionAbility.
+              abilityName: 'UiServiceExtAbility', // This is just an example. Replace it with the actual name of your UIServiceExtensionAbility.
             };
             try {
               // Start the UIServiceExtensionAbility.
@@ -70,6 +75,7 @@ struct Index {
 
 The client connects to the server through [connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectuiserviceextensionability14) and obtains a [UIServiceProxy](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md) object. The client calls [sendData()](../reference/apis-ability-kit/js-apis-inner-application-uiserviceproxy.md#uiserviceproxysenddata) of the proxy object to send data to the server. The server calls the system API **onData()** of the UIServiceExtensionAbility class to receive data from the client.
 
+The following example uses the **connectUIServiceExtensionAbility** API to connect to a UIServiceExtensionAbility. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 
 ```ts
 import { common, Want } from '@kit.AbilityKit';
@@ -97,8 +103,8 @@ struct Index {
           .onClick(() => {
             let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             let startWant: Want = {
-              bundleName: 'com.acts.uiserviceextensionability',
-              abilityName: 'UiServiceExtAbility',
+              bundleName: 'com.acts.uiserviceextensionability', // This is just an example. Replace it with the actual bundle name of your UIServiceExtensionAbility.
+              abilityName: 'UiServiceExtAbility', // This is just an example. Replace it with the actual name of your UIServiceExtensionAbility.
             };
             try {
               // Connect to the UIServiceExtensionAbility.

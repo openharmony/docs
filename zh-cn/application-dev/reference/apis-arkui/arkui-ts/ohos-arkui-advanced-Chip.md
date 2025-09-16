@@ -6,7 +6,7 @@
 <!--Tester: @TerryTsao-->
 <!--Adviser: @HelloCrease-->
 
-操作块，用于搜索框历史记录或者邮件发送列表等场景。
+Chip用于搜索框历史记录、邮件发送列表等场景。
 
 > **说明：**
 >
@@ -43,50 +43,47 @@ Chip(options:ChipOptions): void
 
 ## ChipOptions
 
-ChipOptions定义chip的样式及具体式样参数。
+ChipOptions定义Chip的样式及具体式样参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称            | 类型                                                         | 必填 | 说明                                                         |
-| --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | 否   | 操作块尺寸。<br/>默认值：ChipSize.NORMAL<br/>SizeOptions类型参数不支持百分比设置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| enabled         | boolean                                                      | 否   | 操作块是否可选中。<br>默认值：true。<br>true：操作块可选中；false：操作块不可选中。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| activated<sup>12+</sup>    | boolean                                        | 否   | 操作块是否为激活态。<br>默认值：false。<br>true：操作块为激活态；false：操作块为非激活态。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                      |
-| prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | 否   | 前缀图标属性。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| prefixSymbol<sup>12+</sup>  | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | 否   | 前缀图标属性，symbol类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| label           | [LabelOptions](#labeloptions)                                | 是   | 文本属性。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| suffixIcon      | [SuffixIconOptions](#suffixiconoptions)                      | 否   | 后缀图标属性。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| suffixSymbol<sup>12+</sup>   | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | 否   | 后缀图标属性，symbol类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| suffixSymbolOptions<sup>14+</sup> | [ChipSuffixSymbolGlyphOptions](#chipsuffixsymbolglyphoptions14) | 否 | symbol类型后缀图标属性的无障碍朗读功能属性。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 操作块背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal')。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| activatedBackgroundColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)          | 否   | 操作块激活时的背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_emphasize')。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| borderRadius    | [Dimension](ts-types.md#dimension10)                         | 否   | 操作块背景圆角半径大小，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_corner_radius_button')。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| allowClose      | boolean                                                      | 否   | 删除图标是否显示。<br/>默认值：true<br>true：删除图标显示；false：删除图标不显示。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| onClose         | ()=>void                                                     | 否   | 默认删除图标点击事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| onClicked<sup>12+</sup>     | Callback\<void> | 否   | 操作块点击事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                       |
-| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | 否 | 布局方向。<br/>默认值：Direction.Auto。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| closeOptions<sup>14+</sup> | [CloseOptions](#closeoptions14) | 否 | 默认删除图标的无障碍朗读功能属性。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | Chip组件的无障碍描述。此描述用于向用户详细解释当前组件，开发人员应为组件的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
-| accessibilityLevel<sup>14+</sup> | string | 否 | Chip组件无障碍重要性。用于控制后缀图标是否可被无障碍辅助服务所识别。<br>支持的值为:<br>"auto"：当前组件会转化为“yes”。<br>"yes"：当前组件可被无障碍辅助服务所识别。<br>"no"：当前组件不可被无障碍辅助服务所识别。<br>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br>默认值："auto"。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| accessibilitySelectedType<sup>14+</sup> | [AccessibilitySelectedType](#accessibilityselectedtype14) | 否 | Chip组件选中态类型。<br>默认值：当设置了activated属性但未指定accessibilitySelectedType时，默认使用CHECKED类型。当未设置activated属性时，默认使用CLICKED类型。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| 名称            | 类型                                                         | 只读 | 可选 | 说明                                                         |
+| --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | 否  | 是  | Chip尺寸。<br/>默认值：ChipSize.NORMAL<br/>SizeOptions类型参数不支持百分比设置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>**说明**：[适老化](../../../ui/arkui-support-for-aging-adaptation.md)在size指定具体宽高时不生效，size设置为{ height: 0, width: 0 }除外。 |
+| enabled         | boolean                                                      | 否  | 是  | Chip是否可选中。<br>默认值：true。<br>true：操作块可选中；false：操作块不可选中。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| activated<sup>12+</sup>    | boolean                                        | 否  | 是  | Chip是否为激活态。<br>默认值：false。<br>true：操作块为激活态；false：操作块为非激活态。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
+| prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | 否  | 是  | 前缀图标属性。<br>默认值：不显示前缀图标<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| prefixSymbol<sup>12+</sup>  | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | 否  | 是  | 前缀图标属性，symbol类型。<br>默认值：不显示前缀图标<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| label           | [LabelOptions](#labeloptions)                                | 否  | 否  | 文本属性。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| suffixIcon      | [SuffixIconOptions](#suffixiconoptions)                      | 否  | 是  | 后缀图标属性。<br>默认值：不显示后缀图标<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| suffixSymbol<sup>12+</sup>   | [ChipSymbolGlyphOptions](#chipsymbolglyphoptions12)              | 否  | 是  | 后缀图标属性，symbol类型。<br>默认值：不显示后缀图标<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| suffixSymbolOptions<sup>14+</sup> | [ChipSuffixSymbolGlyphOptions](#chipsuffixsymbolglyphoptions14) | 否 | 是 | symbol类型后缀图标属性的无障碍朗读功能属性。<br>默认值：不显示后缀图标<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 否  | 是  | Chip背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal')。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| activatedBackgroundColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)          | 否  | 是  | Chip激活时的背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_emphasize')。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| borderRadius    | [Dimension](ts-types.md#dimension10)                         | 否  | 是  | Chip背景圆角半径大小，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_corner_radius_button')。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| allowClose      | boolean                                                      | 否  | 是  | 关闭图标是否显示。<br/>默认值：true<br>true：删除图标显示；false：删除图标不显示。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| onClose         | ()=>void                                                     | 否  | 是  | 默认关闭图标点击事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| onClicked<sup>12+</sup>     | Callback\<void> | 否  | 是  | Chip点击事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                    |
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | 否 | 是 | 布局方向。<br/>默认值：Direction.Auto。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| closeOptions<sup>14+</sup> | [CloseOptions](#closeoptions14) | 否 | 是 | 默认关闭图标的无障碍朗读功能属性。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 是 | Chip组件的无障碍描述。此描述用于向用户详细解释当前组件，开发人员应为组件的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| accessibilityLevel<sup>14+</sup> | string | 否 | 是 | Chip组件无障碍重要性。用于控制后缀图标是否可被无障碍辅助服务所识别。<br>支持的值为:<br>"auto"：当前组件会转化为“yes”。<br>"yes"：当前组件可被无障碍辅助服务所识别。<br>"no"：当前组件不可被无障碍辅助服务所识别。<br>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br>默认值："auto"。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| accessibilitySelectedType<sup>14+</sup> | [AccessibilitySelectedType](#accessibilityselectedtype14) | 否 | 是 | Chip组件选中态类型。<br>默认值：当设置了activated属性但未指定accessibilitySelectedType时，默认使用CHECKED类型。当未设置activated属性时，默认使用CLICKED类型。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 
 > **说明：**
 >
-> 1. suffixSymbol有传入值时，suffixIcon和allowClose不生效；suffixSymbol没有传入值、suffixIcon有传入值时，allowClose不生效；suffixSymbol和suffixIcon都没有传入值时，allowClose决定是否显示删除图标。
+> 1. 当`suffixSymbol`有传入参数时，`suffixIcon`和`allowClose`不生效；当`suffixSymbol`没有传入参数而`suffixIcon`有传入参数时，`allowClose`不生效；当`suffixSymbol`和`suffixIcon`都没有传入参数时，`allowClose`决定是否显示删除图标。
+>2. `backgroundColor`和`activatedBackgroundColor`赋值为`undefined`时，显示默认背景颜色；赋值为非法值时，背景颜色透明。
+> 3. prefixSymbol/suffixSymbol的fontColor默认值为：normalFontColor: `[$r('sys.color.ohos_id_color_primary')]`、activatedFontColor: `[$r('sys.color.ohos_id_color_text_primary_contrary')]`。fontColor默认值为16。
 >
-> 2. backgroundColor和activatedBackgroundColor赋值undefined时，显示默认背景颜色，赋值非法值时，背景色透明。
->
-> 3. prefixSymbol/suffixSymbol的fontColor默认值，normalFontColor: `[$r('sys.color.ohos_id_color_primary')]`、activatedFontColor: `[$r('sys.color.ohos_id_color_text_primary_contrary')]`。fontColor默认值为16。
->
-> 4. prefixIcon的fillColor默认值：`$r('sys.color.ohos_id_color_secondary')`，suffixIcon的fillColor默认值：`$r('sys.color.ohos_id_color_primary')`。fillColor对颜色的解析与Image组件保持一致。
->
-> 5. prefixIcon的activatedFillColor默认值：`$r('sys.color.ohos_id_color_text_primary_contrary')`，suffixIcon的activatedFillColor默认值：`$r('sys.color.ohos_id_color_text_primary_contrary')`。activatedFillColor对颜色的解析与Image组件保持一致。
+> 4. prefixIcon的fillColor默认值为：`$r('sys.color.ohos_id_color_secondary')`，suffixIcon的fillColor默认值为：`$r('sys.color.ohos_id_color_primary')`。fillColor对颜色的解析与Image组件保持一致。
+>5. prefixIcon和suffixIcon的activatedFillColor默认值均为：`$r('sys.color.ohos_id_color_text_primary_contrary')`。activatedFillColor对颜色的解析与Image组件保持一致。
 
 ## ChipSize
 
-ChipSize是chip可指定的尺寸类型，如普通型Chip。
+ChipSize是Chip可指定的尺寸类型，如普通型Chip。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -111,7 +108,7 @@ AccessibilitySelectedType是Chip可指定的选中态类型，用于控制无障
 
 | 名称 | 值 | 说明 |
 | ---- | -- | ---- |
-| CLICKED | 0 | 点击型。组件不向无障碍服务报告任何选中状态，仅作为可点击组件使用。适用于执行某个操作但不保持状态的场景，如普通按钮。|
+| CLICKED | 0 | 单击型。组件不向无障碍服务报告任何选中状态，仅作为可单击组件使用。适用于执行某个操作但不保持状态的场景，如普通按钮。 |
 | CHECKED | 1 | 复选型。组件通过 [accessibilityChecked](ts-universal-attributes-accessibility.md#accessibilitychecked13) 属性向无障碍服务报告选中状态。适用于多选场景，如标签筛选、属性选择等。|
 | SELECTED | 2 | 单选型。组件通过 [accessibilitySelected](ts-universal-attributes-accessibility.md#accessibilityselected13) 属性向无障碍服务报告选中状态。适用于表示当前选中项的场景，如导航栏标签、单选列表项等。|
 
@@ -125,16 +122,16 @@ IconCommonOptions定义图标的共通属性。
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称      | 类型                                       | 必填 | 说明                                                         |
-| --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src       | [ResourceStr](ts-types.md#resourcestr)     | 是   | 图标图片或图片地址引用。 |
-| size      | [SizeOptions](ts-types.md#sizeoptions)     | 否   | 图标大小，不支持百分比。<br/>默认值：{width: 16, height: 16} |
-| fillColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 图标填充颜色。 |
-| activatedFillColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否   | 操作块激活时图标填充颜色。                            |
+| 名称      | 类型                                       | 只读 | 可选 | 说明                                                         |
+| --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| src       | [ResourceStr](ts-types.md#resourcestr)     | 否  | 否  | 图标图片或图片地址引用。 |
+| size      | [SizeOptions](ts-types.md#sizeoptions)     | 否  | 是  | 图标大小，不支持百分比。<br/>默认值：{width: 16, height: 16} |
+| fillColor | [ResourceColor](ts-types.md#resourcecolor) | 否  | 是  | 图标填充颜色。<br>默认值：$r('sys.color.chip_usually_icon_color') |
+| activatedFillColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否  | 是  | 操作块激活时图标填充颜色。<br>默认值：$r('sys.color.chip_active_icon_color') |
 
 > **说明：**
 >
-> 仅在图片格式为svg时，fillColor和activatedFillColor生效。
+> 仅在图片格式为SVG时，fillColor和activatedFillColor属性才生效。
 >
 
 ## PrefixIconOptions
@@ -159,12 +156,12 @@ SuffixIconOptions定义后缀图标的属性。
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称   | 类型       | 必填 | 说明               |
-| ------ | ---------- | ---- | ------------------ |
-| action | () => void | 否   | 后缀图标设定事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| accessibilityText<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 后缀图标无障碍文本属性。当后缀图标不包含文本属性时，屏幕朗读选中后缀图标时不播报，使用者无法清楚地知道当前是否选中了后缀图标。为了解决此场景，开发人员可为不包含文字信息的后缀图标设置无障碍文本，当屏幕朗读选中后缀图标时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己是否选中了后缀图标。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
-| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 后缀图标的无障碍描述。此描述用于向用户详细解释后缀图标，开发人员应为后缀图标的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从后缀图标的属性和无障碍文本中直接获知时。如果后缀图标同时具备文本属性和无障碍说明属性，当后缀图标被选中时，系统将首先播报后缀图标的文本属性，随后播报无障碍说明属性的内容。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
-| accessibilityLevel<sup>14+</sup> | string | 否 | 后缀图标无障碍重要性。用于控制后缀图标是否可被无障碍辅助服务所识别。<br>支持的值为:<br>"auto"：当前组件存在action时转化为“yes”，不存在action时，转化为“no”。<br>"yes"：当前组件可被无障碍辅助服务所识别。<br>"no"：当前组件不可被无障碍辅助服务所识别。<br>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br>默认值："auto"。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| 名称   | 类型       | 只读 | 可选 | 说明               |
+| ------ | ---------- | ---- | ------------------ | ------------------ |
+| action | () => void | 否  | 是  | 后缀图标设定事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| accessibilityText<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 是 | 后缀图标无障碍文本属性。当后缀图标不包含文本属性时，屏幕朗读选中后缀图标时不播报，使用者无法清楚地知道当前是否选中了后缀图标。为了解决此场景，开发人员可为不包含文字信息的后缀图标设置无障碍文本，当屏幕朗读选中后缀图标时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己是否选中了后缀图标。<br>默认值：‘ ’<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| accessibilityDescription<sup>14+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 是 | 后缀图标的无障碍描述。此描述用于向用户详细解释后缀图标，开发人员应为后缀图标的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从后缀图标的属性和无障碍文本中直接获知时。如果后缀图标同时具备文本属性和无障碍说明属性，当后缀图标被选中时，系统将首先播报后缀图标的文本属性，随后播报无障碍说明属性的内容。<br>默认值：‘ ’<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| accessibilityLevel<sup>14+</sup> | string | 否 | 是 | 后缀图标的无障碍重要性。用于控制后缀图标是否可被无障碍辅助服务识别。<br>支持的值为:<br>"auto"：当前组件存在action时转化为“yes”，不存在action时，转化为“no”。<br>"yes"：当前组件可被无障碍辅助服务所识别。<br>"no"：当前组件不可被无障碍辅助服务所识别。<br>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br>默认值："auto"。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## AccessibilityOptions<sup>14+</sup>
 
@@ -176,11 +173,11 @@ SuffixIconOptions定义后缀图标的属性。
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称 | 类型 | 必填 | 说明 |
-| ------ | ---------- | ---- | ------------------ |
-| accessibilityText | [ResourceStr](ts-types.md#resourcestr) | 否 | 无障碍文本属性。当组件不包含文本属性时，屏幕朗读选中此组件时不播报，使用者无法清楚地知道当前选中了什么组件。为了解决此场景，开发人员可为不包含文字信息的组件设置无障碍文本，当屏幕朗读选中此组件时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己选中了什么组件。|
-| accessibilityDescription | [ResourceStr](ts-types.md#resourcestr) | 否 | 无障碍描述。此描述用于向用户详细解释当前组件，开发人员应为组件的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。|
-| accessibilityLevel | string | 否 | 无障碍重要性。用于控制某个组件是否可被无障碍辅助服务所识别。<br>支持的值为:<br>"auto"：当前组件会转换为“yes”。<br>"yes"：当前组件可被无障碍辅助服务所识别。<br>"no"：当前组件不可被无障碍辅助服务所识别。<br>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br>默认值："auto"。|
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ------ | ---------- | ---- | ------------------ | ------------------ |
+| accessibilityText | [ResourceStr](ts-types.md#resourcestr) | 否 | 是 | 无障碍文本属性。当组件无文本属性时，屏幕朗读选中此组件不会播报，导致使用者无法清楚了解当前选中的组件。开发人员可为此类组件设置无障碍文本，屏幕朗读时将播报该文本，帮助使用者明确选中了什么组件。<br>默认值：‘ ’ |
+| accessibilityDescription | [ResourceStr](ts-types.md#resourcestr) | 否 | 是 | 无障碍描述。此描述用于向用户详细解释当前组件，开发人员应提供详尽的文本说明，以协助用户理解即将执行的操作及其后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。<br>默认值：‘ ’ |
+| accessibilityLevel | string | 否 | 是 | 无障碍重要性。用于控制组件是否可被无障碍辅助服务识别。<br>支持的值为:<br>"auto"：当前组件会转换为“yes”。<br>"yes"：当前组件可被无障碍辅助服务所识别。<br>"no"：当前组件不可被无障碍辅助服务所识别。<br>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br>默认值："auto"。 |
 
 ## ChipSuffixSymbolGlyphOptions<sup>14+</sup>
 
@@ -192,11 +189,11 @@ symbol类型后缀图标属性的无障碍朗读功能属性类型。
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称 | 类型 | 必填 | 说明 |
-| ---- | ---- | --- | ---- |
-| action | [VoidCallback](ts-types.md#voidcallback12) | 否 | 后缀图标响应事件。|
-| normalAccessibility | [AccessibilityOptions](#accessibilityoptions14) | 否 | 非激活态无障碍朗读功能属性。|
-| activatedAccessibility | [AccessibilityOptions](#accessibilityoptions14) | 否 | 激活态无障碍朗读功能属性。|
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | --- | ---- | ---- |
+| action | [VoidCallback](ts-types.md#voidcallback12) | 否 | 是 | 后缀图标设定事件。<br>默认值：undefined |
+| normalAccessibility | [AccessibilityOptions](#accessibilityoptions14) | 否 | 是 | 非激活态无障碍朗读功能属性。<br>默认值：undefined |
+| activatedAccessibility | [AccessibilityOptions](#accessibilityoptions14) | 否 | 是 | 激活态无障碍朗读功能属性。<br>默认值：undefined |
 
 ## ChipSymbolGlyphOptions<sup>12+</sup>
 
@@ -208,19 +205,19 @@ ChipSymbolGlyphOptions定义前缀图标和后缀图标的属性。
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称   | 类型       | 必填 | 说明               |
-| ------ | ---------- | ---- | ------------------ |
-| normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 图标设定。 |
-| activated | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 激活时图标设定。 |
+| 名称   | 类型       | 只读 | 可选 | 说明               |
+| ------ | ---------- | ---- | ------------------ | ------------------ |
+| normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否  | 是  | 非激活时图标设定。<br>默认值：不显示前缀图标或后缀图标 |
+| activated | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否  | 是  | 激活时图标设定。<br>默认值：不显示前缀图标或后缀图标 |
 
 > **说明：**
 >
-> 不支持通过symbolEffect修改动效类型和effectStrategy设置动效。
+> 不支持使用symbolEffect修改动效类型及effectStrategy设置动效。
 >
 
 ## LabelOptions
 
-LabelOptions定义文本的属性。
+LabelOptions定义文本属性。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -228,15 +225,15 @@ LabelOptions定义文本的属性。
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称        | 类型                                       | 必填 | 说明                                                         |
-| ----------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| text        | string                                     | 是   | 文本文字内容。 |
-| fontSize    | [Dimension](ts-types.md#dimension10)       | 否   | 文字字号，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_text_size_button2') |
-| fontColor   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary') |
-| activatedFontColor<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 操作块激活时的文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_contrary') |
-| fontFamily  | string                                     | 否   | 文字字体。<br/>默认值："HarmonyOS Sans" |
-| labelMargin | [LabelMarginOptions](#labelmarginoptions)  | 否   | 文本与左右侧图标之间间距。 |
-| localizedLabelMargin<sup>12+</sup> | [LocalizedLabelMarginOptions](#localizedlabelmarginoptions12) | 否 | 本地化文本与左右侧图标之间间距。<br/>默认值：{<br/>start: LengthMetrics.vp(6), end: LengthMetrics.vp(6)<br/>} |
+| 名称        | 类型                                       | 只读 | 可选 | 说明                                                         |
+| ----------- | ------------------------------------------ | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| text        | string                                     | 否  | 否  | 文本文字内容。 |
+| fontSize    | [Dimension](ts-types.md#dimension10)       | 否  | 是  | 文字字号，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_text_size_button2') |
+| fontColor   | [ResourceColor](ts-types.md#resourcecolor) | 否  | 是  | 文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary') |
+| activatedFontColor<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | 否  | 是  | 操作块激活时的文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_contrary') |
+| fontFamily  | string                                     | 否  | 是  | 文字字体。<br/>默认值："HarmonyOS Sans" |
+| labelMargin | [LabelMarginOptions](#labelmarginoptions)  | 否  | 是  | 文本与左右侧图标之间间距。<br>默认值：<br>size为ChipSize.SMALL时，默认值：{ left: 4, right: 4 }<br>size为ChipSize.NORMAL时，默认值：{ left: 6, right: 6 } |
+| localizedLabelMargin<sup>12+</sup> | [LocalizedLabelMarginOptions](#localizedlabelmarginoptions12) | 否 | 是 | 本地化文本与左右侧图标之间间距。<br/>默认值：<br>size为ChipSize.SMALL时，默认值：<br>`{  start: LengthMetrics.resource($r('sys.float.chip_small_text_margin')),  end: LengthMetrics.resource($r('sys.float.chip_small_text_margin')) }`<br>size为ChipSize.NORMAL时，默认值：<br>`{  start: LengthMetrics.resource($r('sys.float.chip_normal_text_margin')),  end: LengthMetrics.resource($r('sys.float.chip_normal_text_margin')) }` |
 
 ## CloseOptions<sup>14+</sup>
 
@@ -252,7 +249,7 @@ LabelOptions定义文本的属性。
 
 ## LabelMarginOptions
 
-LabelMarginOptions定义文本与左右侧图标之间间距。
+LabelMarginOptions用于定义文本与左右侧图标之间间距。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -260,14 +257,14 @@ LabelMarginOptions定义文本与左右侧图标之间间距。
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称  | 类型                                 | 必填 | 说明                                   |
-| ----- | ------------------------------------ | ---- | -------------------------------------- |
-| left  | [Dimension](ts-types.md#dimension10) | 否   | 文本与左侧图标之间间距，不支持百分比。 |
-| right | [Dimension](ts-types.md#dimension10) | 否   | 文本与右侧图标之间间距，不支持百分比。 |
+| 名称  | 类型                                 | 只读 | 可选 | 说明                                                         |
+| ----- | ------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| left  | [Dimension](ts-types.md#dimension10) | 否   | 是   | 文本与左侧图标之间间距，不支持百分比。<br>默认值：<br>size为ChipSize.SMALL时，left默认值：4<br>size为ChipSize.NORMAL时，left默认值：6<br>取值范围：[0, +∞)<br>单位：vp |
+| right | [Dimension](ts-types.md#dimension10) | 否   | 是   | 文本与右侧图标之间间距，不支持百分比。<br>默认值：<br>size为ChipSize.SMALL时，right默认值：4<br>size为ChipSize.NORMAL时，right默认值：6<br>取值范围：[0, +∞)<br>单位：vp |
 
 ## LocalizedLabelMarginOptions<sup>12+</sup>
 
-LocalizedLabelMarginOptions定义本地化文本与左右侧图标之间间距。
+LocalizedLabelMarginOptions用于定义本地化文本与左右侧图标之间间距。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -275,16 +272,16 @@ LocalizedLabelMarginOptions定义本地化文本与左右侧图标之间间距�
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称  | 类型                                                         | 必填 | 说明                                   |
-| ----- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| start | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 文本与左侧图标之间间距，不支持百分比。 |
-| end   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 文本与右侧图标之间间距，不支持百分比。 |
+| 名称  | 类型                                                         | 只读 | 可选 | 说明                                                         |
+| ----- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| start | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 是   | 文本与左侧图标之间间距，不支持百分比。<br>默认值：<br>size为ChipSize.SMALL时，start默认值: <br>`LengthMetrics.resource($r('sys.float.chip_small_text_margin'))`<br>size为ChipSize.NORMAL时，start默认值：<br>`LengthMetrics.resource($r('sys.float.chip_normal_text_margin'))` |
+| end   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 是   | 文本与右侧图标之间间距，不支持百分比。<br>默认值：<br>size为ChipSize.SMALL时，end默认值：<br>`LengthMetrics.resource($r('sys.float.chip_small_text_margin'))`<br>size为ChipSize.NORMAL时，end默认值: <br>`LengthMetrics.resource($r('sys.float.chip_normal_text_margin'))` |
 
 ## 示例
 
 ### 示例1（自定义后缀图标）
 
-该示例通过配置suffixIcon实现自定义操作块的后缀图标。
+通过配置suffixIcon实现自定义操作块的后缀图标。
 
 ```ts
 import { Chip, ChipSize } from '@kit.ArkUI';
@@ -330,7 +327,7 @@ struct Index {
 
 ### 示例2（设置默认后缀图标）
 
-该示例通过配置allowClose为true显示后缀删除图标。
+配置allowClose为true，显示后缀移除图标。
 
 ```ts
 import { Chip, ChipSize } from '@kit.ArkUI';
@@ -370,7 +367,7 @@ struct Index {
 
 ### 示例3（不显示后缀图标）
 
-该示例通过配置allowClose为false不显示后缀删除图标。
+配置allowClose为false，隐藏后缀移除图标。
 
 ```ts
 import { Chip, ChipSize } from '@kit.ArkUI';
@@ -399,9 +396,9 @@ struct Index {
         enabled: true,
         backgroundColor: $r('sys.color.ohos_id_color_button_normal'),
         borderRadius: $r('sys.float.ohos_id_corner_radius_button'),
-        onClose:()=>{
-          console.log("chip on close")
-      }
+        onClose: () => {
+          console.info("chip on close")
+        }
       })
     }
   }
@@ -448,15 +445,15 @@ struct Index {
         backgroundColor: $r('sys.color.ohos_id_color_button_normal'),
         activatedBackgroundColor: $r('sys.color.ohos_id_color_emphasize'),
         borderRadius: $r('sys.float.ohos_id_corner_radius_button'),
-        onClose:()=>{
-          console.log("chip on close")
+        onClose: () => {
+          console.info("chip on close")
         },
-        onClicked:()=>{
-          console.log("chip on clicked")
+        onClicked: () => {
+          console.info("chip on clicked")
         }
       })
 
-      Button('改变激活状态').onClick(()=>{
+      Button('改变激活状态').onClick(() => {
         this.isActivated = !this.isActivated
       })
     }
@@ -489,10 +486,10 @@ struct Index {
           fillColor: Color.Blue,
           activatedFillColor: $r('sys.color.ohos_id_color_text_primary_contrary')
         },
-		prefixSymbol: {
+        prefixSymbol: {
           normal: new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontSize(16).fontColor([Color.Green]),
           activated: new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontSize(16).fontColor([Color.Red]),
-		},
+        },
         label: {
           text: "操作块",
           fontSize: 12,
@@ -508,15 +505,15 @@ struct Index {
         backgroundColor: $r('sys.color.ohos_id_color_button_normal'),
         activatedBackgroundColor: $r('sys.color.ohos_id_color_emphasize'),
         borderRadius: $r('sys.float.ohos_id_corner_radius_button'),
-        onClose:()=>{
-          console.log("chip on close")
+        onClose: () => {
+          console.info("chip on close")
         },
-        onClicked:()=>{
-          console.log("chip on clicked")
+        onClicked: () => {
+          console.info("chip on clicked")
         }
       })
 
-      Button('改变激活状态').onClick(()=>{
+      Button('改变激活状态').onClick(() => {
         this.isActivated = !this.isActivated
       })
     }
@@ -528,16 +525,14 @@ struct Index {
 
 ### 示例6（设置镜像效果）
 
-该示例通过配置direction实现Chip布局镜像化展示。
+配置direction实现Chip布局镜像化展示。
 
 ```ts
-
-import { Chip, ChipSize,LengthMetrics } from '@kit.ArkUI';
+import { Chip, ChipSize, LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct ChipPage {
-
   build() {
     Column() {
       Chip({
@@ -556,7 +551,7 @@ struct ChipPage {
           localizedLabelMargin: { start: LengthMetrics.vp(20), end: LengthMetrics.vp(20) },
         },
         suffixIcon: {
-          // 此处'app.media.close'仅作示例，请替换为实际使用图片。
+          // 'app.media.close'仅作示例，请替换为实际使用图片。
           src: $r('app.media.close'),
           size: { width: 16, height: 16 },
           fillColor: Color.Red,
@@ -579,10 +574,9 @@ struct ChipPage {
 
 ### 示例7（Image类型无障碍朗读）
 
-该示例代码实现了Chip组件Image类型后缀图标的无障碍朗读功能。
+该示例代码实现Chip组件Image类型后缀图标的无障碍朗读功能。
 
 ```ts
-// xxx.ets
 import { Chip } from '@kit.ArkUI';
 
 @Builder
@@ -671,10 +665,9 @@ struct ChipExample2 {
 
 ### 示例8（symbol类型无障碍朗读）
 
-该示例代码实现了Chip组件symbol类型后缀图标的无障碍朗读功能。
+该示例代码实现Chip组件symbol类型后缀图标的无障碍朗读功能。
 
 ```ts
-
 import { Chip, SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Builder
@@ -733,74 +726,75 @@ struct ChipExample2 {
   build() {
     NavDestination() {
       Scroll() {
-          SectionGroup({ title: '后缀Symbol播报' }) {
-            SectionItem({ title: 'activatedAccessibility' }) {
-              Chip({
-                label: { text: '操作块' },
-                activated: true,
-                suffixSymbol: {
-                  activated: new SymbolGlyphModifier($r('sys.symbol.media_sound'))
-                    .fontSize(72),
+        SectionGroup({ title: '后缀Symbol播报' }) {
+          SectionItem({ title: 'activatedAccessibility' }) {
+            Chip({
+              label: { text: '操作块' },
+              activated: true,
+              suffixSymbol: {
+                activated: new SymbolGlyphModifier($r('sys.symbol.media_sound'))
+                  .fontSize(72),
+              },
+              suffixSymbolOptions: {
+                activatedAccessibility: {
+                  accessibilityText: '音乐',
+                  accessibilityDescription: '新手提醒'
                 },
-                suffixSymbolOptions: {
-                  activatedAccessibility: {
-                    accessibilityText: '音乐',
-                    accessibilityDescription: '新手提醒'
-                  },
-                  action: () => {
-                    this.getUIContext().getPromptAction().showToast({
-                      message: '后缀Symbol被点击！'
-                    });
-                  }
-                },
-                onClicked: () => {
+                action: () => {
                   this.getUIContext().getPromptAction().showToast({
-                    message: '操作块被点击！'
+                    message: '后缀Symbol被点击！'
                   });
                 }
-              })
-            }
-            SectionItem({ title: 'normalAccessibility' }) {
-              Chip({
-                label: { text: '操作块' },
-                suffixSymbol: {
-                  normal: new SymbolGlyphModifier($r('sys.symbol.media_sound'))
-                    .fontSize(72),
+              },
+              onClicked: () => {
+                this.getUIContext().getPromptAction().showToast({
+                  message: '操作块被点击！'
+                });
+              }
+            })
+          }
+
+          SectionItem({ title: 'normalAccessibility' }) {
+            Chip({
+              label: { text: '操作块' },
+              suffixSymbol: {
+                normal: new SymbolGlyphModifier($r('sys.symbol.media_sound'))
+                  .fontSize(72),
+              },
+              suffixSymbolOptions: {
+                normalAccessibility: {
+                  accessibilityText: '音乐',
+                  accessibilityDescription: '新手提醒'
                 },
-                suffixSymbolOptions: {
-                  normalAccessibility: {
-                    accessibilityText: '音乐',
-                    accessibilityDescription: '新手提醒'
-                  },
-                  action: () => {
-                    this.getUIContext().getPromptAction().showToast({
-                      message: '后缀Symbol被点击！'
-                    });
-                  }
-                },
-                onClicked: () => {
+                action: () => {
                   this.getUIContext().getPromptAction().showToast({
-                    message: '操作块被点击！'
+                    message: '后缀Symbol被点击！'
                   });
                 }
-              })
-            }
+              },
+              onClicked: () => {
+                this.getUIContext().getPromptAction().showToast({
+                  message: '操作块被点击！'
+                });
+              }
+            })
           }
         }
       }
-      .padding({
-        top: 8,
-        bottom: 8,
-        left: 16,
-        right: 16,
-      })
     }
+    .padding({
+      top: 8,
+      bottom: 8,
+      left: 16,
+      right: 16,
+    })
+  }
 }
 ```
 
 ### 示例9（Chip组件无障碍朗读）
 
-此示例展示了Chip组件的无障碍属性设置，包括不同的accessibilitySelectedType类型和各种无障碍属性的使用。
+示例展示Chip组件的无障碍属性设置，包括不同的accessibilitySelectedType类型和各种无障碍属性。
 
 ```ts
 import { AccessibilitySelectedType, Chip, ChipSize } from '@kit.ArkUI';

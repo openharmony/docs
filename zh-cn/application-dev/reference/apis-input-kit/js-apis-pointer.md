@@ -1,4 +1,4 @@
-# @ohos.multimodalInput.pointer (鼠标指针)
+# @ohos.multimodalInput.pointer (鼠标光标)
 
 <!--Kit: Input Kit-->
 <!--Subsystem: MultimodalInput-->
@@ -7,7 +7,7 @@
 <!--Tester: @Lyuxin-->
 <!--Adviser: @Brilliantry_Rui-->
 
-本模块提供鼠标指针管理能力，包括查询、设置鼠标指针属性。
+本模块提供鼠标光标管理能力，包括查询、设置鼠标光标属性。
 
 > **说明**：
 >
@@ -23,7 +23,7 @@ import { pointer } from '@kit.InputKit';
 
 setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置鼠标指针显示或者隐藏，使用Callback异步回调。
+设置鼠标光标显示或者隐藏，使用Callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -31,7 +31,7 @@ setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名       | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| visible  | boolean                   | 是    | 鼠标指针是否显示。true表示显示，false表示不显示。 |
+| visible  | boolean                   | 是    | 鼠标光标是否显示。true表示显示，false表示不显示。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
 **错误码**：
@@ -76,7 +76,7 @@ struct Index {
 
 setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
-设置鼠标指针显示或者隐藏，使用Promise异步回调。
+设置鼠标光标显示或者隐藏，使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -84,7 +84,7 @@ setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
 | 参数名      | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
-| visible | boolean | 是    | 鼠标指针是否显示。true表示显示，false表示不显示。 |
+| visible | boolean | 是    | 鼠标光标是否显示。true表示显示，false表示不显示。 |
 
 **返回值**：
 
@@ -130,7 +130,7 @@ struct Index {
 
 setPointerVisibleSync(visible: boolean): void
 
-设置鼠标指针的显示或隐藏，使用同步方式。
+设置鼠标光标的显示或隐藏状态，使用同步方式。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -138,7 +138,7 @@ setPointerVisibleSync(visible: boolean): void
 
 | 参数名      | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
-| visible | boolean | 是    | 鼠标指针是否显示。true表示显示，false表示不显示。 |
+| visible | boolean | 是    | 鼠标光标是否显示。true表示显示，false表示不显示。 |
 
 **错误码**：
 
@@ -176,7 +176,7 @@ struct Index {
 
 isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
-获取鼠标指针显示状态，使用callback异步回调。
+获取鼠标光标显示状态，使用callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -184,7 +184,7 @@ isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名       | 类型                           | 必填   | 说明             |
 | -------- | ---------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，返回鼠标指针状态，true为显示，false为隐藏。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，返回鼠标光标状态，true为显示，false为隐藏。 |
 
 **错误码**：
 
@@ -227,7 +227,7 @@ struct Index {
 
 isPointerVisible(): Promise&lt;boolean&gt;
 
-获取鼠标指针显示状态，使用Promise异步回调。
+获取鼠标光标显示状态，使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -235,7 +235,7 @@ isPointerVisible(): Promise&lt;boolean&gt;
 
 | 类型                     | 说明                  |
 | ---------------------- | ------------------- |
-| Promise&lt;boolean&gt; | Promise对象，返回鼠标指针状态查询结果。true代表显示状态，false代表隐藏状态。 |
+| Promise&lt;boolean&gt; | Promise对象，返回鼠标光标状态查询结果。true代表显示状态，false代表隐藏状态。 |
 
 **示例**：
 
@@ -266,7 +266,7 @@ struct Index {
 
 isPointerVisibleSync(): boolean
 
-使用同步方式获取鼠标指针显示或者隐藏。
+获取鼠标光标的显示或隐藏状态，使用同步方式。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -274,7 +274,7 @@ isPointerVisibleSync(): boolean
 
 | 类型                     | 说明                  |
 | ---------------------- | ------------------- |
-| boolean | 返回鼠标指针显示或隐藏状态。true代表显示状态，false代表隐藏状态。 |
+| boolean | 返回鼠标光标显示或隐藏状态。true代表显示状态，false代表隐藏状态。 |
 
 **示例**：
 

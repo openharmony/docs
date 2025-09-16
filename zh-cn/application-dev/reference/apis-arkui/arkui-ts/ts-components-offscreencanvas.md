@@ -20,9 +20,13 @@ OffscreenCanvas组件用于绘制自定义图形。
 
 不支持。
 
-## 接口
+## 构造函数
 
-OffscreenCanvas(width: number, height: number, unit?: LengthMetricsUnit)
+### constructor
+
+constructor(width: number, height: number)
+
+构造用于创建离屏画布对象的OffscreenCanvas。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -34,9 +38,28 @@ OffscreenCanvas(width: number, height: number, unit?: LengthMetricsUnit)
 
 | 参数名 | 类型 | 必填 | 说明                        |
 | ------ | -------- | ---- | ------------------------------------- |
-| width  | number   | 是  | OffscreenCanvas组件的宽度。<br>默认单位为vp。 |
-| height | number   | 是  | OffscreenCanvas组件的高度。<br>默认单位为vp。 |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否   |  用来配置OffscreenCanvas对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT |
+| width  | number   | 是  | OffscreenCanvas组件的宽度。<br>异常值NaN和Infinity按无效值处理。<br>默认单位为vp。 |
+| height | number   | 是  | OffscreenCanvas组件的高度。<br>异常值NaN和Infinity按无效值处理。<br>默认单位为vp。 |
+
+### constructor<sup>12+</sup>
+
+constructor(width: number, height: number, unit: LengthMetricsUnit)
+
+构造用于创建离屏画布对象的OffscreenCanvas，支持配置OffscreenCanvas的单位模式。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                        |
+| ------ | -------- | ---- | ------------------------------------- |
+| width  | number   | 是  | OffscreenCanvas组件的宽度。<br>异常值NaN和Infinity按无效值处理。<br>默认单位为vp。 |
+| height | number   | 是  | OffscreenCanvas组件的高度。<br>异常值NaN和Infinity按无效值处理。<br>默认单位为vp。 |
+| unit   | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 是   |  用来配置OffscreenCanvas对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)。<br>异常值NaN和Infinity按默认值处理。<br>默认值：DEFAULT |
 
 ## 属性
 
@@ -197,8 +220,8 @@ getContext(contextType: "2d", options?: RenderingContextSettings): OffscreenCanv
 
 | 参数名  | 类型 | 必填 | 说明    |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| contextType | string | 是   | OffscreenCanvas组件绘图上下文的类型，当前仅支持"2d"类型。<br>"2d"：创建一个表示二维渲染上下文的OffscreenCanvasRenderingContext2D对象。|
-| options      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 否 | 用来配置OffscreenCanvasRenderingContext2D对象的参数，见[RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings)。<br>默认值：null |
+| contextType | string | 是   | OffscreenCanvas组件绘图上下文的类型，当前仅支持"2d"类型。<br>"2d"：创建一个表示二维渲染上下文的OffscreenCanvasRenderingContext2D对象。<br>异常值undefined和null按无效值处理，当前接口返回undefined。|
+| options      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 否 | 用来配置OffscreenCanvasRenderingContext2D对象的参数，见[RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings)。<br>异常值undefined和null按[RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings)的默认值处理。<br>默认值：null |
 
 **返回值：**
 

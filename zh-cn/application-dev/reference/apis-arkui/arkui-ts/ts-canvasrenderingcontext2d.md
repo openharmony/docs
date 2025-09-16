@@ -18,9 +18,13 @@
 >
 > Canvas组件的宽或高超过8000px时使用CPU渲染，会导致性能明显下降。
 
-## 接口
+## 构造函数
 
-CanvasRenderingContext2D(settings?: RenderingContextSettings, unit?: LengthMetricsUnit)
+### constructor
+
+constructor(settings?: RenderingContextSettings)
+
+构造Canvas画布对象，支持配置CanvasRenderingContext2D对象的参数。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -32,33 +36,30 @@ CanvasRenderingContext2D(settings?: RenderingContextSettings, unit?: LengthMetri
 
 | 参数名      | 类型  | 必填   | 说明    |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| settings | [RenderingContextSettings](#renderingcontextsettings) | 否    | 用来配置CanvasRenderingContext2D对象的参数，见[RenderingContextSettings](#renderingcontextsettings)。 |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否    | 用来配置CanvasRenderingContext2D对象的单位模式，配置后无法更改，见[LengthMetricsUnit](#lengthmetricsunit12)。<br>默认值：DEFAULT |
+| settings | [RenderingContextSettings](#renderingcontextsettings) | 否    | 用来配置CanvasRenderingContext2D对象的参数，见[RenderingContextSettings](#renderingcontextsettings)。<br>异常值undefined和null按[RenderingContextSettings](#renderingcontextsettings)的默认值处理。 |
 
+### constructor<sup>12+</sup>
 
-### RenderingContextSettings
+constructor(settings?: RenderingContextSettings, unit?: LengthMetricsUnit)
 
-RenderingContextSettings(antialias?: boolean)
+构造Canvas画布对象，支持配置CanvasRenderingContext2D对象的参数和单位模式。
 
-用来配置CanvasRenderingContext2D对象的参数，包括是否开启抗锯齿。
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 在API version 12中，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名       | 类型    | 必填   | 说明                          |
-| --------- | ------- | ---- | ----------------------------- |
-| antialias | boolean | 否    | 表明canvas是否开启抗锯齿。<br>默认值：false，表示不开启抗锯齿功能。 |
-
-### LengthMetricsUnit<sup>12+</sup>
-
-用来配置CanvasRenderingContext2D对象的单位模式，默认单位模式为LengthMetricsUnit.DEFAULT，对应默认单位vp，配置后无法动态更改。详细说明见[LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12)。
+| 参数名      | 类型  | 必填   | 说明    |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| settings | [RenderingContextSettings](#renderingcontextsettings) | 否    | 用来配置CanvasRenderingContext2D对象的参数，见[RenderingContextSettings](#renderingcontextsettings)。<br>异常值undefined和null按[RenderingContextSettings](#renderingcontextsettings)的默认值处理。 |
+| unit  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否    | 用来配置CanvasRenderingContext2D对象的单位模式，配置后无法更改。<br>异常值undefined、NaN和Infinity按默认值处理。<br>默认值：DEFAULT |
 
 **示例：**
+
+以下示例展示了配置CanvasRenderingContext2D对象的单位模式，默认单位模式为LengthMetricsUnit.DEFAULT，对应默认单位vp，配置后无法动态更改。详细说明见[LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12)。
 
 ```ts
 // xxx.ets
@@ -105,22 +106,22 @@ struct LengthMetricsUnitDemo {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | --------- | ------------------------------- | ------------------ | ---------------------- | ---------------------------------------- |
-| [fillStyle](#fillstyle) | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md) | 否 | 否 | 指定绘制的填充色，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中string类型说明。<br/>- 类型为number时，表示设置填充区域的颜色，不支持设置全透明色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中number类型说明。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>默认值：'#000000'（黑色）<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| [lineWidth](#linewidth) | number | 否 | 否 | 设置绘制线条的宽度，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>默认值：1(px)<br/>默认单位：vp <br/> lineWidth取值不支持0和负数，0和负数按异常值处理，异常值按默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| [strokeStyle](#strokestyle)              | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md)  | 否 | 否 | 设置线条的颜色，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>-&nbsp;类型为string时，表示设置线条使用的颜色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中string类型说明。<br/>- 类型为number时，表示设置线条使用的颜色，不支持设置全透明色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中number类型说明。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>默认值：'#000000'（黑色）<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| [fillStyle](#fillstyle) | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md) | 否 | 否 | 指定绘制的填充色，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中string类型说明。<br/>- 类型为number时，表示设置填充区域的颜色，不支持设置全透明色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中number类型说明。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>默认值：'#000000'（黑色）<br/>异常值NaN和Infinity按默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| [lineWidth](#linewidth) | number | 否 | 否 | 设置绘制线条的宽度，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>默认值：1(px)<br/>默认单位：vp <br/> lineWidth取值不支持0和负数，0、负数和NaN按默认值处理，Infinity会导致lineWidth属性异常。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| [strokeStyle](#strokestyle)              | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md)  | 否 | 否 | 设置线条的颜色，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>-&nbsp;类型为string时，表示设置线条使用的颜色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中string类型说明。<br/>- 类型为number时，表示设置线条使用的颜色，不支持设置全透明色，颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中number类型说明。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>默认值：'#000000'（黑色）<br/>异常值NaN和Infinity按默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | [lineCap](#linecap)                      | [CanvasLineCap](#canvaslinecap类型说明) | 否 | 否 | 指定线端点的样式，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>默认值：'butt'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | [lineJoin](#linejoin)                    | [CanvasLineJoin](#canvaslinejoin类型说明) | 否 | 否 | 指定线段间相交的交点样式，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>默认值：'miter'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| [miterLimit](#miterlimit)                | number | 否 | 否 | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。  <br/>默认值：10px<br/>单位：px<br/>miterLimit取值不支持0和负数，0和负数按异常值处理，异常值按默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| [miterLimit](#miterlimit)                | number | 否 | 否 | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。  <br/>默认值：10px<br/>单位：px<br/>miterLimit取值不支持0和负数，0、负数和NaN按默认值处理，Infinity会导致miterLimit属性异常。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | [font](#font)                            | string | 否 | 否 | 设置文本绘制中的字体样式，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>语法：ctx.font&nbsp;=&nbsp;'font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px、vp。使用时需要添加单位。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。API version 20及以后支持注册过的自定义字体（DevEco Studio的预览器不支持显示自定义字体），具体使用方法参考自定义字体[font](#font)示例。<br/>默认值：'normal normal 14px sans-serif'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | [textAlign](#textalign)                  | [CanvasTextAlign](#canvastextalign类型说明) | 否 | 否 | 设置文本绘制中的文本对齐方式，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致。<br/>默认值：'left'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | [textBaseline](#textbaseline)            | [CanvasTextBaseline](#canvastextbaseline类型说明) | 否 | 否 | 设置文本绘制中的水平对齐方式，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideographic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。<br/>默认值：'alphabetic'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| [globalAlpha](#globalalpha)              | number | 否 | 否 | 设置透明度，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>范围为[0.0, 1.0]，0.0为完全透明，1.0为完全不透明。若给定值小于0.0，则取值0.0；若给定值大于1.0，则取值1.0.<br/>默认值：1.0<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| [lineDashOffset](#linedashoffset)        | number | 否 | 否 | 设置画布的虚线偏移量，精度为float，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>默认值：0.0<br/>默认单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| [globalAlpha](#globalalpha)              | number | 否 | 否 | 设置透明度，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>范围为[0.0, 1.0]，0.0为完全透明，1.0为完全不透明。若给定值小于0.0，则取值0.0；若给定值大于1.0，则取值1.0.<br>API version 18之前，设置NaN或Infinity时，在该方法后执行的绘制方法无法绘制。API version 18及以后，设置NaN或Infinity时当前接口不生效，其他传入有效参数的绘制方法正常绘制。<br/>默认值：1.0<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| [lineDashOffset](#linedashoffset)        | number | 否 | 否 | 设置画布的虚线偏移量，精度为float，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br>API version 18之前，设置NaN或Infinity时，设置了虚线样式的线条绘制出来是实线。API version 18及以后，设置NaN或Infinity时当前接口不生效，设置了虚线样式的线条绘制出来是虚线。<br/>默认值：0.0<br/>默认单位：vp<br/>异常值NaN和Infinity按默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | [globalCompositeOperation](#globalcompositeoperation) | string | 否 | 否 | 设置合成操作的方式，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>类型字段可选值有'source-over'，'source-atop'，'source-in'，'source-out'，'destination-over'，'destination-atop'，'destination-in'，'destination-out'，'lighter'，'copy'，'xor'。<br/>默认值：'source-over'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| [shadowBlur](#shadowblur)                | number | 否 | 否 | 设置绘制阴影时的模糊级别，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>值越大越模糊，精度为float，取值范围≥0。   <br/>默认值：0.0<br/>单位：px<br/>shadowBlur取值不支持负数，负数按异常值处理，异常值按默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| [shadowBlur](#shadowblur)                | number | 否 | 否 | 设置绘制阴影时的模糊级别，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>值越大越模糊，精度为float，取值范围≥0。   <br/>默认值：0.0<br/>单位：px<br/>shadowBlur取值不支持负数，负数、NaN和Infinity按默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | [shadowColor](#shadowcolor)              | string | 否 | 否 | 设置绘制阴影时的阴影颜色，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>颜色格式参考[ResourceColor](ts-types.md#resourcecolor)中string类型说明。<br/>默认值：透明黑色<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| [shadowOffsetX](#shadowoffsetx)          | number | 否 | 否 | 设置绘制阴影时和原有对象的水平偏移值，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>默认值：0.0<br/>默认单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| [shadowOffsetY](#shadowoffsety)          | number | 否 | 否 | 设置绘制阴影时和原有对象的垂直偏移值，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>默认值：0.0<br/>默认单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| [shadowOffsetX](#shadowoffsetx)          | number | 否 | 否 | 设置绘制阴影时和原有对象的水平偏移值，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>默认值：0.0<br/>默认单位：vp<br/>异常值NaN和Infinity按默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| [shadowOffsetY](#shadowoffsety)          | number | 否 | 否 | 设置绘制阴影时和原有对象的垂直偏移值，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>默认值：0.0<br/>默认单位：vp<br/>异常值NaN和Infinity按默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | [imageSmoothingEnabled](#imagesmoothingenabled) | boolean | 否 | 否 | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用，此属性为只写属性，可通过赋值语句设置其值，但无法通过读取操作获取其当前值，若尝试读取将返回undefined。<br/>默认值：true<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | [height](#height)                        | number | 是 | 否 | 组件高度。 <br/>默认单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | [width](#width)                          | number | 是 | 否 | 组件宽度。 <br/>默认单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -713,6 +714,7 @@ struct ShadowOffsetY {
 struct ImageSmoothingEnabled {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  // "common/images/icon.jpg"需要替换为开发者所需的图像资源文件
   private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
   
   build() {
@@ -849,6 +851,7 @@ struct CanvasExample {
   struct ImageSmoothingQualityDemo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    // "common/images/example.jpg"需要替换为开发者所需的图像资源文件
     private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
     build() {
@@ -917,6 +920,7 @@ struct CanvasExample {
   struct FilterDemo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    // "common/images/example.jpg"需要替换为开发者所需的图像资源文件
     private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
     build() {
@@ -1024,10 +1028,10 @@ fillRect(x: number, y: number, w: number, h: number): void
 
 | 参数名     | 类型     | 必填 | 说明            |
 | ------ | ------ | ---- | ------------- |
-| x      | number | 是  | 指定矩形左上角点的x坐标。<br>默认单位：vp |
-| y      | number | 是  | 指定矩形左上角点的y坐标。<br>默认单位：vp |
-| w      | number | 是  | 指定矩形的宽度。<br>默认单位：vp |
-| h      | number | 是  | 指定矩形的高度。<br>默认单位：vp |
+| x      | number | 是  | 指定矩形左上角点的x坐标。<br>异常值undefined、null、NaN或Infinity按无效值处理，不进行绘制。<br>默认单位：vp |
+| y      | number | 是  | 指定矩形左上角点的y坐标。<br>异常值undefined、null、NaN或Infinity按无效值处理，不进行绘制。<br>默认单位：vp |
+| w      | number | 是  | 指定矩形的宽度。<br>异常值undefined、null、NaN或Infinity按无效值处理，不进行绘制。<br>默认单位：vp |
+| h      | number | 是  | 指定矩形的高度。<br>异常值undefined、null、NaN或Infinity按无效值处理，不进行绘制。<br>默认单位：vp |
 
 **示例：**
 
@@ -1074,10 +1078,10 @@ strokeRect(x: number, y: number, w: number, h: number): void
 
 | 参数名   | 类型     | 必填   | 说明           |
 | ---- | ------ | ----  | ------------ |
-| x    | number | 是     | 指定矩形的左上角x坐标。<br>默认单位：vp |
-| y    | number | 是     | 指定矩形的左上角y坐标。<br>默认单位：vp |
-| w    | number | 是     | 指定矩形的宽度。<br>默认单位：vp|
-| h    | number | 是     | 指定矩形的高度。<br>默认单位：vp|
+| x    | number | 是     | 指定矩形的左上角x坐标。<br>异常值undefined、null、NaN或Infinity按无效值处理，不进行绘制。<br>默认单位：vp |
+| y    | number | 是     | 指定矩形的左上角y坐标。<br>异常值undefined、null、NaN或Infinity按无效值处理，不进行绘制。<br>默认单位：vp |
+| w    | number | 是     | 指定矩形的宽度。<br>异常值undefined、null、NaN或Infinity按无效值处理，不进行绘制。<br>默认单位：vp|
+| h    | number | 是     | 指定矩形的高度。<br>异常值undefined、null、NaN或Infinity按无效值处理，不进行绘制。<br>默认单位：vp|
 
 **示例：**
 
@@ -1124,10 +1128,10 @@ clearRect(x: number, y: number, w: number, h: number): void
 
 | 参数名   | 类型     | 必填  | 说明  |
 | ---- | ------ | ---- | ------------- |
-| x    | number | 是 | 指定矩形上的左上角x坐标。<br>默认单位：vp |
-| y    | number | 是 | 指定矩形上的左上角y坐标。<br>默认单位：vp |
-| w    | number | 是 | 指定矩形的宽度。<br>默认单位：vp |
-| h    | number | 是 | 指定矩形的高度。<br>默认单位：vp |
+| x    | number | 是 | 指定矩形上的左上角x坐标。<br>异常值undefined、null、NaN或Infinity按无效值处理，不进行绘制。<br>默认单位：vp |
+| y    | number | 是 | 指定矩形上的左上角y坐标。<br>异常值undefined、null、NaN或Infinity按无效值处理，不进行绘制。<br>默认单位：vp |
+| w    | number | 是 | 指定矩形的宽度。<br>异常值undefined、null、NaN或Infinity按无效值处理，不进行绘制。<br>默认单位：vp |
+| h    | number | 是 | 指定矩形的高度。<br>异常值undefined、null、NaN或Infinity按无效值处理，不进行绘制。<br>默认单位：vp |
 
 **示例：**
 
@@ -1176,10 +1180,10 @@ fillText(text: string, x: number, y: number, maxWidth?: number): void
 
 | 参数名       | 类型     | 必填   | 说明 |
 | -------- | ------ | ---- | --------------- |
-| text     | string | 是    | 需要绘制的文本内容。 |
-| x        | number | 是    | 文本绘制起点的x轴坐标。默认单位：vp |
-| y        | number | 是    | 文本绘制起点的y轴坐标。默认单位：vp |
-| maxWidth | number | 否    | 指定文本允许的最大宽度。<br>默认单位：vp<br>默认值：不限制宽度。 |
+| text     | string | 是    | 需要绘制的文本内容。<br>异常值undefined或null按无效值处理，不进行绘制。 |
+| x        | number | 是    | 文本绘制起点的x轴坐标。<br>异常值undefined、null、NaN或Infinity按无效值处理，不进行绘制。<br>默认单位：vp |
+| y        | number | 是    | 文本绘制起点的y轴坐标。<br>异常值undefined、null、NaN或Infinity按无效值处理，不进行绘制。<br>默认单位：vp |
+| maxWidth | number | 否    | 指定文本允许的最大宽度。<br>异常值null按无效值处理，不进行绘制，undefined、NaN或Infinity按默认值处理。<br>默认值：不限制宽度。<br>默认单位：vp |
 
 **示例：**
 
@@ -1227,10 +1231,10 @@ strokeText(text: string, x: number, y: number, maxWidth?: number): void
 
 | 参数名       | 类型     | 必填 | 说明     |
 | -------- | ------ | ---- | --------------- |
-| text     | string | 是    | 需要绘制的文本内容。 |
-| x        | number | 是    | 文本绘制起点的x轴坐标。默认单位：vp |
-| y        | number | 是    | 文本绘制起点的y轴坐标。默认单位：vp |
-| maxWidth | number | 否    | 需要绘制的文本的最大宽度。<br>默认单位：vp<br>默认值：不限制宽度。 |
+| text     | string | 是    | 需要绘制的文本内容。<br>异常值undefined或null按无效值处理，不进行绘制。 |
+| x        | number | 是    | 文本绘制起点的x轴坐标。<br>异常值undefined、null、NaN或Infinity按无效值处理，不进行绘制。<br>默认单位：vp |
+| y        | number | 是    | 文本绘制起点的y轴坐标。<br>异常值undefined、null、NaN或Infinity按无效值处理，不进行绘制。<br>默认单位：vp |
+| maxWidth | number | 否    | 需要绘制的文本的最大宽度。<br>异常值null按无效值处理，不进行绘制，undefined、NaN或Infinity按默认值处理。<br>默认单位：vp<br>默认值：不限制宽度。 |
 
 **示例：**
 
@@ -1278,7 +1282,7 @@ measureText(text: string): TextMetrics
 
 | 参数名   | 类型     | 必填   | 说明         |
 | ---- | ------ | ---- |---------- |
-| text | string | 是  | 需要进行测量的文本。 |
+| text | string | 是  | 需要进行测量的文本。<br>传入异常值undefined或null时按"undefined"或"null"计算。 |
 
 **返回值：**
 
@@ -1378,7 +1382,7 @@ stroke(path: Path2D): void
 
 | 参数名   | 类型      | 必填   | 说明     |
 | ---- | ---------------------------------------- | ---- | ------------ |
-| path | [Path2D](ts-components-canvas-path2d.md) | 是 | 需要绘制的Path2D。 |
+| path | [Path2D](ts-components-canvas-path2d.md) | 是 | 需要绘制的Path2D。<br>异常值undefined或null按无效值处理，不进行绘制。 |
 
  **示例：**
 
@@ -1476,8 +1480,8 @@ moveTo(x: number, y: number): void
 
 | 参数名   | 类型     | 必填   | 说明        |
 | ---- | ------ | ---- | --------- |
-| x    | number | 是    | 指定位置的x坐标。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| y    | number | 是    | 指定位置的y坐标。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| x    | number | 是    | 指定位置的x坐标。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| y    | number | 是    | 指定位置的y坐标。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
 
 > **说明：**
 >
@@ -1533,8 +1537,8 @@ lineTo(x: number, y: number): void
 
 | 参数名   | 类型     | 必填   | 说明        |
 | ---- | ------ | ---- | --------- |
-| x    | number | 是    | 指定位置的x坐标。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| y    | number | 是    | 指定位置的y坐标。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| x    | number | 是    | 指定位置的x坐标。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| y    | number | 是    | 指定位置的y坐标。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
 
 **示例：**
 
@@ -1630,8 +1634,8 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
 
 | 参数名  | 类型  | 必填  | 说明  |
 | ---------- | ---------- | ---- | ---------------------------------------- |
-| image  | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 是  | 图源对象，具体参考ImageBitmap对象。 |
-| repetition | string \| null  | 是  | 设置图像重复的方式：<br>'repeat'：沿x轴和y轴重复绘制图像；<br>'repeat-x'：沿x轴重复绘制图像；<br>'repeat-y'：沿y轴重复绘制图像；<br>'no-repeat'：不重复绘制图像；<br>'clamp'：在原始边界外绘制时，超出部分使用边缘的颜色绘制；<br>'mirror'：沿x轴和y轴重复翻转绘制图像。 |
+| image  | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 是  | 图源对象，具体参考ImageBitmap对象。<br>异常值undefined或null按无效值处理。 |
+| repetition | string \| null  | 是  | 设置图像重复的方式：<br>'repeat'：沿x轴和y轴重复绘制图像；<br>'repeat-x'：沿x轴重复绘制图像；<br>'repeat-y'：沿y轴重复绘制图像；<br>'no-repeat'：不重复绘制图像；<br>'clamp'：在原始边界外绘制时，超出部分使用边缘的颜色绘制；<br>'mirror'：沿x轴和y轴重复翻转绘制图像。<br>异常值undefined或null按无效值处理。 |
 
 **返回值：**
 
@@ -1648,6 +1652,7 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
   struct CreatePattern {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    // "common/images/icon.jpg"需要替换为开发者所需的图像资源文件
     private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
 
     build() {
@@ -1689,12 +1694,12 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 | 参数名   | 类型     | 必填   | 说明  |
 | ---- | ------ | ---- | -------------- |
-| cp1x | number | 是  | 第一个贝塞尔参数的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| cp1y | number | 是  | 第一个贝塞尔参数的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| cp2x | number | 是  | 第二个贝塞尔参数的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| cp2y | number | 是  | 第二个贝塞尔参数的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| x    | number | 是  | 路径结束时的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| y    | number | 是  | 路径结束时的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| cp1x | number | 是  | 第一个贝塞尔参数的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| cp1y | number | 是  | 第一个贝塞尔参数的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| cp2x | number | 是  | 第二个贝塞尔参数的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| cp2y | number | 是  | 第二个贝塞尔参数的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| x    | number | 是  | 路径结束时的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| y    | number | 是  | 路径结束时的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
 
 **示例：**
 
@@ -1744,10 +1749,10 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
 | 参数名   | 类型     | 必填   | 说明          |
 | ---- | ------ | ---- | ----------- |
-| cpx  | number | 是    | 贝塞尔参数的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| cpy  | number | 是    | 贝塞尔参数的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| x    | number | 是    | 路径结束时的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| y    | number | 是    | 路径结束时的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| cpx  | number | 是    | 贝塞尔参数的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| cpy  | number | 是    | 贝塞尔参数的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| x    | number | 是    | 路径结束时的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| y    | number | 是    | 路径结束时的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
 
 **示例：**
 
@@ -1797,11 +1802,11 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 
 | 参数名       | 类型      | 必填   | 说明         |
 | ---------------- | ------- | ---- | ---------- |
-| x                | number  | 是  | 弧线圆心的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| y                | number  | 是  | 弧线圆心的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| radius           | number  | 是  | 弧线的圆半径。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| startAngle       | number  | 是  | 弧线的起始弧度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>单位：弧度 |
-| endAngle         | number  | 是  | 弧线的终止弧度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>单位：弧度 |
+| x                | number  | 是  | 弧线圆心的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| y                | number  | 是  | 弧线圆心的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| radius           | number  | 是  | 弧线的圆半径。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| startAngle       | number  | 是  | 弧线的起始弧度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>单位：弧度 |
+| endAngle         | number  | 是  | 弧线的终止弧度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>单位：弧度 |
 | counterclockwise | boolean | 否  | 是否逆时针绘制圆弧。<br>true：逆时针方向绘制圆弧。<br>false：顺时针方向绘制圆弧。<br>默认值：false，设置null或undefined按默认值处理。  |
 
 **示例：**
@@ -1851,11 +1856,11 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 | 参数名     | 类型     | 必填   | 说明          |
 | ------ | ------ | ---- | --------------- |
-| x1     | number | 是    | 第一个控制点的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| y1     | number | 是    | 第一个控制点的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| x2     | number | 是    | 第二个控制点的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| y2     | number | 是    | 第二个控制点的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| radius | number | 是    | 圆弧的圆半径值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| x1     | number | 是    | 第一个控制点的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| y1     | number | 是    | 第一个控制点的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| x2     | number | 是    | 第二个控制点的x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| y2     | number | 是    | 第二个控制点的y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| radius | number | 是    | 圆弧的圆半径值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
 
 **示例：**
 
@@ -1934,13 +1939,13 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 
 | 参数名               | 类型      | 必填   | 说明                                       |
 | ---------------- | ------- | ---- | ---------------------------------------- |
-| x                | number  | 是 | 椭圆圆心的x轴坐标。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| y                | number  | 是 | 椭圆圆心的y轴坐标。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| radiusX          | number  | 是 | 椭圆x轴的半径长度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| radiusY          | number  | 是 | 椭圆y轴的半径长度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| rotation         | number  | 是 | 椭圆的旋转角度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>单位：弧度 |
-| startAngle       | number  | 是 | 椭圆绘制的起始点角度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>单位：弧度 |
-| endAngle         | number  | 是 | 椭圆绘制的结束点角度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>单位：弧度 |
+| x                | number  | 是 | 椭圆圆心的x轴坐标。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| y                | number  | 是 | 椭圆圆心的y轴坐标。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| radiusX          | number  | 是 | 椭圆x轴的半径长度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| radiusY          | number  | 是 | 椭圆y轴的半径长度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| rotation         | number  | 是 | 椭圆的旋转角度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>单位：弧度 |
+| startAngle       | number  | 是 | 椭圆绘制的起始点角度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>单位：弧度 |
+| endAngle         | number  | 是 | 椭圆绘制的结束点角度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>单位：弧度 |
 | counterclockwise | boolean | 否 | 是否以逆时针方向绘制椭圆。<br>true：逆时针方向绘制椭圆。<br>false：顺时针方向绘制椭圆。<br>默认值：false，设置null或undefined按默认值处理。  |
 
 **示例：**
@@ -1993,10 +1998,10 @@ rect(x: number, y: number, w: number, h: number): void
 
 | 参数名   | 类型     | 必填   | 说明            |
 | ---- | ------ | ---- | ------------- |
-| x    | number | 是    | 指定矩形的左上角x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| y    | number | 是    | 指定矩形的左上角y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| w    | number | 是    | 指定矩形的宽度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
-| h    | number | 是    | 指定矩形的高度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效。<br>默认单位：vp |
+| x    | number | 是    | 指定矩形的左上角x坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| y    | number | 是    | 指定矩形的左上角y坐标值。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| w    | number | 是    | 指定矩形的宽度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
+| h    | number | 是    | 指定矩形的高度。<br>API version 18之前，设置NaN或Infinity时，整条路径不显示；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的路径方法正常绘制。<br>默认单位：vp |
 
 **示例：**
 
@@ -2059,7 +2064,7 @@ roundRect(x: number, y: number, w: number, h: number, radii?: number | Array\<nu
 
 **示例：**
 
-该示例展示了绘制五个圆角矩形：
+该示例展示了绘制六个圆角矩形：
 
 1. 创建一个(10vp, 10vp)为起点，宽高为100vp，四个矩形角圆弧半径为10vp的圆角矩形并填充；
 
@@ -2069,15 +2074,19 @@ roundRect(x: number, y: number, w: number, h: number, radii?: number | Array\<nu
 
 4. 创建一个(120vp, 120vp)为起点，宽高为100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径及左下矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp的圆角矩形并描边；
 
-5. 创建一个(10vp, 230vp)为起点，宽高为100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp，左下矩形角圆弧半径为40vp的圆角矩形并描边。
+5. 创建一个(10vp, 230vp)为起点，宽高为100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp，左下矩形角圆弧半径为40vp的圆角矩形并描边；
+
+6. 创建一个(220vp, 330vp)为起点，宽高为-100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp，左下矩形角圆弧半径为40vp的圆角矩形并描边。
 
   ```ts
   // xxx.ets
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   @Entry
   @Component
   struct CanvasExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -2086,25 +2095,28 @@ roundRect(x: number, y: number, w: number, h: number, radii?: number | Array\<nu
           .height('100%')
           .backgroundColor('#D5D5D5')
           .onReady(() => {
-            this.context.beginPath()
-            // Create a 100*100 rectangle at (10, 10) and specifies a 10vp radius for all the corners.
-            this.context.roundRect(10, 10, 100, 100, 10)
-            // Create a 100*100 rectangle at (120, 10) and specifies a 10vp radius for all the corners in a list.
-            let radii = [10]
-            this.context.roundRect(120, 10, 100, 100, radii)
-            this.context.fillStyle = '#707070'
-            this.context.fill()
-            this.context.beginPath()
-            // Create a 100*100 rectangle at (10, 120) and specifies [10, 20] for the corners.
-            radii = [10, 20]
-            this.context.roundRect(10, 120, 100, 100, radii)
-            // Create a 100*100 rectangle at (120, 120) and specifies [10, 20, 30] for the corners.
-            radii = [10, 20, 30]
-            this.context.roundRect(120, 120, 100, 100, radii)
-            // Create a 100*100 rectangle at (10, 230) and specifies [10, 20, 30, 40] for the corners.
-            radii = [10, 20, 30, 40]
-            this.context.roundRect(10, 230, 100, 100, radii)
-            this.context.stroke()
+            try {
+              this.context.fillStyle = '#707070'
+              this.context.beginPath()
+              // 创建一个(10vp, 10vp)为起点，宽高为100vp，四个矩形角圆弧半径为10vp的圆角矩形
+              this.context.roundRect(10, 10, 100, 100, 10)
+              // 创建一个(120vp, 10vp)为起点，宽高为100vp，四个矩形角圆弧半径为10vp的圆角矩形
+              this.context.roundRect(120, 10, 100, 100, [10])
+              this.context.fill()
+              this.context.beginPath()
+              // 创建一个(10vp, 120vp)为起点，宽高为100vp，左上矩形角圆弧半径及右下矩形角圆弧半径为10vp，右上矩形角圆弧半径及左下矩形角圆弧半径为20vp的圆角矩形
+              this.context.roundRect(10, 120, 100, 100, [10, 20])
+              // 创建一个(120vp, 120vp)为起点，宽高为100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径及左下矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp的圆角矩形
+              this.context.roundRect(120, 120, 100, 100, [10, 20, 30])
+              // 创建一个(10vp, 230vp)为起点，宽高为100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp，左下矩形角圆弧半径为40vp的圆角矩形
+              this.context.roundRect(10, 230, 100, 100, [10, 20, 30, 40])
+              // 创建一个(220vp, 330vp)为起点，宽高为-100vp，左上矩形角圆弧半径为10vp，右上矩形角圆弧半径为20vp，右下矩形角圆弧半径为30vp，左下矩形角圆弧半径为40vp的圆角矩形
+              this.context.roundRect(220, 330, -100, -100, [10, 20, 30, 40])
+              this.context.stroke()
+            } catch (error) {
+              let e: BusinessError = error as BusinessError;
+              console.error(`Failed to create roundRect. Code: ${e.code}, message: ${e.message}`);
+            }
           })
       }
       .width('100%')
@@ -2131,7 +2143,7 @@ fill(fillRule?: CanvasFillRule): void
 
 | 参数名 | 类型             | 必填   | 说明    |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| fillRule | [CanvasFillRule](#canvasfillrule类型说明) | 否    | 指定要填充对象的规则。<br/>可选参数为："nonzero"，"evenodd"。<br>默认值："nonzero" |
+| fillRule | [CanvasFillRule](#canvasfillrule类型说明) | 否    | 指定要填充对象的规则。<br/>可选参数为："nonzero"，"evenodd"。<br>异常值undefined或null按默认值处理。<br>默认值："nonzero" |
 
 
 **示例:**   
@@ -2179,8 +2191,8 @@ fill(path: Path2D, fillRule?: CanvasFillRule): void
 
 | 参数名    | 类型             | 必填   | 说明  |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| path     | [Path2D](ts-components-canvas-path2d.md)         | 是  | Path2D填充路径。                              |
-| fillRule | [CanvasFillRule](#canvasfillrule类型说明) | 否    | 指定要填充对象的规则。<br/>可选参数为："nonzero"，"evenodd"。<br>默认值："nonzero" |
+| path     | [Path2D](ts-components-canvas-path2d.md)         | 是  | Path2D填充路径。<br>异常值undefined或null按无效值处理。 |
+| fillRule | [CanvasFillRule](#canvasfillrule类型说明) | 否    | 指定要填充对象的规则。<br/>可选参数为："nonzero"，"evenodd"。<br>异常值undefined或null按默认值处理。<br>默认值："nonzero" |
 
 
 **示例:**   
@@ -2237,7 +2249,7 @@ clip(fillRule?: CanvasFillRule): void
 
 | 参数名       | 类型             | 必填   | 说明                            |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| fillRule | [CanvasFillRule](#canvasfillrule类型说明) | 否 | 指定要剪切对象的规则。<br/>可选参数为："nonzero"，"evenodd"。 <br>默认值："nonzero" |
+| fillRule | [CanvasFillRule](#canvasfillrule类型说明) | 否 | 指定要剪切对象的规则。<br/>可选参数为："nonzero"，"evenodd"。<br>异常值undefined或null按默认值处理。 <br>默认值："nonzero" |
 
 **示例:** 
 
@@ -2287,8 +2299,8 @@ clip(path: Path2D, fillRule?: CanvasFillRule): void
 
 | 参数名      | 类型             | 必填   | 说明          |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| path     | [Path2D](ts-components-canvas-path2d.md)         | 是    | Path2D剪切路径。                              |
-| fillRule | [CanvasFillRule](#canvasfillrule类型说明) | 否  | 指定要剪切对象的规则。<br/>可选参数为："nonzero"，"evenodd"。 <br>默认值："nonzero" |
+| path     | [Path2D](ts-components-canvas-path2d.md)         | 是    | Path2D剪切路径。<br>异常值undefined或null按无效值处理。 |
+| fillRule | [CanvasFillRule](#canvasfillrule类型说明) | 否  | 指定要剪切对象的规则。<br/>可选参数为："nonzero"，"evenodd"。<br>异常值undefined或null按默认值处理。 <br>默认值："nonzero" |
 
 
 **示例:** 
@@ -2485,7 +2497,7 @@ rotate(angle: number): void
 
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ----- | ------ | ---- |  ---------------------------------------- |
-| angle | number | 是   | 设置顺时针旋转的弧度值，可以通过 degree * Math.PI / 180 将角度转换为弧度值。<br>单位：弧度 |
+| angle | number | 是   | 设置顺时针旋转的弧度值，可以通过 degree * Math.PI / 180 将角度转换为弧度值。<br>API version 18之前，设置NaN或Infinity时，在该方法后执行的绘制方法无法绘制；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的绘制方法正常绘制。<br>单位：弧度 |
 
 **示例：**
 
@@ -2533,8 +2545,8 @@ scale(x: number, y: number): void
 
 | 参数名   | 类型     | 必填  | 说明    |
 | ---- | ------ | ---- | ----------- |
-| x    | number | 是  | 设置水平方向的缩放值。 |
-| y    | number | 是  | 设置垂直方向的缩放值。 |
+| x    | number | 是  | 设置水平方向的缩放值。<br>API version 18之前，设置NaN或Infinity时，在该方法后执行的绘制方法无法绘制；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的绘制方法正常绘制。 |
+| y    | number | 是  | 设置垂直方向的缩放值。<br>API version 18之前，设置NaN或Infinity时，在该方法后执行的绘制方法无法绘制；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的绘制方法正常绘制。 |
 
 **示例：**
 
@@ -2594,12 +2606,12 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
 
 | 参数名   | 类型     | 必填 | 说明 |
 | ---- | ------ | ---- | -------------------- |
-| a    | number | 是    | scaleX：指定水平缩放值，支持设置负数。 |
-| b    | number | 是    | skewY：指定垂直倾斜值，支持设置负数。  |
-| c    | number | 是    | skewX：指定水平倾斜值，支持设置负数。  |
-| d    | number | 是    | scaleY：指定垂直缩放值，支持设置负数。 |
-| e    | number | 是    | translateX：指定水平移动值，支持设置负数。<br>默认单位：vp |
-| f    | number | 是    | translateY：指定垂直移动值，支持设置负数。<br>默认单位：vp |
+| a    | number | 是    | scaleX：指定水平缩放值，支持设置负数。<br>API version 18之前，设置NaN或Infinity时，在该方法后执行的绘制方法无法绘制；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的绘制方法正常绘制。 |
+| b    | number | 是    | skewY：指定垂直倾斜值，支持设置负数。<br>API version 18之前，设置NaN或Infinity时，在该方法后执行的绘制方法无法绘制；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的绘制方法正常绘制。  |
+| c    | number | 是    | skewX：指定水平倾斜值，支持设置负数。<br>API version 18之前，设置NaN或Infinity时，在该方法后执行的绘制方法无法绘制；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的绘制方法正常绘制。  |
+| d    | number | 是    | scaleY：指定垂直缩放值，支持设置负数。<br>API version 18之前，设置NaN或Infinity时，在该方法后执行的绘制方法无法绘制；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的绘制方法正常绘制。 |
+| e    | number | 是    | translateX：指定水平移动值，支持设置负数。<br>API version 18之前，设置NaN或Infinity时，在该方法后执行的绘制方法无法绘制；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的绘制方法正常绘制。<br>默认单位：vp |
+| f    | number | 是    | translateY：指定垂直移动值，支持设置负数。<br>API version 18之前，设置NaN或Infinity时，在该方法后执行的绘制方法无法绘制；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的绘制方法正常绘制。<br>默认单位：vp |
 
 **示例：**
 
@@ -2663,12 +2675,12 @@ setTransform方法使用的参数和transform()方法相同，但setTransform()�
 
 | 参数名   | 类型     | 必填 | 说明 |
 | ---- | ------ | ---- | -------------------- |
-| a    | number | 是    | scaleX：指定水平缩放值，支持设置负数。 |
-| b    | number | 是    | skewY：指定垂直倾斜值，支持设置负数。  |
-| c    | number | 是    | skewX：指定水平倾斜值，支持设置负数。  |
-| d    | number | 是    | scaleY：指定垂直缩放值，支持设置负数。 |
-| e    | number | 是    | translateX：指定水平移动值，支持设置负数。<br>默认单位：vp |
-| f    | number | 是    | translateY：指定垂直移动值，支持设置负数。<br>默认单位：vp |
+| a    | number | 是    | scaleX：指定水平缩放值，支持设置负数。<br>API version 18之前，设置NaN或Infinity时，在该方法后执行的绘制方法无法绘制；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的绘制方法正常绘制。 |
+| b    | number | 是    | skewY：指定垂直倾斜值，支持设置负数。<br>API version 18之前，设置NaN或Infinity时，在该方法后执行的绘制方法无法绘制；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的绘制方法正常绘制。  |
+| c    | number | 是    | skewX：指定水平倾斜值，支持设置负数。<br>API version 18之前，设置NaN或Infinity时，在该方法后执行的绘制方法无法绘制；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的绘制方法正常绘制。  |
+| d    | number | 是    | scaleY：指定垂直缩放值，支持设置负数。<br>API version 18之前，设置NaN或Infinity时，在该方法后执行的绘制方法无法绘制；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的绘制方法正常绘制。 |
+| e    | number | 是    | translateX：指定水平移动值，支持设置负数。<br>API version 18之前，设置NaN或Infinity时，在该方法后执行的绘制方法无法绘制；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的绘制方法正常绘制。<br>默认单位：vp |
+| f    | number | 是    | translateY：指定垂直移动值，支持设置负数。<br>API version 18之前，设置NaN或Infinity时，在该方法后执行的绘制方法无法绘制；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的绘制方法正常绘制。<br>默认单位：vp |
 
 **示例：**
 
@@ -2702,6 +2714,8 @@ setTransform方法使用的参数和transform()方法相同，但setTransform()�
 
   ![zh-cn_image_0000001238712421](figures/zh-cn_image_0000001238712421.png)
 
+### setTransform
+
 setTransform(transform?: Matrix2D): void
 
 以Matrix2D对象为模板重置现有的变换矩阵并创建新的变换矩阵。
@@ -2716,7 +2730,7 @@ setTransform(transform?: Matrix2D): void
 
 | 参数名  | 类型 | 必填 | 说明  |
 | --------- | ---------------------------------------- | ---- | ----- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md) | 否 | 变换矩阵。<br>默认值：null |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md) | 否 | 变换矩阵。<br>异常值undefined或null按无效值处理。<br>默认值：null |
 
 **示例：**
 
@@ -2841,8 +2855,8 @@ translate(x: number, y: number): void
 
 | 参数名   | 类型     | 必填   | 说明 |
 | ---- | ------ | ---- | -------- |
-| x    | number | 是   | 设置水平平移量。<br>默认单位：vp |
-| y    | number | 是   | 设置竖直平移量。<br>默认单位：vp |
+| x    | number | 是   | 设置水平平移量。<br>API version 18之前，设置NaN或Infinity时，在该方法后执行的绘制方法无法绘制；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的绘制方法正常绘制。<br>默认单位：vp |
+| y    | number | 是   | 设置竖直平移量。<br>API version 18之前，设置NaN或Infinity时，在该方法后执行的绘制方法无法绘制；设置null或undefined时，当前接口不生效。API version 18及以后，设置NaN、Infinity、null或undefined时当前接口不生效，其他传入有效参数的绘制方法正常绘制。<br>默认单位：vp |
 
 **示例：**
 
@@ -2891,53 +2905,9 @@ drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number): void
 
 | 参数名  | 类型  | 必填  | 说明 |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
-| dx    | number                                   | 是  | 绘制区域左上角在x轴的位置。<br>默认单位：vp|
-| dy    | number                                   | 是  | 绘制区域左上角在y轴的位置。<br>默认单位：vp|
-
-drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number, dw: number, dh: number): void
-
-进行图像绘制。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，卡片中不支持PixelMap对象。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名  | 类型  | 必填  | 说明 |
-| ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
-| dx    | number                                   | 是  | 绘制区域左上角在x轴的位置。<br>默认单位：vp|
-| dy    | number                                   | 是  | 绘制区域左上角在y轴的位置。<br>默认单位：vp|
-| dw    | number                                   | 是  | 绘制区域的宽度。当绘制区域的宽度和裁剪图像的宽度不一致时，将图像宽度拉伸或压缩为绘制区域的宽度。<br>默认单位：vp |
-| dh    | number                                   | 是  | 绘制区域的高度。当绘制区域的高度和裁剪图像的高度不一致时，将图像高度拉伸或压缩为绘制区域的高度。<br>默认单位：vp |
-
-drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh: number, dx: number, dy: number, dw: number, dh: number): void
-
-进行图像绘制。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，卡片中不支持PixelMap对象。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名  | 类型  | 必填  | 说明 |
-| ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
-| sx    | number                                   | 是  | 裁切源图像时距离源图像左上角的x坐标值。<br>image类型为ImageBitmap时，默认单位：vp<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp |
-| sy    | number                                   | 是  | 裁切源图像时距离源图像左上角的y坐标值。<br>image类型为ImageBitmap时，默认单位：vp<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp  |
-| sw    | number                                   | 是  | 裁切源图像时需要裁切的宽度。<br>image类型为ImageBitmap时，默认单位：vp<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp  |
-| sh    | number                                   | 是  | 裁切源图像时需要裁切的高度。<br>image类型为ImageBitmap时，默认单位：vp<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp  |
-| dx    | number                                   | 是  | 绘制区域左上角在x轴的位置。<br>默认单位：vp|
-| dy    | number                                   | 是  | 绘制区域左上角在y轴的位置。<br>默认单位：vp|
-| dw    | number                                   | 是  | 绘制区域的宽度。当绘制区域的宽度和裁剪图像的宽度不一致时，将图像宽度拉伸或压缩为绘制区域的宽度。<br>默认单位：vp |
-| dh    | number                                   | 是  | 绘制区域的高度。当绘制区域的高度和裁剪图像的高度不一致时，将图像高度拉伸或压缩为绘制区域的高度。<br>默认单位：vp |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md) \| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 图片资源，请参考ImageBitmap或PixelMap。<br>异常值undefined或null按无效值处理，不进行绘制。 |
+| dx    | number                                   | 是  | 绘制区域左上角在x轴的位置。<br>异常值undefined或null按0处理，NaN和Infinity按无效值处理，不进行绘制。<br>默认单位：vp|
+| dy    | number                                   | 是  | 绘制区域左上角在y轴的位置。<br>异常值undefined或null按0处理，NaN和Infinity按无效值处理，不进行绘制。<br>默认单位：vp|
 
 **示例：**
 
@@ -2946,20 +2916,19 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
   @Entry
   @Component
   struct ImageExample {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg")
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    // "common/images/example.jpg"需要替换为开发者所需的图像资源文件
+    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
+          .backgroundColor('#D5D5D5')
           .onReady(() => {
             this.context.drawImage(this.img, 0, 0)
-            this.context.drawImage(this.img, 0, 150, 300, 100)
-            this.context.drawImage(this.img, 0, 0, 500, 500, 0, 300, 400, 200)
           })
       }
       .width('100%')
@@ -2968,7 +2937,115 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
   }
   ```
 
-  ![zh-cn_image_0000001194352442](figures/zh-cn_image_0000001194352441.png)
+  ![drawImage](figures/drawImage1.png)
+
+### drawImage
+
+drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number, dw: number, dh: number): void
+
+将图像拉伸或压缩绘制。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，卡片中不支持PixelMap对象。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型  | 必填  | 说明 |
+| ----- | ---------------------------------------- | ---- | ---------------------------------------- |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md) \| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 图片资源，请参考ImageBitmap或PixelMap。<br>异常值undefined或null按无效值处理，不进行绘制。 |
+| dx    | number                                   | 是  | 绘制区域左上角在x轴的位置。<br>异常值undefined或null按0处理，NaN和Infinity按无效值处理，不进行绘制。<br>默认单位：vp|
+| dy    | number                                   | 是  | 绘制区域左上角在y轴的位置。<br>异常值undefined或null按0处理，NaN和Infinity按无效值处理，不进行绘制。<br>默认单位：vp|
+| dw    | number                                   | 是  | 绘制区域的宽度。当绘制区域的宽度和裁剪图像的宽度不一致时，将图像宽度拉伸或压缩为绘制区域的宽度。<br>异常值undefined或null按0处理，NaN和Infinity按无效值处理，不进行绘制。<br>默认单位：vp |
+| dh    | number                                   | 是  | 绘制区域的高度。当绘制区域的高度和裁剪图像的高度不一致时，将图像高度拉伸或压缩为绘制区域的高度。<br>异常值undefined或null按0处理，NaN和Infinity按无效值处理，不进行绘制。<br>默认单位：vp |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct ImageExample {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    // "common/images/example.jpg"需要替换为开发者所需的图像资源文件
+    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#D5D5D5')
+          .onReady(() => {
+            this.context.drawImage(this.img, 0, 0, 300, 300)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
+  ![drawImage](figures/drawImage2.png)
+
+### drawImage
+
+drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh: number, dx: number, dy: number, dw: number, dh: number): void
+
+将图像裁剪后拉伸或压缩绘制。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用，卡片中不支持PixelMap对象。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型  | 必填  | 说明 |
+| ----- | ---------------------------------------- | ---- | ---------------------------------------- |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md) \| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 图片资源，请参考ImageBitmap或PixelMap。<br>异常值undefined或null按无效值处理，不进行绘制。 |
+| sx    | number                                   | 是  | 裁切源图像时距离源图像左上角的x坐标值。<br>异常值undefined或null按0处理，NaN和Infinity按无效值处理，不进行绘制。<br>image类型为ImageBitmap时，默认单位：vp<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp |
+| sy    | number                                   | 是  | 裁切源图像时距离源图像左上角的y坐标值。<br>异常值undefined或null按0处理，NaN和Infinity按无效值处理，不进行绘制。<br>image类型为ImageBitmap时，默认单位：vp<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp  |
+| sw    | number                                   | 是  | 裁切源图像时需要裁切的宽度。<br>异常值undefined或null按0处理，NaN和Infinity按无效值处理，不进行绘制。<br>image类型为ImageBitmap时，默认单位：vp<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp  |
+| sh    | number                                   | 是  | 裁切源图像时需要裁切的高度。<br>异常值undefined或null按0处理，NaN和Infinity按无效值处理，不进行绘制。<br>image类型为ImageBitmap时，默认单位：vp<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp  |
+| dx    | number                                   | 是  | 绘制区域左上角在x轴的位置。<br>异常值undefined或null按0处理，NaN和Infinity按无效值处理，不进行绘制。<br>默认单位：vp|
+| dy    | number                                   | 是  | 绘制区域左上角在y轴的位置。<br>异常值undefined或null按0处理，NaN和Infinity按无效值处理，不进行绘制。<br>默认单位：vp|
+| dw    | number                                   | 是  | 绘制区域的宽度。<br>异常值undefined或null按0处理，NaN和Infinity按无效值处理，不进行绘制。当绘制区域的宽度和裁剪图像的宽度不一致时，将图像宽度拉伸或压缩为绘制区域的宽度。<br>默认单位：vp |
+| dh    | number                                   | 是  | 绘制区域的高度。<br>异常值undefined或null按0处理，NaN和Infinity按无效值处理，不进行绘制。当绘制区域的高度和裁剪图像的高度不一致时，将图像高度拉伸或压缩为绘制区域的高度。<br>默认单位：vp |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct ImageExample {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    // "common/images/example.jpg"需要替换为开发者所需的图像资源文件
+    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#D5D5D5')
+          .onReady(() => {
+            this.context.drawImage(this.img, 0, 0, 500, 500, 0, 0, 400, 300)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
+  ![drawImage](figures/drawImage3.png)
 
 
 ### createImageData
@@ -2987,8 +3064,8 @@ createImageData(sw: number, sh: number): ImageData
 
 | 参数名   | 类型     | 必填   | 说明 |
 | ---- | ------ | ---- | ------------- |
-| sw   | number | 是 | ImageData的宽度。<br>默认单位：vp |
-| sh   | number | 是 | ImageData的高度。<br>默认单位：vp |
+| sw   | number | 是 | ImageData的宽度。<br>异常值undefined、null、NaN和Infinity按0处理。<br>默认单位：vp |
+| sh   | number | 是 | ImageData的高度。<br>异常值undefined、null、NaN和Infinity按0处理。<br>默认单位：vp |
 
  **返回值：**
 
@@ -2996,7 +3073,9 @@ createImageData(sw: number, sh: number): ImageData
 | ---------------------------------------- | ------------- |
 | [ImageData](ts-components-canvas-imagedata.md) | 新的ImageData对象。 |
 
-createImageData(imagedata: ImageData): ImageData
+### createImageData
+
+createImageData(imageData: ImageData): ImageData
 
 根据一个现有的ImageData对象重新创建一个宽、高相同的ImageData对象（不会复制图像数据），请参考[ImageData](ts-components-canvas-imagedata.md)，该接口存在内存拷贝行为，高耗时，应避免频繁使用。createImageData示例同putImageData。
 
@@ -3010,7 +3089,7 @@ createImageData(imagedata: ImageData): ImageData
 
 | 参数名 | 类型  | 必填 | 说明  |
 | --------- | ---------------------------------------- | ---- | ----------------- |
-| imagedata | [ImageData](ts-components-canvas-imagedata.md) | 是 | 现有的ImageData对象。 |
+| imageData | [ImageData](ts-components-canvas-imagedata.md) | 是 | 现有的ImageData对象。<br>异常值undefined和null按width和height为0的ImageData处理。 |
 
   **返回值：**
 
@@ -3033,10 +3112,10 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 | 参数名   | 类型     | 必填 | 说明 |
 | ---- | ------ | ---- | --------------- |
-| sx   | number | 是  | 需要输出的区域的左上角x坐标。<br>默认单位：vp |
-| sy   | number | 是  | 需要输出的区域的左上角y坐标。<br>默认单位：vp |
-| sw   | number | 是  | 需要输出的区域的宽度。<br>默认单位：vp |
-| sh   | number | 是  | 需要输出的区域的高度。<br>默认单位：vp |
+| sx   | number | 是  | 需要输出的区域的左上角x坐标。<br>异常值undefined、null、NaN和Infinity按0处理。<br>默认单位：vp |
+| sy   | number | 是  | 需要输出的区域的左上角y坐标。<br>异常值undefined、null、NaN和Infinity按0处理。<br>默认单位：vp |
+| sw   | number | 是  | 需要输出的区域的宽度。<br>异常值undefined、null、NaN和Infinity按0处理。<br>默认单位：vp |
+| sh   | number | 是  | 需要输出的区域的高度。<br>异常值undefined、null、NaN和Infinity按0处理。<br>默认单位：vp |
 
 **返回值：**
 
@@ -3057,6 +3136,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
   struct GetPixelMap {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    // "common/images/example.jpg"需要替换为开发者所需的图像资源文件
     private img: ImageBitmap = new ImageBitmap("common/images/example.jpg")
 
     build() {
@@ -3093,7 +3173,7 @@ setPixelMap(value?: PixelMap): void
 
 | 参数名   | 类型     | 必填   | 说明 |
 | ---- | ------ | ---- | --------------- |
-|  value  | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 包含像素值的PixelMap对象<br>默认值：null |
+|  value  | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 包含像素值的PixelMap对象。<br>异常值undefined和null按无效值处理，不进行绘制。<br>默认值：null |
 
 ### getImageData
 
@@ -3111,10 +3191,10 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
 | 参数名 | 类型 | 必填   | 说明  |
 | ---- | ------ | ---- | --------------- |
-| sx   | number | 是 | 需要输出的区域的左上角x坐标。<br>默认单位：vp |
-| sy   | number | 是 | 需要输出的区域的左上角y坐标。<br>默认单位：vp |
-| sw   | number | 是 | 需要输出的区域的宽度。<br>默认单位：vp |
-| sh   | number | 是 | 需要输出的区域的高度。<br>默认单位：vp |
+| sx   | number | 是 | 需要输出的区域的左上角x坐标。<br>异常值undefined、null、NaN和Infinity按0处理。<br>默认单位：vp |
+| sy   | number | 是 | 需要输出的区域的左上角y坐标。<br>异常值undefined、null、NaN和Infinity按0处理。<br>默认单位：vp |
+| sw   | number | 是 | 需要输出的区域的宽度。<br>异常值undefined、null、NaN和Infinity按0处理。<br>默认单位：vp |
+| sh   | number | 是 | 需要输出的区域的高度。<br>异常值undefined、null、NaN和Infinity按0处理。<br>默认单位：vp |
 
   **返回值：**
 
@@ -3132,6 +3212,7 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
   struct GetImageData {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    // "/common/images/1234.png"需要替换为开发者所需的图像资源文件
     private img:ImageBitmap = new ImageBitmap("/common/images/1234.png")
 
     build() {
@@ -3157,7 +3238,7 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
 ### putImageData
 
-putImageData(imagedata: ImageData, dx: number | string, dy: number | string): void
+putImageData(imageData: ImageData, dx: number | string, dy: number | string): void
 
 使用[ImageData](ts-components-canvas-imagedata.md)数据填充新的矩形区域。
 
@@ -3171,9 +3252,9 @@ putImageData(imagedata: ImageData, dx: number | string, dy: number | string): vo
 
 | 参数名 | 类型 | 必填  | 说明 |
 | ----------- | ---------------------------------------- | ---- | ----------------------------- |
-| imagedata   | [ImageData](ts-components-canvas-imagedata.md) | 是    | 包含像素值的ImageData对象。 |
-| dx          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 填充区域在x轴方向的偏移量。<br>默认单位：vp |
-| dy          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 填充区域在y轴方向的偏移量。<br>默认单位：vp |
+| imageData   | [ImageData](ts-components-canvas-imagedata.md) | 是    | 包含像素值的ImageData对象。<br>异常值undefined或null按无效值处理，不进行绘制。 |
+| dx          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 填充区域在x轴方向的偏移量。<br>异常值undefined、null、NaN和Infinity按0处理。<br>默认单位：vp |
+| dy          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 填充区域在y轴方向的偏移量。<br>异常值undefined、null、NaN和Infinity按0处理。<br>默认单位：vp |
 
 **示例：**
 
@@ -3213,7 +3294,7 @@ putImageData(imagedata: ImageData, dx: number | string, dy: number | string): vo
 
 ### putImageData
 
-putImageData(imagedata: ImageData, dx: number | string, dy: number | string, dirtyX: number | string, dirtyY: number | string, dirtyWidth: number | string, dirtyHeight: number | string): void
+putImageData(imageData: ImageData, dx: number | string, dy: number | string, dirtyX: number | string, dirtyY: number | string, dirtyWidth: number | string, dirtyHeight: number | string): void
 
 使用[ImageData](ts-components-canvas-imagedata.md)数据裁剪后填充至新的矩形区域。
 
@@ -3227,13 +3308,13 @@ putImageData(imagedata: ImageData, dx: number | string, dy: number | string, dir
 
 | 参数名 | 类型 | 必填  | 说明 |
 | ----------- | ---------------------------------------- | ---- | ----------------------------- |
-| imagedata   | [ImageData](ts-components-canvas-imagedata.md) | 是    | 包含像素值的ImageData对象。 |
-| dx          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 填充区域在x轴方向的偏移量。<br>默认单位：vp |
-| dy          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 填充区域在y轴方向的偏移量。<br>默认单位：vp |
-| dirtyX      | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 源图像数据矩形裁切范围左上角距离源图像左上角的x轴偏移量。<br>默认单位：vp |
-| dirtyY      | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 源图像数据矩形裁切范围左上角距离源图像左上角的y轴偏移量。<br>默认单位：vp |
-| dirtyWidth  | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 源图像数据矩形裁切范围的宽度。<br>默认单位：vp |
-| dirtyHeight | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 源图像数据矩形裁切范围的高度。<br>默认单位：vp |
+| imageData   | [ImageData](ts-components-canvas-imagedata.md) | 是    | 包含像素值的ImageData对象。<br>异常值undefined或null按无效值处理，不进行绘制。 |
+| dx          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 填充区域在x轴方向的偏移量。<br>异常值undefined、null、NaN和Infinity按0处理。<br>默认单位：vp |
+| dy          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 填充区域在y轴方向的偏移量。<br>异常值undefined、null、NaN和Infinity按0处理。<br>默认单位：vp |
+| dirtyX      | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 源图像数据矩形裁切范围左上角距离源图像左上角的x轴偏移量。<br>异常值undefined、null、NaN和Infinity按0处理。<br>默认单位：vp |
+| dirtyY      | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 源图像数据矩形裁切范围左上角距离源图像左上角的y轴偏移量。<br>异常值undefined、null、NaN和Infinity按0处理。<br>默认单位：vp |
+| dirtyWidth  | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 源图像数据矩形裁切范围的宽度。<br>异常值undefined、null、NaN和Infinity按0处理。<br>默认单位：vp |
+| dirtyHeight | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 源图像数据矩形裁切范围的高度。<br>异常值undefined、null、NaN和Infinity按0处理。<br>默认单位：vp |
 
 **示例：**
 
@@ -3288,7 +3369,7 @@ setLineDash(segments: number[]): void
 
 | 参数名      | 类型      | 必填  | 说明 |
 | -------- | -------- | ------- | ------------ |
-| segments | number[] | 是 | 描述线段如何交替和线段间距长度的数组。<br>默认单位：vp |
+| segments | number[] | 是 | 描述线段如何交替和线段间距长度的数组。<br>异常值undefined或null按无效值处理。<br>默认单位：vp |
 
 **示例：** 
 
@@ -3453,8 +3534,8 @@ toDataURL(type?: string, quality?: any): string
 
 | 参数名     | 类型   | 必填  | 说明  |
 | ------- | ------ | ---- | ---------------------------------------- |
-| type    | string | 否  | 用于指定图像格式。<br/>可选参数为："image/png"，"image/jpeg"，"image/webp"。<br>默认值：image/png            |
-| quality | any | 否  | 在指定图片格式为image/jpeg或image/webp的情况下，可以从0到1的区间内选择图片的质量。如果超出取值范围，将会使用默认值0.92。<br>默认值：0.92 |
+| type    | string | 否  | 用于指定图像格式。<br/>可选参数为："image/png"，"image/jpeg"，"image/webp"。<br>异常值undefined或null按默认值处理。<br>默认值：image/png            |
+| quality | any | 否  | 在指定图片格式为image/jpeg或image/webp的情况下，可以从0到1的区间内选择图片的质量。如果超出取值范围，将会使用默认值0.92。<br>异常值undefined、null、NaN和Infinity按默认值处理。<br>默认值：0.92 |
 
 **返回值：** 
 
@@ -3604,10 +3685,10 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): CanvasGrad
 
 | 参数名   | 类型     | 必填 | 说明   |
 | ---- | ------ | ---- | -------- |
-| x0   | number | 是  | 起点的x轴坐标。<br>默认单位：vp |
-| y0   | number | 是  | 起点的y轴坐标。<br>默认单位：vp |
-| x1   | number | 是  | 终点的x轴坐标。<br>默认单位：vp |
-| y1   | number | 是  | 终点的y轴坐标。<br>默认单位：vp |
+| x0   | number | 是  | 起点的x轴坐标。<br>异常值undefined和null会导致此接口返回undefined，NaN和Infinity按无效值处理。<br>默认单位：vp |
+| y0   | number | 是  | 起点的y轴坐标。<br>异常值undefined和null会导致此接口返回undefined，NaN和Infinity按无效值处理。<br>默认单位：vp |
+| x1   | number | 是  | 终点的x轴坐标。<br>异常值undefined和null会导致此接口返回undefined，NaN和Infinity按无效值处理。<br>默认单位：vp |
+| y1   | number | 是  | 终点的y轴坐标。<br>异常值undefined和null会导致此接口返回undefined，NaN和Infinity按无效值处理。<br>默认单位：vp |
 
 **返回值：** 
 
@@ -3665,12 +3746,12 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----------------- |
-| x0   | number | 是  | 起始圆的x轴坐标。<br>默认单位：vp |
-| y0   | number | 是  | 起始圆的y轴坐标。<br>默认单位：vp |
-| r0   | number | 是  | 起始圆的半径。必须是非负且有限的。<br>默认单位：vp |
-| x1   | number | 是  | 终点圆的x轴坐标。<br>默认单位：vp |
-| y1   | number | 是  | 终点圆的y轴坐标。<br>默认单位：vp |
-| r1   | number | 是  | 终点圆的半径。必须为非负且有限的。<br>默认单位：vp |
+| x0   | number | 是  | 起始圆的x轴坐标。<br>异常值undefined和null会导致此接口返回undefined，NaN和Infinity按无效值处理。<br>默认单位：vp |
+| y0   | number | 是  | 起始圆的y轴坐标。<br>异常值undefined和null会导致此接口返回undefined，NaN和Infinity按无效值处理。<br>默认单位：vp |
+| r0   | number | 是  | 起始圆的半径。必须是非负且有限的。<br>异常值undefined和null会导致此接口返回undefined，NaN和Infinity按无效值处理。<br>默认单位：vp |
+| x1   | number | 是  | 终点圆的x轴坐标。<br>异常值undefined和null会导致此接口返回undefined，NaN和Infinity按无效值处理。<br>默认单位：vp |
+| y1   | number | 是  | 终点圆的y轴坐标。<br>异常值undefined和null会导致此接口返回undefined，NaN和Infinity按无效值处理。<br>默认单位：vp |
+| r1   | number | 是  | 终点圆的半径。必须为非负且有限的。<br>异常值undefined和null会导致此接口返回undefined，NaN和Infinity按无效值处理。<br>默认单位：vp |
 
 **返回值：** 
 
@@ -3725,9 +3806,9 @@ createConicGradient(startAngle: number, x: number, y: number): CanvasGradient
 
 | 参数名   | 类型     | 必填 | 说明  |
 | ---------- | ------ | ---- | ----------------------------------- |
-| startAngle | number | 是    | 开始渐变的角度。角度测量从中心右侧水平开始，顺时针移动。<br>单位：弧度 |
-| x          | number | 是    | 圆锥渐变的中心x轴坐标。<br>默认单位：vp |
-| y          | number | 是    | 圆锥渐变的中心y轴坐标。<br>默认单位：vp |
+| startAngle | number | 是    | 开始渐变的角度。角度测量从中心右侧水平开始，顺时针移动。<br>异常值undefined和null按0处理，NaN和Infinity按无效值处理。<br>单位：弧度 |
+| x          | number | 是    | 圆锥渐变的中心x轴坐标。<br>异常值undefined和null按0处理，NaN和Infinity按无效值处理。<br>默认单位：vp |
+| y          | number | 是    | 圆锥渐变的中心y轴坐标。<br>异常值undefined和null按0处理，NaN和Infinity按无效值处理。<br>默认单位：vp |
 
 **返回值：** 
 
@@ -3782,8 +3863,8 @@ on(type: 'onAttach', callback: () => void): void
 
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| type   | string | 是   | 订阅CanvasRenderingContext2D与Canvas组件发生绑定的回调 |
-| callback   | () => void | 是   | 订阅CanvasRenderingContext2D与Canvas组件发生绑定后触发的回调 |
+| type   | string | 是   | 订阅CanvasRenderingContext2D与Canvas组件发生绑定的回调。<br>异常值undefined或null按无效值处理。 |
+| callback   | () => void | 是   | 订阅CanvasRenderingContext2D与Canvas组件发生绑定后触发的回调。<br>异常值undefined或null按无效值处理。|
 
 > **说明：**
 >
@@ -3809,8 +3890,8 @@ on(type: 'onDetach', callback: () => void): void
 
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| type   | string | 是   | 订阅CanvasRenderingContext2D与Canvas组件解除绑定的回调 |
-| callback   | () => void | 是   | 订阅CanvasRenderingContext2D与Canvas组件解除绑定后触发的回调 |
+| type   | string | 是   | 订阅CanvasRenderingContext2D与Canvas组件解除绑定的回调。<br>异常值undefined或null按无效值处理。 |
+| callback   | () => void | 是   | 订阅CanvasRenderingContext2D与Canvas组件解除绑定后触发的回调。<br>异常值undefined或null按无效值处理。 |
 
 > **说明：**
 >
@@ -3833,8 +3914,8 @@ off(type: 'onAttach', callback?: () => void): void
 
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| type   | string | 是   | 取消订阅CanvasRenderingContext2D与Canvas组件发生绑定的回调。 |
-| callback   | () => void | 否   | 为空表示取消所有订阅CanvasRenderingContext2D与Canvas组件发生绑定后触发的回调。<br>非空则取消订阅发生绑定对应的回调。 |
+| type   | string | 是   | 取消订阅CanvasRenderingContext2D与Canvas组件发生绑定的回调。<br>异常值undefined或null按无效值处理。 |
+| callback   | () => void | 否   | 为空表示取消所有订阅CanvasRenderingContext2D与Canvas组件发生绑定后触发的回调。<br>非空则取消订阅发生绑定对应的回调。<br>异常值undefined或null按无效值处理。 |
 
 ### off('onDetach')<sup>13+</sup>
 
@@ -3850,13 +3931,15 @@ off(type: 'onDetach', callback?: () => void): void
 
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| type   | string | 是   | 取消订阅CanvasRenderingContext2D与Canvas组件解除绑定的回调。 |
-| callback   | () => void | 否   | 为空代表取消所有订阅CanvasRenderingContext2D与Canvas组件解除绑定后触发的回调。<br>非空代表取消订阅解除绑定对应的回调。 |
+| type   | string | 是   | 取消订阅CanvasRenderingContext2D与Canvas组件解除绑定的回调。<br>异常值undefined或null按无效值处理。 |
+| callback   | () => void | 否   | 为空代表取消所有订阅CanvasRenderingContext2D与Canvas组件解除绑定后触发的回调。<br>非空代表取消订阅解除绑定对应的回调。<br>异常值undefined或null按无效值处理。 |
 
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
 import { FrameNode } from '@kit.ArkUI'
+
 // xxx.ets
 @Entry
 @Component
@@ -3866,30 +3949,39 @@ struct AttachDetachExample {
   private scroller: Scroller = new Scroller()
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
   private node: FrameNode | null = null
-  private attachCallback: Callback<void> = this.attachFunc.bind(this)
-  private detachCallback: Callback<void> = this.detachFunc.bind(this)
-
-  attachFunc(): void {
+  attachCallback = () => {
     console.info('CanvasRenderingContext2D attached to the canvas frame node.')
     this.node = this.context.canvas
   }
-  detachFunc(): void {
+  detachCallback = () => {
     console.info('CanvasRenderingContext2D detach from the canvas frame node.')
     this.node = null
   }
+
   aboutToAppear(): void {
-    this.context.on('onAttach', this.attachCallback)
-    this.context.on('onDetach', this.detachCallback)
+    try {
+      this.context.on('onAttach', this.attachCallback)
+      this.context.on('onDetach', this.detachCallback)
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error(`Error code: ${e.code}, message: ${e.message}`);
+    }
   }
+
   aboutToDisappear(): void {
-    this.context.off('onAttach')
-    this.context.off('onDetach')
+    try {
+      this.context.off('onAttach')
+      this.context.off('onDetach')
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error(`Error code: ${e.code}, message: ${e.message}`);
+    }
   }
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Scroll(this.scroller) {
-        Flex({ direction: FlexDirection.Column}) {
+        Flex({ direction: FlexDirection.Column }) {
           ForEach(this.arr, (item: number) => {
             Row() {
               if (item == 3) {
@@ -3900,7 +3992,7 @@ struct AttachDetachExample {
                   .onReady(() => {
                     this.context.font = '30vp sans-serif'
                     this.node?.commonEvent.setOnVisibleAreaApproximateChange(
-                      { ratios: [0, 1], expectedUpdateInterval: 10},
+                      { ratios: [0, 1], expectedUpdateInterval: 10 },
                       (isVisible: boolean, currentRatio: number) => {
                         if (!isVisible && currentRatio <= 0.0) {
                           console.info('Canvas is completely invisible.')
@@ -3941,7 +4033,7 @@ struct AttachDetachExample {
 
 startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
-配置并启动AI分析功能，使用前需先[启用图像AI分析能力](ts-components-canvas-canvas.md#enableanalyzer12)。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>未执行完重复调用该方法会触发错误回调。示例代码同stopImageAnalyzer。
+配置并启动AI分析功能，使用Promise异步回调。使用前需先[启用图像AI分析能力](ts-components-canvas-canvas.md#enableanalyzer12)。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>未执行完重复调用该方法会触发错误回调。示例代码同stopImageAnalyzer。
 
 > **说明：**
 > 
@@ -3957,13 +4049,13 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| config   | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | 是   | 执行AI分析所需要的入参，用于配置AI分析功能。 |
+| config   | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig12) | 是   | 执行AI分析所需要的入参，用于配置AI分析功能。<br>异常值undefined或null按无效值处理。 |
 
 **返回值：**
 
 | 类型              | 说明                                 |
 | ----------------- | ------------------------------------ |
-| Promise\<void>  | Promise对象，用于获取AI分析是否成功执行。 |
+| Promise\<void>  | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -4004,6 +4096,7 @@ struct ImageAnalyzerExample {
   private config: ImageAnalyzerConfig = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
   }
+  // 'common/images/example.png'需要替换为开发者所需的图像资源文件
   private img = new ImageBitmap('common/images/example.png')
   private aiController: ImageAnalyzerController = new ImageAnalyzerController()
   private options: ImageAIOptions = {
@@ -4058,6 +4151,10 @@ struct ImageAnalyzerExample {
 
 ## CanvasDirection类型说明
 
+type CanvasDirection = "inherit" | "ltr" | "rtl"
+
+定义当前文本方向的类型。取值类型为下表类型中的并集。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -4072,6 +4169,10 @@ struct ImageAnalyzerExample {
 
 ## CanvasFillRule类型说明
 
+type CanvasFillRule = "evenodd" | "nonzero"
+
+定义用于确定点是在路径内还是路径外的填充样式算法的类型。取值类型为下表类型中的并集。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -4084,6 +4185,10 @@ struct ImageAnalyzerExample {
 | nonzero | 非零规则。<br/>此规则通过从画布上的某点向任意方向发射一条射线，并检查图形路径与射线的交点来判断该点是否在图形内部。初始计数为0，为路径的每一段线段指定一个方向值，每当路径从左向右穿过射线时加1，从右向左穿过时减1。如果最终的结果是0，则该点在图形外部，否则在图形内部。 |
 
 ## CanvasLineCap类型说明
+
+type CanvasLineCap = "butt" | "round" | "square"
+
+定义绘制每条线段端点的类型。取值类型为下表类型中的并集。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -4099,6 +4204,10 @@ struct ImageAnalyzerExample {
 
 ## CanvasLineJoin类型说明
 
+type CanvasLineJoin = "bevel" | "miter" | "round"
+
+定义长度不为0的两个连接部分（线段、圆弧和曲线）的类型。取值类型为下表类型中的并集。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -4112,6 +4221,10 @@ struct ImageAnalyzerExample {
 | round | 在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。              |
 
 ## CanvasTextAlign类型说明
+
+type CanvasTextAlign = "center" | "end" | "left" | "right" | "start"
+
+定义文本对齐方式的类型。取值类型为下表类型中的并集。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -4129,6 +4242,10 @@ struct ImageAnalyzerExample {
 
 ## CanvasTextBaseline类型说明
 
+type CanvasTextBaseline = "alphabetic" | "bottom" | "hanging" | "ideographic" | "middle" | "top"
+
+定义文本基线类型。取值类型为下表类型中的并集。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -4145,6 +4262,10 @@ struct ImageAnalyzerExample {
 | top         | 文本基线在文本块的顶部。                             |
 
 ## ImageSmoothingQuality类型说明
+
+type ImageSmoothingQuality = "high" | "low" | "medium"
+
+定义图片平滑度类型。取值类型为下表类型中的并集。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -4181,3 +4302,37 @@ struct ImageAnalyzerExample {
 | fontBoundingBoxDescent   | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到渲染文本的所有字体的矩形边界最底部的距离。 |
 | hangingBaseline          | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到线框的 hanging 基线的距离。 |
 | ideographicBaseline      | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到线框的 ideographic 基线的距离。 |
+
+## RenderingContextSettings
+
+用来配置CanvasRenderingContext2D对象的参数，包括是否开启抗锯齿。
+
+### constructor
+
+constructor(antialias?: boolean)
+
+构造CanvasRenderingContext2D对象，支持配置开启抗锯齿。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名       | 类型    | 必填   | 说明                          |
+| --------- | ------- | ---- | ----------------------------- |
+| antialias | boolean | 否    | 表明canvas是否开启抗锯齿。<br>异常值undefined按默认值处理。<br>默认值：false，表示不开启抗锯齿功能。 |
+
+### 属性
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型   | 只读 | 可选 | 说明 |
+| ------ | -------- | --------- | ---------- | ------------------------------ |
+| antialias | boolean | 否 | 是 | 表明canvas是否开启抗锯齿。<br>默认值：false，表示不开启抗锯齿功能。 |

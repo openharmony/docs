@@ -1,5 +1,12 @@
 # USB Interrupt Transfer
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 ## When to Use
 
 The interrupt transfer is mainly used by the host to receive a data packet sent by a device. The endpoint mode of a device determines whether the interface supports interrupt reading or interrupt writing. This mode is applicable to the transfer of a small number of scattered and unpredictable data input by devices such as the mouse, keyboard, and joystick. In addition, the endpoints of these devices support only interrupt reading.
@@ -25,8 +32,8 @@ The interrupt transfer is mainly used by the host to receive a data packet sent 
 ### Environment Setup
 
 - Install [DevEco Studio](https://developer.huawei.com/consumer/en/download/) 4.1 or later on the PC.
-- Update the public SDK to API version 16 or later. For details, see [Switching to Full SDK](https://gitee.com/openharmony/docs/blob/master/en/application-dev/faqs/full-sdk-switch-guide.md).
-- Install hdc on the PC. You can use it to interact with a real device or the Emulator on Windows, Linux, or macOS. For details, see [HDC Configuration](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/hdc).
+- Update the public SDK to API version 16 or later.<!--Del--> For details, see [Switching to Full SDK](../../../../faqs/full-sdk-switch-guide.md).<!--DelEnd-->
+- Install hdc on the PC. You can use it to interact with a real device or the Emulator on Windows, Linux, or macOS.
 - Use a USB cable to connect a device to the PC.
 
 ## How to Develop
@@ -71,15 +78,18 @@ Connect a host to a device and use the **usbSubmitTransfer** API to transfer dat
 
     ```ts
     // Check whether the first USB device in the list has the access permission.
-    let usbDevice: usbManager.USBDevice = usbDevices[0];
-    if(!usbManager.hasRight(usbDevice.name)) {
-      await usbManager.requestRight(usbDevice.name).then(result => {
-        if(!result) {
-          // If the USB device does not have the access permission and is not granted by the user, the device exits.
-          console.error('The user does not have permission to perform this operation');
-          return;
+    // Name the function based on the specific service.
+    async function transferDefault() {
+        let usbDevice: usbManager.USBDevice = usbDevices[0];
+        if(!usbManager.hasRight(usbDevice.name)) {
+          await usbManager.requestRight(usbDevice.name).then(result => {
+            if(!result) {
+              // If the USB device does not have the access permission and is not granted by the user, the device exits.
+              console.error('The user does not have permission to perform this operation');
+              return;
+            }
+          });
         }
-      });
     }
     ```
 
@@ -91,22 +101,22 @@ Connect a host to a device and use the **usbSubmitTransfer** API to transfer dat
    let usbInterfaces: usbManager.USBInterface[] = [];
    let usbInterface: usbManager.USBInterface | undefined = undefined
    let usbEndpoints: usbManager.USBEndpoint[] = [];
-   let usbEndprint: usbManager.USBEndpoint | undefined = undefined
+   let usbEndpoint: usbManager.USBEndpoint | undefined = undefined
    for (let i = 0; i < usbConfigs.length; i++) {
      usbInterfaces = usbConfigs[i].interfaces;
-     for (let i = 0; i < usbInterfaces.length; i++) {
-       usbEndpoints = usbInterfaces[i].endpoints;
-       usbEndprint = usbEndpoints.find((value) => {
+     for (let j = 0; j < usbInterfaces.length; j++) {
+       usbEndpoints = usbInterfaces[j].endpoints;
+       usbEndpoint = usbEndpoints.find((value) => {
          return value.direction === 128 && value.type === usbManager.UsbEndpointTransferType.TRANSFER_TYPE_INTERRUPT;
        })
-       if (usbEndprint !== undefined) {
-         usbInterface = usbInterfaces[i];
+       if (usbEndpoint !== undefined) {
+         usbInterface = usbInterfaces[j];
          break;
        }
      }
    }
-   if (usbEndprint === undefined) {
-     console.error(`get usbEndprint error`)
+   if (usbEndpoint === undefined) {
+     console.error(`get usbEndpoint error`)
      return;
    }
    ```
@@ -130,7 +140,7 @@ Connect a host to a device and use the **usbSubmitTransfer** API to transfer dat
      let transferParams: usbManager.UsbDataTransferParams = {
        devPipe: devicePipe,
        flags: usbManager.UsbTransferFlags.USB_TRANSFER_SHORT_NOT_OK,
-       endpoint: usbEndprint.address,
+       endpoint: usbEndpoint.address,
        type: usbManager.UsbEndpointTransferType.TRANSFER_TYPE_INTERRUPT,
        timeout: 2000,
        length: 10,
@@ -151,7 +161,7 @@ Connect a host to a device and use the **usbSubmitTransfer** API to transfer dat
    }
    ```
 
-7. Cancels the data transfer, releases the interface, and closes the USB device pipe.
+7. Cancel the data transfer, releases the interface, and closes the USB device pipe.
 
     ```ts
     usbManager.usbCancelTransfer(transferParams);

@@ -3837,18 +3837,6 @@
 
 **起始版本**：12
 
-## ohos.permission.GET_ETHERNET_LOCAL_MAC
-
-允许应用查询以太网当前MAC地址。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：13
-
 ## ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS
 
 允许模态UIExtension取消对不安全窗口的隐藏。
@@ -4545,20 +4533,6 @@
 
 **起始版本**：19
 
-## ohos.permission.ENTERPRISE_ACCESS_DLP_FILE
-
-允许应用调用企业空间访问DLP文件的接口。
-
-**权限级别**：system_core
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**支持设备**：PC/2in1
-
-**起始版本**：20
-
 ## ohos.permission.UNINSTALL_PLUGIN_BUNDLE
 
 允许应用调用卸载插件的接口。
@@ -5049,6 +5023,20 @@
 
 **起始版本**：20
 
+## ohos.permission.ACCESS_DISTRIBUTED_KEY_STORE
+
+允许应用使用分布式密钥能力。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | Tablet | PC/2in1 | Wearable | TV
+
+**起始版本**：20
+
 ## ohos.permission.SANDBOX_ACCESS_MANAGER_EXT
 
 允许应用访问其它扩展应用的沙箱目录。
@@ -5070,6 +5058,34 @@
 该SO指具有开发者证书或AdHoc签名的独立二进制SO。
 
 **权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
+## ohos.permission.GET_DEVICE_INDEPENDENT_BINARY_CERT
+
+允许系统应用查询独立二进制程序的证书信息。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
+## ohos.permission.SET_DEVICE_INDEPENDENT_BINARY_CERT_STATUS
+
+允许系统应用设置独立二进制程序的证书状态。
+
+**权限级别**：system_core
 
 **授权方式**：系统授权（system_grant）
 

@@ -139,7 +139,7 @@ struct Index {
 <!--deprecated_code_no_check-->
 ```ts
 // 执行绑定实例的闭包
-import { promptAction } from '@kit.ArkUI'
+import { PromptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -149,6 +149,7 @@ struct Index {
       Button()
         .onClick(() => {
           let uiContext = this.getUIContext();
+          let promptAction: PromptAction = uiContext.getPromptAction();
           uiContext.runScopedTask(() => {
             promptAction.showToast({            
               message: 'Message Info',

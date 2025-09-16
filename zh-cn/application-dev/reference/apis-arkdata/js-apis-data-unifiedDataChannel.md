@@ -62,13 +62,13 @@ let getDelayData: unifiedDataChannel.GetDelayData = ((type: string) => {
   if (type == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
     let plainTextDetails : Record<string, string> = {
       'attr1': 'value1',
-      'attr2': 'value2',
+      'attr2': 'value2'
     }
     let plainText : uniformDataStruct.PlainText = {
       uniformDataType: 'general.plain-text',
       textContent : 'This is a plain text example',
       abstract : 'This is abstract',
-      details : plainTextDetails,
+      details : plainTextDetails
     }
     let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
     let textData = new unifiedDataChannel.UnifiedData(text);
@@ -134,13 +134,13 @@ properties.getDelayData = ((type: string) => {
   if (type == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
     let plainTextDetails : Record<string, string> = {
       'attr1': 'value1',
-      'attr2': 'value2',
+      'attr2': 'value2'
     }
     let plainText : uniformDataStruct.PlainText = {
       uniformDataType: 'general.plain-text',
       textContent : 'This is a plain text example',
       abstract : 'This is abstract',
-      details : plainTextDetails,
+      details : plainTextDetails
     }
     let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
     let textData = new unifiedDataChannel.UnifiedData(text);
@@ -209,7 +209,7 @@ import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is a plain text example',
-  abstract : 'This is abstract',
+  abstract : 'This is abstract'
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
@@ -246,7 +246,7 @@ import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is a plain text example',
-  abstract : 'This is abstract',
+  abstract : 'This is abstract'
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
@@ -254,7 +254,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(text);
 let hyperlink : uniformDataStruct.Hyperlink = {
   uniformDataType:'general.hyperlink',
   url : 'www.XXX.com',
-  description : 'This is the description of the hyperlink',
+  description : 'This is the description of the hyperlink'
 }
 let link = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
 unifiedData.addRecord(link);
@@ -284,7 +284,7 @@ import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is a plain text example',
-  abstract : 'This is abstract',
+  abstract : 'This is abstract'
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
@@ -292,7 +292,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(text);
 let hyperlink : uniformDataStruct.Hyperlink = {
   uniformDataType:'general.hyperlink',
   url : 'www.XXX.com',
-  description : 'This is the description of the hyperlink',
+  description : 'This is the description of the hyperlink'
 }
 let link = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
 unifiedData.addRecord(link);
@@ -351,7 +351,7 @@ import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is a plain text example',
-  abstract : 'This is abstract',
+  abstract : 'This is abstract'
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
@@ -359,7 +359,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(text);
 let hyperlink : uniformDataStruct.Hyperlink = {
   uniformDataType:'general.hyperlink',
   url : 'www.XXX.com',
-  description : 'This is the description of the hyperlink',
+  description : 'This is the description of the hyperlink'
 }
 let link = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
 unifiedData.addRecord(link);
@@ -392,7 +392,7 @@ import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is a plain text example',
-  abstract : 'This is abstract',
+  abstract : 'This is abstract'
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
@@ -400,7 +400,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(text);
 let hyperlink : uniformDataStruct.Hyperlink = {
   uniformDataType:'general.hyperlink',
   url : 'www.XXX.com',
-  description : 'This is the description of the hyperlink',
+  description : 'This is the description of the hyperlink'
 }
 let link = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
 unifiedData.addRecord(link);
@@ -420,6 +420,28 @@ let types = unifiedData.getTypes();
 | -------- | -------- | -------- | -------- | -------- |
 | summary   | Record<string, number> | 否 | 否 | 是一个字典类型对象，key表示数据类型（见[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)），value为统一数据对象中该类型记录大小总和（单位：Byte）。 |
 | totalSize | number | 否 | 否 | 统一数据对象内记录总大小（单位：Byte）。 |
+
+**示例：**
+
+```ts
+function parseSummary(summary : unifiedDataChannel.Summary) {
+  let summaryRecord = summary.summary as Record<string, number>;
+  if (summaryRecord) {
+    for (let item of Object.entries(summaryRecord)) {
+      if (item && item.length <= 1) {
+        continue;
+      }
+      let summaryStr : string = String(item[1]);
+      let info : string[] = summaryStr.split(",");
+      if (info.length <= 1) {
+        continue;
+      }
+      let key : string = info[0];
+      let value : string = info[1];
+    }
+  }
+}
+```
 
 ## UnifiedRecord
 
@@ -475,14 +497,14 @@ import { image } from '@kit.ImageKit';
 let hyperlink : uniformDataStruct.Hyperlink = {
   uniformDataType:'general.hyperlink',
   url : 'www.XXX.com',
-  description : 'This is the description of the hyperlink',
+  description : 'This is the description of the hyperlink'
 }
 let hyperlinkRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
 
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is a plain text example',
-  abstract : 'This is abstract',
+  abstract : 'This is abstract'
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 
@@ -490,7 +512,7 @@ let arrayBuffer = new ArrayBuffer(4 * 200 * 200);
 let opt : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 }, alphaType: 3 };
 let pixelMap : uniformDataStruct.PixelMap = {
   uniformDataType : 'openharmony.pixel-map',
-  pixelMap : image.createPixelMapSync(arrayBuffer, opt),
+  pixelMap : image.createPixelMapSync(arrayBuffer, opt)
 }
 let pixelMapRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP, pixelMap);
 ```
@@ -519,7 +541,7 @@ import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is a plain text example',
-  abstract : 'This is abstract',
+  abstract : 'This is abstract'
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
@@ -557,13 +579,13 @@ let value = text.getValue();
 
 let hyperlinkDetails : Record<string, string> = {
   'attr1': 'value1',
-  'attr2': 'value2',
+  'attr2': 'value2'
 }
 let hyperlink : uniformDataStruct.Hyperlink = {
   uniformDataType:'general.hyperlink',
   url : 'www.XXX.com',
   description : 'This is the description of the hyperlink',
-  details : hyperlinkDetails,
+  details : hyperlinkDetails
 }
 let hyperlinkRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
 let hyperlinkValue = hyperlinkRecord.getValue();
@@ -601,18 +623,18 @@ import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 
 let fileUriDetails : Record<string, string> = {
   'attr1': 'value1',
-  'attr2': 'value2',
+  'attr2': 'value2'
 }
 let fileUri : uniformDataStruct.FileUri = {
   uniformDataType : 'general.file-uri',
   oriUri : 'file://data/image/1.png',
   fileType : 'general.image',
-  details : fileUriDetails,
+  details : fileUriDetails
 }
 let hyperlink : uniformDataStruct.Hyperlink = {
   uniformDataType:'general.hyperlink',
   url : 'file://data/image/1.png',
-  description : 'This is the description of the hyperlink',
+  description : 'This is the description of the hyperlink'
 }
 
 let unifiedData = new unifiedDataChannel.UnifiedData();
@@ -658,17 +680,17 @@ import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 
 let fileUriDetails : Record<string, string> = {
   'attr1': 'value1',
-  'attr2': 'value2',
+  'attr2': 'value2'
 }
 let fileUri : uniformDataStruct.FileUri = {
   uniformDataType : 'general.file-uri',
   oriUri : 'file://data/image/1.png',
   fileType : 'general.image',
-  details : fileUriDetails,
+  details : fileUriDetails
 }
 let formDetails : Record<string, string> = {
   'attr1': 'value1',
-  'attr2': 'value2',
+  'attr2': 'value2'
 }
 let form : uniformDataStruct.Form = {
   uniformDataType : 'openharmony.form',
@@ -677,7 +699,7 @@ let form : uniformDataStruct.Form = {
   bundleName : 'com.xx.app',
   abilityName : 'ability',
   module : 'module',
-  details : formDetails,
+  details : formDetails
 }
 
 let unifiedData = new unifiedDataChannel.UnifiedData();
@@ -722,17 +744,17 @@ import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 
 let fileUriDetails : Record<string, string> = {
   'attr1': 'value1',
-  'attr2': 'value2',
+  'attr2': 'value2'
 }
 let fileUri : uniformDataStruct.FileUri = {
   uniformDataType : 'general.file-uri',
   oriUri : 'file://data/image/1.png',
   fileType : 'general.image',
-  details : fileUriDetails,
+  details : fileUriDetails
 }
 let formDetails : Record<string, string> = {
   'attr1': 'value1',
-  'attr2': 'value2',
+  'attr2': 'value2'
 }
 let form : uniformDataStruct.Form = {
   uniformDataType : 'openharmony.form',
@@ -741,7 +763,7 @@ let form : uniformDataStruct.Form = {
   bundleName : 'com.xx.app',
   abilityName : 'ability',
   module : 'module',
-  details : formDetails,
+  details : formDetails
 }
 
 let unifiedData = new unifiedDataChannel.UnifiedData();
@@ -787,17 +809,17 @@ import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 
 let fileUriDetails : Record<string, string> = {
   'attr1': 'value1',
-  'attr2': 'value2',
+  'attr2': 'value2'
 }
 let fileUri : uniformDataStruct.FileUri = {
   uniformDataType : 'general.file-uri',
   oriUri : 'file://data/image/1.png',
   fileType : 'general.image',
-  details : fileUriDetails,
+  details : fileUriDetails
 }
 let formDetails : Record<string, string> = {
   'attr1': 'value1',
-  'attr2': 'value2',
+  'attr2': 'value2'
 }
 let form : uniformDataStruct.Form = {
   uniformDataType : 'openharmony.form',
@@ -806,7 +828,7 @@ let form : uniformDataStruct.Form = {
   bundleName : 'com.xx.app',
   abilityName : 'ability',
   module : 'module',
-  details : formDetails,
+  details : formDetails
 }
 
 let unifiedData = new unifiedDataChannel.UnifiedData();
@@ -842,7 +864,7 @@ for (let i = 0; i < records.length; i++) {
 let text = new unifiedDataChannel.Text();
 text.details = {
   title: 'MyTitle',
-  content: 'This is content',
+  content: 'This is content'
 };
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
 ```
@@ -938,7 +960,7 @@ export default class EntryAbility extends UIAbility {
     let file = new unifiedDataChannel.File();
     file.details = {
         name: 'test',
-        type: 'txt',
+        type: 'txt'
     };
     let filePath = pathDir + '/test.txt';
     file.uri = fileUri.getUriFromPath(filePath);
@@ -1090,7 +1112,7 @@ let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 sdr.details = {
     title: 'recordTitle',
     version: 1,
-    content: u8Array,
+    content: u8Array
 };
 let unifiedData = new unifiedDataChannel.UnifiedData(sdr);
 ```
@@ -1124,7 +1146,7 @@ let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 form.details = {
   formKey1: 123,
   formKey2: 'formValue',
-  formKey3: u8Array,
+  formKey3: u8Array
 };
 let unifiedData = new unifiedDataChannel.UnifiedData(form);
 ```
@@ -1160,7 +1182,7 @@ let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 appItem.details = {
     appItemKey1: 123,
     appItemKey2: 'appItemValue',
-    appItemKey3: u8Array,
+    appItemKey3: u8Array
 };
 let unifiedData = new unifiedDataChannel.UnifiedData(appItem);
 ```
@@ -1273,11 +1295,11 @@ UDMF提供的数据操作接口包含三个可选参数：intention、key和visi
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称      | 类型                    | 必填 | 说明                                                         |
-| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| intention | [Intention](#intention) | 否   | 表示数据操作相关的数据通路类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                             |
-| key       | string                  | 否   | UDMF中数据对象的唯一标识符，可通过[insertData](#unifieddatachannelinsertdata)接口的返回值获取。<br>由udmf:/、intention、bundleName和groupId四部分组成，以'/'连接，比如：udmf://DataHub/com.ohos.test/0123456789。<br>其中udmf:/固定，DataHub为对应枚举的取值，com.ohos.test为包名，0123456789为随机生成的groupId。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| visibility<sup>20+</sup> | [Visibility](#visibility20) | 否   | 表示数据的可见性等级。只在写入数据的时候填写才生效，若不填写默认是Visibility.ALL。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。  |
+| 名称      | 类型                    | 只读 | 可选 | 说明                                                         |
+| --------- | ----------------------- | ---- | ----- | ------------------------------------------------------- |
+| intention | [Intention](#intention) | 否 | 是 | 表示数据操作相关的数据通路类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                             |
+| key       | string                  | 否 | 是 | UDMF中数据对象的唯一标识符，可通过[insertData](#unifieddatachannelinsertdata)接口的返回值获取。<br>由udmf:/、intention、bundleName和groupId四部分组成，以'/'连接，比如：udmf://DataHub/com.ohos.test/0123456789。<br>其中udmf:/固定，DataHub为对应枚举的取值，com.ohos.test为包名，0123456789为随机生成的groupId。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| visibility<sup>20+</sup> | [Visibility](#visibility20) | 否 | 是 | 表示数据的可见性等级。只在写入数据的时候填写才生效，若不填写默认是Visibility.ALL。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。  |
 
 ## FileConflictOptions<sup>15+</sup>
 
@@ -1385,10 +1407,10 @@ type DataProgressListener = (progressInfo: ProgressInfo, data: UnifiedData | nul
 
 **参数：**
 
-| 名称                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
-|----------------------|-------------------------------------------------| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
-| types    | Set\<string\>       | 否 | 表示数据类型集合，默认为空集合。                                                                                                                         |
-| recordCount | number | 否 | 表示期望或可提供的最大数据记录数，默认值为0，取值范围为[0, 2<sup>32</sup>-1]。超过取值范围时会按默认值处理。设置为浮点数时，仅使用整数部分。当用于拖拽时，会作为角标数量显示，最大支持2<sup>31</sup>-1，超过此数值时不显示角标。作为角标数量时，优先级低于[DragPreviewOptions](../apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)中的numberBadge方法。                            |
+| 名称                   | 类型                                              | 只读 | 可选 | 说明                                                                                                                                                 |
+|----------------------|-------------------------------------------------| ---- |-----| -----------------------------------------------------------------------------------------------------------------------------------------------|
+| types    | Set\<string\>       | 否 | 是 | 表示数据类型集合，默认为空集合。                                                                                                                         |
+| recordCount | number | 否 | 是 | 表示期望或可提供的最大数据记录数，默认值为0，取值范围为[0, 2<sup>32</sup>-1]。超过取值范围时会按默认值处理。设置为浮点数时，仅使用整数部分。当用于拖拽时，会作为角标数量显示，最大支持2<sup>31</sup>-1，超过此数值时不显示角标。作为角标数量时，优先级低于[DragPreviewOptions](../apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)中的numberBadge方法。                            |
 
 ## DataLoadHandler<sup>20+</sup>
 
@@ -1422,10 +1444,10 @@ type DataLoadHandler = (acceptableInfo?: DataLoadInfo) => UnifiedData | null
 
 **参数：**
 
-| 名称                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
-|----------------------|-------------------------------------------------| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
-| loadHandler    | [DataLoadHandler](#dataloadhandler20)       | 是 | 表示用于延迟加载数据的处理函数。             |
-| dataLoadInfo | [DataLoadInfo](#dataloadinfo20) | 是 | 用于描述当前发送方可生成的数据类型及数量信息。              |
+| 名称                   | 类型                                              | 只读 | 可选 | 说明                                                                                                                                                 |
+|----------------------|-------------------------------------------------| ---- |-----|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| loadHandler    | [DataLoadHandler](#dataloadhandler20)       | 否 | 否| 表示用于延迟加载数据的处理函数。             |
+| dataLoadInfo | [DataLoadInfo](#dataloadinfo20) | 否 | 否| 用于描述当前发送方可生成的数据类型及数量信息。              |
 
 ## unifiedDataChannel.insertData
 
@@ -1441,7 +1463,7 @@ insertData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;strin
 
 | 参数名      | 类型                         | 必填 | 说明                           |
 |----------|----------------------------|----|------------------------------|
-| options  | [Options](#options)        | 是  | 配置项参数，参数中intention字段必填，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。        |
+| options  | [Options](#options)        | 是  | 配置项参数，参数中intention字段必填，且不支持DRAG，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。        |
 | data     | [UnifiedData](#unifieddata) | 是  | 目标数据。                        |
 | callback | AsyncCallback&lt;string&gt; | 是  | 回调函数，返回写入UDMF的数据的唯一标识符key的值。 |
 
@@ -1462,7 +1484,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is a plain text example',
-  abstract : 'This is abstract',
+  abstract : 'This is abstract'
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
@@ -1498,7 +1520,7 @@ insertData(options: Options, data: UnifiedData): Promise&lt;string&gt;
 
 | 参数名     | 类型                          | 必填 | 说明                    |
 |---------|-----------------------------|----|-----------------------|
-| options | [Options](#options)         | 是  | 配置项参数，参数中intention字段必填，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。 |
+| options | [Options](#options)         | 是  | 配置项参数，参数中intention字段必填，且不支持DRAG，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。 |
 | data    | [UnifiedData](#unifieddata) | 是  | 目标数据。                 |
 
 **返回值：**
@@ -1524,7 +1546,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is a plain text example',
-  abstract : 'This is abstract',
+  abstract : 'This is abstract'
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
@@ -1558,7 +1580,7 @@ updateData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;void&
 
 | 参数名      | 类型                          | 必填 | 说明                                  |
 |----------|-----------------------------|----|-------------------------------------|
-| options  | [Options](#options)         | 是  | 配置项参数，参数中key字段必填，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。                     |
+| options  | [Options](#options)         | 是  | 配置项参数，参数中key字段必填，不填时会返回401错误码；intention参数仅支持DATA_HUB；其他字段是否填写均不影响接口的使用。                     |
 | data     | [UnifiedData](#unifieddata) | 是  | 目标数据。                               |
 | callback | AsyncCallback&lt;void&gt;   | 是  | 回调函数。当更新数据成功，err为undefined，否则为错误对象。 |
 
@@ -1579,7 +1601,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is a plain text example',
-  abstract : 'This is abstract',
+  abstract : 'This is abstract'
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
@@ -1596,7 +1618,7 @@ try {
     let plainTextUpdate : uniformDataStruct.PlainText = {
       uniformDataType: 'general.plain-text',
       textContent : 'This is plainText textContent for update',
-      abstract : 'This is abstract for update',
+      abstract : 'This is abstract for update'
     }
     let textUpdate = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextUpdate);
     let unifiedDataUpdate = new unifiedDataChannel.UnifiedData(textUpdate);
@@ -1635,7 +1657,7 @@ updateData(options: Options, data: UnifiedData): Promise&lt;void&gt;
 
 | 参数名     | 类型                          | 必填 | 说明              |
 |---------|-----------------------------|----|-----------------|
-| options | [Options](#options)         | 是  | 配置项参数，参数中key字段必填，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。 |
+| options | [Options](#options)         | 是  | 配置项参数，参数中key字段必填，不填时会返回401错误码；intention参数仅支持DATA_HUB；其他字段是否填写均不影响接口的使用。 |
 | data    | [UnifiedData](#unifieddata) | 是  | 目标数据。           |
 
 **返回值：**
@@ -1661,7 +1683,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let plainText : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'This is a plain text example',
-  abstract : 'This is abstract',
+  abstract : 'This is abstract'
 }
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
 let unifiedData = new unifiedDataChannel.UnifiedData(text);
@@ -1678,7 +1700,7 @@ try {
     let plainTextUpdate : uniformDataStruct.PlainText = {
       uniformDataType: 'general.plain-text',
       textContent : 'This is plainText textContent for update',
-      abstract : 'This is abstract for update',
+      abstract : 'This is abstract for update'
     }
     let textUpdate = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextUpdate);
     let unifiedDataUpdate = new unifiedDataChannel.UnifiedData(textUpdate);
@@ -1715,7 +1737,7 @@ queryData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&
 
 | 参数名      | 类型                                                            | 必填 | 说明                                                                                                                                                               |
 |----------|---------------------------------------------------------------|----|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| options  | [Options](#options)                                           | 是  | 配置项参数，key和intention均为可选，根据传入的参数做相应的校验以返回不同的值。                                                                                                                    |
+| options  | [Options](#options)                                           | 是  | 配置项参数，key和intention均为可选，且intention参数不支持DRAG，根据传入的参数做相应的校验以返回不同的值。                                                                                                                   |
 | callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | 是  | 回调函数，返回查询到的所有数据。<br>如果options中填入的是key，则返回key对应的数据；<br>如果options中填入的是intention，则返回intention下所有数据。<br>如intention和key均填写了，取两者查询数据的交集，与options只填入key的获取结果一致；如没有交集报错。 |
 
 **错误码：**
@@ -1773,7 +1795,7 @@ queryData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 
 | 参数名     | 类型                  | 必填 | 说明                                            |
 |---------|---------------------|----|-----------------------------------------------|
-| options | [Options](#options) | 是  | 配置项参数，key和intention均为可选，根据传入的参数做相应的校验以返回不同的值。 |
+| options | [Options](#options) | 是  | 配置项参数，key和intention均为可选，且intention参数不支持DRAG，根据传入的参数做相应的校验以返回不同的值。 |
 
 **返回值：**
 
@@ -1834,7 +1856,7 @@ deleteData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;
 
 | 参数名      | 类型                                                            | 必填 | 说明                                                                                                                                                                                     |
 |----------|---------------------------------------------------------------|----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| options  | [Options](#options)                                           | 是  | 配置项参数，key和intention均为可选，根据传入的参数做相应的校验以返回不同的值。                                                                                                                                          |
+| options  | [Options](#options)                                           | 是  | 配置项参数，key和intention均为可选，且intention参数仅支持DATA_HUB，根据传入的参数做相应的校验以返回不同的值。                                                                                                                                          |
 | callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | 是  | 回调函数，返回删除的所有数据。<br>如果options中填入的是key，则删除key对应的数据并返回该数据。<br>如果options中填入的是intention，则删除intention下所有数据并返回删除的数据。<br>如intention和key均填写了，取两者数据的交集进行删除，并返回删除的数据，与options只填入key的结果一致；如没有交集报错。 |
 
 **错误码：**
@@ -1892,7 +1914,7 @@ deleteData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 
 | 参数名     | 类型                  | 必填 | 说明     |
 |---------|---------------------|----|--------|
-| options | [Options](#options) | 是  | 配置项参数，key和intention均为可选，根据传入的参数做相应的校验以返回不同的值。 |
+| options | [Options](#options) | 是  | 配置项参数，key和intention均为可选，且intention参数仅支持DATA_HUB，根据传入的参数做相应的校验以返回不同的值。 |
 
 **返回值：**
 
@@ -2062,19 +2084,19 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let details : Record<string, string> = {
   'attr1': 'value1',
-  'attr2': 'value2',
+  'attr2': 'value2'
 }
 let plainTextObj : uniformDataStruct.PlainText = {
   uniformDataType: 'general.plain-text',
   textContent : 'The weather is very good today',
   abstract : 'The weather is very good today',
-  details : details,
+  details : details
 }
 let htmlObj : uniformDataStruct.HTML = {
   uniformDataType :'general.html',
   htmlContent : '<div><p>The weather is very good today</p></div>',
   plainContent : 'The weather is very good today',
-  details : details,
+  details : details
 }
 let plainText = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextObj);
 let html = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HTML, htmlObj);

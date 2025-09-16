@@ -3,8 +3,8 @@
 <!--Kit: ArkGraphics 2D-->
 <!--Subsystem: Graphic-->
 <!--Owner: @xubo85-->
-<!--Designer: @comicchang-->
-<!--Tester: @civilong-->
+<!--Designer: @comicchang; @wang-luyu4-->
+<!--Tester: @zhaoxiaoguang2-->
 <!--Adviser: @ge-yafang-->
 
 本模块提供管理抽象化色域对象的一些基础能力，包括可共享的色彩管理的创建与可共享的色域基础属性的获取等。
@@ -80,7 +80,7 @@ create(primaries: colorSpaceManager.ColorSpacePrimaries, gamma: number): ColorSp
 | 参数名           | 类型                                       | 必填 | 说明                          |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | primaries       | [colorSpaceManager.ColorSpacePrimaries](js-apis-colorSpaceManager.md#colorspaceprimaries)| 是   | 色域标准三原色。               |
-| gamma           | number                                     | 是   | 色域gamma值。                 |
+| gamma           | number                                     | 是   | 色域gamma值，取值为大于0的浮点数。|
 
 **返回值：**
 

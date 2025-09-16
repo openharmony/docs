@@ -19,10 +19,10 @@ import { appManager } from '@kit.AbilityKit';
 
 **System API**: This is a system API.
 
-| Name       | Type   | Read Only| Mandatory| Description            |
+| Name       | Type   | Read Only| Optional| Description            |
 | ----------- | ------- | ---- | ---- | ---------------- |
-| bundleName  | string  | Yes  | No  | Bundle name.|
-| moduleName  | string  | Yes  | No  | Module name.|
-| abilityName | string  | Yes  | No  | Ability name.   |
-| appIndex    | number  | Yes  | No  | Index of the DLP sandbox. |
-| isColdStart | boolean | Yes  | No  | Enabled status of cold start. The value **true** means that cold start is enabled, and **false** means the opposite.    |
+| bundleName  | string  | No  | No  | Bundle name.|
+| moduleName  | string  | No  | No  | Module name.|
+| abilityName | string  | No  | No  | Ability name.   |
+| appIndex    | number  | No  | No  | Index of the DLP sandbox. |
+| isColdStart | boolean | No  | No  | Enabled status of cold start. **true** if enabled, **false** otherwise.    |

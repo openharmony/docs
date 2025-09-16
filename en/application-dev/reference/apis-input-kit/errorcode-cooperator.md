@@ -4,7 +4,6 @@
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-<!--Del-->
 ## 4400001 Incorrect Target Device Descriptor
 
 **Error Message**
@@ -23,9 +22,8 @@ This error code is reported if an invalid device descriptor is passed to the scr
 **Solution**
 
 1. Check whether the target device for screen hopping is correctly networked with the local device.
-2. Set the target device descriptor correctly.<!--DelEnd-->
+2. Set the target device descriptor correctly.
 
-<!--Del-->
 ## 4400002 Input Device Operation Failed
 
 **Error Message**
@@ -46,4 +44,4 @@ This error code is reported if the screen hopping status is abnormal when the sc
 
 1. When initiating screen hopping, make sure that the local device is not in the hopped state.
 2. When disabling screen hopping, make sure that the local device is not in the free state.
-3. When disabling screen hopping, make sure that the local device is not in the hopping state.<!--DelEnd-->
+3. When disabling screen hopping, make sure that the local device is not in the hopping state.

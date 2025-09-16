@@ -1,5 +1,11 @@
 # @ohos.hiTraceChain (Distributed Tracing)
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @qq_437963121-->
+<!--SE: @MontSaintMichel-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 The **hiTraceChain** module implements call chain trace throughout a service process. It provides functions such as starting and stopping call chain trace and configuring trace points.
 
 > **NOTE**
@@ -62,12 +68,12 @@ Defines a **HiTraceId** object.
 
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| chainId      | bigint | Yes| Call chain ID.  |
-| spanId      | number | No| Span ID.    |
-| parentSpanId | number | No| Parent span ID.  |
-| flags        | number | No| Trace flag combination.|
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| chainId      | bigint | No| No| Call chain ID.  |
+| spanId      | number | No| Yes| Span ID. The default value is **0**.    |
+| parentSpanId | number | No| Yes| Parent span ID. The default value is **0**.  |
+| flags        | number | No| Yes| Trace flag combination. The default value is **0**.|
 
 ## hiTraceChain.begin
 
@@ -82,7 +88,7 @@ Starts call chain trace. This API returns the result synchronously.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | name  | string | Yes| Traced service name.|
-| flags | number | No| Trace flag combination. For details, see [HiTraceFlag](#hitraceflag).|
+| flags | number | No| Trace flag combination. For details, see [HiTraceFlag](#hitraceflag). The default value is **0**.|
 
 **Return value**
 

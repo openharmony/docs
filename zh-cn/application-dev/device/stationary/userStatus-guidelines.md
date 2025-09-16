@@ -14,6 +14,8 @@ UserStatus（用户状态感知）模块提供用户感知能力，可以感知�
 ### 场景介绍
 当应用需要获取用户年龄分类时，可以调用userStatus模块，例如判断设备具体操作者是儿童还是成年人。
 
+从API version 20开始，支持获取用户年龄组。
+
 ### 接口说明
 
 | 接口名                                                       | 描述                                   |
@@ -24,6 +26,7 @@ UserStatus（用户状态感知）模块提供用户感知能力，可以感知�
 ### 约束与限制
 
  - 此功能如果设备不支持，将返回801错误码。
+<!--RP1--> <!--RP1End-->
 
 ### 开发步骤
 
@@ -32,14 +35,13 @@ UserStatus（用户状态感知）模块提供用户感知能力，可以感知�
    ```ts
    import { userStatus } from '@kit.MultimodalAwarenessKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { Callback } from '@ohos.base';
    ```
 
 2. 定义回调，函数接受年龄群组检测结果。
 
    ```
    let callback : Callback<userStatus.UserClassification> = (data : userStatus.UserClassification) => {
-     console.info('callback success, ageGroup:' + data.ageGroup + ", confidence:" + data.confidence);
+     console.info('callback succeeded, ageGroup:' + data.ageGroup + ", confidence:" + data.confidence);
    };
    ```
 

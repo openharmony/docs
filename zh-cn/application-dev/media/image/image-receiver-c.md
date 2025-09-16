@@ -48,7 +48,7 @@ static OH_ImageReceiverOptions* options = nullptr;
 static void OnCallback(OH_ImageReceiverNative *receiver)
 {
     // callback回调处理接收到的图像数据。
-    OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer avaliable.");
+    OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer available.");
 
     // 读取 OH_ImageReceiverNative 的下一个图片对象。
     OH_ImageNative* image = nullptr;
@@ -158,7 +158,7 @@ static void ImageReceiverNativeCTest()
         OH_ImageReceiverNative_Release(receiver);
         return;
     }
-    OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest get image receiver surfaceID: %{public}llu.", surfaceID);
+    OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest get image receiver surfaceID: %{public}lu.", surfaceID);
 
     // 读取 OH_ImageReceiverNative 的 size 属性。
     errCode = OH_ImageReceiverNative_GetSize(receiver, &imgSizeRead);

@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## Overview
 
@@ -27,6 +28,7 @@ The **sleep.h** file declares the sleep and yield APIs in C.
 | Name| Description|
 | -- | -- |
 | [FFRT_C_API int ffrt_usleep(uint64_t usec)](#ffrt_usleep) | Sets the fixed sleep time.|
+| [FFRT_C_API void ffrt_yield(void)](#ffrt_yield) | Passes control to other tasks so that they can be executed.|
 
 ## Function Description
 
@@ -54,3 +56,15 @@ Sets the fixed sleep time.
 | Type| Description|
 | -- | -- |
 | FFRT_C_API int | Returns **ffrt_success** if the sleep time is set;<br>          returns **ffrt_error** otherwise.|
+
+### ffrt_yield()
+
+```
+FFRT_C_API void ffrt_yield(void)
+```
+
+**Description**
+
+Passes control to other tasks so that they can be executed.
+
+**Since**: 10

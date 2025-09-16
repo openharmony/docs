@@ -12,7 +12,7 @@
 >
 >  从API version 20开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  该toolbar为组件通用属性，请注意与[Navigtion](ts-basic-components-navigation.md)组件自身的toolbar属性进行区分。
+>  该toolbar为组件通用属性，请注意与[Navigation](ts-basic-components-navigation.md)组件自身的toolbar属性进行区分。
 
 ## toolbar
 
@@ -51,7 +51,7 @@ toolbar(value: CustomBuilder): T
 
 ## 示例
 
-该示例通过为[Navigtion](ts-basic-components-navigation.md)下的[Button](ts-basic-components-button.md)组件绑定toolbar通用属性，为标题栏Navbar分栏开头位置添加包含两个[Button](ts-basic-components-button.md)组件工具栏项。为[NavDestination](ts-basic-components-navdestination.md)下的[Text](ts-basic-components-text.md)组件绑定toolbar通用属性，为标题栏NavDestination分栏末尾位置添加包含一个滑动条组件和一个搜索栏组件工具栏项。
+该示例通过为[Navigation](ts-basic-components-navigation.md)下的[Button](ts-basic-components-button.md)组件绑定toolbar通用属性，为标题栏Navbar分栏开头位置添加包含两个[Button](ts-basic-components-button.md)组件工具栏项。为[NavDestination](ts-basic-components-navdestination.md)下的[Text](ts-basic-components-text.md)组件绑定toolbar通用属性，为标题栏NavDestination分栏末尾位置添加包含一个滑动条组件和一个搜索栏组件工具栏项。
 
 ```ts
 // xxx.ets
@@ -159,3 +159,4 @@ struct SideBarContainerExample {
   }
 }
 ```
+![toolbar.png](figures/toolbar.png)

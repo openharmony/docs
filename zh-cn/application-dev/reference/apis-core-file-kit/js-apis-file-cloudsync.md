@@ -57,6 +57,7 @@ import { cloudSync } from '@kit.CoreFileKit';
 | CLOUD_STORAGE_FULL |  5 | 云端空间不足。 |
 | LOCAL_STORAGE_FULL |  6 | 本地空间不足。 |
 | DEVICE_TEMPERATURE_TOO_HIGH |  7 | 设备温度过高。 |
+| REMOTE_SERVER_ABNORMAL<sup>20+</sup> |  8 | 远端服务不可用。 |
 
 ## SyncProgress<sup>12+</sup>
 
@@ -957,6 +958,53 @@ stopBatch(downloadId: number, needClean?: boolean): Promise&lt;void&gt;
   }
   ```
 
+### cleanFileCache<sup>20+</sup>
+
+cleanFileCache(uri: string): void
+
+同步方法删除文件缓存。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| uri | string | 是   | 待删除缓存文件的URI。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 13600001 | IPC error. Possible causes:1.IPC failed or timed out. 2.Failed to load the service. |
+| 13900002 | No such file or directory. |
+| 13900010 | Try again. |
+| 13900012  | Permission denied by the file system. |
+| 13900020  | Parameter error. Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 14000002  | Invalid URI. |
+| 22400005  | Inner error. Possible causes:1.Failed to access the database or execute the SQL statement. 2.System error, such as a null pointer, insufficient memory or a JS engine exception. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileUri } from '@kit.CoreFileKit';
+
+  let fileCache = new cloudSync.CloudFileCache();
+  let path = "/data/storage/el2/cloud/1.txt";
+  let uri = fileUri.getUriFromPath(path);
+
+  try {
+    fileCache.cleanFileCache(uri);
+  } catch (err) {
+    let error:BusinessError = err as BusinessError;
+    console.error("clean file cache failed with error message: " + err.message + ", error code: " + err.code);
+  } 
+
+  ```
+
 ## DownloadErrorType<sup>11+</sup>
 
 端云下载错误类型，为枚举类型。
@@ -990,10 +1038,10 @@ stopBatch(downloadId: number, needClean?: boolean): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-| 名称  | 类型                                      | 必填 | 说明                   |
-| ----- | ----------------------------------------- | ---- | ---------------------- |
-| uri   | string                                    | 是   | 下载失败文件URI。      |
-| error | [DownloadErrorType](#downloaderrortype11) | 是   | 文件下载失败错误类型。 |
+| 名称  | 类型                                      | 只读 | 可选 | 说明                   |
+| ----- | ----------------------------------------- | ---- | ---- | ---------------------- |
+| uri   | string                                    | 否   | 否   | 下载失败文件URI。      |
+| error | [DownloadErrorType](#downloaderrortype11) | 否   | 否   | 文件下载失败错误类型。 |
 
 
 ## MultiDownloadProgress<sup>20+</sup>
@@ -1001,6 +1049,8 @@ stopBatch(downloadId: number, needClean?: boolean): Promise&lt;void&gt;
 云文件批量缓存的进度信息。
 
 ### 属性
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 | 名称            | 类型                                      | 只读 | 可选 | 说明                                                                                               |
 | --------------- | ----------------------------------------- | ---- | ---- | -------------------------------------------------------------------------------------------------- |
@@ -1012,8 +1062,6 @@ stopBatch(downloadId: number, needClean?: boolean): Promise&lt;void&gt;
 | downloadedSize  | number                                    | 否   | 否   | 已缓存的文件大小，取值范围为 [0, INT64_MAX)，单位：Byte。如果进度异常，返回值为 INT64_MAX。            |
 | totalSize       | number                                    | 否   | 否   | 待缓存的文件总大小，取值范围为 [0, INT64_MAX)，单位为 Byte。如果进度异常，返回值为 INT64_MAX。 |
 | errType         | [DownloadErrorType](#downloaderrortype11) | 否   | 否   | 返回批量缓存任务执行失败时的错误类型。 |
-
-**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
 ### getFailedFiles<sup>20+</sup>
 
@@ -1230,11 +1278,11 @@ unregisterChange(uri: string): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-| 名称     | 类型   | 必填 | 说明 |
-| ---------- | ------ | ---- | ---- |
-| type | [NotifyType](#notifytype12) | 是   | 更改的通知类型。|
-| isDirectory | Array&lt;boolean&gt; | 是   | 指示更改的URI是否为目录。true：是目录。false：非目录。|
-| uris | Array&lt;string&gt; | 是   | 需要更改的URI列表。|
+| 名称     | 类型   | 只读 | 可选 | 说明 |
+| ---------- | ------ | ---- | ---- | ---- |
+| type | [NotifyType](#notifytype12) | 否   | 否   | 更改的通知类型。|
+| isDirectory | Array&lt;boolean&gt; | 否   | 否   | 指示更改的URI是否为目录。true：是目录。false：非目录。|
+| uris | Array&lt;string&gt; | 否   | 否   | 需要更改的URI列表。|
 
 
 ## HistoryVersion<sup>20+</sup>
@@ -1312,7 +1360,11 @@ constructor()
 
 getHistoryVersionList(uri: string, versionNumLimit: number): Promise&lt;Array&lt;HistoryVersion&gt;&gt;
 
-获取历史版本列表，可限制传出列表长度，当云上版本数量小于参数限制时，按照实际版本数量返回历史版本列表。使用Promise异步回调。
+获取历史版本列表，返回内容按修改时间排序，修改时间越早，位置越靠后。使用Promise异步回调。
+
+当云上版本数量小于传入的长度限制时，按照实际版本数量返回历史版本列表。
+
+当云上版本数量大于等于传入的长度限制时，则返回最新的versionNumLimit个版本。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -1321,7 +1373,7 @@ getHistoryVersionList(uri: string, versionNumLimit: number): Promise&lt;Array&lt
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | uri | string | 是   |  文件的URI。 |
-| versionNumLimit | number | 是 | 历史版本列表长度限制。 |
+| versionNumLimit | number | 是 | 历史版本列表长度限制，取值范围[0, 100000]（单位：个）。当输入值大于100000时，按照最大值返回列表。 |
 
 **返回值：**
 
@@ -1617,3 +1669,70 @@ clearFileConflict(uri: string): Promise&lt;void&gt;
     console.error("clean file conflict flag failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
+
+## cloudSync.getCoreFileSyncState<sup>20+</sup>
+
+getCoreFileSyncState(uri: string): FileState
+
+同步方法获取云盘文件同步上行状态。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| uri | string | 是   | 待获取云盘文件同步上行状态的文件URI。 |
+
+**返回值：**
+
+| 类型                  | 说明             |
+| --------------------- | ---------------- |
+| [FileState](#filestate20) | 返回给定云盘文件的同步上行状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 13600001 | IPC error. Possible causes:1.IPC failed or timed out. 2.Failed to load the service. |
+| 13900002  | No such file or directory. |
+| 13900004  | Interrupted system call. |
+| 13900010  | Try again. |
+| 13900012  | Permission denied by the file system. |
+| 13900020  | Parameter error. Possible causes:1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 13900031  | Function not implemented. |
+| 14000002  | Invalid URI. |
+| 22400005  | Inner error. Possible causes:1.Failed to access the database or execute the SQL statement. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileUri } from '@kit.CoreFileKit';
+
+  let path = "/data/storage/el2/cloud/1.txt";
+  let uri = fileUri.getUriFromPath(path);
+  try {
+    let state = cloudSync.getCoreFileSyncState(uri);
+  } catch (err) {
+    let error:BusinessError = err as BusinessError;
+    console.error(`getCoreFileSyncState failed with error ${error.code}, message is ${error.message}`);
+  }
+  ```
+
+## FileState<sup>20+</sup>
+
+端云文件同步状态，为枚举类型。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+| 名称 |  值|  说明 |
+| ----- |  ---- |  ---- |
+| INITIAL_AFTER_DOWNLOAD |  0 | 首次下行后的初始状态。 |
+| UPLOADING |  1 | 上行同步中。 |
+| STOPPED |  2 | 上行已停止。 |
+| TO_BE_UPLOADED |  3 | 正在等待上行。 |
+| UPLOAD_SUCCESS |  4 | 文件已成功上行。 |
+| UPLOAD_FAILURE |  5 | 文件上行失败。 |

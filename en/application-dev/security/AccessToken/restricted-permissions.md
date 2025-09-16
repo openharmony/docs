@@ -741,3 +741,19 @@ Allows an application to detect the network and obtain the TraceRoute informatio
 **Device**: general devices
 
 **Since**: 20
+
+## ohos.permission.HOOK_KEY_EVENT
+
+Allows an application to intercept keyboard input events.
+
+With this permission, the application can integrate its custom key handling process into the system's key handling process prior to the key event being dispatched to the application window.
+
+<!--RP52--><!--RP52End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: manual_settings
+
+**Device**: PC/2in1 | Tablet
+
+**Since**: 21

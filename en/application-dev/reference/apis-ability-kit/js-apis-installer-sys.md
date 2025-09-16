@@ -1,12 +1,18 @@
 # @ohos.bundle.installer (installer) (System API)
-
-The module provides APIs for you to install, uninstall, and recover bundles on devices.
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > The APIs provided by this module are system APIs.
+
+The module provides APIs for you to install, uninstall, and recover bundles on devices.
 
 ## Modules to Import
 
@@ -148,7 +154,7 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 **Required permissions**: ohos.permission.INSTALL_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE<sup>10+</sup>, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE<sup>10+</sup>
 > **NOTE**
 >
-> From API version 10, this API can be called with the permission ohos.permission.INSTALL_ENTERPRISE_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE.
+> Starting from API version 10, this API can be called with the permission ohos.permission.INSTALL_ENTERPRISE_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE.
 >
 > To install an enterprise application, you must have the ohos.permission.INSTALL_ENTERPRISE_BUNDLE permission.
 >
@@ -245,7 +251,7 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 **Required permissions**: ohos.permission.INSTALL_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE<sup>10+</sup>, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE<sup>10+</sup>
 > **NOTE**
 >
-> From API version 10, this API can be called with the permission ohos.permission.INSTALL_ENTERPRISE_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE.
+> Starting from API version 10, this API can be called with the permission ohos.permission.INSTALL_ENTERPRISE_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE.
 >
 > To install an enterprise application, you must have the ohos.permission.INSTALL_ENTERPRISE_BUNDLE permission.
 >
@@ -337,7 +343,7 @@ Installs a bundle. This API uses a promise to return the result.
 **Required permissions**: ohos.permission.INSTALL_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE<sup>10+</sup>, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE<sup>10+</sup>
 > **NOTE**
 >
-> From API version 10, this API can be called with the permission ohos.permission.INSTALL_ENTERPRISE_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE.
+> Starting from API version 10, this API can be called with the permission ohos.permission.INSTALL_ENTERPRISE_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE.
 >
 > To install an enterprise application, you must have the ohos.permission.INSTALL_ENTERPRISE_BUNDLE permission.
 >
@@ -1680,7 +1686,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ----------------------------------- |
 | 201 | Calling interface without permission 'ohos.permission.INSTALL_PLUGIN_BUNDLE'. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 17700001 | The specified bundleName cannot be found. |
+| 17700001 | The specified hostBundleName cannot be found or the bundle is not installed by the specified user. |
 | 17700004 | The userId is invalid. |
 | 17700010 | Failed to install the plugin because the plugin fails to be parsed. |
 | 17700011 | Failed to install the plugin because the plugin signature fails to be verified. |
@@ -1759,8 +1765,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ----------------------------------- |
 | 201 | Calling interface without permission 'ohos.permission.UNINSTALL_PLUGIN_BUNDLE'. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
-| 17700001 | The specified bundleName cannot be found. |
-| 17700004 | The userId is invalid. |
+| 17700001 | The specified bundle name is not found. |
+| 17700004 | The user id is invalid. |
 | 17700092 | Failed to uninstall the plugin because the specified plugin is not found. |
 
 **Example**
@@ -1816,7 +1822,7 @@ Defines the parameters that need to be specified for bundle installation, uninst
 | ------------------------------ | ------------------------------ | ------------------| ------------------ | ------------------ |
 | userId                         | number                         | No                      | Yes | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [queryOsAccountLocalIdFromProcess](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID of the current process. When a driver application is installed, uninstalled, or restored, this parameter is ignored and the operation is executed for all users.|
 | installFlag                    | number                         | No                      | Yes| Installation flag. The value **0x00** means initial installation, **0x01** means overwrite installation, and **0x10** means installation-free. The default value is **0x00**.|
-| isKeepData                     | boolean                        | No                      | Yes| Whether to retain the data directory during bundle uninstall. The default value is **false**. The value **true** means to retain the data directory during bundle uninstall, and **false** means the opposite.|
+| isKeepData                     | boolean                        | No                      | Yes| Whether to retain the data directory during bundle uninstall. The default value is **false**. **true** to retain, **false** otherwise.|
 | hashParams        | Array<[HashParam](#hashparam)> | No| Yes| Hash parameters. By default, no value is passed.        |
 | crowdtestDeadline| number                         | No                      | Yes| End date of crowdtesting. The default value is **-1**, indicating that no end date is specified for crowdtesting.|
 | sharedBundleDirPaths<sup>10+</sup> | Array\<string> | No| Yes|Paths of the shared bundle files. By default, no value is passed.|
@@ -1840,7 +1846,7 @@ Defines the parameters required for the uninstall of a shared bundle.
 
 ## VerifyCodeParam<sup>deprecated<sup>
 
-> Since API version 11, the code signature file of an application is integrated into the installation package, rather than being specified by using this field.
+> Starting from API version 11, the code signature file of an application is integrated into the installation package, rather than being specified by using this field.
 
 Defines the information about the code signature file.
 

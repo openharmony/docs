@@ -1,4 +1,10 @@
 # @ohos.update (Update)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Update-->
+<!--Owner: @RainyDay_005; @huangsiping3-->
+<!--Designer: @zhangzhengxue; @jackd320-->
+<!--Tester: @mamba-ting-->
+<!--Adviser: @zhang_yixin13-->
 
 The **update** module implements update of the entire system, including built-in resources and preset applications, but not third-party applications.
 

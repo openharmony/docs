@@ -395,7 +395,7 @@ Sets whether the window is in privacy mode. A window in privacy mode cannot be c
 
 | Name| Type| Mandatory| Description|
 | ------------- | ------- | -- | ----------------------------------------------------- |
-| isPrivacyMode | boolean | Yes| Whether the window is in privacy mode. The value **true** means that the window is in privacy mode, and **false** means the opposite.|
+| isPrivacyMode | boolean | Yes| Whether the window is in privacy mode. **true** if in privacy mode, **false** otherwise.|
 
 **Return value**
 
@@ -457,7 +457,7 @@ Sets whether the window is in privacy mode. A window in privacy mode cannot be c
 
 | Name| Type| Mandatory| Description|
 | ------------- | ------------------------- | -- | ------------------------------------------------------ |
-| isPrivacyMode | boolean                   | Yes| Whether the window is in privacy mode. The value **true** means that the window is in privacy mode, and **false** means the opposite. |
+| isPrivacyMode | boolean                   | Yes| Whether the window is in privacy mode. **true** if in privacy mode, **false** otherwise. |
 | callback      | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the setting is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**

@@ -2,10 +2,11 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
-Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
+Before developing a camera application, you must [request required permissions](camera-preparation.md).
 
 The camera startup performance is affected by time-consuming operations such as power-on of underlying components and initialization of the process pipeline. To improve the camera startup speed and thumbnail display speed, OpenHarmony introduces some features. The capabilities of these features are related to underlying components. You need to check whether your underlying components support these capabilities before using the capabilities.
 
@@ -25,7 +26,7 @@ After optimization: Stream configuration does not depend on the Surface object. 
 
 ### Available APIs
 
-Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
+Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 | API| Description|
 | ---- | ---- |
@@ -45,18 +46,46 @@ import { camera } from '@kit.CameraKit';
 import { common } from '@kit.AbilityKit';
 
 async function preview(baseContext: common.BaseContext, cameraInfo: camera.CameraDevice, previewProfile: camera.Profile, photoProfile: camera.Profile, previewSurfaceId: string): Promise<void> {
-  const cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
-  const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo);
-  const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
-  const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
-  const session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
-  session.beginConfig();
-  session.addInput(cameraInput);
-  session.addOutput(previewOutput);
-  session.addOutput(photoOutput);
-  await session.commitConfig();
-  await session.start();
-  previewOutput.addDeferredSurface(previewSurfaceId);
+  if (!baseContext || !cameraInfo || !previewProfile || !photoProfile || !previewSurfaceId) {
+    return;
+  }
+  try {
+    const cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
+    if (!cameraManager) {
+      console.error('cameraManager is null');
+      return;
+    }
+    const cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameraInfo);
+    if (!cameraInput) {
+      console.error('cameraInput is null');
+      return;
+    }
+    const previewOutput: camera.PreviewOutput = cameraManager.createDeferredPreviewOutput(previewProfile);
+    if (!previewOutput) {
+      console.error('previewOutput is null');
+      return;
+    }
+    const photoOutput: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
+    if (!photoOutput) {
+      console.error('photoOutput is null');
+      return;
+    }
+    let session = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+    if (!session) {
+      console.error('session is null');
+      return;
+    }
+    const photoSession: camera.PhotoSession = session as camera.PhotoSession;
+    photoSession.beginConfig();
+    photoSession.addInput(cameraInput);
+    photoSession.addOutput(previewOutput);
+    photoSession.addOutput(photoOutput);
+    await photoSession.commitConfig();
+    await photoSession.start();
+    previewOutput.addDeferredSurface(previewSurfaceId);
+  } catch (err) {
+    console.error(`preview call failed. error: ${JSON.stringify(err)}`);
+  }
 }
 ```
 
@@ -70,7 +99,7 @@ In this way, the photo capture process is optimized, which fulfills the processi
 
 ### Available APIs
 
-Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
+Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 | API| Description|
 | ---- | ---- |
@@ -80,7 +109,8 @@ Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) 
 
 > **NOTE**
 >
-> - [isQuickThumbnailSupported](../../reference/apis-camera-kit/js-apis-camera-sys.md#isquickthumbnailsupported) and [enableQuickThumbnail](../../reference/apis-camera-kit/js-apis-camera-sys.md#enablequickthumbnail) must be called after [addOutput](../../reference/apis-camera-kit/js-apis-camera.md#addoutput11) and [addInput](../../reference/apis-camera-kit/js-apis-camera.md#addinput11) but before [commitConfig](../../reference/apis-camera-kit/js-apis-camera.md#commitconfig11).
+> - [isQuickThumbnailSupported](../../reference/apis-camera-kit/js-apis-camera-sys.md#isquickthumbnailsupported) and [enableQuickThumbnail](../../reference/apis-camera-kit/js-apis-camera-sys.md#enablequickthumbnail) must be called after [addOutput](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#addoutput11) and [addInput](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#addinput11) but before [commitConfig](../../reference/apis-camera-kit/arkts-apis-camera-Session.md#commitconfig11)
+.
 > - The **on** API takes effect after [enableQuickThumbnail(true)](../../reference/apis-camera-kit/js-apis-camera-sys.md#enablequickthumbnail) is called.
 
 ### Development Example
@@ -97,31 +127,60 @@ import { image } from '@kit.ImageKit';
 import { common } from '@kit.AbilityKit';
 
 async function enableQuickThumbnail(baseContext: common.BaseContext, photoProfile: camera.Profile): Promise<void> {
-  let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
-  let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-  // Create a PhotoSession instance.
-  let photoSession: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
-  // Start configuration for the session.
-  photoSession.beginConfig();
-  // Add a CameraInput instance to the session.
-  let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
-  cameraInput.open();
-  photoSession.addInput(cameraInput);
-  // Add a PhotoOutput instance to the session.
-  let photoOutPut: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
-  photoSession.addOutput(photoOutPut);
-  let isSupported: boolean = photoOutPut.isQuickThumbnailSupported();
-  if (isSupported) {
-    // Enable the quick thumbnail feature.
-    photoOutPut.enableQuickThumbnail(true);
-    photoOutPut.on('quickThumbnail', (err: BusinessError, pixelMap: image.PixelMap) => {
-      if (err || pixelMap === undefined) {
-        console.error('photoOutPut on thumbnail failed');
-        return;
-      }
-      // Display or save the PixelMap instance.
-      showOrSavePicture(pixelMap);
-    });
+  if (!baseContext || !photoProfile) {
+    console.error('baseContext is null or photoProfile is null');
+    return;
+  }
+  try {
+    let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
+    if (!cameraManager) {
+      console.error('cameraManager is null');
+      return;
+    }
+    let cameras: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
+    if (!cameras || cameras.length == 0) {
+      console.error('cameras is null or []');
+      return;
+    }
+    let cameraInput: camera.CameraInput = cameraManager.createCameraInput(cameras[0]);
+    if (!cameraInput) {
+      console.error('cameraInput is null');
+      return;
+    }
+    await cameraInput.open();
+    let photoOutPut: camera.PhotoOutput = cameraManager.createPhotoOutput(photoProfile);
+    if (!photoOutPut) {
+      console.error('photoOutPut is null');
+      return;
+    }
+    // Create a PhotoSession instance.
+    let session = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+    if (!session) {
+      console.error('session is null');
+      return;
+    }
+    let photoSession: camera.PhotoSession = session as camera.PhotoSession;
+    // Start configuration for the session.
+    photoSession.beginConfig();
+    // Add a CameraInput instance to the session.
+    photoSession.addInput(cameraInput);
+    // Add a PhotoOutput instance to the session.
+    photoSession.addOutput(photoOutPut);
+    let isSupported: boolean = photoOutPut.isQuickThumbnailSupported();
+    if (isSupported) {
+      // Enable the quick thumbnail feature.
+      photoOutPut.enableQuickThumbnail(true);
+      photoOutPut.on('quickThumbnail', (err: BusinessError, pixelMap: image.PixelMap) => {
+        if (err || pixelMap === undefined) {
+          console.error('photoOutPut on thumbnail failed');
+          return;
+        }
+        // Display or save the PixelMap instance.
+        showOrSavePicture(pixelMap);
+      });
+    }
+  } catch (err) {
+    console.error(`enableQuickThumbnail call failed. error: ${JSON.stringify(err)}`);
   }
 }
 
@@ -141,7 +200,7 @@ Generally, the startup of the camera application is triggered when the user touc
 
 ### Available APIs
 
-Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
+Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 | API| Description|
 | ---- | ---- |
@@ -165,7 +224,15 @@ For details about how to obtain the context, see [Obtaining the Context of UIAbi
   import { common } from '@kit.AbilityKit';
 
   function preLaunch(baseContext: common.BaseContext): void {
-    let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
+    let cameraManager: camera.CameraManager | undefined = undefined;
+    try {
+      cameraManager = camera.getCameraManager(baseContext);
+    } catch (error) {
+      console.error(`enableQuickThumbnail call failed. error: ${JSON.stringify(error)}`);
+    }
+    if (!cameraManager) {
+      return;
+    }
     try {
       cameraManager.prelaunch();
     } catch (error) {
@@ -187,7 +254,15 @@ For details about how to obtain the context, see [Obtaining the Context of UIAbi
   import { common } from '@kit.AbilityKit';
 
   function setPreLaunchConfig(baseContext: common.BaseContext): void {
-    let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
+    let cameraManager: camera.CameraManager | undefined = undefined;
+    try {
+      cameraManager = camera.getCameraManager(baseContext);
+    } catch (error) {
+      console.error(`enableQuickThumbnail call failed. error: ${JSON.stringify(error)}`);
+    }
+    if (!cameraManager) {
+      return;
+    }
     let cameras: Array<camera.CameraDevice> = [];
     try {
       cameras = cameraManager.getSupportedCameras();
@@ -195,7 +270,7 @@ For details about how to obtain the context, see [Obtaining the Context of UIAbi
       let err = error as BusinessError;
       console.error(`getSupportedCameras catch error: Code: ${err.code}, message: ${err.message}`);
     }
-    if (cameras.length <= 0) {
+    if (!cameras || cameras.length == 0) {
       return;
     }
     if(cameraManager.isPrelaunchSupported(cameras[0])) {

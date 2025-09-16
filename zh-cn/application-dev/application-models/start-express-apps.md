@@ -1,5 +1,12 @@
 # 拉起快递类应用（startAbilityByType）
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: AGC-->
+<!--Owner: @liusu23-->
+<!--Designer: @xukeke-->
+<!--Tester: @lusq-->
+<!--Adviser: @huipeizi-->
+
 本章节介绍如何拉起快递类应用扩展面板。
 
 例如，在消息类App中，用户收到快递单号，应用能够识别快递单号信息并提供快递查询的链接。用户点击链接后，应用将通过调用[UIAbilityContext.startAbilityByType](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybytype11)或[UIExtensionContentSession.startAbilityByType](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#startabilitybytype11)接口，拉起快递类应用的扩展面板。面板上将展示设备上所有支持快递查询的应用，供用户选择并跳转至所需应用。
@@ -43,10 +50,10 @@ startAbilityByType接口中type字段为express，支持查询快递意图，对
                             };
                             let abilityStartCallback: common.AbilityStartCallback = {
                                 onError: (code: number, name: string, message: string) => {
-                                    console.log(`onError code ${code} name: ${name} message: ${message}`);
+                                    console.error(`onError code ${code} name: ${name} message: ${message}`);
                                 },
                                 onResult: (result) => {
-                                    console.log(`onResult result: ${JSON.stringify(result)}`);
+                                    console.info(`onResult result: ${JSON.stringify(result)}`);
                                 }
                             }
 
@@ -55,7 +62,7 @@ startAbilityByType接口中type字段为express，支持查询快递意图，对
                                     if (err) {
                                         console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
                                     } else {
-                                        console.log(`success`);
+                                        console.info(`success`);
                                     }
                                 });
                         });

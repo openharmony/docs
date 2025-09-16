@@ -22,6 +22,8 @@
 
 Blank(min?: number&nbsp;|&nbsp;string)
 
+创建空白填充组件。
+
 从API version 10开始：  
  - Blank在父容器[Row](ts-container-row.md)、[Column](ts-container-column.md)、[Flex](ts-container-flex.md)主轴方向上未设置大小时会自动拉伸、压缩，设置了大小或容器自适应子节点大小时不会自动拉伸、压缩。
  - Blank设置主轴方向大小（size）与min时约束关系为max(min, size)。  
@@ -47,7 +49,7 @@ Blank(min?: number&nbsp;|&nbsp;string)
 
 color(value: ResourceColor)
 
-设置空白填充的填充颜色。
+设置空白填充的填充颜色，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

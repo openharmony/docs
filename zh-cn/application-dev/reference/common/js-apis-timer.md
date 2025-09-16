@@ -30,7 +30,7 @@ setTimeout(handler: Function | string, delay?: number, ...arguments: any[]): num
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | handler | Function \| string | 是 | 类型为Function表示定时器到期后执行函数；<br>类型为string则通过Error方式打印string中内容，不进行其他处理。 |
-| delay | number | 否 | 延迟的毫秒数，函数的调用会在该延迟之后发生。建议传入整数，若传入小数，会被向下取整。<br>如果省略该参数，delay取默认值0。<br>**注意**：<br>1. 无论是哪种情况，实际延迟可能会比预期长一些。<br>2. 如果值小于1，会被默认取0。<br>3. delay值受系统限制，超出2^32 - 1时会溢出，delay值为0。|
+| delay | number | 否 | 延迟的毫秒数，函数的调用会在该延迟之后发生。建议传入整数，若传入小数，会被向下取整。<br>如果省略该参数，delay取默认值0。<br>**注意**：<br>1. 该计时器非精准计时器，实际延迟可能会与预期延迟存在误差。<br>2. 如果值小于1，会被默认取0。<br>3. delay值受系统限制，超出2^32 - 1时会溢出，delay值为0。|
 | ...arguments | any[] | 否 | 附加参数，仅当handler类型为Function时生效，作为参数传递给handler。<br/>arguments参数数量少于handler函数参数数量时，未被arguments覆盖的参数会被设为undefined。<br/>arguments参数数量多于handler函数参数数量时，多余的arguments参数会被忽略，但可通过handler函数内部的arguments对象访问。|
 
 **返回值：**
@@ -127,7 +127,7 @@ setInterval(handler: Function | string, delay: number, ...arguments: any[]): num
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | handler | Function \| string | 是 | 类型为Function表示定时器到期后执行函数；<br>类型为string则通过Error方式打印string中内容，不进行其他处理。 |
-| delay | number | 否 | 延迟的毫秒数，函数的调用会在该延迟之后发生。建议传入整数，若传入小数，会被向下取整。<br>如果省略该参数，delay取默认值0。<br>**注意**：<br>1. 无论是哪种情况，实际延迟可能会比预期长一些。<br>2. 如果值小于1，将被默认设置为0。<br>3. delay值受系统限制，超出2^32 - 1时会溢出，delay值为0。|
+| delay | number | 否 | 延迟的毫秒数，函数的调用会在该延迟之后发生。建议传入整数，若传入小数，会被向下取整。<br>如果省略该参数，delay取默认值0。<br>**注意**：<br>1. 该计时器非精准计时器，实际延迟可能会与预期延迟存在误差。<br>2. 如果值小于1，将被默认设置为0。<br>3. delay值受系统限制，超出2^32 - 1时会溢出，delay值为0。|
 | ...arguments | any[] | 否 | 附加参数，仅当handler类型为Function时生效，作为参数传递给handler。<br/>arguments参数数量少于handler函数参数数量时，未被arguments覆盖的参数会被设为undefined。<br/>arguments参数数量多于handler函数参数数量时，多余的arguments参数会被忽略，但可通过handler函数内部的arguments对象访问。|
 
 **返回值：**

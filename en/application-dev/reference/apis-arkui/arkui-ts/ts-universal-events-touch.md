@@ -92,8 +92,8 @@ Obtains all historical points of the current frame. The touch event frequency pe
 | width<sup>15+</sup> | number | Width of the area pressed by the finger.<br>Unit: vp.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 | height<sup>15+</sup> | number | Height of the area pressed by the finger.<br>Unit: vp.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 | hand<sup>15+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand15) | Whether the event was triggered by a left-hand or right-hand tap.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
-| globalDisplayX<sup>20+</sup> | number | X coordinate of the touch point relative to the upper left corner of the global display.<br>Unit: vp.<br>Value range: [0, +¡Þ).<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
-| globalDisplayY<sup>20+</sup> | number | Y coordinate of the touch point relative to the upper left corner of the global display.<br>Unit: vp.<br>Value range: [0, +¡Þ).<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+| globalDisplayX<sup>20+</sup> | number | X coordinate of the touch point relative to the upper left corner of the global display.<br>Unit: vp.<br>Value range: [0, +âˆž).<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+| globalDisplayY<sup>20+</sup> | number | Y coordinate of the touch point relative to the upper left corner of the global display.<br>Unit: vp.<br>Value range: [0, +âˆž).<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 
 ## HistoricalPoint<sup>10+</sup>
 

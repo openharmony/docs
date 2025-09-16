@@ -1,5 +1,12 @@
 # Certificate Error Codes
 
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -32,6 +39,20 @@ An unexpected error occurs.
 **Solution**
 
 Check whether the system is running properly.
+
+## 19020003 Parameter Check Failure
+
+**Error Message**
+
+Indicates that parameter check failed.
+
+**Possible Causes**
+
+The input value is out of range.
+
+**Solution**
+
+Check whether the input parameters are correct.
 
 ## 19030001 Crypto Operation Error
 

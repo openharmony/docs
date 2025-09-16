@@ -59,6 +59,8 @@ canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boo
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testCanPreconfig(photoSession: camera.PhotoSession, preconfigType: camera.PreconfigType,
   preconfigRatio: camera.PreconfigRatio): void {
   try {
@@ -99,11 +101,13 @@ preconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function testPreconfig(photoSession: camera.PhotoSession, preconfigType: camera.PreconfigType,
   preconfigRatio: camera.PreconfigRatio): void {
   try {
     photoSession.preconfig(preconfigType, preconfigRatio);
-    console.info(`preconfig ${preconfigType} ${preconfigRatio} success`);
+    console.info(`preconfig success preconfigType: ${preconfigType}, preconfigRatio: ${preconfigRatio}`);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`The preconfig call failed. error code: ${err.code}`);

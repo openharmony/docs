@@ -1,5 +1,11 @@
 # UIAbility Lifecycle
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @altay; @Luobniz21-->
+<!--Designer: @altay-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 ## Overview
 
@@ -9,14 +15,23 @@ The following figure illustrates the UIAbility lifecycle.
 
 ![UIAbility-Lifecycle](figures/UIAbility-Life-Cycle-WindowStage.png)
 
-The following uses the cold start of a UIAbility instance as an example.
+The following describes the UIAbility launch scenarios and lifecycle callback processes.
 
-1. When a user starts a UIAbility, the system triggers the **onCreate()** callback to notify the application that the UIAbility is starting. Then, the system triggers the **onForeground()** callback to switch the UIAbility to the foreground for user interaction.
- 
-2. When the user switches to another application, the system triggers the **onBackground()** callback to switch the UIAbility to the background.
- 
-3. When the user exits the UIAbility, the system triggers the **onDestroy()** callback to notify the application that the UIAbility is to be destroyed.
+- The UIAbility is launched to the foreground. The corresponding process flow is shown in the diagram above.
 
+  1. When a user launches a UIAbility, the system sequentially triggers the **onCreate()**, **onWindowStageCreate()**, and **onForeground()** lifecycle callbacks.
+
+  2. When the user switches to another application (moving the current UIAbility to the background), the system triggers the **onBackground()** lifecycle callback.
+
+  3. When the user brings the UIAbility back to the foreground, the system sequentially triggers the **onNewWant()** and **onForeground()** lifecycle callbacks.
+
+- The UIAbility is launched to the background. The corresponding process flow is shown in the diagram below.
+
+  1. When a user starts a UIAbility in the background by calling [UIAbilityContext.startAbilityByCall()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall), the system sequentially triggers the **onCreate()** and **onBackground()** lifecycle callbacks (the **onWindowStageCreate()** lifecycle callback is not executed).
+
+  2. When the user brings the UIAbility to the foreground, the system sequentially triggers the **onNewWant()**, **onWindowStageCreate()**, and **onForeground()** lifecycle callbacks.
+
+  ![Starting UIAbility in background](figures/UIAbility-Life-Cycle-StartAbilityToTheBackground.png)
 
 ## Lifecycle Callbacks
 
@@ -49,7 +64,7 @@ In the **onWindowStageCreate()** callback, use [loadContent()](../reference/apis
 > **NOTE**
 > 
 > - The timing of the [WindowStage events](../reference/apis-arkui/arkts-apis-window-e.md#windowstageeventtype9) may vary according to the development scenario. For details about how to use WindowStage, see [Window Development](../windowmanager/application-window-stage.md).
-> - The UIAbility lifecycle varies with the product type when the main window of an application is switched from the foreground to the background. For details, see [Main Window Lifecycle in the Stage Model](../windowmanager/window-overview.md#main-window-lifecycle-in-the-stage-model).
+> - The UIAbility lifecycle varies with the product type when the main window of an application is switched from the foreground to the background. For details, see [Differentiated Lifecycle Behaviors Across Different Devices](../windowmanager/window-overview.md#differentiated-lifecycle-behaviors-across-different-devices).
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -105,7 +120,7 @@ export default class EntryAbility extends UIAbility {
 
 The system triggers the [onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onforeground) callback when the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance is switching to the foreground and is about to become visible. Within this callback, you can apply for resources required by the system or re-apply for resources that have been released in the **onBackground()** callback. After this callback, the UIAbility instance is fully in the foreground and becomes interactive. The UIAbility instance remains in this state until it is interrupted by some actions (for example, the screen is turned off or the user switches to another UIAbility).
 
-For example, there is an application that requires location access and has obtained the location permission from the user. Before the UI is displayed, you can enable the location service in the **onForeground()** callback to obtain the location information.
+For example, the application has obtained the location permission. Before the UI is displayed, you can enable the location service in the **onForeground()** callback to obtain the location information.
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -123,7 +138,7 @@ export default class EntryAbility extends UIAbility {
 
 ### onBackground()
 
-The system triggers the [onBackground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onbackground) callback once the UI of the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) becomes completely invisible. After the callback, the UIAbility instance switches to the background state. Within this callback, you can release useless resources while the UI is invisible, for example, stopping the location service, to save system resources.
+Once the UI of the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) becomes completely invisible, the system triggers the [onBackground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onbackground) callback and switches the UIAbility instance to the background state. Within this callback, you can release useless resources while the UI is invisible, for example, stopping the location service, to save system resources.
 
 **onBackground()** is executed quickly. Therefore, do not perform time-consuming operations, such as saving user data or executing database transactions, within this callback.
 
@@ -200,8 +215,8 @@ export default class EntryAbility extends UIAbility {
 
 The system triggers the [onDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#ondestroy) callback before the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance is destroyed. This callback is the last lifecycle callback received by the UIAbility. Within this callback, you can release system resources and save data.
 
-The UIAbility instance is destroyed when [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateself) is called and the **onDestroy()** callback is invoked.
-<!--RP1-->The UIAbility instance is also destroyed when the user closes the instance in the recent task list and the **onDestroy()** callback is invoked.<!--RP1End-->
+For example, when you call [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#terminateself) to instruct the system to stop the current UIAbility instance, the system triggers the **onDestroy()** callback.
+<!--RP1-->Similarly, when a user swipes up on the recent tasks list to close a UIAbility instance, the system triggers the **onDestroy()** callback.<!--RP1End-->
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -214,7 +229,6 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-
 
 ### onNewWant()
 

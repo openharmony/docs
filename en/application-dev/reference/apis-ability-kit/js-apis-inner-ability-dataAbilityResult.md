@@ -1,6 +1,12 @@
 # DataAbilityResult
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @xialiangwei-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-The DataAbilityResult module defines the operation result on DataAbilities. When you call [executeBatch](js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperexecutebatch) to operate the database, the operation result is returned through the **DataAbilityResult** object.
+The module defines the operation result on DataAbilities. When you call [executeBatch](js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperexecutebatch) to operate the database, the operation result is returned through the DataAbilityResult object.
 
 > **NOTE**
 > 

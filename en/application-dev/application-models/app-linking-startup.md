@@ -38,7 +38,7 @@ Configure the [module.json5 file](../quick-start/module-configuration-file.md) o
 
 > **NOTE**
 >
-> By default, the **skills** field contains a **skill** object, which is used to identify the application entry. Application redirection links should not be configured in this object. Instead, separate **skill** objects should be used. If there are multiple redirection scenarios, create different **skill** objects under **skills**. Otherwise, the configuration does not take effect.
+> By default, the **skills** field contains a skill object, which is used to identify the application entry. Application redirection links should not be configured in this object. Instead, separate skill objects should be used. If there are multiple redirection scenarios, create different skill objects under **skills**. Otherwise, the configuration does not take effect.
 
 
 For example, the configuration below declares that the application is associated with the domain name www.example.com.

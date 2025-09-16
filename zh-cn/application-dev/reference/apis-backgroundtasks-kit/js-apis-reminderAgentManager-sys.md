@@ -1,5 +1,12 @@
 # @ohos.reminderAgentManager (后台代理提醒)(系统接口)
 
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: Resourceschedule-->
+<!--Owner: @cheng-shichang-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
+
 本模块提供后台代理提醒的能力，即当应用被冻结或应用退出时，计时和提醒的功能将被系统服务代理。在开发过程中，开发者可以调用本模块接口创建定时提醒，提醒类型支持倒计时、日历、闹钟三种。
 
 > **说明：**
@@ -31,10 +38,10 @@ import reminderAgentManager from '@ohos.reminderAgentManager';
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| wantAgent<sup>10+</sup> | [WantAgent](./js-apis-reminderAgentManager.md#wantagent) | 否 | 点击按钮跳转的ability信息。 |
-| dataShareUpdate<sup>11+</sup> | [DataShareUpdate](#datashareupdate11) | 否 | 点击按钮将更新应用数据库。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| wantAgent<sup>10+</sup> | [WantAgent](./js-apis-reminderAgentManager.md#wantagent) | 否 | 是 | 点击按钮跳转的ability信息。 |
+| dataShareUpdate<sup>11+</sup> | [DataShareUpdate](#datashareupdate11) | 否 | 是 | 点击按钮将更新应用数据库。 |
 
 ## DataShareUpdate<sup>11+</sup>
 
@@ -44,11 +51,11 @@ import reminderAgentManager from '@ohos.reminderAgentManager';
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| uri | string | 是 | 数据使用的URI，是跨应用数据访问的唯一标识。 |
-| equalTo | Record<string, number \| string \| boolean> | 是 | 指示筛选条件，当前仅支持通过等于筛选。|
-| value | [ValueBucket](../apis-arkdata/js-apis-data-valuesBucket.md#valuesbucket) | 是 | 指示要更新的数据。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| uri | string | 否 | 否 | 数据使用的URI，是跨应用数据访问的唯一标识。 |
+| equalTo | Record<string, number \| string \| boolean> | 否 | 否 | 指示筛选条件，当前仅支持通过等于筛选。|
+| value | [ValueBucket](../apis-arkdata/js-apis-data-valuesBucket.md#valuesbucket) | 否 | 否 | 指示要更新的数据。 |
 
 ## ReminderRequestCalendar
 
@@ -56,6 +63,6 @@ import reminderAgentManager from '@ohos.reminderAgentManager';
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
-| 名称                         | 类型                                                     | 必填 | 说明                                               |
-| ---------------------------- | -------------------------------------------------------- | ---- | -------------------------------------------------- |
-| rruleWantAgent<sup>12+</sup> | [WantAgent](./js-apis-reminderAgentManager.md#wantagent) | 否   | 自定义重复日程，指明需要拉起的 Service Extension。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| rruleWantAgent<sup>12+</sup> | [WantAgent](./js-apis-reminderAgentManager.md#wantagent) | 否 | 是 | 自定义重复日程，指明需要拉起的 Service Extension。 |

@@ -27,7 +27,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 | \#define OH_LOG_WARN(type, ...) ((void)OH_LOG_Print((type), LOG_WARN, LOG_DOMAIN, LOG_TAG, **VA_ARGS**)) | WARN级别写日志，宏封装接口。 |
 | \#define OH_LOG_ERROR(type, ...) ((void)OH_LOG_Print((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, **VA_ARGS**)) | ERROR级别写日志，宏封装接口。 |
 | \#define OH_LOG_FATAL(type, ...) ((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, **VA_ARGS**)) | FATAL级别写日志，宏封装接口。 |
-| void OH_LOG_SetCallback(LogCallback callback) | 注册函数，注册后可通过LogCallback回调获取本进程所有的hilog日志。 |
+| void OH_LOG_SetCallback(LogCallback callback) | 注册函数，注册后可通过LogCallback回调获取本进程的hilog日志。若OH_LOG_IsLoggable接口返回true，则回调函数可获取到该条日志。 |
 | void OH_LOG_SetMinLogLevel(LogLevel level) | 设置应用日志打印的最低日志级别，用于拦截低级别日志打印。<br/>**说明**：从API version 15开始，支持该接口。<br/>**注意**：如果设置的日志级别低于[全局日志级别](hilog.md#查看和设置日志级别)，设置不生效。 |
 
 ### 参数解析
@@ -52,6 +52,8 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
   | s | 支持打印char\*类型。 | "123" |
 
   格式字符串中可以设置多个参数，例如格式字符串为“%s World”，“%s”为参数类型为字符串的变参标识，具体取值在args中定义。
+
+  debug应用无隐私管控机制，使用上述任意隐私标识符打印日志，都可明文显示参数。
 
 - args：可以为0个或多个参数，是格式字符串中参数类型对应的参数列表。参数的数量、类型必须与格式字符串中的标识一一对应。
 
@@ -114,7 +116,9 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 
 > **注意：**
 >
-> 在回调函数中禁止递归调用hilog接口，否则会导致循环调用问题。
+> 1.在回调函数中禁止递归调用hilog接口，否则会导致循环调用问题。
+> 
+> 2.一个进程只需注册一次回调函数，若多次注册，以最后一次注册的回调函数为准。
 
 ```c++
 #include "hilog/log.h"

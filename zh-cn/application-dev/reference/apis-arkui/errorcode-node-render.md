@@ -14,7 +14,7 @@
 
 **错误信息**
 
-The FrameNode is not custom node.
+The node type is not custom node.
 
 **错误描述**
 
@@ -32,7 +32,7 @@ The FrameNode is not custom node.
 
 **错误信息**
 
-The FrameNode has children.
+Node already has children.
 
 **错误描述**
 
@@ -50,7 +50,7 @@ The FrameNode has children.
 
 **错误信息**
 
-The RenderNode has a parent.
+RenderNode parent is existed.
 
 **错误描述**
 
@@ -68,7 +68,7 @@ The RenderNode has a parent.
 
 **错误信息**
 
-The render child node is not exist.
+RenderNode child is not exist.
 
 **错误描述**
 
@@ -86,7 +86,7 @@ The render child node is not exist.
 
 **错误信息**
 
-The param is out of range.
+Param is out of range.
 
 **错误描述**
 

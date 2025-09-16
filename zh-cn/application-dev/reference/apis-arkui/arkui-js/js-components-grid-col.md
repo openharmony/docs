@@ -67,7 +67,7 @@ grid-col是栅格布局容器grid-row的子容器组件。
 
 
 ## 示例
-
+<!--code_no_check-->
 ```html
 <!-- index.hml -->
 <div class="container">

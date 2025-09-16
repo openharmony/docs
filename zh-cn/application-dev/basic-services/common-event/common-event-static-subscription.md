@@ -4,7 +4,7 @@
 <!--Owner: @michael_woo888-->
 <!--Designer: @dongqingran; @wulong158-->
 <!--Tester: @wanghong1997-->
-<!--Adviser: @huipeizi-->
+<!--Adviser: @fang-jinxu-->
 
 ## 场景介绍
 
@@ -137,7 +137,7 @@
    | **属性名称** | **含义**                                                     | **数据类型** | **是否可缺省**   |
    | ------------ | ------------------------------------------------------------ | ------------ | ---------------- |
    | event        | 标识静态订阅事件需要过滤的事件名，与事件列表进行匹配，否则配置无效。 | 字符串       | 该标签不可缺省。 |
-   | conditions   | 标识当前事件的过滤条件，从[发布者CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md#commoneventpublishdata)中进行过滤。 | 对象         | 该标签不可缺省。 |
+   | conditions   | 标识当前事件的过滤条件，从[发布者CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md)中进行过滤。 | 对象         | 该标签不可缺省。 |
 
    conditions标签标识静态订阅过滤事件需要的条件配置，标签值为对象类型，包含code、data、parameters三个子标签。
 

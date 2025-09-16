@@ -1,5 +1,10 @@
 # Functions
-
+<!--Kit: Drm Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qin_wei_jie-->
+<!--Designer: @chris2981-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -24,7 +29,7 @@ Creates a MediaKeySystem instance.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | Yes  | DRM solution name.                  |
+| name  | string     | Yes  | DRM solution name, for example, **"com.clearplay.drm"**.                  |
 
 **Return value**
 
@@ -56,7 +61,7 @@ try {
 }
 ```
 
-## drm.isMediaKeySystemSupported
+## drm.isMediaKeySystemSupported 
 
 isMediaKeySystemSupported(name: string): boolean
 
@@ -70,7 +75,7 @@ Checks whether the device supports the specified DRM solution.
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | Yes  | DRM solution name.                  |
+| name  | string     | Yes  | DRM solution name, for example, **"com.clearplay.drm"**.                    |
 
 **Return value**
 
@@ -115,10 +120,10 @@ Checks whether the device supports the combination of the DRM solution and MIME 
 
 **Parameters**
 
-| Name    | Type                                            | Mandatory| Description                          |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | Yes  | DRM solution name.                  |
-| mimeType  | string     | Yes  | MIME type, which is determined by the DRM solution.                  |
+| Name    | Type                                            | Mandatory| Description                                                                                                         |
+| -------- | ----------------------------------------------- | ---- |-------------------------------------------------------------------------------------------------------------|
+| name  | string     | Yes  | DRM solution name. You are advised to call [isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported) to check whether the solution name is supported.|
+| mimeType  | string     | Yes  | MIME type. The supported MIME types depend on the DRM solution. Example types are video/avc and video/hev.                                                              |
 
 **Return value**
 
@@ -163,11 +168,11 @@ Checks whether the device supports the combination of the DRM solution, MIME typ
 
 **Parameters**
 
-| Name    | Type                                            | Mandatory| Description                          |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | Yes  | DRM solution name.                  |
-| mimeType  | string     | Yes  | MIME type, which is determined by the DRM solution.                  |
-| level  | [ContentProtectionLevel](arkts-apis-drm-e.md#contentprotectionlevel)     | Yes  | Content protection level.                  |
+| Name    | Type                                            | Mandatory| Description                                                                                                                           |
+| -------- | ----------------------------------------------- | ---- |-------------------------------------------------------------------------------------------------------------------------------|
+| name  | string     | Yes  | DRM solution name. You are advised to call [isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported) to check whether the solution name is supported.         |
+| mimeType  | string     | Yes  | MIME type. The supported MIME types depend on the DRM solution. You are advised to call [isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported-1) to check whether the MIME type is supported.|
+| level  | [ContentProtectionLevel](arkts-apis-drm-e.md#contentprotectionlevel)     | Yes  | Content protection level.                                                                                                                      |
 
 **Return value**
 
@@ -214,7 +219,7 @@ Obtains the UUID of the DRM content protection system supported by the specified
 
 | Name    | Type                                            | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | Yes  | DRM solution name.                  |
+| name  | string     | Yes  | DRM solution name. You can check the supported solution names by calling [isMediaKeySystemSupported](arkts-apis-drm-f.md#drmismediakeysystemsupported).                  |
 
 **Return value**
 

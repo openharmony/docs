@@ -1,4 +1,4 @@
-# @ohos.app.ability.AtomicServiceOptions (AtomicServiceOptions)
+# @ohos.app.ability.AtomicServiceOptions (openAtomicService可选参数)
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @littlejerry1; @wendel; @Luobniz21-->
@@ -21,6 +21,8 @@ import { AtomicServiceOptions } from '@kit.AbilityKit';
 ```
 
 ## AtomicServiceOptions
+
+### 属性
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 

@@ -13,7 +13,7 @@ XComponent组件作为一种渲染组件，可用于EGL/OpenGLES和媒体数据�
 XComponent持有一个Surface，开发者能通过调用[NativeWindow](../graphics/native-window-guidelines.md)等接口，申请并提交Buffer至图形队列，以此方式将自绘制内容传送至该Surface。XComponent负责将此Surface整合进UI界面，其中展示的内容正是开发者传送的自绘制内容。Surface的默认位置与大小与XComponent组件一致，开发者可利用[setXComponentSurfaceRect](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#setxcomponentsurfacerect12)接口自定义调整Surface的位置和大小。XComponent组件负责创建Surface，并通过回调将Surface的相关信息告知应用。应用可以通过一系列接口设定Surface的属性。该组件本身不对所绘制的内容进行感知，亦不提供渲染绘制的接口。
 
 目前XComponent组件主要有三个应用场景：
-1. [使用XComponentController管理Surface生命周期场景](#使用xcomponentcontroller管理surface生命周期)，该场景在ArkTS侧获取SurfaceId，生命周期回调、触摸、鼠标、按键等事件回调等均在ArkTS侧触发；
+1. [使用XComponentController管理Surface生命周期场景](#使用xcomponentcontroller管理surface生命周期)，该场景在ArkTS侧获取SurfaceId，生命周期回调、触摸、鼠标、按键等事件回调等均在ArkTS侧触发。
 2. [使用OH_ArkUI_SurfaceHolder管理Surface生命周期场景](#使用oh_arkui_surfaceholder管理surface生命周期)，该场景根据XComponent组件对应的ArkUI_NodeHandle中创建OH_ArkUI_SurfaceHolder，生命周期回调、触摸等事件回调、无障碍和可变帧率回调等均在Native侧触发。
 3. [使用NativeXComponent管理Surface生命周期场景](#使用nativexcomponent管理surface生命周期)，该场景在native层获取Native XComponent实例，在Native侧注册XComponent的生命周期回调，以及触摸、鼠标、按键等事件回调。
 
@@ -298,6 +298,8 @@ Native侧
         if (windowMap_.find(surfaceId) == windowMap_.end()) {
             OH_NativeWindow_CreateNativeWindowFromSurfaceId(surfaceId, &nativeWindow);
             windowMap_[surfaceId] = nativeWindow;
+        } else {
+            return nullptr;
         }
         if (pluginRenderMap_.find(surfaceId) == pluginRenderMap_.end()) {
             pluginRender = new PluginRender(surfaceId);

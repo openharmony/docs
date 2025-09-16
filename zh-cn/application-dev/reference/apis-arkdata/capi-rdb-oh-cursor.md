@@ -224,7 +224,7 @@ int (*getSize)(OH_Cursor *cursor, int32_t columnIndex, size_t *size)
 | ------------------- | ------------------------------------------------------------ |
 | OH_Cursor *cursor   | 表示指向OH_Cursor实例的指针。                                |
 | int32_t columnIndex | 表示结果集中指定列的索引，索引值从0开始。                    |
-| int32_t columnIndex | 该参数是输出参数，BLOB或者TEXT数据所需内存大小会写入该变量。 |
+| size_t *size        | 该参数是输出参数，BLOB或者TEXT数据所需内存大小会写入该变量。 |
 
 **返回：**
 

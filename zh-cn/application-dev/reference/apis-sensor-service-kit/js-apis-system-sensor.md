@@ -510,9 +510,9 @@ Sensor.unsubscribeDeviceOrientation();
 
 针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效；针对同一个方法内，不支持多次调用。
 
-**需要权限**：SystemCapability.Sensors.Sensor.Lite
+**系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-**系统能力**：ohos.permission.GYROSCOPE，该权限为系统权限
+**需要权限**：ohos.permission.GYROSCOPE，该权限为系统权限
 
 **参数**：
 
@@ -562,9 +562,9 @@ Sensor.unsubscribeGyroscope();
 
 用于监听加速度传感器数据的回调函数的执行频率。
 
-**需要权限**：ohos.permission.ACCELEROMETER
-
 **系统能力**：SystemCapability.Sensors.Sensor.Lite
+
+**需要权限**：ohos.permission.ACCELEROMETER
 
 | 名称     | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -576,9 +576,9 @@ Sensor.unsubscribeGyroscope();
 
 感应到加速度数据变化后的回调函数。  
 
-**需要权限**：ohos.permission.ACCELEROMETER
-
 **系统能力**：SystemCapability.Sensors.Sensor.Lite
+
+**需要权限**：ohos.permission.ACCELEROMETER
 
 | 名称 | 类型   | 必填 | 说明          |
 | ---- | ------ | ---- | ------------- |

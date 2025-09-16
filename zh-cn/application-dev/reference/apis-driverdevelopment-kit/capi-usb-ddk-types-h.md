@@ -62,12 +62,14 @@ USB DDK 错误码定义。
 | 枚举项 | 描述 |
 | -- | -- |
 | USB_DDK_SUCCESS = 0 | 操作成功。 |
-| USB_DDK_FAILED = -1 | 操作失败。 |
-| USB_DDK_INVALID_PARAMETER = -2 | 非法参数. |
-| USB_DDK_MEMORY_ERROR = -3 | 内存相关的错误，包括：内存不足、内存数据拷贝失败、内存申请失败等。 |
-| USB_DDK_INVALID_OPERATION = -4 | 非法操作。 |
-| USB_DDK_NULL_PTR = -5 | 空指针异常。 |
-| USB_DDK_DEVICE_BUSY = -6 | 设备忙。 |
-| USB_DDK_TIMEOUT = -7 | 传输超时。 |
+| USB_DDK_FAILED = -1 | 操作失败。 <br> **废弃版本：** 16 |
+| USB_DDK_NO_PERM = 201 | 没有权限。<br> **起始版本：** 14 |
+| USB_DDK_INVALID_PARAMETER = 401 | 非法参数，在API version 16之前值为-2。 |
+| USB_DDK_MEMORY_ERROR = 27400001 | 内存相关的错误，包括：内存不足、内存数据拷贝失败、内存申请失败等，在API version 16之前值为-3。 |
+| USB_DDK_INVALID_OPERATION = 27400002 | 非法操作，在API version 16之前值为-4。 |
+| USB_DDK_NULL_PTR = -5 | 空指针异常。 <br> **废弃版本：** 16 |
+| USB_DDK_DEVICE_BUSY = -6 | 设备忙。 <br> **废弃版本：** 16 |
+| USB_DDK_IO_FAILED = 27400003 | 设备I/O操作失败。<br> **起始版本：** 14 |
+| USB_DDK_TIMEOUT = 27400004 | 传输超时，在API version 16之前值为-7。 |
 
 

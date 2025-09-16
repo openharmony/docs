@@ -16,9 +16,9 @@ WebSocket是一种网络通信协议，它允许客户端和服务器之间建�
 
 服务端：（目前服务端仅支持智慧屏使用）使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocketServer()](../reference/apis-network-kit/js-apis-webSocket.md#websocketcreatewebsocketserver19)方法创建[WebSocketServer](../reference/apis-network-kit/js-apis-webSocket.md#websocketserver19)对象，然后通过[start()](../reference/apis-network-kit/js-apis-webSocket.md#start19)方法启动服务器，监听客户端申请建链的消息。当连接成功后，服务端会收到[connect](../reference/apis-network-kit/js-apis-webSocket.md#onconnect19)事件的回调，之后服务端可以通过[send()](../reference/apis-network-kit/js-apis-webSocket.md#send19)方法与客户端进行通信，可以通过[listAllConnections()](../reference/apis-network-kit/js-apis-webSocket.md#listallconnections19)方法列举出当前与服务端建链的所有客户端信息。当客户端给服务端发消息时，服务端会收到[messageReceive](../reference/apis-network-kit/js-apis-webSocket.md#onmessagereceive19)事件回调。当服务端想断开某个与客户端的连接时，可以通过调用[close()](../reference/apis-network-kit/js-apis-webSocket.md#close19)方法主动断开与某个客户端的连接，之后服务端会收到[close](../reference/apis-network-kit/js-apis-webSocket.md#onclose19)事件的回调。当服务端想停止service时，可以调用[stop()](../reference/apis-network-kit/js-apis-webSocket.md#stop19)方法。若在上述任一过程中发生错误，服务端会收到[error](../reference/apis-network-kit/js-apis-webSocket.md#onerror19)事件的回调。
 
->**说明**
+> **说明：**
 >
->websocket支持[心跳检测机制](https://datatracker.ietf.org/doc/html/rfc6455#section-5.5.2)，在客户端和服务端建立webSocket连接之后，从连接建立或者客户端收到Pong帧开始计时，每间隔30秒客户端会发送Ping帧给服务器，服务器若支持websocket协议则会在收到Ping帧后自动回复Pong帧，表示连接正常，若服务端异常或服务端不支持websocket协议则不会回复Pong帧，若Ping帧发出去后，60s内没有收到Pong帧，则会主动断开连接。且不支持开发者关闭该机制。
+> websocket支持[心跳检测机制](https://datatracker.ietf.org/doc/html/rfc6455#section-5.5.2)，在客户端和服务端建立webSocket连接之后，从连接建立或者客户端收到Pong帧开始计时，每间隔pingInterval秒客户端会发送Ping帧给服务器。服务器若支持websocket协议则会在收到Ping帧后自动回复Pong帧，表示连接正常，若服务端异常或服务端不支持websocket协议则不会回复Pong帧；若Ping帧发出去后，pongTimeout秒内没有收到Pong帧，则会主动断开连接。支持开发者关闭心跳检测机制，自定义pingInterval与pongTimeout，详情请参考[WebsocketRequestOptions](../reference/apis-network-kit/js-apis-webSocket.md#websocketrequestoptions)。
 
 ## client端开发步骤
 
@@ -40,23 +40,23 @@ WebSocket是一种网络通信协议，它允许客户端和服务器之间建�
 
     ```js
     ws.on('open', (err: BusinessError, value: Object) => {
-      console.log("on open, status:" + JSON.stringify(value));
+      console.info("on open, status:" + JSON.stringify(value));
       // 当收到on('open')事件时，可以通过send()方法与服务器进行通信。
       ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
         if (!err) {
-          console.log("Message send successfully");
+          console.info("Message send successfully");
         } else {
           console.error("Failed to send the message. Err:" + JSON.stringify(err));
         }
       });
     });
     ws.on('message', (err: BusinessError, value: string | ArrayBuffer) => {
-      console.log("on message, message:" + value);
+      console.info("on message, message:" + value);
       // 当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接。
       if (value === 'bye') {
         ws.close((err: BusinessError, value: boolean) => {
           if (!err) {
-            console.log("Connection closed successfully");
+            console.info("Connection closed successfully");
           } else {
             console.error("Failed to close the connection. Err: " + JSON.stringify(err));
           }
@@ -64,7 +64,7 @@ WebSocket是一种网络通信协议，它允许客户端和服务器之间建�
       }
     });
     ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
-      console.log("on close, code is " + value.code + ", reason is " + value.reason);
+      console.info("on close, code is " + value.code + ", reason is " + value.reason);
     });
     ws.on('error', (err: BusinessError) => {
       console.error("on error, error:" + JSON.stringify(err));
@@ -76,7 +76,7 @@ WebSocket是一种网络通信协议，它允许客户端和服务器之间建�
     ```js
     ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
       if (!err) {
-        console.log("Connected successfully");
+        console.info("Connected successfully");
       } else {
         console.error("Connection failed. Err:" + JSON.stringify(err));
       }
@@ -202,23 +202,23 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let defaultIpAddress = "ws://";
 let ws = webSocket.createWebSocket();
 ws.on('open', (err: BusinessError, value: Object) => {
-  console.log("on open, status:" + JSON.stringify(value));
+  console.info("on open, status:" + JSON.stringify(value));
   // 当收到on('open')事件时，可以通过send()方法与服务器进行通信。
   ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
-      console.log("Message send successfully");
+      console.info("Message send successfully");
     } else {
       console.error("Failed to send the message. Err:" + JSON.stringify(err));
     }
   });
 });
 ws.on('message', (err: BusinessError, value: string | ArrayBuffer) => {
-  console.log("on message, message:" + value);
+  console.info("on message, message:" + value);
   // 当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接。
   if (value === 'bye') {
     ws.close((err: BusinessError, value: boolean) => {
       if (!err) {
-        console.log("Connection closed successfully");
+        console.info("Connection closed successfully");
       } else {
         console.error("Failed to close the connection. Err: " + JSON.stringify(err));
       }
@@ -226,14 +226,14 @@ ws.on('message', (err: BusinessError, value: string | ArrayBuffer) => {
   }
 });
 ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
-  console.log("on close, code is " + value.code + ", reason is " + value.reason);
+  console.info("on close, code is " + value.code + ", reason is " + value.reason);
 });
 ws.on('error', (err: BusinessError) => {
   console.error("on error, error:" + JSON.stringify(err));
 });
 ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
   if (!err) {
-    console.log("Connected successfully");
+    console.info("Connected successfully");
   } else {
     console.error("Connection failed. Err:" + JSON.stringify(err));
   }

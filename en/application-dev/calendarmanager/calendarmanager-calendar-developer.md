@@ -122,22 +122,34 @@ The table below lists the main APIs used for calendar management. For details ab
    });
    ```
 
-5. After a calendar is created, it is displayed in black. You need to call **setConfig()** to set calendar configuration information, including event reminder and calendar color.
+5. After a calendar account is created, its color is black by default. If no color is specified, the display effect of the calendar account in dark mode may be poor on some versions or devices. You need to call **setConfig()** to set calendar configuration information, including event reminder and calendar color.
 
    ```ts
    // Index.ets
-   // Calendar configuration information.
-   const config: calendarManager.CalendarConfig = {
-     // Enable the event reminder.
-     enableReminder: true,
-     // Set the calendar color.
-     color: '#aabbcc'
+   const calendarAccounts: calendarManager.CalendarAccount = {
+     name: 'MyCalendar',
+     type: calendarManager.CalendarType.LOCAL,
+     displayName: 'MyCalendar'
    };
-   // Set the calendar configuration information.
-   calendar.setConfig(config).then(() => {
-     console.info(`Succeeded in setting config, data->${JSON.stringify(config)}`);
-   }).catch((err: BusinessError) => {
-     console.error(`Failed to set config. Code: ${err.code}, message: ${err.message}`);
+   // Calendar configuration information.
+   calendarMgr?.getCalendar(calendarAccounts, (err, data) => {
+     // Obtain the calendar account.
+     if (err) {
+       console.error(`Failed to get calendar, Code is ${err.code}, message is ${err.message}`);
+     } else {
+       const config: calendarManager.CalendarConfig = {
+         // Enable the event reminder.
+         enableReminder: true,
+         // Set the calendar color.
+         color: '#aabbcc'
+       };
+       // Set the calendar configuration information.
+       data.setConfig(config).then(() => {
+         console.info(`Succeeded in setting config, data->${JSON.stringify(config)}`);
+       }).catch((err: BusinessError) => {
+         console.error(`Failed to set config. Code: ${err.code}, message: ${err.message}`);
+       })
+     }
    });
    ```
 

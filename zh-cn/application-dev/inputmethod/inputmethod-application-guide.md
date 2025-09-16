@@ -23,7 +23,6 @@
 
 ## 开发步骤 
 
-<!--RP1-->
 开发者在实现一个输入法应用时，需要在DevEco Studio工程中新建一个InputMethodExtensionAbility，具体步骤如下：
 
 1. 在工程Module对应的ets目录下，右键选择“New > Directory”，新建一个目录，并命名为InputMethodExtensionAbility。
@@ -40,7 +39,6 @@
 │         └── KeyboardKeyData.ts			    # 键盘属性定义
 ├── resources/base/profile/main_pages.json  
 ```
-<!--RP1End-->
 
 ## 文件介绍
 
@@ -60,18 +58,21 @@
      }
    
      onDestroy(): void {
-       console.log("onDestroy.");
+       console.info("onDestroy.");
        keyboardController.onDestroy(); // 销毁窗口并去注册事件监听
      }
    }
    ```
 
 <!--RP2-->
-2. KeyboardController.ts文件。
+2. KeyboardController.ts文件。KeyboardController中除创建输入法窗口，设置输入法事件监听，实现文本插入、删除之外，还可以获取[输入法键盘与系统面板的偏移区域](../reference/apis-ime-kit/js-apis-inputmethodengine.md#getsystempanelcurrentinsets21)，输入法系统面板在不同设备上存在差异，当设备有系统面板时，输入法软键盘相对系统面板的偏移区域如图所示：
+
+   ![偏移区域示意图](./figures/系统面板与软键盘偏移区域示意图.png)
 
    ```ts
    import { display } from '@kit.ArkUI';
    import { inputMethodEngine, InputMethodExtensionContext } from '@kit.IMEKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    // 调用输入法框架的getInputMethodAbility方法获取实例，并由此实例调用输入法框架功能接口
    const inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
@@ -132,11 +133,24 @@
        };
        inputMethodAbility.createPanel(this.mContext, panelInfo).then(async (inputPanel: inputMethodEngine.Panel) => {
          this.panel = inputPanel;
-         if(this.panel) {
+         if (this.panel) {
            await this.panel.resize(dWidth, keyHeight);
            await this.panel.moveTo(0, nonBarPosition);
            await this.panel.setUiContent('InputMethodExtensionAbility/pages/Index');
+           // 获取输入法键盘与系统面板偏移区域大小，实际开发中可以根据实际情况判断是否需要实现
+	       let defaultDisplay = display.getDefaultDisplaySync();
+           if (defaultDisplay !== undefined) {
+             this.panel.getSystemPanelCurrentInsets(defaultDisplay.id)
+               .then((insets: inputMethodEngine.SystemPanelInsets) => {
+                 console.info(`getSystemPanelCurrentInsets success, insets is { left: ${insets.left}, right: ${insets.right}, bottom: ${insets.bottom} }`);
+               })
+               .catch((error: BusinessError) => {
+                 console.error(`getSystemPanelCurrentInsets failed, code: ${error.code}, message: ${error.message}`);
+               })
+           }
          }
+       }).catch((err: BusinessError) => {
+         console.error(`Failed to createPanel, code: ${err.code}, message: ${err.message}`);
        });
      }
    
@@ -146,20 +160,22 @@
        // 注册隐藏键盘事件监听等
      }
    
-     private registerInputListener(): void { // 注册对输入法框架服务的开启及停止事件监听
+     private registerInputListener(): void {
+       // 注册开始输入的事件监听
        inputMethodAbility.on('inputStart', (kbController, textInputClient) => {
          this.textInputClient = textInputClient; // 此为输入法客户端实例，由此调用输入法框架提供给输入法应用的功能接口
          this.keyboardController = kbController;
        })
-       inputMethodAbility.on('inputStop', () => {
-         this.onDestroy(); // 销毁KeyboardController
-       });
+       inputMethodAbility.on('inputStop', this.inputStopCallback);
      }
    
-     private unRegisterListener(): void
-     {
+     private inputStopCallback(): void {
+       this.onDestroy(); // 销毁KeyboardController
+     }
+   
+     private unRegisterListener(): void {
        inputMethodAbility.off('inputStart');
-       inputMethodAbility.off('inputStop', () => {});
+       inputMethodAbility.off('inputStop', this.inputStopCallback);
      }
    }
    
@@ -167,7 +183,7 @@
    
    export default keyboardController;
    ```
-<!--RP2End-->
+   <!--RP2End-->
 3. KeyboardKeyData.ts文件。
 
    定义软键盘的按键显示内容。
@@ -177,7 +193,7 @@
      content: string,
    }
    
-   export let numberSourceListData: sourceListType[] = [
+   export const numberSourceListData: sourceListType[] = [
      {
        content: '1'
      },

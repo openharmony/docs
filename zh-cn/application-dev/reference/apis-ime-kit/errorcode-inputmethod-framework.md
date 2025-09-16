@@ -413,3 +413,21 @@ this operation is allowed only after adjustPanelRect or resize is called.
   - [adjustPanelRect](js-apis-inputmethodengine.md#adjustpanelrect12)(支持API version 12)
   - [adjustPanelRect](js-apis-inputmethodengine.md#adjustpanelrect15)(支持API version 15)
   - [resize](js-apis-inputmethodengine.md#resize10)(支持API version 10)
+  
+## 12800022 无效的displayId
+
+**错误信息**
+
+invalid displayId.
+
+**错误描述**
+
+无效的displayId。
+
+**可能原因**
+
+调用[getSystemPanelCurrentInsets](js-apis-inputmethodengine.md#getsystempanelcurrentinsets21)接口传入的displayId为无效的值。
+
+**处理步骤**
+
+开发者可以通过接口[getDisplayId](js-apis-inputmethodengine.md#getdisplayid15)获取当前窗口的所在id。

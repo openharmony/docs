@@ -10,13 +10,17 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 11开始支持。
+>
+> 后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## wrapBuilder
 
 wrapBuilder\<Args extends Object[]>(builder: (...args: Args) => void): WrappedBuilder\<Args>
 
 wrapBuilder是一个模板函数，返回一个`WrappedBuilder`对象。模板参数`Args extends Object[]`是需要包装的builder函数的参数列表。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -40,9 +44,9 @@ let builderVar: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder);
 
 @Builder函数的包装类。模板参数`Args extends Object[]`应传入@Builder函数的参数类型列表。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 ### 属性
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -56,6 +60,8 @@ let builderVar: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder);
 constructor(builder: (...args: Args) => void)
 
 WrappedBuilder的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

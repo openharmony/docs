@@ -1,5 +1,12 @@
 # UIExtensionContext
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhangyafei-echo-->
+<!--Designer: @zhangyafei-echo-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 UIExtensionContext provides the context environment for the [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md). It inherits from [ExtensionContext](js-apis-inner-application-extensionContext.md) and provides UIExtensionAbility-related configurations and APIs for operating the [UIAbility](js-apis-app-ability-uiAbility.md). For example, you can use the APIs to start a UIAbility.
 
 > **NOTE**
@@ -1271,7 +1278,7 @@ export default class ShareExtAbility extends ShareExtensionAbility {
             console.error(`openLink callback failed, err code: ${err.code}, err msg: ${err.message}.`);
             return;
           }
-          console.info(`openLink success, resule code: ${result.resultCode} result data: ${result.want}.`);
+          console.info(`openLink success, result code: ${result.resultCode} result data: ${result.want}.`);
         }
       ).then(() => {
         console.info(`open link success.`);
@@ -1295,7 +1302,7 @@ export default class ShareExtAbility extends ShareExtensionAbility {
 
 startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
-Starts a [UIServiceExtensionAbility](../../application-models/uiserviceextension.md).
+Starts a UIServiceExtensionAbility.
 
 > **NOTE**
 >
@@ -1381,7 +1388,7 @@ struct Index {
 
 connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnectCallback) : Promise&lt;UIServiceProxy&gt;
 
-Connects to a [UIServiceExtensionAbility](../../application-models/uiserviceextension.md).
+Connects to a UIServiceExtensionAbility.
 
 > **NOTE**
 >
@@ -1471,7 +1478,7 @@ struct Page_UIServiceExtensionAbility {
 
 disconnectUIServiceExtensionAbility(proxy: UIServiceProxy): Promise&lt;void&gt;
 
-Disconnects from a [UIServiceExtensionAbility](../../application-models/uiserviceextension.md).
+Disconnects from a UIServiceExtensionAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

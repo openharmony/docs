@@ -82,7 +82,7 @@ export default class EntryAbility extends UIAbility {
 
 getApplicationContext(): ApplicationContext
 
-获取应用上下文。开发者使用该接口时，无需依赖Context基类。
+获取应用上下文。开发者使用该接口时，无需依赖Context基类。重复调用会生成新的ApplicationContext对象。
 
 **原子化服务API**：从API version 14开始，该接口支持在元服务中使用。
 
@@ -185,14 +185,15 @@ promoteCurrentToCandidateMasterProcess(insertToHead: boolean): Promise\<void>
 	- 对于UIAbility组件，系统将创建新的空进程作为主控进程。
 	- 对于UIExtensionAbility组件，系统会优先复用已有的UIExtensionAbility进程作为新的主控进程，无可用进程时则创建新的空进程作为主控进程。
 
-> **说明：**
-> - 当前仅支持2in1、tablet设备。
 <!--Del-->
+> **说明：**
 >
-> - 当前仅支持sys/commonUI类型的UIExtensionAbility组件在[module.json5配置文件](../../quick-start/module-configuration-file.md)中配置isolationProcess字段为true。
+> 当前仅支持sys/commonUI类型的UIExtensionAbility组件在[module.json5配置文件](../../quick-start/module-configuration-file.md)中配置isolationProcess字段为true。
 <!--DelEnd-->
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口在PC/2in1、Tablet中可正常调用，在其他设备类型中返回801错误码。
 
 **参数**：
 
@@ -247,11 +248,9 @@ demoteCurrentFromCandidateMasterProcess(): Promise\<void>
 
 撤销当前进程的备选主控进程资格。使用Promise异步回调。
 
-> **说明：**
->
-> 当前仅支持2in1、tablet设备。
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口在PC/2in1、Tablet中可正常调用，在其他设备类型中返回801错误码。
 
 **返回值：**
 
@@ -289,6 +288,57 @@ export default class EntryAbility extends UIAbility {
       let code: number = (error as BusinessError).code;
       let message: string = (error as BusinessError).message;
       console.error(`demoteCurrentFromCandidateMasterProcess failed, error.code: ${code}, error.message: ${message}`);
+    }
+  }
+}
+```
+
+## application.exitMasterProcessRole<sup>21+</sup>
+
+exitMasterProcessRole(): Promise\<void>
+
+放弃当前进程的[主控进程](../../application-models/ability-terminology.md#masterprocess主控进程)身份。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异：** 该接口仅在2in1、Tablet设备中可正常调用，在其他设备中返回801错误码。
+
+**返回值：**
+
+| 类型               | 说明                |
+| ------------------ | ------------------- |
+|Promise\<void> | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码说明文档](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息        |
+| -------- | --------------- |
+| 801 | Capability not supported.|
+| 16000118 | Not a master process. |
+| 16000119 | Cannot exit because there is an unfinished onNewProcessRequest. |
+
+**示例：**
+
+```ts
+import { AbilityConstant, UIAbility, application, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    try {
+      application.exitMasterProcessRole()
+        .then(() => {
+          console.info('exitMasterProcessRole succeed');
+        })
+        .catch((err: BusinessError) => {
+          console.error(`exitMasterProcessRole failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (error) {
+      let code: number = (error as BusinessError).code;
+      let message: string = (error as BusinessError).message;
+      console.error(`exitMasterProcessRole failed, error.code: ${code}, error.message: ${message}`);
     }
   }
 }

@@ -120,15 +120,15 @@ let foregroundRegister: boolean;
 async function readerModeCb(error : BusinessError, tagInfo : tag.TagInfo) {
   if (!error) {
     // 获取特定技术类型的NFC标签对象
-    if (tagInfo == null || tagInfo == undefined) {
+    if (tagInfo == null) {
       hilog.error(0x0000, 'testTag', 'readerModeCb tagInfo is invalid');
       return;
     }
-    if (tagInfo.uid == null || tagInfo.uid == undefined) {
+    if (tagInfo.uid == null) {
       hilog.error(0x0000, 'testTag', 'readerModeCb uid is invalid');
       return;
     }
-    if (tagInfo.technology == null || tagInfo.technology == undefined || tagInfo.technology.length == 0) {
+    if (tagInfo.technology == null || tagInfo.technology.length == 0) {
       hilog.error(0x0000, 'testTag', 'readerModeCb technology is invalid');
       return;
     }
@@ -147,7 +147,7 @@ async function readerModeCb(error : BusinessError, tagInfo : tag.TagInfo) {
       }
       // 也可以按需选择其它类型的技术读写标签
     }
-    if (isoDep == undefined) {
+    if (isoDep == null) {
       hilog.error(0x0000, 'testTag', 'readerModeCb getIsoDep is invalid');
       return;
     }
@@ -302,15 +302,15 @@ export default class EntryAbility extends UIAbility {
       return;
     }
 
-    if (tagInfo == null || tagInfo == undefined) {
+    if (tagInfo == null) {
       hilog.error(0x0000, 'testTag', 'tagInfo is invalid');
       return;
     }
-    if (tagInfo.uid == null || tagInfo.uid == undefined) {
+    if (tagInfo.uid == null) {
       hilog.error(0x0000, 'testTag', 'uid is invalid');
       return;
     }
-    if (tagInfo.technology == null || tagInfo.technology == undefined || tagInfo.technology.length == 0) {
+    if (tagInfo.technology == null || tagInfo.technology.length == 0) {
       hilog.error(0x0000, 'testTag', 'technology is invalid');
       return;
     }
@@ -329,7 +329,7 @@ export default class EntryAbility extends UIAbility {
       }
       // 也可以按需选择其它类型的技术读写标签
     }
-    if (isoDep == undefined) {
+    if (isoDep == null) {
       hilog.error(0x0000, 'testTag', 'getIsoDep is invalid');
       return;
     }

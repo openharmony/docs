@@ -1,4 +1,17 @@
 # @ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
+
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 The **StaticSubscriberExtensionAbility** module provides Extension abilities for static subscribers.
 
@@ -28,13 +41,13 @@ import { StaticSubscriberExtensionAbility } from '@kit.BasicServicesKit';
 
 ## StaticSubscriberExtensionAbility.onReceiveEvent
 
-onReceiveEvent(event: CommonEventData): void;
+onReceiveEvent(event: CommonEventData): void
 
-Callback of the common event of a static subscriber.
+Represents a callback of the common event of a static subscriber.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -44,7 +57,7 @@ Callback of the common event of a static subscriber.
 
 **Example**
   ```ts
-  import { commonEventManager, StaticSubscriberExtensionAbility } from '@kit.BasicServicesKit';
+  import { commonEventManager } from '@kit.BasicServicesKit';
 
     class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
         onReceiveEvent(event: commonEventManager.CommonEventData) {

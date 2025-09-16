@@ -322,7 +322,7 @@ let rdbStore: relationalStore.RdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
   batchInsert(uri: string, valueBuckets: Array<ValuesBucket>, callback: Function) {
-    if (valueBuckets === null || valueBuckets.length === undefined) {
+    if (valueBuckets === null || valueBuckets.length <= 0) {
       console.error('invalid valueBuckets');
       return;
     }

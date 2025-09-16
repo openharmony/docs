@@ -2,8 +2,9 @@
 <!--Kit: IPC Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @xdx19211@luodonghui0157-->
-<!--SE: @zhaopeng_gitee-->
-<!--TSE: @maxiaorong2-->
+<!--Designer: @zhaopeng_gitee-->
+<!--Tester: @maxiaorong2-->
+<!--Adviser: @zhang_yixin13-->
 
 ## When to Use
 
@@ -51,6 +52,9 @@ Create a ServiceExtensionAbility as follows:
           case 1:
             {
               // Read data based on the client write sequence. For details, see the service logic.
+              // This is an example of sending information from the client to the server.
+              data.readString();
+              reply.writeString('huichuanxinxi');
             }
         }
         return true;
@@ -64,7 +68,7 @@ Create a ServiceExtensionAbility as follows:
       }
 
       onRequest(want: Want, startId: number): void {
-        hilog.info(0x0000, 'testTag', 'onCreate');
+        hilog.info(0x0000, 'testTag', 'onRequest');
       }
 
       onConnect(want: Want): rpc.RemoteObject {
@@ -74,7 +78,7 @@ Create a ServiceExtensionAbility as follows:
       }
 
       onDisconnect(want: Want): void {
-        hilog.info(0x0000, 'testTag', 'onConnect');
+        hilog.info(0x0000, 'testTag', 'onDisconnect');
       }
 
       onDestroy(): void {
@@ -128,6 +132,10 @@ Create a ServiceExtensionAbility as follows:
 
     let dmInstance: distributedDeviceManager.DeviceManager | undefined;
     let proxy: rpc.IRemoteObject | undefined;
+    let deviceList: Array<distributedDeviceManager.DeviceBasicInfo> | undefined;
+    let networkId: string | undefined;
+    let want: Want | undefined;
+    let connect: common.ConnectOptions | undefined;
 
     try{
       dmInstance = distributedDeviceManager.createDeviceManager("ohos.rpc.test");
@@ -138,26 +146,32 @@ Create a ServiceExtensionAbility as follows:
 
     // Use distributedDeviceManager to obtain the network ID of the target device.
     if (dmInstance != undefined) {
-      let deviceList = dmInstance.getAvailableDeviceListSync();
-      let networkId = deviceList[0].networkId;
-      let want: Want = {
-        bundleName: "ohos.rpc.test.server",
-        abilityName: "ohos.rpc.test.service.ServiceAbility",
-        deviceId: networkId,
-      };
-
-      let connect: common.ConnectOptions = {
-        onConnect: (elementName, remoteProxy) => {
-          hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
-          proxy = remoteProxy;
-        },
-        onDisconnect: (elementName) => {
-          hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
-        },
-        onFailed: () => {
-          hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+      try {
+        deviceList = dmInstance.getAvailableDeviceListSync();
+        if (deviceList.length !== 0) {
+          networkId = deviceList[0].networkId;
+          want = {
+            bundleName: "ohos.rpc.test.server",
+            abilityName: "ohos.rpc.test.service.ServiceAbility",
+            deviceId: networkId,
+          };
+          connect = {
+            onConnect: (elementName, remoteProxy) => {
+              hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called');
+              proxy = remoteProxy;
+            },
+            onDisconnect: (elementName) => {
+              hilog.info(0x0000, 'testTag', 'RpcClient: onDisconnect');
+            },
+            onFailed: () => {
+              hilog.info(0x0000, 'testTag', 'RpcClient: onFailed');
+            }
+          };
         }
-      };
+      }catch(error) {
+        let err: BusinessError = error as BusinessError;
+        hilog.error(0x0000, 'testTag', 'createDeviceManager err:' + err);
+      }
     }
   ```
 
@@ -174,7 +188,7 @@ Create a ServiceExtensionAbility as follows:
   ```
 
   In the stage model, the [connectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability) API of **common.UIAbilityContext** is used to connect to an ability.
-  In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+  In the sample code provided in this topic, **this.getUIContext().getHostContext()** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
   <!--code_no_check-->
   ```ts
@@ -210,6 +224,7 @@ Create a ServiceExtensionAbility as follows:
             return;
           }
           // Read the result from result.reply.
+          // The following is an example of creating a ServiceExtensionAbility on the server.
           result.reply.readString();
         })
         .catch((e: Error) => {
@@ -222,7 +237,7 @@ Create a ServiceExtensionAbility as follows:
     }
    ```
 
-### Process requests sent from the client.
+### Server Handling of Client Requests
 
    Call **onConnect()** to return a stub object inherited from [rpc.RemoteObject](../reference/apis-ipc-kit/js-apis-rpc.md#remoteobject), and implement [onRemoteMessageRequest](../reference/apis-ipc-kit/js-apis-rpc.md#onremotemessagerequest9) for the object to process requests sent from the client.
 
@@ -250,7 +265,7 @@ Create a ServiceExtensionAbility as follows:
     }
    ```
 
-### Tear down the connection.
+### Terminating the Connection
 
    After IPC is complete, the FA model calls [disconnectAbility](../reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitydisconnectability7) to disable the connection. The **connectId** is saved when the service is connected.
 
@@ -267,7 +282,7 @@ Create a ServiceExtensionAbility as follows:
    ```
 
    The **common.UIAbilityContext** provides the [disconnectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectserviceextensionability-1) API to disconnect from the service. The **connectId** is saved when the service is connected.
-   In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+   In the sample code provided in this topic, **this.getUIContext().getHostContext()** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
   <!--code_no_check-->
   ```ts
@@ -277,8 +292,8 @@ Create a ServiceExtensionAbility as follows:
     context.disconnectServiceExtensionAbility(connectId);
    ```
 
-##  
+## Sample
 
- 
+For the end-to-end complete example of IPC and RPC development, see the following:
 
--  
+- [Complete IPC Example - Using Parcelable/ArrayBuffer](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/IPC/ObjectTransfer)

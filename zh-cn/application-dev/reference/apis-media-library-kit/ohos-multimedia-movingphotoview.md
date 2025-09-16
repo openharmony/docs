@@ -44,7 +44,7 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 | ----------- | ------------------------------------------------------------------------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | movingPhoto | [MovingPhoto](arkts-apis-photoAccessHelper-MovingPhoto.md) | 是   | 支持媒体库MovingPhoto数据源，具体信息详见[MovingPhoto说明](arkts-apis-photoAccessHelper-MovingPhoto.md)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | controller  | [MovingPhotoViewController](#movingphotoviewcontroller)                                          | 否   | 设置动态照片控制器，可以控制动态照片的播放状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                      |
-| imageAIOptions<sup>18+</sup>   | [ImageAIOptions](../apis-arkui/arkui-ts/ts-image-common.md#imageaioptions) | 否   | 设置动态照片AI分析选项，可配置分析类型或绑定一个分析控制器。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| imageAIOptions<sup>18+</sup>   | [ImageAIOptions](../apis-arkui/arkui-ts/ts-image-common.md#imageaioptions12) | 否   | 设置动态照片AI分析选项，可配置分析类型或绑定一个分析控制器。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## 属性
 
@@ -296,7 +296,7 @@ declare type MovingPhotoViewEventCallback = () => void
 
 ### constructor
 
-constructor(): void
+constructor()
 
 MovingPhotoViewController的构造函数。
 
@@ -306,7 +306,7 @@ MovingPhotoViewController的构造函数。
 
 ### startPlayback
 
-startPlayback(): void
+startPlayback()
 
 开始播放，动态照片加载完成后，在播放准备，暂停，完成时调用。
 
@@ -316,7 +316,7 @@ startPlayback(): void
 
 ### stopPlayback
 
-stopPlayback(): void
+stopPlayback()
 
 停止播放，再次播放时从头开始播放。
 
@@ -326,7 +326,7 @@ stopPlayback(): void
 
 ### refreshMovingPhoto<sup>18+</sup> 
 
-refreshMovingPhoto(): void
+refreshMovingPhoto()
 
 强制刷新动态照片组件加载的视频和图片资源，会打断组件当前的行为，使用时要谨慎。
 

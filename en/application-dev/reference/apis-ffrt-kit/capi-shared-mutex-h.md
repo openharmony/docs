@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## Overview
 
@@ -32,6 +33,7 @@ The **shared_mutex.h** file declares read-write lock APIs in C.
 | [FFRT_C_API int ffrt_rwlock_rdlock(ffrt_rwlock_t* rwlock)](#ffrt_rwlock_rdlock) | Obtains a read lock.|
 | [FFRT_C_API int ffrt_rwlock_tryrdlock(ffrt_rwlock_t* rwlock)](#ffrt_rwlock_tryrdlock) | Attempts to obtain a read lock.|
 | [FFRT_C_API int ffrt_rwlock_unlock(ffrt_rwlock_t* rwlock)](#ffrt_rwlock_unlock) | Releases the read-write lock.|
+| [FFRT_C_API int ffrt_rwlock_destroy(ffrt_rwlock_t* rwlock)](#ffrt_rwlock_destroy) | Destroys the read-write lock.|
 
 ## Function Description
 
@@ -185,3 +187,28 @@ Releases the read-write lock.
 | Type| Description|
 | -- | -- |
 | FFRT_C_API int | Returns **ffrt_success** if the read-write lock is successfully released;<br>          returns **ffrt_error_inval** otherwise.|
+
+### ffrt_rwlock_destroy()
+
+```
+FFRT_C_API int ffrt_rwlock_destroy(ffrt_rwlock_t* rwlock)
+```
+
+**Description**
+
+Destroys the read-write lock.
+
+**Since**: 18
+
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| [ffrt_rwlock_t](capi-ffrt-ffrt-rwlock-t.md)* rwlock | Pointer to the read-write lock.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| FFRT_C_API int | Returns **ffrt_success** if the read-write lock is destroyed successfully;<br>returns **ffrt_error_inval** otherwise.|

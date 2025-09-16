@@ -1,8 +1,14 @@
 # Error Handling Using JSVM-API
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## Introduction
 
-JSVM-API provides APIs for handling errors occurred in JavaScript (JS) code using exceptions. Properly using these APIs helps improve module stability and reliability.
+The JSVM-API interface is used for error handling to better manage and respond to errors. Properly using these APIs helps improve module stability and reliability.
 
 ## Basic Concepts
 
@@ -30,7 +36,7 @@ These concepts are important in exception and error handling. Properly using met
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in error handling.
+For details about the JSVM-API development process, see [Using JSVM-API to Implement Interactive Development Between JS and C/C++](use-jsvm-process.md). This document describes only the C++ code corresponding to the APIs.
 
 ### OH_JSVM_Throw
 
@@ -50,8 +56,8 @@ static void GetLastErrorAndClean(JSVM_Env env) {
     JSVM_Value result = nullptr;
     JSVM_Status status = OH_JSVM_GetAndClearLastException(env, &result);
     // Log error information.
-    JSVM_Value message;
-    JSVM_Value errorCode;
+    JSVM_Value message = nullptr;
+    JSVM_Value errorCode = nullptr;
     OH_JSVM_GetNamedProperty((env), result, "message", &message);
     OH_JSVM_GetNamedProperty((env), result, "code", &errorCode);
     char messagestr[256];
@@ -90,6 +96,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char *srcCallNative = R"JS(jsVmCreateThrowError();)JS";
 ```
+<!-- @[oh_jsvm_create_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/createerror/src/main/cpp/hello.cpp) -->
 **Expected output**
 ```ts
 JSVM error message: HasError, error code: -1
@@ -113,7 +120,7 @@ static JSVM_Value JsVmThrowError(JSVM_Env env, JSVM_CallbackInfo info)
         // Throw an error if no parameter is passed in.
         OH_JSVM_ThrowError(env, "-1", "has Error");
     } else if (argc == 1) {
-        size_t length;
+        size_t length = 0;
         // Obtain the length of the string passed from JS from the input parameter.
         OH_JSVM_GetValueStringUtf8(env, argv[0], nullptr, 0, &length);
         char *buffer = new char[length + 1];
@@ -138,8 +145,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char *srcCallNative = R"JS(jsVmThrowError();jsVmThrowError("self defined error message");)JS";
 ```
+<!-- @[oh_jsvm_throw_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/throwerror/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 ```ts
 JSVM error message: has Error, error code: -1
 JSVM error message: self defined error message, error code: self defined error code
@@ -162,13 +170,13 @@ static JSVM_Value JsVmThrowTypeError(JSVM_Env env, JSVM_CallbackInfo info) {
         // Throw an error if no parameter is passed in.
         OH_JSVM_ThrowTypeError(env, "-1", "throwing type error");
     } else if (argc == 1) {
-        size_t length;
+        size_t length = 0;
         // Obtain the length of the string in the input parameter passed from JS.
         OH_JSVM_GetValueStringUtf8(env, argv[0], nullptr, 0, &length);
         char *buffer = new char[length + 1];
         // Obtain the string of the input parameter.
         OH_JSVM_GetValueStringUtf8(env, argv[0], buffer, length + 1, nullptr);
-        // Populate the error information to OH_JSVM_ThrowError.
+        // Populate the error information to OH_JSVM_ThrowTypeError.
         OH_JSVM_ThrowTypeError(env, "self defined error code", buffer);
         delete[] buffer;
     }
@@ -187,8 +195,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char *srcCallNative = R"JS(jsVmThrowTypeError();jsVmThrowTypeError("self defined error message");)JS";
 ```
+<!-- @[oh_jsvm_throw_type_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/throwtypeerror/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 ```ts
 JSVM error message: throwing type error, error code: -1
 JSVM error message: self defined error message, error code: self defined error code
@@ -232,9 +241,10 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char *srcCallNative = R"JS(jsVmThrowRangeError(1);)JS";
 ```
+<!-- @[oh_jsvm_throw_range_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/throwrangeerror/src/main/cpp/hello.cpp) -->
 
 
-**Expected output**
+Expected result:
 ```ts
 JSVM error message: Expected two numbers as arguments, error code: OH_JSVM_ThrowRangeError
 ```
@@ -281,8 +291,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char *srcCallNative = R"JS(jsVmThrowSyntaxError();)JS";
 ```
+<!-- @[oh_jsvm_throw_syntax_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/throwsyntaxerror/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 ```ts
 JSVM error message: throw syntax error, error code: JsVmThrowSyntaxError
 ```
@@ -326,8 +337,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char *srcCallNative = R"JS(jsVmIsError(Error()))JS";
 ```
+<!-- @[oh_jsvm_is_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/iserror/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 ```ts
 JSVM API call OH_JSVM_IsError success, result is 1
 ```
@@ -369,8 +381,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char *srcCallNative = R"JS(jsVmCreateTypeError();)JS";
 ```
+<!-- @[oh_jsvm_create_type_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/createtypeerror/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 ```ts
 JSVM API Create TypeError SUCCESS
 ```
@@ -412,8 +425,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char *srcCallNative = R"JS(jsVmCreateRangeError();)JS";
 ```
+<!-- @[oh_jsvm_create_range_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/createrangeerror/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 ```ts
 JSVM API CreateRangeError SUCCESS
 ```
@@ -447,15 +461,16 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmCreateSyntaxError},
 };
 static JSVM_CallbackStruct *method = param;
-// Alias for the JsVmCreateThrowError method to be called from JS.
+// Alias for the JsVmCreateSyntaxError method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmCreateSyntaxError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 // Call the C++ code from JS.
 const char *srcCallNative = R"JS(jsVmCreateSyntaxError();)JS";
 ```
+<!-- @[oh_jsvm_create_syntax_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/createsyntaxerror/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 ```ts
 JSVM API CreateSyntaxError SUCCESS
 ```
@@ -494,8 +509,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char *srcCallNative = R"JS(jsVmGetAndClearLastException();)JS";
 ```
+<!-- @[oh_jsvm_get_and_clear_last_exception](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/getandclearlastexception/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 ```ts
 JSVM API OH_JSVM_GetAndClearLastException SUCCESS
 ```
@@ -508,7 +524,7 @@ CPP code:
 
 ```cpp
 // hello.cpp
-// Define OH_JSVM_GetAndClearLastException.
+// Sample method of OH_JSVM_IsExceptionPending
 static JSVM_Value JsVmIsExceptionPending(JSVM_Env env, JSVM_CallbackInfo info) {
     JSVM_Status status;
     bool isExceptionPending = false;
@@ -546,8 +562,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char *srcCallNative = R"JS(jsVmIsExceptionPending();)JS";
 ```
+<!-- @[oh_jsvm_is_exception_pending](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/isexceptionpending/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 ```ts
 JSVM API OH_JSVM_IsExceptionPending: SUCCESS
 ```
@@ -597,8 +614,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char *srcCallNative = R"JS(jsVmGetLastErrorInfo();)JS";
 ```
+<!-- @[oh_jsvm_get_last_error_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/getlasterrorinfo/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 ```ts
 JSVM API OH_JSVM_GetLastErrorInfo: SUCCESS, error message is A number was expected, error code is 6
 ```

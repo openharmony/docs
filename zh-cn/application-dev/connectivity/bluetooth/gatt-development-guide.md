@@ -706,8 +706,8 @@ export class GattClientManager {
     }
     console.info(TAG, 'discoverServices');
     try {
-      let serverSerice = await this.gattClient.getServices();
-      this.checkService(serverSerice); // 要确保server端的服务内容有业务所需要的服务
+      let serverService = await this.gattClient.getServices();
+      this.checkService(serverService); // 要确保server端的服务内容有业务所需要的服务
       if (typeof this.myService !== 'undefined') {
         console.info(TAG, 'Service: ' + JSON.stringify(this.myService));
       }

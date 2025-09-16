@@ -1,5 +1,12 @@
 # UIExtensionContext (System API)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhangyafei-echo-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 UIExtensionContext provides the context environment for [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md). It inherits from [ExtensionContext](js-apis-inner-application-extensionContext.md) and provides UIExtensionAbility-related configuration and APIs for operating the UIExtensionAbility. For example, you can use the APIs to start a UIExtensionAbility.
 
 > **NOTE**
@@ -274,7 +281,7 @@ Sets whether the page started by the [UIExtensionAbility](../apis-ability-kit/js
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ------ | ------ |
-| isForbidden | boolean | Yes| Whether the page started by the [UIExtensionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md) can be overlaid by the page of the user. The value **true** means that the page can be overlaid, and **false** means the opposite.|
+| isForbidden | boolean | Yes| Whether the page started by the [UIExtensionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md) can be overlaid by the page of the user. **true** if the page can be overlaid, **false** otherwise.|
 
 
 **Error codes**

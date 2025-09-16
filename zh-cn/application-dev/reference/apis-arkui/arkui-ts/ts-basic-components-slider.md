@@ -100,6 +100,30 @@ blockColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ----------------------------------- |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 滑块的颜色。 <br/>默认值：`$r('sys.color.ohos_id_color_foreground_contrary')` |
 
+### blockColor<sup>21+</sup>
+
+blockColor(value: ResourceColor | LinearGradient)
+
+设置Slider滑块的颜色，支持渐变色。
+
+当滑块形状设置为SliderBlockType.DEFAULT时，blockColor可设置默认圆形滑块颜色。
+
+当滑块形状设置为SliderBlockType.IMAGE时，滑块无填充，设置blockColor不生效。
+
+当滑块形状设置为SliderBlockType.SHAPE时，blockColor可设置自定义形状的填充颜色。
+
+**卡片能力：** 从API version 21开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                |
+| ------ | ------------------------------------------ | ---- | ----------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient](ts-basic-components-datapanel.md#lineargradient10)  | 是   | 滑块的颜色。 <br/>默认值：`$r('sys.color.ohos_id_color_foreground_contrary')` |
+
 ### trackColor
 
 trackColor(value: ResourceColor | LinearGradient)
@@ -739,7 +763,7 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 
 ## SliderConfiguration<sup>12+</sup>对象说明
 
-开发者需要自定义class实现ContentModifier接口。
+开发者需要自定义class实现ContentModifier接口。继承自[CommonConfiguration](ts-universal-attributes-content-modifier.md#commonconfigurationt)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

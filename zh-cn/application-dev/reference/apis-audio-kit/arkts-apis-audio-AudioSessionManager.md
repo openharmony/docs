@@ -214,8 +214,8 @@ setAudioSessionScene(scene: AudioSessionScene): void
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------------|
 | 6800101 | Parameter verification failed. |
-| 6800103 | Operation not permitted at current state.|
-| 6800301 | System error occurred. |
+| 6800103 | Operation not permit at current state.|
+| 6800301 | Audio client call audio service error, System error. |
 
 **示例：**
 
@@ -245,8 +245,8 @@ on(type: 'audioSessionStateChanged', callback: Callback\<AudioSessionStateChange
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 6800101 | Parameter verification failed. |
-| 6800102 | Memory allocation failed. |
-| 6800301 | System error. |
+| 6800102 | Allocate memory failed. |
+| 6800301 | Audio client call audio service error, System error. |
 
 **示例：**
 
@@ -264,10 +264,12 @@ off(type: 'audioSessionStateChanged', callback?: Callback\<AudioSessionStateChan
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
+**参数：**
+
 | 参数名   | 类型                                                                        | 必填 | 说明                                                         |
 | -------- |---------------------------------------------------------------------------| ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 事件回调类型，支持的事件为'audioSessionStateChanged'，当音频会话状态变更时，触发该事件。 |
-| callback | Callback<[AudioSessionStateChangedEvent](arkts-apis-audio-i.md#audiosessionstatechangedevent20)> | 是   | 回调函数，返回音频会话变更提示信息。 |
+| callback | Callback<[AudioSessionStateChangedEvent](arkts-apis-audio-i.md#audiosessionstatechangedevent20)> | 否 | 回调函数，返回音频会话变更提示信息。 |
 
 **错误码：**
 
@@ -276,7 +278,7 @@ off(type: 'audioSessionStateChanged', callback?: Callback\<AudioSessionStateChan
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 6800101 | Parameter verification failed. |
-| 6800301 | System error. |
+| 6800301 | Audio client call audio service error, System error. |
 
 **示例：**
 
@@ -293,6 +295,7 @@ audioSessionManager.on('audioSessionStateChanged', audioSessionStateChangedCallb
 
 audioSessionManager.off('audioSessionStateChanged', audioSessionStateChangedCallback);
 ```
+
 ## setDefaultOutputDevice<sup>20+</sup>
 
 setDefaultOutputDevice(deviceType: DeviceType): Promise&lt;void&gt;
@@ -307,7 +310,7 @@ setDefaultOutputDevice(deviceType: DeviceType): Promise&lt;void&gt;
 >
 > - 本接口优先级低于[AVCastPicker](../apis-avsession-kit/ohos-multimedia-avcastpicker.md#avcastpicker)。如果使用AVCastPicker切换过发声设备，再次调用本接口将不生效。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
 
@@ -327,9 +330,9 @@ setDefaultOutputDevice(deviceType: DeviceType): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Parameter verification failed. |
-| 6800102 | Allocate memory failed. |
-| 6800301 | System error. |
+| 6800101 | Parameter verification failed. Return by promise. |
+| 6800102 | Allocate memory failed. Return by promise. |
+| 6800301 | Audio client call audio service error, System error. |
 
 **示例：**
 
@@ -349,13 +352,22 @@ getDefaultOutputDevice(): DeviceType
 
 获取通过[setDefaultOutputDevice](#setdefaultoutputdevice20)设置的默认发声设备。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **返回值：**
 
 | 类型                                              | 说明                                    |
 | ------------------------------------------------- |---------------------------------------|
 | DeviceType |设备类型。<br>仅支持以下设备：EARPIECE（听筒）、SPEAKER（扬声器）和DEFAULT（系统默认设备）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID   | 错误信息 |
+|---------| --------------------------------------------|
+| 6800101 | Parameter verification failed. |
+| 6800103 | Operation not permit at current state. Return by promise. |
 
 **示例：**
 
@@ -369,7 +381,7 @@ on(type: 'currentOutputDeviceChanged', callback: Callback\<CurrentOutputDeviceCh
 
 监听当前输出设备变化事件（当前输出设备发生变化时触发）。使用callback异步回调。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
 
@@ -386,7 +398,7 @@ on(type: 'currentOutputDeviceChanged', callback: Callback\<CurrentOutputDeviceCh
 | ------- | --------------------------------------------|
 | 6800101 | Parameter verification failed. |
 | 6800102 | Allocate memory failed. |
-| 6800301 | System error. |
+| 6800301 | Audio client call audio service error, System error. |
 
 **示例：**
 
@@ -406,14 +418,14 @@ off(type: 'currentOutputDeviceChanged', callback?: Callback\<CurrentOutputDevice
 
 取消监听当前输出设备的变化事件，并使用callback进行异步回调。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Device
 
 **参数：**
 
 | 参数名   | 类型                                                 | 必填 | 说明                                                      |
 | :------- | :--------------------------------------------------- | :--- |:--------------------------------------------------------|
 | type     | string | 是   | 事件回调类型，支持的事件为'currentOutputDeviceChanged'，当前输出设备发生变化时，触发该事件。|
-| callback | Callback<[CurrentOutputDeviceChangedEvent](arkts-apis-audio-i.md#currentoutputdevicechangedevent20)> | 是   | 回调函数，用于返回当前输出设备变化的信息。 |
+| callback | Callback<[CurrentOutputDeviceChangedEvent](arkts-apis-audio-i.md#currentoutputdevicechangedevent20)> | 否 | 回调函数，用于返回当前输出设备变化的信息。 |
 
 **错误码：**
 
@@ -422,7 +434,7 @@ off(type: 'currentOutputDeviceChanged', callback?: Callback\<CurrentOutputDevice
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 6800101 | Parameter verification failed. |
-| 6800301 | System error. |
+| 6800301 | Audio client call audio service error, System error. |
 
 **示例：**
 

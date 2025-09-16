@@ -1,4 +1,10 @@
 # AppStateData
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--Designer: @yzkp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 The module defines the application state data, which can be obtained through [appManager.on('applicationState')](./js-apis-app-ability-appManager.md#appmanageronapplicationstate14).
 

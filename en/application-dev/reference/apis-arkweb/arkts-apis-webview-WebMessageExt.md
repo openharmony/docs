@@ -1,4 +1,10 @@
 # Class (WebMessageExt)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements a **WebMessageExt** object that received and sent by the [WebMessagePort](./arkts-apis-webview-WebMessagePort.md) API.
 

@@ -1,10 +1,17 @@
 # Overview of Starting a Specified Application
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 This section describes how to start a specified application in linking mode.
 
 > **NOTE**
 > 
-> Since API version 12, it is not recommended that third-party applications start other applications by specifying an ability (implicit Want mode). For details about how to switch from the implicit Want mode to the [linking mode](app-startup-overview.md#application-links), see [Switching from Explicit Want Redirection to Linking Redirection](uiability-startup-adjust.md).
+> Starting from API version 12, it is not recommended that third-party applications start other applications by specifying an ability (implicit Want mode). For details about how to switch from the implicit Want mode to the [linking mode](app-startup-overview.md#application-links), see [Switching from Explicit Want Redirection to Linking Redirection](uiability-startup-adjust.md).
 
 
 ## Application Links
@@ -54,6 +61,14 @@ Both Deep Linking and App Linking can be implemented using [openLink](../referen
 | The value of **appLinkingOnly** is **false** and the target application is not installed.| Redirect to the default browser to open a web page.|A failure message is returned, no redirection is performed, and the application is responsible for handling the request. Currently, a dialog box is displayed, indicating that the link cannot be opened.|
 | The value of **appLinkingOnly** is **true** and the target application is installed.| Directly redirect to and start the target application.|A failure message is returned, no redirection is performed, and the application is responsible for handling the request.|
 | The value of **appLinkingOnly** is **true** and the target application is not installed.| A failure message is returned, no redirection is performed, and the application is responsible for handling the request.| A failure message is returned, no redirection is performed, and the application is responsible for handling the request.|
+
+The following figure shows how to start an application through App Linking.
+
+![Using App Linking to start an application](figures/AppLinking-launch.png)
+
+When Deep Linking is used to start an application, there may be several applications that meet the requirements. In that case, the user needs to select the one to redirect to. The following figure shows an example.
+
+![Using Deep Linking to start an application](figures/DeepLinking-launch.png)
 
 <!--RP1-->
 <!--RP1End-->

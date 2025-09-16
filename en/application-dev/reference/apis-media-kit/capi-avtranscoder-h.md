@@ -1,4 +1,10 @@
 # avtranscoder.h
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
@@ -14,7 +20,7 @@ The file declares the native APIs provided by the AVTranscoder. You can use the 
 
 **Related module**: [AVTranscoder](capi-avtranscoder.md)
 
-**Sample**: [AVPlayerNDKVideo](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerNDK)
+**Sample**: [AVPlayerNDKVideo](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerNDK)
 
 ## Summary
 
@@ -32,7 +38,7 @@ The file declares the native APIs provided by the AVTranscoder. You can use the 
 | [OH_AVErrCode OH_AVTranscoderConfig_SetDstAudioBitrate(OH_AVTranscoder_Config *config, int32_t bitrate)](#oh_avtranscoderconfig_setdstaudiobitrate) | Sets the bit rate of the output audio for transcoding.<br>This function must be called before [OH_AVTranscoder_Prepare](#oh_avtranscoder_prepare).|
 | [OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoBitrate(OH_AVTranscoder_Config *config, int32_t bitrate)](#oh_avtranscoderconfig_setdstvideobitrate) | Sets the bit rate of the output video for transcoding.<br>This function must be called before [OH_AVTranscoder_Prepare](#oh_avtranscoder_prepare).|
 | [OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoResolution(OH_AVTranscoder_Config *config, int32_t width, int32_t height)](#oh_avtranscoderconfig_setdstvideoresolution) | Sets the resolution of the output video for transcoding, in px, where **width** is the width of the output video frame and **height** is the height of the output video frame.<br>This function must be called before [OH_AVTranscoder_Prepare](#oh_avtranscoder_prepare).|
-| [OH_AVErrCode OH_AVTranscoderConfig_EnableBFrame(OH_AVTranscoder_Config *config, bool enabled)](#oh_avtranscoderconfig_enablebframe) | Enables B-frame encoding for the output video during transcoding. The actual support depends on the video encoding format and device chip capability. If the format or the device does not support B-frame encoding, the system will ignore B-frames and encode the video as if B-frame encoding was not enabled.|
+| [OH_AVErrCode OH_AVTranscoderConfig_EnableBFrame(OH_AVTranscoder_Config *config, bool enabled)](#oh_avtranscoderconfig_enablebframe) | Enables B-frame encoding for the output video during transcoding.<br>For details about the constraints on B-frame video encoding, see [Constraints in B-Frame Video Encoding](../../media/avcodec/video-encoding-b-frame.md#constraints).<br>If the current environment does not meet these constraints, B-frames will be skipped, and encoding will proceed as if B-frame video encoding were not enabled.|
 | [OH_AVTranscoder *OH_AVTranscoder_Create(void)](#oh_avtranscoder_create) | Creates an AVTranscoder instance.|
 | [OH_AVErrCode OH_AVTranscoder_Prepare(OH_AVTranscoder *transcoder, OH_AVTranscoder_Config *config)](#oh_avtranscoder_prepare) | Sets the parameters for video transcoding and prepares for transcoding.<br>This function must be called before [OH_AVTranscoder_Start](#oh_avtranscoder_start). Upon a successful call to this function, the AVTranscoder enters the AVTRANSCODER_PREPARED state.|
 | [OH_AVErrCode OH_AVTranscoder_Start(OH_AVTranscoder *transcoder)](#oh_avtranscoder_start) | Starts transcoding.<br>This function must be called after a successful call to [OH_AVTranscoder_Prepare](#oh_avtranscoder_prepare). Upon a successful call to this function, the AVTranscoder enters the AVTRANSCODER_STARTED state.|
@@ -275,7 +281,7 @@ This function must be called before [OH_AVTranscoder_Prepare](#oh_avtranscoder_p
 | Name| Description|
 | -- | -- |
 | [OH_AVTranscoder_Config](capi-avtranscoder-oh-avtranscoder-config.md) *config | Pointer to an OH_AVTranscoder_Config instance, which is created by running [OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create).|
-| int32_t bitrate | Bit rate of the output audio, in bit/s. The value range is [1-500000]. The default value is 48 kbit/s.|
+| int32_t bitrate | Bit rate of the output audio, in bit/s. The value range is [1, 500000]. The default value is 48 kbit/s.|
 
 **Returns**
 
@@ -305,7 +311,7 @@ This function must be called before [OH_AVTranscoder_Prepare](#oh_avtranscoder_p
 | Name| Description|
 | -- | -- |
 | [OH_AVTranscoder_Config](capi-avtranscoder-oh-avtranscoder-config.md) *config | Pointer to an OH_AVTranscoder_Config instance, which is created by running [OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create).|
-| int32_t bitrate | Bit rate of the output video, in bit/s. The default bit rate is set according to the resolution of the output video.<br>For the resolution range [240p,480p], the default bit rate is 1 Mbit/s.<br>For the resolution range (480p,720p], the default bit rate is 2 Mbit/s.<br>For the resolution range (240p,1080p], the default bit rate is 4 Mbit/s.<br>For the resolution 1080p or above, the default bit rate is 8 Mbit/s.|
+| int32_t bitrate | Bit rate of the output video, in bit/s. The default bit rate is set according to the resolution of the output video.<br>For the resolution range [240p, 480p], the default bit rate is 1 Mbit/s.<br>For the resolution range (480p, 720p], the default bit rate is 2 Mbit/s.<br>For the resolution range (240p, 1080p], the default bit rate is 4 Mbit/s.<br>For the resolution 1080p or above, the default bit rate is 8 Mbit/s.|
 
 **Returns**
 
@@ -352,7 +358,11 @@ OH_AVErrCode OH_AVTranscoderConfig_EnableBFrame(OH_AVTranscoder_Config *config, 
 
 **Description**
 
-Enables B-frame encoding for the output video during transcoding. The actual support depends on the video encoding format and device chip capability. If the format or the device does not support B-frame encoding, the system will ignore B-frames and encode the video as if B-frame encoding was not enabled.
+Enables B-frame encoding for the output video during transcoding.
+
+For details about the constraints on B-frame video encoding, see [Constraints in B-Frame Video Encoding](../../media/avcodec/video-encoding-b-frame.md#constraints).
+
+If the current environment does not meet these constraints, B-frames will be skipped, and encoding will proceed as if B-frame video encoding were not enabled.
 
 **System capability**: SystemCapability.Multimedia.Media.AVTranscoder
 
@@ -364,7 +374,7 @@ Enables B-frame encoding for the output video during transcoding. The actual sup
 | Name| Description|
 | -- | -- |
 | [OH_AVTranscoder_Config](capi-avtranscoder-oh-avtranscoder-config.md) *config | Pointer to an OH_AVTranscoder_Config instance, which is created by running [OH_AVTranscoderConfig_Create](#oh_avtranscoderconfig_create).|
-| bool enabled | Whether to enable B-frame encoding. The value **true** means to enable B-frame encoding, and **false** means the opposite.|
+| bool enabled | Whether to enable B-frame encoding. **true** to enable, **false** otherwise.|
 
 **Returns**
 
@@ -563,7 +573,7 @@ Releases an AVTranscoder instance.
 
 | Type| Description|
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK: The AVTranscoder instance instance is successfully released.<br>**AV_ERR_INVALID_VAL**: The input parameter **transcoder** is nullptr, or the Release operation fails.<br>**AV_ERR_OPERATE_NOT_PERMIT**: The Release operation is not allowed in the current state.<br>**AV_ERR_IO**: An I/O access error occurs.<br>**AV_ERR_SERVICE_DIED**: The media service is stopped.|
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK: The AVTranscoder instance is successfully released.<br>**AV_ERR_INVALID_VAL**: The input parameter **transcoder** is nullptr, or the Release operation fails.<br>**AV_ERR_OPERATE_NOT_PERMIT**: The Release operation is not allowed in the current state.<br>**AV_ERR_IO**: An I/O access error occurs.<br>**AV_ERR_SERVICE_DIED**: The media service is stopped.|
 
 ### OH_AVTranscoder_SetStateCallback()
 

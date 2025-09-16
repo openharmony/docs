@@ -37,6 +37,10 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 
 ### hilog日志格式说明
 
+```text
+04-19 17:02:14.735  5394  5394 I A03200/testTag: this is a info level hilog
+```
+
 | 第一列 | 第二列 | 第三列 | 第四列 |  第五列 | 第六列 | 第七列 |
 | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
 | 日期 | 时间戳 | 进程号 | 线程号 | 日志级别 | domainID/日志tag: | 日志内容 |
@@ -338,7 +342,7 @@ hilog -v time/color/epoch/monotonic/usec/nsec/year/zone/wrap
 
 **使用样例**：
 
-显示本地时间，以纳秒为单位显示时间。
+显示本地时间，以毫秒为单位显示时间。
 
 <!--RP10-->
    ```shell
@@ -719,7 +723,7 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
 
 **处理方式**：
 
-- 通过hilog -g命令查询buffer大小（hilog buffer大小默认是256KB）。
+- 通过hilog -g命令查询当前buffer大小。
 
 - 通过hilog -G命令扩大hilog buffer大小。如下命令表示将buffer大小修改为16MB（当前允许的最大规格为16MB）。
 

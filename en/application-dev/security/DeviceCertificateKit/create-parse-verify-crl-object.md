@@ -1,8 +1,13 @@
 # CRL Development
 
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
 
-This topic walks you through on how to create a certificate revocation list (CRL) object, obtain CRL information, check whether a certificate has been revoked, and print the revocation date if the certificate has been revoked.
-
+This topic walks you through on how to create a certificate revocation list (CRL) instance, obtain CRL information, check whether a certificate has been revoked, and print the revocation date if the certificate has been revoked.
 
 ## How to Develop
 
@@ -12,13 +17,13 @@ This topic walks you through on how to create a certificate revocation list (CRL
    import { cryptoFramework } from '@kit.CryptoArchitectureKit';
    ```
 
-2. Use [cert.createX509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509crl11) to create an X.509 CRL object.
+2. Use [cert.createX509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatex509crl11) to create an X.509 CRL instance.
 
 3. Obtain CRL information.
 
-   The following example shows how to obtain the CRL version and type. For more information, see [X509CRL](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crl11).
+   Here is an example of obtaining the CRL version, CRL type, CRL issuer name, and string-type data of the CRL object. For more field information, see [@ohos.security.cert (Certificate)](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crl11).
 
-4. Create a **PublicKey** object.
+4. Create a **PublicKey** instance.
 
    For details, see [convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3).
 
@@ -38,38 +43,62 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { util } from '@kit.ArkTS';
 
-// CRL data example. 
+// CRL data, which is only an example.
 let crlData = '-----BEGIN X509 CRL-----\n' +
-  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
-  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
-  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
-  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
-  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
-  'eavsH0Q3\n' +
+  'MIIByzCBtAIBATANBgkqhkiG9w0BAQsFADBXMQswCQYDVQQGEwJDTjEPMA0GA1UE\n' +
+  'CAwG6ZmV6KW/MQ8wDQYDVQQHDAbopb/lrokxDzANBgNVBAoMBua1i+ivlTEVMBMG\n' +
+  'A1UEAwwM5Lit5paH5rWL6K+VFw0yNTAyMjAwNjEzMTZaFw0yNTAzMjIwNjEzMTZa\n' +
+  'MBkwFwIGAXKnJjrAFw0yNTAyMjAwNjEzMDNaoA4wDDAKBgNVHRQEAwIBADANBgkq\n' +
+  'hkiG9w0BAQsFAAOCAQEAt9AZ/B5FQiXnKKBGocKmM5QKeky/3etcI+cAVyD0zfjI\n' +
+  'r1UrL1aF+49LdZps3zQRqm4RQmo9CwL+KsMZiIMSeWF5Q6LW7BQa08hx5PtdjoOu\n' +
+  '1IWVKAwR5IigpaOwMKRTq1xJ372EiUkDD83AsxEkQoQW0bBvFklGrzglSACeKST+\n' +
+  'Pn6ywwFyYj34cfRuz3ueqwHRmN/mGzQdet7Ns8JBGWutDzfJsAiPC/TIaafTOocO\n' +
+  'CHo81Q2rMcqAJj5uXyc1Gq8KfOEqsxo/oDwReghjwrUedJ+9l/cQBr0F8HPV4H8W\n' +
+  '49sYMpseywjp9lxjWt/2nrx1z2yMaivGrVhoFasZvQ==\n' +
   '-----END X509 CRL-----\n'
 
 let certData = '-----BEGIN CERTIFICATE-----\n' +
-  'MIIBLzCB1QIUO/QDVJwZLIpeJyPjyTvE43xvE5cwCgYIKoZIzj0EAwIwGjEYMBYG\n' +
-  'A1UEAwwPRXhhbXBsZSBSb290IENBMB4XDTIzMDkwNDExMjAxOVoXDTI2MDUzMDEx\n' +
-  'MjAxOVowGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYI\n' +
-  'KoZIzj0DAQcDQgAEHjG74yMIueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTa\n' +
-  'tUsU0i/sePnrKglj2H8Abbx9PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEA\n' +
-  '0ce/fvA4tckNZeB865aOApKXKlBjiRlaiuq5mEEqvNACIQDPD9WyC21MXqPBuRUf\n' +
-  'BetUokslUfjT6+s/X4ByaxycAA==\n' +
+  'MIIDgTCCAmmgAwIBAgIGAXKnJjrAMA0GCSqGSIb3DQEBCwUAMFcxCzAJBgNVBAYT\n' +
+  'AkNOMQ8wDQYDVQQIDAbpmZXopb8xDzANBgNVBAcMBuilv+WuiTEPMA0GA1UECgwG\n' +
+  '5rWL6K+VMRUwEwYDVQQDDAzkuK3mlofmtYvor5UwHhcNMjUwMjIwMDYwOTUyWhcN\n' +
+  'MzUwMjE4MDYwOTUyWjBXMQswCQYDVQQGEwJDTjEPMA0GA1UECAwG6ZmV6KW/MQ8w\n' +
+  'DQYDVQQHDAbopb/lrokxDzANBgNVBAoMBua1i+ivlTEVMBMGA1UEAwwM5Lit5paH\n' +
+  '5rWL6K+VMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2DQpPYN7cJjQ\n' +
+  'LWLlkP5dD8J/g1xx97t2bFciUOru14IBm9EeX6qkohDSl6kQHwfVSqTfcqdIn9We\n' +
+  '73FiitfDjHc9xxbvBKbCYicCzS/eNl0W9q14FiEB8M9vz4dpKK00KZBcGc1QK2m+\n' +
+  '/N6zw4Tw4wXZ97v6/M+bhY5X0b3qEJlgQNyz7dD0wF7SCuzLL9zbr403KktHMG5Y\n' +
+  'MzyOBaGOaMuVQFlXMV/E5OWfqbM7n0Pu/cGj+AfkkziWxB+5WFCRP6Pw64LJGo+e\n' +
+  'uZHgHp07kk6+a2YNnFMcdTsOIWBSpCvC3I612NjpBirn2bFRWqTD++YAuvJQagmM\n' +
+  '+VhIjXD48wIDAQABo1MwUTAdBgNVHQ4EFgQUIN7ulBn89L5HXh9m9JM7rpkvlXUw\n' +
+  'HwYDVR0jBBgwFoAUIN7ulBn89L5HXh9m9JM7rpkvlXUwDwYDVR0TAQH/BAUwAwEB\n' +
+  '/zANBgkqhkiG9w0BAQsFAAOCAQEAxWNa3LSOR3QOJ+wE1Y/q5zzEPWmWR5OMrRJK\n' +
+  'juBHhYbzsg3r74fBO3Hw8XggEpHr6SOI1rBpZhciA8D9E8RnM1aJLY53rpBDY5OV\n' +
+  'wxTFzrjdwIknt13t6ILfGeLye5OAF0S8VPdfDqP9NddNNr/WFKpd3tKoBlG0ObMa\n' +
+  'LaQvOqObz0MJrjKsyI680nJjFLjLZ6+lEDSg4rsGU+bxEkONerStAPNcN2x9z7O6\n' +
+  'YJOvhiLjWvr8VRjlMZYVmT9gqCImoo+7JaHbu8jz9mjRxD6fo9I1OvCLNFyFw2sV\n' +
+  'iYID9UEbT6IWv/kKBdr7Te9+SY6AWxUxO8Hd7HdPKDOCrGrU9A==\n' +
   '-----END CERTIFICATE-----\n';
 
 let pubKeyData = new Uint8Array([
-  0x30, 0x81, 0x9F, 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x01, 0x01,
-  0x05, 0x00, 0x03, 0x81, 0x8D, 0x00, 0x30, 0x81, 0x89, 0x02, 0x81, 0x81, 0x00, 0xDC, 0x4C, 0x2D,
-  0x57, 0x49, 0x3D, 0x42, 0x52, 0x1A, 0x09, 0xED, 0x3E, 0x90, 0x29, 0x51, 0xF7, 0x70, 0x15, 0xFE,
-  0x76, 0xB0, 0xDB, 0xDF, 0xA1, 0x2C, 0x6C, 0x67, 0x95, 0xDA, 0x63, 0x3D, 0x4F, 0x71, 0x48, 0x8C,
-  0x3E, 0xFA, 0x24, 0x79, 0xE9, 0xF2, 0xF2, 0x20, 0xCB, 0xF1, 0x59, 0x6B, 0xED, 0xC8, 0x72, 0x66,
-  0x6E, 0x31, 0xD4, 0xF3, 0xCE, 0x0B, 0x12, 0xC4, 0x17, 0x39, 0xB4, 0x52, 0x16, 0xD3, 0xE3, 0xC0,
-  0xF8, 0x48, 0xB3, 0xF6, 0x40, 0xD5, 0x47, 0x23, 0x30, 0x7F, 0xA7, 0xC5, 0x5A, 0x5A, 0xBB, 0x5C,
-  0x7B, 0xEF, 0x69, 0xE2, 0x74, 0x35, 0x24, 0x22, 0x25, 0x45, 0x7E, 0xFC, 0xE8, 0xC4, 0x52, 0x65,
-  0xA0, 0x4E, 0xBC, 0xFD, 0x3F, 0xD9, 0x85, 0x14, 0x8A, 0x5A, 0x93, 0x02, 0x24, 0x6C, 0x19, 0xBA,
-  0x81, 0xBE, 0x65, 0x2E, 0xCB, 0xBB, 0xE9, 0x91, 0x7B, 0x7C, 0x47, 0xC2, 0x61, 0x02, 0x03, 0x01,
-  0x00, 0x01
+  0x30, 0x82, 0x01, 0x22, 0x30, 0x0d, 0x06, 0x09, 0x2a, 0x86, 0x48, 0x86, 0xf7, 0x0d, 0x01, 0x01,
+  0x01, 0x05, 0x00, 0x03, 0x82, 0x01, 0x0f, 0x00, 0x30, 0x82, 0x01, 0x0a, 0x02, 0x82, 0x01, 0x01,
+  0x00, 0xd8, 0x34, 0x29, 0x3d, 0x83, 0x7b, 0x70, 0x98, 0xd0, 0x2d, 0x62, 0xe5, 0x90, 0xfe, 0x5d,
+  0x0f, 0xc2, 0x7f, 0x83, 0x5c, 0x71, 0xf7, 0xbb, 0x76, 0x6c, 0x57, 0x22, 0x50, 0xea, 0xee, 0xd7,
+  0x82, 0x01, 0x9b, 0xd1, 0x1e, 0x5f, 0xaa, 0xa4, 0xa2, 0x10, 0xd2, 0x97, 0xa9, 0x10, 0x1f, 0x07,
+  0xd5, 0x4a, 0xa4, 0xdf, 0x72, 0xa7, 0x48, 0x9f, 0xd5, 0x9e, 0xef, 0x71, 0x62, 0x8a, 0xd7, 0xc3,
+  0x8c, 0x77, 0x3d, 0xc7, 0x16, 0xef, 0x04, 0xa6, 0xc2, 0x62, 0x27, 0x02, 0xcd, 0x2f, 0xde, 0x36,
+  0x5d, 0x16, 0xf6, 0xad, 0x78, 0x16, 0x21, 0x01, 0xf0, 0xcf, 0x6f, 0xcf, 0x87, 0x69, 0x28, 0xad,
+  0x34, 0x29, 0x90, 0x5c, 0x19, 0xcd, 0x50, 0x2b, 0x69, 0xbe, 0xfc, 0xde, 0xb3, 0xc3, 0x84, 0xf0,
+  0xe3, 0x05, 0xd9, 0xf7, 0xbb, 0xfa, 0xfc, 0xcf, 0x9b, 0x85, 0x8e, 0x57, 0xd1, 0xbd, 0xea, 0x10,
+  0x99, 0x60, 0x40, 0xdc, 0xb3, 0xed, 0xd0, 0xf4, 0xc0, 0x5e, 0xd2, 0x0a, 0xec, 0xcb, 0x2f, 0xdc,
+  0xdb, 0xaf, 0x8d, 0x37, 0x2a, 0x4b, 0x47, 0x30, 0x6e, 0x58, 0x33, 0x3c, 0x8e, 0x05, 0xa1, 0x8e,
+  0x68, 0xcb, 0x95, 0x40, 0x59, 0x57, 0x31, 0x5f, 0xc4, 0xe4, 0xe5, 0x9f, 0xa9, 0xb3, 0x3b, 0x9f,
+  0x43, 0xee, 0xfd, 0xc1, 0xa3, 0xf8, 0x07, 0xe4, 0x93, 0x38, 0x96, 0xc4, 0x1f, 0xb9, 0x58, 0x50,
+  0x91, 0x3f, 0xa3, 0xf0, 0xeb, 0x82, 0xc9, 0x1a, 0x8f, 0x9e, 0xb9, 0x91, 0xe0, 0x1e, 0x9d, 0x3b,
+  0x92, 0x4e, 0xbe, 0x6b, 0x66, 0x0d, 0x9c, 0x53, 0x1c, 0x75, 0x3b, 0x0e, 0x21, 0x60, 0x52, 0xa4,
+  0x2b, 0xc2, 0xdc, 0x8e, 0xb5, 0xd8, 0xd8, 0xe9, 0x06, 0x2a, 0xe7, 0xd9, 0xb1, 0x51, 0x5a, 0xa4,
+  0xc3, 0xfb, 0xe6, 0x00, 0xba, 0xf2, 0x50, 0x6a, 0x09, 0x8c, 0xf9, 0x58, 0x48, 0x8d, 0x70, 0xf8,
+  0xf3, 0x02, 0x03, 0x01, 0x00, 0x01
 ]);
 
 // CRL example.
@@ -82,22 +111,32 @@ function crlSample(): void {
     encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
-  // Create an X509CRL object.
+  // Create an X509CRL instance.
   cert.createX509CRL(encodingBlob, (err, x509Crl) => {
     if (err != null) {
-      // The X509CRL object fails to be created.
+      // The X509CRL instance fails to be created.
       console.error(`createX509Crl failed, errCode: ${err.code}, errMsg:${err.message} `);
       return;
     }
-    // The X509CRL object is successfully created.
+    // The X509CRL instance is successfully created.
     console.log('createX509CRL success');
 
-    // Obtain the CRL version
+    // Obtain the CRL version.
     let version = x509Crl.getVersion();
+    // Obtain the CRL type.
     let revokedType = x509Crl.getType();
     console.log(`X509 CRL version: ${version}, type :${revokedType}`);
 
-    // Pass in the public key binary data to convertKey() of @ohos.security.cryptoFramework to obtain a public key object.
+    // Obtain the CRL issuer name.
+    let issuerName = x509Crl.getIssuerName(cert.EncodingType.ENCODING_UTF8);
+    console.log(`X509 CRL issuerName: ${issuerName}`);
+
+    // Obtain the string-type data of the CRL object.
+    let crlString = x509Crl.toString(cert.EncodingType.ENCODING_UTF8);
+    console.log(`X509 CRL crlString: ${crlString}`);
+
+
+    // Pass in the public key binary data to convertKey() of @ohos.security.cryptoFramework to obtain a public key instance.
     try {
       let keyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_3');
       console.log('createAsyKeyGenerator success');
@@ -125,7 +164,7 @@ function crlSample(): void {
       console.error(`get pubKey failed, errCode: ${e.code}, errMsg: ${e.message}` );
     }
 
-    // Use createX509Cert() of certFramework to create an X509Cert object.
+    // Use createX509Cert() of certFramework to create an X509Cert instance.
     let certBlob: cert.EncodingBlob = {
       data: textEncoder.encodeInto(certData),
       encodingFormat: cert.EncodingFormat.FORMAT_PEM
@@ -139,6 +178,24 @@ function crlSample(): void {
           // Check whether the certificate has been revoked.
           revokedFlag = x509Crl.isRevoked(cert);
           console.log(`revokedFlag is: ${revokedFlag}`);
+          if (!revokedFlag) {
+              console.log('the given cert is not revoked.');
+              return;
+          }
+          // Obtain the revoked certificate based on the serial number.
+          try {
+            let crlEntry = x509Crl.getRevokedCert(serial);
+            console.log('get getRevokedCert success');
+            let serialNumber = crlEntry.getSerialNumber();
+            console.log(`crlEntry serialNumber is: ${serialNumber}`);
+
+            // Obtain the revocation date of the certificate.
+            let date = crlEntry.getRevocationDate();
+            console.log(`revocation date is: ${date}`);
+          } catch (error) {
+            let e: BusinessError = error as BusinessError;
+            console.error(`getRevokedCert failed, errCode: ${e.code}, errMsg: ${e.message}`);
+          }
         } catch (error) {
           let e: BusinessError = error as BusinessError;
           console.error(`isRevoked failed, errCode: ${e.code}, errMsg:${e.message}`);
@@ -147,25 +204,7 @@ function crlSample(): void {
         console.error(`create x509 cert failed, errCode: ${err.code}, errMsg: ${err.message}`);
       }
     })
-    if (!revokedFlag) {
-        console.log('the given cert is not revoked.');
-        return;
-    }
 
-    // Obtain the revoked certificate based on the serial number.
-    try {
-      let crlEntry = x509Crl.getRevokedCert(serial);
-      console.log('get getRevokedCert success');
-      let serialNumber = crlEntry.getSerialNumber();
-      console.log(`crlEntry serialNumber is: ${serialNumber}`);
-
-      // Obtain the revocation date of the certificate.
-      let date = crlEntry.getRevocationDate();
-      console.log(`revocation date is: ${date}`);
-    } catch (error) {
-      let e: BusinessError = error as BusinessError;
-      console.error(`getRevokedCert failed, errCode: ${e.code}, errMsg: ${e.message}`);
-    }
   });
 }
 ```

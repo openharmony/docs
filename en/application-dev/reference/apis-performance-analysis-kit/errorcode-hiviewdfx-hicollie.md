@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Wrong thread context. The function cannot be called from main thread.
+Wrong thread context.The function can not be called from main thread.
 
 **Description**
 
@@ -58,11 +58,11 @@ Invalid timeout value.
 
 **Description**
 
-The value of **timeout** is invalid.
+The **timeout** value is invalid.
 
 **Possible Causes**
 
-The value of **timeout** is **0**.
+The **timeout** value is **0**.
 
 ## 29800005 Incorrect Process Context
 
@@ -76,7 +76,7 @@ The process context is incorrect.
 
 **Possible Causes**
 
-The appspawn or nativespawn process is used to access the timer.
+The **appspawn** or **nativespawn** process is used to access the timer.
 
 ## 29800006 Incorrect Timer ID
 

@@ -1,5 +1,11 @@
 # @ohos.bytrace (Performance Tracing)
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @qq_437963121-->
+<!--SE: @MontSaintMichel-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 The **bytrace** module implements performance tracing for processes.
 
 > **NOTE**

@@ -1,6 +1,12 @@
 # ProcessInformation
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--Designer: @yzkp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-The **ProcessInformation** module defines the running information of a process.
+The ProcessInformation module defines the running information of a process.
 
 > **NOTE**
 > 
@@ -28,7 +34,7 @@ import { appManager } from '@kit.AbilityKit';
 
 ## How to Use
 
-The process information is obtained by calling [getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation) of the **appManager** module.
+The process information is obtained by calling [getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation) of the appManager module.
 
 **Example**
 

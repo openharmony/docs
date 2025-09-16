@@ -19,26 +19,33 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. 通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)类中的depthProfiles属性获取当前设备支持的深度能力，返回depthProfilesArray数组。通过[createDepthDataOutput](../../reference/apis-camera-kit/js-apis-camera-sys.md#createdepthdataoutput13)方法创建深度流。
+2. 通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)中的depthProfiles属性获取当前设备支持的深度能力，返回depthProfilesArray数组。通过[createDepthDataOutput](../../reference/apis-camera-kit/js-apis-camera-sys.md#createdepthdataoutput13)方法创建深度流。
 
    ```ts
-   function getDepthDataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.DepthDataOutput | undefined {
-     let depthProfilesArray: Array<camera.DepthProfile> = cameraOutputCapability.depthProfiles;
-     if (!depthProfilesArray) {
-       console.error("createOutput depthProfilesArray is null");
-     }
-     let depthDataOutput: camera.DepthDataOutput | undefined = undefined;
-     try {
-       depthDataOutput = cameraManager.createDepthDataOutput(depthProfilesArray[0]);
-     } catch (error) {
-       let err = error as BusinessError;
-       console.error(`Failed to create the DepthDataOutput instance. error: ${err}`);
-     }
-     return depthDataOutput;
+   function getDepthDataOutput(cameraManager: camera.CameraManager,
+    cameraOutputCapability: camera.CameraOutputCapability): camera.DepthDataOutput | undefined {
+      let depthProfilesArray: Array<camera.DepthProfile> = cameraOutputCapability.depthProfiles;
+      if (!depthProfilesArray) {
+        console.error("createOutput depthProfilesArray is null");
+        return undefined;
+      }
+      let depthDataOutput: camera.DepthDataOutput | undefined = undefined;
+      try {
+        if (depthProfilesArray.length > 0) {
+          depthDataOutput = cameraManager.createDepthDataOutput(depthProfilesArray[0]);
+        } else {
+          console.log("the length of depthProfilesArray<=0!");
+          return undefined;
+        }
+      } catch (error) {
+        let err = error as BusinessError;
+        console.error(`Failed to create the DepthDataOutput instance. error: ${err}`);
+      }
+      return depthDataOutput;
    }
    ```
 
-3. 使能。通过depthDataOutput类的[start](../../reference/apis-camera-kit/js-apis-camera-sys.md#start13)方法输出深度流。接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraerrorcode)。
+3. 使能。通过depthDataOutput的[start](../../reference/apis-camera-kit/js-apis-camera-sys.md#start13)方法输出深度流。接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraerrorcode)。
      
    ```ts
    async function startDepthDataOutput(depthDataOutput: camera.DepthDataOutput): Promise<void> {

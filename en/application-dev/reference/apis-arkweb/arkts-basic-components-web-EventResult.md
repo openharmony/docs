@@ -1,4 +1,10 @@
 # Class (EventResult)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zourongchun-->
+<!--Designer: @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Represents the event consumption result sent to the **Web** component. For details about the supported events, see [TouchType](../apis-arkui/arkui-ts/ts-appendix-enums.md#touchtype), [MouseAction](../apis-arkui/arkui-ts/ts-appendix-enums.md#mouseaction8), and left, middle, and right buttons in [MouseButton](../apis-arkui/arkui-ts/ts-appendix-enums.md#mousebutton8).
 

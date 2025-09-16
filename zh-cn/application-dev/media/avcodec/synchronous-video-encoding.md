@@ -184,7 +184,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-6. 调用OH_VideoEncoder_FreeOutputBuffer()释放编码帧
+6. 获取可用buffer并释放编码帧。
+
+   - 调用[OH_VideoEncoder_QueryOutputBuffer](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_queryoutputbuffer)接口获取下一个可用的输出缓冲区（buffer）的索引（index）。
+   - 根据获取的索引（index），调用[OH_VideoEncoder_GetOutputBuffer](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_getoutputbuffer)接口获取对应的缓冲区（buffer）实例。
+   - 调用[OH_VideoEncoder_FreeOutputBuffer](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_freeoutputbuffer)接口释放编码帧。
 
     ```c++
     bool EncoderOutput(OH_AVCodec *videoEnc, int64_t timeoutUs)
@@ -254,7 +258,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-7. 编码输出。
+7. 编码器出帧处理循环。
 
    ```c++
     bool result = true;
@@ -445,9 +449,14 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-5. 调用OH_VideoEncoder_PushInputBuffer()写入编码码流。
+5. 获取可用buffer并写入码流至编码器
 
-    与Surface模式相同，此处不再赘述。
+    - 调用[OH_VideoEncoder_QueryInputBuffer](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_queryinputbuffer)接口获取下一个可用的输入缓冲区（buffer）的索引（index）。
+    - 根据获取的索引（index），调用[OH_VideoEncoder_GetInputBuffer](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_getinputbuffer)接口获取对应的缓冲区（buffer）实例。
+    - 将需要编码的数据写入该缓冲区（buffer）后，调用[OH_VideoEncoder_PushInputBuffer](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_pushinputbuffer)接口将其送入编码输入队列进行编码。当所有待处理数据全部传递给编码器后，需要将flag标识成AVCODEC_BUFFER_FLAGS_EOS，通知编码器输入结束。
+
+
+    示例中的变量size、offset、pts、frameData、flags说明与Surface模式相同，此处不再赘述。
 
     ```c++
     bool EncoderInput(OH_AVCodec *videoEnc, int64_t timeoutUs)
@@ -528,30 +537,13 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-6. 通知编码器结束。
 
-    示例中的变量说明如下：
-    - buffer：函数EncoderInput中通过[OH_VideoEncoder_QueryInputBuffer](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_queryinputbuffer)接口获取。
-    - index：与buffer唯一对应的标识。
+6. 获取可用buffer并释放编码帧。
 
-    通知编码器输入结束，需要将flag标识成AVCODEC_BUFFER_FLAGS_EOS。
-    ```c++
-    OH_AVCodecBufferAttr info;
-    info.size = 0;
-    info.offset = 0;
-    info.pts = 0;
-    info.flags = AVCODEC_BUFFER_FLAGS_EOS;
-    OH_AVErrCode setBufferRet = OH_AVBuffer_SetBufferAttr(buffer, &info);
-    if (setBufferRet != AV_ERR_OK) {
-        // 异常处理。
-    }
-    OH_AVErrCode pushInputRet = OH_VideoEncoder_PushInputBuffer(videoEnc, index);
-    if (pushInputRet != AV_ERR_OK) {
-        // 异常处理。
-    }
-    ```
-
-7. 调用OH_VideoEncoder_FreeOutputBuffer()释放编码帧。
+   - 调用[OH_VideoEncoder_QueryOutputBuffer](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_queryoutputbuffer)接口获取下一个可用的输出缓冲区（buffer）的索引（index）。
+   - 根据获取的索引（index），调用[OH_VideoEncoder_GetOutputBuffer](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_getoutputbuffer)接口获取对应的缓冲区（buffer）实例。
+   - 调用[OH_VideoEncoder_FreeOutputBuffer](../../reference/apis-avcodec-kit/_video_encoder.md#oh_videoencoder_freeoutputbuffer)接口释放编码帧。
+  
 
     ```c++
     bool EncoderOutput(OH_AVCodec *videoEnc, int64_t timeoutUs)
@@ -610,7 +602,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-8. 编码输入输出。
+7. 编码器送帧/出帧处理循环。
   
     ```c++
     bool result = true;

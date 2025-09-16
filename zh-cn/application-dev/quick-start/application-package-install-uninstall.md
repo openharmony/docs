@@ -16,7 +16,7 @@
 ![hap-intall-uninstall](figures/hap-install-uninstall-developer.png)
 
 
-应用上架应用市场后，终端设备用户可在设备上通过应用市场安装和卸载应用。
+应用上架应用市场后，终端设备用户可在设备上通过应用市场安装应用。
 
 **图2** 应用程序包安装和卸载流程（终端设备用户）
 

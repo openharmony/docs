@@ -1,5 +1,12 @@
 # hisysevent
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @lyj_love_code-->
+<!--Designer: @tangyyan-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 hisysevent是系统的预置工具，主要用来帮助开发者订阅实时系统事件，查询历史系统事件。
 
 ## 环境要求
@@ -37,13 +44,13 @@ hisysevent是系统的预置工具，主要用来帮助开发者订阅实时系�
   样例1：使用全词匹配规则，订阅事件域为"AAFWK"，事件名称为"CONNECT_SERVICE"的系统事件。
 
   ![](figures/hisysevent-r-o-wholeword.png)
-  
+
   样例2：使用前缀匹配规则，订阅事件域前缀为"AAF"，事件名称前缀为"CONNECT"的系统事件。
 
   ![](figures/hisysevent-r-o-prefix.png)
-  
+
   样例3：使用正则表达式匹配规则，订阅事件域可以匹配"AA\*"正则表达式，事件名称可以匹配"CONNE\*"正则表达式的系统事件。
-  
+
   ![](figures/hisysevent-r-o-regular.png)
 
 - 使用"-t"指定事件标签以及"-c"指定事件标签的匹配规则，来完成系统事件更高精确度的订阅。

@@ -1,4 +1,10 @@
 # @ohos.app.form.FormExtensionAbility (FormExtensionAbility)
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 
 FormExtensionAbility为卡片扩展模块，提供卡片创建、销毁、刷新等生命周期回调。
 
@@ -88,7 +94,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onCastToNormalForm(formId: string): void
 
-卡片提供方接收临时卡片转常态卡片的通知接口。
+卡片提供方收到卡片使用方将临时卡片转常态卡片的通知接口。临时卡片、常态卡片是卡片使用方的概念，其中：临时卡片是短期存在的，在特定事件或用户行为后显示，完成后自动消失。常态卡片是持久存在的，在用户未进行清除或更改的情况下，会一直存在，平时开发的功能卡片属于常态卡片。当前卡片使用方不会使用临时卡片。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -109,6 +115,7 @@ import { FormExtensionAbility } from '@kit.FormKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onCastToNormalForm(formId: string) {
+    // 卡片提供方收到卡片使用方将临时卡片转常态卡片的通知时触发，开发者需根据实际需求做相应的处理
     console.log(`FormExtensionAbility onCastToNormalForm, formId: ${formId}`);
   }
 };
@@ -372,8 +379,10 @@ onFormLocationChanged(formId: string, newFormLocation: formInfo.FormLocation): v
 
 当卡片位置发生变化时，触发该回调。
 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
 **模型约束：** 此接口仅可在Stage模型下使用。
-  
+
 **系统能力：** SystemCapability.Ability.Form
 
 **参数：**

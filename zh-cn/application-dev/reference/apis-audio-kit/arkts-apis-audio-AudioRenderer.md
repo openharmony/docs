@@ -56,13 +56,11 @@ getRendererInfo(callback: AsyncCallback<AudioRendererInfo\>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-audioRenderer.getRendererInfo((err: BusinessError, rendererInfo: audio.AudioRendererInfo) => {
+audioRenderer.getRendererInfo((err: BusinessError, audioRendererInfo: audio.AudioRendererInfo) => {
   if (err) {
-    console.error(`Failed to getRendererInfo. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to get renderer info. Code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info('Succeeded in doing getRendererInfo.');
-    console.info(`Renderer usage: ${rendererInfo.usage}`);
-    console.info(`Renderer flags: ${rendererInfo.rendererFlags}`);
+    console.info(`Succeeded in getting renderer info, AudioRendererInfo: ${JSON.stringify(audioRendererInfo)}.`);
   }
 });
 ```
@@ -86,12 +84,10 @@ getRendererInfo(): Promise<AudioRendererInfo\>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-audioRenderer.getRendererInfo().then((rendererInfo: audio.AudioRendererInfo) => {
-  console.info('Succeeded in doing getRendererInfo.');
-  console.info(`Renderer usage: ${rendererInfo.usage}`);
-  console.info(`Renderer flags: ${rendererInfo.rendererFlags}`)
+audioRenderer.getRendererInfo().then((audioRendererInfo: audio.AudioRendererInfo) => {
+  console.info(`Succeeded in getting renderer info, AudioRendererInfo: ${JSON.stringify(audioRendererInfo)}.`);
 }).catch((err: BusinessError) => {
-  console.error(`Failed to getRendererInfo. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to get renderer info. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -115,13 +111,11 @@ getRendererInfoSync(): AudioRendererInfo
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let rendererInfo: audio.AudioRendererInfo = audioRenderer.getRendererInfoSync();
-  console.info('Succeeded in doing getRendererInfoSync.');
-  console.info(`Renderer usage: ${rendererInfo.usage}`);
-  console.info(`Renderer flags: ${rendererInfo.rendererFlags}`)
+  let audioRendererInfo = audioRenderer.getRendererInfoSync();
+  console.info(`Succeeded in getting renderer info, AudioRendererInfo: ${JSON.stringify(audioRendererInfo)}.`);
 } catch (err) {
   let error = err as BusinessError;
-  console.error(`Failed to getRendererInfoSync. Code: ${error.code}, message: ${error.message}`);
+  console.error(`Failed to get renderer info. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 

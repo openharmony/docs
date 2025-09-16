@@ -748,7 +748,7 @@ isAppRunning(bundleName: string, appCloneIndex?: number): Promise\<boolean>
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 查询的应用包名。 |
-| appCloneIndex | number | 否 | 分身应用索引。 |
+| appCloneIndex | number | 否 | 分身应用索引。 取值范围：0~1000。取值为0时表示主应用；取值大于0时表示指定分身应用。|
 
 **返回值：**
 

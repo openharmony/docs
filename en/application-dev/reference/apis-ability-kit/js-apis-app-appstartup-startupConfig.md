@@ -1,4 +1,10 @@
 # @ohos.app.appstartup.StartupConfig (Startup Task Configuration)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yzkp-->
+<!--Designer: @yzkp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 The module provides APIs for startup task configuration.
 

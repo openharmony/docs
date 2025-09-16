@@ -1,14 +1,31 @@
 # @ohos.app.ability.childProcessManager (Child Process Management)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-The childProcessManager module provides the child process management capability. Currently, it provides APIs to start a child process and is valid only for 2-in-1 devices and tablets.
+The childProcessManager module provides the child process management capability. Currently, it provides APIs to create and start a child process
 
-The created child process does not support the UI or the calling of context-related APIs. A maximum of 512 child processes can be started through this module (non-SELF_FORK mode) and [ChildProcess](c-apis-ability-childprocess.md).
+The created child process will exit when the parent process exits and cannot run independently.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > The APIs of this module can be used only in the stage model.
+
+## Constraints
+
+- The APIs of this module work only for 2-in-1 devices and tablets.
+
+- The child processes created through the APIs of this module have the following restrictions:
+  - The created child process does not support the creation of UIs. 
+  - The created child process does not support API calls that depend on the Context module (including the APIs of the Context module and the APIs that use the Context instance as an input parameter). 
+  - The created child process does not support the creation of its own child process. 
+  
+- A maximum of 512 child processes can be started by using the APIs of this module and the APIs defined in [native_child_process.h](capi-native-child-process-h.md) (as long as system resources are sufficient). The child processes started by [startChildProcess](#childprocessmanagerstartchildprocess) in SELF_FORK mode are not counted.
 
 ## Modules to Import
 
@@ -24,16 +41,21 @@ Enumerates the child process start modes.
 
 | Name                      | Value                            | Description                             |
 | --------                     |  -----------------               |  -----------------               |
-| SELF_FORK |  0   | The child process is forked from the application process. Binder IPC cannot be called in such a child process. Otherwise, the child process will crash. Asynchronous ArkTS API calls are not supported.|
-| APP_SPAWN_FORK |  1   | The child process is forked from AppSpawn. Such a child process does not inherit the parent process resources. It does not have application context and therefore does not support API calls that depend on application context.|
+| SELF_FORK |  0   | The child process is forked from the application process. The child process started in this mode inherits the resources of the parent process and cannot use Binder IPC to communicate with other processes. Otherwise, the child process will crash.|
+| APP_SPAWN_FORK |  1   | The child process is forked from AppSpawn. The child process started in this mode does not inherit the resources of the parent process and can use Binder IPC to communicate with other processes.|
 
 ## childProcessManager.startChildProcess
 
 startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;
 
-Creates a child process and invokes the entrypoint method of the child process. This API uses a promise to return the result.
+Starts an [ArkTS child process](../../application-models/ability-terminology.md#arkts-child-process). This API uses a promise to return the result.
 
-A PID is returned once the child process is created. However, this does not mean that the child process is started. It is started only when [ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart) is successfully called. This API cannot be called by a child process to create its child process.
+
+> **NOTE**
+> 
+> If the child process is created successfully, its PID is returned, and its [ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart) function is executed. Once the function is done, the child process is automatically destroyed.
+>
+> The child process started by calling this API does not support asynchronous ArkTS API calls. It supports only synchronous ArkTS API calls.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -100,9 +122,13 @@ try {
 
 startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallback&lt;number&gt;): void
 
-Creates a child process and invokes the entrypoint method of the child process. This API uses an asynchronous callback to return the result.
+Starts an [ArkTS child process](../../application-models/ability-terminology.md#arkts-child-process). This API uses an asynchronous callback to return the result.
 
-A PID is returned once the child process is created. However, this does not mean that the child process is started. It is started only when [ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart) is successfully called. This API cannot be called by a child process to create its child process.
+> **NOTE**
+> 
+> If the child process is created successfully, its PID is returned, and its [ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart) function is executed. Once the function is done, the child process is automatically destroyed.
+>
+> The child process started by calling this API does not support asynchronous ArkTS API calls. It supports only synchronous ArkTS API calls.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -165,11 +191,13 @@ try {
 
 startArkChildProcess(srcEntry: string, args: ChildProcessArgs, options?: ChildProcessOptions): Promise&lt;number&gt;
 
-Creates a child process and invokes the entrypoint method of the child process. This API uses a promise to return the result.
+Starts an [ArkTS child process](../../application-models/ability-terminology.md#arkts-child-process). This API uses a promise to return the result.
 
-The child process does not inherit the resources of the parent process. A PID is returned once the child process is created. However, this does not mean that the child process is started. It is started only when [ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart) is successfully called. This API cannot be called by a child process to create its child process.
 
-The child process supports parameter transfer and asynchronous ArkTS API calls (except for some APIs that depend on application context). After [ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart) is called, the child process will not be automatically destroyed. Instead, you must call [process.abort](../apis-arkts/js-apis-process.md#processabort) to destroy the child process. After the main process is destroyed, the child processes are also destroyed.
+> **NOTE**
+>
+> The child process started by calling this API does not inherit the resources of the parent process. If the child process is created successfully, its PID is returned, and its [ChildProcess.onStart](js-apis-app-ability-childProcess.md#childprocessonstart) function is executed. After the function is done, the child process is not automatically destroyed. Instead, it must be destroyed by calling [process.abort](../apis-arkts/js-apis-process.md#processabort). After the process that calls this API is destroyed, the created child process is also destroyed.
+
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -177,7 +205,7 @@ The child process supports parameter transfer and asynchronous ArkTS API calls (
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | srcEntry | string | Yes| Path of the source file of the child process relative to the root directory **src/main**. The source file cannot be stored in the module of the HAR type. The value consists of a module name, a slash (/), and a file path. For example, if the child process file is **src/main/ets/process/DemoProcess.ets** in module1, then **srcEntry** is **module1/./ets/process/DemoProcess.ets**.<br>In addition, ensure that the source file of the child process is referenced by other files to prevent it from being optimized by the build tool. (For details, see the sample code below.)|
+  | srcEntry | string | Yes| Path of the source file of the child process relative to the root directory **src/main**. The source file cannot be stored in the module of the HAR type. The value consists of a module name, a slash (/), and a file path. For example, if the child process file is **src/main/ets/process/DemoProcess.ets** in module1, then **srcEntry** is **module1/ets/process/DemoProcess.ets**.<br>In addition, ensure that the source file of the child process is referenced by other files to prevent it from being optimized by the build tool. (For details, see the sample code below.)|
   | args | [ChildProcessArgs](js-apis-app-ability-childProcessArgs.md) | Yes| Parameters transferred to the child process.|
   | options | [ChildProcessOptions](js-apis-app-ability-childProcessOptions.md) | No| Startup configuration of the child process.|
 
@@ -253,7 +281,7 @@ struct Index {
               let options: ChildProcessOptions = {
                 isolationMode: false
               };
-              childProcessManager.startArkChildProcess("module1/./ets/process/DemoProcess.ets", args, options)
+              childProcessManager.startArkChildProcess("module1/ets/process/DemoProcess.ets", args, options)
                 .then((pid) => {
                   console.info(`startChildProcess success, pid: ${pid}`);
                 })
@@ -276,11 +304,11 @@ struct Index {
 
 startNativeChildProcess(entryPoint: string, args: ChildProcessArgs, options?: ChildProcessOptions): Promise&lt;number&gt;
 
-Starts a native child process, loads the specified dynamic library file, and calls the entry function. This API uses a promise to return the result.
+Starts a [native child process](../../application-models/ability-terminology.md#native-child-process). This API uses a promise to return the result.
 
-The child process does not inherit the resources of the parent process. A PID is returned once the child process is created. However, this does not mean that the entry function is successfully called, which depends on the execution result of the entry function of the child process. This API cannot be called by a child process to create its child process. It cannot be called to create a child process in an ArkTS basic runtime environment.
-
-After the entry function is executed, the child process is automatically destroyed. After the main process is destroyed, the child processes are also destroyed.
+> **NOTE**
+> 
+> The child process started by calling this API does not inherit the resources of the parent process. After the child process is created, its PID is returned, the dynamic link library file specified in the parameters is loaded, and the entry function of the child process is executed. Once the entry function is done, the child process is automatically destroyed. After the process that calls this API is destroyed, the created child process is also destroyed.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

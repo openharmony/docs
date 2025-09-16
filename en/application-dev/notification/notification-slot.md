@@ -28,7 +28,7 @@ The main notification slot APIs are as follows. For details about other APIs, se
 | getSlot(slotType: SlotType): Promise\<NotificationSlot\> | Obtains a notification slot.      |
 | removeSlot(slotType: SlotType): Promise\<void\>          | Removes a notification slot for this application. |
 
-In addition to using **addslot()**, you can also create a notification slot by passing **notificationSlotType** in the [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest). If the specified notification slot does not exist, it is automatically created.
+In addition to using **addslot()**, you can also create a notification slot by passing **notificationSlotType** in the [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1). If the specified notification slot does not exist, it is automatically created.
 
 ## How to Develop
 

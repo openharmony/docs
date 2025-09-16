@@ -37,7 +37,7 @@ import { AttributeUpdater } from '@kit.ArkUI';
 >  
 >  6. AttributeUpdater不支持深浅色切换等状态管理相关的操作。
 
-## Initializer
+## Initializer\<T>
 type Initializer\<T> = () => T
 
 可以将属性更新到本地的修饰器。
@@ -45,6 +45,12 @@ type Initializer\<T> = () => T
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     |                说明         |
+| -------- | ------------------------- |
+|  T       | 返回当前组件。              |
 
 ## AttributeUpdater<T, C = Initializer\<T>>
 为[AttributeModifier](arkui-ts/ts-universal-attributes-attribute-modifier.md#attributemodifiert)的实现类，开发者需要自定义class继承AttributeUpdater。

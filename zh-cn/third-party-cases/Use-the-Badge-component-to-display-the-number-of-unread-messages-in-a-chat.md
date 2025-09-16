@@ -218,7 +218,7 @@ class SimplifyChatInfo {
 
 [@Observed装饰器和@ObjectLink装饰器：嵌套类对象属性变化](../application-dev/ui/state-management/arkts-observed-and-objectlink.md)
 
-[ForEach：循环渲染](../application-dev/ui/state-management/arkts-rendering-control-foreach.md)
+[ForEach：循环渲染](../application-dev/ui/rendering-control/arkts-rendering-control-foreach.md)
 
 
 

@@ -283,7 +283,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 - 获取相册管理模块photoAccessHelper实例。
 - [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
-下面以往相册名为'albumName'的用户相册中移除一张图片为例。
+下面以从相册名为'albumName'的用户相册中移除一张图片为例。
 
 **开发步骤**
 
@@ -318,9 +318,19 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+    if (album === undefined) {
+      console.error('album is undefined');
+      albumFetchResult.close();
+      return;
+    }
     console.info('getAlbums successfully, albumName: ' + album.albumName);
     let photoFetchResult = await album.getAssets(photoFetchOptions);
     let photoAsset = await photoFetchResult.getFirstObject();
+    if (photoAsset === undefined) {
+      console.error('photoAsset is undefined');
+      photoFetchResult.close();
+      return;
+    }
     console.info('album getAssets successfully, albumName: ' + photoAsset.displayName);
     let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
     albumChangeRequest.removeAssets([photoAsset]);

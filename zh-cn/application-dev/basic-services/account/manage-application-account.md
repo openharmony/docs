@@ -61,9 +61,9 @@
 
    ```ts
    appAccountManager.getAllAccounts().then((data: appAccount.AppAccountInfo[]) => {
-       console.log('getAllAccounts successfully, data: ' + JSON.stringify(data));
+       console.info('getAllAccounts successfully, data: ' + JSON.stringify(data));
    }).catch((err: BusinessError) => {
-       console.error('getAllAccounts failed, error: ' + JSON.stringify(err));
+       console.error(`getAllAccounts failed, code is ${err.code}, message is ${err.message}`);
    });
    ```
 
@@ -83,9 +83,9 @@
 
    ```ts
    appAccountManager.getCredential(name, credentialType).then((data: string) => {
-       console.log('getCredential successfully, data: ' + data);
+       console.info('getCredential successfully, data: ' + data);
    }).catch((err: BusinessError) => {
-       console.error('getCredential failed, error: ' + JSON.stringify(err));
+       console.error(`getCredential failed, code is ${err.code}, message is ${err.message}`);
    });
    ```
 
@@ -93,9 +93,9 @@
 
    ```ts
    appAccountManager.setCredential(name, credentialType, credential).then(() => {
-       console.log('setCredential successfully');
+       console.info('setCredential successfully');
    }).catch((err: BusinessError) => {
-       console.error('setCredential failed: ' + JSON.stringify(err));
+       console.error(`setCredential failed: code is ${err.code}, message is ${err.message}`);
    });
    ```
 
@@ -115,9 +115,9 @@
 
    ```ts
    appAccountManager.setCustomData(name, key, value).then(() => {
-       console.log('setCustomData successfully');
+       console.info('setCustomData successfully');
    }).catch((err: BusinessError) => {
-       console.error('setCustomData failed: ' + JSON.stringify(err));
+       console.error(`setCustomData failed: code is ${err.code}, message is ${err.message}`);
    });
    ```
 
@@ -125,9 +125,9 @@
 
    ```ts
    appAccountManager.getCustomData(name, key).then((data: string) => {
-       console.log('getCustomData successfully, data: ' + data);
+       console.info('getCustomData successfully, data: ' + data);
    }).catch((err: BusinessError) => {
-       console.error('getCustomData failed, error: ' + JSON.stringify(err));
+       console.error(`getCustomData failed, code is ${err.code}, message is ${err.message}`);
    });
    ```
 
@@ -148,9 +148,9 @@
 
    ```ts
    appAccountManager.setAuthToken(name, authType, token).then(() => {
-       console.log('setAuthToken successfully');
+       console.info('setAuthToken successfully');
    }).catch((err: BusinessError) => {
-       console.error('setAuthToken failed: ' + JSON.stringify(err));
+       console.error(`setAuthToken failed: code is ${err.code}, message is ${err.message}`);
    });
    ```
 
@@ -158,9 +158,9 @@
 
    ```ts
    appAccountManager.getAuthToken(name, owner, authType).then((data: string) => {
-       console.log('getAuthToken successfully, data: ' + data);
+       console.info('getAuthToken successfully, data: ' + data);
    }).catch((err: BusinessError) => {
-       console.error('getAuthToken failed, error: ' + JSON.stringify(err));
+       console.error(`getAuthToken failed, code is ${err.code}, message is ${err.message}`);
    });
    ```
 
@@ -175,9 +175,9 @@
    ```ts
    let name: string = 'ZhangSan';
    appAccountManager.removeAccount(name).then(() => {
-       console.log('removeAccount successfully');
+       console.info('removeAccount successfully');
    }).catch((err: BusinessError) => {
-       console.error('removeAccount failed, error: ' + JSON.stringify(err));
+       console.error(`removeAccount failed, code is ${err.code}, message is ${err.message}`);
    });
    ```
 

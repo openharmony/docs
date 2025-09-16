@@ -2,7 +2,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--Designer: @yangfan229-->
+<!--Designer: @CCFFWW-->
 <!--Tester: @lxl007-->
 <!--Adviser: @HelloCrease-->
 
@@ -16,8 +16,6 @@
 
 ```ts
 // xx.ets
-import { display } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct rotation {
@@ -111,7 +109,7 @@ onWindowStageCreate(windowStage: window.WindowStage): void {
         }
       })
     } catch {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'error');
+      hilog.error(0x0000, 'testTag', '%{public}s', 'error');
       return;
     }
 

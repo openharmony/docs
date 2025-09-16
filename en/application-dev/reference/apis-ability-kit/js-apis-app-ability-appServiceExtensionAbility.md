@@ -1,4 +1,10 @@
 # @ohos.app.ability.AppServiceExtensionAbility (ExtensionAbility for Application Background Services)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yewei0794-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 The AppServiceExtensionAbility module provides extended capabilities for background services, including lifecycle callbacks for creating, destroying, connecting, and disconnecting background services.
 
@@ -205,7 +211,7 @@ Called when all connections to an AppServiceExtensionAbility instance are interr
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-app-ability-want.md)| Yes| Want information about the target AppServiceExtensionAbility instance, including the ability name and bundle name.|
+| want |[Want](js-apis-app-ability-want.md)| Yes| Want information passed by the caller when the AppServiceExtensionAbility instance was most recently started or connected. This includes information such as the ability name and bundle name.|
 
 **Example**
 

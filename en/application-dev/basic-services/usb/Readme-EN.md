@@ -1,9 +1,12 @@
 # USB Service<!--usb-->
 
-<!--Del-->
-- [USB Service Overview](usb-overview.md)
-- [USB Service Development](usb-guidelines.md)
-<!--DelEnd-->
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 - Developing USB Services<!--usb-dev-->
   - [USB Service Development Overview](usbManager/usbHost-overview.md)
   - USB Host Development<!--usb-host-dev-->

@@ -10,9 +10,11 @@
 > 
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-## ComponentOptions<sup>11+</sup>
+## ComponentOptions
 
 自定义组件参数，用于配置是否支持组件冻结。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -27,4 +29,4 @@
 
 | 名称 | 类型 | 必填 | 说明     |
 | ------ | ---- | ---- | ------------ |
-|freezeWhenInactive|boolean|是|配置自定义组件支持组件冻结。true：开启组件冻结，false：不开启组件冻结。|
+|freezeWhenInactive|boolean|是|配置自定义组件支持组件冻结。true：开启组件冻结，false：不开启组件冻结。当开发者未指定ComponentOptions时，freezeWhenInactive将使用false作为默认值。|

@@ -1,4 +1,4 @@
-# 设置系统语言与区域
+# 系统语言与区域
 
 <!--Kit: Localization Kit-->
 <!--Subsystem: Global-->
@@ -21,7 +21,7 @@
 1. 导入模块。
    ```ts
    import { i18n } from '@kit.LocalizationKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
+   import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
    ```
 
 2. 获取系统语言、系统地区、系统区域。
@@ -34,7 +34,30 @@
 
    // 获取系统区域
    let systemLocale: Intl.Locale = i18n.System.getSystemLocaleInstance();  // systemLocale为当前系统区域
+
+   // 通过监听公共事件COMMON_EVENT_LOCALE_CHANGED可以感知系统语言、系统地区或系统区域变化
+   let subscriber: commonEventManager.CommonEventSubscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+   let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+     events: [commonEventManager.Support.COMMON_EVENT_LOCALE_CHANGED]
+   };
+   // 创建订阅者
+   commonEventManager.createSubscriber(subscribeInfo)
+     .then((commonEventSubscriber: commonEventManager.CommonEventSubscriber) => {
+       console.info("CreateSubscriber");
+       subscriber = commonEventSubscriber;
+       commonEventManager.subscribe(subscriber, (err, data) => {
+         if (err) {
+           console.error(`Failed to subscribe common event. error code: ${err.code}, message: ${err.message}.`);
+           return;
+         }
+         console.info("The subscribed event has occurred."); // 系统语言、系统地区或系统区域变化时执行
+       })
+     })
+     .catch((err: BusinessError) => {
+       console.error(`CreateSubscriber failed, code is ${err.code}, message is ${err.message}`);
+     });
    ```
+
 <!--Del-->
 3. 设置系统语言、系统地区。
    ```ts

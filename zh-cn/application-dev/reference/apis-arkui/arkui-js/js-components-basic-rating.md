@@ -82,7 +82,7 @@
   justify-content: center;
   align-items: center;
 }
-rating {
+.rating {
   width: 200px;
 }
 ```

@@ -67,24 +67,22 @@ packToData(source: ImageSource, options: PackingOption): Promise\<ArrayBuffer>
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-//此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
-let filePath: string = context.filesDir + "/test.jpg";
-const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
-let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-const imagePackerApi: image.ImagePacker = image.createImagePacker();
-imagePackerApi.packToData(imageSourceApi, packOpts)
-  .then((data: ArrayBuffer) => {
-    console.info('Succeeded in packing the image.');
-  }).catch((error: BusinessError) => {
-    console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
-  })
+async function PackToData(context : Context) {
+  // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
+  let filePath: string = context.filesDir + "/test.jpg";
+  const imageSourceObj: image.ImageSource = image.createImageSource(filePath);
+  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
+  imagePackerObj.packToData(imageSourceObj, packOpts)
+    .then((data: ArrayBuffer) => {
+      console.info('Succeeded in packing the image.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
+    })
+}
 ```
 
 ## packToData<sup>13+</sup>
@@ -134,20 +132,22 @@ packToData(source: PixelMap, options: PackingOption): Promise\<ArrayBuffer>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
-let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
-  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-  const imagePackerApi: image.ImagePacker = image.createImagePacker();
-  imagePackerApi.packToData(pixelMap, packOpts)
-    .then((data: ArrayBuffer) => {
-      console.info('Succeeded in packing the image.');
-    }).catch((error: BusinessError) => {
-    console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
+async function PackToData() {
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+  image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
+    let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+    const imagePackerObj: image.ImagePacker = image.createImagePacker();
+    imagePackerObj.packToData(pixelMap, packOpts)
+      .then((data: ArrayBuffer) => {
+        console.info('Succeeded in packing the image.');
+      }).catch((error: BusinessError) => {
+      console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
+    })
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to create PixelMap.code ${error.code},message is ${error.message}`);
   })
-}).catch((error: BusinessError) => {
-  console.error(`Failed to create PixelMap.code ${error.code},message is ${error.message}`);
-})
+}
 ```
 
 ## packing<sup>13+</sup>
@@ -184,7 +184,6 @@ packing(picture: Picture, options: PackingOption): Promise\<ArrayBuffer>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
 async function Packing(context: Context) {
   const resourceMgr = context.resourceManager;
@@ -195,20 +194,20 @@ async function Packing(context: Context) {
   let imageSource: image.ImageSource = image.createImageSource(rawFile.buffer as ArrayBuffer, ops);
   let commodityPixelMap: image.PixelMap = await imageSource.createPixelMap();
   let pictureObj: image.Picture = image.createPicture(commodityPixelMap);
-  const imagePackerApi: image.ImagePacker = image.createImagePacker();
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
   let funcName = "Packing";
-  if (imagePackerApi != null) {
+  if (imagePackerObj != null) {
     let opts: image.PackingOption = {
       format: "image/jpeg",
       quality: 98,
       bufferSize: 10,
       desiredDynamicRange: image.PackingDynamicRange.AUTO,
       needsPackProperties: true};
-    await imagePackerApi.packing(pictureObj, opts).then((data: ArrayBuffer) => {
-        console.info(funcName, 'Succeeded in packing the image.'+ data);
-      }).catch((error: BusinessError) => {
-        console.error(funcName, 'Failed to pack the image.code ${error.code},message is ${error.message}');
-      });
+    await imagePackerObj.packing(pictureObj, opts).then((data: ArrayBuffer) => {
+      console.info(funcName, 'Succeeded in packing the image.'+ data);
+    }).catch((error: BusinessError) => {
+      console.error(funcName, `Failed to pack the image.code ${error.code},message is ${error.message}`);
+    });
   }
 }
 ```
@@ -245,33 +244,30 @@ packToDataFromPixelmapSequence(pixelmapSequence: Array\<PixelMap>, options: Pack
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
-import image from "@ohos.multimedia.image";
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-const resourceMgr = context.resourceManager;
-// 此处'moving_test.gif'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
-const fileData = resourceMgr.getRawFileContent('moving_test.gif');
-const color = fileData.buffer;
-let imageSource = image.createImageSource(color);
-let pixelMapList = imageSource.createPixelMapList();
-let ops: image.PackingOptionsForSequence = {
-  frameCount: 3,  // 指定GIF编码中的帧数为3。
-  delayTimeList: [10, 10, 10],  // 指定GIF编码中3帧的延迟时间分别为100ms、100ms、100ms。
-  disposalTypes: [3, 2, 3], // 指定GIF编码中3帧的帧过渡模式分别为3（恢复到之前的状态）、2（恢复背景色)、3(恢复到之前的状态)。
-  loopCount: 0 // 指定GIF编码中循环次数为无限循环。
-};
-let Packer = image.createImagePacker();
-Packer.packToDataFromPixelmapSequence(pixelMapList, ops)
-  .then((data: ArrayBuffer) => {
-    console.info('Succeeded in packing.');
-  }).catch((error: BusinessError) => {
-  console.error('Failed to packing.');
+async function PackToDataFromPixelmapSequence(context : Context) {
+  const resourceMgr = context.resourceManager;
+  // 此处'moving_test.gif'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
+  const fileData = await resourceMgr.getRawFileContent('moving_test.gif');
+  const color = fileData.buffer as ArrayBuffer;
+  let imageSource = image.createImageSource(color);
+  let pixelMapList = await imageSource.createPixelMapList();
+  let ops: image.PackingOptionsForSequence = {
+    frameCount: 3,  // 指定GIF编码中的帧数为3。
+    delayTimeList: [10, 10, 10],  // 指定GIF编码中3帧的延迟时间分别为100ms、100ms、100ms。
+    disposalTypes: [3, 2, 3], // 指定GIF编码中3帧的帧过渡模式分别为3（恢复到之前的状态）、2（恢复背景色)、3(恢复到之前的状态)。
+    loopCount: 0 // 指定GIF编码中循环次数为无限循环。
+  };
+  let Packer = image.createImagePacker();
+  Packer.packToDataFromPixelmapSequence(pixelMapList, ops)
+    .then((data: ArrayBuffer) => {
+      console.info('Succeeded in packing.');
+    }).catch((error: BusinessError) => {
+    console.error('Failed to packing.');
   })
+}
 ```
 
 ## release
@@ -295,14 +291,16 @@ ArkTS有内存回收机制，ImagePacker对象不调用release方法，内存最
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const imagePackerApi: image.ImagePacker = image.createImagePacker();
-imagePackerApi.release((err: BusinessError)=>{
-  if (err) {
-    console.error(`Failed to release image packaging.code ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in releasing image packaging.');
-  }
-})
+async function Release() {
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
+  imagePackerObj.release((err: BusinessError)=>{
+    if (err) {
+      console.error(`Failed to release image packaging.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in releasing image packaging.');
+    }
+  })
+}
 ```
 
 ## release
@@ -326,12 +324,14 @@ ArkTS有内存回收机制，ImagePacker对象不调用release方法，内存最
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const imagePackerApi: image.ImagePacker = image.createImagePacker();
-imagePackerApi.release().then(() => {
-  console.info('Succeeded in releasing image packaging.');
-}).catch((error: BusinessError) => {
-  console.error(`Failed to release image packaging.code ${error.code},message is ${error.message}`);
-})
+async function Release() {
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
+  imagePackerObj.release().then(() => {
+    console.info('Succeeded in releasing image packaging.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to release image packaging.code ${error.code},message is ${error.message}`);
+  })
+}
 ```
 
 ## packToFile<sup>11+</sup>
@@ -369,28 +369,26 @@ packToFile(source: ImageSource, fd: number, options: PackingOption, callback: As
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-//此处'test.png'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
-const path: string = context.filesDir + "/test.png";
-const imageSourceApi: image.ImageSource = image.createImageSource(path);
-let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
-const filePath: string = context.filesDir + "/image_source.jpg";
-let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-const imagePackerApi: image.ImagePacker = image.createImagePacker();
-imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err: BusinessError) => {
-  if (err) {
-    console.error(`Failed to pack the image to file.code ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in packing the image to file.');
-  }
-})
+async function PackToFile(context : Context) {
+  // 此处'test.png'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
+  const path: string = context.filesDir + "/test.png";
+  const imageSourceObj: image.ImageSource = image.createImageSource(path);
+  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
+  const filePath: string = context.filesDir + "/image_source.jpg";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
+  imagePackerObj.packToFile(imageSourceObj, file.fd, packOpts, (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to pack the image to file.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in packing the image to file.');
+    }
+  })
+}
 ```
 
 ## packToFile<sup>11+</sup>
@@ -433,26 +431,24 @@ packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<v
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-//此处'test.png'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
-const path: string = context.filesDir + "/test.png";
-const imageSourceApi: image.ImageSource = image.createImageSource(path);
-let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
-const filePath: string = context.filesDir + "/image_source.jpg";
-let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-const imagePackerApi: image.ImagePacker = image.createImagePacker();
-imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(() => {
-  console.info('Succeeded in packing the image to file.');
-}).catch((error: BusinessError) => { 
-  console.error(`Failed to pack the image to file.code ${error.code},message is ${error.message}`);
-}) 
+async function PackToFile(context : Context) {
+  // 此处'test.png'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
+  const path: string = context.filesDir + "/test.png";
+  const imageSourceObj: image.ImageSource = image.createImageSource(path);
+  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
+  const filePath: string = context.filesDir + "/image_source.jpg";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
+  imagePackerObj.packToFile(imageSourceObj, file.fd, packOpts).then(() => {
+    console.info('Succeeded in packing the image to file.');
+  }).catch((error: BusinessError) => { 
+    console.error(`Failed to pack the image to file.code ${error.code},message is ${error.message}`);
+  })
+}
 ```
 
 ## packToFile<sup>11+</sup>
@@ -493,29 +489,27 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
-let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-const path: string = context.filesDir + "/pixel_map.jpg";
-image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
-  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-  let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  const imagePackerApi: image.ImagePacker = image.createImagePacker();
-  imagePackerApi.packToFile(pixelmap, file.fd, packOpts, (err: BusinessError) => {
-    if (err) {
-      console.error(`Failed to pack the image to file.code ${err.code},message is ${err.message}`);
-    } else {
-      console.info('Succeeded in packing the image to file.');
-    }
+async function PackToFile(context : Context) {
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
+  const path: string = context.filesDir + "/pixel_map.jpg";
+  image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
+    let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    const imagePackerObj: image.ImagePacker = image.createImagePacker();
+    imagePackerObj.packToFile(pixelmap, file.fd, packOpts, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to pack the image to file.code ${err.code},message is ${err.message}`);
+      } else {
+        console.info('Succeeded in packing the image to file.');
+      }
+    })
   })
-})
+}
 ```
 
 ## packToFile<sup>11+</sup>
@@ -561,28 +555,26 @@ packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
-let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-const path: string = context.filesDir + "/pixel_map.jpg";
-image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
-  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-  let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  const imagePackerApi: image.ImagePacker = image.createImagePacker();
-  imagePackerApi.packToFile(pixelmap, file.fd, packOpts)
-    .then(() => {
-      console.info('Succeeded in packing the image to file.');
-    }).catch((error: BusinessError) => {
-    console.error(`Failed to pack the image to file.code ${error.code},message is ${error.message}`);
+async function PackToFile(context : Context) {
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
+  const path: string = context.filesDir + "/pixel_map.jpg";
+  image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
+    let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    const imagePackerObj: image.ImagePacker = image.createImagePacker();
+    imagePackerObj.packToFile(pixelmap, file.fd, packOpts)
+      .then(() => {
+        console.info('Succeeded in packing the image to file.');
+      }).catch((error: BusinessError) => {
+      console.error(`Failed to pack the image to file.code ${error.code},message is ${error.message}`);
+    })
   })
-})
+}
 ```
 
 ## packToFile<sup>13+</sup>
@@ -620,7 +612,6 @@ packToFile(picture: Picture, fd: number, options: PackingOption): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function PackToFile(context: Context) {
@@ -634,8 +625,8 @@ async function PackToFile(context: Context) {
   let pictureObj: image.Picture = image.createPicture(commodityPixelMap);
 
   let funcName = "PackToFile";
-  const imagePackerApi: image.ImagePacker = image.createImagePacker();
-  if (imagePackerApi != null) {
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
+  if (imagePackerObj != null) {
     const filePath: string = context.filesDir + "/test.jpg";
     let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
     let packOpts: image.PackingOption = {
@@ -644,10 +635,10 @@ async function PackToFile(context: Context) {
       bufferSize: 10,
       desiredDynamicRange: image.PackingDynamicRange.AUTO,
       needsPackProperties: true};
-    await imagePackerApi.packToFile(pictureObj, file.fd, packOpts).then(() => {
+    await imagePackerObj.packToFile(pictureObj, file.fd, packOpts).then(() => {
       console.info(funcName, 'Succeeded in packing the image to file.');
     }).catch((error: BusinessError) => {
-      console.error(funcName, 'Failed to pack the image to file.code ${error.code},message is ${error.message}');
+      console.error(funcName, `Failed to pack the image to file.code ${error.code},message is ${error.message}`);
     });
   }
 }
@@ -686,36 +677,33 @@ packToFileFromPixelmapSequence(pixelmapSequence: Array\<PixelMap>, fd: number, o
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
-import fs from '@ohos.file.fs';
-import image from "@ohos.multimedia.image";
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-const resourceMgr = context.resourceManager;
-// 此处'moving_test.gif'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
-const fileData = await resourceMgr.getRawFileContent('moving_test.gif');
-const color = fileData.buffer;
-let imageSource = image.createImageSource(color);
-let pixelMapList = await imageSource.createPixelMapList();
-let path: string = context.cacheDir + '/result.gif';
-let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-let ops: image.PackingOptionsForSequence = {
-  frameCount: 3,  // 指定GIF编码中的帧数为3。
-  delayTimeList: [10, 10, 10],  // 指定GIF编码中3帧的延迟时间分别为100ms、100ms、100ms。
-  disposalTypes: [3, 2, 3], // 指定GIF编码中3帧的帧过渡模式分别为3（恢复到之前的状态）、2（恢复背景色)、3(恢复到之前的状态)。
-  loopCount: 0 // 指定GIF编码中循环次数为无限循环。
-};
-let Packer = image.createImagePacker();
-Packer.packToFileFromPixelmapSequence(pixelMapList, file.fd, ops)
-  .then(() => {
-    console.info('Succeeded in packToFileMultiFrames.');
-  }).catch((error: BusinessError) => {
-  console.error('Failed to packToFileMultiFrames.');
+async function PackToFile(context : Context) {
+  const resourceMgr = context.resourceManager;
+  // 此处'moving_test.gif'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
+  const fileData = await resourceMgr.getRawFileContent('moving_test.gif');
+  const color = fileData.buffer;
+  let imageSource = image.createImageSource(color);
+  let pixelMapList = await imageSource.createPixelMapList();
+  let path: string = context.cacheDir + '/result.gif';
+  let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  let ops: image.PackingOptionsForSequence = {
+    frameCount: 3,  // 指定GIF编码中的帧数为3。
+    delayTimeList: [10, 10, 10],  // 指定GIF编码中3帧的延迟时间分别为100ms、100ms、100ms。
+    disposalTypes: [3, 2, 3], // 指定GIF编码中3帧的帧过渡模式分别为3（恢复到之前的状态）、2（恢复背景色)、3(恢复到之前的状态)。
+    loopCount: 0 // 指定GIF编码中循环次数为无限循环。
+  };
+  let Packer = image.createImagePacker();
+  Packer.packToFileFromPixelmapSequence(pixelMapList, file.fd, ops)
+    .then(() => {
+      console.info('Succeeded in packToFileMultiFrames.');
+    }).catch((error: BusinessError) => {
+    console.error('Failed to packToFileMultiFrames.');
   })
+}
 ```
 
 ## packing<sup>(deprecated)</sup>
@@ -742,25 +730,23 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-//此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
-let filePath: string = context.filesDir + "/test.jpg";
-const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
-let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
-const imagePackerApi: image.ImagePacker = image.createImagePacker();
-imagePackerApi.packing(imageSourceApi, packOpts, (err: BusinessError, data: ArrayBuffer) => {
-  if (err) {
-    console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in packing the image.');
-  }
-})
+async function Packing(context : Context) {
+  // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
+  let filePath: string = context.filesDir + "/test.jpg";
+  const imageSourceObj: image.ImageSource = image.createImageSource(filePath);
+  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
+  imagePackerObj.packing(imageSourceObj, packOpts, (err: BusinessError, data: ArrayBuffer) => {
+    if (err) {
+      console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in packing the image.');
+    }
+  })
+}
 ```
 
 ## packing<sup>(deprecated)</sup>
@@ -792,24 +778,22 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-//此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
-let filePath: string = context.filesDir + "/test.jpg";
-const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
-let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-const imagePackerApi: image.ImagePacker = image.createImagePacker();
-imagePackerApi.packing(imageSourceApi, packOpts)
-  .then((data: ArrayBuffer) => {
-    console.info('Succeeded in packing the image.');
-  }).catch((error: BusinessError) => {
-    console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
-  })
+async function Packing(context : Context) {
+  // 此处'test.jpg'仅作示例，请开发者自行替换，否则imageSource会创建失败导致后续无法正常执行。
+  let filePath: string = context.filesDir + "/test.jpg";
+  const imageSourceObj: image.ImageSource = image.createImageSource(filePath);
+  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
+  imagePackerObj.packing(imageSourceObj, packOpts)
+    .then((data: ArrayBuffer) => {
+      console.info('Succeeded in packing the image.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
+    })
+}
 ```
 
 ## packing<sup>(deprecated)</sup>
@@ -842,21 +826,23 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
-let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
-  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-  const imagePackerApi: image.ImagePacker = image.createImagePacker();
-  imagePackerApi.packing(pixelMap, packOpts, (err: BusinessError, data: ArrayBuffer) => {
-    if (err) {
-      console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
-    } else {
-      console.info('Succeeded in packing the image.');
-    }
+async function Packing() {
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
+  image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
+    let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+    const imagePackerObj: image.ImagePacker = image.createImagePacker();
+    imagePackerObj.packing(pixelMap, packOpts, (err: BusinessError, data: ArrayBuffer) => {
+      if (err) {
+        console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
+      } else {
+        console.info('Succeeded in packing the image.');
+      }
+    })
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to create the PixelMap.code ${error.code},message is ${error.message}`);
   })
-}).catch((error: BusinessError) => {
-  console.error(`Failed to create the PixelMap.code ${error.code},message is ${error.message}`);
-})
+}
 ```
 
 ## packing<sup>(deprecated)</sup>
@@ -894,18 +880,20 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
-let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
-  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-  const imagePackerApi: image.ImagePacker = image.createImagePacker();
-  imagePackerApi.packing(pixelMap, packOpts)
-    .then((data: ArrayBuffer) => {
-      console.info('Succeeded in packing the image.');
-    }).catch((error: BusinessError) => {
-    console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
+async function Packing() {
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
+  image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
+    let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+    const imagePackerObj: image.ImagePacker = image.createImagePacker();
+    imagePackerObj.packing(pixelMap, packOpts)
+      .then((data: ArrayBuffer) => {
+        console.info('Succeeded in packing the image.');
+      }).catch((error: BusinessError) => {
+      console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
+    })
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to create PixelMap.code ${error.code},message is ${error.message}`);
   })
-}).catch((error: BusinessError) => {
-  console.error(`Failed to create PixelMap.code ${error.code},message is ${error.message}`);
-})
+}
 ```

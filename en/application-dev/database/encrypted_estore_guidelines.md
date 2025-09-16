@@ -1,11 +1,17 @@
 # Using an EL5 Database (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997; @dboy190-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 
 ## When to Use
 
-An [EL5](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) database is created in the **el5/** directory to store the application's sensitive information. When the device screen is locked and certain conditions are met, the key used to encrypt the sensitive information will be destroyed and the encrypted database cannot be read or written. After the screen is unlocked, the key is restored and the read and write operations on the database are restored. This mechanism can effectively protect the user data. For details about how to manage the encryption directories, see [Obtaining and Modifying Encryption Levels](../application-models/application-context-stage.md#obtaining-and-modifying-encryption-levels).
+To meet the security requirements of sensitive data, the EL5 database is provided to improve the data security when the screen is locked. An application that contains sensitive information creates a database in the [EL5](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) directory after requesting the ohos.permission.PROTECT_SCREEN_LOCK_DATA permission. If the screen is locked (and the **Access** API is not called to obtain the key of the reserved file), the file key will be destroyed, and the database cannot be read or written. After the screen is unlocked, the key is restored and the read and write operations on the database are restored. This mechanism can effectively protect the user data. For details about how to manage the encryption directories, see [Obtaining and Modifying Encryption Levels](../application-models/application-context-stage.md#obtaining-and-modifying-encryption-levels).
 
-However, the application may write data when the screen is locked. Data loss will be caused if the EL5 database cannot be operated when data is written. A solution is provided to solve this problem. When the screen is locked, incremental data is stored in an [EL2](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) database. The data temporarily stored in the EL2 database will be moved to the EL5 database when the EL5 database is unlocked. This ensures data security and integrity when the screen is locked.
+An application can continue to write data even if the screen is locked, which may lead to data loss. A solution is provided to solve this problem. When the screen is locked, incremental data is stored in an [EL2](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) database. The data temporarily stored in the EL2 database will be moved to the EL5 database when the EL5 database is unlocked. This ensures data security and integrity when the screen is locked.
 
 Both the KV store and RDB store can be used as an EL5 database.
 
@@ -13,11 +19,13 @@ Both the KV store and RDB store can be used as an EL5 database.
 
 The following classes are encapsulated to implement the data operations and transfer between EL2 and EL5 databases:
 
-- **Mover** class: provides APIs for moving data from an EL2 database to an EL5 database after the screen is unlocked.
-- **Store** class: provides APIs for obtaining a database instance, adding, deleting, and updating data, and obtaining the data count in the database.
-- **SecretKeyObserver** class: provides APIs for obtaining the key status. After the key is destroyed, the EL5 database will be closed.
+**Mover** class: provides APIs for moving data from an EL2 database to an EL5 database after the screen is unlocked.
 
-- **ECStoreManager** class: provides APIs for managing the EL2 and EL5 databases.
+**Store** class: provides APIs for obtaining a database instance, adding, deleting, and updating data, and obtaining the data count in the database.
+
+**SecretKeyObserver** class: provides APIs for obtaining the key status. After the key is destroyed, the EL5 database will be closed.
+
+**ECStoreManager** class: provides APIs for managing the EL2 and EL5 databases.
 
 ## Requesting Permissions
 
@@ -82,7 +90,6 @@ export class Store {
       console.error(`Failed to create KVManager.code is ${error.code},message is ${error.message}`);
     }
     if (kvManager !== undefined) {
-      kvManager = kvManager as distributedKVStore.KVManager;
       let kvStore: distributedKVStore.SingleKVStore | null;
       try {
         kvStore = await kvManager.getKVStore<distributedKVStore.SingleKVStore>(storeInfo.storeId, storeInfo.option);
@@ -191,32 +198,32 @@ export enum SecretStatus {
 
 export class SecretKeyObserver {
   onLock(): void {
-    this.lockStatuas = SecretStatus.Lock;
+    this.lockStatus = SecretStatus.Lock;
     this.storeManager.closeEStore();
   }
 
   onUnLock(): void {
-    this.lockStatuas = SecretStatus.UnLock;
+    this.lockStatus = SecretStatus.UnLock;
   }
 
   getCurrentStatus(): number {
-    return this.lockStatuas;
+    return this.lockStatus;
   }
 
   initialize(storeManager: ECStoreManager): void {
     this.storeManager = storeManager;
   }
 
-  updatelockStatus(code: number) {
+  updateLockStatus(code: number) {
     if (code === SecretStatus.Lock) {
       this.onLock();
     } else {
-      this.lockStatuas = code;
+      this.lockStatus = code;
     }
   }
 
   // Obtain the screen lock status.
-  private lockStatuas: number = SecretStatus.UnLock;
+  private lockStatus: number = SecretStatus.UnLock;
   private storeManager: ECStoreManager;
 }
 
@@ -247,9 +254,9 @@ export class ECStoreManager {
     this.mover = mover;
   }
 
-  async getCurrentStore(screanStatus: number): Promise<distributedKVStore.SingleKVStore> {
-    console.info(`ECDB_Encry GetCurrentStore start screanStatus: ${screanStatus}`);
-    if (screanStatus === SecretStatus.UnLock) {
+  async getCurrentStore(screenStatus: number): Promise<distributedKVStore.SingleKVStore> {
+    console.info(`ECDB_Encry GetCurrentStore start screenStatus: ${screenStatus}`);
+    if (screenStatus == SecretStatus.UnLock) {
       try {
         this.eStore = await store.getECStore(this.eInfo);
       } catch (e) {
@@ -354,7 +361,7 @@ export function createCB(err: BusinessError, commonEventSubscriber: commonEventM
           console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info(`ECDB_Encry SubscribeCB ${data.code}`);
-          e_secretKeyObserver.updatelockStatus(data.code);
+          e_secretKeyObserver.updateLockStatus(data.code);
         }
       });
     } catch (error) {
@@ -488,7 +495,7 @@ struct Index {
           lockStatus? this.message = "Unlocked": this.message = "Locked";
         }).margin("5");
         Button('store type').onClick(async (event: ClickEvent) => {
-          e_secretKeyObserver.getCurrentStatus() ? this.message = "estroe" : this.message = "cstore";
+          e_secretKeyObserver.getCurrentStatus() ? this.message = "estore" : this.message = "cstore";
         }).margin("5");
 
         Button("put").onClick(async (event: ClickEvent) => {
@@ -668,31 +675,31 @@ export enum SecretStatus {
 
 export class SecretKeyObserver {
   onLock(): void {
-    this.lockStatuas = SecretStatus.Lock;
+    this.lockStatus = SecretStatus.Lock;
     this.storeManager.closeEStore();
   }
 
   onUnLock(): void {
-    this.lockStatuas = SecretStatus.UnLock;
+    this.lockStatus = SecretStatus.UnLock;
   }
 
   getCurrentStatus(): number {
-    return this.lockStatuas;
+    return this.lockStatus;
   }
 
   initialize(storeManager: ECStoreManager): void {
     this.storeManager = storeManager;
   }
 
-  updatelockStatus(code: number) {
-    if (this.lockStatuas === SecretStatus.Lock) {
+  updateLockStatus(code: number) {
+    if (this.lockStatus === SecretStatus.Lock) {
       this.onLock();
     } else {
-      this.lockStatuas = code;
+      this.lockStatus = code;
     }
   }
 
-  private lockStatuas: number = SecretStatus.UnLock;
+  private lockStatus: number = SecretStatus.UnLock;
   private storeManager: ECStoreManager;
 }
 
@@ -723,8 +730,8 @@ export class ECStoreManager {
     this.mover = mover;
   }
 
-  async getCurrentStore(screanStatus: number): Promise<relationalStore.RdbStore> {
-    if (screanStatus === SecretStatus.UnLock) {
+  async getCurrentStore(screenStatus: number): Promise<relationalStore.RdbStore> {
+    if (screenStatus === SecretStatus.UnLock) {
       try {
         this.eStore = await store.getECStore(this.eInfo);
       } catch (e) {
@@ -812,7 +819,7 @@ export function createCB(err: BusinessError, commonEventSubscriber: commonEventM
           console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info(`ECDB_Encry SubscribeCB ${data.code}`);
-          e_secretKeyObserver.updatelockStatus(data.code);
+          e_secretKeyObserver.updateLockStatus(data.code);
         }
       });
     } catch (error) {
@@ -928,7 +935,7 @@ struct Index {
           lockStatus? this.message = "Unlocked": this.message = "Locked";
         }).margin("5");
         Button('store type').onClick(async (event: ClickEvent) => {
-          e_secretKeyObserver.getCurrentStatus() ? this.message = "estroe" : this.message = "cstore";
+          e_secretKeyObserver.getCurrentStatus() ? this.message = "estore" : this.message = "cstore";
           console.info(`ECDB_Encry current store : ${this.message}`);
         }).margin("5");
 

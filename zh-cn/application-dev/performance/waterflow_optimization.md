@@ -38,7 +38,7 @@
   }
 ```
 
-示例代码已经使用了[LazyForEach](../ui/state-management/arkts-rendering-control-lazyforeach.md)进行数据懒加载，WaterFlow布局时会根据可视区域按需创建FlowItem组件，并在FlowItem滑出可视区域外时销毁以降低内存占用。
+示例代码已经使用了[LazyForEach](../ui/rendering-control/arkts-rendering-control-lazyforeach.md)进行数据懒加载，WaterFlow布局时会根据可视区域按需创建FlowItem组件，并在FlowItem滑出可视区域外时销毁以降低内存占用。
 
 另外，由于Image组件默认异步加载，建议提前根据图片大小设定FlowItem的高度，避免图片加载成功后高度变化触发瀑布流刷新布局。
 

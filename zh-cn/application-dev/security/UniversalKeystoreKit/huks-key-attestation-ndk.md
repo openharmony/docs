@@ -29,6 +29,7 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 #include "huks/native_huks_param.h"
 #include "napi/native_api.h"
 #include <string.h>
+
 OH_Huks_Result InitParamSet(
     struct OH_Huks_ParamSet **paramSet,
     const struct OH_Huks_Param *params,
@@ -50,6 +51,7 @@ OH_Huks_Result InitParamSet(
     }
     return ret;
 }
+
 static uint32_t g_size = 4096;
 static uint32_t CERT_COUNT = 4;
 void FreeCertChain(struct OH_Huks_CertChain *certChain, const uint32_t pos)
@@ -68,13 +70,14 @@ void FreeCertChain(struct OH_Huks_CertChain *certChain, const uint32_t pos)
         certChain->certs = nullptr;
     }
 }
+
 int32_t ConstructDataToCertChain(struct OH_Huks_CertChain *certChain)
 {
     if (certChain == nullptr) {
         return OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT;
     }
     certChain->certsCount = CERT_COUNT;
-  
+
     certChain->certs = (struct OH_Huks_Blob *)malloc(sizeof(struct OH_Huks_Blob) * (certChain->certsCount));
     if (certChain->certs == nullptr) {
         return OH_HUKS_ERR_CODE_INTERNAL_ERROR;
@@ -89,6 +92,7 @@ int32_t ConstructDataToCertChain(struct OH_Huks_CertChain *certChain)
     }
     return 0;
 }
+
 static struct OH_Huks_Param g_genAttestParams[] = {
     { .tag = OH_HUKS_TAG_ALGORITHM, .uint32Param = OH_HUKS_ALG_RSA },
     { .tag = OH_HUKS_TAG_KEY_SIZE, .uint32Param = OH_HUKS_RSA_KEY_SIZE_2048 },
@@ -99,7 +103,7 @@ static struct OH_Huks_Param g_genAttestParams[] = {
 };
 #define CHALLENGE_DATA "hi_challenge_data"
 static struct OH_Huks_Blob g_challenge = { sizeof(CHALLENGE_DATA), (uint8_t *)CHALLENGE_DATA };
-static napi_value AttestKey(napi_env env, napi_callback_info info) 
+static napi_value AttestKey(napi_env env, napi_callback_info info)
 {
     /* 1.确定密钥别名 */
     struct OH_Huks_Blob genAlias = {
@@ -129,7 +133,7 @@ static napi_value AttestKey(napi_env env, napi_callback_info info)
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
         }
-        
+
         ohResult.errorCode = ConstructDataToCertChain(&certChain);
         if (ohResult.errorCode != OH_HUKS_SUCCESS) {
             break;
@@ -141,7 +145,7 @@ static napi_value AttestKey(napi_env env, napi_callback_info info)
     OH_Huks_FreeParamSet(&genParamSet);
     OH_Huks_FreeParamSet(&attestParamSet);
     (void)OH_Huks_DeleteKeyItem(&genAlias, NULL);
-    
+
     napi_value ret;
     napi_create_int32(env, ohResult.errorCode, &ret);
     return ret;

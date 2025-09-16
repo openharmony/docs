@@ -125,7 +125,6 @@ Text可通过以下两种方式来创建：
         Column() {
           Text() {
             Span('I am Upper-span')
-              .fontSize(12)
               .textCase(TextCase.UpperCase)
               .fontSize(30)
               .onClick(() => {
@@ -472,17 +471,28 @@ Text可通过以下两种方式来创建：
 - 从API version 20开始，支持通过[lineSpacing](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#linespacing20)设置文本的行间距。当不配置[LineSpacingOptions](../reference/apis-arkui/arkui-ts/ts-text-common.md#linespacingoptions20对象说明)时，首行上方和尾行下方默认会有行间距，当onlyBetweenLines设置为true时，行间距仅适用于行与行之间，首行上方无额外的行间距。
 
   ```ts
+  import { LengthMetrics } from '@kit.ArkUI';
+  
+  @Extend(Text)
   function style() {
-  .width(250)
-  .height(100)
-  .maxFontSize(30)
-  .minFontSize(15)
-  .border({ width: 1 })
+    .width(250)
+    .height(100)
+    .maxFontSize(30)
+    .minFontSize(15)
+    .border({ width: 1 })
   }
-
-  Text('The line spacing of this context is set to 20_px, and the spacing is effective only between the lines.')
-   .lineSpacing(LengthMetrics.px(20), { onlyBetweenLines: true })
-   .style()
+  
+  @Entry
+  @Component
+  struct demo {
+    build() {
+      Column() {
+        Text('The line spacing of this context is set to 20_px, and the spacing is effective only between the lines.')
+          .lineSpacing(LengthMetrics.px(20), { onlyBetweenLines: true })
+          .style()
+      }
+    }
+  }
   ```
   ![Text_line_spacing](figures/Text_line_spacing.jpg)
 
@@ -632,17 +642,22 @@ struct Index {
   - Text组件通过设置[bindSelectionMenu](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#bindselectionmenu11)属性绑定自定义选择菜单。
 
     ```ts
-    Text("这是一段文本，用来展示选中菜单", this.options)
-      .fontSize(30)
-      .copyOption(CopyOptions.InApp)
-      .bindSelectionMenu(TextSpanType.TEXT, this.RightClickTextCustomMenu, TextResponseType.RIGHT_CLICK, {
-        onAppear: () => {
-          console.info('自定义选择菜单弹出时触发该回调');
-        },
-        onDisappear: () => {
-          console.info('自定义选择菜单关闭时触发该回调');
-        }
-      })
+    controller:TextController = new TextController()
+    build() {
+      Column() {
+        Text("这是一段文本，用来展示选中菜单", {controller:this.controller})
+          .fontSize(30)
+          .copyOption(CopyOptions.InApp)
+          .bindSelectionMenu(TextSpanType.TEXT, this.RightClickTextCustomMenu, TextResponseType.RIGHT_CLICK, {
+            onAppear: () => {
+              console.info('自定义选择菜单弹出时触发该回调');
+            },
+            onDisappear: () => {
+              console.info('自定义选择菜单关闭时触发该回调');
+            }
+          })
+      }
+    }
     ```
 
     ```ts
@@ -1058,3 +1073,104 @@ struct TextExample {
 
 ![zh-cn_image_0000001562820805](figures/zh-cn_image_0000001562820805.png)
 <!--RP1--><!--RP1End-->
+
+## 常见问题
+
+### Text组件尾部省略号后为什么还有一段空白，没有占满组件宽度
+
+**问题现象**
+
+在Text组件上未设置宽度，当内容过长时，省略号与组件边缘之间会留有较大空白，且内容更新时省略号的位置会发生变化。
+
+![](figures/EllipsisDemo1.gif)
+
+**原因分析**
+
+当Text组件未设置宽度且内容超长时，组件宽度将采用父组件传递的布局约束的最大宽度。省略开始位置会根据不同的断词模式导致排版塑型结果有所不同，因此不同内容的省略开始位置也会不同。
+
+**解决措施**
+
+设置[wordBreak](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#wordbreak11)属性为`WordBreak.BREAK_ALL`，任意2个字符间断行使文本内容尽量占满组件区域。
+
+示例代码如下：
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = '混合Hello World! honorificabilitudinitatibus!';
+
+  build() {
+    Column() {
+      Text(this.message)
+        .id('HelloWorld')
+        .fontSize('25fp')
+        .maxLines(1)
+        .textOverflow({ overflow: TextOverflow.Ellipsis})
+        .onClick(() => {
+          this.message = 'Welcome try try try 1235628327434348';
+        })
+        .border({ width: 1})
+        .wordBreak(WordBreak.BREAK_ALL) // 修改断词模式
+    }
+    .width(300)
+    .border({ width: 1, color: Color.Blue})
+    .margin({left: 30, top: 50})
+  }
+}
+```
+
+### Text组件如何实现行末展开样式
+
+**解决措施**
+
+自行测算截断字符，并在行末添加`...展开`或者`...图标`作为组件内容。
+
+**参考链接**
+
+[属性字符串转Paragraph数组](../reference/apis-arkui/arkts-apis-uicontext-measureutils.md#getparagraphs20)
+<!--RP3--><!--RP3End-->
+
+### Text组件如何实现不设置maxLines在固定布局约束下内容超出仍显示省略样式
+
+**问题现象**
+
+在固定尺寸的组件区域内，不同字号的内容显示的最大行数会有所不同。期望实现内容超长时自动显示省略样式，则无需设置固定的`maxLines`值。
+
+**解决措施**
+
+设置[heightAdaptivePolicy](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#heightadaptivepolicy10)为TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST，该模式会删除超过布局约束的行，从而实现类似设置maxLines的效果。
+
+示例代码如下：
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = '混合Hello World! 多行文本 中英文数字混合 1282378283 ~';
+  @State fontSize: number = 25;
+
+  build() {
+    Column({ space: 10 }) {
+      Text(this.message)
+        .id('HelloWorld')
+        .fontSize(this.fontSize)
+        .textOverflow({ overflow: TextOverflow.Ellipsis})
+        .border({ width: 1})
+        .heightAdaptivePolicy(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST) // 调整自适应布局策略
+        .width(300)
+        .height(200)
+      Row(){
+        Button('fontSize+5')
+          .onClick(()=>{
+            this.fontSize += 5;
+          })
+        Button('fontSize-5')
+          .onClick(()=>{
+            this.fontSize -= 5;
+          })
+      }
+    }
+    .margin({left: 30, top: 50})
+  }
+}
+```
+![](figures/EllipsisDemo2.gif)

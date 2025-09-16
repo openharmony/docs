@@ -19,30 +19,42 @@
 import { media } from '@kit.MediaKit';
 ```
 
+## AVErrorCode<sup>9+</sup>
+
+[媒体错误码](errorcode-media.md)类型枚举。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+**系统接口：** 该接口为系统接口。
+
+| 名称                                  | 值      | 说明                                 |
+| :------------------------------------ | ------- | ------------------------------------ |
+| AVERR_SESSION_NOT_EXIST<sup>20+</sup> | 5400109 | 表示传入的会话ID不存在。                   |
+
 ## media.createVideoRecorder<sup>9+</sup>
 
 createVideoRecorder(callback: AsyncCallback\<VideoRecorder>): void
 
-异步方式创建视频录制实例。通过注册回调函数获取返回值。
+创建视频录制实例。使用callback异步回调。
 一台设备只允许创建一个录制实例。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | 是   | 回调函数。异步返回VideoRecorder实例，失败时返回null。可用于录制视频媒体。 |
+| -------- | ----------------------------------------------- | ---- |------------------------------------------------------------ |
+| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | 是   |回调函数。创建视频录制实例成功，err为undefined，data为获取到的VideoRecorder实例；否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 202  | Not system App. |
+| 202      | Not system App.                |
 | 5400101  | No memory. Return by callback. |
 
 **示例：**
@@ -65,25 +77,26 @@ media.createVideoRecorder((error: BusinessError, video: media.VideoRecorder) => 
 
 createVideoRecorder(): Promise\<VideoRecorder>
 
-异步方式创建视频录制实例。通过Promise获取返回值。
+创建视频录制实例。使用Promise异步回调。
 一台设备只允许创建一个录制实例。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **返回值：**
 
 | 类型                                      | 说明                                                         |
 | ----------------------------------------- | ------------------------------------------------------------ |
-| Promise<[VideoRecorder](#videorecorder9)> | Promise对象。异步返回VideoRecorder实例，失败时返回null。可用于录制视频媒体。 |
+| Promise<[VideoRecorder](#videorecorder9)> | Promise对象，返回VideoRecorder实例，失败时返回null。可用于录制视频媒体。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                      |
 | -------- | ----------------------------- |
+| 202      | Not system App.               |
 | 5400101  | No memory. Return by promise. |
 
 **示例：**
@@ -108,13 +121,13 @@ media.createVideoRecorder().then((video: media.VideoRecorder) => {
 
 reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<void>
 
-上报录屏隐私弹窗的选择结果到ScreenCapture的服务端，用于判断是否开始录屏。如果用户选择“不允许”则不进行录屏，如果用户选择“允许”则开始录屏。
+上报录屏隐私弹窗的选择结果到ScreenCapture的服务端，用于判断是否开始录屏。如果用户选择“不允许”则不进行录屏，如果用户选择“允许”则开始录屏。使用Promise异步回调。
 
 此接口提供给创建弹窗的系统应用调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -127,7 +140,7 @@ reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<voi
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<void> | 异步返回函数执行结果。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -189,7 +202,7 @@ getAVScreenCaptureConfigurableParameters(sessionId: number): Promise\<string>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<string> | Promise对象。可用于查询系统隐私保护和应用隐私保护状态。异步返回String对象，失败时返回空字符串。 |
+| Promise\<string> | Promise对象，返回系统隐私保护和应用隐私保护状态，失败时返回空字符串。 |
 
 **错误码：**
 
@@ -228,7 +241,7 @@ getScreenCaptureMonitor(): Promise\<ScreenCaptureMonitor>
 
 | 类型                                      | 说明                                                         |
 | ----------------------------------------- | ------------------------------------------------------------ |
-| Promise<[ScreenCaptureMonitor](#screencapturemonitor18)> | Promise对象。可用于查询和监听系统录屏状态。<br>异步返回ScreenCaptureMonitor实例，失败时返回null。 |
+| Promise<[ScreenCaptureMonitor](#screencapturemonitor18)> | Promise对象，返回ScreenCaptureMonitor实例，失败时返回null。 |
 
 **错误码：**
 
@@ -254,7 +267,7 @@ try {
 
 createParallelSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): Promise\<SoundPool>
 
-创建音频池实例，通过Promise获取返回值。
+创建音频池实例。使用Promise异步回调。
 
 使用[createSoundPool](arkts-apis-media-f.md#mediacreatesoundpool10)创建的音频池实例，在重复播放相同音频时，会停止之前的播放并重新开始；而使用createParallelSoundPool创建的实例，在重复播放相同音频时，不会停止之前的音频，而是并行播放。
 
@@ -271,11 +284,11 @@ createParallelSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRenderer
 
 | 类型                                      | 说明                                                         |
 | ----------------------------------------- | ------------------------------------------------------------ |
-| Promise<[SoundPool](js-apis-inner-multimedia-soundPool.md)> | Promise对象。异步返回SoundPool实例，失败时返回null。用于音频池实例的加载播放功能。 |
+| Promise<[SoundPool](js-apis-inner-multimedia-soundPool.md)> | Promise对象，返回SoundPool实例，失败时返回null。用于音频池实例的加载播放功能。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                      |
 | -------- | ----------------------------- |
@@ -312,9 +325,9 @@ media.createParallelSoundPool(5, audioRendererInfo).then((soundpool_: media.Soun
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
 
-| 名称     | 类型   |  可读   |   可写    |  说明                   |
+| 名称     | 类型   |  只读   |   可选    |  说明                   |
 | -------- | ------ |   ------| ------ | ---------------------- |
-| colorFormat  | [PixelFormat](#pixelformat11) |  是   |  是   | 输出的缩略图颜色格式<br>**系统接口：** 该接口为系统接口      |
+| colorFormat  | [PixelFormat](#pixelformat11) |  否   |  是   | 输出的缩略图颜色格式。<br>**系统接口：** 该接口为系统接口。      |
 
 ## PixelFormat<sup>11+</sup>
 
@@ -322,7 +335,7 @@ media.createParallelSoundPool(5, audioRendererInfo).then((soundpool_: media.Soun
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 | 名称                     | 值              | 说明                                                         |
 | ------------------------ | --------------- | ------------------------------------------------------------ |
@@ -339,11 +352,11 @@ media.createParallelSoundPool(5, audioRendererInfo).then((soundpool_: media.Soun
 
 getTimeByFrameIndex(index: number): Promise\<number>
 
-获取目标视频帧号对应的视频时间戳。仅支持MP4视频文件。
+获取目标视频帧号对应的视频时间戳（仅支持MP4视频文件）。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -355,11 +368,11 @@ getTimeByFrameIndex(index: number): Promise\<number>
 
 | 类型             | 说明                                |
 | ---------------- | ----------------------------------- |
-| Promise\<number> | 时间戳的Promise返回值。单位是微秒。 |
+| Promise\<number> | Promise对象，返回时间戳。单位是微秒。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
@@ -384,11 +397,11 @@ avMetadataExtractor.getTimeByFrameIndex(0).then((timeUs: number) => {
 
 getFrameIndexByTime(timeUs: number): Promise\<number>
 
-获取目标视频时间戳对应的视频帧号。仅支持MP4视频文件。
+获取目标视频时间戳对应的视频帧号（仅支持MP4视频文件）。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -400,11 +413,11 @@ getFrameIndexByTime(timeUs: number): Promise\<number>
 
 | 类型             | 说明                      |
 | ---------------- | ------------------------- |
-| Promise\<number> | 视频帧号的Promise返回值。 |
+| Promise\<number> | Promise对象，返回视频帧号。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
@@ -437,19 +450,19 @@ avMetadataExtractor.getFrameIndexByTime(0).then((index: number) => {
 
 isWatermarkSupported(): Promise\<boolean>
 
-检查当前设备录制是否支持硬件数字水印能力。通过Promise获取返回值。
+检查当前设备录制是否支持硬件数字水印能力。使用Promise异步回调。
 
 可在[prepare()](arkts-apis-media-AVRecorder.md#prepare9-1)、[start()](arkts-apis-media-AVRecorder.md#start9)、[paused()](arkts-apis-media-AVRecorder.md#pause9)事件成功触发后调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **返回值：**
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<boolean> | 获取是否支持水印的Promise返回值，支持水印：true，不支持水印：false。 |
+| Promise\<boolean> | Promise对象。返回true表示支持水印；返回false表示不支持水印。 |
 
 **示例：**
 
@@ -467,13 +480,13 @@ avRecorder.isWatermarkSupported().then((isWatermarkSupported: boolean) => {
 
 setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
 
-给AVRecorder设置水印图像。通过Promise获取返回值。
+给AVRecorder设置水印图像。使用Promise异步回调。
 
 当且仅当[prepare()](arkts-apis-media-AVRecorder.md#prepare9-1)事件成功触发后，且在[start()](arkts-apis-media-AVRecorder.md#start9)之前，才能调用setWatermark方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -486,7 +499,7 @@ setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<void> | 异步返回函数执行结果。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -527,7 +540,7 @@ setMetadata(metadata: Record\<string, string\>): void
 **参数：**
 
 | 参数名   | 类型                  | 必填 | 说明                                                                |
-| -------- | -------------------- | ---- |-------------------------------------------------------------------|
+| -------- | -------------------- | ---- | -------------------------------------------------------------------|
 | metadata | [Record<string, string>]  | 是   | 以键值对形式设置meta数据的tag和value。<br>- 第一个string为meta tag。<br>- 第二个string为meta value。 |
 
 **返回值：**
@@ -563,9 +576,9 @@ avRecorder.setMetadata(meta);
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
-| 名称             | 类型                                         | 必填 | 说明                                                         |
-| ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| enableStableQualityMode<sup>18+</sup>            | boolean                        | 否   | 视频录制是否选择稳定质量模式，选择视频录制时选填，enableStableQualityMode默认为false。设置为true时，启用视频编码策略以实现质量稳定的编码。<br>**系统接口：** 该接口为系统接口。|
+| 名称             | 类型                                         | 只读 | 可选 | 说明                                                         |
+| ---------------- | -------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| enableStableQualityMode<sup>18+</sup>            | boolean                        | 否   | 是   | 视频录制是否选择稳定质量模式，选择视频录制时选填，enableStableQualityMode默认为false。设置为true时，启用视频编码策略以实现质量稳定的编码。<br>**系统接口：** 该接口为系统接口。|
 
 ## VideoRecorder<sup>9+</sup>
 
@@ -578,9 +591,9 @@ avRecorder.setMetadata(meta);
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
-| 名称               | 类型                                   | 可读 | 可写 | 说明             |
+| 名称               | 类型                                   | 只读 | 可选 | 说明             |
 | ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
 | state<sup>9+</sup> | [VideoRecordState](#videorecordstate9) | 是   | 否   | 视频录制的状态。 |
 
@@ -588,28 +601,29 @@ avRecorder.setMetadata(meta);
 
 prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void
 
-异步方式进行视频录制的参数设置。通过注册回调函数获取返回值。
+进行视频录制的参数设置。使用callback异步回调。
 
 **需要权限：** ohos.permission.MICROPHONE
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                                         | 必填 | 说明                                |
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
 | config   | [VideoRecorderConfig](#videorecorderconfig9) | 是   | 配置视频录制的相关参数。            |
-| callback | AsyncCallback\<void>                         | 是   | 异步视频录制prepare方法的回调方法。 |
+| callback | AsyncCallback\<void>                         | 是   | 回调函数。视频录制参数设置成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
 | 201      | Permission denied. Return by callback.     |
+| 202      | Not system App.                            |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.       |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.          |
@@ -656,13 +670,13 @@ videoRecorder.prepare(videoConfig, (err: BusinessError) => {
 
 prepare(config: VideoRecorderConfig): Promise\<void>
 
-异步方式进行视频录制的参数设置。通过Promise获取返回值。
+进行视频录制的参数设置。使用Promise异步回调。
 
 **需要权限：** ohos.permission.MICROPHONE
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
@@ -674,15 +688,16 @@ prepare(config: VideoRecorderConfig): Promise\<void>
 
 | 类型           | 说明                                     |
 | -------------- | ---------------------------------------- |
-| Promise\<void> | 异步视频录制prepare方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
 | 201      | Permission denied. Return by promise.     |
+| 202      | Not system App.                           |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.       |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.          |
@@ -727,7 +742,8 @@ videoRecorder.prepare(videoConfig).then(() => {
 
 getInputSurface(callback: AsyncCallback\<string>): void
 
-异步方式获得录制需要的surface。通过注册回调函数获取返回值。此surface提供给调用者，调用者从此surface中获取surfaceBuffer，填入相应的数据。
+获得录制需要的surface。使用callback异步回调。
+开发者从此surface中获取surfaceBuffer，填入相应的数据。
 
 应当注意，填入的视频数据需要携带时间戳（单位ns），buffersize。时间戳的起始时间请以系统启动时间为基准。
 
@@ -735,20 +751,21 @@ getInputSurface(callback: AsyncCallback\<string>): void
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                   | 必填 | 说明                        |
 | -------- | ---------------------- | ---- | --------------------------- |
-| callback | AsyncCallback\<string> | 是   | 异步获得surface的回调方法。 |
+| callback | AsyncCallback\<string> | 是   | 回调函数。获得录制需要的surface成功，err为undefined，data为获取到的surfaceBuffer，否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
+| 202      | Not system App.                            |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400103  | I/O error. Return by callback.             |
 | 5400105  | Service died. Return by callback.          |
@@ -774,7 +791,8 @@ videoRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
 
 getInputSurface(): Promise\<string>;
 
- 异步方式获得录制需要的surface。通过Promise获取返回值。此surface提供给调用者，调用者从此surface中获取surfaceBuffer，填入相应的数据。
+获得录制需要的surface。使用Promise异步回调。
+开发者从此surface中获取surfaceBuffer，填入相应的数据。
 
 应当注意，填入的视频数据需要携带时间戳（单位ns），buffersize。时间戳的起始时间请以系统启动时间为基准。
 
@@ -782,20 +800,21 @@ getInputSurface(): Promise\<string>;
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **返回值：**
 
 | 类型             | 说明                             |
 | ---------------- | -------------------------------- |
-| Promise\<string> | 异步获得surface的Promise返回值。 |
+| Promise\<string> | Promise对象，返回surface。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 202      | Not system App.                           |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400103  | I/O error. Return by promise.             |
 | 5400105  | Service died. Return by promise.          |
@@ -819,26 +838,27 @@ videoRecorder.getInputSurface().then((surfaceId: string) => {
 
 start(callback: AsyncCallback\<void>): void
 
-异步方式开始视频录制。通过注册回调函数获取返回值。
+开始视频录制。使用callback异步回调。
 
 在[prepare()](#prepare9)和[getInputSurface()](#getinputsurface9)后调用，需要依赖数据源先给surface传递数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | 是   | 异步开始视频录制的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。开始视频录制成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
+| 202      | Not system App.                            |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400103  | I/O error. Return by callback.             |
 | 5400105  | Service died. Return by callback.          |
@@ -862,26 +882,27 @@ videoRecorder.start((err: BusinessError) => {
 
 start(): Promise\<void>
 
-异步方式开始视频录制。通过Promise获取返回值。
+开始视频录制。使用Promise异步回调。
 
 在[prepare()](#prepare9-1)和[getInputSurface()](#getinputsurface9-1)后调用，需要依赖数据源先给surface传递数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **返回值：**
 
 | 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
-| Promise\<void> | 异步开始视频录制方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 202      | Not system App.                           |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400103  | I/O error. Return by promise.             |
 | 5400105  | Service died. Return by promise.          |
@@ -903,26 +924,27 @@ videoRecorder.start().then(() => {
 
 pause(callback: AsyncCallback\<void>): void
 
-异步方式暂停视频录制。通过注册回调函数获取返回值。
+暂停视频录制。使用callback异步回调。
 
 在[start()](#start9)后调用。可以通过调用[resume()](#resume9)接口来恢复录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | 是   | 异步暂停视频录制的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。暂停视频录制成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
+| 202      | Not system App.                            |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400103  | I/O error. Return by callback.             |
 | 5400105  | Service died. Return by callback.          |
@@ -946,26 +968,27 @@ videoRecorder.pause((err: BusinessError) => {
 
 pause(): Promise\<void>
 
-异步方式暂停视频录制。通过Promise获取返回值。
+暂停视频录制。使用Promise异步回调。
 
 在[start()](#start9-1)后调用。可以通过调用[resume()](#resume9-1)接口来恢复录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **返回值：**
 
 | 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
-| Promise\<void> | 异步暂停视频录制方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 202      | Not system App.                           |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400103  | I/O error. Return by promise.             |
 | 5400105  | Service died. Return by promise.          |
@@ -987,24 +1010,25 @@ videoRecorder.pause().then(() => {
 
 resume(callback: AsyncCallback\<void>): void
 
-异步方式恢复视频录制。通过注册回调函数获取返回值。
+恢复视频录制。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | 是   | 异步恢复视频录制的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。恢复视频录制成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
+| 202      | Not system App.                            |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400103  | I/O error. Return by callback.             |
 | 5400105  | Service died. Return by callback.          |
@@ -1028,24 +1052,25 @@ videoRecorder.resume((err: BusinessError) => {
 
 resume(): Promise\<void>
 
-异步方式恢复视频录制。通过Promise获取返回值。
+恢复视频录制。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **返回值：**
 
 | 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
-| Promise\<void> | 异步恢复视频录制方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 202      | Not system App.                           |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400103  | I/O error. Return by promise.             |
 | 5400105  | Service died. Return by promise.          |
@@ -1067,26 +1092,27 @@ videoRecorder.resume().then(() => {
 
 stop(callback: AsyncCallback\<void>): void
 
-异步方式停止视频录制。通过注册回调函数获取返回值。
+停止视频录制。使用callback异步回调。
 
 需要重新调用[prepare()](#prepare9)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | 是   | 异步停止视频录制的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。停止视频录制成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
+| 202      | Not system App.                            |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400103  | I/O error. Return by callback.             |
 | 5400105  | Service died. Return by callback.          |
@@ -1116,20 +1142,21 @@ stop(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **返回值：**
 
 | 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
-| Promise\<void> | 异步停止视频录制方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 202      | Not system App.                           |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400103  | I/O error. Return by promise.             |
 | 5400105  | Service died. Return by promise.          |
@@ -1151,24 +1178,25 @@ videoRecorder.stop().then(() => {
 
 release(callback: AsyncCallback\<void>): void
 
-异步方式释放视频录制资源。通过注册回调函数获取返回值。
+释放视频录制资源。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                             |
 | -------- | -------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback\<void> | 是   | 异步释放视频录制资源的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。释放视频录制资源成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                          |
 | -------- | --------------------------------- |
+| 202      | Not system App.                   |
 | 5400105  | Service died. Return by callback. |
 
 **示例：**
@@ -1190,24 +1218,25 @@ videoRecorder.release((err: BusinessError) => {
 
 release(): Promise\<void>
 
-异步方式释放视频录制资源。通过Promise获取返回值。
+释放视频录制资源。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **返回值：**
 
 | 类型           | 说明                                      |
 | -------------- | ----------------------------------------- |
-| Promise\<void> | 异步释放视频录制资源方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                          |
 | -------- | --------------------------------- |
+| 202      | Not system App.                   |
 | 5400105  | Service died. Return by callback. |
 
 **示例：**
@@ -1227,26 +1256,27 @@ videoRecorder.release().then(() => {
 
 reset(callback: AsyncCallback\<void>): void
 
-异步方式重置视频录制。通过注册回调函数获取返回值。
+重置视频录制。使用callback异步回调。
 
 需要重新调用[prepare()](#prepare9)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | 是   | 异步重置视频录制的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。重置视频录制成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                          |
 | -------- | --------------------------------- |
+| 202      | Not system App.                   |
 | 5400103  | I/O error. Return by callback.    |
 | 5400105  | Service died. Return by callback. |
 
@@ -1269,26 +1299,27 @@ videoRecorder.reset((err: BusinessError) => {
 
 reset(): Promise\<void>
 
-异步方式重置视频录制。通过Promise获取返回值。
+重置视频录制。使用Promise异步回调。
 
 需要重新调用[prepare()](#prepare9-1)和[getInputSurface()](#getinputsurface9-1)接口才能重新录制。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **返回值：**
 
 | 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
-| Promise\<void> | 异步重置视频录制方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 202      | Not system App.                  |
 | 5400103  | I/O error. Return by promise.    |
 | 5400105  | Service died. Return by promise. |
 
@@ -1309,25 +1340,27 @@ videoRecorder.reset().then(() => {
 
 on(type: 'error', callback: ErrorCallback): void
 
-开始订阅视频录制错误事件，当上报error错误事件后，用户需处理error事件，退出录制操作。
+开始订阅视频录制错误事件，当上报error错误事件后，用户需处理error事件，退出录制操作。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | type     | string        | 是   | 录制错误事件回调类型'error'。<br/>-&nbsp;'error'：视频录制过程中发生错误，触发该事件。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 录制错误事件回调方法。                                       |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 回调函数，返回录制错误事件。                                       |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
 
 | 错误码ID | 错误信息                          |
 | -------- | --------------------------------- |
+| 201      | permission denied.                |
+| 202      | Not system App.                   |
 | 5400103  | I/O error. Return by callback.    |
 | 5400105  | Service died. Return by callback. |
 
@@ -1348,7 +1381,7 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 | 名称     | 类型   | 说明                   |
 | -------- | ------ | ---------------------- |
@@ -1367,16 +1400,16 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
-| 名称            | 类型                                           | 必填 | 说明                                                         |
-| --------------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioSourceType | [AudioSourceType](arkts-apis-media-e.md#audiosourcetype9)           | 否   | 视频录制的音频源类型，选择音频录制时必填。                      |
-| videoSourceType | [VideoSourceType](arkts-apis-media-e.md#videosourcetype9)           | 是   | 视频录制的视频源类型。                                       |
-| profile         | [VideoRecorderProfile](#videorecorderprofile9) | 是   | 视频录制的profile。                                          |
-| rotation        | number                                         | 否   | 录制的视频旋转角度，仅支持0，90，180，270，默认值为0。       |
-| location        | [Location](arkts-apis-media-i.md#location)                          | 否   | 录制视频的地理位置，默认不记录地理位置信息。                 |
-| url             | string                                         | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) |
+| 名称            | 类型                                           | 只读 | 可选 | 说明                                                         |
+| --------------- | ---------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| audioSourceType | [AudioSourceType](arkts-apis-media-e.md#audiosourcetype9)           | 否   | 是   | 视频录制的音频源类型，选择音频录制时必填。                      |
+| videoSourceType | [VideoSourceType](arkts-apis-media-e.md#videosourcetype9)           | 否   | 否   | 视频录制的视频源类型。                                       |
+| profile         | [VideoRecorderProfile](#videorecorderprofile9) | 否   | 否   | 视频录制的profile。                                          |
+| rotation        | number                                         | 否   | 是   | 录制的视频旋转角度，仅支持0，90，180，270，默认值为0。       |
+| location        | [Location](arkts-apis-media-i.md#location)                          | 否   | 是   | 录制视频的地理位置，默认不记录地理位置信息。                 |
+| url             | string                                         | 否   | 否   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) |
 
 ## VideoRecorderProfile<sup>9+</sup>
 
@@ -1384,20 +1417,20 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
-| 名称             | 类型                                         | 必填 | 说明             |
-| ---------------- | -------------------------------------------- | ---- | ---------------- |
-| audioBitrate     | number                                       | 否   | 音频编码比特率，选择音频录制时必填。 |
-| audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填。 |
-| audioCodec       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。   |
-| audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。     |
-| fileFormat       | [ContainerFormatType](arkts-apis-media-e.md#containerformattype8) | 是   | 文件的容器格式。 |
-| videoBitrate     | number                                       | 是   | 视频编码比特率。 |
-| videoCodec       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | 是   | 视频编码格式。   |
-| videoFrameWidth  | number                                       | 是   | 录制视频帧的宽。 |
-| videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
-| videoFrameRate   | number                                       | 是   | 录制视频帧率。   |
+| 名称             | 类型                                         | 只读 | 可选 | 说明             |
+| ---------------- | -------------------------------------------- | ---- | ---- | ---------------- |
+| audioBitrate     | number                                       | 是   | 否   | 音频编码比特率，选择音频录制时必填。 |
+| audioChannels    | number                                       | 是   | 否   | 音频采集声道数，选择音频录制时必填。 |
+| audioCodec       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | 是   | 否   | 音频编码格式，选择音频录制时必填。   |
+| audioSampleRate  | number                                       | 是   | 否   | 音频采样率，选择音频录制时必填。     |
+| fileFormat       | [ContainerFormatType](arkts-apis-media-e.md#containerformattype8) | 是   | 否   | 文件的容器格式。 |
+| videoBitrate     | number                                       | 是   | 否   | 视频编码比特率。 |
+| videoCodec       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | 是   | 否   | 视频编码格式。   |
+| videoFrameWidth  | number                                       | 是   | 否   | 录制视频帧的宽。 |
+| videoFrameHeight | number                                       | 是   | 否   | 录制视频帧的高。 |
+| videoFrameRate   | number                                       | 是   | 否   | 录制视频帧率。   |
 
 ## WatermarkConfig<sup>13+</sup>
 
@@ -1405,12 +1438,12 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
-| 名称      | 类型   | 必填 | 说明             |
-| --------- | ------ | ---- | ---------------- |
-| top       | number | 是   | 显示位置，距离图像顶部的像素偏移量。 |
-| left      | number | 是   | 显示位置，距离图像左部的像素偏移量。 |
+| 名称      | 类型   | 只读 | 可选 | 说明             |
+| --------- | ------ | ---- | ---- | ---------------- |
+| top       | number | 否   | 否   | 显示位置，距离图像顶部的像素偏移量。 |
+| left      | number | 否   | 否   | 显示位置，距离图像左部的像素偏移量。 |
 
 ## ScreenCaptureMonitor<sup>18+</sup>
 
@@ -1422,15 +1455,15 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 
 **系统接口：** 该接口为系统接口。
 
-| 名称               | 类型                                   | 可读 | 可写 | 说明             |
+| 名称               | 类型                                   | 只读 | 可选 | 说明             |
 | ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
-| isSystemScreenRecorderWorking<sup>18+</sup> | boolean | 是   | 否   | 系统录屏是否处于录屏状态。 |
+| isSystemScreenRecorderWorking<sup>18+</sup> | boolean | 是   | 否   | 系统录屏是否处于录屏状态。true表示处于录屏状态；false表示不处于录屏状态。 |
 
 ### on('systemScreenRecorder')<sup>18+</sup>
 
 on(type: 'systemScreenRecorder', callback: Callback\<ScreenCaptureEvent>): void
 
-开始订阅系统录屏的录屏状态。当上报ScreenCaptureEvent事件后，用户可以根据ScreenCaptureEvent事件得知系统录屏当前处于开启还是停止的状态。
+开始订阅系统录屏的录屏状态。当上报ScreenCaptureEvent事件后，用户可以根据ScreenCaptureEvent事件得知系统录屏当前处于开启还是停止的状态。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -1441,7 +1474,7 @@ on(type: 'systemScreenRecorder', callback: Callback\<ScreenCaptureEvent>): void
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | type     | string        | 是   | 录屏状态回调类型'systemScreenRecorder'。<br/>-&nbsp;'systemScreenRecorder'：系统录屏应用的录屏状态发生变化，触发该事件。 |
-| callback | function | 是   | 系统录屏状态回调。[ScreenCaptureEvent](#screencaptureevent18)表示切换到的状态。                                       |
+| callback | function | 是   | 回调函数，返回系统录屏状态。[ScreenCaptureEvent](#screencaptureevent18)表示切换到的状态。                                       |
 
 **错误码：**
 
@@ -1466,7 +1499,7 @@ screenCaptureMonitor.on('systemScreenRecorder', (event: media.ScreenCaptureEvent
 
 off(type: 'systemScreenRecorder', callback?: Callback\<ScreenCaptureEvent>): void
 
-取消订阅系统录屏的录屏状态。
+取消订阅系统录屏的录屏状态。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -1477,7 +1510,7 @@ off(type: 'systemScreenRecorder', callback?: Callback\<ScreenCaptureEvent>): voi
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
 | type     | string        | 是   | 录屏状态回调类型'systemScreenRecorder'。<br/>-&nbsp;'systemScreenRecorder'：系统录屏应用的录屏状态发生变化，触发该事件。 |
-| callback | function | 否   | 系统录屏状态回调。[ScreenCaptureEvent](#screencaptureevent18)表示切换到的状态，不填此参数则会取消最后一次订阅事件。 |
+| callback | function | 否   | 回调函数，返回系统录屏状态。[ScreenCaptureEvent](#screencaptureevent18)表示切换到的状态，不填此参数则会取消最后一次订阅事件。 |
 
 **错误码：**
 

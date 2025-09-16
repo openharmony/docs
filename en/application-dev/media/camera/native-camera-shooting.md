@@ -2,16 +2,17 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
-Photo capture is an important function of the camera application. Based on the complex logic of the camera hardware, the camera module provides APIs for you to set information such as resolution, flash, focal length, photo quality, and rotation angle.
+Photo capture is an important function of the camera application. Based on the complex logic of the camera device, the camera module provides APIs for you to set information such as resolution, flash, focal length, photo quality, and rotation angle.
 
 ## How to Develop
 
 Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API reference.
 
-1. Import the NDK, which provides camera-related attributes and methods.
+1. Import the NDK, which provides camera-related properties and methods.
 
    ```c++
    // Include the NDK header files.
@@ -19,6 +20,7 @@ Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API ref
    #include <cstdlib>
    #include <cstring>
    #include <string.h>
+   #include <new>
    #include "hilog/log.h"
    #include "ohcamera/camera.h"
    #include "ohcamera/camera_input.h"
@@ -94,51 +96,113 @@ Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API ref
        OH_LOG_INFO(LOG_APP, "OnPhotoAvailable start!");
        OH_ImageNative* imageNative;
        Camera_ErrorCode errCode = OH_PhotoNative_GetMainImage(photo, &imageNative);
+       if (errCode != CAMERA_OK || imageNative == nullptr) {
+           OH_LOG_ERROR(LOG_APP, "OH_PhotoNative_GetMainImage call failed, errorCode: %{public}d", errCode);
+           return;
+       }
        OH_LOG_INFO(LOG_APP, "OnPhotoAvailable errCode:%{public}d imageNative:%{public}p", errCode, imageNative);
        // Read the size attribute of OH_ImageNative.
        Image_Size size;
        Image_ErrorCode imageErr = OH_ImageNative_GetImageSize(imageNative, &size);
+       if (imageErr != IMAGE_SUCCESS) {
+            OH_LOG_ERROR(LOG_APP, "OH_ImageNative_GetImageSize call failed, errorCode: %{public}d", imageErr);
+            OH_ImageNative_Release(imageNative);
+            return;
+        }
        OH_LOG_INFO(LOG_APP, "OnPhotoAvailable imageErr:%{public}d width:%{public}d height:%{public}d", imageErr,
                     size.width, size.height);
        // Read the number of elements in the component list of OH_ImageNative.
        size_t componentTypeSize = 0;
        imageErr = OH_ImageNative_GetComponentTypes(imageNative, nullptr, &componentTypeSize);
+       if (imageErr != IMAGE_SUCCESS || componentTypeSize == 0) {
+           OH_LOG_ERROR(LOG_APP, "cOH_ImageNative_GetComponentTypes call failed, errorCode: %{public}d", imageErr);
+           OH_ImageNative_Release(imageNative);
+           return;
+       }
        OH_LOG_INFO(LOG_APP, "OnPhotoAvailable imageErr:%{public}d componentTypeSize:%{public}zu", imageErr,
                     componentTypeSize);
        // Read the component list of OH_ImageNative.
-       uint32_t* components = new uint32_t[componentTypeSize];
+       uint32_t* components = new (std::nothrow) uint32_t[componentTypeSize];
+       if (!components) {
+           OH_LOG_ERROR(LOG_APP, "Failed to allocate memory");
+           OH_ImageNative_Release(imageNative);
+           return;
+       }
        imageErr = OH_ImageNative_GetComponentTypes(imageNative, &components, &componentTypeSize);
+       if (imageErr != IMAGE_SUCCESS) {
+           OH_LOG_ERROR(LOG_APP, "OH_ImageNative_GetComponentTypes call failed, errorCode: %{public}d", imageErr);
+           OH_ImageNative_Release(imageNative);
+           delete[] components;
+           return;
+       }
        OH_LOG_INFO(LOG_APP, "OnPhotoAvailable OH_ImageNative_GetComponentTypes imageErr:%{public}d", imageErr);
        // Read the buffer object corresponding to the first component of OH_ImageNative.
        OH_NativeBuffer* nativeBuffer = nullptr;
        imageErr = OH_ImageNative_GetByteBuffer(imageNative, components[0], &nativeBuffer);
+       if (imageErr != IMAGE_SUCCESS) {
+           OH_LOG_ERROR(LOG_APP, "OH_ImageNative_GetByteBuffer call failed, errorCode: %{public}d", imageErr);
+           OH_ImageNative_Release(imageNative);
+           delete[] components;
+           return;
+       }
        OH_LOG_INFO(LOG_APP, "OnPhotoAvailable OH_ImageNative_GetByteBuffer imageErr:%{public}d", imageErr);
        // Read the size of the buffer corresponding to the first component of OH_ImageNative.
        size_t nativeBufferSize = 0;
        imageErr = OH_ImageNative_GetBufferSize(imageNative, components[0], &nativeBufferSize);
+       if (imageErr != IMAGE_SUCCESS) {
+           OH_LOG_ERROR(LOG_APP, "OH_ImageNative_GetBufferSize call failed, errorCode: %{public}d", imageErr);
+           OH_ImageNative_Release(imageNative);
+           delete[] components;
+           return;
+       }
        OH_LOG_INFO(LOG_APP, "OnPhotoAvailable imageErr:%{public}d nativeBufferSize:%{public}zu", imageErr,
                     nativeBufferSize);
        // Read the row stride corresponding to the first component of OH_ImageNative.
        int32_t rowStride = 0;
        imageErr = OH_ImageNative_GetRowStride(imageNative, components[0], &rowStride);
+       if (imageErr != IMAGE_SUCCESS) {
+           OH_LOG_ERROR(LOG_APP, "OH_ImageNative_GetRowStride call failed, errorCode: %{public}d", imageErr);
+           OH_ImageNative_Release(imageNative);
+           delete[] components;
+           return;
+       }
        OH_LOG_INFO(LOG_APP, "OnPhotoAvailable imageErr:%{public}d rowStride:%{public}d", imageErr, rowStride);
        // Read the pixel stride corresponding to the first component of OH_ImageNative.
        int32_t pixelStride = 0;
        imageErr = OH_ImageNative_GetPixelStride(imageNative, components[0], &pixelStride);
+       if (imageErr != IMAGE_SUCCESS) {
+           OH_LOG_ERROR(LOG_APP, "OH_ImageNative_GetPixelStride call failed, errorCode: %{public}d", imageErr);
+           OH_ImageNative_Release(imageNative);
+           delete[] components;
+           return;
+       }
        OH_LOG_INFO(LOG_APP, "OnPhotoAvailable imageErr:%{public}d pixelStride:%{public}d", imageErr, pixelStride);
        // Map the ION memory to the process address space.
        void* virAddr = nullptr; // Point to the virtual address of the mapped memory. After unmapping, the pointer is invalid.
        int32_t ret = OH_NativeBuffer_Map(nativeBuffer, &virAddr); // After mapping, the start address of the memory is returned through the parameter virAddr.
+       if (ret != 0) {
+           OH_LOG_ERROR(LOG_APP, "OH_NativeBuffer_Map call failed, errorCode: %{public}d", ret);
+           OH_ImageNative_Release(imageNative);
+           delete[] components;
+           return;
+       }
        OH_LOG_INFO(LOG_APP, "OnPhotoAvailable OH_NativeBuffer_Map err:%{public}d", ret);
        // Call the buffer callback at the NAPI layer.
        auto cb = (void (*)(void *, size_t))(bufferCb);
+       if (!virAddr || nativeBufferSize <= 0) {
+         OH_LOG_INFO(LOG_APP, "On buffer callback failed");
+         return;
+       }
        cb(virAddr, nativeBufferSize);
        // Release resources.
-	   delete[] components;
-	   OH_ImageNative_Release(imageNative);
+       delete[] components;
+       ret = OH_ImageNative_Release(imageNative);
+       if (ret != 0) {
+           OH_LOG_ERROR(LOG_APP, "OH_ImageNative_Release call failed., errorCode: %{public}d", ret);
+       }
        ret = OH_NativeBuffer_Unmap(nativeBuffer); // After the processing is complete, unmap and release the buffer.
        if (ret != 0) {
-           OH_LOG_ERROR(LOG_APP, "OnPhotoAvailable OH_NativeBuffer_Unmap error:%{public}d", ret);
+           OH_LOG_ERROR(LOG_APP, "OH_NativeBuffer_Unmap call failed, errorCode: %{public}d", ret);
        }
 	   OH_LOG_INFO(LOG_APP, "OnPhotoAvailable end");
    }
@@ -210,6 +274,7 @@ Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API ref
                napi_call_function(env, nullptr, callback, 1, &arrayBuffer, &retVal);
                // Clear the memory.
                free(data); // Release the memory allocated during asynchronous work.
+               free(copyBuffer);
            },
            copyBuffer, &work);
 
@@ -248,6 +313,7 @@ Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API ref
 6. Create a photo session. For details, see [Camera Session Management (C/C++)](./native-camera-session-management.md).
 
 7. (Optional) Set photo capture parameters.
+
    You can set camera parameters to adjust photo capture functions, including the flash, zoom ratio, and focal length.
 
    ```c++
@@ -278,7 +344,7 @@ Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API ref
        return isSupported;
    }
    // Call OH_CaptureSession_SetFlashMode when the specified mode is supported.
-   Camera_ErrorCode SetFocusMode(Camera_CaptureSession* captureSession, Camera_FlashMode flashMode)
+   Camera_ErrorCode SetFlashMode(Camera_CaptureSession* captureSession, Camera_FlashMode flashMode)
    {
        Camera_ErrorCode ret = OH_CaptureSession_SetFlashMode(captureSession, flashMode);
        if (ret == CAMERA_OK) {

@@ -1,6 +1,12 @@
 # ElementName
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
-The module provides element name information, which can be obtained through [Context.getElementName](js-apis-inner-app-context.md#contextgetelementname7).
+A structured identifier for an application component, containing fields such as **bundleName**, **moduleName**, and **abilityName**. It is usually used in [AbilityRunningInfo.ability](../apis-ability-kit/js-apis-inner-application-abilityRunningInfo.md) for component launch information and in the [connectOptions.onConnect](../apis-ability-kit/js-apis-inner-ability-connectOptions.md#onconnect) callback for component connection.
 
 > **NOTE**
 >
@@ -9,7 +15,7 @@ The module provides element name information, which can be obtained through [Con
 ## Modules to Import
 
 ```ts
-import { featureAbility } from '@kit.AbilityKit';
+import { bundleManager } from '@kit.AbilityKit';
 ```
 
 ## ElementName
@@ -24,5 +30,5 @@ import { featureAbility } from '@kit.AbilityKit';
 | bundleName              | string   | No  |  No | Bundle name.         |
 | abilityName             | string   | No  |  No | Name of the ability.              |
 | uri                     | string   | No  |  Yes | Resource ID.                |
-| shortName               | string   | No  |  Yes | Short name of the ability.              |
+| shortName               | string   | No  |  Yes | Short name of the ability. It is a string starting with a period (.).              |
 | moduleName              | string   | No  |  Yes | Module name of the HAP file to which the ability belongs.  |

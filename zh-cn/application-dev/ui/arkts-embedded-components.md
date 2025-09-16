@@ -179,13 +179,12 @@ export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
 ```ts
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-let storage = new LocalStorage();
-
-@Entry(storage)
+@Entry
 @Component
 struct Extension {
   @State message: string = 'EmbeddedUIExtensionAbility Index';
-  private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+  private localStorage: LocalStorage|undefined = this.getUIContext().getSharedLocalStorage();
+  private session: UIExtensionContentSession | undefined = this.localStorage.get<UIExtensionContentSession>('session');
 
   build() {
     Column() {

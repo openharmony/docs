@@ -1,19 +1,30 @@
 # Subscribing to Resource Leak Events (C/C++)
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @xuxinao-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 ## Available APIs
 
-For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent).
+This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscribe to resource leak events. For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [hiappevent.h](../reference/apis-performance-analysis-kit/capi-hiappevent-h.md).
 
 **Subscription APIs**
 
-| API                                                        | Description                                        |
-|-------------------------------------------------------------| -------------------------------------------- |
-| int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher *watcher)   | Adds a watcher to listen for application events.|
-| int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher *watcher) | Removes a watcher to unsubscribe from the application events.|
+| API| Description|
+| -------- | -------- |
+| int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher \*watcher) | Adds a watcher to listen for application events.|
+| int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher \*watcher) | Removes a watcher to unsubscribe from the application events.|
 
 ## How to Develop
 
-1. Create a native C++ project and import the **jsoncpp** file to the project. The directory structure is as follows:
+### Step 1: Creating a Project
+
+1. Obtain the **jsoncpp** file on which the sample project depends. Specifically, download the source code package from [JsonCpp](https://github.com/open-source-parsers/jsoncpp) and obtain the **jsoncpp.cpp**, **json.h**, and **json-forwards.h** files by following the procedure described in **Amalgamated source**.
+
+   Create a native C++ project in DevEco Studio. The directory structure is as follows:
 
    ```yml
    entry:
@@ -45,7 +56,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libhiappevent_ndk.z.so)
    ```
 
-3. Import the dependency files to the **napi_init.cpp** file, and define **LOG_TAG**.
+3. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
 
    ```c++
    #include "napi/native_api.h"
@@ -57,11 +68,13 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    #define LOG_TAG "testTag"
    ```
 
-4. Subscribe to system events.
+### Step 2: Subscribing to a System Event
 
-    - Watcher of the onReceive type:
+1. Subscribe to system events.
 
-      In the **napi_init.cpp** file, define the methods related to the watcher of the onReceive type.
+   - Watcher of the onReceive type:
+
+      In the **napi_init.cpp** file, define the methods related to **onReceive()**.
 
       ```c++
       // Define a variable to cache the pointer to the created watcher.
@@ -96,7 +109,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s", bundleVersion.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.memory=%{public}s", memory.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s", externalLog.c_str());
-                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit.c_str());
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}s", logOverLimit.c_str());
                       }
                   }
               }
@@ -117,11 +130,11 @@ For details about how to use the APIs (such as parameter usage restrictions and 
           return {};
       }
       ```
-      
-    - Watcher of the onTrigger type:
-    
-      In the **napi_init.cpp** file, define the methods related to the watcher of the OnTrigger type.
-    
+
+   - Watcher of the onTrigger type:
+
+      In the **napi_init.cpp** file, define the methods related to **OnTrigger()**.
+
       ```c++
       // Define a variable to cache the pointer to the created watcher.
       static HiAppEvent_Watcher *systemEventWatcher; 
@@ -157,7 +170,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s", bundleVersion.c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.memory=%{public}s", memory.c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}s", externalLog.c_str());
-                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit.c_str());
+                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}s", logOverLimit.c_str());
                   }
               }
           }
@@ -185,8 +198,8 @@ For details about how to use the APIs (such as parameter usage restrictions and 
           return {};
       }
       ```
-    
-5. Register **RegisterWatcher** as an ArkTS API.
+
+2. Register **RegisterWatcher** as an ArkTS API.
 
    In the **napi_init.cpp** file, register **RegisterWatcher** as an ArkTS API.
 
@@ -207,7 +220,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    export const registerWatcher: () => void;
    ```
 
-6. In the **EntryAbility.ets** file, add the following interface invocation to **onCreate()**.
+3. In the **EntryAbility.ets** file, add the following API to **onCreate()**.
 
    ```typescript
    import testNapi from 'libentry.so'
@@ -220,24 +233,20 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    }
    ```
 
-7. In the **entry/src/main/ets/pages/index.ets** file, add the **memoryleak** button and construct a scenario for triggering a resource leak event in **onClick()**.
-   You can use [hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12) to set the application's memory limit to construct a memory leak event and trigger a resource leak event report. You are advised not to use this API in the production environment.
-To obtain profiler logs, enable **System resource leak log** in **Developer options**. (You need to restart the device to enable or disable this functionality.)
+### Step 3: Triggering a Resource Leak Event
 
-   <!--RP1-->
-   For details about how to locate resource leak errors, see [Memory Leak Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-insight-session-snapshot).
-   <!--RP1End-->
+1. In the **entry/src/main/ets/pages/index.ets** file, add the **memoryleak** button and construct a scenario for triggering a resource leak event in **onClick()**.
 
-   The sample code is as follows:
+   In this case, use [hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12) to set the memory limit to trigger a memory leak event, and enable **System resource leak log** in **Developer options**. (Restart the device to enable or disable this functionality.) The sample code is as follows:
 
    ```ts
-    import hidebug from "@ohos.hidebug";
-
+    import { hidebug } from '@kit.PerformanceAnalysisKit';
+   
     @Entry
     @Component
     struct Index {
       @State leakedArray: string[][] = [];
-
+   
       build() {
         Column() {
           Row() {
@@ -258,10 +267,11 @@ To obtain profiler logs, enable **System resource leak log** in **Developer opti
     }
    ```
 
-8. Click the **Run** button in DevEco Studio to run the project, click the **pss leak** button, and then a memory leak event will be reported after 15 to 30 minutes.
-   For the same application, the memory leak event can be reported at most once within 24 hours. If the memory leak needs to be reported again within a shorter time, restart the device.
+2. Click the **Run** button in DevEco Studio to run the project. Click the **pss leak** button and wait for 15 to 30 minutes; the system will then report the memory leak event.
 
-9. After the memory leak event is reported, you can view the following event information in the **Log** window.
+   For the same application, the resource leak event can be reported at most once within 24 hours. If the memory leak needs to be reported again within a shorter time, restart the device.
+
+3. After the memory leak event is reported, you can view the following event information in the **Log** window.
 
    ```text
    08-07 03:53:35.314 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.domain=OS
@@ -278,23 +288,25 @@ To obtain profiler logs, enable **System resource leak log** in **Developer opti
    08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.log_over_limit=false
    ```
 
-10. Remove the event watcher.
+### Step 4: Removing a Watcher
 
-    ```c++
-    static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
-        // Remove the watcher.
-        OH_HiAppEvent_RemoveWatcher(systemEventWatcher);
-        return {};
-    }
-    ```
+1. Remove the event watcher.
 
-11. Destroy the event watcher.
+   ```c++
+   static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
+       // Remove the watcher to unsubscribe from events.
+       OH_HiAppEvent_RemoveWatcher(systemEventWatcher);
+       return {};
+   }
+   ```
 
-    ```c++
-    static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
-        // Destroy the created watcher and set systemEventWatcher to nullptr.
-        OH_HiAppEvent_DestroyWatcher(systemEventWatcher);
-        systemEventWatcher = nullptr;
-        return {};
-    }
-    ```
+2. Destroy the event watcher.
+
+   ```c++
+   static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
+       // Destroy the created watcher and set systemEventWatcher to nullptr.
+       OH_HiAppEvent_DestroyWatcher(systemEventWatcher);
+       systemEventWatcher = nullptr;
+       return {};
+   }
+   ```

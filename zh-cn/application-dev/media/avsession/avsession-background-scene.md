@@ -33,7 +33,7 @@
 
 - 当应用需要在后台播放媒体类型（流类型为STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE和STREAM_USAGE_AUDIOBOOK）和游戏类型（流类型为STREAM_USAGE_GAME）时，必须接入AVSession和申请长时任务。流类型请参考[使用合适的音频流类型](../audio/using-right-streamusage-and-sourcetype.md)，长时任务支持的类型请参考[BackgroundMode](../../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundmode)。
 
-- 除了上述播放类型，当应用需要在后台长时间运行用户可感知的其他任务时，必须申请长时任务。
+- 除了上述播放类型，针对用户可感知的其他播放任务，如果应用需要在后台长时间运行该任务，必须申请AUDIO_PLAYBACK类型长时任务。
 
 如果应用不满足上述接入规范，退至后台播放时会被系统静音并冻结，无法在后台正常播放。直到应用重新切回前台时，才会被解除静音并恢复播放。
 
@@ -79,10 +79,4 @@ AVSession的接入开发请参考指南[应用接入AVSession场景介绍](avses
 
 如果应用本身没有后台播放业务，可以通过监听生命周期函数[onBackground](../../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onbackground)来判断应用是否已进入后台并主动停止播放。否则会受到AVSession与长时任务模块管控，对应用正常的播放业务造成影响。如需在应用回到前台时重启播放，可以通过监听生命周期函数[onForeground](../../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onforeground)来判断应用是否回到前台。
 
-## 完整示例
-
-[使用AVPlayer后台播放](https://gitcode.com/harmonyos_samples/video-player)
-- 本示例主要展示通过系统播放器AVPlayer实现视频类应用的开发，功能包括后台播放和系统播控中心的交互。
-
-[使用AudioRenderer后台播放](https://gitcode.com/harmonyos_samples/audio-interaction)
-- 本场景解决方案主要面向前台音频开发人员。指导开发者基于AudioRenderer开发音频播控功能。功能包括后台播放、系统播控中心的交互、适配不同类型的焦点打断策略、切换路由发声设备、切换输出设备等。
+<!--RP1--><!--RP1End-->

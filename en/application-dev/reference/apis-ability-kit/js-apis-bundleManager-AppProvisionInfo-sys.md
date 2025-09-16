@@ -1,4 +1,10 @@
 # AppProvisionInfo (System API)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The module provides information in the [HarmonyAppProvision configuration file](../../security/app-provision-structure.md). The information can be obtained through [getAppProvisionInfo](./js-apis-bundleManager-sys.md#bundlemanagergetappprovisioninfo10).
 
@@ -29,7 +35,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | appDistributionType      | string | Yes  | No  | [Distribution type](../../security/app-provision-structure.md) in the configuration file.|
 | validity                 | [Validity](#validity) | Yes  | No  | Validity period in the configuration file.|
 | developerId              | string | Yes  | No  | Developer ID in the configuration file.|
-| certificate              | string | Yes  | No  | Certificate public key in the configuration file.|
+| certificate              | string | Yes  | No  | Certificate information in the configuration file.|
 | apl                      | string | Yes  | No  | APL in the configuration file, which can be **normal**, **system_basic**, or **system_core**.|
 | issuer                      | string | Yes  | No  | Issuer name in the configuration file.|
 |appIdentifier<sup>11+</sup>| string         | Yes  | No  | Unique ID of the application. It is the [app ID](https://developer.huawei.com/consumer/en/doc/app/agc-help-createharmonyapp-0000001945392297), which is a random string, allocated by AppGallery Connect during the creation of the application. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers. Manual signing is mandatory for cross-device debugging and cross-application interaction debugging. For details about how to select a signing mode, see [Use Cases for Automatic and Manual Signing](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section54361623194519).     |
@@ -43,5 +49,5 @@ import { bundleManager } from '@kit.AbilityKit';
 
 | Name                     | Type  | Read-Only| Optional| Description                |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
-| notBefore                 | number | Yes  | No  | Timestamp of the earliest valid date for the configuration file.|
-| notAfter                  | number | Yes  | No  | Timestamp of the latest valid date for the configuration file.|
+| notBefore                 | number | Yes  | No  | Start time of the validity period of the configuration file.|
+| notAfter                  | number | Yes  | No  | End time of the validity period of the configuration file.|

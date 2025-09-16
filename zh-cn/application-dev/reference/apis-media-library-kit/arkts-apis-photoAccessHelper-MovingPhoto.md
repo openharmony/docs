@@ -73,6 +73,10 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
   // 请确保图库内存在动态照片。
   let assetResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
   let asset: photoAccessHelper.PhotoAsset = await assetResult.getFirstObject();
+  if (asset === undefined) {
+    console.error('asset is undefined');
+    return;
+  }
   let requestOptions: photoAccessHelper.RequestOptions = {
     deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
   }
@@ -158,7 +162,15 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
   };
   // 请确保图库内存在动态照片。
   let assetResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  if (assetResult === undefined) {
+    console.error('assetResult is undefined');
+    return;
+  }
   let asset: photoAccessHelper.PhotoAsset = await assetResult.getFirstObject();
+  if (asset === undefined) {
+    console.error('asset is undefined');
+    return;
+  }  
   let requestOptions: photoAccessHelper.RequestOptions = {
     deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
   }
@@ -244,6 +256,10 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
   // 请确保图库内存在动态照片。
   let assetResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
   let asset: photoAccessHelper.PhotoAsset = await assetResult.getFirstObject();
+  if (asset === undefined) {
+    console.error('asset is undefined');
+    return;
+  }
   let requestOptions: photoAccessHelper.RequestOptions = {
     deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
   }
@@ -326,6 +342,10 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
   // 请确保图库内存在动态照片。
   let assetResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
   let asset: photoAccessHelper.PhotoAsset = await assetResult.getFirstObject();
+  if (asset === undefined) {
+    console.error('asset is undefined');
+    return;
+  }
   let requestOptions: photoAccessHelper.RequestOptions = {
     deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
   }

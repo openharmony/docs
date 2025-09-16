@@ -16,8 +16,9 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
 
 启动框架支持以自动模式或手动模式执行启动任务，默认采用自动模式。在构造[AbilityStage](ability-terminology.md#abilitystage)过程中开始加载开发者配置的启动任务，并执行自动模式的启动任务。开发者也可以在AbilityStage创建完后调用[startupManager.run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun)方法，执行手动模式的启动任务。
 
-  **图1** 启动框架执行时机  
-  ![app-startup-procedure](figures/app-startup-procedure.png)
+**图1** 启动框架执行时机
+
+![app-startup-procedure](figures/app-startup-procedure.png)
 
 
 ## 支持的范围
@@ -40,198 +41,248 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
 
 ## 开发流程
 
-1. [定义启动框架配置文件](#定义启动框架配置文件)：在资源文件目录下创建启动框架配置文件、添加启动任务的配置信息，并在[module.json5](../quick-start/module-configuration-file.md)配置文件中引用。
+1. [定义启动框架配置文件](#定义启动框架配置文件)：在资源文件目录下创建并定义启动框架配置文件。
+   1. [创建启动框架配置文件](#创建启动框架配置文件)：在资源文件目录下创建启动框架配置文件，并在[module.json5](../quick-start/module-configuration-file.md)配置文件中引用。
+   2. [定义启动参数配置](#定义启动参数配置)：在启动框架配置文件中添加启动参数的配置信息。
+   3. [定义启动任务配置](#定义启动任务配置)：在启动框架配置文件中添加启动任务的配置信息
+   4. [定义预加载so任务配置](#定义预加载so任务配置)：在启动框架配置文件中添加预加载so任务的配置信息。
+
 2. [设置启动参数](#设置启动参数)：在启动参数文件中，设置超时时间和启动任务的监听器等参数。
 3. [为每个待初始化功能组件添加启动任务](#为每个待初始化功能组件添加启动任务)：通过实现[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)接口，启动框架将会按顺序执行初始化流程。
+4. [可选操作](#可选操作)：开发者可以在复杂场景下更精细地控制启动框架的行为。
+   - [HSP与HAR中使用启动框架](#hsp与har中使用启动框架)：在HSP与HAR中配置启动任务、so预加载任务。实现跨模块的启动任务依赖管理，提升大型应用的启动效率和代码可维护性。
+   - [修改启动模式](#修改启动模式)：将启动任务、so预加载任务修改为手动模式，灵活控制任务执行时机，避免不必要的启动开销。
+   - [添加任务匹配规则](#添加任务匹配规则)：根据场景通过匹配规则过滤启动任务。精准控制任务执行范围，避免加载无关任务。
+   - [设置启动任务调度阶段](#设置启动任务调度阶段)：设置启动任务的调度阶段，提前执行任务，节省启动时间。
 
-## 开发步骤
 
-### 定义启动框架配置文件
+## 定义启动框架配置文件
+
+### 创建启动框架配置文件
 
 1. 在[HAP](../quick-start/hap-package.md)的“resources/base/profile”路径下，新建启动框架配置文件。文件名可以自定义，本文以"startup_config.json"为例。
 
-2. 在启动框架配置文件startup_config.json中，依次添加各个启动任务和so预加载任务的配置信息。
+2. 在[module.json5配置文件](../quick-start/module-configuration-file.md)的appStartup标签中，添加启动框架配置文件的索引。
 
-    假设当前应用启动框架共包含6个启动任务和6个so预加载任务，任务之间的依赖关系如下图所示。为了便于并发执行启动任务，单个启动任务文件包含的启动任务应尽量单一，本例中每个启动任务对应一个启动任务文件。不建议应用在so文件的加载回调中运行代码逻辑，so文件的加载不宜过长，否则会影响主线程的运行。
+   module.json5示例代码如下。
 
-    **图2** 启动任务与so预加载任务依赖关系图  
-    ![app-startup](figures/app-startup.png) 
-    
-    1. 在“ets/startup”路径下，依次创建6个启动任务文件、以及一个公共的启动参数配置文件。文件名称必须确保唯一性。
-    
-        1. 创建启动任务文件。本例中的6个文件名分别为StartupTask_001.ets~StartupTask_006.ets。
-        2. 参考[Node-API](../napi/use-napi-process.md)创建so文件。本例中的6个so文件名称分别为libentry_001.so~libentry_006.so。
-        3. 创建启动任务参数配置文件。本例中的文件名为StartupConfig.ets。
-        
-    2. 在启动框架配置文件startup_config.json中，添加所有启动任务以及启动参数配置文件的相关信息。
-    
-        startup_config.json文件示例如下：
-        
-        ```json
-        {
-          "startupTasks": [
-            {
-              "name": "StartupTask_001",
-              "srcEntry": "./ets/startup/StartupTask_001.ets",
-              "dependencies": [
-                "StartupTask_002",
-                "StartupTask_003"
-              ],
-              "runOnThread": "taskPool",
-              "waitOnMainThread": false
-            },
-            {
-              "name": "StartupTask_002",
-              "srcEntry": "./ets/startup/StartupTask_002.ets",
-              "dependencies": [
-                "StartupTask_003",
-                "StartupTask_004"
-              ],
-              "runOnThread": "taskPool",
-              "waitOnMainThread": false
-            },
-            {
-              "name": "StartupTask_003",
-              "srcEntry": "./ets/startup/StartupTask_003.ets",
-              "dependencies": [
-                "StartupTask_004"
-              ],
-              "runOnThread": "taskPool",
-              "waitOnMainThread": false
-            },
-            {
-              "name": "StartupTask_004",
-              "srcEntry": "./ets/startup/StartupTask_004.ets",
-              "runOnThread": "taskPool",
-              "waitOnMainThread": false
-            },
-            {
-              "name": "StartupTask_005",
-              "srcEntry": "./ets/startup/StartupTask_005.ets",
-              "dependencies": [
-                "StartupTask_006"
-              ],
-              "runOnThread": "mainThread",
-              "waitOnMainThread": true,
-              "excludeFromAutoStart": true
-            },
-            {
-              "name": "StartupTask_006",
-              "srcEntry": "./ets/startup/StartupTask_006.ets",
-              "runOnThread": "mainThread",
-              "waitOnMainThread": false,
-              "excludeFromAutoStart": true
-            }
-          ],
-          "appPreloadHintStartupTasks": [
-            {
-              "name": "libentry_001",
-              "srcEntry": "libentry_001.so",
-              "dependencies": [
-                "libentry_002",
-                "libentry_003"
-              ],
-              "runOnThread": "taskPool"
-            },
-            {
-              "name": "libentry_002",
-              "srcEntry": "libentry_002.so",
-              "dependencies": [
-                "libentry_003",
-                "libentry_004"
-              ],
-              "runOnThread": "taskPool"
-            },
-            {
-              "name": "libentry_003",
-              "srcEntry": "libentry_003.so",
-              "dependencies": [
-                "libentry_004"
-              ],
-              "runOnThread": "taskPool"
-            },
-            {
-              "name": "libentry_004",
-              "srcEntry": "libentry_004.so",
-              "runOnThread": "taskPool"
-            },
-            {
-              "name": "libentry_005",
-              "srcEntry": "libentry_005.so",
-              "dependencies": [
-                "libentry_006"
-              ],
-              "runOnThread": "taskPool",
-              "excludeFromAutoStart": true
-            },
-            {
-              "name": "libentry_006",
-              "srcEntry": "libentry_006.so",
-              "runOnThread": "taskPool",
-              "excludeFromAutoStart": true
-            }
-          ],
-          "configEntry": "./ets/startup/StartupConfig.ets"
-        }
-        ```
-        
-    
-        **表1** startup_config.json配置文件标签说明
+   ```json
+   {
+     "module": {
+       "name": "entry",
+       "type": "entry",
+       // ...
+       "appStartup": "$profile:startup_config", // 启动框架的配置文件
+       // ...
+     }
+   }
+   ```
 
-        | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
-        | -------- | -------- | -------- | -------- |
-        | startupTasks | 启动任务配置信息，标签说明详见下表。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-        | appPreloadHintStartupTasks | 预加载so任务配置信息，标签说明详见下表。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-        | configEntry | 启动参数配置文件所在路径。<br/>**说明：**<br/>- HSP、HAR中不允许配置`configEntry`字段。<br/>- 如果应用开启了[文件名混淆](../arkts-utils/source-obfuscation.md#-enable-filename-obfuscation)，则需要将文件路径添加到保留白名单中。具体操作详见[ArkGuard混淆原理及功能](../arkts-utils/source-obfuscation.md)的[-keep-file-name](../arkts-utils/source-obfuscation.md#-keep-file-name)部分。 | 字符串 | 该标签不可缺省。 |
-        
-        
-        **表2** startupTasks标签说明
+### 定义启动参数配置
 
-        | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
-        | -------- | -------- | -------- | -------- |
-        | name | 启动任务名称，可自定义，推荐与类名保持一致。 | 字符串 | 该标签不可缺省。 |
-        | srcEntry | 启动任务对应的文件路径。<br/>**说明：** <br/> 如果应用开启了[文件名混淆](../arkts-utils/source-obfuscation.md#-enable-filename-obfuscation)，则需要将文件路径添加到保留白名单中。具体操作详见[ArkGuard混淆原理及功能](../arkts-utils/source-obfuscation.md)的[-keep-file-name](../arkts-utils/source-obfuscation.md#-keep-file-name)部分。 | 字符串 | 该标签不可缺省。 |
-        | dependencies | 启动任务依赖的其他启动任务的类名数组。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-        | excludeFromAutoStart | 是否排除自动模式，详细介绍可以查看[修改启动模式](#可选修改启动模式)。 <br/>-&nbsp;true：手动模式。 <br/>-&nbsp;false：自动模式。<br/>**说明：**<br/> HSP、HAR中startupTask里的excludeFromAutoStart标签必须配置为true。 | 布尔值 | 该标签可缺省，缺省值为false。 |
-        | runOnThread | 执行初始化所在的线程。<br/>-&nbsp;`mainThread`：在主线程中执行。<br/>-&nbsp;`taskPool`：在异步线程中执行。 | 字符串 | 该标签可缺省，缺省值为`mainThread`。 |
-        | waitOnMainThread | 主线程是否需要等待启动框架执行。当runOnThread取值为`taskPool`时，该字段生效。 <br/>-&nbsp;true：主线程等待启动框架执行完之后，才会加载应用首页。 <br/>-&nbsp;false：主线程不等待启动任务执行。 | 布尔值 | 该标签可缺省，缺省值为true。 |
-        | matchRules | 该字段用于筛选需要以自动模式启动的启动任务，加速应用启动过程。适用于快速拉起某个页面的场景，例如，通过桌面卡片、通知或意图调用等方式触发的页面跳转，实现功能服务的一步直达体验。操作指导详见[添加任务匹配规则](#可选添加任务匹配规则)。<br/>**说明：** <br/>- 从API version 20开始，支持该字段。当前仅支持在HAP中配置该字段。<br/>- 该字段的优先级高于excludeFromAutoStart。如果所有启动任务均匹配失败，则按任务的excludeFromAutoStart配置处理。 | 对象 | 该标签可缺省。|
-        
-        **表3** appPreloadHintStartupTasks标签说明
+在启动框架配置文件startup_config.json中，可以添加启动参数的配置信息。
 
-        | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
-        | -------- | -------- | -------- | -------- |
-        | name | 预加载so文件名。 | 字符串 | 该标签不可缺省。 |
-        | srcEntry | 带后缀预加载so文件名。 | 字符串 | 该标签不可缺省。 |
-        | dependencies | 预加载任务依赖的其他预加载任务的so名数组。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-        | excludeFromAutoStart | 是否排除自动模式，详细介绍可以查看[修改启动模式](#可选修改启动模式)。 <br/>-&nbsp;true：手动模式。 <br/>-&nbsp;false：自动模式。<br/>**说明：**<br/> HSP、HAR中appPreloadHintStartupTask的excludeFromAutoStart标签必须配置为true。 | 布尔值 | 该标签可缺省，缺省值为false。|
-        | runOnThread | 执行预加载所在的线程。<br/>-&nbsp;`taskPool`：在异步线程中执行。<br/>**说明：**<br/> so预加载只允许在`taskPool`线程执行。 | 字符串 | 该标签不可缺省。 |
-        | matchRules | 该字段用于筛选需要以自动模式启动的预加载so任务，加速应用启动过程。适用于快速拉起某个页面的场景，例如，通过桌面卡片、通知或意图调用等方式触发的页面跳转，实现功能服务的一步直达体验。操作指导详见[添加任务匹配规则](#可选添加任务匹配规则)。<br/>**说明：** <br/>- 从API version 20开始，支持该字段。当前仅支持在HAP中配置该字段。<br/>- 该字段的优先级高于excludeFromAutoStart。如果所有预加载so任务均匹配失败，则按任务的excludeFromAutoStart配置处理。 | 对象 | 该标签可缺省。|
+1. 在“ets/startup”路径下，创建启动参数配置文件。本例中的文件名为StartupConfig.ets。
+2. 在启动框架配置文件startup_config.json中，添加启动参数配置文件的相关信息。
 
-      3. 在[module.json5配置文件](../quick-start/module-configuration-file.md)的appStartup标签中，添加启动框架配置文件的索引。
+   startup_config.json文件示例如下：
 
-          module.json5示例代码如下。
+   ```json
+   {
+     "startupTasks": [
+       // 启动任务
+     ],
+     "appPreloadHintStartupTasks": [
+       // 预加载so任务
+     ],
+     "configEntry": "./ets/startup/StartupConfig.ets" // 启动参数的配置
+   }
+   ```
 
-          ```json
-          {
-            "module": {
-              "name": "entry",
-              "type": "entry",
-              // ...
-              "appStartup": "$profile:startup_config", // 启动框架的配置文件
-              // ...
-            }
-          }
-          ```
+**表1** startup_config.json配置文件标签说明
 
-### 设置启动参数
+| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- |
+| startupTasks | 启动任务配置信息，详见[定义启动任务配置](#定义启动任务配置)。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| appPreloadHintStartupTasks | 预加载so任务配置信息，详见[定义预加载so任务配置](#定义预加载so任务配置)。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| configEntry | 启动参数配置文件所在路径。详见[设置启动参数](#设置启动参数)。<br/>**说明：**<br/>- HSP、HAR中不允许配置`configEntry`字段。<br/>- 如果应用开启了[文件名混淆](../arkts-utils/source-obfuscation.md#-enable-filename-obfuscation)，则需要将文件路径添加到保留白名单中。具体操作详见[ArkGuard混淆原理及功能](../arkts-utils/source-obfuscation.md)的[-keep-file-name](../arkts-utils/source-obfuscation.md#-keep-file-name)部分。 | 字符串 | 该标签不可缺省。 |
+
+### 定义启动任务配置
+
+假设当前应用启动框架共包含6个启动任务，任务之间的依赖关系如下图所示。为了便于并发执行启动任务，单个启动任务文件包含的启动任务应尽量单一，本例中每个启动任务对应一个启动任务文件。
+
+**图2** 启动任务依赖关系图
+
+![app-startup-task](figures/app-startup-task.png)
+
+1. 在“ets/startup”路径下，依次创建6个启动任务文件。文件名称必须确保唯一性。本例中的6个文件名分别为StartupTask_001.ets~StartupTask_006.ets。
+2. 在启动框架配置文件startup_config.json中，添加启动任务配置。
+
+   startup_config.json文件示例如下：
+
+   ```json
+   {
+     "startupTasks": [
+       {
+         "name": "StartupTask_001",
+         "srcEntry": "./ets/startup/StartupTask_001.ets",
+         "dependencies": [
+           "StartupTask_002",
+           "StartupTask_003"
+         ],
+         "runOnThread": "taskPool",
+         "waitOnMainThread": false
+       },
+       {
+         "name": "StartupTask_002",
+         "srcEntry": "./ets/startup/StartupTask_002.ets",
+         "dependencies": [
+           "StartupTask_003",
+           "StartupTask_004"
+         ],
+         "runOnThread": "taskPool",
+         "waitOnMainThread": false
+       },
+       {
+         "name": "StartupTask_003",
+         "srcEntry": "./ets/startup/StartupTask_003.ets",
+         "dependencies": [
+           "StartupTask_004"
+         ],
+         "runOnThread": "taskPool",
+         "waitOnMainThread": false
+       },
+       {
+         "name": "StartupTask_004",
+         "srcEntry": "./ets/startup/StartupTask_004.ets",
+         "runOnThread": "taskPool",
+         "waitOnMainThread": false
+       },
+       {
+         "name": "StartupTask_005",
+         "srcEntry": "./ets/startup/StartupTask_005.ets",
+         "dependencies": [
+           "StartupTask_006"
+         ],
+         "runOnThread": "mainThread",
+         "waitOnMainThread": true,
+         "excludeFromAutoStart": true
+       },
+       {
+         "name": "StartupTask_006",
+         "srcEntry": "./ets/startup/StartupTask_006.ets",
+         "runOnThread": "mainThread",
+         "waitOnMainThread": false,
+         "excludeFromAutoStart": true
+       }
+     ],
+     "appPreloadHintStartupTasks": [
+       // 预加载so任务
+     ],
+     "configEntry": "./ets/startup/StartupConfig.ets"
+   }
+   ```
+
+**表2** startupTasks标签说明
+
+| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- |
+| name | 启动任务名称，可自定义，推荐与类名保持一致。 | 字符串 | 该标签不可缺省。 |
+| srcEntry | 启动任务对应的文件路径。<br/>**说明：** <br/> 如果应用开启了[文件名混淆](../arkts-utils/source-obfuscation.md#-enable-filename-obfuscation)，则需要将文件路径添加到保留白名单中。具体操作详见[ArkGuard混淆原理及功能](../arkts-utils/source-obfuscation.md)的[-keep-file-name](../arkts-utils/source-obfuscation.md#-keep-file-name)部分。 | 字符串 | 该标签不可缺省。 |
+| dependencies | 启动任务依赖的其他启动任务的类名数组。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| excludeFromAutoStart | 是否排除自动模式，详细介绍可以查看[修改启动模式](#修改启动模式)。 <br/>-&nbsp;true：手动模式。 <br/>-&nbsp;false：自动模式。<br/>**说明：**<br/> HSP、HAR中startupTask里的excludeFromAutoStart标签必须配置为true。 | 布尔值 | 该标签可缺省，缺省值为false。 |
+| runOnThread | 执行初始化所在的线程。<br/>-&nbsp;`mainThread`：在主线程中执行。<br/>-&nbsp;`taskPool`：在异步线程中执行。 | 字符串 | 该标签可缺省，缺省值为`mainThread`。 |
+| waitOnMainThread | 主线程是否需要等待启动框架执行。当runOnThread取值为`taskPool`时，该字段生效。 <br/>-&nbsp;true：主线程等待启动框架执行完之后，才会加载应用首页。 <br/>-&nbsp;false：主线程不等待启动任务执行。 | 布尔值 | 该标签可缺省，缺省值为true。 |
+| matchRules | 该字段用于筛选需要以自动模式启动的启动任务，加速应用启动过程。适用于快速拉起某个页面的场景，例如，通过桌面卡片、通知或意图调用等方式触发的页面跳转，实现功能服务的一步直达体验。操作指导详见[添加任务匹配规则](#添加任务匹配规则)。<br/>**说明：** <br/>- 从API version 20开始，支持该字段。当前仅支持在HAP中配置该字段。<br/>- 该字段的优先级高于excludeFromAutoStart。如果所有启动任务均匹配失败，则按任务的excludeFromAutoStart配置处理。 | 对象 | 该标签可缺省。|
+| schedulerPhase | 启动任务的调度阶段。操作指导详见[设置启动任务调度阶段](#设置启动任务调度阶段)。<br/>-&nbsp;`preAbilityStageLoad`：启动任务及其依赖任务在AbilityStage模块加载前调度执行。<br/>-&nbsp;`postAbilityStageLoad`：启动任务及其依赖任务在AbilityStage模块加载后调度执行。<br/> **说明：** <br/>- 从API version 21开始，支持该字段。当前仅支持在HAP中配置该字段。<br/>- 这里的AbilityStage模块加载指的是AbilityStage.ets文件及其所依赖模块的加载。关于模块加载的详细介绍，请参考[模块化运行加载流程](../arkts-utils/module-principle.md#模块化运行加载流程)。 | 字符串 | 该标签可缺省，缺省值为`postAbilityStageLoad`。 |
+
+### 定义预加载so任务配置
+
+假设当前应用启动框架共包含6个so预加载任务，任务之间的依赖关系如下图所示。不建议应用在so文件的加载回调中运行代码逻辑，so文件的加载不宜过长，否则会影响主线程的运行。
+
+**图3** so预加载任务依赖关系图
+
+![app-startup-so-task](figures/app-startup-so-task.png)
+
+1. 参考[Node-API](../napi/use-napi-process.md)创建so文件。本例中的6个so文件名称分别为libentry_001.so~libentry_006.so。
+2. 在启动框架配置文件startup_config.json中，添加预加载so任务配置。
+
+   startup_config.json文件示例如下：
+
+   ```json
+   {
+     "startupTasks": [
+       // 启动任务
+     ],
+     "appPreloadHintStartupTasks": [
+       {
+         "name": "libentry_001",
+         "srcEntry": "libentry_001.so",
+         "dependencies": [
+           "libentry_002",
+           "libentry_003"
+         ],
+         "runOnThread": "taskPool"
+       },
+       {
+         "name": "libentry_002",
+         "srcEntry": "libentry_002.so",
+         "dependencies": [
+           "libentry_003",
+           "libentry_004"
+         ],
+         "runOnThread": "taskPool"
+       },
+       {
+         "name": "libentry_003",
+         "srcEntry": "libentry_003.so",
+         "dependencies": [
+           "libentry_004"
+         ],
+         "runOnThread": "taskPool"
+       },
+       {
+         "name": "libentry_004",
+         "srcEntry": "libentry_004.so",
+         "runOnThread": "taskPool"
+       },
+       {
+         "name": "libentry_005",
+         "srcEntry": "libentry_005.so",
+         "dependencies": [
+           "libentry_006"
+         ],
+         "runOnThread": "taskPool",
+         "excludeFromAutoStart": true
+       },
+       {
+         "name": "libentry_006",
+         "srcEntry": "libentry_006.so",
+         "runOnThread": "taskPool",
+         "excludeFromAutoStart": true
+       }
+     ],
+     "configEntry": "./ets/startup/StartupConfig.ets"
+   }
+   ```
+
+**表3** appPreloadHintStartupTasks标签说明
+
+| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- |
+| name | 预加载so文件名。 | 字符串 | 该标签不可缺省。 |
+| srcEntry | 带后缀预加载so文件名。 | 字符串 | 该标签不可缺省。 |
+| dependencies | 预加载任务依赖的其他预加载任务的so名数组。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| excludeFromAutoStart | 是否排除自动模式，详细介绍可以查看[修改启动模式](#修改启动模式)。 <br/>-&nbsp;true：手动模式。 <br/>-&nbsp;false：自动模式。<br/>**说明：**<br/> HSP、HAR中appPreloadHintStartupTask的excludeFromAutoStart标签必须配置为true。 | 布尔值 | 该标签可缺省，缺省值为false。|
+| runOnThread | 执行预加载所在的线程。<br/>-&nbsp;`taskPool`：在异步线程中执行。<br/>**说明：**<br/> so预加载只允许在`taskPool`线程执行。 | 字符串 | 该标签不可缺省。 |
+| matchRules | 该字段用于筛选需要以自动模式启动的预加载so任务，加速应用启动过程。适用于快速拉起某个页面的场景，例如，通过桌面卡片、通知或意图调用等方式触发的页面跳转，实现功能服务的一步直达体验。操作指导详见[添加任务匹配规则](#添加任务匹配规则)。<br/>**说明：** <br/>- 从API version 20开始，支持该字段。当前仅支持在HAP中配置该字段。<br/>- 该字段的优先级高于excludeFromAutoStart。如果所有预加载so任务均匹配失败，则按任务的excludeFromAutoStart配置处理。 | 对象 | 该标签可缺省。|
+
+## 设置启动参数
 
 在启动参数配置文件（本文为“ets/startup/StartupConfig.ets”文件）中，使用[StartupConfigEntry](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md)接口实现启动框架公共参数的配置，包括超时时间和启动任务的监听器等参数，其中需要用到如下接口：
 
 - [StartupConfig](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md)：用于设置任务超时时间和启动框架的监听器。
 - [StartupListener](../reference/apis-ability-kit/js-apis-app-appstartup-startupListener.md)：用于监听启动任务是否执行成功。
-
-
 
 ```ts
 import { StartupConfig, StartupConfigEntry, StartupListener } from '@kit.AbilityKit';
@@ -261,7 +312,8 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
 }
 ```
 
-### 为每个待初始化功能组件添加启动任务
+
+## 为每个待初始化功能组件添加启动任务
 
 上述操作中已完成启动框架配置文件、启动参数的配置，还需要在每个功能组件对应的启动任务文件中，通过实现[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)来添加启动任务。其中，需要用到下面的两个方法：
 
@@ -269,7 +321,7 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
 - [onDependencyCompleted](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#ondependencycompleted)：当前任务依赖的启动任务执行完成时，调用该方法。
 
 
-下面以[startup_config.json](#定义启动框架配置文件)中的StartupTask_001.ets文件为例，示例代码如下。开发者需要分别为每个待初始化功能组件添加启动任务。
+下面以[startup_config.json](#定义启动任务配置)中的StartupTask_001.ets文件为例，示例代码如下。开发者需要分别为每个待初始化功能组件添加启动任务。
 
 > **说明：** 
 > 
@@ -297,7 +349,9 @@ export default class StartupTask_001 extends StartupTask {
 }
 ```
 
- ### （可选）HSP与HAR中使用启动框架
+## 可选操作
+
+ ### HSP与HAR中使用启动框架
 
  通常大型应用会有多个[HSP](../quick-start/in-app-hsp.md)和[HAR](../quick-start/har-package.md)，本节将提供一个应用示例，以展示如何在HSP包和HAR包中使用启动框架。该示例应用包括两个HSP包（hsp1、hsp2）和一个HAR包（har1），并且包含启动任务和so预加载任务。
 
@@ -317,10 +371,11 @@ export default class StartupTask_001 extends StartupTask {
         | hsp2 | HSP2_Task_01 | libhsp2_01 |
         | har | HAR1_Task_01 | libhar1_01 |
         
-        **图3** 启动任务与so预加载依赖关系图  
-        ![app-startup](figures/hsp-har-startup.png) 
+        **图4** 启动任务与so预加载依赖关系图
+
+        ![app-startup](figures/hsp-har-startup.png)
   
-        [HAP](../quick-start/hap-package.md)的startup_config.json可参考[定义启动框架配置文件](#定义启动框架配置文件)，HSP与HAR的startup_config.json文件无法配置"configEntry"字段，以hsp1包配置文件为例，示例如下：
+        [HAP](../quick-start/hap-package.md)的startup_config.json可参考[定义启动任务配置](#定义启动任务配置)，HSP与HAR的startup_config.json文件无法配置"configEntry"字段，以hsp1包配置文件为例，示例如下：
         
         ```json
         {
@@ -393,7 +448,7 @@ export default class StartupTask_001 extends StartupTask {
   其余步骤请参考[设置启动参数](#设置启动参数)和[为每个待初始化功能组件添加启动任务](#为每个待初始化功能组件添加启动任务)章节进行配置。
 
 
-### （可选）修改启动模式
+### 修改启动模式
 
 AppStartup分别提供了自动和手动两种方式来执行启动任务，entry模块中默认采用自动模式，开发者可以根据需要修改为手动模式，HSP与HAR只能配置为手动模式。
 
@@ -467,7 +522,7 @@ struct Index {
 }
 ```
 
-### （可选）添加任务匹配规则
+### 添加任务匹配规则
 
 在通过卡片、通知、意图调用等方式拉起某个页面时，为了实现功能服务一步直达，可以通过添加matchRules匹配规则，仅加载与当前场景相关的部分启动任务，无需加载全部默认的自动启动任务，以提高启动性能。
 
@@ -476,14 +531,14 @@ struct Index {
 * 通过matchRules中的uris、actions、insightIntents字段，根据UIAbility启动时的uri、action或意图名称，匹配不同场景启动任务及预加载so任务。
 * 如果上述方式不能满足需求，可以通过matchRules中的customization自定义匹配规则。
 
-  **表** matchRules标签说明
+  **表5** matchRules标签说明
 
   | 属性名称 | 含义 | 数据类型 | 是否可缺省 | 适用场景 |
   | -------- | -------- | -------- | -------- | -------- |
   | uris | 表示自动模式执行的任务的uri取值范围。当UIAbility启动时，会将[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)中携带的uri属性，与此处配置的uris数组取值进行匹配。格式为`scheme://host/path`，uri中的其它内容会被忽略（如port、fragment等）。 | 字符串数组 | 可缺省，缺省值为空。 | 通过特定uri拉起UIAbility的场景。 |
   | actions | 表示自动模式执行的任务的action取值范围。当UIAbility启动时，会将[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)中携带的action属性，与此处配置的actions数组取值进行匹配。 | 字符串数组 | 可缺省，缺省值为空。 | 通过特定action拉起UIAbility的场景。 |
   | insightIntents | 表示自动模式执行的任务的意图名称取值范围。当UIAbility启动时，会将意图名称与此处配置的insightIntents数组取值进行匹配。 | 字符串数组 | 可缺省，缺省值为空。 | 通过特定意图名称拉起UIAbility的场景。 |
-  | customization | 表示自动模式执行的任务的自定义规则取值范围。通过实现StartupConfigEntry的[onRequestCustomMatchRule](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md#startupconfigentryonrequestcustommatchrule20)接口返回自定义规则值。当UIAbility启动时，会将自定义规则值与此处配置的customization数组取值进行匹配。<br/>**说明：**<br/>仅支持startupTasks中的任务配置。 | 字符串数组 | 可缺省，缺省值为空。 | 如果使用uris、actions、insightIntents字段无法满足要求，可以使用customization自定义规则。 |
+  | customization | 表示自动模式执行的任务的自定义规则取值范围。通过实现StartupConfigEntry的[onRequestCustomMatchRule](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md#onrequestcustommatchrule20)接口返回自定义规则值。当UIAbility启动时，会将自定义规则值与此处配置的customization数组取值进行匹配。<br/>**说明：**<br/>仅支持startupTasks中的任务配置。 | 字符串数组 | 可缺省，缺省值为空。 | 如果使用uris、actions、insightIntents字段无法满足要求，可以使用customization自定义规则。 |
 
   > **说明：** 
   >
@@ -497,7 +552,7 @@ struct Index {
 
 假定需要用户点击通知消息跳转到通知详情页面时，仅自动执行StartupTask_004和libentry_006任务。若启动通知详情UIAbility时Want中的uri属性为`test://com.example.startupdemo/notification`，可以通过uri匹配。示例如下：
 
-1. 对[定义启动框架配置文件](#定义启动框架配置文件)步骤中的startup_config.json文件进行修改，增加StartupTask_004任务和libentry_006任务的matchRules配置。
+1. 对[定义启动任务配置](#定义启动任务配置)步骤中的startup_config.json文件进行修改，增加StartupTask_004任务和libentry_006任务的matchRules配置。
 
     ```json
     {
@@ -535,7 +590,7 @@ struct Index {
 
 假定需要用户点击天气卡片跳转到天气界面时，仅自动执行StartupTask_006启动任务和excludeFromAutoStart=false配置的预加载so任务。若启动天气UIAbility时Want中传入的自定义参数`fromType`为`card`，可以通过customization匹配。示例如下：
 
-  1. 对[设置启动参数](#设置启动参数)步骤中的MyStartupConfigEntry.ets文件进行修改，新增[onRequestCustomMatchRule](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md#startupconfigentryonrequestcustommatchrule20)方法。
+  1. 对[设置启动参数](#设置启动参数)步骤中的MyStartupConfigEntry.ets文件进行修改，新增[onRequestCustomMatchRule](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md#onrequestcustommatchrule20)方法。
 
       ```ts
       import { StartupConfig, StartupConfigEntry, StartupListener, Want } from '@kit.AbilityKit';
@@ -556,7 +611,7 @@ struct Index {
       }
       ```
 
-  2. 对[定义启动框架配置文件](#定义启动框架配置文件)步骤中的startup_config.json文件进行修改，增加StartupTask_006任务的matchRules配置。预加载so任务不支持customization字段，按任务原有的excludeFromAutoStart配置处理。
+  2. 对[定义启动任务配置](#定义启动任务配置)步骤中的startup_config.json文件进行修改，增加StartupTask_006任务的matchRules配置。预加载so任务不支持customization字段，按任务原有的excludeFromAutoStart配置处理。
 
       ```json
       {
@@ -577,3 +632,31 @@ struct Index {
         "configEntry": "./ets/startup/StartupConfig.ets"
       }
       ```
+
+### 设置启动任务调度阶段
+
+从API version 21开始，支持设置启动任务调度阶段。启动任务默认在AbilityStage模块加载后、[AbilityStage.onCreate](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#oncreate)生命周期之前开始执行。对于大型应用，AbilityStage模块的加载可能耗时较长，开发者可以将启动任务的schedulerPhase字段配置为preAbilityStageLoad，使启动任务在AbilityStage模块加载前被调度，并在异步线程中与AbilityStage模块加载并发执行，从而缩短应用启动时间。
+
+> **说明：**
+>
+> 由于启动任务在AbilityStage模块加载前被调度执行，改变了原有的执行顺序。如果启动任务依赖于AbilityStage模块的加载，可能会导致运行结果不符合预期，请参考[模块加载副作用及优化](../arkts-utils/arkts-module-side-effects.md)对依赖部分进行适配。
+
+例如，应用首页需要通过网络请求获取Feed流数据，且希望该任务能在异步线程中与AbilityStage模块加载并发执行。假设网络请求任务为[定义启动任务配置](#定义启动任务配置)步骤中的StartupTask_004，开发步骤如下：
+
+  1. 配置任务在AbilityStage模块加载前调度执行。在startup_config.json文件中，将StartupTask_004任务的`schedulerPhase`字段设为`preAbilityStageLoad`。
+  2. 配置任务在异步线程中与AbilityStage模块加载并发执行。将StartupTask_004任务的`runOnThread`设为`taskPool`，`waitOnMainThread`设为`false`。
+
+  ```json
+  {
+    "startupTasks": [
+      {
+        "name": "StartupTask_004",
+        "srcEntry": "./ets/startup/StartupTask_004.ets",
+        "runOnThread": "taskPool",
+        "waitOnMainThread": false,
+        "schedulerPhase": "preAbilityStageLoad"
+      }
+    ],
+    "configEntry": "./ets/startup/StartupConfig.ets"
+  }
+  ```

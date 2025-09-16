@@ -1,4 +1,10 @@
 # 请求动画绘制帧率
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hudi33-->
+<!--Designer: @hudi33-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @ge-yafang-->
 
 在应用开发中，[属性动画](../reference/apis-arkui/arkui-ts/ts-animatorproperty.md)和[显式动画](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)能够使用可选参数[ExpectedFrameRateRange](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md#expectedframeraterange11)，为不同的动画配置不同的期望绘制帧率。
 
@@ -168,8 +174,8 @@ struct AnimationToAnimationDemo {
 }
 ```
 
+<!--RP1-->
 ## 相关实例
 
-针对可变帧率的开发，有以下相关实例可供参考：
-
-- [DisplaySync分级管控(ArkTS)(API11)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Graphics/DisplaySync)
+- [DisplaySync (API14)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/graphic/DisplaySync)
+<!--RP1End-->

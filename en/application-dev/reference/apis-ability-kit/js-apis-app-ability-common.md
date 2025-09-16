@@ -1,6 +1,13 @@
-# @ohos.app.ability.common (Context)
+# @ohos.app.ability.common (Ability Common Module)
 
-You can use this module to reference the ability public module class.
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+The module provides pure type definitions for common capabilities within Ability Kit, including various context objects, callback interfaces, and data structures. It exports type declarations only and does not include any implementation logic or executable code.
 
 > **NOTE**
 >
@@ -16,7 +23,7 @@ import { common } from '@kit.AbilityKit';
 
 type UIAbilityContext = _UIAbilityContext.default
 
-Defines the level-2 module UIAbilityContext.
+Defines the context environment for the [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md). It inherits from Context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -26,13 +33,13 @@ Defines the level-2 module UIAbilityContext.
 
 | Type| Description|
 | --- | --- |
-| [_UIAbilityContext.default](js-apis-inner-application-uiAbilityContext.md) | Level-2 module UIAbilityContext.|
+| [_UIAbilityContext.default](js-apis-inner-application-uiAbilityContext.md) | Default context of the UIAbility.|
 
 ## AbilityStageContext
 
 type AbilityStageContext = _AbilityStageContext.default
 
-Defines the level-2 module AbilityStageContext.
+Defines the context environment for the [AbilityStage](../apis-ability-kit/js-apis-app-ability-abilityStage.md). It inherits from Context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -42,13 +49,13 @@ Defines the level-2 module AbilityStageContext.
 
 | Type| Description|
 | --- | --- |
-| [_AbilityStageContext.default](js-apis-inner-application-abilityStageContext.md) | Level-2 module AbilityStageContext.|
+| [_AbilityStageContext.default](js-apis-inner-application-abilityStageContext.md) | Default context of the AbilityStage.|
 
 ## ApplicationContext
 
 type ApplicationContext = _ApplicationContext.default
 
-Defines the level-2 module ApplicationContext.
+Defines the application context. It inherits from Context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -58,13 +65,13 @@ Defines the level-2 module ApplicationContext.
 
 | Type| Description|
 | --- | --- |
-| [_ApplicationContext.default](js-apis-inner-application-applicationContext.md) | Level-2 module ApplicationContext.|
+| [_ApplicationContext.default](js-apis-inner-application-applicationContext.md) | Application context.|
 
 ## BaseContext
 
 type BaseContext = _BaseContext.default
 
-Defines the level-2 module BaseContext.
+Defines the parent class of all context types.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -74,13 +81,13 @@ Defines the level-2 module BaseContext.
 
 | Type| Description|
 | --- | --- |
-| [_BaseContext.default](js-apis-inner-application-baseContext.md) | Level-2 module BaseContext.|
+| [_BaseContext.default](js-apis-inner-application-baseContext.md) | Parent class of all context types.|
 
 ## Context
 
 type Context = _Context.default
 
-Defines the level-2 module Context.
+Defines the base class of the context in the stage model.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -90,13 +97,13 @@ Defines the level-2 module Context.
 
 | Type| Description|
 | --- | --- |
-| [_Context.default](js-apis-inner-application-context.md) | Level-2 module Context.|
+| [_Context.default](js-apis-inner-application-context.md) | Base class of the context in the stage model.|
 
 ## ExtensionContext
 
 type ExtensionContext = _ExtensionContext.default
 
-Defines the level-2 module ExtensionContext.
+Defines the context environment for the [ExtensionAbility](../apis-ability-kit/js-apis-app-ability-extensionAbility.md). It inherits from Context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -106,13 +113,13 @@ Defines the level-2 module ExtensionContext.
 
 | Type| Description|
 | --- | --- |
-| [_ExtensionContext.default](js-apis-inner-application-extensionContext.md) | Level-2 module ExtensionContext.|
+| [_ExtensionContext.default](js-apis-inner-application-extensionContext.md) | Default context of the ExtensionAbility.|
 
 ## FormExtensionContext
 
 type FormExtensionContext = _FormExtensionContext.default
 
-Defines the level-2 module FormExtensionContext.
+Defines the context environment for the [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md). It inherits from Context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -122,13 +129,13 @@ Defines the level-2 module FormExtensionContext.
 
 | Type| Description|
 | --- | --- |
-| [_FormExtensionContext.default](../apis-form-kit/js-apis-inner-application-formExtensionContext.md) | Level-2 module FormExtensionContext.|
+| [_FormExtensionContext.default](../apis-form-kit/js-apis-inner-application-formExtensionContext.md) | Default context of the FormExtensionAbility.|
 
 ## VpnExtensionContext<sup>11+<sup>
 
 type VpnExtensionContext = _VpnExtensionContext.default
 
-Defines the level-2 module VpnExtensionContext.
+Defines the context environment for the [VpnExtensionAbility](../apis-network-kit/js-apis-VpnExtensionAbility.md). It inherits from Context.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -136,13 +143,13 @@ Defines the level-2 module VpnExtensionContext.
 
 | Type| Description|
 | --- | --- |
-| [_VpnExtensionContext.default](../apis-network-kit/js-apis-inner-application-VpnExtensionContext.md) | Level-2 module VpnExtensionContext.|
+| [_VpnExtensionContext.default](../apis-network-kit/js-apis-inner-application-VpnExtensionContext.md) | Default context of the VpnExtensionAbility.|
 
 ## EventHub
 
 type EventHub = _EventHub.default
 
-Defines the level-2 module EventHub.
+Defines EventHub, which is an event communication mechanism based on the publish-subscribe pattern.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -152,13 +159,13 @@ Defines the level-2 module EventHub.
 
 | Type| Description|
 | --- | --- |
-| [_EventHub.default](js-apis-inner-application-eventHub.md) | Level-2 module EventHub.|
+| [_EventHub.default](js-apis-inner-application-eventHub.md) | Event communication mechanism based on the publish-subscribe pattern.|
 
 ## PacMap
 
 type PacMap = _PacMap
 
-Defines the level-2 module PacMap.
+Defines the container of basic data types.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -166,13 +173,13 @@ Defines the level-2 module PacMap.
 
 | Type| Description|
 | --- | --- |
-| [_PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap) | Level-2 module PacMap.|
+| [_PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap) | Container of basic data types.|
 
 ## AbilityResult
 
 type AbilityResult = _AbilityResult
 
-Defines the level-2 module AbilityResult.
+Defines the result code and data returned when a started ability is terminated.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -182,13 +189,13 @@ Defines the level-2 module AbilityResult.
 
 | Type| Description|
 | --- | --- |
-| [_AbilityResult](js-apis-inner-ability-abilityResult.md) | Level-2 module AbilityResult.|
+| [_AbilityResult](js-apis-inner-ability-abilityResult.md) | Result code and data returned when a started ability is terminated.|
 
 ## AbilityStartCallback<sup>11+<sup>
 
 type AbilityStartCallback = _AbilityStartCallback
 
-Defines the level-2 module AbilityStartCallback.
+Defines the callback invoked to return the UIExtensionAbility startup result. It is usually used as an input parameter in [UIAbilityContext.startAbilityByType](js-apis-inner-application-uiAbilityContext.md#startabilitybytype11) or [UIExtensionContext.startAbilityByType](js-apis-app-ability-uiExtensionContentSession.md#startabilitybytype11).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -198,13 +205,13 @@ Defines the level-2 module AbilityStartCallback.
 
 | Type| Description|
 | --- | --- |
-| [_AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Level-2 module AbilityStartCallback.|
+| [_AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Callback invoked to return the UIExtensionAbility startup result.|
 
 ## ConnectOptions
 
 type ConnectOptions = _ConnectOptions
 
-Defines the level-2 module ConnectOptions.
+Defines the connection options. It is used as an input parameter for connection to a background service, to receive the connection status with the background service.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -212,13 +219,13 @@ Defines the level-2 module ConnectOptions.
 
 | Type| Description|
 | --- | --- |
-| [_ConnectOptions](js-apis-inner-ability-connectOptions.md) | Level-2 module ConnectOptions.|
+| [_ConnectOptions](js-apis-inner-ability-connectOptions.md) | Input parameter used to receive the connection status with the background service.|
 
 ## UIExtensionContext<sup>10+</sup>
 
 type UIExtensionContext = _UIExtensionContext.default
 
-Defines the level-2 module UIExtensionContext.
+Defines the context environment for the [UIExtensionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md). It inherits from Context.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -226,13 +233,13 @@ Defines the level-2 module UIExtensionContext.
 
 | Type| Description|
 | --- | --- |
-| [_UIExtensionContext.default](js-apis-inner-application-uiExtensionContext.md) | Level-2 module UIExtensionContext.|
+| [_UIExtensionContext.default](js-apis-inner-application-uiExtensionContext.md) | Default context of the UIExtensionAbility.|
 
 ## EmbeddableUIAbilityContext<sup>12+<sup>
 
 type EmbeddableUIAbilityContext = _EmbeddableUIAbilityContext.default
 
-Defines the level-2 module EmbeddableUIAbilityContext.
+Defines the context environment for the [EmbeddableUIAbility](../apis-ability-kit/js-apis-app-ability-embeddableUIAbility.md). It inherits from Context.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -242,13 +249,13 @@ Defines the level-2 module EmbeddableUIAbilityContext.
 
 | Type| Description|
 | --- | --- |
-| [_EmbeddableUIAbilityContext.default](js-apis-inner-application-EmbeddableUIAbilityContext.md) | Level-2 module EmbeddableUIAbilityContext.|
+| [_EmbeddableUIAbilityContext.default](js-apis-inner-application-EmbeddableUIAbilityContext.md) | Default context of the EmbeddableUIAbility.|
 
 ## PhotoEditorExtensionContext<sup>12+<sup>
 
 type PhotoEditorExtensionContext = _PhotoEditorExtensionContext.default
 
-Defines the level-2 module PhotoEditorExtensionContext.
+Defines the context environment for the [PhotoEditorExtensionAbility](../apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md). It inherits from Context.
 
 **System capability**: SystemCapability.Ability.AppExtension.PhotoEditorExtension
 
@@ -256,13 +263,13 @@ Defines the level-2 module PhotoEditorExtensionContext.
 
 | Type| Description|
 | --- | --- |
-| [_PhotoEditorExtensionContext.default](js-apis-app-ability-photoEditorExtensionContext.md) | Level-2 module PhotoEditorExtensionContext.|
+| [_PhotoEditorExtensionContext.default](js-apis-app-ability-photoEditorExtensionContext.md) | Default context of the PhotoEditorExtensionAbility.|
 
 ## UIServiceProxy<sup>14+<sup>
 
 type UIServiceProxy = _UIServiceProxy.default
 
-Defines the level-2 module UIServiceProxy.
+Defines the capability for data communication with the UIServiceExtensionAbility. UIServiceExtensionAbility is a special type of ExtensionAbility provided by the system and is used to provide extended capabilities related to floating windows.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -272,13 +279,13 @@ Defines the level-2 module UIServiceProxy.
 
 | Type| Description|
 | --- | --- |
-| [_UIServiceProxy.default](js-apis-inner-application-uiserviceproxy.md) | Level-2 module UIServiceProxy.|
+| [_UIServiceProxy.default](js-apis-inner-application-uiserviceproxy.md) | Capability for data communication with the UIServiceExtensionAbility.|
 
 ## UIServiceExtensionConnectCallback<sup>14+<sup>
 
 type UIServiceExtensionConnectCallback = _UIServiceExtensionConnectCallback.default
 
-Defines the level-2 module UIServiceExtensionConnectCallback.
+Defines the connection callback. It is used as an input parameter for connection to a UIServiceExtensionAbility, to provide the callback for the connection.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -288,13 +295,13 @@ Defines the level-2 module UIServiceExtensionConnectCallback.
 
 | Type| Description|
 | --- | --- |
-| [_UIServiceExtensionConnectCallback.default](js-apis-inner-application-uiServiceExtensionconnectcallback.md) | Level-2 module UIServiceExtensionConnectCallback.|
+| [_UIServiceExtensionConnectCallback.default](js-apis-inner-application-uiServiceExtensionconnectcallback.md) | Callback for connection to a UIServiceExtensionAbility.|
 
 ## AppServiceExtensionContext<sup>20+</sup>
 
 type AppServiceExtensionContext = _AppServiceExtensionContext.default
 
-Defines the context environment for an [AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md), allowing you to access the resources of this ability.
+Defines the context environment for the [AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md). It inherits from Context.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -302,7 +309,7 @@ Defines the context environment for an [AppServiceExtensionAbility](js-apis-app-
 
 | Type| Description|
 | --- | --- |
-| [_AppServiceExtensionContext.default](js-apis-inner-application-appServiceExtensionContext.md) | Context environment of the [AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md).|
+| [_AppServiceExtensionContext.default](js-apis-inner-application-appServiceExtensionContext.md) | Default context of the AppServiceExtensionAbility.|
 
 **Example**
 

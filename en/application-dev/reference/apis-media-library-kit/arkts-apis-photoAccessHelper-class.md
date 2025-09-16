@@ -2,9 +2,10 @@
 
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @xuchangda;@yixiaoff-->
-<!--SE: @guxinggang;@liweilu1-->
-<!--TSE: @wangbeibei;@xchaosioda-->
+<!--Owner: @xuchangda; @yixiaoff-->
+<!--Designer: @guxinggang; @liweilu1-->
+<!--Tester: @wangbeibei; @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -21,31 +22,33 @@ Defines the image recommendation options. The image recommendation feature depen
 | recommendationType | [RecommendationType](arkts-apis-photoAccessHelper-e.md#recommendationtype11)   | No  | Type of the recommended image.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | textContextInfo<sup>12+</sup> | [TextContextInfo](arkts-apis-photoAccessHelper-i.md#textcontextinfo12)   | No  | Text based on which images are recommended. If both **recommendationType** and **textContextInfo** are set, **textContextInfo** takes precedence over **recommendationType**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
-## BaseSelectOptions<sup>12+</sup>
+## BaseSelectOptions<sup>10+</sup>
 
-Defines the basic options for selecting media assets from Gallery.
+Defines the basic options for selecting media files from Gallery.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| MIMEType<sup>10+</sup>    | [PhotoViewMIMETypes](arkts-apis-photoAccessHelper-e.md#photoviewmimetypes)   | No  | Available media file types. **IMAGE_VIDEO_TYPE** is used by default.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| maxSelectNumber<sup>10+</sup>      | number | No  | Maximum number of media files that can be selected. The maximum value is **500**, and the default value is **50**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| MIMEType    | [PhotoViewMIMETypes](arkts-apis-photoAccessHelper-e.md#photoviewmimetypes)   | No  | Available media file types. **IMAGE_VIDEO_TYPE** is used by default.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| maxSelectNumber      | number | No  | Maximum number of media files that can be selected. The maximum value is **500**, and the default value is **50**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
 | isPhotoTakingSupported<sup>11+</sup> | boolean  | No  | Whether photo taking is supported. **true** if supported, **false** otherwise.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | isSearchSupported<sup>11+</sup> | boolean  | No  | Whether the image is searchable. **true** if searchable, **false** otherwise.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | No  | Image recommendation parameters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | preselectedUris<sup>11+</sup> | Array&lt;string&gt;  | No  | URI of the preselected image.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| isPreviewForSingleSelectionSupported<sup>(deprecated)</sup> | boolean  | No  | Whether to enable full image preview if a single image is selected. **true** to enable, **false** otherwise. The default value is **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>This API is supported since API version 12 and deprecated since API version 18.|
+| isPreviewForSingleSelectionSupported<sup>12+</sup> | boolean  | No  | Whether to enable full image preview if a single image is selected. **true** to enable, **false** otherwise. The default value is **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | singleSelectionMode<sup>18+</sup> | [SingleSelectionMode](arkts-apis-photoAccessHelper-e.md#singleselectionmode18) | No  | Single selection mode. The default value is **SingleSelectionMode.BROWSER_MODE**.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | mimeTypeFilter<sup>19+</sup> | [MimeTypeFilter](#mimetypefilter19)  | No  | Configuration for file type filtering. Multiple types can be specified.<br>When this parameter is set, the **MIMEType** configuration automatically becomes invalid.<br>When this parameter is set, only media files of the configured filter type are displayed. You are advised to notify users that only images or videos of the specified type can be selected.<br>**Atomic service API**: This API can be used in atomic services since API version 19.|
 | fileSizeFilter<sup>19+</sup> | [FileSizeFilter](#filesizefilter19)  | No  | Configuration for file size filtering.<br>When this parameter is set, only media files within the specified size range are displayed. You are advised to notify users that only images or videos of the specified size can be selected.<br>**Atomic service API**: This API can be used in atomic services since API version 19.|
 | videoDurationFilter<sup>19+</sup> | [VideoDurationFilter](#videodurationfilter19)  | No  | Configuration for video duration filtering.<br>When this parameter is set, only media files within the specified duration range are displayed. You are advised to notify users that only videos of the specified length can be selected.<br>**Atomic service API**: This API can be used in atomic services since API version 19.|
+| combinedMediaTypeFilter<sup>20+</sup> | Array\<string\> | No| A string array of filter criteria, supporting combinations of various types.<br>The format for the strings is follows: `photoType \| photoSubType1,photoSubType2, … \| mimeType1,mimeType2, ...`.<br>- The first part specifies a single **photoType**, which is fixed at **image** or **video**.<br>- The second part lists 1 to *N* photoSubTypes, separated by commas, with an OR relationship. Currently, the maximum value of *N* is **1**. Options include **movingPhoto** or "*" (ignore).<br>- The third part lists 1 to *N* mimeTypes, separated by commas, with an OR relationship. Currently, the maximum value of *N* is **10**. The format is similar to [MimeTypeFilter](#mimetypefilter19).<br>Filters are combined using intersection logic.<br>The NOT logic is supported. To exclude types, use parentheses. Each string can have only one set.<br>If the filter string does not match the specifications, the result is empty.<br>Only the first three array elements are used; **MIMETypes** and **mimeTypeFilter** are ignored.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+| photoViewMimeTypeFileSizeFilters<sup>20+</sup> | Array\<[PhotoViewMimeTypeFileSizeFilter](#photoviewmimetypefilesizefilter20)\>  | No  | An array used to filter media files by type and size.<br>Only the first three array elements are used; **MIMETypes** and **fileSizeFilter** are ignored.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 
 ## PhotoSelectOptions
 
 PhotoSelectOptions extends BaseSelectOptions
 
-Defines additional options for selecting media assets from Gallery. It inherits from [BaseSelectOptions](#baseselectoptions12).
+Defines additional options for selecting media files from Gallery. It inherits from [BaseSelectOptions](#baseselectoptions10).
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -54,7 +57,7 @@ Defines additional options for selecting media assets from Gallery. It inherits 
 | isEditSupported<sup>11+</sup>       | boolean | No  | Whether the image can be edited. **true** if editable, **false** otherwise.<br>**Atomic service API**: This API can be used in atomic services since API version 11.    |
 | isOriginalSupported<sup>12+</sup>       | boolean | No  | Whether to display the button for selecting the original image. **true** to display, **false** otherwise. The default value is **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.    |
 | subWindowName<sup>12+</sup>       | string | No  | Name of the child window.<br>**Atomic service API**: This API can be used in atomic services since API version 12.    |
-| completeButtonText<sup>14+</sup>       | [CompleteButtonText](arkts-apis-photoAccessHelper-e.md#completebuttontext14) | No  | Text displayed on the complete button.<br>The complete button is located in the lower right corner of the page. It is used by users to signify that they have finished selecting images.<br>**Atomic service API**: This API can be used in atomic services since API version 14.    |
+| completeButtonText<sup>14+</sup>       | [CompleteButtonText](arkts-apis-photoAccessHelper-e.md#completebuttontext14) | No  | Text displayed on the complete button.<br>The complete button is located in the lower-right corner of the page. It is used by users to signify that they have finished selecting images.<br>**Atomic service API**: This API can be used in atomic services since API version 14.    |
 
 ## PhotoSelectResult
 
@@ -64,10 +67,10 @@ Defines information about the images or videos selected.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| Name                   | Type               | Readable| Writable| Description                          |
-| ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
-| photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the images or videos selected. The URI array can be used only by calling [photoAccessHelper.getAssets](arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets) with temporary authorization. For details about how to use the media file URI, see [Using a Media File URI] (../../file-management/user-file-uri-intro.md#using-a-media-file-uri).|
-| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media asset is the original image. **true** if yes, **false** otherwise. The default value is **false**.|
+| Name                   | Type               | Mandatory| Description                         |
+| ----------------------- | ------------------- | ---- | -------------------------------- |
+| photoUris       | Array&lt;string&gt; | Yes  | URIs of the images or videos selected. The URI array can be used only by calling [photoAccessHelper.getAssets](arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets) with temporary authorization. For details about how to use the media file URI, see [Using a Media File URI] (../../file-management/user-file-uri-intro.md#using-a-media-file-uri).    |
+| isOriginalPhoto       | boolean | Yes  | Whether the selected media file is the original image. **true** if yes, **false** otherwise. The default value is **false**.    |
 
 ## MimeTypeFilter<sup>19+</sup>
 
@@ -119,7 +122,7 @@ Represents the configuration options of the recent images or videos.
 |-------------------------|-----------------------------------------------------------------------------------------|-------|--------|
 | period                  | number                                                                                  | No   | Time range for displaying the recent images or videos, measured in seconds. After setting, the system shows images or videos taken within the specified time from the current moment. The longest duration you can set is 1 day (86400s).<br>If the value is less than or equal to 0, greater than 86400, or not set, the system uses the longest duration (1 day) by default. If there are no images or videos within the set time range, the component does not show anything.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 | MIMEType                | [photoAccessHelper.PhotoViewMIMETypes](arkts-apis-photoAccessHelper-e.md#photoviewmimetypes) | No   | Types of the file displayed. The default value is **PhotoViewMIMETypes.IMAGE_VIDEO_TYPE**.<br>**Atomic service API**: This API can be used in atomic services since API version 20.                        |
-| photoSource             | [PhotoSource](arkts-apis-photoAccessHelper-e.md#photosource20)                                                             | No   | Source of the recent image or video, for example, photo or video taken by the camera or screenshot. By default, the source is not restricted.<br>**Atomic service API**: This API can be used in atomic services since API version 20.                              |
+| photoSource             | [PhotoSource](arkts-apis-photoAccessHelper-e.md#photosource20)                                                             | No   | Source of the recent image or video, for example, image or video taken by the camera or screenshot. By default, the source is not restricted.<br>**Atomic service API**: This API can be used in atomic services since API version 20.                              |
 
 ## RecentPhotoInfo<sup>20+</sup>
 
@@ -131,3 +134,16 @@ Describes the information about the recent image or video.
 |------------|--------|-------|-----------------------------------------------------------|
 | dateTaken  | number | No   | Time when the recent image or video was shot (in milliseconds since January 1, 1970). The unit is ms.<br>**Atomic service API**: This API can be used in atomic services since API version 20.                    |
 | identifier | string | No   | Hash value of the name of the recent image or video, which is used to help the application determine whether the image or video to be displayed is the same as the one displayed before.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+
+## PhotoViewMimeTypeFileSizeFilter<sup>20+</sup>
+
+Describes the settings for filtering media files by type and size.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                   | Type               | Mandatory| Description                         |
+| ----------------------- | ------------------- | ---- | -------------------------------- |
+| photoViewMimeType    | [PhotoViewMIMETypes](arkts-apis-photoAccessHelper-e.md#photoviewmimetypes)   | Yes  | Media file types used for filtering.|
+| sizeFilter    | [FileSizeFilter](#filesizefilter19)   | Yes  | Media file size used for filtering.|

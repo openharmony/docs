@@ -41,6 +41,17 @@ Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、�
 # 显示帮助信息
 bm help
 ```
+## 参数说明
+
+### userId
+
+表示当前系统账号的编号，系统账号的相关接口请参考[系统账号管理模块](../reference/apis-basic-services-kit/js-apis-osAccount.md)，下面给出几种常见的系统账号。
+
+- userId = 100，表示编号为100的系统账号，系统默认账号，在设备出厂首次启动时由系统账号管理模块创建，且创建完成后会在100账号下安装所有的预置应用。
+
+- userId = 102，表示编号为102的系统账号，由系统账号管理模块创建，<!--Del-->可以使用[createOsAccountForDomain接口](../reference/apis-basic-services-kit/js-apis-osAccount-sys.md)创建账号，<!--DelEnd-->仅支持系统应用创建账号。在100账号下安装的应用，在102账号下不会显示，如有需求，需要在102账号下重新安装。在创建102账号过程中，系统会在102账号下安装预置系统应用。
+
+- userId = 0，表示共有系统账号，也叫账号0，该共有系统账号和系统账号编号不同，不是系统账号管理模块创建的。在账号0下安装的应用，所有系统账号共享，会在每个系统账号下都会显示。所有三方应用都不能安装到账号0下。
 
 
 ## 安装命令（install）
@@ -55,11 +66,11 @@ bm install [-h] [-p filePath] [-r] [-w waitingTime] [-s hspDirPath] [-u userId]
 | 参数 | 参数说明 |
 | -------- | -------- |
 | -h | 帮助信息。 |
-| -p | 必选参数，指定HAP路径，多HAP应用可指定多HAP所在文件夹路径。 |
-| -r | 可选参数，覆盖安装一个HAP。默认值为覆盖安装。 |
+| -p | 可选参数，指定HAP/HSP路径，多HAP/HSP应用可指定多HAP/HSP所在文件夹路径。 |
+| -r | 可选参数，覆盖安装一个HAP/HSP。默认值为覆盖安装。 |
 | -s | 根据场景判断，安装应用间HSP时为必选参数，其他场景为可选参数。安装应用间共享库， 每个路径目录下只能存在一个同包名的HSP。 |
 | -w | 可选参数，安装HAP时指定bm工具等待时间，最小的等待时长为5s，最大的等待时长为600s,&nbsp;默认缺省为180s。 |
-| -u | 可选参数，指定用户，默认在当前活跃用户下安装应用。仅支持在当前活跃用户或0用户下安装。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm install -p /data/local/tmp/ohos.app.hap -u 102`安装时，只会在当前活跃用户100下安装应用。 |
+| -u | 可选参数，指定[用户](#userid)，默认在当前活跃用户下安装应用。仅支持在当前活跃用户或0用户下安装。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm install -p /data/local/tmp/ohos.app.hap -u 102`安装时，只会在当前活跃用户100下安装应用。 |
 
 
 示例：
@@ -94,9 +105,9 @@ bm uninstall [-h] [-n bundleName] [-m moduleName] [-k] [-s] [-v versionCode] [-u
 | -n | 必选参数，指定Bundle名称卸载应用。|
 | -m | 可选参数，应用模块名称，指定卸载应用的一个模块。默认卸载所有模块。 |
 | -k | 可选参数，卸载应用时保存应用数据。默认卸载应用时不保存应用数据。 |
-| -s | 根据场景判断，安装应用间HSP时必选参数，其他场景为可选参数。卸载指定的共享库。|
+| -s | 根据场景判断，卸载应用间HSP时必选参数，其他场景为可选参数。卸载指定的共享库。|
 | -v | 可选参数，指定共享包的版本号。默认卸载同包名的所有共享包。 |
-| -u | 可选参数，指定用户，默认在当前活跃用户下卸载应用。仅支持在当前活跃用户或0用户下卸载应用。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm uninstall -n com.ohos.app -u 102`卸载时，只会在当前活跃用户100下卸载应用。 |
+| -u | 可选参数，指定[用户](#userid)，默认在当前活跃用户下卸载应用。仅支持在当前活跃用户或0用户下卸载应用。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm uninstall -n com.ohos.app -u 102`卸载时，只会在当前活跃用户100下卸载应用。 |
 
 
 示例：
@@ -134,7 +145,7 @@ bm dump [-h] [-a] [-g] [-n bundleName] [-s shortcutInfo] [-d deviceId] [-l label
 | -s | 可选参数，查询指定Bundle名称下的快捷方式信息。 |
 | -d | 可选参数，查询指定设备中的包信息。默认查询当前设备。 |
 | -l | 可选参数，用于查询指定Bundle名称的label值（应用的名称），需要与`-n`或`-a`参数组合使用。<br/>**说明**：<br/>从API version 20开始支持该命令。如果在Windows环境下输出结果包含特殊字符或中文乱码，需在cmd控制台中手动执行命令`chcp 65001`，将cmd控制台编码修改为UTF-8。 |
-| -u | 可选参数，查询指定用户下的应用信息，默认在当前活跃用户下查询应用信息。仅支持在当前活跃用户或0用户下查询。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm dump -n com.ohos.app -u 102`卸载时，只会在当前活跃用户100下查询应用。 |
+| -u | 可选参数，查询指定[用户](#userid)下的应用信息，默认在当前活跃用户下查询应用信息。仅支持在当前活跃用户或0用户下查询。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm dump -n com.ohos.app -u 102`查询时，只会在当前活跃用户100下查询应用。 |
 
 
 示例：
@@ -171,7 +182,7 @@ bm clean [-h] [-c] [-n bundleName] [-d] [-i appIndex] [-u userId]
 | -c&nbsp;-n | -n为必选参数，-c为可选参数。清除指定Bundle名称的缓存数据。 |
 | -d&nbsp;-n | -n为必选参数，-d为可选参数。清除指定Bundle名称的数据目录。 |
 | -i | 可选参数，清除分身应用的数据目录。默认为0。|
-| -u | 可选参数，清理指定用户下的数据，默认在当前活跃用户下清理数据。仅支持在当前活跃用户或0用户下清理数据。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm clean -c -n com.ohos.app -u 102`清理数据时，只会在当前活跃用户100下清理。 |
+| -u | 可选参数，清理指定[用户](#userid)下的数据，默认在当前活跃用户下清理数据。仅支持在当前活跃用户或0用户下清理数据。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm clean -c -n com.ohos.app -u 102`清理数据时，只会在当前活跃用户100下清理。 |
 
 
 示例：
@@ -202,7 +213,7 @@ bm enable [-h] [-n bundleName] [-a abilityName] [-u userId]
 | -h | 帮助信息。 |
 | -n | 必选参数，使能指定Bundle名称的应用。 |
 | -a | 可选参数，使能指定Bundle名称下的元能力模块。 |
-| -u | 可选参数，使能指定用户下的应用，默认在当前活跃用户下使能应用。仅支持在当前活跃用户或0用户下使能应用。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm enable -n com.ohos.app -u 102`使能应用时，只会在当前活跃用户100下使能应用。 |
+| -u | 可选参数，使能指定[用户](#userid)下的应用，默认在当前活跃用户下使能应用。仅支持在当前活跃用户或0用户下使能应用。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm enable -n com.ohos.app -u 102`使能应用时，只会在当前活跃用户100下使能应用。 |
 
 
 示例：
@@ -231,7 +242,7 @@ bm disable [-h] [-n bundleName] [-a abilityName] [-u userId]
 | -h | 帮助信息。 |
 | -n | 必选参数，禁用指定Bundle名称的应用。 |
 | -a | 可选参数，禁用指定Bundle名称下的元能力模块。 |
-| -u | 可选参数，禁用指定用户下的应用，默认在当前活跃用户下禁用应用。仅支持在当前活跃用户或0用户下禁用应用。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm disable -n com.ohos.app -u 102`禁用应用时，只会在当前活跃用户100下禁用应用。 |
+| -u | 可选参数，禁用指定[用户](#userid)下的应用，默认在当前活跃用户下禁用应用。仅支持在当前活跃用户或0用户下禁用应用。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm disable -n com.ohos.app -u 102`禁用应用时，只会在当前活跃用户100下禁用应用。 |
 
 
 示例：
@@ -285,7 +296,7 @@ bm quickfix [-h] [-a -f filePath [-t targetPath] [-d] [-o]] [-q -b bundleName] [
 | -------- | -------- |
 | -h | 帮助信息。 |
 | -a&nbsp;-f | -a为可选参数，指定-a后，-f为必选参数。执行快速修复补丁安装命令，file-path对应hqf文件，支持传递1个或多个hqf文件，或传递hqf文件所在的目录。 |
-| -q&nbsp;-b | -q为可选参数，指定-q后，-b为必选参数，未指定-q。根据包名查询补丁信息。 |
+| -q&nbsp;-b | -q为可选参数，指定-q后，-b为必选参数。根据包名查询补丁信息。 |
 | -r&nbsp;-b | -r为可选参数，指定-r后，-b为必选参数。根据包名卸载未使能的补丁。|
 | -t | 可选参数，快速修复应用到指定目标路径。|
 | -d | 可选参数，应用快速修复调试模式。|
@@ -323,7 +334,7 @@ delete quick fix successfully
 ## 共享库查询命令（dump-shared）
 
 ```bash
-bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
+bm dump-shared [-h] [-a] [-n bundleName]
 ```
 
   **共享库查询命令参数列表**
@@ -333,7 +344,6 @@ bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
 | -h | 帮助信息。 |
 | -a | 可选参数，查询系统中所有已安装的共享库。|
 | -n | 可选参数，查询指定包名的共享库详细信息。|
-| -m | 可选参数，查询指定包名和模块名的共享库详细信息。|
 
 
 示例：
@@ -343,8 +353,6 @@ bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
 bm dump-shared -a
 # 显示该共享库的详细信息
 bm dump-shared -n com.ohos.lib
-# 显示指定应用指定模块依赖的共享库信息
-bm dump-dependencies -n com.ohos.app -m entry
 ```
 
 ## 共享库依赖关系查询命令（dump-dependencies）
@@ -414,7 +422,7 @@ bm copy-ap -n com.example.myapplication
 ## 查询overlay应用信息命令（dump-overlay）
 
 ```bash
-bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-u userId]
+bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-t targetModuleName] [-u userId]
 ```
 
 **dump-overlay命令参数列表**
@@ -422,8 +430,9 @@ bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-u userId]
 | -------- | -------- |
 | -h | 帮助信息。 |
 | -b | 必选参数，获取指定Overlay应用的所有OverlayModuleInfo信息。|
-| -m | 可选参数，默认当前Overlay应用主模块名。根据指定Overlay应用的包名和module名查询OverlayModuleInfo信息。|
-| -u | 可选参数，在指定用户下查询OverlayModuleInfo信息，默认在当前活跃用户下查询。仅支持在当前活跃用户或0用户下查询。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm dump-overlay -b com.ohos.app -u 102`查询OverlayModuleInfo信息，只会返回当前活跃用户100下的OverlayModuleInfo信息。 |
+| -m | 可选参数，根据指定Overlay特征module的名称查询OverlayModuleInfo信息，默认当前Overlay应用主模块名。|
+| -t | 可选参数，根据指定目标module的名称查询OverlayModuleInfo信息，默认参数为空。|
+| -u | 可选参数，在指定[用户](#userid)下查询OverlayModuleInfo信息，默认在当前活跃用户下查询。仅支持在当前活跃用户或0用户下查询。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm dump-overlay -b com.ohos.app -u 102`查询OverlayModuleInfo信息，只会返回当前活跃用户100下的OverlayModuleInfo信息。 |
 
 示例：
 
@@ -434,11 +443,11 @@ bm dump-overlay -b com.ohos.app
 # 在用户100下，根据包名来获取overlay应用com.ohos.app中的所有OverlayModuleInfo信息
 bm dump-overlay -b com.ohos.app -u 100
 
-# 根据包名和module来获取overlay应用com.ohos.app中overlay module为entry的所有OverlayModuleInfo信息
-bm dump-overlay -b com.ohos.app -m entry
+# 根据包名和module来获取overlay应用com.ohos.app中overlay module为libraryModuleName的所有OverlayModuleInfo信息
+bm dump-overlay -b com.ohos.app -m libraryModuleName
 
-# 根据包名和module来获取overlay应用com.ohos.app中目标module为feature的所有OverlayModuleInfo信息
-bm dump-overlay -b com.ohos.app -m feature
+# 根据目标包名和module来获取overlay应用com.ohos.app中目标module为entryModuleName的所有OverlayModuleInfo信息
+bm dump-overlay -b com.ohos.app -t entryModuleName
 ```
 
 ## 查询应用的overlay相关信息命令（dump-target-overlay）
@@ -455,7 +464,7 @@ bm dump-target-overlay [-h] [-b bundleName] [-m moduleName] [-u userId]
 | -h | 帮助信息。 |
 | -b | 必选参数，获取指定应用的所有OverlayBundleInfo信息。|
 | -m | 可选参数，默认当前应用主模块名。根据指定的包名和module名查询OverlayModuleInfo信息。|
-| -u | 可选参数，在指定用户下查询OverlayModuleInfo信息，默认在当前活跃用户下查询。仅支持在当前活跃用户或0用户下查询。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm dump-target-overlay -b com.ohos.app -u 102`查询目标应用com.ohos.app中的所有关联的OverlayBundleInfo信息，只会返回当前活跃用户100下的OverlayModuleInfo信息。 |
+| -u | 可选参数，在指定[用户](#userid)下查询OverlayModuleInfo信息，默认在当前活跃用户下查询。仅支持在当前活跃用户或0用户下查询。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm dump-target-overlay -b com.ohos.app -u 102`查询目标应用com.ohos.app中的所有关联的OverlayBundleInfo信息，只会返回当前活跃用户100下的OverlayModuleInfo信息。 |
 
 示例：
 
@@ -825,13 +834,11 @@ error: install parse profile prop check error.
 ### 9568305 依赖的模块不存在
 **错误信息**
 
-error: dependent module does not exist.
-
-![示例图](figures/zh-cn_image_0000001560338986.png)
+error: Failed to install the HAP or HSP because the dependent module does not exist.
 
 **错误描述**
 
-在启动调试或运行应用/服务时，安装HAP出现错误，提示“error: dependent module does not exist”错误信息。
+在启动调试或运行应用/服务时，安装HAP出现错误，提示“error: Failed to install the HAP or HSP because the dependent module does not exist.”错误信息。
 
 **可能原因**
 
@@ -839,6 +846,7 @@ error: dependent module does not exist.
 
 **处理步骤**
 
+场景一：依赖的HSP与HAP在同一工程内：
 1. 先安装依赖的动态共享包（SharedLibrary）模块，再在应用运行配置页勾选Keep Application Data，点击OK保存配置，再运行/调试。
 ![示例图](figures/zh-cn_image_0000001560201786.png)
 2. 在运行配置页，选择Deploy Multi Hap标签页，勾选Deploy Multi Hap Packages，选择依赖的模块，点击OK保存配置，再进行运行/调试。
@@ -846,6 +854,9 @@ error: dependent module does not exist.
 3. 单击Run > Edit Configurations，在General中，勾选Auto Dependencies。点击OK保存配置，再运行/调试。
 ![示例图](figures/zh-cn_image_9568305.png)
 
+场景二：依赖的HSP与HAP不在同一工程内：
+在安装HAP前，使用[bm install](#安装命令install)命令安装依赖的HSP。
+  
 ### 9568259 安装解析配置文件缺少字段
 **错误信息**
 
@@ -985,15 +996,17 @@ error: signature verification failed due to not trusted app source.
 
 **可能原因**
 
-* 场景一：签名中未包含该调试设备的UDID。
+<!--RP8-->
+<!--RP8End-->签名中未包含该调试设备的UDID。
 
-* 场景二：签名时使用了[发布证书和发布profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-releaseharmony-0000001933963166)。发布证书签名的应用不能启动调试或运行。
+
 
 **处理步骤**
 
-* 场景一：
-1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
-2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
+<!--RP9-->
+<!--RP9End--><!--Del-->1. <!--DelEnd-->使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+<!--Del-->
+2. 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
 
     1. 获取当前设备的UDID。
 
@@ -1014,7 +1027,8 @@ error: signature verification failed due to not trusted app source.
     3. 在UnsgnedDebugProfileTemplate.json文件的device-ids字段中，添加当前设备的UDID。
 
 3. 使用文本编辑器打开已签名的HAP，检查签名中是否包含调试设备的UDID，搜索device-ids。
-* 场景二：使用[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)重新签名应用。
+<!--DelEnd-->
+
 
 ### 9568286 安装应用的签名证书profile文件中的类型与已安装应用的不相同
 **错误信息**
@@ -1023,7 +1037,7 @@ error: install provision type not same.
 
 **错误描述**
 
-在启动调试或运行应用/服务时，由于安装应用的[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型与已安装应用的不相同，导致安装HAP出现错误。
+在启动调试或运行应用/服务时，由于安装应用的<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->中的类型与已安装应用的不相同，导致安装HAP出现错误。
 
 **可能原因**
 
@@ -1201,8 +1215,8 @@ error: install sign info inconsistent.
 
 **可能原因**
 
-1. 设备上已安装的应用与新安装的应用中签名不一致或者多个包（HAP和HSP）之间的签名存在差异。若两个应用的签名[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)或[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)中至少有一项相同，则认为它们的签名一致。如果在DevEco Studio的“Edit Configurations”中勾选了“Keep Application Data”（即不卸载应用，直接覆盖安装），并且重新进行了签名，将导致该报错。
-2. 如果某个应用被卸载但是保留了数据，那么后面安装相同包名的应用时，需要校验其签名信息的一致性。如果两者签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)都不一致，则会导致该报错。
+1. 设备上已安装的应用与新安装的应用中签名不一致或者多个包（HAP和HSP）之间的签名存在差异。若两个应用的签名[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)或<!--RP7-->应用[Profile签名文件](../security/app-provision-structure.md)中的app-identifier<!--RP7End-->中至少有一项相同，则认为它们的签名一致。如果在DevEco Studio的“Edit Configurations”中勾选了“Keep Application Data”（即不卸载应用，直接覆盖安装），并且重新进行了签名，将导致该报错。
+2. 如果某个应用被卸载但是保留了数据，那么后面安装相同包名的应用时，需要校验其签名信息的一致性。如果两者签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和<!--RP7-->应用[Profile签名文件](../security/app-provision-structure.md)中的app-identifier<!--RP7End-->都不一致，则会导致该报错。
 
 
 **处理步骤**
@@ -2191,22 +2205,23 @@ error: installd set selinux label failed.
 
     ![示例图](figures/zh-cn_image_9568359_2.png)
 
-### 9568398 非企业设备禁止安装企业应用
+### 9568398 企业MDM应用/普通企业应用不允许安装
 **错误信息**
 
 error: Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device.
 
 **错误描述**
 
-非企业设备禁止安装[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型为enterprise_mdm或enterprise_normal的应用。
+当前设备禁止安装企业MDM应用或普通企业应用。
 
 **可能原因**
 
-设备类型不是企业设备。
+当前设备不允许安装<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->中如下两种类型的应用：enterprise_mdm（企业MDM应用）、enterprise_normal（普通企业应用）。
+Profile签名文件类型的取值及含义请参考[ApplicationInfo.appDistributionType](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md#applicationinfo-1)。
 
 **处理步骤**
 
-1. 使用企业设备安装企业应用。
+更换Profile签名文件中的类型。
 
 ### 9568402 禁止安装签名证书profile文件中的类型为app_gallery的release应用
 **错误信息**
@@ -2215,15 +2230,15 @@ error: Release bundle can not be installed.
 
 **错误描述**
 
-禁止通过bm命令安装[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型为app_gallery并且签名证书类型为release的应用。
+禁止通过bm命令安装<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->中的类型为app_gallery并且签名证书类型为release的应用。
 
 **可能原因**
 
-安装应用[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型为app_gallery并且签名证书类型为release。
+安装应用<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->中的类型为app_gallery并且签名证书类型为release。
 
 **处理步骤**
 
-1. 使用[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型非app_gallery的文件对应用重新签名。
+1. 使用<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->中的类型非app_gallery的文件对应用重新签名。
 2. 使用debug类型证书对应用重新签名。
 
 ### 9568403 安装加密校验失败
@@ -2377,11 +2392,11 @@ error: bundle cannot be installed because the appId is not same with preinstalle
 
 **可能原因**
 
-安装应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)与已卸载的预置应用都不一致。
+安装应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和<!--RP7-->应用[Profile签名文件](../security/app-provision-structure.md)中的app-identifier<!--RP7End-->与已卸载的预置应用都不一致。
 
 **处理步骤**
 
-1. 重新签名，保证应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)任意一个与预置应用的一致。
+1. 重新签名，保证应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和<!--RP7-->应用[Profile签名文件](../security/app-provision-structure.md)中的app-identifier<!--RP7End-->任意一个与预置应用的一致。
 2. 修改安装应用的[bundleName](../quick-start/app-configuration-file.md#配置文件标签)，确保与预置应用的不一致。
 
 ### 9568418 应用设置了卸载处置规则，不允许直接卸载
@@ -2401,22 +2416,22 @@ error: Failed to uninstall the app because the app is locked.
 
 1. 检查应用是否设置了卸载处置规则，由设置方取消卸载处置规则。
 
-### 9568420 禁止通过bm安装release的预装应用
+### 9568420 禁止通过bm安装release的预置应用
 **错误信息**
 
 error: os_integration Bundle is not allowed to install for shell.
 
 **错误描述**
 
-禁止通过bm安装release的预装应用。
+禁止通过bm安装release的预置应用。
 
 **可能原因**
 
-通过bm安装release的预装应用。
+通过bm安装release的预置应用。
 
 **处理步骤**
 
-1. 检查应用是否是release的预装应用。
+检查应用是否为预置的release版本。如果是，需要替换应用的<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->的类型，重新签名并安装。
 
 ### 9568278 安装包的版本号不一致
 **错误信息**
@@ -2442,7 +2457,7 @@ error: Failed to install the HAP or HSP because the app distribution type is not
 
 **可能原因**
 
-该[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型被限制，禁止安装到当前设备中。
+该<!--RP5-->[签名Profile文件](../security/app-provision-structure.md)<!--RP5End-->中的类型被限制，禁止安装到当前设备中。
 
 **处理步骤**
 
@@ -2459,11 +2474,13 @@ error: Failed to install the HAP because the device is unauthorized, make sure t
 
 **可能原因**
 
-该应用的[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugcert-0000001914263178)为调试类型，且未配置当前设备的UDID。
+该应用的<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->为调试类型，且未配置当前设备的UDID。
 
 **处理步骤**
 
-根据[指导](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-device-0000001946142249)将当前设备UDID添加到调试类型证书或使用[发布类型证书](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releasecert-0000001946273961)重新签名。
+<!--RP6-->
+<!--RP6End-->重新[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。
+
 
 ### 9568380 卸载系统应用失败
 **错误信息**
@@ -2893,7 +2910,7 @@ error: install failed due to U1Enabled can not change.
 
 **可能原因**
 
-应用[Profile签名文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugprofile-0000001914423102)中allowed-acls字段的U1Enabled配置发生变更，例如：
+应用<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->中allowed-acls字段的U1Enabled配置发生变更，例如：
 1. 已安装应用在allowed-acls中配置了U1Enabled，待安装应用在allowed-acls中没有配置U1Enabled。
 2. 已安装应用在allowed-acls中没有配置U1Enabled，待安装应用在allowed-acls中配置了U1Enabled。
 
@@ -2913,7 +2930,7 @@ error: Install failed due to the U1Enabled is not same in all haps.
 
 **可能原因**
 
-多HAP包签名时使用的[Profile签名文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugprofile-0000001914423102)不一致导致签名信息中allowed-acls的U1Enabled配置不一致。
+多HAP包签名时使用的<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->不一致导致签名信息中allowed-acls的U1Enabled配置不一致。
 
 **处理步骤**
 

@@ -1,6 +1,12 @@
 # ApplicationInfo
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
-The **ApplicationInfo** module provides application information. Unless otherwise specified, the information is obtained through [bundle.getApplicationInfo](js-apis-Bundle.md#bundlegetapplicationinfodeprecated).
+The module provides application information. Unless otherwise specified, the information is obtained through [bundle.getApplicationInfo](js-apis-Bundle.md#bundlegetapplicationinfodeprecated).
 
 > **NOTE**
 > 
@@ -19,8 +25,8 @@ This API is deprecated since API version 9. You are advised to use [bundleManage
 | name                       | string                                                       | Yes  | No  | Application name.                                            |
 | description                | string                                                       | Yes  | No  | Application description.                                        |
 | descriptionId              | number                                                       | Yes  | No  | ID of the application description.                                |
-| systemApp                  | boolean                                                      | Yes  | No  | Whether the application is a system application. The value **true** means that the application is a system application, and **false** means the opposite.                       |
-| enabled                    | boolean                                                      | Yes  | No  | Whether the application is enabled. The value **true** means that the application is enabled, and **false** means the opposite.                      |
+| systemApp                  | boolean                                                      | Yes  | No  | Whether the application is a system application. **true** if yes, **false** otherwise.                       |
+| enabled                    | boolean                                                      | Yes  | No  | Whether the application is enabled. **true** if enabled, **false** otherwise.                      |
 | label                      | string                                                       | Yes  | No  | Application label.                                        |
 | labelId                    | string                                                       | Yes  | No  | ID of the application label.                                  |
 | icon                       | string                                                       | Yes  | No  | Application icon.                                            |
@@ -33,7 +39,7 @@ This API is deprecated since API version 9. You are advised to use [bundleManage
 | entryDir                   | string                                                       | Yes  | No  | Path for storing application files. Do not access resource files using concatenated paths. Use [@ohos.resourceManager](../apis-localization-kit/js-apis-resource-manager.md) instead.                                    |
 | codePath<sup>8+</sup>      | string                                                       | Yes  | No  | Installation directory of the application. Do not access resource files using concatenated paths. Use [@ohos.resourceManager](../apis-localization-kit/js-apis-resource-manager.md) instead.                                        |
 | metaData<sup>8+</sup>      | Map\<string, Array\<[CustomizeData](js-apis-bundle-CustomizeData.md)>> | Yes  | No  | Custom metadata of the application.<br>The value is obtained by passing in GET_APPLICATION_INFO_WITH_METADATA to [bundle.getApplicationInfo](js-apis-Bundle.md#bundlegetapplicationinfodeprecated).|
-| removable<sup>8+</sup>     | boolean                                                      | Yes  | No  | Whether the application is removable. The value **true** means that the application is removable, and **false** means the opposite.                                    |
+| removable<sup>8+</sup>     | boolean                                                      | Yes  | No  | Whether the application is removable. **true** if removable, **false** otherwise.                                    |
 | accessTokenId<sup>8+</sup> | number                                                       | Yes  | No  | Access token ID of the application.                                   |
 | uid<sup>8+</sup>           | number                                                       | Yes  | No  | UID of the application.                                             |
 | entityType                 | string                                                       | Yes  | No  | Type of the application, for example, gaming, social networking, movies, and news.|

@@ -1,4 +1,10 @@
 # ServiceAbility Configuration
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @xialiangwei-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 
 Similar to a PageAbility, a ServiceAbility is configured in **abilities** under **module** of the **config.json** file. The difference between a ServiceAbility and PageAbility lies in the **type** and **backgroundModes** fields.

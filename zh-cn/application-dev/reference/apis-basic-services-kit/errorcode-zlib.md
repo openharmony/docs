@@ -185,7 +185,7 @@ Internal structure error.
 2. 当调用接口前，调用打开gz文件的相关接口时传入的文件访问模式错误。
 3. 当调用gzwrite接口时，传入的未压缩字节长度为0。
 4. 当调用gzfwrite或gzfread接口时，传入的数据块大小或数量为0。
-5. 当调用gzprintf接口时，传入的格式化描述符和纯文本为空字符穿串。
+5. 当调用gzprintf接口时，传入的格式化描述符和纯文本为空字符串。
 6. 当调用gzgets接口时，传入空的ArrayBuffer。
 7. 当调用gzgetc接口时，gz文件为空文件。
 

@@ -1,20 +1,37 @@
-# \@Computed Decorator: Computed Property
+# \@Computed Decorator: Declaring Computed Properties
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liwenzhen3-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
-When \@Computed is used, the computation is performed only once when the value changes. It is mainly used to solve the performance problem caused by repeated computation when the UI reuses the property for multiple times.
+When the same computation logic is repeatedly bound in the UI, the \@Computed decorator helps prevent redundant calculations. A computed property is evaluated only once when its dependent state variables change, addressing performance issues caused by repeated calculations in the UI. Example:
 
+```ts
+@Computed
+get sum() {
+  return this.count1 + this.count2 + this.count3;
+}
+Text(`${this.count1 + this.count2 + this.count3}`) // Calculate the sum of three counters.
+Text(`${this.count1 + this.count2 + this.count3}`) // Repeat the same calculation.
+Text(`${this.sum}`) // Read the cached value from the @Computed sum, avoiding redundant calculations.
+Text(`${this.sum}`) // Read the cached value from the @Computed sum, avoiding redundant calculations.
+```
 
-The change of a state variable can trigger the recomputing of its associated \@Computed. Before reading this topic, you are advised to read [\@ComponentV2](./arkts-new-componentV2.md), [\@ObservedV2 and \@Trace](./arkts-new-observedV2-and-trace.md), and [\@Local](./arkts-new-local.md).
+Before reading this topic, you are advised to read [\@ComponentV2](./arkts-new-componentV2.md), [\@ObservedV2 and \@Trace](./arkts-new-observedV2-and-trace.md), and [\@Local](./arkts-new-local.md).
 
 >**NOTE**
 >
->The \@Computed decorator is supported since API version 12.
+> The \@Computed decorator is supported since API version 12.
 >
+> This decorator can be used in atomic services since API version 12.
 
 ## Overview
 
-\@Computed is a method decorator that decorates the **getter** method. \@Computed detects the change of the computed property. When this property changes, \@Computed is solved only once.
-For complex computing, \@Computed provides better performance.
+\@Computed is a method decorator that decorates getter methods. It detects changes in the computed properties and ensures the calculation is performed only once when the properties change. Avoid modifying variables inside @Computed, as incorrect usage may lead to untracked data or application freezes. For details, see [Constraints](#constraints).
 
+For simple calculations, using @Computed is not recommended due to its inherent overhead. For complex computations, \@Computed provides significant performance benefits.
 
 ## Decorator Description
 \@Computed syntax:
@@ -26,39 +43,97 @@ get varName(): T {
 }
 ```
 
-| \@Computed Method-Type Decorator| Description                                                 |
+| \@Computed Decorator| Description                                                 |
 | ------------------ | ----------------------------------------------------- |
-| Supported type          | The **getter** accessor.|
-| Initialization from the parent component     | Forbidden.|
-| Child component initialization     | \@Param. |
-| Execution time       | When \@ComponentV2 is initialized, the computed property will be triggered. When the computed value changes, the computed property will be also triggered.|
-|Value assignment allowed        | No. @Computed decorated properties are read-only. For details, see [Constraints](#constraints).|
+| Supported type          | Getter accessor.|
+| Initialization from the parent component    | Forbidden.|
+| Child component initialization    | \@Param. |
+| Execution time      | In \@ComponentV2, \@Computed is initialized when the custom component is created, triggering computation.<br>In @ObservedV2 decorated classes, \@Computed is initialized asynchronously after the class instance is created, triggering computation.<br>Recomputation occurs when state variables used in the \@Computed calculation are modified.|
+| Value assignment allowed      | No. @Computed decorated properties are read-only. For details, see [Constraints](#constraints).|
 
 ## Constraints
 
-- \@Computed is a method decorator, which can decorate only the **getter** method.
+- \@Computed is a method decorator and can only decorate getter methods.
 
   ```ts
   @Computed
-  get fullName() { // Correct format.
+  get fullName() { // Correct usage.
     return this.firstName + ' ' + this.lastName;
   }
-  @Computed val: number = 0; // Incorrect format. An error is reported during compilation.
+  @Computed val: number = 0; // Incorrect usage. An error is reported during compilation.
   @Computed
   func() { // Incorrect usage. An error is reported during compilation.
   }
   ```
-- In the **getter** method decorated by \@Computed, the properties involved in computation cannot be changed.
+- Methods decorated with \@Computed only recompute during initialization or when the state variables used in their calculations change. Avoid performing logic operations other than data retrieval in \@Computed decorated getter methods, as shown in the example below.
 
-  ```ts
+```ts
+@Entry
+@ComponentV2
+struct Page {
+  @Local firstName: string = 'Hua';
+  @Local lastName: string = 'Li';
+  @Local showFullNameRequestCount: number = 0;
+  private fullNameRequestCount: number = 0;
+
   @Computed
   get fullName() {
-    this.lastName += 'a'; // Error. The properties involved in computation cannot be changed.
+    console.info(`fullName`);
+    // Avoid assignment logic in @Computed calculations, as @Computed is essentially a getter accessor for optimizing repeated computations.
+    // In this example, fullNameRequestCount only represents the number of @Computed recalculations, not the number of times fullName is accessed.
+    this.fullNameRequestCount++;
     return this.firstName + ' ' + this.lastName;
   }
-  ```
 
-- \@Computed cannot be used together with **!!**. That is, \@Computed decorates the **getter** accessor, which is not synchronized by the child components nor assigned a value. **setter** of the computed property implemented by you does not take effect, and an error is reported during compilation.
+  build() {
+    Column() {
+      Text(`${this.fullName}`) // Obtain fullName once.
+      Text(`${this.fullName}`) // Obtain fullName again. fullName is obtained twice. However, no recomputation occurs, as the cached value is read.
+
+      // Clicking the button obtains the value of fullNameRequestCount.
+      Text(`count ${this.showFullNameRequestCount}`)
+      Button('get fullName').onClick(() => {
+        this.showFullNameRequestCount = this.fullNameRequestCount;
+      })
+    }
+  }
+}
+```
+
+- In \@Computed decorated getter methods, do not modify properties involved in the calculation to prevent infinite recomputation leading to application freezes.
+ In the example below, computing **fullName1** modifies **this.lastName**, which triggers recomputation of **fullName2**. During computation of **fullName2**, **this.firstName** is modified, causing **fullName1** to recompute again. This creates an infinite loop, eventually leading to application freezes.
+
+```ts
+@Entry
+@ComponentV2
+struct Page {
+  @Local firstName: string = 'Hua';
+  @Local lastName: string = 'Li';
+
+  @Computed
+  get fullName1() {
+    console.info(`fullName1`);
+    this.lastName += 'a'; // Incorrect usage. The properties involved in computation cannot be changed.
+    return this.firstName + ' ' + this.lastName;
+  }
+
+  @Computed
+  get fullName2() {
+    console.info(`fullName2`);
+    this.firstName += 'a'; // Incorrect usage. The properties involved in computation cannot be changed.
+    return this.firstName + ' ' + this.lastName;
+  }
+
+  build() {
+    Column() {
+      Text(`${this.fullName1}`)
+      Text(`${this.fullName2}`)
+    }
+  }
+}
+```
+
+- \@Computed cannot be used together with **!!** for two-way binding. Properties decorated with \@Computed are getter accessors. They are not synchronized by child components and cannot be assigned. Custom setter implementations for computed properties will not take effect and will result in a compile-time error.
 
   ```ts
   @ComponentV2
@@ -84,7 +159,7 @@ get varName(): T {
       return this.count * 2;
     }
   
-    // The @Computed decorated property is read-only. The setter implemented by you does not take effect, and an error is reported during compilation.
+    // Custom setters for @Computed decorated properties have no effect and cause compile-time errors.
     set double(newValue : number) {
       this.count = newValue / 2;
     }
@@ -93,7 +168,7 @@ get varName(): T {
       Scroll() {
         Column({ space: 3 }) {
           Text(`${this.count}`)
-          // Incorrect format. The @Computed decorated property method is read-only and cannot be used together with two-way binding.
+          // Incorrect usage. @Computed decorated properties are read-only and cannot be used together with two-way binding.
           Child({ double: this.double!! })
         }
       }
@@ -101,30 +176,30 @@ get varName(): T {
   }
   ```
 
-- The capability provided by \@Computed for the status management V2 can be used only in \@ComponentV2 and \@ObservedV2.
-- Be cautious about loop solving when multiple \@Computed are used together.
+- \@Computed is a feature of state management V2 and can only be used in @ComponentV2 and @ObservedV2.
+- When using multiple \@Computed decorated properties together, avoid circular dependencies to prevent infinite loops during computation.
 
   ```ts
   @Local a : number = 1;
   @Computed
   get b() {
-    return this.a + ' ' + this.c;  // Incorrect format. A loop b -> c -> b exists.
+    return this.a + ' ' + this.c;  // Incorrect usage. There is a circular dependency: b -> c -> b.
   }
   @Computed
   get c() {
-    return this.a + ' ' + this.b; // Incorrect format. A loop c -> b -> c exists.
+    return this.a + ' ' + this.b; // Incorrect usage. There is a circular dependency: c -> b -> c.
   }
   ```
 
 ## Use Scenarios
-### \@Computed Decorated getter Accessor Is Solved Only Once Upon Property Change
-1. Using computed property in a custom component.
+### The \@Computed Decorated Getter is Evaluated Only Once Upon Property Change
+1. Using a computed property in a custom component
 
-- Click the first button to change the value of **lastName**, triggering **\@Computed fullName** recomputation.
-- The **this.fullName** is bound to two **Text** components. The **fullName** log shows that the computation occurs only once.
-- For the first two **Text** components, the **this.lastName +' '+ this.firstName** logic is solved twice.
-- If multiple places on the UI need to use the **this.lastName +' '+ this.firstName** computational logic, you can use the computed property to reduce the number of computation times.
-- Click the second button. The **age** increases automatically and the UI remains unchanged. Because **age** is not a state variable, only observed changes can trigger **\@Computed fullName** recomputation.
+- Clicking the first button changes the value of **lastName**, triggering a recomputation of the \@Computed decorated property **fullName**.
+- **this.fullName** is bound to two **Text** components. The **fullName** log shows that the computation occurs only once.
+- For the first two **Text** components, the **this.lastName +' '+ this.firstName** logic is evaluated twice.
+- If multiple UI elements require the same computed logic **this.lastName +' '+ this.firstName**, you can use a computed property to reduce redundant calculations.
+- Clicking the second button increments the value of **age**, but the UI remains unchanged. This is because **age** is not a state variable, and only changes to observed variables can trigger the recomputation of the \@Computed decorated property **fullName**.
 
 ```ts
 @Entry
@@ -136,7 +211,7 @@ struct Index {
 
   @Computed
   get fullName() {
-    console.info("---------Computed----------");
+    console.info('---------Computed----------');
     return this.firstName + ' ' + this.lastName + this.age;
   }
 
@@ -159,18 +234,18 @@ struct Index {
 }
 ```
 
-Note that the computed property itself has performance overhead. In actual application development:
-- For the preceding simple computation, computed property is not needed.
-- If the computed property is used only once in the view, you can solve the problem directly.
+Computed properties inherently introduce performance overhead. In practical development, note the following:
+- For simple logic, avoid computed properties and compute directly.
+- If the logic is used only once in the view, skip the computed property and evaluate inline.
 
-2. Using computed property in classes decorated by \@ObservedV2.
-- Click the button to change the value of **lastName** and the **\@Computed fullName** will be recomputed only once.
+2. Using a computed property in an \@ObservedV2 decorated class
+- Clicking the button changes the value of **lastName**, triggering the \@Computed decorated property **fullName** to recompute once.
 
 ```ts
 @ObservedV2
 class Name {
-  @Trace firstName: string = 'Li';
-  @Trace lastName: string = 'Hua';
+  @Trace firstName: string = 'Hua';
+  @Trace lastName: string = 'Li';
 
   @Computed
   get fullName() {
@@ -198,10 +273,10 @@ struct Index {
 }
 ```
 
-### \@Monitor can Listen for the Changes of the \@Computed Decorated Properties
-The following example shows how to solve **fahrenheit** and **kelvin** by using computed property.
-- Click "-" to run the logic **celsius--** -> **fahrenheit** -> **kelvin**. The change of **kelvin** triggers the **onKelvinMonitor**.
-- Click "+" to run the logic **celsius++** -> **fahrenheit** -> **kelvin**. The change of **kelvin** triggers the **onKelvinMonitor**.
+### \@Monitor Can Listen for the Changes of the \@Computed Decorated Properties
+The following example shows how to convert **celsius** to **fahrenheit** and **kelvin** :
+- Clicking **-** decrements **celsius**, updates **fahrenheit**, then updates **kelvin**, which triggers **onKelvinMonitor**.
+- Clicking **+** increments **celsius**, updates **fahrenheit**, then updates **kelvin**, which triggers **onKelvinMonitor**.
 
 ```ts
 @Entry
@@ -219,9 +294,9 @@ struct MyView {
     return (this.fahrenheit - 32) * 5 / 9 + 273.15; // F -> K
   }
 
-  @Monitor("kelvin")
+  @Monitor('kelvin')
   onKelvinMonitor(mon: IMonitor) {
-    console.log("kelvin changed from " + mon.value()?.before + " to " + mon.value()?.now);
+    console.log('kelvin changed from ' + mon.value()?.before + ' to ' + mon.value()?.now);
   }
 
   build() {
@@ -247,10 +322,10 @@ struct MyView {
   }
 }
 ```
-### \@Computed Decorated Properties Initialize \@Param
-The following example uses \@Computed to initialize \@Param.
-- Click **Button('-')** and **Button('+')** to change the offering quantity. The **quantity** is decorated by \@Trace and can be observed when it is changed.
-- The change of **quantity** triggers the recomputation of **total** and **qualifiesForDiscount**. In this way, you can get a result of the total price of the offering and the available discounts.
+### \@Computed Decorated Properties Can Initialize \@Param
+The following example shows how to use an \@Computed decorated property to initialize \@Param.
+- Clicking **Button('-')** and **Button('+')** changes the value of **quantity**, which is decorated with \@Trace and can be observed when it is changed.
+- The change of **quantity** triggers the recomputation of **total** and **qualifiesForDiscount**.
 - The change of **total** and **qualifiesForDiscount** triggers the update of the **Text** component corresponding to the **Child** component.
 
 ```ts

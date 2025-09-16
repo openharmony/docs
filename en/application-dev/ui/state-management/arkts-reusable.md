@@ -1,24 +1,36 @@
 # \@Reusable Decorator: Reusing Components
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyujie43-->
+<!--Designer: @lizhan-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
-
-When the \@Reusable decorator decorates any custom component, the custom component is reusable.
-
-> **NOTE**
->
-> The \@Reusable decorator is supported since API version 10.
+The \@Reusable decorator enables reuse of view nodes, component instances, and state contexts for custom components, eliminating redundant creation and destruction to enhance performance.
 
 ## Overview
 
-- \@Reusable applies to custom components and is used together with \@Component. When a custom component marked with \@Reusable is detached from the component tree, the component and its corresponding **JSView** object are stored in the cache pool. When a custom component node is created later, nodes in the cache pool are reused, saving the time for re-creating components.
+When applied to a custom component, the \@Reusable decorator marks the component as reusable. Used in conjunction with the [\@Component decorator](arkts-create-custom-components.md#component), components decorated with \@Reusable are moved to a reuse cache (along with its corresponding JS object) when removed from the component tree. Subsequent component creation will reuse cached nodes, significantly reducing instantiation time.
+
+> **NOTE**
+>
+> The \@Reusable decorator is supported since API version 10 and can be used in ArkTS.
+>
+> For details about the principles, optimization methods, and use scenarios of component reuse, see [Component Reuse](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-component-reuse).
+>
+> When a component is decorated with \@Reusable, the ArkUI framework calls the component's [aboutToReuse](../../../application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoreuse10) and [aboutToRecycle](../../../application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttorecycle10) APIs when the component is added to or removed from the tree. Therefore, you should implement most reuse logic within these APIs.
+>
+> For components containing multiple reusable child components, use [reuseId](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse-id.md) to distinguish between different reusable structures.
+>
 
 ## Constraints
 
-- The \@Reusable decorator is used only for custom components.
+- The \@Reusable decorator only applies to custom components.
 
 ```ts
 import { ComponentContent } from "@kit.ArkUI";
 
-// An error is reported when @Builder is used together with @Reusable.
+// Adding @Reusable to @Builder causes a compilation error (not applicable to builders).
 // @Reusable
 @Builder
 function buildCreativeLoadingDialog(closedClick: () => void) {
@@ -46,7 +58,7 @@ export struct Crash {
 @Component
 struct Index {
   @State message: string = 'Hello World';
-  private uicontext = this.getUIContext();
+  private uiContext = this.getUIContext();
 
   build() {
     RelativeContainer() {
@@ -59,9 +71,9 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(() => {
-          let contentNode = new ComponentContent(this.uicontext, wrapBuilder(buildCreativeLoadingDialog), () => {
+          let contentNode = new ComponentContent(this.uiContext, wrapBuilder(buildCreativeLoadingDialog), () => {
           });
-          this.uicontext.getPromptAction().openCustomDialog(contentNode);
+          this.uiContext.getPromptAction().openCustomDialog(contentNode);
         })
     }
     .height('100%')
@@ -70,7 +82,180 @@ struct Index {
 }
 ```
 
-- **ComponentContent** does not support @Reusable decorated custom components.
+- When an @Reusable decorated custom component is reused, the **aboutToReuse** API is invoked recursively for the component and all its child components. Avoid modifying state variables of the parent component in its child component's **aboutToReuse** API. Such modification will not take effect. To update the parent component's state variables, use **setTimeout** to delay execution, moving the task outside the scope of component reuse.
+
+
+  **Incorrect Usage**
+
+  Modifying a parent component's state variable in its child component's **aboutToReuse** API:
+
+  ```ts
+  class BasicDataSource implements IDataSource {
+    private listener: DataChangeListener | undefined = undefined;
+    public dataArray: number[] = [];
+
+    totalCount(): number {
+      return this.dataArray.length;
+    }
+
+    getData(index: number): number {
+      return this.dataArray[index];
+    }
+
+    registerDataChangeListener(listener: DataChangeListener): void {
+      this.listener = listener;
+    }
+
+    unregisterDataChangeListener(listener: DataChangeListener): void {
+      this.listener = undefined;
+    }
+  }
+
+  @Entry
+  @Component
+  struct Index {
+    private data: BasicDataSource = new BasicDataSource();
+
+    aboutToAppear(): void {
+      for (let index = 1; index < 20; index++) {
+        this.data.dataArray.push(index);
+      }
+    }
+
+    build() {
+      List() {
+        LazyForEach(this.data, (item: number, index: number) => {
+          ListItem() {
+            ReuseComponent({ num: item })
+          }
+        }, (item: number, index: number) => index.toString())
+      }.cachedCount(0)
+    }
+  }
+
+  @Reusable
+  @Component
+  struct ReuseComponent {
+    @State num: number = 0;
+
+    aboutToReuse(params: ESObject): void {
+      this.num = params.num;
+    }
+
+    build() {
+      Column() {
+        Text('ReuseComponent num:' + this.num.toString())
+        ReuseComponentChild({ num: this.num })
+        Button('plus')
+          .onClick(() => {
+            this.num += 10;
+          })
+      }
+      .height(200)
+    }
+  }
+
+  @Component
+  struct ReuseComponentChild {
+    @Link num: number;
+
+    aboutToReuse(params: ESObject): void {
+      this.num = -1 * params.num;
+    }
+
+    build() {
+      Text('ReuseComponentChild num:' + this.num.toString())
+    }
+  }
+  ```
+
+  **Correct Usage**
+
+  To modify a parent component's state variable in a child component's **aboutToReuse** API, use **setTimeout** to move the modification outside the scope of component reuse:
+
+  ```ts
+  class BasicDataSource implements IDataSource {
+    private listener: DataChangeListener | undefined = undefined;
+    public dataArray: number[] = [];
+
+    totalCount(): number {
+      return this.dataArray.length;
+    }
+
+    getData(index: number): number {
+      return this.dataArray[index];
+    }
+
+    registerDataChangeListener(listener: DataChangeListener): void {
+      this.listener = listener;
+    }
+
+    unregisterDataChangeListener(listener: DataChangeListener): void {
+      this.listener = undefined;
+    }
+  }
+
+  @Entry
+  @Component
+  struct Index {
+    private data: BasicDataSource = new BasicDataSource();
+
+    aboutToAppear(): void {
+      for (let index = 1; index < 20; index++) {
+        this.data.dataArray.push(index);
+      }
+    }
+
+    build() {
+      List() {
+        LazyForEach(this.data, (item: number, index: number) => {
+          ListItem() {
+            ReuseComponent({ num: item })
+          }
+        }, (item: number, index: number) => index.toString())
+      }.cachedCount(0)
+    }
+  }
+
+  @Reusable
+  @Component
+  struct ReuseComponent {
+    @State num: number = 0;
+
+    aboutToReuse(params: ESObject): void {
+      this.num = params.num;
+    }
+
+    build() {
+      Column() {
+        Text('ReuseComponent num:' + this.num.toString())
+        ReuseComponentChild({ num: this.num })
+        Button('plus')
+          .onClick(() => {
+            this.num += 10;
+          })
+      }
+      .height(200)
+    }
+  }
+
+  @Component
+  struct ReuseComponentChild {
+    @Link num: number;
+
+    aboutToReuse(params: ESObject): void {
+      setTimeout(() => {
+        this.num = -1 * params.num;
+      }, 1)
+    }
+
+    build() {
+      Text('ReuseComponentChild num:' + this.num.toString())
+    }
+  }
+  ```
+
+- **ComponentContent** does not support passing \@Reusable decorated custom components.
 
 ```ts
 import { ComponentContent } from "@kit.ArkUI";
@@ -80,7 +265,7 @@ function buildCreativeLoadingDialog(closedClick: () => void) {
   Crash()
 }
 
-// If @Reusable is commented out, the dialog box displays properly; if @Reusable is added, the project crashes.
+// The dialog box pops up correctly if @Reusable is commented out; it crashes when @Reusable is added.
 @Reusable
 @Component
 export struct Crash {
@@ -103,7 +288,7 @@ export struct Crash {
 @Component
 struct Index {
   @State message: string = 'Hello World';
-  private uicontext = this.getUIContext();
+  private uiContext = this.getUIContext();
 
   build() {
     RelativeContainer() {
@@ -116,10 +301,10 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(() => {
-          // buildNode, the bottom layer of ComponentContent, does not support the @Reusable decorated custom component.
-          let contentNode = new ComponentContent(this.uicontext, wrapBuilder(buildCreativeLoadingDialog), () => {
+          // ComponentContent is based on BuilderNode, which does not support @Reusable decorated custom components.
+          let contentNode = new ComponentContent(this.uiContext, wrapBuilder(buildCreativeLoadingDialog), () => {
           });
-          this.uicontext.getPromptAction().openCustomDialog(contentNode);
+          this.uiContext.getPromptAction().openCustomDialog(contentNode);
         })
     }
     .height('100%')
@@ -128,145 +313,15 @@ struct Index {
 }
 ```
 
-- \@Reusable decorators do not support nested use, which increases the memory and is inconvenient for maintenance.
+- Nesting \@Reusable decorators is not recommended, as it increases memory usage, reduces reuse efficiency, and complicates maintenance. Nested usage creates additional cache pools with identical tree structures, leading to low reuse efficiency. In addition, it complicates lifecycle management and makes resource and variable sharing difficult.
 
 
-> **NOTE**
->
-> Nested use is not supported. One mark will add a cache pool and each of the cache pool has the same tree structure, leading to low reuse efficiency and increased reused memory.
-> 
-> After the nested use forms independent reuse cache pools, the lifecycle transfer is abnormal. Resources and variables cannot be shared, which is inconvenient for maintenance and may cause problems.
->
-> In the following example, the reuse cache pool formed by **PlayButton** cannot be used in the reuse cache pool of **PlayButton02**, but the reuse cache pools formed by **PlayButton02** can be used by each other.
-> The lifecycle method reused by the component cannot be called in pairs. When **PlayButton** is hidden, **aboutToRecycle** of **PlayButton02** is triggered. However, when **PlayButton02** is displayed independently, **aboutToReuse** cannot be executed.
-> 
-> In conclusion, nested use is not recommended.
-
-
-```ts
-@Entry
-@Component
-struct Index {
-  @State isPlaying: boolean = false;
-  @State isPlaying02: boolean = true;
-  @State isPlaying01: boolean = false;
-
-  build() {
-    Column() {
-      if (this.isPlaying02) {
-
-        // Initial state of the button: shown
-        Text("Default shown childbutton")
-          .fontSize(14)
-        PlayButton02({ isPlaying02: $isPlaying02 })
-      }
-      Text(`------------------------`)
-
-      // Initial state of the button: hidden
-      if (this.isPlaying01) {
-        Text("Default hidden childbutton")
-          .fontSize(14)
-        PlayButton02({ isPlaying02: $isPlaying01 })
-      }
-      Text(`------------------------`)
-
-      // Parent-child nesting
-      if (this.isPlaying) {
-        Text("Parent-child nesting")
-          .fontSize(14)
-        PlayButton({ buttonPlaying: $isPlaying })
-      }
-      Text(`------------------------`)
-
-      // Parent-child nesting control
-      Text(`Parent=child==is ${this.isPlaying ? '' : 'not'} playing`).fontSize(14)
-      Button('Parent=child===controll=' + this.isPlaying)
-        .margin(14)
-        .onClick(() => {
-          this.isPlaying = !this.isPlaying;
-        })
-
-      Text(`------------------------`)
-
-      // Hide the button control by default.
-      Text(`Hiddenchild==is ${this.isPlaying01 ? '' : 'not'} playing`).fontSize(14)
-      Button('Button===hiddenchild==control==' + this.isPlaying01)
-        .margin(14)
-        .onClick(() => {
-          this.isPlaying01 = !this.isPlaying01;
-        })
-      Text(`------------------------`)
-
-      // Display the button control by default.
-      Text(`shownchid==is ${this.isPlaying02 ? '' : 'not'} playing`).fontSize(14)
-      Button('Button===shownchid==control==:' + this.isPlaying02)
-        .margin(15)
-        .onClick(() => {
-          this.isPlaying02 = !this.isPlaying02;
-        })
-    }
-  }
-}
-
-// Reuse 1
-@Reusable
-@Component
-struct PlayButton {
-  @Link buttonPlaying: boolean;
-
-  build() {
-    Column() {
-
-      // Reuse
-      PlayButton02({ isPlaying02: $buttonPlaying })
-      Button(this.buttonPlaying ? 'parent_pause' : 'parent_play')
-        .margin(12)
-        .onClick(() => {
-          this.buttonPlaying = !this.buttonPlaying;
-        })
-    }
-  }
-}
-
-// Reuse 2: Nested use is not recommended.
-@Reusable
-@Component
-struct PlayButton02 {
-  @Link isPlaying02: boolean;
-
-  aboutToRecycle(): void {
-    console.log("=====aboutToRecycle====PlayButton02====");
-  }
-
-  aboutToReuse(params: ESObject): void {
-    console.log("=====aboutToReuse====PlayButton02====");
-  }
-
-  build() {
-    Column() {
-      Button('===commonbutton=====')
-        .margin(12)
-    }
-  }
-}
-```
-
-## Use Scenario
-
-- List scrolling: When a user scrolls a list containing a large amount of data, frequently creating and destroying list item views may cause stuttering and performance problems. In this case, the reuse mechanism of the **List** component can reuse the created list view to improve the scrolling smoothness.
-
-- Dynamic layout update: If the application UI requires frequent layout updates, for example, the view structure and style are dynamically changed based on user operations or data changes, frequent creation and destruction of views may cause frequent layout calculation, affecting the frame rate. In this case, component reuse can avoid unnecessary view creation and layout calculation, improving performance.
-
-- In the scenario where data items are frequently created and destroyed, the component reuse mechanism can be applied to reuse created views and update only their data content, reducing view creation and destruction.
-
-
-## Usage Case
+## Use Scenarios
 
 ### Dynamic Layout Update
 
-- In the sample code, the child custom component is marked as a reusable component. You can update **Child** by clicking the button to trigger **Child** reuse.
-- \@Reusable: The custom component to reuse is decorated by @Reusable.
-- **aboutToReuse**: Invoked when a reusable custom component is re-added to the node tree from the reuse cache to receive construction parameters of the component.
+Repeatedly creating and removing views can trigger frequent layout calculations, which may affect frame rates. Component reuse avoids unnecessary view creation and layout recalculations, improving performance.
+In the following example, the **Child** custom component is marked as reusable. Clicking the button updates **Child**, triggering reuse.
 
 ```ts
 // xxx.ets
@@ -292,7 +347,7 @@ struct Index {
           this.switch = !this.switch;
         })
       if (this.switch) {
-        // If only one component to be reused, you do not need to set reuseId.
+        // If only one reusable component is used, reuseId is optional.
         Child({ message: new Message('Child') })
           .reuseId('Child')
       }
@@ -308,7 +363,7 @@ struct Child {
   @State message: Message = new Message('AboutToReuse');
 
   aboutToReuse(params: Record<string, ESObject>) {
-    console.info("Recycle ====Child==");
+    console.info("Recycle====Child==");
     this.message = params.message as Message;
   }
 
@@ -323,10 +378,11 @@ struct Child {
 }
 ```
 
-### Using List Scrolling with LazyForEach
+### List Scrolling with LazyForEach
 
-- In the sample code, the **CardView** custom component is marked as a reusable component, and the list is scrolled up and down to trigger **CardView** reuse.
-- Only the \@State decorated variable **item** can be updated.
+- When a user scrolls a list containing a large amount of data, frequent creation and destruction of list items can cause lag and performance issues. The reuse mechanism of the **List** component can reuse the existing list items to improve the scrolling smoothness.
+
+- In the following example, the **CardView** custom component is marked as reusable. Scrolling the list up or down triggers reuse of **CardView**.
 
 ```ts
 class MyDataSource implements IDataSource {
@@ -387,6 +443,7 @@ struct ReuseDemo {
 @Reusable
 @Component
 export struct CardView {
+  // Variables decorated with @State will update; others will not.
   @State item: string = '';
 
   aboutToReuse(params: Record<string, Object>): void {
@@ -404,11 +461,9 @@ export struct CardView {
 }
 ```
 
-### if Statement
+### List Scrolling with if Statements
 
-- In the sample code, the **OneMoment** custom component is marked as a reusable component, and the list is scrolled up and down to trigger **OneMoment** reuse.
-- You can use **reuseId** to assign reuse groups to reusable components. Components with the same **reuseId** will be reused in the same reuse group. If there is only one reusable component, you do not need to set **reuseId**.
-- The **reuseId** is used to identify the component to be reused and omit the deletion and re-creation logic executed by **if**, improving the efficiency and performance of component reuse.
+In the following example, the **OneMoment** custom component is marked as reusable. Scrolling the list up or down triggers reuse of **OneMoment**. **reuseId** can be used to assign a reuse group for reusable components. Components with the same **reuseId** are reused within the same reuse group. A single reusable component does not require **reuseId**. Using **reuseId** to identify reusable components avoids repeated deletion and re-creation logic in **if** statements, improving reuse efficiency and performance.
 
 ```ts
 @Entry
@@ -464,7 +519,7 @@ class FriendMoment {
 export struct OneMoment {
   @Prop moment: FriendMoment;
 
-  // The reuse can be triggered only when the reuse ID is the same.
+  // Only components with the same reuseId trigger reuse.
   aboutToReuse(params: ESObject): void {
     console.log("=====aboutToReuse====OneMoment==reused==" + this.moment.text);
   }
@@ -472,7 +527,7 @@ export struct OneMoment {
   build() {
     Column() {
       Text(this.moment.text)
-      // if branch judgment
+      // Conditional rendering with if
       if (this.moment.image !== '') {
         Flex({ wrap: FlexWrap.Wrap }) {
           Image($r(this.moment.image)).height(50).width(50)
@@ -535,10 +590,9 @@ export class MyDataSource<T> extends BasicDataSource<T> {
 }
 ```
 
-### Foreach
+### List Scrolling with ForEach
 
-- When **Foreach** is used to create a reusable custom component, component reuse cannot be triggered due to the full expansion attribute of **Foreach**. In the following example, after **update** is clicked, the data is refreshed successfully, but **ListItemView** cannot be reused.
-- Click **clear** and then click **update** again. **ListItemView** is successfully reused because multiple destroyed custom components are repeatedly created in a frame.
+When the **ForEach** rendering control syntax is used to create reusable custom components, the full-expansion behavior of **ForEach** prevents component reuse. In the example: Clicking **update** successfully refreshes data, but **ListItemView** cannot be reused during list scrolling; clicking **clear** and then **update** allows **ListItemView** to be reused, as this triggers re-creation of multiple destroyed custom components within a single frame.
 
 ```ts
 // xxx.ets
@@ -587,10 +641,6 @@ struct Index {
       Row() {
         Button('clear').onClick(() => {
           for (let i = 1; i < 50; i++) {
-            let obj = new ListItemObject();
-            obj.id = i;
-            obj.uuid = Math.random().toString();
-            obj.isExpand = false;
             this.dataSource.pop();
           }
         }).height(40)
@@ -631,20 +681,20 @@ struct ListItemView {
   @State item: string = '';
 
   aboutToAppear(): void {
-    // Click update and scroll the list. The components cannot be reused because of the full expansion attribute of Foreach.
+    // On first update click, scrolling fails to trigger reuse due to the full-expansion behavior of ForEach.
     console.log("=====aboutToAppear=====ListItemView==created==" + this.item);
   }
 
   aboutToReuse(params: ESObject) {
     this.item = params.item;
-    // Click clear and update and the reuse is successful,
-    // because multiple destroyed custom components are repeatedly created in a frame.
+    // Reuse succeeds after clear and update are clicked
+    // (which recreates destroyed components in one frame).
     console.log("=====aboutToReuse====ListItemView==reused==" + this.item);
   }
 
   build() {
     Column({ space: 10 }) {
-      Text('${this.obj.id}.Title')
+      Text(`${this.obj.id}.Title`)
         .fontSize(16)
         .fontColor('#000000')
         .padding({
@@ -678,9 +728,9 @@ class ListItemObject {
 
 ### Grid
 
-- In the following example, the @Reusable decorator is used to decorate the custom component **ReusableChildComponent** in **GridItem**, indicating that the component can be reused.
-- **aboutToReuse** is used to trigger **Grid** before it is added from the reuse cache to the component tree during scrolling and update the component state variable to display the correct content.
-- Note that you do not need to update the state variables decorated by \@Link, \@StorageLink, \@ObjectLink, and \@Consume in **aboutToReuse**. These state variables are automatically updated, and manual update may trigger unnecessary component re-renders.
+In the following example, the @Reusable decorator is used to decorate the custom component **ReusableChildComponent** in **GridItem**, indicating that the component can be reused.
+The **aboutToReuse** API is triggered when the component is obtained from the reuse cache and added to the component tree during grid scrolling. This allows you to update the component's state variables to display correct content.
+Note: There is no need to update state variables that automatically synchronize values (such as variables decorated with [\@Link](arkts-link.md), [\@StorageLink](arkts-appstorage.md#storagelink), [\@ObjectLink](arkts-observed-and-objectlink.md), or [\@Consume](arkts-provide-and-consume.md)) in **aboutToReuse**, as this may trigger unnecessary component re-renders.
 
 ```ts
 // Class MyDataSource implements the IDataSource API.
@@ -691,12 +741,12 @@ class MyDataSource implements IDataSource {
     this.dataArray.push(data);
   }
 
-  // Total data amount of the data source
+  // Total number of items in the data source.
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  // Return the data with the specified index.
+  // Return data at the specified index.
   public getData(index: number): number {
     return this.dataArray[index];
   }
@@ -711,7 +761,7 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct MyComponent {
-  // Data source
+  // Data source.
   private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
@@ -725,12 +775,12 @@ struct MyComponent {
       Grid() {
         LazyForEach(this.data, (item: number) => {
           GridItem() {
-            // Use reusable custom components.
+            // Use the reusable custom component.
             ReusableChildComponent({ item: item })
           }
         }, (item: string) => item)
       }
-      .cachedCount(2) // Set the number of cached GridItems.
+      .cachedCount(2) // Set the number of cached GridItem components.
       .columnsTemplate('1fr 1fr 1fr')
       .columnsGap(10)
       .rowsGap(10)
@@ -746,15 +796,15 @@ struct MyComponent {
 struct ReusableChildComponent {
   @State item: number = 0;
 
-  // aboutToReuse is called when a reusable custom component is added to the component tree from the reuse cache. The component's state variables can be updated here to display the correct content.
-  // The aboutToReuse parameter does not support any and Record is used to specify a data type. Record is used to create an object type, of which the attribute key is Keys and the attribute value is Type.
+  // Called before the component is added to the component tree from the reuse cache. The component's state variable can be updated here to display the correct content.
+  // Parameter type: Record<string, number> (explicit type instead of any).
   aboutToReuse(params: Record<string, number>) {
     this.item = params.item;
   }
 
   build() {
     Column() {
-      // Add the app.media.app_icon image to the src/main/resources/base/media directory. Otherwise, an error will be reported due to missing resources.
+      // Ensure that the app.media.app_icon file is added to src/main/resources/base/media. Missing this file will trigger a runtime error.
       Image($r('app.media.app_icon'))
         .objectFit(ImageFit.Fill)
         .layoutWeight(1)
@@ -771,7 +821,7 @@ struct ReusableChildComponent {
 
 ### WaterFlow
 
-- In the **WaterFlow** scrolling scenario, **FlowItem** and its child components are frequently created and destroyed. You can encapsulate the components in **FlowItem** into custom components and decorate them using \@Reusable so that these components can be reused.
+- For **WaterFlow** scrolling scenarios where **FlowItem** and its child components are frequently created and destroyed, you can encapsulate components in **FlowItem** into a custom component and decorate it with \@Reusable to implement component reuse.
 
 ```ts
 class WaterFlowDataSource implements IDataSource {
@@ -784,24 +834,24 @@ class WaterFlowDataSource implements IDataSource {
     }
   }
 
-  // Obtain the data corresponding to the specified index.
+  // Obtain data at the specified index.
   public getData(index: number): number {
     return this.dataArray[index];
   }
 
-  // Notify the controller to add data.
+  // Notify listeners of new data addition.
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
     });
   }
 
-  // Obtain the total number of data records.
+  // Obtain the total number of data items.
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  // Register the data change listener.
+  // Register a data change listener.
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
       this.listeners.push(listener);
@@ -816,7 +866,7 @@ class WaterFlowDataSource implements IDataSource {
     }
   }
 
-  // Add an item to the end of the data.
+  // Add an item to the end of the data array.
   public addLastItem(): void {
     this.dataArray.splice(this.dataArray.length, 0, this.dataArray.length);
     this.notifyDataAdd(this.dataArray.length - 1);
@@ -828,7 +878,7 @@ class WaterFlowDataSource implements IDataSource {
 struct ReusableFlowItem {
   @State item: number = 0;
 
-  // Invoked when a reusable custom component is added to the component tree from the reuse cache. The component's state variable can be updated here to display the correct content.
+  // Called before the component is added to the component tree from the reuse cache. The component's state variable can be updated here to display the correct content.
   aboutToReuse(params: ESObject) {
     this.item = params.item;
     console.log("=====aboutToReuse====FlowItem==reused==" + this.item);
@@ -839,7 +889,7 @@ struct ReusableFlowItem {
   }
 
   build() {
-    // Add the app.media.app_icon image to the src/main/resources/base/media directory. Otherwise, an error will be reported due to missing resources.
+    // Ensure that the app.media.app_icon file is added to src/main/resources/base/media. Missing this file will trigger a runtime error.
     Column() {
       Text("N" + this.item).fontSize(24).height('26').margin(10)
       Image($r('app.media.app_icon'))
@@ -862,13 +912,13 @@ struct Index {
   private itemWidthArray: number[] = [];
   private itemHeightArray: number[] = [];
 
-  // Calculate the width and height of the flow item.
+  // Calculate random size for flow items.
   getSize() {
     let ret = Math.floor(Math.random() * this.maxSize);
     return (ret > this.minSize ? ret : this.minSize);
   }
 
-  // Save the width and height of the flow item.
+  // Generate size arrays for flow items.
   getItemSizeArray() {
     for (let i = 0; i < 100; i++) {
       this.itemWidthArray.push(this.getSize());
@@ -885,7 +935,9 @@ struct Index {
       Column({ space: 2 }) {
         Button('back top')
           .height('5%')
-          .onClick(() => { // Back to the top once clicked.
+          .onClick(() => { 
+            
+            // Scroll to top when the component is clicked.
             this.scroller.scrollEdge(Edge.Top);
           })
         WaterFlow({ scroller: this.scroller }) {
@@ -905,25 +957,12 @@ struct Index {
       }
     }
   }
-
-  @Builder
-  itemFoot() {
-    Column() {
-      Text(`Footer`)
-        .fontSize(10)
-        .backgroundColor(Color.Red)
-        .width(50)
-        .height(50)
-        .align(Alignment.Center)
-        .margin({ top: 2 })
-    }
-  }
 }
 ```
 
 ### Swiper
 
-- In the **Swiper** scrolling scenario, child components are frequently created and destroyed in an item. You can encapsulate the child components in the item into custom components and use \@Reusable to decorate the custom components so that they can be reused.
+- For **Swiper** scrolling scenarios where child components are frequently created and destroyed, you can encapsulate the child components into a custom component and decorate it with \@Reusable to implement component reuse.
 
 ```ts
 @Entry
@@ -936,7 +975,7 @@ struct Index {
       let title = i + 1 + "test_swiper";
       let answers = ["test1", "test2", "test3",
         "test4"];
-      // Add the app.media.app_icon image to the src/main/resources/base/media directory. Otherwise, an error will be reported due to missing resources.
+      // Ensure that the app.media.app_icon file is added to src/main/resources/base/media. Missing this file will trigger a runtime error.
       this.dataSource.pushData(new Question(i.toString(), title, $r('app.media.app_icon'), answers));
     }
   }
@@ -975,7 +1014,7 @@ struct QuestionSwiperItem {
 
   aboutToReuse(params: Record<string, Object>): void {
     this.itemData = params.itemData as Question;
-    console.info("===test===aboutToReuse====QuestionSwiperItem==");
+    console.info("===aboutToReuse====QuestionSwiperItem==");
   }
 
   build() {
@@ -1066,9 +1105,9 @@ export class MyDataSource<T> extends BasicDataSource<T> {
 }
 ```
 
-### ListItemGroup
+### List Scrolling with ListItemGroup
 
-- This case can be regarded as a special **List** scrolling scenario. Encapsulate the child component of **ListItem** that needs to be destroyed and re-created into a custom component and use \@Reusable to decorate the custom component so that the custom component can be reused.
+- For list scrolling scenarios where the **ListItemGroup** component is used, you can encapsulate child components in **ListItem** that need to be destroyed and re-created into a custom component and decorate it with \@Reusable to implement component reuse.
 
 ```ts
 @Entry
@@ -1089,7 +1128,7 @@ struct ListItemGroupAndReusable {
     for (let i = 0; i < 10000; i++) {
       let data_1 = new DataSrc1();
       for (let j = 0; j < 12; j++) {
-        data_1.Data.push('Test item data: ${i} - ${j}');
+        data_1.Data.push(`Test item data: ${i} - ${j}`);
       }
       this.data.Data.push(data_1);
     }
@@ -1142,14 +1181,14 @@ class DataSrc1 implements IDataSource {
     return this.Data[index];
   }
 
-  // This method is called by the framework to register a listener to the LazyForEach data source.
+  // Called by the framework to add a listener to the data source for LazyForEach.
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
       this.listeners.push(listener);
     }
   }
 
-  // This method is called by the framework to unregister the listener from the LazyForEach data source.
+  // Called by the framework to remove the listener from the data source for the corresponding LazyForEach component.
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
@@ -1164,21 +1203,21 @@ class DataSrc1 implements IDataSource {
     });
   }
 
-  // Notify LazyForEach that a child component needs to be added for the data item with the specified index.
+  // Notify LazyForEach that a child component needs to be added at the specified index.
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
     });
   }
 
-  // Notify LazyForEach that the data item with the specified index has changed and the child component needs to be rebuilt.
+  // Notify LazyForEach that the data item at the specified index has changed and the child component needs to be rebuilt.
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index);
     });
   }
 
-  // Notify LazyForEach that the child component needs to be deleted from the data item with the specified index.
+  // Notify LazyForEach that the child component at the specified index needs to be deleted.
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
@@ -1205,14 +1244,14 @@ class DataSrc2 implements IDataSource {
     return this.Data[index];
   }
 
-  // This method is called by the framework to register a listener to the LazyForEach data source.
+  // Called by the framework to add a listener to the data source for LazyForEach.
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
       this.listeners.push(listener);
     }
   }
 
-  // This method is called by the framework to unregister the listener from the LazyForEach data source.
+  // Called by the framework to remove the listener from the data source for the corresponding LazyForEach component.
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
@@ -1227,21 +1266,21 @@ class DataSrc2 implements IDataSource {
     });
   }
 
-  // Notify LazyForEach that a child component needs to be added for the data item with the specified index.
+  // Notify LazyForEach that a child component needs to be added at the specified index.
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
     });
   }
 
-  // Notify LazyForEach that the data item with the specified index has changed and the child component needs to be rebuilt.
+  // Notify LazyForEach that the data item at the specified index has changed and the child component needs to be rebuilt.
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index);
     });
   }
 
-  // Notify LazyForEach that the child component needs to be deleted from the data item with the specified index.
+  // Notify LazyForEach that the child component at the specified index needs to be deleted.
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
@@ -1258,17 +1297,15 @@ class DataSrc2 implements IDataSource {
 ```
 
 
-### Multiple Item Types
+### Scenarios Involving Multiple Item Types
 
-#### Standard
+**Standard**
 
-- Reusable components have the same layouts.
-- For the sample code of this type, see section "List Scrolling Used with LazyForEach".
+Reusable components have the same layout. For implementation examples, see the description in the list scrolling sections.
 
-#### Limited
+**Limited Variation**
 
-- Types of different reusable components are limited.
-- In the following example, two reuse IDs are explicitly set for reusing two custom components.
+There are differences between reusable components, but the number of types is limited. For example, reuse can be achieved by explicitly setting two **reuseId** values or using two custom components.
 
 ```ts
 class MyDataSource implements IDataSource {
@@ -1317,6 +1354,7 @@ struct Index {
         LazyForEach(this.data, (item: number) => {
           ListItem() {
             ReusableComponent({ item: item })
+              // Set two reuseId values with limited variations.
               .reuseId(item % 2 === 0 ? 'ReusableComponentOne' : 'ReusableComponentTwo')
           }
           .backgroundColor(Color.Orange)
@@ -1339,6 +1377,7 @@ struct ReusableComponent {
 
   build() {
     Column() {
+      // Render according to type differences inside the component.
       if (this.item % 2 === 0) {
         Text(`Item ${this.item} ReusableComponentOne`)
           .fontSize(20)
@@ -1353,11 +1392,9 @@ struct ReusableComponent {
 }
 ```
 
-#### Composite
+**Composite**
 
-- Different reusable components have common child components.
-- Based on the composite component reuse, after the three reusable components are converted into the **Builder** function, the common child components are under the same parent component **MyComponent**.
-- When you reuse these child components, their cache pools are also shared in the parent component, reducing the consumption during component creation.
+There are multiple differences between reusable components, but they usually share common child components. In the example, after three reusable components are converted into **Builder** functions in a combined manner, the internal shared child components will be uniformly placed under the parent component **MyComponent**. The reuse cache is shared at the parent component level for child component reuse, reducing resource consumption during component creation.
 
 ```ts
 class MyDataSource implements IDataSource {
@@ -1400,7 +1437,7 @@ struct MyComponent {
     }
   }
 
-  // Convert itemBuilderOne to Builder.
+  // The reusable component implementation of itemBuilderOne is not shown. Below is the Builder version after conversion.
   @Builder
   itemBuilderOne(item: string) {
     Column() {
@@ -1410,7 +1447,7 @@ struct MyComponent {
     }
   }
 
-  // Convert itemBuilderTwo to Builder.
+  // Builder version of itemBuilderTwo after conversion.
   @Builder
   itemBuilderTwo(item: string) {
     Column() {
@@ -1420,7 +1457,7 @@ struct MyComponent {
     }
   }
 
-  // Convert itemBuilderThree to Builder.
+  // Builder version of itemBuilderThree after conversion.
   @Builder
   itemBuilderThree(item: string) {
     Column() {
@@ -1478,7 +1515,7 @@ struct ChildComponentA {
       Grid() {
         ForEach((new Array(20)).fill(''), (item: string, index: number) => {
           GridItem() {
-            // Add the app.media.startIcon image to the src/main/resources/base/media directory. Otherwise, an error will be reported due to missing resources.
+            // Ensure that the app.media.startIcon file is added to src/main/resources/base/media. Missing this file will trigger a runtime error.
             Image($r('app.media.startIcon'))
               .height(20)
           }

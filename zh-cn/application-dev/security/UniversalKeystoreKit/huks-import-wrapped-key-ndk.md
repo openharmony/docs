@@ -43,8 +43,12 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 #include "huks/native_huks_param.h"
 #include "napi/native_api.h"
 #include <algorithm>
-OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_Huks_Param *params,
-                            uint32_t paramCount) {
+
+OH_Huks_Result InitParamSet(
+    struct OH_Huks_ParamSet **paramSet,
+    const struct OH_Huks_Param *params,
+    uint32_t paramCount)
+{
     OH_Huks_Result ret = OH_Huks_InitParamSet(paramSet);
     if (ret.errorCode != OH_HUKS_SUCCESS) {
         return ret;
@@ -61,6 +65,7 @@ OH_Huks_Result InitParamSet(struct OH_Huks_ParamSet **paramSet, const struct OH_
     }
     return ret;
 }
+
 struct HksImportWrappedKeyTestParams {
     // server key, for real.
     struct OH_Huks_Blob *wrappingKeyAlias;
@@ -158,8 +163,12 @@ static struct OH_Huks_Param g_importAgreeKeyParams[] = {
     {.tag = OH_HUKS_TAG_DIGEST, .uint32Param = OH_HUKS_DIGEST_NONE},
     {.tag = OH_HUKS_TAG_IV,
      .blob = {.size = IV_SIZE, .data = (uint8_t *)IV}}}; // 此处仅为测试数据，实际使用时该值每次应该不同。
-OH_Huks_Result HuksAgreeKey(const struct OH_Huks_ParamSet *paramSet, const struct OH_Huks_Blob *keyAlias,
-                            const struct OH_Huks_Blob *peerPublicKey, struct OH_Huks_Blob *agreedKey) {
+OH_Huks_Result HuksAgreeKey(
+    const struct OH_Huks_ParamSet *paramSet,
+    const struct OH_Huks_Blob *keyAlias,
+    const struct OH_Huks_Blob *peerPublicKey,
+    struct OH_Huks_Blob *agreedKey)
+{
     uint8_t temp[10] = {0};
     struct OH_Huks_Blob inData = {sizeof(temp), temp};
     uint8_t handleU[sizeof(uint64_t)] = {0};
@@ -180,7 +189,9 @@ OH_Huks_Result HuksAgreeKey(const struct OH_Huks_ParamSet *paramSet, const struc
     }
     return ret;
 }
-OH_Huks_Result MallocAndCheckBlobData(struct OH_Huks_Blob *blob, const uint32_t blobSize) {
+
+OH_Huks_Result MallocAndCheckBlobData(struct OH_Huks_Blob *blob, const uint32_t blobSize)
+{
     struct OH_Huks_Result ret;
     ret.errorCode = OH_HUKS_SUCCESS;
     blob->data = (uint8_t *)malloc(blobSize);
@@ -189,6 +200,7 @@ OH_Huks_Result MallocAndCheckBlobData(struct OH_Huks_Blob *blob, const uint32_t 
     }
     return ret;
 }
+
 static const uint32_t TIMES = 4;
 static const uint32_t MAX_UPDATE_SIZE = 64;
 static const uint32_t MAX_OUTDATA_SIZE = MAX_UPDATE_SIZE * TIMES;
@@ -201,8 +213,12 @@ static const uint32_t MAX_OUTDATA_SIZE = MAX_UPDATE_SIZE * TIMES;
         (blob).size = 0;                                                                                               \
     } while (0)
 #define OH_HUKS_KEY_BYTES(keySize) (((keySize) + 7) / 8)
-static OH_Huks_Result HksEncryptLoopUpdate(const struct OH_Huks_Blob *handle, const struct OH_Huks_ParamSet *paramSet,
-                                           const struct OH_Huks_Blob *inData, struct OH_Huks_Blob *outData) {
+static OH_Huks_Result HksEncryptLoopUpdate(
+    const struct OH_Huks_Blob *handle,
+    const struct OH_Huks_ParamSet *paramSet,
+    const struct OH_Huks_Blob *inData,
+    struct OH_Huks_Blob *outData)
+{
     struct OH_Huks_Result ret;
     ret.errorCode = OH_HUKS_SUCCESS;
     struct OH_Huks_Blob inDataSeg = *inData;
@@ -254,8 +270,13 @@ static OH_Huks_Result HksEncryptLoopUpdate(const struct OH_Huks_Blob *handle, co
     free(outDataFinish.data);
     return ret;
 }
-OH_Huks_Result HuksEncrypt(const struct OH_Huks_Blob *key, const struct OH_Huks_ParamSet *paramSet,
-                           const struct OH_Huks_Blob *plainText, struct OH_Huks_Blob *cipherText) {
+
+OH_Huks_Result HuksEncrypt(
+    const struct OH_Huks_Blob *key,
+    const struct OH_Huks_ParamSet *paramSet,
+    const struct OH_Huks_Blob *plainText,
+    struct OH_Huks_Blob *cipherText)
+{
     uint8_t handle[sizeof(uint64_t)] = {0};
     struct OH_Huks_Blob handleBlob = {sizeof(uint64_t), handle};
     OH_Huks_Result ret = OH_Huks_InitSession(key, paramSet, &handleBlob, nullptr);
@@ -265,8 +286,9 @@ OH_Huks_Result HuksEncrypt(const struct OH_Huks_Blob *key, const struct OH_Huks_
     ret = HksEncryptLoopUpdate(&handleBlob, paramSet, plainText, cipherText);
     return ret;
 }
-static OH_Huks_Result BuildWrappedKeyData(struct OH_Huks_Blob **blobArray, uint32_t size,
-                                          struct OH_Huks_Blob *outData) {
+
+static OH_Huks_Result BuildWrappedKeyData(struct OH_Huks_Blob **blobArray, uint32_t size, struct OH_Huks_Blob *outData)
+{
     uint32_t totalLength = size * sizeof(uint32_t);
     struct OH_Huks_Result ret;
     ret.errorCode = OH_HUKS_SUCCESS;
@@ -304,7 +326,9 @@ static OH_Huks_Result BuildWrappedKeyData(struct OH_Huks_Blob **blobArray, uint3
     outData->data = outBlob.data;
     return ret;
 }
-static OH_Huks_Result CheckParamsValid(const struct HksImportWrappedKeyTestParams *params) {
+
+static OH_Huks_Result CheckParamsValid(const struct HksImportWrappedKeyTestParams *params)
+{
     struct OH_Huks_Result ret;
     ret.errorCode = OH_HUKS_SUCCESS;
     if (params == nullptr) {
@@ -322,8 +346,11 @@ static OH_Huks_Result CheckParamsValid(const struct HksImportWrappedKeyTestParam
     }
     return ret;
 }
-static OH_Huks_Result GenerateAndExportHuksPublicKey(const struct HksImportWrappedKeyTestParams *params,
-                                                     struct OH_Huks_Blob *huksPublicKey) {
+
+static OH_Huks_Result GenerateAndExportHuksPublicKey(
+    const struct HksImportWrappedKeyTestParams *params,
+    struct OH_Huks_Blob *huksPublicKey)
+{
     OH_Huks_Result ret = OH_Huks_GenerateKeyItem(params->wrappingKeyAlias, params->genWrappingKeyParamSet, nullptr);
     if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS) {
         return ret;
@@ -336,8 +363,11 @@ static OH_Huks_Result GenerateAndExportHuksPublicKey(const struct HksImportWrapp
     ret = OH_Huks_ExportPublicKeyItem(params->wrappingKeyAlias, nullptr, huksPublicKey);
     return ret;
 }
-static OH_Huks_Result GenerateAndExportCallerPublicKey(const struct HksImportWrappedKeyTestParams *params,
-                                                       struct OH_Huks_Blob *callerSelfPublicKey) {
+
+static OH_Huks_Result GenerateAndExportCallerPublicKey(
+    const struct HksImportWrappedKeyTestParams *params,
+    struct OH_Huks_Blob *callerSelfPublicKey)
+{
     OH_Huks_Result ret = OH_Huks_GenerateKeyItem(params->callerKeyAlias, params->genCallerKeyParamSet, nullptr);
     if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS) {
         return ret;
@@ -350,9 +380,12 @@ static OH_Huks_Result GenerateAndExportCallerPublicKey(const struct HksImportWra
     ret = OH_Huks_ExportPublicKeyItem(params->callerKeyAlias, params->genWrappingKeyParamSet, callerSelfPublicKey);
     return ret;
 }
-static OH_Huks_Result ImportKekAndAgreeSharedSecret(const struct HksImportWrappedKeyTestParams *params,
-                                                    const struct OH_Huks_Blob *huksPublicKey,
-                                                    struct OH_Huks_Blob *outSharedKey) {
+
+static OH_Huks_Result ImportKekAndAgreeSharedSecret(
+    const struct HksImportWrappedKeyTestParams *params,
+    const struct OH_Huks_Blob *huksPublicKey,
+    struct OH_Huks_Blob *outSharedKey)
+{
     OH_Huks_Result ret =
         OH_Huks_ImportKeyItem(params->callerKekAlias, params->importCallerKekParamSet, params->callerKek);
     if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS) {
@@ -376,9 +409,12 @@ static OH_Huks_Result ImportKekAndAgreeSharedSecret(const struct HksImportWrappe
     OH_Huks_FreeParamSet(&importAgreeKeyParams);
     return ret;
 }
-static OH_Huks_Result EncryptImportedPlainKeyAndKek(const struct HksImportWrappedKeyTestParams *params,
-                                                    struct OH_Huks_Blob *plainCipherText,
-                                                    struct OH_Huks_Blob *kekCipherText) {
+
+static OH_Huks_Result EncryptImportedPlainKeyAndKek(
+    const struct HksImportWrappedKeyTestParams *params,
+    struct OH_Huks_Blob *plainCipherText,
+    struct OH_Huks_Blob *kekCipherText)
+{
     struct OH_Huks_ParamSet *encryptParamSet = nullptr;
     OH_Huks_Result ret =
         InitParamSet(&encryptParamSet, g_aesKekEncryptParams, sizeof(g_aesKekEncryptParams) / sizeof(OH_Huks_Param));
@@ -393,9 +429,14 @@ static OH_Huks_Result EncryptImportedPlainKeyAndKek(const struct HksImportWrappe
     OH_Huks_FreeParamSet(&encryptParamSet);
     return ret;
 }
-static OH_Huks_Result ImportWrappedKey(const struct HksImportWrappedKeyTestParams *params,
-                                       struct OH_Huks_Blob *plainCipher, struct OH_Huks_Blob *kekCipherText,
-                                       struct OH_Huks_Blob *peerPublicKey, struct OH_Huks_Blob *wrappedKeyData) {
+
+static OH_Huks_Result ImportWrappedKey(
+    const struct HksImportWrappedKeyTestParams *params,
+    struct OH_Huks_Blob *plainCipher,
+    struct OH_Huks_Blob *kekCipherText,
+    struct OH_Huks_Blob *peerPublicKey,
+    struct OH_Huks_Blob *wrappedKeyData)
+{
     struct OH_Huks_Blob commonAad = {.size = AAD_SIZE, .data = reinterpret_cast<uint8_t *>(AAD)};
     struct OH_Huks_Blob commonNonce = {.size = NONCE_SIZE, .data = reinterpret_cast<uint8_t *>(NONCE)};
     struct OH_Huks_Blob keyMaterialLen = {.size = sizeof(uint32_t), .data = (uint8_t *)&params->keyMaterialLen};
@@ -427,7 +468,9 @@ static OH_Huks_Result ImportWrappedKey(const struct HksImportWrappedKeyTestParam
                                        params->importWrappedKeyParamSet, wrappedKeyData);
     return ret;
 }
-OH_Huks_Result HksImportWrappedKeyTestCommonCase(const struct HksImportWrappedKeyTestParams *params) {
+
+OH_Huks_Result HksImportWrappedKeyTestCommonCase(const struct HksImportWrappedKeyTestParams *params)
+{
     OH_Huks_Result ret = CheckParamsValid(params);
     if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS) {
         return ret;
@@ -446,13 +489,15 @@ OH_Huks_Result HksImportWrappedKeyTestCommonCase(const struct HksImportWrappedKe
          * 1.设备A将待导入密钥转换成HUKS密钥材料格式To_Import_Key（仅针对非对称密钥，若待导入密钥是对称密钥则可省略此步骤），
          *   本示例使用g_importedAes256PlainKey（对称密钥）作为模拟
          */
-        /* 2.设备B生成一个加密导入用途的、用于协商的非对称密钥对Wrapping_Key（公钥Wrapping_Pk，私钥Wrapping_Sk），其密钥用途设置为unwrap，导出Wrapping_Key公钥Wrapping_Pk存放在变量huksPublicKey中
+        /* 2.设备B生成一个加密导入用途的、用于协商的非对称密钥对Wrapping_Key（公钥Wrapping_Pk，私钥Wrapping_Sk），
+         *   其密钥用途设置为unwrap，导出Wrapping_Key公钥Wrapping_Pk，存放在变量huksPublicKey中
          */
         ret = GenerateAndExportHuksPublicKey(params, &huksPublicKey);
         if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS) {
             break;
         }
-        /* 3.设备A使用和设备B同样的算法，生成一个加密导入用途的、用于协商的非对称密钥对Caller_Key（公钥Caller_Pk，私钥Caller_Sk），导出Caller_Key公钥Caller_Pk存放在变量callerSelfPublicKey中
+        /* 3.设备A使用和设备B同样的算法，生成一个加密导入用途的、用于协商的非对称密钥对Caller_Key（公钥Caller_Pk，私钥Caller_Sk），
+         * 导出Caller_Key公钥Caller_Pk，存放在变量callerSelfPublicKey中
          */
         ret = GenerateAndExportCallerPublicKey(params, &callerSelfPublicKey);
         if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS) {
@@ -487,7 +532,9 @@ OH_Huks_Result HksImportWrappedKeyTestCommonCase(const struct HksImportWrappedKe
     HUKS_FREE_BLOB(wrappedKeyData);
     return ret;
 }
-void HksClearKeysForWrappedKeyTest(const struct HksImportWrappedKeyTestParams *params) {
+
+void HksClearKeysForWrappedKeyTest(const struct HksImportWrappedKeyTestParams *params)
+{
     OH_Huks_Result ret = CheckParamsValid(params);
     if (ret.errorCode != (int32_t)OH_HUKS_SUCCESS) {
         return;
@@ -498,9 +545,12 @@ void HksClearKeysForWrappedKeyTest(const struct HksImportWrappedKeyTestParams *p
     (void)OH_Huks_DeleteKeyItem(params->callerAgreeKeyAlias, nullptr);
     (void)OH_Huks_DeleteKeyItem(params->importedKeyAlias, nullptr);
 }
-static OH_Huks_Result InitCommonTestParamsAndDoImport(struct HksImportWrappedKeyTestParams *importWrappedKeyTestParams,
-                                                      const struct OH_Huks_Param *importedKeyParamSetArray,
-                                                      uint32_t arraySize) {
+
+static OH_Huks_Result InitCommonTestParamsAndDoImport(
+    struct HksImportWrappedKeyTestParams *importWrappedKeyTestParams,
+    const struct OH_Huks_Param *importedKeyParamSetArray,
+    uint32_t arraySize)
+{
     struct OH_Huks_ParamSet *genX25519KeyParamSet = nullptr;
     struct OH_Huks_ParamSet *genCallerKeyParamSet = nullptr;
     struct OH_Huks_ParamSet *callerImportParamsKek = nullptr;
@@ -546,7 +596,9 @@ static OH_Huks_Result InitCommonTestParamsAndDoImport(struct HksImportWrappedKey
     OH_Huks_FreeParamSet(&importPlainKeyParams);
     return ret;
 }
-static napi_value ImportWrappedKey(napi_env env, napi_callback_info info) {
+
+static napi_value ImportWrappedKey(napi_env env, napi_callback_info info)
+{
     struct HksImportWrappedKeyTestParams importWrappedKeyTestParams001 = {0};
     importWrappedKeyTestParams001.wrappingKeyAlias = &g_wrappingKeyAliasAes256;
     importWrappedKeyTestParams001.keyMaterialLen = g_importedAes256PlainKey.size;

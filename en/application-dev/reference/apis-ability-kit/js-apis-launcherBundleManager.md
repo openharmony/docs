@@ -1,4 +1,10 @@
 # @ohos.bundle.launcherBundleManager (launcherBundleManager)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The module providers APIs for the launcher application to obtain the [launcher ability information](js-apis-bundleManager-launcherAbilityInfo.md).
 
@@ -12,7 +18,7 @@ The module providers APIs for the launcher application to obtain the [launcher a
 import { launcherBundleManager } from '@kit.AbilityKit';
 ```
 
-## launcherBundleManager.getLauncherAbilityInfoSync<sup>18+</sup>
+## launcherBundleManager.getLauncherAbilityInfoSync
 
 getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>
 
@@ -62,7 +68,7 @@ try {
 }
 ```
 
-## LauncherAbilityInfo<sup>18+</sup>
+## LauncherAbilityInfo
 
 type LauncherAbilityInfo = _LauncherAbilityInfo
 
@@ -84,7 +90,7 @@ Defines the shortcut information defined in the [module.json5](../../quick-start
 
 | Type                                                        | Description          |
 | ------------------------------------------------------------ | -------------- |
-| [_ShortcutInfo](./js-apis-bundleManager-shortcutInfo.md#shortcutinfo) | Shortcut information defined in the **module.json5** file.|
+| [_ShortcutInfo](./js-apis-bundleManager-shortcutInfo.md#shortcutinfo-1) | Shortcut information defined in the **module.json5** file.|
 
 ## ShortcutWant<sup>20+</sup>
 

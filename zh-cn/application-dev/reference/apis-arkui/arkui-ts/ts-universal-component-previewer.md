@@ -51,7 +51,7 @@
 | deviceType | string | 否 | 组件预览渲染的设备类型，默认为Phone。 |
 | dpi | number | 否 | 预览设备的屏幕DPI值，默认为480。 |
 | orientation | string | 否 | 预览设备的横竖屏状态，取值为portrait或landscape，默认为portrait。 |
-| roundScreen | boolean | 否 | 预览的屏幕形状是否为圆形，默认为false。 |
+| roundScreen | boolean | 否 | 预览的屏幕形状是否为圆形，默认为false。true为圆形，false为非圆形。 |
 
 ## 示例
 

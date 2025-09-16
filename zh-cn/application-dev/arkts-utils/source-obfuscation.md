@@ -46,6 +46,7 @@ ArkGuard支持名称混淆、代码压缩和注释删除的基础混淆功能，
 
 ```typescript
 // 混淆前
+// example.ts
 class A1 {
   prop1: string = '';
 }
@@ -65,6 +66,7 @@ test(a2);
 
 ```typescript
 // 混淆后
+// example.ts
 class A1 {
   prop1: string = '';
 }
@@ -160,21 +162,25 @@ test(a2);
 
 配置该选项后，所有属性名将被混淆，以下场景除外：
 
-* 在未开启`-enable-export-obfuscation`选项的情况下，被`import/export`直接导入或导出的类或对象的属性名不会被混淆。例如，下面例子中的属性名`data`不会被混淆。
+* 在未开启`-enable-export-obfuscation`选项的情况下，被`import/export`直接导入或导出的类或对象的属性名不会被混淆。例如，下面例子中的属性名`data1`不会被混淆。
 
-    ```
+    ```ts
+    // example.ts
     export class MyClass {
-       data: string;
+       data1: string;
     }
     ```
 
 * ArkUI组件中的属性名不会被混淆。例如，下面例子中的`message`和`data`不会被混淆。
 
     ```
+    // example.ets
     @Component struct MyExample {
-        @State message: string = "hello";
-        data: number[] = [];
-        // ...
+      @State message: string = "hello";
+      data: number[] = [];
+      // ...
+      build() {
+      }
     }
     ```
 
@@ -182,7 +188,8 @@ test(a2);
 * SDK API列表中的属性名不会被混淆。SDK API列表是构建时从SDK中自动提取出来的一个名称列表。其缓存文件为systemApiCache.json，路径为工程目录/build/default/cache/{...}/release/obfuscation。
 * 字符串字面量属性名不会被混淆。例如，下面例子中的`exampleName`和`exampleAge`不会被混淆。
 
-    ```
+    ```ts
+    // example.ts
     let person = {"exampleName": "abc"};
     person["exampleAge"] = 22;
     ```
@@ -207,14 +214,16 @@ test(a2);
 
 根据上述配置，`exampleName`和`exampleAge`的混淆效果如下：
 
-  ```
+  ```ts
   // 混淆前：
+  // example.ts
   let person = {"exampleName": "abc"};
   person["exampleAge"] = 22;
   ```
 
-  ```
+  ```ts
   // 混淆后：
+  // example.ts
   let person = {"a": "abc"};
   person["b"] = 22;
   ```
@@ -291,19 +300,37 @@ test(a2);
 
 开启文件/文件夹名称混淆，效果如下：
 
+  ```ts
+  // test1/test2.ts
+  export function foo () {}
   ```
+
+  ```ts
+  // example.ts
   // 混淆前：
   import * as m from '../test1/test2';
   import { foo } from '../test1/test2';
-  const module = import('../test1/test2');
+
+  m.foo();
+  foo();
+  async function func() {
+    const modules = await import('../test1/test2');
+    const result = modules.foo();
+  }
   ```
 
 
-  ```
+  ```ts
+  // example.ts
   // 混淆后：
-  import * as m from '../a/b';
-  import { foo } from '../a/b';
-  const module = import('../a/b');
+  import * as m from "@normalized:N&&&entry/src/main/ets/c/d&";
+  import { foo } from "@normalized:N&&&entry/src/main/ets/c/d&";
+  m.foo();
+  foo();
+  async function func() {
+      const f = await import("@normalized:N&&&entry/src/main/ets/c/d&");
+      const g = f.foo();
+  }
   ```
 
 配置该选项后，所有文件和文件夹名称都将被混淆，以下场景除外：
@@ -369,16 +396,18 @@ test(a2);
 ### -remove-log
 
 删除对console.*语句的调用，要求console.*语句的返回值未被使用。效果如下：
-  ```
+  ```ts
   // 混淆前：
-  if (flag) {
-    console.info("hello");
+  function add(a: number, b: number) {
+    console.info("result", a + b);
+    return a + b;
   }
   ```
 
-  ```
+  ```ts
   // 混淆后：
-  if (flag) {
+  function add(a: number, b: number) {
+      return a + b;
   }
   ```
 
@@ -398,22 +427,29 @@ test(a2);
    ```
 3. module或namespace中的调用。  
    例如：
-   ```
+   ```ts
+   // example.ts
    namespace ns {
     console.info('in ns');
    }
    ```
 4. switch语句中的调用。  
    例如：
-   ```js
-   switch (value) {
-     case 1:
-       console.info("in switch case");
-       break;
-     default:
-       console.warn("default");
-   }
-   ```
+    ```ts
+    function getDayName(day: number): string {
+      switch (day) {
+        case 1:
+          console.info("Matched case 1: 星期一");
+          return "星期一";
+        case 2:
+          console.info("Matched case 2: 星期二");
+          return "星期二";
+        default:
+          console.error("No matching case for day:", day);
+          return "无效的日期";
+      }
+    }
+    ```
 
 ### -print-namecache
 
@@ -490,6 +526,7 @@ test(a2);
 
     例如：
     ```ts
+    // example.ts
     let outdoor = 1;
     enum Test {
       member1,
@@ -572,7 +609,7 @@ strip-language-default
 
 ### -use-keep-in-source
 
-支持在`.ts`/`.ets`源码中通过以下两种注释标记白名单（不支持声明文件）：
+从API version 19开始，支持在`.ts`和`.ets`源码中通过以下两种注释标记到白名单中，不支持在声明文件中使用。
 
 `// @KeepSymbol`：用来标记需要保留的名称，通常写在代码上一行，表示该名称在编译时不会被混淆。
 
@@ -586,7 +623,7 @@ strip-language-default
 
 注：以下均以`// @KeepSymbol`为例，`// @KeepAsConsumer`支持的场景和`// @KeepSymbol`相同。
 
-#### 类
+**类**
 
 当前支持对类中的以下语法进行标记：
 
@@ -623,7 +660,7 @@ class MyClass03 {
 }
 ```
 
-#### 接口
+**接口**
 
 当前支持对接口中的以下语法进行标记：
 
@@ -648,7 +685,7 @@ interface MyInterface02 {
 }
 ```
 
-#### 枚举
+**枚举**
 
 当前支持对枚举中的以下语法进行标记：
 
@@ -673,7 +710,7 @@ enum Color02 {
 }
 ```
 
-#### 函数
+**函数**
 
 支持对函数名进行标记。
 
@@ -687,7 +724,7 @@ function MyAdd(a: number, b:number): number {
 }
 ```
 
-#### 命名空间
+**命名空间**
 
 支持对命名空间名称进行标记。
 
@@ -702,7 +739,7 @@ namespace MyNameSpace {
 }
 ```
 
-#### 全局变量
+**全局变量**
 
 当前仅支持全局变量的标记，不支持局部变量。
 
@@ -714,7 +751,7 @@ namespace MyNameSpace {
 const myVal = 1;
 ```
 
-#### 注解
+**注解**
 
 当前仅支持标记并保留注解声明。标记注解成员无效，注解成员本身不会被混淆。
 
@@ -733,7 +770,7 @@ const myVal = 1;
 }
 ```
 
-#### 白名单添加规则
+**白名单添加规则**
 
 被标记的名称根据以下规则添加到混淆白名单，被KeepAsConsumer保留的名称还会生成到`obfuscation.txt`文件中。
 
@@ -755,13 +792,14 @@ export class MyClass {
 ```
 上述示例中`MyClass`会被添加到-keep-global-name和-keep-property-name中，`prop01`会被添加到-keep-property-name中，同时，该规则还会写入`obfuscation.txt`文件中。
 
-#### -use-keep-in-source不支持的场景
+**-use-keep-in-source不支持的场景**
 
 暂不支持字符串属性、数字属性以及计算属性。
 
 **示例**
 
 ```typescript
+// example.ts
 const myMethodName = "myMethod";
 
 // 11，aa，myMethod不会被收集到白名单中
@@ -820,6 +858,7 @@ lastName
 1.如果代码中通过字符串拼接、变量访问或使用`defineProperty`方法定义对象属性，则这些属性名应被保留。例如：
 
 ```js
+// example.js
 var obj = {x0: '0', x1: '1', x2: '2'};
 for (var i = 0; i <= 2; i++) {
     console.info(obj['x' + i]);  // x0, x1, x2应该被保留
@@ -844,6 +883,7 @@ console.info(obj['t' + '1']);        // t1应该被保留
 // -enable-property-obfuscation
 // -enable-string-property-obfuscation
 
+// example.ts
 var obj = {t:'1', m:'2'};
 obj.t = 'a';
 console.info(obj['t']); // 此时，'t'会被正确混淆，t可以选择性保留
@@ -869,24 +909,30 @@ export class MyClass1 {
 }
 ```
 
-3.在ArkTS/TS/JS文件中使用so库的API（如示例中的foo）时，需手动保留API名称。
+3.在ArkTS/TS/JS文件中使用so库的API（如示例中的add）时，需手动保留API名称。
 
-```
-import testNapi from 'library.so'
-testNapi.foo() // foo需要保留，示例如：-keep-property-name foo
+```ts
+// src/main/cpp/types/libentry/Index.d.ts
+export const addNum: (a: number, b: number) => number;
+
+// example.ets
+import testNapi from 'libentry.so';
+
+testNapi.addNum(2, 3); // addNum需要保留，示例如：-keep-property-name addNum
 ```
 
 4.JSON数据解析和对象序列化时，需要保留使用到的字段，例如：
 
-```ts
-// 示例JSON文件结构(test.json)：
-/*
+示例JSON文件结构（test.json）：
+
+```json
 {
   "jsonProperty": "value",
   "otherProperty": "value2"
 }
-*/
+```
 
+```ts
 import jsonData from './test.json';
 
 let jsonProp = jsonData.jsonProperty; // jsonProperty应该被保留
@@ -902,12 +948,14 @@ const jsonStr = JSON.stringify(obj); // prop1 和 prop2 会被混淆，应该被
 
 5.使用到的数据库相关的字段，需要手动保留。例如，数据库键值对类型（ValuesBucket）中的属性：
 
-```
+```ts
+import { ValuesBucket } from '@kit.ArkData';
+
 const valueBucket: ValuesBucket = {
-  'ID1': ID1, // ID1应该被保留
-  'NAME1': name, // NAME1应该被保留
-  'AGE1': age, // AGE1应该被保留
-  'SALARY1': salary // SALARY1应该被保留
+  ID1: 'ID1', // ID1应该被保留
+  NAME1: 'jack', // NAME1应该被保留
+  AGE1: 20, // AGE1应该被保留
+  SALARY1: 100 // SALARY1应该被保留
 }
 ```
 
@@ -945,6 +993,7 @@ printPersonName
 `namespace`中导出的名称也可以通过`-keep-global-name`选项保留，示例如下：
 
 ```ts
+// example.ts
 export namespace Ns {
   export const myAge = 18 // -keep-global-name myAge 保留变量myAge
   export function myFunc() {} // -keep-global-name myFunc 保留函数myFunc
@@ -962,7 +1011,15 @@ export namespace Ns {
 当以命名导入的方式导入so库的API时，如果同时开启`-enable-toplevel-obfuscation`和`-enable-export-obfuscation`选项，需要手动保留API的名称。
 
 ```ts
-import { testNapi, testNapi1 as myNapi } from 'library.so' // testNapi 和 testNapi1 应该被保留
+// src/main/cpp/types/libentry/Index.d.ts
+declare function testNapi(): void;
+declare function testNapi2(): void;
+
+// example.ets
+import { testNapi, testNapi2 as myNapi } from 'libentry.so'; // testNapi 和 testNapi2 应该被保留
+
+testNapi();
+myNapi();
 ```
 
 ### -keep-file-name
@@ -987,15 +1044,26 @@ file
 
 1.在使用`require`引入文件路径时，由于`ArkTS`不支持[CommonJS](../arkts-utils/module-principle.md#commonjs模块)语法，因此这种情况下路径应该被保留。
 
-```
-const module1 = require('./file1')   // file1 应该被保留
+```js
+// example.js
+const module1 = require('./file1');   // file1 应该被保留
 ```
 
 2.对于动态导入的路径名，由于无法识别`import`函数中的参数是否为路径，因此在这种情况下应保留路径。
 
+```ts
+// file2.ts
+export function foo () {}
 ```
-const moduleName = './file2'         // moduleName对应的路径名file2应该被保留
-const module2 = import(moduleName)
+
+```ts
+// main.ts
+const moduleName = './file2'; // moduleName对应的路径名file2应该被保留
+async function func() {
+  const modules = await import(moduleName);
+  const result = modules.foo();
+}
+
 ```
 
 3.在使用[动态路由](../ui/arkts-navigation-navigation.md#跨包动态路由)进行路由跳转时，传递给动态路由的路径应被保留。动态路由提供系统路由表和自定义路由表两种方式。若采用自定义路由表进行跳转，配置白名单的方式与第二种动态引用场景一致。若采用系统路由表进行跳转，则需将模块下`resources/base/profile/route_map.json`文件中`pageSourceFile`字段对应的路径添加到白名单中。
@@ -1127,7 +1195,7 @@ Human
 
 ### 保留选项支持的通配符
 
-#### 名称类通配符
+**名称类通配符**
 
 名称类通配符使用方式如下：
 
@@ -1159,7 +1227,7 @@ a*
 *
 ```
 
-#### 路径类通配符
+**路径类通配符**
 
 路径类通配符使用方式如下：
 
@@ -1264,7 +1332,7 @@ a*
 构建HSP时，生成的远程HSP中的obfuscation.txt仅包含自身的consumerFiles属性。
 构建HAP时，不会生成obfuscation.txt文件。
 
-#### 混淆规则合并逻辑
+**混淆规则合并逻辑**
 
 混淆选项：使用或运算进行合并，即开关选项只要在参与合并的任意一个规则文件中存在，最终的合并结果中就会包含该开关选项。  
 保留选项：合并时，对于白名单选项，其内容取并集。
@@ -1296,26 +1364,31 @@ a*
 
 2. 如果在`consumerFiles`指定的混淆配置文件中添加`-keep-dts`选项，该选项会被转换成`-keep-global-name`和`-keep-property-name`。
 
-## 混淆各功能上线SDK版本
+## 混淆各功能起始API版本
 
-| 混淆选项 | 功能描述  | 最低版本号 |
+| 混淆选项 | 功能描述  | 起始API版本 |
 | ------- | --------- | ------ |
-| -disable-obfuscation         | 关闭混淆 | 4.0.9.2 |
-| -enable-property-obfuscation | 属性混淆 | 4.0.9.2 |
-| -enable-string-property-obfuscation | 字符串字面量属性名混淆 | 4.0.9.2 |
-| -enable-toplevel-obfuscation | 顶层作用域名称混淆 | 4.0.9.2 |
-| -enable-filename-obfuscation | HAR包文件/文件夹名称混淆 <br> HAP/HSP文件/文件夹名称混淆 | 4.1.5.3 <br> 5.0.0.19 |
-| -enable-export-obfuscation   | 向外导入或导出的名称混淆 | 4.1.5.3 |
-| -compact                     | 去除不必要的空格符和所有的换行符 | 4.0.9.2 |
-| -remove-log                  | 删除特定场景中的console.* | 4.0.9.2 |
-| -print-namecache             | 将名称缓存保存到指定的文件路径 | 4.0.9.2 |
-| -apply-namecache             | 复用指定的名称缓存文件 | 4.0.9.2 |
-| -remove-comments             | 删除文件中所有注释 | 4.1.5.3 |
-| -keep-property-name          | 保留属性名 | 4.0.9.2 |
-| -keep-global-name            | 保留顶层作用域的名称 | 4.0.9.2 |
-| -keep-file-name              | 保留HAR包的文件/文件夹的名称 <br> 保留HAP/HSP包的文件/文件夹的名称 | 4.1.5.3 <br> 5.0.0.19 |
-| -keep-dts                    | 保留指定路径的.d.ts文件中的名称 | 4.0.9.2 |
-| -keep-comments               | 保留编译生成的声明文件中class、function、namespace、enum、struct、interface、module、type及属性上方的JsDoc注释 | 4.1.5.3 |
-| -keep                        | 保留指定路径中的所有名称 | 5.0.0.18 |
-| 通配符                       | 名称类和路径类的保留选项支持通配符 | 5.0.0.24 |
-| -use-keep-in-source          | 通过注释在源码中标记白名单 | 5.1.0.57 |
+| -disable-obfuscation         | 关闭混淆 | 10  |
+| -enable-property-obfuscation | 属性混淆 | 10 |
+| -enable-string-property-obfuscation | 字符串字面量属性名混淆 | 10 |
+| -enable-toplevel-obfuscation | 顶层作用域名称混淆 | 10 |
+| -enable-filename-obfuscation | HAR包文件/文件夹名称混淆 <br> HAP/HSP文件/文件夹名称混淆 | 10 <br> 12 |
+| -enable-export-obfuscation   | 向外导入或导出的名称混淆 | 10 |
+| -compact                     | 去除不必要的空格符和所有的换行符 | 10 |
+| -remove-log                  | 删除特定场景中的console.* | 10 |
+| -print-namecache             | 将名称缓存保存到指定的文件路径 | 10 |
+| -apply-namecache             | 复用指定的名称缓存文件 | 10 |
+| -remove-comments             | 删除文件中所有注释 | 10 |
+| -keep-property-name          | 保留属性名 | 10 |
+| -keep-global-name            | 保留顶层作用域的名称 | 10 |
+| -keep-file-name              | 保留HAR包的文件/文件夹的名称 <br> 保留HAP/HSP包的文件/文件夹的名称 | 10 <br> 12 |
+| -keep-dts                    | 保留指定路径的.d.ts文件中的名称 | 12 |
+| -keep-comments               | 保留编译生成的声明文件中class、function、namespace、enum、struct、interface、module、type及属性上方的JsDoc注释 | 12 |
+| -keep                        | 保留指定路径中的所有名称 | 12 |
+| 通配符                       | 名称类和路径类的保留选项支持通配符 | 12 |
+| -print-kept-names | 输出未混淆名单 | 18 |
+| -extra-options strip-language-default | 缩减语言预置白名单 | 18 |
+| -extra-options strip-system-api-args | 缩减系统预置白名单 | 18 |
+| -keep-parameter-names | 保留声明文件参数 | 18 |
+| -enable-lib-obfuscation-options | 合并依赖模块选项 | 18 |
+| -use-keep-in-source          | 通过注释在源码中标记白名单 | 19 |

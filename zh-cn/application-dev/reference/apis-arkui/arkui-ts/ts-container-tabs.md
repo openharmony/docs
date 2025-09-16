@@ -2,7 +2,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--Designer: @yangfan229-->
+<!--Designer: @CCFFWW-->
 <!--Tester: @lxl007-->
 <!--Adviser: @HelloCrease-->
 
@@ -17,7 +17,7 @@
 
 ## 子组件
 
-仅支持子组件[TabContent](ts-container-tabcontent.md)，以及渲染控制类型[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)和[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)，不建议自定义组件作为子组件。并且if/else和ForEach下也仅支持TabContent作为子组件，不建议自定义组件作为子组件。
+仅支持子组件[TabContent](ts-container-tabcontent.md)，以及渲染控制类型[if/else](../../../ui/rendering-control/arkts-rendering-control-ifelse.md)和[ForEach](../../../ui/rendering-control/arkts-rendering-control-foreach.md)，不建议自定义组件作为子组件。并且if/else和ForEach下也仅支持TabContent作为子组件，不建议自定义组件作为子组件。
 
 >  **说明：**
 >
@@ -822,7 +822,7 @@ type OnTabsGestureSwipeCallback = (index: number, extraInfo: TabsAnimationEvent)
 
 | 参数名 | 类型                                                   | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| index  | number                                                 | 是   | 当前显示元素的索引，索引从0开始。                                    |
+| index  | number                                                 | 是   | 当前显示元素的索引，索引从0开始。 <br/>取值范围：[0, 索引值-1]                                   |
 | extraInfo  | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
 
 ## TabsCustomContentTransitionCallback<sup>18+</sup>
@@ -839,8 +839,8 @@ type TabsCustomContentTransitionCallback = (from: number, to: number) => TabCont
 
 | 参数名 | 类型   | 必填 | 说明                            |
 | ------ | ------ | ---- | ------------------------------- |
-| from   | number | 是   | 动画开始时，当前页面的index值，索引从0开始。 |
-| to     | number | 是   | 动画开始时，目标页面的index值，索引从0开始。 |
+| from   | number | 是   | 动画开始时，当前页面的index值，索引从0开始。<br/>取值范围：[0, 索引值-1]，当设置的值超过索引值或小于0时无转场动画。 |
+| to     | number | 是   | 动画开始时，目标页面的index值，索引从0开始。<br/>取值范围：[0, 索引值-1]，当设置的值超过索引值或小于0时无转场动画。 |
 
 **返回值：** 
 
@@ -2607,15 +2607,15 @@ struct TabsExample {
       .animationDuration(400)
       .animationMode(AnimationMode.CONTENT_FIRST)
       .onChange((index: number) => {
-        console.log('onChange index:' + index);
+        console.info('onChange index:' + index);
         this.currentIndex = index;
       })
       .onSelected((index: number) => {
-        console.log('onSelected index:' + index);
+        console.info('onSelected index:' + index);
         this.selectedIndex = index;
       })
       .onUnselected((index: number) => {
-        console.log('onUnselected index:' + index);
+        console.info('onUnselected index:' + index);
       })
       .width('100%')
       .height('100%')

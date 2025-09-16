@@ -1,5 +1,12 @@
 # @ohos.app.ability.OpenLinkOptions (Optional Parameters of openLink)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 **OpenLinkOptions** can be used as an input parameter of [openLink()](js-apis-inner-application-uiAbilityContext.md#openlink12) to indicate whether to enable only App Linking and pass in optional parameters in the form of key-value pairs.
 
 > **NOTE**
@@ -22,8 +29,8 @@ import { OpenLinkOptions } from '@kit.AbilityKit';
 
 | Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| appLinkingOnly | boolean | No| Yes| Whether the UIAbility must be started in App Linking mode.<br>- If this parameter is set to **true** and no UIAbility matches the URL in App Linking, the result is returned directly.<br>- If this parameter is set to **false** and no UIAbility matches the URL in App Linking, App Linking is degraded to Deep Link. The default value is **false**.<br>When the aa command is used to implicitly start an ability, you can set **--pb appLinkingOnly true** or **--pb appLinkingOnly false** to start the ability in App Linking mode.|
-| parameters | Record\<string, Object> | No| Yes| List of parameters in Want.<br>**NOTE**: For details about the usage rules, see **parameters** in [want](./js-apis-app-ability-want.md).|
+| appLinkingOnly | boolean | No| Yes| Whether the UIAbility must be started using <!--RP1-->[App Linking](../../application-models/app-linking-startup.md)<!--RP1End-->.<br>- If this parameter is set to **true** and no UIAbility matches the URL in App Linking, the result is returned directly.<br>- If this parameter is set to **false** and no UIAbility matches the URL in App Linking, App Linking falls back to [Deep Linking](../../application-models/deep-linking-startup.md). The default value is **false**.<br>When the aa command is used to implicitly start an ability, you can set **--pb appLinkingOnly true** or **--pb appLinkingOnly false** to start the ability in App Linking mode.|
+| parameters | Record\<string, Object> | No| Yes| List of parameters in Want.<br>Note: For details about the usage rules, see **parameters** in [want](./js-apis-app-ability-want.md).|
 
 **Example**
 

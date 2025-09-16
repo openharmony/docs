@@ -1,12 +1,19 @@
 # Encryption and Decryption (ArkTS)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
+
 This topic walks you through on how to perform encryption and decryption using AES128, RSA2048, and SM2. For details about the scenarios and supported algorithms, see [Supported Algorithms](huks-encryption-decryption-overview.md#supported-algorithms).
 
 ## How to Develop
 
 **Key Generation**
 
-1. Set the key alias.
+1. Specify the key alias. For details about the naming rules, see [Key Generation Overview and Algorithm Specifications](huks-key-generation-overview.md).
 
 2. Initialize the key property set.
 
@@ -43,7 +50,7 @@ Alternatively, you can [import a key](huks-key-import-overview.md).
 3. Obtain the [algorithm parameters](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam) for decryption.
 
    The parameters to be configured vary with the algorithm used.
-   - If the AES algorithm and GCM block mode are used for encryption, **NONCE** and **AEAD** are mandatory and **AAD** is optional. For details, see [AES/GCM/NoPadding](#aesgcmnopadding).
+   - If the AES algorithm and GCM block mode are used for decryption, **NONCE** and **AEAD** are mandatory and **AAD** is optional. For details, see [AES/GCM/NoPadding](#aesgcmnopadding).
    - The requirements for the parameters in the other development cases are the same as those in the encryption.
    
    For details about the specifications, see [Encryption and Decryption Overview and Algorithm Specifications](huks-encryption-decryption-overview.md).
@@ -69,10 +76,10 @@ import { huks } from '@kit.UniversalKeystoreKit';
 let aesKeyAlias = 'test_aesKeyAlias';
 let handle: number;
 let plainText = '123456';
-let IV = '001122334455';
+let IV = '001122334455'; // Replace this example code with a random value in practice.
 let cipherData: Uint8Array;
 
-function StringToUint8Array(str: String) {
+function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -263,6 +270,14 @@ async function DeleteKey() {
       console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
     })
 }
+
+export async function TestEncryptDecrypt()
+{
+  await GenerateAesKey();
+  await EncryptData();
+  await DecryptData();
+  await DeleteKey();
+}
 ```
 
 ### AES/GCM/NoPadding
@@ -278,9 +293,9 @@ let handle: number;
 let plainText = '123456';
 let cipherData: Uint8Array;
 let AAD = '1234567890123456';
-let NONCE = '001122334455';
+let NONCE = '001122334455'; // Replace this example code with a random value in practice.
 
-function StringToUint8Array(str: String) {
+function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -481,11 +496,19 @@ async function DeleteKey() {
       console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
     })
 }
+
+export async function TestEncryptDecrypt()
+{
+  await GenerateAesKey();
+  await EncryptData();
+  await DecryptData();
+  await DeleteKey();
+}
 ```
 
 ### RSA/ECB/PKCS1_V1_5
 
-```
+```ts
 /*
  * The following uses RSA/ECB/PKCS1_V1_5 with promise-based APIs.
  */
@@ -496,7 +519,7 @@ let handle: number;
 let plainText = '123456';
 let cipherData: Uint8Array;
 
-function StringToUint8Array(str: String) {
+function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -687,11 +710,19 @@ async function DeleteKey() {
       console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
     })
 }
+
+export async function TestEncryptDecrypt()
+{
+  await GenerateRsaKey();
+  await EncryptData();
+  await DecryptData();
+  await DeleteKey();
+}
 ```
 
 ### RSA/ECB/OAEP/SHA256
 
-```
+```ts
 /*
  * The following uses RSA/ECB/OAEP/SHA256 with promise-based APIs.
  */
@@ -702,7 +733,7 @@ let handle: number;
 let plainText = '123456';
 let cipherData: Uint8Array;
 
-function StringToUint8Array(str: String) {
+function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -892,6 +923,14 @@ async function DeleteKey() {
     }).catch((error: Error) => {
       console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
     })
+}
+
+export async function TestEncryptDecrypt()
+{
+  await GenerateRsaKey();
+  await EncryptData();
+  await DecryptData();
+  await DeleteKey();
 }
 ```
 
@@ -908,7 +947,7 @@ let handle: number;
 let plainText = '123456';
 let cipherData: Uint8Array;
 
-function StringToUint8Array(str: String) {
+function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -1087,6 +1126,14 @@ async function DeleteKey() {
       console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
     })
 }
+
+export async function TestEncryptDecrypt()
+{
+  await GenerateSm2Key();
+  await EncryptDataSm2();
+  await DecryptDataSm2();
+  await DeleteKey();
+}
 ```
 
 <!--Del-->
@@ -1101,10 +1148,10 @@ import { huks } from '@kit.UniversalKeystoreKit';
 let desKeyAlias = 'test_desKeyAlias';
 let handle: number;
 let plainText = '12345678';
-let IV = '12345678';
+let IV = '12345678'; // Replace this example code with a random value in practice.
 let cipherData: Uint8Array;
 
-function StringToUint8Array(str: String) {
+function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
@@ -1294,6 +1341,14 @@ async function DeleteKey() {
     }).catch((error: Error) => {
       console.error(`promise: delete data failed, ${JSON.stringify(error)}`);
     })
+}
+
+export async function TestEncryptDecrypt()
+{
+  await GenerateDesKey();
+  await EncryptData();
+  await DecryptData();
+  await DeleteKey();
 }
 ```
 <!--DelEnd-->

@@ -1,5 +1,12 @@
 # Account Management Error Codes
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
+
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -14,7 +21,7 @@ The system service works abnormally.
 
 **Possible Causes**
 
-
+ 
 1. The account management service cannot start properly.
 2. The IPC object for account management cannot be obtained.
 3. The services on which the account management depends cannot start properly, or the IPC object on which the account management depends cannot be obtained.
@@ -37,7 +44,7 @@ Invalid parameter.
 
 **Possible Causes**
 
-
+ 
 1. The user name is empty.
 2. The user name of the system account exceeds 1024 characters.
 3. The user name of the distributed account exceeds 256 characters.
@@ -75,7 +82,7 @@ The account does not exist.
 
 **Possible Causes**
 
-
+ 
 1. The account to query, activate, or delete is not created.
 2. The account to query, activate, or delete has been deleted.
 3. The constraint, user name, or profile photo is set for an account that has been deleted.
@@ -100,7 +107,7 @@ The account already exists.
 
 **Possible Causes**
 
-
+ 
 The account to create already exists.
 
 **Solution**
@@ -115,7 +122,7 @@ Multi-user is not supported.
 
 **Possible Causes**
 
-
+ 
 The device does not support multiple users.
 
 **Solution**
@@ -158,7 +165,7 @@ The specified account is restricted.
 
 **Possible Causes**
 
-
+ 
 1. The account to delete is a reserved account of the system.
 2. The constraint source type to query belongs to a reserved account.
 3. The ID of the account to create is 0 to 100.
@@ -175,7 +182,7 @@ The account has been activated.
 
 **Possible Causes**
 
-
+ 
 The account to activate is already activated.
 
 **Solution**
@@ -190,7 +197,7 @@ The account service does not respond.
 
 **Possible Causes**
 
-
+ 
 1. Repeated requests, such as the requests for activating an account or applying the same settings, are submitted in a short period of time.
 2. When the number of authentication sessions for application accounts reaches 256, new authentication requests cannot be processed.
 
@@ -206,7 +213,7 @@ The event listener has been registered.
 
 **Possible Causes**
 
-
+ 
 The listener to register has been registered with the system already.
 
 **Solution**
@@ -221,7 +228,7 @@ The event listener has not been registered.
 
 **Possible Causes**
 
-
+ 
 The event listener to unregister has not been registered.
 
 **Solution**
@@ -236,15 +243,15 @@ Network exception.
 
 **Possible Causes**
 
-
-1. The device is not connected to the network.
+ 
+1. Not connected to the Internet.
 2. The network connection is abnormal.
-3. The app does not have the network access permission.
+3. The application does not have the network access permission.
 4. Unidentified network error.
 
 **Solution**
 
-1. Connect the device to the network.
+1. Connects to a network.
 2. Check that the network connection is normal.
 3. Check that the application has the network access permission.
 4. Perform related operations again.
@@ -291,6 +298,46 @@ The number of login accounts has reached the upper limit. No more accounts can b
 
 Log out of the system and log in to the system using a new account.
 
+<!--Del-->
+
+## 12300021 System Account Already Bound
+
+**Error Message**
+
+The OS account is already bound.
+
+**Description**
+
+This error code is reported if the entered system account has been bound to a domain account.
+
+**Possible Causes**
+
+The entered system account has been bound to a domain account.
+
+**Solution**
+
+Multiple system accounts cannot be bound to one domain account. Bind the system account to another domain account.
+
+## 12300022 Domain Account Already Bound
+
+**Error Message**
+
+The domain account is already bound.
+
+**Description**
+
+This error code is reported if the entered domain account has been bound to a system account.
+
+**Possible Causes**
+
+The entered domain account has been bound to a system account.
+
+**Solution**
+
+A domain account cannot be bound to multiple system accounts. Bind the domain account to another system account or delete the bound system account before binding to a new one.
+
+<!--DelEnd-->
+
 ## 12300101 Incorrect Credential
 
 **Error Message**
@@ -299,7 +346,7 @@ The credential is incorrect.
 
 **Possible Causes**
 
-
+ 
 1. An incorrect password is entered.
 2. The biological feature does not match the feature enrolled.
 3. The token is invalid.
@@ -316,7 +363,7 @@ The credential does not exist.
 
 **Possible Causes**
 
-
+ 
 1. The credential to authenticate has not been enrolled.
 2. The credential to query has not been enrolled.
 3. The credential to delete has not been enrolled.
@@ -333,7 +380,7 @@ The credential inputer already exists.
 
 **Possible Causes**
 
-
+ 
 The PIN inputer has been registered and cannot be registered again before deregistration.
 
 **Solution**
@@ -348,7 +395,7 @@ The credential inputer is not found.
 
 **Possible Causes**
 
-
+ 
 No credential inputer is registered when a credential is authenticated, added or modified.
 
 **Solution**
@@ -363,7 +410,7 @@ The trust level is not supported.
 
 **Possible Causes**
 
-
+ 
 The trust level passed in is not supported.
 
 **Solution**
@@ -378,7 +425,7 @@ The authentication type is not supported.
 
 **Possible Causes**
 
-
+ 
 The authentication type passed in is not supported.
 
 **Solution**
@@ -393,7 +440,7 @@ The authentication type does not exist.
 
 **Possible Causes**
 
-
+ 
 The specified authentication type does not exist when a token is queried or deleted.
 
 **Solution**
@@ -407,6 +454,8 @@ Use an existing authentication type.
 The authentication session does not exist.
 
 **Possible Causes**
+
+ 
 
 The session callback to query does not exist.
 
@@ -422,6 +471,7 @@ The authentication, enrollment, or update operation is canceled.
 
 **Possible Causes**
 
+ 
 The user cancels the authentication.
 The user canceled the credential enrollment.
 The user canceled the update during the credential enrollment process.
@@ -438,6 +488,7 @@ The authentication is locked.
 
 **Possible Causes**
 
+ 
 The number of authentication type errors exceeds the limit.
 
 **Solution**
@@ -452,6 +503,7 @@ The authentication time out.
 
 **Possible Causes**
 
+ 
 1. The authentication or credential enrollment of a system account takes more than three minutes.
 2. The authentication service does not respond in time due to network problems.
 
@@ -468,8 +520,9 @@ The authentication service is busy.
 
 **Possible Causes**
 
+ 
 The total number of system accounts being authenticated exceeds 5.
-The authentication service of the third-party app does not respond.
+The authentication service of the third-party application does not respond.
 
 **Solution**
 
@@ -483,16 +536,17 @@ The account authentication service does not exist.
 
 **Possible Causes**
 
+ 
 For application accounts:
-1. When an authentication is requested, the app does not support the authentication service.
-2. When an account is added implicitly, the app does not support the authentication service.
-3. When the credential of a specified account is verified, the app does not support the authentication service.
-4. When the authenticator attributes are set for an app, the app does not support the authentication service.
-5. When the account tags are checked, the specified app does not support the authentication service.
+1. When an authentication is requested, the application does not support the authentication service.
+2. When an account is added implicitly, the application does not support the authentication service.
+3. When the credential of a specified account is verified, the application does not support the authentication service.
+4. When the authenticator attributes are set for an application, the application does not support the authentication service.
+5. When the account tags are checked, the specified application does not support the authentication service.
 
 **Solution**
 
-Cancel the operation or authenticate an app that supports the authentication service.
+Cancel the operation or authenticate an application that supports the authentication service.
 
 ## 12300114 Authentication Service Abnormal
 
@@ -502,13 +556,14 @@ The account authentication service works abnormally.
 
 **Possible Causes**
 
+ 
 1. An unknown error occurs in the identity authentication service.
-2. The app authenticator does not comply with specifications.
+2. The application authenticator does not comply with specifications.
 
 **Solution**
 
 1. Try again or restart the system.
-2. Use the app authenticator that complies with specifications.
+2. Use the application authenticator that complies with specifications.
 
 ## 12300115 User Authentication Passwords Reached the Limit
 
@@ -562,13 +617,13 @@ The application does not exist.
 
 **Possible Causes**
 
-
-1. The target app does not exist when the app permission is set.
-2. The target app does not exist when the app permission is authorized.
+ 
+1. The target application does not exist when the application permission is set.
+2. The target application does not exist when the application permission is authorized.
 
 **Solution**
 
-Check that the target app has been installed, and use the bundle of the app.
+Check that the target application has been installed, and use the bundle of the application.
 
 ## 12400002 Custom Data Not Exist
 

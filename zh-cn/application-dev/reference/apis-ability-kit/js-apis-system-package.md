@@ -18,7 +18,7 @@
 
 
 ```
-import package from '@system.package';
+import Package from '@system.package';
 ```
 
 
@@ -40,18 +40,24 @@ hasInstalled(options: CheckPackageHasInstalledOptions): void
 **示例：**
 
 ``` ts
-export default {
+import Package from '@system.package';
+
+@Entry
+@Component
+struct MainPage {
   hasInstalled() {
-    package.hasInstalled({
+    Package.hasInstalled({
       bundleName: 'com.example.bundlename',
-      success: function(data) {
+      success: (data) => {
         console.log('package has installed: ' + data);
       },
-      fail: function(data, code) {
-        console.log('query package fail, code: ' + code + ', data: ' + data);
+      fail: (msg:string, code) => {
+        console.log('query package fail, code: ' + code + ', data: ' + msg);
       },
     });
-  },
+  }
+  build() {
+  }
 }
 ```
 

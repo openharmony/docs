@@ -2,14 +2,19 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
+
+Before developing a camera application, you must [request required permissions](camera-preparation.md).
+
+A camera application invokes and controls a camera device to perform basic operations such as preview, photo capture, and video recording.
 
 As another important function of the camera application, video recording is the process of cyclic frame capture. To smooth video recording, you can follow step 4 in [Photo Capture](camera-shooting.md) to set the resolution, flash, focal length, photo quality, and rotation angle.
 
 ## How to Develop
 
-Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
+Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 1. Import the media module.
 
@@ -23,35 +28,30 @@ Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) 
 
 2. Create a surface.
 
-   Call **createAVRecorder()** of the media module to create an AVRecorder instance, and call [getInputSurface](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md#getinputsurface9) of the instance to obtain the surface ID, which is associated with the video output stream to process the stream data.
+   Call createAVRecorder() of the media module to create an [AVRecorder](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md) instance, and call [getInputSurface](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md#getinputsurface9) of the instance to obtain the surface ID, which is associated with the video output stream to process the stream data.
 
    ```ts
-   async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // For details about aVRecorderConfig, see the next section.
+   async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // For details about aVRecorderConfig, see step 3 "Create a video output stream" below.
      let avRecorder: media.AVRecorder | undefined = undefined;
+     let videoSurfaceId: string | undefined = undefined;
      try {
        avRecorder = await media.createAVRecorder();
+       if (avRecorder === undefined) {
+         return videoSurfaceId;
+       }
+       await avRecorder.prepare(aVRecorderConfig);
+       videoSurfaceId = await avRecorder.getInputSurface();
      } catch (error) {
        let err = error as BusinessError;
        console.error(`createAVRecorder call failed. error code: ${err.code}`);
      }
-     if (avRecorder === undefined) {
-       return undefined;
-     }
-     avRecorder.prepare(aVRecorderConfig, (err: BusinessError) => {
-       if (err == null) {
-         console.info('prepare success');
-       } else {
-         console.error('prepare failed and error is ' + err.message);
-       }
-     });
-     let videoSurfaceId = await avRecorder.getInputSurface();
      return videoSurfaceId;
    }
    ```
 
 3. Create a video output stream.
 
-   Obtain the video output streams supported by the current device from **videoProfiles** in the [CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability) class. Then, define video recording parameters and use [createVideoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createvideooutput) to create a video output stream.
+   Obtain the video output streams supported by the current device from **videoProfiles** in [CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability). Then, define video recording parameters and use [createVideoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createvideooutput) to create a video output stream.
 
    > **NOTE**
    >
@@ -59,15 +59,18 @@ Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) 
    >
    > 2. Before setting the resolution width and height of the preview output stream, call [AVRecorderProfile](../../reference/apis-media-kit/arkts-apis-media-i.md#avrecorderprofile9) to obtain the configurable width and height range for video frames.
    >
-   > 3. To obtain the video rotation angle (specified by **rotation**), call [getVideoRotation](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md#getvideorotation12) in the [VideoOutput](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md) class.
+   > 3. To obtain the video rotation angle (specified by **rotation**), call [getVideoRotation](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md#getvideorotation12) in [VideoOutput](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md).
    >
-   > 4. To configure the frame rate for a video output stream, select a suitable **videoProfile** from **videoProfiles** of the [CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability) class. Ensure that [frameRateRange](../../reference/apis-camera-kit/arkts-apis-camera-i.md#frameraterange) of the selected profile meets your service requirements.
+   > 4. To configure the frame rate for a video output stream, select a suitable **videoProfile** from **videoProfiles** of [CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability). Ensure that [frameRateRange](../../reference/apis-camera-kit/arkts-apis-camera-i.md#frameraterange) of the selected profile meets your service requirements.
 
    ```ts
    async function getVideoOutput(cameraManager: camera.CameraManager, videoSurfaceId: string, cameraOutputCapability: camera.CameraOutputCapability): Promise<camera.VideoOutput | undefined> {
+     if (!cameraManager || !videoSurfaceId || !cameraOutputCapability || !cameraOutputCapability.videoProfiles) {
+       return;
+     }
      let videoProfilesArray: Array<camera.VideoProfile> = cameraOutputCapability.videoProfiles;
-     if (!videoProfilesArray) {
-       console.error("createOutput videoProfilesArray == null || undefined");
+     if (!videoProfilesArray || videoProfilesArray.length === 0) {
+       console.error("videoProfilesArray is null or []");
        return undefined;
      }
      // AVRecorderProfile.
@@ -80,25 +83,31 @@ Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) 
        videoFrameRate: 30 // Video frame rate.
      };
      // Define video recording parameters. The ratio of the resolution width (videoFrameWidth) to the resolution height (videoFrameHeight) of the video output stream must be the same as that of the preview stream.
+     let avMetadata: media.AVMetadata = {
+      videoOrientation: '90' // The value of rotation is 90, which is obtained through getPhotoRotation.
+     }
+     
      let aVRecorderConfig: media.AVRecorderConfig = {
        videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
        profile: aVRecorderProfile,
-       url: 'fd://35',
-       rotation: 90 // The value of rotation is 90, which is obtained through getPhotoRotation.
+       url: 'fd://35', // This is an example. Replace it with the actual path.
+       metadata: avMetadata
      };
-     // Create an AVRecorder instance.
+     // Create an AVRecorder object and set video recording parameters.
      let avRecorder: media.AVRecorder | undefined = undefined;
      try {
        avRecorder = await media.createAVRecorder();
+       if (avRecorder === undefined) {
+         return undefined;
+       }
+       await avRecorder.prepare(aVRecorderConfig);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`createAVRecorder call failed. error code: ${err.code}`);
+       await avRecorder?.release();
+       return;
      }
-     if (avRecorder === undefined) {
-       return undefined;
-     }
-     // Set video recording parameters.
-     avRecorder.prepare(aVRecorderConfig);
+
      // Create a VideoOutput instance.
      let videoOutput: camera.VideoOutput | undefined = undefined;
      // The width and height of the videoProfile object passed in by createVideoOutput must be the same as those of aVRecorderProfile.
@@ -107,13 +116,15 @@ Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) 
      });
      if (!videoProfile) {
        console.error('videoProfile is not found');
-       return;
+       await avRecorder.release();
+       return undefined;
      }
      try {
        videoOutput = cameraManager.createVideoOutput(videoProfile, videoSurfaceId);
      } catch (error) {
        let err = error as BusinessError;
        console.error('Failed to create the videoOutput instance. errorCode = ' + err.code);
+       await avRecorder.release();
      }
      return videoOutput;
    }
@@ -125,19 +136,19 @@ Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) 
 
    ```ts
    async function startVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
-     videoOutput.start(async (err: BusinessError) => {
-       if (err) {
-         console.error(`Failed to start the video output ${err.message}`);
-         return;
-       }
-       console.info('Callback invoked to indicate the video output start success.');
-     });
-     try {
-       await avRecorder.start();
-     } catch (error) {
-       let err = error as BusinessError;
-       console.error(`avRecorder start error: ${err}`);
-     }
+    try {
+      await videoOutput.start();
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(`start videoOutput failed, error: ${err.code}`);
+    }
+    avRecorder.start(async (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to start the video output ${err.message}`);
+      return;
+    }
+    console.info('Callback invoked to indicate the video output start success.');
+    });
    }
    ```
 
@@ -147,19 +158,14 @@ Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) 
 
    ```ts
    async function stopVideo(videoOutput: camera.VideoOutput, avRecorder: media.AVRecorder): Promise<void> {
-     try {
-       await avRecorder.stop();
-     } catch (error) {
-       let err = error as BusinessError;
-       console.error(`avRecorder stop error: ${err}`);
+     avRecorder.stop((err: BusinessError) => {
+     if (err) {
+       console.error(`Failed to stop the video output ${err.message}`);
+       return;
      }
-     videoOutput.stop((err: BusinessError) => {
-       if (err) {
-         console.error(`Failed to stop the video output ${err.message}`);
-         return;
-       }
-       console.info('Callback invoked to indicate the video output stop success.');
+     console.info('Callback invoked to indicate the video output stop success.');
      });
+     await videoOutput.stop();
    }
    ```
 

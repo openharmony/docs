@@ -1,4 +1,10 @@
 # Pasteboard Error Codes
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @yangxiaodong41-->
+<!--Designer: @guo867-->
+<!--Tester: @maxiaorong2-->
+<!--Adviser: @HelloCrease-->
 
 > **NOTE**
 >
@@ -172,7 +178,7 @@ The progress is displayed abnormally.
 
 **Solution**
 
-Check whether the pasting is successful. If yes, ignore this error; otherwise, contact technical support.
+Check whether the pasting is successful. If so, ignore this error; otherwise, contact technical support.
 
 ## 12900010 Data Obtaining Failure
 
@@ -182,11 +188,11 @@ System error occurred during paste execution.
 
 **Description**
 
-This error code is reported when the copied data fails to be obtained.
+This error code is reported when the data to be pasted fails to be obtained.
 
 **Possible Causes**
 
-The copied data fails to be obtained.
+The data to be pasted fails to be obtained.
 
 **Solution**
 

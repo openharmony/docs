@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -31,7 +32,7 @@ Starts video recording. This API uses an asynchronous callback to return the res
 
 | Name     | Type                 | Mandatory| Description                |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) is returned.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If video recording starts successfully, **err** is **undefined**; otherwise, **err** is an error object with an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode).|
 
 **Error codes**
 
@@ -49,7 +50,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 function startVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.start((err: BusinessError) => {
-    if (err) {
+    if (err.code) {
       console.error(`Failed to start the video output, error code: ${err.code}.`);
       return;
     }
@@ -111,7 +112,7 @@ Stops video recording. This API uses an asynchronous callback to return the resu
 
 | Name    | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If video recording stops successfully, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -119,11 +120,7 @@ Stops video recording. This API uses an asynchronous callback to return the resu
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function stopVideoOutput(videoOutput: camera.VideoOutput): void {
-  videoOutput.stop((err: BusinessError) => {
-    if (err) {
-      console.error(`Failed to stop the video output, error code: ${err.code}.`);
-      return;
-    }
+  videoOutput.stop(() => {
     console.info('Callback invoked to indicate the video output stop success.');
   });
 }
@@ -186,7 +183,7 @@ Subscribes to video recording start events. This API uses an asynchronous callba
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError): void {
-  if (err !== undefined && err.code !== 0) {
+  if (err.code) {
     console.error(`Callback Error, errorCode: ${err.code}`);
     return;
   }
@@ -251,7 +248,7 @@ Subscribes to video recording stop events. This API uses an asynchronous callbac
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(err: BusinessError): void {
-  if (err !== undefined && err.code !== 0) {
+  if (err.code) {
     console.error(`Callback Error, errorCode: ${err.code}`);
     return;
   }
@@ -382,6 +379,8 @@ Sets a frame rate range for video streams. The range must be within the supporte
 > **NOTE**
 >
 > This API is valid only in [PhotoSession](arkts-apis-camera-PhotoSession.md) or [VideoSession](arkts-apis-camera-VideoSession.md) mode.
+>
+> Before calling this API, call [getActiveFrameRate](arkts-apis-camera-VideoOutput.md#getactiveframerate12) to obtain the current frame rate of the video session. If the delivered frame rate matches the current frame rate, the delivered frame rate is not applied.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
 
@@ -391,8 +390,8 @@ Sets a frame rate range for video streams. The range must be within the supporte
 
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
-| minFps   | number        | Yes  | Minimum frame rate.|
-| maxFps   | number        | Yes  | Maximum frame rate. When the minimum value is greater than the maximum value, the API does not take effect.|
+| minFps   | number        | Yes  | Minimum frame rate, in fps. When the maximum value is less than the minimum value, the API does not take effect.|
+| maxFps   | number        | Yes  | Maximum frame rate, in fps. When the minimum value is greater than the maximum value, the API does not take effect.|
 
 **Error codes**
 
@@ -513,7 +512,7 @@ Enables or disables mirror recording.
 
 - Before calling this API, check whether mirror recording is supported by using [isMirrorSupported](#ismirrorsupported15).
 
-- After enabling or disabling mirror recording, call [getVideoRotation](#getvideorotation12) and [updateRotation](../apis-media-kit/arkts-apis-media-AVRecorder.md#updaterotation12) to update the rotation angle.
+- After enabling or disabling mirror recording, call [getVideoRotation](#getvideorotation12) to obtain the rotation angle and [updateRotation](../apis-media-kit/arkts-apis-media-AVRecorder.md#updaterotation12) to update the rotation angle.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
 
@@ -560,7 +559,7 @@ Obtains the video rotation degree.
 
 - Device' natural orientation: The default orientation of the device (phone) is in portrait mode, with the charging port facing downward.
 - Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural direction. The rear camera sensor of a phone is installed in landscape mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural direction.
-- Screen orientation: The upper left corner of the image displayed on the screen is the first pixel, which is the coordinate origin. In the case of lock screen, the direction is the same as the device's natural orientation.
+- Screen orientation: The top-left corner of the image displayed on the screen is the first pixel, which is the coordinate origin. In the case of lock screen, the direction is the same as the device's natural orientation.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
 
@@ -570,7 +569,7 @@ Obtains the video rotation degree.
 
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
-| deviceDegree | number | Yes  | Rotation angle, in degrees.|
+| deviceDegree | number | Yes  | Device rotation degree, measured in degrees, within the range of [0, 360].|
 
 **Return value**
 
@@ -595,39 +594,45 @@ import { Decimal } from '@kit.ArkTS';
 import { sensor } from '@kit.SensorServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function getVideoRotation(videoOutput: camera.VideoOutput): camera.ImageRotation {
-    let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
-    try {
-        videoRotation = videoOutput.getVideoRotation(getDeviceDegree());
-    } catch (error) {
-        let err = error as BusinessError;
-    }
-    return videoRotation;
+async function getVideoRotation(videoOutput: camera.VideoOutput): Promise<camera.ImageRotation> {
+  let deviceDegree = await getDeviceDegree();
+  let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
+  try {
+    videoRotation = videoOutput.getVideoRotation(deviceDegree);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error('Failed to get video rotation: ' + JSON.stringify(err));
+  }
+  return videoRotation;
 }
 
-// Obtain deviceDegree.
-function getDeviceDegree(): number {
-    let deviceDegree: number = -1;
+// Obtain the device rotation degree.
+function getDeviceDegree(): Promise<number> {
+  return new Promise<number>((resolve) => {
     try {
-        sensor.once(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
-            console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
-            console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
-            console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
-            let x = data.x;
-            let y = data.y;
-            let z = data.z;
-            if ((x * x + y * y) * 3 < z * z) {
-                deviceDegree = -1;
-            } else {
-                let sd: Decimal = Decimal.atan2(y, -x);
-                let sc: Decimal = Decimal.round(Number(sd) / 3.141592653589 * 180)
-                deviceDegree = 90 - Number(sc);
-                deviceDegree = deviceDegree >= 0 ? deviceDegree% 360 : deviceDegree% 360 + 360;
-            }
-        });
+      sensor.once(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
+        console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+        console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+        console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+        let x = data.x;
+        let y = data.y;
+        let z = data.z;
+        let deviceDegree: number;
+        if ((x * x + y * y) * 3 < z * z) {
+          deviceDegree = -1;
+        } else {
+          let sd: Decimal = Decimal.atan2(y, -x);
+          let sc: Decimal = Decimal.round(Number(sd) / 3.141592653589 * 180)
+          deviceDegree = 90 - Number(sc);
+          deviceDegree = deviceDegree >= 0 ? deviceDegree% 360 : deviceDegree% 360 + 360;
+        }
+        resolve(deviceDegree);
+      });
     } catch (error) {
-        let err: BusinessError = error as BusinessError;
+      let err = error as BusinessError;
+      console.error('Failed to register gravity sensor: ' + JSON.stringify(err));
+      resolve(-1); // Return the default value when an exception occurs.
     }
-    return deviceDegree;
+  });
 }
 ```

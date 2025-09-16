@@ -194,7 +194,7 @@ function threadGetData(param: string): SendableData {
   // 在子线程处理数据
   let ret = new SendableData();
   console.info(`Concurrent threadGetData, param ${param}`);
-  ret.name = param + "-o";
+  ret.name = param + '-o';
   ret.age = Math.floor(Math.random() * 40);
   ret.likes = Math.floor(Math.random() * 100);
   return ret;
@@ -208,12 +208,12 @@ struct ObservedSendableTest {
   build() {
     Column() {
       Text(this.send.name)
-      Button("change name").onClick(() => {
+      Button('change name').onClick(() => {
         // ok 可以观察到属性的改变
-        this.send.name += "0";
+        this.send.name += '0';
       })
 
-      Button("task").onClick(() => {
+      Button('task').onClick(() => {
         // 将待执行的函数放入taskpool内部任务队列等待，等待分发到工作线程执行。
         taskpool.execute(threadGetData, this.send.name).then(val => {
           // 和@Local一起使用，可以观察this.send的变化
@@ -273,7 +273,7 @@ struct Index {
       Divider()
         .color('blue')
       if (this.arrCollect.length > 0) {
-        Text(`the first one ${this.arrCollect[this.arrCollect.length - this.arrCollect.length].id}`)
+        Text(`the first one ${this.arrCollect[0].id}`)
         Text(`the last one ${this.arrCollect[this.arrCollect.length - 1].id}`)
       }
       Divider()
@@ -480,9 +480,9 @@ class Info {
   }
 }
 
-let test: Record<string, number> = { "a": 123 };
+let test: Record<string, number> = { 'a': 123 };
 let testJsonStr: string = JSON.stringify(test);
-let test2: Record<string, Info> = { "a": new Info(20) };
+let test2: Record<string, Info> = { 'a': new Info(20) };
 let test2JsonStr: string = JSON.stringify(test2);
 
 @Entry
@@ -538,7 +538,7 @@ struct Index {
 
   @Computed
   get ageId() {
-    console.info("---------Computed----------");
+    console.info('---------Computed----------');
     return this.message.id + ' ' + this.message.age;
   }
 

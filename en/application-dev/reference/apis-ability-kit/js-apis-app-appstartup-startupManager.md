@@ -1,4 +1,10 @@
 # @ohos.app.appstartup.startupManager (AppStartup Management)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yzkp-->
+<!--Designer: @yzkp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 The module provides APIs to manage startup tasks in AppStartup. It can be called only in the main thread.
 
@@ -274,7 +280,7 @@ Checks whether a startup task or .so file preloading task is initialized.
 
   | Type| Description|
   | -------- | -------- |
-  | boolean | Check result. The value **true** means that the task is initialized, and **false** means the opposite.|
+  | boolean | Check result for whether the task is initialized. **true** if initialized, **false** otherwise.|
 
 **Error codes**
 

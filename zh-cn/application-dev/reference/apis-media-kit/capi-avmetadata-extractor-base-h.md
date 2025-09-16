@@ -10,6 +10,8 @@
 
 定义AVMetadataExtractor常量。
 
+**引用文件：** <multimedia/player_framework/avmetadata_extractor_base.h>
+
 **库：** libavmetadata_extractor.so
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor

@@ -38,8 +38,6 @@ isAutoDeviceSwitchSupported(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 function isAutoDeviceSwitchSupported(session: camera.PhotoSession): boolean {
   let isSupported = false;
   isSupported = session.isAutoDeviceSwitchSupported();

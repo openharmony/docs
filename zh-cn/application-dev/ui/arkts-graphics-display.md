@@ -176,7 +176,7 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
        http.createHttp().request('https://www.example.com/xxx.png', //请填写一个具体的网络图片地址。
          (error: BusinessError, data: http.HttpResponse) => {
            if (error) {
-             console.error('hello http request failed with. Code: ${error.code}, message: ${error.message}');
+             console.error(`hello http request failed with. Code: ${error.code}, message: ${error.message}`);
              return;
            }
            this.outData = data;

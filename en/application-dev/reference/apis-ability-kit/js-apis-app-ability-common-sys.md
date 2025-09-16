@@ -1,4 +1,11 @@
-# @ohos.app.ability.common (Context) (System API)
+# @ohos.app.ability.common (Ability Common Module) (System APIs)
+
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 You can use this module to reference the ability public module class.
 
@@ -8,25 +15,97 @@ You can use this module to reference the ability public module class.
 >
 > The APIs of this module can be used only in the stage model.
 >
-> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.app.ability.common (Context)](js-apis-app-ability-common.md).
+> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.app.ability.common (Ability Common Module)](js-apis-app-ability-common.md).
 
 ## Modules to Import
 
 ```ts
 import { common } from '@kit.AbilityKit';
 ```
-## Properties
+
+## ServiceExtensionContext
+
+type ServiceExtensionContext = _ServiceExtensionContext.default
+
+Level-2 module ServiceExtensionContext.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name | Type | Read Only | Optional | Description           |
-| ----- | ---- | ----- | ----- | -------------- |
-| ServiceExtensionContext | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext-sys.md) | No | No | Level-2 module ServiceExtensionContext.<br>**System API**: This is a system API.|
-| AutoFillExtensionContext<sup>11+<sup>   | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext-sys.md) | No | No | Level-2 module AutoFillExtensionContext.<br>**System API**: This is a system API.|
-| AutoStartupInfo<sup>11+<sup>   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md) | No | No | Level-2 module AutoStartupInfo.<br>**System API**: This is a system API.|
-| AutoStartupCallback<sup>11+<sup>   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md) | No | No | Level-2 module AutoStartupCallback.<br>**System API**: This is a system API.|
-| UIServiceExtensionContext<sup>14+<sup> | [UIServiceExtensionContext ](js-apis-inner-application-uiserviceExtensionContext-sys.md) |  No | No |Level-2 module UIServiceExtensionContext.<br>**System API**: This is a system API.|
-| UIServiceHostProxy<sup>14+<sup> | [UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md) |  No | No | Level-2 module UIServiceHostProxy.<br>**System API**: This is a system API.|
+| Type| Description|
+| --- | --- |
+| [_ServiceExtensionContext.default](js-apis-inner-application-serviceExtensionContext-sys.md) | Level-2 module ServiceExtensionContext.|
+
+## AutoFillExtensionContext<sup>11+<sup>
+
+type AutoFillExtensionContext = _AutoFillExtensionContext.default
+
+Level-2 module AutoFillExtensionContext.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_AutoFillExtensionContext.default](js-apis-inner-application-autoFillExtensionContext-sys.md) | Level-2 module AutoFillExtensionContext.|
+
+## AutoStartupInfo<sup>11+<sup>
+
+type AutoStartupInfo = _AutoStartupInfo
+
+Level-2 module AutoStartupInfo.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md) | Level-2 module AutoStartupInfo.|
+
+## AutoStartupCallback<sup>11+<sup>
+
+type AutoStartupCallback = _AutoStartupCallback
+
+Level-2 module AutoStartupCallback.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md) | Level-2 module AutoStartupCallback.|
+
+## UIServiceExtensionContext<sup>14+<sup>
+
+type UIServiceExtensionContext = _UIServiceExtensionContext.default
+
+Level-2 module UIServiceExtensionContext.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_UIServiceExtensionContext.default](js-apis-inner-application-uiserviceExtensionContext-sys.md) | Level-2 module UIServiceExtensionContext.|
+
+## UIServiceHostProxy<sup>14+<sup>
+
+type UIServiceHostProxy = _UIServiceHostProxy.default
+
+Level-2 module UIServiceHostProxy.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Type| Description|
+| --- | --- |
+| [_UIServiceHostProxy.default](js-apis-inner-application-uiservicehostproxy-sys.md) | Level-2 module UIServiceHostProxy.|
 
 **Example**
 

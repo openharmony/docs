@@ -66,12 +66,12 @@ enum HiCollie_ErrorCode
 
 **起始版本：** 12
 
-| 枚举项 | 描述                              |
-| -- |---------------------------------|
-| HICOLLIE_SUCCESS  = 0 | 成功。                             |
-| HICOLLIE_INVALID_ARGUMENT  = 401 | 无效参数。                           |
-| HICOLLIE_WRONG_THREAD_CONTEXT = 29800001 | 调用线程错误。                         |
-| HICOLLIE_REMOTE_FAILED = 29800002 | 远程调用错误。                         |
+| 枚举项 | 描述 |
+| -- | -- |
+| HICOLLIE_SUCCESS  = 0 | 成功。 |
+| HICOLLIE_INVALID_ARGUMENT  = 401 | 无效参数。 |
+| HICOLLIE_WRONG_THREAD_CONTEXT = 29800001 | 调用线程错误。 |
+| HICOLLIE_REMOTE_FAILED = 29800002 | 远程调用错误。 |
 | HICOLLIE_INVALID_TIMER_NAME = 29800003 | 无效的函数执行超时检测器名称。<br>**起始版本：** 18 |
 | HICOLLIE_INVALID_TIMEOUT_VALUE = 29800004 | 无效的函数执行超时时间阈值。<br>**起始版本：** 18                  |
 | HICOLLIE_WRONG_PROCESS_CONTEXT = 29800005 | 函数执行超时检测接入进程错误。<br>**起始版本：** 18                 |

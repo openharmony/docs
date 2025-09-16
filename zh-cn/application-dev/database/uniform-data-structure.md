@@ -34,46 +34,46 @@ UDMF针对部分标准化数据类型定义的标准化数据结构如下所示�
   ```ts
   // 1. 导入unifiedDataChannel和uniformTypeDescriptor模块。
   import { uniformDataStruct, uniformTypeDescriptor, unifiedDataChannel } from '@kit.ArkData';
-  
+
   // 2. 创建超链接数据记录。
   let hyperlinkDetails : Record<string, string> = {
     'attr1': 'value1',
-    'attr2': 'value2',
+    'attr2': 'value2'
   }
   let hyperlink : uniformDataStruct.Hyperlink = {
     uniformDataType:'general.hyperlink',
     url : 'www.XXX.com',
     description : 'This is the description of this hyperlink',
-    details : hyperlinkDetails,
+    details : hyperlinkDetails
   }
-  
+
   hyperlink.description = '...';  // 修改hyperlink属性description
-  
+
   console.info(`hyperlink url = ${hyperlink.url}`);  // 访问对象属性。
-  
+
   // 3. 创建纯文本数据类型记录，将其添加到刚才创建的UnifiedData对象。
   let plainTextDetails : Record<string, string> = {
     'attr1': 'value1',
-    'attr2': 'value2',
+    'attr2': 'value2'
   }
   let plainText : uniformDataStruct.PlainText = {
     uniformDataType: 'general.plain-text',
     textContent : 'This is plainText textContent example',
     abstract : 'this is abstract',
-    details : plainTextDetails,
+    details : plainTextDetails
   }
   // 4. 创建一个统一数据对象实例。
   let unifiedData = new unifiedDataChannel.UnifiedData();
   let hyperlinkRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
   let plainTextRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
-  
+
   // 5. 添加plainText数据记录。
   unifiedData.addRecord(hyperlinkRecord);
   unifiedData.addRecord(plainTextRecord);
-  
+
   // 6. 记录添加完成后，可获取当前UnifiedData对象内的所有数据记录。
   let records = unifiedData.getRecords();
-  
+
   // 7. 遍历每条记录，判断该记录的数据类型，转换为子类对象，得到原数据记录。
   for (let i = 0; i < records.length; i ++) {
     let unifiedDataRecord = records[i] as unifiedDataChannel.UnifiedRecord;

@@ -1,5 +1,12 @@
 # Stage Model Development Overview
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @ccllee1; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 ## Basic Concepts
 
 The following figure illustrates the stage model.
@@ -22,7 +29,7 @@ The following figure illustrates the stage model.
   - ExtensionAbility is used for specific scenarios. You cannot derive directly from ExtensionAbility. Instead, use the derived classes of ExtensionAbility for your scenarios, such as FormExtensionAbility for widget scenarios, InputMethodExtensionAbility for input method scenarios, and WorkSchedulerExtensionAbility for deferred task scenarios. For example, to enable a user to create a widget on the home screen, you must derive a class from FormExtensionAbility, implement callbacks, and configure the capability in the configuration file. The derived class instances are created by applications and their lifecycles are managed by the system. In the stage model, you must use the derived classes of ExtensionAbility to develop custom services of third-party applications based on your service scenarios.
 
     A HAP can contain one or more UIAbility or ExtensionAbility components, which share the same AbilityStage instance at runtime. When the code (whether it is a UIAbility or an ExtensionAbility component) in the [HAP](../quick-start/hap-package.md) is first loaded into the process, the system creates the corresponding AbilityStage instance.
-- [WindowStage](../windowmanager/application-window-stage.md)
+- [WindowStage](../reference/apis-arkui/arkts-apis-window-WindowStage.md)
 
   Each UIAbility instance is bound to a WindowStage instance, which functions as the window manager in the application process. The WindowStage class instance contains a main window. In other words, a UIAbility instance holds a main window through WindowStage, which provides a drawing area for ArkUI and can load different ArkUI pages.
 
@@ -68,7 +75,7 @@ During application development based on the stage model, the following tasks are
 
 | Task| Description| Guide|
 | -------- | -------- | -------- |
-| Application component development| Use the UIAbility and ExtensionAbility components of the stage model to develop your application.| - [Application- or Component-Level Configuration](application-component-configuration-stage.md)<br>- [UIAbility Component](uiability-overview.md)<br>- [ExtensionAbility Component](extensionability-overview.md)<br>- [AbilityStage Container Component](abilitystage.md)<br>- [Context](application-context-stage.md)<br>- [Component Startup Rules](component-startup-rules.md)|
+| Application component development| Use the UIAbility and ExtensionAbility components of the stage model to develop your application.| - [Application- or Component-Level Configuration](application-component-configuration-stage.md)<br>- [UIAbility Component](uiability-overview.md)<br>- [ExtensionAbility Component](extensionability-overview.md)<br>- [AbilityStage Component Manager](abilitystage.md)<br>- [Context](application-context-stage.md)<br>- [Component Startup Rules](component-startup-rules.md)|
 | Process model development| Learn the process model and common IPC modes of the stage model.| [Process Model Overview](process-model-stage.md)|
 | Thread model development| Learn the thread model and common inter-thread communication modes of the stage model.| [Thread Model Overview](thread-model-stage.md)|
 | Configuration file development| Learn the requirements for developing application configuration files in the stage model.| [Application Configuration File](config-file-stage.md)|

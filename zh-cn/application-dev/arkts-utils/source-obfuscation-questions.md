@@ -177,7 +177,7 @@ foo
 ```ts
 // 混淆前
 // utils.ts
-export function add(a: number, b: number): number {
+export function addNum(a: number, b: number): number {
   return a + b;
 }
 
@@ -185,7 +185,7 @@ export function add(a: number, b: number): number {
 async function loadAndUseAdd() {
   try {
     const mathUtils = await import('./utils');
-    const result = mathUtils.add(2, 3);
+    const result = mathUtils.addNum(2, 3);
   } catch (error) {
     console.error('Failure reason:', error);
   }
@@ -205,7 +205,7 @@ export function c1(d1: number, e1: number): number {
 async function i() {
     try {
         const a1 = await import("@normalized:N&&&entry/src/main/ets/pages/utils&");
-        const b1 = a1.add(2, 3);
+        const b1 = a1.addNum(2, 3);
     }
     catch (z) {
         console.error('Failure reason:', z);
@@ -216,7 +216,7 @@ i();
 
 **问题原因**
 
-函数add在定义时位于顶层作用域，但通过`.add`访问时被视为属性。由于未开启`-enable-property-obfuscation`选项，导致add被使用时未进行混淆。
+函数addNum在定义时位于顶层作用域，但通过`.addNum`访问时被视为属性。由于未开启`-enable-property-obfuscation`选项，导致addNum被使用时未进行混淆。
 
 **解决方案**
 
@@ -224,9 +224,9 @@ i();
 
 方案二：使用`-keep-global-name`选项将add配置到白名单中。示例如下：
 
-```
+```txt
 -keep-global-name
-add
+addNum
 ```
 
 **场景三：调用so库的方法后导致crash**
@@ -243,17 +243,24 @@ add
 示例代码如下：
 
 ```ts
-// 混淆前
-import { nativeNapi } from 'library.so';
-
-nativeNapi.getAge();
+// src/main/cpp/types/libentry/Index.d.ts
+export const addNum: (a: number, b: number) => number;
 ```
 
 ```ts
-// 混淆后
-import { nativeNapi } from 'library.so';
+// example.ets
+// 混淆前
+import testNapi from 'libentry.so';
 
-nativeNapi.m();
+testNapi.addNum();
+```
+
+```ts
+// example.ets
+// 混淆后
+import testNapi from "@normalized:Y&&&libentry.so&";
+
+testNapi.m();
 ```
 
 **问题原因**
@@ -264,9 +271,9 @@ nativeNapi.m();
 
 将so库导出的方法配置到属性白名单中。示例如下：
 
-```
+```txt
 -keep-property-name
-getAge
+addNum
 ```
 
 ### 报错信息为：'module1/file1' does not provide an export name 'x', which is imported by 'module2/file2'
@@ -285,12 +292,12 @@ getAge
 ```ts
 // 混淆前
 // hsp模块
-export function add() {}
+export function addNum() {}
 
 // entry模块
-import { add } from 'hsp';
+import { addNum } from 'hsp';
 
-add();
+addNum();
 ```
 
 ```ts
@@ -320,14 +327,14 @@ n();
 
 将HSP模块导出的方法配置到`-keep-global-name`下，并且需要在HSP的`consumer-rules.txt`和`obfuscation-rules.txt`文件中都进行对应配置。示例如下：
 
-```
+```txt
 // consumer-rules.txt
 -keep-global-name
-add
+addNum
 
 // obfuscation-rules.txt
 -keep-global-name
-add
+addNum
 ```
 
 ## 应用运行后无crash信息，但功能异常的情况

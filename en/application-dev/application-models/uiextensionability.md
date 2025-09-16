@@ -14,8 +14,8 @@
 The [UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md) class provides the lifecycle callbacks [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#oncreate), [onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate), [onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessiondestroy), [onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onforeground), [onBackground](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onbackground), and [onDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#ondestroy). You must override them as required.
 
 - **onCreate**: called to initialize the service logic when a UIExtensionAbility is created.
-- **onSessionCreate**: called when a **UIExtensionContentSession** instance is created for the UIExtensionAbility.
-- **onSessionDestroy**: called when a **UIExtensionContentSession** instance is destroyed for the UIExtensionAbility.
+- **onSessionCreate**: called when a UIExtensionContentSession instance is created for the UIExtensionAbility.
+- **onSessionDestroy**: called when a UIExtensionContentSession instance is destroyed for the UIExtensionAbility.
 - **onForeground**: called when the UIExtensionAbility is switched from the background to the foreground.
 - **onBackground**: called when the UIExtensionAbility is switched from the foreground to the background.
 - **onDestroy**: called to clear resources when the UIExtensionAbility is destroyed.

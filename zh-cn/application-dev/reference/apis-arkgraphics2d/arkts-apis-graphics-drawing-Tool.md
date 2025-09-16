@@ -75,9 +75,6 @@ let color9: common2D.Color = drawing.Tool.makeColorFromResourceColor('rgba(255, 
 
 // Resource
 let color10: common2D.Color = drawing.Tool.makeColorFromResourceColor($r('sys.color.ohos_id_color_secondary'));
-let color11: common2D.Color = drawing.Tool.makeColorFromResourceColor($r('app.color.appColorTest'));
-let color12: common2D.Color = drawing.Tool.makeColorFromResourceColor($r('app.string.appColorTest'));
-let color13: common2D.Color = drawing.Tool.makeColorFromResourceColor($r('app.integer.appColorTest'));
 
 // Use color
 let brush = new drawing.Brush();

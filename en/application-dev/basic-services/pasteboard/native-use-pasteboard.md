@@ -1,4 +1,10 @@
 # Using the Pasteboard to Copy and Paste (C/C++)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @yangxiaodong41-->
+<!--Designer: @guo867-->
+<!--Tester: @maxiaorong-->
+<!--Adviser: @HelloCrease-->
 
 ## When to Use
 
@@ -8,20 +14,20 @@ The pasteboard allows you to copy and paste data of the plain text, hypertext, a
 
 - **OH_PasteboardObserver**: pasteboard observer object, which is used to listen for data changes on the pasteboard.
 - **OH_Pasteboard**: pasteboard object, which is used to query and write.
-- **OH_UdmfData**: unified data object. For details, see [UDMF Development (C/C++)](../../database/native-unified-data-management-framework-guidelines.md).
+- [**OH_UdmfData**](../../reference/apis-arkdata/capi-udmf-oh-udmfdata.md): unified data object.
 
 ## Constraints
 
-- The size of data written to the pasteboard at a time cannot exceed 128 MB.
+- The pasteboard content, including system service metadata and application settings, has a maximum size of 128 MB by default. For PCs/2-in-1 devices, the maximum size can be changed through system settings, with a valid range from 128 MB to 2 GB.
 - To ensure the accuracy of the pasteboard data, only one copy can be performed at a time.
-- Currently, supported data types include **OH_UdsPlainText** (plain text), **OH_UdsHtml** (hypertext markup language), **OH_UdsFileUri** (file URI). **OH_UdsPixelMap** (pixel map), **OH_UdsHyperlink** (hyperlink), **OH_UdsAppItem** (application icon), and custom type. The data types supported by JS APIs are different from those supported by NDK APIs. You need to match the data types with the corresponding APIs during usage. For details, see [Using the Pasteboard to Copy and Paste](../pasteboard/use_pasteboard_to_copy_and_paste.md).
+- Currently, supported data types include **OH_UdsPlainText** (plain text), **OH_UdsHtml** (hypertext markup language), **OH_UdsFileUri** (file URI). **OH_UdsPixelMap** (pixel map), **OH_UdsHyperlink** (hyperlink), **OH_UdsAppItem** (application icon), and custom type. The data types supported by ArkTS APIs are different from those supported by NDK APIs. You need to match the data types with the corresponding APIs during usage. For details, see [Using the Pasteboard to Copy and Paste](../pasteboard/use_pasteboard_to_copy_and_paste.md).
 - When you copy and paste data of a custom type, the specified type name cannot be the same as an existing one.
 - Since API version 12, [permission control](get-pastedata-permission-guidelines.md) is added to the pasteboard reading API to enhance user privacy protection.
 - The copy and paste APIs, [setUnifiedData](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#setunifieddata12) and [getUnifiedData](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#getunifieddata12), added in API version 12 are independent of the **OH_Pasteboard_SetData** and **OH_Pasteboard_GetData** APIs mentioned in this topic. Use the corresponding APIs when writing and reading data.
 
 ## Available APIs
 
-For details about more APIs and their usage, see [Pasteboard](../../reference/apis-basic-services-kit/_pasteboard.md).
+For details about more APIs and their usage, see [Pasteboard](../../reference/apis-basic-services-kit/capi-pasteboard.md).
 
 | API                                                    | Description                                                   |
 | ------------------------------------------------------------ | ------------------------------------------------------- |

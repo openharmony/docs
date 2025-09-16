@@ -1,4 +1,10 @@
 # native_audio_common.h
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
@@ -82,6 +88,6 @@ Enumerates the ringer mode.
 
 | Enum Item| Description|
 | -- | -- |
-| AUDIO_RINGER_MODE_SILENT = 0 | Silent mode.<br>**Since**: 20|
-| AUDIO_RINGER_MODE_VIBRATE = 1 | Vibration mode.<br>**Since**: 20|
-| AUDIO_RINGER_MODE_NORMAL = 2 | Normal mode.<br>**Since**: 20|
+| AUDIO_RINGER_MODE_SILENT = 0 | Silent mode.|
+| AUDIO_RINGER_MODE_VIBRATE = 1 | Vibration mode.|
+| AUDIO_RINGER_MODE_NORMAL = 2 | Normal mode.|

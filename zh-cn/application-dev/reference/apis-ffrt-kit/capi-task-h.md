@@ -159,8 +159,8 @@ FFRT_C_API void ffrt_task_attr_set_qos(ffrt_task_attr_t* attr, ffrt_qos_t qos)
 
 **参数：**
 
-| 参数项                                                     | 描述 |
-|---------------------------------------------------------| -- |
+| 参数项 | 描述 |
+| -- | -- |
 | [ffrt_task_attr_t](capi-ffrt-ffrt-task-attr-t.md)* attr | 任务属性指针。 |
 | [ffrt_qos_t](capi-type-def-h.md#变量) qos                 | 任务QoS。 |
 
@@ -275,8 +275,8 @@ FFRT_C_API ffrt_queue_priority_t ffrt_task_attr_get_queue_priority(const ffrt_ta
 
 **返回：**
 
-| 类型                                                      | 说明 |
-|---------------------------------------------------------| -- |
+| 类型 | 说明 |
+| -- | -- |
 | FFRT_C_API [ffrt_queue_priority_t](capi-type-def-h.md#ffrt_queue_priority_t) | 返回任务优先级。 |
 
 ### ffrt_task_attr_set_stack_size()
@@ -456,8 +456,8 @@ FFRT_C_API ffrt_task_handle_t ffrt_submit_h_base(ffrt_function_header_t* f, cons
 
 **返回：**
 
-| 类型                                | 说明 |
-|-----------------------------------| -- |
+| 类型 | 说明 |
+| -- | -- |
 | FFRT_C_API [ffrt_task_handle_t](capi-ffrt-ffrt-task-handle-t.md) | 提交任务成功返回非空任务句柄，<br>          提交任务失败返回空指针。 |
 
 ### ffrt_submit_f()

@@ -331,7 +331,7 @@ AppearSymbolEffect继承自父类SymbolEffect。
 ### 属性
 
 | 名称 | 类型 | 只读 | 可选 | 说明  |
-| ---- | ---- | ---- | ---- |
+| ---- | ---- | ---- | ---- | ---- |
 | scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
@@ -365,7 +365,7 @@ DisappearSymbolEffect继承自父类SymbolEffect。
 ### 属性
 
 | 名称 | 类型 | 只读 | 可选 | 说明  |
-| ---- | ---- | ---- | ---- |
+| ---- | ---- | ---- | ---- | ---- |
 | scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
 
 ### constructor<sup>12+</sup>
@@ -434,9 +434,12 @@ ReplaceSymbolEffect继承自父类SymbolEffect。
 
 ### 属性
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 类型 | 只读 | 可选 | 说明  |
 | ---- | ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 是 | 动效范围。<br/>默认值：EffectScope.LAYER <br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| replaceType<sup>20+</sup>  | [ReplaceEffectType](#replaceeffecttype20枚举说明) | 否   | 是 | 替换动效类型。<br/>默认值：ReplaceEffectType.SEQUENTIAL <br/>**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。 <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ### constructor<sup>12+</sup>
 
@@ -519,7 +522,7 @@ ReplaceSymbolEffect的构造函数，替换动效。
 
 ## PulseSymbolEffect<sup>12+</sup>对象说明
 
-PulseSymbolEffect的构造函数，脉冲动效。
+PulseSymbolEffect继承自父类SymbolEffect，脉冲动效。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 

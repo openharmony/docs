@@ -1,5 +1,12 @@
 # @ohos.charger (Charger) (System API)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--Designer: @wangyantian0-->
+<!--Tester: @alien0208-->
+<!--Adviser: @w_Machine_cc-->
+
 The **charger** module enumerates charging types.
 
 > **NOTE**

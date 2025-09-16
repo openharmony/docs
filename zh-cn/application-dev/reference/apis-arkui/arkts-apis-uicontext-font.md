@@ -109,7 +109,7 @@ struct Index {
         .height('6%')
         .onClick(() => {
           this.fontList = this.font.getSystemFontList();
-          console.log('getSystemFontList', JSON.stringify(this.fontList))
+          console.info('getSystemFontList', JSON.stringify(this.fontList))
         })
     }.width('100%')
   }
@@ -136,7 +136,7 @@ getFontByName(fontName: string): font.FontInfo
 
 | 类型                                      | 说明           |
 | ----------------------------------------- | -------------- |
-| [font.FontInfo](js-apis-font.md#fontinfo10) | 字体的详细信息。 |
+| [font.FontInfo](js-apis-font.md#fontinfo10) | 字体的详细信息。</br>如果查询不到字体，返回undefined。 |
 
 **示例：** 
 
@@ -150,7 +150,7 @@ import { Font, font } from '@kit.ArkUI';
 struct Index {
   private uiContext: UIContext = this.getUIContext();
   private font: Font = this.uiContext.getFont();
-  fontInfo: font.FontInfo = this.font.getFontByName('')
+  fontInfo: font.FontInfo = this.font.getFontByName('');
 
   build() {
     Column() {
@@ -162,8 +162,8 @@ struct Index {
           console.info("getFontByName(): path = " + this.fontInfo.path);
           console.info("getFontByName(): postScriptName = " + this.fontInfo.postScriptName);
           console.info("getFontByName(): fullName = " + this.fontInfo.fullName);
-          console.info("getFontByName(): Family = " + this.fontInfo.family);
-          console.info("getFontByName(): Subfamily = " + this.fontInfo.subfamily);
+          console.info("getFontByName(): family = " + this.fontInfo.family);
+          console.info("getFontByName(): subfamily = " + this.fontInfo.subfamily);
           console.info("getFontByName(): weight = " + this.fontInfo.weight);
           console.info("getFontByName(): width = " + this.fontInfo.width);
           console.info("getFontByName(): italic = " + this.fontInfo.italic);

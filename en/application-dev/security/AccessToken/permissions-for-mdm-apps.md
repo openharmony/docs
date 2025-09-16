@@ -620,3 +620,18 @@ With this permission, the MDM application can configure user_grant permission po
 **Supported devices**: phones | PCs/2-in-1 devices | tablets
 
 **Valid since**: 20
+
+## ohos.permission.ENTERPRISE_DATA_IDENTIFY_FILE
+
+Allows a mobile device management (MDM) application to identify sensitive file content.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: PCs/2-in-1 devices
+
+**Valid since**: 21

@@ -37,18 +37,24 @@
 
 2. 确定拍照输出流。
 
-   通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)类中的photoProfiles属性，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11)方法创建拍照输出流。
+   通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)中的photoProfiles属性，可获取当前设备支持的拍照输出流，通过[createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11)方法创建拍照输出流。
 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager, 
      cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
      let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
-     if (!photoProfilesArray) {
-       console.error("createOutput photoProfilesArray == null || undefined");
+     if (photoProfilesArray===null || photoProfilesArray===undefined) {
+       console.error("createOutput photoProfilesArray is null!");
+       return undefined;
      }
      let photoOutput: camera.PhotoOutput | undefined = undefined;
      try {
-       photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
+      if (photoProfilesArray.length > 0) {
+          photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
+      } else {
+          console.log("the length of photoProfilesArray<=0!");
+          return undefined;
+      }
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to createPhotoOutput. error: ${err}`);
@@ -60,9 +66,10 @@
 3. 设置拍照photoAssetAvailable的回调。
 
    > **注意：**
+   >
    > 如果已经注册了photoAssetAvailable回调，并且在Session开始之后又注册了photoAvailable回调，photoAssetAvailable和photoAvailable同时注册，会导致流被重启，仅photoAssetAvailable生效。
    >
-   > 不建议开发者同时注册photoAvailable和photoAssetAvailable。
+   > 不建议开发者同时注册[photoAvailable](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#onphotoavailable11)和[photoAssetAvailable](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#onphotoassetavailable12)。
 
    ```ts
    function getPhotoAccessHelper(context: Context): photoAccessHelper.PhotoAccessHelper {
@@ -132,7 +139,7 @@
 
 在相机应用开发过程中，可以随时监听拍照输出流状态，包括拍照流开始、拍照帧的开始与结束、拍照输出流的错误。
 
-- 通过注册固定的captureStart回调函数获取监听拍照开始结果，photoOutput创建成功时即可监听，相机设备已经准备开始这次拍照时触发，该事件返回此次拍照的captureId。
+- 通过注册固定的captureStartWithInfo回调函数获取监听拍照开始结果，photoOutput创建成功时即可监听，相机设备已经准备开始这次拍照时触发，该事件返回此次拍照的captureId。
 
   ```ts
   function onPhotoOutputCaptureStart(photoOutput: camera.PhotoOutput): void {

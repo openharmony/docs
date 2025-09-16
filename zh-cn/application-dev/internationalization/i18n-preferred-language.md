@@ -1,4 +1,11 @@
-# 设置应用偏好语言
+# 应用偏好语言
+
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--Designer: @sunyaozu-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ## 功能介绍
 

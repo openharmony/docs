@@ -151,17 +151,17 @@ export default {
   <!-- xxx.hml -->
   <div>
      <!-- 使用事件冒泡模式绑定事件回调函数。5+ -->;
-      <div on:touchstart.bubble="touchstartfunc"></div>
-      <div on:touchstart="touchstartfunc"></div>
+      <div on:touchstart.bubble="touchstartfunc" style="background-color: red; width: 10%; height: 100%"></div>
+      <div on:touchstart="touchstartfunc" style="background-color: orange; width: 10%; height: 100%"></div>
       <!-- 绑定事件回调函数，但阻止事件向上传递。5+ -->
-      <div grab:touchstart.bubble="touchstartfunc"></div>
-      <div grab:touchstart="touchstartfunc"></div>
+      <div grab:touchstart.bubble="touchstartfunc" style="background-color: yellow; width: 10%; height: 100%"></div>
+      <div grab:touchstart="touchstartfunc" style="background-color: greenyellow; width: 10%; height: 100%"></div>
       <!-- 使用事件冒泡模式绑定事件回调函数。6+ -->
-      <div on:click.bubble="clickfunc"></div>
-      <div on:click="clickfunc"></div>
+      <div on:click.bubble="clickfunc" style="background-color: lightskyblue; width: 10%; height: 100%"></div>
+      <div on:click="clickfunc" style="background-color: cornflowerblue; width: 10%; height: 100%"></div>
       <!-- 绑定事件回调函数，但阻止事件向上传递。6+ -->
-      <div grab:click.bubble="clickfunc"></div>
-      <div grab:click="clickfunc"></div>
+      <div grab:click.bubble="clickfunc" style="background-color: mediumslateblue; width: 10%; height: 100%"></div>
+      <div grab:click="clickfunc" style="background-color: purple; width: 10%; height: 100%"></div>
   </div>
   ```
 

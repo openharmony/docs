@@ -67,14 +67,14 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    let plainTextObj : uniformDataStruct.PlainText = {
      uniformDataType: 'general.plain-text',
      textContent : 'Hello world',
-     abstract : 'This is abstract',
+     abstract : 'This is abstract'
    }
    let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextObj);
    // 准备HTML数据内容
    let htmlObj : uniformDataStruct.HTML = {
      uniformDataType :'general.html',
      htmlContent : '<div><p>Hello world</p></div>',
-     plainContent : 'Hello world',
+     plainContent : 'Hello world'
    }
    // 为该记录增加一种样式，两种样式存储的是同一个数据，为不同表达形式
    record.addEntry(uniformTypeDescriptor.UniformDataType.HTML, htmlObj);
@@ -85,7 +85,7 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    let opt : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 3, width: 3 }, alphaType: 3 };
    let pixelMap : uniformDataStruct.PixelMap = {
      uniformDataType : 'openharmony.pixel-map',
-     pixelMap : image.createPixelMapSync(arrayBuffer, opt),
+     pixelMap : image.createPixelMapSync(arrayBuffer, opt)
    }
    unifiedData.addRecord(new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP, pixelMap));
    // 指定要插入数据的数据通路枚举类型
@@ -111,13 +111,13 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
    let plainTextUpdate : uniformDataStruct.PlainText = {
      uniformDataType: 'general.plain-text',
      textContent : 'How are you',
-     abstract : 'This is abstract',
+     abstract : 'This is abstract'
    }
    let recordUpdate = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextUpdate);
    let htmlUpdate : uniformDataStruct.HTML = {
      uniformDataType :'general.html',
      htmlContent : '<div><p>How are you</p></div>',
-     plainContent : 'How are you',
+     plainContent : 'How are you'
    }
    recordUpdate.addEntry(uniformTypeDescriptor.UniformDataType.HTML, htmlUpdate);
    let unifiedDataUpdate = new unifiedDataChannel.UnifiedData(recordUpdate);

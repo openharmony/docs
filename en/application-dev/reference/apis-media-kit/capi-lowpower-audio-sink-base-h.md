@@ -1,5 +1,12 @@
 # lowpower_audio_sink_base.h
 
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @Saber_e-->
+<!--Designer: @yangde_dy-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
+
 ## Overview
 
 The file declares the structs and enums of the LowPowerAudioSink.
@@ -27,11 +34,11 @@ The file declares the structs and enums of the LowPowerAudioSink.
 
 | Name| typedef Keyword| Description|
 | -- | -- | -- |
-| [typedef void (\*OH_LowPowerAudioSink_OnError)(OH_LowPowerAudioSink* sink,OH_AVErrCode errCode,const char* errorMsg,void* userData)](#oh_lowpoweraudiosink_onerror) | OH_LowPowerAudioSink_OnError | Called when an error occurs in the LowPowerAudioSink.|
-| [typedef void (\*OH_LowPowerAudioSink_OnPositionUpdated)(OH_LowPowerAudioSink* sink,int64_t currentPosition,void* userData)](#oh_lowpoweraudiosink_onpositionupdated) | OH_LowPowerAudioSink_OnPositionUpdated | Called when the playback position is updated in the LowPowerAudioSink.|
-| [typedef void (\*OH_LowPowerAudioSink_OnDataNeeded)(OH_LowPowerAudioSink* sink,OH_AVSamplesBuffer* samples,void* userData)](#oh_lowpoweraudiosink_ondataneeded) | OH_LowPowerAudioSink_OnDataNeeded | Called when the LowPowerAudioSink needs more data.|
-| [typedef void (\*OH_LowPowerAudioSink_OnInterrupted)(OH_LowPowerAudioSink* sink,OH_AudioInterrupt_ForceType type,OH_AudioInterrupt_Hint hint,void* userData)](#oh_lowpoweraudiosink_oninterrupted) | OH_LowPowerAudioSink_OnInterrupted | Called when the audio focus is interrupted in the LowPowerAudioSink.|
-| [typedef void (\*OH_LowPowerAudioSink_OnDeviceChanged)(OH_LowPowerAudioSink* sink,OH_AudioStream_DeviceChangeReason reason,void* userData)](#oh_lowpoweraudiosink_ondevicechanged) | OH_LowPowerAudioSink_OnDeviceChanged | Called when the audio device changes in the LowPowerAudioSink.|
+| [typedef void (\*OH_LowPowerAudioSink_OnError)(OH_LowPowerAudioSink* sink, OH_AVErrCode errCode, const char* errorMsg, void* userData)](#oh_lowpoweraudiosink_onerror) | OH_LowPowerAudioSink_OnError | Called when an error occurs in the LowPowerAudioSink.|
+| [typedef void (\*OH_LowPowerAudioSink_OnPositionUpdated)(OH_LowPowerAudioSink* sink, int64_t currentPosition, void* userData)](#oh_lowpoweraudiosink_onpositionupdated) | OH_LowPowerAudioSink_OnPositionUpdated | Called when the playback position is updated in the LowPowerAudioSink.|
+| [typedef void (\*OH_LowPowerAudioSink_OnDataNeeded)(OH_LowPowerAudioSink* sink, OH_AVSamplesBuffer* samples, void* userData)](#oh_lowpoweraudiosink_ondataneeded) | OH_LowPowerAudioSink_OnDataNeeded | Called when the LowPowerAudioSink needs more data.|
+| [typedef void (\*OH_LowPowerAudioSink_OnInterrupted)(OH_LowPowerAudioSink* sink, OH_AudioInterrupt_ForceType type, OH_AudioInterrupt_Hint hint, void* userData)](#oh_lowpoweraudiosink_oninterrupted) | OH_LowPowerAudioSink_OnInterrupted | Called when the audio focus is interrupted in the LowPowerAudioSink.|
+| [typedef void (\*OH_LowPowerAudioSink_OnDeviceChanged)(OH_LowPowerAudioSink* sink, OH_AudioStream_DeviceChangeReason reason, void* userData)](#oh_lowpoweraudiosink_ondevicechanged) | OH_LowPowerAudioSink_OnDeviceChanged | Called when the audio device changes in the LowPowerAudioSink.|
 | [typedef void (\*OH_LowPowerAudioSink_OnEos)(OH_LowPowerAudioSink* sink, void* userData)](#oh_lowpoweraudiosink_oneos) | OH_LowPowerAudioSink_OnEos | Called when the playback is complete in the LowPowerAudioSink. This callback is included in [OH_LowPowerAudioSinkCallback](capi-lowpoweraudiosink-oh-lowpoweraudiosinkcallback.md).|
 
 ## Function Description

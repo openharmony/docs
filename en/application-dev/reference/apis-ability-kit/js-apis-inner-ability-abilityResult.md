@@ -1,6 +1,6 @@
 # AbilityResult
 
-The module defines the result code and data returned when an ability is terminated after being started.
+The module defines the result code and data returned when a started ability is terminated.
 
 In the stage model, you can use [startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#startabilityforresult) to obtain the AbilityResult object returned after the started ability is terminated by calling [terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult).
 

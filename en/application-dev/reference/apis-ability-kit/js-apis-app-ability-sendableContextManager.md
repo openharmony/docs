@@ -1,5 +1,12 @@
 # @ohos.app.ability.sendableContextManager (Sendable Context Management)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhangyafei-echo; @xuzhihao666-->
+<!--Designer: @zhangyafei-echo-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 The sendableContextManager module provides APIs for converting between Context and [SendableContext](js-apis-inner-application-sendableContext.md) objects.
 
 > **NOTE**
@@ -16,7 +23,7 @@ For example, when transferring sendable data from the main thread to a child thr
 - Conversion from SendableContext to Context for the child thread to use the sendable data.
 
 The Context here is different from that created by [createModuleContext](./js-apis-app-ability-application.md#applicationcreatemodulecontext12). The differences are as follows:
-- Context involved in the conversion: ArkTS concurrent instances hold different application-side Context instances that correspond to the same underlying Context object. When the Context properties and methods in an instance are modified, the Context properties and methods in the related instances are modified accordingly. The eventHub attribute in the Context instance is special. The eventHub objects in different instances are independent from each other and cannot be used across ArkTS instances. If you want to use [EventHub](./js-apis-inner-application-eventHub.md) to transfer data across instances, call [setEventHubMultithreadingEnabled](#sendablecontextmanagerseteventhubmultithreadingenabled20) to enable the cross-thread data transfer feature.
+- Context involved in the conversion: ArkTS concurrent instances hold different application-side Context instances that correspond to the same underlying Context object. When the Context properties and methods in an instance are modified, the Context properties and methods in the related instances are modified accordingly. The eventHub attribute in the Context instance is special. The eventHub objects in different instances are independent of each other and cannot be used across ArkTS instances. If you want to use [EventHub](./js-apis-inner-application-eventHub.md) to transfer data across instances, call [setEventHubMultithreadingEnabled](#sendablecontextmanagerseteventhubmultithreadingenabled20) to enable the cross-thread data transfer feature.
 
 
 - Context created using [createModuleContext](./js-apis-app-ability-application.md#applicationcreatemodulecontext12): ArkTS concurrent instances hold different application-side Context objects that correspond to different underlying Context objects.
@@ -31,23 +38,19 @@ The Context types used in the conversion must be the same. Currently, the follow
 import { sendableContextManager } from '@kit.AbilityKit';
 ```
 
-## Properties
+## SendableContext
+
+type SendableContext = _SendableContext
+
+Defines the Sendable context. It complies with the [Sendable protocol](../../arkts-utils/arkts-sendable.md#sendable-protocol) and inherits from [lang.ISendable](../apis-arkts/js-apis-arkts-lang.md#langisendable).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name| Type| Mandatory| Description|
-| ------- | ------- | ------- | ------- |
-| SendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| Level-2 module SendableContext.|
-
-**Example**
-
-```ts
-import { sendableContextManager } from '@kit.AbilityKit';
-
-let sendableContext: sendableContextManager.SendableContext;
-```
+| Type| Description|
+| --- | --- |
+| [_SendableContext](js-apis-inner-application-sendableContext.md) | Sendable context, which can be converted to a Context object to implement data transmission between concurrent ArkTS instances (including the main thread and the worker thread of TaskPool or Worker).|
 
 ## sendableContextManager.convertFromContext
 
@@ -581,7 +584,7 @@ Enables the cross-thread data transfer feature of [EventHub](./js-apis-inner-app
 | Name | Type          | Mandatory| Description                                                        |
 | ------- | -------------- | ---- | ------------------------------------------------------------ |
 | context | [common.Context](js-apis-inner-application-context.md) | Yes  | Context object. For details about the serialization data types supported by Eventhub, see [Sequenceable Data Types](../apis-arkts/js-apis-taskpool.md#sequenceable-data-types). The data size cannot exceed 16 MB.|
-| enabled  | boolean        | Yes  | Whether to enable the cross-thread data transfer feature. The value **true** means to enable the feature, and **false** means the opposite.                               |
+| enabled  | boolean        | Yes  | Whether to enable the cross-thread data transfer feature. **true** to enable, **false** otherwise.                               |
 
 **Example**
 
@@ -668,13 +671,9 @@ workerPort.onmessage = (e: MessageEvents) => {
   let object: SendableObject = e.data;
   let sendableContext: sendableContextManager.SendableContext = object.sendableContext;
   if (object.contextName == 'BaseContext') {
-    try {
-      let context: common.Context = sendableContextManager.convertToContext(sendableContext);
-      sendableContextManager.setEventHubMultithreadingEnabled(context, true);
-      context.eventHub.emit('event1', 'xingming', 40);
-    } catch (error) {
-      hilog.error(DOMAIN, 'testTag', 'convertToContext failed %{public}s', JSON.stringify(error));
-    }
+    let context: common.Context = sendableContextManager.convertToContext(sendableContext);
+    sendableContextManager.setEventHubMultithreadingEnabled(context, true);
+    context.eventHub.emit('event1', 'xingming', 40);
   }
 };
 

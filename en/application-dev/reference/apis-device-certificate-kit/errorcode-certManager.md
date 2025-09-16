@@ -1,5 +1,12 @@
 # Certificate Management Error Codes
 
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @chaceli-->
+<!--Designer: @chande-->
+<!--Tester: @zhangzhi1995-->
+<!--Adviser: @zengyawen-->
+
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -8,7 +15,7 @@
 
 **Error Message**
 
-Internal error.
+Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.
 
 **Possible Causes**
 
@@ -87,3 +94,17 @@ The user has enabled the advanced security mode.
 **Solution**
 
 Guide the user to disable the advanced security mode on the application UI.
+
+## 17500009 Specified Certificate Storage Path Not Supported
+
+**Error Message**
+
+The device does not support the specified certificate store path.
+
+**Possible Causes**
+
+The device does not support the specified certificate storage path.
+
+**Solution**
+
+Check whether the entered certificate type is correct.

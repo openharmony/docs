@@ -1,4 +1,10 @@
 # @ohos.app.appstartup.StartupListener (Startup Task Listener)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @yzkp-->
+<!--Designer: @yzkp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 
 The module provides APIs to listen for startup tasks.
@@ -27,7 +33,7 @@ Called when all startup tasks are complete.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| error | [BusinessError](../apis-basic-services-kit/js-apis-base.md#businesserror) | Yes| Error message.|
+| error | [BusinessError\<void>](../apis-basic-services-kit/js-apis-base.md#businesserror) | Yes| Error message.|
 
 **Example**
 

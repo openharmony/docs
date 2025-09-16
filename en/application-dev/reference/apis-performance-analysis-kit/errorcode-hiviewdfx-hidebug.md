@@ -1,5 +1,11 @@
 # HiDebug Error Codes
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @hello_harmony; @yu_haoqiaida-->
+<!--SE: @kutcherzhou1-->
+<!--TSE: @gcw_KuLfPSbe-->
+
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -21,7 +27,7 @@ The specified service ID is incorrect or the corresponding service is not starte
 
 Specify a correct system service ID.
 
-## 11400102 Repeated Trace
+## 11400102 Repeated Trace Collection
 
 **Error Message**
 
@@ -89,14 +95,14 @@ Trace collection is not enabled.
 
 Enable trace collection and then stop it.
 
-## 11400106 The API Call Quota Has Been Exceeded
+## 11400106 The API Call Quota Is Exceeded
 
 **Error Message**
 
 Quota exceeded.
 
 **Description**
-The API call quota has been exceeded.
+The API call quota is exceeded.
 
 **Possible Causes**
 
@@ -140,9 +146,9 @@ The system resources are insufficient. You are advised to check the system load.
 
 **Solution**
 
-Wait for the child dump process to finish again. If it still fails, filter **Error** logs to locate the fault. For details, see [Log Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-setup-hilog#section2114542680). If the problem persists, <!--RP1-->contact us.<!--RP1End-->
+Fork the child dump process again. If it still fails, filter **Error** logs to locate the fault. For details, see [Log Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-setup-hilog#section2114542680). If the problem persists, <!--RP1-->contact us.<!--RP1End-->
 
-## 11400109 The Child Dump Process Times Out
+## 11400109 Waiting for the Child Dump Process Times Out
 
 **Error Message**
 
@@ -157,9 +163,9 @@ The dump process takes a long time. You are advised to check the system load.
 
 **Solution**
 
-Wait for the child dump process to finish again. If it still fails, filter **Error** logs to locate the fault. For details, see [Log Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-setup-hilog#section2114542680). If the problem persists, <!--RP1-->contact us.<!--RP1End-->
+Fork the child dump process again. If it still fails, filter **Error** logs to locate the fault. For details, see [Log Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-setup-hilog#section2114542680). If the problem persists, <!--RP1-->contact us.<!--RP1End-->
 
-## 11400110 The Disk Space Is Insufficient
+## 11400110 Insufficient Disk Space
 
 **Error Message**
 
@@ -191,9 +197,9 @@ The VM is abnormal.
 
 **Solution**
 
-Call the Node-API again. If it still fails, filter **Error** logs to locate the fault. For details, see [Log Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-setup-hilog#section2114542680). If the problem persists, <!--RP1-->contact us.<!--RP1End-->
+Fork the child dump process again. If it still fails, filter **Error** logs to locate the fault. For details, see [Log Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-setup-hilog#section2114542680). If the problem persists, <!--RP1-->contact us.<!--RP1End-->
 
-## 11400112 Repeat Data Dump
+## 11400112 Repeated Data Dump
 
 **Error Message**
 
@@ -215,6 +221,7 @@ Optimize the code logic to ensure that the next dump task starts after the previ
 **Error Message**
 
 Failed to create dump file.
+
 **Description**
 
 Failed to create the dump file.
@@ -227,4 +234,22 @@ Failed to create the dump file.
 
 **Solution**
 
-Create the dump file again. If it still fails, filter **Error** logs to locate the fault. For details, see [Log Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-setup-hilog#section2114542680). If the problem persists, <!--RP1-->contact us.<!--RP1End-->
+Fork the child dump process again. If it still fails, filter **Error** logs to locate the fault. For details, see [Log Analysis](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-setup-hilog#section2114542680). If the problem persists, <!--RP1-->contact us.<!--RP1End-->
+
+## 11400114 Failed to Enable GWP-Asan
+
+**Error Message**
+
+The number of GWP-ASAN applications of this device overflowed after last boot.
+
+**Description**
+
+After the device is restarted, the number of applications for which GWP-Asan is enabled exceeds the system limit.
+
+**Possible Causes**
+
+A maximum of 20 applications can be enabled with GWP-Asan during the running of a single device. The limit is exceeded.
+
+**Solution**
+
+Restart the system to update the device quota.

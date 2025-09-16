@@ -3,8 +3,9 @@
 <!--Kit: Function Flow Runtime Kit-->
 <!--Subsystem: Resourceschedule-->
 <!--Owner: @chuchihtung; @yanleo-->
-<!--SE: @geoffrey_guo; @huangyouzhong-->
-<!--TSE: @lotsof; @sunxuhao-->
+<!--Designer: @geoffrey_guo; @huangyouzhong-->
+<!--Tester: @lotsof; @sunxuhao-->
+<!--Adviser: @foryourself-->
 
 ## Overview
 
@@ -39,6 +40,7 @@ The **loop.h** file declares the loop APIs in C.
 | [FFRT_C_API void ffrt_loop_stop(ffrt_loop_t loop)](#ffrt_loop_stop) | Stops a loop.|
 | [FFRT_C_API int ffrt_loop_epoll_ctl(ffrt_loop_t loop, int op, int fd, uint32_t events, void *data, ffrt_poller_cb cb)](#ffrt_loop_epoll_ctl) | Manages listening events on a loop.|
 | [FFRT_C_API ffrt_timer_t ffrt_loop_timer_start(ffrt_loop_t loop, uint64_t timeout, void* data, ffrt_timer_cb cb, bool repeat)](#ffrt_loop_timer_start) | Starts the timer on a loop.|
+| [FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle)](#ffrt_loop_timer_stop) | Stops the timer on a loop.|
 
 ## Function Description
 
@@ -194,3 +196,29 @@ Starts the timer on a loop.
 | Type                                              | Description|
 |--------------------------------------------------| -- |
 | FFRT_C_API [ffrt_timer_t](capi-type-def-h.md#variables)| Returns the timer handle.|
+
+### ffrt_loop_timer_stop()
+
+```
+FFRT_C_API int ffrt_loop_timer_stop(ffrt_loop_t loop, ffrt_timer_t handle)
+```
+
+**Description**
+
+Stops the timer on a loop.
+
+**Since**: 12
+
+
+**Parameters**
+
+| Name| Description|
+| -- | -- |
+| ffrt_loop_t loop | Loop object.|
+| ffrt_timer_t handle | Timer handle.|
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| FFRT_C_API int | Returns **0** if the operation is successful;<br>returns **-1** otherwise.|

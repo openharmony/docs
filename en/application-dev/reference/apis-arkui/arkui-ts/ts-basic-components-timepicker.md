@@ -122,7 +122,7 @@ Sets whether to display time in 24-hour format. Compared with [useMilitaryTime](
 
 | Name| Type   | Mandatory| Description                                      |
 | ------ | ------- | ---- | ------------------------------------------ |
-| isMilitaryTime | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether the display time is in 24-hour format.<br>If **isMilitaryTime** is set to **undefined**, the default value **false** is used.<br>**true**: The display time is in 24-hour format.<br>**false**: The display time is in 12-hour format.|
+| isMilitaryTime | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | Yes  | Whether the display time is in 24-hour format.<br>If **isMilitaryTime** is set to **undefined**, the default value **false** is used.<br>**true**: The display time is in 24-hour format.<br>**false**: The display time is in 12-hour format.|
 
 ### disappearTextStyle<sup>10+</sup>
 
@@ -154,7 +154,7 @@ Sets the font color, font size, and font weight for the top and bottom items. Co
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight of the top and bottom items.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight of the top and bottom items.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
 
 ### textStyle<sup>10+</sup>
 
@@ -186,7 +186,7 @@ Sets the font color, font size, and font weight for all items except the top, bo
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight of all items except the top, bottom, and selected items.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight of all items except the top, bottom, and selected items.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
 
 ### selectedTextStyle<sup>10+</sup>
 
@@ -218,7 +218,7 @@ Sets the font color, font size, and font weight for the selected item. Compared 
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight of the selected item.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20fp', <br>weight: FontWeight.Medium<br>}<br>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight of the selected item.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20fp', <br>weight: FontWeight.Medium<br>}<br>} |
 
 ### loop<sup>11+</sup>
 
@@ -250,7 +250,7 @@ Sets whether to enable the loop mode. Compared with [loop](#loop11)<sup>11+</sup
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether to enable the loop mode.<br>If **isLoop** is set to **undefined**, the default value **true** is used. The value **true** means to enable the loop mode, and false means the opposite.|
+| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | Yes  | Whether to enable the loop mode.<br>If **isLoop** is set to **undefined**, the default value **true** is used. The value **true** means to enable the loop mode, and false means the opposite.|
 
 ### dateTimeOptions<sup>12+</sup>
 
@@ -266,7 +266,7 @@ Sets whether to display a leading zero for the hours, minutes, and seconds.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptions) | Yes  | Whether to display a leading zero for the hours, minutes, and seconds. Currently only the configuration of the **hour**, **minute**, and **second** parameters is supported.<br>Default value:<br>**hour**: In the 24-hour format, it defaults to **"2-digit"**, which means a leading zero is used. In the 12-hour format, it defaults to **"numeric"**, which means no leading zero is used.<br>**minute**: defaults to **"2-digit"**, which means a leading zero is used.|
+| value  | [DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptionsdeprecated) | Yes  | Whether to display a leading zero for the hours, minutes, and seconds. Currently only the configuration of the **hour**, **minute**, and **second** parameters is supported.<br>Default value:<br>**hour**: In the 24-hour format, it defaults to **"2-digit"**, which means a leading zero is used. In the 12-hour format, it defaults to **"numeric"**, which means no leading zero is used.<br>**minute**: defaults to **"2-digit"**, which means a leading zero is used.|
 
 ### dateTimeOptions<sup>18+</sup>
 
@@ -282,7 +282,7 @@ Sets whether to display a leading zero for the hours, minutes, and seconds. Comp
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| timeFormat  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptions)> | Yes  | Whether to display a leading zero for the hours, minutes, and seconds. Currently only the configuration of the **hour**, **minute**, and **second** parameters is supported.<br>Default value:<br>**hour**: In the 24-hour format, it defaults to **"2-digit"**, which means a leading zero is used; in the 12-hour format, it defaults to **"numeric"**, which means no leading zero is used.<br>**minute**: defaults to **"2-digit"**, which means a leading zero is used.<br>**second**: defaults to **"2-digit"**, which means a leading zero is used.<br> If **hour**, **minute**, or **second** is set to **undefined**, the display follows the default rules.|
+| timeFormat  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptionsdeprecated)> | Yes  | Whether to display a leading zero for the hours, minutes, and seconds. Currently only the configuration of the **hour**, **minute**, and **second** parameters is supported.<br>Default value:<br>**hour**: In the 24-hour format, it defaults to **"2-digit"**, which means a leading zero is used; in the 12-hour format, it defaults to **"numeric"**, which means no leading zero is used.<br>**minute**: defaults to **"2-digit"**, which means a leading zero is used.<br>**second**: defaults to **"2-digit"**, which means a leading zero is used.<br> If **hour**, **minute**, or **second** is set to **undefined**, the display follows the default rules.|
 
 ### enableHapticFeedback<sup>12+</sup>
 
@@ -310,7 +310,7 @@ Sets whether to enable haptic feedback. Compared with [enableHapticFeedback](#en
 
 | Name| Type                                         | Mandatory | Description                                                                                 |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| enable  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether haptic feedback is enabled.<br>If **enable** is set to **undefined**, the default value **true** is used. The value **true** means to enable haptic feedback, and **false** means the opposite.<br>Whether this parameter takes effect after being set to true depends on hardware support.|
+| enable  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | Yes  | Whether haptic feedback is enabled.<br>If **enable** is set to **undefined**, the default value **true** is used. The value **true** means to enable haptic feedback, and **false** means the opposite.<br>Whether this parameter takes effect after being set to true depends on hardware support.|
 
 >  **NOTE**
 >
@@ -348,7 +348,7 @@ Sets the sensitivity to the digital crown rotation.
 
 | Name  | Type                                    | Mandatory  | Description                     |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
-| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | Yes   | Sensitivity to the digital crown rotation.<br>Default value: **CrownSensitivity.MEDIUM**                   |
+| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | Yes   | Sensitivity to the digital crown rotation.<br>Default value: **CrownSensitivity.MEDIUM**                   |
 
 >  **NOTE**
 >
@@ -388,7 +388,7 @@ Triggered when the time options in the TimePicker rest on the selected position 
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnTimePickerChangeCallback](#ontimepickerchangecallback18)> | Yes  | Callback invoked when a time option is selected.<br>If **callback** is set to **undefined**, the callback function is not used.|
+| callback | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[OnTimePickerChangeCallback](#ontimepickerchangecallback18)> | Yes  | Callback invoked when a time option is selected.<br>If **callback** is set to **undefined**, the callback function is not used.|
 
 ### onEnterSelectedArea<sup>18+</sup>
 

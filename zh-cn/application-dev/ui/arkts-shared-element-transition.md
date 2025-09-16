@@ -2,7 +2,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--Designer: @yangfan229-->
+<!--Designer: @CCFFWW-->
 <!--Tester: @lxl007-->
 <!--Adviser: @ge-yafang-->
 
@@ -37,6 +37,7 @@
 
 ```ts
 class PostData {
+  // 图片使用Resource资源，需用户自定义
   avatar: Resource = $r('app.media.flower');
   name: string = '';
   message: string = '';
@@ -49,6 +50,7 @@ struct Index {
   @State isExpand: boolean = false;
   @State @Watch('onItemClicked') selectedIndex: number = -1;
 
+  // 数组中图片均使用Resource资源，需用户自定义
   private allPostData: PostData[] = [
     { avatar: $r('app.media.flower'), name: 'Alice', message: '天气晴朗',
       images: [$r('app.media.spring'), $r('app.media.tree')] },
@@ -191,7 +193,7 @@ import { componentUtils, curves, UIContext } from '@kit.ArkUI';
 struct Index {
   // 新建一镜到底动画类
   private uiContext: UIContext = this.getUIContext();
-  @State AnimationProperties: AnimationProperties = new AnimationProperties(this.uiContext);
+  @State animationProperties: AnimationProperties = new AnimationProperties(this.uiContext);
   private listArray: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   build() {
@@ -201,27 +203,27 @@ struct Index {
         ForEach(this.listArray, (item: number) => {
           ListItem() {
             // 卡片折叠态
-            PostItem({ index: item, AnimationProperties: this.AnimationProperties })
+            PostItem({ index: item, animationProperties: this.animationProperties })
           }
         })
       }
       .clip(false)
       .alignListItem(ListItemAlign.Center)
 
-      if (this.AnimationProperties.isExpandPageShow) {
+      if (this.animationProperties.isExpandPageShow) {
         // 卡片展开态
-        ExpandPage({ AnimationProperties: this.AnimationProperties })
+        ExpandPage({ animationProperties: this.animationProperties })
       }
     }
     .key('rootStack')
-    .enabled(this.AnimationProperties.isEnabled)
+    .enabled(this.animationProperties.isEnabled)
   }
 }
 
 @Component
 struct PostItem {
   @Prop index: number
-  @Link AnimationProperties: AnimationProperties;
+  @Link animationProperties: AnimationProperties;
   @State nodeController: PostNode | undefined = undefined;
   // 折叠时详细内容隐藏
   private showDetailContent: boolean = false;
@@ -251,23 +253,23 @@ struct PostItem {
         this.nodeController.onRemove();
       }
       // 触发卡片从折叠到展开态的动画
-      this.AnimationProperties.expandAnimation(this.index);
+      this.animationProperties.expandAnimation(this.index);
     })
   }
 }
 
 @Component
 struct ExpandPage {
-  @Link AnimationProperties: AnimationProperties;
+  @Link animationProperties: AnimationProperties;
   @State nodeController: PostNode | undefined = undefined;
   // 展开时详细内容出现
   private showDetailContent: boolean = true;
 
   aboutToAppear(): void {
     // 获取对应序号的卡片组件
-    this.nodeController = getPostNode(this.AnimationProperties.curIndex.toString())
+    this.nodeController = getPostNode(this.animationProperties.curIndex.toString())
     // 更新为详细内容出现
-    this.nodeController?.update(this.AnimationProperties.curIndex.toString(), this.showDetailContent)
+    this.nodeController?.update(this.animationProperties.curIndex.toString(), this.showDetailContent)
   }
 
   build() {
@@ -275,9 +277,9 @@ struct ExpandPage {
       NodeContainer(this.nodeController)
     }
     .width('100%')
-    .height(this.AnimationProperties.changedHeight ? '100%' : 100)
-    .translate({ x: this.AnimationProperties.translateX, y: this.AnimationProperties.translateY })
-    .position({ x: this.AnimationProperties.positionX, y: this.AnimationProperties.positionY })
+    .height(this.animationProperties.changedHeight ? '100%' : 100)
+    .translate({ x: this.animationProperties.translateX, y: this.animationProperties.translateY })
+    .position({ x: this.animationProperties.positionX, y: this.animationProperties.positionY })
     .onClick(() => {
       this.getUIContext()?.animateTo({ curve: curves.springMotion(0.6, 0.9),
         onFinish: () => {
@@ -288,17 +290,17 @@ struct ExpandPage {
             this.nodeController.onRemove();
           }
           // 卡片展开态节点下树
-          this.AnimationProperties.isExpandPageShow = false;
-          this.AnimationProperties.isEnabled = true;
+          this.animationProperties.isExpandPageShow = false;
+          this.animationProperties.isEnabled = true;
         }
       }, () => {
         // 卡片从展开态回到折叠态
-        this.AnimationProperties.isEnabled = false;
-        this.AnimationProperties.translateX = 0;
-        this.AnimationProperties.translateY = 0;
-        this.AnimationProperties.changedHeight = false;
+        this.animationProperties.isEnabled = false;
+        this.animationProperties.translateX = 0;
+        this.animationProperties.translateY = 0;
+        this.animationProperties.changedHeight = false;
         // 更新为详细内容消失
-        this.nodeController?.update(this.AnimationProperties.curIndex.toString(), false);
+        this.nodeController?.update(this.animationProperties.curIndex.toString(), false);
       })
     })
   }
@@ -628,11 +630,11 @@ struct Index {
         // 一切判断完成后，构造customAnimation给系统侧调用，执行自定义转场动画
         let customAnimation: NavigationAnimatedTransition = {
           onTransitionEnd: (isSuccess: boolean) => {
-            console.log(TAG, `current transition result is ${isSuccess}`);
+            console.info(TAG, `current transition result is ${isSuccess}`);
           },
           timeout: 2000,
           transition: (transitionProxy: NavigationTransitionProxy) => {
-            console.log(TAG, 'trigger transition callback');
+            console.info(TAG, 'trigger transition callback');
             if (fromParam.animation) {
               fromParam.animation(operation == NavigationOperation.PUSH, true, transitionProxy);
             }
@@ -705,6 +707,7 @@ export struct PageOne {
       Stack() {
         Column({ space: 20 }) {
           Row({ space: 10 }) {
+            // 图片使用Resource资源，需用户自定义
             Image($r("app.media.avatar"))
               .size({ width: 50, height: 50 })
               .borderRadius(25)
@@ -757,7 +760,7 @@ export function PageTwoBuilder() {
 @Component
 export struct PageTwo {
   @State pageInfos: NavPathStack = new NavPathStack();
-  @State AnimationProperties: AnimationProperties = new AnimationProperties(this.getUIContext());
+  @State animationProperties: AnimationProperties = new AnimationProperties(this.getUIContext());
   @State myNodeController: MyNodeController | undefined = new MyNodeController(false);
 
   private pageId: number = -1;
@@ -797,7 +800,7 @@ export struct PageTwo {
         Stack({ alignContent: Alignment.TopStart }) {
           Column({space: 20}) {
             NodeContainer(this.myNodeController)
-            if (this.AnimationProperties.showDetailContent)
+            if (this.animationProperties.showDetailContent)
               Text('展开态内容')
                 .fontSize(20)
                 .transition(TransitionEffect.OPACITY)
@@ -805,19 +808,19 @@ export struct PageTwo {
           }
           .alignItems(HorizontalAlign.Start)
         }
-        .position({ y: this.AnimationProperties.positionValue })
+        .position({ y: this.animationProperties.positionValue })
       }
-      .scale({ x: this.AnimationProperties.scaleValue, y: this.AnimationProperties.scaleValue })
-      .translate({ x: this.AnimationProperties.translateX, y: this.AnimationProperties.translateY })
-      .width(this.AnimationProperties.clipWidth)
-      .height(this.AnimationProperties.clipHeight)
-      .borderRadius(this.AnimationProperties.radius)
+      .scale({ x: this.animationProperties.scaleValue, y: this.animationProperties.scaleValue })
+      .translate({ x: this.animationProperties.translateX, y: this.animationProperties.translateY })
+      .width(this.animationProperties.clipWidth)
+      .height(this.animationProperties.clipHeight)
+      .borderRadius(this.animationProperties.radius)
       // expandSafeArea使得Stack做沉浸式效果，向上扩到状态栏，向下扩到导航条
       .expandSafeArea([SafeAreaType.SYSTEM])
       // 对高度进行裁切
       .clip(true)
     }
-    .backgroundColor(this.AnimationProperties.navDestinationBgColor)
+    .backgroundColor(this.animationProperties.navDestinationBgColor)
     .hideTitleBar(true)
     .onReady((context: NavDestinationContext) => {
       this.pageInfos = context.pathStack;
@@ -827,7 +830,7 @@ export struct PageTwo {
       this.cardItemInfo = param['cardItemInfo'] as RectInfoInPx;
       CustomTransition.getInstance().registerNavParam(this.pageId,
         (isPush: boolean, isExit: boolean, transitionProxy: NavigationTransitionProxy) => {
-          this.AnimationProperties.doAnimation(
+          this.animationProperties.doAnimation(
             this.cardItemInfo, isPush, isExit, transitionProxy, 0,
             this.prePageDoFinishTransition, this.myNodeController);
         }, 500);
@@ -971,7 +974,7 @@ export class AnimationProperties {
     }
 
     // 转场动画开始前通过计算scale、translate、position和clip height & width，确定节点迁移前后位置一致
-    console.log(TAG, 'initScale: ' + initScale + ' initTranslateX ' + initTranslateX +
+    console.info(TAG, 'initScale: ' + initScale + ' initTranslateX ' + initTranslateX +
     ' initTranslateY ' + initTranslateY + ' initClipWidth ' + initClipWidth +
     ' initClipHeight ' + initClipHeight + ' initPositionValue ' + initPositionValue);
     // 转场至新页面
@@ -1156,13 +1159,13 @@ export default class EntryAbility extends UIAbility {
     let navigationArea = WindowUtils.window.getWindowAvoidArea(window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR);
     WindowUtils.navigationIndicatorHeight_px = navigationArea.bottomRect.height;
 
-    console.log(TAG, 'the width is ' + WindowUtils.windowWidth_px + '  ' + WindowUtils.windowHeight_px + '  ' +
+    hilog.info(0x0000, TAG, 'the width is ' + WindowUtils.windowWidth_px + '  ' + WindowUtils.windowHeight_px + '  ' +
     WindowUtils.topAvoidAreaHeight_px + '  ' + WindowUtils.navigationIndicatorHeight_px);
 
     // 监听窗口尺寸、状态栏高度及导航条高度的变化并更新
     try {
       WindowUtils.window.on('windowSizeChange', (data) => {
-        console.log(TAG, 'on windowSizeChange, the width is ' + data.width + ', the height is ' + data.height);
+        hilog.info(0x0000, TAG, 'on windowSizeChange, the width is ' + data.width + ', the height is ' + data.height);
         WindowUtils.windowWidth_px = data.width;
         WindowUtils.windowHeight_px = data.height;
         this.updateBreakpoint(data.width);
@@ -1172,16 +1175,16 @@ export default class EntryAbility extends UIAbility {
       WindowUtils.window.on('avoidAreaChange', (data) => {
         if (data.type == window.AvoidAreaType.TYPE_SYSTEM) {
           let topRectHeight = data.area.topRect.height;
-          console.log(TAG, 'on avoidAreaChange, the top avoid area height is ' + topRectHeight);
+          hilog.info(0x0000, TAG, 'on avoidAreaChange, the top avoid area height is ' + topRectHeight);
           WindowUtils.topAvoidAreaHeight_px = topRectHeight;
         } else if (data.type == window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR) {
           let bottomRectHeight = data.area.bottomRect.height;
-          console.log(TAG, 'on avoidAreaChange, the navigation indicator height is ' + bottomRectHeight);
+          hilog.info(0x0000, TAG, 'on avoidAreaChange, the navigation indicator height is ' + bottomRectHeight);
           WindowUtils.navigationIndicatorHeight_px = bottomRectHeight;
         }
       })
     } catch (exception) {
-      console.log('register failed ' + JSON.stringify(exception));
+      hilog.error(0x0000, TAG, `register failed. code: ${exception.code}, message: ${exception.message}`);
     }
 
     windowStage.loadContent('pages/Index', (err) => {
@@ -1236,6 +1239,7 @@ import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 @Builder
 function CardBuilder() {
+  // 图片使用Resource资源，需用户自定义
   Image($r("app.media.card"))
     .width('100%')
     .id('card')
@@ -1462,6 +1466,7 @@ struct Index {
         .width('100%')
         .fontSize(30)
         .padding(20)
+      // 图片使用Resource资源，需用户自定义
       Image($r("app.media.flower"))
         .opacity(this.opacityDegree)
         .width('90%')
@@ -1531,6 +1536,7 @@ struct Index {
           }
           else {
             // 抓取布局和占位用，实际不显示
+            // 图片使用Resource资源，需用户自定义
             Image($r("app.media.flower"))
               .visibility(Visibility.Hidden)
           }
@@ -1597,6 +1603,7 @@ import { BuilderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 @Builder
 function CardBuilder() {
+  // 图片使用Resource资源，需用户自定义
   Image($r("app.media.flower"))
     // 避免第一次加载图片时图片闪烁
     .syncLoad(true)
@@ -1770,13 +1777,13 @@ export default class EntryAbility extends UIAbility {
     let navigationArea = WindowUtils.window.getWindowAvoidArea(window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR);
     WindowUtils.navigationIndicatorHeight_px = navigationArea.bottomRect.height;
 
-    console.log(TAG, 'the width is ' + WindowUtils.windowWidth_px + '  ' + WindowUtils.windowHeight_px + '  ' +
+    hilog.info(0x0000, TAG, 'the width is ' + WindowUtils.windowWidth_px + '  ' + WindowUtils.windowHeight_px + '  ' +
     WindowUtils.topAvoidAreaHeight_px + '  ' + WindowUtils.navigationIndicatorHeight_px);
 
     // 监听窗口尺寸、状态栏高度及导航条高度的变化并更新
     try {
       WindowUtils.window.on('windowSizeChange', (data) => {
-        console.log(TAG, 'on windowSizeChange, the width is ' + data.width + ', the height is ' + data.height);
+        hilog.info(0x0000, TAG, 'on windowSizeChange, the width is ' + data.width + ', the height is ' + data.height);
         WindowUtils.windowWidth_px = data.width;
         WindowUtils.windowHeight_px = data.height;
         this.updateBreakpoint(data.width);
@@ -1786,16 +1793,16 @@ export default class EntryAbility extends UIAbility {
       WindowUtils.window.on('avoidAreaChange', (data) => {
         if (data.type == window.AvoidAreaType.TYPE_SYSTEM) {
           let topRectHeight = data.area.topRect.height;
-          console.log(TAG, 'on avoidAreaChange, the top avoid area height is ' + topRectHeight);
+          hilog.info(0x0000, TAG, 'on avoidAreaChange, the top avoid area height is ' + topRectHeight);
           WindowUtils.topAvoidAreaHeight_px = topRectHeight;
         } else if (data.type == window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR) {
           let bottomRectHeight = data.area.bottomRect.height;
-          console.log(TAG, 'on avoidAreaChange, the navigation indicator height is ' + bottomRectHeight);
+          hilog.info(0x0000, TAG, 'on avoidAreaChange, the navigation indicator height is ' + bottomRectHeight);
           WindowUtils.navigationIndicatorHeight_px = bottomRectHeight;
         }
       })
     } catch (exception) {
-      console.log('register failed ' + JSON.stringify(exception));
+      hilog.error(0x0000, TAG, `register failed. code: ${exception.code}, message: ${exception.message}`);
     }
 
     windowStage.loadContent('pages/Index', (err) => {
@@ -1868,6 +1875,7 @@ struct IfElseGeometryTransition {
   build() {
     Stack({ alignContent: Alignment.Center }) {
       if (this.isShow) {
+        // 图片使用Resource资源，需用户自定义
         Image($r('app.media.spring'))
           .autoResize(false)
           .clip(true)
@@ -1885,6 +1893,7 @@ struct IfElseGeometryTransition {
         // 套多层容器为了说明相对布局约束传递
         Column() {
           Column() {
+            // 图片使用Resource资源，需用户自定义
             Image($r('app.media.sky'))
               .size({ width: '100%', height: '100%' })
           }
@@ -1923,6 +1932,7 @@ struct IfElseGeometryTransition {
 
 ```ts
 class PostData {
+  // 图片使用Resource资源，需用户自定义
   avatar: Resource = $r('app.media.flower');
   name: string = '';
   message: string = '';
@@ -1936,6 +1946,7 @@ struct Index {
   @State selectedIndex: number = 0;
   @State alphaValue: number = 1;
 
+  // 数组中图片均使用Resource资源，需用户自定义
   private allPostData: PostData[] = [
     { avatar: $r('app.media.flower'), name: 'Alice', message: '天气晴朗',
       images: [$r('app.media.spring'), $r('app.media.tree')] },

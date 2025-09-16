@@ -1,4 +1,10 @@
 # 系统资源错误码
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 >
@@ -8,7 +14,7 @@
 
 **错误信息**
 
-System resources do not exist.
+System resources does not exist.
 
 **错误描述**
 
@@ -26,7 +32,7 @@ step1.请检查输入的参数
 
 **错误信息**
 
-The format of input color parameter is incorrect.
+The type of system resources is incorrect.
 
 **错误描述**
 

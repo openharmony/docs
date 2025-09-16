@@ -88,8 +88,8 @@ enum OH_AudioRingerMode
 
 | 枚举项 | 描述 |
 | -- | -- |
-| AUDIO_RINGER_MODE_SILENT = 0 | 静音模式。<br>**起始版本：** 20 |
-| AUDIO_RINGER_MODE_VIBRATE = 1 | 振动模式。<br>**起始版本：** 20 |
-| AUDIO_RINGER_MODE_NORMAL = 2 | 响铃模式。<br>**起始版本：** 20 |
+| AUDIO_RINGER_MODE_SILENT = 0 | 静音模式。 |
+| AUDIO_RINGER_MODE_VIBRATE = 1 | 振动模式。 |
+| AUDIO_RINGER_MODE_NORMAL = 2 | 响铃模式。 |
 
 

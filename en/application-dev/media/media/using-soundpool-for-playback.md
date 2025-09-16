@@ -1,4 +1,10 @@
 # Using SoundPool to Play Short Sounds (ArkTS)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 The [SoundPool](media-kit-intro.md#soundpool) class provides APIs to implement low-latency playback of short sounds.
 
@@ -99,7 +105,7 @@ During application development, you must subscribe to playback state changes and
     private streamId: number = 0;
     let playParameters: media.PlayParameters = {
       loop: 1, // Loop once, meaning the sound will play twice in total.
-      rate: 1, // Play at normal speed.
+      rate: 1, // Play at double speed.
       leftVolume: 0.5, // The value ranges from 0.0 to 1.0.
       rightVolume: 0.5, // The value ranges from 0.0 to 1.0.
       priority: 0, // The sound playback has the lowest priority.
@@ -110,7 +116,7 @@ During application development, you must subscribe to playback state changes and
         console.error(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
         this.streamId = streamID;
-        console.info('play success soundid:' + this.streamId);
+        console.info('play success soundId:' + this.streamId);
       }
     });
     ```
@@ -153,19 +159,19 @@ During application development, you must subscribe to playback state changes and
 12. Call **off('loadComplete')** to stop listening for the completion of sound loading.
 
     ```ts
-    soundPool.off('loadComplete');
+    await this.soundPool!.off('loadComplete');
     ```
 
 13. Call **off('playFinished')** to stop listening for the completion of sound playing.
 
     ```ts
-    soundPool.off('playFinished');
+    await this.soundPool!.off('playFinished');
     ```
 
 14. Call **off('error')** to stop listening for errors.
 
     ```ts
-    soundPool.off('error');
+    await this.soundPool!.off('error');
     ```
 
 15. Call **release()** to release the SoundPool instance.

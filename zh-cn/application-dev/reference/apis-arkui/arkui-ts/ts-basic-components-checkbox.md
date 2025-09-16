@@ -322,7 +322,7 @@ type OnCheckboxChangeCallback  = (value: boolean) => void
 
 ## CheckBoxConfiguration<sup>12+</sup>对象说明
 
-开发者需要自定义class实现ContentModifier接口。
+开发者需要自定义class实现ContentModifier接口。继承自[CommonConfiguration](ts-universal-attributes-content-modifier.md#commonconfigurationt)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -745,7 +745,7 @@ struct Index {
   selectedPhotos: LinkedList<number> = new LinkedList();
   @State selectedList: number[] = [];
   @State image: Resource[] =
-   // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
+    // $r('app.media.xxx')需要替换为开发者所需的图像资源文件。
     [$r("app.media.imageOne"), $r('app.media.imageTwo'), $r('app.media.imageThree'), $r('app.media.imageFour')];
   private selectedState: SelectedState = SelectedState.None;
   private componentUtils: ComponentUtils = this.getUIContext().getComponentUtils();
@@ -765,17 +765,19 @@ struct Index {
     for (let i = 0; i < 100; i++) {
       let uiContext: UIContext = this.getUIContext();
       rect = this.componentUtils.getRectangleById(`stack${i}`);
-      const x1 = uiContext.px2vp(rect.windowOffset.x);
-      const x2 = uiContext.px2vp(rect.windowOffset.x + rect.size.width);
-      const y1 = uiContext.px2vp(rect.windowOffset.y);
-      const y2 = uiContext.px2vp(rect.windowOffset.y + rect.size.height);
-      if (x1 <= fingerX && fingerX < x2 && y1 <= fingerY && fingerY < y2) {
-        return i;
+      if (rect) {
+        const x1 = uiContext.px2vp(rect.windowOffset.x);
+        const x2 = uiContext.px2vp(rect.windowOffset.x + rect.size.width);
+        const y1 = uiContext.px2vp(rect.windowOffset.y);
+        const y2 = uiContext.px2vp(rect.windowOffset.y + rect.size.height);
+        if (x1 <= fingerX && fingerX < x2 && y1 <= fingerY && fingerY < y2) {
+          return i;
+        }
       }
     }
     return this.selectedEnd;
   }
-
+  
   onSelectedEndChange() {
     let start: number = -1;
     let end: number = -1;

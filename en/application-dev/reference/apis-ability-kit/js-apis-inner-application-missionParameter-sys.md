@@ -1,11 +1,19 @@
 # MissionParameter (System API)
 
-The **MissionParameter** module defines the parameters required for mission synchronization. It can be used an input parameter in [startSyncRemoteMissions](js-apis-distributedMissionManager-sys.md#distributedmissionmanagerstartsyncremotemissions).
+The module defines the parameters required for mission synchronization. It can be used an input parameter in [startSyncRemoteMissions](js-apis-distributedMissionManager-sys.md#distributedmissionmanagerstartsyncremotemissions).
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > The APIs provided by this module are system APIs.
+
+## Modules to Import
+
+```js
+import { distributedMissionManager } from '@kit.AbilityKit';
+```
+
+## MissionParameter
 
 **System API**: This is a system API.
 
@@ -13,10 +21,8 @@ The **MissionParameter** module defines the parameters required for mission sync
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-## Attributes
-
 | Name         | Type   | Read-Only  | Optional  | Description         |
 | ----------- | ------- | ---- | ---- | ----------- |
-| deviceId    | string  | Yes   | No   | Device ID.    |
-| fixConflict | boolean | Yes   | No   | Whether a version conflict exists. The value **true** means that a version conflict exists, and **false** means the opposite.|
-| tag         | number  | Yes   | No   | Tag of the mission. The value **0** means the default tag.   |
+| deviceId    | string  | No   | No   | Device ID.    |
+| fixConflict | boolean | No   | No   | Whether a version conflict exists. **true** if yes, **false** otherwise.|
+| tag         | number  | No   | No   | Tag of the mission. The value **0** means the default tag.   |

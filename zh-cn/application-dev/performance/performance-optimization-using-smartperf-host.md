@@ -1,5 +1,12 @@
 # 使用SmartPerf-Host分析应用性能
 
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 ## 简介
 
 SmartPerf-Host是一款深入挖掘数据、细粒度展示数据的性能功耗调优工具，可采集CPU调度、频点、进程线程时间片、堆内存、帧率等数据，采集的数据通过泳道图清晰地呈现给开发者，同时通过GUI以可视化的方式进行分析。该工具当前为开发者提供了五个分析模板，分别是帧率分析、CPU/线程调度分析、应用启动分析、TaskPool分析、动效分析。关于工具使用的更多内容可查看[SmartPerf-Host调优工具使用指导](../../device-dev/device-test/smartperf-host.md)。
@@ -20,7 +27,7 @@ SmartPerf-Host是一款深入挖掘数据、细粒度展示数据的性能功耗
 
 SmartPerf-Host提供FrameTimeline帧率分析功能，可以抓取记录每一帧的渲染数据，自动标识其中的卡顿帧，并提供同时段的系统Trace信息，帮助开发者高效分析卡顿位置和原因。
 
-#### 场景示例
+**场景示例**
 
 如下场景代码使用了Grid来实现了一个网格布局，在应用界面上下滑动时发现有卡顿掉帧现象。下文基于这个场景来介绍FrameTimeline帧率分析功能的使用方式。
 
@@ -54,7 +61,7 @@ struct Index {
 }
 ```
 
-#### 抓取数据
+**抓取数据**
 
 下面介绍使用FrameTimeline帧率分析模板抓取数据的步骤：
 
@@ -78,7 +85,7 @@ struct Index {
 
 - 点击Record时，网站上方出现please kill other hdc-server！的提醒，表示设备连接失败，说明设备的hdc连接端口被占用，需要在cmd命令行中执行hdc kill指令，然后再重新连接设备进行抓取。
 
-#### 分析数据
+**分析数据**
 
 完整的一个渲染流程，首先是App侧响应用户输入完成UI绘制，然后提交给Render Service，由Render Service协调GPU等资源完成渲染、合成和送显操作，在这个过程中App侧和Render Service侧都有可能出现卡顿最终导致丢帧现象。
 
@@ -88,12 +95,12 @@ struct Index {
 
 ![](./figures/smartperf-host-using-4.png) 
 
-  
+
 **图5** UI耗时
 
 ![](./figures/smartperf-host-using-5.png) 
 
-  
+
 **图6** RenderService耗时
 
 ![](./figures/smartperf-host-using-6.png) 
@@ -189,7 +196,7 @@ struct Index {
 
 SmartPerf-Host提供了AppStartup功能，以便于分析应用启动时各个阶段耗时情况。应用启动分析功能主要是提供应用启动分析模板，帮助系统调优人员做应用启动慢场景问题分析，快速查找系统侧启动慢阶段和耗时长调用栈信息。
 
-#### 场景示例
+**场景示例**
 
 以下示例代码展示AppStartup功能。
 
@@ -222,7 +229,7 @@ struct Index {
 }
 ```
 
-#### 抓取数据
+**抓取数据**
 
 使用如下步骤进行AppStartup数据的抓取：
 
@@ -250,7 +257,7 @@ struct Index {
 
 	![](./figures/smartperf-host-using-13.png) 
 
-#### 分析数据
+**分析数据**
 
 等待分析结果自动生成。点击右上角的筛选按钮，选中AppStartup，便于查看分析。
 

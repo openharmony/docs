@@ -1,4 +1,10 @@
 # @ohos.bundle (Bundle)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The module provides APIs for obtaining information about an application, including [bundle information](js-apis-bundle-BundleInfo.md), [application information](js-apis-bundle-ApplicationInfo.md), and [ability information](js-apis-bundle-AbilityInfo.md). It also provides APIs to obtain and set the application disabling state.
 
@@ -843,7 +849,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Type               | Description                       |
 | ----------------- | ------------------------- |
-| Promise\<boolean> | Promise used to return the result. If the ability is enabled, **true** will be returned; otherwise, **false** will be returned.|
+| Promise\<boolean> | Promise used to return the result. **true** if enabled, **false** otherwise.|
 
 **Example**
 
@@ -880,7 +886,7 @@ SystemCapability.BundleManager.BundleFramework
 | Name  | Type                                        | Mandatory| Description                   |
 | -------- | -------------------------------------------- | ---- | ----------------------- |
 | info     | [AbilityInfo](js-apis-bundle-AbilityInfo.md) | Yes  | Ability information.      |
-| callback | AsyncCallback\<boolean>                      | Yes  | Callback used to return the result. If the ability is enabled, **true** will be returned; otherwise, **false** will be returned.|
+| callback | AsyncCallback\<boolean>                      | Yes  | Callback used to return the result. **true** if enabled, **false** otherwise.|
 
 **Example**
 
@@ -923,7 +929,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | Type               | Description                       |
 | ----------------- | ------------------------- |
-| Promise\<boolean> | Promise used to return the result. If the application is enabled, **true** will be returned; otherwise, **false** will be returned.|
+| Promise\<boolean> | Promise used to return the result. **true** if enabled, **false** otherwise.|
 
 **Example**
 
@@ -958,7 +964,7 @@ SystemCapability.BundleManager.BundleFramework
 | Name    | Type                   | Mandatory| Description                    |
 | ---------- | ----------------------- | ---- | ------------------------ |
 | bundleName | string                  | Yes  | Bundle name.|
-| callback   | AsyncCallback\<boolean> | Yes  | Callback used to return the result. If the application is enabled, **true** will be returned; otherwise, **false** will be returned.|
+| callback   | AsyncCallback\<boolean> | Yes  | Callback used to return the result. **true** if enabled, **false** otherwise.|
 
 **Example**
 

@@ -123,3 +123,156 @@ OH_AttachOptions_Destroy(options);
 options = nullptr;
 ```
 
+## 完整示例
+
+示例代码展示了绑定输入法、隐藏输入法、解绑输入法的完整流程。
+
+示例代码总入口为InputMethodNdkDemo函数。
+
+> 说明：
+>
+> 需要在CMakeList.txt中添加libohinputmethod.so libhilog_ndk.z.so依赖。
+```c++
+#include <codecvt>
+#include <locale>
+#include <string>
+
+#include "hilog/log.h"
+#include "inputmethod/inputmethod_controller_capi.h"
+
+void GetTextConfigFunc(InputMethod_TextEditorProxy *proxy, InputMethod_TextConfig *config) { // 处理获取输入框配置请求
+    auto ret = OH_TextConfig_SetEnterKeyType(config, InputMethod_EnterKeyType::IME_ENTER_KEY_SEND);
+    if (ret != IME_ERR_OK) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "testTag", "SetEnterKeyType failed, ret=%{public}d", ret);
+        return;
+    }
+
+    ret = OH_TextConfig_SetInputType(config, InputMethod_TextInputType::IME_TEXT_INPUT_TYPE_PHONE);
+    if (ret != IME_ERR_OK) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "testTag", "SetInputType failed, ret=%{public}d", ret);
+        return;
+    }
+}
+void InsertTextFunc(InputMethod_TextEditorProxy *proxy, const char16_t *text, size_t length) {
+    // 处理插入文本请求
+    // 将char16_t类型的字符串转换为u16string
+    std::u16string u16Str(text);
+
+    // 转换为UTF-8编码的string
+    std::wstring_convert<std::codecvt_utf8_utf16<char16_t>, char16_t> converter;
+    std::string utf8Str = converter.to_bytes(u16Str);
+
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0, "testTag", "insertText=%{public}s", utf8Str.c_str());
+}
+void DeleteForwardFunc(InputMethod_TextEditorProxy *proxy, int32_t length) {
+    // 处理删除光标右侧文本请求
+}
+void DeleteBackwardFunc(InputMethod_TextEditorProxy *proxy, int32_t length) {
+    // 处理删除光标左侧文本请求
+}
+void SendKeyboardStatusFunc(InputMethod_TextEditorProxy *proxy, InputMethod_KeyboardStatus status) {
+    // 处理键盘状态发生变化请求
+}
+void SendEnterKeyFunc(InputMethod_TextEditorProxy *proxy, InputMethod_EnterKeyType type) {
+    // 处理回车键功能发生变化请求
+}
+void MoveCursorFunc(InputMethod_TextEditorProxy *proxy, InputMethod_Direction direction) {
+    // 处理移动光标请求
+}
+void HandleSetSelectionFunc(InputMethod_TextEditorProxy *proxy, int32_t start, int32_t end) {
+    // 处理选中文本请求
+}
+void HandleExtendActionFunc(InputMethod_TextEditorProxy *proxy, InputMethod_ExtendAction action) {
+    // 处理扩展编辑请求
+}
+void GetleftTextOfCursorFunc(InputMethod_TextEditorProxy *proxy, int32_t number, char16_t text[], size_t *length) {
+    // 处理获取光标左侧文本请求
+}
+void GetRightTextOfCursorFunc(InputMethod_TextEditorProxy *proxy, int32_t number, char16_t text[], size_t *length) {
+    // 处理获取光标右侧文本请求
+}
+int32_t GetTextIndexAtCursorFunc(InputMethod_TextEditorProxy *proxy) {
+// 处理获取光标所在输入框文本索引请求
+    return 0;
+}
+int32_t ReceivePrivateCommandFunc(InputMethod_TextEditorProxy *proxy, InputMethod_PrivateCommand *privateCommand[],
+                                  size_t size) {
+    // 处理私有数据命令请求
+    return 0;
+}
+int32_t SetPreviewTextFunc(InputMethod_TextEditorProxy *proxy, const char16_t *text, size_t length, int32_t start,
+                           int32_t end) {
+    // 处理设置预上屏文本请求
+    return 0;
+}
+void FinishTextPreviewFunc(InputMethod_TextEditorProxy *proxy) {
+    // 处理结束预上屏请求
+}
+
+void ConstructTextEditorProxy(InputMethod_TextEditorProxy *textEditorProxy) {
+    OH_TextEditorProxy_SetGetTextConfigFunc(textEditorProxy, GetTextConfigFunc);
+    OH_TextEditorProxy_SetInsertTextFunc(textEditorProxy, InsertTextFunc);
+    OH_TextEditorProxy_SetDeleteForwardFunc(textEditorProxy, DeleteForwardFunc);
+    OH_TextEditorProxy_SetDeleteBackwardFunc(textEditorProxy, DeleteBackwardFunc);
+    OH_TextEditorProxy_SetSendKeyboardStatusFunc(textEditorProxy, SendKeyboardStatusFunc);
+    OH_TextEditorProxy_SetSendEnterKeyFunc(textEditorProxy, SendEnterKeyFunc);
+    OH_TextEditorProxy_SetMoveCursorFunc(textEditorProxy, MoveCursorFunc);
+    OH_TextEditorProxy_SetHandleSetSelectionFunc(textEditorProxy, HandleSetSelectionFunc);
+    OH_TextEditorProxy_SetHandleExtendActionFunc(textEditorProxy, HandleExtendActionFunc);
+    OH_TextEditorProxy_SetGetLeftTextOfCursorFunc(textEditorProxy, GetleftTextOfCursorFunc);
+    OH_TextEditorProxy_SetGetRightTextOfCursorFunc(textEditorProxy, GetRightTextOfCursorFunc);
+    OH_TextEditorProxy_SetGetTextIndexAtCursorFunc(textEditorProxy, GetTextIndexAtCursorFunc);
+    OH_TextEditorProxy_SetReceivePrivateCommandFunc(textEditorProxy, ReceivePrivateCommandFunc);
+    OH_TextEditorProxy_SetSetPreviewTextFunc(textEditorProxy, SetPreviewTextFunc);
+    OH_TextEditorProxy_SetFinishTextPreviewFunc(textEditorProxy, FinishTextPreviewFunc);
+}
+
+void InputMethodNdkDemo() {
+    // 创建InputMethod_TextEditorProxy实例
+    InputMethod_TextEditorProxy *textEditorProxy = OH_TextEditorProxy_Create();
+    if (textEditorProxy == nullptr) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "testTag", "Create TextEditorProxy failed.");
+        return;
+    }
+
+    // 将实现好的响应处理函数设置到InputMethod_TextEditorProxy中
+    ConstructTextEditorProxy(textEditorProxy);
+
+    // 创建InputMethod_AttachOptions实例，选项showKeyboard用于指定此次绑定成功后是否显示键盘，此处以目标显示键盘为例
+    bool showKeyboard = true;
+    InputMethod_AttachOptions *attachOptions = OH_AttachOptions_Create(showKeyboard);
+    if (attachOptions == nullptr) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "testTag", "Create AttachOptions failed.");
+        OH_TextEditorProxy_Destroy(textEditorProxy);
+        return;
+    }
+
+    InputMethod_InputMethodProxy *inputMethodProxy = nullptr;
+    // 发起绑定请求
+    auto ret = OH_InputMethodController_Attach(textEditorProxy, attachOptions, &inputMethodProxy);
+    if (ret != IME_ERR_OK) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "testTag", "Attach failed, ret=%{public}d.", ret);
+        OH_TextEditorProxy_Destroy(textEditorProxy);
+        OH_AttachOptions_Destroy(attachOptions);
+        return;
+    }
+
+    // 让键盘显示3s
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+
+    // 隐藏键盘
+    ret = OH_InputMethodProxy_HideKeyboard(inputMethodProxy);
+    if (ret != IME_ERR_OK) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "testTag", "HideKeyboard failed, ret=%{public}d.", ret);
+        OH_TextEditorProxy_Destroy(textEditorProxy);
+        OH_AttachOptions_Destroy(attachOptions);
+        return;
+    }
+
+    // 发起解绑请求
+    OH_InputMethodController_Detach(inputMethodProxy);
+    OH_TextEditorProxy_Destroy(textEditorProxy);
+    OH_AttachOptions_Destroy(attachOptions);
+    OH_LOG_Print(LOG_APP, LOG_INFO, 0, "testTag", "Finished.");
+}
+```

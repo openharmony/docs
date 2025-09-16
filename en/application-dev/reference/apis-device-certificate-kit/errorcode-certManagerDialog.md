@@ -1,5 +1,12 @@
 # Certificate Management Dialog Box Error Codes
 
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @chaceli-->
+<!--Designer: @chande-->
+<!--Tester: @zhangzhi1995-->
+<!--Adviser: @zengyawen-->
+
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -8,7 +15,7 @@
 
 **Error Message**
 
-Internal error.
+Internal error. Possible causes: 1. IPC communication failed; 2. Memory operation error; 3. File operation error.
 
 **Possible Causes**
 
@@ -36,11 +43,11 @@ No action is required.
 
 **Error Message**
 
-The installation of the user certificate failed in the certificate manager dialog, for example, the certificate is in an invalid format.
+The user install certificate failed in the certificate manager dialog, such as the certificate is in an invalid format.
 
 **Possible Causes**
 
-The certificate installation fails.
+The certificate format is incorrect.
 
 **Solution**
 
@@ -60,7 +67,7 @@ The API is available only for a PC application.
 
 Ensure that the caller is running on a PC.
 
-## 29700005 Invalid Operation
+## 29700005 Non-secure Operation
 
 **Error Message**
 

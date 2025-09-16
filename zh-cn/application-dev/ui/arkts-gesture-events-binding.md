@@ -9,6 +9,9 @@
 
 通过给各个组件绑定不同的手势事件，并设计事件的响应方式，当手势识别成功时，ArkUI框架将通过事件回调通知组件手势识别的结果。
 
+>  **说明：**
+>
+>  gesture、priorityGesture和parallelGesture当前不支持使用三目运算符（条件? 表达式1 : 表达式2）切换手势绑定。
 
 ## gesture（常规手势绑定方法）
 
@@ -55,7 +58,7 @@ priorityGesture是带优先级的手势绑定方法，可以在组件上绑定�
 
 在默认情况下，当父组件和子组件使用gesture绑定同类型的手势时，子组件优先识别通过gesture绑定的手势。当父组件使用priorityGesture绑定与子组件同类型的手势时，父组件优先识别通过priorityGesture绑定的手势。
 
-长按手势时，设置触发长按的最短时间小的组件会优先响应，会忽略priorityGesture设置。
+对于绑定了长按手势的组件，触发长按时，优先响应最短触发时间小的组件，忽略priorityGesture设置。
 
 例如，当父组件Column和子组件Text同时绑定TapGesture手势时，父组件以带优先级手势priorityGesture的形式进行绑定时，优先响应父组件绑定的TapGesture。
 

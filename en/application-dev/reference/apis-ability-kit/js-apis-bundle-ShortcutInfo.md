@@ -1,4 +1,10 @@
 # ShortcutInfo
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The module defines shortcut information configured in the configuration file. For the FA model, the shortcut information is configured in the [config.json](../../quick-start/application-configuration-file-overview-fa.md) file. For the stage model, the information is configured in the configuration file under **resources/base/profile** in the development view.
 
@@ -9,7 +15,7 @@ The module defines shortcut information configured in the configuration file. Fo
 > This module is deprecated since API version 9. You are advised to use [bundleManager-ShortcutInfo](js-apis-bundleManager-shortcutInfo.md) instead.
 
 ## ShortcutInfo<sup>(deprecated)<sup>
-This API is deprecated since API version 9. You are advised to use [bundleManager-ShortcutInfo](js-apis-bundleManager-shortcutInfo.md#shortcutinfo) instead.
+This API is deprecated since API version 9. You are advised to use [bundleManager-ShortcutInfo](js-apis-bundleManager-shortcutInfo.md#shortcutinfo-1) instead.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 
@@ -24,6 +30,6 @@ This API is deprecated since API version 9. You are advised to use [bundleManage
 | labelId<sup>8+</sup>    | number                                     | Yes  | No  | Name ID of the shortcut.            |
 | disableMessage          | string                                     | Yes  | No  | Message displayed when the shortcut is disabled.          |
 | wants                   | Array&lt;<!--Del-->[<!--DelEnd-->ShortcutWant<!--Del-->](js-apis-bundle-ShortcutInfo-sys.md#shortcutwantdeprecated)<!--DelEnd-->&gt; | Yes  | No  | Want list for the shortcut.        |
-| isStatic                | boolean                                    | Yes  | No  | Whether the shortcut is static. The value **true** means that the shortcut is static, and **false** means the opposite.         |
-| isHomeShortcut          | boolean                                    | Yes  | No  | Whether the shortcut is a home shortcut. The value **true** means that the shortcut is a home shortcut, and **false** means the opposite.|
-| isEnabled               | boolean                                    | Yes  | No  | Whether the shortcut is enabled. The value **true** means that the shortcut is enabled, and **false** means the opposite.            |
+| isStatic                | boolean                                    | Yes  | No  | Whether the shortcut is static. **true** if static, **false** otherwise.         |
+| isHomeShortcut          | boolean                                    | Yes  | No  | Whether the shortcut is a home shortcut. **true** if the shortcut is a home shortcut, **false** otherwise.|
+| isEnabled               | boolean                                    | Yes  | No  | Whether the shortcut is enabled. **true** if enabled, **false** otherwise.            |

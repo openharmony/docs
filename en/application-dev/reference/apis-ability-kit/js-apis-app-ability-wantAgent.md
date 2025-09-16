@@ -867,7 +867,7 @@ Checks whether two WantAgent objects are equal, so as to determine whether the s
 | ---------- | ------------------------ | ---- | --------------------------------------- |
 | agent      | WantAgent                | Yes  | The first WantAgent object.                          |
 | otherAgent | WantAgent                | Yes  | The second WantAgent object.                          |
-| callback   | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that the two WantAgent objects are equal, and **false** means the opposite.|
+| callback   | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. **true** if equal, **false** otherwise.|
 
 **Error codes**
 
@@ -966,7 +966,7 @@ Checks whether two WantAgent object are equal, so as to determine whether the sa
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result. The value **true** means that the two WantAgent objects are equal, and **false** means the opposite.|
+| Promise\<boolean\> | Promise used to return the result. **true** if equal, **false** otherwise.|
 
 **Error codes**
 

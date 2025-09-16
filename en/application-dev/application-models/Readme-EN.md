@@ -1,5 +1,13 @@
 # Ability Kit<!--ability-kit-->
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @jayleehw-->
+<!--Designer: @jayleehw-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+
 - [Introduction to Ability Kit](abilitykit-overview.md)
 - [Application Models](application-models.md)
 - Stage Model Development<!--stage-model-development-->
@@ -19,12 +27,12 @@
       - [ServiceExtensionAbility (for System Applications Only)](serviceextensionability.md)
       - [UIServiceExtensionAbility (for System Applications Only)](uiserviceextension-sys.md)
       - [UIExtensionAbility (for System Applications Only)](uiextensionability.md)
-      - [AutoFillExtensionAbility (for System Applications Only)](autofillextensionablility-guide.md)
-      <!--DelEnd-->
+      - [Using AutoFillExtensionAbility for Auto-Fill (for System Applications Only)](autofillextensionablility-guide.md)
       - [Using UIServiceExtensionAbility for System Floating Windows](uiserviceextension.md)
+      <!--DelEnd-->
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
       - [Using AppServiceExtensionAbility for Background Services](app-service-extension-ability.md)
-    - [AbilityStage Component Container](abilitystage.md)
+    - [AbilityStage Component Manager](abilitystage.md)
     - [Context](application-context-stage.md)
     - Want<!--want-->
       - [Want Overview](want-overview.md)
@@ -33,6 +41,7 @@
       - [Common action and entities Values (Not Recommended)](actions-entities.md)
     - [Component Startup Rules (Stage Model)](component-startup-rules.md)
     - [AppStartup](app-startup.md)
+    - [Application Preloading](preload-application.md)
     - [Obtaining Reasons for Abnormal Application Exits](ability-exit-info-record.md)
     <!--Del-->
     - Inter-Device Application Component Interaction (Hopping)<!--hop-->
@@ -161,3 +170,4 @@
 - Native Child Process Development<!--native-childprocess-development-->
     - [Creating Native Child Processes](capi_nativechildprocess_development_guideline.md)
     - [Obtaining Exit Information of Native Child Processes](capi-nativechildprocess-exit-info.md)
+- [Ability Kit Terminology](ability-terminology.md)

@@ -1,5 +1,12 @@
 # EmbeddedUIExtensionAbility
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhangyafei-echo-->
+<!--Designer: @zhangyafei-echo-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 ## Overview
 
 [EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md) is an [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) component of the EMBEDDED_UI type. It provides the capability of embedded UIs across processes.
@@ -21,8 +28,8 @@ The EmbeddedUIExtensionAbility and EmbeddedComponent are only supported on devic
 The [EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md) class provides the **onCreate**, **onSessionCreate**, **onSessionDestroy**, **onForeground**, **onBackground**, and **onDestroy** lifecycle callbacks. You must override them as required. The following lifecycle callbacks inherit from [UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md).
 
 - **onCreate**: called to initialize the service logic when an EmbeddedUIExtensionAbility is created.
-- **onSessionCreate**: called when a **UIExtensionContentSession** instance is created for the EmbeddedUIExtensionAbility.
-- **onSessionDestroy**: called when a **UIExtensionContentSession** instance is destroyed for the EmbeddedUIExtensionAbility.
+- **onSessionCreate**: called when a UIExtensionContentSession instance is created for the EmbeddedUIExtensionAbility.
+- **onSessionDestroy**: called when a UIExtensionContentSession instance is destroyed for the EmbeddedUIExtensionAbility.
 - **onForeground**: called when the EmbeddedUIExtensionAbility is switched from the background to the foreground.
 - **onBackground**: called when the EmbeddedUIExtensionAbility is switched from the foreground to the background.
 - **onDestroy**: called to clear resources when the EmbeddedUIExtensionAbility is destroyed.

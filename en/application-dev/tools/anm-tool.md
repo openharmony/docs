@@ -1,4 +1,10 @@
 # Advanced Notification Manager
+<!--Kit: Notification Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 The Advanced Notification Manager enables you to print notifications and set notification parameters. It provides the notification debugging and testing capabilities, for example, printing published notification details, setting the number of notification caches, and enabling the notification functionality.
 
@@ -6,7 +12,7 @@ The Advanced Notification Manager enables you to print notifications and set not
 
 Before using this tool, you must obtain the <!--Del-->[<!--DelEnd-->hdc tool<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd--> and run the hdc shell command.
 
-This tool can be used only in the **eng** edition. If it is used in the **user** edition, the message **error: user version cannot use setting** is reported.
+This tool can be used only in the eng version. If it is used in the user version, the error `/bin/sh: anm: inaccessible or not found.` is reported.
 
 ## anm Commands
 

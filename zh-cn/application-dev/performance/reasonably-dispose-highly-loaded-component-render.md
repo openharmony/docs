@@ -1,5 +1,12 @@
 # 合理处理高负载组件的渲染
 
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 ## 简介
 
 在应用开发中，有的页面需要在列表中加载大量的数据，就会导致组件数量较多或者嵌套层级较深，从而引起组件负载加重，绘制耗时增长。虽然可以通过组件复用避免组件重复创建，但是如果每个列表项中包含的组件较多，在转场或者列表滑动的时候列表项就会一次性加载大量的数据，可能引起卡顿掉帧等性能问题。
@@ -131,7 +138,7 @@ export struct ProductList {
 
 ### 优化示例
 
-#### 常规代码
+**常规代码**
 
 通常情况下，会在aboutToReuse()中设置新的数据，并一次性绘制所有的组件。
 
@@ -213,7 +220,7 @@ struct ItemView {
 
 ![image-20240507184557969](figures/highly_loaded_component_render_3.png)
 
-#### 优化代码
+**优化代码**
 
 通过DisplaySync中的帧回调方法，将数据拆分到每一帧中进行加载和绘制。此处只需要修改自定义子组件ItemView中加载数据的方式，所以与常规代码中相同的部分进行了省略。
 
@@ -324,7 +331,7 @@ aboutToReuse(params: Record<string, Object>): void {
 
 ![image-20240507200236522](figures/highly_loaded_component_render_7.png)
 
-#### 不建议锁定最高帧率运行
+**不建议锁定最高帧率运行**
 
 不建议将ExpectedFrameRateRange中的expected、min、max都设置为120，否则会干扰系统的可变帧率机制运行，产生不必要的负载，进而影响到整机的性能和功耗。
 

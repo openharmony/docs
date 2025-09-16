@@ -151,8 +151,8 @@ has(element: number, fromIndex: number, toIndex: number): boolean
 | 参数名    | 类型   | 必填 | 说明                                 |
 | --------- | ------ | ---- | ------------------------------------ |
 | element   | number | 是   | 待判断的bit值，0表示0，其余值表示1。 |
-| fromIndex | number | 是   | 范围起始索引，包含本索引值。         |
-| toIndex   | number | 是   | 范围终止索引，包含本索引值。       |
+| fromIndex | number | 是   | 范围起始索引，包含本索引值。fromIndex<0或者fromIndex>=toIndex时，则会抛出错误。  |
+| toIndex   | number | 是   | 范围终止索引，包含本索引值。toIndex<0或者toIndex>=length时，则会抛出错误。       |
 
 **返回值：**
 
@@ -198,8 +198,8 @@ setBitsByRange(element: number, fromIndex: number, toIndex: number): void
 | 参数名    | 类型   | 必填 | 说明                               |
 | --------- | ------ | ---- | ---------------------------------- |
 | element   | number | 是   | 待设置的bit值，0表示0，其余表示1。 |
-| fromIndex | number | 是   | 范围起始索引，包含本索引值。       |
-| toIndex   | number | 是   | 范围终止索引，不包含本索引值。     |
+| fromIndex | number | 是   | 范围起始索引，包含本索引值。fromIndex<0或者fromIndex>=toIndex时，则会抛出错误。  |
+| toIndex   | number | 是   | 范围终止索引，不包含本索引值。toIndex<0或者toIndex>=length时，则会抛出错误。     |
 
 **错误码：**
 
@@ -276,8 +276,8 @@ getBitsByRange(fromIndex: number, toIndex: number): BitVector
 
 | 参数名    | 类型   | 必填 | 说明                           |
 | --------- | ------ | ---- | ------------------------------ |
-| fromIndex | number | 是   | 范围起始索引，包含本索引值。   |
-| toIndex   | number | 是   | 范围终止索引，不包含本索引值。 |
+| fromIndex | number | 是   | 范围起始索引，包含本索引值。fromIndex<0或者fromIndex>=toIndex时，则会抛出错误。   |
+| toIndex   | number | 是   | 范围终止索引，不包含本索引值。toIndex<0或者toIndex>=length时，则会抛出错误。      |
 
 **返回值：**
 
@@ -369,8 +369,8 @@ getBitCountByRange(element: number, fromIndex: number, toIndex: number): number
 | 参数名    | 类型   | 必填 | 说明                                 |
 | --------- | ------ | ---- | ------------------------------------ |
 | element   | number | 是   | 待统计的bit值，0表示0，其余值表示1。 |
-| fromIndex | number | 是   | 范围起始索引，包含本索引值。         |
-| toIndex   | number | 是   | 范围终止索引，不包含本索引值。       |
+| fromIndex | number | 是   | 范围起始索引，包含本索引值。fromIndex<0或者fromIndex>=toIndex时，则会抛出错误。    |
+| toIndex   | number | 是   | 范围终止索引，不包含本索引值。toIndex<0或者toIndex>=length时，则会抛出错误。       |
 
 **返回值：**
 
@@ -417,8 +417,8 @@ getIndexOf(element: number, fromIndex: number, toIndex: number): number
 | 参数名    | 类型   | 必填 | 说明                                 |
 | --------- | ------ | ---- | ------------------------------------ |
 | element   | number | 是   | 待统计的bit值，0表示0，其余值表示1。 |
-| fromIndex | number | 是   | 范围起始索引，包含本索引值。         |
-| toIndex   | number | 是   | 范围终止索引，不包含本索引值。       |
+| fromIndex | number | 是   | 范围起始索引，包含本索引值。fromIndex<0或者fromIndex>=toIndex时，则会抛出错误。    |
+| toIndex   | number | 是   | 范围终止索引，不包含本索引值。toIndex<0或者toIndex>=length时，则会抛出错误。       |
 
 **返回值：**
 
@@ -465,8 +465,8 @@ getLastIndexOf(element: number, fromIndex: number, toIndex: number): number
 | 参数名    | 类型   | 必填 | 说明                                 |
 | --------- | ------ | ---- | ------------------------------------ |
 | element   | number | 是   | 待统计的bit值，0表示0，其余值表示1。 |
-| fromIndex | number | 是   | 范围起始索引，包含本索引值。         |
-| toIndex   | number | 是   | 范围终止索引，不包含本索引值。       |
+| fromIndex | number | 是   | 范围起始索引，包含本索引值。fromIndex<0或者fromIndex>=toIndex时，则会抛出错误。    |
+| toIndex   | number | 是   | 范围终止索引，不包含本索引值。toIndex<0或者toIndex>=length时，则会抛出错误。       |
 
 **返回值：**
 
@@ -512,7 +512,7 @@ flipBitByIndex(index: number): void
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| index  | number | 是   | 指定索引。 |
+| index  | number | 是   | 指定索引。index<0或者index>=length时，则会抛出错误。 |
 
 **错误码：**
 
@@ -551,8 +551,8 @@ flipBitsByRange(fromIndex: number, toIndex: number): void
 
 | 参数名    | 类型   | 必填 | 说明                           |
 | --------- | ------ | ---- | ------------------------------ |
-| fromIndex | number | 是   | 范围起始索引，包含本索引值。   |
-| toIndex   | number | 是   | 范围终止索引，不包含本索引值。 |
+| fromIndex | number | 是   | 范围起始索引，包含本索引值。fromIndex<0或者fromIndex>=toIndex时，则会抛出错误。  |
+| toIndex   | number | 是   | 范围终止索引，不包含本索引值。toIndex<0或者toIndex>=length时，则会抛出错误。     |
 
 **错误码：**
 
@@ -671,6 +671,8 @@ for (let item of bitVector) {
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
 
 | 参数名    | 类型   | 必填 | 说明                     |
 | ----- | ------ | ---- | -------------------------- |

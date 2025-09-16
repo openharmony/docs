@@ -31,7 +31,7 @@ hdc包含三部分：
 
 hdc可以选择以下任意一种方式获取：
 
-1.通过SDK获取hdc工具。SDK已嵌入[DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)中，无需额外下载配置。hdc默认安装在DevEco Studio/sdk/default/openharmony/toolchains路径下。
+1.通过SDK获取hdc工具。SDK已嵌入[DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)中，无需额外下载配置。hdc默认安装在DevEco Studio/sdk/default/openharmony/toolchains路径下，MacOS系统的sdk位于DevEco Studio/Contents目录下。
 
 2.通过[Command Line Tools](https://developer.huawei.com/consumer/cn/download/)工具中的sdk目录获取相关工具。hdc程序默认安装在Command Line Tools/sdk/default/openharmony/toolchains路径下。
 
@@ -433,7 +433,7 @@ $ hdc -s 127.0.0.1:8710 list targets
 
 > **说明：**
 >
-> 当命令行中明确使用 -s 参数指定服务器进程端口时，系统将忽略OHOS_HDC_SERVER_PORT环境变量中定义的端口设置。
+> 当命令行中明确使用 -s 参数指定服务器进程端口时，系统将忽略OHOS_HDC_SERVER_PORT环境变量中定义的端口设置。使用 -s 参数指定服务器地址时，如果监听地址不是本地回环地址（如127.0.0.1），需注意访问安全问题。
 
 ### USB调试和无线调试切换
 
@@ -558,7 +558,7 @@ hdc shell [-b bundlename] [command]
 
 | 参数 | 说明 |
 | -------- | -------- |
-| -b bundlename | 3.1.0e版本新增参数。指定可调试应用包名，在可调试应用数据目录内，以非交互式模式执行命令。<br/>[命令行方式访问应用沙箱](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-device-file-explorer#section9381241102211)。<br/>此参数当前仅支持以非交互式模式执行命令，不支持缺省command参数执行命令进入交互式shell会话。<br/>未配置此参数时，默认执行路径为系统根目录。 |
+| -b bundlename | 3.1.0e版本新增参数。指定可调试应用包名，在可调试应用数据目录内，以非交互式模式执行命令。<br/>[命令行方式访问应用沙箱](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-device-file-explorer#section48216711204)。<br/>此参数当前仅支持以非交互式模式执行命令，不支持缺省command参数执行命令进入交互式shell会话。<br/>未配置此参数时，默认执行路径为系统根目录。 |
 | command | 需要在设备上执行的单次命令，不同类型或版本的系统支持的command命令有所差异，可以通过hdc shell ls /system/bin查阅支持的命令列表。当前大多数命令都是由[toybox](../tools/toybox.md)提供，可通过 hdc shell toybox --help 获取命令帮助。<br/>缺省该参数，hdc将会启动一个交互式的shell会话，开发者可以在命令提示符下输入命令，比如 ls、cd、pwd 等。 |
 
 > **说明：**
@@ -714,7 +714,7 @@ hdc file send [-a|-sync|-z|-m|-b bundlename] SOURCE DEST
 | -sync | 只传输文件mtime有更新的文件。<br/>mtime（modified timestamp）：修改后的时间戳。 |
 | -z | 通过LZ4格式压缩传输，此功能未开放，请勿使用。 |
 | -m | 文件传输时同步文件DAC权限，uid，gid，MAC权限。<br/>DAC（Discretionary Access Control）：自主访问控制，<br/>uid（User identifier）：用户标识符（或用户ID），<br/>gid（Group identifier）：组标识符（或组ID），<br/>MAC（Mandatory Access Control）：强制访问控制（或非自主访问控制）。 |
-| -b | 3.1.0e版本新增参数（低版本使用会提示[Fail]Unknown file option: -b），用于指定可调试应用包名。<br/>使用方法可参考[通过命令往应用沙箱目录中发送文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-device-file-explorer#section9381241102211)。 |
+| -b | 3.1.0e版本新增参数（低版本使用会提示[Fail]Unknown file option: -b），用于指定可调试应用包名。<br/>使用方法可参考[通过命令往应用沙箱目录中发送文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-device-file-explorer#section48216711204)。 |
 | bundlename | 指定可调试应用包名。 |
 
 **返回信息**：
@@ -998,9 +998,10 @@ hdc -m
 
 ```shell
 $ hdc -s 127.0.0.1:8710 -m # 指定当前服务进程的网络监听参数并启动服务进程
-[I][1970-01-01 00:00:00.000] Program running. Ver: 3.1.0e Pid:8236
+[I][1970-01-01 00:00:00.000][4f28][xxxx.xxx:123] Program running. Ver: 3.1.0e Pid:12345
+...
 $ hdc -e 0.0.0.0 -m # 指定端口转发本地监听IP地址为0.0.0.0并启动服务进程
-[I][1970-01-01 00:00:00.000] Program running. Ver: 3.1.0e Pid:8236
+[I][1970-01-01 00:00:00.000][4f28][xxxx.xxx:123] Program running. Ver: 3.2.0b Pid:12345
 ...
 ```
 
@@ -1019,7 +1020,7 @@ $ hdc -e 0.0.0.0 -m # 指定端口转发本地监听IP地址为0.0.0.0并启动�
 | -------- | -------- |
 | hilog [-h] | 打印设备端的日志信息，可通过hdc hilog -h查阅支持的参数列表。 |
 | jpid | 显示设备上已打开应用的进程pid。 |
-| track-jpid [-a\|-p] | 实时显示设备上已打开应用的进程pid和应用名，其中只有debug标签的应用可以被调试。不加参数时只显示debug应用的进程pid，使用-a或-p参数显示debug和release应用的进程标签，使用-p参数不显示debug和release的进程标签。 |
+| track-jpid [-a\|-p] | 实时显示设备上已打开应用的进程pid和应用包名，其中只有debug标签的应用可以被调试。不加参数时只显示已打开应用的进程pid，使用-a参数会显示debug和release应用的进程标签，使用-p参数不显示debug和release的进程标签。 |
 | target boot [-bootloader\|-recovery] | 重启目标设备，使用-bootloader参数重启后进入fastboot模式，使用-recovery参数重启后进入recovery模式。 |
 | target boot [MODE] | 重启目标设备，加参数重启后进入相应的模式，其中MODE为/bin/begetctl命令中reboot支持的参数，可通过hdc shell "/bin/begetctl -h \| grep reboot"查看。 |
 | <!--DelRow--> target mount | 以读写模式挂载系统分区（设备root后支持此命令）。 |
@@ -1092,15 +1093,15 @@ hdc track-jpid [-a|-p]
 
 | 参数 | 说明 |
 | -------- | -------- |
-| 不加参数 | 只显示已打开的应用的进程号。 |
-| -a | 显示debug和release应用的进程号和包名/进程名，同时显示debug和release的标签。 |
-| -p | 显示debug和release应用的进程号和包名/进程名，但不显示debug和release的标签。 |
+| 不加参数 | 只显示已打开的应用的进程pid。 |
+| -a | 显示debug和release应用的进程pid和包名/进程名，同时显示debug和release的标签。 |
+| -p | 显示debug和release应用的进程pid和包名/进程名，但不显示debug和release的标签。 |
 
 **返回信息**：
 
 | 返回信息 | 说明 |
 | -------- | -------- |
-| 进程号和包名/进程名列表。 | 不加参数时显示已打开的应用的进程，使用-a或-p参数时显示已打开的debug和release进程。 |
+| 进程号和包名/进程名列表。 | 不加参数时仅显示已打开应用的进程pid，使用-p参数额外显示应用包名，使用-a参数同时显示debug和release标签。 |
 | [Empty] | 无开启JDWP调试协议的应用进程。 |
 
 **使用方法**：
@@ -1460,6 +1461,7 @@ hdc file recv /data/log/hilog {local_path}            # 获取hilog已落盘日�
 | -------- | -------- | -------- |
 | 3.1.0a | 12 | wait命令支持-t参数：详细说明参见[等待设备正常连接](#等待设备正常连接)。 |
 | 3.1.0e | 15及以上版本 | - file send命令支持-b参数：详细说明参见[文件传输](#文件传输)。<br/>- file recv命令支持-b参数：详细说明参见[文件传输](#文件传输)。<br/>- shell命令支持-b参数：详细说明参见[执行交互命令](#执行交互命令)。 |
+| 3.2.0b | 20 | - 端口转发任务支持监听远端主机IP：详细说明参见[创建正向端口转发任务](#创建正向端口转发任务)。 |
 
 > **注意：**
 >
@@ -1702,7 +1704,6 @@ hdc文件传输命令执行出现乱码，如使用file recv从设备侧发送�
    计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\Protect\Providers\df9d8cd0-1501-11d1-8c7a-00c04fc297eb；
 
 3. 右键新建DWORD(32位)值(D)，新增值名称为ProtectionPolicy 值为 1 （16进制），然后点击确定；
-   ![FAQ-1](figures/FAQ-1.png)
 
 4. 重启电脑后问题解决。
 
@@ -1711,8 +1712,6 @@ hdc文件传输命令执行出现乱码，如使用file recv从设备侧发送�
 **现象描述**
 
 使用USB方式连接调试设备，电脑端设备管理器通用串行总线控制器出现未知USB设备（设备描述符请求失败）
-
-![Unknown Device ](figures/unknown_device.png)
 
 **可能原因&amp;解决方法**
 
@@ -2154,7 +2153,7 @@ Unsupport shell option: XXX.
 
 **错误信息**
 
-Device does not supported this shell command.
+Device does not support this shell option.
 
 **错误描述**
 
@@ -2190,7 +2189,7 @@ hdc shell xxx，设备侧命令不支持。
 
 **错误信息**
 
-There is no bundle name.
+The parameter is missing, correct your input by referring below: Usage...
 
 **错误描述**
 
@@ -2330,7 +2329,7 @@ Operation not allowed.
 
 **错误信息**
 
--e content IP incorrect
+-e content IP incorrect.
 
 **错误描述**
 

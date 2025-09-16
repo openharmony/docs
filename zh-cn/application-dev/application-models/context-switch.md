@@ -1,7 +1,13 @@
 # Context接口切换
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wkljy-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-  | FA接口 | Stage模型接口对应d.ts文件 | Stage对应接口或字段 | 
+  | [FA模型](ability-terminology.md#fa模型)接口 | [Stage模型](ability-terminology.md#stage模型)接口对应d.ts文件 | Stage对应接口或字段 | 
 | -------- | -------- | -------- |
 | [getOrCreateLocalDir(callback:AsyncCallback&lt;string&gt;):void;](../reference/apis-ability-kit/js-apis-inner-app-context.md#contextgetorcreatelocaldir7)<br/>[getOrCreateLocalDir():Promise&lt;string&gt;;](../reference/apis-ability-kit/js-apis-inner-app-context.md#contextgetorcreatelocaldir7-1) | Stage模型无对应接口 | Stage模型应用在应用根目录下没有操作权限，不提供对应接口 |
 | [verifyPermission(permission:string,options:PermissionOptions,callback:AsyncCallback&lt;number&gt;):void;](../reference/apis-ability-kit/js-apis-inner-app-context.md#contextverifypermission7)<br/>[verifyPermission(permission:string,callback:AsyncCallback&lt;number&gt;):void;](../reference/apis-ability-kit/js-apis-inner-app-context.md#contextverifypermission7-1)<br/>[verifyPermission(permission:string,options?:PermissionOptions):Promise&lt;number&gt;;](../reference/apis-ability-kit/js-apis-inner-app-context.md#contextverifypermission7-2) | \@ohos.abilityAccessCtrl.d.ts | [verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus;](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#verifyaccesstokensync9)<br/>[verifyAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;GrantStatus&gt;;](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#verifyaccesstoken9) |

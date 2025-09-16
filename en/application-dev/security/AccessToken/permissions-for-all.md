@@ -566,6 +566,20 @@ With this permission, the application can set the background color the shadow vi
 
 **Valid since**: 20
 
+## ohos.permission.START_WINDOW_BELOW_LOCK_SCREEN
+
+Allows an application to start in the locked screen state.
+
+With this permission, the application can be started when the screen is locked. After the device is unlocked, the application launch screen is displayed.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Supported devices**: PCs/2-in-1 devices
+
+**Valid since**: 21
+
 ## ohos.permission.kernel.IGNORE_LIBRARY_VALIDATION
 
 Allows an independent binary program to load independent binary .so files with different owner IDs.

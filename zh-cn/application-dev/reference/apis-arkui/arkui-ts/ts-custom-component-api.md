@@ -63,7 +63,7 @@ struct MyComponent {
 
 getUniqueId(): number
 
-获取当前Component的UniqueId。UniqueId为系统为每个组件分配的Id，可保证当前应用中的唯一性。若在组件对应的节点未创建或已销毁时获取，返回无效UniqueId：-1。
+获取当前组件的UniqueId。UniqueId为系统为每个组件分配的Id，可保证当前应用中的唯一性。若在组件对应的节点未创建或已销毁时获取，返回无效UniqueId：-1。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

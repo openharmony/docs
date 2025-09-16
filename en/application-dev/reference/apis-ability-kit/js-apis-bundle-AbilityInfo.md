@@ -1,6 +1,12 @@
 # AbilityInfo
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
-The **AbilityInfo** module provides information about an ability. Unless otherwise specified, the information is obtained through [bundle.getAbilityInfo](js-apis-Bundle.md#bundlegetabilityinfodeprecated).
+The module provides information about an ability. Unless otherwise specified, the information is obtained through [bundle.getAbilityInfo](js-apis-Bundle.md#bundlegetabilityinfodeprecated).
 
 > **NOTE**
 > 
@@ -27,8 +33,8 @@ This API is deprecated since API version 9. You are advised to use [bundleManage
 | process               | string                                                       | Yes  | No  | Process name of the ability.                 |
 | targetAbility         | string                                                       | Yes  | No  | Target ability that the ability alias points to.<br>**Model restriction**: This API can be used only in the FA model.|
 | backgroundModes       | number                                                       | Yes  | No  | Background service mode of the ability.<br>**Model restriction**: This API can be used only in the FA model.        |
-| isVisible             | boolean                                                      | Yes  | No  | Whether the ability can be called by other applications. The value **true** means that the ability can be called by other applications, and **false** means the opposite.                         |
-| formEnabled           | boolean                                                      | Yes  | No  | Whether the ability provides the service widget capability. The value **true** means that the ability provides the service widget capability, and **false** means the opposite.<br>**Model restriction**: This API can be used only in the FA model.|
+| isVisible             | boolean                                                      | Yes  | No  | Whether the ability can be called by other applications. **true** if the ability can be called by other applications, **false** otherwise.                         |
+| formEnabled           | boolean                                                      | Yes  | No  | Whether the ability provides the service widget capability. **true** if the ability provides the service widget capability, **false** otherwise.<br>**Model restriction**: This API can be used only in the FA model.|
 | type                  | bundle.AbilityType                                                  | Yes  | No  | Ability type.<br>**Model restriction**: This API can be used only in the FA model.               |
 | orientation           | [bundle.DisplayOrientation](js-apis-Bundle.md#displayorientationdeprecated) | Yes  | No  | Ability display orientation.                                         |
 | launchMode            | [bundle.LaunchMode](js-apis-Bundle.md#launchmodedeprecated)         | Yes  | No  | Ability launch mode.                                         |
@@ -42,4 +48,4 @@ This API is deprecated since API version 9. You are advised to use [bundleManage
 | labelId               | number                                                       | Yes  | No  | ID of the ability label.                                           |
 | subType               | bundle.AbilitySubType                                               | Yes  | No  | Subtype of the template that can be used by the ability.<br>**Model restriction**: This API can be used only in the FA model.|
 | metaData<sup>8+</sup> | Array\<[CustomizeData](js-apis-bundle-CustomizeData.md)>     | Yes  | No  | Metadata of the ability.<br>The value is obtained by passing in GET_ABILITY_INFO_WITH_METADATA to [bundle.getAbilityInfo](js-apis-Bundle.md#bundlegetabilityinfodeprecated).|
-| enabled<sup>8+</sup>  | boolean                                                      | Yes  | No  | Whether the ability is enabled. The value **true** means that the ability is enabled, and **false** means the opposite.                                           |
+| enabled<sup>8+</sup>  | boolean                                                      | Yes  | No  | Whether the ability is enabled. **true** if enabled, **false** otherwise.                                           |

@@ -1,5 +1,12 @@
 # 系统能力SystemCapability列表
 
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @fang-jinxu-->
+<!--Designer: @lingminghw-->
+<!--Tester: @RayShih-->
+<!--Adviser: @fang-jinxu-->
+
 SysCap，全称SystemCapability，即系统能力，指操作系统中每一个相对独立的特性。
 
 开发者使用某个接口进行开发前，建议先阅读[SysCap使用指南](syscap.md)，了解Syscap的定义和使用指导。再结合下文中的表格判断具体能力集是否支持某个设备，提高开发效率。
@@ -26,3 +33,8 @@ SysCap，全称SystemCapability，即系统能力，指操作系统中每一个�
 - SystemCapability.Security.CryptoFramework
 - SystemCapability.Security.CryptoFramework.MessageDigest
 - SystemCapability.Security.CryptoFramework.Rand
+- SystemCapability.Notification.CommonEvent
+- SystemCapability.Notification.Notification
+- SystemCapability.Notification.ReminderAgent
+- SystemCapability.Notification.NotificationSettings
+- SystemCapability.Notification.Emitter

@@ -5,7 +5,7 @@ Basic Services Kit provides basic capabilities for application developers, from 
 ## When to Use
 
 Basic Services Kit is typically used in the following scenarios:
-
+ 
 
 - Pasteboard read/write
   - Intra-device copy and paste: For example, copy a piece of text in application A and paste it to another application.
@@ -28,6 +28,9 @@ Depending on different use cases, this kit provides the following capabilities:
   - [Compression](../reference/apis-basic-services-kit/js-apis-zlib.md): provides APIs for file compression and decompression.
   - [Print](../reference/apis-basic-services-kit/js-apis-print.md): provides APIs for basic print operations, for example, transferring files for printing and setting printing parameters.
   - [Upload and download](../reference/apis-basic-services-kit/js-apis-request.md): provides basic upload, download, and background transmission agent capabilities.
+  <!--Del-->
+  - [Word selection](../reference/apis-basic-services-kit/js-apis-selectionInput-selectionManager-sys.md): provides APIs for listening for word selection events and managing word selection panels.
+  <!--DelEnd-->
 
 - Inter-process/Inter-thread communication
   - [Common event](../reference/apis-basic-services-kit/js-apis-commonEventManager.md): provides inter-process communication capabilities, including the capabilities to publish, subscribe to, and unsubscribe from common events. For details about the development guide, see [Introduction to Common Events](common-event/common-event-overview.md).
@@ -43,7 +46,7 @@ Depending on different use cases, this kit provides the following capabilities:
   - [USB management](../reference/apis-basic-services-kit/js-apis-usbManager.md): provides USB device management capabilities, including USB device list query, bulk data transfer, control transfer, and permission control. For details about the development guide, see [USB Service Development Overview](usb/usbManager/usbHost-overview.md).
 
 - Others:
-  - [App account management](../reference/apis-basic-services-kit/js-apis-appAccount.md): provides application account management and data management capabilities. For details, see [Managing App Accounts](account/manage-application-account.md).
+  - [Application account management](../reference/apis-basic-services-kit/js-apis-appAccount.md): provides application account management and data management capabilities. For details, see [Managing Application Accounts](account/manage-application-account.md).
   - [Public callback information](../reference/apis-basic-services-kit/js-apis-base.md): defines the public callback types of ArkTS APIs, including the common and error callbacks.
   - [Time and time zone](../reference/apis-basic-services-kit/js-apis-date-time.md): provides APIs for obtaining the system time and time zone.
 

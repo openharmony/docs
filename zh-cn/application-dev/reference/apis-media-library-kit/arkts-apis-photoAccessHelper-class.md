@@ -22,7 +22,7 @@
 | recommendationType | [RecommendationType](arkts-apis-photoAccessHelper-e.md#recommendationtype11)   | 否   | 如果需要根据枚举值推荐相应的图片，则配置此参数。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | textContextInfo<sup>12+</sup> | [TextContextInfo](arkts-apis-photoAccessHelper-i.md#textcontextinfo12)   | 否   | 如果需要根据文本信息推荐相应的图片，则配置此参数(如果同时配置了recommendationType，则仅textContextInfo生效)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
-## BaseSelectOptions<sup>12+</sup>
+## BaseSelectOptions<sup>10+</sup>
 
 图库选择选项基类。
 
@@ -48,7 +48,7 @@
 
 PhotoSelectOptions extends BaseSelectOptions
 
-图库选择选项子类，继承自[BaseSelectOptions](#baseselectoptions12)。
+图库选择选项子类，继承自[BaseSelectOptions](#baseselectoptions10)。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -66,11 +66,10 @@ PhotoSelectOptions extends BaseSelectOptions
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-| 名称                    | 类型                | 可读 | 可写 | 说明                           |
-| ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
-| photoUris        | Array&lt;string&gt;    | 是   | 是   | 返回图库选择后的媒体文件的uri数组，此uri数组只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。 |
-| isOriginalPhoto        | boolean    | 是   | 是   | 返回图库选择后的媒体文件是否为原图。true为是原图，false为不是原图，默认值是false。 |
+| 名称                    | 类型                | 必填 | 说明                          |
+| ----------------------- | ------------------- | ---- | -------------------------------- |
+| photoUris       | Array&lt;string&gt; | 是   | 返回图库选择后的媒体文件的uri数组，此uri数组只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。     |
+| isOriginalPhoto       | boolean | 是   | 返回图库选择后的媒体文件是否为原图。true为是原图，false为不是原图，默认值是false。     |
 
 ## MimeTypeFilter<sup>19+</sup>
 
@@ -137,7 +136,7 @@ PhotoSelectOptions extends BaseSelectOptions
 
 ## PhotoViewMimeTypeFileSizeFilter<sup>20+</sup>
 
-媒体文件视频时长过滤配置。
+指定媒体文件类型和文件大小进行过滤。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 

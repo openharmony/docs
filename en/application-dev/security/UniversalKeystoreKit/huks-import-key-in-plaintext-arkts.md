@@ -1,19 +1,23 @@
 # Importing a Key in Plaintext (ArkTS)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
 
-This topic walks you through on how to import an AES 256-bit key and an RSA 2048-bit key. For details about the scenarios and supported algorithm specifications, see [Supported Algorithms](huks-key-import-overview.md#supported-algorithms).
-
+This topic describes how to import a key, using AES256, RSA2048, and X25519 keys as examples. For details about the scenarios and supported algorithm specifications, see [Supported Algorithms](huks-key-import-overview.md#supported-algorithms).
 
 ## How to Develop
 
-1. Set the alias **keyAlias** of the key to import.
-   The key alias cannot exceed 128 bytes.
+1. Specify the alias of the key to import. For details about the naming rules, see [Key Generation Overview and Algorithm Specifications](huks-key-generation-overview.md).
 
 2. Encapsulate the key property set and key material.
    - The key property set must contain [HuksKeyAlg](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeyalg), [HuksKeySize](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeysize), and [HuksKeyPurpose](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeypurpose).
    - The key material must comply with the [HUKS key material format](huks-concepts.md#key-material-format) and is used to fill the **inData** field of [HuksOptions](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksoptions) in Uint8Array format.
 
-3. Use [huks.importKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksimportkeyitem9) to import the key.
+3. Use [huks.importKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksimportkeyitem9) to import the key. 
 
     For details about **HuksParam** and **HuksOptions**, see [HuksParam](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam) and [HuksOptions](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksoptions).
 
@@ -175,7 +179,7 @@ let properties: Array<huks.HuksParam> = [
     value: huks.HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256
   },
   {
-    // This tag indicates the usage of the imported key, which cannot be changed after the import.
+    // This tag indicates the usage of the key after it is imported. The tag cannot be changed after the key is imported.
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
   },

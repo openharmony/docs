@@ -69,6 +69,7 @@ export default {
     this.offscreen = new OffscreenCanvas(600, 500);
     this.offCanvas = this.offscreen.getContext("2d");
     this.img = new Image();
+    // "common/images/2.png"需要替换为开发者所需的图像资源文件
     this.img.src = 'common/images/2.png';
     // 图片成功获取触发方法
     let _this = this;
@@ -78,7 +79,8 @@ export default {
     this.img.onerror = function() {
       promptAction.showToast({message:"error",duration:2000})
     };
-    var bitmap = this.offscreen.transferToImageBitmap();    this.ctx.transferFromImageBitmap(bitmap);
+    var bitmap = this.offscreen.transferToImageBitmap();
+    this.ctx.transferFromImageBitmap(bitmap);
   },
   change(e){
     this.offCanvas.filter = e.newValue;this.offCanvas.drawImage(this.img, 100, 100, 400, 300);
@@ -120,6 +122,7 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #F1F3F5;
+  display: flex;
 }
 canvas{
   width: 600px;

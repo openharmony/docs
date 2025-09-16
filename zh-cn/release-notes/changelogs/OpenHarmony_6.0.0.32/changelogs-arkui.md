@@ -108,8 +108,6 @@ struct Index {
 
 **变更影响**
 
-此变更不涉及应用适配。
-
 变更前：Row和Column的子组件matchParent时，会将其大小设置为父组件包含padding、border以及safeAreaPadding后的大小并且不受自身constraintSize的约束。
 
 变更后：Row和Column的子组件matchParent时，会将其大小设置为父组件不包含padding、border以及safeAreaPadding后的大小，即与父组件内容区大小保持一致并且会受到自身constraintSize的约束。
@@ -184,7 +182,7 @@ height(heightValue: Length | LayoutPolicy): T
 
 **适配指导**
 
-默认行为变更，无需适配。
+默认行为变更，若子组件设置matchParent时不需要考虑父组件的padding、border以及safeAreaPadding，建议父组件不设置padding、border以及safeAreaPadding。
 
 ## cl.arkui.3 GridRow组件columns参数和GridCol组件span参数默认值变更
 
@@ -274,7 +272,7 @@ struct Example {
   }
 }
 ```
-## cl.arkui.2 UI Input相关NDK接口行为变更
+## cl.arkui.4 UI Input相关NDK接口行为变更
 
 **访问级别**
 
@@ -294,7 +292,7 @@ struct Example {
 
 **变更影响**
 
-此变更为非兼容性变更。
+此变更涉及应用适配。
 
 变更前与变更后的变化说明：
 | 接口名称                                                      | 起始版本 | 说明                                                     | 变更原因                                                     | 变更影响                                                     |
@@ -319,7 +317,7 @@ int32_t OH_ArkUI_UIInputEvent_GetDeviceId(const ArkUI_UIInputEvent* event);<br>
 
 **适配指导**
 
-变更前的接口遗漏对部分事件的支持，导致输入这些事件时会返回默认值，与预期不符；修复后的接口已支持这些遗漏的事件，调用时可获取正确的返回值，应用无需特殊适配。
+变更前的接口遗漏对部分事件的支持，导致输入这些事件时会返回默认值，与预期不符；修复后的接口已支持这些遗漏的事件，调用时可获取正确的返回值。应用如果使用接口的返回值，需做出相应的适配。
 
 ## cl.arkui.5 使用字面量初始化CustomDialogController类实例导致的编译行为变更
 

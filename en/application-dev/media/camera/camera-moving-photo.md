@@ -2,25 +2,26 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 The camera framework provides the capability of taking moving photos. With this capability, users can take a moving photo in one-click mode, in a way similar to taking an ordinary photo.
 
 To develop the moving photo feature, perform the following steps:
 
+- Configure the mandatory capabilities required for camera application development by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md), [Camera Device Management](camera-device-management.md), [Device Input Management](camera-device-input.md), and [Camera Session Management](camera-session-management.md).
 - Check whether the device supports taking moving photos.
 - Enable the capability of taking moving photos (if supported).
 - Listen for the photo callback function and save the photo to the media library. For details, see [Accessing and Managing Moving Photos](../medialibrary/photoAccessHelper-movingphoto.md).
 
 ## How to Develop
 
-Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
+Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 > **NOTE**
 >
-> - Before enabling the capability of taking moving photos, you must enable [deferred photo delivery](camera-deferred-capture.md).
-> - The permission ohos.permission.MICROPHONE is required for taking moving photos. For details about how to apply for and verify the permission, see [Requesting Camera Development Permissions](camera-preparation.md). Otherwise, there is no sound when a photo is being taken.
+> The permission ohos.permission.MICROPHONE is required for taking moving photos. For details about how to apply for and verify the permission, see [Requesting Camera Development Permissions](camera-preparation.md). Otherwise, there is no sound when a photo is being taken.
 
 1. Import dependencies. Specifically, import the camera, image, and mediaLibrary modules.
 
@@ -32,14 +33,18 @@ Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) 
 
 2. Determine the photo output stream.
 
-   You can use the **photoProfiles** property of the [CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability) class to obtain the photo output streams supported by the device and use [createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11) to create a photo output stream.
+   You can use the **photoProfiles** property of [CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability) to obtain the photo output streams supported by the device and use [createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11) to create a photo output stream.
 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager, 
-                           cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
+     cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
+     if (!cameraOutputCapability || !cameraOutputCapability.photoProfiles) {
+       return;
+     }
      let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
-     if (!photoProfilesArray) {
-       console.error("createOutput photoProfilesArray == null || undefined");
+     if (!photoProfilesArray || previewProfilesArray.length === 0) {
+       console.error("photoProfilesArray is null or []");
+       return;
      }
      let photoOutput: camera.PhotoOutput | undefined = undefined;
      try {
@@ -74,17 +79,21 @@ Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) 
 
 4. Enable the capability of taking moving photos.
 
-   ```ts
-   function enableMovingPhoto(photoOutput: camera.PhotoOutput): void {
-     try {
-       photoOutput.enableMovingPhoto(true);
-     } catch (error) {
-       // If the operation fails, error.code is returned and processed.
-       let err = error as BusinessError;
+    > **NOTE**
+    >
+    > Before enabling the capability of taking moving photos, you must enable [deferred photo delivery](camera-deferred-capture.md).
+
+    ```ts
+    function enableMovingPhoto(photoOutput: camera.PhotoOutput): void {
+      try {
+        photoOutput.enableMovingPhoto(true);
+      } catch (error) {
+        // If the operation fails, error.code is returned and processed.
+        let err = error as BusinessError;
        console.error(`The enableMovingPhoto call failed. error code: ${err.code}`);
-     }
-   }
-   ```
+      }
+    }
+    ```
 
 5. Trigger photo capture. This procedure is the same as that in the common photo capture mode. For details, see [Photo Capture](camera-shooting.md).
 

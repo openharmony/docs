@@ -57,7 +57,7 @@ int32_t (*setKeyboardAvoidDistance)(ArkUI_NativeDialogHandle handle, float dista
 | 参数项                                                                                | 描述 |
 |------------------------------------------------------------------------------------| -- |
 | [ArkUI_NativeDialogHandle](capi-arkui-nativemodule-arkui-nativedialog8h.md) handle | 指向自定义弹窗控制器的指针。 |
-| float distance                                                                     | 避让键盘的距离，默认为vp。 |
+| float distance                                                                     | 避让键盘的距离，单位为vp。 |
 | [ArkUI_LengthMetricUnit](capi-native-type-h.md#arkui_lengthmetricunit) unit        | 避让距离的单位，参数类型[ArkUI_LengthMetricUnit](capi-native-type-h.md#arkui_lengthmetricunit)。 |
 
 **返回：**

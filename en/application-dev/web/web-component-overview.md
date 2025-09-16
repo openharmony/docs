@@ -1,4 +1,10 @@
 # Introduction to ArkWeb
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 ## When to Use
 
@@ -29,17 +35,29 @@ The **Web** component provides various capabilities for you to control web pages
 
 - Other advanced capabilities: same-layer rendering with system components, network and media playback takeovers, and custom input method for **Web** component text boxes<!--RP1--><!--RP1End-->.
 
+## Required Permissions
+
+The **ohos.permission.INTERNET** permission is required for accessing online web pages. For details about how to apply for a permission, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+
+  ```
+  "requestPermissions":[
+      {
+        "name" : "ohos.permission.INTERNET"
+      }
+    ]
+  ```
+
 ## Constraints
 
 - You can obtain the support for W3C standards based on the ArkWeb kernel version at related websites. For example, **https://developer.mozilla.org/en-US/** and **https://webassembly.org/features/**.
 
-- **Web** kernel version: ArkWeb is developed based on Chromium. The corresponding Chromium versions are as follows.
+- Web kernel version: ArkWeb is developed based on the Google Chromium kernel. The following table lists the mapping between the system version and the Chromium version.
 
   | OS Version| Chromium Version|
   |  ---|---|
   | OpenHarmony 4.0 and earlier| M99 |
   | OpenHarmony 4.1-5.1 | M114 |
-  | OpenHarmony 6.0 | M132 |
+  | OpenHarmony 6.0 | M132 (Default value, which is recommended.)<br>M114 (Alternative. If the application needs to use this kernel, see [Adaptation Guide for the M114 Kernel on OpenHarmony 6.0](https://gitcode.com/openharmony-tpc/chromium_src/blob/132_trunk/web/ReleaseNote/CompatibleWithLegacyWebEngine.md).)|
 
 ## Samples
 

@@ -1,7 +1,13 @@
-# !! Syntax: Two-Way Binding
-In state management V1, [$$](./arkts-two-way-sync.md) is used for two-way binding of built-in components.
-In state management V2, the **!!** syntactic sugar is used to implement two-way binding of components in a unified manner.
+# !! Syntax: Enabling Two-Way Binding
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Cuecuexiaoyu-->
+<!--Designer: @lixingchi1-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
+In state management V1, two-way binding for built-in components is implemented using [$$](./arkts-two-way-sync.md).
+In state management V2, the **!!** syntactic sugar provides a unified way to achieve two-way binding for components.
 
 >**NOTE**
 >
@@ -10,100 +16,69 @@ In state management V2, the **!!** syntactic sugar is used to implement two-way 
 
 ## Overview
 
-**!!** is a syntactic sugar used to implement two-way binding of components in initialization of \@Param and \@Event of the child components. The \@Event method name must be declared as "$" + \@Param attribute name. For details, see [Use Scenarios](#use-scenarios).
+The **!!** syntactic sugar enables two-way binding for components by initializing the [\@Param](arkts-new-param.md) and [\@Event](arkts-new-event.md) decorated variables of child components. For this to work, the \@Event decorated method name must be declared as **$** + the name of the \@Param decorated attribute. For details, see [Use Scenarios](#use-scenarios).
 
-- If the parent component uses **!!**, the change of the parent component will be synchronized to the child component, and vice versa.
-- If the parent component does not use **!!**, the change of the parent component is unidirectional.
-
+- When **!!** is used, changes in the parent component are synchronized to the child component, and vice versa, achieving two-way synchronization.
+- If **!!** is not used, changes flow only from the parent to the child, which means one-way synchronization.
 
 ## Use Scenarios
 
 ### Two-Way Binding Between Custom Components
-1. Construct the **Star** child component in the **Index** component, bind the value in the parent and child components bidirectionally, and initialize **@Param value** and **@Event $value** of the child component.
-- The two-way binding syntactic sugar can be considered as:
+1. In the **Index** component, construct a child **Star** component and use **!!** to enable two-way binding for the **value** attribute. This automatically initializes the child component's **@Param value** and **@Event $value**.
 
-    ```
-    Star({ value: this.value, $value: (val: number) => { this.value = val }})
-    ```
-2. Click the button in the **Index** component to change the value, and **Text** in both the parent component **Index** and child component **Star** will be updated.
-3. Click the button in the child component **Star** to invoke **this.$value(10)**, and **Text** in both the parent component **Index** and child component **Star** will be updated.
+   **!!** syntactic sugar for two-way binding:
 
-```ts
-@Entry
-@ComponentV2
-struct Index {
-  @Local value: number = 0;
+   ```
+   Star({ value: this.value, $value: (val: number) => { this.value = val; }})
+   ```
+2. Clicking the button in **Index** (parent) increments the value of **value**, and the **Text** components in both **Index** and **Star** (child) are updated.
+3. Clicking the button in **Star** (child) calls **this.$value(10)**, and the **Text** components in both **Index** and **Star** are updated.
 
-  build() {
-    Column() {
-      Text(`${this.value}`)
-      Button(`change value`).onClick(() => {
-        this.value++;
-      })
-      Star({ value: this.value!! })
-    }
-  }
-}
+   ```ts
+   @Entry
+   @ComponentV2
+   struct Index {
+     @Local value: number = 0;
 
-
-@ComponentV2
-struct Star {
-  @Param value: number = 0;
-  @Event $value: (val: number) => void = (val: number) => {};
-
-  build() {
-    Column() {
-      Text(`${this.value}`)
-      Button(`change value `).onClick(() => {
-        this.$value(10);
-      })
-    }
-  }
-}
-```
+     build() {
+       Column() {
+         Text(`${this.value}`)
+         Button(`change value`).onClick(() => {
+           this.value++;
+         })
+         Star({ value: this.value!! })
+       }
+     }
+   }
 
 
-## Constraints
-- **!!** does not support multi-layer parent-child component transfer.
-- **!!** cannot be used together with @Event. Since API version 18, when **!!** is used to pass parameters to the @Event method of a child component, a compilation error is reported.
-- When three or more exclamation marks (!!!, !!!!, or !!!!!) are used, two-way binding is not supported.
+   @ComponentV2
+   struct Star {
+     @Param value: number = 0;
+     @Event $value: (val: number) => void = (val: number) => {};
+
+     build() {
+       Column() {
+         Text(`${this.value}`)
+         Button(`change value`).onClick(() => {
+           this.$value(10);
+         })
+       }
+     }
+   }
+   ```
+
+**Constraints**
+- **!!** does not support two-way binding across multiple layers of parent-child components.
+- **!!** cannot be used together with \@Event. Since API version 18, using **!!** to pass parameters to a child component's @Event method causes a compilation error.
+- Using three or more exclamation marks (such as **!!!** and **!!!!**) does not enable two-way binding.
 
 
 ### Two-Way Binding Between Built-in Component Parameters
 
-The **!!** operator provides a TypeScript variable by-reference to a built-in component so that the variable value and the internal state of that component are kept in sync. Add this operator after the variable name, for example, **isShow!!**.
+The **!!** operator passes a TypeScript variable by reference to a built-in component, ensuring the variable's value and the component's internal state stay in sync. To use this operator, append it to the variable name, for example, **isShow!!**.
 
-What the internal state is depends on the component. For example, the **isShow** parameter of the [bindMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md) component.
-
-#### Rules of Use
-
-- Currently, **!!** supports two-way binding of the following parameters of the basic types, that is, the parameters can synchronize the current menu or popup state. In addition, **!!** supports two-way binding of variables of the basic types as well. When a variable is decorated by [\@Local](arkts-new-local.md) of V2 or [\@State](arkts-state.md) of V1, the change of the variable value triggers the UI re-render.
-
-  | Attribute                                                        | Supported Parameter| Initial API Version|
-  | ------------------------------------------------------------ | --------------- | ----------- |
-  | [bindMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11) | isShow | 13          |
-  | [bindContextMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu12) | isShown | 13          |
-  | [bindPopup](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup) | show | 13   |
-  | [TextInput](../../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#textinputoptions)| text | 18   |
-  | [TextArea](../../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md#textareaoptions)| text | 18   |
-  | [Search](../../reference/apis-arkui/arkui-ts/ts-basic-components-search.md#searchoptions18)| value | 18   |
-  | [BindSheet](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 18   |
-  | [BindContentCover](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 18   |
-  | [Toggle](../../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md#toggleoptions18)| isOn | 18   |
-  | [Checkbox](../../reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md#select) | select | 18   |
-  | [CheckboxGroup](../../reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md#selectall) | selectAll | 18   |  
-  | [Radio](../../reference/apis-arkui/arkui-ts/ts-basic-components-radio.md#checked) | checked | 18   |  
-  | [Rating](../../reference/apis-arkui/arkui-ts/ts-basic-components-rating.md#ratingoptions18)| rating | 18   |  
-  | [Slider](../../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md#slideroptions)| value | 18   |  
-  | [Select](../../reference/apis-arkui/arkui-ts/ts-basic-components-select.md#selected) | selected | 18   |  
-  | [Select](../../reference/apis-arkui/arkui-ts/ts-basic-components-select.md#value) | value | 18   |
-  | [MenuItem](../../reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md#selected) | selected | 18   |
-- When the [\@Local](arkts-new-local.md) decorated variable bound to **!!** changes, the UI is rendered synchronously.
-
-
-#### Example
-
-Two-way binding of the **isShow** parameter of the **bindMenu** API:
+The specific meaning of the "internal state" is determined by the component implementation. For example, the **isShow** parameter in [bindMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11) controls menu visibility.
 
 ```ts
 @Entry
@@ -131,9 +106,9 @@ struct BindMenuInterface {
               },
             ])
       }.height('50%')
-      Text("isShow: " + this.isShow).fontSize(18).fontColor(Color.Red)
+      Text('isShow: ' + this.isShow).fontSize(18).fontColor(Color.Red)
       Row() {
-        Button("Click")
+        Button('Click')
           .onClick(() => {
             this.isShow = true;
           })
@@ -147,3 +122,29 @@ struct BindMenuInterface {
 ```
 
 ![bindMenu](figures/bindmenu_doublebind.gif)
+
+**Usage Rules**
+
+- Currently, two-way binding with **!!** supports variables of basic types. When such variables are decorated with state management V1 decorators such as [\@State](arkts-state.md), or state management V2 decorators such as [\@Local](arkts-new-local.md), changes in variable values will trigger UI updates.
+
+  | Attribute                                                        | Supported Parameter| Initial API Version|
+  | ------------------------------------------------------------ | --------------- | ----------- |
+  | [bindMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11) | isShow | 18        |
+  | [bindContextMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu12) | isShown | 18          |
+  | [bindPopup](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup) | show | 18   |
+  | [TextInput](../../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#textinputoptions) | text | 18   |
+  | [TextArea](../../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md#textareaoptions) | text | 18   |
+  | [Search](../../reference/apis-arkui/arkui-ts/ts-basic-components-search.md#searchoptions18) | value | 18   |
+  | [BindSheet](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet) | isShow | 18   |
+  | [BindContentCover](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover) | isShow | 18   |
+  | [SideBarContainer](../../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md#sidebarwidth) | sideBarWidth | 18   |
+  | [Navigation](../../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navbarwidth9) | navBarWidth | 18   |
+  | [Toggle](../../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md#toggleoptions18) | isOn | 18   |
+  | [Checkbox](../../reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md#select) | select | 18   |
+  | [CheckboxGroup](../../reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md#selectall) | selectAll | 18   |  
+  | [Radio](../../reference/apis-arkui/arkui-ts/ts-basic-components-radio.md#checked) | checked | 18   |  
+  | [Rating](../../reference/apis-arkui/arkui-ts/ts-basic-components-rating.md#ratingoptions18) | rating | 18   |  
+  | [Slider](../../reference/apis-arkui/arkui-ts/ts-basic-components-slider.md#slideroptions) | value | 18   |  
+  | [Select](../../reference/apis-arkui/arkui-ts/ts-basic-components-select.md#selected) | selected | 18   |  
+  | [Select](../../reference/apis-arkui/arkui-ts/ts-basic-components-select.md#value) | value | 18   |
+  | [MenuItem](../../reference/apis-arkui/arkui-ts/ts-basic-components-menuitem.md#selected) | selected | 18   |

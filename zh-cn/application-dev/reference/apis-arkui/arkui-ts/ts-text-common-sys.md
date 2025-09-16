@@ -84,3 +84,27 @@ getText(range?: TextRange): string
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | gradientMode  | [KeyboardGradientMode](#keyboardgradientmode20枚举说明) | 否   | 键盘的模糊效果。<br/>默认值：KeyboardGradientMode.NONE |
 | fluidLightMode  | [KeyboardFluidLightMode](#keyboardfluidlightmode20枚举说明) | 否   | 键盘的流光效果。<br/>默认值：KeyboardFluidLightMode.NONE |
+
+## TextChangeReason<sup>20+</sup>
+
+组件内容变化原因。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| ------- | ---- | ------------------- |
+| UNKNOWN | 0 | 未知原因。 |
+| INPUT | 1 | 用户输入。 |
+| PASTE | 2 | 粘贴。 |
+| CUT | 3 | 剪切。 |
+| DRAG | 4 | 拖拽。 |
+| AUTO_FILL | 5 | 自动填充。 |
+| AI_WRITE | 6 | AI帮写。 |
+| REDO | 7 | 重做。 |
+| UNDO | 8 | 撤销。 |
+| CONTROLLER | 9 | 开发者调用组件接口。 |
+| ACCESSIBILITY | 10 | 无障碍接口。 |
+| COLLABORATION | 11 | 跨端拍照。 |
+| STYLUS | 12 | 手写笔。 |

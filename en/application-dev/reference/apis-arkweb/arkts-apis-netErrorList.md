@@ -1,8 +1,14 @@
 # @ohos.web.netErrorList(The List of ArkWeb Network Protocol Stack Errors)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Provides a list of ArkWeb network protocol stack errors.
 
-The error codes of the ArkWeb network protocol stack are mapped to the Chromium error codes in <!--RP1-->net_error_list.h<!--RP1End--&gt.
+The error codes of the ArkWeb network protocol stack are mapped to the Chromium error codes in <!--RP1-->net_error_list.h<!--RP1End-->.
 
 > **NOTE**
 > 

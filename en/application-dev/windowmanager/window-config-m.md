@@ -20,10 +20,10 @@ The **metadata** tag represents custom metadata of a HAP. The tag value is an ar
 
 Below are several use cases and examples for the **metadata** tag. You can customize the settings based on service requirements.
 
-1. Use the **metadata** tag to configure the default size and position (in vp) of the main window. The following **name** values are available this configuration:
+1. Use the **metadata** tag to configure the default size and position (in vp) of the main window. The following **name** values are available:
 
     * **ohos.ability.window.height**: specifies the default height of the main window. **value** indicates the height.
-    * **ohos.ability.window.width of name**: specifies the default width of the main window. **value** indicates the width.
+    * **ohos.ability.window.width**: specifies the default width of the main window. **value** indicates the width.
     * **ohos.ability.window.left**: specifies the default left position of the main window. **value** indicates the configuration format: alignment mode +/- offset. The alignment mode can be **center**, **left**, or **right**. The default value is **left**. It can be omitted when the offset is **0**.
     * **ohos.ability.window.top**: specifies the default top position of the main window. **value** indicates the configuration format: alignment mode +/- offset. The alignment mode can be **center**, **top**, or **bottom**. The default value is **top**. If both the alignment mode and offset are omitted, the default stacking specifications are used.
 

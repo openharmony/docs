@@ -161,12 +161,12 @@ struct Index {
 | fontStyle      | number&nbsp;\|&nbsp;[FontStyle](arkui-ts/ts-appendix-enums.md#fontstyle)                        | 否 | 是   | 设置被计算文本字体样式。<br>默认值：FontStyle.Normal<br/>number类型取值范围为[0,1]，取值间隔为1，依次对应FontStyle中的枚举值。            |
 | fontWeight     | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[FontWeight](arkui-ts/ts-appendix-enums.md#fontweight)  | 否 | 是   | 设置被计算文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal|
 | fontFamily     | string&nbsp;\|&nbsp;[Resource](arkui-ts/ts-types.md#resource)                                   | 否 | 是   | 设置被计算文本字体列表。默认字体'HarmonyOS Sans'，且当前只支持这种字体。|
-| letterSpacing  | number&nbsp;\|&nbsp;string                                                                         | 否 | 是   | 设置被计算文本字符间距。|
+| letterSpacing  | number&nbsp;\|&nbsp;string   | 否 | 是   | 设置被计算文本字符间距。<br/>默认值：0 |
 | textAlign<sup>10+</sup>  | number&nbsp;\|&nbsp;[TextAlign](arkui-ts/ts-appendix-enums.md#textalign)              | 否 | 是   | 设置被计算文本水平方向的对齐方式。<br/>默认值：TextAlign.Start<br/>number类型取值范围为[0,3]，取值间隔为1，依次对应TextAlign中的枚举值。 |
 | overflow<sup>10+</sup>  | number&nbsp;\|&nbsp;[TextOverflow](arkui-ts/ts-appendix-enums.md#textoverflow)         | 否 | 是   | 设置被计算文本超长时的截断方式。<br/>默认值：1<br/>number类型取值范围为[0,3]，取值间隔为1，依次对应TextOverflow中的枚举值。 |
-| maxLines<sup>10+</sup>  | number                                                                                    | 否 | 是   | 设置被计算文本最大行数。|
+| maxLines<sup>10+</sup>  | number              | 否 | 是   | 设置被计算文本最大行数。<br/>取值范围：[0, INT32_MAX] |
 | lineHeight<sup>10+</sup>  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](arkui-ts/ts-types.md#resource)    | 否 | 是   | 设置被计算文本行高。|
 | baselineOffset<sup>10+</sup>  | number&nbsp;\|&nbsp;string                                                          | 否 | 是   | 设置被计算文本基线的偏移量。<br />默认值：0 |
 | textCase<sup>10+</sup>  | number&nbsp;\|&nbsp;[TextCase](arkui-ts/ts-appendix-enums.md#textcase)                 | 否 | 是   | 设置被计算文本大小写。<br />默认值：TextCase.Normal<br/>number类型取值范围为[0,2]，取值间隔为1，依次对应TextCase中的枚举值。 |
-| textIndent<sup>11+</sup> | number&nbsp;\|&nbsp;string  | 否 | 是  | 设置首行文本缩进，默认值0。 |
+| textIndent<sup>11+</sup> | number&nbsp;\|&nbsp;string  | 否 | 是  | 设置首行文本缩进，默认值为0。 |
 | wordBreak<sup>11+</sup> | [WordBreak](arkui-ts/ts-appendix-enums.md#wordbreak11) | 否 | 是   | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD <br/>**说明：** <br/>WordBreak.BREAK_ALL与{overflow:&nbsp;TextOverflow.Ellipsis}，`maxLines`组合使用可实现英文单词按字母截断，超出部分以省略号显示。 |

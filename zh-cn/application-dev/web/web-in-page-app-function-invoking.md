@@ -464,7 +464,7 @@
       param.hello("call obj func");
     }
 
-    toString(param: String): void {
+    toString(param: string): void {
       console.log('Web Component toString' + param);
     }
   }

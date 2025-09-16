@@ -6,6 +6,8 @@
 <!--Tester: @xchaosioda-->
 <!--Adviser: @zengyawen-->
 
+从API 20开始支持使用NDK接口（C/C++）实现视频转码。
+
 使用[AVTranscoder](media-kit-intro.md#avtranscoder)可以实现视频转码功能<!--RP1--><!--RP1End-->。可以通过调用[canIUse](../../reference/common/init.md#caniuse)接口来判断当前设备是否支持AVTranscoder。当canIUse("SystemCapability.Multimedia.Media.AVTranscoder")返回值为true时，表示可以使用转码能力。
 
 本开发指导将以“开始转码-暂停转码-恢复转码-完成转码”的一次完整流程为示例，向开发者讲解AVTranscoder视频转码相关功能。

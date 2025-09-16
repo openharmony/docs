@@ -8,6 +8,12 @@ Provides applications with the ability to access the print system using CAPI.
 
 ## Summary
 
+### Files
+
+| Name| Description|
+| -------- | -------- |
+| [ohprint.h](ohprint_8h.md) |Declares APIs for discovering and connecting to printers, printing files, and querying the list of added printers and printer information.|
+
 ### Types
 
 | Name| Description|
@@ -42,7 +48,7 @@ Provides applications with the ability to access the print system using CAPI.
 | [Print_DuplexMode](#print_duplexmode) | Enumerates the duplex modes for printing.|
 | [Print_ColorMode](#print_colormode) | Enumerates the color modes for printing.|
 | [Print_OrientationMode](#print_orientationmode) | Enumerates the orientation modes for printing.|
-| [Print_Quality](#print_quality) | Enumerates the print quality.|
+| [Print_Quality](#print_quality) | Enumerates the print qualities.|
 | [Print_DocumentFormat](#print_documentformat) | Enumerates the document formats.|
 | [Print_JobDocAdapterState](#print_jobdocadapterstate) | Enumerates the print job adapter states.|
 

@@ -21,6 +21,7 @@
 ## 子组件
 
 支持单个子组件。
+> 从API version 21开始，Scroll单个子组件的宽高最大为16777216px；API version 20及之前，Scroll单个子组件的宽高最大为1000000px。子组件超出该大小可能导致滚动或显示异常。
 
 
 ## 接口
@@ -500,9 +501,15 @@ onScrollEnd(event: () => void)
 
 1、滚动组件触发滚动后停止，支持键鼠操作等其他触发滚动的输入设置。<br/>2、通过滚动控制器API接口调用后停止，带过渡动效。
 
-该事件从API version 9开始废弃，使用onScrollStop事件替代。
+该事件从API version 9开始废弃，使用[onScrollStop](#onscrollstop9)事件替代。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                              | 必填 | 说明               |
+| ------ | --------------------------------- | ---- | ------------------ |
+| event   | () => void | 是   | 滚动停止事件回调。 |
 
 ### onScrollStart<sup>9+</sup>
 
@@ -602,6 +609,8 @@ Scroll滚动时触发的回调。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名      | 类型                                                    | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | xOffset     | number                                                  | 是   | 每帧滚动时水平方向的偏移量，Scroll中的内容向左滚动时偏移量为正，向右滚动时偏移量为负。<br/>单位vp。 |
@@ -621,6 +630,8 @@ Scroll滚动前触发的回调。
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
 
 | 参数名      | 类型                                                    | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -644,6 +655,8 @@ type OnScrollEdgeCallback = (side: Edge) => void
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
 
 | 参数名  | 类型   | 必填 | 说明    |
 | ------- | ----- | ---- | ------ |
@@ -697,6 +710,8 @@ Scroll每帧缩放完成时触发的回调。
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
 
 | 参数名      | 类型                                                    | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -943,7 +958,7 @@ getItemRect(index: number): RectResult
 
 | 类型       | 说明       |
 | -------------------  | -------- |
-| [RectResult](ts-types.md#rectresult10) | 子组件的大小和相对于组件的位置。<br/>单位：vp。 |
+| [RectResult](ts-universal-attributes-on-child-touch-test.md#rectresult) | 子组件的大小和相对于组件的位置。<br/>单位：vp。 |
 
 **错误码**：
 
@@ -1030,10 +1045,10 @@ getItemIndex(x: number, y: number): number
 
 | 名称     | 说明                           |
 | ------ | ------------------------------ |
-| START   | 首部对齐。指定item首部与List首部对齐。  |
-| CENTER | 居中对齐。指定item主轴方向居中对齐于List。        |
-| END  | 尾部对齐。指定item尾部与List尾部对齐。 |
-| AUTO  | 自动对齐。<br/>若指定item完全处于显示区，不做调整。否则依照滑动距离最短的原则，将指定item首部对齐或尾部对齐于List，使指定item完全处于显示区。|
+| START   | 首部对齐。指定item首部与滚动容器组件首部对齐。  |
+| CENTER | 居中对齐。指定item主轴方向居中对齐于滚动容器组件。        |
+| END  | 尾部对齐。指定item尾部与滚动容器组件尾部对齐。 |
+| AUTO  | 自动对齐。<br/>若指定item完全处于显示区，不做调整。否则依照滑动距离最短的原则，将指定item首部对齐或尾部对齐于滚动容器组件，使指定item完全处于显示区。|
 
 ## ScrollToIndexOptions<sup>12+</sup>对象说明
 
@@ -1690,7 +1705,7 @@ struct EnablePagingExample {
 
 ```ts
 // xxx.ets
-import { curves, LengthMetrics } from '@kit.ArkUI';
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component

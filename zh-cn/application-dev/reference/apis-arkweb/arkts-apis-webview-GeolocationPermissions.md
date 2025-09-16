@@ -45,7 +45,7 @@ static allowGeolocation(origin: string, incognito?: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -98,7 +98,7 @@ static deleteGeolocation(origin: string, incognito?: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -152,7 +152,7 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -182,7 +182,7 @@ struct WebComponent {
                 console.error(`getAccessibleGeolocationAsync error, ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
                 return;
               }
-              console.log('getAccessibleGeolocationAsync result: ' + result);
+              console.info('getAccessibleGeolocationAsync result: ' + result);
             });
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -217,7 +217,7 @@ static getAccessibleGeolocation(origin: string, incognito?: boolean): Promise\<b
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -244,7 +244,7 @@ struct WebComponent {
           try {
             webview.GeolocationPermissions.getAccessibleGeolocation(this.origin)
               .then(result => {
-                console.log('getAccessibleGeolocationPromise result: ' + result);
+                console.info('getAccessibleGeolocationPromise result: ' + result);
               }).catch((error: BusinessError) => {
               console.error(`getAccessibleGeolocationPromise error, ErrorCode: ${error.code},  Message: ${error.message}`);
             });
@@ -275,7 +275,7 @@ static getStoredGeolocation(callback: AsyncCallback\<Array\<string>>, incognito?
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -304,7 +304,7 @@ struct WebComponent {
                 return;
               }
               let origins_str: string = origins.join();
-              console.log('getStoredGeolocationAsync origins: ' + origins_str);
+              console.info('getStoredGeolocationAsync origins: ' + origins_str);
             });
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -338,7 +338,7 @@ static getStoredGeolocation(incognito?: boolean): Promise\<Array\<string>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -364,7 +364,7 @@ struct WebComponent {
             webview.GeolocationPermissions.getStoredGeolocation()
               .then(origins => {
                 let origins_str: string = origins.join();
-                console.log('getStoredGeolocationPromise origins: ' + origins_str);
+                console.info('getStoredGeolocationPromise origins: ' + origins_str);
               }).catch((error: BusinessError) => {
               console.error(`getStoredGeolocationPromise error, ErrorCode: ${error.code},  Message: ${error.message}`);
             });

@@ -20,9 +20,9 @@
 |字段名称|说明|安装一致性校验规则|更新一致性校验规则|
 |--|--|--|--|
 |appId|应用的appId，组成方式为bundleName_公钥的base64编码。|是|appId和appIdentifier任一相同即可。|
-|appIdentifier|应用的唯一标识，是AppGallery Connect创建应用时分配的[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。|是|appId和appIdentifier任一相同即可。|
-|appDistributionType|<!--RP1-->应用[签名证书](../security/app-provision-structure.md)中的app-distribution-type，标识应用的分发类型。<!--RP1End-->|是|更新不同版本时无校验，同版本有校验。|
-|appProvisionType|应用签名[证书类型](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugprofile-0000001914423102)，分为debug和release。debug为本地调试使用，release为上架应用市场使用。|是|更新不同版本时无校验，同版本有校验。|
+|appIdentifier|应用的唯一标识。<!--RP2-->来源于应用[Profile签名文件](../security/app-provision-structure.md)中的app-identifier。<!--RP2End-->|是|appId和appIdentifier任一相同即可。|
+|appDistributionType|<!--RP1-->应用[Profile签名文件](../security/app-provision-structure.md)中的app-distribution-type，标识应用的分发类型。<!--RP1End-->|是|更新不同版本时无校验，同版本有校验。|
+|appProvisionType|应用签名证书类型。<!--RP3-->来源于应用[Profile签名文件](../security/app-provision-structure.md)中的type。分为debug和release。debug用于本地调试使用，release用于应用发布场景。<!--RP3End-->|是|更新不同版本时无校验，同版本有校验。|
 |apl|表示应用程序的[APL等级](../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)，系统定义的apl包括：normal、system_basic和system_core。|是|更新不同版本时无校验，同版本有校验。|
 
 

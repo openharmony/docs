@@ -159,7 +159,7 @@ FA卡片开发，即基于[FA模型](../application-models/fa-model-development-
         return formData;
       },
       onCastToNormal(formId: string) {
-        // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
+        // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理，当前卡片使用方不存在临时卡片场景
         hilog.info(domain, TAG, 'FormAbility onCastToNormal');
       },
       onUpdate(formId: string) {
@@ -394,7 +394,7 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context): Pr
 
 - 常态卡片：卡片使用方会持久化的卡片。如添加到桌面的卡片。
 
-- 临时卡片：卡片使用方不会持久化的卡片。如上划卡片应用时显示的卡片。
+- 临时卡片：卡片使用方不会持久化的卡片。当前卡片使用方不存在临时卡片场景。
 
 临时卡片转常态卡片：上划卡片应用后，此时会显示的卡片为临时卡片；点击卡片上的“图钉”按钮后添加到桌面，此时卡片转为常态卡片。
 

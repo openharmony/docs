@@ -1,6 +1,6 @@
 # @ohos.application.missionManager (missionManager) (System API)
 
-The **missionManager** module provides APIs to lock, unlock, and clear missions, and switch a mission to the foreground.
+The missionManager module provides APIs to lock, unlock, and clear missions, and switch a mission to the foreground.
 
 > **NOTE**
 > 

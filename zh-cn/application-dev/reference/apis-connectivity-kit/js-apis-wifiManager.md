@@ -96,7 +96,7 @@ disableWifi(): void
 
 关闭WLAN。
 
-**需要权限：** ohos.permission.SET_WIFI_INFO和ohos.permission.MANAGE_WIFI_CONNECTION（仅系统应用可用）/ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION（仅企业应用可用）
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 (ohos.permission.MANAGE_WIFI_CONNECTION 仅系统应用可用 或 ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION 仅企业应用可用)
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 

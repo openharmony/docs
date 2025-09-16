@@ -1,12 +1,20 @@
 # Specifying the User for Key Operations (for System Applications Only)
 
+<!--Kit: Universal Keystore Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @wutiantian-gitee-->
+<!--Designer: @HighLowWorld-->
+<!--Tester: @wxy1234564846-->
+<!--Adviser: @zengyawen-->
+
 To implement isolation and access control for key data, HUKS provides APIs with the user ID specified for concurrent key operations initiated by multiple users.
+
 >**NOTE**<br>
 > The mini-system devices do not support the operation described in this topic.
 
 ## Constraints
 
-- The range of the caller's user ID is **0** to **99**, including **0** and **99**.
+- The range of the caller user ID is **0** to **99**, including **0** and **99**.
 - The APIs are available only for system applications.
 
 ## Available APIs
@@ -15,8 +23,8 @@ APIs with the **userId** parameter are provided as enhancement to existing APIs.
 
 When using these APIs, observe the following:
 
-1. You can pass in [HUKS_TAG_AUTH_STORAGE_LEVEL](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_authstoragelevel) in **options** to specify the security level for the key stored.
-2. If **HUKS_TAG_AUTH_STORAGE_LEVEL** is not specified in **options**, the key can be accessed only after the first unlock of the device by default, which is equivalent to passing in [HUKS_AUTH_STORAGE_LEVEL_CE](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_authstoragelevel).
+1. You can pass in [HUKS_TAG_AUTH_STORAGE_LEVEL](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_authstoragelevel) in **options** to specify the security level for the key stored.
+2. If you do not pass [HUKS_TAG_AUTH_STORAGE_LEVEL](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_authstoragelevel) in **options**, this API uses the key in the CE storage area corresponding to the specified **userId** by default, which is equivalent to passing in [HUKS_AUTH_STORAGE_LEVEL_CE](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_authstoragelevel).
 
 The algorithm specifications and the usage of the APIs are the same as those of the APIs without **userId**.
 

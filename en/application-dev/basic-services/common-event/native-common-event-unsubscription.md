@@ -1,5 +1,11 @@
 # Unsubscribing from Common Events in C
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 ## When to Use
 
@@ -7,11 +13,11 @@ After completing service requirements, subscribers need to unsubscribe from comm
 
 ## Available APIs
 
-For details about the APIs, see [CommonEvent](../../reference/apis-basic-services-kit/capi-common-event.md).
+For details about the APIs, see [oh_commonevent.h](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md).
 
 | API                              | Description                                                            |
 | ------------------------------------ | ---------------------------------------------------------------- |
-|[CommonEvent_ErrCode OH_CommonEvent_UnSubscribe(const CommonEvent_Subscriber* subscriber)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_unsubscribe)|Unsubscribe from a common event.|
+|[CommonEvent_ErrCode OH_CommonEvent_UnSubscribe(const CommonEvent_Subscriber* subscriber)](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_unsubscribe)|Unsubscribe from a common event.|
 
 ## How to Develop
 
@@ -36,7 +42,7 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
 
 3. Unsubscribe from a common event.
 
-   After a subscriber subscribes to a common event and meets service requirements, the subscriber can use [OH_CommonEvent_UnSubscribe](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_unsubscribe) to unsubscribe from the event.
+   After a subscriber subscribes to a common event and meets service requirements, the subscriber can use [OH_CommonEvent_UnSubscribe](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_unsubscribe) to unsubscribe from the event.
 
    ```c++
    void Unsubscribe(CommonEvent_Subscriber* subscriber) {

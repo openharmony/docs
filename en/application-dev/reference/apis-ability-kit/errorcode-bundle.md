@@ -1,4 +1,10 @@
 # Bundle Error Codes
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 > **NOTE**
 >
@@ -75,7 +81,7 @@ When a user-related API is called, the user ID passed in does not exist. <!--Del
 The specified app ID is an empty string.
 
 **Description**<br>
-When an API of the [appControl module](../apis-ability-kit/js-apis-appControl-sys.md) is called, the application ID passed in does not exist.
+When an API of the [appControl module](../apis-ability-kit/js-apis-appControl-sys.md) is called, the appId passed in does not exist.
 
 **Possible Causes**<br>
 **appId** is an empty string.
@@ -976,7 +982,7 @@ The installation fails because an application with the same bundle name but diff
 The specified appIdentifier is invalid.
 
 **Description**<br>
-When an API of the [appControl module](../apis-ability-kit/js-apis-appControl-sys.md) is called, the app identifier passed in does not exist.
+When an API of the [appControl module](../apis-ability-kit/js-apis-appControl-sys.md) is called, the appIdentifier passed in does not exist.
 
 **Possible Causes**<br>
 **appIdentifier** is an empty string.
@@ -1138,7 +1144,7 @@ Errors related to file operations occurs, such as insufficient space at the dest
 ## 17700087 Unsupported Plugin Installation
 
 **Error Message**<br>
-Failed to install the plugin because the current device does not support plugin. 
+Failed to install the plugin because the current device does not support plugins. 
 
 **Description**<br>
 The plugin fails to be installed on the current device.
@@ -1177,11 +1183,11 @@ The plugin fails to be installed because its ID fails to be parsed.
 The **pluginDistributionIDs** in the signing certificate profile does not conform to the specifications.
 
 **Solution**<br>
-Reconfigure the **app-services-capabilities** field as follows in the signing certificate profile of the plugin:
+Reconfigure the **app-services-capabilities** field in the [profile](../../security/app-provision-structure.md) as follows:
 ```
 "app-services-capabilities":{
     "ohos.permission.kernel.SUPPORT_PLUGIN":{
-        "pluginDistributionIDs":"value-1|value-2|···"
+        "pluginDistributionIDs":"value-1,value-2,···"
     }
 }
 ```
@@ -1199,12 +1205,19 @@ The **pluginDistributionIDs** between the plugin and the application do not shar
 The **pluginDistributionIDs** between the plugin and the application do not share any common values.
 
 **Solution**<br>
-Reconfigure the **pluginDistributionIDs** in the [singing certification profile](https://developer.huawei.com/consumer/en/doc/app/agc-help-add-releaseprofile-0000001914714796) of the application or plugin.
+Reconfigure the **pluginDistributionIDs** field in the [profile](../../security/app-provision-structure.md) as follows:
+```
+"app-services-capabilities":{
+    "ohos.permission.kernel.SUPPORT_PLUGIN":{
+        "pluginDistributionIDs":"value-1,value-2,···"
+    }
+}
+```
 
 ## 17700091 Plugin Installation Failure Because of the Same Plugin Name and Host Bundle Name
 
 **Error Message**<br>
-Failed to install the plugin because the plugin name is same as host bundle name.
+Failed to install the plugin because the plugin name is the same as the host bundle name.
 
 **Description**<br>
 The plugin fails to be installed because the plugin name is the same as the host bundle name.

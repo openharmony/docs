@@ -30,10 +30,14 @@
       build() { 
         Column() {
             Text(this.message)
-              .onClick(()=>{
-                let context = this.getUIContext().getHostContext() as Context;
+              .onClick(async ()=> {
+                try {
+                  let context = this.getUIContext().getHostContext() as Context;
                 // 通话开始时创建voice_call类型的avsession。
                 let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'voiptest', 'voice_call');
+                } catch (err) {
+                  console.error(`avsession create :  Error: ${JSON.stringify(err)}`);
+                }
               })
           }
         .width('100%')
@@ -91,7 +95,7 @@
 
    this.audioRenderer?.start((err: BusinessError) => {
     if (err) {
-      console.error(`audioRender start faild :  Error: ${JSON.stringify(err)}`);
+      console.error(`audioRenderer start failed -Code : ${err.code}, Message ${err.message}`);
     } else {
       console.info('audioRender start success');
     }
@@ -127,7 +131,7 @@
 
 ### 自定义样式实现
 
-自定义样式通过设置[CustomBuilder](../../reference/apis-avsession-kit/ohos-multimedia-avcastpicker.md)类型的参数customPicker实现。
+自定义样式通过设置[CustomBuilder](../../reference/apis-arkui/arkui-ts/ts-types.md#custombuilder8)类型的参数[customPicker](../../reference/apis-avsession-kit/ohos-multimedia-avcastpicker.md#avcastpicker)实现。
 
 实现自定义样式的步骤与实现默认样式基本相同，开发者可参考[默认样式实现](#默认样式实现)，完成创建AVSession、实现音频播放等步骤。
 
@@ -182,6 +186,9 @@
 
    // 设备更新后刷新自定义资源pickerImage。
    private changePickerShow(desc: audio.AudioDeviceDescriptors) {
+     if(!desc || !desc.length || !desc[0]) {
+      return;
+     }
      if (desc[0].deviceType === 2) {
        this.pickerImage = $r('app.media.sound');
      } else if (desc[0].deviceType === 7) {
@@ -211,9 +218,9 @@
 
    // 设备列表显示状态变化回调（可选）。
    private onStateChange(state: AVCastPickerState) {
-     if (state == AVCastPickerState.STATE_APPEARING) {
+     if (state === AVCastPickerState.STATE_APPEARING) {
        console.info('The picker starts showing.');
-     } else if (state == AVCastPickerState.STATE_DISAPPEARING) {
+     } else if (state === AVCastPickerState.STATE_DISAPPEARING) {
        console.info('The picker finishes presenting.');
      }
    }
@@ -247,9 +254,9 @@
 
    // 设备列表显示状态变化回调（可选）。
    private onStateChange(state: AVCastPickerState) {
-     if (state == AVCastPickerState.STATE_APPEARING) {
+     if (state === AVCastPickerState.STATE_APPEARING) {
        console.info('The picker starts showing.');
-     } else if (state == AVCastPickerState.STATE_DISAPPEARING) {
+     } else if (state === AVCastPickerState.STATE_DISAPPEARING) {
        console.info('The picker finishes presenting.');
      }
    }

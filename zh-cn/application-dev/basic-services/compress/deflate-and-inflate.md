@@ -376,7 +376,7 @@
            let inFile = fs.openSync(path + '/data.gz', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
            let outFile = fs.openSync(path + '/data.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
            inflateGzipFile(inFile, outFile).then(() => {
-             console.info('deflateGzipFile success');
+             console.info('inflateGzipFile success');
              fs.closeSync(inFile.fd);
              fs.closeSync(outFile.fd);
            })

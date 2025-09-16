@@ -1,4 +1,10 @@
 # Customizing Page Request Responses
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 
 The **Web** component supports customization of the response to intercepted page requests. You can call [onInterceptRequest()](../reference/apis-arkweb/arkts-basic-components-web-events.md#oninterceptrequest9) to customize web page responses, file resource responses, and more.  
@@ -19,7 +25,7 @@ In the following example, the **Web** component intercepts the web page request 
       <meta charset="utf-8">
   </head>
   <body>
-  <!-- Page resource request ->
+  <!-- Page resource request -->
   <a href="https://www.example.com/test.html">intercept test!</a>
   </body>
   </html>

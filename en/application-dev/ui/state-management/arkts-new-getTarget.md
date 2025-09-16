@@ -1,8 +1,14 @@
 # getTarget API: Obtaining Original Objects
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
-To obtain the original object before adding a proxy in the state management, you can use the [getTarget](../../reference/apis-arkui/js-apis-StateManagement.md#gettarget) API.
+To obtain the original object before a proxy is added by the state management framework, you can use the [getTarget](../../reference/apis-arkui/js-apis-StateManagement.md#gettarget) API.
 
-Before reading this topic, you are advised to read [\@Observed](./arkts-observed-and-objectlink.md) and [\@ObservedV2](./arkts-new-observedV2-and-trace.md).
+Before reading this topic, you are advised to review [\@Observed](./arkts-observed-and-objectlink.md) and [\@ObservedV2](./arkts-new-observedV2-and-trace.md).
 
 >**NOTE**
 >
@@ -18,10 +24,10 @@ The state management framework adds proxies to original objects of the class, Da
   import { UIUtils } from '@kit.ArkUI';
   ```
 
-- In state management V1, a proxy is added to the class objects decorated by @Observed and the class, Date, Map, Set, and Array decorated by @State or other state variable decorators to observe the changes of top-level attributes or changes invoked by APIs.
-- In state management V2, a proxy is added to Date, Map, Set, and Array decorated by \@Trace, \@Local or other state variable decorators to observe changes invoked by APIs.
+- In state management V1, proxies are added to the following to observe changes in top-level properties or changes triggered by API calls: (1) instances of classes decorated with \@Observed; (2) objects of the Class, Date, Map, Set, and Array types decorated with [\@State](./arkts-state.md) or other state variable decorators.
+- In state management V2, proxies are added to the following to observe changes triggered by API calls: objects of the Date, Map, Set, and Array types decorated with [\@Trace](./arkts-new-observedV2-and-trace.md), [\@Local](./arkts-new-local.md), or other state variable decorators.
 
-Use **getTarget** to obtain the original objects of these proxy objects.
+The **getTarget** API is used to obtain the original objects of these proxy objects.
 
 ## Constraints
 
@@ -54,14 +60,14 @@ Use **getTarget** to obtain the original objects of these proxy objects.
     build() {
       Column() {
         Text(`info.name: ${this.info.name}`)
-        Button(`Change the attributes of the proxy object`)
+        Button(`Change Proxy Object Properties`)
           .onClick(() => {
-            this.info.name = "Alice"; // Text component can be re-rendered.
+            this.info.name = "Alice"; // The Text component can be re-rendered.
           })
-        Button(`Change the attributes of the original object`)
+        Button(`Change Original Object Properties`)
           .onClick(() => {
             let rawInfo: Info = UIUtils.getTarget(this.info);
-            rawInfo.name = "Bob"; // Text component cannot be re-rendered.
+            rawInfo.name = "Bob"; // The Text component cannot be re-rendered.
           })
       }
     }
@@ -70,11 +76,11 @@ Use **getTarget** to obtain the original objects of these proxy objects.
 
 ## Use Scenarios
 
-### Obtaining the Original Object Before Adding a Proxy in the State Management V1
+### Obtaining the Original Object Before Proxy Addition in State Management V1
 
-State management V1 adds proxies to objects in the following scenarios:
+State management V1 adds proxies to the following objects:
 
-1. \@Observed decorated class instance. When this class instance is created, a proxy is added to the instance. However, objects that are not created by using the **new** operator are not proxied.
+1. Instances of classes decorated with \@Observed A proxy is automatically added to an instance of a class decorated with \@Observed when the instance is created. However, instances not initialized with the **new** operator are not proxied.
 
 ```ts
 @Observed
@@ -88,7 +94,7 @@ let observedClass: ObservedClass = new ObservedClass(); // Proxied.
 let nonObservedClass: NonObservedClass = new NonObservedClass(); // Not proxied.
 ```
 
-2. Complex object decorated by the state variable decorator. When state variables decorators such as \@State or \@Prop are used to decorate Class, Map, Set, Date, and Array, proxies are added. If the object is already a proxy object, the proxy will not be created again.
+2. Complex-type objects decorated with state variable decorators Proxies are added to objects of the Class, Map, Set, Date, or Array type decorated with \@State, \@Prop, or other state variable decorators. If the object is already a proxy, no new proxy is added.
 
 ```ts
 @Observed
@@ -103,7 +109,7 @@ let nonObservedClass: NonObservedClass = new NonObservedClass(); // Not proxied.
 @Entry
 @Component
 struct Index {
-  @State observedObject: ObservedClass = observedClass; // Proxy will not be created repeatedly for proxied data.
+  @State observedObject: ObservedClass = observedClass; // No new proxy is created (the object is already proxied).
   @State nonObservedObject: NonObservedClass = nonObservedClass; // A proxy is created.
   @State numberList: number[] = [1, 2, 3]; // A proxy is created for the Array type.
   @State sampleMap: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]); // A proxy is created for the Map type.
@@ -139,7 +145,7 @@ let globalSampleDate:Date = new Date (); // Not proxied.
 @Entry
 @Component
 struct Index {
-  @State observedObject: ObservedClass = observedClass; // Proxy will not be created repeatedly for proxied data.
+  @State observedObject: ObservedClass = observedClass; // No new proxy is created (the object is already proxied).
   @State nonObservedObject: NonObservedClass = nonObservedClass; // A proxy is created.
   @State numberList: number[] = globalNumberList; // A proxy is created for the Array type.
   @State sampleMap: Map<number, string> = globalSampleMap; // A proxy is created for the Map type.
@@ -165,9 +171,9 @@ struct Index {
 }
 ```
 
-### Obtaining the Original Object Before Adding a Proxy in the State Management V2
+### Obtaining the Original Object Before Proxy Addition in State Management V2
 
-A proxy is added to the Map, Set, Date, and Array decorated by \@Trace, \@Local, or other state variable decorators in state management V2. Different from state management V1, the class object instances are not proxied in state management V2.
+In state management V2, proxies are added to objects of the Map, Set, Date, and Array type decorated with \@Trace, \@Local, or other state variable decorators. Unlike in state management V1, no proxies are added to class instances in state management V2.
 
 ```ts
 @ObservedV2
@@ -225,7 +231,7 @@ struct Index {
            globalObservedObject}`) // true
       Text(`UIUtils.getTarget(this.numberList) === globalNumberList: ${UIUtils.getTarget(this.numberList) ===
            globalNumberList}`) // true
-      Text(`UIUtils.getTarget(this.sampleMap) === globalSampleMAP: ${UIUtils.getTarget(this.sampleMap) ===
+      Text(`UIUtils.getTarget(this.sampleMap) === globalSampleMap: ${UIUtils.getTarget(this.sampleMap) ===
            globalSampleMap}`) // true
       Text(`UIUtils.getTarget(this.sampleSet) === globalSampleSet: ${UIUtils.getTarget(this.sampleSet) ===
            globalSampleSet}`) // true
@@ -236,12 +242,12 @@ struct Index {
 }
 ```
 
-Decorators in state management V2 generate the **getter** and **setter** methods for the decorated variables and add prefix **\_\_ob\_** in the original variable names. To ensure performance, the **getTarget** API does not process the prefix generated by the decorators in V2. Therefore, when the \@ObservedV2 decorated class object instance is passed in through **getTarget** API, the returned object is still the object itself and the attribute name decorated by \@Trace still has the prefix **\_\_ob\_**.
+In state management V2, decorators generate getter and setter methods for the decorated variables, and add the **\_\_ob\_** prefix to the original variable names. For performance purposes, the **getTarget** API does not process the prefix added by decorators in V2. Therefore, when an instance of a class decorated with \@ObservedV2 is passed to the **getTarget** API, the returned object remains the instance itself, and the property name decorated with \@Trace still has the **\_\_ob\_** prefix.
 
-Some Node-APIs fail to process object attributes as expected due to this prefix.<br>Example:<br>Affected Node-APIs are as below.
+This prefix causes some Node-APIs to fail to process object properties as expected.<br>Example:<br>Affected Node-APIs include the following:
 
 ```ts
-// Class decorated by @ObservedV2.
+// Class decorated with @ObservedV2.
 @ObservedV2
 class Info {
   @Trace name: string = "Tom";
@@ -252,12 +258,12 @@ let info: Info = new Info(); // info instance passed in through Node-APIs.
 
 | Name             | Result                                      |
 | ----------------------- | ---------------------------------------------- |
-| napi_get_property_names | Returns value that is **\_\_ob\_name** or **\_\_ob\_age**.       |
-| napi_set_property       | Changes values successfully using **name** or **\_\_ob\_name**.      |
-| napi_get_property       | Obtains values using **name** or **\_\_ob\_name**.      |
-| napi_has_property       | Returns **true** using **name** or **\_\_ob\_name**.        |
-| napi_delete_property    | Deletes an attribute successfully adding the prefix **\_\_ob\_**.|
-| napi_has_own_property   | Returns **true** using **name** or **\_\_ob\_name**.        |
-| napi_set_named_property | Changes values successfully using **name** or **\_\_ob\_name**.      |
-| napi_get_named_property | Obtains values using **name** or **\_\_ob\_name**.      |
-| napi_has_named_property | Returns **true** using **name** or **\_\_ob\_name**.        |
+| napi_get_property_names | Returns property names with the **\_\_ob\_** prefix, for example, **\_\_ob\_name** or **\_\_ob\_age**.       |
+| napi_set_property       | Changes values successfully using the original name (for example, **name**) or the name with the **\_\_ob\_** prefix (for example, **\_\_ob\_name**).      |
+| napi_get_property       | Obtains values using the original name (for example, **name**) or the name with the **\_\_ob\_** prefix (for example, **\_\_ob\_name**).      |
+| napi_has_property       | Returns **true** for both the original name (for example, **name**) or the name with the **\_\_ob\_** prefix (for example, **\_\_ob\_name**).        |
+| napi_delete_property    | Requires the **\_\_ob\_** prefix for successful deletion.|
+| napi_has_own_property   | Returns **true** for both the original name (for example, **name**) or the name with the **\_\_ob\_** prefix (for example, **\_\_ob\_name**).        |
+| napi_set_named_property | Changes values successfully using the original name (for example, **name**) or the name with the **\_\_ob\_** prefix (for example, **\_\_ob\_name**).      |
+| napi_get_named_property | Obtains values using the original name (for example, **name**) or the name with the **\_\_ob\_** prefix (for example, **\_\_ob\_name**).      |
+| napi_has_named_property | Returns **true** for both the original name (for example, **name**) or the name with the **\_\_ob\_** prefix (for example, **\_\_ob\_name**).        |

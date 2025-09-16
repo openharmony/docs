@@ -1,4 +1,11 @@
 # 应用内状态变量和其他场景迁移指导
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
+
 本文档主要介绍应用内状态变量和其他场景迁移场景，包含以下场景。
 
 | V1装饰器名/场景                | V2装饰器名                  |
@@ -14,11 +21,11 @@
 
 ## 各装饰器迁移示例
 
-### LocalStorage->@ObservedV2/@Trace
+### LocalStorage->\@ObservedV2/\@Trace
 **迁移规则**
 
-LocalStorage的目的是为了实现页面间的状态变量共享。之所以提供这个能力，是因为V1状态变量和View层耦合，无法由开发者自主地实现页面间状态变量的共享。
-对于状态管理V2，状态变量的观察能力内嵌到数据本身，不再和View层耦合，所以对于状态管理V2，不再需要类似LocalStorage的能力，可以使用创建@ObservedV2和@Trace装饰类的实例，由开发者自己import和export，自己实现状态变量的页面间共享。
+LocalStorage的目的是实现页面间的状态变量共享。由于V1状态变量和View层耦合，开发者难以自主实现页面间状态变量的共享，因此框架提供了该能力。
+状态管理V2将状态变量的观察能力内嵌到数据本身，不再和View层耦合。因此，不再需要类似LocalStorage的能力，可以使用创建\@ObservedV2和\@Trace装饰类的实例，开发者需自行import和export，实现状态变量的页面间共享。
 
 **示例**
 
@@ -33,7 +40,7 @@ import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
-  para:Record<string, number> = { 'count': 47 };
+  para: Record<string, number> = { 'count': 47 };
   storage: LocalStorage = new LocalStorage(this.para);
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
@@ -41,7 +48,7 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-在下面的示例中，使用\@LocalStorageLink，可以使得开发者本地的修改同步回LocalStorage中。
+在下面的示例中，使用\@LocalStorageLink，可以将开发者本地的修改同步回LocalStorage中。
 
 ```ts
 // Page1.ets
@@ -51,6 +58,7 @@ export default class EntryAbility extends UIAbility {
 struct Page1 {
   @LocalStorageLink('count') count: number = 0;
   pageStack: NavPathStack = new NavPathStack();
+
   build() {
     Navigation(this.pageStack) {
       Column() {
@@ -131,12 +139,14 @@ V2:
 @ObservedV2
 export class MyStorage {
   static singleton_: MyStorage;
+
   static instance() {
-    if(!MyStorage.singleton_) {
+    if (!MyStorage.singleton_) {
       MyStorage.singleton_ = new MyStorage();
-    };
+    }
     return MyStorage.singleton_;
   }
+
   @Trace count: number = 47;
 }
 ```
@@ -150,6 +160,7 @@ import { MyStorage } from './storage';
 struct Page1 {
   storage: MyStorage = MyStorage.instance();
   pageStack: NavPathStack = new NavPathStack();
+
   build() {
     Navigation(this.pageStack) {
       Column() {
@@ -181,6 +192,7 @@ export function Page2Builder() {
 struct Page2 {
   storage: MyStorage = MyStorage.instance();
   pathStack: NavPathStack = new NavPathStack();
+
   build() {
     NavDestination() {
       Column() {
@@ -213,14 +225,15 @@ struct Page2 {
 }
 ```
 
-如果开发者需要实现类似于\@LocalStorageProp的效果，希望本地的修改不要同步回LocalStorage中，如以下示例：
-- 在`Page1`中改变`count`值，因为count是\@LocalStorageProp装饰的，所以其改变只会在本地生效，并不会同步回LocalStorage。
-- 点击`push to Page2`，跳转到`Page2`中。因为在`Page1`中改变`count`值并不会同步会LocalStorage，所以在`Page2`中Text组件依旧显示原本的值47。
+如果开发者需要实现类似于\@LocalStorageProp的效果，但希望本地的修改不同步回LocalStorage中，可参考以下示例：
+- 在`Page1`中改变`count`值，由于count被\@LocalStorageProp装饰的，因此其更改仅在本地生效，不会同步到LocalStorage。
+- 点击`push to Page2`，跳转到`Page2`。由于在`Page1`中改变`count`值不会同步到LocalStorage，因此`Page2`中的Text组件仍显示初始值47。
 - 点击`change Storage Count`，调用LocalStorage的setOrCreate，改变`count`对应的值，并通知所有绑定该key的变量。
 
 ```ts
 // Page1.ets
 export let storage: LocalStorage = new LocalStorage();
+
 storage.setOrCreate('count', 47);
 
 @Entry(storage)
@@ -228,6 +241,7 @@ storage.setOrCreate('count', 47);
 struct Page1 {
   @LocalStorageProp('count') count: number = 0;
   pageStack: NavPathStack = new NavPathStack();
+
   build() {
     Navigation(this.pageStack) {
       Column() {
@@ -253,6 +267,7 @@ struct Page1 {
 ```ts
 // Page2.ets
 import { storage } from './Page1'
+
 @Builder
 export function Page2Builder() {
   Page2()
@@ -263,6 +278,7 @@ export function Page2Builder() {
 struct Page2 {
   @LocalStorageProp('count') count: number = 0;
   pathStack: NavPathStack = new NavPathStack();
+
   build() {
     NavDestination() {
       Column() {
@@ -300,9 +316,10 @@ struct Page1 {
 
   @Monitor('storage.count')
   onCountChange(mon: IMonitor) {
-    console.log(`Page1 ${mon.value()?.before} to ${mon.value()?.now}`);
+    console.info(`Page1 ${mon.value()?.before} to ${mon.value()?.now}`);
     this.count = this.storage.count;
   }
+
   build() {
     Navigation(this.pageStack) {
       Column() {
@@ -342,9 +359,10 @@ struct Page2 {
 
   @Monitor('storage.count')
   onCountChange(mon: IMonitor) {
-    console.log(`Page2 ${mon.value()?.before} to ${mon.value()?.now}`);
+    console.info(`Page2 ${mon.value()?.before} to ${mon.value()?.now}`);
     this.count = this.storage.count;
   }
+
   build() {
     NavDestination() {
       Column() {
@@ -369,7 +387,7 @@ struct Page2 {
 **自定义组件接收LocalStorage实例场景**
 
 为了配合Navigation的场景，LocalStorage支持作为自定义组件的入参，传递给以当前自定义组件为根节点的所有子自定义组件。
-对于该场景，V2可以采用创建多个全局\@ObservedV2和\@Trace装饰类的实例来替代。
+对于该场景，V2可以使用创建多个全局\@ObservedV2和\@Trace装饰类的实例进行替代。
 
 V1:
 
@@ -563,7 +581,7 @@ import { MyStorageA, MyStorageB, MyStorageC } from './storage';
 @Entry
 @ComponentV2
 struct MyNavigationTestStack {
-   pageInfo: NavPathStack = new NavPathStack();
+  pageInfo: NavPathStack = new NavPathStack();
 
   @Builder
   PageMap(name: string) {
@@ -605,7 +623,7 @@ struct pageOneStack {
     NavDestination() {
       Column() {
         // 显示'PropA'
-        NavigationContentMsgStack({storage: this.storageA})
+        NavigationContentMsgStack({ storage: this.storageA })
         // 显示'PropA'
         Text(`${this.storageA.propA}`)
         Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
@@ -662,7 +680,7 @@ struct pageTwoStack {
 @ComponentV2
 struct pageThreeStack {
   pageInfo: NavPathStack = new NavPathStack();
-  @Local storageC: MyStorageC = new MyStorageC("PropC");
+  @Local storageC: MyStorageC = new MyStorageC('PropC');
 
   build() {
     NavDestination() {
@@ -693,7 +711,7 @@ struct pageThreeStack {
 
 @ComponentV2
 struct NavigationContentMsgStack {
-  @Require@Param storage: MyStorageA;
+  @Require @Param storage: MyStorageA;
 
   build() {
     Column() {
@@ -706,16 +724,17 @@ struct NavigationContentMsgStack {
 ```
 
 ### AppStorage->AppStorageV2
-上一小节中，对于创建全局\@ObserveV2和\@Trace装饰实例的改造并不适合跨Ability的数据共享，该场景可以使用AppStorageV2来替换。
+上一小节中，对于创建全局\@ObserveV2和\@Trace装饰实例的改造不适用于跨Ability的数据共享，可以使用AppStorageV2替代。
 
 V1:
 
-AppStorage是和应用进程绑定了，可以跨Ability实现数据共享。
+AppStorage与应用进程绑定，支持跨Ability数据共享。
 在下面的示例中，使用\@StorageLink，可以使得开发者本地的修改同步回AppStorage中。
 
 ```ts
 // EntryAbility Index.ets
 import { common, Want } from '@kit.AbilityKit';
+
 @Entry
 @Component
 struct Index {
@@ -741,9 +760,10 @@ struct Index {
 }
 ```
 
-```
+```ts
 // EntryAbility1 Index1.ets
 import { common, Want } from '@kit.AbilityKit';
+
 @Entry
 @Component
 struct Index1 {
@@ -773,7 +793,7 @@ V2:
 可以使用AppStorageV2实现跨Ability共享。
 如下面示例：
 
-```
+```ts
 import { common, Want } from '@kit.AbilityKit';
 import { AppStorageV2 } from '@kit.ArkUI';
 
@@ -808,7 +828,7 @@ struct Index {
 
 ```
 
-```
+```ts
 import { common, Want } from '@kit.AbilityKit';
 import { AppStorageV2 } from '@kit.ArkUI';
 
@@ -842,13 +862,14 @@ struct Index1 {
 }
 ```
 
-如果开发者需要实现类似于\@StorageProp的效果，希望本地的修改不要同步回AppStorage中，而AppStorage的变化又可以通知给使用\@StorageProp装饰器的组件，可以参考以下示例对比。
+如果开发者需要实现类似于\@StorageProp的效果，希望本地的修改不同步回AppStorage，而AppStorage的变化能够通知到使用\@StorageProp装饰器的组件，可以参考以下示例对比。
 
 V1：
 
 ```ts
 // EntryAbility Index.ets
 import { common, Want } from '@kit.AbilityKit';
+
 @Entry
 @Component
 struct Index {
@@ -881,6 +902,7 @@ struct Index {
 ```ts
 // EntryAbility1 Index1.ets
 import { common, Want } from '@kit.AbilityKit';
+
 @Entry
 @Component
 struct Index1 {
@@ -912,7 +934,7 @@ struct Index1 {
 
 V2:
 
-开发者可以借助\@Monitor和\@Local来实现类似的效果，示例如下。
+开发者可以使用\@Monitor和\@Local实现类似效果，示例如下。
 
 ```ts
 import { common, Want } from '@kit.AbilityKit';
@@ -932,9 +954,10 @@ struct Index {
 
   @Monitor('storage.count')
   onCountChange(mon: IMonitor) {
-    console.log(`Index1 ${mon.value()?.before} to ${mon.value()?.now}`);
+    console.info(`Index1 ${mon.value()?.before} to ${mon.value()?.now}`);
     this.count = this.storage.count;
   }
+
   build() {
     Column() {
       Text(`EntryAbility1 count: ${this.count}`)
@@ -976,7 +999,7 @@ struct Index1 {
 
   @Monitor('storage.count')
   onCountChange(mon: IMonitor) {
-    console.log(`Index1 ${mon.value()?.before} to ${mon.value()?.now}`);
+    console.info(`Index1 ${mon.value()?.before} to ${mon.value()?.now}`);
     this.count = this.storage.count;
   }
 
@@ -1018,6 +1041,7 @@ Environment.envProp('languageCode', 'en');
 @Component
 struct Index {
   @StorageProp('languageCode') languageCode: string = 'en';
+
   build() {
     Row() {
       Column() {
@@ -1033,7 +1057,7 @@ V2:
 
 封装Env类型来传递多个系统环境变量。
 
-```
+```ts
 // Env.ets
 import { ConfigurationConstant } from '@kit.AbilityKit';
 
@@ -1046,8 +1070,8 @@ export class Env {
 
 export let env: Env = new Env();
 ```
-在`onCreate`里获得需要的系统环境变量：
-```
+在`onCreate`里获取需要的系统环境变量：
+```ts
 // EntryAbility.ets
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
@@ -1067,8 +1091,8 @@ export default class EntryAbility extends UIAbility {
 }
 
 ```
-在页面中获得当前Env的值。
-```
+在页面中获取当前Env的值。
+```ts
 // Index.ets
 import { env } from '../pages/Env';
 
@@ -1096,7 +1120,7 @@ V1中PersistentStorage提供了持久化UI数据的能力，而V2则提供了更
 
 对于PersistenceV2：
 - 与PersistenceV2关联的\@ObservedV2对象，其\@Trace属性的变化，会触发整个关联对象的自动持久化。
-- 开发者也可以调用[PersistenceV2.save](./arkts-new-persistencev2.md#save手动持久化数据)和[PersistenceV2.globalConnect](./arkts-new-persistencev2.md#使用globalconnect存储数据)接口来手动触发持久化写入和读取。
+- 开发者也可以调用[PersistenceV2.save](../../reference/apis-arkui/js-apis-StateManagement.md#save)和[PersistenceV2.globalConnect](./arkts-new-persistencev2.md#使用globalconnect存储数据)接口来手动触发持久化写入和读取。
 
 V1:
 
@@ -1146,7 +1170,7 @@ struct Index {
 V2:
 
 下面的案例展示了：
-- 将`PersistentStorage`的持久化数据迁移到V2的PersistenceV2中去，其中V2对被@Trace标记的数据可以自动持久化，对于非@Trace数据需要开发者自己手动调用save进行持久化。
+- 将`PersistentStorage`的持久化数据迁移到V2的PersistenceV2中。V2对被\@Trace标记的数据可以自动持久化，对于非\@Trace数据，需要手动调用save进行持久化。
 - 示例中的move函数和需要显示的组件放在了一个ets中，开发者可以定义自己的move函数，并放入合适的位置进行统一迁移操作。
 ```ts
 // 迁移到globalConnect
@@ -1242,13 +1266,13 @@ struct Page1 {
 
 ## V1现有功能向V2的逐步迁移场景
 
-对于已经使用V1开发的大型应用，一般不太可能做到一次性的从V1迁移到V2，而是分批次和分组件的部分迁移，这就必然会带来V1和V2的混用。
+对于已经使用V1开发的大型应用，通常难以一次性从V1迁移到V2，而是需要分批次、分组件地逐步迁移，这就必然会带来V1和V2的混用。
 
-这种场景，一般是父组件是状态管理V1，而迁移的子组件为状态管理V2。为了模拟这种场景，我们举出下面的示例：
+这种场景，通常父组件使用状态管理V1，而迁移的子组件使用状态管理V2。为了模拟这种场景，我们举出以下示例：
 - 父组件是\@Component，数据源是\@LocalStorageLink。
 - 子组件是\@ComponentV2，使用\@Param接受数据源的数据。
 
-这种情况，我们可以通过以下策略进行迁移：
+可以通过以下策略进行迁移：
 - 声明一个\@ObservedV2装饰的class来封装V1的数据。
 - 在\@Component和\@ComponentV2之间，定义一个桥接的\@Component自定义组件。
 - 在桥接层：
@@ -1262,16 +1286,18 @@ let storage: LocalStorage = new LocalStorage();
 @ObservedV2
 class V1StorageData {
   @Trace title: string = 'V1OldComponent'
+
   @Monitor('title')
   onStrChange(monitor: IMonitor) {
     monitor.dirty.forEach((path: string) => {
-      console.log(`${path} changed from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`)
+      console.info(`${path} changed from ${monitor.value(path)?.before} to ${monitor.value(path)?.now}`)
       if (path === 'title') {
         storage.setOrCreate('title', this.title);
       }
     })
   }
 }
+
 let v1Data: V1StorageData = new V1StorageData();
 
 @Entry(storage)
@@ -1295,7 +1321,8 @@ struct V1OldComponent {
 
 @Component
 struct Bridge {
-  @LocalStorageLink('title')@Watch('titleWatch') title: string = 'Bridge';
+  @LocalStorageLink('title') @Watch('titleWatch') title: string = 'Bridge';
+
   titleWatch() {
     v1Data.title = this.title;
   }
@@ -1304,6 +1331,7 @@ struct Bridge {
     NewV2Component()
   }
 }
+
 @ComponentV2
 struct NewV2Component {
   build() {
@@ -1322,7 +1350,7 @@ struct NewV2Component {
 
 ### 滑动组件
 
-#### List
+**List**
 
 开发者可以通过[ChildrenMainSize](../../reference/apis-arkui/arkui-ts/ts-container-list.md#childrenmainsize12)来设置List的子组件在主轴方向的大小信息。
 
@@ -1370,7 +1398,7 @@ struct ListExample {
 
 V2：
 
-但在状态管理V2中，[\@Local](./arkts-new-local.md)只能观察本身的变化，无法观察第一层的变化，而由于ChildrenMainSize定义在框架中，开发者无法使用[\@Trace](./arkts-new-observedV2-and-trace.md)来标注ChildrenMainSize的属性。可以使用[makeObserved](./arkts-new-makeObserved.md)替代。
+在状态管理V2中，[\@Local](./arkts-new-local.md)只能观察本身的变化，无法观察第一层的变化，而由于ChildrenMainSize定义在框架中，开发者无法使用[\@Trace](./arkts-new-observedV2-and-trace.md)来标注ChildrenMainSize的属性。可以使用[makeObserved](./arkts-new-makeObserved.md)替代。
 
 具体示例如下：
 
@@ -1413,11 +1441,11 @@ struct ListExample {
 }
 ```
 
-#### WaterFlow
+**WaterFlow**
 
 开发者可以通过[WaterFlowSections](../../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#waterflowsections12)来设置WaterFlow瀑布流分组信息。
 
-需要注意的是，数组arr的长度需要与WaterFlowSections的中所有SectionOptions的itemsCount的总和保持一致，否则WaterFlow无法处理，导致UI不刷新。
+需要注意的是，数组arr的长度需要与WaterFlowSections的所有SectionOptions的itemsCount总和一致，否则WaterFlow无法处理，导致UI不刷新。
 
 以下两个示例请按照'push option' -> 'splice option' -> 'update option'的顺序进行点击。
 
@@ -1504,7 +1532,7 @@ struct WaterFlowSample {
 
 V2：
 
-但在状态管理V2中，[\@Local](./arkts-new-local.md)只能观察本身的变化，无法观察第一层的变化，又因为WaterFlowSections定义在框架中，开发者无法使用[\@Trace](./arkts-new-observedV2-and-trace.md)来标注WaterFlowSections的属性，此时可以使用[makeObserved](./arkts-new-makeObserved.md)替代。
+在状态管理V2中，[\@Local](./arkts-new-local.md)只能观察本身的变化，无法观察第一层的变化，由于WaterFlowSections定义在框架中，开发者无法使用[\@Trace](./arkts-new-observedV2-and-trace.md)标注其属性，此时可以使用[makeObserved](./arkts-new-makeObserved.md)替代。
 
 具体示例如下：
 
@@ -1588,7 +1616,7 @@ struct WaterFlowSample {
 
 ### Modifier
 
-#### attributeModifier
+**attributeModifier**
 
 开发者可以通过[attributeModifier](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置组件的属性方法。
 
@@ -1634,7 +1662,7 @@ struct AttributeDemo {
 
 V2：
 
-但在状态管理V2中，[\@Local](./arkts-new-local.md)只能观察本身的变化，无法观察第一层的变化，如果要观察attributeModifier的属性变化，可以使用[makeObserved](./arkts-new-makeObserved.md)替代。
+在状态管理V2中，[\@Local](./arkts-new-local.md)只能观察本身的变化，无法观察第一层的变化，如果要观察attributeModifier的属性变化，可以使用[makeObserved](./arkts-new-makeObserved.md)替代。
 
 具体示例如下：
 
@@ -1675,7 +1703,7 @@ struct AttributeDemo {
 }
 ```
 
-#### CommonModifier
+**CommonModifier**
 
 动态设置组件的属性类。以[CommonModifier](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md#自定义modifier)为例。
 
@@ -1726,14 +1754,14 @@ struct Index {
       Button($r('app.string.EntryAbility_label'))
         .margin(10)
         .onClick(() => {
-          console.log('Modifier', 'onClick');
+          console.info('Modifier', 'onClick');
           this.index++;
           if (this.index % 2 === 1) {
             (this.myModifier as MyModifier).setGroup1();
-            console.log('Modifier', 'setGroup1');
+            console.info('Modifier', 'setGroup1');
           } else {
             (this.myModifier as MyModifier).setGroup2();
-            console.log('Modifier', 'setGroup2');
+            console.info('Modifier', 'setGroup2');
           }
         })
 
@@ -1746,7 +1774,7 @@ struct Index {
 
 V2：
 
-但在状态管理V2中，[\@Local](./arkts-new-local.md)只能观察本身的变化，无法观察第一层的变化，又因为[CommonModifier](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md#自定义modifier)在框架内是通过其属性触发刷新，此时可以使用[makeObserved](./arkts-new-makeObserved.md)替代。
+在状态管理V2中，[\@Local](./arkts-new-local.md)只能观察本身的变化，无法观察第一层的变化，又因为[CommonModifier](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md#自定义modifier)在框架内是通过其属性触发刷新，此时可以使用[makeObserved](./arkts-new-makeObserved.md)替代。
 
 具体示例如下：
 
@@ -1793,14 +1821,14 @@ struct Index {
       Button($r('app.string.EntryAbility_label'))
         .margin(10)
         .onClick(() => {
-          console.log('Modifier', 'onClick');
+          console.info('Modifier', 'onClick');
           this.index++;
           if (this.index % 2 === 1) {
             (this.myModifier as MyModifier).setGroup1();
-            console.log('Modifier', 'setGroup1');
+            console.info('Modifier', 'setGroup1');
           } else {
             (this.myModifier as MyModifier).setGroup2();
-            console.log('Modifier', 'setGroup2');
+            console.info('Modifier', 'setGroup2');
           }
         })
 
@@ -1811,7 +1839,7 @@ struct Index {
 }
 ```
 
-#### 组件Modifier
+**组件Modifier**
 
 动态设置组件的属性类。以Text组件为例。
 
@@ -1853,14 +1881,14 @@ struct MyImage1 {
       Button($r('app.string.EntryAbility_label'))
         .margin(10)
         .onClick(() => {
-          console.log('Modifier', 'onClick');
+          console.info('Modifier', 'onClick');
           this.index++;
           if (this.index % 2 === 1) {
             (this.modifier as MyModifier).setGroup1();
-            console.log('Modifier', 'setGroup1');
+            console.info('Modifier', 'setGroup1');
           } else {
             (this.modifier as MyModifier).setGroup2();
-            console.log('Modifier', 'setGroup2');
+            console.info('Modifier', 'setGroup2');
           }
         })
     }
@@ -1927,14 +1955,14 @@ struct MyImage1 {
       Button($r('app.string.EntryAbility_label'))
         .margin(10)
         .onClick(() => {
-          console.log('Modifier', 'onClick');
+          console.info('Modifier', 'onClick');
           this.index++;
           if (this.index % 2 === 1) {
             (this.modifier as MyModifier).setGroup1();
-            console.log('Modifier', 'setGroup1');
+            console.info('Modifier', 'setGroup1');
           } else {
             (this.modifier as MyModifier).setGroup2();
-            console.log('Modifier', 'setGroup2');
+            console.info('Modifier', 'setGroup2');
           }
         })
     }
@@ -1962,7 +1990,7 @@ struct Index {
   }
 }
 ```
-#### AttributeUpdater
+**AttributeUpdater**
 
 [AttributeUpdater](../arkts-user-defined-extension-attributeUpdater.md)可以将属性直接设置给组件，无需标记为状态变量即可直接触发UI更新。
 

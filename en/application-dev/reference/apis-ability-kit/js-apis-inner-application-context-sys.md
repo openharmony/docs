@@ -14,7 +14,9 @@ The Context module provides context for abilities or applications. It allows acc
 import { common } from '@kit.AbilityKit';
 ```
 
-## Context.createBundleContext<sup>(deprecated)</sup>
+## Context
+
+### createBundleContext<sup>(deprecated)</sup>
 
 createBundleContext(bundleName: string): Context
 
@@ -71,7 +73,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## Context.createModuleContext<sup>(deprecated)</sup>
+### createModuleContext<sup>(deprecated)</sup>
 
 createModuleContext(bundleName: string, moduleName: string): Context
 
@@ -125,7 +127,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## Context.createModuleResourceManager<sup>11+</sup>
+### createModuleResourceManager<sup>11+</sup>
 
 createModuleResourceManager(bundleName: string, moduleName: string): resmgr.ResourceManager
 
@@ -148,7 +150,7 @@ Creates a resource management object for a module.
 
 | Type| Description|
 | -------- | -------- |
-| resmgr.ResourceManager | Object for resource management.|
+| [resmgr.ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager) | Object for resource management.|
 
 **Error codes**
 
@@ -156,6 +158,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **Example**
@@ -177,7 +181,7 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-## Context.createSystemHspModuleResourceManager<sup>12+</sup>
+### createSystemHspModuleResourceManager<sup>12+</sup>
 
 createSystemHspModuleResourceManager(bundleName: string, moduleName: string): resmgr.ResourceManager
 
@@ -215,4 +219,3 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-<!--no_check-->

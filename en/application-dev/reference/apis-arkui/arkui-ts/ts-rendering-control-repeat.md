@@ -242,10 +242,10 @@ Defines a union type for **Repeat** data source parameters.
 
 | Name    | Type  | Mandatory| Description                                                        |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
-| totalCount | number | No  | Total number of data items to load, which may not equal the data source length.<br>Value range: [0, +¡Þ).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| totalCount | number | No  | Total number of data items to load, which may not equal the data source length.<br>Value range: [0, +âˆž).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | reusable<sup>18+</sup> | boolean | No  | Whether to enable the reuse feature. The value **true** means to enable the reuse feature, and **false** means the opposite.<br>Default value: **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | onLazyLoading<sup>19+</sup> | (index: number) => void | No  | Function to load data on demand for a given index.<br>**Atomic service API**: This API can be used in atomic services since API version 19.|
-| onTotalCount<sup>19+</sup> | () => number | No  | Function to dynamically obtain the total number of items, which may not equal the data source length. Prioritize this function over **totalCount**. If both **totalCount** and **onTotalCount** are set, **totalCount** is ignored.<br>Value range: [0, +¡Þ).<br>**Atomic service API**: This API can be used in atomic services since API version 19.|
+| onTotalCount<sup>19+</sup> | () => number | No  | Function to dynamically obtain the total number of items, which may not equal the data source length. Prioritize this function over **totalCount**. If both **totalCount** and **onTotalCount** are set, **totalCount** is ignored.<br>Value range: [0, +âˆž).<br>**Atomic service API**: This API can be used in atomic services since API version 19.|
 
 ### totalCount: Length of the Data to Be Loaded
 
@@ -257,7 +257,7 @@ Defines a union type for **Repeat** data source parameters.
 
 > **NOTE**
 >
-> When the value of **totalCount** is greater than the value of **arr.length**, during the scrolling of the parent component container, the application needs to ensure that subsequent data is requested when the list is about to scroll to the end of the data source. You need to handle error scenarios (such as network delays) for data requests until all data sources are loaded; otherwise, scrolling exceptions may occur during list scrolling. For solutions, see [The totalCount Value Is Greater Than the Length of Data Source](../../../ui/state-management/arkts-new-rendering-control-repeat.md#the-totalcount-value-is-greater-than-the-length-of-data-source).
+> When the value of **totalCount** is greater than the value of **arr.length**, during the scrolling of the parent component container, the application needs to ensure that subsequent data is requested when the list is about to scroll to the end of the data source. You need to handle error scenarios (such as network delays) for data requests until all data sources are loaded; otherwise, scrolling exceptions may occur during list scrolling. For solutions, see [The totalCount Value Is Greater Than the Length of Data Source](../../../ui/state-management/arkts-new-rendering-control-repeat.md#handling-cases-where-the-totalcount-value-exceeds-the-data-source-length).
 
 ### onLazyLoading<sup>19+</sup>: Precise Lazy Loading
 
@@ -334,7 +334,7 @@ type RepeatItemBuilder\<T\> = (repeatItem: RepeatItem\<T\>) => void
 
 | Name     | Type  | Mandatory| Description                                                        |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| cachedCount | number | No  | Maximum number of child component nodes that can be cached in the cache pool of the current template. <br>Value range: [0, +¡Þ). <br>Default value: sum of the number of onscreen and preloaded nodes. <br>When the number of onscreen and preloaded nodes increases, the value of **cachedCount** will increase accordingly. Note that the value of **cachedCount** does not decrease.|
+| cachedCount | number | No  | Maximum number of child component nodes that can be cached in the cache pool of the current template. <br>Value range: [0, +âˆž). <br>Default value: sum of the number of onscreen and preloaded nodes. <br>When the number of onscreen and preloaded nodes increases, the value of **cachedCount** will increase accordingly. Note that the value of **cachedCount** does not decrease.|
 
 When **cachedCount** is set to the maximum number of nodes displayed on the screen for the current template, **Repeat** achieves maximum reuse efficiency. However, when no nodes of the current template are on the screen, the cache pool will not be released, and application memory usage will increase. You need to manage this based on specific scenarios.
 

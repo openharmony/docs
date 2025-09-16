@@ -87,8 +87,6 @@ ArcSwiper支持滑动手指、点击导航点、旋转表冠和控制控制器�
     ArcButtonPosition,
     ArcSwiper,
     ArcSwiperAttribute, // ArcSwiper的属性依赖ArcSwiperAttribute对象导入，不建议删除该对象的引入。
-    ArcDotIndicator,
-    ArcDirection,
     ArcSwiperController
   } from '@kit.ArkUI';
 

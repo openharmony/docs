@@ -72,13 +72,13 @@ UIExtensionAbility连接完成时的回调，之后可使用proxy向被拉起的
 
 | 参数名                       | 类型   | 必填 | 说明                                                         |
 | ---------------------------- | ------ | ------ | ------------------------------------------------------- |
-| callback                        | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<UIExtensionProxy>) | 是 | 用于向对端Ability发送数据。                          |
+| callback                        | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<UIExtensionProxy>) | 是 | 回调函数，用于向对端Ability发送数据。                          |
 
 ### onReceive
 
 onReceive(callback: ReceiveCallback)
 
-收到被拉起的Ability发送的数据时触发的回调。
+收到被拉起的Ability发送的数据时触发的回调。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -88,7 +88,7 @@ onReceive(callback: ReceiveCallback)
 
 | 参数名                       | 类型   | 必填 | 说明                                                         |
 | ---------------------------- | ------ | ------ | ------------------------------------------------------- |
-| callback                        | [ReceiveCallback](#receivecallback18) | 是 | 收到来自对端Ability的数据。                 |
+| callback                        | [ReceiveCallback](#receivecallback18) | 是 | 回调函数，返回收到的来自对端Ability的数据。                 |
 
 ### onResult<sup>(deprecated)</sup>
 
@@ -133,7 +133,7 @@ onRelease(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#cal
 
 | 参数名                       | 类型  | 必填 | 说明                                                         |
 | ---------------------------- | ------ | ------ | ------------------------------------------------------------ |
-| callback                        | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number> | 是 |对端Ability销毁时的code，0为正常销毁，1为异常销毁。                          |
+| callback                        | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number> | 是 | 回调函数，对端Ability销毁时的code，0为正常销毁，1为异常销毁。                          |
 
 ### onError
 
@@ -149,7 +149,7 @@ onError(callback:[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#e
 
 | 参数名                       | 类型   | 必填 | 说明                                                         |
 | ---------------------------- | ------ | ------ | ------------------------------------------------------------ |
-| callback                        | [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是 | 报错信息。    |
+| callback                        | [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是 | 回调函数。返回报错信息。    |
 
 ### onTerminated<sup>12+</sup>
 
@@ -186,7 +186,7 @@ onDrawReady(callback: Callback\<void>)
 
 | 参数名                       | 类型   | 必填 | 说明                                                         |
 | ---------------------------- | ------ | ------ | ------------------------------------------------------------ |
-| callback                        | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<void> | 是 | 回调函数，UIExtensionAbility绘制第一帧时触发本回调，类型为void。    |
+| callback                        | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<void> | 是 | 回调函数。UIExtensionAbility绘制第一帧时触发本回调，类型为void。    |
 
 ### TerminationInfo<sup>12+</sup>
 
@@ -198,13 +198,13 @@ onDrawReady(callback: Callback\<void>)
 
 |  名称 | 类型   | 只读 |可选 | 说明                                                 |
 | ------- | ------ | ------ | ------ |---------------------------------------------------  |
-| code    | number | 否 | 是 | 被拉起UIExtensionAbility退出时返回的结果码。 |
+| code    | number | 否 | 否 | 被拉起UIExtensionAbility退出时返回的结果码，返回的结果码由`terminateSelfWithResult`或者`terminateSelf`被调用时传入的数据决定。 |
 | want    | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)   | 否 | 是 | 被拉起UIExtensionAbility退出时返回的数据。   |
 
 ## ReceiveCallback<sup>18+</sup>
 type ReceiveCallback = [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<Record\<string, Object\>\>
 
-用于封装被拉起的Ability发送的数据。
+回调函数，用于封装被拉起的Ability发送的数据。
 
 **系统接口：** 此接口为系统接口。
 
@@ -212,7 +212,7 @@ type ReceiveCallback = [Callback](../../apis-basic-services-kit/js-apis-base.md#
 
 | 类型   | 说明                                                         |
 | ------ | --------------------------------------------------------- |
-| [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<Record\<string, Object\>\> | 收到来自对端Ability的数据。                 |
+| [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<Record\<string, Object\>\> | 回调函数，用于封装被拉起的Ability发送的数据。                 |
 
 ## UIExtensionOptions<sup>11+</sup>
 
@@ -273,7 +273,7 @@ send(data: Record\<string, Object\>): void
 
 | 参数名  | 类型                                     | 必填   | 说明            |
 | ---- | ---------------------------------------- | ---- | --------------- |
-| data | Record\<string, Object\> | 是    | 异步发送给被拉起的扩展Ability的数据。 |
+| data | Record\<string, Object\> | 是    | 异步发送给被拉起的扩展Ability的数据。API version 18之前的版本，data的类型为Object。 |
 
 ### sendSync<sup>11+</sup>
 
@@ -320,7 +320,7 @@ on(type: 'asyncReceiverRegister', callback: Callback\<UIExtensionProxy\>): void
 | 参数名  | 类型 |必填 | 说明 |
 | ------ | -------- |---- | ------- |
 | type   | string | 是 | 代表订阅扩展Ability发生异步注册回调。 |
-| callback   | Callback\<UIExtensionProxy\> | 是 | 订阅扩展Ability注册setReceiveDataCallback后触发的回调。 |
+| callback   | Callback\<UIExtensionProxy\> | 是 | 回调函数。订阅扩展Ability注册setReceiveDataCallback后触发的回调。 |
 
 ### on('syncReceiverRegister')<sup>11+</sup>
 
@@ -337,7 +337,7 @@ on(type: 'syncReceiverRegister', callback: Callback\<UIExtensionProxy\>): void;
 | 参数名  | 类型 |必填 | 说明 |
 | ------ | -------- |---- | ------- |
 | type   | string | 是 | 订阅扩展Ability发生同步注册回调。 |
-| callback   | Callback\<UIExtensionProxy\> | 是 | 扩展Ability注册setReceiveDataForResultCallback后触发的回调。 |
+| callback   | Callback\<UIExtensionProxy\> | 是 | 回调函数。扩展Ability注册setReceiveDataForResultCallback后触发的回调。 |
 
 ### off('asyncReceiverRegister')<sup>11+</sup>
 
@@ -354,7 +354,7 @@ off(type: 'asyncReceiverRegister', callback?: Callback\<UIExtensionProxy\>): voi
 | 参数名  | 类型 | 必填 | 说明 |
 | ------ | -------- | ----- | ------- |
 | type   | string | 是 | 取消订阅扩展Ability发生异步注册回调。 |
-| callback | Callback\<UIExtensionProxy\> | 否 | 为空代表取消订阅所有扩展Ability异步注册后触发回调。<br> 非空代表取消订阅异步对应回调。 |
+| callback | Callback\<UIExtensionProxy\> | 否 | 回调函数。为空代表取消订阅所有扩展Ability异步注册后触发回调。<br> 非空代表取消订阅异步对应回调。 |
 
 ### off('syncReceiverRegister')<sup>11+</sup>
 
@@ -371,7 +371,7 @@ off(type: 'syncReceiverRegister', callback?: Callback\<UIExtensionProxy\>): void
 | 参数名  | 类型 | 必填 | 说明 |
 | ------ | -------- | ----- | ------- |
 | type   | string | 是 | 取消订阅扩展Ability发生同步注册回调。 |
-| callback | Callback\<UIExtensionProxy\> | 否 | 为空代表取消订阅所有扩展Ability同步注册后触发回调<br> 非空代表取消订阅同步对应回调。 |
+| callback | Callback\<UIExtensionProxy\> | 否 | 回调函数。为空代表取消订阅所有扩展Ability同步注册后触发回调<br> 非空代表取消订阅同步对应回调。 |
 
 ## 示例
 
@@ -384,6 +384,7 @@ UIExtensionComponent组件使用分为使用方和提供方。本示例仅展示
 使用方入口界面Index.ets内容如下:
 ```ts
 import { ComponentContent } from '@kit.ArkUI';
+
 class Params {
 }
 @Builder
@@ -441,6 +442,9 @@ struct Second {
           .onReceive((data) => {
             console.info('Lee onReceive, for test');
             this.message3 = JSON.stringify(data['data']);
+          })
+          .onError((info) => {
+            console.error(`onError: code = ${info.code}`);
           })
           .onTerminated((info) => {
             console.info('onTerminated: code =' + info.code + ', want = ' + JSON.stringify(info.want));

@@ -1,4 +1,10 @@
 # BundleStatusCallback (System API)
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 The module provides callbacks for bundle status changes. The changes can be obtained through [innerBundleManager.on](js-apis-Bundle-InnerBundleManager-sys.md#innerbundlemanagerondeprecated).
 
@@ -11,8 +17,7 @@ The module provides callbacks for bundle status changes. The changes can be obta
 > The APIs provided by this module are system APIs.
 
 ## BundleStatusCallback<sup>(deprecated)<sup>
-
-This API is deprecated since API version 9. You are advised to use [bundleMonitor](js-apis-bundleMonitor-sys.md) instead.
+> This API is deprecated since API version 9. You are advised to use [bundleMonitor](js-apis-bundleMonitor-sys.md) instead.
 
 **System API**: This is a system API.
 

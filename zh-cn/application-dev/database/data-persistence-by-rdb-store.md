@@ -226,6 +226,7 @@
          console.error(`Failed to execute sql. Code:${err.code}, message:${err.message}`);
        }
      }
+     store.version = storeVersion;
      // 请确保获取到RdbStore实例，完成数据表创建后，再进行数据库的增、删、改、查等操作
    });
    ```
@@ -439,7 +440,7 @@
    }
    ```
 
-6. 在同路径下备份数据库。关系型数据库支持两种手动备份和自动备份（仅系统应用可用）两种方式，具体可见[关系型数据库备份](data-backup-and-restore.md#关系型数据库备份)。
+6. 在同路径下备份数据库。关系型数据库支持手动备份和自动备份（仅系统应用可用）两种方式，具体可见[关系型数据库备份](data-backup-and-restore.md#关系型数据库备份)。
 
    此处以手动备份为例：
 

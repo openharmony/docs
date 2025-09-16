@@ -1,5 +1,11 @@
 # Using Emitter for Inter-Thread Communication
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 Emitter is an event processing mechanism used in a process. It provides the capabilities of subscribing to, publishing, and unsubscribing from events for applications.
 
@@ -45,30 +51,27 @@ To enable Emitter's capabilities mentioned above, perform the following steps:
     }
 
     // Execute the callback after receiving the event whose eventId is 1.
-    emitter.on(innerEvent, callback);
+    emitter.on(event, callback);
    ```
 
    ```ts
     // Execute the callback after receiving the event whose eventId is 1.
     // Note that the event is received only once using once(), while the event is received until the subscription is canceled using on().
-    emitter.once(innerEvent, callback);
+    emitter.once(event, callback);
    ```
 
 3. Emit the event.
 
    Use **emit()** to send events and set the events to send and the parameters to pass.
+    > **NOTE**
+    >
+    > This API can be used to emit data objects across threads. The data objects must meet the specifications specified in [Overview of Inter-thread Communication Objects](../../arkts-utils/serializable-overview.md). Currently, complex data decorated by decorators such as [@State](../../ui/state-management/arkts-state.md) and [@Observed](../../ui/state-management/arkts-observed-and-objectlink.md) is not supported.
    ```ts
    // Define an event with eventId 1 and priority Low.
    let event: emitter.InnerEvent = {
      eventId: 1,
      priority: emitter.EventPriority.LOW
    };
-
-   let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
-     console.info(`eventData: ${JSON.stringify(eventData)}`);
-   }
-   // Subscribes to the event and receive eventData.
-   emitter.once(event, callback);
 
    let eventData: emitter.EventData = {
      data: {

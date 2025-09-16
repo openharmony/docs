@@ -98,11 +98,11 @@ cpp部分代码
 static napi_value CreateBufferCopy(napi_env env, napi_callback_info info)
 {
     // 要copy的内容
-    std::string str("CreateBufferCopy");
+    char str[] = "CreateBufferCopy";
     napi_value buffer = nullptr;
     // 调用napi_create_buffer_copy接口创建buffer并将str的内容copy到buffer
     void* resultData = nullptr;
-    napi_status status = napi_create_buffer_copy(env, str.size(), str.data(), &resultData, &buffer);
+    napi_status status = napi_create_buffer_copy(env, sizeof(str), str, &resultData, &buffer);
     if (status != napi_ok) {
         OH_LOG_ERROR(LOG_APP, "napi_create_buffer_copy failed");
         return nullptr;

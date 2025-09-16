@@ -1,4 +1,10 @@
 # Functions
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 > **NOTE**
 > 
@@ -557,8 +563,39 @@ Checks whether the system supports vector stores.
 
 **Example**:
 
-```
-let result = relationalStore.isVectorSupported();
+```ts
+import { contextConstant, UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { relationalStore } from '@kit.ArkData';
+
+let store: relationalStore.RdbStore | undefined = undefined;
+export default class EntryAbility extends UIAbility {
+  async onWindowStageCreate(windowStage: window.WindowStage) {
+    let supported = relationalStore.isVectorSupported();
+    if (supported) {
+      // Vector stores are supported.
+      console.info("Vector database supported on current platform.");
+      const STORE_CONFIG: relationalStore.StoreConfig = {
+        name: "VectorTest.db",
+        securityLevel: relationalStore.SecurityLevel.S3,
+        vector: true
+      };
+      try {
+        const context = this.context.getApplicationContext().createAreaModeContext(contextConstant.AreaMode.EL3);
+        const rdbStore = await relationalStore.getRdbStore(context, STORE_CONFIG);
+        console.info('Get RdbStore successfully.');
+        store = rdbStore;
+        // Perform subsequent operations after the rdbStore instance is successfully obtained.
+      } catch (error) {
+        const err = error as BusinessError;
+        console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
+      }
+    } else {
+      console.info("Vector database not supported on current platform.");
+    }
+  }
+}
 ```
 
 ## relationalStore.isTokenizerSupported<sup>18+</sup>
@@ -595,8 +632,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**:
 
 ```ts
-import { relationalStore } from '@kit.ArkData'; // Import the relationalStore module.
-
 let customType = relationalStore.Tokenizer.CUSTOM_TOKENIZER;
 let customTypeSupported = relationalStore.isTokenizerSupported(customType);
 console.info("custom tokenizer supported on current platform: " + customTypeSupported);
@@ -636,7 +671,6 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**:
 
 ```ts
-import { relationalStore } from '@kit.ArkData'; // Import the relationalStore module.
 const bucket: relationalStore.ValuesBucket = {
   name: "Logitech",
   age: 18,
@@ -684,8 +718,6 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**:
 
 ```ts
-import { relationalStore } from '@kit.ArkData'; // Import the relationalStore module.
-
 const bucket: relationalStore.ValuesBucket = {
   name: "Logitech",
   age: 18,
@@ -732,8 +764,6 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**:
 
 ```ts
-import { relationalStore } from '@kit.ArkData'; // Import the relationalStore module.
-
 const predicates = new relationalStore.RdbPredicates("users");
 predicates.equalTo("tableName", "a");
 predicates.notEqualTo("age", 18);
@@ -773,8 +803,6 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 **Example**:
 
 ```ts
-import { relationalStore } from '@kit.ArkData'; // Import the relationalStore module.
-
 const predicates = new relationalStore.RdbPredicates("users");
 predicates.notEqualTo("age", 18);
 predicates.equalTo("name", "zhangsan");

@@ -1622,7 +1622,7 @@ class Derived1 extends Base implements Interface { }
 // Derived1在语义上等价于Derived2
 class Derived2 extends Base<SomeType> implements Interface<SomeType> { }
 
-function foo<T = number>(): T {
+function foo<T = number>(): void {
   // ...
 }
 foo();
@@ -1923,6 +1923,7 @@ class MyClass {
 }
 ```
 
+- 使用@interface声明注解。
 - 注解`ClassAuthor`需要将元信息添加到类声明中。
 - 注解必须放置在声明之前。
 - 注解可以包含上述示例中所示的参数。
@@ -1945,7 +1946,17 @@ class MyClass {
 ```
 注解不是Typescript中的特性，只能在`.ets/.d.ets`文件中使用。
 
+> **注意**
+> 
+> 应用开发中，在[release模式下构建](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-har#section19788284410)源码HAR，并同时[开启混淆](../../application-dev/arkts-utils/source-obfuscation.md)时，由于编译产物为JS文件，而在JS中没有注解的实现机制，因此会在编译过程中被移除，导致无法通过注解实现AOP插桩。
+>
+> 为避免因此引起的功能异常，禁止在JS HAR(编译产物中存在JS的HAR包)中使用注解。
+>
+> 如果需要在release模式并且开启混淆的情况下构建含有注解的HAR包，可以构建[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-har#section16598338112415)。
+
 ### 用户自定义注解
+
+**从API version 20及之后版本，支持用户自定义注解。**
 
 **用户自定义注解的声明**
 `用户自定义注解`的定义与`interface`的定义类似，其中的`interface`关键字以符号`@`为前缀。<br>
@@ -2241,7 +2252,7 @@ export declare @interface MethodAnno {
 }
 
 @ClassAuthor
-export declare class C {
+export declare class MyClass {
   @MethodAnno({data: 123})
   foo(): void;
 

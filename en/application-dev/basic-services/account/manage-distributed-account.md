@@ -1,5 +1,12 @@
 # Managing Distributed Accounts (for System Applications Only)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
+
 You can use the [distributed account SDK](../../reference/apis-basic-services-kit/js-apis-distributed-account.md) to implement smooth switchover between a distributed account and a system account.
 
 ## Before You Start

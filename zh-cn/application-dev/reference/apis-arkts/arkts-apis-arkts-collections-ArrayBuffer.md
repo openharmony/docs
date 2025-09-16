@@ -44,7 +44,7 @@ constructor(byteLength: number)
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------|
-| byteLength  | number | 是   | buffer所占的字节数。     |
+| byteLength  | number | 是   | buffer所占的字节数， 最大值不能超过2147483647。     |
 
 **错误码：**
 

@@ -12,6 +12,8 @@
 
 详细的接口介绍请参考[Motion接口](../../reference/apis-multimodalawareness-kit/js-apis-awareness-motion.md)。
 
+从API version 15开始，支持获取操作手状态。从API version 20开始，支持获取握持手状态。
+
 ## 获取操作手状态开发指导
 
 ### 接口说明
@@ -22,6 +24,21 @@
 | off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;): void; | 取消订阅操作手感知。                   |
 | getRecentOperatingHandStatus(): OperatingHandStatus;         | 获取最新的操作手状态。                 |
 
+### 需要权限
+
+使用motion模块获取用户操作手时，需要权限：ohos.permission.ACTIVITY_MOTION 或 ohos.permission.DETECT_GESTURE，具体申请方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。
+
+  ```
+  "requestPermissions":[
+      {
+        "name" : "ohos.permission.ACTIVITY_MOTION"
+      },
+      {
+        "name" : "ohos.permission.DETECT_GESTURE"
+      }
+    ]
+  ```
+  
 ### 约束与限制
 
  - 此功能如果设备不支持，将返回801错误码。
@@ -39,14 +56,13 @@
    ```ts
    import { motion } from '@kit.MultimodalAwarenessKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { Callback } from '@ohos.base';
    ```
 
 2. 定义回调函数接收操作手结果
 
    ```
    let callback:Callback<motion.OperatingHandStatus> = (data:motion.OperatingHandStatus) => {
-     console.info('callback success' + data);
+     console.info('callback succeeded' + data);
    };
    ```
 
@@ -79,7 +95,7 @@
    ```
    try {
       let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
-      console.info('get success' + data);
+      console.info('get succeeded' + data);
    } catch (err) {
       let error = err as BusinessError;
       console.error("Failed get and err code is " + error.code);
@@ -96,6 +112,18 @@
 | on(type:'holdingHandChanged',callback:Callback&lt;HoldingHandStatus&gt;): void; | 订阅握持手感知，感知结果通过callback返回。 |
 | off(type: 'holdingHandChanged', callback?: Callback&lt;HoldingHandStatus&gt;): void; | 取消订阅握持手感知。                   |
 
+### 需要权限
+
+使用motion模块获取用户握持手时，需要权限： ohos.permission.DETECT_GESTURE，具体申请方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。
+
+  ```
+  "requestPermissions":[
+      {
+        "name" : "ohos.permission.DETECT_GESTURE"
+      }
+    ]
+  ```
+  
 ### 约束与限制
 
  - 此功能当前支持部分机型，若设置菜单中存在“握姿跟随”开关（可在“设置-系统”中查看），则表明该设备支持此功能，若无此开关，将返回801错误码。
@@ -117,14 +145,13 @@
    ```ts
    import { motion } from '@kit.MultimodalAwarenessKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { Callback } from '@ohos.base';
    ```
 
 2. 定义回调函数接收握持手结果
 
    ```
    let callback:Callback<motion.HoldingHandStatus> = (data:motion.HoldingHandStatus) => {
-     console.info('callback success' + data);
+     console.info('callback succeeded' + data);
    };
    ```
 

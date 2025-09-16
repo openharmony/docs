@@ -1,5 +1,10 @@
 # 场景动效类型互动卡片开发指导
-
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 本文档提供了场景动效类型互动卡片的开发指导，包括卡片非激活态和激活态UI界面开发、卡片配置文件开发。
 
 ## 接口说明
@@ -12,6 +17,7 @@
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|
 | [onLiveFormCreate(liveFormInfo: LiveFormInfo, session: UIExtensionContentSession): void](../reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md#onliveformcreate)                  | 互动卡片界面对象创建的回调函数。   |
 | [onLiveFormDestroy(liveFormInfo: LiveFormInfo): void](../reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md#onliveformdestroy)                                                    | 互动卡片界面对象销毁、资源清理的回调函数。  |
+| [startAbilityByLiveForm(want: Want): Promise&lt;void&gt;](../reference/apis-form-kit/js-apis-application-LiveFormExtensionContext.md#startabilitybyliveform)| 拉起互动卡片提供方（应用）的页面。 |
 | [formProvider.requestOverflow(formId: string, overflowInfo: formInfo.OverflowInfo): Promise&lt;void&gt;](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderrequestoverflow20) | 卡片提供方发起互动卡片动效请求。   |
 | [formProvider.cancelOverflow(formId: string): Promise&lt;void&gt;](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovidercanceloverflow20)                                        | 卡片提供方发起取消互动卡片动效请求。 |
 | [formProvider.getFormRect(formId: string): Promise&lt;formInfo.Rect&gt;](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovidergetformrect20)                                        | 卡片提供方查询卡片位置、尺寸。 |
@@ -32,6 +38,7 @@
     export default class MyLiveFormExtensionAbility extends LiveFormExtensionAbility {
       onLiveFormCreate(liveFormInfo: LiveFormInfo, session: UIExtensionContentSession) {
         let storage: LocalStorage = new LocalStorage();
+        storage.setOrCreate('context', this.context);
         storage.setOrCreate('session', session);
         let formId: string = liveFormInfo.formId;
         storage.setOrCreate('formId', formId);
@@ -61,6 +68,8 @@
     ```ts
     // entry/src/main/ets/myliveformextensionability/pages/MyLiveFormPage.ets
     import { formInfo, formProvider } from '@kit.FormKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import LiveFormExtensionContext from 'application/LiveFormExtensionContext';
     import { Constants } from '../../common/Constants';
     
     const ANIMATION_RECT_SIZE: number = 100;
@@ -78,7 +87,8 @@
       private formId: string | undefined = undefined;
       private formRect: formInfo.Rect | undefined = undefined;
       private formBorderRadius: number | undefined = undefined;
-    
+      private liveFormContext: LiveFormExtensionContext | undefined = undefined;
+
       aboutToAppear(): void {
         this.uiContext = this.getUIContext();
         if (!this.uiContext) {
@@ -93,6 +103,7 @@
         this.formId = this.storageForMyLiveFormPage?.get<string>('formId');
         this.formRect = this.storageForMyLiveFormPage?.get<formInfo.Rect>('formRect');
         this.formBorderRadius = this.storageForMyLiveFormPage?.get<number>('borderRadius');
+        this.liveFormContext = this.storageForMyLiveFormPage?.get<LiveFormExtensionContext>('context');
       }
     
       // 执行动效
@@ -105,7 +116,25 @@
           this.columnTranslate = END_TRANSLATE;
         });
       }
-    
+
+       private startAbilityByLiveForm(): void {
+        try {
+          // 请开发者替换为实际的want信息
+          this.liveFormContext?.startAbilityByLiveForm({
+            bundleName: 'com.example.liveformdemo',
+            abilityName: 'EntryAbility',
+          })
+            .then(() => {
+              console.info('startAbilityByLiveForm succeed');
+            })
+            .catch((err: BusinessError) => {
+              console.error(`startAbilityByLiveForm failed, code is ${err?.code}, message is ${err?.message}`);
+            });
+        } catch (e) {
+          console.error(`startAbilityByLiveForm failed, code is ${e?.code}, message is ${e?.message}`);
+        }
+      }
+
       build() {
         Stack({alignContent: Alignment.TopStart}) {
           // 背景组件，和普通卡片等大
@@ -126,6 +155,14 @@
         }
         .width('100%')
         .height('100%')
+        .onClick(() => {
+          console.info('MyLiveFormPage click to start ability');
+          if (!this.liveFormContext) {
+            console.info('MyLiveFormPage liveFormContext is empty');
+            return;
+          }
+          this.startAbilityByLiveForm();
+        })
       }
     
       @Builder
@@ -150,10 +187,10 @@
           .backgroundColor(Color.Grey)
           .onClick(() => {
             if (!this.formId) {
-              console.log('MyLiveFormPage formId is empty, cancel overflow failed');
+              console.info('MyLiveFormPage formId is empty, cancel overflow failed');
               return;
             }
-            console.log('MyLiveFormPage cancel overflow animation');
+            console.info('MyLiveFormPage cancel overflow animation');
             formProvider.cancelOverflow(this.formId);
           })
       }

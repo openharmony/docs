@@ -1,4 +1,10 @@
 # Basic Syntax Overview
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiyujia926-->
+<!--Designer: @s10021109-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 With a basic understanding of the ArkTS language, let's examine its structural composition through a practical example.
 

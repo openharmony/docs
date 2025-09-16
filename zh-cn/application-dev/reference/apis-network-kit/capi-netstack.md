@@ -1,4 +1,10 @@
 # Netstack
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 概述
 
@@ -13,3 +19,5 @@
 | [net_ssl_c_type.h](capi-net-ssl-c-type-h.md) | 定义SSL/TLS证书链校验模块的C接口需要的数据结构。 |
 | [net_websocket.h](capi-net-websocket-h.md) | 定义websocket客户端模块的接口。 |
 | [net_websocket_type.h](capi-net-websocket-type-h.md) | 定义websocket客户端模块的C接口需要的数据结构。 |
+| [net_http.h](capi-net-http-h.md) | 定义HTTP请求模块的接口。 |
+| [net_http_type.h](capi-net-http-type-h.md) | 定义HTTP请求模块的C接口需要的数据结构。 |

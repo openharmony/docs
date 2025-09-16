@@ -23,7 +23,7 @@ import { media } from '@kit.MediaKit';
 
 init(config: AVScreenCaptureRecordConfig): Promise\<void>
 
-异步方式进行录屏初始化，设置录屏参数。通过Promise获取返回值。
+进行录屏初始化，设置录屏参数。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -37,11 +37,12 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| Promise\<void> | 异步录屏初始化方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
+
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. Return by promise. |
@@ -70,7 +71,7 @@ let avCaptureConfig: media.AVScreenCaptureRecordConfig = {
 avScreenCaptureRecorder.init(avCaptureConfig).then(() => {
     console.info('Succeeded in initing avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('Failed to init avScreenCaptureRecorder, error: ' + err.message);
+    console.error(`Failed to init avScreenCaptureRecorder. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -78,7 +79,7 @@ avScreenCaptureRecorder.init(avCaptureConfig).then(() => {
 
 startRecording(): Promise\<void>
 
-异步方式开始录屏。通过Promise获取返回值。
+开始录屏。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -91,6 +92,7 @@ startRecording(): Promise\<void>
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 5400103  | IO error. Return by promise.     |
@@ -104,7 +106,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avScreenCaptureRecorder.startRecording().then(() => {
     console.info('Succeeded in starting avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('Failed to start avScreenCaptureRecorder, error: ' + err.message);
+    console.error(`Failed to start avScreenCaptureRecorder. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -112,7 +114,7 @@ avScreenCaptureRecorder.startRecording().then(() => {
 
 stopRecording(): Promise\<void>
 
-异步方式结束录屏。通过Promise获取返回值。
+结束录屏。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -120,11 +122,12 @@ stopRecording(): Promise\<void>
 
 | 类型           | 说明                              |
 | -------------- | --------------------------------- |
-| Promise\<void> | 异步结束录屏方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 5400103  | IO error. Return by promise.     |
@@ -138,7 +141,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avScreenCaptureRecorder.stopRecording().then(() => {
     console.info('Succeeded in stopping avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('Failed to stop avScreenCaptureRecorder, error: ' + err.message);
+    console.error(`Failed to stop avScreenCaptureRecorder. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -146,7 +149,7 @@ avScreenCaptureRecorder.stopRecording().then(() => {
 
 skipPrivacyMode(windowIDs: Array\<number>): Promise\<void>
 
-录屏时，应用可对本应用的隐私窗口做安全豁免。通过Promise获取返回值。
+录屏时，应用可对本应用的隐私窗口做安全豁免。使用Promise异步回调。
 如录屏时，用户在本应用进行输入密码等操作，应用不会进行黑屏处理。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
@@ -166,6 +169,7 @@ skipPrivacyMode(windowIDs: Array\<number>): Promise\<void>
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 5400103  | IO error. Return by promise.     |
@@ -180,7 +184,7 @@ let windowIDs = [];
 avScreenCaptureRecorder.skipPrivacyMode(windowIDs).then(() => {
     console.info('Succeeded in skipping privacy mode');
 }).catch((err: BusinessError) => {
-    console.info('Failed to skip privacy mode, error: ' + err.message);
+    console.error(`Failed to skip privacy mode. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -188,7 +192,7 @@ avScreenCaptureRecorder.skipPrivacyMode(windowIDs).then(() => {
 
 setMicEnabled(enable: boolean): Promise\<void>
 
-异步方式设置麦克风开关。通过Promise获取返回值。
+设置麦克风开关。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -202,11 +206,12 @@ setMicEnabled(enable: boolean): Promise\<void>
 
 | 类型           | 说明                                    |
 | -------------- | --------------------------------------- |
-| Promise\<void> | 异步设置麦克风开关方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 5400103  | IO error. Return by promise.     |
@@ -220,7 +225,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avScreenCaptureRecorder.setMicEnabled(true).then(() => {
     console.info('Succeeded in setMicEnabled avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('Failed to setMicEnabled avScreenCaptureRecorder, error: ' + err.message);
+    console.error(`Failed to setMicEnabled avScreenCaptureRecorder. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -228,7 +233,7 @@ avScreenCaptureRecorder.setMicEnabled(true).then(() => {
 
 release(): Promise\<void>
 
-异步方式释放录屏。通过Promise获取返回值。
+释放录屏。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -236,11 +241,12 @@ release(): Promise\<void>
 
 | 类型           | 说明                              |
 | -------------- | --------------------------------- |
-| Promise\<void> | 异步释放录屏方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 5400103  | IO error. Return by promise.     |
@@ -254,7 +260,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avScreenCaptureRecorder.release().then(() => {
     console.info('Succeeded in releasing avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('Faile to release avScreenCaptureRecorder, error: ' + err.message);
+    console.error(`Failed to release avScreenCaptureRecorder. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -271,7 +277,7 @@ on(type: 'stateChange', callback: Callback\<AVScreenCaptureStateCode>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 状态切换事件回调类型，支持的事件：'stateChange'。            |
-| callback | function | 是   | 状态切换事件回调方法，[AVScreenCaptureStateCode](arkts-apis-media-e.md#avscreencapturestatecode12)表示切换到的状态。 |
+| callback | Callback\<[AVScreenCaptureStateCode](arkts-apis-media-e.md#avscreencapturestatecode12)> | 是   | 状态切换事件回调方法，[AVScreenCaptureStateCode](arkts-apis-media-e.md#avscreencapturestatecode12)表示切换到的状态。 |
 
 **示例：**
 
@@ -299,6 +305,7 @@ on(type: 'error', callback: ErrorCallback): void
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
+
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
 | 201      | permission denied.     |
@@ -309,7 +316,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```ts
 avScreenCaptureRecorder.on('error', (err: BusinessError) => {
-    console.error('avScreenCaptureRecorder error:' + err.message);
+    console.error(`avScreenCaptureRecorder error: Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -326,7 +333,7 @@ avScreenCaptureRecorder.on('error', (err: BusinessError) => {
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 状态切换事件回调类型，支持的事件：'stateChange'。            |
-| callback | function | 否   | 状态切换事件回调方法，[AVScreenCaptureStateCode](arkts-apis-media-e.md#avscreencapturestatecode12)表示切换到的状态，不填此参数则会取消最后一次订阅事件。 |
+| callback | Callback\<[AVScreenCaptureStateCode](arkts-apis-media-e.md#avscreencapturestatecode12)> | 否   | 状态切换事件回调方法，[AVScreenCaptureStateCode](arkts-apis-media-e.md#avscreencapturestatecode12)表示切换到的状态，不填此参数则会取消最后一次订阅事件。 |
 
 **示例：**
 
