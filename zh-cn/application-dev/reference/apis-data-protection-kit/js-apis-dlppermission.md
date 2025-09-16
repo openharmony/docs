@@ -1539,6 +1539,19 @@ async function ExampleFunction(dlpFilePath: string) {
 }
 ```
 
+ ## ActionType<sup>21+</sup>
+
+表示在文件设定的权限时间到期后所执行的动作，默认为NOT_OPEN。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| NOT_OPEN | 0 | 表示超过权限管控时间后，用户无权限打开DLP文件。 |
+| OPEN | 1 | 表示超过权限管控时间后，登录账号的用户拥有编辑权限。 |
+  
 ## AccountType
 
 授权账号类型的枚举。
