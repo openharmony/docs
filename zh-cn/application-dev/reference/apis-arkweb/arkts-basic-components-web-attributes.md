@@ -880,7 +880,7 @@ blockNetwork(block: boolean)
 
 defaultFixedFontSize(size: number)
 
-设置网页的默认等宽字体大小。
+设置网页的默认等宽字体大小。H5网页中未显式设置字体大小且指定等宽字体库的字体，其字体大小将被设置为接口值。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -915,7 +915,7 @@ defaultFixedFontSize(size: number)
 
 defaultFontSize(size: number)
 
-设置网页的默认字体大小。
+设置网页的默认字体大小。H5网页中未显式设置字体大小的的字体，其字体大小将被设置为接口值。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -950,7 +950,7 @@ defaultFontSize(size: number)
 
 minFontSize(size: number)
 
-设置网页字体大小最小值。
+设置网页字体大小最小值。H5网页中字体大小低于接口值设置的字体，其字体大小将被设置为接口值。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -985,7 +985,7 @@ minFontSize(size: number)
 
 minLogicalFontSize(size: number)
 
-设置网页逻辑字体大小最小值。
+设置网页逻辑字体大小最小值。H5网页中未显式设置字体大小且字体大小低于接口值设置的字体，其字体大小将被设置为接口值。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1020,7 +1020,7 @@ minLogicalFontSize(size: number)
 
 webFixedFont(family: string)
 
-设置网页的fixed font字体库。
+设置网页的fixed font字体库。H5网页CSS样式"font-family"中设置"monospace"时，对应的字体引用名将被替换为接口值。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1055,7 +1055,7 @@ webFixedFont(family: string)
 
 webSansSerifFont(family: string)
 
-设置网页的sans-serif font字体库。
+设置网页的sans-serif font字体库。H5网页CSS样式"font-family"中设置"sans-serif"时，对应的字体引用名将被替换为接口值。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1090,7 +1090,7 @@ webSansSerifFont(family: string)
 
 webSerifFont(family: string)
 
-设置网页的serif font字体库。
+设置网页的serif font字体库。H5网页CSS样式"font-family"中设置"serif"时，对应的字体引用名将被替换为接口值。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1125,7 +1125,7 @@ webSerifFont(family: string)
 
 webStandardFont(family: string)
 
-设置网页的standard font字体库。
+设置网页的standard font字体库。H5网页CSS样式"font-family"中设置"standard"时，对应的字体引用名将被替换为接口值。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1160,7 +1160,7 @@ webStandardFont(family: string)
 
 webFantasyFont(family: string)
 
-设置网页的fantasy font字体库。
+设置网页的fantasy font字体库。H5网页CSS样式"font-family"中设置"fantasy"时，对应的字体引用名将被替换为接口值。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1194,7 +1194,7 @@ webFantasyFont(family: string)
 
 webCursiveFont(family: string)
 
-设置网页的cursive font字体库。
+设置网页的cursive font字体库。H5网页CSS样式"font-family"中设置"cursive"时，对应的字体引用名将被替换为接口值。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
