@@ -17,9 +17,13 @@ UIServiceExtensionAbility组件是带用户界面（UI）的扩展服务组件�
 - 通过[UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)调用[startUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startuiserviceextensionability14)方法启动UIServiceExtensionAbility。
 - 通过[UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)、[UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)调用[connectUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectuiserviceextensionability14)方法连接UIServiceExtensionAbility。
 
-## 约束限制
+## 约束与限制
 
-- 当前仅支持2in1设备。
+### 设备限制
+
+当前仅支持PC/2in1设备。
+
+### 使用限制
 
 - 三方应用需要在前台获焦的情况下才能连接系统提供的UIServiceExtensionAbility组件。
 

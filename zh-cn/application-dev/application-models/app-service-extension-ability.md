@@ -18,7 +18,7 @@
 
 ### 设备限制
 
-AppServiceExtensionAbility组件当前仅支持2in1设备。
+AppServiceExtensionAbility组件当前仅支持PC/2in1设备。
 
 ### 规格限制
 
