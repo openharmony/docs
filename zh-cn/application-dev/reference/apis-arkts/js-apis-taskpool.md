@@ -1892,12 +1892,12 @@ let task: taskpool.LongTask = new taskpool.LongTask(printArgs, "this is my first
 
 ## GenericsTask<sup>13+</sup>
 
+表示泛型任务。GenericsTask继承自[Task](#task)。
+相比创建Task，创建GenericsTask可以在编译阶段校验并发函数的传参和返回值类型。其余行为与Task相同。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
-
-表示泛型任务。GenericsTask继承自[Task](#task)。
-相比创建Task，创建GenericsTask可以在编译阶段校验并发函数的传参和返回值类型。其余行为与Task相同。
 
 ### constructor<sup>13+</sup>
 
