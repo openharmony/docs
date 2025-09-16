@@ -111,6 +111,7 @@ AVPlayer提供功能完善一体化播放能力，应用只需要提供流媒体
 | mp3 | 音频格式：MP3 | 
 | ogg | 音频格式：VORBIS | 
 | wav | 音频格式：PCM | 
+| flac | 音频格式：FLAC | 
 | amr | 音频格式：AMR | 
 | ape | 音频格式：APE |
 
