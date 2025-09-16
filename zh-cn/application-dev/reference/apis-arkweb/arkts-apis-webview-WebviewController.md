@@ -10295,7 +10295,7 @@ struct WebComponent {
     Column() {
       Button('setSiteIsolationMode')
         .onClick(() => {
-          try{
+          try {
             webview.WebviewController.setSiteIsolationMode(webview.SiteIsolationMode.PARTIAL);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
