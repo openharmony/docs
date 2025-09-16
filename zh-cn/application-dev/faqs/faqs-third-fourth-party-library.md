@@ -19,7 +19,7 @@
 
 适用于OpenHarmony 3.1 Beta5  API 9
 
-网络相关的三方库有[Axios](https://gitcode.com/openharmony-sig/axios)、httpclient、okdownload等，具体分类可以参考[三四方库网络分类](https://gitcode.com/openharmony-tpc/tpc_resource?_from=gitcode_search#%E7%BD%91%E7%BB%9C)。
+网络相关的三方库有[Axios](https://gitcode.com/openharmony-sig/ohos_axios)、httpclient、okdownload等，具体分类可以参考[三四方库网络分类](https://gitcode.com/openharmony-tpc/tpc_resource?_from=gitcode_search#%E7%BD%91%E7%BB%9C)。
 
 ## 如何使用ohpm引入三四方库(API 9)
 
