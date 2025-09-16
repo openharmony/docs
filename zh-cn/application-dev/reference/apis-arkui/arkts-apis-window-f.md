@@ -243,7 +243,6 @@ export default class EntryAbility extends UIAbility {
     windowStage.loadContent('pages/Index', (err) => {
       windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
         let storage: LocalStorage = new LocalStorage();
-        storage.setOrCreate('storageSimpleProp', 121);
         subWindow.loadContent('pages/Index', storage, (err: BusinessError) => {
           subWindow.showWindow().then(() => {
             try {
@@ -316,7 +315,6 @@ export default class EntryAbility extends UIAbility {
     windowStage.loadContent('pages/Index', (err) => {
       windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
         let storage: LocalStorage = new LocalStorage();
-        storage.setOrCreate('storageSimpleProp', 121);
         subWindow.loadContent('pages/Index', storage, (err: BusinessError) => {
           subWindow.showWindow().then(() => {
             try {
@@ -342,7 +340,7 @@ shiftAppWindowFocus(sourceWindowId: number, targetWindowId: number): Promise&lt;
 
 在同应用内将窗口焦点从源窗口转移到目标窗口，仅支持应用主窗、子窗范围内的焦点转移。
 
-目标窗口需确保具有获得焦点的能力（可通过[setWindowFocusable()](arkts-apis-window-Window.md#setwindowfocusable9)设置），并确保调用[showWindow()](arkts-apis-window-Window.md#showwindow9)成功且执行完毕。
+目标窗口需确保具有获得焦点的能力（可通过[setWindowFocusable()](arkts-apis-window-Window.md#setwindowfocusable9)设置），并确保调用[showWindow()](arkts-apis-window-Window.md#showwindow9)成功且执行完毕。建议调用前确保目标窗口已调用[loadContent()](arkts-apis-window-Window.md#loadcontent9)或[setUIContent()](arkts-apis-window-Window.md#setuicontent9)并生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -415,6 +413,7 @@ export default class EntryAbility extends UIAbility {
           subWindowId = subWindow.getWindowProperties().id;
           subWindow.resize(500, 500);
           subWindow.showWindow();
+          subWindow.SetUIContent('pages/Index');
 
           // 监听Window状态，确保已经就绪
           subWindow.on("windowEvent", (windowEvent) => {
