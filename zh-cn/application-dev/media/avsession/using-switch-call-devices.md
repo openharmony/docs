@@ -36,7 +36,7 @@
                 // 通话开始时创建voice_call类型的avsession。
                 let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'voiptest', 'voice_call');
                 } catch (err) {
-                  console.error(`avsession create :  Error: ${JSON.stringify(err)}`);
+                  console.error(`AVSession create :  Error: Code: ${err.code}, message: ${err.message}`);
                 }
               })
           }
@@ -68,38 +68,42 @@
    import { audio } from '@kit.AudioKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
-   private audioRenderer: audio.AudioRenderer | undefined = undefined;
-   private audioStreamInfo: audio.AudioStreamInfo = {
-     // 请按照实际场景设置，当前参数仅参考。
-     samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
-     channels: audio.AudioChannel.CHANNEL_2, // 通道。
-     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式。
-     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
-   }
-   private audioRendererInfo: audio.AudioRendererInfo = {
-     // 需使用通话场景相应的参数。
-     usage: audio.StreamUsage.STREAM_USAGE_VIDEO_COMMUNICATION, // 音频流使用类型：VOIP视频通话，默认为扬声器。
-     rendererFlags: 0 // 音频渲染器标志：默认为0即可。
-   }
-   private audioRendererOptions: audio.AudioRendererOptions = {
-     streamInfo: this.audioStreamInfo,
-     rendererInfo: this.audioRendererInfo
-   }
-
-   // 初始化，创建通话audiorenderer实例，设置监听事件。
-   try {
-    this.audioRenderer = await audio.createAudioRenderer(this.audioRendererOptions);
-   } catch (err) {
-    console.error(`audioRender create :  Error: ${JSON.stringify(err)}`);
-   }
-
-   this.audioRenderer?.start((err: BusinessError) => {
-    if (err) {
-      console.error(`audioRenderer start failed -Code : ${err.code}, Message ${err.message}`);
-    } else {
-      console.info('audioRender start success');
+   export default class AudioRenderer {
+    private audioRenderer: audio.AudioRenderer | undefined = undefined;
+    private audioStreamInfo: audio.AudioStreamInfo = {
+      // 请按照实际场景设置，当前参数仅参考。
+      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
+      channels: audio.AudioChannel.CHANNEL_2, // 通道。
+      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式。
+      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
     }
-   });
+    private audioRendererInfo: audio.AudioRendererInfo = {
+      // 需使用通话场景相应的参数。
+      usage: audio.StreamUsage.STREAM_USAGE_VIDEO_COMMUNICATION, // 音频流使用类型：VOIP视频通话，默认为扬声器。
+      rendererFlags: 0 // 音频渲染器标志：默认为0即可。
+    }
+    private audioRendererOptions: audio.AudioRendererOptions = {
+      streamInfo: this.audioStreamInfo,
+      rendererInfo: this.audioRendererInfo
+    }
+
+    start() {
+      // 初始化，创建通话audiorenderer实例，设置监听事件。
+      try {
+        this.audioRenderer = await audio.createAudioRenderer(this.audioRendererOptions);
+      } catch (err) {
+        console.error(`audioRender create :  Error: Code: ${err.code}, message: ${err.message}`);
+      }
+
+      this.audioRenderer?.start((err: BusinessError) => {
+        if (err) {
+          console.error(`audioRenderer start failed -Code : ${err.code}, Message ${err.message}`);
+        } else {
+          console.info('audioRender start success');
+        }
+      });
+    }
+   }
    ```
 
 4. （可选）如果应用想知道设备切换情况，可以监听当前发声设备切换回调。
@@ -158,7 +162,7 @@
 
    // 自定义内容。
    @Builder
-   ImageBuilder(): void {
+   ImageBuilder() {
      Image(this.pickerImage)
        .size({ width: '100%', height: '100%' })
        .backgroundColor('#00000000')
@@ -276,7 +280,7 @@
 
    // 自定义内容。
    @Builder
-   ImageBuilder(): void {
+   ImageBuilder() {
      Image(this.pickerImage)
        .size({ width: '100%', height: '100%' })
        .backgroundColor('#00000000')
