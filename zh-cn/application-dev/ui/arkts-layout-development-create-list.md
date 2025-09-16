@@ -758,7 +758,7 @@ ListItem() {
 <!--RP1--><!--RP1End-->
 
 <!--Del-->
-下拉刷新与上拉加载的具体实现可参考[相关实例](#相关实例)中新闻数据加载。若开发者希望快速实现此功能，也可使用三方组件[PullToRefresh](https://gitcode.com/openharmony-sig/PullToRefresh)。<!--DelEnd-->
+下拉刷新与上拉加载的具体实现可参考[相关实例](#相关实例)中新闻数据加载。若开发者希望快速实现此功能，也可使用三方组件[PullToRefresh](https://gitcode.com/openharmony-sig/ohos_pull_to_refresh)。<!--DelEnd-->
 
 
 ## 编辑列表
@@ -1386,6 +1386,6 @@ List() {
 
 - [List组件的使用之设置项（ArkTS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/List_HDC)
 
-- [PullToRefresh](https://gitcode.com/openharmony-sig/PullToRefresh)
+- [PullToRefresh](https://gitcode.com/openharmony-sig/ohos_pull_to_refresh)
 
 <!--RP2--><!--RP2End-->
