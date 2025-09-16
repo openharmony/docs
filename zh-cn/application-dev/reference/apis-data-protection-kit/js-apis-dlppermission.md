@@ -1339,7 +1339,7 @@ generateDLPFileForEnterprise(plaintextFd: number, dlpFd: number, property: DLPPr
 | -------- | -------- | -------- | -------- |
 | plaintextFd | number | 是 | 明文文件的fd。 |
 | dlpFd | number | 是 | 加密文件的fd。 |
-| property | [DLPProperty](#dlpproperty) | 是 | DLP文件通用策略。 |
+| property | [DLPProperty](#dlpproperty21) | 是 | DLP文件通用策略。 |
 | customProperty | [CustomProperty](#customproperty21) | 是 | 企业定制策略。 |
 
 **返回值：**
@@ -1605,6 +1605,6 @@ async function ExampleFunction(dlpFilePath: string) {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | authAccount | string | 否 | 否 | 表示被授权用户账号。不超过255字节。 |
-| authAccountType | [AccountType](#accounttype) | 否 | 否 | 表示被授权用户账号类型。 |
+| authAccountType | [AccountType](#accounttype21) | 否 | 否 | 表示被授权用户账号类型。 |
 | dlpFileAccess | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | 否 | 否 | 表示被授予的权限。 |
 | permExpiryTime | number | 否 | 否 | 表示授权到期时间。 |
