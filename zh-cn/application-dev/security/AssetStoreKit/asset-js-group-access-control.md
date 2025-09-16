@@ -25,6 +25,7 @@
     "assetAccessGroups": [
       "demo_group_id",
       // "another_group_id",
+      // ...
     ]
   }
 }
