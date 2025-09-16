@@ -380,7 +380,7 @@ saveTrustedPhotoAssets(trustedUris: Array&lt;string&gt;, callback: AsyncCallback
 | 名称                | 值   | 说明                                                                                                                 |
 |-------------------|-----|--------------------------------------------------------------------------------------------------------------------|
 | SET_SELECTED_URIS | 1   | 发送已选择的数据列表，通知picker组件勾选状态刷新，需要传入string数组类型。<br>例如：应用在自己的页面中删除某张图片后，需要把剩下的已选择的数据列表通过setData接口通知到picker组件，从而触发picker组件勾选框状态刷新正确。 |
-| SET_ALBUM_URI | 2   | 发送已选择相册，通知picker组件刷新相册，需要传入string类型。<br>例如：应用在自己的页面中选择相册后，需要把已选择的相册uri通过setData接口通知到picker组件，从而触发picker组件刷新新相册数据。 |
+| SET_ALBUM_URI | 2   | 发送已选择相册，通知picker组件刷新相册，需要传入string类型。<br>例如：应用在自己的页面中选择相册后，需要把已选择的相册uri通过setData接口通知到picker组件，从而触发picker组件刷新相册数据。 |
 
 ## ItemType
 
@@ -632,7 +632,7 @@ struct PickerDemo {
           this.selectUris.push(uri);
           this.pickerOptions.preselectedUris = [...this.selectUris];
         }
-        return true; // 返回true则勾选，否则则不响应勾选。
+        return true; // 返回true则勾选，否则不响应勾选。
       } else {
         if (uri) {
           this.selectUris = this.selectUris.filter((item: string) => {
