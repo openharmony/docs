@@ -364,34 +364,13 @@ export struct TaskSwitchMainPage {
 ```ts
 import { curves, AnimatorResult } from '@kit.ArkUI';
 
-// 该接口控制列表项视觉属性，动态调整scale/offsetY实现拖拽位移和缩放效果，阴影效果提升拖拽项视觉层级（zIndex:1）
+// 该接口控制列表项视觉属性
 class ListItemModify implements AttributeModifier<ListItemAttribute> {
-  public hasShadow: boolean = false;
-  public scale: number = 1;
   public offsetY: number = 0;
-  private scroll: ListScroller = new ListScroller();
-  public color: string = '#00000000';
 
   applyNormalAttribute(instance: ListItemAttribute): void {
-    if (this.hasShadow) {
-      instance.shadow({
-        radius: 70, // 拖拽时阴影层级提升
-        color: this.color,
-        offsetX: 0,
-        offsetY: 0
-      })
-      instance.zIndex(1)
-    }
-    instance.scale({ x: this.scale, y: this.scale }) // 缩放控制
     instance.translate({ y: this.offsetY }) // Y轴位移
   }
-}
-
-enum DragSortState {
-  IDLE,
-  PRESSING,
-  MOVING,
-  DROPPING,
 }
 
 @Observed
@@ -401,8 +380,7 @@ class DragSortCtrl<T> {
   private uiContext: UIContext; // 新增UIContext成员
   private dragRefOffset: number = 0
   offsetY: number = 0
-  state: DragSortState = DragSortState.IDLE
-  private ITEM_INTV: number = 120
+  private ITEM_INTV: number = 0
 
   constructor(arr: Array<T>, intv: number, uiContext: UIContext) {
     this.arr = arr;
@@ -415,35 +393,26 @@ class DragSortCtrl<T> {
   }
 
   itemMove(index: number, newIndex: number): void {
-    let tmp = this.arr.splice(index, 1)
-    this.arr.splice(newIndex, 0, tmp[0])
+    let tmp = this.arr.splice(index, 1) // 移除当前传入的index
+    this.arr.splice(newIndex, 0, tmp[0]) // 将当前移除的index插入到数组前一个位置
     let tmp2 = this.modify.splice(index, 1)
     this.modify.splice(newIndex, 0, tmp2[0])
   }
 
-  onLongPress(item: T): void {
+  setDragRef(item: T): void {
     this.dragRefOffset = 0
   }
 
   onMove(item: T, offset: number) {
-    this.state = DragSortState.MOVING
-    this.offsetY = offset - this.dragRefOffset
-    let index = this.arr.indexOf(item)
+    this.offsetY = offset - this.dragRefOffset // 逐帧计算传入的offect，每满足一个item高度时，进入下方if逻辑，更新dragRefOffset的值
+    let index = this.arr.indexOf(item) // 在数组中查找传入的item
     this.modify[index].offsetY = this.offsetY
-    if (this.offsetY > this.ITEM_INTV / 2) {
-      // 使用interpolatingSpring曲线生成弹簧动画
-      this.uiContext.animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
-        this.offsetY -= this.ITEM_INTV
-        this.dragRefOffset += this.ITEM_INTV
-        this.modify[index].offsetY = this.offsetY
-        this.itemMove(index, index + 1) // 执行列表项位置交换
-      })
-    } else if (this.offsetY < -this.ITEM_INTV / 2) {
+    if (this.offsetY < -this.ITEM_INTV / 2) { // 通过判断使指定的item逐一移动到首位
       // 使用interpolatingSpring曲线生成弹簧动画
       this.uiContext.animateTo({ curve: curves.interpolatingSpring(0, 1, 400, 38) }, () => {
         this.offsetY += this.ITEM_INTV // 调整偏移量实现平滑移动
-        this.dragRefOffset -= this.ITEM_INTV
-        this.modify[index].offsetY = this.offsetY
+        this.dragRefOffset -= this.ITEM_INTV // 移动的总偏移量
+        console.info(`item offsetY ${this.offsetY} dragRefOffset ${this.dragRefOffset}`);
         this.itemMove(index, index - 1) // 执行列表项位置交换
       })
     }
@@ -463,17 +432,15 @@ struct ListAutoSortExample {
   @State firstListItemGroupCount: number = 3
   private listScroll: ListScroller = new ListScroller()
   private backAnimator: AnimatorResult | null = null
-  private dropFlag: Boolean = true
 
   @Builder
   itemEnd(item: number, index: number) {
     Row() {
       Button("To TOP").margin("4vp").onClick(() => {
-        console.log(`item number item ${item} index ${index}`);
+        console.info(`item number item ${item} index ${index}`);
         this.listScroll.closeAllSwipeActions({
           onFinish: () => {
-            this.dropFlag = true
-            this.dragSortCtrl.onLongPress(item)
+            this.dragSortCtrl.setDragRef(item)
             let length = 120 * (this.arr.indexOf(item))
             this.backAnimator = this.getUIContext()?.createAnimator({ // 创建弹簧动画
               duration: 1000,
@@ -488,9 +455,7 @@ struct ListAutoSortExample {
             this.backAnimator.onFrame = (value) => { // 逐帧回调更新位置
               this.dragSortCtrl.onMove(item, value) // 处理list的移动替换动效
             }
-            this.backAnimator.onFinish = () => {
-              this.dropFlag = true
-            }
+            this.backAnimator.onFinish = () => {}
             this.backAnimator.play() // 启动动画
           }
         })
@@ -525,7 +490,7 @@ struct ListAutoSortExample {
                   end: this.itemEnd(item, index)
                 })
                 .clip(true)
-                .attributeModifier(this.dragSortCtrl.getModify(item))
+                .attributeModifier(this.dragSortCtrl.getModify(item)) // 动态设置属性修改
                 .borderRadius(10)
                 .margin({ left: 20, right: 20 })
               }
