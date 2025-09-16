@@ -279,6 +279,38 @@ hilog.info(0x0001, "testTag", 'this is an info level log, id: %{public}d', 5);
 ```
 <!--RP1End-->
 
+## hilog.setLogLevel
+
+setLogLevel(level: LogLevel, prefer: PreferStrategy): void
+
+设置当前应用程序进程的最低日志级别。可以配置不同的偏好策略。。
+
+**原子化服务API**：从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.HiviewDFX.HiLog
+
+**参数：**
+
+| 参数名 | 类型                  | 必填 | 说明                                                         |
+| ------ | --------------------- | ---- | ------------------------------------------------------------ |
+| level  | [LogLevel](#loglevel) | 是   | 日志级别。                                                   |
+| prefer  | [PreferStrategy](#preferstrategy) | 是   | 偏好策略。                                                   |
+
+## PreferStrategy
+
+偏好策略
+
+**原子化服务API**：从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.HiviewDFX.HiLog
+
+| 名称  |   值   | 说明                                                         |
+| ------ | --------------------- | ------------------------------------------------------------ |
+| UNSET_LOGLEVEL | 0 | 清除设置, 实际生效的最低日志级别是系统控制的最低级别 |
+| PREFER_CLOSE_LOG | 1 | 实际生效的最低日志级别是新设置的级别和系统控制的最低级别两个值的较大值 |
+| PREFER_OPEN_LOG | 2 | 实际生效的最低日志级别是新设置的级别和系统控制的最低级别两个值的较小值 |
+
+
 ## 参数格式符
 
 上述接口中，日志打印的格式化参数需按照如下格式打印：
