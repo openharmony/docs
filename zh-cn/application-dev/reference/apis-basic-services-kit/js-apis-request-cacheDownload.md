@@ -44,7 +44,7 @@ import { cacheDownload } from '@kit.BasicServicesKit';
 | 名称   | 类型     | 只读 | 可选 | 说明                            |
 |------|--------|----|----|-------------------------------|
 | headers | Record\<string, string\> | 否  | 是 | 缓存下载任务在HTTP传输时使用的请求头。 |
-| sslType<sup>21+</sup> | [SslType](#ssltype21) | 否  | 是 | 使用安全通信协议TLS或TLCP，默认使用TLS。当前不支持双向认证。 |
+| sslType<sup>21+</sup> | [SslType](#ssltype21) | 否  | 是 | 使用安全通信协议TLS或TLCP，默认使用TLS。当前TLS和TLCP均不支持双向认证。 |
 | caPath<sup>21+</sup> | string | 否  | 是 | CA证书路径。目前仅支持.pem格式证书，默认使用系统预设的CA证书。 |
 
 ## ResourceInfo<sup>20+</sup>
