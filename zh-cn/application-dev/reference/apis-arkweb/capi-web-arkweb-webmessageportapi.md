@@ -85,7 +85,7 @@ void (*setMessageEventHandler)(const ArkWeb_WebMessagePortPtr webMessagePort, co
 
 **描述：**
 
-关闭消息端口。
+设置接收HTML消息的回调。
 
 **参数：**
 
