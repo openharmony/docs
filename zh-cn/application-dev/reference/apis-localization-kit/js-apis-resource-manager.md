@@ -57,25 +57,27 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
 
 **示例：**
 
-  <!--code_no_check_fa-->
   ```js
-  import { resourceManager } from '@kit.LocalizationKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
+import  resourceManager  from '@ohos.resourceManager';
+export default {
+    onCreate() {
+        resourceManager.getResourceManager((error, mgr) => {
+            if (error != null) {
+                console.error("error is " + error);
+                return;
+            }
+            // 'test'仅作示例，请替换为实际使用的资源
+            mgr.getStringByName('test', (error, value) => {
+                if (error) {
+                    console.error("error is " + JSON.stringify(error));
+                } else {
+                    console.info("success is " + value);
+                }
 
-  resourceManager.getResourceManager((error, mgr) => {
-    if (error != null) {
-      console.error("error is " + error);
-      return;
+            });
+        });
     }
-    // 'app.string.test'仅作示例，请替换为实际使用的资源
-    mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  });
+};
   ```
 
 ## resourceManager.getResourceManager
@@ -96,18 +98,29 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
 | callback   | [AsyncCallback](#asynccallbackdeprecated)&lt;[ResourceManager](#resourcemanager)&gt; | 是    | 回调函数，返回应用包名对应的资源管理ResourceManager对象。 |
 
 **示例：**
-  <!--code_no_check_fa-->
-  ```js
-  import { resourceManager } from '@kit.LocalizationKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
 
-  // "com.example.myapplication"仅作示例，请替换为实际使用的包名
-  resourceManager.getResourceManager("com.example.myapplication", (error, mgr) => {
-    if (error != null) {
-      console.error("error is " + error);
-      return;
+  ```js
+import  resourceManager  from '@ohos.resourceManager';
+// 'com.example.testapp'仅作示例，请替换为实际应用包名
+const BUNDLE_NAME = 'com.example.testapp';
+export default {
+    onCreate() {
+        resourceManager.getResourceManager(BUNDLE_NAME, (error, mgr) => {
+            if (error != null) {
+                console.error("getResourceManager error is " + error);
+                return;
+            }
+            // 'test'仅作示例，请替换为实际使用的资源
+            mgr.getStringByName('test', (error, value) => {
+                if (error) {
+                    console.error("getResourceManager error is " + JSON.stringify(error));
+                } else {
+                    console.info("getResourceManager success is " + value);
+                }
+            });
+        });
     }
-  });
+};
   ```
 
 ## resourceManager.getResourceManager
@@ -127,23 +140,25 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise对象，返回资源管理ResourceManager对象。 |
 
 **示例：**
-  <!--code_no_check_fa-->
-  ```js
-  import { resourceManager } from '@kit.LocalizationKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
 
-  resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
-    // 'app.string.test'仅作示例，请替换为实际使用的资源
-    mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  }).catch((error: BusinessError) => {
-    console.error("error is " + error);
-  });
+  ```js
+import resourceManager from '@ohos.resourceManager';
+
+export default {
+    onCreate() {
+        resourceManager.getResourceManager().then(resMgr => {
+            try {
+                // 'test'仅作示例，请替换为实际使用的资源
+                let testStr = resMgr.getStringByNameSync('test')
+                console.info("getResourceManager success is " + testStr);
+            } catch (error) {
+                console.error("getResourceManager error is " + JSON.stringify(error));
+            }
+        }).catch(error => {
+            console.error("getResourceManager error is " + error);
+        });
+    }
+};
   ```
 
 ## resourceManager.getResourceManager
@@ -169,16 +184,28 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise对象，返回应用包名对应的资源管理ResourceManager对象。 |
 
 **示例：**
-  <!--code_no_check_fa-->
-  ```js
-  import { resourceManager } from '@kit.LocalizationKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
 
-  // "com.example.myapplication"仅作示例，请替换为实际使用的包名
-  resourceManager.getResourceManager("com.example.myapplication").then((mgr: resourceManager.ResourceManager) => {
-  }).catch((error: BusinessError) => {
-    console.error("error is " + error);
-  });
+  ```js
+import resourceManager from '@ohos.resourceManager';
+
+// 'com.example.testapp'仅作示例，请替换为实际应用包名
+const BUNDLE_NAME = 'com.example.testapp';
+
+export default {
+    onCreate() {
+        resourceManager.getResourceManager(BUNDLE_NAME).then(resMgr => {
+            try {
+                // 'test'仅作示例，请替换为实际使用的资源
+                let testStr = resMgr.getStringByNameSync('test')
+                console.info("getResourceManager success is " + testStr);
+            } catch (error) {
+                console.error("getResourceManager error is " + JSON.stringify(error));
+            }
+        }).catch(error => {
+            console.error("getResourceManager error is " + error);
+        });
+    }
+};
   ```
 
 ## resourceManager.getSysResourceManager<sup>20+</sup>
@@ -292,6 +319,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 ## Configuration
 
 表示当前设备的状态。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -3789,8 +3818,8 @@ export default class EntryAbility extends UIAbility {
             if (error != null) {
                 console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
             } else {
-                console.log(`getRawFileListSync, result: ${JSON.stringify(value)}`);
-                // 打印输出结果: getRawFileListSync, result: ["test.txt"]
+                console.log(`getRawFileList, result: ${JSON.stringify(value)}`);
+                // 打印输出结果: getRawFileList, result: ["test.txt"]
             }
         });
     }
@@ -3842,8 +3871,8 @@ export default class EntryAbility extends UIAbility {
         // 传入""仅作示例，请替换为rawfile目录下实际的文件路径
         this.context.resourceManager.getRawFileList("")
             .then((value: Array<string>) => {
-                console.log(`getRawFileListSync, result: ${JSON.stringify(value)}`);
-                // 打印输出结果: getRawFileListSync, result: ["test.txt"]
+                console.log(`getRawFileList, result: ${JSON.stringify(value)}`);
+                // 打印输出结果: getRawFileList, result: ["test.txt"]
             })
             .catch((error: BusinessError) => {
                 console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
@@ -4051,17 +4080,22 @@ closeRawFdSync(path: string): void
   ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-        try {
-            // "test.txt"仅作示例，请替换为实际使用的资源
-            this.context.resourceManager.closeRawFdSync("test.txt");
-        } catch (error) {
-            let code = (error as BusinessError).code;
-            let message = (error as BusinessError).message;
-            console.error(`closeRawFd failed, error code: ${code}, message: ${message}.`);
-        }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    try {
+      // "test.txt"仅作示例，请替换为实际使用的资源
+      let rawfile = this.context.resourceManager.getRawFdSync("test.txt");
+      // doing something
+
+      this.context.resourceManager.closeRawFdSync("test.txt");
+      console.info(`closeRawFdSync test success.`);
+    } catch (error) {
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`closeRawFdSync test failed, error code: ${code}, message: ${message}.`);
     }
+  }
 }
   ```
 
@@ -4096,20 +4130,24 @@ closeRawFd(path: string, callback: _AsyncCallback&lt;void&gt;): void
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-        try {
-            // "test.txt"仅作示例，请替换为实际使用的资源
-            this.context.resourceManager.closeRawFd("test.txt", (error: BusinessError) => {
-                if (error != null) {
-                    console.error("error is " + error);
-                }
-            });
-        } catch (error) {
-            let code = (error as BusinessError).code;
-            let message = (error as BusinessError).message;
-            console.error(`callback closeRawFd failed, error code: ${code}, message: ${message}.`);
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    try {
+      // "test.txt"仅作示例，请替换为实际使用的资源
+      let rawfile = this.context.resourceManager.getRawFdSync("test.txt");
+      //doing something
+      this.context.resourceManager.closeRawFd("test.txt", (error: BusinessError) => {
+        if (error != null) {
+          console.error("error is " + error);
+          return;
         }
+        console.info('closeRawFd success.');
+      });
+    } catch (error) {
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`callback closeRawFd failed, error code: ${code}, message: ${message}.`);
     }
+  }
 }
   ```
 
@@ -4149,16 +4187,19 @@ closeRawFd(path: string): Promise&lt;void&gt;
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-        try {
-            // "test.txt"仅作示例，请替换为实际使用的资源
-            this.context.resourceManager.closeRawFd("test.txt");
-        } catch (error) {
-            let code = (error as BusinessError).code;
-            let message = (error as BusinessError).message;
-            console.error(`promise closeRawFd failed, error code: ${code}, message: ${message}.`);
-        }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    try {
+      // "test.txt"仅作示例，请替换为实际使用的资源
+      let rawfile = this.context.resourceManager.getRawFdSync("test.txt");
+      //doing something
+      this.context.resourceManager.closeRawFd("test.txt");
+      console.info(`closeRawFd test success.`);
+    } catch (error) {
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`promise closeRawFd failed, error code: ${code}, message: ${message}.`);
     }
+  }
 }
   ```
 
