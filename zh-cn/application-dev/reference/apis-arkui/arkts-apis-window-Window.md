@@ -28,7 +28,7 @@ showWindow(callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 调用该接口前，建议先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。如果没有进行页面加载，直接调用该接口，界面会一直显示启动界面。
+> 调用该接口前，建议先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。如果应用主窗口没有完成页面加载，直接调用该接口，界面会一直显示启动界面；如果系统窗口与应用子窗口没有完成页面加载，直接调用该接口，界面会显示空白。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -70,7 +70,7 @@ export default class EntryAbility extends UIAbility {
             console.error('Failed to create the subWindow. Cause: The data is empty');
             return;
           }
-          subWindow.loadContent('pages/Index', (err) => {
+          subWindow.setUIContent('pages/Index', (err) => {
             if (err.code) {
               console.error('Failed to load the subWindow content. Cause: %{public}s', JSON.stringify(err));
               return;
@@ -106,7 +106,7 @@ showWindow(): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 调用该接口前，建议优先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。如果没有进行页面加载，直接调用该接口，界面会一直显示启动界面。
+> 调用该接口前，建议优先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。如果应用主窗口没有完成页面加载，直接调用该接口，界面会一直显示启动界面；如果系统窗口与应用子窗口没有完成页面加载，直接调用该接口，界面会显示空白。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -148,7 +148,7 @@ export default class EntryAbility extends UIAbility {
             console.error('Failed to create the subWindow. Cause: The data is empty');
             return;
           }
-          subWindow.loadContent('pages/Index', (err) => {
+          subWindow.setUIContent('pages/Index', (err) => {
             if (err.code) {
               console.error('Failed to load the subWindow content. Cause: %{public}s', JSON.stringify(err));
               return;
@@ -182,7 +182,7 @@ showWindow(options: ShowWindowOptions): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 调用该接口前，建议优先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。如果没有进行页面加载，直接调用该接口，界面会一直显示启动界面。
+> 调用该接口前，建议优先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。如果应用主窗口没有完成页面加载，直接调用该接口，界面会一直显示启动界面；如果系统窗口与应用子窗口没有完成页面加载，直接调用该接口，界面会显示空白。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -235,7 +235,7 @@ export default class EntryAbility extends UIAbility {
             console.error('Failed to create the subWindow. Cause: The data is empty');
             return;
           }
-          data.loadContent('pages/Index', (err) => {
+          data.setUIContent('pages/Index', (err) => {
             if (err.code) {
               console.error('Failed to load the subWindow content. Cause: %{public}s', JSON.stringify(err));
               return;
