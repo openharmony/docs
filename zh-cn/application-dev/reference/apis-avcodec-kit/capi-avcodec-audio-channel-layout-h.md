@@ -1,5 +1,12 @@
 # avcodec_audio_channel_layout.h
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zhanghongran-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 音频编解码枚举的声明。
