@@ -160,7 +160,7 @@ findWindow(name: string): Window
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| name   | string | 是   | 窗口名称。查找子窗口时使用[Configuration](arkts-apis-window-i.md#configuration9)中的窗口名称；查找主窗口时使用[getWindowName](arkts-apis-uicontext-uicontext.md#getwindowname12)获取当前实例的窗口名称。 |
+| name   | string | 是   | 窗口名称。查找子窗口或系统窗口时使用[Configuration](arkts-apis-window-i.md#configuration9)中的窗口名称；查找主窗口时使用[getWindowName](arkts-apis-uicontext-uicontext.md#getwindowname12)获取当前实例的窗口名称。 |
 
 **返回值：**
 
