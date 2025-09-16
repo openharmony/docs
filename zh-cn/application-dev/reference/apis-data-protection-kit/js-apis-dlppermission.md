@@ -1586,13 +1586,13 @@ async function ExampleFunction(dlpFilePath: string) {
 | -------- | -------- | -------- | -------- | -------- |
 | ownerAccount | string | 否 | 否 | 表示权限设置者账号。不超过255字节。 |
 | ownerAccountID | string | 否 | 否 | 表示权限设置者账号的ID。不超过255字节。 |
-| ownerAccountType | [AccountType](#accounttype) | 否 | 否 | 表示权限设置者账号类型。 |
+| ownerAccountType | [AccountType](#accounttype21) | 否 | 否 | 表示权限设置者账号类型。 |
 | authUserList | Array&lt;[AuthUser](#authuser)&gt; | 否 | 是 | 表示授权用户列表，默认为空。 |
 | contactAccount | string | 否 | 否 | 表示联系人账号。不超过255字节。 |
 | offlineAccess | boolean | 否 | 否 | 表示是否是离线打开。true表示允许离线打开，false表示不可离线打开。 |
 | everyoneAccessList | Array&lt;[DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess)&gt; | 否 | 是 | 表示授予所有人的权限，默认为空。 |
 | expireTime<sup>21+</sup> | number | 否 | 是 | 表示文件权限到期时间戳，默认为空。 |
-| actionUponExpiry<sup>21+</sup> | [ActionType](#actiontype) | 否 | 是 | 表示到期后文件是否允许打开（打开后拥有编辑权限），仅在expireTime不为空时生效。 |
+| actionUponExpiry<sup>21+</sup> | [ActionType](#actiontype21) | 否 | 是 | 表示到期后文件是否允许打开（打开后拥有编辑权限），仅在expireTime不为空时生效。 |
 | fileId | string | 否 | 是 | 表示文件的标识。不超过255字节。 |
 | allowedOpenCount | number | 否 | 是 | 表示允许打开的次数 |
  
