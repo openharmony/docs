@@ -4459,8 +4459,10 @@ onNativeEmbedObjectParamChange(callback: OnNativeEmbedObjectParamChangeCallback)
             .onNativeEmbedObjectParamChange((event) => {
               console.log("embed id: " + event.embedId);
               let paramItems = event.paramItems;
-              for (let i = 0; i < paramItems.length; ++i) {
-                console.log("param info: " + JSON.stringify(paramItems[i]));
+              if (paramItems) {
+                for (let i = 0; i < paramItems.length; ++i) {
+                  console.log("param info: " + JSON.stringify(paramItems[i]));
+                }
               }
             })
         }
