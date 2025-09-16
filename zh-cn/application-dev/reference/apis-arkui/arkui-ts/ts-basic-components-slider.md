@@ -46,13 +46,13 @@ Slider(options?: SliderOptions)
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| value | number | 否 | 是 | 当前进度值。<br/>默认值：与参数min的取值一致。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。<br/>取值范围： [min, max]<br/>小于min时取min，大于max时取max。<br/>$$运算符为系统组件提供TS变量的引用，使得TS变量和slider组件的value值保持同步。详细使用示例请参考[示例7设置滑动条的双向绑定](#示例7设置滑动条的双向绑定)。 |
+| value | number | 否 | 是 | 当前进度值。<br/>默认值：与属性min的取值一致。<br />从API version 10开始，该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />该属性支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。<br/>取值范围： [min, max]<br/>小于min时取min，大于max时取max。<br/>$$运算符为系统组件提供TS变量的引用，使得TS变量和slider组件的value值保持同步。详细使用示例请参考[示例7设置滑动条的双向绑定](#示例7设置滑动条的双向绑定)。 |
 | min | number | 否 | 是 | 设置最小值。<br/>默认值：0 |
 | max | number | 否 | 是 | 设置最大值。<br/>默认值：100<br/>**说明：** <br/>min >= max异常情况，min取默认值0，max取默认值100。<br/>value不在[min, max]范围之内，取min或者max，靠近min取min，靠近max取max。 |
 | step | number | 否 | 是 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max - min]<br/>**说明：** <br/>若设置的step值小于0或大于max值，则按默认值显示。 |
 | style | [SliderStyle](#sliderstyle枚举说明) | 否 | 是 | 设置Slider的滑块与滑轨显示样式。<br/>默认值：SliderStyle.OutSet |
 | direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | 否 | 是 | 设置滑动条滑动方向为水平或竖直方向。<br/>默认值：Axis.Horizontal |
-| reverse<sup>8+</sup> | boolean | 否 | 是 | 设置滑动条取值范围是否反向。<br/>默认值：false<br/>值为true时，横向Slider从右往左滑动，竖向Slider从下往上滑动。值为false时，横向Slider从左往右滑动，竖向Slider从上往下滑动。 |
+| reverse<sup>8+</sup> | boolean | 否 | 是 | 设置滑动条取值范围是否反向。<br/>true：横向Slider从右往左滑动，竖向Slider从下往上滑动；false：横向Slider从左往右滑动，竖向Slider从上往下滑动。<br/>默认值：false |
 
 ## SliderStyle枚举说明
 
@@ -174,7 +174,7 @@ showSteps(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | boolean | 是   | 当前是否显示步长刻度值。值为true时显示刻度值，值为false时不显示刻度值。<br/>默认值：false |
+| value  | boolean | 是   | 当前是否显示步长刻度值。<br/>true：显示刻度值；false：不显示刻度值。<br/>默认值：false |
 
 ### showTips
 
@@ -196,7 +196,7 @@ tip的绘制区域为Slider自身节点的overlay。
 
 | 参数名                | 类型                                   | 必填 | 说明                                       |
 | --------------------- | -------------------------------------- | ---- | ------------------------------------------ |
-| value                 | boolean                                | 是   | 滑动时是否显示气泡提示。值为true时显示气泡。值为false时不显示气泡。<br/>默认值：false |
+| value                 | boolean                                | 是   | 滑动时是否显示气泡提示。<br/>true：显示气泡；false：不显示气泡。<br/>默认值：false |
 | content<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 气泡提示的文本内容，默认显示当前百分比。   |
 
 ### trackThickness<sup>8+</sup>
@@ -433,7 +433,7 @@ minResponsiveDistance(value: number)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | number | 是   | 设置滑动响应的最小距离，滑动超过此距离后滑块才开始滑动。<br/>**说明：** <br/>单位与参数[min](#slideroptions对象说明)和[max](#slideroptions对象说明)一致。<br/>当value小于0、大于MAX-MIN或非法值时，取默认值。<br/>默认值：0  |
+| value  | number | 是   | 设置滑动响应的最小距离，滑动超过此距离后滑块才开始滑动。<br/>**说明：** <br/>单位与[SliderOptions](#slideroptions对象说明)中的属性min以及属性max一致。<br/>当value小于0、大于MAX-MIN或非法值时，取默认值。<br/>默认值：0  |
 
 ### contentModifier<sup>12+</sup>
 
@@ -449,7 +449,7 @@ contentModifier(modifier: ContentModifier\<SliderConfiguration>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<SliderConfiguration>](#sliderconfiguration12对象说明) | 是   | 在Slider组件上，定制内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier  | [ContentModifier](ts-universal-attributes-content-modifier.md)[\<SliderConfiguration>](#sliderconfiguration12对象说明) | 是   | 在Slider组件上，定制内容区的方法。<br/>ContentModifier：内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 >  **说明：**
 >
@@ -496,7 +496,7 @@ enableHapticFeedback(enabled: boolean)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| enabled  | boolean | 是   | 设置是否开启触控反馈。<br/>默认值：true，true表示开启触控反馈，false表示不开启触控反馈。|
+| enabled  | boolean | 是   | 设置是否开启触控反馈。<br/>true：开启触控反馈；false：不开启触控反馈。<br/>默认值：true|
 
 ### digitalCrownSensitivity<sup>18+</sup>
 
@@ -568,7 +568,7 @@ showSteps(value: boolean, options?: SliderShowStepOptions)
 
 | 参数名      | 类型                                                         | 必填 | 说明                                                    |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
-| value | boolean | 是 | 当前是否显示步长刻度值。值为true时显示刻度值，值为false时不显示刻度值。<br />默认值：false |
+| value | boolean | 是 | 当前是否显示步长刻度值。<br/>true：显示刻度值；false：不显示刻度值。<br />默认值：false |
 | options | [SliderShowStepOptions](#slidershowstepoptions20) | 否 | 刻度点无障碍文本的配置选项，用于设置与无障碍功能相关的属性。<br/>默认值：null |
 
 ## SliderCustomContentOptions<sup>20+</sup>
@@ -584,7 +584,7 @@ Slider前后缀组件无障碍信息参数。
 | accessibilityText        | [ResourceStr](ts-types.md#resourcestr) | 否   | 是  | 用于提供辅助功能的文本，供屏幕阅读器等工具读取，增强无障碍功能。 <br/>默认值："" |
 | accessibilityDescription | [ResourceStr](ts-types.md#resourcestr) | 否   | 是  | 用于提供辅助功能的详细描述，描述滑块前缀或后缀的功能或用途，供屏幕阅读器等工具使用。 <br/>默认值为“单指双击即可执行”。 |
 | accessibilityLevel       | string      | 否   | 是  | 用于控制某个组件是否可被无障碍辅助服务所识别。<br>支持的值为:<br>"auto"：当前组件会转换为“yes”。<br>"yes"：当前组件可被无障碍辅助服务所识别。<br>"no"：当前组件不可被无障碍辅助服务所识别。<br>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br>默认值："auto"。 |
-| accessibilityGroup       | boolean     | 否   | 是  | 用于标识该元素是否属于一个无障碍的组，帮助屏幕阅读器等工具将相关元素进行分组处理。设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容；设置为false表示不启用无障碍分组。<br/>默认值：false |
+| accessibilityGroup       | boolean     | 否   | 是  | 用于标识该元素是否属于一个无障碍的组，帮助屏幕阅读器等工具将相关元素进行分组处理。<br/>true：该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容；false：不启用无障碍分组。<br/>默认值：false |
 
 ## SliderPrefixOptions<sup>20+</sup>
 
