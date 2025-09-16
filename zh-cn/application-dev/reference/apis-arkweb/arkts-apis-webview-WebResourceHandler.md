@@ -200,7 +200,7 @@ struct WebComponent {
                 // 直接调用didFail(WebNetErrorList.ERR_FAILED, true)，自动构造一个网络请求错误ERR_CONNECTION_FAILED
                 resourceHandler.didFail(WebNetErrorList.ERR_FAILED, true);
               } catch (error) {
-                // 当error.code为17100101且didFail(code, completeIfNoResponse)的code值不为null时，若未处理该错误，didFail方法也会调用成功。
+                // 当error.code为17100101且didFail(code, completeIfNoResponse)的code值不为null时，接口会继续调用不会中断。
                 console.error(`[schemeHandler] ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
               }
               return true;
