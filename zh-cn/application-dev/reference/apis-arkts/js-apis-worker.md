@@ -991,8 +991,6 @@ workerPort.onmessage = (event: MessageEvents) => {
 
 Worker线程用于与宿主线程通信的类。ThreadWorkerGlobalScope类继承[GlobalScope](#globalscope9)。
 
-**系统能力：** SystemCapability.Utils.Lang
-
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -1965,7 +1963,7 @@ parentPort.onmessage = (): void => {
 
 事件类。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
