@@ -1587,6 +1587,8 @@ export default class EntryAbility extends UIAbility {
 </br>5、合并通知后不能取消合并，本身合并的不能改成不合并。
 </br>6、如果需要合并，但传入的长时任务ID非法，则不支持合并。
 
+### 属性
+
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 | 名称             | 类型     | 只读   | 可选   | 说明                                       |
@@ -1596,7 +1598,32 @@ export default class EntryAbility extends UIAbility {
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 否    | 否    | 通知参数，用于指定点击长时任务通知后跳转的界面。 |
 | combinedTaskNotification | boolean   | 否    | 是    | 是否合并通知， true表示合并， false表示不合并，默认为false。 |
 | continuousTaskId | number   | 否    | 是    | 长时任务Id，必须是存在的Id。 <br/>**说明：** 调用[updateBackgroundRunning](#backgroundtaskmanagerupdatebackgroundrunning21)接口时，此项为必填项。|
-| isModeSupported | number   | 否    | 是    | ？。 |
+
+### isModeSupported<sup>21+</sup>
+
+isModeSupported?(): boolean;
+
+是否支持TASK_KEEPING类型。根据[ContinuousTaskModes](#continuoustaskmode21)的类型判断是否支持TASK_KEEPING
+
+**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+
+**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+**返回值**：
+
+| 类型             | 说明               |
+| -------------- | ---------------- |
+| boolean | 是否支持TASK_KEEPING类型。 <br/>true表示支持，false表示不支持。|
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201 | Permission denied. |
+
+**示例**：
 
 ## ContinuousTaskMode<sup>21+</sup>
 
@@ -1605,14 +1632,14 @@ export default class EntryAbility extends UIAbility {
 **系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 | 名称                     | 值  | 说明                    |
-| ----------------------- | ---- | --------------------- |
-| MODE_DATA_TRANSFER     | 1    | 数据传输。                 |
-| MODE_SHARE_POSITION    | 4    | 定位导航。                  |
-| MODE_ALLOW_BLUETOOTH_AWARE  | 5    | 蓝牙相关业务。  |
-| MODE_MULTI_DEVICE_CONNECTION | 6    | 多设备互联。  |
-| MODE_ALLOW_WIFI_AWARE           | 7    | WIFI相关业务。 |
-| MODE_TASK_KEEPING          | 9    | 计算任务。 |
-| MODE_AV_PLAYBACK_AND_RECORD       | 10   | 音视频播放、录制和通话。  |
+| ------------------------ | ---- | --------------------- |
+| MODE_DATA_TRANSFER              | 1         | 数据传输。                 |
+| MODE_SHARE_POSITION             | 4         | 定位导航。                  |
+| MODE_ALLOW_BLUETOOTH_AWARE      | 5         | 蓝牙相关业务。            |
+| MODE_MULTI_DEVICE_CONNECTION    | 6         | 多设备互联。            |
+| MODE_ALLOW_WIFI_AWARE           | 7         | WIFI相关业务。            |
+| MODE_TASK_KEEPING               | 9         | 计算任务（仅对2in1设备，或者申请ACL权限的应用开放）。<br/>**说明：** 申请该类型长时任务不发送通知。 |
+| MODE_AV_PLAYBACK_AND_RECORD     | 10        | 音视频播放、录制和通话。              |
 
 ## ContinuousTaskSubmode<sup>21+</sup>
 
