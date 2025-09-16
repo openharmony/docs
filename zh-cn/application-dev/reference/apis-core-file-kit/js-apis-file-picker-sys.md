@@ -28,9 +28,13 @@ import  { picker } from '@kit.CoreFileKit';
 
 ### 属性
 
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
 | 名称                    | 类型                                         | 只读  | 可选  | 说明                                     |
 | :---------------------- |---------------------------------------------| ---- | ---- |------------------------------------------|
-| themeColor<sup>18+</sup>     | [CustomColors](../apis-arkui/js-apis-arkui-theme.md#customcolors) |  否  |  是 |主题色参数, 默认为空，跟随FilePicker应用颜色。当themeColor设置为特定的主题色属性（[brand, fontPrimary, compBackgroundEmphasize, iconFourth](../apis-arkui/js-apis-arkui-theme.md#colors)时，被拉起的FilePicker应用将适配传入的主题色参数的效果。<br> **系统能力**：SystemCapability.FileManagement.UserFileService<br> **设备行为差异**：该接口在Phone设备中可正常调用，在其他设备中无效果。 |
+| themeColor<sup>18+</sup>     | [CustomColors](../apis-arkui/js-apis-arkui-theme.md#customcolors) |  否  |  是 |主题色参数, 默认为空，跟随FilePicker应用颜色。当themeColor设置为特定的主题色属性（[brand, fontPrimary, compBackgroundEmphasize, iconFourth](../apis-arkui/js-apis-arkui-theme.md#colors)时，被拉起的FilePicker应用将适配传入的主题色参数的效果。<br> **设备行为差异**：该接口在Phone设备中可正常调用，在其他设备中无效果。 |
 
 ## DocumentSaveOptions
 
@@ -42,6 +46,10 @@ import  { picker } from '@kit.CoreFileKit';
 
 ### 属性
 
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
 | 名称                    | 类型                                          |  只读  | 可选  |说明                                       |
 | :---------------------- |---------------------------------------------| ----- |--------| ------------------------------------------|
-| themeColor<sup>18+</sup>     | [CustomColors](../apis-arkui/js-apis-arkui-theme.md#customcolors) |  否   | 是 | 主题色参数, 默认为空，跟随FilePicker应用颜色。当themeColor设置为特定的主题色属性（[fontEmphasize, compBackgroundEmphasize](../apis-arkui/js-apis-arkui-theme.md#colors)时，被拉起的FilePicker应用将适配传入的主题色参数的效果。<br> **系统能力**：SystemCapability.FileManagement.UserFileService<br> **设备行为差异**：该接口在Phone设备中可正常调用，在其他设备中无效果。|
+| themeColor<sup>18+</sup>     | [CustomColors](../apis-arkui/js-apis-arkui-theme.md#customcolors) |  否   | 是 | 主题色参数, 默认为空，跟随FilePicker应用颜色。当themeColor设置为特定的主题色属性（[fontEmphasize, compBackgroundEmphasize](../apis-arkui/js-apis-arkui-theme.md#colors)时，被拉起的FilePicker应用将适配传入的主题色参数的效果。<br> **设备行为差异**：该接口在Phone设备中可正常调用，在其他设备中无效果。|
