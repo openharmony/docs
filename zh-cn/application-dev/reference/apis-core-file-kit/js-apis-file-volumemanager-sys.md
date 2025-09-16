@@ -16,7 +16,7 @@
 ## 导入模块
 
 ```ts
-import  { volumemanager } from '@kit.CoreFileKit';
+import { volumeManager } from '@kit.CoreFileKit';
 ```
 
 ## volumemanager.getAllVolumes
@@ -53,7 +53,7 @@ getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+  volumeManager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
     // do something with volumes, which is an array
   }).catch((error: BusinessError) => {
     console.error("getAllVolumes failed");
@@ -94,7 +94,7 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  volumemanager.getAllVolumes((error: BusinessError, volumes: Array<volumemanager.Volume>) => {
+  volumeManager.getAllVolumes((error: BusinessError, volumes: Array<volumemanager.Volume>) => {
     // do something
   });
   ```
@@ -144,7 +144,7 @@ mount(volumeId: string): Promise&lt;void&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
-  volumemanager.mount(volumeId).then(() => {
+  volumeManager.mount(volumeId).then(() => {
     // do something
   }).catch((error: BusinessError) => {
     console.error("mount failed");
@@ -191,7 +191,7 @@ mount(volumeId: string, callback:AsyncCallback&lt;void&gt;):void
   ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
-  volumemanager.mount(volumeId, (error: BusinessError) => {
+  volumeManager.mount(volumeId, (error: BusinessError) => {
     // do something
   });
   ```
@@ -241,7 +241,7 @@ unmount(volumeId: string): Promise&lt;void&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
-  volumemanager.unmount(volumeId).then(() => {
+  volumeManager.unmount(volumeId).then(() => {
     // do something
   }).catch((error: BusinessError) => {
     console.error("mount failed");
@@ -288,7 +288,7 @@ unmount(volumeId: string, callback: AsyncCallback&lt;void&gt;): void
   ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
-  volumemanager.unmount(volumeId, (error: BusinessError) => {
+  volumeManager.unmount(volumeId, (error: BusinessError) => {
     // do something
   });
   ```
@@ -335,7 +335,7 @@ getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
   let uuid: string = "";
-  volumemanager.getVolumeByUuid(uuid).then((volume: volumemanager.Volume) => {
+  volumeManager.getVolumeByUuid(uuid).then((volume: volumemanager.Volume) => {
     console.info("getVolumeByUuid successfully:" + JSON.stringify(volume));
   }).catch((error: BusinessError) => {
     console.error("getVolumeByUuid failed with error:" + JSON.stringify(error));
@@ -379,7 +379,7 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
   ```ts
   import { BusinessError } from '@ohos.base';
   let uuid: string = "";
-  volumemanager.getVolumeByUuid(uuid, (error: BusinessError, volume: volumemanager.Volume) => {
+  volumeManager.getVolumeByUuid(uuid, (error: BusinessError, volume: volumemanager.Volume) => {
     // do something    
   });
   ```
@@ -426,7 +426,7 @@ getVolumeById(volumeId: string): Promise&lt;Volume&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
-  volumemanager.getVolumeById(volumeId).then((volume: volumemanager.Volume) => {
+  volumeManager.getVolumeById(volumeId).then((volume: volumemanager.Volume) => {
     console.info("getVolumeById successfully:" + JSON.stringify(volume));
   }).catch((error: BusinessError) => {
     console.error("getVolumeById failed with error:" + JSON.stringify(error));
@@ -470,7 +470,7 @@ getVolumeById(volumeId: string, callback: AsyncCallback&lt;Volume&gt;): void
   ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
-  volumemanager.getVolumeById(volumeId, (error: BusinessError, volume: volumemanager.Volume) => {
+  volumeManager.getVolumeById(volumeId, (error: BusinessError, volume: volumemanager.Volume) => {
     // do something    
   });
   ```
@@ -521,7 +521,7 @@ setVolumeDescription(uuid: string, description: string): Promise&lt;void&gt;
   import { BusinessError } from '@ohos.base';
   let uuid: string = "";
   let description: string = "";
-  volumemanager.setVolumeDescription(uuid, description).then(() => {
+  volumeManager.setVolumeDescription(uuid, description).then(() => {
     console.info("setVolumeDescription successfully");
   }).catch((error: BusinessError) => {
     console.error("setVolumeDescription failed with error:" + JSON.stringify(error));
@@ -569,7 +569,7 @@ setVolumeDescription(uuid: string, description: string, callback: AsyncCallback&
   import { BusinessError } from '@ohos.base';
   let uuid: string = "";
   let description: string = "";
-  volumemanager.setVolumeDescription(uuid, description, (error: BusinessError) => {
+  volumeManager.setVolumeDescription(uuid, description, (error: BusinessError) => {
     // do something    
   });
   ```
@@ -620,7 +620,7 @@ format(volumeId: string, fsType: string): Promise&lt;void&gt;
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
   let fsType: string = "";
-  volumemanager.format(volumeId, fsType).then(() => {
+  volumeManager.format(volumeId, fsType).then(() => {
     console.info("format successfully");
   }).catch((error: BusinessError) => {
     console.error("format failed with error:" + JSON.stringify(error));
@@ -668,7 +668,7 @@ format(volumeId: string, fsType: string, callback: AsyncCallback&lt;void&gt;): v
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
   let fsType: string = "";
-  volumemanager.format(volumeId, fsType, (error: BusinessError) => {
+  volumeManager.format(volumeId, fsType, (error: BusinessError) => {
     // do something    
   });
   ```
@@ -717,7 +717,7 @@ partition(diskId: string, type: number): Promise&lt;void&gt;
   import { BusinessError } from '@ohos.base';
   let diskId: string = "";
   let type: number = 0;
-  volumemanager.partition(diskId, type).then(() => {
+  volumeManager.partition(diskId, type).then(() => {
     console.info("partition successfully");
   }).catch((error: BusinessError) => {
     console.error("partition failed with error:" + JSON.stringify(error));
@@ -763,7 +763,7 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
   import { BusinessError } from '@ohos.base';
   let diskId: string = "";
   let type: number = 0;
-  volumemanager.partition(diskId, type, (error: BusinessError) => {
+  volumeManager.partition(diskId, type, (error: BusinessError) => {
     // do something    
   });
   ```
