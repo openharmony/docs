@@ -8,7 +8,7 @@
 
 从API version 20开始，相机框架通过相机控制器，为应用直播场景提供美颜、虚化等能力。
 
-相机控制器服务于直播场景，仅支持前置镜头下的[VideoSession](../../reference/apis-camera-kit/arkts-apis-camera-VideoSession.md)，支持分辨率上限1080P，帧率上限30fps。
+相机控制器服务于直播/视频通话场景，当前支持前置镜头下的[VideoSession](../../reference/apis-camera-kit/arkts-apis-camera-VideoSession.md)，且支持的分辨率上限为1080P，帧率上限为30fps。
 
 ## 开发步骤
 
@@ -51,7 +51,7 @@
     }
     ```
 
-5. 使能相机控制器后，可以在状态栏看到新增的视频效果图标。
+5. 使能相机控制器后，可以在状态栏看到新增的`视频效果`图标。
 
     ![camera-control-center-status](figures/camera-control-center-status.png)
 
