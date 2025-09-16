@@ -1624,7 +1624,7 @@ export default class EntryAbility extends UIAbility {
 | ----------------------- | ---- | --------------------- |
 | SUBMODE_CAR_KEY_NORMAL_NOTIFICATION     | 1    | 车钥匙类型通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_ALLOW_BLUETOOTH_AWARE。                 |
 | SUBMODE_NORMAL_NOTIFICATION    | 2    | 普通通知。                  |
-| SUBMODE_LIVE_VIEW_NOTIFICATION  | 3    | 实况窗通知。  |
+| SUBMODE_OBVIOUS_NOTIFICATION  | 3    | 实况窗通知。  |
 | SUBMODE_AUDIO_PLAYBACK_NORMAL_NOTIFICATION   | 4    | 播音类型普通通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD  |
 | SUBMODE_AVSESSION_AUDIO_PLAYBACK           | 5    | 接入播控中心[AVSession](../../media/avsession/avsession-overview.md)通知。<br/>**说明：** ContinuousTaskMode[ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD |
 | SUBMODE_AUDIO_RECORD_NORMAL_NOTIFICATION          | 6    | 录音类型普通通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD |
@@ -1636,7 +1636,7 @@ export default class EntryAbility extends UIAbility {
 | ----------------------------- | ----------------------------------- |
 | SUBMODE_CAR_KEY_NORMAL_NOTIFICATION        | MODE_ALLOW_BLUETOOTH_AWARE              |
 | SUBMODE_NORMAL_NOTIFICATION                | 除了MODE_DATA_TRANSFER类型的其他类型      |
-| SUBMODE_LIVE_VIEW_NOTIFICATION             | MODE_DATA_TRANSFER                      |
+| SUBMODE_OBVIOUS_NOTIFICATION             | MODE_DATA_TRANSFER                      |
 | SUBMODE_AUDIO_PLAYBACK_NORMAL_NOTIFICATION | MODE_AV_PLAYBACK_AND_RECORD             |
 | SUBMODE_AVSESSION_AUDIO_PLAYBACK           | MODE_AV_PLAYBACK_AND_RECORD             |
 | SUBMODE_AUDIO_RECORD_NORMAL_NOTIFICATION   | MODE_AV_PLAYBACK_AND_RECORD             |
