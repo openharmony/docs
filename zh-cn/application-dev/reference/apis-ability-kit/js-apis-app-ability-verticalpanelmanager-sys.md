@@ -235,8 +235,8 @@ let callback: verticalPanelManager.PanelStartCallback = {
 
 | 名称 | 类型 | 值 | 说明 |
 | -------- | -------- | -------- | -------- |
-| SOURCE_APP_BUNDLE_NAME | string | 'bundleName' | 常量字符串bundleName，表示源应用的包名，可以作为[sourceAppInfo](#panelconfig)的key值。 |
-| SOURCE_APP_MODULE_NAME | string | 'moduleName' | 常量字符串moduleName，表示源应用的模块名，可以作为[sourceAppInfo](#panelconfig)的key值。 |
-| SOURCE_APP_ABILITY_NAME | string | 'abilityName' | 常量字符串abilityName，表示源应用的能力名，可以作为[sourceAppInfo](#panelconfig)的key值。 |
-| SOURCE_APP_WINDOW_ID | string | 'windowId' | 常量字符串windowId，表示源应用的窗口Id，可以作为[sourceAppInfo](#panelconfig)的key值。 |
+| SOURCE_APP_BUNDLE_NAME | string | 'bundleName' | 常量字符串bundleName，表示源应用的包名。可以作为[sourceAppInfo](#panelconfig)的key值。 |
+| SOURCE_APP_MODULE_NAME | string | 'moduleName' | 常量字符串moduleName，表示源应用的模块名。可以作为[sourceAppInfo](#panelconfig)的key值。 |
+| SOURCE_APP_ABILITY_NAME | string | 'abilityName' | 常量字符串abilityName，表示源应用的能力名。可以作为[sourceAppInfo](#panelconfig)的key值。 |
+| SOURCE_APP_WINDOW_ID | string | 'windowId' | 常量字符串windowId，表示源应用的窗口Id。可以作为[sourceAppInfo](#panelconfig)的key值。 |
 | SOURCE_APP_SCREEN_MODE | string | 'screenMode' | 常量字符串screenMode，表示源应用的屏幕模式，当前只在值为'1'的分屏模式下能正常拉起垂类面板。可以作为[sourceAppInfo](#panelconfig)的key值。 |
