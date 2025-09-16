@@ -554,9 +554,9 @@ hiTraceMeter.finishTrace("fillText1", 100);
 
 ### hiperf工具使用指导
 
-集成在Smartperf的hiperf工具使用指导，具体可见 [HiPerf的抓取和展示说明](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_hiperf.md)。
+集成在Smartperf的hiperf工具使用指导，具体可见 [HiPerf的抓取和展示说明](https://gitcode.com/openharmony/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_hiperf.md)。
 
-hiperf工具的单独使用指导，具体可见 [hiperf应用性能优化工具](https://gitee.com/openharmony/developtools_hiperf)。
+hiperf工具的单独使用指导，具体可见 [hiperf应用性能优化工具](https://gitcode.com/openharmony/developtools_hiperf)。
 
 ### TS&JS及NAPI层面耗时分析工具
 

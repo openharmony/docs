@@ -533,7 +533,7 @@ Native侧
         ${EGL-lib} ${GLES-lib} ${hilog-lib} ${libace-lib} ${libnapi-lib} ${libuv-lib} libnative_window.so)
     ```
 
-上述用例具体实现可参考<!--RP2-->[ArkTSXComponent（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)<!--RP2nd-->。
+上述用例具体实现可参考<!--RP2-->[ArkTSXComponent（API12）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)<!--RP2nd-->。
 
 ## 使用OH_ArkUI_SurfaceHolder管理Surface生命周期
 

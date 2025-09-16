@@ -72,7 +72,7 @@
 
           // 注意：FormExtensionAbility在触发生命周期回调时被拉起，仅能在后台存在5秒
           // 建议下载能快速下载完成的小文件，如在5秒内未下载完成，则此次网络图片无法刷新至卡片页面上
-          let netFile = 'https://cn-assets.gitee.com/assets/mini_app-e5eee5a21c552b69ae6bf2cf87406b59.jpg'; // 需要在此处使用真实的网络图片下载链接
+          let netFile = 'https://cn-assets.gitcode.com/assets/mini_app-e5eee5a21c552b69ae6bf2cf87406b59.jpg'; // 需要在此处使用真实的网络图片下载链接
           let tempDir = this.context.getApplicationContext().tempDir;
           let fileName = 'file' + Date.now();
           let tmpFile = tempDir + '/' + fileName;
