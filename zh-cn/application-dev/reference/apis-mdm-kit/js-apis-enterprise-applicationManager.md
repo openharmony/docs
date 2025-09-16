@@ -945,7 +945,7 @@ let bundleName: string = 'com.example.exampleapplication';
 try {
   // 需根据实际情况进行替换
   applicationManager.clearUpApplicationData(wantTemp, bundleName, 0, 100);
-  console.info('Succeeded in clear up application data.');
+  console.info('Succeeded in clearing up application data.');
 } catch (err) {
   console.error(`Failed to clear up application data. Code is ${err.code}, message is ${err.message}`);
 }
