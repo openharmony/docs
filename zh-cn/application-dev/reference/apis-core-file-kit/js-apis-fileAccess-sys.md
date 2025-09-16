@@ -17,7 +17,7 @@ fileAccess模块是基于[extension](../../application-models/extensionability-o
 ## 导入模块
 
 ```ts
-import  { fileAccess } from '@kit.CoreFileKit';
+import { fileAccess } from '@kit.CoreFileKit';
 ```
 
 ## 常量
@@ -952,7 +952,7 @@ openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | -- |
 | uri | string | 是 | 待打开文件的uri。 |
-| flags | [OPENFLAGS](#openflags) | 是 | 文件打开的标志。 |
+| flags | [OPENFLAGS](#openflags) | 是 | 文件打开的标志。默认值为0o0，即读模式。 |
 
 **返回值：**
 
@@ -1003,7 +1003,7 @@ openFile(uri: string, flags: OPENFLAGS, callback: AsyncCallback&lt;number&gt;) :
 | 参数名 | 类型 | 必填 | 说明 |
 | --- | --- | --- | -- |
 | uri | string | 是 | 待打开文件的uri。 |
-| flags | [OPENFLAGS](#openflags) | 是 | 文件打开的标志。 |
+| flags | [OPENFLAGS](#openflags) | 是 | 文件打开的标志。默认值为0o0，即读模式。 |
 | callback | AsyncCallback&lt;number&gt; | 是 | 文件描述符。 |
 
 **错误码：**
@@ -2014,7 +2014,7 @@ let fileName: string = "2.txt";
 let fileAccessHelper : fileAccess.FileAccessHelper|undefined;
 try {
   if (fileAccessHelper != undefined) {
-    fileAccessHelper.copyFile(sourceFile, destFile, fileName, async (copyResult: string) => {
+    fileAccessHelper.copyFile(sourceFile, destFile, fileName, async (err: BusinessError, copyResult: string) => {
           console.info("copyResult uri: " + copyResult);
     });
   }
