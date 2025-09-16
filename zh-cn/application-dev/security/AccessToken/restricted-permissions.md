@@ -763,7 +763,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 获取该权限后，应用可控制系统分享的目标应用范围。
 
-<!--RP51--><!--RP51End-->
+<!--RP53--><!--RP53End-->
 
 **权限级别**：system_basic
 
