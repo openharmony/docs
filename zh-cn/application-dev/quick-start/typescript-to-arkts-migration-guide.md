@@ -641,8 +641,8 @@ class C {
 **ArkTS**
 
 ```typescript
-interface ListItem {
-  getHead(): ListItem
+interface testListItem {
+  getHead(): testListItem
 }
 
 class C {
@@ -1429,9 +1429,9 @@ c3.foo(); // Extra foo
 **TypeScript**
 
 ```typescript
-class Shape {}
-class Circle extends Shape { x: number = 5 }
-class Square extends Shape { y: string = 'a' }
+class testShape {}
+class testCircle extends testShape { x: number = 5 }
+class testSquare extends testShape { y: string = 'a' }
 
 function createShape(): Shape {
   return new Circle();
@@ -1455,15 +1455,14 @@ let e2 = (new Number(5.0)) instanceof Number; // true
 **ArkTS**
 
 ```typescript
-class Shape {}
-class Circle extends Shape { x: number = 5 }
-class Square extends Shape { y: string = 'a' }
+class testShape {}
+class testCircle extends testShape { x: number = 5 }
 
-function createShape(): Shape {
+function createShape(): testShape {
   return new Circle();
 }
 
-let c2 = createShape() as Circle;
+let c2 = createShape() as testCircle;
 
 // 创建Number对象，获得预期结果：
 let e2 = (new Number(5.0)) instanceof Number; // true

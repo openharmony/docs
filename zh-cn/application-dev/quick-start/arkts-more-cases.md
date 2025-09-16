@@ -177,7 +177,7 @@ type ControllerConstructor = {
   new (value: string): Controller;
 }
 
-class Menu {
+class testMenu {
   controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
@@ -187,7 +187,7 @@ class Menu {
   }
 }
 
-let t = new Menu();
+let t = new testMenu();
 console.log(t.createController()!.value);
 ```
 
@@ -204,7 +204,7 @@ class Controller {
 
 type ControllerConstructor = () => Controller;
 
-class Menu {
+class testMenu {
   controller: ControllerConstructor = () => {
     return new Controller('abc');
   }
@@ -217,7 +217,7 @@ class Menu {
   }
 }
 
-let t: Menu = new Menu();
+let t: testMenu = new testMenu();
 console.log(t.createController()!.value);
 ```
 
@@ -319,7 +319,7 @@ interface ControllerConstructor {
   new (value: string): Controller;
 }
 
-class Menu {
+class testMenu {
   controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
@@ -329,7 +329,7 @@ class Menu {
   }
 }
 
-let t = new Menu();
+let t = new testMenu();
 console.log(t.createController()!.value);
 ```
 
@@ -346,7 +346,7 @@ class Controller {
 
 type ControllerConstructor = () => Controller;
 
-class Menu {
+class testMenu {
   controller: ControllerConstructor = () => {
     return new Controller('abc');
   }
@@ -359,7 +359,7 @@ class Menu {
   }
 }
 
-let t: Menu = new Menu();
+let t: testMenu = new testMenu();
 console.log(t.createController()!.value);
 ```
 
@@ -1262,7 +1262,7 @@ class Controller {
 
 type ControllerConstructor = new (value: string) => Controller;
 
-class Menu {
+class testMenu {
   controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
@@ -1272,7 +1272,7 @@ class Menu {
   }
 }
 
-let t = new Menu()
+let t = new testMenu()
 console.log(t.createController()!.value)
 ```
 
@@ -1288,7 +1288,7 @@ class Controller {
 
 type ControllerConstructor = () => Controller;
 
-class Menu {
+class testMenu {
   controller: ControllerConstructor = () => { return new Controller('abc') }
   createController() {
     if (this.controller) {
@@ -1298,7 +1298,7 @@ class Menu {
   }
 }
 
-let t: Menu = new Menu();
+let t: testMenu = new testMenu();
 console.log(t.createController()!.value);
 ```
 
