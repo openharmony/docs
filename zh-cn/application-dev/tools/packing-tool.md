@@ -20,17 +20,17 @@
 
 **表1** module.json与配置文件属性的对照表
 
-| module.json属性          | [module.json5](../quick-start/module-configuration-file.md#配置文件标签)配置项         | [app.json5](../quick-start/app-configuration-file.md#配置文件标签)配置项            | [工程级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile-app)配置项  |
-| ------------------------ | ------------------------ | -------------------------- | --------------------------       |
-| bundleName               | -                        | bundleName                 | -                                |
-| bundleType               | -                        | bundleType                 | -                                |
-| versionCode              | -                        | versionCode                | -                                |
-| debug                    | -                        | debug                      | -                                |
-| module/name              | module/name              | -                          | -                                |
-| minCompatibleVersionCode | -                        | minCompatibleVersionCode   | -                                |
-| minAPIVersion            | -                        | minAPIVersion              | compatibleSdkVersion             |
-| targetAPIVersion         | -                        | targetAPIVersion           | targetSdkVersion/compileSdkVersion  <br/>说明：targetSdkVersion存在时，targetAPIVersion由targetSdkVersion决定；<br/>否则，targetAPIVersion由compileSdkVersion决定。               |
-| querySchemes             | querySchemes              | -                          | -                                |
+| module.json属性          | 含义          | [module.json5](../quick-start/module-configuration-file.md#配置文件标签)配置项         | [app.json5](../quick-start/app-configuration-file.md#配置文件标签)配置项            | [工程级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile-app)配置项  |
+| ------------------------ | ------------------------ | ------------------------ | -------------------------- | --------------------------       |
+| bundleName               | 应用的Bundle名称。        | -                        | bundleName                 | -                                |
+| bundleType               | 应用的Bundle类型。        | -                        | bundleType                 | -                                |
+| versionCode              | 应用的版本号。            | -                        | versionCode                | -                                |
+| debug                    | 应用是否可调试。          | -                        | debug                      | -                                |
+| module/name              | 当前Module的名称。        | module/name              | -                          | -                                |
+| minCompatibleVersionCode | 应用能够兼容的最低历史版本号。| -                        | minCompatibleVersionCode   | -                                |
+| minAPIVersion            | 应用运行所需的最小API版本。| -                        | minAPIVersion              | compatibleSdkVersion             |
+| targetAPIVersion         | 应用运行需要的API目标版本。 | -                        | targetAPIVersion           | targetSdkVersion/compileSdkVersion  <br/>说明：targetSdkVersion存在时，targetAPIVersion由targetSdkVersion决定；<br/>否则，targetAPIVersion由compileSdkVersion决定。               |
+| querySchemes             | 允许应用进行跳转查询的URL schemes。| querySchemes              | -                          | -                                |
 
 ## 约束与限制
 
@@ -86,7 +86,7 @@
 | --ap-path        | 否         | NA            | 存放[ap文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-arkts-52-V5)的路径。| 仅stage模型生效。 |
 | --dir-list       | 否         | NA            | 可指定目标文件夹列表，将其打入HAP包内。                      | NA              |
 | --compress-level | 否         | number        | lib库下文件压缩等级，默认值1。可选等级1-9。在应用配置compressNativeLibs参数为true的情况下生效，数值越大压缩率越高、压缩速度越慢。 | NA  |
-| --pkg-context-path      | 否         | NA            | 可指定语境信息表文件路径，文件名必须为pkgContextInfo.json。 | 仅Stage模型生效。              |
+| --pkg-context-path      | 否         | NA            | 可指定语境信息表文件路径，文件名必须为pkgContextInfo.json。当app.json5配置文件中bundleType取值不是appPlugin，且module.json5配置文件中requestPermissions取值包含"ohos.permission.kernel.SUPPORT_PLUGIN"时，该参数必填。 | 仅Stage模型生效。              |
 | --hnp-path | 否 | NA | 指定native软件包文件路径，将native软件包打入HAP包内。 | NA |
 
 ## HSP打包指令
@@ -119,7 +119,7 @@ java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <
 | --out-path       | 是         | NA            | 目标文件路径，文件名必须以.hsp为后缀。                       |
 | --force          | 否         | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。  |
 | --compress-level | 否         | number        | lib库下文件压缩等级，默认值1，可选等级1-9。在应用配置compressNativeLibs参数为true的情况下生效，数值越大压缩率越高、压缩速度越慢。 |
-| --pkg-context-path      | 否         | NA            | 可指定语境信息表文件路径，文件名必须为pkgContextInfo.json。 |
+| --pkg-context-path      | 否         | NA            | 可指定语境信息表文件路径，文件名必须为pkgContextInfo.json。当app.json5配置文件中bundleType取值不是appPlugin，且module.json5配置文件中requestPermissions取值包含"ohos.permission.kernel.SUPPORT_PLUGIN"时，该参数必填。 |
 
 ## App打包指令
 
@@ -170,8 +170,8 @@ java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>
 | --force            | 否     | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。                           |
 | --encrypt-path     | 否     | NA          | 文件名必须为encrypt.json 。                           |
 | --pac-json-path     | 否     | NA          | pac.json文件路径，文件名必须为pac.json。<br/>从API Version 20开始支持该参数。|
-| --atomic-service-entry-size-limit      | 否         | NA            | 设置元服务entry包大小（包含其依赖包的大小）限制，仅Stage模型应用且bundleType为atomicService时生效。取值范围为[0,4194304]的整数，取值为0表示不限制大小，单位KB。不设置该参数时默认值为2048KB。                       |
-| --atomic-service-non-entry-size-limit  | 否         | NA            | 设置元服务非entry包大小（包含其依赖包的大小）限制，仅Stage模型应用且bundleType为atomicService时生效。取值范围为[0,4194304]的整数，取值为0表示不限制大小，单位KB。不设置该参数时默认值为2048KB。                     |
+| --atomic-service-entry-size-limit      | 否         | NA            | 设置元服务entry包大小（包含其依赖包的大小）限制，仅Stage模型应用且bundleType为atomicService时生效。取值范围为[0,4194304]的整数，取值为0表示不限制大小，单位KB。不设置该参数时默认值为2048KB。如果entry包是release模式（module.json5文件中type字段值为entry，且app.json5中debug字段的值为false），该限制作用于打包app时压缩后的entry包大小（包含其依赖包的大小）。                       |
+| --atomic-service-non-entry-size-limit  | 否         | NA            | 设置元服务非entry包大小（包含其依赖包的大小）限制，仅Stage模型应用且bundleType为atomicService时生效。取值范围为[0,4194304]的整数，取值为0表示不限制大小，单位KB。不设置该参数时默认值为2048KB。如果非entry包是release模式（module.json5文件中type字段值不是entry，且app.json5中debug字段的值为false），该限制作用于打包app时压缩后的非entry包大小（包含其依赖包的大小）。                     |
 
 
 
@@ -215,8 +215,8 @@ java -jar app_packing_tool.jar --mode multiApp [--hap-list <path>] [--hsp-list <
 | --force    | 否     | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。                                                                  |
 | --encrypt-path | 否     | encrypt.json的路径 | 文件名必须为encrypt.json。                                                                  |
 | --pac-json-path | 否     | NA          | pac.json文件路径，文件名必须为pac.json。<br/>最终app产物中pac.json文件只来源于该参数，不配置的话，最终app产物不包含该文件。<br/>--app-list参数指定的app包中的pac.json不会打包进最终app。<br/>从API Version 20开始支持该参数。|
-| --atomic-service-entry-size-limit      | 否         | NA            | 设置元服务entry包大小（包含其依赖包的大小）限制，仅Stage模型应用且bundleType为atomicService时生效。取值范围为[0,4194304]的整数，取值为0表示不限制大小，单位KB。不设置该参数时默认值为2048KB。                       |
-| --atomic-service-non-entry-size-limit  | 否         | NA            | 设置元服务非entry包大小（包含其依赖包的大小）限制，仅Stage模型应用且bundleType为atomicService时生效。取值范围为[0,4194304]的整数，取值为0表示不限制大小，单位KB。不设置该参数时默认值为2048KB。                     |
+| --atomic-service-entry-size-limit      | 否         | NA            | 设置元服务entry包大小（包含其依赖包的大小）限制，仅Stage模型应用且bundleType为atomicService时生效。取值范围为[0,4194304]的整数，取值为0表示不限制大小，单位KB。不设置该参数时默认值为2048KB。如果entry包是release模式（module.json5文件中type字段值为entry，且app.json5中debug字段的值为false），该限制作用于打包app时压缩后的entry包大小（包含其依赖包的大小）。                       |
+| --atomic-service-non-entry-size-limit  | 否         | NA            | 设置元服务非entry包大小（包含其依赖包的大小）限制，仅Stage模型应用且bundleType为atomicService时生效。取值范围为[0,4194304]的整数，取值为0表示不限制大小，单位KB。不设置该参数时默认值为2048KB。如果非entry包是release模式（module.json5文件中type字段值不是entry，且app.json5中debug字段的值为false），该限制作用于打包app时压缩后的非entry包大小（包含其依赖包的大小）。                     |
 
 
 
@@ -407,8 +407,8 @@ java -jar app_packing_tool.jar --mode fastApp [--hap-path <path>] [--hsp-path <p
 | --force            | 否     | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。           |
 | --encrypt-path     | 否     | NA         | 文件名必须为encrypt.json。           |
 | --pac-json-path     | 否     | NA          | pac.json文件路径，文件名必须为pac.json。<br/>从API Version 20开始支持该参数。|
-| --atomic-service-entry-size-limit      | 否         | NA            | 设置元服务entry包大小（包含其依赖包的大小）限制，仅Stage模型应用且bundleType为atomicService时生效。取值范围为[0,4194304]的整数，取值为0表示不限制大小，单位KB。不设置该参数时默认值为2048KB。                      |
-| --atomic-service-non-entry-size-limit  | 否         | NA            | 设置元服务非entry包大小（包含其依赖包的大小）限制，仅Stage模型应用且bundleType为atomicService时生效。取值范围为[0,4194304]的整数，取值为0表示不限制大小，单位KB。不设置该参数时默认值为2048KB。                     |
+| --atomic-service-entry-size-limit      | 否         | NA            | 设置元服务entry包大小（包含其依赖包的大小）限制，仅Stage模型应用且bundleType为atomicService时生效。取值范围为[0,4194304]的整数，取值为0表示不限制大小，单位KB。不设置该参数时默认值为2048KB。如果entry包是release模式（module.json5文件中type字段值为entry，且app.json5中debug字段的值为false），该限制作用于打包app时压缩后的entry包大小（包含其依赖包的大小）。                      |
+| --atomic-service-non-entry-size-limit  | 否         | NA            | 设置元服务非entry包大小（包含其依赖包的大小）限制，仅Stage模型应用且bundleType为atomicService时生效。取值范围为[0,4194304]的整数，取值为0表示不限制大小，单位KB。不设置该参数时默认值为2048KB。如果非entry包是release模式（module.json5文件中type字段值不是entry，且app.json5中debug字段的值为false），该限制作用于打包app时压缩后的非entry包大小（包含其依赖包的大小）。                     |
 
 ## 打包工具错误码
 
@@ -673,11 +673,11 @@ Check atomicService size failed.
 
 **错误描述**
 
-打包App时，检查元服务包的大小超出了2MB。
+打包App时，元服务包的大小超出了限制。
 
 **可能原因**
 
-元服务包及依赖的共享库或资源文件大小超出了2MB的限制。
+元服务包及依赖的共享库或资源文件大小超出了限制。具体限制请参考[表5 App打包指令参数说明](#app打包指令)中--atomic-service-entry-size-limit和--atomic-service-non-entry-size-limit参数描述。
 
 **处理步骤**
 
@@ -947,11 +947,11 @@ Check file size failed.
 
 **错误描述**
 
-构建元服务类型App时，检查单个包大小超过2MB。
+构建元服务类型App时，单个包大小超过限制。
 
 **可能原因**
 
-单个包大小超过2MB，超出限制。
+单个包大小超过限制。具体限制请参考[表5 App打包指令参数说明](#app打包指令)中--atomic-service-entry-size-limit和--atomic-service-non-entry-size-limit参数描述。
 
 **处理步骤**
 
@@ -964,11 +964,11 @@ Check the atomicService module size failed.
 
 **错误描述**
 
-构建元服务类型App时，检查单个包和其依赖的共享库大小超过2MB。
+构建元服务类型App时，单个包和其依赖的共享库大小超过限制。
 
 **可能原因**
 
-单个包和其依赖的共享库总大小超过2MB，超出限制。
+单个包和其依赖的共享库总大小超过限制。具体限制请参考[表5 App打包指令参数说明](#app打包指令)中--atomic-service-entry-size-limit和--atomic-service-non-entry-size-limit参数描述。
 
 **处理步骤**
 
