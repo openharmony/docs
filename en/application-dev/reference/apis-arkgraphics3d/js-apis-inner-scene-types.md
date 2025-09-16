@@ -89,7 +89,7 @@ Enumerates the geometry types.
 
 | Name| Value| Description|
 | ---- | ---- | ---- |
-| CUSTOM | 0 | Undefined.|
+| CUSTOM | 0 | Custom geometry type.|
 | CUBE | 1 | Cube.|
 | PLANE | 2 | Plane.|
 | SPHERE | 3 | Sphere.|
