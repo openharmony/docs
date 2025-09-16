@@ -45,7 +45,7 @@ const resources: RecordingResources = {};
 
 async function releaseResources(): Promise<void> {
   const releaseSteps = [
-    // Stop video recording.
+  // Stop video recording.
     async () => await resources.avRecorder?.stop().catch((e: BusinessError) => console.error('Failed to stop video recording:', e)),
     // Stop video output.
     async () => await resources.videoOutput?.stop().catch((e: BusinessError) => console.error('Failed to stop video output:', e)),
@@ -143,7 +143,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   // The width and height of videoProfile must be the same as those of AVRecorderProfile.
   // In this sample code, the first video profile is selected. You need to select a video profile as required.
   const videoProfile: camera.VideoProfile = cameraOutputCap.videoProfiles[0];
-  let videoUri: string = `file://${context.filesDir}/${Date.now()}.mp4`; // Local sandbox path.
+  let videoUri: string = context.filesDir + '/' + 'VIDEO_' + Date.parse(new Date().toString()) + '.mp4'; // Local sandbox path.
   try {
     resources.file = fs.openSync(videoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   } catch (error) {
@@ -175,15 +175,13 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     videoOrientation: '0' // The value can be 0, 90, 180, or 270. If any other value is used, prepare() reports an error.
     location: { latitude: 30, longitude: 130 }
   }
-  let videoUri: string = context.filesDir + '/' + 'VIDEO_' + Date.parse(new Date().toString()) + '.mp4'; // Local sandbox path.
-  let file: fs.File = fs.openSync(videoUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let aVRecorderConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
     videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
     profile: aVRecorderProfile,
     url: `fd://${resources.file.fd.toString()}`, // Before passing in a file descriptor to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: fd://45--file:///data/media/01.mp4.
     rotation: 0, // The value can be 0, 90, 180, or 270. If any other value is used, prepare() reports an error.
-    location: { latitude: 30, longitude: 130 }
+    metadata: avMetadata
   };
 
   try {
@@ -297,23 +295,6 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.error(`Failed to open cameraInput. error: ${err}`);
   }
 
-  // Add the camera input stream to the session.
-  try {
-    videoSession.addInput(cameraInput);
-  } catch (error) {
-    let err = error as BusinessError;
-    console.error(`Failed to add cameraInput. error: ${err}`);
-  }
-
-  // Create a preview output stream. The preview stream uses the surface provided by the XComponent.
-  let previewOutput: camera.PreviewOutput | undefined = undefined;
-  let previewProfile = previewProfilesArray.find((previewProfile: camera.Profile) => {
-    return Math.abs((previewProfile.size.width / previewProfile.size.height) - (videoProfile.size.width / videoProfile.size.height)) < Number.EPSILON;
-  }); // Select the preview resolution with the same aspect ratio as the recording resolution.
-  if (previewProfile === undefined) {
-    return;
-  }
-
   // Create a session.
   try {
     resources.videoSession = cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
@@ -358,11 +339,11 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   }
 
   // Stop the session.
-  await videoSession.stop();
+  await resources.videoSession.stop();
 
   // Close the file.
   try {
-    fs.closeSync(file);
+    fs.closeSync(resources.file);
   } catch (error) {
     let err = error as BusinessError;
     console.error(`closeSync failed, error: ${err}`);
@@ -370,11 +351,11 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
 
 
   // Release the camera input stream.
-  await cameraInput.close();
+  await resources.cameraInput.close();
 
   // Release the preview output stream.
   try {
-    await previewOutput.release();
+    await resources.previewOutput.release();
   } catch (error) {
     let err = error as BusinessError;
     console.error(`release previewOutput failed, error: ${err.code}`);
@@ -383,7 +364,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
 
   // Release the video output stream.
   try {
-    await videoOutput.release();
+    await resources.videoOutput.release();
   } catch (error) {
     let err = error as BusinessError;
     console.error(`release videoOutput failed, error: ${err.code}`);
@@ -391,13 +372,13 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
 
   // Release the session.
   try {
-    await videoSession.release();
+    await resources.videoSession.release();
   } catch (error) {
     let err = error as BusinessError;
     console.error(`release videoSession failed, error: ${err.code}`);
   }
-  
+
   // Set the session to null.
-  videoSession = undefined;
+  resources.videoSession = undefined;
 }
 ```

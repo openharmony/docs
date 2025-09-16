@@ -50,7 +50,6 @@ After obtaining the output stream capabilities supported by the camera, create a
 3. Import the NDK APIs on the C++ side, and perform photo capture based on the surface ID passed in.
     ```c++
     #include "hilog/log.h"
-    #include "ndk_camera.h"
 
     void CaptureSessionOnFocusStateChange(Camera_CaptureSession* session, Camera_FocusState focusState)
     {
