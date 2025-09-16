@@ -1,4 +1,4 @@
-# 订阅应用查杀事件（ArkTS）
+# 订阅应用终止事件（ArkTS）
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
@@ -7,9 +7,9 @@
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @foryourself-->
 
-## 应用查杀事件规格说明
+## 应用终止事件规格说明
 
-请参考[应用查杀事件介绍](./hiappevent-watcher-app-killed-events.md)。
+请参考[应用终止事件介绍](./hiappevent-watcher-app-killed-events.md)。
 
 ## 接口说明
 
@@ -22,7 +22,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 ## 开发步骤
 
-为确保开发阶段顺利接收事件回调，建议采用以下方案：创建新的Native C++工程，在ArkTs代码中实现订阅，搭配C++代码的故障注入代码构造故障以触发应用查杀事件。
+为确保开发阶段顺利接收事件回调，建议采用以下方案：创建新的Native C++工程，在ArkTs代码中实现订阅，搭配C++代码的故障注入代码构造故障以触发应用终止事件。
 
 1. 编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，导入依赖模块：
 
@@ -36,7 +36,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    hiAppEvent.addWatcher({
      // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
      name: "watcher",
-     // 开发者可以订阅感兴趣的系统事件，此处是订阅了应用查杀事件
+     // 开发者可以订阅感兴趣的系统事件，此处是订阅了应用终止事件
      appEventFilters: [
        {
          domain: hiAppEvent.domain.OS,
@@ -53,11 +53,11 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
            // 开发者可以对事件集合中的事件数据进行自定义处理，此处是将事件数据打印在日志中
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.domain=${eventInfo.domain}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.name=${eventInfo.name}`);
-           // 开发者可以获取到应用查杀事件发生的时间戳
+           // 开发者可以获取到应用终止事件发生的时间戳
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.time=${eventInfo.params['time']}`);
            // 开发者可以获取到应用的前后台状态
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params['foreground']}`);
-           // 开发者可以获取到应用查杀事件发生的原因
+           // 开发者可以获取到应用终止事件发生的原因
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.reason=${eventInfo.params['reason']}`);
          }
        }
@@ -143,11 +143,11 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-7. 点击DevEco Studio界面中的运行按钮，运行应用工程，点击屏幕中间的“Start To Leak”按钮，等待2-3分钟，待触发RssThresholdKiller查杀。
+7. 点击DevEco Studio界面中的运行按钮，运行应用工程，点击屏幕中间的“Start To Leak”按钮，等待2-3分钟，待触发RssThresholdKiller类型的管控终止。
 
-8. 应用被查杀后，重新打开应用，会触发查杀事件上报，系统会回调应用的onReceive函数，可以在Log窗口看到对系统事件数据的处理日志。
+8. 应用被终止后，重新打开应用，会触发终止事件上报，系统会回调应用的onReceive函数，可以在Log窗口看到对系统事件数据的处理日志。
 
-   应用查杀事件采样栈示例：
+   应用终止事件采样栈示例：
 
    ```text
    HiAppEvent eventInfo.domain=OS
