@@ -16,48 +16,48 @@
 
 1. 导入camera接口，接口中提供了相机相关的属性和方法，导入方法如下。
 
-  ```ts
-  import { camera } from '@kit.CameraKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-  ```
+    ```ts
+    import { camera } from '@kit.CameraKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    ```
 
 2. 通过[isControlCenterSupported](../../reference/apis-camera-kit/arkts-apis-camera-ControlCenterQuery.md#iscontrolcentersupported20)接口，查询当前设备及当前场景是否支持相机控制器。
 
-  ```ts
-  function isControlCenterSupported(videoSession: camera.VideoSession): boolean {
-    let isSupported: boolean = videoSession.isControlCenterSupported();
-    return isSupported;
-  }
-  ```
+    ```ts
+    function isControlCenterSupported(videoSession: camera.VideoSession): boolean {
+      let isSupported: boolean = videoSession.isControlCenterSupported();
+      return isSupported;
+    }
+    ```
 
 3. 通过[getSupportedEffectTypes](../../reference/apis-camera-kit/arkts-apis-camera-ControlCenterQuery.md#getsupportedeffecttypes20)接口，查询当前设备及当前场景下，相机控制器支持的效果类型。
 
-  ```ts
-  function getSupportedEffectTypes(videoSession: camera.VideoSession): Array<camera.ControlCenterEffectType> {
-    let effectTypes: Array<camera.ControlCenterEffectType> = [];
-    effectTypes = videoSession.getSupportedEffectTypes();
-    return effectTypes;
-  }
-  ```
+    ```ts
+    function getSupportedEffectTypes(videoSession: camera.VideoSession): Array<camera.ControlCenterEffectType> {
+      let effectTypes: Array<camera.ControlCenterEffectType> = [];
+      effectTypes = videoSession.getSupportedEffectTypes();
+      return effectTypes;
+    }
+    ```
 
 4. 若设备及场景支持相机控制器，使用[enableControlCenter](../../reference/apis-camera-kit/arkts-apis-camera-ControlCenter.md#enablecontrolcenter20)接口可启用或关闭控制器。
 
-  ```ts
-  function enableControlCenter(videoSession: camera.VideoSession, enable: boolean): void {
-    let isSupported: boolean = videoSession.isControlCenterSupported();
-    if (isSupported) {
+    ```ts
+    function enableControlCenter(videoSession: camera.VideoSession, enable: boolean): void {
+      let isSupported: boolean = videoSession.isControlCenterSupported();
+      if (isSupported) {
         videoSession.enableControlCenter(enable);
+      }
     }
-  }
-  ```
+    ```
 
 5. 使能相机控制器后，可以在状态栏看到新增的视频效果图标。
 
-![camera-control-center-status](figures/camera-control-center-status.png)
+    ![camera-control-center-status](figures/camera-control-center-status.png)
 
 6. 点击`视频效果`图标，在弹出的二级页面中，用户可调节控制器支持的效果，如图所示为`美颜`和`背景虚化`。
 
-![camera-control-center](figures/camera-control-center.png)
+    ![camera-control-center](figures/camera-control-center.png)
 
 
 ## 状态监听
