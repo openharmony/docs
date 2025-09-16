@@ -186,9 +186,9 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 
 - 新增支持音频低时延耳返的能力，可将音频以更低时延的方式实时传输到有线耳机中。（[指南](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/media/audio/audio-ear-monitor-loopback.md)）
 
-- 新增星闪音频设备播放和录制能力，支持应用获取当前音频的输出类型为星闪设备类型。
+- 新增星闪音频设备播放和录制能力，支持应用获取当前音频的输出类型为星闪设备类型。（[API参考](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/reference/apis-audio-kit/arkts-apis-audio-e.md#devicetype)）
 
-- 新增为直播场景打造的高清AEC录音能力，支持应用使用新增的直播录音流类型（[API参考](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8)）。
+- 新增为直播场景打造的高清AEC录音能力，支持应用使用新增的直播录音流类型。（[API参考](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8)）
 
 
 ### 安全
