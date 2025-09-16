@@ -34,7 +34,7 @@ import { image } from '@kit.ImageKit';
 
 getComponent(componentType: ComponentType, callback: AsyncCallback\<Component>): void
 
-根据图像的组件类型从图像中获取组件缓存并使用callback返回结果。
+根据图像的组件类型从图像中获取组件缓存。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -65,7 +65,7 @@ async function GetComponent(img : image.Image) {
 
 getComponent(componentType: ComponentType): Promise\<Component>
 
-根据图像的组件类型从图像中获取组件缓存并使用Promise方式返回结果。
+根据图像的组件类型从图像中获取组件缓存。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -99,7 +99,7 @@ async function GetComponent(img : image.Image) {
 
 release(callback: AsyncCallback\<void>): void
 
-释放当前图像并使用callback返回结果。
+释放当前图像。使用callback异步回调。
 
 在接收另一个图像前必须先释放对应资源。
 
@@ -133,7 +133,7 @@ async function Release(img : image.Image) {
 
 release(): Promise\<void>
 
-释放当前图像并使用Promise方式返回结果。
+释放当前图像。使用Promise异步回调。
 
 在接收另一个图像前必须先释放对应资源。
 
