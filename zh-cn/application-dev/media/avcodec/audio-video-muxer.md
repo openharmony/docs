@@ -98,7 +98,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVFormat_SetFloatValue(format, "com.openharmony.testFloat", 1.024); // 值类型为float。
    OH_AVFormat_SetStringValue(format, "com.openharmony.testString", "string test"); // 值类型为string，长度不超过256。
    uint8_t testData[] = {1, 2, 3};
-   OH_AVFormat_SetBuffer(format, "com.openharmony.testBuffer", testData, sizeof(testData)); // 值类型为uint8_t*。
+   OH_AVFormat_SetBuffer(format, "com.openharmony.testBuffer", testData, sizeof(testData)); // 从API20开始支持值类型为uint8_t*。
 
    int ret = OH_AVMuxer_SetFormat(muxer, format); // 设置封装的format。
    if (ret != AV_ERR_OK) {
