@@ -138,7 +138,7 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
 
 | 参数名        | 类型                                     | 必填   | 说明                                     |
 | ---------- | ---------------------------------------- | ---- |---------------------------------------- |
-| javaScriptProxy     | [JavaScriptProxy](./arkts-basic-components-web-i.md#javascriptproxy12)                                   | 是    |  参与注册的对象。只能声明方法，不能声明属性。                   |
+| javaScriptProxy     | [JavaScriptProxy](./arkts-basic-components-web-i.md#javascriptproxy12)                                   | 是    |  参与注册的对象。只能声明方法，不能声明属性。<br>传入undefined或null时为未调用该回调。                  |
 
 **示例：**
 
@@ -208,7 +208,7 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 | 参数名              | 类型    | 必填   | 说明                |
 | ---------------- | ------- | ---- | ------------------- |
-| javaScriptAccess | boolean | 是    | 是否允许执行JavaScript脚本。<br>true表示允许执行JavaScript脚本，false表示不允许执行JavaScript脚本。<br>传入undefined或null时不允许执行JavaScript脚本。 |
+| javaScriptAccess | boolean | 是    | 是否允许执行JavaScript脚本。<br>true表示允许执行JavaScript脚本，false表示不允许执行JavaScript脚本。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -275,7 +275,7 @@ mixedMode(mixedMode: MixedMode)
 
 | 参数名       | 类型                        | 必填   | 说明      |
 | --------- | --------------------------- | ---- | --------- |
-| mixedMode | [MixedMode](./arkts-basic-components-web-e.md#mixedmode) | 是    | 要设置的混合内容模式。 |
+| mixedMode | [MixedMode](./arkts-basic-components-web-e.md#mixedmode) | 是    | 要设置的混合内容模式。<br>传入undefined或null时为 |
 
 **示例：**
 
@@ -714,7 +714,7 @@ cacheMode(cacheMode: CacheMode)
 
 | 参数名       | 类型                        | 必填   | 说明      |
 | --------- | --------------------------- | ---- | --------- |
-| cacheMode | [CacheMode](./arkts-basic-components-web-e.md#cachemode) | 是    | 要设置的缓存模式。 |
+| cacheMode | [CacheMode](./arkts-basic-components-web-e.md#cachemode) | 是    | 要设置的缓存模式。<br>传入undefined或null时为 |
 
 **示例：**
 
@@ -853,7 +853,7 @@ blockNetwork(block: boolean)
 
 | 参数名   | 类型    | 必填   | 说明                |
 | ----- | ------- | ---- | ------------------- |
-| block | boolean | 是    | 设置Web组件是否允许从网络加载资源。<br>true表示不允许从网络加载资源，false表示允许从网络加载资源。<br>传入undefined或null时不允许从网络加载资源。 |
+| block | boolean | 是    | 设置Web组件是否允许从网络加载资源。<br>true表示不允许从网络加载资源，false表示允许从网络加载资源。<br>传入undefined与null时为true。 |
 
 **示例：**
 
@@ -1503,7 +1503,7 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 | 参数名     | 类型                                | 必填   | 说明               |
 | ------- | ----------------------------------- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组。 |
+| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组。<br>传入undefined或null时为未调用该回调。 |
 
 **ets示例：**
 
@@ -1583,7 +1583,7 @@ javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 
 | 参数名     | 类型                                | 必填   | 说明               |
 | ------- | ----------------------------------- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组 |
+| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组。<br>传入undefined或null时为未调用该回调。 |
 
 **示例：**
 
@@ -1651,7 +1651,7 @@ runJavaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 | 参数名     | 类型                                | 必填   | 说明               |
 | ------- | ----------------------------------- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组 |
+| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组。<br>传入undefined或null时为未调用该回调。 |
 
 **ets示例：**
 
@@ -1731,7 +1731,7 @@ runJavaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 
 | 参数名     | 类型                                | 必填   | 说明               |
 | ------- | ----------------------------------- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组 |
+| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组。<br>传入undefined或null时为未调用该回调。 |
 
 **示例：**
 
@@ -1795,7 +1795,7 @@ runJavaScriptOnHeadEnd(scripts: Array\<ScriptItem>)
 
 | 参数名     | 类型                                | 必填   | 说明               |
 | ------- | ----------------------------------- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组 |
+| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组。<br>传入undefined或null时为未调用该回调。 |
 
 **示例：**
 

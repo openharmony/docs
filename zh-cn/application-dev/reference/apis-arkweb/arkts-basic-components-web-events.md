@@ -104,7 +104,7 @@ onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
 
 | 参数名     | 类型                  | 必填   | 说明            |
 | ------- | --------------------- | ---- | --------------- |
-| callback     | Callback\<[OnBeforeUnloadEvent](./arkts-basic-components-web-i.md#onbeforeunloadevent12), boolean\>                | 是    | 即将完成页面刷新或关闭当前页面时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnBeforeUnloadEvent](./arkts-basic-components-web-i.md#onbeforeunloadevent12), boolean\>                | 是    | 即将完成页面刷新或关闭当前页面时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。<br>传入undefined或null时为未调用该回调。 |
 
 **示例：**
 
@@ -393,7 +393,7 @@ onConsole(callback: Callback\<OnConsoleEvent, boolean\>)
 
 | 参数名     | 类型                              | 必填   | 说明      |
 | ------- | --------------------------------- | ---- | --------- |
-| callback | Callback\<[OnConsoleEvent](./arkts-basic-components-web-i.md#onconsoleevent12), boolean\> | 是    | 网页收到JavaScript控制台消息时触发。<br>返回值boolean。当返回true时，该条消息将不会再打印至hilog日志，返回false时仍会打印至hilog日志。 |
+| callback | Callback\<[OnConsoleEvent](./arkts-basic-components-web-i.md#onconsoleevent12), boolean\> | 是    | 网页收到JavaScript控制台消息时触发。<br>返回值boolean。当返回true时，该条消息将不会再打印至hilog日志，返回false时仍会打印至hilog日志。<br>传入undefined或null时为未调用该回调。 |
 
 **示例：**
 
@@ -454,7 +454,7 @@ onDownloadStart(callback: Callback\<OnDownloadStartEvent\>)
 
 | 参数名                | 类型   | 必填   | 说明                                |
 | ------------------ | ------ | ---- | ----------------------------------- |
-| callback           | Callback\<[OnDownloadStartEvent](./arkts-basic-components-web-i.md#ondownloadstartevent12)\> | 是    | 开始下载时触发。  |
+| callback           | Callback\<[OnDownloadStartEvent](./arkts-basic-components-web-i.md#ondownloadstartevent12)\> | 是    | 开始下载时触发。<br>传入undefined或null时为未调用该回调。  |
 
 **示例：**
 
@@ -496,7 +496,7 @@ onErrorReceive(callback: Callback\<OnErrorReceiveEvent\>)
 
 | 参数名     | 类型                                     | 必填   | 说明            |
 | ------- | ---------------------------------------- | ---- | --------------- |
-| callback | Callback\<[OnErrorReceiveEvent](./arkts-basic-components-web-i.md#onerrorreceiveevent12)\> | 是    | 网页收到 Web 资源加载错误时触发。      |
+| callback | Callback\<[OnErrorReceiveEvent](./arkts-basic-components-web-i.md#onerrorreceiveevent12)\> | 是    | 网页收到 Web 资源加载错误时触发。 <br>传入undefined或null时为未调用该回调。     |
 
 **示例：**
 
@@ -545,7 +545,7 @@ onHttpErrorReceive(callback: Callback\<OnHttpErrorReceiveEvent\>)
 
 | 参数名      | 类型                                     | 必填   | 说明       |
 | -------- | ---------------------------------------- | ---- | ---------- |
-| callback  | Callback\<[OnHttpErrorReceiveEvent](./arkts-basic-components-web-i.md#onhttperrorreceiveevent12)\> | 是    | 网页收到加载资源返回HTTP错误码时触发。 |
+| callback  | Callback\<[OnHttpErrorReceiveEvent](./arkts-basic-components-web-i.md#onhttperrorreceiveevent12)\> | 是    | 网页收到加载资源返回HTTP错误码时触发。<br>传入undefined或null时为未调用该回调。 |
 
 **示例：**
 
@@ -601,7 +601,7 @@ onPageBegin(callback: Callback\<OnPageBeginEvent\>)
 
 | 参数名  | 类型   | 必填   | 说明      |
 | ---- | ------ | ---- | --------- |
-| callback  | Callback\<[OnPageBeginEvent](./arkts-basic-components-web-i.md#onpagebeginevent12)\> | 是    | 网页加载开始时触发。 |
+| callback  | Callback\<[OnPageBeginEvent](./arkts-basic-components-web-i.md#onpagebeginevent12)\> | 是    | 网页加载开始时触发。<br>传入undefined或null时为未调用该回调。 |
 
 **示例：**
 
@@ -639,7 +639,7 @@ onPageEnd(callback: Callback\<OnPageEndEvent\>)
 
 | 参数名  | 类型   | 必填   | 说明      |
 | ---- | ------ | ---- | --------- |
-| callback  | Callback\<[OnPageEndEvent](./arkts-basic-components-web-i.md#onpageendevent12)\> | 是    | 网页加载结束时触发。 |
+| callback  | Callback\<[OnPageEndEvent](./arkts-basic-components-web-i.md#onpageendevent12)\> | 是    | 网页加载结束时触发。<br>传入undefined或null时为未调用该回调。 |
 
 **示例：**
 
@@ -753,7 +753,7 @@ onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
 
 | 参数名         | 类型   | 必填   | 说明                  |
 | ----------- | ------ | ---- | --------------------- |
-| callback | Callback\<[OnProgressChangeEvent](./arkts-basic-components-web-i.md#onprogresschangeevent12)\> | 是    | 页面加载进度变化时触发的回调。 |
+| callback | Callback\<[OnProgressChangeEvent](./arkts-basic-components-web-i.md#onprogresschangeevent12)\> | 是    | 页面加载进度变化时触发的回调。<br>传入undefined或null时为未调用该回调。 |
 
 **示例：**
 
@@ -790,7 +790,7 @@ onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
 
 | 参数名   | 类型   | 必填   | 说明          |
 | ----- | ------ | ---- | ------------- |
-| callback | Callback\<[OnTitleReceiveEvent](./arkts-basic-components-web-i.md#ontitlereceiveevent12)\> | 是    | 页面文档标题发生变更时触发 |
+| callback | Callback\<[OnTitleReceiveEvent](./arkts-basic-components-web-i.md#ontitlereceiveevent12)\> | 是    | 页面文档标题发生变更时触发。<br>传入undefined或null时为未调用该回调。 |
 
 **示例：**
 
@@ -829,7 +829,7 @@ onRefreshAccessedHistory(callback: Callback\<OnRefreshAccessedHistoryEvent\>)
 
 | 参数名         | 类型    | 必填   | 说明                                     |
 | ----------- | ------- | ---- | ---------------------------------------- |
-| callback         | Callback\<[OnRefreshAccessedHistoryEvent](./arkts-basic-components-web-i.md#onrefreshaccessedhistoryevent12)\>  | 是    | 在导航完成时触发。                |
+| callback         | Callback\<[OnRefreshAccessedHistoryEvent](./arkts-basic-components-web-i.md#onrefreshaccessedhistoryevent12)\>  | 是    | 在导航完成时触发。 <br>传入undefined或null时为未调用该回调。               |
 
 **示例：**
 
@@ -1144,7 +1144,7 @@ onResourceLoad(callback: Callback\<OnResourceLoadEvent\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback  | Callback\<[OnResourceLoadEvent](./arkts-basic-components-web-i.md#onresourceloadevent12)\> | 是 | 加载url时触发。 |
+| callback  | Callback\<[OnResourceLoadEvent](./arkts-basic-components-web-i.md#onresourceloadevent12)\> | 是 | 加载url时触发。<br>传入undefined或null时为未调用该回调。 |
 
 **示例：**
 
@@ -1216,7 +1216,7 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnInterceptRequestEvent](./arkts-basic-components-web-i.md#oninterceptrequestevent12), [WebResourceResponse](./arkts-basic-components-web-WebResourceResponse.md)\> | 是 | 当Web组件加载url之前触发。<br>返回值[WebResourceResponse](./arkts-basic-components-web-WebResourceResponse.md)。返回响应数据则按照响应数据加载，无响应数据则返回null表示按照原来的方式加载。 |
+| callback | Callback\<[OnInterceptRequestEvent](./arkts-basic-components-web-i.md#oninterceptrequestevent12), [WebResourceResponse](./arkts-basic-components-web-WebResourceResponse.md)\> | 是 | 当Web组件加载url之前触发。<br>返回值[WebResourceResponse](./arkts-basic-components-web-WebResourceResponse.md)。返回响应数据则按照响应数据加载，无响应数据则返回null表示按照原来的方式加载。<br>传入undefined或null时为未调用该回调。 |
 
 **示例：**
 
@@ -1292,7 +1292,7 @@ onHttpAuthRequest(callback: Callback\<OnHttpAuthRequestEvent, boolean\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnHttpAuthRequestEvent](./arkts-basic-components-web-i.md#onhttpauthrequestevent12), boolean\> | 是 | 当浏览器需要用户的凭据时触发。<br>返回值boolean。返回ture表示http auth认证成功，返回false表示http auth认证失败。   |
+| callback | Callback\<[OnHttpAuthRequestEvent](./arkts-basic-components-web-i.md#onhttpauthrequestevent12), boolean\> | 是 | 当浏览器需要用户的凭据时触发。<br>返回值boolean。返回true表示http auth认证成功，返回false表示http auth认证失败。 <br>传入undefined或null时为未调用该回调。  |
 
 **示例：**
 
@@ -1365,7 +1365,7 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnSslErrorEventReceiveEvent](./arkts-basic-components-web-i.md#onsslerroreventreceiveevent12)\> | 是 | 当网页收到SSL错误时触发。 |
+| callback | Callback\<[OnSslErrorEventReceiveEvent](./arkts-basic-components-web-i.md#onsslerroreventreceiveevent12)\> | 是 | 当网页收到SSL错误时触发。<br>传入undefined或null时为未调用该回调。 |
 
 **示例：**
 
@@ -1468,7 +1468,7 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | [OnSslErrorEventCallback](./arkts-basic-components-web-t.md#onsslerroreventcallback12) | 是 | 通知用户加载资源时发生SSL错误。 |
+| callback | [OnSslErrorEventCallback](./arkts-basic-components-web-t.md#onsslerroreventcallback12) | 是 | 通知用户加载资源时发生SSL错误。<br>传入undefined或null时为未调用该回调。 |
 
 **示例：**
 
@@ -1573,7 +1573,7 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback  | Callback\<[OnClientAuthenticationEvent](./arkts-basic-components-web-i.md#onclientauthenticationevent12)\> | 是 | 当需要用户提供的SSL客户端证书时触发的回调。  |
+| callback  | Callback\<[OnClientAuthenticationEvent](./arkts-basic-components-web-i.md#onclientauthenticationevent12)\> | 是 | 当需要用户提供的SSL客户端证书时触发的回调。 <br>传入undefined或null时为未调用该回调。 |
 
   **示例：**
 
@@ -2643,7 +2643,7 @@ onSearchResultReceive(callback: Callback\<OnSearchResultReceiveEvent\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnSearchResultReceiveEvent](./arkts-basic-components-web-i.md#onsearchresultreceiveevent12)\>  | 是 | 通知调用方网页页内查找的结果。         |
+| callback | Callback\<[OnSearchResultReceiveEvent](./arkts-basic-components-web-i.md#onsearchresultreceiveevent12)\>  | 是 | 通知调用方网页页内查找的结果。  <br>传入undefined或null时为未调用该回调。       |
 
 **示例：**
 
@@ -2682,7 +2682,7 @@ onDataResubmitted(callback: Callback\<OnDataResubmittedEvent\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnDataResubmittedEvent](./arkts-basic-components-web-i.md#ondataresubmittedevent12)\> | 是 | 网页表单可以重新提交时触发。 |
+| callback | Callback\<[OnDataResubmittedEvent](./arkts-basic-components-web-i.md#ondataresubmittedevent12)\> | 是 | 网页表单可以重新提交时触发。<br>传入undefined或null时为未调用该回调。 |
 
 **示例：**
 
@@ -2822,7 +2822,7 @@ onTouchIconUrlReceived(callback: Callback\<OnTouchIconUrlReceivedEvent\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback  | Callback\<[OnTouchIconUrlReceivedEvent](./arkts-basic-components-web-i.md#ontouchiconurlreceivedevent12)\>  | 是 | 接收到的apple-touch-icon url地址时触发。 |
+| callback  | Callback\<[OnTouchIconUrlReceivedEvent](./arkts-basic-components-web-i.md#ontouchiconurlreceivedevent12)\>  | 是 | 接收到的apple-touch-icon url地址时触发。<br>传入undefined或null时为未调用该回调。 |
 
 **示例：**
 
@@ -2858,7 +2858,7 @@ onFaviconReceived(callback: Callback\<OnFaviconReceivedEvent\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnFaviconReceivedEvent](./arkts-basic-components-web-i.md#onfaviconreceivedevent12)\> | 是 | 当前页面接收到新的favicon时触发。 |
+| callback | Callback\<[OnFaviconReceivedEvent](./arkts-basic-components-web-i.md#onfaviconreceivedevent12)\> | 是 | 当前页面接收到新的favicon时触发。<br>传入undefined或null时为未调用该回调。 |
 
 **示例：**
 
@@ -3053,7 +3053,7 @@ onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnLoadInterceptEvent](./arkts-basic-components-web-i.md#onloadinterceptevent12), boolean\> | 是 | 导航触发时的回调包括iframe导航，在回调中可以选择允许或者取消此次导航。<br>返回值为boolean类型。返回true表示取消此次导航，false表示允许此次导航。<br>返回undefined或null时允许此次导航。 |
+| callback | Callback\<[OnLoadInterceptEvent](./arkts-basic-components-web-i.md#onloadinterceptevent12), boolean\> | 是 | 导航触发时的回调包括iframe导航，在回调中可以选择允许或者取消此次导航。<br>返回值为boolean类型。返回true表示取消此次导航，false表示允许此次导航。<br>返回undefined或null时为false。 |
 
 **示例：**
 
@@ -3301,7 +3301,7 @@ onNavigationEntryCommitted(callback: [OnNavigationEntryCommittedCallback](./arkt
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback       | [OnNavigationEntryCommittedCallback](./arkts-basic-components-web-t.md#onnavigationentrycommittedcallback11) | 是 | 网页跳转提交时触发的回调。 |
+| callback       | [OnNavigationEntryCommittedCallback](./arkts-basic-components-web-t.md#onnavigationentrycommittedcallback11) | 是 | 网页跳转提交时触发的回调。<br>传入undefined或null时为未调用该回调。 |
 
 **示例：**
 
@@ -3341,7 +3341,7 @@ onSafeBrowsingCheckResult(callback: OnSafeBrowsingCheckResultCallback)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback  | [OnSafeBrowsingCheckResultCallback](./arkts-basic-components-web-t.md#onsafebrowsingcheckresultcallback11) | 是 | 收到网站安全风险检查结果时触发的回调。|
+| callback  | [OnSafeBrowsingCheckResultCallback](./arkts-basic-components-web-t.md#onsafebrowsingcheckresultcallback11) | 是 | 收到网站安全风险检查结果时触发的回调。<br>传入undefined或null时为未调用该回调。|
 
 **示例：**
 
@@ -3780,7 +3780,7 @@ onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback       | [OnOverrideUrlLoadingCallback](./arkts-basic-components-web-t.md#onoverrideurlloadingcallback12) | 是 | onOverrideUrlLoading的回调。<br>返回值boolean。返回ture表示中止加载URL，返回false表示继续在Web中加载URL |
+| callback       | [OnOverrideUrlLoadingCallback](./arkts-basic-components-web-t.md#onoverrideurlloadingcallback12) | 是 | onOverrideUrlLoading的回调。<br>返回值boolean。返回true表示中止加载URL，返回false表示继续在Web中加载URL。 <br>传入undefined或null时为未调用该回调。 |
 
 **示例：**
 
