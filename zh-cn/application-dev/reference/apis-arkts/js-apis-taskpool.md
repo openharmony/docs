@@ -918,7 +918,7 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 
 表示所创建任务（Task）执行时的优先级。工作线程优先级跟随任务优先级更新，对应关系参考[QoS等级定义](../../napi/qos-guidelines.md#qos等级定义)。
 
-**系统能力：**  SystemCapability.Utils.Lang
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -1871,11 +1871,13 @@ type CallbackFunctionWithError = (e: Error) => void
 
 ## LongTask<sup>12+</sup>
 
-**系统能力：** SystemCapability.Utils.Lang
-
 表示长时任务。LongTask继承自[Task](#task)。
 长时任务不设置执行时间上限，长时间运行不会触发超时异常，但不支持将同一任务多次执行或者将该任务加入任务组（TaskGroup）。
 执行长时任务的线程会持续存在，直到任务完成并调用[terminateTask](#taskpoolterminatetask12)后，该线程在空闲时被回收。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **示例：**
 
@@ -1892,10 +1894,10 @@ let task: taskpool.LongTask = new taskpool.LongTask(printArgs, "this is my first
 
 ## GenericsTask<sup>13+</sup>
 
-**系统能力：** SystemCapability.Utils.Lang
-
 表示泛型任务。GenericsTask继承自[Task](#task)。
 相比创建Task，创建GenericsTask可以在编译阶段校验并发函数的传参和返回值类型。其余行为与Task相同。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 ### constructor<sup>13+</sup>
 
