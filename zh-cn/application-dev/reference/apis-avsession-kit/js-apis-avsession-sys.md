@@ -524,19 +524,18 @@ let audioDevices: audio.AudioDeviceDescriptors | undefined = undefined;
 audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data) => {
   audioDevices = data;
   console.info('Promise returned to indicate that the device list is obtained.');
+  if (audioDevices !== undefined) {
+    avSession.castAudio('all', audioDevices as audio.AudioDeviceDescriptors, (err: BusinessError) => {
+      if (err) {
+        console.error(`CastAudio BusinessError: code: ${err.code}, message: ${err.message}`);
+      } else {
+        console.info('CastAudio : SUCCESS ');
+      }
+    });
+  }
 }).catch((err: BusinessError) => {
   console.error(`GetDevices BusinessError: code: ${err.code}, message: ${err.message}`);
 });
-
-if (audioDevices !== undefined) {
-  avSession.castAudio('all', audioDevices as audio.AudioDeviceDescriptors, (err: BusinessError) => {
-    if (err) {
-      console.error(`CastAudio BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-      console.info('CastAudio : SUCCESS ');
-    }
-  });
-}
 ```
 
 ## avSession.startAVPlayback<sup>11+</sup>
@@ -1055,8 +1054,8 @@ sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 import { KeyEvent } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let keyItem: keyEvent.Key = {code:0x49, pressedTime:2, deviceId:0};
-let event: keyEvent.KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
+let keyItem: KeyEvent.Key = {code:0x49, pressedTime:2, deviceId:0};
+let event: KeyEvent.KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
 
 avSession.sendSystemAVKeyEvent(event, (err: BusinessError) => {
   if (err) {
@@ -1109,8 +1108,8 @@ sendSystemAVKeyEvent(event: KeyEvent): Promise\<void>
 import { KeyEvent } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let keyItem: keyEvent.Key = {code:0x49, pressedTime:2, deviceId:0};
-let event: keyEvent.KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
+let keyItem: KeyEvent.Key = {code:0x49, pressedTime:2, deviceId:0};
+let event: KeyEvent.KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
 
 avSession.sendSystemAVKeyEvent(event).then(() => {
   console.info('SendSystemAVKeyEvent Successfully');
@@ -1866,16 +1865,16 @@ let castDevice: avSession.OutputDeviceInfo | undefined = undefined;
 avSession.on('deviceAvailable', (device: avSession.OutputDeviceInfo) => {
   castDevice = device;
   console.info(`on deviceAvailable  : ${device} `);
+  if (castDevice !== undefined) {
+    avSession.startCasting(myToken, castDevice, (err: BusinessError) => {
+      if (err) {
+        console.error(`startCasting BusinessError: code: ${err.code}, message: ${err.message}`);
+      } else {
+        console.info('startCasting successfully');
+      }
+    });
+  }
 });
-if (castDevice !== undefined) {
-  avSession.startCasting(myToken, castDevice, (err: BusinessError) => {
-    if (err) {
-      console.error(`startCasting BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-      console.info('startCasting successfully');
-    }
-  });
-}
 ```
 
 
@@ -1928,14 +1927,14 @@ let castDevice: avSession.OutputDeviceInfo | undefined = undefined;
 avSession.on('deviceAvailable', (device: avSession.OutputDeviceInfo) => {
   castDevice = device;
   console.info(`on deviceAvailable  : ${device} `);
+  if (castDevice !== undefined) {
+    avSession.startCasting(myToken, castDevice).then(() => {
+      console.info('startCasting successfully');
+    }).catch((err: BusinessError) => {
+      console.error(`startCasting BusinessError: code: ${err.code}, message: ${err.message}`);
+    });
+  }
 });
-if (castDevice !== undefined) {
-  avSession.startCasting(myToken, castDevice).then(() => {
-    console.info('startCasting successfully');
-  }).catch((err: BusinessError) => {
-    console.error(`startCasting BusinessError: code: ${err.code}, message: ${err.message}`);
-  });
-}
 ```
 
 ## avSession.stopCasting<sup>10+</sup>
@@ -2318,14 +2317,16 @@ media.createAVRecorder().then((avRecorder) => {
     if (err == null) {
       console.info('getInputSurface success');
       surfaceID = surfaceId;
+      if (surfaceID) {
+        aVCastController.setDisplaySurface(surfaceID).then(() => {
+          console.info('setDisplaySurface : SUCCESS');
+        });
+      }
     } else {
       console.error('getInputSurface failed and error is ' + err.message);
     }
   });
 })
-aVCastController.setDisplaySurface(surfaceID).then(() => {
-  console.info('setDisplaySurface : SUCCESS');
-});
 ```
 
 ### setDisplaySurface<sup>10+</sup>
@@ -2367,18 +2368,20 @@ media.createAVRecorder().then((avRecorder) => {
     if (err == null) {
       console.info('getInputSurface success');
       surfaceID = surfaceId;
+      if (surfaceID) {
+        aVCastController.setDisplaySurface(surfaceID, (err: BusinessError) => {
+          if (err) {
+            console.error(`setDisplaySurface BusinessError: code: ${err.code}, message: ${err.message}`);
+          } else {
+            console.info('setDisplaySurface : SUCCESS');
+          }
+        });
+      }
     } else {
       console.error('getInputSurface failed and error is ' + err.message);
     }
   });
 })
-aVCastController.setDisplaySurface(surfaceID, (err: BusinessError) => {
-  if (err) {
-    console.error(`setDisplaySurface BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    console.info('setDisplaySurface : SUCCESS');
-  }
-});
 ```
 
 ### on('videoSizeChange')<sup>12+</sup>
