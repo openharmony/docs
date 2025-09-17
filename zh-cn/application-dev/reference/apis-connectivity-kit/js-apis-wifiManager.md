@@ -78,7 +78,7 @@ enableWifi(): void
 | 2501000 | Operation failed.          |
 | 2501003  | Operation failed because the service is being closed.|
 
-**示例：**## wifiManager.getDeviceConfigs<sup>15+</sup>
+**示例：**
 
 ```ts
   import { wifiManager } from '@kit.ConnectivityKit';
@@ -1303,7 +1303,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 **示例：**
 ```ts
   import { wifiManager } from '@kit.ConnectivityKit';
-  
+
   wifiManager.getLinkedInfo().then(data => {
       console.info("get wifi linked info: " + JSON.stringify(data));
   }).catch((error) => {
