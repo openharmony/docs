@@ -528,10 +528,10 @@ WLAN配置信息。
 | identity | string | 否 | 否 | 身份信息。当eapMethod为EAP_PEAP、EAP_TLS或EAP_PWD时，该字段不能为空串。 |
 | anonymousIdentity | string | 否 | 否 | 匿名身份。暂未使用。 |
 | password | string | 否 | 否 | 密码。当eapMethod为EAP_PEAP或EAP_PWD时，该字段不能为空串，最大长度为128字节。 |
-| caCertAlias | string | 否 | 否 | CA 证书别名。 |
-| caPath | string | 否 | 否 | CA 证书路径。 |
+| caCertAlias | string | 否 | 否 | CA证书别名。 |
+| caPath | string | 否 | 否 | CA证书路径。 |
 | clientCertAlias | string | 否 | 否 | 客户端证书别名。 |
-| certEntry | Uint8Array | 否 | 否 | CA 证书内容。当eapMethod为EAP_TLS时，如果该字段为空，则clientCertAlias不能为空。 |
+| certEntry | Uint8Array | 否 | 否 | CA证书内容。当eapMethod为EAP_TLS时，如果该字段为空，则clientCertAlias不能为空。 |
 | certPassword | string | 否 | 否 | CA证书密码，最大长度为128字节。 |
 | altSubjectMatch | string | 否 | 否 | 替代主题匹配。 |
 | domainSuffixMatch | string | 否 | 否 | 域后缀匹配。 |
@@ -1609,7 +1609,7 @@ IPV4信息。
 
 | **名称** | **类型** | **只读** | **可选** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| ipAddress | number | 否 | 否 | IP地址。(ipAddress值为number类型，需要转换为IP常用格式，具体请参考[IP格式转换](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs/faqs-connectivity-4)。|
+| ipAddress | number | 否 | 否 | IP地址。（ipAddress值为number类型，需要转换为IP常用格式，具体请参考[IP格式转换](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs/faqs-connectivity-4)）。|
 | gateway | number | 否 | 否 | 网关。 |
 | netmask | number | 否 | 否 | 掩码。 |
 | primaryDns | number | 否 | 否 | 主DNS服务器IP地址。 |
