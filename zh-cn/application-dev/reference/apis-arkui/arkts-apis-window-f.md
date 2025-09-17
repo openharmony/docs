@@ -204,7 +204,7 @@ try {
 
 getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
-获取当前应用内最上层显示的子窗口，使用callback异步回调。
+获取当前应用内层级最高的子窗口，使用callback异步回调。
 
 若无应用子窗口或子窗口未调用[showWindow()](arkts-apis-window-Window.md#showwindow9)进行显示，则返回应用主窗口。
 
@@ -217,7 +217,7 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------------------------------------- | -- | ---------------------------------------- |
 | ctx      | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是 | 当前应用上下文信息。 |
-| callback | AsyncCallback&lt;[Window](arkts-apis-window-Window.md)&gt; | 是 | 回调函数。返回当前应用内最上层的窗口对象。 |
+| callback | AsyncCallback&lt;[Window](arkts-apis-window-Window.md)&gt; | 是 | 回调函数。返回当前应用内层级最高的窗口对象。 |
 
 **错误码：**
 
@@ -240,20 +240,31 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
-      subWindow.showWindow().then(() => {
-        try {
-          window.getLastWindow(this.context, (err: BusinessError, topWindow) => {
-            const errCode: number = err.code;
-            if (errCode) {
-              console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
-              return;
+    windowStage.loadContent('pages/Index', (err: BusinessError) => {
+      if (err.code) {
+        console.error(`Failed to load content for main window. Cause code: ${err.code}, message: ${err.message}`);
+      }
+      windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
+        let storage: LocalStorage = new LocalStorage();
+        subWindow.loadContent('pages/Index', storage, (err: BusinessError) => {
+          if (err.code) {
+            console.error(`Failed to load content for sub window. Cause code: ${err.code}, message: ${err.message}`);
+          }
+          subWindow.showWindow().then(() => {
+            try {
+              window.getLastWindow(this.context, (err: BusinessError, topWindow) => {
+                const errCode: number = err.code;
+                if (errCode) {
+                  console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+                  return;
+                }
+                console.info(`Succeeded in obtaining the top window. Window id: ${topWindow.getWindowProperties().id}`);
+              });
+            } catch (exception) {
+              console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
             }
-            console.info(`Succeeded in obtaining the top window. Window id: ${topWindow.getWindowProperties().id}`);
           });
-        } catch (exception) {
-          console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
+        });
       });
     });
   }
@@ -265,7 +276,7 @@ export default class EntryAbility extends UIAbility {
 
 getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
-获取当前应用内最上层显示的子窗口，使用Promise异步回调。
+获取当前应用内层级最高的子窗口，使用Promise异步回调。
 
 若无应用子窗口或子窗口未调用[showWindow()](arkts-apis-window-Window.md#showwindow9)进行显示，则返回应用主窗口。
 
@@ -283,7 +294,7 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 | 类型 | 说明 |
 | -------------------------------- | ------------------------------------------- |
-| Promise&lt;[Window](arkts-apis-window-Window.md)&gt; | Promise对象。返回当前应用内最上层的窗口对象。 |
+| Promise&lt;[Window](arkts-apis-window-Window.md)&gt; | Promise对象。返回当前应用内层级最高的窗口对象。 |
 
 **错误码：**
 
@@ -307,17 +318,28 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
-      subWindow.showWindow().then(() => {
-        try {
-          window.getLastWindow(this.context).then((topWindow) => {
-            console.info(`Succeeded in obtaining the top window. Window id: ${topWindow.getWindowProperties().id}`);
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+    windowStage.loadContent('pages/Index', (err: BusinessError) => {
+      if (err.code) {
+        console.error(`Failed to load content for main window. Cause code: ${err.code}, message: ${err.message}`);
+      }
+      windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
+        let storage: LocalStorage = new LocalStorage();
+        subWindow.loadContent('pages/Index', storage, (err: BusinessError) => {
+          if (err.code) {
+            console.error(`Failed to load content for sub window. Cause code: ${err.code}, message: ${err.message}`);
+          }
+          subWindow.showWindow().then(() => {
+            try {
+              window.getLastWindow(this.context).then((topWindow) => {
+                console.info(`Succeeded in obtaining the top window. Window id: ${topWindow.getWindowProperties().id}`);
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+              });
+            } catch (exception) {
+              console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
+            }
           });
-        } catch (exception) {
-          console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
+        });
       });
     });
   }
@@ -328,9 +350,14 @@ export default class EntryAbility extends UIAbility {
 ## window.shiftAppWindowFocus<sup>11+</sup>
 shiftAppWindowFocus(sourceWindowId: number, targetWindowId: number): Promise&lt;void&gt;
 
-在同应用内将窗口焦点从源窗口转移到目标窗口，仅支持应用主窗和子窗的焦点转移。
+在同应用内将窗口焦点从源窗口转移到目标窗口，仅支持应用主窗、子窗范围内的焦点转移。
 
-目标窗口需确保可获焦属性为true（见[setWindowFocusable()](arkts-apis-window-Window.md#setwindowfocusable9)）,并确保调用[showWindow()](arkts-apis-window-Window.md#showwindow9)成功并执行完毕。
+目标窗口需确保具有获得焦点的能力（可通过[setWindowFocusable()](arkts-apis-window-Window.md#setwindowfocusable9)设置），并确保调用[showWindow()](arkts-apis-window-Window.md#showwindow9)成功且执行完毕。
+
+> **说明：**
+>
+> 在调用shiftAppWindowFocus()前，建议确保目标窗口已调用[loadContent()](arkts-apis-window-Window.md#loadcontent9)或[setUIContent()](arkts-apis-window-Window.md#setuicontent9)并生效，否则可能会导致不可见窗口获取焦点，造成功能异常或影响用户体验。
+>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -340,8 +367,8 @@ shiftAppWindowFocus(sourceWindowId: number, targetWindowId: number): Promise&lt;
 
 | 参数名          | 类型   | 必填  | 说明                    |
 | -------------- | ------ | ----- | ----------------------- |
-| sourceWindowId | number | 是    | 源窗口id，必须是获焦状态。|
-| targetWindowId | number | 是    | 目标窗口id。             |
+| sourceWindowId | number | 是    | 源窗口id，必须是获焦状态。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。|
+| targetWindowId | number | 是    | 目标窗口id。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。|
 
 **返回值：**
 
@@ -379,40 +406,46 @@ export default class EntryAbility extends UIAbility {
     let subWindowId: number = -1;
 
     try {
-      // 获取应用主窗及ID
-      windowStage.getMainWindow().then((data) => {
-        if (data == null) {
-          console.error('Failed to obtain the main window. Cause: The data is empty');
-          return;
+      windowStage.loadContent('pages/Index', (err) => {
+        if (err.code) {
+          console.error(`Failed to load content for main window. Cause code: ${err.code}, message: ${err.message}`);
         }
-        mainWindow = data;
-        mainWindowId = mainWindow.getWindowProperties().id;
-        console.info('Succeeded in obtaining the main window');
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-      });
-
-      // 创建或获取子窗及ID，此时子窗口获焦
-      windowStage.createSubWindow('testSubWindow').then((data) => {
-        if (data == null) {
-          console.error('Failed to obtain the sub window. Cause: The data is empty');
-          return;
-        }
-        subWindow = data;
-        subWindowId = subWindow.getWindowProperties().id;
-        subWindow.resize(500, 500);
-        subWindow.showWindow();
-
-        // 监听Window状态，确保已经就绪
-        subWindow.on("windowEvent", (windowEvent) => {
-          if (windowEvent == window.WindowEventType.WINDOW_ACTIVE) {
-            // 切换焦点
-            window.shiftAppWindowFocus(subWindowId, mainWindowId).then(() => {
-              console.info('Succeeded in shifting app window focus');
-            }).catch((err: BusinessError) => {
-              console.error(`Failed to shift app window focus. Cause code: ${err.code}, message: ${err.message}`);
-            });
+        // 获取应用主窗及ID
+        windowStage.getMainWindow().then((data) => {
+          if (data == null) {
+            console.error('Failed to obtain the main window. Cause: The data is empty');
+            return;
           }
+          mainWindow = data;
+          mainWindowId = mainWindow.getWindowProperties().id;
+          console.info('Succeeded in obtaining the main window');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        });
+
+        // 创建或获取子窗及ID，此时子窗口获焦
+        windowStage.createSubWindow('testSubWindow').then((data) => {
+          if (data == null) {
+            console.error('Failed to obtain the sub window. Cause: The data is empty');
+            return;
+          }
+          subWindow = data;
+          subWindowId = subWindow.getWindowProperties().id;
+          subWindow.resize(500, 500);
+          subWindow.showWindow();
+          subWindow.setUIContent('pages/Index');
+
+          // 监听Window状态，确保已经就绪
+          subWindow.on("windowEvent", (windowEvent) => {
+            if (windowEvent == window.WindowEventType.WINDOW_ACTIVE) {
+              // 切换焦点
+              window.shiftAppWindowFocus(subWindowId, mainWindowId).then(() => {
+                console.info('Succeeded in shifting app window focus');
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to shift app window focus. Cause code: ${err.code}, message: ${err.message}`);
+              });
+            }
+          });
         });
       });
     } catch (exception) {
