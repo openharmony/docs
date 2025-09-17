@@ -774,6 +774,10 @@ Member is not a valid PhotoKey
 
 IPC error
 
+**错误描述**
+
+IPC通信失败。
+
 **可能原因**
 
 调用服务不存在。
@@ -787,6 +791,10 @@ IPC error
 **错误信息**
 
 File system not supported
+
+**错误描述**
+
+文件系统类型不支持。
 
 **可能原因**
 
@@ -802,6 +810,10 @@ File system not supported
 
 Mount failed
 
+**错误描述**
+
+挂载失败。
+
 **可能原因**
 
 调用挂载命令失败。
@@ -815,6 +827,10 @@ Mount failed
 **错误信息**
 
 Unmount failed
+
+**错误描述**
+
+卸载失败。
 
 **可能原因**
 
@@ -830,6 +846,10 @@ Unmount failed
 
 Incorrect volume state
 
+**错误描述**
+
+卷状态错误。
+
 **可能原因**
 
 操作的卷状态错误。
@@ -843,6 +863,10 @@ Incorrect volume state
 **错误信息**
 
 Failed to create the directory or node
+
+**错误描述**
+
+创建目录或者节点失败。
 
 **可能原因**
 
@@ -858,6 +882,10 @@ Failed to create the directory or node
 
 Failed to delete the directory or node
 
+**错误描述**
+
+删除目录或者节点失败。
+
 **可能原因**
 
 目录或节点已删除。
@@ -871,6 +899,10 @@ Failed to delete the directory or node
 **错误信息**
 
 No such object
+
+**错误描述**
+
+操作对象不存在。
 
 **可能原因**
 
@@ -890,6 +922,10 @@ No such object
 
 User ID out of range
 
+**错误描述**
+
+用户id超出范围。
+
 **可能原因**
 
 输入错误的用户id。
@@ -905,6 +941,10 @@ User ID out of range
 **错误信息**
 
 IPC error
+
+**错误描述**
+
+IPC通信失败。
 
 **可能原因**
 
@@ -922,6 +962,10 @@ IPC error
 
 Invalid URI
 
+**错误描述**
+
+URI格式错误。
+
 **可能原因**
 
 使用非法URI。
@@ -935,6 +979,10 @@ Invalid URI
 **错误信息**
 
 Failed to obtain the server ability information
+
+**错误描述**
+
+查询server端ability信息失败。
 
 **可能原因**
 
@@ -950,6 +998,10 @@ BMS接口异常。
 
 Incorrect result returned by js-server
 
+**错误描述**
+
+js-server实际返回的结果异常。
+
 **可能原因**
 
 server端返回实际数据不当。
@@ -963,6 +1015,10 @@ server端返回值检查。
 **错误信息**
 
 Failed to register notify
+
+**错误描述**
+
+notify注册失败。
 
 **可能原因**
 
@@ -980,6 +1036,10 @@ Failed to register notify
 
 Failed to unregister notify
 
+**错误描述**
+
+notify移除失败。
+
 **可能原因**
 
 1.server端服务不在。
@@ -996,6 +1056,10 @@ Failed to unregister notify
 
 Failed to initialize the notify agent
 
+**错误描述**
+
+notify代理初始化失败。
+
 **可能原因**
 
 未注册就去取消notify。
@@ -1009,6 +1073,10 @@ Failed to initialize the notify agent
 **错误信息**
 
 Failed to notify the agent
+
+**错误描述**
+
+js-server端通知代理失败。
 
 **可能原因**
 
