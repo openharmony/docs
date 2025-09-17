@@ -455,6 +455,7 @@ zh-cn/application-dev/web/web-docking-softkeyboard.md @libing23232323 @glzt2l @H
 zh-cn/application-dev/web/web-event-sequence.md @libing23232323 @glzt2l @HelloShuo @zhu-sheng-le
 zh-cn/application-dev/web/web-file-upload.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
 zh-cn/application-dev/web/web-fit-content.md @LongLie @glzt2l @HelloShuo @yp99ustc
+zh-cn/application-dev/web/web-getpage-height.md @LongLie @glzt2l @HelloShuo @yp99ustc
 zh-cn/application-dev/web/web-focus.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
 zh-cn/application-dev/web/web-geolocation-permission.md @handyohos @glzt2l @HelloShuo @zhang-yinglie
 zh-cn/application-dev/web/web-gesture.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
@@ -1562,7 +1563,7 @@ zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview.md @ctqctq99 @glz
 zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-attributes.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
 zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-ControllerHandler.md @libing23232323 @glzt2l @HelloShuo @zhu-sheng-le
 zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-e.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
-zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-EventResult.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
+zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-EventResult.md @LongLie @glzt2l @HelloShuo @yp99ustc
 zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-events.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
 zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-FileSelectorParam.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
 zh-cn/application-dev/reference/apis-arkweb/arkts-basic-components-web-FileSelectorResult.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
