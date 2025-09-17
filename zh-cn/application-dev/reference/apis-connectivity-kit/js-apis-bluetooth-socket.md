@@ -540,7 +540,6 @@ try {
 sppReadAsync(clientSocket: number): Promise&lt;ArrayBuffer&gt;
 
 通过socket读取对端所发送数据的异步接口，该接口支持断开连接时SPP操作异常错误返回。
-
 - 不可以和API version 10开始支持的[socket.on('sppRead')](#socketonsppread)接口混用，同一路socket只能使用[socket.on('sppRead')](#socketonsppread)或者socket.sppReadAsync其中一个接口。
 - 通过Promise异步返回读取的数据，建议在连接成功后循环调用去获取接收到的数据，若不及时调用会丢失接收的数据。
 - 该接口为异步接口，需要等异步回调结果返回后才能下一次调用。
