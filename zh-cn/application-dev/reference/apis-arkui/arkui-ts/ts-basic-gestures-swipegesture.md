@@ -6,7 +6,7 @@
 <!--Tester: @songyanhong-->
 <!--Adviser: @HelloCrease-->
 
-用于触发滑动手势，滑动速度需大于速度阈值，默认最小速度为100vp/s。
+用于触发快滑手势，滑动速度需大于速度阈值，默认最小速度为100vp/s。
 
 >  **说明：**
 >
@@ -19,7 +19,7 @@
 
 SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: number })
 
-继承自[GestureInterface\<T>](ts-gesture-common.md#gestureinterfacet11)，设置滑动手势事件。
+继承自[GestureInterface\<T>](ts-gesture-common.md#gestureinterfacet11)，设置快滑手势事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -29,13 +29,13 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | { fingers?: number; direction?: SwipeDirection; speed?: number } | 否 | 设置滑动事件参数。 <br> - fingers：触发滑动的最少手指数。<br/>默认值：1 <br/>取值范围：[1, 10]<br> - direction：触发滑动手势的滑动方向。<br/>默认值：SwipeDirection.All <br> - speed：识别滑动的最小速度。<br/>默认值：100VP/s <br/>**说明：** <br/>当滑动速度的值小于等于0时，会被转化为默认值。 |
+| value | { fingers?: number; direction?: SwipeDirection; speed?: number } | 否 | 设置快滑事件参数。 <br> - fingers：触发快滑的最少手指数。<br/>默认值：1 <br/>取值范围：[1, 10]<br> - direction：触发快滑手势的滑动方向。<br/>默认值：SwipeDirection.All <br> - speed：识别快滑的最小速度。<br/>默认值：100VP/s <br/>**说明：** <br/>当滑动速度的值小于等于0时，会被转化为默认值。 |
 
 ### SwipeGesture<sup>15+</sup>
 
 SwipeGesture(options?: SwipeGestureHandlerOptions)
 
-设置滑动手势事件。与[SwipeGesture](#swipegesture-1)相比，options参数新增了isFingerCountLimited，表示是否检查触摸屏幕的手指数量。
+设置快滑手势事件。与[SwipeGesture](#swipegesture-1)相比，options参数新增了isFingerCountLimited，表示是否检查触摸屏幕的手指数量。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -45,7 +45,7 @@ SwipeGesture(options?: SwipeGestureHandlerOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [SwipeGestureHandlerOptions](./ts-gesturehandler.md#swipegesturehandleroptions) | 否 | 滑动事件处理器配置参数。 |
+| options | [SwipeGestureHandlerOptions](./ts-gesturehandler.md#swipegesturehandleroptions) | 否 | 快滑事件处理器配置参数。 |
 
 ## SwipeDirection枚举说明
 
@@ -89,7 +89,7 @@ Swipe手势识别成功时触发回调。
 
 ## 示例
 
-该示例展示了如何实现滑动手势的识别。
+该示例展示了如何实现快滑手势的识别。
 
 ```ts
 // xxx.ets
@@ -110,7 +110,7 @@ struct SwipeGestureExample {
       .height(200)
       .margin(100)
       .rotate({ angle: this.rotateAngle })
-      // 单指竖直方向滑动时触发该事件
+      // 单指竖直方向快滑时触发该事件
       .gesture(
       SwipeGesture({ direction: SwipeDirection.Vertical })
         .onAction((event: GestureEvent) => {

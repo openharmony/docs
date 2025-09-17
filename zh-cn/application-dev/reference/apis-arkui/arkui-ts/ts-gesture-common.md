@@ -384,13 +384,13 @@ getDuration(): number
 
 ## SwipeRecognizer<sup>18+</sup>
 
-滑动手势识别器对象，继承于[GestureRecognizer](#gesturerecognizer12)。
+快滑手势识别器对象，继承于[GestureRecognizer](#gesturerecognizer12)。
 
 ### getVelocityThreshold<sup>18+</sup>
 
 getVelocityThreshold(): number
 
-返回预设滑动手势识别器识别滑动最小速度阈值。
+返回预设快滑手势识别器识别滑动最小速度阈值。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -400,13 +400,13 @@ getVelocityThreshold(): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 预设滑动手势识别器识别滑动最小速度阈值，单位为vp/s。<br/>取值范围：[0, +∞) |
+| number | 预设快滑手势识别器识别滑动最小速度阈值，单位为vp/s。<br/>取值范围：[0, +∞) |
 
 ### getDirection<sup>18+</sup>
 
 getDirection(): SwipeDirection
 
-返回预设滑动手势识别器触发滑动手势滑动方向。
+返回预设快滑手势识别器触发快滑手势滑动方向。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -416,7 +416,7 @@ getDirection(): SwipeDirection
 
 | 类型     | 说明        |
 | ------ | --------- |
-| [SwipeDirection](./ts-basic-gestures-swipegesture.md#swipedirection枚举说明) | 预设滑动手势识别器触发滑动手势滑动方向。 |
+| [SwipeDirection](./ts-basic-gestures-swipegesture.md#swipedirection枚举说明) | 预设快滑手势识别器触发快滑手势滑动方向。 |
 
 ## PinchRecognizer<sup>18+</sup>
 
@@ -460,13 +460,13 @@ getAngle(): number
 
 ## PanRecognizer<sup>12+</sup> 
 
-拖动手势识别器对象，继承于[GestureRecognizer](#gesturerecognizer12)。
+滑动手势识别器对象，继承于[GestureRecognizer](#gesturerecognizer12)。
 
 ### getPanGestureOptions<sup>12+</sup> 
 
 getPanGestureOptions(): PanGestureOptions
 
-返回当前拖动手势识别器的属性。
+返回当前滑动手势识别器的属性。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -476,13 +476,13 @@ getPanGestureOptions(): PanGestureOptions
 
 | 类型     | 说明        |
 | ------ | --------- |
-| [PanGestureOptions](./ts-basic-gestures-pangesture.md#pangestureoptions) | 当前拖动手势识别器的属性。 |
+| [PanGestureOptions](./ts-basic-gestures-pangesture.md#pangestureoptions) | 当前滑动手势识别器的属性。 |
 
 ### getDirection<sup>19+</sup>
 
 getDirection(): PanDirection
 
-返回当前拖动手势识别器的识别方向。
+返回当前滑动手势识别器的识别方向。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -492,13 +492,13 @@ getDirection(): PanDirection
 
 | 类型     | 说明        |
 | ------ | --------- |
-| [PanDirection](./ts-basic-gestures-pangesture.md#pandirection枚举说明) | 当前拖动手势识别器的识别方向。 |
+| [PanDirection](./ts-basic-gestures-pangesture.md#pandirection枚举说明) | 当前滑动手势识别器的识别方向。 |
 
 ### getDistance<sup>19+</sup>
 
 getDistance(): number
 
-返回当前拖动手势识别器触发的最小滑动距离。
+返回当前滑动手势识别器触发的最小滑动距离。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -508,13 +508,13 @@ getDistance(): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 当前拖动手势识别器触发的最小滑动距离。单位：vp |
+| number | 当前滑动手势识别器触发的最小滑动距离。单位：vp |
 
 ### getDistanceMap<sup>19+</sup>
 
 getDistanceMap(): Map\<SourceTool, number\>
 
-返回拖动手势识别器在不同输入源的情况下触发的最小滑动距离。
+返回滑动手势识别器在不同输入源的情况下触发的最小滑动距离。
 
 >  **说明：**
 >
@@ -528,7 +528,7 @@ getDistanceMap(): Map\<SourceTool, number\>
 
 | 类型     | 说明        |
 | ------ | --------- |
-| Map<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9), number> | 不同输入源的拖动手势识别器触发的最小滑动距离。滑动距离的单位：vp |
+| Map<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9), number> | 不同输入源的滑动手势识别器触发的最小滑动距离。滑动距离的单位：vp |
 
 ## GestureRecognizerState<sup>12+</sup> 
 
@@ -558,11 +558,11 @@ getDistanceMap(): Map\<SourceTool, number\>
 | repeat | boolean | 否 |  否  |是否为重复触发事件，用于LongPressGesture手势触发场景。true表示重复触发事件，false表示非重复触发事件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | offsetX | number | 否 | 否  |手势事件相对于手指按下时的偏移量X，单位为vp，用于PanGesture手势触发场景，从左向右滑动offsetX为正，反之为负。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>取值范围：(-∞, +∞) |
 | offsetY | number | 否 | 否  |手势事件相对于手指按下时的偏移量Y，单位为vp，用于PanGesture手势触发场景，从上向下滑动offsetY为正，反之为负。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>取值范围：(-∞, +∞)  |
-| angle | number | 否 | 否  |用于RotationGesture手势触发场景时，表示旋转角度。<br/>用于SwipeGesture手势触发场景时，表示滑动手势的角度，即两根手指间的线段与水平方向的夹角变化的度数。<br/>**说明：**<br/>角度计算方式：滑动手势被识别到后，连接两根手指之间的线被识别为起始线条，随着手指的滑动，手指之间的线条会发生旋转，根据起始线条两端点和当前线条两端点的坐标，使用反正切函数分别计算其相对于水平方向的夹角，最后arctan2(cy2-cy1,cx2-cx1)-arctan2(y2-y1,x2-x1)为旋转的角度。以起始线条为坐标系，顺时针旋转为0到180度，逆时针旋转为-180到0度。<br/>取值范围：[-180,  +180]<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| angle | number | 否 | 否  |用于RotationGesture手势触发场景时，表示旋转角度。<br/>用于SwipeGesture手势触发场景时，表示快滑手势的角度，即两根手指间的线段与水平方向的夹角变化的度数。<br/>**说明：**<br/>角度计算方式：快滑手势被识别到后，连接两根手指之间的线被识别为起始线条，随着手指的滑动，手指之间的线条会发生旋转，根据起始线条两端点和当前线条两端点的坐标，使用反正切函数分别计算其相对于水平方向的夹角，最后arctan2(cy2-cy1,cx2-cx1)-arctan2(y2-y1,x2-x1)为旋转的角度。以起始线条为坐标系，顺时针旋转为0到180度，逆时针旋转为-180到0度。<br/>取值范围：[-180,  +180]<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | scale | number |否 | 否  |缩放比例，用于PinchGesture手势触发场景。<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | pinchCenterX | number | 否 | 否  |捏合手势中心点的x轴坐标，单位为vp，用于PinchGesture手势触发场景。<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | pinchCenterY | number | 否 | 否  |捏合手势中心点的y轴坐标，单位为vp，用于PinchGesture手势触发场景。<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| speed<sup>8+</sup> | number | 否 | 否  |滑动手势速度，即所有手指相对当前组件元素原始区域滑动的平均速度，单位为vp/s，用于SwipeGesture手势触发场景。<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| speed<sup>8+</sup> | number | 否 | 否  |快滑手势速度，即所有手指相对当前组件元素原始区域滑动的平均速度，单位为vp/s，用于SwipeGesture手势触发场景。<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | fingerList<sup>8+</sup> | [FingerInfo](./ts-gesture-common.md#fingerinfo8对象说明)[] | 否 | 否  |输入源为触屏产生的手势，fingerList中会包含触发事件的所有触点信息；由鼠标发起的手势，fingerList中只会有一条记录；触摸板的事件大类与鼠标一致，所以由触摸板发起的手势，fingerList只会携带一条记录。<br/>**说明：**<br/>手指索引编号与位置对应，即fingerList[index]的id为index。先按下且未参与当前手势触发的手指在fingerList中对应位置为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | fingerInfos<sup>20+</sup> | [FingerInfo](./ts-gesture-common.md#fingerinfo8对象说明)[] | 否 | 是  |由触屏产生的手势，fingerInfos中会包含触发事件的所有触点信息；由鼠标发起的手势，fingerInfos中只会有一条记录；触摸板的事件大类与鼠标一致，所以由触摸板发起的手势，fingerInfos只会携带一条记录。<br/> **说明：**<br/>fingerInfos只会记录参与触摸的有效手指信息，先按下但未参与当前手势触发的手指在fingerInfos中不会显示。默认值为空数组[]，返回空数组时，表示当前无有效触点信息。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 | velocityX<sup>10+</sup> | number | 否 | 否  |用于[PanGesture](ts-basic-gestures-pangesture.md)手势中，获取当前手势的x轴方向速度。坐标轴原点为屏幕左上角，分正负方向速度，从左往右为正，反之为负。单位为vp/s。<br/>取值范围：(-∞,  +∞) <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -608,9 +608,9 @@ getDistanceMap(): Map\<SourceTool, number\>
 | ----- | -------- | ------------------------------- |
 | TAP_GESTURE   | 0 | 点击手势。|
 | LONG_PRESS_GESTURE  | 1 | 长按手势。|
-| PAN_GESTURE    | 2 | 拖动手势。|
+| PAN_GESTURE    | 2 | 滑动手势。|
 | PINCH_GESTURE   | 3 | 捏合手势。|
-| SWIPE_GESTURE    | 4 | 滑动手势。|
+| SWIPE_GESTURE    | 4 | 快滑手势。|
 | ROTATION_GESTURE   | 5 | 旋转手势。|
 | DRAG    | 6 | 拖拽。|
 | CLICK   | 7 | 点击。|
@@ -662,10 +662,10 @@ declare type GestureType = TapGesture | LongPressGesture | PanGesture | PinchGes
 | -------- | -------- |
 | [TapGesture](ts-basic-gestures-tapgesture.md) | 点击手势，支持单次点击、多次点击识别。 |
 | [LongPressGesture](ts-basic-gestures-longpressgesture.md) | 长按手势。 |
-| [PanGesture](ts-basic-gestures-pangesture.md) | 平移手势，当滑动的距离达到最小阈值时触发滑动手势事件，默认滑动阈值为5vp。 |
+| [PanGesture](ts-basic-gestures-pangesture.md) | 滑动手势，当滑动的距离达到最小阈值时触发滑动手势事件，默认滑动阈值为5vp。 |
 | [PinchGesture](ts-basic-gestures-pinchgesture.md) | 捏合手势。 |
 | [RotationGesture](ts-basic-gestures-rotationgesture.md) | 旋转手势。 |
-| [SwipeGesture](ts-basic-gestures-swipegesture.md) | 滑动手势，滑动速度大于等于速度阈值时可识别成功，默认最小速度为100vp/s。 |
+| [SwipeGesture](ts-basic-gestures-swipegesture.md) | 快滑手势，滑动速度大于等于速度阈值时可识别成功，默认最小速度为100vp/s。 |
 | [GestureGroup](ts-combined-gestures.md) | 手势识别组，多种手势组合为复合手势，支持连续识别、并行识别和互斥识别。 |
 
 ## BaseGestureEvent<sup>11+</sup>对象说明
@@ -755,5 +755,5 @@ declare type GestureType = TapGesture | LongPressGesture | PanGesture | PinchGes
 
 | 名称         | 类型                         | 只读 | 可选             | 说明         |
 | ------------  | ----------------------------|------|------  | -----------|
-| angle         | number | 否 | 否 | 表示滑动手势的角度，即两根手指间的线段与水平方向的夹角变化的度数，单位为deg。<br/>**说明：**<br/>角度计算方式：当滑动手势被识别后，连接两根手指之间的线被识别为起始线条。随着手指的滑动，手指之间的线条会发生旋转。根据起始线条和当前线条两端点的坐标，使用反正切函数分别计算其相对于水平方向的夹角。<br/>最终的旋转角度为：arctan2(cy2-cy1, cx2-cx1) - arctan2(y2-y1, x2-x1) <br/>在起始线条为坐标系的情况下，顺时针旋转为0到180度，逆时针旋转为-180到0度。|
-| speed         | number | 否 | 否 | 滑动手势速度，即所有手指相对当前组件元素原始区域滑动的平均速度，单位为vp/s。  |
+| angle         | number | 否 | 否 | 表示快滑手势的角度，即两根手指间的线段与水平方向的夹角变化的度数，单位为deg。<br/>**说明：**<br/>角度计算方式：当快滑手势被识别后，连接两根手指之间的线被识别为起始线条。随着手指的滑动，手指之间的线条会发生旋转。根据起始线条和当前线条两端点的坐标，使用反正切函数分别计算其相对于水平方向的夹角。<br/>最终的旋转角度为：arctan2(cy2-cy1, cx2-cx1) - arctan2(y2-y1, x2-x1) <br/>在起始线条为坐标系的情况下，顺时针旋转为0到180度，逆时针旋转为-180到0度。|
+| speed         | number | 否 | 否 | 快滑手势速度，即所有手指相对当前组件元素原始区域滑动的平均速度，单位为vp/s。  |
