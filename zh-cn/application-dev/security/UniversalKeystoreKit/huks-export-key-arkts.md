@@ -64,7 +64,7 @@ async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions):
         console.info(`promise: generateKeyItem success`);
         ret = true;
       }).catch((error: BusinessError) => {
-        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMag : ${error.message}`);
+        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
       });
   } catch (error) {
     console.error(`promise: generateKeyItem input arg invalid`);
@@ -82,7 +82,7 @@ async function exportKeyItem(keyAlias: string, emptyOptions: huks.HuksOptions): 
         console.info(`promise: exportKeyItem success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
         ret = true;
       }).catch((error: BusinessError) => {
-        console.error(`promise: exportKeyItem failed, errCode : ${error.code}, errMag : ${error.message}`);
+        console.error(`promise: exportKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
       });
   } catch (error) {
     console.error(`promise: exportKeyItem input arg invalid`);
