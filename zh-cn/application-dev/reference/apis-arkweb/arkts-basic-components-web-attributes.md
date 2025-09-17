@@ -915,7 +915,7 @@ defaultFixedFontSize(size: number)
 
 defaultFontSize(size: number)
 
-设置网页的默认字体大小。对于html前端未指定font-size样式的元素，实际渲染时将按照接口值设置的字体大小进行渲染显示。
+设置网页的默认字体大小。对于html前端使用非monospace字体样式且未指定font-size样式的元素，实际渲染时将按照接口值设置的字体大小进行渲染显示。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -985,7 +985,7 @@ minFontSize(size: number)
 
 minLogicalFontSize(size: number)
 
-设置网页逻辑字体大小最小值。对于html前端未指定font-size样式的元素，若元素字体大小低于该接口设置的字体大小，实际渲染时将按照接口值设置的字体大小进行渲染显示。
+设置网页逻辑字体大小最小值。对于html前端未指定font-size样式的元素，若元素字体大小低于该接口设置的字体大小，实际渲染时将按照接口值设置的字体大小进行渲染显示。minLogicalFontSize和minFontSize同时设置时，对于未指定font-size样式元素，将采用两个接口设置的较大值生效。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
