@@ -25,12 +25,10 @@ import { verticalPanelManager } from '@kit.AbilityKit';
 
 startVerticalPanel(context: common.UIAbilityContext, wantParam: Record\<string, Object>, panelConfig: PanelConfig, panelStartCallback: PanelStartCallback): Promise\<void>
 
-当应用处于前台时，开发者可以通过接口拉起垂域应用面板，来选择需要拉起的目标应用。使用Promise异步回调。
-如图1所示，源应用（[sourceAppInfo](#panelconfig)）作为当前屏幕的显示应用，通过中间方应用（拉起方应用）调用startVerticalPanel接口，执行拉起面板操作，拉起用于选择目标应用的应用选择弹框。用户手动选择目标应用后，源应用与目标应用将自动呈现分屏效果。
+当应用处于前台时，开发者可以通过接口拉起垂域应用面板，来选择需要拉起的目标应用。使用Promise异步回调。<br>
+如下图所示，源应用（[sourceAppInfo](#panelconfig)）作为当前屏幕显示的应用，通过中间方应用（拉起方应用）调用startVerticalPanel接口，拉起应用选择弹框。用户手动选择目标应用后，源应用与目标应用将自动呈现分屏效果。
 
-**图1** 接口执行过程
-
-![app-startup-procedure](../figures/image-y004.png)
+![app-startverticalpanel-procedure](../figures/image-verticalpanelmanager-startverticalpanel.png)
 
 **系统能力：** SystemCapability.Ability.AppExtension.VerticalPanel
 
