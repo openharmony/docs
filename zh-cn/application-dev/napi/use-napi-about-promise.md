@@ -80,7 +80,7 @@ export const isPromise: <T>(value: T) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let value = Promise.resolve();
@@ -161,8 +161,8 @@ static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info)
     napi_value args[3] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     // 第一个参数为向resolve传入的信息，第二个参数为向reject传入的信息，第三个参数为Promise的状态
-    bool status;
-    napi_status status = napi_get_value_bool(env, args[INT_ARG_2], &status);
+    bool promiseStatus;
+    napi_status status = napi_get_value_bool(env, args[INT_ARG_2], &promiseStatus);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "napi_get_value_bool failed");
         return nullptr;
@@ -177,7 +177,7 @@ static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info)
         return nullptr;
     }
     // 根据第三个参数设置resolve或reject
-    if (status) {
+    if (promiseStatus) {
         napi_resolve_deferred(env, deferred, args[0]);
     } else {
         napi_reject_deferred(env, deferred, args[1]);
@@ -200,7 +200,7 @@ export const resolveRejectDeferred: (resolve: string, reject: string, status: bo
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 // 创建promise如果创建成功返回true，创建失败返回false
