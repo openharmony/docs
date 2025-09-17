@@ -1539,11 +1539,9 @@ async function ExampleFunction(dlpFilePath: string) {
 }
 ```
 
-## ActionType<sup>20+</sup>
+## ActionType<sup>21+</sup>
 
 表示在文件设定的权限时间到期后所执行的动作，默认为NOT_OPEN。
-
-**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
