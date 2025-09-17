@@ -1103,7 +1103,7 @@ function testGetPhotoRotation(photoOutput: camera.PhotoOutput, deviceDegree : nu
   let photoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
     photoRotation = photoOutput.getPhotoRotation(deviceDegree);
-    console.log(`Photo rotation is: ${photoRotation}`);
+    console.info(`Photo rotation is: ${photoRotation}`);
   } catch (error) {
     // 失败返回错误码error.code并处理。
     let err = error as BusinessError;
