@@ -62,7 +62,7 @@ async function importKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): P
         console.info(`promise: importKeyItem success`);
         ret = true;
       }).catch((error: BusinessError) => {
-        console.error(`promise: importKeyItem failedm errCode : ${error.code}, errMsg : ${error.message}`);
+        console.error(`promise: importKeyItem failed errCode : ${error.code}, errMsg : ${error.message}`);
       })
   } catch (error) {
     console.error(`promise: importKeyItem input arg invalid`);
@@ -164,7 +164,7 @@ async function importKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): P
         console.info(`promise: importKeyItem success`);
         ret = true;
       }).catch((error: BusinessError) => {
-        console.error(`promise: importKeyItem failedm errCode : ${error.code}, errMsg : ${error.message}`);
+        console.error(`promise: importKeyItem failed errCode : ${error.code}, errMsg : ${error.message}`);
       })
   } catch (error) {
     console.error(`promise: importKeyItem input arg invalid`);
@@ -228,7 +228,7 @@ async function importKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): P
         console.info(`promise: importKeyItem success`);
         ret = true;
       }).catch((error: BusinessError) => {
-        console.error(`promise: importKeyItem failedm errCode : ${error.code}, errMsg : ${error.message}`);
+        console.error(`promise: importKeyItem failed errCode : ${error.code}, errMsg : ${error.message}`);
       })
   } catch (error) {
     console.error(`promise: importKeyItem input arg invalid`);
@@ -284,9 +284,9 @@ async function isKeyItemExist(keyAlias: string, options: huks.HuksOptions): Prom
 async function testImportKeyExist() {
   let retExist = await isKeyItemExist(keyAlias, huksOptions);
   if (retExist == false) {
-    console.error(`testImportKeyExistd failed`);
+    console.error(`testImportKeyExist failed`);
     return;
   }
-  console.info(`testImportKeyExistd success`);
+  console.info(`testImportKeyExist success`);
 }
 ```
