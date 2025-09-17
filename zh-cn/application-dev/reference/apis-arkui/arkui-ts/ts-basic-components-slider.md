@@ -1566,7 +1566,7 @@ struct SliderExample {
 @Entry
 @Component
 struct SliderExample {
-  @State colorGradient: LinearGradient = new LinearGradient([{ color: "#FF0000FF", offset: 0 }, { color: "#FFFF0000", offset: 1 }])
+  @State colorGradient: LinearGradient = new LinearGradient([{ color: "#FFFFFF", offset: 0 }, { color: "#007DFF", offset: 1 }])
 
   build() {
     Column({ space: 10 }) {
