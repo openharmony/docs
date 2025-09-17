@@ -1926,7 +1926,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate9) | 否 | 否 | P2P连接状态。 |
-| isGroupOwner | boolean | 否 | 否 | true:是群主，false:不是群主。|
+| isGroupOwner | boolean | 否 | 否 | true表示是群主，false表示不是群主。|
 | groupOwnerAddr | string | 否 | 否 | 群组IP地址。| 
 
 
