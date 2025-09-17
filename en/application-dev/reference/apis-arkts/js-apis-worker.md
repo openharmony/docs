@@ -953,7 +953,7 @@ let result: Boolean = workerInstance.dispatchEvent({type: "alert", timeStamp: 0}
 console.info("dispatchEvent result is: ", result);
 ```
 
-The **dispatchEvent** API can be used together with the **on**, **once**, and **addEventListener** APIs. For details, see [Using dispatchEvent with addEventListener](#using-dispatchevent-with-addeventlistener).
+The **dispatchEvent** API can be used together with the **on**, **once**, and **addEventListener** APIs.
 
 ```ts
 import { worker, MessageEvents } from '@kit.ArkTS';

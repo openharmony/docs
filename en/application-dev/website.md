@@ -2295,6 +2295,7 @@
         - [Common Library Error Codes](reference/apis-arkts/errorcode-utils.md)
         - [TypeScript Compiler Error Codes](reference/apis-arkts/errorcode-tsc.md)
         - [Compilation Toolchain Error Codes](reference/apis-arkts/errorcode-ets-loader.md)
+        - [es2abc Compiler Error Codes](reference/apis-arkts/errorcode-es2abc.md)
     - ArkUI<!--arkui-api-->
       - ArkTS APIs<!--arkui-arkts-->
         - UI<!--ui-->
