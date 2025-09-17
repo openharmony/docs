@@ -26,6 +26,10 @@ showWindow(callback: AsyncCallback&lt;void&gt;): void
 
 Shows this window. This API uses an asynchronous callback to return the result. This API takes effect only for a system window or an application child window. For the main window of an application, this API moves it at the top when the main window is already displayed.
 
+> **NOTE**
+>
+> Before calling this API, you are advised to load the page by using [loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9) or [setUIContent](arkts-apis-window-Window.md#setuicontent9-1). If the main window has not finished loading and you call this API directly, the starting window keeps showing. Similarly, if neither the system window nor a child window has finished loading and you call this API directly, the window is in the foreground but is not visible.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -47,16 +51,51 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-windowClass.showWindow((err: BusinessError) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to show the window. Cause code: ${err.code}, message: ${err.message}`);
-    return;
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      try {
+        // Create a child window.
+        windowStage.createSubWindow("testSubWindow").then((subWindow) => {
+          if (subWindow == null) {
+            console.error('Failed to create the subWindow. Cause: The data is empty');
+            return;
+          }
+          subWindow.setUIContent('pages/Index', (err) => {
+            if (err.code) {
+              console.error('Failed to load the subWindow content. Cause: %{public}s', JSON.stringify(err));
+              return;
+            }
+            console.info('Succeeded in loading the subWindow content.');
+            try {
+              subWindow.showWindow((err: BusinessError) => {
+                const errCode: number = err.code;
+                if (errCode) {
+                  console.error(`Failed to show the window. Error code: ${err.code}, message: ${err.message}`);
+                  return;
+                }
+                console.info('Succeeded in showing the window.');
+              });
+            } catch (exception) {
+              console.error(`Failed to show the window. Cause code: ${exception.code}, message: ${exception.message}`);
+            }
+          })
+        });
+      } catch (exception) {
+        console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+  });
   }
-  console.info('Succeeded in showing the window.');
-});
+}
 ```
 
 ## showWindow<sup>9+</sup>
@@ -64,6 +103,10 @@ windowClass.showWindow((err: BusinessError) => {
 showWindow(): Promise&lt;void&gt;
 
 Shows this window. This API uses a promise to return the result. This API takes effect only for a system window or an application child window. For the main window of an application, this API moves it at the top when the main window is already displayed.
+
+> **NOTE**
+>
+> Before calling this API, you are advised to load the page by using [loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9) or [setUIContent](arkts-apis-window-Window.md#setuicontent9-1). If the main window has not finished loading and you call this API directly, the starting window keeps showing. Similarly, if neither the system window nor a child window has finished loading and you call this API directly, the window is in the foreground but is not visible.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -86,14 +129,49 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = windowClass.showWindow();
-promise.then(() => {
-  console.info('Succeeded in showing the window.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to show the window. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      try {
+        // Create a child window.
+        windowStage.createSubWindow("testSubWindow").then((subWindow) => {
+          if (subWindow == null) {
+            console.error('Failed to create the subWindow. Cause: The data is empty');
+            return;
+          }
+          subWindow.setUIContent('pages/Index', (err) => {
+            if (err.code) {
+              console.error('Failed to load the subWindow content. Cause: %{public}s', JSON.stringify(err));
+              return;
+            }
+            console.info('Succeeded in loading the subWindow content.');
+            try {
+              let promise = subWindow.showWindow();
+              promise.then(() => {
+                console.info('Succeeded in showing the window.');
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to show the window. Error code: ${err.code}, message: ${err.message}`);
+              });
+            } catch (exception) {
+              console.error(`Failed to show window. Cause code: ${exception.code}, message: ${exception.message}`);
+            }
+          });
+        });
+      } catch (exception) {
+        console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
+}
 ```
 
 ## showWindow<sup>20+</sup>
@@ -101,6 +179,10 @@ promise.then(() => {
 showWindow(options: ShowWindowOptions): Promise&lt;void&gt;
 
 Shows this window. This API uses a promise to return the result. This API takes effect only for a system window or an application child window. For the main window of an application, this API moves it at the top when the main window is already displayed. You can pass parameters to control the window display behavior.
+
+> **NOTE**
+>
+> Before calling this API, you are advised to load the page by using [loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9) or [setUIContent](arkts-apis-window-Window.md#setuicontent9-1). If the main window has not finished loading and you call this API directly, the starting window keeps showing. Similarly, if neither the system window nor a child window has finished loading and you call this API directly, the window is in the foreground but is not visible.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -140,29 +222,43 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    // Create a child window.
-    try {
-      windowStage.createSubWindow('subWindow').then((data) => {
-        if (data == null) {
-          console.error('Failed to create the sub window. Cause: The data is empty');
-          return;
-        }
-        let options: window.ShowWindowOptions = {
-          focusOnShow: false
-        };
-        try {
-          data.showWindow(options).then(() => {
-            console.info('Succeeded in showing window');
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to show window. Cause code: ${err.code}, message: ${err.message}`);
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      // Create a child window.
+      try {
+        windowStage.createSubWindow('subWindow').then((data) => {
+          if (data == null) {
+            console.error('Failed to create the subWindow. Cause: The data is empty');
+            return;
+          }
+          data.setUIContent('pages/Index', (err) => {
+            if (err.code) {
+              console.error('Failed to load the subWindow content. Cause: %{public}s', JSON.stringify(err));
+              return;
+            }
+            console.info('Succeeded in loading the subWindow content.');
+            let options: window.ShowWindowOptions = {
+              focusOnShow: false
+            };
+            try {
+              data.showWindow(options).then(() => {
+                console.info('Succeeded in showing window');
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to show window. Error code: ${err.code}, message: ${err.message}`);
+              });
+            } catch (exception) {
+              console.error(`Failed to show window. Cause code: ${exception.code}, message: ${exception.message}`);
+            }
           });
-        } catch (exception) {
-          console.error(`Failed to show window. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
-      });
-    } catch (exception) {
-      console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+        });
+      } catch (exception) {
+        console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
   }
 }
 ```
@@ -512,8 +608,8 @@ Moves this window based on the coordinates. This API uses a promise to return th
 
 | Name| Type| Mandatory| Description|
 | -- | ----- | -- | --------------------------------------------- |
-| x | number | Yes| Distance that the window moves along the x-axis, in px, with the upper-left corner of the display used as the origin. A positive value indicates that the window moves to the right, and a negative value indicates that the window moves to the left. The value must be an integer. Non-integer values are rounded down.|
-| y | number | Yes| Distance that the window moves along the y-axis, in px, with the upper-left corner of the display used as the origin. A positive value indicates that the window moves downwards, and a negative value indicates that the window moves upwards. The value must be an integer. Non-integer values are rounded down.|
+| x | number | Yes| Distance that the window moves along the x-axis, in px, with the top-left corner of the display used as the origin. A positive value indicates that the window moves to the right, and a negative value indicates that the window moves to the left. The value must be an integer. Non-integer values are rounded down.|
+| y | number | Yes| Distance that the window moves along the y-axis, in px, with the top-left corner of the display used as the origin. A positive value indicates that the window moves downwards, and a negative value indicates that the window moves upwards. The value must be an integer. Non-integer values are rounded down.|
 
 **Return value**
 
@@ -572,8 +668,8 @@ Moves this window based on the coordinates. This API uses a promise to return th
 
 | Name| Type| Mandatory| Description|
 | -- | ----- | -- | --------------------------------------------- |
-| x | number | Yes| Distance that the window moves along the x-axis, in px, with the upper-left corner of the target display used as the origin. A positive value indicates that the window moves to the right, and a negative value indicates that the window moves to the left. The value must be an integer. Non-integer values are rounded down.|
-| y | number | Yes| Distance that the window moves along the y-axis, in px, with the upper-left corner of the target display used as the origin. A positive value indicates that the window moves downwards, and a negative value indicates that the window moves upwards. The value must be an integer. Non-integer values are rounded down.|
+| x | number | Yes| Distance that the window moves along the x-axis, in px, with the top-left corner of the target display used as the origin. A positive value indicates that the window moves to the right, and a negative value indicates that the window moves to the left. The value must be an integer. Non-integer values are rounded down.|
+| y | number | Yes| Distance that the window moves along the y-axis, in px, with the top-left corner of the target display used as the origin. A positive value indicates that the window moves downwards, and a negative value indicates that the window moves upwards. The value must be an integer. Non-integer values are rounded down.|
 | moveConfiguration | [MoveConfiguration](arkts-apis-window-i.md#moveconfiguration15) | No| Window movement configuration. If this parameter is not set, the window will stay on the current display.|
 
 **Return value**
@@ -621,7 +717,7 @@ try {
 
 moveWindowToGlobalDisplay(x: number, y: number): Promise&lt;void&gt;
 
-Moves the window based on the global coordinate system. (In extended screen scenarios, the upper-left corner of the primary screen is used as the origin.) This API uses a promise to return the result.
+Moves the window based on the global coordinate system. (In extended screen scenarios, the top-left corner of the primary screen is used as the origin.) This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -635,8 +731,8 @@ Moves the window based on the global coordinate system. (In extended screen scen
 
 | Name| Type| Mandatory| Description|
 | -- | ----- | -- | --------------------------------------------- |
-| x | number | Yes| Distance that the window moves along the x-axis, in px, with the upper-left corner of the primary display used as the origin. A positive value indicates that the window moves to the right, and a negative value indicates that the window moves to the left. The value must be an integer. Non-integer values are rounded down.|
-| y | number | Yes| Distance that the window moves along the y-axis, in px, with the upper-left corner of the primary display used as the origin. A positive value indicates that the window moves downwards, and a negative value indicates that the window moves upwards. The value must be an integer. Non-integer values are rounded down.|
+| x | number | Yes| Distance that the window moves along the x-axis, in px, with the top-left corner of the primary display used as the origin. A positive value indicates that the window moves to the right, and a negative value indicates that the window moves to the left. The value must be an integer. Non-integer values are rounded down.|
+| y | number | Yes| Distance that the window moves along the y-axis, in px, with the top-left corner of the primary display used as the origin. A positive value indicates that the window moves downwards, and a negative value indicates that the window moves upwards. The value must be an integer. Non-integer values are rounded down.|
 
 **Return value**
 
@@ -677,7 +773,7 @@ try {
 
 clientToGlobalDisplay(winX: number, winY: number): Position
 
-Converts relative coordinates (based on the upper-left corner of the current window) into global coordinates (based on the upper-left corner of the primary screen).
+Converts relative coordinates (based on the top-left corner of the current window) into global coordinates (based on the top-left corner of the primary screen).
 
 This API is not supported in windows that are subject to display scaling, such as floating windows on phones or tablets not in free windows mode.
 
@@ -687,8 +783,8 @@ This API is not supported in windows that are subject to display scaling, such a
 
 | Name| Type| Mandatory| Description|
 | -- | ----- | -- | --------------------------------------------- |
-| winX | number | Yes| Distance that the component moves along the x-axis, in px, with the upper-left corner of the current window used as the origin. A positive value indicates that the window moves to the right, and a negative value indicates that the window moves to the left. The value must be an integer. Non-integer values are rounded down.|
-| winY | number | Yes| Distance that the component moves along the y-axis, in px, with the upper-left corner of the current window used as the origin. A positive value indicates that the window moves downwards, and a negative value indicates that the window moves upwards. The value must be an integer. Non-integer values are rounded down.|
+| winX | number | Yes| Distance that the component moves along the x-axis, in px, with the top-left corner of the current window used as the origin. A positive value indicates that the window moves to the right, and a negative value indicates that the window moves to the left. The value must be an integer. Non-integer values are rounded down.|
+| winY | number | Yes| Distance that the component moves along the y-axis, in px, with the top-left corner of the current window used as the origin. A positive value indicates that the window moves downwards, and a negative value indicates that the window moves upwards. The value must be an integer. Non-integer values are rounded down.|
 
 **Return value**
 
@@ -722,7 +818,7 @@ try {
 
 globalDisplayToClient(globalDisplayX: number, globalDisplayY: number): Position
 
-Converts global coordinates (based on the upper-left corner of the primary screen) into relative coordinates (based on the upper-left corner of the current window).
+Converts global coordinates (based on the top-left corner of the primary screen) into relative coordinates (based on the top-left corner of the current window).
 
 This API is not supported in windows that are subject to display scaling, such as floating windows on phones or tablets not in free windows mode.
 
@@ -732,8 +828,8 @@ This API is not supported in windows that are subject to display scaling, such a
 
 | Name| Type| Mandatory| Description|
 | -- | ----- | -- | --------------------------------------------- |
-| globalDisplayX | number | Yes| Distance that the component moves along the x-axis, in px, with the upper-left corner of the primary display used as the origin. A positive value indicates that the window moves to the right, and a negative value indicates that the window moves to the left. The value must be an integer. Non-integer values are rounded down.|
-| globalDisplayY | number | Yes| Distance that the component moves along the y-axis, in px, with the upper-left corner of the primary display used as the origin. A positive value indicates that the window moves downwards, and a negative value indicates that the window moves upwards. The value must be an integer. Non-integer values are rounded down.|
+| globalDisplayX | number | Yes| Distance that the component moves along the x-axis, in px, with the top-left corner of the primary display used as the origin. A positive value indicates that the window moves to the right, and a negative value indicates that the window moves to the left. The value must be an integer. Non-integer values are rounded down.|
+| globalDisplayY | number | Yes| Distance that the component moves along the y-axis, in px, with the top-left corner of the primary display used as the origin. A positive value indicates that the window moves downwards, and a negative value indicates that the window moves upwards. The value must be an integer. Non-integer values are rounded down.|
 
 **Return value**
 
@@ -772,8 +868,8 @@ Changes the size of this window. This API uses an asynchronous callback to retur
 The window size is restricted by [WindowLimits](arkts-apis-window-i.md#windowlimits11). You can call [getWindowLimits](#getwindowlimits11) to find out the exact limits.
 
 The new window width and height you set must meet the following limits:
-If the window width or height is less than the minimum width or height limit, then the minimum width or height limit takes effect.
-If the window width or height is greater than the maximum width or height limit, then the maximum width or height limit takes effect.
+- If the window width or height is less than the minimum width or height limit, then the minimum width or height limit takes effect.
+- If the window width or height is greater than the maximum width or height limit, then the maximum width or height limit takes effect.
 
 > **NOTE**
 >
@@ -833,8 +929,8 @@ A value is returned once the API is called successfully. However, the final effe
 The window size is restricted by [WindowLimits](arkts-apis-window-i.md#windowlimits11). You can call [getWindowLimits](#getwindowlimits11) to find out the exact limits.
 
 The new window width and height you set must meet the following limits:
-If the window width or height is less than the minimum width or height limit, then the minimum width or height limit takes effect.
-If the window width or height is greater than the maximum width or height limit, then the maximum width or height limit takes effect.
+- If the window width or height is less than the minimum width or height limit, then the minimum width or height limit takes effect.
+- If the window width or height is greater than the maximum width or height limit, then the maximum width or height limit takes effect.
 
 > **NOTE**
 >
@@ -897,8 +993,8 @@ A value is returned once the call takes effect. You can use [getWindowProperties
 The window size is restricted by [WindowLimits](arkts-apis-window-i.md#windowlimits11). You can call [getWindowLimits](#getwindowlimits11) to find out the exact limits.
 
 The new window width and height you set must meet the following limits:
-If the window width or height is less than the minimum width or height limit, then the minimum width or height limit takes effect.
-If the window width or height is greater than the maximum width or height limit, then the maximum width or height limit takes effect.
+- If the window width or height is less than the minimum width or height limit, then the minimum width or height limit takes effect.
+- If the window width or height is greater than the maximum width or height limit, then the maximum width or height limit takes effect.
 
 > **NOTE**
 >
@@ -1139,6 +1235,10 @@ getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
 Obtains the avoid area of this application window, for example, the system bar area, notch, gesture area, and soft keyboard area.
 
+In [freeform window](../../windowmanager/window-terminology.md#freeform-window) mode, this API obtains an empty avoid area.
+
+In non-freeform window mode, this API can calculate and return the avoid area only when the position and size of the child window are the same as those of the main window. Otherwise, this API returns an empty avoid area.
+
 This API is typically used in three scenarios: 1. In the **onWindowStageCreate** callback, this API can be used to obtain the avoid area in the initial layout during application startup. 2. When a child window needs to be temporarily displayed and requires layout adjustments for the content, this API can be used. 3. After you create a floating window, modal window, or system window (**WindowType** is a system window) and call [setSystemAvoidAreaEnabled](#setsystemavoidareaenabled18) to enable the such window to access the avoid area, this API can be used.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -1365,7 +1465,7 @@ export default class EntryAbility extends UIAbility {
             return;
           }
           mainWindow = data;
-          console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+          console.info(`Succeeded in obtaining the main window. Data: ${JSON.stringify(data)}`);
           // Call maximize to enable the full-screen mode for the window.
           mainWindow.maximize(window.MaximizePresentation.ENTER_IMMERSIVE);
           // Call setTitleAndDockHoverShown to hide the window title bar and dock bar.
@@ -1385,13 +1485,15 @@ export default class EntryAbility extends UIAbility {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-Sets whether the main window layout or the child window layout is immersive. This API uses a promise to return the result. It does not work when called by a system window. <!--RP8-->From API version 14, this API does not take effect on 2-in-1 devices.<!--RP8End-->
+Sets whether the main window layout or the child window layout is immersive. This API uses a promise to return the result. It does not work when called by a system window.
 - An immersive layout means that the layout does not avoid the status bar or <!--RP15-->three-button navigation bar<!--RP15End-->, and components may overlap with them.
 - A non-immersive layout means that the layout avoids the status bar and <!--RP15-->three-button navigation bar<!--RP15End-->, and components do not overlap with them.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Device behavior differences**: For versions earlier than API version 14, this API can be properly called on all devices. Starting from API version 14, if this API is called on 2-in-1 devices and tablets in [free windows](../../windowmanager/window-terminology.md#free-windows) mode, it has no effect and does not report errors. However, it can be properly called on other device types.
 
 **Parameters**
 
@@ -1454,11 +1556,13 @@ export default class EntryAbility extends UIAbility {
 
 setImmersiveModeEnabledState(enabled: boolean): void
 
-Sets whether to enable the immersive layout for the main window. This API does not change the window mode or size. It can be called only by the main window and child windows. <!--RP8-->From API version 14, this API does not take effect on 2-in-1 devices.<!--RP8End-->
+Sets whether to enable the immersive layout for the main window. This API does not change the window mode or size. It can be called only by the main window and child windows.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Device behavior differences**: For versions earlier than API version 14, this API can be properly called on all devices. Starting from API version 14, if this API is called on 2-in-1 devices and tablets in [free windows](../../windowmanager/window-terminology.md#free-windows) mode, it has no effect and does not report errors. However, it can be properly called on other device types.
 
 **Parameters**
 
@@ -1675,13 +1779,15 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-<!--RP14-->Sets whether to show the status bar and three-button navigation bar in the main window. The visibility of the status bar and three-button navigation bar is controlled by **status** and **navigation**, respectively.<!--RP14End--> This API uses a promise to return the result.<br>From API version 12, <!--RP5-->this API does not take effect on 2-in-1 devices.<!--RP5End-->
+<!--RP14-->Sets whether to show the status bar and three-button navigation bar in the main window. The visibility of the status bar and three-button navigation bar is controlled by **status** and **navigation**, respectively.<!--RP14End--> This API uses a promise to return the result.
 
-The return value does not indicate that the status bar and <!--RP15-->three-button navigation bar<!--RP15End--> are shown or hidden. This API does not take effect when it is called by a child window. The configuration does not take effect in non-full-screen mode (such as floating window or split-screen mode).
+The return value does not indicate that the status bar and <!--RP15-->three-button navigation bar<!--RP15End--> are shown or hidden. The setting does not take effect when the main window is in non-full-screen or non-maximized mode (such as floating windows or split-screen mode). It takes effect once the main window enters full-screen or maximized mode.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Device behavior differences**: For versions earlier than API version 12, this API can be properly called on all devices. Starting from API version 12, if this API is called on 2-in-1 devices and tablets in [free windows](../../windowmanager/window-terminology.md#free-windows) mode, it has no effect and does not report errors. However, it can be properly called on other device types.
 
 **Parameters**
 
@@ -1745,13 +1851,15 @@ export default class EntryAbility extends UIAbility {
 
 setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnimation?: boolean): Promise&lt;void&gt;
 
-Sets whether to show the status bar and <!--RP15-->three-button navigation bar<!--RP15End--> of the main window. This API uses a promise to return the result.<br>From API version 12, <!--RP5-->this API does not take effect on 2-in-1 devices.<!--RP5End-->
+Sets whether to show the status bar and <!--RP15-->three-button navigation bar<!--RP15End--> of the main window. This API uses a promise to return the result.
 
-The return value does not indicate that the status bar and <!--RP15-->three-button navigation bar<!--RP15End--> are shown or hidden. This API does not take effect when it is called by a child window. The configuration does not take effect in non-full-screen mode (such as floating window or split-screen mode).
+The return value does not indicate that the status bar and <!--RP15-->three-button navigation bar<!--RP15End--> are shown or hidden. This API does not take effect when it is called by a child window. The setting does not take effect when the main window is in non-full-screen or non-maximized mode (such as floating windows or split-screen mode). It takes effect once the main window enters full-screen or maximized mode.
 
 **System capability**: SystemCapability.Window.SessionManager
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**Device behavior differences**: For versions earlier than API version 12, this API can be properly called on all devices. Starting from API version 12, if this API is called on 2-in-1 devices and tablets in [free windows](../../windowmanager/window-terminology.md#free-windows) mode, it has no effect and does not report errors. However, it can be properly called on other device types.
 
 **Parameters**
 
@@ -1816,13 +1924,15 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-Sets the properties of the <!--Del-->three-button navigation bar and <!--DelEnd-->status bar of the main window. This API uses a promise to return the result. <!--RP5-->This API does not take effect on 2-in-1 devices.<!--RP5End-->
+Sets the properties of the <!--Del-->three-button navigation bar and <!--DelEnd-->status bar of the main window. This API uses a promise to return the result.
 
-This API does not take effect when it is called by a child window.
+This API does not take effect when it is called by a child window. The setting does not take effect when the main window is in non-full-screen or non-maximized mode (such as floating windows or split-screen mode). It takes effect once the main window enters full-screen or maximized mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**Device behavior differences**: If this API is called on 2-in-1 devices and tablets in [free windows](../../windowmanager/window-terminology.md#free-windows) mode, it has no effect and does not report errors. However, it can be properly called on other device types.
 
 **Parameters**
 
@@ -1951,11 +2061,13 @@ setStatusBarColor(color: ColorMetrics): Promise&lt;void&gt;
 
 Sets the text color of the status bar in the main window. This API uses a promise to return the result.
 
-Setting the status bar text color is not supported for child windows. Calling this API on a child window will have no effect. This API has no effect on 2-in-1 devices.
+Setting the status bar text color is not supported for child windows. Calling this API on a child window will have no effect. The setting does not take effect when the main window is in non-full-screen or non-maximized mode (such as floating windows or split-screen mode). It takes effect once the main window enters full-screen or maximized mode.
 
 **System capability**: SystemCapability.Window.SessionManager
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
+
+**Device behavior differences**: If this API is called on 2-in-1 devices and tablets in [free windows](../../windowmanager/window-terminology.md#free-windows) mode, it has no effect and does not report errors. However, it can be properly called on other device types.
 
 **Parameters**
 
@@ -2076,11 +2188,13 @@ export default class EntryAbility extends UIAbility {
 
 setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the preferred orientation for the main window. This API uses an asynchronous callback to return the result. For details about the development practices of orientation, see [Display Orientation Switching](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-landscape-and-portrait-development). <!--RP9-->This API takes effect only on devices that support rotation with the sensor. It does not take effect on 2-in-1 devices or in the child window mode.<!--RP9End-->
+Sets the preferred orientation for the main window. This API uses an asynchronous callback to return the result. For details about the development practices of orientation, see [Display Orientation Switching](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-landscape-and-portrait-development). This API takes effect only on devices that support rotation with the sensor. It does not take effect after it is called by the child window.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**Device behavior differences**: If this API is called on 2-in-1 devices and tablets in [free windows](../../windowmanager/window-terminology.md#free-windows) mode, it has no effect and does not report errors. However, it can be properly called on other device types.
 
 **Parameters**
 
@@ -2139,11 +2253,13 @@ export default class EntryAbility extends UIAbility {
 
 setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 
-Sets the preferred orientation for the main window. This API uses a promise to return the result. <!--RP9-->This API takes effect only on devices that support rotation with the sensor. It does not take effect on 2-in-1 devices or in the child window mode.<!--RP9End-->
+Sets the preferred orientation for the main window. This API uses a promise to return the result. This API takes effect only on devices that support rotation with the sensor. It does not take effect after it is called by the child window.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**Device behavior differences**: If this API is called on 2-in-1 devices and tablets in [free windows](../../windowmanager/window-terminology.md#free-windows) mode, it has no effect and does not report errors. However, it can be properly called on other device types.
 
 **Parameters**
 
@@ -2858,6 +2974,10 @@ try {
 on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 
 Subscribes to the event indicating changes to the area where this window cannot be displayed.
+
+In [freeform window](../../windowmanager/window-terminology.md#freeform-window) mode, upon triggering the avoid area callback, this API directly returns an empty avoid area.
+
+In non-freeform window mode, upon triggering the avoid area callback, this API can calculate and return the avoid area only when the position and size of the child window are the same as those of the main window. Otherwise, this API returns an empty avoid area.
 <!--RP7-->Common scenarios for triggering this event are as follows: transitions between full-screen mode, floating mode, and split-screen mode of the application window; rotation of the application window; transitions between folded and unfolded states of a foldable device; transfer of the application window between multiple devices.<!--RP7End-->
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -4119,6 +4239,10 @@ on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): voi
 
 Subscribes to the window status change event. A notification is sent when the window status changes (the window properties may not be updated).
 
+> **NOTE**
+>
+> In [freeform window](../../windowmanager/window-terminology.md#freeform-window) mode, when the window is maximized (covering the entire screen, with a dock bar and status bar on 2-in-1 devices, and a status bar on tablets), the return value differs based on the [targetAPIVersion](../../quick-start/app-configuration-file.md#tags-in-the-configuration-file) setting. For versions below 14, the return value is **WindowStatusType::FULL_SCREEN**. For versions 14 and above, the return value is **WindowStatusType::MAXIMIZE**.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
@@ -4450,7 +4574,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 try {
   windowClass.on('windowRectChange', (data: window.RectChangeOptions) => {
-      console.info(`Succeeded in enabling the listener for window rect changes. Data: ` + JSON.stringify(data));
+      console.info(`Succeeded in enabling the listener for window rect changes. Data: ${JSON.stringify(data)}`);
   });
 } catch (exception) {
   console.error(`Failed to disable the listener for window rect changes. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -4506,7 +4630,7 @@ try {
 
 on(type: 'rectChangeInGlobalDisplay', callback: Callback&lt;RectChangeOptions&gt;): void
 
-Subscribes to window rectangle (position and size) change events in the global coordinate system. (In extended screen scenarios, the upper-left corner of the primary screen is used as the origin.)
+Subscribes to window rectangle (position and size) change events in the global coordinate system. (In extended screen scenarios, the top-left corner of the primary screen is used as the origin.)
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -4537,7 +4661,7 @@ const callback = (rectChangeOptions: window.RectChangeOptions) => {
 try {
   windowClass.on('rectChangeInGlobalDisplay', callback);
 } catch (exception) {
-  console.error(`Failed to disable the listener for window rect changes in global display. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to enable the listener for window rect changes in global display. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -4545,7 +4669,7 @@ try {
 
 off(type: 'rectChangeInGlobalDisplay', callback?: Callback&lt;RectChangeOptions&gt;): void
 
-Unsubscribes from window rectangle (position and size) change events in the global coordinate system. (In extended screen scenarios, the upper-left corner of the primary screen is used as the origin.)
+Unsubscribes from window rectangle (position and size) change events in the global coordinate system. (In extended screen scenarios, the top-left corner of the primary screen is used as the origin.)
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -4587,7 +4711,7 @@ try {
 
 on(type:  'subWindowClose', callback: Callback&lt;void&gt;): void
 
-Subscribes to the event indicating that the child window is closed. This event is triggered only when the user clicks the system-provided close button in the upper-right corner to close the child window. It is not triggered when the child window is closed in other ways.
+Subscribes to the event indicating that the child window is closed. This event is triggered only when the user clicks the system-provided close button in the top-right corner to close the child window. It is not triggered when the child window is closed in other ways.
 
 If the event is subscribed to multiple times, only the most recently subscribed-to event takes effect.
 
@@ -4604,7 +4728,7 @@ If there is an existing event subscribed to by calling [on('windowWillClose')](#
 | Name  | Type                          | Mandatory| Description                                                    |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
 | type     | string                         | Yes  | Event type. The value is fixed at **'subWindowClose'**, indicating the child window close event.|
-| callback | Callback&lt;void&gt; | Yes  | Callback invoked when the close button in the upper-right corner of the child window is clicked. It does not return any parameter. The return value of the internal logic of the callback function determines whether to continue to close the child window. If **true** of the Boolean type is returned, the child window is not closed. If **false** or other non-Boolean types are returned, the child window is closed.  |
+| callback | Callback&lt;void&gt; | Yes  | Callback invoked when the close button in the top-right corner of the child window is clicked. It does not return any parameter. The return value of the internal logic of the callback function determines whether to continue to close the child window. If **true** of the Boolean type is returned, the child window is not closed. If **false** or other non-Boolean types are returned, the child window is closed.  |
 
 **Error codes**
 
@@ -4646,7 +4770,7 @@ Unsubscribes from the event indicating that the child window is closed.
 | Name  | Type                          | Mandatory| Description                                                        |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                         | Yes  | Event type. The value is fixed at **'subWindowClose'**, indicating the child window close event.    |
-| callback | Callback&lt;void&gt; | No  | Callback invoked when the close button in the upper-right corner of the child window is clicked. It does not return any parameter. The return value of the internal logic of the callback function determines whether to continue to close the child window. If **true** of the Boolean type is returned, the child window is not closed. If **false** or other non-Boolean types are returned, the child window is closed. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
+| callback | Callback&lt;void&gt; | No  | Callback invoked when the close button in the top-right corner of the child window is clicked. It does not return any parameter. The return value of the internal logic of the callback function determines whether to continue to close the child window. If **true** of the Boolean type is returned, the child window is not closed. If **false** or other non-Boolean types are returned, the child window is closed. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -4695,7 +4819,7 @@ The callback function in this API is executed synchronously. For synchronous clo
 | Name  | Type                          | Mandatory| Description                                                    |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
 | type     | string                         | Yes  | Event type. The value is fixed at **'windowWillClose'**, indicating the window close event.|
-| callback | Callback&lt;void, Promise&lt;boolean&gt;&gt; | Yes  | Callback invoked when the close button in the upper-right corner of the window is clicked. It does not return any parameter. The internal logic of the callback function requires a return value of the Promise&lt;boolean&gt; type. In the returned Promise function, **resolve(true)** means not to close the window, and **resolve(false)** or **reject** means to continue to close the window.|
+| callback | Callback&lt;void, Promise&lt;boolean&gt;&gt; | Yes  | Callback invoked when the close button in the top-right corner of the window is clicked. It does not return any parameter. The internal logic of the callback function requires a return value of the Promise&lt;boolean&gt; type. In the returned Promise function, **resolve(true)** means not to close the window, and **resolve(false)** or **reject** means to continue to close the window.|
 
 **Error codes**
 
@@ -4754,7 +4878,7 @@ Unsubscribes from the event indicating that the main window or child window will
 | Name  | Type                          | Mandatory| Description                                                    |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
 | type     | string                         | Yes  | Event type. The value is fixed at **'windowWillClose'**, indicating the window close event.|
-| callback | Callback&lt;void, Promise&lt;boolean&gt;&gt; | No  | Callback invoked when the close button in the upper-right corner of the window is clicked. It does not return any parameter. The internal logic of the callback function requires a return value of the Promise&lt;boolean&gt; type. In the returned Promise function, **resolve(true)** means not to close the window, and **resolve(false)** or **reject** means to continue to close the window.|
+| callback | Callback&lt;void, Promise&lt;boolean&gt;&gt; | No  | Callback invoked when the close button in the top-right corner of the window is clicked. It does not return any parameter. The internal logic of the callback function requires a return value of the Promise&lt;boolean&gt; type. In the returned Promise function, **resolve(true)** means not to close the window, and **resolve(false)** or **reject** means to continue to close the window.|
 
 **Error codes**
 
@@ -4893,11 +5017,11 @@ Subscribes to the window rotation change event. If the window rotation event typ
 
 This API can be registered only on the main thread. If a window registers multiple callbacks of the same type, only the return value of the most recently registered callback will be effective. The system provides a timeout protection mechanism. If the window does not return [RotationChangeResult](arkts-apis-window-i.md#rotationchangeresult19) within 20 ms, the system does not process the return value.
 
-<!--RP10-->This API has no effect on 2-in-1 devices.<!--RP10End-->
-
 **Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: If this API is called on 2-in-1 devices and tablets in [free windows](../../windowmanager/window-terminology.md#free-windows) mode, it has no effect and does not report errors. However, it can be properly called on other device types.
 
 **Parameters**
 
@@ -4963,11 +5087,11 @@ off(type: 'rotationChange', callback?: RotationChangeCallback&lt;RotationChangeI
 
 Unsubscribes from the window rotation change event.
 
-<!--RP10-->This API has no effect on 2-in-1 devices.<!--RP10End-->
-
 **Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: If this API is called on 2-in-1 devices and tablets in [free windows](../../windowmanager/window-terminology.md#free-windows) mode, it has no effect and does not report errors. However, it can be properly called on other device types.
 
 **Parameters**
 
@@ -5017,7 +5141,7 @@ Subscribes to the event indicating changes in the security restrictions of the U
 | Name  | Type                          | Mandatory| Description                                                    |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
 | eventType     | string                         | Yes  | Event type. The value is fixed at **'uiExtensionSecureLimitChange'**, indicating that the UIExtensionAbility security restrictions in the window changes.|
-| callback | Callback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that at least one UIExtensionAbility within the window has enabled the hiding of unsafe windows, and **false** means that all UIExtensionAbilities within the window have disabled the hiding of unsafe windows.  |
+| callback | Callback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that at least one UIExtensionAbility within the window has enabled the hiding of unsafe windows, and **false** means that all UIExtensionAbility components within the window have disabled the hiding of unsafe windows.  |
 
 **Error codes**
 
@@ -5421,10 +5545,13 @@ export default class EntryAbility extends UIAbility {
 
 setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the screen brightness for the main window. This API uses an asynchronous callback to return the result.
+Sets the window brightness for the main window. This API uses an asynchronous callback to return the result.
 
-- For non-2-in-1 devices, when the screen brightness setting for the window by this API takes effect, Control Panel cannot adjust the overall system screen brightness. It can do so only after the window-specific screen brightness is restored to the default value.
-- For 2-in-1 devices, Control Panel has the same priority as this API. Event if this API is called to set the window-specific screen brightness, Control Panel can adjust the overall system screen brightness.
+To prevent timing conflicts, you are not advised to call this API when the window goes into the background.
+
+> **NOTE**
+>- For non-2-in-1 devices, when the window's brightness setting is active, Control Panel cannot change the overall screen brightness. If the input value is **-1** or the window goes into the background, the window's brightness resets to match the system's, allowing Control Panel to adjust the screen brightness again.
+>- For 2-in-1 devices, prior to API version 14, both Control Panel and shortcut keys are blocked from changing the screen brightness when the window's brightness setting is active. If the input value is **-1** or the window goes into the background, the window's brightness resets to match the system's, allowing Control Panel and shortcut keys to adjust the screen brightness again. From API version 14 onward, the window brightness synchronizes with the system screen brightness, and changes can be made through this API, Control Panel, or shortcut keys.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -5434,7 +5561,7 @@ Sets the screen brightness for the main window. This API uses an asynchronous ca
 
 | Name| Type| Mandatory| Description                                       |
 | ---------- | ------------------------- | -- |-------------------------------------------|
-| brightness | number                    | Yes| Brightness to set. The value is a floating-point number in the range [0.0, 1.0] or is set to **-1.0**. The value **1.0** means the brightest, and **-1.0** means the default brightness.|
+| brightness | number                    | Yes| Brightness to set. The value is a floating-point number in the range [0.0, 1.0] or is set to **-1.0**. The value **1.0** means the brightest, and **-1.0** means that the window brightness resets to the original brightness set through Control Panel.|
 | callback   | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                    |
 
 **Error codes**
@@ -5488,10 +5615,13 @@ export default class EntryAbility extends UIAbility {
 
 setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
-Sets the screen brightness for the main window. This API uses a promise to return the result.
+Sets the window brightness for the main window. This API uses a promise to return the result.
 
-- For non-2-in-1 devices, when the screen brightness setting for the window by this API takes effect, Control Panel cannot adjust the overall system screen brightness. It can do so only after the window-specific screen brightness is restored to the default value.
-- For 2-in-1 devices, Control Panel has the same priority as this API. Event if this API is called to set the window-specific screen brightness, Control Panel can adjust the overall system screen brightness.
+To prevent timing conflicts, you are not advised to call this API when the window goes into the background.
+
+> **NOTE**
+>- For non-2-in-1 devices, when the window's brightness setting is active, Control Panel cannot change the overall screen brightness. If the input value is **-1** or the window goes into the background, the window's brightness resets to match the system's, allowing Control Panel to adjust the screen brightness again.
+>- For 2-in-1 devices, prior to API version 14, both Control Panel and shortcut keys are blocked from changing the screen brightness when the window's brightness setting is active. If the input value is **-1** or the window goes into the background, the window's brightness resets to match the system's, allowing Control Panel and shortcut keys to adjust the screen brightness again. From API version 14 onward, the window brightness synchronizes with the system screen brightness, and changes can be made through this API, Control Panel, or shortcut keys.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -5501,7 +5631,7 @@ Sets the screen brightness for the main window. This API uses a promise to retur
 
 | Name| Type| Mandatory| Description                                    |
 | ---------- | ------ | -- |----------------------------------------|
-| brightness | number | Yes| Brightness to set. The value is a floating-point number in the range [0.0, 1.0] or is set to **-1.0**. The value **1.0** means the brightest, and **-1.0** means the default brightness.|
+| brightness | number | Yes| Brightness to set. The value is a floating-point number in the range [0.0, 1.0] or is set to **-1.0**. The value **1.0** means the brightest, and **-1.0** means that the window brightness resets to the original brightness set through Control Panel.|
 
 **Return value**
 
@@ -5568,7 +5698,7 @@ Sets whether this window is focusable. This API uses an asynchronous callback to
 
 | Name| Type| Mandatory| Description|
 | ----------- | ------------------------- | -- | ------------------------------------------------------- |
-| isFocusable | boolean                   | Yes| Whether the window is focusable. **true** if focusable, **false** otherwise.|
+| isFocusable | boolean                   | Yes| Whether the window is focusable. **true** if focusable, **false** otherwise. If this parameter is set to **false**, the window does not support binding to an input method or receiving keyboard events. If input logic needs to be processed, follow the instructions provided in [Input Box and Input Method Interaction in Non-Focus Windows](../../inputmethod/use-inputmethod-in-not-focusable-window.md).|
 | callback    | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                              |
 
 **Error codes**
@@ -5615,7 +5745,7 @@ Sets whether this window is focusable. This API uses a promise to return the res
 
 | Name| Type| Mandatory| Description|
 | ----------- | ------- | -- | -------------------------------------------------------- |
-| isFocusable | boolean | Yes| Whether the window is focusable. **true** if focusable, **false** otherwise. |
+| isFocusable | boolean | Yes| Whether the window is focusable. **true** if focusable, **false** otherwise. If this parameter is set to **false**, the window does not support binding to an input method or receiving keyboard events. If input logic needs to be processed, follow the instructions provided in [Input Box and Input Method Interaction in Non-Focus Windows](../../inputmethod/use-inputmethod-in-not-focusable-window.md).|
 
 **Return value**
 
@@ -6123,7 +6253,7 @@ Sets the aspect ratio of the window content layout. This API uses a promise to r
 
 When the window size is set by using other APIs such as [resize](#resize9) and [resizeAsync](#resizeasync12), the window size is not restricted by **ratio**.
 
-This API can be called only for the main window and the setting takes effect only in floating window mode (**window.WindowStatusType.FLOATING** mode). The aspect ratio is saved persistently, which means that the setting is valid even after the application is closed or the device is restarted.
+This setting is available only for the main window and takes effect only in floating window mode (**window.WindowStatusType.FLOATING** mode). The aspect ratio is saved persistently, which means that the setting is valid in floating window mode even after the application is closed or the device is restarted.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -6190,7 +6320,7 @@ Sets the aspect ratio of the window content layout. This API uses an asynchronou
 
 When the window size is set by using other APIs such as [resize](#resize9) and [resizeAsync](#resizeasync12), the window size is not restricted by **ratio**.
 
-This API can be called only for the main window and the setting takes effect only in floating window mode (**window.WindowStatusType.FLOATING** mode). The aspect ratio is saved persistently, which means that the setting is valid even after the application is closed or the device is restarted.
+This setting is available only for the main window and takes effect only in floating window mode (**window.WindowStatusType.FLOATING** mode). The aspect ratio is saved persistently, which means that the setting is valid in floating window mode even after the application is closed or the device is restarted.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -6875,7 +7005,7 @@ try {
   };
   let promise = windowClass.setWindowLimits(windowLimits, true);
   promise.then((data) => {
-    console.info('Succeeded in changing the window limits. Cause:' + JSON.stringify(data));
+    console.info(`Succeeded in changing the window limits. Cause: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to change the window limits. Cause code: ${err.code}, message: ${err.message}`);
   });
@@ -6892,8 +7022,6 @@ Sets a mask for this window to get an irregularly shaped window. This API uses a
 When the size of an irregularly shaped window changes, the actual display content is the intersection of the mask size and the window size.
 
 Error code 1300002 may be returned only when multiple threads operate the same window. Error code 401 is returned when the window is destroyed.
-
-<!--RP6-->This API can be used only on 2-in-1 devices.<!--RP6End-->
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -7334,15 +7462,17 @@ export default class EntryAbility extends UIAbility {
 
 setWindowDecorHeight(height: number): void
 
-<!--RP1-->
-Sets the height of the title bar of this window. This API takes effect for the window that has a title bar or a three-button area on 2-in-1 devices. In the stage model, this API must be used after the call of [loadContent](#loadcontent9) or [setUIContent()](#setuicontent9) takes effect.
-<!--RP1End-->
+Sets the height of the title bar of this window. This API takes effect for the window that has a title bar and a three-button area. In the stage model, this API must be used after the call of [loadContent](#loadcontent9) or [setUIContent()](#setuicontent9) takes effect.
+
+For tablets, if this API is called outside of [free windows](../../windowmanager/window-terminology.md#free-windows) mode, the change applies once the device switches to free windows mode. If this API is called in free windows mode, the change takes effect immediately.
 
 When the main window transitions into full-screen mode, hovering the mouse over the hot zone of the window's title bar region will cause a floating title bar to appear, with a fixed height of 37 vp.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API can be properly called on 2-in-1 devices and tablets. If it is called on other device types, it has no effect and does not report errors.
 
 **Parameters**
 
@@ -7425,7 +7555,7 @@ export default class EntryAbility extends UIAbility {
           buttonBackgroundCornerRadius: 4
         };
         windowClass.setDecorButtonStyle(style);
-        console.info('Succeeded in setting the style of button. Data: ' + JSON.stringify(style));
+        console.info(`Succeeded in setting the style of button. Data: ${JSON.stringify(style)}`);
       });
     } catch (exception) {
       console.error(`Failed to set the style of button. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -7450,7 +7580,7 @@ Obtains the button style of the decoration bar. The setting takes effect only fo
 
 | Type                                 | Description                                                        |
 | ------------------------------------- | ------------------------------------------------------------ |
-| [DecorButtonStyle](arkts-apis-window-i.md#decorbuttonstyle14) | Button style on the decoration bar of the current window. The decoration button area is located in the upper-right corner of the window.|
+| [DecorButtonStyle](arkts-apis-window-i.md#decorbuttonstyle14) | Button style on the decoration bar of the current window. The decoration button area is located in the top-right corner of the window.|
 
 **Error codes**
 
@@ -7468,7 +7598,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 try {
   let decorButtonStyle = windowClass.getDecorButtonStyle();
-  console.info('Succeeded in getting the style of button. Data: ' + JSON.stringify(decorButtonStyle));
+  console.info(`Succeeded in getting the style of button. Data: ${JSON.stringify(decorButtonStyle)}`);
 } catch (exception) {
   console.error(`Failed to get the style of button. Cause code: ${exception.code}, message: ${exception.message}`);
 }
@@ -7478,13 +7608,13 @@ try {
 
 getWindowDecorHeight(): number
 
-<!--RP2-->
-Obtains the height of the title bar of this window. This API takes effect for the window that has a title bar or a three-button area on 2-in-1 devices. In the stage model, this API must be used after the call of [loadContent](#loadcontent9) or [setUIContent()](#setuicontent9) takes effect.
-<!--RP2End-->
+Obtains the height of the title bar of this window. This API takes effect for the window that has a title bar and a three-button area and is in [freeform window](../../windowmanager/window-terminology.md#freeform-window) mode. In the stage model, this API must be used after the call of [loadContent](#loadcontent9) or [setUIContent()](#setuicontent9) takes effect.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API can be properly called on 2-in-1 devices and tablets. It is unavailable on other device types.
 
 **Return value**
 
@@ -7528,7 +7658,7 @@ Obtains the rectangle that holds the minimize, maximize, and close buttons on th
 
 | Type                                 | Description                                                        |
 | ------------------------------------- | ------------------------------------------------------------ |
-| [TitleButtonRect](arkts-apis-window-i.md#titlebuttonrect11) | Rectangle obtained, which is located in the upper-right corner of the window.|
+| [TitleButtonRect](arkts-apis-window-i.md#titlebuttonrect11) | Rectangle obtained, which is located in the top-right corner of the window.|
 
 **Error codes**
 
@@ -7574,6 +7704,10 @@ export default class EntryAbility extends UIAbility {
 getWindowStatus(): WindowStatusType
 
 Obtains the mode of this window.
+
+> **NOTE**
+>
+> In [freeform window](../../windowmanager/window-terminology.md#freeform-window) mode, when the window is maximized (covering the entire screen, with a dock bar and status bar on 2-in-1 devices, and a status bar on tablets), the return value differs based on the [targetAPIVersion](../../quick-start/app-configuration-file.md#tags-in-the-configuration-file) setting. For versions below 14, the return value is **WindowStatusType::FULL_SCREEN**. For versions 14 and above, the return value is **WindowStatusType::MAXIMIZE**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -7633,7 +7767,7 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 ```ts
 try {
   let focus = windowClass.isFocused();
-  console.info('Succeeded in checking whether the window is focused. Data: ' + JSON.stringify(focus));
+  console.info(`Succeeded in checking whether the window is focused. Data: JSON.stringify(focus)`);
 } catch (exception) {
   console.error(`Failed to check whether the window is focused. Cause code: ${exception.code}, message: ${exception.message}`);
 }
@@ -7658,7 +7792,7 @@ Creates a child window under the main window, another child window, or floating 
 | Name| Type  | Mandatory| Description          |
 | ------ | ------ | ---- | -------------- |
 | name   | string | Yes  | Name of the child window.|
-| options  | [SubWindowOptions](arkts-apis-window-i.md#subwindowoptions11) | Yes  | Parameters used for creating the child window. |
+| options  | [SubWindowOptions](arkts-apis-window-i.md#subwindowoptions11) | Yes  | Parameters used for creating the child window. If **decorEnabled** is set to true, the child window does not use an [immersive layout](../../windowmanager/window-terminology.md#immersive-layout). If **decorEnabled** is set to **false**, the child window uses an immersive layout.|
 
 **Return value**
 
@@ -7691,7 +7825,7 @@ try {
   };
   let promise = windowClass.createSubWindowWithOptions('mySubWindow', options);
   promise.then((data) => {
-    console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+    console.info(`Succeeded in creating the subwindow. Data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to create the subwindow. Cause code: ${err.code}, message: ${err.message}`);
   });
@@ -7796,7 +7930,7 @@ try {
   let windowClass: window.Window = window.findWindow("subWindow");
   let parentWindow: window.Window = windowClass.getParentWindow();
   let properties = parentWindow.getWindowProperties();
-  console.info('Succeeded in obtaining parent window properties. Property: ' + JSON.stringify(properties));
+  console.info(`Succeeded in obtaining parent window properties. Property: ${JSON.stringify(properties)}`);
 } catch (exception) {
   console.error(`Failed to get the parent window. Cause code: ${exception.code}, message: ${exception.message}`);
 }
@@ -8312,13 +8446,13 @@ struct Index {
 
 enableDrag(enable: boolean): Promise&lt;void&gt;
 
-Enables or disables window dragging. This API uses a promise to return the result.
+Enables or disables window dragging. This API takes effect only for child windows and system windows. This API uses a promise to return the result.
 
 After window dragging is enabled, the window can be resized using the mouse or touch operations.
 
-This API takes effect only for child windows and system windows on phones, tablets, and 2-in-1 devices. If it is called for other device types or window types, an error is reported.
-
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API can be properly called on phones, tablets, and 2-in-1 devices. If it is called on other device types, error code 801 is returned.
 
 **Parameters**
 
@@ -8365,21 +8499,17 @@ startMoving(): Promise&lt;void&gt;
 
 Starts moving this window. This API uses a promise to return the result.
 
+In [freeform window](../../windowmanager/window-terminology.md#freeform-window) mode, this API takes effect for the main window, child windows, and system windows. In non-freeform window mode, this API takes effect only for child windows and system windows.
+
 The window moves along with the cursor or touch point only when this API is called in the callback function of [onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent), where the event type is **TouchType.Down**.
 
 In click-and-drag scenarios, if you do not want the drag to start as soon as you press down, you can call this API when the event type is [TouchType.Move](./arkui-ts/ts-appendix-enums.md#touchtype) (as long as **TouchType.Down** has already been triggered) to start the moving effect.
 
-On phones, thi API takes effect for child windows and system windows.
-
-On tablets not in free windows mode, this API takes effect for child windows and system windows; on tablets in free windows mode, it takes effect for main windows, child windows, and system windows.
-
-On 2-in-1 devices, this API takes effect for main windows, child windows, and system windows.
-
-If this API is called for other device types or window types, an error is reported.
-
 **System capability**: SystemCapability.Window.SessionManager
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
+
+**Device behavior differences**: This API can be properly called on phones, 2-in-1 devices, and tablets. If it is called on other device types, error code 801 is returned.
 
 **Return value**
 
@@ -8491,8 +8621,8 @@ In click-and-drag scenarios, if you do not want the drag to start as soon as you
 
 | Name    | Type      | Mandatory    | Description                                                |
 | --------- | --------- | ------- |----------------------------------------------------|
-| offsetX | number | Yes| X-axis offset of the cursor position relative to the upper-left corner of the window during movement, measured in px. This parameter only accepts integer values; any floating-point input will be rounded down. Negative values or values exceeding the window width are invalid. The window width can be obtained from [WindowProperties](arkts-apis-window-i.md#windowproperties).|
-| offsetY | number | Yes| Y-axis offset of the cursor position relative to the upper-left corner of the window during movement, measured in px. This parameter only accepts integer values; any floating-point input will be rounded down. Negative values or values exceeding the window height are invalid. The window height can be obtained from [WindowProperties](arkts-apis-window-i.md#windowproperties).|
+| offsetX | number | Yes| X-axis offset of the cursor position relative to the top-left corner of the window during movement, measured in px. This parameter only accepts integer values; any floating-point input will be rounded down. Negative values or values exceeding the window width are invalid. The window width can be obtained from [WindowProperties](arkts-apis-window-i.md#windowproperties).|
+| offsetY | number | Yes| Y-axis offset of the cursor position relative to the top-left corner of the window during movement, measured in px. This parameter only accepts integer values; any floating-point input will be rounded down. Negative values or values exceeding the window height are invalid. The window height can be obtained from [WindowProperties](arkts-apis-window-i.md#windowproperties).|
 
 **Return value**
 
@@ -8775,9 +8905,11 @@ export default class EntryAbility extends UIAbility {
 
 setWindowShadowRadius(radius: number): void
 
-Sets the blur radius of the shadow on the edges of a child window or floating window. This API can be used only on 2-in-1 devices or tablets.
+Sets the blur radius of the shadow on the edges of a child window or floating window.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API can be properly called on 2-in-1 devices and tablets. If it is called on other device types, error code 801 is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 17.
 
@@ -9185,7 +9317,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 1300002  | This window state is abnormal.                                                                               |
 | 1300003  | This window manager service works abnormally.                                                                |
 | 1300004  | Unauthorized operation.                                                                                |
-| 1300016  | Parameter error. Possible cause: 1. Invalid parameter range. |
 
 **Example**
 
@@ -9665,6 +9796,8 @@ Sets whether the main window layout or the child window layout is immersive. Thi
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**Device behavior differences**: For versions earlier than API version 14, this API can be properly called on all devices. Starting from API version 14, if this API is called on 2-in-1 devices and tablets in [free windows](../../windowmanager/window-terminology.md#free-windows) mode, it has no effect and does not report errors. However, it can be properly called on other device types.
+
 **Parameters**
 
 | Name            | Type                     | Mandatory| Description                                                                                                         |
@@ -10089,6 +10222,10 @@ getAvoidArea(type: [AvoidAreaType](arkts-apis-window-e.md#avoidareatype7), callb
 
 Obtains the area where this window cannot be displayed, for example, the system bar area, notch, gesture area, and soft keyboard area. This API uses an asynchronous callback to return the result.
 
+In [freeform window](../../windowmanager/window-terminology.md#freeform-window) mode, this API obtains an empty avoid area.
+
+In non-freeform window mode, this API can calculate and return the avoid area only when the position and size of the child window are the same as those of the main window. Otherwise, this API returns an empty avoid area.
+
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getWindowAvoidArea()](#getwindowavoidarea9) instead.
@@ -10123,6 +10260,10 @@ windowClass.getAvoidArea(type, (err: BusinessError, data) => {
 getAvoidArea(type: [AvoidAreaType](arkts-apis-window-e.md#avoidareatype7)): Promise&lt;[AvoidArea](arkts-apis-window-i.md#avoidarea7)&gt;
 
 Obtains the area where this window cannot be displayed, for example, the system bar area, notch, gesture area, and soft keyboard area. This API uses an asynchronous callback to return the result.
+
+In [freeform window](../../windowmanager/window-terminology.md#freeform-window) mode, this API obtains an empty avoid area.
+
+In non-freeform window mode, this API can calculate and return the avoid area only when the position and size of the child window are the same as those of the main window. Otherwise, this API returns an empty avoid area.
 
 > **NOTE**
 >
@@ -11104,7 +11245,7 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 | Name    | Type                     | Mandatory| Description                                   |
 | ---------- | ------------------------- | ---- |---------------------------------------|
-| brightness | number                    | Yes  | Brightness to set. The value is a floating-point number in the range [0.0, 1.0] or is set to **-1.0**. The value **1.0** means the brightest, and **-1.0** means the default brightness.|
+| brightness | number                    | Yes  | Brightness to set. The value is a floating-point number in the range [0.0, 1.0] or is set to **-1.0**. The value **1.0** means the brightest, and **-1.0** means that the window brightness resets to the original brightness set through Control Panel.|
 | callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                |
 
 
@@ -11142,7 +11283,7 @@ When the screen brightness setting for the window takes effect, Control Panel ca
 
 | Name    | Type  | Mandatory| Description                                      |
 | ---------- | ------ | ---- |------------------------------------------|
-| brightness | number | Yes  | Brightness to set. The value is a floating-point number in the range [0.0, 1.0] or is set to **-1.0**. The value **1.0** means the brightest, and **-1.0** means the default brightness.|
+| brightness | number | Yes  | Brightness to set. The value is a floating-point number in the range [0.0, 1.0] or is set to **-1.0**. The value **1.0** means the brightest, and **-1.0** means that the window brightness resets to the original brightness set through Control Panel.|
 
 **Return value**
 
@@ -11252,7 +11393,7 @@ Sets whether this window is focusable, that is, whether the window can gain focu
 
 | Name     | Type                     | Mandatory| Description                        |
 | ----------- | ------------------------- | ---- | ---------------------------- |
-| isFocusable | boolean                   | Yes  | Whether the window can gain focus. **true** if the window can gain focus, **false** otherwise.|
+| isFocusable | boolean                   | Yes  | Whether the window is focusable. **true** if focusable, **false** otherwise. If this parameter is set to **false**, the window does not support binding to an input method or receiving keyboard events. If input logic needs to be processed, follow the instructions provided in [Input Box and Input Method Interaction in Non-Focus Windows](../../inputmethod/use-inputmethod-in-not-focusable-window.md).|
 | callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                  |
 
 
@@ -11288,7 +11429,7 @@ Sets whether this window is focusable, that is, whether the window can gain focu
 
 | Name     | Type   | Mandatory| Description                        |
 | ----------- | ------- | ---- | ---------------------------- |
-| isFocusable | boolean | Yes  | Whether the window can gain focus. **true** if the window can gain focus, **false** otherwise.|
+| isFocusable | boolean | Yes  | Whether the window is focusable. **true** if focusable, **false** otherwise. If this parameter is set to **false**, the window does not support binding to an input method or receiving keyboard events. If input logic needs to be processed, follow the instructions provided in [Input Box and Input Method Interaction in Non-Focus Windows](../../inputmethod/use-inputmethod-in-not-focusable-window.md).|
 
 **Return value**
 
@@ -11611,3 +11752,5 @@ promise.then(() => {
   console.error(`Failed to set the window to be touchable. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
+
+<!--no_check-->
