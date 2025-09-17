@@ -167,7 +167,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 
-注册宿主应用窗口尺寸变化的监听。
+注册组件（EmbeddedComponent或UIExtensionComponent）尺寸变化的监听。
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
@@ -177,8 +177,8 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
-| type     | string                | 是   | 监听的事件类型，固定为'windowSizeChange'，即窗口尺寸变化事件。 |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](arkts-apis-window-i.md#size7)> | 是   | 回调函数：入参用于接收当前窗口的尺寸。 |
+| type     | string                | 是   | 监听的事件类型，固定为'windowSizeChange'，即组件（EmbeddedComponent或UIExtensionComponent）尺寸变化事件。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](arkts-apis-window-i.md#size7)> | 是   | 回调函数：入参用于接收当前组件（EmbeddedComponent或UIExtensionComponent）的尺寸。 |
 
 **错误码**：
 
@@ -198,7 +198,7 @@ import { window } from '@kit.ArkUI';
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     const extensionWindow = session.getUIExtensionWindowProxy();
-    // 注册宿主应用窗口大小变化的监听
+    // 注册组件（EmbeddedComponent或UIExtensionComponent）大小变化的监听
     extensionWindow.on('windowSizeChange', (size: window.Size) => {
       console.info(`The avoid area of the host window is: ${JSON.stringify(size)}.`);
     });
@@ -210,7 +210,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 
-注销宿主应用窗口尺寸变化的监听。
+注销组件（EmbeddedComponent或UIExtensionComponent）尺寸变化的监听。
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
@@ -220,7 +220,7 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
-| type     | string                | 是   | 注销的事件类型，固定值：'windowSizeChange'，即窗口尺寸变化事件。 |
+| type     | string                | 是   | 注销的事件类型，固定值：'windowSizeChange'，即组件（EmbeddedComponent或UIExtensionComponent）尺寸变化事件。 |
 | callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](arkts-apis-window-i.md#size7)> | 否   | 回调函数：如果传入该参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。 |
 
 **错误码**：
@@ -240,7 +240,7 @@ import { EmbeddedUIExtensionAbility, UIExtensionContentSession } from '@kit.Abil
 export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionDestroy(session: UIExtensionContentSession) {
     const extensionWindow = session.getUIExtensionWindowProxy();
-    // 注销宿主应用窗口大小变化的监听
+    // 注销组件（EmbeddedComponent或UIExtensionComponent）大小变化的监听
     extensionWindow.off('windowSizeChange');
   }
 }
