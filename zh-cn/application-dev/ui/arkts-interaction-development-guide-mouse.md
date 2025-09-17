@@ -157,7 +157,7 @@ struct MouseExample {
 onHover(event: (isHover: boolean) => void)
 ```
 
-悬浮事件回调。参数isHover类型为boolean，表示鼠标进入组件或离开组件。该事件不支持自定义冒泡设置，默认父子冒泡。
+悬浮事件回调。参数isHover类型为boolean，表示鼠标进入组件或离开组件。该事件支持自定义冒泡设置，默认父子冒泡。
 
 
 若组件绑定了该接口，当鼠标指针从组件外部进入到该组件的瞬间会触发事件回调，参数isHover等于true；鼠标指针离开组件的瞬间也会触发该事件回调，参数isHover等于false。
