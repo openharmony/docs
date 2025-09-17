@@ -406,7 +406,7 @@ try {
 on(type: 'sppRead', clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;): void
 
 订阅spp读请求事件，入参clientSocket由sppAccept或sppConnect接口获取。使用Callback异步回调。
-- 不可以和API version 18开始支持的[socket.sppReadAsync](#socketsppreadasync)接口混用，同一路socket只能使用[socket.on('sppRead')](#socketonsppread)或者[socket.sppReadAsync](#socketsppreadasync)其中一个接口。
+- 不可以和API version 18开始支持的[socket.sppReadAsync](#socketsppreadasync18)接口混用，同一路socket只能使用socket.on('sppRead')或者[socket.sppReadAsync](#socketsppreadasync18)其中一个接口。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
