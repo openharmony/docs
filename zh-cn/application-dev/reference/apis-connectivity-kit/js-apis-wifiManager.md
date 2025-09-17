@@ -397,7 +397,7 @@ WLAN热点信息。
 | channelWidth | number | 否 | 否 | WLAN接入点的带宽，具体定义参见[WifiChannelWidth](#wifichannelwidth9)。 |
 | centerFrequency0 | number | 否 | 否 | 热点的中心频率。 |
 | centerFrequency1 | number | 否 | 否 | 热点的中心频率。如果热点使用两个不重叠的WLAN信道，则返回两个中心频率，分别用centerFrequency0和centerFrequency1表示。 |
-| infoElems | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | 是 | 否 | 信息元素。 |
+| infoElems | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | 否 | 否 | 信息元素。 |
 | timestamp | number | 否 | 否 | 时间戳。 |
 | supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | 否 | 否 | 热点支持的最高Wi-Fi级别。 |
 | isHiLinkNetwork<sup>12+</sup> | boolean | 否 | 是| 热点是否支持hiLink，true:支持，&nbsp;false:不支持。 |
