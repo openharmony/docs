@@ -327,7 +327,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 是 | 回调函数。当获取当前应用运行进程的相关信息成功，err为undefined，data为获取到的应用运行进程信息；否则为错误对象。可进行错误处理或其他自定义处理。|
+  | callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 是 |以callback方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。|
 
 **错误码**：
 

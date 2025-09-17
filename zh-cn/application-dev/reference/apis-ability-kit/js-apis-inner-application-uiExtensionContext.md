@@ -322,7 +322,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md) | 是 | 启动UIAbility时必要的Want，包含待启动UIAbility的名称等信息。 |
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 回调函数。当启动一个UIAbility成功，err为undefined，data被拉起的UIAbility退出时的返回结果；否则为错误对象。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 回调函数，包含返回给拉起方的信息。 |
 
 **错误码：**
 
@@ -415,7 +415,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md) | 是 | 启动UIAbility时必要的Want，包含待启动UIAbility的名称等信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动UIAbility所携带的额外参数。 |
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 回调函数。当启动一个UIAbility成功，err为undefined，data被拉起的UIAbility退出时的返回结果；否则为错误对象。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 回调函数，包含返回给拉起方的信息。 |
 
 **错误码：**
 
@@ -1199,7 +1199,7 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 | -------- | -------- | -------- | -------- |
 | link | string | 是 | 指示要打开的标准格式URL。 |
 | options | [OpenLinkOptions](js-apis-app-ability-openLinkOptions.md) | 否 | 打开URL的选项参数。 |
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 否 | 回调函数。当通过App Linking或Deep Linking方式启动UIAbility成功，err为undefined，data为UIAbility被拉起并退出后的结果；否则为错误对象。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 否 | 回调函数，包含返回给拉起方的信息。 |
 
 **返回值：**
 

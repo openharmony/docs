@@ -137,7 +137,7 @@ onMissionIconUpdated(mission: number, icon: image.PixelMap): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | mission | number | 是 | 表示任务ID。 |
-| icon | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是 | 表示更新的任务图标。 |
+| icon | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 表示更新的任务图标。 |
 
 **示例**：
 
