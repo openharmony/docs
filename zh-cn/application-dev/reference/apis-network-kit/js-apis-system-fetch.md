@@ -56,11 +56,11 @@ fetch(options:{ <br>
 
 **系统能力：** SystemCapability.Communication.NetStack 
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| code | number | 是 | 否 | 表示服务器的状态code。 |
-| data | string \| Object | 是 | 否 | 返回数据类型由responseType确定，详见表 responseType与success中data关系。 |
-| headers | Object | 是 | 否 | 表示服务器response的所有header。 |
+| code | number | 否 | 否 | 表示服务器的状态code。 |
+| data | string \| Object | 否 | 否 | 返回数据类型由responseType确定，详见表 responseType与success中data关系。 |
+| headers | Object | 否 | 否 | 表示服务器response的所有header。 |
 
 **表2** responseType与success中data关系
 
