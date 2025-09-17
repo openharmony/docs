@@ -99,8 +99,8 @@ AtomicServiceSearch中“搜索区”的可选属性。
 | pressedBackgroundColor   | [ResourceColor](ts-types.md#resourcecolor) | 否 | 设置组件按压态的背景色。默认值：`$r('sys.color.ohos_id_color_click_effect')`。 |
 | searchButton             | [SearchButtonParams](#searchbuttonparams) | 否 | 设置搜索框末尾搜索按钮。点击搜索按钮，同时触发onSubmit与onClick回调。<br />-value：搜索框末尾搜索按钮文本内容。<br /> -option: 配置搜索框文本样式。默认值：`{fontSize: '16fp', fontColor: '#ff3f97e9'}`。 |
 | placeholderColor         | [ResourceColor](ts-types.md#resourcecolor) | 否 | placeholder文本颜色。默认值：`$r('sys.color.ohos_id_color_text_secondary')`。   |
-| placeholderFont          | [Font](ts-types.md#font) | 否 | 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。默认值：`{size: $r('sys_float.ohos_id_text_size_body1')}`。 |
-| textFont                 | [Font](ts-types.md#font) | 否 | 设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。默认值：`{size: $r('sys_float.ohos_id_text_size_body1')}`。 |
+| placeholderFont          | [Font](ts-types.md#font) | 否 | 设置placeholder文本样式，包括字体大小、字体粗细、字体族、字体风格。默认值：`{size: $r('sys_float.ohos_id_text_size_body1')}`。 |
+| textFont                 | [Font](ts-types.md#font) | 否 | 设置搜索框内输入文本样式，包括字体大小、字体粗细、字体族、字体风格。目前仅支持默认字体族。默认值：`{size: $r('sys_float.ohos_id_text_size_body1')}`。 |
 | textAlign                | [TextAlign](ts-appendix-enums.md#textalign) | 否 | 文本在搜索框中的对齐方式。默认值：`TextAlign.Start`。   |
 | copyOptions              | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 否 | 输入的文本是否可复制。默认值：`CopyOptions.LocalDevice`，支持设备内复制。   |
 | searchIcon               | [IconOptions](ts-basic-components-search.md#iconoptions10对象说明) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 左侧搜索图标样式。<br />浅色模式默认值：`{size: '16vp', color: '#99182431', src: ' '}`。<br />深色模式默认值：`{size: '16vp', color: '#99ffffff', src: ' '}`。  |

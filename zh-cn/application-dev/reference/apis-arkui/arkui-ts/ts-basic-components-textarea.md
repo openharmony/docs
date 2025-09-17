@@ -79,7 +79,11 @@ placeholderColor(value: ResourceColor)
 
 placeholderFont(value: Font)
 
-设置placeholder文本样式，包括字体大小、字体粗细、字体族、字体风格。当前支持'HarmonyOS Sans'字体和注册自定义字体[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)。
+设置placeholder文本样式，包括字体大小、字体粗细、字体族、字体风格。
+
+> **说明：**
+>
+> 可以使用[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)注册自定义字体。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -97,13 +101,17 @@ textAlign(value: TextAlign)
 
 设置文本在输入框中的水平对齐方式。
 
-支持TextAlign.Start、TextAlign.Center和TextAlign.End。
+支持TextAlign.Start、TextAlign.Center和TextAlign.End。从API version 11开始，新增TextAlign.JUSTIFY选项。
 
-可通过[align](ts-universal-attributes-location.md)属性控制文本段落在垂直方向上的位置，此组件中不可通过align属性控制文本段落在水平方向上的位置，即align属性中Alignment.TopStart、Alignment.Top、Alignment.TopEnd效果相同，控制内容在顶部，Alignment.Start、Alignment.Center、Alignment.End效果相同，控制内容垂直居中，Alignment.BottomStart、Alignment.Bottom、Alignment.BottomEnd效果相同，控制内容在底部。
+可通过[align](ts-universal-attributes-location.md#align)属性控制文本段落在垂直方向上的位置，此组件中不可通过align属性控制文本段落在水平方向上的位置。
+
+- Alignment.TopStart、Alignment.Top、Alignment.TopEnd：内容顶部对齐。
+
+- Alignment.Start、Alignment.Center、Alignment.End：内容垂直居中。
+
+- Alignment.BottomStart、Alignment.Bottom、Alignment.BottomEnd：内容底部对齐。
 
 当textAlign属性设置为TextAlign.JUSTIFY时，最后一行文本不参与两端对齐，为水平对齐首部效果。
-
-从API version 11开始，textAlign可设置TextAlign.JUSTIFY
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -216,7 +224,11 @@ fontFamily(value: ResourceStr)
 
 | 参数名 | 类型                                   | 必填 | 说明                                                         |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>使用多个字体时，请用逗号','分隔，字体的优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和注册自定义字体[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>使用多个字体时，请用逗号','分隔，字体的优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。|
+
+> **说明：**
+>
+> 推荐使用[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)注册自定义字体。
 
 ### inputFilter<sup>8+</sup>
 
@@ -241,7 +253,7 @@ inputFilter(value: ResourceStr, error?: (value: string) => void)
 
 copyOption(value: CopyOptions)
 
-设置输入的文本是否可复制。设置CopyOptions.None时，当前TextArea中的文字无法被复制、剪切、翻译、分享、搜索和帮写，支持粘贴和全选。
+设置输入的文本是否可复制。设置CopyOptions.None时，只支持粘贴和全选。
 
 设置CopyOptions.None时，不支持拖拽操作。
 
@@ -395,7 +407,7 @@ maxLines(lines: number, options: MaxLinesOptions)
 
 minLines(lines: Optional\<number>)
 
-设置节点显示的最小行数，若传入值小于1，则自动取值为1。如果节点设置了[constraintSize](ts-universal-attributes-size.md#constraintsize)，那么组件最后显示高度会在[constraintSize](ts-universal-attributes-size.md#constraintsize)约束内。
+设置最小行数。组件的高度将根据lines自动调整，确保显示高度不低于lines对应的高度。如果设置了[constraintSize](ts-universal-attributes-size.md#constraintsize)，那么组件最后显示高度会在[constraintSize](ts-universal-attributes-size.md#constraintsize)约束内。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -405,7 +417,7 @@ minLines(lines: Optional\<number>)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| lines  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number> | 是   | 节点最小行数。 |
+| lines  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<number> | 是   | 最小行数。</br>默认值：1</br>取值范围：取值范围：[1, INT32_MAX]</br>如果lines的值小于1，取默认值。 |
 
 ### customKeyboard<sup>10+</sup>
 
