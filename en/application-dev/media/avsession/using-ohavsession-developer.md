@@ -2,8 +2,9 @@
 <!--Kit: AVSession Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @ccfriend; @liao_qian-->
-<!--SE: @ccfriend-->
-<!--TSE: @chenmingxi1_huawei-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 The OHAVSession module provides C APIs to implement an AVSession provider. An audio and video application needs to access the AVSession service as a provider in order to display media information in the controller (for example, Media Controller) and respond to playback control commands delivered by the controller.
 
@@ -33,10 +34,11 @@ To access a local session with the NDK, perform the following steps:
    ```c++
    OH_AVSession* avsession;
    OH_AVSession_Create(SESSION_TYPE_AUDIO, "testsession", "com.example.application",   "MainAbility", &avsession);
+   OH_AVSession_Activate(avsession);
    ```
-
+ 
    **AVSession_Type** can be set to any of the following types:
-
+ 
    - SESSION_TYPE_AUDIO
    - SESSION_TYPE_VIDEO
    - SESSION_TYPE_VOICE_CALL 

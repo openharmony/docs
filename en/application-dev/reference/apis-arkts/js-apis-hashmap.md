@@ -1,4 +1,10 @@
 # @ohos.util.HashMap (Nonlinear Container HashMap)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 HashMap is implemented using an array, linked lists, and red-black trees as its core, supporting efficient querying, insertion and deletion operations. It stores data as key-value pairs where duplicate keys are not allowed - each key can only map to a single value.
 
@@ -8,13 +14,15 @@ HashMap is faster in accessing data than [TreeMap](js-apis-treemap.md), because 
 
 **Recommended use case**: Use HashMap when you need to quickly access, remove, and insert key-value pairs.
 
-This topic uses the following to identify the use of generics:
-- K: Key
+This topic uses the following to identify the use of generics:<br>
+- K: Key<br>
 - V: Value
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> Container classes, implemented in static languages, have restrictions on storage locations and properties, and do not support custom properties or methods.
 
 
 ## Modules to Import
@@ -31,7 +39,7 @@ import { HashMap } from '@kit.ArkTS';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | Yes| No| Number of elements in a HashMap.|
 
@@ -57,7 +65,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 ```
 
 
@@ -88,8 +96,9 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-const hashMap: HashMap<string, number> = new HashMap();
+const hashMap = new HashMap<string, number>();
 let result = hashMap.isEmpty();
+console.info("result = ", result) // result = true
 ```
 
 
@@ -126,9 +135,10 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-const hashMap: HashMap<string, number> = new HashMap();
+const hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 let result = hashMap.hasKey("squirrel");
+console.info("result:", result);  // result: true
 ```
 
 
@@ -165,9 +175,10 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-const hashMap: HashMap<string, number> = new HashMap();
+const hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 let result = hashMap.hasValue(123);
+console.info("result:", result);  // result: true
 ```
 
 
@@ -204,10 +215,11 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-const hashMap: HashMap<string, number> = new HashMap();
+const hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let result = hashMap.get("sparrow");
+console.info("result:", result);  // result: 356
 ```
 
 
@@ -239,12 +251,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-const hashMap: HashMap<string, number> = new HashMap();
+const hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
-let newHashMap: HashMap<string, number> = new HashMap();
+let newHashMap = new HashMap<string, number>();
 newHashMap.set("newMap", 99);
 hashMap.setAll(newHashMap);
+let result = hashMap.hasKey("newMap");
+console.info("result:", result);  // result: true
 ```
 
 
@@ -283,8 +297,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
-let result = hashMap.set("squirrel", 123);
+let hashMap = new HashMap<string, number>();
+hashMap.set("squirrel", 123)
+console.info("result:", hashMap.get("squirrel"));  // result: 123
 ```
 
 
@@ -321,10 +336,11 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let result = hashMap.remove("sparrow");
+console.info("result:", result);  // result: 356
 ```
 
 
@@ -349,10 +365,12 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 hashMap.clear();
+let result = hashMap.isEmpty();
+console.info("result:", result);  // result: true
 ```
 
 
@@ -383,15 +401,15 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
-let iter = hashMap.keys();
-let temp: IteratorResult<string,number> = iter.next();
-while(!temp.done) {
-  console.log("value:" + temp.value);
-  temp = iter.next();
+let keys = hashMap.keys();
+for (let key of keys) {
+  console.info("key:" + key);
 }
+// key:squirrel
+// key:sparrow
 ```
 
 
@@ -422,15 +440,15 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
-let iter = hashMap.values();
-let temp: IteratorResult<number> = iter.next();
-while(!temp.done) {
-  console.log("value:" + temp.value);
-  temp = iter.next();
+let values = hashMap.values();
+for (let value of values) {
+  console.info("value:", value)
 }
+// value: 123
+// value: 356
 ```
 
 
@@ -438,7 +456,7 @@ while(!temp.done) {
 
 replace(key: K, newValue: V): boolean
 
-Replaces an element in this HashMap.
+Replaces the value of a specified key.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -468,9 +486,10 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 hashMap.set("sparrow", 123);
 let result = hashMap.replace("sparrow", 357);
+console.info("result:", result);  // result: true
 ```
 
 
@@ -478,7 +497,7 @@ let result = hashMap.replace("sparrow", 357);
 
 forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object): void
 
-Uses a callback to traverse the elements in this HashMap and obtain their position indexes.
+Uses a callback to traverse each element.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -494,8 +513,8 @@ Uses a callback to traverse the elements in this HashMap and obtain their positi
 callbackFn parameters
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | V | No| Value of the element that is currently traversed. The default value is the value of the first key-value pair.|
-| key | K | No| Key of the element that is currently traversed. The default value is the key of the first key-value pair.|
+| value | V | No| Value of the element that is currently traversed.|
+| key | K | No| Key of the element that is currently traversed.|
 | map | HashMap<K, V> | No| Instance that calls the **forEach** API. The default value is this instance.|
 
 **Error codes**
@@ -510,16 +529,19 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 hashMap.set("sparrow", 123);
 hashMap.set("gull", 357);
-hashMap.forEach((value?: number, key?: string) => {
-  console.log("value:" + value, "key:" + key);
+hashMap.forEach((value: number, key: string) => {
+  console.info("value: " + value, "key: " + key);
 });
+// value: 123 key: sparrow
+// value: 357 key: gull
 ```
+
 ```ts
 // You are not advised to use the set or remove APIs in forEach because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 for(let i = 0; i < 10; i++) {
   hashMap.set("sparrow" + i, 123);
 }
@@ -556,20 +578,20 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let iter = hashMap.entries();
 let temp: IteratorResult<Object[]> = iter.next();
 while(!temp.done) {
-  console.log("key:" + temp.value[0]);
-  console.log("value:" + temp.value[1]);
+  console.info("key:" + temp.value[0]);
+  console.info("value:" + temp.value[1]);
   temp = iter.next();
 }
 ```
 ```ts
 // You are not advised to use the set or remove APIs in entries because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 for(let i = 0; i < 10; i++) {
   hashMap.set("sparrow" + i, 123);
 }
@@ -604,30 +626,37 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 **Example**
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 
 // Method 1:
-let keys = Array.from(hashMap.keys());
-for (let key of keys) {
-  console.log("key:" + key);
-  console.log("value:" + hashMap.get(key));
+for (let item of hashMap) {
+  console.info("key:", item[0]);
+  console.info("value:", item[1]);
 }
+// key: squirrel
+// value: 123
+// key: sparrow
+// value: 356
 
 // Method 2:
- let iter = hashMap[Symbol.iterator]();
- let temp: IteratorResult<Object[]> = iter.next();
- while(!temp.done) {
-   console.log("key:" + temp.value[0]);
-   console.log("value:" + temp.value[1]);
-   temp = iter.next();
- }
+let iter = hashMap[Symbol.iterator]();
+let temp: IteratorResult<Object[]> = iter.next();
+while(!temp.done) {
+  console.info("key:", temp.value[0]);
+  console.info("value:", temp.value[1]);
+  temp = iter.next();
+}
+// key: squirrel
+// value: 123
+// key: sparrow
+// value: 356
 ```
 
 ```ts
 // You are not advised to use the set or remove APIs in Symbol.iterator because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 for(let i = 0; i < 10; i++) {
   hashMap.set("sparrow" + i, 123);
 }

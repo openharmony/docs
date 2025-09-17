@@ -1,9 +1,16 @@
 # # @ohos.net.ethernet (Ethernet Connection Management)
 
-The **ethernet** module provides Ethernet management functions such as obtaining the network IP address.
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
+The **ethernet** module provides Ethernet management functions such as configuring a network proxy and obtaining the network IP address.
 
 > **NOTE**
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -11,9 +18,9 @@ The **ethernet** module provides Ethernet management functions such as obtaining
 import { ethernet } from '@kit.NetworkKit';
 ```
 
-## HttpProxy
+## HttpProxy<sup>10+</sup>
 
-type HttpProxy = connection.HttpProxy;
+type HttpProxy = connection.HttpProxy
 
 Defines the network proxy configuration.
 
@@ -66,7 +73,7 @@ Defines the name and MAC address of an Ethernet NIC.
 
 **System capability**: SystemCapability.Communication.NetManager.Ethernet
 
-| Name        | Type                   | Mandatory| Description                                                |
-| ------------ | ----------------------- | --- | ---------------------------------------------------- |
-| iface        | string                  |  Yes| Name of the Ethernet NIC.                                       |
-| macAddress       | string                |  Yes| MAC address of the Ethernet NIC.|
+| Name  | Type                                          | Read-Only| Optional|Description                   |
+| -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
+| iface        | string                  |  No  | No| Name of the Ethernet NIC.                                       |
+| macAddress       | string                |  No  | No| MAC address of the Ethernet NIC.|

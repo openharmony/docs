@@ -30,7 +30,7 @@ import { image } from '@kit.ImageKit';
 
 packToData(source: ImageSource, options: PackingOption): Promise\<ArrayBuffer>
 
-图片压缩或重新编码，使用Promise形式返回结果。
+图片压缩或重新编码。使用Promise异步回调。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -89,7 +89,7 @@ async function PackToData(context : Context) {
 
 packToData(source: PixelMap, options: PackingOption): Promise\<ArrayBuffer>
 
-图片压缩或重新编码，使用Promise形式返回结果。
+图片压缩或重新编码。使用Promise异步回调。
 
 > **注意：**
 > 接口如果返回401错误码，表明参数异常，可能是PixelMap对象被提前释放了。需要调用方排查，在该方法调用结束后再释放PixelMap对象。
@@ -154,7 +154,7 @@ async function PackToData() {
 
 packing(picture: Picture, options: PackingOption): Promise\<ArrayBuffer>
 
-将图像压缩或重新编码，使用Promise形式返回结果。
+将图像压缩或重新编码。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -216,7 +216,7 @@ async function Packing(context: Context) {
 
 packToDataFromPixelmapSequence(pixelmapSequence: Array\<PixelMap>, options: PackingOptionsForSequence): Promise\<ArrayBuffer>
 
-将多个PixelMap编码成GIF数据。使用Promise形式返回结果。
+将多个PixelMap编码成GIF数据。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -260,8 +260,8 @@ async function PackToDataFromPixelmapSequence(context : Context) {
     disposalTypes: [3, 2, 3], // 指定GIF编码中3帧的帧过渡模式分别为3（恢复到之前的状态）、2（恢复背景色)、3(恢复到之前的状态)。
     loopCount: 0 // 指定GIF编码中循环次数为无限循环。
   };
-  let Packer = image.createImagePacker();
-  Packer.packToDataFromPixelmapSequence(pixelMapList, ops)
+  let packer = image.createImagePacker();
+  packer.packToDataFromPixelmapSequence(pixelMapList, ops)
     .then((data: ArrayBuffer) => {
       console.info('Succeeded in packing.');
     }).catch((error: BusinessError) => {
@@ -274,7 +274,7 @@ async function PackToDataFromPixelmapSequence(context : Context) {
 
 release(callback: AsyncCallback\<void>): void
 
-释放图片编码实例，使用callback形式返回结果。
+释放图片编码实例。使用callback异步回调。
 
 ArkTS有内存回收机制，ImagePacker对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
@@ -307,7 +307,7 @@ async function Release() {
 
 release(): Promise\<void>
 
-释放图片编码实例，使用Promise形式返回释放结果。
+释放图片编码实例。使用Promise异步回调。
 
 ArkTS有内存回收机制，ImagePacker对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
@@ -338,7 +338,7 @@ async function Release() {
 
 packToFile(source: ImageSource, fd: number, options: PackingOption, callback: AsyncCallback\<void>): void
 
-指定编码参数，将ImageSource直接编码进文件。使用callback形式返回结果。
+指定编码参数，将ImageSource直接编码进文件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -395,7 +395,7 @@ async function PackToFile(context : Context) {
 
 packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<void>
 
-指定编码参数，将ImageSource直接编码进文件。使用Promise形式返回结果。
+指定编码参数，将ImageSource直接编码进文件。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -455,7 +455,7 @@ async function PackToFile(context : Context) {
 
 packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: AsyncCallback\<void>): void
 
-指定编码参数，将PixelMap直接编码进文件。使用callback形式返回结果。
+指定编码参数，将PixelMap直接编码进文件。使用callback异步回调。
 
 > **注意：**
 > 接口如果返回62980115错误码，表明参数异常，可能是PixelMap对象被提前释放了。需要调用方排查，在该方法调用结束后再释放PixelMap对象。
@@ -516,7 +516,7 @@ async function PackToFile(context : Context) {
 
 packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void>
 
-指定编码参数，将PixelMap直接编码进文件。使用Promise形式返回结果。
+指定编码参数，将PixelMap直接编码进文件。使用Promise异步回调。
 
 > **注意：**
 > 接口如果返回62980115错误码，表明参数异常，可能是PixelMap对象被提前释放了。需要调用方排查，在该方法调用结束后再释放PixelMap对象。
@@ -581,7 +581,7 @@ async function PackToFile(context : Context) {
 
 packToFile(picture: Picture, fd: number, options: PackingOption): Promise\<void>
 
-指定编码参数，将Picture直接编码进文件。使用Promise形式返回结果。
+指定编码参数，将Picture直接编码进文件。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -648,7 +648,7 @@ async function PackToFile(context: Context) {
 
 packToFileFromPixelmapSequence(pixelmapSequence: Array\<PixelMap>, fd: number, options: PackingOptionsForSequence): Promise\<void>
 
-指定编码参数，将多个PixelMap编码成GIF文件。使用Promise形式返回结果。
+指定编码参数，将多个PixelMap编码成GIF文件。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -696,8 +696,8 @@ async function PackToFile(context : Context) {
     disposalTypes: [3, 2, 3], // 指定GIF编码中3帧的帧过渡模式分别为3（恢复到之前的状态）、2（恢复背景色)、3(恢复到之前的状态)。
     loopCount: 0 // 指定GIF编码中循环次数为无限循环。
   };
-  let Packer = image.createImagePacker();
-  Packer.packToFileFromPixelmapSequence(pixelMapList, file.fd, ops)
+  let packer = image.createImagePacker();
+  packer.packToFileFromPixelmapSequence(pixelMapList, file.fd, ops)
     .then(() => {
       console.info('Succeeded in packToFileMultiFrames.');
     }).catch((error: BusinessError) => {
@@ -710,7 +710,7 @@ async function PackToFile(context : Context) {
 
 packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<ArrayBuffer>): void
 
-图片压缩或重新编码，使用callback形式返回结果。
+图片压缩或重新编码。使用callback异步回调。
 
 > **说明：**
 >
@@ -753,7 +753,7 @@ async function Packing(context : Context) {
 
 packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
-图片压缩或重新编码，使用Promise形式返回结果。
+图片压缩或重新编码。使用Promise异步回调。
 
 > **说明：**
 >
@@ -800,7 +800,7 @@ async function Packing(context : Context) {
 
 packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayBuffer>): void
 
-图片压缩或重新编码，使用callback形式返回结果。
+图片压缩或重新编码。使用callback异步回调。
 
 > **说明：**
 >
@@ -849,7 +849,7 @@ async function Packing() {
 
 packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
-图片压缩或重新编码，使用Promise形式返回结果。
+图片压缩或重新编码。使用Promise异步回调。
 
 > **说明：**
 >

@@ -207,7 +207,7 @@ Repeat的`.key()`属性为每个子组件生成一个键值。Repeat通过键值
 
 ## 数据精准懒加载
 
-当数据源总长度较长，或数据项加载耗时较长时，可使用Repeat数据精准懒加载特性，避免在初始化时加载所有数据。
+当数据源总长度较长，或数据项加载耗时较长时，可使用Repeat数据精准懒加载特性，避免在初始化时加载所有数据。Repeat数据精准懒加载特性从API version 19开始支持。
 
 开发者可以设置`.virtualScroll()`的`totalCount`属性值或`onTotalCount`自定义方法用于计算期望的数据源长度，设置`onLazyLoading`属性实现数据精准懒加载，实现在节点首次渲染时加载对应的数据。详细说明和注意事项见[VirtualScrollOptions](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscrolloptions)。
 
@@ -1275,7 +1275,7 @@ class VehicleDB {
 
 @Entry
 @ComponentV2
-struct entryCompSucc {
+struct EntryCompSucc {
   @Local vehicleItems: VehicleData[] = new VehicleDB().vehicleItems;
   @Local listChildrenSize: ChildrenMainSize = new ChildrenMainSize(60);
   @Local totalCount: number = this.vehicleItems.length;

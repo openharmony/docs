@@ -1,6 +1,13 @@
 # @ohos.accessibility (Accessibility)
 
-The **Accessibility** module implements the accessibility functions, including obtaining the accessibility application list, accessibility application enabled status, and captions configuration.
+<!--Kit: Accessibility Kit-->
+<!--Subsystem: BarrierFree-->
+<!--Owner: @qiiiiiiian-->
+<!--Designer: @z7o-->
+<!--Tester: @A_qqq-->
+<!--Adviser: @w_Machine_cc-->
+
+The **Accessibility** module implements the accessibility features, including obtaining the accessibility application list, accessibility application enabling state, and captions configuration.
 
 > **NOTE**
 >
@@ -49,7 +56,7 @@ Provides information about an accessibility application.
 
 ### Properties
 
-| Name                            | Type                                      | Readable  | Writable  | Description              |
+| Name                            | Type                                      | Read-Only  | Optional  | Description              |
 | ------------------------------ | ---------------------------------------- | ---- | ---- | ---------------- |
 | id                             | string                                   | Yes   | No   | Ability ID.|
 | name                           | string                                   | Yes   | No   | Ability name.      |
@@ -140,7 +147,7 @@ Enumerates the font families of captions.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
-| Name                 | Description               |
+| Type                 | Description               |
 | ------------------- | ----------------- |
 | 'default'             | Default font family.            |
 | 'monospacedSerif'         | Monospaced Serif fonts, which use the same width for each character.     |
@@ -157,14 +164,14 @@ Describes the style of captions.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
-| Name             | Type                                      | Readable  | Writable  | Description         |
+| Name             | Type                                   | Read-Only  | Optional  | Description         |
 | --------------- | ---------------------------------------- | ---- | ---- | ----------- |
-| fontFamily      | [CaptionsFontFamily](#captionsfontfamily8) | Yes   | No   | Font family of captions.    |
-| fontScale       | number                                   | Yes   | No   | Font scale factor of captions, in percentage. The value ranges from 1 to 200.|
-| fontColor       | number \| string                         | Yes   | No   | Font color of captions. For example, red corresponds to #FF0000.  |
-| fontEdgeType    | [CaptionsFontEdgeType](#captionsfontedgetype8) | Yes   | No   | Font edge type of captions.  |
-| backgroundColor | number \| string                         | Yes   | No   | Background color of captions. For example, red corresponds to #FF0000.  |
-| windowColor     | number \| string                         | Yes   | No   | Window color of captions. For example, red corresponds to #FF0000.  |
+| fontFamily      | [CaptionsFontFamily](#captionsfontfamily8) | No   | No   | Font family of captions.    |
+| fontScale       | number                                   | No   | No   | Font scale factor of captions, in percentage. The value ranges from 1 to 200.|
+| fontColor       | number \| string                         | No   | No   | Font color of captions.<br>**number**: HEX format, used to represent colors defined in either the RGB or ARGB color models.<br>**string**: #rrggbb, #rrggbbaa, #rgb, or #rgba format.<br>Example: opaque red; number: 0xffff0000; string: '#ff0000', '#ff0000ff', '#f00', or '#f00f'|
+| fontEdgeType    | [CaptionsFontEdgeType](#captionsfontedgetype8) | No   | No   | Font edge type of captions.  |
+| backgroundColor | number \| string                         | No   | No   | Background color of captions.<br>**number**: HEX format, used to represent colors defined in either the RGB or ARGB color models.<br>**string**: #rrggbb, #rrggbbaa, #rgb, or #rgba format.<br>Example: opaque red; number: 0xffff0000; string: '#ff0000', '#ff0000ff', '#f00', or '#f00f'  |
+| windowColor     | number \| string                         | No   | No   | Window color of captions.<br>**number**: HEX format, used to represent colors defined in either the RGB or ARGB color models.<br>**string**: #rrggbb, #rrggbbaa, #rgb, or #rgba format.<br>Example: opaque red; number: 0xffff0000; string: '#ff0000', '#ff0000ff', '#f00', or '#f00f'  |
 
 ## CaptionsManager<sup>8+</sup>
 
@@ -174,18 +181,16 @@ Implements configuration management for captions. Before calling any API of **Ca
 
 ### Properties
 
-| Name     | Type                              | Readable  | Writable  | Description         |
+| Name     | Type                              | Read-Only  | Optional  | Description         |
 | ------- | -------------------------------- | ---- | ---- | ----------- |
-| enabled | boolean                          | Yes   | No   | Whether to enable captions configuration.|
-| style   | [CaptionsStyle](#captionsstyle8) | Yes   | No   | Style of captions.    |
-
-For a boolean return value, **True** means that the feature is enabled, and **False** means the opposite.
+| enabled | boolean                          | No   | No   | Whether to enable captions configuration. The value **true** indicates that the caption configuration is enabled, and **false** indicates the opposite.|
+| style   | [CaptionsStyle](#captionsstyle8) | No   | No   | Style of captions.    |
 
 ### on('enableChange')<sup>(deprecated)</sup>
 
 on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 
-Enables listening for the enabled status changes of captions configuration. This API uses an asynchronous callback to return the result.
+Subscribes to the enabling state changes of captions configuration. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -197,33 +202,47 @@ Enables listening for the enabled status changes of captions configuration. This
 
 | Name     | Type                     | Mandatory  | Description                                     |
 | -------- | ----------------------- | ---- | --------------------------------------- |
-| type     | string                  | Yes   | Listening type, which is set to **'enableChange'** in this API.|
+| type     | string                  | Yes   | Event type, which is set to **'enableChange'** in this API.|
 | callback | Callback&lt;boolean&gt; | Yes   | Callback invoked when the enabled status of captions configuration changes.             |
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 
-let captionsManager = accessibility.getCaptionsManager();
-captionsManager.on('enableChange', (data: boolean) => {
-  console.info(`subscribe caption manager enable state change, result: ${JSON.stringify(data)}`);
-})
+@Entry
+@Component
+struct Index {
+  callback: (data: boolean) => void = this.eventCallback;
+  eventCallback(data: boolean): void {
+    console.info(`subscribe caption manager enable state change, result: ${JSON.stringify(data)}`);
+  }
+
+  aboutToAppear(): void {
+    let captionsManager = accessibility.getCaptionsManager();
+    captionsManager.on('enableChange', this.callback);
+  }
+
+  build() {
+    Column() {
+    }
+  }
+}
 ```
 
 ### on('styleChange')<sup>(deprecated)</sup>
 
 on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 
-Enables listening for captions style changes. This API uses an asynchronous callback to return the result.
+Subscribes to captions style changes. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -235,34 +254,47 @@ Enables listening for captions style changes. This API uses an asynchronous call
 
 | Name     | Type                                      | Mandatory  | Description                                |
 | -------- | ---------------------------------------- | ---- | ---------------------------------- |
-| type     | string                                   | Yes   | Listening type, which is set to **'styleChange'** in this API.|
+| type     | string                                   | Yes   | Event type, which is set to **'styleChange'** in this API.|
 | callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | Yes   | Callback invoked when the style of captions changes.           |
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 
-let captionsManager = accessibility.getCaptionsManager();
+@Entry
+@Component
+struct Index {
+  callback: (data: accessibility.CaptionsStyle) => void = this.eventCallback;
+  eventCallback(data: accessibility.CaptionsStyle): void {
+    console.info(`subscribe caption manager style state change, result: ${JSON.stringify(data)}`);
+  }
 
-captionsManager.on('styleChange', (data: accessibility.CaptionsStyle) => {
-  console.info(`subscribe caption manager style state change, result: ${JSON.stringify(data)}`);
-});
+  aboutToAppear(): void {
+    let captionsManager = accessibility.getCaptionsManager();
+    captionsManager.on('styleChange', this.callback);
+  }
+
+  build() {
+    Column() {
+    }
+  }
+}
 ```
 
 ### off('enableChange')<sup>(deprecated)</sup>
 
 off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 
-Disables listening for the enabled status changes of captions configuration. This API uses an asynchronous callback to return the result.
+Unsubscribes from the enabling state changes of captions configuration. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -274,34 +306,52 @@ Disables listening for the enabled status changes of captions configuration. Thi
 
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                  | Yes  | Listening type, which is set to **'enableChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | No  | Callback used for disable listening. The value must be the same as the value of **callback** in **on('enableChange')**. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+| type     | string                  | Yes  | Event type, which is set to **'enableChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | No  | Callback used to unregister. The value must be the same as the value of **callback** in **on('enableChange')**. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 
-let captionsManager = accessibility.getCaptionsManager();
+@Entry
+@Component
+struct Index {
+  callback: (data: boolean) => void = this.eventCallback;
+  eventCallback(data: boolean): void {
+    console.info(`subscribe caption manager enable state change, result: ${JSON.stringify(data)}`);
+  }
 
-captionsManager.off('enableChange', (data: boolean) => {
-  console.info(`Unsubscribe caption manager enable state change, result: ${JSON.stringify(data)}`);
-});
+  aboutToAppear(): void {
+    let captionsManager = accessibility.getCaptionsManager();
+    captionsManager.on('enableChange', this.callback);
+  }
+
+  aboutToDisappear(): void {
+    let captionsManager = accessibility.getCaptionsManager();
+    captionsManager.off('enableChange', this.callback);
+  }
+
+  build() {
+    Column() {
+    }
+  }
+}
 ```
 
 ### off('styleChange')<sup>(deprecated)</sup>
 
 off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
-Disables listening for captions style changes. This API uses an asynchronous callback to return the result.
+Unsubscribes from the captions style changes. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -313,27 +363,45 @@ Disables listening for captions style changes. This API uses an asynchronous cal
 
 | Name  | Type                                            | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                           | Yes  | Listening type, which is set to **'styleChange'** in this API. |
-| callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | No  | Callback used for disable listening. The value must be the same as the value of **callback** in **on('styleChange')**. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+| type     | string                                           | Yes  | Event type, which is set to **'styleChange'** in this API. |
+| callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | No  | Callback used to unregister. The value must be the same as the value of **callback** in **on('styleChange')**. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 
-let captionsManager = accessibility.getCaptionsManager();
+@Entry
+@Component
+struct Index {
+  callback: (data: accessibility.CaptionsStyle) => void = this.eventCallback;
+  eventCallback(data: accessibility.CaptionsStyle): void {
+    console.info(`subscribe caption manager style state change, result: ${JSON.stringify(data)}`);
+  }
 
-captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
-  console.info(`Unsubscribe caption manager style state change, result: ${JSON.stringify(data)}`);
-});
+  aboutToAppear(): void {
+    let captionsManager = accessibility.getCaptionsManager();
+    captionsManager.on('styleChange', this.callback);
+  }
+
+  aboutToDisappear(): void {
+    let captionsManager = accessibility.getCaptionsManager();
+    captionsManager.off('styleChange', this.callback);
+  }
+
+  build() {
+    Column() {
+    }
+  }
+}
 ```
 
 ## EventInfo
@@ -344,30 +412,30 @@ Describes a GUI change event.
 
 ### Properties
 
-| Name            | Type                                  | Mandatory | Description                |
-| ---------------- | ------------------------------------- |----- |-----------------------|
-| type             | [EventType](#eventtype)               | Yes  | Accessibility event type.        |
-| windowUpdateType | [WindowUpdateType](#windowupdatetype) | No  | Window update type.              |
-| bundleName       | string                                | Yes  | Name of the target application.          |
-| componentType    | string                                | No  | Type of the event source component, for example, button or chart.      |
-| pageId           | number                                | No  | Page ID of the event source.           |
-| description      | string                                | No  | Event description.       |
-| triggerAction    | [Action](#action)                     | Yes  | Action that triggers the event.   |
-| textMoveUnit     | [TextMoveUnit](#textmoveunit)         | No  | Text move granularity.     |
-| contents         | Array&lt;string&gt;                   | No  | Array of contents.                |
-| lastContent      | string                                | No  | Latest content.                |
-| beginIndex       | number                                | No  | Sequence number of the first item displayed on the page. Default value: **0**.|
-| currentIndex     | number                                | No  | Sequence number of the current item. Default value: **0**.     |
-| endIndex         | number                                | No  | Sequence number of the last item displayed on the page. Default value: **0**.|
-| itemCount        | number                                | No  | Total number of records. Default value: **0**.       |
-| elementId<sup>12+</sup>        | number                  | No  | Element ID of the component. Default value: **0**.       |
-| textAnnouncedForAccessibility<sup>12+</sup>        | string     | No  | Content for auto-broadcasting.       |
-| textResourceAnnouncedForAccessibility<sup>18+</sup>        | Resource      | No  | Content for auto-broadcasting, which supports resources of the string type. |
-| customId<sup>12+</sup>        | string                                | No  | Component ID for auto-focusing.       |
+| Name            | Type                                  | Read-Only| Optional| Description           |
+| ---------------- | ------------------------------------- |----- |------|-----------------------|
+| type             | [EventType](#eventtype)               | No  | No  | Accessibility event type (mandatory).        |
+| windowUpdateType | [WindowUpdateType](#windowupdatetype) | No  | Yes  | Window update type.              |
+| bundleName       | string                                | No  | No  | Name of the target application (mandatory).          |
+| componentType    | string                                | No  | Yes  | Component type, for example, **Button** for the button component and **Image** for the image component.      |
+| pageId           | number                                | No  | Yes  | ID of the page where the event occurs. The default value is **0**.           |
+| description      | string                                | No  | Yes  | Event description. Set this parameter as required.       |
+| triggerAction    | [Action](#action)                     | No  | No  | Action that triggers the event (mandatory).   |
+| textMoveUnit     | [TextMoveUnit](#textmoveunit)         | No  | Yes  | Text move granularity.     |
+| contents         | Array&lt;string&gt;                   | No  | Yes  | Content list. Set this parameter as required.                |
+| lastContent      | string                                | No  | Yes  | Latest content. Set this parameter as required.                |
+| beginIndex       | number                                | No  | Yes  | Start index. The default value is **0**.|
+| currentIndex     | number                                | No  | Yes  | Current index. The default value is **0**.     |
+| endIndex         | number                                | No  | Yes  | End index. The default value is **0**.|
+| itemCount        | number                                | No  | Yes  | Total number of items. The default value is **0**.       |
+| elementId<sup>12+</sup>        | number                  | No  | Yes  | Element ID of the component. The default value is **0**.       |
+| textAnnouncedForAccessibility<sup>12+</sup>     | string     | No  | Yes  | Content for auto-broadcasting. Set the broadcast content based on the actual scenario. No special restrictions.|
+| textResourceAnnouncedForAccessibility<sup>18+</sup>      | Resource   | No  | Yes  | Content for auto-broadcasting. The value is a string of the **Resource** type. |
+| customId<sup>12+</sup>        | string                                | No  | Yes  | Component ID for auto-focusing.       |
 
 ### constructor
 
-constructor(jsonObject)
+constructor(jsonObject: Object)
 
 Implements a constructor.
 
@@ -377,7 +445,7 @@ Implements a constructor.
 
 | Name       | Type    | Mandatory  | Description                  |
 | ---------- | ------ | ---- | -------------------- |
-| jsonObject | string | Yes   | JSON string required for creating an object.|
+| jsonObject | Object | Yes   | JSON object that contains the **type**, **bundleName**, and **triggerAction** fields.|
 
 **Example**
 
@@ -582,20 +650,54 @@ Obtains the accessibility application list. This API uses a promise to return th
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
-**Example**
+**Parameter example**
+| Accessibility Application Type/State     | enable       | disable |install|
+| ------- | -------- |----|----|
+| **audible**  | Queries enabled accessibility applications with audible feedback.|Queries disabled accessibility applications with audible feedback.|Queries installed accessibility applications with audible feedback.|
+|**generic**| Queries enabled accessibility applications with generic feedback.|Queries disabled accessibility applications with generic feedback.|Queries installed accessibility applications with generic feedback.|
+|**haptic**| Queries enabled accessibility applications with haptic feedback.|Queries disabled accessibility applications with haptic feedback.|Queries installed accessibility applications with haptic feedback.|
+|**spoken**| Queries enabled accessibility applications with spoken feedback.|Queries disabled accessibility applications with spoken feedback.|Queries installed accessibility applications with spoken feedback.|
+|**visual**| Queries enabled accessibility applications with visual feedback.|Queries disabled accessibility applications with visual feedback.|Queries installed accessibility applications with visual feedback.|
+|**all**| Queries all enabled accessibility applications.|Queries all disabled accessibility applications.|Queries all installed accessibility applications.|
 
+**Example of querying all installed accessibility applications**:
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityType: accessibility.AbilityType = 'spoken';
-let abilityState: accessibility.AbilityState = 'enable';
+let abilityType: accessibility.AbilityType = 'all'; // Set the accessibility application type to 'all'.
+let abilityState: accessibility.AbilityState = 'install'; // Set the accessibility application state to 'install'.
+
+accessibility.getAccessibilityExtensionList(abilityType, abilityState).then((data: accessibility.AccessibilityAbilityInfo[]) => {
+  console.info(`Succeeded in get accessibility extension list, ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to get accessibility extension list, Code is ${err.code}, message is ${err.message}`);
+});
+
+// For example, install an accessibility application whose bundle name is com.example.myaccessibilityapp in the system.
+// The log output is as follows:
+// [{"id":"com.example.myaccessibilityapp/AccessibilityExtAbility","name":"AccessibilityExtAbility",
+// "bundleName":"com.example.myaccessibilityapp","abilityTypes":[],
+// "capabilities":["retrieve","gesture"],"description":"$string:MainAbility_desc",
+// "eventTypes":["click","longClick","select","focus","textUpdate","hoverEnter","hoverExit","scroll",
+// "textSelectionUpdate","accessibilityFocus","accessibilityFocusClear","requestFocusForAccessibility",
+// "announceForAccessibility","announceForAccessibilityNotInterrupt",
+// "requestFocusForAccessibilityNotInterrupt","scrolling"],"targetBundleNames":[],"needHide":false}}]
+```
+
+**Example of querying all enabled accessibility applications with voice feedback**:
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let abilityType: accessibility.AbilityType = 'spoken'; // Set the accessibility application type to 'spoken'.
+let abilityState: accessibility.AbilityState = 'enable'; // Set the accessibility application state to 'enable'.
 
 accessibility.getAccessibilityExtensionList(abilityType, abilityState).then((data: accessibility.AccessibilityAbilityInfo[]) => {
   console.info(`Succeeded in get accessibility extension list, ${JSON.stringify(data)}`);
@@ -622,20 +724,58 @@ Obtains the accessibility application list. This API uses an asynchronous callba
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
-**Example**
+**Parameter example**
+| Accessibility Application Type/State     | enable       | disable |install|
+| ------- | -------- |----|----|
+| **audible**  | Queries enabled accessibility applications with audible feedback.|Queries disabled accessibility applications with audible feedback.|Queries installed accessibility applications with audible feedback.|
+|**generic**| Queries enabled accessibility applications with generic feedback.|Queries disabled accessibility applications with generic feedback.|Queries installed accessibility applications with generic feedback.|
+|**haptic**| Queries enabled accessibility applications with haptic feedback.|Queries disabled accessibility applications with haptic feedback.|Queries installed accessibility applications with haptic feedback.|
+|**spoken**| Queries enabled accessibility applications with spoken feedback.|Queries disabled accessibility applications with spoken feedback.|Queries installed accessibility applications with spoken feedback.|
+|**visual**| Queries enabled accessibility applications with visual feedback.|Queries disabled accessibility applications with visual feedback.|Queries installed accessibility applications with visual feedback.|
+|**all**| Queries all enabled accessibility applications.|Queries all disabled accessibility applications.|Queries all installed accessibility applications.|
+
+**Example of querying all installed accessibility applications**:
 
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityType: accessibility.AbilityType = 'spoken';
-let abilityState: accessibility.AbilityState = 'enable';
+let abilityType: accessibility.AbilityType = 'all'; // Set the accessibility application type to 'all'.
+let abilityState: accessibility.AbilityState = 'install'; // Set the accessibility application state to 'install'.
+
+accessibility.getAccessibilityExtensionList(abilityType, abilityState,(err: BusinessError, data: accessibility.AccessibilityAbilityInfo[]) => {
+  if (err) {
+    console.error(`failed to get accessibility extension list, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in get accessibility extension list, ${JSON.stringify(data)}`);
+});
+
+// For example, install an accessibility application whose bundle name is com.example.myaccessibilityapp in the system.
+// The log output is as follows:
+// [{"id":"com.example.myaccessibilityapp/AccessibilityExtAbility","name":"AccessibilityExtAbility",
+// "bundleName":"com.example.myaccessibilityapp","abilityTypes":[],
+// "capabilities":["retrieve","gesture"],"description":"$string:MainAbility_desc",
+// "eventTypes":["click","longClick","select","focus","textUpdate","hoverEnter","hoverExit","scroll",
+// "textSelectionUpdate","accessibilityFocus","accessibilityFocusClear","requestFocusForAccessibility",
+// "announceForAccessibility","announceForAccessibilityNotInterrupt",
+// "requestFocusForAccessibilityNotInterrupt","scrolling"],"targetBundleNames":[],"needHide":false}}]
+```
+
+**Example of querying all enabled accessibility applications with voice feedback**:
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let abilityType: accessibility.AbilityType = 'spoken'; // Set the accessibility application type to 'spoken'.
+let abilityState: accessibility.AbilityState = 'enable'; // Set the accessibility application state to 'enable'.
 
 accessibility.getAccessibilityExtensionList(abilityType, abilityState,(err: BusinessError, data: accessibility.AccessibilityAbilityInfo[]) => {
   if (err) {
@@ -650,7 +790,7 @@ accessibility.getAccessibilityExtensionList(abilityType, abilityState,(err: Busi
 
 getAccessibilityExtensionListSync(abilityType: AbilityType, stateType: AbilityState): Array&lt;AccessibilityAbilityInfo&gt;
 
-Obtains the API for synchronizing the accessibility application list.
+Query the list of accessibility applications in the current system, which can be queried by criteria.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -667,14 +807,53 @@ Obtains the API for synchronizing the accessibility application list.
 | ---------------------------------------- | --------------------- |
 | Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt; | Promise used to return the accessibility application list.|
 
-**Example**
+**Parameter example**
+| Accessibility Application Type/State     | enable       | disable |install|
+| ------- | -------- |----|----|
+| **audible**  | Queries enabled accessibility applications with audible feedback.|Queries disabled accessibility applications with audible feedback.|Queries installed accessibility applications with audible feedback.|
+|**generic**| Queries enabled accessibility applications with generic feedback.|Queries disabled accessibility applications with generic feedback.|Queries installed accessibility applications with generic feedback.|
+|**haptic**| Queries enabled accessibility applications with haptic feedback.|Queries disabled accessibility applications with haptic feedback.|Queries installed accessibility applications with haptic feedback.|
+|**spoken**| Queries enabled accessibility applications with spoken feedback.|Queries disabled accessibility applications with spoken feedback.|Queries installed accessibility applications with spoken feedback.|
+|**visual**| Queries enabled accessibility applications with visual feedback.|Queries disabled accessibility applications with visual feedback.|Queries installed accessibility applications with visual feedback.|
+|**all**| Queries all enabled accessibility applications.|Queries all disabled accessibility applications.|Queries all installed accessibility applications.|
+
+**Example of querying all installed accessibility applications**:
 
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let abilityType: accessibility.AbilityType = 'all';
-let abilityState: accessibility.AbilityState = 'install';
+let abilityType: accessibility.AbilityType = 'all'; // Set the accessibility application type to 'all'.
+let abilityState: accessibility.AbilityState = 'install'; // Set the accessibility application state to 'install'.
+let data: accessibility.AccessibilityAbilityInfo[];
+
+try {
+  data = accessibility.getAccessibilityExtensionListSync(abilityType, abilityState);
+  console.info(`Succeeded in get accessibility extension list, ${JSON.stringify(data)}`);
+} catch (error) {
+  let err = error as BusinessError;
+  console.error(`error code: ${err.code}`);
+}
+
+// For example, install an accessibility application whose bundle name is com.example.myaccessibilityapp in the system.
+// The log output is as follows:
+// [{"id":"com.example.myaccessibilityapp/AccessibilityExtAbility","name":"AccessibilityExtAbility",
+// "bundleName":"com.example.myaccessibilityapp","abilityTypes":[],
+// "capabilities":["retrieve","gesture"],"description":"$string:MainAbility_desc",
+// "eventTypes":["click","longClick","select","focus","textUpdate","hoverEnter","hoverExit","scroll",
+// "textSelectionUpdate","accessibilityFocus","accessibilityFocusClear","requestFocusForAccessibility",
+// "announceForAccessibility","announceForAccessibilityNotInterrupt",
+// "requestFocusForAccessibilityNotInterrupt","scrolling"],"targetBundleNames":[],"needHide":false}}]
+```
+
+**Example of querying all enabled accessibility applications with voice feedback**:
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let abilityType: accessibility.AbilityType = 'spoken'; // Set the accessibility application type to 'spoken'.
+let abilityState: accessibility.AbilityState = 'enable'; // Set the accessibility application state to 'enable'.
 let data: accessibility.AccessibilityAbilityInfo[];
 
 try {
@@ -685,6 +864,9 @@ try {
   console.error(`error code: ${err.code}`);
 }
 ```
+
+<!--RP1-->
+<!--RP1End-->
 
 ## accessibility.getCaptionsManager<sup>(deprecated)</sup>
 
@@ -716,7 +898,7 @@ let captionsManager = accessibility.getCaptionsManager();
 
 on(type: 'accessibilityStateChange', callback: Callback&lt;boolean&gt;): void
 
-Enables listening for the enabled status changes of the accessibility application. This API uses an asynchronous callback to return the result.
+Subscribes to the enabling state changes of the accessibility application. This API uses an asynchronous callback to return the result. To obtain information about accessibility applications in the system, use [accessibility.getAccessibilityExtensionListSync](#accessibilitygetaccessibilityextensionlistsync12).
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -724,32 +906,38 @@ Enables listening for the enabled status changes of the accessibility applicatio
 
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                  | Yes  | Listening type, which is set to **'accessibilityStateChange'** in this API.|
+| type     | string                  | Yes  | Event type, which is set to **'accessibilityStateChange'** in this API.|
 | callback | Callback&lt;boolean&gt; | Yes  | Callback invoked when the enabled status of accessibility application changes. The returned result indicates the global enabled status of the accessibility application.|
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 
+// When one or more accessibility applications have been installed in the system:
+// 1. After the first application is enabled, the callback returns true.
+// 2. If one or more applications have been enabled and the last enabled one is disabled, the callback returns false.
 accessibility.on('accessibilityStateChange', (data: boolean) => {
   console.info(`subscribe accessibility state change, result: ${JSON.stringify(data)}`);
 });
 ```
 
+<!--RP2-->
+<!--RP2End-->
+
 ## accessibility.on('touchGuideStateChange')
 
 on(type: 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
 
-Enables listening for the enabled status changes of the touch guide mode. This API uses an asynchronous callback to return the result.
+Subscribes to the enabling state changes of the touch guide mode. This API uses an asynchronous callback to return the result. To obtain information about accessibility applications in the system, use [accessibility.getAccessibilityExtensionListSync](#accessibilitygetaccessibilityextensionlistsync12).
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Vision
 
@@ -757,22 +945,25 @@ Enables listening for the enabled status changes of the touch guide mode. This A
 
 | Name     | Type                     | Mandatory  | Description                                      |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Listening type, which is set to **'touchGuideStateChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | Yes   | Callback invoked when the enabled status of touch guide mode changes.          |
+| type     | string                  | Yes   | Event type, which is set to **'touchGuideStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | Yes   | Callback invoked when the enabling state of touch guide mode changes.          |
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
 
+// When one or more accessibility applications with touch guide mode (**touchGuide** is set in **Capability**) have been installed in the system:
+// 1. After the first application is enabled, the callback returns true.
+// 2. If one or more applications have been enabled and the last enabled one is disabled, the callback returns false.
 accessibility.on('touchGuideStateChange', (data: boolean) => {
   console.info(`subscribe touch guide state change, result: ${JSON.stringify(data)}`);
 });
@@ -782,24 +973,24 @@ accessibility.on('touchGuideStateChange', (data: boolean) => {
 
 on(type: 'screenReaderStateChange', callback: Callback&lt;boolean&gt;): void
 
-Enables listening for the enabled status changes of the screen reader. This API uses an asynchronous callback to return the result.
+Subscribes to the enabling state changes of the screen reader. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.BarrierFree.Accessibility.Vision
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 **Parameters**
 
 | Name     | Type                     | Mandatory  | Description                                      |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Listening type, which is set to **'screenReaderStateChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | Yes   | Callback invoked when the enabled status of screen reader changes.          |
+| type     | string                  | Yes   | Event type, which is set to **'screenReaderStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | Yes   | Callback invoked when the enabling state of screen reader changes.          |
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -811,11 +1002,58 @@ accessibility.on('screenReaderStateChange', (data: boolean) => {
 });
 ```
 
+## accessibility.on('touchModeChange')<sup>20+</sup>
+
+on(type: 'touchModeChange', callback: Callback&lt;string&gt;): void
+
+Subscribers to the single- or double-touch event changes in touch guide mode. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Parameters**
+
+| Name     | Type                     | Mandatory  | Description                                      |
+| -------- | ----------------------- | ---- | ---------------------------------------- |
+| type     | string                  | Yes   | Event type, which is set to **'touchModeChange'** in this API.|
+| callback | Callback&lt;string&gt; | Yes   | Callback to be invoked when the single- or double-touch event changes.          |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+
+@Entry
+@Component
+struct Index {
+  callback: (mode: string) => void = this.eventCallback;
+  eventCallback(mode: string): void {
+    console.info(`current touch mode: ${JSON.stringify(mode)}`);
+  }
+
+  aboutToAppear(): void {
+    accessibility.on('touchModeChange', this.callback);
+  }
+
+  build() {
+    Column() {
+    }
+  }
+}
+```
+
 ## accessibility.off('accessibilityStateChange')
 
 off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
 
-Disables listening for the enabled status changes of the accessibility application. This API uses an asynchronous callback to return the result.
+Unsubscribes from the enabling state changes of the accessibility application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -823,16 +1061,16 @@ Disables listening for the enabled status changes of the accessibility applicati
 
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                  | Yes  | Listening type, which is set to **'accessibilityStateChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | No  | Callback used for disable listening. The value must be the same as the value of **callback** in **accessibility.on('accessibilityStateChange')**. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+| type     | string                  | Yes  | Event type, which is set to **'accessibilityStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | No  | Callback used to unregister. The value must be the same as the value of **callback** in **accessibility.on('accessibilityStateChange')**. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -848,7 +1086,7 @@ accessibility.off('accessibilityStateChange', (data: boolean) => {
 
 off(type: 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
 
-Disables listening for the enabled status changes of the touch guide mode. This API uses an asynchronous callback to return the result.
+Unsubscribes from the enabling state changes of the touch guide mode. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -856,16 +1094,16 @@ Disables listening for the enabled status changes of the touch guide mode. This 
 
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                  | Yes  | Listening type, which is set to **'touchGuideStateChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | No  | Callback used for disable listening. The value must be the same as the value of **callback** in **accessibility.on('touchGuideStateChange')**. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+| type     | string                  | Yes  | Event type, which is set to **'touchGuideStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | No  | Callback used to unregister. The value must be the same as the value of **callback** in **accessibility.on('touchGuideStateChange')**. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -881,7 +1119,7 @@ accessibility.off('touchGuideStateChange', (data: boolean) => {
 
 off(type: 'screenReaderStateChange', callback?: Callback&lt;boolean&gt;): void
 
-Disables listening for the enabled status changes of the screen reader. This API uses an asynchronous callback to return the result.
+Unsubscribes from the enabling state changes of the screen reader. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -889,16 +1127,16 @@ Disables listening for the enabled status changes of the screen reader. This API
 
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                  | Yes  | Listening type, which is set to **'screenReaderStateChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | No  | Callback used for disable listening. The value must be the same as the value of **callback** in **accessibility.on('screenReaderStateChange')**. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+| type     | string                  | Yes  | Event type, which is set to **'screenReaderStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | No  | Callback used to unregister. The value must be the same as the value of **callback** in **accessibility.on('screenReaderStateChange')**. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -910,11 +1148,62 @@ accessibility.off('screenReaderStateChange', (data: boolean) => {
 });
 ```
 
+## accessibility.off('touchModeChange')<sup>20+</sup>
+
+off(type: 'touchModeChange', callback?: Callback&lt;string&gt;): void
+
+Unsubscribes from the single- or double-touch event changes in touch guide mode. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Parameters**
+
+| Name  | Type                   | Mandatory| Description                                                        |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                  | Yes  | Event type, which is set to **'touchModeChange'** in this API.|
+| callback | Callback&lt;string&gt; | No  | Callback used to unregister. The callback must be the same as that of [accessibility.on('touchModeChange')](#accessibilityontouchmodechange20). If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+
+@Entry
+@Component
+struct Index {
+  callback: (mode: string) => void = this.eventCallback;
+  eventCallback(mode: string): void {
+    console.info(`current touch mode: ${JSON.stringify(mode)}`);
+  }
+
+  aboutToAppear(): void {
+    accessibility.on('touchModeChange', this.callback);
+  }
+
+  aboutToDisappear(): void {
+    accessibility.off('touchModeChange', this.callback);
+  }
+
+  build() {
+    Column() {
+    }
+  }
+}
+```
+
 ## accessibility.isOpenAccessibility<sup>(deprecated)</sup>
 
 isOpenAccessibility(): Promise&lt;boolean&gt;
 
-Checks whether accessibility is enabled. This API uses a promise to return the result.
+Checks whether this accessibility application is enabled. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -928,7 +1217,7 @@ Checks whether accessibility is enabled. This API uses a promise to return the r
 
 | Type                    | Description                                      |
 | ---------------------- | ---------------------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. Returns **true** if accessibility is enabled; returns **false** otherwise.|
+| Promise&lt;boolean&gt; | Promise used to return the result. Returns **true** if this accessibility application is enabled; returns **false** otherwise.|
 
 **Example**
 
@@ -947,7 +1236,7 @@ accessibility.isOpenAccessibility().then((data: boolean) => {
 
 isOpenAccessibility(callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether accessibility is enabled. This API uses an asynchronous callback to return the result.
+Checks whether an accessibility application is enabled. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -961,7 +1250,7 @@ Checks whether accessibility is enabled. This API uses an asynchronous callback 
 
 | Name     | Type                          | Mandatory  | Description                                 |
 | -------- | ---------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. Returns **true** if accessibility is enabled; returns **false** otherwise.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. Returns **true** if the accessibility application is enabled; returns **false** otherwise.|
 
 **Example**
 
@@ -982,17 +1271,18 @@ accessibility.isOpenAccessibility((err: BusinessError, data: boolean) => {
 
 isOpenAccessibilitySync(): boolean
 
-Checks whether accessibility is enabled.
+Checks whether any accessibility application has been enabled in the system. To obtain information about accessibility applications in the system, use [accessibility.getAccessibilityExtensionListSync](#accessibilitygetaccessibilityextensionlistsync12).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 **Return value**
-
+<!--RP3-->
 | Type       | Description                                 |
 | ----------- | ------------------------------------- |
-| boolean | Returns **true** if accessibility is enabled; returns **false** otherwise.|
+| boolean | Whether any accessibility application has been enabled in the system. Returns **true** if one or more accessibility applications are enabled; returns **false** otherwise.|
+<!--RP3End-->
 
 **Example**
 
@@ -1000,6 +1290,8 @@ Checks whether accessibility is enabled.
 import { accessibility } from '@kit.AccessibilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+// 1. If no accessibility application is enabled, the system returns false.
+// 2. If any accessibility application is enabled, the system returns true.
 let status: boolean = accessibility.isOpenAccessibilitySync();
 ```
 
@@ -1085,7 +1377,7 @@ Checks whether touch guide mode is enabled.
 
 | Type   | Description                                 |
 | ------- | ------------------------------------- |
-| boolean | Returns **true** if accessibility is enabled; returns **false** otherwise.|
+| boolean | Whether the touch guide mode is enabled. Returns **true** if the touch guide mode is enabled; returns **false** otherwise.|
 
 **Example**
 
@@ -1101,15 +1393,13 @@ isScreenReaderOpenSync(): boolean
 
 Checks whether the screen reader mode is enabled.
 
-**Atomic service API**: This API can be used in atomic services since API version 18.
-
 **System capability**: SystemCapability.BarrierFree.Accessibility.Vision
 
 **Return value**
 
 | Type   | Description                                 |
 | ------- | ------------------------------------- |
-| boolean | Returns **true** if screen reader is enabled; returns **false** otherwise.|
+| boolean | Whether the screen reader is enabled. Returns **true** if the screen reader is enabled; returns **false** otherwise.|
 
 **Example**
 
@@ -1226,11 +1516,11 @@ Sends an accessibility event. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1268,11 +1558,11 @@ Sends an accessibility event. This API uses an asynchronous callback to return t
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1305,7 +1595,7 @@ struct Index {
   build() {
     Column() {
       // Add the ID attribute to the component to be focused. The uniqueness of the ID is ensured by the user.
-      Button ('Component to be focused').id ('click')
+      Button('Component to be focused').id('click')
     }
   }
 }
@@ -1350,4 +1640,36 @@ accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
   }
   console.info(`Succeeded in send event, eventInfo is ${eventInfo}`);
 });
+```
+
+## accessibility.getTouchModeSync<sup>20+</sup>
+
+getTouchModeSync(): string
+
+Queries the single- or double-touch mode.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Return value**
+
+| Type       | Description                                 |
+| ----------- | ------------------------------------- |
+| string | Touch mode.<br>- **singleTouchMode**: single-touch mode.<br>- **doubleTouchMode**: double-touch mode.<br>- **none**: The touch mode is disabled.|
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+
+@Entry
+@Component
+struct Index {
+  aboutToAppear(): void {
+    let touchMode: string = accessibility.getTouchModeSync();
+    console.info(`current touch mode: ${JSON.stringify(touchMode)}`);
+  }
+
+  build() {
+    Column() {
+    }
+  }
+}
 ```

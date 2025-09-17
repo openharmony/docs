@@ -214,9 +214,7 @@ onDataChanged(index: number): void
 
 onDataAdd(index: number): void
 
-通知组件index的位置有数据添加。添加数据完成后调用
-
-**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+通知组件index的位置有数据添加。添加数据完成后调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -294,6 +292,7 @@ onDatasetChange(dataOperations: DataOperation[]): void
 > **说明：** 
 >
 > onDatasetChange接口不能与其他DataChangeListener的更新接口混用。例如，在同一个LazyForEach中，调用过onDataAdd接口后，不能再调用onDatasetChange接口；反之，调用过onDatasetChange接口后，也不能调用onDataAdd等其他更新接口。页面中不同LazyForEach之间互不影响。在同一个onDatasetChange批量处理数据时，如果多个DataOperation操作同一个index，只有第一个DataOperation生效。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

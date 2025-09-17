@@ -1,4 +1,10 @@
 # @ohos.util.json (JSON Parsing and Generation)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 The JSON module provides a series of APIs for converting JSON text into JSON objects or values and converting objects into JSON text.
 
@@ -98,81 +104,40 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
-<!--code_no_check-->
+
 ```ts
-// /entry/src/main/ets/pages/test.ts
-export function reviverFunc(key, value) {
-  if (key === "age") {
+import { JSON } from '@kit.ArkTS';
+
+function reviverFunc(key: string, value: Object): Object | undefined | null {
+  if (key === "age" && typeof value === 'number') {
     return value + 1;
   }
   return value;
 }
-```
 
-<!--code_no_check-->
-```ts
-import { JSON } from '@kit.ArkTS';
-import { reviverFunc } from './test';
-
-let jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
+const jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
 let obj = JSON.parse(jsonText);
 console.info((obj as object)?.["name"]);
 // Output: John
+
 const jsonTextStr = '{"name": "John", "age": 30}';
 let objRst = JSON.parse(jsonTextStr, reviverFunc);
 console.info((objRst as object)?.["age"]);
 // Output: 31
-let options: JSON.ParseOptions = {
-  bigIntMode: JSON.BigIntMode.PARSE_AS_BIGINT,
-}
-let numberText = '{"largeNumber":112233445566778899}';
-let numberObj = JSON.parse(numberText,(key: string, value: Object | undefined | null): Object | undefined | null => {
-  if(key === "largeNumber") return value;
-  return value;
-},options) as Object;
 
+const numberText = '{"number": 10, "largeNumber": 112233445566778899}';
+let options: JSON.ParseOptions = { bigIntMode: JSON.BigIntMode.PARSE_AS_BIGINT }
+let numberObj = JSON.parse(numberText, null, options) as Object;
+
+console.info(typeof (numberObj as object)?.["number"]);
+// Output: number
+console.info((numberObj as object)?.["number"]);
+// Output: 10
+
+console.info(typeof (numberObj as object)?.["largeNumber"]);
+// Output: bigint
 console.info((numberObj as object)?.["largeNumber"]);
 // Output: 112233445566778899
-```
-
-```ts
-import { JSON } from '@kit.ArkTS';
-
-/*
- * Deserialize JSON strings with nested quotation marks.
- * */
-
-interface Info {
-  name: string;
-  age: number;
-}
-
-interface TestObj {
-  info: Info;
-}
-
-interface TestStr {
-  info: string;
-}
-
-// The JSON string contains nested quotation marks. This breaks the JSON structure, making it impossible to deserialize properly.
-// let jsonStr = `{"info": "{"name": "zhangsan", "age": 18}"}`;
-
-// The following provides two methods to solve this problem:
-// Method 1: Avoid nested operations. Convert "{"name": "zhangsan", "age": 18}" in the original JSON string to {"name": "zhangsan", "age": 18}.
-let jsonStr = `{"info": {"name": "zhangsan", "age": 18}}`;
-let obj1  = JSON.parse(jsonStr) as TestObj;
-console.info(JSON.stringify(obj1)); //{"info":{"name":"zhangsan","age":18}}
-// Obtain the name property in the JSON string.
-console.info(obj1.info.name); // zhangsan
-
-// Method 2: Escape the nested quotation marks in the JSON string to restore the proper JSON structure.
-jsonStr = `{"info": "{\\"name\\": \\"zhangsan\\", \\"age\\": 18}"}`;
-let obj2 = JSON.parse(jsonStr) as TestStr;;
-console.info(JSON.stringify(obj2)); // {"info":"{\"name\": \"zhangsan\", \"age\": 18}"}
-// Obtain the name property in the JSON string.
-let obj3 = JSON.parse(obj2.info) as Info;
-console.info(obj3.name); // zhangsan
 ```
 
 ## JSON.stringify
@@ -208,48 +173,46 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
-<!--code_no_check-->
-```ts
-// /entry/src/main/ets/pages/test.ts
-export let exportObj = {1: "John", 2: 30, 3: "New York"};
-```
 
-<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
-import { exportObj } from './test';
 
-let arr = [1, 2];
-let rstArrStr = JSON.stringify(exportObj, arr);
-console.info(rstArrStr);
-// Output: "{"1":"John,""2":30}"
 interface Person {
   name: string;
   age: number;
   city: string;
 }
-let inputObj = {"name": "John", "age": 30, "city": "ChongQing"} as Person;
-let rstStr = JSON.stringify(inputObj, ["name"]);
-console.info(rstStr);
-// Output: "{"name":"John"}"
-let rstStrSpace = JSON.stringify(inputObj, ["name"], '  ');
-console.info(rstStrSpace);
-// Output:
-/*
-"{
-  "name": "John"
-}"
-*/
-let rstStrStar = JSON.stringify(inputObj, ["name"], '&&');
-console.info(rstStrStar);
-// Output:
-/*
-"{
-&&"name": "John"
-}"
-*/
-```
 
+let person: Person = {name: "John",age: 30, city: "New York"};
+
+let rstArrStr = JSON.stringify(person, ["name", "age"]);
+console.info(rstArrStr);
+// Output: {"name":"John","age":30}
+
+let rstStrSpace = JSON.stringify(person, ["name", "age"], '  ');
+console.info(rstStrSpace);
+/*
+Output:
+{
+  "name": "John",
+  "age": 30
+}
+*/
+
+let rstStrStar = JSON.stringify(person, ["name", "age"], '  &&');
+console.info(rstStrStar);
+/*
+Output:
+{
+  &&"name": "John",
+  &&"age": 30
+}
+*/
+
+let bigIntObj = BigInt(112233445566778899n);
+console.info(JSON.stringify(bigIntObj));
+// Output: 112233445566778899
+```
 
 ## JSON.stringify
 
@@ -284,20 +247,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
+
 ```ts
-// /entry/src/main/ets/pages/test.ts
-export function replacer(key: string, value: Object): Object {
+import { JSON } from '@kit.ArkTS';
+
+function replacer(key: string, value: Object): Object {
   if (typeof value === "string") {
     return value.toUpperCase();
   }
   return value;
 }
-```
-
-<!--code_no_check-->
-```ts
-import { JSON } from '@kit.ArkTS';
-import { replacer } from './test';
 
 interface Person {
   name: string;
@@ -305,89 +264,19 @@ interface Person {
   city: string;
 }
 let inputObj = {"name": "John", "age": 30, "city": "ChongQing"} as Person;
-let rstStr= JSON.stringify(inputObj, replacer);
-console.info(rstStr);
-// Output: "{"name":"JOHN,""age":30,"city":"CHONGQING"}"
-let rstStrSpace= JSON.stringify(inputObj, replacer, '  ');
-console.info(rstStrSpace);
-// Output:
+
+console.info(JSON.stringify(inputObj, replacer));
+// Output: {"name":"JOHN","age":30,"city":"CHONGQING"}
+
+console.info(JSON.stringify(inputObj, replacer, '  '));
 /*
-"{
+Output:
+{
   "name": "JOHN",
   "age": 30,
   "city": "CHONGQING"
-}"
+}
 */
-let rstStrSymbol= JSON.stringify(inputObj, replacer, '@@@');
-console.info(rstStrSymbol);
-// Output:
-/*
-"{
-@@@"name": "JOHN",
-@@@"age": 30,
-@@@"city": "CHONGQING"
-}"
-*/
-```
-
-```ts
-import { JSON } from '@kit.ArkTS';
-
-/*
- * Serialize BigInt objects.
- * */
-let bigIntObject = BigInt(112233445566778899)
-
-/*
- * Scenario 1: Serialize a BigInt object without a custom conversion function.
- * */
-console.info(JSON.stringify(bigIntObject)); // 112233445566778896
-
-/*
- * Scenario 2: Use a custom conversion function to serialize a BigInt object.
- * 2.1 Directly returning a BigInt object in the custom function will cause a JSCrash.
- * 2.2 Use a custom conversion function to preprocess the BigInt object as a string for serialization.
- * */
-
-// 2.1 Incorrect serialization approach: Directly return a BigInt object in the custom function.
-// JSON.stringify(bigIntObject, (key: string, value: Object): Object =>{ return value; });
-
-// 2.2 Correct serialization approach: Preprocess the BigInt object as a string in the custom function.
-let result: string = JSON.stringify(bigIntObject, (key: string, value: Object): Object => {
-  if (typeof value === 'bigint') {
-    return value.toString();
-  }
-  return value;
-});
-console.info("result:", result); // result: "112233445566778896"
-```
-
-```ts
-import { JSON } from '@kit.ArkTS';
-
-/*
- * Serialize floating-point numbers.
- * */
-let floatNumber1 = 10.12345;
-let floatNumber2 = 10.00;
-
-// Serializing a floating-point number with a non-zero fractional part works as expected.
-let result1 = JSON.stringify(floatNumber1);
-console.info(result1); // 10.12345
-
-// Serializing a floating-point number with a zero fractional part results in the loss of fractional precision for a more concise representation.
-let result11 = JSON.stringify(floatNumber2);
-console.info(result11); // 10
-
-// The following is a method to prevent the loss of floating-point precision:
-let result2 = JSON.stringify(floatNumber2, (key: string, value: Object): Object => {
-  if (typeof value === 'number') {
-    // Customize the fixed precision as needed for your specific use case.
-    return value.toFixed(2);
-  }
-  return value;
-});
-console.info(result2); // "10.00"
 ```
 
 ## JSON.has

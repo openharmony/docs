@@ -2,8 +2,9 @@
 <!--Kit: AVSession Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @ccfriend; @liao_qian-->
-<!--SE: @ccfriend-->
-<!--TSE: @chenmingxi1_huawei-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -19,7 +20,7 @@ import { avSession } from '@kit.AVSessionKit';
 
 createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AVSession>
 
-Creates a media session. This API uses a promise to return the result. An ability can have only one session, and repeated calling of this API fails.
+Creates a media session. This API uses a promise to return the result. An application process can have only one session, and repeated calling of this API fails.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -86,7 +87,7 @@ struct Index {
 
 createAVSession(context: Context, tag: string, type: AVSessionType, callback: AsyncCallback\<AVSession>): void
 
-Creates a media session. This API uses an asynchronous callback to return the result. An ability can have only one session, and repeated calling of this API fails.
+Creates a media session. This API uses an asynchronous callback to return the result. An application process can have only one session, and repeated calling of this API fails.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 

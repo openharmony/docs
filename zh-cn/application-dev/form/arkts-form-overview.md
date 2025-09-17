@@ -93,6 +93,8 @@ ArkTS卡片支持在UI内运行逻辑代码，相较于JS卡片具备了更加�
 
 - 不支持setTimeOut。
 
+- DevEco Studo的相关约束请参考[使用约束](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-service-widget#section1181172254318)。
+
 ## 相关实例
 
 针对ArkTS卡片开发，有以下相关实例可供参考：

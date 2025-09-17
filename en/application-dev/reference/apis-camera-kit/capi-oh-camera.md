@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
@@ -21,6 +22,7 @@ You can refer to the corresponding development guide and samples based on your d
 - [Video Recording](../../media/camera/native-camera-recording.md)
 - [Camera Metadata](../../media/camera/native-camera-metadata.md)
 - [Using the Flashlight](../../media/camera/native-camera-torch-use.md)
+- [Pressure Management](../../media/camera/native-camera-system-pressure.md)
 <!--RP1--><!--RP1End-->
 
 **System capability**: SystemCapability.Multimedia.Camera.Core

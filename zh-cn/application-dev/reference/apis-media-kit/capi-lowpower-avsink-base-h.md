@@ -1,4 +1,10 @@
 # lowpower_avsink_base.h
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
@@ -49,13 +55,13 @@ OH_AVErrCode OH_AVSamplesBuffer_AppendOneBuffer(OH_AVSamplesBuffer *samplesBuffe
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVSamplesBuffer](capi-avsinkbase-oh-avsamplesbuffer.md) *samplesBuffer | 指向OH_AVSamplesBuffer实例的指针。 |
-| [OH_AVBuffer](../apis-avcodec-kit/_core.md#oh_avbuffer) *avBuffer | 指向OH_AVBuffer实例的指针。 |
+| [OH_AVBuffer](../apis-avcodec-kit/capi-core-oh-avbuffer.md) *avBuffer | 指向OH_AVBuffer实例的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br> AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br> AV_ERR_NO_MEMORY：framePacketBuffer没有足够的剩余容量来追加一个OH_AVBuffer。<br> AV_ERR_UNKNOW：未知错误。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br> AV_ERR_INVALID_VAL：参数为nullptr或参数非法。<br> AV_ERR_NO_MEMORY：framePacketBuffer没有足够的剩余容量来追加一个OH_AVBuffer。<br> AV_ERR_UNKNOWN：未知错误。 |
 
 ### OH_AVSamplesBuffer_GetRemainedCapacity()
 

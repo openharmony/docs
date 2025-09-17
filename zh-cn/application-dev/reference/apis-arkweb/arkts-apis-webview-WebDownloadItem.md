@@ -4,7 +4,7 @@
 <!--Owner: @aohui-->
 <!--Designer: @yaomingliu-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
  表示下载任务，您可以使用此对象来操作相应的下载任务。
 
@@ -18,7 +18,7 @@
 >
 > - 在下载过程中，下载的进程会通过WebDownloadDelegate通知给使用者，使用者可以通过参数WebDownloadItem来操作下载任务。
 >
-> - 当前WebDownloadItem支持的下载文件名最长长度为255字节<!--RP--><!--RPEnd-->。
+> - 当前WebDownloadItem支持的下载文件名最长长度为255字节<!--RP1--><!--RP1End-->。
 
 ## 导入模块
 

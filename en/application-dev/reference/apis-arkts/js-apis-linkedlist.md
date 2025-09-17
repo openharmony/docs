@@ -1,4 +1,10 @@
 # @ohos.util.LinkedList (Linear Container LinkedList)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 LinkedList is implemented based on the doubly linked list. Each node of the doubly linked list has references pointing to the previous element and the next element. When querying an element, the system traverses the list from the beginning or end. LinkedList offers efficient insertion and removal operations but supports low query efficiency. LinkedList allows null elements.
 
@@ -18,6 +24,8 @@ This topic uses the following to identify the use of generics:
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> Container classes, implemented in static languages, have restrictions on storage locations and properties, and do not support custom properties or methods.
 
 
 ## Modules to Import
@@ -34,7 +42,7 @@ import { LinkedList } from '@kit.ArkTS';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | Yes| No| Number of elements in a LinkedList.|
 
@@ -61,7 +69,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let linkedList: LinkedList<string | number | boolean | object> = new LinkedList();
+let linkedList = new LinkedList<string | number | boolean | object>();
 ```
 
 
@@ -98,7 +106,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let linkedList: LinkedList<string | number | boolean | object> = new LinkedList();
+let linkedList = new LinkedList<string | number | boolean | object>();
 let result = linkedList.add("a");
 let result1 = linkedList.add(1);
 let b = [1, 2, 3];
@@ -110,6 +118,7 @@ class C {
 let c: C = {name : "Dylan", age : "13"};
 let result3 = linkedList.add(c);
 let result4 = linkedList.add(false);
+console.info("result = ", result4) // result =  true
 ```
 
 ### addFirst
@@ -139,7 +148,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let linkedList: LinkedList<string | number | boolean | object> = new LinkedList();
+let linkedList = new LinkedList<string | number | boolean | object>();
 linkedList.addFirst("a");
 linkedList.addFirst(1);
 let b = [1, 2, 3];
@@ -151,6 +160,8 @@ class C {
 let c: C = {name : "Dylan", age : "13"};
 linkedList.addFirst(c);
 linkedList.addFirst(false);
+let result = linkedList.get(2);
+console.info("result:", result);  // result: 1,2,3
 ```
 
 ### insert
@@ -183,10 +194,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let linkedList: LinkedList<string | number | boolean | object> = new LinkedList();
+let linkedList = new LinkedList<string | number | boolean | object>();
 linkedList.insert(0, "A");
 linkedList.insert(1, 0);
 linkedList.insert(2, true);
+let result = linkedList.get(1);
+console.info("result:", result);  // result: 0
 ```
 
 ### has
@@ -222,9 +235,10 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let linkedList: LinkedList<string> = new LinkedList();
+let linkedList = new LinkedList<string>();
 linkedList.add("squirrel");
 let result = linkedList.has("squirrel");
+console.info("result:", result);  // result: true
 ```
 
 ### get
@@ -261,7 +275,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let linkedList: LinkedList<number> = new LinkedList();
+let linkedList = new LinkedList<number>();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
@@ -270,6 +284,7 @@ linkedList.add(1);
 linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.get(2);
+console.info("result:", result);  // result: 5
 ```
 
 ### getLastIndexOf
@@ -305,7 +320,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let linkedList: LinkedList<number> = new LinkedList();
+let linkedList = new LinkedList<number>();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
@@ -314,6 +329,7 @@ linkedList.add(1);
 linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.getLastIndexOf(2);
+console.info("result:", result);  // result: 5
 ```
 
 ### getIndexOf
@@ -349,7 +365,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let linkedList: LinkedList<number> = new LinkedList();
+let linkedList = new LinkedList<number>();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
@@ -358,6 +374,7 @@ linkedList.add(1);
 linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.getIndexOf(2);
+console.info("result:", result);  // result: 0
 ```
 
 ### removeByIndex
@@ -395,13 +412,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let linkedList: LinkedList<number> = new LinkedList();
+let linkedList = new LinkedList<number>();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.removeByIndex(2);
+console.info("result:", result);  // result: 5
 ```
 
 ### removeFirst
@@ -432,13 +450,14 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let linkedList: LinkedList<number> = new LinkedList();
+let linkedList = new LinkedList<number>();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.removeFirst();
+console.info("result:", result);  // result: 2
 ```
 
 ### removeLast
@@ -469,13 +488,14 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let linkedList: LinkedList<number> = new LinkedList();
+let linkedList = new LinkedList<number>();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.removeLast();
+console.info("result:", result);  // result: 4
 ```
 
 ### remove
@@ -511,12 +531,13 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let linkedList: LinkedList<number> = new LinkedList();
+let linkedList = new LinkedList<number>();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.remove(2);
+console.info("result:", result);  // result: true
 ```
 
 ### removeFirstFound
@@ -554,12 +575,13 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let linkedList: LinkedList<number> = new LinkedList();
+let linkedList = new LinkedList<number>();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.removeFirstFound(4);
+console.info("result:", result);  // result: true
 ```
 
 ### removeLastFound
@@ -597,12 +619,13 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let linkedList: LinkedList<number> = new LinkedList();
+let linkedList = new LinkedList<number>();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.removeLastFound(4);
+console.info("result:", result);  // result: true
 ```
 
 ### clone
@@ -632,12 +655,13 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let linkedList: LinkedList<number> = new LinkedList();
+let linkedList = new LinkedList<number>();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.clone();
+console.info("result:", result.has(4));  // result: true
 ```
 
 ### forEach
@@ -678,14 +702,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let linkedList: LinkedList<number> = new LinkedList();
+let linkedList = new LinkedList<number>();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
-linkedList.forEach((value: number, index?: number) => {
-  console.log("value:" + value, "index:" + index);
+linkedList.forEach((value: number, index: number) => {
+  console.info("value:" + value, "index:" + index);
 });
+// value:2 index:0
+// value:4 index:1
+// value:5 index:2
+// value:4 index:3
 ```
 
 ### clear
@@ -709,12 +737,14 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let linkedList: LinkedList<number> = new LinkedList();
+let linkedList = new LinkedList<number>();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 linkedList.clear();
+let result = linkedList.has(2);
+console.info("result:", result);  // result: false
 ```
 
 ### set
@@ -753,12 +783,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let linkedList: LinkedList<number | string> = new LinkedList();
+let linkedList = new LinkedList<number | string>();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.set(2, "b");
+console.info("result:", result);  // result: b
 ```
 
 ### convertToArray
@@ -787,12 +818,13 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 **Example**
 ```ts
-let linkedList: LinkedList<number> = new LinkedList();
+let linkedList = new LinkedList<number>();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.convertToArray();
+console.info("result:", result);  // result: 2,4,5,4
 ```
 
 ### getFirst
@@ -822,12 +854,13 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let linkedList: LinkedList<number> = new LinkedList();
+let linkedList = new LinkedList<number>();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.getFirst();
+console.info("result:", result);  // result: 2
 ```
 
 ### getLast
@@ -857,12 +890,13 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let linkedList: LinkedList<number> = new LinkedList();
+let linkedList = new LinkedList<number>();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.getLast();
+console.info("result:", result);  // result: 4
 ```
 
 ### [Symbol.iterator]
@@ -892,23 +926,30 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let linkedList: LinkedList<number> = new LinkedList();
+let linkedList = new LinkedList<number>();
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 
 // Method 1:
-let items = Array.from(linkedList);
-for (let item of items) {
-  console.log("value:" + item);
+for (let item of linkedList) {
+  console.info("value:", item);
 }
+// value: 2
+// value: 4
+// value: 5
+// value: 4
 
 // Method 2:
 let iter = linkedList[Symbol.iterator]();
 let temp: IteratorResult<number> = iter.next();
 while(!temp.done) {
-  console.log("value:" + temp.value);
+  console.info("value:", temp.value);
   temp = iter.next();
 }
+// value: 2
+// value: 4
+// value: 5
+// value: 4
 ```

@@ -2,18 +2,19 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
-Before developing a camera application, request permissions by following the instructions provided in [Camera Development Preparations](camera-preparation.md).
+Before developing a camera application, you must [request required permissions](camera-preparation.md).
 
 A camera application invokes and controls a camera device to perform basic operations such as preview, photo capture, and video recording.
 
 ## How to Develop
 
-Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
+Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
-1. Import the camera module, which provides camera-related attributes and methods.
+1. Import the camera module, which provides camera-related properties and methods.
 
    ```ts
    import { camera } from '@kit.CameraKit';
@@ -24,7 +25,7 @@ Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) 
    >
    > Before any camera device input, you must complete camera management by following the instructions provided in [Camera Device Management](camera-device-management.md).
 
-2. Call [createCameraInput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createcamerainput) in the [cameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md) class to create a camera input stream.
+2. Call [createCameraInput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createcamerainput) in [cameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md) to create a camera input stream.
 
    ```ts
    async function createInput(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): Promise<camera.CameraInput | undefined> {

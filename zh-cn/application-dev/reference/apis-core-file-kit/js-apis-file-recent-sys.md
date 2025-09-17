@@ -17,7 +17,7 @@
 ## 导入模块
 
 ```js
-import recent from '@ohos.file.recent';
+import { recent } from '@kit.CoreFileKit';
 ```
 
 ## recent.add
@@ -28,11 +28,11 @@ add(uri: string): void
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.FileManagement.UserFileService
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-**系统接口**：此接口为系统接口。
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 **参数：**
 
@@ -59,11 +59,11 @@ remove(uri: string): void
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.FileManagement.UserFileService
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-**系统接口**：此接口为系统接口。
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 **参数：**
 
@@ -90,11 +90,11 @@ listFile(): Array\<FileInfo>
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.FileManagement.UserFileService
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-**系统接口**：此接口为系统接口。
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 **返回值：**
 
@@ -126,6 +126,8 @@ listFile(): Array\<FileInfo>
 最近访问列表文件信息。
 
 **模型约束**：此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 

@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 When using the camera, transitions such as changing camera modes or switching between front and rear cameras will always involve replacing the preview stream. To enhance user experience, smooth animations can be effectively incorporated. This topic describes how to use preview stream snapshots and ArkUI's [explicit animations](../../reference/apis-arkui/arkui-ts/ts-explicit-animatetoimmediately.md) to implement three key scene transitions:
 
@@ -151,9 +152,14 @@ The sample code in the following steps (except step 2) is the internal method or
       * Obtain the snapshot captured by calling doSurfaceShot.
       * @returns
       */
-     public static getSurfaceShot(): image.PixelMap {
-       return BlurAnimateUtil.surfaceShot;
+    public static getSurfaceShot(): image.PixelMap | undefined {
+       if (BlurAnimateUtil.surfaceShot === null || BlurAnimateUtil.surfaceShot === undefined) {
+          console.error("SurfaceShot is null!");
+          return undefined;
+        }
+        return BlurAnimateUtil.surfaceShot;
      }
+  
    }
    ```
 

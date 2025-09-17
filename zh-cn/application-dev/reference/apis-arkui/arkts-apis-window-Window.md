@@ -26,6 +26,10 @@ showWindow(callback: AsyncCallback&lt;void&gt;): void
 
 显示当前窗口，使用callback异步回调，仅支持系统窗口与应用子窗口，或将已显示的应用主窗口层级提升至顶部。
 
+> **说明：**
+>
+> 调用该接口前，建议先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。如果应用主窗口没有完成页面加载，直接调用该接口，界面会一直显示启动界面；如果系统窗口与应用子窗口没有完成页面加载，直接调用该接口，窗口会处于前台，但不可见。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -47,16 +51,51 @@ showWindow(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-windowClass.showWindow((err: BusinessError) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to show the window. Cause code: ${err.code}, message: ${err.message}`);
-    return;
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      try {
+        // 创建子窗
+        windowStage.createSubWindow("testSubWindow").then((subWindow) => {
+          if (subWindow == null) {
+            console.error('Failed to create the subWindow. Cause: The data is empty');
+            return;
+          }
+          subWindow.setUIContent('pages/Index', (err) => {
+            if (err.code) {
+              console.error('Failed to load the subWindow content. Cause: %{public}s', JSON.stringify(err));
+              return;
+            }
+            console.info('Succeeded in loading the subWindow content.');
+            try {
+              subWindow.showWindow((err: BusinessError) => {
+                const errCode: number = err.code;
+                if (errCode) {
+                  console.error(`Failed to show the window. Error code: ${err.code}, message: ${err.message}`);
+                  return;
+                }
+                console.info('Succeeded in showing the window.');
+              });
+            } catch (exception) {
+              console.error(`Failed to show the window. Cause code: ${exception.code}, message: ${exception.message}`);
+            }
+          })
+        });
+      } catch (exception) {
+        console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+  });
   }
-  console.info('Succeeded in showing the window.');
-});
+}
 ```
 
 ## showWindow<sup>9+</sup>
@@ -64,6 +103,10 @@ windowClass.showWindow((err: BusinessError) => {
 showWindow(): Promise&lt;void&gt;
 
 显示当前窗口，使用Promise异步回调，仅支持系统窗口与应用子窗口，或将已显示的应用主窗口层级提升至顶部。
+
+> **说明：**
+>
+> 调用该接口前，建议优先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。如果应用主窗口没有完成页面加载，直接调用该接口，界面会一直显示启动界面；如果系统窗口与应用子窗口没有完成页面加载，直接调用该接口，窗口会处于前台，但不可见。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -86,14 +129,49 @@ showWindow(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = windowClass.showWindow();
-promise.then(() => {
-  console.info('Succeeded in showing the window.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to show the window. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      try {
+        // 创建子窗
+        windowStage.createSubWindow("testSubWindow").then((subWindow) => {
+          if (subWindow == null) {
+            console.error('Failed to create the subWindow. Cause: The data is empty');
+            return;
+          }
+          subWindow.setUIContent('pages/Index', (err) => {
+            if (err.code) {
+              console.error('Failed to load the subWindow content. Cause: %{public}s', JSON.stringify(err));
+              return;
+            }
+            console.info('Succeeded in loading the subWindow content.');
+            try {
+              let promise = subWindow.showWindow();
+              promise.then(() => {
+                console.info('Succeeded in showing the window.');
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to show the window. Error code: ${err.code}, message: ${err.message}`);
+              });
+            } catch (exception) {
+              console.error(`Failed to show window. Cause code: ${exception.code}, message: ${exception.message}`);
+            }
+          });
+        });
+      } catch (exception) {
+        console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
+}
 ```
 
 ## showWindow<sup>20+</sup>
@@ -101,6 +179,10 @@ promise.then(() => {
 showWindow(options: ShowWindowOptions): Promise&lt;void&gt;
 
 显示当前窗口，使用Promise异步回调，仅支持系统窗口及应用子窗口，或将已显示的应用主窗口的层级提升至顶部。支持传入参数来控制窗口显示的行为。
+
+> **说明：**
+>
+> 调用该接口前，建议优先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。如果应用主窗口没有完成页面加载，直接调用该接口，界面会一直显示启动界面；如果系统窗口与应用子窗口没有完成页面加载，直接调用该接口，窗口会处于前台，但不可见。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -140,29 +222,43 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    // 创建子窗
-    try {
-      windowStage.createSubWindow('subWindow').then((data) => {
-        if (data == null) {
-          console.error('Failed to create the sub window. Cause: The data is empty');
-          return;
-        }
-        let options: window.ShowWindowOptions = {
-          focusOnShow: false
-        };
-        try {
-          data.showWindow(options).then(() => {
-            console.info('Succeeded in showing window');
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to show window. Cause code: ${err.code}, message: ${err.message}`);
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      // 创建子窗
+      try {
+        windowStage.createSubWindow('subWindow').then((data) => {
+          if (data == null) {
+            console.error('Failed to create the subWindow. Cause: The data is empty');
+            return;
+          }
+          data.setUIContent('pages/Index', (err) => {
+            if (err.code) {
+              console.error('Failed to load the subWindow content. Cause: %{public}s', JSON.stringify(err));
+              return;
+            }
+            console.info('Succeeded in loading the subWindow content.');
+            let options: window.ShowWindowOptions = {
+              focusOnShow: false
+            };
+            try {
+              data.showWindow(options).then(() => {
+                console.info('Succeeded in showing window');
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to show window. Error code: ${err.code}, message: ${err.message}`);
+              });
+            } catch (exception) {
+              console.error(`Failed to show window. Cause code: ${exception.code}, message: ${exception.message}`);
+            }
           });
-        } catch (exception) {
-          console.error(`Failed to show window. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
-      });
-    } catch (exception) {
-      console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+        });
+      } catch (exception) {
+        console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
   }
 }
 ```
@@ -1675,13 +1771,15 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-<!--RP14-->设置主窗口状态栏、三键导航栏的可见模式，状态栏通过status控制、三键导航栏通过navigation控制<!--RP14End-->，使用Promise异步回调。<br>从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
+<!--RP14-->设置主窗口状态栏、三键导航栏的可见模式，状态栏通过status控制、三键导航栏通过navigation控制<!--RP14End-->，使用Promise异步回调。
 
-调用生效后返回并不表示状态栏和<!--RP15-->三键导航栏<!--RP15End-->的显示或隐藏已完成。子窗口调用后不生效。非全屏模式（悬浮窗、分屏等场景）下配置不生效。
+调用生效后返回并不表示状态栏和<!--RP15-->三键导航栏<!--RP15End-->的显示或隐藏已完成。主窗口在非全屏/最大化模式（悬浮窗、分屏等场景）下配置不生效，进入全屏/最大化模式后配置生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**设备行为差异：** 在API version 12之前，该接口在所有设备中可正常调用。从API version 12开始，该接口在2in1设备、Tablet设备的[自由多窗模式](../../windowmanager/window-terminology.md#自由多窗模式)下调用不生效也不报错，在其他设备中可正常调用。
 
 **参数：**
 
@@ -1745,13 +1843,15 @@ export default class EntryAbility extends UIAbility {
 
 setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnimation?: boolean): Promise&lt;void&gt;
 
-设置主窗口状态栏、<!--RP15-->三键导航栏<!--RP15End-->的显示和隐藏，使用Promise异步回调。<br>从API version 12开始，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
+设置主窗口状态栏、<!--RP15-->三键导航栏<!--RP15End-->的显示和隐藏，使用Promise异步回调。
 
-调用生效后返回并不表示状态栏和<!--RP15-->三键导航栏<!--RP15End-->的显示或隐藏已完成。子窗口调用后不生效。非全屏模式（悬浮窗、分屏等场景）下配置不生效。
+调用生效后返回并不表示状态栏和<!--RP15-->三键导航栏<!--RP15End-->的显示或隐藏已完成。子窗口调用后不生效。主窗口在非全屏/最大化模式（悬浮窗、分屏等场景）下配置不生效，进入全屏/最大化模式后配置生效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**设备行为差异：** 在API version 12之前，该接口在所有设备中可正常调用。从API version 12开始，该接口在2in1设备、Tablet设备的[自由多窗模式](../../windowmanager/window-terminology.md#自由多窗模式)下调用不生效也不报错，在其他设备中可正常调用。
 
 **参数：**
 
@@ -1816,13 +1916,15 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-设置主窗口<!--Del-->三键导航栏、<!--DelEnd-->状态栏的属性，使用Promise异步回调，<!--RP5-->该接口在2in1设备上调用不生效。<!--RP5End-->
+设置主窗口<!--Del-->三键导航栏、<!--DelEnd-->状态栏的属性，使用Promise异步回调。
 
-子窗口调用后不生效。
+子窗口调用后不生效。主窗口在非全屏/最大化模式（悬浮窗、分屏等场景）下配置不生效，进入全屏/最大化模式后配置生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备的[自由多窗模式](../../windowmanager/window-terminology.md#自由多窗模式)下调用不生效也不报错，在其他设备中可正常调用。
 
 **参数：**
 
@@ -1951,11 +2053,13 @@ setStatusBarColor(color: ColorMetrics): Promise&lt;void&gt;
 
 设置主窗口状态栏的文字颜色，使用Promise异步回调。
 
-子窗口不支持设置状态栏文字颜色，调用无效果。该接口在2in1设备上调用不生效。
+子窗口不支持设置状态栏文字颜色，调用无效果。主窗口在非全屏/最大化模式（悬浮窗、分屏等场景）下配置不生效，进入全屏/最大化模式后配置生效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备的[自由多窗模式](../../windowmanager/window-terminology.md#自由多窗模式)下调用不生效也不报错，在其他设备中可正常调用。
 
 **参数：**
 
@@ -2076,11 +2180,13 @@ export default class EntryAbility extends UIAbility {
 
 setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
 
-设置主窗口的显示方向属性，使用callback异步回调。相关横竖屏开发实践查询[横竖屏切换](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-landscape-and-portrait-development)。<!--RP9-->仅在支持跟随sensor旋转的设备上生效，2in1设备上调用不生效，子窗口调用后不生效。<!--RP9End-->
+设置主窗口的显示方向属性，使用callback异步回调。相关横竖屏开发实践查询[横竖屏切换](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-landscape-and-portrait-development)。仅在支持跟随sensor旋转的设备上生效，子窗口调用后不生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备的[自由多窗模式](../../windowmanager/window-terminology.md#自由多窗模式)下调用不生效也不报错，在其他设备中可正常调用。
 
 **参数：**
 
@@ -2139,11 +2245,13 @@ export default class EntryAbility extends UIAbility {
 
 setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 
-设置主窗口的显示方向属性，使用Promise异步回调。<!--RP9-->仅在支持跟随sensor旋转的设备上生效，2in1设备上调用不生效，子窗口调用后不生效。<!--RP9End-->
+设置主窗口的显示方向属性，使用Promise异步回调。仅在支持跟随sensor旋转的设备上生效，子窗口调用后不生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备的[自由多窗模式](../../windowmanager/window-terminology.md#自由多窗模式)下调用不生效也不报错，在其他设备中可正常调用。
 
 **参数：**
 
@@ -4891,11 +4999,11 @@ on(type: 'rotationChange', callback: RotationChangeCallback&lt;RotationChangeInf
 
 该函数只允许在主线程注册。同一个窗口多次注册同类型回调函数，只生效最新注册的同类型回调函数返回值。系统提供了超时保护机制，若20ms内窗口未返回[RotationChangeResult](arkts-apis-window-i.md#rotationchangeresult19)，系统不处理该返回值。
 
-<!--RP10-->此接口在2in1设备上调用不生效。<!--RP10End-->
-
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备的[自由多窗模式](../../windowmanager/window-terminology.md#自由多窗模式)下调用不生效也不报错，在其他设备中可正常调用。
 
 **参数：**
 
@@ -4961,11 +5069,11 @@ off(type: 'rotationChange', callback?: RotationChangeCallback&lt;RotationChangeI
 
 关闭窗口旋转变化的监听。
 
-<!--RP10-->此接口在2in1设备上调用不生效。<!--RP10End-->
-
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备的[自由多窗模式](../../windowmanager/window-terminology.md#自由多窗模式)下调用不生效也不报错，在其他设备中可正常调用。
 
 **参数：**
 
@@ -6123,7 +6231,7 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 
 通过其他接口如[resize](#resize9)、[resizeAsync](#resizeasync12)设置窗口大小时，不受ratio约束。
 
-仅主窗可设置，且仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效，比例参数将持久化保存，关闭应用或重启设备设置的比例仍然生效。
+仅主窗可设置，且仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效。此比例参数将持久化保存，关闭应用或重启设备后，切换到自由悬浮窗口模式时，设置的比例仍然生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6190,7 +6298,7 @@ setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
 
 通过其他接口如[resize](#resize9)、[resizeAsync](#resizeasync12)设置窗口大小时，不受ratio约束。
 
-仅主窗可设置，且仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效，比例参数将持久化保存，关闭应用或重启设备设置的比例仍然生效。
+仅主窗可设置，且仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效。此比例参数将持久化保存，关闭应用或重启设备后，切换到自由悬浮窗口模式时，设置的比例仍然生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7330,15 +7438,17 @@ export default class EntryAbility extends UIAbility {
 
 setWindowDecorHeight(height: number): void
 
-<!--RP1-->
-设置窗口的标题栏高度，仅在2in1设备中，对存在标题栏和三键区的窗口形态生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
-<!--RP1End-->
+设置窗口的标题栏高度，对存在标题栏和三键区的窗口形态生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+
+针对Tablet设备，非[自由多窗模式](../../windowmanager/window-terminology.md#自由多窗模式)下调用此接口后，当设备切换到自由多窗模式时生效；在自由多窗模式下调用此接口后，立刻生效。
 
 当主窗口进入全屏沉浸状态时，此时鼠标Hover到窗口标题栏热区时，会显示悬浮标题栏，悬浮标题栏高度固定为37vp。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备中不生效不报错。
 
 **参数：**
 
@@ -7474,13 +7584,13 @@ try {
 
 getWindowDecorHeight(): number
 
-<!--RP2-->
-获取窗口的标题栏高度，仅在2in1设备中，对存在标题栏和三键区的窗口形态生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
-<!--RP2End-->
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，对存在标题栏和三键区的窗口形态生效，用于获取窗口的标题栏高度。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用，在其他设备类型中不可用。
 
 **返回值：**
 
@@ -8312,13 +8422,13 @@ struct Index {
 
 enableDrag(enable: boolean): Promise&lt;void&gt;
 
-使能/禁止拖拽窗口。使用Promise异步回调。
+使能/禁止拖拽窗口，仅对子窗及系统窗口生效。使用Promise异步回调。
 
 使能后，将允许通过鼠标操作或触摸对窗口进行拉伸操作。
 
-仅对手机、平板和2in1设备上的子窗及系统窗口生效，其他设备类型和其他窗口类型调用此接口会报错。
-
 **系统能力：** SystemCapability.Window.SessionManager
+
+**设备行为差异：** 该接口在Phone设备、Tablet设备和2in1设备上可正常调用，在其他设备中返回801错误码。
 
 **参数：**
 
@@ -8363,23 +8473,17 @@ try {
 
 startMoving(): Promise&lt;void&gt;
 
-开始移动窗口，使用Promise异步回调。
+[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下，对主窗、子窗和系统窗口生效。非自由窗口状态下，仅对子窗、系统窗口生效。用于开始移动窗口，使用Promise异步回调。
 
 仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent对象说明)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标或触摸点移动。
 
 在点击拖拽场景下，若不期望在按下时触发拖拽事件，则可以在事件类型为[TouchType.Move](./arkui-ts/ts-appendix-enums.md#touchtype)（需要保证当前行为已经触发TouchType.Down事件）时调用此接口，触发移动效果。
 
-手机设备上对子窗、系统窗口生效。
-
-平板设备非自由多窗模式上对子窗、系统窗口生效；平板设备自由多窗模式上对主窗、子窗和系统窗口生效。
-
-2in1设备上对主窗、子窗及系统窗口生效。
-
-其他设备类型和其它窗口类型调用此接口会报错。
-
 **系统能力：** SystemCapability.Window.SessionManager
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**设备行为差异：** 该接口在Phone设备、2in1设备和Tablet设备上可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 

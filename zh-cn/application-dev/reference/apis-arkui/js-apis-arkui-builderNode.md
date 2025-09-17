@@ -33,6 +33,8 @@
 > 从API version 20开始，通过配置[BuildOptions](#buildoptions12)，内部自定义组件的[@Consume](../../ui/state-management/arkts-provide-and-consume.md)支持接收所在页面的[@Provide](../../ui/state-management/arkts-provide-and-consume.md)数据。
 >
 > 其余装饰器行为未定义，不建议使用。
+>
+> 仅支持在自定义组件中使用[Repeat](../../ui/rendering-control/arkts-new-rendering-control-repeat.md)。
 
 ## 导入模块
 

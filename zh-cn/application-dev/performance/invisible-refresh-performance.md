@@ -1,5 +1,12 @@
 # 冗余刷新类问题解决方案
 
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 ## 概述
 不可见场景主要分为两类：前一个页面组件未销毁、当前页面部分部件未在显示区域内。冗余刷新是不可见组件的动画未停止导致。
 
@@ -207,10 +214,11 @@ struct RefreshExample {
 同理对navigation可以监听onHidden、onShow等事件，对tab可以监听onChange方法停止非当前index页面的动画。
 
 ### 合理使用自定义动画
-不合理的使用animator、dispalysync也会导致冗余刷新问题。主要表现在三方使用Canvas自绘制动画没有在适当时机停止、使用animator开始动画未停止、注册了displaysync未在合适的时机解注册等。
+不合理的使用animator、displaysync也会导致冗余刷新问题。主要表现在三方使用Canvas自绘制动画没有在适当时机停止、使用animator开始动画未停止、注册了displaysync未在合适的时机解注册等。
 另外，不合理的delay设置也会导致不可见刷新，如开发者使用animator等函数设置延迟3s的动画，同时间隔3.5s再次调用这个动画等。
+
 ## 系统组件默认策略
-系统组件一般用可见法解决，通过接入OnVisiableAreaChange回调在组件不可见时停止动画。当前各个组件适配如下表：
+系统组件一般用可见法解决，通过接入onVisibleAreaChange回调在组件不可见时停止动画。当前各个组件适配如下表：
 
 |组件名称|设计动画项|不可见不刷新|是否有启停接口|
 | -------- | -------- | -------- | -------- |
@@ -224,7 +232,7 @@ struct RefreshExample {
 |高级组件|当前无自动播放动画|-|-|
 
 > **限制：**
-> 组件通过适配onVisiableAreaChange来实现不可见动画停止，受限于当前接口规格，如下场景无法覆盖：
+> 组件通过适配onVisibleAreaChange来实现不可见动画停止，受限于当前接口规格，如下场景无法覆盖：
 > - 被兄弟节点覆盖无法通知。
 > - stack堆叠不通知，Z轴遮挡不通知。
 > - PC多窗场景不通知。

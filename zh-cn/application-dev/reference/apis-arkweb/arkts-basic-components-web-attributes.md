@@ -4,7 +4,7 @@
 <!--Owner: @yp99ustc; @aohui; @zourongchun-->
 <!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 通用属性仅支持[aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio)、[backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur)、[backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor)、[bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)、[bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)、[bindMenu ](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)、[bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)、[borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor)、[borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius)、[borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle)、[borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth)、[clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip12)、[constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize)、[defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9)、[focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable)、[tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9)、[groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9)、[displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority)、[enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled)、[flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis)、[flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink)、[layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight)、[id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md#id)、[gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#属性)、[gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#属性)、[useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#属性)、[height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height)、[touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md#touchabledeprecated)、[margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)、[markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor)、[offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset)、[width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width)、[zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex)、[visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility)、[scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale)、[translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate)、[responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion)、[size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size)、[opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity)、[shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow)、[sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md)、[transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md)、[position](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#position)。
 
@@ -439,7 +439,7 @@ databaseAccess(databaseAccess: boolean)
 
 geolocationAccess(geolocationAccess: boolean)
 
-设置是否开启获取地理位置权限。具体使用方式参考[管理位置权限](../../web/web-geolocation-permission.md)。
+设置是否开启获取地理位置权限。当属性没有显式调用时，默认开启获取地理位置权限。具体使用方式参考[管理位置权限](../../web/web-geolocation-permission.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -447,7 +447,7 @@ geolocationAccess(geolocationAccess: boolean)
 
 | 参数名               | 类型    | 必填   | 说明            |
 | ----------------- | ------- | ---- | --------------- |
-| geolocationAccess | boolean | 是    | 设置是否开启获取地理位置权限。<br>true表示设置开启获取地理位置权限，false表示设置不开启获取地理位置权限。<br>默认值：true。<br>传入undefined与null时为false。 |
+| geolocationAccess | boolean | 是    | 设置是否开启获取地理位置权限。<br>true表示设置开启获取地理位置权限，false表示设置不开启获取地理位置权限。<br>传入undefined与null时为false。 |
 
 **示例：**
 
@@ -1496,8 +1496,6 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 > - 不建议与[runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15)同时使用。
 >
 > - 内容相同的脚本多次注入时将被静默去重，不展示，不提醒，使用首次注入时的scriptRules。
->
-> - javaScriptOnDocumentStart在[onControllerAttached](./arkts-basic-components-web-events.md#oncontrollerattached10)之后执行。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2795,14 +2793,23 @@ bindSelectionMenu(elementType: WebElementType, content: CustomBuilder, responseT
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
+import { pasteboard } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 interface PreviewBuilderParam {
+  width: number;
+  height: number;
+  url:Resource | string | undefined;
+}
+
+interface PreviewBuilderParamForImage {
   previewImage: Resource | string | undefined;
   width: number;
   height: number;
 }
 
-@Builder function PreviewBuilderGlobal($$: PreviewBuilderParam) {
+
+@Builder function PreviewBuilderGlobalForImage($$: PreviewBuilderParamForImage) {
   Column() {
     Image($$.previewImage)
       .objectFit(ImageFit.Fill)
@@ -2812,63 +2819,192 @@ interface PreviewBuilderParam {
 
 @Entry
 @Component
-struct WebComponent {
+struct SelectionMenuLongPress {
   controller: webview.WebviewController = new webview.WebviewController();
+  previewController: webview.WebviewController = new webview.WebviewController();
+  @Builder PreviewBuilder($$: PreviewBuilderParam){
+    Column() {
+      Stack(){
+        Text("") // 可选择是否展示url
+          .padding(5)
+          .width('100%')
+          .textAlign(TextAlign.Start)
+          .backgroundColor(Color.White)
+          .copyOption(CopyOptions.LocalDevice)
+          .maxLines(1)
+          .textOverflow({overflow:TextOverflow.Ellipsis})
+        Progress({ value: this.progressValue, total: 100, type: ProgressType.Linear }) // 展示进度条
+          .style({ strokeWidth: 3, enableSmoothEffect: true })
+          .backgroundColor(Color.White)
+          .opacity(this.progressVisible?1:0)
+          .backgroundColor(Color.White)
+      }.alignContent(Alignment.Bottom)
+      Web({src:$$.url,controller: new webview.WebviewController()})
+        .javaScriptAccess(true)
+        .fileAccess(true)
+        .onlineImageAccess(true)
+        .imageAccess(true)
+        .domStorageAccess(true)
+        .onPageBegin(()=>{
+          this.progressValue = 0;
+          this.progressVisible = true;
+        })
+        .onProgressChange((event)=>{
+          this.progressValue = event.newProgress;
+        })
+        .onPageEnd(()=>{
+          this.progressVisible = false;
+        })
+        .hitTestBehavior(HitTestMode.None) // 使预览Web不响应手势
+    }.width($$.width).height($$.height) // 设置预览宽高
+  }
 
   private result: WebContextMenuResult | undefined = undefined;
   @State previewImage: Resource | string | undefined = undefined;
-  @State previewWidth: number = 0;
-  @State previewHeight: number = 0;
+  @State previewWidth: number = 1;
+  @State previewHeight: number = 1;
+  @State previewWidthImage: number = 1;
+  @State previewHeightImage: number = 1;
+  @State linkURL:string = "";
+  @State progressValue:number = 0;
+  @State progressVisible:boolean = true;
   uiContext: UIContext = this.getUIContext();
+  enablePaste = false;
+
+  clearSelection() {
+    try {
+      this.controller.runJavaScript(
+        'clearSelection()',
+        (error, result) => {
+          if (error) {
+            console.error(`run clearSelection JavaScript error, ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            return;
+          }
+          if (result) {
+            console.info(`The clearSelection() return value is: ${result}`);
+          }
+        });
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
 
   @Builder
-  MenuBuilder() {
+  LinkMenuBuilder() {
+    Menu() {
+      MenuItem({ content: '复制链接', })
+        .onClick(() => {
+          const pasteboardData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, this.linkURL);
+          const systemPasteboard = pasteboard.getSystemPasteboard();
+          systemPasteboard.setData(pasteboardData);
+        })
+      MenuItem({content:'打开链接'})
+        .onClick(()=>{
+          this.controller.loadUrl(this.linkURL);
+        })
+    }
+  }
+  @Builder
+  ImageMenuBuilder() {
+    Menu() {
+      MenuItem({ content: '复制图片', })
+        .onClick(() => {
+          this.result?.copyImage();
+          this.result?.closeContextMenu();
+        })
+    }
+  }
+  @Builder
+  TextMenuBuilder() {
     Menu() {
       MenuItem({ content: '复制', })
         .onClick(() => {
-          this.result?.copy();
-          this.result?.closeContextMenu();
-        })
-      MenuItem({ content: '全选', })
-        .onClick(() => {
-          this.result?.selectAll();
-          this.result?.closeContextMenu();
-        })
+          try {
+            this.controller.runJavaScript(
+              'copySelectedText()',
+              (error, result) => {
+                if (error) {
+                  console.error(`run copySelectedText JavaScript error, ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+                  return;
+                }
+                if (result) {
+                  console.info(`The copySelectedText() return value is: ${result}`);
+                }
+              });
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+          this.clearSelection()
+        }).backgroundColor(Color.Pink)
     }
   }
   build() {
     Column() {
       Web({ src: $rawfile("index.html"), controller: this.controller })
-        .bindSelectionMenu(WebElementType.IMAGE, this.MenuBuilder, WebResponseType.LONG_PRESS,
+        .javaScriptAccess(true)
+        .fileAccess(true)
+        .onlineImageAccess(true)
+        .imageAccess(true)
+        .domStorageAccess(true)
+        .bindSelectionMenu(WebElementType.TEXT, this.TextMenuBuilder, WebResponseType.LONG_PRESS,
+          {
+            onAppear: () => {},
+            onDisappear: () => {},
+            menuType: MenuType.SELECTION_MENU,
+          })
+        .bindSelectionMenu(WebElementType.LINK, this.LinkMenuBuilder, WebResponseType.LONG_PRESS,
           {
             onAppear: () => {},
             onDisappear: () => {
               this.result?.closeContextMenu();
             },
-            preview: PreviewBuilderGlobal({
-              previewImage: this.previewImage,
-              width: this.previewWidth,
-              height: this.previewHeight
+            preview: this.PreviewBuilder({
+              width: 500,
+              height: 400,
+              url:this.linkURL
             }),
             menuType: MenuType.PREVIEW_MENU
           })
-        .onContextMenuShow((event) => {
-            if (event) {
-              this.result = event.result;
-              if (event.param.getLinkUrl()) {
-                return false;
-              }
-              this.previewWidth = this.uiContext!.px2vp(event.param.getPreviewWidth());
-              this.previewHeight = this.uiContext!.px2vp(event.param.getPreviewHeight());
-              if (event.param.getSourceUrl().indexOf("resource://rawfile/") == 0) {
-                this.previewImage = $rawfile(event.param.getSourceUrl().substr(19));
-              } else {
-                this.previewImage = event.param.getSourceUrl();
-              }
-              return true;
-            }
-            return false;
+        .bindSelectionMenu(WebElementType.IMAGE, this.ImageMenuBuilder, WebResponseType.LONG_PRESS,
+          {
+            onAppear: () => {},
+            onDisappear: () => {
+              this.result?.closeContextMenu();
+            },
+            preview: PreviewBuilderGlobalForImage({
+              previewImage: this.previewImage,
+              width: this.previewWidthImage,
+              height: this.previewHeightImage,
+            }),
+            menuType: MenuType.PREVIEW_MENU,
           })
+        .zoomAccess(true)
+        .onContextMenuShow((event) => {
+          if (event) {
+            this.result = event.result;
+            this.previewWidthImage = this.uiContext!.px2vp(event.param.getPreviewWidth());
+            this.previewHeightImage = this.uiContext!.px2vp(event.param.getPreviewHeight());
+            if (event.param.getSourceUrl().indexOf("resource://rawfile/") == 0) {
+              this.previewImage = $rawfile(event.param.getSourceUrl().substring(19));
+            } else {
+              this.previewImage = event.param.getSourceUrl();
+            }
+            this.linkURL = event.param.getLinkUrl()
+            return true;
+          }
+          return false;
+        })
+    }
+
+  }
+  // 侧滑返回
+  onBackPress(): boolean | void {
+    if (this.controller.accessStep(-1)) {
+      this.controller.backward();
+      return true;
+    } else {
+      return false;
     }
   }
 }
@@ -2878,15 +3014,94 @@ struct WebComponent {
 ```html
 <!--index.html-->
 <!DOCTYPE html>
-<html>
-  <head>
-      <title>测试网页</title>
-  </head>
-  <body>
-    <h1>bindSelectionMenu Demo</h1>
-    <!--img.png为html同目录下图片-->
-    <img src="./img.png" >
-  </body>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>长按复制文本</title>
+    <style>
+        .container {
+            background-color: white;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .context {
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        .context span {
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+
+        .context a {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 24px;
+            border: 2px solid #3498db;
+            border-radius: 30px;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .context img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .context:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="context">
+        <!--img.png为html同目录下图片-->
+        <img src="img.png">
+    </div>
+
+    <div class="context">
+        <a  href="https://www.example.com">长按链接唤起菜单</a>
+    </div>
+
+    <div class="context">
+        <span>在这个数字时代，文本复制功能变得日益重要。无论是引用名言、保存重要信息，还是分享有趣的内容，复制文本都是我们日常操作的一部分。</span>
+    </div>
+
+</div>
+<br>
+
+<script>
+    function copySelectedText() {
+        const selectedText = window.getSelection().toString();
+        if (selectedText.length > 0) {
+            // 使用Clipboard API复制文本
+            navigator.clipboard.writeText(selectedText)
+                .then(() => {
+                    showNotification();
+                })
+                .catch(err => {
+                    console.error('复制失败:', err);
+                });
+        }
+    }
+     function clearSelection() {
+        if (window.getSelection) {
+            window.getSelection().removeAllRanges();
+        }
+    }
+</script>
+</body>
 </html>
 ```
 

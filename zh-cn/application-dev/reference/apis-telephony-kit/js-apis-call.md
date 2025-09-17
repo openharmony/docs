@@ -1,4 +1,10 @@
 # @ohos.telephony.call (拨打电话)
+<!--Kit: Telephony Kit-->
+<!--Subsystem: Telephony-->
+<!--Owner: @shao-yikai-->
+<!--Designer: @wnazgul-->
+<!--Tester: @jiang_99-->
+<!--Adviser: @zhang_yixin13-->
 
 该模块提供呼叫管理功能，包括拨打电话、跳转到拨号界面、获取通话状态、格式化电话号码等。
 
@@ -828,6 +834,23 @@ call.formatPhoneNumberToE164("138xxxxxxxx", "CN").then((data: string) => {
 | CALL_STATE_RINGING | 1    | 表示来电正在振铃或等待。                                     |
 | CALL_STATE_OFFHOOK | 2    | 表示至少有一个呼叫处于拨号、通话中或呼叫保持状态，并且没有新的来电振铃或等待。 |
 | CALL_STATE_ANSWERED<sup>11+</sup> | 3    | 表示来电已经接听。 |
+
+
+## TelCallState<sup>21+</sup>
+
+通话状态码。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+| 名称               | 值   | 说明                                                         |
+| ------------------ | ---- | ------------------------------------------------------------ |
+| TEL_CALL_STATE_UNKNOWN | -1   | 无效状态，当获取呼叫状态失败时返回。                         |
+| TEL_CALL_STATE_IDLE    | 0    | 表示没有正在进行的呼叫。                                     |
+| TEL_CALL_STATE_RINGING | 1    | 表示来电正在振铃或等待。                                     |
+| TEL_CALL_STATE_OFFHOOK | 2    | 表示至少有一个呼叫处于拨号，并且没有新的来电振铃或等待。 |
+| TEL_CALL_STATE_ANSWERED | 3    | 表示来电已经接听。 |
+| TEL_CALL_STATE_CONNECTED | 4    | 表示电话已经接通中或呼叫保持。                                    |
+
 
 ## EmergencyNumberOptions<sup>7+</sup>
 

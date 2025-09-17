@@ -31,8 +31,8 @@
   - [Cross-Device Sync of Distributed Data Objects (ArkTS)](data-sync-of-distributed-data-object.md)
 - Data Reliability and Security<!--data-reliability-security-->
   - [Data Reliability and Security Overview](data-reliability-security-overview.md)
-  - [Database Backup and Restoration (ArkTS)](data-backup-and-restore.md)
-  - [Database Backup and Restoration (C/C++)](native-backup-and-restore.md)
+  - [Database Backup and Restore (ArkTS)](data-backup-and-restore.md)
+  - [Database Backup and Restore (C/C++)](native-backup-and-restore.md)
   - [Database Encryption (ArkTS)](data-encryption.md)
   - [Database Encryption (C/C++)](native-data-encryption.md)
   - [Access Control by Device and Data Level (ArkTS)](access-control-by-device-and-data-level.md)

@@ -162,7 +162,7 @@ export default class EntryAbility extends UIAbility {
 
 findWindow(name: string): Window
 
-查找name所对应的窗口。
+查找指定名称对应的窗口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -172,13 +172,13 @@ findWindow(name: string): Window
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| name   | string | 是   | 窗口名字，即[Configuration](arkts-apis-window-i.md#configuration9)中的name。 |
+| name   | string | 是   | 窗口名称。查找子窗口或系统窗口时使用[Configuration](arkts-apis-window-i.md#configuration9)中的窗口名称；查找主窗口时使用[getWindowName](arkts-apis-uicontext-uicontext.md#getwindowname12)获取当前实例的窗口名称。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | ----------------- | ------------------- |
-| [Window](arkts-apis-window-Window.md) | 当前查找的窗口对象。 |
+| [Window](arkts-apis-window-Window.md) | 当前查找的窗口对象。如果查找指定名称对应的窗口不存在，则返回对象为空。 |
 
 **错误码：**
 
@@ -204,7 +204,7 @@ try {
 
 getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
-获取当前应用内最上层显示的子窗口，使用callback异步回调。
+获取当前应用内层级最高的子窗口，使用callback异步回调。
 
 若无应用子窗口或子窗口未调用[showWindow()](arkts-apis-window-Window.md#showwindow9)进行显示，则返回应用主窗口。
 
@@ -217,7 +217,7 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------------------------------------- | -- | ---------------------------------------- |
 | ctx      | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是 | 当前应用上下文信息。 |
-| callback | AsyncCallback&lt;[Window](arkts-apis-window-Window.md)&gt; | 是 | 回调函数。返回当前应用内最上层的窗口对象。 |
+| callback | AsyncCallback&lt;[Window](arkts-apis-window-Window.md)&gt; | 是 | 回调函数。返回当前应用内层级最高的窗口对象。 |
 
 **错误码：**
 
@@ -240,20 +240,31 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
-      subWindow.showWindow().then(() => {
-        try {
-          window.getLastWindow(this.context, (err: BusinessError, topWindow) => {
-            const errCode: number = err.code;
-            if (errCode) {
-              console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
-              return;
+    windowStage.loadContent('pages/Index', (err: BusinessError) => {
+      if (err.code) {
+        console.error(`Failed to load content for main window. Cause code: ${err.code}, message: ${err.message}`);
+      }
+      windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
+        let storage: LocalStorage = new LocalStorage();
+        subWindow.loadContent('pages/Index', storage, (err: BusinessError) => {
+          if (err.code) {
+            console.error(`Failed to load content for sub window. Cause code: ${err.code}, message: ${err.message}`);
+          }
+          subWindow.showWindow().then(() => {
+            try {
+              window.getLastWindow(this.context, (err: BusinessError, topWindow) => {
+                const errCode: number = err.code;
+                if (errCode) {
+                  console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+                  return;
+                }
+                console.info(`Succeeded in obtaining the top window. Window id: ${topWindow.getWindowProperties().id}`);
+              });
+            } catch (exception) {
+              console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
             }
-            console.info(`Succeeded in obtaining the top window. Window id: ${topWindow.getWindowProperties().id}`);
           });
-        } catch (exception) {
-          console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
+        });
       });
     });
   }
@@ -265,7 +276,7 @@ export default class EntryAbility extends UIAbility {
 
 getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
-获取当前应用内最上层显示的子窗口，使用Promise异步回调。
+获取当前应用内层级最高的子窗口，使用Promise异步回调。
 
 若无应用子窗口或子窗口未调用[showWindow()](arkts-apis-window-Window.md#showwindow9)进行显示，则返回应用主窗口。
 
@@ -283,7 +294,7 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 | 类型 | 说明 |
 | -------------------------------- | ------------------------------------------- |
-| Promise&lt;[Window](arkts-apis-window-Window.md)&gt; | Promise对象。返回当前应用内最上层的窗口对象。 |
+| Promise&lt;[Window](arkts-apis-window-Window.md)&gt; | Promise对象。返回当前应用内层级最高的窗口对象。 |
 
 **错误码：**
 
@@ -307,17 +318,28 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
-      subWindow.showWindow().then(() => {
-        try {
-          window.getLastWindow(this.context).then((topWindow) => {
-            console.info(`Succeeded in obtaining the top window. Window id: ${topWindow.getWindowProperties().id}`);
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+    windowStage.loadContent('pages/Index', (err: BusinessError) => {
+      if (err.code) {
+        console.error(`Failed to load content for main window. Cause code: ${err.code}, message: ${err.message}`);
+      }
+      windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
+        let storage: LocalStorage = new LocalStorage();
+        subWindow.loadContent('pages/Index', storage, (err: BusinessError) => {
+          if (err.code) {
+            console.error(`Failed to load content for sub window. Cause code: ${err.code}, message: ${err.message}`);
+          }
+          subWindow.showWindow().then(() => {
+            try {
+              window.getLastWindow(this.context).then((topWindow) => {
+                console.info(`Succeeded in obtaining the top window. Window id: ${topWindow.getWindowProperties().id}`);
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+              });
+            } catch (exception) {
+              console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
+            }
           });
-        } catch (exception) {
-          console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
+        });
       });
     });
   }
@@ -328,9 +350,14 @@ export default class EntryAbility extends UIAbility {
 ## window.shiftAppWindowFocus<sup>11+</sup>
 shiftAppWindowFocus(sourceWindowId: number, targetWindowId: number): Promise&lt;void&gt;
 
-在同应用内将窗口焦点从源窗口转移到目标窗口，仅支持应用主窗和子窗的焦点转移。
+在同应用内将窗口焦点从源窗口转移到目标窗口，仅支持应用主窗、子窗范围内的焦点转移。
 
-目标窗口需确保可获焦属性为true（见[setWindowFocusable()](arkts-apis-window-Window.md#setwindowfocusable9)）,并确保调用[showWindow()](arkts-apis-window-Window.md#showwindow9)成功并执行完毕。
+目标窗口需确保具有获得焦点的能力（可通过[setWindowFocusable()](arkts-apis-window-Window.md#setwindowfocusable9)设置），并确保调用[showWindow()](arkts-apis-window-Window.md#showwindow9)成功且执行完毕。
+
+> **说明：**
+>
+> 在调用shiftAppWindowFocus()前，建议确保目标窗口已调用[loadContent()](arkts-apis-window-Window.md#loadcontent9)或[setUIContent()](arkts-apis-window-Window.md#setuicontent9)并生效，否则可能会导致不可见窗口获取焦点，造成功能异常或影响用户体验。
+>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -340,8 +367,8 @@ shiftAppWindowFocus(sourceWindowId: number, targetWindowId: number): Promise&lt;
 
 | 参数名          | 类型   | 必填  | 说明                    |
 | -------------- | ------ | ----- | ----------------------- |
-| sourceWindowId | number | 是    | 源窗口id，必须是获焦状态。|
-| targetWindowId | number | 是    | 目标窗口id。             |
+| sourceWindowId | number | 是    | 源窗口id，必须是获焦状态。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。|
+| targetWindowId | number | 是    | 目标窗口id。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。|
 
 **返回值：**
 
@@ -379,40 +406,46 @@ export default class EntryAbility extends UIAbility {
     let subWindowId: number = -1;
 
     try {
-      // 获取应用主窗及ID
-      windowStage.getMainWindow().then((data) => {
-        if (data == null) {
-          console.error('Failed to obtain the main window. Cause: The data is empty');
-          return;
+      windowStage.loadContent('pages/Index', (err) => {
+        if (err.code) {
+          console.error(`Failed to load content for main window. Cause code: ${err.code}, message: ${err.message}`);
         }
-        mainWindow = data;
-        mainWindowId = mainWindow.getWindowProperties().id;
-        console.info('Succeeded in obtaining the main window');
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
-      });
-
-      // 创建或获取子窗及ID，此时子窗口获焦
-      windowStage.createSubWindow('testSubWindow').then((data) => {
-        if (data == null) {
-          console.error('Failed to obtain the sub window. Cause: The data is empty');
-          return;
-        }
-        subWindow = data;
-        subWindowId = subWindow.getWindowProperties().id;
-        subWindow.resize(500, 500);
-        subWindow.showWindow();
-
-        // 监听Window状态，确保已经就绪
-        subWindow.on("windowEvent", (windowEvent) => {
-          if (windowEvent == window.WindowEventType.WINDOW_ACTIVE) {
-            // 切换焦点
-            window.shiftAppWindowFocus(subWindowId, mainWindowId).then(() => {
-              console.info('Succeeded in shifting app window focus');
-            }).catch((err: BusinessError) => {
-              console.error(`Failed to shift app window focus. Cause code: ${err.code}, message: ${err.message}`);
-            });
+        // 获取应用主窗及ID
+        windowStage.getMainWindow().then((data) => {
+          if (data == null) {
+            console.error('Failed to obtain the main window. Cause: The data is empty');
+            return;
           }
+          mainWindow = data;
+          mainWindowId = mainWindow.getWindowProperties().id;
+          console.info('Succeeded in obtaining the main window');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        });
+
+        // 创建或获取子窗及ID，此时子窗口获焦
+        windowStage.createSubWindow('testSubWindow').then((data) => {
+          if (data == null) {
+            console.error('Failed to obtain the sub window. Cause: The data is empty');
+            return;
+          }
+          subWindow = data;
+          subWindowId = subWindow.getWindowProperties().id;
+          subWindow.resize(500, 500);
+          subWindow.showWindow();
+          subWindow.setUIContent('pages/Index');
+
+          // 监听Window状态，确保已经就绪
+          subWindow.on("windowEvent", (windowEvent) => {
+            if (windowEvent == window.WindowEventType.WINDOW_ACTIVE) {
+              // 切换焦点
+              window.shiftAppWindowFocus(subWindowId, mainWindowId).then(() => {
+                console.info('Succeeded in shifting app window focus');
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to shift app window focus. Cause code: ${err.code}, message: ${err.message}`);
+              });
+            }
+          });
         });
       });
     } catch (exception) {
@@ -425,9 +458,9 @@ export default class EntryAbility extends UIAbility {
 ## window.shiftAppWindowPointerEvent<sup>15+</sup>
 shiftAppWindowPointerEvent(sourceWindowId: number, targetWindowId: number): Promise&lt;void&gt;
 
-该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，用于在同应用内窗口分合场景下，将输入事件从源窗口转移到目标窗口，使用Promise异步回调，针对主窗和子窗生效。
+该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，主窗口和子窗口可正常调用，用于将鼠标输入事件从源窗口转移到目标窗口。使用Promise异步回调。
 
-源窗口需要处于鼠标按下状态，否则调用此接口将不生效。输入事件转移后，会向源窗口补发鼠标抬起事件，并且向目标窗口补发鼠标按下事件。
+源窗口仅在[onTouch](arkui-ts/ts-universal-events-touch.md#ontouch)事件（事件类型必须为TouchType.Down）的回调方法中调用此接口才会有鼠标输入事件转移效果，成功调用此接口后，系统会向源窗口补发鼠标按键抬起（TouchType.Up）事件，并且向目标窗口补发鼠标按键按下（TouchType.Down）事件。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -501,7 +534,7 @@ shiftAppWindowTouchEvent(sourceWindowId: number, targetWindowId: number, fingerI
 
 该接口仅在[自由窗口](../../windowmanager/window-terminology.md#自由窗口)状态下生效，主窗口和子窗口可正常调用，用于将触屏输入事件从源窗口转移到目标窗口。使用Promise异步回调。
 
-源窗口仅在[onTouch](arkui-ts/ts-universal-events-touch.md#ontouch)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有触屏输入事件转移效果，成功调用此接口后，系统会向源窗口补发触屏抬起（touch up）事件，并且向目标窗口补发触屏按下（touch down）事件。
+源窗口仅在[onTouch](arkui-ts/ts-universal-events-touch.md#ontouch)事件（事件类型必须为TouchType.Down）的回调方法中调用此接口才会有触屏输入事件转移效果，成功调用此接口后，系统会向源窗口补发触屏抬起（TouchType.Up）事件，并且向目标窗口补发触屏按下（TouchType.Down）事件。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -513,7 +546,7 @@ shiftAppWindowTouchEvent(sourceWindowId: number, targetWindowId: number, fingerI
 | -------------- | ------ | ----- | ----------------------- |
 | sourceWindowId | number | 是    | 源窗口id。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。该参数应为大于0的整数，小于等于0时会返回错误码1300016。            |
 | targetWindowId | number | 是    | 目标窗口id。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。该参数应为大于0的整数，小于等于0时会返回错误码1300016。             |
-| fingerId | number | 是    | 触屏事件的fingerId。推荐使用[touchEvent](arkui-ts/ts-universal-events-touch.md#touchevent对象说明)事件中touches属性获取id。该参数应为大于等于0的整数，小于0时会返回错误码1300016。             |
+| fingerId | number | 是    | 触屏事件的手指唯一标识符。推荐使用[TouchEvent](arkui-ts/ts-universal-events-touch.md#touchevent对象说明)对象中touches属性获取id。该参数应为大于等于0的整数，小于0时会返回错误码1300016。             |
 
 **返回值：**
 
@@ -584,10 +617,10 @@ getWindowsByCoordinate(displayId: number, windowNumber?: number, x?: number, y?:
 
 | 参数名 | 类型   | 必填 | 说明                                                                        |
 | ------ | ---------- |----|---------------------------------------------------------------------------|
-| displayId   | number| 是  | 查询窗口所在的displayId，该参数应为整数，可以在窗口属性[WindowProperties](arkts-apis-window-i.md#windowproperties)中获取。 |
-| windowNumber    | number| 否  | 查询的窗口数量，该参数应为大于0整数，未设置或小于等于0返回所有满足条件的窗口。                                  |
-| x    | number | 否  | 查询的x坐标，该参数应为非负整数，未设置或小于0返回所有可见窗口。                                         |
-| y    | number| 否  | 查询的y坐标，该参数应为非负整数，未设置或小于0返回所有可见窗口。                                         |
+| displayId   | number| 是  | 查询窗口所在的displayId，该参数应为整数，传入非整数会忽略掉小数部分，可以在窗口属性[WindowProperties](arkts-apis-window-i.md#windowproperties)中获取。 |
+| windowNumber    | number| 否  | 查询的窗口数量，该参数应为大于0的整数，传入非整数会忽略掉小数部分，未设置或小于等于0返回所有满足条件的窗口。                                  |
+| x    | number | 否  | 查询的x坐标，以屏幕左上角为原点，该参数应为非负整数，传入非整数会忽略掉小数部分，未设置或小于0返回所有可见窗口。                                         |
+| y    | number| 否  | 查询的y坐标，以屏幕左上角为原点，该参数应为非负整数，传入非整数会忽略掉小数部分，未设置或小于0返回所有可见窗口。                                         |
 
 **返回值：**
 
@@ -606,36 +639,29 @@ getWindowsByCoordinate(displayId: number, windowNumber?: number, x?: number, y?:
 | 1300003 | This window manager service works abnormally. |
 
 ```ts
-import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIAbility {
-
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    try {
-      let windowClass = windowStage.getMainWindowSync();
-      let properties = windowClass.getWindowProperties();
-      window.getWindowsByCoordinate(properties.displayId).then((data) => {
-        console.info(`Succeeded in getting windows. Data: ${JSON.stringify(data)}`);
-        for (let window of data) {
-          // do something with window
-        }
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to get window from point. Cause code: ${err.code}, message: ${err.message}`);
-      });
-      window.getWindowsByCoordinate(properties.displayId, 2, 500, 500).then((data) => {
-        console.info(`Succeeded in getting windows. Data: ${JSON.stringify(data)}`);
-        for (let window of data) {
-          // do something with window
-        }
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to get window from point. Cause code: ${err.code}, message: ${err.message}`);
-      });
-    } catch (exception) {
-      console.error(`Failed to get window from point. Cause code: ${exception.code}, message: ${exception.message}`);
+try {
+  let displayId = 0;
+  window.getWindowsByCoordinate(displayId).then((data) => {
+    console.info(`Succeeded in getting windows. Data: ${data}`);
+    for (let window of data) {
+      // do something with window
     }
-  }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get window from point. Cause code: ${err.code}, message: ${err.message}`);
+  });
+  window.getWindowsByCoordinate(displayId, 2, 500, 500).then((data) => {
+    console.info(`Succeeded in getting windows. Data: ${data}`);
+    for (let window of data) {
+      // do something with window
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get window from point. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to get window from point. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -756,13 +782,13 @@ getGlobalWindowMode(displayId?: number): Promise&lt;number&gt;
 
 | 参数名 | 类型       | 必填                 | 说明                                                                              |
 | ------ | ---------- |--------------------|------------------------------------------------------------------------------------|
-| displayId   | number| 否  | 可选的屏幕ID，用于获取对应屏幕上的窗口模式信息。该参数应为大于等于0的整数，小于0时会返回错误码1300016，不传或传值为null以及undefined则代表查询所有屏幕。如果指定的屏幕不存在，返回值为0，推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口所在屏幕id属性。                                                    |
+| displayId   | number| 否  | 可选的屏幕ID，用于获取对应屏幕上的窗口模式信息。该参数应为大于等于0的整数，小于0时会返回错误码1300016，不传或传值为null以及undefined则代表查询所有屏幕，传入非整数会忽略掉小数部分。如果指定的屏幕不存在，返回值为0，推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口所在屏幕ID属性。                                                    |
 
 **返回值：**
 
 | 类型                             | 说明                      |
 | -------------------------------- |-------------------------|
-| Promise&lt;number&gt; | Promise对象。返回获取到的窗口模式。每一个二进制位代表一种窗口模式，当前支持的窗口模式见[GlobalWindowMode](arkts-apis-window-e.md#globalwindowmode20)，返回值为对应窗口模式值按位进行或运算的结果，比如，当前屏幕上存在全屏窗口、悬浮窗和画中画三种窗口，则返回值为`0b1\|0b100\|0b1000 = 13`。|
+| Promise&lt;number&gt; | Promise对象。返回获取到的窗口模式。每一个二进制位代表一种窗口模式，当前支持的窗口模式见[GlobalWindowMode](arkts-apis-window-e.md#globalwindowmode20)，返回值为对应窗口模式值按位进行或运算的结果。比如，当前屏幕上存在全屏窗口、悬浮窗和画中画三种窗口，则返回值为`0b1\|0b100\|0b1000 = 13`。|
 
 **错误码：**
 
@@ -858,9 +884,9 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
 
 setStartWindowBackgroundColor(moduleName: string, abilityName: string, color: ColorMetrics): Promise&lt;void&gt;
 
-设置同应用内指定mouduleName、abilityName对应UIAbility的启动页背景色，使用Promise异步回调。
+设置同一应用包名下指定mouduleName、abilityName对应UIAbility的启动页背景色，使用Promise异步回调。
 
-该接口对同应用的所有进程生效，例如多实例或应用分身场景。
+该接口对同一应用包名下的所有进程生效，例如多实例或应用分身场景。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
  
@@ -870,8 +896,8 @@ setStartWindowBackgroundColor(moduleName: string, abilityName: string, color: Co
 
 | 参数名   | 类型                          | 必填 | 说明                                                     |
 | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
-| moduleName     | string                        | 是   | 需要设置的UIAbility所属module的名字，moduleName的长度范围为0-200，仅支持设置当前同一应用包名内的moduleName。 |
-| abilityName     | string                        | 是   | 需要设置的UIAbility名字，abilityName的长度范围为0-200，仅支持设置当前同一应用包名内的abilityName。 |
+| moduleName     | string                        | 是   | 需要设置的UIAbility所属模块名，moduleName的长度范围为0-200字节，仅支持设置当前同一应用包名内的模块。模块名由开发者在[module.json5配置文件](../../quick-start/module-configuration-file.md#配置文件标签)中的name字段指定。 |
+| abilityName     | string                        | 是   | 需要设置的UIAbility名字，abilityName的长度范围为0-200字节，仅支持设置当前同一应用包名内的abilityName。UIAbility名由开发者在[module.json5配置文件abilities标签](../../quick-start/module-configuration-file.md#abilities标签)的name字段指定。 |
 | color | [ColorMetrics](js-apis-arkui-graphics.md#colormetrics12) | 是   | 设置的启动页背景色。                       |
 
 **返回值：**

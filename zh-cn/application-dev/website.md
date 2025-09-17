@@ -80,7 +80,7 @@
             - [ServiceExtensionAbility（仅对系统应用开放）](application-models/serviceextensionability.md)
             - [UIServiceExtension（仅对系统应用开放）](application-models/uiserviceextension-sys.md)
             - [UIExtensionAbility（仅对系统应用开放）](application-models/uiextensionability.md)
-            - [使用AutoFillExtensionAbility实现自动填充功能（仅对系统应用开放）](application-models/autofillextensionablility-guide.md)
+            - [使用AutoFillExtensionAbility实现自动填充功能（仅对系统应用开放）](application-models/autofillextensionability-guide.md)
             - [使用通过UIServiceExtensionAbility实现的系统悬浮窗](application-models/uiserviceextension.md)
             <!--DelEnd-->
             - [EmbeddedUIExtensionAbility](application-models/embeddeduiextensionability.md)
@@ -194,7 +194,7 @@
         - [FA模型访问Stage模型DataShareExtensionAbility](application-models/access-datashareextensionability-from-fa.md)
         - [Stage模型启动FA模型PageAbility](application-models/start-pageability-from-stage.md)
         - [Stage模型绑定FA模型ServiceAbility](application-models/bind-serviceability-from-stage.md)
-      - FA模型切换Stage模型指导<!--fa-to-stage-switc-->
+      - FA模型切换Stage模型指导<!--fa-to-stage-switch-->
         - [模型切换概述](application-models/model-switch-overview.md)
         - 配置文件切换<!--configuration-file-switch-->
           - [配置文件的差异](application-models/configuration-file-diff.md)
@@ -511,7 +511,7 @@
           - [进度条 (Progress)](ui/arkts-common-components-progress-indicator.md)
         - 使用弹窗<!--arkts-use-dialog-->
           - [弹窗概述](ui/arkts-dialog-overview.md)
-          - 使用弹出框 (Dialog)<!--arkts-use-dialogs-->
+          - 弹出框 (Dialog)<!--arkts-use-dialogs-->
             - [弹出框概述](ui/arkts-base-dialog-overview.md)
             - [不依赖UI组件的全局自定义弹出框 (openCustomDialog) (推荐)](ui/arkts-uicontext-custom-dialog.md)
             - [基础自定义弹出框 (CustomDialog) (不推荐)](ui/arkts-common-components-custom-dialog.md)
@@ -620,7 +620,7 @@
           - [跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)](ui/arkts-isolated-components.md)
           <!--DelEnd-->
       - UI开发 (基于NDK构建UI)<!--arkts-use-ndk-->
-        - [NDK接口概述](ui/ndk-build-ui-overview.md)
+        - [基于NDK构建UI概述](ui/ndk-build-ui-overview.md)
         - [接入ArkTS页面](ui/ndk-access-the-arkts-page.md)
         - 添加交互事件<!--arkts-add-event-->
           - [监听组件事件](ui/ndk-listen-to-component-events.md)
@@ -956,13 +956,13 @@
               - [概述](internationalization/i18n-display-overview.md)
               - [本地化语言与地区名称](internationalization/i18n-language-region-display.md)
               - [本地化时区名称](internationalization/i18n-time-zone-display.md)
-      - 应用本地化<!--i10n-->
+      - 应用本地化<!--l10n-->
           - [提供多语言资源](internationalization/l10n-multilingual-resources.md)
-          - 提升可翻译性<!--i10n-translation-->
+          - 提升可翻译性<!--l10n-translation-->
               - [避免硬编码与拼接](internationalization/l10n-hard-coding-concatenate.md)
               - [提供翻译场景](internationalization/l10n-translation-scene.md)
               - [支持单复数](internationalization/l10n-singular-plural.md)
-      - 本地化测试<!--i10n-testing-->
+      - 本地化测试<!--l10n-testing-->
           - 伪本地化测试<!--pseudo-i18n-testing-->
               - [伪本地化测试概述](internationalization/pseudo-i18n-testing-overview.md)
               - [翻译伪本地化测试](internationalization/pseudo-i18n-testing-translation.md)
@@ -1366,7 +1366,7 @@
         <!--DelEnd-->
         - 剪贴板服务<!--pasteboard-->
           - [申请访问剪贴板权限](basic-services/pasteboard/get-pastedata-permission-guidelines.md)
-          - [使用剪贴板进行复制粘贴](basic-services/pasteboard/use_pasteboard_to_copy_and_paste.md)
+          - [使用剪贴板进行复制粘贴](basic-services/pasteboard/use-pasteboard-to-copy-and-paste.md)
           - [使用剪贴板进行复制粘贴（C/C++）](basic-services/pasteboard/native-use-pasteboard.md)
           - [使用剪贴板进行延迟复制粘贴](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
         - 上传下载<!--upload-download-->
@@ -1458,7 +1458,7 @@
           - [AddrSanitizer（地址越界）检测](dfx/address-sanitizer-guidelines.md)
           - [AppFreeze（应用冻屏）检测](dfx/appfreeze-guidelines.md)
           - [任务超时检测](dfx/apptask-timeout-guidelines.md)
-          - [应用查杀检测](dfx/appkilled-guidelines.md)
+          - [应用终止检测](dfx/appkilled-guidelines.md)
         - 日志打印<!--hilog-dev-->
           - [使用HiLog打印日志（ArkTS）](dfx/hilog-guidelines-arkts.md)
           - [使用HiLog打印日志（C/C++）](dfx/hilog-guidelines-ndk.md)
@@ -1493,10 +1493,10 @@
                 - [任务执行超时事件介绍](dfx/hiappevent-watcher-apphicollie-events.md)
                 - [订阅任务执行超时事件（ArkTS）](dfx/hiappevent-watcher-apphicollie-events-arkts.md)
                 - [订阅任务执行超时事件（C/C++）](dfx/hiappevent-watcher-apphicollie-events-ndk.md)
-              - 应用查杀事件<!--app-killed-events-->
-                - [应用查杀事件介绍](dfx/hiappevent-watcher-app-killed-events.md)
-                - [订阅应用查杀事件（ArkTS）](dfx/hiappevent-watcher-app-killed-events-arkts.md)
-                - [订阅应用查杀事件（C/C++）](dfx/hiappevent-watcher-app-killed-events-ndk.md)
+              - 应用终止事件<!--app-killed-events-->
+                - [应用终止事件介绍](dfx/hiappevent-watcher-app-killed-events.md)
+                - [订阅应用终止事件（ArkTS）](dfx/hiappevent-watcher-app-killed-events-arkts.md)
+                - [订阅应用终止事件（C/C++）](dfx/hiappevent-watcher-app-killed-events-ndk.md)
           <!--Del-->
           - [事件上报](dfx/hiappevent-event-reporting.md)
           <!--DelEnd-->
@@ -1681,6 +1681,7 @@
         - [相机启动恢复实践(ArkTS)](media/camera/camera-background-recovery.md)
         - [自动切换摄像头实践(ArkTS)](media/camera/camera-auto-switch.md)
         - [白平衡设置(ArkTS)](media/camera/camera-whitebalance.md)
+        - [压力管控(ArkTS)](media/camera/camera-system-pressure.md)
         <!--Del-->
         - [高性能拍照(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo.md)
         - [高性能拍照实践(仅对系统应用开放)(ArkTS)](media/camera/camera-deferred-photo-case.md)
@@ -1701,6 +1702,7 @@
         - [录像实践(C/C++)](media/camera/native-camera-recording-case.md)
         - [元数据(C/C++)](media/camera/native-camera-metadata.md)
         - [手电筒使用(C/C++)](media/camera/native-camera-torch-use.md)
+        - [压力管控(C++)](media/camera/native-camera-system-pressure.md)
     - DRM Kit（数字版权保护服务）<!--drm-kit-->
       - [DRM Kit 简介](media/drm/drm-overview.md)
       - [数字版权保护(ArkTS)](media/drm/drm-arkts-dev-guide.md)
@@ -1744,6 +1746,7 @@
       - Image Kit常见问题<!--image-faqs-->
         - [如何处理HEIF图片](media/image/image-faqs/heif-adapter-faq.md)
         - [如何获取图片的旋转角度信息](media/image/image-faqs/image-rotate-faq.md)
+        - [Image Kit异常处理](media/image/image-faqs/image-error-faq.md)
       - 图片开发指导(依赖JS对象)(不再推荐)<!--image-native-js-objects-->
         - [图片解码](media/image/image-decoding-native.md)
         - [图片编码](media/image/image-encoding-native.md)
@@ -1781,6 +1784,7 @@
           - [使用AVRecorder录制视频(C/C++)](media/media/using-ndk-avrecorder-for-video-recording.md)
           - [使用AVScreenCapture录屏取码流(C/C++)](media/media/using-avscreencapture-for-buffer.md)
           - [使用AVScreenCapture录屏写文件(C/C++)](media/media/using-avscreencapture-for-file.md)
+          - [屏幕录制支持矩形区域录制(C/C++)](media/media/video-supports-rectangular-area-recording.md)
         - 媒体信息查询<!--media-info-c-->
           - [使用AVMetadataExtractor获取元数据(C/C++)](media/media/using-ndk-avmetadataextractor-for-media.md)
           - [使用AVImageGenerator获取视频帧(C/C++)](media/media/using-ndk-avimagegenerator-for-video.md)
@@ -2167,6 +2171,7 @@
           - [@ohos.app.ability.common (Ability公共模块)](reference/apis-ability-kit/js-apis-app-ability-common.md)
           - [@ohos.app.ability.CompletionHandler (拉起应用结果的操作类)](reference/apis-ability-kit/js-apis-app-ability-completionHandler.md)
           - [@ohos.app.ability.CompletionHandlerForAtomicService (打开原子化服务结果的操作类)](reference/apis-ability-kit/js-apis-app-ability-CompletionHandlerForAtomicService.md)
+          - [@ohos.app.ability.CompletionHandlerForAbilityStartCallback (拉起应用结果回调的操作类)](reference/apis-ability-kit/js-apis-app-ability-CompletionHandlerForAbilityStartCallback.md)
           - [@ohos.app.ability.contextConstant (Context相关常量)](reference/apis-ability-kit/js-apis-app-ability-contextConstant.md)
           - [@ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility)](reference/apis-ability-kit/js-apis-app-ability-embeddableUIAbility.md)
           - [@ohos.app.ability.EmbeddedUIExtensionAbility (跨进程界面嵌入扩展能力)](reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)
@@ -2438,6 +2443,8 @@
           - [native_child_process.h](reference/apis-ability-kit/capi-native-child-process-h.md)
           - [start_options.h](reference/apis-ability-kit/capi-start-options-h.md)
           - [want.h](reference/apis-ability-kit/capi-want-h.md)
+          - [ability_resource_info.h](reference/apis-ability-kit/capi-ability-resource-info-h.md)
+          - [bundle_manager_common.h](reference/apis-ability-kit/capi-bundle-manager-common-h.md)
         - 结构体<!--ability-struct-->
           - [AbilityBase_Element](reference/apis-ability-kit/capi-abilitybase-element.md)
           - [AbilityBase_Want](reference/apis-ability-kit/capi-abilitybase-want.md)
@@ -2451,6 +2458,7 @@
           - [OH_NativeBundle_ElementName](reference/apis-ability-kit/capi-native-bundle-oh-nativebundle-elementname.md)
           - [OH_NativeBundle_Metadata](reference/apis-ability-kit/capi-native-bundle-oh-nativebundle-metadata.md)
           - [OH_NativeBundle_ModuleMetadata](reference/apis-ability-kit/capi-native-bundle-oh-nativebundle-modulemetadata.md)
+          - [OH_NativeBundle_AbilityResourceInfo](reference/apis-ability-kit/capi-native-bundle-oh-nativebundle-abilityresourceinfo.md)
       - 错误码<!--ability-arkts-errcode-->
         - [元能力子系统错误码](reference/apis-ability-kit/errorcode-ability.md)
         - [DistributedSchedule错误码](reference/apis-ability-kit/errorcode-DistributedSchedule.md)
@@ -4133,7 +4141,7 @@
           - [增强连接错误码](reference/apis-distributedservice-kit/errorcode-link-enhance.md)
           - [代理通道管理错误码](reference/apis-distributedservice-kit/errorcode_proxyChannelManager.md)
         - C API<!--distributed-service-c-->
-          - 模块<!--distributed-service-moudle-->
+          - 模块<!--distributed-service-module-->
             - [DeviceManager](reference/apis-distributedservice-kit/capi-devicemanager.md)
           - 头文件<!--distributed-service-headerfile-->
             - [oh_device_manager.h](reference/apis-distributedservice-kit/capi-oh-device-manager-h.md)
@@ -4201,7 +4209,6 @@
             - [WebSocket_ErrorResult](reference/apis-network-kit/capi-netstack-websocket-errorresult.md)
             - [WebSocket_OpenResult](reference/apis-network-kit/capi-netstack-websocket-openresult.md)
             - [WebSocket_Header](reference/apis-network-kit/capi-netstack-websocket-header.md)
-            - [WebSocket_RequestOptions](reference/apis-network-kit/capi-netstack-websocket-requestoptions.md)
             - [WebSocket_RequestOptions](reference/apis-network-kit/capi-netstack-websocket-requestoptions.md)
             - [Http_Buffer](reference/apis-network-kit/capi-netstack-http-buffer.md)
             - [Http_HeaderValue](reference/apis-network-kit/capi-netstack-http-headervalue.md)
@@ -4300,12 +4307,14 @@
             - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)](reference/apis-basic-services-kit/js-apis-app-ability-PrintExtensionAbility.md)
             - [@ohos.pasteboard (剪贴板)](reference/apis-basic-services-kit/js-apis-pasteboard.md)
             - [@ohos.print (打印)](reference/apis-basic-services-kit/js-apis-print.md)
+            - [@ohos.scan (扫描)](reference/apis-basic-services-kit/js-apis-scan.md)
             - [@ohos.request (上传下载)](reference/apis-basic-services-kit/js-apis-request.md)
             - [@ohos.request.cacheDownload (缓存下载)](reference/apis-basic-services-kit/js-apis-request-cacheDownload.md)
             - [@ohos.zlib (Zip模块)](reference/apis-basic-services-kit/js-apis-zlib.md)
             <!--Del-->
             - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)(系统接口)](reference/apis-basic-services-kit/js-apis-app-ability-PrintExtensionAbility-sys.md)
             - [@ohos.print (打印)(系统接口)](reference/apis-basic-services-kit/js-apis-print-sys.md)
+            - [@ohos.scan (打印)(系统接口)](reference/apis-basic-services-kit/js-apis-scan-sys.md)
             - [@ohos.request (上传下载)(系统接口)](reference/apis-basic-services-kit/js-apis-request-sys.md)
             - [@ohos.selectionInput.SelectionExtensionAbility (划词扩展能力)(系统接口)](reference/apis-basic-services-kit/js-apis-selectionInput-selectionExtensionAbility-sys.md)
             - [@ohos.selectionInput.SelectionExtensionContext (划词扩展上下文)(系统接口)](reference/apis-basic-services-kit/js-apis-selectionInput-selectionExtensionContext-sys.md)
@@ -4675,6 +4684,8 @@
           - [@ohos.hilog (HiLog日志打印)](reference/apis-performance-analysis-kit/js-apis-hilog.md)
           - [@ohos.hiTraceChain (分布式跟踪)](reference/apis-performance-analysis-kit/js-apis-hitracechain.md)
           - [@ohos.hiTraceMeter (性能打点)](reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)
+          - [@ohos.hiviewdfx.FaultLogExtensionAbility (故障延迟通知)](reference/apis-performance-analysis-kit/js-apis-hiviewdfx-FaultLogExtensionAbility.md)
+          - [@ohos.hiviewdfx.FaultLogExtensionContext (故障延迟通知上下文)](reference/apis-performance-analysis-kit/js-apis-hiviewdfx-FaultLogExtensionContext.md)
           - [@ohos.hiviewdfx.hiAppEvent (应用事件打点)](reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md)
           - [@ohos.hiviewdfx.jsLeakWatcher (js泄露检测)](reference/apis-performance-analysis-kit/js-apis-jsleakwatcher.md)
           <!--Del-->
@@ -4727,7 +4738,7 @@
           - [应用事件打点错误码](reference/apis-performance-analysis-kit/errorcode-hiappevent.md)
           - [HiDebug错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug.md)
           - [HiDebug CpuUsage错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug-cpuusage.md)
-          - [HiDebug GraphicMemory错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug-graphic-memory.md)
+          - [HiDebug Trace错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hidebug-trace.md)
           - [HiCollie错误码](reference/apis-performance-analysis-kit/errorcode-hiviewdfx-hicollie.md)
           - [JsLeakWatcher错误码](reference/apis-performance-analysis-kit/errorcode-jsleakwatcher.md)
           <!--Del-->
@@ -4824,44 +4835,50 @@
         - 模块<!--avcodec-module-->
           - [AVCapability](reference/apis-avcodec-kit/capi-avcapability.md)
           - [AudioCodec](reference/apis-avcodec-kit/capi-audiocodec.md)
-          - [AVDemuxer](reference/apis-avcodec-kit/capi-avdemuxer.md)
-          - [AVMuxer](reference/apis-avcodec-kit/capi-avmuxer.md)
-          - [AVSource](reference/apis-avcodec-kit/_a_v_source.md)
           - [CodecBase](reference/apis-avcodec-kit/_codec_base.md)
-          - [Core](reference/apis-avcodec-kit/_core.md)
+          - [Core](reference/apis-avcodec-kit/capi-core.md)
           - [VideoDecoder](reference/apis-avcodec-kit/_video_decoder.md)
           - [VideoEncoder](reference/apis-avcodec-kit/_video_encoder.md)
-          - [Multimedia_Drm](reference/apis-avcodec-kit/_multimedia___drm.md)
+          - [AVDemuxer](reference/apis-avcodec-kit/capi-avdemuxer.md)
+          - [AVMuxer](reference/apis-avcodec-kit/capi-avmuxer.md)
+          - [AVSource](reference/apis-avcodec-kit/capi-avsource.md)
+          - [Multimedia_Drm](reference/apis-avcodec-kit/capi-multimedia-drm.md)
         - 头文件<!--avcodec-headerfile-->
           - [native_avcapability.h](reference/apis-avcodec-kit/capi-native-avcapability-h.md)
           - [native_avcodec_audiocodec.h](reference/apis-avcodec-kit/capi-native-avcodec-audiocodec-h.md)
-          - [media_types.h](reference/apis-avcodec-kit/media__types_8h.md)
-          - [native_audio_channel_layout.h](reference/apis-avcodec-kit/native__audio__channel__layout_8h.md)
-          - [native_avbuffer.h](reference/apis-avcodec-kit/native__avbuffer_8h.md)
-          - [native_avbuffer_info.h](reference/apis-avcodec-kit/native__avbuffer__info_8h.md)
+          - [media_types.h](reference/apis-avcodec-kit/capi-media-types-h.md)
+          - [native_audio_channel_layout.h](reference/apis-avcodec-kit/capi-native-audio-channel-layout-h.md)
+          - [native_avbuffer.h](reference/apis-avcodec-kit/capi-native-avbuffer-h.md)
+          - [native_avbuffer_info.h](reference/apis-avcodec-kit/capi-native-avbuffer-info-h.md)
+          - [native_averrors.h](reference/apis-avcodec-kit/capi-native-averrors-h.md)
+          - [native_avformat.h](reference/apis-avcodec-kit/capi-native-avformat-h.md)
+          - [native_avmemory.h](reference/apis-avcodec-kit/capi-native-avmemory-h.md)
           - [native_avcodec_base.h](reference/apis-avcodec-kit/native__avcodec__base_8h.md)
           - [native_avcodec_videodecoder.h](reference/apis-avcodec-kit/native__avcodec__videodecoder_8h.md)
           - [native_avcodec_videoencoder.h](reference/apis-avcodec-kit/native__avcodec__videoencoder_8h.md)
-          - [native_averrors.h](reference/apis-avcodec-kit/native__averrors_8h.md)
-          - [native_avformat.h](reference/apis-avcodec-kit/native__avformat_8h.md)
-          - [native_avmemory.h](reference/apis-avcodec-kit/native__avmemory_8h.md)
           - [native_avdemuxer.h](reference/apis-avcodec-kit/capi-native-avdemuxer-h.md)
           - [native_avmuxer.h](reference/apis-avcodec-kit/capi-native-avmuxer-h.md)
-          - [native_avsource.h](reference/apis-avcodec-kit/native__avsource_8h.md)
-          - [native_cencinfo.h](reference/apis-avcodec-kit/native__cencinfo_8h.md)
+          - [native_avsource.h](reference/apis-avcodec-kit/capi-native-avsource-h.md)
+          - [native_cencinfo.h](reference/apis-avcodec-kit/capi-native-cencinfo-h.md)
         - 结构体<!--avcodec-struct-->
           - [OH_AVRange](reference/apis-avcodec-kit/capi-avcapability-oh-avrange.md)
           - [OH_AVCapability](reference/apis-avcodec-kit/capi-avcapability-oh-avcapability.md)
           - [MediaKeySession](reference/apis-avcodec-kit/capi-audiocodec-mediakeysession.md)
           - [OH_AVCodecAsyncCallback](reference/apis-avcodec-kit/_o_h___a_v_codec_async_callback.md)
-          - [OH_AVCodecBufferAttr](reference/apis-avcodec-kit/_o_h___a_v_codec_buffer_attr.md)
+          - [OH_AVBuffer](reference/apis-avcodec-kit/capi-core-oh-avbuffer.md)
+          - [OH_NativeBuffer](reference/apis-avcodec-kit/capi-core-oh-nativebuffer.md)
+          - [OH_AVCodecBufferAttr](reference/apis-avcodec-kit/capi-core-oh-avcodecbufferattr.md)
+          - [OH_AVFormat](reference/apis-avcodec-kit/capi-core-oh-avformat.md)
+          - [OH_AVMemory](reference/apis-avcodec-kit/capi-core-oh-avmemory.md)
           - [OH_AVCodecCallback](reference/apis-avcodec-kit/_o_h___a_v_codec_callback.md)
           - [OH_AVDataSource](reference/apis-avcodec-kit/_o_h___a_v_data_source.md)
           - [OH_AVDataSourceExt](reference/apis-avcodec-kit/_o_h___a_v_data_source_ext.md)
-          - [DrmSubsample](reference/apis-avcodec-kit/_drm_subsample.md)
           - [OH_AVDemuxer](reference/apis-avcodec-kit/capi-avdemuxer-oh-avdemuxer.md)
           - [DRM_MediaKeySystemInfo](reference/apis-avcodec-kit/capi-avdemuxer-drm-mediakeysysteminfo.md)
           - [OH_AVMuxer](reference/apis-avcodec-kit/capi-avmuxer-oh-avmuxer.md)
+          - [OH_AVSource](reference/apis-avcodec-kit/capi-avsource-oh-avsource.md)
+          - [DrmSubsample](reference/apis-avcodec-kit/capi-multimedia-drm-drmsubsample.md)
+          - [OH_AVCencInfo](reference/apis-avcodec-kit/capi-multimedia-drm-oh-avcencinfo.md)
         - 已停止维护的接口<!--avcodec-arkts-dep-->
           - 模块<!--avcodec-module-arkts-dep-->
             - [AudioDecoder](reference/apis-avcodec-kit/_audio_decoder.md)

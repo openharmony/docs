@@ -2,8 +2,9 @@
 <!--Kit: AVSession Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @ccfriend; @liao_qian-->
-<!--SE: @ccfriend-->
-<!--TSE: @chenmingxi1_huawei-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 In addition to the implementation of audio and video playback, media applications may need to access AVSession provided by AVSession Kit for display and control purposes. This topic describes typical display and control scenarios of accessing AVSession.
 
@@ -420,56 +421,78 @@ struct Index {
 }
 ```
 
-### Setting Fast-Forward or Rewind
+### Setting Fast-Forward/Rewind
 
-The application can call APIs to set the fast-forward or rewind intervals in three different ways. It also registers the fast-forward or rewind control command to respond to user operations.
+The application can call APIs to set the fast-forward/rewind intervals in three different ways. It also registers the fast-forward/rewind control command to respond to user operations.
 
-```ts
-import { avSession as AVSessionManager } from '@kit.AVSessionKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+> **NOTE**
+>
+> When applications register commands for fast-forward/rewind and next/previous track switching, there are differences in the display on the controller.
 
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
+- When **AVSessionType** is **audio**:
 
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(async () => {
-          let context = this.getUIContext().getHostContext() as Context;
-          // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
-          let type: AVSessionManager.AVSessionType = 'audio';
-          let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+    | Registered Event Combination| Controller Buttons| Button Availability|
+    | ------------ | ------------ | ------------ |
+    | No events registered| **Previous**, **Next**| All buttons are unavailable.|
+    | Previous/Next events registered| **Previous**, **Next**| If previous events registered, the **Previous** button is available.<br>If next events registered, the **Next** button is available.<br>Buttons corresponding to unregistered events are unavailable. |
+    | Fast-forward/rewind events registered| **Previous**, **Next**|  All buttons are unavailable.|
+    | Previous/Next and fast-forward/rewind events registered| **Previous**, **Next**| If previous events registered, the **Previous** button is available.<br>If next events registered, the **Next** button is available.<br>Buttons corresponding to unregistered events are unavailable. |
 
-          // Set the supported fast-forward or rewind duration for AVSession.
-          let metadata: AVSessionManager.AVMetadata = {
-            assetId: '0', // Specified by the application, used to identify the media asset in the application media library.
-            title: 'TITLE',
-            mediaImage: 'IMAGE',
-            skipIntervals: AVSessionManager.SkipIntervals.SECONDS_10,
-          };
-          session.setAVMetadata(metadata).then(() => {
-            console.info(`SetAVMetadata successfully`);
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
-          });
+- When **AVSessionType** is **video**:
 
-          session.on('fastForward', (time ?: number) => {
-            console.info(`on fastForward , do fastForward task`);
-            // do some tasks ···
-          });
-          session.on('rewind', (time ?: number) => {
-            console.info(`on rewind , do rewind task`);
-            // do some tasks ···
-          });
-        })
+    | Registered Event Combination| Controller Buttons| Button Availability|
+    | ------------ | ------------ | ------------ |
+    | No events registered| **Fast-Forward**, **Rewind**| All buttons are unavailable.|
+    | Previous/Next events registered| **Previous**, **Next**| If previous events registered, the **Previous** button is available.<br>If next events registered, the **Next** button is available.<br>Buttons corresponding to unregistered events are unavailable. |
+    | Fast-forward/rewind events registered| **Fast-Forward**, **Rewind**|  If fast-forward events are registered, the **Fast-Forward** button is available.<br>If rewind events are registered, the **Rewind** button is available.<br>Buttons corresponding to unregistered events are unavailable.|
+    | Previous/Next and fast-forward/rewind events registered| **Fast-Forward**, **Rewind**|  If fast-forward events are registered, the **Fast-Forward** button is available.<br>If rewind events are registered, the **Rewind** button is available.<br>Buttons corresponding to unregistered events are unavailable.|
+
+  ```ts
+  import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  @Entry
+  @Component
+  struct Index {
+    @State message: string = 'hello world';
+
+    build() {
+      Column() {
+        Text(this.message)
+          .onClick(async () => {
+            let context = this.getUIContext().getHostContext() as Context;
+            // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
+            let type: AVSessionManager.AVSessionType = 'audio';
+            let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+
+            // Set the supported fast-forward or rewind duration for AVSession.
+            let metadata: AVSessionManager.AVMetadata = {
+              assetId: '0', // Specified by the application, used to identify the media asset in the application media library.
+              title: 'TITLE',
+              mediaImage: 'IMAGE',
+              skipIntervals: AVSessionManager.SkipIntervals.SECONDS_10,
+            };
+            session.setAVMetadata(metadata).then(() => {
+              console.info(`SetAVMetadata successfully`);
+            }).catch((err: BusinessError) => {
+              console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+            });
+
+            session.on('fastForward', (time ?: number) => {
+              console.info(`on fastForward , do fastForward task`);
+              // do some tasks ···
+            });
+            session.on('rewind', (time ?: number) => {
+              console.info(`on rewind , do rewind task`);
+              // do some tasks ···
+            });
+          })
+      }
+      .width('100%')
+      .height('100%')
     }
-    .width('100%')
-    .height('100%')
   }
-}
-```
+  ```
 
 ### Favoriting Media Assets
 
@@ -573,7 +596,7 @@ struct Index {
 
 ### Performing Progress Control
 
-An application that supports progress display can further supports progress control. To support progress control, the application must respond to the **seek** control command. When users drag the progress bar in the controller, the application receives a callback. Refer to the code snippet below:
+An application that supports progress display can further support progress control. To support progress control, the application must respond to the **seek** control command. When users drag the progress bar in the controller, the application receives a callback. Refer to the code snippet below:
 
 ```ts
 import { avSession as AVSessionManager } from '@kit.AVSessionKit';
@@ -704,7 +727,6 @@ Currently, the system does not provide APIs for listening for multimodal key eve
   ```
   
 - Method 2
-
   Register the [HandleMediaKeyEvent](../../reference/apis-avsession-kit/arkts-apis-avsession-AVSession.md#onhandlekeyevent10) callback through AVSession. The callback directly forwards the [KeyEvent](../../reference/apis-input-kit/js-apis-keyevent.md). The application is required to identify the type of the key event and implement the corresponding functionalities. Currently, the following key events can be forwarded:
 
   | Key Type ([KeyCode](../../reference/apis-input-kit/js-apis-keycode.md#keycode))| Description  |
@@ -714,7 +736,7 @@ Currently, the system does not provide APIs for listening for multimodal key eve
   | KEYCODE_MEDIA_NEXT    | Next key.|
   | KEYCODE_MEDIA_PREVIOUS    | Previous key.|
   | KEYCODE_MEDIA_REWIND    | Rewind key.|
-  | KEYCODE_MEDIA_FAST_FORWARD    | 	Fast forward key.|
+  | KEYCODE_MEDIA_FAST_FORWARD    | 	Fast-forward key.|
   | KEYCODE_MEDIA_PLAY    | Play key.|
   | KEYCODE_MEDIA_PAUSE   | Pause key.|
 

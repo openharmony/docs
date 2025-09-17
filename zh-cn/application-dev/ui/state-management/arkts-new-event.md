@@ -19,7 +19,7 @@
 
 ## 概述
 
-由于\@Param装饰的变量在本地无法更改，使用\@Event装饰器装饰回调方法并调用，可以实现更新数据源的变量，再通过[\@Local](arkts-new-local.md)的同步机制，将修改同步回\@Param，以此达到主动更新\@Param装饰变量的效果。
+由于\@Param装饰的变量在本地无法更改，使用\@Event装饰器装饰回调方法并调用，可以实现更新数据源的变量，再通过[\@Local](arkts-new-local.md)的同步机制，将修改同步回\@Param装饰的变量，以此达到主动更新\@Param装饰变量的效果。
 
 \@Event用于装饰组件对外输出的方法：
 
@@ -45,12 +45,12 @@
   ```ts
   @ComponentV2
   struct Index {
-    @Event changeFactory: ()=>void = ()=>{}; //正确用法
+    @Event changeFactory: () => void = () => {}; //正确用法
     @Event message: string = 'abcd'; // 错误用法，装饰非函数类型变量，@Event无作用
   }
   @Component
   struct Index {
-    @Event changeFactory: ()=>void = ()=>{}; // 错误用法，编译时报错
+    @Event changeFactory: () => void = () => {}; // 错误用法，编译时报错
   }
   ```
 
@@ -123,7 +123,7 @@ struct Child {
       Text(`Child index: ${this.index}`)
         .onClick(() => {
           this.changeIndex(20);
-          console.log(`after changeIndex ${this.index}`);
+          console.info(`after changeIndex ${this.index}`);
         })
     }
   }
@@ -139,7 +139,7 @@ struct Index {
   	    index: this.index,
   	    changeIndex: (val: number) => {
   	      this.index = val;
-          console.log(`in changeIndex ${this.index}`);
+          console.info(`in changeIndex ${this.index}`);
   	    }
   	  })
   	}

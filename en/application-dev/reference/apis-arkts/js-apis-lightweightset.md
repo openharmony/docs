@@ -1,4 +1,10 @@
 # @ohos.util.LightWeightSet (Nonlinear Container LightWeightSet)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 LightWeightSet stores a set of values, each of which must be unique.
 
@@ -16,6 +22,8 @@ This topic uses the following to identify the use of generics:
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> Container classes, implemented in static languages, have restrictions on storage locations and properties, and do not support custom properties or methods.
 
 
 ## Modules to Import
@@ -32,7 +40,7 @@ import { LightWeightSet } from '@kit.ArkTS';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | Yes| No| Number of elements in a LightWeightSet.|
 
@@ -58,9 +66,8 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let lightWeightSet: LightWeightSet<number | string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<number | string>();
 ```
-
 
 ### isEmpty
 
@@ -89,8 +96,9 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-const lightWeightSet: LightWeightSet<number> = new LightWeightSet();
+const lightWeightSet = new LightWeightSet<number>();
 let result = lightWeightSet.isEmpty();
+console.info("result:", result);  // result: true
 ```
 
 ### add
@@ -126,8 +134,9 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 let result = lightWeightSet.add("squirrel");
+console.info("result:", result);  // result: true
 ```
 
 
@@ -165,12 +174,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
-let set: LightWeightSet<string> = new LightWeightSet();
+let set = new LightWeightSet<string>();
 set.add("gull");
-let result = lightWeightSet.addAll(set);
+lightWeightSet.addAll(set);
+let result = lightWeightSet.has("gull");
+console.info("result:", result);  // result: true
 ```
 
 
@@ -208,12 +219,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
-let set: LightWeightSet<string> = new LightWeightSet();
+let set = new LightWeightSet<string>();
 set.add("sparrow");
 let result = lightWeightSet.hasAll(set);
+console.info("result:", result);  // result: true
 ```
 
 
@@ -250,9 +262,10 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let lightWeightSet: LightWeightSet<number> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<number>();
 lightWeightSet.add(123);
 let result = lightWeightSet.has(123);
+console.info("result:", result);  // result: true
 ```
 
 
@@ -260,9 +273,7 @@ let result = lightWeightSet.has(123);
 
 increaseCapacityTo(minimumCapacity: number): void
 
-Increases the capacity of this LightWeightSet.
-
-If the passed-in capacity is greater than or equal to the number of elements in this LightWeightSet, the capacity is changed to the new capacity. If the passed-in capacity is less than the number of elements in this LightWeightSet, the capacity is not changed.
+Increases the capacity of this LightWeightSet. If the passed-in capacity is greater than or equal to the number of elements in this LightWeightSet, the capacity is changed to the new capacity. If the passed-in capacity is less than the number of elements in this LightWeightSet, the capacity is not changed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -287,7 +298,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.increaseCapacityTo(10);
 ```
 
@@ -325,10 +336,11 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.getIndexOf("sparrow");
+console.info("result:", result);  // result: 0
 ```
 
 
@@ -365,10 +377,11 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.remove("sparrow");
+console.info("result:", result);  // result: sparrow
 ```
 
 
@@ -406,10 +419,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.removeAt(1);
+console.info("result:", result);  // result: true
 ```
 
 
@@ -447,10 +461,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Parameters**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.getValueAt(1);
+console.info("result:", result);  // result: squirrel
 ```
 
 
@@ -475,10 +490,12 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 lightWeightSet.clear();
+let result = lightWeightSet.isEmpty();
+console.info("result:", result);  // result: true
 ```
 
 
@@ -501,10 +518,11 @@ Obtains a string that contains all elements in this LightWeightSet.
 **Example**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.toString();
+console.info("result:", result);  // result: sparrow,squirrel
 ```
 
 
@@ -535,7 +553,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let result = lightWeightSet.toArray();
@@ -569,15 +587,15 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
-let iter = lightWeightSet.values();
-let index = 0;
-while(index < lightWeightSet.length) {
-  console.log(JSON.stringify(iter.next().value));
-  index++;
+let values = lightWeightSet.values();
+for (let value of values) {
+  console.info("value:", value);
 }
+// value: sparrow
+// value: squirrel
 ```
 
 
@@ -617,16 +635,19 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("sparrow");
 lightWeightSet.add("gull");
-lightWeightSet.forEach((value ?: string, key ?: string) => {
-  console.log("value:" + value, "key:" + key);
+lightWeightSet.forEach((value: string, key: string) => {
+  console.info("value:" + value, "key:" + key);
 });
+// value:gull key:gull
+// value:sparrow key:sparrow
 ```
+
 ```ts
 // You are not advised to use the add, remove, or removeAt APIs in forEach because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 for(let i = 0; i < 10; i++) {
   lightWeightSet.add(i + "123");
 }
@@ -662,19 +683,20 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let iter = lightWeightSet.entries();
-let index = 0;
-while(index < lightWeightSet.length) {
-  console.log(JSON.stringify(iter.next().value));
-  index++;
+for (let item of iter) {
+  console.info("value:", item[1])
 }
+// value: sparrow
+// value: squirrel
 ```
+
 ```ts
 // You are not advised to use the add, remove, or removeAt APIs in entries because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 for(let i = 0; i < 10; i++) {
   lightWeightSet.add(i + "123");
 }
@@ -710,27 +732,31 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 
 // Method 1:
-let nums: Array<string> = lightWeightSet.toArray()
-for (let item of nums) {
-  console.log("value:" + item);
+for (let value of lightWeightSet) {
+  console.info("value:", value);
 }
+// value: sparrow
+// value: squirrel
 
 // Method 2:
 let iter = lightWeightSet[Symbol.iterator]();
 let temp: IteratorResult<string> = iter.next();
 while(!temp.done) {
-  console.log("value:" + temp.value);
+  console.info("value:", temp.value);
   temp = iter.next();
 }
+// value: sparrow
+// value: squirrel
 ```
+
 ```ts
 // You are not advised to use the add, remove, or removeAt APIs in Symbol.iterator because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 for(let i = 0; i < 10; i++) {
   lightWeightSet.add(i + "123");
 }
@@ -748,7 +774,7 @@ Checks whether the elements of this LightWeightSet are the same as those of **ob
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 12. There is no substitute API.
+> This API is supported since API version 8 and deprecated since API version 12. There is no substitute API.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -775,9 +801,10 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+let lightWeightSet = new LightWeightSet<string>();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
 let obj = ["sparrow", "squirrel"];
 let result = lightWeightSet.equal(obj);
+console.info("result:", result);  // result: true
 ```

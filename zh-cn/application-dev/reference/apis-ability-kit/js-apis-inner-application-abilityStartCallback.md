@@ -1,4 +1,10 @@
 # AbilityStartCallback
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 定义拉起UIExtensionAbility执行结果的回调。
 
@@ -17,6 +23,14 @@ import { common } from '@kit.AbilityKit';
 ```
 
 ## AbilityStartCallback
+
+### 属性
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称             | 类型                                      | 只读 | 可选 | 说明                                       |
+| ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
+| completionHandler<sup>21+</sup>      | [CompletionHandlerForAbilityStartCallback](js-apis-app-ability-CompletionHandlerForAbilityStartCallback.md) | 否   | 是   | 用于返回拉起指定类型的Ability组件的回调结果。<br>**原子化服务API**：从API version 21开始，该接口支持在原子化服务中使用。 |
 
 ### onError
 

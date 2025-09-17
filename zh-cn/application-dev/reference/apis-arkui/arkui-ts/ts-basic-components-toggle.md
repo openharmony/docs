@@ -49,7 +49,7 @@ Toggle的信息。
 | 名称              | 类型                              | 只读 | 可选 | 说明                                                         |
 | ----------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | type<sup>8+</sup> | [ToggleType](#toggletype枚举说明) | 否   | 否   | 开关的样式。<br/>默认值：ToggleType.Switch<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| isOn<sup>8+</sup> | boolean                           | 否   | 是   | 开关是否打开，值为true表示打开，值为false表示关闭。<br/>默认值：false<br />该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />该属性支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| isOn<sup>8+</sup> | boolean                           | 否   | 是   | 开关是否打开。<br/>true：打开；false：关闭。<br/>默认值：false<br />该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />该属性支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## ToggleType枚举说明
 
@@ -87,7 +87,7 @@ selectedColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                                         |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 组件打开状态的背景颜色。<br/>默认值：<br/>当ToggleType为Switch时，默认值为`$r('sys.color.ohos_id_color_component_activated')`<br/>当ToggleType为Checkbox时，默认值为`$r('sys.color.ohos_id_color_component_activated')`<br/>当ToggleType为Button时，默认值为`$r('sys.color.ohos_id_color_component_activated')`混合`$r('sys.color.ohos_id_color_text_highlight_bg')`的透明度。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 组件打开状态的背景颜色。<br/>默认值：<br/>当ToggleType为Switch时，默认值为`$r('sys.color.ohos_id_color_component_activated')`。<br/>当ToggleType为Checkbox时，默认值为`$r('sys.color.ohos_id_color_component_activated')`。<br/>当ToggleType为Button时，默认值为`$r('sys.color.ohos_id_color_component_activated')`混合`$r('sys.color.ohos_id_color_text_highlight_bg')`的透明度。 |
 
 ### switchPointColor
 
@@ -174,7 +174,7 @@ onChange(callback:&nbsp;(isOn:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isOn   | boolean | 是   | 为true时，代表状态从关切换为开。false时，代表状态从开切换为关。 |
+| isOn   | boolean | 是   | 开关的状态。<br/>true：状态从关切换为开；false：状态从开切换为关。 |
 
 ## ToggleConfiguration<sup>12+</sup>对象说明
 
@@ -186,9 +186,9 @@ onChange(callback:&nbsp;(isOn:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 | 名称  | 类型    |    只读    |    可选    |  说明              |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
-| isOn   | boolean| 否  | 否 | 开关是否打开。<br/>默认值：false<br/>值为true时，开关打开。值为false时，开关关闭。 |
-| enabled | boolean | 否 | 否 | 是否可以切换状态。<br/>默认值：true<br/>值为true时，可以切换状态。值为false时，不可以切换状态。 |
-| triggerChange |Callback\<boolean>| 否 | 否 |触发switch选中状态变化。<br/>为true时，代表状态从关切换为开。false时，代表状态从开切换为关。 |
+| isOn   | boolean| 否  | 否 | 开关是否打开。<br/>true：开关打开；false：开关关闭。<br/>默认值：false |
+| enabled | boolean | 否 | 否 | 是否可以切换状态。<br/>true：可以切换状态；false：不可以切换状态。<br/>默认值：true |
+| triggerChange |Callback\<boolean>| 否 | 否 |触发switch选中状态变化。<br/>true：状态从关切换为开；false：状态从开切换为关。 |
 
 
 ## 示例

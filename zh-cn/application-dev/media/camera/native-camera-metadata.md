@@ -71,20 +71,69 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
    }
    ```
 
-4. 调用start()方法输出metadata数据，接口调用失败时，会返回相应错误码。
-     
+4. 调用[OH_CameraManager_CreateCaptureSession()](../../reference/apis-camera-kit/capi-camera-manager-h.md#oh_cameramanager_createcapturesession)方法创建一个会话。
+
    ```c++
-   Camera_ErrorCode StartMetadataOutput(Camera_MetadataOutput* metadataOutput)
+   Camera_CaptureSession* CreateCaptureSession(Camera_Manager* cameraManager)
    {
-       Camera_ErrorCode ret = OH_MetadataOutput_Start(metadataOutput);
-       if (ret != CAMERA_OK) {
-           OH_LOG_ERROR(LOG_APP, "OH_MetadataOutput_Start failed.");
+       Camera_CaptureSession* captureSession = nullptr;
+       Camera_ErrorCode ret = OH_CameraManager_CreateCaptureSession(cameraManager, &captureSession);
+       if (captureSession == nullptr || ret != CAMERA_OK) {
+           OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateCaptureSession failed.");
        }
-       return ret;
+       return captureSession;
    }
    ```
 
-5. 调用stop()方法停止输出metadata数据，接口调用失败会返回相应错误码。
+5. 配置session，完成后通过调用[OH_CaptureSession_Start()](../../reference/apis-camera-kit/capi-capture-session-h.md#oh_capturesession_start)方法输出metadata数据。接口调用失败会返回相应错误码，错误码类型参见[Camera_ErrorCode](../../reference/apis-camera-kit/capi-camera-h.md#camera_errorcode)。
+
+    ```c++
+    Camera_ErrorCode StartSession(Camera_CaptureSession* captureSession, Camera_Input* cameraInput,
+        Camera_PreviewOutput* previewOutput, Camera_PhotoOutput* photoOutput, Camera_MetadataOutput* metadataOutput)
+    {
+        // 开始配置Session。
+        Camera_ErrorCode ret = OH_CaptureSession_BeginConfig(captureSession);
+        if (ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_BeginConfig failed.");
+        }
+
+        // 向会话中添加相机输入流。
+        Camera_ErrorCode ret = OH_CaptureSession_AddInput(captureSession, cameraInput);
+        if (ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddInput failed.");
+            return ret;
+        }
+
+        // 向会话中添加预览输出流。
+        ret = OH_CaptureSession_AddPreviewOutput(captureSession, previewOutput);
+        if (ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddPreviewOutput failed.");
+            return ret;
+        }
+
+        // 向会话中添加元数据流。
+        ret = OH_CaptureSession_AddMetadataOutput(captureSession, metadataOutput);
+        if (ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddMetadataOutput failed.");
+        }        
+
+        // 提交会话配置。
+        ret = OH_CaptureSession_CommitConfig(captureSession);
+        if (ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_CommitConfig failed.");
+            return ret;
+        }
+
+        // 启动会话。
+        ret = OH_CaptureSession_Start(captureSession);
+        if (ret != CAMERA_OK) {
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Start failed.");
+        }
+        return ret;
+    }
+    ```
+
+6. 调用stop()方法停止输出metadata数据，接口调用失败会返回相应错误码。
      
    ```c++
    Camera_ErrorCode StopMetadataOutput(Camera_MetadataOutput* metadataOutput)
