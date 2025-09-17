@@ -1556,3 +1556,124 @@ struct SliderExample {
 ```
 
 ![slider07](figures/slider07.gif)
+
+### 示例8（滑块设置渐变色）
+
+该示例实现了Slider组件通过blockColor属性设置滑块渐变色。
+
+```ts
+
+@Entry
+@Component
+struct SliderExample {
+  @State colorGradient: LinearGradient = new LinearGradient([{ color: "#FFFFFF", offset: 0 }, { color: "#007DFF", offset: 1 }])
+
+  build() {
+    Column({ space: 10 }) {
+      Slider({
+        style:SliderStyle.OutSet,
+        min: 0,
+        max: 100,
+      })
+        .blockColor(this.colorGradient)
+        .blockSize({width:"50vp",height:"50vp"})
+      Slider({
+        style:SliderStyle.OutSet,
+        min: 0,
+        max: 100,
+        reverse: true
+      })
+        .blockColor(this.colorGradient)
+        .blockSize({width:"50vp",height:"50vp"})
+      Slider({
+        style:SliderStyle.InSet,
+        min: 0,
+        max: 100,
+      })
+        .blockColor(this.colorGradient)
+        .blockSize({width:"50vp",height:"50vp"})
+      Slider({
+        style:SliderStyle.InSet,
+        min: 0,
+        max: 100,
+        reverse: true
+      })
+        .blockColor(this.colorGradient)
+        .blockSize({width:"50vp",height:"50vp"})
+      Slider({
+        style:SliderStyle.NONE,
+        min: 0,
+        max: 100,
+      })
+        .blockColor(this.colorGradient)
+        .blockSize({width:"50vp",height:"50vp"})
+      Slider({
+        style:SliderStyle.NONE,
+        min: 0,
+        max: 100,
+        reverse: true
+      })
+        .blockColor(this.colorGradient)
+        .blockSize({width:"50vp",height:"50vp"})
+
+      Row({ space: 20 }){
+        Slider({
+          style:SliderStyle.OutSet,
+          min: 0,
+          max: 100,
+          direction:Axis.Vertical
+        })
+          .blockColor(this.colorGradient)
+          .blockSize({width:"50vp",height:"50vp"})
+        Slider({
+          style:SliderStyle.OutSet,
+          min: 0,
+          max: 100,
+          reverse: true,
+          direction:Axis.Vertical
+        })
+          .blockColor(this.colorGradient)
+          .blockSize({width:"50vp",height:"50vp"})
+        Slider({
+          style:SliderStyle.InSet,
+          min: 0,
+          max: 100,
+          direction:Axis.Vertical
+        })
+          .blockColor(this.colorGradient)
+          .blockSize({width:"50vp",height:"50vp"})
+        Slider({
+          style:SliderStyle.InSet,
+          min: 0,
+          max: 100,
+          reverse: true,
+          direction:Axis.Vertical
+        })
+          .blockColor(this.colorGradient)
+          .blockSize({width:"50vp",height:"50vp"})
+        Slider({
+          style:SliderStyle.NONE,
+          min: 0,
+          max: 100,
+          direction:Axis.Vertical
+        })
+          .blockColor(this.colorGradient)
+          .blockSize({width:"50vp",height:"50vp"})
+        Slider({
+          style:SliderStyle.NONE,
+          min: 0,
+          max: 100,
+          reverse: true,
+          direction:Axis.Vertical
+        })
+          .blockColor(this.colorGradient)
+          .blockSize({width:"50vp",height:"50vp"})
+      }.height("50%")
+    }.width("100%")
+
+  }
+}
+
+```
+
+![slider_8](figures/slider_8.png)
