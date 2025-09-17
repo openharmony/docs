@@ -237,8 +237,8 @@ static createFromColorFilter(colorFilter: ColorFilter, imageFilter?: ImageFilter
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
 let imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, drawing.TileMode.CLAMP);
-let clolorfilter = drawing.ColorFilter.createSRGBGammaToLinear();
-let imgFilter1 = drawing.ImageFilter.createFromColorFilter(clolorfilter, imgFilter);
+let colorFilter = drawing.ColorFilter.createSRGBGammaToLinear();
+let imgFilter1 = drawing.ImageFilter.createFromColorFilter(colorFilter, imgFilter);
 ```
 ## createOffsetImageFilter<sup>20+</sup>
 
