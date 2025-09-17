@@ -36,7 +36,7 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 | 参数名     | 类型                       | 必填 | 说明                    |
 | -------- | -------------------------- | ---- | ----------------------- |
 | info     | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)              | 是   | 表示创建WantAgent所需的配置信息，包括目标UIAbility、操作类型、请求码等。三方应用在WantAgentInfo中只能设置本应用的UIAbility。|
-| callback | AsyncCallback\<[WantAgent](#wantagent)\> | 是   | 回调函数。当创建创建WantAgent成功，err为undefined，data为获取到的WantAgent；否则为错误对象。 |
+| callback | AsyncCallback\<WantAgent\> | 是   | 创建WantAgent的回调方法。 |
 
 **错误码：**
 
@@ -197,7 +197,7 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 | 参数名     | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | agent    | WantAgent               | 是   | WantAgent对象。                     |
-| callback | AsyncCallback\<string\> | 是   | 回调函数。当获取WantAgent实例的包名成功，err为undefined，data为获取到的包名；否则为错误对象。 |
+| callback | AsyncCallback\<string\> | 是   | 获取WantAgent实例的包名的回调方法。 |
 
 **错误码：**
 
@@ -383,7 +383,7 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 | 参数名     | 类型                    | 必填 | 说明                                |
 | -------- | ----------------------- | ---- | ----------------------------------- |
 | agent    | WantAgent               | 是   | WantAgent对象。                       |
-| callback | AsyncCallback\<number\> | 是   | 回调函数。当获取WantAgent实例所属应用的UID成功，err为undefined，data为获取到的UID；否则为错误对象。 |
+| callback | AsyncCallback\<number\> | 是   | 获取WantAgent实例所属应用的UID的回调方法。 |
 
 **错误码：**
 
@@ -578,7 +578,7 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 | 参数名     | 类型                  | 必填 | 说明                        |
 | -------- | --------------------- | ---- | --------------------------- |
 | agent    | WantAgent             | 是   | WantAgent对象。               |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。当取消WantAgent实例成功，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback\<void\> | 是   | 取消WantAgent实例的回调方法。 |
 
 **错误码：**
 
@@ -776,7 +776,7 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<Co
 | ----------- | ----------------------------- | ---- | ------------------------------- |
 | agent       | WantAgent                     | 是   | WantAgent对象。                   |
 | triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                   | 是   | 表示触发WantAgent实例时携带的信息，如自定义的extraInfos。 |
-| callback    | AsyncCallback\<[CompleteData](#completedata)\> | 否   | 回调函数。当主动激发WantAgent实例成功，err为undefined，data为CompleteData对象；否则为错误对象。 |
+| callback    | AsyncCallback\<[CompleteData](#completedata)\> | 否   | 主动激发WantAgent实例的回调方法。 |
 
 **错误码：**
 
@@ -878,7 +878,7 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 | ---------- | ------------------------ | ---- | --------------------------------------- |
 | agent      | WantAgent                | 是   | WantAgent对象。                           |
 | otherAgent | WantAgent                | 是   | WantAgent对象。                           |
-| callback   | AsyncCallback\<boolean\> | 是   | 回调函数。当判断两个WantAgent实例是否相等的回调执行成功，err为undefined，data为获取到的结果；否则为错误对象。返回true表示两个WantAgent实例相等，false表示两个WantAgent实例不相等。 |
+| callback   | AsyncCallback\<boolean\> | 是   | 判断两个WantAgent实例是否相等的回调方法。返回true表示两个WantAgent实例相等，false表示两个WantAgent实例不相等。 |
 
 **错误码：**
 
@@ -1068,7 +1068,7 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void
 | 参数名       | 类型                     | 必填 | 说明                                    |
 | ---------- | ------------------------ | ---- | --------------------------------------- |
 | agent      | WantAgent                | 是   | WantAgent对象。                           |
-| callback   | AsyncCallback\<number> | 是   | 回调函数。当获取一个WantAgent的OperationType信息成功，err为undefined，data为获取到的OperationType信息；否则为错误对象。 |
+| callback   | AsyncCallback\<number> | 是   | 获取一个WantAgent的OperationType信息的回调方法。 |
 
 **错误码：**
 

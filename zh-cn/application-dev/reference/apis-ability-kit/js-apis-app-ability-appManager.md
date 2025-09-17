@@ -48,7 +48,7 @@ isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 |回调函数。当查询当前是否处于稳定性测试场景成功，err为undefined，data为true表示处于稳定性测试场景，返回false表示处于非稳定性测试场景；否则为错误对象。可进行错误处理或其他自定义处理。  | 
+  | callback | AsyncCallback&lt;boolean&gt; | 是 |以回调方式返回接口运行结果及当前系统是否处于稳定性测试场景，可进行错误处理或其他自定义处理。返回true表示系统处于稳定性测试场景，返回false表示系统不处于稳定性测试场景。  |
 
 **错误码**：
 
@@ -88,7 +88,7 @@ isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise对象，返回接口运行结果及当前是否处于稳定性测试场景，可进行错误处理或其他自定义处理。返回true表示处于稳定性测试场景，返回false表示处于非稳定性测试场景。  | 
+  | Promise&lt;boolean&gt; | 以Promise方式返回接口运行结果及当前是否处于稳定性测试场景，可进行错误处理或其他自定义处理。返回true表示系统处于稳定性测试场景，返回false表示系统不处于稳定性测试场景。 |
 
 **错误码**：
 
@@ -116,7 +116,7 @@ appManager.isRunningInStabilityTest().then((flag) => {
 
 isRamConstrainedDevice(): Promise\<boolean>
 
-查询是否为ram受限设备。使用Promise异步回调。
+查询当前设备是否为RAM受限设备（内存资源严重受限的设备）。使用Promise异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -126,7 +126,7 @@ isRamConstrainedDevice(): Promise\<boolean>
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise对象，返回接口运行结果及当前设备是否为ram受限设备，可进行错误处理或其他自定义处理。true：当前设备为ram受限设备，false：当前设备为非ram受限设备。 | 
+  | Promise&lt;boolean&gt; | 以Promise方式返回接口运行结果及当前设备是否为RAM受限设备，可进行错误处理或其他自定义处理。true：当前设备为RAM受限设备，false：当前设备为非RAM受限设备。 |
 
 **错误码**：
 
@@ -153,7 +153,7 @@ appManager.isRamConstrainedDevice().then((data) => {
 
 isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
-查询是否为ram受限设备。使用callback异步回调。
+查询当前设备是否为RAM受限设备（内存资源严重受限的设备）。使用callback异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -163,7 +163,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 |以回调方式返回接口运行结果及当前设备是否为ram受限设备，可进行错误处理或其他自定义处理。true：当前设备为ram受限设备，false：当前设备为非ram受限设备。  | 
+  | callback | AsyncCallback&lt;boolean&gt; | 是 |以回调方式返回接口运行结果及当前设备是否为RAM受限设备，可进行错误处理或其他自定义处理。true：当前设备为RAM受限设备，false：当前设备为非RAM受限设备。  |
 
 **错误码**：
 
@@ -192,7 +192,7 @@ appManager.isRamConstrainedDevice((err, data) => {
 
 getAppMemorySize(): Promise\<number>
 
-获取当前应用程序可以使用的内存的值。使用Promise异步回调。
+获取当前应用程序可以使用的最大内存（RAM）值。使用Promise异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -202,7 +202,7 @@ getAppMemorySize(): Promise\<number>
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | Promise&lt;number&gt; | Promise对象，返回当前应用程序可以使用的内存的值，可根据此值进行错误处理或其他自定义处理，单位是M。| 
+  | Promise&lt;number&gt; | 当前应用程序可以使用的最大内存（RAM）值，可根据此值进行错误处理或其他自定义处理，单位是M。使用Promise异步回调。|
 
 **错误码**：
 
@@ -229,7 +229,7 @@ appManager.getAppMemorySize().then((data) => {
 
 getAppMemorySize(callback: AsyncCallback\<number>): void
 
-获取当前应用程序可以使用的内存的值。使用callback异步回调。
+获取当前应用程序可以使用的最大内存（RAM）值。使用callback异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -239,7 +239,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当获取当前应用程序可以使用的内存值成功，err为undefined，data为获取到的可用内存值，单位是M；否则为错误对象。可根据此值进行错误处理或其他自定义处理。 | 
+  | callback | AsyncCallback&lt;number&gt; | 是 |获取当前应用程序可以使用的最大内存（RAM）值，可根据此值进行错误处理或其他自定义处理，单位是M。使用callback异步回调。|
 
 **错误码**：
 
@@ -325,7 +325,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 是 | 回调函数。当获取当前应用运行进程的相关信息成功，err为undefined，data为获取到的应用运行进程信息；否则为错误对象。可进行错误处理或其他自定义处理。|
+  | callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 是 |以callback方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。|
 
 **错误码**：
 
