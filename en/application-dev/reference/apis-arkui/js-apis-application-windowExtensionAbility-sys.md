@@ -9,8 +9,8 @@
 **WindowExtensionAbility** inherits from **ExtensionAbility**. The content in a WindowExtensionAbility object can be displayed as an ability component in other application windows.
 
 > **NOTE**
->
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > - The APIs provided by this module are system APIs.
 >
@@ -28,7 +28,7 @@ import { WindowExtensionAbility } from '@kit.ArkUI';
 
 | Name     | Type| Read-Only| Optional| Description                     |
 | --------- | -------- | ---- | ---- | ------------------------- |
-| context      | [WindowExtensionContext](js-apis-inner-application-windowExtensionContext-sys.md)   | No  | No  | Context of an Extension ability.     |
+| context      | [WindowExtensionContext](js-apis-inner-application-windowExtensionContext-sys.md)   | No  | No  | Context of an ExtensionAbility.<br>- Note: This API is supported since API version 9 and deprecated since API version 21. You are advised to use [UIExtensionAbility.context](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#properties) instead.<br>     |
 
 ## WindowExtensionAbility.onConnect
 
