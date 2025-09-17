@@ -18,7 +18,7 @@ The application sandbox ensures that only the intended user can access the data 
 
 ## Application Permissions
 
-The system has process domain and data domain labels set based on the [Ability Privilege Level (APL)](app-permission-mgmt-overview.md#basic-concepts-in-the permission-mechanism) of an application, and uses the access control mechanism to restrict the data accessible to each application. This minimizes the risks of application data leakage.
+The system has process domain and data domain labels set based on the [Ability Privilege Level (APL)](app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism) of an application, and uses the access control mechanism to restrict the data accessible to each application. This minimizes the risks of application data leakage.
 
 Applications of different APLs are assigned permissions at different levels. The strict hierarchical permission management provides robust defense against malicious attacks and ensures system security and reliability. In addition to system resources (such as Contacts) and system capabilities (such as Camera and Microphone), some kernel resources (such as executable anonymous memory) are also protected by permissions. These permissions are called KernelPermissions.
 

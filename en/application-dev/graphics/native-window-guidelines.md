@@ -1,9 +1,13 @@
 # Native Window Development (C/C++)
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @Felix-fangyang; @li_hui180; @dingpy-->
+<!--Designer: @conan13234-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
 ## When to Use
 
 The native window module is a local platform-based window that represents the producer of a graphics queue. It provides APIs for you to request and flush a buffer and configure buffer attributes.
-
 The following scenarios are common for native window development:
 
 * Request a graphics buffer by using the native window API, write the produced graphics content to the buffer, and flush the buffer to the graphics queue.
@@ -17,7 +21,7 @@ The following scenarios are common for native window development:
 | OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer, int fenceFd, Region region) | Flushes the **OHNativeWindowBuffer** filled with the produced content to the buffer queue through an **OHNativeWindow** instance for content consumption.| 
 | OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow \*window, int code,...) | Sets or obtains the attributes of an **OHNativeWindow** instance, including the width, height, and content format.| 
 
-For details about the APIs, see [native_window](../reference/apis-arkgraphics2d/_native_window.md).
+For details, see [native_window](../reference/apis-arkgraphics2d/capi-nativewindow.md).
 
 ## How to Develop
 
@@ -42,14 +46,17 @@ libnative_window.so
 
 1. Obtain an **OHNativeWindow** instance.
 
-    You can call the APIs provided by [OH_NativeXComponent_Callback](../reference/apis-arkui/_o_h___native_x_component___callback.md) to obtain an **OHNativeWindow** instance. An example code snippet is provided below. For details about how to use the **XComponent**, see [XComponent Development](../ui/napi-xcomponent-guidelines.md).
+    You can obtain **OHNativeWindow** through the APIs provided by `OH_NativeXComponent_Callback`. The following provides a code example. For details about how to use the **XComponent**, see [XComponent Development](../ui/napi-xcomponent-guidelines.md).
+
     1. Add an **XComponent** to the .ets file.
+
         ```ts
-        XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'entry'})
+        XComponent({ id: 'xcomponentId', type: XComponentType.SURFACE, libraryname: 'entry'})
             .width(360)
             .height(360)
         ```
     2. Obtain **NativeXComponent** at the native C++ layer.
+
         ```c++
         napi_value exportInstance = nullptr;
         // Parse the attribute of the wrapped NativeXComponent pointer.
@@ -63,6 +70,7 @@ libnative_window.so
         OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize);
         ```
     3. Define **OH_NativeXComponent_Callback**.
+
         ```c++
         // Define the callback.
         void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
@@ -93,6 +101,7 @@ libnative_window.so
             // ...
         }
         ```
+
         ```c++
         // Initialize OH_NativeXComponent_Callback.
         OH_NativeXComponent_Callback callback;
@@ -101,13 +110,16 @@ libnative_window.so
         callback.OnSurfaceDestroyed = OnSurfaceDestroyedCB;
         callback.DispatchTouchEvent = DispatchTouchEventCB;
         ```
+
    4. Register **OH_NativeXComponent_Callback** with **NativeXComponent**.
+
         ```c++
         // Register the callback.
         OH_NativeXComponent_RegisterCallback(nativeXComponent, &callback);
         ```
 
 2. Set the attributes of an **OHNativeWindowBuffer** by using **OH_NativeWindow_NativeWindowHandleOpt**.
+
     ```c++
     // Set the width and height of the OHNativeWindowBuffer.
     int32_t code = SET_BUFFER_GEOMETRY;
@@ -118,6 +130,7 @@ libnative_window.so
     ```
 
 3. Request an **OHNativeWindowBuffer** from the graphics queue.
+
     ```c++
     OHNativeWindowBuffer* buffer = nullptr;
     int releaseFenceFd = -1;
@@ -131,6 +144,7 @@ libnative_window.so
     ```
 
 4. Map memory.
+
     ```c++
     #include <sys/mman.h>
 
@@ -142,9 +156,8 @@ libnative_window.so
     }
     ```
 
-5. Write the produced content to the **OHNativeWindowBuffer**.
+5. Write the produced content to the **OHNativeWindowBuffer**. Before this operation, wait until **releaseFenceFd** is available. (Note that **poll** needs to be called only when **releaseFenceFd** is not **-1**.) If no data waiting for **releaseFenceFd** is available (POLLIN), problems such as artifacts, cracks, and High Efficiency Bandwidth Compression (HEBC) faults may occur. **releaseFenceFd** is a file handle created by the consumer process to indicate that the consumer has consumed the buffer, the buffer is readable, and the producer can start to fill in the buffer.
 
-   Before this operation, wait until **releaseFenceFd** is available. (Note that **poll** needs to be called only when **releaseFenceFd** is not **-1**.) If no data waiting for **releaseFenceFd** is available (POLLIN), problems such as artifacts, cracks, and High Efficiency Bandwidth Compression (HEBC) faults may occur. **releaseFenceFd** is a file handle created by the consumer process to indicate that the consumer has consumed the buffer, the buffer is readable, and the producer can start to fill in the buffer.
     ```c++
     int retCode = -1;
     uint32_t timeout = 3000;
@@ -168,9 +181,8 @@ libnative_window.so
     }
     ```
 
-6. Flush the **OHNativeWindowBuffer** to the graphics queue.
+6. Flush the **OHNativeWindowBuffer** to the graphics queue. Note that **acquireFenceFd** of **OH_NativeWindow_NativeWindowFlushBuffer** cannot be the same as **releaseFenceFd** obtained by **OH_NativeWindow_NativeWindowRequestBuffer**. **acquireFenceFd** is the file handle passed in by the producer, and the default value **-1** can be passed. Based on **acquireFenceFd**, the consumer, after obtaining the buffer, determines when to render and display the buffered content.
 
-   Note that **acquireFenceFd** of **OH_NativeWindow_NativeWindowFlushBuffer** cannot be the same as **releaseFenceFd** obtained by **OH_NativeWindow_NativeWindowRequestBuffer**. **acquireFenceFd** is the file handle passed in by the producer, and the default value **-1** can be passed. Based on **acquireFenceFd**, the consumer, after obtaining the buffer, determines when to render and display the buffered content.
     ```c++
     // Set the refresh region. If Rect in Region is a null pointer or rectNumber is 0, all contents in the OHNativeWindowBuffer are changed.
     Region region{nullptr, 0};
@@ -178,7 +190,9 @@ libnative_window.so
     // Flush the buffer to the consumer through OH_NativeWindow_NativeWindowFlushBuffer, for example, by displaying it on the screen.
     OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, buffer, acquireFenceFd, region);
     ```
+
 7. Unmap memory.
+
     ```c++
     // Unmap the memory when the memory is no longer required.
     int result = munmap(mappedAddr, bufferHandle->size);
@@ -187,3 +201,8 @@ libnative_window.so
     }
     ```
 
+## Samples
+
+The following samples are provided to help you better understand how to use the native Window module for development:
+
+- [NativeWindow (API11) ](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkNativeWindow)
