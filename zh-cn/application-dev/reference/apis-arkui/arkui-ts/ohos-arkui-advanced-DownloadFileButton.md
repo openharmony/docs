@@ -53,10 +53,10 @@ import { DownloadFileButton } from '@kit.ArkUI';
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型                                                         | 必填 | 说明                                                         |
-| ---- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| icon | [DownloadIconStyle](#downloadiconstyle) | 否   | 设置下载按钮的图标风格<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
-| text | [DownloadDescription](#downloaddescription) | 否   | 设置下载按钮的文本描述<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
+| 名称 | 类型                                                         | 只读 | 可选 | 说明                                                         |
+| ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| icon | [DownloadIconStyle](#downloadiconstyle) | 否   | 是   | 设置下载按钮的图标风格。 <br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
+| text | [DownloadDescription](#downloaddescription) | 否   | 是   | 设置下载按钮的文本描述。 <br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
 
 ## DownloadStyleOptions
 
@@ -66,17 +66,17 @@ import { DownloadFileButton } from '@kit.ArkUI';
 
 **系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 类型                                                         | 必填 | 说明                                                         |
-| --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| iconSize        | Dimension                                                    | 否   | 下载控件上图标的尺寸，不支持百分比。<br/>默认值：16vp                      |
-| layoutDirection | [DownloadLayoutDirection](#downloadlayoutdirection) | 否   | 下载控件上图标和文字分布的方向。<br/>默认值：DownloadLayoutDirection.HORIZONTAL |
-| fontSize        | Dimension          | 否   | 下载控件上文字的尺寸，不支持百分比。<br/>默认值：16fp                      |
-| fontStyle       | [FontStyle](ts-appendix-enums.md#fontstyle)       | 否   | 下载控件上文字的样式。<br/>默认值：FontStyle.Normal          |
-| fontWeight      | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string   | 否   | 下载控件上文字粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Medium           |
-| fontFamily      | string \| [Resource](ts-types.md#resource)    | 否   | 下载控件上文字的字体。<br/>默认字体：'HarmonyOS Sans'        |
-| fontColor       |[ ResourceColor ](ts-types.md#resourcecolor)   | 否   | 下载控件上文字的颜色。<br/>默认值：#ffffffff                 |
-| iconColor       | [ ResourceColor ](ts-types.md#resourcecolor)  | 否   | 下载控件上图标的颜色。<br/>默认值：#ffffffff                 |
-| textIconSpace   | Dimension         | 否   | 下载控件中图标和文字的间距。<br/>默认值：4vp                 |
+| 名称            | 类型                                                         | 只读 | 可选 | 说明                                                         |
+| --------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| iconSize        | [Dimension](ts-types.md#dimension10)    | 否   | 是   | 下载控件上图标的尺寸，不支持百分比。 <br/>默认值：16vp            |
+| layoutDirection | [DownloadLayoutDirection](#downloadlayoutdirection) | 否   | 是   | 下载控件上图标和文字分布的方向。 <br/>默认值：DownloadLayoutDirection.HORIZONTAL |
+| fontSize        | [Dimension](ts-types.md#dimension10) | 否   | 是   | 下载控件上文字的尺寸，不支持百分比。 <br/>默认值：16fp            |
+| fontStyle       | [FontStyle](ts-appendix-enums.md#fontstyle) | 否   | 是   | 下载控件上文字的样式。 <br/>默认值：FontStyle.Normal              |
+| fontWeight      | number\|[FontWeight](ts-appendix-enums.md#fontweight)\|string | 否   | 是   | 下载控件上文字粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。 <br/>默认值：FontWeight.Medium |
+| fontFamily      | string\|[Resource](ts-types.md#resource) | 否   | 是   | 下载控件上文字的字体。<br/> 默认字体：'HarmonyOS Sans'      |
+| fontColor       | [ResourceColor](ts-types.md#resourcecolor) | 否   | 是   | 下载控件上文字的颜色。 <br/>默认值：#ffffffff                     |
+| iconColor       | [ResourceColor](ts-types.md#resourcecolor) | 否   | 是   | 下载控件上图标的颜色。 <br/>默认值：#ffffffff                     |
+| textIconSpace   | [Dimension](ts-types.md#dimension10) | 否   | 是   | 下载控件中图标和文字的间距。<br/> 默认值：4vp                     |
 
 ## DownloadIconStyle
 
