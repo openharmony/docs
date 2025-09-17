@@ -36,7 +36,7 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 | 参数名     | 类型                  | 必填 | 说明                            |
 | -------- | --------------------- | ---- | ------------------------------- |
 | agent    | [WantAgent](js-apis-app-ability-wantAgent.md#wantagent)             | 是   | WantAgent对象。                   |
-| callback | AsyncCallback\<[Want](js-apis-app-ability-want.md)\> | 是   | 回调函数。当获取WantAgent对象的want成功，err为undefined，data为want对象；否则为错误对象。 |
+| callback | AsyncCallback\<[Want](js-apis-app-ability-want.md)\> | 是   | 获取WantAgent对象want的回调方法。 |
 
 **错误码：**
 

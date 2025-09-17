@@ -145,7 +145,7 @@ off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): v
   | -------- | -------- | -------- | -------- |
   | type     | string   | 是       | 取消监听的任务名称。固定值：'mission'，表示系统任务状态监听器。 |
   | listenerId | number | 是 | 系统任务状态监器法的index值，和监听器一一对应，由on方法返回。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当解注册任务状态监听器成功，err为undefined，否则为错误对象。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **错误码**：
 
@@ -377,7 +377,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;[MissionInfo](js-apis-inner-application-missionInfo-sys.md)&gt; | 是 | 回调函数。当获取任务信息成功，err为undefined，data为获取到的任务信息；否则为错误对象。 |
+  | callback | AsyncCallback&lt;[MissionInfo](js-apis-inner-application-missionInfo-sys.md)&gt; | 是 | 执行结果回调函数，返回任务信息。 |
 
 **错误码：**
 
@@ -502,7 +502,7 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | numMax | number | 是 | 任务信息数量上限。 |
-  | callback | AsyncCallback&lt;Array&lt;[MissionInfo](js-apis-inner-application-missionInfo-sys.md)&gt;&gt; | 是 | 回调函数。当获取所有任务信息成功，err为undefined，data为获取到的所有任务信息的数组；否则为错误对象。 |
+  | callback | AsyncCallback&lt;Array&lt;[MissionInfo](js-apis-inner-application-missionInfo-sys.md)&gt;&gt; | 是 | 执行结果回调函数，返回任务信息数组。 |
 
 **错误码：**
 
@@ -608,7 +608,7 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot-sys.md)&gt; | 是 | 回调函数。当获取任务快照成功，err为undefined，data为获取到的任务快照对象；否则为错误对象。 |
+  | callback | AsyncCallback&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot-sys.md)&gt; | 是 | 执行结果回调函数，返回任务快照信息。 |
 
 **错误码：**
 
@@ -713,7 +713,7 @@ getLowResolutionMissionSnapShot(deviceId: string, missionId: number, callback: A
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 设备ID，本机默认为空字符串。 |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot-sys.md)&gt; | 是 | 回调函数。当获取任务低分辨率快照成功，err为undefined，data为获取到的任务快照对象；否则为错误对象。 |
+  | callback | AsyncCallback&lt;[MissionSnapshot](js-apis-inner-application-missionSnapshot-sys.md)&gt; | 是 | 执行结果回调函数，返回任务快照信息。 |
 
 **错误码：**
 
@@ -820,7 +820,7 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当锁定指定任务ID的任务成功，err为undefined；否则为错误对象。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **错误码**：
 
@@ -926,7 +926,7 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | missionId | number | 是 | 任务ID。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当解锁指定任务ID的任务成功，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **错误码**：
 
@@ -1032,7 +1032,7 @@ clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当清理指定任务ID的任务成功，err为undefined；否则为错误对象。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **错误码：**
 
@@ -1137,7 +1137,7 @@ clearAllMissions(callback: AsyncCallback&lt;void&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当清理所有未锁定的任务成功，err为undefined；否则为错误对象。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **错误码：**
 
@@ -1231,7 +1231,7 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当把指定任务ID的任务切到前台成功，err为undefined；否则为错误对象。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **错误码**：
 
@@ -1284,7 +1284,7 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
   | -------- | -------- | -------- | -------- |
   | missionId | number | 是 | 任务ID。 |
   | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当把指定任务ID的任务切到前台成功，err为undefined；否则为错误对象。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **错误码**：
 
@@ -1392,7 +1392,7 @@ moveMissionsToForeground(missionIds: Array&lt;number&gt;, callback: AsyncCallbac
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionIds | Array&lt;number&gt; | 是 | 任务ID数组。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当将指定任务批量切到前台成功，err为undefined；否则为错误对象。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **错误码**：
 
@@ -1460,7 +1460,7 @@ moveMissionsToForeground(missionIds: Array&lt;number&gt;, topMission: number, ca
   | -------- | -------- | -------- | -------- |
   | missionIds | Array&lt;number&gt; | 是 | 任务ID数组。 |
   | topMission | number | 是 | 待移动到最顶层的任务ID |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当将指定任务批量切换到前台成功，err为undefined；否则为错误对象。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 执行结果回调函数。 |
 
 **错误码**：
 
@@ -1596,7 +1596,7 @@ moveMissionsToBackground(missionIds: Array&lt;number&gt;, callback: AsyncCallbac
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | missionIds | Array&lt;number&gt; | 是 | 任务ID数组。 |
-  | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是 | 回调函数。当将指定任务批量切到后台成功，err为undefined，data为获取到的结果任务ID；否则为错误对象。 |
+  | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是 | 执行结果回调函数。 |
 
 **错误码**：
 
