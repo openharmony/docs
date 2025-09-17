@@ -134,9 +134,9 @@ HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hia
    ```
 
 3. 采样trace规格
-   trace文件大小约为1-5M左右。trace文件可以通过[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化分析。工具下载链接：[developtools_smartperf_host官方发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
+   trace文件大小约为1-5M左右。trace文件可以通过[HiSmartPerf](https://gitcode.com/openharmony/developtools_smartperf_host)工具进行可视化分析。工具下载链接：[developtools_smartperf_host官方发行版](https://gitcode.com/openharmony/developtools_smartperf_host/releases)。
 
-   trace文件说明参考：[web端加载trace说明](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/smartperf_host/ide/src/doc/md/quickstart_systemtrace.md)。
+   trace文件说明参考：[web端加载trace说明](https://gitcode.com/openharmony/developtools_smartperf_host/blob/master/smartperf_host/ide/src/doc/md/quickstart_systemtrace.md)。
 
 ## 任务执行超时检测
 
