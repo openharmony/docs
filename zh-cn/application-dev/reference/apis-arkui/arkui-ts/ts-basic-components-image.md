@@ -2297,7 +2297,7 @@ struct Index {
 }
 ```
 
-![sandBox](figures/svg/svg2.PNG)
+![sandBox](figures/svg2.PNG)
 
 ### 示例27（使用ContentTransition属性实现图片淡入淡出切换效果）
 
