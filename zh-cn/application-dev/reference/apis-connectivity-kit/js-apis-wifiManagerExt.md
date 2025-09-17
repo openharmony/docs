@@ -1,4 +1,9 @@
 # @ohos.wifiManagerExt (WLAN扩展接口)
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @qq_43802146-->
+<!--SE: @qq_43802146-->
+<!--TSE: @furryfurry123-->
 该模块主要提供WLAN扩展接口，供非通用类型产品使用。
 
 > **说明：**
@@ -161,7 +166,7 @@ getSupportedPowerMode(callback: AsyncCallback&lt;Array&lt;PowerMode&gt;&gt;): vo
 
   wifiManagerExt.getSupportedPowerMode().then(data => {
       console.info("get supported power mode info: " + JSON.stringify(data));
-  }).catch((error:number) => {
+  }).catch((error) => {
       console.error("get supported power mode error");
   });
 ```
