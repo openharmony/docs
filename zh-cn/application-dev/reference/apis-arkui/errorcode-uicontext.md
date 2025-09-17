@@ -1,4 +1,10 @@
 # UI上下文错误码
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：**
 >
@@ -57,3 +63,57 @@ The callback function is invalid.
 **处理步骤**
 
 传入正确类型的回调函数。
+
+## 100101 小于0的非法值
+
+**错误信息**
+
+The parameter value cannot be less than 0.
+
+**错误描述**
+
+参数不能小于0。
+
+**可能原因**
+
+开发者传入了小于0的非法值。
+
+**处理步骤**
+
+传入正常范围的参数。
+
+## 100102 参数类型错误
+
+**错误信息**
+
+The parameter value cannot be a floating-point number.
+
+**错误描述**
+
+参数不能为浮点数。
+
+**可能原因**
+
+开发者传入了浮点数。
+
+**处理步骤**
+
+传入整数。
+
+## 100103 调用线程错误
+
+**错误信息**
+
+The function cannot be called from a non-main thread.
+
+**错误描述**
+
+不能在非主线程中调用该函数。
+
+**可能原因**
+
+开发者在非主线程中调用了该函数。
+
+**处理步骤**
+
+在主线程中调用该函数。

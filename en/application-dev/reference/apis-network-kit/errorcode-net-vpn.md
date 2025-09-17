@@ -1,5 +1,12 @@
 # VPN Error Codes
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -59,3 +66,39 @@ A TCP socket connection fails to be established.
 **Solution**
 
 Check whether a TCP socket connection is set up successfully.
+
+## 19900001 Invalid Parameter
+
+**Error Information**
+
+Invalid parameter value.
+
+**Description**
+
+This error code is reported if one or more parameters are invalid.
+
+**Possible Causes**
+
+The type or number of parameters is incorrect.
+
+**Solution**
+
+Check the type and number of parameters.
+
+## 19900002 System Internal Error
+
+**Error Information**
+
+System internal error.
+
+**Description**
+
+This error code is reported if an internal system error occurs.
+
+**Possible Causes**
+
+An internal error is probably due to a null pointer, memory allocation error, or IPC communication error.
+
+**Solution**
+
+Check whether the VPN service is normal.

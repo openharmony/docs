@@ -260,6 +260,7 @@ import { ChipSize, ChipGroup } from '@kit.ArkUI';
 @Component
 struct Index {
   @State selected_index: Array<number> = [0, 1, 2, 3, 4, 5, 6]
+
   build() {
     Column() {
       ChipGroup({
@@ -308,7 +309,7 @@ struct Index {
         multiple: false,
         chipGroupSpace: { itemSpace: 8, endSpace: 0 },
         chipGroupPadding: { top: 10, bottom: 10 },
-        onChange: (activatedChipsIndex:Array<number>) => {
+        onChange: (activatedChipsIndex: Array<number>) => {
           console.info('chips on clicked, activated index ' + activatedChipsIndex)
         },
       })
@@ -324,7 +325,7 @@ struct Index {
 通过配置suffix实现最右侧的自定义组件效果。
 
 ```typescript
-import { ChipSize, ChipGroup, IconGroupSuffix  } from '@kit.ArkUI';
+import { ChipSize, ChipGroup, IconGroupSuffix } from '@kit.ArkUI';
 
 @Entry
 @Preview
@@ -424,9 +425,11 @@ struct Index {
   @State selected_index: Array<number> = [0, 1, 2, 3, 4, 5, 6];
   @State selected_state: boolean = true;
   @State prefixModifierNormal: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_star'));
-  @State prefixModifierActivated: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Red]);
+  @State prefixModifierActivated: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Red]);
   @State suffixModifierNormal: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_wifi'));
-  @State suffixModifierActivated: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')).fontColor([Color.Red]);
+  @State suffixModifierActivated: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')).fontColor([Color.Red]);
 
   @LocalBuilder
   ChipGroupSuffix(): void {
@@ -501,7 +504,6 @@ struct Index {
     }
   }
 }
-
 ```
 ![](figures/chipGroupDemo3.jpeg)
 

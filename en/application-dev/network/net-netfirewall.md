@@ -1,4 +1,10 @@
-# Network Firewall
+# Using the Network Firewall
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
 
 ## Introduction
 
@@ -20,7 +26,7 @@ Typical firewall scenarios include:
 4. Putting interception rules into effect immediately after delivery (This function is applicable only to the TCP protocol. An intercepted TCP connection must be disconnected.)
 - Domain name-based access control
 1. Restricting DNS resolution of an application for specific domain names (This function is applicable to standard unencrypted DNS protocols, but not encrypted and private DNS protocols.)
-2. Restricting DNS resolution of specific applications for specific domain names (This function is applicable to standard unencrypted DNS protocols, but not encrypted and private DNS protocols.)
+2. Restricting DNS resolution of an application for specific domain names (This function is applicable to standard unencrypted DNS protocols, but not encrypted and private DNS protocols.)
 3. Putting interception rules into effect immediately after delivery (This function is applicable only to the TCP protocol. An intercepted TCP connection must be disconnected.)
 <!--Del-->
 - Traceable network access
@@ -79,7 +85,7 @@ The following describes the development procedure specific to each application s
       name: "rule1",
       description: "rule1 description",
       direction: netFirewall.NetFirewallRuleDirection.RULE_IN,
-      action:netFirewall.FirewallRuleAction.RULE_DENY,
+      action: netFirewall.FirewallRuleAction.RULE_DENY,
       type: netFirewall.NetFirewallRuleType.RULE_IP,
       isEnabled: true,
       appUid: 20001,
@@ -142,7 +148,7 @@ The following describes the development procedure specific to each application s
     import { BusinessError } from '@kit.BasicServicesKit';
     ```
 
-3. Call **setNetFirewallPolicy** to enable the firewall in user mode.
+3. Call **setNetFirewallPolicy** to enable the firewall.
 
     ```ts
     interface domain{
@@ -164,7 +170,7 @@ The following describes the development procedure specific to each application s
     });
     ```
 
-4. Call **addNetFirewallRule** to add firewall rules in user mode.
+4. Call **addNetFirewallRule** to add firewall rules.
 
     ```ts
     // Initialize firewall rules for specific types of domain names.
@@ -172,7 +178,7 @@ The following describes the development procedure specific to each application s
       name: "rule2",
       description: "rule2 description",
       direction: netFirewall.NetFirewallRuleDirection.RULE_IN,
-      action:netFirewall.FirewallRuleAction.RULE_DENY,
+      action: netFirewall.FirewallRuleAction.RULE_DENY,
       type: netFirewall.NetFirewallRuleType.RULE_DOMAIN,
       isEnabled: true,
       appUid: 20002,

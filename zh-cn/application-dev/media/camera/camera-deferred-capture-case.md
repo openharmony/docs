@@ -6,7 +6,7 @@
 <!--Tester: @xchaosioda-->
 <!--Adviser: @zengyawen-->
 
-在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+在开发相机应用时，需要先[申请相关权限](camera-preparation.md)。
 
 当前示例提供完整的分段式拍照流程介绍，方便开发者了解完整的接口调用顺序。
 
@@ -73,8 +73,8 @@ async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset,
 }
 
 function setPhotoOutputCb(photoOutput: camera.PhotoOutput, context: Context): void {
-  //监听回调之后，调用photoOutput的capture方法，低质量图上报后触发回调。
-  photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
+  // 监听回调之后，调用photoOutput的capture方法，低质量图上报后触发回调。
+  photoOutput.on('photoAssetAvailable', async (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): Promise<void> => {
     console.info('getPhotoAsset start');
     console.error(`err: ${err}`);
     if ((err !== undefined && err.code !== 0) || photoAsset === undefined) {
@@ -82,11 +82,12 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput, context: Context): vo
       return;
     }
     // 调用媒体库落盘接口保存一阶段低质量图，二阶段真图就绪后媒体库会主动帮应用替换落盘图片。
-    mediaLibSavePhoto(photoAsset, getPhotoAccessHelper(context));
+    await mediaLibSavePhoto(photoAsset, getPhotoAccessHelper(context));
     // 调用媒体库接口注册低质量图或高质量图buffer回调，自定义处理。
-    mediaLibRequestBuffer(photoAsset, context);
+    // mediaLibRequestBuffer(photoAsset, context);
   });
 }
+
 
 async function deferredCaptureCase(context: Context, surfaceId: string): Promise<void> {
   // 创建CameraManager对象。
@@ -134,7 +135,7 @@ async function deferredCaptureCase(context: Context, surfaceId: string): Promise
   let cameraDevice: camera.CameraDevice = cameraArray[0];
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
     console.error(`Camera input error code: ${error.code}`);
-  })
+  });
 
   // 打开相机。
   await cameraInput.open();
@@ -165,7 +166,7 @@ async function deferredCaptureCase(context: Context, surfaceId: string): Promise
     console.error('createOutput photoProfilesArray == null || undefined');
   }
 
-  // 创建预览输出流,其中参数 surfaceId 参考上文 XComponent 组件，预览流为XComponent组件提供的surface。
+  // 创建预览输出流,其中参数surfaceId参考上文XComponent组件，预览流为XComponent组件提供的surface。
   try {
     previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
   } catch (error) {
@@ -192,10 +193,10 @@ async function deferredCaptureCase(context: Context, surfaceId: string): Promise
     return;
   }
 
-  //注册监听photoAssetAvailable回调。
+  // 注册监听photoAssetAvailable回调。
   setPhotoOutputCb(photoOutput, context);
 
-  //创建会话。
+  // 创建会话。
   try {
     photoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
   } catch (error) {
@@ -338,14 +339,14 @@ async function releaseCamSession() {
   // 停止当前会话。
   await photoSession?.stop();
 
-  // 释放相机输入流。
-  await cameraInput?.close();
+  // 释放拍照输出流。
+  await photoOutput?.release();
 
   // 释放预览输出流。
   await previewOutput?.release();
 
-  // 释放拍照输出流。
-  await photoOutput?.release();
+  // 释放相机输入流。
+  await cameraInput?.close();
 
   // 释放会话。
   await photoSession?.release();
@@ -397,7 +398,7 @@ struct Index {
               console.info(`onLoad surfaceId: ${this.surfaceId}`);
               deferredCaptureCase(this.context, this.surfaceId);
             }
-          })// The width and height of the surface are opposite to those of the XComponent.
+          })
           .renderFit(RenderFit.RESIZE_CONTAIN)
         }
       }

@@ -4,7 +4,7 @@
 <!--Owner: @michael_woo888-->
 <!--Designer: @dongqingran; @wulong158-->
 <!--Tester: @wanghong1997-->
-<!--Adviser: @huipeizi-->
+<!--Adviser: @fang-jinxu-->
 
 本模块提供通知管理的能力，包括发布、更新、取消通知，创建、获取、移除通知渠道，获取发布通知应用的使能状态，获取通知的相关信息等。
 
@@ -1533,6 +1533,8 @@ isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
 查询设备是否支持跨设备协同通知。使用callback异步回调。
 
+**设备行为差异**：该接口在Wearable/TV中回调返回恒为false，在其他设备类型中回调正常。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **参数：**
@@ -1574,6 +1576,8 @@ isDistributedEnabled(): Promise\<boolean>
 
 查询设备是否支持跨设备协同通知。使用Promise异步回调。
 
+**设备行为差异**：该接口在Wearable/TV中回调返回恒为false，在其他设备类型中回调正常。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **返回值：**
@@ -1612,8 +1616,6 @@ openNotificationSettings(context: UIAbilityContext): Promise\<void\>
 拉起应用的通知设置界面，该页面以半模态形式呈现，可用于设置通知开关、通知提醒方式等。使用Promise异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
-
-**设备行为差异**：该接口在Wearable中返回801错误码，在其他设备类型中可正常调用。
 
 **系统能力**：SystemCapability.Notification.NotificationSettings
 

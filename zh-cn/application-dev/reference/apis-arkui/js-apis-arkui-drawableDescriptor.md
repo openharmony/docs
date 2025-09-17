@@ -100,15 +100,17 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
     @Component
     struct Index {
       private resManager = this.getUIContext().getHostContext()?.resourceManager;
- 
+      // $r('app.media.drawable')需要替换为开发者所需的图像资源文件。
+      private layeredDrawableDescriptor: DrawableDescriptor | undefined =
+        this.resManager?.getDrawableDescriptor($r('app.media.drawable').id);
+
       build() {
         Row() {
           Column() {
-            // $r('app.media.drawable')需要替换为开发者所需的图像资源文件。
-            Image((this.resManager?.getDrawableDescriptor($r('app.media.drawable').id) as LayeredDrawableDescriptor))
-            // $r('app.media.drawable')需要替换为开发者所需的图像资源文件。
-            Image(((this.resManager?.getDrawableDescriptor($r('app.media.drawable')
-            .id) as LayeredDrawableDescriptor).getForeground()).getPixelMap())
+            Image((this.layeredDrawableDescriptor instanceof LayeredDrawableDescriptor) ?
+              this.layeredDrawableDescriptor : undefined)
+            Image((this.layeredDrawableDescriptor instanceof LayeredDrawableDescriptor) ?
+              this.layeredDrawableDescriptor?.getForeground()?.getPixelMap() : undefined)
           }.height('50%')
         }.width('50%')
       }
@@ -216,8 +218,11 @@ getForeground(): DrawableDescriptor
       if (!drawable) {
         return undefined;
       }
-      let layeredDrawableDescriptor = (drawable as LayeredDrawableDescriptor).getForeground();
-      return layeredDrawableDescriptor;
+      if (drawable instanceof LayeredDrawableDescriptor) {
+        let layeredDrawableDescriptor = (drawable as LayeredDrawableDescriptor).getForeground();
+        return layeredDrawableDescriptor;
+      }
+      return undefined;
     }
 
     aboutToAppear(): void {
@@ -389,32 +394,6 @@ struct Index {
 }
   ```
 
-## AnimationOptions<sup>12+</sup>
-
-用于控制通过Image组件显示的PixelMap数组动画的播放行为。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称      | 类型    | 只读  | 可选  | 说明                                    |
-| ---------- | ------ | -----| ----- | --------------------------------------- |
-| duration   | number | 否   |  是   | 设置图片数组播放总时间。默认每张图片播放1秒。<br/> 取值范围：[0, +∞)      |
-| iterations | number | 否   |  是   | 设置图片数组播放次数。默认为1，值为-1时表示无限播放，值为0时表示不播放，值大于0时表示播放次数。 |
-
-**示例：**
-
-```ts
-import { AnimationOptions } from '@kit.ArkUI';
-@Entry
-@Component
-struct Example {
-  options: AnimationOptions = { duration: 2000, iterations: 1 };
-  build() {
-  }
-}
-```
-
 ## AnimatedDrawableDescriptor<sup>12+</sup>
 
 使用Image组件播放PixelMap数组时传入AnimatedDrawableDescriptor对象，该对象继承自[DrawableDescriptor](#drawabledescriptor)。
@@ -436,7 +415,22 @@ AnimatedDrawableDescriptor的构造函数。
 | pixelMaps | Array\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)>  | 是   | PixelMap 数组类型参数，存储 PixelMap 图片数据。 |
 | options   | [AnimationOptions](#animationoptions12) | 否   | 动画控制选项。                               |
 
+## AnimationOptions<sup>12+</sup>
+
+用于控制通过Image组件显示的PixelMap数组动画的播放行为。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 类型    | 只读  | 可选  | 说明                                    |
+| ---------- | ------ | -----| ----- | --------------------------------------- |
+| duration   | number | 否   |  是   | 设置图片数组播放总时间。默认每张图片播放1秒。<br/> 取值范围：[0, +∞)      |
+| iterations | number | 否   |  是   | 设置图片数组播放次数。默认为1，值为-1时表示无限播放，值为0时表示不播放，值大于0时表示播放次数。 |
+
 **示例：**
+
+该示例通过[AnimatedDrawableDescriptor](#animateddrawabledescriptor12)对象和[AnimationOptions](#animationoptions12)接口实现了多张图片的动画播放效果。
 
 ```ts
 import { AnimationOptions, AnimatedDrawableDescriptor } from '@kit.ArkUI';
@@ -452,6 +446,8 @@ struct Example {
   async aboutToAppear() {
     // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
     this.pixelMaps.push(await this.getPixmapFromMedia($r('app.media.icon')));
+    // $r('app.media.cloud1')需要替换为开发者所需的图像资源文件。
+    this.pixelMaps.push(await this.getPixmapFromMedia($r('app.media.cloud1')));
     this.animated = new AnimatedDrawableDescriptor(this.pixelMaps, this.options);
   }
 
@@ -475,3 +471,4 @@ struct Example {
 }
 
 ```
+![relativePath](figures/option.gif)

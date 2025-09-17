@@ -14,7 +14,7 @@ This topic describes how to use the C/C++ APIs provided by HiAppEvent to subscri
 ## How to Develop
 
 ### Adding an Event Watcher
-1. Obtain the **jsoncpp.cpp**, **json.h**, and **json-forwards.h** files by referring to **Using JsonCpp in your project** in [the third-party open-source library JsonCpp]((https://github.com/open-source-parsers/jsoncpp).
+1. Obtain the **jsoncpp.cpp**, **json.h**, and **json-forwards.h** files by referring to **Using JsonCpp in your project** in [the third-party open-source library JsonCpp](https://github.com/open-source-parsers/jsoncpp).
 
 2. Create a native C++ project and import the preceding files to the project. The directory structure is as follows:
 

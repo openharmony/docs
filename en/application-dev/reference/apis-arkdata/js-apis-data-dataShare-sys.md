@@ -1,4 +1,10 @@
 # @ohos.data.dataShare (DataShare) (System API)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @woodenarow-->
+<!--Designer: @woodenarow; @xuelei3-->
+<!--Tester: @chenwan188; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 The **DataShare** module allows an application to manage its own data and share data with other applications on the same device.
 
@@ -10,7 +16,7 @@ The **DataShare** module allows an application to manage its own data and share 
 >
 > - The APIs of this module can be used only in the stage model.
 >
-> - The callback in **on('rdbDataChange')** cannot transfer data larger than 200 KB in size.
+> - The callback in **on('rdbDataChange')** cannot transfer data larger than 10 M in size.
 
 
 ## Modules to Import
@@ -36,7 +42,7 @@ Creates a **DataShareHelper** instance. This API uses an asynchronous callback t
 | Name  | Type                                                | Mandatory| Description                                                        |
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context)        | Yes  | Context of the application.                                          |
-| uri      | string                                                   | Yes  | Uniform Resource Identifier (URI) of the server application to connect.                              |
+| uri      | string                                                   | Yes  | URI of the server application to connect.                              |
 | callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DataShareHelper** instance created. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -45,31 +51,36 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700010 | The DataShareHelper is not initialized successfully. |
+| 15700010 | The DataShareHelper fails to be initialized. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
-import { UIAbility } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
-let context = getContext(UIAbility);
-try {
-  dataShare.createDataShareHelper(context, uri, (err:BusinessError, data:dataShare.DataShareHelper) => {
-    if (err !== undefined) {
-      console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
-      return;
-    }
-    console.info("createDataShareHelper succeed, data : " + data);
-    dataShareHelper = data;
-  });
-} catch (err) {
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let uri = ("datashare:///com.samples.datasharetest.DataShare");
+    let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+    let context = this.context;
+    try {
+      dataShare.createDataShareHelper(context, uri, (err:BusinessError, data:dataShare.DataShareHelper) => {
+        if (err !== undefined) {
+          console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+          return;
+        }
+        console.info("createDataShareHelper succeed, data : " + data);
+        dataShareHelper = data;
+      });
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+    };
+  };
 };
 ```
 
@@ -98,31 +109,36 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700010 | The DataShareHelper is not initialized successfully. |
+| 15700010 | The DataShareHelper fails to be initialized. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
-import { UIAbility } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
-let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
-let context = getContext(UIAbility);
-try {
-  dataShare.createDataShareHelper(context, uri, {isProxy : true}, (err:BusinessError, data:dataShare.DataShareHelper) => {
-    if (err !== undefined) {
-      console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
-      return;
-    }
-    console.info("createDataShareHelper succeed, data : " + data);
-    dataShareHelper = data;
-  });
-} catch (err) {
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
+    let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+    let context = this.context;
+    try {
+      dataShare.createDataShareHelper(context, uri, {isProxy : true}, (err:BusinessError, data:dataShare.DataShareHelper) => {
+        if (err !== undefined) {
+          console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+          return;
+        }
+        console.info("createDataShareHelper succeed, data : " + data);
+        dataShareHelper = data;
+      });
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+    };
+  };
 };
 ```
 ## dataShare.createDataShareHelper
@@ -157,29 +173,34 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700010 | The DataShareHelper is not initialized successfully. |
+| 15700010 | The DataShareHelper fails to be initialized. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
-import { UIAbility } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
-let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
-let context = getContext(UIAbility);
-try {
-  dataShare.createDataShareHelper(context, uri, {isProxy : true}).then((data: dataShare.DataShareHelper) => {
-    console.info("createDataShareHelper succeed, data : " + data);
-    dataShareHelper = data;
-  }). catch((err: BusinessError) => {
-    console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
-  });
-} catch (err) {
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
+    let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+    let context = this.context;
+    try {
+      dataShare.createDataShareHelper(context, uri, {isProxy : true}).then((data: dataShare.DataShareHelper) => {
+        console.info("createDataShareHelper succeed, data : " + data);
+        dataShareHelper = data;
+      }).catch((err: BusinessError) => {
+        console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+      });
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+    };
+  };
 };
 ```
 
@@ -191,8 +212,8 @@ Enables silent access. This API uses a promise to return the result.
 
 Observe the following when using this API:
  - The data provider calls this API to enable silent access.
- - Whether silent access is enabled is determined based on the return value of this API and the [isSilentProxyEnable](../../database/share-data-by-datashareextensionability.md) field in the **data_share_config.json** file together.
- - If silent access is enabled for a URI using this API, silent access takes effect when the related **datashareHelper** API is called. Otherwise, the setting of **isSilentProxyEnable** in the **data_share_config.json** file is used to determine whether to enable silent access.
+ - Whether silent access is enabled is determined based on the return value of this API and the **isSilentProxyEnable** field in the [data_share_config.json](../../database/share-data-by-datashareextensionability.md) file together.
+ - If silent access is enabled for a URI using this API, the setting takes effect when the related **datashareHelper** API is called. Otherwise, the setting of **isSilentProxyEnable** in the **data_share_config.json** file is used to determine whether to enable silent access.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -215,22 +236,27 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700011 | The URI is not exist. |
+| 15700011 | The URI does not exist. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
-import { UIAbility } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = ("datashare:///com.acts.datasharetest/entry/DB00/TBL00?Proxy=true");
-let context = getContext(UIAbility);
-dataShare.enableSilentProxy(context, uri).then(() => {
-  console.info("enableSilentProxy succeed");
-}). catch((err: BusinessError) => {
-  console.error(`enableSilentProxy error: code: ${err.code}, message: ${err.message} `);
-});
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let uri = ("datashare:///com.acts.datasharetest/entry/DB00/TBL00?Proxy=true");
+    let context = this.context;
+    dataShare.enableSilentProxy(context, uri).then(() => {
+      console.info("enableSilentProxy succeed");
+    }).catch((err: BusinessError) => {
+      console.error(`enableSilentProxy error: code: ${err.code}, message: ${err.message} `);
+    });
+  };
+};
 ```
 
 ## dataShare.disableSilentProxy<sup>11+</sup>
@@ -241,7 +267,7 @@ Disables silent access. This API uses a promise to return the result.
 
 Observe the following when using this API:
  - The data provider calls this API to disable silent access.
- - Whether silent access is disabled is determined based on the return value of this API and the [isSilentProxyEnable](../../database/share-data-by-datashareextensionability.md) field in the **data_share_config.json** file together.
+ - Whether silent access is disabled is determined based on the return value of this API and the **isSilentProxyEnable** field in the [data_share_config.json](../../database/share-data-by-datashareextensionability.md) file together.
  - If silent access is disabled for a URI using this API, the setting takes effect when the related **datashareHelper** API is called. Otherwise, the setting of **isSilentProxyEnable** in the **data_share_config.json** file is used to determine whether to disable silent access.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
@@ -265,22 +291,28 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700011 | The URI does not exist. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
-import { UIAbility } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = ("datashare:///com.acts.datasharetest/entry/DB00/TBL00?Proxy=true");
-let context = getContext(UIAbility);
-dataShare.disableSilentProxy(context, uri).then(() => {
-  console.info("disableSilentProxy succeed");
-}). catch((err: BusinessError) => {
-  console.error(`disableSilentProxy error: code: ${err.code}, message: ${err.message} `);
-});
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let uri = ("datashare:///com.acts.datasharetest/entry/DB00/TBL00?Proxy=true");
+    let context = this.context;
+    dataShare.disableSilentProxy(context, uri).then(() => {
+      console.info("disableSilentProxy succeed");
+    }).catch((err: BusinessError) => {
+      console.error(`disableSilentProxy error: code: ${err.code}, message: ${err.message} `);
+    });
+  };
+};
+
 ```
 
 ## DataShareHelperOptions<sup>10+</sup>
@@ -291,8 +323,8 @@ Represents the optional parameters of [DataShareHelper](#datasharehelper).
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| isProxy | boolean | No| Whether the [DataShareHelper](#datasharehelper) is in proxy mode.<br>The default value is **false**.<br>If the value is **true**, the [DataShareHelper](#datasharehelper) to be created is in proxy mode, and all operations will not open the data provider application unless the database does not exist. If the database does not exist, [createDataShareHelper](#datasharecreatedatasharehelper10) will start the data provider to create a database.|
-| waitTime<sup>16+</sup> | number | No| Waiting time for starting the data provider process, in seconds.<br>The default value is **2**.|
+| isProxy | boolean | No| Whether the [DataShareHelper](#datasharehelper) is in proxy mode. The default value is **false**.<br>If the value is **true**, the [DataShareHelper](#datasharehelper) to be created is in proxy mode, and all operations will not open the data provider application unless the database does not exist. If the database does not exist, [createDataShareHelper](#datasharecreatedatasharehelper10) will start the data provider to create a database.|
+| waitTime<sup>18+</sup> | number | No| Waiting time for starting the data provider process, in seconds. The default value is **2**.|
 
 ## TemplateId<sup>10+</sup>
 
@@ -319,7 +351,7 @@ Defines the data to publish.
 
 ## RdbDataChangeNode<sup>10+</sup>
 
-Represents the RDB data change result. The data returned by the callback is not larger than 200 KB in size.
+Represents the RDB data change result. The data returned by the callback is not larger than 10 M in size.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -350,7 +382,7 @@ Defines the struct of the template used in a subscription.
 | -------- | -------- | -------- | -------- |
 | predicates | Record<string, string> | Yes| Predicates to use. When [**on**](#onrdbdatachange10) is called, the predicates are used to generate data. This parameter applies only to RDB data storage. |
 | scheduler | string | Yes| Template scheduler SQL, which is embedded with a custom function. Currently, the **remindTimer** function is embedded. The **remindTimer** triggers a subscription-based update in specified scenarios.<br>The scheduler SQL statement is triggered when:<br>1. The subscribed data is modified.<br>2. The first subscription is added to the corresponding database.|
-| update<sup>14+<sup> | string | No| Update SQL statement of a specified template. The default value is an empty string. When [on](#onrdbdatachange10) is called, the **update** parameter is used to update data. This parameter applies only to RDB data storage. |
+| update<sup>18+<sup> | string | No| Update SQL statement of a specified template. The default value is an empty string. When [on](#onrdbdatachange10) is called, the **update** parameter is used to update data. This parameter applies only to RDB data storage. |
 
 ## OperationResult<sup>10+</sup>
 
@@ -370,20 +402,8 @@ Represents the batch update operation information.
 
 | Name      | Type                                                        | Mandatory| Description          |
 | ---------- | ------------------------------------------------------------ | ---- | -------------- |
-| values     | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | Data to be updated, which|
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for deleting the data.    |
-
-## ChangeType<sup>12+</sup>
-
-Enumerates the data change types.
-
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
-
-| Name    | Value         | Description         |
-| ---------| ------------| --------------|
-| INSERT   | 0           | Data is added.|
-| DELETE   | 1           | Data is deleted.|
-| UPDATE   | 2           | Data is updated.|
+| values     | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | Data to be updated.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for updating data.    |
 
 ## SubscriptionType<sup>12+</sup>
 
@@ -403,7 +423,7 @@ Represents the data change information, including the data change type, URI of t
 
 | Name      | Type                                                        | Mandatory| Description          |
 | ---------- | ------------------------------------------------------------ | ---- | -------------- |
-| type       | [ChangeType](#changetype12)      | Yes  | Data change type.|
+| type       | [ChangeType](js-apis-data-dataShare.md#changetype20)      | Yes  | Data change type.|
 | uri        | string                                                       | Yes  | URI of the data changed.     |
 | values     | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt;| Yes  | Changed data.  |
 
@@ -415,7 +435,9 @@ Provides a **DataShareHelper** instance to access or manage data on the server. 
 
 on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 
-Subscribes to the data change of the specified URI. After an observer is registered, the subscriber will receive a notification when the **notifyChange()** API is called. This API uses an asynchronous callback to return the result.
+Subscribes to the data change of the specified URI. After an observer is registered, the subscriber will receive a notification when the **notifyChange** API is called. This API uses an asynchronous callback to return the result. This function does not support cross-user notification subscription. An application can subscribe to a single URI for a maximum of 51 times.
+
+Notification triggering: In non-silent scenarios, a notification is published if the [notifyChange](#notifychange-1) method is called. In silent scenarios, a notification is automatically published if data is modified via silent access.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -425,7 +447,7 @@ Subscribes to the data change of the specified URI. After an observer is registe
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | Yes  | Event/callback type. The value is **dataChange**, which indicates the data change.|
 | uri      | string               | Yes  | URI of the data to be observed.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the data change. If the data is changed, **err** is **undefined**. Otherwise, this callback is not invoked or **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the data is changed, **err** is **undefined**. Otherwise, this callback is not invoked or **err** is an error object.|
 
 **Error codes**
 
@@ -433,6 +455,7 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -452,7 +475,9 @@ if (dataShareHelper !== undefined) {
 
 on(event: 'dataChange', type:SubscriptionType, uri: string, callback: AsyncCallback&lt;ChangeInfo&gt;): void
 
-Subscribes to the data change of the specified URI. This API uses an asynchronous callback to return the result. After a change notification is registered, the subscriber will receive a notification when the **notifyChange()** API is called. The change notification contains the data change type, URI of the data changed, and the changed data.  Silent access is not supported.
+Subscribes to the data change of the specified URI. After a change notification is registered, the subscriber will receive a notification when the **notifyChange** API is called. The change notification contains the data change type, URI of the data changed, and the changed data. This API uses an asynchronous callback to return the result. This function does not support cross-user notification subscription. An application can subscribe to a single URI for a maximum of 51 times.
+
+Notification triggering: In non-silent scenarios, a notification is published if the [notifyChange](#notifychange12) method is called. In silent scenarios, a notification is automatically published if data is modified via silent access, but **changeInfo** in the callback is invalid.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -471,6 +496,7 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -478,7 +504,7 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 <!--code_no_check-->
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.acts.datasharetest");
 export function callback(error:BusinessError, ChangeInfo:dataShare.ChangeInfo) {
@@ -501,7 +527,7 @@ Unsubscribes from the data change of the specified URI.
 
 | Name    | Type                | Mandatory| Description                   |
 | -------- | -------------------- | ---- | ------------------------ |
-| type     | string               | Yes  | Event/callback type. The value is **dataChange**, which indicates the data change.|
+| type     | string               | Yes  | Event/callback type. The value is **'dataChange'**, which indicates the data change.|
 | uri      | string               | Yes  | URI of the data to be observed.|
 | callback | AsyncCallback&lt;void&gt; | No  | Callback to unregister. If this parameter is **undefined**, **null**, or left empty, this API unregisters all callbacks for the specified URI.|
 
@@ -511,6 +537,7 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -532,7 +559,7 @@ if (dataShareHelper != undefined) {
 
 off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCallback&lt;ChangeInfo&gt;): void
 
-Unsubscribes from the data change of the specified URI. Silent access is not supported.
+Unsubscribes from the data change of the specified URI.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -540,7 +567,7 @@ Unsubscribes from the data change of the specified URI. Silent access is not sup
 
 | Name    | Type                | Mandatory| Description                   |
 | -------- | -------------------- | ---- | ------------------------ |
-| event     | string               | Yes  | Event or callback type. The value is **dataChange**, which indicates the data change.|
+| event     | string               | Yes  | Event/callback type. The value is **'dataChange'**, which indicates the data change.|
 | type     | [SubscriptionType](#subscriptiontype12)| Yes  | Subscription type.|
 | uri      | string               | Yes  | URI of the data to be observed.|
 | callback | AsyncCallback&lt;[ChangeInfo](#changeinfo12)&gt;| No  | Callback to unregister. If this parameter is **undefined**, **null**, or left empty, this API unregisters all callbacks for the specified URI. If this parameter is specified, the callback must be the one registered in [on('datachange')](#ondatachange12).|
@@ -551,6 +578,7 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -558,7 +586,7 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 <!--code_no_check-->
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.acts.datasharetest");
 export function callback(error:BusinessError, ChangeInfo:dataShare.ChangeInfo) {
@@ -574,7 +602,7 @@ if (dataShareHelper !== undefined) {
 
 addTemplate(uri: string, subscriberId: string, template: Template): void
 
-Adds a data template with the specified subscriber.
+Adds a data template with the specified subscriber. Only silent access is supported.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -592,8 +620,9 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700011 | The URI is not exist.|
+| 15700011 | The URI does not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
@@ -612,7 +641,7 @@ let template: dataShare.Template = {
   },
   scheduler : "select remindTimer(time) from TBL00",
   update : "update TBL00 set cityColumn = 'visited' where cityColumn = 'someCity'"
-}
+};
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).addTemplate(uri, subscriberId, template);
 }
@@ -622,7 +651,7 @@ if (dataShareHelper != undefined) {
 
 delTemplate(uri: string, subscriberId: string): void
 
-Deletes a data template based on the specified subscriber.
+Deletes a data template based on the specified subscriber. Only silent access is supported.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -639,8 +668,9 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700011 | The URI is not exist.|
+| 15700011 | The URI does not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
@@ -658,7 +688,7 @@ let template: dataShare.Template = {
     key2 : value2,
   },
   scheduler : "select remindTimer(time) from TBL00"
-}
+};
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).addTemplate(uri, subscriberId, template);
   (dataShareHelper as dataShare.DataShareHelper).delTemplate(uri, subscriberId);
@@ -669,7 +699,7 @@ if (dataShareHelper != undefined) {
 
 on(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, callback: AsyncCallback&lt;RdbDataChangeNode&gt;): Array&lt;OperationResult&gt;
 
-Subscribes to the changes of the data corresponding to the specified URI and template.
+Subscribes to the changes of the data corresponding to the specified URI and template. Only silent access is supported. This function does not support cross-user notification subscription.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -680,7 +710,7 @@ Subscribes to the changes of the data corresponding to the specified URI and tem
 | type      | string                           | Yes  | Event type. The value is **rdbDataChange**, which indicates the change of the RDB data. If **type** is any other value, there is no response to this API. |
 | uris    | Array&lt;string&gt;                | Yes  | URIs of the target data.          |
 | templateId | [TemplateId](#templateid10)       | Yes  | ID of the template that triggers the callback.          |
-| callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt;   | Yes  | Callback used to return the data change. If the operation is successful, **err** is **undefined** and **node** is the data changed. Otherwise, this callback is not invoked or **err** is an error object. |
+| callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt;   | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **node** is the data changed. Otherwise, this callback is not invoked or **err** is an error object. |
 
 **Return value**
 
@@ -694,15 +724,20 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let onCallback: (err: BusinessError, node: dataShare.RdbDataChangeNode) => void = (err: BusinessError, node:dataShare.RdbDataChangeNode): void => {
+  if (!node.data.length) {
+    console.error("node.data.length is empty");
+    return;
+  }
   console.info("onCallback " + JSON.stringify(node.uri));
   console.info("onCallback " + JSON.stringify(node.templateId));
   console.info("onCallback " + node.data.length);
@@ -722,7 +757,7 @@ if (dataShareHelper != undefined) {
 
 off(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, callback?: AsyncCallback&lt;RdbDataChangeNode&gt;): Array&lt;OperationResult&gt;
 
-Unsubscribes from the changes of the data corresponding to the specified URI and template.
+Unsubscribes from the changes of the data corresponding to the specified URI and template. Only silent access is supported.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -747,6 +782,7 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -764,7 +800,7 @@ if (dataShareHelper != undefined) {
 
 on(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string, callback: AsyncCallback&lt;PublishedDataChangeNode&gt;): Array&lt;OperationResult&gt;
 
-Subscribes to the change of the published data.
+Subscribes to the change of the published data. Only silent access is supported. This function does not support cross-user notification subscription.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -775,7 +811,7 @@ Subscribes to the change of the published data.
 | type      | string                           | Yes  | Event type. The value is **publishedDataChange**, which indicates the change of the published data.|
 | uris    | Array&lt;string&gt;                | Yes  | URIs of the target data.          |
 | subscriberId | string                        | Yes  | Subscriber ID of the callback.          |
-| callback | AsyncCallback&lt;[PublishedDataChangeNode](#publisheddatachangenode10)&gt;   | Yes  | Callback used to return the data change. If the operation is successful, **err** is **undefined** and **node** is the data changed. Otherwise, this callback is not invoked or **err** is an error object. |
+| callback | AsyncCallback&lt;[PublishedDataChangeNode](#publisheddatachangenode10)&gt;   | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **node** is the data changed. Otherwise, this callback is not invoked or **err** is an error object. |
 
 **Return value**
 
@@ -789,13 +825,14 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let onPublishCallback: (err: BusinessError, node: dataShare.PublishedDataChangeNode) => void = (err: BusinessError, node:dataShare.PublishedDataChangeNode): void => {
   console.info("onPublishCallback node bundleName " + JSON.stringify(node.bundleName));
@@ -821,7 +858,7 @@ if (dataShareHelper != undefined) {
 
 off(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string, callback?: AsyncCallback&lt;PublishedDataChangeNode&gt;): Array&lt;OperationResult&gt;
 
-Unsubscribes from the change of the published data.
+Unsubscribes from the change of the published data. Only silent access is supported.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -846,13 +883,14 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let offCallback: (err: BusinessError, node: dataShare.PublishedDataChangeNode) => void = (err: BusinessError, node:dataShare.PublishedDataChangeNode): void => {
   console.info("**** Observer off callback ****");
@@ -868,7 +906,7 @@ if (dataShareHelper != undefined) {
 
 publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, callback: AsyncCallback&lt;Array&lt;OperationResult&gt;&gt;): void
 
-Publishes data to the database.
+Publishes data to the database. Only silent access is supported.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -887,14 +925,15 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message                   |
 | -------- | -------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700012 | The data area is not exist.|
+| 15700012 | The data area does not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let arrayBuffer = new ArrayBuffer(1);
 let version = 1;
@@ -916,7 +955,7 @@ try {
 
 publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCallback&lt;Array&lt;OperationResult&gt;&gt;): void
 
-Publishes data to the database.
+Publishes data to the database. Only silent access is supported.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -934,8 +973,9 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message                   |
 | -------- | -------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700012 | The data area is not exist.|
+| 15700012 | The data area does not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
@@ -959,7 +999,7 @@ if (dataShareHelper != undefined) {
 
 publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version?: number): Promise&lt;Array&lt;OperationResult&gt;&gt;
 
-Publishes data to the database.
+Publishes data to the database. Only silent access is supported.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -983,8 +1023,9 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message                   |
 | -------- | -------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700012 | The data area is not exist.|
+| 15700012 | The data area does not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
@@ -1003,7 +1044,7 @@ if (dataShareHelper != undefined) {
 
 getPublishedData(bundleName: string, callback: AsyncCallback&lt;Array&lt;PublishedItem&gt;&gt;): void
 
-Obtains the published data of an application.
+Obtains the published data of an application. Only silent access is supported.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1020,18 +1061,19 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message                   |
 | -------- | -------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700012 | The data area is not exist.|
+| 15700012 | The data area does not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let publishCallback: (err: BusinessError, data: Array<dataShare.PublishedItem>) => void = (err: BusinessError, result: Array<dataShare.PublishedItem>): void => {
   console.info("**** Observer publish callback ****");
-}
+};
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).getPublishedData("com.acts.ohos.data.datasharetest", publishCallback);
 }
@@ -1041,7 +1083,7 @@ if (dataShareHelper != undefined) {
 
 getPublishedData(bundleName: string): Promise&lt;Array&lt;PublishedItem&gt;&gt;
 
-Obtains the published data of an application.
+Obtains the published data of an application. Only silent access is supported.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1063,8 +1105,9 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message                   |
 | -------- | -------------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
-| 15700012 | The data area is not exist.|
+| 15700012 | The data area does not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
@@ -1097,14 +1140,15 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let key1: string = "name";
@@ -1117,7 +1161,7 @@ const valueBucket: ValuesBucket = {
   key1: value1,
   key2: value2,
   key3: value3,
-}
+};
 try {
   if (dataShareHelper != undefined) {
     (dataShareHelper as dataShare.DataShareHelper).insert(uri, valueBucket, (err: BusinessError, data: number) => {
@@ -1162,14 +1206,15 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
-import { ValuesBucket } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ValuesBucket } from '@kit.ArkData';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let key1: string = "name";
@@ -1182,7 +1227,7 @@ const valueBucket: ValuesBucket = {
   key1: value1,
   key2: value2,
   key3: value3,
-}
+};
 try {
   if (dataShareHelper != undefined) {
     (dataShareHelper as dataShare.DataShareHelper).insert(uri, valueBucket).then((data: number) => {
@@ -1211,7 +1256,7 @@ Deletes one or more data records from the database. This API uses an asynchronou
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to delete.                                    |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for deleting the data.<br>The predicate methods supported by **delete()** vary depending on the database in use. For example, the KVDB supports only **inKeys**. If this parameter is left empty, the entire table will be deleted by default.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for deleting data.<br>The predicate methods supported by **delete()** vary depending on the database in use. For example, the KVDB supports only **inKeys**. If this parameter is left empty, the entire table will be deleted by default.|
 | callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of deleted data records. Otherwise, **err** is an error object.<br>The number of deleted data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
 
 **Error codes**
@@ -1220,14 +1265,15 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { dataSharePredicates } from '@kit.ArkData'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
@@ -1262,7 +1308,7 @@ Deletes one or more data records from the database. This API uses a promise to r
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to delete.                                    |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for deleting the data.<br>The predicate methods supported by **delete()** vary depending on the database in use. For example, the KVDB supports only **inKeys**. If this parameter is left empty, the entire table will be deleted by default.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for deleting data.<br>The predicate methods supported by **delete()** vary depending on the database in use. For example, the KVDB supports only **inKeys**. If this parameter is left empty, the entire table will be deleted by default.|
 
 **Return value**
 
@@ -1276,14 +1322,15 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { dataSharePredicates } from '@kit.ArkData'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
@@ -1316,7 +1363,7 @@ Queries data in the database. This API uses an asynchronous callback to return t
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to query.                                    |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for querying the data.<br>The predicate methods supported by **query()** vary depending on the database used. For example, the KVDB supports only **inKeys** and **prefixKey**. If this parameter is left empty, the entire table will be queried by default.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for querying data.<br>The predicate methods supported by **query()** vary depending on the database used. For example, the KVDB supports only **inKeys** and **prefixKey**. If this parameter is left empty, the entire table will be queried by default.|
 | columns    | Array&lt;string&gt;                                          | Yes  | Column to query. If this parameter is left empty, all columns will be queried.              |
 | callback   | AsyncCallback&lt;[DataShareResultSet](js-apis-data-DataShareResultSet-sys.md#datashareresultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the result set obtained. Otherwise, **err** is an error object.|
 
@@ -1326,14 +1373,15 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { dataSharePredicates, DataShareResultSet } from '@kit.ArkData'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { dataSharePredicates, DataShareResultSet } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
@@ -1369,7 +1417,7 @@ Queries data in the database. This API uses a promise to return the result.
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to query.                                    |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for querying the data.<br>The predicate methods supported by **query()** vary depending on the database used. For example, the KVDB supports only **inKeys** and **prefixKey**. If this parameter is left empty, the entire table will be queried by default.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for querying data.<br>The predicate methods supported by **query()** vary depending on the database used. For example, the KVDB supports only **inKeys** and **prefixKey**. If this parameter is left empty, the entire table will be queried by default.|
 | columns    | Array&lt;string&gt;                                          | Yes  | Column to query. If this parameter is left empty, all columns will be queried.              |
 
 **Return value**
@@ -1384,14 +1432,15 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { dataSharePredicates, DataShareResultSet } from '@kit.ArkData'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { dataSharePredicates, DataShareResultSet } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
@@ -1425,8 +1474,8 @@ Updates data in the database. This API uses an asynchronous callback to return t
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to update.                                    |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for updating the data.<br>The predicate methods supported by **update()** vary depending on the database in use. For example, only the relational database (RDB) supports predicates. If this parameter is left empty, the entire table will be updated by default.|
-| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | New data, which can be null.                                 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for updating data.<br>The predicate methods supported by **update()** vary depending on the database in use. For example, only the relational database (RDB) supports predicates. If this parameter is left empty, the entire table will be updated by default.|
+| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | Data to be updated, which can be null.                                 |
 | callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of updated data records. Otherwise, **err** is an error object.<br>The number of updated data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
 
 **Error codes**
@@ -1435,29 +1484,30 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { dataSharePredicates, ValuesBucket } from '@kit.ArkData'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { dataSharePredicates, ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 let key1: string = "name";
-let value1: string = "roe1"
+let value1: string = "roe1";
 let key2: string = "age";
-let value2: number = 21
+let value2: number = 21;
 let key3: string = "salary";
 let value3: number = 20.5;
 const va: ValuesBucket = {
   key1: value1,
   key2: value2,
   key3: value3,
-}
+};
 try {
   if (dataShareHelper != undefined) {
     (dataShareHelper as dataShare.DataShareHelper).update(uri, da, va, (err: BusinessError, data: number) => {
@@ -1488,8 +1538,8 @@ Updates data in the database. This API uses a promise to return the result.
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to update.                                    |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for updating the data.<br>The predicate methods supported by **update()** vary depending on the database in use. For example, only the relational database (RDB) supports predicates. If this parameter is left empty, the entire table will be updated by default.|
-| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | New data, which can be null.                                  |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for updating data.<br>The predicate methods supported by **update()** vary depending on the database in use. For example, only the relational database (RDB) supports predicates. If this parameter is left empty, the entire table will be updated by default.|
+| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | Data to be updated, which can be null.                                  |
 
 **Return value**
 
@@ -1503,29 +1553,30 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { dataSharePredicates, ValuesBucket } from '@kit.ArkData'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { dataSharePredicates, ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 let key1: string = "name";
-let value1: string = "roe1"
+let value1: string = "roe1";
 let key2: string = "age";
-let value2: number = 21
+let value2: number = 21;
 let key3: string = "salary";
 let value3: number = 20.5;
 const va: ValuesBucket = {
   key1: value1,
   key2: value2,
   key3: value3,
-}
+};
 try {
   if (dataShareHelper != undefined) {
     (dataShareHelper as dataShare.DataShareHelper).update(uri, da, va).then((data: number) => {
@@ -1545,7 +1596,7 @@ try {
 
 batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Promise&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt;
 
-Updates data in batches. A maximum of 900 KB data can be updated at a time. If the data volume exceeds 900 KB, the update will fail. The transaction of this API depends on the data provider. This API uses a promise to return the result. Silent access is not supported currently.
+Batch updates data in the database. A maximum of 900 KB data can be updated at a time. The total number of objects for operations (that is, KV pairs of the objects) cannot exceed 4000. If the number exceeds 4000, the update will fail. The transaction of this API depends on the data provider. This API uses a promise to return the result. Silent access is not supported currently.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1567,6 +1618,7 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message                            |
 | -------- | ------------------------------------ |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700000 | Inner error.                         |
 | 15700013 | The DataShareHelper instance is already closed. |
@@ -1574,8 +1626,8 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 **Example**
 
 ```ts
-import { dataSharePredicates, ValuesBucket } from '@kit.ArkData'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { dataSharePredicates, ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let record: Record<string, Array<dataShare.UpdateOperation>> = {};
 let operations1: Array<dataShare.UpdateOperation> = [];
@@ -1585,22 +1637,22 @@ let pre1: dataSharePredicates.DataSharePredicates = new dataSharePredicates.Data
 pre1.equalTo("name", "ZhangSan");
 let vb1: ValuesBucket = {
   "name": "ZhangSan1",
-}
+};
 let operation1: dataShare.UpdateOperation = {
   values: vb1,
   predicates: pre1
-}
+};
 operations1.push(operation1);
 
 let pre2: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
 pre2.equalTo("name", "ZhangSan2");
 let vb2: ValuesBucket = {
   "name": "ZhangSan3",
-}
+};
 let operation2: dataShare.UpdateOperation = {
   values: vb2,
   predicates: pre2
-}
+};
 operations2.push(operation2);
 record["uri1"] = operations1;
 record["uri2"] = operations2;
@@ -1612,7 +1664,7 @@ try {
       let a = Object.entries(data);
       for (let i = 0; i < a.length; i++) {
         let key = a[i][0];
-        let values = a[i][1]
+        let values = a[i][1];
         console.info(`Update uri:${key}`);
         for (const value of values) {
           console.info(`Update result:${value}`);
@@ -1651,28 +1703,21 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let key1: string = "name";
-let value11: string = "roe11"
-let key2: string = "age";
-let value21: number = 21;
-let key3: string = "salary";
-let value31: number = 20.5;
-let valuesBucket1: ValuesBucket = {
-  key1: value11,
-  key2: value21,
-  key3: value31,
-}
-let vbs = new Array(valuesBucket1);
+let vbs: ValuesBucket[] = [
+  { "name": "roe11", "age": 21, "salary": 20.5 }
+]
+
 try {
   if (dataShareHelper != undefined) {
     (dataShareHelper as dataShare.DataShareHelper).batchInsert(uri, vbs, (err, data) => {
@@ -1717,28 +1762,21 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData'
-import { BusinessError } from '@kit.BasicServicesKit'
+import { ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let key1: string = "name";
-let value11: string = "roe11"
-let key2: string = "age";
-let value21: number = 21;
-let key3: string = "salary";
-let value31: number = 20.5;
-let valuesBucket1: ValuesBucket = {
-  key1: value11,
-  key2: value21,
-  key3: value31,
-}
-let vbs = new Array(valuesBucket1);
+let vbs: ValuesBucket[] = [
+  { "name": "roe11", "age": 21, "salary": 20.5 }
+]
+
 try {
   if (dataShareHelper != undefined) {
     (dataShareHelper as dataShare.DataShareHelper).batchInsert(uri, vbs).then((data: number) => {
@@ -1749,7 +1787,7 @@ try {
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error(`batchInsert error: code: ${code}, message: ${message} `);
 };
 ```
@@ -1774,6 +1812,7 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message    |
 | -------- | ------------ |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 15700000 | Inner error. |
 
 **Example**
@@ -1805,13 +1844,14 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
@@ -1851,13 +1891,14 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
@@ -1890,13 +1931,14 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
@@ -1936,13 +1978,14 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
@@ -1966,7 +2009,7 @@ Notifies the registered observer of data changes. This API uses an asynchronous 
 
 | Name   | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| uri      | string               | Yes  | URI of the data.|
+| uri      | string               | Yes  | URI of the data to be observed.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the observer is notified of the data changes, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1975,6 +2018,7 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Mandatory parameters are left unspecified.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -2001,7 +2045,7 @@ Notifies the registered observer of data changes. This API uses a promise to ret
 
 | Name| Type  | Mandatory| Description                |
 | ---- | ------ | ---- | -------------------- |
-| uri  | string | Yes  | URI of the data.|
+| uri  | string | Yes  | URI of the data to be observed.|
 
 **Return value**
 
@@ -2015,6 +2059,7 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Mandatory parameters are left unspecified.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -2031,7 +2076,7 @@ if (dataShareHelper != undefined) {
 
 notifyChange(data: ChangeInfo): Promise&lt;void&gt;
 
-Notifies the observer of the data change of the specified URI. This API uses a promise to return the result. Silent access is not supported.
+Notifies the observer of the data change of the specified URI. This API uses a promise to return the result. Silent access is not supported currently.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -2053,19 +2098,22 @@ For details about the error codes, see [DataShare Error Codes](errorcode-datasha
 
 | ID| Error Message             |
 | -------- | -------------------- |
+| 202      | Permission verification failed. A non-system application calls a system API.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { ValuesBucket } from '@kit.ArkData'
+import { ValuesBucket } from '@kit.ArkData';
 
 let dsUri = ("datashare:///com.acts.datasharetest");
-let bucket1: ValuesBucket = {"name": "LiSi"};
-let bucket2: ValuesBucket = {"name": "WangWu"};
-let bucket3: ValuesBucket = {"name": "ZhaoLiu"};
-let people: Array<ValuesBucket> = new Array(bucket1, bucket2, bucket3);
+let people: ValuesBucket[] = [
+  { "name": "LiSi" },
+  { "name": "WangWu" },
+  { "name": "ZhaoLiu" }
+]
+
 let changeData:dataShare.ChangeInfo= { type:dataShare.ChangeType.INSERT, uri:dsUri, values:people};
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).notifyChange(changeData);

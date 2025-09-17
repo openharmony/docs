@@ -1,4 +1,10 @@
 # Invoking Application Functions on the Frontend Page
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Register your application code with frontend pages. Then you can invoke application methods with the registered object names on frontend pages.
 
@@ -159,7 +165,7 @@ The following example registers the **test()** function with the frontend page. 
               "scheme": "https",   // Exact match. This field is mandatory and cannot be empty.
               "host": "xxx.com",   // Exact match. This field is mandatory and cannot be empty.
               "port": "",          // Exact match. If the value is empty, the check is not performed. This field is mandatory.
-              "path": ""           // Prefix match. If the value is empty, the check is not performed. This parameter is mandatory.
+              "path": ""           // Prefix match. If the value is empty, the check is not performed. This field is mandatory.
             },
             {
               "scheme": "resource",// Exact match. This field is mandatory and cannot be empty.
@@ -224,11 +230,11 @@ The following example registers the **test()** function with the frontend page. 
     constructor() {
     }
 
-    test(): Array<Number> {
+    test(): Array<number> {
       return [1, 2, 3, 4]
     }
 
-    toString(param: String): void {
+    toString(param: string): void {
       console.log('Web Component toString' + param);
     }
   }
@@ -458,7 +464,7 @@ The following example registers the **test()** function with the frontend page. 
       param.hello("call obj func");
     }
 
-    toString(param: String): void {
+    toString(param: string): void {
       console.log('Web Component toString' + param);
     }
   }
@@ -653,7 +659,7 @@ The following example registers the **test()** function with the frontend page. 
       return p;
     }
 
-    toString(param: String): void {
+    toString(param: string): void {
       console.log(" " + param);
     }
   }
@@ -725,7 +731,7 @@ The following example registers the **test()** function with the frontend page. 
       setTimeout( () => { param("suc") }, 10000)
     }
 
-    toString(param:String): void {
+    toString(param:string): void {
       console.log(" " + param);
     }
   }

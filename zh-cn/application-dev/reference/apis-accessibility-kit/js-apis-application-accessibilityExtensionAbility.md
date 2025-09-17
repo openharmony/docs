@@ -19,6 +19,10 @@ AccessibilityExtensionAbility基于ExtensionAbility框架，提供辅助功能�
 import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 ```
 
+## AccessibilityExtensionAbility
+
+AccessibilityExtensionAbility基于ExtensionAbility框架，提供辅助功能业务的能力。
+
 ### 属性
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
@@ -37,7 +41,7 @@ import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 
 | 名称      | 类型              | 只读             | 可选                      | 说明                       |
 | --------- |----------------------------------------------------------------|------------------------------------------------------------------------------|------------------------------------| ------------------------------------------------------------ |
-| eventType | [accessibility.EventType](js-apis-accessibility.md#eventtype) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#windowupdatetype) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | 否   | 否   | 具体事件类型。<br />EventType：无障碍事件类型；<br />WindowUpdateType：窗口变化类型；TouchGuideType：触摸浏览事件类型；<br />GestureType：手势事件类型；<br />PageUpdateType：页面刷新类型。 |
+| eventType | [accessibility.EventType](js-apis-accessibility.md#eventtype) \| [accessibility.WindowUpdateType](js-apis-accessibility.md#windowupdatetype) \| [TouchGuideType](#touchguidetype) \| [GestureType](#gesturetype) \| [PageUpdateType](#pageupdatetype) | 否   | 否   | 具体事件类型。<br />EventType：无障碍事件类型；<br />WindowUpdateType：窗口变化类型；<br />TouchGuideType：触摸浏览事件类型；<br />GestureType：手势事件类型；<br />PageUpdateType：页面刷新类型。 |
 | target    | [AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9) | 否  | 是    | 发生事件的目标组件。  |
 | timeStamp | number              | 否        | 是         | 事件时间戳，单位是毫秒。默认值为0。                          |
 | elementId<sup>12+</sup> | number            | 否             | 是             | 主动聚焦的组件ID。默认值为0。                 |
@@ -47,9 +51,15 @@ import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 
 ## AccessibilityElement<sup>10+</sup>
 
+type AccessibilityElement = _AccessibilityElement
+
 表示无障碍节点元素，请参考[AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+| 类型                      | 说明                     |
+| ----------------------- |------------------------|
+| _AccessibilityElement  | 表示无障碍节点元素，请参考[AccessibilityElement](js-apis-inner-application-accessibilityExtensionContext.md#accessibilityelement9)。 |
 
 **示例：**
 
@@ -61,9 +71,15 @@ let accessibilityElement: AccessibilityElement;
 
 ## ElementAttributeValues<sup>10+</sup>
 
+type ElementAttributeValues = _ElementAttributeValues
+
 表示节点元素具备的属性名称及属性值类型信息，请参考[ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+| 类型                      | 说明                     |
+| ----------------------- |------------------------|
+| _ElementAttributeValues | 表示节点元素具备的属性名称及属性值类型信息，请参考[ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)。 |
 
 **示例：**
 
@@ -75,9 +91,15 @@ let elementAttributeValues: ElementAttributeValues;
 
 ## FocusDirection<sup>10+</sup>
 
+type FocusDirection = _FocusDirection
+
 表示查询下一焦点元素的方向，请参考[FocusDirection](js-apis-inner-application-accessibilityExtensionContext.md#focusdirection)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+| 类型                      | 说明                     |
+| ----------------------- |------------------------|
+| _FocusDirection | 表示查询下一焦点元素的方向，请参考[FocusDirection](js-apis-inner-application-accessibilityExtensionContext.md#focusdirection)。 |
 
 **示例：**
 
@@ -89,12 +111,15 @@ let focusDirection: FocusDirection;
 
 ## ElementAttributeKeys<sup>10+</sup>
 
+type ElementAttributeKeys = keyof ElementAttributeValues;
+
+表示[ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)的属性名称。
+
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称      | 类型                                                                                                                   | 只读   | 可选   | 说明                                                 |
-| ------- |----------------------------------------------------------------------------------------------------------------------| ---- | ---- |----------------------------------------------------|
-| ElementAttributeKeys | keyof [ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues) | 否    | 否    | 表示ElementAttributeValues的key。 |
-
+| 类型      |         说明             |
+| ------- | -------------------------------------------------|
+| keyof ElementAttributeValues | 表示[ElementAttributeValues](js-apis-inner-application-accessibilityExtensionContext.md#elementattributevalues)中所有属性名组成的联合类型。 |
 
 **示例：**
 
@@ -106,9 +131,15 @@ let elementAttributeKeys: ElementAttributeKeys;
 
 ## FocusType<sup>10+</sup>
 
+type FocusType = _FocusType
+
 表示查询焦点元素的类型，请参考[FocusType](js-apis-inner-application-accessibilityExtensionContext.md#focustype)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+| 类型                      | 说明                     |
+| ----------------------- |------------------------|
+| _FocusType | 表示查询焦点元素的类型，请参考[FocusType](js-apis-inner-application-accessibilityExtensionContext.md#focustype)。 |
 
 **示例：**
 
@@ -120,9 +151,15 @@ let focusType: FocusType;
 
 ## WindowType <sup>10+</sup>
 
+type WindowType = _WindowType
+
 表示窗口的类型，请参考[WindowType](js-apis-inner-application-accessibilityExtensionContext.md#windowtype)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+| 类型                      | 说明                     |
+| ----------------------- |------------------------|
+| _WindowType | 表示窗口的类型，请参考[WindowType](js-apis-inner-application-accessibilityExtensionContext.md#windowtype)。 |
 
 **示例：**
 
@@ -134,9 +171,15 @@ let windowType: WindowType;
 
 ## Rect<sup>10+</sup>
 
+type Rect = _Rect
+
 表示矩形区域，请参考[Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+| 类型                      | 说明                     |
+| ----------------------- |------------------------|
+| _Rect | 表示矩形区域，请参考[Rect](js-apis-inner-application-accessibilityExtensionContext.md#rect)。 |
 
 **示例：**
 
@@ -146,53 +189,79 @@ import { Rect } from '@kit.AccessibilityKit';
 let rect: Rect;
 ```
 
+## AccessibilityExtensionContext<sup>10+</sup>
+
+type AccessibilityExtensionContext = _AccessibilityExtensionContext.default
+
+表示辅助功能扩展的上下文环境，请参考[AccessibilityExtensionContext](js-apis-inner-application-accessibilityExtensionContext.md)。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+| 类型                      | 说明                     |
+| ----------------------- |------------------------|
+| _AccessibilityExtensionContext.default | 表示辅助功能扩展的上下文环境，请参考[AccessibilityExtensionContext](js-apis-inner-application-accessibilityExtensionContext.md)。 |
+
+**示例：**
+
+```ts
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
+
+class EntryAbility extends AccessibilityExtensionAbility {
+  onConnect(): void {
+    let axContext = this.context; 
+  } 
+}
+```
+
 ## GestureType
+
+type GestureType = 'left' | 'leftThenRight' | 'leftThenUp' | 'leftThenDown' | 'right' | 'rightThenLeft' | 'rightThenUp' | 'rightThenDown' | 'up' | 'upThenLeft' | 'upThenRight' | 'upThenDown' | 'down' | 'downThenLeft' | 'downThenRight' | 'downThenUp' | 'twoFingerSingleTap' | 'twoFingerDoubleTap' | 'twoFingerDoubleTapAndHold' | 'twoFingerTripleTap' | 'twoFingerTripleTapAndHold' | 'threeFingerSingleTap' | 'threeFingerDoubleTap' | 'threeFingerDoubleTapAndHold' | 'threeFingerTripleTap' | 'threeFingerTripleTapAndHold' | 'fourFingerSingleTap' | 'fourFingerDoubleTap' | 'fourFingerDoubleTapAndHold' | 'fourFingerTripleTap' | 'fourFingerTripleTapAndHold' | 'threeFingerSwipeUp' | 'threeFingerSwipeDown' | 'threeFingerSwipeLeft' | 'threeFingerSwipeRight' | 'fourFingerSwipeUp' | 'fourFingerSwipeDown' | 'fourFingerSwipeLeft' | 'fourFingerSwipeRight'
 
 手势事件类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称            | 类型            | 描述                  |
-| ------------- | ------------- | ------------------- |
-| left          | string          | 表示向左的手势。     |
-| leftThenRight | string          | 表示先向左再向右的手势。 |
-| leftThenUp    | string          | 表示先向左再向上的手势。 |
-| leftThenDown  | string          | 表示先向左再向下的手势。 |
-| right         | string          | 表示向右的手势。     |
-| rightThenLeft | string          | 表示先向右再向左的手势。 |
-| rightThenUp   | string          | 表示先向右再向上的手势。 |
-| rightThenDown | string          | 表示先向右再向下的手势。 |
-| up            | string          | 表示向上的手势。     |
-| upThenLeft    | string          | 表示先向上再向左的手势。 |
-| upThenRight   | string          | 表示先向上再向右的手势。 |
-| upThenDown    | string          | 表示先向上再向下的手势。 |
-| down          | string          | 表示向下的手势。     |
-| downThenLeft  | string          | 表示先向下再向左的手势。 |
-| downThenRight | string          | 表示先向下再向右的手势。 |
-| downThenUp    | string          | 表示先向下再向上的手势。 |
-| twoFingerSingleTap<sup>11+</sup>  | string          | 表示双指单击的手势。 |
-| twoFingerDoubleTap<sup>11+</sup>  | string          | 表示双指双击的手势。 |
-| twoFingerDoubleTapAndHold<sup>11+</sup> | string          | 表示双指双击长按的手势。 |
-| twoFingerTripleTap<sup>11+</sup>  | string          | 表示双指三击的手势。 |
-| twoFingerTripleTapAndHold<sup>11+</sup> | string          | 表示双指三击长按的手势。 |
-| threeFingerSingleTap<sup>11+</sup> | string          | 表示三指单击的手势。 |
-| threeFingerDoubleTap<sup>11+</sup> | string          | 表示三指双击的手势。 |
-| threeFingerDoubleTapAndHold<sup>11+</sup> | string          | 表示三指双击长按的手势。 |
-| threeFingerTripleTap<sup>11+</sup> | string          | 表示三指三击的手势。 |
-| threeFingerTripleTapAndHold<sup>11+</sup> | string          | 表示三指三击长按的手势。 |
-| fourFingerSingleTap<sup>11+</sup> | string          | 表示四指单击的手势。 |
-| fourFingerDoubleTap<sup>11+</sup> | string          | 表示四指双击的手势。 |
-| fourFingerDoubleTapAndHold<sup>11+</sup> | string          | 表示四指双击长按的手势。 |
-| fourFingerTripleTap<sup>11+</sup> | string          | 表示四指三击的手势。 |
-| fourFingerTripleTapAndHold<sup>11+</sup> | string          | 表示四指三击长按的手势。 |
-| threeFingerSwipeUp<sup>11+</sup>  | string          | 表示三指向上滑动的手势。 |
-| threeFingerSwipeDown<sup>11+</sup> | string          | 表示三指向下滑动的手势。 |
-| threeFingerSwipeLeft<sup>11+</sup> | string          | 表示三指向左滑动的手势。 |
-| threeFingerSwipeRight<sup>11+</sup> | string          | 表示三指向右滑动的手势。 |
-| fourFingerSwipeUp<sup>11+</sup>   | string          | 表示四指向上滑动的手势。 |
-| fourFingerSwipeDown<sup>11+</sup> | string          | 表示四指向下滑动的手势。 |
-| fourFingerSwipeLeft<sup>11+</sup> | string          | 表示四指向左滑动的手势。 |
-| fourFingerSwipeRight<sup>11+</sup> | string          | 表示四指向右滑动的手势。 |
+| 类型            | 说明                  |
+|------------- | ------------------- |
+| 'left'            | 表示向左的手势。     |
+| 'leftThenRight'   | 表示先向左再向右的手势。 |
+| 'leftThenUp'      | 表示先向左再向上的手势。 |
+| 'leftThenDown'    | 表示先向左再向下的手势。 |
+| 'right'           | 表示向右的手势。     |
+| 'rightThenLeft'   | 表示先向右再向左的手势。 |
+| 'rightThenUp'     | 表示先向右再向上的手势。 |
+| 'rightThenDown'   | 表示先向右再向下的手势。 |
+| 'up'              | 表示向上的手势。     |
+| 'upThenLeft'      | 表示先向上再向左的手势。 |
+| 'upThenRight'     | 表示先向上再向右的手势。 |
+| 'upThenDown'      | 表示先向上再向下的手势。 |
+| 'down'            | 表示向下的手势。     |
+| 'downThenLeft'    | 表示先向下再向左的手势。 |
+| 'downThenRight'   | 表示先向下再向右的手势。 |
+| 'downThenUp'      | 表示先向下再向上的手势。 |
+| 'twoFingerSingleTap'<sup>11+</sup>           | 表示双指单击的手势。 |
+| 'twoFingerDoubleTap'<sup>11+</sup>           | 表示双指双击的手势。 |
+| 'twoFingerDoubleTapAndHold'<sup>11+</sup>    | 表示双指双击长按的手势。 |
+| 'twoFingerTripleTap'<sup>11+</sup>           | 表示双指三击的手势。 |
+| 'twoFingerTripleTapAndHold'<sup>11+</sup>    | 表示双指三击长按的手势。 |
+| 'threeFingerSingleTap'<sup>11+</sup>         | 表示三指单击的手势。 |
+| 'threeFingerDoubleTap'<sup>11+</sup>         | 表示三指双击的手势。 |
+| 'threeFingerDoubleTapAndHold'<sup>11+</sup>  | 表示三指双击长按的手势。 |
+| 'threeFingerTripleTap'<sup>11+</sup>         | 表示三指三击的手势。 |
+| 'threeFingerTripleTapAndHold'<sup>11+</sup>  | 表示三指三击长按的手势。 |
+| 'fourFingerSingleTap'<sup>11+</sup>          | 表示四指单击的手势。 |
+| 'fourFingerDoubleTap'<sup>11+</sup>          | 表示四指双击的手势。 |
+| 'fourFingerDoubleTapAndHold'<sup>11+</sup>   | 表示四指双击长按的手势。 |
+| 'fourFingerTripleTap'<sup>11+</sup>          | 表示四指三击的手势。 |
+| 'fourFingerTripleTapAndHold'<sup>11+</sup>   | 表示四指三击长按的手势。 |
+| 'threeFingerSwipeUp'<sup>11+</sup>           | 表示三指向上滑动的手势。 |
+| 'threeFingerSwipeDown'<sup>11+</sup>         | 表示三指向下滑动的手势。 |
+| 'threeFingerSwipeLeft'<sup>11+</sup>         | 表示三指向左滑动的手势。 |
+| 'threeFingerSwipeRight'<sup>11+</sup>        | 表示三指向右滑动的手势。 |
+| 'fourFingerSwipeUp'<sup>11+</sup>            | 表示四指向上滑动的手势。 |
+| 'fourFingerSwipeDown'<sup>11+</sup>          | 表示四指向下滑动的手势。 |
+| 'fourFingerSwipeLeft'<sup>11+</sup>          | 表示四指向左滑动的手势。 |
+| 'fourFingerSwipeRight'<sup>11+</sup>         | 表示四指向右滑动的手势。 |
 
 ## PageUpdateType
 
@@ -209,7 +278,7 @@ type PageUpdateType = 'pageContentUpdate' | 'pageStateUpdate'
 
 ## TouchGuideType
 
-TouchGuideType = 'touchBegin' | 'touchEnd'
+type TouchGuideType = 'touchBegin' | 'touchEnd'
 
 触摸浏览事件类型。
 
@@ -318,6 +387,11 @@ onKeyEvent(keyEvent: KeyEvent): boolean;
 | 参数名      | 类型                                               | 必填   | 说明                      |
 | -------- |--------------------------------------------------| ---- | ----------------------- |
 | keyEvent | [KeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent) | 是    | 按键事件回调函数。返回true表示拦截此按键。|
+
+**返回值：**
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 返回true表示此事件被消费，不会继续传递。<br>返回false表示些事件未被消费，会继续传递。|
 
 **示例：**
 

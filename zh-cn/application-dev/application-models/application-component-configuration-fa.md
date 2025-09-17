@@ -29,7 +29,7 @@
 * 最近任务列表中显示时
 
 ### 应用图标和标签配置
-FA模型不支持直接配置应用图标和标签，会以符合规则的PageAbility的图标和标签作为应用图标和标签。存在多个时，则取位置靠前的Ability的icon和label作为应用的icon和label。
+[FA模型](ability-terminology.md#fa模型)不支持直接配置应用图标和标签，会以符合规则的PageAbility的图标和标签作为应用图标和标签。存在多个时，则取位置靠前的Ability的icon和label作为应用的icon和label。
 
 ### 入口图标和标签配置
 

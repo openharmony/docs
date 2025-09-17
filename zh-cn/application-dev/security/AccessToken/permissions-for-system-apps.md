@@ -3837,18 +3837,6 @@
 
 **起始版本**：12
 
-## ohos.permission.GET_ETHERNET_LOCAL_MAC
-
-允许应用查询以太网当前MAC地址。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：13
-
 ## ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS
 
 允许模态UIExtension取消对不安全窗口的隐藏。
@@ -4545,20 +4533,6 @@
 
 **起始版本**：19
 
-## ohos.permission.ENTERPRISE_ACCESS_DLP_FILE
-
-允许应用调用企业空间访问DLP文件的接口。
-
-**权限级别**：system_core
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**支持设备**：PC/2in1
-
-**起始版本**：20
-
 ## ohos.permission.UNINSTALL_PLUGIN_BUNDLE
 
 允许应用调用卸载插件的接口。
@@ -5120,3 +5094,33 @@
 **支持设备**：PC/2in1
 
 **起始版本**：20
+
+## ohos.permission.MANAGE_SELF_SKILLS
+
+允许应用管理本应用的skills配置。
+
+获取该权限后，应用可管理自身的skills配置，扩展隐式匹配能力，如支持打开特定类型文件等。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1
+
+**起始版本**：22
+
+## ohos.permission.DATA_IDENTIFY_ANONYMIZE
+
+允许系统应用调用数据识别脱敏能力。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1 | Phone | Tablet | TV | Car
+
+**起始版本**：21

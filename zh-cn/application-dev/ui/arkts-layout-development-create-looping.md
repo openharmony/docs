@@ -663,7 +663,7 @@ Swiper通过设置[maintainVisibleContentPosition](../reference/apis-arkui/arkui
 
 maintainVisibleContentPosition为true时，显示区域上方或前方插入或删除数据时可见内容位置不变。
 
-关于数据[LazyForEach：懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)的具体使用，可参考数据懒加载章节中的示例。
+关于数据[LazyForEach：懒加载](../ui/rendering-control/arkts-rendering-control-lazyforeach.md)的具体使用，可参考数据懒加载章节中的示例。
 
 ```ts
 // xxx.ets
@@ -693,15 +693,15 @@ class MyDataSource implements IDataSource {
     })
   }
 
-  registerDataChangeListener(listener: DataChangelistener): void {
-    if (this.listeners.index0f(listener) < 0) {
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
       console.info('add listener');
       this.listeners.push(listener);
     }
   }
 
-  unregisterDataChangeListener(listener: DataChangeListerher): void {
-    const pos = this.listeners.index0f(listener);
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
       console.info('remove listener');
       this.listeners.splice(pos, 1);

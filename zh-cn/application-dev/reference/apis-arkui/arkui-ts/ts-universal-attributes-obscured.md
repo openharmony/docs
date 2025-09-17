@@ -2,7 +2,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--Designer: @yangfan229-->
+<!--Designer: @CCFFWW-->
 <!--Tester: @lxl007-->
 <!--Adviser: @HelloCrease-->
 
@@ -54,6 +54,7 @@ struct ObscuredExample {
           .fontColor(Color.Black)
           .border({ width: 1 })
         Text('Image not set obscured attribute').fontSize(10).fontColor(Color.Black)
+        // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
         Image($r('app.media.icon'))
           .width('200px')
           .height('200px')
@@ -65,6 +66,7 @@ struct ObscuredExample {
           .border({ width: 1 })
           .obscured([ObscuredReasons.PLACEHOLDER])
         Text('Image set obscured attribute').fontSize(10).fontColor(Color.Black)
+        // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
         Image($r('app.media.icon'))
           .width('200px')
           .height('200px')

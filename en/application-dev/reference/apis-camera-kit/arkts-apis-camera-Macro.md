@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -24,7 +25,10 @@ import { camera } from '@kit.CameraKit';
 
 enableMacro(enabled: boolean): void
 
-Enables or disables macro photography. This API can be called only when macro photography is supported.
+Enables or disables macro photography.
+> **NOTE**
+>
+> Before calling this API, call [isMacroSupported](arkts-apis-camera-MacroQuery.md#ismacrosupported19) to check whether the current device supports macro photography.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
 

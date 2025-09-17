@@ -3,7 +3,7 @@
 <!--Subsystem: ArkUI-->
 <!--Owner: @fengluochenai-->
 <!--Designer: @YanSanzo-->
-<!--Tester: @tinygreyy-->
+<!--Tester: @ybhou1993-->
 <!--Adviser: @HelloCrease-->
 
 
@@ -94,12 +94,12 @@ type SubHeaderV2IconType = ResourceStr | SymbolGlyphModifier
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称 | 类型 | 必填 | 装饰器类型 | 说明                           |
-| -------- | -------- | -------- | -------- |------------------------------|
-| primaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | @Trace | 标题内容。<br />默认值：undefined                        |
-| secondaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | @Trace | 副标题内容。<br />默认值：undefined                       |
-| primaryTitleModifier|  [TextModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier)  | 否 | @Trace | 设置标题文本属性，如设置标题颜色、字体大小、字重等。<br />默认值：undefined   |
-| secondaryTitleModifier|   [TextModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier)  | 否 | @Trace | 设置副标题文本属性，如设置副标题颜色、字体大小、字重等。<br />默认值：undefined |
+| 名称 | 类型 | 只读 | 可选 | 装饰器类型 | 说明                           |
+| -------- | -------- |---|----| -------- |------------------------------|
+| primaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | 是  | @Trace | 标题内容。<br />默认值：undefined                        |
+| secondaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | 是  | @Trace | 副标题内容。<br />默认值：undefined                       |
+| primaryTitleModifier|  [TextModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier)  | 否 | 是  | @Trace | 设置标题文本属性，如设置标题颜色、字体大小、字重等。<br />默认值：undefined   |
+| secondaryTitleModifier|   [TextModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier)  | 否 | 是  | @Trace | 设置副标题文本属性，如设置副标题颜色、字体大小、字重等。<br />默认值：undefined |
 
 ### constructor
 
@@ -129,12 +129,12 @@ constructor(options: SubHeaderV2TitleOptions)
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称 | 类型 | 必填  | 说明                          |
-| -------- | -------- | -------- |-----------------------------|
-| primaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | 标题内容。<br />默认值：undefined                       |
-| secondaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | 副标题内容。<br />默认值：undefined                      |
-| primaryTitleModifier|  [TextModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier)  | 否 | 设置标题文本属性，如设置副标题颜色、字体大小、字重等。<br />默认值：undefined |
-| secondaryTitleModifier|   [TextModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier)  | 否 | 设置副标题文本属性，如设置标题颜色、字体大小、字重等。<br />默认值：undefined |
+| 名称 | 类型 | 只读 | 可选 | 说明                          |
+| -------- | -------- |----|----|-----------------------------|
+| primaryTitle|  [ResourceStr](ts-types.md#resourcestr)  |  否  | 是  | 标题内容。<br />默认值：undefined                       |
+| secondaryTitle|  [ResourceStr](ts-types.md#resourcestr)  |  否  | 是  | 副标题内容。<br />默认值：undefined                      |
+| primaryTitleModifier|  [TextModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier)  |  否  | 是  | 设置标题文本属性，如设置副标题颜色、字体大小、字重等。<br />默认值：undefined |
+| secondaryTitleModifier|   [TextModifier](ts-universal-attributes-attribute-modifier.md#自定义modifier)  |  否  | 是  | 设置副标题文本属性，如设置标题颜色、字体大小、字重等。<br />默认值：undefined |
 
 ## SubHeaderV2Select
 
@@ -150,13 +150,13 @@ select内容以及事件。
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称 | 类型                                                               | 必填 | 装饰器类型| 说明                                                                        |
-| -------- |------------------------------------------------------------------| -------- | -------- |---------------------------------------------------------------------------|
-| options | [SelectOption](ts-basic-components-select.md#selectoption对象说明)[] | 是 | @Trace | 下拉选项内容。                                                                   |
-| selectedIndex | number                                                           | 否 |@Trace | 设置下拉菜单初始选项的索引。<br />第一项的索引为0。<br />当不设置selected属性时，<br />默认选择值为-1，菜单项不选中。 |
-| selectedContent | [ResourceStr](ts-types.md#resourcestr)                         | 否 | @Trace | 设置下拉按钮本身的文本内容。默认值：'' 。从API version 20开始，支持Resource类型。                             |
-| onSelect | [SubHeaderV2SelectOnSelect](#subheaderv2selectonselect)                                   | 否 | @Trace | 下拉菜单选中某一项的回调。 <br />默认值：undefined                                               |
-| defaultFocus | boolean | 否 | @Trace |下拉按钮是否为默认焦点。<br/>true：下拉按钮是默认焦点。<br/>false：下拉按钮不是默认焦点。<br />默认值：false                                  |
+| 名称 | 类型                                                               | 只读 | 可选 | 装饰器类型| 说明                                                                        |
+| -------- |------------------------------------------------------------------|----|----| -------- |---------------------------------------------------------------------------|
+| options | [SelectOption](ts-basic-components-select.md#selectoption对象说明)[] |  否  | 否  | @Trace | 下拉选项内容。                                                                   |
+| selectedIndex | number                                                           |  否  | 是  |@Trace | 设置下拉菜单初始选项的索引。<br />第一项的索引为0。<br />当不设置selected属性时，<br />默认选择值为-1，菜单项不选中。 |
+| selectedContent | [ResourceStr](ts-types.md#resourcestr)                         |  否  | 是  | @Trace | 设置下拉按钮本身的文本内容。默认值：'' 。从API version 20开始，支持Resource类型。                             |
+| onSelect | [SubHeaderV2SelectOnSelect](#subheaderv2selectonselect)                                   |  否  | 是  | @Trace | 下拉菜单选中某一项的回调。 <br />默认值：undefined                                               |
+| defaultFocus | boolean |  否  | 是  | @Trace |下拉按钮是否为默认焦点。<br/>true：下拉按钮是默认焦点。<br/>false：下拉按钮不是默认焦点。<br />默认值：false                                  |
 
 ### constructor
 
@@ -186,13 +186,13 @@ select内容以及事件构造函数。
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称 | 类型                                                               | 必填  | 说明                                                                        |
-| -------- |------------------------------------------------------------------| -------- |---------------------------------------------------------------------------| 
-| options | [SelectOption](ts-basic-components-select.md#selectoption对象说明)[] | 是 | 下拉选项内容。                                                                   |
-| selectedIndex | number                                                           | 否 | 设置下拉菜单初始选项的索引。<br />第一项的索引为0。<br />当不设置selected属性时，<br />默认选择值为-1，菜单项不选中。 |
-| selectedContent | [ResourceStr](ts-types.md#resourcestr)                                                           | 否 | 设置下拉按钮本身的文本内容。默认值：''。从API version 20开始，支持Resource类型。                                                      |
-| onSelect | [SubHeaderV2SelectOnSelect](#subheaderv2selectonselect)          | 否 | 下拉菜单选中某一项的回调。<br />默认值：undefined                                                |
-| defaultFocus | boolean | 否 | 下拉按钮是否为默认焦点。<br/>true：下拉按钮是默认焦点。<br/>false：下拉按钮不是默认焦点。<br />默认值：false                                  |
+| 名称 | 类型                                                               | 只读 | 可选 | 说明                                                                        |
+| -------- |------------------------------------------------------------------|----|----|---------------------------------------------------------------------------| 
+| options | [SelectOption](ts-basic-components-select.md#selectoption对象说明)[] |  否  | 否  | 下拉选项内容。                                                                   |
+| selectedIndex | number                                                           |  否  | 是  | 设置下拉菜单初始选项的索引。<br />第一项的索引为0。<br />当不设置selected属性时，<br />默认选择值为-1，菜单项不选中。 |
+| selectedContent | [ResourceStr](ts-types.md#resourcestr)                                                           |  否  | 是  | 设置下拉按钮本身的文本内容。默认值：''。从API version 20开始，支持Resource类型。                                                      |
+| onSelect | [SubHeaderV2SelectOnSelect](#subheaderv2selectonselect)          |  否  | 是  | 下拉菜单选中某一项的回调。<br />默认值：undefined                                                |
+| defaultFocus | boolean |  否  | 是  | 下拉按钮是否为默认焦点。<br/>true：下拉按钮是默认焦点。<br/>false：下拉按钮不是默认焦点。<br />默认值：false                                  |
 
 ## SubHeaderV2SelectOnSelect
 
@@ -261,14 +261,14 @@ type SubHeaderV2OperationItemType = ResourceStr | SymbolGlyphModifier
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称 | 类型 | 必填 | 装饰器类型 | 说明                                                  |
-| -------- | -------- | -------- | -------- |-----------------------------------------------------|
-| content |  [SubHeaderV2OperationItemType](#subheaderv2operationitemtype)  | 是 | @Trace | 操作区元素内容。                                            |
-| action | [SubHeaderV2OperationItemAction](#subheaderv2operationitemaction)| 否 | @Trace | 操作区事件。默认值：() => void。                                |
-| accessibilityText |[ResourceStr](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍描述。 <br />默认值：undefined                     |
-| accessibilityLevel | string | 否 |@Trace | 子标题右侧icon图标无障碍重要性。<br/>支持的值为：<br/>"auto"：当前子标题右侧icon图标由无障碍分组服务和ArkUl进行综合判断是否可被无障碍辅助服务所识别。<br/>"yes"：当前子标题右侧icon图标可被无障碍辅助服务所识别。<br/>"no"：当前子标题右侧icon图标不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前子标题右侧icon图标及其所有子组件不可被无障碍辅助服务所识别。<br>默认值: “yes”。                   | 
-| accessibilityDescription|[ResourceStr](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍说明，用于为用户进一步说明当前组件。<br>默认值：“单指双击即可执行”。 |
-| defaultFocus | boolean | 否 | @Trace |子标题右侧按钮是否为默认焦点。<br/>true：子标题右侧按钮是默认焦点。<br/>false：子标题右侧按钮不是默认焦点。<br />默认值：false                                                                                                                                            |
+| 名称 | 类型 | 只读 | 可选 | 装饰器类型 | 说明                                                                                                                                                                                                                                              |
+| -------- | -------- |---|---| -------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| content |  [SubHeaderV2OperationItemType](#subheaderv2operationitemtype)  | 否 | 否 | @Trace | 操作区元素内容。                                                                                                                                                                                                                                        |
+| action | [SubHeaderV2OperationItemAction](#subheaderv2operationitemaction)| 否 | 是 | @Trace | 操作区事件。默认值：() => void。                                                                                                                                                                                                                           |
+| accessibilityText |[ResourceStr](ts-types.md#resourcestr) | 否 | 是 |@Trace | 子标题右侧icon图标无障碍描述。 <br />默认值：undefined                                                                                                                                                                                                           |
+| accessibilityLevel | string | 否 | 是 |@Trace | 子标题右侧icon图标无障碍重要性。<br/>支持的值为：<br/>"auto"：当前子标题右侧icon图标由无障碍分组服务和ArkUl进行综合判断是否可被无障碍辅助服务所识别。<br/>"yes"：当前子标题右侧icon图标可被无障碍辅助服务所识别。<br/>"no"：当前子标题右侧icon图标不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前子标题右侧icon图标及其所有子组件不可被无障碍辅助服务所识别。<br>默认值: “yes”。 | 
+| accessibilityDescription|[ResourceStr](ts-types.md#resourcestr) | 否 | 是 |@Trace | 子标题右侧icon图标无障碍说明，用于为用户进一步说明当前组件。<br>默认值：“单指双击即可执行”。                                                                                                                                                                                             |
+| defaultFocus | boolean | 否 | 是 | @Trace | 子标题右侧按钮是否为默认焦点。<br/>true：子标题右侧按钮是默认焦点。<br/>false：子标题右侧按钮不是默认焦点。<br />默认值：false                                                                                                                                                                  |
 
 ### constructor
 
@@ -311,14 +311,14 @@ type SubHeaderV2OperationItemAction = () => void
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称                       | 类型                                          | 必填  | 说明                                                  |
-|--------------------------|---------------------------------------------| -------- |-----------------------------------------------------|
-| content                  | [SubHeaderV2OperationItemType](#subheaderv2operationitemtype) | 是 | 文本内容。                                               |
-| action                   | [SubHeaderV2OperationItemAction](#subheaderv2operationitemaction)         | 否 | 选项操作事件。默认值：() => void。                               |
-| accessibilityText        | [ResourceStr](ts-types.md#resourcestr)      | 否 | 子标题右侧icon图标无障碍描述。<br />默认值：undefined                      |
-| accessibilityLevel       | string | 否 | 子标题右侧icon图标无障碍重要性。<br/>支持的值为：<br/>"auto"：当前子标题右侧icon图标由无障碍分组服务和ArkUl进行综合判断是否可被无障碍辅助服务所识别。<br/>"yes"：当前子标题右侧icon图标可被无障碍辅助服务所识别。<br/>"no"：当前子标题右侧icon图标不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前子标题右侧icon图标及其所有子组件不可被无障碍辅助服务所识别。<br>默认值: “yes”。                   | 
-| accessibilityDescription | [ResourceStr](ts-types.md#resourcestr)      | 否 | 子标题右侧icon图标无障碍说明，用于为用户进一步说明当前组件。<br>默认值：“单指双击即可执行”。 |
-| defaultFocus | boolean | 否 | 子标题右侧按钮是否为默认焦点。<br/>true：子标题右侧按钮是默认焦点。<br/>false：子标题右侧按钮不是默认焦点。<br />默认值：false                                                                                                                                            |
+| 名称                       | 类型                                          | 只读 | 可选 | 说明                                                                                                                                                                                                                                              |
+|--------------------------|---------------------------------------------|---|---|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| content                  | [SubHeaderV2OperationItemType](#subheaderv2operationitemtype) | 否 | 否 | 文本内容。                                                                                                                                                                                                                                           |
+| action                   | [SubHeaderV2OperationItemAction](#subheaderv2operationitemaction)         | 否 | 是 | 选项操作事件。默认值：() => void。                                                                                                                                                                                                                          |
+| accessibilityText        | [ResourceStr](ts-types.md#resourcestr)      | 否 | 是 | 子标题右侧icon图标无障碍描述。<br />默认值：undefined                                                                                                                                                                                                            |
+| accessibilityLevel       | string | 否 | 是 | 子标题右侧icon图标无障碍重要性。<br/>支持的值为：<br/>"auto"：当前子标题右侧icon图标由无障碍分组服务和ArkUl进行综合判断是否可被无障碍辅助服务所识别。<br/>"yes"：当前子标题右侧icon图标可被无障碍辅助服务所识别。<br/>"no"：当前子标题右侧icon图标不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前子标题右侧icon图标及其所有子组件不可被无障碍辅助服务所识别。<br>默认值: “yes”。 | 
+| accessibilityDescription | [ResourceStr](ts-types.md#resourcestr)      | 否 | 是 | 子标题右侧icon图标无障碍说明，用于为用户进一步说明当前组件。<br>默认值：“单指双击即可执行”。                                                                                                                                                                                             |
+| defaultFocus | boolean | 否 | 是 | 子标题右侧按钮是否为默认焦点。<br/>true：子标题右侧按钮是默认焦点。<br/>false：子标题右侧按钮不是默认焦点。<br />默认值：false                                                                                                                                                                  |
 
 ## SubHeaderV2TitleBuilder
 

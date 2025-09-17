@@ -1,5 +1,12 @@
 # Grid高性能开发指导
 
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 ## 概述
 
 在构建大型、复杂应用时，性能优化至关重要。Grid布局作为一种高效布局方式，可以提高页面的均分能力、子组件占比控制能力及自适应布局能力。本文将介绍Grid在高性能开发方面的应用，包括懒加载、cachedCount、组件复用和使用GridLayoutOptions设置GridItem大小等方法，帮助开发者优化Grid布局性能，减少加载和渲染时间，提升用户体验。
@@ -107,7 +114,7 @@ struct ReusableChildComponent {
 }
 ```
 
-- 使用懒加载可以有效缩短Grid加载和渲染时间，而且在处理大量GridItem时，懒加载可以显著节省内存和CPU资源的消耗。示例中使用LazyForEach进行数据懒加载，Grid布局时会根据可视区域按需创建GridItem组件，并在GridItem滑出可视区域时销毁以降低内存占用。更多懒加载的信息，请参考[LazyForEach：数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)。
+- 使用懒加载可以有效缩短Grid加载和渲染时间，而且在处理大量GridItem时，懒加载可以显著节省内存和CPU资源的消耗。示例中使用LazyForEach进行数据懒加载，Grid布局时会根据可视区域按需创建GridItem组件，并在GridItem滑出可视区域时销毁以降低内存占用。更多懒加载的信息，请参考[LazyForEach：数据懒加载](../ui/rendering-control/arkts-rendering-control-lazyforeach.md)。
 
 - 使用懒加载方式渲染Grid时，合理使用cachedCount可以让应用有更好的滚动体验，减少滑动时出现的白块。示例中Grid使用cachedCount属性设置GridItem的缓存数量，会在Grid显示区域前后各缓存cachedCount\*列数个GridItem，超出显示和缓存范围的GridItem会被释放。需要注意的是cachedCount的增加会增大CPU、内存开销。使用时需要根据实际情况，综合性能和用户体验进行调整。
 
@@ -133,7 +140,7 @@ GridLayoutOptions布局选项，配合rowsTemplate、columnsTemplate仅设置其
 
 ```ts
 // 导入性能打点模块
-import hiTraceMeter from '@ohos.hiTraceMeter';
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
 
 @Component
 struct TextItem {
@@ -230,7 +237,7 @@ struct GridExample {
 
 ```ts
 // 导入性能打点模块
-import hiTraceMeter from '@ohos.hiTraceMeter';
+import { hiTraceMeter } from '@kit.PerformanceAnalysisKit';
 
 @Component
 struct TextItem {

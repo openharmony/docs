@@ -23,10 +23,11 @@ target_link_libraries(entry PUBLIC libasset_ndk.z.so)
 
 #include "asset/asset_api.h"
 
-void AddAsset() {
-    static const char *SECRET = "demo_pwd";
-    static const char *ALIAS = "demo_alias";
-    static const char *LABEL = "demo_label";
+static napi_value AddAsset(napi_env env, napi_callback_info info)
+{
+    static const char *SECRET = "demo_pwd2";
+    static const char *ALIAS = "demo_alias2";
+    static const char *LABEL = "demo_label2";
 
     Asset_Blob secret = {(uint32_t)(strlen(SECRET)), (uint8_t *)SECRET};
     Asset_Blob alias = {(uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS};
@@ -38,12 +39,10 @@ void AddAsset() {
         {.tag = ASSET_TAG_SYNC_TYPE, .value.u32 = ASSET_SYNC_TYPE_TRUSTED_DEVICE}, // 需指定在可信设备间同步（如新旧设备间克隆）。
     };
 
-    int32_t ret = OH_Asset_Add(attr, sizeof(attr) / sizeof(attr[0]));
-    if (ret == ASSET_SUCCESS) {
-        // 添加支持同步的关键资产成功。
-    } else {
-        // 添加支持同步的关键资产失败。
-    }
+    int32_t addResult = OH_Asset_Add(attr, sizeof(attr) / sizeof(attr[0]));
+    napi_value ret;
+    napi_create_int32(env, addResult, &ret);
+    return ret;
 }
 ```
 
@@ -72,14 +71,13 @@ void AddAsset() {
 
 #include "asset/asset_api.h"
 
-void QuerySyncResults() {
+static napi_value QuerySyncResults(napi_env env, napi_callback_info info)
+{
     Asset_SyncResult syncResult = {0};
-    int32_t ret = OH_Asset_QuerySyncResult(NULL, 0, &syncResult);
-    if (ret == ASSET_SUCCESS) {
-        // 查询关键资产同步结果成功。
-    } else {
-        // 查询关键资产同步结果失败。
-    }
+    int32_t queryResult = OH_Asset_QuerySyncResult(NULL, 0, &syncResult);
+    napi_value ret;
+    napi_create_int32(env, queryResult, &ret);
+    return ret;
 }
 ```
 

@@ -1,5 +1,12 @@
 # 利用native的方式实现跨线程调用
 
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 ## 简介
 
 在OpenHarmony应用开发实践中，经常会遇到一些耗时的任务，如I/O操作、域名解析以及复杂计算等。这些任务如果直接在主线程中执行，将会严重阻塞主线程，影响后续任务的正常流程，进而导致用户界面响应延迟甚至卡顿。因此，为了提升代码性能，通常会将这类耗时任务放在子线程中执行。  
@@ -36,7 +43,8 @@ napi_threadsafe_function 提供了接口来创建一个可以在多线程间共�
 默认情况下，libuv提供的线程池包含4个线程作为基本工作单元，但最大线程数可以扩展到128个。通过预先设置环境变量 UV_THREADPOOL_SIZE 的值，可以自定义线程池中的线程数量。当线程池初始化时，会创建相应数量的工作线程，并在每个线程内部运行一个   uv_queue_work 函数。  
 值得注意的是，libuv 中的线程池是全局共享资源，不论应用中有多少个独立的事件循环实例，它们都共用同一个线程池。这样的设计旨在有效利用系统资源，同时避免因频繁创建和销毁线程带来的开销。
 
-#### uv_queue_work
+**uv_queue_work**
+
    ```c++
     uv_queue_work(uv_loop_t* loop,
                   uv_work_t* req,
@@ -58,25 +66,25 @@ napi_threadsafe_function 提供了接口来创建一个可以在多线程间共�
 参数为param，函数体中对参数param加10后绑定变量value，并返回最新的param值。将回调函数作为参数调用native侧的ThreadSafeTest接口。  
 
    ```typescript
-    //  src/main/ets/pages/Index.ets
+   //  src/main/ets/pages/Index.ets
         
-    Button("threadSafeTest")
-      .width('40%')
-      .fontSize(20)
-      .onClick(()=> {
-        // native使用线程安全函数实现跨线程调用
-        entry.ThreadSafeTest((param: number) => {
-          param += 10;
-          logger.info('ThreadSafeTest js callback value = ', param.toString());
-          this.value = param;
-          return param;
-        }
+   Button("threadSafeTest")
+     .width('40%')
+     .fontSize(20)
+     .onClick(()=> {
+       // native使用线程安全函数实现跨线程调用
+       entry.ThreadSafeTest((param: number) => {
+         param += 10;
+         logger.info('ThreadSafeTest js callback value = ', param.toString());
+         this.value = param;
+         return param;
+       }
       )
-    }).margin(20)
+   }).margin(20)
    ```
 **native主线程中实现一个ThreadSafeTest接口。**     
 接口接收到ArkTS传入的JavaScript回调函数后通过napi_create_threadsafe_function创建一个线程安全函数tsfn，tsfn会回调主线程中的ThreadSafeCallJs，然后在ThreadSafeCallJs中调用ArkTS端传入的JavaScript回调函数。  
-    
+
   ```c++
     //  src/main/cpp/hello.cpp
 
@@ -151,14 +159,15 @@ napi_threadsafe_function 提供了接口来创建一个可以在多线程间共�
         napi_create_string_utf8(env, "workItem", NAPI_AUTO_LENGTH, &workName);
         // 创建线程安全函数
         napi_create_threadsafe_function(env, js_cb, NULL, workName, 0, 1, NULL, NULL, NULL, ThreadSafeCallJs, &tsfn);
+    }
   ```
 **在native子线程中调用线程安全函数。**    
 通过std::thread创建子线程，在子线程中通过napi_call_threadsafe_function调用线程安全函数tsfn，把CallbackContext 结构体数据作为参数传入ThreadSafeCallJs。这里在子线程中进行了简单的业务处理，开发者可以根据自身实际需求进行相应的业务操作。  
-  
-  ```c++
-  //   src/main/cpp/hello.cpp
 
-    // 在子线程中调用线程安全函数
+  ```c++
+//   src/main/cpp/hello.cpp
+
+// 在子线程中调用线程安全函数
     for (int i = 0; i < g_threadNum; i++) {
         // 创建回调参数
         auto asyncContext = new CallbackContext();

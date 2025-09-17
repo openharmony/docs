@@ -107,6 +107,7 @@ select(options?: AVCastPickerOptions): Promise\<void>
 ```ts
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { avSession } from '@kit.AVSessionKit';
 
 async function avCastPicker(context: common.Context) {
   let avCastPickerOptions : avSession.AVCastPickerOptions = {
@@ -154,6 +155,7 @@ on(type: 'pickerStateChange', callback: Callback<AVCastPickerState\>) : void
 ```ts
 import { common } from '@kit.AbilityKit';
 import { AVCastPickerState } from '@kit.AVSessionKit';
+import { avSession } from '@kit.AVSessionKit';
 
 async function onPickerStateChange(context: common.Context) {
   let avCastPicker = new avSession.AVCastPickerHelper(context);
@@ -193,6 +195,7 @@ off(type: 'pickerStateChange', callback?: Callback<AVCastPickerState\>) : void
 
 ```ts
 import { common } from '@kit.AbilityKit';
+import { avSession } from '@kit.AVSessionKit';
 
 async function onPickerStateChange(context: common.Context) {
   let avCastPicker = new avSession.AVCastPickerHelper(context);

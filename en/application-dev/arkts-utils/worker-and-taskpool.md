@@ -1,4 +1,10 @@
 # Persistent Worker Threads Handling Concurrent Tasks via TaskPool
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 In ArkTS application development, you can choose between TaskPool and Worker threads for concurrent task processing, or you utilize both capabilities.
 
@@ -8,7 +14,7 @@ This section describes how to execute concurrent tasks through TaskPool within a
 
    ```ts
    // Index.ets
-   import { worker } from '@kit.ArkTS';
+   import { MessageEvents, worker } from '@kit.ArkTS';
    
    @Entry
    @Component
@@ -30,9 +36,9 @@ This section describes how to execute concurrent tasks through TaskPool within a
              const myWorker = new worker.ThreadWorker('entry/ets/workers/Worker.ets');
    
              // 2. Handle results from the Worker instance.
-             myWorker.onmessage = (e) => {
-               console.log('Main thread receives the final result:', e.data.result);
-               myWorker.terminate(); // Destroy the Worker instance.
+             myWorker.onmessage = (e: MessageEvents) => {
+               console.info('Main thread receives the final result:', e.data.result);
+               myWorker.terminate(); // Destroy the Worker instance at an appropriate time.
              };
    
              // 3. Send a startup instruction to the Worker instance.
@@ -61,7 +67,7 @@ This section describes how to execute concurrent tasks through TaskPool within a
        // Call TaskPool to execute concurrent tasks.
        const task = new taskpool.Task(parallelTask, processedData);
        const result = await taskpool.execute(task);
-       console.log('Worker thread returns result: ', result);
+       console.info('Worker thread returns result: ', result);
    
        // Return the final result to the main thread.
        workerPort.postMessage({
@@ -85,7 +91,7 @@ This section describes how to execute concurrent tasks through TaskPool within a
      for (let i = 0; i < base; i++) {
        total += i % 2 === 0 ? i : -i;
      }
-     console.log('TaskPool thread calculation result: ', total);
+     console.info('TaskPool thread calculation result: ', total);
      return total;
    }
    ```

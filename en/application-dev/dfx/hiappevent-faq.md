@@ -44,7 +44,7 @@ The **external_log** file is stored in the [application sandbox](../file-managem
 
 **Solutions**
 
-Clear historical log files by referring to the solution in [What should I do if the external_log file cannot be deleted](what-should-I-do-if-the-external-log-file-cannot-be-deleted).
+Clear historical log files by referring to the solution in [What should I do if the external_log file cannot be deleted](#what-should-i-do-if-the-external_log-file-cannot-be-deleted).
 
 **Scenario 2**
 

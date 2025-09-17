@@ -124,7 +124,7 @@ acm dump -i <accountId>
 # 显示帮助命令
 acm switch -h
 # 切换到指定id的账号
-acm switch -i <accountId>
+acm switch -i <accountId> [-d <displayId>]
 ```
 
 **显示信息**
@@ -137,6 +137,7 @@ acm switch -i <accountId>
 | ----------------------------------- | -------------------------- |
 | -h | 可选参数。显示switch支持的命令信息。 |
 | -i | 必选参数。指定要切换到的账号的账号id。 |
+| -d | 可选参数。指定要切换到的目标屏幕ID（displayId）。 |
 
 
 ## deactivate

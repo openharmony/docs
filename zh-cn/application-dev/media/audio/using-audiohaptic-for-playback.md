@@ -36,7 +36,7 @@ AudioHaptic<sup>11+</sup>提供音频与振动协同播放及管理的方法，�
    audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
      console.info(`Promise returned to indicate that the source id of the registered source ${value}.`);
      id = value;
-   }).catch ((err: BusinessError) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to register source ${err}`);
    });
    ```
@@ -60,7 +60,7 @@ AudioHaptic<sup>11+</sup>提供音频与振动协同播放及管理的方法，�
    audioHapticManagerInstance.createPlayer(id, options).then((value: audioHaptic.AudioHapticPlayer) => {
      console.info(`Create the audio haptic player successfully.`);
      audioHapticPlayer = value;
-   }).catch ((err: BusinessError) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to create player ${err}`);
    });
    ```
@@ -70,7 +70,7 @@ AudioHaptic<sup>11+</sup>提供音频与振动协同播放及管理的方法，�
    ```ts
    audioHapticPlayer.start().then(() => {
      console.info(`Promise returned to indicate that start playing successfully.`);
-   }).catch ((err: BusinessError) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to start playing. ${err}`);
    });
    ```
@@ -80,7 +80,7 @@ AudioHaptic<sup>11+</sup>提供音频与振动协同播放及管理的方法，�
    ```ts
    audioHapticPlayer.stop().then(() => {
      console.info(`Promise returned to indicate that stop playing successfully.`);
-   }).catch ((err: BusinessError) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to stop playing. ${err}`);
    });
    ```
@@ -90,7 +90,7 @@ AudioHaptic<sup>11+</sup>提供音频与振动协同播放及管理的方法，�
    ```ts
    audioHapticPlayer.release().then(() => {
      console.info(`Promise returned to indicate that release the audio haptic player successfully.`);
-   }).catch ((err: BusinessError) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to release the audio haptic player. ${err}`);
    });
    ```
@@ -100,7 +100,7 @@ AudioHaptic<sup>11+</sup>提供音频与振动协同播放及管理的方法，�
    ```ts
    audioHapticManagerInstance.unregisterSource(id).then(() => {
      console.info(`Promise returned to indicate that unregister source successfully`);
-   }).catch ((err: BusinessError) => {
+   }).catch((err: BusinessError) => {
      console.error(`Failed to unregister source ${err}`);
    });
    ```

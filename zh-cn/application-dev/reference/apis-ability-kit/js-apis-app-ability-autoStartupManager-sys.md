@@ -1,4 +1,4 @@
-# @ohos.app.ability.autoStartupManager(autoStartupManager)(系统接口)
+# @ohos.app.ability.autoStartupManager (开机自启管理能力)(系统接口)
 
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
@@ -49,7 +49,7 @@ on(type: 'systemAutoStartup', callback: AutoStartupCallback): void
 | 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
 | 202      | Permission denied, non-system app called system api. |
 | 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 16000050 | Internal error. |
+| 16000050 | Failed to connect to the system service. |
 
 **示例**：
 
@@ -99,7 +99,7 @@ off(type: 'systemAutoStartup', callback?: AutoStartupCallback): void
 | 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
 | 202      | Permission denied, non-system app called system api. |
 | 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 16000050 | Internal error. |
+| 16000050 | Failed to connect to the system service. |
 
 **示例**：
 
@@ -134,6 +134,7 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **设备行为差异**：
+- 从API version 21开始，该接口可在Phone、2in1、Tablet和Wearable设备中正常调用，在其他设备上返回16000050错误码。
 - 从API version 18开始，该接口仅在2in1和Wearable设备中可正常调用，在其他设备上返回16000050错误码。
 - 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
 
@@ -155,7 +156,7 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 | 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 16000004 | Cannot start an invisible component.         |
 | 16000013 | The application is controlled by EDM.        |
-| 16000050 | Internal error.                              |
+| 16000050 | Failed to connect to the system service. |
 
 **示例**：
 
@@ -192,6 +193,7 @@ setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **设备行为差异**：
+- 从API version 21开始，该接口可在Phone、2in1、Tablet和Wearable设备中正常调用，在其他设备上返回16000050错误码。
 - 从API version 18开始，该接口仅在2in1和Wearable设备中可正常调用，在其他设备上返回16000050错误码。
 - 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
 
@@ -218,7 +220,7 @@ setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 | 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 16000004 | Cannot start an invisible component.         |
 | 16000013 | The application is controlled by EDM.        |
-| 16000050 | Internal error.                              |
+| 16000050 | Failed to connect to the system service. |
 
 **示例**：
 
@@ -253,6 +255,7 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **设备行为差异**：
+- 从API version 21开始，该接口可在Phone、2in1、Tablet和Wearable设备中正常调用，在其他设备上返回16000050错误码。
 - 从API version 18开始，该接口仅在2in1和Wearable设备中可正常调用，在其他设备上返回16000050错误码。
 - 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
 
@@ -274,7 +277,7 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 | 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 16000004 | Cannot start an invisible component.         |
 | 16000013 | The application is controlled by EDM.        |
-| 16000050 | Internal error.                              |
+| 16000050 | Failed to connect to the system service. |
 
 **示例**：
 
@@ -311,6 +314,7 @@ cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **设备行为差异**：
+- 从API version 21开始，该接口可在Phone、2in1、Tablet和Wearable设备中正常调用，在其他设备上返回16000050错误码。
 - 从API version 18开始，该接口仅在2in1和Wearable设备中可正常调用，在其他设备上返回16000050错误码。
 - 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
 
@@ -337,7 +341,7 @@ cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 | 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 16000004 | Cannot start an invisible component.         |
 | 16000013 | The application is controlled by EDM.        |
-| 16000050 | Internal error.                              |
+| 16000050 | Failed to connect to the system service. |
 
 **示例**：
 
@@ -372,6 +376,7 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **设备行为差异**：
+- 从API version 21开始，该接口可在Phone、2in1、Tablet和Wearable设备中正常调用，在其他设备上返回16000050错误码。
 - 从API version 18开始，该接口仅在2in1和Wearable设备中可正常调用，在其他设备上返回16000050错误码。
 - 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
 
@@ -390,7 +395,7 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 | 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
 | 202      | Permission denied, non-system app called system api. |
 | 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 16000050 | Internal error. |
+| 16000050 | Failed to connect to the system service. |
 
 **示例**：
 
@@ -399,7 +404,7 @@ import { autoStartupManager, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  autoStartupManager.queryAllAutoStartupApplications((err, data: common.AutoStartupInfo[]) => {
+  autoStartupManager.queryAllAutoStartupApplications((err: BusinessError, data: common.AutoStartupInfo[]) => {
     if (err) {
       console.error(`queryAllAutoStartupApplications failed, err code: ${err.code}, err msg: ${err.message}.`);
       return;
@@ -424,6 +429,7 @@ try {
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **设备行为差异**：
+- 从API version 21开始，该接口可在Phone、2in1、Tablet和Wearable设备中正常调用，在其他设备上返回16000050错误码。
 - 从API version 18开始，该接口仅在2in1和Wearable设备中可正常调用，在其他设备上返回16000050错误码。
 - 对于API version 18之前版本，该接口仅在2in1设备中可正常调用，在其他设备上返回16000050错误码。
 
@@ -442,7 +448,7 @@ try {
 | 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
 | 202      | Permission denied, non-system app called system api. |
 | 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 16000050 | Internal error. |
+| 16000050 | Failed to connect to the system service. |
 
 **示例**：
 

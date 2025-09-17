@@ -1,4 +1,10 @@
 # ArkTS语言基础类库开发常见问题
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @wang_zhaoyong-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kir175; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 
 ## TaskPool、Worker和各个ArkTS引擎实例之间是否内存隔离
@@ -308,11 +314,11 @@ class SdkU3d {
   }
 }
 
-const workerInstance = new
-worker.ThreadWorker("xx/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 let sdk = SdkU3d.getInst()
 workerInstance.registerGlobalCallObject("instance_xx", sdk);
 workerInstance.postMessage("start");
+// 工作线程
 const mainPort = worker.workerPort;
 mainPort.onmessage = (e: MessageEvents): void => {
   let ret = mainPort.callGlobalCallObjectMethod("instance_xx", "getPropStr", "xx");

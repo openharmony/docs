@@ -1,5 +1,12 @@
 # @ohos.logLibrary (维测日志获取)(系统接口)
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @BruceZong-->
+<!--Designer: @gcw_qzKyUhyU-->
+<!--Tester: @gcw_KuLfPSbe-->
+<!--Adviser: @foryourself-->
+
 本模块提供了获取各类系统维测日志的能力。
 
 > **说明：**

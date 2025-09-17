@@ -108,7 +108,7 @@
 
 3. 新增ExtensionEvent文件，使用startFormEditSecondPage方法调用[startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#startsecondpage)方法。
     ```ts
-    // src/main/ets/widget/pages/model/ExtensionEvent.ets
+    // src/main/ets/pages/model/ExtensionEvent.ets
 
     const TAG: string = 'FormEditDemo[ExtensionEvent] -->';
     export class ExtensionEvent {

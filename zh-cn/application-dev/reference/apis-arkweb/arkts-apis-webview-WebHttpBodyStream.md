@@ -4,7 +4,7 @@
 <!--Owner: @aohui-->
 <!--Designer: @yaomingliu-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 POST、PUT请求的数据体，支持BYTES、FILE、BLOB、CHUNKED类型的数据。注意本类中其他接口需要在[initialize](#initialize12)成功后才能调用。
 
@@ -38,7 +38,7 @@ initialize(): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -51,7 +51,6 @@ initialize(): Promise\<void\>
 import { webview } from '@kit.ArkWeb';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { buffer } from '@kit.ArkTS';
-import { WebNetErrorList } from '@ohos.web.netErrorList'
 
 @Entry
 @Component
@@ -75,7 +74,7 @@ struct WebComponent {
         .onControllerAttached(() => {
           try {
             this.schemeHandler.onRequestStart((request: webview.WebSchemeHandlerRequest, resourceHandler: webview.WebResourceHandler) => {
-              console.log("[schemeHandler] onRequestStart");
+              console.info("[schemeHandler] onRequestStart");
               try {
                 let stream = request.getHttpBodyStream();
                 if (stream) {
@@ -83,18 +82,18 @@ struct WebComponent {
                     if (!stream) {
                       return;
                     }
-                    console.log("[schemeHandler] onRequestStart postDataStream size:" + stream.getSize());
-                    console.log("[schemeHandler] onRequestStart postDataStream position:" + stream.getPosition());
-                    console.log("[schemeHandler] onRequestStart postDataStream isChunked:" + stream.isChunked());
-                    console.log("[schemeHandler] onRequestStart postDataStream isEof:" + stream.isEof());
-                    console.log("[schemeHandler] onRequestStart postDataStream isInMemory:" + stream.isInMemory());
+                    console.info("[schemeHandler] onRequestStart postDataStream size:" + stream.getSize());
+                    console.info("[schemeHandler] onRequestStart postDataStream position:" + stream.getPosition());
+                    console.info("[schemeHandler] onRequestStart postDataStream isChunked:" + stream.isChunked());
+                    console.info("[schemeHandler] onRequestStart postDataStream isEof:" + stream.isEof());
+                    console.info("[schemeHandler] onRequestStart postDataStream isInMemory:" + stream.isInMemory());
                     stream.read(stream.getSize()).then((buffer) => {
                       if (!stream) {
                         return;
                       }
-                      console.log("[schemeHandler] onRequestStart postDataStream readlength:" + buffer.byteLength);
-                      console.log("[schemeHandler] onRequestStart postDataStream isEof:" + stream.isEof());
-                      console.log("[schemeHandler] onRequestStart postDataStream position:" + stream.getPosition());
+                      console.info("[schemeHandler] onRequestStart postDataStream readlength:" + buffer.byteLength);
+                      console.info("[schemeHandler] onRequestStart postDataStream isEof:" + stream.isEof());
+                      console.info("[schemeHandler] onRequestStart postDataStream position:" + stream.getPosition());
                     }).catch((error: BusinessError) => {
                       console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
                     })
@@ -102,7 +101,7 @@ struct WebComponent {
                     console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
                   })
                 } else {
-                  console.log("[schemeHandler] onRequestStart has no http body stream");
+                  console.info("[schemeHandler] onRequestStart has no http body stream");
                 }
               } catch (error) {
                 console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -112,7 +111,7 @@ struct WebComponent {
             })
 
             this.schemeHandler.onRequestStop((request: webview.WebSchemeHandlerRequest) => {
-              console.log("[schemeHandler] onRequestStop");
+              console.info("[schemeHandler] onRequestStop");
             });
 
             this.controller.setWebSchemeHandler('https', this.schemeHandler);
@@ -150,7 +149,7 @@ read(size: number): Promise\<ArrayBuffer\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |

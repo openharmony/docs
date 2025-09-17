@@ -15,7 +15,7 @@
 
 ## onMove
 
-onMove(handler: Optional\<OnMoveHandler\>)
+onMove(handler: Optional\<OnMoveHandler\>): T
 
 拖拽排序数据移动回调。当父容器组件为[List](./ts-container-list.md)，并且ForEach/LazyForEach/Repeat每次迭代都生成一个ListItem组件时才生效。设置拖拽排序时可以定义不同的拖拽操作，并在响应事件发生时响应。
 
@@ -29,9 +29,15 @@ onMove(handler: Optional\<OnMoveHandler\>)
 | ------ | --------- | ---- | ---------- |
 | handler  | Optional\<[OnMoveHandler](#onmovehandler)\> | 是   | 拖拽动作。 |
 
+**返回值：** 
+
+| 类型      | 说明       |
+| ------ | --------- |
+| T  | 返回当前组件。 |
+
 ## onMove<sup>20+</sup>
 
-onMove(handler: Optional\<OnMoveHandler\>, eventHandler: ItemDragEventHandler)
+onMove(handler: Optional\<OnMoveHandler\>, eventHandler: ItemDragEventHandler): T
 
 拖拽排序数据移动回调。当父容器组件为[List](./ts-container-list.md)，并且ForEach/LazyForEach/Repeat每次迭代都生成一个ListItem组件时才生效。设置拖拽排序时可以定义不同的拖拽操作，并在响应事件发生时响应。
 
@@ -45,6 +51,12 @@ onMove(handler: Optional\<OnMoveHandler\>, eventHandler: ItemDragEventHandler)
 | ------ | --------- | ---- | ---------- |
 | handler  | Optional\<[OnMoveHandler](#onmovehandler)\> | 是   | 拖拽动作。 |
 | eventHandler  | [ItemDragEventHandler](#itemdrageventhandler20) | 是   | 拖拽发生时产生的回调。 |
+
+**返回值：** 
+
+| 类型      | 说明       |
+| ------ | --------- |
+| T  | 返回当前组件。 |
 
 ## OnMoveHandler
 
@@ -70,8 +82,6 @@ type OnMoveHandler = (from: number, to: number) => void
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
 
 | 名称 | 类型   | 只读 | 可选 | 说明                 |
 | ------ | ------ | ---- | ---- | -------------------- |
@@ -151,27 +161,27 @@ struct ListOnMoveExample {
           .onMove((from: number, to: number) => {
             let tmp = this.arr.splice(from, 1);
             this.arr.splice(to, 0, tmp[0]);
-            console.log('List onMove From: ' + from);
-            console.log('List onMove To: ' + to);
+            console.info('List onMove From: ' + from);
+            console.info('List onMove To: ' + to);
           },
             {
               onLongPress: (index: number) => {
-                console.log('List onLongPress: ' + index);
+                console.info('List onLongPress: ' + index);
               },
               onDrop: (index: number) => {
-                console.log('List onDrop: ' + index);
+                console.info('List onDrop: ' + index);
               },
               onDragStart: (index: number) => {
-                console.log('List onDragStart: ' + index);
+                console.info('List onDragStart: ' + index);
               },
               onMoveThrough: (from: number, to: number) => {
-                console.log('List onMoveThrough From: ' + from);
-                console.log('List onMoveThrough To: ' + to);
+                console.info('List onMoveThrough From: ' + from);
+                console.info('List onMoveThrough To: ' + to);
               }
             }
           )
       }.width('90%')
-        .scrollBar(BarState.Off)
+      .scrollBar(BarState.Off)
     }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
 }

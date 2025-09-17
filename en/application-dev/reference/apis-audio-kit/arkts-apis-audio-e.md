@@ -1,4 +1,10 @@
 # Enums
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -95,6 +101,7 @@ Enumerates the device types.
 | HDMI<sup>19+</sup>        | 27 | HDMI device (such as HDMI, ARC, and eARC).          |
 | LINE_DIGITAL<sup>19+</sup>        | 28 | Wired digital device (such as S/PDIF)          |
 | REMOTE_DAUDIO<sup>18+</sup>        | 29 | Distributed device.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| HEARING_AID<sup>20+</sup>        | 30 | Hearing aid device.|
 | NEARLINK<sup>20+</sup>        | 31 | NearLink device.|
 | DEFAULT<sup>9+</sup> | 1000   | Default device type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
@@ -133,7 +140,7 @@ Enumerates the audio sample formats.
 | SAMPLE_FORMAT_S16LE                | 1      | Signed 16-bit integer, little endian.|
 | SAMPLE_FORMAT_S24LE                | 2      | Signed 24-bit integer, little endian.<br>Due to system restrictions, only some devices support this sampling format.|
 | SAMPLE_FORMAT_S32LE                | 3      | Signed 32-bit integer, little endian.<br>Due to system restrictions, only some devices support this sampling format.|
-| SAMPLE_FORMAT_F32LE<sup>9+</sup>   | 4      | Signed 32-bit floating point number, little endian.<br>Due to system restrictions, only some devices support this sampling format.|
+| SAMPLE_FORMAT_F32LE<sup>9+</sup>   | 4      | Signed 32-bit floating-point number, little endian.<br>Due to system restrictions, only some devices support this sampling format.|
 
 ## AudioErrors<sup>9+</sup>
 
@@ -425,16 +432,27 @@ Enumerates the audio channel blending modes.
 
 Enumerates the reasons for audio stream device changes.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
 | Name                                       |  Value    | Description             |
 |:------------------------------------------| :----- |:----------------|
-| REASON_UNKNOWN | 0 | Unknown reason.          |
-| REASON_NEW_DEVICE_AVAILABLE | 1 | A new device is available.        |
-| REASON_OLD_DEVICE_UNAVAILABLE | 2 | The old device is unavailable. When this reason is reported, consider pausing audio playback.|
-| REASON_OVERRODE | 3 | Forcibly selected.|
+| REASON_UNKNOWN | 0 | Unknown reason.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| REASON_NEW_DEVICE_AVAILABLE | 1 | A new device is available.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| REASON_OLD_DEVICE_UNAVAILABLE | 2 | The old device is unavailable. When this reason is reported, consider pausing audio playback.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| REASON_OVERRODE | 3 | Forcibly selected.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| REASON_SESSION_ACTIVATED<sup>20+</sup> | 4 | The audio session has been activated.|
+| REASON_STREAM_PRIORITY_CHANGED<sup>20+</sup> | 5 | An audio stream with higher priority appears.|
+
+## OutputDeviceChangeRecommendedAction<sup>20+</sup>
+
+Enumerates the recommended actions to take after an output device changes.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+| Name                                       |  Value    | Description             |
+|:------------------------------------------| :----- |:----------------|
+| DEVICE_CHANGE_RECOMMEND_TO_CONTINUE | 0 | Suggests continuing playback.          |
+| DEVICE_CHANGE_RECOMMEND_TO_STOP | 1 | Suggests stopping playback.        |
 
 ## DeviceChangeType
 
@@ -510,6 +528,39 @@ Enumerates the reasons for deactivating an audio session.
 | :--------------------- |:--|:-------|
 | DEACTIVATED_LOWER_PRIORITY | 0 | The application focus is preempted.|
 | DEACTIVATED_TIMEOUT | 1 | The audio session times out.   |
+
+## AudioSessionScene<sup>20+</sup>
+
+Enumerates the audio session scenes.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+| Name                  | Value| Description     |
+| :--------------------- |:--|:--------|
+| AUDIO_SESSION_SCENE_MEDIA | 0 | Media audio session.    |
+| AUDIO_SESSION_SCENE_GAME | 1 | Game audio session.    |
+| AUDIO_SESSION_SCENE_VOICE_COMMUNICATION  | 2 | VoIP voice call audio session.|
+
+## AudioSessionStateChangeHint<sup>20+</sup>
+
+Enumerates the hints for audio session state changes.
+
+The hint is obtained when an [AudioSessionStateChangedEvent](arkts-apis-audio-i.md#audiosessionstatechangedevent20) is received.
+
+The hint specifies the action (such as audio pause or volume adjustment) to take on the audio session based on the focus strategy.
+
+For details, see [Introduction to Audio Focus and Audio Sessions](../../media/audio/audio-playback-concurrency.md).
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+| Name                              |  Value    | Description                                        |
+| ---------------------------------- | ------ | -------------------------------------------- |
+| AUDIO_SESSION_STATE_CHANGE_HINT_RESUME              | 0      | A hint is displayed, indicating that the audio session is resuming. The application can proactively trigger operations such as rendering.|
+| AUDIO_SESSION_STATE_CHANGE_HINT_PAUSE               | 1      | A hint is displayed, indicating that the audio session is paused and the audio focus is lost temporarily. When focus is regained, the AUDIO_SESSION_STATE_CHANGE_HINT_RESUME event is received.|
+| AUDIO_SESSION_STATE_CHANGE_HINT_STOP                | 2      | A hint is displayed, indicating that the audio session is stopped and the audio focus is lost permanently.|
+| AUDIO_SESSION_STATE_CHANGE_HINT_TIME_OUT_STOP                | 3      | A hint is displayed, indicating that the audio session is stopped by the system due to no activity, and the audio focus is lost.|
+| AUDIO_SESSION_STATE_CHANGE_HINT_DUCK                | 4      | A hint is displayed, indicating that audio ducking starts and the audio is played at a lower volume.|
+| AUDIO_SESSION_STATE_CHANGE_HINT_UNDUCK | 5      | A hint is displayed, indicating that audio ducking ends and the audio is played at the normal volume.|
 
 ## AudioDataCallbackResult<sup>12+</sup>
 
@@ -592,3 +643,28 @@ Enumerates the audio loopback statuses.
 | UNAVAILABLE_SCENE  | -1     | Loopback is unavailable due to restrictions in the audio scene (for example, audio focus or low-latency management).|
 | AVAILABLE_IDLE     |  0     | Loopback is available but currently idle.    |
 | AVAILABLE_RUNNING  |  1     | Loopback is actively running.  |
+
+## AudioLoopbackReverbPreset<sup>21+</sup>
+
+Enumerates the reverb modes of audio loopback.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+| Name     | Value    | Description            |
+| --------- | ------ | ---------------- |
+| ORIGINAL  | 1     | Maintains the original reverb without enhancement.  |
+| KTV       | 2     | Provides a Karaoke-style reverb effect.|
+| THEATER   | 3     | Provides a theater-style reverb effect (default).|
+| CONCERT   | 4     | Provides a concert-style reverb effect.  |
+
+## AudioLoopbackEqualizerPreset<sup>21+</sup>
+
+Enumerates the equalizer types of audio loopback.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+| Name     | Value    | Description            |
+| --------- | ------ | ---------------- |
+| FLAT   | 1     | Maintains the original sound without equalization.|
+| FULL   | 2     | Enhances the fullness of vocals (default).|
+| BRIGHT | 3     | Enhances the brightness of vocals.|

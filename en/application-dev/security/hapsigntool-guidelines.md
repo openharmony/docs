@@ -10,23 +10,19 @@
 
 2. Download the code, open **developtools_hapsigner/hapsigntool**, and run the following command to build the package:
             
-    
-    mvn package
-   
-   You can find the binary file generated in the **./hap_sign_tool/target** directory.
-   
+        mvn package
+
+3. You can find the binary file generated in the **./hap_sign_tool/target** directory.
 
 **C++**
 
 1. Build a signing tool for ohos-sdk.
 
-   - Release version (default): 
+   Release version (default): Run the following command to build the signing tool for the release version.
 
-     Run the **./build.sh --*product-name* ohos-sdk** command to build the signing tool for the release version.
+   Debug version: In the **hapsigntool_cpp/BUILD.gn** file, add **defines = [ "SIGNATURE_LOG_DEBUG" ]**, and then run the build command.
 
-   - Debug version: 
-
-     In the **hapsigntool_cpp/BUILD.gn** file, add **defines = [ "SIGNATURE_LOG_DEBUG" ]**, and then run the build command **./build.sh --*product-name* ohos-sdk**.
+   Build command: **./build.sh --*product-name* ohos-sdk**
 
 2. Decompress **out/sdk/packages/ohos-sdk/ohos/toolchains-ohos-x64-xxx.zip**.
 
@@ -40,8 +36,10 @@ The OpenHarmony system has a built-in KeyStore (KS) file named **OpenHarmony.p12
 
 The usage of hapsigner varies depending on whether an app signing certificate is available. 
 
-- If no signing certificate is available for your app, you can use this tool to generate a key pair for signing, generate an app signing certificate, sign the profile, and sign the app.
-- If a signing certificate is available for your app, you can directly sign the profile, and use the app signing certificate and the local KS file (containing the corresponding key) to sign your app.
+1. If no signing certificate is available for your app,
+   you can use this tool to generate a key pair for signing, generate an app signing certificate, sign the profile, and sign the app.
+2. If a signing certificate is available for your app,
+   you can directly sign the profile, and use the app signing certificate and the local KS file (containing the corresponding key) to sign your app.
 
 ### Command Description
 
@@ -117,7 +115,7 @@ The usage of hapsigner varies depending on whether an app signing certificate is
          ├── -signAlg                         # Signing algorithm, which can be SHA256withECDSA or SHA384withECDSA.
          ├── -issuerKeystoreFile              # KS file of the issuer, in JKS or P12 format. It is optional.
          ├── -issuerKeystorePwd               # KS password of the issuer. It is optional. 
-         ├── -keystoreFile                    # Keystore file, which is mandatory.
+         ├── -keystoreFile      # Keystore file, which is mandatory.
          ├── -keystorePwd                     # KS password. It is optional.
          ├── -outForm                         # Format of the certificate to generate. It is optional. The value can be cert or certChain. The default value is certChain.
          ├── -rootCaCertFile                  # Root CA certificate, which is mandatory when outForm is certChain.
@@ -139,7 +137,7 @@ The usage of hapsigner varies depending on whether an app signing certificate is
          ├── -signAlg                         # Signing algorithm, which can be SHA256withECDSA or SHA384withECDSA.
          ├── -issuerKeystoreFile              # KS file of the issuer, in JKS or P12 format. It is optional.
          ├── -issuerKeystorePwd               # KS password of the issuer. It is optional. 
-         ├── -keystoreFile                    # Keystore file, which is mandatory.
+         ├── -keystoreFile      # Keystore file, which is mandatory.
          ├── -keystorePwd                     # KS password. It is optional.
          ├── -outForm                         # Format of the certificate to generate. It is optional. The value can be cert or certChain. The default value is certChain.
          ├── -rootCaCertFile                  # Root CA certificate, which is mandatory when outForm is certChain.
@@ -151,30 +149,30 @@ The usage of hapsigner varies depending on whether an app signing certificate is
 
      ```
      generate-cert: Generate a common certificate, which can be used to generate a custom certificate.
-         ├── -keyAlias                         # Key alias. It is mandatory.
-         ├── -keyPwd                           # Key password. It is optional.
-         ├── -issuer                           # Issuer of the certificate. It is mandatory.
-         ├── -issuerKeyAlias                   # Key alias of the issuer. It is mandatory.
+         ├── -keyAlias                          # Key alias. It is mandatory.
+         ├── -keyPwd                            # Key password. It is optional.
+         ├── -issuer                            # Issuer of the certificate. It is mandatory.
+         ├── -issuerKeyAlias                    # Key alias of the issuer. It is mandatory.
          ├── -issuerKeyPwd                     # Key password of the issuer. It is optional.
          ├── -subject                          # Certificate subject. It is mandatory.
          ├── -validity                         # Validity period of the certificate. It is optional. The default value is 1095 days.
-         ├── -keyUsage                         # Usages of the key. It is mandatory. The value can be one or more of digitalSignature, nonRepudiation, keyEncipherment,
+         ├── -keyUsage                          # Usages of the key. It is mandatory. The value can be one or more of digitalSignature, nonRepudiation, keyEncipherment,
          ├                                        dataEncipherment, keyAgreement, certificateSignature, crlSignature,
          ├                                        encipherOnly, and decipherOnly. Use a comma (,) to separate multiple values.
-         ├── -keyUsageCritical                 # Whether keyUsage is a critical option. It is optional. The default value is true.
-         ├── -extKeyUsage                      # Extended key usages. It is optional. The extended key usages include clientAuthentication, serverAuthentication,
+         ├── -keyUsageCritical                  # Whether keyUsage is a critical option. It is optional. The default value is true.
+         ├── -extKeyUsage                       # Extended key usages. It is optional. The extended key usages include clientAuthentication, serverAuthentication,
          ├                                        codeSignature, emailProtection, smartCardLogin, timestamp, and ocspSignature.
-         ├── -extKeyUsageCritical              # Whether extKeyUsage is a critical option. It is optional. The default value is false.
-         ├── -signAlg                          # Signing algorithm, which can be SHA256withRSA, SHA384withRSA,  SHA256withECDSA, or SHA384withECDSA. It is mandatory.
-         ├── -basicConstraints                 # Whether basicConstraints is contained. It is optional. The default value is false.
-         ├── -basicConstraintsCritical         # Whether basicConstraints is a critical option. It is optional. The default value is false.
-         ├── -basicConstraintsCa               # Whether it is CA. It is optional. The default value is false.
+         ├── -extKeyUsageCritical               # Whether extKeyUsage is a critical option. It is optional. The default value is false.
+         ├── -signAlg                         # Signing algorithm, which can be SHA256withRSA, SHA384withRSA,  SHA256withECDSA, or SHA384withECDSA. It is mandatory.
+         ├── -basicConstraints                  # Whether basicConstraints is contained. It is optional. The default value is false.
+         ├── -basicConstraintsCritical          # Whether basicConstraints is a critical option. It is optional. The default value is false.
+         ├── -basicConstraintsCa                # Whether it is CA. It is optional. The default value is false.
          ├── -basicConstraintsPathLen          # Path length. It is optional. The default value is 0.
-         ├── -issuerKeystoreFile               # Issuer keystore file, which is optional.
-         ├── -issuerKeystorePwd                # KS password of the issuer. It is optional. 
-         ├── -keystoreFile                     # Keystore file, which is mandatory.
-         ├── -keystorePwd                      # KS password. It is optional.
-         ├── -outFile                          # Certificate file to generate. It is optional. The file is output to the console if this parameter is not specified.
+         ├── -issuerKeystoreFile              # Issuer keystore file, which is optional.
+         ├── -issuerKeystorePwd               # KS password of the issuer. It is optional. 
+         ├── -keystoreFile      # Keystore file, which is mandatory.
+         ├── -keystorePwd                     # KS password. It is optional.
+         ├── -outFile                           # Certificate file to generate. It is optional. The file is output to the console if this parameter is not specified.
      ```
 
 9. Sign a profile.
@@ -197,7 +195,7 @@ The usage of hapsigner varies depending on whether an app signing certificate is
      ```
      verify-profile: Verify the profile signature.
          ├── -inFile       # Signed profile in p7b format. This parameter is mandatory.
-         ├── -outFile      # Verification result file (containing the verification result and profile content), in JSON format. It is optional. The file is output to the console if this parameter is not specified.
+         ├── -outFile       # Verification result file (including the verification result and profile content), in json format. It is optional. The verification result is output to the console if this parameter is not specified.
      ```
 
 11. Sign an app package or a debug tool.
@@ -206,17 +204,17 @@ The usage of hapsigner varies depending on whether an app signing certificate is
      sign-app: Sign an app package or a binary tool.
           ├── -mode          # Signing mode, which can be localSign, remoteSign, or remoteResign. It is mandatory.
           ├── -keyAlias      # Key alias. It is mandatory.
-          ├── -keyPwd        # Key password. It is optional.
-          ├── -appCertFile   # App signing certificate (certificate chain, in the entity certificate, intermediate CA certificate, and root certificate order). It is mandatory.
+          ├── -keyPwd         # Key password. It is optional.
+          ├── -appCertFile       # App signing certificate (certificate chain, in the entity certificate, intermediate CA certificate, and root certificate order). It is mandatory.
           ├── -profileFile   # Name of the signed provisioning profile. When profileSigned is 1, the file is in p7b format. When profileSigned is 0, the file is in JSON format. This parameter is mandatory if an app package is to be signed, and optional if a binary tool is to be signed.
           ├── -profileSigned # Whether to sign the profile. The value 1 means to sign the profile, and value 0 means the opposite. The default value is 1. This parameter is optional.
-          ├── -inForm        # Format of the file to be signed. The value is zip for an app package in ZIP format, elf for a binary tool, and bin for an app package in BIN format. The default value is zip. This parameter is optional.
-          ├── -inFile        # File to be signed, which can be an app package, an elf file, or a bin file. This parameter is mandatory.
+          ├── -inForm            # Format of the file to be signed. The value is zip for an app package in ZIP format, elf for a binary tool, and bin for an app package in BIN format. The default value is zip. This parameter is optional.
+          ├── -inFile            # File to be signed, which can be an app package, an elf file, or a bin file. This parameter is mandatory.
           ├── -signAlg       # Signing algorithm, which can be SHA256withECDSA or SHA384withECDSA. It is mandatory.
           ├── -keystoreFile  #  Keystore file, which is mandatory when mode is localSign.
           ├── -keystorePwd   # KS password. It is optional.
           ├── -outFile       # Signed app package to generate. It is mandatory.
-          ├── -signCode      # Whether to enable code signing. The value 1 means to enable code signing, and the value 0 means the opposite. This parameter is optional. By default, code signing is enabled for .hap, .hsp, .hqf, and .elf files. To disable code signing, set this parameter to 0.
+          ├── -signCode          # Whether to enable code signing. The value 1 means to enable code signing, and the value 0 means the opposite. This parameter is optional. By default, code signing is enabled for .hap, .hsp, .hqf, and .elf files. To disable code signing, set this parameter to 0.
 
       ```
 
@@ -227,22 +225,22 @@ The usage of hapsigner varies depending on whether an app signing certificate is
          ├── -inFile          # Signed file, which can be an app package, an elf file, or a bin file. This parameter is mandatory.
          ├── -outCertchain    # Signed certificate chain file. It is mandatory.
          ├── -outProfile      # Profile of the app. It is mandatory.
-         ├── -inForm          # Format of the file to be verified. The value is zip for an app package in ZIP format, elf for a binary tool, and bin for an app package in BIN format. The default value is zip. This parameter is optional.
+         ├── -inForm            # Format of the file to be verified. The value is zip for an app package in ZIP format, elf for a binary tool, and bin for an app package in BIN format. The default value is zip. This parameter is optional.
       ```
 
 ### Signing Procedure
 The process of signing an app package is as follows:
 
-1. Generate a key pair for an app signing certificate.
-2. Generate an app signing certificate.
-3. Sign the profile.
-4. Sign the app package.
+- Generate a key pair for an app signing certificate.
+- Generate an app signing certificate.
+- Sign the profile.
+- Sign the app package.
 
 
 > **NOTE**<br>
 >
-> - For security purposes, use ECC to generate the key pair in step 1. Avoid using RSA.
-> - You are advised to place the app package to be signed, profile, **OpenHarmony.p12**, root CA certificate, intermediate CA certificate, and hapsigner in the same directory for easy operation. The following files are stored in [**developtools_hapsigner/autosign/result**](https://gitee.com/openharmony/developtools_hapsigner/tree/master/autosign/result):<br>- OpenHarmony keystore file **OpenHarmony.p12**<br>- Root CA certificate **rootCA.cer**<br>- intermediate CA certificate **subCA.cer**<br>- Profile signing certificate **OpenHarmonyProfileRelease.pem**
+> 1. For security purposes, use ECC to generate the key pair in step 1. Avoid using RSA.
+> 2. You are advised to place the app package to be signed, profile, **OpenHarmony.p12**, root CA certificate, intermediate CA certificate, and hapsigner in the same directory for easy operation. The following files are stored in [**developtools_hapsigner/autosign/result**](https://gitcode.com/openharmony/developtools_hapsigner/tree/master/autosign/result):<br>- OpenHarmony keystore file **OpenHarmony.p12**<br>- Root CA certificate **rootCA.cer**<br>- intermediate CA certificate **subCA.cer**<br>- Profile signing certificate **OpenHarmonyProfileRelease.pem**
 
 1. **Generate a key pair for the app signing certificate.**
 
@@ -296,20 +294,20 @@ The process of signing an app package is as follows:
 
    ```
    generate-app-cert: Generate an app signing certificate.
-       ├── -keyAlias        # Key alias, which must be the same as that in the previous step.
+       ├── -keyAlias         # Key alias, which must be the same as that in the previous step.
        ├── -signAlg         # Signing algorithm, which can be SHA256withECDSA or SHA384withECDSA. It is mandatory.
-       ├── -issuer          #  Issuer of the certificate. Enter the issuer of the intermediate CA certificate. It is mandatory and cannot be changed.
-       ├── -issuerKeyAlias  #Alias of the issuer key. Enter the alias of the intermediate CA certificate key. This parameter is mandatory and cannot be changed.
-       ├── -subject         # Subject of the certificate. Enter the subject in the same sequence specified in the command. This parameter is mandatory.
-       ├── -issuerKeyPwd    # Key password of the issuer. Enter the key password of the intermediate CA certificate. It is mandatory and cannot be changed. In this example, it is 123456. 
-       ├── -keystoreFile    # Keystore file, which is mandatory and cannot be changed. You are advised to use OpenHarmony.p12. The Java version supports two formats: PKCS#12 and JKS. The C++ version supports PKCS#12 only.
-       ├── -rootCaCertFile  # Root CA certificate. It is mandatory and cannot be changed.
-       ├── -subCaCertFile   # Intermediate CA certificate provided. This parameter is mandatory and cannot be modified.
-       ├── -outForm         # Format of the certificate file to generate. certChain is recommended.
-       ├── -outFile         # File to generate. It is optional. The file is output to the console if this parameter is not specified.
-       ├── -keyPwd          # Key password. It is optional. It is the key password set when the key pair is generated. 
-       ├── -keystorePwd     # KS password. The default value is 123456.
-       ├── -validity        # Validity period of the certificate. It is optional. The default value is 3650 days.
+       ├── -issuer           #  Issuer of the certificate. Enter the issuer of the intermediate CA certificate. It is mandatory and cannot be changed.
+       ├── -issuerKeyAlias   #Alias of the issuer key. Enter the alias of the intermediate CA certificate key. This parameter is mandatory and cannot be changed.
+       ├── -subject          # Subject of the certificate. Enter the subject in the same sequence specified in the command. This parameter is mandatory.
+       ├── -issuerKeyPwd     # Key password of the issuer. Enter the key password of the intermediate CA certificate. It is mandatory and cannot be changed. In this example, it is 123456. 
+       ├── -keystoreFile     # Keystore file, which is mandatory and cannot be changed. You are advised to use OpenHarmony.p12. The Java version supports two formats: PKCS#12 and JKS. The C++ version supports PKCS#12 only.
+       ├── -rootCaCertFile   # Root CA certificate. It is mandatory and cannot be changed.
+       ├── -subCaCertFile    # Intermediate CA certificate provided. This parameter is mandatory and cannot be modified.
+       ├── -outForm          # Format of the certificate file to generate. certChain is recommended.
+       ├── -outFile          # File to generate. It is optional. The file is output to the console if this parameter is not specified.
+       ├── -keyPwd           # Key password. It is optional. It is the key password set when the key pair is generated. 
+       ├── -keystorePwd      # KS password. The default value is 123456.
+       ├── -validity         # Validity period of the certificate. It is optional. The default value is 3650 days.
    ```
 
 3. **Sign the profile.**
@@ -338,7 +336,7 @@ The process of signing an app package is as follows:
        ├── -profileCertFile  # Profile signing certificate. Use the certificate provided. It is mandatory and cannot be changed.
        ├── -inFile           # Profile to be signed, in JSON format (developtools_hapsigner/autosign/UnsgnedReleasedProfileTemplate.json). It is mandatory.
        ├── -keystoreFile     # Keystore file, which is mandatory and cannot be changed. You are advised to use OpenHarmony.p12. The Java version supports two formats: PKCS#12 and JKS. The C++ version supports PKCS#12 only.
-       ├── -outFile          # Signed profile to generate, in p7b format. This parameter is mandatory.
+       ├── -outFile        # Signed profile to generate, in p7b format. This parameter is mandatory.
        ├── -keyPwd           # Key password. The default key password in OpenHarmony.p12 is 123456.
        ├── -keystorePwd      # KS password. The default key password in OpenHarmony.p12 is 123456.
    ```
@@ -377,8 +375,8 @@ The process of signing an app package is as follows:
        ├── -mode             # Signing mode, which must be localSign. It is mandatory.
        ├── -appCertFile      # App signing certificate (certificate chain, in the entity certificate, intermediate CA certificate, and root certificate order). Enter the app signing certificate generated in step 2. This parameter is mandatory.
        ├── -profileFile      # Signed profile in p7b format. Enter the profile generated. This parameter is mandatory.
-       ├──  -inFile          # App package to be signed. This parameter is mandatory.
-       ├──  -keystoreFile    # Keystore file, which is mandatory and cannot be changed. The value must be the same as that in step 1. The Java version supports two formats: PKCS#12 and JKS. The C++ version supports PKCS#12 only.
+       ├──  -inFile           # App package to be signed. This parameter is mandatory.
+       ├──  -keystoreFile     # Keystore file, which is mandatory and cannot be changed. The value must be the same as that in step 1. The Java version supports two formats: PKCS#12 and JKS. The C++ version supports PKCS#12 only.
        ├── -outFile          # Signed file to generate. It is mandatory.
        ├── -keyPwd           # Key password, which must be the actual key password.
        ├── -keystorePwd      # KS password, which must be the actual KS password. 
@@ -428,7 +426,7 @@ The process of signing an app package is as follows:
 
      (3) Check that the certificate subject is in the C, O, OU, and CN order.
 
-3. Incorrect SignAlg is displayed when an app package is signed.
+3. An error message is displayed when the tool is used to sign an application package.
 
    - **Symptom**
 
@@ -460,141 +458,140 @@ The process of signing an app package is as follows:
 ## FAQs (C++)
 
 > **NOTE**
->
 > The numbers in **Symptom**, **Possible Causes**, and **Solution** are in one-to-one correspondence.
 
 1. Command parameter errors
 
    + **Symptom**
 
-      (1) Error message: ERROR - COMMAND_PARAM_ERROR, code: -107.Details: 'generate-cert' Parameters error, Param key - value must in pairs
+     (1) Error message: ERROR - COMMAND_PARAM_ERROR, code: -107.Details: 'generate-cert' Parameters error, Param key - value must in pairs
 
-      (2) Error message: ERROR - KEY_PASSWORD_ERROR, code: -114.Details: 'oh-app1-key-v1' keypair password error
+     (2) Error message: ERROR - KEY_PASSWORD_ERROR, code: -114.Details: 'oh-app1-key-v1' keypair password error
 
-      (3) Error message: ERROR - NOT_SUPPORT_ERROR, code: -104.Details: Not support file: ./OpenHarmony.p1
+     (3) Error message: ERROR - NOT_SUPPORT_ERROR, code: -104.Details: Not support file: ./OpenHarmony.p1
 
-      (4) Error message: ERROR - KEY_ALIAS_ERROR, code: -109.Details: 'XXX' key alias already exists and cannot be generated repeatedly
+     (4) Error message: ERROR - KEY_ALIAS_ERROR, code: -109.Details: 'XXX' key alias already exists and cannot be generated repeatedly
 
    + **Possible Causes**
 
-      (1) Extra command parameter is pasted, or the last parameter of the command is not specified.
+     (1) Extra command parameter is pasted, or the last parameter of the command is not specified.
 
-      (2) The the password of the key pair entered is incorrect.
+     (2) The password of the key pair entered is incorrect.
 
-      (3) The keystore file type specified is incorrect.
+     (3) The keystore file type specified is incorrect.
 
-      (4) The key pair with the same alias already exists in the keystore.
+     (4) The key pair with the same alias already exists in the keystore.
 
    + **Solution**
 
-      (1) Check for redundant or incorrect parameters and correct them.
+     (1) Check for redundant or incorrect parameters and correct them.
 
-      (2) Enter the correct password.
+     (2) Enter the correct password.
 
-      (3) Check that the keystore file name extension is .p12 or .jks.
+     (3) Check that the keystore file name extension is .p12 or .jks.
 
-      (4) Rename the alias of the key pair.
+     (4) Rename the alias of the key pair.
 
 2. Errors reported after the command for generating an app signing certificate is executed
 
    - **Symptom**
 
-      (1) Error message: ERROR - KEY_ALIAS_ERROR, code: -109.Details: keyAlias: 'oh-app1-key-v2' is not exist in/mnt/d/file/Test_0528/OpenHarmony.p12
+     (1) Error message: ERROR - KEY_ALIAS_ERROR, code: -109.Details: keyAlias: 'oh-app1-key-v2' is not exist in/mnt/d/file/Test_0528/OpenHarmony.p12
 
-      (2) Error message: ERROR - KEYSTORE_PASSWORD_ERROR, code: -115.Details: keyStore password error
+     (2) Error message: ERROR - KEYSTORE_PASSWORD_ERROR, code: -115.Details: keyStore password error
 
-      (3) Error message: ERROR - KEY_PASSWORD_ERROR, code: -114.Details: 'oh-app-sign-srv-ca-key-v1' keypair password error
+     (3) Error message: ERROR - KEY_PASSWORD_ERROR, code: -114.Details: 'oh-app-sign-srv-ca-key-v1' keypair password error
 
    - **Possible Causes**
 
-      (1) The specified key alias cannot be found in the keystore.
+     (1) The specified key alias cannot be found in the keystore.
 
-      (2) The keystore password is incorrect.
+     (2) The keystore password is incorrect.
 
-      (3) The password of the key pair is specified when the intermediate CA certificate of the app is generated, but the **-issuerKeyPwd** parameter is not entered when the debug certificate of the app is generated.
+     (3) The password of the key pair is specified when the intermediate CA certificate of the app is generated, but the **-issuerKeyPwd** parameter is not entered when the debug certificate of the app is generated.
 
    - **Solution**
 
-      (1) Check that the key alias is the same as that entered when the key pair is generated.
+     (1) Check that the key alias is the same as that entered when the key pair is generated.
 
-      (2) Check that the keystore password is the same as that entered when the key pair is generated.
+     (2) Check that the keystore password is the same as that entered when the key pair is generated.
 
-      (3) Check that **-issuerKeyPwd** is specified when the profile is generated, and that the value is the same as the password of the key pair when the intermediate CA certificate of the profile is generated.
+     (3) Check that **-issuerKeyPwd** is specified when the profile is generated, and that the value is the same as the password of the key pair when the intermediate CA certificate of the profile is generated.
 
 3. Errors reported when the profile is executed for signing
 
    - **Symptom**
 
-      (1) Error message: ERROR - PROVISION_INVALID, code: 0.Details: Tag app-distribution-type is empty
+     (1) Error message: ERROR - PROVISION_INVALID, code: 0.Details: Tag app-distribution-type is empty
 
-      (2) Error message: VERIFY_ERROR, code: -106.Details: Failed to verify signature: unable to find valid certification path to requested target
+     (2) Error message: VERIFY_ERROR, code: -106.Details: Failed to verify signature: unable to find valid certification path to requested target
 
    - **Possible Causes**
 
-      (1) The certificate subject is in incorrect sequence, or the **-issuerKeyAlias** parameter set to generate the app signing certificate is incorrect.
+     (1) The certificate subject is in incorrect sequence, or the **-issuerKeyAlias** parameter set to generate the app signing certificate is incorrect.
 
-      (2) The value of **type** in **profile.json** does not match the value of **key** in **bundle_info**. The typ **debug** corresponds to **development-certificate**, and **release** to **distribution-certificate**.
+     (2) The value of **type** in **profile.json** does not match the value of **key** in **bundle_info**. The typ **debug** corresponds to **development-certificate**, and **release** to **distribution-certificate**.
 
    - **Solution**
 
      (1) Check that the certificate subject is in the C, O, OU, and CN order.
 
-      (2) Check that the configuration in the **bundle.json** file is correct.
+     (2) Check that the configuration in the **bundle.json** file is correct.
 
-4. Errors reported when an app is signed
+4. An error message is displayed when the tool is used to sign an application package.
 
    - **Symptom**
 
-      (1) Error message: ERROR - PROVISION_INVALID, code: 0.Details: Require build type must be debug or release
+     (1) Error message: ERROR - PROVISION_INVALID, code: 0.Details: Require build type must be debug or release
 
-      (2) Error message: ERROR - ZIP_ERROR, code: -111. Details: zip init failed
+     (2) Error message: ERROR - ZIP_ERROR, code: -111. Details: zip init failed
      
-      (3) Error message: ERROR - SIGN_ERROR, code: -105.Details: No certificates configured for sign
+     (3) Error message: ERROR - SIGN_ERROR, code: -105.Details: No certificates configured for sign
 
    - **Possible Causes**
 
-      (1) The profile is not signed (no .p7b file is generated). Before the HAP is signed, the profile does not contain the **type** parameter.
+     (1) The profile is not signed (no .p7b file is generated). Before the HAP is signed, the profile does not contain the **type** parameter.
 
-      (2) The size of the .zip package exceeds 4 GB. The change in the format of the compressed file causes a decompression failure.
+     (2) The size of the .zip package exceeds 4 GB. The change in the format of the compressed file causes a decompression failure.
 
-      (3) The key used for signing does not match the entity certificate.
+     (3) The key used for signing does not match the entity certificate.
 
    - **Solution**
 
-      (1) Before using an unsigned profile file to sign the HAP, add **type** with the value of **debug** or **release** in the **profile.json** file.
+     (1) Before using an unsigned profile file to sign the HAP, add **type** with the value of **debug** or **release** in the **profile.json** file.
 
-      (2) If the HAP to be signed exceeds 4 GB, split it into smaller ones.
+     (2) If the HAP to be signed exceeds 4 GB, split it into smaller ones.
 
-      (3) Check **keyAlias** and **appCertFile** and ensure the key used for signing matches the certificate.
+     (3) Check **keyAlias** and **appCertFile** and ensure the key used for signing matches the certificate.
 
 5. HAP installation failure
 
    - **Symptom**
 
-      (1) When a .json file of the release or debug type is used to sign and install a HAP, the following information is displayed: device type is not supports
+     (1) When a .json file of the release or debug type is used to sign and install a HAP, the following information is displayed: device type is not supports
 
-      (2) When a .json file of the debug type is used to install a HAP, the following information is displayed: verify pkcs7 info failed
+     (2) When a .json file of the debug type is used to install a HAP, the following information is displayed: verify pkcs7 info failed
 
-      (3) When a HAP is installed on an OpenHarmony system of an earlier version, the following information is displayed: install sign info inconsistent
+     (3) When a HAP is installed on an OpenHarmony system of an earlier version, the following information is displayed: install sign info inconsistent
 
-      (4) When a signed HAP is installed, the following information is displayed: "signature verification failed due to not trusted app source."
+     (4) When a signed HAP is installed, the following information is displayed: "signature verification failed due to not trusted app source."
 
    - **Possible Causes**
 
-      (1) The OpenHarmony system configuration file does not support the device type of the HAP.
+     (1) The OpenHarmony system configuration file does not support the device type of the HAP.
 
-      (2) The **device-ids** field in the .json file of the debug type does not contain your device **udid**.
+     (2) The **device-ids** field in the .json file of the debug type does not contain your device **udid**.
 
-      (3) The HAP with the same name has been installed.
+     (3) The HAP with the same name has been installed.
 
-      (4) The certificate in the .json file of the debug or release type is not a trusted certificate.
+     (4) The certificate in the .json file of the debug or release type is not a trusted certificate.
 
    - **Solution**
 
-      (1) Run the **hdc shell param get const.product.devicetype** command to check the device types supported by the system and replace the HAP based on the device type.
+     (1) Run the **hdc shell param get const.product.devicetype** command to check the device types supported by the system and replace the HAP based on the device type.
 
-      (2) Run the **hdc shell bm get --udid** command to obtain the UDID of the device and add it to **device-ids** in the .json file of the debug type.
+     (2) Run the **hdc shell bm get --udid** command to obtain the UDID of the device and add it to **device-ids** in the .json file of the debug type.
 
-      (3) Run the **bm uninstall -n *Bundle_name*** command to uninstall the HAP with the same name.
+     (3) Run the **bm uninstall -n *Bundle_name*** command to uninstall the HAP with the same name.
 
-      (4) Check whether an incorrect .json file is used.
+     (4) Check whether an incorrect .json file is used.

@@ -216,6 +216,10 @@ getKeyboardAvoidMode接口实际返回值为字符串，与文档描述返回值
 
 从OpenHarmony SDK 5.1.0.53开始。
 
+**变更的接口/组件**
+
+getKeyboardAvoidMode
+
 **适配指导**
 
 如下代码实现：
@@ -223,46 +227,69 @@ getKeyboardAvoidMode接口实际返回值为字符串，与文档描述返回值
 //EntryAbility.ets
 import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { window, KeyboardAvoidMode } from '@kit.ArkUI';
+import { window } from '@kit.ArkUI';
+import { KeyboardAvoidMode } from '@kit.ArkUI';
+
+const DOMAIN = 0x0000;
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onCreate');
   }
+
   onDestroy(): void {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onDestroy');
   }
+
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err, data) => {
-      //获取并打印当前KeyboardAvoidMode
+    windowStage.loadContent('pages/Index', (err) => {
       let keyboardAvoidMode = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
-      console.log("=====keyboardAvoidMode=====: ", keyboardAvoidMode);
-
+      hilog.info(0x0000, '========keyboardAvoidMode========: %{public}s', JSON.stringify(keyboardAvoidMode));
+      if (keyboardAvoidMode === KeyboardAvoidMode.OFFSET) {
+        windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE)
+      }
+      let keyboardAvoidMode1 = windowStage.getMainWindowSync().getUIContext().getKeyboardAvoidMode();
+      hilog.info(0x0000, '========keyboardAvoidMode========: %{public}s', JSON.stringify(keyboardAvoidMode1));
       if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        hilog.error(DOMAIN, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err));
         return;
       }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
     });
   }
 
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
   }
 
   onForeground(): void {
     // Ability has brought to foreground
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onForeground');
   }
 
   onBackground(): void {
     // Ability has back to background
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+    hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
+  }
+}
+```
+
+```ts
+//Index.ets
+@Entry
+@Component
+struct KeyboardAvoidExample1 {
+  build() {
+    Column() {
+      Row().height("30%").width("100%").backgroundColor(Color.Gray)
+      TextArea().width("100%").borderWidth(1)
+      Text("I can see the bottom of the page").width("100%").textAlign(TextAlign.Center).backgroundColor('rgb(179,217,235)').layoutWeight(1)
+    }.width('100%').height("100%")
   }
 }
 ```

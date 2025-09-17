@@ -1,4 +1,10 @@
 # Using AVPlayer to Set Playback URLs (ArkTS)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xushubo; @chennotfound-->
+<!--Designer: @dongyu_dy-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 This topic describes how to use the AVPlayer to set URLs in different playback scenarios.
 
 This guide focuses only on the methods for setting playback URLs. For other scenarios and comprehensive sample code, see [Video Playback](video-playback.md).
@@ -10,7 +16,7 @@ This guide describes the following scenarios:
 ## Setting URLs for Streaming Media Playback
 **Case 1: playing HTTP/HTTPS media assets**
 ```ts
- import media from '@ohos.multimedia.media';
+ import { media } from '@kit.MediaKit';
  // Define the class member avPlayer.
  private avPlayer: media.AVPlayer | null = null;
 
@@ -20,12 +26,15 @@ This guide describes the following scenarios:
 
  // Set the URL of the media asset to play.
  let url = 'https://xxx.xxx.xxx.mp4';
+ if (this.avPlayer == null) {
+    return;
+ }
  this.avPlayer.url = url;
 ```
 
 **Case 2: playing HLS media assets (VOD/live streaming)**
 ```ts
- import media from '@ohos.multimedia.media';
+ import { media } from '@kit.MediaKit';
  // Define the class member avPlayer.
  private avPlayer: media.AVPlayer | null = null;
 
@@ -35,6 +44,9 @@ This guide describes the following scenarios:
 
  // Set the URL of the media asset to play.
  let url = 'https://xxx.xxx.xxx.xxx:xx/xx/index.m3u8';
+ if (this.avPlayer == null) {
+    return;
+ }
  this.avPlayer.url = url;
 ```
 
@@ -42,7 +54,7 @@ This guide describes the following scenarios:
 
 If the server needs to verify the HTTP request header, you can set the HTTP request header information through [createMediaSourceWithUrl](../../reference/apis-media-kit/arkts-apis-media-f.md#mediacreatemediasourcewithurl12).
 ```ts
- import media from '@ohos.multimedia.media';
+ import { media } from '@kit.MediaKit';
  // Define the class member avPlayer.
  private avPlayer: media.AVPlayer | null = null;
 
@@ -66,15 +78,15 @@ If the server needs to verify the HTTP request header, you can set the HTTP requ
 
 If an application needs to play an online streaming media asset by parsing an M3U8 file in the local raw file folder, the application can obtain the file descriptor through [resourceManager.getRawFd](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9), combine the file descriptor into fdUrl, and set the MIME type to **APPLICATION_M3U8** through [setMimeType](../../reference/apis-media-kit/arkts-apis-media-MediaSource.md#setmimetype12).
 ```ts
- import media from '@ohos.multimedia.media';
+ import { media } from '@kit.MediaKit';
+ import { common } from '@kit.AbilityKit';
  // Define the class member avPlayer and context.
  private avPlayer: media.AVPlayer | null = null;
  private context: common.UIAbilityContext | undefined = undefined;
-
  // In the service function (named avSetupURL in the sample project):
  // Create an AVPlayer instance.
  this.avPlayer = await media.createAVPlayer();
-
+ this.context = this.getUIContext().getHostContext() as common.UIAbilityContext;
  // Obtain the file descriptor based on the local M3U8 file name.
  let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.m3u8');
  // Use the file descriptor to construct the URL of the local M3U8 file.
@@ -87,7 +99,7 @@ If an application needs to play an online streaming media asset by parsing an M3
 
  // Set the MIME type to APPLICATION_M3U8.
  let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
- mediaSource.setMimeType(mimeType);
+ mediaSource?.setMimeType(mimeType);
 
  // Set the playback strategy and set the data volume in the buffer to 20s.
  let playbackStrategy : media.PlaybackStrategy = {preferredBufferDuration: 20};
@@ -99,18 +111,21 @@ If an application needs to play an online streaming media asset by parsing an M3
 
 If an application needs to play an online streaming media asset by parsing an M3U8 file in the application sandbox, the application can obtain the file handle through [fs.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync), combine the file handle into fdUrl, and set the MIME type to **APPLICATION_M3U8** through [setMimeType](../../reference/apis-media-kit/arkts-apis-media-MediaSource.md#setmimetype12).
 ```ts
- import media from '@ohos.multimedia.media';
+ import { media } from '@kit.MediaKit';
  import { fileIo as fs } from '@kit.CoreFileKit';
+ import { common } from '@kit.AbilityKit';
  // Define the class member avPlayer and context.
  private avPlayer: media.AVPlayer | null = null;
  private context: common.UIAbilityContext | undefined = undefined;
+ private m3u8FileName: string = '';
 
  // In the service function (named avSetupURL in the sample project):
  // Create an AVPlayer instance.
  this.avPlayer = await media.createAVPlayer();
-
+ this.context = this.getUIContext().getHostContext() as common.UIAbilityContext;
  // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
- let filePath = `${this.context.filesDir}/${m3u8FileName}`;
+ let m3u8FileName = '';
+ let filePath = `${this.context.filesDir}/${m3u8FileName}`; 
  // Obtain the file handle through fs.openSync.
  let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
  let fd : string = file.fd.toString();
@@ -124,7 +139,7 @@ If an application needs to play an online streaming media asset by parsing an M3
 
  // Set the MIME type to APPLICATION_M3U8.
  let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
- mediaSource.setMimeType(mimeType);
+ mediaSource?.setMimeType(mimeType);
 
  // Set the playback strategy and set the data volume in the buffer to 20s.
  let playbackStrategy : media.PlaybackStrategy = {preferredBufferDuration: 20};
@@ -135,19 +150,22 @@ If an application needs to play an online streaming media asset by parsing an M3
 ## Setting URLs for Local Raw File Playback
 **Case 1: application sandbox file playback**
 ```ts
- import media from '@ohos.multimedia.media';
+ import { media } from '@kit.MediaKit';
  import { fileIo as fs } from '@kit.CoreFileKit';
- // Define the class member avPlayer and context.
+ import { common } from '@kit.AbilityKit';
+ // Define the class member avPlayer, context, and fileName.
  private avPlayer: media.AVPlayer | null = null;
  private context: common.UIAbilityContext | undefined = undefined;
+ private fileName: string = '';
 
  // In the service function (named avSetupURL in the sample project):
  // Create an AVPlayer instance.
  this.avPlayer = await media.createAVPlayer();
-
+ this.context = this.getUIContext().getHostContext() as common.UIAbilityContext;
  let fdPath = 'fd://';
+ let fileName = 'test.mp4'; // test.mp4 is a preset resource in the application file directory. Replace it with the actual one.
  // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
- let path = `${this.context.filesDir}/${this.fileName}`;
+ let path = `${this.context?.filesDir}/${this.fileName}`;
  // Open the corresponding file address to obtain the file descriptor and assign a value to the URL to trigger the reporting of the initialized state.
  let file = await fs.open(path);
  fdPath = fdPath + '' + file.fd;
@@ -161,18 +179,20 @@ If an application needs to play an online streaming media asset by parsing an M3
 > When the AVPlayer is used to play local resources, it exclusively occupies the file descriptor.
 
 ```ts
- import media from '@ohos.multimedia.media';
- // Define the class member avPlayer and context.
+ import { media } from '@kit.MediaKit';
+ import { common } from '@kit.AbilityKit';
+ // Define the class member avPlayer, context, and fileName.
  private avPlayer: media.AVPlayer | null = null;
+ private fileName: string = '';
  private context: common.UIAbilityContext | undefined = undefined;
-
  // In the service function (named avSetupURL in the sample project):
  // Create an AVPlayer instance.
  this.avPlayer = await media.createAVPlayer();
-
+ this.context = this.getUIContext().getHostContext() as common.UIAbilityContext;
  // Call getRawFd of the resourceManager member of UIAbilityContext to obtain the media asset URL.
  // The return type is {fd,offset,length}, where fd indicates the file descriptor address of the HAP file, offset indicates the media asset offset, and length indicates the duration of the media asset to play.
- let fileDescriptor = await this.context.resourceManager.getRawFd(this.fileName);
+ let fileName = 'test.mp4'; // test.mp4 is a preset resource in the application file directory. Replace it with the actual one.
+ let fileDescriptor = await this.context?.resourceManager.getRawFd(this.fileName);
  let avFileDescriptor: media.AVFileDescriptor =
   { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
  // Assign a value to fdSrc to trigger the reporting of the initialized state.
@@ -180,7 +200,7 @@ If an application needs to play an online streaming media asset by parsing an M3
 ```
 
 ## Running the Sample Project
-1. Create a project, download the [sample project](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerArkTSURL), and copy its resources to the corresponding directories.
+1. Create a project, download the [sample project](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerArkTSURL), and copy its resources to the corresponding directories. You can also directly run the sample project.
     ```
     AVPlayerArkTSURL
     entry/src/main/ets/

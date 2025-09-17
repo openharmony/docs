@@ -26,10 +26,10 @@ import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
-| 名称 | 类型   | 必填 | 说明             |
-| ---- | ------ | ---- | ---------------- |
-| code | number | 是   | 应用的版本号。   |
-| name | string | 是   | 应用的版本名称。 |
+| 名称 | 类型   | 只读 | 可选 | 说明             |
+| ---- | ------ | ---- | --- | ---------------- |
+| code | number | 否   | 否  | 应用的版本号。   |
+| name | string | 否   | 否  | 应用的版本名称。 |
 
 ## BackupExtensionAbility
 
@@ -39,9 +39,9 @@ import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
-| 名称                  | 类型                                                              | 必填 | 说明                                                |
-| --------------------- | ----------------------------------------------------------------- | ---- | --------------------------------------------------- |
-| context<sup>11+</sup> | [BackupExtensionContext](js-apis-file-backupextensioncontext.md) | 是  | BackupExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。 |
+| 名称                  | 类型                                                              | 只读 | 可选 | 说明                                                |
+| --------------------- | ----------------------------------------------------------------- | ---- | --- | --------------------------------------------------- |
+| context<sup>11+</sup> | [BackupExtensionContext](js-apis-file-backupextensioncontext.md) | 否  | 否 | BackupExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。 |
 
 ### onBackup
 

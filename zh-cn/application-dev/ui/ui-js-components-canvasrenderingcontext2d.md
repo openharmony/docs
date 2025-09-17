@@ -236,6 +236,7 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #F1F3F5;
+  display: flex;
 }
 canvas{
   width: 600px;
@@ -332,6 +333,7 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #F1F3F5;
+  display: flex;
 }
 canvas{
   width: 600px;
@@ -502,7 +504,7 @@ export default {
       // 初始化textBaseline
       this.ctx.textBaseline = 'alphabetic';
       // 设置字体
-      this.ctx.font = '30px';
+      this.ctx.font = '30px Arial';
       let text = "Hello World";
       // 获取字体width
       this.ctx.fillText("with:"+this.ctx.measureText(text).width, 200, 300);

@@ -33,20 +33,21 @@
 
 ### 结构体
 
-| 名称 | typedef关键字                                            | 描述           |
-| -- |-------------------------------------------------------|--------------|
-| [ffrt_function_header_t](capi-ffrt-ffrt-function-header-t.md) | ffrt_function_header_t                                | 任务执行体。       |
-| [ffrt_dependence_t](capi-ffrt-ffrt-dependence-t.md) | ffrt_dependence_t                                     | 依赖数据结构。      |
-| [ffrt_deps_t](capi-ffrt-ffrt-deps-t.md) | ffrt_deps_t                                           | 依赖结构定义。      |
-| [ffrt_task_attr_t](capi-ffrt-ffrt-task-attr-t.md) | ffrt_task_attr_t                                      | 并行任务属性结构。    |
-| [ffrt_queue_attr_t](capi-ffrt-ffrt-queue-attr-t.md) | ffrt_queue_attr_t                                     | 串行队列属性结构。    |
-| [ffrt_condattr_t](capi-ffrt-ffrt-condattr-t.md) | ffrt_condattr_t                                       | FFRT条件变量属性结构。 |
-| [ffrt_mutexattr_t](capi-ffrt-ffrt-mutexattr-t.md) | ffrt_mutexattr_t                                      | FFRT锁属性结构。   |
-| [ffrt_rwlockattr_t](capi-ffrt-ffrt-rwlockattr-t.md) | ffrt_rwlockattr_t                                     | FFRT读写锁属性结构。 |
-| [ffrt_mutex_t](capi-ffrt-ffrt-mutex-t.md) | ffrt_mutex_t                                          | FFRT互斥锁结构。   |
-| [ffrt_rwlock_t](capi-ffrt-ffrt-rwlock-t.md) | ffrt_rwlock_t                                         | FFRT读写锁结构。   |
-| [ffrt_cond_t](capi-ffrt-ffrt-cond-t.md) | ffrt_cond_t                                           | FFRT条件变量结构。  |
+| 名称 | typedef关键字 | 描述 |
+| -- | -- | -- |
+| [ffrt_function_header_t](capi-ffrt-ffrt-function-header-t.md) | ffrt_function_header_t | 任务执行体。 |
+| [ffrt_dependence_t](capi-ffrt-ffrt-dependence-t.md) | ffrt_dependence_t | 依赖数据结构。 |
+| [ffrt_deps_t](capi-ffrt-ffrt-deps-t.md) | ffrt_deps_t | 依赖结构定义。 |
+| [ffrt_task_attr_t](capi-ffrt-ffrt-task-attr-t.md) | ffrt_task_attr_t | 并行任务属性结构。 |
+| [ffrt_queue_attr_t](capi-ffrt-ffrt-queue-attr-t.md) | ffrt_queue_attr_t | 串行队列属性结构。 |
+| [ffrt_condattr_t](capi-ffrt-ffrt-condattr-t.md) | ffrt_condattr_t | FFRT条件变量属性结构。 |
+| [ffrt_mutexattr_t](capi-ffrt-ffrt-mutexattr-t.md) | ffrt_mutexattr_t | FFRT锁属性结构。 |
+| [ffrt_rwlockattr_t](capi-ffrt-ffrt-rwlockattr-t.md) | ffrt_rwlockattr_t | FFRT读写锁属性结构。 |
+| [ffrt_mutex_t](capi-ffrt-ffrt-mutex-t.md) | ffrt_mutex_t | FFRT互斥锁结构。 |
+| [ffrt_rwlock_t](capi-ffrt-ffrt-rwlock-t.md) | ffrt_rwlock_t | FFRT读写锁结构。 |
+| [ffrt_cond_t](capi-ffrt-ffrt-cond-t.md) | ffrt_cond_t | FFRT条件变量结构。 |
 | void* | [ffrt_task_handle_t](capi-ffrt-ffrt-task-handle-t.md) | 并行任务句柄。 |
+| [ffrt_fiber_t](capi-ffrt-ffrt-fiber-t.md) | ffrt_fiber_t | 纤程结构。 |
 
 ### 枚举
 
@@ -122,13 +123,13 @@ enum ffrt_storage_size_t
 
 **起始版本：** 10
 
-| 枚举项 | 描述                  |
-| -- |---------------------|
-| ffrt_task_attr_storage_size = 128 | 任务属性                |
-| ffrt_auto_managed_function_storage_size = 64 + sizeof(ffrt_function_header_t) | 任务执行体               |
-| ffrt_mutex_storage_size = 64 | 互斥锁                 |
-| ffrt_cond_storage_size = 64 | 条件变量                |
-| ffrt_queue_attr_storage_size = 128 | 队列属性                |
+| 枚举项 | 描述 |
+| -- | -- |
+| ffrt_task_attr_storage_size = 128 | 任务属性 |
+| ffrt_auto_managed_function_storage_size = 64 + sizeof(ffrt_function_header_t) | 任务执行体 |
+| ffrt_mutex_storage_size = 64 | 互斥锁 |
+| ffrt_cond_storage_size = 64 | 条件变量 |
+| ffrt_queue_attr_storage_size = 128 | 队列属性 |
 | ffrt_rwlock_storage_size = 64 | 读写锁<br>**起始版本：** 18 |
 | ffrt_fiber_storage_size| 纤程在不同平台所占大小，单位：Byte。（平台相关）aarch64架构：22字节；arm架构：64字节；x86_64架构：8字节；其他平台：不支持。<br>**起始版本：** 20  |
 

@@ -2,8 +2,9 @@
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
-<!--SE: @liweilu1-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -27,9 +28,8 @@ Options for creating an image or video asset.
 
 The title must meet the following requirements:
 
-- It does not contain a file name extension.
-- The file name cannot exceed 255 characters.
-- It does not contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- It must not contain a file name extension.
+- The total length of the file name must be between 1 and 255 characters.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -44,10 +44,10 @@ Defines the retrieval options.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| Name                  | Type               | Readable| Writable| Description                                             |
+| Name                  | Type               | Read-Only| Optional| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Names of the columns specified for query.<br>If this parameter is left blank for photos, photos are fetched by **'uri'**, **'media_type'**, **'subtype'**, and **'display_name'** by default. An error will be thrown if [get](arkts-apis-photoAccessHelper-PhotoAsset.md#get) is used to obtain other attributes of this object. <br>Example: **fetchColumns: ['uri', 'title']**.<br>If this parameter is left blank for albums, albums are fetched by **'uri'** and **'album_name'** by default.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
-| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Yes  | Predicates that specify the fetch criteria.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+| fetchColumns           | Array&lt;string&gt; | No  | No  | Names of the columns specified for query.<br>If this parameter is left blank for photos, photos are fetched by **'uri'**, **'media_type'**, **'subtype'**, and **'display_name'** by default. An error will be thrown if [get](arkts-apis-photoAccessHelper-PhotoAsset.md#get) is used to obtain other attributes of this object. <br>Example: **fetchColumns: ['uri', 'title']**.<br>If this parameter is left blank for albums, albums are fetched by **'uri'** and **'album_name'** by default.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | No  | No  | Predicates that specify the fetch criteria.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 
 ## RequestOptions<sup>11+</sup>
 
@@ -67,11 +67,11 @@ Defines the return value of the listener callback.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| Name   | Type                       | Readable| Writable| Description                                                        |
+| Name   | Type                       | Read-Only| Optional| Description                                                        |
 | ------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type    | [NotifyType](arkts-apis-photoAccessHelper-e.md#notifytype) | Yes  | No  | Notification type.                                      |
-| uris    | Array&lt;string&gt;         | Yes  | No  | All URIs with the same [NotifyType](arkts-apis-photoAccessHelper-e.md#notifytype), which can be **PhotoAsset** or **Album**.|
-| extraUris | Array&lt;string&gt;         | Yes  | No  | URIs of the changed files in the album. The value may be undefined. Check whether the value is undefined before using it.                          |
+| type    | [NotifyType](arkts-apis-photoAccessHelper-e.md#notifytype) | No  | No  | Notification type.                                      |
+| uris    | Array&lt;string&gt;         | No  | No  | All URIs with the same [NotifyType](arkts-apis-photoAccessHelper-e.md#notifytype), which can be **PhotoAsset** or **Album**.|
+| extraUris | Array&lt;string&gt;         | No  | No  | URIs of the changed files in the album. The value may be undefined. Check whether the value is undefined before using it.                          |
 
 ## TextContextInfo<sup>12+</sup>
 
@@ -125,7 +125,7 @@ Represents the configuration for saving a media asset (image or video) to the me
 
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| title | string | No | Title of the image or video. If this parameter is not passed, the system generates a title. The title must meet the following requirements:<br>- It does not contain a file name extension.<br>- The file name, which is in the format of title+file name extension, does not exceed 255 characters.<br>- The title does not contain any of the following characters:\ / : * ? " ' ` < > \| { } [ ]|
+| title | string | No | Title of the image or video. If this parameter is not passed, the system generates a title. The title must meet the following requirements:<br>- It must not contain a file name extension.<br>- The total length of the file name, which is in the format of title+file name extension, must be between 1 and 255 characters.<br>- It must not contain any invalid characters, which are:\ / : * ? " ' ` < > \| { } [ ]|
 | fileNameExtension | string | Yes | File name extension, for example, **'jpg'**.|
 | photoType | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype) | Yes | Type of the file to create, which can be **IMAGE** or **VIDEO**. See [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype).|
 | subtype | [PhotoSubtype](arkts-apis-photoAccessHelper-e.md#photosubtype12) | No | Image or video file subtype. Currently, only **DEFAULT** is supported. See [PhotoSubtype](arkts-apis-photoAccessHelper-e.md#photosubtype12).|

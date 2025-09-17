@@ -49,6 +49,8 @@
 | [FFRT_C_API ffrt_function_header_t* ffrt_queue_attr_get_callback(const ffrt_queue_attr_t* attr)](#ffrt_queue_attr_get_callback) | 获取串行队列超时回调方法。 |
 | [FFRT_C_API void ffrt_queue_attr_set_max_concurrency(ffrt_queue_attr_t* attr, const int max_concurrency)](#ffrt_queue_attr_set_max_concurrency) | 设置并行队列最大并发度。 |
 | [FFRT_C_API int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr)](#ffrt_queue_attr_get_max_concurrency) | 获取并行队列最大并发度。 |
+| [FFRT_C_API void ffrt_queue_attr_set_thread_mode(ffrt_queue_attr_t* attr, bool mode)](#ffrt_queue_attr_set_thread_mode) | 设置队列中的任务是以协程模式还是以线程模式运行。默认以协程模式运行。 |
+| [FFRT_C_API bool ffrt_queue_attr_get_thread_mode(const ffrt_queue_attr_t* attr)](#ffrt_queue_attr_get_thread_mode) | 获取队列中的任务是以协程模式还是以线程模式运行。 |
 | [FFRT_C_API ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* name, const ffrt_queue_attr_t* attr)](#ffrt_queue_create) | 创建队列。 |
 | [FFRT_C_API void ffrt_queue_destroy(ffrt_queue_t queue)](#ffrt_queue_destroy) | 销毁队列。 |
 | [FFRT_C_API void ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)](#ffrt_queue_submit) | 提交一个任务到队列中调度执行。 |
@@ -306,6 +308,51 @@ FFRT_C_API int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr
 | 类型 | 说明 |
 | -- | -- |
 | FFRT_C_API int | 返回最大并发度。 |
+
+### ffrt_queue_attr_set_thread_mode()
+
+```
+FFRT_C_API void ffrt_queue_attr_set_thread_mode(ffrt_queue_attr_t* attr, bool mode)
+```
+
+**描述**
+
+设置队列中的任务是以协程模式还是以线程模式运行。默认以协程模式运行。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [ffrt_queue_attr_t](capi-ffrt-ffrt-queue-attr-t.md)* attr | 队列属性指针。 |
+| bool mode | 设置队列任务运行方式。true表示以线程模式运行, false表示以协程方式运行。 |
+
+### ffrt_queue_attr_get_thread_mode()
+
+```
+FFRT_C_API bool ffrt_queue_attr_get_thread_mode(const ffrt_queue_attr_t* attr)
+```
+
+**描述**
+
+获取队列中的任务是以协程模式还是以线程模式运行。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [const ffrt_queue_attr_t](capi-ffrt-ffrt-queue-attr-t.md)* attr | 队列属性指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| FFRT_C_API bool | true表示以线程模式运行，false表示以协程模式运行。 |
 
 ### ffrt_queue_create()
 

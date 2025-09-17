@@ -158,7 +158,7 @@ static void ImageReceiverNativeCTest()
         OH_ImageReceiverNative_Release(receiver);
         return;
     }
-    OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest get image receiver surfaceID: %{public}llu.", surfaceID);
+    OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest get image receiver surfaceID: %{public}lu.", surfaceID);
 
     // 读取 OH_ImageReceiverNative 的 size 属性。
     errCode = OH_ImageReceiverNative_GetSize(receiver, &imgSizeRead);

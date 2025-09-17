@@ -26,6 +26,12 @@ import { i18n } from '@kit.LocalizationKit';
 
 ## System<sup>9+</sup>
 
+提供系统属性相关的能力，包括语言地区名称翻译、支持的语言地区列表获取和系统语言地区获取等。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
+
 ### getDisplayCountry<sup>9+</sup>
 
 static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
@@ -40,7 +46,7 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
-| country      | string  | 是    | 国家地区，要求是合法的国家地区码。            |
+| country      | string  | 是    | 国家地区，要求是[合法的国家地区码](../../internationalization/i18n-locale-culture.md#实现原理)。            |
 | locale       | string  | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成。     |
 | sentenceCase | boolean | 否    | true表示按照首字母大写的格式显示文本，false表示按照区域默认的大小写格式显示文本。默认值：true。 |
 
@@ -89,7 +95,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
-| language     | string  | 是    | 语言，要求是合法的语言ID。            |
+| language     | string  | 是    | 语言，要求是[合法的语言ID](../../internationalization/i18n-locale-culture.md#实现原理)。            |
 | locale       | string  | 是    | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家地区组成。     |
 | sentenceCase | boolean | 否    | true表示按照首字母大写的格式显示文本，false表示按照区域默认的大小写格式显示文本。默认值：true。 |
 
@@ -159,7 +165,7 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 
 | 参数名      | 类型     | 必填   | 说明    |
 | -------- | ------ | ---- | ----- |
-| language | string | 是    | 合法的语言ID。 |
+| language | string | 是    | [合法的语言ID](../../internationalization/i18n-locale-culture.md#实现原理)。 |
 
 **返回值：**
 
@@ -207,8 +213,8 @@ static isSuggested(language: string, region?: string): boolean
 
 | 参数名      | 类型     | 必填   | 说明            |
 | -------- | ------ | ---- | ------------- |
-| language | string | 是    | 合法的语言ID，例如zh。 |
-| region   | string | 否    | 合法的地区ID，例如CN。<br>默认值：SIM卡国家地区。  |
+| language | string | 是    | [合法的语言ID](../../internationalization/i18n-locale-culture.md#实现原理)，例如zh。 |
+| region   | string | 否    | [合法的国家地区码](../../internationalization/i18n-locale-culture.md#实现原理)，例如CN。<br>默认值：SIM卡国家地区。  |
 
 **返回值：**
 
@@ -412,7 +418,7 @@ static setAppPreferredLanguage(language: string): void
 
 | 参数名      | 类型     | 必填   | 说明    |
 | -------- | ------ | ---- | ----- |
-| language | string | 是    | 合法的语言ID或'default'。 |
+| language | string | 是    | [合法的语言ID](../../internationalization/i18n-locale-culture.md#实现原理)或'default'。 |
 
 **错误码：**
 
@@ -492,7 +498,7 @@ static getSimplifiedLanguage(language?: string): string
 
 | 参数名      | 类型     | 必填   | 说明            |
 | -------- | ------ | ---- | ------------- |
-| language | string | 否    | 合法的语言ID。默认值：系统语言。 |
+| language | string | 否    | [合法的语言ID](../../internationalization/i18n-locale-culture.md#实现原理)。默认值：系统语言。 |
 
 **返回值：**
 
@@ -705,6 +711,12 @@ getCalendar(locale: string, type? : string): Calendar
 
 ## EntityRecognizer<sup>11+</sup>
 
+提供实体识别相关的能力，可以获取文本中实体的类型和起止位置。当前支持识别的实体包括电话号码和时间日期。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
+
 ### constructor<sup>11+</sup>
 
 constructor(locale?: string)
@@ -805,6 +817,12 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 | end | number | 否    | 否    | 实体在输入字符串中的终止位置。 |
 
 ## Calendar<sup>8+</sup>
+
+提供历法相关的能力，包括历法名称获取和日期计算等。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
 
 ### setTime<sup>8+</sup>
 
@@ -1249,6 +1267,11 @@ compareDays(date: Date): number
 
 ## PhoneNumberFormat<sup>8+</sup>
 
+提供电话号码相关的能力，包括电话号码有效性判断、格式化和归属地获取。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
 
 ### constructor<sup>8+</sup>
 
@@ -1432,6 +1455,11 @@ getInstance(locale?: string): IndexUtil
 
 ## IndexUtil<sup>8+</sup>
 
+提供索引相关的能力，包括区域索引列表和文本索引值获取。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
 
 ### getIndexList<sup>8+</sup>
 
@@ -1539,6 +1567,11 @@ getLineInstance(locale: string): BreakIterator
 
 ## BreakIterator<sup>8+</sup>
 
+提供文本换行相关的能力，包括可换行点的获取、移动和识别等。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
 
 ### setLineBreakText<sup>8+</sup>
 
@@ -1808,6 +1841,12 @@ getTimeZone(zoneID?: string): TimeZone
   ```
 
 ## TimeZone
+
+提供时区相关的能力，包括时区名称翻译、偏移量获取和跳变规则获取等。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
 
 ### getID
 
@@ -2106,6 +2145,11 @@ let dateFormat: string =
 
 ## ZoneRules<sup>20+</sup>
 
+提供查询时区跳变规则的能力。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
 
 ### nextTransition<sup>20+</sup>
 
@@ -2144,6 +2188,11 @@ let zoneOffsetTransition: i18n.ZoneOffsetTransition = zoneRules.nextTransition(d
 
 ## ZoneOffsetTransition<sup>20+</sup>
 
+提供解析时区跳变规则的能力。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
 
 ### getMilliseconds<sup>20+</sup>
 
@@ -2232,6 +2281,11 @@ zoneOffsetTransition.getOffsetBefore(); // 跳变前的偏移量: -25200000
 
 ## Transliterator<sup>9+</sup>
 
+提供文本音译相关的能力，包括音译支持范围获取和文本音译等。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
 
 ### getAvailableIDs<sup>9+</sup>
 
@@ -2329,7 +2383,11 @@ transform(text: string): string
 
 ## Unicode<sup>9+</sup>
 
+提供字符属性相关的能力，包括判断字符是否为空格、数字和字母等。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
 
 ### isDigit<sup>9+</sup>
 
@@ -2620,6 +2678,11 @@ static getType(ch: string): string
 
 ## I18NUtil<sup>9+</sup>
 
+国际化工具类，提供单位转换、获取日期顺序、获取时段名称、区域匹配和路径本地化等能力。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
 
 ### unitConvert<sup>9+</sup>
 
@@ -2964,6 +3027,11 @@ try {
 
 ## Normalizer<sup>10+</sup>
 
+提供文本标准化的能力。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
 
 ### getInstance<sup>10+</sup>
 
@@ -3069,6 +3137,11 @@ normalize(text: string): string
 
 ## HolidayManager<sup>11+</sup>
 
+提供解析节假日数据的能力，包括节假日判断和指定年份节假日列表获取等。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
 
 ### constructor<sup>11+</sup>
 
@@ -3413,6 +3486,12 @@ try {
 
 ## SimpleDateTimeFormat<sup>18+</sup>
 
+提供时间日期格式化的能力。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
+
 ### format<sup>18+</sup>
 
 format(date: Date): string
@@ -3552,6 +3631,12 @@ try {
 
 ## SimpleNumberFormat<sup>18+</sup>
 
+提供数字格式化的能力。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
+
 ### format<sup>18+</sup>
 
 format(value: number): string
@@ -3589,6 +3674,12 @@ try {
 ```
 
 ## StyledNumberFormat<sup>18+</sup>
+
+提供富文本数字格式化的能力。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Global.I18n
 
 ### constructor<sup>(deprecated)</sup>
 

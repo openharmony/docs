@@ -20,7 +20,9 @@
 import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 ```
 
-## PrintExtensionAbility.onStartPrintJob
+## PrintExtensionAbility
+
+### onStartPrintJob
 
 onStartPrintJob(jobInfo: print.PrintJob): void
 
@@ -31,7 +33,7 @@ onStartPrintJob(jobInfo: print.PrintJob): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobInfo | [print.PrintJob](./js-apis-print-sys.md#printjob) | 是 | 表示打印任务的信息 |
+| jobInfo | [print.PrintJob](./js-apis-print-sys.md#printjob) | 是 | 表示打印任务的信息。 |
 
 **错误码：**
 
@@ -39,13 +41,12 @@ onStartPrintJob(jobInfo: print.PrintJob): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 202 | not system application |
+| 202 | not system application. |
 
 **示例：**
 
 ```ts
-import { PrintExtensionAbility } from '@kit.BasicServicesKit';
-import { print } from '@kit.BasicServicesKit';
+import { print, PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onStartPrintJob(jobInfo: print.PrintJob): void {
@@ -55,7 +56,7 @@ export default class HWPrintExtension extends PrintExtensionAbility {
 }
 ```
 
-## PrintExtensionAbility.onCancelPrintJob
+### onCancelPrintJob
 
 onCancelPrintJob(jobInfo: print.PrintJob): void
 
@@ -66,7 +67,7 @@ onCancelPrintJob(jobInfo: print.PrintJob): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobInfo | [print.PrintJob](./js-apis-print-sys.md#printjob) | 是 | 表示打印任务的信息 |
+| jobInfo | [print.PrintJob](./js-apis-print-sys.md#printjob) | 是 | 表示打印任务的信息。 |
 
 **错误码：**
 
@@ -74,13 +75,12 @@ onCancelPrintJob(jobInfo: print.PrintJob): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 202 | not system application |
+| 202 | not system application. |
 
 **示例：**
 
 ```ts
-import { PrintExtensionAbility } from '@kit.BasicServicesKit';
-import { print } from '@kit.BasicServicesKit';
+import { print, PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onCancelPrintJob(jobInfo: print.PrintJob): void {
@@ -90,7 +90,7 @@ export default class HWPrintExtension extends PrintExtensionAbility {
 }
 ```
 
-## PrintExtensionAbility.onRequestPrinterCapability
+### onRequestPrinterCapability
 
 onRequestPrinterCapability(printerId: number): print.PrinterCapability
 
@@ -101,12 +101,12 @@ onRequestPrinterCapability(printerId: number): print.PrinterCapability
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printerId | number | 是 | 表示打印机ID |
+| printerId | number | 是 | 表示打印机ID。 |
 
 **返回值：**
 | **类型** | **说明** |
 | -------- | -------- |
-| print.PrinterCapability | 表示打印能力 |
+| [print.PrinterCapability](./js-apis-print-sys.md#printercapability) | 表示打印能力。 |
 
 **错误码：**
 
@@ -114,13 +114,12 @@ onRequestPrinterCapability(printerId: number): print.PrinterCapability
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 202 | not system application |
+| 202 | not system application. |
 
 **示例：**
 
 ```ts
-import { PrintExtensionAbility } from '@kit.BasicServicesKit';
-import { print } from '@kit.BasicServicesKit';
+import { print, PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onRequestPrinterCapability(printerId: number): print.PrinterCapability {
@@ -136,7 +135,7 @@ export default class HWPrintExtension extends PrintExtensionAbility {
 }
 ```
 
-## PrintExtensionAbility.onRequestPreview
+### onRequestPreview
 
 onRequestPreview(jobInfo: print.PrintJob): string
 
@@ -147,7 +146,7 @@ onRequestPreview(jobInfo: print.PrintJob): string
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| jobInfo | [print.PrintJob](./js-apis-print-sys.md#printjob) | 是 | 表示打印任务信息 |
+| jobInfo | [print.PrintJob](./js-apis-print-sys.md#printjob) | 是 | 表示打印任务信息。 |
 
 **返回值：**
 | **类型** | **说明** |
@@ -160,13 +159,12 @@ onRequestPreview(jobInfo: print.PrintJob): string
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 202 | not system application |
+| 202 | not system application. |
 
 **示例：**
 
 ```ts
-import { PrintExtensionAbility } from '@kit.BasicServicesKit';
-import { print } from '@kit.BasicServicesKit';
+import { print, PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onRequestPreview(jobInfo: print.PrintJob): string {

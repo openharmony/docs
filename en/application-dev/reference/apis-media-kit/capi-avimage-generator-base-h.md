@@ -1,8 +1,16 @@
 # avimage_generator_base.h
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
 The file declares the enums used by the AVImageGenerator.
+
+**File to include**: <multimedia/player_framework/avimage_generator_base.h>
 
 **Library**: libavimage_generator.so
 

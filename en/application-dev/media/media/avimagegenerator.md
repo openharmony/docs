@@ -1,4 +1,10 @@
 # Using AVImageGenerator to Extract Video Images at a Specified Time (ArkTS)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 You can use the [AVImageGenerator](media-kit-intro.md#avimagegenerator) to obtain the thumbnail of a video at the specified time from the raw media asset.
 

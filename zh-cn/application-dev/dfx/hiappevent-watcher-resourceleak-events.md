@@ -27,7 +27,7 @@
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| setEventConfig(name: string, config: Record<string, ParamType>): Promise&lt;void> | 设置资源泄漏日志规格参数，name应为资源泄漏事件名称常量hiappevent.event.RESOURCE_OVERLIMIT。**仅支持js内存泄漏类型。**<br />**说明**：从API version 21开始，支持该接口。 |
+| setEventConfig(name: string, config: Record<string, ParamType>): Promise&lt;void> | 设置资源泄漏日志规格参数，name应为资源泄漏事件名称常量hiappevent.event.RESOURCE_OVERLIMIT。**仅支持js内存泄漏类型。**<br />**说明**：从API version 20开始，支持该接口。 |
 
 ### 参数设置
 
@@ -58,7 +58,7 @@ hiAppEvent.setEventConfig(hiappEvent.event.RESOURCE_OVERLIMIT, configParams);
 >
 > 在同一个应用生命周期内，可以多次调用setEventConfig，以最后一次成功调用的值为准。
 >
-> 开发者在调式以及自测试过程中，单日内触发oom次数过多，可能会遇到无法收到hiappevent回传js内存泄漏事件的情况，可以通过将系统时间往后调一天进行规避。
+> 开发者在调试以及自测试过程中，单日内触发oom次数过多，可能会遇到无法收到hiappevent回传js内存泄漏事件的情况，可以通过将系统时间往后调一天进行规避。
 
 ## params字段说明
 

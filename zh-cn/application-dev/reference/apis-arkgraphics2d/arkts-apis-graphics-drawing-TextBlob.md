@@ -160,7 +160,7 @@ class DrawingRenderNode extends RenderNode {
 
 static makeFromRunBuffer(pos: Array\<TextBlobRunBuffer>, font: Font, bounds?: common2D.Rect): TextBlob
 
-基于RunBuffer信息创建Textblob对象。
+基于RunBuffer信息创建TextBlob对象。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 

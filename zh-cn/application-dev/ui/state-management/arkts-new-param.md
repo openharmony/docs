@@ -212,7 +212,6 @@ struct Child {
         Text(`${this.observedObject.name}`)
       }
     }
-    
   }
   ```
 
@@ -528,7 +527,7 @@ struct SubComponent {
 ```
 
 ### 装饰Array类型变量
-使用\@Param装饰Array类型变量时，可以观察到数据源对Array整体的赋值，以及调用Array的接口`push`, `pop`, `shift`, `unshift`, `splice`, `copyWithin`, `fill`, `reverse`, `sort`带来的变化。
+\@Param装饰Array类型变量，可以观察到数据源对Array整体的赋值，以及调用Array的接口`push`, `pop`, `shift`, `unshift`, `splice`, `copyWithin`, `fill`, `reverse`, `sort`带来的变化。
 
 ```ts
 @ComponentV2
@@ -691,7 +690,7 @@ struct Child {
 
   build() {
     Column() {
-      ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+      ForEach(Array.from(this.message.entries()), (item: [number, number]) => {
         Text(`${item[0]}`).fontSize(30)
         Divider()
       })

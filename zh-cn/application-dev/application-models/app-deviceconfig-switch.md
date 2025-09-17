@@ -1,12 +1,19 @@
 # app和deviceConfig的切换
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wkljy-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-为了便于开发者维护应用级别的属性配置，Stage模型将config.json中的app和deviceConfig标签提取到了app.json5中进行配置，并对部分标签名称进行了修改，具体差异见下表。
+
+为了便于开发者维护应用级别的属性配置，[Stage模型](ability-terminology.md#stage模型)将config.json中的app和deviceConfig标签提取到了app.json5中进行配置，并对部分标签名称进行了修改，具体差异见下表。
 
 
   **表1** 配置文件app标签差异对比
 
-| 配置项 | FA模型配置文件config.json中app标签 | Stage模型配置文件app.json5中app标签 |
+| 配置项 | [FA模型](ability-terminology.md#fa模型)配置文件config.json中app标签 | Stage模型配置文件app.json5中app标签 |
 | -------- | -------- | -------- |
 | 应用的版本号 | "version": {<br/>    "code": 1,<br/>} | "versionCode":&nbsp;1&nbsp;, |
 | 标识版本号的文字描述，用于向用户展示 | "version": {<br/>    "name": "1.0.0",<br/>} | "versionName"&nbsp;:&nbsp;"1.0.0"&nbsp;, |

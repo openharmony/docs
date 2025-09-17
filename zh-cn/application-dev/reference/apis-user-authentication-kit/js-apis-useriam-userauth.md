@@ -173,7 +173,7 @@ try {
 | 名称     | 类型                           | 必填 | 说明                                                         |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
 | result   | number                         | 是   | 用户认证结果。若成功返回SUCCESS，若失败返回相应错误码，参见[UserAuthResultCode](#userauthresultcode9)。 |
-| token    | Uint8Array                     | 否   | 认证成功时，返回认证成功的令牌信息。                  |
+| token    | Uint8Array                     | 否   | 认证成功时，返回认证成功的令牌信息。最大长度为1024字节。 |
 | authType | [UserAuthType](#userauthtype8) | 否   | 认证成功时，返回认证类型。                           |
 | enrolledState<sup>12+</sup> | [EnrolledState](#enrolledstate12) | 否   |  认证成功时，返回注册凭据的状态。|
 

@@ -1,15 +1,19 @@
 # Obtaining the Recently Accessed List
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
-To quickly access the recently used [Sendable](arkts-sendable.md) objects, ArkTS introduces [SendableLruCache](../reference/apis-arkts/js-apis-arkts-utils.md#sendablelrucachek-v18) since API version 18. With this class, you can add, delete, and obtain Sendable objects from a SendableLruCache instance to quickly access the recently used Sendable objects. This topic describes how to use SendableLruCache to obtain the recently accessed list. It uses a bookshelf as an example. Every time a user opens a book, the book information is updated to the recently accessed list. When the user accesses the bookshelf next time, the list of books that the user has looked at is displayed.
+To quickly access the recently used [Sendable](arkts-sendable.md) objects, ArkTS introduces [SendableLruCache](../reference/apis-arkts/arkts-apis-arkts-utils-SendableLruCache.md) since API version 18. With this class, you can add, delete, and obtain Sendable objects from a SendableLruCache instance to quickly access the recently used Sendable objects. This topic describes how to use SendableLruCache to obtain the recently accessed list. It uses a bookshelf as an example. Every time a user opens a book, the book information is updated to the recently accessed list. When the user accesses the bookshelf next time, the list of books that the user has looked at is displayed.
 
 > **NOTE**
 >
 > SendableLruCache instances must be locked to prevent data inconsistency caused by concurrent operations from multiple threads.
->
 > Only Sendable objects can be put into a SendableLruCache instance.
 
-1. Create a SendableLruCache instance and set its maximum capacity based on service requirements.
-   
+1. Create a SendableLruCache instance and set its maximum capacity based on service requirements.<br>
    In this example, the maximum capacity of the SendableLruCache instance is set to 4, the Sendable class is used for management, and the Sendable class instance is exported.
 
    ```ts
@@ -82,6 +86,7 @@ To quickly access the recently used [Sendable](arkts-sendable.md) objects, ArkTS
            .fontSize(20)
            .padding(10)
            .fontWeight(FontWeight.Bold)
+           .position({ x: "50%" })
            .onClick(() => {
              this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
            })
@@ -114,6 +119,7 @@ To quickly access the recently used [Sendable](arkts-sendable.md) objects, ArkTS
            .fontSize(20)
            .padding(10)
            .fontWeight(FontWeight.Bold)
+           .position({ x: "50%" })
            .onClick(() => {
              this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
            })
@@ -146,6 +152,7 @@ To quickly access the recently used [Sendable](arkts-sendable.md) objects, ArkTS
            .fontSize(20)
            .padding(10)
            .fontWeight(FontWeight.Bold)
+           .position({ x: "50%" })
            .onClick(() => {
              this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
            })
@@ -178,6 +185,7 @@ To quickly access the recently used [Sendable](arkts-sendable.md) objects, ArkTS
            .fontSize(20)
            .padding(10)
            .fontWeight(FontWeight.Bold)
+           .position({ x: "50%" })
            .onClick(() => {
              this.getUIContext().getRouter().pushUrl({ url: 'pages/Index' });
            })

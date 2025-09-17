@@ -66,7 +66,7 @@ hdc file recv /data/log/faultlog/faultlogger 本地路径
 | Uid | 用户ID | 8 | 是 | - |
 | Process Memory(kB) | 进程占用内存 | 20 | 是 | - |
 | Device Memory(kB) | 整机内存信息 | 20 | 否 | 依赖维测服务进程，若发生故障时维测服务进程停止或设备重启则无此字段，详见[检测原理](#检测原理)。 |
-| Page switch history | 页面切换轨迹 | 21 | 否 | 如果维测服务进程出现故障或未缓存切换轨迹，则不包含此字段。 |
+| Page switch history | 页面切换轨迹 | 20 | 否 | 如果维测服务进程出现故障或未缓存切换轨迹，则不包含此字段。 |
 | Reason | 故障原因 | 8 | 是 | - |
 | Error name | 故障类型 | 8 | 是 | - |
 | Error message | 异常信息 | 8 | 是 | - |
@@ -110,7 +110,7 @@ HiLog:
 
 ### Page switch history
 
-从API 21起，使用Page switch history段记录页面切换的历史，故障日日志最多记录最新的10条历史轨迹。单条记录的格式如下：
+从API 20起，使用Page switch history段记录页面切换的历史，故障日志最多记录最新的10条历史轨迹。单条记录的格式如下：
 ```text
   14:08:30:327 /ets/pages/Index:JsError
        ^             ^            ^
@@ -191,7 +191,8 @@ at onPageShow (entry|har1|1.0.0|src/main/ets/pages/Index.ts:7:13)
 2. 执行方法名：onPageShow表示触发该异常的调用方法名称。
 
 3. 编译产物结构如下：
-   - 编译产物路径：详见[异常堆栈解析原理 sourcemap结构：key字段介绍](https://gitee.com/link?target=https%3A%2F%2Fdeveloper.huawei.com%2Fconsumer%2Fcn%2Fdoc%2Fharmonyos-guides%2Fide-exception-stack-parsing-principle%23section1145914292713)。
+   - 编译产物路径：详见[异常堆栈解析原理 sourcemap结构：key字段介绍](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-exception-stack-parsing-principle#section1145914292713)。
+
    - 文件类型：文件扩展名为.ts文件后缀（.js文件无需 SourceMap 映射可直接定位异常）。
 
 4. 行列号：发生异常的具体行数和这一行的列数，以“:”为分隔符分隔。

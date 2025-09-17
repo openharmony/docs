@@ -2379,7 +2379,7 @@ void OH_Drawing_SetTextStyleEllipsisModal(OH_Drawing_TextStyle* style, int ellip
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)* style | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](capi-drawing-text-typography-h.md#oh_drawing_createtextstyle)获取。 |
-| int ellipsisModal | 设置省略号样式，支持可选的省略号样式具体可见[OH_Drawing_EllipsisModal](capi-drawing-text-typography-h.md#oh_drawing_ellipsismodal)枚举。 |
+| int ellipsisModal | 设置省略号样式，可选的省略号样式具体可见[OH_Drawing_EllipsisModal](capi-drawing-text-typography-h.md#oh_drawing_ellipsismodal)枚举。 |
 
 ### OH_Drawing_SetTypographyTextBreakStrategy()
 
@@ -2445,7 +2445,7 @@ void OH_Drawing_SetTypographyTextEllipsisModal(OH_Drawing_TypographyStyle* style
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_TypographyStyle](capi-drawing-oh-drawing-typographystyle.md)* style | 指向OH_Drawing_TypographyStyle对象的指针，由[OH_Drawing_CreateTypographyStyle](capi-drawing-text-typography-h.md#oh_drawing_createtypographystyle)获取。 |
-| int ellipsisModal | 设置省略号样式，支持可选的省略号样式样式具体可见[OH_Drawing_EllipsisModal](capi-drawing-text-typography-h.md#oh_drawing_ellipsismodal)枚举。 |
+| int ellipsisModal | 设置省略号样式，可选的省略号样式具体可见[OH_Drawing_EllipsisModal](capi-drawing-text-typography-h.md#oh_drawing_ellipsismodal)枚举。 |
 
 ### OH_Drawing_SetTypographyTextEllipsis()
 
@@ -4660,7 +4660,7 @@ void OH_Drawing_TypographyTextlineStyleDestroyFontFamilies(char** fontFamilies, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| char** fontFamilies | 表示指向字体字体类型的指针。 |
+| char** fontFamilies | 表示指向字体类型的指针。 |
 | size_t fontFamiliesNum | 字体名称的数量。 |
 
 ### OH_Drawing_TypographyTextlineStyleGetFontSize()

@@ -1,10 +1,16 @@
-# Persisting User Preference Data (C/C++)
+# Persisting User Preferences (C/C++)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @yanhuii-->
+<!--Designer: @houpengtao1-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## When to Use
 Use the **Preferences** module to store small amounts of data in key-value (KV) format. The data is stored in files and memory for fast access. If a large amount of data needs to be stored, consider using a KV store or RDB store.
 
 ## Constraints
-- Prior to API version 18: ArkTS APIs support only the XML storage format, and C APIs support only the GSKV storage format. Due to incompatible formats, ArkTS and C APIs cannot operate the same **Preferences** instance.
+- Versions earlier than API version 18: ArkTS APIs support only the [XML](./data-persistence-by-preferences.md#xml) storage format, and C APIs support only the [GSKV](./data-persistence-by-preferences.md#gskv) storage format. Storage formats are incompatible, so ArkTS and C APIs cannot operate the same **Preferences** instance.
 - API version 18 and later: Both ArkTS and C APIs support the XML and GSKV storage formats. ArkTS and C APIs can operate the same **Preferences** instance if they use the same format.
 - The maximum key length is 1024 bytes, and the maximum value length is 16 MB.
 
@@ -20,7 +26,7 @@ For details about the APIs, see [Preferences](../reference/apis-arkdata/capi-pre
 | int OH_Preferences_GetInt (OH_Preferences \*preference, const char \*key, int \*value) | Obtains an integer corresponding to the specified key in a **Preferences** instance.|
 | int OH_Preferences_GetBool (OH_Preferences \*preference, const char \*key, bool \*value) | Obtains a Boolean value corresponding to the specified key in a **Preferences** instance.|
 | int OH_Preferences_GetString (OH_Preferences \*preference, const char \*key, char \*\*value, uint32_t \*valueLen) | Obtains a string corresponding to the specified key in a **Preferences** instance.|
-| void OH_Preferences_FreeString (char \*string) | Releases a string.|
+| void OH_Preferences_FreeString (char \*string) | Releases the string obtained.|
 | int OH_Preferences_SetInt (OH_Preferences \*preference, const char \*key, int value) | Sets an integer based on the specified key in a **Preferences** instance.|
 | int OH_Preferences_SetBool (OH_Preferences \*preference, const char \*key, bool value) | Sets a Boolean value based on the specified key in a **Preferences** instance.|
 | int OH_Preferences_SetString (OH_Preferences \*preference, const char \*key, const char \*value) | Sets a string based on the specified key in a **Preferences** instance.|

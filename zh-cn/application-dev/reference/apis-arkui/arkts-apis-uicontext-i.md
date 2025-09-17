@@ -60,7 +60,7 @@ Router和NavDestination等页面信息，若无对应的Router或NavDestination�
 | 名称   | 类型   | 必填       |说明       |
 | ------ | ---- | ---------- |---------- |
 | event | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-common.md#gestureevent对象说明)   |是       |手势事件对象。 |
-| current | [GestureRecognizer](arkui-ts/ts-gesture-blocking-enhancement.md#gesturerecognizer)    |是      |手势识别器对象。可从中获取手势的详细信息，但请勿在本地保留此对象，因为当节点释放后该对象可能失效。 |
+| current | [GestureRecognizer](arkui-ts/ts-gesture-common.md#gesturerecognizer12)    |是      |手势识别器对象。可从中获取手势的详细信息，但请勿在本地保留此对象，因为当节点释放后该对象可能失效。 |
 | currentPhase  | [GestureActionPhase](arkts-apis-uicontext-e.md#gestureactionphase20) |是      | 手势动作回调阶段。|
 | node  | [FrameNode](js-apis-arkui-frameNode.md) |否      |触发手势的节点。默认值为null，表示没有触发手势的节点。 |
 

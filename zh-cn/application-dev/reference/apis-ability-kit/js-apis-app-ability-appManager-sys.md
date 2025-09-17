@@ -419,7 +419,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | 以回调方式方式返回接口运行结果及应用状态数据数组，可进行错误处理或其他自定义处理。 |
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | 以回调方式返回接口运行结果及应用状态数据数组，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -1710,7 +1710,7 @@ setKeepAliveForBundle(bundleName: string, userId: number, enable: boolean): Prom
 >
 >- 应用如果需要支持保活，其[module.json5配置文件](../../quick-start/module-configuration-file.md)中的mainElement必须是UIAbility。只有当mainElement启动后，系统才会执行应用保活操作。
 >- 在2in1设备上，被保活的应用需要在启动后5秒内添加至状态栏。否则，系统将取消该应用的保活设置，并杀死保活重启的进程。
->- 当被保活的应用进程退出时，系统将尝试重启该进程，连续3次重启失败后将取消该应用的保活设置。
+>- 当被保活的应用进程退出时，系统将尝试重启该进程，连续3次重启失败后将不再继续重启。
 
 **需要权限**：ohos.permission.MANAGE_APP_KEEP_ALIVE
 
@@ -1837,7 +1837,7 @@ try {
 
 killProcessesInBatch(pids: Array\<number>): Promise\<void>
 
-批量查杀进程。
+批量终止进程。
 
 **需要权限**：ohos.permission.KILL_APP_PROCESSES
 
@@ -1851,7 +1851,7 @@ killProcessesInBatch(pids: Array\<number>): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pids    | Array\<number>   | 是    | 要查杀的进程ID。 |
+| pids    | Array\<number>   | 是    | 要终止的进程ID。 |
 
 **返回值：**
 

@@ -4,7 +4,7 @@
 <!--Owner: @zourongchun-->
 <!--Designer: @zhufenghao-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 在HTML中，可以使用JavaScript创建三种类型的弹框：警告框`window.alert(message)`、确认框`window.confirm(message)`和提示框`window.prompt(message, defaultValue)`。这些弹框可以用于向用户传递信息、确认操作或请求输入。
 
@@ -21,6 +21,7 @@
 - 用[AlertDialog](../reference/apis-arkui/arkui-ts/ts-methods-alert-dialog-box.md)创建弹框。
 
   ```ts
+  // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
   @Entry
@@ -42,7 +43,7 @@
                 message: event.message,
                 confirm:{
                   value: "确认",
-                  action: ()=>{
+                  action: () => {
                     console.info('Alert confirmed.');
                     event.result.handleConfirm();
                   }
@@ -60,7 +61,8 @@
   ```
   加载的html。
   ```html
-  <!doctype html>
+  <!-- test.html -->
+  <!DOCTYPE html>
   <html lang="en">
   <head>
       <meta charset="UTF-8">
@@ -90,7 +92,8 @@
 - 用[CustomDialog-AlertDialog](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md#alertdialog)创建弹框。
 
   ```ts
-  import { AlertDialog, router } from '@kit.ArkUI';
+  // xxx.ets
+  import { AlertDialog } from '@kit.ArkUI';
   import { webview } from '@kit.ArkWeb';
 
   @Entry
@@ -115,7 +118,7 @@
           }
         },
       }),
-      onWillDismiss: ()=>{
+      onWillDismiss: () => {
         this.result?.handleCancel();
         this.dialogControllerAlert.close();
       }
@@ -123,9 +126,6 @@
 
     build() {
       Column() {
-        Button('back').onClick((event: ClickEvent) => {
-          this.getUIContext().getRouter().back();
-        })
         Web({ src: $rawfile('alert.html'), controller: this.webviewController })
           .onAlert((event) => {
             if (event) {
@@ -144,7 +144,8 @@
   ```
   加载的html。
   ```html
-  <!doctype html>
+  <!-- alert.html -->
+  <!DOCTYPE html>
   <html lang="en">
   <head>
       <meta charset="UTF-8">
@@ -186,6 +187,7 @@
 - 用[AlertDialog](../reference/apis-arkui/arkui-ts/ts-methods-alert-dialog-box.md)创建弹框。
 
   ```ts
+  // xxx.ets
   import { webview } from '@kit.ArkWeb';
 
   @Entry
@@ -231,7 +233,8 @@
 
   加载的html。
   ```html
-  <!doctype html>
+  <!-- test.html -->
+  <!DOCTYPE html>
   <html lang="en">
   <head>
       <meta charset="UTF-8">
@@ -264,6 +267,7 @@
 - 用[CustomDialog-ConfirmDialog](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md#confirmdialog)创建弹框。
 
   ```ts
+  // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { ConfirmDialog } from '@kit.ArkUI';
 
@@ -333,7 +337,8 @@
   ```
   加载的html。
   ```html
-  <!doctype html>
+  <!-- confirm.html -->
+  <!DOCTYPE html>
   <html lang="en">
   <head>
       <meta charset="UTF-8">
@@ -379,6 +384,7 @@
 - 用[CustomDialog-CustomContentDialog](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Dialog.md#customcontentdialog12)创建弹框。
 
   ```ts
+  // xxx.ets
   import { CustomContentDialog } from '@kit.ArkUI';
   import { webview } from '@kit.ArkWeb';
 
@@ -456,7 +462,8 @@
   ```
   加载的html。
   ```html
-  <!doctype html>
+  <!-- prompt.html -->
+  <!DOCTYPE html>
   <html lang="en">
   <head>
       <meta charset="UTF-8">

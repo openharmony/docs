@@ -20,13 +20,13 @@
 
 ### 混淆后文件结构差异
 
-#### 目录差异
+ **目录差异**
 
 ![bytecode-compilation-code-build](figures/bytecode-compilation-code-build.png) ![bytecode-compilation-build](figures/bytecode-compilation-build.png)
 
 字节码混淆后，obfuscation目录中多了obf、origin文件夹和config.json文件，具体详见[混淆效果](bytecode-obfuscation-guide.md#查看混淆效果)。
 
-#### 文件内容差异
+**文件内容差异**
 
 nameCache.json文件：
 
@@ -95,12 +95,12 @@ nameCache.json文件：
 
 ### 切换注意点
 
-#### UI混淆差异
+**UI混淆差异**
 
 字节码混淆不提供UI混淆的能力。
 由于字节码中UI组件存在大量字符串的形式绑定属性、方法、类、变量等，字节码混淆已通过系统白名单扫描的机制，保证功能正常。
 
-#### 以字符串的形式作为函数参数绑定属性
+**以字符串的形式作为函数参数绑定属性**
 
 源码：
 
@@ -124,7 +124,7 @@ this.__messageStr = new ObservedPropertySimplePU('Hello World', this, "messageSt
 
 **解决办法**：收集struct里所有成员，加入白名单，不参与混淆。目前由于字节码混淆不提供UI混淆能力，系统会自动识别添加到白名单，不需要开发者配置。
 
-#### 字节码中通过字符串绑定属性
+**字节码中通过字符串绑定属性**
 
 源码：
 
@@ -215,7 +215,7 @@ callargs2 0x2e, v2, v3
 
 ## 编译报错处理
 
-### 案例一：报错内容为 ERROR: [Class]get different name for method.
+**案例一：报错内容为 ERROR: [Class]get different name for method.**
 
 **问题现象**：使用@CustomDialog，自定义对话框，内部再弹出另一个对话框，开启字节码混淆后，执行build失败，报错信息为：
 Error message: ArkTSCompilerError: ArkTS:ERROR Failed to execute ByteCode Obfuscate.
@@ -270,7 +270,7 @@ export default struct TmsDialog {
 
 ### 开启-enable-property-obfuscation选项可能出现的问题
 
-#### 案例一：报错内容为 Cannot read property 'xxx' of undefined
+**案例一：报错内容为 Cannot read property 'xxx' of undefined**
 
 ```ts
 // 示例JSON文件结构（test.json）：
@@ -296,13 +296,13 @@ let jsonProp = jsonData.i.j;
 开启属性混淆后，"jsonProperty"被混淆成随机字符"j"，但json文件中为原始名称，从而导致值为undefined。
 **解决方案**：使用-keep-property-name选项将json文件里的字段配置到白名单。
 
-#### 案例二：使用了数据库相关的字段，开启属性混淆后，出现报错
+**案例二：使用了数据库相关的字段，开启属性混淆后，出现报错**
 
 报错内容为table Account has no column named a23 in 'INSERT INTO Account(a23)'。
 代码里使用了数据库字段，混淆时该SQL语句中字段名称被混淆，但数据库中字段为原始名称，从而导致报错。
 **解决方案**：使用-keep-property-name选项将使用到的数据库字段配置到白名单。
 
-#### 案例三：使用Record<string, Object>作为对象的类型时，该对象里的属性被混淆，导致功能异常
+**案例三：使用Record<string, Object>作为对象的类型时，该对象里的属性被混淆，导致功能异常**
 
 **问题现象**：
 parameters的类型为Record<string, Object>，在开启属性混淆后，parameters对象中的属性linkSource被混淆，进而导致功能异常。示例如下：
@@ -345,7 +345,7 @@ let petalMapWant: Want = {
 linkSource
 ```
 
-#### 案例四：使用@Type和@Trace组合修饰的装饰器属性，混淆后，功能不正常
+**案例四：使用@Type和@Trace组合修饰的装饰器属性，混淆后，功能不正常**
 
 **问题现象**：
 
@@ -402,7 +402,7 @@ f123
 p123
 ```
 
-#### 案例五：同时开启-enable-property-obfuscation和-keep选项可能会出现的问题
+**案例五：同时开启-enable-property-obfuscation和-keep选项可能会出现的问题**
 
 **问题现象**：
 使用如下混淆配置：
@@ -485,7 +485,7 @@ HSP需要将给其他模块用的方法配置到白名单中。因为主模块�
 
 ![bytecode-buildoptionset](figures/bytecode-buildoptionset.png)
 
-#### 案例一：动态导入某个类，类定义的地方被混淆，导入类名时却没有混淆，导致报错
+**案例一：动态导入某个类，类定义的地方被混淆，导入类名时却没有混淆，导致报错**
 
 ```ts
 // 混淆前
@@ -536,7 +536,7 @@ i();
 方案二：使用-keep-global-name选项将"add"配置到白名单。
 
 
-#### 案例二：在使用namespace中的方法时，该方法定义的地方被混淆了，但使用的地方却没有被混淆，导致报错
+**案例二：在使用namespace中的方法时，该方法定义的地方被混淆了，但使用的地方却没有被混淆，导致报错**
 
 ```ts
 // 混淆前
@@ -570,7 +570,7 @@ namespace中的foo属于export元素，当通过NS.foo调用时被视为属性�
 1. 开启-enable-property-obfuscation选项。
 2. 将namespace里导出的方法使用-keep-global-name选项添加到白名单。
 
-#### 案例三：使用了declare global，混淆后报语法错误	
+**案例三：使用了declare global，混淆后报语法错误**
 
 ```ts
 // file.ts
@@ -593,7 +593,7 @@ declare a2 {
 
 从API version 18 开始，global 已加入系统的白名单，不需要开发者再使用 -keep-global-name 配置
 
-#### 案例四：使用Reflect.defineMetadata()，混淆后，提示找不到函数，导致程序异常
+**案例四：使用Reflect.defineMetadata()，混淆后，提示找不到函数，导致程序异常**
 
 **问题现象**：
 
@@ -662,7 +662,7 @@ person["m"] = 20;
 
 ### 开启-enable-filename-obfuscation选项后，可能会出现的问题
 
-#### 案例一：报错为Error Failed to get a resolved OhmUrl for 'D:code/MyApplication/f12/library1/pages/d.ets' imported by 'undefined'
+**案例一：报错为Error Failed to get a resolved OhmUrl for 'D:code/MyApplication/f12/library1/pages/d.ets' imported by 'undefined'**
 
 工程的目录结构如下图所示，模块library1的外层还有目录"directory"，开启文件名混淆后，"directory" 被混淆为f12，导致路径找不到。
 
@@ -673,7 +673,7 @@ person["m"] = 20;
 1. 如果工程的目录结构和报错内容都相似，请将SDK更新至最低5.0.0.26版本。
 2. 使用-keep-file-name将模块外层的目录名"directory"配置到白名单中。
 
-#### 案例二：报错为Cannot find module 'ets/appability/AppAbility' which is application Entry Point
+**案例二：报错为Cannot find module 'ets/appability/AppAbility' which is application Entry Point**
 
 由于系统会在应用运行时加载ability文件，用户需要手动配置相应的白名单，防止指定文件被混淆，导致运行失败。
 **解决方案**：使用-keep-file-name选项，将src/main/module.json5文件中，'srcEntry'字段所对应的路径配置到白名单中。

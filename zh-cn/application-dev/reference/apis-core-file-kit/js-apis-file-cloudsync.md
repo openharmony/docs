@@ -57,6 +57,7 @@ import { cloudSync } from '@kit.CoreFileKit';
 | CLOUD_STORAGE_FULL |  5 | 云端空间不足。 |
 | LOCAL_STORAGE_FULL |  6 | 本地空间不足。 |
 | DEVICE_TEMPERATURE_TOO_HIGH |  7 | 设备温度过高。 |
+| REMOTE_SERVER_ABNORMAL<sup>20+</sup> |  8 | 远端服务不可用。 |
 
 ## SyncProgress<sup>12+</sup>
 
@@ -1037,10 +1038,10 @@ cleanFileCache(uri: string): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-| 名称  | 类型                                      | 必填 | 说明                   |
-| ----- | ----------------------------------------- | ---- | ---------------------- |
-| uri   | string                                    | 是   | 下载失败文件URI。      |
-| error | [DownloadErrorType](#downloaderrortype11) | 是   | 文件下载失败错误类型。 |
+| 名称  | 类型                                      | 只读 | 可选 | 说明                   |
+| ----- | ----------------------------------------- | ---- | ---- | ---------------------- |
+| uri   | string                                    | 否   | 否   | 下载失败文件URI。      |
+| error | [DownloadErrorType](#downloaderrortype11) | 否   | 否   | 文件下载失败错误类型。 |
 
 
 ## MultiDownloadProgress<sup>20+</sup>
@@ -1277,11 +1278,11 @@ unregisterChange(uri: string): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-| 名称     | 类型   | 必填 | 说明 |
-| ---------- | ------ | ---- | ---- |
-| type | [NotifyType](#notifytype12) | 是   | 更改的通知类型。|
-| isDirectory | Array&lt;boolean&gt; | 是   | 指示更改的URI是否为目录。true：是目录。false：非目录。|
-| uris | Array&lt;string&gt; | 是   | 需要更改的URI列表。|
+| 名称     | 类型   | 只读 | 可选 | 说明 |
+| ---------- | ------ | ---- | ---- | ---- |
+| type | [NotifyType](#notifytype12) | 否   | 否   | 更改的通知类型。|
+| isDirectory | Array&lt;boolean&gt; | 否   | 否   | 指示更改的URI是否为目录。true：是目录。false：非目录。|
+| uris | Array&lt;string&gt; | 否   | 否   | 需要更改的URI列表。|
 
 
 ## HistoryVersion<sup>20+</sup>
@@ -1359,7 +1360,11 @@ constructor()
 
 getHistoryVersionList(uri: string, versionNumLimit: number): Promise&lt;Array&lt;HistoryVersion&gt;&gt;
 
-获取历史版本列表，可限制传出列表长度，当云上版本数量小于参数限制时，按照实际版本数量返回历史版本列表。使用Promise异步回调。
+获取历史版本列表，返回内容按修改时间排序，修改时间越早，位置越靠后。使用Promise异步回调。
+
+当云上版本数量小于传入的长度限制时，按照实际版本数量返回历史版本列表。
+
+当云上版本数量大于等于传入的长度限制时，则返回最新的versionNumLimit个版本。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -1368,7 +1373,7 @@ getHistoryVersionList(uri: string, versionNumLimit: number): Promise&lt;Array&lt
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | uri | string | 是   |  文件的URI。 |
-| versionNumLimit | number | 是 | 历史版本列表长度限制。 |
+| versionNumLimit | number | 是 | 历史版本列表长度限制，取值范围[0, 100000]（单位：个）。当输入值大于100000时，按照最大值返回列表。 |
 
 **返回值：**
 

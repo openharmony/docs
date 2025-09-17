@@ -262,8 +262,6 @@ export default {
   width: 320px;
   height: 120px;
   justify-content: space-around;
-}
-.innerBtn {
   text-color: #1E90FF;
 }
 ```

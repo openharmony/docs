@@ -1,4 +1,10 @@
 # @system.notification (通知消息)
+<!--Kit: Notification Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @fang-jinxu-->
 
 > **说明：**
 > - 从API Version 7 开始，该接口不再维护，推荐使用新接口[`@ohos.notification`](js-apis-notification.md)。
@@ -32,7 +38,7 @@ import notification from '@system.notification';
 | ------------- | ---------------------------------------------- | ---- | ------------------------- |
 | contentTitle  | string                                          | 否   | 通知标题。                  |
 | contentText   | string                                          | 否   | 通知内容。                  |
-| clickAction   | ActionResult                                    | 否   | 通知被点击后触发的行为。     |
+| clickAction<sup>(deprecated)</sup>   | [ActionResult](#actionresult)                                    | 否   | 通知被点击后触发的行为。<br>从API version 7开始不再维护。     |
 
 
 ## notification.show

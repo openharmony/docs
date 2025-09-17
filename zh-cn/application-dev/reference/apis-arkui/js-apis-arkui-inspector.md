@@ -159,59 +159,58 @@ off(type: 'drawChildren', callback?: Callback\<void\>): void
 | type     | string | 是   | 必须填写字符串'drawChildren'。<br>drawChildren: 子组件绘制送显完成。|
 | callback | Callback\<void\>   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和[on('drawChildren')20+](#ondrawchildren20)方法中的callback为相同对象时才能取消回调成功。 |
 
-**示例：**
+## 示例
 
-> **说明：**
->
-> 推荐通过使用[UIContext](./arkts-apis-uicontext-uicontext.md)中的[getUIInspector](./arkts-apis-uicontext-uicontext.md#getuiinspector)方法获取当前UI上下文关联的[UIInspector](arkts-apis-uicontext-uiinspector.md)对象。
+以下示例展示了inspector注册组件布局和组件绘制送显完成回调通知能力的基本用法。
 
-  ```ts
-  import { inspector } from '@kit.ArkUI'
+```ts
+import { inspector } from '@kit.ArkUI';
 
-  @Entry
-  @Component
-  struct ImageExample {
-    build() {
-      Column() {
-        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-          Row({ space: 5 }) {
-            Image($r('app.media.app_icon'))
-              .width(110)
-              .height(110)
-              .border({ width: 1 })
-              .id('IMAGE_ID')
-          }
+@Entry
+@Component
+struct ImageExample {
+  build() {
+    Column() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+        Row({ space: 5 }) {
+          Image($r('app.media.startIcon'))
+            .width(110)
+            .height(110)
+            .border({ width: 1 })
+            .id('IMAGE_ID')
         }
-      }.height(320).width(360).padding({ right: 10, top: 10 })
-    }
-
-    listener:inspector.ComponentObserver = this.getUIContext().getUIInspector().createComponentObserver('IMAGE_ID')
-
-    aboutToAppear() {
-      let onLayoutComplete:()=>void=():void=>{
-          // do something here
       }
-      let onDrawComplete:()=>void=():void=>{
-          // do something here
-      }
-      let onDrawChildrenComplete:()=>void=():void=>{
-          // do something here
-      }
-      let FuncLayout = onLayoutComplete // bind current js instance
-      let FuncDraw = onDrawComplete // bind current js instance
-      let FuncDrawChildren = onDrawChildrenComplete // bind current js instance
-      let OffFuncLayout = onLayoutComplete // bind current js instance
-      let OffFuncDraw = onDrawComplete // bind current js instance
-      let OffFuncDrawChildren = onDrawChildrenComplete // bind current js instance
-
-      this.listener.on('layout', FuncLayout)
-      this.listener.on('draw', FuncDraw)
-      this.listener.on('drawChildren', FuncDrawChildren)
-      
-      // 通过句柄向对应的查询条件取消注册回调，由开发者自行决定在何时调用。
-      // this.listener.off('layout', OffFuncLayout)
-      // this.listener.off('draw', OffFuncDraw)
-      // this.listener.off('drawChildren', OffFuncDrawChildren)
-    }
+    }.height(320).width(360).padding({ right: 10, top: 10 })
   }
-  ```
+
+  listener: inspector.ComponentObserver = this.getUIContext().getUIInspector().createComponentObserver('IMAGE_ID')
+
+  aboutToAppear() {
+    let onLayoutComplete: () => void = (): void => {
+      // 根据需要补充实现代码
+    }
+    let onDrawComplete: () => void = (): void => {
+      // 根据需要补充实现代码
+    }
+    let onDrawChildrenComplete: () => void = (): void => {
+      // 根据需要补充实现代码
+    }
+    // 绑定当前js实例
+    let FuncLayout = onLayoutComplete
+    let FuncDraw = onDrawComplete
+    let FuncDrawChildren = onDrawChildrenComplete
+    let OffFuncLayout = onLayoutComplete
+    let OffFuncDraw = onDrawComplete
+    let OffFuncDrawChildren = onDrawChildrenComplete
+
+    this.listener.on('layout', FuncLayout)
+    this.listener.on('draw', FuncDraw)
+    this.listener.on('drawChildren', FuncDrawChildren)
+
+    // 通过句柄向对应的查询条件取消注册回调，由开发者自行决定在何时调用
+    // this.listener.off('layout', OffFuncLayout)
+    // this.listener.off('draw', OffFuncDraw)
+    // this.listener.off('drawChildren', OffFuncDrawChildren)
+  }
+}
+```

@@ -4,7 +4,7 @@
 <!--Owner: @michael_woo888-->
 <!--Designer: @dongqingran; @wulong158-->
 <!--Tester: @wanghong1997-->
-<!--Adviser: @huipeizi-->
+<!--Adviser: @fang-jinxu-->
 
 本模块提供通知管理的能力，包括发布、取消发布通知，创建、获取、移除通知渠道，获取通知的使能状态、角标使能状态，获取通知的相关信息等。
 
@@ -3724,6 +3724,8 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 
 系统中每个[SlotType](./js-apis-notificationManager.md#slottype)只允许存在一个注册者。
 
+**设备行为差异**：该接口在Wearable中返回801错误码，在其他设备类型中正常调用。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
@@ -3777,6 +3779,8 @@ on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: 
 
 系统中每个[SlotType](./js-apis-notificationManager.md#slottype)只允许存在一个注册者。
 
+**设备行为差异**：该接口在Wearable中返回801错误码，在其他设备类型中正常调用。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
@@ -3828,6 +3832,8 @@ try{
 off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void
 
 取消通知监听回调。
+
+**设备行为差异**：该接口在Wearable中返回801错误码，在其他设备类型中正常调用。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -5135,11 +5141,11 @@ export default class EntryAbility extends UIAbility {
 
 **系统接口**：此接口为系统接口。
 
-| 名称  | 类型                                  | 必填 | 说明                   |
-| ----- | ------------------------------------- | ---- | ---------------------- |
-| type  | [DoNotDisturbType](#donotdisturbtype) | 是   | 免打扰设置的时间类型。 |
-| begin | Date                                  | 是   | 免打扰设置的起点时间。 |
-| end   | Date                                  | 是   | 免打扰设置的终点时间。 |
+| 名称  | 类型                                   | 只读 | 可选 | 说明                  |
+| ----- | ------------------------------------- | ---- | ---- | -------------------- |
+| type  | [DoNotDisturbType](#donotdisturbtype) | 否   |  否  | 免打扰设置的时间类型。 |
+| begin | Date                                  | 否   |  否  | 免打扰设置的起点时间。 |
+| end   | Date                                  | 否   |  否  | 免打扰设置的终点时间。 |
 
 ## DoNotDisturbType
 
@@ -5236,10 +5242,9 @@ export default class EntryAbility extends UIAbility {
 
 **系统接口**：此接口为系统接口。
 
-
-| 名称    | 类型                                  | 必填 | 说明                   |
-| ------- | ------------------------------------ | ---- | ---------------------- |
-| onResponse    | (notificationId: number, buttonOptions: [ButtonOptions](#buttonoptions11)) => void                         | 否   | 点击按钮的回调。 |
+| 名称         | 类型                                                                               | 只读 | 可选 | 说明                   |
+| ----------- | ---------------------------------------------------------------------------------- | ---- | ---- | --------------------- |
+| onResponse  | (notificationId: number, buttonOptions: [ButtonOptions](#buttonoptions11)) => void | 否   |  是  | 点击按钮的回调。        |
 
 
 ## SlotType
@@ -5273,11 +5278,11 @@ export default class EntryAbility extends UIAbility {
 
 **系统接口**：此接口为系统接口。
 
-| 名称  | 类型                                  | 必填 | 说明                   |
-| ----- | ------------------------------------- | ---- | ---------------------- |
-| id | number | 是 | 勿扰模式编号。 |
-| name | string  | 是 | 勿扰模式名称。 |
-| trustlist | Array\<[BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)> | 否 | 勿扰模式的信任列表。 |
+| 名称      | 类型    | 只读 | 可选 | 说明           |
+| --------- | ------ | ---- | ---- | ------------- |
+| id        | number | 否   |  否  | 勿扰模式编号。 |
+| name      | string | 否   |  否  | 勿扰模式名称。 |
+| trustlist | Array\<[BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)> | 否 | 是 | 勿扰模式的信任列表。 |
 
 ## NotificationLiveViewContent<sup>11+</sup>
 

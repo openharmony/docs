@@ -57,7 +57,7 @@
       }
 
       onConnect(want: Want): rpc.RemoteObject {
-        hilog.info(domain, TAG, 'ServiceAbility onDisconnect' + want);
+        hilog.info(domain, TAG, 'ServiceAbility onConnect' + want);
         return new FirstServiceAbilityStub('test');
       }
 
@@ -75,11 +75,11 @@
     
     ```json
     {
-      ...
+      // ...
       "module": {
-        ...
+        // ...
         "abilities": [
-          ...
+          // ...
           {
             "name": ".ServiceAbility",
             "srcLanguage": "ets",
@@ -89,9 +89,9 @@
             "type": "service",
             "visible": true
           },
-          ...
+          // ...
         ]
-        ...
+        // ...
       }
     }
     ```

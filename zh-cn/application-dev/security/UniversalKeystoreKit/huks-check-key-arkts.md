@@ -19,24 +19,23 @@ HUKS提供了接口供应用查询指定密钥是否存在。
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
+
 /* 1.确定密钥别名 */
 let keyAlias = 'test_key';
-let isKeyExist: Boolean;
+let isKeyExist: boolean;
 /* 2.构造空对象 */
 let huksOptions: huks.HuksOptions = {
   properties: []
 }
 /* 3.初始化密钥属性集 */
-let generateProperties: huks.HuksParam[] = [
-  {
+let generateProperties: huks.HuksParam[] = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_DH
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_2048
   }
@@ -45,78 +44,54 @@ let generateHuksOptions: huks.HuksOptions = {
   properties: generateProperties,
   inData: new Uint8Array([])
 }
-/* 3.生成密钥 */
-function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
-  return new Promise<void>((resolve, reject) => {
-    try {
-      huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throw (error as Error);
-    }
-  });
-}
-async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions): Promise<string> {
+
+/* 4.生成密钥 */
+async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions): Promise<boolean> {
   console.info(`enter promise generateKeyItem`);
+  let ret: boolean = false;
   try {
-    await generateKeyItem(keyAlias, huksOptions)
-      .then((data) => {
-        console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
-      })
-      .catch((error: Error) => {
-        console.error(`promise: generateKeyItem failed, ${JSON.stringify(error)}`);
+    await huks.generateKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: generateKeyItem success`);
+        ret = true;
+      }).catch((error: BusinessError) => {
+        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMag : ${error.message}`);
       });
-    return 'Success';
   } catch (error) {
-    console.error(`promise: generateKeyItem input arg invalid, ` + JSON.stringify(error));
-    return 'Failed';
+    console.error(`promise: generateKeyItem input arg invalid`);
   }
-}
-async function testGenKey(): Promise<string> {
-  let ret = await publicGenKeyFunc(keyAlias, generateHuksOptions);
   return ret;
 }
-/* 查询密钥是否存在 */
-function hasKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
-  return new Promise<boolean>((resolve, reject) => {
-    try {
-      huks.hasKeyItem(keyAlias, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          if (data !== null && data.valueOf() !== null) {
-            resolve(data.valueOf());
-          } else {
-            resolve(false);
-          }
-        }
-      });
-    } catch (error) {
-      throw (error as Error);
-    }
-  });
-}
-async function check(): Promise<string> {
+
+/* 5.查询密钥是否存在 */
+async function hasKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): Promise<boolean> {
+  console.info(`enter promise hasKeyItem`);
+  let ret: boolean = false;
   try {
-    /* 1.生成密钥 */
-    let genResult = await testGenKey();
-    /* 2.判断密钥是否存在 */
-    if (genResult === 'Success') {
-      isKeyExist = await hasKeyItem(keyAlias, huksOptions);
-      console.info(`callback: hasKeyItem success, isKeyExist = ${isKeyExist}`);
-    } else {
-      console.error('Key generation failed, skipping query');
-      return 'Failed';
-    }
-    return 'Success';
+    await huks.hasKeyItem(keyAlias, huksOptions)
+      .then((data) => {
+        console.info(`promise: hasKeyItem success, data = ${data}`);
+        ret = true;
+      }).catch((error: BusinessError) => {
+        console.error(`promise: hasKeyItem failed, errCode : ${error.code}, errMag : ${error.message}`);
+      });
+    return ret;
   } catch (error) {
-    console.error(`callback: hasKeyItem input arg invalid, ` + JSON.stringify(error));
-    return 'Failed';
+    console.error(`promise: hasKeyItem input arg invalid, errCode : ${error.code}, errMag : ${error.message}`);
+  }
+
+  return ret;
+}
+
+async function testKeyExist() {
+  /* 1.生成密钥 */
+  let genResult = await publicGenKeyFunc(keyAlias, generateHuksOptions);
+  /* 2.判断密钥是否存在 */
+  if (genResult == true) {
+    isKeyExist = await hasKeyItem(keyAlias, huksOptions);
+    console.info(`hasKeyItem success, isKeyExist = ${isKeyExist}`);
+  } else {
+    console.error('Key generation failed, skipping query');
   }
 }
 ```

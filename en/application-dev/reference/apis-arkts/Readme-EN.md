@@ -1,13 +1,40 @@
 # ArkTS
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025; @xliu-huanwei-->
+<!--Designer: @weng-changcheng; @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 - ArkTS APIs<!--arkts-arkts--> 
-  - [@arkts.collections (ArkTS Collections)](js-apis-arkts-collections.md)
+  - @arkts.collections (ArkTS Collections)<!--js-apis-arkts-collections-->
+    - [Module Description](arkts-apis-arkts-collections.md)
+    - [Class (Array)](arkts-apis-arkts-collections-Array.md)
+    - [Class (Map)](arkts-apis-arkts-collections-Map.md)
+    - [Class (Set)](arkts-apis-arkts-collections-Set.md)
+    - [Class (ArrayBuffer)](arkts-apis-arkts-collections-ArrayBuffer.md)
+    - [Class (Int8Array)](arkts-apis-arkts-collections-Int8Array.md)
+    - [Class (Uint8Array)](arkts-apis-arkts-collections-Uint8Array.md)
+    - [Class (Int16Array)](arkts-apis-arkts-collections-Int16Array.md)
+    - [Class (Uint16Array)](arkts-apis-arkts-collections-Uint16Array.md)
+    - [Class (Int32Array)](arkts-apis-arkts-collections-Int32Array.md)
+    - [Class (Uint32Array)](arkts-apis-arkts-collections-Uint32Array.md)
+    - [Class (Uint8ClampedArray)](arkts-apis-arkts-collections-Uint8ClampedArray.md)
+    - [Class (Float32Array)](arkts-apis-arkts-collections-Float32Array.md)
+    - [Class (BitVector)](arkts-apis-arkts-collections-BitVector.md)
+    - [Interface (ConcatArray)](arkts-apis-arkts-collections-ConcatArray.md)
+    - [Types](arkts-apis-arkts-collections-Types.md)
   - [@arkts.lang (ArkTS Base Capability)](js-apis-arkts-lang.md)
   - [@arkts.math.Decimal (High-Precision Math Library Decimal)](js-apis-arkts-decimal.md)
-  - [@arkts.utils (ArkTS Utils)](js-apis-arkts-utils.md)
+  - @arkts.utils (ArkTS Utils)<!--js-apis-arkts-utils-->
+    - [Module Description](arkts-apis-arkts-utils.md)
+    - [Functions](arkts-apis-arkts-utils-f.md)
+    - [ArkTSUtils.locks](arkts-apis-arkts-utils-locks.md)
+    - [ArkTSUtils.ASON](arkts-apis-arkts-utils-ASON.md)
+    - [SendableLruCache<K, V>](arkts-apis-arkts-utils-SendableLruCache.md)
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
   - [@ohos.convertxml (XML-to-JavaScript Conversion)](js-apis-convertxml.md)
-  - [@ohos.fastbuffer (Linear Container FastBuffer)](js-apis-fastbuffer.md)
+  - [@ohos.fastbuffer (FastBuffer)](js-apis-fastbuffer.md)
   - [@ohos.process (Obtaining Process Information)](js-apis-process.md)
   - [@ohos.taskpool (Using the Task Pool)](js-apis-taskpool.md)
   - [@ohos.uri (URI String Parsing)](js-apis-uri.md)
@@ -39,3 +66,4 @@
   - [Common Library Error Codes](errorcode-utils.md)
   - [TypeScript Compiler Error Codes](errorcode-tsc.md)
   - [Compilation Toolchain Error Codes](errorcode-ets-loader.md)
+  - [es2abc Compiler Error Codes](errorcode-es2abc.md)

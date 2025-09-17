@@ -194,22 +194,20 @@ struct Index {
     try {
       curFoldStatus = display.getFoldStatus();
     } catch (error) {
-      console.info(`${TAG} getFoldStatus call failed, error ${JSON.stringify(error)}`);
+      console.info(`${TAG} getFoldStatus call failed, error: ${error.code}`);
     }
     return curFoldStatus;
   }
 
   registerFoldStatusChanged(err: BusinessError, foldStatusInfo: camera.FoldStatusInfo) {
     if (err !== undefined && err.code !== 0) {
-      console.info(`${TAG} registerFoldStatusChanged call failed, error ${JSON.stringify(err)}`);
+      console.info(`${TAG} registerFoldStatusChanged call failed, error: ${err.code}`);
       return;
     }
-    if (foldStatusInfo && foldStatusInfo.supportedCameras) {
-      console.info(`${TAG} foldStatusChanged foldStatus: ${foldStatusInfo.foldStatus}`);
-      for (let i = 0; i < foldStatusInfo.supportedCameras.length; i++) {
-        console.info(TAG +
-          `foldStatusChanged camera[${i}]: ${foldStatusInfo.supportedCameras[i].cameraId},cameraPosition: ${foldStatusInfo.supportedCameras[i].cameraPosition}`);
-      }
+    console.info(TAG + 'foldStatusChanged foldStatus: ' + foldStatusInfo.foldStatus);
+    for (let i = 0; i < foldStatusInfo.supportedCameras.length; i++) {
+      console.info(TAG +
+        `foldStatusChanged camera[${i}]: ${foldStatusInfo.supportedCameras[i].cameraId},cameraPosition: ${foldStatusInfo.supportedCameras[i].cameraPosition}`);
     }
     AppStorage.setOrCreate<number>('foldStatus', foldStatusInfo.foldStatus);
   }
@@ -238,7 +236,7 @@ struct Index {
     ]).then((): void => {
       this.isShow = true;
     }).catch((error: BusinessError): void => {
-      console.error(`${TAG} requestPermissionsFromUser call failed, error: ${JSON.stringify(error)}`);
+      console.error(`${TAG} requestPermissionsFromUser call failed, error: ${error.code}`);
     });
   }
 
@@ -251,7 +249,7 @@ struct Index {
     try {
       this.mCameraManager = camera.getCameraManager(this.mContext);
     } catch (error) {
-      console.error(`${TAG} getCameraManager call failed, error: ${JSON.stringify(error)}`);
+      console.error(`${TAG} getCameraManager call failed, error: ${error.code}`);
     }
   }
 
@@ -327,6 +325,10 @@ struct Index {
   }
 
   async loadXComponent(): Promise<void> {
+    if (!this.mXComponentController) {
+      console.error(TAG + 'mXComponentController is null');
+      return;
+    }
     this.mSurfaceId = this.mXComponentController.getXComponentSurfaceId();
     this.mXComponentController.setXComponentSurfaceRect(this.surfaceRect);
     console.info(TAG + `mCameraPosition: ${this.mCameraPosition}`)
@@ -360,7 +362,7 @@ struct Index {
 
     // 获取相机列表。
     let cameraArray: Array<camera.CameraDevice> = this.mCameraManager.getSupportedCameras();
-    if (cameraArray.length <= 0) {
+    if (!cameraArray || cameraArray.length == 0) {
       console.error(TAG + 'cameraManager.getSupportedCameras error');
       return;
     }
@@ -406,6 +408,7 @@ struct Index {
     let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
     if (!isSupportPhotoMode) {
       console.error(TAG + 'photo mode not support');
+      await this.releaseCamera();
       return;
     }
 
@@ -418,8 +421,9 @@ struct Index {
     }
     console.info(TAG + 'outputCapability: ' + JSON.stringify(cameraOutputCapability));
     let previewProfile = this.getPreviewProfile(cameraOutputCapability);
-    if (previewProfile === undefined) {
+    if (!previewProfile) {
       console.error(TAG + 'The resolution of the current preview stream is not supported.');
+      await this.releaseCamera();
       return;
     }
     this.previewProfileObj = previewProfile;
@@ -431,18 +435,26 @@ struct Index {
       let err = error as BusinessError;
       console.error(TAG + `Failed to create the PreviewOutput instance. error code: ${err.code}`);
     }
-    if (this.mPreviewOutput === undefined) {
+    if (!this.mPreviewOutput) {
+      await this.releaseCamera();
       return;
     }
 
     //创建会话。
     try {
-      this.mPhotoSession = this.mCameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
+      let session = this.mCameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+      if (!session) {
+        await this.releaseCamera();
+        return;
+      }
+      this.mPhotoSession = session as camera.PhotoSession;
     } catch (error) {
       let err = error as BusinessError;
       console.error(TAG + 'Failed to create the session instance. errorCode = ' + err.code);
     }
-    if (this.mPhotoSession === undefined) {
+
+    if (!this.mPhotoSession) {
+      await this.releaseCamera();
       return;
     }
 

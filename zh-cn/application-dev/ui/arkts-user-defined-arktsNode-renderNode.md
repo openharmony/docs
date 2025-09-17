@@ -259,7 +259,7 @@ struct Index {
         .width(300)
         .onClick(() => {
           renderNode.shapeClip = clip;
-          console.info(TEST_TAG + " shapeMask:" + JSON.stringify(renderNode.shapeMask));
+          console.info(TEST_TAG + " shapeClip:" + JSON.stringify(renderNode.shapeClip));
         })
     }
     .padding({

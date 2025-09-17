@@ -1,4 +1,10 @@
 # Enums
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 > **NOTE**
 >
@@ -7,6 +13,10 @@
 ## MessageLevel
 
 Enumerates the information levels of **ConsoleMessage**.
+
+> **NOTE**
+>
+> - On the HTML5 side, the information level of **ConsoleMessage** corresponding to **console.log** or **console.info** is **MessageLevel.Info**. 
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -20,6 +30,8 @@ Enumerates the information levels of **ConsoleMessage**.
 
 ## MixedMode
 
+Enumerates the mixed content modes.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 | Name       | Value| Description                                |
@@ -29,6 +41,8 @@ Enumerates the information levels of **ConsoleMessage**.
 | None       | 2 | Strict mode: HTTP and HTTPS hybrid content cannot be loaded.              |
 
 ## HitTestType
+
+Enumerates the test result types of the click event.
 
  **System capability**: SystemCapability.Web.Webview.Core
 
@@ -44,6 +58,8 @@ Enumerates the information levels of **ConsoleMessage**.
 | Unknown       | 7 | Unknown content.                   |
 
 ## CacheMode
+
+Enumerates the cache modes.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -180,14 +196,16 @@ Enumerates the reasons why the rendering process does not respond.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name                         | Value| Description           |
-| --------------------------- | --------------- | ------------- |
-| MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX resource.<br>Currently, only permission events can be reported. MIDI devices are not yet supported.|
-| VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | Video capture resource, such as a camera. |
-| AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | Audio capture resource, such as a microphone.|
-| SENSOR<sup>12+</sup>        | TYPE_SENSOR | Sensor resource, such as an acceleration sensor.|
+| Name                         | Value| Description           |    Available Permission         |
+| --------------------------- | --------------- | ------------- |  ---------------------|
+| MidiSysex                   | TYPE_MIDI_SYSEX | MIDI SYSEX resource.<br>Currently, only permission events can be reported. MIDI devices are not yet supported.| Currently, the permission related to the Musical Instrument Digital Interface (MIDI) device cannot be requested.|
+| VIDEO_CAPTURE<sup>10+</sup> | TYPE_VIDEO_CAPTURE | Video capture resource, such as a camera. | Camera permission: **ohos.permission.CAMERA**.|
+| AUDIO_CAPTURE<sup>10+</sup> | TYPE_AUDIO_CAPTURE | Audio capture resource, such as a microphone.| Microphone permission: **ohos.permission.MICROPHONE**.|
+| SENSOR<sup>12+</sup>        | TYPE_SENSOR | Sensor resource, such as an acceleration sensor.| Acceleration sensor permission: **ohos.permission.ACCELEROMETER**,<br>Gyroscope sensor permission: **ohos.permission.GYROSCOPE**.|
 
 ## ContextMenuSourceType<sup>9+</sup>
+
+Enumerates the event source types that trigger the context menu.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -199,14 +217,14 @@ Enumerates the reasons why the rendering process does not respond.
 
 ## ContextMenuMediaType<sup>9+</sup>
 
+Enumerates the media types that trigger the context menu.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 | Name   | Value| Description           |
 | ----- | -- | ------------- |
-| None  | 0 | Non-special media or other media types.|
+| None  | 0 | Other non-image media types.|
 | Image | 1 | Image.          |
-| Video<sup>20+</sup> | 2 | Video.          |
-| Audio<sup>20+</sup> | 3 | Audio.          |
 
 ## ContextMenuInputFieldType<sup>9+</sup>
 

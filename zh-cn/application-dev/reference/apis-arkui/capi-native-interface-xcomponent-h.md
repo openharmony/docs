@@ -14,6 +14,8 @@
 
 **库：** libace_ndk.z.so
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **起始版本：** 8
 
 **相关模块：** [OH_NativeXComponent Native XComponent](capi-oh-nativexcomponent-native-xcomponent.md)
@@ -334,7 +336,7 @@ int32_t OH_NativeXComponent_GetXComponentId(OH_NativeXComponent* component, char
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)* component | 表示指向[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例的指针。 |
-| char* id | 表示用于保存此[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例的ID的字符缓冲区。请注意，空终止符将附加到字符缓冲区，因此字符缓冲区的大小应至少比真实id长度大一个单位。建议字符缓冲区的大小为[OH_XCOMPONENT_ID_LEN_MAX + 1]。 |
+| char* id | 表示用于保存此[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例的ID的字符缓冲区。请注意，空终止符将附加到字符缓冲区，因此字符缓冲区的大小应至少比真实id长度大一个单位。建议字符缓冲区的大小为\[[OH_XCOMPONENT_ID_LEN_MAX](#变量) + 1]。 |
 | uint64_t* size | 表示指向id长度的指针，用于接收id的长度信息。 |
 
 **返回：**
@@ -809,13 +811,13 @@ int32_t OH_NativeXComponent_RegisterFocusEventCallback(OH_NativeXComponent* comp
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)* component | 表示指向[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例的指针。 |
-| callback | 表示指向获焦事件回调的指针。- window: 表示NativeWindow句柄。 |
+| void (\*callback)(OH_NativeXComponent* component, void* window) | 表示指向获焦事件回调的指针。- window: 表示NativeWindow句柄。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t (OH_NativeXComponent* component, void (*callback) | 返回执行的状态代码。 |
+| int32_t | 返回执行的状态代码。 |
 
 ### OH_NativeXComponent_RegisterKeyEventCallback()
 
@@ -836,7 +838,7 @@ int32_t OH_NativeXComponent_RegisterKeyEventCallback(OH_NativeXComponent* compon
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)* component | 表示指向[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例的指针。 |
-| callback | 表示指向按键事件回调的指针。- window: 表示NativeWindow句柄。 |
+| void (\*callback)(OH_NativeXComponent* component, void* window) | 表示指向按键事件回调的指针。- window: 表示NativeWindow句柄。 |
 
 **返回：**
 
@@ -863,7 +865,7 @@ int32_t OH_NativeXComponent_RegisterBlurEventCallback(OH_NativeXComponent* compo
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)* component | 表示指向[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例的指针。 |
-| callback | 表示指向失焦事件回调的指针。- window: 表示NativeWindow句柄。 |
+| void (\*callback)(OH_NativeXComponent* component, void* window) | 表示指向失焦事件回调的指针。- window: 表示NativeWindow句柄。 |
 
 **返回：**
 
@@ -1187,7 +1189,7 @@ int32_t OH_NativeXComponent_RegisterOnFrameCallback(OH_NativeXComponent* compone
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)* component | 表示指向[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例的指针。 |
-| callback | 表示指向显示更新回调的指针。- timestamp: 当前帧到达的时间（单位：纳秒）。- targetTimestamp: 下一帧预期到达的时间（单位：纳秒）。 |
+| void (\*callback)(OH_NativeXComponent* component, uint64_t timestamp, uint64_t targetTimestamp) | 表示指向显示更新回调的指针。- timestamp: 当前帧到达的时间（单位：纳秒）。- targetTimestamp: 下一帧预期到达的时间（单位：纳秒）。 |
 
 **返回：**
 
@@ -1302,7 +1304,7 @@ int32_t OH_NativeXComponent_RegisterUIInputEventCallback(OH_NativeXComponent *co
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md) *component | 表示指向[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例的指针。 |
-| callback | 表示指向UI输入事件回调的指针。- event: 表示指向UI输入事件的指针。 |
+| void (*callback)(OH_NativeXComponent *component, ArkUI_UIInputEvent *event,ArkUI_UIInputEvent_Type type) | 表示指向UI输入事件回调的指针。- event: 表示指向UI输入事件的指针。 |
 | [ArkUI_UIInputEvent_Type](capi-ui-input-event-h.md#arkui_uiinputevent_type) type | 表示当前UI输入事件的类型。 |
 
 **返回：**
@@ -1330,7 +1332,7 @@ int32_t OH_NativeXComponent_RegisterOnTouchInterceptCallback(OH_NativeXComponent
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)* component | 表示指向[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例的指针。 |
-| callback | 表示指向自定义事件拦截回调的指针。- event: 表示指向UI输入事件的指针。 |
+| HitTestMode (\*callback)(OH_NativeXComponent* component, ArkUI_UIInputEvent* event) | 表示指向自定义事件拦截回调的指针。- event: 表示指向UI输入事件的指针。 |
 
 **返回：**
 
@@ -1384,7 +1386,7 @@ int32_t OH_NativeXComponent_RegisterSurfaceShowCallback(OH_NativeXComponent* com
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)* component | 表示指向[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例的指针。 |
-| callback | 表示指向Surface显示回调的指针。- window: 表示NativeWindow句柄。 |
+| void (\*callback)(OH_NativeXComponent* component, void* window) | 表示指向Surface显示回调的指针。- window: 表示NativeWindow句柄。 |
 
 **返回：**
 
@@ -1411,7 +1413,7 @@ int32_t OH_NativeXComponent_RegisterSurfaceHideCallback(OH_NativeXComponent* com
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)* component | 表示指向[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例的指针。 |
-| callback | 表示指向Surface隐藏回调的指针。- window: 表示NativeWindow句柄。 |
+| void (\*callback)(OH_NativeXComponent* component, void* window) | 表示指向Surface隐藏回调的指针。- window: 表示NativeWindow句柄。 |
 
 **返回：**
 
@@ -1445,7 +1447,7 @@ int32_t OH_NativeXComponent_GetTouchEventSourceType(OH_NativeXComponent* compone
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | OH_NATIVEXCOMPONENT_RESULT_SUCCESS - 成功。<br>OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER - 参数异常。<br>OH_NATIVEXCOMPONENT_RESULT_FAILED - 其他错误。 |
+| int32_t | [OH_NATIVEXCOMPONENT_RESULT_SUCCESS](capi-native-interface-xcomponent-h.md#anonymous) - 成功。<br>[OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER](capi-native-interface-xcomponent-h.md#anonymous) - 参数异常。<br>[OH_NATIVEXCOMPONENT_RESULT_FAILED](capi-native-interface-xcomponent-h.md#anonymous) - 其他错误。 |
 
 ### OH_NativeXComponent_GetNativeXComponent()
 
@@ -1498,7 +1500,7 @@ int32_t OH_NativeXComponent_GetNativeAccessibilityProvider(OH_NativeXComponent* 
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | OH_NATIVEXCOMPONENT_RESULT_SUCCESS - 成功。<br>OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER - 参数异常。<br>OH_NATIVEXCOMPONENT_RESULT_FAILED - 其他错误。 |
+| int32_t | [OH_NATIVEXCOMPONENT_RESULT_SUCCESS](capi-native-interface-xcomponent-h.md#anonymous) - 成功。<br>[OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER](capi-native-interface-xcomponent-h.md#anonymous) - 参数异常。<br>[OH_NATIVEXCOMPONENT_RESULT_FAILED](capi-native-interface-xcomponent-h.md#anonymous) - 其他错误。 |
 
 ### OH_NativeXComponent_RegisterKeyEventCallbackWithResult()
 
@@ -1519,13 +1521,13 @@ int32_t OH_NativeXComponent_RegisterKeyEventCallbackWithResult(OH_NativeXCompone
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)* component | 表示指向[OH_NativeXComponent](capi-oh-nativexcomponent-native-xcomponent-oh-nativexcomponent.md)实例的指针。 |
-| callback | 表示指向按键事件回调的指针。- window: 表示NativeWindow句柄。 |
+| bool (\*callback)(OH_NativeXComponent* component, void* window) | 表示指向按键事件回调的指针。- window: 表示NativeWindow句柄。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t  | 返回执行的状态代码。<br>OH_NATIVEXCOMPONENT_RESULT_SUCCESS - 回调函数注册成功。<br>OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER - 传入参数异常。 |
+| int32_t  | 返回执行的状态代码。<br>[OH_NATIVEXCOMPONENT_RESULT_SUCCESS](capi-native-interface-xcomponent-h.md#anonymous) - 回调函数注册成功。<br>[OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER](capi-native-interface-xcomponent-h.md#anonymous) - 传入参数异常。 |
 
 ### OH_ArkUI_XComponent_StartImageAnalyzer()
 
@@ -1547,7 +1549,7 @@ int32_t OH_ArkUI_XComponent_StartImageAnalyzer(ArkUI_NodeHandle node, void* user
 | -- | -- |
 | [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 表示XComponent组件实例。 |
 |  void* userData | 表示开发者需要在回调函数执行时获取的数据的指针。 |
-| callback | 表示图像AI分析状态刷新时触发的回调函数。- statusCode: 回调函数的入参之一，表示当前的图像分析状态。 |
+| void (\*callback)(ArkUI_NodeHandle node, ArkUI_XComponent_ImageAnalyzerState statusCode, void* userData) | 表示图像AI分析状态刷新时触发的回调函数。- statusCode: 回调函数的入参之一，表示当前的图像分析状态。 |
 
 **返回：**
 
@@ -1738,7 +1740,7 @@ void OH_ArkUI_SurfaceCallback_SetSurfaceCreatedEvent(OH_ArkUI_SurfaceCallback* c
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_ArkUI_SurfaceCallback](capi-oh-nativexcomponent-native-xcomponent-oh-arkui-surfacecallback.md)* callback | 表示指向Surface生命周期回调的指针。 |
-| onSurfaceCreated | 表示声明Surface创建时会触发的回调事件。- surfaceHolder: 表示指向[OH_ArkUI_SurfaceHolder](capi-oh-nativexcomponent-native-xcomponent-oh-arkui-surfaceholder.md)实例的指针。 |
+| void (\*onSurfaceCreated)(OH_ArkUI_SurfaceHolder* surfaceHolder) | 表示声明Surface创建时会触发的回调事件。- surfaceHolder: 表示指向[OH_ArkUI_SurfaceHolder](capi-oh-nativexcomponent-native-xcomponent-oh-arkui-surfaceholder.md)实例的指针。 |
 
 ### OH_ArkUI_SurfaceCallback_SetSurfaceChangedEvent()
 
@@ -1759,7 +1761,7 @@ void OH_ArkUI_SurfaceCallback_SetSurfaceChangedEvent(OH_ArkUI_SurfaceCallback* c
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_ArkUI_SurfaceCallback](capi-oh-nativexcomponent-native-xcomponent-oh-arkui-surfacecallback.md)* callback | 表示指向Surface生命周期回调的指针。 |
-| onSurfaceChanged | 表示声明Surface大小改变时会触发的回调事件。- surfaceHolder: 表示指向[OH_ArkUI_SurfaceHolder](capi-oh-nativexcomponent-native-xcomponent-oh-arkui-surfaceholder.md)实例的指针。- width: 表示Surface大小变化后的宽度。- height: 表示Surface大小变化后的高度。 |
+| void (\*onSurfaceChanged)(OH_ArkUI_SurfaceHolder* surfaceHolder, uint64_t width, uint64_t height) | 表示声明Surface大小改变时会触发的回调事件。- surfaceHolder: 表示指向[OH_ArkUI_SurfaceHolder](capi-oh-nativexcomponent-native-xcomponent-oh-arkui-surfaceholder.md)实例的指针。- width: 表示Surface大小变化后的宽度。- height: 表示Surface大小变化后的高度。 |
 
 ### OH_ArkUI_SurfaceCallback_SetSurfaceDestroyedEvent()
 
@@ -1780,7 +1782,7 @@ void OH_ArkUI_SurfaceCallback_SetSurfaceDestroyedEvent(OH_ArkUI_SurfaceCallback*
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_ArkUI_SurfaceCallback](capi-oh-nativexcomponent-native-xcomponent-oh-arkui-surfacecallback.md)* callback | 表示指向Surface生命周期回调的指针。 |
-| onSurfaceDestroyed | 表示声明Surface销毁时会触发的回调事件。- surfaceHolder: 表示指向[OH_ArkUI_SurfaceHolder](capi-oh-nativexcomponent-native-xcomponent-oh-arkui-surfaceholder.md)实例的指针。 |
+| void (\*onSurfaceDestroyed)(OH_ArkUI_SurfaceHolder* surfaceHolder) | 表示声明Surface销毁时会触发的回调事件。- surfaceHolder: 表示指向[OH_ArkUI_SurfaceHolder](capi-oh-nativexcomponent-native-xcomponent-oh-arkui-surfaceholder.md)实例的指针。 |
 
 ### OH_ArkUI_SurfaceHolder_AddSurfaceCallback()
 
@@ -2014,7 +2016,7 @@ int32_t OH_ArkUI_XComponent_RegisterOnFrameCallback(ArkUI_NodeHandle node,void (
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_NodeHandle](capi-arkui-nativemodule-arkui-node8h.md) node | 表示XComponent组件实例。 |
-| callback | 表示执行帧回调函数的指针。- timestamp: 当前帧到达的时间（单位：纳秒）。- targetTimestamp: 下一帧预期到达的时间（单位：纳秒）。 |
+| void (*callback)(ArkUI_NodeHandle node, uint64_t timestamp, uint64_t targetTimestamp) | 表示执行帧回调函数的指针。- timestamp: 当前帧到达的时间（单位：纳秒）。- targetTimestamp: 下一帧预期到达的时间（单位：纳秒）。 |
 
 **返回：**
 

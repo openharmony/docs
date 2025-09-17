@@ -2,7 +2,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--Designer: @yangfan229-->
+<!--Designer: @CCFFWW-->
 <!--Tester: @lxl007-->
 <!--Adviser: @HelloCrease-->
 
@@ -38,9 +38,9 @@
        // 添加旋转转场效果，这里的动画参数会跟随上面的TransitionEffect，也就是springMotion(0.6, 1.2)
        .combine(TransitionEffect.rotate({ angle: 90 }))
        // 添加平移转场效果，动画参数会跟随其之上带animation的TransitionEffect，也就是springMotion(0.6, 1.2)
-       .combine(TransitionEffect.translate({ x: 150, y: 150 })
+       .combine(TransitionEffect.translate({ x: 150, y: 150 }))
        // 添加move转场效果，并指定了springMotion曲线
-       .combine(TransitionEffect.move(TransitionEdge.END)).animation({curve: curves.springMotion()}))
+       .combine(TransitionEffect.move(TransitionEdge.END)).animation({curve: curves.springMotion()})
        // 添加非对称的转场效果，由于这里没有设置animation，会跟随上面的TransitionEffect的animation效果，也就是springMotion
        .combine(TransitionEffect.asymmetric(TransitionEffect.scale({ x: 0, y: 0 }), TransitionEffect.rotate({ angle: 90 })));
    ```

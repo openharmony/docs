@@ -251,22 +251,22 @@ function test(dataSource: DataSource[]) {
 **【反例】**
 
 ```
-if (condition)
-  console.log('success');
-
-for (let idx = 0; idx < 5; ++idx)
-  console.log(idx);
+let condition = true;
+if (condition) 
+  console.info('success');
+for (let idx = 0; idx < 5; ++idx) 
+  console.info('', idx);
 ```
 
 **【正例】**
 
 ```
+let condition = true;
 if (condition) {
-  console.log('success');
+  console.info('success');
 }
-
 for (let idx = 0; idx < 5; ++idx) {
-  console.log(idx);
+  console.info('', idx);
 }
 ```
 

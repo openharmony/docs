@@ -1004,15 +1004,15 @@ reduce\<U = number>(callbackFn: TypedArrayReduceCallback\<U, number, Float32Arra
 **参数：**
 | 参数名    | 类型   | 必填 | 说明                                                 |
 | --------- | ------ | ---- | --------------------------------------------------- |
-| callbackFn | [TypedArrayReduceCallback](arkts-apis-arkts-collections-Types.md#typedarrayreducecallback)\<number, number, Float32Array> | 是  | 归约函数。 |
-| initialValue | number | 是  | 初始值。 |
+| callbackFn | [TypedArrayReduceCallback](arkts-apis-arkts-collections-Types.md#typedarrayreducecallback)\<U, number, Float32Array> | 是  | 归约函数。 |
+| initialValue | U | 是  | 初始值。 |
 
 
 **返回值：**
 
 | 类型         | 说明      |
 | ------------ | --------- |
-| number | 由归约函数返回的结果。 |
+| U | 由归约函数返回的结果。 |
 
 **错误码：**
 
@@ -1070,46 +1070,6 @@ reduceRight\<U = number>(callbackFn: TypedArrayReduceCallback\<U, number, Float3
 let array: collections.Float32Array = collections.Float32Array.from([1, 2, 3, 4, 5]);
 let reducedValue: number = array.reduceRight((accumulator: number, value: number) => accumulator + value, 1);
 console.info(reducedValue + ''); // 预期输出： 16
-```
-
-## reduce
-reduce\<U>(callbackFn: TypedArrayReduceCallback\<U, number, Float32Array>, initialValue: U): U
-
-对ArkTS Float32Array中的每个元素执行归约函数，且接收一个初始值作为归约函数首次调用的参数，并返回最终的归约结果。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名    | 类型   | 必填 | 说明                                                 |
-| --------- | ------ | ---- | ---------------------------------------------------- |
-| callbackFn | [TypedArrayReduceCallback](arkts-apis-arkts-collections-Types.md#typedarrayreducecallback)\<U, number, Float32Array> | 是  | 归约函数。 |
-| initialValue | U | 是  | 初始值。 |
-
-**返回值：**
-
-| 类型         | 说明      |
-| ------------ | --------- |
-|  U | 由归约函数返回的结果。 |
-
-**错误码：**
-
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息                                          |
-| -------- | ------------------------------------------------- |
-| 401      | Parameter error.                   |
-| 10200011 | The reduce method cannot be bound. |
-| 10200201 | Concurrent modification error.  |
-
-**示例：**
-
-```ts
-let array: collections.Float32Array = collections.Float32Array.from([1, 2, 3, 4, 5]);
-let reducedValue: string = array.reduce<string>((accumulator: string, value: number) => accumulator + value, "initialValue");
-// reducedValue == initialValue12345
 ```
 
 ## reverse
@@ -1497,7 +1457,7 @@ for (const value of iterator) {
 
 | 类型                      | 说明             |
 | ------------------------- | ---------------- |
-| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+| IterableIterator&lt;number&gt; | 返回一个迭代器。 |
 
 **错误码：**
 

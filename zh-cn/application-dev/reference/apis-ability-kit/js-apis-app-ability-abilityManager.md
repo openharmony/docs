@@ -1,5 +1,12 @@
 # @ohos.app.ability.abilityManager (Ability信息管理)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @dsz2025 -->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 AbilityManager模块提供获取Ability相关信息和运行状态信息的能力。
 
 > **说明：**
@@ -32,7 +39,11 @@ Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-in
 
 getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
-获取UIAbility运行相关信息（Promise形式）。
+获取UIAbility运行时的相关信息。使用Promise异步回调。
+
+> **说明：**
+>
+> 如果应用申请了ohos.permission.GET_RUNNING_INFO权限，可以获取所有应用UIAbility的运行信息，否则只能获取当前应用UIAbility的运行信息。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 

@@ -8,7 +8,7 @@
 
 ## 概述
 
-用于特定组件设置组件的行数、列数以及选择模式，如List、Flex、Select、Swiper组件。
+用于配置特定组件（如List、Flex、Select、Swiper组件）的网格布局属性。
 
 **起始版本：** 13
 
@@ -22,8 +22,8 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| int32_t rowCount | 行数。 |
-| int32_t columnCount | 列数。 |
+| int32_t rowCount | 组件的行数。 |
+| int32_t columnCount | 组件的列数。 |
 | int32_t selectionMode | 0: 仅选择一行，否则选择多行。 |
 
 

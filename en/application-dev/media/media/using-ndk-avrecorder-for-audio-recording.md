@@ -1,4 +1,10 @@
 # Using AVRecorder to Record Audio (C/C++)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @shiwei75-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 
 You can use the AVRecorder to develop the audio or video recording service. The AVRecorder supports audio capture, audio encoding, video encoding, audio encapsulation, and video encapsulation. It is applicable to simple audio/video recording scenarios and can be used to generate local media files directly.
 
@@ -35,7 +41,7 @@ You can use C/C++ APIs related to video recording by including the header files 
 Read [AVRecorder](../../reference/apis-media-kit/capi-avrecorder.md) for the API reference.
 
 
-Link the dynamic library in the CMake script.
+Link the dynamic libraries in the CMake script.
 ```
 target_link_libraries(entry PUBLIC libavrecorder.so)
 ```
@@ -45,7 +51,7 @@ To use [OH_AVFormat](../../reference/apis-avcodec-kit/_core.md#oh_avformat) APIs
 #include <multimedia/player_framework/native_avformat.h>
 ```
 
-In addition, link the following dynamic link library in the CMake script:
+In addition, link the following dynamic libraries in the CMake script:
 ```
 target_link_libraries(entry PUBLIC libnative_media_core.so)
 ```
@@ -55,7 +61,7 @@ To use system logging, include the following header file:
 #include <hilog/log.h>
 ```
 
-In addition, link the following dynamic link library in the CMake script:
+In addition, link the following dynamic libraries in the CMake script:
 ```
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 ```
@@ -66,7 +72,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
    #include <multimedia/player_framework/avrecorder.h>
    #include <multimedia/player_framework/avrecorder_base.h>
 
-   static struct OH_AVRecorder *g_avRecorder = {};
+   static struct OH_AVRecorder *g_avRecorder = nullptr;
    g_avRecorder = OH_AVRecorder_Create();
    ```
 
@@ -85,33 +91,34 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
       (void)userData;
 
       // Convert reason into a string.
-      const char *reasonStr = (reason == AVRECORDER_USER) ? "USER" : (reason == AVRECORDER_BACKGROUND) ? "BACKGROUND" : "UNKNOWN";
+      const char *reasonStr = (reason == OH_AVRecorder_StateChangeReason::AVRECORDER_USER) ? "USER" :
+                              (reason == OH_AVRecorder_StateChangeReason::AVRECORDER_BACKGROUND) ? "BACKGROUND" : "UNKNOWN";
 
-      if (state == AVRECORDER_IDLE) {
+      if (state == OH_AVRecorder_State::AVRECORDER_IDLE) {
          OH_LOG_INFO(LOG_APP, "==NDKDemo== Recorder OnStateChange IDLE, reason: %{public}s", reasonStr);
          // Process the state change.
       }
-      if (state == AVRECORDER_PREPARED) {
+      if (state == OH_AVRecorder_State::AVRECORDER_PREPARED) {
          OH_LOG_INFO(LOG_APP, "==NDKDemo== Recorder OnStateChange PREPARED, reason: %{public}s", reasonStr);
          // Process the state change.
       }
-      if (state == AVRECORDER_STARTED) {
+      if (state == OH_AVRecorder_State::AVRECORDER_STARTED) {
          OH_LOG_INFO(LOG_APP, "==NDKDemo== Recorder OnStateChange STARTED, reason: %{public}s", reasonStr);
          // Process the state change.
       }
-      if (state == AVRECORDER_PAUSED) {
+      if (state == OH_AVRecorder_State::AVRECORDER_PAUSED) {
          OH_LOG_INFO(LOG_APP, "==NDKDemo== Recorder OnStateChange PAUSED, reason: %{public}s", reasonStr);
          // Process the state change.
       }
-      if (state == AVRECORDER_STOPPED) {
+      if (state == OH_AVRecorder_State::AVRECORDER_STOPPED) {
          OH_LOG_INFO(LOG_APP, "==NDKDemo== Recorder OnStateChange STOPPED, reason: %{public}s", reasonStr);
          // Process the state change.
       }
-      if (state == AVRECORDER_RELEASED) {
+      if (state == OH_AVRecorder_State::AVRECORDER_RELEASED) {
          OH_LOG_INFO(LOG_APP, "==NDKDemo== Recorder OnStateChange RELEASED, reason: %{public}s", reasonStr);
          // Process the state change.
       }
-      if (state == AVRECORDER_ERROR) {
+      if (state == OH_AVRecorder_State::AVRECORDER_ERROR) {
          OH_LOG_INFO(LOG_APP, "==NDKDemo== Recorder OnStateChange ERROR, reason: %{public}s", reasonStr);
          // Process the state change.
       }
@@ -217,9 +224,9 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
         OH_AVErrCode ret = OH_AVRecorder_SetUriCallback(g_avRecorder, OnUri, nullptr);
         OH_LOG_INFO(LOG_APP, "==NDKDemo== OH_AVRecorder_SetUriCallback out!");
         if (ret == AV_ERR_OK) {
-            OH_LOG_INFO(LOG_APP, "==NDKDemo==  OH_AVRecorder_SetUriCallback succeed!");
+            OH_LOG_INFO(LOG_APP, "==NDKDemo== OH_AVRecorder_SetUriCallback succeed!");
         } else {
-            OH_LOG_ERROR(LOG_APP, "==NDKDemo==  Failed to set URI callback, error code: %d", ret);
+            OH_LOG_ERROR(LOG_APP, "==NDKDemo== Failed to set URI callback, error code: %d", ret);
         }
 
         // 3. Call the prepare API.
@@ -271,11 +278,12 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
    ```
 
 
-## Development Example
+## Complete Sample Code
 
 Refer to the sample code below to complete the process of creating a recorder instance; preparing for recording; starting, pausing, resuming, and stopping recording; resetting the recording state; and releasing the recording resources.
 
    ```C++
+   #include <unistd.h>
    #include <fcntl.h>
    #include "hilog/log.h"
    #include <multimedia/player_framework/avrecorder.h>
@@ -284,7 +292,8 @@ Refer to the sample code below to complete the process of creating a recorder in
    #include <multimedia/media_library/media_access_helper_capi.h>
    #include <multimedia/media_library/media_asset_capi.h>
 
-   static struct OH_AVRecorder *g_avRecorder = {};
+   static struct OH_AVRecorder *g_avRecorder = nullptr;
+   static int32_t g_outputFd;
 
    // Set a callback to respond to state changes.
    void OnStateChange(OH_AVRecorder *recorder, OH_AVRecorder_State state,
@@ -293,33 +302,34 @@ Refer to the sample code below to complete the process of creating a recorder in
       (void)userData;
 
       // Convert reason into a string.
-      const char *reasonStr = (reason == AVRECORDER_USER) ? "USER" : (reason == AVRECORDER_BACKGROUND) ? "BACKGROUND" : "UNKNOWN";
+      const char *reasonStr = (reason == OH_AVRecorder_StateChangeReason::AVRECORDER_USER) ? "USER" :
+                              (reason == OH_AVRecorder_StateChangeReason::AVRECORDER_BACKGROUND) ? "BACKGROUND" : "UNKNOWN";
 
-      if (state == AVRECORDER_IDLE) {
+      if (state == OH_AVRecorder_State::AVRECORDER_IDLE) {
          OH_LOG_INFO(LOG_APP, "==NDKDemo== Recorder OnStateChange IDLE, reason: %{public}s", reasonStr);
          // Process the state change.
       }
-      if (state == AVRECORDER_PREPARED) {
+      if (state == OH_AVRecorder_State::AVRECORDER_PREPARED) {
          OH_LOG_INFO(LOG_APP, "==NDKDemo== Recorder OnStateChange PREPARED, reason: %{public}s", reasonStr);
          // Process the state change.
       }
-      if (state == AVRECORDER_STARTED) {
+      if (state == OH_AVRecorder_State::AVRECORDER_STARTED) {
          OH_LOG_INFO(LOG_APP, "==NDKDemo== Recorder OnStateChange STARTED, reason: %{public}s", reasonStr);
          // Process the state change.
       }
-      if (state == AVRECORDER_PAUSED) {
+      if (state == OH_AVRecorder_State::AVRECORDER_PAUSED) {
          OH_LOG_INFO(LOG_APP, "==NDKDemo== Recorder OnStateChange PAUSED, reason: %{public}s", reasonStr);
          // Process the state change.
       }
-      if (state == AVRECORDER_STOPPED) {
+      if (state == OH_AVRecorder_State::AVRECORDER_STOPPED) {
          OH_LOG_INFO(LOG_APP, "==NDKDemo== Recorder OnStateChange STOPPED, reason: %{public}s", reasonStr);
          // Process the state change.
       }
-      if (state == AVRECORDER_RELEASED) {
+      if (state == OH_AVRecorder_State::AVRECORDER_RELEASED) {
          OH_LOG_INFO(LOG_APP, "==NDKDemo== Recorder OnStateChange RELEASED, reason: %{public}s", reasonStr);
          // Process the state change.
       }
-      if (state == AVRECORDER_ERROR) {
+      if (state == OH_AVRecorder_State::AVRECORDER_ERROR) {
          OH_LOG_INFO(LOG_APP, "==NDKDemo== Recorder OnStateChange ERROR, reason: %{public}s", reasonStr);
          // Process the state change.
       }
@@ -394,8 +404,8 @@ Refer to the sample code below to complete the process of creating a recorder in
 
       // 1.1 Set the URL. (This operation is required when APP_CREATE is selected for fileGenerationMode.)
       const std::string AVREORDER_ROOT = "/data/storage/el2/base/files/";
-      int32_t outputFd = open((AVREORDER_ROOT + "avrecorder01.mp3").c_str(), O_RDWR | O_CREAT, 0777); // Set the file name.
-      std::string fileUrl = "fd://" + std::to_string(outputFd);
+      g_outputFd = open((AVREORDER_ROOT + "avrecorder01.mp3").c_str(), O_RDWR | O_CREAT, 0777); // Set the file name.
+      std::string fileUrl = "fd://" + std::to_string(g_outputFd);
       config->url = const_cast<char *>(fileUrl.c_str());
       OH_LOG_INFO(LOG_APP, "config.url is: %s", const_cast<char *>(fileUrl.c_str()));
 
@@ -473,6 +483,7 @@ Refer to the sample code below to complete the process of creating a recorder in
       if (result != AV_ERR_OK) {
          OH_LOG_ERROR(LOG_APP, "==NDKDemo== AVRecorder Stop failed %{public}d", result);
       }
+      close(g_outputFd);
       napi_value res;
       napi_create_int32(env, result, &res);
       return res;

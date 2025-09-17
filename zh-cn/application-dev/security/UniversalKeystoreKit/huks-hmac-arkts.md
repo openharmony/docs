@@ -36,6 +36,7 @@ HMAC是密钥相关的哈希运算消息认证码（Hash-based Message Authentic
  * 以下以HMAC密钥的Promise操作使用为例
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
 
 let keyAlias = 'test_HMAC';
 let handle: number;
@@ -77,61 +78,66 @@ function GetHMACProperties() {
 
 async function GenerateHMACKey() {
   /*
-  * 模拟生成密钥场景
-  * 1. 确定密钥别名
-  */
+   * 模拟生成密钥场景
+   * 1. 确定密钥别名
+   */
   /*
-  * 2. 获取生成密钥算法参数配置
-  */
+   * 2. 获取生成密钥算法参数配置
+   */
   let genProperties = GetHMACProperties();
   let options: huks.HuksOptions = {
     properties: genProperties
   }
   /*
-  * 3. 调用generateKeyItem
-  */
+   * 3. 调用generateKeyItem
+   */
   await huks.generateKeyItem(keyAlias, options)
-    .then((data) => {
+    .then(() => {
       console.info(`promise: generate HMAC Key success`);
-    }).catch((error: Error) => {
-      console.error(`promise: generate HMAC Key failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: generate HMAC Key failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
 }
 
 async function HMACData() {
   /*
-  * 模拟HMAC场景
-  * 1. 获取密钥别名
-  */
+   * 模拟HMAC场景
+   * 1. 获取密钥别名
+   */
   /*
-  * 2. 获取待哈希的数据
-  */
+   * 2. 获取待哈希的数据
+   */
   /*
-  * 3. 获取HMAC算法参数配置
-  */
+   * 3. 获取HMAC算法参数配置
+   */
   let hmacProperties = GetHMACProperties();
   let options: huks.HuksOptions = {
     properties: hmacProperties,
     inData: StringToUint8Array(plainText)
   }
   /*
-  * 4. 调用initSession获取handle
-  */
+   * 4. 调用initSession获取handle
+   */
   await huks.initSession(keyAlias, options)
     .then((data) => {
       handle = data.handle;
-    }).catch((error: Error) => {
-      console.error(`promise: init EncryptData failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: init EncryptData failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
   /*
-  * 5. 调用finishSession获取HMAC的结果
-  */
+   * 5. 调用finishSession获取HMAC的结果
+   */
   await huks.finishSession(handle, options)
     .then((data) => {
       console.info(`promise: HMAC data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
       hashData = data.outData as Uint8Array;
-    }).catch((error: Error) => {
-      console.error(`promise: HMAC data failed, ${JSON.stringify(error)}`);
+    }).catch((error: BusinessError) => {
+      console.error(`promise: HMAC data failed, errCode : ${error.code}, errMsg : ${error.message}`);
     })
+}
+
+async function testHMAC() {
+  await GenerateHMACKey();
+  await HMACData();
 }
 ```

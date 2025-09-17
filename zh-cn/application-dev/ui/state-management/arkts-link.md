@@ -57,12 +57,11 @@
 
 - 当装饰的对象是Array时，可以观察到数组添加、删除、更新数组单元的变化，示例请参考[数组类型的@Link](#数组类型的link)。
 
-- 当装饰的对象是Date时，可以观察到Date的整体赋值，以及通过调用`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`方法更新其属性，详见[装饰Date类型变量](#装饰date类型变量)。
+- 当装饰的对象是Date时，可以观察到Date的整体赋值，以及通过调用`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds`方法更新其属性，示例请参考[装饰Date类型变量](#装饰date类型变量)。
 
+- 当装饰的变量是Map时，可以观察到Map整体的赋值，以及可通过调用Map的`set`、`clear`、`delete`接口更新Map的值，示例请参考[装饰Map类型变量](#装饰map类型变量)。
 
-- 当装饰的变量是Map时，可以观察到Map整体的赋值，以及可通过调用Map的`set`、`clear`、`delete`接口更新Map的值。详见[装饰Map类型变量](#装饰map类型变量)。
-
-- 当装饰的变量是Set时，可以观察Set整体的赋值，以及通过调用Set的`add`、`clear`、`delete`接口更新其值。详见[装饰Set类型变量](#装饰set类型变量)。
+- 当装饰的变量是Set时，可以观察Set整体的赋值，以及通过调用Set的`add`、`clear`、`delete`接口更新其值，示例请参考[装饰Set类型变量](#装饰set类型变量)。
 ### 框架行为
 
 \@Link装饰的变量和所属的自定义组件共享生命周期。
@@ -96,38 +95,47 @@
     @Link count: number;
     ```
 
-3. \@Link装饰的变量的类型要和数据源类型保持一致，否则框架会抛出运行时错误。
+3. \@Link装饰的变量的类型要和数据源类型保持一致，否则编译期会报错。同时，数据源必须是状态变量，否则框架会抛出运行时错误。
 
     【反例】
   
     ```ts
     class Info {
-      info: string = 'Hello';
+      value: string = 'Hello';
     }
-  
+
     class Cousin {
       name: string = 'Hello';
     }
-  
+
     @Component
     struct Child {
-      // 错误写法，@Link与@State数据源类型不一致
+      // 错误写法1：@Link装饰的变量与@State装饰的变量类型不一致
       @Link test: Cousin;
-  
+      // 错误写法2：数据源非状态变量
+      @Link testStr: string;
+
       build() {
-        Text(this.test.name)
+        Column() {
+          Text(this.test.name)
+          Text(this.testStr)
+        }
       }
     }
-  
+
     @Entry
     @Component
     struct LinkExample {
       @State info: Info = new Info();
-  
+
       build() {
         Column() {
-          // 错误写法，@Link与@State数据源类型不一致
-          Child({test: new Cousin()})
+          Child({
+            // 错误写法1：@Link装饰的变量与@State装饰的变量类型不一致
+            test: this.info,
+            // 错误写法2：数据源非状态变量
+            testStr: this.info.value
+          })
         }
       }
     }
@@ -137,27 +145,27 @@
   
     ```ts
     class Info {
-      info: string = 'Hello';
+      value: string = 'Hello';
     }
-  
+
     @Component
     struct Child {
-      // 正确写法
+      // 在子组件中，使用@Link装饰Info类型的test变量
       @Link test: Info;
-  
+
       build() {
-        Text(this.test.info)
+        Text(this.test.value)
       }
     }
-  
+
     @Entry
     @Component
     struct LinkExample {
       @State info: Info = new Info();
-  
+
       build() {
         Column() {
-          // 正确写法
+          // 在父组件中，使用@State装饰的info变量初始化Child组件的test变量
           Child({test: this.info})
         }
       }
@@ -660,92 +668,6 @@ struct Index {
 
 ## 常见问题
 
-### \@Link装饰状态变量类型错误
-
-在子组件中使用\@Link装饰状态变量时，需要保证该变量与数据源类型完全相同。数据源必须是被@State等装饰器装饰的状态变量。
-
-【反例】
-
-```ts
-@Observed
-class Info {
-  public age: number = 0;
-
-  constructor(age: number) {
-    this.age = age;
-  }
-}
-
-@Component
-struct LinkChild {
-  @Link testNum: number;
-
-  build() {
-    Text(`LinkChild testNum ${this.testNum}`)
-  }
-}
-
-@Entry
-@Component
-struct Parent {
-  @State info: Info = new Info(1);
-
-  build() {
-    Column() {
-      Text(`Parent testNum ${this.info.age}`)
-        .onClick(() => {
-          this.info.age += 1;
-        })
-      // @Link装饰的变量需要和数据源@State类型一致
-      LinkChild({ testNum: this.info.age })
-    }
-  }
-}
-```
-
-\@Link testNum: number从父组件的LinkChild({testNum:this.info.age})初始化。\@Link的数据源必须是装饰器装饰的状态变量，简而言之，\@Link装饰的数据必须和数据源类型相同，例如：\@Link: T和\@State : T。所以，此处应该改为\@Link testNum: Info，从父组件初始化的方式为LinkChild({testNum: this.info})。
-
-【正例】
-
-```ts
-@Observed
-class Info {
-  public age: number = 0;
-
-  constructor(age: number) {
-    this.age = age;
-  }
-}
-
-@Component
-struct LinkChild {
-  @Link testNum: Info;
-
-  build() {
-    Text(`LinkChild testNum ${this.testNum?.age}`)
-      .onClick(() => {
-        this.testNum.age += 1;
-      })
-  }
-}
-
-@Entry
-@Component
-struct Parent {
-  @State info: Info = new Info(1);
-
-  build() {
-    Column() {
-      Text(`Parent testNum ${this.info.age}`)
-        .onClick(() => {
-          this.info.age += 1;
-        })
-      // @Link装饰的变量需要和数据源@State类型一致
-      LinkChild({ testNum: this.info })
-    }
-  }
-}
-```
 
 ### 使用a.b(this.object)形式调用，不会触发UI刷新
 

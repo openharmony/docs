@@ -14,13 +14,19 @@
 
 **库：** libimage_ndk.z.so
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **起始版本：** 10
 
 **相关模块：** [Image](capi-image.md)
 
 ## 汇总
+
+### 宏定义
+
+| 名称 | 描述 |
+| -- | -- |
+| IMAGE_RESULT_BASE 62980096 | 通用图像错误码，含义为操作失败。<br>**起始版本：** 10 |
 
 ### 结构体
 
@@ -124,7 +130,7 @@ enum IRNdkErrCode
 | IMAGE_RESULT_MEDIA_RTSP_SOURCE_URL_INVALID = IMAGE_RESULT_BASE + 69 | 媒体rtsp源路径无效。 |
 | IMAGE_RESULT_MEDIA_RTSP_VIDEO_TRACK_NOT_FOUND = IMAGE_RESULT_BASE + 70 | 媒体rtsp未发现视频能力。 |
 | IMAGE_RESULT_MEDIA_RTSP_CAMERA_NUM_REACH_MAX = IMAGE_RESULT_BASE + 71 | rtsp相机数量达到最大数量。 |
-| IMAGE_RESULT_MEDIA_SET_VOLUME = IMAGE_RESULT_BASE + 72 | 媒体设置卷失败。 |
+| IMAGE_RESULT_MEDIA_SET_VOLUME = IMAGE_RESULT_BASE + 72 | 媒体设置音量失败。 |
 | IMAGE_RESULT_MEDIA_NUMBER_OVERFLOW = IMAGE_RESULT_BASE + 73 | 媒体操作次数溢出。 |
 | IMAGE_RESULT_MEDIA_DIS_PLAYER_UNSUPPORTED = IMAGE_RESULT_BASE + 74 | 媒体分布式播放器不支持。 |
 | IMAGE_RESULT_MEDIA_DENCODE_ICC_FAILED = IMAGE_RESULT_BASE + 75 | 图像解码ICC失败。 |

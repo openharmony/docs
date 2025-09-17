@@ -439,11 +439,11 @@ function buildRating(config: RatingConfiguration) {
         .fill(config.rating >= 0.4 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
           if (!config.indicator) {
-            if (config.stepSize = 0.5) {
+            if (config.stepSize === 0.5) {
               config.triggerChange(0.5);
               return
             }
-            if (config.stepSize = 1) {
+            if (config.stepSize === 1.0) {
               config.triggerChange(1);
               return
             }
@@ -460,11 +460,11 @@ function buildRating(config: RatingConfiguration) {
         .fill(config.rating >= 1.4 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
           if (!config.indicator) {
-            if (config.stepSize = 0.5) {
+            if (config.stepSize === 0.5) {
               config.triggerChange(1.5);
               return
             }
-            if (config.stepSize = 1) {
+            if (config.stepSize === 1.0) {
               config.triggerChange(2);
               return
             }
@@ -481,11 +481,11 @@ function buildRating(config: RatingConfiguration) {
         .fill(config.rating >= 2.4 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
           if (!config.indicator) {
-            if (config.stepSize = 0.5) {
+            if (config.stepSize === 0.5) {
               config.triggerChange(2.5);
               return
             }
-            if (config.stepSize = 1) {
+            if (config.stepSize === 1.0) {
               config.triggerChange(3);
               return
             }
@@ -502,11 +502,11 @@ function buildRating(config: RatingConfiguration) {
         .fill(config.rating >= 3.4 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
           if (!config.indicator) {
-            if (config.stepSize = 0.5) {
+            if (config.stepSize === 0.5) {
               config.triggerChange(3.5);
               return
             }
-            if (config.stepSize = 1) {
+            if (config.stepSize === 1.0) {
               config.triggerChange(4);
               return
             }
@@ -523,11 +523,11 @@ function buildRating(config: RatingConfiguration) {
         .fill(config.rating >= 4.4 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
           if (!config.indicator) {
-            if (config.stepSize = 0.5) {
+            if (config.stepSize === 0.5) {
               config.triggerChange(4.5);
               return
             }
-            if (config.stepSize = 1) {
+            if (config.stepSize === 1.0) {
               config.triggerChange(5);
               return
             }

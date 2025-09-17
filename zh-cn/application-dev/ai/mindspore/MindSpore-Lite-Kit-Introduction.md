@@ -19,7 +19,7 @@ MindSpore Lite是OpenHarmony内置的轻量化AI引擎，面向全场景构建�
 
 ## 约束与限制
 
-- 本Kit仅适用于手机、平板设备，且不支持使用模拟器运行调试。
+- 本Kit适用于Phone、Tablet、PC/2in1、TV设备，支持使用模拟器运行调试。
 
 ## 亮点/优势
 

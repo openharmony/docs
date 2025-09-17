@@ -16,14 +16,16 @@
 
 ## 前置条件
 
-在应用配置文件app.json5中，配置群组ID：demo_group_id。
+在应用配置文件app.json5中，配置群组ID，如：demo_group_id。群组支持配置多个群组ID。
 
-```json
+```json5
 {
   "app": {
     // 其他配置项此处省略。
     "assetAccessGroups": [
-      "demo_group_id"
+      "demo_group_id",
+      // "another_group_id",
+      // ...
     ]
   }
 }
@@ -31,14 +33,15 @@
 
 ## 新增群组关键资产
 
-在群组中新增密码为demo_pwd、别名为demo_alias、附属信息为demo_label的关键资产。用户首次解锁设备后，该关键资产可被访问。
+在群组中新增密码为demo_pwd、别名为demo_alias、附属信息为demo_label的关键资产。
 
 ```c
 #include <string.h>
 
 #include "asset/asset_api.h"
 
-void AddAsset() {
+static napi_value AddAsset(napi_env env, napi_callback_info info)
+{
     static const char *SECRET = "demo_pwd";
     static const char *ALIAS = "demo_alias";
     static const char *LABEL = "demo_label";
@@ -49,32 +52,30 @@ void AddAsset() {
     Asset_Blob label = {(uint32_t)(strlen(LABEL)), (uint8_t *)LABEL};
     Asset_Blob group_id = { (uint32_t)(strlen(GROUP_ID)), (uint8_t *)GROUP_ID};
     Asset_Attr attr[] = {
-        {.tag = ASSET_TAG_ACCESSIBILITY, .value.u32 = ASSET_ACCESSIBILITY_DEVICE_FIRST_UNLOCKED},
         {.tag = ASSET_TAG_SECRET, .value.blob = secret},
         {.tag = ASSET_TAG_ALIAS, .value.blob = alias},
         {.tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = label},
         {.tag = ASSET_TAG_GROUP_ID, .value.blob = group_id},
     };
 
-    int32_t ret = OH_Asset_Add(attr, sizeof(attr) / sizeof(attr[0]));
-    if (ret == ASSET_SUCCESS) {
-        // 将关键资产添加入群组成功。
-    } else {
-        // 将关键资产添加入群组失败。
-    }
+    int32_t addResult = OH_Asset_Add(attr, sizeof(attr) / sizeof(attr[0]));
+    napi_value ret;
+    napi_create_int32(env, addResult, &ret);
+    return ret;
 }
 ```
 
 ## 删除群组关键资产
 
-在群组中删除别名是demo_alias的关键资产。
+在群组中删除别名为demo_alias的关键资产。
 
 ```c
 #include <string.h>
 
 #include "asset/asset_api.h"
 
-void RemoveAsset() {
+static napi_value RemoveAsset(napi_env env, napi_callback_info info)
+{
     static const char *ALIAS = "demo_alias";
     static const char *GROUP_ID = "demo_group_id";
 
@@ -85,12 +86,10 @@ void RemoveAsset() {
         {.tag = ASSET_TAG_GROUP_ID, .value.blob = group_id},
     };
 
-    int32_t ret = OH_Asset_Remove(attr, sizeof(attr) / sizeof(attr[0]));
-    if (ret == ASSET_SUCCESS) {
-        // 从群组中删除关键资产成功。
-    } else {
-        // 从群组中删除关键资产失败。
-    }
+    int32_t removeResult = OH_Asset_Remove(attr, sizeof(attr) / sizeof(attr[0]));
+    napi_value ret;
+    napi_create_int32(env, removeResult, &ret);
+    return ret;
 }
 ```
 
@@ -103,7 +102,8 @@ void RemoveAsset() {
 
 #include "asset/asset_api.h"
 
-void UpdateAsset() {
+static napi_value UpdateAsset(napi_env env, napi_callback_info info)
+{
     static const char *ALIAS = "demo_alias";
     static const char *SECRET = "demo_pwd_new";
     static const char *LABEL = "demo_label_new";
@@ -122,13 +122,11 @@ void UpdateAsset() {
         {.tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = new_label},
     };
 
-    int32_t ret = OH_Asset_Update(query, sizeof(query) / sizeof(query[0]), attributesToUpdate,
-                                sizeof(attributesToUpdate) / sizeof(attributesToUpdate[0]));
-    if (ret == ASSET_SUCCESS) {
-        // 更新群组中关键资产成功。
-    } else {
-        // 更新群组关键资产失败。
-    }
+    int32_t updateResult = OH_Asset_Update(query, sizeof(query) / sizeof(query[0]), attributesToUpdate,
+                                           sizeof(attributesToUpdate) / sizeof(attributesToUpdate[0]));
+    napi_value ret;
+    napi_create_int32(env, updateResult, &ret);
+    return ret;
 }
 ```
 
@@ -141,7 +139,8 @@ void UpdateAsset() {
 
 #include "asset/asset_api.h"
 
-void QueryAsset() {
+static napi_value QueryAsset(napi_env env, napi_callback_info info)
+{
     static const char *ALIAS = "demo_alias";
     static const char *GROUP_ID = "demo_group_id";
     Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
@@ -153,8 +152,8 @@ void QueryAsset() {
     };
 
     Asset_ResultSet resultSet = {0};
-    int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
-    if (ret == ASSET_SUCCESS) {
+    int32_t queryResult = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
+    if (queryResult == ASSET_SUCCESS) {
         // 解析resultSet。
         for (uint32_t i = 0; i < resultSet.count; i++) {
             // 解析secret属性：其中data数据对应是secret->blob.data，长度对应是secret->blob.size。
@@ -162,19 +161,24 @@ void QueryAsset() {
         }
     }
     OH_Asset_FreeResultSet(&resultSet);
+    
+    napi_value ret;
+    napi_create_int32(env, queryResult, &ret);
+    return ret;
 }
 ```
 
 ## 查询单条群组关键资产属性
 
-查询别名是demo_alias的关键资产属性。
+查询别名为demo_alias的关键资产属性。
 
 ```c
 #include <string.h>
 
 #include "asset/asset_api.h"
 
-void QueryAttributes() {
+static napi_value QueryAttributes(napi_env env, napi_callback_info info)
+{
     static const char *ALIAS = "demo_alias";
     static const char *GROUP_ID = "demo_group_id";
     Asset_Blob alias = {(uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS};
@@ -186,8 +190,8 @@ void QueryAttributes() {
     };
 
     Asset_ResultSet resultSet = {0};
-    int32_t ret = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
-    if (ret == ASSET_SUCCESS) {
+    int32_t queryResult = OH_Asset_Query(attr, sizeof(attr) / sizeof(attr[0]), &resultSet);
+    if (queryResult == ASSET_SUCCESS) {
         // 解析结果。
         for (uint32_t i = 0; i < resultSet.count; i++) {
             // 解析数据标签：其中数据是label->blob.data，长度对应是label->blob.size。
@@ -195,5 +199,9 @@ void QueryAttributes() {
         }
     }
     OH_Asset_FreeResultSet(&resultSet);
+    
+    napi_value ret;
+    napi_create_int32(env, queryResult, &ret);
+    return ret;
 }
 ```

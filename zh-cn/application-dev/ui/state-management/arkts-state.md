@@ -186,7 +186,7 @@
     ```ts	
     // 错误写法，编译报错
     @State count: number;
-  
+    
     // 正确写法
     @State count: number = 10;
     ```
@@ -361,7 +361,7 @@ struct SetSample {
   build() {
     Row() {
       Column() {
-        ForEach(Array.from(this.message.entries()), (item: [number]) => {
+        ForEach(Array.from(this.message.entries()), (item: [number, number]) => {
           Text(`${item[0]}`).fontSize(30)
           Divider()
         })
@@ -425,7 +425,7 @@ struct SetSample {
       }.width('100%')
     }
   }
-  ```
+```
 
 
 ### State支持联合类型实例
@@ -771,8 +771,12 @@ struct Test {
 }
 ```
 
-上述示例中，点击`Button('change')`，只会触发第二个`Text`组件的刷新。这是因为点击按钮后，首先执行`this.user.info = new Info('广州')`。该变化属于第一层的赋值，可以被观察，会对当前自定义组件标脏，并请求下一帧刷新。
-再执行`this.user.info.address = '北京'`，该变化属于第二层的赋值，不能被观察到。但是需要注意，当前变化虽然无法被观察到，但赋值是可以生效的，即`this.user.info.address`会被修改为`北京`。如果上述示例注释掉`this.user.info = new Info('广州')`，则`Text`组件将无法更新。
+在上述示例中，点击按钮后有以下变化：
+
+- 第一个`Text`组件不会刷新。这是因为在点击事件中执行`this.user.info = new Info('广州')`，该变化使得`this.user.info`不再引用`this.info`，而是重新赋值了一个`Info`实例，因此再改变`this.user.info`的属性不会被`this.info`观察，第一个`Text`组件不会刷新。
+- 第二个`Text`组件会刷新。这是因为点击按钮后，首先执行`this.user.info = new Info('广州')`，该变化属于第一层的赋值，可以被观察，会对当前自定义组件标脏，并请求下一帧刷新。再执行`this.user.info.address = '北京'`，该变化属于第二层的赋值，不能被观察到。但是需要注意，当前变化虽然无法被观察到，但赋值是可以生效的。在下一帧刷新到来时，`this.user.info.address`已被修改为`北京`，因此第二个`Text`组件显示`北京`。
+
+如果上述示例注释掉`this.user.info = new Info('广州')`，则与示例2场景一致，只会触发第一个`Text`组件更新，第二个`Text`组件将无法更新。
 
 ### 复杂类型常量重复赋值给状态变量触发刷新
 

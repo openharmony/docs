@@ -145,7 +145,6 @@ struct Index {
 | RETOUCH              | 3 | 滑动事件。           |
 | CLICK                | 4 | 点击事件。           |
 
-
 ## FingerprintEvent<sup>12+</sup>
 
 按键事件的类型和相对按键的偏移位置。
@@ -154,6 +153,6 @@ struct Index {
 
 | 名称      | 类型                                       |只读   | 可选  |说明                    |
 | --------  | ------------------------                  |-------|------ |--------               |
-| action    | [FingerprintAction](#fingerprintaction12)   | 否    |  否   |按键事件类型。           |
+| action    | [FingerprintAction](#fingerprintaction12)   | 否    |  否   |按键事件类型的枚举。           |
 | distanceX | number                                    | 否    |  否   |相对于光标位置的x轴偏移量（正数表示向右移动，负数表示向左移动）。 |
 | distanceY | number                                    | 否    |  否   |相对于光标位置的y轴偏移量（正数表示向上移动，负数表示向下移动）。 |

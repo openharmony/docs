@@ -33,11 +33,11 @@
 | 名称 | 描述 |
 | -- | -- |
 | [Image_ErrorCode OH_ImageNative_GetImageSize(OH_ImageNative *image, Image_Size *size)](#oh_imagenative_getimagesize) | 获取Native [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md)对象的[Image_Size](capi-image-nativemodule-image-size.md)信息。 |
-| [Image_ErrorCode OH_ImageNative_GetComponentTypes(OH_ImageNative *image,uint32_t **types, size_t *typeSize)](#oh_imagenative_getcomponenttypes) | 获取Native [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md)对象的组件列表信息。 |
-| [Image_ErrorCode OH_ImageNative_GetByteBuffer(OH_ImageNative *image,uint32_t componentType, OH_NativeBuffer **nativeBuffer)](#oh_imagenative_getbytebuffer) | 获取Native [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md)对象中某个组件类型所对应的缓冲区。 |
-| [Image_ErrorCode OH_ImageNative_GetBufferSize(OH_ImageNative *image,uint32_t componentType, size_t *size)](#oh_imagenative_getbuffersize) | 获取Native [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md)对象中某个组件类型所对应的缓冲区的大小。 |
-| [Image_ErrorCode OH_ImageNative_GetRowStride(OH_ImageNative *image,uint32_t componentType, int32_t *rowStride)](#oh_imagenative_getrowstride) | 获取Native [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md)对象中某个组件类型所对应的像素行宽。 |
-| [Image_ErrorCode OH_ImageNative_GetPixelStride(OH_ImageNative *image,uint32_t componentType, int32_t *pixelStride)](#oh_imagenative_getpixelstride) | 获取Native [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md)对象中某个组件类型所对应的像素大小。 |
+| [Image_ErrorCode OH_ImageNative_GetComponentTypes(OH_ImageNative *image, uint32_t **types, size_t *typeSize)](#oh_imagenative_getcomponenttypes) | 获取Native [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md)对象的组件列表信息。 |
+| [Image_ErrorCode OH_ImageNative_GetByteBuffer(OH_ImageNative *image, uint32_t componentType, OH_NativeBuffer **nativeBuffer)](#oh_imagenative_getbytebuffer) | 获取Native [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md)对象中某个组件类型所对应的缓冲区。 |
+| [Image_ErrorCode OH_ImageNative_GetBufferSize(OH_ImageNative *image, uint32_t componentType, size_t *size)](#oh_imagenative_getbuffersize) | 获取Native [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md)对象中某个组件类型所对应的缓冲区的大小。 |
+| [Image_ErrorCode OH_ImageNative_GetRowStride(OH_ImageNative *image, uint32_t componentType, int32_t *rowStride)](#oh_imagenative_getrowstride) | 获取Native [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md)对象中某个组件类型所对应的像素行宽。 |
+| [Image_ErrorCode OH_ImageNative_GetPixelStride(OH_ImageNative *image, uint32_t componentType, int32_t *pixelStride)](#oh_imagenative_getpixelstride) | 获取Native [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md)对象中某个组件类型所对应的像素大小。 |
 | [Image_ErrorCode OH_ImageNative_GetTimestamp(OH_ImageNative *image, int64_t *timestamp)](#oh_imagenative_gettimestamp) | 获取Native [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md)对象中的时间戳信息。 |
 | [Image_ErrorCode OH_ImageNative_Release(OH_ImageNative *image)](#oh_imagenative_release) | 释放Native [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md)对象。 |
 

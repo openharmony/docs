@@ -29,7 +29,6 @@ import { ToneMappingType, ToneMappingSettings, BloomSettings, PostProcessSetting
 
 ## ToneMappingSettings
 色调映射设置接口。
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -40,7 +39,6 @@ import { ToneMappingType, ToneMappingSettings, BloomSettings, PostProcessSetting
 
 ## BloomSettings<sup>18+</sup>
 泛光设置接口。
-### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 

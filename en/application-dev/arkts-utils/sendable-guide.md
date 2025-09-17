@@ -1,5 +1,11 @@
 # Use Scenarios of Sendable
-Sendable objects are passed by reference between different concurrent instances by default. This approach is more efficient than serialization and preserves member methods carried by the class. Therefore, Sendable is particularly useful in two scenarios:
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
+Sendable objects are passed by reference across concurrent instances by default. This approach is more efficient than serialization and does not lose class member methods. Therefore, Sendable is particularly useful in two scenarios:
 
 - Transmitting a large amount of data (for example, data exceeding 100 KB) across concurrent instances
 
@@ -51,7 +57,7 @@ struct Index {
           let sensorTask = new taskpool.LongTask(SensorListener);
           emitter.on({ eventId: 0 }, (data) => {
             // Do something here
-            console.info(`Receive ACCELEROMETER data: {${data.data?.x}, ${data.data?.y}, ${data.data?.z}`);
+            console.info(`Receive ACCELEROMETER data: {${data.data?.x}, ${data.data?.y}, ${data.data?.z}}`);
           });
           taskpool.execute(sensorTask).then(() => {
             console.info("Add listener of ACCELEROMETER success");
@@ -72,7 +78,7 @@ struct Index {
   }
 }
 ```
-<!-- @[across_concurrent_instance_transfer_large_data ](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableScenarios/bigdata/src/main/ets/pages/Index.ets) -->
+<!-- @[across_concurrent_instance_transfer_large_data ](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableScenarios/bigdata/src/main/ets/pages/Index.ets) -->
 
 ```ts
 // sendable.ets
@@ -103,12 +109,12 @@ export class Test {
   }
 }
 ```
-<!-- @[across_concurrent_instance_transfer_large_data ](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableScenarios/bigdata/src/main/ets/pages/sendable.ets) -->
+<!-- @[across_concurrent_instance_transfer_large_data ](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableScenarios/bigdata/src/main/ets/pages/sendable.ets) -->
 
 
 ## Passing Class Instances Carrying Methods Across Concurrent Instances
 
-Methods are lost during serialization of instance objects. Therefore, in scenarios where instance methods must be called, passing objects by reference is essential. If data parsing is required during processing, the [ASON utility](ason-parsing-generation.md) can be used for data parsing.
+Methods are lost during serialization of instance objects. Therefore, in scenarios where instance methods must be called, passing objects by reference is essential. If data parsing is required during processing, use the [ASON utility](ason-parsing-generation.md).
 
 **Example**
 
@@ -167,11 +173,11 @@ struct Index {
   }
 }
 ```
-<!-- @[across_concurrent_instance_pass_class_method](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableScenarios/crossconcurrency/src/main/ets/pages/Index.ets) -->
+<!-- @[across_concurrent_instance_pass_class_method](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableScenarios/crossconcurrency/src/main/ets/pages/Index.ets) -->
 
 ```ts
 // sendable.ets
-// Define a Test class to simulate the operation of passing a class instance carrying methods.
+// Define the SendableTestClass to simulate the operation of passing a class instance carrying methods.
 import { lang, collections } from '@kit.ArkTS'
 
 export type ISendable = lang.ISendable;
@@ -201,4 +207,4 @@ export class SendableTestClass {
   }
 }
 ```
-<!-- @[across_concurrent_instance_pass_class_method](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableScenarios/crossconcurrency/src/main/ets/pages/sendable.ets) -->
+<!-- @[across_concurrent_instance_pass_class_method](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableScenarios/crossconcurrency/src/main/ets/pages/sendable.ets) -->

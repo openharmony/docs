@@ -6,7 +6,7 @@
 <!--Tester: @lixueqing513-->
 <!--Adviser: @huipeizi-->
 
-CompletionHandler作为[StartOptions](js-apis-app-ability-startOptions.md)的可选参数，用于处理拉起应用请求的结果。
+CompletionHandler作为[StartOptions](js-apis-app-ability-startOptions.md#startoptions)和[OpenLinkOptions](js-apis-app-ability-openLinkOptions.md#openlinkoptions)的可选参数，用于处理拉起应用请求的结果。
 
 
 > **说明：**
@@ -28,7 +28,7 @@ CompletionHandler作为[StartOptions](js-apis-app-ability-startOptions.md)的可
 - [startRecentAbility](js-apis-inner-application-uiAbilityContext-sys.md#startrecentability-2)
 - [startAbilityAsCaller](js-apis-inner-application-uiAbilityContext-sys.md#startabilityascaller10-2)
 <!--DelEnd-->
-
+- [openLink](js-apis-inner-application-uiAbilityContext.md#openlink12)
 ## 导入模块
 
 ```ts

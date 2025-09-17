@@ -4,7 +4,7 @@
 <!--Owner: @yp99ustc-->
 <!--Designer: @ctqctq99-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 - ArkTS API<!--arkweb-arkts-->
   - @ohos.web.webview (Webview)<!--js-apis-webview-->
@@ -19,6 +19,7 @@
     - [Class (NativeMediaPlayerSurfaceInfo)](arkts-apis-webview-NativeMediaPlayerSurfaceInfo.md)
     - [Class (PdfData)](arkts-apis-webview-PdfData.md)
     - [Class (ProxyConfig)](arkts-apis-webview-ProxyConfig.md)
+    - [Class (PrefetchOptions)](arkts-apis-webview-PrefetchOptions.md)
     - [Class (ProxyController)](arkts-apis-webview-ProxyController.md)
     - [Class (ProxyRule)](arkts-apis-webview-ProxyRule.md)
     - [Class (WebviewController)](arkts-apis-webview-WebviewController.md)

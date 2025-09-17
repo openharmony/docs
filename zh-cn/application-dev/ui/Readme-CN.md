@@ -83,13 +83,13 @@
         - [数据对象状态变量的迁移指导](state-management/arkts-v1-v2-migration-inner-class.md)
         - [应用内状态变量和其他场景迁移指导](state-management/arkts-v1-v2-migration-application-and-others.md)
   - 学习UI范式渲染控制<!--arkts-rendering-control-->
-      - [渲染控制概述](state-management/arkts-rendering-control-overview.md)
-      - [if/else：条件渲染](state-management/arkts-rendering-control-ifelse.md)
-      - [ForEach：循环渲染](state-management/arkts-rendering-control-foreach.md)
-      - [LazyForEach：数据懒加载](state-management/arkts-rendering-control-lazyforeach.md)
-      - [Repeat：可复用的循环渲染](state-management/arkts-new-rendering-control-repeat.md)
-      - [LazyForEach迁移Repeat指导文档](state-management/arkts-lazyForEach-repeat-migration-guide.md)
-      - [ContentSlot：混合开发](state-management/arkts-rendering-control-contentslot.md)
+      - [渲染控制概述](rendering-control/arkts-rendering-control-overview.md)
+      - [if/else：条件渲染](rendering-control/arkts-rendering-control-ifelse.md)
+      - [ForEach：循环渲染](rendering-control/arkts-rendering-control-foreach.md)
+      - [LazyForEach：数据懒加载](rendering-control/arkts-rendering-control-lazyforeach.md)
+      - [Repeat：可复用的循环渲染](rendering-control/arkts-new-rendering-control-repeat.md)
+      - [LazyForEach迁移Repeat指导文档](rendering-control/arkts-lazyforeach-repeat-migration-guide.md)
+      - [ContentSlot：混合开发](rendering-control/arkts-rendering-control-contentslot.md)
   - 设置组件导航和页面路由<!--arkts-set-navigation-routing-->
     - [组件导航和页面路由概述](arkts-navigation-introduction.md)
     - [组件导航(Navigation) (推荐)](arkts-navigation-navigation.md)
@@ -113,7 +113,7 @@
   - 使用文本<!--arkts-use-text-->
     - [文本概述](arkts-text-introduction.md)
     - [文本显示 (Text/Span)](arkts-common-components-text-display.md)
-    - [文本输入 (TextInput/TextArea)](arkts-common-components-text-input.md)
+    - [文本输入 (TextInput/TextArea/Search)](arkts-common-components-text-input.md)
     - [富文本编辑 (RichEditor)](arkts-common-components-richeditor.md)
     - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
     - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
@@ -134,7 +134,7 @@
     - [进度条 (Progress)](arkts-common-components-progress-indicator.md)
   - 使用弹窗<!--arkts-use-dialog-->
      - [弹窗概述](arkts-dialog-overview.md)
-     - 使用弹出框 (Dialog)<!--arkts-use-dialogs-->
+     - 弹出框 (Dialog)<!--arkts-use-dialogs-->
        - [弹出框概述](arkts-base-dialog-overview.md)
        - [不依赖UI组件的全局自定义弹出框 (openCustomDialog) (推荐)](arkts-uicontext-custom-dialog.md)
        - [基础自定义弹出框 (CustomDialog) (不推荐)](arkts-common-components-custom-dialog.md)
@@ -243,7 +243,7 @@
     - [跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)](arkts-isolated-components.md)
     <!--DelEnd-->
 - UI开发 (基于NDK构建UI)<!--arkts-use-ndk-->
-  - [NDK接口概述](ndk-build-ui-overview.md)
+  - [基于NDK构建UI概述](ndk-build-ui-overview.md)
   - [接入ArkTS页面](ndk-access-the-arkts-page.md)
   - 添加交互事件<!--arkts-add-event-->
     - [监听组件事件](ndk-listen-to-component-events.md)

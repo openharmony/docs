@@ -1,5 +1,12 @@
 # @ohos.application.missionManager (missionManager)(系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @littlejerry1-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 missionManager模块提供系统任务管理能力，包括对系统任务执行锁定、解锁、清理、切换到前台等操作。
 
 > **说明：**
@@ -96,7 +103,7 @@ unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt
   });
 
   missionManager.unregisterMissionListener(listenerid, (error) => {
-      console.error('unregisterMissionListener fail, error: ${error}');
+      console.error(`unregisterMissionListener fail, error: ${error}`);
   });
 ```
 
@@ -143,7 +150,7 @@ unregisterMissionListener(listenerId: number): Promise&lt;void&gt;
   });
 
   missionManager.unregisterMissionListener(listenerid).catch((error: BusinessError) => {
-      console.error('unregisterMissionListener fail, error: ${error}');
+      console.error(`unregisterMissionListener fail, error: ${error}`);
   });
 ```
 

@@ -66,20 +66,20 @@ UDP与TCP流程大体类似，下面以TCP为例：
     }
 
     tcp.on('message', (value: SocketInfo) => {
-      console.log("on message");
+      console.info("on message");
       let buffer = value.message;
       let dataView = new DataView(buffer);
       let str = "";
       for (let i = 0; i < dataView.byteLength; ++i) {
         str += String.fromCharCode(dataView.getUint8(i));
       }
-      console.log("on connect received:" + str);
+      console.info("on connect received:" + str);
     });
     tcp.on('connect', () => {
-      console.log("on connect");
+      console.info("on connect");
     });
     tcp.on('close', () => {
-      console.log("on close");
+      console.info("on close");
     });
     ```
 
@@ -95,7 +95,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
         console.error('bind fail');
         return;
       }
-      console.log('bind success');
+      console.info('bind success');
 
       // bind成功后，连接到指定的IP地址和端口。
       ipAddress.address = "192.168.xxx.xxx";
@@ -106,13 +106,13 @@ UDP与TCP流程大体类似，下面以TCP为例：
       tcpConnect.timeout = 6000;
 
       tcp.connect(tcpConnect).then(() => {
-        console.log('connect success');
+        console.info('connect success');
         let tcpSendOptions: socket.TCPSendOptions = {
           data: 'Hello, server!'
         }
         // 连接成功之后，发送数据。
         tcp.send(tcpSendOptions).then(() => {
-          console.log('send success');
+          console.info('send success');
         }).catch((err: BusinessError) => {
           console.error('send fail');
         });
@@ -128,7 +128,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
     // 连接使用完毕后，主动关闭。取消相关事件的订阅。
     setTimeout(() => {
       tcp.close().then(() => {
-        console.log('close success');
+        console.info('close success');
       }).catch((err: BusinessError) => {
         console.error('close fail');
       });
@@ -164,7 +164,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
     ipAddress.address = "192.168.xxx.xxx";
     ipAddress.port = 4651;
     tcpServer.listen(ipAddress).then(() => {
-      console.log('listen success');
+      console.info('listen success');
     }).catch((err: BusinessError) => {
       console.error('listen fail');
     });
@@ -182,7 +182,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
     tcpServer.on("connect", (client: socket.TCPSocketConnection) => {
       // client即为建立连接后获取到的连接对象，可以通过该对象订阅TCPSocketConnection相关的事件。
       client.on("close", () => {
-        console.log("on close success");
+        console.info("on close success");
       });
       client.on("message", (value: SocketInfo) => {
         let buffer = value.message;
@@ -191,25 +191,25 @@ UDP与TCP流程大体类似，下面以TCP为例：
         for (let i = 0; i < dataView.byteLength; ++i) {
           str += String.fromCharCode(dataView.getUint8(i));
         }
-        console.log("received message--:" + str);
-        console.log("received address--:" + value.remoteInfo.address);
-        console.log("received family--:" + value.remoteInfo.family);
-        console.log("received port--:" + value.remoteInfo.port);
-        console.log("received size--:" + value.remoteInfo.size);
+        console.info("received message--:" + str);
+        console.info("received address--:" + value.remoteInfo.address);
+        console.info("received family--:" + value.remoteInfo.family);
+        console.info("received port--:" + value.remoteInfo.port);
+        console.info("received size--:" + value.remoteInfo.size);
       });
 
       // 向客户端发送数据。
       let tcpSendOptions : socket.TCPSendOptions = {} as socket.TCPSendOptions;
       tcpSendOptions.data = 'Hello, client!';
       client.send(tcpSendOptions).then(() => {
-        console.log('send success');
+        console.info('send success');
       }).catch((err: Object) => {
         console.error('send fail: ' + JSON.stringify(err));
       });
 
       // 关闭与客户端的连接。
       client.close().then(() => {
-        console.log('close success');
+        console.info('close success');
       }).catch((err: BusinessError) => {
         console.error('close fail');
       });
@@ -257,7 +257,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
 
     // 加入多播组。
     multicast.addMembership(addr).then(() => {
-      console.log('addMembership success');
+      console.info('addMembership success');
     }).catch((err: Object) => {
       console.error('addMembership fail');
     });
@@ -287,7 +287,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
     ```ts
     // 发送数据。
     multicast.send({ data:'Hello12345', address: addr }).then(() => {
-      console.log('send success');
+      console.info('send success');
     }).catch((err: Object) => {
       console.error('send fail, ' + JSON.stringify(err));
     });
@@ -305,7 +305,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
     ```ts
     // 退出多播组。
     multicast.dropMembership(addr).then(() => {
-      console.log('drop membership success');
+      console.info('drop membership success');
     }).catch((err: Object) => {
       console.error('drop membership fail');
     });
@@ -336,14 +336,14 @@ UDP与TCP流程大体类似，下面以TCP为例：
       for (let i = 0; i < uintArray.length; i++) {
         messageView += String.fromCharCode(uintArray[i]);
       }
-      console.log('total receive: ' + JSON.stringify(value));
-      console.log('message information: ' + messageView);
+      console.info('total receive: ' + JSON.stringify(value));
+      console.info('message information: ' + messageView);
     });
     client.on('connect', () => {
-      console.log("on connect");
+      console.info("on connect");
     });
     client.on('close', () => {
-      console.log("on close");
+      console.info("on close");
     });
     ```
 
@@ -365,10 +365,10 @@ UDP与TCP流程大体类似，下面以TCP为例：
       data: 'Hello world!'
     }
     client.connect(connectOpt).then(() => {
-      console.log('connect success')
+      console.info('connect success')
       // 发送数据。
       client.send(sendOpt).then(() => {
-      console.log('send success')
+      console.info('send success')
       }).catch((err: Object) => {
         console.error('send failed: ' + JSON.stringify(err))
       })
@@ -385,7 +385,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
     client.off('connect');
     client.off('close');
     client.close().then(() => {
-      console.log('close client success')
+      console.info('close client success')
     }).catch((err: Object) => {
       console.error('close client err: ' + JSON.stringify(err))
     })
@@ -420,7 +420,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
       address: sandboxPath
     }
     server.listen(listenAddr).then(() => {
-      console.log("listen success");
+      console.info("listen success");
     }).catch((err: Object) => {
       console.error("listen fail: " + JSON.stringify(err));
     });
@@ -433,7 +433,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
     server.on('connect', (connection: socket.LocalSocketConnection) => {
       // 订阅LocalSocketConnection相关的事件。
       connection.on('error', (err: Object) => {
-        console.log("on error success");
+        console.error("on error success");
       });
       connection.on('message', (value: socket.LocalSocketMessageInfo) => {
         const uintArray = new Uint8Array(value.message);
@@ -441,8 +441,8 @@ UDP与TCP流程大体类似，下面以TCP为例：
         for (let i = 0; i < uintArray.length; i++) {
           messageView += String.fromCharCode(uintArray[i]);
         }
-        console.log('total: ' + JSON.stringify(value));
-        console.log('message information: ' + messageView);
+        console.info('total: ' + JSON.stringify(value));
+        console.info('message information: ' + messageView);
       });
 
       connection.on('error', (err: Object) => {
@@ -454,14 +454,14 @@ UDP与TCP流程大体类似，下面以TCP为例：
         data: 'Hello world!'
       };
       connection.send(sendOpt).then(() => {
-        console.log('send success');
+        console.info('send success');
       }).catch((err: Object) => {
-        console.log('send failed: ' + JSON.stringify(err));
+        console.info('send failed: ' + JSON.stringify(err));
       })
 
       // 关闭与客户端的连接。
       connection.close().then(() => {
-        console.log('close success');
+        console.info('close success');
       }).catch((err: Object) => {
         console.error('close failed: ' + JSON.stringify(err));
       });
@@ -514,23 +514,23 @@ UDP与TCP流程大体类似，下面以TCP为例：
         console.error('bind fail');
         return;
       }
-      console.log('bind success');
+      console.info('bind success');
       // 确保bind成功后，再订阅TLS Socket相关的订阅事件
       tlsTwoWay.on('message', (value: SocketInfo) => {
-        console.log("on message");
+        console.info("on message");
         let buffer = value.message;
         let dataView = new DataView(buffer);
         let str = "";
         for (let i = 0; i < dataView.byteLength; ++i) {
           str += String.fromCharCode(dataView.getUint8(i));
         }
-        console.log("on connect received:" + str);
+        console.info("on connect received:" + str);
       });
       tlsTwoWay.on('connect', () => {
-        console.log("on connect");
+        console.info("on connect");
       });
       tlsTwoWay.on('close', () => {
-        console.log("on close");
+        console.info("on close");
       });
     });
     ```
@@ -558,10 +558,10 @@ UDP与TCP流程大体类似，下面以TCP为例：
 
     // 建立连接，连接建立成功后，可以发送数据。
     tlsTwoWay.connect(tlsTwoWayConnectOption).then(() => {
-      console.log("connect successfully");
+      console.info("connect successfully");
       // 发送数据。
       tlsTwoWay.send("xxxx").then(() => {
-        console.log("send successfully");
+        console.info("send successfully");
       }).catch((err: BusinessError) => {
         console.error("send failed " + JSON.stringify(err));
       });
@@ -578,7 +578,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
       if (err) {
         console.error("close callback error = " + err);
       } else {
-        console.log("close success");
+        console.info("close success");
       }
       tlsTwoWay.off('message');
       tlsTwoWay.off('connect');
@@ -618,23 +618,23 @@ UDP与TCP流程大体类似，下面以TCP为例：
         console.error('bind fail');
         return;
       }
-      console.log('bind success');
+      console.info('bind success');
       // 订阅TLS Socket相关的订阅事件
       tlsOneWay.on('message', (value: SocketInfo) => {
-        console.log("on message");
+        console.info("on message");
         let buffer = value.message;
         let dataView = new DataView(buffer);
         let str = "";
         for (let i = 0; i < dataView.byteLength; ++i) {
           str += String.fromCharCode(dataView.getUint8(i));
         }
-        console.log("on connect received:" + str);
+        console.info("on connect received:" + str);
       });
       tlsOneWay.on('connect', () => {
-        console.log("on connect");
+        console.info("on connect");
       });
       tlsOneWay.on('close', () => {
-        console.log("on close");
+        console.info("on close");
       });
     });
     ```
@@ -654,10 +654,10 @@ UDP与TCP流程大体类似，下面以TCP为例：
 
     // 建立连接，连接建立成功后，可以发送数据。
     tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
-      console.log("connect successfully");
+      console.info("connect successfully");
       // 发送数据。
       tlsOneWay.send("xxxx").then(() => {
-        console.log("send successfully");
+        console.info("send successfully");
       }).catch((err: BusinessError) => {
         console.error("send failed " + JSON.stringify(err));
       });
@@ -674,7 +674,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
       if (err) {
         console.error("close callback error = " + err);
       } else {
-        console.log("close success");
+        console.info("close success");
       }
       tlsOneWay.off('message');
       tlsOneWay.off('connect');
@@ -709,17 +709,17 @@ UDP与TCP流程大体类似，下面以TCP为例：
     }
 
     tcp.on('message', (value: SocketInfo) => {
-      console.log("on message");
+      console.info("on message");
       let buffer = value.message;
       let dataView = new DataView(buffer);
       let str = "";
       for (let i = 0; i < dataView.byteLength; ++i) {
         str += String.fromCharCode(dataView.getUint8(i));
       }
-      console.log("on connect received:" + str);
+      console.info("on connect received:" + str);
     });
     tcp.on('connect', () => {
-      console.log("on connect");
+      console.info("on connect");
     });
     ```
 
@@ -735,7 +735,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
         console.error('bind fail');
         return;
       }
-      console.log('bind success');
+      console.info('bind success');
 
       // 连接到服务器端指定的IP地址和端口。
       ipAddress.address = "192.168.xxx.xxx";
@@ -750,26 +750,26 @@ UDP与TCP流程大体类似，下面以TCP为例：
           console.error('connect fail');
           return;
         }
-        console.log('connect success');
+        console.info('connect success');
 
         // 确保TCPSocket已连接后，将其升级为TLSSocket连接。
         let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance(tcp);
         // 订阅TLSSocket相关的订阅事件。
         tlsTwoWay.on('message', (value: SocketInfo) => {
-          console.log("tls on message");
+          console.info("tls on message");
           let buffer = value.message;
           let dataView = new DataView(buffer);
           let str = "";
           for (let i = 0; i < dataView.byteLength; ++i) {
             str += String.fromCharCode(dataView.getUint8(i));
           }
-          console.log("tls on connect received:" + str);
+          console.info("tls on connect received:" + str);
         });
         tlsTwoWay.on('connect', () => {
-          console.log("tls on connect");
+          console.info("tls on connect");
         });
         tlsTwoWay.on('close', () => {
-          console.log("tls on close");
+          console.info("tls on close");
         });
 
         // 配置TLSSocket目的地址、证书等信息。
@@ -794,14 +794,14 @@ UDP与TCP流程大体类似，下面以TCP为例：
 
         // 建立TLSSocket连接。
         tlsTwoWay.connect(tlsTwoWayConnectOption, () => {
-          console.log("tls connect success");
+          console.info("tls connect success");
 
           // 连接使用完毕后，主动关闭。取消相关事件的订阅。
           tlsTwoWay.close((err: BusinessError) => {
             if (err) {
               console.error("tls close callback error = " + err);
             } else {
-              console.log("tls close success");
+              console.info("tls close success");
             }
             tlsTwoWay.off('message');
             tlsTwoWay.off('connect');
@@ -855,7 +855,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
     }
 
     tlsServer.listen(tlsConnectOptions).then(() => {
-      console.log("listen callback success");
+      console.info("listen callback success");
     }).catch((err: BusinessError) => {
       console.error("failed" + err);
     });
@@ -876,22 +876,22 @@ UDP与TCP流程大体类似，下面以TCP为例：
         let message = String.fromCharCode(messages);
         messageView += message;
       }
-      console.log('on message message: ' + JSON.stringify(messageView));
-      console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+      console.info('on message message: ' + JSON.stringify(messageView));
+      console.info('remoteInfo: ' + JSON.stringify(value.remoteInfo));
     }
     tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
       client.on('message', callback);
 
       // 发送数据。
       client.send('Hello, client!').then(() => {
-        console.log('send success');
+        console.info('send success');
       }).catch((err: BusinessError) => {
         console.error('send fail');
       });
 
       // 断开连接。
       client.close().then(() => {
-        console.log('close success');
+        console.info('close success');
       }).catch((err: BusinessError) => {
         console.error('close fail');
       });

@@ -23,25 +23,36 @@ HUKS提供了接口供应用查询密钥别名集。
  * 以下查询密钥别名集Promise操作使用为例
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
+
+/* 1.初始化密钥属性集 */
+let queryProperties: Array<huks.HuksParam> = [{
+    tag: huks.HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL,
+    value: huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_DE
+  }
+];
+let queryOptions: huks.HuksOptions = {
+  properties: queryProperties
+};
+
+async function listAliases(options: huks.HuksOptions) {
+  console.info(`promise: enter listAliases`);
+  try {
+    await huks.listAliases(options)
+      .then((data) => {
+        console.info(`promise: listAliases success`);
+        for (let i = 0; i < data.keyAliases.length; ++i) {
+          console.info(`promise: aliases ${i} : ${data.keyAliases[i]}`);
+        }
+      }).catch((error: BusinessError) => {
+        console.error(`promise: listAliases failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: listAliases input arg invalid`);
+  }
+}
 
 async function testListAliases() {
-  /* 1.初始化密钥属性集 */
-  let queryProperties: Array<huks.HuksParam> = [
-    {
-      tag: huks.HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL,
-      value: huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_DE
-    }
-  ];
-  let queryOptions: huks.HuksOptions = {
-    properties: queryProperties
-  };
-
-  try {
-    /* 2.查询密钥别名集 */
-    let result: huks.HuksListAliasesReturnResult = await huks.listAliases(queryOptions);
-    console.info(`promise: listAliases success`);
-  } catch (error) {
-    console.error(`promise: listAliases fail`);
-  }
+  await listAliases(queryOptions);
 }
 ```

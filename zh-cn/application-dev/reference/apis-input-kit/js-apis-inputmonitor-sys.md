@@ -7,13 +7,13 @@
 <!--Tester: @Lyuxin-->
 <!--Adviser: @Brilliantry_Rui-->
 
-输入监听模块，提供了监听输入设备事件的能力。输入设备事件当前包括触屏事件、鼠标输入事件和触控板输入事件。
+输入监听模块，提供了监听输入设备事件的能力。输入设备事件当前包括触屏输入事件、鼠标输入事件和触控板输入事件。
 
 >**说明：**
 >
 >- 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
->- 文档中“全局”表示整个触控屏或触控板。如监听全局触屏事件，表示触摸触控板任何位置时，整个触控板的触屏事件均被监听。
+>- 文档中“全局”表示整个触控屏或触控板。如监听全局触屏输入事件，表示触摸触控板任何位置时，整个触控板的触屏输入事件均被监听。
 >
 >- 本模块接口均为系统接口。
 
@@ -27,7 +27,7 @@ import { inputMonitor } from '@kit.InputKit';
 
 on(type: 'touch', receiver: TouchEventReceiver): void
 
-监听全局触屏事件。
+监听全局触屏输入事件。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -212,7 +212,7 @@ struct Index {
 
 off(type: 'touch', receiver?: TouchEventReceiver): void
 
-取消监听全局触屏事件。
+取消监听全局触屏输入事件。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -1573,7 +1573,7 @@ on(type: 'keyPressed', keys: Array&lt;KeyCode&gt;, receiver: Callback&lt;KeyEven
 | 参数名   | 类型                                                        | 必填 | 说明                                 |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------ |
 | type     | string                                                      | 是   | 按键事件类型，取唯一值'keyPressed'。 |
-| keys     | Array<[KeyCode](js-apis-keycode.md#keycode)> | 是   | 按键码列表，支持如下取值：KEYCODE_META_LEFT、KEYCODE_META_RIGHT、KEYCODE_POWER、KEYCODE_VOLUME_DOWN、KEYCODE_VOLUME_UP。                      |
+| keys     | Array<[KeyCode](js-apis-keycode.md#keycode)> | 是   | 键值，支持如下键值：KEYCODE_META_LEFT、KEYCODE_META_RIGHT、KEYCODE_POWER、KEYCODE_VOLUME_DOWN、KEYCODE_VOLUME_UP。                      |
 | receiver | Callback&lt;[KeyEvent](js-apis-keyevent.md#keyevent)&gt;    | 是   | 用于接收上报数据的回调函数。         |
 
 **错误码**：
@@ -1699,7 +1699,7 @@ struct Index {
 
 queryTouchEvents(count: number): Promise&lt;Array&lt;TouchEvent&gt;&gt;
 
-查询最近的触屏事件，最多支持查询 100 条事件，使用Promise异步回调。
+查询最近的触屏输入事件，最多支持查询 100 条事件，使用Promise异步回调。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -1709,13 +1709,13 @@ queryTouchEvents(count: number): Promise&lt;Array&lt;TouchEvent&gt;&gt;
 
 | 参数名   | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| count     | number                                                    | 是   | 需要查询的触屏事件数量，取值范围为0到100的整数。小于0时取值为0、大于100时取值为100。如果实际触屏事件只有30个，但该参数取值为50 ，则仅支持查询到30个触屏事件。 |
+| count     | number                                                    | 是   | 需要查询的触屏输入事件数量，取值范围为0到100的整数。小于0时取值为0、大于100时取值为100。如果实际触屏输入事件只有30个，但该参数取值为50 ，则仅支持查询到30个触屏输入事件。 |
 
 **返回值：**
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[TouchEvent](js-apis-touchevent-sys.md#touchevent)&gt;&gt; | Promise对象，返回查询到的触屏事件。包含以下有效信息：<br/>- actionTime：触屏事件发生的时间，表示从1970.1.1 00:00:00 GMT逝去的微秒数。<br/>- [SourceType](js-apis-touchevent.md#sourcetype)：触摸来源的设备类型。<br/>- [isInject](js-apis-touchevent-sys.md#touchevent)：表示该触屏事件是否为注入事件。<br/>- pressure：压力值，取值范围是[0.0, 1.0]，0.0表示不支持。<br/>- tiltX：相对YZ平面的角度，取值的范围[-90, 90]，其中正值是向右倾斜。<br/>- tiltY：相对XZ平面的角度，取值的范围[-90, 90]，其中正值是向下倾斜。 |
+| Promise&lt;Array&lt;[TouchEvent](js-apis-touchevent-sys.md#touchevent)&gt;&gt; | Promise对象，返回查询到的触屏输入事件。包含以下有效信息：<br/>- actionTime：触屏输入事件发生的时间，表示从1970.1.1 00:00:00 GMT逝去的微秒数。<br/>- [SourceType](js-apis-touchevent.md#sourcetype)：触摸来源的设备类型。<br/>- [isInject](js-apis-touchevent-sys.md#touchevent)：表示该触屏输入事件是否为注入事件。<br/>- pressure：压力值，取值范围是[0.0, 1.0]，0.0表示不支持。<br/>- tiltX：相对YZ平面的角度，取值的范围[-90, 90]，其中正值是向右倾斜。<br/>- tiltY：相对XZ平面的角度，取值的范围[-90, 90]，其中正值是向下倾斜。 |
 
 **错误码**：
 

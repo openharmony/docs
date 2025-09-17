@@ -518,9 +518,9 @@ some(predicate: TypedArrayPredicateFn\<number, Uint16Array>): boolean
 **示例：**
 
 ```ts
-let arrayLike = [-10, 20, -30, 40, -50];
+let arrayLike = [10, 20, 30, 40, 50];
 let uint16Array: collections.Uint16Array = new collections.Uint16Array(arrayLike);
-uint16Array.some((element: number) => element < 0); // false
+uint16Array.some((element: number) => element < 1); // false
 ```
 
 ## every
@@ -557,9 +557,9 @@ every(predicate: TypedArrayPredicateFn\<number, Uint16Array>): boolean
 **示例：**
 
 ```ts
-let arrayLike = [-10, 20, -30, 40, -50];
+let arrayLike = [10, 20, 30, 40, 50];
 let uint16Array: collections.Uint16Array = new collections.Uint16Array(arrayLike);
-uint16Array.every((element: number) => element > 0);  // true
+uint16Array.every((element: number) => element > 1);  // true
 ```
 
 ## fill
@@ -993,7 +993,7 @@ console.info(reducedValue + ''); // 预期输出： 15
 ```
 
 ## reduce
-reduce\<U>(callbackFn: TypedArrayReduceCallback\<U, number, Uint16Array>, initialValue: U): U
+reduce(callbackFn: TypedArrayReduceCallback\<number, number, Uint16Array>, initialValue: number): number
 
 对ArkTS Uint16Array中的每个元素执行归约函数，且接收一个初始值作为归约函数首次调用的参数，并返回最终的归约结果。
 
@@ -1497,7 +1497,7 @@ for (const value of iterator) {
 
 | 类型                      | 说明             |
 | ------------------------- | ---------------- |
-| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+| IterableIterator&lt;number&gt; | 返回一个迭代器。 |
 
 **错误码：**
 

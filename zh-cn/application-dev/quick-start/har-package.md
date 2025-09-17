@@ -113,9 +113,7 @@ export function func2() {
 HAR对外暴露的接口，在Index.ets导出文件中声明如下所示：
 ```ts
 // library/Index.ets
-export { Log } from './src/main/ets/test';
-export { func } from './src/main/ets/test';
-export { func2 } from './src/main/ets/test';
+export { Log, func, func2 } from './src/main/ets/test';
 ```
 
 ### 导出native方法

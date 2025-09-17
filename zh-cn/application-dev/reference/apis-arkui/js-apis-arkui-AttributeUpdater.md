@@ -46,6 +46,12 @@ type Initializer\<T> = () => T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**返回值：**
+
+| 类型     |                说明         |
+| -------- | ------------------------- |
+|  T       | 返回当前组件。              |
+
 ## AttributeUpdater<T, C = Initializer\<T>>
 为[AttributeModifier](arkui-ts/ts-universal-attributes-attribute-modifier.md#attributemodifiert)的实现类，开发者需要自定义class继承AttributeUpdater。
 

@@ -60,10 +60,10 @@ enum OH_AVErrCode
 | AV_ERR_INPUT_DATA_ERROR = 10 |  输入数据错误。<br>**起始版本：** 12 |
 | AV_ERR_UNSUPPORTED_FORMAT = 11 |  不支持的格式。<br>**起始版本：** 18 |
 | AV_ERR_EXTEND_START = 100 | 扩展错误码初始值。 |
-| AV_ERR_DRM_BASE = 200 | DRM起始错误码。<br>**起始版本：** 12 |
-| AV_ERR_DRM_DECRYPT_FAILED = 201 | DRM解密失败。<br>**起始版本：** 12 |
-| AV_ERR_VIDEO_BASE = 300 | 视频起始错误码。<br>**起始版本：** 12 |
-| AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION = 301 | 视频不支持色彩空间转换。<br>**起始版本：** 12 |
+| AV_ERR_DRM_BASE = 200 |  DRM起始错误码。<br>**起始版本：** 12 |
+| AV_ERR_DRM_DECRYPT_FAILED = 201 |  DRM解密失败。<br>**起始版本：** 12 |
+| AV_ERR_VIDEO_BASE = 300 |  视频起始错误码。<br>**起始版本：** 12 |
+| AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION = 301 |  视频不支持色彩空间转换。<br>**起始版本：** 12 |
 | AV_ERR_IO_CANNOT_FIND_HOST = 5411001 |  无法找到主机，可能服务器地址错误。<br>**起始版本：** 14 |
 | AV_ERR_IO_CONNECTION_TIMEOUT = 5411002 |  网络连接超时。<br>**起始版本：** 14 |
 | AV_ERR_IO_NETWORK_ABNORMAL = 5411003 |  网络异常导致连接失败。<br>**起始版本：** 14 |
@@ -75,7 +75,7 @@ enum OH_AVErrCode
 | AV_ERR_IO_SSL_CONNECT_FAIL = 5411009 |  由于未携带服务器证书、证书无效或过期导致客户端验证失败。<br>**起始版本：** 14 |
 | AV_ERR_IO_SSL_SERVER_CERT_UNTRUSTED = 5411010 |  SSL服务器证书不受信任。<br>**起始版本：** 14 |
 | AV_ERR_IO_UNSUPPORTED_REQUEST = 5411011 |  网络协议不支持该请求。<br>**起始版本：** 14 |
-| AV_ERR_STREAM_CHANGED = 5410005 | 同步模式下流格式发生变更。可以通过调用接口[OH_VideoEncoder_GetOutputDescription](_video_encoder.md#oh_videoencoder_getoutputdescription)（视频编码）、[OH_VideoDecoder_GetOutputDescription](_video_decoder.md#oh_videodecoder_getoutputdescription)（视频解码）、[OH_AudioCodec_GetOutputDescription](capi-native-avcodec-audiocodec-h.md#oh_audiocodec_getoutputdescription)（音频编解码）来获取更新后流的配置信息。<br/>**起始版本：** 20 |
+| AV_ERR_STREAM_CHANGED = 5410005 | 同步模式下流格式发生变更。可以通过调用接口[OH_VideoEncoder_GetOutputDescription](_video_encoder.md#oh_videoencoder_getoutputdescription)（视频编码）、[OH_VideoDecoder_GetOutputDescription](_video_decoder.md#oh_videodecoder_getoutputdescription)（视频解码）、[OH_AudioCodec_GetOutputDescription](capi-native-avcodec-audiocodec-h.md#oh_audiocodec_getoutputdescription)（音频编解码）来获取更新后流的配置信息。<br>**起始版本：** 20 |
 | AV_ERR_TRY_AGAIN_LATER = 5410006 |  同步模式下临时缓冲区查询失败，建议等待短暂间隔后重试操作。<br>**起始版本：** 20 |
 
 
