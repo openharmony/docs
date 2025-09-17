@@ -406,7 +406,7 @@ try {
 on(type: 'sppRead', clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;): void
 
 订阅spp读请求事件，入参clientSocket由sppAccept或sppConnect接口获取。使用Callback异步回调。
-- 不可以和API version 18开始支持的[socket.sppReadAsync](#socketsppreadasync18)接口混用，同一路socket只能使用socket.on('sppRead')或者[socket.sppReadAsync](#socketsppreadasync18)其中一个接口。
+- 不可以和API version 18开始支持的[socket.sppReadAsync](#socketsppreadasync18)接口混用，同一路socket只能使用socket.on('sppRead')接口或者[socket.sppReadAsync](#socketsppreadasync18)接口。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -540,9 +540,9 @@ try {
 sppReadAsync(clientSocket: number): Promise&lt;ArrayBuffer&gt;
 
 通过socket读取对端所发送数据的异步接口，该接口支持断开连接时SPP操作异常错误返回。
-- 不可以和API version 10开始支持的[socket.on('sppRead')](#socketonsppread)接口混用，同一路socket只能使用[socket.on('sppRead')](#socketonsppread)或者socket.sppReadAsync其中一个接口。
+- 不可以和API version 10开始支持的[socket.on('sppRead')](#socketonsppread)接口混用，同一路socket只能使用[socket.on('sppRead')](#socketonsppread)接口或者socket.sppReadAsync接口。
 - 通过Promise异步返回读取的数据，建议在连接成功后循环调用去获取接收到的数据，若不及时调用会丢失接收的数据。
-- 该接口为异步接口，需要等异步回调结果返回后才能下一次调用。
+- 该接口为异步接口，需要等异步回调结果返回后才能进行下一次调用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
@@ -577,17 +577,17 @@ import { BusinessError } from '@kit.BasicServicesKit';
 async function readAsync(clientNumber: number) {
   let flag = 1;
   try {
-    while (flag) { // 该接口需业务循环调用读取，具体循环形式按业务需要来实现，这里只是示例
-      let buffer = await socket.sppReadAsync(clientNumber); // 使用await确保顺序读取
+    while (flag) { // 该接口需业务循环调用读取，具体循环形式按业务需要来实现，这里只是示例。
+      let buffer = await socket.sppReadAsync(clientNumber); // 使用await确保顺序读取。
       let data = new Uint8Array(buffer);
       if (data) {
         console.info('sppRead success, data length = ' + data.byteLength);
-        // 在此处理接收到的数据
+        // 在此处理接收到的数据。
       }
     }
   } catch (err) {
     console.error('startSppRead errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-    socket.sppCloseClientSocket(clientNumber); // 发生错误时关闭连接
+    socket.sppCloseClientSocket(clientNumber); // 发生错误时关闭连接。
   }
 }
 ```
