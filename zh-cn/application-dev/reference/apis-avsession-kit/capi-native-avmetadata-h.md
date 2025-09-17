@@ -134,7 +134,7 @@ AVMetadata_Result OH_AVMetadataBuilder_Create(OH_AVMetadataBuilder** builder)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)** builder |  该引用指向创建的构造器的结果。 |
+| [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)** builder |  该引用指向创建的构造器实例。 |
 
 **返回：**
 
@@ -471,7 +471,7 @@ AVMetadata_Result OH_AVMetadataBuilder_SetLyric(OH_AVMetadataBuilder* builder, c
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
-| const char* lyric | lrc格式的歌词内容。 |
+| const char* lyric | LRC格式的歌词内容。 |
 
 **返回：**
 
