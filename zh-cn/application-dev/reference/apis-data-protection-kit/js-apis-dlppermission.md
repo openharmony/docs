@@ -1552,7 +1552,7 @@ async function ExampleFunction(dlpFilePath: string) {
   
 ## AccountType<sup>21+</sup>
 
-授权账号类型的枚举。
+表示授权账号类型的枚举。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
