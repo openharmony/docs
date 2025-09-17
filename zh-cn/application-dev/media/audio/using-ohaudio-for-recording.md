@@ -235,7 +235,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 ## 设置低时延模式
 
-当设备支持低时延通路时，开发者可以使用低时延模式创建音频录制构造器，获得更低时延的音频递延。
+当设备支持低时延通路时，开发者可以使用低时延模式创建音频录制构造器，获得更低时延的音频体验。
 
 开发流程与普通录制场景一致，仅需要在创建音频录制构造器时，调用[OH_AudioStreamBuilder_SetLatencyMode()](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setlatencymode)设置低时延模式。
 
