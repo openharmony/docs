@@ -47,7 +47,7 @@
  - OpenHarmony 3.0 LTS版本：点击[此处](zh-cn/release-notes/OpenHarmony-v3.0-LTS.md)了解版本详情。
 
  - OpenHarmony-1.0.1-Release
-如需了解更多版本详情，请点击[此处](zh-cn/release-notes/)。
+
 如需了解各版本的维护策略，请点击[此处](https://gitee.com/openharmony/release-management)。
 
 
