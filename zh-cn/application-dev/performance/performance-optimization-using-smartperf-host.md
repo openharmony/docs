@@ -15,7 +15,7 @@ SmartPerf-Host是一款深入挖掘数据、细粒度展示数据的性能功耗
 
 ## 本地部署
 
-使用SmartPerf-Host进行性能分析前，需要先完成本地部署，本地部署的详细指导请参考[如何编译TraceStreamer](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/trace_streamer/doc/compile_trace_streamer.md)和[SmartPerf-Host编译部署指导](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/ide/README_zh.md)。在本地部署成功后，可通过https://[部署机器ip地址]:9000/application/访问，如下图。
+使用SmartPerf-Host进行性能分析前，需要先完成本地部署，本地部署的详细指导请参考[如何编译TraceStreamer](https://gitcode.com/openharmony/developtools_smartperf_host/blob/master/smartperf_host/trace_streamer/doc/compile_trace_streamer.md)和[SmartPerf-Host编译部署指导](https://gitcode.com/openharmony/developtools_smartperf_host/blob/master/README_zh.md)。在本地部署成功后，可通过https://[部署机器ip地址]:9000/application/访问，如下图。
 
 **图1** 本地部署访问页
 
