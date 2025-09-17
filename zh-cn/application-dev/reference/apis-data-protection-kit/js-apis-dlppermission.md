@@ -1446,7 +1446,6 @@ decryptDlpFile(dlpFd: number, plaintextFd: number): Promise&lt;void&gt;
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | The system ability works abnormally. |
 | 19100013 | The user does not have the permission. |
-| 19100014 | Account not logged in. |
 
 **示例：**
 
@@ -1514,7 +1513,6 @@ queryDlpPolicy(dlpFd: number): Promise&lt;string&gt;
 | 19100009 | Failed to operate the DLP file. |
 | 19100011 | The system ability works abnormally. |
 | 19100013 | The user does not have the permission. |
-| 19100014 | Account not logged in. |
 
 **示例：**
 
