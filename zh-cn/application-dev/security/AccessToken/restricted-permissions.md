@@ -785,22 +785,6 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：20
 
-## ohos.permission.SET_SYSTEMSHARE_APPLAUNCHTRUSTLIST
-
-允许应用配置系统分享的目标应用名单。
-
-获取该权限后，应用可控制系统分享的目标应用范围。
-
-<!--RP53--><!--RP53End-->
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**支持设备**：Phone | PC/2in1 | Tablet
-
-**起始版本**：21
-
 ## ohos.permission.READ_WHOLE_CALENDAR
 
 允许应用读取所有的日历信息。
@@ -824,6 +808,22 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **起始版本**：9
 
 **变更信息**：在API 9-19，该权限面向系统应用开放；从API 20开始，面向普通应用开放。
+
+## ohos.permission.SET_SYSTEMSHARE_APPLAUNCHTRUSTLIST
+
+允许应用配置系统分享的目标应用名单。
+
+获取该权限后，应用可控制系统分享的目标应用范围。
+
+<!--RP53--><!--RP53End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：21
 
 ## ohos.permission.HOOK_KEY_EVENT
 
