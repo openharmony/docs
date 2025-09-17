@@ -43,7 +43,7 @@
       在DevEco Studio Profiler的会话区选择“Open File”，将HiTraceMeter文本日志导入DevEco Studio。
 
       具体分析可参考[CPU活动分析：CPU分析](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-insight-session-cpu)文档。
-   - 通过[Smartperf_Host](https://gitee.com/openharmony/developtools_smartperf_host)工具进行分析，工具下载链接：[developtools_smartperf_host 发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
+   - 通过[Smartperf_Host](https://gitcode.com/openharmony/developtools_smartperf_host)工具进行分析，工具下载链接：[developtools_smartperf_host 发行版](https://gitcode.com/openharmony/developtools_smartperf_host/releases)。
 
 ## 用户态trace格式说明
 
