@@ -3602,7 +3602,7 @@ hdc shell aa test -b ohos.samples.workschedulerextensionability -m entry_test -s
 
 1. 执行hdc命令`hdc list targets`获取当前连接开发板sn号，[源码参考](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Project/HapBuild/ci/src/app.controller.ts)。
 
-2. 使用gitcode官方web hook读取PR修改文件列表并将修改写入本地sample仓中，再根据修改文件路径找出对应的项目，使用[编译工具](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Project/HapBuild/compile-tool)中`compile-ohpm-ci.sh`脚本编译项目中的`entry`及`ohostest`包。
+2. 使用gitee官方web hook读取PR修改文件列表并将修改写入本地sample仓中，再根据修改文件路径找出对应的项目，使用[编译工具](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Project/HapBuild/compile-tool)中`compile-ohpm-ci.sh`脚本编译项目中的`entry`及`ohostest`包。
 
 3. [InstallAndTestSpecial_ci.py](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/Project/HapBuild/test-tool/InstallAndTestSpecial_ci.py)脚本来安装entry包、ohosTest测试包以及拉起自动化测试用例。
 
