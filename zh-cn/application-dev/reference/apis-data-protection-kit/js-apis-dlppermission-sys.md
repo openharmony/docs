@@ -1899,22 +1899,6 @@ DLP沙箱身份。
 | bundleName | string | 是 | 否 | 表示应用包名。最小7字节，最大128字节。 |
 | appIndex | number | 是 | 否 | 表示DLP沙箱应用索引。 |
 
-## ActionType<sup>20+</sup>
-
-表示在文件设定的权限时间到期后所执行的动作，默认为NOT_OPEN。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Security.DataLossPrevention
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| NOT_OPEN | 0 | 表示超过权限管控时间后，用户无权限打开DLP文件。 |
-| OPEN | 1 | 表示超过权限管控时间后，登录账号的用户拥有编辑权限。 |
-
-
-
-
 ## GatheringPolicyType
 
 DLP沙箱聚合策略类型的枚举。沙箱聚合表示同一权限类型的DLP文件，在同一个沙箱内打开，例如在同一个沙箱内使用不同tab页打开；沙箱非聚合表示不同DLP文件在不同沙箱打开。
