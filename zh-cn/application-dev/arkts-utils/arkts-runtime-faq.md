@@ -93,7 +93,7 @@
    ```ts
    let reg = new RegExp("(a)(?<b>b)");
    let res = reg.exec("ab") as Array<string>;
-   console.info(JSON.stringify(res[2]));
+   console.info("JSON.stringify(res?.groups) = {\"b\":" + JSON.stringify(res[2]) + "}");
    ```
 
 ### 方舟正则匹配使用'|'与预期不一致
