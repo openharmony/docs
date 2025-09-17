@@ -36,7 +36,7 @@ getInterceptedRecords(userId: number, requestParam: RequestParam): Promise\<Inte
 
 | 参数名       | 类型                                                     | 必填 | 说明                                         |
 | ------------ | ------------------------------------------------------- | ---- | -------------------------------------------- |
-| userId       | number                                                  | 是   | 系统中的多用户用户ID，只能是存在的用户ID。 |
+| userId       | number                                                  | 是   | 用户ID，取值范围只能为系统中存在的用户ID。 |
 | requestParam | [RequestParam](js-apis-net-netfirewall.md#requestparam) | 是   | 查询参数。                                   |
 
 **返回值：**
