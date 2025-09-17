@@ -55,7 +55,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的必要信息。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动一个UIAbility成功，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
 **错误码：**
 
@@ -144,7 +144,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md)  | 是 | 启动Ability的必要信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动一个UIAbility成功，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
 
 **错误码：**
 
@@ -344,7 +344,7 @@ UIAbility被启动后，有如下情况：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md) | 是 | 启动Ability的必要信息。 |
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 回调函数。当启动一个UIAbility成功，err为undefined，data为返回的被拉起的UIAbility退出时的返回结果；否则为错误对象。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 回调函数，包含返回给拉起方的信息。 |
 
 **错误码：**
 
@@ -439,7 +439,7 @@ UIAbility被启动后，有如下情况：
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md) | 是 | 启动Ability的必要信息。 |
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
-| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 回调函数。当启动一个UIAbility成功，err为undefined，data为返回的被拉起的UIAbility退出时的返回结果；否则为错误对象。 |
+| callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | 是 | 回调函数，包含返回给拉起方的信息。 |
 
 **错误码：**
 
@@ -632,7 +632,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当销毁UIAbility自身成功，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，包含接口执行结果。 |
 
 **错误码：**
 
@@ -789,7 +789,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是 | 返回给startAbilityForResult&nbsp;接口调用方的相关信息。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当销毁UIAbility自身成功，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回停止结果。 |
 
 **错误码：**
 
@@ -1083,7 +1083,7 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<v
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | connection | number | 是 | 连接的ServiceExtensionAbility的标识id，即[connectServiceExtensionAbility](#connectserviceextensionability)返回的connectionId。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数。当断开与[ServiceExtensionAbility](../../application-models/extensionability-overview.md)的连接成功，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是 | callback形式返回断开连接的结果。 |
 
 **错误码：**
 
@@ -1287,7 +1287,7 @@ setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | label | string | 是 | 任务的名称。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当设置UIAbility在多任务界面中显示的名称成功，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
 
@@ -1380,7 +1380,7 @@ setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCal
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | state | [AbilityConstant.ContinueState](js-apis-app-ability-abilityConstant.md#continuestate10) | 是 | 流转状态。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当设置UIAbility任务的流转状态成功，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
 
@@ -1549,7 +1549,7 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md) | 是 | 启动ServiceExtensionAbility的want信息。 |
-| result | AsyncCallback&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md#requestresult)&gt; | 是 | 回调函数。当启动一个支持模态弹框的ServiceExtensionAbility成功，err为undefined，data为获取到的执行结果；否则为错误对象。 |
+| result | AsyncCallback&lt;[dialogRequest.RequestResult](js-apis-app-ability-dialogRequest.md#requestresult)&gt; | 是 | 执行结果回调函数。 |
 
 **错误码：**
 
@@ -1705,7 +1705,7 @@ reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当通知系统UIAbility对应的窗口内容已经绘制完成，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
 
@@ -1770,7 +1770,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | type | string | 是 | 启动的UIExtensionAbility类型，取值详见[通过startAbilityByType接口拉起垂类面板](../../application-models/start-intent-panel.md#匹配规则)。 |
 | wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 回调函数，返回启动失败后的详细错误信息。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当通过type隐式启动[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)成功，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
 

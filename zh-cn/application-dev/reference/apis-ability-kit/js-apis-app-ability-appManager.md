@@ -52,7 +52,7 @@ isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 |回调函数。当查询当前是否处于稳定性测试场景成功，err为undefined，data为true表示处于稳定性测试场景，返回false表示处于非稳定性测试场景；否则为错误对象。可进行错误处理或其他自定义处理。  | 
+  | callback | AsyncCallback&lt;boolean&gt; | 是 |以回调方式返回接口运行结果及当前系统是否处于稳定性测试场景，可进行错误处理或其他自定义处理。返回true表示系统处于稳定性测试场景，返回false表示系统不处于稳定性测试场景。  |
 
 **错误码**：
 
@@ -333,7 +333,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 是 | 回调函数。当获取当前应用运行进程的相关信息成功，err为undefined，data为获取到的应用运行进程信息；否则为错误对象。可进行错误处理或其他自定义处理。|
+  | callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 是 |以callback方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。|
 
 **错误码**：
 
