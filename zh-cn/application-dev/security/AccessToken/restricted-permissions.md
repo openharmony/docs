@@ -785,7 +785,6 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：20
 
-
 ## ohos.permission.READ_WHOLE_CALENDAR
 
 允许应用读取所有的日历信息。
