@@ -2100,7 +2100,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | deviceAddress | string | 否 | 否 | 设备MAC地址。 |
 | deviceAddressType<sup>10+</sup> | [DeviceAddressType](#deviceaddresstype10) | 否 | 是 | 设备MAC地址类型。 |
 | primaryDeviceType | string | 否 | 否 | 主设备类型。 |
-| deviceStatus | [P2pDeviceStatus](#p2pdevicestatus9) | 是 | 否 | 设备状态。 |
+| deviceStatus | [P2pDeviceStatus](#p2pdevicestatus9) | 否 | 否 | 设备状态。 |
 | groupCapabilities | number | 否 | 否 | 群组能力。 |
 
 
