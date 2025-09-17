@@ -1607,6 +1607,7 @@
         - [Practices for Camera Recovery from the Background (ArkTS)](media/camera/camera-background-recovery.md)
         - [Practices for Automatic Camera Switching (ArkTS)](media/camera/camera-auto-switch.md)
         - [White Balance Settings (ArkTS)](media/camera/camera-whitebalance.md)
+        - [Pressure Management (ArkTS)](media/camera/camera-system-pressure.md)
         <!--Del-->
         - [High-Performance Photo Capture (for System Applications Only) (ArkTS)](media/camera/camera-deferred-photo.md)
         - [Practices for High-Performance Photo Capture (for System Applications Only) (ArkTS)](media/camera/camera-deferred-photo-case.md)
@@ -1627,6 +1628,7 @@
         - [Video Recording Practices (C/C++)](media/camera/native-camera-recording-case.md)
         - [Camera Metadata (C/C++)](media/camera/native-camera-metadata.md)
         - [Using the Flashlight (C/C++)](media/camera/native-camera-torch-use.md)
+        - [Pressure Management (C++)](media/camera/native-camera-system-pressure.md)
     - DRM Kit<!--drm-kit-->
       - [Introduction to DRM Kit](media/drm/drm-overview.md)
       - [DRM Development (ArkTS)](media/drm/drm-arkts-dev-guide.md)
@@ -1749,6 +1751,7 @@
         - [Creating and Using Material Resources](graphics3d/arkgraphics3D-resource-material.md)
         - [Creating and Using Image Resources](graphics3d/arkgraphics3D-resource-image.md)
         - [Creating and Using Environment Resources](graphics3d/arkgraphics3D-resource-environment.md)
+        - [Requirements on the .shader File Format](graphics3d/arkgraphics3D-shader-resource.md)
       - [Controlling and Managing ArkGraphics 3D Scene Animations](graphics3d/arkgraphics3D-animation.md)
   - Applications and Services<!--gapp-service-->
     <!--Del-->
@@ -2439,6 +2442,7 @@
         - [Common Library Error Codes](reference/apis-arkts/errorcode-utils.md)
         - [TypeScript Compiler Error Codes](reference/apis-arkts/errorcode-tsc.md)
         - [Compilation Toolchain Error Codes](reference/apis-arkts/errorcode-ets-loader.md)
+        - [es2abc Compiler Error Codes](reference/apis-arkts/errorcode-es2abc.md)
     - ArkUI<!--arkui-api-->
       - ArkTS APIs<!--arkui-arkts-->
         - UI<!--ui-->

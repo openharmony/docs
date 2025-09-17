@@ -33,23 +33,18 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
    ```ts
    async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // For details about aVRecorderConfig, see step 3 "Create a video output stream" below.
      let avRecorder: media.AVRecorder | undefined = undefined;
+     let videoSurfaceId: string | undefined = undefined;
      try {
        avRecorder = await media.createAVRecorder();
+       if (avRecorder === undefined) {
+         return videoSurfaceId;
+       }
+       await avRecorder.prepare(aVRecorderConfig);
+       videoSurfaceId = await avRecorder.getInputSurface();
      } catch (error) {
        let err = error as BusinessError;
        console.error(`createAVRecorder call failed. error code: ${err.code}`);
      }
-     if (avRecorder === undefined) {
-       return undefined;
-     }
-     await avRecorder.prepare(aVRecorderConfig, (err: BusinessError) => {
-       if (err == null) {
-         console.info('prepare success');
-       } else {
-         console.error('prepare failed and error is ' + err.message);
-       }
-     });
-     let videoSurfaceId = await avRecorder.getInputSurface();
      return videoSurfaceId;
    }
    ```
@@ -70,9 +65,12 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
 
    ```ts
    async function getVideoOutput(cameraManager: camera.CameraManager, videoSurfaceId: string, cameraOutputCapability: camera.CameraOutputCapability): Promise<camera.VideoOutput | undefined> {
+     if (!cameraManager || !videoSurfaceId || !cameraOutputCapability || !cameraOutputCapability.videoProfiles) {
+       return;
+     }
      let videoProfilesArray: Array<camera.VideoProfile> = cameraOutputCapability.videoProfiles;
-     if (!videoProfilesArray) {
-       console.error("createOutput videoProfilesArray == null || undefined");
+     if (!videoProfilesArray || videoProfilesArray.length === 0) {
+       console.error("videoProfilesArray is null or []");
        return undefined;
      }
      // AVRecorderProfile.
@@ -95,13 +93,19 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
        url: 'fd://35', // This is an example. Replace it with the actual path.
        metadata: avMetadata
      };
-     // Create an AVRecorder object.
+     // Create an AVRecorder object and set video recording parameters.
      let avRecorder: media.AVRecorder | undefined = undefined;
      try {
        avRecorder = await media.createAVRecorder();
+       if (avRecorder === undefined) {
+         return undefined;
+       }
+       await avRecorder.prepare(aVRecorderConfig);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`createAVRecorder call failed. error code: ${err.code}`);
+       await avRecorder?.release();
+       return;
      }
      if (avRecorder === undefined) {
        return undefined;
@@ -116,19 +120,29 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
      });
      if (!videoProfile) {
        console.error('videoProfile is not found');
-       return;
+       await avRecorder.release();
+       return undefined;
      }
      try {
        videoOutput = cameraManager.createVideoOutput(videoProfile, videoSurfaceId);
      } catch (error) {
        let err = error as BusinessError;
        console.error('Failed to create the videoOutput instance. errorCode = ' + err.code);
+       await avRecorder.release();
      }
      return videoOutput;
    }
    ```
 
 4. Start video recording.
+
+   > **NOTE**
+   >
+   >  - When setting the frame rate of the preview stream, you must first query the frame rate of the video stream by calling [getActiveFrameRate](../../reference/apis-camera-kit/arkts-apis-camera-PreviewOutput.md#getactiveframerate12). 
+   >
+   > - If the video stream uses a range of frame rates, the preview stream must be set to the same range.
+   >
+   > - If the video stream uses a fixed frame rate, the preview stream must be set to a fixed rate that is a divisor of the video frame rate.
 
    Call [start](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md#start-1) of the VideoOutput instance to start the video output stream, and then call [start](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md#start9) of the AVRecorder instance to start recording.
 

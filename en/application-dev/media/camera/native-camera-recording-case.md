@@ -47,7 +47,6 @@ After obtaining the output stream capabilities supported by the camera, create a
 3. Import the NDK APIs on the C++ side, and perform video recording based on the surface ID passed in.
     ```c++
     #include "hilog/log.h"
-    #include "ndk_camera.h"
     #include <cmath>
 
     bool IsAspectRatioEqual(float videoAspectRatio, float previewAspectRatio)
@@ -188,7 +187,7 @@ After obtaining the output stream capabilities supported by the camera, create a
             return;
         }
         previewProfile = cameraOutputCapability->previewProfiles[0];
-        OH_LOG_INFO(LOG_APP, "previewProfile width: %{public}, height: %{public}.", previewProfile->size.width,
+        OH_LOG_INFO(LOG_APP, "previewProfile width: %{public}d, height: %{public}d.", previewProfile->size.width,
             previewProfile->size.height);
         if (cameraOutputCapability->photoProfiles == nullptr) {
             OH_LOG_ERROR(LOG_APP, "photoProfiles == null");
@@ -208,7 +207,7 @@ After obtaining the output stream capabilities supported by the camera, create a
             // The profile of CAMERA_FORMAT_YUV_420_SP is used by default.
             if (isEqual && videoProfiles[index]->format == Camera_Format::CAMERA_FORMAT_YUV_420_SP) {
                 videoProfile = videoProfiles[index];
-                OH_LOG_INFO(LOG_APP, "videoProfile width: %{public}, height: %{public}.", videoProfile->size.width,
+                OH_LOG_INFO(LOG_APP, "videoProfile width: %{public}d, height: %{public}d.", videoProfile->size.width,
                     videoProfile->size.height);
                 break;
             }

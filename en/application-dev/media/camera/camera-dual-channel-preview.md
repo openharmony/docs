@@ -116,6 +116,7 @@ The figure below shows the recommended API calling process of the dual-channel p
               let pixelMapFormat = formatToPixelMapFormatMap.get(imageFormat) ?? image.PixelMapFormat.NV21;
               let mSize = pixelMapFormatToSizeMap.get(pixelMapFormat) ?? 1.5;
               console.info(`getComponent with width:${width} height:${height} stride:${stride}`);
+              // If PixelMap is required, refer to the following logic.
               // The values of size and srcPixelFormat used during PixelMap creation must match size and format in the preview profile of the preview output stream.
               // The value of stride is the same as that of width.
               let pixelMap : image.PixelMap;
@@ -231,20 +232,26 @@ Create two preview outputs with two surface IDs, add the outputs to a camera ses
 ```ts
 function createDualPreviewOutput(cameraManager: camera.CameraManager, previewProfile: camera.Profile,
   session: camera.Session, imageReceiverSurfaceId: string, xComponentSurfaceId: string): void {
-  // Create the first preview output by using imageReceiverSurfaceId.
-  let previewOutput1 = cameraManager.createPreviewOutput(previewProfile, imageReceiverSurfaceId);
-  if (!previewOutput1) {
-  console.error('createPreviewOutput1 error');
+  try {
+    // Create the first preview output by using imageReceiverSurfaceId.
+    let previewOutput1 = cameraManager.createPreviewOutput(previewProfile, imageReceiverSurfaceId);
+    if (!previewOutput1) {
+      console.error('createPreviewOutput1 error');
+      return;
+    }
+    // Create the second preview output by using xComponentSurfaceId.
+    let previewOutput2 = cameraManager.createPreviewOutput(previewProfile, xComponentSurfaceId);
+    if (!previewOutput2) {
+      console.error('createPreviewOutput2 error');
+      return;
+    }
+    // Add the output of the first preview stream.
+    session.addOutput(previewOutput1);
+    // Add the output of the second preview stream.
+    session.addOutput(previewOutput2);
+  } catch (error) {
+    console.error('createDualPreviewOutput  call failed');
   }
-  // Create the second preview output by using xComponentSurfaceId.
-  let previewOutput2 = cameraManager.createPreviewOutput(previewProfile, xComponentSurfaceId);
-  if (!previewOutput2) {
-  console.error('createPreviewOutput2 error');
-  }
-  // Add the output of the first preview stream.
-  session.addOutput(previewOutput1);
-  // Add the output of the second preview stream.
-  session.addOutput(previewOutput2);
 }
 ```
 
@@ -256,6 +263,14 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 
+interface CameraResources {
+  videoOutput?: camera.VideoOutput;
+  cameraInput?: camera.CameraInput;
+  previewOutput1?: camera.PreviewOutput;
+  previewOutput2?: camera.PreviewOutput;
+  session?: camera.VideoSession;
+}
+
 @Entry
 @Component
 struct Index {
@@ -266,25 +281,30 @@ struct Index {
   @State imageWidth: number = 1920;
   @State imageHeight: number = 1080;
   private cameraManager: camera.CameraManager | undefined = undefined;
-  private cameras: Array<camera.CameraDevice> | Array<camera.CameraDevice> = [];
-  private cameraInput: camera.CameraInput | undefined = undefined;
-  private previewOutput1: camera.PreviewOutput | undefined = undefined;
-  private previewOutput2: camera.PreviewOutput | undefined = undefined;
-  private session: camera.VideoSession | undefined = undefined;
+  private cameras: Array<camera.CameraDevice> | undefined = [];
   private uiContext: UIContext = this.getUIContext();
   private context: Context | undefined = this.uiContext.getHostContext();
   private cameraPermission: Permissions = 'ohos.permission.CAMERA'; // For details about how to request permissions, see the instructions provided at the beginning of this topic.
   @State isShow: boolean = false;
+  private cameraResources: CameraResources = {};
 
   async requestPermissionsFn(): Promise<void> {
     let atManager = abilityAccessCtrl.createAtManager();
     if (this.context) {
       let res = await atManager.requestPermissionsFromUser(this.context, [this.cameraPermission]);
-      for (let i =0; i < res.permissions.length; i++) {
-        if (this.cameraPermission.toString() === res.permissions[i] && res.authResults[i] === 0) {
+      if (!res || !res.permissions || res.permissions.length === 0) {
+        console.error('requestPermissionsFromUser interface call fails');
+        return;
+      }
+      if (res.permissions.length !== res.authResults.length) {
+        console.error('Authentication result mismatch');
+        return;
+      }
+      res.permissions.forEach((value: string, index: number, permissions: string[]) => {
+        if (this.cameraPermission.toString() === value && res.authResults[index] === 0) {
           this.isShow = true;
         }
-      }
+      })
     }
   }
 
@@ -443,27 +463,30 @@ struct Index {
       // Obtain a camera manager instance.
       this.cameraManager = camera.getCameraManager(this.context);
       if (!this.cameraManager) {
-        console.error('initCamera getCameraManager');
+        console.error('getCameraManager call failed');
+        return;
       }
       // Obtain the list of cameras supported by the device.
       this.cameras = this.cameraManager.getSupportedCameras();
-      if (!this.cameras) {
-        console.error('initCamera getSupportedCameras');
+      if (!this.cameras || this.cameras.length === 0) {
+        console.error('getSupportedCameras call failed');
+        return;
       }
       // Select a camera device and create a CameraInput object.
-      this.cameraInput = this.cameraManager.createCameraInput(this.cameras[0]);
-      if (!this.cameraInput) {
-        console.error('initCamera createCameraInput');
+      this.cameraResources.cameraInput = this.cameraManager.createCameraInput(this.cameras[0]);
+      if (!this.cameraResources.cameraInput) {
+        console.error('createCameraInput call failed');
+        return;
       }
       // Open the camera.
-      await this.cameraInput.open().catch((err: BusinessError) => {
-        console.error(`initCamera open fail: ${err}`);
-      })
+      await this.cameraResources.cameraInput.open();
       // Obtain the profile supported by the camera device.
       let capability: camera.CameraOutputCapability =
         this.cameraManager.getSupportedOutputCapability(this.cameras[0], camera.SceneMode.NORMAL_VIDEO);
       if (!capability) {
-        console.error('initCamera getSupportedOutputCapability');
+        console.error('getSupportedOutputCapability call failed');
+        this.releaseCamera();
+        return;
       }
       let minRatioDiff : number = 0.1;
       let surfaceRatio : number = this.imageWidth / this.imageHeight; // The closest aspect ratio to 16:9.
@@ -484,34 +507,42 @@ struct Index {
       this.imageHeight = previewProfile.size.height; // Update the height of the XComponent.
       console.info(`initCamera imageWidth:${this.imageWidth} imageHeight:${this.imageHeight}`);
       // Create the first preview output by using imageReceiverSurfaceId.
-      this.previewOutput1 = this.cameraManager.createPreviewOutput(previewProfile, this.imageReceiverSurfaceId);
-      if (!this.previewOutput1) {
+      this.cameraResources.previewOutput1 = this.cameraManager.createPreviewOutput(previewProfile, this.imageReceiverSurfaceId);
+      if (!this.cameraResources.previewOutput1) {
         console.error('initCamera createPreviewOutput1');
+        this.releaseCamera();
+        return;
       }
       // Create the second preview output by using xComponentSurfaceId.
-      this.previewOutput2 = this.cameraManager.createPreviewOutput(previewProfile, this.xComponentSurfaceId);
-      if (!this.previewOutput2) {
+      this.cameraResources.previewOutput2 = this.cameraManager.createPreviewOutput(previewProfile, this.xComponentSurfaceId);
+      if (!this.cameraResources.previewOutput2) {
         console.error('initCamera createPreviewOutput2');
+        this.releaseCamera();
+        return;
       }
       // Create a camera session in recording mode.
-      this.session = this.cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
-      if (!this.session) {
-        console.error('initCamera createSession');
+      let session = this.cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO)
+      if (!session) {
+        console.error('session is null');
+        this.releaseCamera();
+        return;
       }
+      this.cameraResources.session = session as camera.VideoSession;
       // Start configuration for the session.
-      this.session.beginConfig();
+      this.cameraResources.session.beginConfig();
       // Add a camera input.
-      this.session.addInput(this.cameraInput);
+      this.cameraResources.session.addInput(this.cameraResources.cameraInput);
       // Add the output of the first preview stream.
-      this.session.addOutput(this.previewOutput1);
+      this.cameraResources.session.addOutput(this.cameraResources.previewOutput1);
       // Add the output of the second preview stream.
-      this.session.addOutput(this.previewOutput2);
+      this.cameraResources.session.addOutput(this.cameraResources.previewOutput2);
       // Commit the session configuration.
-      await this.session.commitConfig();
+      await this.cameraResources.session.commitConfig();
       // Start the configured input and output streams.
-      await this.session.start();
+      await this.cameraResources.session.start();
     } catch (error) {
-      console.error(`initCamera fail: ${error}`);
+      console.error(`initCamera fail: ${JSON.stringify(error)}`);
+      this.releaseCamera();
     }
   }
 
@@ -520,17 +551,33 @@ struct Index {
     console.info('releaseCamera E');
     try {
       // Stop the session.
-      await this.session?.stop();
-      // Release the camera input stream.
-      await this.cameraInput?.close();
-      // Release the preview output stream.
-      await this.previewOutput1?.release();
-      // Release the photo output stream.
-      await this.previewOutput2?.release();
-      // Release the session.
-      await this.session?.release();
+      await this.cameraResources.session?.stop();
     } catch (error) {
-      console.error(`initCamera fail: ${error}`);
+      console.error(`session.stop call failed, error: ${JSON.stringify(error)}`);
+    }
+    try {
+      // Release the camera input stream.
+      await this.cameraResources.cameraInput?.close();
+    } catch (error) {
+      console.error(`camera close fail: ${JSON.stringify(error)}`);
+    }
+    try {
+      // Release the preview output stream.
+      await this.cameraResources.previewOutput1?.release();
+    } catch (error) {
+      console.error(`previewOutput1 release fail: ${JSON.stringify(error)}`);
+    }
+    try {
+      // Release the photo output stream.
+      await this.cameraResources.previewOutput2?.release();
+    } catch (error) {
+      console.error(`previewOutput2 release fail: ${JSON.stringify(error)}`);
+    }
+    try {
+      // Release the session.
+      await this.cameraResources.session?.release();
+    } catch (error) {
+      console.error(`session release fail: ${JSON.stringify(error)}`);
     }
   }
 }

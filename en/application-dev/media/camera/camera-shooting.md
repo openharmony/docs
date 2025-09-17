@@ -18,7 +18,6 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
    import { image } from '@kit.ImageKit';
    import { camera } from '@kit.CameraKit';
    import { fileIo as fs } from '@kit.CoreFileKit';
-   import { photoAccessHelper } from '@kit.MediaLibraryKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
@@ -29,8 +28,8 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
      let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
-     if (!photoProfilesArray) {
-       console.error("createOutput photoProfilesArray == null || undefined");
+     if (!photoProfilesArray || photoProfilesArray.length === 0) {
+       console.error("photoProfilesArray is null or []");
      }
      let photoOutput: camera.PhotoOutput | undefined = undefined;
      try {
@@ -75,10 +74,10 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
           }
           // To view the saved image and video resources in Gallery, use a security component to create media assets.
 
-          // After the buffer processing is complete, the buffer must be released. Otherwise, no buffer is available for subsequent photo capture.
-          imageObj.release(); 
-        });
-      });
+         // After the buffer processing is complete, the buffer must be released. Otherwise, no buffer is available for subsequent photo capture.
+         imageObj.release();
+       });
+     });
    }
    ```
 
@@ -101,8 +100,7 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
        // Check whether the auto flash mode is supported.
        let flashModeStatus: boolean = false;
        try {
-         let status: boolean = photoSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO);
-         flashModeStatus = status;
+         flashModeStatus = photoSession?.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO);
        } catch (error) {
          let err = error as BusinessError;
          console.error(`Failed to check whether the flash mode is supported. error: ${err}`);
@@ -110,7 +108,7 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
        if (flashModeStatus) {
          // Set the flash mode to auto.
          try {
-           photoSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO);
+           photoSession?.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO);
          } catch (error) {
            let err = error as BusinessError;
            console.error(`Failed to set the flash mode. error: ${err}`);
@@ -120,8 +118,7 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
      // Check whether the continuous auto focus is supported.
      let focusModeStatus: boolean = false;
      try {
-       let status: boolean = photoSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
-       focusModeStatus = status;
+       focusModeStatus = photoSession?.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to check whether the focus mode is supported. error: ${err}`);
@@ -129,7 +126,7 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
      if (focusModeStatus) {
        // Set the focus mode to continuous auto focus.
        try {
-         photoSession.setFocusMode(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
+         photoSession?.setFocusMode(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
        } catch (error) {
          let err = error as BusinessError;
          console.error(`Failed to set the focus mode. error: ${err}`);
@@ -138,7 +135,7 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
      // Obtain the zoom ratio range supported by the camera.
      let zoomRatioRange: Array<number> = [];
      try {
-       zoomRatioRange = photoSession.getZoomRatioRange();
+       zoomRatioRange = photoSession?.getZoomRatioRange();
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to get the zoom ratio range. error: ${err}`);
@@ -148,7 +145,7 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
      }
      // Set a zoom ratio.
      try {
-       photoSession.setZoomRatio(zoomRatioRange[0]);
+       photoSession?.setZoomRatio(zoomRatioRange[0]);
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to set the zoom ratio value. error: ${err}`);
@@ -174,13 +171,17 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
        location: captureLocation, // Set the geolocation information of the photo.
        mirror: false // Disable mirroring (disabled by default).
      };
-     photoOutput.capture(settings, (err: BusinessError) => {
-       if (err) {
-         console.error(`Failed to capture the photo. error: ${err}`);
-         return;
-       }
-       console.info('Callback invoked to indicate the photo capture request success.');
-     });
+     try {
+       photoOutput.capture(settings, (err: BusinessError) => {
+         if (err) {
+           console.error(`Failed to capture the photo. error: ${err}`);
+           return;
+         }
+         console.info('Callback invoked to indicate the photo capture request success.');
+       });
+     } catch (error) {
+       console.error(`capture call failed. error: ${error}`);
+     }
    }
    ```
 

@@ -61,7 +61,14 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
      
    ```ts
    function getPreviewOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability, surfaceId: string): camera.PreviewOutput | undefined {
+     if (!cameraOutputCapability || !cameraOutputCapability.previewProfiles) {
+       return;
+     }
      let previewProfilesArray: Array<camera.Profile> = cameraOutputCapability.previewProfiles;
+     if (!previewProfilesArray || previewProfilesArray.length === 0) {
+       console.error("previewProfilesArray is null or []");
+       return;
+     }
      let previewOutput: camera.PreviewOutput | undefined = undefined;
      try {
        // Choose the preview profile from previewProfilesArray that matches the aspect ratio set in Step 2. Selecting the first item in the array is for illustrative purposes only.
@@ -78,33 +85,42 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
      
    ```ts
    async function startPreviewOutput(cameraManager: camera.CameraManager, previewOutput: camera.PreviewOutput): Promise<void> {
-     let cameraArray: Array<camera.CameraDevice> = [];
-     cameraArray = cameraManager.getSupportedCameras();
-     if (cameraArray.length == 0) {
-       console.error('no camera.');
-       return;
+     try {
+       let cameraArray: Array<camera.CameraDevice> = [];
+       cameraArray = cameraManager.getSupportedCameras();
+       if (cameraArray.length == 0) {
+         console.error('no camera.');
+         return;
+       }
+       // Obtain the supported modes.
+       let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
+       let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
+       if (!isSupportPhotoMode) {
+         console.error('photo mode not support');
+         return;
+       }
+       let cameraInput: camera.CameraInput | undefined;
+       cameraInput = cameraManager.createCameraInput(cameraArray[0]);
+       if (cameraInput === undefined) {
+         console.error('cameraInput is undefined');
+         return;
+       }
+       // Open the camera.
+       await cameraInput.open();
+       let session = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+       if (!session) {
+         console.error('session is null');
+         return;
+       }
+       let photoSession: camera.PhotoSession = session as camera.PhotoSession;
+       photoSession.beginConfig();
+       photoSession.addInput(cameraInput);
+       photoSession.addOutput(previewOutput);
+       await photoSession.commitConfig();
+       await photoSession.start();
+     } catch (error) {
+       console.error(`startPreviewOutput call failed, error: ${error}`);
      }
-     // Obtain the supported modes.
-     let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
-     let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
-     if (!isSupportPhotoMode) {
-       console.error('photo mode not support');
-       return;
-     }
-     let cameraInput: camera.CameraInput | undefined = undefined;
-     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
-     if (cameraInput === undefined) {
-       console.error('cameraInput is undefined');
-       return;
-     }
-     // Open the camera.
-     await cameraInput.open();
-     let session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
-     session.beginConfig();
-     session.addInput(cameraInput);
-     session.addOutput(previewOutput);
-     await session.commitConfig();
-     await session.start();
    }
    ```
 
@@ -235,6 +251,7 @@ struct Index {
       this.cameraManager = camera.getCameraManager(this.context);
       if (!this.cameraManager) {
         console.error('initCamera getCameraManager');
+        return;
       }
       // Obtain the list of cameras supported by the device.
       this.cameras = this.cameraManager.getSupportedCameras();
@@ -245,16 +262,17 @@ struct Index {
       this.cameraInput = this.cameraManager.createCameraInput(this.cameras[0]);
       if (!this.cameraInput) {
         console.error('initCamera createCameraInput');
+        return;
       }
       // Open the camera.
-      await this.cameraInput.open().catch((err: BusinessError) => {
-        console.error(`initCamera open fail: ${err}`);
-      })
+      await this.cameraInput.open();
       // Obtain the profile supported by the camera device.
       let capability: camera.CameraOutputCapability =
         this.cameraManager.getSupportedOutputCapability(this.cameras[0], camera.SceneMode.NORMAL_VIDEO);
-      if (!capability) {
-        console.error('initCamera getSupportedOutputCapability');
+      if (!capability || capability.previewProfiles.length === 0) {
+        console.error('capability is null || []');
+        this.releaseCamera();
+        return;
       }
       let minRatioDiff : number = 0.1;
       let surfaceRatio : number = this.imageWidth / this.imageHeight; // The closest aspect ratio to 16:9.
@@ -279,12 +297,17 @@ struct Index {
       this.previewOutput = this.cameraManager.createPreviewOutput(previewProfile, this.xComponentSurfaceId);
       if (!this.previewOutput) {
         console.error('initCamera createPreviewOutput');
+        this.releaseCamera();
+        return;
       }
       // Create a camera session in recording mode.
-      this.session = this.cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO) as camera.VideoSession;
-      if (!this.session) {
-        console.error('initCamera createSession');
+      let session = this.cameraManager.createSession(camera.SceneMode.NORMAL_VIDEO);
+      if (!session) {
+        console.error('session is null');
+        this.releaseCamera();
+        return;
       }
+      this.session = session as camera.VideoSession;
       // Start configuration for the session.
       this.session.beginConfig();
       // Add a camera input.
@@ -296,26 +319,22 @@ struct Index {
       // Start the configured input and output streams.
       await this.session.start();
     } catch (error) {
-      console.error(`initCamera fail: ${error}`);
+      console.error(`initCamera fail: ${JSON.stringify(error)}`);
+      this.releaseCamera();
     }
   }
 
-
   // Release the camera.
   async releaseCamera(): Promise<void> {
-    console.info('releaseCamera E');
-    try {
-      // Stop the session.
-      await this.session?.stop();
-      // Release the camera input stream.
-      await this.cameraInput?.close();
-      // Release the preview output stream.
-      await this.previewOutput?.release();
-      // Release the session.
-      await this.session?.release();
-    } catch (error) {
-      console.error(`initCamera fail: ${error}`);
-    }
+    console.info('releaseCamera');
+    // Stop the session.
+    await this.session?.stop().catch((e: BusinessError) => {console.error('Failed to stop session: ', e)});
+    // Release the camera input stream.
+    await this.cameraInput?.close().catch((e: BusinessError) => {console.error('Failed to close the camera: ', e)});
+    // Release the preview output stream.
+    await this.previewOutput?.release().catch((e: BusinessError) => {console.error('Failed to stop the preview stream: ', e)});
+    // Release the session.
+    await this.session?.release().catch((e: BusinessError) => {console.error('Failed to release session: ', e)});
   }
 }
 ```
