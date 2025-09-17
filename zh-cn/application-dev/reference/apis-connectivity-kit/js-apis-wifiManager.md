@@ -2545,7 +2545,7 @@ import { wifiManager } from '@kit.ConnectivityKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| isP2pGo | boolean | 否 | 否 | 是否是群主。true:是群主，false:不是群主。 |
+| isP2pGo | boolean | 否 | 否 | 是否是群主。true表示是群主，false表示不是群主。 |
 | ownerInfo | [WifiP2pDevice](#wifip2pdevice9) | 否 | 否 | 群组的设备信息。 |
 | passphrase | string | 否 | 否 | 群组密钥。 |
 | interface | string | 否 | 否 | 接口名称。 |
