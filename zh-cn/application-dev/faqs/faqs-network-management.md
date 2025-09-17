@@ -1,4 +1,10 @@
 # 网络管理开发常见问题
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
 
 
 ## http网络请求中extraData支持的数据格式有哪些(API 9)
