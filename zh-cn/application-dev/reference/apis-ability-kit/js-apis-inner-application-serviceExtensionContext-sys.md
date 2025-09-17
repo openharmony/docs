@@ -968,7 +968,7 @@ class EntryAbility extends ServiceExtensionAbility {
     // 使用启动方的Caller身份信息启动新Ability
     this.context.startAbilityAsCaller(localWant, (err) => {
       if (err && err.code != 0) {
-        console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
+        console.error(`startAbilityAsCaller failed, err: ${JSON.stringify(err)}`);
       } else {
         console.info('startAbilityAsCaller success.');
       }
@@ -1050,7 +1050,7 @@ class EntryAbility extends ServiceExtensionAbility {
     // 使用启动方的Caller身份信息启动新Ability
     this.context.startAbilityAsCaller(localWant, option, (err) => {
       if (err && err.code != 0) {
-        console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
+        console.error(`startAbilityAsCaller failed, err: ${JSON.stringify(err)}`);
       } else {
         console.info('startAbilityAsCaller success.');
       }
@@ -1143,7 +1143,7 @@ class EntryAbility extends ServiceExtensionAbility {
         console.info('startAbilityAsCaller success.');
       })
       .catch((err: BusinessError) => {
-        console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
+        console.error(`startAbilityAsCaller failed, err: ${JSON.stringify(err)}`);
       })
   }
 }

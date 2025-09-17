@@ -9,7 +9,7 @@
 
 ## 基本概念
 
-下图展示了Stage模型中的基本概念。
+下图展示了[Stage模型](ability-terminology.md#stage模型)中的基本概念。
 
 **图1** Stage模型概念图
 

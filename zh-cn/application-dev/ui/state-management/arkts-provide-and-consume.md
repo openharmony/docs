@@ -136,7 +136,7 @@
 
 ## 限制条件
 
-1. \@Provide/\@Consume的参数key必须为string类型，否则编译期会报错。
+1. \@Provide/\@Consume的参数key必须为string类型，否则编译时会报错。
 
     ```ts
     // 错误写法，编译报错
@@ -148,7 +148,7 @@
     @Provide(change) message: string = 'Hello';
     ```
 
-2. \@Consume装饰的变量不能在构造参数中传入初始化，否则编译期会报错。\@Consume仅能通过key来匹配对应的\@Provide变量或者从API version 20开始设置默认值进行初始化。
+2. \@Consume装饰的变量不能在构造参数中传入初始化，否则编译时会报错。\@Consume仅能通过key来匹配对应的\@Provide变量或者从API version 20开始设置默认值进行初始化。
 
     【反例】
   

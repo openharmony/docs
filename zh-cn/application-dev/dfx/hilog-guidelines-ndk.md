@@ -29,6 +29,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 | \#define OH_LOG_FATAL(type, ...) ((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, **VA_ARGS**)) | FATAL级别写日志，宏封装接口。 |
 | void OH_LOG_SetCallback(LogCallback callback) | 注册函数，注册后可通过LogCallback回调获取本进程的hilog日志。若OH_LOG_IsLoggable接口返回true，则回调函数可获取到该条日志。 |
 | void OH_LOG_SetMinLogLevel(LogLevel level) | 设置应用日志打印的最低日志级别，用于拦截低级别日志打印。<br/>**说明**：从API version 15开始，支持该接口。<br/>**注意**：如果设置的日志级别低于[全局日志级别](hilog.md#查看和设置日志级别)，设置不生效。 |
+| void OH_LOG_SetLogLevel(LogLevel level, PreferStrategy prefer) | 设置当前应用程序进程的最低日志级别。可以配置不同的偏好策略。<br/>**说明**：从API version 21开始，支持该接口。 | 
 
 ### 参数解析
 
@@ -101,6 +102,10 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
    OH_LOG_SetMinLogLevel(LOG_WARN);
    OH_LOG_INFO(LOG_APP, "this is an info level log");
    OH_LOG_ERROR(LOG_APP, "this is an error level log");
+   // 设置应用日志PREFER_OPEN_LOG策略的最低打印级别，设置完成后，不低于INFO级别的日志都可打印
+   OH_LOG_SetLogLevel(LOG_WARN, PREFER_OPEN_LOG);
+   OH_LOG_INFO(LOG_APP, "this is an another info level log");
+   OH_LOG_ERROR(LOG_APP, "this is an another error level log");
    ```
 
 4. 输出结果：
@@ -109,6 +114,8 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
    ```txt
    01-02 08:39:38.915   9012-9012     A03200/MY_TAG                   com.example.hilogDemo              I     Failed to visit <private>, reason:11.
    01-02 08:39:38.915   9012-9012     A03200/MY_TAG                   com.example.hilogDemo              E     this is an error level log
+   01-02 08:39:38.915   9012-9012     A03200/MY_TAG                   com.example.hilogDemo              I     this is an another info level log
+   01-02 08:39:38.915   9012-9012     A03200/MY_TAG                   com.example.hilogDemo              E     this is an another error level log
    ```
 <!--RP2End-->
 

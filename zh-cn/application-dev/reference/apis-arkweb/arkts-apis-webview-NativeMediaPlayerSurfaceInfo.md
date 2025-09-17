@@ -4,7 +4,7 @@
 <!--Owner: @zhangyao75477-->
 <!--Designer: @qiu-gongkai-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 [应用接管网页媒体播放功能](./arkts-basic-components-web-attributes.md#enablenativemediaplayer12)中用于同层渲染的 surface 信息。
 

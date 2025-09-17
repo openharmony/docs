@@ -1,5 +1,12 @@
 # System Common Events (System API)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
+
 This topic provides a list of common events defined by the system.
 
 Common event types are defined in [Support enumeration of the ohos.commonEventManager module](../js-apis-commonEventManager.md#support).
@@ -7,6 +14,8 @@ Common event types are defined in [Support enumeration of the ohos.commonEventMa
 > **NOTE**
 >
 > The current page contains only the system APIs of this module. For details about other public APIs, see [System Common Events](../common_event/commonEventManager-definitions.md).
+
+
 
 
 ## Ability Kit
@@ -24,7 +33,10 @@ When the specified user finishes the boot process on the device, the common even
 
 **Required permissions**: ohos.permission.RECEIVER_STARTUP_COMPLETED (for system applications only)
 
+
 **Value**: "usual.event.BOOT_COMPLETED"
+
+
 
 ### COMMON_EVENT_PACKAGE_INSTALLATION_STARTED<sup>12+</sup>
 
@@ -291,6 +303,8 @@ This common event is triggered when an external storage device is removed.
 
 **Value**: "usual.event.data.VOLUME_REMOVED"
 
+
+
 ### COMMON_EVENT_VOLUME_UNMOUNTED
 
 Indicates that an external storage device was unmounted.
@@ -366,6 +380,23 @@ When a data migration application starts the backup and restore framework to per
 **Value**: "usual.event.RESTORE_START"
 
 
+## Media Kit
+
+### COMMON_EVENT_SCREEN_SHARE
+
+Indicates that a screen sharing event has occurred in the system.
+
+This is a protected common event and can be sent only by the system.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Required permissions**: ohos.permission.RECEIVE_SMS (for system applications only)
+
+**Value**: usual.event.SCREEN_SHARE
+
+
 ## Telephony Kit
 
 ### COMMON_EVENT_SMS_RECEIVE_COMPLETED<sup>10+</sup>
@@ -411,6 +442,10 @@ When the device receives a cell broadcast message, the common event service is t
 **Required permissions**: ohos.permission.RECEIVE_SMS (for system applications only)
 
 **Value**: usual.event.SMS_CB_RECEIVE_COMPLETED
+
+
+
+
 
 ### COMMON_EVENT_OPERATOR_CONFIG_CHANGED<sup>10+</sup>
 

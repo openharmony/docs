@@ -7,11 +7,11 @@
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
 
-提供了基于低功耗蓝牙（Bluetooth Low Energy）技术的蓝牙能力，支持发起BLE扫描、发送BLE广播报文、以及基于通用属性协议（Generic Attribute Profile，GATT）的连接和传输数据。
+本模块提供了基于低功耗蓝牙（Bluetooth Low Energy，[BLE](../../connectivity/terminology.md#ble)）技术的蓝牙能力，支持发起BLE扫描、发送BLE广播报文、以及基于通用属性协议（Generic Attribute Profile，[GATT](../../connectivity/terminology.md#gatt)）的连接和传输数据。
 
 > **说明：**
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 接口中涉及的UUID服务，可以通过工具函数[util.generateRandomUUID](../apis-arkts/js-apis-util.md#utilgeneraterandomuuid9)生成。
+> - 接口中涉及的[UUID](../../connectivity/terminology.md#uuid)服务，可以通过工具函数[util.generateRandomUUID](../apis-arkts/js-apis-util.md#utilgeneraterandomuuid9)生成。
 
 
 

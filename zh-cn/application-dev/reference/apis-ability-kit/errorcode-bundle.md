@@ -586,7 +586,7 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 Failed to install the HAP because the installation is forbidden by enterprise device management.
 
 **错误描述**<br/>
-安装应用时，企业设备管理不允许安装。[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。
+安装应用时，[企业设备管理](../../reference/apis-mdm-kit/js-apis-enterprise-adminManager.md)不允许安装。[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。
 
 **可能原因**<br/>
 企业设备管理不允许安装该应用。
@@ -643,7 +643,7 @@ Failed to install the HAP because the isolationMode configured is not supported.
 Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management.
 
 **错误描述**<br/>
-卸载应用时，企业设备管理不允许卸载。
+卸载应用时，[企业设备管理](../../reference/apis-mdm-kit/js-apis-enterprise-adminManager.md)不允许卸载。
 
 **可能原因**<br/>
 企业设备管理不允许安装该应用。
@@ -696,19 +696,19 @@ Failed to install the HAP because the bundleName is different from the bundleNam
 **处理步骤**<br/>
 检查要安装的hap或hsp是否属于当前应用。
 
-## 17700050 企业设备校验失败
+## 17700050 企业MDM应用/普通企业应用不允许安装
 **错误信息**<br/>
 Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices.
 
 **错误描述**<br/>
-安装应用时，企业normal应用或企业mdm应用无法在非企业设备上安装。[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。
+当前设备禁止安装企业MDM应用或普通企业应用。
 
 **可能原因**<br/>
-安装设备不是企业设备。
+当前设备不允许安装[Profile签名文件](../../security/app-provision-structure.md)>中如下两种类型的应用：enterprise_mdm（企业MDM应用）、enterprise_normal（普通企业应用）。
+Profile签名文件类型的取值及含义请参考[ApplicationInfo.appDistributionType](../../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md#applicationinfo-1)。
 
 **处理步骤**<br/>
-1. 检查安装设备是否为企业设备。
-2. 检查设备参数const.bms.allowenterprisebundle是否为true。
+更换Profile签名文件中的类型。
 
 ## 17700051 应用自升级时调用方的签名证书profile文件中的类型不是企业mdm
 **错误信息**<br/>

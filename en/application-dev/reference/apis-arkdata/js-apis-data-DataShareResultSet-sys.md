@@ -1,4 +1,10 @@
 # @ohos.data.dataShareResultSet (DataShare Result Set) (System API)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @woodenarow-->
+<!--Designer: @woodenarow; @xuelei3-->
+<!--Tester: @chenwan188; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 The **DataShareResultSet** module provides APIs for accessing the result set obtained from the database. You can access the values in the specified rows or the value of the specified data type.
 
@@ -39,20 +45,19 @@ export default class EntryAbility extends UIAbility {
         console.info("createDataShareHelper end, data : " + data);
         dataShareHelper = data;
       }
+      let columns = ["*"];
+      let da = new dataSharePredicates.DataSharePredicates();
+      let resultSet: DataShareResultSet | undefined = undefined;
+      da.equalTo("name0", "ZhangSan");
+      if (dataShareHelper != undefined) {
+        (dataShareHelper as dataShare.DataShareHelper).query(uri, da, columns).then((data: DataShareResultSet) => {
+          console.info("query end, data : " + data);
+          resultSet = data;
+        }).catch((err: BusinessError) => {
+          console.error("query fail, error message : " + err);
+        });
+      }
     });
-
-    let columns = ["*"];
-    let da = new dataSharePredicates.DataSharePredicates();
-    let resultSet: DataShareResultSet | undefined = undefined;
-    da.equalTo("name", "ZhangSan");
-    if (dataShareHelper != undefined) {
-      (dataShareHelper as dataShare.DataShareHelper).query(uri, da, columns).then((data: DataShareResultSet) => {
-        console.info("query end, data : " + data);
-        resultSet = data;
-      }).catch((err: BusinessError) => {
-        console.error("query fail, error message : " + err);
-      });
-    }
   };
 };
 ```
@@ -254,8 +259,12 @@ If the specified column or key is empty or the value is not of the Blob type, yo
 let columnIndex = 1;
 if (resultSet != undefined) {
   let goToFirstRow = (resultSet as DataShareResultSet).goToFirstRow();
-  let getBlob = (resultSet as DataShareResultSet).getBlob(columnIndex);
-  console.info('resultSet.getBlob: ' + getBlob);
+  if (!goToFirstRow) {
+    console.error("failed to go to first row");
+  } else {
+    let getBlob = (resultSet as DataShareResultSet).getBlob(columnIndex);
+    console.info('resultSet.getBlob: ' + getBlob);
+  }
 }
 ```
 

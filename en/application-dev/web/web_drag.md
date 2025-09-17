@@ -1,4 +1,10 @@
 # Implementing the Drag Functionality
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zourongchun-->
+<!--Designer: @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 ArkWeb provides the functionality of dragging elements on web pages. Users can place an element by holding down the element and dragging it to another element. This functionality meets the HTML5 standard.
 
@@ -19,7 +25,7 @@ The drag functionality of ArkWeb is different from that of ArkUI. ArkWeb is main
 
 | Method   | Description                                                 |
 | ----------- | ----------------------------------------------------- |
-| [onDragStart](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)  | This method is not supported and should not be implemented. Otherwise, the drag behavior of the **Web** component will be affected.|
+| [onDragStart](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)  | This method is not recommended. Calling it will affect the dragging behavior of **Web** components, resulting in unexpected dragging logic. For example, HTML dragging event listening cannot be triggered, preview images cannot be created, preview images are incorrect, or dragging data cannot be preset.|
 |  [onDragEnter](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter) | Called when an element is dragged to the web area.|
 | [onDragMove](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)  | Called when an element is moved in the web area. |
 | [onDragLeave](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave) | Called when the dragged element leaves the web area.         |
@@ -55,16 +61,19 @@ struct DragDrop {
         this.ports = this.controller.createWebMessagePorts();
         this.ports[1].onMessageEvent((result: webview.WebMessage) => {
           //Process the data received from HTML. You can record logs to confirm the message. The message format can be customized as long as it can be uniquely identified.
-          console.log("ETS receive Message: typeof (result) = " + typeof (result) + ";" + result);
+          console.info("ETS receive Message: typeof (result) = " + typeof (result) + ";" + result);
           // Process the message after the message is received in result. You can perform time-consuming tasks.
         });
-        console.log("ETS postMessage set h5port ");
+        console.info("ETS postMessage set h5port ");
         //After the message port is registered, the front end sends a registration completion message to complete bidirectional port binding.
         this.controller.postMessage('__init_port__', [this.ports[0]], '*');
       })// Implement simple logic in onDrop, for example, temporarily storing some key data.
-        .onDrop((event) => {
-          console.log("ETS onDrop!")
-          let data: UnifiedData = (event as DragEvent).getData() as UnifiedData;
+        .onDrop((DragEvent: DragEvent) => {
+          console.info("ETS onDrop!")
+          let data: UnifiedData = DragEvent.getData();
+          if(!data) {
+            return false;
+          }
           let uriArr: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
           if (!uriArr || uriArr.length <= 0) {
             return false;
@@ -170,10 +179,10 @@ HTML example:
     // Set the scriptproxy port on JavaScript.
     var h5Port;
     window.addEventListener('message', function (event) {
-    console.log("H5 receive settingPort message");
+    console.info("H5 receive settingPort message");
         if (event.data == '__init_port__') {
             if (event.ports[0] != null) {
-                console.log("H5 set h5Port " + event.ports[0]);
+                console.info("H5 set h5Port " + event.ports[0]);
                 h5Port = event.ports[0];
             }
         }
@@ -181,7 +190,7 @@ HTML example:
 
     // Send data to ArkTS using scriptproxy.
     function PostMsgToArkTS(data) {
-        console.log("H5 PostMsgToArkTS, h5Port " + h5Port);
+        console.info("H5 PostMsgToArkTS, h5Port " + h5Port);
         if (h5Port) {
           h5Port.postMessage(data);
         } else {

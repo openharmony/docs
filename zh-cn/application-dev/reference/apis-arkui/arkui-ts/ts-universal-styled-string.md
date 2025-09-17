@@ -95,7 +95,7 @@ equals(other: StyledString): boolean
 
 subStyledString(start: number, length?: number): StyledString
 
-获取属性字符串的子字符串。
+获取属性字符串的子字符串。不能超出属性字符串的长度。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -126,7 +126,7 @@ subStyledString(start: number, length?: number): StyledString
 
 getStyles(start: number , length: number , styledKey?: StyledStringKey): Array\<SpanStyle>
 
-获取指定范围属性字符串的样式集合。
+获取指定范围属性字符串的样式集合。不能超出属性字符串的长度。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -665,7 +665,7 @@ constructor(value?: GestureStyleInterface)
 
 | 名称  | 类型                              |  只读 | 可选  | 说明   |
 | ------- | --------------------------------- | ---- | ---- | --------------------------------- |
-| onClick | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)> | 否   | 是 | 设置点击事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| onClick | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent)> | 否   | 是 | 设置点击事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onLongPress | Callback\<[GestureEvent](./ts-gesture-common.md#gestureevent对象说明)> | 否   | 是 | 设置长按事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | onTouch<sup>20+</sup> | Callback\<[TouchEvent](ts-universal-events-touch.md#touchevent对象说明)> | 否   | 是 | 设置触摸事件。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 

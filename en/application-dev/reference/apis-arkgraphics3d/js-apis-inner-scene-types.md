@@ -2,8 +2,9 @@
 <!--Kit: ArkGraphics 3D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @zzhao0-->
-<!--SE: @zdustc-->
-<!--TSE: @zhangyue283-->
+<!--Designer: @zdustc-->
+<!--Tester: @zhangyue283-->
+<!--Adviser: @ge-yafang-->
 
 The module provides common data types in 3D graphics.
 
@@ -94,7 +95,7 @@ Enumerates the geometry types.
 
 | Name| Value| Description|
 | ---- | ---- | ---- |
-| CUSTOM | 0 | Undefined.|
+| CUSTOM | 0 | Custom geometry type.|
 | CUBE | 1 | Cube.|
 | PLANE | 2 | Plane.|
 | SPHERE | 3 | Sphere.|

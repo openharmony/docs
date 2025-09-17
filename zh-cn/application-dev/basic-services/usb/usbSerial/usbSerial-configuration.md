@@ -59,15 +59,15 @@ USB串口配置管理中，波特率、数据位、校验位和停止位是串�
 1. 导入模块。
 
     ```ts
-    // 导入usbManager模块。
-    import serial from '@ohos.usbManager.serial';
+    // 导入serialManager模块。
+    import { serialManager } from '@kit.BasicServicesKit';
     ``` 
 
 2. 获取设备列表。
 
     ```ts
     // 获取连接主设备的USB设备列表
-    let portList: serial.SerialPort[] = serial.getPortList();
+    let portList: serialManager.SerialPort[] = serialManager.getPortList();
     console.info(`usbSerial portList: ${portList}`);
     if (portList === undefined || portList.length === 0) {
       console.error('usbSerial portList is empty');
@@ -82,8 +82,8 @@ USB串口配置管理中，波特率、数据位、校验位和停止位是串�
     // 函数名仅作为示例，实际需要与业务结合命名
     async function serialDefault() {
       let portId: number = portList[0].portId;
-      if (!serial.hasSerialRight(portId)) {
-        await serial.requestSerialRight(portId).then(result => {
+      if (!serialManager.hasSerialRight(portId)) {
+        await serialManager.requestSerialRight(portId).then(result => {
           if(!result) {
             // 没有访问设备的权限且用户不授权则退出
             console.error('The user does not have permission to perform this operation');
@@ -98,7 +98,7 @@ USB串口配置管理中，波特率、数据位、校验位和停止位是串�
 
     ```ts
     try {
-      serial.open(portId)
+      serialManager.open(portId)
       console.info(`open usbSerial success, portId: ${portId}`);
     } catch (error) {
       console.error(`open usbSerial error： ${error}`);
@@ -110,7 +110,7 @@ USB串口配置管理中，波特率、数据位、校验位和停止位是串�
     ```ts
     // 获取串口配置
     try {
-      let attribute: serial.SerialAttribute = serial.getAttribute(portId);
+      let attribute: serialManager.SerialAttribute = serialManager.getAttribute(portId);
       if (attribute === undefined) {
         console.error('getAttribute usbSerial error, attribute is undefined');
       } else {
@@ -122,13 +122,13 @@ USB串口配置管理中，波特率、数据位、校验位和停止位是串�
    
     // 设置串口配置
     try {
-      let attribute: serial.SerialAttribute = {
-        baudRate: serial.BaudRates.BAUDRATE_9600,
-        dataBits: serial.DataBits.DATABIT_8,
-        parity: serial.Parity.PARITY_NONE,
-        stopBits: serial.StopBits.STOPBIT_1
+      let attribute: serialManager.SerialAttribute = {
+        baudRate: serialManager.BaudRates.BAUDRATE_9600,
+        dataBits: serialManager.DataBits.DATABIT_8,
+        parity: serialManager.Parity.PARITY_NONE,
+        stopBits: serialManager.StopBits.STOPBIT_1
       }
-      serial.setAttribute(portId, attribute);
+      serialManager.setAttribute(portId, attribute);
       console.info(`setAttribute usbSerial success, attribute: ${attribute}`);
     } catch (error) {
       console.error(`setAttribute usbSerial error: ${error}`);

@@ -31,10 +31,10 @@
 
 针对组件开发，有以下相关实例可供参考：
 
-- [rating组件的使用（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/RatingApplication)
+- [rating组件的使用（JS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/JSUI/RatingApplication)
 
-- [简易视频播放器（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)
+- [简易视频播放器（JS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)
 
-- [购物应用（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ShoppingSample)
+- [购物应用（JS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/JSUI/ShoppingSample)
 
-- [图片常见操作（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageOperation)
+- [图片常见操作（JS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/Media/ImageOperation)

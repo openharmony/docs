@@ -6,7 +6,7 @@
 <!--Tester: @xchaosioda-->
 <!--Adviser: @zengyawen-->
 
-在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+在开发相机应用时，需要先[申请相关权限](camera-preparation.md)。
 
 当前示例提供完整的高性能拍照流程介绍，方便开发者了解完整的接口调用顺序。
 

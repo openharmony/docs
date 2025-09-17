@@ -1,5 +1,12 @@
 # @ohos.selectionInput.SelectionPanel (划词面板)(系统接口)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: SelectionInput-->
+<!--Owner: @no86-->
+<!--Designer: @mmwwbb-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @fang-jinxu-->
+
 本模块提供划词面板的属性信息和类型。
 
 > **说明：**

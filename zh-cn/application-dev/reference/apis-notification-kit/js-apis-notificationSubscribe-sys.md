@@ -4,7 +4,7 @@
 <!--Owner: @peixu-->
 <!--Designer: @dongqingran; @wulong158-->
 <!--Tester: @wanghong1997-->
-<!--Adviser: @huipeizi-->
+<!--Adviser: @fang-jinxu-->
 
 本模块提供通知订阅、取消订阅、通知移除等，一般情况下，只有系统应用具有这些操作权限。
 
@@ -257,8 +257,6 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
-
 **系统接口**：此接口为系统接口。
 
 **参数：**
@@ -308,8 +306,6 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 取消订阅。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
-
-**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
 **系统接口**：此接口为系统接口。
 

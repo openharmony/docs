@@ -22,8 +22,8 @@
 
 | 名称 | 描述     |
 | -- |--------|
-| bool heading | 是否是标题。 |
-| bool selected | 是否被选中。 |
+| bool heading | 是否是标题。truet表示是标题，false表示不是标题。 |
+| bool selected | 是否被选中。true表示被选中，false表示未被选中。 |
 | int32_t columnIndex | 列下标。   |
 | int32_t rowIndex | 行下标。   |
 | int32_t columnSpan | 列跨度。   |

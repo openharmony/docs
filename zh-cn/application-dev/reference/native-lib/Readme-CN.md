@@ -1,5 +1,12 @@
 # Native API标准库<!--standard-library-->
 
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @fang-jinxu-->
+<!--Designer: @lingminghw-->
+<!--Tester: @RayShih-->
+<!--Adviser: @fang-jinxu; @ge-yafang-->
+
 - [libc标准库](musl.md)
 - [c++标准库](cpp.md)
 - [Node-API](napi.md)
@@ -14,15 +21,17 @@
   - [Vulkan开发指导](vulkan-guidelines.md)
   - [Vulkan支持能力](vulkan.md)
   - Vulkan扩展能力<!--vulkan-extensions-->
-    - [Vulkan模块](_vulkan.md)
-    - [vulkan_ohos.h](vulkan__ohos_8h.md)
-    - [VkExternalFormatOHOS](_vk_external_format_o_h_o_s.md)
-    - [VkImportNativeBufferInfoOHOS](_vk_import_native_buffer_info_o_h_o_s.md)
-    - [VkMemoryGetNativeBufferInfoOHOS](_vk_memory_get_native_buffer_info_o_h_o_s.md)
-    - [VkNativeBufferFormatPropertiesOHOS](_vk_native_buffer_format_properties_o_h_o_s.md)
-    - [VkNativeBufferPropertiesOHOS](_vk_native_buffer_properties_o_h_o_s.md)
-    - [VkNativeBufferUsageOHOS](_vk_native_buffer_usage_o_h_o_s.md)
-    - [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md)
+    - [Vulkan模块](capi-vulkan.md)
+    - [vulkan_ohos.h](capi-vulkan-ohos-h.md)
+    - [VkSurfaceCreateInfoOHOS](capi-vulkan-vksurfacecreateinfoohos.md)
+    - [VkNativeBufferUsageOHOS](capi-vulkan-vknativebufferusageohos.md)
+    - [VkNativeBufferPropertiesOHOS](capi-vulkan-vknativebufferpropertiesohos.md)
+    - [VkNativeBufferFormatPropertiesOHOS](capi-vulkan-vknativebufferformatpropertiesohos.md)
+    - [VkImportNativeBufferInfoOHOS](capi-vulkan-vkimportnativebufferinfoohos.md)
+    - [VkMemoryGetNativeBufferInfoOHOS](capi-vulkan-vkmemorygetnativebufferinfoohos.md)
+    - [VkExternalFormatOHOS](capi-vulkan-vkexternalformatohos.md)
+    - [NativeWindow](capi-vulkan-nativewindow.md)
+    - [OH_NativeBuffer](capi-vulkan-oh-nativebuffer.md)
 - 附录<!--appendixes-->
   - [libc中没有导出的符号列表](musl-peculiar-symbol.md)
   - [NDK musl-libc接口受权限影响的说明](guidance-on-ndk-libc-interfaces-affected-by-permissions.md)

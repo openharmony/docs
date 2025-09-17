@@ -14,7 +14,7 @@
 >
 > - 该组件不建议开发者在动效过程中修改属性数据。
 >
-> - 该组件最大显示行数在横竖屏模式下存在差异，竖屏为5行，横屏为3行。
+> - 最大显示行数在横、竖屏模式下存在差异。竖屏时默认为5行，横屏时依赖系统配置，未配置时默认显示为3行。可通过如下参数查看具体配置值$r('sys.float.ohos_id_picker_show_count_landscape')。
 
 
 ## 子组件
@@ -337,7 +337,7 @@ enableHapticFeedback(enable: boolean)
 
 >  **说明：**
 >
->  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+>  开启触控反馈时，需要在工程的src/main/module.json5文件的"module"内配置requestPermissions字段开启振动权限，配置如下：
 >  ```json
 >  "requestPermissions": [
 >  {
@@ -364,7 +364,7 @@ enableHapticFeedback(enable: Optional\<boolean>)
 
 >  **说明：**
 >
->  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+>  开启触控反馈时，需要在工程的src/main/module.json5文件的"module"内配置requestPermissions字段开启振动权限，配置如下：
 >  ```json
 >  "requestPermissions": [
 >  {

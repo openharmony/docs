@@ -35,7 +35,7 @@ type BaseProfile = baseProfile.BaseProfile
 
 createPbapServerProfile(): PbapServerProfile
 
-创建蓝牙电话簿访问协议中的[PSE](../../connectivity/terminology.md#pse)实例。通过该实例可使用本端作为电话簿服务端设备的接口，如：获取和其他设备间的蓝牙电话簿服务连接状态。
+创建蓝牙电话簿访问协议中的[PSE](../../connectivity/terminology.md#pse)实例。通过该实例可使用本端作为PSE设备的接口，如：获取和其他设备间的蓝牙电话簿服务连接状态。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 

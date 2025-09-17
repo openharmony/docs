@@ -71,41 +71,43 @@ on(type: 'stateChange', callback: OnAVPlayerStateChangeHandle): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
-  switch (state) {
-    case 'idle':
-      console.info('state idle called');
-      break;
-    case 'initialized':
-      console.info('initialized prepared called');
-      break;
-    case 'prepared':
-      console.info('state prepared called');
-      break;
-    case 'playing':
-      console.info('state playing called');
-      break;
-    case 'paused':
-      console.info('state paused called');
-      break;
-    case 'completed':
-      console.info('state completed called');
-      break;
-    case 'stopped':
-      console.info('state stopped called');
-      break;
-    case 'released':
-      console.info('state released called');
-      break;
-    case 'error':
-      console.info('state error called');
-      break;
-    default:
-      console.info('unknown state :' + state);
-      break;
-  }
-});
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
+    switch (state) {
+      case 'idle':
+        console.info('state idle called');
+        break;
+      case 'initialized':
+        console.info('initialized prepared called');
+        break;
+      case 'prepared':
+        console.info('state prepared called');
+        break;
+      case 'playing':
+        console.info('state playing called');
+        break;
+      case 'paused':
+        console.info('state paused called');
+        break;
+      case 'completed':
+        console.info('state completed called');
+        break;
+      case 'stopped':
+        console.info('state stopped called');
+        break;
+      case 'released':
+        console.info('state released called');
+        break;
+      case 'error':
+        console.info('state error called');
+        break;
+      default:
+        console.info('unknown state :' + state);
+        break;
+    }
+  });
+}
 ```
 
 ## off('stateChange')<sup>9+</sup>
@@ -128,8 +130,10 @@ off(type: 'stateChange', callback?: OnAVPlayerStateChangeHandle): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('stateChange');
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('stateChange');
+}
 ```
 
 ## on('error')<sup>9+</sup>
@@ -162,10 +166,10 @@ on(type: 'error', callback: ErrorCallback): void
 | 801      | Capability not supported. |
 | 5400101  | No memory. |
 | 5400102  | Operation not allowed.|
-| 5400103  | I/O error.             |
 | 5400104  | Time out.              |
 | 5400105  | Service died.         |
 | 5400106  | Unsupported format.     |
+| 5410002  | Seek continuous unsupported.     |
 | 5411001  | IO can not find host.    |
 | 5411002  | IO connection timeout.  |
 | 5411003  | IO network abnormal.     |
@@ -182,11 +186,13 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('error', (error: BusinessError) => {
-  console.info('error happened,and error message is :' + error.message);
-  console.info('error happened,and error code is :' + error.code);
-});
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('error', (error: BusinessError) => {
+    console.info('error happened,and error message is :' + error.message);
+    console.info('error happened,and error code is :' + error.code);
+  });
+}
 ```
 
 ## off('error')<sup>9+</sup>
@@ -211,8 +217,10 @@ off(type: 'error', callback?: ErrorCallback): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('error');
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('error');
+}
 ```
 
 ## setMediaSource<sup>12+</sup>
@@ -251,18 +259,20 @@ setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 
 <!--code_no_check-->
 ```ts
-let player = await media.createAVPlayer();
-let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
-let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
-let playStrategy : media.PlaybackStrategy = {
-  preferredWidth: 1,
-  preferredHeight: 2,
-  preferredBufferDuration: 3,
-  preferredHdr: false,
-  preferredBufferDurationForPlaying: 1,
-  thresholdForAutoQuickPlay: 5
-};
-player.setMediaSource(mediaSource, playStrategy);
+async function test(){
+  let player = await media.createAVPlayer();
+  let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
+  let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
+  let playStrategy : media.PlaybackStrategy = {
+    preferredWidth: 1,
+    preferredHeight: 2,
+    preferredBufferDuration: 3,
+    preferredHdr: false,
+    preferredBufferDurationForPlaying: 1,
+    thresholdForAutoQuickPlay: 5
+  };
+  player.setMediaSource(mediaSource, playStrategy);
+}
 ```
 
 ## setPlaybackStrategy<sup>12+</sup>
@@ -302,13 +312,9 @@ setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>
 ```ts
 import { common } from '@kit.AbilityKit';
 
-private context: Context | undefined;
-constructor(context: Context) {
-  this.context = context; // this.getUIContext().getHostContext();
-}
-
 let player = await media.createAVPlayer();
-let fileDescriptor = await this.context?.resourceManager.getRawFd('xxx.mp4');
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let fileDescriptor = await context.resourceManager.getRawFd('xxx.mp4');
 player.fdSrc = fileDescriptor
 let playStrategy : media.PlaybackStrategy = {
   preferredWidth: 1,
@@ -360,12 +366,14 @@ setPlaybackRange(startTimeMs: number, endTimeMs: number, mode?: SeekMode) : Prom
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avPlayer = await media.createAVPlayer();
-avPlayer.setPlaybackRange(0, 6000, media.SeekMode.SEEK_CLOSEST).then(() => {
-  console.info('Succeeded setPlaybackRange');
-}).catch((err: BusinessError) => {
-  console.error('Failed to setPlaybackRange' + err.message);
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.setPlaybackRange(0, 6000, media.SeekMode.SEEK_CLOSEST).then(() => {
+    console.info('Succeeded setPlaybackRange');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to setPlaybackRange' + err.message);
+  });
+}
 ```
 
 ## prepare<sup>9+</sup>
@@ -398,15 +406,17 @@ prepare(callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized状态后才能调用。
-avPlayer.prepare((err: BusinessError) => {
-  if (err) {
-    console.error('Failed to prepare,error message is :' + err.message);
-  } else {
-    console.info('Succeeded in preparing');
-  }
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized状态后才能调用。
+  avPlayer.prepare((err: BusinessError) => {
+    if (err) {
+      console.error('Failed to prepare,error message is :' + err.message);
+    } else {
+      console.info('Succeeded in preparing');
+    }
+  });
+}
 ```
 
 ## prepare<sup>9+</sup>
@@ -441,13 +451,15 @@ prepare(): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized状态后才能调用。
-avPlayer.prepare().then(() => {
-  console.info('Succeeded in preparing');
-}, (err: BusinessError) => {
-  console.error('Failed to prepare,error message is :' + err.message);
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized状态后才能调用。
+  avPlayer.prepare().then(() => {
+    console.info('Succeeded in preparing');
+  }, (err: BusinessError) => {
+    console.error('Failed to prepare,error message is :' + err.message);
+  });
+}
 ```
 
 ## setMediaMuted<sup>12+</sup>
@@ -491,14 +503,16 @@ setMediaMuted(mediaType: MediaType,  muted: boolean ): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized状态后才能调用。
-avPlayer.prepare().then(() => {
-  console.info('Succeeded in preparing');
-  avPlayer.setMediaMuted(media.MediaType.MEDIA_TYPE_AUD, true);
-}, (err: BusinessError) => {
-  console.error('Failed to prepare,error message is :' + err.message);
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized状态后才能调用。
+  avPlayer.prepare().then(() => {
+    console.info('Succeeded in preparing');
+    avPlayer.setMediaMuted(media.MediaType.MEDIA_TYPE_AUD, true);
+  }, (err: BusinessError) => {
+    console.error('Failed to prepare,error message is :' + err.message);
+  });
+}
 ```
 
 ## play<sup>9+</sup>
@@ -530,15 +544,17 @@ play(callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/paused/completed状态后才能调用。
-avPlayer.play((err: BusinessError) => {
-  if (err) {
-    console.error('Failed to play,error message is :' + err.message);
-  } else {
-    console.info('Succeeded in playing');
-  }
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/paused/completed状态后才能调用。
+  avPlayer.play((err: BusinessError) => {
+    if (err) {
+      console.error('Failed to play,error message is :' + err.message);
+    } else {
+      console.info('Succeeded in playing');
+    }
+  });
+}
 ```
 
 ## play<sup>9+</sup>
@@ -570,13 +586,15 @@ play(): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/paused/completed状态后才能调用。
-avPlayer.play().then(() => {
-  console.info('Succeeded in playing');
-}, (err: BusinessError) => {
-  console.error('Failed to play,error message is :' + err.message);
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/paused/completed状态后才能调用。
+  avPlayer.play().then(() => {
+    console.info('Succeeded in playing');
+  }, (err: BusinessError) => {
+    console.error('Failed to play,error message is :' + err.message);
+  });
+}
 ```
 
 ## pause<sup>9+</sup>
@@ -608,15 +626,17 @@ pause(callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至playing状态后才能调用。
-avPlayer.pause((err: BusinessError) => {
-  if (err) {
-    console.error('Failed to pause,error message is :' + err.message);
-  } else {
-    console.info('Succeeded in pausing');
-  }
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至playing状态后才能调用。
+  avPlayer.pause((err: BusinessError) => {
+    if (err) {
+      console.error('Failed to pause,error message is :' + err.message);
+    } else {
+      console.info('Succeeded in pausing');
+    }
+  });
+}
 ```
 
 ## pause<sup>9+</sup>
@@ -648,13 +668,15 @@ pause(): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至playing状态后才能调用。
-avPlayer.pause().then(() => {
-  console.info('Succeeded in pausing');
-}, (err: BusinessError) => {
-  console.error('Failed to pause,error message is :' + err.message);
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至playing状态后才能调用。
+  avPlayer.pause().then(() => {
+    console.info('Succeeded in pausing');
+  }, (err: BusinessError) => {
+    console.error('Failed to pause,error message is :' + err.message);
+  });
+}
 ```
 
 ## stop<sup>9+</sup>
@@ -686,15 +708,17 @@ stop(callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
-avPlayer.stop((err: BusinessError) => {
-  if (err) {
-    console.error('Failed to stop,error message is :' + err.message);
-  } else {
-    console.info('Succeeded in stopping');
-  }
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
+  avPlayer.stop((err: BusinessError) => {
+    if (err) {
+      console.error('Failed to stop,error message is :' + err.message);
+    } else {
+      console.info('Succeeded in stopping');
+    }
+  });
+}
 ```
 
 ## stop<sup>9+</sup>
@@ -726,13 +750,15 @@ stop(): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
-avPlayer.stop().then(() => {
-  console.info('Succeeded in stopping');
-}, (err: BusinessError) => {
-  console.error('Failed to stop,error message is :' + err.message);
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
+  avPlayer.stop().then(() => {
+    console.info('Succeeded in stopping');
+  }, (err: BusinessError) => {
+    console.error('Failed to stop,error message is :' + err.message);
+  });
+}
 ```
 
 ## reset<sup>9+</sup>
@@ -764,15 +790,17 @@ reset(callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized/prepared/playing/paused/completed/stopped/error状态后才能调用。
-avPlayer.reset((err: BusinessError) => {
-  if (err) {
-    console.error('Failed to reset,error message is :' + err.message);
-  } else {
-    console.info('Succeeded in resetting');
-  }
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized/prepared/playing/paused/completed/stopped/error状态后才能调用。
+  avPlayer.reset((err: BusinessError) => {
+    if (err) {
+      console.error('Failed to reset,error message is :' + err.message);
+    } else {
+      console.info('Succeeded in resetting');
+    }
+  });
+}
 ```
 
 ## reset<sup>9+</sup>
@@ -804,13 +832,15 @@ reset(): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized/prepared/playing/paused/completed/stopped/error状态后才能调用。
-avPlayer.reset().then(() => {
-  console.info('Succeeded in resetting');
-}, (err: BusinessError) => {
-  console.error('Failed to reset,error message is :' + err.message);
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized/prepared/playing/paused/completed/stopped/error状态后才能调用。
+  avPlayer.reset().then(() => {
+    console.info('Succeeded in resetting');
+  }, (err: BusinessError) => {
+    console.error('Failed to reset,error message is :' + err.message);
+  });
+}
 ```
 
 ## release<sup>9+</sup>
@@ -842,15 +872,17 @@ release(callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发除released以外的状态才能调用。
-avPlayer.release((err: BusinessError) => {
-  if (err) {
-    console.error('Failed to release,error message is :' + err.message);
-  } else {
-    console.info('Succeeded in releasing');
-  }
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发除released以外的状态才能调用。
+  avPlayer.release((err: BusinessError) => {
+    if (err) {
+      console.error('Failed to release,error message is :' + err.message);
+    } else {
+      console.info('Succeeded in releasing');
+    }
+  });
+}
 ```
 
 ## release<sup>9+</sup>
@@ -882,13 +914,15 @@ release(): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发除released以外的状态才能调用。
-avPlayer.release().then(() => {
-  console.info('Succeeded in releasing');
-}, (err: BusinessError) => {
-  console.error('Failed to release,error message is :' + err.message);
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发除released以外的状态才能调用。
+  avPlayer.release().then(() => {
+    console.info('Succeeded in releasing');
+  }, (err: BusinessError) => {
+    console.error('Failed to release,error message is :' + err.message);
+  });
+}
 ```
 
 ## getTrackDescription<sup>9+</sup>
@@ -920,15 +954,17 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused状态后才能调用。
-avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
-  if ((arrList) != null) {
-    console.info('Succeeded in doing getTrackDescription');
-  } else {
-    console.error(`Failed to do getTrackDescription, error:${error}`);
-  }
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused状态后才能调用。
+  avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
+    if ((arrList) != null) {
+      console.info('Succeeded in doing getTrackDescription');
+    } else {
+      console.error(`Failed to do getTrackDescription, error:${error}`);
+    }
+  });
+}
 ```
 
 ## getTrackDescription<sup>9+</sup>
@@ -960,13 +996,15 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused状态后才能调用。
-avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
-  console.info('Succeeded in getting TrackDescription');
-}).catch((error: BusinessError) => {
-  console.error(`Failed to get TrackDescription, error:${error}`);
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused状态后才能调用。
+  avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
+    console.info('Succeeded in getting TrackDescription');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to get TrackDescription, error:${error}`);
+  });
+}
 ```
 
 ## getSelectedTracks<sup>12+</sup>
@@ -998,13 +1036,15 @@ getSelectedTracks(): Promise\<Array\<number>>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused状态后才能调用。
-avPlayer.getSelectedTracks().then((arrList: Array<number>) => {
-  console.info('Succeeded in getting SelectedTracks');
-}).catch((error: BusinessError) => {
-  console.error(`Failed to get SelectedTracks, error:${error}`);
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused状态后才能调用。
+  avPlayer.getSelectedTracks().then((arrList: Array<number>) => {
+    console.info('Succeeded in getting SelectedTracks');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to get SelectedTracks, error:${error}`);
+  });
+}
 ```
 
 ## getPlaybackInfo<sup>12+</sup>
@@ -1075,15 +1115,17 @@ getPlaybackPosition(): number
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized状态后才能调用。
-avPlayer.prepare().then(() => {
-  console.info('Succeeded in preparing');
-  let playbackPosition: number = avPlayer.getPlaybackPosition();
-  console.info(`AVPlayer getPlaybackPosition== ${playbackPosition}`);
-}, (err: BusinessError) => {
-  console.error('Failed to prepare,error message is :' + err.message);
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized状态后才能调用。
+  avPlayer.prepare().then(() => {
+    console.info('Succeeded in preparing');
+    let playbackPosition: number = avPlayer.getPlaybackPosition();
+    console.info(`AVPlayer getPlaybackPosition== ${playbackPosition}`);
+  }, (err: BusinessError) => {
+    console.error('Failed to prepare,error message is :' + err.message);
+  });
+}
 ```
 
 ## selectTrack<sup>12+</sup>
@@ -1233,16 +1275,18 @@ setDecryptionConfig(mediaKeySession: drm.MediaKeySession, secureVideoPath: boole
 ```ts
 import { drm } from '@kit.DrmKit';
 
-let avPlayer = await media.createAVPlayer();
-// 创建MediaKeySystem系统。
-let keySystem:drm.MediaKeySystem = drm.createMediaKeySystem('com.clearplay.drm');
-// 创建MediaKeySession解密会话。
-let keySession:drm.MediaKeySession = keySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
-// 生成许可证请求、设置许可证响应等。
-// 安全视频通路标志。
-let secureVideoPath:boolean = false;
-// 设置解密配置。
-avPlayer.setDecryptionConfig(keySession, secureVideoPath);
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 创建MediaKeySystem系统。
+  let keySystem:drm.MediaKeySystem = drm.createMediaKeySystem('com.clearplay.drm');
+  // 创建MediaKeySession解密会话。
+  let keySession:drm.MediaKeySession = keySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+  // 生成许可证请求、设置许可证响应等。
+  // 安全视频通路标志。
+  let secureVideoPath:boolean = false;
+  // 设置解密配置。
+  avPlayer.setDecryptionConfig(keySession, secureVideoPath);
+}
 ```
 
 ## getMediaKeySystemInfos<sup>11+</sup>
@@ -1266,13 +1310,15 @@ getMediaKeySystemInfos(): Array\<drm.MediaKeySystemInfo>
 ```ts
 import { drm } from '@kit.DrmKit';
 
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在mediaKeySystemInfoUpdate事件触发成功后才能调用。
-const infos = avPlayer.getMediaKeySystemInfos();
-console.info('GetMediaKeySystemInfos count: ' + infos.length);
-for (let i = 0; i < infos.length; i++) {
-  console.info('GetMediaKeySystemInfos uuid: ' + infos[i]["uuid"]);
-  console.info('GetMediaKeySystemInfos pssh: ' + infos[i]["pssh"]);
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在mediaKeySystemInfoUpdate事件触发成功后才能调用。
+  const infos = avPlayer.getMediaKeySystemInfos();
+  console.info('GetMediaKeySystemInfos count: ' + infos.length);
+  for (let i = 0; i < infos.length; i++) {
+    console.info('GetMediaKeySystemInfos uuid: ' + infos[i]["uuid"]);
+    console.info('GetMediaKeySystemInfos pssh: ' + infos[i]["pssh"]);
+  }
 }
 ```
 
@@ -1297,21 +1343,25 @@ seek(timeMs: number, mode?:SeekMode): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-let seekTime: number = 1000;
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
-avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC);
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  let seekTime: number = 1000;
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
+  avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC);
+}
 ```
 
 ```ts
-// SEEK_CONTINUOUS 可以结合Slider的onChange回调方法进行对应处理，当slideMode为Moving时，触发拖动过程的SeekContinuous。
-let avPlayer = await media.createAVPlayer();
-let slideMovingTime: number = 2000;
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
-avPlayer.seek(slideMovingTime, media.SeekMode.SEEK_CONTINUOUS);
+async function  test(){
+  // SEEK_CONTINUOUS 可以结合Slider的onChange回调方法进行对应处理，当slideMode为Moving时，触发拖动过程的SeekContinuous。
+  let avPlayer = await media.createAVPlayer();
+  let slideMovingTime: number = 2000;
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
+  avPlayer.seek(slideMovingTime, media.SeekMode.SEEK_CONTINUOUS);
 
-// 当slideMode为End时，调用seek(-1, media.SeekMode.SEEK_CONTINUOUS)结束seek。
-avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS);
+  // 当slideMode为End时，调用seek(-1, media.SeekMode.SEEK_CONTINUOUS)结束seek。
+  avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS);
+}
 ```
 
 ## isSeekContinuousSupported<sup>18+</sup>
@@ -1333,9 +1383,11 @@ isSeekContinuousSupported() : boolean
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
-let isSupported = avPlayer.isSeekContinuousSupported();
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
+  let isSupported = avPlayer.isSeekContinuousSupported();
+}
 ```
 
 ## on('seekDone')<sup>9+</sup>
@@ -1358,10 +1410,12 @@ on(type: 'seekDone', callback: Callback\<number>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('seekDone', (seekDoneTime:number) => {
-  console.info('seekDone called,and seek time is:' + seekDoneTime);
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('seekDone', (seekDoneTime:number) => {
+    console.info('seekDone called,and seek time is:' + seekDoneTime);
+  });
+}
 ```
 
 ## off('seekDone')<sup>9+</sup>
@@ -1384,8 +1438,10 @@ off(type: 'seekDone', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('seekDone');
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('seekDone');
+}
 ```
 
 ## setSpeed<sup>9+</sup>
@@ -1408,9 +1464,11 @@ setSpeed(speed: PlaybackSpeed): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
-avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_2_00_X);
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
+  avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_2_00_X);
+}
 ```
 
 ## on('speedDone')<sup>9+</sup>
@@ -1433,10 +1491,12 @@ on(type: 'speedDone', callback: Callback\<number>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('speedDone', (speed:number) => {
-  console.info('speedDone called,and speed value is:' + speed);
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('speedDone', (speed:number) => {
+    console.info('speedDone called,and speed value is:' + speed);
+  });
+}
 ```
 
 ## off('speedDone')<sup>9+</sup>
@@ -1459,8 +1519,10 @@ off(type: 'speedDone', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('speedDone');
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('speedDone');
+}
 ```
 
 ## setPlaybackRate<sup>20+</sup>
@@ -1495,9 +1557,11 @@ setPlaybackRate(rate: number): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
-avPlayer.setPlaybackRate(2.0);
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
+  avPlayer.setPlaybackRate(2.0);
+}
 ```
 
 ## on('playbackRateDone')<sup>20+</sup>
@@ -1520,10 +1584,12 @@ on(type: 'playbackRateDone', callback: OnPlaybackRateDone): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('playbackRateDone', (rate:number) => {
-  console.info('playbackRateDone called,and rate value is:' + rate);
-});
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('playbackRateDone', (rate:number) => {
+    console.info('playbackRateDone called,and rate value is:' + rate);
+  });
+}
 ```
 
 ## off('playbackRateDone')<sup>20+</sup>
@@ -1546,8 +1612,10 @@ off(type: 'playbackRateDone', callback?: OnPlaybackRateDone): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('playbackRateDone');
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('playbackRateDone');
+}
 ```
 
 ## setBitrate<sup>9+</sup>
@@ -1569,10 +1637,12 @@ setBitrate(bitrate: number): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-let bitrate: number = 96000;
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
-avPlayer.setBitrate(bitrate);
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  let bitrate: number = 96000;
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至prepared/playing/paused/completed状态后才能调用。
+  avPlayer.setBitrate(bitrate);
+}
 ```
 
 ## on('bitrateDone')<sup>9+</sup>
@@ -1595,10 +1665,12 @@ on(type: 'bitrateDone', callback: Callback\<number>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('bitrateDone', (bitrate:number) => {
-  console.info('bitrateDone called,and bitrate value is:' + bitrate);
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('bitrateDone', (bitrate:number) => {
+    console.info('bitrateDone called,and bitrate value is:' + bitrate);
+  });
+}
 ```
 
 ## off('bitrateDone')<sup>9+</sup>
@@ -1621,8 +1693,10 @@ off(type: 'bitrateDone', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('bitrateDone');
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('bitrateDone');
+}
 ```
 
 ## on('availableBitrates')<sup>9+</sup>
@@ -1645,10 +1719,12 @@ on(type: 'availableBitrates', callback: Callback\<Array\<number>>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
-  console.info('availableBitrates called,and availableBitrates length is:' + bitrates.length);
-});
+async function  test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
+    console.info('availableBitrates called,and availableBitrates length is:' + bitrates.length);
+  });
+}
 ```
 
 ## off('availableBitrates')<sup>9+</sup>
@@ -1671,8 +1747,10 @@ off(type: 'availableBitrates', callback?: Callback\<Array\<number>>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('availableBitrates');
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('availableBitrates');
+}
 ```
 
 
@@ -1698,13 +1776,15 @@ on(type: 'mediaKeySystemInfoUpdate', callback: Callback\<Array\<drm.MediaKeySyst
 ```ts
 import { drm } from '@kit.DrmKit';
 
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('mediaKeySystemInfoUpdate', (mediaKeySystemInfo: Array<drm.MediaKeySystemInfo>) => {
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('mediaKeySystemInfoUpdate', (mediaKeySystemInfo: Array<drm.MediaKeySystemInfo>) => {
     for (let i = 0; i < mediaKeySystemInfo.length; i++) {
       console.info('mediaKeySystemInfoUpdate happened uuid: ' + mediaKeySystemInfo[i]["uuid"]);
       console.info('mediaKeySystemInfoUpdate happened pssh: ' + mediaKeySystemInfo[i]["pssh"]);
     }
-});
+  });
+}
 ```
 
 ## off('mediaKeySystemInfoUpdate')<sup>11+</sup>
@@ -1727,8 +1807,59 @@ off(type: 'mediaKeySystemInfoUpdate', callback?: Callback\<Array\<drm.MediaKeySy
 **示例：**
 
 ```ts
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('mediaKeySystemInfoUpdate');
+}
+```
+
+## setLoudnessGain<sup>21+</sup>
+
+setLoudnessGain(loudnessGain: double): Promise\<void>
+
+设置播放器的响度。调用该接口后，响度增益立即生效。使用Promise异步回调。
+
+> **说明：**
+>
+> - 当播放处于prepared/playing/paused/completed/stopped状态时，可调用该接口。
+> - 调用此接口时，需确保已设置音频渲染信息AVPlayer.audioRendererInfo，audioRendererInfo的usage参数必须是[STREAM_USAGE_MUSIC](../apis-audio-kit/arkts-apis-audio-e.md#streamusage)、[STREAM_USAGE_MOVIE](../apis-audio-kit/arkts-apis-audio-e.md#streamusage)、[STREAM_USAGE_AUDIOBOOK](../apis-audio-kit/arkts-apis-audio-e.md#streamusage)其中之一。
+
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| loudnessGain | double | 是   |设置播放器的响度值，单位为dB，响度范围为[-90.0, 24.0]。默认值为0.0dB。|
+
+**返回值：**
+
+| 类型           | 说明                                       |
+| -------------- | ------------------------------------------ |
+| Promise\<void> | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by promise. e.g. The function is called in an incorrect state, or the stream usage of audioRendererInfo is not one of [STREAM_USAGE_MUSIC](../apis-audio-kit/arkts-apis-audio-e.md#streamusage), [STREAM_USAGE_MOVIE](../apis-audio-kit/arkts-apis-audio-e.md#streamusage) or [STREAM_USAGE_AUDIOBOOK](../apis-audio-kit/arkts-apis-audio-e.md#streamusage).|
+| 5400105  | Service died. |
+| 5400108  | Parameter check failed. Returned by promise. |
+
+**示例：**
+
+```ts
 let avPlayer = await media.createAVPlayer();
-avPlayer.off('mediaKeySystemInfoUpdate');
+
+let loudnessGain: double = 1.0;
+avPlayer.audioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MOVIE,
+  rendererFlags: 0
+}
+avPlayer.setLoudnessGain(loudnessGain);
 ```
 
 ## setVolume<sup>9+</sup>
@@ -1750,9 +1881,11 @@ setVolume(volume: number): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-let volume: number = 1.0;
-avPlayer.setVolume(volume);
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  let volume: number = 1.0;
+  avPlayer.setVolume(volume);
+}
 ```
 
 ## on('volumeChange')<sup>9+</sup>
@@ -1775,10 +1908,12 @@ on(type: 'volumeChange', callback: Callback\<number>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('volumeChange', (vol: number) => {
-  console.info('volumeChange called,and new volume is :' + vol);
-});
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('volumeChange', (vol: number) => {
+    console.info('volumeChange called,and new volume is :' + vol);
+  });
+}
 ```
 
 ## off('volumeChange')<sup>9+</sup>
@@ -1801,8 +1936,10 @@ off(type: 'volumeChange', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('volumeChange');
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('volumeChange');
+}
 ```
 
 ## on('endOfStream')<sup>9+</sup>
@@ -1825,10 +1962,12 @@ on(type: 'endOfStream', callback: Callback\<void>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('endOfStream', () => {
-  console.info('endOfStream called');
-});
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('endOfStream', () => {
+    console.info('endOfStream called');
+  });
+}
 ```
 
 ## off('endOfStream')<sup>9+</sup>
@@ -1851,8 +1990,10 @@ off(type: 'endOfStream', callback?: Callback\<void>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('endOfStream');
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('endOfStream');
+}
 ```
 
 ## on('timeUpdate')<sup>9+</sup>
@@ -1877,10 +2018,12 @@ on(type: 'timeUpdate', callback: Callback\<number>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('timeUpdate', (time:number) => {
-  console.info('timeUpdate called,and new time is :' + time);
-});
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('timeUpdate', (time:number) => {
+    console.info('timeUpdate called,and new time is :' + time);
+  });
+}
 ```
 
 ## off('timeUpdate')<sup>9+</sup>
@@ -1903,8 +2046,10 @@ off(type: 'timeUpdate', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('timeUpdate');
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('timeUpdate');
+}
 ```
 
 ## on('durationUpdate')<sup>9+</sup>
@@ -1929,10 +2074,12 @@ on(type: 'durationUpdate', callback: Callback\<number>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('durationUpdate', (duration: number) => {
-  console.info('durationUpdate called,new duration is :' + duration);
-});
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('durationUpdate', (duration: number) => {
+    console.info('durationUpdate called,new duration is :' + duration);
+  });
+}
 ```
 
 ## off('durationUpdate')<sup>9+</sup>
@@ -1955,8 +2102,10 @@ off(type: 'durationUpdate', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('durationUpdate');
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('durationUpdate');
+}
 ```
 
 ## on('bufferingUpdate')<sup>9+</sup>
@@ -1979,10 +2128,12 @@ on(type: 'bufferingUpdate', callback: OnBufferingUpdateHandler): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
-  console.info('bufferingUpdate called,and infoType value is:' + infoType + ', value is :' + value);
-});
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
+    console.info('bufferingUpdate called,and infoType value is:' + infoType + ', value is :' + value);
+  });
+}
 ```
 
 ## off('bufferingUpdate')<sup>9+</sup>
@@ -2005,8 +2156,10 @@ off(type: 'bufferingUpdate', callback?: OnBufferingUpdateHandler): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('bufferingUpdate');
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('bufferingUpdate');
+}
 ```
 
 ## on('startRenderFrame')<sup>9+</sup>
@@ -2029,10 +2182,12 @@ on(type: 'startRenderFrame', callback: Callback\<void>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('startRenderFrame', () => {
-  console.info('startRenderFrame called');
-});
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('startRenderFrame', () => {
+    console.info('startRenderFrame called');
+  });
+}
 ```
 
 ## off('startRenderFrame')<sup>9+</sup>
@@ -2055,8 +2210,10 @@ off(type: 'startRenderFrame', callback?: Callback\<void>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('startRenderFrame');
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('startRenderFrame');
+}
 ```
 
 ## on('videoSizeChange')<sup>9+</sup>
@@ -2079,10 +2236,12 @@ on(type: 'videoSizeChange', callback: OnVideoSizeChangeHandler): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('videoSizeChange', (width: number, height: number) => {
-  console.info('videoSizeChange called,and width is:' + width + ', height is :' + height);
-});
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('videoSizeChange', (width: number, height: number) => {
+    console.info('videoSizeChange called,and width is:' + width + ', height is :' + height);
+  });
+}
 ```
 
 ## off('videoSizeChange')<sup>9+</sup>
@@ -2105,8 +2264,10 @@ off(type: 'videoSizeChange', callback?: OnVideoSizeChangeHandler): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('videoSizeChange');
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('videoSizeChange');
+}
 ```
 
 ## on('audioInterrupt')<sup>9+</sup>
@@ -2131,10 +2292,12 @@ on(type: 'audioInterrupt', callback: Callback\<audio.InterruptEvent>): void
 ```ts
 import { audio } from '@kit.AudioKit';
 
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
-  console.info('audioInterrupt called,and InterruptEvent info is:' + info);
-});
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
+    console.info('audioInterrupt called,and InterruptEvent info is:' + info);
+  });
+}
 ```
 
 ## off('audioInterrupt')<sup>9+</sup>
@@ -2157,8 +2320,10 @@ off(type: 'audioInterrupt', callback?: Callback<audio.InterruptEvent>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('audioInterrupt');
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('audioInterrupt');
+}
 ```
 
 ## on('audioOutputDeviceChangeWithInfo')<sup>11+</sup>
@@ -2191,10 +2356,12 @@ on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStrea
 ```ts
 import { audio } from '@kit.AudioKit';
 
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('audioOutputDeviceChangeWithInfo', (data: audio.AudioStreamDeviceChangeInfo) => {
-  console.info(`${JSON.stringify(data)}`);
-});
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('audioOutputDeviceChangeWithInfo', (data: audio.AudioStreamDeviceChangeInfo) => {
+    console.info(`${JSON.stringify(data)}`);
+  });
+}
 ```
 
 ## off('audioOutputDeviceChangeWithInfo')<sup>11+</sup>
@@ -2223,8 +2390,10 @@ off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback\<audio.AudioStr
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('audioOutputDeviceChangeWithInfo');
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('audioOutputDeviceChangeWithInfo');
+}
 ```
 
 ## addSubtitleFromFd<sup>12+</sup>
@@ -2265,11 +2434,8 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 import { common } from '@kit.AbilityKit'
 
 let avPlayer = await media.createAVPlayer();
-private context: Context | undefined;
-constructor(context: Context) {
-  this.context = context; // this.getUIContext().getHostContext();
-}
-let fileDescriptor = await this.context?.resourceManager.getRawFd('xxx.srt');
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt');
 
 avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length);
 ```
@@ -2307,9 +2473,11 @@ addSubtitleFromUrl(url: string): Promise\<void>
 
 <!--code_no_check-->
 ```ts
-let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt';
-let avPlayer: media.AVPlayer = await media.createAVPlayer();
-avPlayer.addSubtitleFromUrl(fdUrl);
+async function test(){
+  let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt';
+  let avPlayer: media.AVPlayer = await media.createAVPlayer();
+  avPlayer.addSubtitleFromUrl(fdUrl);
+}
 ```
 
 ## on('subtitleUpdate')<sup>12+</sup>
@@ -2327,22 +2495,24 @@ on(type: 'subtitleUpdate', callback: Callback\<SubtitleInfo>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type | string | 是   | 事件回调类型，支持的事件为：'subtitleUpdate'。 |
-| callback | function | 是   | 外挂字幕事件回调方法。 |
+| callback | Callback\<[SubtitleInfo](arkts-apis-media-i.md#subtitleinfo12)> | 是   | 外挂字幕事件回调方法。 |
 
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('subtitleUpdate', async (info: media.SubtitleInfo) => {
-  if (info) {
-    let text = (!info.text) ? '' : info.text
-    let startTime = (!info.startTime) ? 0 : info.startTime
-    let duration = (!info.duration) ? 0 : info.duration
-    console.info('subtitleUpdate info: text=' + text + ' startTime=' + startTime +' duration=' + duration);
-  } else {
-    console.info('subtitleUpdate info is null');
-  }
-});
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('subtitleUpdate', async (info: media.SubtitleInfo) => {
+    if (info) {
+      let text = (!info.text) ? '' : info.text
+      let startTime = (!info.startTime) ? 0 : info.startTime
+      let duration = (!info.duration) ? 0 : info.duration
+      console.info('subtitleUpdate info: text=' + text + ' startTime=' + startTime +' duration=' + duration);
+    } else {
+      console.info('subtitleUpdate info is null');
+    }
+  });
+}
 ```
 
 ## off('subtitleUpdate')<sup>12+</sup>
@@ -2365,8 +2535,10 @@ off(type: 'subtitleUpdate', callback?: Callback\<SubtitleInfo>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('subtitleUpdate');
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('subtitleUpdate');
+}
 ```
 
 ## on('trackChange')<sup>12+</sup>
@@ -2389,10 +2561,12 @@ on(type: 'trackChange', callback: OnTrackChangeHandler): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
-  console.info('trackChange info: index=' + index + ' isSelect=' + isSelect);
-});
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
+    console.info('trackChange info: index=' + index + ' isSelect=' + isSelect);
+  });
+}
 ```
 
 ## off('trackChange')<sup>12+</sup>
@@ -2415,8 +2589,10 @@ off(type: 'trackChange', callback?: OnTrackChangeHandler): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('trackChange');
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('trackChange');
+}
 ```
 
 ## on('trackInfoUpdate')<sup>12+</sup>
@@ -2439,18 +2615,20 @@ on(type: 'trackInfoUpdate', callback: Callback\<Array\<MediaDescription>>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('trackInfoUpdate', (info: Array<media.MediaDescription>) => {
-  if (info) {
-    for (let i = 0; i < info.length; i++) {
-      let propertyIndex: Object = info[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
-      let propertyType: Object = info[i][media.MediaDescriptionKey.MD_KEY_TRACK_TYPE];
-      console.info('track info: index=' + propertyIndex + ' tracktype=' + propertyType);
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('trackInfoUpdate', (info: Array<media.MediaDescription>) => {
+    if (info) {
+      for (let i = 0; i < info.length; i++) {
+        let propertyIndex: Object = info[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
+        let propertyType: Object = info[i][media.MediaDescriptionKey.MD_KEY_TRACK_TYPE];
+        console.info('track info: index=' + propertyIndex + ' tracktype=' + propertyType);
+      }
+    } else {
+      console.info('track info is null');
     }
-  } else {
-    console.info('track info is null');
-  }
-});
+  });
+}
 ```
 
 ## off('trackInfoUpdate')<sup>12+</sup>
@@ -2473,8 +2651,10 @@ off(type: 'trackInfoUpdate', callback?: Callback\<Array\<MediaDescription>>): vo
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('trackInfoUpdate');
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('trackInfoUpdate');
+}
 ```
 
 ## on('amplitudeUpdate')<sup>13+</sup>
@@ -2495,10 +2675,12 @@ on(type: 'amplitudeUpdate', callback: Callback\<Array\<number>>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('amplitudeUpdate', (value: Array<number>) => {
-  console.info(`amplitudeUpdate called,and amplitudeUpdate = ${value}`);
-});
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('amplitudeUpdate', (value: Array<number>) => {
+    console.info(`amplitudeUpdate called,and amplitudeUpdate = ${value}`);
+  });
+}
 ```
 
 ## off('amplitudeUpdate')<sup>13+</sup>
@@ -2519,8 +2701,10 @@ off(type: 'amplitudeUpdate', callback?: Callback\<Array\<number>>): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('amplitudeUpdate');
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('amplitudeUpdate');
+}
 ```
 
 ## on('seiMessageReceived')<sup>18+</sup>
@@ -2544,24 +2728,26 @@ on(type: 'seiMessageReceived', payloadTypes: Array\<number>, callback: OnSeiMess
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
-let avPlayer = await media.createAVPlayer();
+async function test(){
+  let avPlayer = await media.createAVPlayer();
 
-avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, playbackPosition?: number) =>
-{
-  console.info('seiMessageReceived playbackPosition ' + playbackPosition);
+  avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, playbackPosition?: number) =>
+  {
+    console.info('seiMessageReceived playbackPosition ' + playbackPosition);
 
-  for (let key = 0; key < messages.length; key++) {
-    console.info('seiMessageReceived messages payloadType ' + messages[key].payloadType + ' payload size ' + messages[key].payload.byteLength);
+    for (let key = 0; key < messages.length; key++) {
+      console.info('seiMessageReceived messages payloadType ' + messages[key].payloadType + ' payload size ' + messages[key].payload.byteLength);
 
-    let textDecoder = util.TextDecoder.create("utf-8",{ignoreBOM: true});
-    let ab = messages[key]?.payload?.slice(16, messages[key].payload.byteLength);
-    let result: Uint8Array = new Uint8Array(ab);
-    let retStr: string = textDecoder.decodeToString(result);
-    console.info('seiMessageReceived messages payload ' + retStr);
-  }
-});
+      let textDecoder = util.TextDecoder.create("utf-8",{ignoreBOM: true});
+      let ab = messages[key]?.payload?.slice(16, messages[key].payload.byteLength);
+      let result: Uint8Array = new Uint8Array(ab);
+      let retStr: string = textDecoder.decodeToString(result);
+      console.info('seiMessageReceived messages payload ' + retStr);
+    }
+  });
+}
 ```
 
 ## off('seiMessageReceived')<sup>18+</sup>
@@ -2585,8 +2771,10 @@ off(type: 'seiMessageReceived', payloadTypes?: Array\<number>, callback?: OnSeiM
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('seiMessageReceived');
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('seiMessageReceived');
+}
 ```
 
 ## setSuperResolution<sup>18+</sup>
@@ -2626,9 +2814,11 @@ setSuperResolution(enabled: boolean) : Promise\<void>
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized/prepared/playing/paused/completed/stopped状态后才能调用。
-avPlayer.setSuperResolution(true);
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized/prepared/playing/paused/completed/stopped状态后才能调用。
+  avPlayer.setSuperResolution(true);
+}
 ```
 
 ## setVideoWindowSize<sup>18+</sup>
@@ -2670,9 +2860,11 @@ setVideoWindowSize(width: number, height: number) : Promise\<void>
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-// 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized/prepared/playing/paused/completed/stopped状态后才能调用。
-avPlayer.setVideoWindowSize(1920, 1080);
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  // 此处仅为示意，实际开发中需要在stateChange事件成功触发至initialized/prepared/playing/paused/completed/stopped状态后才能调用。
+  avPlayer.setVideoWindowSize(1920, 1080);
+}
 ```
 
 ## on('superResolutionChanged')<sup>18+</sup>
@@ -2695,10 +2887,12 @@ on(type:'superResolutionChanged', callback: OnSuperResolutionChanged): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.on('superResolutionChanged', (enabled: boolean) => {
-  console.info('superResolutionChanged called, and enabled is:' + enabled);
-});
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.on('superResolutionChanged', (enabled: boolean) => {
+    console.info('superResolutionChanged called, and enabled is:' + enabled);
+  });
+}
 ```
 
 ## off('superResolutionChanged')<sup>18+</sup>
@@ -2721,6 +2915,8 @@ off(type:'superResolutionChanged', callback?: OnSuperResolutionChanged): void
 **示例：**
 
 ```ts
-let avPlayer = await media.createAVPlayer();
-avPlayer.off('superResolutionChanged');
+async function test(){
+  let avPlayer = await media.createAVPlayer();
+  avPlayer.off('superResolutionChanged');
+}
 ```

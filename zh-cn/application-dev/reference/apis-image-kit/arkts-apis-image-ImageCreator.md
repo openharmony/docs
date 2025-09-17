@@ -33,7 +33,7 @@ import { image } from '@kit.ImageKit';
 
 dequeueImage(callback: AsyncCallback\<Image>): void
 
-从空闲队列中获取buffer图片，用于绘制UI内容，并使用callback返回结果。
+从空闲队列中获取buffer图片，用于绘制UI内容。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
@@ -63,7 +63,7 @@ async function DequeueImage(creator : image.ImageCreator) {
 
 dequeueImage(): Promise\<Image>
 
-从空闲队列中获取buffer图片，用于绘制UI内容，并使用promise返回结果。
+从空闲队列中获取buffer图片，用于绘制UI内容。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
@@ -91,7 +91,7 @@ async function DequeueImage(creator : image.ImageCreator) {
 
 queueImage(image: Image, callback: AsyncCallback\<void>): void
 
-将绘制好的图片放入队列，并使用callback返回结果。
+将绘制好的图片放入队列。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
@@ -109,14 +109,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function QueueImage(creator : image.ImageCreator) {
   creator.dequeueImage().then((img: image.Image) => {
-    //绘制图片。
+    // 绘制图片。
     img.getComponent(4).then((component : image.Component) => {
       let bufferArr: Uint8Array = new Uint8Array(component.byteBuffer);
       for (let i = 0; i < bufferArr.length; i += 4) {
-        bufferArr[i] = 0; //B
-        bufferArr[i + 1] = 0; //G
-        bufferArr[i + 2] = 255; //R
-        bufferArr[i + 3] = 255; //A
+        bufferArr[i] = 0; // B
+        bufferArr[i + 1] = 0; // G
+        bufferArr[i + 2] = 255; // R
+        bufferArr[i + 3] = 255; // A
       }
     })
     creator.queueImage(img, (err: BusinessError) => {
@@ -134,7 +134,7 @@ async function QueueImage(creator : image.ImageCreator) {
 
 queueImage(image: Image): Promise\<void>
 
-将绘制好的图片放入队列，并使用promise返回结果。
+将绘制好的图片放入队列。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
@@ -157,14 +157,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function QueueImage(creator : image.ImageCreator) {
   creator.dequeueImage().then((img: image.Image) => {
-    //绘制图片。
+    // 绘制图片。
     img.getComponent(4).then((component: image.Component) => {
       let bufferArr: Uint8Array = new Uint8Array(component.byteBuffer);
       for (let i = 0; i < bufferArr.length; i += 4) {
-        bufferArr[i] = 0; //B
-        bufferArr[i + 1] = 0; //G
-        bufferArr[i + 2] = 255; //R
-        bufferArr[i + 3] = 255; //A
+        bufferArr[i] = 0; // B
+        bufferArr[i + 1] = 0; // G
+        bufferArr[i + 2] = 255; // R
+        bufferArr[i + 3] = 255; // A
       }
     })
     creator.queueImage(img).then(() => {
@@ -180,7 +180,7 @@ async function QueueImage(creator : image.ImageCreator) {
 
 on(type: 'imageRelease', callback: AsyncCallback\<void>): void
 
-监听imageRelease事件，并使用callback返回结果。
+监听imageRelease事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
@@ -227,7 +227,7 @@ off(type: 'imageRelease', callback?: AsyncCallback\<void>): void
 ```ts
 async function Off(creator : image.ImageCreator) {
   let callbackFunc = ()=>{
-      // do something.
+      // 实现回调函数逻辑。
   }
   creator.on('imageRelease', callbackFunc)
   creator.off('imageRelease', callbackFunc)
@@ -238,7 +238,7 @@ async function Off(creator : image.ImageCreator) {
 
 release(callback: AsyncCallback\<void>): void
 
-释放当前图像，并使用callback返回结果。
+释放当前图像。使用callback异步回调。
 
 ArkTS有内存回收机制，ImageCreator对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
@@ -270,7 +270,7 @@ async function Release(creator : image.ImageCreator) {
 
 release(): Promise\<void>
 
-释放当前图像，并使用promise返回结果。
+释放当前图像。使用Promise异步回调。
 
 ArkTS有内存回收机制，ImageCreator对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 

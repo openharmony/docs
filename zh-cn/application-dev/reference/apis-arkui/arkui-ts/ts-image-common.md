@@ -103,3 +103,43 @@ getImageAnalyzerSupportTypes(): ImageAnalyzerType[]
 | 类型     | 说明                      |
 | ------ | ----------------------- |
 | [ImageAnalyzerType[]](#imageanalyzertype12) | 对应组件支持的分析类型。 |
+
+## ContentTransitionEffect<sup>21+</sup>
+
+定义内容切换时的过渡效果。
+
+**原子化服务 API：** 从 API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### IDENTITY<sup>21+</sup>
+
+static get IDENTITY(): ContentTransitionEffect
+
+内容切换时无过渡动画效果。
+
+**原子化服务 API：** 从 API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                       | 说明                                            |
+| ------------------------------------------ | ----------------------------------------------- |
+| [ContentTransitionEffect](#contenttransitioneffect21)   | 定义内容切换时的过渡效果。  |
+
+### OPACITY<sup>21+</sup>
+
+static get OPACITY(): ContentTransitionEffect
+
+内容切换时采用淡入淡出过渡动画。
+
+**原子化服务 API：** 从 API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                       | 说明                                            |
+| ------------------------------------------ | ----------------------------------------------- |
+| [ContentTransitionEffect](#contenttransitioneffect21)   | 定义内容切换时的过渡效果。  |

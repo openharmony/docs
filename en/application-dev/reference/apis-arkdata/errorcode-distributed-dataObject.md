@@ -1,4 +1,10 @@
 # Distributed Data Object Error Codes
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @lvcong_oh-->
+<!--Designer: @hollokin; @yuchaozhng-->
+<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 > **NOTE**
 >

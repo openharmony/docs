@@ -8,7 +8,7 @@
 
 ## 概述
 
-在API version 21之前，UI组件的创建与属性设置等操作必须在应用的UI线程中执行。这导致开发者在对接NDK接口时，需将组件创建与属性设置等任务提交至UI线程执行，不仅增加了应用代码的复杂性，也限制了组件创建过程的灵活性及应用的性能。
+在API version 21之前，UI组件的创建与属性设置等操作必须在应用的UI线程中执行。这导致开发者在对接NDK接口时，需将组件创建与属性设置等任务提交至UI线程执行，这限制了组件创建过程的灵活性及应用的性能。
 
 随着应用程序功能的日益复杂，应用页面内需动态创建大量组件，这些组件的创建任务堆积在单一的UI线程中执行，会导致应用启动缓慢、动画丢帧及页面卡顿，直接影响用户体验。
 
@@ -18,13 +18,15 @@
 
 - **性能与体验显著优化：** 组件创建和属性设置等接口支持多线程并发调用，能够充分利用设备的多核CPU，降低页面创建阶段的总体耗时。UI线程专注于动画渲染与用户输入，确保界面流畅及交互及时。
 
--  **为后续功能扩展提供更好的灵活性：** 组件创建和属性设置等接口支持多线程调用，不仅能够解决应用当前的性能瓶颈问题，还为未来开发更复杂、高负载的UI页面提供扩展空间，帮助开发者在设计时拥有更多的灵活性，为持续提升用户体验创造条件。
+- **为后续功能扩展提供更好的灵活性：** 组件创建和属性设置等接口支持多线程调用，不仅能够解决应用当前的性能瓶颈问题，还为未来开发更复杂、高负载的UI页面提供扩展空间，帮助开发者在设计时拥有更多的灵活性，为持续提升用户体验创造条件。
 
-通过此次优化，开发者能够专注于自身业务逻辑的实现，无需关注线程切换等底层细节。在复杂业务场景中，开发者将获得高性能的UI页面创建体验。
+综上所述，在复杂业务场景中，多线程NDK接口将为开发者带来高性能的UI页面创建体验。
   
 ## 多线程NDK接口使用方式
 
-- 调用[OH_ArkUI_GetModuleInterface](../reference/apis-arkui/capi-native-interface-h.md#oh_arkui_getmoduleinterface)接口，入参传入[ARKUI_MULTI_THREAD_NATIVE_NODE](../reference/apis-arkui/capi-native-interface-h.md#arkui_nativeapivariantkind)以获取多线程NDK接口集合。例如：
+- 在使用多线程NDK接口前，建议开发者先阅读[NDK接口概述](ndk-build-ui-overview.md)，掌握使用NDK接口必备的基本概念和基础知识。
+
+- 为降低开发者适配多线程NDK接口的成本，多线程NDK接口的获取和使用方式与现有NDK接口保持一致。只需要调用[OH_ArkUI_GetModuleInterface](../reference/apis-arkui/capi-native-interface-h.md#oh_arkui_getmoduleinterface)接口，入参传入[ARKUI_MULTI_THREAD_NATIVE_NODE](../reference/apis-arkui/capi-native-interface-h.md#arkui_nativeapivariantkind)即可获取多线程NDK接口集合。例如：
 
   ```cpp
   ArkUI_NativeNodeAPI_1 *multiThreadNodeAPI = nullptr;
@@ -45,6 +47,14 @@
 - 当开发者需要在自己创建的非UI线程中创建UI组件时，使用[OH_ArkUI_PostUITask](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_postuitask)接口将组件挂载到主树的任务提交到UI线程执行。
   
 - 当开发者在多线程创建组件的过程中需要调用只支持UI线程的函数时，使用[OH_ArkUI_PostUITaskAndWait](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_postuitaskandwait)接口将函数提交到UI线程执行，调用此接口的非UI线程等待函数执行完成后继续创建组件。当UI线程负载很高时，调用此接口的非UI线程可能长时间阻塞，会影响多线程创建UI组件的性能收益，不建议频繁使用。
+
+## 多线程NDK接口适配说明
+
+1. 多线程NDK接口适用于页面跳转和列表滑动等高负载且性能敏感的场景，此类场景下UI线程需要执行耗时从几ms到几十ms的组件创建任务，开发者可以将组件创建任务拆分成多个子任务，分派给多个线程并发执行，以降低UI线程负载，提高页面启动与更新流畅度。
+
+2. 当开发者在自己创建的非UI线程中创建UI组件时，基于设备CPU核数等客观条件，建议并行的线程数量不要超过4个，以避免线程调度带来的性能开销。
+
+3. 开发者可以在非UI线程预创建常用组件树，为性能敏感场景提供更好的用户体验。
 
 ## 多线程NDK接口调用规范与线程安全
 
@@ -74,20 +84,6 @@
 - 在非UI线程调用集合中不支持多线程的接口将返回错误码[ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD](../reference/apis-arkui/capi-native-type-h.md#arkui_errorcode)。
 - 组件挂载到UI主树后，在非UI线程调用接口操作组件将返回错误码[ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD](../reference/apis-arkui/capi-native-type-h.md#arkui_errorcode)。
 - 在非UI线程调用接口操作非多线程NDK接口创建的组件将返回错误码[ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD](../reference/apis-arkui/capi-native-type-h.md#arkui_errorcode)。
-
-
-## 多线程NDK接口适配说明
-
-1. 将[OH_ArkUI_GetModuleInterface](../reference/apis-arkui/capi-native-interface-h.md#oh_arkui_getmoduleinterface)接口入参从[ARKUI_NATIVE_NODE](../reference/apis-arkui/capi-native-interface-h.md#arkui_nativeapivariantkind)修改为[ARKUI_MULTI_THREAD_NATIVE_NODE](../reference/apis-arkui/capi-native-interface-h.md#arkui_nativeapivariantkind)即可获得多线程能力。
-
-   ```cpp
-   ArkUI_NativeNodeAPI_1 *nodeAPI = nullptr;
-   OH_ArkUI_GetModuleInterface(ARKUI_MULTI_THREAD_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeAPI);
-   ```
-
-2. 建议将原先在UI线程中执行的组件创建任务拆分成更细粒度任务，分派给多个线程并发执行，以降低UI线程负载，提高页面启动与更新流畅度。
-
-3. 预先在后台线程中创建常用组件树，为性能敏感场景提供更好的用户体验。
 
 ## 多线程NDK接口集合规格
 
@@ -170,11 +166,17 @@
 | int32_t(\* [layoutNode](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#layoutnode) )([ArkUI_NodeHandle](../reference/apis-arkui/capi-arkui-nativemodule-arkui-node8h.md) node, int32_t positionX, int32_t positionY) | 对node节点进行布局并传递该组件相对父组件的期望位置。 | 不支持 | 只支持UI线程调用，在非UI线程调用接口返回错误码[ARKUI_ERROR_CODE_NODE_ON_INVALID_THREAD](../reference/apis-arkui/capi-native-type-h.md#arkui_errorcode)。 |
 | void(\* [markDirty](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#markdirty) )([ArkUI_NodeHandle](../reference/apis-arkui/capi-arkui-nativemodule-arkui-node8h.md) node, [ArkUI_NodeDirtyFlag](../reference/apis-arkui/capi-native-node-h.md#arkui_nodedirtyflag) dirtyFlag) | 强制标记node节点需要重新测算、布局或绘制。 | 不支持 | 只支持UI线程调用，在非UI线程调用接口调用不生效。 |
 
-## 场景示例
+## 多线程NDK接口使用示例
 
-如下示例展示了如何获取和使用多线程NDK接口，并使用[OH_ArkUI_PostAsyncUITask](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_postasyncuitask)、[OH_ArkUI_PostUITask](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_postuitask)和[OH_ArkUI_PostUITaskAndWait](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_postuitaskandwait)等接口将组件创建和属性设置等任务分发到多线程并行执行。
+此示例构造了一个多线程创建UI组件的场景，页面显示的Button组件在非UI线程被并行创建。
 
-为简化编程和工程管理，在开始编写并行化组件创建代码前，请先参考[接入ArkTS页面](ndk-access-the-arkts-page.md)指导文档，在native侧使用面向对象的方式对将ArkUI_NodeHandle封装为ArkUINode对象。
+点击CreateNodeTree按钮触发在多个非UI线程并行创建Button组件，之后在UI线程将创建完成的Button组件挂载到UI主树上，使组件显示在页面上。点击DisposeNodeTree按钮将已创建的组件从UI主树上卸载并销毁，清空页面。
+
+![build_on_multi_thread](figures/build_on_multi_thread.gif)
+
+示例主要展示了如何获取和使用多线程NDK接口，并使用[OH_ArkUI_PostAsyncUITask](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_postasyncuitask)、[OH_ArkUI_PostUITask](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_postuitask)和[OH_ArkUI_PostUITaskAndWait](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_postuitaskandwait)等接口将组件创建和属性设置等任务分发到多线程并行执行。
+
+为简化编程和工程管理，在开始编写并行化组件创建代码前，请先参考[接入ArkTS页面](ndk-access-the-arkts-page.md)指导文档，在native侧使用面向对象的方式将ArkUI_NodeHandle封装为ArkUINode对象。
 
 ```ts
 // index.ets
@@ -544,10 +546,9 @@ napi_value DisposeNodeTreeOnMultiThread(napi_env env, napi_callback_info info)
 }
 } // namespace NativeModule
 ```
-![build_on_multi_thread](figures/build_on_multi_thread.gif)
 
 ## 相关实例
 
-如下示例展示了如何通过多线程创建UI组件来优化页面跳转场景的响应时延和完成时延。
+如下实例展示了如何使用多线程NDK接口，将组件创建任务拆分成多个子任务，分派给多个线程并发执行来优化页面跳转场景的响应时延和完成时延。
 
 [使用NDK多线程创建UI组件](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/UI/NdkBuildOnMultiThread)

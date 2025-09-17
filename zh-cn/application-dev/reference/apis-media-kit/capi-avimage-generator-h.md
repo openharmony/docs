@@ -33,8 +33,8 @@
 | 名称 | 描述 |
 | -- | -- |
 | [OH_AVImageGenerator* OH_AVImageGenerator_Create(void)](#oh_avimagegenerator_create) | 创建OH_AVImageGenerator实例，用于生成指定时间点视频帧。 |
-| [OH_AVErrCode OH_AVImageGenerator_SetFDSource(OH_AVImageGenerator* generator,int32_t fd, int64_t offset, int64_t size)](#oh_avimagegenerator_setfdsource) | 通过媒体文件描述设置数据源。 |
-| [OH_AVErrCode OH_AVImageGenerator_FetchFrameByTime(OH_AVImageGenerator* generator,int64_t timeUs, OH_AVImageGenerator_QueryOptions options, OH_PixelmapNative** pixelMap)](#oh_avimagegenerator_fetchframebytime) | 从视频资源中获取指定时间点视频帧。<br>此函数必须在[OH_AVImageGenerator_SetFDSource](#oh_avimagegenerator_setfdsource)之后调用。 |
+| [OH_AVErrCode OH_AVImageGenerator_SetFDSource(OH_AVImageGenerator* generator, int32_t fd, int64_t offset, int64_t size)](#oh_avimagegenerator_setfdsource) | 通过媒体文件描述设置数据源。 |
+| [OH_AVErrCode OH_AVImageGenerator_FetchFrameByTime(OH_AVImageGenerator* generator, int64_t timeUs, OH_AVImageGenerator_QueryOptions options, OH_PixelmapNative** pixelMap)](#oh_avimagegenerator_fetchframebytime) | 从视频资源中获取指定时间点视频帧。<br>此函数必须在[OH_AVImageGenerator_SetFDSource](#oh_avimagegenerator_setfdsource)之后调用。 |
 | [OH_AVErrCode OH_AVImageGenerator_Release(OH_AVImageGenerator* generator)](#oh_avimagegenerator_release) | 释放用于OH_AVImageGenerator的资源以及销毁OH_AVImageGenerator实例。 |
 
 ## 函数说明
@@ -87,7 +87,7 @@ OH_AVErrCode OH_AVImageGenerator_SetFDSource(OH_AVImageGenerator* generator,int3
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：输入的generator为空指针或参数无效。<br>         AV_ERR_OPERATE_NOT_PERMIT：操作被禁止。<br>         AV_ERR_NO_MEMORY：内部内存分配失败。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：输入的generator为空指针或参数无效。<br>         AV_ERR_OPERATE_NOT_PERMIT：操作被禁止。<br>         AV_ERR_NO_MEMORY：内部内存分配失败。 |
 
 ### OH_AVImageGenerator_FetchFrameByTime()
 
@@ -119,7 +119,7 @@ OH_AVErrCode OH_AVImageGenerator_FetchFrameByTime(OH_AVImageGenerator* generator
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：输入的generator为空指针或参数无效。<br>         AV_ERR_OPERATE_NOT_PERMIT：操作被禁止。<br>         AV_ERR_UNSUPPORTED_FORMAT：格式不支持。<br>         AV_ERR_NO_MEMORY：内部内存分配失败。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：输入的generator为空指针或参数无效。<br>         AV_ERR_OPERATE_NOT_PERMIT：操作被禁止。<br>         AV_ERR_UNSUPPORTED_FORMAT：格式不支持。<br>         AV_ERR_NO_MEMORY：内部内存分配失败。 |
 
 ### OH_AVImageGenerator_Release()
 
@@ -146,6 +146,6 @@ OH_AVErrCode OH_AVImageGenerator_Release(OH_AVImageGenerator* generator)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：输入的generator为空指针或参数无效。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：输入的generator为空指针或参数无效。 |
 
 

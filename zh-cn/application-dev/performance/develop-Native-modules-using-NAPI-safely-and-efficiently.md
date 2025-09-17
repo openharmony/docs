@@ -11,7 +11,7 @@
 
 N-API 是 Node.js Addon Programming Interface 的缩写，是 Node.js 提供的一组 C++ API，封装了[V8 引擎](https://dev.nodejs.cn/learn/the-v8-javascript-engine/)的能力，用于编写 Node.js 的 Native 扩展模块。通过 N-API，开发者可以使用 C++ 编写高性能的 Node.js 模块，同时保持与 Node.js 的兼容性。 
 
-[Node.js 官网](https://nodejs.org/api/n-api.html)中已经给出 N-API 接口基础能力的介绍，同时，[方舟 ArkTS 运行时](https://gitee.com/openharmony/arkcompiler_ets_runtime)提供的 N-API 接口，封装了方舟引擎的能力，在功能上与 Node.js 社区保持一致，这里不再赘述。 
+[Node.js 官网](https://nodejs.org/api/n-api.html)中已经给出 N-API 接口基础能力的介绍，同时，[方舟 ArkTS 运行时](https://gitcode.com/openharmony/arkcompiler_ets_runtime)提供的 N-API 接口，封装了方舟引擎的能力，在功能上与 Node.js 社区保持一致，这里不再赘述。 
 
 本文将结合应用开发场景，分别从对象生命周期管理、跨语言调用开销、异步操作和线程安全四个角度出发，给出安全、高效的 N-API 开发指导。 
 
@@ -48,18 +48,16 @@ for (int i = 0; i < 1000000; i++) {
 for (int i = 0; i < 1000000; i++) {
     napi_handle_scope scope;
     napi_status status = napi_open_handle_scope(env, &scope);
-    if (status != napi_ok) {
-        break;
-    }
-    napi_value result;
-    status = napi_get_element(env, object, i, &result);
-    if (status != napi_ok) {
-        break;
-    }
-    // do something with element
-    status = napi_close_handle_scope(env, scope);
-    if (status != napi_ok) {
-        break;
+    if (status == napi_ok) {
+        napi_value result;
+        status = napi_get_element(env, object, i, &result);
+        if (status == napi_ok) {
+            // do something with element
+        }
+        status = napi_close_handle_scope(env, scope);
+        if (status != napi_ok) {
+            break;
+        }
     }
 }
 ```
@@ -105,6 +103,9 @@ napi_status SaveConstructor(napi_env env, napi_value constructor) {
 
 napi_status GetConstructor(napi_env env) {
     napi_value constructor;
+    if ( g_constructor == NULL ){
+      return napi_generic_failure;
+    }
     return napi_get_reference_value(env, g_constructor, &constructor);
 };
 ```
@@ -120,8 +121,7 @@ napi_wrap(env, jsobject, nativeObject, cb, nullptr, nullptr);
 napi_ref result;
 napi_wrap(env, jsobject, nativeObject, cb, nullptr, &result);
 // 当jsobject和result后续不再使用时，及时调用napi_remove_wrap释放result
-napi_value result1;
-napi_remove_wrap(env, jsobject, result1)
+napi_remove_wrap(env, jsobject, &result);
 ```
 
 ## 跨语言调用开销
@@ -252,7 +252,7 @@ struct TestAdd {
 
 ### 指定异步任务调度优先级
 
-Function Flow 编程模型（[Function Flow Runtime，FFRT](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-development-guideline.md)）是一种基于任务和数据驱动的并发编程模型，允许开发者通过任务及其依赖关系描述的方式进行应用开发。方舟 ArkTS 运行时提供了扩展 qos 信息的接口，支持传入 qos，并调用 FFRT，根据系统资源使用情况降低功耗、提升性能。 
+Function Flow 编程模型（[Function Flow Runtime，FFRT](https://gitcode.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-development-guideline.md)）是一种基于任务和数据驱动的并发编程模型，允许开发者通过任务及其依赖关系描述的方式进行应用开发。方舟 ArkTS 运行时提供了扩展 qos 信息的接口，支持传入 qos，并调用 FFRT，根据系统资源使用情况降低功耗、提升性能。 
 
 * 接口示例：napi_status napi_queue_async_work_with_qos(napi_env env, napi_async_work work, napi_qos_t qos)（） 
   * [in] env:调用API的环境；
@@ -329,6 +329,7 @@ struct Index {
 **native 侧主线程中创建线程安全函数**
 
 ```cpp
+napi_ref cbObj = nullptr;
 static void CallJs(napi_env env, napi_value js_cb, void *context, void *data) {
 
     std::thread::id this_id = std::this_thread::get_id();
@@ -388,14 +389,23 @@ static napi_value ThreadSafeTest(napi_env env, napi_callback_info info) {
 **其他线程中调用线程安全函数**
 
 ```cpp
+
 std::thread t([]() {
     std::thread::id this_id = std::this_thread::get_id();
     OH_LOG_INFO(LOG_APP, "thread0 %{public}d.\n", this_id);
     napi_status status;
     status = napi_acquire_threadsafe_function(tsfn);
-    OH_LOG_INFO(LOG_APP, "thread1 : %{public}d", status == napi_ok);
+    if (status != napi_ok) {
+      OH_LOG_ERROR(LOG_APP, "thread1 failed to acquire threadsafe function! Status: %{public}d", status);
+    } else {
+      OH_LOG_INFO(LOG_APP, "thread1 Successfully acquired threadsafe function");
+    }
     status = napi_call_threadsafe_function(tsfn, NULL, napi_tsfn_blocking);
-    OH_LOG_INFO(LOG_APP, "thread2 : %{public}d", status == napi_ok);
+    if (status != napi_ok) {
+      OH_LOG_ERROR(LOG_APP, "thread2 failed to call threadsafe function! Status: %{public}d", status);
+    } else {
+      OH_LOG_INFO(LOG_APP, "thread2 Successfully called threadsafe function");
+    }
 });
 t.detach();
 ```

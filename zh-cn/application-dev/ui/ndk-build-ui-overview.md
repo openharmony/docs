@@ -1,4 +1,4 @@
-# NDK接口概述
+# 基于NDK构建UI概述
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @xiang-shouxing-->

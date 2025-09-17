@@ -4,7 +4,7 @@
 <!--Owner: @yangxiaodong41-->
 <!--Designer: @guo867-->
 <!--Tester: @maxiaorong-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @fang-jinxu-->
 
 ## 概述
 
@@ -71,6 +71,7 @@
 | [void OH_Pasteboard_ProgressCancel(Pasteboard_GetDataParams* params)](#oh_pasteboard_progresscancel) | - | 定义取消函数，用于在获取粘贴数据时取消正在进行的粘贴动作。 |
 | [OH_UdmfData* OH_Pasteboard_GetDataWithProgress(OH_Pasteboard* pasteboard, Pasteboard_GetDataParams* params,int* status)](#oh_pasteboard_getdatawithprogress) | - | 获取剪贴板的数据以及粘贴进度，不支持对文件夹的拷贝。 |
 | [uint32_t OH_Pasteboard_GetChangeCount(OH_Pasteboard *pasteboard)](#oh_pasteboard_getchangecount) | - | 获取剪贴板内容的变化次数。 |
+| [void OH_Pasteboard_SyncDelayedDataAsync(OH_Pasteboard* pasteboard, void (*callback)(int errorCode))](#oh_pasteboard_syncdelayeddataasync) | - | 通知剪贴板从应用同步所有延迟数据，与延迟复制接口[OH_UdmfRecordProvider_SetData](../apis-arkdata/capi-udmf-h.md#oh_udmfrecordprovider_setdata)搭配使用。当应用使用延迟复制功能复制时，仅将应用支持的数据类型写入剪贴板。应用应在退出时，重新调用[OH_Pasteboard_SetData](#oh_pasteboard_setdata)接口主动提交所有复制数据或调用[OH_Pasteboard_SyncDelayedDataAsync](#oh_pasteboard_syncdelayeddataasync)接口通知剪贴板获取全量数据，等待数据同步完成再继续退出，否则可能导致其他应用粘贴获取不到数据。 |
 
 ## 枚举类型说明
 
@@ -463,7 +464,7 @@ OH_UdmfData* OH_Pasteboard_GetData(OH_Pasteboard* pasteboard, int* status)
 
 **起始版本：** 13
 
-**需要权限**：ohos.permission.READ_PASTEBOARD，应用访问剪贴板内容需[申请访问剪贴板权限](../../basic-services/pasteboard/get-pastedata-permission-guidelines.md#申请访问剪贴板权限)。使用[安全控件](../../security/AccessToken/pastebutton.md)访问剪贴板内容的应用，可以无需申请权限。
+**需要权限**：ohos.permission.READ_PASTEBOARD，应用访问剪贴板内容需[申请访问剪贴板权限](../../basic-services/pasteboard/get-pastedata-permission-guidelines.md)。使用[安全控件](../../security/AccessToken/pastebutton.md)访问剪贴板内容的应用，可以无需申请权限。
 
 
 **参数：**
@@ -730,7 +731,7 @@ OH_UdmfData* OH_Pasteboard_GetDataWithProgress(OH_Pasteboard* pasteboard, Pasteb
 
 **起始版本：** 15
 
-**需要权限**：ohos.permission.READ_PASTEBOARD，应用访问剪贴板内容需[申请访问剪贴板权限](../../basic-services/pasteboard/get-pastedata-permission-guidelines.md#申请访问剪贴板权限)。使用[安全控件](../../security/AccessToken/pastebutton.md)访问剪贴板内容的应用，可以无需申请权限。
+**需要权限**：ohos.permission.READ_PASTEBOARD，应用访问剪贴板内容需[申请访问剪贴板权限](../../basic-services/pasteboard/get-pastedata-permission-guidelines.md)。使用[安全控件](../../security/AccessToken/pastebutton.md)访问剪贴板内容的应用，可以无需申请权限。
 
 
 **参数：**
@@ -772,4 +773,25 @@ uint32_t OH_Pasteboard_GetChangeCount(OH_Pasteboard *pasteboard)
 | -- | -- |
 | uint32_t | 执行成功时返回剪贴板内容的变化次数，否则返回0。<br> 当剪贴板内容过期或调用OH_Pasteboard_ClearData等接口导致剪贴板内容为空时，内容变化次数不会因此改变。<br> 系统重启或剪贴板服务异常重启时，剪贴板内容变化次数重新从0开始计数。对同一内容连续多次复制会被视作多次更改，每次复制均会导致内容变化次数增加。 |
 
+### OH_Pasteboard_SyncDelayedDataAsync()
 
+```
+void OH_Pasteboard_SyncDelayedDataAsync(OH_Pasteboard* pasteboard, void (*callback)(int errorCode))
+```
+
+**描述：**
+
+通知剪贴板从应用同步所有延迟数据，与延迟复制接口[OH_UdmfRecordProvider_SetData](../apis-arkdata/capi-udmf-h.md#oh_udmfrecordprovider_setdata)搭配使用。当应用使用延迟复制功能复制时，仅将应用支持的数据类型写入剪贴板。应用应在退出时，重新调用[OH_Pasteboard_SetData](#oh_pasteboard_setdata)接口主动提交所有复制数据或调用[OH_Pasteboard_SyncDelayedDataAsync](#oh_pasteboard_syncdelayeddataasync)接口通知剪贴板获取全量数据，等待数据同步完成再继续退出，否则可能导致其他应用粘贴获取不到数据。
+
+**注意：**
+
+调用此接口会延长退出过程，建议应用直接设置数据到剪贴板，而不是调用延迟复制接口[OH_UdmfRecordProvider_SetData](../apis-arkdata/capi-udmf-h.md#oh_udmfrecordprovider_setdata)和同步延迟数据接口[OH_Pasteboard_SyncDelayedDataAsync](#oh_pasteboard_syncdelayeddataasync)。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Pasteboard](capi-pasteboard-oh-pasteboard.md) *pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)实例的指针。 |
+| void (*callback)(int errorCode) | 数据同步完成后调用的回调函数指针，errorCode表示同步任务的结果，错误码定义详见[PASTEBOARD_ErrCode](capi-oh-pasteboard-err-code-h.md#pasteboard_errcode)。 |

@@ -40,7 +40,7 @@ AVRecorder支持开发音视频录制，集成了音频捕获，音频编码，�
 > 文件的创建与存储，请参考[应用文件访问与管理](../../file-management/app-file-access.md)，默认存储在应用的沙箱路径之下，如需存储至图库，请使用[安全控件保存媒体资源](../medialibrary/photoAccessHelper-savebutton.md)对沙箱内文件进行存储。
 
 
-开发者通过引入[avrecorder.h](../../reference/apis-media-kit/capi-avrecorder-h.md)、[avrecorder_base.h](../../reference/apis-media-kit/capi-avrecorder-base-h.md)和[native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md)头文件，使用视频录制相关API。
+开发者通过引入[avrecorder.h](../../reference/apis-media-kit/capi-avrecorder-h.md)、[avrecorder_base.h](../../reference/apis-media-kit/capi-avrecorder-base-h.md)和[native_averrors.h](../../reference/apis-avcodec-kit/capi-native-averrors-h.md)头文件，使用视频录制相关API。
 
 AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis-media-kit/capi-avrecorder.md)。
 
@@ -49,7 +49,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
 target_link_libraries(entry PUBLIC libavrecorder.so)
 ```
 
-使用[OH_AVFormat](../../reference/apis-avcodec-kit/_core.md#oh_avformat)相关接口时，需引入如下头文件。
+使用[OH_AVFormat](../../reference/apis-avcodec-kit/capi-native-avformat-h.md)相关接口时，需引入如下头文件。
 ```
 #include <multimedia/player_framework/native_avformat.h>
 ```
@@ -270,7 +270,9 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
    OHNativeWindow *window = nullptr;
    int resultCode = OH_AVRecorder_GetInputSurface(g_avRecorder, &window);
    uint64_t surfaceId = 0;
-   OH_NativeWindow_GetSurfaceId(window, &surfaceId);
+   if (resultCode == AV_ERR_OK && window != nullptr) {
+      OH_NativeWindow_GetSurfaceId(window, &surfaceId);
+   }
    ```
 
 5. 初始化视频数据输入源。该步骤需要在输入源模块完成，以相机为例，需要创建录像输出流，包括创建Camera对象、获取相机列表、创建相机输入流等，相机详细步骤请参考[相机-录像方案](../camera/native-camera-recording.md)。

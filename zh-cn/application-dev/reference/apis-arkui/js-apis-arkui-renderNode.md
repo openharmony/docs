@@ -13,7 +13,7 @@
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 
 >
-> 不建议对BuilderNode中的RenderNode进行修改操作。
+> 不建议对[BuilderNode](./js-apis-arkui-builderNode.md)中的RenderNode进行修改操作。
 
 ## 导入模块
 
@@ -42,6 +42,7 @@ const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
 renderNode.backgroundColor = 0xffff0000;
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -99,6 +100,7 @@ child.frame = { x: 10, y: 10, width: 50, height: 50 };
 child.backgroundColor = 0xff00ff00;
 renderNode.appendChild(child);
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -107,6 +109,7 @@ class MyNodeController extends NodeController {
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
+      // 在RenderNode最后一个子节点后添加新的子节点
       rootRenderNode.appendChild(renderNode);
     }
 
@@ -163,8 +166,10 @@ const child = new RenderNode();
 child.frame = { x: 70, y: 70, width: 50, height: 50 };
 child.backgroundColor = 0xffffff00;
 const sibling = renderNode.getChild(1);
+// 将child节点插入至sibling节点之后
 renderNode.insertChildAfter(child, sibling);
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -223,9 +228,11 @@ for (let i = 0; i < 5; i++) {
   renderNode.appendChild(node);
 }
 
+// 删除renderNode下序列号为1的子节点
 const node = renderNode.getChild(1);
 renderNode.removeChild(node);
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -278,6 +285,7 @@ for (let i = 0; i < 10; i++) {
   renderNode.appendChild(childNode);
 }
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -306,7 +314,7 @@ struct Index {
         .height(300)
       Button("clearChildren")
         .onClick(() => {
-          renderNode.clearChildren();
+          renderNode.clearChildren(); // 清除renderNode的所有子节点
         })
     }.width("100%")
   }
@@ -317,7 +325,7 @@ struct Index {
 
 getChild(index: number): RenderNode | null
 
-获取当前节点指定位置的子节点。
+获取当前RenderNode指定位置的子节点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -350,6 +358,7 @@ for (let i = 0; i < 10; i++) {
   renderNode.appendChild(childNode);
 }
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -381,8 +390,10 @@ struct Index {
           for (let i = 0; i < 11; i++) {
             let childNode: RenderNode | null = renderNode.getChild(i);
             if (childNode == null) {
+              // renderNode不存在序列号为10的子节点，此时返回null
               console.error(`the ${i} of renderNode's childNode is null`);
             } else {
+              // 正常获取子节点并打印节点属性
               console.info(`the ${i} of renderNode's childNode has a size of {${childNode.size.width},${childNode.size.height}}`);
             }
           }
@@ -424,6 +435,7 @@ for (let i = 0; i < 5; i++) {
   renderNode.appendChild(node);
 }
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -451,6 +463,7 @@ struct Index {
         .height(350)
       Button('getFirstChild')
         .onClick(() => {
+          // 获取renderNode的首个子节点
           const firstChild = renderNode.getFirstChild();
           if (firstChild === null) {
             console.error('the fist child is null');
@@ -493,6 +506,7 @@ for (let i = 0; i < 5; i++) {
   renderNode.appendChild(node);
 }
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -521,6 +535,7 @@ struct Index {
       Button('getNextSibling')
         .onClick(() => {
           const child = renderNode.getChild(1);
+          // 获取renderNode序列号为1的子节点后，再获取它的下一个同级节点
           const nextSibling = child!.getNextSibling()
           if (nextSibling === null || child === null) {
             console.info('the child or nextChild is null');
@@ -564,6 +579,7 @@ for (let i = 0; i < 5; i++) {
   renderNode.appendChild(node);
 }
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -592,6 +608,7 @@ struct Index {
       Button('getPreviousSibling')
         .onClick(() => {
           const child = renderNode.getChild(1);
+          // 获取renderNode序列号为1的子节点后，再获取它的上一个同级节点
           const previousSibling = child!.getPreviousSibling()
           if (child === null || previousSibling === null) {
             console.error('the child or previousChild is null');
@@ -641,9 +658,12 @@ import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
+// 设置renderNode的背景颜色
 renderNode.backgroundColor = 0XFF00FF00;
+// 获取renderNode的背景颜色
 const backgroundColor = renderNode.backgroundColor;
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -708,7 +728,9 @@ import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
 renderNode.backgroundColor = 0xffff0000;
+// 设置renderNode是否需要剪裁
 renderNode.clipToFrame = true;
+// 获取renderNode是否需要剪裁
 const clipToFrame = renderNode.clipToFrame;
 
 const childNode = new RenderNode();
@@ -716,6 +738,7 @@ childNode.frame = { x: 10, y: 10, width: 150, height: 50 };
 childNode.backgroundColor = 0xffffff00;
 renderNode.appendChild(childNode);
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -781,9 +804,12 @@ import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
 renderNode.backgroundColor = 0xffff0000;
+// 设置renderNode的不透明度
 renderNode.opacity = 0.5;
+// 获取renderNode的不透明度
 const opacity = renderNode.opacity;
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -848,9 +874,12 @@ import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
+// 设置renderNode的大小
 renderNode.size = { width: 100, height: 100 };
+// 获取renderNode的大小
 const size = renderNode.size;
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -916,9 +945,12 @@ import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
 renderNode.size = { width: 100, height: 100 };
+// 设置renderNode的位置
 renderNode.position = { x: 10, y: 10 };
+// 获取renderNode的位置
 const position = renderNode.position;
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -983,9 +1015,12 @@ import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
+// 设置renderNode的大小和位置
 renderNode.frame = { x: 10, y: 10, width: 100, height: 100 };
+// 获取renderNode的大小和位置
 const frame = renderNode.frame;
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -1051,11 +1086,14 @@ import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
 renderNode.frame = { x: 10, y: 10, width: 100, height: 100 };
+// 设置renderNode的轴心
 renderNode.pivot = { x: 0.5, y: 0.6 };
+// 获取renderNode的轴心
 const pivot = renderNode.pivot;
 
 renderNode.rotation = { x: 15, y: 0, z: 0 };
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -1121,9 +1159,12 @@ import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
 renderNode.frame = { x: 10, y: 10, width: 100, height: 100 };
+// 设置renderNode的比例
 renderNode.scale = { x: 0.5, y: 1 };
+// 获取renderNode的轴心
 const scale = renderNode.scale;
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -1189,9 +1230,12 @@ import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
 renderNode.frame = { x: 10, y: 10, width: 100, height: 100 };
+// 设置renderNode的平移量
 renderNode.translation = { x: 100, y: 0 };
+// 获取renderNode的平移量
 const translation = renderNode.translation;
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -1257,9 +1301,12 @@ import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
 renderNode.frame = { x: 10, y: 10, width: 100, height: 100 };
+// 设置renderNode的旋转角度
 renderNode.rotation = { x: 45, y: 0, z: 0 };
+// 获取renderNode的旋转角度
 const rotation = renderNode.rotation;
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -1333,14 +1380,17 @@ import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
 renderNode.frame = { x: 10, y: 10, width: 100, height: 100 };
+// 设置renderNode的变换矩阵
 renderNode.transform = [
   1, 0, 0, 0,
   0, 2, 0, 0,
   0, 0, 1, 0,
   0, 0, 0, 1
 ];
+// 获取renderNode的变换矩阵
 const transform = renderNode.transform;
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -1407,9 +1457,12 @@ const renderNode = new RenderNode();
 renderNode.backgroundColor = 0xffff0000;
 renderNode.frame = { x: 10, y: 10, width: 100, height: 100 };
 renderNode.shadowElevation = 10;
+// 设置renderNode的阴影颜色
 renderNode.shadowColor = 0XFF00FF00;
+// 获取renderNode的阴影颜色
 const shadowColor = renderNode.shadowColor;
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -1478,9 +1531,12 @@ renderNode.backgroundColor = 0xffff0000;
 renderNode.frame = { x: 10, y: 10, width: 100, height: 100 };
 renderNode.shadowElevation = 10;
 renderNode.shadowColor = 0XFF00FF00;
+// 设置renderNode的阴影偏移
 renderNode.shadowOffset = { x: 10, y: 10 };
+// 获取renderNode的阴影偏移
 const shadowOffset = renderNode.shadowOffset;
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -1544,6 +1600,7 @@ get label(): string
 ```ts
 import {  RenderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -1554,7 +1611,9 @@ class MyNodeController extends NodeController {
       const renderChildNode: RenderNode = new RenderNode();
       renderChildNode.frame = { x: 0, y: 0, width: 100, height: 100 };
       renderChildNode.backgroundColor = 0xffff0000;
+      // 设置renderNode的标签
       renderChildNode.label = 'customRenderChildNode';
+      // 获取renderNode的标签并打印日志
       console.info('label:', renderChildNode.label);
       renderNode.appendChild(renderChildNode);
     }
@@ -1619,9 +1678,12 @@ renderNode.frame = { x: 10, y: 10, width: 100, height: 100 };
 renderNode.shadowElevation = 10;
 renderNode.shadowColor = 0XFF00FF00;
 renderNode.shadowOffset = { x: 10, y: 10 };
+// 设置renderNode的阴影颜色Alpha值
 renderNode.shadowAlpha = 0.1;
+// 获取renderNode的阴影颜色Alpha值
 const shadowAlpha = renderNode.shadowAlpha;
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -1690,9 +1752,12 @@ renderNode.backgroundColor = 0xffff0000;
 renderNode.frame = { x: 0, y: 0, width: 100, height: 100 };
 renderNode.shadowOffset = { x: 10, y: 10 };
 renderNode.shadowAlpha = 0.7;
+// 设置renderNode的阴影光照高度
 renderNode.shadowElevation = 30;
+// 获取renderNode的阴影光照高度
 const shadowElevation = renderNode.shadowElevation;
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -1768,10 +1833,13 @@ renderNode.frame = {
 };
 renderNode.shadowOffset = { x: 10, y: 10 };
 renderNode.shadowAlpha = 0.7;
+// 设置renderNode的阴影模糊半径
 renderNode.shadowRadius = 30;
+// 获取renderNode的阴影模糊半径
 const shadowRadius = renderNode.shadowRadius;
 console.info(`FrameNode ${shadowRadius}`);
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -1831,6 +1899,7 @@ ArkTS侧代码：
 import bridge from "libentry.so"; // 该 so 由开发者通过 NAPI 编写并生成
 import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
 
+// 继承RenderNode，实现自定义绘制方法
 class MyRenderNode extends RenderNode {
   uiContext: UIContext;
 
@@ -1839,12 +1908,14 @@ class MyRenderNode extends RenderNode {
     this.uiContext = uiContext;
   }
 
+  // 绘制RenderNode时调用此函数
   draw(context: DrawContext) {
     // 需要将 context 中的宽度和高度从vp转换为px
     bridge.nativeOnDraw(0, context, this.uiContext.vp2px(context.size.height), this.uiContext.vp2px(context.size.width));
   }
 }
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -1998,6 +2069,7 @@ invalidate(): void
 import bridge from "libentry.so"; // 该 so 由开发者通过 NAPI 编写并生成
 import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
 
+// 继承RenderNode，实现自定义绘制方法
 class MyRenderNode extends RenderNode {
   uiContext: UIContext;
 
@@ -2012,6 +2084,7 @@ class MyRenderNode extends RenderNode {
   }
 }
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
   newNode: MyRenderNode | null = null;
@@ -2041,6 +2114,7 @@ struct Index {
           .width('100%')
         Button('Invalidate')
           .onClick(() => {
+            // 触发RenderNode的重新渲染
             this.myNodeController.newNode?.invalidate()
           })
       }
@@ -2092,15 +2166,18 @@ const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
 renderNode.backgroundColor = 0XFF00FF00;
 renderNode.borderWidth = { left: 8, top: 8, right: 8, bottom: 8 };
+// 设置renderNode的边框样式
 renderNode.borderStyle = {
   left: BorderStyle.Solid,
   top: BorderStyle.Dotted,
   right: BorderStyle.Dashed,
   bottom: BorderStyle.Solid
 }
+// 获取renderNode的边框样式
 const borderStyle = renderNode.borderStyle;
 
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -2167,10 +2244,13 @@ import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
 renderNode.backgroundColor = 0XFF00FF00;
+// 设置renderNode的边框宽度
 renderNode.borderWidth = { left: 8, top: 8, right: 8, bottom: 8 };
+// 获取renderNode的边框宽度
 const borderWidth = renderNode.borderWidth;
 
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -2238,10 +2318,13 @@ const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
 renderNode.backgroundColor = 0XFF00FF00;
 renderNode.borderWidth = { left: 8, top: 8, right: 8, bottom: 8 };
+// 设置renderNode的边框颜色
 renderNode.borderColor = { left: 0xFF0000FF, top: 0xFF0000FF, right: 0xFF0000FF, bottom: 0xFF0000FF };
+// 获取renderNode的边框颜色
 const borderColor = renderNode.borderColor;
 
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -2309,10 +2392,13 @@ import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
 renderNode.backgroundColor = 0XFF00FF00;
+// 设置renderNode的边框圆角
 renderNode.borderRadius = { topLeft: 32, topRight: 32, bottomLeft: 32, bottomRight: 32 };
+// 获取renderNode的边框圆角
 const borderRadius = renderNode.borderRadius;
 
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -2376,6 +2462,7 @@ get shapeMask(): ShapeMask
 ```ts
 import { RenderNode, FrameNode, NodeController, ShapeMask } from '@kit.ArkUI';
 
+// 创建遮罩并设置填充颜色、边框颜色、边框宽度
 const mask = new ShapeMask();
 mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
 mask.fillColor = 0X55FF0000;
@@ -2385,10 +2472,13 @@ mask.strokeWidth = 24;
 const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 0, width: 150, height: 150 };
 renderNode.backgroundColor = 0XFF00FF00;
+// 设置renderNode的遮罩
 renderNode.shapeMask = mask;
+// 获取renderNode的遮罩
 const shapeMask = renderNode.shapeMask;
 
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -2452,6 +2542,7 @@ get shapeClip(): ShapeClip
 ```ts
 import { RenderNode, FrameNode, NodeController, ShapeClip } from '@kit.ArkUI';
 
+// 创建图形裁剪形状并设置路径绘制指令
 const clip = new ShapeClip();
 clip.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
 
@@ -2463,9 +2554,12 @@ renderNode.frame = {
   height: 150
 };
 renderNode.backgroundColor = 0XFF00FF00;
+// 设置renderNode的裁剪形状
 renderNode.shapeClip = clip;
+// 获取renderNode的裁剪形状
 const shapeClip = renderNode.shapeClip;
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -2502,7 +2596,7 @@ struct Index {
         })
       Button("setRoundRectShape")
         .onClick(() => {
-          renderNode.shapeClip.setRoundRectShape({
+          shapeClip.setRoundRectShape({
             rect: {
               left: 0,
               top: 0,
@@ -2516,24 +2610,27 @@ struct Index {
               bottomRight: { x: 32, y: 32 }
             }
           });
+          renderNode.shapeClip = shapeClip;
         })
       Button("setCircleShape")
         .onClick(() => {
-          renderNode.shapeClip.setCircleShape({ centerY: 75, centerX: 75, radius: 75 });
-
+          shapeClip.setCircleShape({ centerY: 75, centerX: 75, radius: 75 });
+          renderNode.shapeClip = shapeClip;
         })
       Button("setOvalShape")
         .onClick(() => {
-          renderNode.shapeClip.setOvalShape({
+          shapeClip.setOvalShape({
             left: 0,
             right: this.getUIContext().vp2px(150),
             top: 0,
             bottom: this.getUIContext().vp2px(100)
           });
+          renderNode.shapeClip = shapeClip;
         })
       Button("setCommandPath")
         .onClick(() => {
-          renderNode.shapeClip.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
+          shapeClip.setCommandPath({ commands: "M100 0 L0 100 L50 200 L150 200 L200 100 Z" });
+          renderNode.shapeClip = shapeClip;
         })
     }
   }
@@ -2559,6 +2656,7 @@ const renderNode = new RenderNode();
 renderNode.frame = { x: 0, y: 100, width: 100, height: 100 };
 renderNode.backgroundColor = 0xffff0000;
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -2577,6 +2675,7 @@ class MyNodeController extends NodeController {
 
   disposeRenderNode() {
     const rootRenderNode = this.rootNode!.getRenderNode();
+    // 释放当前renderNode前，移除该renderNode的所有子节点
     if (rootRenderNode !== null) {
       rootRenderNode.removeChild(renderNode);
     }
@@ -2640,6 +2739,7 @@ get markNodeGroup(): boolean
 import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
 
+// 继承RenderNode，实现自定义绘制方法
 class MyRenderNode extends RenderNode {
   draw(context: DrawContext) {
     const canvas = context.canvas;
@@ -2659,11 +2759,13 @@ class MyRenderNode extends RenderNode {
 const renderNode = new MyRenderNode();
 renderNode.frame = { x: 100, y: 100, width: 200, height: 200 };
 renderNode.backgroundColor = 0xff0000ff;
+// 标记当前renderNode为优先绘制
 renderNode.markNodeGroup = true;
 renderNode.opacity = 0.5;
 
 const isNodeGroup = renderNode.markNodeGroup;
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -2729,6 +2831,7 @@ import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
 import { LengthMetricsUnit } from '@ohos.arkui.node';
 
+// 继承RenderNode，设置RenderNode各个属性使用的单位
 class BaseRenderNode extends RenderNode {
   constructor() {
     super();
@@ -2736,6 +2839,7 @@ class BaseRenderNode extends RenderNode {
   }
 }
 
+// 继承BaseRenderNode，实现自定义绘制方法
 class MyRenderNode extends BaseRenderNode {
   draw(context: DrawContext) {
     const canvas = context.canvas;
@@ -2752,6 +2856,7 @@ renderNode.frame = { x: 100, y: 100, width: 200, height: 200 };
 renderNode.backgroundColor = 0xff0000ff;
 renderNode.rotation = { x: 0, y: 0, z: 45 };
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -2803,6 +2908,7 @@ const renderNode = new RenderNode();
 renderNode.frame = { x: 100, y: 100, width: 100, height: 100 };
 renderNode.backgroundColor = 0xff2787d9;
 
+// 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
 
@@ -2829,6 +2935,7 @@ class MyNodeController extends NodeController {
 
   isDisposed() : string {
     if (renderNode !== null) {
+      // 检查当前renderNode是否已经与后端节点解除引用
       if (renderNode.isDisposed()) {
         return 'renderNode isDisposed is true';
       }

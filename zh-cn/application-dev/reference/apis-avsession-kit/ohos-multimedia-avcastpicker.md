@@ -79,14 +79,14 @@ struct Index {
 
   private onStateChange(state: AVCastPickerState) {
     if (state == AVCastPickerState.STATE_APPEARING) {
-      console.log('The picker starts showing.');
+      console.info('The picker starts showing.');
     } else if (state == AVCastPickerState.STATE_DISAPPEARING) {
-      console.log('The picker finishes presenting.');
+      console.info('The picker finishes presenting.');
     }
   }
 
   @Builder
-  customPickerBuilder(): void {
+  customPickerBuilder() {
     Image(this.pickerImage)
       .width('100%')
       .height('100%')

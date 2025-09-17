@@ -1,5 +1,12 @@
 # AVSource
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zhanghongran-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 AVSource模块提供用于构造媒体资源对象功能的函数。

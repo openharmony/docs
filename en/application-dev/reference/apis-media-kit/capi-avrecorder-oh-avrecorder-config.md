@@ -1,4 +1,10 @@
 # OH_AVRecorder_Config
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @shiwei75-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 

@@ -2,8 +2,9 @@
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
-<!--SE: @liweilu1-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 When a user needs to share files such as images and videos, use **Picker** to start Gallery for the user to select the files to share. No permission is required when Picker is used. Currently, a UIAbility is used to start Gallery with the window component. The procedure is as follows:
 

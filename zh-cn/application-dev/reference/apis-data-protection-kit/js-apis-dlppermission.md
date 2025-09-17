@@ -178,7 +178,7 @@ getDLPPermissionInfo(callback: AsyncCallback&lt;DLPPermissionInfo&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[DLPPermissionInfo](#dlppermissioninfo)&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;[DLPPermissionInfo](#dlppermissioninfo)&gt; | 是 | 回调函数。err为undefined时表示查询成功；否则为错误对象。 |
 
 **错误码：**
 
@@ -424,7 +424,7 @@ isInSandbox(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。返回true表示当前应用运行在沙箱中，返回false表示当前应用不是运行在沙箱中。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。err为undefined时表示查询成功；否则为错误对象。返回true表示当前应用运行在沙箱中，返回false表示当前应用不是运行在沙箱中。 |
 
 **错误码：**
 
@@ -504,7 +504,7 @@ getDLPSupportedFileTypes(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数。err为undefined时表示查询成功；否则为错误对象。 |
 
 **错误码：**
 
@@ -598,7 +598,7 @@ setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。Array不限长度，每个string不超过4095字节。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。err为undefine时表示设置成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。err为undefined时表示设置成功；否则为错误对象。 |
 
 **错误码：**
 
@@ -689,7 +689,7 @@ cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。Array不限长度，每个string不超过4095字节。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。err为undefine时表示设置成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。err为undefined时表示设置成功；否则为错误对象。 |
 
 **错误码：**
 
@@ -781,7 +781,7 @@ getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 指定应用包名。最小7字节，最大128字节。 |
-| callback | AsyncCallback&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | 是 | 回调函数。err为undefined时表示查询成功；否则为错误对象。 |
 
 **错误码：**
 
@@ -825,7 +825,7 @@ getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | 是 | 回调函数。err为undefined时表示查询成功；否则为错误对象。 |
 
 **错误码：**
 
@@ -909,7 +909,7 @@ getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt;&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt;&gt; | 是 | 回调函数。err为undefined时表示查询成功；否则为错误对象。 |
 
 **错误码：**
 
@@ -1268,10 +1268,10 @@ DLP文件授权类型的枚举。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| dlpFileAccess | [DLPFileAccess](#dlpfileaccess) | 是 | 否 | 表示DLP文件针对用户的授权类型，例如：只读。 |
-| flags | number | 是 | 否 | 表示DLP文件的详细操作权限，是不同[ActionFlagType](#actionflagtype)的组合。 |
+| dlpFileAccess | [DLPFileAccess](#dlpfileaccess) | 否 | 否 | 表示DLP文件针对用户的授权类型，例如：只读。 |
+| flags | number | 否 | 否 | 表示DLP文件的详细操作权限，是不同[ActionFlagType](#actionflagtype)的组合。 |
 
 ## AccessedDLPFileInfo
 
@@ -1279,10 +1279,10 @@ DLP文件授权类型的枚举。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| uri | string | 是 | 否 | 表示DLP文件的uri。不超过4095字节。 |
-| lastOpenTime | number | 是 | 否 | 表示DLP文件最近打开时间。 |
+| uri | string | 否 | 否 | 表示DLP文件的uri。不超过4095字节。 |
+| lastOpenTime | number | 否 | 否 | 表示DLP文件最近打开时间。 |
 
 ## DLPManagerResult<sup>11+</sup>
 
@@ -1292,10 +1292,10 @@ DLP文件授权类型的枚举。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| resultCode | number | 是 | 否 | 表示打开DLP权限管理应用并退出后返回的结果码。 |
-| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 否 | 表示打开DLP权限管理应用并退出后返回的数据。 |
+| resultCode | number | 否 | 否 | 表示打开DLP权限管理应用并退出后返回的结果码。 |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 否 | 否 | 表示打开DLP权限管理应用并退出后返回的数据。 |
 
 ## RetentionSandboxInfo
 
@@ -1303,11 +1303,11 @@ DLP文件授权类型的枚举。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| appIndex | number | 是 | 否 | 表示DLP沙箱应用索引。 |
-| bundleName | string | 是 | 否 | 表示应用包名。最小7字节，最大128字节。 |
-| docUris | Array&lt;string&gt; | 是 | 否 | 表示DLP文件的URI列表。Array不限长度，每个string不超过4095字节。 |
+| appIndex | number | 否 | 否 | 表示DLP沙箱应用索引。 |
+| bundleName | string | 否 | 否 | 表示应用包名。最小7字节，最大128字节。 |
+| docUris | Array&lt;string&gt; | 否 | 否 | 表示DLP文件的URI列表。Array不限长度，每个string不超过4095字节。 |
 
 ## EnterprisePolicy<sup>21+</sup>
 

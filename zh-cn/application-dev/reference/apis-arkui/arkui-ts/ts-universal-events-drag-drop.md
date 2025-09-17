@@ -194,7 +194,7 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void): T
 
 onPreDrag(callback: Callback\<PreDragStatus>): T
 
-绑定此事件的组件，当处于拖拽发起前的不同阶段时，触发回调。
+绑定此事件的组件，当处于手势拖拽发起前的不同阶段时，触发回调。此接口不支持在鼠标拖拽中触发。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -564,11 +564,27 @@ startDataLoading(options: DataSyncOptions): string
 | ------ | ---------------------------------- |
 | string | 拖拽数据的标识，用于区分每次拖拽。 |
 
+### executeDropAnimation<sup>18+</sup>
+
+executeDropAnimation(customDropAnimation: Callback\<void\>): void
+
+设置自定义落位动效的执行函数，仅在useCustomDropAnimation为true时有效。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名    | 类型  | 必填 | 说明      |
+| ------ | ------ | --- | --------- |
+| customDropAnimation | [Callback\<void\>](../../../reference/apis-basic-services-kit/js-apis-base.md#callback)  | 是 |在此回调函数中实现自定义落位动效。<br/> **说明：** <br/>1. 该接口仅在onDrop回调中使用有效。<br/> 2. 使用前需设置useCustomDropAnimation为true，否则该接口不生效。<br/> 3. 不要在动画callback中实现与动效无关的逻辑，避免影响执行效率。|
+
 ### getDisplayId<sup>20+</sup>
 
 getDisplayId(): number
 
-获取当前拖拽事件发生时所在的屏幕ID，不支持当eventType为NODE_ON_DRAG_END时获取。
+获取当前拖拽事件发生时所在的屏幕ID，不支持在onDragEnd阶段使用。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -704,7 +720,7 @@ getGlobalDisplayY(): number
 
 ## DragBehavior<sup>10+</sup>
 
-当设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED后，可设置DragBehavior为复制（COPY）或剪切（MOVE）。DragBehavior用来向开发者描述数据的处理方式是复制（COPY）还是剪切（MOVE），但无法最终决定对数据的实际处理方式。DragBehavior会通过onDragEnd带回给数据拖出方，发起拖拽的一方可通过DragBehavior来区分做出的是复制（COPY）还是剪切（MOVE）数据的不同行为。
+当设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED后，可设置DragBehavior为复制（COPY）或剪切（MOVE）。当DragBehavior为复制（COPY）时，拖拽对象会显示加号角标；为剪切（MOVE）时，拖拽对象不会显示加号角标。DragBehavior用来向开发者描述数据的处理方式是复制（COPY）还是剪切（MOVE），但无法最终决定对数据的实际处理方式。DragBehavior会通过onDragEnd带回给数据拖出方，发起拖拽的一方可通过DragBehavior来区分做出的是复制（COPY）还是剪切（MOVE）数据的不同行为。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -772,20 +788,6 @@ type DataLoadParams = DataLoadParams
 | ----- | ----------------- |
 | [DataLoadParams](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#dataloadparams20) | 落入操作时使用的数据加载参数。|
 
-## executeDropAnimation<sup>18+</sup>
-
-executeDropAnimation(customDropAnimation: Callback\<void\>): void
-
-设置自定义落位动效的执行函数，仅在useCustomDropAnimation为true时有效。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名    | 类型  | 必填 | 说明      |
-| ------ | ------ | --- | --------- |
-| customDropAnimation | Callback\<void\>  | 是 |在此回调函数中实现自定义落位动效。<br/> **说明：** <br/>1. 该接口仅在 onDrop 回调中使用有效。<br/> 2. 使用前需设置 useCustomDropAnimation 为 true，否则该接口不生效。<br/> 3. 不要在动画callback中实现与动效无关的逻辑，避免影响执行效率。|
-
 ## DataSyncOptions<sup>15+</sup>
 
 type DataSyncOptions = GetDataParams
@@ -826,6 +828,20 @@ type OnDragEventCallback = (event: DragEvent, extraParams?: string) => void
 | 名称     | 类型  | 只读 | 可选 | 说明           |
 | ------ | ------ | ---------------- | ------ | ------ |
 | disableDataPrefetch | boolean  | 否  | 否  | 设置拖拽是否提前获取数据。true表示不提前获取数据，false表示提前获取数据，默认值为false。<br/>**说明：**<br/> 当使用[startDataLoading](#startdataloading15)获取数据时需设置该参数为true，防止拖拽提前获取数据。 |
+
+## DragSpringLoadingConfiguration<sup>20+</sup>
+
+type DragSpringLoadingConfiguration = DragSpringLoadingConfiguration
+
+定义拖拽的悬停检测配置参数的接口。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| ----- | ----------------- |
+| [DragSpringLoadingConfiguration](../js-apis-arkui-dragController.md#dragspringloadingconfiguration20) | 定义拖拽的悬停检测配置参数的接口。|
 
 ## SpringLoadingContext<sup>20+</sup>
 

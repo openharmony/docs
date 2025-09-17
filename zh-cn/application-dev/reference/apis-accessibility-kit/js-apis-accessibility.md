@@ -147,7 +147,7 @@ type CaptionsFontFamily = 'default' | 'monospacedSerif' | 'serif' | 'monospacedS
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Hearing
 
-| 名称                  | 描述                |
+| 类型                  | 说明                |
 | ------------------- | ----------------- |
 | 'default'             | 表示默认字体。             |
 | 'monospacedSerif'         | 表示等宽 Serif 字体。      |
@@ -865,6 +865,9 @@ try {
 }
 ```
 
+<!--RP1-->
+<!--RP1End-->
+
 ## accessibility.getCaptionsManager<sup>(deprecated)</sup>
 
 getCaptionsManager(): CaptionsManager
@@ -927,6 +930,9 @@ accessibility.on('accessibilityStateChange', (data: boolean) => {
 });
 ```
 
+<!--RP2-->
+<!--RP2End-->
+
 ## accessibility.on('touchGuideStateChange')
 
 on(type: 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
@@ -969,7 +975,7 @@ on(type: 'screenReaderStateChange', callback: Callback&lt;boolean&gt;): void
 
 监听屏幕朗读功能启用状态变化事件，使用callback异步回调。
 
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -1272,10 +1278,11 @@ isOpenAccessibilitySync(): boolean
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **返回值：**
-
+<!--RP3-->
 | 类型        | 说明                                  |
 | ----------- | ------------------------------------- |
-| boolean | 表示当前系统内是否有辅助应用开启。true表示启用了一个或多个辅助应用，false表示未启用任何辅助应用。 |
+| boolean | 表示当前系统内是否有辅助应用开启。true表示启用了一个或多个辅助应用，false表示未启用任何辅助应用。|
+<!--RP3End-->
 
 **示例：**
 
@@ -1386,8 +1393,6 @@ isScreenReaderOpenSync(): boolean
 
 是否开启了屏幕朗读模式。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Vision
 
 **返回值：**
@@ -1427,7 +1432,7 @@ sendEvent(event: EventInfo): Promise&lt;void&gt;
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **示例：**
 
@@ -1507,7 +1512,7 @@ sendAccessibilityEvent(event: EventInfo): Promise&lt;void&gt;
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 

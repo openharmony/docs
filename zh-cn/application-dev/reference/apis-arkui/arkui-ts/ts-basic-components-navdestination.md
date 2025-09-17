@@ -26,7 +26,7 @@
 
 > **说明：**
 >
-> - 子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)和[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)）。
+> - 子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../ui/rendering-control/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/rendering-control/arkts-rendering-control-foreach.md)和[LazyForEach](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md)）。
 > - 子组件个数：多个。
 
 
@@ -479,7 +479,7 @@ NavDestination类型。
 | 名称   | 值 | 说明                                     |
 | ---- | --- | ---------------------------------------- |
 | STANDARD | 0 | 标准模式的NavDestination。                       |
-| DIALOG | 1 | 默认透明，进出路由栈不影响下层NavDestination的生命周期。<br />API version 13之前，默认无系统转场动画。从API version 13开始，支持系统转场动画。  |
+| DIALOG | 1 | 默认透明，进出路由栈不影响下层NavDestination的可见性（onShown、onHidden等生命周期），只会触发onActive、onInactive这两个生命周期。<br/>API version 13之前，默认无系统转场动画。从API version 13开始，支持系统转场动画。  |
 
 ## NavigationSystemTransitionType<sup>14+</sup>枚举说明
 
@@ -514,9 +514,9 @@ NavDestination类型。
 
 ### onShown<sup>10+</sup>
 
-onShown(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+onShown(callback: Callback\<VisibilityChangeReason>)
 
-当该NavDestination页面显示时触发此回调。
+当该NavDestination页面显示时触发此回调。从API version 21开始，支持通过VisibilityChangeReason说明onShown触发的原因。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -526,13 +526,13 @@ onShown(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| callback   |  &nbsp;()&nbsp;=&gt;&nbsp;void   | 是   | 当该NavDestination页面显示时触发此回调。|
+| callback   |  [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[VisibilityChangeReason](#visibilitychangereason21)><sup>21+</sup> | 是   | 当该NavDestination页面显示时触发此回调。<br/>在API version 21之前，当NavDestination页面显示时触发回调。<br/>从API version 21开始，回调会提供入参VisibilityChangeReason以说明onShown触发的原因。|
 
 ### onHidden<sup>10+</sup>
 
-onHidden(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
+onHidden(callback: Callback\<VisibilityChangeReason>)
 
-当该NavDestination页面隐藏时触发此回调。
+当该NavDestination页面隐藏时触发此回调。从API version 21开始，支持通过VisibilityChangeReason说明onHidden触发的原因。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -542,7 +542,7 @@ onHidden(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| callback   |  &nbsp;()&nbsp;=&gt;&nbsp;void   | 是   | 当该NavDestination页面隐藏时触发此回调。|
+| callback   | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[VisibilityChangeReason](#visibilitychangereason21)><sup>21+</sup> | 是   | 当该NavDestination页面隐藏时触发此回调。<br/>在API version 21之前，当NavDestination页面隐藏时触发回调。<br/>从API version 21开始，该回调会提供入参VisibilityChangeReason以说明onHidden触发的原因。|
 
 ### onWillAppear<sup>12+</sup>
 
@@ -754,12 +754,12 @@ getConfigInRouteMap(): RouteMapConfig | undefined
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**返回值**
+**返回值：**
 
 | 类型 | 说明 |
 | --- | --- |
-| [RouteMapConfig](#routemapconfig12) | 当前页面路由配置信息。 |
-| undefined | 当该页面不是通过路由表配置时返回undefined。 |
+| [RouteMapConfig](#routemapconfig12) \| undefined | 当前页面路由配置信息。<br/> 当该页面不是通过路由表配置时返回undefined。 |
+
 
 ## RouteMapConfig<sup>12+</sup>
 
@@ -804,6 +804,20 @@ NavDestination激活态或者非激活态变化的原因。
 | DIALOG | 3   | 通过自定义Dialog开启或关闭使NavDestination激活态发生变化。 |
 | OVERLAY | 4   | 通过OverlayManager开启或者关闭Overlay使NavDestination激活态发生变化。|
 | APP_STATE | 5   | 通过前后台切换使NavDestination激活态发生变化。 |
+
+### VisibilityChangeReason<sup>21+</sup>
+
+NavDestination可见性发生变化的原因。
+
+**原子化服务API：** 从API version 21始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 值 | 说明                                     |
+| ---- | -- | ---------------------------------------- |
+| TRANSITION | 0   | 通过页面跳转的方式使NavDestination可见性发生变化。                       |
+| CONTENT_COVER | 1   | 通过全模态的开启和关闭使NavDestination可见性发生变化。  |
+| APP_STATE | 2   | 通过前后台切换使NavDestination可见性发生变化。 |
 
 ## NavDestinationTransition<sup>15+</sup>
 

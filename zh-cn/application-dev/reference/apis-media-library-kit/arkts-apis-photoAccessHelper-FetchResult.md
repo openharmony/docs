@@ -1,4 +1,10 @@
 # Interface (FetchResult)
+<!--Kit: Media Library Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yixiaoff-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **说明：**
 >
@@ -540,6 +546,10 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  if (fetchResult === undefined) {
+    console.error('fetchResult is undefined');
+    return;
+  }
   let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getObjectByPosition(0);
   console.info('photoAsset displayName: ', photoAsset.displayName);
 }

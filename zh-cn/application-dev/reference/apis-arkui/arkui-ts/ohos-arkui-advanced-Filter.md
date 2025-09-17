@@ -3,7 +3,7 @@
 <!--Subsystem: ArkUI-->
 <!--Owner: @fengluochenai-->
 <!--Designer: @YanSanzo-->
-<!--Tester: @tinygreyy-->
+<!--Tester: @ybhou1993-->
 <!--Adviser: @HelloCrease-->
 
 
@@ -61,10 +61,10 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters?: FilterParam
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称 | 类型 | 必填 | 说明                                                              |
-| -------- | -------- | -------- |-----------------------------------------------------------------|
-| name | [ResourceStr](ts-types.md#resourcestr) | 是 | 筛选项维度名称。<br/>默认值：空字符串。<br/>**说明**：如果文本大于列宽时，文本被截断。              |
-| options | Array&lt;[ResourceStr](ts-types.md#resourcestr)&gt; | 是 | 筛选项维度可选项列表。<br/>默认值：空字符串。<br/>**说明**：文本超长显示省略号。 |
+| 名称 | 类型 | 只读 | 可选 | 说明                                                              |
+| -------- | -------- |----|----|-----------------------------------------------------------------|
+| name | [ResourceStr](ts-types.md#resourcestr) | 否  | 否  | 筛选项维度名称。<br/>默认值：空字符串。<br/>**说明**：如果文本大于列宽时，文本被截断。              |
+| options | Array&lt;[ResourceStr](ts-types.md#resourcestr)&gt; | 否  | 否  | 筛选项维度可选项列表。<br/>默认值：空字符串。<br/>**说明**：文本超长显示省略号。 |
 
 ## FilterType
 
@@ -87,11 +87,11 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters?: FilterParam
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称 | 类型 | 必填 | 说明                                                                       |
-| -------- | -------- | -------- |--------------------------------------------------------------------------|
-| name | [ResourceStr](ts-types.md#resourcestr) | 是 | 筛选项维度名称。<br/>默认值：空字符串。<br/>**说明**：如果文本大于列宽时，文本被截断。                       |
-| index | number | 是 | 该维度筛选项选中项目的索引值。<br/>取值范围：大于等于-1的整数。<br/>默认值：-1，没有选中项。若设置数值小于-1，按没有选中项处理。 |
-| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 该维度筛选项选中项目的值。<br/>默认值：空字符串。<br/>**说明**：如果文本大于列宽时，文本被截断。                  |
+| 名称 | 类型 | 只读 | 可选 | 说明                                                                       |
+| -------- | -------- |---|---|--------------------------------------------------------------------------|
+| name | [ResourceStr](ts-types.md#resourcestr) | 否 | 否 | 筛选项维度名称。<br/>默认值：空字符串。<br/>**说明**：如果文本大于列宽时，文本被截断。                       |
+| index | number | 否 | 否 | 该维度筛选项选中项目的索引值。<br/>取值范围：大于等于-1的整数。<br/>默认值：-1，没有选中项。若设置数值小于-1，按没有选中项处理。 |
+| value | [ResourceStr](ts-types.md#resourcestr) | 否 | 否 | 该维度筛选项选中项目的值。<br/>默认值：空字符串。<br/>**说明**：如果文本大于列宽时，文本被截断。                  |
 
 ## 事件
 不支持[通用事件](ts-component-general-events.md)。

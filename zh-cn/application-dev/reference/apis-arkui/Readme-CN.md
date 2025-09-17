@@ -79,6 +79,7 @@
       - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
       - [Content](js-apis-arkui-Content.md)
       - [NodeContent](js-apis-arkui-NodeContent.md)
+      - [Resource](js-apis-arkui-resource.md)
   - 窗口管理<!--window-manager-api-->
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
     - [@ohos.window.floatingBall (闪控球窗口)](js-apis-floatingBall.md)
@@ -92,10 +93,8 @@
       - [Types](arkts-apis-window-t.md)
     <!--Del-->
     - [@ohos.animation.windowAnimationManager (窗口动画管理)(系统接口)](js-apis-windowAnimationManager-sys.md)
-    - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](js-apis-application-windowExtensionAbility-sys.md)
     - [@ohos.window (窗口)(系统接口)](js-apis-window-sys.md)
-    - [WindowExtensionContext (系统接口)](js-apis-inner-application-windowExtensionContext-sys.md)
-    <!--DelEnd-->
+    <!--DelEnd-->  
   - 屏幕管理<!--display-manager-api-->
     - [@ohos.display (屏幕属性)](js-apis-display.md)
     - [@ohos.screenshot (屏幕截图)](js-apis-screenshot.md)
@@ -112,6 +111,10 @@
     - [@system.prompt (弹窗)](js-apis-system-prompt.md)
     - [@system.router (页面路由)](js-apis-system-router.md)
     - [XComponentNode](js-apis-arkui-xcomponentNode.md)
+    <!--Del-->
+    - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](js-apis-application-windowExtensionAbility-sys.md)
+    - [WindowExtensionContext (系统接口)](js-apis-inner-application-windowExtensionContext-sys.md)
+    <!--DelEnd-->
 - ArkTS组件<!--arkui-declarative-comp-->
   - [通用事件](arkui-ts/ts-component-general-events.md)
     - 基础输入事件<!--basic-raw-input-event-->
@@ -217,6 +220,7 @@
     - 绑定手势<!--gesture-binding-->
       - [绑定手势方法](arkui-ts/ts-gesture-settings.md)
       - [设置组件绑定的手势](arkui-ts/ts-uigestureevent.md)
+      - [手势处理器](arkui-ts/ts-gesturehandler.md)
     - 基础手势<!--basic-gestures-->
       - [TapGesture](arkui-ts/ts-basic-gestures-tapgesture.md)
       - [LongPressGesture](arkui-ts/ts-basic-gestures-longpressgesture.md)
@@ -321,6 +325,7 @@
     - [ImageAnimator](arkui-ts/ts-basic-components-imageanimator.md)
     - [Video](arkui-ts/ts-media-components-video.md)
     - [图像类型定义](arkui-ts/ts-image-common.md)
+    - [SVG新增解析能力](arkui-ts/ts-image-svg2-capabilities.md)
     <!--Del-->
     - [Image (系统接口)](arkui-ts/ts-basic-components-image-sys.md)
     - [MediaCachedImage (系统接口)](arkui-ts/ts-basic-components-mediacachedimage-sys.md)
@@ -435,6 +440,8 @@
       - [定义可动画属性 (@AnimatableExtend)](arkui-ts/ts-animatable-extend.md)
       - [@Entry：页面入口](arkui-ts/ts-universal-entry.md)
       - [wrapBuilder: 封装全局@Builder](arkui-ts/ts-universal-wrapBuilder.md)
+  - 组件预览<!--component-preview-->
+    - [组件预览](arkui-ts/ts-universal-component-previewer.md)
   - 系统预置UI组件库<!--system-preset-ui-component-library-->
     - [Chip](arkui-ts/ohos-arkui-advanced-Chip.md)
     - [ChipGroup](arkui-ts/ohos-arkui-advanced-ChipGroup.md)
@@ -477,8 +484,6 @@
     <!--Del-->
     - [应用级变量的状态管理（系统接口）](arkui-ts/ts-state-management-sys.md)
     <!--DelEnd-->
-  - 组件预览<!--component-preview-->
-    - [组件预览](arkui-ts/ts-universal-component-previewer.md)
   - 公共定义<!--common-definitions-->
     - [基础类型定义](arkui-ts/ts-types.md)
     - [像素单位](arkui-ts/ts-pixel-units.md)

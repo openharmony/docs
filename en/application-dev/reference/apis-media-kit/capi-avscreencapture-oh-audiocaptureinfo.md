@@ -1,4 +1,10 @@
 # OH_AudioCaptureInfo
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zzs_911-->
+<!--Designer: @stupig001-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
@@ -18,6 +24,6 @@ When both **audioSampleRate** and **audioChannels** are **0**, the audio-related
 
 | Name| Description|
 | -- | -- |
-| int32_t audioSampleRate | Audio sampling rate. For details about the supported rates, see [AudioSamplingRate](../apis-audio-kit/arkts-apis-audio-e.md#audiosamplingrate8) of Audio Kit.|
-| int32_t audioChannels | Number of audio channels.|
+| int32_t audioSampleRate | Audio sample rate. For details about the supported rates, see [AudioSamplingRate](../apis-audio-kit/arkts-apis-audio-e.md#audiosamplingrate8) of Audio Kit.|
+| int32_t audioChannels | Audio channel count.|
 | [OH_AudioCaptureSourceType](capi-native-avscreen-capture-base-h.md#oh_audiocapturesourcetype) audioSource | Audio source.|

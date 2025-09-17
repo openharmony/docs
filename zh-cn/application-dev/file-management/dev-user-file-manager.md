@@ -196,7 +196,7 @@ notify接口不仅可以用来监听目录的变化，还能监听设备上线�
    ```ts
    const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
      if (NotifyMessageDir != undefined) {
-       console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+       console.info('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
      } else {
       console.error("NotifyMessageDir is undefined");
      }
@@ -214,7 +214,7 @@ notify接口不仅可以用来监听目录的变化，还能监听设备上线�
    //提供监听回调方法
    const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
      if (NotifyMessageDir != undefined) {
-       console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
+       console.info('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uris[0]);
      } else {
       console.error("NotifyMessageDir is undefined");
      }

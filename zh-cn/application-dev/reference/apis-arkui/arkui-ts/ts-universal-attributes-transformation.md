@@ -2,7 +2,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--Designer: @yangfan229-->
+<!--Designer: @CCFFWW-->
 <!--Tester: @lxl007-->
 <!--Adviser: @HelloCrease-->
 
@@ -52,7 +52,7 @@ rotate(options: Optional\<RotateOptions>): T
 
 | 参数名  | 类型                                               | 必填 | 说明                                                         |
 | ------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | Optional\<[RotateOptions](#rotateoptions对象说明)> | 是   | 可使组件在以组件左上角为坐标原点的坐标系中进行旋转（坐标系如下图所示）。其中，(x,&nbsp;y,&nbsp;z）指定一个矢量，作为旋转轴。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值: 在x、y、z都不指定时，x、y、z的默认值分别为0、0、1。指定了x、y、z任何一个值时，x、y、z中未指定的值默认为0。<br/>{<br/>centerX:&nbsp;'50%',<br/>centerY:&nbsp;'50%',<br/>centerZ:&nbsp;0,<br/>perspective:&nbsp;0<br/>}<br/>单位：vp<br/>![coordinates](figures/coordinates.png)<br/>centerZ、perspective从API version 10开始支持在ArkTS卡片中使用。<br/>当options的值为undefined时，恢复为无旋转效果。 |
+| options | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[RotateOptions](#rotateoptions对象说明)> | 是   | 可使组件在以组件左上角为坐标原点的坐标系中进行旋转（坐标系如下图所示）。其中，(x,&nbsp;y,&nbsp;z）指定一个矢量，作为旋转轴。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值: 在x、y、z都不指定时，x、y、z的默认值分别为0、0、1。指定了x、y、z任何一个值时，x、y、z中未指定的值默认为0。<br/>{<br/>centerX:&nbsp;'50%',<br/>centerY:&nbsp;'50%',<br/>centerZ:&nbsp;0,<br/>perspective:&nbsp;0<br/>}<br/>单位：vp<br/>![coordinates](figures/coordinates.png)<br/>centerZ、perspective从API version 10开始支持在ArkTS卡片中使用。<br/>当options的值为undefined时，恢复为无旋转效果。 |
 
 **返回值：**
 
@@ -76,7 +76,7 @@ rotate(options: Optional<RotateOptions | RotateAngleOptions>): T
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | Optional\<[RotateOptions](#rotateoptions对象说明) \| [RotateAngleOptions](#rotateangleoptions20对象说明)> | 是   | RotateOptions可使组件在以组件左上角为坐标原点的坐标系中进行旋转（坐标系如下图所示）。其中，(x,&nbsp;y,&nbsp;z）指定一个矢量，作为旋转轴。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值：在x、y、z都不指定时，x、y、z的默认值分别为0、0、1。指定了x、y、z任何一个值时，x、y、z中未指定的值默认为0。<br/>{<br/>centerX:&nbsp;'50%',<br/>centerY:&nbsp;'50%',<br/>centerZ:&nbsp;0,<br/>perspective:&nbsp;0<br/>}<br/>RotateAngleOptions可使组件在以组件左上角为坐标原点的坐标系中进行旋转（坐标系如下图所示）。其中，(angleX,&nbsp;angleY,&nbsp;angleZ）指定三个轴方向上的旋转角。<br/>默认值：<br/>{<br/>angleX:0,<br />angleY:0,<br />angleZ:0,<br />centerX:&nbsp;'50%',<br/>centerY:&nbsp;'50%',<br/>centerZ:&nbsp;0,<br/>perspective:&nbsp;0<br/>}<br/>![coordinates](figures/coordinates.png)<br/>当options的值为undefined时，恢复为无旋转效果。 |
+| options | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[RotateOptions](#rotateoptions对象说明) \| [RotateAngleOptions](#rotateangleoptions20对象说明)> | 是   | RotateOptions可使组件在以组件左上角为坐标原点的坐标系中进行旋转（坐标系如下图所示）。其中，(x,&nbsp;y,&nbsp;z）指定一个矢量，作为旋转轴。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值：在x、y、z都不指定时，x、y、z的默认值分别为0、0、1。指定了x、y、z任何一个值时，x、y、z中未指定的值默认为0。<br/>{<br/>centerX:&nbsp;'50%',<br/>centerY:&nbsp;'50%',<br/>centerZ:&nbsp;0,<br/>perspective:&nbsp;0<br/>}<br/>RotateAngleOptions可使组件在以组件左上角为坐标原点的坐标系中进行旋转（坐标系如下图所示）。其中，(angleX,&nbsp;angleY,&nbsp;angleZ）指定三个轴方向上的旋转角。<br/>默认值：<br/>{<br/>angleX:0,<br />angleY:0,<br />angleZ:0,<br />centerX:&nbsp;'50%',<br/>centerY:&nbsp;'50%',<br/>centerZ:&nbsp;0,<br/>perspective:&nbsp;0<br/>}<br/>![coordinates](figures/coordinates.png)<br/>当options的值为undefined时，恢复为无旋转效果。 |
 
 **返回值：**
 
@@ -124,7 +124,7 @@ translate(translate: Optional\<TranslateOptions>): T
 
 | 参数名    | 类型                                                     | 必填 | 说明                                                         |
 | --------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| translate | Optional\<[TranslateOptions](#translateoptions对象说明)> | 是   | 可使组件在以组件左上角为坐标原点的坐标系中进行移动（坐标系如下图所示）。其中，x，y，z的值分别表示在对应轴移动的距离，值为正时表示向对应轴的正向移动，值为负时表示向对应轴的反向移动。移动距离支持数字和字符串（比如'10px'，‘10%’）两种类型。<br/>默认值:<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0,<br/>z:&nbsp;0<br/>}<br/>单位：vp<br/>![coordinates](figures/coordinates.png)<br/>**说明：**<br/>z轴方向移动时由于观察点位置不变，z的值接近观察点组件会有放大效果，远离则缩小。<br/>![coordinateNode](figures/coordinateNote.png)<br/>当translate的值为undefined时，恢复为无平移效果。 |
+| translate | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[TranslateOptions](#translateoptions对象说明)> | 是   | 可使组件在以组件左上角为坐标原点的坐标系中进行移动（坐标系如下图所示）。其中，x，y，z的值分别表示在对应轴移动的距离，值为正时表示向对应轴的正向移动，值为负时表示向对应轴的反向移动。移动距离支持数字和字符串（比如'10px'，‘10%’）两种类型。<br/>默认值:<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0,<br/>z:&nbsp;0<br/>}<br/>单位：vp<br/>![coordinates](figures/coordinates.png)<br/>**说明：**<br/>z轴方向移动时由于观察点位置不变，z的值接近观察点组件会有放大效果，远离则缩小。<br/>![coordinateNode](figures/coordinateNote.png)<br/>当translate的值为undefined时，恢复为无平移效果。 |
 
 **返回值：**
 
@@ -172,7 +172,7 @@ scale(options: Optional\<ScaleOptions>): T
 
 | 参数名  | 类型                                             | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | Optional\<[ScaleOptions](#scaleoptions对象说明)> | 是   | 可以分别设置X轴、Y轴、Z轴的缩放比例，默认值为1，同时可以通过centerX和centerY设置缩放的中心点。<br/>默认值:<br/>{<br/>x:&nbsp;1,<br/>y:&nbsp;1,<br/>z:&nbsp;1,<br/>centerX:'50%',<br/>centerY:'50%'<br/>}<br/>当options的值为undefined时，恢复为无缩放效果。 |
+| options | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[ScaleOptions](#scaleoptions对象说明)> | 是   | 可以分别设置X轴、Y轴、Z轴的缩放比例，默认值为1，同时可以通过centerX和centerY设置缩放的中心点。<br/>默认值:<br/>{<br/>x:&nbsp;1,<br/>y:&nbsp;1,<br/>z:&nbsp;1,<br/>centerX:'50%',<br/>centerY:'50%'<br/>}<br/>当options的值为undefined时，恢复为无缩放效果。 |
 
 **返回值：**
 
@@ -216,7 +216,7 @@ transform(transform: Optional\<object>): T
 
 | 参数名 | 类型                                    | 必填 | 说明                     |
 | ------ | --------------------------------------- | ---- | ------------------------ |
-| transform | Optional\<object> | 是 | 设置当前组件的变换矩阵。object当前仅支持[Matrix4Transit](../js-apis-matrix4.md)矩阵对象类型。<br/>当transform的值为undefined时，恢复为单位矩阵的效果。 |
+| transform | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<object> | 是 | 设置当前组件的变换矩阵。object当前仅支持[Matrix4Transit](../js-apis-matrix4.md)矩阵对象类型。<br/>当transform的值为undefined时，恢复为单位矩阵的效果。 |
 
 **返回值：**
 
@@ -238,7 +238,7 @@ transform3D(transform: Optional\<Matrix4Transit>): T
 
 | 参数名    | 类型                                               | 必填 | 说明                                                         |
 | --------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| transform | Optional\<[Matrix4Transit](#matrix4transit20)> | 是   | 三维变换矩阵。<br/>当transform的值为undefined时，恢复为单位矩阵的效果。 |
+| transform | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[Matrix4Transit](#matrix4transit20)> | 是   | 三维变换矩阵。<br/>当transform的值为undefined时，恢复为单位矩阵的效果。 |
 
 **返回值：**
 
@@ -273,7 +273,7 @@ type Matrix4Transit = Matrix4Transit
 | centerX                   | number&nbsp;\|&nbsp;string | 否   | 是   | 变换中心点x轴坐标。表示组件变换中心点（即锚点）的x方向坐标。取值可为string类型，如'50'，'50%'。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | centerY                   | number&nbsp;\|&nbsp;string | 否   | 是   | 变换中心点y轴坐标。表示组件变换中心点（即锚点）的y方向坐标。取值可为string类型，如'50'，'50%'。<br/>单位：vp<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | centerZ<sup>10+</sup>     | number                     | 否   | 是   | z轴锚点，即3D旋转中心点的z轴分量。<br/>默认值：0<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
-| perspective<sup>10+</sup> | number                     | 否   | 是   | 视距，即视点到z=0平面的距离。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值：0<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+| perspective<sup>10+</sup> | number                     | 否   | 是   | 相机放置的z轴坐标。数值大小表示视距，即相机到z=0平面的距离。取值的正负决定了相机观察的方向。当perspective=0，系统会自动计算适合的相机z轴位置，取值为负数。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值：0<br/>单位：px<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 
 ## RotateAngleOptions<sup>20+</sup>对象说明
 指定各轴旋转角的旋转参数选项。
@@ -292,7 +292,7 @@ type Matrix4Transit = Matrix4Transit
 | centerX                   | number&nbsp;\|&nbsp;string | 否   | 是   | 变换中心点x轴坐标。表示组件变换中心点（即锚点）的x方向坐标。<br/>单位：vp<br/>默认值：'50%'<br/>取值范围：(-∞, +∞) |
 | centerY                   | number&nbsp;\|&nbsp;string | 否   | 是   | 变换中心点y轴坐标。表示组件变换中心点（即锚点）的y方向坐标。<br/>单位：vp<br/>默认值：'50%'<br/>取值范围：(-∞, +∞) |
 | centerZ                   | number                     | 否   | 是   | z轴锚点，即3D旋转中心点的z轴分量。<br/>默认值：0<br/>取值范围：(-∞, +∞) |
-| perspective               | number                     | 否   | 是   | 视距，即视点到z=0平面的距离。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值：0<br/>取值范围：(-∞, +∞) |
+| perspective               | number                     | 否   | 是   | 相机放置的z轴坐标。数值大小表示视距，即相机到z=0平面的距离。取值的正负决定了相机观察的方向。当perspective=0，系统会自动计算适合的相机z轴位置，取值为负数。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值：0<br/>单位：px<br/>取值范围：(-∞, +∞) |
 
 ## TranslateOptions对象说明
 

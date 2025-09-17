@@ -1,8 +1,15 @@
 # Network Security Error Codes
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 > **NOTE**
 >
->This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 ## 2305001 Unspecified Error
 
@@ -124,7 +131,8 @@ The certificate signature is incorrectly calculated, or the digital signature al
 
 **Solution**
 
-Check that the signature algorithm used by the certificate is supported by the client, the signature key of the certificate matches the public key, and the signature data is correct. Alternatively, regenerate or update the certificate.
+1. Check that the signature algorithm used by the certificate is supported by the client, the signature key of the certificate matches the public key, and the signature data is correct.
+2. Regenerate or update the certificate.
 
 ## 2305008 Failed to Sign the CRL
 
@@ -196,7 +204,8 @@ The start date of the CRL is later than the current date.
 
 **Solution**
 
-Check that the validity period of the CRL is between the specified start date and end date. Alternatively, regenerate or update the CRL.
+1. Check that the validity period of the CRL is between the specified start date and end date.
+2. Alternatively, regenerate or update the CRL.
 
 ## 2305012 CRL Expired
 
@@ -250,7 +259,10 @@ The certificate storage on the client is not one issued by a trusted CA.
 
 **Solution**
 
-Check that the client has a correct CA certificate. Update the certificate, check the network connection, and reconfigure the client.
+1. Check that the client has a correct CA certificate.
+2. Update the certificate.
+3. Check the network connection.
+4. Reconfigure the client.
 
 ## 2305023 Certificate Revoked
 
@@ -304,7 +316,9 @@ The certificate is issued by an untrusted CA or the certificate has been revoked
 
 **Solution**
 
-Check that the certificate is issued by a trusted CA and the signature key of the certificate matches the expected key of the client. If the certificate is issued by an untrusted CA, replace it with one issued by a trusted CA.
+1. Ensure that the certificate is issued by a trusted CA. If the certificate is issued by an untrusted CA, replace it with one issued by a trusted CA.
+2. Ensure that the signature key of the certificate matches the expected key of the client.
+3. If the certificate has been revoked, apply for a new certificate issued by a trusted CA.
 
 ## 2305069 Invalid Certificate Verification Context
 

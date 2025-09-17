@@ -86,8 +86,8 @@ getBundleResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag
 
 ```ts
 import { bundleResourceManager } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 let bundleName = "com.example.myapplication";
 let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
@@ -140,8 +140,8 @@ getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: [number](#res
 
 ```ts
 import { bundleResourceManager } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 let bundleName = "com.example.myapplication";
 let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
@@ -186,8 +186,8 @@ getAllBundleResourceInfo(resourceFlags: [number](#resourceflag), callback: Async
 
 ```ts
 import { bundleResourceManager } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
     bundleResourceManager.getAllBundleResourceInfo(resourceFlag, (err, data) => {
@@ -241,8 +241,8 @@ getAllBundleResourceInfo(resourceFlags: [number](#resourceflag)): Promise<Array<
 
 ```ts
 import { bundleResourceManager } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
     bundleResourceManager.getAllBundleResourceInfo(resourceFlag).then(data=> {
@@ -289,8 +289,8 @@ getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag), callba
 
 ```ts
 import { bundleResourceManager } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
     bundleResourceManager.getAllLauncherAbilityResourceInfo(resourceFlag, (err, data) => {
@@ -343,8 +343,8 @@ getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag)): Promi
 **示例：**
 ```ts
 import { bundleResourceManager } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
     bundleResourceManager.getAllLauncherAbilityResourceInfo(resourceFlag).then(data=> {
@@ -402,8 +402,8 @@ getBundleResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag
 
 ```ts
 import { bundleResourceManager } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 let bundleName = "com.example.myapplication";
 let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 let appIndex = 1;
@@ -458,8 +458,8 @@ getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: [number](#res
 
 ```ts
 import { bundleResourceManager } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
-import hilog from '@ohos.hilog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 let bundleName = "com.example.myapplication";
 let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 let appIndex = 1;

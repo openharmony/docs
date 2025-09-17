@@ -24,19 +24,18 @@
  * 以下以HKDF256密钥的Promise操作使用为例
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
+
 /* 1.确定密钥别名 */
 let keyAlias = 'test_Key';
 /* 2.初始化密钥属性集 */
-let generateProperties: huks.HuksParam[] = [
-  {
+let generateProperties: huks.HuksParam[] = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_DH
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_2048
   }
@@ -45,89 +44,59 @@ let generateHuksOptions: huks.HuksOptions = {
   properties: generateProperties,
   inData: new Uint8Array([])
 }
-/* 3.生成密钥 */
-function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
-  return new Promise<void>((resolve, reject) => {
-    try {
-      huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throw (error as Error);
-    }
-  });
-}
-async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions): Promise<string> {
-  console.info(`enter promise generateKeyItem`);
-  try {
-    await generateKeyItem(keyAlias, huksOptions)
-      .then((data) => {
-        console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
-      })
-      .catch((error: Error) => {
-        console.error(`promise: generateKeyItem failed, ${JSON.stringify(error)}`);
-      });
-    return 'Success';
-  } catch (error) {
-    console.error(`promise: generateKeyItem input arg invalid, ${JSON.stringify(error)}`);
-    return 'Failed';
-  }
-}
-async function testGenKey(): Promise<string> {
-  let ret = await publicGenKeyFunc(keyAlias, generateHuksOptions);
-  return ret;
-}
 let deleteHuksOptions: huks.HuksOptions = {
   properties: []
 }
-class ThrowObject {
-  public isThrow = false;
-}
-/* 4.删除密钥 */
-function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
-  return new Promise<void>((resolve, reject) => {
-    try {
-      huks.deleteKeyItem(keyAlias, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throwObject.isThrow = true;
-      throw (error as Error);
-    }
-  });
-}
-async function publicDeleteKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions): Promise<string> {
-  console.info(`enter promise deleteKeyItem`);
-  let throwObject: ThrowObject = { isThrow: false };
+
+/* 3.生成密钥 */
+async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): Promise<boolean> {
+  console.info(`enter promise generateKeyItem`);
+  let ret: boolean = false;
   try {
-    await testGenKey();
-    await deleteKeyItem(keyAlias, huksOptions, throwObject)
-      .then((data) => {
-        console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
-      })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: deleteKeyItem failed, ${JSON.stringify(error)}`);
-        }
+    await huks.generateKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: generateKeyItem success`);
+        ret = true;
+      }).catch((error: BusinessError) => {
+        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMag : ${error.message}`);
       });
-    return 'Success';
   } catch (error) {
-    console.error(`promise: deleteKeyItem input arg invalid, ${JSON.stringify(error)}`);
-    return 'Failed';
+    console.error(`promise: generateKeyItem input arg invalid`);
   }
-}
-async function testDelete(): Promise<string> {
-  let ret = await publicDeleteKeyFunc(keyAlias, deleteHuksOptions);
   return ret;
+}
+
+/* 4.删除密钥 */
+async function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): Promise<boolean> {
+  console.info(`enter promise deleteKeyItem`);
+  let ret: boolean = false;
+  try {
+    await huks.deleteKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: deleteKeyItem success`);
+        ret = true;
+      }).catch((error: BusinessError) => {
+        console.error(`promise: deleteKeyItem failed, errCode : ${error.code}, errMag : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: deleteKeyItem input arg invalid`);
+  }
+  return ret;
+}
+
+async function testDelete() {
+  let retGen = await generateKeyItem(keyAlias, generateHuksOptions);
+  if (retGen == false) {
+    console.error(`generateKeyItem failed`);
+    return;
+  }
+
+  let retDel = await deleteKeyItem(keyAlias, deleteHuksOptions);
+  if (retDel == false) {
+    console.error(`deleteKeyItem failed`);
+    return;
+  }
+
+  console.info(`deleteKeyItem test success`);
 }
 ```

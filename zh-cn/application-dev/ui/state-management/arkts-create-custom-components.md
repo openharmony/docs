@@ -187,7 +187,7 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
 
 自定义组件可以包含成员变量，成员变量具有以下约束：
 
-- 自定义组件的成员变量仅能从组件内部访问，且不建议声明成静态变量。
+- 自定义组件的成员变量仅能从组件内部访问，且不建议声明为静态变量。
 
 - 自定义组件的成员变量本地初始化有些是可选的，有些是必选的。具体是否需要本地初始化，是否需要从父组件通过参数传递初始化子组件的成员变量，请参考[状态管理](arkts-state-management-overview.md)。
 
@@ -344,7 +344,7 @@ struct Son {
   }
   ```
 
-- 不允许使用switch语法，当需要使用条件判断时，请使用[if](./arkts-rendering-control-ifelse.md)。示例如下。
+- 不允许使用switch语法，当需要使用条件判断时，请使用[if](../rendering-control/arkts-rendering-control-ifelse.md)。示例如下。
 
   ```ts
   build() {

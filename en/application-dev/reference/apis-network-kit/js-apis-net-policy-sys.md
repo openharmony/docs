@@ -1,5 +1,12 @@
 # @ohos.net.policy (Network Policy Management) (System API)
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 The **policy** module provides APIs for managing network policies, through which you can control and manage the data volume used.
 
 > **NOTE**
@@ -29,7 +36,7 @@ Specifies whether background applications are allowed to access the network. Thi
 
 | Name   | Type                | Mandatory| Description                                                        |
 | --------- | -------------------- | ---- | ------------------------------------------------------------ |
-| isAllowed | boolean              | Yes  | Whether background applications are allowed to use mobile data.                                    |
+| isAllowed | boolean              | Yes  | Whether background applications are allowed to use mobile data. The value **true** indicates that background applications are allowed to use mobile data, and the value **false** indicates the opposite.                                    |
 | callback  | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -49,7 +56,7 @@ Specifies whether background applications are allowed to access the network. Thi
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.setBackgroundAllowed(true, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -69,7 +76,7 @@ Specifies whether background applications are allowed to access the network. Thi
 
 | Name   | Type   | Mandatory| Description                    |
 | --------- | ------- | ---- | ------------------------ |
-| isAllowed | boolean | Yes  | Whether background applications are allowed to use mobile data.|
+| isAllowed | boolean | Yes  | Whether background applications are allowed to use mobile data. The value **true** indicates that background applications are allowed to use mobile data, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -94,9 +101,9 @@ Specifies whether background applications are allowed to access the network. Thi
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.setBackgroundAllowed(true).then(() => {
-  console.log("setBackgroundAllowed success");
+  console.info("setBackgroundAllowed success");
 }).catch((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -116,7 +123,7 @@ Checks whether the current application is allowed to access the network when run
 
 | Name  | Type                   | Mandatory| Description                                                            |
 | -------- | ----------------------- | ---- | ---------------------------------------------------------------- |
-| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. If the operation is successful, the value **true** is returned, which means that background applications are allowed to use mobile data. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. If the operation is successful, the value **true** is returned, indicating that the application is allowed to access the network when running at the background. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -135,14 +142,14 @@ Checks whether the current application is allowed to access the network when run
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.isBackgroundAllowed((error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.error(JSON.stringify(error));
+ console.info(JSON.stringify(data));
 });
 ```
 
 ## policy.isBackgroundAllowed<sup>10+</sup>
 
-isBackgroundAllowed(): Promise\<boolean>;
+isBackgroundAllowed(): Promise\<boolean>
 
 Checks whether the current application is allowed to access the network when running at the background. This API uses a promise to return the result.
 
@@ -156,7 +163,7 @@ Checks whether the current application is allowed to access the network when run
 
 | Type             | Description                                                                                |
 | ----------------- | ------------------------------------------------------------------------------------ |
-| Promise\<boolean> | Promise used to return the result. If the operation is successful, the value **true** is returned, which means that background applications are allowed to use mobile data. If the operation fails, an error message is returned.|
+| Promise\<boolean> | Promise used to return the result. If the operation is successful, the value **true** is returned, indicating that the application is allowed to access the network when running at the background. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -177,10 +184,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .isBackgroundAllowed()
   .then((data: boolean) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -200,7 +207,7 @@ Sets the metered network access policy for the application specified by a given 
 
 | Name  | Type                           | Mandatory| Description                                          |
 | -------- | ------------------------------- | ---- | ---------------------------------------------- |
-| uid      | number                          | Yes  | Unique ID of the application.                                |
+| uid      | number                          | Yes  | The app unique identifier, which is a positive integer within the range of int32_t.                               |
 | policy   | [NetUidPolicy](#netuidpolicy10) | Yes  | Network access policy for the application.                                |
 | callback | AsyncCallback\<void>            | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
@@ -221,13 +228,13 @@ Sets the metered network access policy for the application specified by a given 
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
 ## policy.setPolicyByUid<sup>10+</sup>
 
-setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
+setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>
 
 Sets the metered network access policy for the application specified by a given UID. This API uses a promise to return the result.
 
@@ -241,7 +248,7 @@ Sets the metered network access policy for the application specified by a given 
 
 | Name| Type                           | Mandatory| Description          |
 | ------ | ------------------------------- | ---- | -------------- |
-| uid    | number                          | Yes  | Unique ID of the application.|
+| uid    | number                          | Yes  | The unique identifier of the app, which is a positive integer within the range of int32_t.|
 | policy | [NetUidPolicy](#netuidpolicy10) | Yes  | Network access policy for the application.|
 
 **Return value**
@@ -269,10 +276,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE)
   .then(() => {
-    console.log('setPolicyByUid success');
+    console.info('setPolicyByUid success');
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -292,8 +299,8 @@ Obtains the network access policy for the application specified by a given UID. 
 
 | Name  | Type                                           | Mandatory| Description                                                    |
 | -------- | ----------------------------------------------- | ---- | -------------------------------------------------------- |
-| uid      | number                                          | Yes  | Unique ID of the application.                                          |
-| callback | AsyncCallback\<[NetUidPolicy](#netuidpolicy10)> | Yes  | Callback used to return the result. If the operation is successful, the operation result is returned. If the operation fails, an error message is returned.|
+| uid      | number                                          | Yes  | Unique app ID. The value is a positive integer within the int32_t range.                                          |
+| callback | AsyncCallback\<[NetUidPolicy](#netuidpolicy10)> | Yes  | Callback used to return the result. If the operation is successful, the policy result is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
 
@@ -312,14 +319,14 @@ Obtains the network access policy for the application specified by a given UID. 
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.getPolicyByUid(11111, (error: BusinessError, data: policy.NetUidPolicy) => {
-  console.log(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.error(JSON.stringify(error));
+  console.info(JSON.stringify(data));
 });
 ```
 
 ## policy.getPolicyByUid<sup>10+</sup>
 
-getPolicyByUid(uid: number): Promise\<NetUidPolicy>;
+getPolicyByUid(uid: number): Promise\<NetUidPolicy>
 
 Obtains the network access policy for the application specified by a given UID. This API uses a promise to return the result.
 
@@ -333,7 +340,7 @@ Obtains the network access policy for the application specified by a given UID. 
 
 | Name| Type  | Mandatory| Description          |
 | ------ | ------ | ---- | -------------- |
-| uid    | number | Yes  | Unique ID of the application.|
+| uid    | number | Yes  | The app unique identifier, which is a positive integer within the int32_t range.|
 
 **Return value**
 
@@ -360,10 +367,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .getPolicyByUid(11111)
   .then((data: policy.NetUidPolicy) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -384,7 +391,7 @@ Obtains all UIDs that match the specified network policy. This API uses an async
 | Name  | Type                           | Mandatory| Description                                                       |
 | -------- | ------------------------------- | ---- | ----------------------------------------------------------- |
 | policy   | [NetUidPolicy](#netuidpolicy10) | Yes  | Network policy for the application.                                 |
-| callback | AsyncCallback\<Array\<number>>  | Yes  | Callback used to return the result. If the operation is successful, the operation result is returned. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<Array\<number>>  | Yes  | Callback used to return the result. If the operation is successful, the UID array of the application is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
 
@@ -403,14 +410,14 @@ Obtains all UIDs that match the specified network policy. This API uses an async
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.getUidsByPolicy(11111, (error: BusinessError, data: number[]) => {
-  console.log(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.error(JSON.stringify(error));
+  console.info(JSON.stringify(data));
 });
 ```
 
 ## policy.getUidsByPolicy<sup>10+</sup>
 
-getUidsByPolicy(policy: NetUidPolicy): Promise\<Array\<number>>;
+getUidsByPolicy(policy: NetUidPolicy): Promise\<Array\<number>>
 
 Obtains all UIDs that match the specified network policy. This API uses a promise to return the result.
 
@@ -451,10 +458,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .getUidsByPolicy(11111)
   .then((data: object) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -474,7 +481,7 @@ Obtains the network quota policies. This API uses an asynchronous callback to re
 
 | Name  | Type                                                       | Mandatory| Description                    |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<Array\<[NetQuotaPolicy](#netquotapolicy10)>> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<Array\<[NetQuotaPolicy](#netquotapolicy10)>> | Yes  | Callback used to return the result.  .|
 
 **Error codes**
 
@@ -493,14 +500,14 @@ Obtains the network quota policies. This API uses an asynchronous callback to re
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.getNetQuotaPolicies((error: BusinessError, data: policy.NetQuotaPolicy[]) => {
-  console.log(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.error(JSON.stringify(error));
+  console.info(JSON.stringify(data));
 });
 ```
 
 ## policy.getNetQuotaPolicies<sup>10+</sup>
 
-getNetQuotaPolicies(): Promise\<Array\<NetQuotaPolicy>>;
+getNetQuotaPolicies(): Promise\<Array\<NetQuotaPolicy>>
 
 Obtains the network quota policies. This API uses a promise to return the result.
 
@@ -534,10 +541,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .getNetQuotaPolicies()
   .then((data: policy.NetQuotaPolicy[]) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -557,7 +564,7 @@ Sets network quota policies. This API uses an asynchronous callback to return th
 
 | Name       | Type                                       | Mandatory| Description                                          |
 | ------------- | ------------------------------------------- | ---- | ---------------------------------------------- |
-| quotaPolicies | Array\<[NetQuotaPolicy](#netquotapolicy10)> | Yes  | Network quota policies.                                  |
+| quotaPolicies | Array\<[NetQuotaPolicy](#netquotapolicy10)> | Yes  | Defines the quota policy for the specified network.                                  |
 | callback      | AsyncCallback\<void>                        | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -595,13 +602,13 @@ let netquotapolicy: policy.NetQuotaPolicy = {
 netQuotaPolicyList.push(netquotapolicy);
 
 policy.setNetQuotaPolicies(netQuotaPolicyList, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
 ## policy.setNetQuotaPolicies<sup>10+</sup>
 
-setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>): Promise\<void>;
+setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>): Promise\<void>
 
 Sets network quota policies. This API uses a promise to return the result.
 
@@ -615,7 +622,7 @@ Sets network quota policies. This API uses a promise to return the result.
 
 | Name       | Type                                       | Mandatory| Description        |
 | ------------- | ------------------------------------------- | ---- | ------------ |
-| quotaPolicies | Array\<[NetQuotaPolicy](#netquotapolicy10)> | Yes  | Network quota policies.|
+| quotaPolicies | Array\<[NetQuotaPolicy](#netquotapolicy10)> | Yes  | Defines the quota policy for the specified network.|
 
 **Error codes**
 
@@ -660,10 +667,10 @@ netQuotaPolicyList.push(netquotapolicy);
 policy
   .setNetQuotaPolicies(netQuotaPolicyList)
   .then(() => {
-    console.log('setNetQuotaPolicies success');
+    console.info('setNetQuotaPolicies success');
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -683,8 +690,8 @@ Checks whether the application specified by a given UID is allowed to access a m
 
 | Name   | Type                   | Mandatory| Description                                                     |
 | --------- | ----------------------- | ---- | --------------------------------------------------------- |
-| uid       | number                  | Yes  | Unique ID of the application.                                           |
-| isMetered | boolean                 | Yes  | Whether the network is a metered network.                                           |
+| uid       | number                  | Yes  | The app unique identifier, which is a positive integer within the range of int32_t.                                          |
+| isMetered | boolean                 | Yes  | Whether the network is a metered network. The value **true** indicates that the network is a metered network, and the value **false** indicates the opposite.                                           |
 | callback  | AsyncCallback\<boolean> | Yes  | Callback used to return the result. The value **true** means that the application is allowed to access metered networks, and the value **false** means the opposite.|
 
 **Error codes**
@@ -704,14 +711,14 @@ Checks whether the application specified by a given UID is allowed to access a m
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.isUidNetAllowed(11111, true, (error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.error(JSON.stringify(error));
+  console.info(JSON.stringify(data));
 });
 ```
 
 ## policy.isUidNetAllowed<sup>10+</sup>
 
-isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>;
+isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>
 
 Checks whether the application specified by a given UID is allowed to access a metered network. This API uses a promise to return the result.
 
@@ -725,8 +732,8 @@ Checks whether the application specified by a given UID is allowed to access a m
 
 | Name   | Type   | Mandatory| Description          |
 | --------- | ------- | ---- | -------------- |
-| uid       | number  | Yes  | Unique ID of the application.|
-| isMetered | boolean | Yes  | Whether the network is a metered network.|
+| uid       | number  | Yes  | The app unique identifier, which is a positive integer within the range of int32_t.|
+| isMetered | boolean | Yes  | Whether the network is a metered network. The value **true** indicates that the network is a metered network, and the value **false** indicates the opposite.|
 
 **Return value**
 
@@ -753,10 +760,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .isUidNetAllowed(11111, true)
   .then((data: boolean) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -776,8 +783,8 @@ Checks whether an application is allowed to access the specified network. This A
 
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| uid      | number                  | Yes  | Unique ID of the application.                                              |
-| iface    | string                  | Yes  | Name of the target network.                                              |
+| uid      | number                  | Yes  | The app unique identifier, which is a positive integer within the range of int32_t.                                              |
+| iface    | string                  | Yes  | Name of the target network.                                             |
 | callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. The value **true** means that the application is allowed to access the specified network, and the value **false** means the opposite.|
 
 **Error codes**
@@ -797,14 +804,14 @@ Checks whether an application is allowed to access the specified network. This A
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.isUidNetAllowed(11111, 'wlan0', (error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.error(JSON.stringify(error));
+  console.info(JSON.stringify(data));
 });
 ```
 
 ## policy.isUidNetAllowed<sup>10+</sup>
 
-isUidNetAllowed(uid: number, iface: string): Promise\<boolean>;
+isUidNetAllowed(uid: number, iface: string): Promise\<boolean>
 
 Checks whether an application is allowed to access the specified network. This API uses a promise to return the result.
 
@@ -818,7 +825,7 @@ Checks whether an application is allowed to access the specified network. This A
 
 | Name| Type  | Mandatory| Description          |
 | ------ | ------ | ---- | -------------- |
-| uid    | number | Yes  | Unique ID of the application.|
+| uid    | number | Yes  | The app unique identifier, which is a positive integer within the range of int32_t.|
 | iface  | string | Yes  | Name of the target network.|
 
 **Return value**
@@ -846,10 +853,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .isUidNetAllowed(11111, 'wlan0')
   .then((data: boolean) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -870,7 +877,7 @@ Adds applications specified by given UIDs to the device idle allowlist. This API
 | Name   | Type                          | Mandatory| Description                                          |
 | --------- | ------------------------------ | ---- | ---------------------------------------------- |
 | uids      | Array\<number>                 | Yes  | Unique ID of the application.                                |
-| isAllowed | boolean                        | Yes  | Whether to add the application to the allowlist.                                |
+| isAllowed | boolean                        | Yes  | Whether to add the application to the allowlist. The value **true** means to add the application to the allowlist, and the value **false** means the opposite.                                |
 | callback  | callback: AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -890,13 +897,13 @@ Adds applications specified by given UIDs to the device idle allowlist. This API
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.setDeviceIdleTrustlist([11111, 22222], true, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
 ## policy.setDeviceIdleTrustlist<sup>10+</sup>
 
-setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>;
+setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>
 
 Adds applications specified by given UIDs to the device idle allowlist. This API uses a promise to return the result.
 
@@ -911,7 +918,7 @@ Adds applications specified by given UIDs to the device idle allowlist. This API
 | Name   | Type          | Mandatory| Description          |
 | --------- | -------------- | ---- | -------------- |
 | uids      | Array\<number> | Yes  | Unique ID of the application.|
-| isAllowed | boolean        | Yes  | Whether to add the application to the allowlist.|
+| isAllowed | boolean        | Yes  | Whether to add the application to the allowlist. The value **true** means to add the application to the allowlist, and the value **false** means the opposite.|
 
 **Return value**
 
@@ -938,10 +945,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .setDeviceIdleTrustlist([11111, 22222], true)
   .then(() => {
-    console.log('setDeviceIdleTrustlist success');
+    console.info('setDeviceIdleTrustlist success');
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -961,7 +968,7 @@ Obtains the UIDs of applications that are on the device idle allowlist. This API
 
 | Name  | Type                          | Mandatory| Description                    |
 | -------- | ------------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback\<Array\<number>> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<Array\<number>> | Yes  | Callback used to return the result.  .|
 
 **Error codes**
 
@@ -980,14 +987,14 @@ Obtains the UIDs of applications that are on the device idle allowlist. This API
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.getDeviceIdleTrustlist((error: BusinessError, data: number[]) => {
-  console.log(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.error(JSON.stringify(error));
+  console.info(JSON.stringify(data));
 });
 ```
 
 ## policy.getDeviceIdleTrustlist<sup>10+</sup>
 
-getDeviceIdleTrustlist(): Promise\<Array\<number>>;
+getDeviceIdleTrustlist(): Promise\<Array\<number>>
 
 Obtains the UIDs of applications that are on the device idle allowlist. This API uses a promise to return the result.
 
@@ -1021,10 +1028,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .getDeviceIdleTrustlist()
   .then((data: number[]) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -1044,8 +1051,8 @@ Obtains the background network policy for the application specified by a given U
 
 | Name  | Type                                                         | Mandatory| Description                    |
 | -------- | ------------------------------------------------------------- | ---- | ------------------------ |
-| uid      | number                                                        | Yes  | Unique ID of the application.          |
-| callback | AsyncCallback\<[NetBackgroundPolicy](#netbackgroundpolicy10)> | Yes  | Callback used to return the result.|
+| uid      | number                                                        | Yes  | Unique app identifier, which is a positive integer within the int32_t range.          |
+| callback | AsyncCallback\<[NetBackgroundPolicy](#netbackgroundpolicy10)> | Yes  | Callback used to return the result.  .|
 
 **Error codes**
 
@@ -1064,14 +1071,14 @@ Obtains the background network policy for the application specified by a given U
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.getBackgroundPolicyByUid(11111, (error: BusinessError, data: policy.NetBackgroundPolicy) => {
-  console.log(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.error(JSON.stringify(error));
+  console.info(JSON.stringify(data));
 });
 ```
 
 ## policy.getBackgroundPolicyByUid<sup>10+</sup>
 
-getBackgroundPolicyByUid(uid: number): Promise\<NetBackgroundPolicy>;
+getBackgroundPolicyByUid(uid: number): Promise\<NetBackgroundPolicy>
 
 Obtains the background network policies configured for the specified application. This API uses a promise to return the result.
 
@@ -1085,7 +1092,7 @@ Obtains the background network policies configured for the specified application
 
 | Name| Type  | Mandatory| Description          |
 | ------ | ------ | ---- | -------------- |
-| uid    | number | Yes  | Unique ID of the application.|
+| uid    | number | Yes  | The app unique identifier, which is a positive integer within the int32_t range.|
 
 **Return value**
 
@@ -1112,10 +1119,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .getBackgroundPolicyByUid(11111)
   .then((data: policy.NetBackgroundPolicy) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -1155,13 +1162,13 @@ Restores all the policies (cellular network, background network, firewall, and a
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.resetPolicies('1', (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
 ## policy.resetPolicies<sup>10+</sup>
 
-resetPolicies(simId: string): Promise\<void>;
+resetPolicies(simId: string): Promise\<void>
 
 Restores all the policies (cellular network, background network, firewall, and application-specific network policies) for the specified SIM card. This API uses a promise to return the result.
 
@@ -1202,10 +1209,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .resetPolicies('1')
   .then(() => {
-    console.log('resetPolicies success');
+    console.info('resetPolicies success');
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -1227,7 +1234,7 @@ Updates a reminder policy. This API uses an asynchronous callback to return the 
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | netType    | [NetBearType](js-apis-net-connection.md#netbeartype) | Yes  | Network type.                                      |
 | simId      | string                                               | Yes  | SIM card ID.                                     |
-| remindType | [RemindType](#remindtype10)                          | Yes  | Reminder type.                                      |
+| remindType | [RemindType](#remindtype10)                          | Yes  | Enumerates the reminder types.                                      |
 | callback   | AsyncCallback\<void>                                 | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -1252,14 +1259,14 @@ policy.updateRemindPolicy(
   '1',
   policy.RemindType.REMIND_TYPE_WARNING,
   (error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   }
 );
 ```
 
 ## policy.updateRemindPolicy<sup>10+</sup>
 
-updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType): Promise\<void>;
+updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType): Promise\<void>
 
 Updates a reminder policy. This API uses a promise to return the result.
 
@@ -1275,7 +1282,7 @@ Updates a reminder policy. This API uses a promise to return the result.
 | ---------- | ---------------------------------------------------- | ---- | --------- |
 | netType    | [NetBearType](js-apis-net-connection.md#netbeartype) | Yes  | Network type. |
 | simId      | string                                               | Yes  | SIM card ID.|
-| remindType | [RemindType](#remindtype10)                          | Yes  | Reminder type. |
+| remindType | [RemindType](#remindtype10)                          | Yes  | Enumerates the reminder types. |
 
 **Return value**
 
@@ -1307,10 +1314,10 @@ policy
     policy.RemindType.REMIND_TYPE_WARNING
   )
   .then(() => {
-    console.log('updateRemindPolicy success');
+    console.info('updateRemindPolicy success');
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -1330,8 +1337,8 @@ Sets whether to add the application specified by a given UID to the power-saving
 
 | Name   | Type                          | Mandatory| Description                                          |
 | --------- | ------------------------------ | ---- | ---------------------------------------------- |
-| uids      | Array\<number>                 | Yes  | Unique ID of the application.                                |
-| isAllowed | boolean                        | Yes  | Whether to add the application to the allowlist.                                |
+| uids      | Array\<number>                 | Yes  | Unique ID of the application.                               |
+| isAllowed | boolean                        | Yes  | Whether to add the application to the allowlist. The value **true** means to add the application to the allowlist, and the value **false** means the opposite.                                |
 | callback  | callback: AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
 **Error codes**
@@ -1351,13 +1358,13 @@ Sets whether to add the application specified by a given UID to the power-saving
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.setPowerSaveTrustlist([11111, 22222], true, (error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
 ## policy.setPowerSaveTrustlist<sup>10+</sup>
 
-setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>;
+setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>
 
 Sets whether to add the application specified by a given UID to the power-saving allowlist. This API uses a promise to return the result.
 
@@ -1372,7 +1379,7 @@ Sets whether to add the application specified by a given UID to the power-saving
 | Name   | Type          | Mandatory| Description          |
 | --------- | -------------- | ---- | -------------- |
 | uids      | Array\<number> | Yes  | Unique ID of the application.|
-| isAllowed | boolean        | Yes  | Whether to add the application to the allowlist.|
+| isAllowed | boolean        | Yes  | Whether to add the application to the allowlist. The value **true** means to add the application to the allowlist, and the value **false** means the opposite.|
 
 **Return value**
 
@@ -1399,10 +1406,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .setPowerSaveTrustlist([11111, 22222], true)
   .then(() => {
-    console.log('setPowerSaveTrustlist success');
+    console.info('setPowerSaveTrustlist success');
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -1422,7 +1429,7 @@ Obtains the UID array of applications that are on the power-saving allowlist. Th
 
 | Name  | Type                          | Mandatory| Description                    |
 | -------- | ------------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback\<Array\<number>> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<Array\<number>> | Yes  | Callback used to return the result.  .|
 
 **Error codes**
 
@@ -1441,14 +1448,14 @@ Obtains the UID array of applications that are on the power-saving allowlist. Th
 import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.getPowerSaveTrustlist((error: BusinessError, data: number[]) => {
-  console.log(JSON.stringify(error));
-  console.log(JSON.stringify(data));
+  console.error(JSON.stringify(error));
+  console.info(JSON.stringify(data));
 });
 ```
 
 ## policy.getPowerSaveTrustlist<sup>10+</sup>
 
-getPowerSaveTrustlist(): Promise\<Array\<number>>;
+getPowerSaveTrustlist(): Promise\<Array\<number>>
 
 Obtains the UID array of applications that are on the device idle allowlist. This API uses a promise to return the result.
 
@@ -1482,16 +1489,16 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .getPowerSaveTrustlist()
   .then((data: number[]) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 ```
 
 ## policy.setNetworkAccessPolicy<sup>12+</sup>
 
-setNetworkAccessPolicy(uid: number, policy: NetworkAccessPolicy, isReconfirmed?: boolean): Promise<void>
+setNetworkAccessPolicy(uid: number, policy: NetworkAccessPolicy, isReconfirmed?: boolean): Promise\<void>
 
 Specifies whether an application with the specified UID can access the network. This API uses a promise to return the result.
 
@@ -1505,7 +1512,7 @@ Specifies whether an application with the specified UID can access the network. 
 
 | Name        | Type                                          | Mandatory| Description                                                                         |
 | ------------- | ---------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
-| uid           | number                                         | Yes  | Unique ID of the application.                                                               |
+| uid           | number                                         | Yes  | The unique identifier of the app, which is a positive integer within the range of int32_t.                                                               |
 | policy        | [NetworkAccessPolicy](#networkaccesspolicy12)  | Yes  | Network policy.                                                                     |
 | isReconfirmed | boolean                                        | No  | Whether reconfirmation is required. The value **true** indicates that reconfirmation is not required and no dialog box is displayed. The value **false** indicates that reconfirmation is required and a dialog box is displayed when the application accesses the network. The default value is **false**. |
 
@@ -1538,7 +1545,7 @@ let accessPolicy: policy.NetworkAccessPolicy = {
 policy
   .setNetworkAccessPolicy(11111, accessPolicy)
   .then(() => {
-    console.log('setNetworkAccessPolicy success');
+    console.info('setNetworkAccessPolicy success');
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -1547,7 +1554,7 @@ policy
 
 ## policy.getNetworkAccessPolicy<sup>12+</sup>
 
-getNetworkAccessPolicy(uid: number): Promise<NetworkAccessPolicy>
+getNetworkAccessPolicy(uid: number): Promise\<NetworkAccessPolicy>
 
 Checks whether an application with the specified UID can access the network. This API uses a promise to return the result.
 
@@ -1561,7 +1568,7 @@ Checks whether an application with the specified UID can access the network. Thi
 
 | Name| Type  | Mandatory| Description          |
 | ------ | ------ | ---- | -------------- |
-| uid    | number | Yes  | Unique ID of the application.|
+| uid    | number | Yes  | The app unique identifier, which is a positive integer within the range of int32_t.|
 
 **Return value**
 
@@ -1588,7 +1595,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 policy
   .getNetworkAccessPolicy(11111)
   .then((data: policy.NetworkAccessPolicy) => {
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -1597,7 +1604,7 @@ policy
 
 ## policy.getNetworkAccessPolicy<sup>12+</sup>
 
-getNetworkAccessPolicy(): Promise<UidNetworkAccessPolicy>
+getNetworkAccessPolicy(): Promise\<UidNetworkAccessPolicy>
 
 Checks whether all applications of the current user can access the network. This API uses a promise to return the result.
 
@@ -1647,7 +1654,7 @@ policy
         }
       })
     })
-    console.log(JSON.stringify(data));
+    console.info(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
     console.error(JSON.stringify(error));
@@ -1674,7 +1681,7 @@ Subscribes to policy changes. This API uses an asynchronous callback to return t
 
 | Name  | Type                                                               | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                              | Yes  | Event type. The value **netUidPolicyChange** indicates a policy change event.                 |
+| type     | string                                                              | Yes  | Event type.<br/> The value **netUidPolicyChange** indicates a policy change event.                 |
 | callback | Callback\<[NetUidPolicyInfo](#netuidpolicyinfo11)> | Yes  | Callback used to return the result. It is called when the network policy changes.|
 
 **Error codes**
@@ -1700,7 +1707,7 @@ interface Data {
 
 try {
   policy.on('netUidPolicyChange', (data: Data) => {
-    console.log('on netUidPolicyChange data: ' + JSON.stringify(data));
+    console.info('on netUidPolicyChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('on netUidPolicyChange error: ' + JSON.stringify(err));
@@ -1723,7 +1730,7 @@ Unsubscribes from policy changes. This API uses an asynchronous callback to retu
 
 | Name  | Type                                                               | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                              | Yes  | Event type. The value **netUidPolicyChange** indicates a policy change event.                 |
+| type     | string                                                              | Yes  | Event type. The value **netUidPolicyChange** indicates a policy change event.              |
 | callback | Callback\<[NetUidPolicyInfo](#netuidpolicyinfo11)> | No  | Callback used to return the result. It is called when the network policy changes.|
 
 **Error codes**
@@ -1749,7 +1756,7 @@ interface Data {
 
 try {
   policy.on('netUidPolicyChange', (data: Data) => {
-    console.log('on netUidPolicyChange data: ' + JSON.stringify(data));
+    console.info('on netUidPolicyChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('on netUidPolicyChange error: ' + JSON.stringify(err));
@@ -1757,7 +1764,7 @@ try {
 
 try {
   policy.off('netUidPolicyChange', (data: Data) => {
-    console.log('off netUidPolicyChange data: ' + JSON.stringify(data));
+    console.info('off netUidPolicyChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('off netUidPolicyChange error: ' + JSON.stringify(err));
@@ -1780,7 +1787,7 @@ Subscribes to rule changes. This API uses an asynchronous callback to return the
 
 | Name  | Type                                                         | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                        | Yes  | Event type. The value **netUidRuleChange** indicates a rule change event.                   |
+| type     | string                                                        | Yes  | Event type.<br/> The value **netUidRuleChange** indicates a rule change event.                   |
 | callback | Callback\<[NetUidRuleInfo](#netuidruleinfo11)> | Yes  | Callback used to return the result. It is called when the rule changes.|
 
 **Error codes**
@@ -1806,7 +1813,7 @@ interface Data {
 
 try {
   policy.on('netUidRuleChange', (data: Data) => {
-    console.log('on netUidRuleChange data: ' + JSON.stringify(data));
+    console.info('on netUidRuleChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('on netUidRuleChange error: ' + JSON.stringify(err));
@@ -1855,7 +1862,7 @@ interface Data {
 
 try {
   policy.on('netUidRuleChange', (data: Data) => {
-    console.log('on netUidRuleChange data: ' + JSON.stringify(data));
+    console.info('on netUidRuleChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('on netUidRuleChange error: ' + JSON.stringify(err));
@@ -1863,7 +1870,7 @@ try {
 
 try {
   policy.off('netUidRuleChange', (data: Data) => {
-    console.log('off netUidRuleChange data: ' + JSON.stringify(data));
+    console.info('off netUidRuleChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('off netUidRuleChange error: ' + JSON.stringify(err));
@@ -1886,7 +1893,7 @@ Subscribes to metered **iface** changes. This API uses an asynchronous callback 
 
 | Name  | Type                     | Mandatory| Description                                     |
 | -------- | ------------------------- | ---- | ----------------------------------------- |
-| type     | string                    | Yes  | Event type. The value **netMeteredIfacesChange** indicates a metered **iface** change event.                |
+| type     | string                    | Yes  | Event type.<br/> The value **netMeteredIfacesChange** indicates a metered **iface** change event.                |
 | callback | Callback\<Array\<string>> | Yes  | Callback used to return the result. It is called when the registered metered **iface** changes.|
 
 **Error codes**
@@ -1907,7 +1914,7 @@ import { policy } from '@kit.NetworkKit';
 
 try {
   policy.on('netMeteredIfacesChange', (data: string[]) => {
-    console.log('on netMeteredIfacesChange data: ' + JSON.stringify(data));
+    console.info('on netMeteredIfacesChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('on netMeteredIfacesChange error: ' + JSON.stringify(err));
@@ -1951,7 +1958,7 @@ import { policy } from '@kit.NetworkKit';
 
 try {
   policy.on('netMeteredIfacesChange', (data: string[]) => {
-    console.log('on netMeteredIfacesChange data: ' + JSON.stringify(data));
+    console.info('on netMeteredIfacesChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('on netMeteredIfacesChange error: ' + JSON.stringify(err));
@@ -1959,7 +1966,7 @@ try {
 
 try {
   policy.off('netMeteredIfacesChange', (data: string[]) => {
-    console.log('off netMeteredIfacesChange data: ' + JSON.stringify(data));
+    console.info('off netMeteredIfacesChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('off netMeteredIfacesChange error: ' + JSON.stringify(err));
@@ -1982,7 +1989,7 @@ Subscribes to network quota policy changes. This API uses an asynchronous callba
 
 | Name  | Type                                                  | Mandatory| Description                                      |
 | -------- | ------------------------------------------------------ | ---- | ------------------------------------------ |
-| type     | string                                                 | Yes  | Event type. The value **netQuotaPolicyChange** indicates a network quota policy change event.                |
+| type     | string                                                 | Yes  | Event type.<br/> The value **netQuotaPolicyChange** indicates a network quota policy change event.                |
 | callback | Callback\<Array\<[NetQuotaPolicy](#netquotapolicy10)>> | Yes  | Callback used to return the result. It is called when the registered network quota policy changes.|
 
 **Error codes**
@@ -2008,7 +2015,7 @@ interface Data {
 
 try {
   policy.on('netQuotaPolicyChange', (data: policy.NetQuotaPolicy[]) => {
-    console.log('on netQuotaPolicyChange data: ' + JSON.stringify(data));
+    console.info('on netQuotaPolicyChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('on netQuotaPolicyChange error: ' + JSON.stringify(err));
@@ -2052,7 +2059,7 @@ import { policy } from '@kit.NetworkKit';
 
 try {
   policy.on('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
-    console.log('on netQuotaPolicyChange data: ' + JSON.stringify(data));
+    console.info('on netQuotaPolicyChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('on netQuotaPolicyChange error: ' + JSON.stringify(err));
@@ -2060,7 +2067,7 @@ try {
 
 try {
   policy.off('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
-    console.log('off netQuotaPolicyChange data: ' + JSON.stringify(data));
+    console.info('off netQuotaPolicyChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('off netQuotaPolicyChange error: ' + JSON.stringify(err));
@@ -2083,7 +2090,7 @@ Subscribes to background network policy changes. This API uses an asynchronous c
 
 | Name  | Type              | Mandatory| Description                                      |
 | -------- | ------------------ | ---- | ------------------------------------------ |
-| type     | string             | Yes  | Event type. The value **netBackgroundPolicyChange** indicates a background network policy change event.                |
+| type     | string             | Yes  | Event type.<br/> The value **netBackgroundPolicyChange** indicates a background network policy change event.                |
 | callback | Callback\<boolean> | Yes  | Callback used to return the result. It is called when the registered background network policy changes.|
 
 **Error codes**
@@ -2104,7 +2111,7 @@ import { policy } from '@kit.NetworkKit';
 
 try {
   policy.on('netBackgroundPolicyChange', (data: boolean) => {
-    console.log('on netBackgroundPolicyChange data: ' + JSON.stringify(data));
+    console.info('on netBackgroundPolicyChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('on netBackgroundPolicyChange error: ' + JSON.stringify(err));
@@ -2148,7 +2155,7 @@ import { policy } from '@kit.NetworkKit';
 
 try {
   policy.on('netBackgroundPolicyChange', (data: boolean) => {
-    console.log('on netBackgroundPolicyChange data: ' + JSON.stringify(data));
+    console.info('on netBackgroundPolicyChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('on netBackgroundPolicyChange error: ' + JSON.stringify(err));
@@ -2156,7 +2163,7 @@ try {
 
 try {
   policy.off('netBackgroundPolicyChange', (data: boolean) => {
-    console.log('off netBackgroundPolicyChange data: ' + JSON.stringify(data));
+    console.info('off netBackgroundPolicyChange data: ' + JSON.stringify(data));
   });
 } catch(err) {
   console.error('off netBackgroundPolicyChange error: ' + JSON.stringify(err));
@@ -2218,7 +2225,7 @@ Defines the network quota policy.
 | periodDuration    | string                        | Yes  | Metering period for the quota limit. **D1**, **M1**, and **Y1** indicate one day, one month, and one year, respectively. If the specified metering period is exceeded, the quota is not limited.|
 | warningBytes      | number                        | Yes  | Data volume threshold for generating an alarm.                                         |
 | limitBytes        | number                        | Yes  | Data volume quota.                                           |
-| metered           | boolean                       | Yes  | Whether the network is a metered network.                                           |
+| metered           | boolean                       | Yes  | Whether the network is a metered network. The value **true** indicates that the network is a metered network, and the value **false** indicates the opposite.                                           |
 | limitAction       | [LimitAction](#limitaction10) | Yes  | Action to take when the data volume quota is reached.                                        |
 | lastWarningRemind | number                        | No  | Last time when an alarm was generated. Default value: **-1**                                 |
 | lastLimitRemind   | number                        | No  | Last time when the quota was exhausted. Default value: **-1**                                       |
@@ -2251,7 +2258,7 @@ Enumerates the metered network rules.
 | NET_RULE_ALLOW_METERED_FOREGROUND | 1 << 0 | Applications running in the foreground are allowed to access a metered network.|
 | NET_RULE_ALLOW_METERED            | 1 << 1 | Applications are allowed to access a metered network.    |
 | NET_RULE_REJECT_METERED           | 1 << 2 | Applications are not allowed to access a metered network.    |
-| NET_RULE_ALLOW_ALL                | 1 << 5 | Applications are allowed to access all networks (metered or non-metered).    |
+| NET_RULE_ALLOW_ALL                | 1 << 5 | Applications are allowed to access all networks (metered or non-metered).   |
 | NET_RULE_REJECT_ALL               | 1 << 6 | Applications are not allowed to access any networks (metered or non-metered).    |
 
 ## NetUidRuleInfo<sup>11+</sup>
@@ -2317,8 +2324,8 @@ Network access policy.
 
 | Name             | Type      | Mandatory| Description                         |
 | ----------------- | --------- | ---- | ----------------------------- |
-| allowWiFi         | boolean   | Yes  | Wi-Fi access policy.|
-| allowCellular     | boolean   | Yes  | Cellular network access policy.|
+| allowWiFi         | boolean   | Yes  | Whether to allow access to the Wi-Fi network. The value **true** means to allow access to the Wi-Fi network, and the value **false** means the opposite.|
+| allowCellular     | boolean   | Yes  | Whether to allow access to the cellular network. The value **true** means to allow access to the cellular network, and the value **false** means the opposite.|
 
 ## UidNetworkAccessPolicy<sup>12+</sup>
 

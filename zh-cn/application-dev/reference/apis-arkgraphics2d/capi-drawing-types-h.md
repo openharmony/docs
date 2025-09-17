@@ -90,7 +90,7 @@ enum OH_Drawing_ColorFormat
 
 | 枚举项 | 描述 |
 | -- | -- |
-| COLOR_FORMAT_UNKNOWN | 未知格式。. |
+| COLOR_FORMAT_UNKNOWN | 未知格式。|
 | COLOR_FORMAT_ALPHA_8 | 每个像素用一个8位的量表示，8个比特位表示透明度。 |
 | COLOR_FORMAT_RGB_565 | 每个像素用一个16位的量表示，高位到低位依次是5个比特位表示红，6个比特位表示绿，5个比特位表示蓝。 |
 | COLOR_FORMAT_ARGB_4444 | 每个像素用一个16位的量表示，高位到低位依次是4个比特位表示透明度，4个比特位表示红，4个比特位表示绿，4个比特位表示蓝。 |

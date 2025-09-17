@@ -1,4 +1,10 @@
 # Class (WebKeyboardController)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zourongchun-->
+<!--Designer: @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements a controller to control the input, deletion, and closure of the custom keyboard. For details about the sample code, see [onInterceptKeyboardAttach](./arkts-basic-components-web-events.md#oninterceptkeyboardattach12).
 
@@ -42,11 +48,11 @@ Deletes a specified number of characters forward in a **Web** component text box
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                |
-| ------ | -------- | ---- | ------------------------ |
-| length | number   | Yes  | Length of characters to delete forward in a **Web** component text box.<br>The parameter has no value range. If the parameter value is greater than the character length, all characters before the cursor are deleted by default. If the parameter value is a negative number, the deletion is not performed.|
+| Name| Type| Mandatory| Description                                                                                                  |
+| ------ | -------- | ---- |------------------------------------------------------------------------------------------------------|
+| length | number   | Yes  | Length of characters to delete forward in a **Web** component text box.<br>Value range: [-2147483648, 2147483647]. If the parameter value exceeds the character length, all characters before the cursor are deleted by default. If the parameter value is a negative number, the deletion is not performed.|
 
-## deleteBackward12+</sup>
+## deleteBackward<sup>12+</sup>
 
 deleteBackward(length: number): void
 
@@ -58,7 +64,7 @@ Deletes a specified number of characters backward in a **Web** component text bo
 
 | Name| Type| Mandatory| Description                |
 | ------ | -------- | ---- | ------------------------ |
-| length | number   | Yes  | Length of characters to delete backward in a **Web** component text box.<br>The parameter has no value range. If the parameter value is greater than the character length, all characters after the cursor are deleted by default. If the parameter value is a negative number, the deletion is not performed.|
+| length | number   | Yes  | Length of characters to delete backward in a **Web** component text box.<br>Value range: [-2147483648, 2147483647]. If the parameter value exceeds the character length, all characters after the cursor are deleted by default. If the parameter value is a negative number, the deletion is not performed.|
 
 ## sendFunctionKey<sup>12+</sup>
 

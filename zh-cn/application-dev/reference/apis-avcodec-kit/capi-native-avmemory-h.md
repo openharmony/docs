@@ -1,5 +1,12 @@
 # native_avmemory.h
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zhanghongran-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 声明了媒体数据结构AVMemory的定义。
@@ -62,7 +69,7 @@ OH_AVMemory *OH_AVMemory_Create(int32_t size)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVMemory](capi-core-oh-avmemory.md) * | 如果创建成功，返回OH_AVMemory实例的指针，如果失败，返回NULL。<br> 使用结束后需要通过OH_AVMemory_Destroy释放内存。<br> 可能的失败原因：<br>1. size <= 0。<br>2. 创建OH_AVMemory失败。<br>3. OH_AVMemory内存分配失败。 |
+| [OH_AVMemory](capi-core-oh-avmemory.md) * | 如果创建成功，返回OH_AVMemory实例的指针，如果失败，返回NULL。<br> 使用结束后需要通过OH_AVMemory_Destroy释放内存。<br> 可能的失败原因：<br> 1. size <= 0。<br> 2. 创建OH_AVMemory失败。<br> 3. OH_AVMemory内存分配失败。 |
 
 ### OH_AVMemory_GetAddr()
 
@@ -93,7 +100,7 @@ uint8_t *OH_AVMemory_GetAddr(struct OH_AVMemory *mem)
 
 | 类型 | 说明 |
 | -- | -- |
-| uint8_t * | 如果内存有效，返回内存的虚拟地址，如果内存无效，返回NULL。<br> 可能的失败原因：<br>1. 输入mem为空指针。<br>2. 输入mem参数结构校验失败。<br>3. 输入mem中内存为空指针。 |
+| uint8_t * | 如果内存有效，返回内存的虚拟地址，如果内存无效，返回NULL。<br> 可能的失败原因：<br> 1. 输入mem为空指针。<br> 2. 输入mem参数结构校验失败。<br> 3. 输入mem中内存为空指针。 |
 
 ### OH_AVMemory_GetSize()
 
@@ -124,7 +131,7 @@ int32_t OH_AVMemory_GetSize(struct OH_AVMemory *mem)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 如果内存有效，返回内存长度，如果内存无效，返回-1。<br> 可能的失败原因：<br>1.输入mem为空指针。<br>2. 输入mem参数结构校验失败。<br>3. 输入mem中内存为空指针。 |
+| int32_t | 如果内存有效，返回内存长度，如果内存无效，返回-1。<br> 可能的失败原因：<br> 1. 输入mem为空指针。<br> 2. 输入mem参数结构校验失败。<br> 3. 输入mem中内存为空指针。 |
 
 ### OH_AVMemory_Destroy()
 
@@ -155,6 +162,6 @@ OH_AVErrCode OH_AVMemory_Destroy(struct OH_AVMemory *mem)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) |  AV_ERR_OK：释放成功。<br>   AV_ERR_INVALID_VAL：<br>1. 输入mem为空指针。<br>2. 输入mem参数结构校验失败。<br>3. 输入mem不是开发者创建的。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：释放成功。<br> AV_ERR_INVALID_VAL：<br> 1. 输入mem为空指针。<br> 2. 输入mem参数结构校验失败。<br> 3. 输入mem不是开发者创建的。 |
 
 

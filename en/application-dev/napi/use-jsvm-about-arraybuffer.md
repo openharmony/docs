@@ -1,4 +1,10 @@
 # Working with ArrayBuffer Using JSVM-API
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## Introduction
 
@@ -6,14 +12,14 @@
 
 ## Basic Concepts
 
-- **ArrayBuffer**: An **ArrayBuffer** object represents a generic, fixed-length buffer of raw binary data. The **ArrayBuffer** content cannot be directly operated. Instead, you need to use a **TypedArray** or **DataView** object to interpret the buffer data in specific formats. **ArrayBuffer** is used to process a large amount of binary data, such as files and network data packets.
-- Lifecycle and memory management: When using **ArrayBuffer** with JSVM-API, pay special attention to lifecycle and memory management.
+- **ArrayBuffer**: An **ArrayBuffer** object represents a generic, fixed-length buffer of raw binary data. The **ArrayBuffer** content cannot be directly operated. Instead, you need to use a TypedArray or **DataView** object to interpret the buffer data in specific formats. ArrayBuffer is used to process raw binary data of a fixed length, such as files and network data packets.
+- **Lifecycle and memory management**: When using JSVM to process ArrayBuffer, pay special attention to object lifecycle management to ensure that the memory is released in a timely manner.
 
 ## Available APIs
 
 | API                        | Description                                  |
 | ---------------------------- | ------------------------------------------ |
-| OH_JSVM_GetArraybufferInfo    | Obtains the underlying data buffer of an **ArrayBuffer** and its length.|
+| OH_JSVM_GetArraybufferInfo    | Obtains the underlying data buffer of an **ArrayBuffer** object and its length.|
 | OH_JSVM_IsArraybuffer        | Checks whether a JS object is an **ArrayBuffer** object.       |
 | OH_JSVM_DetachArraybuffer    | Calls the **Detach()** operation of an **ArrayBuffer** object.           |
 | OH_JSVM_IsDetachedArraybuffer | Checks whether an **ArrayBuffer** object has been detached.       |
@@ -25,7 +31,7 @@ If you are just starting out with JSVM-API, see [JSVM-API Development Process](u
 
 ### OH_JSVM_GetArraybufferInfo
 
-Use **OH_JSVM_GetArraybufferInfo** to obtain the underlying data buffer of an **ArrayBuffer** object and its length.
+Obtains the underlying data buffer of an **ArrayBuffer** object and its length.
 
 CPP code:
 
@@ -46,9 +52,10 @@ static JSVM_Value GetArraybufferInfo(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_IsArraybuffer(env, args[0], &isArrayBuffer);
     if (!isArrayBuffer) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetArraybufferInfo isArrayBuffer:false");
+        return nullptr;
     }
     void *data;
-    size_t byteLength;
+    size_t byteLength = 0;
     // Obtain the underlying data buffer and length of the ArrayBuffer object.
     JSVM_Status status = OH_JSVM_GetArraybufferInfo(env, args[0], &data, &byteLength);
     if (status != JSVM_OK) {
@@ -73,9 +80,16 @@ getArraybufferInfo(new ArrayBuffer(10));
 )JS";
 ```
 
+Expected result:
+```
+JSVM GetArraybufferInfo: success
+```
+
+<!-- @[oh_jsvm_get_arraybuffer_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/getarraybufferinfo/src/main/cpp/hello.cpp) -->
+
 ### OH_JSVM_IsArraybuffer
 
-Use **OH_JSVM_IsArraybuffer** to check whether a JS object is an **ArrayBuffer** object.
+Checks whether a JS object is an **ArrayBuffer** object.
 
 CPP code:
 
@@ -118,9 +132,17 @@ isArrayBuffer(new ArrayBuffer(8));
 )JS";
 ```
 
+Expected result:
+```
+JSVM IsArrayBuffer: success
+JSVM IsArrayBuffer: 1
+```
+
+<!-- @[oh_jsvm_is_arraybuffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/isarraybuffer/src/main/cpp/hello.cpp) -->
+
 ### OH_JSVM_DetachArraybuffer
 
-Use **OH_JSVM_DetachArraybuffer** to call the **Detach()** operation of an **ArrayBuffer** object.
+Calls the **Detach()** operation of an **ArrayBuffer** object.
 
 ### OH_JSVM_IsDetachedArraybuffer
 
@@ -186,9 +208,18 @@ isDetachedArraybuffer(arrayBuffer);
 )JS";
 ```
 
+Expected result:
+```
+JSVM DetachArraybuffer: success
+JSVM IsDetachedArraybuffer: success
+JSVM IsArrayBuffer: 1
+```
+
+<!-- @[oh_jsvm_is_detached_arraybuffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/isdetachedarraybuffer/src/main/cpp/hello.cpp) -->
+
 ### OH_JSVM_CreateArraybuffer
 
-Use **OH_JSVM_CreateArraybuffer** to create an **ArrayBuffer** object of the specified size.
+Creates an **ArrayBuffer** object of the specified size.
 
 CPP code:
 
@@ -205,15 +236,16 @@ static JSVM_Value CreateArraybuffer(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_Value result = nullptr;
     // Parse the input parameters.
     OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
-    int32_t value;
-    size_t length;
-    OH_JSVM_GetValueInt32(env, argv[0], &value);
+    int32_t value = 0;
+    size_t length = 0;
+    JSVM_CALL(OH_JSVM_GetValueInt32(env, argv[0], &value));
     length = size_t(value);
     void *data;
     // Create an ArrayBuffer object.
     JSVM_Status status = OH_JSVM_CreateArraybuffer(env, length, &data, &result);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM CreateArraybuffer: failed");
+        return nullptr;
     } else {
         OH_LOG_INFO(LOG_APP, "JSVM CreateArraybuffer: success");
         OH_LOG_INFO(LOG_APP, "JSVM ArrayBuffer length: %{public}d", length);
@@ -235,3 +267,11 @@ const char *srcCallNative = R"JS(
 createArraybuffer(8);
 )JS";
 ```
+
+Expected result:
+```
+JSVM CreateArraybuffer: success
+JSVM ArrayBuffer length: 8
+```
+
+<!-- @[oh_jsvm_create_arraybuffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/createarraybuffer/src/main/cpp/hello.cpp) -->

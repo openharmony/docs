@@ -3342,6 +3342,97 @@ sim.getSimAuthentication(0, sim.AuthType.SIM_AUTH_EAP_SIM_TYPE, "test").then(() 
 });
 ```
 
+## sim.getAllSimAccountInfoList<sup>20+</sup>
+
+getAllSimAccountInfoList(callback: AsyncCallback\<Array\<IccAccountInfo\>\>): void
+
+获取所有SIM卡账户信息的列表，并通过Callback对象返回解析后的IccAccountInfo数组。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                     |
+| -------- | ------------------------ | ---- | ---------------------------------------- |
+| callback | AsyncCallback&lt;Array&lt;[IccAccountInfo](js-apis-sim.md#iccaccountinfo10)&gt;&gt; | 是   | 回调函数，获取SIM卡状态信息。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[电话子系统错误码](errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 202 | Non-system applications use system APIs.
+| 8300001 | Invalid parameter value.                 |                    |
+| 8300002  | Operation failed. Cannot connect to service.                      |
+| 8300003 | System internal error.                               |
+| 8300004  |Do not have sim card.|
+| 8300999  |Unknown error code.|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
+
+async function getAllSimAccountInfoList((err, accountInfoList) => {
+    if (err) {
+      console.error('获取SIM卡账户信息失败:', err);
+    } else {
+      console.info('获取到的SIM卡账户信息:', accountInfoList);
+    }
+  });
+```
+
+## sim.getAllSimAccountInfoList<sup>20+</sup>
+
+getAllSimAccountInfoList(): Promise\<Array\<IccAccountInfo\>\>
+
+获取所有SIM卡的账户信息列表。返回一个解析为IccAccountInfo数组的Promise对象。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**系统接口：** 此接口为系统接口。
+
+**返回值：**
+
+| 类型                  | 说明                               |
+| --------------------- | ---------------------------------- |
+| Promise\<Array\<[IccAccountInfo](js-apis-sim.md#iccaccountinfo10)\>\>| 返回激活的SIM卡账户信息列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[电话子系统错误码](errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.|
+| 202 | Non-system applications use system APIs.                     |
+| 8300002  | Operation failed. Cannot connect to service.                      |
+| 8300003 | System internal error.                               |
+| 8300004  |Do not have sim card.|
+| 8300999  |Unknown error code.|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
+
+async getAllSimAccountInfoList(): Promise<ResponseData<sim.IccAccountInfo[] | null>> {
+    try {
+      const accountInfoList: sim.IccAccountInfo[] =
+        await sim.getAllSimAccountInfoList();
+      return { success: true, code: CommonConstant.DEFAULT_SUCCESS_CODE, data: accountInfoList };
+    } catch (err) {
+      return this.handleError(this.getAllSimAccountInfoList.name, err);
+    }
+  }
+```
+
 ## LockType<sup>8+</sup>
 
 锁类型。

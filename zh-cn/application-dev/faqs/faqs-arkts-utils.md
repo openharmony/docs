@@ -1,4 +1,10 @@
 # ArkTS语言基础类库开发常见问题
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @wang_zhaoyong-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kir175; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 
 ## TaskPool、Worker和各个ArkTS引擎实例之间是否内存隔离
@@ -308,11 +314,11 @@ class SdkU3d {
   }
 }
 
-const workerInstance = new
-worker.ThreadWorker("xx/worker.ts");
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 let sdk = SdkU3d.getInst()
 workerInstance.registerGlobalCallObject("instance_xx", sdk);
 workerInstance.postMessage("start");
+// 工作线程
 const mainPort = worker.workerPort;
 mainPort.onmessage = (e: MessageEvents): void => {
   let ret = mainPort.callGlobalCallObjectMethod("instance_xx", "getPropStr", "xx");
@@ -638,7 +644,7 @@ AST属于编译器编译过程中间数据结构，该数据本身不稳定，�
 
 **参考资料**
 
-1. [基于方舟字节码文件的安全扫描接口](https://gitee.com/openharmony/arkcompiler_runtime_core/blob/master/libark_defect_scan_aux/README.md)
+1. [基于方舟字节码文件的安全扫描接口](https://gitcode.com/openharmony/arkcompiler_runtime_core/blob/master/libark_defect_scan_aux/README.md)
 
 ## 目前系统的多线程内存占用大，每个线程需要一个ArkTS引擎，意味着更多的内存占用。如何解决应用需要避免开辟过多线程，并发处理任务数量受限，无法充分发挥设备性能的问题？
 

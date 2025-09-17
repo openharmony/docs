@@ -257,6 +257,24 @@ Parameter verification failed.
 4. 检查传入参数值是否在接口支持取值范围内。
 5. 移除前先查询是否有设置相应的名单。
 
+## 9200013 管控未实时生效
+
+**错误信息**
+
+The enterprise management policy has been successfully set, but the function has not taken effect in real time.
+
+**错误描述**
+
+企业管控策略设置成功，但是管控未实时生效。
+
+**可能原因**
+
+在外置存储管控场景，禁用外置存储时，由于外置存储有文件正在被使用，导致禁用未实时生效，此时无法立即卸载外置存储。
+
+**处理步骤**
+
+重启设备，重启后管控生效。在外置存储管控场景下，重启后禁用外置存储生效，不会主动加载外置存储。
+   
 ## 9201001 管理证书失败
 
 **错误信息**

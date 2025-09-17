@@ -257,8 +257,9 @@ OH_AudioStreamBuilder_Destroy(builder);
      callbacks.OH_AudioRenderer_OnWriteData = MyOnWriteData;
      callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
 
-     // （必选）如果不需要监听，使用空指针初始化。
+     // （必选）无触发回调场景，使用空指针初始化。从API 11开始，开发者如果需要监听设备变化，可直接使用OH_AudioRenderer_OutputDeviceChangeCallback替代。
      callbacks.OH_AudioRenderer_OnStreamEvent = nullptr;
+     // （必选）如果不需要监听，使用空指针初始化。
      callbacks.OH_AudioRenderer_OnError = nullptr;
      ```
    

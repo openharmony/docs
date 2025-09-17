@@ -66,6 +66,7 @@
  * 密钥算法为ECC256、摘要算法为SHA256
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
 
 let keyAlias = 'test_eccKeyAlias';
 let handle: number;
@@ -140,77 +141,118 @@ function GetEccVerifyProperties() {
   return properties;
 }
 
+async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter generateKeyItem`);
+  try {
+    await huks.generateKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: generateKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: generateKeyItem input arg invalid`);
+  }
+}
+
+async function initSession(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter initSession`);
+  try {
+    await huks.initSession(keyAlias, huksOptions)
+      .then((data) => {
+        handle = data.handle;
+        console.info(`promise: initSession success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: initSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: initSession input arg invalid`);
+  }
+}
+
+async function updateSession(handle: number, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter updateSession`);
+  try {
+    await huks.updateSession(handle, huksOptions)
+      .then((data) => {
+        let outData = data.outData as Uint8Array;
+        console.info(`promise: updateSession success, data = ${Uint8ArrayToString(outData)}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: updateSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: updateSession input arg invalid`);
+  }
+}
+
+async function finishSession(handle: number, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter finishSession`);
+  try {
+    await huks.finishSession(handle, huksOptions)
+      .then((data) => {
+        signature = data.outData as Uint8Array;
+        console.info(`promise: finishSession success, data = ${Uint8ArrayToString(signature)}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: finishSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: finishSession input arg invalid`);
+  }
+}
+
+async function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter deleteKeyItem`);
+  try {
+    await huks.deleteKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: deleteKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: deleteKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: deleteKeyItem input arg invalid`);
+  }
+}
+
 async function GenerateEccKey(keyAlias: string) {
+  console.info(`enter GenerateEccKey`);
   let genProperties = GetEccGenerateProperties();
   let options: huks.HuksOptions = {
     properties: genProperties
-  }
-  await huks.generateKeyItem(keyAlias, options)
-    .then((data) => {
-      console.info(`promise: generate ECC Key success, data = ${JSON.stringify(data)}`);
-    }).catch((err: Error) => {
-      console.error(`promise: generate ECC Key failed, error: ` + JSON.stringify(err));
-    })
+  };
+  await generateKeyItem(keyAlias, options);
 }
 
 async function Sign(keyAlias: string, plaintext: string) {
+  console.info(`enter Sign`);
   let signProperties = GetEccSignProperties();
   let options: huks.HuksOptions = {
     properties: signProperties,
     inData: StringToUint8Array(plaintext)
   }
-  await huks.initSession(keyAlias, options)
-    .then((data) => {
-      handle = data.handle;
-    }).catch((err: Error) => {
-      console.error(`promise: init sign failed, error: ` + JSON.stringify(err));
-    })
-  await huks.finishSession(handle, options)
-    .then((data) => {
-      console.info(`promise: sign success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-      signature = data.outData as Uint8Array;
-    }).catch((err: Error) => {
-      console.error(`promise: sign failed, error: ` + JSON.stringify(err));
-    })
+  await initSession(keyAlias, options);
+  await finishSession(handle, options);
 }
 
 async function Verify(keyAlias: string, plaintext: string, signature: Uint8Array) {
+  console.info(`enter Verify`);
   let verifyProperties = GetEccVerifyProperties()
   let options: huks.HuksOptions = {
     properties: verifyProperties,
     inData: StringToUint8Array(plaintext)
   }
-  await huks.initSession(keyAlias, options)
-    .then((data) => {
-      handle = data.handle;
-    }).catch((err: Error) => {
-      console.error(`promise: init verify failed, error: ` + JSON.stringify(err));
-    })
-  await huks.updateSession(handle, options)
-    .then((data) => {
-      console.info(`promise: update verify success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-    }).catch((err: Error) => {
-      console.error(`promise: update verify failed, error: ` + JSON.stringify(err));
-    })
+  await initSession(keyAlias, options);
+  await updateSession(handle, options);
   options.inData = signature;
-  await huks.finishSession(handle, options)
-    .then((data) => {
-      console.info(`promise: verify success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-    }).catch((err: Error) => {
-      console.error(`promise: verify failed, error: ` + JSON.stringify(err));
-    })
+  await finishSession(handle, options);
 }
 
 async function DeleteEccKey(keyAlias: string) {
+  console.info(`enter DeleteEccKey`);
   let emptyOptions: huks.HuksOptions = {
     properties: []
   }
-  await huks.deleteKeyItem(keyAlias, emptyOptions)
-    .then((data) => {
-      console.info(`promise: delete data success`);
-    }).catch((err: Error) => {
-      console.error(`promise: delete data failed`);
-    })
+  await deleteKeyItem(keyAlias, emptyOptions);
 }
 
 async function testSignVerify() {
@@ -226,12 +268,12 @@ async function testSignVerify() {
  * 密钥算法为SM2、摘要算法为SM3
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
 
 let keyAlias = 'test_sm2KeyAlias';
 let handle: number;
 let plaintext = '123456';
 let signature: Uint8Array;
-
 
 function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
@@ -241,7 +283,6 @@ function StringToUint8Array(str: string) {
   return new Uint8Array(arr);
 }
 
-
 function Uint8ArrayToString(fileData: Uint8Array) {
   let dataString = '';
   for (let i = 0; i < fileData.length; i++) {
@@ -249,7 +290,6 @@ function Uint8ArrayToString(fileData: Uint8Array) {
   }
   return dataString;
 }
-
 
 function GetSm2GenerateProperties() {
   let properties: Array<huks.HuksParam> = [{
@@ -303,17 +343,86 @@ function GetSm2VerifyProperties() {
   return properties;
 }
 
+async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter generateKeyItem`);
+  try {
+    await huks.generateKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: generateKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: generateKeyItem input arg invalid`);
+  }
+}
+
+async function initSession(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter initSession`);
+  try {
+    await huks.initSession(keyAlias, huksOptions)
+      .then((data) => {
+        handle = data.handle;
+        console.info(`promise: initSession success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: initSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: initSession input arg invalid`);
+  }
+}
+
+async function updateSession(handle: number, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter updateSession`);
+  try {
+    await huks.updateSession(handle, huksOptions)
+      .then((data) => {
+        let outData = data.outData as Uint8Array;
+        console.info(`promise: updateSession success, data = ${Uint8ArrayToString(outData)}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: updateSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: updateSession input arg invalid`);
+  }
+}
+
+async function finishSession(handle: number, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter finishSession`);
+  try {
+    await huks.finishSession(handle, huksOptions)
+      .then((data) => {
+        signature = data.outData as Uint8Array;
+        console.info(`promise: finishSession success, data = ${Uint8ArrayToString(signature)}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: finishSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: finishSession input arg invalid`);
+  }
+}
+
+async function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter deleteKeyItem`);
+  try {
+    await huks.deleteKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: deleteKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: deleteKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: deleteKeyItem input arg invalid`);
+  }
+}
+
 async function GenerateSm2Key(keyAlias: string) {
+  console.info(`enter GenerateSm2Key`);
   let genProperties = GetSm2GenerateProperties();
   let options: huks.HuksOptions = {
     properties: genProperties
-  }
-  await huks.generateKeyItem(keyAlias, options)
-    .then((data) => {
-      console.info(`promise: generate Sm2 Key success, data = ${JSON.stringify(data)}`);
-    }).catch((err: Error) => {
-      console.error(`promise: generate Sm2 Key failed, error: ` + JSON.stringify(err));
-    })
+  };
+  await generateKeyItem(keyAlias, options);
 }
 
 async function Sign(keyAlias: string, plaintext: string) {
@@ -322,19 +431,8 @@ async function Sign(keyAlias: string, plaintext: string) {
     properties: signProperties,
     inData: StringToUint8Array(plaintext)
   }
-  await huks.initSession(keyAlias, options)
-    .then((data) => {
-      handle = data.handle;
-    }).catch((err: Error) => {
-      console.error(`promise: init sign failed, error: ` + JSON.stringify(err));
-    })
-  await huks.finishSession(handle, options)
-    .then((data) => {
-      console.info(`promise: sign success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-      signature = data.outData as Uint8Array;
-    }).catch((err: Error) => {
-      console.error(`promise: sign failed, error: ` + JSON.stringify(err));
-    })
+  await initSession(keyAlias, options);
+  await finishSession(handle, options);
 }
 
 async function Verify(keyAlias: string, plaintext: string, signature: Uint8Array) {
@@ -343,40 +441,21 @@ async function Verify(keyAlias: string, plaintext: string, signature: Uint8Array
     properties: verifyProperties,
     inData: StringToUint8Array(plaintext)
   }
-  await huks.initSession(keyAlias, options)
-    .then((data) => {
-      handle = data.handle;
-    }).catch((err: Error) => {
-      console.error(`promise: init verify failed, error: ` + JSON.stringify(err));
-    })
-  await huks.updateSession(handle, options)
-    .then((data) => {
-      console.info(`promise: update verify success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-    }).catch((err: Error) => {
-      console.error(`promise: update verify failed, error: ` + JSON.stringify(err));
-    })
+  await initSession(keyAlias, options);
+  await updateSession(handle, options);
   options.inData = signature;
-  await huks.finishSession(handle, options)
-    .then((data) => {
-      console.info(`promise: verify success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-    }).catch((err: Error) => {
-      console.error(`promise: verify failed, error: ` + JSON.stringify(err));
-    })
+  await finishSession(handle, options)
 }
 
 async function DeleteSm2Key(keyAlias: string) {
+  console.info(`enter DeleteRsaKey`);
   let emptyOptions: huks.HuksOptions = {
     properties: []
   }
-  await huks.deleteKeyItem(keyAlias, emptyOptions)
-    .then((data) => {
-      console.info(`promise: delete data success`);
-    }).catch((err: Error) => {
-      console.error(`promise: delete data failed`);
-    })
+  await deleteKeyItem(keyAlias, emptyOptions);
 }
 
-export async function testSignVerify() {
+async function testSignVerify() {
   await GenerateSm2Key(keyAlias);
   await Sign(keyAlias, plaintext);
   await Verify(keyAlias, plaintext, signature);
@@ -389,6 +468,7 @@ export async function testSignVerify() {
  * 密钥算法为RSA，摘要算法为SHA256，填充模式为PSS
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
 
 let keyAlias = 'test_rsaKeyAlias';
 let handle: number;
@@ -472,89 +552,128 @@ function GetRsaVerifyProperties() {
   return properties;
 }
 
+async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter generateKeyItem`);
+  try {
+    await huks.generateKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: generateKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: generateKeyItem input arg invalid`);
+  }
+}
+
+async function initSession(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter initSession`);
+  try {
+    await huks.initSession(keyAlias, huksOptions)
+      .then((data) => {
+        handle = data.handle;
+        console.info(`promise: initSession success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: initSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: initSession input arg invalid`);
+  }
+}
+
+async function updateSession(handle: number, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter updateSession`);
+  try {
+    await huks.updateSession(handle, huksOptions)
+      .then((data) => {
+        let outData = data.outData as Uint8Array;
+        console.info(`promise: updateSession success, data = ${Uint8ArrayToString(outData)}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: updateSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: updateSession input arg invalid`);
+  }
+}
+
+async function finishSession(handle: number, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter finishSession`);
+  try {
+    await huks.finishSession(handle, huksOptions)
+      .then((data) => {
+        signature = data.outData as Uint8Array;
+        console.info(`promise: finishSession success, data = ${Uint8ArrayToString(signature)}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: finishSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: finishSession input arg invalid`);
+  }
+}
+
+async function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter deleteKeyItem`);
+  try {
+    await huks.deleteKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: deleteKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: deleteKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: deleteKeyItem input arg invalid`);
+  }
+}
+
 async function GenerateRsaKey(keyAlias: string) {
+  console.info(`enter GenerateRsaKey`);
   let genProperties = GetRsaGenerateProperties();
   let options: huks.HuksOptions = {
     properties: genProperties
   };
-  await huks.generateKeyItem(keyAlias, options)
-    .then((data) => {
-      console.info(`promise: generate RSA Key success, data = ${JSON.stringify(data)}`);
-    }).catch((err: Error) => {
-      console.error(`promise: generate RSA Key failed, error: ` + JSON.stringify(err));
-    });
+  await generateKeyItem(keyAlias, options);
 }
 
 async function Sign(keyAlias: string, plaintext: string) {
+  console.info(`enter Sign`);
   let signProperties = GetRsaSignProperties();
   let options: huks.HuksOptions = {
     properties: signProperties,
     inData: StringToUint8Array(plaintext)
   }
-  await huks.initSession(keyAlias, options)
-    .then((data) => {
-      handle = data.handle;
-    }).catch((err: Error) => {
-      console.error(`promise: init sign failed, error: ` + JSON.stringify(err));
-      return;
-    });
+  await initSession(keyAlias, options);
 
   if (handle !== undefined) {
-    await huks.finishSession(handle, options)
-      .then((data) => {
-        console.info(`promise: sign success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-        signature = data.outData as Uint8Array;
-      }).catch((err: Error) => {
-        console.error(`promise: sign failed, error: ` + JSON.stringify(err));
-      });
+    await finishSession(handle, options);
   }
 }
 
 async function Verify(keyAlias: string, plaintext: string, signature: Uint8Array) {
+  console.info(`enter Verify`);
   let verifyProperties = GetRsaVerifyProperties();
   let options: huks.HuksOptions = {
     properties: verifyProperties,
     inData: StringToUint8Array(plaintext)
   }
-  await huks.initSession(keyAlias, options)
-    .then((data) => {
-      handle = data.handle;
-    }).catch((err: Error) => {
-      console.error(`promise: init verify failed, error: ` + JSON.stringify(err));
-      return;
-    });
+
+  await initSession(keyAlias, options);
 
   if (handle !== undefined) {
-    await huks.updateSession(handle, options)
-      .then((data) => {
-        console.info(`promise: update verify success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-      }).catch((err: Error) => {
-        console.error(`promise: update verify failed, error: ` + JSON.stringify(err));
-      });
-
+    await updateSession(handle, options);
     options.inData = signature;
-    await huks.finishSession(handle, options)
-      .then((data) => {
-        console.info(`promise: verify success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-      }).catch((err: Error) => {
-        console.error(`promise: verify failed, error: ` + JSON.stringify(err));
-      });
+    await finishSession(handle, options);
   }
 }
 
 async function DeleteRsaKey(keyAlias: string) {
+  console.info(`enter DeleteRsaKey`);
   let emptyOptions: huks.HuksOptions = {
     properties: []
   }
-  await huks.deleteKeyItem(keyAlias, emptyOptions)
-    .then((data) => {
-      console.info(`promise: delete data success`);
-    }).catch((err: Error) => {
-      console.error(`promise: delete data failed`);
-    });
+  await deleteKeyItem(keyAlias, emptyOptions);
 }
 
-export async function testSignVerify() {
+async function testSignVerify() {
   await GenerateRsaKey(keyAlias);
   await Sign(keyAlias, plaintext);
   await Verify(keyAlias, plaintext, signature);
@@ -567,6 +686,7 @@ export async function testSignVerify() {
  * 密钥算法为RSA，摘要算法为SHA256，填充模式为PKCS1_V1_5
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
 
 let keyAlias = 'test_rsaKeyAlias';
 let handle: number;
@@ -590,16 +710,21 @@ function Uint8ArrayToString(fileData: Uint8Array) {
 }
 
 function GetRsaGenerateProperties() {
-  let properties: Array<huks.HuksParam> = [
-    { tag: huks.HuksTag.HUKS_TAG_ALGORITHM, value: huks.HuksKeyAlg.HUKS_ALG_RSA },
-    { tag: huks.HuksTag.HUKS_TAG_KEY_SIZE, value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048 },
-    {
-      tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-      value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
-    },
-    { tag: huks.HuksTag.HUKS_TAG_PADDING, value: huks.HuksKeyPadding.HUKS_PADDING_PKCS1_V1_5 },
-    { tag: huks.HuksTag.HUKS_TAG_DIGEST, value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256 }
-  ];
+  let properties: Array<huks.HuksParam> = [{
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_RSA
+  }, { tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_PADDING,
+    value: huks.HuksKeyPadding.HUKS_PADDING_PKCS1_V1_5
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+  }];
   return properties;
 }
 
@@ -643,80 +768,121 @@ function GetRsaVerifyProperties() {
   return properties;
 }
 
+async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter generateKeyItem`);
+  try {
+    await huks.generateKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: generateKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: generateKeyItem input arg invalid`);
+  }
+}
+
+async function initSession(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter initSession`);
+  try {
+    await huks.initSession(keyAlias, huksOptions)
+      .then((data) => {
+        handle = data.handle;
+        console.info(`promise: initSession success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: initSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: initSession input arg invalid`);
+  }
+}
+
+async function updateSession(handle: number, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter updateSession`);
+  try {
+    await huks.updateSession(handle, huksOptions)
+      .then((data) => {
+        let outData = data.outData as Uint8Array;
+        console.info(`promise: updateSession success, data = ${Uint8ArrayToString(outData)}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: updateSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: updateSession input arg invalid`);
+  }
+}
+
+async function finishSession(handle: number, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter finishSession`);
+  try {
+    await huks.finishSession(handle, huksOptions)
+      .then((data) => {
+        signature = data.outData as Uint8Array;
+        console.info(`promise: finishSession success, data = ${Uint8ArrayToString(signature)}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: finishSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: finishSession input arg invalid`);
+  }
+}
+
+async function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter deleteKeyItem`);
+  try {
+    await huks.deleteKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: deleteKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: deleteKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: deleteKeyItem input arg invalid`);
+  }
+}
+
 async function GenerateRsaKey(keyAlias: string) {
+  console.info(`enter GenerateRsaKey`);
   let genProperties = GetRsaGenerateProperties();
   let options: huks.HuksOptions = {
     properties: genProperties
-  }
-  await huks.generateKeyItem(keyAlias, options)
-    .then((data) => {
-      console.info(`promise: generate RSA Key success, data = ${JSON.stringify(data)}`);
-    }).catch((err: Error) => {
-      console.error(`promise: generate RSA Key failed, error: ` + JSON.stringify(err));
-    })
+  };
+  await generateKeyItem(keyAlias, options);
 }
 
 async function Sign(keyAlias: string, plaintext: string) {
+  console.info(`enter Sign`);
   let signProperties = GetRsaSignProperties();
   let options: huks.HuksOptions = {
     properties: signProperties,
     inData: StringToUint8Array(plaintext)
   }
-  await huks.initSession(keyAlias, options)
-    .then((data) => {
-      handle = data.handle;
-    }).catch((err: Error) => {
-      console.error(`promise: init sign failed, error: ` + JSON.stringify(err));
-    })
-  await huks.finishSession(handle, options)
-    .then((data) => {
-      console.info(`promise: sign success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-      signature = data.outData as Uint8Array;
-    }).catch((err: Error) => {
-      console.error(`promise: sign failed, error: ` + JSON.stringify(err));
-    })
+  await initSession(keyAlias, options);
+  await finishSession(handle, options);
 }
 
 async function Verify(keyAlias: string, plaintext: string, signature: Uint8Array) {
+  console.info(`enter Verify`);
   let verifyProperties = GetRsaVerifyProperties()
   let options: huks.HuksOptions = {
     properties: verifyProperties,
     inData: StringToUint8Array(plaintext)
   }
-  await huks.initSession(keyAlias, options)
-    .then((data) => {
-      handle = data.handle;
-    }).catch((err: Error) => {
-      console.error(`promise: init verify failed, error: ` + JSON.stringify(err));
-    })
-  await huks.updateSession(handle, options)
-    .then((data) => {
-      console.info(`promise: update verify success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-    }).catch((err: Error) => {
-      console.error(`promise: update verify failed, error: ` + JSON.stringify(err));
-    })
+  await initSession(keyAlias, options);
+  await updateSession(handle, options);
   options.inData = signature;
-  await huks.finishSession(handle, options)
-    .then((data) => {
-      console.info(`promise: verify success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-    }).catch((err: Error) => {
-      console.error(`promise: verify failed, error: ` + JSON.stringify(err));
-    })
+  await finishSession(handle, options);
 }
 
 async function DeleteRsaKey(keyAlias: string) {
+  console.info(`enter DeleteRsaKey`);
   let emptyOptions: huks.HuksOptions = {
     properties: []
   }
-  await huks.deleteKeyItem(keyAlias, emptyOptions)
-    .then((data) => {
-      console.info(`promise: delete data success`);
-    }).catch((err: Error) => {
-      console.error(`promise: delete data failed`);
-    })
+  await deleteKeyItem(keyAlias, emptyOptions);
 }
 
-export async function testSignVerify() {
+async function testSignVerify() {
   await GenerateRsaKey(keyAlias);
   await Sign(keyAlias, plaintext);
   await Verify(keyAlias, plaintext, signature);

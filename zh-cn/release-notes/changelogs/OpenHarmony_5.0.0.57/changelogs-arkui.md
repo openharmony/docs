@@ -80,4 +80,4 @@ Canvas组件的toDataURL接口。
 
 **适配指导**
 
-默认效果变更，无需适配，但应注意变更后的效果是否符合预期。
+默认效果变更，但开发者需审视此变更是否对自身相关业务代码逻辑产生影响，若有影响需根据自身业务代码进行对应适配。示例代码详情请看[toDataURL接口示例](../../../application-dev/reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#todataurl)。

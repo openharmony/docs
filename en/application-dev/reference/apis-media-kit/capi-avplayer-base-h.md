@@ -1,4 +1,10 @@
 # avplayer_base.h
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xushubo; @chennotfound-->
+<!--Designer: @dongyu_dy-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
@@ -20,7 +26,7 @@ The file declares the structs and enums of the AVPlayer.
 
 | Name| typedef Keyword| Description|
 | -- | -- | -- |
-| [AVPlayerCallback](capi-avplayer-avplayercallback.md) | AVPlayerCallback | Contains the set of the **OH_AVPlayerOnInfo** and **OH_AVPlayerOnInfo** callback function pointers. To ensure the normal running of OH_AVPlayer, you must register this struct with the OH_AVPlayer instance and process the information reported by the callback functions.|
+| [AVPlayerCallback](capi-avplayer-avplayercallback.md) | AVPlayerCallback | Contains the set of the [OH_AVPlayerOnInfo](#oh_avplayeroninfo) and **OH_AVPlayerOnInfo** callback function pointers. To ensure the normal running of OH_AVPlayer, you must register this struct with the OH_AVPlayer instance and process the information reported by the callback functions.|
 | [OH_AVPlayer](capi-avplayer-oh-avplayer.md) | OH_AVPlayer | Describes an initialized AVPlayer.|
 
 ### Enums
@@ -30,7 +36,7 @@ The file declares the structs and enums of the AVPlayer.
 | [AVPlayerState](#avplayerstate) | AVPlayerState | Enumerates the AVPlayer states.|
 | [AVPlayerSeekMode](#avplayerseekmode) | AVPlayerSeekMode | Enumerates the seek modes.|
 | [AVPlaybackSpeed](#avplaybackspeed) | AVPlaybackSpeed | Enumerates the playback speeds of the AVPlayer.|
-| [AVPlayerOnInfoType](#avplayeroninfotype) | AVPlayerOnInfoType | Enumerates the types of messages received by the AVPlayer.<br>The enum can be used in **OH_AVPlayerOnInfoCallback** and **OH_AVPlayerOnInfo** (deprecated) to indicate the type of information received by the AVPlayer.|
+| [AVPlayerOnInfoType](#avplayeroninfotype) | AVPlayerOnInfoType | Enumerates the types of messages received by the AVPlayer.<br>The enum can be used in [OH_AVPlayerOnInfoCallback](#oh_avplayeroninfocallback) and [OH_AVPlayerOnInfo](#oh_avplayeroninfo) (deprecated) to indicate the type of information received by the AVPlayer.|
 | [AVPlayerBufferingType](#avplayerbufferingtype) | AVPlayerBufferingType | Enumerates the types of buffer messages of the AVPlayer.|
 
 ### Functions
@@ -38,9 +44,9 @@ The file declares the structs and enums of the AVPlayer.
 | Name| typedef Keyword| Description|
 | -- | -- | -- |
 | [typedef void (\*OH_AVPlayerOnInfo)(OH_AVPlayer *player, AVPlayerOnInfoType type, int32_t extra)](#oh_avplayeroninfo) | OH_AVPlayerOnInfo | Called when the AVPlayer receives a message.|
-| [typedef void (\*OH_AVPlayerOnInfoCallback)(OH_AVPlayer \*player, AVPlayerOnInfoType type, OH_AVFormat* infoBody,void *userData)](#oh_avplayeroninfocallback) | OH_AVPlayerOnInfoCallback | Called when the AVPlayer receives a message. If this callback is successfully set, the **OH_AVPlayerOnInfo** function will not be invoked.|
+| [typedef void (\*OH_AVPlayerOnInfoCallback)(OH_AVPlayer \*player, AVPlayerOnInfoType type, OH_AVFormat* infoBody, void *userData)](#oh_avplayeroninfocallback) | OH_AVPlayerOnInfoCallback | Called when the AVPlayer receives a message. If this callback is successfully set, the [OH_AVPlayerOnInfo](#oh_avplayeroninfo) function will not be invoked.|
 | [typedef void (\*OH_AVPlayerOnError)(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg)](#oh_avplayeronerror) | OH_AVPlayerOnError | Called when an error occurs in the AVPlayer. This type is available in API version 9 or later.|
-| [typedef void (\*OH_AVPlayerOnErrorCallback)(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg,void *userData)](#oh_avplayeronerrorcallback) | OH_AVPlayerOnErrorCallback | Called when an error occurs in the AVPlayer. If this callback is successfully set, the **OH_AVPlayerOnError** function will not be invoked.|
+| [typedef void (\*OH_AVPlayerOnErrorCallback)(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg, void *userData)](#oh_avplayeronerrorcallback) | OH_AVPlayerOnErrorCallback | Called when an error occurs in the AVPlayer. If this callback is successfully set, the [OH_AVPlayerOnError](#oh_avplayeronerror) function will not be invoked.|
 
 ### Variables
 
@@ -49,7 +55,7 @@ The file declares the structs and enums of the AVPlayer.
 | const char * OH_PLAYER_STATE | Pointer to the key for obtaining the AVPlayer state. The value is of the int32_t type.<br>**Since**: 12|
 | const char * OH_PLAYER_STATE_CHANGE_REASON | Pointer to the key for obtaining the AVPlayer state change reason. The value is of the int32_t type.<br>The value **1** means that the change is triggered by user operations, and **2** means that the change is triggered by the system.<br>**Since**: 12|
 | const char * OH_PLAYER_VOLUME | Pointer to the key for obtaining the volume. The value type is float.<br>**Since**: 12|
-| const char * OH_PLAYER_BITRATE_ARRAY | Pointer to the key for obtaining the bit rate array. The value is of the uint8_t byte array type. When this key is used to obtain information, you need to:<br>Use a pointer variable of the uint8_t type to store the bit rate list and use a variable of the size_t type to store the byte array length.<br>Then it allocates several storage spaces of the uint32_t type to receive the bit rate integer of the uint32_t type, which is converted from the uint8_t byte array.<br>For details, see the **OHAVPlayerOnInfoCallback** function described in the corresponding [development guide](../../media/media/using-ndk-avplayer-for-playback.md).<br>**Since**: 12|
+| const char * OH_PLAYER_BITRATE_ARRAY | Pointer to the key for obtaining the bit rate array. The value is of the uint8_t byte array type. When this key is used to obtain information, you need to:<br>Use a pointer variable of the uint8_t type to store the bit rate list and use a variable of the size_t type to store the byte array length.<br>Then it allocates several storage spaces of the uint32_t type to receive the bit rate integer of the uint32_t type, which is converted from the uint8_t byte array.<br>For details, see the [OH_AVPlayerOnInfoCallback](#oh_avplayeroninfocallback) function described in the corresponding [development guide](../../media/media/using-ndk-avplayer-for-playback.md).<br>**Since**: 12|
 | const char * OH_PLAYER_AUDIO_INTERRUPT_TYPE | Pointer to the key for obtaining the audio interruption type. The value is of the int32_t type.<br>**Since**: 12|
 | const char * OH_PLAYER_AUDIO_INTERRUPT_FORCE | Pointer to the key for obtaining the FORCE type of audio interruption. The value is of the int32_t type.<br>**Since**: 12|
 | const char * OH_PLAYER_AUDIO_INTERRUPT_HINT | Pointer to the key for obtaining the HINT type of audio interruption. The value is of the int32_t type.<br>**Since**: 12|
@@ -58,7 +64,7 @@ The file declares the structs and enums of the AVPlayer.
 | const char * OH_PLAYER_BUFFERING_VALUE | Pointer to the key for obtaining the value of the buffer update message. The value is of the int32_t type. For details, see [AVPlayerBufferingType](capi-avplayer-base-h.md#avplayerbufferingtype).<br>This parameter is valid only when the buffer update message type is **AVPLAYER_BUFFERING_PERCENT** or **AVPLAYER_BUFFERING_CACHED_DURATION**.<br>**Since**: 12|
 | const char * OH_PLAYER_SEEK_POSITION | Pointer to the key for obtaining the playback progress after the seek operation. The value is of the int32_t type.<br>**Since**: 12|
 | const char * OH_PLAYER_PLAYBACK_SPEED | Pointer to the key for obtaining the playback speed. The value type is [AVPlaybackSpeed](capi-avplayer-base-h.md#avplaybackspeed).<br>When this key is used to obtain information, you must use a variable of the int32_t type to save the result and then convert the result to a value of AVPlaybackSpeed.<br>**Since**: 12|
-| const char * OH_PLAYER_PLAYBACK_RATE | Pointer to the key for obtaining the playback rate. The value is a floating point number.<br>**Since**: 20|
+| const char * OH_PLAYER_PLAYBACK_RATE | Pointer to the key for obtaining the playback rate. The value is a floating-point number.<br>**Since**: 20|
 | const char * OH_PLAYER_BITRATE | Pointer to the key for obtaining the bit rate. The value is of the uint32_t type.<br>**Since**: 12|
 | const char * OH_PLAYER_CURRENT_POSITION | Pointer to the key for obtaining the playback progress information. The value is of the int32_t type.<br>**Since**: 12|
 | const char * OH_PLAYER_DURATION | Pointer to the key for obtaining the media asset duration. The value type is int64_t.<br>**Since**: 12|
@@ -323,6 +329,6 @@ Called when an error occurs in the AVPlayer. If this callback is successfully se
 | Parameter| Description|
 | -- | -- |
 | [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | Pointer to an OH_AVPlayer instance.|
-|  int32_t errorCode | Error code.<br>**AV_ERR_NO_MEMORY**: No memory. The value is **1**.<br>**AV_ERR_OPERATE_NOT_PERMIT**: The operation is not allowed. The value is **2**.<br>**AV_ERR_INVALID_VAL**: Invalid value. The value is **3**.<br>**AV_ERR_IO**: I/O error. The value is **4**.<br>**AV_ERR_TIMEOUT**: Timeout. The value is **5**.<br>**AV_ERR_UNKNOWN**: Unknown error. The value is **6**.<br>**AV_ERR_SERVICE_DIED**: The service is dead. The value is **7**.<br>**AV_ERR_INVALID_STATE**: The operation is not supported in the current state. The value is **8**.<br>**AV_ERR_UNSUPPORT**: The function is not supported. The value is **9**.<br>**AV_ERR_EXTEND_START**: Initial value for extended error codes. The value is **100**.|
+|  int32_t errorCode | Error code.<br>**AV_ERR_NO_MEMORY**: No memory. The value is **1**.<br>**AV_ERR_OPERATE_NOT_PERMIT**: The operation is not allowed. The value is **2**.<br>**AV_ERR_INVALID_VAL**: Invalid value. The value is **3**.<br>**AV_ERR_IO**: I/O error. For API versions 12 and 13, the value is **4**. Starting from API version 14, it corresponds to more specific error codes ranging from 5411001 to 5411011.<br>**AV_ERR_TIMEOUT**: Timeout. The value is **5**.<br>**AV_ERR_UNKNOWN**: Unknown error. The value is **6**.<br>**AV_ERR_SERVICE_DIED**: The service is dead. The value is **7**.<br>**AV_ERR_INVALID_STATE**: The operation is not supported in the current state. The value is **8**.<br>**AV_ERR_UNSUPPORT**: The function is not supported. The value is **9**.<br>**AV_ERR_EXTEND_START**: Initial value for extended error codes. The value is **100**.|
 |  const char *errorMsg | Pointer to the error message.|
 | void *userData | Pointer to the user data passed in. The same data is returned.|

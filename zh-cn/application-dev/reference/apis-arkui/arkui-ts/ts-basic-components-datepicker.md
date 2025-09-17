@@ -14,8 +14,7 @@
 >
 > - 该组件不建议开发者在动效过程中修改属性数据。
 >
-> - 该组件最大显示行数在横竖屏模式下存在差异，竖屏为5行，横屏为3行。
-
+> - 最大显示行数在横、竖屏模式下存在差异。竖屏时默认为5行，横屏时依赖系统配置，未配置时默认显示为3行。可通过如下参数查看具体配置值$r('sys.float.ohos_id_picker_show_count_landscape')。
 
 ## 子组件
 
@@ -49,7 +48,7 @@ DatePicker(options?: DatePickerOptions)
 | start    | Date | 否  | 是  | 指定选择器的起始日期。<br/>默认值：Date('1970-1-1')<br/>取值范围：\[Date('1900-01-31'), Date('2100-12-31')]<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。          |
 | end      | Date | 否  | 是  | 指定选择器的结束日期。<br/>默认值：Date('2100-12-31')<br/>取值范围：\[Date('1900-01-31'), Date('2100-12-31')]<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
 | selected | Date | 否  | 是  | 设置选中项的日期。<br/>默认值：当前系统日期。<br/>取值范围：\[Date('1900-01-31'), Date('2100-12-31')]<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| mode<sup>18+</sup> | [DatePickerMode](#datepickermode18枚举说明) | 否  | 是  | 设置日期展示模式。<br/>默认值：DatePickerMode.DATE，显示年、月、日三列。 小数值做取整处理。<br/>在DatePickerDialog中，当showTime=true时，此参数不生效，显示默认年月日三列。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| mode<sup>18+</sup> | [DatePickerMode](#datepickermode18枚举说明) | 否  | 是  | 设置日期展示模式。<br/>默认值：DatePickerMode.DATE，显示年、月、日三列。<br/>在[DatePickerDialog](ts-methods-datepicker-dialog.md)中，当[DatePickerDialogOptions](ts-methods-datepicker-dialog.md#datepickerdialogoptions对象说明)的showTime设置为true时，此参数不生效，默认显示年、月、日三列。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 >  **说明：**
 >
@@ -259,7 +258,7 @@ enableHapticFeedback(enable: Optional\<boolean>)
 
 >  **说明：**
 >
->  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+>  开启触控反馈时，需要在工程的src/main/module.json5文件的"module"内配置requestPermissions字段开启振动权限，配置如下：
 >  ```json
 >  "requestPermissions": [
 >  {
@@ -301,7 +300,7 @@ canLoop(isLoop: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 是否可循环滚动。<br/>- true：可循环，年份随着月份的循环滚动进行联动加减，月份随着日的循环滚动进行联动加减。<br/>- false：不可循环，年/月/日到达本列的顶部或底部时，无法再进行滚动，年/月/日之间也无法再联动加减。<br/>默认值：true<br/>当isLoop的值为undefined时，使用默认值。 |
+| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | 是   | 是否可循环滚动。<br/>- true：可循环滚动，年份随着月份的循环滚动进行联动加减，月份随着日的循环滚动进行联动加减。<br/>- false：不可循环滚动，年、月、日到达本列的顶部或底部时，无法再进行滚动，年、月、日之间也无法再联动加减。<br/>默认值：true<br/>当isLoop的值为undefined时，使用默认值。 |
 
 ## 事件
 
@@ -337,7 +336,7 @@ onDateChange(callback: Callback\<Date>)
 
 | 参数名 | 类型 | 必填 | 说明                                                         |
 | ------ | ---- | ---- | ------------------------------------------------------------ |
-| callback  | [Callback](ts-types.md#callback12)\<Date> | 是   | 返回选中的时间，年月日为选中的日期，时分取决于当前系统时间的时分，秒恒为00。 |
+| callback  | [Callback](ts-types.md#callback12)\<Date> | 是   | 返回选中的时间，年、月、日为选中的日期，时、分取决于当前系统时间的时、分，秒恒为00。 |
 
 ### onDateChange<sup>18+</sup>
 
@@ -353,7 +352,7 @@ onDateChange(callback: Optional\<Callback\<Date>>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[Callback](ts-types.md#callback12)\<Date>> | 是   | 返回选中的时间，年月日为选中的日期，时分取决于当前系统时间的时分，秒恒为00。<br/>当callback的值为undefined时，不使用回调函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[Callback](ts-types.md#callback12)\<Date>> | 是   | 返回选中的时间，年、月、日为选中的日期，时、分取决于当前系统时间的时、分，秒恒为00。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ## DatePickerResult对象说明
 
@@ -365,9 +364,9 @@ onDateChange(callback: Optional\<Callback\<Date>>)
 
 | 名称  | 类型   | 只读 | 可选 | 说明                                       |
 | ----- | ------ | ---- | ---- | ------------------------------------------ |
-| year  | number | 否   | 是   | 选中日期的年。<br/>取值范围：与start、end有关，如果没有设置start、end，则取start、end默认值[1970， 2100]。                             |
-| month | number | 否   | 是   | 选中日期的月的索引值，索引从0开始，0表示1月，11表示12月。<br/>取值范围：与start、end有关，如果没有设置start、end，取值范围为[0， 11]。 |
-| day   | number | 否   | 是   | 选中日期的日。<br/>取值范围：与start、end有关，如果没有设置start、end，取值范围为[1， 31]。                             |
+| year  | number | 否   | 是   | 选中日期的年。<br/>取值范围：与设置的start、end有关，如果没有设置start、end，取值范围为[1970, 2100]。                             |
+| month | number | 否   | 是   | 选中日期的月的索引值，索引从0开始，0表示1月，11表示12月。<br/>取值范围：与设置的start、end有关，如果没有设置start、end，取值范围为[0, 11]。 |
+| day   | number | 否   | 是   | 选中日期的日。<br/>取值范围：与设置的start、end有关，如果没有设置start、end，取值范围为[1, 31]。                             |
 
 ## 示例
 

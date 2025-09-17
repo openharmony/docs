@@ -18,7 +18,7 @@
 ## 导入模块
 
 ```ts
-import configPolicy from '@ohos.configPolicy';
+import { configPolicy } from '@kit.BasicServicesKit';
 ```
 
 ## getOneCfgFile
@@ -48,8 +48,7 @@ getOneCfgFile(relPath: string, callback: AsyncCallback&lt;string&gt;)
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import configPolicy from '@ohos.configPolicy';
+  import { configPolicy, BusinessError } from '@kit.BasicServicesKit';
 
   let relpath: string = 'etc/config.xml';
   configPolicy.getOneCfgFile(relpath, (error: BusinessError, value: string) => {
@@ -92,8 +91,7 @@ getOneCfgFile(relPath: string): Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import configPolicy from '@ohos.configPolicy';
+  import { configPolicy, BusinessError } from '@kit.BasicServicesKit';
 
   async function fetchConfigFile() {
     try {
@@ -107,7 +105,7 @@ getOneCfgFile(relPath: string): Promise&lt;string&gt;
     }
   }
 
-  fetchConfigFile()
+  fetchConfigFile();
   ```
 
 ## getCfgFiles
@@ -137,8 +135,7 @@ getCfgFiles(relPath: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import configPolicy from '@ohos.configPolicy';
+  import { configPolicy, BusinessError } from '@kit.BasicServicesKit';
 
   configPolicy.getCfgFiles('etc/config.xml', (error: BusinessError, value: Array<string>) => {
     if (error == null) {
@@ -180,8 +177,7 @@ getCfgFiles(relPath: string): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import configPolicy from '@ohos.configPolicy';
+  import { configPolicy, BusinessError } from '@kit.BasicServicesKit';
 
   async function fetchCfgFiles() {
     try {
@@ -223,8 +219,7 @@ getCfgDirList(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import configPolicy from '@ohos.configPolicy';
+  import { configPolicy, BusinessError } from '@kit.BasicServicesKit';
 
   configPolicy.getCfgDirList((error: BusinessError, value: Array<string>) => {
     if (error == null) {
@@ -252,8 +247,7 @@ getCfgDirList(): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import configPolicy from '@ohos.configPolicy';
+  import { configPolicy, BusinessError } from '@kit.BasicServicesKit';
 
   async function fetchCfgDirList() {
     try {
@@ -297,8 +291,7 @@ getOneCfgFile(relPath: string, followMode: FollowXMode, callback: AsyncCallback&
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import configPolicy from '@ohos.configPolicy';
+  import { configPolicy, BusinessError } from '@kit.BasicServicesKit';
 
   let relpath: string = 'etc/config.xml';
   configPolicy.getOneCfgFile(relpath, configPolicy.FollowXMode.SIM_DEFAULT,
@@ -341,8 +334,7 @@ getOneCfgFile(relPath: string, followMode: FollowXMode, extra: string, callback:
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import configPolicy from '@ohos.configPolicy';
+  import { configPolicy, BusinessError } from '@kit.BasicServicesKit';
 
   let relpath: string = 'etc/config.xml';
   let extra: string = 'etc/carrier/${telephony.sim.opkey0}';
@@ -389,8 +381,7 @@ getOneCfgFile(relPath: string, followMode: FollowXMode, extra?: string): Promise
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import configPolicy from '@ohos.configPolicy';
+  import { configPolicy, BusinessError } from '@kit.BasicServicesKit';
 
   async function fetchOneCfgFile() {
     try {
@@ -484,8 +475,7 @@ getCfgFiles(relPath: string, followMode: FollowXMode, callback: AsyncCallback&lt
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import configPolicy from '@ohos.configPolicy';
+  import { configPolicy, BusinessError } from '@kit.BasicServicesKit';
 
   let relpath: string = 'etc/config.xml';
   configPolicy.getCfgFiles(relpath, configPolicy.FollowXMode.SIM_DEFAULT,
@@ -527,8 +517,7 @@ getCfgFiles(relPath: string, followMode: FollowXMode, extra: string, callback: A
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import configPolicy from '@ohos.configPolicy';
+  import { configPolicy, BusinessError } from '@kit.BasicServicesKit';
 
   let relpath: string = 'etc/config.xml';
   let extra: string = 'etc/carrier/${telephony.sim.opkey0}';
@@ -575,8 +564,7 @@ getCfgFiles(relPath: string, followMode: FollowXMode, extra?: string): Promise&l
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import configPolicy from '@ohos.configPolicy';
+  import { configPolicy, BusinessError } from '@kit.BasicServicesKit';
 
   async function fetchCfgFiles() {
     try {

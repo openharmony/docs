@@ -1,4 +1,10 @@
 # Interface (AVImageGenerator)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -19,9 +25,9 @@ import { media } from '@kit.MediaKit';
 
 **System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
 
-| Name                                               | Type                                                        | Readable| Writable| Description                                                        |
+| Name                                               | Type                                                        | Read-Only| Optional| Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](arkts-apis-media-i.md#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source.<br> **Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor { fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an AVImageGenerator instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other AVPlayer, AVMetadataExtractor, AVImageGenerator, or AVTranscoder instance. Competition occurs when multiple AVImageGenerator use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
+| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](arkts-apis-media-i.md#avfiledescriptor9)                       | No  | Yes  | Media file descriptor, which specifies the data source.<br> **Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor { fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br> After the resource handle (FD) is transferred to an AVImageGenerator instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other AVPlayer, AVMetadataExtractor, AVImageGenerator, or AVTranscoder instance. Competition occurs when multiple AVImageGenerator use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
 
 ## fetchFrameByTime<sup>12+</sup>
 
@@ -54,6 +60,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
+import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
@@ -122,6 +129,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
+import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
@@ -240,6 +248,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
@@ -287,6 +296,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 

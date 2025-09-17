@@ -46,11 +46,11 @@ sppListen(name: string, options: SppOptions, callback: AsyncCallback&lt;number&g
 | -------- | --------------------------- | ---- | ----------------------- |
 | name     | string                      | 是    | 服务的名称，该字符串的字符个数范围为[0, 256]。                  |
 | options   | [SppOptions](#sppoptions)     | 是    | spp监听配置参数。              |
-| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数。当创建服务端scoket成功，err为undefined，data为获取到的服务端socket的id；否则为错误对象。 |
+| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数。当创建服务端socket成功，err为undefined，data为获取到的服务端socket的id；否则为错误对象。 |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
@@ -65,7 +65,8 @@ sppListen(name: string, options: SppOptions, callback: AsyncCallback&lt;number&g
 **示例：**
 
 ```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let serverNumber = -1;
 let serverSocket = (code: BusinessError, number: number) => {
   if (code) {
@@ -152,9 +153,10 @@ sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let clientNumber = -1;
-let serverNumber = -1;
+let serverNumber = 1;
 let acceptClientSocket = (code: BusinessError, number: number) => {
   if (code) {
     console.error('sppListen error, code is ' + code);
@@ -258,10 +260,10 @@ getDeviceId(clientSocket: number): string
 **示例：**
 
 ```js
-import { socket } from '@kit.ConnectivityKit';
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 // 服务端获取客户端设备地址。
-let clientSocket = -1; // clientSocket是sppAccept回调中得到的，调getDeviceId接口前需更新clientSocket。
+let clientSocket = 1; // clientSocket是sppAccept回调中得到的，调用getDeviceId接口前需更新clientSocket。
 try {
     let deviceAddr: string = socket.getDeviceId(clientSocket);
 } catch (err) {
@@ -306,8 +308,9 @@ sppCloseServerSocket(socket: number): void
 **示例：**
 
 ```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let serverNumber = -1; // 此处serverNumber需赋值为调用sppListen接口后，回调中得到的serverNumber。
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let serverNumber = 1; // 此处serverNumber需赋值为调用sppListen接口后，在回调中得到的serverNumber。
 try {
     socket.sppCloseServerSocket(serverNumber);
 } catch (err) {
@@ -344,8 +347,9 @@ sppCloseClientSocket(socket: number): void
 **示例：**
 
 ```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let clientNumber = 1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 try {
     socket.sppCloseClientSocket(clientNumber);
 } catch (err) {
@@ -383,8 +387,9 @@ sppWrite(clientSocket: number, data: ArrayBuffer): void
 **示例：**
 
 ```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let clientNumber = 1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 let arrayBuffer = new ArrayBuffer(8);
 let data = new Uint8Array(arrayBuffer);
 data[0] = 123;
@@ -426,8 +431,9 @@ on(type: 'sppRead', clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;)
 **示例：**
 
 ```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let clientNumber = 1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 let dataRead = (dataBuffer: ArrayBuffer) => {
     let data = new Uint8Array(dataBuffer);
     console.info('bluetooth data is: ' + data[0]);
@@ -468,8 +474,9 @@ off(type: 'sppRead', clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt
 **示例：**
 
 ```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let clientNumber = 1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 try {
     socket.off('sppRead', clientNumber);
 } catch (err) {
@@ -512,9 +519,9 @@ sppWriteAsync(clientSocket: number, data: ArrayBuffer): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { socket } from '@kit.ConnectivityKit';
-import { AsyncCallback,BusinessError } from '@kit.BasicServicesKit';
-let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let clientNumber = 1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 let arrayBuffer = new ArrayBuffer(8);
 let data = new Uint8Array(arrayBuffer);
 try {
@@ -566,9 +573,9 @@ sppReadAsync(clientSocket: number): Promise&lt;ArrayBuffer&gt;
 **示例：**
 
 ```js
-import { socket } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-let clientNumber = -1; // 入参clientNumber由sppAccept或sppConnect接口获取。
+
+let clientNumber = 1; // 入参clientNumber由sppAccept或sppConnect接口获取。
 let buffer = new ArrayBuffer(1024);
 let data = new Uint8Array(buffer);
 let flag = 1;

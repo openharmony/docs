@@ -59,17 +59,24 @@ import { UIContext } from '@kit.ArkUI';
 struct SnapshotExample {
   @State pixmap: image.PixelMap | undefined = undefined;
   uiContext: UIContext = this.getUIContext();
+
   build() {
     Column() {
       Row() {
         Image(this.pixmap).width(150).height(150).border({ color: Color.Black, width: 2 }).margin(5)
-        Image($r('app.media.img')).autoResize(true).width(150).height(150).margin(5).id("root")
+        Image($r('app.media.img'))
+          .autoResize(true)
+          .width(150)
+          .height(150)
+          .margin(5)
+          .id("root")
       }
+
       Button("click to generate UI snapshot")
         .onClick(() => {
           this.uiContext.getComponentSnapshot().get("root", (error: Error, pixmap: image.PixelMap) => {
             if (error) {
-              console.error("error: " + JSON.stringify(error));
+              console.error('error: ${JSON.stringify(error)}');
               return;
             }
             this.pixmap = pixmap;
@@ -87,7 +94,7 @@ struct SnapshotExample {
 
 get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
-获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)，找到对应组件进行截图。通过Promise返回结果。
+获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)，找到对应组件进行截图。使用Promise异步回调。
 
 > **说明：**
 >
@@ -108,7 +115,7 @@ get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.Pixe
 
 | 类型                                                         | 说明             |
 | ------------------------------------------------------------ | ---------------- |
-| Promise&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 截图返回的结果。 |
+| Promise&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise对象，返回组件截图对象。 |
 
 **错误码：** 
 
@@ -135,8 +142,14 @@ struct SnapshotExample {
     Column() {
       Row() {
         Image(this.pixmap).width(150).height(150).border({ color: Color.Black, width: 2 }).margin(5)
-        Image($r('app.media.icon')).autoResize(true).width(150).height(150).margin(5).id("root")
+        Image($r('app.media.icon'))
+          .autoResize(true)
+          .width(150)
+          .height(150)
+          .margin(5)
+          .id("root")
       }
+
       Button("click to generate UI snapshot")
         .onClick(() => {
           this.uiContext.getComponentSnapshot()
@@ -202,6 +215,7 @@ import { UIContext } from '@kit.ArkUI';
 struct ComponentSnapshotExample {
   @State pixmap: image.PixelMap | undefined = undefined;
   uiContext: UIContext = this.getUIContext();
+
   @Builder
   RandomBuilder() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
@@ -230,7 +244,7 @@ struct ComponentSnapshotExample {
           },
             (error: Error, pixmap: image.PixelMap) => {
               if (error) {
-                console.error("error: " + JSON.stringify(error));
+                console.error('error: ${JSON.stringify(error)}');
                 return;
               }
               this.pixmap = pixmap;
@@ -275,7 +289,7 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 
 | 类型                                                         | 说明             |
 | ------------------------------------------------------------ | ---------------- |
-| Promise&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 截图返回的结果。 |
+| Promise&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise对象，返回组件截图对象。 |
 
 **错误码：** 
 
@@ -298,6 +312,7 @@ import { UIContext } from '@kit.ArkUI';
 struct ComponentSnapshotExample {
   @State pixmap: image.PixelMap | undefined = undefined;
   uiContext: UIContext = this.getUIContext();
+
   @Builder
   RandomBuilder() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
@@ -316,6 +331,7 @@ struct ComponentSnapshotExample {
     .width(100)
     .id("builder")
   }
+
   build() {
     Column() {
       Button("click to generate UI snapshot")
@@ -345,7 +361,7 @@ struct ComponentSnapshotExample {
 
 getSync(id: string, options?: componentSnapshot.SnapshotOptions): image.PixelMap
 
-获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)。
+获取已加载的组件的截图。传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)，找到对应组件进行截图，同步等待截图完成返回[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)。本方法会阻塞主线程，请谨慎使用。接口的最大等待时间为3s，如果3s后未返回将会抛出异常。
 
 > **说明：**
 >
@@ -393,12 +409,19 @@ struct SnapshotExample {
     Column() {
       Row() {
         Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
-        Image($r('app.media.img')).autoResize(true).width(200).height(200).margin(5).id("root")
+        Image($r('app.media.img'))
+          .autoResize(true)
+          .width(200)
+          .height(200)
+          .margin(5)
+          .id("root")
       }
-      Button("click to generate UI snapshot")
+
+      Button("click to generate UI snapshot")   
         .onClick(() => {
           try {
-            let pixelmap = this.getUIContext().getComponentSnapshot().getSync("root", { scale: 2, waitUntilRenderFinished: true });
+            let pixelmap =
+              this.getUIContext().getComponentSnapshot().getSync("root", { scale: 2, waitUntilRenderFinished: true });
             this.pixmap = pixelmap;
           } catch (error) {
             console.error("getSync errorCode: " + error.code + " message: " + error.message);
@@ -416,7 +439,7 @@ struct SnapshotExample {
 
 getWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
-获取已加载的组件的截图，传入组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)，找到对应组件进行截图。通过Promise返回结果。
+获取已加载的组件的截图，传入组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)，找到对应组件进行截图。使用Promise异步回调。
 
 > **说明：**
 >
@@ -437,7 +460,7 @@ getWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOptions): 
 
 | 类型                                                         | 说明             |
 | ------------------------------------------------------------ | ---------------- |
-| Promise&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 截图返回的结果。 |
+| Promise&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise对象，返回组件截图对象。 |
 
 **错误码：** 
 
@@ -457,7 +480,6 @@ import { UIContext } from '@kit.ArkUI';
 
 class MyNodeController extends NodeController {
   public node: FrameNode | null = null;
-
   public imageNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
@@ -477,7 +499,6 @@ class MyNodeController extends NodeController {
 @Component
 struct SnapshotExample {
   private myNodeController: MyNodeController = new MyNodeController();
-
   @State pixmap: image.PixelMap | undefined = undefined;
 
   build() {
@@ -486,12 +507,14 @@ struct SnapshotExample {
         Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
         NodeContainer(this.myNodeController).width(200).height(200).margin(5)
       }
+
       Button("UniqueId get snapshot")
         .onClick(() => {
           try {
             this.getUIContext()
               .getComponentSnapshot()
-              .getWithUniqueId(this.myNodeController.imageNode?.getUniqueId(), { scale: 2, waitUntilRenderFinished: true })
+              .getWithUniqueId(this.myNodeController.imageNode?.getUniqueId(),
+                { scale: 2, waitUntilRenderFinished: true })
               .then((pixmap: image.PixelMap) => {
                 this.pixmap = pixmap;
               })
@@ -499,7 +522,7 @@ struct SnapshotExample {
                 console.log("error: " + err);
               })
           } catch (error) {
-            console.error("UniqueId get snapshot Error: " + JSON.stringify(error));
+            console.error('UniqueId get snapshot Error: ${JSON.stringify(error)}');
           }
         }).margin(10)
     }
@@ -556,7 +579,6 @@ import { UIContext } from '@kit.ArkUI';
 
 class MyNodeController extends NodeController {
   public node: FrameNode | null = null;
-
   public imageNode: FrameNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
@@ -576,7 +598,6 @@ class MyNodeController extends NodeController {
 @Component
 struct SnapshotExample {
   private myNodeController: MyNodeController = new MyNodeController();
-
   @State pixmap: image.PixelMap | undefined = undefined;
 
   build() {
@@ -585,14 +606,16 @@ struct SnapshotExample {
         Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
         NodeContainer(this.myNodeController).width(200).height(200).margin(5)
       }
+
       Button("UniqueId getSync snapshot")
         .onClick(() => {
           try {
             this.pixmap = this.getUIContext()
               .getComponentSnapshot()
-              .getSyncWithUniqueId(this.myNodeController.imageNode?.getUniqueId(), { scale: 2, waitUntilRenderFinished: true });
+              .getSyncWithUniqueId(this.myNodeController.imageNode?.getUniqueId(),
+                { scale: 2, waitUntilRenderFinished: true });
           } catch (error) {
-            console.error("UniqueId getSync snapshot Error: " + JSON.stringify(error));
+            console.error('UniqueId getSync snapshot Error: ${JSON.stringify(error)}');
           }
         }).margin(10)
     }
@@ -607,7 +630,7 @@ struct SnapshotExample {
 
 createFromComponent\<T extends Object>(content: ComponentContent\<T>, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
-将传入的content对象进行截图，并通过Promise返回结果。
+将传入的content对象进行截图，使用Promise异步回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -626,7 +649,7 @@ createFromComponent\<T extends Object>(content: ComponentContent\<T>, delay?: nu
 
 | 类型                            | 说明       |
 | ----------------------------- | -------- |
-| Promise<image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)>  | 截图返回的结果。 |
+| Promise<image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)>  | Promise对象，返回组件截图对象。 |
 
 **错误码：** 
 
@@ -645,9 +668,9 @@ import { image } from '@kit.ImageKit';
 import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
-  text: string | undefined | null  = "";
+  text: string | undefined | null = "";
 
-  constructor(text: string | undefined | null ) {
+  constructor(text: string | undefined | null) {
     this.text = text;
   }
 }
@@ -659,10 +682,10 @@ function buildText(params: Params) {
 
 @Component
 struct ReusableChildComponent {
-  @Prop text: string | undefined | null  = "";
+  @Prop text: string | undefined | null = "";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log("ReusableChildComponent Reusable " + JSON.stringify(params));
+    console.error('ReusableChildComponent Reusable ${JSON.stringify(error)}');
   }
 
   aboutToRecycle(): void {

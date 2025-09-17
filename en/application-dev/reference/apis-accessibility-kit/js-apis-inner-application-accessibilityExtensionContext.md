@@ -1,5 +1,12 @@
 # AccessibilityExtensionContext (Accessibility Extension Context)
 
+<!--Kit: Accessibility Kit-->
+<!--Subsystem: BarrierFree-->
+<!--Owner: @qiiiiiiian-->
+<!--Designer: @z7o-->
+<!--Tester: @A_qqq-->
+<!--Adviser: @w_Machine_cc-->
+
 The **AccessibilityExtensionContext** module, inherited from **ExtensionContext**, provides context for **AccessibilityExtensionAbility**.
 
 You can use the APIs of this module to configure the concerned information, obtain root information, and inject gestures.
@@ -30,64 +37,64 @@ Provides attribute names and value types of a node element.
 
 ### Attributes
 
-| Name                  | Type                                                             | Readable| Writable| Description             |
+| Name                  | Type                                                             | Read-Only| Optional| Description             |
 |----------------------|--------------------------------------------------------------------|------|------|-------------------|
-| accessibilityFocused | boolean                                                            | Yes  | No  | Whether the element is focused for accessibility purposes. The value **true** indicates that the element is focused, and **false** indicates the opposite.<br>Default value: **false**.|
-| accessibilityText<sup>12+</sup> | string                                                  | Yes  | No  | Accessibility text information of an element.|
-| bundleName           | string                                                             | Yes  | No  | Bundle name.|
-| checkable            | boolean                                                            | Yes  | No  | Whether the element is checkable. The value **true** indicates that the element is checkable, and **false** indicates the opposite.<br>Default value: **false**.|
-| checked              | boolean                                                            | Yes  | No  | Whether the element is checked. The value **true** indicates that the element is checked, and **false** indicates the opposite.<br>Default value: **false**.|
-| children             | Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;        | Yes  | No  | All child elements.|
-| clickable            | boolean                                                            | Yes  | No  | Whether the element is clickable. The value **true** indicates that the element is clickable, and **false** indicates the opposite.<br>Default value: **false**.|
-| componentId          | number                                                             | Yes  | No  | ID of the component to which the element belongs. <br>Default value: **-1**.|
-| componentType        | string                                                             | Yes  | No  | Type of the component to which the element belongs.|
-| contents             | Array&lt;string&gt;                                                | Yes  | No  | Content.|
-| currentIndex         | number                                                             | Yes  | No  | Index of the current item. <br>Default value: **0**.|
-| description          | string                                                             | Yes  | No  | Description of the element.|
-| editable             | boolean                                                            | Yes  | No  | Whether the element is editable. The value **true** indicates that the element is editable, and **false** indicates the opposite.<br>Default value: **false**.|
-| endIndex             | number                                                             | Yes  | No  | Index of the last list item displayed on the screen. <br>Default value: **0**.|
-| error                | string                                                             | Yes  | No  | Error status.|
-| focusable            | boolean                                                            | Yes  | No  | Whether the element is focusable. The value **true** indicates that the element is focusable, and **false** indicates the opposite.<br>Default value: **false**.|
-| hintText             | string                                                             | Yes  | No  | Hint text.|
-| inputType            | number                                                             | Yes  | No  | Type of the input text. <br>Default value: **0**.|
-| inspectorKey         | string                                                             | Yes  | No  | Inspector key.|
-| isActive             | boolean                                                            | Yes  | No  | Whether the element is active. The value **true** indicates that the element is active and **false** indicates the opposite.<br>Default value: **true**.|
-| isEnable             | boolean                                                            | Yes  | No  | Whether the element is enabled. The value **true** indicates that the element is enabled, and **false** indicates the opposite.<br>Default value: **false**.|
-| isHint               | boolean                                                            | Yes  | No  | Whether the element is a hint. The value **true** indicates that the element is a hint, and **false** indicates the opposite.<br>Default value: **false**.|
-| isFocused            | boolean                                                            | Yes  | No  | Whether the element is focused. The value **true** indicates that the element is focused, and **false** indicates the opposite.<br>Default value: **false**.|
-| isPassword           | boolean                                                            | Yes  | No  | Whether the element is a password. The value **true** indicates that the element is a password, and **false** indicates the opposite.<br>Default value: **false**.|
-| isVisible            | boolean                                                            | Yes  | No  | Whether the element is visible. The value **true** indicates that the element is visible, and **false** indicates the opposite.<br>Default value: **false**.|
-| itemCount            | number                                                             | Yes  | No  | Total number of items. <br>Default value: **0**.|
-| lastContent          | string                                                             | Yes  | No  | Last content.|
-| layer                | number                                                             | Yes  | No  | Display layer of the element.|
-| longClickable        | boolean                                                            | Yes  | No  | Whether the element is long-clickable. The value **true** indicates that the element is long-clickable, and **false** indicates the opposite.<br>Default value: **false**.|
-| pageId               | number                                                             | Yes  | No  | Page ID. <br>Default value: **-1**.|
-| parent               | [AccessibilityElement](#accessibilityelement9)                     | Yes  | No  | Parent element of the element.|
-| pluralLineSupported  | boolean                                                            | Yes  | No  | Whether the element supports multiple lines of text. The value **true** indicates that the element supports multiple lines of text, and **false** indicates the opposite.<br>Default value: **false**.|
-| rect                 | [Rect](#rect)                                                      | Yes  | No  | Area of the element.|
-| resourceName         | string                                                             | Yes  | No  | Resource name of the element.|
-| rootElement          | [AccessibilityElement](#accessibilityelement9)                     | Yes  | No  | Root element of the window element.|
-| screenRect           | [Rect](#rect)                                                      | Yes  | No  | Display area of the element.|
-| scrollable           | boolean                                                            | Yes  | No  | Whether the element is scrollable. The value **true** indicates that the element is scrollable, and **false** indicates the opposite.<br>Default value: **false**.|
-| selected             | boolean                                                            | Yes  | No  | Whether the element is selected. The value **true** indicates that the element is selected, and **false** indicates the opposite.<br>Default value: **false**.|
-| startIndex           | number                                                             | Yes  | No  | Index of the first list item on the screen. <br>Default value: **0**.|
-| text                 | string                                                             | Yes  | No  | Text of the element.|
-| textLengthLimit      | number                                                             | Yes  | No  | Maximum text length of the element.|
-| textMoveUnit         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit)| Yes  | No  | Unit of movement when the text is read.|
-| triggerAction        | [accessibility.Action](js-apis-accessibility.md#action)            | Yes  | No  | Action that triggers the element event.|
-| type                 | [WindowType](#windowtype)                                          | Yes  | No  | Window type of the element.|
-| valueMax             | number                                                             | Yes  | No  | Maximum value. <br>Default value: **0**.|
-| valueMin             | number                                                             | Yes  | No  | Minimum value. <br>Default value: **0**.|
-| valueNow             | number                                                             | Yes  | No  | Current value. <br>Default value: **0**.|
-| windowId             | number                                                             | Yes  | No  | Window ID. <br>Default value: **-1**.|
-| textType<sup>12+</sup>             | string                                                             | Yes  | No  | Accessibility text type of an element, which is configured by the **accessibilityTextHint** attribute of the component.|
-| offset<sup>12+</sup>             | number              | Yes  | No  | Pixel offset of the content area relative to the top coordinate of a scrollable component, such as **List** and **Grid**. <br>Default value: **0**.|
-| hotArea<sup>12+</sup>             | [Rect](#rect)                                                              | Yes  | No  | Touchable area of an element.|
-| customComponentType<sup>18+</sup>             | string                                                             | Yes  | No  | Custom component type.|
-| accessibilityNextFocusId<sup>18+</sup>             | number                | Yes  | No  | ID of the next component to be focused on. You can use **findElement('elementId')** to obtain the value of this attribute set on the component from the **AccessibilityElementInfo** object. <br>Default value: **-1**.|
-| accessibilityPreviousFocusId<sup>18+</sup>             | number                | Yes  | No  | ID of the previous component to be focused on. You can use **findElement('elementId')** to obtain the value of this attribute set on the component from the **AccessibilityElementInfo** object. <br>Default value: **-1**.|
-| extraInfo<sup>18+</sup>             | string     | Yes  | No  | Extended attributes, which are used to define the attributes of specific components, including:<br>- **CheckboxGroupSelectedStatus**: selection status of the **CheckboxGroup** component. The options are as follows:<br>**0**: selected<br>**1**: partially selected<br>**2**: not selected<br>- **Row**: row where an focused item is located in **Grid**.<br>- **Column**: column where an focused item is located in **Grid**.<br>- **ListItemIndex**: row where an focused item is located in **List**.<br>- **SideBarContainerStates**: expansion state of the expandable components (such as **SideBarContainer** and **Select**). The options are as follows:<br>**0**: collapsed<br>**1**: expanded<br>- **ToggleType**: type of the **Toggle** component. The options are as follows:<br>**0**: checkbox<br>**1**: switch<br>**2**: button<br>- **BindSheet**: position of the **BindSheet** component on the screen. The options are as follows:<br>**0**: high<br>**1**: middle<br>**2**: low<br>- **hasRegisteredHover**: whether the component has registered the **onAccessibilityHover** event callback. The value **1** indicates that the component has registered the event callback; otherwise, this field is not used.<br>- **direction**: layout direction of the **List** component. The value can be **vertical** or **horizontal**.<br>- **expandedState**: expanded state of list items in the **List** component. The value can be **expanded** or **collapsed**.|
-| accessibilityScrollable<sup>18+</sup>             | boolean                 | Yes  | No  | Whether an element is scrollable for accessibility. This attribute has a higher priority than **scrollable**. <br>- **true** (default): the element is scrollable.<br>- **false**: the element is not scrollable.|
+| accessibilityFocused | boolean                                                            | No  | No  | Whether the element is focused for accessibility purposes. The value **true** indicates that the element is focused, and **false** indicates the opposite.<br>Default value: **false**.|
+| accessibilityText<sup>12+</sup> | string                                                  | No  | No  | Accessibility text information of an element.|
+| bundleName           | string                                                             | No  | No  | Bundle name.|
+| checkable            | boolean                                                            | No  | No  | Whether the element is checkable. The value **true** indicates that the element is checkable, and **false** indicates the opposite.<br>Default value: **false**.|
+| checked              | boolean                                                            | No  | No  | Whether the element is checked. The value **true** indicates that the element is checked, and **false** indicates the opposite.<br>Default value: **false**.|
+| children             | Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;        | No  | No  | All child elements.|
+| clickable            | boolean                                                            | No  | No  | Whether the element is clickable. The value **true** indicates that the element is clickable, and **false** indicates the opposite.<br>Default value: **false**.|
+| componentId          | number                                                             | No  | No  | ID of the component to which the element belongs. <br>Default value: **-1**.|
+| componentType        | string                                                             | No  | No  | Type of the component to which the element belongs, for example, **Button** for the button component and **Image** for the image component.|
+| contents             | Array&lt;string&gt;                                                | No  | No  | List of contents. Set this parameter based on site requirements. No special restrictions.|
+| currentIndex         | number                                                             | No  | No  | Index of the current item. <br>Default value: **0**.|
+| description          | string                                                             | No  | No  | Description of the element. Set this parameter based on site requirements. No special restrictions.|
+| editable             | boolean                                                            | No  | No  | Whether the element is editable. The value **true** indicates that the element is editable, and **false** indicates the opposite.<br>Default value: **false**.|
+| endIndex             | number                                                             | No  | No  | Index of the last list item displayed on the screen. <br>Default value: **0**.|
+| error                | string                                                             | No  | No  | Error status.|
+| focusable            | boolean                                                            | No  | No  | Whether the element is focusable. The value **true** indicates that the element is focusable, and **false** indicates the opposite.<br>Default value: **false**.|
+| hintText             | string                                                             | No  | No  | Hint text.|
+| inputType            | number                                                             | No  | No  | Type of the input text. <br>Default value: **0**.|
+| inspectorKey         | string                                                             | No  | No  | Inspector key.|
+| isActive             | boolean                                                            | No  | No  | Whether the element is active. The value **true** indicates that the element is active and **false** indicates the opposite.<br>Default value: **true**.|
+| isEnable             | boolean                                                            | No  | No  | Whether the element is enabled. The value **true** indicates that the element is enabled, and **false** indicates the opposite.<br>Default value: **false**.|
+| isHint               | boolean                                                            | No  | No  | Whether the element is a hint. The value **true** indicates that the element is a hint, and **false** indicates the opposite.<br>Default value: **false**.|
+| isFocused            | boolean                                                            | No  | No  | Whether the element is focused. The value **true** indicates that the element is focused, and **false** indicates the opposite.<br>Default value: **false**.|
+| isPassword           | boolean                                                            | No  | No  | Whether the element is a password. The value **true** indicates that the element is a password, and **false** indicates the opposite.<br>Default value: **false**.|
+| isVisible            | boolean                                                            | No  | No  | Whether the element is visible. The value **true** indicates that the element is visible, and **false** indicates the opposite.<br>Default value: **false**.|
+| itemCount            | number                                                             | No  | No  | Total number of items. <br>Default value: **0**.|
+| lastContent          | string                                                             | No  | No  | Last content.|
+| layer                | number                                                             | No  | No  | Display layer of the element.|
+| longClickable        | boolean                                                            | No  | No  | Whether the element is long-clickable. The value **true** indicates that the element is long-clickable, and **false** indicates the opposite.<br>Default value: **false**.|
+| pageId               | number                                                             | No  | No  | Page ID. <br>Default value: **-1**.|
+| parent               | [AccessibilityElement](#accessibilityelement9)                     | No  | No  | Parent element of the element.|
+| pluralLineSupported  | boolean                                                            | No  | No  | Whether the element supports multiple lines of text. The value **true** indicates that the element supports multiple lines of text, and **false** indicates the opposite.<br>Default value: **false**.|
+| rect                 | [Rect](#rect)                                                      | No  | No  | Area of the element.|
+| resourceName         | string                                                             | No  | No  | Resource name of the element.|
+| rootElement          | [AccessibilityElement](#accessibilityelement9)                     | No  | No  | Root element of the window element.|
+| screenRect           | [Rect](#rect)                                                      | No  | No  | Display area of the element.|
+| scrollable           | boolean                                                            | No  | No  | Whether the element is scrollable. The value **true** indicates that the element is scrollable, and **false** indicates the opposite.<br>Default value: **false**.|
+| selected             | boolean                                                            | No  | No  | Whether the element is selected. The value **true** indicates that the element is selected, and **false** indicates the opposite.<br>Default value: **false**.|
+| startIndex           | number                                                             | No  | No  | Index of the first list item on the screen. <br>Default value: **0**.|
+| text                 | string                                                             | No  | No  | Text of the element.|
+| textLengthLimit      | number                                                             | No  | No  | Maximum text length of the element.|
+| textMoveUnit         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit)| No  | No  | Unit of movement when the text is read.|
+| triggerAction        | [accessibility.Action](js-apis-accessibility.md#action)            | No  | No  | Action that triggers the element event.|
+| type                 | [WindowType](#windowtype)                                          | No  | No  | Window type of the element.|
+| valueMax             | number                                                             | No  | No  | Maximum value. <br>Default value: **0**.|
+| valueMin             | number                                                             | No  | No  | Minimum value. <br>Default value: **0**.|
+| valueNow             | number                                                             | No  | No  | Current value. <br>Default value: **0**.|
+| windowId             | number                                                             | No  | No  | Window ID. <br>Default value: **-1**.|
+| textType<sup>12+</sup>             | string                                                             | No  | No  | Accessibility text type of an element, which is configured by the **accessibilityTextHint** attribute of the component.|
+| offset<sup>12+</sup>             | number              | No  | No  | Pixel offset of the content area relative to the top coordinate of a scrollable component, such as **List** and **Grid**. <br>Default value: **0**.|
+| hotArea<sup>12+</sup>             | [Rect](#rect)                                                              | No  | No  | Touchable area of an element.|
+| customComponentType<sup>18+</sup>             | string                                                             | No  | Yes  | Custom component type.|
+| accessibilityNextFocusId<sup>18+</sup>             | number                | No  | Yes  | ID of the next component to be focused on. You can use **findElement('elementId')** to obtain the value of this attribute set on the component from the **AccessibilityElementInfo** object. <br>Default value: **-1**.|
+| accessibilityPreviousFocusId<sup>18+</sup>             | number                | No  | Yes  | ID of the previous component to be focused on. You can use **findElement('elementId')** to obtain the value of this attribute set on the component from the **AccessibilityElementInfo** object. <br>Default value: **-1**.|
+| extraInfo<sup>18+</sup>             | string     | No | Yes  | Extended attributes, which are used to define the attributes of specific components, including:<br>- **CheckboxGroupSelectedStatus**: selection status of the **CheckboxGroup** component. The options are as follows:<br>**0**: selected<br>**1**: partially selected<br>**2**: not selected<br>- **Row**: row where a focused item is located in **Grid**.<br>- **Column**: column where a focused item is located in **Grid**.<br>- **ListItemIndex**: row where a focused item is located in **List**.<br>- **SideBarContainerStates**: expansion state of the expandable components (such as **SideBarContainer** and **Select**). The options are as follows:<br>**0**: collapsed<br>**1**: expanded<br>- **ToggleType**: type of the **Toggle** component. The options are as follows:<br>**0**: checkbox<br>**1**: switch<br>**2**: button<br>- **BindSheet**: position of the **BindSheet** component on the screen. The options are as follows:<br>**0**: high<br>**1**: middle<br>**2**: low<br>- **hasRegisteredHover**: whether the component has registered the **onAccessibilityHover** event callback. The value **1** indicates that the component has registered the event callback; otherwise, this field is not used.<br>- **direction**: layout direction of the **List** component. The value can be **vertical** or **horizontal**.<br>- **expandedState**: expanded state of list items in the **List** component. The value can be **expanded** or **collapsed**.<br>- **componentTypeDescription**: detailed information about the component type.|
+| accessibilityScrollable<sup>18+</sup>             | boolean                 | No  | Yes  | Whether an element is scrollable for accessibility. This attribute has a higher priority than **scrollable**. <br>- **true** (default): the element is scrollable.<br>- **false**: the element is not scrollable.|
 
 ## FocusDirection
 
@@ -125,12 +132,12 @@ Defines a rectangle.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-| Name    | Type    | Readable  | Writable  | Description       |
+| Name    | Type    | Read-Only  | Optional  | Description       |
 | ------ | ------ | ---- | ---- | --------- |
-| left   | number | Yes   | No   | Left boundary of the rectangle.|
-| top    | number | Yes   | No   | Top boundary of the rectangle.|
-| width  | number | Yes   | No   | Width of the rectangle. |
-| height | number | Yes   | No   | Height of the rectangle. |
+| left   | number | No   | No   | Left boundary of the rectangle.|
+| top    | number | No   | No   | Top boundary of the rectangle.|
+| width  | number | No   | No   | Width of the rectangle. |
+| height | number | No   | No   | Height of the rectangle. |
 
 ## WindowType
 
@@ -171,11 +178,11 @@ Sets the concerned target bundle. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -211,11 +218,11 @@ Sets the concerned target bundle. This API uses an asynchronous callback to retu
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -261,11 +268,11 @@ Obtains the focus element. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
@@ -304,11 +311,11 @@ Obtains the focus element. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
@@ -350,11 +357,11 @@ Obtains the focus element. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
@@ -402,11 +409,11 @@ Obtains the root element of a window. This API uses a promise to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
@@ -445,11 +452,11 @@ Obtains the root element of a window. This API uses an asynchronous callback to 
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
@@ -491,11 +498,11 @@ Obtains the root element of a window. This API uses an asynchronous callback to 
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
@@ -543,11 +550,11 @@ Obtains the list of windows on a display. This API uses a promise to return the 
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
@@ -583,11 +590,11 @@ Obtains the list of windows on a display. This API uses an asynchronous callback
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
@@ -626,11 +633,11 @@ Obtains the list of windows on a display. This API uses an asynchronous callback
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
@@ -675,11 +682,11 @@ Injects a gesture. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
@@ -721,11 +728,11 @@ Injects a gesture. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                                    |
 | ------- | ---------------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **Example**
@@ -767,11 +774,11 @@ Injects a gesture.
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID| Error Message                                           |
 | -------- | --------------------------------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003  | No accessibility permission to perform the operation. |
 
 **Example**
@@ -886,7 +893,7 @@ Obtains the attribute value based on an attribute name. This API uses a promise 
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
@@ -932,7 +939,7 @@ Obtains the attribute value based on an attribute name. This API uses an asynchr
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
@@ -1046,11 +1053,11 @@ Performs an action based on the specified action name. This API uses a promise t
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300005 | This action is not supported. |
 
 **Example**
@@ -1130,16 +1137,16 @@ Performs an action based on the specified action name. This API uses an asynchro
 
 | Name        | Type                                    | Mandatory  | Description            |
 | ----------- | ---------------------------------------- | ---- | -------------- |
-| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).|
+| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300005 | This action is not supported. |
 
 **Example**
@@ -1181,11 +1188,11 @@ Performs an action based on the specified action name. This API uses an asynchro
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300005 | This action is not supported. |
 
 **Example**
@@ -1233,11 +1240,11 @@ Finds an element based on the content type. This API uses a promise to return th
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1276,11 +1283,11 @@ Finds an element based on the content type. This API uses an asynchronous callba
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1326,11 +1333,11 @@ Finds an element based on the focus type. This API uses a promise to return the 
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1370,11 +1377,11 @@ Finds an element based on the focus type. This API uses an asynchronous callback
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1421,11 +1428,11 @@ Finds an element based on the focus direction. This API uses a promise to return
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1465,11 +1472,11 @@ Finds an element based on the focus direction. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message                         |
 | ------- | ----------------------------- |
-| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 

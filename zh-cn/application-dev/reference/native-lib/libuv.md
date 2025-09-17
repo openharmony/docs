@@ -1345,7 +1345,7 @@ uv_queue_work(loop, work, [](uv_work_t* work) {
 
 综上所述，开发者会发现这样一种现象：**同样的libuv接口在主线程上不生效，但在JS Worker线程中就没问题。这主要还是因为主线程上所有不通过触发fd来驱动的uv接口都不会得到及时的响应。**
 
-另外，在应用主线程中，所有的异步任务尽管最终都是通过libuv得到执行的。但是在当前系统中，[libuv的线程池已经对接到了FFRT中](https://gitee.com/openharmony/third_party_libuv/wikis/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90/%20libuv%E5%B7%A5%E4%BD%9C%E7%BA%BF%E7%A8%8B%E6%8E%A5%E5%85%A5FFRT%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90)，任何抛向libuv的异步任务都会在FFRT的线程中得到调度。应用主线程的回调函数也通过PostTask接口插入到eventhandler的队列上。这就意味着FFRT线程上的异步任务完成后不再通过`uv_async_send`的方式触发主线程的回调。过程如下图:
+另外，在应用主线程中，所有的异步任务尽管最终都是通过libuv得到执行的。但是在当前系统中，[libuv的线程池已经对接到了FFRT中](https://gitcode.com/openharmony/third_party_libuv/wiki/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90%2F%20libuv%E5%B7%A5%E4%BD%9C%E7%BA%BF%E7%A8%8B%E6%8E%A5%E5%85%A5FFRT%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90.md)，任何抛向libuv的异步任务都会在FFRT的线程中得到调度。应用主线程的回调函数也通过PostTask接口插入到eventhandler的队列上。这就意味着FFRT线程上的异步任务完成后不再通过`uv_async_send`的方式触发主线程的回调。过程如下图:
 
 ![libuv的异步线程池在OpenHarmony中的应用现状](./figures/libuv-ffrt.jpg)
 
@@ -1560,8 +1560,8 @@ int uv_getnameinfo(uv_loop_t* loop,
 
 ## 技术案例
 
-[libuv中主线程timer回调事件触发时间不正确原因](https://gitee.com/openharmony/third_party_libuv/wikis/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90/libuv%E4%B8%AD%E4%B8%BB%E7%BA%BF%E7%A8%8Btimer%E5%9B%9E%E8%B0%83%E4%BA%8B%E4%BB%B6%E8%A7%A6%E5%8F%91%E6%97%B6%E9%97%B4%E4%B8%8D%E6%AD%A3%E7%A1%AE%E5%8E%9F%E5%9B%A0)
+[libuv中主线程timer回调事件触发时间不正确原因](https://gitcode.com/openharmony/third_party_libuv/wiki/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90%2Flibuv%E4%B8%AD%E4%B8%BB%E7%BA%BF%E7%A8%8Btimer%E5%9B%9E%E8%B0%83%E4%BA%8B%E4%BB%B6%E8%A7%A6%E5%8F%91%E6%97%B6%E9%97%B4%E4%B8%8D%E6%AD%A3%E7%A1%AE%E5%8E%9F%E5%9B%A0.md)
 
-[libuv工作线程接入FFRT方案分析](https://gitee.com/openharmony/third_party_libuv/wikis/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90/%20libuv%E5%B7%A5%E4%BD%9C%E7%BA%BF%E7%A8%8B%E6%8E%A5%E5%85%A5FFRT%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90)
+[libuv工作线程接入FFRT方案分析](https://gitcode.com/openharmony/third_party_libuv/wiki/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90%2F%20libuv%E5%B7%A5%E4%BD%9C%E7%BA%BF%E7%A8%8B%E6%8E%A5%E5%85%A5FFRT%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90.md)
 
-[QoS感知的libuv、Node-API异步接口整改FAQ](https://gitee.com/openharmony/third_party_libuv/wikis/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90/QoS%E6%84%9F%E7%9F%A5%E7%9A%84libuv%E3%80%81napi%E5%BC%82%E6%AD%A5%E6%8E%A5%E5%8F%A3%E6%95%B4%E6%94%B9FAQ)
+[QoS感知的libuv、Node-API异步接口整改FAQ](https://gitcode.com/openharmony/third_party_libuv/wiki/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90%2FQoS%E6%84%9F%E7%9F%A5%E7%9A%84libuv%E3%80%81napi%E5%BC%82%E6%AD%A5%E6%8E%A5%E5%8F%A3%E6%95%B4%E6%94%B9FAQ.md)

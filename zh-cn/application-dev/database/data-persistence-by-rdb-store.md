@@ -226,6 +226,7 @@
          console.error(`Failed to execute sql. Code:${err.code}, message:${err.message}`);
        }
      }
+     store.version = storeVersion;
      // 请确保获取到RdbStore实例，完成数据表创建后，再进行数据库的增、删、改、查等操作
    });
    ```
@@ -504,4 +505,4 @@
 
 针对关系型数据库的开发，有以下相关实例可供参考：
 
-- [`Rdb`：关系型数据库（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Data/Rdb)
+- [`Rdb`：关系型数据库（ArkTS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/Data/Rdb)

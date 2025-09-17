@@ -4,7 +4,7 @@
 <!--Owner: @aohui-->
 <!--Designer: @yaomingliu-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 通过WebResourceHandler，可以提供自定义的返回头以及返回体给Web组件。
 
@@ -38,7 +38,7 @@ didReceiveResponse(response: WebSchemeHandlerResponse): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -65,7 +65,7 @@ didReceiveResponseBody(data: ArrayBuffer): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -86,7 +86,7 @@ didFinish(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -112,14 +112,13 @@ didFail(code: WebNetErrorList): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 17100021 | The resource handler is invalid. |
 
-**系统能力：** SystemCapability.Web.Webview.Core
 
 **示例：**
 
@@ -200,6 +199,7 @@ struct WebComponent {
                 // 直接调用didFail(WebNetErrorList.ERR_FAILED, true)，自动构造一个网络请求错误ERR_CONNECTION_FAILED
                 resourceHandler.didFail(WebNetErrorList.ERR_FAILED, true);
               } catch (error) {
+              	// 当error.code为17100101时，若没有处理该错误，didFail方法也会调用成功。
                 console.error(`[schemeHandler] ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
               }
               return true;

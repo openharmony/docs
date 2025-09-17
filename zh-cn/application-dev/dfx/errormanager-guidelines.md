@@ -15,7 +15,7 @@
 
 ## 接口说明
 
-应用错误管理接口由[@ohos.app.ability.errorManager (错误观测管理)](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md)模块提供，开发者可以通过import引入，详见[开发示例](#开发示例)。
+应用错误管理接口由[@ohos.app.ability.errorManager (错误管理模块)](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md)提供，使用接口能力前需注册错误观测器，开发者可以通过import引入，详见[开发示例](#开发示例)。
 
 **错误管理接口功能介绍**：
 

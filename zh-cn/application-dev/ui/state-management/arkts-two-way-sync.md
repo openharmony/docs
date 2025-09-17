@@ -46,8 +46,6 @@
   | [GridItem](../../reference/apis-arkui/arkui-ts/ts-container-griditem.md) | selected | 10 |
   | [ListItem](../../reference/apis-arkui/arkui-ts/ts-container-listitem.md) | selected | 10 |
 
-- `$$`绑定的变量变化时，会触发UI的同步刷新。
-
 
 ## 使用示例
 
@@ -59,8 +57,8 @@
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = ''
-  controller: TextInputController = new TextInputController()
+  @State text: string = '';
+  controller: TextInputController = new TextInputController();
 
   build() {
     Column({ space: 20 }) {

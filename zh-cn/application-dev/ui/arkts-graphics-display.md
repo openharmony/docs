@@ -717,4 +717,4 @@ struct MyComponent {
 
 针对显示图片开发，有以下相关实例可供参考：
 
-- [显示图片](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/ImageComponent)
+- [显示图片](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/ImageComponent)

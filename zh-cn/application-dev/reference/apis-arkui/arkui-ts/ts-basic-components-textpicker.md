@@ -14,7 +14,7 @@
 >
 > - 该组件不建议开发者在动效过程中修改属性数据。
 >
-> - 该组件最大显示行数在横竖屏模式下存在差异，竖屏为5行，横屏为3行。
+> - 最大显示行数在横、竖屏模式下存在差异。竖屏时默认为5行，横屏时依赖系统配置，未配置时默认显示为3行。可通过如下参数查看具体配置值$r('sys.float.ohos_id_picker_show_count_landscape')。
 >
 > - 多列非联动数据选择器和多列联动数据选择器在下文中统称为多列数据选择器。
 
@@ -88,7 +88,7 @@ TextPicker(options?: TextPickerOptions)
 
 | 名称        | 类型                                       | 只读 | 可选 | 说明                                                         |
 | ----------- | ------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| strokeWidth | [Dimension](ts-types.md#dimension10)       | 否   | 是   | 分割线的线宽。<br/>默认值：2.0px<br/>单位：默认为vp，也可指定单位为px。<br/>取值范围：strokeWidth小于0取默认值，最大不得超过列高的一半。不支持"百分比"类型。 |
+| strokeWidth | [Dimension](ts-types.md#dimension10)       | 否   | 是   | 分割线的线宽。<br/>默认值：2.0px<br/>单位：默认为vp，也可指定单位为px。<br/>取值范围：strokeWidth小于0取默认值，最大不得超过列高的一半。不支持“百分比”类型。 |
 | startMargin | [Dimension](ts-types.md#dimension10)       | 否   | 是   | 分割线与TextPicker侧边起始端的距离。<br/>默认值：0<br/>单位：默认为vp，也可指定单位为px。<br/>取值范围：startMargin小于0时无效，最大值不得超过TextPicker列宽。不支持“百分比”类型。 |
 | endMargin   | [Dimension](ts-types.md#dimension10)       | 否   | 是   | 分割线与TextPicker侧边结束端的距离。<br/>默认值：0<br/>单位：默认为vp，也可指定单位为px。<br/>取值范围：endMargin小于0时无效，最大值不得超过TextPicker列宽。不支持“百分比”类型。 |
 | color       | [ResourceColor](ts-types.md#resourcecolor) | 否   | 是   | 分割线的颜色。<br/>默认值：'#33000000'                       |
@@ -145,6 +145,10 @@ disappearTextStyle(value: PickerTextStyle)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明) | 是   | 边缘项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
+>  **说明：**
+>
+> 若选中项向上或向下的可视项数低于两项则无对应边缘项。
+
 ### disappearTextStyle<sup>18+</sup>
 
 disappearTextStyle(style: Optional\<PickerTextStyle>)
@@ -200,6 +204,10 @@ textStyle(value: PickerTextStyle)
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [PickerTextStyle](ts-picker-common.md#pickertextstyle对象说明) | 是   | 待选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+
+>  **说明：**
+>
+> 若选中项向上或向下可视项数低于一项则无对应待选项。
 
 ### textStyle<sup>18+</sup>
 
@@ -460,7 +468,7 @@ defaultTextStyle(style: TextPickerTextStyle)
 
 >  **说明：**
 >
->  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+>  开启触控反馈时，需要在工程的src/main/module.json5文件的"module"内配置requestPermissions字段开启振动权限，配置如下：
 >  ```json
 >  "requestPermissions": [
 >  {
@@ -487,7 +495,7 @@ enableHapticFeedback(enable: Optional\<boolean>)
 
 >  **说明：**
 >
->  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+>  开启触控反馈时，需要在工程的src/main/module.json5文件的"module"内配置requestPermissions字段开启振动权限，配置如下：
 >  ```json
 >  "requestPermissions": [
 >  {
@@ -736,8 +744,8 @@ type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: num
 
 | 名称 | 类型                                       | 只读 | 可选 | 说明                                              |
 | ------ | ------------------------------------- | ---- | ------------------------------------------------- | ------------------------------------------------- |
-| color  | [ResourceColor](ts-types.md#resourcecolor) | 否  | 是  | 选中项的背景颜色，默认值为'sys.color.comp_background_tertiary'。   |
-| borderRadius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) &nbsp;\|&nbsp; [BorderRadiuses](ts-types.md#borderradiuses9) &nbsp;\|&nbsp; [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | 否  | 是  | 选中项的边框圆角半径。[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)类型的value参数同时作用于四个圆角半径大小，unit参数用于设置单位；[BorderRadiuses](ts-types.md#borderradiuses9)类型可以设置四个不同值的圆角半径，所有单位固定为VP。[LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12)类型可以设置四个不同值的圆角半径，并且可以单独设置每个圆角的单位。默认值为{ value:24, unit:LengthUnit.VP }，即四个圆角半径均为24VP。 |
+| color  | [ResourceColor](ts-types.md#resourcecolor) | 否  | 是  | 选中项的背景颜色。<br/>默认值：'sys.color.comp_background_tertiary'。   |
+| borderRadius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) &nbsp;\|&nbsp; [BorderRadiuses](ts-types.md#borderradiuses9) &nbsp;\|&nbsp; [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | 否  | 是  | 选中项的边框圆角半径。<br/>默认值：{ value:24, unit:LengthUnit.VP }，即四个圆角半径均为24VP。<br/>**说明：**<br/>1. [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)类型的value参数同时作用于四个圆角半径大小，unit参数用于设置单位。<br/>2. [BorderRadiuses](ts-types.md#borderradiuses9)类型可以设置四个不同值的圆角半径，所有单位固定为VP。<br/>3. [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12)类型可以设置四个不同值的圆角半径，并且可以单独设置每个圆角的单位。 |
 ## 示例
 
 ### 示例1（设置选择器列数）

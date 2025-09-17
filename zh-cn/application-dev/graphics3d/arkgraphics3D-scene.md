@@ -22,8 +22,7 @@
 
 glTF模型可用Scene提供的[load](../reference/apis-arkgraphics3d/js-apis-inner-scene.md#load)接口加载，示例代码如下：
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { Scene } from '@kit.ArkGraphics3D';
 
 function loadModel(): void {
   // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
@@ -37,8 +36,7 @@ function loadModel(): void {
 模型显示完整的示例代码如下，需确保gltf文件内容和路径准确。
 
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { Camera, SceneResourceFactory, Scene } from '@kit.ArkGraphics3D';
 
 @Entry
 @Component
@@ -92,8 +90,7 @@ struct Model {
 
 相机相关控制的示例代码如下：
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { SceneNodeParameters, Camera, SceneResourceFactory, Scene } from '@kit.ArkGraphics3D';
 
 function createCameraPromise(): Promise<Camera> {
   return new Promise((resolve, reject) => {
@@ -140,8 +137,7 @@ ArkGraphics 3D提供创建光源及修改光源参数的功能，支持开发者
 
 光源相关控制的示例代码如下：
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { SceneNodeParameters, LightType, Light, SceneResourceFactory, Scene } from '@kit.ArkGraphics3D';
 
 function createLightPromise(): Promise<Light> {
   return new Promise((resolve, reject) => {

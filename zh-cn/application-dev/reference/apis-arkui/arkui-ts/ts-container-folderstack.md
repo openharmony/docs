@@ -14,7 +14,7 @@ FolderStack继承于Stack(层叠布局)控件，新增了<!--RP1-->折叠屏悬�
 >
 >  该组件的悬停态能力针对<!--RP2-->双折叠<!--RP2End-->设计，只在双折叠设备生效。
 >
->  当该组件的父组件为[if/else条件渲染节点](../../../ui/state-management/arkts-rendering-control-ifelse.md)时，折叠屏悬停能力将会失效。
+>  当该组件的父组件为[if/else条件渲染节点](../../../ui/rendering-control/arkts-rendering-control-ifelse.md)时，折叠屏悬停能力将会失效。
 
 ## 子组件
 
@@ -190,7 +190,7 @@ type OnFoldStatusChangeCallback = (event: OnFoldStatusChangeInfo) => void
 
 | 参数名     | 类型                                            | 必填 | 说明                 |
 | ---------- | ----------------------------------------------- | ---- | -------------------- |
-| callback | [OnFoldStatusChangeInfo](#onfoldstatuschangeinfo18) | 是   | 当前设备的折叠状态。 |
+| event | [OnFoldStatusChangeInfo](#onfoldstatuschangeinfo18) | 是   | 当前设备的折叠状态。 |
 
 
 ## OnFoldStatusChangeInfo<sup>18+</sup>

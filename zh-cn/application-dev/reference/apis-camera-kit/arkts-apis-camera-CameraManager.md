@@ -948,7 +948,7 @@ getCameraDevice(position:CameraPosition, type: CameraType): CameraDevice
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -996,7 +996,7 @@ getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurren
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Camera错误码](errorcode-camera.md)。
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
@@ -1008,15 +1008,17 @@ getCameraConcurrentInfos(cameras: Array\<CameraDevice\>): Array\<CameraConcurren
 import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function getCameraConcurrentInfos(cameraManager: camera.CameraManager, cameraDeviceArray: Array<camera.CameraDevice>): void {
+function getCameraConcurrentInfos(cameraManager: camera.CameraManager,
+  cameraDeviceArray: Array<camera.CameraDevice>): Array<camera.CameraConcurrentInfo> {
+  let cameraConcurrentInfos: Array<camera.CameraConcurrentInfo> = [];
   try {
-    let cameraConcurrentInfos: Array<camera.CameraConcurrentInfo> = [];
     cameraConcurrentInfos = cameraManager.getCameraConcurrentInfos(cameraDeviceArray);
   } catch (error) {
     // 失败返回错误码并处理。
     let err = error as BusinessError;
     console.error(`The getCameraConcurrentInfos call failed. error code: ${err.code}`);
   }
+  return cameraConcurrentInfos;
 }
 ```
 

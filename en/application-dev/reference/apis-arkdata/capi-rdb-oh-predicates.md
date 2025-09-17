@@ -1,4 +1,10 @@
 # OH_Predicates
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 
@@ -116,7 +122,7 @@ Pointer to the function used to add a left parenthesis to the predicates.<br>Thi
 
 | Name                  | Description                             |
 | ------------------------ | --------------------------------- |
-| H_Predicates *predicates | Pointer to the **OH_Predicates** instance.|
+| OH_Predicates *predicates | Pointer to the **OH_Predicates** instance.|
 
 **Returns**
 
@@ -615,7 +621,7 @@ OH_Predicates *(*clear)(OH_Predicates *predicates)
 
 **Description**
 
-Clears a predicates instance.
+Pointer to the function used to clear a predicates instance.
 
 **Since**: 10
 
@@ -639,7 +645,7 @@ int (*destroy)(OH_Predicates *predicates)
 
 **Description**
 
-Destroys an **OH_Predicates** object and reclaims the memory occupied.
+Pointer to the function used to destroy an **OH_Predicates** object and reclaim the memory occupied.
 
 **Since**: 10
 

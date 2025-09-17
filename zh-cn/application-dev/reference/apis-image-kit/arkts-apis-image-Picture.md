@@ -61,7 +61,7 @@ async function GetMainPixelmap(pictureObj : image.Picture) {
 
 getHdrComposedPixelmap(): Promise\<PixelMap>
 
-合成hdr图并获取hdr图的pixelmap，使用Promise形式返回结果。
+合成hdr图并获取hdr图的pixelmap。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -87,7 +87,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function GetHdrComposedPixelmap(pictureObj : image.Picture) {
   let funcName = "getHdrComposedPixelmap";
-  if (pictureObj != null) { //图片包含Hdr图。
+  if (pictureObj != null) { // 图片包含Hdr图。
     let hdrComposedPixelmap: image.PixelMap = await pictureObj.getHdrComposedPixelmap();
     if (hdrComposedPixelmap != null) {
       hdrComposedPixelmap.getImageInfo().then((imageInfo: image.ImageInfo) => {
@@ -125,7 +125,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function GetGainmapPixelmap(pictureObj : image.Picture) {
   let funcName = "getGainmapPixelmap";
-  if (pictureObj != null) { //图片包含增益图。
+  if (pictureObj != null) { // 图片包含增益图。
     let gainPixelmap: image.PixelMap | null = pictureObj.getGainmapPixelmap();
     if (gainPixelmap != null) {
       gainPixelmap.getImageInfo().then((imageInfo: image.ImageInfo) => {
@@ -174,7 +174,7 @@ setAuxiliaryPicture(type: AuxiliaryPictureType, auxiliaryPicture: AuxiliaryPictu
 ```ts
 async function SetAuxiliaryPicture(context: Context) {
   const resourceMgr = context.resourceManager;
-  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg");//需要支持hdr的图片。
+  const rawFile = await resourceMgr.getRawFileContent("hdr.jpg");// 需要支持hdr的图片。
   let ops: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -273,7 +273,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 async function SetPictureObjMetadata(exifContext: Context) {
   const exifResourceMgr = exifContext.resourceManager;
-  const exifRawFile = await exifResourceMgr.getRawFileContent("exif.jpg");//含有exif metadata的图片。
+  const exifRawFile = await exifResourceMgr.getRawFileContent("exif.jpg");// 含有exif metadata的图片。
   let exifOps: image.SourceOptions = {
     sourceDensity: 98,
   }
@@ -406,10 +406,10 @@ async function Marshalling_UnMarshalling(pictureObj : image.Picture) {
   if (pictureObj != null) {
     let parcelable: MySequence = new MySequence(pictureObj);
     let data: rpc.MessageSequence = rpc.MessageSequence.create();
-    // marshalling.
+    // 序列化。
     data.writeParcelable(parcelable);
     let ret: MySequence = new MySequence(pictureObj);
-    // unmarshalling.
+    // 反序列化。
     data.readParcelable(ret);
   } else {
     console.error('PictureObj is null');

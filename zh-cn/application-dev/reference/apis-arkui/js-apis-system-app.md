@@ -1,4 +1,10 @@
 # @system.app (应用上下文)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyujie43-->
+<!--Designer: @weixin_52725220-->
+<!--Tester: @xiong0104-->
+<!--Adviser: @HelloCrease-->
 
 > **说明：** 
 >
@@ -74,7 +80,7 @@ static setImageCacheCount(value: number): void
 
 setImageCacheCount方法需要在@Entry标记的页面，[onPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)或[aboutToAppear](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)里面设置才生效。
 
-setImageCacheCount、setImageRawDataCacheSize、和setImageFileCacheSize并不灵活，后续不继续演进，对于复杂情况，更推荐使用[ImageKnife](https://gitee.com/openharmony-tpc/ImageKnife)。
+setImageCacheCount、setImageRawDataCacheSize、和setImageFileCacheSize并不灵活，后续不继续演进，对于复杂情况，更推荐使用[ImageKnife](https://gitcode.com/openharmony-tpc/ImageKnife)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -84,7 +90,7 @@ setImageCacheCount、setImageRawDataCacheSize、和setImageFileCacheSize并不�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 内存中解码后图片的缓存数量。 |
+| value | number | 是 | 内存中解码后图片的缓存数量。number取值需大于0。 |
 
 **示例：**
 
@@ -131,7 +137,7 @@ setImageRawDataCacheSize方法需要在@Entry标记的页面，[onPageShow](../a
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 内存中解码前图片数据的缓存大小，单位为字节。 |
+| value | number | 是 | 内存中解码前图片数据的缓存大小，单位为字节。number取值需大于0。 |
 
 **示例：**
 
@@ -176,7 +182,7 @@ static setImageFileCacheSize(value: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 图片文件的缓存大小，单位为字节。 |
+| value | number | 是 | 图片文件的缓存大小，单位为字节。number取值需大于0。 |
 
 **示例：**
 

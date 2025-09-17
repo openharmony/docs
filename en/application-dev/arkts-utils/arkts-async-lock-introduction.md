@@ -1,10 +1,16 @@
 # Asynchronous Lock
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
-To address data race issues in concurrent multithreading instances, ArkTS introduces asynchronous locks. These locks can be held by class objects. To simplify access across concurrent instances, the [AsyncLock object](../reference/apis-arkts/js-apis-arkts-utils.md#asynclock) supports pass-by-reference across threads.
+To address data race issues in concurrent multithreading instances, ArkTS introduces asynchronous locks. These locks can be held by class objects. To simplify access across concurrent instances, the [AsyncLock object](../reference/apis-arkts/arkts-apis-arkts-utils-locks.md#asynclock) supports pass-by-reference across threads.
 
 Given that ArkTS supports asynchronous operations, blocking locks are prone to deadlocks. Therefore, ArkTS only supports asynchronous locks (non-blocking locks). In addition, asynchronous locks can ensure the temporal consistency of asynchronous tasks within a single thread, preventing synchronization issues caused by uncertain task timing.
 
-For more details about asynchronous lock APIs, see [ArkTSUtils.locks](../reference/apis-arkts/js-apis-arkts-utils.md#arktsutilslocks).
+For more details about asynchronous lock APIs, see [ArkTSUtils.locks](../reference/apis-arkts/arkts-apis-arkts-utils-locks.md).
 
 > **NOTE**
 >
@@ -22,7 +28,7 @@ export class A {
   private count_: number = 0;
   lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock();
 
-  public async getCount(): Promise<number> {
+  public getCount(): Promise<number> {
     // Add an asynchronous lock to protect the data.
     return this.lock_.lockAsync(() => {
       return this.count_;
@@ -39,6 +45,7 @@ export class A {
 
 @Concurrent
 async function printCount(a: A) {
+  a.increaseCount();
   console.info("InputModule: count is:" + await a.getCount());
 }
 
@@ -69,4 +76,4 @@ struct Index {
   }
 }
 ```
-<!-- @[example_protect](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/ArktsAsyncLockIntroduction.ets) -->
+<!-- @[example_protect](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/ArktsAsyncLockIntroduction.ets) -->

@@ -3,9 +3,11 @@
 
 ## Overview
 
-The **native_avmemory.h** file declares the attribute definition of the media struct **AVMemory**.
+The file declares the attribute definition of the media struct AVMemory.
 
 **Library**: libnative_media_core.so
+
+**File to include**: <multimedia/player_framework/native_avmemory.h>
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -28,7 +30,7 @@ The **native_avmemory.h** file declares the attribute definition of the media st
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_AVMemory](_core.md#oh_avmemory) \* [OH_AVMemory_Create](_core.md#oh_avmemory_create) (int32_t size) | Creates an **OH_AVMemory** instance. (This function is deprecated in API version 11.) |
-| uint8_t \* [OH_AVMemory_GetAddr](_core.md#oh_avmemory_getaddr) (struct [OH_AVMemory](_core.md#oh_avmemory) \*mem) | Obtains the virtual memory address. (This function is deprecated in API version 11.)|
-| int32_t [OH_AVMemory_GetSize](_core.md#oh_avmemory_getsize) (struct [OH_AVMemory](_core.md#oh_avmemory) \*mem) | Obtains the memory length. (This function is deprecated in API version 11.) |
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMemory_Destroy](_core.md#oh_avmemory_destroy) (struct [OH_AVMemory](_core.md#oh_avmemory) \*mem) | Releases an **OH_AVMemory** instance. (This function is deprecated in API version 11.)|
+| [OH_AVMemory](_core.md#oh_avmemory) \* [OH_AVMemory_Create](_core.md#oh_avmemory_create) (int32_t size) | Creates an OH_AVMemory instance. (It is deprecated from API version 11.) |
+| uint8_t \* [OH_AVMemory_GetAddr](_core.md#oh_avmemory_getaddr) (struct [OH_AVMemory](_core.md#oh_avmemory) \*mem) | Obtains the virtual memory address. (It is deprecated from API version 11.)|
+| int32_t [OH_AVMemory_GetSize](_core.md#oh_avmemory_getsize) (struct [OH_AVMemory](_core.md#oh_avmemory) \*mem) | Obtains the memory length. (It is deprecated from API version 11.) |
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMemory_Destroy](_core.md#oh_avmemory_destroy) (struct [OH_AVMemory](_core.md#oh_avmemory) \*mem) | Releases an OH_AVMemory instance. (It is deprecated from API version 11.)|

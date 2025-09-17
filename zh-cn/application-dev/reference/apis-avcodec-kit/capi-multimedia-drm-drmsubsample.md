@@ -1,5 +1,12 @@
 # DrmSubsample
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zhanghongran-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 Subsample结构类型定义。
@@ -18,5 +25,4 @@ Subsample结构类型定义。
 | -- | -- |
 | uint32_t clearHeaderLen | 头部清流数据的长度。 |
 | uint32_t payLoadLen | 加密数据的长度。 |
-
 

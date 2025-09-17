@@ -1322,6 +1322,8 @@ onSubmit(callback: OnSubmitCallback)
 
 按下输入法回车键触发该回调。
 
+非TV设备按下回车键时输入框默认会失焦且收起键盘，可在OnSubmitCallback回调中配置是否收起键盘，参考[示例2（设置下划线）](#示例2设置下划线)。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1617,7 +1619,7 @@ setTextSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options
 | 参数名  | 类型   | 必填   | 说明  |
 | ------- | ------ | ---- | ----- |
 | selectionStart | number | 是    | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
-| selectionEnd   | number | 是    | 文本选择区域结束位置。 |
+| selectionEnd   | number | 是    | 文本选择区域结束位置。当selectionEnd<0时，按照0处理；当selectionEnd大于文本长度时，按照文本长度处理。|
 | options<sup>12+</sup>   | [SelectionOptions](ts-universal-attributes-text-style.md#selectionoptions12对象说明) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT<br/>从API version 12开始，该接口中的options参数支持在原子化服务中使用。 |
 
 >  **说明：**
@@ -1669,7 +1671,7 @@ stopEditing(): void
 | ---- | ----- | ---- | ---- | ---- |
 | text              | string     | 否   | 否 | 输入框文本内容。                                   |
 
-### keepEditableState
+### keepEditableState<sup>11+</sup>
 
 keepEditableState(): void
 
@@ -1711,7 +1713,7 @@ type OnSubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
 | 参数名              | 类型                                             | 必填 | 说明                                                         |
 | ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | enterKey            | [EnterKeyType](#enterkeytype枚举说明) | 是   | 输入法回车键类型。 |
-| event | [SubmitEvent](#submitevent11)         | 是   | 提交事件。                                                   |
+| event | [SubmitEvent](#submitevent11)         | 是   | 提交事件。可以控制是否收起键盘。                                                   |
 
 ## OnTextSelectionChangeCallback<sup>18+</sup>
 
@@ -2053,7 +2055,7 @@ struct TextInputExample {
   @State submitValue: string = '';
   @State text: string = '';
   public readonly NUM_TEXT_MAXSIZE_LENGTH = 13;
-  @State teleNumberNoSpace: string = "";
+  @State telNumberNoSpace: string = "";
   @State nextCaret: number = -1; // 用于记录下次光标设置的位置
   @State actualCh: number = -1; // 用于记录光标在第i个数字后插入或者第i个数字前删除
   @State lastCaretPosition: number = 0;
@@ -2097,13 +2099,13 @@ struct TextInputExample {
   calcCaretPosition(nextText: string) {
     let befNumberNoSpace: string = this.removeSpace(this.text);
     this.actualCh = 0;
-    if (befNumberNoSpace.length < this.teleNumberNoSpace.length) { // 插入场景
+    if (befNumberNoSpace.length < this.telNumberNoSpace.length) { // 插入场景
       for (let i = 0; i < this.lastCaretPosition; i++) {
         if (this.text[i] != ' ') {
           this.actualCh += 1;
         }
       }
-      this.actualCh += this.teleNumberNoSpace.length - befNumberNoSpace.length;
+      this.actualCh += this.telNumberNoSpace.length - befNumberNoSpace.length;
       console.info("actualCh: " + this.actualCh);
       for (let i = 0; i < nextText.length; i++) {
         if (nextText[i] != ' ') {
@@ -2114,7 +2116,7 @@ struct TextInputExample {
           }
         }
       }
-    } else if (befNumberNoSpace.length > this.teleNumberNoSpace.length) { // 删除场景
+    } else if (befNumberNoSpace.length > this.telNumberNoSpace.length) { // 删除场景
       if (this.lastCaretPosition === this.text.length) {
         console.info("Caret at last, no need to change");
       } else if (this.lastCaretPosition === this.lastCaretPositionEnd) {
@@ -2145,20 +2147,20 @@ struct TextInputExample {
       Row() {
         TextInput({ text: `${this.text}`, controller: this.controller }).type(InputType.PhoneNumber).height('48vp')
           .onChange((value: string) => {
-            this.teleNumberNoSpace = this.removeSpace(value);
+            this.telNumberNoSpace = this.removeSpace(value);
             let nextText: string = "";
-            if (this.teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
-              nextText = this.teleNumberNoSpace;
+            if (this.telNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
+              nextText = this.telNumberNoSpace;
             } else if (this.checkNeedNumberSpace(value)) {
-              if (this.teleNumberNoSpace.length <= 3) {
-                nextText = this.teleNumberNoSpace;
+              if (this.telNumberNoSpace.length <= 3) {
+                nextText = this.telNumberNoSpace;
               } else {
-                let split1: string = this.teleNumberNoSpace.substring(0, 3);
-                let split2: string = this.teleNumberNoSpace.substring(3);
+                let split1: string = this.telNumberNoSpace.substring(0, 3);
+                let split2: string = this.telNumberNoSpace.substring(3);
                 nextText = split1 + ' ' + split2;
-                if (this.teleNumberNoSpace.length > 7) {
-                  split2 = this.teleNumberNoSpace.substring(3, 7);
-                  let split3: string = this.teleNumberNoSpace.substring(7);
+                if (this.telNumberNoSpace.length > 7) {
+                  split2 = this.telNumberNoSpace.substring(3, 7);
+                  let split3: string = this.telNumberNoSpace.substring(7);
                   nextText = split1 + ' ' + split2 + ' ' + split3;
                 }
               }

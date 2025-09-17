@@ -1,5 +1,11 @@
 # Passing a Task with the Specified Priority to an ArkTS Thread from an Asynchronous Thread Using Node-API
-You can use **napi_call_threadsafe_function_with_priority** to pass a task to an ArkTS thread from an asynchronous thread in a thread-safe manner. Then, the task will be processed based on its priority and enqueuing mode.
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
+The napi_call_threadsafe_function_with_priority API in Node-API is used to deliver tasks with specified priorities and enqueuing modes from asynchronous threads to ArkTS threads. The underlying queue processes tasks based on the task priorities and enqueuing modes.
 
 ## Function Description
 
@@ -29,6 +35,7 @@ Pass a task to the ArkTS main thread from an asynchronous thread in a thread-saf
     #include "napi/native_api.h"
     #include <string.h>
     #include <stdlib.h>
+    #include "hilog/log.h"
 
     static constexpr int INT_NUM_2 = 2;     // Integer 2
     static constexpr int INT_NUM_12 = 12;   // Integer 12
@@ -53,38 +60,43 @@ Pass a task to the ArkTS main thread from an asynchronous thread in a thread-saf
         napi_value argv[2] = {number1, number2};
         napi_call_function(env, undefined, jsCb, INT_NUM_2, argv, &resultNumber);
         int32_t res = 0;
+        // Obtain the int32 value corresponding to resultNumber.
         napi_get_value_int32(env, resultNumber, &res);
+        OH_LOG_INFO(LOG_APP, "napi_init res is %{public}d", res);
     }
 
     // Call this API in an asynchronous thread to pass a task with the specified priority and enqueuing mode to an ArkTS thread.
     static void ExecuteWork(napi_env env, void *data) {
         CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
-        // The task priority is napi_priority_idle, and the task is added to the end of the task queue.
-        napi_call_threadsafe_function_with_priority(callbackData->tsfn, nullptr, napi_priority_idle, true);
-        napi_call_threadsafe_function_with_priority(callbackData->tsfn, nullptr, napi_priority_low, true);
-        napi_call_threadsafe_function_with_priority(callbackData->tsfn, nullptr, napi_priority_high, true);
-        napi_call_threadsafe_function_with_priority(callbackData->tsfn, nullptr, napi_priority_immediate, true);
-        // The task priority is napi_priority_high, and the task is added to the head of the task queue.
-        napi_call_threadsafe_function_with_priority(callbackData->tsfn, nullptr, napi_priority_high, false);
+        The napi_call_threadsafe_function_with_priority(callbackData->tsfn, nullptr, napi_priority_idle, true); // delivers the task whose priority is specified as napi_priority_idle and enqueue mode is enqueue at the end of the queue.
+        The napi_call_threadsafe_function_with_priority(callbackData->tsfn, nullptr, napi_priority_low, true); // delivers the task whose priority is specified as napi_priority_low and enqueuing mode is enqueuing at the end of the queue.
+        The napi_call_threadsafe_function_with_priority(callbackData->tsfn, nullptr, napi_priority_high, true); // delivers the task whose priority is specified as napi_priority_high and enqueue mode is enqueue at the end of the queue.
+        The napi_call_threadsafe_function_with_priority(callbackData->tsfn, nullptr, napi_priority_immediate, true); // delivers the task whose priority is specified as napi_priority_immediate and enqueue mode is enqueue at the end of the queue.
+        The napi_call_threadsafe_function_with_priority(callbackData->tsfn, nullptr, napi_priority_high, false); // delivers the task whose priority is specified as napi_priority_high and enqueue mode is enqueue at the queue header.
     }
 
     static void WorkComplete(napi_env env, napi_status status, void *data) {
         CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
+        if (callbackData == nullptr) {
+            return;
+        }
         napi_release_threadsafe_function(callbackData->tsfn, napi_tsfn_release);
         napi_delete_async_work(env, callbackData->work);
         callbackData->work = nullptr;
         callbackData->tsfn = nullptr;
+        delete callbackData;
     }
 
     static napi_value CallThreadSafeWithPriority(napi_env env, napi_callback_info info) {
         size_t argc = 1;
         napi_value jsCb = nullptr;
-        CallbackData *callbackData = nullptr;
-        napi_get_cb_info(env, info, &argc, &jsCb, nullptr, reinterpret_cast<void **>(&callbackData));
+        CallbackData *callbackData = new CallbackData();
+        napi_get_cb_info(env, info, &argc, &jsCb, nullptr, nullptr);
         napi_value resourceName = nullptr;
         napi_create_string_utf8(env, "Thread-safe Function Demo", NAPI_AUTO_LENGTH, &resourceName);
-        napi_create_threadsafe_function(env, jsCb, nullptr, resourceName, 0, 1, callbackData, nullptr, callbackData, CallJs,
+        napi_create_threadsafe_function(env, jsCb, nullptr, resourceName, 0, 1, nullptr, nullptr, nullptr, CallJs,
                                         &callbackData->tsfn);
+        // Create an asynchronous task object.
         napi_create_async_work(env, nullptr, resourceName, ExecuteWork, WorkComplete, callbackData, &callbackData->work);
         napi_queue_async_work(env, callbackData->work);
         return nullptr;
@@ -94,9 +106,8 @@ Pass a task to the ArkTS main thread from an asynchronous thread in a thread-saf
     EXTERN_C_START
     static napi_value Init(napi_env env, napi_value exports)
     {
-        CallbackData *callbackData = new CallbackData();
         napi_property_descriptor desc[] = {
-            { "callThreadSafeWithPriority", nullptr, CallThreadSafeWithPriority, nullptr, nullptr, nullptr, napi_default, callbackData }
+            { "callThreadSafeWithPriority", nullptr, CallThreadSafeWithPriority, nullptr, nullptr, nullptr, napi_default, nullptr }
         };
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
         return exports;
@@ -118,6 +129,7 @@ Pass a task to the ArkTS main thread from an asynchronous thread in a thread-saf
         napi_module_register(&nativeModule);
     }
    ```
+   <!-- @[napi_call_threadsafe_function_with_priority_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/napi_init.cpp) -->
 
 - Declare the API.
 
@@ -125,6 +137,7 @@ Pass a task to the ArkTS main thread from an asynchronous thread in a thread-saf
     // index.d.ts
     export const callThreadSafeWithPriority: (cb: (a: number, b: number) => number) => void;
     ```
+    <!-- @[napi_call_threadsafe_function_with_priority_dts](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 - Configure compile settings.
 
@@ -142,11 +155,13 @@ Pass a task to the ArkTS main thread from an asynchronous thread in a thread-saf
         include(${PACKAGE_FIND_FILE})
     endif()
 
+    add_definitions( "-DLOG_TAG=\"LOG_TAG\"" )
     include_directories(${NATIVERENDER_ROOT_PATH}
                         ${NATIVERENDER_ROOT_PATH}/include)
-    add_library(entry SHARED hello.cpp)
-    target_link_libraries(entry PUBLIC libace_napi.z.so)
+    add_library(entry SHARED napi_init.cpp)
+    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
     ```
+    <!-- @[napi_call_threadsafe_function_with_priority_cmake](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/CMakeLists.txt) -->
 
 - ArkTS sample code
 
@@ -158,5 +173,6 @@ Pass a task to the ArkTS main thread from an asynchronous thread in a thread-saf
         console.info('result is ' + (a + b));
         return a + b;
     }
-    testNapi.callThreadSafeWithPriority(callback);
+    testNapi.callThreadSafeWithPriority (callback); // **Note:** If the underlying ThreadSafeFunction is canceled, not all tasks can be executed.
     ```
+    <!-- @[napi_call_threadsafe_function_with_priority_ets](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/ets/pages/Index.ets) -->

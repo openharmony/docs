@@ -2,8 +2,9 @@
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
-<!--SE: @liweilu1-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liweilu1-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -97,7 +98,7 @@ Sets a **PhotoAsset** member parameter.
 | Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
 | member | string | Yes   | Name of the member parameter to set, for example, [PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys).TITLE. The value contains 1 to 255 characters.|
-| value | string | Yes   | Value of the member parameter to set. Only the value of [PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys).TITLE can be changed. The title must meet the following requirements:<br>- It does not contain a file name extension.<br>- The file name, which is in the format of title+file name extension, does not exceed 255 characters.<br>- The title does not contain any of the following characters:\ / : * ? " ' ` < > \| { } [ ]  |
+| value | string | Yes   | Value of the member parameter to set. Only the value of [PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys).TITLE can be changed. The title must meet the following requirements:<br>- It must not contain a file name extension.<br>- The total length of the file name, which is in the format of title+file name extension, must be between 1 and 255 characters.<br>- It must not contain any invalid characters, which are:\ / : * ? " ' ` < > \| { } [ ]  |
 
 **Error codes**
 
@@ -391,6 +392,8 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 Obtains the thumbnail of this file. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -446,6 +449,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 getThumbnail(size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 Obtains the file thumbnail of the given size. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
@@ -505,6 +510,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 
 Obtains the file thumbnail of the given size. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
@@ -577,7 +584,7 @@ Clones a media asset. The file name can be set, but the file type cannot be chan
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| title| string | Yes   | Title of the cloned asset. The title must meet the following requirements:<br>- It does not contain a file name extension.<br>- The file name, which is in the format of title+file name extension, does not exceed 255 characters.<br>- The title does not contain any of the following characters:\ / : * ? " ' ` < > \| { } [ ] |
+| title| string | Yes   | Title of the cloned asset. The title must meet the following requirements:<br>- It must not contain a file name extension.<br>- The total length of the file name, which is in the format of title+file name extension, must be between 1 and 255 characters.<br>- It must not contain any invalid characters, which are:\ / : * ? " ' ` < > \| { } [ ] |
 
 **Return value**
 

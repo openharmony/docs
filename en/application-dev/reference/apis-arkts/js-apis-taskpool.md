@@ -1,14 +1,20 @@
 # @ohos.taskpool (Starting the Task Pool)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
-TaskPool provides a multi-thread running environment for applications. It helps reduce resource consumption and improve system performance. It also frees you from caring about the lifecycle of thread instances. You can use the TaskPool APIs to create background tasks and perform operations on them, for example, executing or canceling a task. Theoretically, you can create an unlimited number of tasks, but this is not recommended due to memory limitations. In addition, you are not advised performing blocking operations in a task, especially indefinite blocking. Long-time blocking operations occupy worker threads and may block other task scheduling, adversely affecting your application performance.
+TaskPool provides a multi-thread running environment for applications. It helps reduce resource consumption and improve system performance. It also frees you from caring about the thread lifecycle. You can use the TaskPool APIs to create background tasks and perform operations on them, for example, executing or canceling a task. Theoretically, you can create an unlimited number of tasks, but this is not recommended due to memory limitations. In addition, you are not advised performing blocking operations in a task, especially indefinite blocking. Long-time blocking operations occupy worker threads and may block other task scheduling, adversely affecting your application performance.
 
-You can determine the execution sequence of tasks with the same priority. They are executed in the same sequence as you call the task execution APIs. The default task priority is **MEDIUM**.
+You can determine the execution sequence of tasks with the same priority. They are executed in the same sequence as you call the task execution APIs. The default task priority is MEDIUM.
 
 If the number of tasks to be executed is greater than the number of worker threads in the task pool, the task pool scales out based on load balancing to minimize the waiting duration. Similarly, when the number of tasks to be executed falls below the number of worker threads, the task pool scales in to reduce the number of worker threads.
 
-The **TaskPool** APIs return error codes in numeric format. For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes returned by TaskPool APIs, see [Utils Error Codes](errorcode-utils.md).
 
-For details about the precautions for using **TaskPool**, see [Precautions for TaskPool](../../arkts-utils/taskpool-introduction.md#precautions-for-taskpool).
+For details about the precautions for using TaskPool, see [Precautions for TaskPool](../../arkts-utils/taskpool-introduction.md#precautions-for-taskpool).
 
 The following concepts are used in this topic:
 - Task group task: task in a [TaskGroup](#taskgroup10).
@@ -29,7 +35,7 @@ import { taskpool } from '@kit.ArkTS';
 
 execute(func: Function, ...args: Object[]): Promise\<Object>
 
-Places a function to be executed in the internal queue of the task pool. The function is not executed immediately. It waits to be distributed to the worker thread for execution. In this mode, the function cannot be canceled.
+Places a function to be executed in the internal queue of the task pool. The function is not executed immediately. It waits to be distributed to the worker thread for execution. In this mode, the function cannot be canceled. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -77,7 +83,7 @@ taskpool.execute(printArgs, 100).then((value: Object) => { // 100: test number
 
 execute<A extends Array\<Object>, R>(func: (...args: A) => R | Promise\<R>, ...args: A): Promise\<R>
 
-Verifies the passed-in parameter types and return value type of a concurrent function, and places the function to execute in the internal queue of the task pool.
+Verifies the passed-in parameter types and return value type of a concurrent function, and places the function in the queue of the task pool. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -111,8 +117,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 @Concurrent
 function printArgs(args: number): number {
-    console.info("printArgs: " + args);
-    return args;
+  console.info("printArgs: " + args);
+  return args;
 }
 
 @Concurrent
@@ -126,12 +132,16 @@ function testWithArray(args: [number, string]): string {
 }
 
 taskpool.execute<[number], number>(printArgs, 100).then((value: number) => { // 100: test number
-  console.info("taskpool result: " + value);
+  console.info("taskpool result: " + value); // "taskpool result: 100"
 });
 
-taskpool.execute<[number, string, number], string>(testWithThreeParams, 100, "test", 100).then((value: string) => {});
+taskpool.execute<[number, string, number], string>(testWithThreeParams, 100, "test", 100).then((value: string) => {
+  console.info("taskpool result: " + value); // "taskpool result: test"
+});
 
-taskpool.execute<[[number, string]], string>(testWithArray, [100, "test"]).then((value: string) => {});
+taskpool.execute<[[number, string]], string>(testWithArray, [100, "test"]).then((value: string) => {
+  console.info("taskpool result: " + value); // "taskpool result: success"
+});
 ```
 
 
@@ -139,7 +149,7 @@ taskpool.execute<[[number, string]], string>(testWithArray, [100, "test"]).then(
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
-Places a task in the internal queue of the task pool. The task is not executed immediately. It waits to be distributed to the worker thread for execution. In this mode, you can set the task priority and call **cancel()** to cancel the task. The task cannot be a task in a task group, serial queue, or asynchronous queue. This API can be called only once for a continuous task, but multiple times for a non-continuous task.
+Places a task in the internal queue of the task pool. The task will not be executed immediately; instead, it waits to be distributed to a worker thread for execution. In the current mode, you can set the task priority and cancel the task. Note that the task cannot belong to a task group, serial queue, or asynchronous queue. For non-continuous tasks, this API can be called multiple times. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -150,7 +160,7 @@ Places a task in the internal queue of the task pool. The task is not executed i
 | Name  | Type                 | Mandatory| Description                                      |
 | -------- | --------------------- | ---- | ---------------------------------------- |
 | task     | [Task](#task)         | Yes  | Task to be executed.                 |
-| priority | [Priority](#priority) | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
+| priority | [Priority](#priority) | No  | Priority of the task to be executed. The default value is **taskpool.Priority.MEDIUM**.|
 
 **Return value**
 
@@ -198,7 +208,9 @@ taskpool.execute(task3, taskpool.Priority.HIGH).then((value: Object) => {
 
 execute<A extends Array\<Object>, R>(task: GenericsTask<A, R>, priority?: Priority): Promise\<R>
 
-Verifies the passed-in parameter types and return value type of a concurrent function, and places the generic task in the internal queue of the task pool.
+Places the generic task in the internal queue of the task pool. The parameter type and return value type of the task are not verified. This API uses a promise to return the result.
+
+The verification of the **execute** task works in conjunction with **new GenericsTask**, requiring that the parameter and return value types match those specified in **new GenericsTask**.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -209,7 +221,7 @@ Verifies the passed-in parameter types and return value type of a concurrent fun
 | Name  | Type                 | Mandatory| Description                                      |
 | -------- | --------------------- | ---- | ---------------------------------------- |
 | task     | [GenericsTask<A, R>](#genericstask13)         | Yes  | Generic task to be executed.                 |
-| priority | [Priority](#priority) | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
+| priority | [Priority](#priority) | No  | Priority of the task to be executed. The default value is **taskpool.Priority.MEDIUM**.|
 
 **Return value**
 
@@ -257,7 +269,7 @@ taskpool.execute<[number], number>(task3, taskpool.Priority.HIGH).then((value: n
 
 execute(group: TaskGroup, priority?: Priority): Promise<Object[]>
 
-Places a task group in the internal queue of the task pool. The tasks in the task group are not executed immediately. They wait to be distributed to the worker thread for execution. After all tasks in the task group are executed, a result array is returned. This API applies when you want to execute a group of associated tasks.
+Places a task group in the internal queue of the task pool. The tasks in the task group are not executed immediately. They wait to be distributed to the worker thread for execution. After all tasks in the task group are executed, a result array is returned. This mode is applicable to the execution of associated tasks. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -318,7 +330,7 @@ taskpool.execute(taskGroup2).then((res: Array<Object>) => {
 
 executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Object>
 
-Executes a task after a given delay. In this mode, you can set the task priority and call **cancel()** to cancel the task. The task cannot be a task in a task group, serial queue, or asynchronous queue, or a periodic task. This API can be called only once for a continuous task, but multiple times for a non-continuous task.
+Executes a task after a given delay. In this execution mode, you can set the task priority and call **cancel()** to cancel the execution. The task cannot be a task in a task group, serial queue, or asynchronous queue, or a periodic task. This API can be called only once for a continuous task, but multiple times for a non-continuous task. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -328,7 +340,7 @@ Executes a task after a given delay. In this mode, you can set the task priority
 
 | Name      | Type         | Mandatory| Description                |
 | ----------- | ------------- | ---- | -------------------- |
-| delayTime   | number        | Yes  | Delay, in ms. |
+| delayTime   | number        | Yes  | Delay, in ms. The value must be greater than or equal to 0. |
 | task        | [Task](#task) | Yes  | Task to be executed with a delay.|
 | priority    | [Priority](#priority)       | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
 
@@ -365,7 +377,7 @@ function printArgs(args: number): void {
 let t: number = Date.now();
 console.info("taskpool start time is: " + t);
 let task: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
-taskpool.executeDelayed(1000, task).then(() => { // 1000:delayTime is 1000ms
+taskpool.executeDelayed(1000, task).then(() => { // 1000: delayTime is 1000ms
   console.info("taskpool execute success");
 }).catch((e: BusinessError) => {
   console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
@@ -377,7 +389,9 @@ taskpool.executeDelayed(1000, task).then(() => { // 1000:delayTime is 1000ms
 
 executeDelayed<A extends Array\<Object>, R>(delayTime: number, task: GenericsTask\<A, R>, priority?: Priority): Promise\<R>
 
-Verifies the passed-in parameter types and return value type of a concurrent function, and executes the generic task with a delay.
+Executes the generic task with a delay without verifying the parameter type and return value type of the task. This API uses a promise to return the result.
+
+The verification of the **executeDelayed** task works in conjunction with **new GenericsTask**, requiring that the parameter and return value types match those specified in **new GenericsTask**.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -387,7 +401,7 @@ Verifies the passed-in parameter types and return value type of a concurrent fun
 
 | Name      | Type         | Mandatory| Description                |
 | ----------- | ------------- | ---- | -------------------- |
-| delayTime   | number        | Yes  | Delay, in ms. |
+| delayTime   | number        | Yes  | Delay, in ms. The value must be greater than or equal to 0. |
 | task        | [GenericsTask\<A, R>](#genericstask13) | Yes  | Generic task to be executed with a delay.|
 | priority    | [Priority](#priority)       | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
 
@@ -421,7 +435,7 @@ function printArgs(args: number): string {
 }
 
 let task: taskpool.Task = new taskpool.GenericsTask<[number], string>(printArgs, 100); // 100: test number
-taskpool.executeDelayed<[number], string>(1000, task).then((res: string) => { // 1000:delayTime is 1000ms
+taskpool.executeDelayed<[number], string>(1000, task).then((res: string) => { // 1000: delayTime is 1000ms
   console.info("taskpool execute success");
 }).catch((e: BusinessError) => {
   console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
@@ -433,11 +447,7 @@ taskpool.executeDelayed<[number], string>(1000, task).then((res: string) => { //
 
 executePeriodically(period: number, task: Task, priority?: Priority): void
 
-Executes a task periodically.
-
-In this execution mode, you can set the task priority and call **cancel()** to cancel the execution.
-
-A periodic task cannot be a task in a task group, serial queue, or asynchronous queue. It cannot call **execute()** again or have a dependency relationship.
+Executes a task periodically. In this execution mode, you can set the task priority and call **cancel()** to cancel the execution. A periodic task cannot be a task in a task group, serial queue, or asynchronous queue. It cannot call **execute()** again or have a dependency relationship.
 
 
 **System capability**: SystemCapability.Utils.Lang
@@ -448,7 +458,7 @@ A periodic task cannot be a task in a task group, serial queue, or asynchronous 
 
 | Name      | Type         | Mandatory | Description                |
 | -----------  | ------------- | ----- | -------------------- |
-| period       | number        | Yes   | Execution period, in ms. |
+| period       | number        | Yes   | Execution period, in ms. The value must be greater than or equal to 0. |
 | task         | [Task](#task) | Yes   | Task to be executed.|
 | priority     | [Priority](#priority) | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
 
@@ -513,8 +523,9 @@ taskpoolTest();
 
 executePeriodically<A extends Array\<Object>, R>(period: number, task: GenericsTask\<A, R>, priority?: Priority): void
 
-Verifies the passed-in parameter types and return value type of a concurrent function, and executes the generic task periodically at an interval specified by **period**.
+Executes a generic task periodically, without verifying the parameter type and return value type of the task.
 
+The verification of the **executeDelayed** task works in conjunction with **new GenericsTask**, requiring that the parameter and return value types match those specified in **new GenericsTask**.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -524,7 +535,7 @@ Verifies the passed-in parameter types and return value type of a concurrent fun
 
 | Name      | Type         | Mandatory | Description                |
 | -----------  | ------------- | ----- | -------------------- |
-| period       | number        | Yes   | Execution period, in ms. |
+| period       | number        | Yes   | Execution period, in ms. The value must be greater than or equal to 0. |
 | task         | [GenericsTask\<A, R>](#genericstask13) | Yes   | Generic task to be executed periodically.|
 | priority     | [Priority](#priority) | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
 
@@ -589,7 +600,7 @@ taskpoolTest();
 
 cancel(task: Task): void
 
-Cancels a task in the task pool. If the task is in the internal queue of the task pool, the task will not be executed after being canceled, and an exception indicating task cancellation is returned. If the task has been distributed to the worker thread of the task pool, canceling the task does not affect the task execution, and the execution result is returned in the catch branch. You can use **isCanceled()** to check the task cancellation status. In other words, **taskpool.cancel** takes effect before **taskpool.execute** or **taskpool.executeDelayed** is called.
+Cancels a task in the task pool. If the task is in the internal queue of the task pool, the task will not be executed after being canceled, and an exception indicating task cancellation is returned. If the task has been distributed to the worker thread of the task pool, canceling the task does not affect the task execution, and the execution result is returned in the catch branch. You can use **isCanceled()** to check the task cancellation status. In other words, **taskpool.cancel** takes effect for calls of **taskpool.execute**, **taskpool.executeDelayed**, or **taskpool.executePeriodically**.
 
 Starting from API version 20, after performing a cancel operation, you can use the generic type BusinessError<[taskpool.TaskResult](#taskresult20)> in the catch branch to obtain the exception information thrown by the task or the final execution result.
 
@@ -732,7 +743,7 @@ concurrentFunc();
 
 cancel(taskId: number): void
 
-Cancels a task in the task pool by task ID. If the task is in the internal queue of the task pool, the task will not be executed after being canceled, and an exception indicating task cancellation is returned. If the task has been distributed to the worker thread of the task pool, canceling the task does not affect the task execution, and the execution result is returned in the catch branch. You can use **isCanceled()** to check the task cancellation status. In other words, **taskpool.cancel** takes effect before **taskpool.execute** or **taskpool.executeDelayed** is called. If **taskpool.cancel** is called by other threads, note that the cancel operation, which is asynchronous, may take effect for later calls of **taskpool.execute** or **taskpool.executeDelayed**.
+Cancels a task in the task pool by task ID. If the task is in the internal queue of the task pool, the task will not be executed after being canceled, and an exception indicating task cancellation is returned. If the task has been distributed to the worker thread of the task pool, canceling the task does not affect the task execution, and the execution result is returned in the catch branch. You can use **isCanceled()** to check the task cancellation status. **taskpool.cancel** takes effect for the previous calls of **taskpool.execute** or **taskpool.executeDelayed**. If **taskpool.cancel** is called by other threads, note that the cancel operation, which is asynchronous, may take effect for later calls of **taskpool.execute** or **taskpool.executeDelayed**.
 
 Starting from API version 20, after performing a cancel operation, you can use the generic type BusinessError<[taskpool.TaskResult](#taskresult20)> in the catch branch to obtain the exception information thrown by the task or the final execution result.
 
@@ -885,7 +896,7 @@ console.info("result is: " + result);
 
 getTaskPoolInfo(): TaskPoolInfo
 
-Obtains internal information about this task pool, including thread information and task information.
+Obtains the thread information and task information of the task pool.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -954,7 +965,7 @@ for (let i: number = 0; i < taskArray.length; i+=4) { // 4: Four tasks are execu
 
 ## Task
 
-Implements a task. A task can be executed for multiple times, placed in a task group, serial queue, or asynchronous queue for execution, or added with dependencies for execution.
+Enumerates tasks, which can be executed for multiple times, placed in a task group, serial queue, or asynchronous queue for execution, or added with dependencies for execution.
 
 ### Properties
 
@@ -1024,7 +1035,7 @@ A constructor used to create a **Task** instance, with the task name specified.
 | ------ | -------- | ---- | ------------------------------------------------------------ |
 | name   | string   | Yes  | Task name.                                                  |
 | func   | Function  | Yes  | Function to be executed. The function must be decorated using [@Concurrent](../../arkts-utils/taskpool-introduction.md#concurrent-decorator). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
-| args   | Object[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
+| args   | Object[] | No  | Arguments of the function. For details about the supported types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
 **Error codes**
 
@@ -1053,7 +1064,7 @@ let name: string = task.name;
 
 static isCanceled(): boolean
 
-Checks whether the running task is canceled. Before using this API, you must create a **Task** instance.
+Checks whether the running task is canceled. Before using this method, you need to create a **Task** object.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1063,7 +1074,7 @@ Checks whether the running task is canceled. Before using this API, you must cre
 
 | Type   | Description                                |
 | ------- | ------------------------------------ |
-| boolean | Check result. The value **true** is returned if the running task is canceled; otherwise, **false** is returned.|
+| boolean | If the task is canceled, **true** is returned. Otherwise, **false** is returned.|
 
 **Example**
 
@@ -1186,11 +1197,11 @@ console.info("testTransfer view3 byteLength: " + view1.byteLength);
 
 setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 
-Sets the task clone list. Before using this API, you must create a **Task** instance.
+Sets the task clone list. Before using this method, you need to construct a **Task** object.
 
 > **NOTE**
 >
-> This API must be used together with the [@Sendable decorator](../../arkts-utils/arkts-sendable.md#sendable-decorator). Otherwise, an exception is thrown.
+> This API must be used together with the [@Sendable decorator](../../arkts-utils/arkts-sendable.md#sendable-decorator). Otherwise, an exception is thrown. You are advised to use this decorator to avoid exceptions.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1346,12 +1357,12 @@ struct Index {
 
 static sendData(...args: Object[]): void
 
-Sends data to the host thread and triggers the registered callback. Before using this API, you must create a **Task** instance.
+Sends data to the host thread and triggers the registered callback. Before calling this method, you need to construct a **Task** object.
 
 > **NOTE**
 >
-> - The API is called in the TaskPool thread.
-> - Do not use this API in a callback function. Otherwise, messages may fail to be sent to the host thread.
+> - The API should be called in the TaskPool thread.
+> - Do not use this API in a callback function. Otherwise, messages may fail to be passed to the host thread.
 > - Before calling this API, ensure that the callback function for processing data has been registered in the host thread.
 
 **System capability**: SystemCapability.Utils.Lang
@@ -1362,7 +1373,7 @@ Sends data to the host thread and triggers the registered callback. Before using
 
 | Name  | Type         | Mandatory| Description                                             |
 | -------- | ------------- | ---- | ------------------------------------------------- |
-| args     | Object[]      | No  | Data to be used as the input parameter of the registered callback. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
+| args     | Object[]      | No  | Data to be used as the argument of the registered callback. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
 **Error codes**
 
@@ -1408,7 +1419,7 @@ taskpoolTest();
 
 onReceiveData(callback?: Function): void
 
-Registers a callback for a task to receive and process data from the worker thread. Before using this API, you must create a **Task** instance.
+Registers a callback for a task to receive and process data from the worker thread. Before calling this method, you need to construct a **Task** object.
 
 > **NOTE**
 >
@@ -1523,7 +1534,7 @@ taskpool.execute(task3).then(() => {
 
 removeDependency(...tasks: Task[]): void
 
-Removes dependent tasks for this task. Before using this API, you must create a **Task** instance.
+Removes dependent tasks for this task. Before using this method, you need to construct a **Task** object.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1685,7 +1696,7 @@ taskpool.execute(task).then(() => {
 
 onExecutionFailed(callback: CallbackFunctionWithError): void
 
-Registers a callback function and calls it when a task fails to be enqueued. The registration must be carried out before the task is executed. Otherwise, an exception is thrown.
+Registers a callback function and calls it when a task fails to be executed. (It is not supported for periodic tasks.) The registration must be carried out before the task is executed. Otherwise, an exception is thrown.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1739,7 +1750,7 @@ taskpool.execute(task2).then(() => {
 
 onExecutionSucceeded(callback: CallbackFunction): void
 
-Registers a callback function and calls it when a task is executed successfully. The registration must be carried out before the task is executed. Otherwise, an exception is thrown.
+Registers a callback function and calls it when a task is executed successfully. (It is not supported for periodic tasks.) The registration must be carried out before the task is executed. Otherwise, an exception is thrown.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1804,7 +1815,7 @@ Checks whether the task is complete.
 ```ts
 @Concurrent
 function inspectStatus(arg: number): number {
-  // 2s sleep
+  // 1s sleep
   let t: number = Date.now();
   while (Date.now() - t < 1000) {
     continue;
@@ -2045,7 +2056,7 @@ Adds the function to be executed to this task group. Before using this API, you 
 
 | Name| Type     | Mandatory| Description                                                                  |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| func   | Function  | Yes  | Function to be executed. The function must be decorated using [@Concurrent](../../arkts-utils/taskpool-introduction.md#concurrent-decorator). For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
+| func   | Function  | Yes  | Function that must be decorated using [@Concurrent](../../arkts-utils/taskpool-introduction.md#concurrent-decorator). For details about the supported return value types, see [Sequenceable Data Types](#sequenceable-data-types).|
 | args   | Object[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
 **Error codes**
@@ -2195,7 +2206,7 @@ let runner:taskpool.SequenceRunner = new taskpool.SequenceRunner("runner1", task
 
 execute(task: Task): Promise\<Object>
 
-Adds a task to the serial queue for execution. Before using this API, you must create a **SequenceRunner** instance. Tasks in another task group, serial queue, or asynchronous queue, dependent tasks, and tasks that have been executed cannot be added to the serial queue.
+Adds a task to the serial queue for execution. Before using this API, you must create a **SequenceRunner** instance. Tasks in another task group, serial queue, or asynchronous queue, dependent tasks, and tasks that have been executed cannot be added to the serial queue. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -2308,7 +2319,7 @@ let runner: taskpool.AsyncRunner = new taskpool.AsyncRunner(5);
 
 constructor(name: string, runningCapacity: number, waitingCapacity?: number)
 
-A constructor used to create an **AsyncRunner** instance. It constructs a global asynchronous queue. If the passed-in name is the same as an existing name, the same asynchronous queue is returned.
+A constructor used to create an **AsyncRunner** instance. It constructs a global asynchronous queue. If the queue name is the same as an existing name, the same asynchronous queue is returned.
 
 > **NOTE**
 >
@@ -2345,7 +2356,7 @@ let runner:taskpool.AsyncRunner = new taskpool.AsyncRunner("runner1", 5, 5);
 
 execute(task: Task, priority?: Priority): Promise\<Object>
 
-Adds a task to the asynchronous queue for execution. Before using this API, you must create an **AsyncRunner** instance.
+Adds a task to the asynchronous queue for execution. Before using this API, you must create an **AsyncRunner** instance. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -2389,6 +2400,9 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
+import { taskpool } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Concurrent
 function additionDelay(delay: number): void {
   let start: number = new Date().getTime();
@@ -2446,10 +2460,11 @@ Describes the internal information about a task.
 
 | Name    | Type               | Read-Only| Optional| Description                                                          |
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
-| name<sup>12+</sup> | string             | Yes  | No  | Task name.<br> **Atomic service API**: This API can be used in atomic services since API version 12.                                                   |
-| taskId   | number             | Yes  | No  | Task ID.<br> **Atomic service API**: This API can be used in atomic services since API version 11.                                                    |
-| state    | [State](#state10)  | Yes  | No  | Task state.<br> **Atomic service API**: This API can be used in atomic services since API version 11.                                                   |
-| duration | number             | Yes  | No  | Duration that the task has been executed, in ms. If the return value is **0**, the task is not running. If the return value is empty, no task is running.<br> **Atomic service API**: This API can be used in atomic services since API version 11. |
+| name<sup>12+</sup> | string   | No  | No  | Task name.<br> **Atomic service API**: This API can be used in atomic services since API version 12.                                                   |
+| taskId   | number             | No  | No  | Task ID, which is globally unique by default. You are advised not to change the value.<br> **Atomic service API**: This API can be used in atomic services since API version 11.                                                    |
+| state    | [State](#state10)  | No  | No  | Task state. You are advised not to change the value.<br> **Atomic service API**: This API can be used in atomic services since API version 11.                                                   |
+| duration | number             | No  | Yes  | Duration that the task has been executed, in ms. The default value is **0**. If the return value is **0**, the task is not running. If the return value is empty, no task is running. You are advised not to change the value.<br> **Atomic service API**: This API can be used in atomic services since API version 11. |
+
 
 ## ThreadInfo<sup>10+</sup>
 
@@ -2465,9 +2480,9 @@ Describes the internal information about a worker thread.
 
 | Name    | Type                   | Read-Only| Optional| Description                                                     |
 | -------- | ---------------------- | ---- | ---- | -------------------------------------------------------- |
-| tid      | number                 | Yes  | No  | ID of the worker thread. If the return value is empty, no task is running.             |
-| taskIds  | number[]               | Yes  | No  | IDs of tasks running on the calling thread. If the return value is empty, no task is running.  |
-| priority | [Priority](#priority)  | Yes  | No  | Priority of the calling thread. If the return value is empty, no task is running.             |
+| tid      | number                 | No  | No  | ID of the worker thread. If the return value is empty, no task is running. You are advised not to change the value.|
+| taskIds  | number[]               | No  | Yes  | IDs of tasks running on the calling thread. If the return value is empty, no task is running. You are advised not to change the value.  |
+| priority | [Priority](#priority)  | No  | Yes  | Priority of the calling thread. If the return value is empty, no task is running. You are advised not to change the value.            |
 
 ## TaskPoolInfo<sup>10+</sup>
 
@@ -2483,8 +2498,8 @@ Describes the internal information about a task pool.
 
 | Name         | Type                             | Read-Only| Optional| Description                 |
 | ------------- | -------------------------------- | ---- | ---- | -------------------- |
-| threadInfos   | [ThreadInfo[]](#threadinfo10)    | Yes  | No  | Internal information about the worker threads.  |
-| taskInfos     | [TaskInfo[]](#taskinfo10)        | Yes  | No  | Internal information about the tasks.      |
+| threadInfos   | [ThreadInfo[]](#threadinfo10)    | No  | No  | Internal information about the worker threads. You are advised not to change the value.|
+| taskInfos     | [TaskInfo[]](#taskinfo10)        | No  | No  | Internal information about the tasks. You are advised not to change the value.|
 
 ## TaskResult<sup>20+</sup>
 
@@ -2500,8 +2515,8 @@ Describes the supplementary information captured in **BusinessError** in the cat
 
 | Name    | Type               | Read-Only| Optional| Description                                                          |
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
-| result | Object             | Yes  | Yes  | Task execution result. The default value is **undefined**.                                   |
-| error   | Error \| Object   | Yes  | Yes  | Error message. By default, the value is the same as the **message** field of **BusinessError**.                |
+| result | Object             | No  | Yes  | Task execution result. The default value is **undefined**. You are advised not to change the value.|
+| error   | Error \| Object   | No  | Yes  | Error message. By default, the value is the same as the **message** field of **BusinessError**. You are advised not to change the value.|
 
 > **NOTE**
 >
@@ -2667,8 +2682,6 @@ taskpoolExecute();
 
 ```ts
 // c.ets
-import { taskpool } from '@kit.ArkTS';
-
 @Concurrent
 function strSort(inPutArr: Array<string>): Array<string> {
   let newArr = inPutArr.sort();
@@ -2755,7 +2768,7 @@ function inspectStatus(arg: number): number {
   if (taskpool.Task.isCanceled()) {
     return arg + 2;
   }
-  // Wait for 2s.
+  // 0.5s latency
   let t: number = Date.now();
   while (Date.now() - t < 500) {
     continue;

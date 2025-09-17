@@ -1,4 +1,10 @@
 # Deprecated Interface (VideoPlayer, deprecated)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xushubo; @chennotfound-->
+<!--Designer: @dongyu_dy-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -20,7 +26,7 @@ import { media } from '@kit.MediaKit';
 | ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | url<sup>8+</sup>                | string                                                 | No  | No  | Video URL. The video formats MP4, MPEG-TS, and MKV are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>5. File type: file\://xx<br>**NOTE**<br>WebM is no longer supported since API version 11.|
 | fdSrc<sup>9+</sup>              | [AVFileDescriptor](arkts-apis-media-i.md#avfiledescriptor9)                 | No  | No  | Description of a video file. This property is required when video assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor { fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor { fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor { fd = resource handle; offset = 151; length = 150; }<br>To play an independent video file, use **src=fd://xx**.<br>|
-| loop<sup>8+</sup>               | boolean                                                | No  | No  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.                |
+| loop<sup>8+</sup>               | boolean                                                | No  | No  | Whether to loop video playback. **true** to loop, **false** otherwise.                |
 | videoScaleType<sup>9+</sup>     | [VideoScaleType](arkts-apis-media-e.md#videoscaletype9)                     | No  | Yes  | Video scale type. The default value is **VIDEO_SCALE_TYPE_FIT**.                                              |
 | audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](../apis-audio-kit/arkts-apis-audio-e.md#interruptmode9) | No  | Yes  | Audio interruption mode.                                              |
 | currentTime<sup>8+</sup>        | number                                                 | Yes  | No  | Current video playback position, in ms.                      |
@@ -47,7 +53,7 @@ Sets a surface ID. This API uses an asynchronous callback to return the result.
 
 | Name   | Type                | Mandatory| Description                     |
 | --------- | -------------------- | ---- | ------------------------- |
-| surfaceId | string               | Yes  | Surface ID.                |
+| surfaceId | string               | Yes  | Surface ID, which is obtained from the **XComponent**. For details about how to obtain it, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).                |
 | callback  | AsyncCallback\<void> | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -83,7 +89,7 @@ Sets a surface ID. This API uses a promise to return the result.
 
 | Name   | Type  | Mandatory| Description     |
 | --------- | ------ | ---- | --------- |
-| surfaceId | string | Yes  | Surface ID.|
+| surfaceId | string | Yes  | Surface ID, which is obtained from the **XComponent**. For details about how to obtain it, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).|
 
 **Return value**
 

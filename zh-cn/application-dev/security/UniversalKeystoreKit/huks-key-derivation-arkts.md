@@ -62,6 +62,7 @@
  * 以下以HKDF密钥的Promise操作使用为例
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
 
 function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
@@ -71,32 +72,39 @@ function StringToUint8Array(str: string) {
   return new Uint8Array(arr);
 }
 
+function Uint8ArrayToString(fileData: Uint8Array) {
+  let dataString = '';
+  for (let i = 0; i < fileData.length; i++) {
+    dataString += String.fromCharCode(fileData[i]);
+  }
+  return dataString;
+}
+
 /*
  * 确定密钥别名和封装密钥属性参数集
  */
 let srcKeyAlias = "hkdf_Key";
 let deriveHkdfInData = "deriveHkdfTestIndata";
 let handle: number;
-let finishOutData: Uint8Array;
 let HuksKeyDeriveKeySize = 32;
 /* 集成生成密钥参数集 */
-let properties: Array<huks.HuksParam> = [
-  {
+let properties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_AES,
   }, {
-  tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-  value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DERIVE,
-}, {
-  tag: huks.HuksTag.HUKS_TAG_DIGEST,
-  value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256,
-}, {
-  tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-  value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256,
-}, {
-  tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
-  value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
-}];
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DERIVE,
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256,
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256,
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
+    value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+  }
+];
 
 let huksOptions: huks.HuksOptions = {
   properties: properties,
@@ -104,18 +112,19 @@ let huksOptions: huks.HuksOptions = {
 }
 /* 集成init时密钥参数集 */
 let initProperties: Array<huks.HuksParam> = [{
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HuksKeyAlg.HUKS_ALG_HKDF,
-}, {
-  tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-  value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DERIVE,
-}, {
-  tag: huks.HuksTag.HUKS_TAG_DIGEST,
-  value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256,
-}, {
-  tag: huks.HuksTag.HUKS_TAG_DERIVE_KEY_SIZE,
-  value: HuksKeyDeriveKeySize,
-}];
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_HKDF,
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DERIVE,
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256,
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_DERIVE_KEY_SIZE,
+    value: HuksKeyDeriveKeySize,
+  }
+];
 
 let initOptions: huks.HuksOptions = {
   properties: initProperties,
@@ -123,240 +132,123 @@ let initOptions: huks.HuksOptions = {
 }
 /* 集成finish时密钥参数集 */
 let finishProperties: Array<huks.HuksParam> = [{
-  tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
-  value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
-}, {
-  tag: huks.HuksTag.HUKS_TAG_IS_KEY_ALIAS,
-  value: true,
-}, {
-  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HuksKeyAlg.HUKS_ALG_AES,
-}, {
-  tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-  value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256,
-}, {
-  tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-  value:
-  huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
-  huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
-}, {
-  tag: huks.HuksTag.HUKS_TAG_DIGEST,
-  value: huks.HuksKeyDigest.HUKS_DIGEST_NONE,
-}, {
-  tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS,
-  value: StringToUint8Array(srcKeyAlias),
-}, {
-  tag: huks.HuksTag.HUKS_TAG_PADDING,
-  value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
-}, {
-  tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-  value: huks.HuksCipherMode.HUKS_MODE_ECB,
-}];
+    tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
+    value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_IS_KEY_ALIAS,
+    value: true,
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_AES,
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256,
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value:
+    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
+    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_NONE,
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS,
+    value: StringToUint8Array(srcKeyAlias),
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_PADDING,
+    value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+    value: huks.HuksCipherMode.HUKS_MODE_ECB,
+  }
+];
 let finishOptions: huks.HuksOptions = {
   properties: finishProperties,
   inData: new Uint8Array(new Array())
 }
 
-class ThrowObject {
-  isThrow = false;
-}
-
-function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
-  return new Promise<void>((resolve, reject) => {
-    try {
-      huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throwObject.isThrow = true;
-      throw (error as Error);
-    }
-  });
-}
-
-async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise generateKeyItem`);
-  let throwObject: ThrowObject = { isThrow: false };
+async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter generateKeyItem`);
   try {
-    await generateKeyItem(keyAlias, huksOptions, throwObject)
-      .then((data) => {
-        console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
+    await huks.generateKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: generateKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: generateKeyItem failed, ${JSON.stringify(error)}`);
-        }
-      });
   } catch (error) {
-    console.error(`promise: generateKeyItem input arg invalid, ${JSON.stringify(error)}`);
+    console.error(`promise: generateKeyItem input arg invalid`);
   }
 }
 
-function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
-  return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
-    try {
-      huks.initSession(keyAlias, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throwObject.isThrow = true;
-      throw (error as Error);
-    }
-  });
-}
-
-async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise doInit`);
-  let throwObject: ThrowObject = { isThrow: false };
+async function initSession(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter initSession`);
   try {
-    await initSession(keyAlias, huksOptions, throwObject)
+    await huks.initSession(keyAlias, huksOptions)
       .then((data) => {
-        console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
         handle = data.handle;
+        console.info(`promise: initSession success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: initSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: doInit failed, ${JSON.stringify(error)}`);
-        }
-      });
   } catch (error) {
-    console.error(`promise: doInit input arg invalid, ${JSON.stringify(error)}`);
+    console.error(`promise: initSession input arg invalid`);
   }
 }
 
-function updateSession(handle: number, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
-  return new Promise<huks.HuksOptions>((resolve, reject) => {
-    try {
-      huks.updateSession(handle, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throwObject.isThrow = true;
-      throw (error as Error);
-    }
-  });
-}
-
-async function publicUpdateFunc(handle: number, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise doUpdate`);
-  let throwObject: ThrowObject = { isThrow: false };
+async function updateSession(handle: number, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter updateSession`);
   try {
-    await updateSession(handle, huksOptions, throwObject)
+    await huks.updateSession(handle, huksOptions)
       .then((data) => {
-        console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
+        let outData = data.outData as Uint8Array;
+        console.info(`promise: updateSession success, data = ${Uint8ArrayToString(outData)}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: updateSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: doUpdate failed, ${JSON.stringify(error)}`);
-        }
-      });
   } catch (error) {
-    console.error(`promise: doUpdate input arg invalid, ${JSON.stringify(error)}`);
+    console.error(`promise: updateSession input arg invalid`);
   }
 }
 
-function finishSession(handle: number, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
-  return new Promise<huks.HuksReturnResult>((resolve, reject) => {
-    try {
-      huks.finishSession(handle, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throwObject.isThrow = true;
-      throw (error as Error);
-    }
-  });
-}
-
-async function publicFinishFunc(handle: number, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise doFinish`);
-  let throwObject: ThrowObject = { isThrow: false };
+async function finishSession(handle: number, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter finishSession`);
   try {
-    await finishSession(handle, huksOptions, throwObject)
+    await huks.finishSession(handle, huksOptions)
       .then((data) => {
-        finishOutData = data.outData as Uint8Array;
-        console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
+        let outData = data.outData as Uint8Array;
+        console.info(`promise: finishSession success, data = ${Uint8ArrayToString(outData)}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: finishSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: doFinish failed, ${JSON.stringify(error)}`);
-        }
-      });
   } catch (error) {
-    console.error(`promise: doFinish input arg invalid, ${JSON.stringify(error)}`);
+    console.error(`promise: finishSession input arg invalid`);
   }
 }
 
-function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
-  return new Promise<void>((resolve, reject) => {
-    try {
-      huks.deleteKeyItem(keyAlias, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throwObject.isThrow = true;
-      throw (error as Error);
-    }
-  });
-}
-
-async function publicDeleteKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise deleteKeyItem`);
-  let throwObject: ThrowObject = { isThrow: false };
+async function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter deleteKeyItem`);
   try {
-    await deleteKeyItem(keyAlias, huksOptions, throwObject)
-      .then((data) => {
-        console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
+    await huks.deleteKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: deleteKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: deleteKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: deleteKeyItem failed, ${JSON.stringify(error)}`);
-        }
-      });
   } catch (error) {
-    console.error(`promise: deleteKeyItem input arg invalid, ${JSON.stringify(error)}`);
+    console.error(`promise: deleteKeyItem input arg invalid`);
   }
 }
 
 async function testDerive() {
   /* 生成密钥 */
-  await publicGenKeyFunc(srcKeyAlias, huksOptions);
+  await generateKeyItem(srcKeyAlias, huksOptions);
   /* 进行派生操作 */
-  await publicInitFunc(srcKeyAlias, initOptions);
+  await initSession(srcKeyAlias, initOptions);
   initOptions.inData = StringToUint8Array(deriveHkdfInData);
-  await publicUpdateFunc(handle, initOptions);
-  await publicFinishFunc(handle, finishOptions);
-  await publicDeleteKeyFunc(srcKeyAlias, huksOptions);
+  await updateSession(handle, initOptions);
+  await finishSession(handle, finishOptions);
+  await deleteKeyItem(srcKeyAlias, huksOptions);
 }
 ```
 ### PBKDF2
@@ -366,6 +258,7 @@ async function testDerive() {
  * 以下以PBKDF2密钥的Promise操作使用为例
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
 
 function StringToUint8Array(str: string) {
   let arr: number[] = new Array();
@@ -373,6 +266,14 @@ function StringToUint8Array(str: string) {
     arr.push(str.charCodeAt(i));
   }
   return new Uint8Array(arr);
+}
+
+function Uint8ArrayToString(fileData: Uint8Array) {
+  let dataString = '';
+  for (let i = 0; i < fileData.length; i++) {
+    dataString += String.fromCharCode(fileData[i]);
+  }
+  return dataString;
 }
 
 /*
@@ -386,8 +287,7 @@ let handle: number;
 let finishOutData: Uint8Array;
 
 /* 集成生成密钥参数集 */
-let properties: Array<huks.HuksParam> = [
-  {
+let properties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_AES,
   }, {
@@ -411,8 +311,7 @@ let huksOptions: huks.HuksOptions = {
 }
 
 /* 集成init时密钥参数集 */
-let initProperties: Array<huks.HuksParam> = [
-  {
+let initProperties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_PBKDF2,
   }, {
@@ -439,8 +338,7 @@ let initOptions: huks.HuksOptions = {
 }
 
 /* 集成finish时密钥参数集 */
-let finishProperties: Array<huks.HuksParam> = [
-  {
+let finishProperties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
     value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
   }, {
@@ -475,204 +373,85 @@ let finishOptions: huks.HuksOptions = {
   inData: new Uint8Array(new Array())
 }
 
-class ThrowObject {
-  isThrow = false;
-}
-
-function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
-  return new Promise<void>((resolve, reject) => {
-    try {
-      huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throwObject.isThrow = true;
-      throw (error as Error);
-    }
-  });
-}
-
-async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise generateKeyItem`);
-  let throwObject: ThrowObject = { isThrow: false };
+async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter generateKeyItem`);
   try {
-    await generateKeyItem(keyAlias, huksOptions, throwObject)
-      .then((data) => {
-        console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
+    await huks.generateKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: generateKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: generateKeyItem failed, ${JSON.stringify(error)}`);
-        }
-      });
   } catch (error) {
-    console.error(`promise: generateKeyItem input arg invalid, ${JSON.stringify(error)}`);
+    console.error(`promise: generateKeyItem input arg invalid`);
   }
 }
 
-function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
-  return new Promise<huks.HuksSessionHandle>((resolve, reject) => {
-    try {
-      huks.initSession(keyAlias, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throwObject.isThrow = true;
-      throw (error as Error);
-    }
-  });
-}
-
-async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise doInit`);
-  let throwObject: ThrowObject = { isThrow: false };
+async function initSession(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter initSession`);
   try {
-    await initSession(keyAlias, huksOptions, throwObject)
+    await huks.initSession(keyAlias, huksOptions)
       .then((data) => {
-        console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
         handle = data.handle;
+        console.info(`promise: initSession success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: initSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: doInit failed, ${JSON.stringify(error)}`);
-        }
-      });
   } catch (error) {
-    console.error(`promise: doInit input arg invalid, ${JSON.stringify(error)}`);
+    console.error(`promise: initSession input arg invalid`);
   }
 }
 
-function updateSession(handle: number, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
-  return new Promise<huks.HuksOptions>((resolve, reject) => {
-    try {
-      huks.updateSession(handle, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throwObject.isThrow = true;
-      throw (error as Error);
-    }
-  });
-}
-
-async function publicUpdateFunc(handle: number, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise doUpdate`);
-  let throwObject: ThrowObject = { isThrow: false };
+async function updateSession(handle: number, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter updateSession`);
   try {
-    await updateSession(handle, huksOptions, throwObject)
+    await huks.updateSession(handle, huksOptions)
       .then((data) => {
-        console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
+        let outData = data.outData as Uint8Array;
+        console.info(`promise: updateSession success, data = ${Uint8ArrayToString(outData)}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: updateSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: doUpdate failed, ${JSON.stringify(error)}`);
-        }
-      });
   } catch (error) {
-    console.error(`promise: doUpdate input arg invalid, ${JSON.stringify(error)}`);
+    console.error(`promise: updateSession input arg invalid`);
   }
 }
 
-function finishSession(handle: number, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
-  return new Promise<huks.HuksReturnResult>((resolve, reject) => {
-    try {
-      huks.finishSession(handle, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throwObject.isThrow = true;
-      throw (error as Error);
-    }
-  });
-}
-
-async function publicFinishFunc(handle: number, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise doFinish`);
-  let throwObject: ThrowObject = { isThrow: false };
+async function finishSession(handle: number, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter finishSession`);
   try {
-    await finishSession(handle, huksOptions, throwObject)
+    await huks.finishSession(handle, huksOptions)
       .then((data) => {
-        finishOutData = data.outData as Uint8Array;
-        console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
+        let outData = data.outData as Uint8Array;
+        console.info(`promise: finishSession success, data = ${Uint8ArrayToString(outData)}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: finishSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: doFinish failed, ${JSON.stringify(error)}`);
-        }
-      });
   } catch (error) {
-    console.error(`promise: doFinish input arg invalid, ${JSON.stringify(error)}`);
+    console.error(`promise: finishSession input arg invalid`);
   }
 }
 
-function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: ThrowObject) {
-  return new Promise<void>((resolve, reject) => {
-    try {
-      huks.deleteKeyItem(keyAlias, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throwObject.isThrow = true;
-      throw (error as Error);
-    }
-  });
-}
-
-async function publicDeleteKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise deleteKeyItem`);
-  let throwObject: ThrowObject = { isThrow: false };
+async function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter deleteKeyItem`);
   try {
-    await deleteKeyItem(keyAlias, huksOptions, throwObject)
-      .then((data) => {
-        console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
+    await huks.deleteKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: deleteKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: deleteKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
-      .catch((error: Error) => {
-        if (throwObject.isThrow) {
-          throw (error as Error);
-        } else {
-          console.error(`promise: deleteKeyItem failed, ${JSON.stringify(error)}`);
-        }
-      });
   } catch (error) {
-    console.error(`promise: deleteKeyItem input arg invalid, ${JSON.stringify(error)}`);
+    console.error(`promise: deleteKeyItem input arg invalid`);
   }
 }
-
 async function testDerive() {
   /* 生成密钥 */
-  await publicGenKeyFunc(srcKeyAlias, huksOptions);
+  await generateKeyItem(srcKeyAlias, huksOptions);
   /* 进行派生操作 */
-  await publicInitFunc(srcKeyAlias, initOptions);
-  await publicUpdateFunc(handle, initOptions);
-  await publicFinishFunc(handle, finishOptions);
-  await publicDeleteKeyFunc(srcKeyAlias, huksOptions);
+  await initSession(srcKeyAlias, initOptions);
+  await updateSession(handle, initOptions);
+  await finishSession(handle, finishOptions);
+  await deleteKeyItem(srcKeyAlias, huksOptions);
 }
 ```

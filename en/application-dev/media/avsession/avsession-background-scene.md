@@ -2,8 +2,9 @@
 <!--Kit: AVSession Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @ccfriend; @liao_qian-->
-<!--SE: @ccfriend-->
-<!--TSE: @chenmingxi1_huawei-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 In practical applications, most audio and video content requires background playback. This guide details how to implement long-duration background playback.
 
@@ -33,7 +34,7 @@ Before diving in, you should understand the following basic concepts to effectiv
 
 - When an application needs to play media types (stream types **STREAM_USAGE_MUSIC**, **STREAM_USAGE_MOVIE**, and **STREAM_USAGE_AUDIOBOOK**) and game types (stream type **STREAM_USAGE_GAME**) in the background, it must access AVSession and request continuous tasks. For details about the stream types, see [Selecting the Appropriate Audio Stream Types](../audio/using-right-streamusage-and-sourcetype.md). For details about the supported continuous task types, see [BackgroundMode](../../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundmode).
 
-- In addition to the aforementioned playback types, when an application needs to run other long-running, user-perceptible tasks in the background, it must request continuous tasks.
+- In addition to the aforementioned playback types, when an application needs to run other user-perceptible tasks in the background for a long time, it must request continuous tasks of the AUDIO_PLAYBACK type.
 
 If an application does not meet the above access standards, playback in the background will be muted and frozen by the system, preventing normal background playback. Playback will only resume and unmute when the application is brought back to the foreground.
 
@@ -46,9 +47,10 @@ The basic steps for audio and video applications to achieve background playback 
 Application playback can be achieved using AudioRenderer, AVPlayer, or other third-party or custom players.
 
 - AudioRenderer: When using AudioRenderer to create an audio stream, pay attention to using the appropriate audio stream type. Different stream types have a decisive impact on volume control, audio focus management, and input/output devices. For details, see [Selecting the Appropriate Audio Stream Types](../audio/using-right-streamusage-and-sourcetype.md).
+
   Additionally, you must correctly handle audio focus. The system has preset default audio focus strategies that manage all playback and recording audio streams based on the type of audio stream and the order in which they start. During application playback or recording, if another audio stream requests focus, the system will handle the focus according to the focus strategy. If the focus of this audio stream changes, the system automatically performs necessary operations (such as pausing, resuming, lowering volume, and restoring volume) and notifies the application of the change through the audio focus event (InterruptEvent). For details, see [Handling Audio Focus Changes](../audio/audio-playback-concurrency.md#handling-audio-focus-changes).
   
-For details about the development, see [Using AudioRenderer to Develop Audio Playback Functions](../audio/using-audiorenderer-for-playback.md).
+  For details about the development, see [Using AudioRenderer to Develop Audio Playback Functions](../audio/using-audiorenderer-for-playback.md).
   
 - AVPlayer: Using AVPlayer can achieve end-to-end playback of raw media resources. To achieve background playback or playback with the screen off, you need to access AVSession and request continuous tasks to prevent playback from being forcibly interrupted by the system. [AVPlayer](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md) can set the focus management strategy through the **audioInterruptMode** property, which defaults to **SHARE_MODE**.
   
@@ -83,12 +85,4 @@ For details, see [Continuous Task (ArkTS)](../../task-management/continuous-task
 
 If the application does not have background playback service, you can use the lifecycle function [onBackground](../../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onbackground) to determine whether the application has entered the background and proactively stop playback. Otherwise, it will be affected by AVSession and continuous task module management, impacting the application's normal playback. If you need to restart playback when the application returns to the foreground, use the lifecycle function [onForeground](../../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onforeground) to determine whether the application is back in the foreground.
 
-## Sample Code
-
-- [Video Player](https://gitcode.com/harmonyos_samples/video-player)
-
-  This sample primarily demonstrates the development of a video application using the system player AVPlayer, including background playback and interaction with the media controller.
-
-- [Audio Playback Control Based on AudioRenderer](https://gitcode.com/harmonyos_samples/audio-interaction)
-
-  This sample demonstrates an audio application that implements audio playback control based on AudioRenderer. It provides the following features: background playback, interaction with the media controller, adaptation to different focus interruption policies, switching between routing sound devices, and switching between output devices.
+<!--RP1--><!--RP1End-->

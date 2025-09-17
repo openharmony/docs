@@ -72,7 +72,7 @@
 6. Executing状态具有三个子状态：Flushed、Running和End-of-Stream：
     - 在调用了OH_VideoDecoder_Start接口之后，解码器立即进入Running子状态。
     - 对于处于Executing状态的解码器，可以调用OH_VideoDecoder_Flush接口返回到Flushed子状态。
-    - 当待处理数据全部传递给解码器后，在input buffers队列中为最后一个入队的input buffer中添加[AVCODEC_BUFFER_FLAGS_EOS](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags-1)标记，遇到这个标记时，解码器会转换为End-of-Stream子状态。在此状态下，解码器不再接受新的输入，但是仍然会继续生成输出，直到输出到达尾帧。
+    - 当待处理数据全部传递给解码器后，在input buffers队列中为最后一个入队的input buffer中添加[AVCODEC_BUFFER_FLAGS_EOS](../../reference/apis-avcodec-kit/capi-native-avbuffer-info-h.md#oh_avcodecbufferflags)标记，遇到这个标记时，解码器会转换为End-of-Stream子状态。在此状态下，解码器不再接受新的输入，但是仍然会继续生成输出，直到输出到达尾帧。
 
 7. 使用完解码器后，必须调用OH_VideoDecoder_Destroy接口销毁解码器实例，使解码器进入Released状态。
 
@@ -552,10 +552,10 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     送入输入队列进行解码，以下示例中：
     - size、offset、pts、frameData：输入尺寸、偏移量、时间戳、帧数据等字段信息，获取方式可以参考[音视频解封装](./audio-video-demuxer.md)“步骤-9：开始解封装，循环获取sample”；
-    - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags)。
+    - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/capi-native-avbuffer-info-h.md#oh_avcodecbufferflags)。
 
     bufferInfo的成员变量：
-    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口获取输入码流虚拟地址；
+    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/capi-native-avbuffer-h.md#oh_avbuffer_getaddr)接口获取输入码流虚拟地址；
     - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识；
     - isValid：bufferInfo中存储的buffer实例是否有效。
 
@@ -598,7 +598,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     以下示例中，bufferInfo的成员变量：
     - index：回调函数OnNewOutputBuffer传入的参数，与buffer唯一对应的标识；
-    - buffer：回调函数OnNewOutputBuffer传入的参数，Surface模式开发者无法通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口获取图像虚拟地址；
+    - buffer：回调函数OnNewOutputBuffer传入的参数，Surface模式开发者无法通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/capi-native-avbuffer-h.md#oh_avbuffer_getaddr)接口获取图像虚拟地址；
     - isValid：bufferInfo中存储的buffer实例是否有效。
 
     ```c++
@@ -1125,7 +1125,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     以下示例中，bufferInfo的成员变量：
 
     - index：回调函数OnNewOutputBuffer传入的参数，与buffer唯一对应的标识；
-    - buffer： 回调函数OnNewOutputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口获取图像虚拟地址；
+    - buffer： 回调函数OnNewOutputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/capi-native-avbuffer-h.md#oh_avbuffer_getaddr)接口获取图像虚拟地址；
     - isValid：bufferInfo中存储的buffer实例是否有效。
     
     ```c++

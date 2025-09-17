@@ -562,7 +562,6 @@ nodeAPI->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
               ArkUI_AttributeItem NODE_BORDER_WIDTH_ITEM = {NODE_TRANSLATE_ITEM_VALUE, 1};
             return api_->setAttribute(node_, NODE_IMAGE_SYNC_LOAD , &NODE_BORDER_WIDTH_ITEM);
         }
-    //     int32_t getId() { return api_->getAttribute(node_, NODE_UNIQUE_ID)->value[0].i32; }
     };
     #endif // MYAPPLICATION_ATTRIBUTE_UTIL_H
     ```
@@ -611,13 +610,17 @@ nodeAPI->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
         ArkUI_NodeContentHandle contentHandle;
         OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &contentHandle);
         OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, nodeAPI);
+        // 创建Image组件
         auto imageNode = nodeAPI->createNode(ARKUI_NODE_IMAGE);
         AttributeUtil imageNodeAttr(imageNode, nodeAPI);
+        // 设置image组件属性
         imageNodeAttr.imageSrc("/pages/common/startIcon.png");
         imageNodeAttr.imageSyncLoad();
         imageNodeAttr.width(100);
         imageNodeAttr.height(100);
+        // 在当前即时帧触发节点属性更新
         OH_ArkUI_NativeModule_InvalidateAttributes(imageNode);
+        // 挂载image组件到组件树
         OH_ArkUI_NodeContent_AddNode(contentHandle, imageNode);
         return nullptr;
     }

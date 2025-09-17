@@ -4,7 +4,7 @@
 <!--Owner: @ding-xin88-->
 <!--Designer: @LongLie-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 在系统中，应用可以使用Web组件加载Web网页。当非系统框架的UI组件功能或性能不如系统组件时，可使用同层渲染技术，通过ArkUI组件渲染这些组件（简称为同层组件）。
 
@@ -98,6 +98,15 @@ display，position，z-index，visibility，opacity, background-color，backgrou
 - 支持同层标签相对于视口的可见状态上报。
 
 - 默认不支持由于同层标签CSS样式或尺寸变化导致的可见状态变化上报，具体规格参考[onNativeEmbedVisibilityChange](../reference/apis-arkweb/arkts-basic-components-web-events.md#onnativeembedvisibilitychange12)。
+
+**同层渲染&lt;object&gt;标签内嵌param元素状态变化：**
+当同层渲染&lt;object&gt;内嵌标签param元素变化时触发[onNativeEmbedObjectParamChange()](../reference/apis-arkweb/arkts-basic-components-web-events.md#onnativeembedobjectparamchange21)回调。
+
+- 支持上报param元素的增加、修改、删除三种状态变化。
+
+- 接口每次最多上报500个param元素变化信息，超出部分将分多次上报。
+
+- 详细上报信息参考[NativeEmbedParamDataInfo](../reference/apis-arkweb/arkts-basic-components-web-i.md#nativeembedparamdatainfo21)。
 
 **约束限制：**
 

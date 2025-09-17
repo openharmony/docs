@@ -65,6 +65,7 @@
 | int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfData* unifiedData) | 从UDMF数据库中获取数据。                                    |
 | int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData, char* key, unsigned int keyLen) | 向UDMF数据库中写入数据。                                    |
 | OH_UdmfRecordProvider* OH_UdmfRecordProvider_Create()        | 创建一个指向统一数据提供者的指针。                          |
+| int OH_UdmfRecordProvider_Destroy(OH_UdmfRecordProvider* provider) | 销毁指向统一数据提供者OH_UdmfRecordProvider的指针。 |
 | int OH_UdmfRecordProvider_SetData(OH_UdmfRecordProvider* provider, void* context, const OH_UdmfRecordProvider_GetData callback, const UdmfData_Finalize finalize) | 设置统一数据提供者的回调函数。                              |
 | int OH_UdmfRecord_SetProvider(OH_UdmfRecord* pThis, const char* const* types, unsigned int count, OH_UdmfRecordProvider* provider) | 将统一数据提供者配置到OH_UdmfRecord中。                     |
 
@@ -279,6 +280,7 @@ OH_Udmf_SetUnifiedData(Udmf_Intention::UDMF_INTENTION_DRAG, data, key, sizeof(ke
 printf("key = %s", key);
 
 // 5. 使用完成后销毁指针。
+OH_UdmfRecordProvider_Destroy(provider);
 OH_UdmfRecord_Destroy(record);
 OH_UdmfData_Destroy(data);
 ```

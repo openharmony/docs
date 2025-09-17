@@ -21,22 +21,29 @@ HUKS提供了接口供业务获取指定密钥的相关属性。在获取指定�
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
+
+function Uint8ArrayToString(fileData: Uint8Array) {
+  let dataString = '';
+  for (let i = 0; i < fileData.length; i++) {
+    dataString += String.fromCharCode(fileData[i]);
+  }
+  return dataString;
+}
+
 /* 1. 设置密钥别名 */
 let keyAlias = 'keyAlias';
 /* 2. 设置密钥属性 */
 let emptyOptions: huks.HuksOptions = {
   properties: []
 };
-let properties1: huks.HuksParam[] = [
-  {
+let properties1: huks.HuksParam[] = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_DH
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE
-  },
-  {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_2048
   }
@@ -45,74 +52,57 @@ let huksOptions: huks.HuksOptions = {
   properties: properties1,
   inData: new Uint8Array([])
 }
+
 /* 3.生成密钥 */
-function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
-  return new Promise<void>((resolve, reject) => {
-    try {
-      huks.generateKeyItem(keyAlias, huksOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throw (error as Error);
-    }
-  });
-}
-async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions): Promise<string> {
+async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): Promise<boolean> {
   console.info(`enter promise generateKeyItem`);
+  let ret: boolean = false;
   try {
-    await generateKeyItem(keyAlias, huksOptions)
-      .then((data) => {
-        console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
-      })
-      .catch((error: Error) => {
-        console.error(`promise: generateKeyItem failed, ${JSON.stringify(error)}`);
+    await huks.generateKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: generateKeyItem success`);
+        ret = true;
+      }).catch((error: BusinessError) => {
+        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMag : ${error.message}`);
       });
-    return 'Success';
   } catch (error) {
-    console.error(`promise: generateKeyItem input arg invalid, ${JSON.stringify(error)}`);
-    return 'Failed';
+    console.error(`promise: generateKeyItem input arg invalid`);
   }
-}
-async function testGenKey(): Promise<string> {
-  let ret = await publicGenKeyFunc(keyAlias, huksOptions);
   return ret;
 }
-/* 获取密钥属性 */
-function getKeyItemProperties(keyAlias: string, emptyOptions: huks.HuksOptions) {
-  return new Promise<huks.HuksReturnResult>((resolve, reject) => {
-    try {
-      huks.getKeyItemProperties(keyAlias, emptyOptions, (error, data) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(data);
-        }
-      });
-    } catch (error) {
-      throw (error as Error);
-    }
-  });
-}
-async function check(): Promise<string> {
+
+/* 4.获取密钥属性 */
+async function getKeyItemProperties(keyAlias: string, emptyOptions: huks.HuksOptions): Promise<boolean> {
+  console.info(`enter promise getKeyItemProperties`);
+  let ret: boolean = false;
   try {
-    /* 1. 生成密钥 */
-    let genResult = await testGenKey();
-    /* 2. 获取密钥属性 */
-    if (genResult === 'Success') {
-      let data = await getKeyItemProperties(keyAlias, emptyOptions);
-      console.info(`callback: getKeyItemProperties success, data = ${JSON.stringify(data)}`);
-    } else {
-      console.error('Key generation failed, skipping get properties');
-      return 'Failed';
-    }
-    return 'Success';
+    await huks.getKeyItemProperties(keyAlias, emptyOptions)
+      .then((data) => {
+        console.info(`promise: getKeyItemProperties success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
+        ret = true;
+      }).catch((error: BusinessError) => {
+        console.error(`promise: getKeyItemProperties failed, errCode : ${error.code}, errMag : ${error.message}`);
+      });
   } catch (error) {
-    console.error(`callback: getKeyItemProperties input arg invalid, ${JSON.stringify(error)}`);
-    return 'Failed';
+    console.error(`promise: getKeyItemProperties input arg invalid`);
   }
+  return ret;
+}
+
+async function testGetKeyProperties() {
+  /* 1. 生成密钥 */
+  let genResult = await generateKeyItem(keyAlias, huksOptions);
+  /* 2. 获取密钥属性 */
+  if (genResult == false) {
+    console.error('Key generation failed, skipping get properties');
+    return;
+  }
+
+  let getResult = await getKeyItemProperties(keyAlias, emptyOptions);
+  if (getResult == false) {
+    console.error('getKeyItemProperties failed');
+    return;
+  }
+  console.info(`testGetKeyProperties success}`);
 }
 ```

@@ -1,4 +1,10 @@
 # Overview of Modular Operation
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @yao_dashuai-->
+<!--Designer: @yao_dashuai-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
 To address challenges of large and complex application development—such as increased package size due to multiple copies of code during compilation, file dependencies, difficulties in sharing code and resources, and pollution of singletons and global variables—ArkTS supports modular compilation, packaging, and running. This approach not only streamlines the development process but also facilitates easier code writing and feature maintenance.
 
@@ -26,7 +32,7 @@ A regular module is loaded once in the same thread and multiple times in differe
 
 ECMAScript modules (ES modules) are a module feature implemented in JavaScript starting from ECMAScript 6.0, standardized in the ECMAScript® 2025 Language Specification (tc39.es). The module functionality is composed of two commands: **export** and **import**.
 
-For details about how to use **export** and **import** in ArkTS, see [ArkTS Introduction](../quick-start/introduction-to-arkts.md#modules).
+For details about how to use **export** and **import** in ArkTS, see [ArkTS Introduction](../quick-start/introduction-to-arkts.md#module).
 
 ### CommonJS Module
 
@@ -47,7 +53,7 @@ The following table lists the module import and export syntax.
 
 ### Compatibility Between CommonJS and ES Modules
 
-The following table lists the compatibility between CommonJS and ES modules, with the import and export syntax following their respective specifications:
+The following table lists the compatibility between CommonJS and ES modules, with the import and export syntax following their respective specifications.
 | Inter-Module Reference| ES Module Export| CommonJS Export|
 | -------- | -------- | -------- |
 | ES Module Import| Supported| Supported|
@@ -57,7 +63,7 @@ The following table lists the compatibility between CommonJS and ES modules, wit
 
 ### ETS/TS/JS
 
-Loading of the ETS, TS, and JS modules complies with the [ECMAScript module specifications](#ecmascript-module) and [CommonJS module specifications](#commonjs-module).
+When loading the ETS, TS, and JS modules, you need to comply with the [ECMAScript module specifications](#ecmascript-module) and [CommonJS module specifications](#commonjs-module).
 
 ### JSON File
 
@@ -89,24 +95,3 @@ export const add: (a: number, b: number) => number;
 import { add } from 'libentry.so'
 add(2, 3)
 ```
-
-Currently, ArkTS does not support namespaces for native module exports or imports.
-
-Anti-example:
-
-```
-// test1.ets
-export * from 'libentry.so'  // Use the namespace to export data.
-```
-
-```
-// test2.ets
-import('./test1').then((ns:ESObject) => {
-  // The ns object cannot be obtained during dynamic import.
-  // To use this method to load native modules, change the export in test1.ets to named or default export.
-})
-```
-
-> **NOTE**
->
-> You are not advised to import data using import \* as xxx from 'xxx'. This import mode will cause runtime exceptions. Default imports are recommended.

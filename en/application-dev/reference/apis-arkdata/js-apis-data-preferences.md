@@ -1,4 +1,10 @@
 # @ohos.data.preferences (User Preferences)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @yanhuii-->
+<!--Designer: @houpengtao1-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, including querying, modifying, and persisting KV pairs.
 
@@ -725,6 +731,8 @@ After an application calls [getPreferences](#preferencesgetpreferences) for the 
 
 Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
+If [GSKV](../../database/data-persistence-by-preferences.md#gskv) is used, you are advised to manually call this API once when the process exits. This operation writes the data cache page to the disk, which can reduce the time required for calling the **getPreferences** API next time. Otherwise, data restoration is required at the bottom layer when the **getPreferences** API is called. The time required for data restoration depends on the number of data cache pages that are not written to the disk.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
@@ -795,6 +803,8 @@ Removes a **Preferences** instance from the cache. This API uses a promise to re
 After an application calls [getPreferences](#preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a **Preferences** instance.
 
 Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
+
+If [GSKV](../../database/data-persistence-by-preferences.md#gskv) is used, you are advised to manually call this API once when the process exits. This operation writes the data cache page to the disk, which can reduce the time required for calling the **getPreferences** API next time. Otherwise, data restoration is required at the bottom layer when the **getPreferences** API is called. The time required for data restoration depends on the number of data cache pages that are not written to the disk.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -870,6 +880,8 @@ After an application calls [getPreferences](#preferencesgetpreferences) for the 
 
 Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
+If [GSKV](../../database/data-persistence-by-preferences.md#gskv) is used, you are advised to manually call this API once when the process exits. This operation writes the data cache page to the disk, which can reduce the time required for calling the **getPreferences** API next time. Otherwise, data restoration is required at the bottom layer when the **getPreferences** API is called. The time required for data restoration depends on the number of data cache pages that are not written to the disk.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
@@ -924,6 +936,8 @@ Removes a **Preferences** instance from the cache. This API uses an asynchronous
 After an application calls [getPreferences](#preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a **Preferences** instance.
 
 Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
+
+If [GSKV](../../database/data-persistence-by-preferences.md#gskv) is used, you are advised to manually call this API once when the process exits. This operation writes the data cache page to the disk, which can reduce the time required for calling the **getPreferences** API next time. Otherwise, data restoration is required at the bottom layer when the **getPreferences** API is called. The time required for data restoration depends on the number of data cache pages that are not written to the disk.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1000,6 +1014,8 @@ Removes a **Preferences** instance from the cache. This API uses a promise to re
 After an application calls [getPreferences](#preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a **Preferences** instance.
 
 Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
+
+If [GSKV](../../database/data-persistence-by-preferences.md#gskv) is used, you are advised to manually call this API once when the process exits. This operation writes the data cache page to the disk, which can reduce the time required for calling the **getPreferences** API next time. Otherwise, data restoration is required at the bottom layer when the **getPreferences** API is called. The time required for data restoration depends on the number of data cache pages that are not written to the disk.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1080,6 +1096,8 @@ After an application calls [getPreferences](#preferencesgetpreferences) for the 
 
 Avoid using a removed **Preferences** instance to perform data operations, which may cause data inconsistency. Instead, set the removed **Preferences** instance to null. The system will reclaim them in a unified manner.
 
+If [GSKV](../../database/data-persistence-by-preferences.md#gskv) is used, you are advised to manually call this API once when the process exits. This operation writes the data cache page to the disk, which can reduce the time required for calling the **getPreferences** API next time. Otherwise, data restoration is required at the bottom layer when the **getPreferences** API is called. The time required for data restoration depends on the number of data cache pages that are not written to the disk.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
@@ -1139,8 +1157,8 @@ Enumerates the storage types of preferences.
 
 | Name| Value  | Description|
 | ---- | ---- | ---- |
-| XML |  0    | XML, which is the default storage mode of preferences.<br>In this mode, data is stored in XML format. Data operations are performed in the memory. To persist data, call **flush()**.    |
-| GSKV |  1    |GSKV.<br>Data is stored in GSKV mode. Data operations are flushed on a real-time basis without calling **flush()**.     |
+| XML |  0    | [XML](../../database/data-persistence-by-preferences.md#xml) format, which is the default storage type of **Preferences**.<br>In this mode, data is stored in XML format. Data operations are performed in the memory. To persist data, call **flush()**.    |
+| GSKV |  1    |[GSKV](../../database/data-persistence-by-preferences.md#gskv) format.<br>Data is stored in GSKV mode. Data operations are flushed on a real-time basis without calling **flush()**.     |
 
 
 > **NOTE**
@@ -1338,7 +1356,7 @@ let value: preferences.ValueType = dataPreferences.getSync('startup', 'default')
 
 getAll(callback: AsyncCallback&lt;Object&gt;): void
 
-Obtains all KV pairs from this **Preferences** instance. This API uses an asynchronous callback to return the result.
+Obtains all KV pairs from a **Preferences** instance. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1694,7 +1712,7 @@ promise.then((val: boolean) => {
   if (val) {
     console.info("The key 'startup' is contained.");
   } else {
-    console.info("The key 'startup' is not contained.");
+    console.info("The key 'startup' does not contain.");
   }
 }).catch((err: BusinessError) => {
   console.error("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
@@ -1740,7 +1758,7 @@ let isExist: boolean = dataPreferences.hasSync('startup');
 if (isExist) {
   console.info("The key 'startup' is contained.");
 } else {
-  console.info("The key 'startup' is not contained.");
+  console.info("The key 'startup' does not contain.");
 }
 ```
 

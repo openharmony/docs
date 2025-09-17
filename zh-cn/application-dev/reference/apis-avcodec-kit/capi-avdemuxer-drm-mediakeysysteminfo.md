@@ -1,5 +1,12 @@
 # DRM_MediaKeySystemInfo
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @mr-chencxy-->
+<!--Designer: @dpy2650--->
+<!--Tester: @baotianhao-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 为DRM_MediaKeySystemInf接口定义native层对象。

@@ -4,7 +4,7 @@
 <!--Owner: @aohui-->
 <!--Designer: @yaomingliu-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 ## 概述
 
@@ -74,6 +74,7 @@ void (*close)(const ArkWeb_WebMessagePortPtr webMessagePort, const char* webTag)
 | 参数项 | 描述 |
 | -- | -- |
 | const [ArkWeb_WebMessagePortPtr](capi-web-arkweb-webmessageport8h.md) webMessagePort | Post Message端口结构体指针。 |
+| const char* webTag                                                                   |  Web组件名称。              |
 
 ### setMessageEventHandler()
 
@@ -84,7 +85,7 @@ void (*setMessageEventHandler)(const ArkWeb_WebMessagePortPtr webMessagePort, co
 
 **描述：**
 
-关闭消息端口。
+设置接收HTML消息的回调。
 
 **参数：**
 

@@ -243,22 +243,22 @@ struct Index {
   getCorrectIndex(styledString: MutableStyledString, maxLines: number, width: LengthMetrics) {
     let low = 0;
     let high = styledString.length - 1;
-    let moreStyledString = new MutableStyledString("... 全文", [{
-      start: 4,
-      length: 2,
-      styledKey: StyledStringKey.FONT,
-      styledValue: new TextStyle({ fontColor: Color.Blue })
-    }]);
     // 使用二分查找
-    while (low < high) {
+    while (low <= high) {
       let mid = (low + high) >> 1;
       console.info("demo: get " + low + " " + high + " " + mid);
+      let moreStyledString = new MutableStyledString("... 全文", [{
+        start: 4,
+        length: 2,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({ fontColor: Color.Blue })
+      }]);
       moreStyledString.insertStyledString(0, styledString.subStyledString(0, mid));
       let lineNum = this.getLineNum(moreStyledString, LengthMetrics.px(500));
       if (lineNum <= maxLines) {
         low = mid + 1;
       } else {
-        high = mid;
+        high = mid - 1;
       }
     }
     return high;

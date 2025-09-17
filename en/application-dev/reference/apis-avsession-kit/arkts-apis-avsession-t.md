@@ -2,8 +2,9 @@
 <!--Kit: AVSession Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @ccfriend; @liao_qian-->
-<!--SE: @ccfriend-->
-<!--TSE: @chenmingxi1_huawei-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -95,32 +96,30 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 ## AVControlCommandType<sup>10+</sup>
 
 type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward' | 'rewind' |
-  'seek' | 'setSpeed' | 'setLoopMode' | 'setTargetLoopMode' | 'toggleFavorite' | 'playFromAssetId' | 'playWithAssetId' | 'answer' | 'hangUp' | 'toggleCallMute'
+  'seek' | 'setSpeed' | 'setLoopMode' | 'toggleFavorite' | 'playFromAssetId' | 'playWithAssetId' | 'answer' | 'hangUp' | 'toggleCallMute' | 'setTargetLoopMode'
 
 Defines the commands that can be sent to a session.
 
 You can use the union of the strings listed in the following table.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 | Type            | Description        |
 | ---------------- | ------------ |
-| 'play'           | Play the media. No parameter is required.|
-| 'pause'          | Pause the playback. No parameter is required.|
-| 'stop'           | Stop the playback. No parameter is required.|
-| 'playNext'       | Play the next media asset. No parameter is required.|
-| 'playPrevious'   | Play the previous media asset. No parameter is required.|
-| 'fastForward'    | Fast-forward. No parameter is required.|
-| 'rewind'         | Rewind. No parameter is required.|
-| 'seek'           | Seek to a playback position. The corresponding parameter is of the number type.|
-| 'setSpeed'       | Set the playback speed. The corresponding parameter is of the number type.|
-| 'setLoopMode'    | Set the loop mode. The corresponding parameter is [LoopMode](arkts-apis-avsession-e.md#loopmode10).|
-| 'setTargetLoopMode' <sup>18+</sup>   | Set the target loop mode. The recommended parameter is [LoopMode](arkts-apis-avsession-e.md#loopmode10).|
-| 'toggleFavorite' | Favorite the media asset. The corresponding parameter is [AVMetadata.assetId](arkts-apis-avsession-i.md#avmetadata10).    |
-| 'playFromAssetId'| Play the media asset with the specified asset ID.|
-| 'playWithAssetId' <sup>20+</sup>    | Play the media asset with the specified asset ID. The corresponding parameter is [AVMetadata.assetId](arkts-apis-avsession-i.md#avmetadata10).<br>The string length must be less than 40960 bytes.<br>|
-|'answer'          | Answer a call. No parameter is required.       |
-| 'hangUp'         | The call is disconnecting. No parameter is required.       |
-|'toggleCallMute'  | Set the mute status for a call. No parameter is required.|
+| 'play'           | Play the media. No parameter is required.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| 'pause'          | Pause the playback. No parameter is required.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| 'stop'           | Stop the playback. No parameter is required.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| 'playNext'       | Play the next media asset. No parameter is required.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| 'playPrevious'   | Play the previous media asset. No parameter is required.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| 'fastForward'    | Fast-forward. No parameter is required.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| 'rewind'         | Rewind. No parameter is required.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| 'seek'           | Seek to a playback position. The corresponding parameter is of the number type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| 'setSpeed'       | Set the playback speed. The corresponding parameter is of the number type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| 'setLoopMode'    | Set the loop mode. The corresponding parameter is [LoopMode](arkts-apis-avsession-e.md#loopmode10).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| 'setTargetLoopMode' <sup>18+</sup>   | Set the target loop mode. The recommended parameter is [LoopMode](arkts-apis-avsession-e.md#loopmode10).<br>**Atomic service API**: This API can be used in atomic services since API version 18. |
+| 'toggleFavorite' | Favorite the media asset. The corresponding parameter is [AVMetadata.assetId](arkts-apis-avsession-i.md#avmetadata10).<br>**Atomic service API**: This API can be used in atomic services since API version 12.   |
+| 'playFromAssetId' <sup>11+</sup>| Play the media asset with the specified asset ID.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| 'playWithAssetId' <sup>20+</sup>    | Play the media asset with the specified asset ID. The corresponding parameter is [AVMetadata.assetId](arkts-apis-avsession-i.md#avmetadata10).<br>The string length must be less than 40960 bytes.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
+|'answer' <sup>11+</sup>        | Answer a call. No parameter is required.<br>**Atomic service API**: This API can be used in atomic services since API version 12.     |
+| 'hangUp' <sup>11+</sup>         | The call is disconnecting. No parameter is required.<br>**Atomic service API**: This API can be used in atomic services since API version 12.     |
+|'toggleCallMute' <sup>11+</sup>  | Set the mute status for a call. No parameter is required.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|

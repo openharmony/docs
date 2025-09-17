@@ -1,5 +1,12 @@
 # @ohos.app.ability.InsightIntentEntryExecutor (@InsightIntentEntry的意图执行基类)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @linjunjie6-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 本模块提供[@InsightIntentEntry](js-apis-app-ability-InsightIntentDecorator.md#insightintententry)装饰器的意图执行基类，必须与@InsightIntentEntry装饰器联合使用。
 
 开发者需要在继承该基类的子类中，实现[onExecute()](#onexecute)意图执行回调，并使用@InsightIntentEntry装饰器来装饰子类。
@@ -71,7 +78,7 @@ const LOG_TAG: string = 'testTag-EntryIntent';
   intentVersion: '1.0.1',
   displayName: '播放歌曲',
   displayDescription: '播放音乐意图',
-  icon: $r('app.media.app_icon'),
+  icon: $r('app.media.app_icon'), // $r表示本地图标，需要在资源目录中定义
   llmDescription: '支持传递歌曲名称，播放音乐',
   keywords: ['音乐播放', '播放歌曲', 'PlayMusic'],
   abilityName: 'EntryAbility',

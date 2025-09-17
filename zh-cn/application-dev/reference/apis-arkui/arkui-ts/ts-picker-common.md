@@ -45,7 +45,7 @@
 | fontFamily  |  [Resource](ts-types.md#resource)&nbsp;\|&nbsp;string  | 否   | 是   | 字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 是   | 按钮背景色。                     |
 | borderRadius  | [Length](ts-types.md#length) \| [BorderRadiuses](ts-types.md#borderradiuses9)| 否   | 是   | 圆角半径。 |
-| primary  | boolean | 否   | 是   | 在弹出弹窗后且未使用tab键进行走焦时，Enter键是否默认被该按钮响应。 |
+| primary  | boolean | 否   | 是   | 弹出弹窗后，未使用Tab键切换焦点时，Enter键是否默认由该按钮响应。 |
 
 ## DateRange<sup>19+</sup>对象说明
 

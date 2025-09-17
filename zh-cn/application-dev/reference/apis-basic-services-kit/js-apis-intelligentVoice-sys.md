@@ -1010,7 +1010,7 @@ let regions: Array<string> | null = null;
 if (enrollIntelligentVoiceEngine != null) {
   (enrollIntelligentVoiceEngine as intelligentVoice.EnrollIntelligentVoiceEngine).getSupportedRegions().then((data: Array<string>) => {
     regions = data;
-    console.info('Succeeded in getting supported regions, regions:${regions}.');
+    console.info(`Succeeded in getting supported regions, regions:${regions}.`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to get supported regions, Code:${err.code}, message:${err.message}`);
   });

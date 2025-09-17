@@ -1,4 +1,10 @@
 # ArkUI Data Updates
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 When data, regardless of whether it is downloaded from the Internet or generated locally, needs to be sent to the UI thread for display, the annotations and the [\@Sendable decorator](../arkts-utils/arkts-sendable.md#sendable-decorator) in ArkUI cannot simultaneously decorate variables and objects. Therefore, it is necessary to use [makeObserved](../ui/state-management/arkts-new-makeObserved.md) to import observable Sendable data into ArkUI.
 
@@ -19,7 +25,7 @@ export class SendableData {
   follow: boolean = false;
 }
 ```
-<!-- @[define_sendable_class](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/SendableData.ets) -->
+<!-- @[define_sendable_class](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/SendableData.ets) -->
 
 ```ts
 import { taskpool } from '@kit.ArkTS';
@@ -64,4 +70,4 @@ struct Index {
   }
 }
 ```
-<!-- @[update_arkui_data](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/MakeobservedSendable.ets) -->
+<!-- @[update_arkui_data](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/MakeobservedSendable.ets) -->

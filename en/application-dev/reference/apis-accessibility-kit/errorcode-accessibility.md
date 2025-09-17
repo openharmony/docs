@@ -1,5 +1,12 @@
 # Accessibility Error Codes
 
+<!--Kit: Accessibility Kit-->
+<!--Subsystem: BarrierFree-->
+<!--Owner: @qiiiiiiian-->
+<!--Designer: @z7o-->
+<!--Tester: @A_qqq-->
+<!--Adviser: @w_Machine_cc-->
+
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -16,7 +23,7 @@ This error code is reported when the entered bundle name or ability name is inva
 
 **Possible Causes**
 
-
+ 
 1. The bundle name does not exist.
 2. The bundle does not contain the target ability.
 
@@ -121,7 +128,7 @@ Call this method later.
 
 **Error Message**
 
-Failed to trigger amplification.
+Trigger magnification failed.
 
 **Description**
 
@@ -129,7 +136,7 @@ This error code is reported when the amplification feature fails to be triggered
 
 **Possible Causes**
 
-1. The amplification feature is not enabled in Settings.
+1. The amplification feature is not enabled.
 2. The amplification mode is not configured.
 
 **Solution**

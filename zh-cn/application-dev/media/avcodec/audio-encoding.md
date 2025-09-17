@@ -23,7 +23,8 @@
   编辑PCM后导出音频文件的场景，需要编码成对应音频格式后再[封装](audio-video-muxer.md)成文件。
 > **说明：**
 >
-> AAC编码器默认采用的VBR可变码率模式，与配置的预期参数可能存在偏差。
+> - AAC编码器默认采用的VBR可变码率模式，与配置的预期参数可能存在偏差。
+> - AAC编码器默认输出携带ADTS头部，帧数据的前7字节为ADTS头部。
 
 ## 开发指导
 
@@ -186,7 +187,6 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    | OH_MD_KEY_BITRATE             |       码率       |  可选  |  必须 |   必须   |   -   |
    | OH_MD_KEY_CHANNEL_LAYOUT      |     声道布局     |  可选  |  必须 |    -     |   -   |
    | OH_MD_KEY_MAX_INPUT_SIZE      |   最大输入长度    |  可选  |  可选 |   可选   |  可选  |
-   | OH_MD_KEY_AAC_IS_ADTS         |     是否adts     |  可选  |   -   |    -    |   -    |
    | OH_MD_KEY_COMPLIANCE_LEVEL    |    兼容性等级     |  -    |  可选 |    -     |   -    |
    <!--RP2End-->
 
@@ -302,7 +302,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-7. 调用OH_AudioCodec_PushInputBuffer()，写入待编码器的数据。需开发者填充完整的输入数据后调用。
+7. 调用OH_AudioCodec_PushInputBuffer()，写入待编码的数据。需开发者填充完整的输入数据后调用。
 
    每次输入的采样点数（SAMPLES_PER_FRAME）取值方法如下：
 
@@ -466,4 +466,4 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 针对音频编码，有以下相关实例可供参考：
 
-- [音频编码](https://gitee.com/openharmony/multimedia_av_codec/blob/master/test/nativedemo/audio_demo/avcodec_audio_avbuffer_aac_encoder_demo.cpp)
+- [音频编码](https://gitcode.com/openharmony/multimedia_av_codec/blob/master/test/nativedemo/audio_demo/avcodec_audio_avbuffer_aac_encoder_demo.cpp)
