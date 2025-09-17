@@ -1541,7 +1541,7 @@ async function ExampleFunction(dlpFilePath: string) {
 
 ## ActionType<sup>21+</sup>
 
-表示在文件设定的权限时间到期后所执行的动作，默认为NOT_OPEN。
+表示在文件设定的权限时间到期后所执行的动作枚举，默认为NOT_OPEN。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
