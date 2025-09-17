@@ -122,7 +122,7 @@ network.unsubscribe();
 
 **系统能力：** SystemCapability.Communication.NetManager.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| metered | boolean | 否 |是否按照流量计费。true：按照流量计费；false：不按照流量计费。 |
-| type | string | 是|网络类型，可能的值有2g，3g，4g，5g，wifi，none等。 |
+| 名称   | 类型                                           | 只读 | 可选 |说明                    |
+| -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
+| metered | boolean | 否 | 是  |是否按照流量计费。true：按照流量计费；false：不按照流量计费。 |
+| type | string | 否 | 否 |网络类型，可能的值有2g，3g，4g，5g，wifi，none等。 |
