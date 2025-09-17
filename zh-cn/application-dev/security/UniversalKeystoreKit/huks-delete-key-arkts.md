@@ -58,7 +58,7 @@ async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions):
         console.info(`promise: generateKeyItem success`);
         ret = true;
       }).catch((error: BusinessError) => {
-        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMag : ${error.message}`);
+        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
       });
   } catch (error) {
     console.error(`promise: generateKeyItem input arg invalid`);
@@ -76,7 +76,7 @@ async function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): P
         console.info(`promise: deleteKeyItem success`);
         ret = true;
       }).catch((error: BusinessError) => {
-        console.error(`promise: deleteKeyItem failed, errCode : ${error.code}, errMag : ${error.message}`);
+        console.error(`promise: deleteKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
       })
   } catch (error) {
     console.error(`promise: deleteKeyItem input arg invalid`);
