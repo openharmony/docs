@@ -26,6 +26,10 @@ showWindow(callback: AsyncCallback&lt;void&gt;): void
 
 显示当前窗口，使用callback异步回调，仅支持系统窗口与应用子窗口，或将已显示的应用主窗口层级提升至顶部。
 
+> **说明：**
+>
+> 调用该接口前，建议先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。如果应用主窗口没有完成页面加载，直接调用该接口，界面会一直显示启动界面；如果系统窗口与应用子窗口没有完成页面加载，直接调用该接口，窗口会处于前台，但不可见。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -47,16 +51,51 @@ showWindow(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-windowClass.showWindow((err: BusinessError) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to show the window. Cause code: ${err.code}, message: ${err.message}`);
-    return;
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      try {
+        // 创建子窗
+        windowStage.createSubWindow("testSubWindow").then((subWindow) => {
+          if (subWindow == null) {
+            console.error('Failed to create the subWindow. Cause: The data is empty');
+            return;
+          }
+          subWindow.setUIContent('pages/Index', (err) => {
+            if (err.code) {
+              console.error('Failed to load the subWindow content. Cause: %{public}s', JSON.stringify(err));
+              return;
+            }
+            console.info('Succeeded in loading the subWindow content.');
+            try {
+              subWindow.showWindow((err: BusinessError) => {
+                const errCode: number = err.code;
+                if (errCode) {
+                  console.error(`Failed to show the window. Error code: ${err.code}, message: ${err.message}`);
+                  return;
+                }
+                console.info('Succeeded in showing the window.');
+              });
+            } catch (exception) {
+              console.error(`Failed to show the window. Cause code: ${exception.code}, message: ${exception.message}`);
+            }
+          })
+        });
+      } catch (exception) {
+        console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+  });
   }
-  console.info('Succeeded in showing the window.');
-});
+}
 ```
 
 ## showWindow<sup>9+</sup>
@@ -64,6 +103,10 @@ windowClass.showWindow((err: BusinessError) => {
 showWindow(): Promise&lt;void&gt;
 
 显示当前窗口，使用Promise异步回调，仅支持系统窗口与应用子窗口，或将已显示的应用主窗口层级提升至顶部。
+
+> **说明：**
+>
+> 调用该接口前，建议优先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。如果应用主窗口没有完成页面加载，直接调用该接口，界面会一直显示启动界面；如果系统窗口与应用子窗口没有完成页面加载，直接调用该接口，窗口会处于前台，但不可见。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -86,14 +129,49 @@ showWindow(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = windowClass.showWindow();
-promise.then(() => {
-  console.info('Succeeded in showing the window.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to show the window. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      try {
+        // 创建子窗
+        windowStage.createSubWindow("testSubWindow").then((subWindow) => {
+          if (subWindow == null) {
+            console.error('Failed to create the subWindow. Cause: The data is empty');
+            return;
+          }
+          subWindow.setUIContent('pages/Index', (err) => {
+            if (err.code) {
+              console.error('Failed to load the subWindow content. Cause: %{public}s', JSON.stringify(err));
+              return;
+            }
+            console.info('Succeeded in loading the subWindow content.');
+            try {
+              let promise = subWindow.showWindow();
+              promise.then(() => {
+                console.info('Succeeded in showing the window.');
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to show the window. Error code: ${err.code}, message: ${err.message}`);
+              });
+            } catch (exception) {
+              console.error(`Failed to show window. Cause code: ${exception.code}, message: ${exception.message}`);
+            }
+          });
+        });
+      } catch (exception) {
+        console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
+}
 ```
 
 ## showWindow<sup>20+</sup>
@@ -101,6 +179,10 @@ promise.then(() => {
 showWindow(options: ShowWindowOptions): Promise&lt;void&gt;
 
 显示当前窗口，使用Promise异步回调，仅支持系统窗口及应用子窗口，或将已显示的应用主窗口的层级提升至顶部。支持传入参数来控制窗口显示的行为。
+
+> **说明：**
+>
+> 调用该接口前，建议优先通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法或者[setUIContent](arkts-apis-window-Window.md#setuicontent9-1)方法完成页面加载。如果应用主窗口没有完成页面加载，直接调用该接口，界面会一直显示启动界面；如果系统窗口与应用子窗口没有完成页面加载，直接调用该接口，窗口会处于前台，但不可见。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -140,29 +222,43 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    // 创建子窗
-    try {
-      windowStage.createSubWindow('subWindow').then((data) => {
-        if (data == null) {
-          console.error('Failed to create the sub window. Cause: The data is empty');
-          return;
-        }
-        let options: window.ShowWindowOptions = {
-          focusOnShow: false
-        };
-        try {
-          data.showWindow(options).then(() => {
-            console.info('Succeeded in showing window');
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to show window. Cause code: ${err.code}, message: ${err.message}`);
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      // 创建子窗
+      try {
+        windowStage.createSubWindow('subWindow').then((data) => {
+          if (data == null) {
+            console.error('Failed to create the subWindow. Cause: The data is empty');
+            return;
+          }
+          data.setUIContent('pages/Index', (err) => {
+            if (err.code) {
+              console.error('Failed to load the subWindow content. Cause: %{public}s', JSON.stringify(err));
+              return;
+            }
+            console.info('Succeeded in loading the subWindow content.');
+            let options: window.ShowWindowOptions = {
+              focusOnShow: false
+            };
+            try {
+              data.showWindow(options).then(() => {
+                console.info('Succeeded in showing window');
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to show window. Error code: ${err.code}, message: ${err.message}`);
+              });
+            } catch (exception) {
+              console.error(`Failed to show window. Cause code: ${exception.code}, message: ${exception.message}`);
+            }
           });
-        } catch (exception) {
-          console.error(`Failed to show window. Cause code: ${exception.code}, message: ${exception.message}`);
-        }
-      });
-    } catch (exception) {
-      console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+        });
+      } catch (exception) {
+        console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
   }
 }
 ```

@@ -162,7 +162,7 @@ export default class EntryAbility extends UIAbility {
 
 findWindow(name: string): Window
 
-查找name所对应的窗口。
+查找指定名称对应的窗口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -172,13 +172,13 @@ findWindow(name: string): Window
 
 | 参数名 | 类型   | 必填 | 说明     |
 | ------ | ------ | ---- | -------- |
-| name   | string | 是   | 窗口名字，即[Configuration](arkts-apis-window-i.md#configuration9)中的name。 |
+| name   | string | 是   | 窗口名称。查找子窗口或系统窗口时使用[Configuration](arkts-apis-window-i.md#configuration9)中的窗口名称；查找主窗口时使用[getWindowName](arkts-apis-uicontext-uicontext.md#getwindowname12)获取当前实例的窗口名称。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | ----------------- | ------------------- |
-| [Window](arkts-apis-window-Window.md) | 当前查找的窗口对象。 |
+| [Window](arkts-apis-window-Window.md) | 当前查找的窗口对象。如果查找指定名称对应的窗口不存在，则返回对象为空。 |
 
 **错误码：**
 
