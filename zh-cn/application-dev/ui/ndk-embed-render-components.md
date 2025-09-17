@@ -26,7 +26,7 @@
 
 2. 创建渲染节点能力对象。
    ```c
-   // manager.cpp
+   // NativeEntry.cpp
    // 自定义容器组件示例。
    #include <arkui/native_animate.h>
    #include <arkui/native_render.h>
@@ -44,7 +44,7 @@
    #include <native_drawing/drawing_pen.h>
    
    ArkUI_NodeHandle testRenderNode(ArkUI_NativeNodeAPI_1 *nodeAPI) {
-       // 创建CAPI原有容器逻辑。
+       // 创建NDK原有容器逻辑。
        ArkUI_NodeHandle scroll = nodeAPI->createNode(ARKUI_NODE_SCROLL);
        ArkUI_NumberValue valueWidth[] = {400};
        ArkUI_AttributeItem itemWidth = {valueWidth, sizeof(valueWidth) / sizeof(ArkUI_NumberValue)};
@@ -132,64 +132,21 @@
        nodeAPI->addChild(scroll, column);
        return scroll;
    }
+
+    napi_value CreateNativeRoot(napi_env env, napi_callback_info info) {
+       size_t argc = 1;
+       napi_value args[1] = {nullptr};
    
-   napi_value Manager::CreateNativeNode(napi_env env, napi_callback_info info) {
-       if ((env == nullptr) || (info == nullptr)) {
-           return nullptr;
-       }
-       size_t argCnt = 2;
-       napi_value args[2] = {nullptr};
-       if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
-           OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode napi_get_cb_info failed");
-       }
-   
-       if (argCnt != 2) {
-           napi_throw_type_error(env, NULL, "Wrong number of arguments");
-           return nullptr;
-       }
-       napi_valuetype valuetype;
-       if (napi_typeof(env, args[0], &valuetype) != napi_ok) {
-           napi_throw_type_error(env, NULL, "napi_typeof failed");
-           return nullptr;
-       }
-   
-       if (valuetype != napi_string) {
-           napi_throw_type_error(env, NULL, "Wrong type of arguments");
-           return nullptr;
-       }
-   
-       char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
-       constexpr uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-       size_t length;
-       if (napi_get_value_string_utf8(env, args[0], idStr, idSize, &length) != napi_ok) {
-           napi_throw_type_error(env, NULL, "napi_get_value_int64 failed");
-           return nullptr;
-       }
-   
-       auto manager = Manager::GetInstance();
-       if (manager == nullptr) {
-           return nullptr;
-       }
-   
-       OH_NativeXComponent *component = manager->GetNativeXComponent(idStr);
-       if (component == nullptr) {
-           return nullptr;
-       }
-   
-       ArkUI_NodeHandle xxxNode;
-       auto resultx = OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId(3, &xxxNode);
-   
-       resultx = OH_ArkUI_RunTaskInScope((ArkUI_ContextHandle)111, nullptr, nullptr);
+       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
        auto *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
        if (nodeAPI != nullptr) {
-           if (nodeAPI->createNode != nullptr && nodeAPI->addChild != nullptr) {
-               ArkUI_NodeHandle testNode;
-               testNode = testRenderNode(nodeAPI);
-   
-               OH_NativeXComponent_AttachNativeRootNode(component, testNode);
-           }
+            ArkUI_NodeHandle testNode;
+            testNode = testRenderNode(nodeAPI);
        }
+   
+       NativeEntry::GetInstance()->SetRootNode(testNode);
        return nullptr;
    }
    
@@ -204,7 +161,7 @@
 
 2. 创建渲染节点能力对象。
    ```c
-   // manager.cpp
+   // NativeEntry.cpp
    // 自定义容器组件示例。
    #include <arkui/native_animate.h>
    #include <arkui/native_render.h>
@@ -346,68 +303,25 @@
        nodeAPI->addChild(scroll, column);
        return scroll;
    }
+
+    napi_value CreateNativeRoot(napi_env env, napi_callback_info info) {
+       size_t argc = 2;
+       napi_value args[2] = {nullptr, nullptr};
    
-   napi_value Manager::CreateNativeNode(napi_env env, napi_callback_info info) {
-       if ((env == nullptr) || (info == nullptr)) {
-           return nullptr;
-       }
-       size_t argCnt = 2;
-       napi_value args[2] = {nullptr};
-       if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
-           OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager", "CreateNativeNode napi_get_cb_info failed");
-       }
-   
-       if (argCnt != 2) {
-           napi_throw_type_error(env, NULL, "Wrong number of arguments");
-           return nullptr;
-       }
-       napi_valuetype valuetype;
-       if (napi_typeof(env, args[0], &valuetype) != napi_ok) {
-           napi_throw_type_error(env, NULL, "napi_typeof failed");
-           return nullptr;
-       }
-   
-       if (valuetype != napi_string) {
-           napi_throw_type_error(env, NULL, "Wrong type of arguments");
-           return nullptr;
-       }
-   
-       char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
-       constexpr uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-       size_t length;
-       if (napi_get_value_string_utf8(env, args[0], idStr, idSize, &length) != napi_ok) {
-           napi_throw_type_error(env, NULL, "napi_get_value_int64 failed");
-           return nullptr;
-       }
-   
-       auto manager = Manager::GetInstance();
-       if (manager == nullptr) {
-           return nullptr;
-       }
-   
-       OH_NativeXComponent *component = manager->GetNativeXComponent(idStr);
-       if (component == nullptr) {
-           return nullptr;
-       }
-   
-       ArkUI_NodeHandle xxxNode;
-       auto resultx = OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId(3, &xxxNode);
-   
-       resultx = OH_ArkUI_RunTaskInScope((ArkUI_ContextHandle)111, nullptr, nullptr);
+       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
        auto *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
        if (nodeAPI != nullptr) {
-           if (nodeAPI->createNode != nullptr && nodeAPI->addChild != nullptr) {
-               ArkUI_NodeHandle testNode;
-               // 获取ets测传入的context。
-               ArkUI_ContextHandle context = nullptr;
-               // 通过code 判断是否获取成功。
-               auto code = OH_ArkUI_GetContextFromNapiValue(env, args[1], &context);
-               testNode = testRenderNode2(nodeAPI, context);
-   
-               OH_NativeXComponent_AttachNativeRootNode(component, testNode);
-           }
+            ArkUI_NodeHandle testNode;
+            // 获取ets侧传入的context。
+            ArkUI_ContextHandle context = nullptr;
+            // 通过code判断是否获取成功。
+            auto code = OH_ArkUI_GetContextFromNapiValue(env, args[1], &context);
+            testNode = testRenderNode2(nodeAPI, context);
        }
+   
+       NativeEntry::GetInstance()->SetRootNode(testNode);
        return nullptr;
    }
       

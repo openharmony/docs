@@ -133,7 +133,7 @@ int32_t (*addChild)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child)
 
 | 类型 | 说明                                                                                                                                                                                                                                                                                                                                     |
 | -- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| int32_t | 错误码。<br>             [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>             [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。<br>             [ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED](capi-native-type-h.md#arkui_errorcode) 禁止对BuilderNode生成的节点进行设置属性、重置属性、设置事件与新增或修改子节点操作。 |
+| int32_t | 错误码。<br>             [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>             [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。<br>             [ARKUI_ERROR_CODE_NOT_SUPPORTED_FOR_ARKTS_NODE](capi-native-type-h.md#arkui_errorcode) 禁止对BuilderNode生成的节点进行设置属性、重置属性、设置事件与新增或修改子节点操作。 |
 
 ### removeChild()
 
@@ -157,7 +157,7 @@ int32_t (*removeChild)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child)
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 错误码。<br>             [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>             [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。<br>             [ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED](capi-native-type-h.md#arkui_errorcode) 禁止对BuilderNode生成的节点进行设置属性、重置属性、设置事件与新增或修改子节点操作。<br>             ERROR_CODE_NATIVE_IMPL_NODE_ADAPTER_EXIST NodeAdapter已经存在。 |
+| int32_t | 错误码。<br>             [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>             [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。<br>             [ARKUI_ERROR_CODE_NOT_SUPPORTED_FOR_ARKTS_NODE](capi-native-type-h.md#arkui_errorcode) 禁止对BuilderNode生成的节点进行设置属性、重置属性、设置事件与新增或修改子节点操作。<br>             ERROR_CODE_NATIVE_IMPL_NODE_ADAPTER_EXIST NodeAdapter已经存在。 |
 
 ### insertChildAfter()
 
@@ -182,7 +182,7 @@ int32_t (*insertChildAfter)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child, Ark
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 错误码。<br>             [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>             [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。<br>             [ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED](capi-native-type-h.md#arkui_errorcode) 禁止对BuilderNode生成的节点进行设置属性、重置属性、设置事件与新增或修改子节点操作。 |
+| int32_t | 错误码。<br>             [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>             [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。<br>             [ARKUI_ERROR_CODE_NOT_SUPPORTED_FOR_ARKTS_NODE](capi-native-type-h.md#arkui_errorcode) 禁止对BuilderNode生成的节点进行设置属性、重置属性、设置事件与新增或修改子节点操作。 |
 
 ### insertChildBefore()
 
@@ -207,7 +207,7 @@ int32_t (*insertChildBefore)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child, Ar
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 错误码。<br>             [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>             [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。<br>             [ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED](capi-native-type-h.md#arkui_errorcode) 禁止对BuilderNode生成的节点进行设置属性、重置属性、设置事件与新增或修改子节点操作。<br>             ERROR_CODE_NATIVE_IMPL_NODE_ADAPTER_EXIST NodeAdapter已经存在。 |
+| int32_t | 错误码。<br>             [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>             [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。<br>             [ARKUI_ERROR_CODE_NOT_SUPPORTED_FOR_ARKTS_NODE](capi-native-type-h.md#arkui_errorcode) 禁止对BuilderNode生成的节点进行设置属性、重置属性、设置事件与新增或修改子节点操作。<br>             ERROR_CODE_NATIVE_IMPL_NODE_ADAPTER_EXIST NodeAdapter已经存在。 |
 
 ### insertChildAt()
 
@@ -232,7 +232,7 @@ int32_t (*insertChildAt)(ArkUI_NodeHandle parent, ArkUI_NodeHandle child, int32_
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 错误码。<br>             [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>             [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。<br>             [ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED](capi-native-type-h.md#arkui_errorcode) 禁止对BuilderNode生成的节点进行设置属性、重置属性、设置事件与新增或修改子节点操作。<br>             ERROR_CODE_NATIVE_IMPL_NODE_ADAPTER_EXIST NodeAdapter已经存在。 |
+| int32_t | 错误码。<br>             [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>             [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。<br>             [ARKUI_ERROR_CODE_NOT_SUPPORTED_FOR_ARKTS_NODE](capi-native-type-h.md#arkui_errorcode) 禁止对BuilderNode生成的节点进行设置属性、重置属性、设置事件与新增或修改子节点操作。<br>             ERROR_CODE_NATIVE_IMPL_NODE_ADAPTER_EXIST NodeAdapter已经存在。 |
 
 ### setAttribute()
 
@@ -257,7 +257,7 @@ int32_t (*setAttribute)(ArkUI_NodeHandle node, ArkUI_NodeAttributeType attribute
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 错误码。<br>             [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>             [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。<br>             [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](capi-native-type-h.md#arkui_errorcode) 系统中未找到Native接口的动态实现库。<br>             [ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED](capi-native-type-h.md#arkui_errorcode) 禁止对BuilderNode生成的节点进行设置属性、重置属性、设置事件与新增或修改子节点操作。<br>             ERROR_CODE_NATIVE_IMPL_NODE_ADAPTER_EXIST NodeAdapter已经存在。 |
+| int32_t | 错误码。<br>             [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>             [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。<br>             [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](capi-native-type-h.md#arkui_errorcode) 系统中未找到Native接口的动态实现库。<br>             [ARKUI_ERROR_CODE_NOT_SUPPORTED_FOR_ARKTS_NODE](capi-native-type-h.md#arkui_errorcode) 禁止对BuilderNode生成的节点进行设置属性、重置属性、设置事件与新增或修改子节点操作。<br>             ERROR_CODE_NATIVE_IMPL_NODE_ADAPTER_EXIST NodeAdapter已经存在。 |
 
 ### getAttribute()
 
@@ -305,7 +305,7 @@ int32_t (*resetAttribute)(ArkUI_NodeHandle node, ArkUI_NodeAttributeType attribu
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 错误码。<br>             [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>             [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。<br>             [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](capi-native-type-h.md#arkui_errorcode) 系统中未找到Native接口的动态实现库。<br>             [ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED](capi-native-type-h.md#arkui_errorcode) 禁止对BuilderNode生成的节点进行设置属性、重置属性、设置事件与新增或修改子节点操作。 |
+| int32_t | 错误码。<br>             [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>             [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。<br>             [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](capi-native-type-h.md#arkui_errorcode) 系统中未找到Native接口的动态实现库。<br>             [ARKUI_ERROR_CODE_NOT_SUPPORTED_FOR_ARKTS_NODE](capi-native-type-h.md#arkui_errorcode) 禁止对BuilderNode生成的节点进行设置属性、重置属性、设置事件与新增或修改子节点操作。 |
 
 ### registerNodeEvent()
 
@@ -331,7 +331,7 @@ int32_t (*registerNodeEvent)(ArkUI_NodeHandle node, ArkUI_NodeEventType eventTyp
 
 | 类型 | 说明 |
 | -- | -- |
-| int32_t | 错误码。<br>             [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>             [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。<br>             [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](capi-native-type-h.md#arkui_errorcode) 系统中未找到Native接口的动态实现库。<br>             [ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED](capi-native-type-h.md#arkui_errorcode) 禁止对BuilderNode生成的节点进行设置属性、重置属性、设置事件与新增或修改子节点操作。 |
+| int32_t | 错误码。<br>             [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>             [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数异常。<br>             [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](capi-native-type-h.md#arkui_errorcode) 系统中未找到Native接口的动态实现库。<br>             [ARKUI_ERROR_CODE_NOT_SUPPORTED_FOR_ARKTS_NODE](capi-native-type-h.md#arkui_errorcode) 禁止对BuilderNode生成的节点进行设置属性、重置属性、设置事件与新增或修改子节点操作。 |
 
 ### unregisterNodeEvent()
 
