@@ -1,5 +1,12 @@
 # @system.fetch (数据请求)（已废弃）
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 > **说明：**
 > - 从API Version 6开始，该接口不再维护，推荐使用新接口[`@ohos.net.http`](js-apis-http.md)。
 > 
