@@ -1379,7 +1379,7 @@ getLinkedInfoSync(): WifiLinkedInfo;
 | maxSupportedRxLinkSpeed<sup>10+</sup> | number | 否 | 否 | 当前支持的最大下行速率，单位Mbps。 |
 | frequency | number | 否 | 否 | WLAN接入点的频率。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | isHidden | boolean | 否 | 否 | WLAN接入点是否是隐藏网络, true表示是隐藏网络，false表示不是隐藏网络。 |
-| isRestricted | boolean | 否 | 否 | WLAN接入点是否限制数据量，true: 限制，false:不限制。 |
+| isRestricted | boolean | 否 | 否 | WLAN接入点是否限制数据量，true表示限制，false表示不限制。 |
 | macType | number | 否 | 否 | MAC地址类型。0 - 随机MAC地址，1 - 设备MAC地址。 |
 | macAddress | string | 否 | 否 | 设备的MAC地址。 |
 | ipAddress | number | 否 | 否 | WLAN连接的IP地址。<br>1、IP地址在WiFi连接信息和"设置 > 关于本机 > 状态信息"中可以查看。<br>2、ipAddress值为number类型，需要转换为IP常用格式，具体请参考[IP格式转换](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs/faqs-connectivity-4)。|
