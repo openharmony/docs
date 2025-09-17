@@ -1,5 +1,12 @@
 # @ohos.multimedia.videoProcessingEngine (视频处理引擎)
 
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @pxh123456-->
+<!--Designer: @gongzheng92-->
+<!--Tester: @gongzheng92-->
+<!--Adviser: @zengyawen-->
+
 本模块提供图片内容的清晰度增强及缩放能力。
 
 本模块包含一个基础类：[ImageProcessor](#imageprocessor)类。
