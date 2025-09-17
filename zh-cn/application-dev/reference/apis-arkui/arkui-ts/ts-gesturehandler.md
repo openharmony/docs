@@ -254,157 +254,11 @@ onActionCancel(event: Callback\<GestureEvent>): LongPressGestureHandler
 
 ## PanGestureHandler
 
-拖动手势处理器对象类型。
-
-### constructor
-
-constructor(options?: PanGestureHandlerOptions)
-
-拖动手势处理器的构造函数。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-
-| 参数名  | 类型                                                         | 必填 | 说明               |
-| ------- | ------------------------------------------------------------ | ---- | ------------------ |
-| options | [PanGestureHandlerOptions](#pangesturehandleroptions) | 否   | 拖动手势处理器配置参数。 |
-
-### onActionStart
-
-onActionStart(event: Callback\<GestureEvent>): PanGestureHandler
-
-设置拖动手势处理器识别成功回调。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                              | 必填 | 说明                 |
-| ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 拖动手势处理器识别成功回调。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [PanGestureHandler](#pangesturehandler) | 返回当前拖动手势处理器对象。 |
-
-### onActionUpdate
-
-onActionUpdate(event: Callback\<GestureEvent>): PanGestureHandler
-
-设置拖动手势处理器更新回调。拖动手势处理器移动过程中触发回调。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                              | 必填 | 说明                 |
-| ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 拖动手势处理器更新回调。<br/>fingerList为多根手指时，该回调监听每次只会更新一根手指的位置信息。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [PanGestureHandler](#pangesturehandler) | 返回当前拖动手势处理器对象。 |
-
-### onActionEnd
-
-onActionEnd(event: Callback\<GestureEvent>): PanGestureHandler
-
-设置拖动手势处理器结束回调。拖动手势处理器识别成功后，手指抬起时触发回调。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                              | 必填 | 说明                 |
-| ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 拖动手势处理器结束回调。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [PanGestureHandler](#pangesturehandler) | 返回当前拖动手势处理器对象。 |
-
-### onActionCancel
-
-onActionCancel(event: Callback\<void>): PanGestureHandler
-
-设置拖动手势处理器取消回调。拖动手势处理器识别成功后，接收到触摸取消事件时触发回调。不返回手势事件信息。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                              | 必填 | 说明                 |
-| ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)\<void> | 是 | 拖动手势处理器取消回调。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [PanGestureHandler](#pangesturehandler) | 返回当前拖动手势处理器对象。 |
-
-### onActionCancel<sup>18+</sup>
-
-onActionCancel(event: Callback\<GestureEvent>): PanGestureHandler
-
-设置拖动手势处理器取消回调。拖动手势处理器识别成功后，接收到触摸取消事件时触发回调。与[onActionCancel](#onactioncancel-1)接口相比，此接口返回手势事件信息。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                              | 必填 | 说明                 |
-| ------ | --------------------------------- | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 拖动手势处理器取消回调。返回手势事件信息。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| [PanGestureHandler](#pangesturehandler) | 返回当前拖动手势处理器对象。 |
-
-## PanGestureHandlerOptions
-
-拖动手势处理器配置参数。继承自[BaseHandlerOptions](#basehandleroptions15)。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称         | 类型                              | 只读 | 可选 | 说明                 |
-| ------------ | ---------------------------------|----- | ---- | -------------------- |
-| fingers | number | 否| 是 | 用于指定触发拖动的最少手指数，最小为1指，&nbsp;最大取值为10指。<br/>默认值：1<br/>取值范围：[1, 10]<br/>**说明：** <br/>当设置的值小于1或不设置时，会被转化为默认值。 |
-| direction | [PanDirection](./ts-basic-gestures-pangesture.md#pandirection枚举说明) | 否| 是 | 用于指定触发拖动的手势方向，此枚举值支持逻辑与(&amp;)和逻辑或（\|）运算。<br/>默认值：PanDirection.All |
-| distance | number | 否| 是 | 用于指定触发拖动手势事件的最小拖动距离，单位为vp。<br/>手写笔默认值：8，其余输入源默认值：5<br/>**说明：**<br/>[Tabs组件](ts-container-tabs.md)滑动与该拖动手势事件同时存在时，可将distance值设为1，使拖动更灵敏，避免造成事件错乱。<br/>取值范围：[0, +∞)，当设定的值小于0时，按默认值处理。<br/>从API version 19开始，手写笔默认值为8，单位为vp。 |
-| distanceMap<sup>19+</sup> |  Map<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9), number> | 否| 是 | 用于指定不同输入源触发拖动手势事件的最小拖动距离，单位为vp。<br/>手写笔默认值：8，其余输入源默认值：5<br/>取值范围：[0, +∞)，当设定的值小于0时，按默认值处理。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
-
-## SwipeGestureHandler
-
 滑动手势处理器对象类型。
 
 ### constructor
 
-constructor(options?: SwipeGestureHandlerOptions)
+constructor(options?: PanGestureHandlerOptions)
 
 滑动手势处理器的构造函数。
 
@@ -414,13 +268,14 @@ constructor(options?: SwipeGestureHandlerOptions)
 
 **参数：**
 
+
 | 参数名  | 类型                                                         | 必填 | 说明               |
 | ------- | ------------------------------------------------------------ | ---- | ------------------ |
-| options | [SwipeGestureHandlerOptions](#swipegesturehandleroptions) | 否   | 滑动手势处理器配置参数。 |
+| options | [PanGestureHandlerOptions](#pangesturehandleroptions) | 否   | 滑动手势处理器配置参数。 |
 
-### onAction
+### onActionStart
 
-onAction(event: Callback\<GestureEvent>): SwipeGestureHandler
+onActionStart(event: Callback\<GestureEvent>): PanGestureHandler
 
 设置滑动手势处理器识别成功回调。
 
@@ -438,11 +293,154 @@ onAction(event: Callback\<GestureEvent>): SwipeGestureHandler
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [SwipeGestureHandler](#swipegesturehandler) | 返回当前滑动手势处理器对象。 |
+| [PanGestureHandler](#pangesturehandler) | 返回当前滑动手势处理器对象。 |
+
+### onActionUpdate
+
+onActionUpdate(event: Callback\<GestureEvent>): PanGestureHandler
+
+设置滑动手势处理器更新回调。滑动手势处理器移动过程中触发回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                              | 必填 | 说明                 |
+| ------ | --------------------------------- | ---- | -------------------- |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 滑动手势处理器更新回调。<br/>fingerList为多根手指时，该回调监听每次只会更新一根手指的位置信息。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [PanGestureHandler](#pangesturehandler) | 返回当前滑动手势处理器对象。 |
+
+### onActionEnd
+
+onActionEnd(event: Callback\<GestureEvent>): PanGestureHandler
+
+设置滑动手势处理器结束回调。滑动手势处理器识别成功后，手指抬起时触发回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                              | 必填 | 说明                 |
+| ------ | --------------------------------- | ---- | -------------------- |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 滑动手势处理器结束回调。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [PanGestureHandler](#pangesturehandler) | 返回当前滑动手势处理器对象。 |
+
+### onActionCancel
+
+onActionCancel(event: Callback\<void>): PanGestureHandler
+
+设置滑动手势处理器取消回调。滑动手势处理器识别成功后，接收到触摸取消事件时触发回调。不返回手势事件信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                              | 必填 | 说明                 |
+| ------ | --------------------------------- | ---- | -------------------- |
+| event  | [Callback](./ts-types.md#callback12)\<void> | 是 | 滑动手势处理器取消回调。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [PanGestureHandler](#pangesturehandler) | 返回当前滑动手势处理器对象。 |
+
+### onActionCancel<sup>18+</sup>
+
+onActionCancel(event: Callback\<GestureEvent>): PanGestureHandler
+
+设置滑动手势处理器取消回调。滑动手势处理器识别成功后，接收到触摸取消事件时触发回调。与[onActionCancel](#onactioncancel-1)接口相比，此接口返回手势事件信息。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                              | 必填 | 说明                 |
+| ------ | --------------------------------- | ---- | -------------------- |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 滑动手势处理器取消回调。返回手势事件信息。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [PanGestureHandler](#pangesturehandler) | 返回当前滑动手势处理器对象。 |
+
+## PanGestureHandlerOptions
+
+滑动手势处理器配置参数。继承自[BaseHandlerOptions](#basehandleroptions15)。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称         | 类型                              | 只读 | 可选 | 说明                 |
+| ------------ | ---------------------------------|----- | ---- | -------------------- |
+| fingers | number | 否| 是 | 用于指定触发拖动的最少手指数，最小为1指，&nbsp;最大取值为10指。<br/>默认值：1<br/>取值范围：[1, 10]<br/>**说明：** <br/>当设置的值小于1或不设置时，会被转化为默认值。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| direction | [PanDirection](./ts-basic-gestures-pangesture.md#pandirection枚举说明) | 否| 是 | 用于指定触发拖动的手势方向，此枚举值支持逻辑与(&amp;)和逻辑或（\|）运算。<br/>默认值：PanDirection.All<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| distance | number | 否| 是 | 用于指定触发滑动手势事件的最小拖动距离，单位为vp。<br/>手写笔默认值：8，其余输入源默认值：5<br/>**说明：**<br/>[Tabs组件](ts-container-tabs.md)滑动与该滑动手势事件同时存在时，可将distance值设为1，使拖动更灵敏，避免造成事件错乱。<br/>取值范围：[0, +∞)，当设定的值小于0时，按默认值处理。<br/>从API version 19开始，手写笔默认值为8，单位为vp。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| distanceMap<sup>19+</sup> |  Map<[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9), number> | 否| 是 | 用于指定不同输入源触发滑动手势事件的最小拖动距离，单位为vp。<br/>手写笔默认值：8，其余输入源默认值：5<br/>取值范围：[0, +∞)，当设定的值小于0时，按默认值处理。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
+
+## SwipeGestureHandler
+
+快滑手势处理器对象类型。
+
+### constructor
+
+constructor(options?: SwipeGestureHandlerOptions)
+
+快滑手势处理器的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                         | 必填 | 说明               |
+| ------- | ------------------------------------------------------------ | ---- | ------------------ |
+| options | [SwipeGestureHandlerOptions](#swipegesturehandleroptions) | 否   | 快滑手势处理器配置参数。 |
+
+### onAction
+
+onAction(event: Callback\<GestureEvent>): SwipeGestureHandler
+
+设置快滑手势处理器识别成功回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                              | 必填 | 说明                 |
+| ------ | --------------------------------- | ---- | -------------------- |
+| event  | [Callback](./ts-types.md#callback12)<[GestureEvent](ts-gesture-common.md#gestureevent对象说明)> | 是 | 快滑手势处理器识别成功回调。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [SwipeGestureHandler](#swipegesturehandler) | 返回当前快滑手势处理器对象。 |
 
 ## SwipeGestureHandlerOptions
 
-滑动手势处理器配置参数。继承自[BaseHandlerOptions](#basehandleroptions15)。
+快滑手势处理器配置参数。继承自[BaseHandlerOptions](#basehandleroptions15)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -450,9 +448,9 @@ onAction(event: Callback\<GestureEvent>): SwipeGestureHandler
 
 | 名称         | 类型                                   | 只读 | 可选 | 说明                 |
 | ------------ | -------------------------------------- | ---- | -----|--------------- |
-| fingers | number | 否 | 是 | 触发滑动的最少手指数，默认为1，最小为1指，最大为10指。<br/>默认值：1 <br/>取值范围：[1, 10]<br/> |
-| direction | [SwipeDirection](./ts-basic-gestures-swipegesture.md#swipedirection枚举说明) | 否 | 是 | 触发滑动手势的滑动方向。<br/>默认值：SwipeDirection.All |
-| speed | number | 否 | 是 | 识别滑动的最小速度。<br/>默认值：100VP/s <br/>**说明：** <br/>当滑动速度的值小于等于0时，会被转化为默认值。 |
+| fingers | number | 否 | 是 | 触发快滑的最少手指数，默认为1，最小为1指，最大为10指。<br/>默认值：1 <br/>取值范围：[1, 10]<br/> |
+| direction | [SwipeDirection](./ts-basic-gestures-swipegesture.md#swipedirection枚举说明) | 否 | 是 | 触发快滑手势的滑动方向。<br/>默认值：SwipeDirection.All |
+| speed | number | 否 | 是 | 识别快滑的最小速度。<br/>默认值：100VP/s <br/>**说明：** <br/>当滑动速度的值小于等于0时，会被转化为默认值。 |
 | isFingerCountLimited<sup>15+</sup> | boolean | 否 | 是 | 是否检查触摸屏幕的手指数量。true表示检查触摸屏幕的手指数量，false表示不检查触摸屏幕的手指数量。如果触摸手指的数量不等于设置的触发滑动的最少手指数（即上述fingers参数），手势识别将失败。<br>默认值：false<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## PinchGestureHandler
