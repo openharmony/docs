@@ -241,7 +241,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 > **注意：**
 > - 当音频录制场景[OH_AudioStream_SourceType](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_sourcetype)为`AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION`时，不支持主动设置低时延模式，系统会根据设备的能力，决策输出的音频通路。
-> - 部分场景（如通话来电）下系统能力受限会回落至普通模式，缓冲区大小也会发生变化，此时应同普通模式一样根据缓冲区大小把缓冲区里的数据一次性全部取走，否则录制的数据会出现不连续导致有杂音。
+> - 部分场景（如通话来电）下系统能力受限会回落至普通模式，缓冲区大小也会发生变化，此时应同普通模式一样根据缓冲区大小将缓冲区中数据一次性全部取走，否则录制的数据会出现不连续，导致杂音。
 
 开发示例
 
