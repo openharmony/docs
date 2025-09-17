@@ -12,7 +12,7 @@
 从API version 18开始，支持系统应用通过以下方式对分布式通知的协同设备进行管理：
 
 - 当应用的某个通知消息仅在当前设备发布时，需要将[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest-sys.md)参数中的**notDistributed**字段配置为true。
-- 当应用的某个通知消息需要按设备管控名单发布时，需要将[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest-sys.md)参数中的**notDistributed**字段配置为false，**forceDistributed**字段为配置true。
+- 当应用的某个通知消息需要按设备管控名单发布时，需要将[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest-sys.md)参数中的**notDistributed**字段配置为false，**forceDistributed**字段配置为true。
 
 ## 接口说明
 
@@ -86,9 +86,9 @@
           additionalText: 'test_additionalText'
         }
       },
-      // 仅当应用在跨设备协同管控名单中且notDistributed为false时，forceDistributed才会生效,且当forceDistributed为false按照协同管控名单显示
+      // 仅当应用在跨设备协同管控名单中且notDistributed为false时，forceDistributed才会生效，且当forceDistributed为false按照协同管控名单显示
       notDistributed: false,
-      forceDistributed: true
+      forceDistributed: false
     };
     notificationManager.publish(notificationRequest, publishCallback);
     ```
