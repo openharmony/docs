@@ -1604,3 +1604,114 @@ async function ExampleFunction(dlpFilePath: string) {
 | authAccountType | [AccountType](#accounttype21) | 否 | 否 | 表示被授权用户账号类型。 |
 | dlpFileAccess | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | 否 | 否 | 表示被授予的权限。 |
 | permExpiryTime | number | 否 | 否 | 表示授权到期时间。 |
+
+## DlpConnPlugin<sup>21+</sup>
+
+  被用于 registerPlugin 接口中，将回调能力注册到系统能力中
+>**说明：**
+>
+> registerPlugin接口的参数需要继承该接口， connectServer由系统能力侧调用，通过Callback进行回传参数。
+
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| requestId | string | 是 | 系统能力侧传递的request的标识 |
+| requestData | string | 是 | 系统能力侧传递的数据 |
+| callback | Callback | 是 | 系统能力侧传递的接口，用于回调 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| void | 无返回结果 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 19100011 | The system ability works abnormally. |
+
+ ## DlpConnManager<sup>21+</sup>
+
+  用于调用 registerPlugin 和 unregisterPlugin，将回调能力注册/解注册到系统能力中
+>**说明：**
+>
+> registerPlugin接口将回调能力注册进系统能力，而unregisterPlugin接口将回调能力从系统能力中去除。
+
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+   ### DlpConnManager.constructor<sup>21+</sup>
+
+>**说明：**
+>
+> DlpConnManager 实例化时的构造函数
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. |
+
+ ### DlpConnManager.registerPlugin<sup>21+</sup>
+ 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| plugin | DlpConnPlugin(#DlpConnPlugin21) | 是 |代表回调能力 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 注册结果，代表该回调的id |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 19100001 | Invalid parameter value. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
+  
+  ### DlpConnManager.unregisterPlugin<sup>21+</sup>
+ 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| void | 无 |否|无|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| void | 无返回结果 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 19100001 | Invalid parameter value. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
