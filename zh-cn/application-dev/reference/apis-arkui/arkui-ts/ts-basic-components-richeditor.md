@@ -1561,7 +1561,7 @@ getStyledString(): MutableStyledString
 
 onContentChanged(listener: StyledStringChangedListener): void
 
-注册文本内容变化回调，该回调会在后端程序导致文本内容变更时触发。
+注册文本内容变化回调，该回调仅在后端程序导致文本内容变更时触发，调用[setStyledString](#setstyledstring12)时不会触发。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
