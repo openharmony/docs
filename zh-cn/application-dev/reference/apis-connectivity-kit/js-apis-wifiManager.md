@@ -1382,12 +1382,12 @@ getLinkedInfoSync(): WifiLinkedInfo;
 | isRestricted | boolean | 否 | 否 | WLAN接入点是否限制数据量，true: 限制，false:不限制。 |
 | macType | number | 否 | 否 | MAC地址类型。0 - 随机MAC地址，1 - 设备MAC地址。 |
 | macAddress | string | 否 | 否 | 设备的MAC地址。 |
-| ipAddress | number | 否 | 否 | WLAN连接的IP地址。<br>1、IP地址在WiFi连接信息和"设置 > 关于本机 > 状态信息"中可以查看。<br>2、ipAddress值为number类型，需要转换为IP常用格式，具体请参考[IP格式转换](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs/faqs-connectivity-4)。|
+| ipAddress | number | 否 | 否 | WLAN连接的IP地址。<br>1.IP地址在WiFi连接信息和"设置 > 关于本机 > 状态信息"中可以查看。<br>2.ipAddress值为number类型，需要转换为IP常用格式，具体请参考[IP格式转换](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs/faqs-connectivity-4)。|
 | connState | [ConnState](#connstate9) | 否 | 否 | WLAN连接状态。 |
 | channelWidth<sup>10+</sup> | [WifiChannelWidth](#wifichannelwidth9) | 否 | 否 | 当前连接热点的信道带宽。 |
 | wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | 否 | 否 | 当前连接热点的Wi-Fi标准。 |
 | supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | 否 | 否 | 热点支持的最高Wi-Fi级别。 |
-| isHiLinkNetwork<sup>12+</sup> | boolean | 否 | 否| 热点是否支持hilink，true:支持，&nbsp;false:不支持。 |
+| isHiLinkNetwork<sup>12+</sup> | boolean | 否 | 否| 热点是否支持hilink，true表示支持，&nbsp;false表示不支持。 |
 | wifiLinkType<sup>18+</sup> | [WifiLinkType](#wifilinktype18) | 否 | 是 |  Wi-Fi7连接类型。  |
 
 
@@ -1926,7 +1926,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate9) | 否 | 否 | P2P连接状态。 |
-| isGroupOwner | boolean | 否 | 否 | true:是群主，false:不是群主。|
+| isGroupOwner | boolean | 否 | 否 | true表示是群主，false表示不是群主。|
 | groupOwnerAddr | string | 否 | 否 | 群组IP地址。| 
 
 
@@ -2545,7 +2545,7 @@ import { wifiManager } from '@kit.ConnectivityKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| isP2pGo | boolean | 否 | 否 | 是否是群主。true:是群主，false:不是群主。 |
+| isP2pGo | boolean | 否 | 否 | 是否是群主。true表示是群主，false表示不是群主。 |
 | ownerInfo | [WifiP2pDevice](#wifip2pdevice9) | 否 | 否 | 群组的设备信息。 |
 | passphrase | string | 否 | 否 | 群组密钥。 |
 | interface | string | 否 | 否 | 接口名称。 |
