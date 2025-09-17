@@ -22,8 +22,8 @@
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| id | string&nbsp;\|&nbsp;number | 否 | 否 | 指定popup或menu绑定的目标节点。<br/>**说明：** <br/>1. 当id是number时，对应组件实例的UniquelD，此id由系统保证唯一性。<br/>2. 当id是string时，对应[通用属性id](arkui-ts/ts-universal-attributes-component-id.md#id)所指定的组件，此id的唯一性需由开发者确保，但实际可能会有多个。 |
-| componentId | number | 否 | 是 | 目标节点所在的自定义组件的UniquelD。当上述id指定为string类型时，可通过此属性圈定范围。方便开发者在一定范围内保证id: string的唯一性。 |
+| id | string&nbsp;\|&nbsp;number | 否 | 否 | 指定popup或menu绑定的目标节点。<br/>**说明：** <br/>1. 当id是number时，对应组件实例的UniqueID，此id由系统保证唯一性。<br/>2. 当id是string时，对应[通用属性id](arkui-ts/ts-universal-attributes-component-id.md#id)所指定的组件，此id的唯一性需由开发者确保，但实际可能会有多个。 |
+| componentId | number | 否 | 是 | 目标节点所在的自定义组件的UniqueID。当上述id指定为string类型时，可通过此属性圈定范围。方便开发者在一定范围内保证id: string的唯一性。 |
 
 ## PageInfo<sup>12+</sup>
 
