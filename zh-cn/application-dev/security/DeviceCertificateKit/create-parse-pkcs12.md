@@ -7,11 +7,11 @@
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
 
-从API 18开始，支持证书PKCS12解析。
+从API 18开始，支持解析PKCS12证书。
 
-从API 21开始，支持证书PKCS12创建。
+从API 21开始，支持创建PKCS12证书。
 
-PKCS#12是一种用于存储和传输用户私钥、证书及其相关证书链的标准格式。该格式通过密码保护，将多个密码学对象打包为一个加密的容器文件，支持存储私钥、公钥证书、证书颁发机构证书以及其他相关的密码学数据。PKCS#12广泛应用于数字证书的安全存储、跨平台传输和证书备份场景，是实现证书管理和PKI应用的重要标准之一。
+PKCS12是一种用于存储和传输用户私钥、证书及其相关证书链的标准格式。该格式通过密码保护，将多个密码学对象打包为一个加密的容器文件，支持存储私钥、公钥证书、证书颁发机构证书以及其他相关的密码学数据。PKCS12广泛应用于数字证书的安全存储、跨平台传输和证书备份场景，是实现证书管理和PKI应用的重要标准之一。
 
 ## 开发步骤
 
@@ -28,11 +28,10 @@ PKCS#12是一种用于存储和传输用户私钥、证书及其相关证书链�
 
   ```ts
   import { cert } from '@kit.DeviceCertificateKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
 
   // string转Uint8Array。
   function stringToUint8Array(str: string): Uint8Array {
-    let arr: Array<number> = [];
+    let arr: number[] = [];
     for (let i = 0, j = str.length; i < j; i++) {
       arr.push(str.charCodeAt(i));
     }
@@ -50,9 +49,8 @@ PKCS#12是一种用于存储和传输用户私钥、证书及其相关证书链�
     let x509Cert: cert.X509Cert = {} as cert.X509Cert;
     try {
       x509Cert = await cert.createX509Cert(encodingBlob);
-    } catch (error) {
-      let e: BusinessError = error as BusinessError;
-      console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    } catch (err) {
+      console.error(`createX509Cert failed: errCode: ${err.code}, message: ${err.message}`);
     }
     return x509Cert;
   }
@@ -85,7 +83,6 @@ PKCS#12是一种用于存储和传输用户私钥、证书及其相关证书链�
     'rVCbbgOgayVpr+8Tv2DqB370GwBpOpuq0yiiN+c39Y0u03Yfve3icyl8+lN1t4h6\n' +
     'a20rj9HG4sb8tUIHPBv0dgY=\n' +
     '-----END PRIVATE KEY-----\n';
-
 
   let othercerts = '-----BEGIN CERTIFICATE-----\n' +
     'MIIDZTCCAk0CFAoqA7Irtoo7/3+sfOHy0s91pKkiMA0GCSqGSIb3DQEBCwUAMG8x\n' +
@@ -169,10 +166,10 @@ PKCS#12是一种用于存储和传输用户私钥、证书及其相关证书链�
       let out: cert.Pkcs12Data = await cert.parsePkcs12(p12, "123456");
       console.info("parsePKCS12 succeed.");
       if (out.privateKey) {
-        console.info("privateKey:" + out.privateKey.toString())
+        console.info("privateKey:" + out.privateKey.toString());
       }
       if (out.cert) {
-        console.info("cert:" + out.cert.toString())
+        console.info("cert:" + out.cert.toString());
       }
       if (out.otherCerts && Array.isArray(out.otherCerts)) {
         console.info("otherCerts counts:", out.otherCerts.length);
@@ -182,8 +179,8 @@ PKCS#12是一种用于存储和传输用户私钥、证书及其相关证书链�
       } else {
         console.info("otherCerts is empty or not an array.");
       }
-    } catch (error) {
-      console.error('doTestCreatePkcs12 failed:' + JSON.stringify(error));
+    } catch (err) {
+      console.error(`doTestCreatePkcs12 failed: errCode: ${err.code}, message: ${err.message}`);
     }
   }
   ```
@@ -192,11 +189,10 @@ PKCS#12是一种用于存储和传输用户私钥、证书及其相关证书链�
 
   ```ts
   import { cert } from '@kit.DeviceCertificateKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
 
   // string转Uint8Array。
   function stringToUint8Array(str: string): Uint8Array {
-    let arr: Array<number> = [];
+    let arr: number[] = [];
     for (let i = 0, j = str.length; i < j; i++) {
       arr.push(str.charCodeAt(i));
     }
@@ -214,9 +210,8 @@ PKCS#12是一种用于存储和传输用户私钥、证书及其相关证书链�
     let x509Cert: cert.X509Cert = {} as cert.X509Cert;
     try {
       x509Cert = await cert.createX509Cert(encodingBlob);
-    } catch (error) {
-      let e: BusinessError = error as BusinessError;
-      console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    } catch (err) {
+      console.error(`doTestCreatePkcs12 failed: errCode: ${err.code}, message: ${err.message}`);
     }
     return x509Cert;
   }
@@ -249,7 +244,6 @@ PKCS#12是一种用于存储和传输用户私钥、证书及其相关证书链�
     'rVCbbgOgayVpr+8Tv2DqB370GwBpOpuq0yiiN+c39Y0u03Yfve3icyl8+lN1t4h6\n' +
     'a20rj9HG4sb8tUIHPBv0dgY=\n' +
     '-----END PRIVATE KEY-----\n';
-
 
   let othercerts = '-----BEGIN CERTIFICATE-----\n' +
     'MIIDZTCCAk0CFAoqA7Irtoo7/3+sfOHy0s91pKkiMA0GCSqGSIb3DQEBCwUAMG8x\n' +
@@ -340,10 +334,10 @@ PKCS#12是一种用于存储和传输用户私钥、证书及其相关证书链�
       let out: cert.Pkcs12Data = cert.parsePkcs12(p12, conf);
       console.info("parsePKCS12 succeed.");
       if (out.privateKey) {
-        console.info("privateKey:" + out.privateKey.toString())
+        console.info("privateKey:" + out.privateKey.toString());
       }
       if (out.cert) {
-        console.info("cert:" + out.cert.toString())
+        console.info("cert:" + out.cert.toString());
       }
       if (out.otherCerts && Array.isArray(out.otherCerts)) {
         console.info("otherCerts counts:", out.otherCerts.length);
@@ -353,8 +347,8 @@ PKCS#12是一种用于存储和传输用户私钥、证书及其相关证书链�
       } else {
         console.info("otherCerts is empty or not an array.");
       }
-    } catch (error) {
-      console.error('doTestCreatePkcs12Sync failed:' + JSON.stringify(error));
+    } catch (err) {
+      console.error(`doTestCreatePkcs12 failed: errCode: ${err.code}, message: ${err.message}`);
     }
   }
   ```

@@ -470,8 +470,8 @@ RSA私钥生成CSR时的配置参数，包含主体、扩展、摘要算法、�
 | 名称         | 类型                                              |    只读   | 可选 | 说明                                   |
 | ------------ | ------------------------------------------------- | ---- | ---- |-------------------------------------- |
 | password     | string                                            | 否   | 否   |表示P12文件的密码。             |
-| needsPrivateKey  | boolean                                       | 否   | 是   |表示是否获取私钥。默认为true。true为获取，false为不获取。                       |
-| privateKeyFormat |  [EncodingBaseFormat](#encodingbaseformat18)                      | 否   | 是   |表示获取私钥的PKCS8格式。默认为PEM。 |
+| needsPrivateKey  | boolean                                       | 否   | 是   |表示是否获取私钥。默认为true。<br>true为获取，返回PKCS8编码的私钥数据；false为不获取。|
+| privateKeyFormat |  [EncodingBaseFormat](#encodingbaseformat18)                      | 否   | 是   |表示获取私钥的格式，当前支持PEM和DER格式。参数缺省时，默认为PEM格式。<br>**注意**：当needsPrivateKey值为true时，该参数生效。 |
 | needsCert    | boolean                                           | 否   | 是   |表示是否获取证书。默认为true。true为获取，false为不获取。 |
 | needsOtherCerts  | boolean                                       | 否   | 是   |表示是否获取其他证书合集。默认为false。true为获取，false为不获取。 |
 
@@ -483,15 +483,15 @@ RSA私钥生成CSR时的配置参数，包含主体、扩展、摘要算法、�
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称                                  | 值   | 说明                          |
-| --------------------------------------| -------- | -----------------------------|
+| 名称       | 值   | 说明          |
+| ----------| -------- | ---------------|
 | AES_128_CBC | 0 | AES-128-CBC加密算法。 |
 | AES_192_CBC | 1 | AES-192-CBC加密算法。 |
 | AES_256_CBC | 2 | AES-256-CBC加密算法。 |
 
 ## PbesParams<sup>21+</sup>
 
-表示基于密码的加密算法参数。
+表示基于密码的加密算法参数，当前仅支持PBES2。
 
 **原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
 
@@ -499,9 +499,9 @@ RSA私钥生成CSR时的配置参数，包含主体、扩展、摘要算法、�
 
 | 名称         | 类型                                              |    只读   | 可选 | 说明                                   |
 | ------------ | ------------------------------------------------- | ---- | ---- |-------------------------------------- |
-| saltLen      | int                                            | 否   | 是   |表示盐值长度。默认为16。 |
+| saltLen      | int                                            | 否   | 是   |表示盐值长度。默认为16，最小值为8。 |
 | iterations | int                                          | 否   | 是   |表示迭代次数。默认为2048。                       |
-| encryptionAlgorithm    | [PbesEncryptionAlgorithm](#pbesencryptionalgorithm21)                 | 否   | 否   |表示PBES加密算法类型。默认为AES_256_CBC。        |
+| encryptionAlgorithm    | [PbesEncryptionAlgorithm](#pbesencryptionalgorithm21)                 | 否   | 是   |表示PBES加密算法类型。默认为AES_256_CBC。        |
 
 ## Pkcs12MacDigestAlgorithm<sup>21+</sup>
 
@@ -10720,7 +10720,7 @@ function doTestParsePkcs12() {
 
 parsePkcs12(data: Uint8Array, password: string): Promise\<Pkcs12Data>
 
-表示从P12文件中解析证书、私钥及其他证书合集，并异步返回结果。
+表示从Pkcs12文件中解析证书、私钥及其他证书合集。使用Promise异步回调。
 
 **原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
 
@@ -10730,14 +10730,14 @@ parsePkcs12(data: Uint8Array, password: string): Promise\<Pkcs12Data>
 
 | 参数名   | 类型                  | 必填 | 说明                       |
 | -------- | -------------------- | ---- | -------------------------- |
-| data | Uint8Array | 是 | P12文件，DER格式。 |
-| password | string | 是 | P12的密码。 |
+| data | Uint8Array | 是 | Pkcs12文件，DER格式。 |
+| password | string | 是 | Pkcs12的密码。 |
 
 **返回值：**
 
 | 类型                              | 说明                 |
 | --------------------------------- | -------------------- |
-| Promise\<[Pkcs12Data](#pkcs12data18)> | 表示P12文件解析后的证书、私钥及其他证书合集。返回的Pkcs12Data中的私钥采用PEM格式编码。 |
+| Promise\<[Pkcs12Data](#pkcs12data18)> | Promise对象，返回Pkcs12文件解析后的证书、私钥及其他证书合集。返回的Pkcs12Data中的私钥采用PEM格式编码。 |
 
 **错误码：**
 
@@ -10755,7 +10755,6 @@ parsePkcs12(data: Uint8Array, password: string): Promise\<Pkcs12Data>
 
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 async function doTestParsePkcs12() {
   try {
@@ -10913,10 +10912,21 @@ async function doTestParsePkcs12() {
     let p12: cert.Pkcs12Data = await cert.parsePkcs12(p12_cert, "123456");
     console.info("parsePKCS12 succeed.");
     if (p12.privateKey) {
-      console.info("privateKey:" + p12.privateKey.toString())
+      console.info("privateKey:" + p12.privateKey.toString());
     }
-  } catch (error) {
-    console.error('parsePKCS12 failed:' + JSON.stringify(error));
+    if (p12.cert) {
+      console.info("cert:" + p12.cert.toString());
+    }
+    if (p12.otherCerts && Array.isArray(p12.otherCerts)) {
+      console.info("otherCerts counts:", p12.otherCerts.length);
+      p12.otherCerts.forEach((cert, idx) => {
+        console.info(`otherCerts[${idx}]:\n${cert.toString()}`);
+      });
+    } else {
+      console.info("otherCerts is empty or not an array.");
+    }
+  } catch (err) {
+    console.error(`parsePKCS12 failed: errCode: ${err.code}, message: ${err.message}`);
   }
 }
 ```
@@ -10925,7 +10935,7 @@ async function doTestParsePkcs12() {
 
 createPkcs12(data: Pkcs12Data, config: Pkcs12CreationConfig): Promise\<Uint8Array>
 
-表示创建Pkcs12数据，异步返回结果。
+表示创建Pkcs12数据，使用Promise异步回调。
 
 **原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
 
@@ -10935,14 +10945,14 @@ createPkcs12(data: Pkcs12Data, config: Pkcs12CreationConfig): Promise\<Uint8Arra
 
 | 参数名   | 类型                  | 必填 | 说明                       |
 | -------- | -------------------- | ---- | -------------------------- |
-| data | [Pkcs12Data](#pkcs12data18) | 是 | 要打包的P12数据对象。 |
-| config | [Pkcs12CreationConfig](#pkcs12creationconfig21) | 是 | P12文件的创建配置。 |
+| data | [Pkcs12Data](#pkcs12data18) | 是 | 要打包的Pkcs12数据对象。 |
+| config | [Pkcs12CreationConfig](#pkcs12creationconfig21) | 是 | Pkcs12文件的创建配置。 |
 
 **返回值：**
 
 | 类型                              | 说明                 |
 | --------------------------------- | -------------------- |
-| Promise\<Uint8Array> | 表示创建的P12文件，DER格式。 |
+| Promise\<Uint8Array> | Promise对象。表示创建的Pkcs12文件，DER格式。 |
 
 **错误码：**
 
@@ -10959,7 +10969,6 @@ createPkcs12(data: Pkcs12Data, config: Pkcs12CreationConfig): Promise\<Uint8Arra
 
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let priKey = '-----BEGIN PRIVATE KEY-----\n' +
   'MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC9kBV6Cqd3vSi5\n' +
@@ -10989,7 +10998,6 @@ let priKey = '-----BEGIN PRIVATE KEY-----\n' +
   'rVCbbgOgayVpr+8Tv2DqB370GwBpOpuq0yiiN+c39Y0u03Yfve3icyl8+lN1t4h6\n' +
   'a20rj9HG4sb8tUIHPBv0dgY=\n' +
   '-----END PRIVATE KEY-----\n';
-
 
 let othercert = '-----BEGIN CERTIFICATE-----\n' +
   'MIIDZTCCAk0CFAoqA7Irtoo7/3+sfOHy0s91pKkiMA0GCSqGSIb3DQEBCwUAMG8x\n' +
@@ -11037,7 +11045,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 // string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
-  let arr: Array<number> = [];
+  let arr: number[] = [];
   for (let i = 0, j = str.length; i < j; i++) {
     arr.push(str.charCodeAt(i));
   }
@@ -11055,9 +11063,8 @@ async function createX509Cert(certData: string): Promise<cert.X509Cert> {
   let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
     x509Cert = await cert.createX509Cert(encodingBlob);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  } catch (err) {
+    console.error(`createX509Cert failed: errCode: ${err.code}, message: ${err.message}`);
   }
   return x509Cert;
 }
@@ -11096,9 +11103,8 @@ async function doTestCreatePkcs12() {
   try {
     let p12 = await cert.createPkcs12(data, config);
     console.info("createPkcs12 succeed p12 = " + p12);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    console.error('createPkcs12 failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  } catch (err) {
+    console.error(`createPkcs12 failed: errCode: ${err.code}, message: ${err.message}`);
   }
 }
 ```
@@ -11141,7 +11147,6 @@ createPkcs12Sync(data: Pkcs12Data, config: Pkcs12CreationConfig): Uint8Array
 
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let priKey = '-----BEGIN PRIVATE KEY-----\n' +
   'MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC9kBV6Cqd3vSi5\n' +
@@ -11171,7 +11176,6 @@ let priKey = '-----BEGIN PRIVATE KEY-----\n' +
   'rVCbbgOgayVpr+8Tv2DqB370GwBpOpuq0yiiN+c39Y0u03Yfve3icyl8+lN1t4h6\n' +
   'a20rj9HG4sb8tUIHPBv0dgY=\n' +
   '-----END PRIVATE KEY-----\n';
-
 
 let othercert = '-----BEGIN CERTIFICATE-----\n' +
   'MIIDZTCCAk0CFAoqA7Irtoo7/3+sfOHy0s91pKkiMA0GCSqGSIb3DQEBCwUAMG8x\n' +
@@ -11219,7 +11223,7 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
 
 // string转Uint8Array。
 function stringToUint8Array(str: string): Uint8Array {
-  let arr: Array<number> = [];
+  let arr: number[] = [];
   for (let i = 0, j = str.length; i < j; i++) {
     arr.push(str.charCodeAt(i));
   }
@@ -11237,9 +11241,8 @@ async function createX509Cert(certData: string): Promise<cert.X509Cert> {
   let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
     x509Cert = await cert.createX509Cert(encodingBlob);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  } catch (err) {
+    console.error(`createX509Cert failed: errCode: ${err.code}, message: ${err.message}`);
   }
   return x509Cert;
 }
@@ -11278,9 +11281,8 @@ async function doTestCreatePkcs12Sync() {
   try {
     let p12 = cert.createPkcs12Sync(data, config);
     console.info("createPkcs12Sync succeed p12 = " + p12);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    console.error('createcreatePkcs12Sync Pkcs12 failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  } catch (err) {
+    console.error(`createPkcs12Sync failed: errCode: ${err.code}, message: ${err.message}`);
   }
 }
 ```
