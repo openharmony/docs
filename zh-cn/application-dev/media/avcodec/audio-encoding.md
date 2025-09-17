@@ -466,4 +466,4 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 针对音频编码，有以下相关实例可供参考：
 
-- [音频编码](https://gitee.com/openharmony/multimedia_av_codec/blob/master/test/nativedemo/audio_demo/avcodec_audio_avbuffer_aac_encoder_demo.cpp)
+- [音频编码](https://gitcode.com/openharmony/multimedia_av_codec/blob/master/test/nativedemo/audio_demo/avcodec_audio_avbuffer_aac_encoder_demo.cpp)
