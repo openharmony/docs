@@ -728,8 +728,8 @@ struct CustomDialogUser {
 
 针对自定义弹出框开发，有以下相关实例可供参考：
 
-- [自定义弹出框（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialog)
-- [构建多种样式弹出框（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/MultipleDialog)
-- [目标管理（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TargetManagement)
+- [自定义弹出框（ArkTS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/CustomDialog)
+- [构建多种样式弹出框（ArkTS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/MultipleDialog)
+- [目标管理（ArkTS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/TargetManagement)
 
 

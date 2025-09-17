@@ -2274,7 +2274,7 @@ HAP包中需要安装的native软件包损坏。
 
 **处理步骤**
 
-1. 检查HAP包中的native软件包，替换正确的native软件包并重新签名打包。参考[Native软件包开发指南](https://gitee.com/openharmony/startup_appspawn/blob/master/service/hnp/README_zh.md)。
+1. 检查HAP包中的native软件包，替换正确的native软件包并重新签名打包。参考[Native软件包开发指南](https://gitcode.com/openharmony/startup_appspawn/blob/master/service/hnp/README_zh.md)。
 
 ### 9568408 卸载应用失败，native软件包卸载失败
 **错误信息**
@@ -2291,7 +2291,7 @@ error: Failed to uninstall the HAP because uninstalling the native package faile
 
 **处理步骤**
 
-1. 检查是否存在进程占用相应的native软件包，若存在则结束进程后重新卸载。参考[Native软件包开发指南](https://gitee.com/openharmony/startup_appspawn/blob/master/service/hnp/README_zh.md)。
+1. 检查是否存在进程占用相应的native软件包，若存在则结束进程后重新卸载。参考[Native软件包开发指南](https://gitcode.com/openharmony/startup_appspawn/blob/master/service/hnp/README_zh.md)。
 
 ### 9568409 安装失败，native软件包提取失败
 **错误信息**
@@ -2308,7 +2308,7 @@ HAP包中native软件包目录下不存在module.json5中配置的native软件�
 
 **处理步骤**
 
-1. 检查HAP包中的native软件包目录，重新打入需要安装的native软件包并完成签名或删除module.json5中缺失的native软件包配置信息。参考[Native软件包开发指南](https://gitee.com/openharmony/startup_appspawn/blob/master/service/hnp/README_zh.md)。
+1. 检查HAP包中的native软件包目录，重新打入需要安装的native软件包并完成签名或删除module.json5中缺失的native软件包配置信息。参考[Native软件包开发指南](https://gitcode.com/openharmony/startup_appspawn/blob/master/service/hnp/README_zh.md)。
 
 ### 9568410 安装失败，设备受管控
 **错误信息**

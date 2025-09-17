@@ -54,4 +54,4 @@ ArkUI中提供多种动画接口（属性动画、转场动画等），用于驱
 
 针对动画开发，有以下相关实例可供参考：
 
-- [动效示例（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/Animation)
+- [动效示例（ArkTS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/Animation)
