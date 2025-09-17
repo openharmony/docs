@@ -400,7 +400,7 @@ WLAN热点信息。
 | infoElems | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | 否 | 否 | 信息元素。 |
 | timestamp | number | 否 | 否 | 时间戳。 |
 | supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | 否 | 否 | 热点支持的最高Wi-Fi级别。 |
-| isHiLinkNetwork<sup>12+</sup> | boolean | 否 | 否| 热点是否支持hiLink，true:支持，&nbsp;false:不支持。 |
+| isHiLinkNetwork<sup>12+</sup> | boolean | 否 | 否| 热点是否支持hiLink，true表示支持，&nbsp;false表示不支持。 |
 
 ## DeviceAddressType<sup>10+</sup>
 
@@ -510,7 +510,7 @@ WLAN配置信息。
 | bssid | string | 否 | 是 | 热点的BSSID，例如：00:11:22:33:44:55。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | bssidType<sup>10+</sup> | [DeviceAddressType](#deviceaddresstype10) | 否 | 是 | 热点的BSSID类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preSharedKey | string | 否 | 否 | 热点的密钥，最大长度为64字节。<br>当securityType为WIFI_SEC_TYPE_OPEN时该字段需为空串，其他加密类型不能为空串。<br>当securityType为WIFI_SEC_TYPE_WEP时，该字段长度只允许为5、10、13、26、16和32字节其中之一，并且当字段长度为偶数时，该字段必须为纯十六进制数字构成。<br>当securityType为WIFI_SEC_TYPE_SAE时，该字段最小长度为1字节。<br>当securityType为WIFI_SEC_TYPE_PSK时，该字段最小长度为8字节。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| isHiddenSsid | boolean | 否 | 是 | 是否是隐藏网络。true:是隐藏网络，false:不是隐藏网络。 |
+| isHiddenSsid | boolean | 否 | 是 | 是否是隐藏网络。true表示是隐藏网络，false表示不是隐藏网络。 |
 | securityType | [WifiSecurityType](#wifisecuritytype9)| 否 | 否 | 加密类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | eapConfig<sup>10+</sup> | [WifiEapConfig](#wifieapconfig10) | 否 | 是 | 可扩展身份验证协议配置。只有securityType为WIFI_SEC_TYPE_EAP时需要填写。 |
 | wapiConfig<sup>12+</sup> | [WifiWapiConfig](#wifiwapiconfig12) | 否 | 是 | WAPI身份验证协议配置。只有securityType为WIFI_SEC_TYPE_WAPI_CERT或WIFI_SEC_TYPE_WAPI_PSK时需要填写。 |
@@ -1378,8 +1378,8 @@ getLinkedInfoSync(): WifiLinkedInfo;
 | maxSupportedTxLinkSpeed<sup>10+</sup> | number | 否 | 否 | 当前支持的最大上行速率，单位Mbps。 |
 | maxSupportedRxLinkSpeed<sup>10+</sup> | number | 否 | 否 | 当前支持的最大下行速率，单位Mbps。 |
 | frequency | number | 否 | 否 | WLAN接入点的频率。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| isHidden | boolean | 否 | 否 | WLAN接入点是否是隐藏网络, true:是隐藏网络，false:不是隐藏网络。 |
-| isRestricted | boolean | 否 | 否 | WLAN接入点是否限制数据量，true: 限制，false:不限制。 |
+| isHidden | boolean | 否 | 否 | WLAN接入点是否是隐藏网络, true表示是隐藏网络，false表示不是隐藏网络。 |
+| isRestricted | boolean | 否 | 否 | WLAN接入点是否限制数据量，true表示限制，false表示不限制。 |
 | macType | number | 否 | 否 | MAC地址类型。0 - 随机MAC地址，1 - 设备MAC地址。 |
 | macAddress | string | 否 | 否 | 设备的MAC地址。 |
 | ipAddress | number | 否 | 否 | WLAN连接的IP地址。<br>1.IP地址在WiFi连接信息和"设置 > 关于本机 > 状态信息"中可以查看。<br>2.ipAddress值为number类型，需要转换为IP常用格式，具体请参考[IP格式转换](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs/faqs-connectivity-4)。|
