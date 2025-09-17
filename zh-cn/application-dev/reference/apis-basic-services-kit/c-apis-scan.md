@@ -12,7 +12,9 @@
 向应用提供使用CAPI访问扫描仪设备的能力。
 
 **起始版本：** 12
+
 **库：** libohscan.so
+
 **系统能力：** SystemCapability.Print.PrintFramework
 
 
@@ -126,23 +128,23 @@
 
 **起始版本：** 12
 
-| 枚举值 | 描述 | 值 |
-| -------- | -------- | -------- |
-| SCAN_ERROR_NONE | 成功。 | 0 |
-| SCAN_ERROR_NO_PERMISSION | 没有权限。 | 201 |
-| SCAN_ERROR_INVALID_PARAMETER | 无效的参数。 | 401 |
-| SCAN_ERROR_GENERIC_FAILURE | 一般的内部错误。 | 24300101 |
-| SCAN_ERROR_RPC_FAILURE | RPC通信错误。 | 24300102 |
-| SCAN_ERROR_SERVER_FAILURE | 服务端错误。 | 24300103 |
-| SCAN_ERROR_UNSUPPORTED | 不支持该操作。 | 24300104 |
-| SCAN_ERROR_CANCELED | 操作被取消。 | 24300105 |
-| SCAN_ERROR_DEVICE_BUSY | 设备忙碌。 | 24300106 |
-| SCAN_ERROR_INVALID | 无效操作。 | 24300107 |
-| SCAN_ERROR_JAMMED | 进纸器卡纸。 | 24300108 |
-| SCAN_ERROR_NO_DOCS | 没有纸。 | 24300109 |
-| SCAN_ERROR_COVER_OPEN | 扫描仪的盖子被打开。 | 24300110 |
-| SCAN_ERROR_IO_ERROR | 扫描仪IO过程中错误。 | 24300111 |
-| SCAN_ERROR_NO_MEMORY | 扫描仪没有内存。 | 24300112 |
+| 枚举项 | 描述 |
+| -- | -- |
+| SCAN_ERROR_NONE = 0 | 成功。 |
+| SCAN_ERROR_NO_PERMISSION = 201 | 没有权限。 |
+| SCAN_ERROR_INVALID_PARAMETER = 401 | 无效的参数。 |
+| SCAN_ERROR_GENERIC_FAILURE = 24300101 | 一般的内部错误。 |
+| SCAN_ERROR_RPC_FAILURE = 24300102 | RPC通信错误。 |
+| SCAN_ERROR_SERVER_FAILURE = 24300103 | 服务端错误。 |
+| SCAN_ERROR_UNSUPPORTED = 24300104 | 不支持该操作。 |
+| SCAN_ERROR_CANCELED = 24300105 | 操作被取消。 |
+| SCAN_ERROR_DEVICE_BUSY = 24300106 | 设备忙碌。 |
+| SCAN_ERROR_INVALID = 24300107 | 无效操作。 |
+| SCAN_ERROR_JAMMED = 24300108 | 进纸器卡纸。 |
+| SCAN_ERROR_NO_DOCS = 24300109 | 没有纸。 |
+| SCAN_ERROR_COVER_OPEN = 24300110 | 扫描仪的盖子被打开。 |
+| SCAN_ERROR_IO_ERROR = 24300111 | 扫描仪IO过程中错误。 |
+| SCAN_ERROR_NO_MEMORY = 24300112 | 扫描仪没有内存。 |
 
 
 ## 函数说明
@@ -164,7 +166,7 @@ int32_t OH_Scan_Init();
 
 **返回：**
 
-返回Scan_ERROR_NONE表示成功；
+返回SCAN_ERROR_NONE表示成功；
 
 返回SCAN_ERROR_NO_PERMISSION表示没有权限；
 
@@ -194,7 +196,7 @@ int32_t OH_Scan_StartScannerDiscovery(Scan_ScannerDiscoveryCallback callback);
 
 **返回：**
 
-返回Scan_ERROR_NONE表示成功；
+返回SCAN_ERROR_NONE表示成功；
 
 返回SCAN_ERROR_NO_PERMISSION表示没有权限；
 
@@ -224,7 +226,7 @@ int32_t OH_Scan_OpenScanner(const char* scannerId);
 
 **返回：**
 
-返回Scan_ERROR_NONE表示成功；
+返回SCAN_ERROR_NONE表示成功；
 
 返回SCAN_ERROR_NO_PERMISSION表示没有权限；
 
@@ -262,7 +264,7 @@ int32_t OH_Scan_CloseScanner(const char* scannerId);
 
 **返回：**
 
-返回Scan_ERROR_NONE表示成功；
+返回SCAN_ERROR_NONE表示成功；
 
 返回SCAN_ERROR_NO_PERMISSION表示没有权限；
 
@@ -295,7 +297,7 @@ Scan_ScannerOptions* OH_Scan_GetScannerParameter(const char* scannerId, int32_t*
 
 **返回：**
 
-返回Scan_ERROR_NONE表示成功；
+返回SCAN_ERROR_NONE表示成功；
 
 返回SCAN_ERROR_NO_PERMISSION表示没有权限；
 
@@ -329,7 +331,7 @@ int32_t OH_Scan_SetScannerParameter(const char* scannerId, const int32_t option,
 
 **返回：**
 
-返回Scan_ERROR_NONE表示成功；
+返回SCAN_ERROR_NONE表示成功；
 
 返回SCAN_ERROR_NO_PERMISSION表示没有权限；
 
@@ -362,7 +364,7 @@ int32_t OH_Scan_StartScan(const char* scannerId, bool batchMode);
 
 **返回：**
 
-返回Scan_ERROR_NONE表示成功；
+返回SCAN_ERROR_NONE表示成功；
 返回SCAN_ERROR_NO_PERMISSION表示没有权限；
 
 返回SCAN_ERROR_RPC_FAILURE表示RPC通信错误；
@@ -405,7 +407,7 @@ int32_t OH_Scan_CancelScan(const char* scannerId);
 
 **返回：**
 
-返回Scan_ERROR_NONE表示成功；
+返回SCAN_ERROR_NONE表示成功；
 
 返回SCAN_ERROR_NO_PERMISSION表示没有权限；
 
@@ -438,7 +440,7 @@ int32_t OH_Scan_GetPictureScanProgress(const char* scannerId, Scan_PictureScanPr
 
 **返回：**
 
-返回Scan_ERROR_NONE表示成功；
+返回SCAN_ERROR_NONE表示成功；
 
 返回SCAN_ERROR_NO_PERMISSION表示没有权限；
 
@@ -476,7 +478,7 @@ int32_t OH_Scan_Exit();
 
 **返回：**
 
-返回Scan_ERROR_NONE表示成功；
+返回SCAN_ERROR_NONE表示成功；
 
 返回SCAN_ERROR_NO_PERMISSION表示没有权限；
 

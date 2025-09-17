@@ -1,4 +1,10 @@
 # Using AudioCapturer for Audio Recording
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 The AudioCapturer is used to record Pulse Code Modulation (PCM) audio data. It is suitable if you have extensive audio development experience and want to implement more flexible recording features.
 
@@ -127,7 +133,7 @@ You can call **on('stateChange')** to listen for state changes of the AudioCaptu
     });
    ```
 
-### Sample Code
+### Complete Sample Code
 
 Refer to the sample code below to record audio using AudioCapturer.
 
@@ -160,22 +166,26 @@ let audioCapturerOptions: audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
 };
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let path = context.cacheDir;
-let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
-let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-let readDataCallback = (buffer: ArrayBuffer) => {
-   let options: Options = {
+let file: fs.File;
+let readDataCallback: Callback<ArrayBuffer>;
+
+async function initArguments(context: common.UIAbilityContext) {
+  let path = context.cacheDir;
+  // Ensure that the resource exists in the sandbox path.
+  let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
+  file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  readDataCallback = (buffer: ArrayBuffer) => {
+    let options: Options = {
       offset: bufferSize,
       length: buffer.byteLength
-   }
-   fs.writeSync(file.fd, buffer, options);
-   bufferSize += buffer.byteLength;
-};
+    }
+    fs.writeSync(file.fd, buffer, options);
+    bufferSize += buffer.byteLength;
+  };
+}
 
 // Create an AudioCapturer instance, and set the events to listen for.
-function init() {
+async function init() {
   audio.createAudioCapturer(audioCapturerOptions, (err, capturer) => { // Create an AudioCapturer instance.
     if (err) {
       console.error(`Invoke createAudioCapturer failed, code is ${err.code}, message is ${err.message}`);
@@ -184,22 +194,22 @@ function init() {
     console.info(`${TAG}: create AudioCapturer success`);
     audioCapturer = capturer;
     if (audioCapturer !== undefined) {
-       (audioCapturer as audio.AudioCapturer).on('readData', readDataCallback);
+      audioCapturer.on('readData', readDataCallback);
     }
   });
 }
 
 // Start audio recording.
-function start() {
+async function start() {
   if (audioCapturer !== undefined) {
     let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
-    if (stateGroup.indexOf((audioCapturer as audio.AudioCapturer).state.valueOf()) === -1) { // Recording can be started only when the AudioCapturer is in the STATE_PREPARED, STATE_PAUSED, or STATE_STOPPED state.
+    if (stateGroup.indexOf(audioCapturer.state.valueOf()) === -1) { // Recording can be started only when the AudioCapturer is in the STATE_PREPARED, STATE_PAUSED, or STATE_STOPPED state.
       console.error(`${TAG}: start failed`);
       return;
     }
 
     // Start recording.
-    (audioCapturer as audio.AudioCapturer).start((err: BusinessError) => {
+    audioCapturer.start((err: BusinessError) => {
       if (err) {
         console.error('Capturer start failed.');
       } else {
@@ -210,16 +220,16 @@ function start() {
 }
 
 // Stop recording.
-function stop() {
+async function stop() {
   if (audioCapturer !== undefined) {
     // The AudioCapturer can be stopped only when it is in the STATE_RUNNING or STATE_PAUSED state.
-    if ((audioCapturer as audio.AudioCapturer).state.valueOf() !== audio.AudioState.STATE_RUNNING && (audioCapturer as audio.AudioCapturer).state.valueOf() !== audio.AudioState.STATE_PAUSED) {
+    if (audioCapturer.state.valueOf() !== audio.AudioState.STATE_RUNNING && audioCapturer.state.valueOf() !== audio.AudioState.STATE_PAUSED) {
       console.info('Capturer is not running or paused');
       return;
     }
 
     // Stop recording.
-    (audioCapturer as audio.AudioCapturer).stop((err: BusinessError) => {
+    audioCapturer.stop((err: BusinessError) => {
       if (err) {
         console.error('Capturer stop failed.');
       } else {
@@ -231,22 +241,91 @@ function stop() {
 }
 
 // Release the instance.
-function release() {
+async function release() {
   if (audioCapturer !== undefined) {
     // The AudioCapturer can be released only when it is not in the STATE_RELEASED or STATE_NEW state.
-    if ((audioCapturer as audio.AudioCapturer).state.valueOf() === audio.AudioState.STATE_RELEASED || (audioCapturer as audio.AudioCapturer).state.valueOf() === audio.AudioState.STATE_NEW) {
+    if (audioCapturer.state.valueOf() === audio.AudioState.STATE_RELEASED || audioCapturer.state.valueOf() === audio.AudioState.STATE_NEW) {
       console.info('Capturer already released');
       return;
     }
 
     // Release the resources.
-    (audioCapturer as audio.AudioCapturer).release((err: BusinessError) => {
+    audioCapturer.release((err: BusinessError) => {
       if (err) {
         console.error('Capturer release failed.');
       } else {
         console.info('Capturer release success.');
       }
     });
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Scroll() {
+      Column() {
+        Row() {
+          Column() {
+            Text('Initialize').fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+          }
+          .backgroundColor(Color.White)
+          .borderRadius(30)
+          .width('45%')
+          .height('25%')
+          .margin({ right: 12, bottom: 12 })
+          .onClick(async () => {
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+            initArguments(context);
+            init();
+          });
+
+          Column() {
+            Text('Start recording').fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+          }
+          .backgroundColor(Color.White)
+          .borderRadius(30)
+          .width('45%')
+          .height('25%')
+          .margin({ bottom: 12 })
+          .onClick(async () => {
+            start();
+          });
+        }
+
+        Row() {
+          Column() {
+            Text('Stop recording').fontSize(16).margin({ top: 12 });
+          }
+          .id('audio_effect_manager_card')
+          .backgroundColor(Color.White)
+          .borderRadius(30)
+          .width('45%')
+          .height('25%')
+          .margin({ right: 12, bottom: 12 })
+          .onClick(async () => {
+            stop();
+          });
+
+          Column() {
+            Text('Release resources').fontColor(Color.Black).fontSize(16).margin({ top: 12 });
+          }
+          .backgroundColor(Color.White)
+          .borderRadius(30)
+          .width('45%')
+          .height('25%')
+          .margin({ bottom: 12 })
+          .onClick(async () => {
+            release();
+          });
+        }
+        .padding(12)
+      }
+      .height('100%')
+      .width('100%')
+      .backgroundColor('#F1F3F5');
+    }
   }
 }
 ```

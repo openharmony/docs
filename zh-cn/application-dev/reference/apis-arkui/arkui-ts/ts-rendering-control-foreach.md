@@ -12,7 +12,7 @@ ForEach接口基于数组类型数据来进行循环渲染。
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-开发者指南见：[ForEach开发者指南](../../../ui/state-management/arkts-rendering-control-foreach.md)。
+开发者指南见：[ForEach开发者指南](../../../ui/rendering-control/arkts-rendering-control-foreach.md)。
 
 ## 接口
 
@@ -52,3 +52,7 @@ arr: Array<Type1 | Type2> = [];
 
 ForEach(this.arr, (item: Type1 | Type2) => {...}, (item: Type1 | Type2) => item.toString()) // item类型和数据项类型保持一致
 ```
+
+## 属性
+
+支持[拖拽排序](./ts-universal-attributes-drag-sorting.md)属性。

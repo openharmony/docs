@@ -40,7 +40,7 @@ getDistributedAccountAbility(): DistributedAccountAbility
 
 ## DistributedAccountAbility
 
-提供查询和更新分布式账号登录状态方法(需要先获取分布式账号的单实例对象)。
+提供查询和更新分布式账号登录状态方法（需要先获取分布式账号的单实例对象）。
 
 ### getOsAccountDistributedInfo<sup>9+</sup>
 
@@ -391,7 +391,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 
 表示分布式账号状态枚举。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称  | 值 | 说明        |
 | ---- | ------ | ----------- |

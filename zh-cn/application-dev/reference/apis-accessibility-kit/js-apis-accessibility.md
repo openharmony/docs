@@ -865,6 +865,9 @@ try {
 }
 ```
 
+<!--RP1-->
+<!--RP1End-->
+
 ## accessibility.getCaptionsManager<sup>(deprecated)</sup>
 
 getCaptionsManager(): CaptionsManager
@@ -926,6 +929,9 @@ accessibility.on('accessibilityStateChange', (data: boolean) => {
   console.info(`subscribe accessibility state change, result: ${JSON.stringify(data)}`);
 });
 ```
+
+<!--RP2-->
+<!--RP2End-->
 
 ## accessibility.on('touchGuideStateChange')
 
@@ -1272,10 +1278,11 @@ isOpenAccessibilitySync(): boolean
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **返回值：**
-
+<!--RP3-->
 | 类型        | 说明                                  |
 | ----------- | ------------------------------------- |
-| boolean | 表示当前系统内是否有辅助应用开启。true表示启用了一个或多个辅助应用，false表示未启用任何辅助应用。 |
+| boolean | 表示当前系统内是否有辅助应用开启。true表示启用了一个或多个辅助应用，false表示未启用任何辅助应用。|
+<!--RP3End-->
 
 **示例：**
 
@@ -1425,7 +1432,7 @@ sendEvent(event: EventInfo): Promise&lt;void&gt;
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **示例：**
 
@@ -1505,7 +1512,7 @@ sendAccessibilityEvent(event: EventInfo): Promise&lt;void&gt;
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 

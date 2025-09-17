@@ -286,7 +286,7 @@ string资源配置attr属性示例如下，其中string1字符串被标记为不
 
 ### 单HAP包应用资源
 
- - 通过`$r`或`$rawfile`访问资源。<br/>对于color、float、string、plural、media、profile等类型的资源，通过`$r('app.type.name')`形式访问。其中，app为resources目录中定义的资源，type为资源类型，name为资源名，由开发者定义资源时确定。<br/>对于string.json中使用多个占位符的情况，例如资源值value中存在`$s`和`$d`两个占位符，需要通过`$r('app.string.label', 'aaa', 444)`形式访问。其中label为资源名称name，'aaa'和444用来替代占位符。<br/>对于rawfile目录资源，通过`$rawfile('filename')`形式访问。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以"/"开头。
+ - 通过`$r`或`$rawfile`访问资源。<br/>对于color、float、string、plural、media、profile等类型的资源，通过`$r('app.type.name')`形式访问。其中，app为resources目录中定义的资源，type为资源类型，name为资源名，由开发者定义资源时确定。<br/>对于string.json中使用多个占位符的情况，例如资源值value中存在`%1$s`和`%2$d`两个占位符，需要通过`$r('app.string.label', 'aaa', 444)`形式访问。其中label为资源名称name，'aaa'和444用来替代占位符。<br/>对于rawfile目录资源，通过`$rawfile('filename')`形式访问。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以"/"开头。
 
    > **说明：**
    >
@@ -315,8 +315,12 @@ string资源配置attr属性示例如下，其中string1字符串被标记为不
     .width(300)
 
     // 对于string.json中name为"message_notification"，value为"Hello, %1$s!,You have %2$d new messages."
-    // 该资源存在$s、$d两个占位符，需要替代为'LiHua'、2，则采用如下方式访问
+    // 该资源存在%1$s、%2$d两个占位符，需要替代为'LiHua'、2，则采用如下方式访问
     Text($r('app.string.message_notification', 'LiHua', 2))
+    // 对于plural.json中name为"eat_apple"，单数的value为"%d apple"，复数的value为"%d apples"
+    // 访问plural.json资源，第一个参数控制字符串显示单数形式或复数形式，传递1表示单数，大于1表示复数，且在中文环境下始终为复数
+    // 该资源存在%d一个占位符，需要替代为2，则采用如下方式访问
+    Text($r('app.plural.eat_apple', 2, 2))
   ```
 
 - 通过本应用上下文获取ResourceManager后，可调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)通过资源ID值或资源名称访问各类资源。例如：<br/>`getContext().resourceManager.getStringByNameSync('test')`可获取字符串资源。<br/>`getContext().resourceManager.getRawFd('rawfilepath')`可获取Rawfile所在hap包的descriptor信息，访问rawfile文件时需{fd, offset, length}一起使用。
@@ -339,15 +343,7 @@ string资源配置attr属性示例如下，其中string1字符串被标记为不
 
   ![Alt text](figures/add_dependencies.png)
 
-  2.使用字面量`[hsp].type.name`获取资源。其中，hsp为hsp模块名，type为资源类型，name为资源名称，示例如下：
-  
-    ```ts
-      Text($r('[hsp].string.test_string'))
-        .fontSize($r('[hsp].float.font_size'))
-        .fontColor($r('[hsp].color.font_color'))  
-      Image($rawfile('[hsp].icon.png'))
-    ```
-  3.使用变量获取资源。示例如下：
+  2.使用字面量`[模块名].type.name`或变量获取资源。其中，模块名为hsp模块的名称，type为资源类型，name为资源名称，示例如下：
 
    ```ts
     @Entry
@@ -361,6 +357,13 @@ string资源配置attr属性示例如下，其中string1字符串被标记为不
   
       build() {
         Row() {
+          // 使用字面量[模块名].type.name获取资源
+          Text($r('[hsp].string.test_string'))
+            .fontSize($r('[hsp].float.font_size'))
+            .fontColor($r('[hsp].color.font_color'))  
+          Image($rawfile('[hsp].icon.png'))
+
+          // 使用变量获取资源
           Text($r(this.text))
             .fontSize($r(this.fontSize))
             .fontColor($r(this.fontColor))
@@ -374,7 +377,7 @@ string资源配置attr属性示例如下，其中string1字符串被标记为不
    ```
   > **说明** 
   >
-  > hsp包名必须写在[]内，rawfile下有多层目录，需要从rawfile下面第一个目录开始写，如`$rawfile('[hsp].oneFile/twoFile/icon.png')`，使用`$r`和`$rawfile`跨包访问HSP包资源无法提供编译时的资源校验，需要开发者自行保证使用资源存在于对应包中。
+  > hsp包名必须写在[]内，rawfile下有多层目录，需要从rawfile下面第一个目录开始写，如`$rawfile('[hsp].oneDir/twoDir/icon.png')`，使用`$r`和`$rawfile`跨包访问HSP包资源无法提供编译时的资源校验，需要开发者自行保证使用资源存在于对应包中。
 
 
 ### 系统资源

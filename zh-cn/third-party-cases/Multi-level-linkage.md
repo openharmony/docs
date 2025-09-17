@@ -201,4 +201,4 @@
 ## 参考
 [自定义弹窗](../application-dev/reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)
 
-[循环渲染](../application-dev/ui/state-management/arkts-rendering-control-foreach.md)
+[循环渲染](../application-dev/ui/rendering-control/arkts-rendering-control-foreach.md)

@@ -31,7 +31,7 @@
 |字段名称|说明|安装一致性校验规则|更新一致性校验规则|
 |--|--|--|--|
 |bundleName|标识应用名称。该字段来源于[app.json5配置文件](./app-configuration-file.md)中的bundleName字段。|是|是|
-|versionCode|标识应用版本号。该字段来源于[app.json5配置文件](./app-configuration-file.md)中的versionCode字段。从API version 18开始，HAP的版本号须大于等于HSP版本号。API version 17及之前版本，HSP的版本号必须与HAP版本号一致。|是|是|
+|versionCode|标识应用版本号。该字段来源于[app.json5配置文件](./app-configuration-file.md)中的versionCode字段。|是|是|
 |apiReleaseType|标识应用运行需要的API目标版本的类型。设备中未安装该应用，该应用包含多个模块包，模块一个一个安装时，不检验一致性。该字段来源于[app.json5配置文件](./app-configuration-file.md)中的apiReleaseType字段。|否|是|
 |<!--DelRow--> singleton|标识应用是否安装在0用户下。|否|是|
 |<!--DelRow--> appType|标识应用是三方应用或系统应用。|是|是|

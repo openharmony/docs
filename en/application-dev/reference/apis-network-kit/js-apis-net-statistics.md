@@ -14,7 +14,7 @@ import { statistics } from '@kit.NetworkKit';
 
 ## statistics.getIfaceRxBytes<sup>10+</sup>
 
-getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;
+getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void
 
 Obtains the real-time downlink data traffic of the specified NIC. This API uses an asynchronous callback to return the result.
 
@@ -29,7 +29,7 @@ Obtains the real-time downlink data traffic of the specified NIC. This API uses 
 
 **Error codes**
 
-For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
+For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
@@ -47,14 +47,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getIfaceRxBytes("wlan0", (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
 
 ## statistics.getIfaceRxBytes<sup>10+</sup>
 
-getIfaceRxBytes(nic: string): Promise\<number>;
+getIfaceRxBytes(nic: string): Promise\<number>
 
 Obtains the real-time downlink data traffic of the specified NIC. This API uses a promise to return the result.
 
@@ -73,7 +73,7 @@ Obtains the real-time downlink data traffic of the specified NIC. This API uses 
 
 **Error codes**
 
-For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
+For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
@@ -96,7 +96,7 @@ statistics.getIfaceRxBytes("wlan0").then((stats: number) => {
 
 ## statistics.getIfaceTxBytes<sup>10+</sup>
 
-getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;
+getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void
 
 Obtains the real-time uplink data traffic of the specified NIC. This API uses an asynchronous callback to return the result.
 
@@ -111,7 +111,7 @@ Obtains the real-time uplink data traffic of the specified NIC. This API uses an
 
 **Error codes**
 
-For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
+For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
@@ -129,14 +129,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getIfaceTxBytes("wlan0", (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
 
 ## statistics.getIfaceTxBytes<sup>10+</sup>
 
-getIfaceTxBytes(nic: string): Promise\<number>;
+getIfaceTxBytes(nic: string): Promise\<number>
 
 Obtains the real-time uplink data traffic of the specified NIC. This API uses a promise to return the result.
 
@@ -155,7 +155,7 @@ Obtains the real-time uplink data traffic of the specified NIC. This API uses a 
 
 **Error codes**
 
-For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
+For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
@@ -178,7 +178,7 @@ statistics.getIfaceTxBytes("wlan0").then((stats: number) => {
 
 ## statistics.getCellularRxBytes<sup>10+</sup>
 
-getCellularRxBytes(callback: AsyncCallback\<number>): void;
+getCellularRxBytes(callback: AsyncCallback\<number>): void
 
 Obtains the real-time downlink data traffic of a cellular network. This API uses an asynchronous callback to return the result.
 
@@ -209,14 +209,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getCellularRxBytes((error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
 
 ## statistics.getCellularRxBytes<sup>10+</sup>
 
-getCellularRxBytes(): Promise\<number>;
+getCellularRxBytes(): Promise\<number>
 
 Obtains the real-time downlink data traffic of a cellular network. This API uses a promise to return the result.
 
@@ -251,7 +251,7 @@ statistics.getCellularRxBytes().then((stats: number) => {
 
 ## statistics.getCellularTxBytes<sup>10+</sup>
 
-getCellularTxBytes(callback: AsyncCallback\<number>): void;
+getCellularTxBytes(callback: AsyncCallback\<number>): void
 
 Obtains the real-time uplink data traffic of a cellular network. This API uses an asynchronous callback to return the result.
 
@@ -282,14 +282,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getCellularTxBytes((error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
 
 ## statistics.getCellularTxBytes<sup>10+</sup>
 
-getCellularTxBytes(): Promise\<number>;
+getCellularTxBytes(): Promise\<number>
 
 Obtains the real-time uplink data traffic of a cellular network. This API uses a promise to return the result.
 
@@ -324,9 +324,11 @@ statistics.getCellularTxBytes().then((stats: number) => {
 
 ## statistics.getAllRxBytes<sup>10+</sup>
 
-getAllRxBytes(callback: AsyncCallback\<number>): void;
+getAllRxBytes(callback: AsyncCallback\<number>): void
 
 Obtains the real-time downlink data traffic of all NICs. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -354,16 +356,18 @@ import { statistics } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 statistics.getAllRxBytes((error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
 
 ## statistics.getAllRxBytes<sup>10+</sup>
 
-getAllRxBytes(): Promise\<number>;
+getAllRxBytes(): Promise\<number>
 
 Obtains the real-time downlink data traffic of all NICs. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -395,9 +399,11 @@ statistics.getAllRxBytes().then((stats: number) => {
 
 ## statistics.getAllTxBytes<sup>10+</sup>
 
-getAllTxBytes(callback: AsyncCallback\<number>): void;
+getAllTxBytes(callback: AsyncCallback\<number>): void
 
 Obtains the real-time uplink data traffic of all NICs. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -425,16 +431,18 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getAllTxBytes((error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
 
 ## statistics.getAllTxBytes<sup>10+</sup>
 
-getAllTxBytes(): Promise\<number>;
+getAllTxBytes(): Promise\<number>
 
 Obtains the real-time uplink data traffic of all NICs. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -466,7 +474,7 @@ statistics.getAllTxBytes().then((stats: number) => {
 
 ## statistics.getUidRxBytes<sup>10+</sup>
 
-getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;
+getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void
 
 Obtains the real-time downlink data traffic of the specified application. This API uses an asynchronous callback to return the result.
 
@@ -481,7 +489,7 @@ Obtains the real-time downlink data traffic of the specified application. This A
 
 **Error codes**
 
-For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
+For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
@@ -498,14 +506,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getUidRxBytes(20010038, (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
 
 ## statistics.getUidRxBytes<sup>10+</sup>
 
-getUidRxBytes(uid: number): Promise\<number>;
+getUidRxBytes(uid: number): Promise\<number>
 
 Obtains the real-time downlink data traffic of the specified application. This API uses a promise to return the result.
 
@@ -524,7 +532,7 @@ Obtains the real-time downlink data traffic of the specified application. This A
 
 **Error codes**
 
-For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
+For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
@@ -546,7 +554,7 @@ statistics.getUidRxBytes(20010038).then((stats: number) => {
 
 ## statistics.getUidTxBytes<sup>10+</sup>
 
-getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;
+getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void
 
 Obtains the real-time uplink data traffic of the specified application. This API uses an asynchronous callback to return the result.
 
@@ -561,7 +569,7 @@ Obtains the real-time uplink data traffic of the specified application. This API
 
 **Error codes**
 
-For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
+For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
@@ -578,14 +586,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getUidTxBytes(20010038, (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
 
 ## statistics.getUidTxBytes<sup>10+</sup>
 
-getUidTxBytes(uid: number): Promise\<number>;
+getUidTxBytes(uid: number): Promise\<number>
 
 Obtains the real-time uplink data traffic of the specified application. This API uses a promise to return the result.
 
@@ -604,7 +612,7 @@ Obtains the real-time uplink data traffic of the specified application. This API
 
 **Error codes**
 
-For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
+For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
@@ -627,7 +635,7 @@ statistics.getUidTxBytes(20010038).then((stats: number) => {
 
 ## statistics.getSockfdRxBytes<sup>11+</sup>
 
-getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
+getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number\>): void
 
 Obtains the downlink data traffic (in bytes) of the specified socket. This API uses an asynchronous callback to return the result.
 
@@ -642,7 +650,7 @@ Obtains the downlink data traffic (in bytes) of the specified socket. This API u
 
 **Error codes**
 
-For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
+For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
@@ -659,14 +667,14 @@ import { statistics } from '@kit.NetworkKit';
 
 let sockfd = 50; // FD of the socket you created.
 statistics.getSockfdRxBytes(sockfd, (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
 
 ## statistics.getSockfdRxBytes<sup>11+</sup>
 
-getSockfdRxBytes(sockfd: number): Promise\<number\>;
+getSockfdRxBytes(sockfd: number): Promise\<number\>
 
 Obtains the downlink data traffic (in bytes) of the specified socket. This API uses a promise to return the result.
 
@@ -686,7 +694,7 @@ Obtains the downlink data traffic (in bytes) of the specified socket. This API u
 
 **Error codes**
 
-For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
+For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
@@ -711,7 +719,7 @@ statistics.getSockfdRxBytes(sockfd).then((stats: number) => {
 
 ## statistics.getSockfdTxBytes<sup>11+</sup>
 
-getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
+getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number\>): void
 
 Obtains the uplink data traffic (in bytes) of the specified socket. This API uses an asynchronous callback to return the result.
 
@@ -726,7 +734,7 @@ Obtains the uplink data traffic (in bytes) of the specified socket. This API use
 
 **Error codes**
 
-For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
+For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
@@ -743,14 +751,14 @@ import { statistics } from '@kit.NetworkKit';
 
 let sockfd = 50; // FD of the socket you created.
 statistics.getSockfdTxBytes(sockfd, (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
 
 ## statistics.getSockfdTxBytes<sup>11+</sup>
 
-getSockfdTxBytes(sockfd: number): Promise\<number\>;
+getSockfdTxBytes(sockfd: number): Promise\<number\>
 
 Obtains the uplink data traffic (in bytes) of the specified socket. This API uses a promise to return the result.
 
@@ -770,7 +778,7 @@ Obtains the uplink data traffic (in bytes) of the specified socket. This API use
 
 **Error codes**
 
-For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md).
+For details about the error codes, see [Traffic Management Error Codes](errorcode-net-statistics.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
@@ -799,7 +807,7 @@ type NetBearType = connection.NetBearType
 
 Enumerates network types.
 
-**System capability**: SystemCapability.Communication.NetManager
+**System capability**: SystemCapability.Communication.NetManager.Core
 
 |       Type      |            Description            |
 | ---------------- | --------------------------- |

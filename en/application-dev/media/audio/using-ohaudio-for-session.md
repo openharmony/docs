@@ -1,4 +1,10 @@
 # Using AudioSession to Manage Audio Focus (C/C++)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 In the scenario where multiple audio streams are concurrently playing, the system has preset a [default audio focus strategy](audio-playback-concurrency.md#audio-focus-strategy) for unified audio focus management of all streams (including playback and recording).
 
@@ -55,7 +61,7 @@ Call [OH_AudioSessionManager_IsAudioSessionActivated](../../reference/apis-audio
 
 ## Deactivating an Audio Session
 
-Call [OH_AudioSessionManager_DeactivateAudioSession](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md#oh_audiosessionmanager_deactivateaudiosession) to activate an audio session.
+Call [OH_AudioSessionManager_DeactivateAudioSession](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md#oh_audiosessionmanager_deactivateaudiosession) to deactivate an audio session.
 
   ```cpp
   OH_AudioSessionManager_DeactivateAudioSession(audioSessionManager);
@@ -101,7 +107,7 @@ Call [OH_AudioSessionManager_UnregisterSessionDeactivatedCallback](../../referen
 OH_AudioSessionManager_UnregisterSessionDeactivatedCallback(audioSessionManager, MyAudioSessionDeactivatedCallback);
 ```
 
-## Sample Code
+**Below is a comprehensive example of creating, activating, and listening for an audio session:**
 
 Refer to the sample code below to complete the process of creating, activating, and listening of an audio session.
 
@@ -144,4 +150,74 @@ Refer to the sample code below to complete the process of creating, activating, 
   
   // Deactivate the audio session.
   OH_AudioCommon_Result resultDeactivate = OH_AudioSessionManager_DeactivateAudioSession(audioSessionManager);
+  ```
+## Requesting Focus by Setting Audio Session Scene Parameters
+The application requests focus using an audio session. Call [OH_AudioSessionManager_SetScene](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md#oh_audiosessionmanager_setscene) to set the scene parameters, and then call [OH_AudioSessionManager_ActivateAudioSession](../../reference/apis-audio-kit/capi-native-audio-session-manager-h.md#oh_audiosessionmanager_activateaudiosession) to activate the audio session.
+
+  ```cpp
+
+  OH_AudioSessionManager_SetScene(audioSessionManager, AUDIO_SESSION_SCENE_MEDIA);
+
+  OH_AudioSession_Strategy strategy = {CONCURRENCY_MIX_WITH_OTHERS};
+
+  OH_AudioSessionManager_ActivateAudioSession(audioSessionManager, &strategy);
+  ```
+
+## Listening for Audio Session Focus State Change events
+Listen for audio session focus state changes through [OH_AudioSession_StateChangedEvent](../../reference/apis-audio-kit/capi-ohaudio-oh-audiosession-statechangedevent.md).
+
+**Below is a comprehensive example of requesting focus for an audio session and listening for focus change events:**
+
+  ```cpp
+
+OH_AudioSessionManager *audioSessionManager;
+
+// Create an OH_AudioSessionManager instance.
+OH_AudioCommon_Result resultManager = OH_AudioManager_GetAudioSessionManager(&audioSessionManager);
+
+void AudioSessionStateChangedCallback(OH_AudioSession_StateChangedEvent event)
+  {
+    switch(event.stateChangeHint) {
+      case AUDIO_SESSION_STATE_CHANGE_HINT_PAUSE:
+        // The system has paused the audio stream (focus is temporarily lost). To ensure state consistency, the application needs to switch to the audio paused state.
+        // Temporarily losing focus: When other audio streams release focus, the application will receive a resume event and can resume playback.
+        break;
+      case AUDIO_SESSION_STATE_CHANGE_HINT_RESUME:
+        // The system has resumed the audio session.
+        break;
+      case AUDIO_SESSION_STATE_CHANGE_HINT_STOP:
+        // The system has stopped the audio stream (focus is permanently lost). To ensure state consistency, the application should switch to the audio paused state.
+        // Permanently losing focus: No audio focus event will be received. The user must manually trigger the operation to resume playback.
+        break;
+      case AUDIO_SESSION_STATE_CHANGE_HINT_TIME_OUT_STOP:
+        // The system has stopped the audio session (permanently losing focus) due to inactivity. The application should switch to the audio paused state.
+        // Permanently losing focus: No audio focus event will be received. The user must manually trigger the operation to resume playback.
+        break;
+      case AUDIO_SESSION_STATE_CHANGE_HINT_DUCK:
+        // The system has ducked the volume down (to 20% of the normal volume by default).
+        break;
+      case AUDIO_SESSION_STATE_CHANGE_HINT_UNDUCK:
+        // The system has restored the audio volume to normal.
+        break;
+      default:
+        break;
+      }
+  }
+
+  OH_AudioCommon_Result result = OH_AudioSessionManager_RegisterStateChangeCallback(audioSessionManager, AudioSessionStateChangedCallback);
+
+  // In this example, AUDIO_SESSION_SCENE_MEDIA is selected. You can change the session scene as needed.
+  OH_AudioSessionManager_SetScene(audioSessionManager, AUDIO_SESSION_SCENE_MEDIA);
+
+  // In this example, CONCURRENCY_MIX_WITH_OTHERS is selected. You can change the strategy as needed.
+  OH_AudioSession_Strategy strategy = {CONCURRENCY_MIX_WITH_OTHERS};
+
+  result = OH_AudioSessionManager_ActivateAudioSession(audioSessionManager, &strategy);
+
+  // Start multiple audio renderers or other audio playback as needed.
+
+  result = OH_AudioSessionManager_DeactivateAudioSession(audioSessionManager);
+
+  result = OH_AudioSessionManager_UnregisterStateChangeCallback(audioSessionManager, AudioSessionStateChangedCallback);
+
   ```

@@ -7,7 +7,7 @@
 <!--Adviser: @huipeizi-->
 
 
-  | FA模型接口 | Stage模型接口对应d.ts文件 | Stage模型对应接口 | 
+  | [FA模型](ability-terminology.md#fa模型)接口 | [Stage模型](ability-terminology.md#stage模型)接口对应d.ts文件 | Stage模型对应接口 | 
 | -------- | -------- | -------- |
 | [openFile(uri:&nbsp;string,&nbsp;mode:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):&nbsp;void;](../reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperopenfile)<br/>[openFile(uri:&nbsp;string,&nbsp;mode:&nbsp;string):&nbsp;Promise&lt;number&gt;;](../reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperopenfile-1) | \@ohos.data.fileAccess.d.ts | [openFile(uri:&nbsp;string,&nbsp;flags:&nbsp;OPENFLAGS)&nbsp;:&nbsp;Promise&lt;number&gt;;](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#openfile)<br/>[openFile(uri:&nbsp;string,&nbsp;flags:&nbsp;OPENFLAGS,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;)&nbsp;:&nbsp;void;](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md#openfile-1) |
 | [on(type:&nbsp;'dataChange',&nbsp;uri:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;](../reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperondatachange) | \@ohos.data.dataShare.d.ts | [on(type:&nbsp;'dataChange',&nbsp;uri:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#ondatachange) |

@@ -30,7 +30,7 @@ import { image } from '@kit.ImageKit';
 
 getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 
-获取指定序号的图片信息，使用callback形式返回图片信息。
+获取指定序号的图片信息。使用callback异步回调。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -65,7 +65,7 @@ async function GetImageInfo(imageSourceObj : image.ImageSource) {
 
 getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
-获取图片信息，使用callback形式返回图片信息。
+获取图片信息。使用callback异步回调。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -99,7 +99,7 @@ async function GetImageInfo(imageSourceObj : image.ImageSource) {
 
 getImageInfo(index?: number): Promise\<ImageInfo>
 
-获取图片信息，使用Promise形式返回图片信息。
+获取图片信息。使用Promise异步回调。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -176,7 +176,9 @@ function GetImageInfoSync(context : Context) {
 
 getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<string>
 
-获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+获取图片中给定索引处图像的指定属性键的值。用Promise异步回调。
+
+该接口仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -232,7 +234,9 @@ async function GetImageProperty(imageSourceObj : image.ImageSource) {
 
 getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey, string|null>>
 
-批量获取图片中的指定属性键的值，用Promise形式返回结果。仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+批量获取图片中的指定属性键的值。使用Promise异步回调。
+
+该接口仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -332,7 +336,9 @@ function GetImagePropertySync(context : Context) {
 
 modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 
-通过指定的键修改图片属性的值，使用Promise形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+通过指定的键修改图片属性的值。使用Promise异步回调。
+
+该接口仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -387,7 +393,9 @@ async function ModifyImageProperty(imageSourceObj : image.ImageSource) {
 
 modifyImageProperties(records: Record<PropertyKey, string|null>): Promise\<void>
 
-批量通过指定的键修改图片属性的值，使用Promise形式返回结果。仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+批量通过指定的键修改图片属性的值。使用Promise异步回调。
+
+该接口仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -445,7 +453,7 @@ async function ModifyImageProperties(imageSourceObj : image.ImageSource) {
 
 updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number): Promise\<void>
 
-更新增量数据，使用Promise形式返回结果。
+更新增量数据。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -484,7 +492,7 @@ async function UpdateDatay(imageSourceObj : image.ImageSource) {
 
 updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number, callback: AsyncCallback\<void>): void
 
-更新增量数据，callback形式返回结果。
+更新增量数据。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -519,7 +527,7 @@ async function UpdateDatay(imageSourceObj : image.ImageSource) {
 
 createPicture(options?: DecodingOptionsForPicture): Promise\<Picture>
 
-通过图片解码参数创建Picture对象,使用Promise形式返回。
+通过图片解码参数创建Picture对象。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -652,7 +660,7 @@ async function CreatePixelMap(imageSourceObj : image.ImageSource) {
 
 createPixelMap(callback: AsyncCallback\<PixelMap>): void
 
-通过默认参数创建PixelMap对象，使用callback形式返回结果。
+通过默认参数创建PixelMap对象。使用callback异步回调。
 
 从API version 15开始，推荐使用[createPixelMapUsingAllocator](#createpixelmapusingallocator15)，该接口可以指定输出pixelMap的内存类型[AllocatorType](arkts-apis-image-e.md#allocatortype15)，详情请参考[申请图片解码内存(ArkTS)](../../media/image/image-allocator-type.md)。
 
@@ -850,7 +858,9 @@ async function CreatePixelMapList(imageSourceObj : image.ImageSource) {
 
 createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
-通过默认参数创建PixelMap数组，使用callback形式返回结果。针对动图如Gif、Webp，此接口返回每帧图片数据；针对静态图，此接口返回唯一的一帧图片数据。
+通过默认参数创建PixelMap数组。使用callback异步回调。
+
+该接口针对动图如Gif、Webp，此接口返回每帧图片数据；针对静态图，此接口返回唯一的一帧图片数据。
 
 > **注意：**
 > 此接口会一次性解码全部帧，当帧数过多或单帧图像过大时，会占用较大内存，造成系统内存紧张，此种情况推荐使用Image组件显示动图，Image组件采用逐帧解码，占用内存比此接口少。
@@ -903,7 +913,9 @@ async function CreatePixelMapList(imageSourceObj : image.ImageSource) {
 
 createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<PixelMap>>): void
 
-通过图片解码参数创建PixelMap数组，使用callback形式返回结果。针对动图如Gif、Webp，此接口返回每帧图片数据；针对静态图，此接口返回唯一的一帧图片数据。
+通过图片解码参数创建PixelMap数组。使用callback异步回调。
+
+该接口针对动图如Gif、Webp，此接口返回每帧图片数据；针对静态图，此接口返回唯一的一帧图片数据。
 
 > **注意：**
 > 此接口会一次性解码全部帧，当帧数过多或单帧图像过大时，会占用较大内存，造成系统内存紧张，此种情况推荐使用Image组件显示动图，Image组件采用逐帧解码，占用内存比此接口少。
@@ -1089,7 +1101,7 @@ async function CreatePixelMapUsingAllocator(context : Context) {
 
 getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
-获取图像延迟时间数组，使用callback形式返回结果。此接口仅用于gif图片和webp图片。
+获取图像延迟时间数组。使用callback异步回调。此接口仅用于gif图片和webp图片。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1134,7 +1146,7 @@ async function GetDelayTimeList(imageSourceObj : image.ImageSource) {
 
 getDelayTimeList(): Promise<Array\<number>>
 
-获取图像延迟时间数组，使用Promise形式返回结果。此接口仅用于gif图片和webp图片。
+获取图像延迟时间数组。使用Promise异步回调。此接口仅用于gif图片和webp图片。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1177,7 +1189,7 @@ async function GetDelayTimeList(imageSourceObj : image.ImageSource) {
 
 getFrameCount(callback: AsyncCallback\<number>): void
 
-获取图像帧数，使用callback形式返回结果。
+获取图像帧数。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1223,7 +1235,7 @@ async function GetFrameCount(imageSourceObj : image.ImageSource) {
 
 getFrameCount(): Promise\<number>
 
-获取图像帧数，使用Promise形式返回结果。
+获取图像帧数。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1267,7 +1279,7 @@ async function GetFrameCount(imageSourceObj : image.ImageSource) {
 
 getDisposalTypeList(): Promise\<Array\<number>>
 
-获取图像帧过渡模式数组，使用Promise形式返回结果。此接口仅用于gif图片。
+获取图像帧过渡模式数组。使用Promise异步回调。此接口仅用于gif图片。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1306,7 +1318,7 @@ async function GetDisposalTypeList(imageSourceObj : image.ImageSource) {
 
 release(callback: AsyncCallback\<void>): void
 
-释放ImageSource实例，使用callback形式返回结果。
+释放ImageSource实例。使用callback异步回调。
 
 ArkTS有内存回收机制，ImageSource对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
@@ -1338,7 +1350,7 @@ async function Release(imageSourceObj : image.ImageSource) {
 
 release(): Promise\<void>
 
-释放ImageSource实例，使用Promise形式返回结果。
+释放ImageSource实例。使用Promise异步回调。
 
 ArkTS有内存回收机制，ImageSource对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
@@ -1368,7 +1380,9 @@ async function Release(imageSourceObj : image.ImageSource) {
 
 getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string>
 
-获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+获取图片中给定索引处图像的指定属性键的值。使用Promise异步回调。
+
+该接口仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -1408,7 +1422,9 @@ async function GetImageProperty(imageSourceObj : image.ImageSource) {
 
 getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
-获取图片中给定索引处图像的指定属性键的值，用callback形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+获取图片中给定索引处图像的指定属性键的值。使用callback异步回调。
+
+该接口仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -1443,7 +1459,9 @@ async function GetImageProperty(imageSourceObj : image.ImageSource) {
 
 getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback\<string>): void
 
-获取图片指定属性键的值，callback形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+获取图片指定属性键的值。使用callback异步回调。
+
+该接口仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -1480,7 +1498,9 @@ async function GetImageProperty(imageSourceObj : image.ImageSource) {
 
 modifyImageProperty(key: string, value: string): Promise\<void>
 
-通过指定的键修改图片属性的值，使用Promise形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+通过指定的键修改图片属性的值。使用Promise异步回调。
+
+该接口仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -1525,7 +1545,9 @@ async function ModifyImageProperty(imageSourceObj : image.ImageSource) {
 
 modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>): void
 
-通过指定的键修改图片属性的值，callback形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+通过指定的键修改图片属性的值。使用callback异步回调。
+
+仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >

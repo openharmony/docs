@@ -4,7 +4,7 @@
 <!--Owner: @yangxiaodong41-->
 <!--Designer: @guo867-->
 <!--Tester: @maxiaorong-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @fang-jinxu-->
 
 ## 概述
 
@@ -45,3 +45,15 @@ API version 12及之后，系统为提升用户隐私安全保护能力，剪贴
     
     3.通过弹窗[向用户申请权限](../../security/AccessToken/request-user-authorization.md)。
     <!--RP1End-->
+
+## 剪贴板弹窗适配优化
+
+应用申请剪贴板权限需要提前判断剪贴板上的内容是否包含所需数据，避免出现无效弹框。
+
+- 使用[hasData](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#hasdata9)判断剪贴板是否有数据，无数据则不访问剪贴板。
+
+- 使用[hasDataType](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#hasdatatype11)/[getMimeTypes](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#getmimetypes14)判断是否包含应用当前场景支持处理的数据类型，如果没有对应的数据类型，则不访问剪贴板。
+
+- 使用[getChangeCount](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#getchangecount18)获取剪贴板的内容变化次数，与上次读取剪贴板时查询的变化次数比较是否一致，一致则剪贴板内容无变化，不访问剪贴板。
+
+- 使用[detectPatterns](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#detectpatterns13)判断是否包含应用自身口令的格式，如果格式不匹配，则不访问剪贴板。应用读取口令后如果确认是应用自身的口令，建议应用使用[cleardata](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#cleardata9)清除剪贴板口令内容。

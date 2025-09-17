@@ -1,4 +1,5 @@
 # camera.h
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
@@ -80,6 +81,7 @@
 | [Camera_ConcurrentType](#camera_concurrenttype) | Camera_ConcurrentType | 相机并发状态的枚举。 |
 | [Camera_WhiteBalanceMode](#camera_whitebalancemode) | Camera_WhiteBalanceMode | 白平衡模式枚举。 |
 | [Camera_ControlCenterEffectType](#camera_controlcentereffecttype) | Camera_ControlCenterEffectType | 控制器效果类型枚举。 |
+| [Camera_PhotoQualityPrioritization](#camera_photoqualityprioritization) | Camera_PhotoQualityPrioritization | 拍照画质优先策略枚举。 |
 
 ### 函数
 
@@ -338,10 +340,10 @@ enum Camera_ImageRotation
 
 | 枚举项 | 描述 |
 | -- | -- |
-| IMAGE_ROTATION_0 = 0 | 捕获图像旋转0度。 |
-| IMAGE_ROTATION_90 = 90 | 捕获图像旋转90度。 |
-| IMAGE_ROTATION_180 = 180 | 捕获图像旋转180度。 |
-| IMAGE_ROTATION_270 = 270 | 捕获图像旋转270度。 |
+| IAMGE_ROTATION_0 = 0 | 捕获图像旋转0度。 |
+| IAMGE_ROTATION_90 = 90 | 捕获图像旋转90度。 |
+| IAMGE_ROTATION_180 = 180 | 捕获图像旋转180度。 |
+| IAMGE_ROTATION_270 = 270 | 捕获图像旋转270度。 |
 
 ### Camera_QualityLevel
 
@@ -576,6 +578,23 @@ enum Camera_ControlCenterEffectType
 | -- | -- |
 | CONTROL_CENTER_EFFECT_TYPE_BEAUTY = 0 | 控制器效果类型：美颜。 |
 | CONTROL_CENTER_EFFECT_TYPE_PORTRAIT = 1 | 控制器效果类型：人像虚化。 |
+
+### Camera_PhotoQualityPrioritization
+
+```
+enum Camera_PhotoQualityPrioritization
+```
+
+**描述**
+
+拍照画质优先策略枚举。
+
+**起始版本：** 21
+
+| 枚举项 | 描述 |
+| -- | -- |
+| CAMERA_PHOTO_QUALITY_PRIORITIZATION_HIGH_QUALITY = 0 | 画质优先，拍照需要较长的时间，以输出高画质的图片。 |
+| CAMERA_PHOTO_QUALITY_PRIORITIZATION_SPEED = 1 | 性能优先，会降低画质来提升拍照的速度。 |
 
 
 ## 函数说明

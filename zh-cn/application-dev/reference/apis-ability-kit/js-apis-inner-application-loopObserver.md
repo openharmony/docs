@@ -1,5 +1,12 @@
 # LoopObserver
 
+<!--Kit: Performance Analysis Kit-->
+<!--Subsystem: HiviewDFX-->
+<!--Owner: @rr_cn-->
+<!--Designer: @peterhuangyu-->
+<!--Tester: @gcw_KuLfPSbe--> 
+<!--Adviser: @foryourself-->
+
 定义异常监听，可以作为[ErrorManager.on](./js-apis-app-ability-errorManager.md#errormanageronloopobserver12)的入参监听当前应用主线程事件处理事件。
 
 > **说明：**
@@ -35,7 +42,7 @@ import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.LoopObserver = {
   onLoopTimeOut(timeout: number) {
-    console.log('Duration timeout: ' + timeout);
+    console.info('Duration timeout: ' + timeout);
   }
 };
 

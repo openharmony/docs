@@ -1,4 +1,10 @@
 # Types
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -60,10 +66,12 @@ Describes the callback invoked for the track change event.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
+**Parameters**
+
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ------ | ---------------------------------------------------------- |
 | index  | number | Yes| Index of the track that has changed.    |
-| isSelected | boolean | Yes| Whether the track at the current index is selected. The value **true** means that the track at the current index is selected, and **false** means the opposite.|
+| isSelected | boolean | Yes| Whether the track at the current index is selected. **true** if selected, **false** otherwise.|
 
 ## OnAVPlayerStateChangeHandle<sup>12+</sup>
 
@@ -74,6 +82,8 @@ Describes the callback invoked for the AVPlayer state change event.
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
 
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ------ | ---------------------------------------------------------- |
@@ -90,9 +100,12 @@ Describes the callback invoked for the buffering update event.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
+**Parameters**
+
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
 | infoType  | [BufferingInfoType](arkts-apis-media-e.md#bufferinginfotype8) | Yes| Buffering information type.    |
+| value  | number | Yes| Value of the buffering information type.    |
 
 ## OnVideoSizeChangeHandler<sup>12+</sup>
 
@@ -103,6 +116,8 @@ Describes the callback invoked for the video size change event.
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
 
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
@@ -123,9 +138,11 @@ Super resolution is automatically disabled in either of the following cases:
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
+**Parameters**
+
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
-| enabled  | boolean | Yes| Whether super resolution is enabled. The value **true** means that it is enabled, and **false** means the opposite.    |
+| enabled  | boolean | Yes| Whether super resolution is enabled. **true** if enabled, **false** otherwise.    |
 
 ## OnSeiMessageHandle<sup>18+</sup>
 
@@ -153,6 +170,8 @@ Describes the callback invoked for the event indicating that the playback rate s
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
 
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
@@ -188,6 +207,8 @@ Describes the callback invoked for the AVRecorder state change event.
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
+**Parameters**
+
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
 | state  | [AVRecorderState](#avrecorderstate9) | Yes| AVRecorder state.    |
@@ -198,6 +219,7 @@ Describes the callback invoked for the AVRecorder state change event.
 type SourceOpenCallback = (request: MediaSourceLoadingRequest) => number
 
 This callback function is implemented by applications to handle resource open requests and return a unique handle for the opened resource.
+
 > **NOTE**
 >
 > The client must return the handle immediately after processing the request.
@@ -221,7 +243,8 @@ This callback function is implemented by applications to handle resource open re
 **Example**
 
 ```ts
-import HashMap from '@ohos.util.HashMap';
+import { HashMap } from '@kit.ArkTS';
+import { media } from '@kit.MediaKit';
 
 let uuid: number = 1;
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();

@@ -140,7 +140,8 @@ persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
       let uris = await documentPicker.select(DocumentSelectOptions);
       let policyInfo: fileShare.PolicyInfo = {
         uri: uris[0], 
-        operationMode: fileShare.OperationMode.READ_MODE,
+        // 读写授权可使用 fileShare.OperationMode.READ_MODE | fileShare.OperationMode.WRITE_MODE
+        operationMode: fileShare.OperationMode.READ_MODE
       };
       let policies: Array<fileShare.PolicyInfo> = [policyInfo];
       fileShare.persistPermission(policies).then(() => {

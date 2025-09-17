@@ -24,15 +24,28 @@ request部件主要给应用提供上传下载文件、后台传输代理的基�
 import { cacheDownload } from '@kit.BasicServicesKit';
 ```
 
+## SslType<sup>21+</sup>
+
+表示安全通信协议的枚举。
+
+**系统能力**：SystemCapability.Request.FileTransferAgent
+
+| 名称 | 值 |说明 |
+| -------- | -------- |-------- |
+| TLS | 'TLS' | 使用TLS安全通信协议。|
+| TLCP | 'TLCP' | 使用TLCP安全通信协议。 |
+
 ## CacheDownloadOptions
 
-缓存下载的配置选项。例如：HTTP选项、传输选项、任务选项等。
+缓存下载的配置选项。包括HTTP选项、传输选项和任务选项。
 
 **系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称   | 类型     | 只读 | 可选 | 说明                            |
 |------|--------|----|----|-------------------------------|
 | headers | Record\<string, string\> | 否  | 是 | 缓存下载任务在HTTP传输时使用的请求头。 |
+| sslType<sup>21+</sup> | [SslType](#ssltype21) | 否  | 是 | 使用安全通信协议TLS或TLCP，默认使用TLS。当前不支持双向认证。 |
+| caPath<sup>21+</sup> | string | 否  | 是 | CA证书路径。目前仅支持.pem格式证书，默认使用系统预设的CA证书。 |
 
 ## ResourceInfo<sup>20+</sup>
 
@@ -122,7 +135,11 @@ download(url: string, options: CacheDownloadOptions): void
   import { cacheDownload, BusinessError } from '@kit.BasicServicesKit';
 
   // 提供缓存下载任务的配置选项。
-  let options: cacheDownload.CacheDownloadOptions = {};
+  let options: cacheDownload.CacheDownloadOptions = {
+    headers: { 'Accept': 'application/json' },
+    sslType: cacheDownload.SslType.TLS,
+    caPath: '/path/to/ca.pem',
+  };
   
   try {
     // 进行缓存下载，资源若下载成功会被缓存到应用内存或应用沙箱目录的特定文件中。  

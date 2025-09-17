@@ -21,59 +21,59 @@ import { Rotate, Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '
 
 ## Pinch
 
-捏合事件。
+捏合手势事件。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
 | 名称             | 类型        | 只读   | 可选   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type         | [ActionType](#actiontype)   | 否    | 否    | 捏合事件类型。                                   |
+| type         | [ActionType](#actiontype)   | 否    | 否    | 手势事件类型。如：手势开始、手势更新、手势结束等。                                   |
 | scale        | number      | 否    | 否    | 捏合度，取值范围大于等于0。                             |
 
 ## Rotate<sup>11+</sup>
 
-旋转事件。
+旋转手势事件。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
 | 名称             | 类型        | 只读   | 可选   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type | [ActionType](#actiontype)   | 否    | 否    | 旋转事件类型。                                   |
+| type | [ActionType](#actiontype)   | 否    | 否    | 手势事件类型。如：手势开始、手势更新、手势结束等。                                   |
 | angle | number      | 否    | 否    | 旋转角度。                             |
 
 ## ThreeFingersSwipe
 
-三指滑动事件。
+三指滑动手势事件。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
 | 名称             | 类型        | 只读   | 可选   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type         | [ActionType](#actiontype)   | 否    | 否    | 三指滑动事件类型。                                   |
+| type         | [ActionType](#actiontype)   | 否    | 否    | 手势事件类型。如：手势开始、手势更新、手势结束等。                                   |
 | x        | number      | 否    | 否    | 坐标x。                             |
 | y        | number      | 否    | 否    | 坐标y。                             |
 
 ## FourFingersSwipe
 
-四指滑动事件。
+四指滑动手势事件。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
 | 名称             | 类型        | 只读   | 可选   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| type         | [ActionType](#actiontype)   | 否    | 否    | 四指滑动事件类型。                                   |
+| type         | [ActionType](#actiontype)   | 否    | 否    | 手势事件类型。如：手势开始、手势更新、手势结束等。                                   |
 | x        | number      | 否    | 否    | 坐标x。                             |
 | y        | number      | 否    | 否    | 坐标y。                             |
 
 ## ThreeFingersTap<sup>11+</sup>
 
-三指轻点事件。
+三指轻点手势事件。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Core
 
 | 名称               | 类型                      | 只读 | 可选 | 说明             |
 | ------------------ | ------------------------- | ---- | ---- | ---------------- |
-| type | [ActionType](#actiontype) | 否   | 否   | 三指轻点事件类型。 |
+| type | [ActionType](#actiontype) | 否   | 否   | 手势事件类型。如：手势开始、手势更新、手势结束等。 |
 
 ## ActionType
 

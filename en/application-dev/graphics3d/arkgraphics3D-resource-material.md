@@ -2,8 +2,9 @@
 <!--Kit: ArkGraphics 3D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @zzhao0-->
-<!--SE: @zdustc-->
-<!--TSE: @zhangyue283-->
+<!--Designer: @zdustc-->
+<!--Tester: @zhangyue283-->
+<!--Adviser: @ge-yafang-->
 
 Materials are essential resources that define the visual appearance of an object's surface. They determine how an object interacts with light, thereby affecting its final rendering result, such as color, metallic appearance, and roughness.
 
@@ -130,7 +131,7 @@ The metallic-roughness material based on PBR rendering, which conforms to the gl
        ```ts
        let shaderMaterialPromise = await rf.createMaterial({ name: "shaderMat" }, MaterialType.SHADER);
        let shaderMat = shaderMaterialPromise as ShaderMaterial;
-       // Shader binding implementation:
+       // Bind the custom shader. (Create shader resources. The path and file name can be customized based on the specific project resources.)
        let shader = await rf.createShader({ name: "MyShader", uri: $rawfile("shaders/my_shader.shader") });
        shaderMat.colorShader = shader;
        ```
@@ -141,6 +142,7 @@ The metallic-roughness material based on PBR rendering, which conforms to the gl
        let pbrMaterialPromise = await rf.createMaterial({ name: "pbrMat" }, MaterialType.METALLIC_ROUGHNESS);
        let pbrMat = pbrMaterialPromise as MetallicRoughnessMaterial;
        // Set the base color texture and factor.
+       // Load image resources. The path and file name can be customized based on the specific project resources. However, the PBR material texture type must match the material properties.
        let baseColorImage = await rf.createImage({ name: "baseColorTex", uri: $rawfile("textures/baseColor.png") });
        pbrMat.baseColor.image = baseColorImage;
        pbrMat.baseColor.factor = { x: 1, y: 1, z: 1, w: 1 };
@@ -163,6 +165,7 @@ The metallic-roughness material based on PBR rendering, which conforms to the gl
        The texture maps for different properties generally vary and should be created individually. When several materials use the same texture, you can share a single Image instance to conserve memory. All material property factors use the value range [0, 1].
 
        ```ts
+       // The image path and file name can be customized based on the actual project resources. However, the PBR material texture type must match the material property.
        // Set the base color texture and color factor (supporting the alpha channel).
        let baseColorImage = await rf.createImage({ name: "baseColorTex", uri: $rawfile("textures/baseColor.png") });
        pbrMat.baseColor.image = baseColorImage;
@@ -176,7 +179,7 @@ The metallic-roughness material based on PBR rendering, which conforms to the gl
        pbrMat.material.image = metallicRoughnessImage;
        pbrMat.material.factor.y = 1.0; // y component: roughness (0–1). 0 means smooth, and 1 means rough.
        pbrMat.material.factor.z = 0.5; // z component: metallic (0–1). 0 means non-metallic, and 1 means metallic.
-       pbrMat.material.factor.w = 0.5; // w component: reflectivity (0–1).
+       pbrMat.material.factor.w = 0.5; // w component: specular (0–1).
        // Set the ambient occlusion map. The x component is used to control the occlusion strength.
        let ambientOcclusionImage = await rf.createImage({ name: "ambientOcclusionTex", uri: $rawfile("textures/ambientOcclusion.png") });
        pbrMat.ambientOcclusion.image = ambientOcclusionImage;
@@ -221,7 +224,10 @@ The metallic-roughness material based on PBR rendering, which conforms to the gl
          ```ts
          let pbrNode = scene.root.getNodeByPath("path/to/node");
          if (pbrNode) {
-           (pbrNode as Geometry).mesh.subMeshes[0].material = pbrMat;  // Bind the material.
+           let geometry = pbrNode as Geometry;
+           if (geometry.mesh?.subMeshes?.[0]) {
+             geometry.mesh.subMeshes[0].material = pbrMat;  // Bind the material.
+           }
          }
          ```
 
@@ -233,9 +239,8 @@ The metallic-roughness material based on PBR rendering, which conforms to the gl
   ### Creating Shader Materials and Setting Properties
 
    ```ts
-   import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-     LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry,
-     CullMode } from '@ohos.graphics.scene';
+   import { MaterialType, ShaderMaterial, SceneResourceParameters, SceneResourceFactory, Scene, Geometry,
+     CullMode } from '@kit.ArkGraphics3D';
 
    function createAndApplyShaderMaterial(): Promise<void> {
      // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
@@ -250,7 +255,7 @@ The metallic-roughness material based on PBR rendering, which conforms to the gl
        let materialParams: SceneResourceParameters = { name: "material" };
        let material = await rf.createMaterial(materialParams, MaterialType.SHADER);
        let shaderMat = material as ShaderMaterial;
-       // Load and bind the custom shader.
+       // Load and bind the custom shader. (Create shader resources. The path and file name can be customized based on the specific project resources.)
        let shader = await rf.createShader({
          name: "shaderResource",
          uri: $rawfile("shaders/custom_shader/custom_material_sample.shader")
@@ -265,7 +270,9 @@ The metallic-roughness material based on PBR rendering, which conforms to the gl
        let shaderNode = scene.root.getNodeByPath("rootNode_/Unnamed Node 1/AnimatedCube");
        if (shaderNode) {
          let geometry = shaderNode as Geometry;
-         geometry.mesh.subMeshes[0].material = shaderMat;
+         if (geometry.mesh?.subMeshes?.[0]) {
+           geometry.mesh.subMeshes[0].material = shaderMat;
+         }
        }
        // Render the mesh and observe the effect.
      });
@@ -277,9 +284,8 @@ The metallic-roughness material based on PBR rendering, which conforms to the gl
 Different models may support different PBR properties. Before setting the material, you are advised to adapt it according to the model content. This example uses the CompareClearcoat model to set its supported PBR properties. You can use the corresponding model and set related properties as needed.
 
    ```ts
-   import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-     LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, MetallicRoughnessMaterial,
-     Geometry, CullMode } from '@ohos.graphics.scene';
+   import { MaterialType, SceneResourceParameters, SceneResourceFactory, Scene, MetallicRoughnessMaterial, Geometry,
+     CullMode } from '@kit.ArkGraphics3D';
 
    function createAndApplyPBRMaterial(): Promise<void> {
      // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
@@ -296,7 +302,7 @@ Different models may support different PBR properties. Before setting the materi
        let material = await rf.createMaterial(materialParams, MaterialType.METALLIC_ROUGHNESS);
        let pbrMat = material as MetallicRoughnessMaterial;
 
-       // Share the metallic-roughness texture map, which can be reused by multiple materials to save resources.
+       // Load the shared metallic-roughness texture map (reusable, saving resources). The image path and file name can be customized based on the actual project resources. However, the texture type must match the material properties.
        let metallicImage = await rf.createImage({
          name: "materialTex",
          uri: $rawfile("gltf/DamagedHelmet/glTF/Default_metalRoughness.jpg")
@@ -327,3 +333,6 @@ Different models may support different PBR properties. Before setting the materi
      });
    }
    ```
+
+
+<!--RP1-->

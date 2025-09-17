@@ -1,4 +1,10 @@
 # oh_rdb_crypto_param.h
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 
@@ -293,7 +299,7 @@ Sets the page size used when opening an encrypted database.
 | Name                                                 | Description                                                        |
 | ------------------------------------------------------- | ------------------------------------------------------------ |
 | [OH_Rdb_CryptoParam](capi-rdb-oh-rdb-cryptoparam.md) *param | Pointer to the [OH_Rdb_CryptoParam](capi-rdb-oh-rdb-cryptoparam.md) instance.|
-| int64_t size                                            | Page size, in bytes. The value must be a power of 2 and ranges from 512 to 65536.|
+| int64_t size                                            | Page size, in bytes. The value must be a power of 2 and ranges from 1024 to 65536.|
 
 **Returns**
 

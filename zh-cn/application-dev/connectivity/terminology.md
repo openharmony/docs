@@ -9,7 +9,7 @@
 
 ## A
 ### A2DP
-Advanced Audio Distribution Profile，即高级音频分发协议。支持传输高品质音频。例如：使用蓝牙耳机听音乐。
+Advanced Audio Distribution Profile，即增强音频分发协议。支持传输高品质音频。例如：使用蓝牙耳机听音乐。该协议定义了2种角色：[A2DP Source](#a2dp-source)和[A2DP Sink](#a2dp-sink)。
 ### A2DP Sink
 [A2DP](#a2dp)协议中的音频接收设备，负责解码并播放音频。典型设备如：蓝牙耳机、音箱等。
 ### A2DP Source
@@ -37,7 +37,7 @@ Enhanced Data Rate，即蓝牙增强数据率。是蓝牙[BR](#br)的增强版�
 Generic Attribute Profile，即通用属性协议。是[BLE](#ble)的核心协议，定义了基于服务（[Service](#service)）、特征值（[Characteristic](#characteristic)）和描述符（[Descriptor](#descriptor)）进行蓝牙通信和传输数据的机制。
 ## H
 ### HF
-Hands-Free，即[HFP](#hfp)协议中的免提设备。是蓝牙通话音频中的远程控制端‌，提供物理交互界面（如按钮）及音频输入/输出（如麦克风、扬声器）。典型设备如：蓝牙耳机、车载蓝牙等。
+Hands-Free unit，即[HFP](#hfp)协议中的免提设备。是蓝牙通话音频中的远程控制端‌，提供物理交互界面（如按钮）及音频输入/输出（如麦克风、扬声器）。典型设备如：蓝牙耳机、车载蓝牙等。
 ### HFP
 Hands-Free Profile，即免提协议。用于实现蓝牙设备间的免提通话，支持双向语音通话和控制等功能。该协议定义了2种角色：[HFP AG](#hfp-ag)和[HF](#hf)。
 ### HFP AG
@@ -80,7 +80,7 @@ Phone Book Client Equipment，即[PBAP](#pbap)协议中的电话簿客户端，�
 ### PSE
 Phone Book Server Equipment，即[PBAP](#pbap)协议中的电话簿服务端，存储原始电话簿数据（如联系人和通话记录）。典型设备如：手机。
 ### Profile
-在蓝牙子系统中，一般特指某种蓝牙技术协议或者能力。例如：A2DP、HFP和HID协议等。
+在蓝牙子系统中，一般特指某种蓝牙技术协议或者能力。例如：[A2DP](#a2dp)、[HFP](#hfp)和[HID](#hid)协议等。
 ### PSM
 Protocol/Service Multiplexer，即协议/服务多路复用器。用于标识[L2CAP](#l2cap)层上的不同服务或协议。
 ## R

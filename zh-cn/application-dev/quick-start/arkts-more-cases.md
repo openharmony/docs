@@ -891,7 +891,7 @@ let d = +'string';
 let a = Number.parseInt('5'); // 使用Number.parseInt显示转换
 let b = -Number.parseInt('5');
 let c = ~Number.parseInt('5');
-let d = new Number('string');
+let d = new Number('123');
 ```
 
 ## arkts-no-type-query
@@ -1532,7 +1532,7 @@ let entries = new Map([
 ]);
 
 let obj: Record<string, Object> = {};
-entries.forEach((value, key) => {
+entries.forEach((key, value) => {
   if (key != undefined && key != null) {
     obj[key] = value;
   }

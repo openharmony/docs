@@ -1,5 +1,12 @@
 # WantAgentInfo
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @linjunjie6-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 定义触发WantAgent所需要的信息。
 
 > **说明：**
@@ -27,5 +34,5 @@ import { wantAgent as abilityWantAgent } from '@kit.AbilityKit';
 | 名称           | 类型                            | 只读  | 可选  | 说明                   |
 | -------------- | ------------------------------- | --- | ---- | ---------------------- |
 | wants          | Array\<[Want](js-apis-app-ability-want.md)\>                          | 否   | 否   | 将被执行的动作列表。当前只支持一个want。传入多个时只取wants数组的第一个成员。    |
-| operationType  | [wantAgent.OperationType](js-apis-wantAgent.md#operationtype)         | 否   | 是   | 将被执行的动作类型。      |
+| operationType  | [abilityWantAgent.OperationType](js-apis-app-ability-wantAgent.md#operationtype)        | 否   | 是   | 将被执行的动作类型。      |
 | requestCode    | number                          | 否   | 否   | 开发者自定义的请求码，用于标识将被执行的动作。 |

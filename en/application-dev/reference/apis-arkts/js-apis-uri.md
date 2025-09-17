@@ -1,6 +1,12 @@
 # @ohos.uri (URI String Parsing)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
-The uri module provides APIs for parsing URI strings that comply with the RFC3986 standard. This standard defines how to encode and parse the identifiers used to locate network resources. The module does not support parsing of URIs in non-standard scenarios.
+The uri module provides APIs for parsing URI strings that comply with the RFC3986 standard. This standard defines how to encode and parse network resource identifiers. The module does not support parsing of URIs in non-standard scenarios.
 
 > **NOTE**
 >
@@ -15,7 +21,7 @@ import { uri } from '@kit.ArkTS';
 
 ## URI
 
-Implements a URI, which provides APIs for determining whether objects are equal as well as standard paths.
+Constructs a URI object, and provides methods for determining whether this URI is the same as another URI object and for normalizing URI paths.
 
 ### Properties
 
@@ -23,36 +29,33 @@ Implements a URI, which provides APIs for determining whether objects are equal 
 
 | Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| scheme | string | No| No| Scheme in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| userInfo | string | No| No| User information in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| scheme | string | No| No| Scheme in the URI. If this part does not exist, a null object is returned.<br>This property was read-only and not writable prior to API version 19; attempting to modify it would throw an error.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| userInfo | string | No| No| User information in the URI. If this part does not exist, a null object is returned.<br>This property was read-only and not writable prior to API version 19; attempting to modify it would throw an error.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | host | string | Yes| No| Host name (without the port number) in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | port | string | Yes| No| Port number in the URI.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| path | string | No| No| Path in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| query | string | No| No| Query parameters in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| fragment | string | No| No| Fragments in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| authority | string | No| No| Authority in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| ssp | string | No| No| Scheme-specific part in the URI. It contains protocol-or scheme-specific information.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| encodedUserInfo<sup>12+</sup>  | string | No  | No  | Encoded user information in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
-| encodedPath<sup>12+</sup>      | string | No  | No  | Encoded path in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
-| encodedQuery<sup>12+</sup>     | string | No  | No  | Encoded query parameters in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 12.     |
-| encodedFragment<sup>12+</sup>  | string | No  | No  | Encoded fragments in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 12.     |
-| encodedAuthority<sup>12+</sup> | string | No  | No  | Encoded authority in the URI. If this part does not exist, a null object is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
-| encodedSSP<sup>12+</sup>       | string | No  | No  | Encoded scheme-specific part in the URI.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
+| path | string | No| No| Path in the URI. If this part does not exist, a null object is returned.<br>This property was read-only and not writable prior to API version 19; attempting to modify it would throw an error.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| query | string | No| No| Query parameters in the URI. If this part does not exist, a null object is returned.<br>This property was read-only and not writable prior to API version 19; attempting to modify it would throw an error.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| fragment | string | No| No| Fragments in the URI. If this part does not exist, a null object is returned.<br>This property was read-only and not writable prior to API version 19; attempting to modify it would throw an error.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| authority | string | No| No| Authority in the URI. If this part does not exist, a null object is returned.<br>This property was read-only and not writable prior to API version 19; attempting to modify it would throw an error.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| ssp | string | No| No| Scheme-specific part in the URI. It contains protocol-or scheme-specific information.<br>This property was read-only and not writable prior to API version 19; attempting to modify it would throw an error.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| encodedUserInfo<sup>12+</sup>  | string | No  | No  | Encoded user information in the URI. If this part does not exist, a null object is returned.<br>This property was read-only and not writable prior to API version 19; attempting to modify it would throw an error.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
+| encodedPath<sup>12+</sup>      | string | No  | No  | Encoded path in the URI. If this part does not exist, a null object is returned.<br>This property was read-only and not writable prior to API version 19; attempting to modify it would throw an error.<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
+| encodedQuery<sup>12+</sup>     | string | No  | No  | Encoded query parameters in the URI. If this part does not exist, a null object is returned.<br>This property was read-only and not writable prior to API version 19; attempting to modify it would throw an error.<br>**Atomic service API**: This API can be used in atomic services since API version 12.     |
+| encodedFragment<sup>12+</sup>  | string | No  | No  | Encoded fragments in the URI. If this part does not exist, a null object is returned.<br>This property was read-only and not writable prior to API version 19; attempting to modify it would throw an error.<br>**Atomic service API**: This API can be used in atomic services since API version 12.     |
+| encodedAuthority<sup>12+</sup> | string | No  | No  | Encoded authority in the URI. If this part does not exist, a null object is returned.<br>This property was read-only and not writable prior to API version 19; attempting to modify it would throw an error.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
+| encodedSSP<sup>12+</sup>       | string | No  | No  | Encoded scheme-specific part in the URI.<br>This property was read-only and not writable prior to API version 19; attempting to modify it would throw an error.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
 
 ### Naming Rules
 
 Naming format:
 
 A standard URI mainly consists of three parts, as follows:
-
 [scheme:]scheme-specific-part[#fragment]
 
 Breaking down the URI format further, it can be divided into:
-
 [scheme:][//authority][path][?query][#fragment]
 
 Further refining the URI format, it can be detailed as:
-
 [scheme:][//[user-info@]host[:port]][path][?query][#fragment]
 
 - scheme: scheme name, which is separated from scheme-specific-part by a colon (:). The URI that contains the scheme component is an absolute URI, and the URI that does not contain the scheme component is a relative URI. Set this part as required. Example values: **http**, **https**, **ftp**, and **datashare**.
@@ -122,15 +125,15 @@ console.info(uriObj6.encodedAuthority); // username:my+name@host:8080
 console.info(uriObj6.encodedSSP); // //username:my+name@host:8080/directory/my+file?foo=1&bar=2
 
 let uriObj7 = new uri.URI("www.abc.com:8080/directory/file?ab=pppppp#qwer=da");
-console.log(uriObj7.scheme); // www.abc.com
-console.log(uriObj7.host); // null
-console.log(uriObj7.port); // -1
-console.log(uriObj7.path); // null
-console.log(uriObj7.query); // null
-console.log(uriObj7.authority); // null
-console.log(uriObj7.fragment); // qwer=da
-console.log(uriObj7.ssp); // 8080/directory/file?ab=pppppp
-console.log("result:", uriObj7.checkIsAbsolute()); // result: true
+console.info(uriObj7.scheme); // www.abc.com
+console.info(uriObj7.host); // null
+console.info(uriObj7.port); // -1
+console.info(uriObj7.path); // null
+console.info(uriObj7.query); // null
+console.info(uriObj7.authority); // null
+console.info(uriObj7.fragment); // qwer=da
+console.info(uriObj7.ssp); // 8080/directory/file?ab=pppppp
+console.info("result:", uriObj7.checkIsAbsolute()); // result: true
 ```
 
 ### constructor
@@ -234,7 +237,7 @@ let result = uriInstance.equalsTo(uriInstance1); // true
 
 checkIsAbsolute(): boolean
 
-Checks whether this URI is an absolute URI (whether the scheme component is defined).
+Checks whether the URI is an absolute URI, that is, whether the URI contains the scheme component.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -266,11 +269,11 @@ Normalizes the path of this URI.
 >
 > If the URI is opaque or its path is already in normalized, the URI is directly returned. Otherwise, a new URI is created. The new URI is similar to the current URI. The only difference relies on its path, which is determined by normalizing the path of the current URI according to the following guidelines:
 >
-> - All . (dot) segments are removed.
+>  1. All . (dot) segments are removed.
 >
-> - For any .. (double-dot) segment that is immediately preceded by a segment that is not .., both segments are removed. This process is iterated until no further removals can be made.
+>  2. For any .. (double-dot) segment that is immediately preceded by a segment that is not .., both segments are removed. This process is iterated until no further removals can be made.
 >
-> If normalization results in a path starting with a .. (double-dot) segment, it indicates that there were insufficient preceding non-.. segments for removal. As a result, the path will start with a .. segment.
+>If normalization results in a path starting with a .. (double-dot) segment, it indicates that there were insufficient preceding non-.. segments for removal. As a result, the path will start with a .. segment.
 
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -292,10 +295,10 @@ console.info(uriInstance.path); // /path/path1/../path2/./path3
 let uriInstance1 = uriInstance.normalize();
 console.info(uriInstance1.path); // /path/path2/path3
 let uri1 = new uri.URI('http://www.test.com/../../patch/path1/../path2/path3/./path4/../');
-console.log(uri1.path); // /../../patch/path1/../path2/path3/./path4/../
+console.info(uri1.path); // /../../patch/path1/../path2/path3/./path4/../
 // If normalization result in a path starting with a .. (double-dot) segment, it indicates that there were insufficient preceding non-.. segments for removal. As a result, the path will start with a .. segment.
 let uri2 = uri1.normalize();
-console.log(uri2.path); // /../../patch/path2/path3
+console.info(uri2.path); // /../../patch/path2/path3
 ```
 
 ### checkRelative<sup>12+</sup>
@@ -551,7 +554,7 @@ Obtains all non-repeated keys in the query component of this URI. The query comp
 ```ts
 const uriInstance = new uri.URI("https://www.test.com?param1=value1&param2=value2");
 const paramNames = uriInstance.getQueryNames();
-console.info(Array.from(paramNames).toString()); // param1,param2
+console.info(paramNames.toString()); // param1,param2
 ```
 
 ### getQueryValues<sup>12+</sup>

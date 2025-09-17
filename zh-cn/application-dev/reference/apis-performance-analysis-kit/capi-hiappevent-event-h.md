@@ -40,7 +40,7 @@
 | [EVENT_ADDRESS_SANITIZER](#event_address_sanitizer) "ADDRESS_SANITIZER"                                    | 地址越界事件。<br>**起始版本：** 12      |
 | [EVENT_MAIN_THREAD_JANK](#event_main_thread_jank) "MAIN_THREAD_JANK"                                       | 主线程超时事件。<br>**起始版本：** 12    |
 | [EVENT_APP_HICOLLIE](#event_app_hicollie) "APP_HICOLLIE"                                                   | 任务执行超时事件。<br>**起始版本：** 18   |
-| [EVENT_APP_KILLED](#event_app_killed) "APP_KILLED"                                                         | 应用查杀事件。<br>**起始版本：** 20      |
+| [EVENT_APP_KILLED](#event_app_killed) "APP_KILLED"                                                         | 应用终止事件。<br>**起始版本：** 20      |
 | [DOMAIN_OS](#domain_os) "OS"                                                                               | OS作用域。<br>**起始版本：** 12        |
 
 ## 宏定义说明
@@ -209,7 +209,7 @@ CPU高负载事件。
 
 **描述**
 
-应用查杀事件。
+应用终止事件。
 
 **起始版本：** 20
 

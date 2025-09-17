@@ -327,7 +327,7 @@ addPersistentDeviceId(deviceId: string): Promise&lt;void&gt;
 - 应用通过蓝牙相关接口，如扫描等途径获取到的设备地址（虚拟MAC地址）和实际的设备MAC地址不同。蓝牙子系统会保存一个虚拟MAC地址和实际设备MAC地址的映射关系。若应用想长期对该蓝牙设备进行操作使用，建议用此接口持久化存储该设备的虚拟MAC地址，后续可直接使用，该地址映射关系不会再改变。
 - 指定持久化存储的虚拟MAC地址需是有效的（可使用[access.isValidRandomDeviceId](#accessisvalidrandomdeviceid16)判断）。
 - 使用该接口时，开发者应确保该虚拟MAC地址对应的对端蓝牙设备实际地址是保持不变的，若对端设备实际地址发生变化，持久化存储的地址信息将失效，无法继续使用。
-- 可调用[access.deletePersistentDeviceId](#accessaddpersistentdeviceid16)删除已持久化存储的虚拟MAC地址。
+- 可调用[access.deletePersistentDeviceId](#accessdeletepersistentdeviceid16)删除已持久化存储的虚拟MAC地址。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.PERSISTENT_BLUETOOTH_PEERS_MAC
 

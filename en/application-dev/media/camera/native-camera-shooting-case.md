@@ -2,12 +2,13 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
-Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
+Before developing a camera application, you must [request required permissions](camera-preparation.md).
 
-This topic provides sample code that covers the complete photo capture process and the API calling sequence. For details about a single process (such as device input, session management, and photo capture), see the corresponding C/C++ development guide links provided in [Requesting Camera Development Permissions](camera-preparation.md).
+This topic provides sample code that covers the complete photo capture process and the API calling sequence. For details about a single process (such as device input, session management, and photo capture), see the corresponding C/C++ development guide links provided in [Requesting Camera Development Permissions](native-camera-device-management.md).
 
 ## Development Process
 
@@ -15,7 +16,7 @@ After obtaining the output stream capabilities supported by the camera, create a
 
 ![Photographing Development Process](figures/photographing-ndk-development-process.png)
 
-## Sample Code
+## Complete Sample Code
 
 1. Link the dynamic library in the CMake script.
     ```txt
@@ -49,7 +50,6 @@ After obtaining the output stream capabilities supported by the camera, create a
 3. Import the NDK APIs on the C++ side, and perform photo capture based on the surface ID passed in.
     ```c++
     #include "hilog/log.h"
-    #include "ndk_camera.h"
 
     void CaptureSessionOnFocusStateChange(Camera_CaptureSession* session, Camera_FocusState focusState)
     {
@@ -173,6 +173,10 @@ After obtaining the output stream capabilities supported by the camera, create a
         int32_t ret = OH_NativeBuffer_Map(nativeBuffer, &virAddr); // After mapping, the start address of the memory is returned through the parameter virAddr.
         OH_LOG_INFO(LOG_APP, "OnPhotoAvailable OH_NativeBuffer_Map err:%{public}d", ret);
         // Pass the processed buffer to the ArkTS side through the callback for image display or storage (using a security component). For details, see Photo Capture (C/C++).
+        if (bufferCb == nullptr) {
+            OH_LOG_INFO(LOG_APP, "Current buffercb invalid error");
+            return;
+        }
         auto cb = (void (*)(void *, size_t))(bufferCb);
         cb(virAddr, nativeBufferSize);
         // After the processing is complete, unmap and release the buffer.
@@ -364,7 +368,7 @@ After obtaining the output stream capabilities supported by the camera, create a
             if (ret == CAMERA_OK) {
                 OH_LOG_INFO(LOG_APP, "OH_CaptureSession_SetFlashMode success.");
             } else {
-                OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetFlashMode failed. %{public}d ", ret);
+                OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetFlashMode failed. ret : %{public}d ", ret);
             }
 
             // Obtain the flash mode in use.
@@ -372,7 +376,7 @@ After obtaining the output stream capabilities supported by the camera, create a
             if (ret == CAMERA_OK) {
                 OH_LOG_INFO(LOG_APP, "OH_CaptureSession_GetFlashMode success. flashMode: %{public}d ", flashMode);
             } else {
-                OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_GetFlashMode failed. %d ", ret);
+                OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_GetFlashMode failed. ret : %{public}d ", ret);
             }
         } else {
             OH_LOG_ERROR(LOG_APP, "isFlashModeSupported fail");
@@ -389,13 +393,13 @@ After obtaining the output stream capabilities supported by the camera, create a
             OH_LOG_INFO(LOG_APP, "isFocusModeSupported success");
             ret = OH_CaptureSession_SetFocusMode(captureSession, focusMode);
             if (ret != CAMERA_OK) {
-                OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetFocusMode failed. %{public}d ", ret);
+                OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetFocusMode failed. ret : %{public}d ", ret);
             }
             ret = OH_CaptureSession_GetFocusMode(captureSession, &focusMode);
             if (ret == CAMERA_OK) {
                 OH_LOG_INFO(LOG_APP, "OH_CaptureSession_GetFocusMode success. focusMode%{public}d ", focusMode);
             } else {
-                OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_GetFocusMode failed. %d ", ret);
+                OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_GetFocusMode failed. ret : %{public}d ", ret);
             }
         } else {
             OH_LOG_ERROR(LOG_APP, "isFocusModeSupported fail");
@@ -417,7 +421,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         if (ret == CAMERA_OK) {
             OH_LOG_INFO(LOG_APP, "OH_CaptureSession_SetZoomRatio success.");
         } else {
-            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetZoomRatio failed. %{public}d ", ret);
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_SetZoomRatio failed. ret : %{public}d ", ret);
         }
 
         // Obtain the zoom ratio of the camera.
@@ -425,7 +429,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         if (ret == CAMERA_OK) {
             OH_LOG_INFO(LOG_APP, "OH_CaptureSession_GetZoomRatio success. zoom: %{public}f ", maxZoom);
         } else {
-            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_GetZoomRatio failed. %{public}d ", ret);
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_GetZoomRatio failed. ret : %{public}d ", ret);
         }
 
         // Take photos without photo capture settings.
@@ -433,7 +437,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         if (ret == CAMERA_OK) {
             OH_LOG_INFO(LOG_APP, "OH_PhotoOutput_Capture success ");
         } else {
-            OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Capture failed. %d ", ret);
+            OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Capture failed. ret : %{public}d ", ret);
         }
 
         // Stop the session.
@@ -441,7 +445,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         if (ret == CAMERA_OK) {
             OH_LOG_INFO(LOG_APP, "OH_CaptureSession_Stop success ");
         } else {
-            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Stop failed. %d ", ret);
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Stop failed. ret : %{public}d ", ret);
         }
 
         // Release the camera input stream.
@@ -449,7 +453,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         if (ret == CAMERA_OK) {
             OH_LOG_INFO(LOG_APP, "OH_CameraInput_Close success ");
         } else {
-            OH_LOG_ERROR(LOG_APP, "OH_CameraInput_Close failed. %d ", ret);
+            OH_LOG_ERROR(LOG_APP, "OH_CameraInput_Close failed. ret : %{public}d ", ret);
         }
 
         // Release the preview output stream.
@@ -457,7 +461,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         if (ret == CAMERA_OK) {
             OH_LOG_INFO(LOG_APP, "OH_PreviewOutput_Release success ");
         } else {
-            OH_LOG_ERROR(LOG_APP, "OH_PreviewOutput_Release failed. %d ", ret);
+            OH_LOG_ERROR(LOG_APP, "OH_PreviewOutput_Release failed. ret : %{public}d ", ret);
         }
 
         // Release the photo output stream.
@@ -465,7 +469,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         if (ret == CAMERA_OK) {
           OH_LOG_INFO(LOG_APP, "OH_PhotoOutput_Release success ");
         } else {
-          OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Release failed. %d ", ret);
+          OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Release failed. ret : %{public}d ", ret);
         }
 
         // Release the session.
@@ -473,7 +477,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         if (ret == CAMERA_OK) {
             OH_LOG_INFO(LOG_APP, "OH_CaptureSession_Release success ");
         } else {
-            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Release failed. %d ", ret);
+            OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Release failed. ret : %{public}d ", ret);
         }
 
         // Release the resources.

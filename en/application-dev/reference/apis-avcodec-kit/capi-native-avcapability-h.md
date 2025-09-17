@@ -1,12 +1,5 @@
 # native_avcapability.h
 
-<!--Kit: AVCodec Kit-->
-<!--Subsystem: Multimedia-->
-<!--Owner: @yang-xiaoyu5-->
-<!--Designer: @dpy2650-->
-<!--Tester: @cyakee-->
-<!--Adviser: @zengyawen-->
-
 ## Overview
 
 The file declares the native APIs used to query the codec capability.
@@ -51,12 +44,11 @@ The file declares the native APIs used to query the codec capability.
 | [OH_AVErrCode OH_AVCapability_GetEncoderQualityRange(OH_AVCapability *capability, OH_AVRange *qualityRange)](#oh_avcapability_getencoderqualityrange) | Obtains the quality range supported by an encoder.|
 | [OH_AVErrCode OH_AVCapability_GetEncoderComplexityRange(OH_AVCapability *capability, OH_AVRange *complexityRange)](#oh_avcapability_getencodercomplexityrange) | Obtains the complexity range supported by an encoder.|
 | [OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRates(OH_AVCapability *capability, const int32_t **sampleRates, uint32_t *sampleRateNum)](#oh_avcapability_getaudiosupportedsamplerates) | Obtains the sample rates supported by an audio codec.|
-| [OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRateRanges(OH_AVCapability *capability,OH_AVRange **sampleRateRanges, uint32_t *rangesNum)](#oh_avcapability_getaudiosupportedsamplerateranges) | Obtains the sample rate ranges supported by an audio codec.|
 | [OH_AVErrCode OH_AVCapability_GetAudioChannelCountRange(OH_AVCapability *capability, OH_AVRange *channelCountRange)](#oh_avcapability_getaudiochannelcountrange) | Obtains the count range of audio channels supported by an audio codec.|
 | [OH_AVErrCode OH_AVCapability_GetVideoWidthAlignment(OH_AVCapability *capability, int32_t *widthAlignment)](#oh_avcapability_getvideowidthalignment) | Obtains the video width alignment supported by a video codec.|
 | [OH_AVErrCode OH_AVCapability_GetVideoHeightAlignment(OH_AVCapability *capability, int32_t *heightAlignment)](#oh_avcapability_getvideoheightalignment) | Obtains the video height alignment supported by a video codec.|
-| [OH_AVErrCode OH_AVCapability_GetVideoWidthRangeForHeight(OH_AVCapability *capability, int32_t height,OH_AVRange *widthRange)](#oh_avcapability_getvideowidthrangeforheight) | Obtains the video width range supported by a video codec based on a given height.|
-| [OH_AVErrCode OH_AVCapability_GetVideoHeightRangeForWidth(OH_AVCapability *capability, int32_t width,OH_AVRange *heightRange)](#oh_avcapability_getvideoheightrangeforwidth) | Obtains the video height range supported by a video codec based on a given width.|
+| [OH_AVErrCode OH_AVCapability_GetVideoWidthRangeForHeight(OH_AVCapability *capability, int32_t height, OH_AVRange *widthRange)](#oh_avcapability_getvideowidthrangeforheight) | Obtains the video width range supported by a video codec based on a given height.|
+| [OH_AVErrCode OH_AVCapability_GetVideoHeightRangeForWidth(OH_AVCapability *capability, int32_t width, OH_AVRange *heightRange)](#oh_avcapability_getvideoheightrangeforwidth) | Obtains the video height range supported by a video codec based on a given width.|
 | [OH_AVErrCode OH_AVCapability_GetVideoWidthRange(OH_AVCapability *capability, OH_AVRange *widthRange)](#oh_avcapability_getvideowidthrange) | Obtains the video width range supported by a video codec.|
 | [OH_AVErrCode OH_AVCapability_GetVideoHeightRange(OH_AVCapability *capability, OH_AVRange *heightRange)](#oh_avcapability_getvideoheightrange) | Obtains the video height range supported by a video codec.|
 | [bool OH_AVCapability_IsVideoSizeSupported(OH_AVCapability *capability, int32_t width, int32_t height)](#oh_avcapability_isvideosizesupported) | Checks whether a video codec supports a specific video size.|
@@ -109,8 +101,7 @@ Enumerates the optional features that can be used in specific codec scenarios.
 | -- | -- |
 | VIDEO_ENCODER_TEMPORAL_SCALABILITY = 0 | Temporal scalability feature, which is available only in video encoding scenarios.|
 | VIDEO_ENCODER_LONG_TERM_REFERENCE = 1 | Long-term reference frame feature, which is available only in video encoding scenarios.|
-| VIDEO_LOW_LATENCY = 2 | Low latency feature, which is available only in video decoding scenarios.|
-| VIDEO_ENCODER_B_FRAME = 7 | B-frame encoding feature, which is available only in video encoding scenarios.<br>**Since**: 20|
+| VIDEO_LOW_LATENCY = 2 | Low latency feature, which is available in video encoding and decoding scenarios.|
 
 
 ## Function Description
@@ -393,35 +384,6 @@ Obtains the sample rates supported by an audio codec.
 | Type| Description|
 | -- | -- |
 | [OH_AVErrCode](_core.md#oh_averrcode-1) | **AV_ERR_OK**: The operation is successful.<br> **AV_ERR_INVALID_VAL**: The capability instance is invalid, the pointer to the sample rate array is null, or the pointer to the number of elements in the array is null.<br> **AV_ERR_UNKNOWN**: An unknown error occurs.<br> **AV_ERR_NO_MEMORY**: Internal memory allocation failed.|
-
-### OH_AVCapability_GetAudioSupportedSampleRateRanges()
-
-```
-OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRateRanges(OH_AVCapability *capability,OH_AVRange **sampleRateRanges, uint32_t *rangesNum)
-```
-
-**Description**
-
-Obtains the sample rate ranges supported by an audio codec.
-
-**System capability**: SystemCapability.Multimedia.Media.CodecBase
-
-**Since**: 20
-
-
-**Parameters**
-
-| Name| Description|
-| -- | -- |
-| [OH_AVCapability](capi-avcapability-oh-avcapability.md) *capability | Pointer to the audio codec capability. If a pointer to the video codec capability is provided, undefined behavior occurs.|
-| [OH_AVRange](capi-avcapability-oh-avrange.md) **sampleRateRanges |  Double pointer to the sample rate range array.|
-| uint32_t *rangesNum |  Pointer to the number of elements in the array.|
-
-**Returns**
-
-| Type| Description|
-| -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | **AV_ERR_OK**: The operation is successful.<br> **AV_ERR_INVALID_VAL**: The capability instance is invalid, the pointer to the sample rate range array is null, or the pointer to the number of elements in the array is null.<br> **AV_ERR_UNKNOWN**: An unknown error occurs.<br> **AV_ERR_NO_MEMORY**: Internal memory allocation failed.|
 
 ### OH_AVCapability_GetAudioChannelCountRange()
 

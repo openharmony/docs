@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
@@ -23,7 +24,7 @@ The struct describes the camera output capability.
 | -- | -- |
 | [Camera_Profile](capi-oh-camera-camera-profile.md)** previewProfiles | Double pointer to the list of preview profiles.|
 | uint32_t previewProfilesSize | Size of the preview profiles.|
-| [Camera_Profile](capi-oh-camera-camera-profile.md)** photoProfiles | Double pointer to the list of photo profiles.<br>In the configuration file, **size** is set to the width and height of the camera resolution, not the actual width and height of an output image.|
+| [Camera_Profile](capi-oh-camera-camera-profile.md)** photoProfiles | Double pointer to the list of photo profiles.<br> In the configuration file, **size** is set to the width and height of the camera resolution, not the actual width and height of an output image.|
 | uint32_t photoProfilesSize | Size of the photo profiles.|
 | [Camera_VideoProfile](capi-oh-camera-camera-videoprofile.md)** videoProfiles | Double pointer to the list of video profiles.|
 | uint32_t videoProfilesSize | Size of the video profiles.|

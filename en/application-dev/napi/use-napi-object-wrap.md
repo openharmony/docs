@@ -1,4 +1,10 @@
 # Wrapping a Native Object in an ArkTS Object
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 ## When to Use
 
@@ -249,7 +255,7 @@ You can use **napi_wrap** to wrap a C++ object in an ArkTS object, and use **nap
 4. The following provides the sample ArkTS code.
 
    ```ts
-   import hilog from '@ohos.hilog';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
    import { MyObject } from 'libentry.so';
 
    let object : MyObject = new MyObject(0);

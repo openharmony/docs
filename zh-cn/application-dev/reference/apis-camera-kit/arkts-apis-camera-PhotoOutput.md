@@ -1179,3 +1179,98 @@ function unregisterPhotoOutputCaptureStart(photoOutput: camera.PhotoOutput): voi
   photoOutput.off('captureStart');
 }
 ```
+
+## isPhotoQualityPrioritizationSupported<sup>21+</sup>
+
+isPhotoQualityPrioritizationSupported(quality: PhotoQualityPrioritization): boolean
+
+检查是否支持指定的拍照画质优先策略。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                    | 必填 | 说明                                       |
+| ----------- | ---------------------- | ---- | ------------------------------------------ |
+| quality | [PhotoQualityPrioritization](arkts-apis-camera-e.md#photoqualityprioritization21) | 是  | 要检查的拍照画质优先策略。 |
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| boolean | 是否支持指定的拍照画质优先策略。true表示支持，false表示不支持。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID      | 错误信息     |
+| ------------- | --------------- |
+| 7400201 |  Camera service fatal error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import camera from '@ohos.multimedia.camera';
+let photoOutput: camera.PhotoOutput;
+
+function isPhotoQualityPrioritizationSupported(quality: camera.PhotoQualityPrioritization): boolean {
+  let isSupported: boolean = false;
+  try {
+    isSupported = photoOutput.isPhotoQualityPrioritizationSupported(quality);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The isPhotoQualityPrioritizationSupported call failed. error code: ${err.code}`);
+  }
+  return isSupported;
+}
+```
+
+## setPhotoQualityPrioritization<sup>21+</sup>
+
+setPhotoQualityPrioritization(quality: PhotoQualityPrioritization): void
+
+设置拍照画质优先策略。
+
+进行设置之前，需要先检查：
+
+1. 设备是否支持指定的拍照画质优先策略，可使用方法[isPhotoQualityPrioritizationSupported](#isphotoqualityprioritizationsupported21)。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                    | 必填 | 说明                                       |
+| -------- | ---------------------- | ---- | ------------------------------------------ |
+| quality  | [PhotoQualityPrioritization](arkts-apis-camera-e.md#photoqualityprioritization21) | 是  | 要设置的拍照画质优先策略。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID    | 错误信息                                           |
+| -------- |----------------------------------------------- |
+| 7400102  | Operation not allowed. |
+| 7400201  | Camera service fatal error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import camera from '@ohos.multimedia.camera';
+let photoOutput: camera.PhotoOutput;
+
+function setPhotoQualityPrioritization(quality: camera.PhotoQualityPrioritization): void {
+  try {
+    photoOutput.setPhotoQualityPrioritization(quality);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The setPhotoQualityPrioritization call failed. error code: ${err.code}`);
+  }
+}
+```

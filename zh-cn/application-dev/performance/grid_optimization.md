@@ -114,7 +114,7 @@ struct ReusableChildComponent {
 }
 ```
 
-- 使用懒加载可以有效缩短Grid加载和渲染时间，而且在处理大量GridItem时，懒加载可以显著节省内存和CPU资源的消耗。示例中使用LazyForEach进行数据懒加载，Grid布局时会根据可视区域按需创建GridItem组件，并在GridItem滑出可视区域时销毁以降低内存占用。更多懒加载的信息，请参考[LazyForEach：数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)。
+- 使用懒加载可以有效缩短Grid加载和渲染时间，而且在处理大量GridItem时，懒加载可以显著节省内存和CPU资源的消耗。示例中使用LazyForEach进行数据懒加载，Grid布局时会根据可视区域按需创建GridItem组件，并在GridItem滑出可视区域时销毁以降低内存占用。更多懒加载的信息，请参考[LazyForEach：数据懒加载](../ui/rendering-control/arkts-rendering-control-lazyforeach.md)。
 
 - 使用懒加载方式渲染Grid时，合理使用cachedCount可以让应用有更好的滚动体验，减少滑动时出现的白块。示例中Grid使用cachedCount属性设置GridItem的缓存数量，会在Grid显示区域前后各缓存cachedCount\*列数个GridItem，超出显示和缓存范围的GridItem会被释放。需要注意的是cachedCount的增加会增大CPU、内存开销。使用时需要根据实际情况，综合性能和用户体验进行调整。
 

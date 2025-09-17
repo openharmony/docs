@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 This sample demonstrates the complete process for transitioning a camera application from the background to the foreground, providing you with a clear understanding of the entire sequence of API calls.
 
@@ -12,7 +13,7 @@ The state changes during the camera application's transition between foreground 
 - When the camera application returns to the foreground, the camera status callback returns the camera unavailable state, indicating that the camera device is now busy.
 - Upon transitioning from the background to the foreground, the camera application must restart the preview stream, photo stream, and camera session management accordingly.
 
-Before referring to the sample code, you are advised to read [Camera Device Management](camera-device-management.md), [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), and other related topics in [Camera Development (ArkTS)](camera-preparation.md).
+Before referring to the sample code, you are advised to read [Camera Device Management](camera-device-management.md), [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), and other related topics in [Camera Development (ArkTS)](camera-device-management.md).
 
 ## Development Process
 
@@ -20,7 +21,7 @@ The figure below shows the process of transitioning a camera application from th
 
 ![Camera Background recovery processing](figures/camera-background-recovery.png)
 
-## Sample
+## Complete Sample Code
 
 For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -40,7 +41,7 @@ During the transition of the camera application from the background to the foreg
    
    async function initCamera(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
       console.info('onForeGround recovery begin.');
-      let cameraManager: camera.CameraManager = camera.getCameraManager(context);
+      let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
       if (!cameraManager) {
         console.error("camera.getCameraManager error");
         return;
@@ -107,12 +108,14 @@ During the transition of the camera application from the background to the foreg
 
       let previewProfilesArray: Array<camera.Profile> = cameraOutputCap.previewProfiles;
       if (!previewProfilesArray) {
-        console.error("createOutput previewProfilesArray == null || undefined");
+        console.error("createOutput previewProfilesArray is null!");
+        return;
       }
 
       let photoProfilesArray: Array<camera.Profile> = cameraOutputCap.photoProfiles;
       if (!photoProfilesArray) {
-        console.error("createOutput photoProfilesArray == null || undefined");
+        console.error("createOutput photoProfilesArray is null!");
+        return;
       }
 
       // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream uses the surface provided by the XComponent.

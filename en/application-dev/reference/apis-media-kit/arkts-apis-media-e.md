@@ -1,4 +1,10 @@
 # Enums
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -40,6 +46,7 @@ Enumerates the [media error codes](errorcode-media.md).
 | AVERR_SEEK_CONTINUOUS_UNSUPPORTED<sup>18+</sup> | 5410002 | The seek operation in SEEK_CONTINUOUS mode is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 18.       |
 | AVERR_SUPER_RESOLUTION_UNSUPPORTED<sup>18+</sup> | 5410003 | Super resolution is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 18.       |
 | AVERR_SUPER_RESOLUTION_NOT_ENABLED<sup>18+</sup> | 5410004 | Super resolution is not enabled.<br>**Atomic service API**: This API can be used in atomic services since API version 18.       |
+| AVERR_PARAMETER_OUT_OF_RANGE<sup>20+</sup> | 5400108 | The parameter value is out of range.<br>**Atomic service API**: This API can be used in atomic services since API version 20.       |
 
 ## MediaType<sup>8+</sup>
 
@@ -96,8 +103,8 @@ Enumerates the media description keys.
 | MD_KEY_WIDTH             | 'width'         | Video width, which is a number, in units of pixel.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | MD_KEY_HEIGHT            | 'height'        | Video height, which is a number, in units of pixel.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | MD_KEY_FRAME_RATE        | 'frame_rate'    | Video frame rate, which is a number, measured in frames per 100 seconds.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | Number of audio channels, which is a number.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | Sampling rate, which is a number, in units of Hz.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | Audio channel count, which is a number.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | Sample rate, which is a number, in units of Hz.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | MD_KEY_AUD_SAMPLE_DEPTH<sup>12+</sup>  | 'sample_depth'  | Bit depth, which is a number, in units of bits.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | MD_KEY_LANGUAGE<sup>12+</sup>  | 'language'  | Subtitle language, which is a string.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | MD_KEY_TRACK_NAME<sup>12+</sup>  | 'track_name'  | Track name, which is a string.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -367,11 +374,11 @@ Enumerates the audio encoding formats.
 
 | Name   | Value  | Description                                                        |
 | ------- | ---- | ------------------------------------------------------------ |
-| DEFAULT | 0    | Default encoding format.<br>This API is defined but not implemented yet.             |
-| AMR_NB  | 1    | AMR-NB.<br>This API is defined but not implemented yet.|
-| AMR_WB  | 2    | Adaptive Multi Rate-Wide Band Speech Codec (AMR-WB).<br>This API is defined but not implemented yet.|
-| AAC_LC  | 3    | Advanced Audio Coding Low Complexity (AAC-LC).|
-| HE_AAC  | 4    | High-Efficiency Advanced Audio Coding (HE_AAC).<br>This API is defined but not implemented yet.|
+| DEFAULT | 0    | Default encoding format.<br>This API is defined but not implemented yet.<br>Note: It is supported since API version 6 and deprecated since API version 8. You are advised to use **AUDIO_AAC** in [CodecMimeType](#codecmimetype8) instead.|
+| AMR_NB  | 1    | AMR-NB.<br>This API is defined but not implemented yet.<br>Note: It is supported since API version 6 and deprecated since API version 8. You are advised to use **AUDIO_AMR_NB** in [CodecMimeType](#codecmimetype8) instead.|
+| AMR_WB  | 2    | Adaptive Multi Rate-Wide Band Speech Codec (AMR-WB).<br>This API is defined but not implemented yet.<br>Note: It is supported since API version 6 and deprecated since API version 8. You are advised to use **AUDIO_AMR_WB** in [CodecMimeType](#codecmimetype8) instead.|
+| AAC_LC  | 3    | Advanced Audio Coding Low Complexity (AAC-LC).<br>Note: It is supported since API version 6 and deprecated since API version 8. You are advised to use **AUDIO_AAC** in [CodecMimeType](#codecmimetype8) instead.|
+| HE_AAC  | 4    | High-Efficiency Advanced Audio Coding (HE_AAC).<br>This API is defined but not implemented yet.<br>Note: It is supported since API version 6 and deprecated since API version 8. You are advised to use **AUDIO_AAC** in [CodecMimeType](#codecmimetype8) instead.|
 
 ## AudioOutputFormat<sup>(deprecated)</sup>
 
@@ -385,11 +392,11 @@ Enumerates the audio output formats.
 
 | Name    | Value  | Description                                                        |
 | -------- | ---- | ------------------------------------------------------------ |
-| DEFAULT  | 0    | Default output format.<br>This API is defined but not implemented yet.             |
-| MPEG_4   | 2    | MPEG-4.                                          |
-| AMR_NB   | 3    | AMR_NB.<br>This API is defined but not implemented yet.         |
-| AMR_WB   | 4    | AMR_WB.<br>This API is defined but not implemented yet.         |
-| AAC_ADTS | 6    | Audio Data Transport Stream (ADTS), which is a transport stream format of AAC-based audio.|
+| DEFAULT  | 0    | Default output format.<br>This API is defined but not implemented yet.<br>Note: It is supported since API version 6 and deprecated since API version 8. You are advised to select one from [ContainerFormatType](#containerformattype8) as required.|
+| MPEG_4   | 2    | MPEG-4.<br>Note: It is supported since API version 6 and deprecated since API version 8. You are advised to use **CFT_MPEG_4** in [ContainerFormatType](#containerformattype8) instead.|
+| AMR_NB   | 3    | AMR_NB.<br>This API is defined but not implemented yet.<br>Note: It is supported since API version 6 and deprecated since API version 8. You are advised to use **CFT_AMR** in [ContainerFormatType](#containerformattype8) instead. For the encoding format, use **AUDIO_AMR_NB** in [CodecMimeType](#codecmimetype8).|
+| AMR_WB   | 4    | AMR_WB.<br>This API is defined but not implemented yet.<br>Note: It is supported since API version 6 and deprecated since API version 8. You are advised to use **CFT_AMR** in [ContainerFormatType](#containerformattype8) instead. For the encoding format, use **AUDIO_AMR_WB** in [CodecMimeType](#codecmimetype8).|
+| AAC_ADTS | 6    | Audio Data Transport Stream (ADTS), which is a transport stream format of AAC-based audio.<br>Note: It is supported since API version 6 and deprecated since API version 8. You are advised to use **CFT_AAC** in [ContainerFormatType](#containerformattype8) instead.|
 
 ## MediaErrorCode<sup>(deprecated)</sup>
 

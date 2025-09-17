@@ -25,32 +25,40 @@
 
 可以使用setBlendMode()接口将混合模式应用于画刷或画笔中，该接口需要接受一个参数BlendMode，即混合模式的类型，具体可参考[BlendMode](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-e.md#blendmode)。
 
-此处以使用画刷设置叠加混合模式为例（为了防止混合模式的效果被背景色干扰，示例中的canvas并未设置背景色，使用的是默认的黑色背景），关键示例和效果示意图如下所示：
+关键示例和效果示意图如下所示：
 
 ```ts
-// 创建画刷
-let brush = new drawing.Brush();
-// 设置目标像素颜色，即矩形的颜色
-brush.setColor(0xFF, 0xFF,  0x00, 0x00);
-// 将目标像素的画刷效果设置到Canvas中
-canvas.attachBrush(brush);
-// 创建矩形对象
-let rect: common2D.Rect = { left: 100, top: 100, right: 600, bottom: 600 };
-// 绘制矩形（目标像素）
-canvas.drawRect(rect);
-// 设置源像素颜色，即圆形的颜色
-brush.setColor(0xFF, 0x00,  0x00, 0xFF);
-// 设置混合模式为叠加模式
-brush.setBlendMode(drawing.BlendMode.PLUS);
-// 将源像素的画刷效果设置到Canvas中
-canvas.attachBrush(brush);
-// 绘制圆（源像素）
-canvas.drawCircle(600, 600, 300);
-// 去除填充效果
-canvas.detachBrush();
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    canvas.saveLayer(null, null);
+    const brushCircle = new drawing.Brush();
+    const colorCircle: common2D.Color = {alpha: 255, red: 0, green: 0, blue: 255};
+    brushCircle.setColor(colorCircle);
+    canvas.attachBrush(brushCircle);
+    canvas.drawCircle(500, 500, 200);
+    const brush = new drawing.Brush();
+    //  设置混合模式
+    brush.setBlendMode(drawing.BlendMode.SRC_IN);
+    canvas.saveLayer(null, brush);
+
+    const brushRect = new drawing.Brush();
+    const colorRect: common2D.Color = {alpha: 255, red: 255, green: 255, blue: 0};
+    brushRect.setColor(colorRect);
+    canvas.attachBrush(brushRect);
+    const rect: common2D.Rect = {left:100, top:100, right:500, bottom:500};
+    canvas.drawRect(rect);
+    canvas.restore();
+    canvas.restore();
+    canvas.detachBrush();
+  }
+}
 ```
 
-![zh-cn_image_0000002194025221](figures/zh-cn_image_0000002194025221.png)
+![zh-ch_image_BlendMode_SrcIn.png](figures/zh-ch_image_BlendMode_SrcIn.png)
 
 
 ## 路径效果

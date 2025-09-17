@@ -408,3 +408,16 @@
 |-----------|---|---------|
 | BEAUTY    | 0 | 美颜。   |
 | PORTRAIT  | 1 | 人像虚化。|
+
+## PhotoQualityPrioritization<sup>21+</sup>
+
+枚举，拍照画质优先策略。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称         | 值     | 说明    |
+|--------------|-------|---------|
+| HIGH_QUALITY | 0     | 画质优先，拍照需要较长的时间，以输出高画质的图片。 |
+| SPEED        | 1     | 性能优先，会降低画质来提升拍照的速度。 |

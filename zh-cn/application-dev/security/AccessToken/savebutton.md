@@ -23,6 +23,8 @@
 
 - 应用在点击控件触发onClick()回调到调用媒体库特权接口的时间间隔不能大于一分钟。
 
+- 保存控件仅支持在[应用主窗口和子窗口](../../reference/apis-arkui/arkts-apis-window-e.md#windowtype7)中使用，且不支持在[UIExtension](../../reference/apis-arkui/js-apis-arkui-uiExtension.md)中使用。
+
 - 用户点击一次控件，仅获取一次授权调用。
 
 - 为了保障用户的隐私不被恶意应用获取，应用需确保安全控件是可见的且用户能够识别的。开发者需要合理的配置控件的尺寸、颜色等属性，避免视觉混淆的情况，如果发生因控件的样式不合法导致授权失败的情况，请检查设备错误日志。

@@ -253,7 +253,7 @@ Gainmap使用的元数据值，[HdrMetadataKey](arkts-apis-image-e.md#hdrmetadat
 
 > **说明：**
 >
-> 从API version 11开始不再维护，建议使用[ImagePropertyOptions](#imagepropertyoptions11)代替。
+> 从API version 7开始支持，从API version 11开始废弃，建议使用[ImagePropertyOptions](#imagepropertyoptions11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 

@@ -419,7 +419,7 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | 以回调方式方式返回接口运行结果及应用状态数据数组，可进行错误处理或其他自定义处理。 |
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | 以回调方式返回接口运行结果及应用状态数据数组，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -1837,7 +1837,7 @@ try {
 
 killProcessesInBatch(pids: Array\<number>): Promise\<void>
 
-批量查杀进程。
+批量终止进程。
 
 **需要权限**：ohos.permission.KILL_APP_PROCESSES
 
@@ -1851,7 +1851,7 @@ killProcessesInBatch(pids: Array\<number>): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pids    | Array\<number>   | 是    | 要查杀的进程ID。 |
+| pids    | Array\<number>   | 是    | 要终止的进程ID。 |
 
 **返回值：**
 

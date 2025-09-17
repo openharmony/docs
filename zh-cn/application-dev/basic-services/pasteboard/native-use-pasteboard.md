@@ -4,7 +4,7 @@
 <!--Owner: @yangxiaodong41-->
 <!--Designer: @guo867-->
 <!--Tester: @maxiaorong-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @fang-jinxu-->
 
 ## 场景介绍
 
@@ -138,7 +138,9 @@
      OH_UdsPlainText* plainText = OH_UdsPlainText_Create();
      OH_UdmfRecord_GetPlainText(record, plainText);
      const char* content = OH_UdsPlainText_GetContent(plainText);
-     printf("Get plain text success. content: %s", content);
+     if (content != nullptr){
+      printf("Get plain text success.");
+     }
      // 5. 使用完销毁指针
      OH_UdsPlainText_Destroy(plainText);
      OH_UdmfData_Destroy(udmfData);

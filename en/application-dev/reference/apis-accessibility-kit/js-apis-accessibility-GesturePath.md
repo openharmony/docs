@@ -1,5 +1,12 @@
 # @ohos.accessibility.GesturePath (Gesture Path)
 
+<!--Kit: Accessibility Kit-->
+<!--Subsystem: BarrierFree-->
+<!--Owner: @qiiiiiiian-->
+<!--Designer: @z7o-->
+<!--Tester: @A_qqq-->
+<!--Adviser: @w_Machine_cc-->
+
 The **GesturePath** module provides APIs for creating gesture path information required for an accessibility application to inject gestures.
 
 > **NOTE**
@@ -20,10 +27,10 @@ Defines a gesture path.
 
 ### Properties
 
-| Name          | Type                                                                             | Readable  | Writable  | Description    |
+| Name          | Type                                                                         | Read-Only  | Optional  | Description    |
 | ------------ |---------------------------------------------------------------------------------| ---- | ---- | ------ |
-| points       | Array&lt;[GesturePoint](js-apis-accessibility-GesturePoint.md#gesturepoint)&gt; | Yes   | Yes   | Gesture touch point.   |
-| durationTime | number                                                                          | Yes   | Yes   | Total gesture duration, in milliseconds.|
+| points       | Array&lt;[GesturePoint](js-apis-accessibility-GesturePoint.md#gesturepoint)&gt; | No   | No   | Gesture touch point.   |
+| durationTime | number                                                                          | No   | No   | Total gesture duration, in milliseconds.|
 
 ### constructor<sup>(deprecated)</sup>
 

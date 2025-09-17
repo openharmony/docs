@@ -1,4 +1,10 @@
 # OH_Cursor
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 
@@ -218,7 +224,7 @@ Pointer to the function used to obtain information about the memory required whe
 | ------------------- | ------------------------------------------------------------ |
 | OH_Cursor *cursor   | Pointer to the **OH_Cursor** instance.                               |
 | int32_t columnIndex | Index of the column, which starts from **0**.                   |
-| int32_t columnIndex | Pointer to the memory size obtained.|
+| size_t *size        | Pointer to the memory size obtained.|
 
 **Returns**
 

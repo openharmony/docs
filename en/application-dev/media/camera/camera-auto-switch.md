@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 This document describes the scenario of automatic front-camera switching on foldable devices. The system selects the appropriate front camera depending on the device's fold state.
 
@@ -11,11 +12,11 @@ For example, foldable device A has three cameras: rear camera B, front camera C,
 
 Enable the front camera in the current fold state, and call [enableAutoDeviceSwitch](../../reference/apis-camera-kit/arkts-apis-camera-AutoDeviceSwitch.md#enableautodeviceswitch13) to enable automatic camera switching. This ensures that when the fold state changes, the front camera corresponding to that state is automatically selected.
 
-Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
+Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
-Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
+Before developing a camera application, you must [request required permissions](camera-preparation.md).
 
 ## Importing Dependencies
 ```ts
@@ -96,7 +97,7 @@ function unregisterAutoDeviceSwitchStatus(photoSession: camera.PhotoSession): vo
 }
 ```
 
-## Sample Code
+## Complete Sample Code
 ```ts
 import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -117,11 +118,6 @@ struct Index {
   private mSurfaceId: string = '';
   private mCameraPosition: camera.CameraPosition = camera.CameraPosition.CAMERA_POSITION_BACK;
   private mCameraManager: camera.CameraManager | undefined = undefined;
-  // Select the surface width and height as required.
-  private surfaceRect: SurfaceRect = {
-    surfaceWidth: 1080,
-    surfaceHeight: 1920
-  };
   private curCameraDevice: camera.CameraDevice | undefined = undefined;
   private mCameraInput: camera.CameraInput | undefined = undefined;
   private mPreviewOutput: camera.PreviewOutput | undefined = undefined;
@@ -151,7 +147,7 @@ struct Index {
     ]).then((): void => {
       this.isShow = true;
     }).catch((error: BusinessError): void => {
-      console.error(TAG + 'ohos.permission.CAMERA no permission.');
+      console.error(TAG + `ohos.permission.CAMERA no permission, error: ${error.code}`);
     });
   }
 
@@ -161,11 +157,16 @@ struct Index {
   }
 
   initCameraManager(): void {
-    this.mCameraManager = camera.getCameraManager(this.mContext);
+    try {
+      this.mCameraManager = camera.getCameraManager(this.mContext);
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(`getCameraManager failed, error: ${err.code}`);
+    }
   }
 
   aboutToAppear(): void {
-    console.log(TAG + 'aboutToAppear is called');
+    console.info(TAG + 'aboutToAppear is called');
     this.initContext();
     this.requestPermissionsFn();
     this.initCameraManager();

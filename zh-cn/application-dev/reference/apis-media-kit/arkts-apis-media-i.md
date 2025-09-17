@@ -276,6 +276,10 @@ AVMetadata.tracks支持的[MediaDescriptionKey](arkts-apis-media-e.md#mediadescr
 | MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | 音频 |
 | MD_KEY_AUD_SAMPLE_RATE | 'sample_rate' | 音频 |
 | MD_KEY_HDR_TYPE | 'hdr_type' | 视频 |
+| MD_KEY_ORIGINAL_WIDTH | 'original_width' | 视频 |
+| MD_KEY_ORIGINAL_HEIGHT | 'original_height' | 视频 |
+| MD_KEY_BITRATE | 'bitrate' | 音频 |
+| MD_KEY_AUD_SAMPLE_DEPTH | 'sample_depth' | 音频 |
 
 ## PixelMapParams<sup>12+</sup>
 
@@ -283,10 +287,10 @@ AVMetadata.tracks支持的[MediaDescriptionKey](arkts-apis-media-e.md#mediadescr
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
 
-| 名称   | 类型   | 可读 | 可写 | 说明                                                                            |
+| 名称   | 类型   | 只读 | 可选 | 说明                                                                            |
 |--------|--------|------|------|---------------------------------------------------------------------------------|
-| width  | number | 是   | 是   | 输出的缩略图宽度。应保证大于0且不大于原始视频宽度。否则返回的缩略图不会进行缩放。 |
-| height | number | 是   | 是   | 输出的缩略图高度。应保证大于0且不大于原始视频高度。否则返回的缩略图不会进行缩放。 |
+| width  | number | 否   | 是   | 输出的缩略图宽度。应保证大于0且不大于原始视频宽度。否则返回的缩略图不会进行缩放。 |
+| height | number | 否   | 是   | 输出的缩略图高度。应保证大于0且不大于原始视频高度。否则返回的缩略图不会进行缩放。 |
 
 ## OutputSize<sup>20+</sup>
 

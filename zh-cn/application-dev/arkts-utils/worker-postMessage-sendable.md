@@ -10,7 +10,7 @@
 
 本文介绍如何在多级Worker间实现高性能消息通信。高性能消息通信的关键在于[Sendable对象](arkts-sendable.md)，结合[postMessageWithSharedSendable接口](../reference/apis-arkts/js-apis-worker.md#postmessagewithsharedsendable12)，可以实现线程间高性能的对象传递。例如，在数据克隆场景中，假设有一个父Worker和两个子Worker。父Worker负责创建子Worker，并向子Worker发送数据克隆任务。子Worker接收任务并执行数据克隆操作，完成后将克隆结果返回给父Worker。
 
-1. 准备一个Sendable类CopyEntry，封装克隆任务数据。
+1. 在ets文件夹下新建文件夹Sendable，并准备一个Sendable类CopyEntry，封装克隆任务数据。
    
    ```ts
    // CopyEntry.ets
@@ -32,7 +32,7 @@
    ```ts
    // ParentWorker.ets
    import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker, collections, ArkTSUtils } from '@kit.ArkTS'
-   import { CopyEntry } from './CopyEntry'
+   import { CopyEntry } from '../Sendable/CopyEntry'
 
    const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
@@ -45,8 +45,8 @@
    // 异步锁
    const asyncLock = new ArkTSUtils.locks.AsyncLock();
    // 创建子Worker
-   const copyWorker1 = new worker.ThreadWorker('entry/ets/pages/ChildWorker.ets');
-   const copyWorker2 = new worker.ThreadWorker('entry/ets/pages/ChildWorker.ets');
+   const copyWorker1 = new worker.ThreadWorker('entry/ets/workers/ChildWorker.ets');
+   const copyWorker2 = new worker.ThreadWorker('entry/ets/workers/ChildWorker.ets');
 
    workerPort.onmessage = (e : MessageEvents) => {
      let array = e.data as collections.Array<CopyEntry>;
@@ -110,7 +110,7 @@
    ```ts
    // ChildWorker.ets
    import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker} from '@kit.ArkTS'
-   import { CopyEntry } from './CopyEntry'
+   import { CopyEntry } from '../Sendable/CopyEntry'
 
    const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
@@ -135,7 +135,7 @@
    ```ts
    // Index.ets
    import { worker, collections } from '@kit.ArkTS';
-   import { CopyEntry } from './CopyEntry'
+   import { CopyEntry } from '../Sendable/CopyEntry'
    
    function promiseCase() {
      let p: Promise<void> = new Promise<void>((resolve: Function, reject: Function) => {
@@ -147,7 +147,7 @@
    }
 
    async function postMessageTest() {
-     let ss = new worker.ThreadWorker("entry/ets/pages/ParentWorker.ets");
+     let ss = new worker.ThreadWorker("entry/ets/workers/ParentWorker.ets");
      let isTerminate = false;
      ss.onexit = () => {
        isTerminate = true;

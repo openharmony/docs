@@ -1,4 +1,10 @@
 # @ohos.multimedia.media (Media) (System API)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zzs_911-->
+<!--Designer: @stupig001-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 
 The multimedia subsystem provides a set of simple and easy-to-use APIs for you to access the system and use media resources.
 
@@ -33,11 +39,11 @@ Only one VideoRecorder instance can be created per device.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
-| 202  | Not system App. |
+| 202      | Not system App.                |
 | 5400101  | No memory. Return by callback. |
 
 **Example**
@@ -76,10 +82,11 @@ Only one VideoRecorder instance can be created per device.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                     |
 | -------- | ----------------------------- |
+| 202      | Not system App.               |
 | 5400101  | No memory. Return by promise. |
 
 **Example**
@@ -104,7 +111,7 @@ media.createVideoRecorder().then((video: media.VideoRecorder) => {
 
 reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<void>
 
-Reports the user selection result in the screen capture privacy dialog box to the AVScreenCapture server to determine whether to start screen capture. Screen capture starts only when the user touches a button to continue the operation.
+Reports the user selection result in the screen capture privacy dialog box to the AVScreenCapture server to determine whether to start screen capture. Screen capture starts only when the user touches the **Allow** button to continue the operation.
 
 This API is called by the system application that creates the dialog box.
 
@@ -142,6 +149,8 @@ class JsonData {
   public choice: string = 'true';
   public displayId: number | null = -1;
   public missionId: number | null = -1;
+  public checkBoxSelected: string = 'true';
+  public isInnerAudioBoxSelected: string = 'true';
 }
 let sessionId: number = 0; // Use the ID of the session that starts the process.
 
@@ -150,6 +159,8 @@ try {
     choice: 'true',  // Replace it with the user choice.
     displayId: -1, // Replace it with the ID of the display selected by the user.
     missionId: -1,   // Replace it with the ID of the window selected by the user.
+    checkBoxSelected: 'true',   // Replace it with the enabled status of screen protection.
+    isInnerAudioBoxSelected: 'true',   // Replace it the enabled status of internal audio recording.
   }
   await media.reportAVScreenCaptureUserChoice(sessionId, JSON.stringify(jsonData));
 } catch (error: BusinessError) {
@@ -161,11 +172,11 @@ try {
 
 getAVScreenCaptureConfigurableParameters(sessionId: number): Promise\<string>
 
-Obtains the system privacy protection and application privacy protection settings that can be modified by the user from the server. This API uses a promise to return the result.
+Obtains configuration parameters for system- and application-level privacy protection from the server. This API uses a promise to return the result.
 
 >**NOTE**
 >
-> This API is exclusively for the system application that creates the dialog box.
+> This API is exclusively for the system application that creates the privacy dialog box.
 
 **System API**: This is a system API.
 
@@ -181,7 +192,7 @@ Obtains the system privacy protection and application privacy protection setting
 
 | Type            | Description                            |
 | ---------------- | -------------------------------- |
-| Promise\<string> | Promise that returns no value.|
+| Promise\<string> | Promise used to return the result, which is a string containing the configuration parameters. If the operation fails, an empty string is returned.|
 
 **Error codes**
 
@@ -267,7 +278,7 @@ If a SoundPool instance created using [createSoundPool](arkts-apis-media-f.md#me
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                     |
 | -------- | ----------------------------- |
@@ -304,9 +315,9 @@ Defines the format parameters of the video thumbnail to be obtained.
 
 **System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
 
-| Name    | Type  |  Readable  |   Writable   |  Description                  |
+| Name    | Type  |  Read-Only  |   Optional   |  Description                  |
 | -------- | ------ |   ------| ------ | ---------------------- |
-| colorFormat  | [PixelFormat](#pixelformat11) |  Yes  |  Yes  | Color format of the thumbnail.<br>**System API**: This is a system API.     |
+| colorFormat  | [PixelFormat](#pixelformat11) |  No  |  Yes  | Color format of the thumbnail.<br>**System API**: This is a system API.     |
 
 ## PixelFormat<sup>11+</sup>
 
@@ -350,7 +361,7 @@ Obtains the video timestamp corresponding to a video frame number. Only MP4 vide
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
@@ -395,7 +406,7 @@ Obtains the video frame number corresponding to a video timestamp. Only MP4 vide
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
@@ -440,7 +451,7 @@ This API can be called after the [prepare()](arkts-apis-media-AVRecorder.md#prep
 
 | Type            | Description                            |
 | ---------------- | -------------------------------- |
-| Promise\<boolean> | Promise used to return the check result. The value **true** means that the device supports the hardware digital watermark, and **false** means the opposite.|
+| Promise\<boolean> | Promise used to return the check result, which indicates the support for the hardware digital watermark. **true** if supported, **false** otherwise.|
 
 **Example**
 
@@ -571,7 +582,7 @@ Implements video recording. Before calling any API in the **VideoRecorder** clas
 
 **System API**: This is a system API.
 
-| Name              | Type                                  | Readable| Writable| Description            |
+| Name              | Type                                  | Read-Only| Optional| Description            |
 | ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
 | state<sup>9+</sup> | [VideoRecordState](#videorecordstate9) | Yes  | No  | Video recording state.|
 
@@ -596,11 +607,12 @@ Sets video recording parameters. This API uses an asynchronous callback to retur
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                  |
 | -------- | ------------------------------------------ |
 | 201      | Permission denied. Return by callback.     |
+| 202      | Not system App.                            |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.       |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.          |
@@ -669,11 +681,12 @@ Sets video recording parameters. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 201      | Permission denied. Return by promise.     |
+| 202      | Not system App.                           |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.       |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.          |
@@ -736,10 +749,11 @@ This API can be called only after [prepare()](#prepare9) is called.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                  |
 | -------- | ------------------------------------------ |
+| 202      | Not system App.                            |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400103  | I/O error. Return by callback.             |
 | 5400105  | Service died. Return by callback.          |
@@ -783,10 +797,11 @@ This API can be called only after [prepare()](#prepare9-1) is called.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 202      | Not system App.                           |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400103  | I/O error. Return by promise.             |
 | 5400105  | Service died. Return by promise.          |
@@ -826,10 +841,11 @@ This API can be called only after [prepare()](#prepare9) and [getInputSurface()]
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                  |
 | -------- | ------------------------------------------ |
+| 202      | Not system App.                            |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400103  | I/O error. Return by callback.             |
 | 5400105  | Service died. Return by callback.          |
@@ -869,10 +885,11 @@ This API can be called only after [prepare()](#prepare9-1) and [getInputSurface(
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 202      | Not system App.                           |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400103  | I/O error. Return by promise.             |
 | 5400105  | Service died. Return by promise.          |
@@ -910,10 +927,11 @@ This API can be called only after [start()](#start9) is called. You can resume r
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                  |
 | -------- | ------------------------------------------ |
+| 202      | Not system App.                            |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400103  | I/O error. Return by callback.             |
 | 5400105  | Service died. Return by callback.          |
@@ -953,10 +971,11 @@ This API can be called only after [start()](#start9-1) is called. You can resume
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 202      | Not system App.                           |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400103  | I/O error. Return by promise.             |
 | 5400105  | Service died. Return by promise.          |
@@ -992,10 +1011,11 @@ Resumes recording. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                  |
 | -------- | ------------------------------------------ |
+| 202      | Not system App.                            |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400103  | I/O error. Return by callback.             |
 | 5400105  | Service died. Return by callback.          |
@@ -1033,10 +1053,11 @@ Resumes recording. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 202      | Not system App.                           |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400103  | I/O error. Return by promise.             |
 | 5400105  | Service died. Return by promise.          |
@@ -1074,10 +1095,11 @@ To start another recording, you must call [prepare()](#prepare9) and [getInputSu
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                  |
 | -------- | ------------------------------------------ |
+| 202      | Not system App.                            |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400103  | I/O error. Return by callback.             |
 | 5400105  | Service died. Return by callback.          |
@@ -1117,10 +1139,11 @@ To start another recording, you must call [prepare()](#prepare9-1) and [getInput
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 202      | Not system App.                           |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400103  | I/O error. Return by promise.             |
 | 5400105  | Service died. Return by promise.          |
@@ -1156,10 +1179,11 @@ Releases the video recording resources. This API uses an asynchronous callback t
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                         |
 | -------- | --------------------------------- |
+| 202      | Not system App.                   |
 | 5400105  | Service died. Return by callback. |
 
 **Example**
@@ -1195,10 +1219,11 @@ Releases the video recording resources. This API uses a promise to return the re
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                         |
 | -------- | --------------------------------- |
+| 202      | Not system App.                   |
 | 5400105  | Service died. Return by callback. |
 
 **Example**
@@ -1234,10 +1259,11 @@ To start another recording, you must call [prepare()](#prepare9) and [getInputSu
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                         |
 | -------- | --------------------------------- |
+| 202      | Not system App.                   |
 | 5400103  | I/O error. Return by callback.    |
 | 5400105  | Service died. Return by callback. |
 
@@ -1276,10 +1302,11 @@ To start another recording, you must call [prepare()](#prepare9-1) and [getInput
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
+| 202      | Not system App.                  |
 | 5400103  | I/O error. Return by promise.    |
 | 5400105  | Service died. Return by promise. |
 
@@ -1315,10 +1342,12 @@ Subscribes to video recording error events. After an error event is reported, yo
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                         |
 | -------- | --------------------------------- |
+| 201      | permission denied.                |
+| 202      | Not system App.                   |
 | 5400103  | I/O error. Return by callback.    |
 | 5400105  | Service died. Return by callback. |
 
@@ -1380,9 +1409,9 @@ Describes the video recording profile.
 | Name            | Type                                        | Mandatory| Description            |
 | ---------------- | -------------------------------------------- | ---- | ---------------- |
 | audioBitrate     | number                                       | No  | Audio encoding bit rate. This parameter is mandatory for audio recording.|
-| audioChannels    | number                                       | No  | Number of audio channels. This parameter is mandatory for audio recording.|
+| audioChannels    | number                                       | No  | Audio channel count. This parameter is mandatory for audio recording.|
 | audioCodec       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | No  | Audio encoding format. This parameter is mandatory for audio recording.  |
-| audioSampleRate  | number                                       | No  | Audio sampling rate. This parameter is mandatory for audio recording.    |
+| audioSampleRate  | number                                       | No  | Audio sample rate. This parameter is mandatory for audio recording.    |
 | fileFormat       | [ContainerFormatType](arkts-apis-media-e.md#containerformattype8) | Yes  | Container format of a file.|
 | videoBitrate     | number                                       | Yes  | Video encoding bit rate.|
 | videoCodec       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | Yes  | Video encoding format.  |
@@ -1392,7 +1421,7 @@ Describes the video recording profile.
 
 ## WatermarkConfig<sup>13+</sup>
 
-Describes the watermark configuration set for the AVRecorder. The start point is the upper left corner of the image.
+Describes the watermark configuration set for the AVRecorder. The start point is the upper-left corner of the image.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -1413,7 +1442,7 @@ A class that provides APIs to query and monitor the system screen recorder statu
 
 **System API**: This is a system API.
 
-| Name              | Type                                  | Readable| Writable| Description            |
+| Name              | Type                                  | Read-Only| Optional| Description            |
 | ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
 | isSystemScreenRecorderWorking<sup>18+</sup> | boolean | Yes  | No  | Whether the system screen recorder is working.|
 
@@ -1509,6 +1538,4 @@ Specifies whether to capture the entire screen or half of the screen when the fo
 
 | Name                     | Type   | Mandatory| Description|
 | ------------------------ | ------- | ---- | ---- |
-| enableDeviceLevelCapture | boolean | No  | The value **true** means to capture the entire screen when the foldable PC is folded, and **false** means to capture half of the screen.|
-
-<!--no_check-->
+| enableDeviceLevelCapture | boolean | No  | Whether to capture the entire screen when the foldable PC is folded. **true** to capture the entire screen, **false** to capture half of the screen.|

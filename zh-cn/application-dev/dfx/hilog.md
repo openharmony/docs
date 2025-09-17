@@ -723,7 +723,7 @@ LOGLIMIT是进程或domainID超限管控的丢失；Slow reader missed是全局�
 
 **处理方式**：
 
-- 通过hilog -g命令查询buffer大小（hilog buffer大小默认是256KB）。
+- 通过hilog -g命令查询当前buffer大小。
 
 - 通过hilog -G命令扩大hilog buffer大小。如下命令表示将buffer大小修改为16MB（当前允许的最大规格为16MB）。
 

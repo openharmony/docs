@@ -7,13 +7,11 @@
 <!--Tester: @fenglili18-->
 <!--Adviser: @Brilliantry_Rui-->
 
-## 概述
-
-### 功能介绍
+## 功能介绍
 
 应用退到后台或进程终止后，仍然有一些提醒用户的定时类通知，为满足此类功能场景，系统提供了代理提醒的能力。当应用退至后台或进程终止后，系统会代理应用做定时提醒。当前支持的提醒类型包括：倒计时、日历和闹钟。<!--RP1--><!--RP1End-->
 
-### 约束与限制
+## 约束与限制
 
 <!--RP3--><!--RP3End-->
 
@@ -49,11 +47,19 @@
 
 ## 开发步骤
 
-1. 申请ohos.permission.PUBLISH_AGENT_REMINDER权限，配置方式请参阅[声明权限](../security/AccessToken/declare-permissions.md)。
+<!--RP4--><!--RP4End-->
 
-2. [请求通知授权](../notification/notification-enable.md)。获得用户授权后，才能使用代理提醒功能。
+### 申请权限
 
-3. 导入模块。
+申请ohos.permission.PUBLISH_AGENT_REMINDER权限，配置方式请参阅[声明权限](../security/AccessToken/declare-permissions.md)。
+
+### 请求通知授权
+
+[请求通知授权](../notification/notification-enable.md)。获得用户授权后，才能使用代理提醒功能。
+
+### 功能开发
+
+1. 导入模块。
    
    ```ts
    import { reminderAgentManager } from '@kit.BackgroundTasksKit';
@@ -61,7 +67,7 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-4. 定义目标提醒代理。开发者根据实际需要，选择定义如下类型的提醒。
+2. 定义目标提醒代理。开发者根据实际需要，选择定义如下类型的提醒。
 
    - 定义倒计时实例。
      
@@ -162,7 +168,7 @@
       }
       ```
 
-5. 发布相应的提醒代理。代理发布后，应用即可使用后台代理提醒功能。
+3. 发布相应的提醒代理。代理发布后，应用即可使用后台代理提醒功能。
    
    ```ts
     reminderAgentManager.publishReminder(targetReminderAgent).then((res: number) => {
@@ -173,7 +179,7 @@
     })
    ```
 
-6. 根据需要删除提醒任务。
+4. 根据需要删除提醒任务。
    
    ```ts
     let reminderId: number = 1;

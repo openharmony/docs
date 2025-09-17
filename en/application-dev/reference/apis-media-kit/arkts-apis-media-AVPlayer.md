@@ -1,4 +1,10 @@
 # Interface (AVPlayer)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xushubo; @chennotfound-->
+<!--Designer: @dongyu_dy-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -6,6 +12,8 @@
 > - The initial APIs of this interface are supported since API version 9.
 
 AVPlayer is a playback management class. It provides APIs to manage and play media assets. Before calling any API in AVPlayer, you must use [createAVPlayer()](arkts-apis-media-f.md#mediacreateavplayer9) to create an AVPlayer instance.
+
+Applications must properly manage AVPlayer instances according to their specific needs, creating and freeing them when necessary. Holding too many AVPlayer instances can lead to high memory usage, and in some cases, the system might terminate applications to free up resources.
 
 For details about the audio and video playback demo, see [Audio Playback](../../media/media/using-avplayer-for-playback.md) and [Video Playback](../../media/media/video-playback.md).
 
@@ -32,7 +40,7 @@ import { media } from '@kit.MediaKit';
 | fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](arkts-apis-media-i.md#avfiledescriptor9)                       | No  | Yes  | FD of the media asset. It can be set only when the AVPlayer is in the idle state.<br>This property is required when media assets of an application are continuously stored in a file.<br>The video formats MP4, MPEG-TS, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, FLAC, AMR, and APE are supported.<br>**Example:**<br>Assume that a media file that stores continuous assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor { fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor { fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor { fd = resource handle; offset = 151; length = 150; }<br>To play an independent media file, use **src=fd://xx**.<br>**NOTE**<br>WebM is no longer supported since API version 11.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](arkts-apis-media-i.md#avdatasrcdescriptor10)                | No  | Yes  | Descriptor of a streaming media asset. It can be set only when the AVPlayer is in the idle state.<br>Use scenario: An application starts playing a media file while the file is still being downloaded from the remote to the local host.<br>The video formats MP4, MPEG-TS, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, FLAC, AMR, and APE are supported.<br>**Example:**<br>A user is obtaining an audio and video file from a remote server and wants to play the downloaded file content. To implement this scenario, do as follows:<br>1. Obtain the total file size, in bytes. If the total size cannot be obtained, set **fileSize** to **-1**.<br>2. Implement the **func** callback to fill in data. If **fileSize** is **-1**, the format of **func** is **func(buffer: ArrayBuffer, length: number)**, and the AVPlayer obtains data in sequence; otherwise, the format is **func(buffer: ArrayBuffer, length: number, pos: number)**, and the AVPlayer seeks and obtains data in the required positions.<br>3. Set **AVDataSrcDescriptor {fileSize = size, callback = func}**.<br>**Notes:**<br>If the media file to play is in MP4/M4A format, ensure that the **moov** field (specifying the media information) is before the **mdat** field (specifying the media data) or the fields before the **moov** field is less than 10 MB. Otherwise, the parsing fails and the media file cannot be played.<br>**NOTE**<br>WebM is no longer supported since API version 11.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | surfaceId<sup>9+</sup>                              | string                                                       | No  | Yes  | Video window ID. By default, there is no video window.<br>This parameter can be set when the AVPlayer is in the initialized state.<br>It can be set again when the AVPlayer is in the prepared, playing, paused, completed, or stopped state, in the prerequisite that the video window ID has been set in the initialized state. After the new setting is performed, the video is played in the new window.<br>It is used to render the window for video playback and therefore is not required in audio-only playback scenarios.<br>**Example:**<br>[Create a surface ID through XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| loop<sup>9+</sup>                                   | boolean                                                      | No  | No  | Whether to loop playback. The value **true** means to loop playback, and **false** (default) means the opposite. It is a dynamic property<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>This setting is not supported in live mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| loop<sup>9+</sup>                                   | boolean                                                      | No  | No  | Whether to loop playback. **true** to loop, **false** otherwise. The default value is **false**. It is a dynamic property<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>This setting is not supported in live mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | videoScaleType<sup>9+</sup>                         | [VideoScaleType](arkts-apis-media-e.md#videoscaletype9)                           | No  | Yes  | Video scale type. The default value is **VIDEO_SCALE_TYPE_FIT**. It is a dynamic property<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](../apis-audio-kit/arkts-apis-audio-e.md#interruptmode9)       | No  | Yes  | Audio interruption mode. The default value is **SHARE_MODE**. It is a dynamic property<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>To take effect, this property must be set before [play()](#play9) is called for the first time.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](../apis-audio-kit/arkts-apis-audio-i.md#audiorendererinfo8) | No  | Yes  | Audio renderer information. If the media source contains videos, the default value of **usage** is **STREAM_USAGE_MOVIE**. Otherwise, the default value of **usage** is **STREAM_USAGE_MUSIC**. The default value of **rendererFlags** is 0. If the default value of **usage** does not meet the requirements, configure [audio.AudioRendererInfo](../apis-audio-kit/arkts-apis-audio-i.md#audiorendererinfo8).<br>This parameter can be set only when the AVPlayer is in the initialized state.<br>To take effect, this property must be set before [prepare()](#prepare9) is called for the first time.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -63,6 +71,7 @@ Subscribes to AVPlayer state changes.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
   switch (state) {
     case 'idle':
@@ -119,6 +128,7 @@ Unsubscribes from [AVPlayerState](arkts-apis-media-t.md#avplayerstate9) state ch
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('stateChange');
 ```
 
@@ -172,7 +182,7 @@ In API versions 9 to 13, error code 5400103 is reported when the network or serv
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('error', (error: BusinessError) => {
   console.info('error happened,and error message is :' + error.message);
   console.info('error happened,and error code is :' + error.code);
@@ -199,6 +209,9 @@ Unsubscribes from AVPlayer errors.
 **Example**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('error');
 ```
 
@@ -295,7 +308,7 @@ constructor(context: Context) {
 }
 
 let player = await media.createAVPlayer();
-let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.mp4');
+let fileDescriptor = await this.context?.resourceManager.getRawFd('xxx.mp4');
 player.fdSrc = fileDescriptor
 let playStrategy : media.PlaybackStrategy = {
   preferredWidth: 1,
@@ -327,6 +340,12 @@ Sets the playback range and seeks to the start position of the range based on th
 | endTimeMs | number | Yes  | End position of the range, in ms. The value range is (startTimeMs, duration]. If **-1** is passed in, the system plays the content until it reaches the final part of the asset.|
 | mode | [SeekMode](arkts-apis-media-e.md#seekmode8) | No  | Seek mode, which can be **SeekMode.SEEK_PREV_SYNC** or **SeekMode.SEEK_CLOSEST**.<br>The default value is **SeekMode.SEEK_PREV_SYNC**.|
 
+**Return value**
+
+| Type          | Description                                 |
+| -------------- | ------------------------------------ |
+| Promise\<void> | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
@@ -339,9 +358,9 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.setPlaybackRange(0, 6000, media.SeekMode.SEEK_CLOSEST).then(() => {
   console.info('Succeeded setPlaybackRange');
 }).catch((err: BusinessError) => {
@@ -379,6 +398,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the initialized state before proceeding.
 avPlayer.prepare((err: BusinessError) => {
   if (err) {
     console.error('Failed to prepare,error message is :' + err.message);
@@ -420,6 +441,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the initialized state before proceeding.
 avPlayer.prepare().then(() => {
   console.info('Succeeded in preparing');
 }, (err: BusinessError) => {
@@ -446,7 +469,7 @@ This API can be called only when the AVPlayer is in the prepared, playing, pause
 | Name  | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | -------------------- |
 | mediaType | [MediaType](arkts-apis-media-e.md#mediatype8) | Yes  | Media type.|
-| muted | boolean | Yes  | For API version 12 to 19, only audio formats are supported. This parameter specifies whether to mute or unmute the audio. The value **true** means to mute the audio, and **false** means the opposite.<br>Starting from API version 20, video formats are also supported. This parameter specifies whether to mute or unmute the video display. The value **true** means to mute the video display, and **false** means the opposite.|
+| muted | boolean | Yes  | For API version 12 to 19, only audio formats are supported. This parameter specifies whether to mute or unmute the audio. **true** to mute, **false** otherwise.<br>Starting from API version 20, video formats are also supported. This parameter specifies whether to mute or unmute the video display. **true** to mute, **false** otherwise.|
 
 **Return value**
 
@@ -468,6 +491,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the initialized state before proceeding.
 avPlayer.prepare().then(() => {
   console.info('Succeeded in preparing');
   avPlayer.setMediaMuted(media.MediaType.MEDIA_TYPE_AUD, true);
@@ -505,6 +530,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the prepared, paused, or completed state before proceeding.
 avPlayer.play((err: BusinessError) => {
   if (err) {
     console.error('Failed to play,error message is :' + err.message);
@@ -543,6 +570,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the prepared, paused, or completed state before proceeding.
 avPlayer.play().then(() => {
   console.info('Succeeded in playing');
 }, (err: BusinessError) => {
@@ -579,6 +608,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the playing state before proceeding.
 avPlayer.pause((err: BusinessError) => {
   if (err) {
     console.error('Failed to pause,error message is :' + err.message);
@@ -617,6 +648,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the playing state before proceeding.
 avPlayer.pause().then(() => {
   console.info('Succeeded in pausing');
 }, (err: BusinessError) => {
@@ -653,6 +686,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the prepared, playing, paused, or completed state before proceeding.
 avPlayer.stop((err: BusinessError) => {
   if (err) {
     console.error('Failed to stop,error message is :' + err.message);
@@ -691,6 +726,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the prepared, playing, paused, or completed state before proceeding.
 avPlayer.stop().then(() => {
   console.info('Succeeded in stopping');
 }, (err: BusinessError) => {
@@ -727,6 +764,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the initialized, prepared, playing, paused, completed, stopped, or error state before proceeding.
 avPlayer.reset((err: BusinessError) => {
   if (err) {
     console.error('Failed to reset,error message is :' + err.message);
@@ -765,6 +804,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the initialized, prepared, playing, paused, completed, stopped, or error state before proceeding.
 avPlayer.reset().then(() => {
   console.info('Succeeded in resetting');
 }, (err: BusinessError) => {
@@ -801,6 +842,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach a state other than released before proceeding.
 avPlayer.release((err: BusinessError) => {
   if (err) {
     console.error('Failed to release,error message is :' + err.message);
@@ -839,6 +882,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach a state other than released before proceeding.
 avPlayer.release().then(() => {
   console.info('Succeeded in releasing');
 }, (err: BusinessError) => {
@@ -875,6 +920,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the prepared, playing, or paused state before proceeding.
 avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if ((arrList) != null) {
     console.info('Succeeded in doing getTrackDescription');
@@ -913,6 +960,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the prepared, playing, or paused state before proceeding.
 avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
   console.info('Succeeded in getting TrackDescription');
 }).catch((error: BusinessError) => {
@@ -949,6 +998,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the prepared, playing, or paused state before proceeding.
 avPlayer.getSelectedTracks().then((arrList: Array<number>) => {
   console.info('Succeeded in getting SelectedTracks');
 }).catch((error: BusinessError) => {
@@ -1024,6 +1075,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the initialized state before proceeding.
 avPlayer.prepare().then(() => {
   console.info('Succeeded in preparing');
   let playbackPosition: number = avPlayer.getPlaybackPosition();
@@ -1163,7 +1216,7 @@ Sets the decryption configuration. When receiving a [mediaKeySystemInfoUpdate ev
 | Name  | Type                                                        | Mandatory| Description                                        |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------- |
 | mediaKeySession | [drm.MediaKeySession](../apis-drm-kit/arkts-apis-drm-MediaKeySession.md) | Yes  | Decryption session.|
-| secureVideoPath | boolean | Yes| Secure video channel. The value **true** means that a secure video channel is selected, and **false** means that a non-secure video channel is selected.|
+| secureVideoPath | boolean | Yes| Secure video channel. **true** if a secure video channel is selected, **false** otherwise.|
 
 **Error codes**
 
@@ -1180,6 +1233,7 @@ For details about the DRM module, see [@ohos.multimedia.drm](../apis-drm-kit/ark
 ```ts
 import { drm } from '@kit.DrmKit';
 
+let avPlayer = await media.createAVPlayer();
 // Create a media key system.
 let keySystem:drm.MediaKeySystem = drm.createMediaKeySystem('com.clearplay.drm');
 // Create a media key session.
@@ -1212,6 +1266,8 @@ Obtains the media key system information of the media asset that is being played
 ```ts
 import { drm } from '@kit.DrmKit';
 
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the mediaKeySystemInfoUpdate event to successfully trigger before proceeding.
 const infos = avPlayer.getMediaKeySystemInfos();
 console.info('GetMediaKeySystemInfos count: ' + infos.length);
 for (let i = 0; i < infos.length; i++) {
@@ -1241,13 +1297,17 @@ This API is not supported in live mode.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 let seekTime: number = 1000;
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the prepared, playing, paused, or completed state before proceeding.
 avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC);
 ```
 
 ```ts
 // Use SEEK_CONTINUOUS with the onChange callback of the Slider. When slideMode is Moving, it triggers continuous seeking during the drag.
+let avPlayer = await media.createAVPlayer();
 let slideMovingTime: number = 2000;
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the prepared, playing, paused, or completed state before proceeding.
 avPlayer.seek(slideMovingTime, media.SeekMode.SEEK_CONTINUOUS);
 
 // To end the seek when slideMode is End, call seek(-1, media.SeekMode.SEEK_CONTINUOUS).
@@ -1268,11 +1328,13 @@ Checks whether the media source supports [seek](#seek9) in SEEK_CONTINUOUS mode 
 
 | Type          | Description                                      |
 | -------------- | ------------------------------------------ |
-| boolean | Check result. The value **true** means that the media source supports [seek](#seek9) in SEEK_CONTINUOUS mode, and **false** means the opposite.|
+| boolean | Check result for the support of the seek operation in SEEK_CONTINUOUS mode. **true** if supported, **false** otherwise.|
 
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the prepared, playing, paused, or completed state before proceeding.
 let isSupported = avPlayer.isSeekContinuousSupported();
 ```
 
@@ -1296,6 +1358,7 @@ Subscribes to the event to check whether the seek operation takes effect.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('seekDone', (seekDoneTime:number) => {
   console.info('seekDone called,and seek time is:' + seekDoneTime);
 });
@@ -1321,6 +1384,7 @@ Unsubscribes from the event that checks whether the seek operation takes effect.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('seekDone');
 ```
 
@@ -1344,6 +1408,8 @@ This API is not supported in live mode.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the prepared, playing, paused, or completed state before proceeding.
 avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_2_00_X);
 ```
 
@@ -1367,6 +1433,7 @@ Subscribes to the event to check whether the playback speed is successfully set.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('speedDone', (speed:number) => {
   console.info('speedDone called,and speed value is:' + speed);
 });
@@ -1392,6 +1459,7 @@ Unsubscribes from the event that checks whether the playback speed is successful
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('speedDone');
 ```
 
@@ -1413,7 +1481,7 @@ Sets the playback rate. This API can be called only when the AVPlayer is in the 
 
 | Name| Type                            | Mandatory| Description              |
 | ------ | -------------------------------- | ---- | ------------------ |
-| rate  | number | Yes  | Playback rate to set.|
+| rate  | number | Yes  | Playback rate, which is in the range [0.125, 4.0].|
 
 **Error codes**
 
@@ -1427,6 +1495,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the prepared, playing, paused, or completed state before proceeding.
 avPlayer.setPlaybackRate(2.0);
 ```
 
@@ -1450,6 +1520,7 @@ Subscribes to the event indicating that the playback rate set by calling [setPla
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('playbackRateDone', (rate:number) => {
   console.info('playbackRateDone called,and rate value is:' + rate);
 });
@@ -1475,6 +1546,7 @@ Unsubscribes from the event indicating that the playback rate set by calling [se
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('playbackRateDone');
 ```
 
@@ -1497,7 +1569,9 @@ Sets the bit rate for the streaming media. This API is valid only for HLS/DASH s
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 let bitrate: number = 96000;
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the prepared, playing, paused, or completed state before proceeding.
 avPlayer.setBitrate(bitrate);
 ```
 
@@ -1521,6 +1595,7 @@ Subscribes to the event to check whether the bit rate is successfully set.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('bitrateDone', (bitrate:number) => {
   console.info('bitrateDone called,and bitrate value is:' + bitrate);
 });
@@ -1546,6 +1621,7 @@ Unsubscribes from the event that checks whether the bit rate is successfully set
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('bitrateDone');
 ```
 
@@ -1569,6 +1645,7 @@ Subscribes to available bit rates of HLS/DASH streams. This event is reported on
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
   console.info('availableBitrates called,and availableBitrates length is:' + bitrates.length);
 });
@@ -1594,6 +1671,7 @@ Unsubscribes from available bit rates of HLS/DASH streams. This event is reporte
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('availableBitrates');
 ```
 
@@ -1620,6 +1698,7 @@ Subscribes to media key system information changes.
 ```ts
 import { drm } from '@kit.DrmKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('mediaKeySystemInfoUpdate', (mediaKeySystemInfo: Array<drm.MediaKeySystemInfo>) => {
     for (let i = 0; i < mediaKeySystemInfo.length; i++) {
       console.info('mediaKeySystemInfoUpdate happened uuid: ' + mediaKeySystemInfo[i]["uuid"]);
@@ -1648,6 +1727,7 @@ Unsubscribes from media key system information changes.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('mediaKeySystemInfoUpdate');
 ```
 
@@ -1670,6 +1750,7 @@ Sets the volume. This API can be called only when the AVPlayer is in the prepare
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 let volume: number = 1.0;
 avPlayer.setVolume(volume);
 ```
@@ -1694,6 +1775,7 @@ Subscribes to the event to check whether the volume is successfully set.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('volumeChange', (vol: number) => {
   console.info('volumeChange called,and new volume is :' + vol);
 });
@@ -1719,6 +1801,7 @@ Unsubscribes from the event that checks whether the volume is successfully set.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('volumeChange');
 ```
 
@@ -1742,6 +1825,7 @@ Subscribes to the event that indicates the end of the stream being played. If **
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('endOfStream', () => {
   console.info('endOfStream called');
 });
@@ -1767,6 +1851,7 @@ Unsubscribes from the event that indicates the end of the stream being played.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('endOfStream');
 ```
 
@@ -1792,6 +1877,7 @@ The **'timeUpdate'** event is not supported in live mode.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('timeUpdate', (time:number) => {
   console.info('timeUpdate called,and new time is :' + time);
 });
@@ -1817,6 +1903,7 @@ Unsubscribes from playback position changes.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('timeUpdate');
 ```
 
@@ -1842,6 +1929,7 @@ The **'durationUpdate'** event is not supported in live mode.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('durationUpdate', (duration: number) => {
   console.info('durationUpdate called,new duration is :' + duration);
 });
@@ -1867,6 +1955,7 @@ Unsubscribes from media asset duration changes.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('durationUpdate');
 ```
 
@@ -1890,6 +1979,7 @@ Subscribes to audio and video buffer changes. This subscription is supported onl
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
   console.info('bufferingUpdate called,and infoType value is:' + infoType + ', value is :' + value);
 });
@@ -1915,6 +2005,7 @@ Unsubscribes from audio and video buffer changes.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('bufferingUpdate');
 ```
 
@@ -1938,6 +2029,7 @@ Subscribes to the event that indicates rendering starts for the first frame. Thi
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('startRenderFrame', () => {
   console.info('startRenderFrame called');
 });
@@ -1963,6 +2055,7 @@ Unsubscribes from the event that indicates rendering starts for the first frame.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('startRenderFrame');
 ```
 
@@ -1986,6 +2079,7 @@ Subscribes to video size (width and height) changes. This subscription is suppor
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('videoSizeChange', (width: number, height: number) => {
   console.info('videoSizeChange called,and width is:' + width + ', height is :' + height);
 });
@@ -2011,6 +2105,7 @@ Unsubscribes from video size changes.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('videoSizeChange');
 ```
 
@@ -2036,6 +2131,7 @@ Subscribes to the audio interruption event. When multiple audio and video assets
 ```ts
 import { audio } from '@kit.AudioKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
   console.info('audioInterrupt called,and InterruptEvent info is:' + info);
 });
@@ -2061,6 +2157,7 @@ Unsubscribes from the audio interruption event.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('audioInterrupt');
 ```
 
@@ -2094,6 +2191,7 @@ When subscribing to this event, you are advised to implement the player behavior
 ```ts
 import { audio } from '@kit.AudioKit';
 
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('audioOutputDeviceChangeWithInfo', (data: audio.AudioStreamDeviceChangeInfo) => {
   console.info(`${JSON.stringify(data)}`);
 });
@@ -2125,6 +2223,7 @@ Unsubscribes from audio stream output device changes and reasons. This API uses 
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('audioOutputDeviceChangeWithInfo');
 ```
 
@@ -2165,11 +2264,12 @@ Adds an external subtitle to a video based on the FD. Currently, the external su
 ```ts
 import { common } from '@kit.AbilityKit'
 
+let avPlayer = await media.createAVPlayer();
 private context: Context | undefined;
 constructor(context: Context) {
   this.context = context; // this.getUIContext().getHostContext();
 }
-let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.srt');
+let fileDescriptor = await this.context?.resourceManager.getRawFd('xxx.srt');
 
 avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length);
 ```
@@ -2208,7 +2308,6 @@ Adds an external subtitle to a video based on the URL. Currently, the external s
 <!--code_no_check-->
 ```ts
 let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt';
-
 let avPlayer: media.AVPlayer = await media.createAVPlayer();
 avPlayer.addSubtitleFromUrl(fdUrl);
 ```
@@ -2233,6 +2332,7 @@ Subscribes to subtitle update events. When external subtitles exist, the system 
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('subtitleUpdate', async (info: media.SubtitleInfo) => {
   if (info) {
     let text = (!info.text) ? '' : info.text
@@ -2265,6 +2365,7 @@ Unsubscribes from subtitle update events.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('subtitleUpdate');
 ```
 
@@ -2288,6 +2389,7 @@ Subscribes to track change events. When the track changes, the system notifies t
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
   console.info('trackChange info: index=' + index + ' isSelect=' + isSelect);
 });
@@ -2313,6 +2415,7 @@ Unsubscribes from track change events.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('trackChange');
 ```
 
@@ -2336,6 +2439,7 @@ Subscribes to track information update events. When the track information is upd
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('trackInfoUpdate', (info: Array<media.MediaDescription>) => {
   if (info) {
     for (let i = 0; i < info.length; i++) {
@@ -2369,6 +2473,7 @@ Unsubscribes from track information update events.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('trackInfoUpdate');
 ```
 
@@ -2390,8 +2495,9 @@ Subscribes to update events of the maximum audio level value, which is periodica
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('amplitudeUpdate', (value: Array<number>) => {
-  console.info('amplitudeUpdate called,and amplitudeUpdate = ${value}');
+  console.info(`amplitudeUpdate called,and amplitudeUpdate = ${value}`);
 });
 ```
 
@@ -2413,6 +2519,7 @@ Unsubscribes from update events of the maximum amplitude.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('amplitudeUpdate');
 ```
 
@@ -2438,6 +2545,8 @@ Subscribes to events indicating that a Supplemental Enhancement Information (SEI
 
 ```ts
 import util from '@ohos.util';
+
+let avPlayer = await media.createAVPlayer();
 
 avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, playbackPosition?: number) =>
 {
@@ -2476,6 +2585,7 @@ Unsubscribes from the events indicating that an SEI message is received.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('seiMessageReceived');
 ```
 
@@ -2495,7 +2605,7 @@ Before calling [prepare()](#prepare9), enable super resolution by using [Playbac
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| enabled    | boolean | Yes  | Whether to enable or disable super resolution. The value **true** means to enable it, and **false** means to disable it.|
+| enabled    | boolean | Yes  | Whether to enable or disable super resolution. **true** to enable, **false** otherwise.|
 
 **Return value**
 
@@ -2516,6 +2626,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the initialized, prepared, playing, paused, completed, or stopped state before proceeding.
 avPlayer.setSuperResolution(true);
 ```
 
@@ -2558,6 +2670,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
+// Here is only an example. In real development, you must wait for the stateChange event to successfully trigger and reach the initialized, prepared, playing, paused, completed, or stopped state before proceeding.
 avPlayer.setVideoWindowSize(1920, 1080);
 ```
 
@@ -2581,6 +2695,7 @@ Subscribes to the event indicating that super resolution is enabled or disabled.
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.on('superResolutionChanged', (enabled: boolean) => {
   console.info('superResolutionChanged called, and enabled is:' + enabled);
 });
@@ -2606,7 +2721,6 @@ Unsubscribes from the event indicating that super resolution is enabled or disab
 **Example**
 
 ```ts
+let avPlayer = await media.createAVPlayer();
 avPlayer.off('superResolutionChanged');
 ```
-
-<!--no_check-->

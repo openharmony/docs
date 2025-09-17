@@ -110,7 +110,6 @@ off(type: 'steadyStandingDetect', callback?: Callback&lt;SteadyStandingStatus&gt
 示例二：取消订阅该客户端订阅设备静止姿态感知（支架态）事件的特定回调。
 
    ```ts
-   import { Callback } from '@ohos.base';
    // 定义callback变量
    let callback : Callback<deviceStatus.SteadyStandingStatus> = (data : deviceStatus. SteadyStandingStatus) => {
       console.info('succeed to get status, now status = ' + data);

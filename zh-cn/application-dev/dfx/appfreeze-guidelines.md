@@ -57,7 +57,7 @@
 
 ### 生命周期切换超时
 
-**概述**：生命周期切换超时分为[Ability生命周期](../application-models/uiability-lifecycle.md)切换超时和[PageAbility生命周期](../application-models/pageability-lifecycle.md)切换超时。
+**概述**：生命周期切换超时分为[UIAbility生命周期](../application-models/uiability-lifecycle.md)切换超时和[PageAbility生命周期](../application-models/pageability-lifecycle.md)切换超时。
 
 该故障发生在生命周期切换过程中，影响应用内Ability的切换或者不同PageAbility之间的切换。
 
@@ -162,7 +162,7 @@ PACKAGE_NAME = com.samples.freezedebug
 PROCESS_NAME = com.samples.freezedebug
 eventLog_action = ffrt,t,GpuStack,cmd:m,hot
 eventLog_interval = 10
-MSG = 
+MSG =
 Fault time:2025/06/28-14:08:34
 App main thread is not response!
 Main handler dump start time: 2025-06-28 14:08:34.067
@@ -243,7 +243,10 @@ Tid:13680, Name:les.freezedebug
 ```
 
 > **说明：**
-> 在整机高负载情况（如CPU高负载）下，采用低开销方式获取调用栈时，可能损失函数名称和build-id信息；获取用户栈失败时，build-id会为空，导致freeze堆栈只有so级别堆栈。
+>
+> 在整机高负载情况（如CPU高负载）下，采用低开销方式获取调用栈时，可能损失函数名信息。
+>
+> 从API version 21开始，出现'Failed to dump normal stacktrace'字样时，系统采取轻量化的frame pointer回溯模式。栈回溯可能中断在非使能frame pointer的库（在GCC编译使用 -fomit-frame-pointer 选项时，编译产物会非使能frame pointer），以及受轻量化的限制，单个线程的回栈层数不会超过50层。
 
 ### 对端信息（与当前故障进程通信的进程信息）
 
@@ -325,9 +328,9 @@ Total: 22.45%; User Space: 13.64%; Kernel Space: 8.81%; iowait: 0.33%; irq: 0.07
 Details of Processes:
     PID   Total Usage      User Space    Kernel Space    Page Fault Minor    Page Fault Major    Name
     13680      8.86%           8.31%          0.55%            4711                6637            com.samples.freezedebug
-    644        2.55%           1.40%          1.15%          210104                7391            hiview         
-    600        0.89%           0.78%          0.10%           60192                 514            hilogd         
-    1685       0.53%           0.31%          0.22%          879838               59636            foundation     
+    644        2.55%           1.40%          1.15%          210104                7391            hiview
+    600        0.89%           0.78%          0.10%           60192                 514            hilogd
+    1685       0.53%           0.31%          0.22%          879838               59636            foundation
 ```
 
 | | |

@@ -130,7 +130,7 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_Open(deviceId, interfaceIndex, &dev);
     ```
 
-3. 创建缓冲区。
+3. 创建缓冲区（可选）。
 
     使用 **scsi_peripheral_api.h** 的 **OH_ScsiPeripheral_CreateDeviceMemMap** 创建内存缓冲区devMmap。
 
@@ -140,7 +140,7 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_CreateDeviceMemMap(dev, DEVICE_MEM_MAP_SIZE, &g_scsiDeviceMemMap);
     ```
 
-4. 检查逻辑单元是否已经准备好。
+4. 检查逻辑单元是否已经准备好（可选）。
 
     使用 **scsi_peripheral_api.h** 的 **OH_ScsiPeripheral_TestUnitReady** 检查逻辑单元是否已经准备好。
 
@@ -151,7 +151,7 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_TestUnitReady(dev, &testUnitReadyRequest, &testUnitReadyResponse);
     ```
 
-5. 查询SCSI设备的基本信息。
+5. 查询SCSI设备的基本信息（可选）。
 
     使用 **scsi_peripheral_api.h** 的 **OH_ScsiPeripheral_Inquiry** 获取SCSI设备的基本信息。
 
@@ -165,7 +165,7 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_Inquiry(dev, &inquiryRequest, &inquiryInfo, &inquiryResponse);
     ```
 
-6. 获取SCSI设备的容量信息。
+6. 获取SCSI设备的容量信息（可选）。
 
     使用 **scsi_peripheral_api.h** 的 **OH_ScsiPeripheral_ReadCapacity10** 获取SCSI设备容量信息。
 
@@ -180,7 +180,7 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_ReadCapacity10(dev, &readCapacityRequest, &capacityInfo, &readCapacityResponse);
     ```
 
-7. 获取sense data。
+7. 获取sense data（可选）。
 
     使用 **scsi_peripheral_api.h** 的 **OH_ScsiPeripheral_RequestSense** 获取sense data。
 
@@ -195,7 +195,7 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_RequestSense(dev, &senseRequest, &senseResponse);
     ```
 
-8. 解析sense data。
+8. 解析sense data（可选）。
 
     使用 **scsi_peripheral_api.h** 的 **OH_ScsiPeripheral_ParseBasicSenseInfo** 解析基本的sense data，包括Information、Command specific information、Sense key specific字段。
 
@@ -204,7 +204,7 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_ParseBasicSenseInfo(senseResponse.senseData, SCSIPERIPHERAL_MAX_SENSE_DATA_LEN, &senseInfo); 
     ```
 
-9. 读取数据。
+9. 读取数据（可选）。
 
     使用 **scsi_peripheral_api.h** 的 **OH_ScsiPeripheral_Read10** 读取指定逻辑块的数据。
 
@@ -221,7 +221,7 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_Read10(dev, &readRequest, &readResponse);
     ```
 
-10. 写入数据。
+10. 写入数据（可选）。
 
     使用 **scsi_peripheral_api.h** 的 **OH_ScsiPeripheral_Write10** 写数据到设备指定逻辑块。
 
@@ -238,7 +238,7 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_Write10(dev, &writeRequest, &writeResponse);
     ```
 
-11. 校验指定逻辑块。
+11. 校验指定逻辑块（可选）。
 
     使用 **scsi_peripheral_api.h** 的 **OH_ScsiPeripheral_Verify10** 校验指定逻辑块。
 
@@ -251,14 +251,14 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_Verify10(dev, &verifyRequest, &verifyResponse);
     ```
 
-12. 以CDB方式发送SCSI命令。
+12. 以CDB方式发送SCSI命令（可选）。
 
     使用 **scsi_peripheral_api.h** 的 **OH_SCSIPeripheral_SendRequestByCdb** 发送SCSI命令。
 
     ```c++
     ScsiPeripheral_Request sendRequest = {0};
-    uint8_t cdbData[SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN] = {0x28, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // 需要引入cstring头文件
-    memcpy(sendRequest.commandDescriptorBlock, cdbData, SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN);
+    uint8_t cdbData[SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN] = {0x28, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    memcpy(sendRequest.commandDescriptorBlock, cdbData, SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN); // 需引入头文件 #include <cstring>
     sendRequest.cdbLength = 10;
     sendRequest.dataTransferDirection = -3;
     sendRequest.timeout = 5000;
@@ -267,7 +267,7 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_SendRequestByCdb(dev, &sendRequest, &sendResponse);
     ```
 
-13. 销毁缓冲区。
+13. 销毁缓冲区（可选）。
 
     在所有请求处理完毕，程序退出前，使用 **scsi_peripheral_api.h** 的 **OH_ScsiPeripheral_DestroyDeviceMemMap** 销毁缓冲区。
 

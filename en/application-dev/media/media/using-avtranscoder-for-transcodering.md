@@ -1,6 +1,12 @@
 # Using AVTranscoder to Transcode Videos (ArkTS)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
-You can use the [AVTranscoder](media-kit-intro.md#avtranscoder) to implement video transcoding. <!--RP1--><!--RP1End--> You can check whether the current device supports the AVTranscoder by calling [canIUse](../../reference/common/js-apis-syscap.md). If the return value of canIUse("SystemCapability.Multimedia.Media.AVTranscoder") is **true**, the transcoding capability can be used.
+You can use the [AVTranscoder](media-kit-intro.md#avtranscoder) to implement video transcoding. <!--RP1--><!--RP1End--> You can check whether the current device supports the AVTranscoder by calling [canIUse](../../reference/common/js-apis-syscap.md#caniuse). If the return value of canIUse("SystemCapability.Multimedia.Media.AVTranscoder") is **true**, the transcoding capability can be used.
 
 This topic describes how to use the AVTranscoder to implement video transcoding, covering the process of starting, pausing, resuming, and exiting transcoding.
 
@@ -16,10 +22,9 @@ Read [AVTranscoder](../../reference/apis-media-kit/arkts-apis-media-AVTranscoder
 
    ```ts
    import { media } from '@kit.MediaKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
    
    private avTranscoder: media.AVTranscoder | undefined = undefined;
-   // 1. Create an AVTranscoder instance.
+   // Create an AVTranscoder instance.
    this.avTranscoder = await media.createAVTranscoder();
    ```
 
@@ -33,8 +38,13 @@ Read [AVTranscoder](../../reference/apis-media-kit/arkts-apis-media-AVTranscoder
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { media } from '@kit.MediaKit';
    private currentProgress: number = 0;
+   private avTranscoder: media.AVTranscoder | undefined = undefined;
 
+   // Create an AVTranscoder instance.
+   this.avTranscoder = await media.createAVTranscoder();
    if (this.avTranscoder != undefined) {
      // Callback function for the completion of transcoding.
      this.avTranscoder.on('complete', async () => {
@@ -57,6 +67,20 @@ Read [AVTranscoder](../../reference/apis-media-kit/arkts-apis-media-AVTranscoder
      console.info(`getCurrentProgress = ${this.currentProgress}`);
      return this.currentProgress;
    }
+   // Release the transcoding process.
+   async releaseTranscoderingProcess() {
+     if (canIUse('SystemCapability.Multimedia.Media.AVTranscoder')) {
+       if (this.avTranscoder != undefined) {
+         // 1. Release the AVTranscoder instance.
+         await this.avTranscoder.release();
+         this.avTranscoder = undefined;
+         // 2. Close the FD of the output file.
+         fs.closeSync(this.avTranscoder!.fdDst);
+       }
+     }
+   }
+
+
    ```
 
 3. Set the FD of the source video file.
@@ -71,20 +95,21 @@ Read [AVTranscoder](../../reference/apis-media-kit/arkts-apis-media-AVTranscoder
    > - You can also use **ResourceManager.getRawFd()** to obtain the FD of a file packed in the HAP file. For details, see [ResourceManager API Reference](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9).
 
    ```ts
+   // Import the ets/transcoder/AVTranscoderManager.ets file.
    import {AVTranscoderDemo} from '../transcoder/AVTranscoderManager'
 
    @Entry
    @Component
    struct Index {
      // Obtain the context of the ability to which the current component belongs and obtain the application file path through the context.
-     private context:Context | undefined = this.getUIContext().getHostContext();
+     private context:Context | undefined = this.getUIContext()?.getHostContext();
      // Obtain the AVTranscoder instance.
-     @State avTranscoder: AVTranscoderDemo = new AVTranscoderDemo(this.context);
+     @State avTranscoder: AVTranscoderDemo | undefined = this.context ? new AVTranscoderDemo(this.context) : undefined;
 
      build() {
        RelativeContainer() {
          Column() {
-           Button($r('app.string.StartTranscoder'))
+           Button($r('app.string.StartTranscoder')) // Value of name:StartTranscoder in the resources/base/element/string.json file.
              .onClick(async () => {
                console.info(`Button put`);
                await this.avTranscoder.avTranscoderDemo();
@@ -107,19 +132,24 @@ Read [AVTranscoder](../../reference/apis-media-kit/arkts-apis-media-AVTranscoder
    ```
 
    ```ts
-   import resourceManager from '@ohos.resourceManager';
-   import { common } from '@kit.AbilityKit';
-
+   import { media } from '@kit.MediaKit';
+   private avTranscoder: media.AVTranscoder | undefined = undefined;
    private context: Context | undefined;
    constructor(context: Context | undefined) {
      if (context != undefined) {
        this.context = context; // this.getUIContext().getHostContext();
      }
    }
+
+   // Create an AVTranscoder instance.
+   this.avTranscoder = await media.createAVTranscoder();
    // Obtain the file descriptor of the input file. H264_AAC.mp4 is a preset resource in the rawfile directory. Replace it with the actual one.
-   let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
-   // Set fdSrc used for transcoding.
-   this.avTranscoder.fdSrc = fileDescriptor;
+   if (this.context != undefined) {
+     let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
+     // Set fdSrc used for transcoding.
+     this.avTranscoder.fdSrc = fileDescriptor;
+   }
+   
    ```
 
 4. Set the FD of the target video file.
@@ -128,7 +158,7 @@ Read [AVTranscoder](../../reference/apis-media-kit/arkts-apis-media-AVTranscoder
    > **fdDst** specifies the FD of the output file after transcoding. The value is a number. You must call [ohos.file.fs of Core File Kit](../../reference/apis-core-file-kit/js-apis-file-fs.md) to implement access to the application file. For details, see [Accessing Application Files](../../file-management/app-file-access.md).
    
    ```ts
-   import fs from '@ohos.file.fs';
+   import { fileIo as fs } from '@kit.CoreFileKit';
    // Set the sandbox path of the output target file.
    let outputFilePath = this.context.filesDir + "/output.mp4";
    // Create and open a file if the file does not exist. Open it if the file exists.
@@ -146,15 +176,17 @@ Read [AVTranscoder](../../reference/apis-media-kit/arkts-apis-media-AVTranscoder
 
    ```ts
    import { media } from '@kit.MediaKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
-   
-   let avConfig: media.AVTranscoderConfig = {
+   private avTranscoder: media.AVTranscoder | undefined = undefined;
+   private avConfig: media.AVTranscoderConfig = {
      audioBitrate: 100000, // Audio bit rate.
      audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format.
      fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Container format.
      videoBitrate: 2000000, // Video bit rate.
      videoCodec: media.CodecMimeType.VIDEO_AVC, // Video encoding format.
    };
+
+   // Create an AVTranscoder instance.
+   this.avTranscoder = await media.createAVTranscoder();
    // Set transcoding parameters to complete the preparations.
    await this.avTranscoder.prepare(this.avConfig);
    ```
@@ -170,6 +202,8 @@ Read [AVTranscoder](../../reference/apis-media-kit/arkts-apis-media-AVTranscoder
          this.avTranscoder = undefined;
        }
       // Create an AVTranscoder instance, set the callback, set the file descriptor, and complete the preparation before starting transcoding.
+      // For details about the creation procedure, see steps 1 to 5 above.
+
       // Start transcoding.
       await this.avTranscoder.start();
     }

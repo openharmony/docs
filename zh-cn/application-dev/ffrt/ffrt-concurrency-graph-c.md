@@ -154,6 +154,10 @@ int main()
 视频发布
 ```
 
+> **说明：**
+>
+> `ffrt_submit_h_f`和`ffrt_submit_f`接口可以接收裸函数指针任务作为参数，如果任务存在前后处理可以参见[ffrt_alloc_auto_managed_function_storage_base](ffrt-api-guideline-c.md#ffrt_alloc_auto_managed_function_storage_base)函数查看如何构造任务结构体。
+
 ## 示例：斐波那契数列
 
 斐波那契数列中每个数字是前两个数字之和，计算斐波那契数的过程可以很好地通过数据对象来表达任务依赖关系。使用FFRT并发编程框架计算斐波那契数的代码如下所示：
@@ -223,6 +227,10 @@ Fibonacci(5) is 5
 
 示例中将`fibonacci(x-1)`和`fibonacci(x-2)`作为两个任务提交给FFRT，在两个任务完成之后将结果进行累加。虽然单个任务只是拆分成两个子任务，但是子任务又可以继续进行拆分，因此整个计算图的并行度是非常高的。
 
+> **说明：**
+>
+> `ffrt_submit_f`接口可以接收裸函数指针任务作为参数，如果任务存在前后处理可以参见[ffrt_alloc_auto_managed_function_storage_base](ffrt-api-guideline-c.md#ffrt_alloc_auto_managed_function_storage_base)函数查看如何构造任务结构体。
+
 各个任务在FFRT内部形成了一棵调用树：
 
 ![image](figures/ffrt_figure2.png)
@@ -231,11 +239,11 @@ Fibonacci(5) is 5
 
 上述样例中涉及到主要的FFRT的接口包括：
 
-| 名称                                                       | 描述                             |
-| ---------------------------------------------------------- | -------------------------------- |
-| [ffrt_submit_f](ffrt-api-guideline-c.md#ffrt_submit_f)     | 提交任务调度执行。               |
-| [ffrt_submit_h_f](ffrt-api-guideline-c.md#ffrt_submit_h_f) | 提交任务调度执行并返回任务句柄。 |
-| [ffrt_wait_deps](ffrt-api-guideline-c.md#ffrt_wait_deps)   | 等待依赖的任务完成。             |
+| 名称                                                       | 描述                                                                              |
+| ---------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| [ffrt_submit_f](ffrt-api-guideline-c.md#ffrt_submit_f)     | 提交任务调度执行。<br/>**说明**：从API version 20开始，支持该接口。               |
+| [ffrt_submit_h_f](ffrt-api-guideline-c.md#ffrt_submit_h_f) | 提交任务调度执行并返回任务句柄。<br/>**说明**：从API version 20开始，支持该接口。 |
+| [ffrt_wait_deps](ffrt-api-guideline-c.md#ffrt_wait_deps)   | 等待依赖的任务完成。                                                              |
 
 > **说明：**
 >

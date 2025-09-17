@@ -1,14 +1,20 @@
 # Shared Container
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 ## ArkTS Collections
 
-ArkTS shared containers ([@arkts.collections (ArkTS Collections)](../reference/apis-arkts/js-apis-arkts-collections.md)) are designed for high-performance data transmission between concurrent instances. They offer similar functionality to the containers defined in the ECMAScript 262 specification but with some key differences, which are outlined in the [Behavior Differences Between Shared Container APIs and Native APIs](#behavior-differences-between-shared-container-apis-and-native-apis).
+ArkTS shared containers ([@arkts.collections (ArkTS Collections)](../reference/apis-arkts/arkts-apis-arkts-collections.md)) are designed for high-performance data transmission between concurrent instances. They offer similar functionality to the containers defined in the ECMAScript 262 specification but with some key differences, which are outlined in [Behavior Differences Between Shared Container APIs and Native APIs](#behavior-differences-between-shared-container-apis-and-native-apis).
 
 By default, ArkTS shared containers are passed by reference, allowing multiple concurrent instances to manipulate the same container instance. Pass-by-copy is also supported. In this mode, each concurrent instance holds an ArkTS container instance.
 
 ArkTS shared containers are not thread-safe and employ a fail-fast mechanism to prevent concurrent structural modifications, which would otherwise trigger exceptions. When modifying container properties in a multithreaded scenario, you must use the [asynchronous lock](arkts-async-lock-introduction.md) mechanism to ensure safe access.
 
-The ArkTS shared containers include the following types: [Array](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsarray), [Map](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsmap), [Set](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsset), [TypedArray](../reference/apis-arkts/js-apis-arkts-collections.md#collectionstypedarray) (Int8Array, Uint8Array, Int16Array, Uint16Array, Int32Array, Uint32Array, Uint8ClampedArray, and Float32Array), and [ArrayBuffer](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsarraybuffer). For details, see [@arkts.collections (ArkTS Collections)](../reference/apis-arkts/js-apis-arkts-collections.md).
+The ArkTS shared containers include the following types: [Array](../reference/apis-arkts/arkts-apis-arkts-collections-Array.md), [Map](../reference/apis-arkts/arkts-apis-arkts-collections-Map.md), [Set](../reference/apis-arkts/arkts-apis-arkts-collections-Set.md), TypedArray ([Int8Array](../reference/apis-arkts/arkts-apis-arkts-collections-Int8Array.md), [Uint8Array](../reference/apis-arkts/arkts-apis-arkts-collections-Uint8Array.md), [Int16Array](../reference/apis-arkts/arkts-apis-arkts-collections-Int16Array.md), [Uint16Array](../reference/apis-arkts/arkts-apis-arkts-collections-Uint16Array.md), [Int32Array](../reference/apis-arkts/arkts-apis-arkts-collections-Int32Array.md), [Uint32Array](../reference/apis-arkts/arkts-apis-arkts-collections-Uint32Array.md), [Uint8ClampedArray](../reference/apis-arkts/arkts-apis-arkts-collections-Uint8ClampedArray.md) and [Float32Array](../reference/apis-arkts/arkts-apis-arkts-collections-Float32Array.md)), [ArrayBuffer](../reference/apis-arkts/arkts-apis-arkts-collections-ArrayBuffer.md), [BitVector](../reference/apis-arkts/arkts-apis-arkts-collections-BitVector.md), and [ConcatArray](../reference/apis-arkts/arkts-apis-arkts-collections-ConcatArray.md). For details, see [@arkts.collections (ArkTS Collections)](../reference/apis-arkts/arkts-apis-arkts-collections.md).
 
 The following is an example of using the collection:
 
@@ -42,7 +48,8 @@ struct Index {
           let lock = new ArkTSUtils.locks.AsyncLock();
           let arr = collections.Array.create<number>(1, 0);
           let count = 1000;
-          while (count--) {
+          let num = count;
+          while (num--) {
             taskGroup.addTask(add, arr, lock);
           }
           taskpool.execute(taskGroup).then(() => {
@@ -57,7 +64,7 @@ struct Index {
   }
 }
 ```
-<!-- @[example_use](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/ArktsCollectionsIntroduction.ets) -->
+<!-- @[example_use](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/ArktsCollectionsIntroduction.ets) -->
 
 ## Behavior Differences Between Shared Container APIs and Native APIs
 
@@ -67,17 +74,17 @@ ArkTS provides shared containers for Sendable data, with some behavior differenc
 >
 > ArkTS shared containers have different types from native ECMAScript 262 containers. Therefore, if the native **isArray()** method is used on a **collections.Array instance** object, **false** is returned.
 >
-> ArkTS shared containers are passed across threads by reference, which is more efficient than native containers. If you need to transfer large amounts of data across threads, you are advised to use ArkTS shared containers.
+> ArkTS shared containers are passed by reference across threads, which is more efficient than native containers. If a large amount of data needs to be transferred across threads, you are advised to use ArkTS shared containers.
 
 ### Array
 
-Native Array containers can be converted into ArkTS Array containers using the [collections.Array.from](../reference/apis-arkts/js-apis-arkts-collections.md#from) method, and ArkTS Array containers can be converted into native Array containers using the native **from** method.
+You can convert a native array container to an ArkTS array container using the [collections.Array.from](../reference/apis-arkts/arkts-apis-arkts-collections-Array.md#from) method, or convert an ArkTS array container to a native array container using the native **from** method.
 
 | Native API| ArkTS Collections API| Behavior Difference Exists| Different Behavior in ArkTS Collections|
 | -------- | -------- | -------- | -------- |
 | length: number | readonly length: number | Yes| To prevent the spread of **undefined**, it is not allowed to set **length**.|
 | new(arrayLength ?: number): any[] | static create(arrayLength: number, initialValue: T): Array | Yes| To prevent the spread of **undefined**, a constructor must be provided with an initial value.|
-| new &lt;T&gt;(arrayLength: number): T[] | constructor() | No| / |
+| new &lt;T&gt;(arrayLength: number): T[] | constructor() | No| The data passed during construction must be of the Sendable type. Otherwise, a compilation error occurs.|
 | new &lt;T&gt;(...items: T[]): T[] | constructor(first: T, ...left: T[]) | Yes| To prevent the spread of **undefined**, a constructor must be provided with an initial value. In inheritance scenarios, this constructor cannot be called to construct an object.|
 | from&lt;T&gt;(arrayLike: ArrayLike&lt;T&gt;): T[] | static from&lt;T&gt;(arrayLike: ArrayLike&lt;T&gt;): Array&lt;T&gt; | No| / |
 | from&lt;T, U&gt;(iterable: Iterable&lt;T&gt; \| ArrayLike&lt;T&gt;, mapfn: (v: T, k: number) => U, thisArg?: any): U[] | static from&lt;U, T&gt;(arrayLike: ArrayLike&lt;U&gt; \| Iterable&lt;U&gt;, mapFn: ArrayFromMapFn&lt;U, T&gt;): Array&lt;T&gt; | No| / |
@@ -128,7 +135,7 @@ Native Array containers can be converted into ArkTS Array containers using the [
 
 ### TypedArray (Int8Array Used as an Example)
 
-Native TypedArray containers can be converted into ArkTS TypedArray containers using the [collections.TypedArray.from](../reference/apis-arkts/js-apis-arkts-collections.md#from-1) method, and ArkTS TypedArray containers can be converted into native TypedArray containers using the native **from** method.
+You can convert a native Int8Array container into an ArkTS Int8Array container using the [collections.Int8Array.from](../reference/apis-arkts/arkts-apis-arkts-collections-Int8Array.md#from-1) method, or convert an ArkTS Int8Array container into a native Int8Array container using the **from** method of the native Int8Array container.
 
 | Native API| ArkTS Collections API| Behavior Difference Exists| Different Behavior in ArkTS Collections|
 | -------- | -------- | -------- | -------- |
@@ -137,9 +144,9 @@ Native TypedArray containers can be converted into ArkTS TypedArray containers u
 | readonly byteOffset: number | readonly byteOffset: number | No| / |
 | readonly length: number | readonly length: number | No| / |
 | readonly BYTES_PER_ELEMENT: number | static readonly BYTES_PER_ELEMENT: number | No| / |
-| copyWithin(target: number, start: number, end?: number): this | copyWithin(target: number, start: number, end?: number): Int8Array | Yes| It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
+| copyWithin(target: number, start: number, end?: number): this| copyWithin(target: number, start: number, end?: number): Int8Array | Yes| It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
 | every(predicate: (value: number, index: number, array: Int8Array) =&gt; unknown, thisArg?: any): boolean | every(predicate: TypedArrayPredicateFn&lt;number, Int8Array&gt;): boolean | Yes| 1. It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.<br>2. ArkTS does not support **this**. As a result, the **thisArg** parameter is not supported.|
-| fill(value: number, start?: number, end?: number): this | fill(value: number, start?: number, end?: number): Int8Array | Yes| It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
+| fill(value: number, start?: number, end?: number): this | fill(value: number, start?: number, end?: number): Int8Array | Yes|  It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
 | filter(predicate: (value: number, index: number, array: Int8Array) =&gt; any, thisArg?: any): Int8Array | filter(predicate: TypedArrayPredicateFn&lt;number, Int8Array&gt;): Int8Array | Yes| 1. It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.<br>2. ArkTS does not support **this**. As a result, the **thisArg** parameter is not supported.|
 | find(predicate: (value: number, index: number, obj: Int8Array) =&gt; boolean, thisArg?: any): number \| undefined | find(predicate: TypedArrayPredicateFn&lt;number, Int8Array&gt;): number \| undefined | Yes| 1. It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.<br>2. ArkTS does not support **this**. As a result, the **thisArg** parameter is not supported.|
 | findIndex(predicate: (value: number, index: number, obj: Int8Array) =&gt; boolean, thisArg?: any): number | findIndex(predicate: TypedArrayPredicateFn&lt;number, Int8Array&gt;): number | Yes| ArkTS does not support **this**. As a result, the **thisArg** parameter is not supported.|
@@ -204,4 +211,4 @@ Native TypedArray containers can be converted into ArkTS TypedArray containers u
 | entries(): IterableIterator&lt;[T, T]&gt; | entries(): IterableIterator&lt;[T, T]&gt; | No| / |
 | keys(): IterableIterator&lt;T&gt; | keys(): IterableIterator&lt;T&gt; | No| / |
 | values(): IterableIterator&lt;T&gt; | values(): IterableIterator&lt;T&gt; | Yes| Computed property names (arkts-sendable-compated-prop-name) cannot be used in Sendable classes and interfaces.|
-| new &lt;T = any&gt;(values?: readonly T[] \| null): Set&lt;T&gt; | constructor(values?: readonly T[] \| null) | Yes| The data passed during construction must be of the Sendable type. Otherwise, a compilation error is reported.|
+| new &lt;T = any&gt;(values?: readonly T[] \| null): Set&lt;T&gt; | constructor(values?: readonly T[] \| null) | Yes| The data passed during construction must be of the Sendable type. Otherwise, a compilation error occurs.|

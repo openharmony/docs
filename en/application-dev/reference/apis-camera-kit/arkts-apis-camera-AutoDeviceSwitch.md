@@ -2,19 +2,20 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The initial APIs of this interface are supported since API version 13.
 
-AutoDeviceSwitch inherits from [AutoDeviceSwitchQuery](arkts-apis-camera-AutoDeviceSwitch.md).
+AutoDeviceSwitch inherits from [AutoDeviceSwitchQuery](arkts-apis-camera-AutoDeviceSwitchQuery.md).
 
-It is used to enable or disable automatic camera switch. This class inherits from [AutoDeviceSwitchQuery](arkts-apis-camera-AutoDeviceSwitch.md).
+It is used to enable or disable automatic camera switch.
 
-It is recommended that the system completes input device switch, session configuration, and parameter connection during automatic camera switch. If the system detects that the zoom ranges of the two cameras are different, it notifies the application through the **isDeviceCapabilityChanged** field in [AutoDeviceSwitchStatus](arkts-apis-camera-i.md#autodeviceswitchstatus13). The application needs to process the UX change by itself. For example, if the zoom range is different, the application needs to call [getZoomRatioRange](arkts-apis-camera-ZoomQuery.md#getzoomratiorange11) to obtain data and update the UX. Therefore, this class is more applicable to a simplified UX exchange scenario.
+It is recommended that the system completes input device switch, session configuration, and parameter connection during automatic camera switch. If the system detects that the zoom ranges of the two cameras are different, it notifies the application through the **isDeviceCapabilityChanged** field in [AutoDeviceSwitchStatus](arkts-apis-camera-i.md#autodeviceswitchstatus13). The application needs to process the UX change by itself. For example, if the zoom range is different, the application needs to call [getZoomRatioRange](arkts-apis-camera-ZoomQuery.md#getzoomratiorange11) to obtain data and update the UX. Therefore, AutoDeviceSwitch is more applicable to a simplified UX exchange scenario.
 
 ## Modules to Import
 

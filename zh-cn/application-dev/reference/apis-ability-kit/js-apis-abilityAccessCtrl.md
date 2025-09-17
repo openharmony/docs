@@ -86,9 +86,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取。
 atManager.checkAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
-  console.log(`checkAccessToken success, data->${JSON.stringify(data)}`);
+  console.info(`checkAccessToken success, result: ${data}`);
 }).catch((err: BusinessError) => {
-  console.error(`checkAccessToken fail, err->${JSON.stringify(err)}`);
+  console.error(`checkAccessToken fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -133,7 +133,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取。
 let permissionName: Permissions = 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS';
 let data: abilityAccessCtrl.GrantStatus = atManager.checkAccessTokenSync(tokenID, permissionName);
-console.log(`data->${JSON.stringify(data)}`);
+console.info(`Result: ${data}`);
 ```
 
 ### on<sup>18+</sup>
@@ -179,10 +179,10 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let permissionList: Array<Permissions> = ['ohos.permission.APPROXIMATELY_LOCATION'];
 try {
     atManager.on('selfPermissionStateChange', permissionList, (data: abilityAccessCtrl.PermissionStateChangeInfo) => {
-        console.log('receive permission state change, data:' + JSON.stringify(data));
+        console.info(`receive permission state change, result: ${data}`);
     });
 } catch(err) {
-    console.error(`catch err->${JSON.stringify(err)}`);
+    console.error(`Code: ${err.code}, message: ${err.message}`);
 }
 ```
 ### off<sup>18+</sup>
@@ -226,7 +226,7 @@ let permissionList: Array<Permissions> = ['ohos.permission.APPROXIMATELY_LOCATIO
 try {
     atManager.off('selfPermissionStateChange', permissionList);
 } catch(err) {
-    console.error(`catch err->${JSON.stringify(err)}`);
+    console.error(`Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -278,12 +278,12 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult) => {
   if (err) {
-    console.error(`requestPermissionsFromUser fail, err->${JSON.stringify(err)}`);
+    console.error(`requestPermissionsFromUser fail, code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info('data:' + JSON.stringify(data));
-    console.info('data permissions:' + data.permissions);
-    console.info('data authResults:' + data.authResults);
-    console.info('data dialogShownResults:' + data.dialogShownResults);
+    console.info(`requestPermissionsFromUser success, result: ${data}`);
+    console.info('requestPermissionsFromUser data permissions:' + data.permissions);
+    console.info('requestPermissionsFromUser data authResults:' + data.authResults);
+    console.info('requestPermissionsFromUser data dialogShownResults:' + data.dialogShownResults);
   }
 });
 ```
@@ -336,12 +336,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data: PermissionRequestResult) => {
-  console.info('data:' + JSON.stringify(data));
-  console.info('data permissions:' + data.permissions);
-  console.info('data authResults:' + data.authResults);
-  console.info('data dialogShownResults:' + data.dialogShownResults);
+  console.info(`requestPermissionsFromUser success, result: ${data}`);
+  console.info('requestPermissionsFromUser data permissions:' + data.permissions);
+  console.info('requestPermissionsFromUser data authResults:' + data.authResults);
+  console.info('requestPermissionsFromUser data dialogShownResults:' + data.dialogShownResults);
 }).catch((err: BusinessError) => {
-  console.error('data:' + JSON.stringify(err));
+  console.error(`requestPermissionsFromUser fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -387,6 +387,7 @@ requestPermissionOnSetting(context: Context, permissionList: Array&lt;Permission
 | 12100010 | The request already exists. |
 | 12100011 | All permissions in the permission list have been granted. |
 | 12100012 | The permission list contains the permission that has not been revoked by the user. |
+| 12100014 | Unexpected permission. You cannot request this type of permission from users via a pop-up window. |
 
 **示例：**
 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
@@ -398,9 +399,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 atManager.requestPermissionOnSetting(context, ['ohos.permission.CAMERA']).then((data: Array<abilityAccessCtrl.GrantStatus>) => {
-  console.info('data:' + JSON.stringify(data));
+  console.info(`requestPermissionOnSetting success, result: ${data}`);
 }).catch((err: BusinessError) => {
-  console.error('data:' + JSON.stringify(err));
+  console.error(`requestPermissionOnSetting fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -456,9 +457,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 atManager.requestGlobalSwitch(context, abilityAccessCtrl.SwitchType.CAMERA).then((data: Boolean) => {
-  console.info('data:' + JSON.stringify(data));
+  console.info(`requestGlobalSwitch success, result: ${data}`);
 }).catch((err: BusinessError) => {
-  console.error('data:' + JSON.stringify(err));
+  console.error(`requestGlobalSwitch fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -502,9 +503,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 try {
   let data: abilityAccessCtrl.PermissionStatus = atManager.getSelfPermissionStatus('ohos.permission.CAMERA');
-  console.info(`data->${JSON.stringify(data)}`);
+  console.info(`getSelfPermissionStatus success, result: ${data}`);
 } catch(err) {
-  console.error(`catch err->${JSON.stringify(err)}`);
+  console.error(`getSelfPermissionStatus fail, code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -547,9 +548,9 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取。
 try {
   let data: abilityAccessCtrl.GrantStatus = atManager.verifyAccessTokenSync(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
-  console.log(`data->${JSON.stringify(data)}`);
+  console.info(`verifyAccessTokenSync success, result: ${data}`);
 } catch(err) {
-  console.error(`catch err->${JSON.stringify(err)}`);
+  console.error(`verifyAccessTokenSync fail, code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -588,9 +589,9 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取。
 let permissionName: Permissions = 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS';
 atManager.verifyAccessToken(tokenID, permissionName).then((data: abilityAccessCtrl.GrantStatus) => {
-  console.log(`promise: data->${JSON.stringify(data)}`);
+  console.info(`verifyAccessToken success, result: ${data}`);
 }).catch((err: BusinessError) => {
-  console.error(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
+  console.error(`verifyAccessToken fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -628,9 +629,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取，三方应用可以通过bundleManager.getBundleInfoForSelf获取。
 atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data: abilityAccessCtrl.GrantStatus) => {
-  console.log(`promise: data->${JSON.stringify(data)}`);
+  console.info(`verifyAccessToken success, result: ${data}`);
 }).catch((err: BusinessError) => {
-  console.error(`verifyAccessToken fail, err->${JSON.stringify(err)}`);
+  console.error(`verifyAccessToken fail, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
