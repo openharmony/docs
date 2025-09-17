@@ -898,11 +898,13 @@ screen.setScreenRotationLocked(isLocked).then(() => {
 
 setScreenRotationLocked(isLocked: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置自动转屏开关是否锁定，使用callback异步回调，不适用于2in1设备。仅在支持跟随sensor旋转的设备生效。
+设置自动转屏开关是否锁定，使用callback异步回调。仅在支持跟随sensor旋转的设备生效。
 
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**设备行为差异：** 该接口在2in1设备上调用不生效不报错，在其他设备中可正常调用。
 
 **参数：**
 
