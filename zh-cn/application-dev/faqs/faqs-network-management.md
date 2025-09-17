@@ -231,7 +231,7 @@ WiFi模块中使用wifi.getIpInfo().ipAddress，报错Error: assertion (wifiDevi
   
 **参考资料**
 
-https://gitee.com/openharmony/interface_sdk_c/tree/master/network
+https://gitcode.com/openharmony/interface_sdk_c/tree/master/network
 
 ## Socket下的TLSConnectOptions不配置是否会使用设备上的默认证书？(API 11)
 
