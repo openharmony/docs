@@ -153,8 +153,8 @@
 | static const char* OHOS_IMAGE_PROPERTY_GPS_DEST_LATITUDE_REF = "GPSDestLatitudeRef" | 目的地点的纬度参照。<br>**起始版本：** 12 |
 | static const char* OHOS_IMAGE_PROPERTY_GPS_DEST_LATITUDE = "GPSDestLatitude" | 目的地点的纬度。<br>**起始版本：** 12 |
 | static const char* OHOS_IMAGE_PROPERTY_GPS_DEST_LONGITUDE_REF = "GPSDestLongitudeRef" | 目的地点的经度参照。<br>**起始版本：** 12 |
-| static const char* OHOS_IMAGE_PROPERTY_GPS_PROCESSING_METHOD = "GPSProcessingMethod" | 记录定位方法名的字符字符串。<br>**起始版本：** 12 |
-| static const char* OHOS_IMAGE_PROPERTY_GPS_AREA_INFORMATION = "GPSAreaInformation" | 记录GPS区域名的字符字符串。<br>**起始版本：** 12 |
+| static const char* OHOS_IMAGE_PROPERTY_GPS_PROCESSING_METHOD = "GPSProcessingMethod" | 记录定位方法名的字符串。<br>**起始版本：** 12 |
+| static const char* OHOS_IMAGE_PROPERTY_GPS_AREA_INFORMATION = "GPSAreaInformation" | 记录GPS区域名的字符串。<br>**起始版本：** 12 |
 | static const char* OHOS_IMAGE_PROPERTY_GPS_DIFFERENTIAL = "GPSDifferential" | 此字段表示GPS数据是否应用了差分校正，对于精确的位置准确性至关重要。<br>**起始版本：** 12 |
 | static const char* OHOS_IMAGE_PROPERTY_BODY_SERIAL_NUMBER = "BodySerialNumber" | 相机机身的序列号。<br>**起始版本：** 12 |
 | static const char* OHOS_IMAGE_PROPERTY_CAMERA_OWNER_NAME = "CameraOwnerName" | 相机所有者的姓名。<br>**起始版本：** 12 |
