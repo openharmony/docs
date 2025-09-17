@@ -1,4 +1,10 @@
 # Using Secure Shield Mode
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @weixin_41848015-->
+<!--Designer: @libing23232323-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 The Secure Shield mode is a system-level security mode provided for users with high security requirements. This mode restricts basic device capabilities to enhance security and effectively defend against targeted attacks through the remote attack surface.
 
@@ -39,22 +45,22 @@ To evaluate the impact and compatibility of applications in Secure Shield mode, 
 
 When an application is running, you can check whether the corresponding functionalities are affected in the following ways:
 
-- Check whether the frontend code calls the WebAssembly APIs, which are used to run code compiled using low-level languages such as C and C++ on web pages and cannot be called in the Secure Shield mode.
+- Check whether the frontend code calls the WebAssembly APIs, which are used to run code compiled using low-level languages such as C and C++ on web pages and cannot be called in Secure Shield mode.
 
-- Check whether the frontend code calls the WebGL APIs, which provide the 3D graphics drawing capability and cannot be called in the Secure Shield mode.
+- Check whether the frontend code calls the WebGL APIs, which provide the 3D graphics drawing capability and cannot be called in Secure Shield mode.
 
-- Check whether there is the functionality of displaying PDF files online. PDF files cannot be displayed online in the Secure Shield mode. For example, loadUrl cannot be used to load PDF links.
+- Check whether there is the functionality of displaying PDF files online. PDF files cannot be displayed online in Secure Shield mode. For example, loadUrl cannot be used to load PDF links.
 
-- Check whether the HTML page contains the MathML syntax embedded in the **\<math>** tag. In the Secure Shield mode, the MathML syntax cannot be parsed and displayed.
+- Check whether the HTML page contains the MathML syntax embedded in the **\<math>** tag. In Secure Shield mode, the MathML syntax cannot be parsed and displayed.
 
-- Check whether APIs such as **SpeechRecognition** and **SpeechSynthesis** are called in the frontend code. In the Secure Shield mode, they cannot be called.
+- Check whether APIs such as **SpeechRecognition** and **SpeechSynthesis** are called in the frontend code. In Secure Shield mode, they cannot be called.
 
-- Check whether the frontend code calls the WebRTC APIs such as **RTCDataChannel** and **createDataChannel**, which are used to establish bidirectional data channels for real-time data exchange between peers and cannot be called in the Secure Shield mode.
+- Check whether the frontend code calls the WebRTC APIs such as **RTCDataChannel** and **createDataChannel**, which are used to establish bidirectional data channels for real-time data exchange between peers and cannot be called in Secure Shield mode.
 
 - Check whether the frontend code calls the **MediaDevices.getUserMedia** API, which is used to access streaming media devices, such as cameras and microphones. When the Secure Shield mode is used, the exception "can't use getUserMedia on advancedSecurityMode!" is thrown when related APIs are called.
 
-- Check whether the frontend code calls the ServiceWorker APIs, which are used to implement functionalities such as offline cache, network request interception, and notification push and cannot be created in the Secure Shield mode.
+- Check whether the frontend code calls the ServiceWorker APIs, which are used to implement functionalities such as offline cache, network request interception, and notification push and cannot be created in Secure Shield mode.
 
-- Check whether WebRTC uses non-proxy UDP transmission, which is prohibited in the Secure Shield mode. The application needs to verify the network functionalities and performance in the WebRTC scenario.
+- Check whether WebRTC uses non-proxy UDP transmission, which is prohibited in Secure Shield mode. The application needs to verify the network functionalities and performance in the WebRTC scenario.
 
-- The application needs to evaluate the JS performance in the Secure Shield mode.
+- The application needs to evaluate the JS performance in Secure Shield mode.

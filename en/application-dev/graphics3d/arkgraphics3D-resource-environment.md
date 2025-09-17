@@ -2,8 +2,9 @@
 <!--Kit: ArkGraphics 3D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @zzhao0-->
-<!--SE: @zdustc-->
-<!--TSE: @zhangyue283-->
+<!--Designer: @zdustc-->
+<!--Tester: @zhangyue283-->
+<!--Adviser: @ge-yafang-->
 
 Environment is a description of the 3D scene background, which can be created based on images. To simulate a real-world environment in a 3D scene, you can map a square or sphere onto an image and wrap the image around the square or sphere.
 
@@ -13,10 +14,10 @@ ArkGraphics 3D allows you to create environment resources and define the backgro
 ## Creating and Using an Environment
 To create an environment resource, you need to specify the name and path of the image or glTF model in the application sandbox, and set the environment resource as an environment attribute of the 3D scene. In this way, the created environment resource is set as the background environment of the 3D scene. Environment resources also provide attributes such as **diffuseFactor** and **specularFactor**. The sample code is as follows:
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, EnvironmentBackgroundType } from '@kit.ArkGraphics3D';
+import { Image, Environment, SceneResourceParameters, SceneResourceFactory, Scene,
+  EnvironmentBackgroundType } from '@kit.ArkGraphics3D';
 
-function createEnvironmentPromise() : Promise<Environment> {
+function createEnvironmentPromise(): Promise<Environment> {
   return new Promise((resolve, reject) => {
     // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
     let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
@@ -46,3 +47,6 @@ function createEnvironmentPromise() : Promise<Environment> {
   });
 }
 ```
+
+
+<!--RP1-->

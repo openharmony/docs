@@ -2,8 +2,9 @@
 <!--Kit: ArkGraphics 3D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @zzhao0-->
-<!--SE: @zdustc-->
-<!--TSE: @zhangyue283-->
+<!--Designer: @zdustc-->
+<!--Tester: @zhangyue283-->
+<!--Adviser: @ge-yafang-->
 
 The module provides the types and operation methods of scene nodes in 3D graphics.
 
@@ -40,19 +41,21 @@ Checks whether the mask is enabled for a layer of a given index.
 
 **Example**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { Scene, Node } from '@kit.ArkGraphics3D';
 
-function layerMask() : void {
-  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+function layerMask(): void {
+  // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
     if (result) {
       let node : Node | null = result.getNodeByPath("rootNode_");
       if (node) {
           // Obtain the enabled status of the mask.
-          let enabled: Boolean = node.layerMask.getEnabled(1);
+          let enabled: boolean = node.layerMask.getEnabled(1);
       }
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```
@@ -73,11 +76,11 @@ Enables the mask of a layer of a given index.
 
 **Example**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { Scene, Node } from '@kit.ArkGraphics3D';
 
-function layerMask() : void {
-  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+function layerMask(): void {
+  // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
     if (result) {
       let node : Node | null = result.getNodeByPath("rootNode/Scene/");
@@ -86,6 +89,8 @@ function layerMask() : void {
           node.layerMask.setEnabled(1, true);
       }
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```
@@ -118,17 +123,19 @@ Appends a node to the container.
 
 **Example**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { Scene, Node } from '@kit.ArkGraphics3D';
 
-function append() : void {
-  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+function append(): void {
+  // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
     if (result) {
       let node : Node | null = result.getNodeByPath("rootNode/Scene/");
       // Call append to add a node.
       result.root?.children.get(0)?.children.append(node);
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```
@@ -148,17 +155,21 @@ Inserts a node after a sibling node.
 
 **Example**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { Scene, Node } from '@kit.ArkGraphics3D';
 
-function insertAfter() : void {
-  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+function insertAfter(): void {
+  // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
     if (result) {
       let node : Node | null = result.getNodeByPath("rootNode/Scene/");
-      // Call insertAfter to add a node.
-      result.root?.children.get(0)?.children.insertAfter(node, null);
+      if (node) {
+        // Call insertAfter to add a node.
+        result.root?.children.get(0)?.children.insertAfter(node, null);
+      }
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```
@@ -177,17 +188,21 @@ Removes a node.
 
 **Example**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { Scene, Node } from '@kit.ArkGraphics3D';
 
-function remove() : void {
-  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+function remove(): void {
+  // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
     if (result) {
       let node : Node | null = result.getNodeByPath("rootNode/Scene/");
-      // Call remove to remove a node.
-      result.root?.children.remove(node);
+      if (node) {
+        // Call remove to remove a node.
+        result.root?.children.remove(node);
+      }
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```
@@ -211,17 +226,19 @@ Obtains a node of a given index. If no node is obtained, null is returned.
 
 **Example**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { Scene, Node } from '@kit.ArkGraphics3D';
 
-function get() : void {
-  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+function get(): void {
+  // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
     if (result) {
       let node : Node | null = result.getNodeByPath("rootNode/Scene/");
       // Get node 0 from children.
       result.root?.children.get(0)?.children.insertAfter(node, null);
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```
@@ -235,17 +252,21 @@ Clears all nodes in the container.
 
 **Example**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { Scene, Node } from '@kit.ArkGraphics3D';
 
-function clear() : void {
-  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+function clear(): void {
+  // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
     if (result) {
       let node : Node | null = result.getNodeByPath("rootNode/Scene/");
-      // Clear the nodes in children.
-      result.root?.children.clear();
+      if (node) {
+        //Clear all child nodes of the node.
+        node.children.clear();
+      }
     }
+  }).catch((error: Error) => {
+    console.error('Scene load failed:', error);
   });
 }
 ```
@@ -264,11 +285,11 @@ Obtains the number of nodes in the container.
 
 **Example**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { Container, Scene, Node } from '@kit.ArkGraphics3D';
 
-function count() : void {
-  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+function count(): void {
+  // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
     if (result) {
       let node : Node | null = result.getNodeByPath("rootNode_");
@@ -320,11 +341,11 @@ Obtains a node by path. If no node is obtained, null is returned.
 
 **Example**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { Scene, Node } from '@kit.ArkGraphics3D';
 
-function getNode() : void {
-  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+function getNode(): void {
+  // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
   scene.then(async (result: Scene) => {
     if (result && result.root) {
       // Search for a node.
@@ -336,8 +357,6 @@ function getNode() : void {
 
 ## Geometry
 Geometric node type that holds renderable mesh data and supports optional deformation features. It inherits from [Node](#node).
-
-### Properties
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
 
@@ -358,8 +377,6 @@ Enumerates the light types.
 
 ## Light
 Light node, which inherits from [Node](#node).
-
-### Properties
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
 
@@ -418,12 +435,11 @@ Casts a ray from a specific position on the screen to detect and retrieve inform
 
 **Example**
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Vec2, Vec3,
-  Quaternion } from '@kit.ArkGraphics3D';
-import { RaycastParameters } from '@ohos.graphics.scene';
+import { SceneNodeParameters, Camera, SceneResourceFactory, Scene, Node, Vec2, Vec3, Quaternion,
+  RaycastParameters } from '@kit.ArkGraphics3D';
 
 function Raycast(): void {
+  // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
   Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"))
     .then(async (result: Scene) => {
       if (!result.root) {

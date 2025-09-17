@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -22,7 +23,7 @@ import { camera } from '@kit.CameraKit';
 
 hasFlash(): boolean
 
-Checks whether the camera device has flash. This API uses an asynchronous callback to return the result.
+Checks whether the camera device has flash.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
 

@@ -1,4 +1,10 @@
 # native_interface_arkweb.h
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 ## Overview
 
@@ -14,6 +20,19 @@ Declares APIs used to register objects and execute JavaScript code.
 
 ## Summary
 
+### Structs
+
+| Name| typedef Keyword| Description|
+| -- | -- | -- |
+| [ArkWeb_BlanklessInfo](capi-web-arkweb-blanklessinfo.md) | ArkWeb_BlanklessInfo | Prediction information about blankless loading, including the first screen similarity, first screen loading duration, and error code. The application determines whether to enable frame insertion for blankless loading based on the prediction information.|
+
+### Enums
+
+| Name| typedef Keyword| Description|
+| -- | -- | -- |
+| [ArkWebEngineVersion](#arkwebengineversion) | ArkWebEngineVersion | For details about the ArkWeb kernel version, see [Adaptation Guide for the M114 Kernel on OpenHarmony 6.0](https://gitcode.com/openharmony-tpc/chromium_src/blob/132_trunk/web/ReleaseNote/CompatibleWithLegacyWebEngine.md).|
+
+
 ### Functions
 
 | Name| typedef Keyword| Description|
@@ -22,8 +41,7 @@ Declares APIs used to register objects and execute JavaScript code.
 | [typedef char* (\*NativeArkWeb_OnJavaScriptProxyCallback)(const char** argv, int32_t argc)](#nativearkweb_onjavascriptproxycallback) | NativeArkWeb_OnJavaScriptProxyCallback | Called when a JavaScript proxy is registered.|
 | [typedef void (\*NativeArkWeb_OnValidCallback)(const char*)](#nativearkweb_onvalidcallback) | NativeArkWeb_OnValidCallback | Called when a **Web** component is valid.|
 | [typedef void (\*NativeArkWeb_OnDestroyCallback)(const char*)](#nativearkweb_ondestroycallback) | NativeArkWeb_OnDestroyCallback | Called when a **Web** component is destroyed.|
-| [typedef void (\*OH_ArkWeb_OnCookieSaveCallback)()](#oh_arkweb_oncookiesavecallback) | OH_ArkWeb_OnCookieSaveCallback | Called when a cookie is saved.<br>**Since**: 20|
-| [typedef ArkWeb_BlanklessInfo](#arkweb_blanklessinfo) | ArkWeb_BlanklessInfo | Prediction information about blankless loading, including the first screen similarity, first screen loading duration, and error code. The application determines whether to enable frame insertion for blankless loading based on the prediction information.|
+| [typedef void (\*OH_ArkWeb_OnCookieSaveCallback)(ArkWeb_ErrorCode errorCode)](#oh_arkweb_oncookiesavecallback) | OH_ArkWeb_OnCookieSaveCallback | Called when a cookie is saved.<br>**Since**: 20|
 | [void OH_NativeArkWeb_RunJavaScript(const char* webTag, const char* jsCode, NativeArkWeb_OnJavaScriptCallback callback)](#oh_nativearkweb_runjavascript) | - | Loads and asynchronously executes a JavaScript code in the current page.|
 | [void OH_NativeArkWeb_RegisterJavaScriptProxy(const char* webTag, const char* objName, const char** methodList,NativeArkWeb_OnJavaScriptProxyCallback* callback, int32_t size, bool needRefresh)](#oh_nativearkweb_registerjavascriptproxy) | - | Displays the list of registered objects and function names.|
 | [void OH_NativeArkWeb_UnregisterJavaScriptProxy(const char* webTag, const char* objName)](#oh_nativearkweb_unregisterjavascriptproxy) | - | Deletes a registered object and its callback.|
@@ -35,10 +53,37 @@ Declares APIs used to register objects and execute JavaScript code.
 | [void OH_NativeArkWeb_RegisterAsyncThreadJavaScriptProxy(const char* webTag,const ArkWeb_ProxyObjectWithResult* proxyObject, const char* permission)](#oh_nativearkweb_registerasyncthreadjavascriptproxy) | - | Registers a JavaScript object that contains callback methods, which can have return values. This object will be registered into all frames of the current page, including all iframes, and can be accessed by using the name specified in **ArkWeb_ProxyObjectWithResult**. The object takes effect in JavaScript only after the page is loaded or reloaded next time. Its methods are executed in the worker thread of ArkWeb.|
 | [ArkWeb_ErrorCode OH_ArkWebCookieManager_SaveCookieSync()](#oh_arkwebcookiemanager_savecookiesync) | - | Saves all cookies that can be accessed through the **CookieManager** API to disks. To use this API in a non-UI thread, you need to use **OH_ArkWeb_GetNativeAPI** to initialize the **CookieManager** API.<br>**Since**: 20|
 | [void OH_ArkWebCookieManager_SaveCookieAsync(OH_ArkWeb_OnCookieSaveCallback callback)](#oh_arkwebcookiemanager_savecookieasync) | - | Saves all cookies that can be accessed through the **CookieManager** API to disks. If the **CookieManager** API is not initialized, this API is automatically executed on the UI thread.<br>**Since**: 20|
-| [ArkWeb_BlanklessInfo OH_NativeArkWeb_GetBlanklessInfoWithKey(const char* webTag, const char* key)](#oh_nativearkweb_getblanklessinfowithkey) | - | Obtains the first screen loading prediction information, and starts to generate the loading transition frame. The application determines whether to enable blankless loading based on the information. For details, see [ArkWeb_BlanklessInfo](#arkweb_blanklessinfo). This API must be used together with the [OH_NativeArkWeb_SetBlanklessLoadingWithKey](#oh_nativearkweb_setblanklessloadingwithkey) API and must be called before the page loading API is triggered and after **WebViewController** is bound to the **Web** component.|
+| [ArkWeb_BlanklessInfo OH_NativeArkWeb_GetBlanklessInfoWithKey(const char* webTag, const char* key)](#oh_nativearkweb_getblanklessinfowithkey) | - | Obtains the first screen loading prediction information, and starts to generate the loading transition frame. The application determines whether to enable blankless loading based on the information. For details, see [ArkWeb_BlanklessInfo](capi-web-arkweb-blanklessinfo.md). This API must be used together with the [OH_NativeArkWeb_SetBlanklessLoadingWithKey](#oh_nativearkweb_setblanklessloadingwithkey) API and must be called before the page loading API is triggered and after **WebViewController** is bound to the **Web** component.|
 | [ArkWeb_BlanklessErrorCode OH_NativeArkWeb_SetBlanklessLoadingWithKey(const char* webTag, const char* key, bool isStarted)](#oh_nativearkweb_setblanklessloadingwithkey) | - | Sets whether to enable blankless loading. This API must be used together with the [OH_NativeArkWeb_GetBlanklessInfoWithKey](#oh_nativearkweb_getblanklessinfowithkey) API.|
 | [void OH_NativeArkWeb_ClearBlanklessLoadingCache(const char* key[], uint32_t size)](#oh_nativearkweb_clearblanklessloadingcache) | - | Clears the blankless loading cache of the page with a specified key value.|
 | [uint32_t OH_NativeArkWeb_SetBlanklessLoadingCacheCapacity(uint32_t capacity)](#oh_nativearkweb_setblanklessloadingcachecapacity) | - | Sets the persistent cache capacity of the blankless loading solution and returns the value that takes effect. The default cache capacity is 30 MB, and the maximum cache capacity is 100 MB. When this limit is exceeded, transition frames that are not frequently used are eliminated.|
+| [void OH_NativeArkWeb_SetActiveWebEngineVersion(ArkWebEngineVersion webEngineVersion)](#oh_nativearkweb_setactivewebengineversion) | - | Sets the ArkWeb kernel version. If the system does not support the specified version, the setting is invalid. This API is a global static method and must be called before **initializeWebEngine** is called. If any **Web** component has been loaded, the setting of this API is invalid.|
+| [ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion()](#oh_nativearkweb_getactivewebengineversion) | - | Obtain the current ArkWeb kernel version.|
+
+## Enum Description
+
+### ArkWebEngineVersion
+
+```
+enum ArkWebEngineVersion
+```
+
+**Description**
+
+For details about the ArkWeb kernel version, see [Adaptation Guide for the M114 Kernel on OpenHarmony 6.0](https://gitcode.com/openharmony-tpc/chromium_src/blob/132_trunk/web/ReleaseNote/CompatibleWithLegacyWebEngine.md).
+
+| **Kernel Type**| **Name**| **Description**|
+| ----------- | -------- | -------- |
+| Evergreen kernel    | EVERGREEN WebCore | Latest Web kernel of the system, based on which the complete functionalities are implemented. This kernel is recommended for applications.|
+| Legacy kernel    | LEGACY WebCore    | A previous-release kernel that receives only security and PR-related fixes, used solely for compatibility rollback, and is supported for a fixed duration only.|
+
+**Since**: 20
+
+| Enum              | Description                |
+| -------------------- | ------------------- |
+| SYSTEM_DEFAULT = 0   | Default system kernel. For OpenHarmony 6.0, the default kernel is M132.          |
+| ARKWEB_M114 = 1      | Legacy kernel of OpenHarmony 6.0. You can select this legacy kernel. If it does not exist, the setting is invalid.|
+| ARKWEB_M132 = 2      | Evergreen kernel of OpenHarmony 6.0, which is M132 by default. If it does not exist, the setting is invalid.   |
 
 ## Function Description
 
@@ -93,7 +138,7 @@ Called when a **Web** component is destroyed.
 ### OH_ArkWeb_OnCookieSaveCallback()
 
 ```
-typedef void (*OH_ArkWeb_OnCookieSaveCallback)()
+typedef void (*OH_ArkWeb_OnCookieSaveCallback)(ArkWeb_ErrorCode errorCode)
 ```
 
 **Description**
@@ -102,21 +147,11 @@ Called when a cookie is saved.
 
 **Since**: 20
 
-### ArkWeb_BlanklessInfo()
-
-## Overview
-
-Prediction information about blankless loading, including the first screen similarity, first screen loading duration, and error code. The application determines whether to enable frame insertion for blankless loading based on the prediction information.
-
-**Since**: 20
-
-### Member Variables
+**Parameters**
 
 | Name| Description|
 | -- | -- |
-| ArkWeb_BlanklessErrorCode errCode | Error codes of blankless loading. For details, see [ArkWeb_BlanklessErrorCode](./capi-arkweb-error-code-h.md#arkweb_blanklesserrorcode).|
-| double similarity | First screen similarity, which is calculated based on the historical first screen content. The value ranges from 0 to 1.0. 1.0 indicates that the content is the same. A value closer to 1 indicates a higher similarity. This value is lagging, and the similarity of local loading is displayed in the next loading. You are advised not to enable the blankless loading solution when the similarity is low.|
-| int32_t loadingTime | Loading duration estimated based on the historical first screen loading durations, in milliseconds. The value must be greater than 0.|
+| [ArkWeb_ErrorCode](capi-arkweb-error-code-h.md#arkweb_errorcode) errorCode | [ARKWEB_SUCCESS](capi-arkweb-error-code-h.md#arkweb_errorcode): The cookie is successfully saved.<br> [ARKWEB_COOKIE_SAVE_FAILED](capi-arkweb-error-code-h.md#arkweb_errorcode): The cookie fails to be saved.<br> [ARKWEB_COOKIE_MANAGER_INITIALIZE_FAILED](capi-arkweb-error-code-h.md#arkweb_errorcode): The **CookieManager** initialization failed.|
 
 ### OH_NativeArkWeb_RunJavaScript()
 
@@ -236,7 +271,7 @@ Obtains the callback used when a registered object is valid.
 
 | Type| Description|
 | -- | -- |
-| [NativeArkWeb_OnValidCallback](#nativearkweb_onvalidcallback) | Callback used when a registered object is valid.|
+| [NativeArkWeb_OnValidCallback](#nativearkweb_onvalidcallback) | Callback used when a registered object is valid. If no valid callback function is set for the **webTag** parameter, a null pointer is returned.|
 
 ### OH_NativeArkWeb_SetDestroyCallback()
 
@@ -285,7 +320,7 @@ Obtains the callback used when a registered component is destroyed.
 
 | Type| Description|
 | -- | -- |
-| [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) | Callback used when a registered component is destroyed.|
+| [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) | Callback used when a registered component is destroyed. If no destroy callback function is set for the **webTag** parameter, a null pointer is returned.|
 
 ### OH_NativeArkWeb_LoadData()
 
@@ -356,7 +391,7 @@ Saves all cookies that can be accessed through the **CookieManager** API to disk
 
 | Type| Description|
 | -- | -- |
-| [ArkWeb_ErrorCode](capi-arkweb-error-code-h.md#arkweb_errorcode) | Error codes of **SaveCookieSync**.<br> [ARKWEB_SUCCESS](capi-arkweb-error-code-h.md#arkweb_errorcode): The cookie is successfully saved.<br> [ARKWEB_COOKIE_MANAGER_NOT_INITIALIZED](capi-arkweb-error-code-h.md#arkweb_errorcode): This API cannot be invoked in a non-UI thread without initializing the **CookieManager** API. You need to use **OH_ArkWeb_GetNativeAPI** to initialize the **CookieManager** API first.|
+| [ArkWeb_ErrorCode](capi-arkweb-error-code-h.md#arkweb_errorcode) | Error codes of **SaveCookieSync**.<br> [ARKWEB_SUCCESS](capi-arkweb-error-code-h.md#arkweb_errorcode): The cookie is successfully saved.<br> [ARKWEB_COOKIE_SAVE_FAILED](capi-arkweb-error-code-h.md#arkweb_errorcode): Failed to save the cookie.<br> [ARKWEB_COOKIE_MANAGER_INITIALIZE_FAILED](capi-arkweb-error-code-h.md#arkweb_errorcode): The **CookieManager** initialization failed.<br> [ARKWEB_COOKIE_MANAGER_NOT_INITIALIZED](capi-arkweb-error-code-h.md#arkweb_errorcode): This API cannot be invoked in a non-UI thread without initializing the **CookieManager** API. You need to use **OH_ArkWeb_GetNativeAPI** to initialize the **CookieManager** API first.|
 
 ### OH_ArkWebCookieManager_SaveCookieAsync()
 
@@ -383,17 +418,20 @@ ArkWeb_BlanklessInfo OH_NativeArkWeb_GetBlanklessInfoWithKey(const char* webTag,
 
 **Description**
 
-Obtains the first screen loading prediction information, and starts to generate the loading transition frame. The application determines whether to enable blankless loading based on the information. For details, see [ArkWeb_BlanklessInfo](#arkweb_blanklessinfo). This API must be used together with the [OH_NativeArkWeb_SetBlanklessLoadingWithKey](#oh_nativearkweb_setblanklessloadingwithkey) API and must be called before the page loading API is triggered and after **WebViewController** is bound to the **Web** component.
+Obtains the first screen loading prediction information, and starts to generate the loading transition frame. The application determines whether to enable blankless loading based on the information. For details, see [ArkWeb_BlanklessInfo](capi-web-arkweb-blanklessinfo.md). This API must be used together with the [OH_NativeArkWeb_SetBlanklessLoadingWithKey](#oh_nativearkweb_setblanklessloadingwithkey) API and must be called before the page loading API is triggered and after **WebViewController** is bound to the **Web** component.
 
 > **NOTE**
 >
-> - Currently, this feature is supported only on mobile phones.
 > - The default size of the persistent cache capacity is 30 MB (about 30 pages). You can set the cache capacity by calling [OH_NativeArkWeb_SetBlanklessLoadingCacheCapacity](#oh_nativearkweb_setblanklessloadingcachecapacity). For details, see the description of this API. When the maximum capacity is exceeded, the cache is updated based on the Least Recently Used (LRU) mechanism. The persistent cache data that has been stored for more than seven days is automatically cleared. After the cache is cleared, the optimization effect appears when the page is loaded for the third time.
-> - If the similarity in [ArkWeb_BlanklessInfo](#arkweb_blanklessinfo) is extremely low, check whether the key value is correctly transferred.
+> - If the value of **similarity** in [ArkWeb_BlanklessInfo](capi-web-arkweb-blanklessinfo.md) is extremely low, check whether the key value is correctly passed.
 > - After this API is called, page loading snapshot detection and transition frame generation calculation are enabled, which generates certain resource overhead.
 > - Blankless loading consumes resources, which depends on the resolution of the **Web** component. It is assumed that a width and a height of the resolution are respectively **w** and **h**. When a page is opened, the peak memory usage increases by about **12×w×h** B. After the page is opened, the memory is reclaimed, which does not affect the stable memory usage. When the size of the solid-state application cache is increased, the increased cache of each page is about **w×h/10** B and the cache is located in the application cache.
 
+**Required permissions**: **ohos.permission.INTERNET** and **ohos.permission.GET_NETWORK_INFO**
+
 **Since**: 20
+
+**Device behavior differences**: This API can be called on phones. For other device types, error code **801** is returned.
 
 **Parameters**
 
@@ -406,7 +444,7 @@ Obtains the first screen loading prediction information, and starts to generate 
 
 | Type| Description|
 | -- | -- |
-| [ArkWeb_BlanklessInfo](#arkweb_blanklessinfo) | Prediction information about blankless loading, including the first screen similarity and first screen loading duration. The application determines whether to enable blankless loading based on the prediction information.|
+| [ArkWeb_BlanklessInfo](capi-web-arkweb-blanklessinfo.md) | Prediction information about blankless loading, including the first screen similarity and first screen loading duration. The application determines whether to enable blankless loading based on the prediction information.|
 
 ### OH_NativeArkWeb_SetBlanklessLoadingWithKey()
 
@@ -423,6 +461,8 @@ Sets whether to enable blankless loading. This API must be used together with th
 > - This API must be called after the page loading API is triggered. Other constraints are the same as those of [OH_NativeArkWeb_GetBlanklessInfoWithKey](#oh_nativearkweb_getblanklessinfowithkey).
 > - The page must be loaded in the component that calls this set of APIs.
 > - When the similarity is low, the system will deem the scene change too abrupt and frame insertion will fail.
+
+**Required permissions**: **ohos.permission.INTERNET** and **ohos.permission.GET_NETWORK_INFO**
 
 **Since**: 20
 
@@ -463,7 +503,7 @@ In an applet or web application, when the content changes significantly during p
 | Name                                                | Description|
 |-----------------------------------------------------| -- |
 | const char* key[] | Key value list on the pages using the blankless optimization solution. The key value has been specified in [OH_NativeArkWeb_GetBlanklessInfoWithKey](#oh_nativearkweb_getblanklessinfowithkey).<br>Default value: key value list of all pages cached by the blankless optimization solution.<br>The key length cannot exceed 2048 characters, and the number of keys must be less than or equal to 100. The key value is the same as that input to the **Web** component during page loading.<br>If the key length exceeds 2048 characters, the key does not take effect. If the key length exceeds 100 characters, the first 100 characters are used. If the key length is NULL, the default value is used.|
-| uint32_t size | Size of the key array.<br>The default value is **0**.<br>The value ranges from 0 to 100.<br>When an invalid value is set, the value **0** is used.|
+| uint32_t size | Size of the key array.<br>The default value is **0**.<br>The value ranges from 0 to 100. If the size exceeds 100, the first 100 keys are used.<br>When an invalid value is set, the value **0** is used.|
 
 
 ### OH_NativeArkWeb_SetBlanklessLoadingCacheCapacity()
@@ -489,3 +529,45 @@ Sets the persistent cache capacity of the blankless loading solution and returns
 | Type| Description|
 | -- | -- |
 | uint32_t | The effective value that ranges from 0 MB to 100 MB.<br>When a value less than 0 is set, the value **0** takes effect. When a value greater than 100 is set, the value **100** takes effect.|
+
+### OH_NativeArkWeb_SetActiveWebEngineVersion()
+
+```
+void OH_NativeArkWeb_SetActiveWebEngineVersion(ArkWebEngineVersion webEngineVersion)
+```
+
+**Description**
+
+Sets the ArkWeb kernel version. If the system does not support the specified version, the setting is invalid.
+
+This API is a global static method and must be called before **initializeWebEngine** is called. If any **Web** component has been loaded, the setting of this API is invalid.
+
+**Legacy kernel adaptation**
+
+Since OpenHarmony 6.0, some ArkWeb APIs do not take effect when the legacy kernel is used. For details, see [Adaptation Guide for the M114 Kernel on OpenHarmony 6.0](https://gitcode.com/openharmony-tpc/chromium_src/blob/132_trunk/web/ReleaseNote/CompatibleWithLegacyWebEngine.md).
+
+**Since**: 20
+
+**Parameters**
+
+| Name                                                | Description|
+|-----------------------------------------------------| -- |
+| ArkWebEngineVersion webEngineVersion  | ArkWeb kernel version. For details, see [ArkWebEngineVersion](#arkwebengineversion).|
+
+### OH_NativeArkWeb_GetActiveWebEngineVersion()
+
+```
+ArkWebEngineVersion OH_NativeArkWeb_GetActiveWebEngineVersion()
+```
+
+**Description**
+
+Obtains the current ArkWeb kernel version.
+
+**Since**: 20
+
+**Returns**
+
+| Type| Description|
+| -- | -- |
+| ArkWebEngineVersion | The current ArkWeb kernel version defined by [ArkWebEngineVersion](#arkwebengineversion).|

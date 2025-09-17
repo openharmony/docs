@@ -93,8 +93,8 @@ libusb_serial_ndk.z.so
 
 **头文件**
 ```c++
-#include <serial/usb_serial_api.h>
-#include <serial/usb_serial_types.h>
+#include <usb_serial/usb_serial_api.h>
+#include <usb_serial/usb_serial_types.h>
 ```
 
 1. 初始化DDK。
@@ -118,7 +118,7 @@ libusb_serial_ndk.z.so
     OH_UsbSerial_Open(deviceId, interfaceIndex, &dev);
     ```
 
-3. 设置USB串口设备的参数。
+3. 设置USB串口设备的参数（可选）。
 
     使用 **usb_serial_api.h** 的 **OH_UsbSerial_SetParams** 接口设置串口参数，或者直接调用 **OH_UsbSerial_SetBaudRate** 设置波特率，使用 **OH_UsbSerial_SetTimeout** 设置读取数据的超时时间。
 
@@ -140,7 +140,7 @@ libusb_serial_ndk.z.so
     OH_UsbSerial_SetTimeout(dev, timeout);
     ```
 
-4. 设置流控、清空缓冲区。
+4. 设置流控、清空缓冲区（可选）。
 
     使用 **usb_serial_api.h** 的 **OH_UsbSerial_SetFlowControl** 设置流控方式，使用 **OH_UsbSerial_Flush** 清空缓冲区，使用 **OH_UsbSerial_FlushInput** 清空输入缓冲区，使用 **OH_UsbSerial_FlushOutput** 清空输出缓冲区。
 
@@ -157,7 +157,7 @@ libusb_serial_ndk.z.so
     // 清空输出缓冲区
     OH_UsbSerial_FlushOutput(dev);
     ```
-5. 向USB串口设备写入/读取数据。
+5. 向USB串口设备写入/读取数据（可选）。
 
     使用 **usb_serial_api.h** 的 **OH_UsbSerial_Write** 给设备发送数据，并使用 **OH_UsbSerial_Read** 读取设备发送过来的数据。
 

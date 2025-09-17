@@ -564,6 +564,10 @@ FFRT_C_API void ffrt_submit_f(ffrt_function_t func, void* arg, const ffrt_deps_t
 
 `ffrt_submit_f`接口是`ffrt_submit_base`接口的简化包装形式。当任务不需要销毁回调函数时，接口内部将任务函数及其参数包装成通用任务结构，再调用`ffrt_submit_base`接口提交任务。
 
+> **说明：**
+>
+> 从API version 20开始，支持该接口。
+
 **样例**
 
 ```cpp
@@ -650,6 +654,10 @@ FFRT_C_API ffrt_task_handle_t ffrt_submit_h_f(ffrt_function_t func, void* arg, c
 **描述**
 
 相比于`ffrt_submit_f`接口，增加了任务句柄的返回值。
+
+> **说明：**
+>
+> 从API version 20开始，支持该接口。
 
 **样例**
 
@@ -1076,7 +1084,7 @@ void ffrt_queue_attr_set_thread_mode(ffrt_queue_attr_t* attr, bool mode);
 - 设置队列中的任务是以协程模式还是以线程模式运行。默认以协程模式运行。
 
 > **说明：**
-
+>
 > 从API version 20开始，支持该接口。
 
 **ffrt_queue_attr_get_thread_mode**
@@ -1098,7 +1106,7 @@ bool ffrt_queue_attr_get_thread_mode(const ffrt_queue_attr_t* attr);
 - 获取队列中的任务是以协程模式还是以线程模式运行。
 
 > **说明：**
-
+>
 > 从API version 20开始，支持该接口。
 
 **样例**
@@ -1210,6 +1218,10 @@ void ffrt_queue_submit_f(ffrt_queue_t queue, ffrt_function_t func, void* arg, co
 
 - 当任务不需要销毁回调函数时，提交任务到队列中。
 
+> **说明：**
+>
+> 从API version 20开始，支持该接口。
+
 **ffrt_queue_submit_h**
 
 ```c
@@ -1250,6 +1262,10 @@ ffrt_task_handle_t ffrt_queue_submit_h_f(ffrt_queue_t queue, ffrt_function_t fun
 描述
 
 - 当任务不需要销毁回调函数时，提交任务到队列中，并返回任务句柄。
+
+> **说明：**
+>
+> 从API version 20开始，支持该接口。
 
 **ffrt_queue_wait**
 
@@ -1687,6 +1703,10 @@ FFRT_C_API int ffrt_rwlock_init(ffrt_rwlock_t* rwlock, const ffrt_rwlockattr_t* 
 
 - 初始化读写锁。
 
+> **说明：**
+>
+> 从API version 18开始，支持该接口。
+
 **ffrt_rwlock_wrlock**
 
 ```c
@@ -1704,6 +1724,10 @@ FFRT_C_API int ffrt_rwlock_wrlock(ffrt_rwlock_t* rwlock);
 描述
 
 - 对指定读写锁加写锁操作。
+
+> **说明：**
+>
+> 从API version 18开始，支持该接口。
 
 **ffrt_rwlock_rdlock**
 
@@ -1723,6 +1747,10 @@ FFRT_C_API int ffrt_rwlock_rdlock(ffrt_rwlock_t* rwlock);
 
 - 对指定读写锁加读锁操作。
 
+> **说明：**
+>
+> 从API version 18开始，支持该接口。
+
 **ffrt_rwlock_trywrlock**
 
 ```c
@@ -1740,6 +1768,10 @@ FFRT_C_API int ffrt_rwlock_trywrlock(ffrt_rwlock_t* rwlock);
 描述
 
 - 对指定的读写锁进行尝试加写锁操作。
+
+> **说明：**
+>
+> 从API version 18开始，支持该接口。
 
 **ffrt_rwlock_tryrdlock**
 
@@ -1759,6 +1791,10 @@ FFRT_C_API int ffrt_rwlock_tryrdlock(ffrt_rwlock_t* rwlock);
 
 - 对指定的读写锁进行尝试加读锁操作。
 
+> **说明：**
+>
+> 从API version 18开始，支持该接口。
+
 **ffrt_rwlock_unlock**
 
 ```c
@@ -1777,6 +1813,10 @@ FFRT_C_API int ffrt_rwlock_unlock(ffrt_rwlock_t* rwlock);
 
 - 对指定的读写锁进行解锁操作。
 
+> **说明：**
+>
+> 从API version 18开始，支持该接口。
+
 **ffrt_rwlock_destroy**
 
 ```c
@@ -1794,6 +1834,10 @@ FFRT_C_API int ffrt_rwlock_destroy(ffrt_rwlock_t* rwlock);
 描述
 
 - 对指定的读写锁进行销毁操作。
+
+> **说明：**
+>
+> 从API version 18开始，支持该接口。
 
 **样例**
 
@@ -2601,6 +2645,10 @@ FFRT_C_API int ffrt_fiber_init(ffrt_fiber_t* fiber, void(*func)(void*), void* ar
 
 - 该函数用于初始化纤程，需要传入启动纤程的函数指针和入参，以及运行时使用的栈空间，纤程不管理任何的内存，栈的生命周期由调用方管理。
 
+> **说明：**
+>
+> 从API version 20开始，支持该接口。
+
 **ffrt_fiber_switch**
 
 声明
@@ -2618,3 +2666,7 @@ FFRT_C_API void ffrt_fiber_switch(ffrt_fiber_t* from, ffrt_fiber_t* to);
 
 - 切换纤程上下文时，调用该函数的线程会暂停当前任务，保存上下文到`from`纤程，并恢复`to`纤程上下文，执行`to`对应的任务。
 - 注意：本接口不校验`from`、`to`的有效性，调用方需自行校验地址有效性，否则会导致该进程崩溃。
+
+> **说明：**
+>
+> 从API version 20开始，支持该接口。

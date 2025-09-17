@@ -16,6 +16,8 @@ SVG（Scalable Vector Graphics）是可缩放矢量图形，它是一种基于XM
 >
 >  基础标签支持通用属性
 >  id、fill、fill-rule、fill-opacity、stroke、stroke-dasharray、stroke-dashoffset、stroke-opacity、stroke-width、stroke-linecap、stroke-linejoin、stroke-miterlimit、opacity、transform、clip-path、clip-rule，其中transform属性只支持平移。
+>
+>  从API version 21开始，当Image组件的[supportSvg2](./ts-basic-components-image.md#supportsvg221)属性设置为true时，transform属性支持平移、旋转、缩放、倾斜、矩阵变换。
 
 | 元素 | 说明 | 特有属性 |
 | :-------- | :-------- | :-------- |
@@ -200,3 +202,19 @@ struct Index {
 >**说明：**  
 > 
 > 当前支持的颜色值格式包括#rgb、#rrggbb、rgb()、rgba()，以及常用颜色关键字（如red、black、blue等）。
+
+## SVG新增解析能力对SVG图源标签和属性的影响
+
+从API version 21开始，当Image组件的[supportSvg2](./ts-basic-components-image.md#supportsvg221)属性设置为true时，影响的元素和属性说明如下：
+
+| 元素           | 属性                                                         | 说明                                                         |
+| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| clipPath       | clipPathUnits                                                | clipPathUnits裁剪路径单元，指定裁剪路径的坐标系统基准。<br />clipPathUnits属性可取值：<br />`userSpaceOnUse`(基于绝对坐标系)、objectBoundingBox`(被应用元素的边框作为基准的坐标系)。 |
+| filter         | filterUnits<br />primitiveUnits<br />x<br />y<br />width<br />height | filterUnits滤镜单元，定义滤镜效果（如模糊、阴影）的坐标和尺寸基准。<br />primitiveUnits滤镜原语单元，定义滤镜内元素效果的坐标和尺寸基准。<br />filterUnits和primitiveUnits两个属性均可取值：<br />`userSpaceOnUse`(基于绝对坐标系)、objectBoundingBox`(被应用元素的边框作为基准的坐标系)。<br />x：滤镜区域x轴偏移分量，默认值 -10% 。 <br/>y：滤镜区域y轴偏移分量，默认值 -10% 。 <br/>width：滤镜区域宽，默认值120% 。 <br/>height：滤镜区域高，默认值120% 。 |
+| mask           | maskUnits<br />maskContentUnits<br />x<br />y<br />width<br />height | maskUnits遮罩单元，控制遮罩的坐标系统和内容渲染方式。<br />maskContentUnits遮罩内容单元，控制遮罩内元素的坐标系统和内容渲染方式。<br />maskUnits和maskContentUnits两个属性均可取值：<br />`userSpaceOnUse`(基于绝对坐标系)、objectBoundingBox`(被应用元素的边框作为基准的坐标系)。<br />x：遮罩区域x轴偏移分量，默认值 -10% 。<br/>y：遮罩区域y轴偏移分量，默认值 -10% 。 <br/>width：遮罩区域宽，默认值120% 。<br/>height：遮罩区域高，默认值120% 。 |
+| radialGradient | gradientUnits                                                | gradientUnits渐变单元，决定渐变（线性/径向）的坐标参考系。<br />gradientUnits属性可取值：<br />`userSpaceOnUse`(基于绝对坐标系)、objectBoundingBox`(被应用元素的边框作为基准的坐标系)。 |
+| linearGradient | gradientUnits                                                | gradientUnits渐变单元，决定渐变（线性/径向）的坐标参考系。<br />gradientUnits属性可取值：<br />`userSpaceOnUse`(基于绝对坐标系)、objectBoundingBox`(被应用元素的边框作为基准的坐标系)。 |
+| pattern        | patternUnits<br />patternContentUnits                        | patternUnits图案单元，控制图案整体（`<pattern>`）的坐标系和内容缩放。<br />patternContentUnits图案内容单元，控制图案内部元素的坐标系和内容缩放。<br />patternUnits和patternContentUnits两个属性均可取值：<br />`userSpaceOnUse`(基于绝对坐标系)、objectBoundingBox`(被应用元素的边框作为基准的坐标系)。 |
+| g              | opacity<br />clip-path                                       | opacity透明度：对整个分组下的多层子元素生效。<br />clip-path裁剪路径：对整个分组下的多层子元素生效。 |
+| 通用           | transform                                                    | 用于对SVG元素进行2D变换（如平移、旋转、缩放、倾斜等）。<br />translate(x, y)‌：沿X/Y轴平移元素。 ‌<br />rotate(angle, [cx], [cy])‌：旋转元素（可选参数指定旋转中心）。<br /> ‌scale(sx, [sy])‌：缩放元素（单参数时X/Y轴等比缩放）。<br /> ‌skewX(angle)/skewY(angle)‌：沿X/Y轴倾斜元素。 ‌<br />matrix(a, b, c, d, e, f)‌：通过矩阵定义复杂变换。 |
+| 通用           | transform-origin                                             | 用于定义变换的基准点。需和transform属性配合使用。<br />当配置transform-origin时，按照全局中心点（transform-origin）属性指定的坐标偏移(x,y)作为变换中心点进行仿射变换。 |

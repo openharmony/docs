@@ -242,7 +242,7 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                   | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| key      | string                    | 是   | 联系人的唯一查询键key值，一个联系人对应一个key。             |
+| key      | string                    | 是   | 联系人的唯一查询键key值，一个联系人对应一个key，可通过[selectContacts](#contactselectcontacts10-1)接口获取。            |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。成功返回删除的联系人id；失败返回失败的错误码。     |
 
 **错误码：**
@@ -263,14 +263,20 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
 
-  // 获取context。
-  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  contact.deleteContact(context, 'xxx', (err: BusinessError) => {
-    if (err) {
-      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in deleting Contact.');
+ // 通过selectContacts接口选择联系人。
+  contact.selectContacts().then((data) => {
+    // 获取context。
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    // 第二个参数传入选择联系人的key值
+    contact.deleteContact(context, data[0].key, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in deleting Contact.');
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -292,7 +298,7 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                 |
 | -------- | ------------------------- | ---- | ------------------------------------ |
-| key      | string                    | 是   | 联系人的唯一查询键key值，一个联系人对应一个key。 |
+| key      | string                    | 是   | 联系人的唯一查询键key值，一个联系人对应一个key，可通过[selectContacts](#contactselectcontacts10-1)接口获取。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。成功返回删除的联系人id；失败返回失败的错误码。 |
 
 **示例：**
@@ -300,12 +306,20 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  contact.deleteContact('xxx', (err: BusinessError) => {
-    if (err) {
-      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in deleting Contact.');
+  // 通过selectContacts接口选择联系人。
+  contact.selectContacts().then((data) => {
+    // 获取context。
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    // 第一个参数传入选择联系人的key值
+    contact.deleteContact(data[0].key, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in deleting Contact.');
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -324,7 +338,7 @@ deleteContact(context: Context,  key: string): Promise&lt;void&gt;
 | 参数名  | 类型    | 必填 | 说明                                                         |
 | ------- | ------- | ---- | ------------------------------------------------------------ |
 | context | Context | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| key     | string  | 是   | 联系人的唯一查询键key值，一个联系人对应一个key。                       |
+| key     | string  | 是   | 联系人的唯一查询键key值，一个联系人对应一个key，可通过[selectContacts](#contactselectcontacts10-1)接口获取。                      |
 
 **返回值：**
 
@@ -350,13 +364,19 @@ deleteContact(context: Context,  key: string): Promise&lt;void&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
 
-  // 获取context。
-  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  let promise = contact.deleteContact(context, 'xxx');
-  promise.then(() => {
-    console.info(`Succeeded in deleting Contact.`);
+  // 通过selectContacts接口选择联系人。
+  contact.selectContacts().then((data) => {
+    // 获取context。
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    // 第二个参数传入选择联系人的key值
+    let promise = contact.deleteContact(context, data[0].key);
+    promise.then(() => {
+      console.info(`Succeeded in deleting Contact.`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
+    });
   }).catch((err: BusinessError) => {
-    console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -378,7 +398,7 @@ deleteContact(key: string): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| key    | string | 是   | 联系人的唯一查询键key值，一个联系人对应一个key。 |
+| key    | string | 是   | 联系人的唯一查询键key值，一个联系人对应一个key，可通过[selectContacts](#contactselectcontacts10-1)接口获取。 |
 
 **返回值：**
 
@@ -391,11 +411,17 @@ deleteContact(key: string): Promise&lt;void&gt;
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let promise = contact.deleteContact('xxx');
-  promise.then(() => {
-    console.info(`Succeeded in deleting Contact.`);
+  // 通过selectContacts接口选择联系人。
+  contact.selectContacts().then((data) => {
+    // 第一个参数传入选择联系人的key值
+    let promise = contact.deleteContact(data[0].key);
+    promise.then(() => {
+      console.info(`Succeeded in deleting Contact.`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
+    });
   }).catch((err: BusinessError) => {
-    console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -414,7 +440,7 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                   | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| contact  | [Contact](#contact)       | 是   | 联系人信息。id必填。                                         |
+| contact  | [Contact](#contact)       | 是   | 联系人信息。id必填，可通过[selectContacts](#contactselectcontacts10-1)接口获取。                                         |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。成功返回更新的联系人id；失败返回失败的错误码。     |
 
 **错误码：**
@@ -435,22 +461,27 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
 
-  // 获取context。
-  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  contact.updateContact(context, {
-    id: 1,
-    name: {
-      fullName: 'xxx'
-    },
-    phoneNumbers: [{
-      phoneNumber: '138xxxxxxxx'
-    }]
-  }, (err: BusinessError) => {
-    if (err) {
-      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in updating Contact.');
+  // 通过selectContacts接口选择联系人。
+  contact.selectContacts().then((data) => {
+    // 获取context。
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    contact.updateContact(context, {
+      id: data[0].id,  // 选择联系人的id。
+      name: {
+        fullName: 'xxx'
+      },
+      phoneNumbers: [{
+        phoneNumber: '138xxxxxxxx'
+      }]
+    }, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in updating Contact.');
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -472,7 +503,7 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                 |
 | -------- | ------------------------- | ---- | ------------------------------------ |
-| contact  | [Contact](#contact)       | 是   | 联系人信息。id必填。                         |
+| contact  | [Contact](#contact)       | 是   | 联系人信息。id必填，可通过[selectContacts](#contactselectcontacts10-1)接口获取。                         |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。成功返回更新的联系人id；失败返回失败的错误码。 |
 
 **示例：**
@@ -480,20 +511,27 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  contact.updateContact(context, {
-    id: 1,
-    name: {
-      fullName: 'xxx'
-    },
-    phoneNumbers: [{
-      phoneNumber: '138xxxxxxxx'
-    }]
-  }, (err: BusinessError) => {
-    if (err) {
-      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in updating Contact.');
+  // 通过selectContacts接口选择联系人。
+  contact.selectContacts().then((data) => {
+    // 获取context。
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    contact.updateContact(context, {
+      id: data[0].id,  // 选择联系人的id。
+      name: {
+        fullName: 'xxx'
+      },
+      phoneNumbers: [{
+        phoneNumber: '138xxxxxxxx'
+      }]
+    }, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in updating Contact.');
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -512,7 +550,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| contact  | [Contact](#contact)                     | 是   | 联系人信息。id必填。                                         |
+| contact  | [Contact](#contact)                     | 是   | 联系人信息。id必填，可通过[selectContacts](#contactselectcontacts10-1)接口获取。                                         |
 | attrs    | [ContactAttributes](#contactattributes) | 是   | 联系人的属性列表。                                           |
 | callback | AsyncCallback&lt;void&gt;               | 是   | 回调函数。成功返回更新的联系人id；失败返回失败的错误码。     |
 
@@ -534,24 +572,29 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
 
-  // 获取context。
-  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  contact.updateContact(context, {
-    id: 1,
-    name: {
-      fullName: 'xxx'
-    },
-    phoneNumbers: [{
-      phoneNumber: '138xxxxxxxx'
-    }]
-  }, {
-    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
-  }, (err: BusinessError) => {
-    if (err) {
-    console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in updating Contact.');
+  // 通过selectContacts接口选择联系人。
+  contact.selectContacts().then((data) => {
+    // 获取context。
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    contact.updateContact(context, {
+      id: data[0].id,  // 选择联系人的id。
+      name: {
+        fullName: 'xxx'
+      },
+      phoneNumbers: [{
+        phoneNumber: '138xxxxxxxx'
+      }]
+    }, {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    }, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in updating Contact.');
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -573,7 +616,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 
 | 参数名   | 类型                                    | 必填 | 说明                                 |
 | -------- | --------------------------------------- | ---- | ------------------------------------ |
-| contact  | [Contact](#contact)                     | 是   | 联系人信息。id必填。                         |
+| contact  | [Contact](#contact)                     | 是   | 联系人信息。id必填，可通过[selectContacts](#contactselectcontacts10-1)接口获取。                         |
 | attrs    | [ContactAttributes](#contactattributes) | 是   | 联系人的属性列表。                   |
 | callback | AsyncCallback&lt;void&gt;               | 是   | 回调函数。成功返回更新的联系人id；失败返回失败的错误码。 |
 
@@ -582,22 +625,27 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  contact.updateContact({
-    id: 1,
-    name: {
-      fullName: 'xxx'
-    },
-    phoneNumbers: [{
-      phoneNumber: '138xxxxxxxx'
-    }]
-  }, {
-    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
-  }, (err: BusinessError) => {
-    if (err) {
-      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in updating Contact.');
+  // 通过selectContacts接口选择联系人。
+  contact.selectContacts().then((data) => {
+    contact.updateContact({
+      id: data[0].id,  // 选择联系人的id。
+      name: {
+        fullName: 'xxx'
+      },
+      phoneNumbers: [{
+        phoneNumber: '138xxxxxxxx'
+      }]
+    }, {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    }, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('Succeeded in updating Contact.');
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -616,7 +664,7 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 | 参数名  | 类型                                    | 必填 | 说明                                                         |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
-| contact | [Contact](#contact)                     | 是   | 联系人信息。id必填。                                                 |
+| contact | [Contact](#contact)                     | 是   | 联系人信息。id必填，可通过[selectContacts](#contactselectcontacts10-1)接口获取。                                                 |
 | attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
 
 **返回值：**
@@ -643,23 +691,28 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
 
-  // 获取context。
-  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  let promise = contact.updateContact(context, {
-    id: 1,
-    name: {
-      fullName: 'xxx'
-    },
-    phoneNumbers: [{
-      phoneNumber: '138xxxxxxxx'
-    }]
-  }, {
-    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
-  });
-  promise.then(() => {
-    console.info('Succeeded in updating Contact.');
+  // 通过selectContacts接口选择联系人。
+  contact.selectContacts().then((data) => {
+    // 获取context。
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    let promise = contact.updateContact(context, {
+      id: data[0].id,  // 选择联系人的id。
+      name: {
+        fullName: 'xxx'
+      },
+      phoneNumbers: [{
+        phoneNumber: '138xxxxxxxx'
+      }]
+    }, {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    });
+    promise.then(() => {
+      console.info('Succeeded in updating Contact.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+    });
   }).catch((err: BusinessError) => {
-    console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -681,7 +734,7 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
 | 参数名  | 类型                                    | 必填 | 说明               |
 | ------- | --------------------------------------- | ---- | ------------------ |
-| contact | [Contact](#contact)                     | 是   | 联系人信息。id必填。       |
+| contact | [Contact](#contact)                     | 是   | 联系人信息。id必填，可通过[selectContacts](#contactselectcontacts10-1)接口获取。       |
 | attrs   | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。 |
 
 **返回值：**
@@ -695,21 +748,26 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let promise = contact.updateContact({
-    id: 1,
-    name: {
-      fullName: 'xxx'
-    },
-    phoneNumbers: [{
-      phoneNumber: '138xxxxxxxx'
-    }]
-  }, {
-    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
-  });
-  promise.then(() => {
-    console.info('Succeeded in updating Contact.');
+  // 通过selectContacts接口选择联系人。
+  contact.selectContacts().then((data) => {
+    let promise = contact.updateContact({
+      id: data[0].id,  // 选择联系人的id。
+      name: {
+        fullName: 'xxx'
+      },
+      phoneNumbers: [{
+        phoneNumber: '138xxxxxxxx'
+      }]
+    }, {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    });
+    promise.then(() => {
+      console.info('Succeeded in updating Contact.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+    });
   }).catch((err: BusinessError) => {
-    console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -4421,8 +4479,8 @@ promise.then((data) => {
 
 |       名称        |                   类型                  | 只读 | 可选 | 说明                                   |
 | ----------------- | --------------------------------------- | ---- | ---- | -------------------------------------- |
-| id                | number                                  | 是   | 是   | 联系人的id。                           |
-| key               | string                                  | 是   | 是   | 联系人的key。                          |
+| id                | number                                  | 是   | 是   | 联系人的id，由系统自动生成。                           |
+| key               | string                                  | 是   | 是   | 联系人的key，由系统自动生成。               |
 | contactAttributes | [ContactAttributes](#contactattributes) | 否   | 是   | 联系人的属性列表。                     |
 | emails            | [Email](#email)[]                       | 否   | 是   | 联系人的邮箱地址列表。                 |
 | events            | [Event](#event)[]                       | 否   | 是   | 联系人的生日、周年纪念等重要日期列表。 |

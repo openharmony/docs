@@ -1,4 +1,10 @@
 # image-animator开发指导
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyujie43-->
+<!--Designer: @weixin_52725220-->
+<!--Tester: @xiong0104-->
+<!--Adviser: @HelloCrease-->
 
 
 image-animator组件为图片帧动画播放器。具体用法请参考[image-animator](../reference/apis-arkui/arkui-js/js-components-basic-image-animator.md)。
@@ -339,4 +345,4 @@ export default {
 
 针对image-animator开发，有以下相关实例可供参考：
 
-- [image、image-animator组件的使用（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ClickableJs)
+- [image、image-animator组件的使用（JS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/JSUI/ClickableJs)

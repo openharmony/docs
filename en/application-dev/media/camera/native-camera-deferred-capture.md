@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 As an important feature of the camera, deferred photo delivery enables the system, after receiving a photo capture task from an application, to report images of different quality levels in multiple phases.
 
@@ -14,15 +15,15 @@ As an important feature of the camera, deferred photo delivery enables the syste
 
 Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API reference.
 
-1. Import the NDK, which provides camera-related attributes and methods.
+1. Import the NDK, which provides camera-related properties and methods.
 
    ```c++
    // Include the NDK header files.
    #include <cstdint>
    #include <cstdlib>
    #include <cstring>
-   #include <string.h>
    #include <memory>
+   #include <mutex>
    #include "hilog/log.h"
    #include "napi/native_api.h"
    #include <ohcamera/camera.h>
@@ -90,6 +91,7 @@ Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API ref
    
    // Method 2: Call the media library API to request images.
    // Called when the image source is ready.
+   std::mutex g_mediaAssetMutex;
    OH_MediaAsset* g_mediaAsset_;
    void OnImageDataPrepared(MediaLibrary_ErrorCode result, MediaLibrary_RequestId requestId,
                             MediaLibrary_MediaQuality mediaQuality, MediaLibrary_MediaContentType type,
@@ -126,9 +128,10 @@ Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API ref
        auto buffer = std::make_unique<uint8_t[]>(bufferSize);
        imageErr = OH_ImagePackerNative_PackToDataFromPixelmap(imagePacker, options, pixelmapNative, buffer.get(), &bufferSize);
        OH_LOG_INFO(LOG_APP, "OnImageDataPrepared: packToData ret code:%{public}u outsize:%{public}zu", imageErr, bufferSize);
+       std::lock_guard<std::mutex> lock(g_mediaAssetMutex);
        if (g_mediaAsset_ == nullptr) {
-           OH_LOG_ERROR(LOG_APP,  "OnImageDataPrepared: get current mediaAsset failed!");
-           return;
+         OH_LOG_ERROR(LOG_APP,  "OnImageDataPrepared: get current mediaAsset failed!");
+         return;
        }
        // Call the media library API to save images in the buffer.
        OH_MediaAssetChangeRequest* changeRequest = OH_MediaAssetChangeRequest_Create(g_mediaAsset_);
@@ -177,6 +180,7 @@ Read [Camera](../../reference/apis-camera-kit/capi-oh-camera.md) for the API ref
        // Processing method 1: Call the media library API to save the image in the first phase. After the image in the second phase is ready, the media library proactively replaces the image flushed.
        // mediaLibSavePhoto(mediaAsset);
        // Processing method 2: Call the media library API to request an image asset, obtain the buffer of the first-phase or second-phase image, and save the image in the buffer after service processing.
+       std::lock_guard<std::mutex> lock(g_mediaAssetMutex);
        g_mediaAsset_ = mediaAsset;
        mediaLibRequestBuffer(mediaAsset);
    }

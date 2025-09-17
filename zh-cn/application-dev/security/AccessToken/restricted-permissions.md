@@ -653,7 +653,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 ## ohos.permission.GET_ABILITY_INFO
 
-允许应用根据URI查询Ability信息。
+允许应用根据URI或者FileType查询Ability信息。
 
 <!--RP42--><!--RP42End-->
 

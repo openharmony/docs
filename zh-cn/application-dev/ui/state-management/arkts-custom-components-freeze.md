@@ -276,7 +276,7 @@ class MyDataSource extends BasicDataSource {
 
 @Entry
 @Component
-struct LforEachTest {
+struct LazyforEachTest {
   private data: MyDataSource = new MyDataSource();
   @State @Watch('onMessageUpdated') message: number = 0;
 

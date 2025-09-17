@@ -1,4 +1,10 @@
 # Processing Web Page Content by Interacting with the System Clipboard
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zourongchun-->
+<!--Designer: @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 ArkWeb provides the capability of interacting with the system clipboard to cut, copy, and paste various types of data through the following methods: the [Menu](web_menu.md) component, keyboard shortcuts, and [W3C clipboard API and events](https://www.w3.org/TR/clipboard-apis/).
 
@@ -6,13 +12,13 @@ ArkWeb provides the capability of interacting with the system clipboard to cut, 
 
 You can customize options in the menu. When a user selects a specific option, the [cut](../reference/apis-arkweb/arkts-basic-components-web-WebContextMenuResult.md#cut9), [copy](../reference/apis-arkweb/arkts-basic-components-web-WebContextMenuResult.md#copy9) and [copyImage](../reference/apis-arkweb/arkts-basic-components-web-WebContextMenuResult.md#copyimage9) APIs can be called to cut or copy the text, HTML or image data to the system clipboard. The [paste](../reference/apis-arkweb/arkts-basic-components-web-WebContextMenuResult.md#paste9) and [pasteAndMatchStyle](../reference/apis-arkweb/arkts-basic-components-web-WebContextMenuResult.md#pasteandmatchstyle20) APIs can be used to paste the data to the input area of the web page.
 
-For details about how to use the APIs provided by the **Menu** component, see [Processing Web Page Content Using the Menu Component](web_menu.md).
+For details about how to use them, see [Using Web Menus](web_menu.md).
 
 When a device has a physical keyboard, a user can also use keyboard shortcuts **Ctrl+X** (cut), **Ctrl+C** (copy), and **Ctrl+V** (paste) to interact with the clipboard.
 
 > **NOTE**
 >
-> To access the clipboard content through the [paste](../reference/apis-arkweb/arkts-basic-components-web-WebContextMenuResult.md#paste9) and [pasteAndMatchStyle](../reference/apis-arkweb/arkts-basic-components-web-WebContextMenuResult.md#pasteandmatchstyle20) APIs, you need to [request permissions to access the pasteboard](../basic-services/pasteboard/get-pastedata-permission-guidelines.md) by requesting the **ohos.permission.READ_PASTEBOARD** permission.
+> To access the clipboard content through the [paste](../reference/apis-arkweb/arkts-basic-components-web-WebContextMenuResult.md#paste9) and [pasteAndMatchStyle](../reference/apis-arkweb/arkts-basic-components-web-WebContextMenuResult.md#pasteandmatchstyle20) APIs, you need to [request permissions to access the pasteboard](../basic-services/pasteboard/get-pastedata-permission-guidelines.md): **ohos.permission.READ_PASTEBOARD**.
 
 ## Using the W3C Asynchronous Clipboard API
 
@@ -52,7 +58,7 @@ const htmlBlob = await clipboardItems[0].getType('text/html');
 
 > **NOTE**
 >
-> To access the clipboard content through the **read()** and **readText()** methods of the asynchronous API, you need to [request the permission to access the pasteboard](../basic-services/pasteboard/get-pastedata-permission-guidelines.md): **ohos.permission.READ_PASTEBOARD**.
+> To access the system clipboard content through **read()** and **readText()**, you need to [request permissions to access the pasteboard](../basic-services/pasteboard/get-pastedata-permission-guidelines.md): **ohos.permission.READ_PASTEBOARD**.
 
 ```ts
 // xxx.ets
@@ -167,6 +173,8 @@ Loaded HTML:
 
 Configure permissions for the **module.json5** file.
 
+**Required permissions**: **ohos.permission.READ_PASTEBOARD**. To access clipboard content, applications need to [request permissions to access the pasteboard](../basic-services/pasteboard/get-pastedata-permission-guidelines.md).
+
 ```json
 // module.json5
 {
@@ -231,7 +239,7 @@ Loaded HTML:
     </style>
 </head>
 <body>
-<h2>Example of listening a clipboad event</h2>
+<h2>Example of listening a clipboard event</h2>
 <textarea id="inputArea" rows="4" cols="50" placeholder="Input text here and try to copy and paste..."></textarea>;
 
 <div class="output" id="output">

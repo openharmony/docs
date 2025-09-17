@@ -153,7 +153,7 @@ enum Http_ResponseCode
 | OH_HTTP_SEE_OTHER = 303 | 查看其他地址。请求的资源已移动到新的URL，客户端应使用GET方法访问该URL。 |
 | OH_HTTP_NOT_MODIFIED = 304 | 请求的资源没有修改。 |
 | OH_HTTP_USE_PROXY = 305 | 请求资源需要使用代理访问。 |
-| OH_HTTP_BAD_REQUEST = 400 | 服务器无法理解客户端请求的语法错误错误。 |
+| OH_HTTP_BAD_REQUEST = 400 | 服务器无法理解客户端请求的语法错误。 |
 | OH_HTTP_UNAUTHORIZED = 401 | 请求用户身份验证。 |
 | OH_HTTP_PAYMENT_REQUIRED = 402 | 保留以供将来使用。 |
 | OH_HTTP_FORBIDDEN = 403 | 服务器理解来自请求客户端的请求，但拒绝执行。 |

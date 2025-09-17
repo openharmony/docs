@@ -1,4 +1,10 @@
 # ArkWeb Process
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @weixin_41848015-->
+<!--Designer: @libing23232323-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 ArkWeb is a multi-process model, which consists of the application process, Web rendering process, Web GPU process, Web incubation process, and Foundation process.
 
@@ -14,11 +20,11 @@ ArkWeb is a multi-process model, which consists of the application process, Web 
 
   - The application process is the main process, which includes the network thread, video thread, audio thread, and I/O thread.
 
-  - Processes application APIs and callbacks of the **Web** component, and provides functionalities that require interaction with other system services, such as network requests and media services.
+  - It processes external APIs and callbacks of the **Web** component, and provides functionalities that require interaction with other system services, such as network requests and media services.
 
 - Foundation process (unique in the system)
 
-  Receives requests from the application process to incubate processes and manages the binding relationship between the application process and Web rendering process.
+  Receives requests from the application process to spawn processes and manages the binding relationship between the application process and Web rendering process.
 
 - Web incubation process (unique in the system)
 
@@ -177,12 +183,13 @@ ArkWeb is a multi-process model, which consists of the application process, Web 
    @Entry
    @Component
    struct WebComponent {
-     controller: webview.WebviewController = new webview.WebviewController();
+     controller1: webview.WebviewController = new webview.WebviewController();
+     controller2: webview.WebviewController = new webview.WebviewController();
    
      build() {
        Column() {
-         Web({ src: 'www.example.com', controller: this.controller, sharedRenderProcessToken: "111" })
-         Web({ src: 'www.w3.org', controller: this.controller, sharedRenderProcessToken: "111" })
+         Web({ src: 'www.example.com', controller: this.controller1, sharedRenderProcessToken: "111" })
+         Web({ src: 'www.w3.org', controller: this.controller2, sharedRenderProcessToken: "111" })
        }
      }
    }

@@ -91,10 +91,10 @@ enum HiCollie_Flag
 
 | 枚举项 | 描述 |
 | -- | -- |
-| HICOLLIE_FLAG_DEFAULT = (~0) | 默认动作，生成日志及查杀恢复。 |
+| HICOLLIE_FLAG_DEFAULT = (~0) | 默认动作，生成日志及执行恢复动作。 |
 | HICOLLIE_FLAG_NOOP = (0) | 仅执行回调函数。 |
 | HICOLLIE_FLAG_LOG = (1 << 0) | 生成日志。 |
-| HICOLLIE_FLAG_RECOVERY = (1 << 1) | 执行查杀恢复。 |
+| HICOLLIE_FLAG_RECOVERY = (1 << 1) | 执行恢复动作。 |
 
 
 ## 函数说明

@@ -464,7 +464,7 @@ typedef void (*OH_AVScreenCapture_OnBufferAvailable)(OH_AVScreenCapture *capture
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVScreenCapture](capi-avscreencapture-oh-avscreencapture.md) *capture | 指向OH_AVScreenCapture实例的指针。 |
-|  [OH_AVBuffer](../apis-avcodec-kit/_core.md#oh_avbuffer) *buffer | 指向OH_AVBuffer缓存区实例的指针，该回调方法执行结束返回后，数据缓存区不再有效。 |
+|  [OH_AVBuffer](../apis-avcodec-kit/capi-core-oh-avbuffer.md) *buffer | 指向OH_AVBuffer缓存区实例的指针，该回调方法执行结束返回后，数据缓存区不再有效。 |
 | [OH_AVScreenCaptureBufferType](#oh_avscreencapturebuffertype) bufferType | 可用缓存区的数据类型。 |
 |  int64_t timestamp | 时间戳，单位纳秒。 |
 |  void *userData | 指向应用设置该回调处理方法时提供的自定义数据的指针。 |

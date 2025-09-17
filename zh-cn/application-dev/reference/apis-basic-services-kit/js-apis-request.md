@@ -236,17 +236,17 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 **示例：**
 
   ```js
-  let uploadTask;
-  let uploadConfig = {
+  let uploadTask: request.UploadTask;
+  let uploadConfig: request.UploadConfig = {
     url: 'http://www.example.com', // 需要手动将url替换为真实服务器的HTTP协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "image/jpeg" }], // 建议type填写HTTP协议规范的MIME类型
     data: [{ name: "name123", value: "123" }],
   };
-  request.upload(uploadConfig).then((data) => {
+  request.upload(uploadConfig).then((data: request.UploadTask) => {
     uploadTask = data;
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
   })
   ```
@@ -286,15 +286,15 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 **示例：**
 
   ```js
-  let uploadTask;
-  let uploadConfig = {
+  let uploadTask: request.UploadTask;
+  let uploadConfig: request.UploadConfig = {
     url: 'http://www.example.com', // 需要手动将url替换为真实服务器的HTTP协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
     files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "image/jpeg" }], // 建议type填写HTTP协议规范的MIME类型
     data: [{ name: "name123", value: "123" }],
   };
-  request.upload(uploadConfig, (err, data) => {
+  request.upload(uploadConfig, (err: BusinessError, data: request.UploadTask) => {
     if (err) {
       console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -712,7 +712,7 @@ remove(): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  uploadTask.remove().then((result) => {
+  uploadTask.remove().then((result: boolean) => {
     console.info('Succeeded in removing the upload task.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to remove the upload task. Code: ${err.code}, message: ${err.message}`);
@@ -751,7 +751,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```js
-  uploadTask.remove((err, result) => {
+  uploadTask.remove((err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to remove the upload task. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -987,11 +987,11 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 **示例：**
 
   ```js
-  let downloadTask;
+  let downloadTask: request.DownloadTask;
   // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.download({ url: 'https://xxxx/xxxx.hap' }).then((data) => {
+  request.download({ url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     downloadTask = data;
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
   })
   ```
@@ -1031,10 +1031,10 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 **示例：**
 
   ```js
-  let downloadTask;
+  let downloadTask: request.DownloadTask;
   // 需要手动将url替换为真实服务器的HTTP协议地址
   request.download({ url: 'https://xxxx/xxxxx.hap', 
-  filePath: 'xxx/xxxxx.hap'}, (err, data) => {
+  filePath: 'xxx/xxxxx.hap'}, (err: BusinessError, data: request.DownloadTask) => {
     if (err) {
       console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -2080,7 +2080,7 @@ query(): Promise&lt;DownloadInfo&gt;
   ```js
   downloadTask.query().then((downloadInfo) => {    
     console.info('Succeeded in querying the download task.')
-  }) .catch((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
   });
   ```
@@ -2117,7 +2117,7 @@ query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 **示例：**
 
   ```js
-  downloadTask.query((err, downloadInfo)=>{
+  downloadTask.query((err: BusinessError, downloadInfo: request.DownloadInfo)=>{
     if(err) {
       console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
     } else {
@@ -2158,7 +2158,7 @@ queryMimeType(): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  downloadTask.queryMimeType().then((data) => {    
+  downloadTask.queryMimeType().then((data: string) => {    
     console.info('Succeeded in querying the download MimeType.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to query the download MimeType. Code: ${err.code}, message: ${err.message}`)
@@ -2197,7 +2197,7 @@ queryMimeType(callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```js
-  downloadTask.queryMimeType((err, data)=>{
+  downloadTask.queryMimeType((err: BusinessError, data: string)=>{
     if(err) {
       console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
     } else {
@@ -2238,7 +2238,7 @@ pause(): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  downloadTask.pause().then((result) => {    
+  downloadTask.pause().then((result: boolean) => {    
     console.info('Succeeded in pausing the download task.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
@@ -2277,7 +2277,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  downloadTask.pause((err, result)=>{
+  downloadTask.pause((err: BusinessError, result: boolean)=>{
     if(err) {
       console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -2318,7 +2318,7 @@ resume(): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  downloadTask.resume().then((result) => {
+  downloadTask.resume().then((result: boolean) => {
     console.info('Succeeded in resuming the download task.')
   }).catch((err: BusinessError) => {
     console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
@@ -2357,7 +2357,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  downloadTask.resume((err, result)=>{
+  downloadTask.resume((err: BusinessError, result: boolean)=>{
     if (err) {
       console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -2523,7 +2523,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | multipart<sup>15+</sup> | boolean | 否 | 是否使用单个请求进行上传，单个请求上传时必定使用multipart/form-data。<br/>- false：每个文件使用一个请求传输。 <br/>- true：使用多文件单请求上传。 <br/>默认值为false。 |
 | notification<sup>15+</sup> | [Notification](#notification15) | 否 | 通知栏自定义设置。默认值为`{}`。|
 | minSpeed<sup>20+</sup> | [MinSpeed](#minspeed20) | 否 | 最低限速自定义设置，默认不启用最低限速。|
-| timeout<sup>20+</sup> | [Timeout](#timeout20) | 否 | 超时时间自定义设置，连接超时时间默认60秒，总超时时间默认604800秒（1周）。|
+| timeout<sup>20+</sup> | [Timeout](#timeout20) | 否 | 超时时间自定义设置，连接超时时间默认60秒，总超时时间默认604800秒（1周）。当retry参数为true时，[timeout](#timeout20)事件会触发立即重试，导致[timeout](#timeout20)在外部观察中被重试动作所掩盖，但内部[timeout](#timeout20)条件已实际触发。若需显性观察[timeout](#timeout20)事件，需关闭retry参数。|
 
 ## State<sup>10+</sup>  
 

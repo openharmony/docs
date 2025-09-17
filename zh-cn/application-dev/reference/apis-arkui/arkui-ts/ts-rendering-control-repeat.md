@@ -12,7 +12,7 @@
 
 Repeat基于数组类型数据来进行循环渲染，一般与容器组件配合使用。
 
-本文档仅为API参数说明。组件描述和使用说明见[Repeat开发者指南](../../../ui/state-management/arkts-new-rendering-control-repeat.md)。
+本文档仅为API参数说明。组件描述和使用说明见[Repeat开发者指南](../../../ui/rendering-control/arkts-new-rendering-control-repeat.md)。
 
 ## 接口
 
@@ -238,8 +238,6 @@ Repeat数据源参数联合类型。
 
 ## VirtualScrollOptions
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型   | 必填 | 说明                                                         |
@@ -259,7 +257,7 @@ totalCount表示期望加载的数据长度，默认为原数组长度，可以�
 
 > **注意：** 
 >
-> 当totalCount > arr.length时，在父组件容器滚动过程中，应用需要保证在列表即将滑动到数据源末尾时请求后续数据。开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动过程中会出现滚动效果异常。解决方案见[totalCount值大于数据源长度](../../../ui/state-management/arkts-new-rendering-control-repeat.md#totalcount值大于数据源长度)。
+> 当totalCount > arr.length时，在父组件容器滚动过程中，应用需要保证在列表即将滑动到数据源末尾时请求后续数据。开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动过程中会出现滚动效果异常。解决方案见[totalCount值大于数据源长度](../../../ui/rendering-control/arkts-new-rendering-control-repeat.md#totalcount值大于数据源长度)。
 
 ### onLazyLoading<sup>19+</sup>：数据精准懒加载
 
@@ -338,10 +336,7 @@ type RepeatItemBuilder\<T\> = (repeatItem: RepeatItem\<T\>) => void
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | cachedCount | number | 否   | 当前template的缓存池中可缓存子组件节点的最大数量。取值范围是[0, +∞)。默认值为屏上节点与预加载节点的个数之和。当屏上节点与预加载节点的个数之和增多时，cachedCount也会对应增长。需要注意cachedCount数量不会减少。|
 
-当cachedCount值被设置为当前template在屏上显示的最大节点数量时，Repeat会做到最大程度的复用。然而当屏上没有当前template的节点时，缓存池不会释放的同时应用内存增大。需要开发者根据具体情况自行把控。
-
-- 当cachedCount缺省时，框架会分别对不同template，根据屏上节点+预加载节点的个数之和来计算cachedCount。当屏上节点+预加载节点的个数之和增多时，cachedCount也会对应增长。需要注意cachedCount数量不会减少。
-- 显式指定cachedCount，推荐设置成和屏幕上节点个数一致。需要注意，不推荐设置cachedCount小于2，因为这会导致在快速滑动场景下创建新的节点，从而造成性能劣化。
+当cachedCount值被设置为当前template在屏上显示的最大节点数量时，Repeat会做到最大程度的复用。然而当屏上没有当前template的节点时，缓存池不会释放的同时应用内存增大。需要开发者根据具体情况自行把控，推荐设置成和屏幕上节点个数一致。需要注意，不建议设置cachedCount小于2，因为这会导致在快速滑动场景下创建新的节点，从而造成性能劣化。
 
 > **注意：**
 > 

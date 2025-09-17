@@ -33,7 +33,7 @@ HiAppEvent能够订阅应用事件和系统事件。
 
 [任务执行超时事件介绍](hiappevent-watcher-apphicollie-events.md)
 
-[应用查杀事件介绍](hiappevent-watcher-app-killed-events.md)
+[应用终止事件介绍](hiappevent-watcher-app-killed-events.md)
 
 <!--RP1-->
 <!--RP1End-->

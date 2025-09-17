@@ -25,6 +25,7 @@
     - [@ohos.app.ability.common (Ability公共模块)](js-apis-app-ability-common.md)
     - [@ohos.app.ability.CompletionHandler (拉起应用结果的操作类)](js-apis-app-ability-completionHandler.md)
     - [@ohos.app.ability.CompletionHandlerForAtomicService (打开原子化服务结果的操作类)](js-apis-app-ability-CompletionHandlerForAtomicService.md)
+    - [@ohos.app.ability.CompletionHandlerForAbilityStartCallback (拉起应用结果回调的操作类)](js-apis-app-ability-CompletionHandlerForAbilityStartCallback.md)
     - [@ohos.app.ability.contextConstant (Context相关常量)](js-apis-app-ability-contextConstant.md)
     - [@ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility)](js-apis-app-ability-embeddableUIAbility.md)
     - [@ohos.app.ability.EmbeddedUIExtensionAbility (跨进程界面嵌入扩展能力)](js-apis-app-ability-embeddedUIExtensionAbility.md)
@@ -296,6 +297,8 @@
     - [native_interface_bundle.h](capi-native-interface-bundle-h.md)
     - [start_options.h](capi-start-options-h.md)
     - [want.h](capi-want-h.md)
+    - [ability_resource_info.h](capi-ability-resource-info-h.md)
+    - [bundle_manager_common.h](capi-bundle-manager-common-h.md)
   - 结构体<!--ability-struct-->
     - [AbilityBase_Element](capi-abilitybase-element.md)
     - [AbilityBase_Want](capi-abilitybase-want.md)
@@ -309,6 +312,7 @@
     - [OH_NativeBundle_ElementName](capi-native-bundle-oh-nativebundle-elementname.md)
     - [OH_NativeBundle_Metadata](capi-native-bundle-oh-nativebundle-metadata.md)
     - [OH_NativeBundle_ModuleMetadata](capi-native-bundle-oh-nativebundle-modulemetadata.md)
+    - [OH_NativeBundle_AbilityResourceInfo](capi-native-bundle-oh-nativebundle-abilityresourceinfo.md)
 - 错误码<!--ability-arkts-errcode-->
   - [元能力子系统错误码](errorcode-ability.md)
   - [DistributedSchedule错误码](errorcode-DistributedSchedule.md)

@@ -44,7 +44,7 @@
 | SOURCE_TYPE_VOICE_MESSAGE | 适用于录制语音短消息。 |
 | SOURCE_TYPE_CAMCORDER<sup>13+</sup> | 适用于相机录像。 |
 | SOURCE_TYPE_UNPROCESSED<sup>14+</sup> | 适用于获取麦克风采集到的纯净音频数据（系统不做任何算法处理）。 |
-| SOURCE_TYPE_LIVE<sup>20+</sup> | 适用于直播，在支持平台上会提供系统回声消除能力。 |
+| SOURCE_TYPE_LIVE<sup>20+</sup> | 适用于直播，在支持的设备上会提供系统回声消除能力。 |
 
 ## 流类型对音频业务的影响
 

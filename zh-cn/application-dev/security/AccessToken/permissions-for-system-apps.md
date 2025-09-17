@@ -5076,3 +5076,33 @@
 **支持设备**：PC/2in1
 
 **起始版本**：20
+
+## ohos.permission.MANAGE_SELF_SKILLS
+
+允许应用管理本应用的skills配置。
+
+获取该权限后，应用可管理自身的skills配置，扩展隐式匹配能力，如支持打开特定类型文件等。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1
+
+**起始版本**：22
+
+## ohos.permission.DATA_IDENTIFY_ANONYMIZE
+
+允许系统应用调用数据识别脱敏能力。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1 | Phone | Tablet | TV | Car
+
+**起始版本**：21

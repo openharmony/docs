@@ -49,7 +49,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
 
-class Tmp {
+class DragInfo {
   event: DragEvent | undefined = undefined;
   extraParams: string = '';
 }
@@ -80,7 +80,7 @@ struct DragControllerPage {
                 data: unifiedData,
                 extraParams: ''
               };
-              let eve: tmp = new tmp();
+              let eve: DragInfo = new DragInfo();
               this.getUIContext().getDragController().executeDrag(() => { this.DraggingBuilder() }, dragInfo, (err, eve) => {
                 if (eve.event) {
                   if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
@@ -137,8 +137,8 @@ import { dragController } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
-class Tmp {
-  event: DragResult | undefined = undefined;
+class DragInfo {
+  event: DragEvent | undefined = undefined;
   extraParams: string = '';
 }
 
@@ -187,7 +187,7 @@ struct DragControllerPage {
                   builder: () => { this.DraggingBuilder() },
                   extraInfo: "DragItemInfoTest"
                 };
-                let eve: tmp = new tmp();
+                let eve: DragInfo = new DragInfo();
                 this.getUIContext().getDragController().executeDrag(dragItemInfo, dragInfo)
                   .then((eve) => {
                     if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
@@ -278,7 +278,7 @@ export default class EntryAbility extends UIAbility {
       windowStage.getMainWindow((err, data) =>
       {
         if (err.code) {
-          console.error('Failed to abtain the main window. Cause:' + err.message);
+          console.error('Failed to obtain the main window. Cause:' + err.message);
           return;
         }
         let windowClass: window.Window = data;

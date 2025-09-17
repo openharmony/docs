@@ -1,7 +1,14 @@
 # FA模型与Stage模型应用组件互通综述
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wkljy-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-API 8及以前的接口基于FA模型提供；从API 9开始，主推Stage模型。FA模型与Stage模型是两套不同的应用模型，他们拥有各自的组件。FA模型提供三种应用组件，分别是PageAbility、ServiceAbility和DataAbility。Stage模型提供了两种应用组件，分别是UIAbility和ExtensionAbility。
+
+API 8及以前的接口基于[FA模型](ability-terminology.md#fa模型)提供；从API 9开始，主推[Stage模型](ability-terminology.md#stage模型)。FA模型与Stage模型是两套不同的应用模型，他们拥有各自的组件。FA模型提供三种应用组件，分别是PageAbility、ServiceAbility和DataAbility。Stage模型提供了两种应用组件，分别是UIAbility和ExtensionAbility。
 
 
 由于FA模型与Stage模型不能在应用内混合开发（见下图），当一个设备（系统）内包含两种模型应用时（下图中"场景三"），可能涉及两种模型应用组件间的互通，本文将介绍相关互通指导。

@@ -1,4 +1,10 @@
 # Class (WebDataBase)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yuzhouhang1-->
+<!--Designer: @handyohos-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements a **WebDataBase** object.
 
@@ -68,7 +74,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.username_password = webview.WebDataBase.getHttpAuthCredentials(this.host, this.realm);
-            console.log('num: ' + this.username_password.length);
+            console.info('num: ' + this.username_password.length);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }

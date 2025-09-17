@@ -1304,12 +1304,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
-  let isfirst: boolean;
+  let isFirst: boolean;
   kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
-    isfirst = resultSet.isFirst();
-    console.info("Check isFirst succeed:" + isfirst);
+    isFirst = resultSet.isFirst();
+    console.info("Check isFirst succeed:" + isFirst);
   }).catch((err: BusinessError) => {
     console.error('getResultSet failed: ' + err);
   });
@@ -1339,12 +1339,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
-  let islast: boolean;
+  let isLast: boolean;
   kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
-    islast = resultSet.isLast();
-    console.info("Check isLast succeed: " + islast);
+    isLast = resultSet.isLast();
+    console.info("Check isLast succeed: " + isLast);
   }).catch((err: BusinessError) => {
     console.error('getResultSet failed: ' + err);
   });
@@ -1377,8 +1377,8 @@ try {
   kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
-    let isbeforefirst = resultSet.isBeforeFirst();
-    console.info("Check isBeforeFirst succeed: " + isbeforefirst);
+    let isBeforeFirst = resultSet.isBeforeFirst();
+    console.info("Check isBeforeFirst succeed: " + isBeforeFirst);
   }).catch((err: BusinessError) => {
     console.error('getResultSet failed: ' + err);
   });
@@ -1411,8 +1411,8 @@ try {
   kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
-    let isafterlast = resultSet.isAfterLast();
-    console.info("Check isAfterLast succeed:" + isafterlast);
+    let isAfterLast = resultSet.isAfterLast();
+    console.info("Check isAfterLast succeed:" + isAfterLast);
   }).catch((err: BusinessError) => {
     console.error('getResultSet failed: ' + err);
   });

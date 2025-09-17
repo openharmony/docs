@@ -61,7 +61,7 @@ LowPowerAudioSink发生错误时调用该方法。
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_LowPowerAudioSink](capi-lowpoweraudiosink-oh-lowpoweraudiosink.md)* sink | 指向OH_LowPowerAudioSink实例的指针。 |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) errorCode | 发生错误时上报的错误码。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) errorCode | 发生错误时上报的错误码。 |
 | const char* errorMsg | 错误描述信息。 |
 | void* userData | 用户自定义数据。 |
 

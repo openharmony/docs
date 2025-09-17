@@ -99,21 +99,27 @@ struct Index {
     Column() {
       Text(this.message)
         .onClick(async () => {
-          let context = this.getUIContext().getHostContext() as Context;
-          // 假设已经创建了一个session，如何创建session可以参考之前的案例。
-          let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
-          // 设置必要的媒体信息。
-          let metadata: AVSessionManager.AVMetadata = {
-            assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体。
-            title: 'TITLE',
-            mediaImage: 'IMAGE',
-            artist: 'ARTIST',
-          };
-          session.setAVMetadata(metadata).then(() => {
-            console.info(`SetAVMetadata successfully`);
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
-          });
+          try {
+            let context = this.getUIContext().getHostContext() as Context;
+            // 假设已经创建了一个session，如何创建session可以参考之前的案例。
+            let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
+            // 设置必要的媒体信息。
+            let metadata: AVSessionManager.AVMetadata = {
+              assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体。
+              title: 'TITLE',
+              mediaImage: 'IMAGE',
+              artist: 'ARTIST',
+            };
+            session.setAVMetadata(metadata).then(() => {
+              console.info(`SetAVMetadata successfully`);
+            }).catch((err: BusinessError) => {
+              console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+            });
+          } catch (err) {
+            if (err) {
+              console.error(`AVSession create Error: Code: ${err.code}, message: ${err.message}`);
+            }
+          }
         })
     }
     .width('100%')
@@ -689,33 +695,39 @@ struct Index {
     Column() {
       Text(this.message)
         .onClick(async () => {
-          let context = this.getUIContext().getHostContext() as Context;
-          let type: AVSessionManager.AVSessionType = 'audio';
-          let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-          // 设置必要的媒体信息，务必设置，否则接收不到控制事件。
-          let metadata: AVSessionManager.AVMetadata = {
-            assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体。
-            title: 'TITLE',
-            mediaImage: 'IMAGE',
-            artist: 'ARTIST'
-          };
-          session.setAVMetadata(metadata).then(() => {
-            console.info(`SetAVMetadata successfully`);
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
-          });
-          // 一般在监听器中会对播放器做相应逻辑处理。
-          // 不要忘记处理完后需要通过set接口同步播放相关信息，参考上面的用例。
-          session.on('play', () => {
-            console.info(`on play , do play task`);
-            // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('play')取消监听。
-            // 处理完毕后，请使用SetAVPlayState上报播放状态。
-          });
-          session.on('pause', () => {
-            console.info(`on pause , do pause task`);
-            // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('pause')取消监听。
-            // 处理完毕后，请使用SetAVPlayState上报播放状态。
-          });
+          try {
+            let context = this.getUIContext().getHostContext() as Context;
+            let type: AVSessionManager.AVSessionType = 'audio';
+            let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+            // 设置必要的媒体信息，务必设置，否则接收不到控制事件。
+            let metadata: AVSessionManager.AVMetadata = {
+              assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体。
+              title: 'TITLE',
+              mediaImage: 'IMAGE',
+              artist: 'ARTIST'
+            };
+            session.setAVMetadata(metadata).then(() => {
+              console.info(`SetAVMetadata successfully`);
+            }).catch((err: BusinessError) => {
+              console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+            });
+            // 一般在监听器中会对播放器做相应逻辑处理。
+            // 处理完后需要通过set接口同步播放相关信息，参考上面的用例。
+            session.on('play', () => {
+              console.info(`on play , do play task`);
+              // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('play')取消监听。
+              // 处理完毕后，请使用setAVPlayState上报播放状态。
+            });
+            session.on('pause', () => {
+              console.info(`on pause , do pause task`);
+              // 如暂不支持该指令，请勿注册；或在注册后但暂不使用时，通过session.off('pause')取消监听。
+              // 处理完毕后，请使用setAVPlayState上报播放状态。
+            });
+          } catch (err) {
+            if (err) {
+              console.error(`AVSession create Error: Code: ${err.code}, message: ${err.message}`);
+            }
+          }
         })
     }
     .width('100%')

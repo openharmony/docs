@@ -76,9 +76,30 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```
 
 4. 添加文件级数据。
+
+   文件级数据已定义的key详见[AVCodec支持的格式](avcodec-support-formats.md#媒体数据封装)。
+
+   用户自定义的key必须以"com.openharmony."为开头。值类型可以为int32_t、float、string，从API20开始增加支持uint8_t*。
+
+   > **说明：**
+   >
+   > 已定义的key必须在OH_AVMuxer_Start()前设置，用户自定义的key可以在OH_AVMuxer_Stop()前设置。
+
    ```c++
    OH_AVFormat *format = OH_AVFormat_Create(); // 用OH_AVFormat_Create创建format。
-   OH_AVFormat_SetStringValue(format, OH_MD_KEY_CREATION_TIME, "2024-12-28T00:00:00:000000Z"); // 设置创建时间（使用ISO 8601标准的时间格式且为UTC时间）。
+
+   // 设置已定义的key。
+   OH_AVFormat_SetStringValue(format, OH_MD_KEY_CREATION_TIME, "2024-12-28T00:00:00:000000Z"); // 从API14开始支持设置创建时间（使用ISO 8601标准的时间格式且为UTC时间）。
+   OH_AVFormat_SetStringValue(format, OH_MD_KEY_COMMENT, "comment test"); // 从API20开始支持设置评论。值类型为string。
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_ENABLE_MOOV_FRONT, 1); // 从API20开始支持设置moov元数据是否前置。默认值为0，设置1代表前置。
+
+   // 设置用户自定义key（需要com.openharmony.开头）。
+   OH_AVFormat_SetIntValue(format, "com.openharmony.testInt", 1024); // 值类型为int32_t。
+   OH_AVFormat_SetFloatValue(format, "com.openharmony.testFloat", 1.024); // 值类型为float。
+   OH_AVFormat_SetStringValue(format, "com.openharmony.testString", "string test"); // 值类型为string，长度不超过256。
+   uint8_t testData[] = {1, 2, 3};
+   OH_AVFormat_SetBuffer(format, "com.openharmony.testBuffer", testData, sizeof(testData)); // 从API20开始支持值类型为uint8_t*。
+
    int ret = OH_AVMuxer_SetFormat(muxer, format); // 设置封装的format。
    if (ret != AV_ERR_OK) {
       // 设置format失败，未找到有效待写入的key数据。

@@ -1,4 +1,10 @@
 # Class (CursorController)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 提供光标样式设置的能力。
 
@@ -56,6 +62,10 @@ struct CursorControlExample {
 setCursor(value: PointerStyle): void
 
 更改当前的鼠标光标样式。
+
+>**说明：**
+>
+>该接口调用后不会立即生效，而是在下一帧改变鼠标光标样式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

@@ -4,7 +4,7 @@
 <!--Owner: @yuzhouhang1-->
 <!--Designer: @handyohos-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 Web组件数据库管理对象。
 

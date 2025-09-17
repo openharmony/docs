@@ -1,4 +1,4 @@
-# Database Backup and Restoration (ArkTS)
+# Database Backup and Restore (ArkTS)
 <!--Kit: ArkData-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @baijidong-->
