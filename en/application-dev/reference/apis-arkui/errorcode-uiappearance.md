@@ -10,11 +10,11 @@
 
 Internal error.
 
-**Error Description**
+**Description**
 
 This error code is reported when an internal error that cannot be rectified by developers occurs, for example, a parameter persistence error, a failure to obtain services, or a failure to configure the color mode.
 
-**Possible Cause**
+**Possible Causes**
 
 An internal error that cannot be rectified by developers occurs, for example, a parameter persistence error, a failure to obtain services, or a failure to configure the color mode.
 

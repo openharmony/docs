@@ -1,4 +1,10 @@
 # Drag Event Error Codes
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 > **NOTE**
 >
@@ -8,13 +14,13 @@
 
 **Error Message**
 
-GetData failed, data not found.
+Data not found.
 
-**Error Description**
+**Description**
 
-This error code is reported if no data is obtained after an application calls the **GetData()** API of **DragEvent**.
+This error code is reported when no data is obtained after an application calls the **GetData()** API of **DragEvent**.
 
-**Possible Cause**
+**Possible Causes**
 
 The **DragEvent** data has not been obtained.
 
@@ -22,19 +28,55 @@ The **DragEvent** data has not been obtained.
 
 N/A
 
-## 190002 Data Error
+## 190002 Data Retrieval Error
 
 **Error Message**
 
-GetData failed, data error.
+Data error.
 
-**Error Description**
+**Description**
 
-This error code is reported if the obtained data is incorrect after an application calls the **GetData()** API of **DragEvent**.
+This error code is reported when incorrect data is obtained after an application calls the **GetData()** API of **DragEvent**.
 
-**Possible Cause**
+**Possible Causes**
 
 The obtained data is incorrect.
+
+**Solution**
+
+N/A
+
+## 190003 Operation Not Allowed in the Current Phase
+
+**Error Message**
+
+Operation not allowed for current phase.
+
+**Description**
+
+This error code is reported when the **startDataLoading()** API of **DragEvent** is called outside the **onDrop** phase.
+
+**Possible Causes**
+
+The operation is not allowed in the current phase.
+
+**Solution**
+
+N/A
+
+## 190004 Operation Failed
+
+**Error Message**
+
+Operation failed.
+
+**Description**
+
+This error code is reported when an operation fails during the current phase.
+
+**Possible Causes**
+
+Invalid or incorrect parameters are passed to the API.
 
 **Solution**
 
