@@ -1,5 +1,12 @@
 # @ohos.i18n (Internationalization)
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--Designer: @sunyaozu-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
+
 This module provides system-related or enhanced [i18n](../../internationalization/i18n-l10n.md) capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N APIs that are not defined in [ECMA 402](https://dev.ecma-international.org/publications-and-standards/standards/ecma-402/). The [intl](js-apis-intl.md) module provides basic i18n capabilities through the standard i18n APIs defined in ECMA 402. It works with the **i18n** module to provide a complete suite of i18n capabilities.
 
 >  **NOTE**
@@ -19,6 +26,12 @@ import { i18n } from '@kit.LocalizationKit';
 
 ## System<sup>9+</sup>
 
+Provides system attribute configuration functions, including translating language and country/region names, obtaining the list of supported languages and countries/regions, and obtaining the system language and region.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.I18n
+
 ### getDisplayCountry<sup>9+</sup>
 
 static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
@@ -33,7 +46,7 @@ Obtains the country/region display name in the specified language.
 
 | Name         | Type     | Mandatory  | Description              |
 | ------------ | ------- | ---- | ---------------- |
-| country      | string  | Yes   | Valid country/region code.           |
+| country      | string  | Yes   | Valid country/region code. For details, see [System Locale](../../internationalization/i18n-locale-culture.md#how-it-works).           |
 | locale       | string  | Yes   | [System locale](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.    |
 | sentenceCase | boolean | No   | Whether to use sentence case to display the text. The value **true** means to display the text in title case format, and the value **false** means to display the text in the default case format of the locale. The default value is **true**.|
 
@@ -82,7 +95,7 @@ Obtains the language display name in the specified language.
 
 | Name         | Type     | Mandatory  | Description              |
 | ------------ | ------- | ---- | ---------------- |
-| language     | string  | Yes   | Valid language ID.           |
+| language     | string  | Yes   | Valid language ID. For details, see [System Locale](../../internationalization/i18n-locale-culture.md#how-it-works).           |
 | locale       | string  | Yes   | [System locale](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.    |
 | sentenceCase | boolean | No   | Whether to use sentence case to display the text. The value **true** means to display the text in title case format, and the value **false** means to display the text in the default case format of the locale. The default value is **true**.|
 
@@ -152,7 +165,7 @@ Obtains the list of countries/regions supported for the specified language.
 
 | Name     | Type    | Mandatory  | Description   |
 | -------- | ------ | ---- | ----- |
-| language | string | Yes   | Valid language ID.|
+| language | string | Yes   | [Valid language ID](../../internationalization/i18n-locale-culture.md#how-it-works).|
 
 **Return value**
 
@@ -200,8 +213,8 @@ Checks whether a language is a suggested language in the specified region. It ca
 
 | Name     | Type    | Mandatory  | Description           |
 | -------- | ------ | ---- | ------------- |
-| language | string | Yes   | Valid language ID, for example, **zh**.|
-| region   | string | No   | Valid region ID, for example, **CN**.<br>The default value is the country/region of the SIM card. |
+| language | string | Yes   | [Valid language ID](../../internationalization/i18n-locale-culture.md#how-it-works), for example, **zh**.|
+| region   | string | No   | [Valid country/region code](../../internationalization/i18n-locale-culture.md#how-it-works), for example, **CN**.<br>The default value is the country/region of the SIM card. |
 
 **Return value**
 
@@ -240,7 +253,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 static getSystemLanguage(): string
 
-Obtains the current system language.
+Obtains the current system language. To listen for system language changes, enable listening for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed). For details, see [System Language and Region](../../internationalization/i18n-system-language-region.md#how-to-develop).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -263,7 +276,7 @@ Obtains the current system language.
 
 static getSystemRegion(): string
 
-Obtains the current system country/region.
+Obtains the current system country/region. To listen for system region changes, enable listening for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed). For details, see [System Language and Region](../../internationalization/i18n-system-language-region.md#how-to-develop).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -280,9 +293,11 @@ Obtains the current system country/region.
   let systemRegion: string = i18n.System.getSystemRegion(); // If the system region is China, then systemRegion is CN.
   ```
 
-### getSystemLocale<sup>9+</sup>
+### getSystemLocale<sup>(deprecated)</sup>
 
 static getSystemLocale(): string
+
+> This API is supported since API version 9 and is deprecated since API version 20. You are advised to use [System.getSystemLocaleInstance](#getsystemlocaleinstance20) instead.
 
 Obtains the current system locale.
 
@@ -301,11 +316,33 @@ Obtains the current system locale.
   let systemLocale: string = i18n.System.getSystemLocale(); // If the system language is simplified Chinese and the system region is China, then systemLocale is zh-Hans-CN.
   ```
 
+### getSystemLocaleInstance<sup>20+</sup>
+
+static getSystemLocaleInstance(): Intl.Locale
+
+Obtains the current system locale. To listen for system locale changes, enable listening for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed). For details, see [System Language and Region](../../internationalization/i18n-system-language-region.md#how-to-develop).
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+| Type    | Description     |
+| ------ | ------- |
+| [Intl.Locale](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) | System locale.|
+
+**Example**
+  ```ts
+  import { i18n } from '@kit.LocalizationKit';
+
+  let systemLocale: Intl.Locale = i18n.System.getSystemLocaleInstance();
+  ```
+
 ### is24HourClock<sup>9+</sup>
 
 static is24HourClock(): boolean
 
-Checks whether the 24-hour clock is used.
+Checks whether the 24-hour clock is used. To listen for system time format changes, enable listening for [COMMON_EVENT_TIME_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_time_changed). For details, see [User Preference](../../internationalization/i18n-user-preferences.md#how-to-develop).
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
@@ -381,7 +418,7 @@ Sets the preferred language of the application. Resources are loaded in the pref
 
 | Name     | Type    | Mandatory  | Description   |
 | -------- | ------ | ---- | ----- |
-| language | string | Yes   | Valid language ID or **default**.|
+| language | string | Yes   | [Valid language ID](../../internationalization/i18n-locale-culture.md#how-it-works) or **default**.|
 
 **Error codes**
 
@@ -461,7 +498,7 @@ Obtains the simplified representation of a language. For example, the simplified
 
 | Name     | Type    | Mandatory  | Description           |
 | -------- | ------ | ---- | ------------- |
-| language | string | No   | Valid language ID. The default value is the system language.|
+| language | string | No   | [Valid language ID](../../internationalization/i18n-locale-culture.md#how-it-works). The default value is the system language.|
 
 **Return value**
 
@@ -674,6 +711,12 @@ Obtains the **Calendar** object for the specified locale and calendar type.
 
 ## EntityRecognizer<sup>11+</sup>
 
+Provides entity recognition capabilities, which can be used to obtain the type and start and end positions of an entity in the text. Currently, supported entities include phone numbers, and date and time.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.I18n
+
 ### constructor<sup>11+</sup>
 
 constructor(locale?: string)
@@ -774,6 +817,12 @@ Defines a list of entities.
 | end | number | No   | No   | End position of the entity the input string.|
 
 ## Calendar<sup>8+</sup>
+
+Provides calendar management capabilities, such as calendar name retrieval and date calculation.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.I18n
 
 ### setTime<sup>8+</sup>
 
@@ -1017,7 +1066,7 @@ Obtains the values of the calendar attributes in this **Calendar** object.
 | second | Second.|
 | millisecond | Millisecond.|
 | week_of_year | Week of year. Note that the algorithm for calculating the first week of a year varies according to regions. For example, the first seven days in a year are the first week.|
-| year_woy | Year used with the week of year field. |
+| year_woy | Year used with the **week_of_year** field. |
 | week_of_month | Week of month.|
 | day_of_week_in_month | Day of week in month.|
 | day_of_year | Day of year.|
@@ -1218,6 +1267,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ## PhoneNumberFormat<sup>8+</sup>
 
+Provides phone number management capabilities, such as phone number validity verification, formatting, and home location retrieval.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.I18n
 
 ### constructor<sup>8+</sup>
 
@@ -1244,7 +1298,7 @@ Creates a **PhoneNumberFormat** object.
 
 ### isValidNumber<sup>8+</sup>
 
-isValidNumber(number: string): boolean
+isValidNumber(phoneNumber: string): boolean
 
 Checks whether the phone number is valid for the country/region in the **PhoneNumberFormat** object.
 
@@ -1256,7 +1310,7 @@ Checks whether the phone number is valid for the country/region in the **PhoneNu
 
 | Name   | Type    | Mandatory  | Description       |
 | ------ | ------ | ---- | --------- |
-| number | string | Yes   | Phone number to be checked.|
+| phoneNumber | string | Yes   | Phone number to be checked.|
 
 **Return value**
 
@@ -1273,7 +1327,7 @@ Checks whether the phone number is valid for the country/region in the **PhoneNu
 
 ### format<sup>8+</sup>
 
-format(number: string): string
+format(phoneNumber: string): string
 
 Formats a phone number.
 
@@ -1288,7 +1342,7 @@ Formats a phone number.
 
 | Name   | Type    | Mandatory  | Description        |
 | ------ | ------ | ---- | ---------- |
-| number | string | Yes   | Phone number to be formatted.|
+| phoneNumber | string | Yes   | Phone number to be formatted.|
 
 **Return value**
 
@@ -1315,7 +1369,7 @@ Formats a phone number.
 
 ### getLocationName<sup>9+</sup>
 
-getLocationName(number: string, locale: string): string
+getLocationName(phoneNumber: string, locale: string): string
 
 Obtains the home location of a phone number.
 
@@ -1327,7 +1381,7 @@ Obtains the home location of a phone number.
 
 | Name   | Type    | Mandatory  | Description  |
 | ------ | ------ | ---- | ---- |
-| number | string | Yes   | Phone number. To obtain the home location of a number in other countries/regions, you need to prefix the number with **00** and the country code.|
+| phoneNumber | string | Yes   | Phone number. To obtain the home location of a number in other countries/regions, you need to prefix the number with **00** and the country code.|
 | locale | string | Yes   | [System locale](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.|
 
 **Return value**
@@ -1401,6 +1455,11 @@ Creates an **IndexUtil** object.
 
 ## IndexUtil<sup>8+</sup>
 
+Provides index management capabilities, such as obtaining the locale index list and text index values.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.I18n
 
 ### getIndexList<sup>8+</sup>
 
@@ -1508,6 +1567,11 @@ Obtains a **BreakIterator** object. The **BreakIterator** object maintains an in
 
 ## BreakIterator<sup>8+</sup>
 
+Provides text line breaking capabilities, such as obtaining, moving, and identifying break points.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.I18n
 
 ### setLineBreakText<sup>8+</sup>
 
@@ -1560,7 +1624,7 @@ Obtains the text processed by the **BreakIterator** object.
 
 current(): number
 
-Obtains the position of the break iterator in the text.
+Obtains the position of the **BreakIterator** object in the text.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1570,7 +1634,7 @@ Obtains the position of the break iterator in the text.
 
 | Type    | Description                         |
 | ------ | --------------------------- |
-| number | Position of the break iterator in the text.|
+| number | Position of the **BreakIterator** object in the text.|
 
 **Example**
   ```ts
@@ -1584,7 +1648,7 @@ Obtains the position of the break iterator in the text.
 
 first(): number
 
-Moves the break iterator to the first line break point, which is always at the beginning of the processed text.
+Moves the **BreakIterator** object to the first line break point, which is always at the beginning of the processed text.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1608,7 +1672,7 @@ Moves the break iterator to the first line break point, which is always at the b
 
 last(): number
 
-Moves the break iterator to the last line break point, which is always the next position after the end of the processed text.
+Moves the **BreakIterator** object to the last line break point, which is always the next position after the end of the processed text.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1632,7 +1696,7 @@ Moves the break iterator to the last line break point, which is always the next 
 
 next(index?: number): number
 
-Moves the break iterator backward by the specified number of line break points.
+Moves the **BreakIterator** object backward by the specified number of line break points.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1642,13 +1706,13 @@ Moves the break iterator backward by the specified number of line break points.
 
 | Name  | Type    | Mandatory  | Description                                      |
 | ----- | ------ | ---- | ---------------------------------------- |
-| index | number | No   | Number of line break points for moving the break iterator. The value is an integer.<br>A positive number means to move the break iterator backward, and a negative number means to move the break iterator forward.<br>The default value is **1**.|
+| index | number | No   | Number of line break points for moving the **BreakIterator** object. The value is an integer.<br>A positive number means to move the **BreakIterator** object backward, and a negative number means to move the **BreakIterator** object forward.<br>The default value is **1**.|
 
 **Return value**
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| number | Position of the break iterator in the text after movement.<br>The value **-1** is returned if the position of the break iterator is outside of the processed text after movement.|
+| number | Position of the **BreakIterator** object in the text after movement.<br>The value **-1** is returned if the position of the **BreakIterator** object is outside of the processed text after movement.|
 
 **Example**
   ```ts
@@ -1664,7 +1728,7 @@ Moves the break iterator backward by the specified number of line break points.
 
 previous(): number
 
-Moves the break iterator foreward by one line break point.
+Moves the **BreakIterator** object foreward by one line break point.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1674,7 +1738,7 @@ Moves the break iterator foreward by one line break point.
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| number | Position of the break iterator in the text after movement.<br>The value **-1** is returned if the position of the break iterator is outside of the processed text after movement.|
+| number | Position of the **BreakIterator** object in the text after movement.<br>The value **-1** is returned if the position of the **BreakIterator** object is outside of the processed text after movement.|
 
 **Example**
   ```ts
@@ -1706,7 +1770,7 @@ Moves the line break iterator to the line break point after the specified positi
 
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
-| number | Position of the break iterator in the text after movement. The value **-1** is returned if the position of the break iterator is outside of the processed text after movement.|
+| number | Position of the **BreakIterator** object in the text after movement. The value **-1** is returned if the position of the **BreakIterator** object is outside of the processed text after movement.|
 
 **Example**
   ```ts
@@ -1738,7 +1802,7 @@ Checks whether the specified position is a line break point.
 
 | Type     | Description                             |
 | ------- | ------------------------------- |
-| boolean | Whether the specified position is a line break point. The value **true** indicates that the specified position is a line break point, and the value **false** indicates the opposite.<br>If **true** is returned, the break iterator is moved to the position specified by **offset**. Otherwise, the break iterator is moved to the text line break point after the position specified by **offset**, which is equivalent to calling **following**.|
+| boolean | Whether the specified position is a line break point. The value **true** indicates that the specified position is a line break point, and the value **false** indicates the opposite.<br>If **true** is returned, the **BreakIterator** object is moved to the position specified by **offset**. Otherwise, the **BreakIterator** object is moved to the text line break point after the position specified by **offset**, which is equivalent to calling **following**.|
 
 **Example**
   ```ts
@@ -1777,6 +1841,12 @@ Obtains the **TimeZone** object corresponding to the specified time zone ID.
   ```
 
 ## TimeZone
+
+Provides time zone management capabilities, such as time zone name translation, offset retrieval, and transition rule retrieval.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.I18n
 
 ### getID
 
@@ -2058,7 +2128,7 @@ let timeZone: i18n.TimeZone = i18n.getTimeZone(tzId);
 let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
 let date = new Date(2025, 4, 13);
 let zoneOffsetTransition: i18n.ZoneOffsetTransition =
-    zoneRules.nextTransition(date.getTime()); // Obtain the ZoneOffsetTransition object for time zone transition after May 13, 2025.
+    zoneRules.nextTransition(date.getTime()); // Obtain the nextTransition object for time zone transition after May 13, 2025.
 zoneOffsetTransition.getMilliseconds(); // Timestamp of the transition point: 1762074000000
 zoneOffsetTransition.getOffsetAfter(); // Post-transition offset: -28800000
 zoneOffsetTransition.getOffsetBefore(); // Pre-transition offset: -25200000
@@ -2075,6 +2145,11 @@ let dateFormat: string =
 
 ## ZoneRules<sup>20+</sup>
 
+Queries the time zone transition rule.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Global.I18n
 
 ### nextTransition<sup>20+</sup>
 
@@ -2096,7 +2171,7 @@ Obtains the **nextTransition** object for the specified time.
 
 | Type      | Description        |
 | -------- | ---------- |
-| [ZoneOffsetTransition](#zoneoffsettransition20) | **nextTransition** object.|
+| [ZoneOffsetTransition](#zoneoffsettransition20) | **ZoneOffsetTransition** object for next transition.|
 
 **Example**
 ```ts
@@ -2113,6 +2188,11 @@ let zoneOffsetTransition: i18n.ZoneOffsetTransition = zoneRules.nextTransition(d
 
 ## ZoneOffsetTransition<sup>20+</sup>
 
+Parses the time zone transition rule.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Global.I18n
 
 ### getMilliseconds<sup>20+</sup>
 
@@ -2138,7 +2218,7 @@ let timeZone: i18n.TimeZone = i18n.getTimeZone('America/Tijuana');
 let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
 let date = new Date(2025, 4, 13);
 let zoneOffsetTransition: i18n.ZoneOffsetTransition =
-    zoneRules.nextTransition(date.getTime()); // Obtain the ZoneOffsetTransition object for time zone transition after May 13, 2025.
+    zoneRules.nextTransition(date.getTime()); // Obtain the nextTransition object for time zone transition after May 13, 2025.
 zoneOffsetTransition.getMilliseconds(); // Timestamp of the transition point: 1762074000000
 ```
 
@@ -2166,7 +2246,7 @@ let timeZone: i18n.TimeZone = i18n.getTimeZone('America/Tijuana');
 let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
 let date = new Date(2025, 4, 13);
 let zoneOffsetTransition: i18n.ZoneOffsetTransition =
-    zoneRules.nextTransition(date.getTime()); // Obtain the ZoneOffsetTransition object for time zone transition after May 13, 2025.
+    zoneRules.nextTransition(date.getTime()); // Obtain the nextTransition object for time zone transition after May 13, 2025.
 zoneOffsetTransition.getOffsetAfter(); // Post-transition offset: -28800000
 ```
 
@@ -2194,13 +2274,18 @@ let timeZone: i18n.TimeZone = i18n.getTimeZone('America/Tijuana');
 let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
 let date = new Date(2025, 4, 13);
 let zoneOffsetTransition: i18n.ZoneOffsetTransition =
-    zoneRules.nextTransition(date.getTime()); // Obtain the ZoneOffsetTransition object for time zone transition after May 13, 2025.
+    zoneRules.nextTransition(date.getTime()); // Obtain the nextTransition object for time zone transition after May 13, 2025.
 zoneOffsetTransition.getOffsetBefore(); // Pre-transition offset: -25200000
 ```
 
 
 ## Transliterator<sup>9+</sup>
 
+Provides text transliteration capabilities, such as obtaining the supported language IDs and transliterating text.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.I18n
 
 ### getAvailableIDs<sup>9+</sup>
 
@@ -2268,7 +2353,7 @@ Converts the input text from the source format to the target format.
 
 | Name | Type    | Mandatory  | Description    |
 | ---- | ------ | ---- | ------ |
-| text | string | Yes   | **text** object.|
+| text | string | Yes   | Input text.|
 
 **Return value**
 
@@ -2279,30 +2364,34 @@ Converts the input text from the source format to the target format.
 **Example**
   ```ts
   let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn');
-  let wordArray = ['China', 'Germany', 'US', 'France"]
+  let wordArray: string[] = ['中国', '德国', '美国', '法国']
   for (let i = 0; i < wordArray.length; i++) {
-    let transliterLatn =
-      transliterator.transform(wordArray[i]); // transliterLatn: 'zhōng guó', 'dé guó', 'měi guó', 'fǎ guó'
+    let transliterateLatn: string =
+      transliterator.transform(wordArray[i]); // transliterateLatn: 'zhōng guó', 'dé guó', 'měi guó', 'fǎ guó'
   }
 
   // Chinese transliteration and tone removal
-  let transliter = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
-  let transliterAscii = transliter.transform('中国'); // transliterAscii ='zhong guo'
+  transliterator = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
+  let transliterateAscii: string = transliterator.transform ('中国'); // transliterateAscii = 'zhong guo'
 
   // Chinese surname pronunciation
-  let nameTransliter = i18n.Transliterator.getInstance('Han-Latin/Names');
-  let transliterNames = nameTransliter.transform('单老师'); // transliterNames = 'shàn lǎo shī'
-  transliterNames = nameTransliter.transform('长孙无忌'); // transliterNames = 'zhǎng sūn wú jì'
+  transliterator = i18n.Transliterator.getInstance('Han-Latin/Names');
+  let transliterateNames: string = transliterator.transform('单老师'); // transliterateNames = 'shàn lǎo shī'
+  transliterateNames = transliterator.transform('长孙无忌'); // transliterateNames = 'zhǎng sūn wú jì'
   ```
 
 
 ## Unicode<sup>9+</sup>
 
+Provides character attribute management capabilities, such as checking whether a character is a space, digit, or letter.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.I18n
 
 ### isDigit<sup>9+</sup>
 
-static isDigit(char: string): boolean
+static isDigit(ch: string): boolean
 
 Checks whether the input character is a digit.
 
@@ -2314,7 +2403,7 @@ Checks whether the input character is a digit.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
+| ch | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
 
 **Return value**
 
@@ -2330,7 +2419,7 @@ Checks whether the input character is a digit.
 
 ### isSpaceChar<sup>9+</sup>
 
-static isSpaceChar(char: string): boolean
+static isSpaceChar(ch: string): boolean
 
 Checks whether the input character is a space.
 
@@ -2342,7 +2431,7 @@ Checks whether the input character is a space.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
+| ch | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
 
 **Return value**
 
@@ -2358,7 +2447,7 @@ Checks whether the input character is a space.
 
 ### isWhitespace<sup>9+</sup>
 
-static isWhitespace(char: string): boolean
+static isWhitespace(ch: string): boolean
 
 Checks whether the input character is a whitespace.
 
@@ -2370,7 +2459,7 @@ Checks whether the input character is a whitespace.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
+| ch | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
 
 **Return value**
 
@@ -2386,7 +2475,7 @@ Checks whether the input character is a whitespace.
 
 ### isRTL<sup>9+</sup>
 
-static isRTL(char: string): boolean
+static isRTL(ch: string): boolean
 
 Checks whether the input character is of the right to left (RTL) language.
 
@@ -2398,7 +2487,7 @@ Checks whether the input character is of the right to left (RTL) language.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
+| ch | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
 
 **Return value**
 
@@ -2414,7 +2503,7 @@ Checks whether the input character is of the right to left (RTL) language.
 
 ### isIdeograph<sup>9+</sup>
 
-static isIdeograph(char: string): boolean
+static isIdeograph(ch: string): boolean
 
 Checks whether the input character is an ideographic character.
 
@@ -2426,7 +2515,7 @@ Checks whether the input character is an ideographic character.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
+| ch | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
 
 **Return value**
 
@@ -2442,7 +2531,7 @@ Checks whether the input character is an ideographic character.
 
 ### isLetter<sup>9+</sup>
 
-static isLetter(char: string): boolean
+static isLetter(ch: string): boolean
 
 Checks whether the input character is a letter.
 
@@ -2454,7 +2543,7 @@ Checks whether the input character is a letter.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
+| ch | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
 
 **Return value**
 
@@ -2470,7 +2559,7 @@ Checks whether the input character is a letter.
 
 ### isLowerCase<sup>9+</sup>
 
-static isLowerCase(char: string): boolean
+static isLowerCase(ch: string): boolean
 
 Checks whether the input character is a lowercase letter.
 
@@ -2482,7 +2571,7 @@ Checks whether the input character is a lowercase letter.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
+| ch | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
 
 **Return value**
 
@@ -2498,7 +2587,7 @@ Checks whether the input character is a lowercase letter.
 
 ### isUpperCase<sup>9+</sup>
 
-static isUpperCase(char: string): boolean
+static isUpperCase(ch: string): boolean
 
 Checks whether the input character is an uppercase letter.
 
@@ -2510,7 +2599,7 @@ Checks whether the input character is an uppercase letter.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
+| ch | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
 
 **Return value**
 
@@ -2526,7 +2615,7 @@ Checks whether the input character is an uppercase letter.
 
 ### getType<sup>9+</sup>
 
-static getType(char: string): string
+static getType(ch: string): string
 
 Obtains the type of the input character.
 
@@ -2538,7 +2627,7 @@ Obtains the type of the input character.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
+| ch | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
 
 **Return value**
 
@@ -2589,6 +2678,11 @@ The following table lists only the common types. For more details, see the Unico
 
 ## I18NUtil<sup>9+</sup>
 
+Internationalization utility class, which provides the capabilities of unit conversion, date sequence retrieval, time segment name retrieval, region matching, and path localization.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.I18n
 
 ### unitConvert<sup>9+</sup>
 
@@ -2746,7 +2840,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 static getThreeLetterLanguage(locale: string): string
 
-Converts a language code from two letters to three letters.  <br>For example, the two-letter language code of Chinese is **zh**, and the corresponding three-letter language code is **zho**. For details, see [ISO 639](https://www.iso.org/iso-639-language-code).
+Converts a language code from two letters to three letters. For details, see [ISO 639](https://www.iso.org/iso-639-language-code).<br>For example, the two-letter language code of Chinese is **zh**, and the corresponding three-letter language code is **zho**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2790,7 +2884,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 static getThreeLetterRegion(locale: string): string
 
-Converts a region code from two letters to three letters.  <br>For example, the two-letter region code of China is **CN**, and the corresponding three-letter region code is **CHN**. For details, see [ISO 3166](https://www.iso.org/iso-3166-country-codes.html).
+Converts a region code from two letters to three letters. For details, see [ISO 3166](https://www.iso.org/iso-3166-country-codes.html).<br>For example, the two-letter region code of China is **CN**, and the corresponding three-letter region code is **CHN**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2860,7 +2954,7 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 890001   | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001   | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
 
@@ -2883,7 +2977,7 @@ try {
 
 static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale): string
 
-This API is supported since API version 18 and deprecated since API version 20. You are advised to use [getUnicodeWrappedFilePath](#getunicodewrappedfilepath20).
+> This API is supported since API version 18 and deprecated since API version 20. You are advised to use [getUnicodeWrappedFilePath](#getunicodewrappedfilepath20).
 
 Localizes a file path for the specified locale.<br>For example, **/data/out/tmp** is changed to **tmp/out/data/** after localization.
 
@@ -2933,6 +3027,11 @@ try {
 
 ## Normalizer<sup>10+</sup>
 
+Provides the text normalization capabilities.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.I18n
 
 ### getInstance<sup>10+</sup>
 
@@ -2991,7 +3090,7 @@ Normalizes input strings.
 
 | Name   | Type    | Mandatory  | Description                       |
 | ------ | ------ | ---- | ------------------------- |
-| text | string | Yes   | **text** object.|
+| text | string | Yes   | Input text.|
 
 **Return value**
 
@@ -3038,6 +3137,11 @@ Enumerates text normalization modes.
 
 ## HolidayManager<sup>11+</sup>
 
+Provides holiday data parsing capabilities, such as determining holidays and obtaining the holiday list of a specified year.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.I18n
 
 ### constructor<sup>11+</sup>
 
@@ -3053,7 +3157,7 @@ Creates a **HolidayManager** object for parsing holiday data.
 
 |   Name |      Type     | Mandatory|     Description     |
 | --------- | ------------- | ---- | ------------- |
-| icsPath   | String | Yes  | Path of the **.ics** file with the read permission granted for applications. |
+| icsPath   | String | Yes  | Path of the **.ics** file with the read permission granted for applications. iCalendar is a standard Internet calendar format for storing calendar data.|
 
 **Error codes**
 
@@ -3069,6 +3173,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
+    // Replace /system/lib/US.ics with the actual ICS file path.
     let holidayManager = new i18n.HolidayManager('/system/lib/US.ics');
   } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -3226,7 +3331,7 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
 ```ts
@@ -3245,7 +3350,7 @@ try {
 
 getSimpleDateTimeFormatByPattern(pattern: string, locale?: intl.Locale): SimpleDateTimeFormat
 
-This API is supported since API version 18 and deprecated since API version 20. You are advised to use [getSimpleDateTimeFormatByPattern](#i18ngetsimpledatetimeformatbypattern20).
+> This API is supported since API version 18 and deprecated since API version 20. You are advised to use [getSimpleDateTimeFormatByPattern](#i18ngetsimpledatetimeformatbypattern20).
 
 Obtains a **SimpleDateTimeFormat** object based on the specified pattern string. For details about the difference between the objects obtained by this API and [getSimpleDateTimeFormatBySkeleton](#i18ngetsimpledatetimeformatbyskeletondeprecated), see the examples in [SimpleDateTimeFormat.format](#format18).
 
@@ -3317,7 +3422,7 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
 ```ts
@@ -3336,7 +3441,7 @@ try {
 
 getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleDateTimeFormat
 
-This API is supported since API version 18 and deprecated since API version 20. You are advised to use [getSimpleDateTimeFormatBySkeleton](#i18ngetsimpledatetimeformatbyskeleton20).
+> This API is supported since API version 18 and deprecated since API version 20. You are advised to use [getSimpleDateTimeFormatBySkeleton](#i18ngetsimpledatetimeformatbyskeleton20).
 
 Obtains a **SimpleDateTimeFormat** object based on the specified skeleton. For details about the difference between the objects obtained by this API and [getSimpleDateTimeFormatByPattern](#i18ngetsimpledatetimeformatbypatterndeprecated), see the examples in [SimpleDateTimeFormat.format](#format18).
 
@@ -3380,6 +3485,12 @@ try {
 ```
 
 ## SimpleDateTimeFormat<sup>18+</sup>
+
+Performs date and time formatting.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Global.I18n
 
 ### format<sup>18+</sup>
 
@@ -3456,7 +3567,7 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+| 8900001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
 ```ts
@@ -3475,7 +3586,7 @@ try {
 
 getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleNumberFormat
 
-This API is supported since API version 18 and deprecated since API version 20. You are advised to use [getSimpleNumberFormatBySkeleton](#i18ngetsimplenumberformatbyskeleton20).
+> This API is supported since API version 18 and deprecated since API version 20. You are advised to use [getSimpleNumberFormatBySkeleton](#i18ngetsimplenumberformatbyskeleton20).
 
 Obtains a **SimpleNumberFormat** object based on the specified skeleton.
 
@@ -3520,6 +3631,12 @@ try {
 
 ## SimpleNumberFormat<sup>18+</sup>
 
+Performs number formatting.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Global.I18n
+
 ### format<sup>18+</sup>
 
 format(value: number): string
@@ -3558,9 +3675,17 @@ try {
 
 ## StyledNumberFormat<sup>18+</sup>
 
-### constructor<sup>18+</sup>
+Performs rich text number formatting.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Global.I18n
+
+### constructor<sup>(deprecated)</sup>
 
 constructor(numberFormat: intl.NumberFormat | SimpleNumberFormat, options?: StyledNumberFormatOptions)
+
+> This API is supported since API version 18 and deprecated since API version 20. You are advised to use [constructor](#constructor20) instead.
 
 Creates a **NumberFormat** object for rich text display.
 
@@ -3610,6 +3735,57 @@ Creates a **NumberFormat** object for rich text display.
   }
   ```
 
+### constructor<sup>20+</sup>
+
+constructor(numberFormat: Intl.NumberFormat | SimpleNumberFormat, options?: StyledNumberFormatOptions)
+
+Creates a **NumberFormat** object for rich text display.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+|   Name |      Type     | Mandatory|     Description     |
+| --------- | ------------- | ---- | ------------- |
+| numberFormat | [Intl.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat) \| [SimpleNumberFormat](#simplenumberformat18) | Yes  | **NumberFormat** object. |
+| options | [StyledNumberFormatOptions](#stylednumberformatoptions18) | No| Configuration options of the **NumberFormat** object. The default value is the default text style. |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let integerTextStyle: TextStyle = new TextStyle({ fontColor: Color.Red });
+    let decimalTextStyle: TextStyle = new TextStyle({ fontColor: Color.Brown });
+    let fractionTextStyle: TextStyle = new TextStyle({ fontColor: Color.Blue });
+    let unitTextStyle: TextStyle = new TextStyle({ fontColor: Color.Green });
+
+    // Create a StyledNumberFormat object through Intl.NumberFormat.
+    let numFmt: Intl.NumberFormat = new Intl.NumberFormat('zh', { style: 'unit', unit: 'percent' });
+    let styledNumFmt: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(numFmt, {
+      integer: integerTextStyle,
+      decimal: decimalTextStyle,
+      fraction: fractionTextStyle,
+      unit: unitTextStyle
+    });
+
+    // Create a StyledNumberFormat object through SimpleNumberFormat.
+    let locale: Intl.Locale = new Intl.Locale('zh');
+    let simpleNumFmt: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('percent', locale);
+    let styledSimpleNumFmt: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(simpleNumFmt, {
+      integer: integerTextStyle,
+      decimal: decimalTextStyle,
+      fraction: fractionTextStyle,
+      unit: unitTextStyle
+    });
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call i18n.StyledNumberFormat failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
+
 ### format<sup>18+</sup>
 
 format(value: number): StyledString
@@ -3635,7 +3811,6 @@ Formats a number as a rich text object.
 **Example**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { intl } from '@kit.LocalizationKit';
 
   try {
     let integerTextStyle: TextStyle = new TextStyle({ fontColor: Color.Red });
@@ -3643,8 +3818,8 @@ Formats a number as a rich text object.
     let fractionTextStyle: TextStyle = new TextStyle({ fontColor: Color.Blue });
     let unitTextStyle: TextStyle = new TextStyle({ fontColor: Color.Green });
 
-    // Create a StyledNumberFormat object through intl.NumberFormat.
-    let numFmt: intl.NumberFormat = new intl.NumberFormat('zh', { style: 'unit', unit: 'percent' });
+    // Create a StyledNumberFormat object through Intl.NumberFormat.
+    let numFmt: Intl.NumberFormat = new Intl.NumberFormat('zh', { style: 'unit', unit: 'percent' });
     let styledNumFmt: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(numFmt, {
       integer: integerTextStyle,
       decimal: decimalTextStyle,
@@ -3655,7 +3830,7 @@ Formats a number as a rich text object.
     let formattedNumber: StyledString = styledNumFmt.format(1234.5678);
 
     // Create a StyledNumberFormat object through SimpleNumberFormat.
-    let locale: intl.Locale = new intl.Locale('zh');
+    let locale: Intl.Locale = new Intl.Locale('zh');
     let simpleNumFmt: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('percent', locale);
     let styledSimpleNumFmt: i18n.StyledNumberFormat = new i18n.StyledNumberFormat(simpleNumFmt, {
       integer: integerTextStyle,
@@ -3690,9 +3865,9 @@ Represents optional configuration items for the **NumberFormat** object.
 
 getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
 
-Obtains the localized name of the specified country/region.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [System.getDisplayCountry](#getdisplaycountry9) instead.
 
-This API is deprecated since API version 9. You are advised to use [System.getDisplayCountry](#getdisplaycountry9).
+Obtains the localized name of the specified country/region.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -3720,9 +3895,9 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 
 getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string
 
-Obtains the localized script for the specified language.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [System.getDisplayLanguage](#getdisplaylanguage9) instead.
 
-This API is deprecated since API version 9. You are advised to use [System.getDisplayLanguage](#getdisplaylanguage9).
+Obtains the localized script for the specified language.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -3751,9 +3926,9 @@ This API is deprecated since API version 9. You are advised to use [System.getDi
 
 getSystemLanguage(): string
 
-Obtains the system language.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [System.getSystemLanguage](#getsystemlanguage9) instead.
 
-This API is deprecated since API version 9. You are advised to use [System.getSystemLanguage](#getsystemlanguage9).
+Obtains the system language.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -3773,9 +3948,9 @@ This API is deprecated since API version 9. You are advised to use [System.getSy
 
 getSystemRegion(): string
 
-Obtains the system region.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [System.getSystemRegion](#getsystemregion9) instead.
 
-This API is deprecated since API version 9. You are advised to use [System.getSystemRegion](#getsystemregion9).
+Obtains the system region.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -3795,9 +3970,9 @@ This API is deprecated since API version 9. You are advised to use [System.getSy
 
 getSystemLocale(): string
 
-Obtains the system locale.
+> This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [System.getSystemLocaleInstance](#getsystemlocaleinstance20) instead.
 
-This API is deprecated since API version 9. You are advised to use [System.getSystemLocale](#getsystemlocale9).
+Obtains the system locale.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -3817,9 +3992,9 @@ This API is deprecated since API version 9. You are advised to use [System.getSy
 
 is24HourClock(): boolean
 
-Checks whether the 24-hour clock is used.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [System.is24HourClock](#is24hourclock9) instead.
 
-This API is deprecated since API version 9. You are advised to use [System.is24HourClock](#is24hourclock9).
+Checks whether the 24-hour clock is used.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -3839,9 +4014,9 @@ This API is deprecated since API version 9. You are advised to use [System.is24H
 
 set24HourClock(option: boolean): boolean
 
-Sets the 24-hour clock.
+> This API is supported since API version 7 and is deprecated since API version 9. The substitute API is available only for system applications.
 
-This API is deprecated since API version 9. The substitute API is available only for system applications.
+Sets the 24-hour clock.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -3870,9 +4045,9 @@ This API is deprecated since API version 9. The substitute API is available only
 
 addPreferredLanguage(language: string, index?: number): boolean
 
-Adds a preferred language to the specified position on the preferred language list.
+> This API is supported since API version 8 and is deprecated since API version 9. The substitute API is available only for system applications.
 
-This API is supported since API version 8 and is deprecated since API version 9. The substitute API is available only for system applications.
+Adds a preferred language to the specified position on the preferred language list.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -3904,9 +4079,9 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 removePreferredLanguage(index: number): boolean
 
-Removes a preferred language from the specified position on the preferred language list.
+> This API is supported since API version 8 and is deprecated since API version 9. The substitute API is available only for system applications.
 
-This API is supported since API version 8 and is deprecated since API version 9. The substitute API is available only for system applications.
+Removes a preferred language from the specified position on the preferred language list.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -3936,9 +4111,9 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 getPreferredLanguageList(): Array&lt;string&gt;
 
-Obtains the list of preferred languages.
+> This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.getPreferredLanguageList](#getpreferredlanguagelist9) instead.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.getPreferredLanguageList](#getpreferredlanguagelist9).
+Obtains the list of preferred languages.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -3958,9 +4133,9 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 getFirstPreferredLanguage(): string
 
-Obtains the first language in the preferred language list.
+> This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.getFirstPreferredLanguage](#getfirstpreferredlanguage9) instead.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [System.getFirstPreferredLanguage](#getfirstpreferredlanguage9).
+Obtains the first language in the preferred language list.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -3983,9 +4158,9 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
 
-Converts one measurement unit into another and formats the unit based on the specified locale and style.
+> This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [unitConvert](#unitconvert9) instead.
 
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [unitConvert](#unitconvert9).
+Converts one measurement unit into another and formats the unit based on the specified locale and style.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -4011,11 +4186,11 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 ### isDigit<sup>(deprecated)</sup>
 
-isDigit(char: string): boolean
+isDigit(ch: string): boolean
+
+> This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isDigit](#isdigit9) instead.
 
 Checks whether the input character is a digit.
-
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isDigit](#isdigit9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -4023,7 +4198,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
+| ch | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
 
 **Return value**
 
@@ -4034,11 +4209,11 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 ### isSpaceChar<sup>(deprecated)</sup>
 
-isSpaceChar(char: string): boolean
+isSpaceChar(ch: string): boolean
+
+> This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isSpaceChar](#isspacechar9) instead.
 
 Checks whether the input character is a space.
-
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isSpaceChar](#isspacechar9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -4046,7 +4221,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
+| ch | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
 
 **Return value**
 
@@ -4057,11 +4232,11 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 ### isWhitespace<sup>(deprecated)</sup>
 
-isWhitespace(char: string): boolean
+isWhitespace(ch: string): boolean
+
+> This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isWhitespace](#iswhitespace9) instead.
 
 Checks whether the input character is a whitespace.
-
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isWhitespace](#iswhitespace9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -4069,7 +4244,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
+| ch | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
 
 **Return value**
 
@@ -4080,11 +4255,11 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 ### isRTL<sup>(deprecated)</sup>
 
-isRTL(char: string): boolean
+isRTL(ch: string): boolean
+
+> This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isRTL](#isrtl9) instead.
 
 Checks whether the input character is of the right to left (RTL) language.
-
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isRTL](#isrtl9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -4092,7 +4267,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
+| ch | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
 
 **Return value**
 
@@ -4103,11 +4278,11 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 ### isIdeograph<sup>(deprecated)</sup>
 
-isIdeograph(char: string): boolean
+isIdeograph(ch: string): boolean
+
+> This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isIdeograph](#isideograph9) instead.
 
 Checks whether the input character is an ideographic character.
-
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isIdeograph](#isideograph9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -4115,7 +4290,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
+| ch | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
 
 **Return value**
 
@@ -4126,11 +4301,11 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 ### isLetter<sup>(deprecated)</sup>
 
-isLetter(char: string): boolean
+isLetter(ch: string): boolean
+
+> This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isLetter](#isletter9) instead.
 
 Checks whether the input character is a letter.
-
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isLetter](#isletter9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -4138,7 +4313,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
+| ch | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
 
 **Return value**
 
@@ -4149,11 +4324,11 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 ### isLowerCase<sup>(deprecated)</sup>
 
-isLowerCase(char: string): boolean
+isLowerCase(ch: string): boolean
+
+> This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isLowerCase](#islowercase9) instead.
 
 Checks whether the input character is a lowercase letter.
-
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isLowerCase](#islowercase9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -4161,7 +4336,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
+| ch | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
 
 **Return value**
 
@@ -4172,11 +4347,11 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 ### isUpperCase<sup>(deprecated)</sup>
 
-isUpperCase(char: string): boolean
+isUpperCase(ch: string): boolean
+
+> This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isUpperCase](#isuppercase9) instead.
 
 Checks whether the input character is an uppercase letter.
-
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [isUpperCase](#isuppercase9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -4184,7 +4359,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
+| ch | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
 
 **Return value**
 
@@ -4195,11 +4370,11 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 ### getType<sup>(deprecated)</sup>
 
-getType(char: string): string
+getType(ch: string): string
+
+> This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [getType](#gettype9) instead.
 
 Obtains the type of the input character.
-
-This API is supported since API version 8 and is deprecated since API version 9. You are advised to use [getType](#gettype9).
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -4207,7 +4382,7 @@ This API is supported since API version 8 and is deprecated since API version 9.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| char | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
+| ch | string | Yes   | Input character. If the input is a string, only the type of the first character is checked.|
 
 **Return value**
 

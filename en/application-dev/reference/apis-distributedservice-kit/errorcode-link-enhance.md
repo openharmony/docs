@@ -1,5 +1,10 @@
 # Link Enhancement Error Codes
-
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedSched-->
+<!--Owner: @wangJE-->
+<!--Designer: @lee_jet520-->
+<!--Tester: @Ytt-test-->
+<!--Adviser: @w_Machine_cc-->
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -34,7 +39,7 @@ This error code is reported if the corresponding service on the server is not st
 
 **Possible Causes**
 
-The corresponding service on the server is not started.
+This error code is reported if the corresponding service on the server is not started.
 
 **Solution**
 
@@ -120,13 +125,13 @@ Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified
 
 **Description**
 
-This error code is reported if a parameter is invalid.
+Parameter error.
 
 **Possible Causes**
 
 1. A mandatory parameter is not passed.
 
-2. A parameter type is incorrect.
+2. The parameter type is incorrect.
 
 3. The number of parameters is incorrect.
 
@@ -138,7 +143,7 @@ Check whether mandatory parameters are passed and whether their types are correc
 
 ## 32390300 Internal Error
 
-**Error Message**
+**Message**
 
 Internal error.
 

@@ -1,5 +1,12 @@
 # Character Processing
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--Designer: @sunyaozu-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## Use Cases
 
 Character rules vary greatly in different languages, and it is usually difficult to extract expected information from the corresponding text. Character processing makes it possible to process text with similar logic under different language rules.
@@ -22,13 +29,13 @@ You can implement these functions by using APIs of the Unicode class. For exampl
 2. Obtain the character attribute.
 
    ```ts
-   let isDigit: boolean = i18n.Unicode.isDigit(char: string);
+   let isDigit: boolean = i18n.Unicode.isDigit(ch: string);
    ```
 
 3. Obtain the character type. The following code snippet uses the common type as an example.
 
    ```ts
-   let unicodeType: string = i18n.Unicode.getType(char: string);
+   let unicodeType: string = i18n.Unicode.getType(ch: string);
    ```
 
 **Development Example**
@@ -36,7 +43,7 @@ You can implement these functions by using APIs of the Unicode class. For exampl
 // Import the i18n module.
 import { i18n } from '@kit.LocalizationKit';
 
-// Check whether the input character is a digit.
+// Check whether a character is a digit.
 let isDigit: boolean = i18n.Unicode.isDigit('1'); // isDigit = true
 
 // Check whether a character is of the RTL language.
@@ -81,17 +88,17 @@ import { i18n } from '@kit.LocalizationKit';
 
 // Transliterate the text into the Latn format.
 let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn');
-let text: string = '中国'
+let text: string = 'China'
 let translatedText: string = transliterator.transform(text); // translatedText = 'zhōng guó'
 
 // Chinese transliteration and tone removal
 let toneLessTransliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
-translatedText = toneLessTransliterator.transform ('中国'); // translatedText ='zhong guo'
+translatedText = toneLessTransliterator.transform ('中国') // translatedText ='zhong guo'
 
 // Chinese surname pronunciation
 let nameTransliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Han-Latin/Names');
-translatedText = nameTransliterator.transform('单老师'); // translatedText = 'shàn lǎo shī'
-translatedText = nameTransliterator.transform('长孙无忌'); // translatedText = 'zhǎng sūn wú jì'
+translatedText = nameTransliterator.transform ('单老师') // translatedText = 'shàn lǎo shī'
+translatedText = nameTransliterator.transform ('长孙无忌') // translatedText = 'zhǎng sūn wú jì'
 
 // Obtain the list of available transliterator IDs.
 let ids: string[] = i18n.Transliterator.getAvailableIDs(); // ids = ['ASCII-Latin', 'Accents-Any', ...]
@@ -137,7 +144,7 @@ You can use APIs of the [BreakIterator](../reference/apis-localization-kit/js-ap
    import { i18n } from '@kit.LocalizationKit';
    ```
 
-2. Create a **BreakIterator** object to obtain line break points of the text for the specified locale. The object calculates the line break points in the text according to the rules of the specified locale.
+2. Create a **BreakIterator** object to obtain line break points. Pass a valid locale to create a **BreakIterator** object. This object calculates the positions of line breaks based on the rules of the specified locale.
 
    ```ts
    let iterator: i18n.BreakIterator = i18n.getLineInstance(locale: string);
@@ -184,35 +191,34 @@ let breakText: string = iterator.getLineBreakText(); // breakText = 'Apple is my
 
 ### File Path Mirroring
 
-File path mirroring means to localize file paths for an RTL language, so as to achieve file path mirroring effect in that language. You can implement this function by using the [getUnicodeWrappedFilePath](../reference/apis-localization-kit/js-apis-i18n.md#getunicodewrappedfilepath18) API of the **I18NUtil** class. The development procedure is as follows:
+File path mirroring means to localize file paths for an RTL language, so as to achieve file path mirroring effect in that language. You can implement this function by using the [getUnicodeWrappedFilePath](../reference/apis-localization-kit/js-apis-i18n.md#getunicodewrappedfilepath20) API of the **I18NUtil** class. The development procedure is as follows:
 
 1. Import the **i18n** module.
    ```ts
-   import { i18n, intl } from '@kit.LocalizationKit';
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. Perform file path mirroring.
    ```ts
-   let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale);
+   let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: Intl.Locale);
    ```
 
 
 **Development Example**
 ```ts
 // Import the i18n module.
-import { BusinessError } from '@kit.BasicServicesKit';
-import { i18n, intl } from '@kit.LocalizationKit';
+import { i18n } from '@kit.LocalizationKit';
 
 try {
   // Perform file path mirroring if mirrorPath is passed.
   let path: string = 'data/out/tmp';
   let delimiter: string = '/';
-  let locale: intl.Locale = new intl.Locale('ar');
+  let locale: Intl.Locale = new Intl.Locale('ar');
   // mirrorPath = 'tmp/out/data/'
   let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale);
 
   // Skip file path mirroring if unMirrorPath is passed.
-  let localeZh: intl.Locale = new intl.Locale('zh');
+  let localeZh: Intl.Locale = new Intl.Locale('zh');
   // unMirrorPath = '/data/out/tmp'
   let unMirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, localeZh);
 } catch (error) {

@@ -1,27 +1,62 @@
-# Setting User Preferences (For System Applications Only)
+# User Preferences
+
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--Designer: @sunyaozu-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ## Use Cases
 
-In addition to system locales and application preferred languages, the system supports setting of user preferences. Currently, the system supports two user preferences: whether to use local digits and whether to use the 12/24-hour format. User preference settings are saved to system locales and application preferred languages as part of the internationalization feature.
+In addition to system locales and preferred languages, the system also supports user preference settings. Currently, it offers two such preferences: whether to use local digits and whether to adopt the 12/24-hour time format. User preference settings are saved to system locales and application preferred languages as part of the internationalization feature.
 
 ## How to Develop
 
-For details about how to use the APIs, see [setUsingLocalDigit](../reference/apis-localization-kit/js-apis-i18n-sys.md#setusinglocaldigit9) and [set24HourClock](../reference/apis-localization-kit/js-apis-i18n-sys.md#set24hourclock9).
-
+For details about how to use related APIs, see [System](../reference/apis-localization-kit/js-apis-i18n.md#system9).
 
 1. Import the **intl** module.
    ```ts
-   import { i18n, intl } from '@kit.LocalizationKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
+   import { i18n } from '@kit.LocalizationKit';
+   import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
    ```
 
-2. Obtain the preferred language of an application.
+2. Obtain user preferences.
    ```ts
-   // Obtain the preferred language of an application.
-   let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage();
+   // Check whether use of local digits is enabled.
+   let usingLocalDigit: boolean = i18n.System.getUsingLocalDigit();
+
+   // Check whether use of the 24-hour time format is enabled.
+   let is24HourClock: boolean = i18n.System.is24HourClock();
+
+   // Subscribe to COMMON_EVENT_TIME_CHANGED events to detect system time format changes.
+   let subscriber: commonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
+   let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+     events: [commonEventManager.Support.COMMON_EVENT_TIME_CHANGED]
+   };
+   // Create a subscriber.
+   commonEventManager.createSubscriber(subscribeInfo)
+     .then((commonEventSubscriber: commonEventManager.CommonEventSubscriber) => {
+       console.info("CreateSubscriber");
+       subscriber = commonEventSubscriber;
+       commonEventManager.subscribe(subscriber, (err, data) => {
+         if (err) {
+           console.error(`Failed to subscribe common event. error code: ${err.code}, message: ${err.message}.`);
+           return;
+         }
+         // Distinguish between system time and system time format changes.
+         if (data.data != undefined && data.data == '24HourChange') {
+            console.info("The subscribed event has occurred."); // The system time format has changed.
+          }
+       })
+     })
+     .catch((err: BusinessError) => {
+       console.error(`CreateSubscriber failed, code is ${err.code}, message is ${err.message}`);
+     });
    ```
 
-3. Enable display of local digits on the application page.
+<!--Del-->
+3. Enable use of local digits.
    ```ts
    try {
      i18n.System.setUsingLocalDigit(true); // Enable use of local digits.
@@ -29,13 +64,9 @@ For details about how to use the APIs, see [setUsingLocalDigit](../reference/api
      let err: BusinessError = error as BusinessError;
      console.error(`call System.setUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
    }
-   let date: Date = new Date(2023, 9, 25); // The date is 2023-10-25.
-   let appPreferredLanguage: string = 'ar';
-   let dateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(appPreferredLanguage);
-   let formattedTime: string = dateTimeFmt.format(date); // formattedTime = '٢٠٢٣/١٠/٢٥' (represented by localized numbers in Arabic)
    ```
 
-4. Set the 24-hour clock format.
+4. Enable use of the 24-hour time format.
    ```ts
    try {
      i18n.System.set24HourClock (true); // Set the system time to the 24-hour clock.
@@ -43,8 +74,5 @@ For details about how to use the APIs, see [setUsingLocalDigit](../reference/api
      let err: BusinessError = error as BusinessError;
      console.error(`call System.set24HourClock failed, error code: ${err.code}, message: ${err.message}.`);
    }
-   let date: Date = new Date(2023, 9, 25, 16, 48, 0); // The date and time is 2023-10-25 16:48:00.
-   let appPreferredLanguage: string = 'zh';
-   let dateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(appPreferredLanguage, { timeStyle: 'medium' });
-   let formattedTime: string = dateTimeFmt.format(date); // formattedTime = '16:48:00'
    ```
+<!--DelEnd-->
