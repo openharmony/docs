@@ -38,7 +38,7 @@ import { common } from '@kit.AbilityKit';
 
 ## DriverExtensionContext.updateDriverState
 
-updateDriverState(): void;
+updateDriverState(): void
 
 驱动状态上报。预留接口，暂不提供具体功能。
 

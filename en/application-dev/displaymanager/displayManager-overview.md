@@ -1,4 +1,10 @@
 # Display Management Overview
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 Display management is centered around the oversight of a device's displays, which includes physical, virtual, and foldable displays. It involves managing their properties and serving as a broadcaster to relay monitored information to services that have subscribed to display information.
 
@@ -13,4 +19,4 @@ For details about how to obtain display properties and listen for status changes
 ## Constraints
 
 - The Display and Screen APIs must be used in the system that supports the SystemCapability.Window.SessionManager capability. For details, see <!--RP1-->[SystemCapability](../reference/syscap.md).<!--RP1End-->
-- In multi-display implementation, the Screen API is available only for system applications only, and certain APIs require the ohos.permission.CAPTURE_SCREEN permission.
+- In multi-display implementation, the Screen API is available only for system applications, and certain APIs require the ohos.permission.CAPTURE_SCREEN permission.

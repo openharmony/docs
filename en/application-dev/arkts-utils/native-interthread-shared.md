@@ -1,8 +1,14 @@
 # C++ Inter-Thread Data Sharing
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
-When an application performs multithreaded computations at the C++ layer, ArkTS APIs needs to be executed within the ArkTS environment. To prevent the non-UI main thread from waiting for the API call results within the UI main thread, you need to create an ArkTS execution environment on these C++ threads and directly call the APIs. In addition, you may need to share and manipulate Sendable objects across C++ threads.
+When performing multithreaded computations at the C++ layer, an ArkTS execution environment must be created for each C++ thread to enable direct API calls. This prevents non-UI main threads from waiting for API results from the UI main thread when executing callbacks. Additionally, Sendable objects must be shared and manipulated across C++ threads.
 
-To support this scenario, you must create the capabilities to call ArkTS APIs on C++ threads, and share and manipulate Sendable objects across threads.
+To support these scenarios, C++ threads need the capability to create and invoke ArkTS, as well as share and manipulate Sendable objects across threads.
 
 
 ## Calling ArkTS APIs on C++ Threads
@@ -22,7 +28,7 @@ export class SendableObjTest {
   }
 }
 ```
-<!-- @[arkts_define_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/ets/pages/SendableObjTest.ets) -->
+<!-- @[arkts_define_obj](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/ets/pages/SendableObjTest.ets) -->
 
 
 Native implementation to load ArkTS modules
@@ -73,13 +79,13 @@ static void *CreateArkRuntimeFunc(void *arg)
     return nullptr;
 }
 ```
-<!-- @[native_load_arkts_module](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[native_load_arkts_module](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/cpp/napi_init.cpp) -->
 
-The process consists of four steps: creating an execution environment, loading modules, searching for and calling functions (or directly creating Sendable objects through Node-API), and finally destroying the execution environment. For details about how to load modules, see [Loading a Module Using Node-API](../napi/use-napi-load-module-with-info.md). For details about how to search for and call functions and more Node-API capabilities, see [Node-API](../reference/native-lib/napi.md#node-api).
+The process consists of four steps: creating an execution environment, loading modules, searching for and calling functions (or directly creating Sendable objects through Node-API), and finally destroying the execution environment. For details about how to load modules, see [Loading a Module Using Node-API](../napi/use-napi-load-module-with-info.md). For details about how to search for and call functions and more Node-API capabilities, see [Node-API](../reference/native-lib/napi.md).
 
 ## Manipulating Sendable Objects Across C++ Threads
 
-After implementing the capabilities to call ArkTS APIs from C++, serialize and deserialize objects for cross-thread transfer. The **napi_value** variable is not thread-safe and therefore cannot be directly shared across threads.
+After implementing the capabilities to call ArkTS APIs from C++, serialize and deserialize objects for cross-thread transfer. **napi_value** is not thread-safe and therefore cannot be directly operated or shared across threads.
 
 The following code example demonstrates how to serialize and deserialize objects. Since Sendable objects are passed by reference, serialization does not create an additional copy of the data but directly passes the object reference to the deserializing thread. This makes serialization and deserialization more efficient than non-Sendable objects.
 
@@ -94,7 +100,7 @@ export class SendableObjTest {
   }
 }
 ```
-<!-- @[arkts_define_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/ets/pages/SendableObjTest.ets) -->
+<!-- @[arkts_define_obj](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/ets/pages/SendableObjTest.ets) -->
 
 Native implementation for serialization and deserialization of Sendable objects
 
@@ -207,14 +213,14 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void) {
     napi_module_register(&demoModule);
 }
 ```
-<!-- @[native_deserialize_sendable](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/cpp/napi_init.cpp) -->
+<!-- @[native_deserialize_sendable](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/cpp/napi_init.cpp) -->
 
 
 ```
 // Index.d.ts
 export const testSendSendable: () => void;
 ```
-<!-- @[native_deserialize_sendable](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/cpp/types/libentry/Index.d.ts) -->
+<!-- @[native_deserialize_sendable](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 UI main thread invocation
 
@@ -248,16 +254,14 @@ struct Index {
   }
 }
 ```
-<!-- @[main_thread_init_call](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[main_thread_init_call](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/NativeInterthreadShared/entry/src/main/ets/pages/Index.ets) -->
 
 The logic implementation of the entire process is as follows:
 
-1. In the UI main thread where the **main** function resides, create an ArkTS runtime environment and initiate a C++child thread to create a Sendable object and store the object in **result**. Serialize the Sendable object referenced by **result** into global serialization data **serializationData**.
+1. In the UI main thread, create an ArkTS runtime environment and initiate a C++child thread to create a Sendable object and store the object in **result**. Serialize the Sendable object referenced by **result** into global serialization data **serializationData**.
 
 2. After the preceding steps are complete, initiate another C++ child thread. In this new thread, create the ArkTS runtime environment. Then, deserialize the Sendable object created in the UI main thread from **serializationData** using the deserialization interface and store it in **result**. This enables the transfer of Sendable objects across C++ thread. After deserialization, the deserialization data must be destroyed to prevent memory leaks. In this case, both the UI main thread and the child thread hold the Sendable object, which can be manipulated via Node-API, such as reading/writing or passing it to the ArkTS layer.
 
    > **NOTE**
    >
    > The object being manipulated must comply with the rules of Sendable objects. For details, see [Usage Rules and Constraints for Sendable](sendable-constraints.md).
-
-<!--no_check-->

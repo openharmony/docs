@@ -1,5 +1,12 @@
 # native_audio_channel_layout.h
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zhanghongran-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 在录制和播放时的扬声器布局。
@@ -20,9 +27,9 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_AudioChannelSet](#oh_audiochannelset) | OH_AudioChannelSet | 音频声道集合。<br>将每一个声道映射为int64的变量。 |
-| [OH_AmbAttributeSet](#oh_ambattributeset) | OH_AmbAttributeSet | 高保真立体声混响设置。<br>用int64整数来表示高保真立体声混响属性。 |
-| [OH_AudioChannelLayout](#oh_audiochannellayout) | OH_AudioChannelLayout | 音频声道布局。<br>用int64整数来表示在录制或播放时扬声器的外观和顺序。 |
+| [OH_AudioChannelSet](#oh_audiochannelset) | OH_AudioChannelSet | 音频声道集合。<br> 将每一个声道映射为int64的变量。 |
+| [OH_AmbAttributeSet](#oh_ambattributeset) | OH_AmbAttributeSet | 高保真立体声混响设置。<br> 用int64整数来表示高保真立体声混响属性。 |
+| [OH_AudioChannelLayout](#oh_audiochannellayout) | OH_AudioChannelLayout | 音频声道布局。<br> 用int64整数来表示在录制或播放时扬声器的外观和顺序。 |
 
 ## 枚举类型说明
 
@@ -34,7 +41,7 @@ enum OH_AudioChannelSet
 
 **描述**
 
-音频声道集合。<br>将每一个声道映射为int64的变量。
+音频声道集合。<br> 将每一个声道映射为int64的变量。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -81,7 +88,7 @@ enum OH_AmbAttributeSet
 
 **描述**
 
-高保真立体声混响设置。<br>用int64整数来表示高保真立体声混响属性。
+高保真立体声混响设置。<br> 用int64整数来表示高保真立体声混响属性。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -106,7 +113,7 @@ enum OH_AudioChannelLayout
 
 **描述**
 
-音频声道布局。<br>用int64整数来表示在录制或播放时扬声器的外观和顺序。
+音频声道布局。<br> 用int64整数来表示在录制或播放时扬声器的外观和顺序。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 

@@ -174,7 +174,7 @@ setTargetBundleName(targetNames: Array\<string>): Promise\<void>;
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -678,7 +678,7 @@ injectGesture(gesturePath: GesturePath): Promise\<void>;
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1049,7 +1049,7 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1265,7 +1265,7 @@ rootElement.findElement('content', condition).then((data: AccessibilityElement[]
 
 findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
-根据节点内容查询所有节点元素。
+根据节点内容查询所有节点元素。使用callback异步回调。
 
 > **说明：**
 >

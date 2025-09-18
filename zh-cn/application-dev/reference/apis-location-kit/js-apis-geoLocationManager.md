@@ -2927,3 +2927,56 @@ isBeaconFenceSupported(): boolean;
       console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
+
+## geoLocationManager.isWlanBssidMatched<sup>21+</sup>
+
+isWlanBssidMatched(wlanBssidArray: Array&lt;string&gt;, rssiThreshold: number, needStartScan: boolean): Promise&lt;boolean&gt;
+
+判断指定的BSSID是否存在于最新的WLAN扫描结果里。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**需要权限**：ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | wlanBssidArray | Array&lt;string&gt; | 是 | 请求匹配的BSSID列表。单个字符串的长度不超过64，数组的长度不超过1000。 |
+  | rssiThreshold | number | 是 | RSSI阈值。只匹配RSSI大于此阈值的BSSID，取值范围为-10000至10000（单位：dBm）。 |
+  | needStartScan | boolean | 是 | 是否需要发起WLAN扫描。需要发起WLAN扫描设置为true。不需要发起WLAN扫描，使用最近一次WLAN扫描结果进行匹配设置为false。 |
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | 表示匹配是否成功。当扫描结果中存在wlanBssidArray中的任意BSSID，且其RSSI值高于rssiThreshold时，返回true，否则返回false。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.isWlanBssidMatched} due to limited device capabilities.          |
+|3301100 | The location switch is off.                                           |
+|3301800 | Failed to start Wifi scanning.                                        |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  try {
+    let wlanBssidArray: Array<string> = ["02:1b:32:23:ea:91", "02:1b:32:23:ea:93"];
+    let rssiThreshold: number = -70;
+    let needStartScan: boolean = true;
+    geoLocationManager.isWlanBssidMatched(wlanBssidArray, rssiThreshold, needStartScan).then((res) => {
+          console.info("Wlan Bssid Matched Result:" + res);
+    })
+  } catch(error) {
+    console.error("isWlanBssidMatched: errCode" + error.code + ", errMessage" + error.message);
+  }
+  ```

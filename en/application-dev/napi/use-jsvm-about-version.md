@@ -1,8 +1,14 @@
 # Obtaining the JSVM-API Version Using JSVM-API
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## Introduction
 
-This topic walks you through on how to use JSVM-API to obtain the API version and VM information.
+Obtains the JSVM API version.
 
 ## Available APIs
 
@@ -70,3 +76,14 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"getVMInfo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
+
+Expected result:
+```
+JSVM GetVersion success:9
+JSVM API apiVersion: 1
+JSVM API engine: v8
+JSVM API version: 13.2.152.41
+JSVM API cachedDataVersionTag: 0x81ff9402
+```
+
+<!-- @[oh_jsvm_get_version_and_vm_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getversion/src/main/cpp/hello.cpp) -->

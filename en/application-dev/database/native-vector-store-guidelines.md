@@ -1,4 +1,10 @@
 # Persisting Vector Store Data (C/C++)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @cuile44; @baijidong-->
+<!--Designer: @houpengtao1-->
+<!--Tester: @logic42-->
+<!--Adviser: @ge-yafang-->
 
 
 ## When to Use
@@ -13,7 +19,7 @@ Since API version 18, data in vector stores can be persisted.
 
 ## Constraints
 
-- By default, the Write Ahead Log (WAL) and the **FULL** flushing mode are used.
+- The default log mode is Write Ahead Log ([WAL](data-terminology.md#write-ahead-log-wal)), and the default flush mode is [FULL](data-terminology.md#full).
 
 - A vector store supports a maximum of four read connections and one write connection at a time by default. A thread can perform the read operation when acquiring an idle read connection. If there is no idle read connection, a new read connection will be created.
 
@@ -23,33 +29,37 @@ Since API version 18, data in vector stores can be persisted.
 
 - To ensure successful data access, limit the size of a data record to 2 MB. Data records larger than this may be inserted correctly but fail to read.
 
+## Specifications
+
+For details, see [Specifications](data-persistence-by-vector-store.md#specifications).
+
 ## Available APIs
 
-For details about the APIs, see [RDB](../reference/apis-arkdata/_r_d_b.md).
+For details, see [RDB](../reference/apis-arkdata/capi-rdb.md).
 
 | API| Description|
 | -------- | -------- |
 | int OH_Rdb_SetDbType(OH_Rdb_ConfigV2 *config, int dbType) | Sets the database type.|
 | OH_Rdb_Store *OH_Rdb_CreateOrOpen(const OH_Rdb_ConfigV2 *config, int *errCode) | Obtains an **OH_Rdb_Store** instance (**dbType** is set to **RDB_CAYLEY** by using **OH_Rdb_SetDbType**) for vector operations.|
-| int OH_Rdb_ExecuteV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values *args, OH_Data_Value **result) | Executes SQL statements with a return value to perform write operations. Parameter binding is supported. The number of operators (such as =, >, and <) in the SQL statements cannot exceed 1000.|
+| int OH_Rdb_ExecuteV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values *args, OH_Data_Value **result) | Executes SQL statements with a return value to perform write operations. Parameter binding is supported. The number of relational operators (such as =, >, and <) in the SQL statements cannot exceed 1000.|
 | int OH_Rdb_ExecuteByTrxId(OH_Rdb_Store *store, int64_t trxId, const char *sql) | Executes the SQL statement that does not return a value with the specified transaction ID. If the transaction ID is **0**, no transaction is used.|
 | OH_Cursor *OH_Rdb_ExecuteQuery(OH_Rdb_Store *store, const char *sql) | Queries data in a store using the specified SQL statements.|
-| OH_Cursor *OH_Rdb_ExecuteQueryV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values *args) | Queries data in a store using the specified SQL statements. Parameter binding is supported. The number of operators (such as =, >, and <) in the SQL statements cannot exceed 1000.|
+| OH_Cursor *OH_Rdb_ExecuteQueryV2(OH_Rdb_Store *store, const char *sql, const OH_Data_Values *args) | Queries data in a store using the specified SQL statements. Parameter binding is supported. The number of relational operators (such as =, >, and <) in the SQL statements cannot exceed 1000.|
 | int OH_Rdb_DeleteStoreV2(const OH_Rdb_ConfigV2 *config) | Deletes a vector store.|
 | int OH_Cursor_GetFloatVectorCount(OH_Cursor *cursor, int32_t columnIndex, size_t *length) | Obtains the length of the floating-point array in the specified column of the current row.|
 | int OH_Cursor_GetFloatVector(OH_Cursor *cursor, int32_t columnIndex, float *val, size_t inLen, size_t *outLen) | Obtains the value in the specified column of the current row as a floating-point array. The value of **inLen** cannot be less than the actual array size.|
 
 ## How to Develop
 
-**Adding Dynamic Link Libraries**
+**Adding dynamic link libraries**
 
-Add the following libraries to **CMakeLists.txt**.
+Add the following library to **CMakeLists.txt**.
 
 ```txt
 libnative_rdb_ndk.z.so
 ```
 
-**Including Header Files**
+**Including header files**
 
 ```c++
 #include <database/data/oh_data_values.h>
@@ -120,7 +130,7 @@ libnative_rdb_ndk.z.so
 
    ```c
    // Modify data without parameter binding.
-   OH_Rdb_ExecuteV2(store_, "update test set data1 = '[5.1, 6.1] where id = 0;", nullptr, nullptr);
+   OH_Rdb_ExecuteV2(store_, "update test set data1 = '[5.1, 6.1]' where id = 0;", nullptr, nullptr);
 
    // Modify data with parameter binding.
    float test1[2] = { 5.5, 6.6 };
@@ -135,7 +145,7 @@ libnative_rdb_ndk.z.so
 
    // Delete data with parameter binding.
    OH_Data_Values *values2 = OH_Values_Create();
-   OH_Values_PutInt(values2, 01);
+   OH_Values_PutInt(values2, 1);
    OH_Rdb_ExecuteV2(store_, "delete from test where id = ?", values2, nullptr);
    OH_Values_Destroy(values2);
    ```
@@ -206,7 +216,7 @@ libnative_rdb_ndk.z.so
 
      DROP INDEX table_name.index_name;
      ```
-   - Extended syntax:
+   - The extended syntax is as follows:
 
      ```sql
      CREATE INDEX [Basic syntax] [WITH(parameter = value [, ...])];
@@ -225,7 +235,7 @@ libnative_rdb_ndk.z.so
    | L2     | <->      | Euclidean distance.|
    | COSINE | <=>      | Cosine distance.|
 
-   **Table 3** parameter (extended syntax parameters)
+   **Table 3** Extended syntax parameter (parameter)
 
    | Name  | Value Range| Description  |
    | ------ | -------- | ---------- |
@@ -282,7 +292,7 @@ libnative_rdb_ndk.z.so
    | hour | 60 * 60 |
    | minute | 60 |
 
-   For example, if **ttl** is set to **3 months**, the value will be converted into 7,776,000 seconds (3 x (30 x 24 x 60 x 60)).
+   For example, if **ttl** is set to **3 months**, the value will be converted into 7,776,000 seconds (3 x (30 * 24 * 60 * 60)).
 
    The sample code is as follows:
 
@@ -291,9 +301,28 @@ libnative_rdb_ndk.z.so
    OH_Rdb_ExecuteV2(store_, "CREATE TABLE test2(rec_time integer not null) WITH (time_col = 'rec_time', interval = '5 minute');", nullptr, nullptr);
    ```
 
-9. Delete the database. The sample code is as follows:
+9. Configure data compression. This feature is configured when a table is created to compress column data of the text type.
+
+   Data compression is supported since API version 20.
+
+   The syntax is as follows:
+
+   ```sql
+   CREATE TABLE table_name(content text [, ...]) [WITH(compress_col = 'content')];
+   ```
+
+   In this syntax, **compress_col** is mandatory, and value is the column name of the text data. This parameter can be configured together with the data aging policy.
+
+   The sample code is as follows:
 
    ```c
-   OH_Rdb_CloseStore(store_);
-   OH_Rdb_DeleteStoreV2(config);
+   // Data compression and data aging are configured for the content column.
+   OH_Rdb_ExecuteV2(store_, "CREATE TABLE IF NOT EXISTS test3 (time integer not null, content text) with (time_col = 'time', interval = '5 minute', compress_col = 'content');", nullptr, nullptr);
    ```
+
+10. Delete the vector store. The sample code is as follows:
+
+    ```c
+    OH_Rdb_CloseStore(store_);
+    OH_Rdb_DeleteStoreV2(config);
+    ```

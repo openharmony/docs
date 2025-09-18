@@ -90,7 +90,7 @@ struct Index {
   }
 
   @Builder
-  customPickerBuilder(): void {
+  customPickerBuilder() {
     Image(this.pickerImage)
       .width('100%')
       .height('100%')

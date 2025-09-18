@@ -4,7 +4,7 @@
 <!--Owner: @wang-yanhan-->
 <!--Designer: @qianlf-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 Web组件能够实现在不同窗口的组件树上进行挂载或移除操作，这一能力使得开发者可以预先创建Web组件，从而实现性能优化。例如，Tab页为Web组件时，页面预先渲染，便于即时显示。
 
@@ -79,7 +79,7 @@ export class myNodeController extends NodeController {
   // 必须要重写的方法，用于构建节点树、返回节点挂载在对应NodeContainer中
   // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新
   makeNode(uiContext: UIContext): FrameNode | null {
-    console.info(" uicontext is undefined : "+ (uiContext === undefined));
+    console.info(" uiContext is undefined : "+ (uiContext === undefined));
     if (this.rootNode != null) {
       // 返回FrameNode节点
       return this.rootNode.getFrameNode();
@@ -220,7 +220,7 @@ export class myNodeController extends NodeController {
   // 必须要重写的方法，用于构建节点树、返回节点挂载在对应NodeContainer中
   // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新
   makeNode(uiContext: UIContext): FrameNode | null {
-    console.info(" uicontext is undefined : "+ (uiContext === undefined));
+    console.info(" uiContext is undefined : "+ (uiContext === undefined));
     if (this.rootNode != null) {
       // 返回FrameNode节点
       return this.rootNode.getFrameNode();
@@ -400,7 +400,7 @@ export class myNodeController extends NodeController {
   // 必须要重写的方法，用于构建节点树、返回节点挂载在对应NodeContainer中
   // 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新
   makeNode(uiContext: UIContext): FrameNode | null {
-    console.info(" uicontext is undefined : "+ (uiContext === undefined));
+    console.info(" uiContext is undefined : "+ (uiContext === undefined));
     if (this.rootNode != null) {
       // 返回FrameNode节点
       return this.rootNode.getFrameNode();

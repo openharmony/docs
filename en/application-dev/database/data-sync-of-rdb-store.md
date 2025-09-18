@@ -1,4 +1,10 @@
 # Cross-Device Sync of RDB Stores (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 
 ## When to Use
@@ -10,14 +16,13 @@ You can sync the application data in a local RDB store on a device to other devi
 
 OpenHarmony supports sync of the relational data of an application across multiple devices.
 
-- If a table created for an application in the database is set as a distributed table, when data is queried from the RDB store of a remote device, the distributed table name of the remote device can be obtained based on the local table name.
-
-- Data can be synced between devices in either of the following ways:<br>- Pushing data from a local device to a remote device.<br>- Pulling data from a remote device to a local device.
-
+- Distributed table: a database table that supports data sync across multiple devices in the network cluster. Data from other devices is synced to the local device and stored in the table name associated with the device ID.
+- Data sync: Changes to distributed tables in the database on a device are synced to other devices in the network cluster. Data can be synced between devices in either of the following ways: pushing data from a local device to a remote device and pulling data from a remote device to a local device.
+- Data change notification: When data changes on other devices in the network cluster are synced to the current device, the registered callback function is executed.
 
 ## Working Principles
 
-After completing device discovery and authentication, the underlying communication component notifies the application that the device goes online. The **DatamgrService** then establishes an encrypted transmission channel to synchronize data between the two devices.
+After completing device discovery and authentication, the underlying communication component notifies the application that the device goes online. The **DatamgrService** then establishes an encrypted transmission channel to sync data between the two devices.
 
 
 ### Cross-Device Data Sync Mechanism
@@ -77,121 +82,181 @@ The following table lists the APIs for cross-device data sync of RDB stores. Mos
    1. Declare the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
    2. Display a dialog box to ask for authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
 
-3. Create an RDB store and set a table for distributed sync.
+3. Create an RDB store and a data table, and set the data table that requires cross-device data sync as a distributed table.
    
    ```ts
    import { UIAbility } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { window } from '@kit.ArkUI';
-
-   class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage: window.WindowStage) {
-       const STORE_CONFIG: relationalStore.StoreConfig = {
-         name: "RdbTest.db",
-         securityLevel: relationalStore.SecurityLevel.S3
-       };
-          
-       relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, store: relationalStore.RdbStore) => {
-         store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
-           // Set the table for distributed sync.
-           store.setDistributedTables(['EMPLOYEE']);
-           // Perform related operations.
-         })
-       })
-     }
-   }
-   ```
-
-4. Synchronize data across devices. After **sync()** is called to trigger a sync, data is synced from the local device to all other devices on the network.
-   
-   ```ts
-   // Construct the predicate object for synchronizing the distributed table.
-   let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-   // Call sync() to synchronize data.
-   if(store != undefined)
-   {
-     (store as relationalStore.RdbStore).sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, (err, result) => {
-       // Check whether data sync is successful.
-       if (err) {
-         console.error(`Failed to sync data. Code:${err.code},message:${err.message}`);
-         return;
-       }
-       console.info('Succeeded in syncing data.');
-       for (let i = 0; i < result.length; i++) {
-         console.info(`device:${result[i][0]},status:${result[i][1]}`);
-       }
-     })
-   }
-   ```
-
-5. Subscribe to changes in the distributed data. The data sync triggers the **observer** callback registered in **on()**. The input parameter of the callback is the ID of the device whose data changes.
-   
-   ```ts
-   let devices: string | undefined = undefined;
-   try {
-     // Register an observer to listen for the changes of the distributed data.
-     // When data in the RDB store changes, the registered callback will be invoked to return the data changes.
-     if(store != undefined) {
-       (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver)=>{
-         if(devices != undefined){
-           for (let i = 0; i < devices.length; i++) {
-             console.info(`The data of device:${devices[i]} has been changed.`);
-           }
-         }
-       });
-     }
-   } catch (err) {
-     console.error('Failed to register observer. Code:${err.code},message:${err.message}');
-   }
-   // You can unsubscribe from the data changes if required.
-   try {
-     if(store != undefined) {
-       (store as relationalStore.RdbStore).off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, (storeObserver)=>{
-       });
-     }
-   } catch (err) {
-     console.error('Failed to register observer. Code:${err.code},message:${err.message}');
-   }
-   ```
-
-6. Query data across devices. If data sync is not complete or triggered, an application can call **remoteQuery()** to query data from a remote device.
-
-   > **NOTE**
-   >
-   > The value of **deviceIds** can be obtained by using [deviceManager.getAvailableDeviceListSync](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync) method.
-
-   
-   ```ts
-   // Obtain device IDs.
    import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
 
-   let dmInstance: distributedDeviceManager.DeviceManager;
-   let deviceId: string | undefined = undefined ;
+   const STORE_CONFIG: relationalStore.StoreConfig = {
+     name: 'RdbTest.db',
+     securityLevel: relationalStore.SecurityLevel.S3
+   };
 
-   try {
-     dmInstance = distributedDeviceManager.createDeviceManager("com.example.appdatamgrverify");
-     let devices = dmInstance.getAvailableDeviceListSync();
+   export default class EntryAbility extends UIAbility {
+     async onWindowStageCreate(windowStage: window.WindowStage): Promise<void> {
+       let store: relationalStore.RdbStore | null = null;
 
-     deviceId = devices[0].networkId;
+       store = await relationalStore.getRdbStore(this.context, STORE_CONFIG);
+       await store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)');
+       // Set the created table as a distributed table.
+       await store.setDistributedTables(['EMPLOYEE']);
+       // Perform related operations.
+     }
+   }
+   ```
 
-     // Construct a predicate object for querying the distributed table.
-     let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-     // Query data from the specified remote device and return the query result.
-     if(store != undefined && deviceId != undefined) {
-       (store as relationalStore.RdbStore).remoteQuery(deviceId, 'EMPLOYEE', predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'CODES'],
-         (err: BusinessError, resultSet: relationalStore.ResultSet) => {
-           if (err) {
-             console.error(`Failed to remoteQuery data. Code:${err.code},message:${err.message}`);
+4. Subscribe to data changes of other devices in the network cluster.
+   1. Call [on('dataChange')](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#ondatachange) to listen for data changes of other devices. This API is called when data changes and is synced to the current device. The input parameter is the list of device IDs whose data changes.
+   2. Obtain the distributed table name corresponding to the device based on the device ID and query data in the distributed table.
+
+   ```ts
+   if (store) {
+     try {
+       // Register an observer to listen for the changes of the distributed data.
+       // When data in the RDB store changes, the registered callback will be invoked to return the data changes.
+       store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, async (devices) => {
+         for (let i = 0; i < devices.length; i++) {
+           let device = devices[i];
+           if (!store) {
              return;
            }
-           console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+           console.info(`The data of device:${device} has been changed.`);
+           // Obtain the distributed table name.
+           const distributedTableName = await store.obtainDistributedTableName(device, 'EMPLOYEE');
+           // Create a query predicate to query data in the distributed table.
+           const predicates = new relationalStore.RdbPredicates(distributedTableName);
+           const resultSet = await store.query(predicates);
+           console.info(`device ${device}, table EMPLOYEE rowCount is: ${resultSet.rowCount}`);
          }
-       )
+       });
+     } catch (err) {
+       console.error(`Failed to register observer. Code:${err.code},message:${err.message}`);
      }
-   } catch (err) {
-     let code = (err as BusinessError).code;
-     let message = (err as BusinessError).message;
-     console.error("createDeviceManager errCode:" + code + ",errMessage:" + message);
+   }
+   ```
+
+5. Sync data changes of the current device to other devices in the network cluster.
+   1. After the data in the distributed table of the current device changes, the [sync](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#sync-1) API of **RdbStore** is called to pass the [SYNC_MODE_PUSH](../reference/apis-arkdata/arkts-apis-data-relationalStore-e.md#syncmode) parameter to push data changes to other devices.
+   2. Use the [inDevices](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbPredicates.md#indevices) method of the predicate to specify the target device for receiving data changes.
+   
+   ```ts
+   if (store) {
+     // Insert new data into the distributed data table of the current device.
+     const ret = store.insertSync('EMPLOYEE', {
+       name: 'sync_me',
+       age: 18,
+       salary: 666
+     });
+     console.info('Insert to distributed table EMPLOYEE, result: ' + ret);
+     // Query the device list in the network cluster.
+     const deviceManager = distributedDeviceManager.createDeviceManager('com.example.appdatamgrverify');
+     const deviceList = deviceManager.getAvailableDeviceListSync();
+     const syncTarget: string[] = [];
+     deviceList.forEach(item => {
+       if (item.networkId) {
+         syncTarget.push(item.networkId);
+       }
+     });
+     if (syncTarget.length === 0) {
+       console.error('no device to sync');
+     } else {
+       // Construct the predicate object for synchronizing the distributed table.
+       const predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+       // Specify devices to be synced.
+       predicates.inDevices(syncTarget);
+       try {
+         // Call the sync API to push the data changes from the current device to other devices in the network cluster.
+         const result = await store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates);
+         console.info('Push data success.');
+         // Obtain the sync result.
+         for (let i = 0; i < result.length; i++) {
+           const deviceId = result[i][0];
+           const syncResult = result[i][1];
+           if (syncResult === 0) {
+             console.info(`device:${deviceId} sync success`);
+           } else {
+             console.error(`device:${deviceId} sync failed, status:${syncResult}`);
+           }
+         }
+       } catch (e) {
+         console.error('Push data failed, code: ' + e.code + ', message: ' + e.message);
+       }
+     }
+   }
+   ```
+
+6. Obtain the data changes of other devices in the network cluster.
+   1. The current device can call the [sync](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#sync-1) API of **RdbStore** and pass the [SYNC_MODE_PULL](../reference/apis-arkdata/arkts-apis-data-relationalStore-e.md#syncmode) parameter to pull data changes from other devices in the network cluster.
+   2. Use the [inDevices](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbPredicates.md#indevices) method of the predicate to specify the target device.
+
+   ```ts
+   if (store) {
+     // Query the device list in the network cluster.
+     const deviceManager = distributedDeviceManager.createDeviceManager('com.example.appdatamgrverify');
+     const deviceList = deviceManager.getAvailableDeviceListSync();
+     const syncTarget: string[] = [];
+     deviceList.forEach(item => {
+       if (item.networkId) {
+         syncTarget.push(item.networkId);
+       }
+     });
+     if (syncTarget.length === 0) {
+       console.error('no device to pull data');
+     } else {
+       // Construct the predicate object for synchronizing the distributed table.
+       const predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+       // Specify devices to be synced.
+       predicates.inDevices(syncTarget);
+       try {
+         // Call the sync API to pull data changes from other devices to the current device.
+         const result = await store.sync(relationalStore.SyncMode.SYNC_MODE_PULL, predicates);
+         console.info('Push data success.');
+         // Obtain the sync result.
+         for (let i = 0; i < result.length; i++) {
+           const deviceId = result[i][0];
+           const syncResult = result[i][1];
+           if (syncResult === 0) {
+             console.info(`device:${deviceId} sync success`);
+           } else {
+             console.error(`device:${deviceId} sync failed, status:${syncResult}`);
+           }
+         }
+       } catch (e) {
+         console.error('Push data failed, code: ' + e.code + ', message: ' + e.message);
+       }
+     }
+   }
+   ```
+
+7. If data sync is not complete or not triggered, use the [remoteQuery](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#remotequery-1) method of **RdbStore** to query the data in the distributed table on a specified device in the network cluster.
+
+   ```ts
+   if (store) {
+     // Query the device list in the network cluster.
+     const deviceManager = distributedDeviceManager.createDeviceManager('com.example.appdatamgrverify');
+     const deviceList = deviceManager.getAvailableDeviceListSync();
+     const devices: string[] = [];
+     deviceList.forEach(item => {
+       if (item.networkId) {
+         devices.push(item.networkId);
+       }
+     });
+     if (devices.length === 0) {
+       console.error('no device to query data');
+     } else {
+       // Construct a predicate object for querying the distributed table.
+       const predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+       try {
+         // Query the distributed table on the specified device in the network cluster.
+         const resultSet = await store.remoteQuery(devices[0], 'EMPLOYEE', predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'CODES']);
+         console.info('Remote query success, row cout: ' + resultSet.rowCount);
+         console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+       } catch (e) {
+         console.error('Remote query failed, code: ' + e.code + ', message: ' + e.message);
+       }
+     }
    }
    ```

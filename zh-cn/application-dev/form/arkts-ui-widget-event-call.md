@@ -1,5 +1,10 @@
 # 卡片拉起应用UIAbility到后台（call事件）
-
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 
 许多应用希望借助卡片的能力，实现和应用在前台时相同的功能。例如音乐卡片，卡片上提供播放、暂停等按钮，点击不同按钮将触发音乐应用的不同功能，进而提高用户的体验。在卡片中使用[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction-1)接口的call能力，能够将卡片提供方应用的指定的UIAbility拉到后台。同时，call能力提供了调用应用指定方法、传递数据的功能，使应用在后台运行时可以通过卡片上的按钮执行不同的功能。
 
@@ -88,7 +93,7 @@
     const CONST_NUMBER_1: number = 1;
     const CONST_NUMBER_2: number = 2;
     
-    // rpc通信返回类型的实现，用于rpc通信数据序列化和反序列化
+    // ipc通信返回类型的实现，用于数据序列化和反序列化
     class MyParcelable implements rpc.Parcelable {
       num: number;
       str: string;

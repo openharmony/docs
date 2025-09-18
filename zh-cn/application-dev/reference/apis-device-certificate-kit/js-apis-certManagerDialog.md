@@ -16,7 +16,7 @@
 ## 导入模块
 
 ```ts
-import certificateManagerDialog from '@ohos.security.certManagerDialog';
+import certificateManagerDialog from '@kit.DeviceCertificateKit';
 ```
 
 ## CertificateDialogPageType

@@ -1,5 +1,12 @@
 # 常用Trace使用指导
 
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 ## 概述
 
 OpenHarmony的DFX子系统提供了为应用框架以及系统底座核心模块的性能打点能力，每一处打点即是一个Trace，其上附带了记录执行时间、运行时格式化数据、进程或线程信息等。开发者可以使用[SmartPerf-Host调试工具](../../device-dev/device-test/smartperf-host.md)对Trace进行解析，在其绘制的泳道图中，对应用运行过程中的性能热点进行分析，得出优化方案。本文旨在介绍OpenHarmony中常用的Trace，解释它们的含义和用途，并阐述如何通过这些Trace来识别潜在的性能问题。同时，我们还将详细介绍Trace的工作原理，帮助读者更好地理解这些Trace及如何实现性能数据的采集和分析。通过本文的阅读，读者将对OpenHarmony中的Trace有一个深入的了解，为应用程序性能优化提供有力支持。
@@ -48,7 +55,7 @@ OpenHarmony的DFX子系统提供了为应用框架以及系统底座核心模块
 
 图形图像子系统中的Render Service，是负责界面内容绘制的部件，处理由各个应用提交的统一渲染任务，将不同应用渲染的图层进行合并、送显。在收到每个Vsync周期信号时，首先处理应用提交的指令，包括应用渲染树节点的新增、删除、修改，然后进行动画计算和遮挡计算，以上是为了对统一渲染树进行更新。接下来开始对渲染树执行绘制，首先预处理每个节点，计算绝对位置和脏区信息，然后针对脏区进行绘制，优先使用硬件合成器进行绘制，当遇到无法合成绘制的，交由GPU执行重绘，绘制的所有结果都将存入屏幕缓冲区，最后将绘制结果提交送显、上屏展示。
 
-当Vysnc信号刷新时，如图3所示。
+当Vsync信号刷新时，如图3所示。
 
 **图3 RS侧渲染Trace泳道图**
 
@@ -274,14 +281,14 @@ export struct IconItem {
 
 Trace的生成依赖了DFX子系统中的HiTrace组件，其中包含的hiTraceMeter模块为开发者提供系统性能打点接口，具体细节可参考下方链接：
 
-> [HiTrace组件](https://gitee.com/openharmony/hiviewdfx_hitrace)
+> [HiTrace组件](https://gitcode.com/openharmony/hiviewdfx_hitrace)
 > [hiTraceMeter模块](../reference/apis-performance-analysis-kit/capi-trace-h.md)
 
 hiTraceMeter拥有两套开始和结束打点接口，实现对逻辑行为的耗时统计。由于耗时统计大多数以方法为单位，所以hiTraceMeter也提供了快速打点单个方法执行耗时的宏定义HITRACE_METER、HITRACE_METER_NAME、HITRACE_METER_FMT，使用它们，只需要在方法起始位置调用即可。这些宏定义依赖了方法内局部变量的生命周期，其原理是在方法开始时构造了一个打点实例，在实例构造函数中调用开始打点接口，当方法执行完毕，打点实例随着方法结束而执行析构，在实例析构函数中调用结束打点接口。
 
 ### App中的打点示例
 
-ArkUI框架子系统应用hiTraceMeter的例子，来源于[ArkUI开发框架](https://gitee.com/openharmony/arkui_ace_engine)源码。
+ArkUI框架子系统应用hiTraceMeter的例子，来源于[ArkUI开发框架](https://gitcode.com/openharmony/arkui_ace_engine)源码。
 以下代码对hiTraceMeter进行接口封装，其原理与HITRACE_METER等相同，依赖方法内局部变量的生命周期实现快速打点。
 
 ```cpp
@@ -318,7 +325,7 @@ void PipelineContext::FlushVsync(uint64_t nanoTimestamp, uint32_t frameCount)
 
 ### RS中的打点示例
 
-图形子系统应用hiTraceMeter的例子，来源于[图形子系统](https://gitee.com/openharmony/graphic_graphic_2d)源码。
+图形子系统应用hiTraceMeter的例子，来源于[图形子系统](https://gitcode.com/openharmony/graphic_graphic_2d)源码。
 以下代码对hiTraceMeter进行接口封装。
 
 ```cpp

@@ -1390,7 +1390,7 @@ type DataProgressListener = (progressInfo: ProgressInfo, data: UnifiedData | nul
 |----------------------|-------------------------------------------------| ---- | ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
 | progressIndicator    | [ProgressIndicator](#progressindicator15)       | 否   | 否   | 定义进度条指示选项，可选择是否采用系统默认进度显示。<br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。                                                                                                                         |
 | dataProgressListener | [DataProgressListener](#dataprogresslistener15) | 否   | 否   | 表示获取统一数据时的进度和数据监听器。<br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。                                                                                                                                |
-| destUri              | string                                          | 否   | 是   | 拷贝文件的目标路径。若不支持文件处理，则不需要设置此参数，默认为空；若支持文件处理，须设置一个已经存在的目录。若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理。不填写时获取到到的uri为源端路径URI，填写后获取到的uri为目标路径uri。<br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| destUri              | string                                          | 否   | 是   | 拷贝文件的目标路径。若不支持文件处理，则不需要设置此参数，默认为空；若支持文件处理，须设置一个已经存在的目录。若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理。不填写时获取到的uri为源端路径URI，填写后获取到的uri为目标路径uri。<br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | fileConflictOptions  | [FileConflictOptions](#fileconflictoptions15)   | 否   | 是   | 定义文件拷贝冲突时的选项，默认为OVERWRITE。<br>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。                                                                                                                         |
 | acceptableInfo<sup>20+</sup>  | [DataLoadInfo](#dataloadinfo20)   | 否   | 是   | 定义接收方对数据类型和数据记录数量的接收能力。延迟加载场景下，发送方可根据此信息生成并返回更合适的数据内容。默认为空，不提供接收方数据接收能力。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。   |
 
@@ -1463,7 +1463,7 @@ insertData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;strin
 
 | 参数名      | 类型                         | 必填 | 说明                           |
 |----------|----------------------------|----|------------------------------|
-| options  | [Options](#options)        | 是  | 配置项参数，参数中intention字段必填，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。        |
+| options  | [Options](#options)        | 是  | 配置项参数，参数中intention字段必填，且不支持DRAG，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。        |
 | data     | [UnifiedData](#unifieddata) | 是  | 目标数据。                        |
 | callback | AsyncCallback&lt;string&gt; | 是  | 回调函数，返回写入UDMF的数据的唯一标识符key的值。 |
 
@@ -1520,7 +1520,7 @@ insertData(options: Options, data: UnifiedData): Promise&lt;string&gt;
 
 | 参数名     | 类型                          | 必填 | 说明                    |
 |---------|-----------------------------|----|-----------------------|
-| options | [Options](#options)         | 是  | 配置项参数，参数中intention字段必填，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。 |
+| options | [Options](#options)         | 是  | 配置项参数，参数中intention字段必填，且不支持DRAG，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。 |
 | data    | [UnifiedData](#unifieddata) | 是  | 目标数据。                 |
 
 **返回值：**
@@ -1580,7 +1580,7 @@ updateData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;void&
 
 | 参数名      | 类型                          | 必填 | 说明                                  |
 |----------|-----------------------------|----|-------------------------------------|
-| options  | [Options](#options)         | 是  | 配置项参数，参数中key字段必填，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。                     |
+| options  | [Options](#options)         | 是  | 配置项参数，参数中key字段必填，不填时会返回401错误码；intention参数仅支持DATA_HUB；其他字段是否填写均不影响接口的使用。                     |
 | data     | [UnifiedData](#unifieddata) | 是  | 目标数据。                               |
 | callback | AsyncCallback&lt;void&gt;   | 是  | 回调函数。当更新数据成功，err为undefined，否则为错误对象。 |
 
@@ -1657,7 +1657,7 @@ updateData(options: Options, data: UnifiedData): Promise&lt;void&gt;
 
 | 参数名     | 类型                          | 必填 | 说明              |
 |---------|-----------------------------|----|-----------------|
-| options | [Options](#options)         | 是  | 配置项参数，参数中key字段必填，不填时会返回401错误码；其他字段是否填写均不影响接口的使用。 |
+| options | [Options](#options)         | 是  | 配置项参数，参数中key字段必填，不填时会返回401错误码；intention参数仅支持DATA_HUB；其他字段是否填写均不影响接口的使用。 |
 | data    | [UnifiedData](#unifieddata) | 是  | 目标数据。           |
 
 **返回值：**
@@ -1737,7 +1737,7 @@ queryData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&
 
 | 参数名      | 类型                                                            | 必填 | 说明                                                                                                                                                               |
 |----------|---------------------------------------------------------------|----|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| options  | [Options](#options)                                           | 是  | 配置项参数，key和intention均为可选，根据传入的参数做相应的校验以返回不同的值。                                                                                                                    |
+| options  | [Options](#options)                                           | 是  | 配置项参数，key和intention均为可选，且intention参数不支持DRAG，根据传入的参数做相应的校验以返回不同的值。                                                                                                                   |
 | callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | 是  | 回调函数，返回查询到的所有数据。<br>如果options中填入的是key，则返回key对应的数据；<br>如果options中填入的是intention，则返回intention下所有数据。<br>如intention和key均填写了，取两者查询数据的交集，与options只填入key的获取结果一致；如没有交集报错。 |
 
 **错误码：**
@@ -1795,7 +1795,7 @@ queryData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 
 | 参数名     | 类型                  | 必填 | 说明                                            |
 |---------|---------------------|----|-----------------------------------------------|
-| options | [Options](#options) | 是  | 配置项参数，key和intention均为可选，根据传入的参数做相应的校验以返回不同的值。 |
+| options | [Options](#options) | 是  | 配置项参数，key和intention均为可选，且intention参数不支持DRAG，根据传入的参数做相应的校验以返回不同的值。 |
 
 **返回值：**
 
@@ -1856,7 +1856,7 @@ deleteData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;
 
 | 参数名      | 类型                                                            | 必填 | 说明                                                                                                                                                                                     |
 |----------|---------------------------------------------------------------|----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| options  | [Options](#options)                                           | 是  | 配置项参数，key和intention均为可选，根据传入的参数做相应的校验以返回不同的值。                                                                                                                                          |
+| options  | [Options](#options)                                           | 是  | 配置项参数，key和intention均为可选，且intention参数仅支持DATA_HUB，根据传入的参数做相应的校验以返回不同的值。                                                                                                                                          |
 | callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | 是  | 回调函数，返回删除的所有数据。<br>如果options中填入的是key，则删除key对应的数据并返回该数据。<br>如果options中填入的是intention，则删除intention下所有数据并返回删除的数据。<br>如intention和key均填写了，取两者数据的交集进行删除，并返回删除的数据，与options只填入key的结果一致；如没有交集报错。 |
 
 **错误码：**
@@ -1914,7 +1914,7 @@ deleteData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 
 | 参数名     | 类型                  | 必填 | 说明     |
 |---------|---------------------|----|--------|
-| options | [Options](#options) | 是  | 配置项参数，key和intention均为可选，根据传入的参数做相应的校验以返回不同的值。 |
+| options | [Options](#options) | 是  | 配置项参数，key和intention均为可选，且intention参数仅支持DATA_HUB，根据传入的参数做相应的校验以返回不同的值。 |
 
 **返回值：**
 

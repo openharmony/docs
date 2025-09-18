@@ -90,7 +90,7 @@ Cannot start an invisible component.
 
 **处理步骤**
 
-1. Stage模型下，拉起应用时抛出16000004异常，表示被拉应用调用失败，需要检查被拉应用module.json5的Ability字段的[exported](../../quick-start/module-configuration-file.md#abilities标签)配置是否为true。该配置字段为true，表示可以被其他应用调用；该配置字段为false，表示不可以被其他应用调用。
+1. [Stage模型](../../application-models/ability-terminology.md#stage模型)下，拉起应用时抛出16000004异常，表示被拉应用调用失败，需要检查被拉应用module.json5的Ability字段的[exported](../../quick-start/module-configuration-file.md#abilities标签)配置是否为true。该配置字段为true，表示可以被其他应用调用；该配置字段为false，表示不可以被其他应用调用。
 2. 若应用需要拉起exported为false的ability，请申请ohos.permission.START_INVISIBLE_ABILITY权限（该权限仅系统应用可申请）。
 
 ## 16000005 指定的进程权限校验失败
@@ -109,7 +109,7 @@ The specified process does not have the permission.
 
 **处理步骤**
 
-确认指定进程的权限是否正确。
+确认调用方是否有目标组件要求的权限。
 
 ## 16000006 不允许跨用户操作
 
@@ -127,7 +127,7 @@ Cross-user operations are not allowed.
 
 **处理步骤**
 
-确认是否进行了跨用户操作。
+确认是否进行了跨用户操作，检查接口调用时传入的userID是否与当前userID一致。
 
 ## 16000007 服务繁忙
 
@@ -235,7 +235,7 @@ The application is controlled.
 
 **处理步骤**
 
-建议卸载该应用。
+目标应用被系统管控禁止拉起，请稍后再尝试调用。
 
 ## 16000013 应用被EDM管控
 
@@ -308,7 +308,7 @@ No matching ability is found.
 
 **处理步骤**
 
-1. 确保隐式启动的参数配置正确。
+1. 确保隐式启动的参数配置正确，匹配规则详见[显式Want与隐式Want匹配规则](../../application-models/explicit-implicit-want-mappings.md)。
 2. 确保对应的HAP包已安装。
 
 <!--Del-->
@@ -366,7 +366,9 @@ The ability is not on the top of the UI.
 
 **处理步骤**
 
-请检查当前应用是否显示在界面顶层。
+1. 请确保当前应用已启动并处于前台运行状态。
+2. 请核实应用界面是否完全显示，且未被其他应用窗口遮挡或最小化。
+3. 如设备启用了分屏或多窗口模式，请确保当前应用为焦点窗口。
 
 ## 16000055 免安装超时
 
@@ -458,7 +460,7 @@ Operation not supported.
 
 **处理步骤**
 
-确认操作在当前系统上是否支持。
+确认操作在当前系统版本上是否支持。
 
 ## 16000062 子进程数量超出上限
 
@@ -512,7 +514,7 @@ Restart too frequently. Try again at least 3s later.
 
 **处理步骤**
 
-间隔3s后再次调用。
+请等待至少3s后再次尝试重启操作。
 
 ## 16000065 接口只支持Ability在前台时调用
 
@@ -530,7 +532,7 @@ The API can be called only when the ability is running in the foreground.
 
 **处理步骤**
 
-将Ability切换到前台后，再调用接口。
+在调用接口前，请确保当前Ability已处于前台运行且界面可见状态。
 
 ## 16000066  wukong模式，不允许移动Ability到前台/后台
 
@@ -757,7 +759,7 @@ The number of app instances reaches the limit.
 
 **处理步骤**
 
-调整设置的应用实例上限，或者删除已有应用实例后，才能继续创建新的应用实例。
+应用实例已达上限，如果必须要创建新的实例，可弹框提示用户删除已有实例。
 
 ## 16000078 不支持应用多实例
 
@@ -911,7 +913,7 @@ The context is not UIAbilityContext.
 
 **处理步骤**
 
-使用UIAbilityContext对象或者继承了UIAbilityContext类的对象作为入参。
+请确保传入的参数为UIAbilityContext对象或其子类对象。
 
 ## 16000090 调用方不是原子化服务
 
@@ -929,7 +931,7 @@ The caller is not an atomic service.
 
 **处理步骤**
 
-当前应用不支持调用该接口。
+确认调用方是否为原子化服务。
 
 <!--Del-->
 ## 16000091 根据key获取文件URI数据失败
@@ -1370,7 +1372,7 @@ The callee does not exist.
 
 **处理步骤**
 
-请检查通用组件服务端是否存在。
+请检查通用组件服务端(Callee)是否存在。
 
 ## 16200004 方法已注册
 
@@ -1384,11 +1386,11 @@ The method has been registered.
 
 **可能原因**
 
-方法已在通用组件服务端注册过。
+方法已在通用组件服务端(Callee)注册过。
 
 **处理步骤**
 
-请检查是否已注册该方法。
+请确认该方法是否已完成注册，避免重复进行注册操作。
 
 ## 16200005 方法未注册
 
@@ -1402,11 +1404,11 @@ The method has not been registered.
 
 **可能原因**
 
-方法未在通用组件服务端注册。
+方法未在通用组件服务端(Callee)注册。
 
 **处理步骤**
 
-请检查是否未注册该方法。
+请先在通用组件服务端(Callee)完成该方法的注册，再进行调用。
 
 <!--Del-->
 ## 16200006 没有权限设置常驻进程使能状态
@@ -1978,3 +1980,489 @@ The API is not called in the main thread.
 **处理步骤**
 
 请将接口调用逻辑迁移到主线程中执行。
+
+## 10110000 装饰器参数声明错误
+
+**错误信息**
+
+Decorator parameters must be compile-time constants.
+
+**错误描述**
+
+代码中使用变量作为装饰器参数，要求使用编译期常量（如字符串字面量）。
+
+**可能原因**
+
+装饰器参数使用变量。
+
+**处理步骤**
+
+将装饰器参数从变量改为固定值。
+
+## 10110001 装饰器使用位置错误
+
+**错误信息**
+
+The intent decorator can only be used in .ets files. 
+
+**错误描述**
+
+意图装饰器使用在非.ets文件中。
+
+**可能原因**
+
+意图装饰器使用在非.ets文件中。
+
+**处理步骤**
+
+在.ets文件中使用意图装饰器。
+
+## 10110002 装饰器调用形式错误
+
+**错误信息**
+
+Decorators must be called as functions. 
+
+**错误描述**
+
+装饰器未使用函数调用形式。
+
+**可能原因**
+
+装饰器未使用函数调用形式。
+
+**处理步骤**
+
+补充括号，确保装饰器以函数形式调用。
+
+## 10110003 装饰器未提供必选参数
+
+**错误信息**
+
+Required parameters are missing for the decorator.
+
+**错误描述**
+
+装饰器未提供必选参数。
+
+**可能原因**
+
+装饰器未提供必选参数。
+
+**处理步骤**
+
+根据错误提示添加必选参数。
+
+## 10110004 参数类型不符合装饰器参数要求
+
+**错误信息**
+
+The parameter type does not match the decorator's requirement.
+
+**错误描述**
+
+参数类型不符合装饰器参数要求。
+
+**可能原因**
+
+参数类型不符合装饰器参数要求。
+
+**处理步骤**
+
+根据错误提示调整参数类型。
+
+## 10110005 解析装饰器参数错误
+
+**错误信息**
+
+Unsupported parameters found in the decorator.
+
+**错误描述**
+
+装饰器参数中有不支持解析的参数。
+
+**可能原因**
+
+装饰器参数中写入了不支持解析的参数。
+
+**处理步骤**
+
+根据错误提示移除不支持解析的参数（仅支持：string/number/boolean/object/array类型）。
+
+## 10110006 存在循环依赖错误
+
+**错误信息**
+
+Circular dependencies detected in decorator parameters.
+
+**错误描述**
+
+装饰器参数中存在循环依赖。
+
+**可能原因**
+
+装饰器参数中写入了循环依赖。
+
+**处理步骤**
+
+重构数据结构，通过提取公共变量或使用ID引用替代直接嵌套。
+
+## 10110007 参数定义根类型非object类型
+
+**错误信息**
+
+The root type of the JSON Schema for Parameters must be object. 
+
+**错误描述**
+
+Parameters参数定义的JSON Schema的第一层type非object。
+
+**可能原因**
+
+Parameters参数定义的JSON Schema的第一层type非object。
+
+**处理步骤**
+
+确保Parameters的JSON Schema顶层定义为{"type":"object"}。
+
+## 10110008 类属性缺少必填项
+
+**错误信息**
+
+A required field in the class property is missing.
+
+**错误描述**
+
+类属性中缺少JSON Schema定义的必填字段。
+
+**可能原因**
+
+类属性中没有写JSON Schema定义的必填字段。
+
+**处理步骤**
+
+根据错误提示补充必选参数。
+
+## 10110009 类属性字段类型不符合JSON Schema要求
+
+**错误信息**
+
+The field type of the class property does not match the JSON Schema.
+
+**错误描述**
+
+类属性中字段类型与JSON Schema要求不符。
+
+**可能原因**
+
+类属性中的字段类型不符合JSON Schema要求。
+
+**处理步骤**
+
+根据错误提示修正参数类型。
+
+## 10110010 类属性参数不符合oneOf/anyOf校验规则
+
+**错误信息**
+
+The class property parameter violates the oneOf/anyOf validation rules in the JSON Schema.
+
+**错误描述**
+
+类属性参数不符合JSON Schema中oneOf/anyOf校验规则。
+
+**可能原因**
+
+类属性中的参数不符合JSON Schema的oneOf/anyOf的校验规则。
+
+**处理步骤**
+
+修改参数满足校验规则。
+
+## 10110011 类属性中定义可选参数外的参数
+
+**错误信息**
+
+The class property includes parameters not defined in the JSON Schema.
+
+**错误描述**
+
+类属性中使用了JSON Schema定义的可选参数外的参数。
+
+**可能原因**
+
+类属性中写入了可选参数以外的参数。
+
+**处理步骤**
+
+删除多余参数。
+
+## 10110012 存在重复的intentName定义
+
+**错误信息**
+
+Duplicate intentName definitions found.
+
+**错误描述**
+
+存在重复的intentName定义。
+
+**可能原因**
+
+模块中声明了一样的intentName。
+
+**处理步骤**
+
+在模块中查找重名的intentName并重命名。
+
+## 10110013 @InsightIntentFunctionMethod装饰的方法位置错误
+
+**错误信息**
+
+Methods decorated with @InsightIntentFunctionMethod must be in a class decorated with @InsightIntentFunction.
+
+**错误描述**
+
+@InsightIntentFunctionMethod装饰的方法未在@InsightIntentFunction装饰的类中。
+
+**可能原因**
+
+@InsightIntentFunctionMethod装饰的方法未在@InsightIntentFunction装饰的类中。
+
+**处理步骤**
+
+将方法移至@InsightIntentFunction装饰的类中，或为类添加@InsightIntentFunction装饰器。
+
+## 10110014 未导出@InsightIntentFunction装饰的类
+
+**错误信息**
+
+The class decorated with @InsightIntentFunction must be exported.
+
+**错误描述**
+
+@InsightIntentFunction装饰的类未使用export导出。
+
+**可能原因**
+
+未使用export导出@InsightIntentFunction装饰的类。
+
+**处理步骤**
+
+为类添加export导出语句。
+
+## 10110015 @InsightIntentFunctionMethod装饰的方法错误
+
+**错误信息**
+
+Methods decorated with @InsightIntentFunctionMethod must be static. 
+
+**错误描述**
+
+@InsightIntentFunctionMethod装饰的方法不是static方法。
+
+**可能原因**
+
+@InsightIntentFunctionMethod装饰的方法未使用static修饰。
+
+**处理步骤**
+
+使用static修饰@InsightIntentFunctionMethod装饰的方法。
+
+## 10110016 @InsightIntentPage装饰器修饰位置错误
+
+**错误信息**
+
+@InsightIntentPage must be applied to a struct page.
+
+**错误描述**
+
+@InsightIntentPage装饰器未修饰在struct类型的页面上。
+
+**可能原因**
+
+@InsightIntentPage装饰器修饰在普通类上。
+
+**处理步骤**
+
+将@InsightIntentPage装饰器移至struct页面上。
+
+## 10110017 @InsightIntentPage的pagePath匹配页面错误
+
+**错误信息**
+
+pagePath in @InsightIntentPage does not match the actual page path. 
+
+**错误描述**
+
+@InsightIntentPage的pagePath未匹配实际页面。
+
+**可能原因**
+
+@InsightIntentPage的pagePath不正确。
+
+**处理步骤**
+
+确保目录下的文件路径一致。
+
+## 10110018 @InsightIntentEntry装饰的类继承错误
+
+**错误信息**
+
+Classes decorated with @InsightIntentEntry must inherit from InsightIntentEntryExecutor. 
+
+**错误描述**
+
+@InsightIntentEntry装饰的类未继承InsightIntentEntryExecutor基类。
+
+**可能原因**
+
+@InsightIntentEntry装饰的类未继承InsightIntentEntryExecutor基类。
+
+**处理步骤**
+
+为类添加InsightIntentEntryExecutor基类。
+
+## 10110019 未导出@InsightIntentEntry装饰的类
+
+**错误信息**
+
+The class decorated with @InsightIntentEntry must be exported as default. 
+
+**错误描述**
+
+@InsightIntentEntry装饰的类未使用export default导出。
+
+**可能原因**
+
+未使用export default导出@InsightIntentEntry装饰的类。
+
+**处理步骤**
+
+为类添加export default导出语句。
+
+## 10110020 类被多个@InsightIntentEntity装饰器重复标记
+
+**错误信息**
+
+Multiple @InsightIntentEntity decorators applied to the same class. 
+
+**错误描述**
+
+同一类被多个@InsightIntentEntity装饰器重复标记。
+
+**可能原因**
+
+多个@InsightIntentEntity装饰器修饰同一个类。
+
+**处理步骤**
+
+移除多余的@InsightIntentEntity装饰器。
+
+## 10110021 @InsightIntentEntity装饰的类未实现InsightIntent.IntentEntity接口
+
+**错误信息**
+
+Classes decorated with @InsightIntentEntity must implement InsightIntent.IntentEntity.
+
+**错误描述**
+
+@InsightIntentEntity装饰的类未实现InsightIntent.IntentEntity接口。
+
+**可能原因**
+
+@InsightIntentEntity装饰的类未实现InsightIntent.IntentEntity接口。
+
+**处理步骤**
+
+确保类实现InsightIntent.IntentEntity或继承至其他意图实体。
+
+## 10110022 @InsightIntentForm装饰器修饰位置错误
+
+**错误信息**
+
+@InsightIntentForm must be applied to formExtensionAbility. 
+
+**错误描述**
+
+@InsightIntentForm装饰器没有修饰在formExtensionAbility上。
+
+**可能原因**
+
+@InsightIntentForm装饰器没有修饰在formExtensionAbility上。
+
+**处理步骤**
+
+将@InsightIntentForm装饰器移至formExtensionAbility类上。
+
+## 10110023 @InsightIntentForm装饰器的参数formName匹配错误
+
+**错误信息**
+
+formName in @InsightIntentForm must match the widget name registered in formExtensionAbility.
+
+**错误描述**
+
+@InsightIntentForm装饰器的参数formName未匹配到该formExtensionAbility中注册的卡片名称。
+
+**可能原因**
+
+@InsightIntentForm装饰器的参数formName声明不正确。
+
+**处理步骤**
+
+检查并修正formName使其匹配到所装饰的formExtensionAbility中注册的卡片名称。
+
+## 10110024 module.json5配置文件不存在
+
+**错误信息**
+
+The module.json5 file is missing. 
+
+**错误描述**
+
+工程中未找到module.json5配置文件。
+
+**可能原因**
+
+module.json5配置文件被删除或者移动。
+
+**处理步骤**
+
+检查文件路径（通常在entry/src/main/config.json或module.json5），确认文件是否被误删或移动。
+
+## 10110025 无法写入意图配置文件
+
+**错误信息**
+
+Failed to write to the intent configuration file.
+
+**错误描述**
+
+无法写入意图配置文件。
+
+**可能原因**
+
+权限不足或磁盘空间已满。
+
+**处理步骤**
+
+检查文件权限（确保DevEco Studio或命令行工具具有写入权限），清理磁盘空间，或重启开发环境。
+
+## 10110027 生成OHMUrl失败
+
+**错误信息**
+
+Generating standard OHMUrl failed with useNormalizedOHMUrl configuration not set to true.
+
+**错误描述**
+
+生成标准OHMUrl失败，useNormalizedOHMUrl配置未设置为true。
+
+**可能原因**
+
+useNormalizedOHMUrl未设置或者设置为false。
+
+**处理步骤**
+
+在应用级build-profile.json5中将useNormalizedOHMUrl设置为true。

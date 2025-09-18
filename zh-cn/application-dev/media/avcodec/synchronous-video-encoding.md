@@ -168,7 +168,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-5. 调用调用OH_VideoEncoder_Start()启动编码器。
+5. 调用OH_VideoEncoder_Start()启动编码器。
 
     ```c++
     // 配置待编码文件路径。

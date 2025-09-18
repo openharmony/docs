@@ -1,8 +1,15 @@
 # @ohos.app.ability.wantAgent (WantAgent模块)
 
-WantAgent模块是一个封装了[Want](./js-apis-app-ability-want.md)对象的类，允许应用程序在未来的某个时间点执行该Want。
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @linjunjie6-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-该模块提供了创建WantAgent实例、获取WantAgent实例所属应用的包名、获取WantAgent实例所属应用的UID、主动激发WantAgent实例、判断两个WantAgent实例是否相等等功能。WantAgent的一个典型应用场景是通知处理。例如，当用户点击通知时，会触发WantAgent的[trigger](#wantagenttrigger)接口，并拉起目标应用。具体使用请参考[通知模块](../../notification/notification-with-wantagent.md)。
+WantAgent模块封装了[Want](./js-apis-app-ability-want.md)对象，允许应用程序在未来的某个时间点触发WantAgent实例执行指定操作（如启动Ability、发送公共事件等）。
+
+该模块提供了创建WantAgent实例、获取WantAgent实例所属应用的包名、获取WantAgent实例所属应用的UID、主动触发WantAgent实例、判断两个WantAgent实例是否相等等功能。WantAgent的一个典型应用场景是通知处理。例如，当用户点击通知时，会触发WantAgent的[trigger](#wantagenttrigger)接口，并拉起目标应用。具体使用请参考[通知模块](../../notification/notification-with-wantagent.md)。
 
 > **说明：**
 >
@@ -29,7 +36,7 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 | 参数名     | 类型                       | 必填 | 说明                    |
 | -------- | -------------------------- | ---- | ----------------------- |
 | info     | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)              | 是   | 表示创建WantAgent所需的配置信息，包括目标UIAbility、操作类型、请求码等。三方应用在WantAgentInfo中只能设置本应用的UIAbility。|
-| callback | AsyncCallback\<WantAgent\> | 是   | 创建WantAgent的回调方法。 |
+| callback | AsyncCallback\<[WantAgent](#wantagent)\> | 是   | 创建WantAgent的回调方法。 |
 
 **错误码：**
 
@@ -48,9 +55,9 @@ import { wantAgent, Want } from '@kit.AbilityKit';
 import type { WantAgent } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-//wantAgent对象
+// wantAgent对象
 let wantAgentData: WantAgent;
-//WantAgentInfo对象
+// WantAgentInfo对象
 let wantAgentInfo: wantAgent.WantAgentInfo = {
   wants: [
     {
@@ -78,7 +85,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
-//getWantAgent回调
+// getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: WantAgent) {
   if (err) {
     console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
@@ -114,7 +121,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<WantAgent\> | 以Promise形式返回WantAgent。 |
+| Promise\<[WantAgent](#wantagent)\> | 以Promise形式返回WantAgent。 |
 
 **错误码：**
 
@@ -134,7 +141,7 @@ import type { WantAgent } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let wantAgentData: WantAgent;
-//WantAgentInfo对象
+// WantAgentInfo对象
 let wantAgentInfo: wantAgent.WantAgentInfo = {
   wants: [
     {
@@ -209,9 +216,9 @@ import { wantAgent, Want } from '@kit.AbilityKit';
 import type { WantAgent } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-//wantAgent对象
+// wantAgent对象
 let wantAgentData: WantAgent;
-//WantAgentInfo对象
+// WantAgentInfo对象
 let wantAgentInfo: wantAgent.WantAgentInfo = {
   wants: [
     {
@@ -239,14 +246,14 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
-//getWantAgent回调
+// getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: WantAgent) {
   if (err) {
     console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
   } else {
     wantAgentData = data;
   }
-  //getBundleName回调
+  // getBundleName回调
   let getBundleNameCallback = (err: BusinessError, data: string) => {
     if (err) {
       console.error(`getBundleName failed! ${err.code} ${err.message}`);
@@ -307,9 +314,9 @@ import { wantAgent, Want } from '@kit.AbilityKit';
 import type { WantAgent } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-//wantAgent对象
+// wantAgent对象
 let wantAgentData: WantAgent;
-//WantAgentInfo对象
+// WantAgentInfo对象
 let wantAgentInfo: wantAgent.WantAgentInfo = {
   wants: [
     {
@@ -337,7 +344,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
   wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
-//getWantAgent回调
+// getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: WantAgent) {
   if (err) {
     console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
@@ -395,9 +402,9 @@ import { wantAgent, Want } from '@kit.AbilityKit';
 import type { WantAgent } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-//wantAgent对象
+// wantAgent对象
 let wantAgentData: WantAgent;
-//WantAgentInfo对象
+// WantAgentInfo对象
 let wantAgentInfo: wantAgent.WantAgentInfo = {
   wants: [
     {
@@ -425,14 +432,14 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
-//getWantAgent回调
+// getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: WantAgent) {
   if (err) {
     console.error(`getWantAgent failed, code: ${err.code}, message: ${err.message}.`);
   } else {
     wantAgentData = data;
   }
-  //getUid回调
+  // getUid回调
   let getUidCallback = (err: BusinessError, data: number) => {
     if (err) {
       console.error(`getUid failed, err code: ${err.code}, err msg: ${err.message}.`);
@@ -497,9 +504,9 @@ import { wantAgent, Want } from '@kit.AbilityKit';
 import type { WantAgent } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-//wantAgent对象
+// wantAgent对象
 let wantAgentData: WantAgent;
-//WantAgentInfo对象
+// WantAgentInfo对象
 let wantAgentInfo: wantAgent.WantAgentInfo = {
   wants: [
     {
@@ -527,7 +534,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
-//getWantAgent回调
+// getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: WantAgent) {
   if (err) {
     console.error(`getWantAgent failed, err code: ${err.code}, err msg: ${err.message}.`);
@@ -590,9 +597,9 @@ import { wantAgent, Want } from '@kit.AbilityKit';
 import type { WantAgent } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-//wantAgent对象
+// wantAgent对象
 let wantAgentData: WantAgent;
-//WantAgentInfo对象
+// WantAgentInfo对象
 let wantAgentInfo: wantAgent.WantAgentInfo = {
   wants: [
     {
@@ -620,14 +627,14 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
-//getWantAgent回调
+// getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: WantAgent) {
   if (err) {
     console.error(`getWantAgent failed, err code: ${err.code}, err msg: ${err.message}.`);
   } else {
     wantAgentData = data;
   }
-  //cancel回调
+  // cancel回调
   let cancelCallback = (err: BusinessError, data: void) => {
     if (err) {
       console.error(`cancel failed, err code: ${err.code}, err msg: ${err.message}.`);
@@ -692,9 +699,9 @@ import { wantAgent, Want } from '@kit.AbilityKit';
 import type { WantAgent } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-//wantAgent对象
+// wantAgent对象
 let wantAgentData: WantAgent;
-//WantAgentInfo对象
+// WantAgentInfo对象
 let wantAgentInfo: wantAgent.WantAgentInfo = {
   wants: [
     {
@@ -722,7 +729,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
-//getWantAgent回调
+// getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: WantAgent) {
   if (err) {
     console.error(`getWantAgent failed, err code: ${err.code}, err msg: ${err.message}.`);
@@ -755,7 +762,9 @@ try {
 
 trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<CompleteData\>): void
 
-主动激发WantAgent实例，使用callback异步回调。
+触发WantAgent实例，执行指定的操作（启动Ability、发送公共事件等）。使用callback异步回调。
+
+这里所执行的操作类型，是在创建WantAgent实例时通过[WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)参数中的actionType属性指定的。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -766,8 +775,8 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<Co
 | 参数名        | 类型                          | 必填 | 说明                            |
 | ----------- | ----------------------------- | ---- | ------------------------------- |
 | agent       | WantAgent                     | 是   | WantAgent对象。                   |
-| triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                   | 是   | 表示触发WantAgent时携带的信息，如自定义的extraInfos。 |
-| callback    | AsyncCallback\<[CompleteData](#completedata)\> | 否   | 主动激发WantAgent实例的回调方法。 |
+| triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                   | 是   | 表示触发WantAgent实例时携带的信息，如自定义的extraInfos。 |
+| callback    | AsyncCallback\<[CompleteData](#completedata)\> | 否   | 回调函数，返回CompleteData对象。 |
 
 **错误码：**
 
@@ -855,7 +864,9 @@ try {
 
 equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\>): void
 
-判断两个WantAgent实例是否相等，使用callback异步回调，以此来判断是否是来自同一应用的相同操作。
+判断两个WantAgent实例是否相等，使用callback异步回调，以此来确定是否是来自同一应用的相同操作。
+
+当两个WantAgent实例由当前用户下的同一应用使用相同的[WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)信息创建，并且实例未被[cancel](#wantagentcancel)取消，这两个实例相等。在通知（携带WantAgent实例）场景，通知更新时会比较2个通知中的WantAgent实例，不相等时会把旧通知的WantAgent实例删除。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -949,7 +960,9 @@ try {
 
 equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
-判断两个WantAgent实例是否相等，使用Promise异步回调，以此来判断是否是来自同一应用的相同操作。
+判断两个WantAgent实例是否相等，使用Promise异步回调，以此来确定是否是来自同一应用的相同操作。
+
+当两个WantAgent实例由当前用户下的同一应用使用相同的[WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)信息创建，并且实例未被[cancel](#wantagentcancel)取消，这两个实例相等。在通知（携带WantAgent实例）场景，通知更新时会比较2个通知中的WantAgent实例，不相等时会把就旧通知的WantAgent实例删除。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1044,7 +1057,7 @@ try {
 
 getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void
 
-获取一个WantAgent的OperationType信息，使用callback异步回调。
+获取一个WantAgent实例的[OperationType](#operationtype)信息，使用callback异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1138,7 +1151,7 @@ try {
 
 getOperationType(agent: WantAgent): Promise\<number>
 
-获取一个WantAgent的OperationType信息，使用Promise异步回调。
+获取一个WantAgent实例的[OperationType](#operationtype)信息，使用Promise异步回调。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1231,7 +1244,7 @@ try {
 
 ## WantAgentFlags
 
-表示使用WantAgent类型的枚举。
+表示WantAgent行为控制标志，用于配置WantAgent的创建和触发行为。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1239,7 +1252,7 @@ try {
 
 | 名称                | 值             | 说明                                                                      |
 | ------------------- | -------------- |-------------------------------------------------------------------------|
-| ONE_TIME_FLAG       | 0 | WantAgent仅能使用一次。                                                        |
+| ONE_TIME_FLAG       | 0 | WantAgent仅能使用一次，trigger触发后自动cancel取消。                                                        |
 | NO_BUILD_FLAG       | 1 | 如果描述WantAgent对象不存在，则不创建它，直接返回null。                                      |
 | CANCEL_PRESENT_FLAG | 2 | 在生成一个新的WantAgent对象前取消已存在的一个WantAgent对象。                                 |
 | UPDATE_PRESENT_FLAG | 3 | 使用新的WantAgent的额外数据替换已存在的WantAgent中的额外数据。                                |
@@ -1254,7 +1267,7 @@ try {
 
 ## OperationType
 
-表示操作WantAgent类型的枚举。
+表示WantAgent支持的操作类型。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1272,7 +1285,7 @@ try {
 
 ## CompleteData
 
-表示主动激发WantAgent返回的数据。
+表示主动触发WantAgent返回的数据。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1281,9 +1294,9 @@ try {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | info           | WantAgent                       | 否 | 否   | 触发的wantAgent。       |
-| want           | [Want](js-apis-app-ability-want.md)                            | 否 | 否   | 存在的被触发的want。     |
-| finalCode      | number                          | 否 | 否   | 触发wantAgent的请求代码。 |
-| finalData      | string                          | 否 | 否   | 公共事件收集的最终数据。  |
+| want           | [Want](js-apis-app-ability-want.md)         | 否 | 否   | 触发wantAgent时实际使用的want信息。     |
+| finalCode      | number                          | 否 | 否   | 触发wantAgent的返回码。 |
+| finalData      | string                          | 否 | 否   | 触发wantAgent的返回数据。返回"canceled"时表示触发失败，WantAgent实例已经被取消。  |
 | extraInfo      | Record\<string, Object>            | 否 |是   | 额外数据。               |
 
 ## TriggerInfo

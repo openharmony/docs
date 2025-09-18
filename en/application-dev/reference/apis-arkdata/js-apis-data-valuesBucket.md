@@ -1,4 +1,10 @@
 # @ohos.data.ValuesBucket (Data Set)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @woodenarow-->
+<!--Designer: @woodenarow; @xuelei3-->
+<!--Tester: @chenwan188; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 **ValuesBucket** is a dataset in the form of key-value (KV) pairs that can be inserted in the database.
 

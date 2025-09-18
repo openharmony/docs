@@ -4,9 +4,9 @@
 <!--Owner: @Yuan_ss-->
 <!--Designer: @qiu-gongkai-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
-Web组件支持在网页中预览PDF。应用通过Web组件的[src](../reference/apis-arkweb/arkts-basic-components-web-i.md#weboptions)参数和[loadUrl()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl)接口加载PDF文档。具体场景包括：网络PDF文档、应用沙箱内PDF文档和本地PDF文档。
+[Web组件](../reference/apis-arkweb/arkts-basic-components-web.md)支持在网页中预览PDF。应用通过[WebOptions](../reference/apis-arkweb/arkts-basic-components-web-i.md#weboptions)的src参数和[loadUrl()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl)接口加载PDF文档。具体场景包括：网络PDF文档、应用沙箱内PDF文档和本地PDF文档。
 
 若涉及网络文档获取，需在module.json5中配置网络访问权限。添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)。
 
@@ -53,7 +53,7 @@ PDF预览页面会根据用户操作使用`window.localStorage`记录侧导航�
   Web().domStorageAccess(true)
   ```
 
-在创建Web组件时，指定默认加载的PDF文档。默认PDF文档加载完成后，若需变更Web组件显示的PDF文档，通过调用[loadUrl()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl)接口加载指定的PDF文档。[Web组件](../reference/apis-arkweb/arkts-basic-components-web.md)的第一个参数变量src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl)重新加载。
+在创建[Web组件](../reference/apis-arkweb/arkts-basic-components-web.md)时，指定默认加载的PDF文档。默认PDF文档加载完成后，若需变更Web组件显示的PDF文档，通过调用[loadUrl()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl)接口加载指定的PDF文档。[WebOptions](../reference/apis-arkweb/arkts-basic-components-web-i.md#weboptions)的第一个参数变量src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl)重新加载。
 
 包含三种PDF文档加载预览场景：
 - 预览加载网络PDF文档。
@@ -97,7 +97,7 @@ PDF预览页面会根据用户操作使用`window.localStorage`记录侧导航�
 | zoom=scale    zoom=scale,left,top	| 使用浮点或整数值设置缩放和滚动系数。例如：缩放值100表示缩放值为100%。 向左和向上滚动值位于坐标系中，0,0 表示可见页面的左上角，无论文档如何旋转。 |
 | toolbar=1 \| 0 	| 打开或关闭顶部工具栏。 | 
 | navpanes=1 \| 0 	| 打开或关闭侧边导航窗格。 | 
-| pdfbackgroundcolor=color 	| 指定PDF文档背景色，color为标准的六位十六进制RGB（取值范围为000000~ffffff，例如白色为：ffffff）。 |
+| pdfbackgroundcolor=color 	| 从OpenHarmony 6.0系统版本开始，支持指定PDF文档背景色，color为标准的六位十六进制RGB（取值范围为000000~ffffff，例如白色为：ffffff）。 |
 
 
 URL示例:

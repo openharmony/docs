@@ -207,6 +207,8 @@ decoration(value: DecorationStyleInterface)
 >  **说明：**
 >
 >  当文字的下边缘轮廓与装饰线位置相交时，会触发下划线避让规则，下划线将在这些字符处避让文字。常见“gjyqp”等英文字符。
+>
+>  当文本装饰线的颜色设置为Color.Transparent时，装饰线颜色设置为跟随每行第一个字的字体颜色。当文本装饰线的颜色设置为透明色16进制对应值“#00FFFFFF”时，装饰线颜色设置为透明色。
 
 ### baselineOffset
 
@@ -1259,7 +1261,7 @@ Text组件的控制器。
 controller: TextController = new TextController()
 ```
 
-### closeSelectionMenu
+### closeSelectionMenu<sup>11+</sup>
 
 closeSelectionMenu(): void
 
@@ -1878,7 +1880,7 @@ struct TextExample7 {
 
 ### 示例8（文本绑定自定义菜单）
 
-从API version 11开始，该示例通过[bindSelectionMenu](#bindselectionmenu11)、[onTextSelectionChange](#ontextselectionchange11)、[closeSelectionMenu](#closeselectionmenu)接口实现了文本绑定自定义菜单的功能。
+从API version 11开始，该示例通过[bindSelectionMenu](#bindselectionmenu11)、[onTextSelectionChange](#ontextselectionchange11)、[closeSelectionMenu](#closeselectionmenu11)接口实现了文本绑定自定义菜单的功能。
 
 ```ts
 // xxx.ets

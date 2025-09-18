@@ -14,7 +14,7 @@
 >
 > 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-term.md#mdm应用设备管理应用)开放。
 > 
-> 当前页面仅包含本模块的系统接口，其他公开接口参见。其他公开接口参见[@ohos.enterprise.adminManager](js-apis-enterprise-adminManager.md)。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.enterprise.adminManager](js-apis-enterprise-adminManager.md)。
 
 ## 导入模块
 
@@ -988,7 +988,7 @@ adminManager.subscribeManagedEvent(wantTemp, events, (err) => {
     console.error(`Failed to subscribe managed event. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  console.info('Succeeded in subscribe managed event');
+  console.info('Succeeded in subscribing managed event');
 });
 ```
 
@@ -1103,7 +1103,7 @@ adminManager.unsubscribeManagedEvent(wantTemp, events, (err) => {
     console.error(`Failed to unsubscribe managed event. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  console.info('Succeeded in unsubscribe managed event');
+  console.info('Succeeded in unsubscribing managed event');
 });
 ```
 
@@ -1378,7 +1378,7 @@ let newAdmin: Want = {
 };
 try {
   adminManager.replaceSuperAdmin(oldAdmin, newAdmin, false);
-  console.info(`Succeeded in replace super admin.`);
+  console.info(`Succeeded in replacing super admin.`);
 } catch(err) {
   console.error(`Failed to replace super admin. Code: ${err.code}, message: ${err.message}`);
 }
@@ -1433,7 +1433,7 @@ let admin: Want = {
 };
 try {
   adminManager.setAdminRunningMode(admin, adminManager.RunningMode.MULTI_USER);
-  console.info(`Succeeded in set admin running mode.`);
+  console.info(`Succeeded in setting admin running mode.`);
 } catch(err) {
   console.error(`Failed to set admin running mode. Code: ${err.code}, message: ${err.message}`);
 }

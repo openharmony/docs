@@ -38,7 +38,7 @@
 | 证书验证     | 设置支持传输客户端证书            | 支持传输客户端证书，包括证书路径、证书类型、证书密钥路径和密码信息。 | API version 11    |
 | 基础功能     | 设置下载起始位置和结束位置         | 指定客户端要获取的数据范围，通常在下载文件时配置该参数。 |  API version 11  |
 | 基础功能     | 设置需要上传的数据字段表单列表        |设置多部分表单数据，通常用于上传文件。 |  API version 11   |
-| DNS设置      | 设置使用HTTPS协议的服务器进行DNS解析  | 设置使用HTTPS协议的服务器进行DNS解析。参数必须以以下格式进行URL编码:'https://host:port/path'。 | API version 11    |
+| DNS设置      | 设置使用HTTPS协议的服务器进行DNS解析  | 设置使用HTTPS协议的服务器进行DNS解析。参数必须根据以下格式进行URL编码:'https://host:port/path'。 | API version 11    |
 | DNS设置     | 设置指定的DNS服务器进行DNS解析         | 设置指定的DNS服务器进行DNS解析。可以设置多个DNS解析服务器，最多3个服务器。如果有3个以上，只取前3个。服务器必须是IPV4或者IPV6地址形式。 |  API version 11   |
 | 基础功能     | 设置响应消息的最大字节限制            | 响应消息的最大字节限制。以字节为单位，默认值为5\*1024\*1024，最大值为100\*1024\*1024。 |   API version 11  |
 | 证书验证     | 设置动态设置证书锁定配置             | 动态设置证书锁定配置，可以传入单个或多个证书PIN码。 |   API version 12  |
@@ -232,12 +232,12 @@ HTTP流式传输是指在处理HTTP响应时，可以一次只处理响应内容
     
     // 订阅HTTP流式响应数据接收进度事件，下载服务器的数据时，可以通过该回调获取数据下载进度。
     httpRequest.on('dataReceiveProgress', (data: http.DataReceiveProgressInfo) => {
-      console.log("dataReceiveProgress receiveSize:" + data.receiveSize + ", totalSize:" + data.totalSize);
+      console.info("dataReceiveProgress receiveSize:" + data.receiveSize + ", totalSize:" + data.totalSize);
     });
 
     // 订阅HTTP流式响应数据发送进度事件，向服务器上传数据时，可以通过该回调获取数据上传进度。
     httpRequest.on('dataSendProgress', (data: http.DataSendProgressInfo) => {
-      console.log("dataSendProgress receiveSize:" + data.sendSize + ", totalSize:" + data.totalSize);
+      console.info("dataSendProgress receiveSize:" + data.sendSize + ", totalSize:" + data.totalSize);
     });
     ```
 

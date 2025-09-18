@@ -65,10 +65,10 @@ Defines the parameters for creating a child window or system window.
 
 **System capability**: SystemCapability.Window.SessionManager
 
-| Name| Type| Mandatory| Description                      |
-| ---------- | --------- | ---- | -------------- |
-| zIndex<sup>20+</sup>       | number | No| Z-level of the system window. This parameter is valid only when [WindowType](#windowtype7) is set to **TYPE_DYNAMIC**.|
-| defaultDensityEnabled<sup>20+</sup> | boolean| No| Whether the window should use the default density of the system. If the default density is used, the window does not re-layout when the system display size changes.<br>If this parameter is set to **true** for a system window, the window uses the default density and is not affected by [setDefaultDensityEnabled()](arkts-apis-window-WindowStage.md#setdefaultdensityenabled12) or [setCustomDensity()](arkts-apis-window-WindowStage.md#setcustomdensity15) settings for the main window or [setDefaultDensityEnabled()](#setDefaultDensityEnabled20) settings for the current window.<br>If this parameter is set to **false**, the window does not use the default density and is affected by those settings.<br>The default value is **false**.|
+| Name| Type| Read-Only| Optional| Description                      |
+| ---------- | --------- | ---- | ---- |-------------- |
+| zIndex<sup>20+</sup>       | number | No| Yes| Z-level of the system window. This parameter is valid only when [WindowType](#windowtype7) is set to **TYPE_DYNAMIC**.|
+| defaultDensityEnabled<sup>20+</sup> | boolean| No| Yes|Whether the window should use the default density of the system. If the default density is used, the window does not re-layout when the system display size changes.<br>If this parameter is set to **true** for a system window, the window uses the default density and is not affected by [setDefaultDensityEnabled()](arkts-apis-window-WindowStage.md#setdefaultdensityenabled12) or [setCustomDensity()](arkts-apis-window-WindowStage.md#setcustomdensity15) settings for the main window or [setDefaultDensityEnabled()](#setdefaultdensityenabled20) settings for the current window.<br>If this parameter is set to **false**, the window does not use the default density and is affected by those settings.<br>The default value is **false**.|
 
 ## WindowMode<sup>7+</sup>
 
@@ -82,8 +82,8 @@ Enumerates the window modes.
 | ---------- | ---- | ----------------------------- |
 | UNDEFINED  | 1    | The window mode is not defined by the application.      |
 | FULLSCREEN | 2    | The application is displayed in full screen.            |
-| PRIMARY    | 3    | The application is displayed in the primary window in split-screen mode.  |
-| SECONDARY  | 4    | The application is displayed in the secondary window in split-screen mode.  |
+| PRIMARY    | 3    | The application is displayed in the primary window in split-screen mode. In top-bottom splits, the top screen is primary; in left-right splits, the left screen is primary. |
+| SECONDARY  | 4    | The application is displayed in the secondary window in split-screen mode. In top-bottom splits, the top screen is secondary; in left-right splits, the left screen is secondary. |
 | FLOATING   | 5    | The application is displayed in a floating window.|
 
 ## WindowLayoutMode<sup>9+</sup>
@@ -96,8 +96,8 @@ Enumerates the window layout modes.
 
 | Name      | Value  | Description                         |
 | ---------- | ---- | ----------------------------- |
-| WINDOW_LAYOUT_MODE_CASCADE  | 0    | Cascade mode.      |
-| WINDOW_LAYOUT_MODE_TILE | 1    | Tile mode.            |
+| WINDOW_LAYOUT_MODE_CASCADE  | 0    | Cascade mode. In this mode, freeform windows are stacked with Z-order arrangement.    |
+| WINDOW_LAYOUT_MODE_TILE | 1    | Tile mode. In this mode, newly opened application windows appear on the rightmost.          |
 
 
 ## BlurStyle<sup>9+</sup>
@@ -140,8 +140,8 @@ Describes the callback for a single system bar.
 | type            | [WindowType](#windowtype7) | No  | No  | Type of the system bar whose properties are changed. Only the status bar and navigation bar are supported.|
 | isEnable        | boolean                   | No  | Yes  | Whether the system bar is displayed. **true** if displayed, **false** otherwise. The default value is **true**.|
 | region          | [Rect](arkts-apis-window-i.md#rect7)             | No  | Yes  | Current position and size of the system bar. The default value is {0,0,0,0}.                          |
-| backgroundColor | string                    | No  | Yes  | Background color of the system bar. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **0x66000000**.|
-| contentColor    | string                    | No  | Yes  | Color of the text on the system bar. The default value is **0xE5FFFFFF**.               |
+| backgroundColor | string                    | No  | Yes  | Background color of the system bar. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **'#00FF00'** or **'#FF00FF00'**. The default value is **'0x66000000'**.|
+| contentColor    | string                    | No  | Yes  | Color of the text on the system bar. The default value is **'0xE5FFFFFF'**.               |
 
 ## SystemBarTintState<sup>8+</sup>
 
@@ -153,7 +153,7 @@ Describes the callback for the current system bar.
 
 | Name      | Type                                           | Read-Only| Optional| Description                        |
 | ---------- | --------------------------------------------------- | ---- | ---- | ---------------------------- |
-| displayId  | number                                              | No  | No  | ID of the current physical screen. The value must be an integer.            |
+| displayId  | number                                              | No  | No  | ID of the screen where the window is located. The value must be an integer.            |
 | regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | No  | No  | All system bar information that has been changed.|
 
 ## ScaleOptions<sup>9+</sup>
@@ -204,17 +204,15 @@ Describes the translation parameters.
 
 ## StartAnimationSystemParams<sup>20+</sup>
 
-Describes the parameters for the startup animation.
+Start animation configuration. This API works only for full-screen applications.
 
 The configuration does not take effect for inter-application transitions, where the default animation of the system is used.
-
-The configuration is valid only for phones or tablets not in free windows mode.
-
-The configuration is valid only for full-screen applications.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API can be properly called on tablets in non-[free windows mode](../../windowmanager/window-terminology.md#free-windows) and phones. If it is called on other device types, it has no effect and does not report errors.
 
 | Name            | Type                                                                    | Read-Only| Optional| Description                                                        |
 | ---------------- | ----------------------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -240,6 +238,8 @@ Minimizes all windows on a display. This API uses an asynchronous callback to re
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Device behavior differences**: When this API is called on phones, error code 801 is returned. However, it can be called properly on other devices.
 
 **Parameters**
 
@@ -294,6 +294,8 @@ Minimizes all windows on a display. This API uses a promise to return the result
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Device behavior differences**: When this API is called on phones, error code 801 is returned. However, it can be called properly on other devices.
 
 **Parameters**
 
@@ -774,7 +776,7 @@ For security purposes, the system does not interfere with the disabling and enab
 
 | Name  | Type                     | Mandatory| Description          |
 | -------- | ------------------------- | ---- | -------------- |
-| enable   | boolean                  | Yes  | Whether to enable gesture navigation. **true** to enable, **false** otherwise.|
+| enable   | boolean                  | Yes  | Whether to enable gesture navigation. **true** to enable, **false** otherwise. Currently, only the pull-down gesture is disabled. Other gestures remain enabled.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -985,7 +987,7 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
 
 getSnapshot(windowId: number): Promise<image.PixelMap>
 
-Obtains a snapshot of the same size as the specified window. This API uses a promise to return the result.
+Obtains a snapshot of the same size as the specified window. This API uses a promise to return the result. If privacy mode is enabled for the current window (using [setWindowPrivacyMode](arkts-apis-window-Window.md#setwindowprivacymode9)), taking a screenshot will result in a blank screen.
 
 **System API**: This is a system API.
 
@@ -1549,10 +1551,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
 
 class MyDeathRecipient {
   onRemoteDied() {
-    console.log('server died');
+    console.info('server died');
   }
 }
 
@@ -1574,32 +1577,36 @@ class TestRemoteObject extends rpc.RemoteObject {
   }
 }
 
-let token: TestRemoteObject = new TestRemoteObject('testObject');
-let config: window.Configuration = { name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: getContext() };
-try {
-  window.createWindow(config, (err: BusinessError, data) => {
-    let errCode: number = err?.code;
-    if (errCode) {
-      console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
-      return;
+export default class ServiceExtAbility extends ServiceExtensionAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let token: TestRemoteObject = new TestRemoteObject('testObject');
+    let config: window.Configuration = { name: "test", windowType: window.WindowType.TYPE_DIALOG, ctx: this.context };
+    try {
+      window.createWindow(config, (err: BusinessError, data) => {
+        let errCode: number = err?.code;
+        if (errCode) {
+          console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
+          return;
+        }
+        if (!data) {
+          console.error('data is null');
+          return;
+        }
+        data.bindDialogTarget(token, () => {
+          console.info('Dialog Window Need Destroy.');
+          }, (err: BusinessError) => {
+          let errCode: number = err?.code;
+          if (errCode) {
+            console.error(`Failed to bind dialog target. Error code: ${err?.code}, message: ${err?.message}`);
+            return;
+          }
+          console.info('Succeeded in binding dialog target.');
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
     }
-    if (!data) {
-      console.error('data is null');
-      return;
-    }
-    data.bindDialogTarget(token, () => {
-      console.info('Dialog Window Need Destroy.');
-      }, (err: BusinessError) => {
-      let errCode: number = err?.code;
-      if (errCode) {
-        console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`);
-        return;
-      }
-      console.info('Succeeded in binding dialog target.');
-    });
-  });
-} catch (exception) {
-  console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
 }
 ```
 
@@ -1642,10 +1649,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
 
 class MyDeathRecipient {
   onRemoteDied() {
-    console.log('server died');
+    console.info('server died');
   }
 }
 
@@ -1667,34 +1675,38 @@ class TestRemoteObject extends rpc.RemoteObject {
   }
 }
 
-let token: TestRemoteObject = new TestRemoteObject('testObject');
-let config: window.Configuration = {
-  name: "test",
-  windowType: window.WindowType.TYPE_DIALOG,
-  ctx: getContext()
-};
-try {
-  window.createWindow(config, (err: BusinessError, data) => {
-    const errCode: number = err?.code;
-    if (errCode) {
-      console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
-      return;
+export default class ServiceExtAbility extends ServiceExtensionAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let token: TestRemoteObject = new TestRemoteObject('testObject');
+    let config: window.Configuration = {
+      name: "test",
+      windowType: window.WindowType.TYPE_DIALOG,
+      ctx: this.context
+    };
+    try {
+      window.createWindow(config, (err: BusinessError, data) => {
+        const errCode: number = err?.code;
+        if (errCode) {
+          console.error(`Failed to create the window. Cause code: ${err?.code}, message: ${err?.message}`);
+          return;
+        }
+        if (!data) {
+          console.error('data is null');
+          return;
+        }
+        let promise = data.bindDialogTarget(token, () => {
+          console.info('Dialog Window Need Destroy.');
+        });
+        promise.then(() => {
+          console.info('Succeeded in binding dialog target.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to bind dialog target. Error code: ${err?.code}, message: ${err?.message}`);
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
     }
-    if (!data) {
-      console.error('data is null');
-      return;
-    }
-    let promise = data.bindDialogTarget(token, () => {
-      console.info('Dialog Window Need Destroy.');
-    });
-    promise.then(() => {
-      console.info('Succeeded in binding dialog target.');
-    }).catch((err: BusinessError) => {
-      console.error(`Failed to bind dialog target. Cause code: ${err?.code}, message: ${err?.message}`);
-    });
-  });
-} catch (exception) {
-  console.error(`Failed to bind dialog target. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
 }
 ```
 
@@ -2853,9 +2865,9 @@ export default class EntryAbility extends UIAbility {
 
 raiseMainWindowAboveTarget(windowId: number): Promise&lt;void&gt;
 
-Moves the main window above another main window within the same application, with child windows following their parents' layer change. This API uses a promise to return the result.
+Moves the main window above another main window within the same application, with child windows following their parents' layer change. This API works only in [freeform window](../../windowmanager/window-terminology.md#freeform-window) mode. This API uses a promise to return the result.
 
-This API can be called only by the main window of a system application on 2-in-1 devices.
+This API can be called only by the main window of a system application.
 
 You need to pass the ID of the target main window. Both the calling window and the target window must be in the same application process, displayed on the same physical screen, below the lock screen layer, not topmost, not modal, and have no application-modal child windows.
 
@@ -2866,6 +2878,8 @@ You need to pass the ID of the target main window. Both the calling window and t
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API can be properly called on 2-in-1 devices and tablets. If it is called on other device types, error code 801 is returned.
 
 **Parameters**
 
@@ -3088,13 +3102,15 @@ export default class EntryAbility extends UIAbility {
 
 hideNonSystemFloatingWindows(shouldHide: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether to hide non-system floating windows. This API takes effect only on non-2-in-1 devices. It uses an asynchronous callback to return the result.
+Sets whether to hide non-system floating windows (where [windowType](arkts-apis-window-e.md#windowtype7) is **TYPE_FLOAT**). This API uses an asynchronous callback to return the result.
 
 A non-system floating window is a floating window created by a non-system application. By default, the main window of a system application can be displayed together with a non-system floating window. This means that the main window may be blocked by an upper-layer non-system floating window. If the **shouldHide** parameter is set to **true**, all non-system floating windows are hidden, so that the main window will never be blocked by a non-system floating window.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API has no effect and does not report errors for 2-in-1 devices. For other devices, this API can be called properly.
 
 **Parameters**
 
@@ -3165,13 +3181,15 @@ export default class EntryAbility extends UIAbility {
 
 hideNonSystemFloatingWindows(shouldHide: boolean): Promise&lt;void&gt;
 
-Sets whether to hide non-system floating windows. This API takes effect only on non-2-in-1 devices. It uses a promise to return the result.
+Sets whether to hide non-system floating windows (where [windowType](arkts-apis-window-e.md#windowtype7) is **TYPE_FLOAT**). This API uses a promise to return the result.
 
 A non-system floating window is a floating window created by a non-system application. By default, the main window of a system application can be displayed together with a non-system floating window. This means that the main window may be blocked by an upper-layer non-system floating window. If the **shouldHide** parameter is set to **true**, all non-system floating windows are hidden, so that the main window will never be blocked by a non-system floating window.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API has no effect and does not report errors for 2-in-1 devices. For other devices, this API can be called properly.
 
 **Parameters**
 
@@ -3247,11 +3265,11 @@ export default class EntryAbility extends UIAbility {
 
 setDefaultDensityEnabled(enabled: boolean): void
 
-Sets whether the window uses the default density of the system. In the stage model, you need to call this API after [loadContent()](arkts-apis-window-Window.md#loadcontent9) or [setUIContent()](arkts-apis-window-Window.md#setuicontent9).
+Sets whether the window uses the default density of the current screen. In the stage model, you need to call this API after [loadContent()](arkts-apis-window-Window.md#loadcontent9) or [setUIContent()](arkts-apis-window-Window.md#setuicontent9).
 
 If this API is not called, the default density is not used.
 
-If this API, [setDefaultDensityEnabled(true)](arkts-apis-window-WindowStage.md#setdefaultdensityenabled12), and [setCustomDensity](arkts-apis-window-WindowStage.md#setCustomDensity15) are all called, the setting from the last called API will be applied.
+If this API, [setDefaultDensityEnabled(true)](arkts-apis-window-WindowStage.md#setdefaultdensityenabled12), and [setCustomDensity](arkts-apis-window-WindowStage.md#setcustomdensity15) are all called, the setting from the last called API will be applied.
 
 **System API**: This is a system API.
 
@@ -3417,7 +3435,7 @@ try {
 }
 ```
 
-## setWindowContainerModalColor<sup>20+</sup>
+### setWindowContainerModalColor<sup>20+</sup>
 
 setWindowContainerModalColor(activeColor: string, inactiveColor: string): void
 
@@ -3494,11 +3512,11 @@ setTopmost(isTopmost: boolean): Promise&lt;void&gt;
 
 Called by the main window to place the window above all the other windows. This API uses a promise to return the result.
 
-This parameter is valid only when the main window is a floating window in 2-in-1 devices.
-
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API can be properly called on 2-in-1 devices. If it is called on other device types, error code 801 is returned.
 
 **Parameters**
 
@@ -3605,13 +3623,15 @@ try {
 
 setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, isSplitVisible: boolean): void
 
-Shows or hides the maximize, minimize, and split-screen buttons on the title bar of the main window.
+Shows or hides the maximize, minimize, and split-screen buttons on the title bar of the main window. This API works only in [freeform window](../../windowmanager/window-terminology.md#freeform-window) mode.
 
-This API is valid only for 2-in-1 devices and takes effect only for the title bar buttons (maximize, minimize, and split-screen) that are available in the current scenario.
+This API takes effect only for the title bar buttons (maximize, minimize, and split-screen) that are available in the current scenario.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API can be properly called on 2-in-1 devices and tablets. If it is called on other device types, error code 801 is returned.
 
 **Parameters**
 
@@ -3848,7 +3868,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('disableWindowDecor');
+    console.info('disableWindowDecor');
     windowStage.disableWindowDecor();
   }
 };
@@ -3893,7 +3913,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     try {
       windowStage.setShowOnLockScreen(true);
     } catch (exception) {
@@ -4025,7 +4045,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
       y: 0.0,
       z: 0.0
     };
-    toWindow.translate(obj);
+    toWindow?.translate(obj);
     console.info('toWindow translate end');
   }
   );
@@ -4094,8 +4114,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 // xxx.ts
 export class AnimationConfig {
-  private animationForShownCallFunc_: Function = undefined;
-  ShowWindowWithCustomAnimation(windowClass: window.Window, callback) {
+  private animationForShownCallFunc_: ((context : window.TransitionContext) => void) | undefined = undefined;
+  ShowWindowWithCustomAnimation(windowClass: window.Window, callback: (context : window.TransitionContext) => void) {
     if (!windowClass) {
       console.error('windowClass is undefined');
       return false;
@@ -4137,7 +4157,7 @@ try {
         y : 0.0,
         z : 0.0
       };
-      toWindow.translate(obj); // Set the transition animation.
+      toWindow?.translate(obj); // Set the transition animation.
       console.info('toWindow translate end in animation');
     });
     console.info('complete transition end');
@@ -4177,8 +4197,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 // xxx.ts
 export class AnimationConfig {
-  private animationForHiddenCallFunc_: Function = undefined;
-  HideWindowWithCustomAnimation(windowClass: window.Window, callback) {
+  private animationForHiddenCallFunc_: ((context : window.TransitionContext) => void) | undefined = undefined;
+  HideWindowWithCustomAnimation(windowClass: window.Window, callback: (context : window.TransitionContext) => void) {
     if (!windowClass) {
       console.error('windowClass is undefined');
       return false;
@@ -4220,7 +4240,7 @@ try {
         y : 0.0,
         z : 0.0
       };
-      toWindow.translate(obj); // Set the transition animation.
+      toWindow?.translate(obj); // Set the transition animation.
       console.info('toWindow translate end in animation');
     });
     console.info('complete transition end');

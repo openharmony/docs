@@ -1,5 +1,12 @@
 # 系统能力SystemCapability使用指南
 
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @RayShih-->
+<!--Designer: @RayShih-->
+<!--Tester: @RayShih-->
+<!--Adviser: @RayShih-->
+
 ## 概述
 
 ### 系统能力与 API
@@ -149,6 +156,8 @@ DevEco Studio会根据创建的工程所支持的设置自动配置联想能力�
 
 即使是相同的系统能力，在不同的设备下，也会有能力的差异。比如同是摄像头的能力，平板设备优于智能穿戴设备。
 
+以下示例通过人脸识别功能进行举例：
+
 ```ts
 import userAuth from '@ohos.userIAM.userAuth';
 
@@ -160,6 +169,8 @@ const authParam : userAuth.AuthParam = {
 const widgetParam :userAuth.WidgetParam = {
   title: '请输入密码',
 };
+
+// 在使用接口时可通过try...catch捕获异常。如果接口的SysCap不支持当前设备，将返回801错误码。
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   userAuthInstance.start();

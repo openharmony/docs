@@ -43,7 +43,7 @@ getAccountManager(): AccountManager
 
 表示系统账号类型的枚举。
 
-**系统能力：** SystemCapability.Account.OsAccount。
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称   | 值 | 说明         |
 | ------ | ------ | ----------- |
@@ -91,8 +91,8 @@ checkMultiOsAccountEnabled(callback: AsyncCallback&lt;boolean&gt;): void
       console.info('checkMultiOsAccountEnabled successfully, isEnabled: ' + isEnabled);
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -130,8 +130,8 @@ checkMultiOsAccountEnabled(): Promise&lt;boolean&gt;
     }).catch((err: BusinessError) => {
       console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -183,8 +183,8 @@ checkOsAccountActivated(localId: number, callback: AsyncCallback&lt;boolean&gt;)
         console.info('checkOsAccountActivated successfully, isActivated:' + isActivated);
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`checkOsAccountActivated exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -239,8 +239,8 @@ checkOsAccountActivated(localId: number): Promise&lt;boolean&gt;
     }).catch((err: BusinessError) => {
       console.error(`checkOsAccountActivated failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`checkOsAccountActivated exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -286,8 +286,8 @@ isOsAccountConstraintEnabled(constraint: string): Promise&lt;boolean&gt;
     }).catch((err: BusinessError) => {
       console.error(`isOsAccountConstraintEnabled failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`isOsAccountConstraintEnabled exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -341,8 +341,8 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: A
         console.info('checkOsAccountConstraintEnabled successfully, isEnabled: ' + isEnabled);
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`checkOsAccountConstraintEnabled exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -399,8 +399,8 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt
     }).catch((err: BusinessError) => {
       console.error(`checkOsAccountConstraintEnabled failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`checkOsAccountConstraintEnabled exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -441,8 +441,8 @@ checkOsAccountTestable(callback: AsyncCallback&lt;boolean&gt;): void
         console.info('checkOsAccountTestable successfully, isTestable: ' + isTestable);
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`checkOsAccountTestable code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -480,8 +480,8 @@ checkOsAccountTestable(): Promise&lt;boolean&gt;
     }).catch((err: BusinessError) => {
       console.error(`checkOsAccountTestable failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`checkOsAccountTestable exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -519,8 +519,8 @@ isOsAccountUnlocked(): Promise&lt;boolean&gt;
     }).catch((err: BusinessError) => {
       console.error(`isOsAccountUnlocked failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`isOsAccountUnlocked exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -564,8 +564,8 @@ checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
         console.info('checkOsAccountVerified successfully, isVerified: ' + isVerified);
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`checkOsAccountVerified exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -607,8 +607,8 @@ checkOsAccountVerified(): Promise&lt;boolean&gt;
     }).catch((err: BusinessError) => {
       console.error(`checkOsAccountVerified failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`checkOsAccountVerified exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -660,8 +660,8 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
         console.info('checkOsAccountVerified successfully, isVerified: ' + isVerified);
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`checkOsAccountVerified exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -716,8 +716,8 @@ checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
     }).catch((err: BusinessError) => {
       console.error(`checkOsAccountVerified failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`checkOsAccountVerified exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -761,8 +761,8 @@ getOsAccountCount(callback: AsyncCallback&lt;number&gt;): void
         console.info('getOsAccountCount successfully, count: ' + count);
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getOsAccountCount exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -844,8 +844,8 @@ getOsAccountLocalId(callback: AsyncCallback&lt;number&gt;): void
         console.info('getOsAccountLocalId successfully, localId: ' + localId);
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getOsAccountLocalId exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -883,8 +883,8 @@ getOsAccountLocalId(): Promise&lt;number&gt;
     }).catch((err: BusinessError) => {
       console.error(`getOsAccountLocalId failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getOsAccountLocalId exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -927,8 +927,8 @@ getOsAccountLocalIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): v
       }
       console.info('getOsAccountLocalIdForUid successfully, localId: ' + localId);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getOsAccountLocalIdForUid exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -975,8 +975,8 @@ getOsAccountLocalIdForUid(uid: number): Promise&lt;number&gt;
     }).catch((err: BusinessError) => {
       console.error(`getOsAccountLocalIdForUid failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getOsAccountLocalIdForUid exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -1018,8 +1018,8 @@ getOsAccountLocalIdForUidSync(uid: number): number
   try {
     let localId : number = accountManager.getOsAccountLocalIdForUidSync(uid);
     console.info('getOsAccountLocalIdForUidSync successfully, localId: ' + localId);
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getOsAccountLocalIdForUidSync exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -1066,8 +1066,8 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo, callback: AsyncCallb
         console.info('getOsAccountLocalIdForDomain successfully, localId: ' + localId);
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getOsAccountLocalIdForDomain exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -1117,8 +1117,8 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo): Promise&lt;number&g
     }).catch((err: BusinessError) => {
       console.error(`getOsAccountLocalIdForDomain failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getOsAccountLocalIdForDomain exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -1170,8 +1170,8 @@ getOsAccountConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;str
         console.info('getOsAccountConstraints successfully, constraints: ' + JSON.stringify(constraints));
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getOsAccountConstraints exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -2945,7 +2945,7 @@ getOsAccountName(): Promise&lt;string&gt;
 
 ### getForegroundOsAccountLocalId<sup>15+</sup>
 
-getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
+getForegroundOsAccountLocalId(): Promise&lt;number&gt;
 
 获取前台系统账号的ID。
 
@@ -2984,7 +2984,7 @@ getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
 
 ### getOsAccountDomainInfo<sup>15+</sup>
 
-getOsAccountDomainInfo(localId: number): Promise&lt;DomainAccountInfo&gt;;
+getOsAccountDomainInfo(localId: number): Promise&lt;DomainAccountInfo&gt;
 
 获取指定系统账号关联的域账号信息。
 

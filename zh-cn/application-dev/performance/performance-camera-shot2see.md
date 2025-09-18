@@ -1,4 +1,10 @@
 # 相机分段式拍照性能提升实践
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
 
 ## 概述
 
@@ -351,4 +357,4 @@
 
 ## 完整示例
 
-[相机分段式拍照源码](https://gitee.com/harmonyos-cases/cases/tree/master/test/performance/camera_shot2see)
+[相机分段式拍照源码](https://gitcode.com/harmonyos-cases/cases/tree/master/test/performance/camera_shot2see)

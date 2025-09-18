@@ -56,7 +56,7 @@ OpenHarmony SDK 升级助手，用于帮助开发者快速解决OpenHarmony应�
 
 ## 打包构建
 
-1.[interface仓](https://gitee.com/openharmony/interface_sdk-js/tree/master/build-tools)中 clone [api_diff](https://gitee.com/openharmony/interface_sdk-js/tree/master/build-tools/api_diff)工具(对比两个版本SDK里的API差异)和[collect_application_api](https://gitee.com/openharmony/interface_sdk-js/tree/master/build-tools/collect_application_api)工具(用于解析并汇总应用中使用到的API)到本地。
+1.[interface仓](https://gitcode.com/openharmony/interface_sdk-js/tree/master/build-tools)中 clone [api_diff](https://gitcode.com/openharmony/interface_sdk-js/tree/master/build-tools/api_diff)工具(对比两个版本SDK里的API差异)和[collect_application_api](https://gitcode.com/openharmony/interface_sdk-js/tree/master/build-tools/collect_application_api)工具(用于解析并汇总应用中使用到的API)到本地。
 
 ![suap-warehouse](figures/suap-warehouse.png)
 

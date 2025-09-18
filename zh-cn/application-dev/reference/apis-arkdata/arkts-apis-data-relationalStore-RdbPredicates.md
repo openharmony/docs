@@ -487,7 +487,7 @@ predicates.isNotNull("NAME");
 
 like(field: string, value: string): RdbPredicates
 
-配置谓词以匹配数据表的field列中值类似于value的字段。
+配置模糊查询条件，指定`field`列的模糊匹配条件。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -496,7 +496,7 @@ like(field: string, value: string): RdbPredicates
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | 是   | 数据库表中的列名。     |
-| value  | string | 是   | 指示要与谓词匹配的值。 |
+| value  | string | 是   | 指定模糊匹配条件，通常配合通配符使用，`%`表示任意长度任意字符，`_`表示单个字符。 |
 
 **返回值**：
 
@@ -515,7 +515,7 @@ like(field: string, value: string): RdbPredicates
 **示例：**
 
 ```ts
-// 匹配数据表的"NAME"列中值类似于"os"的字段，如"Rose"
+// 查询NAME列中包含"os"子串的数据，例如会匹配"Rose"。
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.like("NAME", "%os%");
 ```
@@ -1016,7 +1016,11 @@ predicates.indexedBy("SALARY");
 
 in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
-配置谓词，使数据表中`field`列的值在给定范围内。若`value`为空数组，则查询时不对此列进行限定，查询全部数据。
+配置谓词条件，表示字段`field`的值必须在给定的`value`集合内。
+
+> **说明：**
+>
+> `value`集合不能为空。如果传入空集，此条件将失效，导致操作针对所有数据（如全量查询、更新或删除）。请在调用前判断`value`是否为空集，避免误操作。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1127,7 +1131,7 @@ predicates.notContains("NAME", "os");
 
 notLike(field: string, value: string): RdbPredicates
 
-配置谓词以匹配数据表的field列中值不存在类似于value的字段。
+配置模糊查询条件，指定`field`列**不包含**的模糊匹配条件。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1136,7 +1140,7 @@ notLike(field: string, value: string): RdbPredicates
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | 是   | 数据库表中的列名。     |
-| value  | string | 是   | 指示要与谓词匹配的值。 |
+| value  | string | 是   | 指定**不包含**的模糊匹配条件，通常配合通配符使用，`%`表示任意长度任意字符，`_`表示单个字符。 |
 
 **返回值**：
 
@@ -1155,9 +1159,9 @@ notLike(field: string, value: string): RdbPredicates
 **示例：**
 
 ```ts
-// 匹配数据表的"NAME"列中不等于"os"的字段，如列表中的"Rose"
+// 查询NAME列中不包含"os"子串的数据，例如不会匹配"Rose"。
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.notLike("NAME", "os");
+predicates.notLike("NAME", "%os%");
 ```
 
 ## having<sup>20+</sup>

@@ -325,6 +325,8 @@ hilog_param=40960
     | int&nbsp;GetDevUdid(char&nbsp;\*udid,&nbsp;int&nbsp;size) | 获取设备udid。 |
     | const char *AclGetSerial(void) | 返回当前设备序列号（SN号）（带访问权限检查）。 |
     | int AclGetDevUdid(char *udid, int size) | 获取设备udid（带访问权限检查）。 |
+    | const&nbsp;char\*&nbsp;GetChipType(void) | 返回当前设备CPU型号。 |
+    | int GetBootCount(void) | 获取当前设备开机次数，获取失败时返回-1 |
 
 ### 开发步骤
 
@@ -465,6 +467,12 @@ hilog_param=40960
     char value26[65] = {0};
     GetDevUdid(value26, 65);
     printf("device udid =%s\n", value26);
+    
+    char* value27 = GetChipType();
+    printf("device chiptype =%s\n", value27);
+    
+    int value28 = GetBootCount();
+    printf("device boot count =%d\n", value28);
     ```
 ### 系统参数错误码说明
 

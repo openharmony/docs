@@ -54,7 +54,7 @@ B帧编码预测过程同时利用前后帧的信息，可以显著降低信号�
     // 1.1 获取对应视频编码器能力实例，此处以H.265为例。
     OH_AVCapability *cap = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_HEVC, true, HARDWARE);
     if (cap != nullptr) {
-        OH_LOG_INFO("Get codec Capability sucess!");
+        OH_LOG_INFO("Get codec Capability success!");
         // 1.2 通过特性能力查询接口校验是否支持B帧编码特性。
         bool isSupported = OH_AVCapability_IsFeatureSupported(cap, VIDEO_ENCODER_B_FRAME);
         int32_t supportedMaxBFrameCount = 0;

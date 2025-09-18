@@ -1,4 +1,10 @@
 # oh_rdb_transaction.h
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 
@@ -31,23 +37,23 @@ Defines APIs and enums related to transactions.
 
 ### Functions
 
-| Name                                                         | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [OH_RDB_TransOptions *OH_RdbTrans_CreateOptions(void)](#oh_rdbtrans_createoptions) | Creates a **TransOptions** instance.                         |
-| [int OH_RdbTrans_DestroyOptions(OH_RDB_TransOptions *options)](#oh_rdbtrans_destroyoptions) | Destroys a **TransOptions** instance.                        |
-| [int OH_RdbTransOption_SetType(OH_RDB_TransOptions *options, OH_RDB_TransType type)](#oh_rdbtransoption_settype) | Sets the transaction type of an RDB store.                   |
-| [int OH_RdbTrans_Commit(OH_Rdb_Transaction *trans)](#oh_rdbtrans_commit) | Commits a transaction.                                       |
-| [int OH_RdbTrans_Rollback(OH_Rdb_Transaction *trans)](#oh_rdbtrans_rollback) | Rolls back a transaction.                                    |
-| [int OH_RdbTrans_Insert(OH_Rdb_Transaction *trans, const char *table, const OH_VBucket *row, int64_t *rowId)](#oh_rdbtrans_insert) | Inserts a row of data into a table.                          |
-| [int OH_RdbTrans_InsertWithConflictResolution(OH_Rdb_Transaction *trans, const char *table, const OH_VBucket *row,Rdb_ConflictResolution resolution, int64_t *rowId)](#oh_rdbtrans_insertwithconflictresolution) | Inserts a row of data into a table with conflict resolutions. |
-| [int OH_RdbTrans_BatchInsert(OH_Rdb_Transaction *trans, const char *table, const OH_Data_VBuckets *rows,Rdb_ConflictResolution resolution, int64_t *changes)](#oh_rdbtrans_batchinsert) | Inserts a batch of data into a table.                        |
-| [int OH_RdbTrans_Update(OH_Rdb_Transaction *trans, const OH_VBucket *row, const OH_Predicates *predicates,int64_t *changes)](#oh_rdbtrans_update) | Updates data in an RDB store based on specified conditions.  |
-| [int OH_RdbTrans_UpdateWithConflictResolution(OH_Rdb_Transaction *trans, const OH_VBucket *row,const OH_Predicates *predicates, Rdb_ConflictResolution resolution, int64_t *changes)](#oh_rdbtrans_updatewithconflictresolution) | Updates data in the database based on specified conditions and supports conflict resolution. |
-| [int OH_RdbTrans_Delete(OH_Rdb_Transaction *trans, const OH_Predicates *predicates, int64_t *changes)](#oh_rdbtrans_delete) | Deletes data from the database based on the specified conditions. |
-| [OH_Cursor *OH_RdbTrans_Query(OH_Rdb_Transaction *trans, const OH_Predicates *predicates, const char *columns[],int len)](#oh_rdbtrans_query) | Queries data in the database based on specified conditions.  |
-| [OH_Cursor *OH_RdbTrans_QuerySql(OH_Rdb_Transaction *trans, const char *sql, const OH_Data_Values *args)](#oh_rdbtrans_querysql) | Queries data in the database using the specified SQL statement. |
-| [int OH_RdbTrans_Execute(OH_Rdb_Transaction *trans, const char *sql, const OH_Data_Values *args, OH_Data_Value **result)](#oh_rdbtrans_execute) | Executes an SQL statement that contains specified parameters. |
-| [int OH_RdbTrans_Destroy(OH_Rdb_Transaction *trans)](#oh_rdbtrans_destroy) | Destroys a transaction object.                               |
+| Name                                                        | Description                                            |
+| ------------------------------------------------------------ | ------------------------------------------------ |
+| [OH_RDB_TransOptions *OH_RdbTrans_CreateOptions(void)](#oh_rdbtrans_createoptions) | Creates a **TransOptions** instance.                              |
+| [int OH_RdbTrans_DestroyOptions(OH_RDB_TransOptions *options)](#oh_rdbtrans_destroyoptions) | Destroys a **TransOptions** instance.                              |
+| [int OH_RdbTransOption_SetType(OH_RDB_TransOptions *options, OH_RDB_TransType type)](#oh_rdbtransoption_settype) | Sets the transaction type of an RDB store.                      |
+| [int OH_RdbTrans_Commit(OH_Rdb_Transaction *trans)](#oh_rdbtrans_commit) | Commits a transaction.                                      |
+| [int OH_RdbTrans_Rollback(OH_Rdb_Transaction *trans)](#oh_rdbtrans_rollback) | Rolls back a transaction.                                      |
+| [int OH_RdbTrans_Insert(OH_Rdb_Transaction *trans, const char *table, const OH_VBucket *row, int64_t *rowId)](#oh_rdbtrans_insert) | Inserts a row of data into a table.                      |
+| [int OH_RdbTrans_InsertWithConflictResolution(OH_Rdb_Transaction *trans, const char *table, const OH_VBucket *row,Rdb_ConflictResolution resolution, int64_t *rowId)](#oh_rdbtrans_insertwithconflictresolution) | Inserts a row of data into a table with conflict resolutions.        |
+| [int OH_RdbTrans_BatchInsert(OH_Rdb_Transaction *trans, const char *table, const OH_Data_VBuckets *rows,Rdb_ConflictResolution resolution, int64_t *changes)](#oh_rdbtrans_batchinsert) | Inserts a batch of data into a table.                  |
+| [int OH_RdbTrans_Update(OH_Rdb_Transaction *trans, const OH_VBucket *row, const OH_Predicates *predicates,int64_t *changes)](#oh_rdbtrans_update) | Updates data in an RDB store based on specified conditions.              |
+| [int OH_RdbTrans_UpdateWithConflictResolution(OH_Rdb_Transaction *trans, const OH_VBucket *row,const OH_Predicates *predicates, Rdb_ConflictResolution resolution, int64_t *changes)](#oh_rdbtrans_updatewithconflictresolution) | Updates data in the database based on specified conditions and supports conflict resolution.|
+| [int OH_RdbTrans_Delete(OH_Rdb_Transaction *trans, const OH_Predicates *predicates, int64_t *changes)](#oh_rdbtrans_delete) | Deletes data from the database based on the specified conditions.                |
+| [OH_Cursor *OH_RdbTrans_Query(OH_Rdb_Transaction *trans, const OH_Predicates *predicates, const char *columns[],int len)](#oh_rdbtrans_query) | Queries data in the database based on specified conditions.              |
+| [OH_Cursor *OH_RdbTrans_QuerySql(OH_Rdb_Transaction *trans, const char *sql, const OH_Data_Values *args)](#oh_rdbtrans_querysql) | Queries data in the database using the specified SQL statement.                 |
+| [int OH_RdbTrans_Execute(OH_Rdb_Transaction *trans, const char *sql, const OH_Data_Values *args, OH_Data_Value **result)](#oh_rdbtrans_execute) | Executes an SQL statement that contains specified parameters.                     |
+| [int OH_RdbTrans_Destroy(OH_Rdb_Transaction *trans)](#oh_rdbtrans_destroy) | Destroys a transaction object.                                  |
 
 ## Enum Description
 
@@ -252,7 +258,7 @@ Inserts a row of data into a table with conflict resolutions.
 ### OH_RdbTrans_BatchInsert()
 
 ```
-int OH_RdbTrans_BatchInsert(OH_Rdb_Transaction *trans, const char *table, const OH_Data_VBuckets *rows,Rdb_ConflictResolution resolution, int64_t *changes)
+int OH_RdbTrans_BatchInsert(OH_Rdb_Transaction *trans, const char *table, const OH_Data_VBuckets *rows, Rdb_ConflictResolution resolution, int64_t *changes)
 ```
 
 **Description**
@@ -281,7 +287,7 @@ Inserts a batch of data into a table.
 ### OH_RdbTrans_Update()
 
 ```
-int OH_RdbTrans_Update(OH_Rdb_Transaction *trans, const OH_VBucket *row, const OH_Predicates *predicates,int64_t *changes)
+int OH_RdbTrans_Update(OH_Rdb_Transaction *trans, const OH_VBucket *row, const OH_Predicates *predicates, int64_t *changes)
 ```
 
 **Description**
@@ -365,7 +371,7 @@ Deletes data from the database based on the specified conditions.
 ### OH_RdbTrans_Query()
 
 ```
-OH_Cursor *OH_RdbTrans_Query(OH_Rdb_Transaction *trans, const OH_Predicates *predicates, const char *columns[],int len)
+OH_Cursor *OH_RdbTrans_Query(OH_Rdb_Transaction *trans, const OH_Predicates *predicates, const char *columns[], int len)
 ```
 
 **Description**
@@ -381,7 +387,7 @@ Queries data in the database based on specified conditions.
 | -------------------------------------------------------- | ------------------------------------------------------------ |
 | [OH_Rdb_Transaction](capi-rdb-oh-rdb-transaction.md) *trans  | Pointer to the [OH_Rdb_Transaction](capi-rdb-oh-rdb-transaction.md) instance.|
 | const [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | Pointer to the [OH_Predicates](capi-rdb-oh-predicates.md) instance, specifying the query conditions.  |
-| columns                                                  | Pointer to the column to be queried. If the value is not specified, the query applies to all columns.          |
+| const char *columns[]                       | Pointer to the column to be queried. If the value is not specified, the query applies to all columns.          |
 | int len                                                  | Number of elements in a column.                                        |
 
 **Returns**

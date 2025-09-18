@@ -1,4 +1,10 @@
 # Real-Time Communication Between the Worker Thread and Host Thread
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 
 In ArkTS, Worker differ from TaskPool in that it has a limited number of threads but can run for extended periods. A [Worker](worker-introduction.md) can execute multiple tasks, each with varying execution times and results. The host thread needs to call different methods in the Worker based on the situation, and the Worker must promptly return the results to the host thread.
@@ -7,7 +13,7 @@ In ArkTS, Worker differ from TaskPool in that it has a limited number of threads
 The following example demonstrates how a Worker can respond to a "hello world" request.
 
 
-1. Create a Worker that executes tasks.
+1. Create a Worker that executes tasks. For details, see [Precautions for Creating a Worker](worker-introduction.md#precautions-for-creating-a-worker).
 
    ```ts
    // Worker.ets
@@ -21,22 +27,20 @@ The following example demonstrates how a Worker can respond to a "hello world" r
      }
    }
    ```
-   <!-- @[create_worker_execute_multi_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/workers/Worker.ets) -->
+   <!-- @[create_worker_execute_multi_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/workers/Worker.ets) -->
 
-2. In the host thread (UI main thread), create a Worker object. Use the **postMessage** method to send a message to the Worker thread when a button is clicked, and use the **onmessage** method of Worker to receive the response.
+2. Create a Worker object on the host thread (the UI main thread). When a button is clicked, send a message to the Worker thread using **postMessage**. The Worker thread processes messages from the host thread through its registered **onmessage** callback.
 
    ```ts
    // Index.ets
    import { worker } from '@kit.ArkTS';
-   import { BusinessError } from '@kit.BasicServicesKit';
    
    function promiseCase() {
      let p: Promise<void> = new Promise<void>((resolve: Function, reject: Function) => {
        setTimeout(() => {
-         resolve(1);
-       }, 100)
-     }).then(undefined, (error: BusinessError) => {
-     })
+         resolve();
+       }, 100);
+     });
      return p;
    }
    
@@ -86,7 +90,7 @@ The following example demonstrates how a Worker can respond to a "hello world" r
      }
    }
    ```
-   <!-- @[respond_worker_instant_message](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/WorkerCommunicatesWithMainthread.ets) -->
+   <!-- @[respond_worker_instant_message](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/WorkerCommunicatesWithMainthread.ets) -->
 
 
 In this example, the Worker thread receives a message from the host thread, processes it, and sends a response back. This enables real-time communication between the host thread and the Worker thread, allowing the host thread to conveniently use the execution results of the Worker.

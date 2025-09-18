@@ -44,7 +44,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 
 | 名称    | 类型                                       | 只读 | 可选 | 说明         |
 | ---------| ---------------------------------------- | ---- | ---- | -----------|
-| target   | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 否 | 否 | 触发手势事件的元素对象。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| target   | [EventTarget](ts-universal-events-click.md#eventtarget8) | 否 | 否 | 触发手势事件的元素对象。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | timestamp| number | 否 | 否 | 事件时间戳，触发事件时距离系统启动的时间间隔。<br>单位：ns<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | source   | [SourceType](ts-gesture-settings.md#sourcetype枚举说明8) | 否 | 否 | 事件输入设备的类型。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | pressure<sup>9+</sup> | number | 否 | 否 | 按压的压力大小。<br/>默认值：0<br/>取值范围：[0,1]，典型值0.913168，压感大小与数值正相关。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
@@ -54,6 +54,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | sourceTool<sup>9+</sup> | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9) | 否 | 否 | 事件输入源的类型。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | axisHorizontal<sup>12+</sup> | number | 否 | 是 | 水平轴值。<br/>默认值：0<br/>**说明：**<br/>当前仅在鼠标滚轮或触控板双指滑动触发的Pan手势，或使用Ctrl+鼠标滚轮触发的Pinch手势中可以获取。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | axisVertical<sup>12+</sup> | number | 否 | 是 | 垂直轴值。<br/>默认值：0<br/>**说明：**<br/>当前仅在鼠标滚轮或触控板双指滑动触发的Pan手势，或使用Ctrl+鼠标滚轮触发的Pinch手势中可以获取。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| axisPinch<sup>21+</sup> | number | 否 | 是 |  双指缩放比例。<br/>默认值：0<br/>**说明：**<br/>仅在触控板双指缩放操作触发的Pinch手势，或轴事件中获取。<br/>**卡片能力：** 从API version 21开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。 |
 | deviceId<sup>12+</sup> | number | 否 | 是 | 触发当前事件的输入设备ID。<br/>默认值：0<br />取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | targetDisplayId<sup>15+</sup> | number | 否 | 是 | 事件发生的屏幕ID。  <br/>默认值：0<br />取值范围：[0, +∞)<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
@@ -66,36 +67,6 @@ getModifierKeyState?(keys: Array\<string>): boolean
 >  **说明：**
 >
 > 此接口不支持在手写笔场景下使用。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名  | 类型         | 必填 | 说明   |
-| ------- | ----------- | ---- | --------------------- |
-| keys | Array\<string> | 是    | 需要查询的功能键。 |
-
-**返回值：**
-
-| 类型              |       说明       |
-| ------- | --------------------------------- | 
-| boolean | 功能键的按压状态。true表示功能键被按下，false表示功能键未被按下。|
-
-**错误码**
-
-以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
-
-### getModifierKeyState<sup>12+</sup>
-
-getModifierKeyState?(keys: Array&lt;string&gt;): boolean
-
-获取功能键按压状态。支持功能键 'Ctrl'\|'Alt'\|'Shift'。此接口不支持在手写笔场景下使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -125,7 +96,7 @@ getModifierKeyState?(keys: Array&lt;string&gt;): boolean
 
 ### 示例1（自定义手势判定）
 
-该示例通过配置onGestureJudgeBegin实现了对长按、滑动和拖动手势的自定义判定。
+该示例通过配置onGestureJudgeBegin实现了对长按、快滑和滑动手势的自定义判定。
 
 ```ts
 // xxx.ets
@@ -164,14 +135,14 @@ struct Index {
     )
     .gesture(
       SwipeGesture()
-        .tag("swipe1")// 设置滑动手势标志
+        .tag("swipe1")// 设置快滑手势标志
         .onAction(() => {
           this.message = 'swipe1'
         })
     )
     .gesture(
       PanGesture()
-        .tag("pan1")// 设置拖动手势标志
+        .tag("pan1")// 设置滑动手势标志
         .onActionStart(() => {
           this.message = 'pan1'
         })
@@ -182,22 +153,22 @@ struct Index {
         let longPressEvent = event as LongPressGestureEvent;
         console.log("repeat " + longPressEvent.repeat)
       }
-      // 若该手势类型为滑动手势，转换为滑动手势事件
+      // 若该手势类型为快滑手势，转换为快滑手势事件
       if (gestureInfo.type == GestureControl.GestureType.SWIPE_GESTURE) {
         let swipeEvent = event as SwipeGestureEvent;
         console.log("angle " + swipeEvent.angle)
       }
-      // 若该手势类型为拖动手势，转换为拖动手势事件
+      // 若该手势类型为滑动手势，转换为滑动手势事件
       if (gestureInfo.type == GestureControl.GestureType.PAN_GESTURE) {
         let panEvent = event as PanGestureEvent;
         console.log("velocity " + panEvent.velocity)
       }
       // 自定义判定标准
       if (gestureInfo.type == GestureControl.GestureType.DRAG) {
-        // 返回 REJECT 会使拖动手势失败
+        // 返回 GestureJudgeResult.REJECT 会使拖动手势失败。
         return GestureJudgeResult.REJECT;
       } else if (gestureInfo.tag == 'longPress1' && event.fingerList.length > 0 && event.fingerList[0].localY < 100) {
-        // 返回 CONTINUE 将保持系统判定。
+        // 返回 GestureJudgeResult.CONTINUE 将保持系统判定。
         return GestureJudgeResult.CONTINUE;
       }
       return GestureJudgeResult.CONTINUE;
@@ -246,7 +217,7 @@ struct Index {
           .height('200vp')
           .hitTestBehavior(HitTestMode.Transparent)
           .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent) => {
-            // 确定tag标志是否有值
+            // 确定 gestureInfo 的 tag 标志是否有值
             if (gestureInfo.tag) {
               console.log("gestureInfo tag" + gestureInfo.tag.toString())
             }

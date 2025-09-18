@@ -4,7 +4,7 @@
 <!--Owner: @aohui-->
 <!--Designer: @yaomingliu-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 ## 概述
 
@@ -28,7 +28,7 @@
 
 | 名称                                                                                                                      | 描述 |
 |-------------------------------------------------------------------------------------------------------------------------|----|
-| [ArkWeb_JavaScriptValuePtr (*createJavaScriptValue)(ArkWeb_JavaScriptValueType type, void* data, size_t dataLength)](#createjavascriptvalue) | 创建一个JavaScript值，用于返回给HTML。   |
+| [ArkWeb_JavaScriptValuePtr (\*createJavaScriptValue)(ArkWeb_JavaScriptValueType type, void* data, size_t dataLength)](#createjavascriptvalue) | 创建一个JavaScript值，用于返回给HTML。   |
 
 ## 成员函数说明
 
@@ -50,7 +50,7 @@ ArkWeb_JavaScriptValuePtr (*createJavaScriptValue)(ArkWeb_JavaScriptValueType ty
 |---------------------------------|----|
 | ArkWeb_JavaScriptValueType type | JavaScript值的类型。   |
 | void* data                                | JavaScript值的数据缓冲区。   |
-| size_t dataLength                               | avaScript值的缓冲区大小。   |
+| size_t dataLength                         | JavaScript值的缓冲区大小。   |
 
 **返回：**
 

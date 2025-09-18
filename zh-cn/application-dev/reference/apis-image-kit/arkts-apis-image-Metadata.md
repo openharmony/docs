@@ -23,7 +23,9 @@ import { image } from '@kit.ImageKit';
 
 getProperties(key: Array\<string>): Promise\<Record\<string, string | null>>
 
-获取图像中属性的值，使用Promise形式返回。如要查询属性值信息请参考[PropertyKey](arkts-apis-image-e.md#propertykey7)、[FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13)和[GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20)。
+获取图像中属性的值。使用Promise异步回调。
+
+如要查询属性值信息请参考[PropertyKey](arkts-apis-image-e.md#propertykey7)、[FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13)和[GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20)。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -80,7 +82,9 @@ async function GetProperties(context: Context) {
 
 setProperties(records: Record\<string, string | null>): Promise\<void>
 
-批量设置图片元数据中的指定属性的值，使用Promise形式返回。如要查询属性值信息请参考[PropertyKey](arkts-apis-image-e.md#propertykey7)、[FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13)和[GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20)。
+批量设置图片元数据中的指定属性的值。使用Promise异步回调。
+
+如要查询属性值信息请参考[PropertyKey](arkts-apis-image-e.md#propertykey7)、[FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13)和[GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20)。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -141,7 +145,9 @@ async function SetProperties(context: Context) {
 
 getAllProperties(): Promise\<Record<string, string | null>>
 
-获取图片中所有元数据的属性和值，使用Promise形式返回。如要查询属性值信息请参考[PropertyKey](arkts-apis-image-e.md#propertykey7)、[FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13)和[GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20)。
+获取图片中所有元数据的属性和值。使用Promise异步回调。
+
+如要查询属性值信息请参考[PropertyKey](arkts-apis-image-e.md#propertykey7)、[FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13)和[GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20)。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -185,7 +191,7 @@ async function GetAllProperties(context: Context) {
 
 clone(): Promise\<Metadata>
 
-对元数据进行克隆，用Promise形式返回结果。
+对元数据进行克隆。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 

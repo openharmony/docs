@@ -4,7 +4,7 @@
 <!--Owner: @aohui-->
 <!--Designer: @yaomingliu-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 ## 概述
 
@@ -1188,7 +1188,7 @@ void OH_ArkWeb_CreateSchemeHandler(ArkWeb_SchemeHandler** schemeHandler)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [ArkWeb_SchemeHandler](capi-web-arkweb-schemehandler.md)** schemeHandler | 返回创建的ArkWeb_SchemeHandler。在不需要时使用OH_ArkWeb_DestoryschemeHandler销毁它。 |
+| [ArkWeb_SchemeHandler](capi-web-arkweb-schemehandler.md)** schemeHandler | 返回创建的ArkWeb_SchemeHandler。在不需要时使用OH_ArkWeb_DestroyschemeHandler销毁它。 |
 
 ### OH_ArkWeb_DestroySchemeHandler()
 
@@ -1341,7 +1341,7 @@ void OH_ArkWeb_CreateResponse(ArkWeb_Response** response)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [ArkWeb_Response](capi-web-arkweb-response.md)** response | 返回创建的ArkWeb_Response。在不需要时使用OH_ArkWeb_DestoryResponse进行销毁。 |
+| [ArkWeb_Response](capi-web-arkweb-response.md)** response | 返回创建的ArkWeb_Response。在不需要时使用OH_ArkWeb_DestroyResponse进行销毁。 |
 
 ### OH_ArkWeb_DestroyResponse()
 

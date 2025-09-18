@@ -31,15 +31,15 @@ Navigation组件通过mode属性设置页面的显示模式。
   .mode(NavigationMode.Auto)
   ```
 
-- 单页面模式
+- 单栏模式
 
-  单页面模式适用于窄屏设备，发生路由跳转时，整个页面都会被替换。
+  单栏模式适用于窄屏设备，发生路由跳转时，整个页面都会被替换。
 
-    **图1** 单页面布局示意图  
+    **图1** 单栏布局示意图  
 
   ![zh-cn_image_0000001511740532](figures/zh-cn_image_0000001511740532.png)
 
-  将mode属性设置为NavigationMode.Stack，Navigation组件即可设置为单页面显示模式。
+  将mode属性设置为NavigationMode.Stack，Navigation组件即可设置为单栏显示模式。
 
 
   ```ts

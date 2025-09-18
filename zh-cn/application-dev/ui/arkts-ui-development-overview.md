@@ -87,7 +87,7 @@
 
 | 任务          | 简介                                  | 相关指导                                     |
 | ----------- | ----------------------------------- | ---------------------------------------- |
-| 学习ArkTS     | 介绍了ArkTS的基本语法、状态管理和渲染控制的场景。         | - [基本语法](state-management/arkts-basic-syntax-overview.md)<br>- [状态管理](state-management/arkts-state-management-overview.md)<br>- [渲染控制](state-management/arkts-rendering-control-overview.md) |
+| 学习ArkTS     | 介绍了ArkTS的基本语法、状态管理和渲染控制的场景。         | - [基本语法](state-management/arkts-basic-syntax-overview.md)<br>- [状态管理](state-management/arkts-state-management-overview.md)<br>- [渲染控制](rendering-control/arkts-rendering-control-overview.md) |
 | 设置组件导航和页面路由 | 介绍了如何设置组件间的导航以及页面路由。 | -&nbsp;[组件导航（推荐）](arkts-navigation-navigation.md)<br/>-&nbsp;[页面路由](arkts-routing.md) |
 | 组件布局   | 介绍了几种常用的布局方式。             | -&nbsp;[常用布局](arkts-layout-development-overview.md) |
 | 列表与网格 | 介绍了几种列表与网格组件的使用方法。 | -&nbsp;[列表与网格](arkts-list-grid-development-overview.md) |
@@ -126,7 +126,7 @@
 
 - [ArkTS组件集（ArkTS）（Full SDK）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/ComponentCollection)
 
-- [像素转换（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/PixelConversion)
+- [像素转换（ArkTS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/PixelConversion)
 
-- [购物应用（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts)
+- [购物应用（ArkTS）（API8）](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts)
 

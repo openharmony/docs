@@ -245,7 +245,7 @@ const char** OH_Utd_GetFilenameExtensions(OH_Utd* pThis, unsigned int* count)
 
 | 类型         | 说明                                                         |
 | ------------ | ------------------------------------------------------------ |
-| const char** | 当入参有效时返回文件文件名后缀结果集的字符串指针列表，否则返回nullptr。 |
+| const char** | 当入参有效时返回文件名后缀结果集的字符串指针列表，否则返回nullptr。 |
 
 ### OH_Utd_GetMimeTypes()
 

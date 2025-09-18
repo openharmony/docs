@@ -8,7 +8,7 @@
 
 ## 概述
 
-提供查询应用包信息的功能，获取的信息包括应用包名和指纹信息。
+提供查询应用包信息的功能，包括应用包名、应用指纹、应用appId等。
 
 **引用文件：** <bundle/native_interface_bundle.h>
 
@@ -42,6 +42,7 @@
 | [char* OH_NativeBundle_GetCompatibleDeviceType()](#oh_nativebundle_getcompatibledevicetype) | 获取当前应用适用的设备类型。在使用此接口后，为了避免内存泄漏，需要手动释放接口返回的指针。 |
 | [bool OH_NativeBundle_IsDebugMode(bool* isDebugMode)](#oh_nativebundle_isdebugmode) | 查询当前应用的调试模式。 |
 | [OH_NativeBundle_ModuleMetadata* OH_NativeBundle_GetModuleMetadata(size_t* size)](#oh_nativebundle_getmodulemetadata) | 获取当前应用程序的模块元数据数组。在使用此接口后，为了避免内存泄漏，需要手动释放接口返回的指针。 |
+| [BundleManager_ErrorCode OH_NativeBundle_GetAbilityResourceInfo(char* fileType, OH_NativeBundle_AbilityResourceInfo** abilityResourceInfo, size_t* size)](#oh_nativebundle_getabilityresourceinfo) | 获取支持打开特定文件类型的组件资源信息列表。在使用完该接口之后，为了防止内存泄漏，需要调用[OH_AbilityResourceInfo_Destroy](capi-ability-resource-info-h.md#oh_abilityresourceinfo_destroy)进行释放。 |
 
 ## 函数说明
 
@@ -181,3 +182,31 @@ OH_NativeBundle_ModuleMetadata* OH_NativeBundle_GetModuleMetadata(size_t* size)
 | 类型 | 说明 |
 | -- | -- |
 | [OH_NativeBundle_ModuleMetadata*](capi-native-bundle-oh-nativebundle-modulemetadata.md) | 返回模块元数据数组，如果返回的对象为NULL，则表示获取失败。<br> 失败的可能原因是应用程序地址空间已满，导致空间分配失败。 |
+
+### OH_NativeBundle_GetAbilityResourceInfo()
+
+```
+BundleManager_ErrorCode OH_NativeBundle_GetAbilityResourceInfo(char* fileType, OH_NativeBundle_AbilityResourceInfo** abilityResourceInfo, size_t* size)
+```
+
+**描述**
+
+获取支持打开特定文件类型的组件资源信息列表。在使用完该接口之后，为了防止内存泄漏，需要调用[OH_AbilityResourceInfo_Destroy](capi-ability-resource-info-h.md#oh_abilityresourceinfo_destroy)进行释放。
+
+**起始版本：** 21
+
+**需要权限：** ohos.permission.GET_ABILITY_INFO
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| char* fileType | 表示待查询的特定文件类型，推荐使用[UTD类型](../../database/uniform-data-type-descriptors.md)，比如：'general.plain-text'、'general.image'。目前也可以兼容使用[MIME type类型](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com)和文件后缀名称，如：'text/xml' 、 '.png'等。文件后缀与文件类型的映射关系参见[UTD预置列表](../../database/uniform-data-type-list.md)。不支持传'\*/\*'。 |
+| OH_NativeBundle_AbilityResourceInfo** abilityResourceInfo | 表示返回的组件资源信息列表。 |
+| size_t* size | 表示返回的组件资源信息列表大小。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [BundleManager_ErrorCode](capi-bundle-manager-common-h.md#bundlemanager_errorcode) | 如果调用成功，返回[BUNDLE_MANAGER_ERROR_CODE_NO_ERROR](capi-bundle-manager-common-h.md#bundlemanager_errorcode)。<br> 如果调用方没有正确的权限，返回[BUNDLE_MANAGER_ERROR_CODE_PERMISSION_DENIED](capi-bundle-manager-common-h.md#bundlemanager_errorcode)。 |

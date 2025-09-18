@@ -1,4 +1,10 @@
 # OH_VBucket
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 
@@ -20,15 +26,15 @@ Defines a struct for the types of the key and value in a KV pair.
 
 ### Member Functions
 
-| Name                                                         | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [int (*putText)(OH_VBucket *bucket, const char *field, const char *value)](#puttext) | Puts a char * value into the **OH_VBucket** object in the given column. |
-| [int (*putInt64)(OH_VBucket *bucket, const char *field, int64_t value)](#putint64) | Puts an int64_t value into the **OH_VBucket** object in the given column. |
-| [int (*putReal)(OH_VBucket *bucket, const char *field, double value)](#putreal) | Puts a double value into the **OH_VBucket** object in the given column. |
-| [int (*putBlob)(OH_VBucket *bucket, const char *field, const uint8_t *value, uint32_t size)](#putblob) | Puts a const uint8_t * value into the **OH_VBucket** object in the given column. |
-| [int (*putNull)(OH_VBucket *bucket, const char *field)](#putnull) | Puts a null value into the **OH_VBucket** object in the given column. |
-| [int (*clear)(OH_VBucket *bucket)](#clear)                   | Clears an **OH_VBucket** object.                             |
-| [int (*destroy)(OH_VBucket *bucket)](#destroy)               | Destroys an **OH_VBucket** object and reclaims the memory occupied. |
+| Name                                                        | Description                                               |
+| ------------------------------------------------------------ | --------------------------------------------------- |
+| [int (*putText)(OH_VBucket *bucket, const char *field, const char *value)](#puttext) | Puts a char * value into the **OH_VBucket** object in the given column.          |
+| [int (*putInt64)(OH_VBucket *bucket, const char *field, int64_t value)](#putint64) | Puts an int64_t value into the **OH_VBucket** object in the given column.        |
+| [int (*putReal)(OH_VBucket *bucket, const char *field, double value)](#putreal) | Puts a double value into the **OH_VBucket** object in the given column.         |
+| [int (*putBlob)(OH_VBucket *bucket, const char *field, const uint8_t *value, uint32_t size)](#putblob) | Puts a const uint8_t * value into the **OH_VBucket** object in the given column.|
+| [int (*putNull)(OH_VBucket *bucket, const char *field)](#putnull) | Puts a null value into the **OH_VBucket** object in the given column.           |
+| [int (*clear)(OH_VBucket *bucket)](#clear)                   | Clears an **OH_VBucket** object.                               |
+| [int (*destroy)(OH_VBucket *bucket)](#destroy)               | Destroys an **OH_VBucket** object and reclaims the memory occupied.       |
 
 
 ### Member Function Description
@@ -41,7 +47,7 @@ int (*putText)(OH_VBucket *bucket, const char *field, const char *value)
 
 **Description**
 
-Puts a char value into the **OH_VBucket** object in the given column.
+Puts a char* value into the **OH_VBucket** object in the given column.
 
 **Since**: 10
 
@@ -77,7 +83,7 @@ Puts an int64_t value into the **OH_VBucket** object in the given column.
 | ------------------ | ------------------------------ |
 | OH_VBucket *bucket | Pointer to the **OH_VBucket** instance.|
 | const char *field  | Pointer to the column name in the database table.              |
-| const char *value  | Pointer to the value to put.  |
+| int64_t value      | Pointer to the value to put.  |
 
 **Returns**
 
@@ -129,7 +135,7 @@ Puts a const uint8_t * value into the **OH_VBucket** object in the given column.
 | ------------------ | ------------------------------ |
 | OH_VBucket *bucket | Pointer to the **OH_VBucket** instance.|
 | const char *field  | Pointer to the column name in the database table.              |
-| const char *value  | Pointer to the value to put.  |
+| const uint8_t *value | Pointer to the value to put.|
 | uint32_t size      | Value length.             |
 
 **Returns**
@@ -171,7 +177,7 @@ int (*clear)(OH_VBucket *bucket)
 
 **Description**
 
-Puts a char * value into the **OH_VBucket** object in the given column.
+Clears an **OH_VBucket** object.
 
 **Since**: 10
 
@@ -195,7 +201,7 @@ int (*destroy)(OH_VBucket *bucket)
 
 **Description**
 
-Puts a char value into the **OH_VBucket** object in the given column.
+Destroys an **OH_VBucket** object and reclaims the memory occupied.
 
 **Since**: 10
 

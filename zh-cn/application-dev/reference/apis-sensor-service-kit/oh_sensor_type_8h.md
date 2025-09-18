@@ -54,7 +54,7 @@
 | [OH_Sensor_DestroyInfos](_sensor.md#oh_sensor_destroyinfos)([Sensor_Info](_sensor.md#sensor_info) **sensors, uint32_t count) | 销毁实例数组并回收内存，请参考[Sensor_Info](_sensor.md#sensor_info)。 |
 | [OH_SensorInfo_GetName](_sensor.md#oh_sensorinfo_getname)([Sensor_Info](_sensor.md#sensor_info) *sensor, char *sensorName, uint32_t *length) | 获取传感器名称。                                             |
 | [OH_SensorInfo_GetVendorName](_sensor.md#oh_sensorinfo_getvendorname)([Sensor_Info](_sensor.md#sensor_info) *sensor, char *vendorName, uint32_t *length) | 获取传感器的厂商名称。  |
-| [OH_SensorInfo_GetType](_sensor.md#oh_sensorinfo_gettype)([Sensor_Info](_sensor.md#sensor_info) *sensor, | 获取传感器类型。                                             |
+| [OH_SensorInfo_GetType](_sensor.md#oh_sensorinfo_gettype)([Sensor_Info](_sensor.md#sensor_info) *sensor, [Sensor_Type](_sensor.md#sensor_type) *sensorType) | 获取传感器类型。                                             |
 | [OH_SensorInfo_GetResolution](_sensor.md#oh_sensorinfo_getresolution) ([Sensor_Info](_sensor.md#sensor_info) *sensor, float *resolution) | 获取传感器分辨率。  |
 | [OH_SensorInfo_GetMinSamplingInterval](_sensor.md#oh_sensorinfo_getminsamplinginterval) ([Sensor_Info](_sensor.md#sensor_info) *sensor, int64_t *minSamplingInterval) | 获取传感器的最小数据上报间隔。  |
 | [OH_SensorInfo_GetMaxSamplingInterval](_sensor.md#oh_sensorinfo_getmaxsamplinginterval) ([Sensor_Info](_sensor.md#sensor_info) *sensor, int64_t *maxSamplingInterval) | 获取传感器的最大数据上报间隔时间。  |

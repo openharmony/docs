@@ -24,6 +24,18 @@
 
   全称Program Counter（程序计数器），储存当前程序正在执行指令的地址。
 
+- **lr**
+
+  全称Link Register（链接寄存器），存储子程序的返回地址。
+
+- **sp**
+
+  全称Stack Pointer（堆栈指针寄存器），存储当前函数栈帧的栈顶地址。
+
+- **fp**
+
+  全称Frame Pointer（栈帧指针寄存器），存储当前函数栈帧的栈底地址。
+
 - **调用栈**
 
   记录每个线程从开始到执行当前现场（如崩溃现场）整个过程中函数调用顺序。
@@ -192,7 +204,7 @@ HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hia
 | LastFatalMessage | 应用记录的最后一条Fatal级日志 | 8 | 否 | 进程主动abort，hilog中打印包含最后一条Fatal日志时。 |
 | Fault thread info | 故障线程信息 | 8 | 是 | - |
 | SubmitterStacktrace | 提交者线程栈 | 12 | 否 | 异步线程栈跟踪维测功能仅在ARM 64位系统环境下对debug版本应用开启。 |
-| Register | 故障现场寄存器 | 8 | 是 | - |
+| Registers | 故障现场寄存器 | 8 | 是 | - |
 | Other thread info | 其他线程信息 | 8 | 是 | - |
 | Memory near registers | 故障现场寄存器附近内存值 | 8 | 是 | - |
 | FaultStack | 故障线程栈内存信息 | 8 | 是 | - |
@@ -200,6 +212,10 @@ HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hia
 | OpenFiles | 故障时进程持有的文件句柄信息 | 12 | 是 | - |
 | HiLog | 故障之前打印的流水日志，最多1000行 | 8 | 是 | - |
 | [truncated] | 故障日志截断标志 | 20 | 否 | 配置故障日志截断大小并发生截断时。 |
+
+> **说明：**
+>
+> 从**API version 20**开始，<!--Del-->arm32架构故障现场寄存器中新增状态寄存器cpsr，aarch64架构<!--DelEnd-->故障现场寄存器中新增状态寄存器pstate和esr。
 
 不同的故障场景中日志规格略有不同，分以下七个场景的日志规格，示例如下：
 

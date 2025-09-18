@@ -1,4 +1,10 @@
 # @ohos.util.Stack (Linear Container Stack)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 Stack is implemented based on the array data structure. It follows the principle Last Out First In (LOFI) and supports data insertion and removal at one end.
 
@@ -12,6 +18,8 @@ This topic uses the following to identify the use of generics:
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> Container classes, implemented in static languages, have restrictions on storage locations and properties, and do not support custom properties or methods.
 
 
 ## Modules to Import
@@ -28,7 +36,7 @@ import { Stack } from '@kit.ArkTS';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | Yes| No| Number of elements in a Stack.|
 
@@ -54,7 +62,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let stack : Stack<number | string | Object> = new Stack();
+let stack = new Stack<number | string | Object>();
 ```
 
 
@@ -90,16 +98,17 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 **Example**
 
-```
+```ts
 class C1 {
   name: string = ""
   age: string = ""
 }
-let stack : Stack<number | string | C1> = new Stack();
+let stack = new Stack<number | string | C1>();
 let result = stack.push("a");
 let result1 = stack.push(1);
 let c : C1  = {name : "Dylan", age : "13"};
 let result2 = stack.push(c);
+console.info("length:", stack.length);  // length: 3
 ```
 
 ### pop
@@ -129,13 +138,14 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let stack : Stack<number> = new Stack();
+let stack = new Stack<number>();
 stack.push(2);
 stack.push(4);
 stack.push(5);
 stack.push(2);
 stack.push(4);
-let result = stack.pop();
+let result = stack.pop(); 
+console.info("result = " + result); // result = 4
 ```
 
 ### peek
@@ -165,12 +175,13 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let stack : Stack<number> = new Stack();
+let stack = new Stack<number>();
 stack.push(2);
 stack.push(4);
 stack.push(5);
 stack.push(2);
 let result = stack.peek();
+console.info("result:", result);  // result: 2
 ```
 
 ### locate
@@ -206,12 +217,13 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let stack : Stack<number> = new Stack();
+let stack = new Stack<number>();
 stack.push(2);
 stack.push(4);
 stack.push(5);
 stack.push(2);
-let result = stack.locate(2);
+let result = stack.locate(5);
+console.info("result:", result);  // result: 2
 ```
 
 ### forEach
@@ -219,7 +231,7 @@ let result = stack.locate(2);
 forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the elements in this Stack and obtain their indexes.
+Uses a callback to traverse each element in the **Stack** instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -252,14 +264,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let stack : Stack<number> = new Stack();
+let stack = new Stack<number>();
 stack.push(2);
 stack.push(4);
 stack.push(5);
 stack.push(4);
-stack.forEach((value : number, index ?: number) :void => {
-  console.log("value:" + value, "index:" + index);
+stack.forEach((value : number, index: number) :void => {
+  console.info("value:" + value, "index:" + index);
 });
+// value:2 index:0
+// value:4 index:1
+// value:5 index:2
+// value:4 index:3
 ```
 
 ### isEmpty
@@ -289,12 +305,13 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let stack : Stack<number> = new Stack();
+let stack = new Stack<number>();
 stack.push(2);
 stack.push(4);
 stack.push(5);
 stack.push(4);
 let result = stack.isEmpty();
+console.info("result:", result);  // result: false
 ```
 
 ### [Symbol.iterator]
@@ -323,24 +340,30 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 **Example**
 ```ts
-let stack : Stack<number> = new Stack();
+let stack = new Stack<number>();
 stack.push(2);
 stack.push(4);
 stack.push(5);
 stack.push(4);
 
 // Method 1:
-while(!stack.isEmpty()) {
-  // Service logic
-  let item = stack.pop();
-  console.log("value:" + item);
+for (let value of stack) {
+  console.info("value:", value);
 }
+// value: 2
+// value: 4
+// value: 5
+// value: 4
 
 // Method 2:
 let iter = stack[Symbol.iterator]();
 let temp: IteratorResult<number> = iter.next().value;
 while(temp != undefined) {
-  console.log("value:" + temp);
+  console.info("value: " + temp);
   temp = iter.next().value;
 }
+// value: 2
+// value: 4
+// value: 5
+// value: 4
 ```

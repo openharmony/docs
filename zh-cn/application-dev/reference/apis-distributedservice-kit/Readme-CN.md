@@ -36,7 +36,7 @@
   - [增强连接错误码](errorcode-link-enhance.md)
   - [代理通道管理错误码](errorcode_proxyChannelManager.md)
 - C API<!--distributed-service-c-->
-  - 模块<!--distributed-service-moudle-->
+  - 模块<!--distributed-service-module-->
     - [DeviceManager](capi-devicemanager.md)
   - 头文件<!--distributed-service-headerfile-->
     - [oh_device_manager.h](capi-oh-device-manager-h.md)

@@ -1,5 +1,10 @@
 # OpenHarmony ABIs
-
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @huang_huijin-->
+<!--Designer: @huang_huijin-->
+<!--Tester: @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 <!--RP1-->
 OpenHarmony supports diverse device forms, instruction sets, and operating system kernels. To ensure application compatibility on different OpenHarmony devices, follow the basic OHOS Application Binary Interface (ABI) standards provided in this topic.
 <!--RP1End-->
@@ -11,9 +16,9 @@ OHOS ABIs always use little-endian, ILP32 for 32-bit systems, and LP64 for 64-bi
 
 The parameter transfer mode in function calls, register usage rules, and stack operation rules are defined. Different C++ compilers, operating systems, and architectures may use different calling rules. For details, see [Calling conventions for different C++ compilers and operating systems](https://www.agner.org/optimize/calling_conventions.pdf). For details about the architecture-specific call standards, see the following:
 
-- [Procedure Call Standard for the Arm<sup>®</sup> 32-bit Architecture (AArch32)](https://github.com/ARM-software/abi-aa/tree/main/aapcs32)
+- [Procedure Call Standard for the Arm® 32-bit Architecture (AArch32)](https://github.com/ARM-software/abi-aa/tree/main/aapcs32)
 
-- [Procedure Call Standard for the Arm<sup>®</sup> 64-bit Architecture (AArch64)](https://github.com/ARM-software/abi-aa/tree/main/aapcs64)
+- [Procedure Call Standard for the Arm® 64-bit Architecture (AArch64)](https://github.com/ARM-software/abi-aa/tree/main/aapcs64)
 
 ## C++ ABI
 
@@ -27,9 +32,9 @@ OpenHarmony uses IEEE754 as the floating-point encoding format. For details abou
 
 OpenHarmony uses ELF as the binary file format of the entire system. For details about the format, see [System V Application Binary Interface](https://refspecs.linuxfoundation.org/elf/gabi4+/contents.html). For details about the format definition related to the CPU architecture, see the following:
 
-- [ELF for the Arm<sup>®</sup> Architecture](https://github.com/ARM-software/abi-aa/tree/main/aaelf32)
+- [ELF for the Arm® Architecture](https://github.com/ARM-software/abi-aa/tree/main/aaelf32)
 
-- [ELF for the Arm<sup>®</sup> 64-bit Architecture (AArch64)](https://github.com/ARM-software/abi-aa/tree/main/aaelf64)
+- [ELF for the Arm® 64-bit Architecture (AArch64)](https://github.com/ARM-software/abi-aa/tree/main/aaelf64)
 
 ## Supported ABIs
 
@@ -67,7 +72,7 @@ In the C++ project of OpenHarmony, find the **buildOption/externalNativeOptions*
 
 ```json
 {
-    "abiType": 'stageMode',
+    "apiType": "stageMode",
     "buildOption": {
         "externalNativeOptions": {
             "path": "./src/main/cpp/CMakeLists.txt",

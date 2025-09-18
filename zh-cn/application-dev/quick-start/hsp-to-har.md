@@ -17,7 +17,6 @@ HSP对bundleName和签名有一致性要求，在调试阶段需要先安装HSP�
             "name": "har",
             "type": "har",
             "deviceTypes": [
-            "default",
             "tablet",
             "2in1"
             ]

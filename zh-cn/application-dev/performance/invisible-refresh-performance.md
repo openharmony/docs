@@ -1,5 +1,12 @@
 # 冗余刷新类问题解决方案
 
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 ## 概述
 不可见场景主要分为两类：前一个页面组件未销毁、当前页面部分部件未在显示区域内。冗余刷新是不可见组件的动画未停止导致。
 
@@ -97,7 +104,7 @@ struct ImageAnimatorTest {
 利用if语句下树销毁的特性，通过状态变量控制组件的下树来达到停止动画的效果。
 > **说明：**
 > 
-> [ohos_apng](https://gitee.com/openharmony-sig/ohos_apng)是以开源库[apng-js](https://github.com/davidmz/apng-js)为参考，基于1.1.2版本，通过重构解码算法，拆分出apng里各个帧图层的数据；使用arkts能力，将每一帧数据组合成imagebitmap，使用定时器调用每一帧数据，通过canvas渲染，从而达到帧动画效果。
+> [ohos_apng](https://gitcode.com/openharmony-sig/ohos_apng)是以开源库[apng-js](https://github.com/davidmz/apng-js)为参考，基于1.1.2版本，通过重构解码算法，拆分出apng里各个帧图层的数据；使用arkts能力，将每一帧数据组合成imagebitmap，使用定时器调用每一帧数据，通过canvas渲染，从而达到帧动画效果。
 
 ```ts
 import { apng, ApngController } from '@ohos/apng'; //开发者自行导入apng依赖库，详见上述说明。
@@ -127,7 +134,7 @@ struct RefreshExample {
 ```
 
 ### 状态变量监听法
-列表组件下拉刷新时，管理刷新动画的不可见现象。使用Canvas实现的[ohos_apng组件](https://gitee.com/openharmony-sig/ohos_apng)置于Refresh组件中，默认隐藏。监听Refresh组件的多种状态，通过onStateChange()方法监听RefreshStatus值。当Refresh组件处于收起状态（RefreshStatus为0和4）时，控制apngcontroller停止播放动画；当RefreshStatus处于拉起、回弹等状态（RefreshStatus为1、2和3）时，播放动画。
+列表组件下拉刷新时，管理刷新动画的不可见现象。使用Canvas实现的[ohos_apng组件](https://gitcode.com/openharmony-sig/ohos_apng)置于Refresh组件中，默认隐藏。监听Refresh组件的多种状态，通过onStateChange()方法监听RefreshStatus值。当Refresh组件处于收起状态（RefreshStatus为0和4）时，控制apngcontroller停止播放动画；当RefreshStatus处于拉起、回弹等状态（RefreshStatus为1、2和3）时，播放动画。
 
 ```ts
 // VisibleComponent/entry/src/main/ets/pages/Index.ets
@@ -207,10 +214,11 @@ struct RefreshExample {
 同理对navigation可以监听onHidden、onShow等事件，对tab可以监听onChange方法停止非当前index页面的动画。
 
 ### 合理使用自定义动画
-不合理的使用animator、dispalysync也会导致冗余刷新问题。主要表现在三方使用Canvas自绘制动画没有在适当时机停止、使用animator开始动画未停止、注册了displaysync未在合适的时机解注册等。
+不合理的使用animator、displaysync也会导致冗余刷新问题。主要表现在三方使用Canvas自绘制动画没有在适当时机停止、使用animator开始动画未停止、注册了displaysync未在合适的时机解注册等。
 另外，不合理的delay设置也会导致不可见刷新，如开发者使用animator等函数设置延迟3s的动画，同时间隔3.5s再次调用这个动画等。
+
 ## 系统组件默认策略
-系统组件一般用可见法解决，通过接入OnVisiableAreaChange回调在组件不可见时停止动画。当前各个组件适配如下表：
+系统组件一般用可见法解决，通过接入onVisibleAreaChange回调在组件不可见时停止动画。当前各个组件适配如下表：
 
 |组件名称|设计动画项|不可见不刷新|是否有启停接口|
 | -------- | -------- | -------- | -------- |
@@ -224,7 +232,7 @@ struct RefreshExample {
 |高级组件|当前无自动播放动画|-|-|
 
 > **限制：**
-> 组件通过适配onVisiableAreaChange来实现不可见动画停止，受限于当前接口规格，如下场景无法覆盖：
+> 组件通过适配onVisibleAreaChange来实现不可见动画停止，受限于当前接口规格，如下场景无法覆盖：
 > - 被兄弟节点覆盖无法通知。
 > - stack堆叠不通知，Z轴遮挡不通知。
 > - PC多窗场景不通知。

@@ -457,7 +457,7 @@ struct Index {
     .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
       others: Array<GestureRecognizer>) => {
       if (current) {
-        // 判断是否为拖动手势
+        // 判断是否为滑动手势
         if (current.getType() == GestureControl.GestureType.PAN_GESTURE) {
           let target = current as PanRecognizer;
           this.message = 'PanGesture\ndistance:' + target.getPanGestureOptions().getDistance() + '\nfingers:' +
@@ -487,7 +487,7 @@ struct Index {
           this.message = 'RotationGesture\nangle:' + target.getAngle() + '\nfingers:' +
           target.getFingerCount() + '\nisFingerCountLimited:' + target.isFingerCountLimit();
         }
-        // 判断是否为滑动手势
+        // 判断是否为快滑手势
         if (current.getType() == GestureControl.GestureType.SWIPE_GESTURE) {
           let target = current as SwipeRecognizer;
           this.message = 'SwipeGesture\ndirection:' + target.getDirection() + '\nfingers:' +

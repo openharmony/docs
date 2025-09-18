@@ -1,5 +1,12 @@
 # @ohos.net.vpnExtension (VPN 增强管理)
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 三方VPN管理模块，支持三方VPN的启动和停止功能。三方VPN是指由第三方提供的VPN服务，它们通常提供更多的功能和更广泛的网络连接选项，包括更多的安全和隐私功能，以及更全面的定制选项。当前提供三方VPN能力主要用于创建虚拟网卡及配置VPN路由信息，连接隧道过程及内部连接的协议需要应用内部自行实现。
 
 > **说明：**
@@ -458,25 +465,121 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 }
 ```
 
+### destroy<sup>20+</sup>
+
+destroy(vpnId: string): Promise\<void\>
+  
+根据vpnId销毁指定的VPN网络。使用Promise异步回调。
+  
+**系统能力**：SystemCapability.Communication.NetManager.Vpn
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------------------------------------- |
+| vpnId | string |  是  | vpn唯一标识。 |
+
+**返回值：**
+
+| 类型            | 说明                                                  |
+| --------------- | ----------------------------------------------------- |
+| Promise\<void\> | Promise对象。无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[VPN错误码](errorcode-net-vpn.md)。
+
+| 错误码ID | 错误信息                                     |
+| --------- | -------------------------------------------- |
+| 19900001       |  Invalid parameter value.  |
+| 19900002  |  System internal error.  |
+
+**示例：**
+
+```ts
+import { vpnExtension, VpnExtensionAbility } from '@kit.NetworkKit';
+import { BusinessError } from "@kit.BasicServicesKit";
+
+export default class MyVpnExtAbility extends VpnExtensionAbility {
+  onCreate() {
+    let vpnConnection = vpnExtension.createVpnConnection(this.context);
+
+    // 可通过generateVpnId()获取vpnId
+    let vpnId = 'testVpnId';
+    vpnConnection.destroy(vpnId).then(() => {
+      console.info("destroy success");
+    }).catch((error: BusinessError) => {
+      console.error(`destroy fail, Code is ${err.code}, message is ${err.message}`);
+    });
+  }
+}
+```
+
+### generateVpnId<sup>20+</sup>
+
+generateVpnId(): Promise\<string\>
+
+生成VPN唯一标识。使用Promise异步回调。
+
+如需使用系统多VPN能力，需调用该接口生成vpnId，配置到VpnConfig中。
+
+**系统能力**：SystemCapability.Communication.NetManager.Vpn
+
+**返回值：**
+
+| 类型            | 说明                                                  |
+| --------------- | ----------------------------------------------------- |
+| Promise\<string\> | 以Promise形式返回获取结果，返回vpnId。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[VPN错误码](errorcode-net-vpn.md)。
+
+| 错误码ID | 错误信息                                     |
+| --------- | -------------------------------------------- |
+| 19900001       |  Invalid parameter value.  |
+| 19900002  |  System internal error.  |
+
+**示例：**
+
+```ts
+import { vpnExtension, VpnExtensionAbility } from '@kit.NetworkKit';
+import { BusinessError } from "@kit.BasicServicesKit";
+
+export default class MyVpnExtAbility extends VpnExtensionAbility {
+  onCreate() {
+    let vpnConnection = vpnExtension.createVpnConnection(this.context);
+    vpnConnection.generateVpnId().then((data) => {
+      if (data) {
+        console.info("generateVpnId success, vpnId = " + JSON.stringify(data));
+      }
+    }).catch((error: BusinessError) => {
+      console.error(`generateVpnId fail, Code is ${err.code}, message is ${err.message}`);
+    });
+  }
+}
+```
+
 ## VpnConfig
 
 三方VPN配置参数。
 
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
 
-| 名称                | 类型                                                           | 必填 | 说明                                             |
-| ------------------- | -------------------------------------------------------------- | ---- |------------------------------------------------|
-| addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress)\> | 是   | VPN虚拟网卡的IP地址。                                  |
-| routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | 否   | VPN虚拟网卡的路由信息（目前最多可配置1024条路由）。                  |
-| dnsAddresses        | Array\<string\>                                                | 否   | DNS服务器地址信息。当配置DNS服务器地址后，VPN启动状态下被代理的应用上网时，使用配置的DNS服务器做DNS查询。                                    |
-| searchDomains       | Array\<string\>                                                | 否   | DNS的搜索域列表。                                     |
-| mtu                 | number                                                         | 否   | 最大传输单元MTU值（单位：字节）。取值范围：[576，1500]。               |
-| isIPv4Accepted      | boolean                                                        | 否   | 是否支持IPV4。true表示支持，false表示不支持, 默认值为true。  |
-| isIPv6Accepted      | boolean                                                        | 否   | 是否支持IPV6。true表示支持，false表示不支持, 默认值为false。 |
-| isInternal          | boolean                                                        | 否   | 是否支持内置VPN。true表示支持，false表示不支持, 默认值为false。 |
-| isBlocking          | boolean                                                        | 否   | 是否阻塞模式。true表示阻塞模式，false表示非阻塞模式, 默认值为false。       |
-| trustedApplications | Array\<string\>                                                | 否   | 受信任的应用信息列表，string类型表示的包名。当配置该列表后，仅该列表中的应用数据才能根据routes被VPN代理。<br>注：trustedApplications和blockedApplications列表不能同时配置。                         |
-| blockedApplications | Array\<string\>                                                | 否   | 被阻止的应用信息列表，string类型表示的包名。当配置该列表后，该列表中的应用数据不会被VPN代理，其他应用可以根据routes配置被VPN代理。<br>注：trustedApplications和blockedApplications列表不能同时配置。                         |
+| 名称             | 类型                                      | 只读 | 可选 | 说明                                       |
+| ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
+| addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress)\>  | 否  | 否 | VPN虚拟网卡的IP地址。                                  |
+| vpnId<sup>20+</sup>           | string | 否 | 是 | VPN唯一标识。 | 
+| routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>      | 否  | 是 | VPN虚拟网卡的路由信息（目前最多可配置1024条路由）。                  |
+| dnsAddresses        | Array\<string\>                                                 | 否  | 是 | DNS服务器地址信息。当配置DNS服务器地址后，VPN启动状态下被代理的应用上网时，使用配置的DNS服务器做DNS查询。                                    |
+| searchDomains       | Array\<string\>                                                | 否  | 是 | DNS的搜索域列表。                                     |
+| mtu                 | number                                                         | 否  | 是 | 最大传输单元MTU值（单位：字节）。取值范围：[576，1500]。               |
+| isIPv4Accepted      | boolean                                                         | 否  | 是 | 是否支持IPV4。true表示支持，false表示不支持, 默认值为true。  |
+| isIPv6Accepted      | boolean                                                         | 否  | 是 | 是否支持IPV6。true表示支持，false表示不支持, 默认值为false。 |
+| isInternal          | boolean                                                         | 否  | 是 | 是否支持内置VPN。true表示支持，false表示不支持, 默认值为false。 |
+| isBlocking          | boolean                                                        | 否  | 是 | 是否阻塞模式。true表示阻塞模式，false表示非阻塞模式, 默认值为false。       |
+| trustedApplications | Array\<string\>                                                | 否  | 是 | 受信任的应用信息列表，string类型表示的包名。当配置该列表后，仅该列表中的应用数据才能根据routes被VPN代理。<br>**注意**：trustedApplications和blockedApplications列表不能同时配置。                         |
+| blockedApplications | Array\<string\>                                                 | 否  | 是 | 被阻止的应用信息列表，string类型表示的包名。当配置该列表后，该列表中的应用数据不会被VPN代理，其他应用可以根据routes配置被VPN代理。<br>**注意**：trustedApplications和blockedApplications列表不能同时配置。                         |
 
 **示例：**
 
@@ -485,6 +588,7 @@ import { vpnExtension} from '@kit.NetworkKit';
 
 let vpnConfig: vpnExtension.VpnConfig = {
   addresses: [],
+  vpnId: '123',
   routes: [{
     interface: "eth0",
     destination: {

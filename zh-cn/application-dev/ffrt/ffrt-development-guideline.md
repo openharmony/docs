@@ -31,8 +31,8 @@ FFRT提供开发者队列级和任务级超时维测机制，用来监控用户�
 
 | C++接口                                                                                                                                   | C接口                                                                                | 描述                   |
 | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ---------------------- |
-| [queue_attr::timeout](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#set-queue-timeout)   | [ffrt_queue_attr_set_timeout](ffrt-api-guideline-c.md#ffrt_queue_attr_t)   | 设置队列超时时间。     |
-| [queue_attr::callback](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#set-queue-callback) | [ffrt_queue_attr_set_callback](ffrt-api-guideline-c.md#ffrt_queue_attr_t) | 设置队列超时回调函数。 |
+| [queue_attr::timeout](https://gitcode.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#set-queue-timeout)   | [ffrt_queue_attr_set_timeout](ffrt-api-guideline-c.md#ffrt_queue_attr_t)   | 设置队列超时时间。     |
+| [queue_attr::callback](https://gitcode.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#set-queue-callback) | [ffrt_queue_attr_set_callback](ffrt-api-guideline-c.md#ffrt_queue_attr_t) | 设置队列超时回调函数。 |
 
 ### 长耗时任务监测
 

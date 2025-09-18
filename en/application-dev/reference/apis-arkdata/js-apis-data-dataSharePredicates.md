@@ -1,4 +1,10 @@
 # @ohos.data.dataSharePredicates (DataShare Predicates)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @woodenarow-->
+<!--Designer: @woodenarow; @xuelei3-->
+<!--Tester: @chenwan188; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 **DataSharePredicates** provides a filter object to query data in a database by using **DataShare** APIs. It is often used to update, delete, and query data.
 
@@ -9,12 +15,12 @@ The APIs provided by **DataSharePredicates** correspond to the filter criteria o
 - It is used as a search criterion in the media file management service. For details, see [Fetch Options of the Album Management](../apis-media-library-kit/arkts-apis-photoAccessHelper-i.md#fetchoptions). In this scenario, you do not need to pay attention to the database type.
 
 <!--Del-->
-- It is used as a search criteria when APIs of the [RDB store](js-apis-data-relationalStore-sys.md) and [KV store](js-apis-distributedKVStore-sys.md) are called. In this scenario, use the corresponding predicate based on the database type.
+- It is used as a search criterion when APIs of the [RDB store](js-apis-data-relationalStore-sys.md) and [KV store](js-apis-distributedKVStore-sys.md) are called. In this scenario, use the corresponding predicate based on the database type.
 <!--DelEnd-->
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > - The APIs of this module can be used only in the stage model.
 
@@ -35,7 +41,7 @@ equalTo(field: string, value: ValueType): DataSharePredicates
 
 Creates a **DataSharePredicates** object to search for the records in the specified column that are equal to the given value.
 
-Currently, both the RDB stote and KV store support this predicate.
+Currently, both the RDB store and KV store support this predicate.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -214,5 +220,3 @@ Currently, both the RDB stote and KV store support this predicate.
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.in("AGE", [18, 20]);
 ```
-
- <!--no_check--> 

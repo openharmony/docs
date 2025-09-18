@@ -1,4 +1,10 @@
 # 应用开发导读
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @zhang_yixin13-->
+<!--Designer: @lingminghw-->
+<!--Tester: @RayShih-->
+<!--Adviser: @zhang_yixin13-->
 
 应用开发文档用于指导开发者通过OpenHarmony提供的接口完成应用开发。当前应用开发文档提供了在标准系统上开发应用的JS接口。
 
@@ -30,18 +36,15 @@
 - [WebGL](webgl/Readme-CN.md)
 - [媒体](media/Readme-CN.md)
 - [安全](security/Readme-CN.md)
-- [AI](ai/Readme-CN.md)
 - [网络与连接](connectivity/Readme-CN.md)
 - [电话服务](telephony/Readme-CN.md)
 - [数据管理](database/Readme-CN.md)
 - [文件管理](file-management/Readme-CN.md)
 - [任务管理](task-management/Readme-CN.md)
-- [设备管理](device/Readme-CN.md)
 - [设备使用信息统计](device-usage-statistics/Readme-CN.md)
 - [DFX](dfx/Readme-CN.md)
 - [国际化](internationalization/Readme-CN.md)
 - [应用测试](application-test/Readme-CN.md)
-- [一次开发，多端部署](key-features/multi-device-app-dev/Readme-CN.md)
 - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
 - [Native API的相关指导](napi/Readme-CN.md)
 
@@ -52,7 +55,7 @@ DevEco Studio工具是OpenHarmony应用开发的推荐IDE工具。
 
 ### 示例教程
 
-我们提供了[Sample工程](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)和[Codelab](https://gitee.com/openharmony/codelabs/blob/master/README.md)这两种形式的示例教程，为开发者提供更丰富的开发参考，辅助开发者理解功能逻辑，提升开发效率。
+我们提供了[Sample工程](https://gitcode.com/openharmony/applications_app_samples/blob/master/README_zh.md)和[Codelab](https://gitcode.com/openharmony/codelabs/blob/master/README.md)这两种形式的示例教程，为开发者提供更丰富的开发参考，辅助开发者理解功能逻辑，提升开发效率。
 
 ### API参考
 

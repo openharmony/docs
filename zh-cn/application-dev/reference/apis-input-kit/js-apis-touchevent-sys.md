@@ -7,7 +7,7 @@
 <!--Tester: @Lyuxin-->
 <!--Adviser: @Brilliantry_Rui-->
 
-设备上报的触屏事件，继承自[InputEvent](./js-apis-inputevent.md)。
+设备上报的触屏输入事件，继承自[InputEvent](./js-apis-inputevent.md)。
 
 > **说明：**
 >
@@ -49,7 +49,7 @@ import { FixedMode, Touch, TouchEvent } from '@kit.InputKit';
 
 ## TouchEvent
 
-触屏事件。
+触屏输入事件。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -58,4 +58,4 @@ import { FixedMode, Touch, TouchEvent } from '@kit.InputKit';
 | 名称         | 类型       | 只读   | 可选   | 说明        |
 | ---------- | ---------- | ---- | ---- | --------- |
 | fixedMode  | [FixedMode](#fixedmode)   | 否    | 是    | 修正坐标的模式。|
-| isInject<sup>20+</sup>  | boolean   | 否    | 是    | 表示该触屏事件是否为注入事件。注入事件详细介绍可参考[@ohos.multimodalInput.inputEventClient](js-apis-inputeventclient-sys.md)。|
+| isInject<sup>20+</sup>  | boolean   | 否    | 是    | 表示该触屏输入事件是否为注入事件。注入事件详细介绍可参考[@ohos.multimodalInput.inputEventClient](js-apis-inputeventclient-sys.md)。|

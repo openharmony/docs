@@ -1038,10 +1038,10 @@ cleanFileCache(uri: string): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-| 名称  | 类型                                      | 必填 | 说明                   |
-| ----- | ----------------------------------------- | ---- | ---------------------- |
-| uri   | string                                    | 是   | 下载失败文件URI。      |
-| error | [DownloadErrorType](#downloaderrortype11) | 是   | 文件下载失败错误类型。 |
+| 名称  | 类型                                      | 只读 | 可选 | 说明                   |
+| ----- | ----------------------------------------- | ---- | ---- | ---------------------- |
+| uri   | string                                    | 否   | 否   | 下载失败文件URI。      |
+| error | [DownloadErrorType](#downloaderrortype11) | 否   | 否   | 文件下载失败错误类型。 |
 
 
 ## MultiDownloadProgress<sup>20+</sup>
@@ -1278,11 +1278,11 @@ unregisterChange(uri: string): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-| 名称     | 类型   | 必填 | 说明 |
-| ---------- | ------ | ---- | ---- |
-| type | [NotifyType](#notifytype12) | 是   | 更改的通知类型。|
-| isDirectory | Array&lt;boolean&gt; | 是   | 指示更改的URI是否为目录。true：是目录。false：非目录。|
-| uris | Array&lt;string&gt; | 是   | 需要更改的URI列表。|
+| 名称     | 类型   | 只读 | 可选 | 说明 |
+| ---------- | ------ | ---- | ---- | ---- |
+| type | [NotifyType](#notifytype12) | 否   | 否   | 更改的通知类型。|
+| isDirectory | Array&lt;boolean&gt; | 否   | 否   | 指示更改的URI是否为目录。true：是目录。false：非目录。|
+| uris | Array&lt;string&gt; | 否   | 否   | 需要更改的URI列表。|
 
 
 ## HistoryVersion<sup>20+</sup>

@@ -1,4 +1,10 @@
 # @ohos.data.cloudData (Cloud Service) (System API)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @lvcong_oh-->
+<!--Designer: @lvcong_oh-->
+<!--Tester: @ltttjs; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 The **cloudData** module provides APIs for implementing device-cloud synergy and device-cloud sharing and setting the device-cloud sync strategy.
 

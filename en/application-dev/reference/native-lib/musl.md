@@ -39,13 +39,15 @@ To better accommodate the basic features of OpenHarmony devices, such as high pe
 ### Debugging Capabilities
 The libc provides dynamic enabling of debug logging (disabled by default). The debug logs help you learn about exceptions of the libc. With this function, you only need to set **param**, which eliminates the need for rebuilding the libc. However, you are advised not to enable debug logging in official versions because it affects the running performance.
 
-#### musl.log
+**Functionality of musl.log**
+
 Set **musl.log.enable** to **true** to enable printing of musl debug logs. You need to enable musl.log before printing other logs.
 ```
 param set musl.log.enable true
 ```
 
-#### Loader Logging
+**Loader Logging**
+
 The loader starts applications and invokes **dlopen** and **dlclose** in the libc. To view exceptions during the loading process, you need to enable the loader logging function. The following describes common operations.
 * Enable the loader logging for all applications. Exercise caution when enabling this function because a large number of logs will be generated.
 ```
