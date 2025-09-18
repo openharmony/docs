@@ -1670,7 +1670,7 @@ async function ExampleFunction(dlpFilePath: string) {
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| plugin | [DlpConnPlugin](#DlpConnPlugin21) | 是 |代表回调能力 |
+| plugin | DlpConnPlugin | 是 |代表回调能力 |
 
 **返回值：**
 
