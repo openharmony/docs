@@ -1142,7 +1142,7 @@ getDeviceConfigs(): &nbsp;Array&lt;WifiDeviceConfig&gt;
       let configs = wifiManager.getDeviceConfigs();
       console.info("configs:" + JSON.stringify(configs));
     }catch(error){
-      console.error("failed:" + JSON.stringify(error));
+      console.error("failed:", error.code, error.message);
     }
 	
 ```
@@ -1303,18 +1303,10 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 **示例：**
 ```ts
   import { wifiManager } from '@kit.ConnectivityKit';
-  
-  wifiManager.getLinkedInfo((err, data:wifiManager.WifiLinkedInfo) => {
-      if (err) {
-          console.error("get linked info error");
-          return;
-      }
-      console.info("get wifi linked info: " + JSON.stringify(data));
-  });
-  
+
   wifiManager.getLinkedInfo().then(data => {
       console.info("get wifi linked info: " + JSON.stringify(data));
-  }).catch((error:number) => {
+  }).catch((error) => {
       console.error("get linked info error");
   });
 ```
