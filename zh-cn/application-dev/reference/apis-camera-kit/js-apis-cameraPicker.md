@@ -11,8 +11,6 @@
 > **说明：**
 >
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
-> 针对阔折叠产品，存在如下场景：设备展开时启动相机picker，当设备由展开态切换为折叠态时，相机picker会自动退至后台。
 
 ## 导入模块
 
@@ -25,6 +23,10 @@ import { cameraPicker as picker } from '@kit.CameraKit';
 pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: PickerProfile): Promise\<PickerResult\>
 
 拉起相机选择器，根据媒体类型进入相应的模式。使用Promise异步回调。
+
+> **说明：**
+>
+> 应用在阔折叠设备上运行，如已在设备展开态时启动相机picker，当设备由展开态切换到折叠态时，相机picker将自动推至后台。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
