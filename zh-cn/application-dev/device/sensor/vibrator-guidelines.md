@@ -166,7 +166,7 @@ Json文件共包含3个属性。
 
   try {
     const vibratorInfoList: vibrator.VibratorInfo[] = vibrator.getVibratorInfoSync();
-    console.log(`vibratorInfoList: ${JSON.stringify(vibratorInfoList)}`);
+    console.info(`vibratorInfoList: ${JSON.stringify(vibratorInfoList)}`);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
@@ -184,7 +184,7 @@ Json文件共包含3个属性。
       deviceId: 1    // deviceid 需要是查询出来真实存在的设备
     }
     const vibratorInfoList: vibrator.VibratorInfo[] = vibrator.getVibratorInfoSync(vibratorParam);
-    console.log(`vibratorInfoList: ${JSON.stringify(vibratorInfoList)}`);
+    console.info(`vibratorInfoList: ${JSON.stringify(vibratorInfoList)}`);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
@@ -414,7 +414,7 @@ Json文件共包含3个属性。
 
    // 回调函数 
    const vibratorStateChangeCallback = (data: vibrator.VibratorStatusEvent) => {
-     console.log('vibrator state callback info:', JSON.stringify(data));
+     console.info('vibrator state callback info:', JSON.stringify(data));
    }
 
    try {
@@ -433,7 +433,7 @@ Json文件共包含3个属性。
 
    // 回调函数 
    const vibratorStateChangeCallback = (data: vibrator.VibratorStatusEvent) => {
-     console.log('vibrator state callback info:', JSON.stringify(data));
+     console.info('vibrator state callback info:', JSON.stringify(data));
    }
    try {
      // 取消订阅 vibratorStateChange事件
