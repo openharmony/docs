@@ -3,7 +3,7 @@
 ## When to Use
 
 This document describes how to use native RawFile APIs to manage raw file directories and files in OpenHarmony. You can use the APIs to perform operations such as traversing a file list and opening, searching for, reading, and closing raw files. 
-The APIs ended with **64** are new APIs. These APIs can be used to open raw files larger than 2 GB. For details, see [Rawfile](../reference/apis-localization-kit/rawfile.md). The development procedure is the same for the API ended with **64** and the one does not. For example, you can use **OH_ResourceManager_OpenRawFile** and **OH_ResourceManager_OpenRawFile64** in the same way.
+The APIs ended with **64** are new APIs. These APIs can be used to open raw files larger than 2 GB. For details, see [Rawfile](../reference/apis-localization-kit/capi-rawfile.md). The development procedure is the same for the API ended with **64** and the one does not. For example, you can use **OH_ResourceManager_OpenRawFile** and **OH_ResourceManager_OpenRawFile64** in the same way.
 
 ## Available APIs
 
@@ -26,7 +26,7 @@ The APIs ended with **64** are new APIs. These APIs can be used to open raw file
 | void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resMgr) | Releases the native resource manager.   |
 | bool OH_ResourceManager_IsRawDir(const NativeResourceManager *mgr, const char *path) | Checks whether a path is a subdirectory in the **rawfile** directory.   |
 
-For details about the APIs, see [Function Description](../reference/apis-localization-kit/rawfile.md#function-description).
+For details about the APIs, see [Rawfile](../reference/apis-localization-kit/capi-rawfile.md).
 
 ## How to Develop
 
