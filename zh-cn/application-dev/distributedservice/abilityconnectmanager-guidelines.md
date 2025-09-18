@@ -253,7 +253,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
       abilityConnectionManager.acceptConnect(sessionId, collabToken).then(() => {
         hilog.info(0x0000, 'testTag', 'acceptConnect success');
       }).catch(() => {
-        hilog.error("failed");
+        hilog.error(0x0000, 'testTag', "failed");
       })
     }
 
@@ -265,7 +265,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
       }
  
       const options = collabParam["ConnectOptions"] as abilityConnectionManager.ConnectOptions;
-      options.needSendBigData = true;
+      options.needSendData = true;
       options.needSendStream = true;
       options.needReceiveStream = false;
       try {
@@ -330,7 +330,8 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
   ```ts
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
-
+  import { util } from '@kit.ArkTS';
+  
   let textEncoder = util.TextEncoder.create("utf-8");
   const arrayBuffer  = textEncoder.encodeInto("data send success");
 
