@@ -1,5 +1,12 @@
 # @ohos.graphics.uiEffect (Cascading Effect)
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hanamaru-->
+<!--Designer: @comicchang-->
+<!--Tester: @gcw_fsLqk7gL-->
+<!--Adviser: @ge-yafang-->
+
 The uiEffect module provides basic capabilities to apply an effect, for example, blur, pixel stretch, and brightness, to a component. Effects are classified into filters and visual effects. Effects of the same category can be cascaded in an effect instance of the corresponding category. In actual development, the blur effect can be used for background blurring, and the brightness effect can be used for screen-on display.
 
 - [Filter](#filter): applies a filter to a component.
@@ -77,7 +84,30 @@ Applies the blur effect to the component.
 **Example**
 
 ```ts
-filter.blur(20)
+// xxx.ts
+import { uiEffect } from '@kit.ArkGraphics2D';
+
+let filter: uiEffect.Filter = uiEffect.createFilter();
+filter.blur(10);
+
+@Entry
+@Component
+struct UIEffectFilterExample {
+    build(){
+        Column({ space: 15 }) {
+            Text('UIEffectFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
+            Image($r('app.media.foreground'))
+                .width(100)
+                .height(100)
+                .backgroundImage($r('app.media.background'))
+                .backgroundImagePosition(Alignment.Center)
+                .backgroundImageSize({ width: 90, height: 90 })
+                .backgroundFilter(filter)
+        }
+        .height('100%')
+        .width('100%')
+    }
+}
 ```
 
 ## VisualEffect
