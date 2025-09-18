@@ -126,6 +126,7 @@ Canvas是图形绘制的核心，本章中提到的所有绘制操作（包括�
    // 将Canvas与bitmap绑定，Canvas绘制的内容会输出到绑定的bitmap内存中
    OH_Drawing_CanvasBind(bitmapCanvas, bitmap);
    ```
+   @[ndk_graphics_draw_create_canvas](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Drawing/NDKGraphicsDraw/entry/src/main/cpp/samples/sample_graphics.cpp)
 
    如果需要将背景设置为白色，需要执行以下步骤：
 
