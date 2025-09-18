@@ -37,24 +37,24 @@ nameCache.json文件：
   "entry/src/main/ets/entryability/EntryAbility.ets": {
     "IdentifierCache": {
       "#UIAbility": "UIAbility",
-       ......
       "#testObject": "i",
       "#EntryAbility": "j"
     },
     "MemberMethodCache": {
-        ....
+      "onCreate:6:8": "onCreate",
+      "onDestroy:10:12": "onDestroy",
+      "onWindowStageCreate:14:25": "onWindowStageCreate",
+      "onWindowStageDestroy:27:30": "onWindowStageDestroy",
+      "onForeground:32:35": "onForeground",
+      "onBackground:37:40": "onBackground"
     },
     "obfName": "entry/src/main/ets/entryability/EntryAbility.ets"
   },
-     ......
-  },
   "compileSdkVersion": "5.0.0.70",
   "entryPackageInfo": "entry|1.0.0",
-  "PropertyCache": {
-      ......
-  },
+  "PropertyCache": {},
   "FileNameCache": {
-      ......
+    "Hide": "b"
   }
 }
 ```
@@ -70,24 +70,25 @@ nameCache.json文件：
     },
     "MemberMethodCache": {
       "EntryAbility:0:0": "a",
-     ......
+      "onBackground:33:35": "onBackground",
+      "onCreate:7:9": "onCreate",
+      "onDestroy:10:12": "onDestroy",
+      "onForeground:29:31": "onForeground",
+      "onWindowStageCreate:14:23": "onWindowStageCreate",
+      "onWindowStageDestroy:25:27": "onWindowStageDestroy"
     },
     "obfName": "entry/src/main/ets/entryability/EntryAbility.ets",
     "OriSourceFile": "entry|entry|1.0.0|src/main/ets/entryability/EntryAbility.ts",
     "ObfSourceFile": "entry|entry|1.0.0|src/main/ets/entryability/EntryAbility.ts"
   },
- ......
   "entryPackageInfo": "entry|1.0.0",
   "compileSdkVersion": "5.0.0.70",
-  "PropertyCache": {
-   ......
-  },
+  "PropertyCache": {},
   "FileNameCache": {
-   ......
+    "Hide": "b"
   }
 }
 ```
-
 1. IdentifierCache中，字节码混淆时差异：
     1. 不涉及函数参数名混淆。
     2. 无匿名函数混淆名称映射。
