@@ -1607,33 +1607,34 @@ async function ExampleFunction(dlpFilePath: string) {
 
 ## DlpConnPlugin<sup>21+</sup>
 
-被用于registerPlugin接口中，将回调能力注册到系统能力中。
-  
-**系统能力：** SystemCapability.Security.DataLossPrevention
+被用于registerPlugin接口中，将回调能力注册到SA（System Ability）中。
+
 >**说明：**
 >
-> [registerPlugin](#dlpconnmanagerregisterplugin21)接口的参数需要继承该接口， [connectServer](#dlpconnpluginconnectserver21)由系统能力侧调用，通过callback进行回传参数。
+> [registerPlugin](#dlpconnmanagerregisterplugin21)接口的参数需要继承该接口， [connectServer](#dlpconnpluginconnectserver21)由SA（System Ability）侧调用，通过callback进行回传参数。
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
 
 ### DlpConnPlugin.connectServer<sup>21+</sup>
 connectServer(requestId: string, requestData: string, callback: Callback\<string\>): void
   
- 该函数提供给系统能力侧调用，待该函数处理完连云能力后，通过callback调用回系统能力中。
-  
-**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
-
-**系统能力：** SystemCapability.Security.DataLossPrevention
+该函数提供给SA（System Ability）侧调用，待该函数处理完连云能力后，通过callback调用回SA（System Ability）中。
 
 >**说明：**
 >
 > connectServer接口代表系统能力侧向前端通信的一次调用。
+
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
   
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| requestId | string | 是 | 系统能力侧传递的本次请求的标识。|
-| requestData | string | 是 | 系统能力侧传递的数据。|
-| callback | Callback\<string\>| 是 | 系统能力侧传递的接口，用于回调。 |
+| requestId | string | 是 | SA（System Ability）侧传递的本次请求的标识。|
+| requestData | string | 是 | SA（System Ability）侧传递的数据。|
+| callback | Callback\<string\>| 是 | SA（System Ability）侧传递的接口，用于回调。 |
 
 **错误码：**
 
@@ -1647,13 +1648,14 @@ connectServer(requestId: string, requestData: string, callback: Callback\<string
  
 ## DlpConnManager<sup>21+</sup>
   
-用于调用registerPlugin和unregisterPlugin接口，将回调能力在系统能力中注册/注销。
+用于调用registerPlugin和unregisterPlugin接口，将回调能力在SA（System Ability）中注册/注销。
 
-**系统能力：** SystemCapability.Security.DataLossPrevention
 >**说明：**
 >
-> registerPlugin接口将回调能力注册进系统能力，而unregisterPlugin接口将回调能力从系统能力中注销。
+> registerPlugin接口将回调能力注册进SA（System Ability），而unregisterPlugin接口将回调能力从SA（System Ability）中注销。
 
+**系统能力：** SystemCapability.Security.DataLossPrevention
+ 
 ### DlpConnManager.constructor<sup>21+</sup>
 
 constructor()
@@ -1675,16 +1677,16 @@ constructor()
 ### DlpConnManager.registerPlugin<sup>21+</sup>
 static registerPlugin(plugin: DlpConnPlugin): number
   
-该接口提供将回调注册到系统能力侧的功能。
+该接口提供将回调注册到SA（System Ability）侧的功能。
+
+>**说明：**
+>
+> registerPlugin将plugin 注册到SA（System Ability）侧，待SA（System Ability）调用。
 
 **需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
- 
->**说明：**
->
-> registerPlugin将plugin 注册到系统能力侧，待系统能力调用。
-  
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -1712,15 +1714,15 @@ static registerPlugin(plugin: DlpConnPlugin): number
 ### DlpConnManager.unregisterPlugin<sup>21+</sup>
 static unregisterPlugin(): void
   
-提供将回调从系统能力侧解除的能力。
-
-**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
-
-**系统能力：** SystemCapability.Security.DataLossPrevention
+提供将回调从SA（System Ability）侧解除的能力。
 
 >**说明：**
 >
-> unregisterPlugin 将 plugin 从系统能力侧解注册。
+> unregisterPlugin将plugin从SA（System Ability）侧解注册。
+  
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
 
 **错误码：**
 
