@@ -1611,9 +1611,7 @@ async function ExampleFunction(dlpFilePath: string) {
 
 >**说明：**
 >
-> [registerPlugin](#dlpconnmanagerregisterplugin21)接口的参数需要继承该接口， [connectServer](#dlpconnpluginconnectserver21)由SA（System Ability）侧调用，通过callback进行回传参数。
-
-**系统能力：** SystemCapability.Security.DataLossPrevention
+> [registerPlugin](#dlpconnmanagerregisterplugin21)接口的参数需要继承该接口，[connectServer](#dlpconnpluginconnectserver21)由SA（System Ability）侧调用，通过callback进行回传参数。
 
 ### DlpConnPlugin.connectServer<sup>21+</sup>
 connectServer(requestId: string, requestData: string, callback: Callback\<string\>): void
@@ -1654,8 +1652,6 @@ connectServer(requestId: string, requestData: string, callback: Callback\<string
 >
 > registerPlugin接口将回调能力注册进SA（System Ability），而unregisterPlugin接口将回调能力从SA（System Ability）中注销。
 
-**系统能力：** SystemCapability.Security.DataLossPrevention
- 
 ### DlpConnManager.constructor<sup>21+</sup>
 
 constructor()
