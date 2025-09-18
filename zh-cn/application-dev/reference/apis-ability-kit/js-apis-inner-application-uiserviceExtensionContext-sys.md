@@ -1,5 +1,12 @@
 # UIServiceExtensionContext (系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhangyafei-echo-->
+<!--Designer: @zhangyafei-echo-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 UIServiceExtensionContext模块是[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。
 
 UIServiceExtensionContext模块提供访问[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)特定资源以及具有的能力，包括启动、停止、绑定、解绑Ability。
@@ -38,7 +45,7 @@ class UIServiceExtAbility extends UIServiceExtensionAbility {
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
-启动Ability，结果以Promise的形式返回。
+启动Ability。使用Promise异步回调。
 
 > **说明：**
 >
@@ -50,16 +57,16 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型 | 只读 | 可选 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md)  | 是 | 否 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 |是 | 启动Ability所携带的参数。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-app-ability-want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -106,7 +113,7 @@ class UIEntryAbility extends UIServiceExtensionAbility {
       this.context.startAbility(want, options)
         .then((data: void) => {
           // 执行正常业务
-          console.log('startAbility succeed');
+          console.info('startAbility succeed');
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
@@ -125,7 +132,7 @@ class UIEntryAbility extends UIServiceExtensionAbility {
 
 terminateSelf(): Promise&lt;void&gt;
 
-销毁[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)。
+销毁[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -135,7 +142,7 @@ terminateSelf(): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -151,7 +158,7 @@ class UIEntryAbility extends UIServiceExtensionAbility {
   onCreate() {
     this.context.terminateSelf().then(() => {
       // 执行正常业务
-      console.log('terminateSelf succeed');
+      console.info('terminateSelf succeed');
     }).catch((error: BusinessError) => {
       // 处理业务逻辑错误
       console.error(`terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}`);
@@ -165,7 +172,7 @@ class UIEntryAbility extends UIServiceExtensionAbility {
 startAbilityByType(type: string, wantParam: Record&lt;string, Object&gt;,
     abilityStartCallback: AbilityStartCallback): Promise&lt;void&gt;
 
-按目标ability的类型启动[UIAbility](js-apis-app-ability-uiAbility.md)或[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。仅支持处于前台的应用调用。
+按目标ability的类型启动[UIAbility](js-apis-app-ability-uiAbility.md)或[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。仅支持处于前台的应用调用。使用Promise异步回调。
 
 
 > **说明：**
@@ -178,17 +185,17 @@ startAbilityByType(type: string, wantParam: Record&lt;string, Object&gt;,
 
 **参数：**
 
-| 参数名 | 类型 | 只读 | 可选 | 说明 |
-| -------- | -------- | -------- | -------- |  -------- |
-| type | string  | 是 | 否 |  目标ability类型。 |
-| wantParam | Record&lt;string, Object&gt;| 是 | 否 | want 参数。 |
-| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md)| 是 | 否| 回调。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- |  -------- |
+| type | string  | 是 | 目标ability类型。 |
+| wantParam | Record&lt;string, Object&gt;| 是 | Want参数。 |
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md)| 是 | 拉起UIExtensionAbility执行结果的回调。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -241,7 +248,7 @@ struct SubIndex {
               // 按目标ability的类型启动UIAbility或UIExtensionAbility
               context.startAbilityByType("mail", startWant, abilityStartCallback)
                 .then(() => {
-                  console.log(TAG + `Succeeded in windows starting ability`);
+                  console.info(TAG + `Succeeded in windows starting ability`);
                 }).catch((err: BusinessError) => {
                 console.error(TAG +
                   `Failed to windows starting ability, Code is ${err.code}, message is ${err.message}.`);
@@ -277,10 +284,10 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 **参数：**
 
-| 参数名               | 类型                     | 只读 | 可选 | 说明              |
-| -------------------- | ------------------------ | ---- | ---- |----------------- |
-| want                 | [Want](js-apis-app-ability-want.md) | 是  | 否 | Want 参数。       |
-| options              | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 |是   | 连接选项。 |
+| 参数名               | 类型                     | 必填 | 说明              |
+| -------------------- | ------------------------ | ---- |----------------- |
+| want                 | [Want](js-apis-app-ability-want.md) | 是 | Want 参数。       |
+| options              | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 是 | 连接选项。 |
 
 **返回值：**
 
@@ -386,8 +393,7 @@ struct Page_UIServiceExtensionAbility {
 
 disconnectServiceExtensionAbility(connectionId: number): Promise&lt;void&gt;
 
-断开与[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)的连接，与[connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability)功能相反。
-
+断开与[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)的连接，与[connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability)功能相反。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -395,16 +401,16 @@ disconnectServiceExtensionAbility(connectionId: number): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名                | 类型                     | 只读 | 可选 | 说明              |
-| -------------------- | ------------------------ | ---- | ----------------- | ----------------- |
-| connectionId         | number                   | 是  | 否 | 从[connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability)接口返回的连接Id。 |
+| 参数名                | 类型                     | 必填 | 说明              |
+| -------------------- | ------------------------ | ---- | ----------------- |
+| connectionId         | number                   | 是 | 从[connectServiceExtensionAbility](#uiserviceextensioncontextconnectserviceextensionability)接口返回的连接Id。 |
 
 
 **返回值：**
 
 | 类型                | 说明                              |
 | ------------------- | ---------------------------------|
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 

@@ -114,7 +114,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<WantAgent\> | 以Promise形式返回WantAgent。 |
+| Promise\<[WantAgent](#wantagent)\> | Promise对象，返回创建的WantAgent。 |
 
 **错误码：**
 
@@ -288,7 +288,7 @@ getBundleName(agent: WantAgent): Promise\<string\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<string\> | 以Promise形式返回获取WantAgent实例的包名。 |
+| Promise\<string\> | Promise对象，返回获取WantAgent实例的包名。 |
 
 **错误码：**
 
@@ -478,7 +478,7 @@ getUid(agent: WantAgent): Promise\<number\>
 
 | 类型              | 说明                                              |
 | ----------------- | ------------------------------------------------- |
-| Promise\<number\> | 以Promise形式返回获取WantAgent实例所属应用的UID。 |
+| Promise\<number\> | Promise对象，返回获取WantAgent实例所属应用的UID。 |
 
 **错误码：**
 
@@ -673,7 +673,7 @@ cancel(agent: WantAgent): Promise\<void\>
 
 | 类型            | 说明                            |
 | --------------- | ------------------------------- |
-| Promise\<void\> | 以Promise形式获取异步返回结果。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -766,7 +766,7 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<Co
 | 参数名        | 类型                          | 必填 | 说明                            |
 | ----------- | ----------------------------- | ---- | ------------------------------- |
 | agent       | WantAgent                     | 是   | WantAgent对象。                   |
-| triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                   | 是   | 表示触发WantAgent时携带的信息，如自定义的extraInfos。 |
+| triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                   | 是   | 表示触发WantAgent实例时携带的信息，如自定义的extraInfos。 |
 | callback    | AsyncCallback\<[CompleteData](#completedata)\> | 否   | 主动激发WantAgent实例的回调方法。 |
 
 **错误码：**
@@ -966,7 +966,7 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取判断两个WantAgent实例是否相等的结果。返回true表示两个WantAgent实例相等，false表示两个WantAgent实例不相等。 |
+| Promise\<boolean\> | Promise对象，返回获取判断两个WantAgent实例是否相等的结果。返回true表示两个WantAgent实例相等，false表示两个WantAgent实例不相等。 |
 
 **错误码：**
 
@@ -1154,7 +1154,7 @@ getOperationType(agent: WantAgent): Promise\<number>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<number> | 以Promise形式返回获取operationType的结果。 |
+| Promise\<number> | Promise对象，返回OperationType的结果。 |
 
 **错误码：**
 

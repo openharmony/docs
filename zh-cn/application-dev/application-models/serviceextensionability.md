@@ -549,7 +549,7 @@ ServiceExtensionAbility服务组件在onConnect()中返回[IRemoteObject](../ref
         // 成功连接后台服务
         hilog.info(DOMAIN_NUMBER, TAG, `sendRequest success, msg: ${msg}`);
       }).catch((error: BusinessError) => {
-        hilog.info(DOMAIN_NUMBER, TAG, `sendRequest failed, ${JSON.stringify(error)}`);
+        hilog.error(DOMAIN_NUMBER, TAG, `sendRequest failed, ${JSON.stringify(error)}`);
       });
     },
     onDisconnect(elementName): void {
@@ -599,7 +599,7 @@ ServiceExtensionAbility服务组件在onConnect()中返回[IRemoteObject](../ref
         }
         // 识别通过，执行正常业务逻辑
       }).catch((err: BusinessError) => {
-        hilog.info(DOMAIN_NUMBER, TAG, 'getBundleNameByUid failed: ' + err.message);
+        hilog.error(DOMAIN_NUMBER, TAG, 'getBundleNameByUid failed: ' + err.message);
       });
       //...
     };
@@ -646,7 +646,7 @@ ServiceExtensionAbility服务组件在onConnect()中返回[IRemoteObject](../ref
         }
         // 识别通过，执行正常业务逻辑
       }).catch((err: BusinessError) => {
-        hilog.info(DOMAIN_NUMBER, TAG, 'getBundleNameByUid failed: ' + err.message);
+        hilog.error(DOMAIN_NUMBER, TAG, 'getBundleNameByUid failed: ' + err.message);
       });
   
       let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();

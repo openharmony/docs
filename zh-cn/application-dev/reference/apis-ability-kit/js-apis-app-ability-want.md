@@ -270,7 +270,7 @@ import { Want } from '@kit.AbilityKit';
 
         class UIAbilityB extends UIAbility {
           onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-            console.log(`onCreate, want parameters: ${want.parameters?.developerParameters}`);
+            console.info(`onCreate, want parameters: ${want.parameters?.developerParameters}`);
           }
         }
         ```

@@ -102,7 +102,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
-    console.log('MyAbility onCreate');
+    console.info('MyAbility onCreate');
     let moduleContext: common.Context;
     try {
       moduleContext = this.context.createModuleContext('entry');
@@ -145,7 +145,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
-    console.log('MyAbility onCreate');
+    console.info('MyAbility onCreate');
     let applicationContext: common.Context;
     try {
       applicationContext = this.context.getApplicationContext();
@@ -176,7 +176,7 @@ getGroupDir(dataGroupID: string): Promise\<string>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<string> | 以Promise方式返回对应的共享目录。如果不存在则返回为空，仅支持应用el2加密级别。|
+| Promise\<string> | Promise对象，返回对应的共享目录。如果不存在则返回为空，仅支持应用el2加密级别。|
 
 **错误码：**
 
@@ -195,12 +195,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
-    console.log('MyAbility onCreate');
+    console.info('MyAbility onCreate');
     let groupId = "1";
     let getGroupDirContext: common.Context = this.context;
     try {
       getGroupDirContext.getGroupDir(groupId).then(data => {
-        console.log("getGroupDir result:" + data);
+        console.info("getGroupDir result:" + data);
       })
     } catch (error) {
       console.error(`getGroupDirContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
@@ -243,14 +243,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
-    console.log('MyAbility onCreate');
+    console.info('MyAbility onCreate');
     let getGroupDirContext: common.Context = this.context;
 
     getGroupDirContext.getGroupDir("1", (err: BusinessError, data) => {
       if (err) {
         console.error(`getGroupDir faile, err: ${JSON.stringify(err)}`);
       } else {
-        console.log(`getGroupDir result is: ${JSON.stringify(data)}`);
+        console.info(`getGroupDir result is: ${JSON.stringify(data)}`);
       }
     });
   }
