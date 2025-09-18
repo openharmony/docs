@@ -209,7 +209,7 @@ Describes the virtual screen parameters.
 
 ## Position<sup>20+</sup>
 
-Describes a coordinate position. In the global coordinate system, the origin is the upper-left corner of the primary screen. In the relative coordinate system, the origin is the upper-left corner of the specified screen.
+Describes a coordinate position. In the global coordinate system, the origin is the top-left corner of the primary screen. In the relative coordinate system, the origin is the top-left corner of the specified screen.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -220,14 +220,14 @@ Describes a coordinate position. In the global coordinate system, the origin is 
 
 ## RelativePosition<sup>20+</sup>
 
-Describes a coordinate position in the relative coordinate system, with the origin in the upper-left corner of the screen specified by **displayId**.
+Describes a coordinate position in the relative coordinate system, with the origin in the top-left corner of the screen specified by **displayId**.
 
 **System capability**: SystemCapability.Window.SessionManager
 
 | Name     | Type| Read-Only| Optional| Description                      |
 | --------- | -------- | ---- | ---- |--------------------------|
 | displayId | number   | No  | No  | Display ID for the relative coordinates. Only integers are supported, and the value must be greater than or equal to 0.|
-| position  | [Position](#position20) | No  | No  | Coordinates with the upper-left corner of the screen specified by **displayId** as the origin.|
+| position  | [Position](#position20) | No  | No  | Coordinates with the top-left corner of the screen specified by **displayId** as the origin.|
 
 ## display.getDisplayByIdSync<sup>12+</sup>
 
@@ -323,7 +323,7 @@ promise.then((resolutionObjects) => {
 
 getDefaultDisplaySync(): Display
 
-Obtains the default display object. This API returns the result synchronously.
+Obtains the default Display object.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -333,7 +333,7 @@ Obtains the default display object. This API returns the result synchronously.
 
 | Type                          | Description                                          |
 | ------------------------------| ----------------------------------------------|
-| [Display](#display) | Default display object.|
+| [Display](#display) | Default Display object.|
 
 **Error codes**
 
@@ -394,7 +394,7 @@ displayClass = display.getPrimaryDisplaySync();
 
 getAllDisplays(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
-Obtains all display objects. This API uses an asynchronous callback to return the result.
+Obtains all Display objects. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -404,7 +404,7 @@ Obtains all display objects. This API uses an asynchronous callback to return th
 
 | Name| Type| Mandatory| Description|
 | -------- | ---------------------------------------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | Yes| Callback used to return all the display objects.|
+| callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | Yes| Callback used to return all the Display objects.|
 
 **Error codes**
 
@@ -428,7 +428,7 @@ display.getAllDisplays((err: BusinessError, data: Array<display.Display>) => {
     console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in obtaining all the display objects. Data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -436,7 +436,7 @@ display.getAllDisplays((err: BusinessError, data: Array<display.Display>) => {
 
 getAllDisplays(): Promise&lt;Array&lt;Display&gt;&gt;
 
-Obtains all display objects. This API uses a promise to return the result.
+Obtains all Display objects. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -446,7 +446,7 @@ Obtains all display objects. This API uses a promise to return the result.
 
 | Type| Description|
 | ----------------------------------------------- | ------------------------------------------------------- |
-| Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise used to return all the display objects.|
+| Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise used to return all the Display objects.|
 
 **Error codes**
 
@@ -466,7 +466,7 @@ let displayClass: Array<display.Display> =[];
 let promise: Promise<Array<display.Display>> = display.getAllDisplays();
 promise.then((data: Array<display.Display>) => {
   displayClass = data;
-  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in obtaining all the display objects. Data:  ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
@@ -503,7 +503,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<number> = (data: number) => {
-  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+  console.info(`Listening enabled. Data: ${data}`);
 };
 
 display.on("add", callback);
@@ -542,7 +542,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 display.off("remove");
 
 let callback: Callback<number> = (data: number) => {
-  console.info('Succeeded in unregistering the callback for display remove. Data: ' + JSON.stringify(data))
+  console.info(`Succeeded in unregistering the callback for display remove. Data: ${data}`)
 };
 // Unregister the specified callback.
 display.off('remove', callback);
@@ -609,7 +609,7 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 import { display } from '@kit.ArkUI';
 
 let data: display.FoldStatus = display.getFoldStatus();
-console.info('Succeeded in obtaining fold status. Data: ' + JSON.stringify(data));
+console.info(`Succeeded in obtaining fold status. Data: ${data}`);
 ```
 
 ## display.getFoldDisplayMode<sup>10+</sup>
@@ -643,7 +643,7 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 import { display } from '@kit.ArkUI';
 
 let data: display.FoldDisplayMode = display.getFoldDisplayMode();
-console.info('Succeeded in obtaining fold display mode. Data: ' + JSON.stringify(data));
+console.info(`Succeeded in obtaining fold display mode. Data: ${data}`);
 ```
 
 ## display.getCurrentFoldCreaseRegion<sup>10+</sup>
@@ -654,6 +654,8 @@ Obtains the crease region of the foldable device in the current display mode.
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API can be properly called on foldable devices. If it is called on other device types, **undefined** is returned.
 
 **Return value**
 
@@ -675,7 +677,7 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 import { display } from '@kit.ArkUI';
 
 let data: display.FoldCreaseRegion = display.getCurrentFoldCreaseRegion();
-console.info('Succeeded in obtaining current fold crease region. Data: ' + JSON.stringify(data));
+console.info(`Succeeded in obtaining current fold crease region. Data: ${JSON.stringify(data)}`);
 ```
 
 ## display.on('foldStatusChange')<sup>10+</sup>
@@ -720,7 +722,7 @@ import { Callback } from '@kit.BasicServicesKit';
  * If an anonymous function is used for registration, a new underlying object is created each time the function is called, causing memory leakage.
 */
 let callback: Callback<display.FoldStatus> = (data: display.FoldStatus) => {
-  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+  console.info(`Listening enabled. Data: ${data}`);
 };
 display.on('foldStatusChange', callback);
 ```
@@ -759,7 +761,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 display.off('foldStatusChange');
 
 let callback: Callback<display.FoldStatus> = (data: display.FoldStatus) => {
-  console.info('unregistering FoldStatus changes callback. Data: ' + JSON.stringify(data));
+  console.info(`unregistering FoldStatus changes callback. Data: ${data}`);
 };
 // Unregister the specified callback.
 display.off('foldStatusChange', callback);
@@ -993,7 +995,7 @@ import { Callback } from '@kit.BasicServicesKit';
  * If an anonymous function is used for registration, a new underlying object is created each time the function is called, causing memory leakage.
 */
 let callback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode) => {
-  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+  console.info(`Listening enabled. Data: ${data}`);
 }; 
 display.on('foldDisplayModeChange', callback);
 ```
@@ -1034,143 +1036,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 display.off('foldDisplayModeChange');
 
 let callback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode) => {
-  console.info('unregistering FoldDisplayMode changes callback. Data: ' + JSON.stringify(data));
+  console.info(`unregistering FoldDisplayMode changes callback. Data: ${data}`);
 };
 // Unregister the specified callback.
 display.off('foldDisplayModeChange', callback);
-```
-
-
-## display.getDefaultDisplay<sup>(deprecated)</sup>
-
-getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
-
-Obtains the default display object. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getDefaultDisplaySync()](#displaygetdefaultdisplaysync9) instead.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[Display](#display)&gt; | Yes| Callback used to return the default display object.|
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let displayClass: display.Display | null = null;
-display.getDefaultDisplay((err: BusinessError, data: display.Display) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
-    return;
-  }
-  console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
-  displayClass = data;
-});
-```
-
-## display.getDefaultDisplay<sup>(deprecated)</sup>
-
-getDefaultDisplay(): Promise&lt;Display&gt;
-
-Obtains the default display object. This API uses a promise to return the result.
-
-> **NOTE**
-> 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getDefaultDisplaySync()](#displaygetdefaultdisplaysync9) instead.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Return value**
-
-| Type                              | Description                                          |
-| ---------------------------------- | ---------------------------------------------- |
-| Promise&lt;[Display](#display)&gt; | Promise used to return the default display object.|
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let displayClass: display.Display | null = null;
-let promise: Promise<display.Display> = display.getDefaultDisplay();
-promise.then((data: display.Display) => {
-  displayClass = data;
-  console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
-}).catch((err: BusinessError) => {
-  console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
-});
-```
-
-## display.getAllDisplay<sup>(deprecated)</sup>
-
-getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
-
-Obtains all display objects. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
-> 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getAllDisplays()](#displaygetalldisplays9) instead.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Parameters**
-
-| Name  | Type                                                | Mandatory| Description                           |
-| -------- | ---------------------------------------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | Yes  | Callback used to return all the display objects.|
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-display.getAllDisplay((err: BusinessError, data: Array<display.Display>) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
-    return;
-  }
-  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
-});
-```
-
-## display.getAllDisplay<sup>(deprecated)</sup>
-
-getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
-
-Obtains all display objects. This API uses a promise to return the result.
-
-> **NOTE**
-> 
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getAllDisplays()](#displaygetalldisplays9-1) instead.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Return value**
-
-| Type                                           | Description                                                   |
-| ----------------------------------------------- | ------------------------------------------------------- |
-| Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise used to return all the display objects.|
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let promise: Promise<Array<display.Display>> = display.getAllDisplay();
-promise.then((data: Array<display.Display>) => {
-  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
-}).catch((err: BusinessError) => {
-  console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
-});
 ```
 
 ## display.createVirtualScreen<sup>16+</sup>
@@ -1228,7 +1097,7 @@ let config : VirtualScreenConfig = {
 };
 
 display.createVirtualScreen(config).then((screenId: number) => {
-  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(screenId));
+  console.info(`Succeeded in creating the virtual screen.ScreenId : ${screenId}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
 });
@@ -1248,7 +1117,7 @@ Destroys a virtual screen. This API uses a promise to return the result.
 
 | Name  | Type  | Mandatory| Description      |
 | -------- | ------ | ---- | ---------- |
-| screenId | number | Yes  | Screen ID, which must match the ID of the virtual screen created by calling the **createVirtualScreen()** API. This parameter only accepts integer values.|
+| screenId | number | Yes  | Screen ID, which must match the ID of the virtual screen created by calling the [createVirtualScreen()](#displaycreatevirtualscreen16) API. This parameter only accepts integer values.|
 
 **Return value**
 
@@ -1295,7 +1164,7 @@ Sets a surface ID for a virtual screen. This API uses a promise to return the re
 
 | Name   | Type  | Mandatory| Description         |
 | --------- | ------ | ---- | ------------- |
-| screenId  | number | Yes  | Screen ID, which must match the ID of the virtual screen created by calling the **createVirtualScreen()** API. This parameter only accepts integer values.   |
+| screenId  | number | Yes  | Screen ID, which must match the ID of the virtual screen created by calling the [createVirtualScreen()](#displaycreatevirtualscreen16) API. This parameter only accepts integer values.   |
 | surfaceId | string | Yes  | Surface ID of the virtual screen. The value can be customized. The maximum length for this parameter is 4096 bytes. If it goes beyond that, only the first 4096 bytes are used.|
 
 **Return value**
@@ -1381,7 +1250,7 @@ display.makeUnique(screenId).then(() => {
 
 convertRelativeToGlobalCoordinate(relativePosition: RelativePosition): Position
 
-Converts relative coordinates (based on the upper-left corner of the screen) into global coordinates (based on the upper-left corner of the primary screen). This API supports only coordinate conversion between the primary screen and extended screen.
+Converts relative coordinates (based on the top-left corner of the screen) into global coordinates (based on the top-left corner of the primary screen). This API supports only coordinate conversion between the primary screen and extended screen.
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
@@ -1397,7 +1266,7 @@ Converts relative coordinates (based on the upper-left corner of the screen) int
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| [Position](#position20) | Global coordinates based on the upper-left corner of the primary screen.|
+| [Position](#position20) | Global coordinates based on the top-left corner of the primary screen.|
 
 **Error codes**
 
@@ -1434,7 +1303,7 @@ try {
 
 convertGlobalToRelativeCoordinate(position: Position, displayId?: number): RelativePosition
 
-Converts global coordinates (based on the upper-left corner of the primary screen) into relative coordinates (based on the upper-left corner of the screen specified by **displayId**). If **displayId** is not passed, the coordinates are converted relative to the screen where the global coordinates are located. If the global coordinates are not on any screen, the coordinates are converted relative to the primary screen by default.
+Converts global coordinates (based on the top-left corner of the primary screen) into relative coordinates (based on the top-left corner of the screen specified by **displayId**). If **displayId** is not passed, the coordinates are converted relative to the screen where the global coordinates are located. If the global coordinates are not on any screen, the coordinates are converted relative to the primary screen by default.
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
@@ -1481,6 +1350,138 @@ try {
 }
 ```
 
+## display.getDefaultDisplay<sup>(deprecated)</sup>
+
+getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
+
+Obtains the default Display object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> 
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getDefaultDisplaySync()](#displaygetdefaultdisplaysync9) instead.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[Display](#display)&gt; | Yes| Callback used to return the default Display object.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let displayClass: display.Display | null = null;
+display.getDefaultDisplay((err: BusinessError, data: display.Display) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in obtaining the default display object. Data: ${JSON.stringify(data)}`);
+  displayClass = data;
+});
+```
+
+## display.getDefaultDisplay<sup>(deprecated)</sup>
+
+getDefaultDisplay(): Promise&lt;Display&gt;
+
+Obtains the default Display object. This API uses a promise to return the result.
+
+> **NOTE**
+> 
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getDefaultDisplaySync()](#displaygetdefaultdisplaysync9) instead.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Return value**
+
+| Type                              | Description                                          |
+| ---------------------------------- | ---------------------------------------------- |
+| Promise&lt;[Display](#display)&gt; | Promise used to return the default Display object.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let displayClass: display.Display | null = null;
+let promise: Promise<display.Display> = display.getDefaultDisplay();
+promise.then((data: display.Display) => {
+  displayClass = data;
+  console.info(`Succeeded in obtaining the default display object. Data: ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
+});
+```
+
+## display.getAllDisplay<sup>(deprecated)</sup>
+
+getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
+
+Obtains all Display objects. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> 
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getAllDisplays()](#displaygetalldisplays9) instead.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name  | Type                                                | Mandatory| Description                           |
+| -------- | ---------------------------------------------------- | ---- | ------------------------------- |
+| callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | Yes  | Callback used to return all the Display objects.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+display.getAllDisplay((err: BusinessError, data: Array<display.Display>) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in obtaining the default display objects. Data: ${JSON.stringify(data)}`);
+});
+```
+
+## display.getAllDisplay<sup>(deprecated)</sup>
+
+getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
+
+Obtains all Display objects. This API uses a promise to return the result.
+
+> **NOTE**
+> 
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [getAllDisplays()](#displaygetalldisplays9-1) instead.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Return value**
+
+| Type                                           | Description                                                   |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise used to return all the Display objects.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let promise: Promise<Array<display.Display>> = display.getAllDisplay();
+promise.then((data: Array<display.Display>) => {
+  console.info(`Succeeded in obtaining the default display objects. Data: ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
+});
+```
+
 ## Display
 Implements a Display instance, with properties and APIs defined.
 
@@ -1506,12 +1507,12 @@ Before calling any API in Display, you must use [getAllDisplays()](#displaygetal
 | yDPI | number | Yes| No| Exact physical pixels per inch of the display in the Y dimension. The value must be a floating-point number.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
 | colorSpaces<sup>11+</sup> | Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md)> | Yes| No| All color spaces supported by the display.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                               |
 | hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md)> | Yes| No| All HDR formats supported by the display.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                              |
-| availableWidth<sup>12+</sup> | number | Yes| No| Width of the available area on a 2-in-1 device, in px. The value is an integer greater than 0.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
-| availableHeight<sup>12+</sup> | number | Yes| No| Height of the available area on a 2-in-1 device, in px. The value is an integer greater than 0.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
+| availableWidth<sup>12+</sup> | number | Yes| No| Width of the available area, in px. The value is an integer greater than 0.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br> **Device behavior differences**: This API can be properly called on 2-in-1 devices and tablets. It does not work for other device types. To obtain the width of the available area on the current device, you can use the **width** property.                                                |
+| availableHeight<sup>12+</sup> | number | Yes| No| Height of the available area, in px. The value is an integer greater than 0.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br> **Device behavior differences**: This API can be properly called on 2-in-1 devices and tablets. It does not work for other device types. To obtain the height of the available area on the current device, you can use the **height** property.                                               |
 | screenShape<sup>18+</sup> | [ScreenShape](#screenshape18) | Yes| Yes| Screen shape of the display. The default value is **RECTANGLE**.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | sourceMode<sup>19+</sup> | [DisplaySourceMode](#displaysourcemode19) | Yes| Yes| Display mode for screen content. The default value is **DisplaySourceMode.NONE**.<br>**System capability**: SystemCapability.Window.SessionManager<br>**Atomic service API**: This API can be used in atomic services since API version 19.                                                                                   |
-| x<sup>19+</sup> | number | Yes| Yes| X coordinate of the upper-left corner of the screen relative to the origin, which is the upper-left corner of the primary screen, measured in px. The value is an integer. The default value is **0**. It is returned only when **DisplaySourceMode** is set to **MAIN** or **EXTEND**.<br>**System capability**: SystemCapability.Window.SessionManager<br>**Atomic service API**: This API can be used in atomic services since API version 19.                                                                                   |
-| y<sup>19+</sup> | number | Yes| Yes| Y coordinate of the upper-left corner of the screen relative to the origin, which is the upper-left corner of the primary screen, measured in px. The value is an integer. The default value is **0**. It is returned only when **DisplaySourceMode** is set to **MAIN** or **EXTEND**.<br>**System capability**: SystemCapability.Window.SessionManager<br>**Atomic service API**: This API can be used in atomic services since API version 19.                                                                                   |
+| x<sup>19+</sup> | number | Yes| Yes| X coordinate of the top-left corner of the screen relative to the origin, which is the top-left corner of the primary screen, measured in px. The value is an integer. The default value is **0**. It is returned only when **DisplaySourceMode** is set to **MAIN** or **EXTEND**.<br>**System capability**: SystemCapability.Window.SessionManager<br>**Atomic service API**: This API can be used in atomic services since API version 19.                                                                                   |
+| y<sup>19+</sup> | number | Yes| Yes| Y coordinate of the top-left corner of the screen relative to the origin, which is the top-left corner of the primary screen, measured in px. The value is an integer. The default value is **0**. It is returned only when **DisplaySourceMode** is set to **MAIN** or **EXTEND**.<br>**System capability**: SystemCapability.Window.SessionManager<br>**Atomic service API**: This API can be used in atomic services since API version 19.                                                                                   |
 | supportedRefreshRates<sup>20+</sup> | Array&lt;number&gt; | Yes| Yes| All refresh rates supported by the display, sorted in ascending order. The refresh rate is a positive integer, in Hz. The default value is empty.<br>**System capability**: SystemCapability.Window.SessionManager<br>**Atomic service API**: This API can be used in atomic services since API version 20.                                                 |
 
 
@@ -1552,7 +1553,7 @@ displayClass.getCutoutInfo((err: BusinessError, data: display.CutoutInfo) => {
     console.error(`Failed to get cutoutInfo. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
+  console.info(`Succeeded in getting cutoutInfo. Data: ${JSON.stringify(data)}`);
 });
 ```
 ### getCutoutInfo<sup>9+</sup>
@@ -1587,7 +1588,7 @@ let displayClass: display.Display | null = null;
 displayClass = display.getDefaultDisplaySync();
 let promise: Promise<display.CutoutInfo> = displayClass.getCutoutInfo();
 promise.then((data: display.CutoutInfo) => {
-  console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in getting cutoutInfo. Data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
@@ -1630,7 +1631,7 @@ try {
   displayClass = display.getDefaultDisplaySync();
   let promise = displayClass.getAvailableArea();
   promise.then((data) => {
-    console.info('Succeeded get the available area in this display. data: ' + JSON.stringify(data));
+    console.info(`Succeeded get the available area in this display. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to get the available area in this display. Code: ${err.code}, message: ${err.message}`);
   })
@@ -1674,7 +1675,7 @@ import { Callback } from '@kit.BasicServicesKit';
 import { display } from '@kit.ArkUI';
 
 let callback: Callback<display.Rect> = (data: display.Rect) => {
-  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+  console.info(`Listening enabled. Data: ${JSON.stringify(data)}`);
 };
 let displayClass: display.Display | null = null;
 try {
@@ -1721,7 +1722,7 @@ import { Callback } from '@kit.BasicServicesKit';
 import { display } from '@kit.ArkUI';
 
 let callback: Callback<display.Rect> = (data: display.Rect) => {
-  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+  console.info(`Listening enabled. Data: ${JSON.stringify(data)}`);
 };
 let displayClass: display.Display | null = null;
 try {
@@ -1763,7 +1764,7 @@ let displayClass: display.Display | null = null;
 try {
   displayClass = display.getDefaultDisplaySync();
   let data: display.FoldCreaseRegion = displayClass.getLiveCreaseRegion();
-  console.info('Succeeded in getting the live crease region. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in getting the live crease region. Data: ${JSON.stringify(data)}`);
 } catch (exception) {
   console.error(`Failed to get the live crease region. Code: ${exception.code}, message: ${exception.message}`);
 }

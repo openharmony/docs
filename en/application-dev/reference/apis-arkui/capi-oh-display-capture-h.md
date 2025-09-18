@@ -26,7 +26,7 @@ The file declares the capability to take screenshots.
 
 | Name| Description|
 | -- | -- |
-| [NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CaptureScreenPixelmap(uint32_t displayId,OH_PixelmapNative **pixelMap)](#oh_nativedisplaymanager_capturescreenpixelmap) | Takes a screenshot of the entire screen. This function can be used only on tablets and 2-in-1 devices. It can be used to capture a full-screen screenshot on the specified display.|
+| [NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CaptureScreenPixelmap(uint32_t displayId,OH_PixelmapNative **pixelMap)](#oh_nativedisplaymanager_capturescreenpixelmap) | Takes a screenshot of the entire screen. This function can be used to capture a full-screen screenshot on the specified display.|
 
 ## Function Description
 
@@ -38,13 +38,13 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CaptureScreenPixelmap(uin
 
 **Description**
 
-Takes a screenshot of the entire screen. This function can be used only on tablets and 2-in-1 devices. It can be used to capture a full-screen screenshot on the specified display.
-
-**System capability**: SystemCapability.Window.SessionManager.Core
+Takes a screenshot of the entire screen. This function can be used to capture a full-screen screenshot on the specified display.
 
 **Required permissions**: ohos.permission.CUSTOM_SCREEN_CAPTURE
 
 **Since**: 14
+
+**Device behavior differences**: This API can be properly called on 2-in-1 devices and tablets. If it is called on other device types, error code 801 is returned.
 
 **Parameters**
 

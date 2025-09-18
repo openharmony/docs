@@ -65,7 +65,7 @@ export default class EntryAbility extends UIAbility {
     windowStage.getMainWindow((err: BusinessError, data) => {
       const errCode: number = err.code;
       if (errCode) {
-        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        console.error(`Failed to obtain the main window. Cause code: ${errCode}, message: ${err.message}`);
         return;
       }
       windowClass = data;
@@ -179,6 +179,8 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 
 Creates a child window for this WindowStage. This API uses an asynchronous callback to return the result.
 
+The child window created uses an [immersive layout](../../windowmanager/window-terminology.md#immersive-layout) by default.
+
 **Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -243,6 +245,8 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 
 Creates a child window for this WindowStage. This API uses a promise to return the result.
 
+The child window created uses an [immersive layout](../../windowmanager/window-terminology.md#immersive-layout) by default.
+
 **Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -303,6 +307,10 @@ export default class EntryAbility extends UIAbility {
 createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;Window&gt;
 
 Creates a child window for this WindowStage. This API uses a promise to return the result.
+
+In non-[freeform window mode](../../windowmanager/window-terminology.md#freeform-window), the child window created uses an [immersive layout](../../windowmanager/window-terminology.md#immersive-layout) by default.
+
+In freeform window mode, the child window created uses an immersive layout when [decorEnabled](arkts-apis-window-i.md#subwindowoptions11) is set to **false**, and it uses a non-immersive layout when this parameter is set to **true**.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1167,7 +1175,7 @@ If there is an existing event subscribed to by calling [on('windowWillClose')](a
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | eventType  | string                                                       | Yes  | Event type. The value is fixed at **'windowStageClose'**, indicating that the close button in the three-button navigation bar of the main window is clicked|
-| callback | Callback&lt;void&gt; | Yes  | Callback invoked when the close button in the upper-right corner of the main window is clicked. It does not return any parameter. The internal logic of the callback function requires a return value of the Boolean type. The return value determines whether to continue to close the main window. The value **true** means not to close the main window, and **false** means to continue to close the main window.|
+| callback | Callback&lt;void&gt; | Yes  | Callback invoked when the close button in the top-right corner of the main window is clicked. It does not return any parameter. The internal logic of the callback function requires a return value of the Boolean type. The return value determines whether to continue to close the main window. The value **true** means not to close the main window, and **false** means to continue to close the main window.|
 
 **Error codes**
 
@@ -1222,7 +1230,7 @@ Unsubscribes from the event indicating that the main window is closed. This API 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | eventType  | string                                                       | Yes  | Event type. The value is fixed at **'windowStageClose'**, indicating that the close button in the three-button navigation bar of the main window is clicked.|
-| callback | Callback&lt;void&gt; | No  | Callback invoked when the close button in the upper-right corner of the main window is clicked. It does not return any parameter. The internal logic of the callback function requires a return value of the Boolean type. The return value determines whether to continue to close the main window. The value **true** means not to close the main window, and **false** means to continue to close the main window. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
+| callback | Callback&lt;void&gt; | No  | Callback invoked when the close button in the top-right corner of the main window is clicked. It does not return any parameter. The internal logic of the callback function requires a return value of the Boolean type. The return value determines whether to continue to close the main window. The value **true** means not to close the main window, and **false** means to continue to close the main window. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -1563,7 +1571,6 @@ The following rules apply in stacking scenarios:
 2. If the current instance is maximized or in full-screen mode, the next opened window will maintain the maximized state when stacked.
 
 The following table describes the memory rules:
-
 |Last Window State|Memorizing Rule|
 |-------------|-------|
 |Free-form window|Retains the size/position of the free-form window, rebound if exceeding the workspace.|
@@ -1640,7 +1647,6 @@ Within the same UIAbility, you can remember the size of the last closed main win
 When the auto-save feature is enabled, the size of the main window when it is closed is remembered. When the main window is restarted, it will open at the remembered size according to the rules.
 
 The following table describes the memory rules:
-
 |Last Window State|Memorizing Rule|
 |-------------|-------|
 |Free-form window|Retains the size/position of the free-form window, rebound if exceeding the workspace.|
