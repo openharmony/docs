@@ -1,4 +1,10 @@
 # Router Error Codes
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @mayaolll-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 > **NOTE**
 >
@@ -8,11 +14,13 @@
 
 **Error Message**
 
-Internal error.
+When used as an error code for @ohos.router: Internal error. UI execution context is not found.
+
+When used as an error code for the **Navigation** routing framework: Internal error. Create NavDestination failed, probably caused by wrong UIContext.
 
 **Description**
 
-This error code is reported when an internal error that cannot be rectified by developers occurs. The internal error type is included in the error information.
+This error code is reported when an internal error that cannot be rectified by developers occurs. The internal error type is included in the error information. When used in @ohos.router, this error code is represented as a string type. When used in the **Navigation** routing framework, this error code is represented as a number type.
 
 **Possible Causes**
 
@@ -26,11 +34,11 @@ NA
 
 **Error Message**
 
-Uri error. The URI of the page to redirect is incorrect or does not exist
+Uri error. The URI of the page to redirect is incorrect or does not exist.
 
 **Description**
 
-This error code is reported when the URI of the page to redirect is incorrect or does not exist.
+This error code is reported when the URI of the page to redirect is incorrect or does not exist. This error code is represented as a string type.
 
 **Possible Causes**
 
@@ -48,7 +56,7 @@ Page stack error. Too many pages are pushed.
 
 **Description**
 
-This error code is reported when more than 32 pages are pushed into the page stack.
+This error code is reported when more than 32 pages are pushed into the page stack. This error code is represented as a string type.
 
 **Possible Causes**
 
@@ -66,7 +74,7 @@ Named route error. The named route does not exist.
 
 **Description**
 
-This error code is reported when the specified route name for redirection is incorrect or does not exist.
+This error code is reported when the specified route name for redirection is incorrect or does not exist. This error code is represented as a string type.
 
 **Possible Causes**
 
@@ -106,7 +114,61 @@ The **NavDestination** component is unavailable for the target page of navigatio
 
 **Solution**
 
-Make sure there is a **NavDestination** component for the target page of navigation.
+Make sure there is a **NavDestiantion** component for the target page of navigation.
+
+## 106200 Invalid Index Value
+
+**Error Message**
+
+index value is invalid.
+
+**Description**
+
+This error code is reported when an invalid index value is provided.
+
+**Possible Causes**
+
+The index value is invalid.
+
+**Solution**
+
+Check the provided index value.
+
+## 106201 Failed to Obtain Route Navigation Information
+
+**Error Message**
+
+Failed to query route navigation information.
+
+**Description**
+
+This error code is reported when the system fails to obtain route navigation information.
+
+**Possible Causes**
+
+The current node may not be within a **Navigation** component.
+
+**Solution**
+
+Check whether the current node is within a **Navigation** component.
+
+## 106202 Invalid Buffer Size
+
+**Error Message**
+
+buffer size is not large enough.
+
+**Description**
+
+This error code is reported when an invalid buffer size is provided.
+
+**Possible Causes**
+
+The provided buffer size is smaller than the minimum required to accommodate the target data.
+
+**Solution**
+
+Check the provided buffer size.
 
 ## 200002 Incorrect URI During Page Replacement
 
@@ -116,7 +178,7 @@ Uri error. The URI of the page to be used for replacement is incorrect or does n
 
 **Description**
 
-This error code is reported when the URI of the page to be used for replacement is incorrect or does not exist.
+This error code is reported when the URI of the page to be used for replacement is incorrect or does not exist. This error code is represented as a string type.
 
 **Possible Causes**
 
