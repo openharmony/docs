@@ -468,7 +468,7 @@ export default class EntryAbility extends UIAbility {
     let startParams = ['StartupTask_005', 'StartupTask_006'];
     try {
       startupManager.run(startParams).then(() => {
-        console.log(`StartupTest startupManager run then, startParams = ${JSON.stringify(startParams)}.`);
+        console.info(`StartupTest startupManager run then, startParams = ${JSON.stringify(startParams)}.`);
       }).catch((error: BusinessError) => {
         console.error(`StartupTest promise catch error, error = ${JSON.stringify(error)}.`);
         console.error(`StartupTest promise catch error, startParams = ${JSON.stringify(startParams)}.`);

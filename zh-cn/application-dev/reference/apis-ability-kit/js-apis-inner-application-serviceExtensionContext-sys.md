@@ -2659,9 +2659,9 @@ startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 **系统接口**：此接口为系统接口。
 
 **参数：**
-| 参数名 | 类型 | 只读 | 可选 | 说明                 |
-| ------ | ---- | ---- | -------------------- | -------------------- |
-| want   | [Want](js-apis-app-ability-want.md) | 是  | 否 | Want类型参数，传入需要启动的Ability的信息，如Ability名称，Bundle名称等。 |
+| 参数名 | 类型 | 必填 | 说明                 |
+| ------ | ---- | ---- | -------------------- |
+| want   | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，传入需要启动的Ability的信息，如Ability名称，Bundle名称等。 |
 
 **返回值：**
 

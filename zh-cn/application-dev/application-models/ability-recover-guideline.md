@@ -49,7 +49,7 @@ import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate() {
-        console.info("[Demo] EntryAbility onCreate");
+        console.info('[Demo] EntryAbility onCreate');
         this.context.setRestoreEnabled(true);
     }
 }
@@ -62,17 +62,17 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.info("[Demo] EntryAbility onCreate");
+        console.info('[Demo] EntryAbility onCreate');
         this.context.setRestoreEnabled(true);
         if (want && want.parameters) {
-          let recoveryMyData = want.parameters["myData"];
+          let recoveryMyData = want.parameters['myData'];
         }
     }
 
     onSaveState(state:AbilityConstant.StateType, wantParams: Record<string, Object>) {
         // Ability has called to save app data
-        console.log("[Demo] EntryAbility onSaveState");
-        wantParams["myData"] = "my1234567";
+        console.info('[Demo] EntryAbility onSaveState');
+        wantParams['myData'] = 'my1234567';
         return AbilityConstant.OnSaveResult.ALL_AGREE;
     }
 }
