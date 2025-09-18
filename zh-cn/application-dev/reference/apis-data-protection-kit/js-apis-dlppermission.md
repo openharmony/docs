@@ -1628,9 +1628,9 @@ connectServer(requestId: string, requestData: string, callback: Callback<string>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| requestId | string | 是 | 系统能力侧传递的request的标识 |
-| requestData | string | 是 | 系统能力侧传递的数据 |
-| callback | Callback | 是 | 系统能力侧传递的接口，用于回调 |
+| requestId | string | 是 | 系统能力侧传递的request的标识。|
+| requestData | string | 是 | 系统能力侧传递的数据。|
+| callback | Callback | 是 | 系统能力侧传递的接口，用于回调。 |
 
 **错误码：**
 
@@ -1690,13 +1690,13 @@ static registerPlugin(plugin: [DlpConnPlugin](#DlpConnPlugin21)): number;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| plugin | [DlpConnPlugin](#DlpConnPlugin21) | 是 |代表回调能力 |
+| plugin | [DlpConnPlugin](#DlpConnPlugin21) | 是 |代表回调能力。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 注册结果，代表该回调的id |
+| number | 注册结果，代表该回调的id. |
 
 **错误码：**
 
