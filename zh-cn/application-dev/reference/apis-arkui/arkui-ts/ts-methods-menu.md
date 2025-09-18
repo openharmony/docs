@@ -1,4 +1,10 @@
 # ContextMenu
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Armstrong15-->
+<!--Designer: @zhanghaibo0-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 在页面范围内关闭通过[bindContextMenu](./ts-universal-attributes-menu.md#bindcontextmenu12)属性绑定的菜单。
 
@@ -39,11 +45,11 @@ static close()
 struct Index {
   @Builder MenuBuilder() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Button('Test ContextMenu1')
+      Button('ContextMenu1')
       Divider().strokeWidth(2).margin(5).color(Color.Black)
-      Button('Test ContextMenu2')
+      Button('ContextMenu2')
       Divider().strokeWidth(2).margin(5).color(Color.Black)
-      Button('Test ContextMenu3')
+      Button('ContextMenu3')
     }
     .width(200)
     .height(160)
@@ -52,7 +58,7 @@ struct Index {
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Column() {
-        Text("Test ContextMenu")
+        Text('Long press to show ContextMenu')
           .fontSize(20)
           .width('100%')
           .height(500)
