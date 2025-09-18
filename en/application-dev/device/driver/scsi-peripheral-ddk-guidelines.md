@@ -84,7 +84,7 @@ Before you get started, make necessary preparations by following instructions in
 | int32_t OH_ScsiPeripheral_DestroyDeviceMemMap(ScsiPeripheral_DeviceMemMap *devMmap) | Destroys a buffer.|
 | int32_t OH_ScsiPeripheral_ParseBasicSenseInfo(uint8_t *senseData, uint8_t senseDataLen, ScsiPeripheral_BasicSenseInfo *senseInfo) | Parses basic sense data, including the **Information**, **Command specific information**, and **Sense key specific** fields.|
 
-For details about the interface, see [SCSI Peripheral DDK](../../reference/apis-driverdevelopment-kit/_s_c_s_i.md).
+For details about the interface, see [SCSI Peripheral DDK](../../reference/apis-driverdevelopment-kit/capi-scsiperipheralddk.md).
 
 ### How to Develop
 

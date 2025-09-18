@@ -72,7 +72,7 @@ Before you get started, make necessary preparations by following instructions in
 | OH_UsbSerial_FlushInput(UsbSerial_Device *dev) | Refreshes the input buffer. The data in the buffer is cleared immediately.|
 | OH_UsbSerial_FlushOutput(UsbSerial_Device *dev) | Refreshes the output buffer. The data in the buffer is cleared immediately.|
 
-For details about the APIs, see [USB Serial DDK](../../reference/apis-driverdevelopment-kit/_serial_ddk.md).
+For details about the APIs, see [USB Serial DDK](../../reference/apis-driverdevelopment-kit/capi-serialddk.md).
 
 ### How to Develop
 

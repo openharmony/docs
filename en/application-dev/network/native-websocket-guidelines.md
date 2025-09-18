@@ -12,7 +12,7 @@ The WebSocket module can be used to establish bidirectional connections between 
 
 ## Available APIs
 
-The following table lists the common WebSocket APIs. For details, see [net_websocket.h](../reference/apis-network-kit/capi-net-websocket-h.md).
+The following table lists the common **WebSocket** APIs. For details, see [net_websocket.h](../reference/apis-network-kit/capi-net-websocket-h.md).
 
 
 | API| Description|

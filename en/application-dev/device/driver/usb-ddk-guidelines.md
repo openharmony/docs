@@ -60,7 +60,7 @@ Before you get started, make necessary preparations by following instructions in
 | OH_Usb_DestroyDeviceMemMap(UsbDeviceMemMap *devMmap) | Destroy a buffer. To avoid resource leakage, destroy a buffer in time after use.|
 | OH_Usb_GetDevices(struct Usb_DeviceArray *devices) | Obtains the USB device ID list. Ensure that the input pointer is valid and the number of devices does not exceed 128. To prevent resource leakage, release the member memory after usage. Besides, make sure that the obtained USB device ID has been filtered by **vid** in the driver configuration information.|
 
-For details about the APIs, see [USB DDK](../../reference/apis-driverdevelopment-kit/_usb_ddk.md).
+For details about the APIs, see [USB DDK](../../reference/apis-driverdevelopment-kit/capi-usbddk.md).
 
 ### How to Develop
 
