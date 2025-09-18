@@ -40,7 +40,7 @@ import { Want } from '@kit.AbilityKit';
 
 class WallpaperExt extends WallpaperExtensionAbility {
     onCreate(want: Want): void {
-        console.log('onCreate, want:' + want.abilityName);
+        console.info('onCreate, want:' + want.abilityName);
     }
 }
 ```
@@ -69,7 +69,7 @@ import { wallpaper } from '@kit.BasicServicesKit';
 
 class WallpaperExt extends WallpaperExtensionAbility {
     onWallpaperChange(wallpaperType: wallpaper.WallpaperType): void {
-        console.log('onWallpaperChange, wallpaperType:' + wallpaperType);
+        console.info('onWallpaperChange, wallpaperType:' + wallpaperType);
     }
 }
 ```
@@ -91,7 +91,7 @@ import { WallpaperExtensionAbility } from '@kit.BasicServicesKit';
 
 class WallpaperExt extends WallpaperExtensionAbility {
     onDestroy(): void {
-        console.log('onDestroy');
+        console.info('onDestroy');
     }
 }
 ```
