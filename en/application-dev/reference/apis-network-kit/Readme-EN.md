@@ -1,14 +1,26 @@
-# Network Kit
+# Network Kit<!--network-api-->
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
 
-- ArkTS API
+- ArkTS APIs<!--network-api-arkts-->
   - [@ohos.net.connection (Network Connection Management)](js-apis-net-connection.md)
+  - [@ohos.net.ethernet (Ethernet Connection Management)](js-apis-net-ethernet.md)
   - [@ohos.net.http (Data Request)](js-apis-http.md)
   - [@ohos.net.mdns (mDNS Management)](js-apis-net-mdns.md)
+  - [@ohos.net.policy (Network Policy Management)](js-apis-net-policy.md)
   - [@ohos.net.socket (Socket Connection)](js-apis-socket.md)
   - [@ohos.net.statistics (Traffic Management)](js-apis-net-statistics.md)
+  - [@ohos.net.sharing (Network Sharing)](js-apis-net-sharing.md)
   - [@ohos.net.vpnExtension (Enhanced VPN Management)](js-apis-net-vpnExtension.md)
+  - [@ohos.net.vpn (VPN Management)](js-apis-net-vpn.md)
   - [@ohos.net.webSocket (WebSocket Connection)](js-apis-webSocket.md)
+  - [@ohos.net.netFirewall (Network Firewall)](js-apis-net-netfirewall.md)
   - [@ohos.net.networkSecurity (Network Security)](js-apis-networkSecurity.md)
+  - [@ohos.net.eap (Extensible Authentication)](js-apis-net-eap.md)
   - [@ohos.app.ability.VpnExtensionAbility (Enhanced VPN Management)](js-apis-VpnExtensionAbility.md)
   - [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md)
   <!--Del-->
@@ -17,52 +29,72 @@
   - [@ohos.net.policy (Network Policy Management) (System API)](js-apis-net-policy-sys.md)
   - [@ohos.net.sharing (Network Sharing Management) (System API)](js-apis-net-sharing-sys.md)
   - [@ohos.net.statistics (Traffic Management) (System API)](js-apis-net-statistics-sys.md)
-  - [@ohos.net.vpn (VPN Management) (System API)](js-apis-net-vpn-sys.md)
+  - [@ohos.net.vpn (VPN Management) (System API)] (js-apis-net-vpn-sys.md)
   - [@ohos.net.vpnExtension (Enhanced VPN Management) (System API)](js-apis-net-vpnExtension-sys.md)
-  - [@ohos.net.netFirewall (Network Firewall)](js-apis-net-netfirewall.md)
+  - [@ohos.net.netFirewall (Network Firewall) (System API)](js-apis-net-netfirewall-sys.md)
   <!--DelEnd-->
-- C API
-  - Module
-    - [Netstack](netstack.md)
-    - [NetConnection](_net_connection.md)
-  - Header Files
-    - [net_connection.h](net__connection_8h.md)
-    - [net_connection_type.h](net__connection__type_8h.md)
-    - [net_ssl_c.h](net__ssl__c_8h.md)
-    - [net_ssl_c_type.h](net__ssl__c__type_8h.md)
-    - [net_websocket.h](net__websocket_8h.md)
-    - [net_websocket_type.h](net__websocket__type_8h.md)
-  - Structs
-    - [NetConn_ConnectionProperties](_net_conn___connection_properties.md)
-    - [NetConn_HttpProxy](_net_conn___http_proxy.md)
-    - [NetConn_NetAddr](_net_conn___net_addr.md)
-    - [NetConn_NetCapabilities](_net_conn___net_capabilities.md)
-    - [NetConn_NetHandle](_net_conn___net_handle.md)
-    - [NetConn_NetHandleList](_net_conn___net_handle_list.md)
-    - [NetConn_Route](_net_conn___route.md)
-    - [NetConn_NetConnCallback](_net_conn___net_conn_callback.md)
-    - [NetConn_NetSpecifier](_net_conn___net_specifier.md)
-    - [NetStack_CertBlob](_net_stack___cert_blob.md)
-    - [NetStack_CertificatePinning](_net_stack___certificate_pinning.md)
-    - [NetStack_Certificates](_net_stack___certificates.md)
-    - [WebSocket](_web_socket.md)
-    - [WebSocket_CloseOption](_web_socket___close_option.md)
-    - [WebSocket_CloseResult](_web_socket___close_result.md)
-    - [WebSocket_ErrorResult](_web_socket___error_result.md)
-    - [WebSocket_Header](_web_socket___header.md)
-    - [WebSocket_OpenResult](_web_socket___open_result.md)
-    - [WebSocket_RequestOptions](_web_socket___request_options.md)
-- APIs No Longer Maintained
+- C APIs<!--network-c-->
+  - Modules<!--network-module-->
+    - [NetConnection](capi-netconnection.md)
+    - [Netstack](capi-netstack.md)
+  - Header Files<!--network-headerfile-->
+    - [net_connection.h](capi-net-connection-h.md)
+    - [net_connection_type.h](capi-net-connection-type-h.md)
+    - [net_ssl_c.h](capi-net-ssl-c-h.md)
+    - [net_ssl_c_type.h](capi-net-ssl-c-type-h.md)
+    - [net_websocket.h](capi-net-websocket-h.md)
+    - [net_websocket_type.h](capi-net-websocket-type-h.md)
+    - [net_http.h](capi-net-http-h.md)
+    - [net_http_type.h](capi-net-http-type-h.md)
+  - Structs<!--network-struct-->
+    - [NetConn_NetHandle](capi-netconnection-netconn-nethandle.md)
+    - [NetConn_NetCapabilities](capi-netconnection-netconn-netcapabilities.md)
+    - [NetConn_NetAddr](capi-netconnection-netconn-netaddr.md)
+    - [NetConn_Route](capi-netconnection-netconn-route.md)
+    - [NetConn_HttpProxy](capi-netconnection-netconn-httpproxy.md)
+    - [NetConn_ConnectionProperties](capi-netconnection-netconn-connectionproperties.md)
+    - [NetConn_NetHandleList](capi-netconnection-netconn-nethandlelist.md)
+    - [NetConn_NetSpecifier](capi-netconnection-netconn-netspecifier.md)
+    - [NetConn_NetConnCallback](capi-netconnection-netconn-netconncallback.md)
+    - [NetConn_ProbeResultInfo](capi-netconnection-netconn-proberesultinfo.md)
+    - [NetConn_TraceRouteInfo](capi-netconnection-netconn-tracerouteinfo.md)
+    - [NetConn_TraceRouteOption](capi-netconnection-netconn-tracerouteoption.md)
+    - [NetStack_CertBlob](capi-netstack-netstack-certblob.md)
+    - [NetStack_CertificatePinning](capi-netstack-netstack-certificatepinning.md)
+    - [NetStack_Certificates](capi-netstack-netstack-certificates.md)
+    - [WebSocket](capi-netstack-websocket.md)
+    - [WebSocket_CloseResult](capi-netstack-websocket-closeresult.md)
+    - [WebSocket_CloseOption](capi-netstack-websocket-closeoption.md)
+    - [WebSocket_ErrorResult](capi-netstack-websocket-errorresult.md)
+    - [WebSocket_OpenResult](capi-netstack-websocket-openresult.md)
+    - [WebSocket_Header](capi-netstack-websocket-header.md)
+    - [WebSocket_RequestOptions](capi-netstack-websocket-requestoptions.md)
+    - [Http_Buffer](capi-netstack-http-buffer.md)
+    - [Http_HeaderValue](capi-netstack-http-headervalue.md)
+    - [Http_HeaderEntry](capi-netstack-http-headerentry.md)
+    - [Http_ClientCert](capi-netstack-http-clientcert.md)
+    - [Http_CustomProxy](capi-netstack-http-customproxy.md)
+    - [Http_Proxy](capi-netstack-http-proxy.md)
+    - [Http_PerformanceTiming](capi-netstack-http-performancetiming.md)
+    - [Http_RequestOptions](capi-netstack-http-requestoptions.md)
+    - [Http_Response](capi-netstack-http-response.md)
+    - [Http_Request](capi-netstack-http-request.md)
+    - [Http_EventsHandler](capi-netstack-http-eventshandler.md)
+    - [Http_Headers](capi-netstack-http-headers.md)
+- APIs No Longer Maintained<!--network-arkts-dep-->
   - [@system.network (Network State)](js-apis-system-network.md)
   - [@system.fetch (Data Request)](js-apis-system-fetch.md)
-- Error Codes
+- Error Codes<!--network-arkts-errcode-->
   - [HTTP Error Codes](errorcode-net-http.md)
   - [Socket Error Codes](errorcode-net-socket.md)
   - [WebSocket Error Codes](errorcode-net-webSocket.md)
   - [Network Connection Management Error Codes](errorcode-net-connection.md)
   - [Ethernet Connection Error Codes](errorcode-net-ethernet.md)
+  - [Extensible Authentication Error Codes](errorcode-net-eap.md)
   - [Network Sharing Error Codes](errorcode-net-sharing.md)
   - [Policy Management Error Codes](errorcode-net-policy.md)
   - [mDNS Error Codes](errorcode-net-mdns.md)
   - [Traffic Management Error Codes](errorcode-net-statistics.md)
   - [VPN Error Codes](errorcode-net-vpn.md)
+  - [Network Security Error Codes](errorcode-net-networkSecurity.md)
+  - [Kernel Error Codes](errorcode-kernel.md)

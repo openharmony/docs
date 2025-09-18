@@ -1,5 +1,12 @@
 # @ohos.net.connection (Network Connection Management) (System API)
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 The network connection management module provides basic network management capabilities. You can obtain the default active data network or the list of all active data networks, enable or disable the airplane mode, and obtain network capability information.
 
 > **NOTE**
@@ -45,7 +52,7 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getGlobalHttpProxy((error: BusinessError, data: connection.HttpProxy) => {
-  console.info(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.info(JSON.stringify(data));
 });
 ```
@@ -83,7 +90,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 connection.getGlobalHttpProxy().then((data: connection.HttpProxy) => {
   console.info(JSON.stringify(data));
 }).catch((error: BusinessError) => {
-  console.info(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -135,7 +142,7 @@ connection.setGlobalHttpProxy(httpProxy, (err: BusinessError) => {
         console.error(`setGlobalHttpProxy failed, callback: err->${JSON.stringify(err)}`);
         return;
     }
-    console.log(`setGlobalHttpProxy success.`);
+    console.info(`setGlobalHttpProxy success.`);
 });
 ```
 
@@ -189,7 +196,7 @@ connection.setGlobalHttpProxy({
 } as connection.HttpProxy).then(() => {
   console.info("success");
 }).catch((error: BusinessError) => {
-  console.info(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -229,7 +236,7 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.enableAirplaneMode((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -266,7 +273,7 @@ Enables the airplane mode. This API uses a promise to return the result.
 import { connection } from '@kit.NetworkKit';
 
 connection.enableAirplaneMode().then((error: void) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -305,7 +312,7 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.disableAirplaneMode((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -342,7 +349,7 @@ Disables the airplane mode. This API uses a promise to return the result.
 import { connection } from '@kit.NetworkKit';
 
 connection.disableAirplaneMode().then((error: void) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -381,8 +388,99 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.factoryReset().then(() => {
-    console.log("success");
+    console.info("success");
 }).catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
 })
+```
+
+## ProxyMode<sup>20+</sup>
+
+Enumerates the proxy modes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+| Name             | Value  | Description                    |
+| -------------------- | ------ | ------------------------ |
+| PROXY_MODE_OFF     | 0 | Proxy disabled.         |
+| PROXY_MODE_AUTO    | 1 | Auto mode.         |
+
+## connection.setProxyMode<sup>20+</sup>
+
+setProxyMode(mode: ProxyMode): Promise\<void\>
+
+Sets the proxy mode.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name| Type            | Mandatory| Description              |
+| ------ |----------------| ---- | ------------------ |
+| mode   | [ProxyMode](#proxymode20) | Yes  | Specified proxy mode.  |
+
+**Return value**
+
+| Type| Description                    |
+| -------- | ------------------------ |
+| Promise\<void\> | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message         |
+|-------|---------------|
+| 201   | Permission denied.   |
+| 202   | Non-system applications use system APIs. |
+
+
+
+**Example**
+
+```ts
+import { connection, ProxyMode } from '@kit.NetworkKit';
+
+connection.setProxyMode(ProxyMode.AUTO).then(() => {
+    console.info("Proxy mode set successfully.");
+}).catch(error => {
+    console.error("Error setting proxy mode:", error);
+});
+```
+
+## connection.getProxyMode<sup>20+</sup>
+
+getProxyMode(): Promise\<ProxyMode\>
+
+Obtains the current proxy mode.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.CONNECTIVITY_INTERNAL
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Return value**
+
+| Type                       | Description                         |
+|---------------------------| ------------------------ |
+| Promise\<[ProxyMode](#proxymode20)\> | Promise used to return the result.|
+
+
+**Example**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+
+connection.getProxyMode().then(mode => {
+    console.info("Current proxy mode:", mode);
+}).catch(error => {
+    console.error("Error getting proxy mode:", error);
+});
 ```

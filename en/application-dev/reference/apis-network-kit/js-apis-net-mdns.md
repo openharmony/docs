@@ -1,5 +1,12 @@
 # @ohos.net.mdns (MDNS Management)
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 Multicast DNS (MDNS) provides functions such as adding, removing, discovering, and resolving local services on a LAN.
 
 > **NOTE**
@@ -25,11 +32,13 @@ Adds an MDNS service. This API uses an asynchronous callback to return the resul
 
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
-| context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md).|
+| context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | Yes       |   MDNS service information.     |
 | callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | Yes       |   Callback used to return the result. If the operation is successful, **error** is **undefined** and **data** is the MDNS service information.     |
 
 **Error codes**
+
+For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID     | Error Message|
 |---------|---|
@@ -40,19 +49,22 @@ Adds an MDNS service. This API uses an asynchronous callback to return the resul
 | 2204008 | Failed to delete the service instance. |
 | 2204010 | Failed to send the message. |
 
-> **NOTE**
-> For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
-
 **Example**
+
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
 Stage model:
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-// Obtain the context.
-let context = getContext(this) as Context;
+// Obtain the application context.
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -65,7 +77,7 @@ let localServiceInfo: mdns.LocalServiceInfo = {
 }
 
 mdns.addLocalService(context, localServiceInfo, (error:BusinessError, data:mdns.LocalServiceInfo) =>  {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -84,7 +96,7 @@ Adds an MDNS service. This API uses a promise to return the result.
 
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
-| context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md).|
+| context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | Yes       |   MDNS service information.     |
 
 **Return value**
@@ -95,6 +107,8 @@ Adds an MDNS service. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID     | Error Message|
 |---------|---|
 | 401     | Parameter error. |
@@ -104,19 +118,23 @@ Adds an MDNS service. This API uses a promise to return the result.
 | 2204008 | Failed to delete the service instance. |
 | 2204010 | Failed to send the message. |
 
-> **NOTE**
-> For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 Stage model:
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-// Obtain the context.
-let context = getContext(this) as Context;
+// Obtain the application context.
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -147,11 +165,13 @@ Removes an MDNS service. This API uses an asynchronous callback to return the re
 
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
-| context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md).|
+| context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | Yes       |   MDNS service information.     |
 | callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | Yes       |   Callback used to return the result. If the operation is successful, **error** is **undefined** and **data** is the MDNS service information.     |
 
 **Error codes**
+
+For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID     | Error Message|
 |---------|---|
@@ -162,19 +182,23 @@ Removes an MDNS service. This API uses an asynchronous callback to return the re
 | 2204008 | Failed to delete the service instance. |
 | 2204010 | Failed to send the message. |
 
-> **NOTE**
-> For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 Stage model:
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-// Obtain the context.
-let context = getContext(this) as Context;
+// Obtain the application context.
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -187,7 +211,7 @@ let localServiceInfo: mdns.LocalServiceInfo = {
 }
 
 mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -206,7 +230,7 @@ Removes an MDNS service. This API uses a promise to return the result.
 
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
-| context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md).|
+| context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | Yes       |   MDNS service information.     |
 
 **Return value**
@@ -217,6 +241,8 @@ Removes an MDNS service. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID     | Error Message|
 |---------|---|
 | 401     | Parameter error. |
@@ -226,18 +252,21 @@ Removes an MDNS service. This API uses a promise to return the result.
 | 2204008 | Failed to delete the service instance. |
 | 2204010 | Failed to send the message. |
 
-> **NOTE**
-> For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
-
 **Example**
+
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
 Stage model:
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -268,16 +297,18 @@ Creates a **DiscoveryService** object, which is used to discover MDNS services o
 
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|---------|-----------| ------------------------------------------------------------ |
-| context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md).|
-| serviceType | string  | Yes      | Type of the MDNS services to be discovered.|
+| context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
+| serviceType | string  | Yes      | MDNS service type.|
 
 **Return value**
 
-| Type                         | Description                     |
+| Type                        | Description                    |
 | ----------------------------- |---------------------------------|
-| DiscoveryService | **DiscoveryService** object used to discover MDNS services based on the specified **serviceType** and **Context**.|
+| DiscoveryService | **DiscoveryService** object obtained based on the specified **serviceType** and **context**.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID     | Error Message|
 |---------|---|
@@ -285,14 +316,20 @@ Creates a **DiscoveryService** object, which is used to discover MDNS services o
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 Stage model:
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-// Obtain the context.
-let context = getContext(this) as Context;
+// Obtain the application context.
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let serviceType = "_print._tcp";
 let discoveryService : Object = mdns.createDiscoveryService(context, serviceType);
@@ -312,11 +349,13 @@ Resolves an MDNS service. This API uses an asynchronous callback to return the r
 
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|----------------------------------|-----------|-------------------------------------------------------------|
-| context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md).|
+| context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | Yes       |   MDNS service information.     |
 | callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | Yes       |   Callback used to return the result. If the operation is successful, **error** is **undefined** and **data** is the MDNS service information.     |
 
 **Error codes**
+
+For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID     | Error Message|
 |---------|----------------------------------------------|
@@ -327,19 +366,23 @@ Resolves an MDNS service. This API uses an asynchronous callback to return the r
 | 2204006 | Request timeout.                |
 | 2204010 | Failed to send the message.                  |
 
-> **NOTE**
-> For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 Stage model:
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-// Obtain the context.
-let context = getContext(this) as Context;
+// Obtain the application context.
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -352,7 +395,7 @@ let localServiceInfo: mdns.LocalServiceInfo = {
 }
 
 mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -371,7 +414,7 @@ Resolves an MDNS service. This API uses a promise to return the result.
 
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|--------------|-----------|-----------------------------------------------------|
-| context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md).|
+| context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | Yes       |   MDNS service information.     |
 
 **Return value**
@@ -382,6 +425,8 @@ Resolves an MDNS service. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md) and [Universal Error Codes](../errorcode-universal.md).
+
 | ID     | Error Message|
 |---------|----------------------------------------------|
 | 401     | Parameter error.                             |
@@ -391,19 +436,22 @@ Resolves an MDNS service. This API uses a promise to return the result.
 | 2204006 | Request timeout.                |
 | 2204010 | Failed to send the message.                  |
 
-> **NOTE**
-> For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
-
 **Example**
+
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
 Stage model:
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-// Obtain the context.
-let context = getContext(this) as Context;
+// Obtain the application context.
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -435,14 +483,20 @@ Searches for MDNS services on the LAN.
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 Stage model:
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-// Obtain the context.
-let context = getContext(this) as Context;
+// Obtain the application context.
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -460,14 +514,20 @@ Stops searching for MDNS services on the LAN.
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 Stage model:
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-// Obtain the context.
-let context = getContext(this) as Context;
+// Obtain the application context.
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.stopSearchingMDNS();
@@ -488,16 +548,22 @@ Enables listening for **discoveryStart** events.
 | Name     | Type                            | Mandatory| Description                                                  |
 |-------------|---------------------------------|------|--------------------------------------------------------|
 | type        | string                          | Yes  | Event type. This field has a fixed value of **discoveryStart**.<br>**discoveryStart**: event of starting discovery of MDNS services on the LAN.|
-| callback    | Callback\<DiscoveryEventInfo\>  | Yes  | Callback used to return the MDNS service and error information.                          |
+| callback    | Callback\<[DiscoveryEventInfo](#discoveryeventinfo11)\>  | Yes  | Callback used to return the MDNS service and error information.                          |
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // See mdns.createDiscoveryService.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -524,16 +590,22 @@ Disables listening for **discoveryStart** events.
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | Yes      |Event type. This field has a fixed value of **discoveryStart**.<br>**discoveryStart**: event of starting discovery of MDNS services on the LAN.|
-| callback | Callback\<DiscoveryEventInfo\>  | No      |Callback used to return the MDNS service and error information.         |
+| callback | Callback\<[DiscoveryEventInfo](#discoveryeventinfo11)\>  | No      |Callback used to return the MDNS service and error information. You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.         |
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // See mdns.createDiscoveryService.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -564,16 +636,22 @@ Enables listening for **discoveryStop** events.
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | Yes      |Event type. This field has a fixed value of **discoveryStop**.<br>**discoveryStop**: event of stopping discovery of MDNS services on the LAN.|
-| callback | Callback\<DiscoveryEventInfo\>  | Yes      |Callback used to return the MDNS service and error information.     |
+| callback | Callback\<[DiscoveryEventInfo](#discoveryeventinfo11)\>  | Yes      |Callback used to return the MDNS service and error information.     |
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // See mdns.createDiscoveryService.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -587,7 +665,7 @@ discoveryService.stopSearchingMDNS();
 
 ### off('discoveryStop')
 
-off(type: 'discoveryStop', callback?: Callback\<DiscoveryEventInfo\>): void
+off(type: 'discoveryStop', callback?: Callback\<[DiscoveryEventInfo](#discoveryeventinfo11)\>): void
 
 Disables listening for **discoveryStop** events.
 
@@ -600,16 +678,22 @@ Disables listening for **discoveryStop** events.
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | Yes      |Event type. This field has a fixed value of **discoveryStop**.<br>**discoveryStop**: event of stopping discovery of MDNS services on the LAN.|
-| callback | Callback\<DiscoveryEventInfo\>  | No      |Callback used to return the MDNS service and error information.     |
+| callback | Callback\<[DiscoveryEventInfo](#discoveryeventinfo11)\>  | No      |Callback used to return the MDNS service and error information. You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.     |
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // See mdns.createDiscoveryService.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -644,12 +728,18 @@ Enables listening for **serviceFound** events.
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // See mdns.createDiscoveryService.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -679,16 +769,22 @@ Disables listening for **serviceFound** events.
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | Yes      |Event type. This field has a fixed value of **serviceFound**.<br>**serviceFound**: event indicating an MDNS service is found.|
-| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | No       |   MDNS service information.     |
+| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | No       |   MDNS service information. You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.     |
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // See mdns.createDiscoveryService.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -721,17 +817,23 @@ Enables listening for **serviceLost** events.
 
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|--------------|-----------|-----------------------------------------------------|
-| type     | string                          | Yes      |Event type. This field has a fixed value of **serviceLost**.<br>serviceLost: event indicating that an MDNS service is removed.|
+| type     | string                          | Yes      |Event type. This field has a fixed value of **serviceLost**.<br>**serviceLost**: event indicating that an MDNS service is removed.|
 | callback | Callback<[LocalServiceInfo](#localserviceinfo)>   | Yes       |   MDNS service information.     |
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // See mdns.createDiscoveryService.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -758,16 +860,22 @@ Disables listening for **serviceLost** events.
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | Yes      |Event type. This field has a fixed value of **serviceLost**.<br>serviceLost: event indicating that an MDNS service is removed.|
-| callback | Callback<[LocalServiceInfo](#localserviceinfo)>   | No       |   MDNS service information.     |
+| callback | Callback<[LocalServiceInfo](#localserviceinfo)>   | No       |   MDNS service information. You can pass the callback of the **on** function if you want to cancel listening for a certain type of events. If you do not pass the callback, you will cancel listening for all events.     |
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // See mdns.createDiscoveryService.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -785,32 +893,32 @@ discoveryService.off('serviceLost', (data: mdns.LocalServiceInfo) => {
 
 ## LocalServiceInfo
 
-Defines the MDNS service information.
+MDNS service information.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
-| Name                 | Type                               | Mandatory| Description                    |
-| --------------------- | ---------------------------------- | --- | ------------------------ |
-| serviceType   | string                             |  Yes|  Type of the MDNS service. The value is in the format of **\_\<name>.<_tcp/_udp>**, where **name** contains a maximum of 63 characters excluding periods (.). |
-| serviceName | string                             |  Yes|  Name of the MDNS service.  |
-| port            | number           |  No|  Port number of the MDNS server.          |
-| host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  No|  IP address of the device that provides the MDNS service. The IP address is not effective when an MDNS service is added or removed.              |
-| serviceAttribute     | Array\<[ServiceAttribute](#serviceattribute)> |  No|  MDNS service attribute information.              |
+| Name  | Type                                          | Read-Only| Optional|Description                   |
+| -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
+| serviceType   | string                             |  No  | No| MDNS service type. The value is in the format of **\_\<name>.<_tcp/_udp>**, where **name** contains a maximum of 63 characters excluding periods (.).|
+| serviceName | string                             |  No  | No| MDNS service name.                                                |
+| port            | number           |  No  | Yes| Service port number. The value range is [0, 65535].                                 |
+| host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  No  | Yes| IP address of the device that provides the MDNS service. The IP address is not effective when an MDNS service is added or removed.                     |
+| serviceAttribute     | Array\<[ServiceAttribute](#serviceattribute)> |  No  | Yes| MDNS service attribute information.                                               |
 
 ## ServiceAttribute
 
-Defines the MDNS service attribute information.
+MDNS service attribute information.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
-| Name                 | Type                               | Mandatory| Description                    |
-| --------------------- | ---------------------------------- | --- | ------------------------ |
-| key   | string                             |  Yes|  MDNS service attribute key. The value contains a maximum of 9 characters. |
-| value | Array\<number>                             |  Yes|  MDNS service attribute value.  |
+| Name  | Type                                          | Read-Only| Optional|Description                   |
+| -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
+| key   | string                             |  No  | No|  MDNS service attribute key. The value contains a maximum of 9 characters. |
+| value | Array\<number>                             |  No  | No|  MDNS service attribute value.  |
 
 ## DiscoveryEventInfo<sup>11+</sup>
 
@@ -820,10 +928,10 @@ Defines the MDNS service event information.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
-|    Name    |            Type                    | Mandatory| Description                 |
-| ----------- | ----------------------------------- | --- | --------------------- |
-| serviceInfo | LocalServiceInfo                    |  Yes|  MDNS service information.       |
-| errorCode   | MdnsError                           |  No|  Defines the MDNS error information.       |
+| Name  | Type                                          | Read-Only| Optional|Description                   |
+| -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
+| serviceInfo | LocalServiceInfo                    |  No  | No|  MDNS service information.       |
+| errorCode   | MdnsError                           |  No  | Yes|  MDNS error information.       |
 
 ## MdnsError
 
@@ -847,7 +955,7 @@ Obtains the network address.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-**System capability**: SystemCapability.Communication.NetManager
+**System capability**: SystemCapability.Communication.NetManager.Core
 
 |       Type      |            Description            |
 | ---------------- | --------------------------- |
