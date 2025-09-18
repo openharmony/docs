@@ -1319,7 +1319,6 @@ DLP文件授权类型的枚举。
 | -------- | -------- | -------- | -------- | -------- |
 | policyString | string | 否 | 否 | 表示企业定制策略的json字符串。长度不超过4M（单位：兆）。 |
 
-
 ## dlpPermission.generateDlpFileForEnterprise<sup>21+</sup>
 
 generateDLPFileForEnterprise(plaintextFd: number, dlpFd: number, property: DLPProperty, customProperty: CustomProperty): Promise&lt;void&gt;
@@ -1731,4 +1730,3 @@ static unregisterPlugin(): void
 | 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
-  
