@@ -32,7 +32,7 @@
 >
 > The functionality of **Repeat** depends on dynamic modifications to array properties. If the array object is sealed or frozen, certain **Repeat** features may not function properly, as these operations prevent property extensions or lock existing property configurations.
 >
-> Common scenarios that may trigger this issue:<br>1. Observable data conversion: When a regular array (such as [collections.Array](../../reference/apis-arkts/js-apis-arkts-collections.md#collectionsarray)) is converted into observable data using [makeObserved](../../reference/apis-arkui/js-apis-StateManagement.md#makeobserved), some implementations may automatically seal the array.<br>2. Intentional object protection: explicit calls to **Object.seal()** or **Object.freeze()** to prevent array modifications.
+> Common scenarios that may trigger this issue:<br>1. Observable data conversion: When a regular array (such as [collections.Array](../../reference/apis-arkts/arkts-apis-arkts-collections-Array.md)) is converted into observable data using [makeObserved](../../reference/apis-arkui/js-apis-StateManagement.md#makeobserved), some implementations may automatically seal the array.<br>2. Intentional object protection: explicit calls to **Object.seal()** or **Object.freeze()** to prevent array modifications.
 
 ## How It Works
 
