@@ -26,7 +26,7 @@
 - **Repeat** does not support V1 decorators. Using it with V1 decorators can cause rendering issues.
 - Currently, **Repeat** does not support animations.
 - A scrollable container component can contain only one **Repeat**. For example, in a **List** component, using **ListItem**, **ForEach**, and **LazyForEach** together, or using multiple **Repeat** instances, is not recommended.
-- When **Repeat** is used together with a custom component or [@Builder](./arkts-builder.md) function, the parameter of the **RepeatItem** type must be passed as a whole to the component for data changes to be detected. For details, see [Using Repeat with @Builder](#using-repeat-with-builder).
+- When **Repeat** is used together with a custom component or [@Builder](../state-management/arkts-builder.md) function, the parameter of the **RepeatItem** type must be passed as a whole to the component for data changes to be detected. For details, see [Using Repeat with @Builder](#using-repeat-with-builder).
 
 > **NOTE**
 >
@@ -150,7 +150,7 @@ When scrolling occurs or the array data changes, **Repeat** moves child nodes th
 
 By default, node reuse is enabled for **Repeat**. Since API version 18, you can configure the **reusable** field to specify whether to enable node reuse. For better rendering performance, you are advised to keep node reuse enabled. For a code example, see [VirtualScrollOptions](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscrolloptions).
 
-Since API version 18, **Repeat** supports L2 caching of frozen custom components. For details, see [Freezing Custom Components in a Buffer Pool](./arkts-custom-components-freezeV2.md#repeat).
+Since API version 18, **Repeat** supports L2 caching of frozen custom components. For details, see [Freezing Custom Components in a Buffer Pool](../state-management/arkts-custom-components-freezeV2.md#repeat).
 
 The following illustrates the rendering logic of child components under typical [scroll](#scrolling-scenario) and [data update](#data-update-scenario) scenarios. In the figure below, the L1 cache represents the effective loading area managed by **Repeat**, and the L2 cache refers to the idle node cache pool for each rendering template.
 
