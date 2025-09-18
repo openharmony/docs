@@ -9,7 +9,7 @@
 
 EmbeddableUIAbility组件是为原子化服务提供可嵌入式的UIAbility组件，继承自[UIAbility](js-apis-app-ability-uiAbility.md)。
 
-开发者通过实现EmbeddableUIAbility，为其他应用提供跳出式启动和嵌入式启动原子化服务方式。
+开发者通过实现EmbeddableUIAbility，为其他应用提供跳出式启动和嵌入式启动原子化服务方式。例如，开发者使用EmbeddableUIAbility实现原子化服务。其他应用与该原子化服务未建立契约授权，将以跳出式运行该服务；其他应用与该服务建立契约授权，使用全屏启动原子化服务组件运行该服务，将以全屏嵌入式运行该服务。
 
 各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
 
