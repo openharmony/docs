@@ -1608,18 +1608,21 @@ async function ExampleFunction(dlpFilePath: string) {
 ## DlpConnPlugin<sup>21+</sup>
 
 被用于registerPlugin接口中，将回调能力注册到系统能力中。
+  
+**系统能力：** SystemCapability.Security.DataLossPrevention
 >**说明：**
 >
 > [registerPlugin](#dlpconnmanagerregisterplugin21)接口的参数需要继承该接口， [connectServer](#dlpconnpluginconnectserver21)由系统能力侧调用，通过callback进行回传参数。
 
+### DlpConnPlugin.connectServer<sup>21+</sup>
+connectServer(requestId: string, requestData: string, callback: Callback\<string\>): void
+  
+ 该函数提供给系统能力侧调用，待该函数处理完连云能力后，通过callback调用回系统能力中。
+  
 **需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-### DlpConnPlugin.connectServer<sup>21+</sup>
-connectServer(requestId: string, requestData: string, callback: Callback<string>): void;
-  
- 被系统能力侧调用后，再通过callback返回到系统能力中。
 >**说明：**
 >
 > connectServer接口代表系统能力侧向前端通信的一次调用。
@@ -1628,9 +1631,9 @@ connectServer(requestId: string, requestData: string, callback: Callback<string>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| requestId | string | 是 | 系统能力侧传递的request的标识。|
+| requestId | string | 是 | 系统能力侧传递的本次请求的标识。|
 | requestData | string | 是 | 系统能力侧传递的数据。|
-| callback | Callback | 是 | 系统能力侧传递的接口，用于回调。 |
+| callback | Callback\<string\>| 是 | 系统能力侧传递的接口，用于回调。 |
 
 **错误码：**
 
@@ -1641,62 +1644,58 @@ connectServer(requestId: string, requestData: string, callback: Callback<string>
 | 201 | Permission denied. |
 | 19100011 | The system ability works abnormally. |
 
-**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
-
-**系统能力：** SystemCapability.Security.DataLossPrevention
  
 ## DlpConnManager<sup>21+</sup>
   
-用于调用 registerPlugin 和 unregisterPlugin，将回调能力注册/解注册到系统能力中。
->**说明：**
->
-> registerPlugin接口将回调能力注册进系统能力，而unregisterPlugin接口将回调能力从系统能力中去除。
-
-**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+用于调用registerPlugin和unregisterPlugin接口，将回调能力在系统能力中注册/注销。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
+>**说明：**
+>
+> registerPlugin接口将回调能力注册进系统能力，而unregisterPlugin接口将回调能力从系统能力中注销。
 
 ### DlpConnManager.constructor<sup>21+</sup>
 
-constructor();
+constructor()
 
-构造函数。
-  
->**说明：**
->
-> [DlpConnManager](#DlpConnManager21) 实例化时的构造函数。
+[DlpConnManager](#DlpConnManager21) 实例化时的构造函数。
+ 
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+ 
+**系统能力：** SystemCapability.Security.DataLossPrevention
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permission denied. |
 
+### DlpConnManager.registerPlugin<sup>21+</sup>
+static registerPlugin(plugin: DlpConnPlugin): number
+  
+该接口提供将回调注册到系统能力侧的功能。
+
 **需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
  
-### DlpConnManager.registerPlugin<sup>21+</sup>
-static registerPlugin(plugin: [DlpConnPlugin](#DlpConnPlugin21)): number;
-  
- 提供将回调注册到系统能力侧的能力。
 >**说明：**
 >
-> registerPlugin 将 plugin 注册到系统能力侧，待系统能力调用。
+> registerPlugin将plugin 注册到系统能力侧，待系统能力调用。
   
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| plugin | [DlpConnPlugin](#DlpConnPlugin21) | 是 |代表回调能力。 |
+| plugin | DlpConnPlugin | 是 |代表回调能力。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 注册结果，代表该回调的id. |
+| number | 注册结果，代表该回调的id。|
 
 **错误码：**
 
@@ -1710,18 +1709,19 @@ static registerPlugin(plugin: [DlpConnPlugin](#DlpConnPlugin21)): number;
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
 
+### DlpConnManager.unregisterPlugin<sup>21+</sup>
+static unregisterPlugin(): void
+  
+提供将回调从系统能力侧解除的能力。
+
 **需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
- 
-### DlpConnManager.unregisterPlugin<sup>21+</sup>
-static unregisterPlugin(): void;
- 
- 提供将回调从系统能力侧解除的能力。
+
 >**说明：**
 >
 > unregisterPlugin 将 plugin 从系统能力侧解注册。
- 
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
@@ -1734,6 +1734,3 @@ static unregisterPlugin(): void;
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
   
-**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
-
-**系统能力：** SystemCapability.Security.DataLossPrevention
