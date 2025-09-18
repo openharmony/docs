@@ -109,4 +109,4 @@ HDF扩展驱动框架为扩展外设驱动开发，提供稳定统一的外设�
 - 基于驱动开发安全约束及驱动开发业务场景，在DriverExtensionAbility中不支持访问其它ArkTS API，以防止恶意行为和数据泄露。
 - DriverExtensionAbility受限访问ArkTS API方案说明：
   - ArkTS API受限原理：在孵化和创建Extension进程时，会根据Extension配置的受限访问ArkTS API名单加载系统模块。在运行时，如果在DriverExtensionAbility中调用限制ArkTS API，由于孵化和创建阶段未加载相应系统模块，API会调用失败。
-- DriverExtensionAbility具体受限ArkTS API名单，请参考[受限ArkTS API](https://gitee.com/openharmony/ability_ability_runtime/blob/master/frameworks/native/ability/native/etc/extension_blocklist_config.json)中DriverExtension配置。
+- DriverExtensionAbility具体受限ArkTS API名单，请参考[受限ArkTS API](https://gitcode.com/openharmony/ability_ability_runtime/blob/master/frameworks/native/ability/native/etc/extension_blocklist_config.json)中DriverExtension配置。

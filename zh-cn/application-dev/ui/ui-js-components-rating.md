@@ -269,4 +269,4 @@ export default {
 
 针对rating组件的开发，有以下相关实例可供参考：
 
-- [rating组件的使用（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/RatingApplication)
+- [rating组件的使用（JS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/JSUI/RatingApplication)

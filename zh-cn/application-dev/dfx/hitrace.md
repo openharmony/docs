@@ -45,7 +45,7 @@ hitrace命令行工具提供trace信息采集能力，支持采集系统提供�
 
 > **说明：**
 >
-> trace信息可以用两种不同的格式保存，分别为文本格式和二进制格式。文本格式的trace可以直接用文本编辑器查看，二进制格式的trace可以使用[Smartperf_Host](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化trace分析。工具下载链接：[developtools_smartperf_host官方发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
+> trace信息可以用两种不同的格式保存，分别为文本格式和二进制格式。文本格式的trace可以直接用文本编辑器查看，二进制格式的trace可以使用[Smartperf_Host](https://gitcode.com/openharmony/developtools_smartperf_host)工具进行可视化trace分析。工具下载链接：[developtools_smartperf_host官方发行版](https://gitcode.com/openharmony/developtools_smartperf_host/releases)。
 
 
 ## 常用命令

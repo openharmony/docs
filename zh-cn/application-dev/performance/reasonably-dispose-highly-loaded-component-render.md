@@ -23,7 +23,7 @@
 
 ### 常规代码
 
-在自定义列表组件中一次性加载全部数据，可参考[组件堆叠场景](https://gitee.com/harmonyos-cases/cases/tree/master/CommonAppDevelopment/feature/componentstack)中的具体实现。
+在自定义列表组件中一次性加载全部数据，可参考[组件堆叠场景](https://gitcode.com/harmonyos-cases/cases/tree/master/CommonAppDevelopment/feature/componentstack)中的具体实现。
 
 ```
 // CommonAppDevelopment/feature/componentstack/src/main/ets/view/ProductList.ets
@@ -371,7 +371,7 @@ sync.setExpectedFrameRateRange({
 
 [DisplaySync 文档](../reference/apis-arkgraphics2d/js-apis-graphics-displaySync.md)
 
-[示例代码](https://gitee.com/harmonyos-cases/cases/tree/master/CommonAppDevelopment/feature/perfermance/highlyloadedcomponentrender)
+[示例代码](https://gitcode.com/harmonyos-cases/cases/tree/master/CommonAppDevelopment/feature/perfermance/highlyloadedcomponentrender)
 
 ## FAQ
 
