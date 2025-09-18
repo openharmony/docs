@@ -1,10 +1,18 @@
 # @ohos.PiPWindow (PiP Window)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 The module provides basic APIs for manipulating Picture in Picture (PiP). For example, you can use the APIs to check whether the PiP feature is supported and create a PiP controller to start or stop a PiP window. PiP is mainly used in video playback, video calls, or video meetings.
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> - Before API version 20, PiP is supported only on phones and tablets. Starting from API version 20, PiP is supported on phones, PCs/2-in-1 devices, and tablets, while remaining unavailable on other devices.
 
 ## Modules to Import
 
@@ -849,11 +857,13 @@ try {
 ### getPiPSettingSwitch<sup>20+</sup>
 getPiPSettingSwitch(): Promise&lt;boolean&gt;
 
-Obtains the status of the auto-start PiP switch in Settings. This API works only for phones and tablets.
+Obtains the status of the auto-start PiP switch in Settings.
 
 **Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.Window.SessionManager
+
+**Device behavior differences**: This API can be properly called on phones and tablets. If it is called on other device types, error code 801 is returned.
 
 **Return value**
 

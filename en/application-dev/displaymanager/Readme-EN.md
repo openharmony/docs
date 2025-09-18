@@ -1,4 +1,10 @@
 # Display Management
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 - [Display Management Overview](displayManager-overview.md)
 - [Using OH_DisplayManager to Obtain Basic Display Information and Listen for Status Changes (C/C++)](native-display-manager.md)
