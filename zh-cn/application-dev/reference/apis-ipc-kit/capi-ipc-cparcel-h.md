@@ -104,7 +104,7 @@ OHIPCParcel* OH_IPCParcel_Create(void)
 
 **描述：**
 
-创建OHIPCParcel对象，对象可许序列化大小不能超过204800字节。
+创建OHIPCParcel对象，对象可序列化大小不能超过204800字节。
 
 **系统能力：** SystemCapability.Communication.IPC.Core
 
