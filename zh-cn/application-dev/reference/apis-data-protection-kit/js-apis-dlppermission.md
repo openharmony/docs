@@ -1610,7 +1610,7 @@ async function ExampleFunction(dlpFilePath: string) {
 被用于registerPlugin接口中，将回调能力注册到系统能力中。
 >**说明：**
 >
-> [registerPlugin](#DlpConnManager.registerPlugin21)接口的参数需要继承该接口， [connectServer](#DlpConnPlugin.connectServer21)由系统能力侧调用，通过callback进行回传参数。
+> [registerPlugin](#dlpconnmanagerregisterplugin21)接口的参数需要继承该接口， [connectServer](#dlpconnpluginconnectserver21)由系统能力侧调用，通过callback进行回传参数。
 
 **需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
 
