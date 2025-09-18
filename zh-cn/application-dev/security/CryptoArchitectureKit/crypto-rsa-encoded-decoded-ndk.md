@@ -49,7 +49,7 @@ static OH_Crypto_ErrCode doTestPriKeyPkcs1Encoded()
     if (privKey == nullptr) {
         OH_CryptoKeyPair_Destroy(keyPair);
         OH_CryptoAsymKeyGenerator_Destroy(keyGen);
-        return CRYPTO_OPERATION_ERROR;
+        return CRYPTO_OPERTION_ERROR;
     }
     OH_CryptoPrivKeyEncodingParams *params = nullptr;
     ret = OH_CryptoPrivKeyEncodingParams_Create(&params);
