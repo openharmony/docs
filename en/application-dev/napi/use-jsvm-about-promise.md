@@ -1,4 +1,10 @@
 # Implementing Asynchronous Operations Using JSVM-API
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## Introduction
 
@@ -72,6 +78,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char *srcCallNative = R"JS(isPromise())JS";
 ```
+<!-- @[oh_jsvm_ispromise](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/ispromise/src/main/cpp/hello.cpp) -->
 
 Expected result:
 ```
@@ -155,9 +162,10 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 // Call the C++ code from JS.
 const char *srcCallNative = R"JS(createPromise();
-                                 resolveRejectDeferred('success','fail', true);
-                                 resolveRejectDeferred('success','fail', false);)JS";
+                                 resolveRejectDeferred('success', 'fail', true);
+                                 resolveRejectDeferred('success', 'fail', false);)JS";
 ```
+<!-- @[oh_jsvm_resolvedeferred_and_rejectdeferred](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/resolvereject/src/main/cpp/hello.cpp) -->
 
 Expected result:
 ```
@@ -168,7 +176,7 @@ OH_JSVM_RejectDeferred reject
 
 ## OH_JSVM_PromiseRegisterHandler
 
-Call **OH_JSVM_PromiseRegisterHandler** to register a callback that is invoked after a promise is fulfilled rejected. It is equivalent to calling the native **Promise.then()** or **Promise.catch()**.
+Sets the callback after Promise parsing or rejection, which is equivalent to calling the native `Promise.then()` or `Promise.catch()`.
 
 The following describes only part of the C++ code. For details about other framework code, such as the **TestJSVM** function, see the implementation of **OH_JSVM_SetMicrotaskPolicy** in [Working with Tasks Using JSVM-API](use-jsvm-execute_tasks.md).
 
@@ -227,19 +235,21 @@ static int PromiseRegisterHandler(JSVM_VM vm, JSVM_Env env) {
     // Obtain the values of x1 and x2 before the promise is parsed.
     JSVM_Value x1;
     CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "x1", &x1));
-    int32_t x1Int;
+    int32_t x1Int = 0;
     CHECK_RET(OH_JSVM_GetValueInt32(env, x1, &x1Int));
     JSVM_Value x2;
     CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "x2", &x2));
-    int32_t x2Int;
+    int32_t x2Int = 0;
     CHECK_RET(OH_JSVM_GetValueInt32(env, x2, &x2Int));
     OH_LOG_INFO(LOG_APP, "Before promise resolved, x1: %{public}d, x2: %{public}d", x1Int, x2Int);
 
     // Parse the promise.
     JSVM_Value resolveValue;
     CHECK_RET(OH_JSVM_CreateInt32(env, 2, &resolveValue));
-    OH_JSVM_ResolveDeferred(env, deferred, resolveValue);
-    deferred = nullptr;
+    if (deferred != nullptr) {
+        OH_JSVM_ResolveDeferred(env, deferred, resolveValue);
+        deferred = nullptr;
+    }
 
     // Obtain the values of x1 and x2 after the promise is parsed.
     CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "x1", &x1));

@@ -58,6 +58,7 @@
   - [Calculating and Adjusting Safe Area Insets](web-safe-area-insets.md)
   - [Using Web Menus](web_menu.md)
   - [Interacting with the System Clipboard](web-clipboard.md)
+  - [Using Smart Text Data Detector](web-data-detector.md)
 - [Using Same-Layer Rendering](web-same-layer.md)
 - [Using Offline Web Components](web-offline-mode.md)
 - Web Debugging<!--web-debugging-->

@@ -1,4 +1,10 @@
 # Working with VM Snapshots Using JSVM-API 
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## Introduction
 
@@ -8,7 +14,7 @@ A JavaScript virtual machine (JSVM) snapshot records the state of a JSVM at a pa
 
 - VM startup snapshot: a snapshot of the VM status at a specific time, including all internal status and data of the VM. The snapshot can be used to quickly restore the VM to the state it was when the snapshot was created.
 
-It helps simplify complex programming tasks and shorten the creation time of a JS context, making the application more efficient and stable. 
+Creating and using VM startup snapshots can simplify some complex programming tasks, improve VM management and maintenance efficiency in JSVM, and enhance program flexibility and stability.
 
 ## Available APIs
 
@@ -37,40 +43,48 @@ CPP code:
 
 static int g_aa = 0;
 
-#define CHECK_RET(theCall)                                                                                             \
-    do {                                                                                                               \
-        JSVM_Status cond = theCall;                                                                                    \
-        if ((cond) != JSVM_OK) {                                                                                       \
-            const JSVM_ExtendedErrorInfo *info;                                                                        \
-            OH_JSVM_GetLastErrorInfo(env, &info);                                                                      \
-            OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d message = %{public}s", \
-                         __FILE__, __LINE__, cond, info != nullptr ? info->errorMessage : "");                         \
-            return -1;                                                                                                 \
-        }                                                                                                              \
+#define CHECK_RET(theCall)                                                                           \
+    do {                                                                                             \
+        JSVM_Status cond = theCall;                                                                  \
+        if ((cond) != JSVM_OK) {                                                                     \
+            const JSVM_ExtendedErrorInfo *info;                                                      \
+            OH_JSVM_GetLastErrorInfo(env, &info);                                                    \
+            OH_LOG_ERROR(LOG_APP,                                                                    \
+                "jsvm fail file: %{public}s line: %{public}d ret = %{public}d message = %{public}s", \
+                __FILE__,                                                                            \
+                __LINE__,                                                                            \
+                cond,                                                                                \
+                info != nullptr ? info->errorMessage : "");                                          \
+            return -1;                                                                               \
+        }                                                                                            \
     } while (0)
 
-#define CHECK(theCall)                                                                                                 \
-    do {                                                                                                               \
-        JSVM_Status cond = theCall;                                                                                    \
-        if ((cond) != JSVM_OK) {                                                                                       \
-            OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d", __FILE__, __LINE__,  \
-                         cond);                                                                                        \
-            return -1;                                                                                                 \
-        }                                                                                                              \
+#define CHECK(theCall)                                                                                              \
+    do {                                                                                                            \
+        JSVM_Status cond = theCall;                                                                                 \
+        if ((cond) != JSVM_OK) {                                                                                    \
+            OH_LOG_ERROR(                                                                                           \
+                LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d", __FILE__, __LINE__, cond); \
+            return -1;                                                                                              \
+        }                                                                                                           \
     } while (0)
 
 // Call theCall and check whether the return value is JSVM_OK.
 // If no, call GET_AND_THROW_LAST_ERROR to process the error and return retVal.
-#define JSVM_CALL_BASE(env, theCall, retVal)                                                                           \
-    do {                                                                                                               \
-        JSVM_Status cond = theCall;                                                                                    \
-        if (cond != JSVM_OK) {                                                                                         \
-            const JSVM_ExtendedErrorInfo *info;                                                                        \
-            OH_JSVM_GetLastErrorInfo(env, &info);                                                                      \
-            OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = %{public}d message = %{public}s", \
-                         __FILE__, __LINE__, cond, info != nullptr ? info->errorMessage : "");                         \
-            return retVal;                                                                                             \
-        }                                                                                                              \
+#define JSVM_CALL_BASE(env, theCall, retVal)                                                         \
+    do {                                                                                             \
+        JSVM_Status cond = theCall;                                                                  \
+        if (cond != JSVM_OK) {                                                                       \
+            const JSVM_ExtendedErrorInfo *info;                                                      \
+            OH_JSVM_GetLastErrorInfo(env, &info);                                                    \
+            OH_LOG_ERROR(LOG_APP,                                                                    \
+                "jsvm fail file: %{public}s line: %{public}d ret = %{public}d message = %{public}s", \
+                __FILE__,                                                                            \
+                __LINE__,                                                                            \
+                cond,                                                                                \
+                info != nullptr ? info->errorMessage : "");                                          \
+            return retVal;                                                                           \
+        }                                                                                            \
     } while (0)
 
 // Simplified version of JSVM_CALL_BASE, which returns nullptr.
@@ -78,7 +92,8 @@ static int g_aa = 0;
 
 static const int MAX_BUFFER_SIZE = 128;
 // Allow the JSVM to call the CreateHelloString() function when needs, using the callback struct and external references.
-static JSVM_Value CreateHelloString(JSVM_Env env, JSVM_CallbackInfo info) {
+static JSVM_Value CreateHelloString(JSVM_Env env, JSVM_CallbackInfo info)
+{
     JSVM_Value outPut;
     OH_JSVM_CreateStringUtf8(env, "Hello world!", JSVM_AUTO_LENGTH, &outPut);
     return outPut;
@@ -91,7 +106,8 @@ static intptr_t externals[] = {
     0,
 };
 
-static JSVM_Value RunVMScript(JSVM_Env env, std::string &src) {
+static JSVM_Value RunVMScript(JSVM_Env env, std::string &src)
+{
     // Open the handle scope.
     JSVM_HandleScope handleScope;
     OH_JSVM_OpenHandleScope(env, &handleScope);
@@ -108,7 +124,8 @@ static JSVM_Value RunVMScript(JSVM_Env env, std::string &src) {
     return result;
 }
 // Define OH_JSVM_CreateSnapshot.
-static void CreateVMSnapshot() {
+static void CreateVMSnapshot()
+{
     // Create a JSVM instance and open the VM scope.
     JSVM_VM vm;
     JSVM_CreateVMOptions vmOptions;
@@ -135,8 +152,8 @@ static void CreateVMSnapshot() {
     // Save the snapshot to a file.
     // Save the snapshot data to the /data/storage/el2/base/files/test_blob.bin directory, which is a sandbox directory.
     // For example, the bundle name is com.example.jsvm. The snapshot file is saved in /data/app/el2/100/base/com.example.jsvm/files/test_blob.bin.
-    std::ofstream file("/data/storage/el2/base/files/test_blob.bin",
-                       std::ios::out | std::ios::binary | std::ios::trunc);
+    std::ofstream file(
+        "/data/storage/el2/base/files/test_blob.bin", std::ios::out | std::ios::binary | std::ios::trunc);
     file.write(blobData, blobSize);
     file.close();
     // Close and destroy the environment and the VM.
@@ -146,7 +163,8 @@ static void CreateVMSnapshot() {
     OH_JSVM_DestroyVM(vm);
 }
 
-static void RunVMSnapshot() {
+static void RunVMSnapshot()
+{
     // The lifespan of blobData cannot be shorter than that of the VM.
     // Read the snapshot from the file.
     std::vector<char> blobData;
@@ -177,8 +195,8 @@ static void RunVMSnapshot() {
     // Check the script execution result before closing the environment.
     char str[MAX_BUFFER_SIZE];
     OH_JSVM_GetValueStringUtf8(env, result, str, MAX_BUFFER_SIZE, nullptr);
-    if (strcmp(str, "Hello world!") !=0) {
-        OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d", __FILE__, __LINE__);   
+    if (strcmp(str, "Hello world!") != 0) {
+        OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d", __FILE__, __LINE__);
     }
     // Close and destroy the environment and the VM.
     OH_JSVM_CloseEnvScope(env, envScope);
@@ -188,7 +206,8 @@ static void RunVMSnapshot() {
     return;
 }
 
-static JSVM_Value AdjustExternalMemory(JSVM_Env env, JSVM_CallbackInfo info) {
+static JSVM_Value AdjustExternalMemory(JSVM_Env env, JSVM_CallbackInfo info)
+{
     // If external dependencies exist when creating a VM snapshot, register the external dependencies with initOptions.externalReferences in OH_JSVM_Init.
     // Create a VM snapshot and save it to a file.
     CreateVMSnapshot();
@@ -211,7 +230,8 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char *srcCallNative = R"JS(adjustExternalMemory();)JS";
 
-static int32_t TestJSVM() {
+static int32_t TestJSVM()
+{
     JSVM_InitOptions initOptions = {0};
     JSVM_VM vm;
     JSVM_Env env = nullptr;
@@ -223,11 +243,11 @@ static int32_t TestJSVM() {
     if (g_aa == 0) {
         g_aa++;
         initOptions.externalReferences = externals;
-      int argc = 0;
-      char **argv = nullptr;
-      initOptions.argc = &argc;
-      initOptions.argv = argv;
-      CHECK(OH_JSVM_Init(&initOptions));
+        int argc = 0;
+        char **argv = nullptr;
+        initOptions.argc = &argc;
+        initOptions.argv = argv;
+        CHECK(OH_JSVM_Init(&initOptions));
     }
     // Create a JSVM environment.
     CHECK(OH_JSVM_CreateVM(nullptr, &vm));
@@ -259,11 +279,13 @@ static napi_value RunTest(napi_env env, napi_callback_info info)
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
+static napi_value Init(napi_env env, napi_value exports)
+{
     OH_LOG_INFO(LOG_APP, "JSVM Init");
-    napi_property_descriptor desc[] = {{"runTest", nullptr, RunTest, nullptr, nullptr, nullptr, napi_default, nullptr},
+    napi_property_descriptor desc[] = {
+        {"runTest", nullptr, RunTest, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
-                                       
+
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
@@ -281,6 +303,7 @@ static napi_module demoModule = {
 
 extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
 ```
+<!-- @[oh_jsvm_create_snapshot_and_create_env_from_snapshot](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/createsnapshot/src/main/cpp/hello.cpp) -->
 
 ArkTS code:
 
@@ -321,4 +344,4 @@ Test JSVM RunVMSnapshot read file blobSize = : 300032
 Test JSVM RunVMSnapshot read file blobSize = : 300176
 Test JSVM RunVMSnapshot read file blobSize = : 300048
 ```
-**blobSize** is the snapshot file size obtained through **file.tellg()** when the file is read.  
+When the snapshot file is read, the value of blobSize is the size of the snapshot file (obtained through file.tellg()). The size of the snapshot file directly determines the value of blobSize. Therefore, different values are output.
