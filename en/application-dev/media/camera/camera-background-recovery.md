@@ -15,7 +15,7 @@ The figure below shows the process of transitioning a camera application from th
 
 ![Camera Background recovery processing](figures/camera-background-recovery.png)
 
-## Sample
+## Complete Sample Code
 
 For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 

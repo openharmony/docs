@@ -219,7 +219,7 @@ During application development, you must subscribe to playback state changes and
     });
     ```
 
-## Sample Code
+## Complete Sample Code
 
 The following sample code implements low-latency playback using SoundPool.
 

@@ -8,6 +8,7 @@ Before reading this topic, you are advised to read [\@ComponentV2](./arkts-new-c
 >
 >The \@Local decorator is supported since API version 12.
 >
+> This decorator can be used in atomic services since API version 12.
 
 ## Overview
 
@@ -17,7 +18,7 @@ Before reading this topic, you are advised to read [\@ComponentV2](./arkts-new-c
 
 - When a variable decorated by \@Local changes, the component that uses the variable is re-rendered.
 
-- \@Local supports the following types: Primitive types: number, boolean, string<br>Object types: object, class<br>Built-in types: [Array](#decorating-variables-of-the-array-type), [Set](#decorating-variables-of-the-set-type), [Map](#decorating-variables-of-the-map-type), [Date](#decorating-variables-of-the-date-type)
+- \@Local supports the following types:<br>Primitive types: number, boolean, string<br>Object types: object, class<br>Built-in types: [Array](#decorating-variables-of-the-array-type), [Set](#decorating-variables-of-the-set-type), [Map](#decorating-variables-of-the-map-type), [Date](#decorating-variables-of-the-date-type)
 
 - \@Local can observe only the variable it decorates. If the decorated variable is of the primitive type, it can observe value changes to the variable; if the decorated variable is of the object type, it can observe value changes to the entire object; if the decorated variable is of the array type, it can observe changes of the entire array and its items; if the decorated variable is of the built-in types, such as Array, Set, Map, and Date, it can observe changes caused by calling the APIs. For details, see [Observed Changes](#observed-changes).
 

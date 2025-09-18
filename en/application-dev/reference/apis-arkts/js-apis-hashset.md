@@ -2,7 +2,7 @@
 
 HashSet is implemented based on [HashMap](js-apis-hashmap.md). In HashSet, only the **value** object is processed.
 
-Unlike [TreeSet](js-apis-treeset.md), which stores and accesses data in sorted order, HashSet stores data in a random order. This means that HashSet may use a different order when storing and accessing elements. Both of them allow only unique elements. However, null values are allowed in HashSet, but not in TreeSet, because null values may affect the order of elements in the container.
+Unlike [TreeSet](js-apis-treeset.md), which stores and accesses data in sorted order, HashSet sorts data by hash value. This means that HashSet may use a different order when storing and accessing elements. Both of them allow only unique elements. However, null values are allowed in HashSet, but not in TreeSet, because null values may affect the order of elements in the container.
 
 **Recommended use case**: Use HashSet when you need a set that has only unique elements or need to deduplicate a set.
 
@@ -41,7 +41,7 @@ hashSet.add(2);
 hashSet.add(3);
 hashSet.add(4);
 hashSet.add(5);
-let res = hashSet.length;
+let res = hashSet.length;  // result =  5
 ```
 
 ### constructor
@@ -145,7 +145,7 @@ let result = hashSet.has("squirrel");
 
 add(value: T): boolean
 
-Adds an element to this HashSet.
+Adds elements to this HashSet.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -292,7 +292,7 @@ while(!temp.done) {
 
 forEach(callbackFn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisArg?: Object): void
 
-Uses a callback to traverse the elements in this HashSet and obtain their position indexes.
+Uses a callback to traverse each element.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -308,8 +308,8 @@ Uses a callback to traverse the elements in this HashSet and obtain their positi
 callbackFn parameters
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | No| Value of the element that is currently traversed. The default value is the value of the first key-value pair.|
-| key | T | No| Key of the element that is currently traversed (same as **value**). The default value is the key of the first key-value pair.|
+| value | T | No| Value of the element that is currently traversed.|
+| key | T | No| Key of the element that is currently traversed (same as **value**).|
 | set | HashSet&lt;T&gt; | No| Instance that calls the **forEach** API. The default value is this instance.|
 
 **Error codes**

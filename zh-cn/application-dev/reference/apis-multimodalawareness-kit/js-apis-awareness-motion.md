@@ -61,7 +61,6 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { Callback } from '@ohos.base';
 
 let callback:Callback<motion.OperatingHandStatus> = (data:motion.OperatingHandStatus) => {
     console.info('callback succeeded' + data);

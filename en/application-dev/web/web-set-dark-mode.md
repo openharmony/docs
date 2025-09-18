@@ -207,4 +207,4 @@ The dark mode is not enabled for the **Web** component, but the web page backgro
 
 **Solution**
 
-Check whether a dark background color is set for the **Web** component. If no background color is set or the background color is set to transparent on the web page, the background color of the **Web** component is displayed.
+In this case, check whether a dark background color for the **Web** component. If no background color is set or the background color is set to transparent on the web page, the background color of the **Web** component is displayed.

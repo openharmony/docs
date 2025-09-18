@@ -543,7 +543,7 @@ The previous section describes how to organize code in non-MVVM mode. As the cod
     * service ------ Data services.
       * app.ts ------ Service entry.
       * LoginViewModel ----- Login page.
-      * xxxModel ------ Other pages.
+      * xxxViewModel ------ Other pages.
 
 ### Layered Design
 
@@ -615,9 +615,9 @@ The code is as follows:
   @Entry
   @Component
   struct TodoList {
-    @State thingsTodo: TodoListViewModel = new TodoListViewModel();
-    private context = getContext(this) as common.UIAbilityContext;
-
+    @State thingsTodo: TodoListViewModel = new TodoListViewModel(); // View binds to ViewModel data.
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    
     async aboutToAppear() {
       await this.thingsTodo.loadTasks(this.context);
     }
@@ -690,8 +690,8 @@ The code is as follows:
       Row() {
         Button(`${this.titleName}`, { type: ButtonType.Capsule })
           .onClick(() => {
-            this.thingsViewModel.chooseAll();
-            this.titleName = this.thingsViewModel.isChoosen ? 'Select All' : 'Deselect All'
+            this.thingsViewModel.chooseAll(); // When a click event occurs in the View layer, call the ViewModel layer's chooseAll method to handle logic.
+            this.titleName = this.thingsViewModel.isChoosen ? 'Select All' : 'Deselect All';
           })
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
@@ -719,7 +719,7 @@ The code is as follows:
         .width(28)
         .height(28)
         .onClick(() => {
-          this.things.updateIsFinish();
+          this.things.updateIsFinish(); // When a click event occurs in the View layer, call the ViewModel layer's updateIsFinish method to handle logic.
         })
     }
 
@@ -739,7 +739,7 @@ The code is as follows:
           .fontWeight(450)
           .decoration({ type: this.things.isFinish ? TextDecorationType.LineThrough: TextDecorationType.None })
           .onClick(() => {
-            this.things.addSuffixes();
+            this.things.addSuffixes(); // When a click event occurs in the View layer, call the ViewModel layer's addSuffixes method to handle logic.
           })
       }
       .height('8%')

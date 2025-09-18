@@ -20,7 +20,7 @@ The \@Once decorator accepts values passed in only during variable initializatio
 - The sequence of the variables decorated by \@Once and \@Param does not affect the actual features.
 - When \@Once and \@Param are used together, you can change the value of \@Param variables locally.
 
-## Rules of Use
+## Usage Rules
 
 As an auxiliary decorator, the \@Once decorator does not have requirements on the decoration type and the capability of observing variables.
 

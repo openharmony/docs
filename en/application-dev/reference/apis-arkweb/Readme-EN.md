@@ -10,7 +10,7 @@
     - [Class (WebStorage)](js-apis-webview-WebStorage.md)
     - [Interface (BackForwardList)](js-apis-webview-BackForwardList.md)
     - [Interface (WebMessagePort)](js-apis-webview-WebMessagePort.md)
-    - [Interfaces (Others)] (js-apis-webview-i.md)
+    - [Interfaces (Others)](js-apis-webview-i.md)
     - [Enums](js-apis-webview-e.md)
     - [Types](js-apis-webview-t.md)
   - [@ohos.web.netErrorList](js-apis-netErrorList.md)

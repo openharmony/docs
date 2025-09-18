@@ -1,4 +1,9 @@
 # TypeScript Compiler Error Codes
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @zju-wyx-->
+<!--Designer: @xiao-peiyang; @liyancheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
 
 Error codes of TypeScript Compiler (TSC) start with '105' and serve as error indicators during the TSC compilation process. These error codes and their corresponding descriptions are shown in the editor, console, or log files.
 

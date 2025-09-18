@@ -28,7 +28,7 @@ After an AVScreenCapture instance is created, different APIs can be called to sw
 
 If an API is called when the AVScreenCapture is not in the given state, the system may throw an exception or generate other undefined behavior. Therefore, you are advised to check the AVScreenCapture state before triggering state transition.
 
-**Linking the Dynamic Library in the CMake Script**
+**Linking the Dynamic Libraries in the CMake Script**
 
 ```c++
 target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffer.so libnative_media_core.so)
@@ -363,13 +363,13 @@ This section describes how to set screen capture parameters, set callback functi
     }
     ```
 
-## Sample Code
+## Complete Sample Code
 
 Refer to the sample code below to implement screen capture using AVScreenCapture.
 
-For details about how to create an OH_AVBuffer instance, see [Buffer Output](../avcodec/video-decoding.md#buffer-output).
+For details about how to create an OH_AVBuffer instance, see [Buffer Mode](../avcodec/video-decoding.md#buffer-mode).
 
-For details about screen capture in surface mode, see [Surface Input](../avcodec/video-encoding.md#surface-input).
+For details about screen capture in surface mode, see [Surface Mode](../avcodec/video-encoding.md#surface-mode).
 
 Currently, the buffer holds original streams, which can be encoded and saved in MP4 format for playback.
 

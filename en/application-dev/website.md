@@ -367,12 +367,12 @@
             - [Component Extension Overview](ui/state-management/arkts-extend-components-overview.md)
             - [\@Builder Decorator: Custom Builder Function](ui/state-management/arkts-builder.md)
             - [\@LocalBuilder Decorator: Maintaining Component Relationships](ui/state-management/arkts-localBuilder.md)
-            - [\@BuilderParam Decorator: @Builder Function Reference](ui/state-management/arkts-builderparam.md)
+            - [\@BuilderParam Decorator: Referencing the \@Builder Function](ui/state-management/arkts-builderparam.md)
             - [wrapBuilder: Encapsulating Global @Builder](ui/state-management/arkts-wrapBuilder.md)
-          - [\@Styles Decorator: Definition of Reusable Styles](ui/state-management/arkts-style.md)
-          - [\@Extend Decorator: Extension of Built-in Components](ui/state-management/arkts-extend.md)
+          - [\@Styles Decorator: Defining Reusable Component Styles](ui/state-management/arkts-style.md)
+          - [\@Extend Decorator: Defining Extended Component Styles](ui/state-management/arkts-extend.md)
           - [stateStyles: Applying Polymorphic Styles](ui/state-management/arkts-statestyles.md)
-          - [\@AnimatableExtend Decorator: Definition of Animatable Attributes](ui/state-management/arkts-animatable-extend.md)
+          - [\@AnimatableExtend Decorator: Defining Animatable Properties](ui/state-management/arkts-animatable-extend.md)
           - [\@Require Decorator: Validating Constructor Input Parameters](ui/state-management/arkts-require.md)
           - [@Reusable Decorator: Reusing Components](ui/state-management/arkts-reusable.md)
         - UI Paradigm State Management<!--arkts-state-management-->
@@ -389,7 +389,7 @@
               - [LocalStorage: Storing Page-Level UI State](ui/state-management/arkts-localstorage.md)
               - [AppStorage: Storing Application-wide UI State](ui/state-management/arkts-appstorage.md)
               - [PersistentStorage: Persisting Application State](ui/state-management/arkts-persiststorage.md)
-              - [Environment: Device Environment Query](ui/state-management/arkts-environment.md)
+              - [Environment: Querying the Device Environment](ui/state-management/arkts-environment.md)
             - Other State Management Features<!--arkts-other-state-mgmt-functions-->
               - [Overview of Other State Management Features](ui/state-management/arkts-other-state-mgmt-functions-overview.md)
               - [\@Watch Decorator: Getting Notified of State Variable Changes](ui/state-management/arkts-watch.md)
@@ -481,6 +481,7 @@
             - [Dialog Box Layer Management](ui/arkts-dialog-levelorder.md)
             - [Dialog Controller](ui/arkts-dialog-controller.md)
             - [Dialog Box Focus Policy](ui/arkts-dialog-focusable.md)
+            - [Popup Mask Control](ui/arkts-dialog-mask.md)
           - Using Menus<!--arkts-use-menu-->
             - [Menu Overview](ui/arkts-menu-overview.md)
             - [Menu Control (Menu)](ui/arkts-popup-and-menu-components-menu.md)
@@ -731,6 +732,7 @@
         - [Enabling Immersive Full-Screen Video Playback](web/web_full_screen.md)
       - Processing Web Page Content<!--web-process-page-content-->
         - [Printing Frontend Pages](web/web-print.md)
+        - [Saving a Frontend Page as a PDF File](web/web-createpdf.md)
         - [Previewing PDF Files](web/web-pdf-preview.md)
         - [Calculating and Adjusting Safe Area Insets](web/web-safe-area-insets.md)
         - [Using Web Menus](web/web_menu.md)
@@ -1743,6 +1745,7 @@
         - [Using fdsan](napi/fdsan.md)
       - Using Node-API<!--using-napi-interaction-with-cpp-->
         - [Node-API Overview](napi/napi-introduction.md)
+        - [Node-API Returned Status Codes](napi/napi_status_introduction.md)
         - [Node-API Data Types and APIs](napi/napi-data-types-interfaces.md)
         - [Node-API Development Specifications](napi/napi-guidelines.md)
         - [Node-API Development Process](napi/use-napi-process.md)
@@ -1780,7 +1783,10 @@
           - [Analyzing Exceptions and Crashes Triggered by Using Node-API](napi/use-napi-about-crash.md)
           - [Calling an ArkTS Method with Return Value of a promise Using Node-API](napi/use-napi-method-promise.md)
         - Node-API FAQs<!--napi-questions-->
-          - [Node-API FAQs](napi/use-napi-faqs.md)
+          - [Summary of Node-API FAQs](napi/use-napi-faqs.md)
+          - [FAQs About Stability](napi/napi-faq-about-stability.md)
+          - [FAQs About Memory Leaks](napi/napi-faq-about-memory-leak.md)
+          - [FAQs About Basic Functions](napi/napi-faq-about-common-basic.md)
       - Using JSVM-API<!--jsvm-->
         - [JSVM-API Overview](napi/jsvm-introduction.md)
         - [JSVM-API Data Types and APIs](napi/jsvm-data-types-interfaces.md)
@@ -1822,6 +1828,7 @@
           - [JSVM-API Debugging](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
           - [JSVM-API Tracing](napi/use-jsvm-about-trace.md)
           - [Requesting the JIT Profile for JSVMs](napi/jsvm-apply-jit-profile.md)
+          - [JSVM Secure Shield Mode](napi/jsvm-secure-shield-mode.md)
           - JSVM-API Tuning and Performant Coding Cases<!--jsvm-usage-examples-->
             - [Creating and Destroying JS VMs Using JSVM-API](napi/use-jsvm-runtime-task.md)
             - [Accelerating Compilation Using a Code Cache](napi/use-jsvm-about-code-cache.md)
@@ -2288,6 +2295,7 @@
         - [Common Library Error Codes](reference/apis-arkts/errorcode-utils.md)
         - [TypeScript Compiler Error Codes](reference/apis-arkts/errorcode-tsc.md)
         - [Compilation Toolchain Error Codes](reference/apis-arkts/errorcode-ets-loader.md)
+        - [es2abc Compiler Error Codes](reference/apis-arkts/errorcode-es2abc.md)
     - ArkUI<!--arkui-api-->
       - ArkTS APIs<!--arkui-arkts-->
         - UI<!--ui-->
@@ -2386,7 +2394,8 @@
             - [Size](reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)
             - [Location](reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md)
             - [Layout Constraints](reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md)
-            - [Component-Level Pixel Rounding](reference/apis-arkui/arkui-ts/ts-universal-attributes-pixelRound.md)
+            - [Component-Level Pixel Rounding](reference/apis-arkui/arkui-ts/ts-universal-attributes-pixelRoundForComponent.md)
+            - [Page-Level Pixel Rounding](reference/apis-arkui/arkui-ts/ts-universal-attributes-pixelRoundForPage.md)
             - [Flex Layout](reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md)
             - [Border](reference/apis-arkui/arkui-ts/ts-universal-attributes-border.md)
             - [Border Image](reference/apis-arkui/arkui-ts/ts-universal-attributes-border-image.md)
@@ -2423,6 +2432,7 @@
             - [Drawing Modifier](reference/apis-arkui/arkui-ts/ts-universal-attributes-draw-modifier.md)
             - [Content Modifier](reference/apis-arkui/arkui-ts/ts-universal-attributes-content-modifier.md)
             - [Custom Property](reference/apis-arkui/arkui-ts/ts-universal-attributes-custom-property.md)
+            - [SymbolGlyphModifier](reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-symbolglyphmodifier.md)
             - Touch Interactions<!--touch-interactions-->
               - [Touch Target](reference/apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md)
               - [Hit Test Control](reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
@@ -2659,6 +2669,8 @@
           - [Custom Component Lifecycle](reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md)
           - [Custom Component Layout](reference/apis-arkui/arkui-ts/ts-custom-component-layout.md)
           - [Custom Component Built-in APIs](reference/apis-arkui/arkui-ts/ts-custom-component-api.md)
+          - Component Extension Decorators<!--arkts-extend-component-decorator-->
+            - [Definition of Animatable Properties (@AnimatableExtend)](reference/apis-arkui/arkui-ts/ts-animatable-extend.md)
         - System Preset UI Component Library<!--system-preset-ui-component-library-->
           - [Chip](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md)
           - [ChipGroup](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ChipGroup.md)

@@ -19,8 +19,8 @@ Use [MediaAlbumChangeRequest.createAlbumRequest](../../reference/apis-media-libr
 
 The album name must meet the following requirements:
 
-- The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br>. \ / : * ? " ' ` < > | { } [ ]
+- The total length of the album name must be between 1 and 255 characters.
+- It must not contain any invalid characters, which are:<br> . \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -103,10 +103,10 @@ To rename a user album, modify the **Album.albumName** attribute of the album.
 
 Use [FetchResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchresult) to obtain the user album to rename, use [MediaAlbumChangeRequest.setAlbumName](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#setalbumname11) to set the new name, and then use [PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11) to apply the changes to the database.
 
-The new user album names must comply with the following requirements:
+The new user album names must meet the following requirements:
 
-- The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br>. \ / : * ? " ' ` < > | { } [ ]
+- The total length of the album name must be between 1 and 255 characters.
+- It must not contain any invalid characters, which are:<br> . \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 

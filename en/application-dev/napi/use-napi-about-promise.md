@@ -2,24 +2,24 @@
 
 ## Introduction
 
-Node-API provides APIs for implementing asynchronous operations for time-consuming tasks, such as downloading data from network or reading a large file. Different from synchronous operations, asynchronous operations are executed in the background without blocking the main thread. When an asynchronous operation is complete, it will be added to the task queue and executed when the main thread is idle.
+Node-API provides APIs for implementing asynchronous operations for time-consuming tasks, such as downloading data from network or reading a large file. Different from synchronous operations, asynchronous operations are executed in the background without blocking the main thread. After an asynchronous operation is complete, the event is placed in the task queue and executed when the main thread is idle.
 
 ## Basic Concepts
 
-**Promise** is an object used to handle asynchronous operations in ArkTS. It has three states: **pending**, **fulfilled**, and **rejected**. The initial state is **pending**, which can be changed to **fulfilled** by **resolve()** and to **rejected** by **reject()**. Once the state is **fulfilled** or **rejected**, the promise state cannot be changed. Read on the following to learn basic concepts related to **Promise**:
+A promise is an object used to process asynchronous operations in ArkTS. A promise has three states: pending, fulfilled, and rejected. The initial state of a promise is pending. The resolve function can be used to change the status from pending to fulfilled. The reject function can be used to change the status from pending to rejected. Once the status changes to fulfilled or rejected, the status cannot be changed. The basic concepts are as follows:
 
-- Synchronous: Code is executed line by line in sequence. Each line of code is executed after the previous line of code is executed. During synchronous execution, if an operation takes a long time, the execution of the entire application will be blocked until the operation is complete.
-- Asynchronous: Tasks can be executed concurrently without waiting for the end of the previous task. In ArkTS, common asynchronous operations apply for timers, event listening, and network requests. Instead of blocking subsequent tasks, the asynchronous task uses a callback or promise to process its result.
-- **Promise**: an ArkTS object used to handle asynchronous operations. Generally, it is exposed externally by using **then()**, **catch()**, or **finally()** to custom logic.
-- **deferred**: a utility object associated with the **Promise** object to set **resolve()** and **reject()** of **Promise**. It is used internally to maintain the state of the asynchronous model and set the **resolve()** and **reject()** callbacks.
+- **Synchronization**: Code is executed in sequence. After a line of code is executed, the next line is executed. If an operation takes a long time, the entire program is blocked.
+- Asynchronous: Tasks can be executed concurrently without waiting for the end of the previous task. Common asynchronous operations include timers, event listening, and network requests. Instead of blocking subsequent tasks, the asynchronous task uses a callback or promise to process its result.
+- **Promise**: an ArkTS object used to handle asynchronous operations. Use the then, catch, and finally methods to add customized logic.
+- **deferred**: deferred object, which is associated with Promise. It is used to set the callback functions resolve and reject of Promise. Maintains the asynchronous model status.
 - **resolve**: a function used to change the promise state from **pending** to **fulfilled**. The parameters passed to **resolve()** can be obtained from **then()** of the **Promise** object.
 - **reject**: a function used to change the promise state from **pending** to **rejected**. The parameters passed to **reject()** can be obtained from **catch()** of the **Promise** object.
 
-**Promise** allows multiple callbacks to be called in a chain, providing better code readability and a better way to deal with asynchronous operations. The APIs provided by the Node-API module help you flexibly process ArkTS asynchronous operations in C/C++.
+These basic concepts are very important. You need to use proper methods to process asynchronous operations and use the Promise chain to call multiple asynchronous operations to make the code clear and tidy and easy to maintain. The APIs provided by the Node-API module help you flexibly process ArkTS asynchronous operations in C/C++.
 
 ## Available APIs
 
-The following table lists the APIs for implementing asynchronous operations using ArkTS promises.   
+The following table lists the APIs for implementing asynchronous operations using ArkTS promises.  They are used in the following scenarios:
 
 | API| Description|
 | -------- | -------- |
@@ -41,7 +41,7 @@ CPP code:
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value IsPromise(napi_env env, napi_callback_info info) 
+static napi_value IsPromise(napi_env env, napi_callback_info info)
 {
     napi_value argv[1] = {nullptr};
     size_t argc = 1;
@@ -72,8 +72,8 @@ export const isPromise: <T>(value: T) => boolean;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = Promise.resolve();
 // Return true if the object passed in is a promise; return false otherwise.
@@ -87,11 +87,11 @@ Call **napi_create_promise** to create a **Promise** object.
 
 When using this API, observe to the following:
 
-- If **napi_create_promise** is called when there is an exception not handled, **napi_pending_exception** will be returned.
-- After calling **napi_create_promise**, always check whether the return value is **napi_ok**. If **deferred** and **promise** are used, the application will crash.
+1. If the exception is not handled, `napi_pending_exception` is returned when `napi_create_promise` is called.
+2. After calling **napi_create_promise**, always check whether the return value is **napi_ok**. If **deferred** and **promise** are used, the application will crash.
 
 ```c++
-napi_value NapiPromiseDemo(napi_env env, napi_callback_info)
+napi_value NapiPromiseDemo(napi_env env, napi_callback_info info)
 {
     napi_deferred deferred = nullptr;
     napi_value promise = nullptr;
@@ -110,14 +110,16 @@ napi_value NapiPromiseDemo(napi_env env, napi_callback_info)
 
 ### napi_resolve_deferred & napi_reject_deferred
 
-Call **napi_resolve_deferred** to change the promise state from **pending** to **fulfilled**, and call **napi_reject_deferred** to change the promise state from **pending** to **rejected**.
+Use napi_resolve_deferred to parse the deferred object associated with the promise and change the status from suspended to claimed or from suspended to rejected.
 
 To ensure execution of microtasks, the ArkTS runtime will trigger a microtask execution when fulfilling a promise using Node-API.
 
-CPP code:
+CPP code
 
 ```cpp
 #include "napi/native_api.h"
+
+static constexpr int INT_ARG_2 = 2; // Input parameter index.
 
 static napi_value CreatePromise(napi_env env, napi_callback_info info)
 {
@@ -133,13 +135,17 @@ static napi_value CreatePromise(napi_env env, napi_callback_info info)
     //Call napi_is_promise to check whether the object created by napi_create_promise is a Promise object.
     bool isPromise = false;
     napi_value returnIsPromise = nullptr;
-    napi_is_promise(env, promise, &isPromise);
+    status = napi_is_promise(env, promise, &isPromise);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_is_promise failed");
+        return nullptr;
+    }
     // Convert the Boolean value to napi_value and return it.
     napi_get_boolean(env, isPromise, &returnIsPromise);
     return returnIsPromise;
 }
 
-static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info) 
+static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info)
 {
     // Obtain and parse parameters.
     size_t argc = 3;
@@ -147,12 +153,17 @@ static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     // The first parameter is the data to be passed to Resolve(), the second parameter is the data to be passed to reject(), and the third parameter is the Promise state.
     bool status;
-    napi_get_value_bool(env, args[2], &status);
+    napi_status status = napi_get_value_bool(env, args[INT_ARG_2], &status);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_get_value_bool failed");
+        return nullptr;
+    }
+
     // Create a Promise object.
     napi_deferred deferred = nullptr;
     napi_value promise = nullptr;
-    napi_status createStatus = napi_create_promise(env, &deferred, &promise);
-    if (createStatus != napi_ok) {
+    status = napi_create_promise(env, &deferred, &promise);
+    if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Create promise failed");
         return nullptr;
     }
@@ -167,19 +178,19 @@ static napi_value ResolveRejectDeferred(napi_env env, napi_callback_info info)
 }
 ```
 
-API declaration:
+Interface Declaration Example
 
 ```ts
 // index.d.ts
-export const createPromise: () => boolean | void;
-export const resolveRejectDeferred: (resolve: string, reject: string, status: boolean) => Promise<string> | void;
+export const createPromise: () => boolean | undefined;
+export const resolveRejectDeferred: (resolve: string, reject: string, status: boolean) => Promise<string> | undefined;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 // Create a promise. Return true if the operation is successful, and return false otherwise.
 hilog.info(0x0000, 'Node-API', 'napi_create_promise %{public}s', testNapi.createPromise());
@@ -206,5 +217,5 @@ To print logs in the native CPP, add the following information to the **CMakeLis
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

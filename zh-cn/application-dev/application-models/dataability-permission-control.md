@@ -11,7 +11,7 @@ DataAbility作为服务端，在被拉起的时候，会根据config.json里面�
 
 ```json
 "abilities": [
-  ...
+  // ...
   {
     "name": ".DataAbility",
     "srcLanguage": "ets",
@@ -24,7 +24,7 @@ DataAbility作为服务端，在被拉起的时候，会根据config.json里面�
     "readPermission": "ohos.permission.READ_CONTACTS",
     "writePermission": "ohos.permission.WRITE_CONTACTS"
   },
-  ...
+  // ...
 ]
 ```
 
@@ -33,9 +33,9 @@ DataAbility作为服务端，在被拉起的时候，会根据config.json里面�
 
 ```json
 {
-  ...
+  // ...
   "module": {
-    ...
+    // ...
     "reqPermissions": [
       {
         "name": "ohos.permission.READ_CONTACTS"
@@ -43,9 +43,9 @@ DataAbility作为服务端，在被拉起的时候，会根据config.json里面�
       {
         "name": "ohos.permission.WRITE_CONTACTS"
       },
-      ...
+      // ...
     ],
-    ...
+    // ...
   }
 }
 ```

@@ -26,12 +26,17 @@ This example shows how to create an offline **Web** component in advance and att
 ```ts
 // Carrier ability
 // EntryAbility.ets
-import { createNWeb } from "../pages/common"
+import { createNWeb } from '../pages/common'
 onWindowStageCreate(windowStage: window.WindowStage): void {
   windowStage.loadContent('pages/Index', (err, data) => {
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
+    if (!windowClass) {
+      console.info('windowClass is null');
+      return;
+    }
     // Create a dynamic Web component, in which the UIContext should be passed. The component can be created at any time after loadContent() is called.
-    createNWeb("https://www.example.com", windowStage.getMainWindowSync().getUIContext());
-    if (err.code) {
+    createNWeb("https://www.example.com", windowClass.getUIContext());
+    if (err && err.code) {
       return;
     }
   });
@@ -48,7 +53,7 @@ import { webview } from '@kit.ArkWeb';
 // Data is an input parameter of encapsulation class.
 class Data{
   url: ResourceStr = "https://www.example.com";
-  controller: WebviewController = new webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 }
 
 @Builder
@@ -93,7 +98,7 @@ export class myNodeController extends NodeController {
 
   // This function is a custom function and can be used as an initialization function.
   // Initialize BuilderNode through UIContext, and then initialize the content in @Builder through the build API in BuilderNode.
-  initWeb(url:ResourceStr, uiContext:UIContext, control:WebviewController) {
+  initWeb(url:ResourceStr, uiContext:UIContext, control:webview.WebviewController) {
     if(this.rootnode != null)
     {
       return;
@@ -107,7 +112,7 @@ export class myNodeController extends NodeController {
 // Create a Map to save the required NodeController.
 let NodeMap:Map<ResourceStr, myNodeController | undefined> = new Map();
 // Create a Map to save the required WebViewController.
-let controllerMap:Map<ResourceStr, WebviewController | undefined> = new Map();
+let controllerMap:Map<ResourceStr, webview.WebviewController | undefined> = new Map();
 
 // UIContext is required for initialization and needs to be obtained from the ability.
 export const createNWeb = (url: ResourceStr, uiContext: UIContext) => {
@@ -128,7 +133,7 @@ export const getNWeb = (url: ResourceStr) : myNodeController | undefined => {
 ```ts
 // Use the pages of NodeController.
 // Index.ets
-import { getNWeb } from "./common"
+import { getNWeb } from './common'
 @Entry
 @Component
 struct Index {
@@ -155,20 +160,24 @@ To save time required for starting the web rendering process when the **Web** co
 > **NOTE**
 >
 > The optimization effect is obvious only when the single-rendering-process mode is used, that is, one web rendering process is globally shared. The web rendering process is terminated when all **Web** components are destroyed. Therefore, you are advised to keep at least one **Web** component active.
+> Creating additional Web components incurs memory overhead.
 
 In the following example, a **Web** component is pre-created during **onWindowStageCreate** phase to load a blank page. In this way, the rendering process is started in advance. When the index is redirected to index2, the time required for starting and initializing the rendering process of the Web component is reduced.
-
-Creating additional **Web** components causes memory overhead. Therefore, you are advised to reuse the **Web** components based on this solution.
 
 ```ts
 // Carrier ability
 // EntryAbility.ets
-import { createNWeb } from "../pages/common"
+import { createNWeb } from '../pages/common'
 onWindowStageCreate(windowStage: window.WindowStage): void {
   windowStage.loadContent('pages/Index', (err, data) => {
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
+    if (!windowClass) {
+      console.info('windowClass is null');
+      return;
+    }
     // Create an empty dynamic Web component, in which the UIContext should be passed. The component can be created at any time after loadContent() is called.
-    createNWeb("about: blank", windowStage.getMainWindowSync().getUIContext());
-    if (err.code) {
+    createNWeb("about:blank", windowClass.getUIContext());
+    if (err && err.code) {
       return;
     }
   });
@@ -185,7 +194,7 @@ import { webview } from '@kit.ArkWeb';
 // Data is an input parameter of encapsulation class.
 class Data{
   url: ResourceStr = "https://www.example.com";
-  controller: WebviewController = new webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 }
 
 @Builder
@@ -230,7 +239,7 @@ export class myNodeController extends NodeController {
 
   // This function is a custom function and can be used as an initialization function.
   // Initialize BuilderNode through UIContext, and then initialize the content in @Builder through the build API in BuilderNode.
-  initWeb(url:ResourceStr, uiContext:UIContext, control:WebviewController) {
+  initWeb(url:ResourceStr, uiContext:UIContext, control:webview.WebviewController) {
     if(this.rootnode != null)
     {
       return;
@@ -244,13 +253,13 @@ export class myNodeController extends NodeController {
 // Create a Map to save the required NodeController.
 let NodeMap:Map<ResourceStr, myNodeController | undefined> = new Map();
 // Create a Map to save the required WebViewController.
-let controllerMap:Map<ResourceStr, WebviewController | undefined> = new Map();
+let controllerMap:Map<ResourceStr, webview.WebviewController | undefined> = new Map();
 
 // UIContext is required for initialization and needs to be obtained from the ability.
 export const createNWeb = (url: ResourceStr, uiContext: UIContext) => {
   // Create a NodeController instance.
   let baseNode = new myNodeController();
-  let controller = new webview.WebviewController() ;
+  let controller = new webview.WebviewController();
   // Initialize the custom Web component.
   baseNode.initWeb(url, uiContext, controller);
   controllerMap.set(url, controller)
@@ -322,16 +331,21 @@ To pre-render a web page, create an offline **Web** component in advance and act
 ```ts
 // Carrier ability
 // EntryAbility.ets
-import {createNWeb} from "../pages/common";
+import {createNWeb} from '../pages/common';
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     windowStage.loadContent('pages/Index', (err, data) => {
+      let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
+      if (!windowClass) {
+        console.info('windowClass is null');
+        return;
+      }
       // Create a dynamic ArkWeb component, in which the UIContext should be passed. The component can be created at any time after loadContent() is called.
-      createNWeb("https://www.example.com", windowStage.getMainWindowSync().getUIContext());
-      if (err.code) {
+      createNWeb("https://www.example.com", windowClass.getUIContext());
+      if (err && err.code) {
         return;
       }
     });
@@ -349,7 +363,7 @@ import { NodeController, BuilderNode, Size, FrameNode }  from '@kit.ArkUI';
 // Data is an input parameter of encapsulation class.
 class Data{
   url: string = 'https://www.example.com';
-  controller: WebviewController = new webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 }
 // Use the Boolean variable shouldInactive to stop rendering after the web page is pre-rendered in the background.
 let shouldInactive: boolean = true;
@@ -404,7 +418,7 @@ export class myNodeController extends NodeController {
   }
   // This function is a custom function and can be used as an initialization function.
   // Initialize BuilderNode through UIContext, and then initialize the content in @Builder through the build API in BuilderNode.
-  initWeb(url:string, uiContext:UIContext, control:WebviewController) {
+  initWeb(url:string, uiContext:UIContext, control:webview.WebviewController) {
     if(this.rootnode != null)
     {
       return;
@@ -418,7 +432,7 @@ export class myNodeController extends NodeController {
 // Create a Map to save the required NodeController.
 let NodeMap:Map<string, myNodeController | undefined> = new Map();
 // Create a Map to save the required WebViewController.
-let controllerMap:Map<string, WebviewController | undefined> = new Map();
+let controllerMap:Map<string, webview.WebviewController | undefined> = new Map();
 // UIContext is required for initialization and needs to be obtained from the ability.
 export const createNWeb = (url: string, uiContext: UIContext) => {
   // Create a NodeController instance.
@@ -438,7 +452,7 @@ export const getNWeb = (url : string) : myNodeController | undefined => {
 ```ts
 // Use the pages of NodeController.
 // Index.ets
-import {createNWeb, getNWeb} from "./common";
+import {createNWeb, getNWeb} from './common';
 
 @Entry
 @Component
@@ -463,7 +477,7 @@ struct Index {
 
 1. Check the network permission of the application.
 
-Make sure the network permission has been added to the **module.json5** file. For details, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md).
+Check whether the network permission has been added to **module.json5**. For details, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md).
 
 ```ts
 "requestPermissions":[

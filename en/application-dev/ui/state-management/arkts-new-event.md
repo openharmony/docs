@@ -7,39 +7,40 @@ You can use \@Event, a variable decorator in state management V2, to enable a ch
 
 >**NOTE**
 >
->The \@Event decorator is supported since API version 12.
+> The \@Event decorator is supported since API version 12.
 >
+> This decorator can be used in atomic services since API version 12.
 
 ## Overview
 
-The variables decorated by \@Param cannot be changed locally. You can use the \@Event decorator to decorate a callback, which is called to change the variables of the data source. You can synchronize the changes to \@Param by using the synchronization mechanism of \@Local. In this way, the variables decorated by \@Param can be updated actively.
+Since the variables decorated with \@Param cannot be changed locally, you can use the \@Event decorator todefine a callback for updating the data source. Combined with the synchronization mechanism of [\@Local](arkts-new-local.md), it allows changes to propagate back to \@Param, achieving active updates to @Param decorated variables.
 
-When using \@Event to decorate a component:
+\@Event is used to decorate a component's output methods. When using this decorator, note the following:
 
-- You need to determine the parameters and return value in the callback decorated by \@Event.
+- You need to determine the parameters and return value in the callback decorated with \@Event.
 
-- Variables of non-callback types decorated by \@Event do not take effect. If \@Event is not initialized, an empty function will be automatically generated as the default callback.
+- \@Event has no effect when decorating non-callback variables. If uninitialized, it automatically generates an empty function as the default callback.
 - If \@Event is not initialized externally but has a default value, the default function will be used for processing.
 
-\@Param indicates the input of a component, and this variable is affected by the parent component. \@Event indicates the output of a component, and the output method affects the parent component. Decorating a callback with \@Event indicates that the callback is the output of the custom component. The parent component needs to determine whether to provide the corresponding method for the child component to change the data source of the \@Param variable.
+\@Param marks the input of a component, indicating that the decorated variable is affected by the parent component. \@Event marks the output of a component, allowing the child component to influence the parent. Decorating a callback with \@Event indicates that the callback is the output of the custom component. The parent component needs to determine whether to provide the corresponding method for the child component to change the data source of the \@Param variable.
 
 ## Decorator Description
 
 | \@Event Decorator| Description|
 | ------------------- | ------------------------------------------------------------ |
 | Decorator parameters| None.|
-| Allowed variable types| Callback, such as **()=>void** and **(x:number)=>boolean**. You can determine the return value and whether the callback contains parameters.|
+| Allowed variable types| Callback, such as **()=>void** and **(x:number)=>boolean**. You can specify the return value and whether the callback contains parameters.|
 | Allowed function types| Arrow function.|
 
 ## Constraints
 
-- \@Event can be used only in custom components decorated by \@ComponentV2. It does not take effect if the decorated variable is not a function.
+- \@Event can be used only in custom components decorated with [\@ComponentV2](arkts-new-componentV2.md). It does not take effect if the decorated variable is not a function.
 
   ```ts
   @ComponentV2
   struct Index {
     @Event changeFactory: ()=>void = ()=>{}; // Correct usage.
-    @Event message: string = "abcd"; // Incorrect usage. Variable of the non-function type is decorated.
+    @Event message: string = "abcd"; // Incorrect usage: Decorating a non-function variable, @Event has no effect.
   }
   @Component
   struct Index {
@@ -82,7 +83,7 @@ struct Index {
 
 @ComponentV2
 struct Child {
-  @Param title: string = '';
+  @Param title: string = "";
   @Param fontColor: Color = Color.Black;
   @Event changeFactory: (x: number) => void = (x: number) => {};
 

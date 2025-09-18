@@ -77,10 +77,10 @@ createAsset(displayName: string): Promise&lt;PhotoAsset&gt;
 
 Creates an asset with the specified file name. This API uses a promise to return the result.
 
-The file name must comply with the following specifications:
-- The file name consists of a valid file name and an image or video file name extension.
-- The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+The file name must meet the following requirements:
+- A valid file name must include a base name and a supported image or video extension.
+- The total length of the file name must be between 1 and 255 characters.
+- The base name must not contain any invalid characters.<br>Starting from API version 18, the following characters are considered invalid: \ / : * ? " < > |<br>For API versions 10 to 17, the following characters are considered invalid: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -137,10 +137,10 @@ createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoA
 
 Creates an asset with the specified file name and options. This API uses a promise to return the result.
 
-The file name must comply with the following specifications:
-- The file name consists of a valid file name and an image or video file name extension.
-- The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+The file name must meet the following requirements:
+- A valid file name must include a base name and a supported image or video extension.
+- The total length of the file name must be between 1 and 255 characters.
+- The base name must not contain any invalid characters.<br>Starting from API version 18, the following characters are considered invalid: \ / : * ? " < > |<br>For API versions 10 to 17, the following characters are considered invalid: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -495,7 +495,7 @@ Enumerate the album subtypes.
 | HIDDEN                | 1027 | Hidden album. <br>**System API**: This is a system API.                |
 | TRASH                 | 1028 | Trash. <br>**System API**: This is a system API.                  |
 | SCREENSHOT            | 1029 | Album for screenshots and screen recording files. <br>**System API**: This is a system API.          |
-| CAMERA                | 1030 | Album for photos and videos taken by the camera. <br>**System API**: This is a system API.|
+| CAMERA                | 1030 | Album for images and videos taken by the camera. <br>**System API**: This is a system API.|
 | SOURCE\_GENERIC       | 2049 | Source album. <br>**System API**: This is a system API.                |
 | CLASSIFY              | 4097 | Classified album. <br>**System API**: This is a system API.                |
 | GEOGRAPHY\_LOCATION   | 4099 | Geographic location album. <br>**System API**: This is a system API.                |

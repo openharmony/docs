@@ -75,6 +75,8 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
   | -R | 可选参数，调试时是否开启多线程错误检测。携带该参数代表开启，不携带代表关闭。<br>**说明：** 从API version 14开始，支持该参数。 |
   | -S | 可选参数，调试时是否进入应用沙箱。携带该参数代表进入，不携带代表不进入。 |
   | -D | 可选参数，调试模式。        |
+  | -N | 可选参数，使能启动阶段调试。        |
+  | -C | 可选参数，使能ASan调试。        |
   | -p | 可选参数，调优命令。命令由调用方自定义。        |
 
   **返回值**：
@@ -278,8 +280,15 @@ aa dump -a
 通过bundleName强制停止一个进程。
 
 ```bash
-aa force-stop <bundleName>
+aa force-stop <bundle-name> [-p pid] [-r kill-reason]
 ```
+
+  **强制停止进程命令参数列表**
+
+  | 参数 | 参数说明              |
+  | -------- |-------------------|
+  | -p | 指定pid，需要与-r配合使用，两者共同设置指定pid的进程退出原因。 |
+  | -r | 指定进程退出原因，需要与-p配合使用，两者共同设置指定pid的进程退出原因。 |
 
   **返回值**：
 
@@ -721,7 +730,7 @@ aa start命令的参数wl、wt、wh、ww或aa test命令不支持release签名�
 
 **处理步骤**
 
-使用Debug签名证书重新签名，安装新签名出的HAP后，再尝试执行该该命令。
+使用Debug签名证书重新签名，安装新签名出的HAP后，再尝试执行该命令。
 
 ### 10100101 获取应用信息失败
 
@@ -1105,5 +1114,5 @@ Cannot debug applications using a release certificate.
 
 **处理步骤**
 
-使用Debug签名证书重新签名，安装新签名出的HAP后，再尝试执行该该命令。
+使用Debug签名证书重新签名，安装新签名出的HAP后，再尝试执行该命令。
 签名工具及签名证书的生成方式可以参考：[签名工具指导](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)。

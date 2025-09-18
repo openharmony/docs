@@ -2,9 +2,9 @@
 
 ## When to Use
 
-For time-consuming operations, you can use **napi_create_async_work** to create an asynchronous work object to prevent the main thread from being blocked while ensuring the performance and response of your application. You can use asynchronous work objects in the following scenarios:
+For time-consuming operations, you can use [napi_create_async_work](../reference/native-lib/napi.md#napi_create_async_work) to create an asynchronous work object to prevent the ArkTS thread where env exists from being blocked while ensuring the performance and response of your application. You can use asynchronous work objects in the following scenarios:
 
-- File operations: You can use asynchronous work objects in complex file operations or when a large file needs to be read to prevent the main thread from being blocked.
+- File operations: You can use asynchronous work objects in complex file operations or when a large file needs to be read to prevent the ArkTS thread where env exists from being blocked.
 
 - Network request: When your application needs to wait for a response to a network request, using an asynchronous worker object can improve its response performance without affecting the main thread.
 
@@ -12,7 +12,9 @@ For time-consuming operations, you can use **napi_create_async_work** to create 
 
 - Image processing: When large images need to be processed or complex image algorithms need to be executed, asynchronous work objects can ensure normal running of the main thread and improve the real-time performance of your application.
 
-You can use a promise or a callback to implement asynchronous calls. To use a callback, you must pass in the callback.
+The napi_queue_async_work API uses the uv_queue_work capability and manages the lifecycle of napi_value in the callback.
+
+Asynchronous calling supports two modes: callback and promise. You can select a mode as required. The following are the sample codes of the two methods:
 
 ![](figures/napi_async_work.png)
 
@@ -23,6 +25,7 @@ You can use a promise or a callback to implement asynchronous calls. To use a ca
 1. Call **napi_create_async_work** to create an asynchronous work object, and call **napi_queue_async_work** to add the object to a queue.
 
    ```cpp
+   // Data context provided by the caller. The data is transferred to the execute and complete functions.
    struct CallbackData {
        napi_async_work asyncWork = nullptr;
        napi_deferred deferred = nullptr;
@@ -82,10 +85,11 @@ You can use a promise or a callback to implement asynchronous calls. To use a ca
 
        napi_delete_async_work(env, callbackData->asyncWork);
        delete callbackData;
+       callbackData = nullptr;
    }
    ```
 
-4. Initialize the module and call the API of ArkTS.
+4. Initializes the module and calls APIs on the ArkTS side.
 
    ```cpp
    // Initialize the module.
@@ -97,7 +101,7 @@ You can use a promise or a callback to implement asynchronous calls. To use a ca
        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
        return exports;
    }
-   ```
+    ```
 
     ```ts
    // Description of the interface in the .d.ts file.
@@ -106,8 +110,9 @@ You can use a promise or a callback to implement asynchronous calls. To use a ca
    // Call the API of ArkTS.
    nativeModule.asyncWork(1024).then((result) => {
        hilog.info(0x0000, 'XXX', 'result is %{public}d', result);
-     });
-    ```
+   });
+   ```
+   Result: **result is 1024**
 
 ## Example (Callback)
 
@@ -116,11 +121,14 @@ You can use a promise or a callback to implement asynchronous calls. To use a ca
 1. Call **napi_create_async_work** to create an asynchronous work object, and call **napi_queue_async_work** to add the object to a queue.
 
    ```cpp
+   static constexpr int INT_ARG_2 = 2; // Input parameter index.
+
+   // Data context provided by the caller. The data is transferred to the execute and complete functions.
    struct CallbackData {
-     napi_async_work asyncWork = nullptr;
-     napi_ref callbackRef = nullptr;
-     double args[2] = {0};
-     double result = 0;
+       napi_async_work asyncWork = nullptr;
+       napi_ref callbackRef = nullptr;
+       double args[2] = {0};
+       double result = 0;
    };
 
    napi_value AsyncWork(napi_env env, napi_callback_info info)
@@ -133,7 +141,7 @@ You can use a promise or a callback to implement asynchronous calls. To use a ca
        napi_get_value_double(env, args[0], &asyncContext->args[0]);
        napi_get_value_double(env, args[1], &asyncContext->args[1]);
        // Convert the callback to napi_ref to extend its lifecycle to prevent it from being garbage-collected.
-       napi_create_reference(env, args[2], 1, &asyncContext->callbackRef);
+       napi_create_reference(env, args[INT_ARG_2], 1, &asyncContext->callbackRef);
        napi_value resourceName = nullptr;
        napi_create_string_utf8(env, "asyncWorkCallback", NAPI_AUTO_LENGTH, &resourceName);
        // Create an asynchronous work object.
@@ -174,6 +182,7 @@ You can use a promise or a callback to implement asynchronous calls. To use a ca
        napi_delete_reference(env, callbackData->callbackRef);
        napi_delete_async_work(env, callbackData->asyncWork);
        delete callbackData;
+       callbackData = nullptr;
    }
    ```
 
@@ -199,6 +208,13 @@ You can use a promise or a callback to implement asynchronous calls. To use a ca
    let num1: number = 123;
    let num2: number = 456;
    nativeModule.asyncWork(num1, num2, (result) => {
-     hilog.info(0x0000, 'XXX', 'result is %{public}d', result);
+       hilog.info(0x0000, 'XXX', 'result is %{public}d', result);
    });
    ```
+   Result: **result is 579**
+
+## NOTE
+- When the **napi_cancel_async_work** API is called, **napi_ok** is returned regardless of whether the underlying UV fails. If the task fails to be canceled due to the underlying UV, the corresponding error value is transferred to **status** in the complete callback. You need to perform the corresponding operation based on the value of **status**.
+- It is recommended that the asynchronous work item of Node-API (**napi_async_work**) be used only once. After **napi_queue_async_work** is called, you should release it through **napi_delete_async_work** during or after the execution of the **complete** callback. The same **napi_async_work** can be released only once. Repeated release attempts will cause undefined behavior.
+The `execute_cb` of `napi_async_work` runs in an independent working thread, which is obtained from the UV thread pool. Different worker threads do not affect each other.
+- In the task execution sequence, `napi_async_work` only ensures that `complete_cb` is executed after `execute_cb`. The `execute_cb`s of different `napi_async_work`s run on their own working threads. Therefore, the execution sequence of different `execute_cb`s cannot be ensured. If the task execution sequence is required, you are advised to use the `napi_threadsafe_function` series APIs, which are sequence-preserving. For details, see [Link](use-napi-thread-safety.md).

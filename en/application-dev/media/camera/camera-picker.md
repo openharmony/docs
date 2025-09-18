@@ -11,7 +11,7 @@ Given that users are the ones who actively take and confirm the photos, your app
 
 Read [CameraPicker](../../reference/apis-camera-kit/js-apis-cameraPicker.md) for the API reference.
 
-1. Import the module.
+1. Import the modules.
    ```ts
    import { camera, cameraPicker as picker } from '@kit.CameraKit';
    import { fileIo, fileUri } from '@kit.CoreFileKit';

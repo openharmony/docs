@@ -1,5 +1,4 @@
 # Node-API
-
 - [Getting Started with the NDK](ndk-development-overview.md)
 - [Creating an NDK Project](create-with-ndk.md)
 - Building an NDK Project<!--build-with-ndk-->
@@ -14,6 +13,7 @@
     - [Using fdsan](fdsan.md)
   - Using Node-API<!--using-napi-interaction-with-cpp-->
     - [Node-API Overview](napi-introduction.md)
+    - [Node-API Returned Status Codes](napi_status_introduction.md)
     - [Node-API Data Types and APIs](napi-data-types-interfaces.md)
     - [Node-API Development Specifications](napi-guidelines.md)
     - [Node-API Development Process](use-napi-process.md)
@@ -28,15 +28,15 @@
       - [Working with Cleanup Hooks Using Node-API](use-napi-about-cleanuphook.md)
       - [Working with Date Using Node-API](use-napi-about-date.md)
       - [Error Handling Using Node-API](use-napi-about-error.md)
-      - [Associating Data with a Running Environment to Tie Their Lifecycle Using Node-API](use-napi-about-environmental-life-cycle.md)
+      - [Associating Data with a Running Environment to Tide Their Lifecycle Using Node-API](use-napi-about-environmental-life-cycle.md)
       - [Working with Functions Using Node-API](use-napi-about-function.md)
       - [Performing Lifecycle Management Using Node-API](use-napi-life-cycle.md)
       - [Working with Objects Using Node-API](use-napi-about-object.md)
       - [Working with Other Node-API Utilities](use-napi-about-other-practical-tools.md)
       - [Working with Primitives Using Node-API](use-napi-about-primitive.md)
       - [Implementing Asynchronous Operations Using Node-API](use-napi-about-promise.md)
-      - [Working with Properties Using Node-API](use-napi-about-property.md)
-      - [Working with Strings Using Node-API](use-napi-about-string.md)
+      - [Setting ArkTS Object Properties Using Node-API](use-napi-about-property.md)
+      - [Working with String Using Node-API](use-napi-about-string.md)
       - [Customizing Asynchronous Operations Using Node-API](use-napi-about-custom-asynchronous-operations.md)
     - Typical Node-API Use Cases<!--napi-scenarios-->
       - [Asynchronous Task Development Using Node-API](use-napi-asynchronous-task.md)
@@ -51,7 +51,10 @@
       - [Analyzing Exceptions and Crashes Triggered by Using Node-API](use-napi-about-crash.md)
       - [Calling an ArkTS Method with Return Value of a Promise Using Node-API](use-napi-method-promise.md)
     - Node-API FAQs<!--napi-questions-->
-      - [Node-API FAQs](use-napi-faqs.md)
+      - [Summary of Node-API FAQs](use-napi-faqs.md)
+      - [FAQs About Stability](napi-faq-about-stability.md)
+      - [FAQs About Memory Leaks](napi-faq-about-memory-leak.md)
+      - [FAQs About Basic Functions](napi-faq-about-common-basic.md)
   - Using JSVM-API<!--jsvm-->
     - [JSVM-API Overview](jsvm-introduction.md)
     - [JSVM-API Data Types and APIs](jsvm-data-types-interfaces.md)
@@ -93,6 +96,7 @@
       - [JSVM-API Debugging](jsvm-debugger-cpuprofiler-heapsnapshot.md)
       - [Working with Trace Using JSVM-API](use-jsvm-about-trace.md)
       - [Requesting the JIT Profile for JSVMs](jsvm-apply-jit-profile.md)
+      - [JSVM Secure Shield Mode](jsvm-secure-shield-mode.md)
       - JSVM-API Tuning and Performant Coding Cases<!--jsvm-usage-examples-->
         - [Creating and Destroying JSVMs Using JSVM-API](use-jsvm-runtime-task.md)
         - [Accelerating Compilation Using a Code Cache](use-jsvm-about-code-cache.md)

@@ -29,7 +29,7 @@ Querying data from a large amount of data may take time or even cause applicatio
 
 ## Constraints
 
-- The default logging mode is Write Ahead Log (WAL), and the default flushing mode is **FULL** mode.
+- The default logging mode is Write Ahead Log ([WAL](data-terminology.md#write-ahead-log-wal)), and the default flushing mode is [FULL](data-terminology.md#full) mode.
 
 - The RDB store supports four read connections and one write connection. Read connections can be dynamically expanded. If no read connection is available, a read connection is created to execute the read operation. Write connections cannot be dynamically expanded. If no write connection is available, the write operation is executed after the connection is released.
 
@@ -445,4 +445,4 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
    });
    ```
 
-<!--no_check-->
+ <!--no_check--> 

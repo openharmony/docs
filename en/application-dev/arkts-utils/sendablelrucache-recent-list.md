@@ -5,11 +5,9 @@ To quickly access the recently used [Sendable](arkts-sendable.md) objects, ArkTS
 > **NOTE**
 >
 > SendableLruCache instances must be locked to prevent data inconsistency caused by concurrent operations from multiple threads.
->
 > Only Sendable objects can be put into a SendableLruCache instance.
 
-1. Create a SendableLruCache instance and set its maximum capacity based on service requirements.
-   
+1. Create a SendableLruCache instance and set its maximum capacity based on service requirements.<br>
    In this example, the maximum capacity of the SendableLruCache instance is set to 4, the Sendable class is used for management, and the Sendable class instance is exported.
 
    ```ts

@@ -46,7 +46,7 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
    ```
 
 
-## Sample Code
+## Complete Sample Code
 
 ```ts
 import { media } from '@kit.MediaKit';

@@ -172,6 +172,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 let treeSet : TreeSet<number> = new TreeSet();
 treeSet.add(123);
 let result = treeSet.has(123);
+console.log("result = " + result); // result = true
 ```
 
 ### getFirstValue
@@ -560,8 +561,8 @@ Uses a callback to traverse the elements in this TreeSet and obtain their indexe
 callbackFn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | No| Value of the element that is currently traversed. The default value is the value of the first key-value pair.|
-| key | T | No| Key of the element that is currently traversed. The default value is the key of the first key-value pair.|
+| value | T | No| Value of the element that is currently traversed.|
+| key | T | No| Key of the element that is currently traversed.|
 | set | TreeSet&lt;T&gt; | No| Instance that calls the **forEach** API. The default value is this instance.|
 
 **Error codes**

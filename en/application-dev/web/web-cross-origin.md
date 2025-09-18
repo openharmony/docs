@@ -100,7 +100,7 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
 
 - Method 2
 
-  Use [setPathAllowingUniversalAccess](../reference/apis-arkweb/js-apis-webview-WebviewController.md#setpathallowinguniversalaccess12) to set a path list for cross-origin access to local files using the file protocol. Note that only the resources in the path list can be accessed by the file protocol when this method is used. In this case, the behavior of [fileAccess](../reference/apis-arkweb/ts-basic-components-web-attributes.md#fileaccess) is overwritten. The paths in the list should be any of the following directories:
+  Use [setPathAllowingUniversalAccess](../reference/apis-arkweb/js-apis-webview-WebviewController.md#setpathallowinguniversalaccess12) to set a path list for allowing cross-origin access to local files using the file protocol. Note that only the resources in the path list can be accessed by the file protocol when this method is used. In this case, the behavior of [fileAccess](../reference/apis-arkweb/ts-basic-components-web-attributes.md#fileaccess) is overwritten. The paths in the list should be any of the following directories:
 
   1. The application file directory and its subdirectories, which can be obtained through [Context.filesDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context), such as:
 

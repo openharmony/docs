@@ -6,9 +6,17 @@ Implements a **WebStorage** object to manage the Web SQL database and HTML5 Web 
 >
 > - The initial APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 >
+> - The initial APIs of this class are supported since API version 9.
+>
 > - You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
 >
 > - You must load the **Web** component before calling the APIs in **WebStorage**.
+
+## Modules to Import
+
+```ts
+import { webview } from '@kit.ArkWeb';
+```
 
 ## deleteOrigin
 
@@ -58,7 +66,6 @@ struct WebComponent {
 
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
-        .databaseAccess(true)
     }
   }
 }
@@ -74,31 +81,77 @@ HTML file to be loaded:
     <title>test</title>
     <script type="text/javascript">
 
-      var db = openDatabase('mydb','1.0','Test DB',2 * 1024 * 1024);
-      var msg;
+        // Open or create a database.
+        var request = indexedDB.open('myDatabase', 1);
 
-      db.transaction(function(tx){
-        tx.executeSql('INSERT INTO LOGS (id,log) VALUES(1,"test1")');
-        tx.executeSql('INSERT INTO LOGS (id,log) VALUES(2,"test2")');
-        msg = '<p>Data table created, with two data records inserted.</p>';
+        // Triggered when the database version changes or the database is created for the first time.
+        request.onupgradeneeded = function(event) {
+            var db = event.target.result;
 
-        document.querySelector('#status').innerHTML = msg;
-      });
+            // Create an object store (table) and set the primary key to id.
+            var objectStore = db.createObjectStore('customers', { keyPath: 'id' });
 
-      db.transaction(function(tx){
-        tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
-          var len = results.rows.length,i;
-          msg = "<p>Number of records: " + len + "</p>";
+            // Create an index for name.
+            objectStore.createIndex('name', 'name', { unique: false });
+        };
 
-          document.querySelector('#status').innerHTML += msg;
+        // Called when the database is successfully opened.
+        request.onsuccess = function(event) {
+            var db = event.target.result;
 
-              for(i = 0; i < len; i++){
-                msg = "<p><b>" + results.rows.item(i).log + "</b></p>";
+            const customerData = [
+                {id: 1, name: 'John Doe', email: 'john@example.com'},
+                {id: 2, name: 'John Doe', email: 'john@example.com'},
+            ]
 
-          document.querySelector('#status').innerHTML += msg;
-          }
-        },null);
-      });
+            // Insert data.
+            var transaction = db.transaction('customers', 'readwrite');
+            var objectStore = transaction.objectStore('customers');
+
+            customerData.forEach((customer) => {
+                objectStore.add(customer);
+            });
+
+            transaction.oncomplete = function () {
+                console.log('Transaction completed: data added');
+            }
+
+            transaction.onerror = function (event) {
+                console.error("Transaction failed", event);
+            }
+
+            // Query data.
+            var queryTransaction = db.transaction(['customers']);
+            var queryObjectStore = queryTransaction.objectStore('customers');
+            var query = queryObjectStore.get(2);
+
+            query.onsuccess = function (event) {
+                console.log('query succ');
+                console.log('Customer:', event.target.result);
+                console.log('Customer id:', event.target.result.id);
+                console.log('Customer name:', event.target.result.name);
+                console.log('Customer email:', event.target.result.email);
+            };
+
+            queryObjectStore.openCursor().onsuccess = (event) => {
+                const cursor = event.target.result;
+                if (cursor) {
+                    var msg = "<p>Query record: " + cursor.key + "</p>";
+                    document.querySelector("#status").innerHTML += msg;
+                    var msg = "<p><b>" + cursor.value.name + "</b></p>";
+                    document.querySelector("#status").innerHTML += msg;
+                    console.log(`SSN ${cursor.key} corresponds to ${cursor.value.name}`);
+                    cursor.continue();
+                } else {
+                    console.log("No more records")
+                }
+            }
+        };
+
+        // Error handling.
+        request.onerror = function(event) {
+            console.error('Database error:', event.target.error);
+        };
 
       </script>
   </head>
@@ -129,7 +182,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100012 | Invalid web storage origin.                             |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
 
 **Example**
 
@@ -165,7 +218,6 @@ struct WebComponent {
 
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
-        .databaseAccess(true)
     }
   }
 }
@@ -194,7 +246,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100012 | Invalid web storage origin.                             |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
 
 **Example**
 
@@ -230,7 +282,6 @@ struct WebComponent {
 
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
-        .databaseAccess(true)
     }
   }
 }
@@ -260,7 +311,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100011 | Invalid origin.                             |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
 
 **Example**
 
@@ -293,7 +344,6 @@ struct WebComponent {
 
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
-        .databaseAccess(true)
     }
   }
 }
@@ -328,7 +378,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100011 | Invalid origin.                             |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
 
 **Example**
 
@@ -361,7 +411,6 @@ struct WebComponent {
 
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
-        .databaseAccess(true)
     }
   }
 }
@@ -391,7 +440,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 17100011 | Invalid origin.                             |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
 
 **Example**
 
@@ -424,7 +473,6 @@ struct WebComponent {
 
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
-        .databaseAccess(true)
     }
   }
 }
@@ -459,7 +507,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 | ID| Error Message                                             |
 | -------- | ----------------------------------------------------- |
 | 17100011 | Invalid origin.                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
 
 **Example**
 
@@ -490,7 +538,6 @@ struct WebComponent {
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
-        .databaseAccess(true)
     }
   }
 }
@@ -510,7 +557,7 @@ Deletes all data in the Web SQL Database.
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| incognito<sup>11+</sup>    | boolean | No  | Whether to delete all data in the Web SQL Database in incognito mode. The value **true** means to delete all data in the Web SQL Database in incognito mode, and **false** means the opposite.|
+| incognito<sup>11+</sup>    | boolean | No  | Whether to delete all data in the Web SQL Database in incognito mode. The value **true** means to delete all data in the Web SQL Database in incognito mode, and **false** means the opposite.<br>Default value: **false**.<br>If **undefined** or **null** is passed, the value is **false**.|
 
 **Example**
 
@@ -535,7 +582,6 @@ struct WebComponent {
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
-        .databaseAccess(true)
     }
   }
 }

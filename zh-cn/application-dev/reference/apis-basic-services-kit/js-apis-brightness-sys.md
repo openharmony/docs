@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import brightness from '@ohos.brightness';
+import {brightness} from '@kit.BasicServicesKit';
 ```
 
 ## brightness.setValue

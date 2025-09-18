@@ -171,7 +171,7 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
    avTranscoder.release();
    ```
 
-## Sample Code
+## Complete Sample Code
 
   Refer to the sample code below to implement transcoding, covering the process of starting, pausing, resuming, and exiting transcoding.
   

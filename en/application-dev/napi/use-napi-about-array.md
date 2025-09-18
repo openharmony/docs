@@ -6,9 +6,9 @@ Node-API provides APIs for directly managing ArkTS arrays.
 
 ## Basic Concepts
 
-Node-API can be used to create, access, modify, and traverse arrays. Before using Node-API, it is helpful if you understand the following concepts:
+Node-API can be used to create, access, modify, and traverse arrays. Before using Node-API, it's helpful if you understand the following concepts:
 
-- Array creation: You can use **api_create_array** to create an array and pass it to the ArkTS layer.
+- Array creation: You can use **napi_create_array** to create an array and pass it to the ArkTS layer.
 - Array-related operations: You can use the APIs provides by the Node-API module to obtain the length of an ArkTS array, retrieve the element at the specified index, and set the element value at the specified index.
 - **TypedArray**: A **TypedArray** object in ArkTS is an array-like view of an underlying binary data buffer. It can be simply understood as an array of elements of the specified type. There is no constructor for **TypedArray** objects, but its child class constructor can be used to construct **TypedArray** data. The child classes of **TypedArray** include **Int8Array**, **Uint8Array**, **Uint8ClampedArray**, **Int16Array**, and **Int32Array**.
 - **DataView**: **DataView** is an ArkTS view that allows a variety of number types to be read and written in an **ArrayBuffer** object.
@@ -47,13 +47,15 @@ CPP code:
 ```cpp
 #include "napi/native_api.h"
 
+static constexpr int INT_NUM_5 = 5; // Array length.
+
 static napi_value CreateArray(napi_env env, napi_callback_info info)
 {
     // Create an empty array.
     napi_value jsArray = nullptr;
     napi_create_array(env, &jsArray);
     // Assign a value to the created array.
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < INT_NUM_5; i++) {
         napi_value element;
         napi_create_int32(env, i, &element);
         napi_set_element(env, jsArray, i, element);
@@ -73,8 +75,8 @@ export const createArray: () => number[];
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_array:%{public}s', JSON.stringify(testNapi.createArray()));
 ```
@@ -115,8 +117,8 @@ export const createArrayWithLength: (length: number) => void[];
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 let array = testNapi.createArrayWithLength(6);
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_array_with_length:%{public}d', array.length);
@@ -131,7 +133,7 @@ CPP code:
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value GetArrayLength(napi_env env, napi_callback_info info) 
+static napi_value GetArrayLength(napi_env env, napi_callback_info info)
 {
     // Obtain the parameters passed from ArkTS.
     size_t argc = 1;
@@ -143,7 +145,7 @@ static napi_value GetArrayLength(napi_env env, napi_callback_info info)
     bool is_array;
     napi_is_array(env, args[0], &is_array);
     if (!is_array) {
-        napi_throw_type_error(env, nullptr, "Argument must be an array");
+        napi_throw_error(env, nullptr, "Argument must be an array");
         return nullptr;
     }
     napi_get_array_length(env, args[0], &length);
@@ -157,14 +159,14 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const getArrayLength: (arr: Array<any>) => number | void;
+export const getArrayLength: (arr: Array<any>) => number | undefined;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 const arr = [0, 1, 2, 3, 4, 5];
 hilog.info(0x0000, 'testTag', 'Test Node-API get_array_length:%{public}d', testNapi.getArrayLength(arr));
@@ -179,7 +181,7 @@ CPP code:
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value IsArray(napi_env env, napi_callback_info info) 
+static napi_value IsArray(napi_env env, napi_callback_info info)
 {
     // Obtain the parameters passed from ArkTS.
     size_t argc = 1;
@@ -205,14 +207,14 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const isArray: <T>(data: Array<T> | T) => boolean | void;
+export const isArray: <T>(data: Array<T> | T) => boolean | undefined;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 try {
   let value = new Array<number>(1);
   let data = "123";
@@ -233,6 +235,8 @@ CPP code:
 ```cpp
 #include "napi/native_api.h"
 
+static constexpr int INT_ARG_2 = 2; // Input parameter index.
+
 static napi_value NapiSetElement(napi_env env, napi_callback_info info)
 {
     // Obtain the parameters passed from ArkTS.
@@ -243,14 +247,18 @@ static napi_value NapiSetElement(napi_env env, napi_callback_info info)
     bool isArr = false;
     napi_is_array(env, args[0], &isArr);
     if (!isArr) {
-        napi_throw_type_error(env, nullptr, "Argument should be an object of type array");
+        napi_throw_error(env, nullptr, "Argument should be an object of type array");
         return nullptr;
     }
     // Obtain the index of the element to be set.
     double index = 0;
-    napi_get_value_double(env, args[1], &index);
+    napi_status status = napi_get_value_double(env, args[1], &index);
+    if (status != napi_ok || index < 0) {
+        napi_throw_error(env, nullptr, "The index should be a non-negative number");
+        return nullptr;
+    }
     // Set the input value at the specified index of the array.
-    napi_set_element(env, args[0], static_cast<uint32_t>(index), args[2]);
+    napi_set_element(env, args[0], static_cast<uint32_t>(index), args[INT_ARG_2]);
 
     return nullptr;
 }
@@ -265,24 +273,28 @@ export const napiSetElement: <T>(arr: Array<T>, index: number, value: T) => void
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
-let arr = [10, 20, 30];
-testNapi.napiSetElement<number | string>(arr, 1, 'newElement');
-testNapi.napiSetElement<number | string>(arr, 2, 50);
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr: %{public}s', arr.toString());
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr[3]: %{public}s', arr[3]);
-interface MyObject {
-  first: number;
-  second: number;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
+try {
+  let arr = [10, 20, 30];
+  testNapi.napiSetElement<number | string>(arr, 1, 'newElement');
+  testNapi.napiSetElement<number | string>(arr, 2, 50);
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr: %{public}s', arr.toString());
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr[3]: %{public}s', arr[3]);
+  interface MyObject {
+    first: number;
+    second: number;
+  }
+  let obj: MyObject = {
+    first: 1,
+    second: 2
+  };
+  testNapi.napiSetElement<number | string | Object>(arr, 4, obj);
+  let objAsString = JSON.stringify(arr[4]);
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr[4]: %{public}s', objAsString);
+} catch (error) {
+  hilog.error(0x0000, 'testTag', 'Test Node-API napi_set_element error: %{public}s', error.message);
 }
-let obj: MyObject = {
-  first: 1,
-  second: 2
-};
-testNapi.napiSetElement<number | string | Object>(arr, 4, obj);
-let objAsString = JSON.stringify(arr[4]);
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_element arr[4]: %{public}s', objAsString);
 ```
 
 ### napi_get_element
@@ -321,8 +333,8 @@ export const napiGetElement: <T>(arr: Array<T>, index: number) => number | strin
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 interface MyObject {
   first: number;
@@ -379,8 +391,8 @@ export const napiHasElement: <T>(arr: Array<T>, index: number) => boolean;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 let arr = [10, 'hello', null, 'world'];
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_element arr[0]: %{public}s', testNapi.napiHasElement<number | string | null>(arr, 0));
@@ -426,8 +438,8 @@ ArkTS code:
 
 ```ts
 // Import napiHasElement and napiGetElement.
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 let arr = [10, 'hello', null, 'world'];
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_element arr[0]: %{public}s', testNapi.napiHasElement<number | string | null>(arr, 0));
@@ -458,7 +470,7 @@ static napi_value CreateTypedArray(napi_env env, napi_callback_info info)
     size_t elementSize = 0;
     // Determine the type of the array to create based on the type value passed.
     arrayType = static_cast<napi_typedarray_type>(typeNum);
-        switch (typeNum) {
+    switch (arrayType) {
     case napi_int8_array:
     case napi_uint8_array:
     case napi_uint8_clamped_array:
@@ -515,7 +527,7 @@ export const enum TypedArrayTypes {
   FLOAT32_ARRAY,
   FLOAT64_ARRAY,
   BIGINT64_ARRAY,
-  BIGuINT64_ARRAY,
+  BIGUINT64_ARRAY,
 }
 export const createTypedArray: <T>(type: TypedArrayTypes) => T;
 ```
@@ -523,8 +535,8 @@ export const createTypedArray: <T>(type: TypedArrayTypes) => T;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 // Pass the type of the array to create.
 let typedArray = testNapi.createTypedArray<Int8Array>(testNapi.TypedArrayTypes["INT8_ARRAY"]);
@@ -577,7 +589,7 @@ CPP code:
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value IsTypedarray(napi_env env, napi_callback_info info) 
+static napi_value IsTypedarray(napi_env env, napi_callback_info info)
 {
     // Obtain the parameters passed from ArkTS.
     size_t argc = 1;
@@ -603,14 +615,14 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const isTypedarray: (data: Object) => boolean | void;
+export const isTypedarray: (data: Object) => boolean | undefined;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 try {
   let value = new Uint8Array([1, 2, 3, 4]);
   let data = "123";
@@ -647,7 +659,7 @@ static napi_value GetTypedarrayInfo(napi_env env, napi_callback_info info)
     napi_value arraybuffer;
     // Call napi_get_typedarray_info to obtain TypedArray information.
     napi_get_typedarray_info(env, args[0], &type, &length, &data, &arraybuffer, &byteOffset);
-    napi_value result;
+    napi_value result = nullptr;
     // Return the property value based on the property name.
     switch (infoTypeParam) {
     case INFO_TYPE:
@@ -657,7 +669,7 @@ static napi_value GetTypedarrayInfo(napi_env env, napi_callback_info info)
         result = int8_type;
         break;
     case INFO_LENGTH:
-        // Number of elements in the TypedArray object.
+        // Byte length of elements in TypedArray.
         napi_value napiLength;
         napi_create_int32(env, length, &napiLength);
         result = napiLength;
@@ -673,6 +685,7 @@ static napi_value GetTypedarrayInfo(napi_env env, napi_callback_info info)
         result = arraybuffer;
         break;
     default:
+        napi_throw_error(env, nullptr, "infoType is not the InfoType");
         break;
     }
     return result;
@@ -689,8 +702,8 @@ export const getTypedarrayInfo: <T>(typeArray: T, infoType: number) => ArrayBuff
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 // Pass in the TypedArray type. TypedArray is a class array data view used to describe binary data. It does not have a constructor and can be constructed from its child class.
 // The child classes of TypedArray include Int8Array, Uint8Array, Uint8ClampedArray, Int16Array, and Int32Array. 
@@ -702,13 +715,17 @@ enum InfoType {
     ARRAY_BUFFER = 3, // ArrayBuffer under TypedArray.
     BYTE_OFFSET = 4 // Offset of the first ArrayBuffer element in the native array.
 };
-let arrbuff = testNapi.getTypedarrayInfo(int8Array, InfoType.ARRAY_BUFFER) as ArrayBuffer;
-// Convert arrbuffer to an array.
-let arr = new Array(new Int8Array(arrbuff));
-hilog.info(0x0000, 'Node-API', 'get_typedarray_info_arraybuffer: %{public}s', arr.toString());
-hilog.info(0x0000, 'Node-API', 'get_typedarray_info_isIn8Array: %{public}s', testNapi.getTypedarrayInfo(int8Array, InfoType.TYPE).toString());
-hilog.info(0x0000, 'Node-API', 'get_typedarray_info_length: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.LENGTH));
-hilog.info(0x0000, 'Node-API', 'get_typedarray_info_byte_offset: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.BYTE_OFFSET));
+try {
+  let arrbuff = testNapi.getTypedarrayInfo(int8Array, InfoType.ARRAY_BUFFER) as ArrayBuffer;
+  // Convert arraybuffer to an array.
+  let arr = new Array(new Int8Array(arrbuff));
+  hilog.info(0x0000, 'Node-API', 'get_typedarray_info_arraybuffer: %{public}s', arr.toString());
+  hilog.info(0x0000, 'Node-API', 'get_typedarray_info_isIn8Array: %{public}s', testNapi.getTypedarrayInfo(int8Array, InfoType.TYPE).toString());
+  hilog.info(0x0000, 'Node-API', 'get_typedarray_info_length: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.LENGTH));
+  hilog.info(0x0000, 'Node-API', 'get_typedarray_info_byte_offset: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.BYTE_OFFSET));
+} catch (error) {
+  hilog.error(0x0000, 'testTag', 'Test Node-API napi_get_typedarray_info error: %{public}s', error.message);
+}
 ```
 
 ### napi_create_dataview
@@ -720,7 +737,7 @@ CPP code:
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value CreateDataView(napi_env env, napi_callback_info info) 
+static napi_value CreateDataView(napi_env env, napi_callback_info info)
 {
     // Obtain the parameters passed from ArkTS.
     size_t argc = 1;
@@ -758,14 +775,14 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const createDataView: (arraybuffer:ArrayBuffer) => DataView | void;
+export const createDataView: (arraybuffer:ArrayBuffer) => DataView | undefined;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 const arrayBuffer = new ArrayBuffer(16);
 const dataView = testNapi.createDataView(arrayBuffer) as DataView;
@@ -809,14 +826,14 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const isDataView: (date: DataView | string) => boolean | void;
+export const isDataView: (date: DataView | string) => boolean | undefined;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 try {
   let buffer = new ArrayBuffer(16);
   let dataView = new DataView(buffer);
@@ -838,7 +855,7 @@ CPP code:
 #include "napi/native_api.h"
 
 static napi_value GetDataViewInfo(napi_env env, napi_callback_info info)
-{ 
+{
     // Obtain the parameters passed from ArkTS.
     size_t argc = 2;
     napi_value args[2] = {nullptr};
@@ -854,7 +871,7 @@ static napi_value GetDataViewInfo(napi_env env, napi_callback_info info)
     enum InfoType { BYTE_LENGTH = 0, ARRAY_BUFFER, BYTE_OFFSET };
     // Obtain DataView information.
     napi_get_dataview_info(env, args[0], &byteLength, &data, &arrayBuffer, &byteOffset);
-    napi_value result;
+    napi_value result = nullptr;
     switch (infoType) {
         case BYTE_LENGTH:
             // Return the number of bytes of the DataView object.
@@ -873,6 +890,7 @@ static napi_value GetDataViewInfo(napi_env env, napi_callback_info info)
             result = napiByteOffset;
             break;
         default:
+            napi_throw_error(env, nullptr, "infoType is not the InfoType");
             break;
     }
     return result;
@@ -889,8 +907,8 @@ export const getDataViewInfo: (dataView: DataView, infoType: number) => ArrayBuf
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 // Create an ArrayBuffer object.
 let arrayBuffer = new Int8Array([2, 5]).buffer;
@@ -902,15 +920,19 @@ enum InfoType {
     ARRAY_BUFFER = 1,
     BYTE_OFFSET = 2,
 };
-// Pass in the parameter of DataView to obtain the number of bytes in DataView.
-hilog.info(0x0000, 'Node-API', 'get_dataview_info_bytelength %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_LENGTH));
-// Pass in the parameter of DataView to obtain the ArrayBuffer of DataView.
-let arrbuff = testNapi.getDataViewInfo(dataView, InfoType.ARRAY_BUFFER) as ArrayBuffer;
-// Convert arraybuffer to an array.
-let arr = Array.from(new Int8Array(arrbuff));
-hilog.info(0x0000, 'Node-API', 'get_dataview_info_arraybuffer %{public}s', arr.toString());
-// Pass in the parameter of DataView to obtain the byte offset in the data buffer of DataView.
-hilog.info(0x0000, 'Node-API', 'get_dataview_info_byteoffset %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_OFFSET));
+try {
+  // Pass in the parameter of DataView to obtain the number of bytes in DataView.
+  hilog.info(0x0000, 'Node-API', 'get_dataview_info_bytelength %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_LENGTH));
+  // Pass in the parameter of DataView to obtain the ArrayBuffer of DataView.
+  let arrbuff = testNapi.getDataViewInfo(dataView, InfoType.ARRAY_BUFFER) as ArrayBuffer;
+  // Convert arraybuffer to an array.
+  let arr = Array.from(new Int8Array(arrbuff));
+  hilog.info(0x0000, 'Node-API', 'get_dataview_info_arraybuffer %{public}s', arr.toString());
+  // Pass in the parameter of DataView to obtain the byte offset in the data buffer of DataView.
+  hilog.info(0x0000, 'Node-API', 'get_dataview_info_byteoffset %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_OFFSET));
+} catch (error) {
+  hilog.error(0x0000, 'testTag', 'Test Node-API napi_get_dataview_info error: %{public}s', error.message);
+}
 ```
 
 To print logs in the native CPP, add the following information to the **CMakeLists.txt** file and add the header file by using **#include "hilog/log.h"**.
@@ -919,5 +941,5 @@ To print logs in the native CPP, add the following information to the **CMakeLis
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

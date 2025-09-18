@@ -53,7 +53,6 @@ Convert the data type: In the callback, convert the JavaScript (JS) result to th
         // Initialize the promise object.
         napi_value promise = nullptr;
         napi_call_function(env, nullptr, argv[0], 0, nullptr, &promise);
-    
         // Initialize the thenFunc object.
         napi_value thenFunc = nullptr;
         if (napi_get_named_property(env, promise, "then", &thenFunc) != napi_ok) {
@@ -84,7 +83,6 @@ Convert the data type: In the callback, convert the JavaScript (JS) result to th
         return exports;
     }
     EXTERN_C_END
-    
     // Initialize the module.
     static napi_module nativeModule = {
         .nm_version = 1,

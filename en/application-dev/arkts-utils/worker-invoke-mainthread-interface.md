@@ -2,7 +2,7 @@
 
 This topic describes the approach that Worker uses to call an interface that is already implemented in the host thread.
 
-The example below demonstrates how Worker can synchronously call an interface from the host thread.
+The example below demonstrates how Worker can synchronously call an API from the host thread.
 
 1. Implement the interface in the host thread and create a Worker object. Register the interface to be called on the Worker object.
 
@@ -52,7 +52,7 @@ The example below demonstrates how Worker can synchronously call an interface fr
    workerInstance.postMessage("run setUp in picData");
    ```
 
-2. In Worker, use the **callGlobalCallObjectMethod** interface to call the **setUp()** method implemented in the host thread.
+2. In Worker, use **callGlobalCallObjectMethod** to call the **setUp()** method implemented in the host thread.
 
    ```ts
    // Worker.ets

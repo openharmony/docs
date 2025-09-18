@@ -1,7 +1,7 @@
 # XML Overview
 
 
-Extensible Markup Language (XML) is a versatile markup language used to describe data, offering a flexible way to transport and store information, particularly in web applications. Unlike predefined markup languages like HTML, XML allows users to define their own tags, making it highly adaptable for various applications.
+Extensible Markup Language (XML) is a versatile markup language used to describe data, offering a flexible way to transport and store information, particularly in web applications. Unlike predefined languages, XML offers greater flexibility, making it suitable for a wide range of applications.
 
 
 An XML document is composed of the following components:
@@ -25,7 +25,8 @@ The ArkTS common library provides essential XML functionalities such as [XML gen
 The following is a simple XML example with explanations. For details about more XML interfaces and their usage, see [@ohos.xml](../reference/apis-arkts/js-apis-xml.md).
 
 ```XML
-<?xml version="1.0" encoding="utf-8"?> <!--Declaration-- >
+<!--Declaration-->
+<?xml version="1.0" encoding="utf-8"?>
 <!--Processing instruction-->
 <?xml-stylesheet type="text/css" href="style.css"?>
 <!--Element, attribute, and attribute value-->

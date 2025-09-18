@@ -1,5 +1,12 @@
 # 应用性能分析工具CPU Profiler的使用指导
 
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 ## 简介
 
 本文档介绍应用性能分析工具CPU Profiler的使用方法，该工具为开发者提供性能采样分析手段，可在不插桩情况下获取调用栈上各层函数的执行时间，并展示在时间轴上。
@@ -16,7 +23,7 @@
 >
 > 该工具自DevEco Studio 4.0 beta2之后开始提供。请各位开发者将DevEco Studio更新至最新版本，以使用该工具。
 
-#### ArkTS Callstack泳道图
+**ArkTS Callstack泳道图**
 
 泳道图展示了时间轴上每个时刻正在执行的函数或者正处于的阶段，对于函数来讲可理解为每个时刻调用栈的栈顶。可以通过 **Ctrl+鼠标滚轮** 任意放大和缩小鼠标所在位置的某一段。
 
@@ -26,7 +33,7 @@ NAPI方法在泳道图上被特殊标记为黄色，此类方法会调用到Nati
 
 ![ArkTS Callstack泳道图](figures/arkts-callstack-eg.png)
 
-#### Details图
+**Details图**
 
 在泳道图上点击任意时间条，或者选定一个起始和终止范围，工具将在下方Details图中显示此时间条代表的函数或者此范围内所有函数的完整调用链，右侧Heaviest Stack视图展示该范围内耗时最长的调用链。
 
@@ -66,7 +73,7 @@ Chrome浏览器JavaScript Profiler工具默认调用V8引擎提供的Profiler工
 
 该工具可将性能分析数据展示在三种视图：时序火焰图（Chart）、比重图（Heavy）、树形图（Tree）。
 
-#### 时序火焰图（Chart）
+**时序火焰图（Chart）**
 
 图6 **时序火焰图（Chart）总览**
 
@@ -98,7 +105,7 @@ Chrome浏览器JavaScript Profiler工具默认调用V8引擎提供的Profiler工
 
 - **Aggregated total time**：以毫秒（ms）为单位。表示该函数在整个采样过程中历次调用的Total Time的总和（仅限上级调用栈一致的多次调用求和）。
 
-#### 比重图（Heavy）
+**比重图（Heavy）**
 
 比重图列出了所有调用栈的栈顶，可以理解为**时序火焰图从下往上看**，看到的首先是调用链末端函数，以及各自的Self Time时间，将比重图的所有Self Time的比例相加结果为100%。
 
@@ -120,7 +127,7 @@ Chrome浏览器比重图（Heavy）的时间并不是实际时间，而是通过
 
 ![VSCode比重图（Heavy）示例](figures/vscode-cpuprofile-eg.png)
 
-#### 树形图（Tree）
+**树形图（Tree）**
 
 树形图列出了所有调用栈的栈底，可以理解为**时序火焰图从上往下看**，看到的首先是调用链的起始函数，以及各自的Total Time时间，将树形图的所有Total Time的比例相加结果为100%。
 
@@ -136,7 +143,7 @@ Chrome浏览器比重图（Heavy）的时间并不是实际时间，而是通过
 
 各类视图中函数名可能包含(TAG)格式标签，例如func1(AOT)，或者函数名仅为(TAG)格式，例如(program)。
 
-#### 函数名包含(TAG)标签
+**函数名包含(TAG)标签**
 
 当前支持8类函数名标签，分别是(NAPI)、(ARKUI_ENGINE)、(BUILTIN)、(GC)、(AINT)、(CINT)、(AOT)、(RUNTIME)。可为应用开发者及系统开发者对各部分进行性能分析提供参考。后四种标签通过非命令方式采集时默认不可见，可通过命令 `hdc shell param set persist.ark.properties 0x505c; hdc shell reboot` 打开。
 
@@ -156,7 +163,7 @@ Chrome浏览器比重图（Heavy）的时间并不是实际时间，而是通过
 
 - **(RUNTIME)**：Native接口（NAPI, ARKUI_ENGINE, BUILTIN）调用该方法时，表示该方法调用到了虚拟机内部运行时代码。
 
-#### 函数名仅为(TAG)标签
+**函数名仅为(TAG)标签**
 
 该类标签代表的是一类特殊节点，并非实际函数，包含三种，分别是(root)、(program)、(idle)，具体含义如下。
 
@@ -170,7 +177,7 @@ Chrome浏览器比重图（Heavy）的时间并不是实际时间，而是通过
     >
     > 当前尚未统计(idle)阶段，该部分时间包含在(program)阶段中。
 
-#### (TAG)标签时间占比统计
+**(TAG)标签时间占比统计**
 
 将`cpuprofile`文件以json格式打开，json开头有各个TAG的总时间字段，单位为微秒（us），其中otherTime字段代表(idle)、(root)、(program)三种TAG的总时间。可以据此计算出每种TAG标签的耗时占比，为性能分析提供参考。
 
@@ -273,7 +280,7 @@ Chrome浏览器比重图（Heavy）的时间并不是实际时间，而是通过
      hdc shell param set persist.ark.properties 0x4505c
      # 同时采集主线程及Worker线程任意阶段 
      hdc shell param set persist.ark.properties 0x6505c
-        ```
+     ```
 
 2. 针对冷启动数据的采集，需设置待采集应用的包名。此处以 `com.ohos.example` 为例。
 

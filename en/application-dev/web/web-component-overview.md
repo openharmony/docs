@@ -1,5 +1,17 @@
 # Introduction to ArkWeb
 
+## Required Permissions
+
+The **ohos.permission.INTERNET** permission is required for accessing online web pages. For details about how to apply for a permission, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+
+  ```
+  "requestPermissions":[
+      {
+        "name" : "ohos.permission.INTERNET"
+      }
+    ]
+  ```
+
 ## When to Use
 
 ArkWeb provides **Web** components to display web page content in applications. You can use the components in the following scenarios:
@@ -33,7 +45,7 @@ The **Web** component provides various capabilities for you to control web pages
 
 - You can obtain the support for W3C standards based on the ArkWeb kernel version at related websites. For example, **https://developer.mozilla.org/en-US/** and **https://webassembly.org/features/**.
 
-- **Web** kernel version: ArkWeb is developed based on Chromium. The corresponding Chromium versions are as follows.
+- Web kernel version: ArkWeb is developed based on the Google Chromium kernel. The following table lists the mapping between the system version and the Chromium version.
 
   | OS Version| Chromium Version|
   |  ---|---|

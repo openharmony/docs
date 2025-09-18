@@ -273,9 +273,9 @@ try {
 
 | 名称  | 类型                                | 可读 | 可写 | 说明                   |
 | ----- | ----------------------------------- | ---- | ---- | ---------------------- |
-| uid   | number                              | 是   | 否   | 耗电信息相关的UID。    |
-| type  | [ConsumptionType](#consumptiontype) | 是   | 否   | 耗电信息相关的类型。   |
-| power | number                              | 是   | 否   | 耗电的值，单位毫安时。 |
+| uid   | number                              | 否   | 否   | 耗电信息相关的UID。    |
+| type  | [ConsumptionType](#consumptiontype) | 否   | 否   | 耗电信息相关的类型。   |
+| power | number                              | 否   | 否   | 耗电的值，单位毫安时。 |
 
 ## ConsumptionType
 
