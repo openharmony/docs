@@ -135,7 +135,3 @@ Flex(){
 
 **参考链接**
 [布局约束](../reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md)
-
-## Repeat内部子组件都设置expandSafeArea属性后，如何解决内部子组件无法扩展到全屏(API 12)
-
-该问题在API 18及之后的版本上进行了修复，子组件可以全屏展示。

@@ -1434,6 +1434,6 @@ struct RepeatBuilderPage {
 
 ![Repeat-Builder](figures/Repeat-Builder.png)
 
-### Repeat内部子组件使用expandSafeArea属性时，子组件无法扩展到全屏
+### Repeat子组件声明expandSafeArea属性时，子组件无法扩展到全屏
 
-API12-API17版本上，Repeat内部子组件使用expandSafeArea属性时，子组件无法扩展到全屏，从API18开始，修复该问题，子组件使用expandSafeArea属性时，可以扩展到全屏展示。
+在API version 18之前，Repeat子组件声明expandSafeArea属性，子组件无法扩展至全屏；从API version 18开始，子组件声明expandSafeArea属性可正常扩展至全屏展示。
