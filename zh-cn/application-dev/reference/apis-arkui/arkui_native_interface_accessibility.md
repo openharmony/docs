@@ -172,7 +172,7 @@ typedef struct ArkUI_AccessibilityProviderCallbacksWithInstance {
 
 **描述：**
 
-Action附加字段，对需要执行的Action进行处理说明。
+用于设置无障碍操作的具体参数。
 
 **起始版本：**
 
@@ -251,8 +251,8 @@ Action附加字段，对需要执行的Action进行处理说明。
 
 | 名称        | 类型  | 描述         |
 | ----------- | ----- | ------------ |
-| heading     | bool  | 是否是标题。 |
-| selected    | bool  | 是否被选中。 |
+| heading     | bool  | 是否是标题。truet表示是标题，false表示不是标题。 |
+| selected    | bool  | 是否被选中。true表示被选中，false表示未被选中。 |
 | columnIndex | int32 | 列下标。     |
 | rowIndex    | int32 | 行下标。     |
 | columnSpan  | int32 | 列跨度。     |

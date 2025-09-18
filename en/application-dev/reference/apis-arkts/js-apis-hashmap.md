@@ -8,8 +8,8 @@ HashMap is faster in accessing data than [TreeMap](js-apis-treemap.md), because 
 
 **Recommended use case**: Use HashMap when you need to quickly access, remove, and insert key-value pairs.
 
-This topic uses the following to identify the use of generics:
-- K: Key
+This topic uses the following to identify the use of generics:<br>
+- K: Key<br>
 - V: Value
 
 > **NOTE**
@@ -90,6 +90,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 ```ts
 const hashMap: HashMap<string, number> = new HashMap();
 let result = hashMap.isEmpty();
+console.log("result = ", result) // result = true
 ```
 
 
@@ -438,7 +439,7 @@ while(!temp.done) {
 
 replace(key: K, newValue: V): boolean
 
-Replaces an element in this HashMap.
+Replaces the value of a specified key.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -478,7 +479,7 @@ let result = hashMap.replace("sparrow", 357);
 
 forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?: Object): void
 
-Uses a callback to traverse the elements in this HashMap and obtain their position indexes.
+Uses a callback to traverse each element.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -494,8 +495,8 @@ Uses a callback to traverse the elements in this HashMap and obtain their positi
 callbackFn parameters
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | V | No| Value of the element that is currently traversed. The default value is the value of the first key-value pair.|
-| key | K | No| Key of the element that is currently traversed. The default value is the key of the first key-value pair.|
+| value | V | No| Value of the element that is currently traversed.|
+| key | K | No| Key of the element that is currently traversed.|
 | map | HashMap<K, V> | No| Instance that calls the **forEach** API. The default value is this instance.|
 
 **Error codes**
@@ -604,7 +605,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 **Example**
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 

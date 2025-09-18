@@ -11,7 +11,7 @@ When you use the flashlight mode with a camera application, the following situat
 
 Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
-1. Import the camera module, which provides camera-related attributes and methods.
+1. Import the camera module, which provides camera-related properties and methods.
 
     ```ts
     import { camera } from '@kit.CameraKit';

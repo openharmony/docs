@@ -2,7 +2,7 @@
 
 Provides a list of ArkWeb network protocol stack errors.
 
-The error codes of the ArkWeb network protocol stack are mapped to the Chromium error codes in <!--RP1-->net_error_list.h<!--RP1End--&gt.
+The error codes of the ArkWeb network protocol stack are mapped to the Chromium error codes in <!--RP1-->net_error_list.h<!--RP1End-->.
 
 > **NOTE**
 > 
@@ -113,7 +113,7 @@ Provides a list of ArkWeb network protocol stack errors.
 |ERR_CT_STH_INCOMPLETE | -169 | The Certificate Transparency parsed signed tree head successfully, but some information is missing.|
 |ERR_UNABLE_TO_REUSE_CONNECTION_FOR_PROXY_AUTH | -170 | The attempt to re-send proxy authentication credentials failed because the AuthController has not generated the credentials yet. The caller should reconnect the AuthController.|
 |ERR_CT_CONSISTENCY_PROOF_PARSING_FAILED | -171 | The Certificate Transparency failed to parse the consistency proof.|
-|ERR_SSL_OBSOLETE_CIPHER | -172 | The SSL server requires an unsupported cipher suite, which has been deleted. This error will immediately occurs in a rollback of one or two versions after the cipher suite is deleted, after which the rollback will be deleted.|
+|ERR_SSL_OBSOLETE_CIPHER | -172 | The SSL server requires an unsupported cipher suite, which has been deleted. This error will immediately occur in a rollback of one or two versions after the cipher suite is deleted, after which the rollback will be deleted.|
 |ERR_WS_UPGRADE | -173 | The WebSocket handshake is completed, the connection has been upgraded, and the URLRequest is canceled.|
 |ERR_READ_IF_READY_NOT_IMPLEMENTED | -174 | The ReadIfReady of socket is not implemented. |
 |ERR_NO_BUFFER_SPACE | -176 | No socket buffer space is available.|

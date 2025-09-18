@@ -6,13 +6,21 @@ The **WebviewController** object controls various behaviors of **Web** component
 >
 > - The initial APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 >
+> - The initial APIs of this class are supported since API version 9.
+>
 > - You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
+
+## Modules to Import
+
+```ts
+import { webview } from '@kit.ArkWeb';
+```
 
 ## constructor<sup>11+</sup>
 
 constructor(webTag?: string)
 
-Defines a constructor used to create a **WebviewController** object.
+Constructor used to create a **WebviewController** object.
 
 > **NOTE**
 >
@@ -93,20 +101,22 @@ HTML file to be loaded:
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-    <meta charset="utf-8">
+    <head>
+      <meta charset="utf-8">
+    </head>
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
       <p id="webDemo"></p>
+      <script type="text/javascript">
+        function htmlTest() {
+          // This function call expects to return "Web test"
+          let webStr = objTestName.webTest();
+          document.getElementById("webDemo").innerHTML=webStr;
+          console.log('objTestName.webTest result:'+ webStr)
+        }
+      </script>
     </body>
-    <script type="text/javascript">
-    function htmlTest() {
-      // This function call expects to return "Web test"
-      let webStr = objTestName.webTest();
-      document.getElementById("webDemo").innerHTML=webStr;
-      console.log('objTestName.webTest result:'+ webStr)
-    }
-</script>
 </html>
 ```
 
@@ -252,7 +262,7 @@ Loads a specified URL.
 | Name | Type            | Mandatory| Description                 |
 | ------- | ---------------- | ---- | :-------------------- |
 | url     | string \| Resource | Yes  | URL to load.     |
-| headers | Array\<[WebHeader](./js-apis-webview-i.md#webheader)> | No  | Additional HTTP request header of the URL.|
+| headers | Array\<[WebHeader](./js-apis-webview-i.md#webheader)> | No  | Additional HTTP request header of the URL.<br>Default value: **[]**.|
 
 **Error codes**
 
@@ -398,7 +408,9 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 
 Loads specified data.
 
-When both **baseUrl** and **historyUrl** are empty, if **encoding** is not base64 (including null values), ASCII encoding is used for octets within the secure URL character range, and the standard %xx hexadecimal encoding of the URL is used for octets outside the secure URL character range.
+When both **baseUrl** and **historyUrl** are empty,
+
+if **encoding** is not base64 (including null values), ASCII encoding is used for octets within the secure URL character range, and the standard %xx hexadecimal encoding of the URL is used for octets outside the secure URL character range.
 
 **data** must be encoded using Base64 or any hash (#) in the content must be encoded as %23. Otherwise, hash (#) is considered as the end of the content, and the remaining text is used as the document fragment identifier.
 
@@ -498,6 +510,39 @@ struct WebComponent {
 }
 ```
 
+Specify **baseURL**.
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('loadData')
+        .onClick(() => {
+          try {
+            this.controller.loadData(
+              "<img src=aa/bb.jpg>," // Attempt to load the image from "https: // xxx.com/" + "aa/bb.jpg".
+              "text/html",
+              "UTF-8",
+              "https://xxx.com/",
+              "about:blank"
+            );
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 Example of loading local resource:
 ```ts
 // xxx.ets
@@ -508,7 +553,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
-  updataContent: string = '<body><div><image src=resource://rawfile/xxx.png alt="image -- end" width="500" height="250"></image></div></body>'
+  updataContent: string = '<body><div><image src="resource://rawfile/xxx.png" alt="image -- end" width="500" height="250"></image></div></body>'
 
   build() {
     Column() {
@@ -634,7 +679,7 @@ You can use [getBackForwardEntries](#getbackforwardentries) to obtain the histor
 
 > **NOTE**
 >
-> If [setCustomUserAgent](#setcustomuseragent10) is called when the **Web** component is loaded for the first time, the value of **accessBackForward** may be **false** when there are multiple historical entries. That is, there is no backward entry. You are advised to call the **setCustomUserAgent** method to set a user agent before using **loadUrl** to load a specific page.
+> If [setCustomUserAgent](#setcustomuseragent10) is called when the **Web** component is loaded for the first time, the value of **accessBackward** may be **false** when there are multiple historical entries. That is, there is no backward entry. You are advised to call the **setCustomUserAgent** method to set a user agent before using **loadUrl** to load a specific page.
 >
 > Causes: When the **Web** component is loaded for the first time, calling [setCustomUserAgent](#setcustomuseragent10) causes the component to reload and retain the initial history entry. Then the new entry replaces the initial history entry and no new history entry is generated. As a result, the value of **accessBackward** is false.
 
@@ -971,6 +1016,7 @@ registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>
 
 Registers a proxy for interaction between the application and web pages loaded by the **Web** component.
 <br>Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. After this API is called, call [refresh](#refresh) for the registration to take effect.
+<br>For the example, see [Invoking Application Functions on the Frontend Page](../../web/web-in-page-app-function-invoking.md).
 
 > **NOTE**
 >
@@ -987,11 +1033,11 @@ Registers a proxy for interaction between the application and web pages loaded b
 
 | Name    | Type      | Mandatory| Description                                       |
 | ---------- | -------------- | ---- | ------------------------------------------------------------ |
-| object     | object         | Yes  | Application-side JavaScript object to be registered. Methods and attributes can be declared separately, but cannot be registered and used at the same time. If an object contains only attributes, HTML5 can access the attributes in the object. If an object contains only methods, HTML5 can access the methods in the object.<br>The parameter and return value can be any of the following types:<br>string, number, boolean.<br>Dictionary or Array, with a maximum of 10 nested layers and 10,000 data records per layer.<br>Object, which must contain the **methodNameListForJsProxy:[fun1, fun2]** attribute, where **fun1** and **fun2** are methods that can be called.<br>The parameter also supports Function and Promise. Their callback cannot have return values.<br>The return value supports Promise. Its callback cannot have a return value.<br>For the example, see [Invoking Application Functions on the Frontend Page](../../web/web-in-page-app-function-invoking.md).|
+| object     | object         | Yes  | Application-side JavaScript object to be registered. Methods and attributes can be declared separately, but cannot be registered and used at the same time. If an object contains only attributes, HTML5 can access the attributes in the object. If an object contains only methods, HTML5 can access the methods in the object.<br>1. The parameter and return value can be any of the following types:<br>string, number, boolean.<br>2. Dictionary or Array, with a maximum of 10 nested layers and 10,000 data records per layer.<br>3. Object, which must contain the **methodNameListForJsProxy:[fun1, fun2]** attribute, where **fun1** and **fun2** are methods that can be called.<br>4. The parameter also supports Function and Promise. Their callback cannot have return values.<br>5. The return value supports Promise. Its callback cannot have a return value.|
 | name       | string         | Yes  | Name of the object to be registered, which is the same as that invoked in the window. After registration, the window can use this name to access the JavaScript object at the application side.|
 | methodList | Array\<string> | Yes  | Synchronous methods of the JavaScript object to be registered at the application side.                      |
 | asyncMethodList<sup>12+</sup> | Array\<string> | No  | Asynchronous methods of the JavaScript object to be registered at the application side. The default value is null. Asynchronous methods cannot obtain return values. |
-| permission<sup>12+</sup> | string | No  | JSON string, which is empty by default. This string is used to configure JSBridge permission control and define the URL trustlist at the object and method levels.<br>For the example, see [Invoking Application Functions on the Frontend Page](../../web/web-in-page-app-function-invoking.md).|
+| permission<sup>12+</sup> | string | No  | JSON string, which is empty by default. This string is used to configure JSBridge permission control and define the URL trustlist at the object and method levels.<br>1. The **scheme** and **host** parameters cannot be empty. The **host** does not support wildcards and can contain only complete host names.<br>2. You can configure only the object-level trustlist, which takes effect for all JSBridge methods.<br>3. If method-level trustlists are configured for JSBridge method A, the intersection of object-level and method-level trustlists takes effect.|
 
 **Error codes**
 
@@ -1112,31 +1158,33 @@ HTML file to be loaded:
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-    <meta charset="utf-8">
+    <head>
+      <meta charset="utf-8">
+    </head>
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
       <p id="webDemo"></p>
       <p id="asyncDemo"></p>
+      <script type="text/javascript">
+        function htmlTest() {
+          // This function call expects to return "ArkUI Web Component"
+          let str=objName.test("webtest data");
+          objName.testNumber(1);
+          objName.asyncTestBool(true);
+          document.getElementById("demo").innerHTML=str;
+          console.log('objName.test result:'+ str)
+
+          // This function call expects to return "Web test"
+          let webStr = objTestName.webTest();
+          document.getElementById("webDemo").innerHTML=webStr;
+          console.log('objTestName.webTest result:'+ webStr)
+
+          objAsyncName.asyncTest();
+          objAsyncName.asyncString("async test data");
+        }
+      </script>
     </body>
-    <script type="text/javascript">
-    function htmlTest() {
-      // This function call expects to return "ArkUI Web Component"
-      let str=objName.test("webtest data");
-      objName.testNumber(1);
-      objName.asyncTestBool(true);
-      document.getElementById("demo").innerHTML=str;
-      console.log('objName.test result:'+ str)
-
-      // This function call expects to return "Web test"
-      let webStr = objTestName.webTest();
-      document.getElementById("webDemo").innerHTML=webStr;
-      console.log('objTestName.webTest result:'+ webStr)
-
-      objAsyncName.asyncTest();
-      objAsyncName.asyncString("async test data");
-    }
-</script>
 </html>
 ```
 For more examples, see [Invoking Application Functions on the Frontend Page](../../web/web-in-page-app-function-invoking.md).
@@ -1153,6 +1201,7 @@ Executes a JavaScript script asynchronously in the context of the current page. 
 > - You are advised to use **registerJavaScriptProxy** to maintain the JavaScript status during page navigation.
 > - Currently, objects cannot be transferred, but structs can be transferred.
 > - The return value cannot be obtained by executing the asynchronous method. You need to determine whether to use the synchronous or asynchronous method based on the specific scenario.
+> - The string data type passed from the frontend page to native is treated as JSON-formatted and need to be deserialized with JSON.parse.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1220,16 +1269,18 @@ HTML file to be loaded:
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-  <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
+  </head>
   <body>
-      Hello world!
+    Hello world!
+    <script type="text/javascript">
+      function test() {
+        console.log('Ark WebComponent')
+        return "This value is from index.html"
+      }
+    </script>
   </body>
-  <script type="text/javascript">
-  function test() {
-      console.log('Ark WebComponent')
-      return "This value is from index.html"
-  }
-  </script>
 </html>
 ```
 
@@ -1245,6 +1296,7 @@ Executes a JavaScript script asynchronously in the context of the current page. 
 > - You are advised to use **registerJavaScriptProxy** to maintain the JavaScript status during page navigation.
 > - Currently, objects cannot be transferred, but structs can be transferred.
 > - The return value cannot be obtained by executing the asynchronous method. You need to determine whether to use the synchronous or asynchronous method based on the specific scenario.
+> - The string data type passed from the frontend page to native is treated as JSON-formatted and need to be deserialized with JSON.parse.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1311,16 +1363,18 @@ HTML file to be loaded:
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-  <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
+  </head>
   <body>
-      Hello world!
+    Hello world!
+    <script type="text/javascript">
+      function test() {
+        console.log('Ark WebComponent')
+        return "This value is from index.html"
+      }
+    </script>
   </body>
-  <script type="text/javascript">
-  function test() {
-      console.log('Ark WebComponent')
-      return "This value is from index.html"
-  }
-  </script>
 </html>
 ```
 
@@ -1329,6 +1383,10 @@ HTML file to be loaded:
 runJavaScriptExt(script: string | ArrayBuffer, callback : AsyncCallback\<JsMessageExt>): void
 
 Executes a JavaScript script. This API uses an asynchronous callback to return the script execution result. **runJavaScriptExt** can be invoked only after **loadUrl** is executed. For example, it can be invoked in **onPageEnd**.
+
+> **NOTE**
+>
+> - The string data type passed from the frontend page to native is treated as JSON-formatted and need to be deserialized with JSON.parse.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1412,15 +1470,15 @@ struct WebComponent {
                     }
                   }
                   catch (resError) {
-                    console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+                    console.error(`ErrorCode: ${(resError as BusinessError).code},  Message: ${(resError as BusinessError).message}`);
                   }
                 }
               });
             if (e) {
               console.info('url: ', e.url);
             }
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          } catch (resError) {
+            console.error(`ErrorCode: ${(resError as BusinessError).code},  Message: ${(resError as BusinessError).message}`);
           }
         })
     }
@@ -1504,12 +1562,12 @@ struct WebComponent {
                     }
                   }
                   catch (resError) {
-                    console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+                    console.error(`ErrorCode: ${(resError as BusinessError).code},  Message: ${(resError as BusinessError).message}`);
                   }
                 }
               });
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          } catch (resError) {
+            console.error(`ErrorCode: ${(resError as BusinessError).code},  Message: ${(resError as BusinessError).message}`);
           }
         })
       Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -1540,6 +1598,10 @@ function test() {
 runJavaScriptExt(script: string | ArrayBuffer): Promise\<JsMessageExt>
 
 Executes a JavaScript script. This API uses a promise to return the script execution result. **runJavaScriptExt** can be invoked only after **loadUrl** is executed. For example, it can be invoked in **onPageEnd**.
+
+> **NOTE**
+>
+> - The string data type passed from the frontend page to native is treated as JSON-formatted and need to be deserialized with JSON.parse.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1826,18 +1888,20 @@ HTML file to be loaded:
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-    <meta charset="utf-8">
+    <head>
+      <meta charset="utf-8">
+    </head>
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
+      <script type="text/javascript">
+        function htmlTest() {
+          let str=objName.test();
+          document.getElementById("demo").innerHTML=str;
+          console.log('objName.test result:'+ str)
+        }
+      </script>
     </body>
-    <script type="text/javascript">
-    function htmlTest() {
-      let str=objName.test();
-      document.getElementById("demo").innerHTML=str;
-      console.log('objName.test result:'+ str)
-    }
-</script>
 </html>
 ```
 
@@ -3180,8 +3244,8 @@ Scrolls the page by the specified amount and returns value to indicate whether t
 
 | Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ---------------------- |
-| deltaX | number   | Yes  | Amount to scroll by along the x-axis. The positive direction is rightward.|
-| deltaY | number   | Yes  | Amount to scroll by along the y-axis. The positive direction is downward.|
+| deltaX | number   | Yes  | Amount to scroll by along the x-axis. The positive direction is rightward.<br>Unit: vp|
+| deltaY | number   | Yes  | Amount to scroll by along the y-axis. The positive direction is downward.<br>Unit: vp|
 
 **Return value**
 
@@ -3395,7 +3459,7 @@ Obtains the favicon of this page.
 
 | Type                                  | Description                           |
 | -------------------------------------- | ------------------------------- |
-| [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | **PixelMap** object of the favicon of the page.|
+| image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | **PixelMap** object of the favicon of the page.|
 
 **Error codes**
 
@@ -3497,12 +3561,12 @@ HTML file to be loaded:
 <button onclick="func()">click</button>
 <script>
     // Check whether the browser is online.
-    let online = navigator.onLine;
-    document.getElementById ("demo").innerHTML = "Browser online:" + online;
+    var online1 = navigator.onLine;
+    document.getElementById("demo").innerHTML = "Browser online:" + online1;
 
     function func(){
-      var online = navigator.onLine;
-      document.getElementById ("demo").innerHTML = "Browser online:" + online;
+      var online2 = navigator.onLine;
+      document.getElementById("demo").innerHTML = "Browser online:" + online2;
     }
 </script>
 </body>
@@ -3578,7 +3642,7 @@ Checks whether this page contains images. This API uses a promise to return the 
 
 | Type             | Description                                   |
 | ----------------- | --------------------------------------- |
-| Promise\<boolean> | Promise used to return the result.<br>The value **true** indicates that this page contains images, and the value **false** indicates the opposite. |
+| Promise\<boolean> | Promise used to return the result.<br> The value **true** indicates that this page contains images, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -3637,7 +3701,7 @@ Removes all WebView cache files in an application.
 
 | Name  | Type   | Mandatory| Description                                                    |
 | -------- | ------- | ---- | -------------------------------------------------------- |
-| clearRom | boolean | Yes  | Whether to clear the cache in the ROM and RAM at the same time. The value **true** means to clear the cache in the ROM and RAM at the same time, and **false** means to only clear the cache in the RAM.|
+| clearRom | boolean | Yes  | Whether to clear the cache files in both ROM and RAM. If this parameter is set to **true**, the cache files in both ROM and RAM are cleared. If this parameter is set to **false**, only the cache files in RAM are cleared.|
 
 **Error codes**
 
@@ -4109,7 +4173,7 @@ struct WebComponent {
 
 ## getCertificate<sup>10+</sup>
 
-getCertificate(): Promise\<Array\<cert.X509Cert>>
+getCertificate(): Promise<Array<cert.X509Cert>>
 
 Obtains the certificate information of this website. When the **Web** component is used to load an HTTPS website, SSL certificate verification is performed. This API uses a promise to return the [X.509 certificate](../apis-device-certificate-kit/js-apis-cert.md#x509cert) of the current website.
 
@@ -4270,7 +4334,7 @@ struct Index {
 
 ## getCertificate<sup>10+</sup>
 
-getCertificate(callback: AsyncCallback\<Array\<cert.X509Cert>>): void
+getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 
 Obtains the certificate information of this website. When the **Web** component is used to load an HTTPS website, SSL certificate verification is performed. This API uses an asynchronous callback to return the [X.509 certificate](../apis-device-certificate-kit/js-apis-cert.md#x509cert) of the current website.
 
@@ -4505,7 +4569,7 @@ Prefetches resources in the background for a page that is likely to be accessed 
 | Name            | Type                            | Mandatory | Description                     |
 | ------------------| --------------------------------| ---- | ------------- |
 | url               | string                          | Yes   | URL to be preloaded.|
-| additionalHeaders | Array\<[WebHeader](./js-apis-webview-i.md#webheader)> | No   | Additional HTTP headers of the URL.|
+| additionalHeaders | Array\<[WebHeader](./js-apis-webview-i.md#webheader)> | No   | Additional HTTP headers of the URL.<br>Default value: **[]**.|
 
 **Error codes**
 
@@ -4674,7 +4738,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 
 | ID | Error Message                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100002 | URL error. The web page corresponding to the URL is invalid, or the URL length exceeds 2048.                                                |
+| 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048.                                                 |
 | 17100013 | The number of preconnect sockets is invalid.                                                 |
 
 **Example**
@@ -5027,7 +5091,7 @@ export default class EntryAbility extends UIAbility {
 enableSafeBrowsing(enable: boolean): void
 
 <!--RP1-->Enables the safe browsing feature. This feature is forcibly enabled and cannot be disabled for identified untrusted websites.
-By default, this feature does not take effect. OpenHarmony provides only the malicious website blocking web UI. The website risk detection and web UI display features are implemented by the vendor. You are advised to listen for [DidStartNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidStartNavigation) and [DidRedirectNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidRedirectNavigation) in **WebContentsObserver** to detect risks.
+By default, this feature does not take effect. OpenHarmony provides only the malicious website blocking web UI. The website risk detection and web UI display features are implemented by the vendor. You are advised to listen for [DidStartNavigation](https://gitcode.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidStartNavigation) and [DidRedirectNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidRedirectNavigation) in **WebContentsObserver** to detect risks.
 <!--RP1End-->
 
 > **NOTE**
@@ -5600,7 +5664,7 @@ Sets the ArkWeb render subprocess mode.
 
 | Name      | Type          | Mandatory | Description                     |
 | ----------- | ------------- | ---- | ------------------------ |
-| mode        | [RenderProcessMode](./js-apis-webview-e.md#renderprocessmode12)| Yes  | Render subprocess mode.<br>You can call [getRenderProcessMode()](#getrenderprocessmode12) to view the ArkWeb rendering subprocess mode of the current device. The enumerated value **0** indicates the single render subprocess mode, and **1** indicates the multi-render subprocess mode.<br>If an invalid number other than the enumerated value of **RenderProcessMode** is passed, the multi-render subprocess mode is used by default.|
+| mode        | [RenderProcessMode](./js-apis-webview-e.md#renderprocessmode12)| Yes  | Render subprocess mode.<br>You can call [getRenderProcessMode()](#getrenderprocessmode12) to view the ArkWeb rendering subprocess mode of the current device. The enumerated value **0** indicates the single render subprocess mode, and **1** indicates the multi-render subprocess mode.<br>By default, mobile phones use the single render subprocess mode, and tablets and PCs/2in1 devices use the multi-render subprocess mode.<br>If an invalid number other than the enumerated value of **RenderProcessMode** is passed, the multi-render subprocess mode is used by default.|
 
 **Error codes**
 
@@ -5813,7 +5877,7 @@ Creates a **PrintDocumentAdapter** instance to provide content for printing.
 
 | Type                | Description                     |
 | -------------------- | ------------------------- |
-| print.printDocumentAdapter | **PrintDocumentAdapter** instance created.|
+| print.[PrintDocumentAdapter](../apis-basic-services-kit/js-apis-print.md#printdocumentadapter11) | **PrintDocumentAdapter** instance created.|
 
 **Error codes**
 
@@ -5961,7 +6025,7 @@ Sets whether this web page is scrollable.
 
 | Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ---------------------- |
-| enable     | boolean   | Yes  | Whether this web page is scrollable.<br>The value **true** indicates that this web page is scrollable, and **false** indicates the opposite.|
+| enable     | boolean   | Yes  | Whether this web page is scrollable.<br>The value **true** indicates that this web page is scrollable, and **false** indicates the opposite.<br>The default value is **true**.|
 | type       | [ScrollType](./js-apis-webview-e.md#scrolltype12) |  No| Scrolling type supported by the web page. The default value is supported.<br> - If the value of **enable** is set to **false**, the specified **ScrollType** is disabled. If **ScrollType** is set to the default value, all scrolling types are disabled.<br> - If the value of **enable** is set to **true**, all scrolling types are enabled regardless of the value of **ScrollType**.|
 
 **Error codes**
@@ -6272,33 +6336,35 @@ HTML file to be loaded:
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
-    <meta charset="utf-8">
+    <head>
+      <meta charset="utf-8">
+    </head>
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
       <p id="webDemo"></p>
-    </body>
-    <script type="text/javascript">
-    function htmlTest() {
-      // This function call expects to return "ArkUI Web Component"
-      let str=objName.test("webtest data");
-      objName.testNumber(1);
-      objName.testBool(true);
-      document.getElementById("demo").innerHTML=str;
-      console.log('objName.test result:'+ str)
+      <script type="text/javascript">
+        function htmlTest() {
+          // This function call expects to return "ArkUI Web Component"
+          let str=objName.test("webtest data");
+          objName.testNumber(1);
+          objName.testBool(true);
+          document.getElementById("demo").innerHTML=str;
+          console.log('objName.test result:'+ str)
 
-      // This function call expects to return "Web test"
-      let webStr = objTestName.webTest();
-      document.getElementById("webDemo").innerHTML=webStr;
-      console.log('objTestName.webTest result:'+ webStr)
-    }
-</script>
+          // This function call expects to return "Web test"
+          let webStr = objTestName.webTest();
+          document.getElementById("webDemo").innerHTML=webStr;
+          console.log('objTestName.webTest result:'+ webStr)
+        }
+      </script>
+    </body>
 </html>
 ```
 
 ## pauseAllTimers<sup>12+</sup>
 
-pauseAllTimers(): void
+static pauseAllTimers(): void
 
 Pauses all WebView timers.
 
@@ -6360,12 +6426,18 @@ HTML file to be loaded:
             document.getElementById("show_num").value = ++num;
         }, 1000);
     }
+
+    function resetTimer() {
+        clearInterval(timer);
+        document.getElementById("show_num").value = 0;
+        num = 0;
+    }
 </script>
 ```
 
 ## resumeAllTimers<sup>12+</sup>
 
-resumeAllTimers(): void
+static resumeAllTimers(): void
 
 Resumes all timers that are paused from the **pauseAllTimers()** API.
 
@@ -6854,13 +6926,9 @@ struct WebComponent {
 
 startCamera(): void
 
-Enables camera capture of the current web page.
+Enables camera capture of the current web page. Enables camera capture of the current web page. Enables camera capture of the current web page. Before using the camera, add the **ohos.permission.CAMERA** permission to **module.json5**. For details about how to add the permission, see [Declaring Permissions in the Configuration File](../../security/AccessToken/declare-permissions.md).
 
 **System capability**: SystemCapability.Web.Webview.Core
-
-**Required permissions**
-
-To use camera capture, add the **ohos.permission.CAMERA** permission to **module.json5**. For details about how to add the permission, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
 
 **Error codes**
 
@@ -6954,7 +7022,7 @@ HTML file to be loaded:
     <meta charset="UTF-8">
   </head>
   <body>
-    <video id="video" width="400px" height="400px" autoplay="autoplay">
+    <video id="video" width="400px" height="400px" autoplay>
     </video>
     <input type="button" title="HTML5 Camera" value="Enable Camera" onclick="getMedia()"/>
     <script>
@@ -6968,8 +7036,8 @@ HTML file to be loaded:
         }
         let video = document.getElementById("video");
         let promise = navigator.mediaDevices.getUserMedia(constraints);
-        promise.then(function(MediaStream) {
-          video.srcObject = MediaStream;
+        promise.then(function(mediaStream) {
+          video.srcObject = mediaStream;
           video.play();
         })
       }
@@ -7168,7 +7236,7 @@ The API is recommended for use in conjunction with dynamic components. Employ of
 
    async function readRawFile(path: string, context: UIContext) {
      try {
-       return await context.getHostContext()!.resourceManager.getRawFileContent(path);;
+       return await context.getHostContext()!.resourceManager.getRawFileContent(path);
      } catch (err) {
        return new Uint8Array(0);
      }
@@ -7544,7 +7612,7 @@ Obtains the full drawing result of the web page.
 | Name      | Type          | Mandatory | Description                     |
 | ----------- | ------------- | ---- | ------------------------ |
 | info        | [SnapshotInfo](./js-apis-webview-i.md#snapshotinfo12)| Yes  | Information for obtaining the full drawing result.|
-| callback        | AsyncCallback\<[SnapshotResult](./js-apis-webview-i.md#snapshotresult12)>| Yes  | A full drawing result. |
+| callback        | AsyncCallback\<[SnapshotResult](./js-apis-webview-i.md#snapshotresult12)>| Yes  | Represents a full drawing result.|
 
 **Example**
 
@@ -8532,7 +8600,7 @@ struct Index {
 
 getScrollOffset(): ScrollOffset
 
-Obtains the current scrolling offset of a web page.
+Obtains the current scrolling offset (including the over-scrolling offset) of the web page.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -8540,11 +8608,12 @@ Obtains the current scrolling offset of a web page.
 
 | Type                           | Description                  |
 | :------------------------------ | ---------------------- |
-| [ScrollOffset](./js-apis-webview-i.md#scrolloffset13) | Represents the current scrolling offset of a web page.|
+| [ScrollOffset](./js-apis-webview-i.md#scrolloffset13) | Current scrolling offset (including the over-scrolling offset) of the web page.|
 
 **Example**
 
 ```ts
+// xxx.ets
 import { webview } from '@kit.ArkWeb';
 
 @Entry

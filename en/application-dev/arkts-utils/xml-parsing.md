@@ -4,24 +4,25 @@
 When using XML as a data carrier, it is necessary to parse relevant elements in practice. This typically includes three types of operations: [parsing XML tags and their values](#parsing-xml-tags-and-values), [parsing XML attributes and their values](#parsing-xml-attributes-and-values), and [parsing XML event types and element information](#parsing-xml-event-types-and-element-information). For example, in web services, XML is the foundation of the Simple Object Access Protocol (SOAP). SOAP messages, which are usually encapsulated in XML format and contain request and response parameters, are parsed by web services to process client requests and generate corresponding responses.
 
 
-The XML module provides the **XmlPullParser** class to parse XML text. The input is an ArrayBuffer or a DataView containing XML text, and the output is the parsed information.
+The XML module provides the XmlPullParser class to parse XML text. The input is an ArrayBuffer or DataView that contains XML data, and the output is a structured parsing result.
 
-**Table 1** XML parsing options (see [ParseOptions](../reference/apis-arkts/js-apis-xml.md#parseoptions) for detailed descriptions)
+
+  **Table 1** XML parsing options (see [ParseOptions](../reference/apis-arkts/js-apis-xml.md#parseoptions) for detailed descriptions)
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | supportDoctype | boolean | No| Whether to parse the document type. The value **true** means to parse the document type, and **false** means the opposite. The default value is **false**.|
 | ignoreNameSpace | boolean | No| Whether to ignore the namespace. If the namespace is ignored, it will not be parsed. The value **true** means to ignore the namespace, and **false** means the opposite. The default value is **false**.|
-| tagValueCallbackFunction | (name: string, value: string) =&gt; boolean | No| Callback used to return **tagValue**, which consists of a tag and its value. The default value is undefined, indicating that XML tags and their values are not parsed.|
+| tagValueCallbackFunction | (name: string, value: string) =&gt; boolean | No| Callback used to return **tagValue**, which consists of XML tags and tag values. The default value is undefined, indicating that XML tags and their values are not parsed.|
 | attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No| Callback used to return **attributeValue**, which consists of an attribute and its value. The default value is undefined, indicating that XML attributes and their values are not parsed.|
-| tokenValueCallbackFunction | (eventType: EventType, value: ParseInfo) =&gt; boolean | No| Callback used to return **tokenValue**, which consists of the event type and the attributes of **parseInfo**. The default value is undefined, indicating that the XML event type is not parsed.|
+| tokenValueCallbackFunction | (eventType: EventType, value: ParseInfo) =&gt; boolean | No| Callback used to return **tokenValue**, which consists of the XML event type and the attributes of **parseInfo**. The default value is undefined, indicating that the XML event type is not parsed.|
 
 
 ## Precautions
 
 - The input XML data must be in the standard format.
 
-- Parsing a given node is not supported yet.
+- Parsing a specified node is not supported.
 
 
 ## Parsing XML Tags and Values
@@ -34,7 +35,7 @@ The XML module provides the **XmlPullParser** class to parse XML text. The input
 
 2. Create an XmlPullParser object.
 
-   You can construct an XmlPullParser object based on ArrayBuffer or DataView. Both methods yield the same results.
+   You can create an XmlPullParser object based on ArrayBuffer or DataView. Both methods yield the same results.
 
     ```ts
     let strXml: string =
@@ -44,7 +45,7 @@ The XML module provides the **XmlPullParser** class to parse XML text. The input
       '<lens>Work</lens>' +
       '</note>';
     let textEncoder: util.TextEncoder = new util.TextEncoder();
-    let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // Encode the data to prevent garbled characters.
+    let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // Encode data to prevent garbled Chinese characters.
     // Method 1: Create an XmlPullParser object based on ArrayBuffer.
     let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
    
@@ -70,7 +71,7 @@ The XML module provides the **XmlPullParser** class to parse XML text. The input
     }
     ```
 
-4. Set parsing options and call the **parse()** function.
+4. Set parsing options and call the **parse** function.
 
     ```ts
     let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tagValueCallbackFunction:func};
@@ -98,7 +99,7 @@ The XML module provides the **XmlPullParser** class to parse XML text. The input
 1. Import the module.
 
     ```ts
-    import { xml, util } from '@kit.ArkTS'; // Use the API provided by the util module to encode text.
+    import { xml, util } from '@kit.ArkTS'; // Use the util module to encode text.
     ```
 
 2. Create an XmlPullParser object.
@@ -112,7 +113,7 @@ The XML module provides the **XmlPullParser** class to parse XML text. The input
         '    <lens>Work</lens>' +
         '</note>';
     let textEncoder: util.TextEncoder = new util.TextEncoder();
-    let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // Encode the data to prevent garbled characters.
+    let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // Encode data to prevent garbled Chinese characters.
     let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
     ```
 
@@ -126,12 +127,12 @@ The XML module provides the **XmlPullParser** class to parse XML text. The input
     }
     ```
 
-4. Set parsing options and call the **parse()** function.
+4. Set parsing options and call the **parse** function.
 
     ```ts
     let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, attributeValueCallbackFunction:func};
     that.parseXml(options);
-    console.info(str); // Print all attributes and their values at a time.
+    console.info(str); // Print all attributes and their values.
     ```
 
    The output is as follows:
@@ -145,7 +146,7 @@ The XML module provides the **XmlPullParser** class to parse XML text. The input
 1. Import the module.
 
     ```ts
-    import { xml, util } from '@kit.ArkTS'; // Use the API provided by the util module to encode text.
+    import { xml, util } from '@kit.ArkTS'; // Use the util module to encode text.
     ```
 
 2. Create an XmlPullParser object.
@@ -157,7 +158,7 @@ The XML module provides the **XmlPullParser** class to parse XML text. The input
       '<title>Play</title>' +
       '</note>';
     let textEncoder: util.TextEncoder = new util.TextEncoder();
-    let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // Encode the data to prevent garbled characters.
+    let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // Encode data to prevent garbled Chinese characters.
     let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
     ```
 
@@ -166,13 +167,13 @@ The XML module provides the **XmlPullParser** class to parse XML text. The input
     ```ts
     let str: string = '';
     function func(name: xml.EventType, value: xml.ParseInfo): boolean {
-      str = name +' ' + value.getDepth(); // getDepth is called to obtain the element depth.
+      str = name + ' ' + value.getDepth(); // Obtain the current depth of an element.
       console.info(str);
       return true; // The value true means to continue parsing, and false means to stop parsing.
     }
     ```
 
-4. Set parsing options and call the **parse()** function.
+4. Set parsing options and call the **parse** function.
 
      ```ts
      let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func};

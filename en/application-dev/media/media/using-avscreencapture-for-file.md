@@ -21,7 +21,7 @@ If microphone data collection is configured, configure the permission ohos.permi
 After an AVScreenCapture instance is created, different APIs can be called to switch the AVScreenCapture to different states and trigger the required behavior.
 If an API is called when the AVScreenCapture is not in the given state, the system may throw an exception or generate other undefined behavior. Therefore, you are advised to check the AVScreenCapture state before triggering state transition.
 
-**Linking the Dynamic Link Library in the CMake Script**
+**Linking the Dynamic Libraries in the CMake Script**
 
 ```c++
 target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
@@ -122,7 +122,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     OH_AVScreenCapture_Release(capture);
     ```
 
-## Sample Code
+## Complete Sample Code
 
 Refer to the sample code below to implement captured file storage using AVScreenCapture.
 

@@ -66,7 +66,7 @@ Removes a specified property from an object.
 | Enhanced error handling (**BusinessError**)| Not supported| Supported|
 | Additional methods (**has** or **remove**)| Not supported| Supported|
 
-**Use Cases**
+**Scenarios**
 
 - JSON parsing or serialization that involves BigInt handling.
 

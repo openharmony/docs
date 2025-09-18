@@ -183,7 +183,7 @@ let uris: Array<string> = [];
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
 
 // 调用PhotoViewPicker.select选择图片
-async function photoPickerGetUri(context: common.UIAbilityContext) {
+async function photoPickerGetUri() {
   try {  
     let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
@@ -201,7 +201,7 @@ async function photoPickerGetUri(context: common.UIAbilityContext) {
   }
 }
 
-async function uriGetAssets() {
+async function uriGetAssets(context: common.UIAbilityContext) {
 try {
     let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();

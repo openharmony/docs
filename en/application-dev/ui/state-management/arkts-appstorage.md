@@ -1,59 +1,54 @@
 # AppStorage: Storing Application-wide UI State
 
+Before reading this document, it is recommend that you review the [State Management Overview](./arkts-state-management-overview.md) to understand the role of AppStorage within the state management framework.
 
-AppStorage provides central storage for application UI state attributes. It is bound to the application process and is created by the UI framework at application startup.
+AppStorage is a global UI state storage center bound to the application process. Created by the UI framework at application launch, it stores UI state data in runtime memory to enable application-level global state sharing.
 
+Serving as the application's "central hub," AppStorage acts as the intermediary bridge between persistent data ([PersistentStorage](arkts-persiststorage.md)), environment variables ([Environment](arkts-environment.md)), and UI interactions. Its primary value lies in providing you with cross-ability UI state sharing capabilities.
 
-Unlike AppStorage, LocalStorage is usually used for page-level state sharing, While AppStorage enables application-wide UI state sharing. AppStorage is equivalent to the hub of the entire application. [PersistentStorage](arkts-persiststorage.md) and [Environment](arkts-environment.md) data is passed first to AppStorage and then from AppStorage to the UI component.
-
-
-This topic describes the AppStorage use scenarios and related decorators: \@StorageProp and \@StorageLink.
-
-
-Different from decorators such as \@State that can be passed only in the component tree, AppStorage aims to provide basic data sharing across abilities in a larger scope. Before reading this topic, you are advised to read [State Management Overview](./arkts-state-management-overview.md) to have a macro understanding of the positioning of AppStorage in the state management framework.
-
-AppStorage also provides APIs for you to manually add, delete, change, and query keys of AppStorage outside the custom component. You are advised to read this topic together with [AppStorage API reference](../../reference/apis-arkui/arkui-ts/ts-state-management.md#appstorage).
-
+AppStorage provides APIs for manual create, retrieve, update, delete (CRUD) operations outside custom components. For details, see [AppStorage API Reference](../../reference/apis-arkui/arkui-ts/ts-state-management.md#appstorage). For best practices, see [State Management](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-status-management).
 
 ## Overview
 
-AppStorage is a singleton object that is created at application startup. Its purpose is to provide central storage for application UI state attributes. AppStorage retains all those attributes and their values as long as the application remains running. Each attribute is accessed using a unique key, which is a string.
+AppStorage is a singleton created at application startup, serving as the central repository for application-wide UI state data. This state data is accessible at the application level. AppStorage maintains all properties throughout the application lifecycle.
 
-UI components synchronize application state attributes with AppStorage. AppStorage can be accessed during implementation of application service logic as well.
+Properties are accessed through unique string keys. They can be synchronized with UI components and accessed within the application's service logic.
 
-AppStorage supports state sharing among multiple UIAbility instances in the [main thread](../../application-models/thread-model-stage.md) of an application.
+AppStorage enables UI state sharing among multiple [UIAbility](../../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instances within the application's [main thread](../../application-models/thread-model-stage.md).
 
-Selected state attributes of AppStorage can be synchronized with different data sources or data sinks. Those data sources and sinks can be on a local or remote device, and have different capabilities, such as data persistence (see [PersistentStorage](arkts-persiststorage.md)). These data sources and sinks are implemented in the service logic, and separated from the UI. Link to [@StorageProp](#storageprop) and [@StorageLink](#storagelink) those AppStorage attributes whose values should be kept until application re-start.
-
+Properties in AppStorage support two-way synchronization and offer extended features, such as data persistence (see [PersistentStorage](arkts-persiststorage.md)). These UI states are implemented through service logic and decoupled from the UI. To use these UI states in the UI, the [@StorageProp](#storageprop) and [@StorageLink](#storagelink) decorators are required.
 
 ## \@StorageProp
 
-As mentioned above, if you want to establish a binding between AppStorage and a custom component, you'll need the \@StorageProp or \@StorageLink decorator. Use \@StorageProp(key) or \@StorageLink(key) to decorate variables in the component, where **key** identifies an attribute in AppStorage.
+As mentioned above, to bind AppStorage properties with custom components, the @StorageProp and @StorageLink decorators are required. Component variables decorated with \@StorageProp(key) or \@StorageLink(key) use the key to identify the corresponding property in AppStorage.
 
-When a custom component is initialized, the attribute value corresponding to the key in AppStorage is used to initialize the \@StorageProp(key) or \@StorageLink(key) decorated variable. Whether the attribute with the given key exists in AppStorage depends on the application logic. This means that it may be missing from AppStorage. In light of this, local initialization is mandatory for the \@StorageProp(key) or \@StorageLink(key) decorated variable.
+During custom component initialization, the variable decorated with \@StorageProp(key) or \@StorageLink(key) is initialized using the value of the property corresponding to the specified key in AppStorage. Due to differences in application logic, it cannot be guaranteed that the corresponding property has been stored in the AppStorage instance before component initialization. Therefore, local initialization of variables decorated with \@StorageProp(key) or \@StorageLink(key) is necessary.
 
-By decorating a variable with \@StorageProp(key), a one-way data synchronization is established from the attribute with the given key in AppStorage to the variable. A local change can be made, but it will not be synchronized to AppStorage. An update to the attribute with the given key in AppStorage will overwrite local changes.
+\@StorageProp(key) establishes one-way data synchronization with the property corresponding to **key** in AppStorage:
+
+1. When a local modification is made, the change will not be written back to AppStorage.
+2. When the property corresponding to **key** in AppStorage is modified, the change will be synchronized to all properties bound to that key in AppStorage, overwriting any local modifications.
+
 > **NOTE**
 >
 > This decorator can be used in atomic services since API version 11.
 
-### Rules of Use
+### Usage Rules
 
 | \@StorageProp Decorator| Description                                                        |
 | ----------------------- | ------------------------------------------------------------ |
-| Decorator parameters             | **key**: constant string, mandatory (the string must be quoted)                 |
-| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) Map, Set, and Date types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions.<br>**any** is not supported. **undefined** and **null** are supported since API version 12.<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined**, or **ClassA \| null**. For details, see [Union Type](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@StorageProp("AA") a: number \| null = null** is recommended; **@StorageProp("AA") a: number = null** is not recommended.|
-| Synchronization type               | One-way: from the attribute in AppStorage to the component variable.<br>The component variable can be changed locally, but an update from AppStorage will overwrite local changes.|
-| Initial value for the decorated variable     | Mandatory. If the attribute does not exist in AppStorage, it will be created and initialized with this value.|
-
+| Parameters             | **key**: constant string, mandatory (the string must be quoted)                 |
+| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) **Map**, **Set**, **Date**, **undefined**, and **null**. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, **string \| number, string \| undefined**, or **ClassA \| null**. For details, see [Using Union Types in AppStorage](#using-union-types-in-appstorage).<br>**Notice**<br>The variable type must be specified. Whenever possible, use the same type as that of the corresponding property in AppStorage. Otherwise, implicit type conversion occurs, causing application behavior exceptions.<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@StorageProp('AA') a: number \| null = null** is supported, but **@StorageProp('AA') a: number = null** is not.<br>**any** is not supported.|
+| Synchronization type               | One-way: from the property in AppStorage to the component variable.<br>The component variable can be changed locally, but an update from AppStorage will overwrite local changes.|
+| Initial value for the decorated variable     | Mandatory. If the property does not exist in AppStorage, it will be created and initialized with this value.|
 
 ### Variable Transfer/Access Rules
 
 | Transfer/Access     | Description                                      |
 | ---------- | ---------------------------------------- |
-| Initialization and update from the parent component| Forbidden. Only the attribute corresponding to the key in AppStorage can be initialized. If there is no corresponding key, the local default value is used for initialization.|
-| Child component initialization    | Supported. The \@StorageProp decorated variable can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
-| Access from outside the component | Not supported.                                      |
+| Initialization and update from the parent component| Prohibited. Only initialization using the property corresponding to the key in AppStorage is supported. If the corresponding key does not exist, initialization uses the local default value.|
+| Child component initialization    | Supported. Can be used to initialize variables decorated with [\@State](./arkts-state.md), [\@Link](./arkts-link.md), [\@Prop](./arkts-prop.md), or [\@Provide](./arkts-provide-and-consume.md).|
+| Access from outside the component | No                                      |
 
 
   **Figure 1** \@StorageProp initialization rule 
@@ -69,28 +64,22 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 
 - When the decorated variable is of the Boolean, string, or number type, its value change can be observed.
 
-- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes can be observed. For details, see [Example of Using AppStorage and LocalStorage Inside the UI](#example-of-using-appstorage-and-localstorage-inside-the-ui).
+- When the decorated variable is of the class or object type, the complete object reassignment and property-level changes can be observed. For details, see [Using AppStorage from Inside the UI](#using-appstorage-from-inside-the-ui).
 
-- When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed.
+- When the decorated object is an array, changes including array item addition, deletion, and updates can be observed.
 
-- When the decorated variable is of the Date type, the value change of the **Date** object can be observed, and the following APIs can be called to update **Date** properties: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**. For details, see [Decorating Variables of the Date Type](#decorating-variables-of-the-date-type).
+- When the decorated object is of the Date type, the following changes can be observed: (1) complete **Date** object reassignment; (2) property changes caused by calling **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, or **setUTCMilliseconds**. For details, see [Decorating Variables of the Date Type](#decorating-variables-of-the-date-type).
 
-- When the decorated variable is **Map**, value changes of **Map** can be observed. In addition, you can call the **set**, **clear**, and **delete** APIs of **Map** to update its value. For details, see [Decorating Variables of the Map Type](#decorating-variables-of-the-map-type).
+- When the decorated object is of the **Map** type, the following changes can be observed: (1) complete **Map** object reassignment; (2) changes caused by calling **set**, **clear**, or **delete**. For details, see [Decorating Variables of the Map Type](#decorating-variables-of-the-map-type).
 
-- When the decorated variable is **Set**, value changes of **Set** can be observed. In addition, you can call the **add**, **clear**, and **delete** APIs of **Set** to update its value. For details, see [Decorating Variables of the Set Type](#decorating-variables-of-the-set-type).
+- When the decorated object is of the **Set** type, the following changes can be observed: (1) complete **Set** object reassignment; (2) changes caused by calling **add**, **clear**, or **delete**. For details, see [Decorating Variables of the Set Type](#decorating-variables-of-the-set-type).
 
 
 **Framework Behavior**
 
+1. When a variable decorated with \@StorageProp(key) is modified, the change will not be written back to the corresponding property in AppStorage. The change will trigger a re-render of the custom component and only applies to the private member variable of the current component. Other data bound to the same key will not be synchronized.
 
-- When the value change of the \@StorageProp(key) decorated variable is observed, the change is not synchronized to the attribute with the given key in AppStorage.
-
-- The value change of the \@StorageProp(key) decorated variable only applies to the private member variables of the current component, but not other variables bound to the key.
-
-- When the data decorated by \@StorageProp(key) is a state variable, the change of the data is not synchronized to AppStorage, but the owning custom component is re-rendered.
-
-- When the attribute with the given key in AppStorage is updated, the change is synchronized to all the \@StorageProp(key) decorated data, and the local changes of the data are overwritten.
-
+2. When the property corresponding to the given key in AppStorage changes, all variables decorated with \@StorageProp(key) will be synchronized and updated, and any local changes will be overwritten.
 
 ## \@StorageLink
 
@@ -98,20 +87,20 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 >
 > This decorator can be used in atomic services since API version 11.
 
-\@StorageLink(key) creates a two-way data synchronization between the variable it decorates and the attribute with the given key in AppStorage.
+\@StorageLink(key) creates a two-way data synchronization between the variable it decorates and the property with the given key in AppStorage.
 
 1. Local changes are synchronized to AppStorage.
 
-2. Any change in AppStorage is synchronized to the attribute with the given key in all scenarios, including one-way bound variables (\@StorageProp decorated variables and one-way bound variables created through \@Prop), two-way bound variables (\@StorageLink decorated variables and two-way bound variables created through \@Link), and other instances (such as PersistentStorage).
+2. Any change in AppStorage is synchronized to the properties bound to the given key in all scenarios, including one-way bound variables (\@StorageProp decorated variables and one-way bound variables created through [@Prop](./arkts-prop.md)), two-way bound variables (\@StorageLink decorated variables and two-way bound variables created through **link**), and other instances (such as PersistentStorage).
 
-### Rules of Use
+### Usage Rules
 
-| \@StorageLink Decorator| Description                                      |
-| ------------------ | ---------------------------------------- |
-| Decorator parameters             | **key**: constant string, mandatory (the string must be quoted)                 |
-| Allowed variable types         | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) Map, Set, and Date types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior-1).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions.<br>**any** is not supported. **undefined** and **null** are supported since API version 12.<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, **string \| number**, **string \| undefined**, or **ClassA \| null**. For details, see [Union Type](#union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@StorageLink("AA") a: number \| null = null** is supported, but **@StorageLink("AA") a: number = null** is not.|
-| Synchronization type              | Two-way: from the attribute in AppStorage to the custom component variable and vice versa|
-| Initial value for the decorated variable         | Mandatory. If the attribute does not exist in AppStorage, it will be created and initialized with this value.|
+| \@StorageLink Decorator| Description                                                        |
+| ----------------------- | ------------------------------------------------------------ |
+| Parameters             | **key**: constant string, mandatory (the string must be quoted)                 |
+| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>(Applicable to API version 12 or later) **Map**, **Set**, **Date**, **undefined**, and **null**. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior-1).<br>(Applicable to API version 12 or later) Union type of the preceding types, for example, **string \| number, string \| undefined**, or **ClassA \| null**. For details, see [Using Union Types in AppStorage](#using-union-types-in-appstorage).<br>**Notice**<br>The variable type must be specified. Whenever possible, use the same type as that of the corresponding property in AppStorage. Otherwise, implicit type conversion occurs, causing application behavior exceptions.<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@StorageLink('AA') a: number \| null = null** is supported, but **@StorageLink('AA') a: number = null** is not.<br>**any** is not supported.|
+| Synchronization type               | Two-way: from the property in AppStorage to the custom component variable and vice versa|
+| Initial value for the decorated variable     | Mandatory. If the property does not exist in AppStorage, it will be created and initialized with this value.|
 
 
 ### Variable Transfer/Access Rules
@@ -136,28 +125,28 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 
 - When the decorated variable is of the Boolean, string, or number type, its value change can be observed.
 
-- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes can be observed. For details, see [Example of Using AppStorage and LocalStorage Inside the UI](#example-of-using-appstorage-and-localstorage-inside-the-ui).
+- When the decorated variable is of the class or object type, the complete object reassignment and property-level changes can be observed. For details, see [Using AppStorage from Inside the UI](#using-appstorage-from-inside-the-ui).
 
-- When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed.
+- When the decorated object is an array, changes including array item addition, deletion, and updates can be observed.
 
-- When the decorated variable is of the Date type, the value change of the **Date** object can be observed, and the following APIs can be called to update **Date** properties: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**. For details, see [Decorating Variables of the Date Type](#decorating-variables-of-the-date-type).
+- When the decorated object is of the **Date** type, the following changes can be observed: (1) complete **Date** object reassignment; (2) property changes caused by calling **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, or **setUTCMilliseconds**. For details, see [Decorating Variables of the Date Type](#decorating-variables-of-the-date-type).
 
-- When the decorated variable is **Map**, value changes of **Map** can be observed. In addition, you can call the **set**, **clear**, and **delete** APIs of **Map** to update its value. For details, see [Decorating Variables of the Map Type](#decorating-variables-of-the-map-type).
+- When the decorated object is of the **Map** type, the following changes can be observed: (1) complete **Map** object reassignment; (2) changes caused by calling **set**, **clear**, or **delete**. For details, see [Decorating Variables of the Map Type](#decorating-variables-of-the-map-type).
 
-- When the decorated variable is **Set**, value changes of **Set** can be observed. In addition, you can call the **add**, **clear**, and **delete** APIs of **Set** to update its value. For details, see [Decorating Variables of the Set Type](#decorating-variables-of-the-set-type).
+- When the decorated object is of the **Set** type, the following changes can be observed: (1) complete **Set** object reassignment; (2) changes caused by calling **add**, **clear**, or **delete**. For details, see [Decorating Variables of the Set Type](#decorating-variables-of-the-set-type).
 
 
 **Framework Behavior**
 
 
-1. When the value change of the \@StorageLink(key) decorated variable is observed, the change is synchronized to the attribute with the given key in AppStorage.
+1. Changes to variables decorated with \@StorageLink(key) are automatically written back to the corresponding property in AppStorage.
 
-2. Once the attribute with the given key in AppStorage is updated, all the data (including \@StorageLink and \@StorageProp decorated variables) bound to the key is changed synchronously.
+2. When the value of a key in AppStorage changes, all data bound to that key (including both two-way binding with \@StorageLink and one-way binding with \@StorageProp) will be synchronized.
 
-3. When the data decorated by \@StorageLink(key) is a state variable, its change is synchronized to AppStorage, and the owning custom component is re-rendered.
+3. When a variable decorated by \@StorageLink(key) is updated, the change is synchronized back to the corresponding key in AppStorage and triggers re-rendering of the owning custom component.
 
 
-## Restrictions
+## Constraints
 
 1. The parameter of \@StorageProp and \@StorageLink must be of the string type. Otherwise, an error is reported during compilation.
 
@@ -168,7 +157,7 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
     @StorageProp() storageProp: number = 1;
     @StorageLink() storageLink: number = 2;
 
-    // Correct format.
+    // Correct usage.
     @StorageProp('PropA') storageProp: number = 1;
     @StorageLink('PropA') storageLink: number = 2;
     ```
@@ -177,20 +166,19 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 
 3. When using AppStorage together with [PersistentStorage](arkts-persiststorage.md) and [Environment](arkts-environment.md), pay attention to the following:
 
-    (1) After an attribute is created in AppStorage, a call to **PersistentStorage.persistProp()** uses the attribute value in AppStorage and overwrites any attribute with the same name in PersistentStorage. In light of this, the opposite order of calls is recommended. For an example of incorrect usage, see [Accessing an Attribute in AppStorage Before PersistentStorage](arkts-persiststorage.md#accessing-an-attribute-in-appstorage-after-persistentstorage).
+    1. If a property exists in AppStorage before PersistentStorage.[persistProp](../../reference/apis-arkui/arkui-ts/ts-state-management.md#persistpropdeprecated) is called, the value in AppStorage will overwrite the value in PersistentStorage. As such, when possible, initialize PersistentStorage properties first. For an example with incorrect usage, see [Accessing a Property in AppStorage Before PersistentStorage](arkts-persiststorage.md#accessing-a-property-in-appstorage-before-persistentstorage).
 
-    (2) After an attribute is created in AppStorage, a call to **Environment.envProp()** with the same attribute name will fail. This is because environment variables will not be written into AppStorage. Therefore, you are advised not to use the preset environment variable names in AppStorage.
+    2. If a property has already been created in AppStorage, subsequent calls to Environment.[envProp](../../reference/apis-arkui/arkui-ts/ts-state-management.md#envprop10) to create a property with the same name will fail. Since AppStorage already contains a property with that name, the Environment variable will not be written to AppStorage. Therefore, avoid using the preset Environment variable names in AppStorage.
 
-    (3) Changes to the variables decorated by state decorators will cause UI re-rendering. If the changes are for message communication, rather than for UI re-rendering, the emitter mode is recommended. For the example, see <!--Del-->[<!--DelEnd-->**Unrecommended: Using @StorageLink to Implement Event Notification**<!--Del-->](#unrecommended-using-storagelink-to-implement-event-notification)<!--DelEnd-->.
+4. Changes to variables decorated with state decorators will trigger UI re-rendering. If a variable is modified only for message passing (not for UI updates), using the **emitter** API is recommended. For the example, see [Avoiding @StorageLink for Event Notification](#avoiding-storagelink-for-event-notification).
 
+5. AppStorage is shared within the same process. Since the UIAbility and <!--Del-->[<!--DelEnd-->UIExtensionAbility<!--Del-->](../../application-models/uiextensionability.md)<!--DelEnd--> run in separate processes, the UIExtensionAbility does not share the AppStorage of the main process.
 
 ## Use Scenarios
 
+### Using AppStorage and LocalStorage in Application Logic
 
-### Example of Using AppStorage and LocalStorage in Application Logic
-
-Since AppStorage is a singleton, its APIs are all static. How these APIs work resembles the non-static APIs of LocalStorage.
-
+AppStorage is implemented as a singleton, with all its APIs exposed as static methods. How these APIs work resembles the non-static APIs of LocalStorage.
 
 ```ts
 AppStorage.setOrCreate('PropA', 47);
@@ -217,10 +205,10 @@ prop.get() // == 49
 ```
 
 
-### Example of Using AppStorage and LocalStorage Inside the UI
+### Using AppStorage from Inside the UI
 
-\@StorageLink works together with AppStorage in the same way as \@LocalStorageLink works together with LocalStorage. It creates two-way data synchronization with an attribute in AppStorage.
-
+@StorageLink works in conjunction with AppStorage to establish two-way data synchronization using properties stored in AppStorage.
+@StorageProp works in conjunction with AppStorage to establish one-way data synchronization using properties stored in AppStorage.
 
 ```ts
 class Data {
@@ -271,14 +259,13 @@ struct Index {
 }
 ```
 
-### Unrecommended: Using @StorageLink to Implement Event Notification
+### Avoiding @StorageLink for Event Notification
 
-The two-way synchronization mechanism of @StorageLink and AppStorage is not recommended. This is because the variables in AppStorage may be bound to components on different pages, but the event notifications may not be sent to all these components. In addition, any change to the @StorageLink decorated variables may trigger UI re-rendering, bringing negative impact on the performance.
+For performance considerations, using the two-way synchronization mechanism between @StorageLink and AppStorage for event notification is not recommended: (1) Variables in AppStorage may be bound to components across multiple pages, while event notifications typically do not need to be broadcast to all these components. (2) When @StorageLink decorated variables are used in UI, changes trigger component re-renders, causing performance overhead even when no visual updates are required.
 
-In the following example, any click event in the **TapImage** component will trigger a change of the **tapIndex** attribute. As @StorageLink establishes a two-way data synchronization with AppStorage, the local change is synchronized to AppStorage. As a result, all custom components owning the **tapIndex** attribute bound to AppStorage are notified of the change. After @Watch observes the change to **tapIndex**, the state variable **tapColor** is updated, and the UI is re-rendered. (Because **tapIndex** is not directly bound to the UI, its change does not directly trigger UI re-rendering.)
+In the following example, any click event in the **TapImage** component will trigger a change of the **tapIndex** property. As @StorageLink establishes a two-way data synchronization with AppStorage, the local change is synchronized to AppStorage. As a result, all custom components bound to the **tapIndex** property in AppStorage are notified of the change. After @Watch observes the change to **tapIndex**, the state variable **tapColor** is updated, triggering UI re-rendering. (Because **tapIndex** is not directly bound to the UI, its change does not directly trigger UI re-rendering.)
 
-To use the preceding mechanism to implement event notification, ensure that variables in AppStorage are not directly bound to the UI and the @Watch decorated function is as simple as possible. (If the @Watch decorated function takes a long time to execute, the UI re-rendering efficiency will be affected.)
-
+When using this mechanism for event notification, make sure the property in AppStorage is not directly bound to the UI and control the complexity of the [@Watch](./arkts-watch.md) function：If the @Watch function execution time is too long, it will impact UI re-rendering efficiency.
 
 ```ts
 // xxx.ets
@@ -363,12 +350,11 @@ Compared with the use of @StorageLink, the use of **emit** implements event noti
 >
 > The **emit** API is not available in DevEco Studio Previewer.
 
-
 ```ts
 // xxx.ets
 import { emitter } from '@kit.BasicServicesKit';
 
-let NextID: number = 0;
+let nextId: number = 0;
 
 class ViewData {
   title: string;
@@ -379,7 +365,7 @@ class ViewData {
   constructor(title: string, uri: Resource) {
     this.title = title;
     this.uri = uri;
-    this.id = NextID++;
+    this.id = nextId++;
   }
 }
 
@@ -540,7 +526,7 @@ export struct TapImage {
 ```
 
 
-### Union Type
+### Using Union Types in AppStorage
 
 In the following example, the type of variable **A** is **number | null**, and the type of variable **B** is **number | undefined**. The **Text** components display **null** and **undefined** upon initialization, numbers when clicked, and **null** and **undefined** when clicked again.
 
@@ -753,7 +739,7 @@ struct Index {
   @StorageProp('PropA') @Watch('onChange') propA: boolean = false;
 
   onChange() {
-    console.log(`propA change`);
+    console.info(`propA change`);
   }
 
   aboutToAppear(): void {
@@ -766,15 +752,15 @@ struct Index {
       Button('change')
         .onClick(() => {
           AppStorage.setOrCreate('PropA', false);
-          console.log(`PropA: ${this.propA}`);
+          console.info(`PropA: ${this.propA}`);
         })
     }
   }
 }
 ```
 
-In the preceding example, the value of **PropA** has been changed to **true** locally before the click event, but the value stored in **AppStorage** is still **false**. When the click event attempts to update the value of **PropA** to **false** through the **setOrCreate** API, the value of @StorageProp remains **true** because the local value and stored value of **PropA** are the same.
+In the preceding example, the value of **PropA** has been changed to **true** locally before the click event, while the value stored in AppStorage remains **false**. When the click event attempts to update the value of **PropA** to **false** through the **setOrCreate** API, no synchronization is triggered because the value in AppStorage is already **false** (matching the new value). As a result, the value of the @StorageProp decorated variable remains **true**.
 
-To synchronize the two values, use either of the following methods:
-(1) Change \@StorageProp to \@StorageLink.
-(2) Use **AppStorage.setOrCreate('PropA', true)** to change the value locally.
+To achieve synchronization, there are two approaches:
+1. Change \@StorageProp to \@StorageLink.
+2. Use **AppStorage.setOrCreate('propA', true)** to change the local value.

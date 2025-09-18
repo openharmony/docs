@@ -12,7 +12,7 @@ If the C++ implementation can ensure thread safety, the C++ part of the NativeBi
 ![nativeBinding](figures/nativeBinding.png)
 
 
-A typical shared-mode NativeBinding object includes context. A context object contains contextual information for application components and provides a way to access system services and resources, enabling the application components to interact with the system. For details about how to obtain context, see [Context (Stage Model)](../application-models/application-context-stage.md).
+A typical shared-mode NativeBinding object includes context. A context object contains the context information of application components and provide the capability to access system services and resources, enabling the application components to interact with the system. For details about how to obtain context, see [Context (Stage Model)](../application-models/application-context-stage.md).
 
 For details about the development example, see [Using TaskPool for Frequent Database Operations](batch-database-operations-guide.md#using-taskpool-for-frequent-database-operations).
 
@@ -27,12 +27,12 @@ A typical transfer-mode NativeBinding object includes a PixelMap. The [PixelMap 
 
 ### Usage Example
 
-Here is an example of passing a PixelMap object across threads to help you better understand the process. First, obtain the image resource from the **rawfile** folder, and then create a PixelMap object in the child thread and pass it to the main thread. The specific implementation is as follows:
+Here is an example of passing a PixelMap object across threads. Obtain the image resource from the **rawfile** folder, and create a PixelMap object in the child thread and pass it to the main thread. The specific implementation is as follows:
 
 ```ts
 // Index.ets
 import { taskpool } from '@kit.ArkTS';
-import { loadPixelMap } from './pixelMapTest';
+import { loadPixelMap } from './PixelMapTest';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
@@ -82,7 +82,7 @@ struct Index {
 ```
 
 ```ts
-// pixelMapTest.ets
+// PixelMapTest.ets
 import { image } from '@kit.ImageKit';
 
 @Concurrent

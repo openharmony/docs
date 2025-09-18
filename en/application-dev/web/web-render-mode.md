@@ -19,7 +19,6 @@ The **Web** component is expected to display the application page as the main bo
 
 In synchronous rendering mode (renderMode: [RenderMode](../reference/apis-arkweb/ts-basic-components-web-e.md#rendermode12).SYNC_RENDER), the Web component is treated as the graphics canvas node and is displayed together with the system component. In this case, longer **Web** component content can be rendered, but the performance consumption increases.
 
-- The width and height of a **Web** component cannot exceed 500,000 px (physical pixels). Otherwise, a white screen is displayed.
 - Direct Digital Synthesis (DSS) is not supported.
 - Dynamic mode switching is not supported.
 

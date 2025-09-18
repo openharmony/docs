@@ -6,7 +6,7 @@ You can use the APIs in the **ImageReceiver** class to create a **PreviewOutput*
 
 Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API reference.
 
-1. Import the NDK, which provides camera-related attributes and methods.
+1. Import the NDK, which provides camera-related properties and methods.
 
    ```c++
    // Include the NDK header files.

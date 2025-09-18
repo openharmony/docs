@@ -17,7 +17,7 @@ import { common } from '@kit.AbilityKit';
 
 saveEditedContentWithUri(uri: string): Promise\<AbilityResult\>
 
-传入编辑过的图片的uri并保存。
+传入编辑过的图片的uri并保存。使用Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -105,7 +105,7 @@ struct Index {
 
 saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption): Promise\<AbilityResult\>
 
-传入编辑过的图片的PixMap对象并保存。
+传入编辑过的图片的PixMap对象并保存。使用Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 

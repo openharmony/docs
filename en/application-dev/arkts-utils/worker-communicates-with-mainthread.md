@@ -22,20 +22,18 @@ The following example demonstrates how a Worker can respond to a "hello world" r
    }
    ```
 
-2. In the host thread (UI main thread), create a Worker object. Use the **postMessage** method to send a message to the Worker thread when a button is clicked, and use the **onmessage** method of Worker to receive the response.
+2. Create a Worker object on the host thread (the UI main thread). When a button is clicked, send a message to the Worker thread using **postMessage**. The Worker thread processes messages from the host thread through its registered **onmessage** callback.
 
    ```ts
    // Index.ets
    import { worker } from '@kit.ArkTS';
-   import { BusinessError } from '@kit.BasicServicesKit';
    
    function promiseCase() {
      let p: Promise<void> = new Promise<void>((resolve: Function, reject: Function) => {
        setTimeout(() => {
-         resolve(1);
-       }, 100)
-     }).then(undefined, (error: BusinessError) => {
-     })
+         resolve();
+       }, 100);
+     });
      return p;
    }
    

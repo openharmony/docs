@@ -6,7 +6,7 @@ Before developing a camera application, you must call the camera APIs to create 
 
 Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
-1. Import the camera module, which provides camera-related attributes and methods.
+1. Import the camera module, which provides camera-related properties and methods.
 
    ```ts
    import { camera } from '@kit.CameraKit';

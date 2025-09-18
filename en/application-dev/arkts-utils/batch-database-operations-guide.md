@@ -65,7 +65,7 @@ async function query(context: Context): Promise<Array<relationalStore.ValuesBuck
 
   // Obtain the result set.
   let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates("test");
-  let resultSet = await store.query(predicates); // Query all data.
+  let resultSet = await store.query(predicates);  // Query all data.
   console.info(`Query data successfully! row count:${resultSet.rowCount}`);
   let index = 0;
   let result = new Array<relationalStore.ValuesBucket>(resultSet.rowCount)
@@ -371,7 +371,7 @@ For complex regular class instances, you can first wrap the relevant database da
    }
    ```
 
-3. Initiate from the UI main thread and perform Create, Read, Update, Delete (CRUD) operations in the background thread.
+3. The UI main thread initiates a database operation request and performs operations such as adding, deleting, modifying, and querying the data in the child thread.
 
    ```ts
    // Index.ets

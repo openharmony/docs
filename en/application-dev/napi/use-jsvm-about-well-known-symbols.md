@@ -26,20 +26,22 @@ JSVM-API provides APIs for obtaining 11 well-known symbols.
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in obtaining the well-known symbols.
+For details, see the JSVM-API interface development process in [Using JSVM-API to Implement Interaction Between JS and C/C++](use-jsvm-process.md). This document describes only the C++ code corresponding to the interface.
 
 ### OH_JSVM_GetSymbolToStringTag
 
 CPP code:
 
 ```cpp
+#include <string>
+
 static JSVM_Value WellKnownSymbols(JSVM_Env env, JSVM_CallbackInfo info) {
     JSVM_VM vm;
     OH_JSVM_GetVM(env, &vm);
 
     JSVM_HandleScope handleScope;
     OH_JSVM_OpenHandleScope(env, &handleScope);
-    string src = R"JS(Symbol.toStringTag)JS";
+    std::string src = R"JS(Symbol.toStringTag)JS";
     JSVM_Value jsSrc;
     JSVM_Script script;
     JSVM_Value result1;

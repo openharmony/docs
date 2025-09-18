@@ -76,10 +76,10 @@ createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): voi
 
 Creates an image or video asset with the specified file name. This API uses an asynchronous callback to return the result.
 
-The file name must comply with the following specifications:
-- The file name consists of a valid file name and an image or video file name extension.
-- The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>API version 18 and later: \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
+The file name must meet the following requirements:
+- A valid file name must include a base name and a supported image or video extension.
+- The total length of the file name must be between 1 and 255 characters.
+- The base name must not contain any invalid characters.<br>Starting from API version 18, the following characters are considered invalid: \ / : * ? " < > | <br>For API versions 10 to 17, the following characters are considered invalid: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -132,10 +132,10 @@ createAsset(displayName: string): Promise&lt;PhotoAsset&gt;
 
 Creates an image or video asset with the specified file name. This API uses a promise to return the result.
 
-The file name must comply with the following specifications:
-- The file name consists of a valid file name and an image or video file name extension.
-- The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>API version 18 and later: \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
+The file name must meet the following requirements:
+- A valid file name must include a base name and a supported image or video extension.
+- The total length of the file name must be between 1 and 255 characters.
+- The base name must not contain any invalid characters.<br>Starting from API version 18, the following characters are considered invalid: \ / : * ? " < > | <br>For API versions 10 to 17, the following characters are considered invalid: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -192,10 +192,10 @@ createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCal
 
 Creates an image or video asset with the specified file name and options. This API uses an asynchronous callback to return the result.
 
-The file name must comply with the following specifications:
-- The file name consists of a valid file name and an image or video file name extension.
-- The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>API version 18 and later: \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
+The file name must meet the following requirements:
+- A valid file name must include a base name and a supported image or video extension.
+- The total length of the file name must be between 1 and 255 characters.
+- The base name must not contain any invalid characters.<br>Starting from API version 18, the following characters are considered invalid: \ / : * ? " < > | <br>For API versions 10 to 17, the following characters are considered invalid: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -252,10 +252,10 @@ createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoA
 
 Creates an image or video asset with the specified file name and options. This API uses a promise to return the result.
 
-The file name must comply with the following specifications:
-- The file name consists of a valid file name and an image or video file name extension.
-- The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>API version 18 and later: \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
+The file name must meet the following requirements:
+- A valid file name must include a base name and a supported image or video extension.
+- The total length of the file name must be between 1 and 255 characters.
+- The base name must not contain any invalid characters.<br>Starting from API version 18, the following characters are considered invalid: \ / : * ? " < > | <br>For API versions 10 to 17, the following characters are considered invalid: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -317,9 +317,9 @@ createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 Creates an album. This API uses an asynchronous callback to return the result.
 
 The album name must meet the following requirements:
-- The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
-- The album name is case-insensitive.
+- The total length of the album name must be between 1 and 255 characters.
+- It must not contain any invalid characters, which are:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- It is case-insensitive.
 - Duplicate album names are not allowed.
 
 > **NOTE**
@@ -377,8 +377,8 @@ createAlbum(name: string): Promise&lt;Album&gt;
 Creates an album. This API uses a promise to return the result.
 
 The album name must meet the following requirements:
-- The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The total length of the album name must be between 1 and 255 characters.
+- It must not contain any invalid characters, which are:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -4670,10 +4670,10 @@ static createAssetRequest(context: Context, displayName: string, options?: Photo
 
 Creates an asset change request with the specified file name.
 
-The file name must comply with the following specifications:
-- The file name consists of a valid file name and an image or video file name extension.
-- The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br>API version 18 and later: \ / : * ? " < > | <br>API versions 10 to 17: . .. \ / : * ? " ' ` < > | { } [ ]
+The file name must meet the following requirements:
+- A valid file name must include a base name and a supported image or video extension.
+- The total length of the file name must be between 1 and 255 characters.
+- The base name must not contain any invalid characters.<br>Starting from API version 18, the following characters are considered invalid: \ / : * ? " < > | <br>For API versions 10 to 17, the following characters are considered invalid: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -5202,7 +5202,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 static deleteLocalAssetsPermanently(context: Context, assets: Array\<PhotoAsset>): Promise&lt;void&gt;
 
-Permanently deletes photos or videos in batches. This API uses a promise to return the result.
+Permanently deletes images or videos in batches. This API uses a promise to return the result.
 
 **NOTE**: This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
 
@@ -5607,9 +5607,9 @@ static createAlbumRequest(context: Context, name: string): MediaAlbumChangeReque
 
 Creates a MediaAlbumChangeRequest instance.
 
-The album name must comply with the following specifications:
-- The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+The album name must meet the following requirements:
+- The total length of the album name must be between 1 and 255 characters.
+- It must not contain any invalid characters, which are:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -6756,8 +6756,8 @@ Sets the subtitle for this **Highlights** album instance.
 
 The subtitle must meet the following requirements:
 
-- The subtitle string contains 0 to 255 characters.
-- The subtitle cannot contain any of the following characters:<br> . \ / : * ? " ' ` < > | { } [ ]
+- The total length of the subtitle must be between 0 and 255 characters.
+- It must not contain any invalid characters, which are:<br> . \ / : * ? " ' ` < > | { } [ ]
 - The subtitle is case-insensitive.
 
 **System API**: This is a system API.
@@ -7283,7 +7283,7 @@ Submits cloud enhancement tasks.
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
 | photoAssets | Array<[PhotoAsset](#photoasset)> | Yes  | [PhotoAsset](#photoasset) to enhance.|
-| hasCloudWatermark | boolean | Yes  | Whether to add a cloud watermark to the enhanced image. The value **true** means to add the watermark, and **false** means the opposite.|
+| hasCloudWatermark | boolean | Yes  | Whether to add a cloud watermark to the enhanced image. **true** to add, **false** otherwise.|
 | triggerMode | number | No  | Trigger mode of the cloud enhancement task.<br>**- 0**: manually triggered.<br>**- 1**: automatically triggered.<br>The default value is **0**.|
 
 **Return value**
@@ -8154,7 +8154,7 @@ Enumerate the album subtypes.
 | HIDDEN                            | 1027       | Hidden album. **System API**: This is a system API.        |
 | TRASH                             | 1028       | Trash. **System API**: This is a system API.         |
 | SCREENSHOT                        | 1029       | Album for screenshots and screen recording files. **System API**: This is a system API.     |
-| CAMERA                            | 1030       | Album for photos and videos taken by the camera. **System API**: This is a system API.|
+| CAMERA                            | 1030       | Album for images and videos taken by the camera. **System API**: This is a system API.|
 | SOURCE\_GENERIC<sup>11+</sup>     | 2049       | Source album. **System API**: This is a system API.        |
 | CLASSIFY<sup>11+</sup>            | 4097       | Classified album. **System API**: This is a system API.        |
 | GEOGRAPHY\_LOCATION<sup>11+</sup> | 4099       | Geographic location album. **System API**: This is a system API.        |

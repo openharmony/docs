@@ -108,6 +108,7 @@ class C {
 let c: C = {name : "Dylan", age : "13"};
 let result4 = list.add(c);
 let result5 = list.add(false);
+console.log("result = ", result5) // result =  true
 ```
 
 ### insert
@@ -271,6 +272,7 @@ list.add(1);
 list.add(2);
 list.add(4);
 let result = list.getLastIndexOf(2);
+console.log("result = ", result); // result = 5
 ```
 
 ### getIndexOf
@@ -314,7 +316,8 @@ list.add(2);
 list.add(1);
 list.add(2);
 list.add(4);
-let result = list.getIndexOf(2);
+let result = list.getIndexOf(2); 
+console.log("result = ", result); // result = 0
 ```
 
 ### equal
@@ -444,6 +447,7 @@ list.add(4);
 list.add(5);
 list.add(4);
 let result = list.remove(2);
+console.log("result = ", result); // result = true
 ```
 
 ### replaceAllElements
@@ -500,7 +504,7 @@ list.replaceAllElements((value: number) => {
 forEach(callbackFn: (value: T, index?: number, List?: List&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the elements in this List and obtain their indexes.
+Uses a callback to traverse each element in the **List** instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -510,7 +514,7 @@ Uses a callback to traverse the elements in this List and obtain their indexes.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes| Callback invoked for the replacement.|
+| callbackFn | function | Yes| Callback function.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
 callbackFn parameters
@@ -584,7 +588,7 @@ list.add(4);
 list.add(5);
 list.add(4);
 list.sort((a: number, b: number) => a - b); // The elements are sorted in ascending order.
-list.sort((a: number, b: number) => b - a); // The elements are sorted in descending order.
+list.sort((a: number, b: number) => b - a); // result: 1,2,3,4
 ```
 
 ### getSubList

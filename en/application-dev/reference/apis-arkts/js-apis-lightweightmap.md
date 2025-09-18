@@ -11,7 +11,7 @@ Compared with [HashMap](js-apis-hashmap.md), which can also store KV pairs, Ligh
 **Recommended use case**: Use LightWeightMap when you need to store and access KV pairs.
 
 This topic uses the following to identify the use of generics:
-- K: Key
+- K: Key<br>
 - V: Value
 
 > **NOTE**
@@ -135,7 +135,8 @@ lightWeightMap.set("squirrel", 123);
 lightWeightMap.set("sparrow", 356);
 let map: LightWeightMap<string, number> = new LightWeightMap();
 map.set("sparrow", 356);
-let result = lightWeightMap.hasAll(map);
+let result = lightWeightMap.hasAll(map); 
+console.log("result = ", result); // result = true
 ```
 
 
@@ -220,9 +221,7 @@ let result = lightWeightMap.hasValue(123);
 
 increaseCapacityTo(minimumCapacity: number): void
 
-Increases the capacity of this LightWeightMap.
-
-If the passed-in capacity is greater than or equal to the number of elements in this LightWeightMap, the capacity is changed to the new capacity. If the passed-in capacity is less than the number of elements in this LightWeightMap, the capacity is not changed.
+Increases the capacity of this LightWeightMap. If the passed-in capacity is greater than or equal to the number of elements in this LightWeightMap, the capacity is changed to the new capacity. If the passed-in capacity is less than the number of elements in this LightWeightMap, the capacity is not changed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

@@ -4851,7 +4851,7 @@ getSensorListByDeviceSync(deviceId?: number): Array&lt;Sensor&gt;
 
 | 参数名          | 类型                                                         | 必填 | 说明     |
 | --------------- | ------------------------------------------------------------ | ---- |--------|
-| deviceId | number                 | 否   | 设备ID，默认为查询本地设备，默认值为-1，表示本地设备，设备Id需通过[getSensorList](#sensorgetsensorlist9)或者监听设备上下线接口获取。 |
+| deviceId | number                 | 否   | 设备ID，默认为查询本地设备，默认值为-1，表示本地设备，设备ID需通过[getSensorList](#sensorgetsensorlist9)查询或者监听设备上下线接口[on](#sensorstatuschange19)获取。 |
 
 
 **返回值**：
@@ -4893,7 +4893,7 @@ getSingleSensorByDeviceSync(type: SensorId, deviceId?: number): Array&lt;Sensor&
 | 参数名          | 类型                                                         | 必填 | 说明       |
 | --------------- | ------------------------------------------------------------ | ---- |----------|
 | type     | [SensorId](#sensorid9) | 是   | 指定传感器类型。 |
-| deviceId | number                 | 否   | 设备ID，默认为查询本地设备，默认值为-1，表示本地设备，设备Id需通过[getSensorList](#sensorgetsensorlist9)或者监听设备上下线接口获取。  |
+| deviceId | number                 | 否   | 设备ID，默认为查询本地设备，默认值为-1，表示本地设备，设备ID需通过[getSensorList](#sensorgetsensorlist9)查询或者监听设备上下线接口[on](#sensorstatuschange19)获取。  |
 
 **返回值**：
 
@@ -6146,7 +6146,9 @@ try {
 
 表示当前支持订阅或取消订阅的传感器类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
 
 | 名称                        | 值   | 说明                                                         |
 | --------------------------- | ---- | ------------------------------------------------------------ |
@@ -6180,10 +6182,10 @@ try {
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 参数名 | 类型                   | 必填 | 说明                      |
-| ------ | ---------------------- | ---- |-------------------------|
-| deviceId   | number | 否   | 设备ID：默认值为-1，表示本地设备，设备Id需通过[getSensorList](#sensorgetsensorlist9)或者监听设备上下线接口获取。     |
-| sensorIndex   | number | 否   | 传感器索引：默认值为0，为设备上的默认传感器，其它传感器Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。 |
+| 名称          | 类型     | 只读  | 可选  | 说明             |
+|--------------|----------|-------|------|----------------- |
+| deviceId    | number    | 否    | 是    | 设备ID：默认值为-1，表示本地设备，设备ID需通过[getSensorList](#sensorgetsensorlist9)查询或者监听设备上下线接口[on](#sensorstatuschange19)获取。     |
+| sensorIndex | number    | 否    | 是    | 传感器索引：默认值为0，为设备上的默认传感器，其它传感器ID需通过[getSensorList](#sensorgetsensorlist9)查询或者监听设备上下线接口[on](#sensorstatuschange19)获取。 |
 
 
 ## SensorStatusEvent<sup>19+</sup>
@@ -6192,15 +6194,14 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-
-| 参数名 | 类型                    | 说明         |
-| ------ | ---------------------- | ------------ |
-| timestamp   | number  | 事件发生的时间戳。 |
-| sensorId   | number   | 传感器ID。 |
-| sensorIndex   | number   | 传感器索引。 |
-| isSensorOnline   | boolean   | 传感器上线或者下线，true为上线，false为下线。 |
-| deviceId   | number   | 设备ID。 |
-| deviceName   | string   | 设备名称。 |
+| 名称           | 类型     | 只读 | 可选 | 说明                          |
+|----------------|---------|-----|-----|-----------------------------|
+| timestamp      | number  | 否  | 否  | 事件发生的时间戳。                   |
+| sensorId       | number  | 否  | 否  | 传感器ID。                      |
+| sensorIndex    | number  | 否  | 否  | 传感器索引。                      |
+| isSensorOnline | boolean | 否  | 否  | 传感器上线或者下线，true为上线，false为下线。 |
+| deviceId       | number  | 否  | 否  | 设备ID。                       |
+| deviceName     | string  | 否  | 否  | 设备名称。                       |
 
 ## SensorAccuracy<sup>11+</sup>
 
@@ -6227,8 +6228,8 @@ try {
 
 | 名称      | 类型   | 只读 | 可选 | 说明                     |
 | --------- | ------ | ---- | ---- | ------------------------ |
-| timestamp | number | 是   | 是   | 传感器数据上报的时间戳。从设备开机开始计时到上报数据的时间，单位 : ns。 |
-| accuracy<sup>11+</sup> | [SensorAccuracy](#sensoraccuracy11)<sup>11+</sup> | 是   | 否   | 传感器数据上报的精度挡位值。 |
+| timestamp | number | 否   | 否   | 传感器数据上报的时间戳。从设备开机开始计时到上报数据的时间，单位 : ns。 |
+| accuracy<sup>11+</sup> | [SensorAccuracy](#sensoraccuracy11)<sup>11+</sup> | 否   | 否   | 传感器数据上报的精度挡位值。 |
 
 ## Sensor<sup>9+</sup>
 
@@ -6238,20 +6239,20 @@ try {
 
 | 名称                          | 类型      | 只读 | 可选 | 说明               |
 |-----------------------------|---------|----|----|------------------|
-| sensorName                  | string  | 是  | 否  | 传感器名称。           |
-| vendorName                  | string  | 是  | 否  | 传感器供应商。          |
-| firmwareVersion             | string  | 是  | 否  | 传感器固件版本。         |
-| hardwareVersion             | string  | 是  | 否  | 传感器硬件版本。         |
-| sensorId                    | number  | 是  | 否  | 传感器类型id。         |
-| maxRange                    | number  | 是  | 否  | 传感器测量范围的最大值。     |
-| minSamplePeriod             | number  | 是  | 否  | 允许的最小采样周期。       |
-| maxSamplePeriod             | number  | 是  | 否  | 允许的最大采样周期。       |
-| precision                   | number  | 是  | 否  | 传感器精度。           |
-| power                       | number  | 是  | 否  | 传感器功率的估计值，单位：mA。 |
-| sensorIndex<sup>19+</sup>   | number  | 是  | 是  | 传感器索引。           |
-| deviceId<sup>19+</sup>      | number  | 是  | 是  | 设备ID。            |
-| deviceName<sup>19+</sup>    | string  | 是  | 是  | 设备名称。            |
-| isLocalSensor<sup>19+</sup> | boolean | 是  | 是  | 是否本地传感器。         |
+| sensorName                  | string  | 否  | 否  | 传感器名称。           |
+| vendorName                  | string  | 否  | 否  | 传感器供应商。          |
+| firmwareVersion             | string  | 否  | 否  | 传感器固件版本。         |
+| hardwareVersion             | string  | 否  | 否  | 传感器硬件版本。         |
+| sensorId                    | number  | 否  | 否  | 传感器类型id。         |
+| maxRange                    | number  | 否  | 否  | 传感器测量范围的最大值。     |
+| minSamplePeriod             | number  | 否  | 否  | 允许的最小采样周期。       |
+| maxSamplePeriod             | number  | 否  | 否  | 允许的最大采样周期。       |
+| precision                   | number  | 否  | 否  | 传感器精度。           |
+| power                       | number  | 否  | 否  | 传感器功率的估计值，单位：mA。 |
+| sensorIndex<sup>19+</sup>   | number  | 否  | 是  | 传感器索引。           |
+| deviceId<sup>19+</sup>      | number  | 否  | 是  | 设备ID。            |
+| deviceName<sup>19+</sup>    | string  | 否  | 是  | 设备名称。            |
+| isLocalSensor<sup>19+</sup> | boolean | 否  | 是  | 是否本地传感器。         |
 
 ## AccelerometerResponse
 
@@ -6264,9 +6265,9 @@ try {
 
 | 名称 | 类型   | 只读 | 可选 | 说明                                                       |
 | ---- | ------ | ---- | ---- | ---------------------------------------------------------- |
-| x    | number | 是   | 是   | 施加在设备x轴的加速度，单位 : m/s²；取值为实际上报物理量。 |
-| y    | number | 是   | 是   | 施加在设备y轴的加速度，单位 : m/s²；取值为实际上报物理量。 |
-| z    | number | 是   | 是   | 施加在设备z轴的加速度，单位 : m/s²；取值为实际上报物理量。 |
+| x    | number | 否   | 否   | 施加在设备x轴的加速度，单位 : m/s²；取值为实际上报物理量。 |
+| y    | number | 否   | 否   | 施加在设备y轴的加速度，单位 : m/s²；取值为实际上报物理量。 |
+| z    | number | 否   | 否   | 施加在设备z轴的加速度，单位 : m/s²；取值为实际上报物理量。 |
 
 
 ## LinearAccelerometerResponse
@@ -6278,9 +6279,9 @@ try {
 
 | 名称 | 类型   | 只读 | 可选 | 说明                                     |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| x    | number | 是   | 是   | 施加在设备x轴的线性加速度，单位 : m/s²。 |
-| y    | number | 是   | 是   | 施加在设备y轴的线性加速度，单位 : m/s²。 |
-| z    | number | 是   | 是   | 施加在设备z轴的线性加速度，单位 : m/s²。 |
+| x    | number | 否   | 否   | 施加在设备x轴的线性加速度，单位 : m/s²。 |
+| y    | number | 否   | 否   | 施加在设备y轴的线性加速度，单位 : m/s²。 |
+| z    | number | 否   | 否   | 施加在设备z轴的线性加速度，单位 : m/s²。 |
 
 
 ## AccelerometerUncalibratedResponse
@@ -6292,12 +6293,12 @@ try {
 
 | 名称  | 类型   | 只读 | 可选 | 说明                                           |
 | ----- | ------ | ---- | ---- | ---------------------------------------------- |
-| x     | number | 是   | 是   | 施加在设备x轴未校准的加速度，单位 : m/s²。     |
-| y     | number | 是   | 是   | 施加在设备y轴未校准的加速度，单位 : m/s²。     |
-| z     | number | 是   | 是   | 施加在设备z轴未校准的加速度，单位 : m/s²。     |
-| biasX | number | 是   | 是   | 施加在设备x轴未校准的加速度偏量，单位 : m/s²。 |
-| biasY | number | 是   | 是   | 施加在设备y轴未校准的加速度偏量，单位 : m/s²。 |
-| biasZ | number | 是   | 是   | 施加在设备z轴未校准的加速度偏量，单位 : m/s²。 |
+| x     | number | 否   | 否   | 施加在设备x轴未校准的加速度，单位 : m/s²。     |
+| y     | number | 否   | 否   | 施加在设备y轴未校准的加速度，单位 : m/s²。     |
+| z     | number | 否   | 否   | 施加在设备z轴未校准的加速度，单位 : m/s²。     |
+| biasX | number | 否   | 否   | 施加在设备x轴未校准的加速度偏量，单位 : m/s²。 |
+| biasY | number | 否   | 否   | 施加在设备y轴未校准的加速度偏量，单位 : m/s²。 |
+| biasZ | number | 否   | 否   | 施加在设备z轴未校准的加速度偏量，单位 : m/s²。 |
 
 
 ## GravityResponse
@@ -6309,9 +6310,9 @@ try {
 
 | 名称 | 类型   | 只读 | 可选 | 说明                                     |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| x    | number | 是   | 是   | 施加在设备x轴的重力加速度，单位 : m/s²。 |
-| y    | number | 是   | 是   | 施加在设备y轴的重力加速度，单位 : m/s²。 |
-| z    | number | 是   | 是   | 施加在设备z轴的重力加速度，单位 : m/s²。 |
+| x    | number | 否   | 否   | 施加在设备x轴的重力加速度，单位 : m/s²。 |
+| y    | number | 否   | 否   | 施加在设备y轴的重力加速度，单位 : m/s²。 |
+| z    | number | 否   | 否   | 施加在设备z轴的重力加速度，单位 : m/s²。 |
 
 
 ## OrientationResponse
@@ -6325,9 +6326,9 @@ try {
 
 | 名称  | 类型   | 只读 | 可选 | 说明                                                  |
 | ----- | ------ | ---- | ---- | ----------------------------------------------------- |
-| alpha | number | 是   | 是   | 设备围绕Z轴的旋转角度，单位：度；取值范围为0-360度。  |
-| beta  | number | 是   | 是   | 设备围绕X轴的旋转角度，单位：度；取值范围为0-±180度。 |
-| gamma | number | 是   | 是   | 设备围绕Y轴的旋转角度，单位：度；取值范围为0-±90度。  |
+| alpha | number | 否   | 否   | 设备围绕Z轴的旋转角度，单位：度；取值范围为0-360度。  |
+| beta  | number | 否   | 否   | 设备围绕X轴的旋转角度，单位：度；取值范围为0-±180度。 |
+| gamma | number | 否   | 否   | 设备围绕Y轴的旋转角度，单位：度；取值范围为0-±90度。  |
 
 
 ## RotationVectorResponse
@@ -6339,10 +6340,10 @@ try {
 
 | 名称 | 类型   | 只读 | 可选 | 说明              |
 | ---- | ------ | ---- | ---- | ----------------- |
-| x    | number | 是   | 是   | 旋转矢量x轴分量。 |
-| y    | number | 是   | 是   | 旋转矢量y轴分量。 |
-| z    | number | 是   | 是   | 旋转矢量z轴分量。 |
-| w    | number | 是   | 是   | 标量，描述设备相对于某个参考方向的旋转状态，单位：弧度。            |
+| x    | number | 否   | 否   | 旋转矢量x轴分量。 |
+| y    | number | 否   | 否   | 旋转矢量y轴分量。 |
+| z    | number | 否   | 否   | 旋转矢量z轴分量。 |
+| w    | number | 否   | 否   | 标量，描述设备相对于某个参考方向的旋转状态，单位：弧度。            |
 
 
 ## GyroscopeResponse
@@ -6356,9 +6357,9 @@ try {
 
 | 名称 | 类型   | 只读 | 可选 | 说明                                                   |
 | ---- | ------ | ---- | ---- | ------------------------------------------------------ |
-| x    | number | 是   | 是   | 设备x轴的旋转角速度，单位rad/s；取值为实际上报物理量。 |
-| y    | number | 是   | 是   | 设备y轴的旋转角速度，单位rad/s；取值为实际上报物理量。 |
-| z    | number | 是   | 是   | 设备z轴的旋转角速度，单位rad/s；取值为实际上报物理量。 |
+| x    | number | 否   | 否   | 设备x轴的旋转角速度，单位rad/s；取值为实际上报物理量。 |
+| y    | number | 否   | 否   | 设备y轴的旋转角速度，单位rad/s；取值为实际上报物理量。 |
+| z    | number | 否   | 否   | 设备z轴的旋转角速度，单位rad/s；取值为实际上报物理量。 |
 
 
 ## GyroscopeUncalibratedResponse
@@ -6370,12 +6371,12 @@ try {
 
 | 名称  | 类型   | 只读 | 可选 | 说明                                       |
 | ----- | ------ | ---- | ---- | ------------------------------------------ |
-| x     | number | 是   | 是   | 设备x轴未校准的旋转角速度，单位rad/s。     |
-| y     | number | 是   | 是   | 设备y轴未校准的旋转角速度，单位rad/s。     |
-| z     | number | 是   | 是   | 设备z轴未校准的旋转角速度，单位rad/s。     |
-| biasX | number | 是   | 是   | 设备x轴未校准的旋转角速度偏量，单位rad/s。 |
-| biasY | number | 是   | 是   | 设备y轴未校准的旋转角速度偏量，单位rad/s。 |
-| biasZ | number | 是   | 是   | 设备z轴未校准的旋转角速度偏量，单位rad/s。 |
+| x     | number | 否   | 否   | 设备x轴未校准的旋转角速度，单位rad/s。     |
+| y     | number | 否   | 否   | 设备y轴未校准的旋转角速度，单位rad/s。     |
+| z     | number | 否   | 否   | 设备z轴未校准的旋转角速度，单位rad/s。     |
+| biasX | number | 否   | 否   | 设备x轴未校准的旋转角速度偏量，单位rad/s。 |
+| biasY | number | 否   | 否   | 设备y轴未校准的旋转角速度偏量，单位rad/s。 |
+| biasZ | number | 否   | 否   | 设备z轴未校准的旋转角速度偏量，单位rad/s。 |
 
 
 ## SignificantMotionResponse
@@ -6387,7 +6388,7 @@ try {
 
 | 名称   | 类型   | 只读 | 可选 | 说明                                                         |
 | ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| scalar | number | 是   | 是   | 表示剧烈运动程度。测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备是否存在大幅度运动；若存在大幅度运动则数据上报为1。 |
+| scalar | number | 否   | 否   | 表示剧烈运动程度。测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备是否存在大幅度运动；若存在大幅度运动则数据上报为1。 |
 
 
 ## ProximityResponse
@@ -6399,7 +6400,7 @@ try {
 
 | 名称     | 类型   | 只读 | 可选 | 说明                                                       |
 | -------- | ------ | ---- | ---- | ---------------------------------------------------------- |
-| distance | number | 是   | 是   | 可见物体与设备显示器的接近程度。0表示接近，大于0表示远离。 |
+| distance | number | 否   | 否   | 可见物体与设备显示器的接近程度。0表示接近，大于0表示远离。 |
 
 
 ## LightResponse
@@ -6411,9 +6412,9 @@ try {
 
 | 名称                            | 类型   | 只读 | 可选 | 说明                                                         |
 | ------------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| intensity                       | number | 是   | 是   | 光强（单位：勒克斯）。                                       |
-| colorTemperature<sup>12+</sup>  | number | 是   | 是   | 色温（单位：开尔文），可选参数，如果该参数不支持在js层返回未定义，支持则返回正常数值。 |
-| infraredLuminance<sup>12+</sup> | number | 是   | 是   | 红外亮度（单位：cd/m²），可选参数，如果该参数不支持在js层返回未定义，支持则返回正常数值。 |
+| intensity                       | number | 否   | 否   | 光强（单位：勒克斯）。                                       |
+| colorTemperature<sup>12+</sup>  | number | 否   | 否   | 色温（单位：开尔文），可选参数，如果该参数不支持在js层返回未定义，支持则返回正常数值。 |
+| infraredLuminance<sup>12+</sup> | number | 否   | 否   | 红外亮度（单位：cd/m²），可选参数，如果该参数不支持在js层返回未定义，支持则返回正常数值。 |
 
 
 ## HallResponse
@@ -6425,7 +6426,7 @@ try {
 
 | 名称   | 类型   | 只读 | 可选 | 说明                                                         |
 | ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| status | number | 是   | 是   | 显示霍尔状态。测量设备周围是否存在磁力吸引，0表示没有，大于0表示有。 |
+| status | number | 否   | 否   | 显示霍尔状态。测量设备周围是否存在磁力吸引，0表示没有，大于0表示有。 |
 
 
 ## MagneticFieldResponse
@@ -6437,9 +6438,9 @@ try {
 
 | 名称 | 类型   | 只读 | 可选 | 说明                         |
 | ---- | ------ | ---- | ---- | ---------------------------- |
-| x    | number | 是   | 是   | x轴环境磁场强度，单位 : μT。 |
-| y    | number | 是   | 是   | y轴环境磁场强度，单位 : μT。 |
-| z    | number | 是   | 是   | z轴环境磁场强度，单位 : μT。 |
+| x    | number | 否   | 否   | x轴环境磁场强度，单位 : μT。 |
+| y    | number | 否   | 否   | y轴环境磁场强度，单位 : μT。 |
+| z    | number | 否   | 否   | z轴环境磁场强度，单位 : μT。 |
 
 
 ## MagneticFieldUncalibratedResponse
@@ -6451,12 +6452,12 @@ try {
 
 | 名称  | 类型   | 只读 | 可选 | 说明                                   |
 | ----- | ------ | ---- | ---- | -------------------------------------- |
-| x     | number | 是   | 是   | x轴未校准环境磁场强度，单位 : μT。     |
-| y     | number | 是   | 是   | y轴未校准环境磁场强度，单位 : μT。     |
-| z     | number | 是   | 是   | z轴未校准环境磁场强度，单位 : μT。     |
-| biasX | number | 是   | 是   | x轴未校准环境磁场强度偏量，单位 : μT。 |
-| biasY | number | 是   | 是   | y轴未校准环境磁场强度偏量，单位 : μT。 |
-| biasZ | number | 是   | 是   | z轴未校准环境磁场强度偏量，单位 : μT。 |
+| x     | number | 否   | 否   | x轴未校准环境磁场强度，单位 : μT。     |
+| y     | number | 否   | 否   | y轴未校准环境磁场强度，单位 : μT。     |
+| z     | number | 否   | 否   | z轴未校准环境磁场强度，单位 : μT。     |
+| biasX | number | 否   | 否   | x轴未校准环境磁场强度偏量，单位 : μT。 |
+| biasY | number | 否   | 否   | y轴未校准环境磁场强度偏量，单位 : μT。 |
+| biasZ | number | 否   | 否   | z轴未校准环境磁场强度偏量，单位 : μT。 |
 
 
 ## PedometerResponse
@@ -6468,7 +6469,7 @@ try {
 
 | 名称  | 类型   | 只读 | 可选 | 说明             |
 | ----- | ------ | ---- | ---- | ---------------- |
-| steps | number | 是   | 是   | 用户的行走步数。 |
+| steps | number | 否   | 否   | 用户的行走步数。 |
 
 
 ## HumidityResponse
@@ -6480,7 +6481,7 @@ try {
 
 | 名称     | 类型   | 只读 | 可选 | 说明                                                      |
 | -------- | ------ | ---- | ---- | --------------------------------------------------------- |
-| humidity | number | 是   | 是   | 湿度值。测量环境的相对湿度，以百分比&nbsp;(%)&nbsp;表示。 |
+| humidity | number | 否   | 否   | 湿度值。测量环境的相对湿度，以百分比&nbsp;(%)&nbsp;表示。 |
 
 
 ## PedometerDetectionResponse
@@ -6492,7 +6493,7 @@ try {
 
 | 名称   | 类型   | 只读 | 可选 | 说明                                                         |
 | ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| scalar | number | 是   | 是   | 计步器检测。检测用户的计步动作，如果取值为1则代表用户产生了计步行走的动作，取值为0则代表用户没有发生运动。 |
+| scalar | number | 否   | 否   | 计步器检测。检测用户的计步动作，如果取值为1则代表用户产生了计步行走的动作，取值为0则代表用户没有发生运动。 |
 
 
 ## AmbientTemperatureResponse
@@ -6504,7 +6505,7 @@ try {
 
 | 名称        | 类型   | 只读 | 可选 | 说明                       |
 | ----------- | ------ | ---- | ---- | -------------------------- |
-| temperature | number | 是   | 是   | 环境温度（单位：摄氏度）。 |
+| temperature | number | 否   | 否   | 环境温度（单位：摄氏度）。 |
 
 
 ## BarometerResponse
@@ -6516,7 +6517,7 @@ try {
 
 | 名称     | 类型   | 只读 | 可选 | 说明                   |
 | -------- | ------ | ---- | ---- | ---------------------- |
-| pressure | number | 是   | 是   | 压力值（单位：百帕）。 |
+| pressure | number | 否   | 否   | 压力值（单位：百帕）。 |
 
 
 ## HeartRateResponse
@@ -6528,7 +6529,7 @@ try {
 
 | 名称      | 类型   | 只读 | 可选 | 说明                                    |
 | --------- | ------ | ---- | ---- | --------------------------------------- |
-| heartRate | number | 是   | 是   | 心率值。测量用户的心率数值，单位：bpm。 |
+| heartRate | number | 否   | 否   | 心率值。测量用户的心率数值，单位：bpm。 |
 
 
 ## WearDetectionResponse
@@ -6540,7 +6541,7 @@ try {
 
 | 名称  | 类型   | 只读 | 可选 | 说明                                             |
 | ----- | ------ | ---- | ---- | ------------------------------------------------ |
-| value | number | 是   | 是   | 表示设备是否被穿戴（1表示已穿戴，0表示未穿戴）。 |
+| value | number | 否   | 否   | 表示设备是否被穿戴（1表示已穿戴，0表示未穿戴）。 |
 
 
 ## Options
@@ -6553,8 +6554,8 @@ try {
 
 | 名称     | 类型                                                        | 只读 | 可选 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| interval | number\|[SensorFrequency](#sensorfrequency11)<sup>11+</sup> | 是   | 是   | 表示传感器的上报频率，默认值为200000000ns。该属性有最小值和最大值的限制，由硬件支持的上报频率决定，当设置频率大于最大值时以最大值上报数据，小于最小值时以最小值上报数据。 |
-| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) | 是 | 是 | 传感器传入设置参数，可指定deviceId、sensorIndex |
+| interval | number\|[SensorFrequency](#sensorfrequency11)<sup>11+</sup> | 否   | 是   | 表示传感器的上报频率，默认值为200000000ns。该属性有最小值和最大值的限制，由硬件支持的上报频率决定，当设置频率大于最大值时以最大值上报数据，小于最小值时以最小值上报数据。 |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) | 否 | 是 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 
 ## SensorFrequency<sup>11+</sup>
 
@@ -6580,20 +6581,20 @@ type SensorFrequency = 'game' | 'ui' | 'normal'
 
 | 名称        | 类型                | 只读 | 可选 | 说明       |
 | ----------- | ------------------- | ---- | ---- | ---------- |
-| rotation    | Array&lt;number&gt; | 是   | 是   | 旋转矩阵。 |
-| inclination | Array&lt;number&gt; | 是   | 是   | 倾斜矩阵。 |
+| rotation    | Array&lt;number&gt; | 否   | 否   | 旋转矩阵。 |
+| inclination | Array&lt;number&gt; | 否   | 否   | 倾斜矩阵。 |
 
 
 ## CoordinatesOptions
 
 设置坐标选项对象。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
 | 名称 | 类型   | 只读 | 可选 | 说明        |
 | ---- | ------ | ---- | ---- | ----------- |
-| x    | number | 是   | 是   | x坐标方向。 |
-| y    | number | 是   | 是   | y坐标方向。 |
+| x    | number | 否   | 否   | x坐标方向。 |
+| y    | number | 否   | 否   | y坐标方向。 |
 
 
 ## GeomagneticResponse
@@ -6604,13 +6605,13 @@ type SensorFrequency = 'game' | 'ui' | 'normal'
 
 | 名称            | 类型   | 只读 | 可选 | 说明                                               |
 | --------------- | ------ | ---- | ---- | -------------------------------------------------- |
-| x               | number | 是   | 是   | 地磁场的北分量。                                   |
-| y               | number | 是   | 是   | 地磁场的东分量。                                   |
-| z               | number | 是   | 是   | 地磁场的垂直分量。                                 |
-| geomagneticDip  | number | 是   | 是   | 地磁倾角，即地球磁场线与水平面的夹角。             |
-| deflectionAngle | number | 是   | 是   | 地磁偏角，即地磁北方向与正北方向在水平面上的角度。 |
-| levelIntensity  | number | 是   | 是   | 地磁场的水平强度。                                 |
-| totalIntensity  | number | 是   | 是   | 地磁场的总强度。                                   |
+| x               | number | 否   | 否   | 地磁场的北分量。                                   |
+| y               | number | 否   | 否   | 地磁场的东分量。                                   |
+| z               | number | 否   | 否   | 地磁场的垂直分量。                                 |
+| geomagneticDip  | number | 否   | 否   | 地磁倾角，即地球磁场线与水平面的夹角。             |
+| deflectionAngle | number | 否   | 否   | 地磁偏角，即地磁北方向与正北方向在水平面上的角度。 |
+| levelIntensity  | number | 否   | 否   | 地磁场的水平强度。                                 |
+| totalIntensity  | number | 否   | 否   | 地磁场的总强度。                                   |
 
 ## LocationOptions
 
@@ -6620,9 +6621,9 @@ type SensorFrequency = 'game' | 'ui' | 'normal'
 
 | 名称      | 类型   | 只读 | 可选 | 说明       |
 | --------- | ------ | ---- | ---- | ---------- |
-| latitude  | number | 是   | 是   | 纬度。     |
-| longitude | number | 是   | 是   | 经度。     |
-| altitude  | number | 是   | 是   | 海拔高度。 |
+| latitude  | number | 否   | 否   | 纬度。     |
+| longitude | number | 否   | 否   | 经度。     |
+| altitude  | number | 否   | 否   | 海拔高度。 |
 
 ## sensor.on<sup>(deprecated)</sup>
 
@@ -9363,8 +9364,11 @@ promise.then((data: sensor.RotationMatrixResponse) => {
 
 表示要订阅或取消订阅的传感器类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+> **说明**：
+>
+> 从API version 9 开始不再维护，建议使用[SensorId](#sensorid9)代替。
 
+**系统能力**：SystemCapability.Sensors.Sensor
 
 | 名称                                       | 值   | 说明                   |
 | ------------------------------------------ | ---- | ---------------------- |

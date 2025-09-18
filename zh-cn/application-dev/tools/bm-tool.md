@@ -49,8 +49,8 @@ bm install [-h] [-p filePath] [-r] [-w waitingTime] [-s hspDirPath]
 | 参数 | 参数说明 |
 | -------- | -------- |
 | -h | 帮助信息。 |
-| -p | 可选参数，指定HAP路径，多HAP应用可指定多HAP所在文件夹路径。 |
-| -r | 可选参数，覆盖安装一个HAP。默认值为覆盖安装。 |
+| -p | 可选参数，指定HAP/HSP路径，多HAP/HSP应用可指定多HAP/HSP所在文件夹路径。 |
+| -r | 可选参数，覆盖安装一个HAP/HSP。默认值为覆盖安装。 |
 | -s | 根据场景判断，安装应用间HSP时为必选参数，其他场景为可选参数。安装应用间共享库， 每个路径目录下只能存在一个同包名的HSP。 |
 | -w | 可选参数，安装HAP时指定bm工具等待时间，最小的等待时长为5s，最大的等待时长为600s,&nbsp;默认缺省为5s。 |
 
@@ -786,13 +786,11 @@ error: install parse profile prop check error.
 ### 9568305 依赖的模块不存在
 **错误信息**
 
-error: dependent module does not exist.
-
-![示例图](figures/zh-cn_image_0000001560338986.png)
+error: Failed to install the HAP or HSP because the dependent module does not exist.
 
 **错误描述**
 
-在启动调试或运行应用/服务时，安装HAP出现错误，提示“error: dependent module does not exist”错误信息。
+在启动调试或运行应用/服务时，安装HAP出现错误，提示“error: Failed to install the HAP or HSP because the dependent module does not exist.”错误信息。
 
 **可能原因**
 
@@ -800,6 +798,7 @@ error: dependent module does not exist.
 
 **处理步骤**
 
+场景一：依赖的HSP与HAP在同一工程内：
 1. 先安装依赖的动态共享包（SharedLibrary）模块，再在应用运行配置页勾选Keep Application Data，点击OK保存配置，再运行/调试。
 ![示例图](figures/zh-cn_image_0000001560201786.png)
 2. 在运行配置页，选择Deploy Multi Hap标签页，勾选Deploy Multi Hap Packages，选择依赖的模块，点击OK保存配置，再进行运行/调试。
@@ -807,6 +806,9 @@ error: dependent module does not exist.
 3. 单击Run > Edit Configurations，在General中，勾选Auto Dependencies。点击OK保存配置，再运行/调试。
 ![示例图](figures/zh-cn_image_9568305.png)
 
+场景二：依赖的HSP与HAP不在同一工程内：
+在安装HAP前，使用[bm install](#安装命令install)命令安装依赖的HSP。
+  
 ### 9568259 安装解析配置文件缺少字段
 **错误信息**
 

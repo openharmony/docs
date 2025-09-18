@@ -2,11 +2,11 @@
 
 ## Introduction
 
-JSVM-API provides APIs for calling JavaScript (JS) functions and passing parameters or creating JS methods in C/C++.
+Function calling allows you to call JavaScript functions from the JSVM module and transfer parameters, or directly create a JavaScript function in the JSVM module.
 
 ## Basic Concepts
 
-Functions are blocks of reusable code that performs specific tasks or operations. You can define functions to implement different operations. Functions provide a way to modularize and structure code, helping make your code more organized, reusable, and maintainable.
+Functions are an important programming concept. They are used to execute specific tasks, improve code readability and reusability, simplify complex operations, and modularize and structure code for easy understanding, maintenance, and expansion.
 
 ## Available APIs
 
@@ -46,7 +46,7 @@ Full code for the CPP test. The entry is **TEST_FUNC**.
   }
 
 JSVM_Value NativeCreateFunctionTest(JSVM_Env env, JSVM_CallbackInfo info) {
-    void *data;
+    void *data = nullptr;
     size_t argc = 1;
     JSVM_Value argv[1] = {nullptr};
     JSVM_Value thisArg;

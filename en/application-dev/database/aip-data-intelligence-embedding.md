@@ -6,6 +6,8 @@ In the pivotal shift from digital transformation to AI advancement, creating int
 
 Currently, ArkData Intelligence Platform (AIP) provides application data vectorization, which leverages embedding models to convert multi-modal data such as unstructured text and images into semantic vectors.
 
+Since API version 15, application data vectorization is supported.
+
 ## Basic Concepts
 
 To get started, it is helpful to understand the following concepts:

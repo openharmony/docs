@@ -2,9 +2,11 @@
 
 ## When to Use
 
-Use **createJsCore** to create a JavaScript virtual machine (JSVM), which a runtime environment for executing JS code. The **createJsCore** returns a core ID, which uniquely identifies a VM. <br>Use **evaluateJS** to run JS code in the VM of the specified core ID and define a promise in the JS code and run the function asynchronously. <br>Use **releaseJsCore** to release a JSVM.
+Use **createJsCore** to create a JavaScript virtual machine (JSVM), which is a runtime environment for executing JS code. The **createJsCore** returns a core ID, which uniquely identifies a VM.<br> Use **evaluateJS** to run JS code in the VM of the specified core ID and define a promise in the JS code and run the function asynchronously.<br> Use **releaseJsCore** to release a JSVM.
 
 ## Example
+
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in proxy-related APIs.
 
 Create multiple JS runtime environments and run JS code.
 
@@ -19,6 +21,15 @@ static map<int, JSVM_Env *> g_envMap;
 static map<int, JSVM_CallbackStruct *> g_callBackStructMap;
 static uint32_t ENVTAG_NUMBER = 0;
 static std::mutex envMapLock;
+static int g_aa = 0;
+
+#define CHECK_COND(cond)                                                                                               \
+    do {                                                                                                               \
+        if (!(cond)) {                                                                                                 \
+            OH_LOG_ERROR(LOG_APP, "jsvm fail file: %{public}s line: %{public}d ret = false", __FILE__, __LINE__);      \
+            return -1;                                                                                                 \
+        }                                                                                                              \
+    } while (0)
 
 class Task {
 public:
@@ -32,7 +43,7 @@ static JSVM_Value Consoleinfo(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
     JSVM_Value args[1];
     char log[256] = "";
-    size_t log_length;
+    size_t log_length = 0;
     JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
 
     JSVM_CALL(OH_JSVM_GetValueStringUtf8(env, args[0], log, 255, &log_length));
@@ -97,7 +108,7 @@ static JSVM_Value Add(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 2;
     JSVM_Value args[2];
     JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
-    double num1, num2;
+    double num1 = 0, num2 = 0;
     JSVM_CALL(OH_JSVM_GetValueDouble(env, args[0], &num1));
     JSVM_CALL(OH_JSVM_GetValueDouble(env, args[1], &num2));
     JSVM_Value sum = nullptr;
@@ -123,11 +134,12 @@ static JSVM_Value AssertEqual(JSVM_Env env, JSVM_CallbackInfo info) {
 }
 
 static int fromOHStringValue(JSVM_Env &env, JSVM_Value &value, std::string &result) {
-    size_t size;
+    size_t size = 0;
     CHECK_RET(OH_JSVM_GetValueStringUtf8(env, value, nullptr, 0, &size));
-    char resultStr[size + 1];
+    char *resultStr = new char[size + 1];
     CHECK_RET(OH_JSVM_GetValueStringUtf8(env, value, resultStr, size + 1, &size));
     result = resultStr;
+    delete[] resultStr;
     return 0;
 }
 
@@ -139,7 +151,7 @@ static int CreateJsCore(uint32_t *result) {
     if (g_aa == 0) {
         JSVM_InitOptions init_options;
         memset(&init_options, 0, sizeof(init_options));
-        CHECK(OH_JSVM_Init(&init_options) == JSVM_OK);
+        CHECK(OH_JSVM_Init(&init_options));
         g_aa++;
     }
     std::lock_guard<std::mutex> lock_guard(envMapLock);
@@ -149,8 +161,8 @@ static int CreateJsCore(uint32_t *result) {
     JSVM_CreateVMOptions options;
     JSVM_VMScope vmScope;
     memset(&options, 0, sizeof(options));
-    CHECK(OH_JSVM_CreateVM(&options, g_vmMap[ENVTAG_NUMBER]) == JSVM_OK);
-    CHECK(OH_JSVM_OpenVMScope(*g_vmMap[ENVTAG_NUMBER], &vmScope) == JSVM_OK);
+    CHECK(OH_JSVM_CreateVM(&options, g_vmMap[ENVTAG_NUMBER]));
+    CHECK(OH_JSVM_OpenVMScope(*g_vmMap[ENVTAG_NUMBER], &vmScope));
 
     // New environment.
     g_envMap[ENVTAG_NUMBER] = new JSVM_Env;
@@ -171,8 +183,8 @@ static int CreateJsCore(uint32_t *result) {
         {"createPromise", NULL, &g_callBackStructMap[ENVTAG_NUMBER][3], NULL, NULL, NULL, JSVM_DEFAULT},
     };
     CHECK(OH_JSVM_CreateEnv(*g_vmMap[ENVTAG_NUMBER], sizeof(descriptors) / sizeof(descriptors[0]), descriptors,
-                            g_envMap[ENVTAG_NUMBER]) == JSVM_OK);
-    CHECK(OH_JSVM_CloseVMScope(*g_vmMap[ENVTAG_NUMBER], vmScope) == JSVM_OK);
+                            g_envMap[ENVTAG_NUMBER]));
+    CHECK(OH_JSVM_CloseVMScope(*g_vmMap[ENVTAG_NUMBER], vmScope));
 
     OH_LOG_INFO(LOG_APP, "JSVM CreateJsCore END");
     *result = ENVTAG_NUMBER;
@@ -182,15 +194,15 @@ static int CreateJsCore(uint32_t *result) {
 
 // Provide an external interface for releasing the JSVM based on envId.
 static int ReleaseJsCore(uint32_t coreEnvId) {
-    OH_LOG_INFO(LOG_APP, "JSVM ReleaseJsCore START");
-    CHECK(g_envMap.count(coreEnvId) != 0 && g_envMap[coreEnvId] != nullptr);
-
     std::lock_guard<std::mutex> lock_guard(envMapLock);
+    
+    OH_LOG_INFO(LOG_APP, "JSVM ReleaseJsCore START");
+    CHECK_COND(g_envMap.count(coreEnvId) != 0 && g_envMap[coreEnvId] != nullptr);
 
-    CHECK(OH_JSVM_DestroyEnv(*g_envMap[coreEnvId]) == JSVM_OK);
+    CHECK(OH_JSVM_DestroyEnv(*g_envMap[coreEnvId]));
     g_envMap[coreEnvId] = nullptr;
     g_envMap.erase(coreEnvId);
-    CHECK(OH_JSVM_DestroyVM(*g_vmMap[coreEnvId]) == JSVM_OK);
+    CHECK(OH_JSVM_DestroyVM(*g_vmMap[coreEnvId]));
     g_vmMap[coreEnvId] = nullptr;
     g_vmMap.erase(coreEnvId);
     delete[] g_callBackStructMap[coreEnvId];
@@ -207,7 +219,7 @@ static std::mutex mutexLock;
 static int EvaluateJS(uint32_t envId, const char *source, std::string &res) {
     OH_LOG_INFO(LOG_APP, "JSVM EvaluateJS START");
 
-    CHECK(g_envMap.count(envId) != 0 && g_envMap[envId] != nullptr);
+    CHECK_COND(g_envMap.count(envId) != 0 && g_envMap[envId] != nullptr);
 
     JSVM_Env env = *g_envMap[envId];
     JSVM_VM vm = *g_vmMap[envId];
@@ -242,7 +254,7 @@ static int EvaluateJS(uint32_t envId, const char *source, std::string &res) {
         }
 
         if (type == JSVM_STRING) {
-            CHECK(fromOHStringValue(env, result, res) != -1);
+            CHECK_COND(fromOHStringValue(env, result, res) != -1);
         } else if (type == JSVM_BOOLEAN) {
             bool ret = false;
             CHECK_RET(OH_JSVM_GetValueBool(env, result, &ret));
@@ -254,7 +266,7 @@ static int EvaluateJS(uint32_t envId, const char *source, std::string &res) {
         } else if (type == JSVM_OBJECT) {
             JSVM_Value objResult;
             CHECK_RET(OH_JSVM_JsonStringify(env, result, &objResult));
-            CHECK(fromOHStringValue(env, objResult, res) != -1);
+            CHECK_COND(fromOHStringValue(env, objResult, res) != -1);
         }
     }
     {
@@ -293,29 +305,63 @@ static int32_t TestJSVM() {
     };";
 
     // Create the first VM and bind the TS callback.
-    uint32_t coreId1;
-    CHECK(CreateJsCore(&coreId1) == 0);
+    uint32_t coreId1 = 0;
+    CHECK_COND(CreateJsCore(&coreId1) == 0);
     OH_LOG_INFO(LOG_APP, "TEST coreId: %{public}d", coreId1);
     // Run JS code in the first VM.
     std::string result1;
-    CHECK(EvaluateJS(coreId1, source1, result1) == 0);
+    CHECK_COND(EvaluateJS(coreId1, source1, result1) == 0);
     OH_LOG_INFO(LOG_APP, "TEST evaluateJS: %{public}s", result1.c_str());
 
     // Create the second VM and bind it with the TS callback.
-    uint32_t coreId2;
-    CHECK(CreateJsCore(&coreId2) == 0);
+    uint32_t coreId2 = 0;
+    CHECK_COND(CreateJsCore(&coreId2) == 0);
     OH_LOG_INFO(LOG_APP, "TEST coreId: %{public}d", coreId2);
     // Run JS code in the second VM.
     std::string result2;
-    CHECK(EvaluateJS(coreId2, source2, result2) == 0);
+    CHECK_COND(EvaluateJS(coreId2, source2, result2) == 0);
     OH_LOG_INFO(LOG_APP, "TEST evaluateJS: %{public}s", result2.c_str());
 
     // Release the first VM.
-    CHECK(ReleaseJsCore(coreId1) == 0);
+    CHECK_COND(ReleaseJsCore(coreId1) == 0);
     // Release the second VM.
-    CHECK(ReleaseJsCore(coreId2) == 0);
+    CHECK_COND(ReleaseJsCore(coreId2) == 0);
     OH_LOG_INFO(LOG_APP, "Test NAPI end");
 
     return 0;
 }
-  ```
+```
+Expected result:
+```
+JSVM CreateJsCore START
+JSVM CreateJsCore END
+TEST coreId: 0
+JSVM EvaluateJS START
+JSVM API TEST: hello World
+JSVM API TEST: CreatePromise start
+JSVM API TEST: CreatePromise end
+JSVM API TEST type: 4
+JSVM API TEST: CreatePromise 0
+JSVM API TEST RESULT: PASS
+JSVM EvaluateJS END
+TEST evaluateJS: hello World
+JSVM CreateJsCore START
+JSVM CreateJsCore END
+TEST coreId: 1
+JSVM EvaluateJS START
+JSVM API TEST: second hello
+JSVM API TEST RESULT: PASS
+JSVM API TEST RESULT: PASS
+JSVM API TEST: CreatePromise start
+JSVM API TEST: CreatePromise end
+JSVM API TEST type: 4
+JSVM API TEST: CreatePromise 1
+JSVM API TEST RESULT: PASS
+JSVM EvaluateJS END
+TEST evaluateJS: second hello
+JSVM ReleaseJsCore START
+JSVM ReleaseJsCore END
+JSVM ReleaseJsCore START
+JSVM ReleaseJsCore END
+Test NAPI end
+```

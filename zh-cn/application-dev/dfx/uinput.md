@@ -171,7 +171,7 @@ uinput -M -m <dx1> <dy1> -s <number>
 uinput --mouse --move <dx1> <dy1> --scroll <number>
 
 # <dx1> <dy1>以屏幕左上角为原点的相对坐标系的位置坐标。
-# <number>鼠标滚动刻度数，正数向后滚动，负数向前滚动，一个刻度是15。
+# <number>鼠标滚动刻度数，正数向后滚动，负数向前滚动，一个刻度是15，仅支持整数。
 ```
 
 **使用示例**
@@ -402,8 +402,8 @@ uinput --stylus --drag <dx1> <dy1> <dx2> <dy2> [press time] [total time]
 
 # <dx1> <dy1>触控笔拖拽起点以屏幕左上角为原点的相对坐标系的位置坐标。
 # <dx2> <dy2>触控笔拖拽终点以屏幕左上角为原点的相对坐标系的位置坐标。
-# [press time]拖拽移动前的按压持续时间，可选参数，单位：ms，默认值为500，取值范围：[500,14500]，仅支持整数。
-# [total time]拖动时间，可选参数，单位：ms，默认值为1000，取值范围：[1000,15000]，仅支持整数。[total time] - [press time]不能少于500，否则命令报错：total time input is error。
+# [press time]按压时间，可选参数，需要与total time配合使用，如果有任一缺省，则命令不生效。同时缺省，命令生效。单位：ms，默认值为500，取值范围：[500,14500]，仅支持整数。
+# [total time]拖动时间，可选参数，需要与press time配合使用，如果有任一缺省，则命令不生效。同时缺省，命令生效。单位：ms，默认值为1000，取值范围：[1000,15000]，仅支持整数。[total time] - [press time]不能少于500，否则命令报错：total time input is error。
 ```
 
 **使用示例**
@@ -426,7 +426,7 @@ uinput --stylus --interval <time>
 **使用示例**
 ```bash
 # 模拟触控笔在(100, 100)位置按下后，间隔500ms后在(100, 100)位置抬起。
-uinput -S -d 100 100  -i 500 -u 100 100
+uinput -S -d 100 100 -i 500 -u 100 100
 ```
 
 ## 触摸事件
@@ -512,8 +512,8 @@ uinput --touch --drag <dx1> <dy1> <dx2> <dy2> [press time] [total time]
 
 # <dx1> <dy1>触摸拖拽起点以屏幕左上角为原点的相对坐标系的位置坐标。
 # <dx2> <dy2>触摸拖拽终点以屏幕左上角为原点的相对坐标系的位置坐标。
-# [press time]按压时间，可选参数，单位：ms，默认值为500，取值范围：[500,14500]，仅支持整数。
-# [total time]拖动时间，可选参数，单位：ms，默认值为1000，取值范围：[1000,15000]，仅支持整数。[total time] - [press time]不能少于500ms，否则命令报错：total time input is error。
+# [press time]按压时间，可选参数，需要与total time配合使用，如果有任一缺省，则命令不生效。同时缺省，命令生效。单位：ms，默认值为500，取值范围：[500,14500]，仅支持整数。
+# [total time]拖动时间，可选参数，需要与press time配合使用，如果有任一缺省，则命令不生效。同时缺省，命令生效。单位：ms，默认值为1000，取值范围：[1000,15000]，仅支持整数。[total time] - [press time]不能少于500，否则命令报错：total time input is error。
 ```
 
 **使用示例**
@@ -536,7 +536,7 @@ uinput --touch --interval <time>
 **使用示例**
 ```bash
 # 模拟手指在(100, 100)位置按下后，间隔500ms后在(100, 100)位置抬起。
-uinput -T -d 100 100  -i 500 -u 100 100
+uinput -T -d 100 100 -i 500 -u 100 100
 ```
 
 ### 触摸屏单指关节双击事件

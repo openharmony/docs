@@ -13,7 +13,7 @@ Before reading this topic, you are advised to read [Basic Syntax Overview](./ark
 > This decorator can be used in atomic services since API version 11.
 
 
-## Rules of Use
+## Usage Rules
 
 The \@Builder decorator can be used for the private custom build function defined in the custom component and global custom build function defined globally.
 
@@ -656,7 +656,7 @@ struct ParentPage {
 
 When two or more parameters are used, the value change does not trigger the UI re-rendering even if the parameters are passed in the form of object literals.
 
-[Negative Example]
+**Incorrect Usage**
 
 ```ts
 class GlobalTmp {
@@ -694,7 +694,7 @@ struct Parent {
 }
 ```
 
-[Negative Example]
+**Incorrect Usage**
 
 ```ts
 class GlobalTmp {
@@ -736,7 +736,7 @@ struct Parent {
 
 Only one parameter can be used in the \@Builder. When one parameter is passed in the form of object literals, the value change triggers the UI re-rendering.
 
-[Positive Example]
+**Correct Usage**
 
 ```ts
 class GlobalTmp {
@@ -776,7 +776,7 @@ struct Parent {
 
 In the way of passing parameters by value, the @ObservedV2 and @Trace decorators can be used together in the @ComponentV2 decorated custom component to re-render the UI.
 
-[Negative Example]
+**Incorrect Usage**
 
 In the @ComponentV2 decorated custom component, the use of simple data types cannot trigger UI re-render.
 
@@ -823,7 +823,7 @@ struct PageBuilder {
 }
 ```
 
-[Positive Example]
+**Correct Usage**
 
 In @ComponentV2, only the @ObservedV2 decorated **ParamTmp** class and the @Trace decorated **count** property can trigger the UI re-render.
 
@@ -914,7 +914,7 @@ struct PageBuilder {
 
 ### Changing the Input Parameters in the \@Builder Decorated Function
 
-[Negative Example]
+**Incorrect Usage**
 
 ```ts
 interface Temp {
@@ -950,7 +950,7 @@ struct Parent {
 }
 ```
 
-[Positive Example]
+**Correct Usage**
 
 ```ts
 interface Temp {

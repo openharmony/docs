@@ -6,7 +6,7 @@ In JavaScript (JS), the integer type represents a number without a decimal point
 
 ## Basic Concepts
 
-Before using JSVM-API to create and obtain numbers, you need to understand the following concepts:
+Before using the JSVM-API to create and obtain numeric types, you need to understand the following basic concepts:
 
 - Number type<br>When using JSVM-API, you may need to convert values of number types between C and JS. When converting the data, pay attention to the data range, signedness (signed or unsigned), and precision (single or double precision).
 - Error handling<br>You also need to use JSVM-API to capture and handle errors that may occur during the conversion. For example, when an integer is created, you may need to capture and handle memory allocation failures or other runtime errors.
@@ -23,7 +23,7 @@ Before using JSVM-API to create and obtain numbers, you need to understand the f
 | OH_JSVM_CreateInt32     | Creates a JS number object from a C Int32_t object.|
 | OH_JSVM_CreateUint32    | Creates a JS number object from a C Uint32_t object.|
 | OH_JSVM_CreateInt64     | Creates a JS number object from a C Int64_t object.|
-| OH_JSVM_CreateDouble    | Creates a JS number object from a C Double object. |
+| OH_JSVM_CreateDouble    | Creates a JS number object from a C double object. |
 
 ## Example
 
@@ -31,7 +31,7 @@ If you are just starting out with JSVM-API, see [JSVM-API Development Process](u
 
 ### OH_JSVM_GetValueUint32
 
-Use **OH_JSVM_GetValueUint32** to obtain a 32-bit unsigned integer from a JS number.
+Use **OH_JSVM_GetValueInt32** to obtain a C uint32 value from a JS value.
 
 CPP code:
 
@@ -75,7 +75,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS(getValueUint32(123))JS";
 ```
 
-**Expected output**
+Expected result:
 
 ```
 JSVM GetValueUint32 success: 123
@@ -83,7 +83,7 @@ JSVM GetValueUint32 success: 123
 
 ### OH_JSVM_GetValueInt32
 
-Use **OH_JSVM_GetValueInt32** to obtain a C int32 value from a JS value.
+Use **OH_JSVM_GetValueInt32** to obtain a C Int32 value from a JS value.
 
 CPP code:
 
@@ -128,7 +128,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS(getValueInt32(-123))JS";
 ```
 
-**Expected output**
+Expected result:
 
 ```
 JSVM GetValueInt32 success: -123
@@ -136,7 +136,7 @@ JSVM GetValueInt32 success: -123
 
 ### OH_JSVM_GetValueInt64
 
-Use **OH_JSVM_GetValueInt64** to obtain a C int64 value from a JS value.
+Use **OH_JSVM_GetValueInt32** to obtain a C Int64 value from a JS value.
 
 CPP code:
 
@@ -159,7 +159,7 @@ static JSVM_Value GetValueInt64(JSVM_Env env, JSVM_CallbackInfo info)
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetValueInt64 fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM GetValueInt64 success: %{public}d", result64);
+        OH_LOG_INFO(LOG_APP, "JSVM GetValueInt64 success: %{public}ld", result64);
     }
     return args[0];
 }
@@ -178,7 +178,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS(getValueInt64(-123))JS";
 ```
 
-**Expected output**
+Expected result:
 
 ```
 JSVM GetValueInt64 success: -123
@@ -202,7 +202,7 @@ static JSVM_Value GetDouble(JSVM_Env env, JSVM_CallbackInfo info)
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    double value;
+    double value = 0;
     JSVM_Status status = OH_JSVM_GetValueDouble(env, args[0], &value);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetDouble fail");
@@ -226,7 +226,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS(getDouble(-110.0456))JS";
 ```
 
-**Expected output**
+Expected result:
 
 ```
 JSVM GetDouble success: -110.045600
@@ -234,7 +234,7 @@ JSVM GetDouble success: -110.045600
 
 ### OH_JSVM_CreateInt32
 
-Use **OH_JSVM_CreateInt32** to create a JS number of the int32 type.
+Creates a JavaScript number object based on the int32_t data.
 
 CPP code:
 
@@ -275,7 +275,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS(createInt32())JS";
 ```
 
-**Expected output**
+Expected result:
 
 ```
 JSVM CreateInt32 success: -20
@@ -283,7 +283,7 @@ JSVM CreateInt32 success: -20
 
 ### OH_JSVM_CreateUint32
 
-Use **OH_JSVM_CreateUint32** to create a JS number of the uint32 type.
+Creates a JavaScript number object based on the uint32_t data.
 
 CPP code:
 
@@ -328,7 +328,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS(createUInt32())JS";
 ```
 
-**Expected output**
+Expected result:
 
 ```
 JSVM CreateUInt32 success: 26
@@ -336,7 +336,7 @@ JSVM CreateUInt32 success: 26
 
 ### OH_JSVM_CreateInt64
 
-Use **OH_JSVM_CreateInt64** to create a JS number of the int64 type.
+Creates a JavaScript number object based on the int64_t data. If you need to indicate a large number of JS files, you are advised to use the BigInt interface.
 
 CPP code:
 
@@ -349,8 +349,6 @@ CPP code:
 // Define OH_JSVM_CreateInt64.
 static JSVM_Value CreateInt64(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // int64 represents a 64-bit signed integer, ranging from -2^63 to 2^63 - 1, that is, -9223372036854775808 to 9223372036854775807.
-    // 
     int64_t value = 2147483648;
     // Create a JS Int64 number.
     JSVM_Value result = nullptr;
@@ -379,7 +377,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS(createInt64())JS";
 ```
 
-**Expected output**
+Expected result:
 
 ```
 JSVM CreateInt64 success: 2147483648
@@ -387,7 +385,7 @@ JSVM CreateInt64 success: 2147483648
 
 ### OH_JSVM_CreateDouble
 
-Use **OH_JSVM_CreateDouble** to create a JS number of the double type.
+Creates a JavaScript number object based on double data.
 
 CPP code:
 
@@ -428,7 +426,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS(createDouble())JS";
 ```
 
-**Expected output**
+Expected result:
 
 ```
 JSVM CreateDouble success: 1.234000

@@ -35,7 +35,7 @@ After the project is created, the **cpp** directory is created in the project di
 2. Open the **src/main/cpp/napi_init.cpp** file, and add the header file.
 
     ```c++
-    // Include the header file required for napi.
+    // Include the header file required for NDK interfaces.
     #include "bundle/native_interface_bundle.h"
     // Include the standard library for the free() function.
     #include <cstdlib>
@@ -51,11 +51,11 @@ After the project is created, the **cpp** directory is created in the project di
     {
         napi_property_descriptor desc[] = {
             { "add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr },
-            { "getCurrentApplicationInfo", nullptr, GetCurrentApplicationInfo, nullptr, nullptr, nullptr, napi_default, nullptr},   // Add getCurrentApplicationInfo.
-            { "getAppId", nullptr, GetAppId, nullptr, nullptr, nullptr, napi_default, nullptr},                                     // Add getAppId.
-            { "getAppIdentifier", nullptr, GetAppIdentifier, nullptr, nullptr, nullptr, napi_default, nullptr},                     // Add getAppIdentifier.
-            { "getMainElementName", nullptr, GetMainElementName, nullptr, nullptr, nullptr, napi_default, nullptr},                 // Add getMainElementName.
-            { "getCompatibleDeviceType", nullptr, GetCompatibleDeviceType, nullptr, nullptr, nullptr, napi_default, nullptr}        // Add getCompatibleDeviceType.
+            { "getCurrentApplicationInfo", nullptr, GetCurrentApplicationInfo, nullptr, nullptr, nullptr, napi_default, nullptr},   // Add the getCurrentApplicationInfo API.
+            { "getAppId", nullptr, GetAppId, nullptr, nullptr, nullptr, napi_default, nullptr},                                     // Add the getAppId API.
+            { "getAppIdentifier", nullptr, GetAppIdentifier, nullptr, nullptr, nullptr, napi_default, nullptr},                     // Add the getAppIdentifier API.
+            { "getMainElementName", nullptr, GetMainElementName, nullptr, nullptr, nullptr, napi_default, nullptr},                 // Add the getMainElementName method.
+            { "getCompatibleDeviceType", nullptr, GetCompatibleDeviceType, nullptr, nullptr, nullptr, napi_default, nullptr}       // Add the getCompatibleDeviceType method.
         };
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
         return exports;
@@ -218,4 +218,4 @@ export const getCompatibleDeviceType: () => string;     // Add the exposed API g
     }
     ```
 
-For details about the APIs, see [Bundle](../reference/apis-ability-kit/capi-native-bundle.md).
+For details about the NDK APIs, see [Native_Bundle](../reference/apis-ability-kit/capi-native-bundle.md).

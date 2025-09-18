@@ -1,5 +1,12 @@
 # 时延类性能问题分析实践
 
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 ## 概要
 
 当应用在运行时出现明显的延迟或不流畅的情况，会影响用户体验，开发者需要定位、分析、解决应用时延问题。本文先简单介绍应用流畅度评测指标，然后基于Trace数据，介绍时延问题分析思路，并结合案例实践，实操定位分析并优化时延问题。
@@ -50,7 +57,7 @@
 
 ![](./figures/delay_related_performance_flow.png)
 
-#### 确认起止点
+**确认起止点**
 
 **加载完成时延起始点**
 APP_LIST_FLING终点视为滑动停止，则是加载完成时延起始点。
@@ -86,7 +93,7 @@ APP_LIST_FLING终点视为滑动停止后，图片加载完成即页面不再发
 
 ![](./figures/delay_related_performance_3.png)
 
-#### 定位问题点
+**定位问题点**
 
 1. 如果从应用UI上发现有网络加载的动作，则可以在ArkTS CallStack泳道查找是否发送网络请求，关键Trace点createHttp，继续查找请求响应点off(request)，parse数据解析，OnDataReload（LazyForEach刷新数据）来判断请求结束数据刷新时间点。因为在长列表应用中，一般使用分页加载功能实现更多数据，在滚动停止或者将要停止时触发加载更多功能，发送网络请求，收到响应数据后解析并刷新数据源，驱动页面刷新。
 
@@ -109,7 +116,7 @@ APP_LIST_FLING终点视为滑动停止后，图片加载完成即页面不再发
 |ArkTS CallStack|空闲+request|任务|任务|
 |异常追踪|单一组件动画，后台任务网络请求|大量组件创建或刷新渲染|系统组件创建或刷新渲染|
 
-#### 问题根因分析
+**问题根因分析**
 
 1. 滑动停止有网络请求，则考虑网络时延。
 2. 滑动停止有出现超长帧、异常帧耗时，考虑复用机制失效或者冗余嵌套渲染时延。
@@ -126,7 +133,7 @@ APP_LIST_FLING终点视为滑动停止后，图片加载完成即页面不再发
 
 ![](./figures/delay_related_performance_21.gif)
 
-#### 问题根因分析
+**问题根因分析**
 
 1. 根据起始点确定问题Trace起始点和终止点，如下图加载完成时延总共700ms。
 
@@ -137,7 +144,7 @@ APP_LIST_FLING终点视为滑动停止后，图片加载完成即页面不再发
 2. 根据场景上拉加载更多，数据通过网络请求后刷新，放大Trace找到APP_LIST_FLING尾部，末尾触发request请求数据，即滚动到尾部将要停止时会触发上拉加载，发送请求获取网络接口数据。关键Trace点信息详见“网络关键Trace点”。
 
  图9 发送请求request
- 
+
 ![](./figures/delay_related_performance_7.png)
 
 发送网络数据请求后，会有Response体现在应用中则是解析后刷新数据，LazyForEach绑定的IDataSource会触发刷新监听，通过OnDataReloaded找出刷新数据Trace点，可得到网络请求耗时177ms。
@@ -152,7 +159,7 @@ APP_LIST_FLING终点视为滑动停止后，图片加载完成即页面不再发
 
 ![](./figures/delay_related_performance_9.png)
 
-#### 优化方案
+**优化方案**
 
 由于网络时延受多方面因素影响，可尝试优化网络请求和网图加载。
 
@@ -171,7 +178,7 @@ APP_LIST_FLING终点视为滑动停止后，图片加载完成即页面不再发
 
 ![](./figures/delay_related_performance_22.gif)
 
-#### 问题根因分析
+**问题根因分析**
 
 1. 分析Trace发现列表每次滚动停止触发上拉加载后，会有一个超长帧。
 
@@ -208,7 +215,7 @@ APP_LIST_FLING终点视为滑动停止后，图片加载完成即页面不再发
 
 ![](./figures/delay_related_performance_15.png)
 
-#### 优化方案
+**优化方案**
 
 1. 可以采用组件复用机制@Reusable优化性能。
 2. 优化LazyForEach的键值刷新规则，采用onDataAdd局部更新。onDataReloaded会通知组件重新加载所有数据，键值没有变化的数据项会使用原先的子组件，键值发生变化的会重建子组件。
@@ -223,7 +230,7 @@ APP_LIST_FLING终点视为滑动停止后，图片加载完成即页面不再发
 
 ![](./figures/delay_related_performance_23.gif)
 
-#### 问题根因分析
+**问题根因分析**
 
 分析Trace滑动过程中的每一帧，发现在GridItem加载过程中使用了自定义动画，查看JSAnimation动画参数duration为150ms，说明此动画完成时间为150ms，影响图片的加载效果。
 
@@ -231,7 +238,7 @@ APP_LIST_FLING终点视为滑动停止后，图片加载完成即页面不再发
 
 ![](./figures/delay_related_performance_16.png)
 
-#### 优化方案
+**优化方案**
 
 评估动画是否合理或者优化参数。
 

@@ -53,6 +53,7 @@ struct CustomLayout {
       let result: MeasureResult = child.measure({ minHeight: size, minWidth: size, maxWidth: size, maxHeight: size })
       size += result.width / 2;
     })
+    // this.result represents the custom component's own size.
     this.result.width = 100;
     this.result.height = 400;
     return this.result;

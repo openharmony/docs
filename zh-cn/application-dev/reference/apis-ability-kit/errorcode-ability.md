@@ -89,7 +89,7 @@ Failed to start the invisible ability.
 
 **处理步骤**
 
-1. Stage模型下，拉起应用时抛出16000004异常，表示被拉应用调用失败，需要检查被拉应用module.json5的Ability字段的[exported](../../quick-start/module-configuration-file.md#abilities标签)配置是否为true。该配置字段为true，表示可以被其他应用调用；该配置字段为false，表示不可以被其他应用调用。
+1. [Stage模型](../../application-models/ability-terminology.md#stage模型)下，拉起应用时抛出16000004异常，表示被拉应用调用失败，需要检查被拉应用module.json5的Ability字段的[exported](../../quick-start/module-configuration-file.md#abilities标签)配置是否为true。该配置字段为true，表示可以被其他应用调用；该配置字段为false，表示不可以被其他应用调用。
 2. 若应用需要拉起exported为false的ability，请申请ohos.permission.START_INVISIBLE_ABILITY权限（该权限仅系统应用可申请）。
 
 ## 16000005 指定的进程权限校验失败
@@ -108,7 +108,7 @@ The specified process does not have the permission.
 
 **处理步骤**
 
-确认指定进程的权限是否正确。
+确认调用方是否有目标组件要求的权限。
 
 ## 16000006 不允许跨用户操作
 
@@ -126,7 +126,7 @@ Cross-user operations are not allowed.
 
 **处理步骤**
 
-确认是否进行了跨用户操作。
+确认是否进行了跨用户操作，检查接口调用时传入的userID是否与当前userID一致。
 
 ## 16000007 服务繁忙
 
@@ -234,7 +234,7 @@ The application is controlled.
 
 **处理步骤**
 
-建议卸载该应用。
+目标应用被系统管控禁止拉起，请稍后再尝试调用。
 
 ## 16000013 应用被EDM管控
 
@@ -316,8 +316,8 @@ No matching ability is found.
 
 **可能原因**
 
-1. 隐式启动的参数配置有误。
-2. 指定的HAP包未安装。
+1. 确保隐式启动的参数配置正确，匹配规则详见[显式Want与隐式Want匹配规则](../../application-models/explicit-implicit-want-mappings.md)。
+2. 确保对应的HAP包已安装。
 
 **处理步骤**
 
@@ -395,7 +395,9 @@ The ability is not on the top of the UI.
 
 **处理步骤**
 
-请检查当前应用是否显示在界面顶层。
+1. 请确保当前应用已启动并处于前台运行状态。
+2. 请核实应用界面是否完全显示，且未被其他应用窗口遮挡或最小化。
+3. 如设备启用了分屏或多窗口模式，请确保当前应用为焦点窗口。
 
 ## 16000054 免安装服务繁忙
 
@@ -539,7 +541,7 @@ Operation not supported.
 
 **处理步骤**
 
-确认操作在当前系统上是否支持。
+确认操作在当前系统版本上是否支持。
 
 ## 16000062 子进程数量超出上限
 
@@ -593,7 +595,7 @@ Restart too frequently. Try again at least 3s later.
 
 **处理步骤**
 
-间隔3s后再次调用。
+请等待至少3s后再次尝试重启操作。
 
 ## 16000065 接口只支持Ability在前台时调用
 
@@ -611,7 +613,7 @@ The API can be called only when the ability is running in the foreground.
 
 **处理步骤**
 
-将Ability切换到前台后，再调用接口。
+在调用接口前，请确保当前Ability已处于前台运行且界面可见状态。
 
 ## 16000066  wukong模式，不允许移动Ability到前台/后台
 
@@ -840,7 +842,7 @@ The number of app instances reaches the limit.
 
 **处理步骤**
 
-调整设置的应用实例上限，或者删除已有应用实例后，才能继续创建新的应用实例。
+应用实例已达上限，如果必须要创建新的实例，可弹框提示用户删除已有实例。
 
 ## 16000078 不支持应用多实例
 
@@ -1186,7 +1188,7 @@ The callee does not exist.
 
 **处理步骤**
 
-请检查通用组件服务端是否存在。
+请检查通用组件服务端(Callee)是否存在。
 
 ## 16200003 回收失败
 
@@ -1218,11 +1220,11 @@ The method has been registered.
 
 **可能原因**
 
-方法已在通用组件服务端注册过。
+方法已在通用组件服务端(Callee)注册过。
 
 **处理步骤**
 
-请检查是否已注册该方法。
+请确认该方法是否已完成注册，避免重复进行注册操作。
 
 ## 16200005 方法未注册
 
@@ -1236,11 +1238,11 @@ The method has not been registered.
 
 **可能原因**
 
-方法未在通用组件服务端注册。
+方法未在通用组件服务端(Callee)注册。
 
 **处理步骤**
 
-请检查是否未注册该方法。
+请先在通用组件服务端(Callee)完成该方法的注册，再进行调用。
 
 ## 16200006 没有权限设置常驻进程使能状态
 

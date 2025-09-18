@@ -1,4 +1,4 @@
-# @ohos.app.ability.autoStartupManager(autoStartupManager)(系统接口)
+# @ohos.app.ability.autoStartupManager (开机自启管理能力)(系统接口)
 
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
@@ -49,7 +49,7 @@ on(type: 'systemAutoStartup', callback: AutoStartupCallback): void
 | 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
 | 202      | Permission denied, non-system app called system api. |
 | 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 16000050 | Internal error. |
+| 16000050 | Failed to connect to the system service. |
 
 **示例**：
 
@@ -99,7 +99,7 @@ off(type: 'systemAutoStartup', callback?: AutoStartupCallback): void
 | 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
 | 202      | Permission denied, non-system app called system api. |
 | 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 16000050 | Internal error. |
+| 16000050 | Failed to connect to the system service. |
 
 **示例**：
 
@@ -155,7 +155,7 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 | 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 16000004 | Failed to start the invisible ability.           |
 | 16000013 | The application is controlled by EDM.        |
-| 16000050 | Internal error.                              |
+| 16000050 | Failed to connect to the system service. |
 
 **示例**：
 
@@ -218,7 +218,7 @@ setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 | 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 16000004 | Failed to start the invisible ability.           |
 | 16000013 | The application is controlled by EDM.        |
-| 16000050 | Internal error.                              |
+| 16000050 | Failed to connect to the system service. |
 
 **示例**：
 
@@ -274,7 +274,7 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 | 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 16000004 | Failed to start the invisible ability.           |
 | 16000013 | The application is controlled by EDM.        |
-| 16000050 | Internal error.                              |
+| 16000050 | Failed to connect to the system service. |
 
 **示例**：
 
@@ -337,7 +337,7 @@ cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 | 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 16000004 | Failed to start the invisible ability.           |
 | 16000013 | The application is controlled by EDM.        |
-| 16000050 | Internal error.                              |
+| 16000050 | Failed to connect to the system service. |
 
 **示例**：
 
@@ -390,7 +390,7 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 | 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
 | 202      | Permission denied, non-system app called system api. |
 | 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 16000050 | Internal error. |
+| 16000050 | Failed to connect to the system service. |
 
 **示例**：
 
@@ -442,7 +442,7 @@ try {
 | 201      | Permission denied, interface caller does not have permission "ohos.permission.MANAGE_APP_BOOT". |
 | 202      | Permission denied, non-system app called system api. |
 | 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 16000050 | Internal error. |
+| 16000050 | Failed to connect to the system service. |
 
 **示例**：
 

@@ -181,7 +181,7 @@ let result = queue.getFirst();
 forEach(callbackFn: (value: T, index?: number, Queue?: Queue&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the elements in this Queue and obtain their indexes.
+Uses a callback to traverse each element in the **Queue** instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -194,7 +194,7 @@ Uses a callback to traverse the elements in this Queue and obtain their indexes.
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the Queue.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackFn
+callbackfn parameters
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -261,7 +261,12 @@ while(queue.length) {
   let item = queue.pop();
   console.log("value:" + item);
 }
-
+/**
+ * value:2
+ * value:4
+ * value:5
+ * value:4
+ */
 // Method 2:
 let iter = queue[Symbol.iterator]();
 let temp: IteratorResult<number> = iter.next().value;
@@ -269,4 +274,10 @@ while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
 }
+/**
+ * value:2
+ * value:4
+ * value:5
+ * value:4
+ */
 ```

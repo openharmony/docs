@@ -53,7 +53,7 @@ To avoid losing complex types of the properties when serializing classes, you ca
 
 2. Types such as collections.Set and collections.Map are not supported.
 
-3. Non-buildin types, such as native PixelMap, NativePointer, and ArrayList types, are not supported.
+3. Non-built-in types, such as native PixelMap, NativePointer, and ArrayList types, are not supported.
 
 4. Simple types such as string, number, and boolean, are not supported.
 

@@ -34,7 +34,7 @@ isSupported(type: RunningLockType): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[RunningLock锁错误码](errorcode-runninglock.md)。
+以下错误码的详细介绍请参见[RunningLock锁错误码](errorcode-runninglock.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -72,7 +72,7 @@ create(name: string, type: RunningLockType, callback: AsyncCallback&lt;RunningLo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[RunningLock锁错误码](errorcode-runninglock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -117,7 +117,7 @@ create(name: string, type: RunningLockType): Promise&lt;RunningLock&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[RunningLock锁错误码](errorcode-runninglock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -291,7 +291,7 @@ hold(timeout: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[RunningLock锁错误码](errorcode-runninglock.md)。
+以下错误码的详细介绍请参见[RunningLock锁错误码](errorcode-runninglock.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息     |
 |---------|----------|
@@ -342,7 +342,7 @@ unhold(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[RunningLock锁错误码](errorcode-runninglock.md)。
+以下错误码的详细介绍请参见[RunningLock锁错误码](errorcode-runninglock.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息     |
 |---------|----------|

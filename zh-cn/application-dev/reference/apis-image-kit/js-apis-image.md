@@ -1003,7 +1003,7 @@ async function SetAuxiliaryPicture(context: Context) {
 
   if (pictureObj != null) {
     let type: image.AuxiliaryPictureType = image.AuxiliaryPictureType.GAINMAP;
-    let auxPictureObj: image.AuxiliaryPicture | null = await auxPicture.getAuxiliaryPicture(type);
+    let auxPictureObj: image.AuxiliaryPicture | null = auxPicture.getAuxiliaryPicture(type);
     if (auxPictureObj != null) {
       pictureObj.setAuxiliaryPicture(type, auxPictureObj);
     }
@@ -6426,6 +6426,7 @@ const path: string = context.filesDir + "/test.png";
 const imageSourceApi: image.ImageSource = image.createImageSource(path);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
 const filePath: string = context.filesDir + "/image_source.jpg";
+// openSync在API 19及以下版本，仅支持Phone、PC/2in1、Tablet、TV设备。
 let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(() => {

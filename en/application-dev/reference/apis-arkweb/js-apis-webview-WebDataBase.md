@@ -6,9 +6,17 @@ Implements a **WebDataBase** object.
 >
 > - The initial APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 >
+> - The initial APIs of this class are supported since API version 9.
+>
 > - You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
 >
 > - You must load the **Web** component before calling the APIs in **WebDataBase**.
+
+## Modules to Import
+
+```ts
+import { webview } from '@kit.ArkWeb';
+```
 
 ## getHttpAuthCredentials
 
@@ -94,7 +102,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 
 | ID| Error Message                                               |
 | -------- | ------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.|
 
 **Example**
 

@@ -29,7 +29,7 @@ import { appManager } from '@kit.AbilityKit';
 | bundleName              | string   | 否   | 否  | 应用Bundle名称。          |
 | abilityName            | string   | 否   | 否   | Ability名称。               |
 | uid                    | number   | 否   | 否   | 所属应用程序的UID。                  |
-| state                   | number   | 否   | 否   | Ability状态。<br>- Stage模型：[UIAbility](js-apis-app-ability-uiAbility.md)的状态参见[UIAbility状态](#uiability状态)；[ExtensionAbility](js-apis-app-ability-extensionAbility.md)的状态参见[ExtensionAbility状态](#extensionability状态)。<br>- FA模型：参见[Ability状态](#ability状态)。                |
+| state                   | number   | 否   | 否   | Ability状态。<br>- [Stage模型](../../application-models/ability-terminology.md#stage模型)：[UIAbility](js-apis-app-ability-uiAbility.md)的状态参见[UIAbility状态](#uiability状态)；[ExtensionAbility](js-apis-app-ability-extensionAbility.md)的状态参见[ExtensionAbility状态](#extensionability状态)。<br>- [FA模型](../../application-models/ability-terminology.md#fa模型)：参见[Ability状态](#ability状态)。                |
 | moduleName | string   | 否   | 否   | Ability所属的模块名称。    |
 | abilityType | number | 否   | 否   | [Ability类型](#ability类型)：[UIAbility](js-apis-app-ability-uiAbility.md)或[ExtensionAbility](js-apis-app-ability-extensionAbility.md)等。 |
 | isAtomicService | boolean | 否 | 否 | 判断Ability所属应用是否为原子化服务。<br>true: 是原子化服务。<br>false: 不是原子化服务。 |

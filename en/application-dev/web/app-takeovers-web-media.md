@@ -138,7 +138,7 @@ The native media player needs to implement the [NativeMediaPlayerBridge](../refe
 
 When an application takes over the media playback on web pages, it needs to draw the native media player component and video images on the surface provided by the ArkWeb kernel. The ArkWeb kernel combines the surface and the web page and displays them.
 
-This process is the same as that of [Rendering and Drawing XComponent+AVPlayer and Button Components at the Same Layer](web-same-layer.md)
+This process is the same as that of [same-layer rendering](web-same-layer.md)
 
 1. In the application startup phase, the application should save **UIContext** to use it in subsequent rendering and drawing processes at the same layer.
 
@@ -151,11 +151,17 @@ This process is the same as that of [Rendering and Drawing XComponent+AVPlayer a
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage): void {
        windowStage.loadContent('pages/Index', (err, data) => {
-         if (err.code) {
+         if (err && err.code) {
            return;
          }
-         // Save UIContext, which will be used in subsequent rendering and drawing at the same layer.
-         AppStorage.setOrCreate<UIContext>("UIContext", windowStage.getMainWindowSync().getUIContext());
+
+         let mainWindow = windowStage.getMainWindowSync();
+         if (mainWindow) {
+           // Save UIContext, which will be used in subsequent rendering and drawing at the same layer.
+           AppStorage.setOrCreate<UIContext>("UIContext", mainWindow.getUIContext());
+         } else {
+           console.error("Failed to get the main window");
+         }
        });
      }
 
@@ -215,9 +221,8 @@ This process is the same as that of [Rendering and Drawing XComponent+AVPlayer a
            Web({ src: 'www.example.com', controller: this.controller })
              .enableNativeMediaPlayer({ enable: true, shouldOverlay: false })
              .onPageBegin((event) => {
-               this.controller.onCreateNativeMediaPlayer((handler: webview.NativeMediaPlayerHandler, mediaInfo:    webview.MediaInfo) => {
+               this.controller.onCreateNativeMediaPlayer((handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo) => {
                  // Take over the web media.
-
                  // Use the surface provided by the rendering at the same layer to construct a native media player component.
                  this.node_controller = new MyNodeController(mediaInfo.surfaceInfo.id, NodeRenderType.RENDER_TYPE_TEXTURE);
                  this.node_controller.build();
@@ -226,7 +231,8 @@ This process is the same as that of [Rendering and Drawing XComponent+AVPlayer a
                  this.show_native_media_player = true;
 
                  // Return a native media player instance to the ArkWeb kernel.
-                 return null;
+                 let nativePlayer: webview.NativeMediaPlayerBridge = new NativeMediaPlayerImpl(handler, mediaInfo);
+                 return nativePlayer;
                });
              })
          }
@@ -235,7 +241,7 @@ This process is the same as that of [Rendering and Drawing XComponent+AVPlayer a
    }
    ```
 
-For details about how to dynamically create components and draw them on the surface, see [Rendering and Drawing XComponent+AVPlayer and Button Components at the Same Layer](web-same-layer.md).
+For details about how to dynamically create components and draw them on the surface, see [Using Same-Layer Rendering](web-same-layer.md).
 
 ### Executing Playback Control Commands Sent by ArkWeb Kernel to the Native Media Player
 
@@ -475,11 +481,17 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview-Webv
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage): void {
       windowStage.loadContent('pages/Index', (err, data) => {
-        if (err.code) {
+        if (err && err.code) {
           return;
         }
-        // Save UIContext, which will be used in subsequent rendering and drawing at the same layer.
-        AppStorage.setOrCreate<UIContext>("UIContext", windowStage.getMainWindowSync().getUIContext());
+        
+        let mainWindow = windowStage.getMainWindowSync();
+        if (mainWindow) {
+          // Save UIContext, which will be used in subsequent rendering and drawing at the same layer.
+          AppStorage.setOrCreate<UIContext>("UIContext", mainWindow.getUIContext());
+        } else {
+          console.error("Failed to get the main window");
+        }
       });
     }
 
@@ -487,7 +499,7 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview-Webv
   }
   ```
 
-- Example of web media playback takeover:
+- Example of taking over the web media playback through [AVPlayer](../media/media/media-kit-intro.md#avplayer):
 
   ```ts
   // Index.ets
@@ -512,7 +524,7 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview-Webv
       this.nativePlayerInfo = nativePlayerInfo;
       this.mediaHandler = handler;
       this.surfaceId = mediaInfo.surfaceInfo.id;
-      this.mediaSource = mediaInfo.mediaSrcList.find((item)=>{item.source.indexOf('.mp4') > 0})?.source
+      this.mediaSource = mediaInfo.mediaSrcList.find((item) => item.source.indexOf('.mp4') > 0)?.source
         || mediaInfo.mediaSrcList[0].source;
       this.httpHeaders = mediaInfo.headers;
       this.nativePlayer = new AVPlayerDemo();
@@ -795,7 +807,7 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview-Webv
     static toNodeRect(rectInPx: webview.RectEvent, uiContext: UIContext) : Rect {
       let rect = new Rect();
       rect.x = uiContext.px2vp(rectInPx.x);
-      rect.y = uiContext.px2vp(rectInPx.x);
+      rect.y = uiContext.px2vp(rectInPx.y);
       rect.width = uiContext.px2vp(rectInPx.width);
       rect.height = uiContext.px2vp(rectInPx.height);
       return rect;
@@ -1047,8 +1059,6 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview-Webv
       });
       avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
         console.info(`AVPlayer state bufferingUpdate success,and infoType value is:${infoType}, value is : ${value}`);
-        if (infoType == media.BufferingInfoType.BUFFERING_PERCENT) {
-        }
         listener?.onBufferedTimeChanged(value);
       })
       avPlayer.on('videoSizeChange', (width: number, height: number) => {
@@ -1202,7 +1212,7 @@ In the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview-Webv
   }
   ```
 
-- Example of a frontend page:
+- The following is a frontend page example of taking over the web media playback through [AVPlayer](../media/media/media-kit-intro.md#avplayer). For details about the supported media resources, see [Supported Formats and Protocols](../media/media/media-kit-intro.md#supported-formats-and-protocols).
 
   ```html
   <html>

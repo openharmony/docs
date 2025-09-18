@@ -7,17 +7,16 @@
 ## Basic Concepts
 
 - **ArrayBuffer**: An **ArrayBuffer** object represents a generic, fixed-length buffer of raw binary data. The **ArrayBuffer** content cannot be directly operated. Instead, you need to use a **TypedArray** or **DataView** object to interpret the buffer data in specific formats. **ArrayBuffer** is used to process a large amount of binary data, such as files and network data packets.
-- Lifecycle and memory management: When using Node-API to process **ArrayBuffer** objects, note that the lifecycle of the created **arrayBufferPtr** is managed by the engine and cannot be deleted by users. Otherwise, a double free error may occur.
 
 ## Available APIs
 
-The following table lists the APIs used to manipulate data of the **ArrayBuffer** type.  
+The following table lists the APIs used to manipulate data of the **ArrayBuffer** type.
 
 | API| Description|
 | -------- | -------- |
 | napi_is_arraybuffer | Checks whether a value is an **ArrayBuffer** object. Note that this API cannot be used to check whether a value is a **TypedArray** object. To check whether a value is a **TypedArray** object, use **napi_is_typedarray**.|
 | napi_get_arraybuffer_info | Obtains information of an **ArrayBuffer** object, including the pointer to the data and the data length.|
-| napi_detach_arraybuffer | Detaches the underlying data from an **ArrayBuffer** object. After the data is detached, you can operate the data in C/C++.|
+| napi_detach_arraybuffer | Separates the ArrayBuffer underlying buffer from the ArrayBuffer object. After the data is detached, you can operate the data in C/C++.|
 | napi_is_detached_arraybuffer | Checks whether an **ArrayBuffer** object has been detached.|
 | napi_create_arraybuffer | Creates an ArkTS **ArrayBuffer** object with the specified byte length.|
 
@@ -58,14 +57,14 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const isArrayBuffer: <T>(arrayBuffer: T) => boolean | void;
+export const isArrayBuffer: <T>(arrayBuffer: T) => boolean | undefined;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 try {
   let value = new ArrayBuffer(1);
   let data = "123";
@@ -76,6 +75,11 @@ try {
 }
 ```
 
+Log output:
+
+Test Node-API napi_is_arraybuffer: true<br>
+Test Node-API napi_is_arraybuffer: false
+
 ### napi_get_arraybuffer_info
 
 Call **napi_get_arraybuffer_info** to obtain the underlying data buffer and length of an **ArrayBuffer** object.
@@ -84,6 +88,7 @@ CPP code:
 
 ```cpp
 #include "napi/native_api.h"
+#include <cstring>
 
 static napi_value GetArrayBufferInfo(napi_env env, napi_callback_info info)
 {
@@ -113,8 +118,10 @@ static napi_value GetArrayBufferInfo(napi_env env, napi_callback_info info)
     napi_value byteLengthValue = nullptr;
     napi_create_uint32(env, byteLength, &byteLengthValue);
     napi_set_named_property(env, result, "byteLength", byteLengthValue);
-    napi_value bufferData;
-    napi_create_arraybuffer(env, byteLength, &data, &bufferData);
+    napi_value bufferData = nullptr;
+    void *newData = nullptr;
+    napi_create_arraybuffer(env, byteLength, &newData, &bufferData);
+    memcpy(newData, data, byteLength);
     napi_set_named_property(env, result, "buffer", bufferData);
     return result;
 }
@@ -126,20 +133,31 @@ API declaration:
 // index.d.ts
 export class ArrayBufferInfo {
   byteLength: number;
-  buffer: Object;
+  buffer: ArrayBuffer;
 }
-export const getArrayBufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | void;
+export const getArrayBufferInfo: (data: ArrayBuffer) => ArrayBufferInfo | undefined;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
-const buffer = new ArrayBuffer(10);
-hilog.info(0x0000, 'testTag', 'Test Node-API get_arrayBuffer_info:%{public}s ', JSON.stringify(testNapi.getArrayBufferInfo(buffer)));
+try {
+  let typedArray = new Uint8Array([1, 2, 3, 4, 5]);
+  let buffer = typedArray.buffer;
+  let result = testNapi.getArrayBufferInfo(buffer) as testNapi.ArrayBufferInfo;
+  let resBuffer = new Uint8Array(result.buffer);
+  hilog.info(0x0000, 'testTag', 'Test Node-API get_arrayBuffer_info byteLength: %{public}d buffer: %{public}s', result.byteLength, JSON.stringify(resBuffer));
+} catch (error) {
+  hilog.error(0x0000, 'testTag', 'Test Node-API get_arrayBuffer_info error: %{public}s', error.message);
+}
 ```
+
+Log output:
+
+Test Node-API get_arrayBuffer_info:{"byteLength":10,"buffer":{}}
 
 ### napi_detach_arraybuffer
 
@@ -193,8 +211,8 @@ export const isDetachedArrayBuffer: (arrayBuffer: ArrayBuffer) => boolean;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 try {
   const bufferArray = new ArrayBuffer(8);
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_is_detached_arraybuffer one: %{public}s', testNapi.isDetachedArrayBuffer(bufferArray));
@@ -203,6 +221,11 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_detached_arraybuffer error: %{public}s', error.message);
 }
 ```
+
+Log output:
+
+Test Node-API napi_is_detached_arraybuffer one: false<br>
+Test Node-API napi_is_detached_arraybuffer two: true
 
 ### napi_create_arraybuffer
 
@@ -216,6 +239,7 @@ CPP code:
 
 ```cpp
 #include "napi/native_api.h"
+#include "hilog/log.h"
 
 static napi_value CreateArrayBuffer(napi_env env, napi_callback_info info)
 {
@@ -229,11 +253,15 @@ static napi_value CreateArrayBuffer(napi_env env, napi_callback_info info)
     // Convert the parameter passed from ArkTS to the size_t type and use it as the parameter of napi_create_arraybuffer.
     napi_get_value_int32(env, argv[0], &value);
     length = size_t(value);
-    void *data;
+    void *data = nullptr;
     // Create an ArrayBuffer object.
     napi_create_arraybuffer(env, length, &data, &result);
     if (data != nullptr) {
-        // Check data before using it for subsequent operations.
+      // Check data before using it for subsequent operations.
+    } else {
+      // Handle the memory allocation failure.
+      OH_LOG_ERROR(LOG_APP, "Failed to allocate memory for ArrayBuffer");
+      return nullptr;
     }
     // Return the ArrayBuffer object.
     return result;
@@ -250,8 +278,8 @@ export const createArrayBuffer: (size: number) => ArrayBuffer;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_arraybuffer:%{public}s', testNapi.createArrayBuffer(10).toString());
 ```
@@ -262,5 +290,13 @@ To print logs in the native CPP, add the following information to the **CMakeLis
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```
+
+Log output:
+Test Node-API napi_create_arraybuffer:[object ArrayBuffer]
+
+## NOTE
+
+- Lifecycle and memory management: When using Node-API to process **ArrayBuffer** objects, note that the lifecycle of the buffer data segment of the **void*** type is managed by the engine and [cannot be deleted by users. Otherwise, a double free error may occur](napi-guidelines.md#avoiding-releasing-the-obtained-buffer-repeatedly).
+- Pay attention to the allocated buffer size. When the value of **byte_length** is large, no exception is thrown upon an allocation failure, and the data parameter points to the nullptr buffer. It is recommended that strict judgment be performed on *data = = nullptr and the limit check be performed on the oversized byte_length to avoid OOM.
