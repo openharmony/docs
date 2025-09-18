@@ -464,8 +464,8 @@ RSA私钥生成CSR时的配置参数，包含主体、扩展、摘要算法、�
 | 名称         | 类型                                              | 必填 | 说明                                   |
 | ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
 | password     | string                                            | 是   | 表示P12文件的密码。             |
-| needsPrivateKey  | boolean                                       | 否   | 表示是否获取私钥。默认为true。true为获取，false为不获取。                       |
-| privateKeyFormat |  [EncodingBaseFormat](#encodingbaseformat18)                      | 否   | 表示获取私钥的格式。默认为PEM。 |
+| needsPrivateKey  | boolean                                       | 否   | 表示是否获取私钥。默认为true。<br>true为获取，返回PKCS8编码的私钥数据；false为不获取。                       |
+| privateKeyFormat |  [EncodingBaseFormat](#encodingbaseformat18)                      | 否   | 表示获取私钥的格式，当前支持PEM和DER格式。参数缺省时，默认为PEM格式。<br>**注意**：当needsPrivateKey值为true时，该参数生效。 |
 | needsCert    | boolean                                           | 否   | 表示是否获取证书。默认为true。true为获取，false为不获取。 |
 | needsOtherCerts  | boolean                                       | 否   | 表示是否获取其他证书合集。默认为false。true为获取，false为不获取。 |
 
