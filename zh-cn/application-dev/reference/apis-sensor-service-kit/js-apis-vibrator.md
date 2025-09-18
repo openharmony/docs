@@ -967,7 +967,7 @@ getEffectInfoSync(effectId: string, param?: VibratorInfoParam): EffectInfo
    // 使用try catch对可能出现的异常进行捕获
    try {
      const effectInfo: vibrator.EffectInfo = vibrator.getEffectInfoSync('haptic.clock.timer', { deviceId: 1, vibratorId: 3});
-     console.log(`isEffectSupported: ${effectInfo.isEffectSupported}`);
+     console.info(`isEffectSupported: ${effectInfo.isEffectSupported}`);
    } catch (error) {
      let e: BusinessError = error as BusinessError;
      console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
@@ -1004,7 +1004,7 @@ getVibratorInfoSync(param?: VibratorInfoParam): Array&lt;VibratorInfo&gt;;
 
    try {
      const vibratorInfoList: vibrator.VibratorInfo[] = vibrator.getVibratorInfoSync({ deviceId: 1, vibratorId: 3 });
-     console.log(`vibratorInfoList: ${JSON.stringify(vibratorInfoList)}`);
+     console.info(`vibratorInfoList: ${JSON.stringify(vibratorInfoList)}`);
    } catch (error) {
      let e: BusinessError = error as BusinessError;
      console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
@@ -1044,7 +1044,7 @@ on(type: 'vibratorStateChange', callback: Callback&lt;VibratorStatusEvent&gt;): 
 
    // 回调函数 
    const vibratorStateChangeCallback = (data: vibrator.VibratorStatusEvent) => {
-     console.log('vibrator state callback info:', JSON.stringify(data));
+     console.info('vibrator state callback info:', JSON.stringify(data));
    }
 
    // 使用try catch对可能出现的异常进行捕获
@@ -1090,7 +1090,7 @@ off(type: 'vibratorStateChange', callback?: Callback&lt;VibratorStatusEvent&gt;)
 
    // 回调函数 
    const vibratorStateChangeCallback = (data: vibrator.VibratorStatusEvent) => {
-     console.log('vibrator state callback info:', JSON.stringify(data));
+     console.info('vibrator state callback info:', JSON.stringify(data));
    }
    // 使用try catch对可能出现的异常进行捕获
    try {
@@ -1312,7 +1312,7 @@ addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilde
 	     index: 0
      }
      builder.addTransientEvent(0, param);
-     console.log(`addTransientEvent builder is ${builder.build()}`);
+     console.info(`addTransientEvent builder is ${builder.build()}`);
    } catch(error) {
      let e: BusinessError = error as BusinessError;
      console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
@@ -1347,7 +1347,7 @@ build(): VibratorPattern;
 	     index: 0
      }
      builder.addTransientEvent(0, param);
-     console.log(`addTransientEvent builder is ${builder.build()}`);
+     console.info(`addTransientEvent builder is ${builder.build()}`);
    } catch(error) {
      let e: BusinessError = error as BusinessError;
      console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
