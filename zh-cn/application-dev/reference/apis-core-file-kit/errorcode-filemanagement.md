@@ -20,6 +20,10 @@
 
 Operation not permitted
 
+**错误描述**
+
+操作不允许
+
 **可能原因**
 
 当前用户文件操作不被允许，URI或path访问未授权。
@@ -38,6 +42,10 @@ Operation not permitted
 
 No such file or directory
 
+**错误描述**
+
+没有这个文件或目录
+
 **可能原因**
 
 文件或目录不存在。
@@ -51,6 +59,10 @@ No such file or directory
 **错误信息**
 
 No such process
+
+**错误描述**
+
+没有这样的进程
 
 **可能原因**
 
@@ -68,6 +80,10 @@ No such process
 
 Interrupted system call
 
+**错误描述**
+
+系统调用被中断
+
 **可能原因**
 
 系统调用被其他线程中断。
@@ -83,6 +99,10 @@ Interrupted system call
 **错误信息**
 
 I/O error
+
+**错误描述**
+
+I/O错误
 
 **可能原因**
 
@@ -108,6 +128,10 @@ I/O error
 
 No such device or address
 
+**错误描述**
+
+没有这个设备或地址
+
 **可能原因**
 
 设备或地址信息错误。
@@ -122,6 +146,10 @@ No such device or address
 
 Arg list too long
 
+**错误描述**
+
+参数列表太长
+
 **可能原因**
 
 参数列表过长。
@@ -135,6 +163,10 @@ Arg list too long
 **错误信息**
 
 Bad file descriptor
+
+**错误描述**
+
+坏的文件描述符
 
 **可能原因**
 
@@ -154,6 +186,10 @@ Bad file descriptor
 
 No child processes
 
+**错误描述**
+
+没有子进程
+
 **可能原因**
 
 无法创建子进程。
@@ -168,6 +204,10 @@ No child processes
 
 Try again
 
+**错误描述**
+
+资源暂时不可用
+
 **可能原因**
 
 资源被阻塞。
@@ -181,6 +221,10 @@ Try again
 **错误信息**
 
 Out of memory
+
+**错误描述**
+
+内存溢出
 
 **可能原因**
 
@@ -197,6 +241,10 @@ Out of memory
 **错误信息**
 
 Permission denied
+
+**错误描述**
+
+拒绝许可
 
 **可能原因**
 
@@ -218,6 +266,10 @@ Permission denied
 
 Bad address
 
+**错误描述**
+
+错误的地址
+
 **可能原因**
 
 地址错误。
@@ -231,6 +283,10 @@ Bad address
 **错误信息**
 
 Device or resource busy
+
+**错误描述**
+
+设备或资源忙
 
 **可能原因**
 
@@ -246,6 +302,10 @@ Device or resource busy
 
 File exists
 
+**错误描述**
+
+文件存在
+
 **可能原因**
 
 需创建的文件已存在。
@@ -259,6 +319,10 @@ File exists
 **错误信息**
 
 Cross-device link
+
+**错误描述**
+
+无效的交叉链接
 
 **可能原因**
 
@@ -274,6 +338,10 @@ Cross-device link
 
 No such device
 
+**错误描述**
+
+设备不存在
+
 **可能原因**
 
 设备未被识别。
@@ -287,6 +355,10 @@ No such device
 **错误信息**
 
 Not a directory
+
+**错误描述**
+
+不是一个目录
 
 **可能原因**
 
@@ -302,6 +374,10 @@ Not a directory
 
 Is a directory
 
+**错误描述**
+
+是一个目录
+
 **可能原因**
 
 此路径是文件夹目录。
@@ -315,6 +391,10 @@ Is a directory
 **错误信息**
 
 Invalid argument
+
+**错误描述**
+
+无效的参数
 
 **可能原因**
 
@@ -330,6 +410,10 @@ Invalid argument
 
 File table overflow
 
+**错误描述**
+
+打开太多的文件系统
+
 **可能原因**
 
 进程打开过多的文件描述符。
@@ -343,6 +427,10 @@ File table overflow
 **错误信息**
 
 Too many open files
+
+**错误描述**
+
+打开的文件过多
 
 **可能原因**
 
@@ -358,6 +446,10 @@ Too many open files
 
 Text file busy
 
+**错误描述**
+
+文本文件忙
+
 **可能原因**
 
 程序的可执行文件正在被使用。
@@ -371,6 +463,10 @@ Text file busy
 **错误信息**
 
 File too large
+
+**错误描述**
+
+文件太大
 
 **可能原因**
 
@@ -386,6 +482,10 @@ File too large
 
 No space left on device
 
+**错误描述**
+
+设备上没有空间
+
 **可能原因**
 
 设备存储空间不足。
@@ -399,6 +499,10 @@ No space left on device
 **错误信息**
 
 Illegal seek
+
+**错误描述**
+
+非法移位
 
 **可能原因**
 
@@ -414,6 +518,10 @@ Illegal seek
 
 Read-only file system
 
+**错误描述**
+
+只读文件系统
+
 **可能原因**
 
 文件系统只支持读。
@@ -427,6 +535,10 @@ Read-only file system
 **错误信息**
 
 Too many links
+
+**错误描述**
+
+太多的链接
 
 **可能原因**
 
@@ -442,6 +554,10 @@ Too many links
 
 Resource deadlock would occur
 
+**错误描述**
+
+资源死锁错误
+
 **可能原因**
 
 资源死锁。
@@ -455,6 +571,10 @@ Resource deadlock would occur
 **错误信息**
 
 Filename too Long
+
+**错误描述**
+
+文件名太长
 
 **可能原因**
 
@@ -470,6 +590,10 @@ Filename too Long
 
 Function not implemented
 
+**错误描述**
+
+功能没有实现
+
 **可能原因**
 
 系统不支持此功能。
@@ -483,6 +607,10 @@ Function not implemented
 **错误信息**
 
 Directory not empty
+
+**错误描述**
+
+目录非空
 
 **可能原因**
 
@@ -500,6 +628,10 @@ Directory not empty
 
 Too many symbolic links encountered
 
+**错误描述**
+
+符号链接层次太多
+
 **可能原因**
 
 符号链接层次过多。
@@ -513,6 +645,10 @@ Too many symbolic links encountered
 **错误信息**
 
 Operation would block
+
+**错误描述**
+
+操作被阻塞
 
 **可能原因**
 
@@ -528,6 +664,10 @@ Operation would block
 
 Invalid request descriptor
 
+**错误描述**
+
+请求描述符无效
+
 **可能原因**
 
 文件描述符非法。
@@ -541,6 +681,10 @@ Invalid request descriptor
 **错误信息**
 
 Device not a stream
+
+**错误描述**
+
+设备不是字符流
 
 **可能原因**
 
@@ -556,6 +700,10 @@ Device not a stream
 
 No data available
 
+**错误描述**
+
+无可用数据
+
 **可能原因**
 
 数据不可用。
@@ -569,6 +717,10 @@ No data available
 **错误信息**
 
 Value too large for defined data type
+
+**错误描述**
+
+对于定义的数据类型,值太大
 
 **可能原因**
 
@@ -584,6 +736,10 @@ Value too large for defined data type
 
 File descriptor in bad state
 
+**错误描述**
+
+文件描述符在坏状态
+
 **可能原因**
 
 文件描述符损坏。
@@ -597,6 +753,10 @@ File descriptor in bad state
 **错误信息**
 
 Interrupted system call should be restarted
+
+**错误描述**
+
+应该重新启动被中断的系统调用
 
 **可能原因**
 
@@ -612,6 +772,10 @@ Interrupted system call should be restarted
 
 Quota exceeded
 
+**错误描述**
+
+超出磁盘配额
+
 **可能原因**
 
 磁盘空间不足。
@@ -625,6 +789,10 @@ Quota exceeded
 **错误信息**
 
 Unknown error
+
+**错误描述**
+
+未知错误
 
 **可能原因**
 
@@ -642,6 +810,10 @@ Unknown error
 
 No record is locks available
 
+**错误描述**
+
+没有可用的锁
+
 **可能原因**
 
 系统资源不足。
@@ -656,6 +828,10 @@ No record is locks available
 
 Network is unreachable
 
+**错误描述**
+
+网络无法访问
+
 **可能原因**
 
 网络异常。
@@ -669,6 +845,10 @@ Network is unreachable
 **错误信息**
 
 Connection failed
+
+**错误描述**
+
+连接失败
 
 **可能原因**
 
@@ -685,6 +865,10 @@ Connection failed
 **错误信息**
 
 Software caused connection abort
+
+**错误描述**
+
+软件造成连接中断
 
 **可能原因**
 
