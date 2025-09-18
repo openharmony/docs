@@ -1265,8 +1265,8 @@ struct Index {
             let currentAVSession: avSession.AVSession = await avSession.createAVSession(context, 'SESSION_NAME', 'audio');
             let avSessionController: avSession.AVSessionController;
             currentAVSession.getController().then((avController: avSession.AVSessionController) => {
-              avsessionController = avController;
-              console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
+              avSessionController = avController;
+              console.info(`GetController : SUCCESS : sessionid : ${avSessionController.sessionId}`);
             }).catch((err: BusinessError) => {
               console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
             });
@@ -1742,7 +1742,7 @@ on(type: 'play', callback: () => void): void
 | callback | () => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则为错误对象。                                        |
 
 **错误码：**
-
+  
 以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
@@ -3475,7 +3475,7 @@ on(type: 'customDataChange', callback: Callback\<Record\<string, Object>>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it.   |
 | 6600102  | The session does not exist. |
 
 **示例：**
@@ -3509,7 +3509,7 @@ off(type: 'customDataChange', callback?: Callback\<Record\<string, Object>>): vo
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it.  |
 | 6600102  | The session does not exist. |
 
 **示例：**
