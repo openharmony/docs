@@ -3574,7 +3574,7 @@ init操作密钥接口，使用Callback回调异步返回结果。huks.init, huk
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | keyAlias | string                 | 是   | Init操作密钥的别名。 |
 | options  | [HuksOptions](#huksoptions) | 是   | Init操作的参数集合。 |
-| callback | AsyncCallback\<[HuksHandle](#hukshandledeprecated)> | 是   | 回调函数。将Init操作操作返回的handle添加到密钥管理系统的回调。 |
+| callback | AsyncCallback\<[HuksHandle](#hukshandledeprecated)> | 是   | 回调函数。将Init操作返回的handle添加到密钥管理系统的回调。 |
 
 ## huks.init<sup>(deprecated)</sup>
 
