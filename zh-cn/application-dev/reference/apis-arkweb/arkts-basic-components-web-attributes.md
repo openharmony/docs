@@ -882,6 +882,7 @@ defaultFixedFontSize(size: number)
 
 
 设置网页的默认等宽字体大小。对于html前端指定monospace字体样式且未指定font-size样式的元素，实际渲染时将按照接口值设置的字体大小进行渲染显示。
+
 当属性没有显式调用时，默认等宽字体大小为13。
 
 
@@ -920,6 +921,7 @@ defaultFontSize(size: number)
 
 
 设置网页的默认字体大小。对于html前端使用非monospace字体样式且未指定font-size样式的元素，实际渲染时将按照接口值设置的字体大小进行渲染显示。
+
 当属性没有显式调用时，网页的默认字体大小为16。
 
 
@@ -958,6 +960,7 @@ minFontSize(size: number)
 
 
 设置网页字体大小最小值。对于html前端元素，若元素字体大小低于该接口设置的字体大小，实际渲染时将按照接口值设置的字体大小进行渲染显示。
+
 当属性没有显式调用时，默认网页字体大小最小值为8。
 
 
@@ -996,6 +999,7 @@ minLogicalFontSize(size: number)
 
 
 设置网页逻辑字体大小最小值。对于html前端未指定font-size样式的元素，若元素字体大小低于该接口设置的字体大小，实际渲染时将按照接口值设置的字体大小进行渲染显示。minLogicalFontSize和minFontSize同时设置时，对于未指定font-size样式元素，将采用两个接口设置的较大值生效。
+
 当属性没有显式调用时，默认网页逻辑字体大小最小值为8。
 
 
@@ -1034,6 +1038,7 @@ webFixedFont(family: string)
 
 
 设置网页的fixed font字体库。设置后将会使用该接口设置的字体库，渲染显示html前端指定monospace字体样式的元素。
+
 当属性没有显式调用时，默认网页的fixed font字体库为monospace。
 
 
@@ -1072,6 +1077,7 @@ webSansSerifFont(family: string)
 
 
 设置网页的sans-serif font字体库。设置后将会使用该接口设置的字体库，渲染显示html前端指定sans-serif字体样式的元素。
+
 当属性没有显式调用时，默认网页的sans-serif font字体库为sans-serif。
 
 
@@ -1110,6 +1116,7 @@ webSerifFont(family: string)
 
 
 设置网页的serif font字体库。设置后将会使用该接口设置的字体库，渲染显示html前端指定serif字体样式的元素。
+
 当属性没有显式调用时，默认网页的serif font字体库为serif。
 
 
@@ -1148,6 +1155,7 @@ webStandardFont(family: string)
 
 
 设置网页的standard font字体库。设置后将会使用该接口设置的字体库，渲染显示html前端未指定字体样式的元素。
+
 当属性没有显式调用时，默认网页的tandard font字体库为sans-serif。
 
 
@@ -1186,6 +1194,7 @@ webFantasyFont(family: string)
 
 
 设置网页的fantasy font字体库。设置后将会使用该接口设置的字体库，渲染显示html前端指定fantasy字体样式的元素。
+
 当属性没有显式调用时，默认网页的fantasy font字体库为fantasy。
 
 
@@ -1223,6 +1232,7 @@ webCursiveFont(family: string)
 
 
 设置网页的cursive font字体库。设置后将会使用该接口设置的字体库，渲染显示html前端指定cursive字体样式的元素。
+
 当属性没有显式调用时，默认网页的cursive font字体库为cursive。
 
 
