@@ -74,6 +74,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | DISTRIBUTED<sup>20+</sup> | 28 | [DistributedExtensionAbility](../apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)：提供分布式相关扩展能力，提供分布式创建、销毁、连接的生命周期回调。 |
 | APP_SERVICE<sup>20+</sup> | 29 | [AppServiceExtensionAbility](../apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)：为企业普通应用提供后台服务能力。 |
 | LIVE_FORM<sup>20+</sup> | 30 | [LiveFormExtensionAbility](../apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)：互动卡片相关扩展能力，提供互动卡片创建、销毁的生命周期回调。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| FAULT_LOG<sup>21+</sup> | 33 | [FaultLogExtensionAbility](../apis-performance-analysis-kit/js-apis-hiviewdfx-FaultLogExtensionAbility.md)：故障日志扩展能力，提供应用故障后拉起对应ExtensionAbility的能力。|
 | UNSPECIFIED      | 255 | 不指定类型<!--Del-->，配合[queryExtensionAbilityInfo接口](js-apis-bundleManager-sys.md#bundlemanagerqueryextensionabilityinfo)可以查询所有类型的ExtensionAbility<!--DelEnd-->。 |
 <!--RP2--><!--RP2End-->
 

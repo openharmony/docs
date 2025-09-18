@@ -33,7 +33,7 @@ VPN 即虚拟专网（VPN-Virtual Private Network）在公用网络上建立专�
 4. 处理虚拟网卡的数据，如：读写操作。
 5. 销毁 VPN 网络。
 
-本示例通过 Native C++ 的方式开发应用程序，Native C++ 可参考：[简易 Native C++ 示例（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo)。
+本示例通过 Native C++ 的方式开发应用程序，Native C++ 可参考：[简易 Native C++ 示例（ArkTS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo)。
 
 示例程序主要包含两个部分：js 功能代码和 C++功能代码。
 

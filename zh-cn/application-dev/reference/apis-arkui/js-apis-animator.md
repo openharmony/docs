@@ -20,7 +20,7 @@
 >
 > 自定义组件中一般会持有一个[create](#create18)接口返回的[AnimatorResult](#animatorresult)对象，以保证动画对象不在动画过程中析构，而这个对象也通过回调捕获了自定义组件对象。则需要在自定义组件销毁时的[aboutToDisappear](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear)中释放动画对象，来避免因为循环依赖导致内存泄漏，详细示例可参考：[基于ArkTS扩展的声明式开发范式](#基于arkts扩展的声明式开发范式)。
 >
-> Animator对象析构或主动调用[cancel](#cancel)都会有一次额外的[onFrame](#onframe12)，返回值是动画终点的值。
+> Animator对象析构或主动调用[cancel](#cancel)、[finish](#finish)都会有一次额外的[onFrame](#onframe12)，返回值是动画终点的值。所以如果在动画过程中调用[cancel](#cancel)、[finish](#finish)会一帧跳变到终点，如果希望在中途停止，可以先将[onFrame](#onframe12)设置为空函数，再调用[finish](#finish)。
 
 ## 导入模块
 

@@ -703,7 +703,7 @@ OH_AVFormat_Destroy(format);
 
 ### 设置正确的视频像素格式信息
 
-视频像素格式指示的编码输入图像或解码输出图像的像素排布方式，参考[OH_AVPixelFormat](../../reference/apis-avcodec-kit/_core.md#oh_avpixelformat-1)。
+视频像素格式指示的编码输入图像或解码输出图像的像素排布方式，参考[OH_AVPixelFormat](../../reference/apis-avcodec-kit/capi-native-avformat-h.md#oh_avpixelformat)。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |

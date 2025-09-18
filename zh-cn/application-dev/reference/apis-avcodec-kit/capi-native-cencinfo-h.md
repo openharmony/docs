@@ -28,7 +28,7 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [DrmSubsample](capi-multimedia-drm-drmsubsample.md) | DrmSubsample | Subsample结构类型定义。 |
-| [OH_AVBuffer](capi-multimedia-drm-oh-avbuffer.md) | OH_AVBuffer | AVBuffer结构。 |
+| [OH_AVBuffer](capi-core-oh-avbuffer.md) | OH_AVBuffer | AVBuffer结构。 |
 | [OH_AVCencInfo](capi-multimedia-drm-oh-avcencinfo.md) | OH_AVCencInfo | AVCencInfo结构。 |
 
 ### 枚举
@@ -146,7 +146,7 @@ OH_AVErrCode OH_AVCencInfo_Destroy(OH_AVCencInfo *cencInfo)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：cencInfo为空。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：cencInfo为空。 |
 
 ### OH_AVCencInfo_SetAlgorithm()
 
@@ -174,7 +174,7 @@ OH_AVErrCode OH_AVCencInfo_SetAlgorithm(OH_AVCencInfo *cencInfo, enum DrmCencAlg
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：cencInfo为空。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：cencInfo为空。 |
 
 ### OH_AVCencInfo_SetKeyIdAndIv()
 
@@ -205,7 +205,7 @@ OH_AVErrCode OH_AVCencInfo_SetKeyIdAndIv(OH_AVCencInfo *cencInfo, uint8_t *keyId
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：cencInfo为空、keyId为空、keyIdLen != DRM_KEY_ID_SIZE、iv是空、ivLen != DRM_KEY_IV_SIZE、keyId拷贝失败，或者iv拷贝失败。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：cencInfo为空、keyId为空、keyIdLen != DRM_KEY_ID_SIZE、iv是空、ivLen != DRM_KEY_IV_SIZE、keyId拷贝失败，或者iv拷贝失败。 |
 
 ### OH_AVCencInfo_SetSubsampleInfo()
 
@@ -237,7 +237,7 @@ OH_AVErrCode OH_AVCencInfo_SetSubsampleInfo(OH_AVCencInfo *cencInfo, uint32_t en
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：cencInfo为空、subsampleCount > DRM_KEY_MAX_SUB_SAMPLE_NUM，或者subsamples为空。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：cencInfo为空、subsampleCount > DRM_KEY_MAX_SUB_SAMPLE_NUM，或者subsamples为空。 |
 
 ### OH_AVCencInfo_SetMode()
 
@@ -265,7 +265,7 @@ OH_AVErrCode OH_AVCencInfo_SetMode(OH_AVCencInfo *cencInfo, enum DrmCencInfoMode
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：cencInfo为空。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：cencInfo为空。 |
 
 ### OH_AVCencInfo_SetAVBuffer()
 
@@ -287,12 +287,12 @@ OH_AVErrCode OH_AVCencInfo_SetAVBuffer(OH_AVCencInfo *cencInfo, OH_AVBuffer *buf
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVCencInfo](capi-multimedia-drm-oh-avcencinfo.md) *cencInfo | 指向OH_AVCencInfo实例的指针。 |
-| [OH_AVBuffer](capi-multimedia-drm-oh-avbuffer.md) *buffer | 携带数据的帧buffer。 |
+| [OH_AVBuffer](capi-core-oh-avbuffer.md) *buffer | 携带数据的帧buffer。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：cencInfo为空、buffer为空、buffer->buffer_为空，或者buffer->buffer_->meta_为空。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：cencInfo为空、buffer为空、buffer->buffer_为空，或者buffer->buffer_->meta_为空。 |
 
 

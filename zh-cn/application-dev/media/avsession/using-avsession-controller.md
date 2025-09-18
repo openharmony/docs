@@ -137,7 +137,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
      let index = g_controller.findIndex((controller) => {
        return controller.sessionId === session.sessionId;
      });
-     if (index !== 0) {
+     if (index !== -1) {
        g_controller[index].destroy();
        g_controller.splice(index, 1);
      }
@@ -148,7 +148,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
        return controller.sessionId === session.sessionId;
      });
      // 将该会话显示排到第一个。
-     if (index !== 0) {
+     if (index !== -1) {
        g_controller.sort((a, b) => {
          return a.sessionId === session.sessionId ? -1 : 0;
        });

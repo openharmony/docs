@@ -18,7 +18,6 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
    import { image } from '@kit.ImageKit';
    import { camera } from '@kit.CameraKit';
    import { fileIo as fs } from '@kit.CoreFileKit';
-   import { photoAccessHelper } from '@kit.MediaLibraryKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 

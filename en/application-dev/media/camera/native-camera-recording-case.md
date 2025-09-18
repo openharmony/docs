@@ -47,7 +47,6 @@ After obtaining the output stream capabilities supported by the camera, create a
 3. Import the NDK APIs on the C++ side, and perform video recording based on the surface ID passed in.
     ```c++
     #include "hilog/log.h"
-    #include "ndk_camera.h"
     #include <cmath>
 
     bool IsAspectRatioEqual(float videoAspectRatio, float previewAspectRatio)

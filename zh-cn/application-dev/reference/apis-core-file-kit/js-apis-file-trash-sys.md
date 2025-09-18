@@ -6,7 +6,7 @@
 <!--Tester: @liuhonggang123; @yue-ye2; @juxiaopang-->
 <!--Adviser: @foryourself-->
 
-本模块接口提供接口，可以查询、还原或彻底删除最近删除（回收站）里的文件/文件夹。当前仅支持本地文件目录。
+该模块提供可以查询、还原或彻底删除最近删除（回收站）里的文件/文件夹的能力。当前仅支持本地文件目录。
 
 应用可通过FileAccess的删除操作将文件/文件夹移动到回收站，具体可参考[@ohos.file.fileAccess](js-apis-fileAccess-sys.md)。
 
@@ -19,7 +19,7 @@
 ## 导入模块
 
 ```js
-import trash from '@ohos.file.trash';
+import { trash } from '@kit.CoreFileKit';
 ```
 
 ## trash.listFile
@@ -30,11 +30,11 @@ listFile(): Array\<FileInfo>
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.FileManagement.UserFileService
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-**系统接口**：此接口为系统接口。
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 **返回值：**
 
@@ -69,11 +69,11 @@ recover(uri: string): void
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.FileManagement.UserFileService
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-**系统接口**：此接口为系统接口。
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 **参数：**
 
@@ -101,11 +101,11 @@ completelyDelete(uri: string): void
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.FileManagement.UserFileService
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-**系统接口**：此接口为系统接口。
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 **参数：**
 
@@ -130,6 +130,8 @@ completelyDelete(uri: string): void
 最近删除（回收站）内文件的FileInfo对象。
 
 **模型约束**：此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 

@@ -858,7 +858,7 @@ setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**设备行为差异：** 该接口在2in1设备上调用不生效不报错，在其他设备中可正常调用。
+**设备行为差异：** 仅在支持跟随sensor旋转的设备中生效，其他设备调用不生效不报错。
 
 **参数：**
 
@@ -898,11 +898,13 @@ screen.setScreenRotationLocked(isLocked).then(() => {
 
 setScreenRotationLocked(isLocked: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置自动转屏开关是否锁定，使用callback异步回调，不适用于2in1设备。
+设置自动转屏开关是否锁定，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**设备行为差异：** 仅在支持跟随sensor旋转的设备中生效，其他设备调用不生效不报错。
 
 **参数：**
 
@@ -1377,6 +1379,7 @@ screen.stopExpand(expandScreenIds).then(() => {
 | 名称              | 类型                                       | 只读 | 可选 | 说明                                                          |
 | ----------------- | ---------------------------------------------- | ---- | ---- |-------------------------------------------------------------|
 | id                | number                                         | 是   | 否   | 屏幕的id，该参数为整数。                           |
+| rsId<sup>21+</sup> |number | 是 | 否 | 屏幕端口的id，该参数为整数。|
 | parent            | number                                         | 是   | 否   | 屏幕所属群组的id，该参数为整数。             |
 | supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。   |
 | activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。该参数为整数。 |

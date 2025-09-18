@@ -44,7 +44,7 @@
 | static const char* OH_AVMETADATA_EXTRACTOR_VIDEO_HEIGHT = "videoHeight" | 获取视频高度的关键字，对应值类型为int32_t，单位为像素。<br>**起始版本：** 18 |
 | static const char* OH_AVMETADATA_EXTRACTOR_VIDEO_WIDTH = "videoWidth" | 获取视频宽度的关键字，对应值类型为int32_t，单位为像素。<br>**起始版本：** 18 |
 | static const char* OH_AVMETADATA_EXTRACTOR_VIDEO_ORIENTATION = "videoOrientation" | 获取视频旋转方向的关键字，对应值类型为int32_t，单位为度（°）。<br>**起始版本：** 18 |
-| static const char* OH_AVMETADATA_EXTRACTOR_VIDEO_IS_HDR_VIVID = "hdrType" | 获取是否是HDR Vivid视频的关键字，对应值类型为int32_t。<br>详情请参阅media_types.h中的[OH_Core_HdrType](../apis-avcodec-kit/_core.md#oh_core_hdrtype-1)。<br>**起始版本：** 18 |
+| static const char* OH_AVMETADATA_EXTRACTOR_VIDEO_IS_HDR_VIVID = "hdrType" | 获取是否是HDR Vivid视频的关键字，对应值类型为int32_t。<br>详情请参阅media_types.h中的[OH_Core_HdrType](../apis-avcodec-kit/capi-media-types-h.md#oh_core_hdrtype)。<br>**起始版本：** 18 |
 | static const char* OH_AVMETADATA_EXTRACTOR_LOCATION_LATITUDE = "latitude" | 获取地理位置中的纬度值的关键字，对应值类型为float。<br>**起始版本：** 18 |
 | static const char* OH_AVMETADATA_EXTRACTOR_LOCATION_LONGITUDE = "longitude" | 获取地理位置中的经度值的关键字，对应值类型为float。<br>**起始版本：** 18 |
 

@@ -4,7 +4,7 @@
 <!--Owner: @aohui-->
 <!--Designer: @yaomingliu-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 通过WebResourceHandler，可以提供自定义的返回头以及返回体给Web组件。
 
@@ -199,7 +199,8 @@ struct WebComponent {
                 // 直接调用didFail(WebNetErrorList.ERR_FAILED, true)，自动构造一个网络请求错误ERR_CONNECTION_FAILED
                 resourceHandler.didFail(WebNetErrorList.ERR_FAILED, true);
               } catch (error) {
-              	// 当error.code为17100101时，若没有处理该错误，didFail方法也会调用成功。
+              	// 当error.code为17100101(The errorCode is either ARKWEB_NET_OK or outside the range of error codes in WebNetErrorList)
+                // 且didFail(code: WebNetErrorList, completeIfNoResponse: boolean)的code值不为null时，接口会继续调用不会中断。
                 console.error(`[schemeHandler] ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
               }
               return true;

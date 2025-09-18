@@ -36,7 +36,7 @@ setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 需要设置处置状态的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid和appidentifier)。               |
+| appId  | string | 是    | 需要设置处置状态的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](../../quick-start/common_problem_of_application.md#如何获取应用信息中的appid)。               |
 | disposedWant | Want  | 是 | 对应用的处置意图。 |
 
 **返回值：**
@@ -97,7 +97,7 @@ setDisposedStatus(appId: string, disposedWant: Want, callback: AsyncCallback\<vo
 
 | 参数名       | 类型                              | 必填   | 说明                                    |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
-| appId  | string | 是    | 需要设置处置的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid和appidentifier)。                      |
+| appId  | string | 是    | 需要设置处置的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](../../quick-start/common_problem_of_application.md#如何获取应用信息中的appid)。                      |
 | disposedWant | Want  | 是 | 对应用的处置意图。 |
 | callback    | AsyncCallback\<void> | 是    | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，当设置处置状态成功，err为null，否则为错误对象。 |
 
@@ -155,7 +155,7 @@ setDisposedStatusSync(appId: string, disposedWant: Want): void;
 
 | 参数名       | 类型                              | 必填   | 说明                                    |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
-| appId  | string | 是    | 需要设置处置的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid和appidentifier)。                      |
+| appId  | string | 是    | 需要设置处置的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](../../quick-start/common_problem_of_application.md#如何获取应用信息中的appid)。                      |
 | disposedWant | Want  | 是 | 对应用的处置意图。 |
 
 **错误码：**
@@ -204,7 +204,7 @@ getDisposedStatus(appId: string): Promise\<Want>;
 
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 要查询的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid和appidentifier)。  |
+| appId  | string | 是    | 要查询的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](../../quick-start/common_problem_of_application.md#如何获取应用信息中的appid)。  |
 
 **返回值：**
 
@@ -262,7 +262,7 @@ getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 
 | 参数名       | 类型     | 必填   | 说明                                  |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 要查询的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid和appidentifier)。  |
+| appId  | string | 是    | 要查询的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](../../quick-start/common_problem_of_application.md#如何获取应用信息中的appid)。  |
 | callback    | AsyncCallback\<Want> | 是    | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)。当获取应用的处置状态成功时，err为null，data为获取到的处置状态；否则为错误对象。                    |
 
 **错误码：**
@@ -316,7 +316,7 @@ getDisposedStatusSync(appId: string): Want;
 
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 要查询的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid和appidentifier)。  |
+| appId  | string | 是    | 要查询的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](../../quick-start/common_problem_of_application.md#如何获取应用信息中的appid)。  |
 
 **返回值：**
 
@@ -370,7 +370,7 @@ deleteDisposedStatus(appId: string): Promise\<void>
 
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 要删除拦截规则的应用的appId或appIdentifier。使用appId设置的拦截规则只能通过appId删除，使用appIdentifier设置的同理。<br/>**说明：**<br/> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid和appidentifier)。<br> [appIdentifier](js-apis-bundleManager-bundleInfo.md#signatureinfo)也是应用的唯一标识，是AppGallery Connect创建应用时分配的APP ID，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。获取方法参见[获取应用的appIdentifier](#获取应用的appid和appidentifier)。  |
+| appId  | string | 是    | 要删除拦截规则的应用的appId或appIdentifier。使用appId设置的拦截规则只能通过appId删除，使用appIdentifier设置的同理。<br/>**说明：**<br/> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](../../quick-start/common_problem_of_application.md#如何获取应用信息中的appid)。<br> [appIdentifier](js-apis-bundleManager-bundleInfo.md#signatureinfo)也是应用的唯一标识，详情信息可参考[什么是appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，获取方法参见[获取应用的appIdentifier](../../quick-start/common_problem_of_application.md#如何获取应用信息中的appidentifier)。  |
 
 **返回值：**
 
@@ -428,7 +428,7 @@ deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 要删除拦截规则的应用的appId或appIdentifier。使用appId设置的拦截规则只能通过appId删除，使用appIdentifier设置的同理。<br/>**说明：**<br/> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid和appidentifier)。<br> [appIdentifier](js-apis-bundleManager-bundleInfo.md#signatureinfo)也是应用的唯一标识，是AppGallery Connect创建应用时分配的APP ID，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。获取方法参见[获取应用的appIdentifier](#获取应用的appid和appidentifier)。  |
+| appId  | string | 是    | 要删除拦截规则的应用的appId或appIdentifier。使用appId设置的拦截规则只能通过appId删除，使用appIdentifier设置的同理。<br/>**说明：**<br/> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](../../quick-start/common_problem_of_application.md#如何获取应用信息中的appid)。<br> [appIdentifier](js-apis-bundleManager-bundleInfo.md#signatureinfo)也是应用的唯一标识，详情信息可参考[什么是appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，获取方法参见[获取应用的appIdentifier](../../quick-start/common_problem_of_application.md#如何获取应用信息中的appidentifier)。  |
 | callback    | AsyncCallback\<void> | 是    | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，当设置处置状态成功时，err返回null。否则回调函数返回具体错误对象。                   |
 
 **错误码：**
@@ -480,7 +480,7 @@ deleteDisposedStatusSync(appId: string, appIndex:? number) : void
 
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 要删除拦截规则的应用的appId或appIdentifier。使用appId设置的拦截规则只能通过appId删除，使用appIdentifier设置的同理。<br/>**说明：**<br/> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid和appidentifier)。<br> [appIdentifier](js-apis-bundleManager-bundleInfo.md#signatureinfo)也是应用的唯一标识，是AppGallery Connect创建应用时分配的APP ID，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。获取方法参见[获取应用的appIdentifier](#获取应用的appid和appidentifier)。  |
+| appId  | string | 是    | 要删除拦截规则的应用的appId或appIdentifier。使用appId设置的拦截规则只能通过appId删除，使用appIdentifier设置的同理。<br/>**说明：**<br/> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](../../quick-start/common_problem_of_application.md#如何获取应用信息中的appid)。<br> [appIdentifier](js-apis-bundleManager-bundleInfo.md#signatureinfo)也是应用的唯一标识，详情信息可参考[什么是appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，获取方法参见[获取应用的appIdentifier](../../quick-start/common_problem_of_application.md#如何获取应用信息中的appidentifier)。  |
 | appIndex<sup>12+</sup>   | number  | 否   | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示删除主应用的处置状态。appIndex大于0时，表示删除指定分身应用的处置状态。  |
 
 **错误码：**
@@ -512,36 +512,6 @@ try {
 }
 ```
 
-## 获取应用的appId和appIdentifier
-
-appId是应用的唯一标识，由应用Bundle名称和签名信息决定，可以通过[getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo14)接口获取。<br>
-[appIdentifier](js-apis-bundleManager-bundleInfo.md#signatureinfo)也是应用的唯一标识，是AppGallery Connect创建应用时分配的APP ID，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。
-
-**示例：**
-
-```ts
-import { bundleManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let bundleName = 'com.example.myapplication';
-let appId: string;
-let appIdentifier: string;
-try {
-  bundleManager.getBundleInfo(bundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
-    .then((data) => {
-      appId = data.signatureInfo.appId;
-      appIdentifier = data.signatureInfo.appIdentifier;
-      console.info("appId is " + appId);
-      console.info("appIdentifier is " + appIdentifier);
-    }).catch((error: BusinessError) => {
-      let message = (error as BusinessError).message;
-      console.error("getBundleInfo failed " + message);
-  });
-} catch (error) {
-    let message = (error as BusinessError).message;
-    console.error("getBundleInfo failed " + message);
-}
-```
 
 ## appControl.getDisposedRule<sup>11+</sup>
 
@@ -559,7 +529,7 @@ getDisposedRule(appId: string, appIndex:? number): DisposedRule
 
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 要获取拦截规则的应用的appId或appIdentifier。使用appId设置的拦截规则只能通过appId获取，使用appIdentifier设置的同理。<br/>**说明：**<br/> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid和appidentifier)。<br> [appIdentifier](js-apis-bundleManager-bundleInfo.md#signatureinfo)也是应用的唯一标识，是AppGallery Connect创建应用时分配的APP ID，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。获取方法参见[获取应用的appIdentifier](#获取应用的appid和appidentifier)。  |
+| appId  | string | 是    | 要获取拦截规则的应用的appId或appIdentifier。使用appId设置的拦截规则只能通过appId获取，使用appIdentifier设置的同理。<br/>**说明：**<br/> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](../../quick-start/common_problem_of_application.md#如何获取应用信息中的appid)。<br> [appIdentifier](js-apis-bundleManager-bundleInfo.md#signatureinfo)也是应用的唯一标识，详情信息可参考[什么是appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，获取方法参见[获取应用的appIdentifier](../../quick-start/common_problem_of_application.md#如何获取应用信息中的appidentifier)。  |
 | appIndex<sup>12+</sup>   | number  | 否   | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示获取主应用的拦截规则。appIndex大于0时，表示获取指定分身应用的拦截规则。    |
 
 **返回值：**
@@ -615,7 +585,7 @@ setDisposedRule(appId: string, rule: DisposedRule, appIndex:? number): void
 
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 要被设置拦截规则应用的appId或appIdentifier。使用appId设置的拦截规则会覆盖使用appIdentifier设置的拦截规则，反之同理。<br/>**说明：**<br/> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid和appidentifier)。<br> [appIdentifier](js-apis-bundleManager-bundleInfo.md#signatureinfo)也是应用的唯一标识，是AppGallery Connect创建应用时分配的APP ID，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。获取方法参见[获取应用的appIdentifier](#获取应用的appid和appidentifier)。  |
+| appId  | string | 是    | 要被设置拦截规则应用的appId或appIdentifier。使用appId设置的拦截规则会覆盖使用appIdentifier设置的拦截规则，反之同理。<br/>**说明：**<br/> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](../../quick-start/common_problem_of_application.md#如何获取应用信息中的appid)。<br> [appIdentifier](js-apis-bundleManager-bundleInfo.md#signatureinfo)也是应用的唯一标识，详情信息可参考[什么是appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，获取方法参见[获取应用的appIdentifier](../../quick-start/common_problem_of_application.md#如何获取应用信息中的appidentifier)。  |
 | rule | [DisposedRule](#disposedrule11) | 是 | 指示对应用的拦截规则。 |
 | appIndex<sup>12+</sup>   | number  | 否   | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示设置主应用的拦截规则。appIndex大于0时，表示设置指定分身应用的拦截规则。            |
 
@@ -773,7 +743,7 @@ setUninstallDisposedRule(appIdentifier: string, rule: UninstallDisposedRule, app
 
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appIdentifier  | string | 是    | 要设置卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid和appidentifier)。  |
+| appIdentifier  | string | 是    | 要设置卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](../../quick-start/common_problem_of_application.md#如何获取应用信息中的appid)。  |
 | rule | [UninstallDisposedRule](#uninstalldisposedrule15) | 是 | 表示要设置的卸载处置规则。 |
 | appIndex   | number  | 否   | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示设置主应用的卸载处置规则。appIndex大于0时，表示设置指定分身应用的卸载处置规则。        |
 
@@ -834,7 +804,7 @@ getUninstallDisposedRule(appIdentifier: string, appIndex:? number): UninstallDis
 
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appIdentifier  | string | 是    | 要获取卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。appId是应用的唯一标识，由应用Bundle名称和签名信息决定，设置方法参见[获取应用的appId](#获取应用的appid和appidentifier)。  |
+| appIdentifier  | string | 是    | 要获取卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。appId是应用的唯一标识，由应用Bundle名称和签名信息决定，设置方法参见[获取应用的appId](../../quick-start/common_problem_of_application.md#如何获取应用信息中的appid)。  |
 | appIndex   | number  | 否   | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示获取主应用的卸载处置规则。appIndex大于0时，表示获取指定分身应用的卸载处置规则。              |
 
 **返回值：**
@@ -889,7 +859,7 @@ deleteUninstallDisposedRule(appIdentifier: string, appIndex:? number): void
 
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appIdentifier  | string | 是    | 要删除卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。appId是应用的唯一标识，由应用Bundle名称和签名信息决定，删除方法参见[获取应用的appId](#获取应用的appid和appidentifier)。  |
+| appIdentifier  | string | 是    | 要删除卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。appId是应用的唯一标识，由应用Bundle名称和签名信息决定，删除方法参见[获取应用的appId](../../quick-start/common_problem_of_application.md#如何获取应用信息中的appid)。  |
 | appIndex   | number  | 否   | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示删除主应用的卸载处置规则。appIndex大于0时，表示删除指定分身应用的卸载处置规则。            |
 
 **错误码：**
@@ -1014,6 +984,6 @@ try {
 
 | 名称         | 类型                            | 只读 | 可选 | 说明                                                         |
 | ------------ | ------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| appId        | string                          | 否   | 否   | 要被设置拦截规则应用的appId或appIdentifier。appId和appIdentifier可以标识同一个应用，因此针对同一应用如果用appIdentifier设置拦截规则，可以覆盖之前采用appId设置的，反之同理。<br/>**说明：**<br/>appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](https://gitcode.com/openharmony/docs/blob/0a11b273485103fe78df3910fa607c2359ff5b2c/zh-cn/application-dev/reference/apis-ability-kit/js-apis-appControl-sys.md#获取应用的appid和appidentifier)。<br/>appIdentifier也是应用的唯一标识，是AppGallery Connect创建应用时分配的[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。获取方法参见[获取应用的appIdentifier](https://gitcode.com/openharmony/docs/blob/0a11b273485103fe78df3910fa607c2359ff5b2c/zh-cn/application-dev/reference/apis-ability-kit/js-apis-appControl-sys.md#获取应用的appid和appidentifier)。 |
+| appId        | string                          | 否   | 否   | 要被设置拦截规则应用的appId或appIdentifier。appId和appIdentifier可以标识同一个应用，因此针对同一应用如果用appIdentifier设置拦截规则，可以覆盖之前采用appId设置的，反之同理。<br/>**说明：**<br/>appId是应用的唯一标识，详情信息可参考[什么是appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，获取方法参见[获取应用的appIdentifier](../../quick-start/common_problem_of_application.md#如何获取应用信息中的appidentifier)。 |
 | appIndex     | number                          | 否   | 否   | 表示分身应用的索引，默认值为0。<br/> appIndex为0时，表示设置主应用的拦截规则。appIndex大于0时，表示设置指定分身应用的拦截规则。 |
 | disposedRule | [DisposedRule](#disposedrule11) | 否   | 否   | 表示对应用的拦截规则，包括拦截时将拉起能力的类型等。         |

@@ -343,4 +343,4 @@
 
 - [分布式五子棋（ArkTS）（Full SDK）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/DistributedDataGobang)
 
-- [分布式手写板（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/DistributeDraw)
+- [分布式手写板（ArkTS）（Full SDK）（API10）](https://gitcode.com/openharmony/codelabs/tree/master/Distributed/DistributeDraw)

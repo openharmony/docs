@@ -256,7 +256,7 @@ typedef void (*OH_AVRecorder_OnError)(OH_AVRecorder *recorder, int32_t errorCode
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVRecorder](capi-avrecorder-oh-avrecorder.md) *recorder | OH_AVRecorder实例的指针。 |
-|  int32_t errorCode | 错误码，详细说明请参见[AVErrorCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。 |
+|  int32_t errorCode | 错误码，详细说明请参见[AVErrorCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode)。 |
 |  const char *errorMsg | 错误信息。 |
 | void *userData | 用户特定数据的指针。 |
 

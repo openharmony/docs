@@ -132,6 +132,14 @@ Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API 
 
 4. Start video recording.
 
+   > **NOTE**
+   >
+   >  - When setting the frame rate of the preview stream, you must first query the frame rate of the video stream by calling [getActiveFrameRate](../../reference/apis-camera-kit/arkts-apis-camera-PreviewOutput.md#getactiveframerate12). 
+   >
+   > - If the video stream uses a range of frame rates, the preview stream must be set to the same range.
+   >
+   > - If the video stream uses a fixed frame rate, the preview stream must be set to a fixed rate that is a divisor of the video frame rate.
+
    Call [start](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md#start-1) of the VideoOutput instance to start the video output stream, and then call [start](../../reference/apis-media-kit/arkts-apis-media-AVRecorder.md#start9) of the AVRecorder instance to start recording.
 
    ```ts

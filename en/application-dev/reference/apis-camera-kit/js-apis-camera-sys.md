@@ -4642,6 +4642,10 @@ HighResolutionPhotoSession extends Session, AutoExposure, Focus
 
 Implements a high-resolution photo session, which sets the parameters of the high-resolution photo mode and saves all [CameraInput](arkts-apis-camera-CameraInput.md) and [CameraOutput](arkts-apis-camera-CameraOutput.md) instances required to run the camera. It inherits from [Session](arkts-apis-camera-Session.md).
 
+> **NOTE**
+>
+> In high-resolution photo capture scenarios, the physical camera lens must be used instead of the logical lens.
+
 ### on('error')<sup>12+</sup>
 
 on(type: 'error', callback: ErrorCallback): void

@@ -101,7 +101,7 @@ OH_AVErrCode OH_AVMuxer_SetRotation(OH_AVMuxer *muxer, int32_t rotation)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：muxer为空指针，或rotation无效。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：muxer为空指针，或rotation无效。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。 |
 
 ### OH_AVMuxer_SetFormat()
 
@@ -125,13 +125,13 @@ OH_AVErrCode OH_AVMuxer_SetFormat(OH_AVMuxer *muxer, OH_AVFormat *format)
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVMuxer](capi-avmuxer-oh-avmuxer.md) *muxer | 指向OH_AVMuxer实例的指针。 |
-| [OH_AVFormat](_core.md#oh_avformat) *format | 指向OH_AVFormat实例的指针。文件级元数据集。 |
+| [OH_AVFormat](capi-core-oh-avformat.md) *format | 指向OH_AVFormat实例的指针。文件级元数据集。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：设置format参数正确。<br>         AV_ERR_INVALID_VAL：muxer为空指针，或format无效。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：设置format参数正确。<br>         AV_ERR_INVALID_VAL：muxer为空指针，或format无效。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。 |
 
 ### OH_AVMuxer_AddTrack()
 
@@ -154,13 +154,13 @@ OH_AVErrCode OH_AVMuxer_AddTrack(OH_AVMuxer *muxer, int32_t *trackIndex, OH_AVFo
 | -- | -- |
 | [OH_AVMuxer](capi-avmuxer-oh-avmuxer.md) *muxer | 指向OH_AVMuxer实例的指针。 |
 | int32_t *trackIndex | 用于获取该轨的索引，该值在[OH_AVMuxer_WriteSample](#oh_avmuxer_writesample)接口中使用。如果媒体轨添加成功，该值大于或等于0，否则小于0。 |
-| [OH_AVFormat](_core.md#oh_avformat) *trackFormat | 指向OH_AVFormat实例的指针。 |
+| [OH_AVFormat](capi-core-oh-avformat.md) *trackFormat | 指向OH_AVFormat实例的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：muxer为空指针，或trackIndex无效，或trackFormat无效。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。<br>         AV_ERR_UNSUPPORT：不支持的mime类型。<br>         AV_ERR_NO_MEMORY：申请内存失败。<br>         AV_ERR_UNKNOWN：未知错误。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：muxer为空指针，或trackIndex无效，或trackFormat无效。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。<br>         AV_ERR_UNSUPPORT：不支持的mime类型。<br>         AV_ERR_NO_MEMORY：申请内存失败。<br>         AV_ERR_UNKNOWN：未知错误。 |
 
 ### OH_AVMuxer_Start()
 
@@ -187,7 +187,7 @@ OH_AVErrCode OH_AVMuxer_Start(OH_AVMuxer *muxer)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：muxer为空指针。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。<br>         AV_ERR_UNKNOWN：未知错误。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：muxer为空指针。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。<br>         AV_ERR_UNKNOWN：未知错误。 |
 
 ### OH_AVMuxer_WriteSample()
 
@@ -214,14 +214,14 @@ OH_AVErrCode OH_AVMuxer_WriteSample(OH_AVMuxer *muxer, uint32_t trackIndex, OH_A
 | -- | -- |
 | [OH_AVMuxer](capi-avmuxer-oh-avmuxer.md) *muxer | 指向OH_AVMuxer实例的指针。 |
 | uint32_t trackIndex | 数据对应的音视频轨的索引。 |
-| [OH_AVMemory](_core.md#oh_avmemory) *sample | 编码或解封装得到的数据。 |
-| [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) info | sample对应的描述信息。 |
+| [OH_AVMemory](capi-core-oh-avmemory.md) *sample | 编码或解封装得到的数据。 |
+| [OH_AVCodecBufferAttr](capi-core-oh-avcodecbufferattr.md) info | sample对应的描述信息。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：muxer为空指针，或trackIndex无效，或sample无效，或info无效。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。<br>         AV_ERR_NO_MEMORY：申请内存失败。<br>         AV_ERR_UNKNOWN：未知错误。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：muxer为空指针，或trackIndex无效，或sample无效，或info无效。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。<br>         AV_ERR_NO_MEMORY：申请内存失败。<br>         AV_ERR_UNKNOWN：未知错误。 |
 
 ### OH_AVMuxer_WriteSampleBuffer()
 
@@ -244,13 +244,13 @@ OH_AVErrCode OH_AVMuxer_WriteSampleBuffer(OH_AVMuxer *muxer, uint32_t trackIndex
 | -- | -- |
 | [OH_AVMuxer](capi-avmuxer-oh-avmuxer.md) *muxer | 指向OH_AVMuxer实例的指针。 |
 | uint32_t trackIndex | 数据对应的音视频轨的索引。 |
-| const [OH_AVBuffer](_core.md#oh_avbuffer) *sample | 编码或解封装得到的数据及属性。 |
+| const [OH_AVBuffer](capi-core-oh-avbuffer.md) *sample | 编码或解封装得到的数据及属性。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：muxer为空指针，或trackIndex无效，或sample无效。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。<br>         AV_ERR_NO_MEMORY：申请内存失败。<br>         AV_ERR_UNKNOWN：未知错误。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：muxer为空指针，或trackIndex无效，或sample无效。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。<br>         AV_ERR_NO_MEMORY：申请内存失败。<br>         AV_ERR_UNKNOWN：未知错误。 |
 
 ### OH_AVMuxer_Stop()
 
@@ -277,7 +277,7 @@ OH_AVErrCode OH_AVMuxer_Stop(OH_AVMuxer *muxer)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：muxer为空指针。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：muxer为空指针。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许调用该接口，请检查接口调用顺序。 |
 
 ### OH_AVMuxer_Destroy()
 
@@ -304,6 +304,6 @@ OH_AVErrCode OH_AVMuxer_Destroy(OH_AVMuxer *muxer)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：muxer为空指针。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：muxer为空指针。 |
 
 

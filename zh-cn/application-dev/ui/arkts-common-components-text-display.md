@@ -152,6 +152,45 @@ Text可通过以下两种方式来创建：
 
 ## 创建自定义文本样式
 
+Text组件支持创建自定义文本样式，以下为修改文本样式的主要属性。
+
+| 属性名称 | 功能描述 |
+|---------|----------|
+| baselineOffset | 设置文本基线的偏移量。 |
+| contentTransition | 设置数字翻牌效果。 |
+| copyOption | 设置文本是否可复制粘贴。 |
+| decoration | 设置文本装饰线样式，如类型、颜色及其粗细。 |
+| enableAutoSpacing | 设置是否开启中文与西文的自动间距。 |
+| enableDataDetector | 设置是否进行文本特殊实体识别。 |
+| font | 设置文本字体相关属性。 |
+| fontColor | 设置文本字体颜色。 |
+| fontFamily | 设置文本字体族。 |
+| fontFeature | 设置文字特性效果，比如数字等宽的特性。 |
+| fontSize | 设置文本字体大小。 |
+| fontStyle | 设置文本字体风格。 |
+| fontWeight | 设置文本字体粗细。 |
+| halfLeading | 设置文本是否将行间距平分至行的顶部与底部。 |
+| heightAdaptivePolicy | 设置文本自适应布局调整字号的方式。 |
+| letterSpacing | 设置文本字符间距。 |
+| lineHeight | 设置文本行高。 |
+| lineSpacing | 设置文本的行间距。 |
+| marqueeOptions | 设置跑马灯配置项，如开关、步长、循环次数、方向等。 |
+| maxFontSize | 设置自适应字体最大尺寸。 |
+| maxLines | 设置文本最大显示行数。 |
+| minFontSize | 设置自适应字体最小尺寸。 |
+| optimizeTrailingSpace | 控制每行末尾空格的优化。 |
+| privacySensitive | 设置是否支持卡片敏感隐私信息。 |
+| shaderStyle | 设置文本渐变色样式。 |
+| textCase | 设置文本大小写转换。 |
+| textAlign | 设置文本段落在水平方向的对齐方式。 |
+| textIndent | 设置首行文本缩进。 |
+| textOverflow | 控制文本超长处理方式。 |
+| textSelectable | 设置文本是否可选择。 |
+| textVerticalAlign | 设置文本在垂直方向的对齐方式。 |
+| wordBreak | 设置断行规则。 |
+
+下面对常用的接口进行举例说明。
+
 - 通过[textAlign](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#textalign)属性设置文本对齐样式。
 
   ```ts

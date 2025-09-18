@@ -4,7 +4,7 @@
 <!--Owner: @yp99ustc; @aohui; @zourongchun-->
 <!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 通用属性仅支持[aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio)、[backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur)、[backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor)、[bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)、[bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)、[bindMenu ](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)、[bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)、[borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor)、[borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius)、[borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle)、[borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth)、[clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip12)、[constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize)、[defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9)、[focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable)、[tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9)、[groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9)、[displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority)、[enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled)、[flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis)、[flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink)、[layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight)、[id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md#id)、[gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#属性)、[gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#属性)、[useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#属性)、[height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height)、[touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md#touchabledeprecated)、[margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)、[markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor)、[offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset)、[width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width)、[zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex)、[visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility)、[scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale)、[translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate)、[responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion)、[size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size)、[opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity)、[shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow)、[sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md)、[transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md)、[position](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#position)。
 
@@ -369,7 +369,7 @@ zoomAccess(zoomAccess: boolean)
 
 overviewModeAccess(overviewModeAccess: boolean)
 
-设置是否使用概览模式加载网页，即缩小内容以适应屏幕宽度。
+设置是否使用概览模式加载网页，即缩小内容以适应屏幕宽度。当属性没有显式调用时，默认允许使用概览模式加载网页。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -379,7 +379,7 @@ overviewModeAccess(overviewModeAccess: boolean)
 
 | 参数名                | 类型    | 必填   | 说明            |
 | ------------------ | ------- | ---- | --------------- |
-| overviewModeAccess | boolean | 是    | 设置是否使用概览模式加载网页。<br>true表示设置使用概览模式加载网页，false表示设置不使用概览模式加载网页。<br>默认值：true。<br>传入undefined与null时为false。 |
+| overviewModeAccess | boolean | 是    | 设置是否使用概览模式加载网页。<br>true表示设置使用概览模式加载网页，false表示设置不使用概览模式加载网页。<br>传入undefined与null时为false。 |
 
 **示例：**
 
@@ -775,7 +775,7 @@ struct WebComponent {
 
 textZoomRatio(textZoomRatio: number)
 
-设置页面的文本缩放百分比。
+设置页面的文本缩放百分比。当属性没有显式调用时，默认缩放百分比为100%。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -783,7 +783,7 @@ textZoomRatio(textZoomRatio: number)
 
 | 参数名           | 类型   | 必填   | 说明                             |
 | ------------- | ------ | ---- | -------------------------------- |
-| textZoomRatio | number | 是    | 要设置的页面的文本缩放百分比。<br>取值为整数，范围为(0, 2147483647]。<br>默认值：100。 |
+| textZoomRatio | number | 是    | 要设置的页面的文本缩放百分比。<br>取值为整数，范围为(0, 2147483647]。|
 
 **示例：**
 
@@ -880,7 +880,10 @@ blockNetwork(block: boolean)
 
 defaultFixedFontSize(size: number)
 
+
 设置网页的默认等宽字体大小。对于html前端指定monospace字体样式且未指定font-size样式的元素，实际渲染时将按照接口值设置的字体大小进行渲染显示。
+当属性没有显式调用时，默认等宽字体大小为13。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -888,7 +891,7 @@ defaultFixedFontSize(size: number)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| size | number | 是    | 设置网页的默认等宽字体大小，单位px。<br>输入值的范围为[-2^31, 2^31-1]，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>默认值：13。 |
+| size | number | 是    | 设置网页的默认等宽字体大小，单位px。<br>输入值的范围为[-2^31, 2^31-1]，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br><br>传入null或undefined时为13。 |
 
 **示例：**
 
@@ -915,7 +918,10 @@ defaultFixedFontSize(size: number)
 
 defaultFontSize(size: number)
 
+
 设置网页的默认字体大小。对于html前端使用非monospace字体样式且未指定font-size样式的元素，实际渲染时将按照接口值设置的字体大小进行渲染显示。
+当属性没有显式调用时，网页的默认字体大小为16。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -923,7 +929,7 @@ defaultFontSize(size: number)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| size | number | 是    | 设置网页的默认字体大小，单位px。<br>输入值的范围为[-2^31, 2^31-1]，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>默认值：16。 |
+| size | number | 是    | 设置网页的默认字体大小，单位px。<br>输入值的范围为[-2^31, 2^31-1]，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>传入null或undefined时为16。|
 
 **示例：**
 
@@ -950,7 +956,10 @@ defaultFontSize(size: number)
 
 minFontSize(size: number)
 
+
 设置网页字体大小最小值。对于html前端元素，若元素字体大小低于该接口设置的字体大小，实际渲染时将按照接口值设置的字体大小进行渲染显示。
+当属性没有显式调用时，默认网页字体大小最小值为8。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -958,7 +967,7 @@ minFontSize(size: number)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| size | number | 是    | 设置网页字体大小最小值，单位px。<br>输入值的范围为[-2^31, 2^31-1]，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>默认值：8。 |
+| size | number | 是    | 设置网页字体大小最小值，单位px。<br>输入值的范围为[-2^31, 2^31-1]，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>传入null或undefined时为8。 |
 
 **示例：**
 
@@ -985,7 +994,10 @@ minFontSize(size: number)
 
 minLogicalFontSize(size: number)
 
+
 设置网页逻辑字体大小最小值。对于html前端未指定font-size样式的元素，若元素字体大小低于该接口设置的字体大小，实际渲染时将按照接口值设置的字体大小进行渲染显示。minLogicalFontSize和minFontSize同时设置时，对于未指定font-size样式元素，将采用两个接口设置的较大值生效。
+当属性没有显式调用时，默认网页逻辑字体大小最小值为8。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -993,7 +1005,7 @@ minLogicalFontSize(size: number)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| size | number | 是    | 设置网页逻辑字体大小最小值，单位px。<br>输入值的范围为[-2^31, 2^31-1]，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>默认值：8。 |
+| size | number | 是    | 设置网页逻辑字体大小最小值，单位px。<br>输入值的范围为[-2^31, 2^31-1]，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>传入null或undefined时为18。 |
 
 **示例：**
 
@@ -1020,7 +1032,10 @@ minLogicalFontSize(size: number)
 
 webFixedFont(family: string)
 
+
 设置网页的fixed font字体库。设置后将会使用该接口设置的字体库，渲染显示html前端指定monospace字体样式的元素。
+当属性没有显式调用时，默认网页的fixed font字体库为monospace。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1028,7 +1043,7 @@ webFixedFont(family: string)
 
 | 参数名    | 类型   | 必填   | 说明                     |
 | ------ | ------ | ---- | ------------------------ |
-| family | string | 是    | 设置网页的fixed font字体库。<br>默认值：monospace。 |
+| family | string | 是    | 设置网页的fixed font字体库。<br>传入null或undefined时为monospace。 |
 
 **示例：**
 
@@ -1055,7 +1070,10 @@ webFixedFont(family: string)
 
 webSansSerifFont(family: string)
 
+
 设置网页的sans-serif font字体库。设置后将会使用该接口设置的字体库，渲染显示html前端指定sans-serif字体样式的元素。
+当属性没有显式调用时，默认网页的sans-serif font字体库为sans-serif。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1063,7 +1081,7 @@ webSansSerifFont(family: string)
 
 | 参数名    | 类型   | 必填   | 说明                     |
 | ------ | ------ | ---- | ------------------------ |
-| family | string | 是    | 设置网页的sans-serif font字体库。<br>默认值：sans-serif。 |
+| family | string | 是    | 设置网页的sans-serif font字体库。<br>传入null或undefined时为sans-serif。 |
 
 **示例：**
 
@@ -1090,7 +1108,10 @@ webSansSerifFont(family: string)
 
 webSerifFont(family: string)
 
+
 设置网页的serif font字体库。设置后将会使用该接口设置的字体库，渲染显示html前端指定serif字体样式的元素。
+当属性没有显式调用时，默认网页的serif font字体库为serif。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1098,7 +1119,7 @@ webSerifFont(family: string)
 
 | 参数名    | 类型   | 必填   | 说明                     |
 | ------ | ------ | ---- | ------------------------ |
-| family | string | 是    | 设置网页的serif font字体库。<br>默认值：serif。 |
+| family | string | 是    | 设置网页的serif font字体库。<br>传入null或undefined时为serif。 |
 
 **示例：**
 
@@ -1125,7 +1146,10 @@ webSerifFont(family: string)
 
 webStandardFont(family: string)
 
+
 设置网页的standard font字体库。设置后将会使用该接口设置的字体库，渲染显示html前端未指定字体样式的元素。
+当属性没有显式调用时，默认网页的tandard font字体库为sans-serif。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1133,7 +1157,7 @@ webStandardFont(family: string)
 
 | 参数名    | 类型   | 必填   | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| family | string | 是    | 设置网页的standard font字体库。<br>默认值：sans-serif。 |
+| family | string | 是    | 设置网页的standard font字体库。<br>传入null或undefined时为sans-serif。 |
 
 **示例：**
 
@@ -1160,7 +1184,10 @@ webStandardFont(family: string)
 
 webFantasyFont(family: string)
 
+
 设置网页的fantasy font字体库。设置后将会使用该接口设置的字体库，渲染显示html前端指定fantasy字体样式的元素。
+当属性没有显式调用时，默认网页的fantasy font字体库为fantasy。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1168,7 +1195,7 @@ webFantasyFont(family: string)
 
 | 参数名    | 类型   | 必填   | 说明                     |
 | ------ | ------ | ---- | ------------------------ |
-| family | string | 是    | 设置网页的fantasy font字体库。<br>默认值：fantasy。 |
+| family | string | 是    | 设置网页的fantasy font字体库。<br>传入null或undefined时为fantasy。 |
 
 **示例：**
 
@@ -1194,7 +1221,10 @@ webFantasyFont(family: string)
 
 webCursiveFont(family: string)
 
+
 设置网页的cursive font字体库。设置后将会使用该接口设置的字体库，渲染显示html前端指定cursive字体样式的元素。
+当属性没有显式调用时，默认网页的cursive font字体库为cursive。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1202,7 +1232,7 @@ webCursiveFont(family: string)
 
 | 参数名    | 类型   | 必填   | 说明                     |
 | ------ | ------ | ---- | ------------------------ |
-| family | string | 是    | 设置网页的cursive font字体库。<br>默认值：cursive。 |
+| family | string | 是    | 设置网页的cursive font字体库。<br>传入null或undefined时为cursive。 |
 
 **示例：**
 
@@ -1229,7 +1259,9 @@ webCursiveFont(family: string)
 
 darkMode(mode: WebDarkMode)
 
-设置Web深色模式。当深色模式开启时，Web将启用媒体查询prefers-color-scheme中网页所定义的深色样式，若网页未定义深色样式，则保持原状。如需开启强制深色模式，建议配合[forceDarkAccess](#forcedarkaccess9)使用。深色模式具体用法可参考[Web深色模式适配](../../web/web-set-dark-mode.md)。
+设置Web深色模式。当属性没有显式调用时，默认Web深色模式关闭。
+
+当深色模式开启时，Web将启用媒体查询prefers-color-scheme中网页所定义的深色样式，若网页未定义深色样式，则保持原状。如需开启强制深色模式，建议配合[forceDarkAccess](#forcedarkaccess9)使用。深色模式具体用法可参考[Web深色模式适配](../../web/web-set-dark-mode.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1237,7 +1269,7 @@ darkMode(mode: WebDarkMode)
 
 | 参数名  | 类型                             | 必填   | 说明                     |
 | ---- | -------------------------------- | ---- | ------------------------ |
-| mode | [WebDarkMode](./arkts-basic-components-web-e.md#webdarkmode9) | 是    | 设置Web的深色模式为关闭、开启或跟随系统。<br>默认值：`WebDarkMode.Off`。 |
+| mode | [WebDarkMode](./arkts-basic-components-web-e.md#webdarkmode9) | 是    | 设置Web的深色模式为关闭、开启或跟随系统。 |
 
 **示例：**
 
@@ -1264,7 +1296,7 @@ darkMode(mode: WebDarkMode)
 
 forceDarkAccess(access: boolean)
 
-设置网页是否开启强制深色模式。该属性仅在[darkMode](#darkmode9)开启深色模式时生效。
+设置网页是否开启强制深色模式。该属性仅在[darkMode](#darkmode9)开启深色模式时生效。当属性没有显式调用时，默认网页不开启强制深色模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1272,7 +1304,7 @@ forceDarkAccess(access: boolean)
 
 | 参数名    | 类型    | 必填   | 说明            |
 | ------ | ------- | ---- | --------------- |
-| access | boolean | 是    | 设置网页是否开启强制深色模式。<br>true表示设置网页开启强制深色模式，false表示设置网页不开启强制深色模式。<br>默认值：false。 |
+| access | boolean | 是    | 设置网页是否开启强制深色模式。<br>true表示设置网页开启强制深色模式，false表示设置网页不开启强制深色模式。<br>传入null或undefined时为false。 |
 
 **示例：**
 
@@ -1845,7 +1877,7 @@ Hello world!
 
 layoutMode(mode: WebLayoutMode)
 
-设置Web布局模式。常见问题请参考[Web组件大小自适应页面内容布局](../../web/web-fit-content.md)。
+设置Web布局模式。当属性没有显式调用时，默认Web布局跟随系统模式。常见问题请参考[Web组件大小自适应页面内容布局](../../web/web-fit-content.md)。
 
 > **说明：**
 >
@@ -1866,7 +1898,7 @@ layoutMode(mode: WebLayoutMode)
 
 | 参数名  | 类型                                  | 必填   | 说明                  |
 | ---- | ------------------------------------- | ---- | --------------------- |
-| mode | [WebLayoutMode](./arkts-basic-components-web-e.md#weblayoutmode11) | 是    | 设置web布局模式，跟随系统或自适应布局。<br>默认值：`WebLayoutMode.NONE。` |
+| mode | [WebLayoutMode](./arkts-basic-components-web-e.md#weblayoutmode11) | 是    | 设置web布局模式，跟随系统或自适应布局。<br>传入null或undefined时为`WebLayoutMode.NONE` |
 
 **示例：**
 
@@ -2059,7 +2091,7 @@ bypassVsyncCondition(condition: WebBypassVsyncCondition)
 
 enableNativeEmbedMode(mode: boolean)
 
-设置是否开启同层渲染功能。
+设置是否开启同层渲染功能。当属性没有显式调用时，默认不开启同层渲染功能。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2067,7 +2099,7 @@ enableNativeEmbedMode(mode: boolean)
 
 | 参数名   | 类型                      | 必填   | 说明             |
 | ----- | ---------------------------------------- | ---- | ---------------- |
-| mode |  boolean | 是    | 是否开启同层渲染功能。<br>true表示开启同层渲染功能，false表示不开启同层渲染功能。|
+| mode |  boolean | 是    | 是否开启同层渲染功能。<br>true表示开启同层渲染功能，false表示不开启同层渲染功能。<br>传入null或undefined时为false。|
 
 **示例：**
 
@@ -2296,7 +2328,7 @@ registerNativeEmbedRule(tag: string, type: string)
 
 defaultTextEncodingFormat(textEncodingFormat: string)
 
-设置网页的默认字符编码。
+设置网页的默认字符编码。当属性没有显式调用时，网页的默认字符编码为"UTF-8"。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2304,7 +2336,7 @@ defaultTextEncodingFormat(textEncodingFormat: string)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| textEncodingFormat | string | 是    | 默认字符编码。默认值："UTF-8"。 |
+| textEncodingFormat | string | 是    | 默认字符编码。   |
 
   **示例：**
 
@@ -2346,7 +2378,7 @@ defaultTextEncodingFormat(textEncodingFormat: string)
 
 metaViewport(enabled: boolean)
 
-设置meta标签的viewport属性是否可用。
+设置meta标签的viewport属性是否可用。当属性没有显式调用时，默认支持meta标签的viewport属性。
 
 > **说明：**
 >
@@ -2360,7 +2392,7 @@ metaViewport(enabled: boolean)
 
 | 参数名 | 类型 | 必填 | 说明                         |
 | ------ | -------- | ---- | -------------------------------- |
-| enabled | boolean  | 是   | 是否支持meta标签的viewport属性。<br>true表示支持meta标签的viewport属性，将解析viewport属性，并根据viewport属性布局。<br>false表示不支持meta标签的viewport属性，将不解析viewport属性，进行默认布局。<br>默认值：true。 |
+| enabled | boolean  | 是   | 是否支持meta标签的viewport属性。<br>true表示支持meta标签的viewport属性，将解析viewport属性，并根据viewport属性布局。<br>false表示不支持meta标签的viewport属性，将不解析viewport属性，进行默认布局。<br>当传入null或undefined时为true。 |
 
 **示例：**
 
@@ -2399,7 +2431,7 @@ struct WebComponent {
 
 textAutosizing(textAutosizing: boolean)
 
-设置Web组件是否开启文本字体大小自动调整。
+设置Web组件是否开启文本字体大小自动调整。当属性没有显式调用时，Web组件默认开启文本字体大小自动调整。
 
 文本字体大小自动调整生效后，对于字号过小的文本将自动加大字号至16px~32px，避免屏幕较小（默认视口宽度 < 980px）的设备因为缺少移动端适配出现字体过小的可读性问题。
 
@@ -2419,7 +2451,7 @@ textAutosizing(textAutosizing: boolean)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| textAutosizing | boolean | 是    | 文本自动调整大小。<br>true表示文本自动调整大小，false表示文本不自动调整大小。<br>默认值：true。 |
+| textAutosizing | boolean | 是    | 文本自动调整大小。<br>true表示文本自动调整大小，false表示文本不自动调整大小。 |
 
   **示例：**
 
@@ -3164,7 +3196,7 @@ blurOnKeyboardHideMode(mode: BlurOnKeyboardHideMode)
 
 enableFollowSystemFontWeight(follow: boolean)
 
-设置Web组件是否开启字重跟随系统设置变化。
+设置Web组件是否开启字重跟随系统设置变化。当属性没有显式调用时，Web组件默认开启字重跟随系统设置变化。
 
 > **说明：**
 >
@@ -3292,7 +3324,7 @@ enableWebAVSession(enabled: boolean)
 
 nativeEmbedOptions(options?: EmbedOptions)
 
-设置同层渲染相关配置，该属性仅在[enableNativeEmbedMode](#enablenativeembedmode11)开启时生效，不支持动态修改。
+设置同层渲染相关配置，该属性仅在[enableNativeEmbedMode](#enablenativeembedmode11)开启时生效，不支持动态修改。当属性没有显式调用时，默认为`{supportDefaultIntrinsicSize: false}`。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3300,7 +3332,7 @@ nativeEmbedOptions(options?: EmbedOptions)
 
 | 参数名       | 类型                             | 必填 | 说明                                |
 | ------------ | ------------------------------- | ---- | ----------------------------------- |
-| options | [EmbedOptions](./arkts-basic-components-web-i.md#embedoptions16) | 否    | 同层渲染相关配置，默认值：`{supportDefaultIntrinsicSize: false}`。 |
+| options | [EmbedOptions](./arkts-basic-components-web-i.md#embedoptions16) | 否    | 同层渲染相关配置。 |
 
 **示例：**
 
@@ -3678,7 +3710,7 @@ userAgent(userAgent: string)
 
 tableData(tableData: boolean)
 
-设置是否应保存表单数据。该接口为空接口。
+设置是否应保存表单数据。当属性没有显式调用时，默认允许Web保存表单数据。该接口为空接口。
 
 > **说明：**
 >
@@ -3690,7 +3722,7 @@ tableData(tableData: boolean)
 
 | 参数名          | 类型   | 必填  | 说明                             |
 | ------------ | ------ | ---- | -------------------------------- |
-| tableData | boolean | 是   | 设置为true时，表示允许Web保存表单数据。<br>设置为false时，表示不允许Web保存表单数据。<br>默认值：false。 |
+| tableData | boolean | 是   | 设置为true时，表示允许Web保存表单数据。<br>设置为false时，表示不允许Web保存表单数据。 |
 
 ## wideViewModeAccess<sup>(deprecated)</sup>
 

@@ -1846,13 +1846,15 @@ setLoudnessGain(loudnessGain: double): Promise\<void>
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
 | 5400102  | Operation not allowed. Return by promise. e.g. The function is called in an incorrect state, or the stream usage of audioRendererInfo is not one of [STREAM_USAGE_MUSIC](../apis-audio-kit/arkts-apis-audio-e.md#streamusage), [STREAM_USAGE_MOVIE](../apis-audio-kit/arkts-apis-audio-e.md#streamusage) or [STREAM_USAGE_AUDIOBOOK](../apis-audio-kit/arkts-apis-audio-e.md#streamusage).|
+| 5400105  | Service died. |
+| 5400108  | Parameter check failed. Returned by promise. |
 
 **示例：**
 
 ```ts
 let avPlayer = await media.createAVPlayer();
 
-let loudnessGain: number = 1.0;
+let loudnessGain: double = 1.0;
 avPlayer.audioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MOVIE,
   rendererFlags: 0
