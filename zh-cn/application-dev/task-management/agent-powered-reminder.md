@@ -185,7 +185,7 @@
     let reminderId: number = 1;
     // reminderId的值从发布提醒代理成功之后的回调中获得
     reminderAgentManager.cancelReminder(reminderId).then(() => {
-      console.log('Succeeded in canceling reminder.');
+      console.info('Succeeded in canceling reminder.');
     }).catch((err: BusinessError) => {
       console.error(`Failed to cancel reminder. Code: ${err.code}, message: ${err.message}`);
     });
