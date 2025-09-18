@@ -27,7 +27,7 @@
 应用开发中的UI布局是用户与应用程序交互的关键部分。不合理的布局越多，视图的创建、布局、渲染等流程所需的时间就越长。因此，减少嵌套层次或者使用高性能布局节点，可以减少丢帧卡顿。可以参考这些<!--RP4-->[布局技巧](../performance/reduce-view-nesting-levels.md)来优化布局性能<!--RP4End-->。
 
 ### 更新代替重建
-对于会反复使用的组件，可将其缓存起来，用更新代替重建来提升性能。例如，在滚动容器的滑动过程中，一边的组件划出可视范围被释放，另一边的组件划入可视范围需要创建，反复的释放和创建相同的ListItem显然是冗余的。针对这一需要对特定组件进行缓存、复用的场景，ArkUI提供了[组件复用能力](state-management/arkts-reusable.md)，可以对自定义组件进行标记，在被标记的自定义组件释放时将其放入缓存池，再下次需要创建时从缓存池中拿出，用刷新代替创建。使用场景可以参考<!--RP5-->[组件复用的基本原理和使用技巧](../performance/component-reuse-overview.md)<!--RP5End-->。
+对于会反复使用的组件，可将其缓存起来，用更新代替重建来提升性能。例如，在滚动容器的滑动过程中，一边的组件划出可视范围被释放，另一边的组件划入可视范围需要创建，反复的释放和创建相同的ListItem显然是冗余的。针对这一需要对特定组件进行缓存、复用的场景，ArkUI提供了[组件复用能力](state-management/arkts-reusable.md)，可以对自定义组件进行标记，在被标记的自定义组件释放时将其放入缓存池，在下次需要创建时从缓存池中拿出，用刷新代替创建。使用场景可以参考<!--RP5-->[组件复用的基本原理和使用技巧](../performance/component-reuse-overview.md)<!--RP5End-->。
 
 ### 状态精确控制
 [状态管理](state-management/arkts-state-management-overview.md)是ArkUI声明式的核心机制，它负责将数据与UI联系起来，在UI刷新的过程中会反复执行状态管理的相关逻辑，状态变量的创建和与UI组件的绑定关系是影响刷新效率的关键。开发者需要根据实际的场景[正确使用状态管理](state-management/properly-use-state-management-to-develope.md)，同时在使用的过程中应注意[状态管理的使用技巧](state-management/arkts-state-management-best-practices.md)。
