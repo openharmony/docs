@@ -67,7 +67,8 @@ try {
         console.info('distributed information: ' + JSON.stringify(data));
       }
     });
-} catch (err) {
+} catch (e) {
+  const err = e as BusinessError;
   console.error(`getOsAccountDistributedInfoByLocalId exception: code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -118,7 +119,8 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`getOsAccountDistributedInfoByLocalId exception: code is ${err.code}, message is ${err.message}`);
   });
-} catch (err) {
+} catch (e) {
+  const err = e as BusinessError;
   console.error(`getOsAccountDistributedInfoByLocalId exception: code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -171,7 +173,8 @@ try {
       console.info('setOsAccountDistributedInfoByLocalId successfully');
     }
   });
-} catch (err) {
+} catch (e) {
+    const err = e as BusinessError;
     console.error(`setOsAccountDistributedInfoByLocalId exception: code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -227,7 +230,8 @@ try {
   }).catch((err: BusinessError) => {
       console.error(`setOsAccountDistributedInfoByLocalId exception: code is ${err.code}, message is ${err.message}`);
   });
-} catch (err) {
+} catch (e) {
+    const err = e as BusinessError;
     console.error(`setOsAccountDistributedInfoByLocalId exception: code is ${err.code}, message is ${err.message}`);
 }
 ```

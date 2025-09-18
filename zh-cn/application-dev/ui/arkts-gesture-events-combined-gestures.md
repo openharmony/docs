@@ -23,9 +23,9 @@ GestureGroup(mode:GestureMode, gesture:GestureType[])
 
 顺序识别组合手势对应的GestureMode为Sequence。顺序识别组合手势将按照手势的注册顺序识别手势，直到所有的手势识别成功。当顺序识别组合手势中有一个手势识别失败时，后续手势识别均失败。顺序识别手势组仅有最后一个手势可以响应onActionEnd。
 
-以一个由长按手势和拖动手势组合而成的顺序识别手势为例：
+以一个由长按手势和滑动手势组合而成的顺序识别手势为例：
 
-在一个Column组件上绑定了translate属性，通过修改该属性可以设置组件的位置移动。然后在该组件上绑定LongPressGesture和PanGesture组合而成的Sequence组合手势。当触发LongPressGesture时，更新显示的数字。当长按后进行拖动时，根据拖动手势的回调函数，实现组件的拖动。
+在一个Column组件上绑定了translate属性，通过修改该属性可以设置组件的位置移动。然后在该组件上绑定LongPressGesture和PanGesture组合而成的Sequence组合手势。当触发LongPressGesture时，更新显示的数字。当长按后进行拖动时，根据滑动手势的回调函数，实现组件的拖动。
 
 ```ts
 // xxx.ets
@@ -49,7 +49,7 @@ struct Index {
     .translate({ x: this.offsetX, y: this.offsetY, z: 0 })
     .height(250)
     .width(300)
-    //以下组合手势为顺序识别，当长按手势事件未正常触发时不会触发拖动手势事件
+    //以下组合手势为顺序识别，当长按手势事件未正常触发时不会触发滑动手势事件
     .gesture(
       // 声明该组合手势的类型为Sequence类型
       GestureGroup(GestureMode.Sequence,
@@ -209,7 +209,7 @@ struct Index {
 
 ## 场景示例
 
-以下示例实现了子组件绑定长按和拖动手势，长按手势和拖动手势需要可以同时触发，但是在长按手势未成功时，需要让父组件Swiper的内置拖动手势触发的功能。由于子组件的拖动手势和父组件的内置拖动手势是竞争关系，且子组件的拖动手势的优先级更高，因此需要通过动态控制子组件的拖动手势是否触发。
+以下示例实现了子组件绑定长按和滑动手势，长按手势和滑动手势需要可以同时触发，但是在长按手势未成功时，需要让父组件Swiper的内置滑动手势触发的功能。由于子组件的滑动手势和父组件的内置滑动手势是竞争关系，且子组件的滑动手势的优先级更高，因此需要通过动态控制子组件的滑动手势是否触发。
 
 ```ts
 // xxx.ets
@@ -229,7 +229,7 @@ struct CombinedGestureDemo {
         .height('100%')
         .backgroundColor(Color.Grey)
         .borderRadius(12)
-        // 通过自定义手势判定回调，判断在长按手势未成功时，拒绝子组件的拖动手势，从而让父组件Swiper的拖动手势成功
+        // 通过自定义手势判定回调，判断在长按手势未成功时，拒绝子组件的滑动手势，从而让父组件Swiper的滑动手势成功
         .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer, others: Array<GestureRecognizer>)=>{
           if (current.getType() !== GestureControl.GestureType.PAN_GESTURE) {
             return GestureJudgeResult.CONTINUE;
@@ -240,7 +240,7 @@ struct CombinedGestureDemo {
           return GestureJudgeResult.REJECT;
         })
         .gesture(
-          // 绑定并行手势组，实现长按手势和拖动手势可以同时触发
+          // 绑定并行手势组，实现长按手势和滑动手势可以同时触发
           GestureGroup(GestureMode.Parallel,
             LongPressGesture()
               .onAction(() => {

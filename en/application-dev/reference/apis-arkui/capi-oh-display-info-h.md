@@ -1,4 +1,10 @@
 # oh_display_info.h
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 
@@ -28,6 +34,12 @@ The file declares the common enums and definitions of the display.
 | [NativeDisplayManager_DisplayInfo](capi-nativedisplaymanager-displayinfo.md) | NativeDisplayManager_DisplayInfo | Describes the information about a display.|
 | [NativeDisplayManager_DisplaysInfo](capi-nativedisplaymanager-displaysinfo.md) | NativeDisplayManager_DisplaysInfo | Describes the information about displays of a device with multiple screens.|
 
+### Macros
+
+| Name | Description  |
+|--------------|-----------|
+| [OH_DISPLAY_NAME_LENGTH](#oh_display_name_length)  32 | Maximum length of a display name.|
+
 ### Enums
 
 | Name| typedef Keyword| Description|
@@ -38,6 +50,20 @@ The file declares the common enums and definitions of the display.
 | [NativeDisplayManager_FoldDisplayMode](#nativedisplaymanager_folddisplaymode) | NativeDisplayManager_FoldDisplayMode | Enumerates the display modes of a foldable device.|
 | [NativeDisplayManager_DisplayState](#nativedisplaymanager_displaystate) | NativeDisplayManager_DisplayState | Enumerates the states of a display.|
 | [NativeDisplayManager_SourceMode](#nativedisplaymanager_sourcemode) | NativeDisplayManager_SourceMode | Enumerates the source modes of a device.|
+
+## Macro Description
+
+### OH_DISPLAY_NAME_LENGTH
+
+```
+#define OH_DISPLAY_NAME_LENGTH 32
+```
+
+**Description**
+
+Maximum length of a display name.
+
+**Since**: 14
 
 ## Enum Description
 
@@ -50,8 +76,6 @@ enum NativeDisplayManager_Rotation
 **Description**
 
 Enumerates the clockwise rotation angles of a display.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Since**: 12
 
@@ -72,8 +96,6 @@ enum NativeDisplayManager_Orientation
 
 Enumerates the orientations of a display.
 
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
 **Since**: 12
 
 | Enum Item| Description|
@@ -93,8 +115,6 @@ enum NativeDisplayManager_ErrorCode
 **Description**
 
 Enumerates the status codes returned by the display manager interface.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Since**: 12
 
@@ -119,8 +139,6 @@ enum NativeDisplayManager_FoldDisplayMode
 **Description**
 
 Enumerates the display modes of a foldable device.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Since**: 12
 

@@ -553,5 +553,5 @@ struct Demo {
 
 如需详细了解Tabs的更多实现，请参考以下示例：
 
-- [常用组件与布局](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ArkTSComponents)
+- [常用组件与布局](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/ArkTSComponents)
 <!--RP1--><!--RP1End-->

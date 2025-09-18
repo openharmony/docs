@@ -188,7 +188,7 @@ startEthEap(netId: number, profile: EthEapProfile): void
 
 | 参数名                            | 类型|必填|说明|
 | ----------------------------- | ---------- |---------- |---------- |
-| netId| number|是|以太网卡Id。|
+| netId| number|是|以太网卡Id。（传入默认参数-1，系统将自动匹配以太网卡发起EAP认证）|
 | profile|[EthEapProfile](#etheapprofile) |是|EAP配置信息。|
 
 **错误码**：
@@ -249,7 +249,7 @@ logOffEthEap(netId: number): void
 
 | 参数名                            | 类型|必填|说明|
 | ----------------------------- | ---------- |---------- |---------- |
-| netId | number|是|以太网卡Id。|
+| netId | number|是|以太网卡Id。（传入默认参数-1，系统将自动匹配以太网卡发起EAP认证）|
 
 **错误码**：
 

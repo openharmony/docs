@@ -71,7 +71,7 @@ Sets whether to display the status bar in a window.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br> **OK**: The function is successfully called.<br> **WINDOW_MANAGER_ERRORCODE_INVALID_PARAM**: A parameter is incorrect.<br> **WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The feature is not supported by the device.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.<br> **WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**: The window manager service is abnormal.|
+| int32_t | One of the following result codes:<br> **OK**: The function is successfully called.<br> **WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The feature is not supported by the device.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.<br> **WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**: The window manager service is abnormal.|
 
 ### OH_WindowManager_SetWindowStatusBarColor()
 
@@ -97,7 +97,7 @@ Sets the color of the status bar in a window.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br> **OK**: The function is successfully called.<br> **WINDOW_MANAGER_ERRORCODE_INVALID_PARAM**: A parameter is incorrect.<br> **WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The feature is not supported by the device.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.<br> **WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**: The window manager service is abnormal.|
+| int32_t | One of the following result codes:<br> **OK**: The function is successfully called.<br> **WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The feature is not supported by the device.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.<br> **WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**: The window manager service is abnormal.|
 
 ### OH_WindowManager_SetWindowNavigationBarEnabled()
 
@@ -124,7 +124,7 @@ Sets whether to display the navigation bar in a window.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br> **OK**: The function is successfully called.<br> **WINDOW_MANAGER_ERRORCODE_INVALID_PARAM**: A parameter is incorrect.<br> **WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The feature is not supported by the device.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.<br> **WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**: The window manager service is abnormal.|
+| int32_t | One of the following result codes:<br> **OK**: The function is successfully called.<br> **WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The feature is not supported by the device.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.<br> **WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**: The window manager service is abnormal.|
 
 ### OH_WindowManager_GetWindowAvoidArea()
 
@@ -177,7 +177,7 @@ Checks whether a window is displayed.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br> **OK**: The function is successfully called.<br> **WINDOW_MANAGER_ERRORCODE_INVALID_PARAM**: A parameter is incorrect.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.<br> **WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**: The window manager service is abnormal.|
+| int32_t | One of the following result codes:<br> **OK**: The function is successfully called.<br> **WINDOW_MANAGER_ERRORCODE_INVALID_PARAM**: A parameter is incorrect.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.|
 
 ### OH_WindowManager_ShowWindow()
 
@@ -202,7 +202,7 @@ Shows a window.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br> **OK**: The function is successfully called.<br> **WINDOW_MANAGER_ERRORCODE_INVALID_PARAM**: A parameter is incorrect.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.<br> **WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**: The window manager service is abnormal.|
+| int32_t | One of the following result codes:<br> **OK**: The function is successfully called.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.<br> **WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**: The window manager service is abnormal.|
 
 ### OH_WindowManager_SetWindowTouchable()
 
@@ -228,7 +228,7 @@ Sets whether a window is touchable.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br> **OK**: The function is successfully called.<br> **WINDOW_MANAGER_ERRORCODE_INVALID_PARAM**: A parameter is incorrect.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.<br> **WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**: The window manager service is abnormal.|
+| int32_t | One of the following result codes:<br> **OK**: The function is successfully called.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.<br> **WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**: The window manager service is abnormal.|
 
 ### OH_WindowManager_SetWindowFocusable()
 
@@ -254,7 +254,7 @@ Sets whether a window is focusable.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br> **OK**: The function is successfully called.<br> **WINDOW_MANAGER_ERRORCODE_INVALID_PARAM**: A parameter is incorrect.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.<br> **WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**: The window manager service is abnormal.|
+| int32_t | One of the following result codes:<br> **OK**: The function is successfully called.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.<br> **WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**: The window manager service is abnormal.|
 
 ### OH_WindowManager_SetWindowBackgroundColor()
 
@@ -300,7 +300,7 @@ Sets the screen brightness of a window.
 | Parameter| Description|
 | -- | -- |
 | int32_t windowId | Window ID. The default value is **0**. The value is an integer.|
-| float brightness | Screen brightness. The value is a floating-point number in the range [0.0, 1.0] or is set to **-1.0**, where **1.0** indicates the brightest, and **-1.0** is the default brightness.|
+| float brightness | Screen brightness. The value is a floating-point number in the range [0.0, 1.0] or is set to **-1.0**, The value **1.0** means the brightest, and **-1.0** means that the window brightness resets to the original brightness set through Control Panel.|
 
 **Return value**
 
@@ -332,7 +332,7 @@ Sets whether to always keep the screen on for a window.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br> **OK**: The function is successfully called.<br> **WINDOW_MANAGER_ERRORCODE_INVALID_PARAM**: A parameter is incorrect.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.<br> **WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**: The window manager service is abnormal.|
+| int32_t | One of the following result codes:<br> **OK**: The function is successfully called.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.<br> **WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**: The window manager service is abnormal.|
 
 ### OH_WindowManager_SetWindowPrivacyMode()
 
@@ -360,7 +360,7 @@ Sets whether to enable privacy mode for a window.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br> **OK**: The function is successfully called.<br> **WINDOW_MANAGER_ERRORCODE_INVALID_PARAM**: A parameter is incorrect.<br> **WINDOW_MANAGER_ERRORCODE_INVALID_PERMISSION**: A parameter is incorrect.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.<br> **WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**: The window manager service is abnormal.<br> **WINDOW_MANAGER_ERRORCODE_NO_PERMISSION**: The permission verification fails.|
+| int32_t | One of the following result codes:<br> **OK**: The function is successfully called.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.<br> **WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**: The window manager service is abnormal.<br> **WINDOW_MANAGER_ERRORCODE_NO_PERMISSION**: The permission verification fails.|
 
 ### OH_WindowManager_GetWindowProperties()
 
@@ -386,7 +386,7 @@ Obtains the properties of a window.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br> **OK**: The function is successfully called, and the pointer to the window properties is returned.<br> **WINDOW_MANAGER_ERRORCODE_INVALID_PARAM**: A parameter is incorrect.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.<br> **WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**: The window manager service is abnormal.|
+| int32_t | One of the following result codes:<br> **OK**: The function is successfully called, and the pointer to the window properties is returned.<br> **WINDOW_MANAGER_ERRORCODE_INVALID_PARAM**: A parameter is incorrect.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.|
 
 ### OH_WindowManager_Snapshot()
 
@@ -405,14 +405,14 @@ Obtains the snapshot of a window.
 
 | Parameter| Description|
 | -- | -- |
-| int32_t windowId | Window ID. The default value is **0**. The value is an integer.<br>If the window ID is invalid or the window has been destroyed, you cannot obtain the window snapshot. To successfully obtain a snapshot, a valid window ID is required.<br>You can obtain a valid window ID by calling the ArkTS API **getWindowProperties** on the window object.|
+| int32_t windowId | Window ID. The default value is **0**. The value is an integer.<br>If the window ID is invalid or the window has been destroyed, you cannot obtain the window snapshot. To successfully obtain a snapshot, a valid window ID is required.<br>You can obtain a valid window ID by calling the ArkTS API [getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9) on the window object.|
 | [OH_PixelmapNative](capi-struct.md)* pixelMap | Pointer to the snapshot.|
 
 **Return value**
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br> **OK**: The function is successfully called, and the pointer to the pixelMap is returned.<br> **WINDOW_MANAGER_ERRORCODE_INVALID_PARAM**: A parameter is incorrect.<br> **WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL**: The window status is abnormal.|
+| int32_t | One of the following result codes:<br> **OK**: The function is successfully called, and the pointer to the pixelMap is returned.<br> **WINDOW_MANAGER_ERRORCODE_INVALID_PARAM**: A parameter is incorrect.<br> **WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL**: The window manager service is abnormal.|
 
 ### OH_WindowManager_GetAllWindowLayoutInfoList()
 
@@ -431,7 +431,7 @@ Obtains the layout information array of all windows visible on a display. The la
 
 | Parameter| Description|
 | -- | -- |
-| int64_t displayId | ID of the display. You can obtain a valid display ID by calling the ArkTS API **getWindowProperties** on the window object.|
+| int64_t displayId | ID of the display. You can obtain a valid display ID by calling the ArkTS API [getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9) on the window object.|
 | [WindowManager_Rect](capi-windowmanager-rect.md)** windowLayoutInfoList | Double pointer to the layout information array of all windows visible.|
 | size_t* windowLayoutInfoSize | Pointer to the length of the layout information array.|
 
@@ -459,7 +459,6 @@ Releases the memory occupied by a window layout information array.
 | Parameter| Description|
 | -- | -- |
 | [WindowManager_Rect](capi-windowmanager-rect.md)* windowLayoutInfoList | Pointer to the layout information array of all windows visible on the display. You can obtain the array pointer by calling [OH_WindowManager_GetAllWindowLayoutInfoList](capi-oh-window-h.md#oh_windowmanager_getallwindowlayoutinfolist).|
-
 ### OH_WindowManager_InjectTouchEvent()
 
 ```
