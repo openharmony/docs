@@ -1433,3 +1433,7 @@ struct RepeatBuilderPage {
 界面展示如下图，进入页面后向下滑动一段距离可以看出差别，左边是错误用法，右边是正确用法（Text组件为黑色，Builder组件为红色）。上述代码展示了开发过程中易出错的场景，即在@Builder构造函数中传参方式为值传递。
 
 ![Repeat-Builder](figures/Repeat-Builder.png)
+
+### Repeat内部子组件使用expandSafeArea属性时，子组件无法扩展到全屏
+
+API12-API17版本上，Repeat内部子组件使用expandSafeArea属性时，子组件无法扩展到全屏，从API18开始，修复该问题，子组件使用expandSafeArea属性时，可以扩展到全屏展示。
