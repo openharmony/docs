@@ -67,6 +67,8 @@ type(value: InputType)
 
 设置输入框类型。
 
+不同的InputType会拉起对应类型的键盘，同时限制输入。<!--RP4--><!--RP4End-->
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -249,9 +251,9 @@ inputFilter(value: ResourceStr, error?: Callback\<string>)
 
 通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。
 
-单字符输入场景仅支持单字符匹配，多字符输入场景支持字符串匹配，例如粘贴。
+单字符输入场景仅支持单字符匹配，多字符输入场景支持字符串匹配，例如粘贴。<!--RP5--><!--RP5End-->
 
-从API version 11开始，设置inputFilter且输入的字符不为空字符，会导致设置输入框类型(即type接口)附带的文本过滤效果失效。
+从API version 11开始，设置inputFilter且输入的字符不为空字符，会导致[type](#type)接口附带的文本过滤效果失效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -714,6 +716,12 @@ decoration(value: TextDecorationOptions)
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [TextDecorationOptions](ts-universal-attributes-text-style.md#textdecorationoptions12对象说明) | 是   | 文本装饰线对象。<br />默认值：{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
+
+>  **说明：**
+>
+>  当文字的下边缘轮廓与装饰线位置相交时，会触发下划线避让规则，下划线将在这些字符处避让文字。常见“gjyqp”等英文字符。
+>
+>  当文本装饰线的颜色设置为Color.Transparent时，装饰线颜色设置为跟随每行第一个字的字体颜色。当文本装饰线的颜色设置为透明色16进制对应值“#00FFFFFF”时，装饰线颜色设置为透明色。
 
 ### letterSpacing<sup>12+</sup>
 
