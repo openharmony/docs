@@ -1610,9 +1610,9 @@ async function ExampleFunction(dlpFilePath: string) {
 
 >**说明：**
 >
-> [registerPlugin](#dlpconnmanagerregisterplugin21)接口的参数需要继承该接口，[connectServer](#dlpconnpluginconnectserver21)由SA（System Ability）侧调用，通过callback进行回传参数。
+> [registerPlugin](#registerplugin21)接口的参数需要继承该接口，[connectServer](#connectserver21)由SA（System Ability）侧调用，通过callback进行回传参数。
 
-### DlpConnPlugin.connectServer<sup>21+</sup>
+### connectServer<sup>21+</sup>
 connectServer(requestId: string, requestData: string, callback: Callback\<string\>): void
   
 该函数提供给SA（System Ability）侧调用，待该函数处理完连云能力后，通过callback调用回SA（System Ability）中。
@@ -1651,11 +1651,11 @@ connectServer(requestId: string, requestData: string, callback: Callback\<string
 >
 > registerPlugin接口将回调能力注册进SA（System Ability），而unregisterPlugin接口将回调能力从SA（System Ability）中注销。
 
-### DlpConnManager.constructor<sup>21+</sup>
+### constructor<sup>21+</sup>
 
 constructor()
 
-[DlpConnManager](#DlpConnManager21) 实例化时的构造函数。
+[DlpConnManager](#dlpconnmanager21) 实例化时的构造函数。
  
 **需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
  
@@ -1669,7 +1669,7 @@ constructor()
 | -------- | -------- |
 | 201 | Permission denied. |
 
-### DlpConnManager.registerPlugin<sup>21+</sup>
+### registerPlugin<sup>21+</sup>
 static registerPlugin(plugin: DlpConnPlugin): number
   
 该接口提供将回调注册到SA（System Ability）侧的功能。
@@ -1706,7 +1706,7 @@ static registerPlugin(plugin: DlpConnPlugin): number
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
 
-### DlpConnManager.unregisterPlugin<sup>21+</sup>
+### unregisterPlugin<sup>21+</sup>
 static unregisterPlugin(): void
   
 提供将回调从SA（System Ability）侧注销的能力。
