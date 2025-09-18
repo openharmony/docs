@@ -32,7 +32,7 @@ nameCache.json文件：
 
 源码混淆后：
 
-```txt
+```json
 {
   "entry/src/main/ets/entryability/EntryAbility.ets": {
     "IdentifierCache": {
