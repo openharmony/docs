@@ -1651,7 +1651,7 @@ connectServer(requestId: string, requestData: string, callback: Callback\<string
 >
 > registerPlugin接口将回调能力注册进SA（System Ability），而unregisterPlugin接口将回调能力从SA（System Ability）中注销。
 
-### DlpConnManager.constructor<sup>21+</sup>
+### constructor<sup>21+</sup>
 
 constructor()
 
@@ -1669,7 +1669,7 @@ constructor()
 | -------- | -------- |
 | 201 | Permission denied. |
 
-### DlpConnManager.registerPlugin<sup>21+</sup>
+### registerPlugin<sup>21+</sup>
 static registerPlugin(plugin: DlpConnPlugin): number
   
 该接口提供将回调注册到SA（System Ability）侧的功能。
@@ -1706,7 +1706,7 @@ static registerPlugin(plugin: DlpConnPlugin): number
 | 19100003 | Credential task time out. |
 | 19100004 | Credential service error. |
 
-### DlpConnManager.unregisterPlugin<sup>21+</sup>
+### unregisterPlugin<sup>21+</sup>
 static unregisterPlugin(): void
   
 提供将回调从SA（System Ability）侧注销的能力。
