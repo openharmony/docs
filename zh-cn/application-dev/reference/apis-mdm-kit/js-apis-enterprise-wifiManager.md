@@ -73,9 +73,9 @@ let wantTemp: Want = {
 
 try {
   let result: boolean = wifiManager.isWifiActiveSync(wantTemp);
-  console.info(`Succeeded in query is wifi active or not, result : ${result}`);
+  console.info(`Succeeded in querying whether the wifi is active or not, result : ${result}`);
 } catch (err) {
-  console.error(`Failed to query is wifi active or not. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to query whether the wifi is active or not. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
