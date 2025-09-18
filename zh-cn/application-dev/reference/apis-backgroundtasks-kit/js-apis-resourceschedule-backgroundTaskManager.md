@@ -1604,7 +1604,7 @@ export default class EntryAbility extends UIAbility {
 
 isModeSupported(): boolean;
 
-是否支持TASK_KEEPING类型。根据[ContinuousTaskModes](#continuoustaskmode21)的类型判断是否支持TASK_KEEPING
+查询当前申请的长时任务主类型是否支持。根据[ContinuousTaskModes](#continuoustaskmode21)的类型判断。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1614,7 +1614,7 @@ isModeSupported(): boolean;
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| boolean | 是否支持TASK_KEEPING类型。true表示支持，false表示不支持。|
+| boolean | 查询当前申请的长时任务主类型是否支持。true表示支持，false表示不支持。|
 
 **错误码**：
 
@@ -1635,8 +1635,8 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     let isModeSupported: boolean = false; 
     let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
-    let modeList: Array<number> = [backgroundTaskManager.ContinuousTaskMode.MODE_SHARE_POSITION];
-    continuousTaskRequest.continuousTaskModes =  modeList;
+    let modeList: Array<number> = [backgroundTaskManager.ContinuousTaskMode.MODE_TASK_KEEPING];
+    continuousTaskRequest.continuousTaskModes = modeList;
     try {
       isModeSupported = continuousTaskRequest.isModeSupported();
       console.info(`Operation isModeSupported succeeded. isModeSupported is ${isModeSupported}`);
@@ -1686,7 +1686,7 @@ export default class EntryAbility extends UIAbility {
 | --------------------------------- | ----------------------------------- |
 | MODE_DATA_TRANSFER                | SUBMODE_LIVE_VIEW_NOTIFICATION        |
 | MODE_SHARE_POSITION               | SUBMODE_NORMAL_NOTIFICATION         |
-| MODE_ALLOW_BLUETOOTH_AWARE        | SUBMODE_NORMAL_NOTIFICATION <br/>MODE_ALLOW_BLUETOOTH_AWARE         |
+| MODE_ALLOW_BLUETOOTH_AWARE        | SUBMODE_NORMAL_NOTIFICATION <br/>SUBMODE_CAR_KEY_NORMAL_NOTIFICATION         |
 | MODE_MULTI_DEVICE_CONNECTION      | SUBMODE_NORMAL_NOTIFICATION         |
 | MODE_TASK_KEEPING                 | SUBMODE_NORMAL_NOTIFICATION         |
 | MODE_AV_PLAYBACK_AND_RECORD       | SUBMODE_NORMAL_NOTIFICATION  <br/>SUBMODE_AUDIO_PLAYBACK_NORMAL_NOTIFICATION <br/>SUBMODE_AVSESSION_AUDIO_PLAYBACK <br/>SUBMODE_AUDIO_RECORD_NORMAL_NOTIFICATION <br/>SUBMODE_SCREEN_RECORD_NORMAL_NOTIFICATION <br/>SUBMODE_VOICE_CHAT_NORMAL_NOTIFICATION      |
