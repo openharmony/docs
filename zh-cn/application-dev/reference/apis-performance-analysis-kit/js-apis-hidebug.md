@@ -529,7 +529,7 @@ trace单位流量实测方法：limitSize设置为最大值500M，调用startApp
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)与[HiDebug错误码](errorcode-hiviewdfx-hidebug.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)与[HiDebug-Trace错误码](errorcode-hiviewdfx-hidebug-trace.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
@@ -571,7 +571,7 @@ stopAppTraceCapture(): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[HiDebug错误码](errorcode-hiviewdfx-hidebug.md)。
+以下错误码的详细介绍请参见[HiDebug-Trace错误码](errorcode-hiviewdfx-hidebug-trace.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
@@ -1026,7 +1026,7 @@ type GcStats = Record&lt;string, number&gt;
 
 转储堆快照的裁剪级别的枚举。
 
-TRIM_LEVEL_2相比TRIM_LEVEL_1，裁剪时间更长。冻屏的阈值为6秒。使用TRIM_LEVEL_1时，不会达到该阈值；切换至TRIM_LEVEL_2时，裁剪时间可能会超过6秒，触发APP_FREEZE（冻屏事件），导致应用被系统查杀，此时回退至TRIM_LEVEL_1级别进行裁剪。
+TRIM_LEVEL_2相比TRIM_LEVEL_1，裁剪时间更长。冻屏的阈值为6秒。使用TRIM_LEVEL_1时，不会达到该阈值；切换至TRIM_LEVEL_2时，裁剪时间可能会超过6秒，触发APP_FREEZE（冻屏事件），导致应用被系统终止，此时回退至TRIM_LEVEL_1级别进行裁剪。
 
 推荐优先使用TRIM_LEVEL_1确保应用稳定，仅在需要更彻底裁剪时尝试TRIM_LEVEL_2。
 
@@ -1077,6 +1077,8 @@ getGraphicsMemory(): Promise&lt;number&gt;
 
 **错误码**：
 
+以下错误码的详细介绍请参见[HiDebug错误码](errorcode-hiviewdfx-hidebug.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
 | 11400104 | Failed to get the application memory due to a remote exception. |
@@ -1115,6 +1117,8 @@ getGraphicsMemorySync(): number
 | number | 应用显存大小，单位为KB。 |
 
 **错误码**：
+
+以下错误码的详细介绍请参见[HiDebug错误码](errorcode-hiviewdfx-hidebug.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |

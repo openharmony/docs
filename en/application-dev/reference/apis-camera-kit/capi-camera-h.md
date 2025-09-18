@@ -1,9 +1,11 @@
 # camera.h
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
@@ -47,7 +49,7 @@ The file declares the basic concepts of the camera.
 | [Camera_AutoDeviceSwitchStatusInfo](capi-oh-camera-camera-autodeviceswitchstatusinfo.md) | Camera_AutoDeviceSwitchStatusInfo | Describes the automatic device switching status information.|
 | [Camera_ConcurrentInfo](capi-oh-camera-camera-concurrentinfo.md) | Camera_ConcurrentInfo | Describes the camera's concurrency information.|
 | [Camera_ControlCenterStatusInfo](capi-oh-camera-camera-controlcenterstatusinfo.md) | Camera_ControlCenterStatusInfo | Describes the effect status information of a camera controller.|
-| [Camera_Manager](capi-oh-camera-camera-manager.md) | Camera_Manager | Describes the camera manager.<br>You can call [OH_Camera_GetCameraManager](#oh_camera_getcameramanager) to create such an object.|
+| [Camera_Manager](capi-oh-camera-camera-manager.md) | Camera_Manager | Describes the camera manager.<br> You can call [OH_Camera_GetCameraManager](#oh_camera_getcameramanager) to create such an object.|
 
 ### Enums
 
@@ -187,7 +189,7 @@ Enumerates the camera types.
 | -- | -- |
 | CAMERA_TYPE_DEFAULT = 0 | Default camera type.|
 | CAMERA_TYPE_WIDE_ANGLE = 1 | Wide camera.|
-| CAMERA_TYPE_ULTRA_WIDE = 2 | Ultra wide camera.|
+| CAMERA_TYPE_ULTRA_WIDE = 2 | Ultra-wide camera.|
 | CAMERA_TYPE_TELEPHOTO = 3 | Telephoto camera.|
 | CAMERA_TYPE_TRUE_DEPTH = 4 | Camera with depth of field information.|
 
@@ -374,7 +376,7 @@ Enumerates the metadata object types.
 
 | Enum Item| Description|
 | -- | -- |
-| FACE_DETECTION = 0 | Metadata object used for face detection.<br>The detection point must be in the coordinate system (0-1), where the upper left corner is (0, 0) and the lower right corner is (1, 1).<br>The coordinate system is based on the horizontal device direction with the device's charging port on the right.<br>If the layout of the preview screen of an application is based on the vertical direction with the charging port on the lower side, the layout width and height are {w, h}, and the returned point is {x, y}, then the coordinate point after conversion is (1-y, x).|
+| FACE_DETECTION = 0 | Metadata object used for face detection.|
 
 ### Camera_TorchMode
 
@@ -602,7 +604,7 @@ Obtains a Camera_Manager instance.
 
 | Type| Description|
 | -- | -- |
-| [Camera_ErrorCode](#camera_errorcode) | **CAMERA_OK**: The operation is successful.<br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.<br>**CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.|
+| [Camera_ErrorCode](#camera_errorcode) | **CAMERA_OK**: The operation is successful.<br>         **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.<br>         **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.|
 
 ### OH_Camera_DeleteCameraManager()
 
@@ -627,4 +629,4 @@ Deletes a Camera_Manager instance.
 
 | Type| Description|
 | -- | -- |
-| [Camera_ErrorCode](#camera_errorcode) | **CAMERA_OK**: The operation is successful.<br>**CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.<br>**CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.|
+| [Camera_ErrorCode](#camera_errorcode) | **CAMERA_OK**: The operation is successful.<br>         **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.<br>         **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.|

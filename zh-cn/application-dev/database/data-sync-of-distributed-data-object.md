@@ -115,7 +115,7 @@ dataObject['parents']['mom'] = "amy"; // 不支持的修改
 <!--RP5-->
 - 目前分布式数据对象只能在[跨端迁移](../application-models/hop-cross-device-migration.md)和[通过跨设备Call调用实现的多端协同](../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)场景中使用。
 
-- 当前跨设备接续能力支持以下两种场景的 ​​Ability 跨端迁移​​
+- 当前跨设备接续能力支持以下两种场景的​​Ability跨端迁移​​
   - [支持同应用中不同Ability跨端迁移](../application-models/hop-cross-device-migration.md#支持同应用中不同ability跨端迁移)
   - [支持同应用不同BundleName的Ability跨端迁移](../application-models/hop-cross-device-migration.md#支持同应用不同bundlename的ability跨端迁移)
 <!--RP5End-->

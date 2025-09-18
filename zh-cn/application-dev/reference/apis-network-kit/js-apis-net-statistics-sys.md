@@ -490,11 +490,11 @@ statistics.getTrafficStatsByUidNetwork(uid, networkInfo).then((statsInfoSequence
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称      | 类型   | 必填 | 说明                              |
-| --------- | ------ | ---- | --------------------------------- |
-| iface     | string | 是   | 查询的网卡名。                    |
-| startTime | number | 是   | 查询的开始时间(时间戳;单位：秒)。 |
-| endTime   | number | 是   | 查询的结束时间(时间戳;单位：秒)。 |
+| 名称      | 类型   | 只读 |可选 |说明                              |
+| --------- | ------ | ---- |---| --------------------------------- |
+| iface     | string | 否   |否 |查询的网卡名。                    |
+| startTime | number | 否   |否 |查询的开始时间(时间戳;单位：秒)。 |
+| endTime   | number | 否  | 否|查询的结束时间(时间戳;单位：秒)。 |
 
 ## UidInfo<sup>10+</sup>
 
@@ -504,10 +504,10 @@ statistics.getTrafficStatsByUidNetwork(uid, networkInfo).then((statsInfoSequence
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称      | 类型                                  | 必填 | 说明                        |
-| --------- | ------------------------------------- | ---- | -------------------------- |
-| ifaceInfo | IfaceInfo\<[IfaceInfo](#ifaceinfo10)> | 是   | 需查询的网卡和时间参数信息。 |
-| uid       | number                                | 是   | 需查询的应用 uid。          |
+| 名称      | 类型                                  | 只读 |可选| 说明                        |
+| --------- | ------------------------------------- | ---- |---| -------------------------- |
+| ifaceInfo | IfaceInfo\<[IfaceInfo](#ifaceinfo10)> | 否   |否 |需查询的网卡和时间参数信息。 |
+| uid       | number                                | 否   |否 |需查询的应用 uid。          |
 
 ## NetStatsInfo<sup>10+</sup>
 
@@ -517,12 +517,12 @@ statistics.getTrafficStatsByUidNetwork(uid, networkInfo).then((statsInfoSequence
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称      | 类型   | 必填 | 说明                      |
-| --------- | ------ | ---- | ------------------------ |
-| rxBytes   | number | 是   | 流量下行数据(单位:字节)。 |
-| txBytes   | number | 是   | 流量上行数据(单位:字节)。 |
-| rxPackets | number | 是   | 流量下行包个数。          |
-| txPackets | number | 是   | 流量上行包个数。          |
+| 名称      | 类型   | 只读 |可选| 说明                      |
+| --------- | ------ | ---- |---| ------------------------ |
+| rxBytes   | number | 否   |否 |流量下行数据(单位:字节)。 |
+| txBytes   | number | 否   |否 |流量上行数据(单位:字节)。 |
+| rxPackets | number | 否   |否 |流量下行包个数。          |
+| txPackets | number | 否   |否 |流量上行包个数。          |
 
 ## NetStatsChangeInfo<sup>11+</sup>
 
@@ -532,10 +532,10 @@ statistics.getTrafficStatsByUidNetwork(uid, networkInfo).then((statsInfoSequence
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称      | 类型   | 必填 | 说明       |
-| --------- | ------ | ---- | --------- |
-| iface     | string | 是   | 网卡名称。 |
-| uid       | number | 否   | 应用UID。  |
+| 名称      | 类型   | 只读 |可选| 说明       |
+| --------- | ------ | ---- |---|--------- |
+| iface     | string | 否   |否| 网卡名称。 |
+| uid       | number | 否   |是 |应用UID。  |
 
 ## NetworkInfo<sup>12+</sup>
 
@@ -545,12 +545,12 @@ statistics.getTrafficStatsByUidNetwork(uid, networkInfo).then((statsInfoSequence
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称        | 类型                                                   | 必填 | 说明           |
-|-----------|------------------------------------------------------|----|--------------|
-| type      | [NetBearType](js-apis-net-connection.md#netbeartype) | 是  | 网络类型。        |
-| startTime | number                                               | 是  | 开始时间戳(单位:秒)。 |
-| endTime   | number                                               | 是  | 结束时间戳(单位:秒)。 |
-| simId     | number                                               | 否  | SIM 卡 ID。    |
+| 名称        | 类型                                                   | 只读 |可选| 说明           |
+|-----------|------------------------------------------------------|----|---|--------------|
+| type      | [NetBearType](js-apis-net-connection.md#netbeartype) | 否  | 否|网络类型。        |
+| startTime | number                                               | 否  |否| 开始时间戳(单位:秒)。 |
+| endTime   | number                                               | 否  |否 |结束时间戳(单位:秒)。 |
+| simId     | number                                               | 否  | 是|SIM 卡 ID。    |
 
 ## UidNetStatsInfo<sup>12+</sup>
 
@@ -560,9 +560,9 @@ statistics.getTrafficStatsByUidNetwork(uid, networkInfo).then((statsInfoSequence
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称        | 类型                                            | 必填 | 说明           |
-|-----------|-----------------------------------------------|----|--------------|
-| undefined | [uid:number]: [NetStatsInfo](#netstatsinfo10) | 是  | 所有应用的历史流量信息。 |
+| 名称        | 类型                                            | 只读 |可选| 说明           |
+|-----------|-----------------------------------------------|----|---|--------------|
+| undefined | [uid:number]: [NetStatsInfo](#netstatsinfo10) | 否  |否 |所有应用的历史流量信息。 |
 
 ## NetStatsInfoSequence<sup>12+</sup>
 
@@ -572,8 +572,8 @@ statistics.getTrafficStatsByUidNetwork(uid, networkInfo).then((statsInfoSequence
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称        | 类型                              | 必填 | 说明           |
-|-----------|---------------------------------|----|--------------|
-| startTime | number                          | 是  | 开始时间戳(单位:秒)。 |
-| endTime   | number                          | 是  | 结束时间戳(单位:秒)。 |
-| info      | [NetStatsInfo](#netstatsinfo10) | 是  | 获取的应用历史流量信息。 |
+| 名称        | 类型                              | 只读 | 可选|说明           |
+|-----------|---------------------------------|----|---|--------------|
+| startTime | number                          | 否  |否 |开始时间戳(单位:秒)。 |
+| endTime   | number                          | 否  |否 |结束时间戳(单位:秒)。 |
+| info      | [NetStatsInfo](#netstatsinfo10) | 否  |否 |获取的应用历史流量信息。 |

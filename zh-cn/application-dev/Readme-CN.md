@@ -68,7 +68,6 @@
     - [MindSpore Lite Kit（昇思推理框架服务）](ai/mindspore/Readme-CN.md)
     - [Neural Network Runtime Kit（Neural Network运行时服务）](ai/nnrt/Readme-CN.md)
 
-  - [一次开发，多端部署](key-features/multi-device-app-dev/Readme-CN.md)
   - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
   - [Native API的相关指导](napi/Readme-CN.md)
   - [性能](performance/Readme-CN.md)

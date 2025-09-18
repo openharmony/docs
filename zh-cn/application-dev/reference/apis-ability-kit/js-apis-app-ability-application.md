@@ -82,7 +82,7 @@ export default class EntryAbility extends UIAbility {
 
 getApplicationContext(): ApplicationContext
 
-获取应用上下文。开发者使用该接口时，无需依赖Context基类。
+获取应用上下文。开发者使用该接口时，无需依赖Context基类。重复调用会生成新的ApplicationContext对象。
 
 **原子化服务API**：从API version 14开始，该接口支持在元服务中使用。
 

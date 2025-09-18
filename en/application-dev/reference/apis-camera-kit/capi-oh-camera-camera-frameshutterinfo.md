@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
@@ -22,4 +23,4 @@ The struct describes the frame shutter information.
 | Name| Description|
 | -- | -- |
 | int32_t captureId | Capture ID.|
-| uint64_t timestamp | Timestamp of the frame captured.|
+| uint64_t timestamp | Timestamp of the frame, in milliseconds.|

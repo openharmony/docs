@@ -81,7 +81,7 @@
    let reportLatencyNs = 1000000000;
    try {
       stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
-         console.log('data=' + JSON.stringify(data));
+         console.info('data=' + JSON.stringify(data));
       })
    } catch (error) {
       let message = (error as BusinessError).message;
@@ -97,7 +97,7 @@
    
    try {
       stationary.once('still', (data) => {
-         console.log('data=' + JSON.stringify(data));
+         console.info('data=' + JSON.stringify(data));
       })
    } catch (error) {
       let message = (error as BusinessError).message;
@@ -113,7 +113,7 @@
    
    try {
       stationary.off('still', stationary.ActivityEvent.ENTER, (data) => {
-         console.log('data=' + JSON.stringify(data));
+         console.info('data=' + JSON.stringify(data));
       })
    } catch (error) {
       let message = (error as BusinessError).message;

@@ -9806,7 +9806,7 @@ async function example(context: Context) {
 
 ## CloudEnhancementTaskState<sup>13+</sup>
 
-云增强任务状态，应用调用调用云增强任务查询接口的返回类型，包含云增强任务状态及部分状态下的额外信息。
+云增强任务状态，应用调用云增强任务查询接口的返回类型，包含云增强任务状态及部分状态下的额外信息。
 
 **系统接口**：此接口为系统接口。
 

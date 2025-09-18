@@ -16,14 +16,16 @@
 
 ## 前置条件
 
-在应用配置文件app.json5中，配置群组ID：demo_group_id。
+在应用配置文件app.json5中，配置群组ID，如：demo_group_id。群组支持配置多个群组ID。
 
-```json
+```json5
 {
   "app": {
     // 其他配置项此处省略。
     "assetAccessGroups": [
-      "demo_group_id"
+      "demo_group_id",
+      // "another_group_id",
+      // ...
     ]
   }
 }
@@ -31,7 +33,7 @@
 
 ## 新增群组关键资产
 
-在群组中新增密码为demo_pwd、别名为demo_alias、附属信息为demo_label的关键资产。该关键资产在用户首次解锁设备后可被访问。
+在群组中新增密码为demo_pwd、别名为demo_alias、附属信息为demo_label的关键资产。
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -46,7 +48,6 @@ function stringToArray(str: string): Uint8Array {
 let attr: asset.AssetMap = new Map();
 attr.set(asset.Tag.SECRET, stringToArray('demo_pwd'));
 attr.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
-attr.set(asset.Tag.ACCESSIBILITY, asset.Accessibility.DEVICE_FIRST_UNLOCKED);
 attr.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
 attr.set(asset.Tag.GROUP_ID, stringToArray('demo_group_id'));
 try {
@@ -62,7 +63,7 @@ try {
 
 ## 删除群组关键资产
 
-在群组中删除别名是demo_alias的关键资产。
+在群组中删除别名为demo_alias的关键资产。
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';

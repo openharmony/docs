@@ -6,9 +6,9 @@
 <!--Tester: @TerryTsao-->
 <!--Adviser: @zhang_yixin13-->
 
-  当在一个struct内使用多个全局@Builder函数实现UI的不同效果时，代码维护将变得非常困难，且页面不够整洁。此时，可以使用wrapBuilder封装全局\@Builder。
+  当在一个struct内使用多个全局\@Builder函数实现UI的不同效果时，代码维护将变得非常困难，且页面不够整洁。此时，可以使用wrapBuilder封装全局\@Builder。
 
-  在阅读本文档前，建议提前阅读：[\@Builder](./arkts-builder.md)。
+  在阅读本文档前，建议阅读：[\@Builder](./arkts-builder.md)。
 
 > **说明：**
 >
@@ -101,7 +101,7 @@ struct Index {
 }
 ```
 
-##  @Builder方法赋值给变量在UI语法中使用
+## @Builder方法赋值给变量在UI语法中使用
 
 自定义组件`Index`使用ForEach进行不同\@Builder函数的渲染，可以使用`builderArr`声明的wrapBuilder数组来实现不同的\@Builder函数的效果。整体代码会更加整洁。
 
@@ -184,7 +184,7 @@ struct Parent {
 
 ### 重复定义wrapBuilder失效
 
-在同一个自定义组件内，同一个wrapBuilder只能初始化一次。例如，`builderObj`通过`wrapBuilder(MyBuilderFirst)`初始化定义后，再次对`builderObj`赋值`wrapBuilder(MyBuilderSecond)`将不会生效。
+在同一个自定义组件内，同一个wrapBuilder只能初始化一次。例如，`builderObj`通过`wrapBuilder(MyBuilderFirst)`初始化后，再次对`builderObj`赋值`wrapBuilder(MyBuilderSecond)`将不会生效。
 
 ```ts
 @Builder

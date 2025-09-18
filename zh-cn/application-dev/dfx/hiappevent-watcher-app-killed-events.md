@@ -1,4 +1,4 @@
-# 应用查杀事件介绍
+# 应用终止事件介绍
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
@@ -9,27 +9,27 @@
 
 ## 概述
 
-从API version 20开始，HiAppEvent提供接口用于订阅应用查杀事件。
+从API version 20开始，HiAppEvent提供接口用于订阅应用终止事件。
 
-查杀是指应用程序被系统强制退出的一种现象。与应用崩溃不同，查杀并非源于应用自身业务代码的异常，而是主要归因于系统基于资源管控策略而对应用实施的查杀行为。
+应用终止是指应用程序被系统强制退出的一种现象。与应用崩溃不同，终止并非源于应用自身业务代码的异常，而是主要归因于系统基于资源管控策略而对应用实施的终止行为。
 
-HiAppEvent提供接口用于订阅应用查杀事件。
+HiAppEvent提供接口用于订阅应用终止事件。
 
-- [订阅应用查杀事件（ArkTS）](hiappevent-watcher-app-killed-events-arkts.md)
-- [订阅应用查杀事件（C/C++）](hiappevent-watcher-app-killed-events-ndk.md)
+- [订阅应用终止事件（ArkTS）](hiappevent-watcher-app-killed-events-arkts.md)
+- [订阅应用终止事件（C/C++）](hiappevent-watcher-app-killed-events-ndk.md)
 
-应用查杀事件信息中params属性的详细描述如下：
+应用终止事件信息中params属性的详细描述如下：
 
 ## 事件字段说明
 
 ### params字段说明
 
-查杀事件信息中params属性的详细描述如下：
+终止事件信息中params属性的详细描述如下：
 
 | 名称    | 类型   | 说明                       |
 | ------- | ------ | ------------------------- |
 | time     | number | 事件触发时间，单位为ms。 |
-| reason  | string | 查杀原因，原因范围详见[reason字段说明](#reason字段说明)。 |
+| reason  | string | 终止原因，原因范围详见[reason字段说明](#reason字段说明)。 |
 | foreground | boolean | 应用是否处于前台状态。true表示应用处于前台；false表示应用处于后台。 |
 
 ### reason字段说明

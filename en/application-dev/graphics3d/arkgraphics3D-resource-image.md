@@ -2,8 +2,9 @@
 <!--Kit: ArkGraphics 3D-->
 <!--Subsystem: Graphics-->
 <!--Owner: @zzhao0-->
-<!--SE: @zdustc-->
-<!--TSE: @zhangyue283-->
+<!--Designer: @zdustc-->
+<!--Tester: @zhangyue283-->
+<!--Adviser: @ge-yafang-->
 
 Image is essentially a two-dimensional buffer for storing information required for 3D rendering calculation, such as basic colors and normals.
 
@@ -13,10 +14,10 @@ ArkGraphics 3D provides the capability of creating image resources in PNG, JPG, 
 ## Creating and Using an Image
 An image resource in a 3D scene can be directly used by the GPU. Key parameters for creating an image resource include the name and path of the image resource. It is a common operation to apply an image resource to a material as one of the material attributes. The sample code is as follows:
 ```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+import { Image, MaterialType, Material, ShaderMaterial, SceneResourceParameters, SceneResourceFactory,
+  Scene } from '@kit.ArkGraphics3D';
 
-function createImagePromise() : Promise<Image> {
+function createImagePromise(): Promise<Image> {
   return new Promise((resolve, reject) => {
     // Load scene resources, which supports .gltf and .glb formats. The path and file name can be customized based on the specific project resources.
     let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.glb"));
@@ -43,3 +44,6 @@ function createImagePromise() : Promise<Image> {
   });
 }
 ```
+
+
+<!--RP1-->

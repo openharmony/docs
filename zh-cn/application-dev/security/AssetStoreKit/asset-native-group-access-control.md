@@ -16,14 +16,16 @@
 
 ## 前置条件
 
-在应用配置文件app.json5中，配置群组ID：demo_group_id。
+在应用配置文件app.json5中，配置群组ID，如：demo_group_id。群组支持配置多个群组ID。
 
-```json
+```json5
 {
   "app": {
     // 其他配置项此处省略。
     "assetAccessGroups": [
-      "demo_group_id"
+      "demo_group_id",
+      // "another_group_id",
+      // ...
     ]
   }
 }
@@ -31,7 +33,7 @@
 
 ## 新增群组关键资产
 
-在群组中新增密码为demo_pwd、别名为demo_alias、附属信息为demo_label的关键资产。用户首次解锁设备后，该关键资产可被访问。
+在群组中新增密码为demo_pwd、别名为demo_alias、附属信息为demo_label的关键资产。
 
 ```c
 #include <string.h>
@@ -50,7 +52,6 @@ static napi_value AddAsset(napi_env env, napi_callback_info info)
     Asset_Blob label = {(uint32_t)(strlen(LABEL)), (uint8_t *)LABEL};
     Asset_Blob group_id = { (uint32_t)(strlen(GROUP_ID)), (uint8_t *)GROUP_ID};
     Asset_Attr attr[] = {
-        {.tag = ASSET_TAG_ACCESSIBILITY, .value.u32 = ASSET_ACCESSIBILITY_DEVICE_FIRST_UNLOCKED},
         {.tag = ASSET_TAG_SECRET, .value.blob = secret},
         {.tag = ASSET_TAG_ALIAS, .value.blob = alias},
         {.tag = ASSET_TAG_DATA_LABEL_NORMAL_1, .value.blob = label},
@@ -66,7 +67,7 @@ static napi_value AddAsset(napi_env env, napi_callback_info info)
 
 ## 删除群组关键资产
 
-在群组中删除别名是demo_alias的关键资产。
+在群组中删除别名为demo_alias的关键资产。
 
 ```c
 #include <string.h>
@@ -169,7 +170,7 @@ static napi_value QueryAsset(napi_env env, napi_callback_info info)
 
 ## 查询单条群组关键资产属性
 
-查询别名是demo_alias的关键资产属性。
+查询别名为demo_alias的关键资产属性。
 
 ```c
 #include <string.h>
