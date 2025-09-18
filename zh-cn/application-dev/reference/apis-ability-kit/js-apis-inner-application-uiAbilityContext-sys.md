@@ -928,8 +928,6 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 将当前Ability连接到一个指定account的ServiceExtensionAbility。仅支持在主线程调用。
 
-当前仅在Phone、Tablet设备上生效。
-
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
@@ -940,6 +938,8 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统接口**：此接口为系统接口。
+
+**设备行为差异**：该接口在Phone、Tablet中可正常调用，在其他设备类型中返回16000006错误码。
 
 **参数：**
 
