@@ -604,7 +604,7 @@ Navigation作为路由组件，默认支持跨包跳转。
 4. 各个路由页面将模块名称、路由名称、WrappedBuilder封装后构建函数注册如路由模块；
 5. 当路由需要跳转到指定路由时，路由模块完成对指定路由模块的动态导入，并完成路由跳转。
 
-具体的构建过程，可以参考Navigation[自动生成动态路由](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/common/routermodule/README_AUTO_GENERATE.md)示例。
+具体的构建过程，可以参考Navigation[自动生成动态路由](https://gitcode.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/common/routermodule/README_AUTO_GENERATE.md)示例。
 
 **方案二：** 系统路由表
 

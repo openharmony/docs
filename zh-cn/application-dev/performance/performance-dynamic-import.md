@@ -29,7 +29,7 @@
    @Component
    export struct WebViewPage {
      webController: WebviewController = new webview.WebviewController();
-     url: string = 'https://gitee.com/harmonyos-cases/cases';
+     url: string = 'https://gitcode.com/harmonyos-cases/cases';
    
      aboutToAppear(): void {
        webview.WebviewController.initializeWebEngine();

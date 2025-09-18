@@ -14,7 +14,7 @@
 
 ## 注意事项
 
-以下将详细阐述如何运用native方式创建子线程以执行耗时任务，并确保与JavaScript的无缝交互。为此，开发者可以利用[arkui_napi](https://gitee.com/openharmony/arkui_napi)仓库提供的[NAPI（Node-API）](../reference/native-lib/napi.md)接口来实现跨语言调用的桥梁。该NAPI的设计严格遵循[Node.js](https://nodejs.org/api/n-api.html)的NAPI规范，以便开发者能够更轻松地理解和使用。  
+以下将详细阐述如何运用native方式创建子线程以执行耗时任务，并确保与JavaScript的无缝交互。为此，开发者可以利用[arkui_napi](https://gitcode.com/openharmony/arkui_napi)仓库提供的[NAPI（Node-API）](../reference/native-lib/napi.md)接口来实现跨语言调用的桥梁。该NAPI的设计严格遵循[Node.js](https://nodejs.org/api/n-api.html)的NAPI规范，以便开发者能够更轻松地理解和使用。  
 特别强调的是，JavaScript函数通常只能在主线程里调用。如果native侧通过std::thread或pthread创建了子线程，那么napi_env、napi_value以及napi_ref是不能直接在子线程上下文中使用的。为确保正确性，当native端在子线程完成其计算或处理后，若需要回调JavaScript函数，必须先通过线程同步机制将结果传递回主线程，然后才能安全地在主线程环境中调用JavaScript函数。  
 为解决这一问题，以下将提出两种有效的解决方案。
 

@@ -163,9 +163,9 @@ Fibonacci(5) is 5
 
 | 名称                                                                                                                | 描述                             |
 | ------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
-| [submit](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#submit)     | 提交任务调度执行。               |
-| [submit_h](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#submit_h) | 提交任务调度执行并返回任务句柄。 |
-| [wait](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#wait)         | 等待上下文所有任务完成。         |
+| [submit](https://gitcode.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#submit)     | 提交任务调度执行。               |
+| [submit_h](https://gitcode.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#submit_h) | 提交任务调度执行并返回任务句柄。 |
+| [wait](https://gitcode.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#wait)         | 等待上下文所有任务完成。         |
 
 > **说明：**
 >

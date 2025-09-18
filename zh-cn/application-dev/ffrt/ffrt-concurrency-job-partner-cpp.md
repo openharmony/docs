@@ -77,7 +77,7 @@ namespace market_system {
 
 | 名称                                                                                                                      | 描述                 |
 | ------------------------------------------------------------------------------------------------------------------------- | -------------------- |
-| [job_partner](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#job_partner) | 细粒度任务伙伴接口。 |
+| [job_partner](https://gitcode.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#job_partner) | 细粒度任务伙伴接口。 |
 
 > **说明：**
 >

@@ -104,7 +104,7 @@ struct ImageAnimatorTest {
 利用if语句下树销毁的特性，通过状态变量控制组件的下树来达到停止动画的效果。
 > **说明：**
 > 
-> [ohos_apng](https://gitee.com/openharmony-sig/ohos_apng)是以开源库[apng-js](https://github.com/davidmz/apng-js)为参考，基于1.1.2版本，通过重构解码算法，拆分出apng里各个帧图层的数据；使用arkts能力，将每一帧数据组合成imagebitmap，使用定时器调用每一帧数据，通过canvas渲染，从而达到帧动画效果。
+> [ohos_apng](https://gitcode.com/openharmony-sig/ohos_apng)是以开源库[apng-js](https://github.com/davidmz/apng-js)为参考，基于1.1.2版本，通过重构解码算法，拆分出apng里各个帧图层的数据；使用arkts能力，将每一帧数据组合成imagebitmap，使用定时器调用每一帧数据，通过canvas渲染，从而达到帧动画效果。
 
 ```ts
 import { apng, ApngController } from '@ohos/apng'; //开发者自行导入apng依赖库，详见上述说明。
@@ -134,7 +134,7 @@ struct RefreshExample {
 ```
 
 ### 状态变量监听法
-列表组件下拉刷新时，管理刷新动画的不可见现象。使用Canvas实现的[ohos_apng组件](https://gitee.com/openharmony-sig/ohos_apng)置于Refresh组件中，默认隐藏。监听Refresh组件的多种状态，通过onStateChange()方法监听RefreshStatus值。当Refresh组件处于收起状态（RefreshStatus为0和4）时，控制apngcontroller停止播放动画；当RefreshStatus处于拉起、回弹等状态（RefreshStatus为1、2和3）时，播放动画。
+列表组件下拉刷新时，管理刷新动画的不可见现象。使用Canvas实现的[ohos_apng组件](https://gitcode.com/openharmony-sig/ohos_apng)置于Refresh组件中，默认隐藏。监听Refresh组件的多种状态，通过onStateChange()方法监听RefreshStatus值。当Refresh组件处于收起状态（RefreshStatus为0和4）时，控制apngcontroller停止播放动画；当RefreshStatus处于拉起、回弹等状态（RefreshStatus为1、2和3）时，播放动画。
 
 ```ts
 // VisibleComponent/entry/src/main/ets/pages/Index.ets
