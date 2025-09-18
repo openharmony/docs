@@ -39,6 +39,8 @@
 由于onVisibleAreaChange()在可见时会每帧进行一次计算检测，当组件数量较多、节点层次较深且帧率较高时，使用setOnVisibleAreaApproximateChange()可以减少计算负载，从而显著提升性能和降低功耗。
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 @Component
 struct ImageAnimatorTest {
   private uid: number = -1;
@@ -104,7 +106,7 @@ struct ImageAnimatorTest {
 利用if语句下树销毁的特性，通过状态变量控制组件的下树来达到停止动画的效果。
 > **说明：**
 > 
-> [ohos_apng](https://gitee.com/openharmony-sig/ohos_apng)是以开源库[apng-js](https://github.com/davidmz/apng-js)为参考，基于1.1.2版本，通过重构解码算法，拆分出apng里各个帧图层的数据；使用arkts能力，将每一帧数据组合成imagebitmap，使用定时器调用每一帧数据，通过canvas渲染，从而达到帧动画效果。
+> [ohos_apng](https://gitee.com/openharmony-sig/ohos_apng)是以开源库[apng-js](https://github.com/davidmz/apng-js)为参考，基于1.1.2版本，通过重构解码算法，拆分出apng里各个帧图层的数据；使用arkts能力，将每一帧数据组合成imagebitmap，使用定时器调用每一帧数据，通过canvas渲染，从而达到帧动画效果。该开源库需要开发者手动添加依赖到oh-package.json5中。
 
 ```ts
 import { apng, ApngController } from '@ohos/apng'; //开发者自行导入apng依赖库，详见上述说明。
@@ -174,6 +176,7 @@ struct RefreshExample {
       Refresh({ refreshing: $$this.isRefreshing, builder: this.customRefreshComponent() }) {
         Scroll() {
           Column() {
+            // 详细代码可参考“接入可见接口法”章节示例代码
             ImageAnimatorTest()
             ForEach(this.arr, (item: string) => {
               ListItem() {
