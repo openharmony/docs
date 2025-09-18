@@ -250,8 +250,7 @@ Tid:13680, Name:les.freezedebug
 
 > **说明：**
 >
-<<<<<<< master
-> 在整机高负载情况（如CPU高负载）下，采用低开销方式获取调用栈时，可能损失函数名称和build-id信息；获取用户栈失败时，build-id会为空，导致freeze堆栈只有so级别堆栈。
+> 在整机高负载情况（如CPU高负载）下，采用低开销方式获取调用栈时，可能损失函数名信息。
 >
 > 从API version 21开始，出现'Failed to dump normal stacktrace'字样时，系统采取轻量化的frame pointer回溯模式。栈回溯可能中断在非使能frame pointer的库（在GCC编译使用 -fomit-frame-pointer 选项时，编译产物会非使能frame pointer），以及受轻量化的限制，单个线程的回栈层数不会超过50层。
 
