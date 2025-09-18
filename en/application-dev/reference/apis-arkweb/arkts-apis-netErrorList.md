@@ -8,7 +8,7 @@
 
 Provides a list of ArkWeb network protocol stack errors.
 
-The error codes of the ArkWeb network protocol stack are mapped to the Chromium error codes in <!--RP1-->net_error_list.h<!--RP1End--&gt.
+The error codes of the ArkWeb network protocol stack are mapped to the Chromium error codes in <!--RP1-->net_error_list.h<!--RP1End-->.
 
 > **NOTE**
 > 

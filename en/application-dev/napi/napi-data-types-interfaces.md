@@ -112,7 +112,7 @@ Node-API provides the following memory management types:
 
 **napi_handle_scope**
 
-Data used to manage the lifecycle of JS objects. It allows JS objects to remain active within a certain range for use in JS code. When **napi_handle_scope** is created, all JS objects created in this range remain active until the end. This minimizes their lifecycles and [prevents memory leaks](napi-guidelines.md#lifecycle-management). For details about **napi_handle_scope**, see [Precautions for Lifecycle Issues](../dfx/cppcrash-guidelines.md#case-4-lifecycle-issues).
+Data used to manage the lifecycle of JS objects. It allows JS objects to remain active within a certain range for use in JS code. When **napi_handle_scope** is created, all JS objects created in this range remain active until the end. This minimizes their lifecycles and [prevents memory leaks](napi-guidelines.md#lifecycle-management). For details about **napi_handle_scope**, see <!--RP1-->Precautions for Lifecycle Issues<!--RP1End-->.
 
 **napi_escapable_handle_scope**
 
