@@ -1206,12 +1206,11 @@ startBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promis
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { notificationManager } from '@kit.NotificationKit';
 import { wantAgent, WantAgent } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   notificationId: number = 0; // 保存通知id
-  continuousTaskId: number = -1;
+  continuousTaskId: number | undefined = -1;
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     let wantAgentInfo: wantAgent.WantAgentInfo = {
       // 点击通知后，将要执行的动作列表
@@ -1234,19 +1233,20 @@ export default class EntryAbility extends UIAbility {
       // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
       wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
         try {
+          // 如果要合并通知，主类型和子类型都必须相同，combinedTaskNotification为true，continuousTaskId必须存在且合法
           let modeList: Array<number> = [backgroundTaskManager.ContinuousTaskMode.MODE_SHARE_POSITION];
           let subModeList: Array<number> = [backgroundTaskManager.ContinuousTaskSubmode.SUBMODE_NORMAL_NOTIFICATION];
-          let continuousTaskRequest: backgroundTaskManager.continuousTaskRequest = {
-            continuousTaskModes: modeList,
-            continuousTaskSubmodes: subModeList,
-            wantAgent: wantAgentObj,
-            combinedTaskNotification: false,
-            continuousTaskId: this.continuousTaskId,
-          };
+          let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
+          continuousTaskRequest.continuousTaskModes =  modeList;
+          continuousTaskRequest.continuousTaskSubmodes = subModeList;
+          continuousTaskRequest.wantAgent = wantAgentObj;
+          continuousTaskRequest.combinedTaskNotification = false;
+          continuousTaskRequest.continuousTaskId = this.continuousTaskId;
           backgroundTaskManager.startBackgroundRunning(this.context, continuousTaskRequest).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
-            console.info("Operation startBackgroundRunning succeeded");
+            console.info(`Operation startBackgroundRunning succeeded. notificationId is ${res.notificationId} continuousTaskId is ${res.continuousTaskId}`);
             // 对于上传下载类的长时任务，应用可以使用res中返回的notificationId来更新通知，比如发送带进度条的模板通知
             this.notificationId = res.notificationId;
+            this.continuousTaskId = res.continuousTaskId;
           }).catch((error: BusinessError) => {
             console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
           });
@@ -1265,7 +1265,7 @@ export default class EntryAbility extends UIAbility {
 
 updateBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promise&lt;ContinuousTaskNotification&gt;
 
-更新长时任务，支持更新对应的长时任务信息，使用promise异步回调。</br>长时任务更新成功后，会有通知栏消息，没有提示音（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型，没有通知）。</br>传入的continuousTaskId必须存在，否则更新失败。</br>已经合并的任务，同类型只能更新want，非同类型更新失败，返回错误码。</br>待更新任务包含上传下载类型，且需要更新的类型也包含上传下载类型，则直接返回成功，不做任何操作。
+更新长时任务，支持更新对应的长时任务信息，使用promise异步回调。</br>长时任务更新成功后，会有通知栏消息，没有提示音（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型，没有通知）。</br>传入的continuousTaskId必须存在，否则更新失败。</br>已经合并的任务，同类型只能更新want，非同类型更新失败，返回错误码。</br>待更新任务包含上传下载类型，且需要更新的类型也包含上传下载类型，则直接返回成功，不做任何操作。</br>若待更新任务和需要更新的任务中，有且只有一个任务包含上传下载类型，则返回失败。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1303,12 +1303,11 @@ updateBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promi
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { notificationManager } from '@kit.NotificationKit';
 import { wantAgent, WantAgent } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   notificationId: number = 0; // 保存通知id
-  continuousTaskId: number = 0;
+  continuousTaskId: number | undefined = -1; //更新时长时任务Id必须存在且合法
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     let wantAgentInfo: wantAgent.WantAgentInfo = {
       // 点击通知后，将要执行的动作列表
@@ -1334,13 +1333,12 @@ export default class EntryAbility extends UIAbility {
           // 必须先执行startBackgroundRunning，才能调用updateBackgroundRunning，这里假设已经申请过
           let modeList: Array<number> = [backgroundTaskManager.ContinuousTaskMode.MODE_SHARE_POSITION];
           let subModeList: Array<number> = [backgroundTaskManager.ContinuousTaskSubmode.SUBMODE_NORMAL_NOTIFICATION];
-          let continuousTaskRequest: backgroundTaskManager.continuousTaskRequest = {
-            continuousTaskModes: modeList,
-            continuousTaskSubmodes: subModeList,
-            wantAgent: wantAgentObj,
-            combinedTaskNotification: false,
-            continuousTaskId: this.continuousTaskId,  //对于更新接口，长时任务Id必须要传，否则更新失败
-          };
+          let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
+          continuousTaskRequest.continuousTaskModes =  modeList;
+          continuousTaskRequest.continuousTaskSubmodes = subModeList;
+          continuousTaskRequest.wantAgent = wantAgentObj;
+          continuousTaskRequest.combinedTaskNotification = false;
+          continuousTaskRequest.continuousTaskId = this.continuousTaskId; //对于更新接口，长时任务Id必须要传且为存在的id，否则更新失败
           backgroundTaskManager.updateBackgroundRunning(this.context, continuousTaskRequest).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
             console.info("Operation updateBackgroundRunning succeeded");
             // 对于上传下载类的长时任务，应用可以使用res中返回的notificationId来更新通知，比如发送带进度条的模板通知
@@ -1587,6 +1585,8 @@ export default class EntryAbility extends UIAbility {
 </br>4、如果任务类型里，包含了上传下载，则不支持合并。
 </br>5、合并通知后不能取消合并，本身合并的不能改成不合并。
 </br>6、如果需要合并，但传入的长时任务ID非法，则不支持合并。
+</br>7、通知合并后，删除通知，取消所有的长时任务。
+</br>8、通知合并后，点击通知，跳转到第一个申请的UIAbility，如果调用了更新接口，则跳转到最后一次更新的UIAbility。
 
 ### 属性
 
@@ -1598,11 +1598,11 @@ export default class EntryAbility extends UIAbility {
 | ContinuousTaskSubmodes | [ContinuousTaskSubmode](#continuoustasksubmode21[]) | 否    | 否    | 长时任务子类型。 <br/>**说明：** 主类型与子类型必须匹配。|
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 否    | 否    | 通知参数，用于指定点击长时任务通知后跳转的界面。 |
 | combinedTaskNotification | boolean   | 否    | 是    | 是否合并通知， true表示合并， false表示不合并，默认为false。 |
-| continuousTaskId | number   | 否    | 是    | 长时任务Id，必须是存在的Id。 <br/>**说明：** 调用[updateBackgroundRunning](#backgroundtaskmanagerupdatebackgroundrunning21)接口时，此项为必填项。|
+| continuousTaskId | number   | 否    | 是    | 长时任务Id。 <br/>**说明：** 合并通知时，此项为必填项，且必须是存在的Id。<br/>调用[updateBackgroundRunning](#backgroundtaskmanagerupdatebackgroundrunning21)接口时，此项为必填项，且必须是存在的Id。   |
 
 ### isModeSupported<sup>21+</sup>
 
-isModeSupported?(): boolean;
+isModeSupported(): boolean;
 
 是否支持TASK_KEEPING类型。根据[ContinuousTaskModes](#continuoustaskmode21)的类型判断是否支持TASK_KEEPING
 
@@ -1625,6 +1625,29 @@ isModeSupported?(): boolean;
 | 201 | Permission denied. |
 
 **示例**：
+```js
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { wantAgent, WantAgent } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let isModeSupported: boolean = false; 
+    let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
+    let modeList: Array<number> = [backgroundTaskManager.ContinuousTaskMode.MODE_SHARE_POSITION];
+    continuousTaskRequest.continuousTaskModes =  modeList;
+    try {
+      isModeSupported = continuousTaskRequest.isModeSupported();
+      console.info(`Operation isModeSupported succeeded. isModeSupported is ${isModeSupported}`);
+    } catch (error) {
+        console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+      }
+    } catch (error) {
+      console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+  }
+};
+```
 
 ## ContinuousTaskMode<sup>21+</sup>
 
@@ -1638,7 +1661,6 @@ isModeSupported?(): boolean;
 | MODE_SHARE_POSITION             | 4         | 定位导航。                  |
 | MODE_ALLOW_BLUETOOTH_AWARE      | 5         | 蓝牙相关业务。            |
 | MODE_MULTI_DEVICE_CONNECTION    | 6         | 多设备互联。            |
-| MODE_ALLOW_WIFI_AWARE           | 7         | WIFI相关业务。            |
 | MODE_TASK_KEEPING               | 9         | 计算任务（仅对2in1设备，或者申请ACL权限的应用开放）。 |
 | MODE_AV_PLAYBACK_AND_RECORD     | 10        | 音视频播放、录制和通话。              |
 
@@ -1652,7 +1674,7 @@ isModeSupported?(): boolean;
 | ----------------------- | ---- | --------------------- |
 | SUBMODE_CAR_KEY_NORMAL_NOTIFICATION     | 1    | 车钥匙类型通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_ALLOW_BLUETOOTH_AWARE。                 |
 | SUBMODE_NORMAL_NOTIFICATION    | 2    | 普通通知。                  |
-| SUBMODE_OBVIOUS_NOTIFICATION  | 3    | 实况窗通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_DATA_TRANSFER  |
+| SUBMODE_LIVE_VIEW_NOTIFICATION  | 3    | 实况窗通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_DATA_TRANSFER  |
 | SUBMODE_AUDIO_PLAYBACK_NORMAL_NOTIFICATION   | 4    | 播音类型普通通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD  |
 | SUBMODE_AVSESSION_AUDIO_PLAYBACK           | 5    | 接入播控中心[AVSession](../../media/avsession/avsession-overview.md)通知。<br/>**说明：** ContinuousTaskMode[ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD |
 | SUBMODE_AUDIO_RECORD_NORMAL_NOTIFICATION          | 6    | 录音类型普通通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD |
@@ -1660,11 +1682,19 @@ isModeSupported?(): boolean;
 | SUBMODE_VOICE_CHAT_NORMAL_NOTIFICATION       | 8   | 通话类型普通通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD  |
 
 **长时任务主类型与子类型对照表：** 
-| 长时任务子类型                     | 对应的长时任务主类型  |
-| ----------------------------- | ----------------------------------- |
+| 长时任务主类型                     | 对应的长时任务子类型  |
+| --------------------------------- | ----------------------------------- |
+| MODE_DATA_TRANSFER                | SUBMODE_LIVE_VIEW_NOTIFICATION        |
+| MODE_SHARE_POSITION               | SUBMODE_NORMAL_NOTIFICATION         |
+| MODE_ALLOW_BLUETOOTH_AWARE        | SUBMODE_NORMAL_NOTIFICATION <br/>MODE_ALLOW_BLUETOOTH_AWARE         |
+| MODE_MULTI_DEVICE_CONNECTION      | SUBMODE_NORMAL_NOTIFICATION         |
+| MODE_TASK_KEEPING                 | SUBMODE_NORMAL_NOTIFICATION         |
+| MODE_AV_PLAYBACK_AND_RECORD       | SUBMODE_NORMAL_NOTIFICATION  <br/>SUBMODE_AUDIO_PLAYBACK_NORMAL_NOTIFICATION <br/>SUBMODE_AVSESSION_AUDIO_PLAYBACK <br/>SUBMODE_AUDIO_RECORD_NORMAL_NOTIFICATION <br/>SUBMODE_SCREEN_RECORD_NORMAL_NOTIFICATION <br/>SUBMODE_VOICE_CHAT_NORMAL_NOTIFICATION      |
+
+
 | SUBMODE_CAR_KEY_NORMAL_NOTIFICATION        | MODE_ALLOW_BLUETOOTH_AWARE              |
 | SUBMODE_NORMAL_NOTIFICATION                | 除了MODE_DATA_TRANSFER类型的其他类型      |
-| SUBMODE_OBVIOUS_NOTIFICATION             | MODE_DATA_TRANSFER                      |
+| SUBMODE_LIVE_VIEW_NOTIFICATION             | MODE_DATA_TRANSFER                      |
 | SUBMODE_AUDIO_PLAYBACK_NORMAL_NOTIFICATION | MODE_AV_PLAYBACK_AND_RECORD             |
 | SUBMODE_AVSESSION_AUDIO_PLAYBACK           | MODE_AV_PLAYBACK_AND_RECORD             |
 | SUBMODE_AUDIO_RECORD_NORMAL_NOTIFICATION   | MODE_AV_PLAYBACK_AND_RECORD             |
