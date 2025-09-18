@@ -15,8 +15,8 @@ For details about API parameters, see [LazyForEach](https://gitee.com/openharmon
 - The ID generation function must generate a unique value for each piece of data. Rendering issues will arise with components assigned duplicate IDs.
 - **LazyForEach** must use the **DataChangeListener** object to re-render UI. If the first parameter **dataSource** is re-assigned a value, an exception occurs. When **dataSource** uses a state variable, the change of the state variable does not trigger the UI re-renders performed by **LazyForEach**.
 - For better rendering performance, when the **onDataChange** API of the **DataChangeListener** object is used to update the UI, an ID different from the original one needs to be generated to trigger component re-rendering.
-- Using [\@Reusable](./arkts-reusable.md) to decorate components on the LazyForEach list can trigger node reuse. For details, see [List Scrolling Used with LazyForEach](./arkts-reusable.md#using-list-scrolling-with-lazyforeach).
-- Use LazyForEach and [\@ReusableV2](./arkts-new-reusableV2.md) together to trigger node reuse. For details, see [Using in LazyForEach](./arkts-new-reusableV2.md#using-in-lazyforeach).
+- Using [\@Reusable](../state-management/arkts-reusable.md) to decorate components on the LazyForEach list can trigger node reuse. For details, see [List Scrolling Used with LazyForEach](../state-management/arkts-reusable.md#list-scrolling-with-lazyforeach).
+- Use LazyForEach and [\@ReusableV2](../state-management/arkts-new-reusableV2.md) together to trigger node reuse. For details, see [Using in LazyForEach](../state-management/arkts-new-reusableV2.md#using-in-lazyforeach).
 
 ## Key Generation Rules
 
@@ -1424,7 +1424,7 @@ struct ChildComponent {
 **Figure 16** UI not re-rendered when @ObjectLink property is changed 
 ![LazyForEach-ObjectLink-NotRenderUI](./figures/LazyForEach-ObjectLink-NotRenderUI.gif)
 
-The member variable decorated by @ObjectLink can observe only changes of its sub-properties, not changes of nested properties. Therefore, to instruct a component to re-render, we need to change the component sub-properties. For details, see [\@Observed and \@ObjectLink Decorators](./arkts-observed-and-objectlink.md).
+The member variable decorated by @ObjectLink can observe only changes of its sub-properties, not changes of nested properties. Therefore, to instruct a component to re-render, we need to change the component sub-properties. For details, see [\@Observed and \@ObjectLink Decorators](../state-management/arkts-observed-and-objectlink.md).
 
 The following shows the code snippet after optimization:
 

@@ -49,7 +49,7 @@ AppStartup supports startup tasks in automatic or manual mode. By default, autom
 
 2. [Setting Startup Parameters](#setting-startup-parameters): In the startup parameter file, set parameters such as the timeout interval and startup task listener.
 3. [Adding a Startup Task for Each Component to Be Initialized](#adding-a-startup-task-for-each-component-to-be-initialized): Implement the [StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md) interface.
-4. [Optional Operations](optional-operations): You can finely control the behavior of AppStartup in complex scenarios.
+4. [Optional Operations](#optional-operations): You can finely control the behavior of AppStartup in complex scenarios.
    - [Using AppStartup in the HSP and HAR](#using-appstartup-in-the-hsp-and-har): Configure startup tasks and .so file preloading tasks in the HSP and HAR to manage dependencies across modules, making large applications start faster and be easier to maintain.
    - [Changing Startup Mode](#changing-startup-mode): Switch the startup task and .so file preloading task to manual mode to decide exactly when they run, cutting down on startup time.
    - [Adding Task Matching Rules](#adding-task-matching-rules): Use rules to filter which tasks run, ensuring only relevant tasks load based on the situation.
