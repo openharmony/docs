@@ -59,8 +59,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
   sensor.on(sensor.SensorId.COLOR, (data: sensor.ColorResponse) => {
-    console.log('Succeeded in getting the intensity of light: ' + data.lightIntensity);
-    console.log('Succeeded in getting the color temperature: ' + data.colorTemperature);
+    console.info('Succeeded in getting the intensity of light: ' + data.lightIntensity);
+    console.info('Succeeded in getting the color temperature: ' + data.colorTemperature);
   }, { interval: 100000000 });
   setTimeout(() => {
         sensor.off(sensor.SensorId.COLOR);
@@ -210,7 +210,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.ColorResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.COLOR;
@@ -348,7 +348,7 @@ enum Ret { OK, Failed = -1 }
 
 // 传感器回调
 const sensorCallback = (response: sensor.SarResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // 传感器监听类型
 const sensorType = sensor.SensorId.SAR;
