@@ -144,11 +144,11 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
 |    |——NativeEntry.cpp 桥接方法的Native侧实现。
 |    |——NativeEntry.h 桥接方法的Native侧定义。
 |    |——CMakeList.txt C语言库引用文件。
-|    |——ArkuiBaseNode.h 节点封装扩展类。
-|    |——ArkuiNode.h 节点封装扩展类。
-|    |——ArkuiListNode.h 节点封装扩展类。
-|    |——ArkuiListItemNode.h 节点封装扩展类。
-|    |——ArkuiTextNode.h 节点封装扩展类。
+|    |——ArkUIBaseNode.h 节点封装扩展类。
+|    |——ArkUINode.h 节点封装扩展类。
+|    |——ArkUIListNode.h 节点封装扩展类。
+|    |——ArkUIListItemNode.h 节点封装扩展类。
+|    |——ArkUITextNode.h 节点封装扩展类。
 |    |——NormalTextListExample.h 示例代码文件。
 | 
 |——ets
