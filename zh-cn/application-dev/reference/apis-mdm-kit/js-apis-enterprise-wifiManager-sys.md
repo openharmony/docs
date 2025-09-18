@@ -10,7 +10,7 @@
 >
 > 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-term.md#mdm应用设备管理应用)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2)后调用。
 >
-> 当前页面仅包含本模块的系统接口，其他公开接口参见。其他公开接口参见[@ohos.enterprise.wifiManager](js-apis-enterprise-wifiManager.md)。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.enterprise.wifiManager](js-apis-enterprise-wifiManager.md)。
 
 ## 导入模块
 
@@ -65,10 +65,10 @@ let wantTemp: Want = {
 
 wifiManager.isWifiActive(wantTemp, (err, result) => {
   if (err) {
-    console.error(`Failed to query is wifi active or not. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query whether the wifi is active or not. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  console.info(`Succeeded in query is wifi active or not, result : ${result}`);
+  console.info(`Succeeded in querying whether the wifi is active or not, result : ${result}`);
 });
 ```
 
@@ -124,9 +124,9 @@ let wantTemp: Want = {
 };
 
 wifiManager.isWifiActive(wantTemp).then((result) => {
-  console.info(`Succeeded in query is wifi active or not, result : ${result}`);
+  console.info(`Succeeded in querying whether the wifi is active or not, result : ${result}`);
 }).catch((err: BusinessError) => {
-  console.error(`Failed to query is wifi active or not. Code: ${err.code}, message: ${err.message}`);
+  console.error(`Failed to query whether the wifi is active or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -307,7 +307,7 @@ let wantTemp: Want = {
 };
 try {
   let result: boolean = wifiManager.isWifiDisabled(wantTemp);
-  console.info(`Succeeded in query the wifi is disabled or not, result : ${result}`);
+  console.info(`Succeeded in querying whether the wifi is disabled or not, result : ${result}`);
 } catch (err) {
   console.error(`Failed to query the wifi is disabled or not. Code: ${err.code}, message: ${err.message}`);
 };
@@ -360,7 +360,7 @@ let wantTemp: Want = {
 
 try {
   wifiManager.setWifiDisabled(wantTemp, true);
-  console.info('Succeeded in set the wifi disabled');
+  console.info('Succeeded in setting the wifi disabled');
 } catch (err) {
   console.error(`Failed to set the wifi disabled. Code: ${err.code}, message: ${err.message}`);
 };
