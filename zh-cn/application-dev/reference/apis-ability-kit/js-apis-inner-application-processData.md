@@ -29,7 +29,7 @@ import { appManager } from '@kit.AbilityKit';
 | uid         | number   | 否   | 否 |应用的uid。                  |
 | isContinuousTask | boolean   | 否   | 否 | 是否为长时任务，true表示是，false表示不是。                 |
 | isKeepAlive      | boolean   | 否   | 否 |是否为常驻进程，true表示是，false表示不是                   |
-| state       | number   | 否   |  否 |应用的状态，取值及对应的状态为：<br>0 - 刚创建，<br>1 - 准备就绪，<br>2 - 前台，<br>4 - 后台，<br>5 - 已终止。     |
+| state       | number   | 否   |  否 |应用的状态，取值及对应的状态为：<br>0 - 刚创建完成，<br>1 - 准备就绪，<br>2 - 前台，<br>4 - 后台，<br>5 - 已终止。     |
 
 **示例：**
 ```ts
