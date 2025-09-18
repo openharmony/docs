@@ -25,7 +25,7 @@ You can invoke an AppServiceExtensionAbility from a UIAbility in two ways: start
 
 - To integrate an AppServiceExtensionAbility, applications must request the ACL permission (ohos.permission.SUPPORT_APP_SERVICE_EXTENSION). This ACL permission is available only for enterprise applications.
 
-- If the [AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md) instance is not started, the caller must be the application to which the [AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md) instance belongs or an application in the application list supported by the AppServiceExtensionAbility instance (configured in the **appIdentifierAllowList** property of [extensionAbilities](../quick-start/module-configuration-file.md#extensionabilities)).
+- If the AppServiceExtensionAbility instance is not started, the caller must be the application to which the instance belongs or an application in the application list supported by the AppServiceExtensionAbility instance (configured in the **appIdentifierAllowList** property of [extensionAbilities](../quick-start/module-configuration-file.md#extensionabilities)).
 
 - APIs related to [Window](../reference/apis-arkui/arkts-apis-window.md) cannot be called in the AppServiceExtensionAbility.
 

@@ -530,6 +530,9 @@
           - [Clipping Shapes (clipShape)](ui/arkts-clip-shape.md)
         - Adding Interaction Response
           - Adding Gesture Response
+          - [Interacting with Applications Using Gestures](ui/arkts-interaction-basic-principles.md)
+          - [Handling Touchscreen Input Events](ui/arkts-interaction-development-guide-touch-screen.md)
+          - [Crown Event (Recommended for Circular Screens)](ui/arkts-common-events-crown-event.md)
             - [Gesture Binding](ui/arkts-gesture-events-binding.md)
             - [Single Gesture](ui/arkts-gesture-events-single-gesture.md)
             - [Combined Gestures](ui/arkts-gesture-events-combined-gestures.md)
@@ -1884,9 +1887,14 @@
           - [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extension APIs](napi/use-napi-event-loop.md)
           - [Loading a Module Using Node-API](napi/use-napi-load-module-with-info.md)
           - [Passing a Task with the Specified Priority to an ArkTS Thread from an Asynchronous Thread Using Node-API](napi/use-call-threadsafe-function-with-priority.md)
+          - [Creating, Switching, and Destroying a Context in a Thread Using Node-API Extension APIs](napi/use-napi-about-context.md)
           - [Analyzing Exceptions and Crashes Triggered by Using Node-API](napi/use-napi-about-crash.md)
           - [Calling an ArkTS Method with Return Value of a promise Using Node-API](napi/use-napi-method-promise.md)
         - Node-API FAQs<!--napi-questions-->
+          - [Node-API FAQs](napi/use-napi-faqs.md)
+          - [FAQs About Stability](napi/napi-faq-about-stability.md)
+          - [FAQs About Memory Leaks](napi/napi-faq-about-memory-leak.md)
+          - [FAQs About Basic Functionalities](napi/napi-faq-about-common-basic.md)
       - Using JSVM-API<!--jsvm-->
         - [JSVM-API Overview](napi/jsvm-introduction.md)
         - [JSVM-API Data Types and APIs](napi/jsvm-data-types-interfaces.md)
@@ -1905,6 +1913,7 @@
           - [Working with BigInt Using JSVM-API](napi/use-jsvm-about-bigint.md)
           - [Working with Classes Using JSVM-API](napi/use-jsvm-about-class.md)
           - [Working with Date Using JSVM-API](napi/use-jsvm-about-date.md)
+          - [Performing Debug Operations Using JSVM-API](napi/use-jsvm-about-debug-option.md)
           - [Working with Objects Using JSVM-API](napi/use-jsvm-about-object.md)
           - [Working with Primitives Using JSVM-API](napi/use-jsvm-about-primitive.md)
           - [Implementing Asynchronous Operations Using JSVM-API](napi/use-jsvm-about-promise.md)
@@ -1928,10 +1937,16 @@
           - [JSVM-API Debugging](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
           - [Working with Trace Using JSVM-API](napi/use-jsvm-about-trace.md)
           - [Requesting the JIT Profile for JSVM](napi/jsvm-apply-jit-profile.md)
+          - [JSVM-API Secure Shield Mode](napi/jsvm-secure-shield-mode.md)
+          - [Troubleshooting JSVM-API Memory Leaks](napi/jsvm-locate-memory-leak.md)
           - JSVM-API Tuning and Performant Coding Cases<!--jsvm-usage-examples-->
             - [Creating and Destroying JS VMs Using JSVM-API](napi/use-jsvm-runtime-task.md)
             - [Accelerating Compilation Using a Code Cache](napi/use-jsvm-about-code-cache.md)
             - [JSVM Tuning Practices](napi/jsvm-optimizations.md)
+        - JSVM Performance Debugging Guides<!--jsvm-performance-->
+          - [Using HiSmartPerf to Collect V8 Trace](napi/use-jsvm-about-v8-trace.md)
+      - Longque-JS-API<!--longque-->
+        - [Using Longque JS APIs](napi/use-longque-js-api.md)
       - OpenMP Support<!--openmp-->
         - [OpenMP Overview](napi/openmp-overview.md)
         - [Building and Running Applications Using OpenMP](napi/openmp-guideline.md)
@@ -1939,6 +1954,7 @@
         - [Raw File Development](napi/rawfile-guidelines.md)
       - Thread Scheduling<!--thread-scheduling-->
         - [QoS Development](napi/qos-guidelines.md)
+        - [Gewu Development](napi/gewu-ndk-api-guidelines.md)
       - Memory Management<!--memory-management-->
         - [Purgeable Memory Development](napi/purgeable-memory-guidelines.md)
       - Bundle Management<!--bundle-management-->
