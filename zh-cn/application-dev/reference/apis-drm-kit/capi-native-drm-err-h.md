@@ -6,7 +6,7 @@
 
 **引用文件：** <multimedia/drm_framework/native_drm_err.h>
 
-**库：** libnative_drm.z.so
+**库：** libnative_drm.so
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
