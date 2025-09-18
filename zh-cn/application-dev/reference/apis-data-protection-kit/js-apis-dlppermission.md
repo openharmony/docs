@@ -1677,7 +1677,7 @@ static registerPlugin(plugin: DlpConnPlugin): number
 
 >**说明：**
 >
-> registerPlugin将plugin 注册到SA（System Ability）侧，待SA（System Ability）调用。
+> registerPlugin将plugin注册到SA（System Ability）侧，待SA（System Ability）调用。
 
 **需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
 
@@ -1687,7 +1687,7 @@ static registerPlugin(plugin: DlpConnPlugin): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| plugin | DlpConnPlugin | 是 |代表回调能力。 |
+| plugin | [DlpConnPlugin](#dlpconnplugin21) | 是 |代表回调能力。 |
 
 **返回值：**
 
@@ -1710,11 +1710,11 @@ static registerPlugin(plugin: DlpConnPlugin): number
 ### DlpConnManager.unregisterPlugin<sup>21+</sup>
 static unregisterPlugin(): void
   
-提供将回调从SA（System Ability）侧解除的能力。
+提供将回调从SA（System Ability）侧注销的能力。
 
 >**说明：**
 >
-> unregisterPlugin将plugin从SA（System Ability）侧解注册。
+> unregisterPlugin将plugin从SA（System Ability）侧注销注册。
   
 **需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
 
