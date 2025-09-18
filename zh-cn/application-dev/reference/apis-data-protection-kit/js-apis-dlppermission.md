@@ -1610,7 +1610,7 @@ async function ExampleFunction(dlpFilePath: string) {
 
 >**说明：**
 >
-> [registerPlugin](#registerplugin21)接口的参数需要继承该接口，[connectServer](#dlpconnpluginconnectserver21)由SA（System Ability）侧调用，通过callback进行回传参数。
+> [registerPlugin](#registerplugin21)接口的参数需要继承该接口，[connectServer](#connectserver21)由SA（System Ability）侧调用，通过callback进行回传参数。
 
 ### connectServer<sup>21+</sup>
 connectServer(requestId: string, requestData: string, callback: Callback\<string\>): void
@@ -1655,7 +1655,7 @@ connectServer(requestId: string, requestData: string, callback: Callback\<string
 
 constructor()
 
-[DlpConnManager](#DlpConnManager21) 实例化时的构造函数。
+[DlpConnManager](#dlpconnmanager21) 实例化时的构造函数。
  
 **需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
  
