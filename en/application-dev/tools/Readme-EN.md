@@ -1,5 +1,12 @@
 # Debugging Tools
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @foryourself-->
+<!--Designer: @lingminghw-->
+<!--Tester: @RayShih-->
+<!--Adviser: @foryourself-->
 
+- [SDK Command Line Tools Overview](command-line-tools-overview.md)
 - [Ability Assistant](aa-tool.md)
 - [Bundle Manager](bm-tool.md)
 - Packing and Unpacking Tools<!--packing-unpacking-->
@@ -13,10 +20,15 @@
 - [Low Level Debugger](lldb-tool.md)<!--DelEnd-->
 - [param](param-tool.md)
 - [power-shell](power-shell.md)
-- [Access Token Manager](atm-tool.md)<!--Del-->
-- [Account Manager](acm-tool.md)<!--DelEnd-->
+- [Access Token Manager](atm-tool.md)
+- [network-cfg](network-cfg.md)
+- [ime](../inputmethod/inputmethod-hdc-commands-guide.md)
+<!--Del-->
+- [Account Manager](acm-tool.md)
+<!--DelEnd-->
 - Command Line Tools
   - [Toybox](toybox.md)
   - [mediatool](mediatool.md)
   - [devicedebug](devicedebug-tool.md)
   - [rawheap-translator](rawheap-translator.md)
+- [Binary Signing Tool](binary-sign-tool.md)
