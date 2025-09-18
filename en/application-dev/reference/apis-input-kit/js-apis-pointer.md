@@ -603,7 +603,7 @@ Sets the custom cursor style. This API uses a promise to return the result.
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
 | windowId  | number  | Yes   | Window ID.                         |
-| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes   | Pixel map resource.|
+| pixelMap  | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | Yes   | Pixel map resource.|
 | focusX  | number | No   | Focus x of the custom cursor. The value is greater than or equal to **0**. The default value is **0**.|
 | focusY  | number | No   | Focus y of the custom cursor. The value is greater than or equal to **0**. The default value is **0**.|
 
@@ -654,7 +654,7 @@ Pixel map resource.
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 | Name    | Type    | Readable    | Writable    | Description    |
 | -------- | ------- | -------- | -------- | ------- |
-| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | No  | No  | Defines a custom cursor. The minimum size is subject to the minimum limit of the image. The maximum size is 256 x 256 px.|
+| pixelMap  | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | No  | No  | Defines a custom cursor. The minimum size is subject to the minimum limit of the image. The maximum size is 256 x 256 px.|
 | focusX  | number | No  | Yes  | Horizontal coordinate of the cursor focus. The coordinates are restricted by the size of the custom cursor. The minimum value is **0**, and the maximum value is the maximum width of the image. The default value is **0** if the parameter is left empty.|
 | focusY  | number | No  | Yes  | Vertical coordinate of the cursor focus. The coordinates are restricted by the size of the custom cursor. The minimum value is **0**, and the maximum value is the maximum height of the image. The default value is **0** if the parameter is left empty.|
 
@@ -740,7 +740,7 @@ Sets a custom cursor. This API returns the result synchronously.
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
 | windowId  | number  | Yes   | Window ID. The value must be an integer greater than 0.                         |
-| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes   | Pixel map resource.|
+| pixelMap  | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | Yes   | Pixel map resource.|
 | focusX  | number | No   | Focus x of the custom cursor. The value is greater than or equal to **0**. The default value is **0**.|
 | focusY  | number | No   | Focus y of the custom cursor. The value is greater than or equal to **0**. The default value is **0**.|
 

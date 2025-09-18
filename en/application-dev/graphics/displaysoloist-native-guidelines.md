@@ -16,7 +16,7 @@ A **DisplaySoloist** instance can exclusively occupy a thread or share a thread 
 
 ## How to Develop
 
-In this example, a graphic is drawn using the native Drawing module. Specifically, an expected frame rate is set through the asynchronous thread, and the graphic is drawn based on the frame rate and displayed on the native window. For details about graphics drawing, see [Using Drawing to Draw and Display Graphics (C/C++)](drawing-guidelines.md).
+In this example, a graphic is drawn using the native Drawing module. Specifically, an expected frame rate is set through the asynchronous thread, and the graphic is drawn based on the frame rate and displayed on the native window. For details about graphics drawing, see [Using Drawing to Draw and Display Graphics (C/C++)](graphic-drawing-overview.md).
 
 ### Adding Dependencies
 

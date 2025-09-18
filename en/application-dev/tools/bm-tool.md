@@ -793,7 +793,7 @@ When you start debugging or run an application, the error message "error: instal
           ```
           keytool -printcert -file xxx.cer
           ```
-        d. Remove colons (:\) from the SHA-256 content in the certificate fingerprint. What you get is the signature fingerprint.
+        d. Remove colons from the SHA-256 content in the certificate fingerprint. What you get is the signature fingerprint.
 
         The following figure shows an example.
 

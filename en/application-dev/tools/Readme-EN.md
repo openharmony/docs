@@ -20,7 +20,6 @@
 - [Low Level Debugger](lldb-tool.md)<!--DelEnd-->
 - [param](param-tool.md)
 - [power-shell](power-shell.md)
--  
 - [Access Token Manager](atm-tool.md)
 - [network-cfg](network-cfg.md)
 - [ime](../inputmethod/inputmethod-hdc-commands-guide.md)

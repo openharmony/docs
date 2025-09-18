@@ -1,5 +1,10 @@
 # @ohos.graphics.text (Text)
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @oh_wangxk; @gmiao522; @Lem0nC-->
+<!--Designer: @liumingxiang-->
+<!--Tester: @yhl0101-->
+<!--Adviser: @ge-yafang-->
 The Text module provides a set of APIs for text layout and font management. It aims to deliver high-quality typesetting through features like character-to-glyph conversion, kerning, line breaking, alignment, and text measurement. Additionally, it provides font management capabilities, including font registration, font descriptors, and font collection management.
 
 This module provides the following classes for creating complex text paragraphs:
@@ -21,7 +26,60 @@ This module provides the following classes for creating complex text paragraphs:
 ## Modules to Import
 
 ```ts
-import { text } from '@kit.ArkGraphics2D';
+import { text } from '@kit.ArkGraphics2D'
+```
+
+## text.setTextHighContrast<sup>20+</sup>
+
+setTextHighContrast(action: TextHighContrast): void
+
+Sets the high contrast mode for text rendering.
+
+The setting takes effect for the entire process. All pages in the process share the same mode.
+
+You can call this API to set the high contrast mode or enable or disable the high contrast mode by toggling **High contrast text** on the system settings screen. The priority of using this API to enable or disable the high contrast mode is higher than that of using the system switch.
+
+This API does not take effect in the text self-drawing scenario of an app.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type              | Mandatory| Description                             |
+| ----- | ------------------ | ---- | --------------------------------------------------------------------------------- |
+| action | [TextHighContrast](#texthighcontrast20)  | Yes  | High contrast mode for text rendering.                                                             |
+
+**Example**
+
+```ts
+text.setTextHighContrast(text.TextHighContrast.TEXT_APP_DISABLE_HIGH_CONTRAST)
+```
+
+## text.setTextUndefinedGlyphDisplay<sup>20+</sup>
+
+setTextUndefinedGlyphDisplay(noGlyphShow: TextUndefinedGlyphDisplay): void
+
+Sets the glyph type to be used when characters are mapped to the .notdef (undefined) glyph.
+
+This affects all text displayed after this API is called.
+
+This configuration affects the way undefined characters in the font are displayed.
+
+- The default behavior follows the internal .notdef glyph design of the font.
+- After this function is enabled, characters without glyphs are displayed as a block of text.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type              | Mandatory| Description                             |
+| ----- | ------------------ | ---- | ------------------------------------------------------------------------------- |
+| noGlyphShow | [TextUndefinedGlyphDisplay](#textundefinedglyphdisplay20) | Yes  | Display mode of characters that cannot be shaped.|
+
+**Example**
+
+```ts
+text.setTextUndefinedGlyphDisplay(text.TextUndefinedGlyphDisplay.USE_TOFU)
 ```
 
 ## text.matchFontDescriptors<sup>18+</sup>
@@ -55,8 +113,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-import { BusinessError } from '@kit.BasicServicesKit';
+import { text } from '@kit.ArkGraphics2D'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 @Entry
 @Component
@@ -120,8 +178,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-import { BusinessError } from '@kit.BasicServicesKit';
+import { text } from '@kit.ArkGraphics2D'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 @Entry
 @Component
@@ -168,7 +226,7 @@ A font descriptor is a data structure that describes font features. It contains 
 
 | Name| Type| Mandatory| Description|
 | - | - | - | - |
-| fullName | string | Yes| Font name, corresponding to the value of **fullName** in the **name** table of the corresponding font file. It is obtained by calling [getSystemFontFullNamesByType](#textgetsystemfontfullnamesbytype14).|
+| fullName | string | Yes| Font name, It is obtained by calling [getSystemFontFullNamesByType](#textgetsystemfontfullnamesbytype14).|
 | fontType | [SystemFontType](#systemfonttype14) | Yes| Font type.|
 
 **Return value**
@@ -188,8 +246,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
-import { BusinessError } from '@kit.BasicServicesKit';
+import { text } from '@kit.ArkGraphics2D'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 @Entry
 @Component
@@ -205,8 +263,8 @@ struct Index {
           .onClick(() => {
             let fontType:text.SystemFontType = text.SystemFontType.GENERIC
             let promise = text.getFontDescriptorByFullName("HarmonyOS Sans", fontType)
-            promise.then((fontdecriptor) => {
-              console.info(`desc: ${JSON.stringify(fontdecriptor)}`)
+            promise.then((fontDescriptor) => {
+              console.info(`desc: ${JSON.stringify(fontDescriptor)}`)
             }).catch((error: BusinessError) => {
               console.error(`Failed to get fontDescriptor by fullName, error: ${JSON.stringify(error)}`);
             });
@@ -218,6 +276,29 @@ struct Index {
   }
 }
 ```
+
+## TextHighContrast<sup>20+</sup>
+
+Enumerates the text rendering high contrast configuration types.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name                              | Value  | Description                                           |
+| ---------------------------------- | ---- | ---------------------------------------------- |
+| TEXT_FOLLOW_SYSTEM_HIGH_CONTRAST   | 0    | Follow the high contrast text configuration in the system settings.                                           |
+| TEXT_APP_DISABLE_HIGH_CONTRAST     | 1    | Disable the high contrast text configuration for app text rendering. This configuration takes precedence over the high contrast text configuration in the system settings.|
+| TEXT_APP_ENABLE_HIGH_CONTRAST      | 2    | Enable the high contrast text configuration for app text rendering. This configuration takes precedence over the high contrast text configuration in the system settings.|
+
+## TextUndefinedGlyphDisplay<sup>20+</sup>
+
+Enumerates the display modes when a font does not define a glyph.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name          | Value  | Description                                |
+| -------------- | ---- | ------------------------------------ |
+| USE_DEFAULT    | 0    | Use the internal .notdef glyph of the font. Follow the internal .notdef glyph design of the font, which can be an empty box, space, or custom symbol.|
+| USE_TOFU       | 1    | Always replace undefined fonts with explicit tofu blocks, overwriting the default behavior of the font. Used to debug missing characters or force consistent missing symbol display.|
 
 ## TextAlign
 
@@ -233,6 +314,19 @@ Enumerates the text alignment modes.
 | JUSTIFY   | 3    | Justified, which means that each line (except the last line) is stretched so that every line has equal width, and the left and right margins are straight.                   |
 | START     | 4    | Aligned with the start position, which depends on [TextDirection](#textdirection).|
 | END       | 5    | Aligned with the end position, which depends on [TextDirection](#textdirection).|
+
+## TextVerticalAlign<sup>20+</sup>
+
+Enumerates the vertical alignment modes of text.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name       | Value  | Description                                         |
+| --------- | ---- | ---------------------------------------------- |
+| BASELINE | 0    | Aligns text based on the text baseline.                                 |
+| BOTTOM | 1    | Aligns text based on the text bottom.                                 |
+| CENTER    | 2    | Center-aligned.                                 |
+| TOP | 3    | Aligns text based on the text top.                   |
 
 ## TextDirection
 
@@ -268,7 +362,7 @@ Enumerates the word break types.
 | NORMAL                      | 0    | Default mode that break words based on language-specific conventions.                                                                 |
 | BREAK_ALL                   | 1    | Allows breaks within any character in non-CJK text. (CJK means Chinese, Japanese, and Korean.) This value is suitable for Asian text that contains some non-Asian text. For example, it can be used to break consecutive English characters.|
 | BREAK_WORD                  | 2    | Allows breaks between any two characters in non-CJK text. It prioritizes breaking at whitespace or other natural breakpoints to keep words intact. If no breakpoints are found, it breaks between any two characters. For CJK text, this behaves like **NORMAL**.|
-| BREAK_HYPHEN<sup>18+</sup>  | 3    | Attempts to break words at the end of a line using a hyphen. If a hyphen cannot be added, it behaves like **BREAK_WORD**.                       |
+| BREAK_HYPHEN<sup>18+</sup>  | 3    | Attempts to break words at the end of a line using a hyphen. If a hyphen cannot be added, it behaves like **BREAK_WORD**.<br>When using this word break strategy, you need to use it with the `locale` attribute in [TextStyle](#textstyle). The locale attribute defines the language environment and affects the word break effect.                       |
 
 ## Decoration
 
@@ -278,10 +372,10 @@ Describes a text decoration.
 
 | Name                     | Type                                                 | Read Only| Optional| Description                                        |
 | ------------------------- | --------------------------------------------------- | ---- | ---- | -------------------------------------------- |
-| textDecoration            | [TextDecorationType](#textdecorationtype)           | Yes  | Yes  | Type of the decoration. The default value is **NONE**.                      |
-| color                     | [common2D.Color](js-apis-graphics-common2D.md#color)| Yes  | Yes  | Color of the decoration. The default value is transparent.                      |
-| decorationStyle           | [TextDecorationStyle](#textdecorationstyle)         | Yes  | Yes  | Style of the decoration. The default value is **SOLID**.                     |
-| decorationThicknessScale  | number                                              | Yes  | Yes  | Scale factor for the thickness of the decoration line. The value is a floating point number. The default value is **1.0**.|
+| textDecoration            | [TextDecorationType](#textdecorationtype)           | No  | Yes  | Type of the decoration. The default value is **NONE**.                      |
+| color                     | [common2D.Color](js-apis-graphics-common2D.md#color)| No  | Yes  | Decoration line color. The default value is the text color.                      |
+| decorationStyle           | [TextDecorationStyle](#textdecorationstyle)         | No  | Yes  | Style of the decoration. The default value is **SOLID**.                     |
+| decorationThicknessScale  | number                                              | No  | Yes  | Scale factor for the thickness of the decoration line. The value is a floating point number. The default value is **1.0**. If the value is less than or equal to 0, no decoration line is drawn.|
 
 ## TextDecorationType
 
@@ -369,7 +463,7 @@ Enumerates the text height modifier patterns.
 | ALL                   | 0x0 | Allows the first line of the paragraph to rise and the last line to drop.           |
 | DISABLE_FIRST_ASCENT  | 0x1 | Prevents the first line of a paragraph from rising.                  |
 | DISABLE_LAST_ASCENT   | 0x2 | Prevents the last line of a paragraph from dropping.                |
-| DISABLE_ALL           | 0x1 \| 0x2 | Combines the effects of disabling the first line from rising and the last line from dropping.         |
+| DISABLE_ALL           | 0x1 \| 0x2 | The height modifier is set to prevent the first line from being increased and the last line from being decreased in a paragraph.         |
 
 ## TextBaseline
 
@@ -404,9 +498,9 @@ Describes the text shadow.
 
 | Name         | Type                                                | Read Only| Optional| Description                              |
 | ------------- | ---------------------------------------------------- | --  | ---  | --------------------------------- |
-| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes |  Yes  | Color of the text shadow. The default value is black (255, 0, 0, 0).       |
-| point         | [common2D.Point](js-apis-graphics-common2D.md#point12) | Yes |  Yes  | Position of the text shadow relative to the text. The horizontal and vertical coordinates must be greater than or equal to 0.   |
-| blurRadius    | number                                               | Yes |  Yes  | Blur radius. The value is a floating point number. The default value is **0.0px**.      |
+| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | No |  Yes  | Color of the text shadow. The default value is black (255, 0, 0, 0).       |
+| point         | [common2D.Point](js-apis-graphics-common2D.md#point12) | No |  Yes  | Position of the text shadow relative to the text. The horizontal and vertical coordinates must be greater than or equal to 0.   |
+| blurRadius    | number                                               | No |  Yes  | Blur radius. The value is a floating point number. The default value is **0.0px**.      |
 
 ## RectStyle
 
@@ -416,11 +510,11 @@ Describes the style of a rectangle.
 
 | Name              | Type                                                | Read Only| Optional| Description                                     |
 | -----------------  | ---------------------------------------------------- | --  | ---  | ---------------------------------------- |
-| color              | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes |  No  | Color of the rectangle.                |
-| leftTopRadius      | number                                               | Yes |  No  | Left top radius of the rectangle.      |
-| rightTopRadius     | number                                               | Yes |  No  | Right top radius of the rectangle.      |
-| rightBottomRadius  | number                                               | Yes |  No  | Right bottom radius of the rectangle.      |
-| leftBottomRadius   | number                                               | Yes |  No  | Left bottom radius of the rectangle.      |
+| color              | [common2D.Color](js-apis-graphics-common2D.md#color) | No |  No  | Color of the rectangle.                |
+| leftTopRadius      | number                                               | No |  No  | Left top radius of the rectangle.      |
+| rightTopRadius     | number                                               | No |  No  | Right top radius of the rectangle.      |
+| rightBottomRadius  | number                                               | No |  No  | Right bottom radius of the rectangle.      |
+| leftBottomRadius   | number                                               | No |  No  | Left bottom radius of the rectangle.      |
 
 ## FontFeature
 
@@ -430,8 +524,8 @@ Describes a font feature.
 
 | Name     | Type                                                | Read Only| Optional| Description                                      |
 | --------- | ---------------------------------------------------- | --  | ---  | ----------------------------------------- |
-| name      | string                                               | Yes |  No  | String identified by the keyword in the font feature key-value pair.      |
-| value     | number                                               | Yes |  No  | Value in the font feature key-value pair.                       |
+| name      | string                                               | No |  No  | String identified by the keyword in the font feature key-value pair.      |
+| value     | number                                               | No |  No  | Value in the font feature key-value pair.                       |
 
 ## FontVariation
 
@@ -441,8 +535,31 @@ Describes a font variation.
 
 | Name     | Type                                                | Read Only| Optional| Description                                      |
 | --------- | ---------------------------------------------------- | --  | ---  | ----------------------------------------- |
-| axis      | string                                               | Yes |  No  | String identified by the keyword in the font variation key-value pair.      |
-| value     | number                                               | Yes |  No  | Value in the font variation key-value pair.                       |
+| axis      | string                                               | No |  No  | String identified by the keyword in the font variation key-value pair.      |
+| value     | number                                               | No |  No  | Value in the font variation key-value pair.                       |
+
+## TextBadgeType<sup>20+</sup>
+
+Enumerates the text superscript and subscript.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name  | Value| Description     |
+| ------ | - | --------- |
+| TEXT_BADGE_NONE | 0 | Disables the superscript and subscript.|
+| TEXT_SUPERSCRIPT | 1 | Enables the superscript.|
+| TEXT_SUBSCRIPT | 2 | Enables the subscript.|
+
+## LineHeightStyle<sup>21+</sup>
+
+Enumerates the line height scaling base.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name  | Value| Description     |
+| ------ | - | --------- |
+| FONT_SIZE | 0 | Uses the font size as the scaling base. The final line height is calculated as follows: [TextStyle](#textstyle).fontSize x [TextStyle](#textstyle).heightScale.|
+| FONT_HEIGHT | 1 | Uses the glyph height as the scaling base. The final line height is calculated as follows: Height of the glyph after shaping x [TextStyle](#textstyle).heightScale.|
 
 ## TextStyle
 
@@ -452,26 +569,31 @@ Describes a text style.
 
 | Name                     | Type                                    | Read Only| Optional| Description                                                  |
 | ------------- | ---------------------------------------------------- | -- | -- | --------------------------------------------------------- |
-| decoration    | [Decoration](#decoration)                            | Yes| Yes| Text decoration. By default, no decoration is used.            |
-| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes| Yes| Text color. The default color is white.                        |
-| fontWeight    | [FontWeight](#fontweight)                            | Yes| Yes| Font weight. The default value is **W400**. Currently, only the default system font supports font weight adjustment. For other fonts, if the weight is less than semi-bold (W600), there is no variation in stroke thickness. If the weight is greater than or equal to semi-bold, it might result in a fake bold effect.                        |
-| fontStyle     | [FontStyle](#fontstyle)                              | Yes| Yes| Font style. The default value is **NORMAL**.                         |
-| baseline      | [TextBaseline](#textbaseline)                        | Yes| Yes| Text baseline type. The default value is **ALPHABETIC**.              |
-| fontFamilies  | Array\<string>                                       | Yes| Yes| Array of font families. By default, the array is empty, indicating that all system fonts are matched.                   |
-| fontSize      | number                                               | Yes| Yes| Font size, in units of px. The value is a floating point number. The default value is **14.0**.  |
-| letterSpacing | number                                               | Yes| Yes| Letter spacing, in units of px. The value is a floating point number. The default value is **0.0**. A positive value causes characters to spread farther apart, and a negative value bring characters closer together.|
-| wordSpacing   | number                                               | Yes| Yes| Word spacing, in units of px. The value is a floating point number. The default value is **0.0**.                |
-| heightScale   | number                                               | Yes| Yes| Scale factor of the line height. The value is a floating point number. The default value is **1.0**. This parameter is valid only when **heightOnly** is set to** true**.              |
-| heightOnly    | boolean                                              | Yes| Yes| How the height of the text box is set. The value **true** means that the height of the text box is set based on the font size and the value of **heightScale**, and **false** means that the height is set based on the line height and line spacing. The default value is **false**.|
-| halfLeading   | boolean                                              | Yes| Yes| Whether half leading is enabled. Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite. The default value is **false**.|
-| ellipsis      | string                                               | Yes| Yes| Ellipsis content, which will be used to replace the extra content.      |
-| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | Yes| Yes| Ellipsis type. The default value is **END**, indicating that the ellipsis is at the end of a line.                      |
-| locale        | string                                               | Yes| Yes| Locale. For example, **'en'** indicates English, **'zh-Hans'** indicates Simplified Chinese, and **'zh-Hant'** indicates Traditional Chinese. For details, see ISO 639-1. The default value is an empty string.|
-| baselineShift | number                                               | Yes| Yes| Shift of the baseline. The value is a floating point number. The default value is **0.0px**.                |
-| fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | Yes| Yes| Array of font features.|
-| fontVariations| Array\<[FontVariation](#fontvariation)>              | Yes| Yes| Array of font variations.|
-| textShadows   | Array\<[TextShadow](#textshadow)>                    | Yes| Yes| Array of shadows.|
-| backgroundRect| [RectStyle](#rectstyle)                              | Yes| Yes| Rectangle style.|
+| decoration    | [Decoration](#decoration)                            | No| Yes| Text decoration. By default, no decoration is used.            |
+| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | No| Yes| Text color. The default color is white.                        |
+| fontWeight    | [FontWeight](#fontweight)                            | No| Yes| Font weight. The default value is **W400**. Currently, only the default system font supports font weight adjustment. For other fonts, if the weight is less than semi-bold (W600), there is no variation in stroke thickness. If the weight is greater than or equal to semi-bold, it might result in a fake bold effect.                        |
+| fontWidth<sup>21+</sup>     | [FontWidth](#fontwidth)                              | No| Yes| Font width. The default value is **NORMAL**.                         |
+| fontStyle     | [FontStyle](#fontstyle)                              | No| Yes| Font style. The default value is **NORMAL**.                         |
+| baseline      | [TextBaseline](#textbaseline)                        | No| Yes| Text baseline type. The default value is ALPHABETIC.              |
+| fontFamilies  | Array\<string>                                       | No| Yes| Array of font families. By default, the array is empty, indicating that all system fonts are matched.                   |
+| fontSize      | number                                               | No| Yes| Font size, in units of px. The value is a floating point number. The default value is **14.0**.  |
+| letterSpacing | number                                               | No| Yes| Letter spacing, in units of px. The value is a floating point number. The default value is **0.0**. A positive value causes characters to spread farther apart, and a negative value bring characters closer together.|
+| wordSpacing   | number                                               | No| Yes| Word spacing, in units of px. The value is a floating point number. The default value is **0.0**.                |
+| heightScale   | number                                               | No| Yes| Scale factor of the line height. The value is a floating point number. The default value is **1.0**. This parameter is valid only when **heightOnly** is set to** true**.              |
+| heightOnly    | boolean                                              | No| Yes| How the height of the text box is set. The value **true** means that the height of the text box is set based on the font size and the value of **heightScale**, and **false** means that the height is set based on the line height and line spacing. The default value is **false**.|
+| halfLeading   | boolean                                              | No| Yes| Whether half leading is enabled. Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite. The default value is **false**.|
+| ellipsis      | string                                               | No| Yes| Ellipsis content, which will be used to replace the extra content.      |
+| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | No| Yes| Ellipsis type. The default value is **END**, indicating that the ellipsis is at the end of a line.                      |
+| locale        | string                                               | No| Yes| Locale. For example, **'en'** indicates English, **'zh-Hans'** indicates Simplified Chinese, and **'zh-Hant'** indicates Traditional Chinese. For details, see ISO 639-1. The default value is an empty string.|
+| baselineShift | number                                               | No| Yes| Shift of the baseline. The value is a floating point number. The default value is **0.0px**.                |
+| fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | No| Yes| Array of font features.|
+| fontVariations| Array\<[FontVariation](#fontvariation)>              | No| Yes| Array of font variations.|
+| textShadows   | Array\<[TextShadow](#textshadow)>                    | No| Yes| Array of shadows.|
+| backgroundRect| [RectStyle](#rectstyle)                              | No| Yes| Rectangle style.|
+| badgeType<sup>20+</sup>   | [TextBadgeType](#textbadgetype20) | No  | Yes  | Sets whether to use superscript or subscript in text layout. TEXT_SUPERSCRIPT indicates that superscript is enabled, and TEXT_SUBSCRIPT indicates that subscript is enabled. The default value is TEXT_BADGE_NONE, indicating that superscript and subscript are disabled.|
+| lineHeightMaximum<sup>21+</sup> | number | No  | Yes  | Maximum line height. If line height scaling is also applied, the maximum line height takes effect when [TextStyle](#textstyle).heightScale is greater than 0. The value is a positive floating point number. The default value is Number.MAX_VALUE.|
+| lineHeightMinimum<sup>21+</sup> | number | No| Yes| Minimum line height. If line height scaling is also applied, the minimum line height takes effect when [TextStyle](#textstyle).heightScale is greater than 0. The value is a non-negative floating point number. The default value is 0.|
+| lineHeightStyle<sup>21+</sup> | [LineHeightStyle](#lineheightstyle21) | No| Yes| Line height scaling base style. The default value is FONT_SIZE.|
 
 ## StrutStyle
 
@@ -481,17 +603,17 @@ Describes the strut style, which determines the line spacing, baseline alignment
 
 | Name                     | Type                                      | Read Only| Optional| Description                                                                |
 | -------------  | ---------------------------------------------------- | ---- | -- | --------------------------------------------------------------------- |
-| fontFamilies   | Array\<string>                                       | Yes  | Yes| List of font families. By default, the list corresponds to the system's default fonts.                                              |
-| fontStyle      | [FontStyle](#fontstyle)                              | Yes  | Yes| Font style. The default value is **NORMAL**.                                              |
-| fontWidth      | [FontWidth](#fontwidth)                              | Yes  | Yes| Font width. The default value is **NORMAL**.                                               |
-| fontWeight     | [FontWeight](#fontweight)                            | Yes  | Yes| Font weight. The default value is **W400**. The default system font supports font weight adjustment. For other fonts, if the weight is less than W600, there is no variation in stroke thickness. If the weight is greater than or equal to W600, it might result in a fake bold effect.                            |
-| fontSize       | number                                               | Yes  | Yes| Font size, in units of px. The value is a floating point number. The default value is **14.0**.                             |
-| height         | number                                               | Yes  | Yes| Scale factor of the line height. The value is a floating point number. The default value is **1.0**.                                        |
-| leading        | number                                               | Yes  | Yes| Custom leading to be applied to the strut. The value is a floating point number. The default value is **-1.0**.                         |
-| forceHeight    | boolean                                              | Yes  | Yes| Whether to forcibly use the strut height for all lines. The value **true** means to forcibly use the strut height for all lines, and **false** means the opposite. The default value is **false**.    |
-| enabled        | boolean                                              | Yes  | Yes| Whether to enable the strut style. The value **true** means to enable the strut style, and **false** means the opposite. The default value is **false**.             |
-| heightOverride | boolean                                              | Yes  | Yes| Whether to override the height. The value **true** means to override the height, and **false** means the opposite. The default value is **false**.                 |
-| halfLeading    | boolean                                              | Yes  | Yes| Whether half leading is enabled. Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite. The default value is **false**.          |
+| fontFamilies   | Array\<string>                                       | No  | Yes| Array of font families. By default, the array is empty, indicating that all system fonts are matched.                                              |
+| fontStyle      | [FontStyle](#fontstyle)                              | No  | Yes| Font style. The default value is **NORMAL**.                                              |
+| fontWidth      | [FontWidth](#fontwidth)                              | No  | Yes| Font width. The default value is **NORMAL**.                                               |
+| fontWeight     | [FontWeight](#fontweight)                            | No  | Yes| Font weight. The default value is **W400**. The default system font supports font weight adjustment. For other fonts, if the weight is less than W600, there is no variation in stroke thickness. If the weight is greater than or equal to W600, it might result in a fake bold effect.                            |
+| fontSize       | number                                               | No  | Yes| Font size, in units of px. The value is a floating point number. The default value is **14.0**.                             |
+| height         | number                                               | No  | Yes| Scale factor of the line height. The value is a floating point number. The default value is **1.0**.                                        |
+| leading        | number                                               | No  | Yes| Custom leading to be applied to the strut. The value is a floating point number. The default value is **-1.0**.                         |
+| forceHeight    | boolean                                              | No  | Yes| Whether to forcibly use the strut height for all lines. The value **true** means to forcibly use the strut height for all lines, and **false** means the opposite. The default value is **false**.    |
+| enabled        | boolean                                              | No  | Yes| Whether to enable the strut style. The value **true** means to enable the strut style, and **false** means the opposite. The default value is **false**.             |
+| heightOverride | boolean                                              | No  | Yes| Whether to override the height. The value **true** means to override the height, and **false** means the opposite. The default value is **false**.                 |
+| halfLeading    | boolean                                              | No  | Yes| Whether half leading is enabled. Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite. The default value is **false**.          |
 
 ## FontDescriptor<sup>14+</sup>
 
@@ -501,7 +623,7 @@ Describes the font descriptor information.
 
 | Name| Type| Read Only| Optional| Description|
 | - | - | -  | - | - |
-| path | string | No| Yes| Absolute path of the font. Any string is acceptable, but the value must adhere to the system's path constraints. The default value is an empty string.|
+| path | string | No| Yes| Absolute path of the font. The value can be any string that complies with system restrictions. The default value is an empty string.|
 | postScriptName | string | No| Yes| Unique name of the font. Any string is acceptable. The default value is an empty string.|
 | fullName | string | No| Yes| Font name. Any string is acceptable. The default value is an empty string.|
 | fontFamily | string | No| Yes| Family name of the font. Any string is acceptable. The default value is an empty string.|
@@ -533,7 +655,7 @@ Obtains a global **FontCollection** instance.
 **Example**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
+import { text } from '@kit.ArkGraphics2D'
 
 function textFunc() {
   let fontCollection = text.FontCollection.getGlobalInstance();
@@ -571,7 +693,7 @@ Loads a custom font. This API returns the result synchronously. In this API, **n
 **Example**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
+import { text } from '@kit.ArkGraphics2D'
 
 let fontCollection: text.FontCollection = new text.FontCollection();
 
@@ -636,7 +758,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
+import { text } from '@kit.ArkGraphics2D'
 
 let fontCollection: text.FontCollection = new text.FontCollection();
 
@@ -660,20 +782,130 @@ struct RenderTest {
 }
 ```
 
+### unloadFontSync<sup>20+</sup>
+unloadFontSync(name: string): void
+
+Uninstalls a specified custom font. This API is synchronous.
+
+After a custom font corresponding to a font alias is uninstalled using this API, the custom font is no longer available.
+
+All layout objects that use the font alias must be destroyed and recreated.
+
+- Uninstalling a font alias that does not exist does not produce any effect and does not throw an error.
+- This operation affects only subsequent font usage.
+- Uninstalling a font that is being used may cause text rendering exceptions (for example, garbled characters or missing glyphs).
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+|   Name| Type              | Mandatory| Description                             |
+|   -----  | ------------------ | ---- | --------------------------------------------------------------------------------- |
+|   name   | string             | Yes  | Font alias to be unregistered, which is the same as the alias used for loading the font.|
+
+**Example**
+
+``` ts
+import { text } from '@kit.ArkGraphics2D'
+
+@Entry
+@Component
+struct UnloadFontSyncTest {
+  private fc: text.FontCollection = text.FontCollection.getGlobalInstance();
+  @State content: string = "Default font"
+
+  build() {
+    Column({ space: 10 }) {
+      Text(this.content)
+        .fontFamily("custom")
+      Button("load font")
+        .onClick(() => {
+          this.fc.loadFontSync("custom", "file:///system/fonts/NotoSansCJK-Regular.ttc")
+          this.content = "Custom font"
+        })
+      Button("unload font")
+        .onClick(() => {
+          this.fc.unloadFontSync("custom")
+          this.content = "Default font"
+        })
+    }.width("100%")
+    .height("100%")
+    .justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+### unloadFont<sup>20+</sup>
+unloadFont(name: string): Promise\<void>
+
+Uninstalls a specified custom font. This API uses a promise to return the result.
+
+After a custom font corresponding to a font alias is uninstalled using this API, the custom font is no longer available.
+
+All layout objects that use the font alias must be destroyed and recreated.
+
+- Uninstalling a font alias that does not exist does not produce any effect and does not throw an error.
+- This operation affects only subsequent font usage.
+- Uninstalling a font in use may cause text rendering exceptions (such as garbled characters or missing glyphs).
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type              | Mandatory| Description                             |
+| -----  | ------------------ | ---- | --------------------------------- |
+| name   | string             | Yes  | Alias of the font to be uninstalled, which is the same as the alias used when the font is loaded.|
+
+**Return value**
+
+| Type          | Description                     |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Example**
+
+```ts
+import { text } from '@kit.ArkGraphics2D'
+
+@Entry
+@Component
+struct UnloadFontTest {
+  private fc: text.FontCollection = text.FontCollection.getGlobalInstance();
+  @State content: string = "Default font"
+
+  build() {
+    Column({ space: 10 }) {
+      Text(this.content)
+        .fontFamily("custom")
+      Button("load font")
+        .onClick(async () => {
+          await this.fc.loadFont("custom", "file:///system/fonts/NotoSansCJK-Regular.ttc")
+          this.content = "Custom font"
+        })
+      Button("unload font")
+        .onClick(async () => {
+          await this.fc.unloadFont("custom")
+          this.content = "Default font"
+        })
+    }.width("100%")
+    .height("100%")
+    .justifyContent(FlexAlign.Center)
+  }
+}
+```
+
 ### clearCaches
 
 clearCaches(): void
 
-Clears the font cache.
-
-The font cache has a memory limit and a clearing mechanism. It occupies limited memory. You are not advised to clear it unless otherwise required.
+Clears the font cache. (The font cache has a memory limit and a clearing mechanism. It occupies limited memory. You are not advised to clear it unless otherwise required.)
 
 **System capability**: SystemCapability.Graphics.Drawing
 
 **Example**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D"
+import { text } from '@kit.ArkGraphics2D'
 
 @Entry
 @Component
@@ -696,16 +928,19 @@ Describes a paragraph style.
 
 | Name                | Type                                       | Read Only| Optional| Description                                         |
 | -------------------- | ------------------------------------------ | ---- | ---- | -------------------------------------------- |
-| textStyle            | [TextStyle](#textstyle)                    | Yes  | Yes  | Text style applied to the paragraph. The default value is the initial text style.|
-| textDirection        | [TextDirection](#textdirection)            | Yes  | Yes  | Text direction. The default value is **LTR**.                         |
-| align                | [TextAlign](#textalign)                    | Yes  | Yes  | Text alignment mode. The default value is **START**. This parameter is invalid when the **tab** parameter is configured.|
-| wordBreak            | [WordBreak](#wordbreak)                    | Yes  | Yes  | Word break type. The default value is **BREAK_WORD**.                   |
-| maxLines             | number                                     | Yes  | Yes  | Maximum number of lines. The value is an integer. The default value is **1e9**.                 |
-| breakStrategy        | [BreakStrategy](#breakstrategy)            | Yes  | Yes  | Text break strategy. The default value is **GREEDY**.                       |
-| strutStyle           | [StrutStyle](#strutstyle)                  | Yes  | Yes  | Strut style. The default value is the initial **StrutStyle** object.              |
-| textHeightBehavior   | [TextHeightBehavior](#textheightbehavior)  | Yes  | Yes  | Text height modifier pattern. The default value is **ALL**.                             |
-| tab<sup>18+</sup>   | [TextTab](#texttab18)  | Yes  | Yes  | Alignment mode and position of the text after the tab character in a paragraph. By default, the tab character is replaced with a space. This parameter is invalid when it is used together with the **align** parameter or the **ellipsis** parameter in [TextStyle](#textstyle).|
-
+| textStyle            | [TextStyle](#textstyle)                    | No  | Yes  | Text style applied to the paragraph. The default value is the initial text style.|
+| textDirection        | [TextDirection](#textdirection)            | No  | Yes  | Text direction. The default value is **LTR**.                         |
+| align                | [TextAlign](#textalign)                    | No  | Yes  | Text alignment mode. The default value is **START**. This parameter is invalid when the **tab** parameter is configured.|
+| wordBreak            | [WordBreak](#wordbreak)                    | No  | Yes  | Word break type. The default value is **BREAK_WORD**.                   |
+| maxLines             | number                                     | No  | Yes  | Maximum number of lines. The value is an integer. The default value is **1e9**.                 |
+| breakStrategy        | [BreakStrategy](#breakstrategy)            | No  | Yes  | Text break strategy. The default value is **GREEDY**.                       |
+| strutStyle           | [StrutStyle](#strutstyle)                  | No  | Yes  | Strut style. The default value is the initial **StrutStyle** object.              |
+| textHeightBehavior   | [TextHeightBehavior](#textheightbehavior)  | No  | Yes  | Text height modifier pattern. The default value is **ALL**.                             |
+| tab<sup>18+</sup>   | [TextTab](#texttab18)  | No  | Yes  | Alignment mode and position of the text after the tab character in a paragraph. By default, the tab character is replaced with a space. This parameter is invalid when it is used together with the **align** parameter or the **ellipsis** parameter in [TextStyle](#textstyle).|
+| trailingSpaceOptimized<sup>20+</sup>   | boolean | No  | Yes  | Whether the spaces at the end of a line are considered in alignment calculation during text layout. **true** means not to include; **false** (default) means to include.|
+| autoSpace<sup>20+</sup>   | boolean | No  | Yes  | Sets whether to enable automatic spacing during text typography. true: Automatic spacing is enabled. The spacing between CJK (Chinese, Japanese, and Korean) and Western characters (Latin, Cyrillic, and Greek), between CJK and digits, between CJK and copyright symbols, between copyright symbols and digits, and between copyright symbols and Western characters is automatically adjusted during text layout. false (default): Automatic spacing is disabled.|
+| verticalAlign<sup>20+</sup>   | [TextVerticalAlign](#textverticalalign20) | No  | Yes  | Vertical alignment mode of the text. This parameter takes effect when line height scaling (that is, heightScale of [TextStyle](#textstyle)) or mixed layout of different font sizes in a line (that is, fontSize of [TextStyle](#textstyle)) is enabled. If there is superscript or subscript text in a line (that is, badgeType of [TextStyle](#textstyle)), the superscript or subscript text participates in vertical alignment as common text.|
+| lineSpacing<sup>21+</sup>   | number | No  | Yes  | Line spacing. The default value is 0. lineSpacing is not restricted by lineHeightMaximum and lineHeightMinimum of [TextStyle](#textstyle). By default, line spacing is added to the last line. You can set textHeightBehavior of [TextStyle](#textstyle) to DISABLE_ALL or DISABLE_LAST_ASCENT to disable line spacing for the last line.|
 
 ## PlaceholderAlignment
 
@@ -721,6 +956,7 @@ Enumerates the vertical alignment modes of a placeholder relative to the surroun
 | TOP_OF_ROW_BOX      | 3 | Aligns the top edge of the placeholder to the top edge of the text.  |
 | BOTTOM_OF_ROW_BOX   | 4 | Aligns the bottom edge of the placeholder to the bottom edge of the text.  |
 | CENTER_OF_ROW_BOX   | 5 | Center-aligned.|
+| FOLLOW_PARAGRAPH<sup>20+</sup> | 6 | Aligns with the text baseline.|
 
 ![image_PlaceholderAlignment.png](figures/image_PlaceholderAlignment.png)
 
@@ -738,11 +974,11 @@ Describes the placeholder style.
 
 | Name          | Type                                          | Read Only| Optional| Description                        |
 | -------------- | --------------------------------------------- | ---- | --- | --------------------------- |
-| width          | number                                        | Yes  | No  | Width of the placeholder, in units of px. The value is a floating point number.|
-| height         | number                                        | Yes  | No  | Height of the placeholder, in units of px. The value is a floating point number.|
-| align          | [PlaceholderAlignment](#placeholderalignment) | Yes  | No  | Vertical alignment of the placeholder relative to the surrounding text.|
-| baseline       | [TextBaseline](#textbaseline)                 | Yes  | No  | Type of the text baseline.                  |
-| baselineOffset | number                                        | Yes  | No  | Offset to the text baseline, in units of px. The value is a floating point number. |
+| width          | number                                        | No  | No  | Width of the placeholder, in units of px. The value is a floating point number.|
+| height         | number                                        | No  | No  | Height of the placeholder, in units of px. The value is a floating point number.|
+| align          | [PlaceholderAlignment](#placeholderalignment) | No  | No  | Vertical alignment of the placeholder relative to the surrounding text.|
+| baseline       | [TextBaseline](#textbaseline)                 | No  | No  | Type of the text baseline.                  |
+| baselineOffset | number                                        | No  | No  | Offset to the text baseline, in units of px. The value is a floating point number. |
 
 ## Range
 
@@ -752,8 +988,8 @@ Describes a left-closed and right-open interval.
 
 | Name  | Type  | Read Only| Optional| Description           |
 | ----- | ------ | ---- | --- | --------------- |
-| start | number | Yes  | No  | Index of the leftmost point of the interval. The value is an integer.|
-| end   | number | Yes  | No  | Index of the rightmost point of the interval. The value is an integer.|
+| start | number | No  | No  | Index of the leftmost point of the interval. The value is an integer.|
+| end   | number | No  | No  | Index of the rightmost point of the interval. The value is an integer.|
 
 ## Paragraph
 
@@ -813,7 +1049,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing, text } from '@kit.ArkGraphics2D'
-import { image } from '@kit.ImageKit';
+import { image } from '@kit.ImageKit'
 
 let textStyle: text.TextStyle = {
   color: {
@@ -899,7 +1135,7 @@ Paints the text on the canvas with the coordinate point (x, y) as the upper left
 
 | Name| Type                                                 | Mandatory| Description                   |
 | ------ | ---------------------------------------------------- | ---- | ---------------------- |
-| canvas | [drawing.Canvas](js-apis-graphics-drawing.md#canvas) | Yes  | Target canvas.        |
+| canvas | [drawing.Canvas](arkts-apis-graphics-drawing-Canvas.md) | Yes  | Target canvas.        |
 |    x   | number                                               | Yes  | X coordinate of the upper left corner. The value is a floating point number.|
 |    y   | number                                               | Yes  | Y coordinate of the upper left corner. The value is a floating point number.|
 
@@ -925,8 +1161,8 @@ Draws text along a path on the canvas.
 
 | Name| Type                                                 | Mandatory| Description                   |
 | ------ | ---------------------------------------------------- | ---- | ---------------------- |
-| canvas | [drawing.Canvas](js-apis-graphics-drawing.md#canvas) | Yes  | Target canvas.        |
-| path | [drawing.Path](js-apis-graphics-drawing.md#path) | Yes  | Path along which the text is drawn.        |
+| canvas | [drawing.Canvas](arkts-apis-graphics-drawing-Canvas.md) | Yes  | Target canvas.        |
+| path | [drawing.Path](arkts-apis-graphics-drawing-Path.md) | Yes  | Path along which the text is drawn.        |
 |    hOffset   | number                                               | Yes  | Horizontal offset along the path direction. A positive number indicates a position that is ahead along the path from its start point, and a negative number indicates a position that is behind from the start point.|
 |    vOffset   | number                                               | Yes  | Vertical offset along the path direction. A positive number indicates a position on the left side of the path, and a negative number indicates a position on the right side of the path.|
 
@@ -1329,7 +1565,7 @@ Obtains the actually visible text range in the specified line, excluding any ove
 | Name| Type  | Mandatory| Description     |
 | ----- | ------ | ---- | --------- |
 | lineNumber  | number | Yes  | Line number of the text range, starting from 0. This API can only be used to obtain the bounds of existing lines. That is, the line number must start from 0, and the maximum line number is [getLineCount](#getlinecount) - 1.|
-| includeSpaces  | boolean | Yes  | Whether spaces are included. The value **true** means that spaces are contained, and **false** means the opposite.|
+| includeSpaces  | boolean | Yes  | Whether to include blank characters. The value **true** means that spaces are contained, and **false** means the opposite.|
 
 **Return value**
 
@@ -1361,7 +1597,7 @@ Obtains an array of line measurement information.
 **Example**
 
 ```ts
-let arrLineMetrc =  paragraph.getLineMetrics();
+let arrLineMetric =  paragraph.getLineMetrics();
 ```
 
 ### getLineMetrics
@@ -1382,12 +1618,57 @@ Obtains the line measurement information of a line.
 
 | Type            | Description                                             |
 | ---------------- | ------------------------------------------------ |
-| [LineMetrics](#linemetrics) | **LineMetrics** object containing the measurement information if the specified line number is valid and the measurement information exists. If the line number is invalid or the measurement information cannot be obtained, **undefined** is returned.                 |
+| [LineMetrics](#linemetrics) \| undefined | **LineMetrics** object containing the measurement information if the specified line number is valid and the measurement information exists. If the line number is invalid or the measurement information cannot be obtained, **undefined** is returned.                 |
 
 **Example**
 
 ```ts
 let lineMetrics =  paragraph.getLineMetrics(0);
+```
+
+### updateColor<sup>20+</sup>
+
+updateColor(color: common2D.Color): void;
+
+Updates the color of the entire text paragraph. This API call also updates the decoration color if it hasn't been set yet.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type                                                 | Mandatory| Description                   |
+| ------ | ---------------------------------------------------- | ---- | ---------------------- |
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Updated font color.|
+
+**Example**
+
+```ts
+paragraph.updateColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+```
+
+### updateDecoration<sup>20+</sup>
+
+updateDecoration(decoration: Decoration): void;
+
+Updates the decoration line of the entire text paragraph.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name| Type                                                 | Mandatory| Description                   |
+| ------ | ---------------------------------------------------- | ---- | ---------------------- |
+| decoration | [Decoration](#decoration)                        | Yes| Updated decoration line.|
+
+**Example**
+
+```ts
+paragraph.updateDecoration({
+  textDecoration: text.TextDecorationType.OVERLINE,
+  color: { alpha: 255, red: 255, green: 0, blue: 0 },
+  decorationStyle: text.TextDecorationStyle.WAVY,
+  decorationThicknessScale: 2.0,
+});
 ```
 
 ## LineTypeset<sup>18+</sup>
@@ -1479,8 +1760,8 @@ Describes the layout information and measurement information of a run of text in
 
 | Name     | Type                                               | Read Only| Optional| Description       |
 | --------- | -------------------------------------------------- | ---- | ---- | ----------- |
-| textStyle | [TextStyle](#textstyle)                             | Yes  | No  | Text style.|
-| fontMetrics | [drawing.FontMetrics](js-apis-graphics-drawing.md#fontmetrics)| Yes  | No  | Font measurement information.   |
+| textStyle | [TextStyle](#textstyle)                             | No  | No  | Text style.|
+| fontMetrics | [drawing.FontMetrics](arkts-apis-graphics-drawing-i.md#fontmetrics)| No  | No  | Font measurement information.   |
 
 ## LineMetrics
 
@@ -1490,17 +1771,17 @@ Describes the measurement information of a single line of text in the text layou
 
 | Name     | Type                                               | Read Only| Optional| Description       |
 | --------- | -------------------------------------------------- | ---- | ---- | ----------- |
-| startIndex | number                                            | Yes  | No  | Start index of the line in the text buffer.|
-| endIndex   | number                                            | Yes  | No  | End index of the line in the text buffer.|
-| ascent     | number                                            | Yes  | No  | Ascent, that is, the distance from the baseline to the top of the character.|
-| descent    | number                                            | Yes  | No  | Descent, that is, the distance from the baseline to the bottom of the character.|
-| height     | number                                            | Yes  | No  | Height of the line, which is Math.round(ascent + descent).|
-| width      | number                                            | Yes  | No  | Width of the line.                     |
-| left       | number                        | Yes  | No  | Left edge of the line. The right edge is the value of **left** plus the value of **width**.|
-| baseline   | number                        | Yes  | No  | Y coordinate of the baseline in the line relative to the top of the paragraph.|
-| lineNumber   | number                        | Yes  | No  | Line number, starting from 0.|
-| topHeight   | number                        | Yes  | No  | Height from the top to the current line.|
-| runMetrics   | Map<number, [RunMetrics](#runmetrics)>                        | Yes  | No  | Mapping between the text index range and the associated font measurement information.|
+| startIndex | number                                            | No  | No  | Start index of the line in the text buffer.|
+| endIndex   | number                                            | No  | No  | End index of the line in the text buffer.|
+| ascent     | number                                            | No  | No  | Ascent, that is, the distance from the baseline to the top of the character.|
+| descent    | number                                            | No  | No  | Descent, that is, the distance from the baseline to the bottom of the character.|
+| height     | number                                            | No  | No  | Height of the line, which is Math.round(ascent + descent).|
+| width      | number                                            | No  | No  | Width of the line.                     |
+| left       | number                        | No  | No  | Left edge of the line. The right edge is the value of **left** plus the value of **width**.|
+| baseline   | number                        | No  | No  | Y coordinate of the baseline in the line relative to the top of the paragraph.|
+| lineNumber   | number                        | No  | No  | Line number, starting from 0.|
+| topHeight   | number                        | No  | No  | Height from the top to the current line.|
+| runMetrics   | Map<number, [RunMetrics](#runmetrics)>                        | No  | No  | Mapping between the text index range and the associated font measurement information.|
 
 ## TextBox
 
@@ -1510,8 +1791,8 @@ Describes the rectangle that holds the text.
 
 | Name     | Type                                               | Read Only| Optional| Description       |
 | --------- | -------------------------------------------------- | ---- | ---- | ----------- |
-| rect      | [common2D.Rect](js-apis-graphics-common2D.md#rect) | Yes  | No  | Information about the rectangle.|
-| direction | [TextDirection](#textdirection)                    | Yes  | No  | Text direction.   |
+| rect      | [common2D.Rect](js-apis-graphics-common2D.md#rect) | No  | No  | Information about the rectangle.|
+| direction | [TextDirection](#textdirection)                    | No  | No  | Text direction.   |
 
 ## PositionWithAffinity
 
@@ -1521,8 +1802,8 @@ Describes the position and affinity of a glyph.
 
 | Name     | Type                  | Read Only| Optional| Description                     |
 | --------- | --------------------- | ---- | ---- | ------------------------ |
-| position  | number                | Yes  | No  | Index of the glyph relative to the paragraph. The value is an integer. |
-| affinity  | [Affinity](#affinity) | Yes  | No  | Affinity of the position.              |
+| position  | number                | No  | No  | Index of the glyph relative to the paragraph. The value is an integer. |
+| affinity  | [Affinity](#affinity) | No  | No  | Affinity of the position.              |
 
 ## RectWidthStyle
 
@@ -1583,7 +1864,7 @@ A constructor used to create a **ParagraphBuilder** object.
 **Example**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
+import { text } from '@kit.ArkGraphics2D'
 
 function textFunc() {
   let myTextStyle: text.TextStyle = {
@@ -1634,9 +1915,9 @@ Applies a new style to the current text blob.
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D'
-import { text } from "@kit.ArkGraphics2D"
-import { common2D } from "@kit.ArkGraphics2D"
-import { image } from '@kit.ImageKit';
+import { text } from '@kit.ArkGraphics2D'
+import { common2D } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit'
 
 function textFunc() {
   let myTextStyle: text.TextStyle = {
@@ -1678,9 +1959,9 @@ Restores the previous text style.
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D'
-import { text } from "@kit.ArkGraphics2D"
-import { common2D } from "@kit.ArkGraphics2D"
-import { image } from '@kit.ImageKit';
+import { text } from '@kit.ArkGraphics2D'
+import { common2D } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit'
 
 function textFunc() {
   let myTextStyle: text.TextStyle = {
@@ -1729,9 +2010,9 @@ Inserts a text string into the paragraph being built.
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D'
-import { text } from "@kit.ArkGraphics2D"
-import { common2D } from "@kit.ArkGraphics2D"
-import { image } from '@kit.ImageKit';
+import { text } from '@kit.ArkGraphics2D'
+import { common2D } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit'
 
 function textFunc() {
   let myTextStyle: text.TextStyle = {
@@ -1779,20 +2060,20 @@ Inserts a placeholder into the paragraph being built.
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D'
-import { text } from "@kit.ArkGraphics2D"
-import { common2D } from "@kit.ArkGraphics2D"
-import { image } from '@kit.ImageKit';
+import { text } from '@kit.ArkGraphics2D'
+import { common2D } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit'
 
 function textFunc() {
   let myParagraphStyle: text.ParagraphStyle = {
     align: text.TextAlign.END,
   };
   let myPlaceholderSpan: text.PlaceholderSpan = {
-    width: 10000,
-    height: 10000000,
+    width: 100,
+    height: 100,
     align: text.PlaceholderAlignment.ABOVE_BASELINE,
     baseline: text.TextBaseline.ALPHABETIC,
-    baselineOffset: 100000
+    baselineOffset: 100
   };
   let fontCollection = new text.FontCollection();
   let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
@@ -1831,7 +2112,7 @@ Creates a paragraph object that can be used for subsequent layout and rendering.
 
 ```ts
 import { drawing, text, common2D } from '@kit.ArkGraphics2D'
-import { image } from '@kit.ImageKit';
+import { image } from '@kit.ImageKit'
 
 function textFunc() {
   let myTextStyle: text.TextStyle = {
@@ -1917,12 +2198,12 @@ Inserts a symbol into the paragraph being built.
 
 | Name   | Type   | Mandatory| Description                                                       |
 | -------- | ------- | ---- | ----------------------------------------------------------- |
-| symbolId | number  | Yes  | Symbol code to insert. The value is a hexadecimal number in the range 0xF0000-0xF0C97. For details about the configurable symbol codes (unicode values in the list view), see [HarmonyOS Symbol](https://developer.huawei.com/consumer/en/design/harmonyos-symbol/).|
+| symbolId | number  | Yes  | Symbol code to insert. The value is a hexadecimal number in the range 0xF0000-0xF0C97. For details about the configurable symbol codes (unicode values in the list view), see [HarmonyOS Symbol](https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/).|
 
 **Example**
 
 ```ts
-import { text } from "@kit.ArkGraphics2D";
+import { text } from '@kit.ArkGraphics2D'
 
 function textFunc() {
   let myTextStyle: text.TextStyle = {
@@ -1961,22 +2242,22 @@ Describes the typographic boundaries of a text line. These boundaries depend on 
 
 | Name| Type| Read Only| Optional| Description|
 | - | - | - | - | - |
-| ascent | number | Yes| No| Ascent of a text line. The value is a floating point number.|
-| descent | number | Yes| No| Descent of a text line. The value is a floating point number.|
-| leading | number | Yes| No| Leading of a text line. The value is a floating point number.|
-| width | number | Yes| No| Width of the typographic boundaries. The value is a floating point number.|
+| ascent | number | No| No| Ascent of a text line. The value is a floating point number.|
+| descent | number | No| No| Descent of a text line. The value is a floating point number.|
+| leading | number | No| No| Leading of a text line. The value is a floating point number.|
+| width | number | No| No| Width of the typographic boundaries. The value is a floating point number.|
 
 >**NOTE**
 >
-> The following figure shows the meanings of ascent, descent, leading, top, baseline, bottom and next line top, where **width** is the width of the text line, including the left and right spaces; **ascent** is the highest point that the text line reaches upward; **descent** is the lowest point that the text line reaches downward; **leading** is the space between lines of text; **top** is the very highest point of the text line; **baseline** is where the characters sit; **bottom** is the lowest point of the text line; **next line top** is the highest point of the next text line.
+>The following figure shows the meanings of ascent, descent, leading, top, baseline, bottom and next line top, where **width** is the width of the text line, including the left and right spaces; **ascent** is the highest point that the text line reaches upward; **descent** is the lowest point that the text line reaches downward; **leading** is the space between lines of text; **top** is the very highest point of the text line; **baseline** is where the characters sit; **bottom** is the lowest point of the text line; **next line top** is the highest point of the next text line.
 >
 >![image_Typographic.png](figures/image_Typographic.png)
 >
-> The following figure shows the typographic boundaries of the string " a b ".
+>The following figure shows the typographic boundaries of the string " a b ".
 >
 >![image_TypographicBounds.png](figures/image_TypographicBounds.png)
 >
-> The following figure shows the typographic boundaries of the strings "j" and "E".
+>The following figure shows the typographic boundaries of the strings "j" and "E".
 >
 >![image_TypographicBounds_Character.png](figures/image_TypographicBounds_Character.png)
 
@@ -2078,7 +2359,7 @@ Paints this text line on the canvas with the coordinate point (x, y) as the uppe
 
 | Name| Type                                                 | Mandatory| Description                   |
 | ------ | ---------------------------------------------------- | ---- | ---------------------- |
-| canvas | [drawing.Canvas](js-apis-graphics-drawing.md#canvas) | Yes  | Target canvas.     |
+| canvas | [drawing.Canvas](arkts-apis-graphics-drawing-Canvas.md) | Yes  | Target canvas.     |
 |    x   | number                                               | Yes  | X coordinate of the upper left corner. The value is a floating point number.|
 |    y   | number                                               | Yes  | Y coordinate of the upper left corner. The value is a floating point number.|
 
@@ -2087,9 +2368,9 @@ Paints this text line on the canvas with the coordinate point (x, y) as the uppe
 <!--code_no_check-->
 ```ts
 import { drawing } from '@kit.ArkGraphics2D'
-import { text } from "@kit.ArkGraphics2D"
-import { common2D } from "@kit.ArkGraphics2D"
-import { image } from '@kit.ImageKit';
+import { text } from '@kit.ArkGraphics2D'
+import { common2D } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit'
 
 function textFunc(pixelmap: PixelMap) {
   let canvas = new drawing.Canvas(pixelmap);
@@ -2144,7 +2425,7 @@ Creates a truncated text line object.
 <!--code_no_check-->
 ```ts
 import { drawing, text, common2D } from '@kit.ArkGraphics2D'
-import { image } from '@kit.ImageKit';
+import { image } from '@kit.ImageKit'
 
 function textFunc(pixelmap: PixelMap) {
   let canvas = new drawing.Canvas(pixelmap);
@@ -2181,11 +2462,11 @@ Obtains the typographic boundaries of this text line. These boundaries depend on
 
 >**NOTE**
 >
-> The following figure shows the typographic boundaries of the string " a b ".
+>The following figure shows the typographic boundaries of the string " a b ".
 >
 >![image_TypographicBounds.png](figures/image_TypographicBounds.png)
 >
-> The following figure shows the typographic boundaries of the strings "j" and "E".
+>The following figure shows the typographic boundaries of the strings "j" and "E".
 >
 >![image_TypographicBounds_Character.png](figures/image_TypographicBounds_Character.png)
 
@@ -2212,11 +2493,11 @@ Obtains the image boundaries of this text line. The image boundaries, equivalent
 
 >**NOTE**
 >
-> The following figure shows the image boundaries of the string " a b ".
+>The following figure shows the image boundaries of the string " a b ".
 >
 >![image_ImageBounds.png](figures/image_ImageBounds.png)
 >
-> The following figure shows the image boundaries of the strings "j" and "E".
+>The following figure shows the image boundaries of the strings "j" and "E".
 >
 >![image_ImageBounds_Character.png](figures/image_ImageBounds_Character.png)
 
@@ -2429,7 +2710,7 @@ Obtains the index of each glyph in the specified range of this run.
 
 <!--code_no_check-->
 ```ts
-import { text } from "@kit.ArkGraphics2D"
+import { text } from '@kit.ArkGraphics2D'
 
 function textFunc() {
   let glyphs = runs[0].getGlyphs(); // Obtain the index of all glyphs of the run.
@@ -2497,7 +2778,7 @@ Obtains the position array of each glyph relative to the respective line within 
 
 <!--code_no_check-->
 ```ts
-import { text } from "@kit.ArkGraphics2D";
+import { text } from '@kit.ArkGraphics2D'
 
 function textFunc() {
   let positions = runs[0].getPositions(); // Obtain the positions of all glyphs in the run.
@@ -2554,7 +2835,7 @@ Obtains the **Font** object of this run.
 
 | Type                  | Description          |
 | ------------------------------------------------- | -------------------------- |
-| [drawing.Font](js-apis-graphics-drawing.md#font)  | **Font** object of this run.|
+| [drawing.Font](arkts-apis-graphics-drawing-Font.md)  | **Font** object of this run.|
 
 **Example**
 
@@ -2574,7 +2855,7 @@ Paints this run on the canvas with the coordinate point (x, y) as the upper left
 
 | Name| Type                                                 | Mandatory| Description                   |
 | ------ | ---------------------------------------------------- | ---- | ---------------------- |
-| canvas | [drawing.Canvas](js-apis-graphics-drawing.md#canvas) | Yes  | Target canvas.     |
+| canvas | [drawing.Canvas](arkts-apis-graphics-drawing-Canvas.md) | Yes  | Target canvas.     |
 |    x   | number                                               | Yes  | X coordinate of the upper left corner. The value is a floating point number.|
 |    y   | number                                               | Yes  | Y coordinate of the upper left corner. The value is a floating point number.|
 
@@ -2583,9 +2864,9 @@ Paints this run on the canvas with the coordinate point (x, y) as the upper left
 <!--code_no_check-->
 ```ts
 import { drawing } from '@kit.ArkGraphics2D'
-import { text } from "@kit.ArkGraphics2D"
-import { common2D } from "@kit.ArkGraphics2D"
-import { image } from '@kit.ImageKit';
+import { text } from '@kit.ArkGraphics2D'
+import { common2D } from '@kit.ArkGraphics2D'
+import { image } from '@kit.ImageKit'
 
 function textFunc(pixelmap: PixelMap) {
   let canvas = new drawing.Canvas(pixelmap);
@@ -2660,7 +2941,7 @@ Obtains an array of character indices for glyphs within a specified range of thi
 
 <!--code_no_check-->
 ```ts
-import { text } from "@kit.ArkGraphics2D";
+import { text } from '@kit.ArkGraphics2D'
 
 function textFunc() {
   let indices = runs[0].getStringIndices(); // Obtain the indices of all characters in the run.
@@ -2723,11 +3004,11 @@ Obtain the typographic boundaries of this run. These boundaries depend on the ty
 
 >**NOTE**
 >
-> The following figure shows the typographic boundaries of the string " a b ".
+>The following figure shows the typographic boundaries of the string " a b ".
 >
 >![image_TypographicBounds.png](figures/image_TypographicBounds.png)
 >
-> The following figure shows the typographic boundaries of the strings "j" and "E".
+>The following figure shows the typographic boundaries of the strings "j" and "E".
 >
 >![image_TypographicBounds_Character.png](figures/image_TypographicBounds_Character.png)
 
@@ -2745,6 +3026,55 @@ Obtain the typographic boundaries of this run. These boundaries depend on the ty
 let typographicBounds = runs[0].getTypographicBounds();
 ```
 
+### getTextDirection<sup>20+</sup>
+
+getTextDirection(): TextDirection
+
+Obtains the text direction of the layout unit.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Return value**
+
+| Type                  | Description          |
+| ---------------------- | -------------- |
+|   [TextDirection](#textdirection)  | Text direction of the layout unit.|
+
+**Example**
+
+```ts
+let textDirection = runs[0].getTextDirection();
+```
+
+### getAdvances<sup>20+</sup>
+
+getAdvances(range: Range): Array<common2D.Point>
+
+Obtains the glyph width array of each glyph in the specified range of the layout unit.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+**Parameters**
+
+| Name   | Type   | Mandatory| Description                      |
+| -------- | ------- | ---- | -------------------------- |
+| range    | [Range](#range)   | Yes  | Glyph position range to be obtained. range.start indicates the start position of the range, and range.end indicates the range length. If the length is 0, the glyphs from range.start to the end of the rendering block are obtained. If **range.end** or **range.start** is set to a negative value, **null**, or **undefined**, **undefined** is returned.|
+
+**Return value**
+
+| Type                  | Description                                  |
+| ---------------------- | ------------------------------------- |
+| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | Array of glyph widths of each glyph in the layout unit relative to the horizontal direction. In [common2D.Point](js-apis-graphics-common2D.md#point12), x indicates the glyph width of each glyph relative to the horizontal direction, and y is a reserved field and returns 0 by default.|
+
+**Example**
+
+```ts
+let advancesRange = runs[0].getAdvances({start:1, end:2}); // Obtain the width of glyphs in the range from start position 1 to end position 2.
+advancesRange = runs[0].getAdvances({start:-1, end:2}); // -1 is an invalid parameter. undefined will be returned.
+advancesRange = runs[0].getAdvances({start:0, end:-10}); // -10 is an invalid parameter. undefined will be returned.
+let advancesNull = runs[0].getAdvances(null); // null is an invalid parameter. undefined will be returned.
+```
+
 ## TextTab<sup>18+</sup>
 
 Implements a paragraph-style text tab, which stores the alignment mode and position.
@@ -2753,8 +3083,8 @@ Implements a paragraph-style text tab, which stores the alignment mode and posit
 
 | Name              | Type                   | Read Only| Optional| Description                                              |
 | -----------------  | ----------------------- | ---- | ---  | -------------------------------------------------- |
-| alignment          | [TextAlign](#textalign) | Yes  |  No | Alignment mode of the text following the tab character in a paragraph. It can be set to **LEFT**, **RIGHT**, and **CENTER** defined in [TextAlign](#textalign). Other enumerated values have the effect of left alignment. The default value is left alignment.|
-| location           | number                  | Yes  |  No | Alignment position of the text following the tab character. The value is a floating point number, in px. The minimum value is 1.0. When the value is less than 1.0, the tab character is replaced with a space.|
+| alignment          | [TextAlign](#textalign) | No  |  No | Alignment mode of the text following the tab character in a paragraph. It can be set to **LEFT**, **RIGHT**, and **CENTER** defined in [TextAlign](#textalign). Other enumerated values have the effect of left alignment. The default value is left alignment.|
+| location           | number                  | No  |  No | Alignment position of the text following the tab character. The value is a floating point number, in px. The minimum value is 1.0. When the value is less than 1.0, the tab character is replaced with a space.|
 
 **Example**
 

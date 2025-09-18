@@ -1,5 +1,12 @@
 # @ohos.graphics.sendableColorSpaceManager (Sendable Color Space Management)
 
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphic-->
+<!--Owner: @xubo85-->
+<!--Designer: @comicchang; @wang-luyu4-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @ge-yafang-->
+
 The **sendableColorSpaceManager** module provides APIs for creating and managing sendable color space objects and obtaining basic attributes of sendable color spaces.
 
 > **NOTE**
@@ -17,7 +24,7 @@ type ISendable = lang.ISendable
 
 **ISendable** is the parent type of all sendable types except null and undefined. It does not have any necessary methods or properties.
 
-**System capability**: SystemCapability.Utils.Lang
+**System capability**: SystemCapability.Graphic.Graphic2D.ColorManager.Core
 
 | Type               | Description                    |
 | ------------------ | ------------------------ |
@@ -55,7 +62,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { colorSpaceManager } from '@kit.ArkGraphics2D';
+import { colorSpaceManager, sendableColorSpaceManager } from '@kit.ArkGraphics2D';
 let colorSpace: sendableColorSpaceManager.ColorSpaceManager;
 colorSpace = sendableColorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB);
 ```
@@ -73,7 +80,7 @@ Creates a custom color space object that is sendable.
 | Name          | Type                                      | Mandatory| Description                         |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | primaries       | [colorSpaceManager.ColorSpacePrimaries](js-apis-colorSpaceManager.md#colorspaceprimaries)| Yes  | Primaries of the color space.              |
-| gamma           | number                                     | Yes  | Gamma of the color space.                |
+| gamma           | number                                     | Yes  | Gamma value of the color space, which is a floating point number greater than 0.|
 
 **Return value**
 
@@ -93,7 +100,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { colorSpaceManager } from '@kit.ArkGraphics2D';
+import { colorSpaceManager, sendableColorSpaceManager } from '@kit.ArkGraphics2D';
 let colorSpace: sendableColorSpaceManager.ColorSpaceManager;
 let primaries: colorSpaceManager.ColorSpacePrimaries = {
   redX: 0.1,
@@ -155,7 +162,7 @@ Obtains the coordinates of the white point in the color space.
 
 | Type               | Description                    |
 | ------------------ | ------------------------ |
-| [collections.Array\<number\>](../apis-arkts/js-apis-arkts-collections.md#collectionsarray)  | Coordinates [x, y] of the white point.|
+| [collections.Array\<number\>](../apis-arkts/arkts-apis-arkts-collections-Array.md)  | Coordinates [x, y] of the white point.|
 
 **Error codes**
 

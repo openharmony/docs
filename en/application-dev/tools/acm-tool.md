@@ -137,7 +137,7 @@ If the account is switched successfully, "switch the local account successfully.
 | ----------------------------------- | -------------------------- |
 | -h | This parameter is optional. It is used to display the parameters supported by the **switch** command.|
 | -i | This parameter is mandatory. ID of the account to be switched to.|
-| -d | This parameter is optional.指定要切换到的目标屏幕ID（displayId）。 |
+| -d | This parameter is optional. It is used to specify the ID of the target screen (displayId). |
 
 
 ## deactivate

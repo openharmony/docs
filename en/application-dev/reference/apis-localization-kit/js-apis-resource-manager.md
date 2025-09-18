@@ -1,6 +1,6 @@
 # @ohos.resourceManager (Resource Management)
 
-The **resourceManager** module provides the resource management functionality. It allows an application to obtain the best matched application resources or system resources based on the specified [configuration](#configuration). For details about the matching rules, see [Resource Matching](../../quick-start/resource-categories-and-access.md#resource-matching).
+The **resourceManager** module provides the resource management functionality. It allows an application to obtain the best matched application resources or system resources based on the specified [configuration](#configuration). For details about the matching rules, see [Resource Matching](../../quick-start/resource-categories-and-access.md#matching-resources).
 
 The configuration includes language, region, screen orientation, mobile country code (MCC), mobile network code (MNC), device capability, and density.
 
@@ -343,7 +343,7 @@ Provides APIs for accessing application resources and system resources.
 >
 > - Resource files are defined in the **resources** directory of the project. You can obtain resource values such as strings, string arrays, and colors based on the specified **resName**, **resId**, or **Resource** object. **resName** indicates the resource name, **resId** indicates the resource ID, which can be obtained through `$r(*resource-address*).id`, for example, `$r('app.string.test').id`.
 >
-> - No matter whether resources are in the same HAP or different HAPs or HSPs, you are advised to use the API with **resName** or **resId** specified. Using the **Resource** object will take a longer time. If the resources are in different HAPs or HSPs, you first need to use [createModuleContext](../apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12) to create the context of the corresponding module and then call the API with **resName** or **resId** specified. For details, see [Resource Access](../../quick-start/resource-categories-and-access.md#resource-access).
+> - No matter whether resources are in the same HAP or different HAPs or HSPs, you are advised to use the API with **resName** or **resId** specified. Using the **Resource** object will take a longer time. If the resources are in different HAPs or HSPs, you first need to use [createModuleContext](../apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12) to create the context of the corresponding module and then call the API with **resName** or **resId** specified. For details, see [Resource Access](../../quick-start/resource-categories-and-access.md#accessing-resources).
 >
 > - For details about the content of the test files used in the sample code, see [Appendix](#appendix).
 

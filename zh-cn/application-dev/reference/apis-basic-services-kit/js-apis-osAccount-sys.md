@@ -70,8 +70,8 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
         console.info('activateOsAccount successfully');
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`activateOsAccount failed, code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -230,8 +230,8 @@ isOsAccountActivated(localId: number): Promise&lt;boolean&gt;
     }).catch((err: BusinessError) => {
       console.error(`isOsAccountActivated failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`isOsAccountActivated exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -284,8 +284,8 @@ isOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;bo
     }).catch((err: BusinessError) => {
       console.error(`isOsAccountConstraintEnabled failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`isOsAccountConstraintEnabled exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -336,8 +336,8 @@ isOsAccountUnlocked(localId: number): Promise&lt;boolean&gt;
     }).catch((err: BusinessError) => {
       console.error(`isOsAccountUnlocked failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`isOsAccountUnlocked exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -391,8 +391,8 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
           }
       });
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`removeOsAccount exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -449,8 +449,8 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
             console.error(`removeOsAccount failed, code is ${err.code}, message is ${err.message}`);
         });
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`removeOsAccount exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -503,8 +503,8 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
         console.info('setOsAccountConstraints successfully');
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`setOsAccountConstraints exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -559,8 +559,8 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
     }).catch((err: BusinessError) => {
       console.error(`setOsAccountConstraints failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`setOsAccountConstraints exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -612,8 +612,8 @@ setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;
         console.info('setOsAccountName successfully');
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`setOsAccountName exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -668,8 +668,8 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
     }).catch((err: BusinessError) => {
       console.error(`setOsAccountName failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`setOsAccountName exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -711,8 +711,8 @@ queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
         console.info('queryMaxOsAccountNumber successfully, maxCnt:' + maxCnt);
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`queryMaxOsAccountNumber exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -751,8 +751,8 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
     }).catch((err: BusinessError) => {
       console.error(`queryMaxOsAccountNumber failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`queryMaxOsAccountNumber exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -791,8 +791,8 @@ queryMaxLoggedInOsAccountNumber(): Promise&lt;number&gt;
     }).catch((err: BusinessError) => {
       console.error(`queryMaxLoggedInOsAccountNumber failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`queryMaxLoggedInOsAccountNumber exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -2516,7 +2516,7 @@ getPropertyByCredentialId(credentialId: Uint8Array, keys: Array&lt;GetPropertyTy
     try {
       credInfo = await userIDM.getAuthInfo(osAccount.AuthType.PRIVATE_PIN);
     } catch (e) {
-    const err = e as BusinessError;
+      const err = e as BusinessError;
       console.error(`getAuthInfo exception = code is ${err.code}, message is ${err.message}`);
       return;
     }
@@ -2538,7 +2538,7 @@ getPropertyByCredentialId(credentialId: Uint8Array, keys: Array&lt;GetPropertyTy
         console.error(`getPropertyByCredentialId error = code is ${err.code}, message is ${err.message}`);
       });
     } catch (e) {
-    const err = e as BusinessError;
+      const err = e as BusinessError;
       console.error(`getPropertyByCredentialId exception = code is ${err.code}, message is ${err.message}`);
     }
   }
@@ -2705,7 +2705,7 @@ prepareRemoteAuth(remoteNetworkId: string): Promise&lt;void&gt;;
           });
         }
       } catch (e) {
-    const err = e as BusinessError;
+        const err = e as BusinessError;
         console.error(`prepareRemoteAuth exception = code is ${err.code}, message is ${err.message}`);
       }
     }
@@ -3240,8 +3240,8 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
           console.info('auth authResult = ' + JSON.stringify(authResult));
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`auth exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -3802,8 +3802,8 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
         console.info('auth authResult = ' + JSON.stringify(authResult));
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`auth exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -3857,8 +3857,8 @@ authWithPopup(callback: IUserAuthCallback): void
         console.info('auth authResult = ' + JSON.stringify(authResult));
       }
     })
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`auth exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -3914,8 +3914,8 @@ authWithPopup(localId: number, callback: IUserAuthCallback): void
         console.info('authWithPopup authResult = ' + JSON.stringify(authResult));
       }
     })
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`authWithPopup exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -3970,8 +3970,8 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
         console.info('hasAccount result: ' + result);
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`hasAccount exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -4029,8 +4029,8 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
     }).catch((err: BusinessError) => {
         console.error(`call hasAccount failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`hasAccount exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -4083,8 +4083,8 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, call
         console.info('updateAccountToken successfully');
       }
     })
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`updateAccountToken exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -4140,8 +4140,8 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
     }).catch((err: BusinessError) => {
         console.error(`updateAccountToken failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`updateAccountToken exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -4197,8 +4197,8 @@ getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;
         console.info('getAccountInfo result: ' + result);
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getAccountInfo exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -4257,8 +4257,8 @@ getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountIn
     }).catch((err: BusinessError) => {
       console.error(`call getAccountInfo failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getAccountInfo exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -4312,8 +4312,8 @@ getAccessToken(businessParams: Record<string, Object>, callback: AsyncCallback&l
         console.info('getAccessToken result: ' + result);
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getAccessToken exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -4370,8 +4370,8 @@ getAccessToken(businessParams: Record<string, Object>): Promise&lt;Uint8Array&gt
     }).catch((err: BusinessError) => {
       console.error(`getAccessToken failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getAccessToken exception = code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -4614,7 +4614,7 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
       }
     });
     } catch (e) {
-    const err = e as BusinessError;
+      const err = e as BusinessError;
       console.error(`addCredential exception = code is ${err.code}, message is ${err.message}`);
     }
   });
@@ -4690,7 +4690,7 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
             }
           });
         } catch (e) {
-    const err = e as BusinessError;
+          const err = e as BusinessError;
           console.error(`updateCredential exception = code is ${err.code}, message is ${err.message}`);
         }
       }

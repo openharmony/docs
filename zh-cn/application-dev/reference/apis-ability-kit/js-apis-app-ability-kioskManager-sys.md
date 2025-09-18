@@ -62,7 +62,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 struct Index {
   build() {
     Column() {
-      Button('getKioskinfo').margin({ top: 10 })
+      Button('getKioskInfo').margin({ top: 10 })
         .onClick(() => {
           kioskManager.getKioskStatus()
             .then((data: kioskManager.KioskStatus) => {

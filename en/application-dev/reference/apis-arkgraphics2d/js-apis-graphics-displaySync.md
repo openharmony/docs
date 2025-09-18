@@ -1,4 +1,11 @@
 #  @ohos.graphics.displaySync (Variable Frame Rate)
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @hudi33-->
+<!--Designer: @hudi33-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @ge-yafang-->
+
 The displaySync module allows your application to draw its custom UI content at a specified frame rate.
 
 > **NOTE**
@@ -38,8 +45,8 @@ You can obtain the timestamp information from the event callback, including the 
 
 | Name            | Type                                     | Read-only| Optional| Description                                      |
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
-| timestamp      | number | Yes  | No  | Time when the current frame arrives, in nanoseconds.|
-| targetTimestamp | number| Yes  | No  | Expected arrival time of the next frame, in nanoseconds.|
+| timestamp      | number | No  | No  | Time when the current frame arrives, in nanoseconds.|
+| targetTimestamp | number| No  | No  | Expected arrival time of the next frame, in nanoseconds.|
 
 ## DisplaySync
 
@@ -169,7 +176,8 @@ backDisplaySync?.start()
 
 > **NOTE**
 >
-> The **start()** API associates a **DisplaySync** object with a UI instance and window. If the start operation is performed on a non-UI page or in an asynchronous callback, the context of the current UI may not be obtained, causing the API call to fail and consequently the subscription function to fail. Therefore, you can use [runScopedTask](../apis-arkui/js-apis-arkui-UIContext.md#runscopedtask) of **UIContext** to specify the UI context for executing the **start()** API.
+> The **start()** API associates a **DisplaySync** object with a UI instance and window. If the start operation is performed on a non-UI page or in an asynchronous callback, the context of the current UI may not be obtained, causing the API call to fail and consequently the subscription function to fail.
+> You can use the [runScopedTask](../apis-arkui/arkts-apis-uicontext-uicontext.md#runscopedtask) API of UIContext to specify the UI context where the start() API is executed.
 
 **Example**
 

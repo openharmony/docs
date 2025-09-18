@@ -951,7 +951,7 @@ The size of a single package exceeds the upper limit during the building of an a
 
 **Possible Causes**
 
-The size of a single package exceeds the upper limit. For details about the restrictions, please refer to the description of --atomic-service-entry-size-limit and --atomic-service-non-entry-size-limit in [Table 5 Parameters for packaging an app](#app-packaging-instructions).
+The size of a single package exceeds the upper limit. For details about the restrictions, please refer to the description of --atomic-service-entry-size-limit and --atomic-service-non-entry-size-limit in [Table 5 Parameters for packaging an app](#app-packing-command).
 
 **Solution**
 
@@ -968,7 +968,7 @@ When an atomic service app is built, the size of a single package and its depend
 
 **Possible Causes**
 
-The total size of a single package and its dependent shared libraries exceeds the upper limit. For details about the restrictions, see the description of the --atomic-service-entry-size-limit and --atomic-service-non-entry-size-limit parameters in [Table 5 Parameters in the app packaging command](#app-packaging-command).
+The total size of a single package and its dependent shared libraries exceeds the upper limit. For details about the restrictions, see the description of the --atomic-service-entry-size-limit and --atomic-service-non-entry-size-limit parameters in [Table 5 Parameters in the app packaging command](#app-packing-command).
 
 **Solution**
 

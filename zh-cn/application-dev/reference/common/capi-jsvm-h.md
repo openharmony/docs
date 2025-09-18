@@ -6003,7 +6003,7 @@ JSVM_Status JSVM_CDECL OH_JSVM_CreateExternalStringLatin1(JSVM_Env env,char* str
 
 此 API 使用 ISO-8859-1 编码的 C 字符串，创建一个外部的 JavaScript 字符串。创建外部字符串失败时会复制原生字符串。
 
-**起始版本：** 12
+**起始版本：** 18
 
 
 **参数：**
@@ -6034,7 +6034,7 @@ JSVM_Status JSVM_CDECL OH_JSVM_CreateExternalStringUtf16(JSVM_Env env,char16_t* 
 
 此 API 使用 UTF16-LE 编码的 C 字符串，创建一个外部的 JavaScript 字符串。创建外部字符串失败时会复制原生字符串。
 
-**起始版本：** 12
+**起始版本：** 18
 
 
 **参数：**
@@ -6065,7 +6065,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreatePrivate(JSVM_Env env,JSVM_Value descriptio
 
 创建一个 JavaScript private key 对象。
 
-**起始版本：** 12
+**起始版本：** 18
 
 
 **参数：**
@@ -6092,7 +6092,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_SetPrivate(JSVM_Env env,JSVM_Value object,JSVM_D
 
 为传入的object设置一个 private 属性。
 
-**起始版本：** 12
+**起始版本：** 18
 
 
 **参数：**
@@ -6120,7 +6120,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetPrivate(JSVM_Env env,JSVM_Value object,JSVM_D
 
 从传入的object获取 private key 对应的 private 属性。
 
-**起始版本：** 12
+**起始版本：** 18
 
 
 **参数：**
@@ -6148,7 +6148,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_DeletePrivate(JSVM_Env env,JSVM_Value object,JSV
 
 从传入的 object 上删除 private key 对应的 private 属性。
 
-**起始版本：** 12
+**起始版本：** 18
 
 
 **参数：**
@@ -6175,7 +6175,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateDataReference(JSVM_Env env,JSVM_Data data,
 
 创建一个对于给定 JSVM_Data 对象的引用，初始的引用计数为传入的 initialRefcount。
 
-**起始版本：** 12
+**起始版本：** 18
 
 
 **参数：**
@@ -6204,7 +6204,7 @@ EXTERN_C_END
 
 如果引用仍然有效，通过 result 参数返回对应的 JSVM_Data，表示与 JSVM_Ref 关联的 JavaScript 值。否则结果将为空。
 
-**起始版本：** 12
+**起始版本：** 18
 
 
 **参数：**

@@ -6,7 +6,7 @@ The **NetConnection** module provides the capability of querying common network 
 
 ## Available APIs
 
-The following table lists the common **NetConnection** APIs. For details, see [NetConnection](../reference/apis-network-kit/_net_connection.md).
+The following table lists the common **NetConnection** APIs. For details, see [net_connection.h](../reference/apis-network-kit/capi-net-connection-h.md).
 
 
 | API| **Test Description**|
