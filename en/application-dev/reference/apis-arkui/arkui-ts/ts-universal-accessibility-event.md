@@ -23,7 +23,7 @@ Triggered when the accessibility component gains or loses focus. Callback trigge
 
 | Name  | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| callback | [AccessibilityFocusCallback](ts-universal-accessibility-event.md#AccessibilityFocusCallback) | Yes  | Callback that notifies the registered component of focus and blur events.|
+| callback | [AccessibilityFocusCallback](ts-universal-accessibility-event.md#accessibilityfocuscallback) | Yes  | Callback that notifies the registered component of focus and blur events.|
 
 **Return value**
 

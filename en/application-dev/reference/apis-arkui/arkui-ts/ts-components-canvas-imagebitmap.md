@@ -22,7 +22,7 @@ Creates an **ImageBitmap** object using a **PixelMap** object.
 
 | Name | Type  | Mandatory | Description                                   |
 | ---- | ------ | ---- | ---------------------------------------- |
-| data  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | Yes   | Image data source, which supports **PixelMap** objects.|
+| data  | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | Yes   | Image data source, which supports **PixelMap** objects.|
 | unit  | [LengthMetricsUnit](ts-canvasrenderingcontext2d.md#lengthmetricsunit12) | No|  Unit mode of the **ImageBitmap** object. The value cannot be dynamically changed once set. The configuration method is the same as that of [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12).<br>Default value: **DEFAULT**|
 
 ### ImageBitmap

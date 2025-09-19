@@ -1560,7 +1560,7 @@ Draws an image on the canvas.
 
 | Name     | Type                            | Description                                      |
 | ------- | ------------------------------ | ---------------------------------------- |
-| image   | Image \| PixelMap<sup>9+</sup> | Image resource. For details, see [Image](js-components-canvas-image.md) or [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7).|
+| image   | Image \| PixelMap<sup>9+</sup> | Image resource. For details, see [Image](js-components-canvas-image.md) or [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md).|
 | sx      | number                         | X-coordinate of the upper left corner of the rectangle used to crop the source image.                    |
 | sy      | number                         | Y-coordinate of the upper left corner of the rectangle used to crop the source image.                    |
 | sWidth  | number                         | Target width to crop the source image.                          |
@@ -1892,7 +1892,7 @@ Obtains the **PixelMap** object created with the pixels within the specified are
 
 | Type                                      | Description                    |
 | ---------------------------------------- | ---------------------- |
-| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | **PixelMap** object that contains pixels in the specified area on the canvas.|
+| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | **PixelMap** object that contains pixels in the specified area on the canvas.|
 
 **Example**
 

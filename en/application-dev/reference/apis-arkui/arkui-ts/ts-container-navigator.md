@@ -73,7 +73,7 @@ Sets the data that needs to be passed to the target page during redirection.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | object | Yes  | Data that needs to be passed to the target page during redirection. You can use [router.getParams()](../js-apis-router.md#routergetparams) to obtain the data on the target page.|
+| value  | object | Yes  | Data that needs to be passed to the target page during redirection. You can use [router.getParams()](../js-apis-router.md#routergetparamsdeprecated) to obtain the data on the target page.|
 
 ### target
 

@@ -30,7 +30,7 @@ Since API version 9, this API is supported in ArkTS widgets, except that **Pixel
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | No| Shape to draw. You can draw a shape in the specified **PixelMap** object. If no object is specified, the shape is drawn in the current drawing target.|
+| value | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | No| Shape to draw. You can draw a shape in the specified **PixelMap** object. If no object is specified, the shape is drawn in the current drawing target.|
 
 
 ## Attributes

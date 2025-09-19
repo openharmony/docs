@@ -6,7 +6,7 @@ Focus control attributes set whether a component is focusable and how it partici
 >
 >  - The initial APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >  
->  - Custom components are inherently unfocusable, and setting [focusable](#focusable) and [enabled](ts-universal-attributes-enable.md#enabled) attributes to **false** or setting the [visibility](ts-universal-attributes-visibility.md#visibility) attribute to **Hidden** or **None** does not impact their child components' capability to gain focus.
+>  - Custom components are inherently unfocusable, and setting [focusable](#focusable) and [enabled](ts-universal-attributes-enable.md#enabled) attributes to **false** or setting the [visibility](ts-universal-attributes-visibility.md) attribute to **Hidden** or **None** does not impact their child components' capability to gain focus.
 >  
 >  - Components can actively acquire focus independently of the window's focus state.
 >  
@@ -509,7 +509,7 @@ This example demonstrates how to set focus on a specific component using **focus
 
 > **NOTE**
 > 
-> Directly using **focusControl** can lead to the issue of [ambiguous UI context](../../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain a [UIContext](../js-apis-arkui-UIContext.md#uicontext) instance using **getUIContext()**, and then obtain the associated **focusControl** object using [getFocusController](../js-apis-arkui-UIContext.md#getfocuscontroller12).
+> Directly using **focusControl** can lead to the issue of [ambiguous UI context](../../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain a [UIContext](../arkts-apis-uicontext-uicontext.md) instance using **getUIContext()**, and then obtain the associated **focusControl** object using [getFocusController](../js-apis-arkui-UIContext.md#getfocuscontroller12).
 
 ```ts
 // requestFocus.ets

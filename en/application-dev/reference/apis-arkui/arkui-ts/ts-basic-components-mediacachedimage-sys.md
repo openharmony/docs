@@ -22,7 +22,7 @@ Obtains an image from the specified source for subsequent rendering and display.
 
 | Name| Type                                                    | Mandatory| Description                                                    |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src    | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [ResourceStr](ts-types.md#resourcestr) \| [DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor) \| [ASTCResource](#astcresource12) | Yes  | Data source of the image. Media library resources are supported. For details about how to reference an image of the PixelMap, ResourceStr, or DrawableDescriptor type, see [Loading Image Resources](../../../ui/arkts-graphics-display.md#loading-image-resources). The ASTCResource type is available for system applications only.|
+| src    | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) \| [ResourceStr](ts-types.md#resourcestr) \| [DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor) \| [ASTCResource](#astcresource12) | Yes  | Data source of the image. Media library resources are supported. For details about how to reference an image of the PixelMap, ResourceStr, or DrawableDescriptor type, see [Loading Image Resources](../../../ui/arkts-graphics-display.md#loading-image-resources). The ASTCResource type is available for system applications only.|
 
 ## ASTCResource<sup>12+</sup>
 

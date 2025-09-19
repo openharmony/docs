@@ -22,7 +22,7 @@ Sets the visibility of the component.
 
 | Name| Type                                         | Mandatory| Description                                                        |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Visibility](ts-appendix-enums.md#visibility) | Yes  | Whether the component is visible. When appropriate, consider using [conditional rendering](../../../ui/state-management/arkts-rendering-control-ifelse.md) as a substitute.<br>Default value: **Visibility.Visible**|
+| value  | [Visibility](ts-appendix-enums.md#visibility) | Yes  | Whether the component is visible. When appropriate, consider using [conditional rendering](../../../ui/rendering-control/arkts-rendering-control-ifelse.md) as a substitute.<br>Default value: **Visibility.Visible**|
 
 **Return value**
 

@@ -44,7 +44,7 @@ Sets how the final state of the component's content is rendered during its width
 >
 > For the **XComponent** component of the SURFACE type with an opaque black background color: In versions earlier than API version 18, the **renderFit** attribute only supports **RenderFit.RESIZE_FILL**; since API version 18, the **renderFit** attribute supports all its available enum values.
 >
->  For the **XComponent** component created using the [ArkUI NDK API](../../../ui/ndk-access-the-arkts-page.md), the [getAttribute](../_ark_u_i___native_node_a_p_i__1.md#getattribute) function is not supported for obtaining the **renderFit** attribute value.
+>  For the **XComponent** component created using the [ArkUI NDK API](../capi-arkui-nativemodule-arkui-nativenodeapi-1.md#getattribute), the [getAttribute](../capi-arkui-nativemodule-arkui-nativenodeapi-1.md#getattribute) function is not supported for obtaining the **renderFit** attribute value.
 
 ## RenderFit
 

@@ -6,9 +6,9 @@ You can set the text content and response callback for an alert dialog box.
 >
 > The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
-> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](../js-apis-arkui-UIContext.md#uicontext).
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](../arkts-apis-uicontext-uicontext.md).
 >
-> Since API version 10, you can use the [showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog) API in [UIContext](../js-apis-arkui-UIContext.md#uicontext), which ensures that the alert dialog box is shown in the intended UI instance.
+> Since API version 10, you can use the [showAlertDialog](../arkts-apis-uicontext-uicontext.md#showalertdialog) API in [UICo../arkts-apis-uicontext-uicontext.mdcontext), which ensures that the alert dialog box is shown in the intended UI instance.
 
 ## AlertDialog
 
@@ -253,7 +253,7 @@ Provides information about the action to dismiss the dialog box.
 
 > **NOTE**
 > 
-> To avoid confusion with **AlertDialog** instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](../js-apis-arkui-UIContext.md#uicontext) API, and then use the [showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog) API to invoke the instance's **AlertDialog.show()** method.
+> To avoid confusion with **AlertDialog** instances, it is recommended that you obtain a **UIContext** instance using the **getUIContext*../arkts-apis-uicontext-uicontext.mdg](../arkts-apis-uicontext-uicontext.md#showalertdialog) API to invoke the instance's **AlertDialog.show()** method.
 
 This example demonstrates how to display dialog boxes with one, two, and three buttons.
 
@@ -406,7 +406,7 @@ This example demonstrates how to configure a dialog box to display outside the m
 
 > **NOTE**
 > 
-> To avoid confusion with **AlertDialog** instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](../js-apis-arkui-UIContext.md#uicontext) API, and then use the [showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog) API to invoke the instance's **AlertDialog.show()** method.
+> To avoid confusion with **AlertDialog** instances, it is recommended that you obtain a **UIContext** instance using the **getUIContext*../arkts-apis-uicontext-uicontext.mdg]../arkts-apis-uicontext-uicontext.md#showalertdialog) API to invoke the instance's **AlertDialog.show()** method.
 
 ```ts
 // xxx.ets
@@ -480,7 +480,7 @@ This example illustrates how to use the **transition** API to create custom anim
 
 > **NOTE**
 > 
-> To avoid confusion with **AlertDialog** instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](../js-apis-arkui-UIContext.md#uicontext) API, and then use the [showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog) API to invoke the instance's **AlertDialog.show()** method.
+> To avoid confusion with **AlertDialog** instances, it is recommended that you obtain a **UIContext** instance using the **getUIContext*../arkts-apis-uicontext-uicontext.mdg](../arkts-apis-uicontext-uicontext.md#showalertdialog) API to invoke the instance's **AlertDialog.show()** method.
 
 ```ts
 // xxx.ets
@@ -529,7 +529,7 @@ This example demonstrates how to set styles of an alert dialog box, including th
 
 > **NOTE**
 > 
-> To avoid confusion with **AlertDialog** instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](../js-apis-arkui-UIContext.md#uicontext) API, and then use the [showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog) API to invoke the instance's **AlertDialog.show()** method.
+> To avoid confusion with **AlertDialog** instances, it is recommended that you obtain a **UIContext** instance using the **getUIContext*../arkts-apis-uicontext-uicontext.mdg](../arkts-apis-uicontext-uicontext.md#showalertdialog) API to invoke the instance's **AlertDialog.show()** method.
 
 ```ts
 // xxx.ets

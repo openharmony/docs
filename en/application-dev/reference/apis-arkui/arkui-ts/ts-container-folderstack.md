@@ -195,7 +195,7 @@ Enumerates the window modes.
 
 | Type       | Description                |
 | ---------- | ---------------------|
-| [WindowStatusType](../js-apis-window.md#windowstatustype11)  | Window mode.|
+| [WindowStatusType](../arkts-apis-window-e.md#windowstatustype11)  | Window mode.|
 
 
 ## Example
