@@ -6,7 +6,7 @@
 <!--Tester: @kongjing2-->
 <!--Adviser: @Brilliantry_Rui-->
 
-This topic describes how to configure the application icon and label. Application icons are classified into single-layer icons and layered icons. A single-layer icon contains only one image, and a layered icon contains a foreground image and a background image. For details about the icon specifications and icon configuration rules, see <!--RP1-->[Icon Deliverables](https://gitcode.com/openharmony/docs/blob/master/en/design/ux-design/visual-app-icons.md#icon-deliverables)<!--RP1End--> and [Configuring Icons and Labels](../application-models/application-component-configuration-stage.md#configuring-icons-and-labels), respectively.
+This topic describes how to configure the application icon and label. Application icons are classified into single-layer icons and layered icons. A single-layer icon contains only one image, and a layered icon contains a foreground image and a background image. For details about the icon specifications and icon configuration rules, see <!--RP1-->[Icon Deliverables](https://gitcode.com/openharmony/docs/blob/master/en/design/ux-design/visual-app-icons.md#icon-deliverables)<!--RP1End--> and [Configuring the Application Icon and Label](../application-models/application-component-configuration-stage.md#configuring-the-application-icon-and-label), respectively.
 
 ## Use Scenarios
 

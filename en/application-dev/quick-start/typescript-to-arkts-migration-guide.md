@@ -1422,7 +1422,7 @@ c3.foo(); // Extra foo
 
 **Error code: 10605053**
 
-ArkTS supports the keyword **as** as the only syntax for type casting. Incorrect casting causes a compile-time error or runtime **ClassCastException**. The **<type>** syntax for type casting is not supported.
+ArkTS supports the keyword **as** as the only syntax for type casting. Incorrect casting causes a compile-time error or runtime **ClassCastException**. The **\<type>** syntax for type casting is not supported.
 
 Use the expression **new** instead of **as** if a **primitive** type (such as a **number** or a **boolean**) must be cast to the reference type.
 
@@ -2946,7 +2946,7 @@ let x = M.abc;
 
 ArkTS supports only **Partial**, **Required**, **Readonly**, and **Record**, and does not support other utility types in TypeScript.
 
-For the **Partial<T>** type, the generic parameter **T** must be a class or interface type.
+For the **Partial\<T>** type, the generic parameter **T** must be a class or interface type.
 
 For objects of the **Record** type, the type of the value accessed using an index is a union type that contains **undefined**.
 

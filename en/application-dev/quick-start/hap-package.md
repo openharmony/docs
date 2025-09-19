@@ -92,7 +92,7 @@ To debug a HAP, use either of the following tools:
       uninstall bundle successfully.
       ```
 
-   After the HAP is installed or updated, you can debug it using the [attach](../tools/aa-tool.md#attach) command.
+   After the HAP is installed or updated, you can debug it using the [attach](../tools/aa-tool.md#attach-command) command.
 
 <!--RP4-->
 <!--RP4End-->
