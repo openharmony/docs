@@ -9,7 +9,7 @@ This topic describes the mixed use of V1 and V2, aiming at guiding you to migrat
 > **NOTE**
 >
 > State management V2 is supported since API version 12.
-> The rules for mixed use described in this topic apply only to API version 17 and earlier. Since API version 18, state management provides new APIs [enableV2Compatibility](../../reference/apis-arkui/js-apis-StateManagement.md#enablev2compatibility18) and [makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18) to help you solve the problem of mixed use during the migration from V1 to V2. For details, see [Mixing Use of State Management V1 and V2](./arkts-v1-v2-mixusage.md).
+> The rules for mixed use described in this topic apply only to API version 17 and earlier. Since API version 18, state management provides new APIs [enableV2Compatibility](../../reference/apis-arkui/js-apis-StateManagement.md#enablev2compatibility19) and [makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19) to help you solve the problem of mixed use during the migration from V1 to V2. For details, see [Mixing Use of State Management V1 and V2](./arkts-v1-v2-mixusage.md).
 
 ## Overview
 

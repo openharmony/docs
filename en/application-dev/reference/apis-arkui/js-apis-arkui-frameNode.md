@@ -1,6 +1,6 @@
 # FrameNode
 
-**FrameNode** represents an entity node in the component tree. It can be used by a [NodeController](./js-apis-arkui-nodeController.md#nodecontroller) to mount a [BuilderNode](./js-apis-arkui-builderNode.md#buildernode) (that holds the FrameNode) to a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) or mount a [RenderNode](./js-apis-arkui-renderNode.md#rendernode) to another FrameNode.
+**FrameNode** represents an entity node in the component tree. It can be used by a [NodeController](./js-apis-arkui-nodeController.md) to mount a [BuilderNode](./js-apis-arkui-builderNode.md) (that holds the FrameNode) to a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md) or mount a [RenderNode](./js-apis-arkui-renderNode.md) to another FrameNode.
 
 > **NOTE**
 >
@@ -58,7 +58,7 @@ Constructor used to create a FrameNode.
 
 | Name   | Type                                     | Mandatory| Description                              |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
-| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| uiContext | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 
 ### getRenderNode
 
@@ -74,7 +74,7 @@ Obtains the RenderNode instance held in this FrameNode.
 
 | Type                                                          | Description                                                                                                            |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [RenderNode](./js-apis-arkui-renderNode.md#rendernode) \| null | **RenderNode** instance. If the current FrameNode does not hold any RenderNode, **null** is returned. If the current FrameNode is a node created by a declarative component, **null** is returned.|
+| [RenderNode](./js-apis-arkui-renderNode.md) \| null | **RenderNode** instance. If the current FrameNode does not hold any RenderNode, **null** is returned. If the current FrameNode is a node created by a declarative component, **null** is returned.|
 
 **Example**
 
@@ -143,7 +143,7 @@ Appends a child node to the end of this FrameNode. If this FrameNode is not modi
 
 | Name| Type                   | Mandatory| Description                 |
 | ------ | ----------------------- | ---- | --------------------- |
-| node   | [FrameNode](#framenode) | Yes  | Child node to append.<br>**NOTE**<br> The child node cannot be one created declaratively, which is not modifiable. Only declarative nodes obtained from a BuilderNode can be used as child nodes. If the child node does not meet the specifications, an exception is thrown.<br> The FrameNode cannot have a parent node. Otherwise, an exception is thrown.|
+| node   | [FrameNode](#framenode-1) | Yes  | Child node to append.<br>**NOTE**<br> The child node cannot be one created declaratively, which is not modifiable. Only declarative nodes obtained from a BuilderNode can be used as child nodes. If the child node does not meet the specifications, an exception is thrown.<br> The FrameNode cannot have a parent node. Otherwise, an exception is thrown.|
 
 **Error codes**
 
@@ -169,8 +169,8 @@ Inserts a child node after the specified child node of this FrameNode. If this F
 
 | Name | Type                                     | Mandatory| Description                                                                        |
 | ------- | ----------------------------------------- | ---- | ---------------------------------------------------------------------------- |
-| child   | [FrameNode](#framenode)                   | Yes  | Child node to add.<br>**NOTE**<br> The child node cannot be a declarative node, that is, a FrameNode that cannot be modified. Only declarative nodes obtained from a BuilderNode can be used as child nodes. If the child node does not meet the specifications, an exception is thrown.<br> The child node cannot have a parent node. Otherwise, an exception is thrown.                                                          |
-| sibling | [FrameNode](#framenode) \| null | Yes  | Node after which the new child node will be inserted. If this parameter is left empty, the new node is inserted before the first subnode.|
+| child   | [FrameNode](#framenode-1)                   | Yes  | Child node to add.<br>**NOTE**<br> The child node cannot be a declarative node, that is, a FrameNode that cannot be modified. Only declarative nodes obtained from a BuilderNode can be used as child nodes. If the child node does not meet the specifications, an exception is thrown.<br> The child node cannot have a parent node. Otherwise, an exception is thrown.                                                          |
+| sibling | [FrameNode](#framenode-1)&nbsp;\|&nbsp;null | Yes  | Node after which the new child node will be inserted. If this parameter is left empty, the new node is inserted before the first subnode.|
 
 **Error codes**
 
@@ -196,7 +196,7 @@ Deletes the specified child node from this FrameNode. If this FrameNode is not m
 
 | Name| Type                   | Mandatory| Description              |
 | ------ | ----------------------- | ---- | ------------------ |
-| node   | [FrameNode](#framenode) | Yes  | Child node to delete.|
+| node   | [FrameNode](#framenode-1) | Yes  | Child node to delete.|
 
 **Error codes**
 
@@ -248,7 +248,7 @@ Obtains the child node in the specified position of this RenderNode.
 
 | Type                           | Description                                                         |
 | ------------------------------- | ------------------------------------------------------------- |
-| [FrameNode](#framenode) \| null | Child node obtained. If the FrameNode does not contain the specified child node, null is returned.|
+| [FrameNode](#framenode-1) \| null | Child node obtained. If the FrameNode does not contain the specified child node, null is returned.|
 
 **Example**
 
@@ -275,7 +275,7 @@ Obtains a child node at a specified index from this FrameNode, with optional sup
 
 | Type                           | Description                                                         |
 | ------------------------------- | ------------------------------------------------------------- |
-| [FrameNode](#framenode) \| null | Child node obtained. If the FrameNode does not contain the specified child node, null is returned.|
+| [FrameNode](#framenode-1) \| null | Child node obtained. If the FrameNode does not contain the specified child node, null is returned.|
 
 **Example**
 
@@ -335,7 +335,7 @@ Obtains the first child node of this FrameNode.
 
 | Type                           | Description                                                     |
 | ------------------------------- | --------------------------------------------------------- |
-| [FrameNode](#framenode) \| null | First child node. If the FrameNode does not contain any child node, null is returned.|
+| [FrameNode](#framenode-1) \| null | First child node. If the FrameNode does not contain any child node, null is returned.|
 
 **Example**
 
@@ -355,7 +355,7 @@ Obtains the next sibling node of this FrameNode.
 
 | Type                           | Description                                                                                |
 | ------------------------------- | ------------------------------------------------------------------------------------ |
-| [FrameNode](#framenode) \| null | Next sibling node of the current FrameNode. If the FrameNode does not have the next sibling node, null is returned.|
+| [FrameNode](#framenode-1) \| null | Next sibling node of the current FrameNode. If the FrameNode does not have the next sibling node, null is returned.|
 
 **Example**
 
@@ -375,7 +375,7 @@ Obtains the previous sibling node of this FrameNode.
 
 | Type                            | Description                                                                                |
 | -------------------------------- | ------------------------------------------------------------------------------------ |
-| [FrameNode](#framenode) \| null | Previous sibling node of the current FrameNode. If the FrameNode does not have the previous sibling node, null is returned.|
+| [FrameNode](#framenode-1) \| null | Previous sibling node of the current FrameNode. If the FrameNode does not have the previous sibling node, null is returned.|
 
 **Example**
 
@@ -395,7 +395,7 @@ Obtains the parent node of this FrameNode.
 
 | Type                            | Description                                                                |
 | -------------------------------- | -------------------------------------------------------------------- |
-| [FrameNode](#framenode) \| null | Parent node of the current FrameNode. If the FrameNode does not contain a parent node, null is returned.|
+| [FrameNode](#framenode-1) \| null | Parent node of the current FrameNode. If the FrameNode does not contain a parent node, null is returned.|
 
 **Example**
 
@@ -440,7 +440,7 @@ Moves this FrameNode to a specified position within the target FrameNode. If thi
 
 | Name       | Type                   | Mandatory| Description                 |
 | ------------ | ----------------------- | ---- | --------------------- |
-| targetParent | [FrameNode](#framenode) | Yes  | Target parent node.<br>**NOTE**<br>The target parent node must not be a declaratively created node, that is, a FrameNode that is not modifiable. If it does not meet the specifications, an exception is thrown.|
+| targetParent | [FrameNode](#framenode-1) | Yes  | Target parent node.<br>**NOTE**<br>The target parent node must not be a declaratively created node, that is, a FrameNode that is not modifiable. If it does not meet the specifications, an exception is thrown.|
 | index        | number                  | No  | Sequence number of the child node. The current FrameNode will be inserted before the child node at the specified sequence number in the target FrameNode. If the target FrameNode has *n* nodes, the value range for **index** is 0 to *n*-1.<br>If the parameter is invalid or not specified, the current FrameNode will be added to the end of the target FrameNode.<br>Default value: **-1**|
 
 **Error codes**
@@ -1028,7 +1028,7 @@ In scenarios involving **LazyForEach**, where nodes may be destroyed and reconst
 
 | Type                                                          | Description                                                                                                            |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [UICommonEvent](./arkui-ts/ts-uicommonevent.md#common-event-callback)| **UICommonEvent** object, which is used to set basic events.|
+| [UICommonEvent](./arkui-ts/ts-uicommonevent.md#uicommonevent) | **UICommonEvent** object, which is used to set basic events.|
 
 **Example**
 
@@ -1246,7 +1246,7 @@ Adds component content. The current node must be modifiable, which means the ret
 
 | Name | Type                                                  | Mandatory| Description            |
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
-| content | [ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent)\<T> | Yes  | Component content to display on the FrameNode.|
+| content | [ComponentContent](./js-apis-arkui-ComponentContent.md)\<T> | Yes  | Component content to display on the FrameNode.|
 
 **Error codes**
 
@@ -1539,7 +1539,7 @@ See [Example of Node Operations](#example-of-node-operations).
 
 ## TypedFrameNode<sup>12+</sup>
 
-Inherits from [FrameNode](#framenode), used to declare a specific type of FrameNode.
+Inherits from FrameNode, used to declare a specific type of FrameNode.
 
 ### Properties
 
@@ -1560,11 +1560,7 @@ Inherits from [FrameNode](#framenode), used to declare a specific type of FrameN
 
 Provides APIs for creating a specific type of FrameNode, which can be mounted through the basic API of the FrameNode and be displayed using a placeholder container.
 
-When **typeNode** is used to create nodes such as **Text**, **Image**, **Select**, or **Toggle**, if the [UIContext](./js-apis-arkui-UIContext.md) instance corresponding to the passed **UIContext** is destroyed, calling this API will return an invalid FrameNode. This invalid node cannot be properly mounted or displayed.
-
-**Example**
-
-For details, see [Example of Customizing a Node of a Specific Type](#example-of-customizing-a node-of-a-specific-type).
+When **typeNode** is used to create nodes such as **Text**, **Image**, **Select**, or **Toggle**, if the [UIContext](./arkts-apis-uicontext-uicontext.md) instance corresponding to the passed **UIContext** is destroyed, calling this API will return an invalid FrameNode. This invalid node cannot be properly mounted or displayed.
 
 ### Text<sup>12+</sup>
 type Text = TypedFrameNode&lt;TextInterface, TextAttribute&gt;
@@ -1592,7 +1588,7 @@ Creates a FrameNode of the **Text** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| eventType | [EventQueryType](./arkui-ts/ts-appendix-enums.md#eventquerytype19) | Yes  | UI context required for creating a node.|
 | nodeType | 'Text' | Yes| Node type, which is **Text** in this API.|
 
 **Return value**
@@ -1635,7 +1631,7 @@ Creates a FrameNode of the **Column** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Column' | Yes| Node type, which is **Column** in this API.|
 
 **Return value**
@@ -1677,7 +1673,7 @@ Creates a FrameNode of the Row type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Row' | Yes| Node type, which is Row in this API.|
 
 **Return value**
@@ -1719,7 +1715,7 @@ Creates a FrameNode of the **Stack** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Stack' | Yes| Node type, which is **Stack** in this API.|
 
 **Return value**
@@ -1761,7 +1757,7 @@ Creates a FrameNode of the **GridRow** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'GridRow' | Yes| Node type, which is **GridRow** in this API.|
 
 **Return value**
@@ -1803,7 +1799,7 @@ Creates a FrameNode of the **GridCol** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'GridCol' | Yes| Node type, which is **GridCol** in this API.|
 
 **Return value**
@@ -1845,7 +1841,7 @@ Creates a FrameNode of the Flex type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Flex' | Yes| Node type, which is **Flex** in this API.|
 
 **Return value**
@@ -1887,7 +1883,7 @@ Creates a FrameNode of the **Swiper** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Swiper' | Yes| Node type, which is **Swiper** in this API.|
 
 **Return value**
@@ -1929,7 +1925,7 @@ Creates a FrameNode of the **Progress** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Progress' | Yes| Node type, which is **Progress** in this API.|
 
 **Return value**
@@ -1971,7 +1967,7 @@ Creates a FrameNode of the **Scroll** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Scroll' | Yes| Node type, which is **Scroll** in this API.|
 
 **Return value**
@@ -2075,7 +2071,7 @@ Creates a FrameNode of the **RelativeContainer** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'RelativeContainer' | Yes| Node type, which is **RelativeContainer** in this API.|
 
 **Return value**
@@ -2117,7 +2113,7 @@ Creates a FrameNode of the **Divider** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Divider' | Yes| Node type, which is **Divider** in this API.|
 
 **Return value**
@@ -2159,7 +2155,7 @@ Creates a FrameNode of the **LoadingProgress** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'LoadingProgress' | Yes| Node type, which is **LoadingProgress** in this API.|
 
 **Return value**
@@ -2201,7 +2197,7 @@ Creates a FrameNode of the **Search** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Search' | Yes| Node type, which is **Search** in this API.|
 
 **Return value**
@@ -2243,7 +2239,7 @@ Creates a FrameNode of the **Blank** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Blank' | Yes| Node type, which is **Blank** in this API.|
 
 **Return value**
@@ -2285,7 +2281,7 @@ Creates a FrameNode of the **Image** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Image' | Yes| Node type, which is **Image** in this API.|
 
 **Return value**
@@ -2327,7 +2323,7 @@ Creates a FrameNode of the **List** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'List' | Yes| Node type, which is **List** in this API.|
 
 **Return value**
@@ -2369,7 +2365,7 @@ Creates a FrameNode of the **ListItem** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'ListItem' | Yes| Node type, which is **ListItem** in this API.|
 
 **Return value**
@@ -2412,7 +2408,7 @@ Creates a FrameNode of the **TextInput** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'TextInput' | Yes| Node type, which is **TextInput** in this API.|
 
 **Return value**
@@ -2455,7 +2451,7 @@ Creates a FrameNode of the **Button** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Button' | Yes| Node type, which is **Button** in this API.|
 
 **Return value**
@@ -2498,7 +2494,7 @@ Creates a FrameNode of the **ListItemGroup** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'ListItemGroup' | Yes| Node type, which is **ListItemGroup** in this API.|
 
 **Return value**
@@ -2541,7 +2537,7 @@ Creates a FrameNode of the **WaterFlow** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'WaterFlow' | Yes| Node type, which is **WaterFlow** in this API.|
 
 **Return value**
@@ -2584,7 +2580,7 @@ Creates a FrameNode of the **FlowItem** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'FlowItem' | Yes| Node type, which is **FlowItem** in this API.|
 
 **Return value**
@@ -2627,7 +2623,7 @@ Creates a FrameNode of the **XComponent** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'XComponent' | Yes| Node type, which is **XComponent** in this API.|
 
 **Return value**
@@ -2657,7 +2653,7 @@ Creates a FrameNode of the **XComponent** type based on the settings specified i
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'XComponent' | Yes| Node type, which is XComponent in this API.|
 | options | [XComponentOptions](./arkui-ts/ts-basic-components-xcomponent.md#xcomponentoptions12) | Yes| Options of the **XComponent**.|
 
@@ -2706,7 +2702,7 @@ Creates a FrameNode of the **QRCode** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'QRCode' | Yes| Node type, which is **QRCode** in this API.|
 
 **Return value**
@@ -2749,7 +2745,7 @@ Creates a FrameNode of the **Badge** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Badge' | Yes| Node type, which is **Badge** in this API.|
 
 **Return value**
@@ -2792,7 +2788,7 @@ Creates a FrameNode of the **Grid** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Grid' | Yes| Node type, which is **Grid** in this API.|
 
 **Return value**
@@ -2835,7 +2831,7 @@ Creates a FrameNode of the **GridItem** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'GridItem' | Yes| Node type, which is **GridItem** in this API.|
 
 **Return value**
@@ -2878,7 +2874,7 @@ Creates a FrameNode of the **TextClock** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'TextClock' | Yes| Node type, which is **TextClock** in this API.|
 
 **Return value**
@@ -2921,7 +2917,7 @@ Creates a FrameNode of the **TextTimer** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'TextTimer' | Yes| Node type, which is **TextTimer** in this API.|
 
 **Return value**
@@ -2964,7 +2960,7 @@ Creates a FrameNode of the **Marquee** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Marquee' | Yes| Node type, which is **Marquee** in this API.|
 
 **Return value**
@@ -3007,7 +3003,7 @@ Creates a FrameNode of the **TextArea** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'TextArea' | Yes| Node type, which is **TextArea** in this API.|
 
 **Return value**
@@ -3050,7 +3046,7 @@ Creates a FrameNode of the **SymbolGlyph** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'SymbolGlyph' | Yes| Node type, which is **SymbolGlyph** in this API.|
 
 **Return value**
@@ -3093,7 +3089,7 @@ Creates a FrameNode of the **Checkbox** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Checkbox' | Yes| Node type, which is **Checkbox** in this API.|
 
 **Return value**
@@ -3136,7 +3132,7 @@ Creates a FrameNode of the **CheckboxGroup** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'CheckboxGroup' | Yes| Node type, which is **CheckboxGroup** in this API.|
 
 **Return value**
@@ -3179,7 +3175,7 @@ Creates a FrameNode of the **Rating** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Rating' | Yes| Node type, which is **Rating** in this API.|
 
 **Return value**
@@ -3222,7 +3218,7 @@ Creates a FrameNode of the **Radio** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Radio' | Yes| Node type, which is **Radio** in this API.|
 
 **Return value**
@@ -3265,7 +3261,7 @@ Creates a FrameNode of the **Slider** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Slider' | Yes| Node type, which is **Slider** in this API.|
 
 **Return value**
@@ -3308,7 +3304,7 @@ Creates a FrameNode of the **Select** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Select' | Yes| Node type, which is **Select** in this API.|
 
 **Return value**
@@ -3351,7 +3347,7 @@ Creates a FrameNode of the **Toggle** type.
 
 | Name| Type| Mandatory| Description |
 | ------------------ | ------------------ | ------------------- | ------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context required for creating a node.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context required for creating a node.|
 | nodeType | 'Toggle' | Yes| Node type, which is **Toggle** in this API.|
 | options | [ToggleOptions](./arkui-ts/ts-basic-components-toggle.md#toggleoptions18) | No| Options for configuring the node of the Toggle type, including setting the style through the **type** property.|
 

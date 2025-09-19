@@ -6,7 +6,7 @@ The menu bound to a component through [bindContextMenu](./ts-universal-attribute
 >
 > The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >
-> Since API version 12, you can use the [getContextMenuController](../js-apis-arkui-UIContext.md#contextmenucontroller12) API in [UIContext](../js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
+> Since API version 12, you can use the [getContextMenuController](../arkts-apis-uicontext-contextmenucontroller.md) API in [UIContext](../arkts-apis-uicontext-uicontext.md) to obtain the UI context.
 
 ## ContextMenu.close
 
@@ -24,7 +24,7 @@ This example demonstrates how to call the **ContextMenu.close** API to close a c
 
 >  **NOTE**
 >
-> For clarity in UI execution context, you are advised to use the [getContextMenuController](../js-apis-arkui-UIContext.md#contextmenucontroller12) API in [UIContext](../js-apis-arkui-UIContext.md#uicontext).
+> For clarity in UI execution context, you are advised to use the [getContextMenuController](../arkts-apis-uicontext-contextmenucontroller.md) API in [UIContext](../arkts-apis-uicontext-uicontext.md).
 
 ```ts
 // xxx.ets

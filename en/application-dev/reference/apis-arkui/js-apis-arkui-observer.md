@@ -142,7 +142,7 @@ Provides the information about a page during routing.
 
 | Name                | Type                                                        | Mandatory| Description                                          |
 | -------------------- | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
-| context              | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context of the router page that invokes the lifecycle callback.|
+| context              | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | Context of the router page that invokes the lifecycle callback.|
 | index                | number                                                       | Yes  | Position of the router page that invokes the lifecycle callback, in the navigation stack.        |
 | name                 | string                                                       | Yes  | Name of the page that invokes the lifecycle callback.          |
 | path                 | string                                                       | Yes  | Path of the page that invokes the lifecycle callback.          |
@@ -159,7 +159,7 @@ Provides the information contained in the callback when the screen pixel density
 
 | Name   | Type                                     | Mandatory| Description                                  |
 | ------- | ----------------------------------------- | ---- | -------------------------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context corresponding to the page when the screen pixel density changes.|
+| context | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | Context corresponding to the page when the screen pixel density changes.|
 | density | number                                    | Yes  | Screen pixel density after the change.<br>Value range: [0, +∞)                |
 
 ## NavDestinationSwitchInfo<sup>12+</sup>
@@ -172,7 +172,7 @@ Provides the information about page switching of the **Navigation** component.
 
 | Name        | Type                                              | Mandatory| Description                                         |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| context      | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information corresponding to **Navigation** component that triggers page switching.|
+| context      | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | Context information corresponding to **Navigation** component that triggers page switching.|
 | from         | [NavDestinationInfo](#navdestinationinfo) \| [NavBar](./arkui-ts/ts-basic-components-navigation.md#navbar12) | Yes  | Source page for page switching.        |
 | to           | [NavDestinationInfo](#navdestinationinfo) \| [NavBar](./arkui-ts/ts-basic-components-navigation.md#navbar12) | Yes  | Destination page for page switching.        |
 | operation    | [NavigationOperation](./arkui-ts/ts-basic-components-navigation.md#navigationoperation11)| Yes  | Page switching operation type.        |
@@ -553,7 +553,7 @@ Subscribes to state changes of the page during routing.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is fixed at **'routerPageUpdate'**, which indicates the state change event of the page during routing.|
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
 | callback | Callback\<[RouterPageInfo](#routerpageinfo)\>        | Yes  | Callback used to return the If **pageInfo** is passed, the current page state is returned.                |
 
 **Example**
@@ -607,7 +607,7 @@ Unsubscribes to state changes of the page during routing.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value is fixed at **'routerPageUpdate'**, which indicates the state change event of the page during routing.|
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
 | callback | Callback\<[RouterPageInfo](#routerpageinfo)\>        | No  | Callback to be unregistered.                |
 
 **Example**
@@ -652,7 +652,7 @@ Subscribes to the pixel density changes of the screen.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value **'densityUpdate'** indicates the pixel density changes of the screen.|
-| context  | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
+| context  | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
 | callback | Callback\<[DensityInfo](#densityinfo12)\>        | Yes  | Callback used to return the screen pixel density after the change.                |
 
 **Example**
@@ -701,7 +701,7 @@ Unsubscribes from the pixel density changes of the screen.
 | Name  | Type                                     | Mandatory| Description                                                                                          |
 | -------- | ----------------------------------------- | ---- | ---------------------------------------------------------------------------------------------- |
 | type     | string                                    | Yes  | Event type. The value **'densityUpdate'** indicates the pixel density changes of the screen.                                         |
-| context  | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.                                                            |
+| context  | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.                                                            |
 | callback | Callback\<[DensityInfo](#densityinfo12)\> | No  | Callback to be unregistered. If this parameter is not specified, this API unregisters all callbacks for the **densityUpdate** event under the current UI context.|
 
 ```ts
@@ -754,7 +754,7 @@ Subscribes to the dispatch of drawing instructions in each frame.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event event. The value **'willDraw'** indicates whether drawing is about to occur.|
-| context  | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
+| context  | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
 | callback | Callback\<void\>        | Yes  | Callback used to return the                |
 
 **Example**
@@ -794,7 +794,7 @@ Unsubscribes from the dispatch of drawing instructions in each frame.
 | Name  | Type                                     | Mandatory| Description                                                 |
 | -------- | ----------------------------------------- | ---- | ----------------------------------------------------- |
 | type     | string                                    | Yes  | Event event. The value **'willDraw'** indicates whether drawing is about to occur.|
-| context  | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.                   |
+| context  | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.                   |
 | callback | Callback\<void\>   | No  | Callback to be unregistered.                               |
 
 ```ts
@@ -838,7 +838,7 @@ Subscribes to layout completion status in each frame.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value **'didLayout'** indicates whether the layout has been completed.|
-| context  | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
+| context  | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.|
 | callback | Callback\<void\>        | Yes  | Callback used to return the                |
 
 **Example**
@@ -878,7 +878,7 @@ Unsubscribes from layout completion status in each frame.
 | Name  | Type                                     | Mandatory| Description                                                 |
 | -------- | ----------------------------------------- | ---- | ----------------------------------------------------- |
 | type     | string                                    | Yes  | Event type. The value **'didLayout'** indicates whether the layout has been completed.|
-| context  | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.                   |
+| context  | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | Context information, which is used to specify the scope of the page to be listened for.                   |
 | callback | Callback\<void\>   | No  | Callback to be unregistered.                               |
 
 ```ts
@@ -922,7 +922,7 @@ Subscribes to the page switching event of the **Navigation** component.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component.|
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for.|
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for.|
 | callback | Callback\<[NavDestinationSwitchInfo](#navdestinationswitchinfo12)\>        | Yes  | Callback used to return the information about the page switching event.                |
 
 **Example**
@@ -1048,7 +1048,7 @@ Unsubscribes from the page switching event of the **Navigation** component.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component.|
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for.|
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for.|
 | callback | Callback\<[NavDestinationSwitchInfo](#navdestinationswitchinfo12)\>        | No  | Callback to be unregistered.                |
 
 **Example**
@@ -1070,7 +1070,7 @@ Subscribes to the page switching event of the **Navigation** component.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component.|
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for.|
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for.|
 | observerOptions | [NavDestinationSwitchObserverOptions](#navdestinationswitchobserveroptions12)        | Yes  | Observer options.  |
 | callback | Callback\<[NavDestinationSwitchInfo](#navdestinationswitchinfo12)\>        | Yes  | Callback used to return the information about the page switching event.                |
 
@@ -1202,7 +1202,7 @@ Unsubscribes from the page switching event of the **Navigation** component.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The value **'navDestinationSwitch'** indicates the page switching event of the **Navigation** component.|
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./js-apis-arkui-UIContext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for.|
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) \| [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | Context information, which is used to specify the scope of the page switching event to be listened for.|
 | observerOptions | [NavDestinationSwitchObserverOptions](#navdestinationswitchobserveroptions12)        | Yes  | Observer options.  |
 | callback | Callback\<[NavDestinationSwitchInfo](#navdestinationswitchinfo12)\>        | No  | Callback to be unregistered.                |
 

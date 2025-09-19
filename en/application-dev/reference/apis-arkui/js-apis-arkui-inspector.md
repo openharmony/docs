@@ -5,8 +5,6 @@ The **Inspector** module provides APIs for registering the component layout and 
 > **NOTE**
 >
 > The APIs of this module are supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
->
-> Since API version 10, you can use the [getUIInspector](./js-apis-arkui-UIContext.md#getuiinspector) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [UIInspector](./js-apis-arkui-UIContext.md#uiinspector) object associated with the current UI context.
 
 ## Modules to Import
 
@@ -115,10 +113,6 @@ Unregisters the listener for completion of component drawing.
 | callback | () => void   | No  | Callback to unregister. If this parameter is not specified, all callbacks of the specified type are unregistered. The callback must be the same object as the one registered with the **on** API to successfully unregister.|
 
 **Example**
-
-> **NOTE**
->
-> You are advised to use the [getUIInspector](./js-apis-arkui-UIContext.md#getuiinspector) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [UIInspector](./js-apis-arkui-UIContext.md#uiinspector) object associated with the current UI context.
 
   ```ts
   import { inspector } from '@kit.ArkUI'

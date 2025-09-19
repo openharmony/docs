@@ -1091,7 +1091,7 @@ In the preceding code, the ChildList type is decorated by @Observed when defined
 
 ### Minimizing the Use of LazyForEach in UI Updating
 
-[LazyForEach](arkts-rendering-control-lazyforeach.md) often works hand in hand with state variables.
+[LazyForEach](../rendering-control/arkts-rendering-control-lazyforeach.md) often works hand in hand with state variables.
 
 ```typescript
 class BasicDataSource implements IDataSource {
@@ -1378,7 +1378,7 @@ This is thanks to introduction of custom components, where state variables are d
 
 ### Using Custom Components to Match Object Arrays in ForEach
 
-Frequently seen in applications, the combination of object arrays and [ForEach](arkts-rendering-control-foreach.md) requires special attentions. Inappropriate use may cause UI re-render issues.
+Frequently seen in applications, the combination of object arrays and [ForEach](../rendering-control/arkts-rendering-control-foreach.md) requires special attentions. Inappropriate use may cause UI re-render issues.
 
 ```typescript
 @Observed

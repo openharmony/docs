@@ -6,11 +6,11 @@ With **animateTo**, you can build explicit animations for state changes caused b
 >
 >  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](../js-apis-arkui-UIContext.md#uicontext).
+>  The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](../arkts-apis-uicontext-uicontext.md).
 >
 >**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 >
->  Since API version 10, you can use the [animateTo](../js-apis-arkui-UIContext.md#animateto) API in [UIContext](../js-apis-arkui-UIContext.md#uicontext), which ensures that your animation is executed in the intended UI instance.
+>  Since API version 10, you can use the [animateTo](../arkts-apis-uicontext-uicontext.md#animateto) API in [UIContext](../arkts-apis-uicontext-uicontext.md), which ensures that your animation is executed in the intended UI instance.
 > This API can be used in atomic services since API version 11.
 
 ## APIs

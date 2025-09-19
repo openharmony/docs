@@ -222,7 +222,7 @@ dragEnd(e) {
 ```
 ### setDragImage<sup>9+</sup>
 
-setDragImage(pixelmap: PixelMap, offsetX: number,offsetY: number): boolean
+setDragImage(pixelMap: PixelMap, offsetX: number,offsetY: number): boolean
 
 Sets a custom drag image.
 
@@ -230,7 +230,7 @@ Sets a custom drag image.
 
 | Name     | Type    | Mandatory  | Description                                      |
 | -------- | -------- | ---- | ---------------------------------------- |
-| pixelmap | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | Yes   | Image transferred from the frontend.|
+| pixelMap | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | Yes   | Image transferred from the frontend.|
 | offsetX  | number   | Yes   | Horizontal offset relative to the image.                            |
 | offsetY  | number   | Yes   | Vertical offset relative to the image.                           |
 

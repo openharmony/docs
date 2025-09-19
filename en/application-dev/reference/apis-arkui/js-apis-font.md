@@ -6,7 +6,7 @@ The **font** module provides APIs for registering custom fonts.
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is ambiguous](../../ui/arkts-global-interface.md#ambiguous-ui-context). For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is ambiguous](../../ui/arkts-global-interface.md#ambiguous-ui-context). For details, see [UIContext](arkts-apis-uicontext-uicontext.md).
 
 ## Modules to Import
 
@@ -22,9 +22,9 @@ Registers a custom font with the font manager.
 
 > **NOTE**
 >
-> This API is deprecated since API version 18. You are advised to use [registerFont](js-apis-arkui-UIContext.md#registerfont) instead on the obtained [Font](js-apis-arkui-UIContext.md#font) object.
+> This API is deprecated since API version 18. You are advised to use [registerFont](arkts-apis-uicontext-font.md#registerfont) instead on the obtained [Font](arkts-apis-uicontext-font.md) object.
 >
-> Since API version 10, you can use the [getFont](js-apis-arkui-UIContext.md#getfont) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](js-apis-arkui-UIContext.md#font) object associated with the current UI context.
+> Since API version 10, you can use the [getFont](arkts-apis-uicontext-uicontext.md#getfont) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Font](arkts-apis-uicontext-font.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -53,7 +53,7 @@ Provides the information about the custom font to register.
 
 > **NOTE**
 >
-> Directly using **font** can lead to issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context by using the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+> Directly using **font** can lead to issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the [Font](arkts-apis-uicontext-font.md) object associated with the current UI context by using the [getFont](./arkts-apis-uicontext-uicontext.md#getfont) API in [UIContext](arkts-apis-uicontext-uicontext.md).
 
 ```ts
 // xxx.ets
@@ -115,7 +115,7 @@ struct FontExample {
 ```
 > **NOTE**
 >
-> To use custom fonts globally in an application, register the fonts through the [windowStage.loadContent](arkts-apis-window-Window.md#loadcontent9) API in the [onWindowStageCreate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) lifecycle callback in the **EntryAbility.ets** file.
+> To use custom fonts globally in an application, register the fonts through the [windowStage.loadContent](arkts-apis-window-Window.md#loadcontent9) API in the [onWindowStageCreate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) lifecycle callback in the **EntryAbility.ets** file.
 >
 > In HSP projects, avoid using relative paths to register custom fonts. For details, see [Accessing Resources in an HSP Through $r](../../quick-start/in-app-hsp.md).
 
@@ -127,9 +127,9 @@ Obtains the system font list.
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [getSystemFontList](js-apis-arkui-UIContext.md#getsystemfontlist) instead on the obtained [Font](js-apis-arkui-UIContext.md#font) object.
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [getSystemFontList](arkts-apis-uicontext-font.md#getsystemfontlist) instead on the obtained [Font](arkts-apis-uicontext-font.md) object.
 >
-> Since API version 10, you can use the [getFont](js-apis-arkui-UIContext.md#getfont) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](js-apis-arkui-UIContext.md#font) object associated with the current UI context.
+> Since API version 10, you can use the [getFont](arkts-apis-uicontext-uicontext.md#getfont) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Font](arkts-apis-uicontext-font.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -149,7 +149,7 @@ Obtains the system font list.
 
 > **NOTE**
 >
-> Directly using **font** can lead to issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context by using the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+> Directly using **font** can lead to issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the [Font](arkts-apis-uicontext-font.md) object associated with the current UI context by using the [getFont](./arkts-apis-uicontext-uicontext.md#getfont) API in [UIContext](arkts-apis-uicontext-uicontext.md).
 
 <!--deprecated_code_no_check-->
 
@@ -183,9 +183,9 @@ Obtains information about a system font based on the font name.
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [getFontByName](js-apis-arkui-UIContext.md#getfontbyname) instead on the obtained [Font](js-apis-arkui-UIContext.md#font) object.
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [getFontByName](arkts-apis-uicontext-font.md#getfontbyname) instead on the obtained [Font](arkts-apis-uicontext-font.md) object.
 >
-> Since API version 10, you can use the [getFont](js-apis-arkui-UIContext.md#getfont) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](js-apis-arkui-UIContext.md#font) object associated with the current UI context.
+> Since API version 10, you can use the [getFont](arkts-apis-uicontext-uicontext.md#getfont) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Font](arkts-apis-uicontext-font.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -228,7 +228,7 @@ Provides the information about the system font.
 
 > **NOTE**
 >
-> Directly using **font** can lead to issue of ambiguous UI context. To avoid this, obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context by using the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+> Directly using **font** can lead to issue of ambiguous UI context. To avoid this, obtain the [Font](arkts-apis-uicontext-font.md) object associated with the current UI context by using the [getFont](./arkts-apis-uicontext-uicontext.md#getfont) API in [UIContext](arkts-apis-uicontext-uicontext.md).
 
 ```ts
 // xxx.ets
