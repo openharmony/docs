@@ -296,7 +296,7 @@ showCounter(value: boolean, options?: InputCounterOptions)
 
 style(value: TextContentStyle)
 
-设置文本框多态样式，内联输入风格只支持TextAreaType.Normal类型。
+设置文本框多态样式，内联输入风格只支持TextAreaType.NORMAL类型。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -452,7 +452,7 @@ type(value: TextAreaType)
 
 | 参数名 | 类型                                    | 必填 | 说明                                         |
 | ------ | --------------------------------------- | ---- | -------------------------------------------- |
-| value  | [TextAreaType](#textareatype11枚举说明) | 是   | 输入框类型。<br/>默认值：TextAreaType.Normal |
+| value  | [TextAreaType](#textareatype11枚举说明) | 是   | 输入框类型。<br/>默认值：TextAreaType.NORMAL |
 
 ### enterKeyType<sup>11+</sup>
 
@@ -1354,13 +1354,13 @@ stopEditing(): void
 
 | 名称   | 值  | 说明 |
 | ------ | ----- | ------ |
-| NORMAL   | 0 | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NORMAL   | 0 | 基本输入模式，无特殊限制。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NUMBER   | 2 | 纯数字输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | PHONE_NUMBER | 3 | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | EMAIL    | 5 | 邮箱地址输入模式。<br/>支持数字，字母，下划线、小数点、!、#、$、%、&、'、*、+、-、/、=、?、^、`、\{、\|、\}、~，以及@字符（只能存在一个@字符）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NUMBER_DECIMAL<sup>12+</sup>  | 12 | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| URL<sup>12+</sup>  | 13 | 带URL的输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| ONE_TIME_CODE<sup>20+</sup>  | 14 | 验证码输入模式。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| URL<sup>12+</sup>  | 13 | 带URL的输入模式，无特殊限制。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| ONE_TIME_CODE<sup>20+</sup>  | 14 | 验证码输入模式，无特殊限制。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## TextAreaSubmitCallback<sup>14+</sup>
 
