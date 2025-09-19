@@ -10100,6 +10100,8 @@ async function example(context: Context) {
 | ANALYSIS\_BONE\_POSE<sup>12+</sup>        | 12 | 人体骨骼点信息分析类别。**系统接口**：此接口为系统接口。    |
 | ANALYSIS\_VIDEO\_LABEL<sup>12+</sup>        | 13 | 视频标签。**系统接口**：此接口为系统接口。    |
 | ANALYSIS\_HIGHLIGHT<sup>12+</sup>        | 14 | 时刻标签。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_MULTI\_CROP<sup>12+</sup>        | 15 | 2D运镜检测框标签。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_SEARCH\_INDEX<sup>18+</sup>        | 16 | 前台索引分析。**系统接口**：此接口为系统接口。    |
 
 ## HighlightAlbumInfoType<sup>12+</sup>
 
