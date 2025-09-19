@@ -848,6 +848,7 @@ onRefreshAccessedHistory(callback: Callback\<OnRefreshAccessedHistoryEvent\>)
           .onRefreshAccessedHistory((event) => {
             if (event) {
               console.info('url:' + event.url + ' isReload:' + event.isRefreshed);
+              console.info('isMainFrame:' + event.isMainFrame);
             }
           })
       }
