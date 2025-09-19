@@ -17,6 +17,7 @@
 >
 > - 本模块接口从API version 21开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块接口仅可在Stage模型下使用。
+> - 本模块设置了不允许调用的API名单，调用名单中的API将导致功能异常，详情请参见[附录](#附录)。
 
 ## 导入模块
 
@@ -40,7 +41,7 @@ import { FaultLogExtensionAbility } from '@kit.PerformanceAnalysisKit';
 
 | 名称 | 类型| 只读 | 可选 | 说明 |
 | --- | --- | --- | --- | --- |
-| context | [FaultLogExtensionContext](js-apis-hiviewdfx-FaultLogExtensionContext.md)。| 否 | 否 | FaultLogExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。|
+| context | [FaultLogExtensionContext](js-apis-hiviewdfx-FaultLogExtensionContext.md) | 否 | 否 | FaultLogExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。|
 
 ### onConnect
 
@@ -80,7 +81,7 @@ export default class MyFaultLogExtension extends FaultLogExtensionAbility {
 
 onFaultReportReady(): void
 
-FaultLogExtensionAbility回调。系统服务通知FaultLogExtensionAbility可以进行故障处理时,回调此接口,可以在该方法中订阅故障事件进行处理。
+FaultLogExtensionAbility回调。系统服务通知FaultLogExtensionAbility可以进行故障处理时，回调此接口，可以在该方法中订阅故障事件进行处理。
 
 **系统能力**：SystemCapability.HiviewDFX.Hiview.FaultLogger
 
@@ -105,3 +106,35 @@ FaultLogExtensionAbility回调。系统服务通知FaultLogExtensionAbility可�
       }
   }
   ```
+
+## 附录
+本模块不允许调用的API名单如下。
+| Kit名称 | 模块名称 |
+| ------- | ------- |
+| AVSessionKit | [@ohos.multimedia.avsession (媒体会话管理)](../apis-avsession-kit/arkts-apis-avsession.md) |
+| AbilityKit | [@ohos.UIAbilityContext](../apis-ability-kit/js-apis-inner-application-EmbeddableUIAbilityContext.md) |
+| ArkUI | [@ohos.multimedia.cameraLibrary (媒体库模块)](../apis-arkui/js-apis-mediaquery.md) |
+| ArkUI | [@ohos.window (窗口)](../apis-arkui/arkts-apis-window.md) |
+| AudioKit | [@ohos.multimedia.audio (音频管理)](../apis-audio-kit/arkts-apis-audio.md) |
+| BackgroundTasksKit | [@ohos.backgroundTaskManager (后台任务管理)](../apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md) |
+| BackgroundTasksKit | [@ohos.reminderAgent (后台代理提醒)](..//apis-backgroundtasks-kit/js-apis-reminderAgent.md) |
+| BackgroundTasksKit | [@ohos.reminderAgentManager (后台代理提醒)](../apis-backgroundtasks-kit/js-apis-reminderAgentManager.md) |
+| BackgroundTasksKit | [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md) |
+| BasicServicesKit | [@ohos.power (系统电源管理)](../apis-basic-services-kit/js-apis-power.md) |
+| BasicServicesKit | [@ohos.wallpaper (壁纸)](../apis-basic-services-kit/js-apis-wallpaper.md) |
+| CameraKit | [@ohos.multimedia.camera (相机管理)](../apis-camera-kit/arkts-apis-camera.md) |
+| CameraKit | [@ohos.multimedia.cameraPicker (相机选择器)](../apis-camera-kit/js-apis-cameraPicker.md) |
+| ConnectivityKit | [@ohos.wifiManager (WLAN)](../apis-connectivity-kit/js-apis-wifiManager.md) |
+| ConnectivityKit | [@ohos.wifiManagerExt (WLAN扩展接口)](../apis-connectivity-kit/js-apis-wifiManagerExt.md) |
+| ConnectivityKit | [@ohos.wifiext (WLAN扩展接口)](../apis-connectivity-kit/js-apis-wifiext.md) |
+| IMEKit | [@ohos.inputMethod (输入法框架)](../apis-ime-kit/js-apis-inputmethod.md) |
+| MediaLibraryKit | [@ohos.multimedia.movingphotoview (动态照片)](../apis-media-library-kit/ohos-multimedia-movingphotoview.md) |
+| NotificationKit | [@ohos.notification (Notification模块)](../apis-notification-kit/js-apis-notification.md) |
+| NotificationKit | [@ohos.notificationManager (NotificationManager模块)](../apis-notification-kit/js-apis-notificationManager.md) |
+| <!--DelRow> NotificationKit | [@ohos.notificationSubscribe (NotificationSubscribe模块)](../apis-notification-kit/js-apis-notificationSubscribe-sys.md) |
+| SensorServiceKit | [@ohos.vibrator (振动)](../apis-sensor-service-kit/js-apis-vibrator.md) |
+| TelephonyKit | [@ohos.telephony.call (拨打电话)](../apis-telephony-kit/js-apis-call.md) |
+| TelephonyKit | [@ohos.telephony.sim (SIM卡管理)](../apis-telephony-kit/js-apis-sim.md) |
+| TelephonyKit | [@ohos.telephony.sms (短信服务)](../apis-telephony-kit/js-apis-sms.md) |
+| <!--DelRow> UserAuthenticationKit | [@ohos.userIAM.faceAuth (人脸认证)](../apis-user-authentication-kit/js-apis-useriam-faceauth-sys.md) |
+| UserAuthenticationKit | [@ohos.userIAM.userAuth (用户认证)](../apis-user-authentication-kit/js-apis-useriam-userauth.md) |
