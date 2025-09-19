@@ -1597,7 +1597,7 @@ struct TextBuilder {
 该示例演示了在自定义组件中截获鼠标事件并进行坐标转换的完整流程。组件通过[onMouse](./arkui-ts/ts-universal-mouse-key.md#onmouse)回调读取本地x/y，再结合FrameNode.[getPositionToParent](js-apis-arkui-frameNode.md#getpositiontoparent12)()得到的偏移量，调用vp2px将相对坐标转换为像素坐标，更新[MouseEvent](arkui-ts/ts-universal-mouse-key.md#mouseevent对象说明)的windowX/windowY、displayX/displayY。最后通过rootNode.[postInputEvent](#postinputevent20)(event)将转换后的鼠标事件分发给子节点进行处理。
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext, InputEventType } from '@kit.ArkUI';
+import { NodeController, BuilderNode, FrameNode, PromptAction, UIContext, InputEventType } from '@kit.ArkUI';
 
 // 自定义参数传递的类
 class Params {
@@ -1616,10 +1616,20 @@ function ButtonBuilder(params: Params) {
       .width("45%")
       .height("30%")
       .offset({ x: 100, y: 100 })
-      .onMouse(() => {
+      .onMouse((event) => {
+        let promptAction: PromptAction = params.uiContext!.getPromptAction();
+        promptAction.showToast({
+          message: 'onMouse',
+          duration: 3000
+        });
         console.info('onMouse')
       })
-      .onTouch(() => {
+      .onTouch((event) => {
+        let promptAction: PromptAction = params.uiContext!.getPromptAction();
+        promptAction.showToast({
+          message: 'onTouch',
+          duration: 3000
+        });
         console.info('onTouch')
       })
   }
