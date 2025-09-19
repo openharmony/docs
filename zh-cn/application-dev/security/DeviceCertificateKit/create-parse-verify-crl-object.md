@@ -177,21 +177,21 @@ function crlSample(): void {
         try {
           // 检查证书是否被吊销。
           revokedFlag = x509Crl.isRevoked(cert);
-          console.log(`revokedFlag is: ${revokedFlag}`);
+          console.info(`revokedFlag is: ${revokedFlag}`);
           if (!revokedFlag) {
-              console.log('the given cert is not revoked.');
+              console.info('the given cert is not revoked.');
               return;
           }
           // 根据序列号来获取被吊销的证书。
           try {
             let crlEntry = x509Crl.getRevokedCert(serial);
-            console.log('get getRevokedCert success');
+            console.info('get getRevokedCert success');
             let serialNumber = crlEntry.getSerialNumber();
-            console.log(`crlEntry serialNumber is: ${serialNumber}`);
+            console.info(`crlEntry serialNumber is: ${serialNumber}`);
 
             // 获取被吊销证书的吊销日期。
             let date = crlEntry.getRevocationDate();
-            console.log(`revocation date is: ${date}`);
+            console.info(`revocation date is: ${date}`);
           } catch (error) {
             let e: BusinessError = error as BusinessError;
             console.error(`getRevokedCert failed, errCode: ${e.code}, errMsg: ${e.message}`);
