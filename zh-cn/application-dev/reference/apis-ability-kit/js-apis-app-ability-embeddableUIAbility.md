@@ -1,6 +1,17 @@
-# @ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility)
+# @ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility组件)
 
-EmbeddableUIAbility是为原子化服务提供可以嵌入式启动的UIAbility，继承自[UIAbility](js-apis-app-ability-uiAbility.md)，同时具备跳转启动和嵌入式启动两种启动方式。各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+EmbeddableUIAbility组件是为原子化服务提供可嵌入式的UIAbility组件，继承自[UIAbility](js-apis-app-ability-uiAbility.md)。
+
+开发者通过实现EmbeddableUIAbility，为其他应用提供跳出式启动和嵌入式启动原子化服务方式。
+
+各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
 
 > **说明：**
 >
@@ -22,4 +33,4 @@ import { EmbeddableUIAbility } from '@kit.AbilityKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [EmbeddableUIAbilityContext](js-apis-inner-application-EmbeddableUIAbilityContext.md) | 否 | 否 | 上下文。 |
+| context | [EmbeddableUIAbilityContext](js-apis-inner-application-EmbeddableUIAbilityContext.md) | 否 | 否 | EmbeddableUIAbility组件的上下文。 |
