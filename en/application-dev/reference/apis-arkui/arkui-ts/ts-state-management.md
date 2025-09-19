@@ -916,9 +916,9 @@ Obtains the [LocalStorage](../../../ui/state-management/arkts-localstorage.md) i
 
 > **NOTE**
 > 
-> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [getSharedLocalStorage](../js-apis-arkui-UIContext.md#getsharedlocalstorage12) in [UIContext](../js-apis-arkui-UIContext.md#uicontext) instead.
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [getSharedLocalStorage](../arkts-apis-uicontext-uicontext.md#getsharedlocalstorage12) in [UIContext](../arkts-apis-uicontext-uicontext.md) instead.
 >
-> The [getSharedLocalStorage](../js-apis-arkui-UIContext.md#getsharedlocalstorage12) API in [UIContext](../js-apis-arkui-UIContext.md#uicontext) is supported since API version 12.
+> The [getSharedLocalStorage](../arkts-apis-uicontext-uicontext.md#getsharedlocalstorage12) API in [UIContext](../arkts-apis-uicontext-uicontext.md) is supported since API version 12.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 10.
 
@@ -1435,7 +1435,7 @@ Obtains the [LocalStorage](../../../ui/state-management/arkts-localstorage.md) i
 
 > **NOTE**
 > 
-> This API is deprecated since API version 10. You are advised to use [getSharedLocalStorage](../js-apis-arkui-UIContext.md#getsharedlocalstorage12) in [UIContext](../js-apis-arkui-UIContext.md#uicontext) instead.
+> This API is deprecated since API version 10. You are advised to use [getSharedLocalStorage](../arkts-apis-uicontext-uicontext.md#getsharedlocalstorage12) in [UIContext](../arkts-apis-uicontext-uicontext.md) instead.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 

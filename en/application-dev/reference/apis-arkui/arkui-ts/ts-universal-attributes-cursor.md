@@ -43,7 +43,7 @@ This example demonstrates how to change the mouse cursor style using **setCursor
 
 > **NOTE**
 > 
-> Directly using **cursorControl** can lead to [ambiguous instance issues](../../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using [getUIContext](../js-apis-arkui-UIContext.md#uicontext), and then obtain the associated **cursorControl** object using [getCursorController](../js-apis-arkui-UIContext.md#getcursorcontroller12).
+> Directly using **cursorControl** can lead to [ambiguous instance issues](../../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using **getUIContext()**, and then obtain the associated **cursorControl** object using [getCursorController](../arkts-apis-uicontext-uicontext.md#getcursorcontroller12).
 
 ```ts
 // xxx.ets

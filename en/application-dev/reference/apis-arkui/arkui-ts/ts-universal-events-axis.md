@@ -42,7 +42,7 @@ Defines an axis event object that inherits from [BaseEvent](ts-gesture-customize
 
 | Name           | Type | Read-Only|Optional                             | Description                                                   |
 | ------------------- | -----------------------|------|----- | -------------------------------------------------------- |
-| action              | [AxisAction](ts-appendix-enums.md#axisaction18)           | Yes  | No  | Action type of the axis event.                  |
+| action              | [AxisAction](ts-appendix-enums.md#axisaction17)           | Yes  | No  | Action type of the axis event.                  |
 | x                   | number                 | Yes  | No  | X coordinate of the cursor relative to the left edge of the element.<br>Unit: vp |
 | y                   | number                 | Yes  | No  | Y coordinate of the cursor relative to the top edge of the element.<br>Unit: vp |
 | windowX             | number                 | Yes  | No  | X coordinate of the cursor relative to the upper left corner of the current window.<br>Unit: vp|

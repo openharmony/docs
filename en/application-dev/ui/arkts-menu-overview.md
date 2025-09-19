@@ -12,5 +12,5 @@ A menu is a pop-up window that allows users to perform specific actions. It typi
 ## Constraints
 
 * Menus can be displayed only after the page is fully built. Setting the [show](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11) property to **true** during page construction may result in issues with the menu's position and shape.
-* When using **openMenu**, you need to provide valid [TargetInfo](../reference/apis-arkui/js-apis-arkui-UIContext.md#targetinfo18). Otherwise, the menu won't display correctly.
-* For details about other specifications, see [Menu Control](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md) and [openMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#openmenu18).
+* When using **openMenu**, you need to provide valid [TargetInfo](../reference/apis-arkui/arkts-apis-uicontext-i.md#targetinfo18). Otherwise, the menu won't display correctly.
+* For details about other specifications, see [Menu Control](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md) and [openMenu](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#openmenu18).

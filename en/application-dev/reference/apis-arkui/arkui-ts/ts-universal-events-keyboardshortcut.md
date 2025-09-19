@@ -36,7 +36,7 @@ Sets a keyboard shortcut for the component.
 
 ## Precautions for Using Keyboard Shortcuts
 
-Keyboard shortcuts, as system keys, take precedence over the common key event **OnKeyEvent**. For details about the key event triggering logic, see [Key Event Data Flow](../../../ui/arkts-common-events-device-input-event.md#key-event-data-flow).
+Keyboard shortcuts, as system keys, take precedence over the common key event **OnKeyEvent**.
 
 | Scenario                                      | Processing Logic                           | Example                                      |
 | ---------------------------------------- | ---------------------------------- | ---------------------------------------- |
@@ -68,7 +68,7 @@ The following key combinations cannot function as keyboard shortcuts:
 
 The following table lists the predefined key events.
 
-The predefined key events and custom key events have priorities. Events with higher priorities intercept those with lower priorities. For details about the response priorities, see [Key Event Data Flow](../../../ui/arkts-common-events-device-input-event.md#key-event-data-flow).
+The predefined key events and custom key events have priorities. Events with higher priorities intercept those with lower priorities.
 
 | Keyboard Shortcut| Focused Component| Usage| Event Handling Category|
 | ----- | ---- | ---- | ---- |

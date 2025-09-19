@@ -6,7 +6,7 @@
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-For details about the development, see [ForEach: Rendering Repeated Content](../../../ui/state-management/arkts-rendering-control-foreach.md).
+For details about the development, see [ForEach: Rendering Repeated Content](../../../ui/rendering-control/arkts-rendering-control-foreach.md).
 
 ## APIs
 

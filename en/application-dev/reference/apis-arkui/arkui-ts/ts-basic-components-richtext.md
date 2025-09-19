@@ -16,9 +16,9 @@ The **RichText** component parses and displays HTML text.
 
 - Inapplicable scenarios:
 
-  The **RichText** component is not suitable for scenarios where there is a need for extensive customization of the display effect of the HTML string. For example, the **RichText** component does not allow for changing the background color, font color, font size, or content by setting attributes and events. Under such scenarios, the [Web](../../apis-arkweb/ts-basic-components-web.md) component is recommended.
+  The **RichText** component is not suitable for scenarios where there is a need for extensive customization of the display effect of the HTML string. For example, the **RichText** component does not allow for changing the background color, font color, font size, or content by setting attributes and events. Under such scenarios, the [Web](../../apis-arkweb/arkts-basic-components-web.md) component is recommended.
 
-  The **RichText** component can be memory-intensive. If it is reused in scenarios such as lists where multiple instances are created, slow scrolling or rendering may result. Under such scenarios, you may want to use the [RichEditor](../arkui-ts/ts-basic-components-richeditor.md#richeditor) component.
+  The **RichText** component can be memory-intensive. If it is reused in scenarios such as lists where multiple instances are created, slow scrolling or rendering may result. Under such scenarios, you may want to use the [RichEditor](../arkui-ts/ts-basic-components-richeditor.md) component.
 
 >  **NOTE**
 >

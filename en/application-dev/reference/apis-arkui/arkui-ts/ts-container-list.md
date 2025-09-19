@@ -9,7 +9,7 @@ The **List** component provides a list container that presents a series of list 
 
 ## Child Components
 
-Only the [ListItem](ts-container-listitem.md) and [ListItemGroup](ts-container-listitemgroup.md) child components are allowed, with support for [if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md), [ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md), [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md), and [Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md) rendering control.
+Only the [ListItem](ts-container-listitem.md) and [ListItemGroup](ts-container-listitemgroup.md) child components are allowed, with support for [if/else](../../../ui/rendering-control/arkts-rendering-control-ifelse.md), [ForEach](../../../ui/rendering-control/arkts-rendering-control-foreach.md), [LazyForEach](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md), and [Repeat](../../../ui/rendering-control/arkts-new-rendering-control-repeat.md) rendering control.
 
 > **NOTE**
 >
@@ -21,7 +21,7 @@ Only the [ListItem](ts-container-listitem.md) and [ListItemGroup](ts-container-l
 >
 > - In the **ForEach**, **LazyForEach**, or **Repeat** statement, the indexes of all expanded subnodes are calculated.
 >
-> - After changes occur in [if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md), [ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md), [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md), or [Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md), the indexes of the child nodes are updated.
+> - After changes occur in [if/else](../../../ui/rendering-control/arkts-rendering-control-ifelse.md), [ForEach](../../../ui/rendering-control/arkts-rendering-control-foreach.md), [LazyForEach](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md), or [Repeat](../../../ui/rendering-control/arkts-new-rendering-control-repeat.md), the indexes of the child nodes are updated.
 >
 > - Each **ListItemGroup** component is taken as a whole and assigned an index, and the indexes of the list items within are not included in the index calculation.
 >
@@ -313,7 +313,7 @@ Sets whether to pin the header to the top or the footer to the bottom in the [li
 
 > **NOTE**
 >
-> Occasionally, after **sticky** is set, floating-point calculation precision may result in small gaps appearing during scrolling. To address this issue, you can apply the [pixelRound](ts-universal-attributes-pixelRound.md#pixelround) attribute to the current component, which rounds down the pixel values and help eliminate the gaps.
+> Occasionally, after **sticky** is set, floating-point calculation precision may result in small gaps appearing during scrolling. To address this issue, you can apply the [pixelRound](ts-universal-attributes-pixelRoundForComponent.md#pixelround) attribute to the current component, which rounds down the pixel values and help eliminate the gaps.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 

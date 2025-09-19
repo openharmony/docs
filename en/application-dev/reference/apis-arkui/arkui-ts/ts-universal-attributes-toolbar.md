@@ -12,7 +12,7 @@ You can configure the toolbar for a component.
 
 toolbar(value: CustomBuilder)
 
-Creates a toolbar bound to the component in the window's title bar section. The toolbar position corresponds to the component's position in the layout. The [CustomBuilder](ts-types.md#custombuilder8) must consist of [ToolBarItem](ts-basic-components-toolbaritem.md#toolbaritem) components to take effect.
+Creates a toolbar bound to the component in the window's title bar section. The toolbar position corresponds to the component's position in the layout. The [CustomBuilder](ts-types.md#custombuilder8) must consist of [ToolBarItem](ts-basic-components-toolbaritem.md) components to take effect.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -31,11 +31,11 @@ Creates a toolbar bound to the component in the window's title bar section. The 
 >
 >  4. The toolbar only works when [NavigationMode](ts-basic-components-navigation.md#navigationmode9) is set to **Split**. It does not work with **Stack** or **Auto** modes.
 >
->  5. The title bar height dynamically adjusts based on the [ToolBarItem](ts-basic-components-toolbaritem.md#toolbaritem) components in the toolbar:
->     * There is a default 4 vp margin between the [ToolBarItem](ts-basic-components-toolbaritem.md#toolbaritem) components and the title bar.
->     * If the tallest [ToolBarItem](ts-basic-components-toolbaritem.md#toolbaritem) component is less than or equal to 48 vp, the title bar height will adjust to 56 vp. This setting is suitable for universal components such as title bars, toolbars, and search bars.
->     * If the tallest [ToolBarItem](ts-basic-components-toolbaritem.md#toolbaritem) component is between 48 vp and 56 vp, the title bar height will adjust to 64 vp. This setting is suitable for toolbars that display both icons and text.
->     * If the tallest [ToolBarItem](ts-basic-components-toolbaritem.md#toolbaritem) component exceeds 56 vp, the title bar height will adjust to 72 vp. If it exceeds 64 vp, the title bar height will remain at 72 vp, and any excess area will be clipped.
+>  5. The title bar height dynamically adjusts based on the [ToolBarItem](ts-basic-components-toolbaritem.md) components in the toolbar:
+>     * There is a default 4 vp margin between the [ToolBarItem](ts-basic-components-toolbaritem.md) components and the title bar.
+>     * If the tallest [ToolBarItem](ts-basic-components-toolbaritem.md) component is less than or equal to 48 vp, the title bar height will adjust to 56 vp. This setting is suitable for universal components such as title bars, toolbars, and search bars.
+>     * If the tallest [ToolBarItem](ts-basic-components-toolbaritem.md) component is between 48 vp and 56 vp, the title bar height will adjust to 64 vp. This setting is suitable for toolbars that display both icons and text.
+>     * If the tallest [ToolBarItem](ts-basic-components-toolbaritem.md) component exceeds 56 vp, the title bar height will adjust to 72 vp. If it exceeds 64 vp, the title bar height will remain at 72 vp, and any excess area will be clipped.
 
 ## Example
 

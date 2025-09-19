@@ -16,7 +16,7 @@ The custom layout of a custom component is used to lay out its child components 
 >
 > Since API version 20, when child components within a custom layout have their [LayoutPolicy](ts-types.md#layoutpolicy15) object's **fixAtIdealSize** property set to **true**, these components will ignore any layout constraints from their parent component. Instead, they will adhere to the size ranges explicitly defined by the developer in the custom layout implementation.
 > 
-> Lazy loading (including [Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md) and [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)) is not supported in custom layouts.
+> Lazy loading (including [Repeat](../../../ui/rendering-control/arkts-new-rendering-control-repeat.md) and [LazyForEach](../../../ui/rendering-control/arkts-rendering-control-lazyforeach.md)) is not supported in custom layouts.
 
 ## onMeasureSize<sup>10+</sup>
 

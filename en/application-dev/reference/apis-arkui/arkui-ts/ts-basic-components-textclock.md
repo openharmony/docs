@@ -276,7 +276,7 @@ Sets whether to display a leading zero for the hour.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| dateTimeOptions  | Optional<[DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptions)> | Yes  | Whether to display leading zeros in the hour. It only supports setting the **hour** parameter. When the parameter value is **{hour: "2-digit"}**, a leading zero is displayed. When the parameter value is **{hour: "numeric"}**, no leading zero is displayed.<br>Default value: **undefined**, indicating that the component decides whether to display a leading zero based on the format settings configured in the application.|
+| dateTimeOptions  | Optional<[DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptionsdeprecated)> | Yes  | Whether to display leading zeros in the hour. It only supports setting the **hour** parameter. When the parameter value is **{hour: "2-digit"}**, a leading zero is displayed. When the parameter value is **{hour: "numeric"}**, no leading zero is displayed.<br>Default value: **undefined**, indicating that the component decides whether to display a leading zero based on the format settings configured in the application.|
 
 ## Events
 
