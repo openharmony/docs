@@ -3031,7 +3031,7 @@ enableFollowSystemFontWeight(follow: boolean)
 
 optimizeParserBudget(optimizeParserBudget: boolean)
 
-设置是否开启分段解析HTML优化。
+设置是否开启分段解析HTML优化。当属性没有显式调用时，默认使用解析时间作为HTML分段解析的分段点。
 
 ArkWeb内核在解析HTML文档结构时采取分段解析策略，旨在避免过多占用主线程资源，并使网页具有渐进式加载能力。ArkWeb内核默认使用解析时间作为分段点，当单次解析时间超过阈值时，会中断解析，随后进行布局和渲染操作。
 
@@ -3045,7 +3045,7 @@ ArkWeb内核在解析HTML文档结构时采取分段解析策略，旨在避免�
 
 | 参数名        | 类型    | 必填   | 说明                   |
 | ---------- | ------- | ---- | ---------------------- |
-| optimizeParserBudget | boolean | 是    | 设置开启分段解析HTML优化。<br>true表示使用解析个数代替解析时间作为HTML分段解析的分段点，并减少每段解析的个数上限。false表示使用解析时间作为HTML分段解析的分段点。<br>默认值：false。 |
+| optimizeParserBudget | boolean | 是    | 设置开启分段解析HTML优化。<br>true表示使用解析个数代替解析时间作为HTML分段解析的分段点，并减少每段解析的个数上限。false表示使用解析时间作为HTML分段解析的分段点。<br>传入undefined或null时为false。 |
 
 
 **示例：**
