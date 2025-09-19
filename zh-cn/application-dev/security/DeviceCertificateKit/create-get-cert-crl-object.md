@@ -93,7 +93,7 @@ async function sample() {
   let collection: cert.CertCRLCollection = {} as cert.CertCRLCollection;
   try {
     collection = cert.createCertCRLCollection([x509Cert], [x509CRL]);
-    console.log('createCertCRLCollection success');
+    console.info('createCertCRLCollection success');
   } catch (err) {
     console.error('createCertCRLCollection failed');
   }
