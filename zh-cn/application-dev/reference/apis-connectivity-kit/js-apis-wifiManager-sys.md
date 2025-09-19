@@ -403,49 +403,6 @@ getSupportedFeatures(): number
 ```
 
 
-## wifiManager.getDeviceMacAddress<sup>15+</sup>
-
-getDeviceMacAddress(): string[]
-
-获取设备的MAC地址。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.GET_WIFI_LOCAL_MAC 和 ohos.permission.GET_WIFI_INFO，仅系统应用可用。
-
-**系统能力：** SystemCapability.Communication.WiFi.STA
-
-**返回值：**
-
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | string[] | MAC地址。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
-
-| **错误码ID** | **错误信息** |
-| -------- | -------- |
-| 201 | Permission denied.                 |
-| 202 | System API is not allowed called by Non-system application. |
-| 801 | Capability not supported.          |
-| 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled.|
-
-**示例：**
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-
-	try {
-		let ret = wifiManager.getDeviceMacAddress();
-		console.info("deviceMacAddress:" + JSON.stringify(ret));
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
-
-```
-
 ## wifiManager.getWifiDetailState<sup>12+</sup>
 
 getWifiDetailState(): WifiDetailState
