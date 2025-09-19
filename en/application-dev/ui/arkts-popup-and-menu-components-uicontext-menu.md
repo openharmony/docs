@@ -26,7 +26,7 @@ To display a menu, call the [openMenu](../reference/apis-arkui/arkts-apis-uicont
    private contentNode: ComponentContent<Object> = new ComponentContent(uiContext, wrapBuilder(buildText), this.message);
    ```
    
-   If your **wrapBuilder** includes other components (such as [Popup](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Popup.md#popup) or [Chip](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md#chip)), the [ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md#componentcontent-1) constructor must include four parameters, and the **options** parameter must be **{ nestingBuilderSupported: true }**.
+   If your **wrapBuilder** includes other components (such as [Popup](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Popup.md) or [Chip](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md)), the [ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md#componentcontent-1) constructor must include four parameters, and the **options** parameter must be **{ nestingBuilderSupported: true }**.
    
    ```ts
    @Builder
