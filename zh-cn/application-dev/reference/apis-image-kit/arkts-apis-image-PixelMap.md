@@ -2058,7 +2058,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
 
 function SetColorSpace(pixelMap:image.PixelMap) {
-  let colorSpaceName = colorSpaceManager.ColorSpace.SRGB; // colorSpaceManager.ColorSpace该对象当前仅支持手机和PC设备。
+  let colorSpaceName = colorSpaceManager.ColorSpace.SRGB; // colorSpaceManager.ColorSpace该对象当前仅支持2in1/PC设备使用。
   let csm: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
     pixelMap.setColorSpace(csm);
@@ -2099,7 +2099,7 @@ import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function ApplyColorSpace(pixelMap:image.PixelMap) {
-  let colorSpaceName = colorSpaceManager.ColorSpace.SRGB; // colorSpaceManager.ColorSpace该对象当前仅支持手机和PC设备。
+  let colorSpaceName = colorSpaceManager.ColorSpace.SRGB; // colorSpaceManager.ColorSpace该对象当前仅支持2in1/PC设备使用。
   let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
     try {
@@ -2158,7 +2158,7 @@ import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function ApplyColorSpace(pixelMap:image.PixelMap) {
-  let colorSpaceName = colorSpaceManager.ColorSpace.SRGB; // colorSpaceManager.ColorSpace该对象当前仅支持手机和PC设备。
+  let colorSpaceName = colorSpaceManager.ColorSpace.SRGB; // colorSpaceManager.ColorSpace该对象当前仅支持2in1/PC设备使用。
   let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
       pixelMap.applyColorSpace(targetColorSpace).then(() => {
