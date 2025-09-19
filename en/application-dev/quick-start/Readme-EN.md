@@ -1,4 +1,11 @@
 # Quick Start<!--application-getting-started-->
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
+
 <!--Del-->
 - Getting Started<!--quick-start-->
   - [Before You Start](start-overview.md)
@@ -30,6 +37,7 @@
     - [Integrated HSP](integrated-hsp.md)
     - [Converting HAR to HSP](har-to-hsp.md)
     - [Converting HSP to HAR](hsp-to-har.md)
+    - [Converting HAP to HAR](hap-to-har.md)
     - [Creating a Static Shortcut of the Application](typical-scenario-configuration.md)
     - [Creating an Application Clone](app-clone.md)
     - [Creating an Application Multi-Instance](multiInstance.md)

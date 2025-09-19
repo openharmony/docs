@@ -26,7 +26,7 @@ An application package can contain either only one entry HAP or one entry HAP pl
 
 - In an App Pack that contains multiple HAPs, each type of device supports zero or one entry HAP and zero, one, or more feature HAPs.
 
-- If an application has multiple HAPs, the settings of the following parameters must be consistent across the configuration files of these HAPs: **bundleName**, **versionCode**, **versionName**, **minCompatibleVersionCode**, **debug**, **minAPIVersion**, **targetAPIVersion**, and **apiReleaseType**. The value of **moduleName** for any HAP of the same device type must be unique. The IDE validates the settings of these parameters when packaging the HAPs into an App Pack.
+- If an application has multiple HAPs, the HAP consistency verification is performed during installation or update. For details, see [Consistency Verification for Application Installation and Update](multi_module_installation_update_consistency_verification.md). When a packing tool is used to package an App Pack, validity verification is performed. For details, see [Packing Tool](../../application-dev/tools/packing-tool.md#app-packing-command).
 
 - If an application has multiple HAPs, the signing certificates of all HAPs and HSPs of this application must be the same. Applications are released to the AppGallery in the form of App Pack after being signed. Before distribution, the AppGallery splits an App Pack into HAPs and resigns them to ensure the consistency of HAP signing certificates. In the debugging phase, ensure that all HAP signing certificates are the same when you install HAP on the device using the CLI or DevEco Studio. Otherwise, the installation may fail. For details about the signing operations, see [Configuring a Debug Signature](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing).
 
@@ -92,7 +92,7 @@ To debug a HAP, use either of the following tools:
       uninstall bundle successfully.
       ```
 
-   After the HAP is installed or updated, you can debug it using the [attach](../tools/aa-tool.md#attach) command.
+   After the HAP is installed or updated, you can debug it using the [attach](../tools/aa-tool.md#attach-command) command.
 
 <!--RP4-->
 <!--RP4End-->
