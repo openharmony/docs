@@ -1,16 +1,23 @@
-# @ohos.app.ability.ShareExtensionAbility (分享详情页扩展能力)
+# @ohos.app.ability.ShareExtensionAbility (支持分享详情页接入的ExtensionAbility组件)
 
-ShareExtensionAbility继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)，为开发者提供分享详情页扩展能力。各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+ShareExtensionAbility继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)，为开发者提供接入分享详情页能力。
+
+开发者通过实现ShareExtensionAbility，为其他应用提供内容分享处理功能。例如，开发者使用ShareExtensionAbility实现文本分享功能。其他应用在用户发起分享时，即可通过系统分享面板选择该应用作为分享方式，系统将调用该应用处理分享内容，并展示对应的分享详情页面。
+
+各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
 
 > **说明：**
 >
 > 本模块首批接口从API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块接口仅可在Stage模型下使用。
-
-## 场景介绍
-
-以分享文本为例。用户选择一段文本，拉起要分享应用，此时被分享拉起的应用会根据分享信息将分享模板拉起，并将数据按分享模板内容显示。
 
 ## 导入模块
 
