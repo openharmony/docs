@@ -72,7 +72,7 @@
   ```
   
 
-   方式一（推荐）：通过repo + ssh下载（需注册公钥，请参考[码云帮助中心](https://docs.gitcode.com/docs/help/home/user_center/security_management/ssh)）。
+   方式一（推荐）：通过repo + ssh下载（需注册公钥，请参考[gitcode帮助中心](https://docs.gitcode.com/docs/help/home/user_center/security_management/ssh)）。
    
   ```
   repo init -u git@gitcode.com:openharmony/manifest.git -b master --no-repo-verify
