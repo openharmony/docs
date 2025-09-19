@@ -66,7 +66,7 @@ HAP、HSP、HAR支持的规格对比如下，其中“√”表示是，“×”
 | 规格| HAP | HAR | HSP |
 | -------- | ---------- |----------- |----------- |
 | 支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md)组件|  √  |  √   |  √   |
-| 支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件  | √ | × | √ |
+| 支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件  | √ | √ | √ |
 | 支持在配置文件中声明[pages](./module-configuration-file.md#pages标签)页面| √  |× |√ |
 | 支持包含资源文件与.so文件 | √  |√ |√|
 | 支持依赖其他HAR文件 | √ |√  |√  |
