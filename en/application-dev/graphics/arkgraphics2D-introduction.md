@@ -12,9 +12,9 @@ ArkGraphics 2D provides APIs for drawing and displaying graphics. With this set 
 
 - High Dynamic Range (HDR) capability. For details, see [@ohos.graphics.hdrCapability (HDR Capability)](../reference/apis-arkgraphics2d/js-apis-hdrCapability.md).
 
-- Self-drawing capabilities, which you can use to customize and draw UI effects, basic shapes, texts, and images. For details, see [@ohos.graphics.drawing](../reference/apis-arkgraphics2d/js-apis-graphics-drawing.md).
+- Self-drawing capabilities, which you can use to customize and draw UI effects, basic shapes, texts, and images. For details, see **@ohos.graphics.drawing**.
 
-- Native capabilities related to graphics drawing and display. For details, see [NativeWindow](../reference/apis-arkgraphics2d/_native_window.md), [NativeBuffer](../reference/apis-arkgraphics2d/_o_h___native_buffer.md), [NativeImage](../reference/apis-arkgraphics2d/_o_h___native_image.md), [NativeVsync](../reference/apis-arkgraphics2d/_native_vsync.md), and [Drawing](../reference/apis-arkgraphics2d/_drawing.md).
+- Native capabilities related to graphics drawing and display. For details, see **NativeWindow**, **NativeBuffer**, **NativeImage**, **NativeVsync**, and **Drawing**.
 
 ## Use Scenarios
 

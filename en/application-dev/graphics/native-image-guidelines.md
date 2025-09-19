@@ -23,7 +23,7 @@ The native image module must be used together with the native window, native buf
 | OH_NativeImage_GetTransformMatrix (OH_NativeImage \*image, float matrix[16]) | Obtains the transformation matrix of the texture image that recently called the **OH_NativeImage_UpdateSurfaceImage** function.|
 | OH_NativeImage_Destroy (OH_NativeImage \*\*image)            | Destroys an **OH_NativeImage** instance created by calling **OH_NativeImage_Create**. After the instance is destroyed, the pointer to it is assigned **NULL**.|
 
-For details about the APIs, see [native_image](../reference/apis-arkgraphics2d/_o_h___native_image.md).
+For details about the APIs, see **native_image**.
 
 ## How to Develop
 
