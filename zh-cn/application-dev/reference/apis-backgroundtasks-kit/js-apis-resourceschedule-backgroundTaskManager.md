@@ -1623,7 +1623,7 @@ isModeSupported(): boolean
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -1663,7 +1663,6 @@ export default class EntryAbility extends UIAbility {
 | MODE_SHARE_POSITION             | 4         | 定位导航。                  |
 | MODE_ALLOW_BLUETOOTH_AWARE      | 5         | 蓝牙相关业务。            |
 | MODE_MULTI_DEVICE_CONNECTION    | 6         | 多设备互联。            |
-| MODE_ALLOW_WIFI_AWARE           | 7         | WLAN相关业务(仅对系统应用开放)。            |
 | MODE_TASK_KEEPING               | 9         | 计算任务（仅对2in1设备，或者申请ACL权限的应用开放）。 |
 | MODE_AV_PLAYBACK_AND_RECORD     | 10        | 音视频播放、录制和通话。              |
 
@@ -1691,6 +1690,5 @@ export default class EntryAbility extends UIAbility {
 | MODE_SHARE_POSITION               | SUBMODE_NORMAL_NOTIFICATION         |
 | MODE_ALLOW_BLUETOOTH_AWARE        | SUBMODE_NORMAL_NOTIFICATION <br/>SUBMODE_CAR_KEY_NORMAL_NOTIFICATION         |
 | MODE_MULTI_DEVICE_CONNECTION      | SUBMODE_NORMAL_NOTIFICATION         |
-| MODE_ALLOW_WIFI_AWARE             | SUBMODE_NORMAL_NOTIFICATION         |
 | MODE_TASK_KEEPING                 | SUBMODE_NORMAL_NOTIFICATION         |
 | MODE_AV_PLAYBACK_AND_RECORD       | SUBMODE_NORMAL_NOTIFICATION  <br/>SUBMODE_AUDIO_PLAYBACK_NORMAL_NOTIFICATION <br/>SUBMODE_AVSESSION_AUDIO_PLAYBACK <br/>SUBMODE_AUDIO_RECORD_NORMAL_NOTIFICATION <br/>SUBMODE_SCREEN_RECORD_NORMAL_NOTIFICATION <br/>SUBMODE_VOICE_CHAT_NORMAL_NOTIFICATION      |
