@@ -129,7 +129,7 @@ ArkTS侧示例代码
 ```ts
 // index.ets
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 let wk = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 // 发送消息到worker线程
@@ -144,7 +144,7 @@ wk.onmessage = (message) => {
 ```ts
 // worker.ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 import testNapi from 'libentry.so';
 
 let parent = worker.workerPort;
