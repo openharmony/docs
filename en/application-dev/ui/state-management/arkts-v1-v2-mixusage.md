@@ -4,7 +4,7 @@
 
 During the evolution of the state management framework, state managements V1 and V2 are launched based on API version 7 and API version 12, respectively. For applications that have used state management V1 and need to be migrated to state management V2, see [Migrating Applications from V1 to V2](./arkts-v1-v2-migration.md).
 
-For large-scale applications, V1 and V2 may be used together during the migration. In versions earlier than API version 18, strict verification is performed in the mixed use scenario, mainly in the transfer of complex objects. For details, see [Mixing Use of Custom Components](./arkts-custom-component-mixed-scenarios.md). To facilitate smooth migration to V2, API version 18 and later versions reduce the restrictions on the mixed use of V1 and V2. In addition, new methods [enableV2Compatibility](../../reference/apis-arkui/js-apis-StateManagement.md#enablev2compatibility18) and [makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18) are provided to help you solve related problems.
+For large-scale applications, V1 and V2 may be used together during the migration. In versions earlier than API version 18, strict verification is performed in the mixed use scenario, mainly in the transfer of complex objects. For details, see [Mixing Use of Custom Components](./arkts-custom-component-mixed-scenarios.md). To facilitate smooth migration to V2, API version 18 and later versions reduce the restrictions on the mixed use of V1 and V2. In addition, new methods [enableV2Compatibility](../../reference/apis-arkui/js-apis-StateManagement.md#enablev2compatibility19) and [makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19) are provided to help you solve related problems.
 
 > **NOTE**
 >
@@ -38,7 +38,7 @@ Since API version 18, only the first rule is still enabled, and the rest rules a
 
 static makeV1Observed\<T extends object\>(source: T): T
 
-The [makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18) API encapsulates an unobservable object into an observable object of state management V1. **makeV1Observed** has the same capability as that of @Observed and its return value can be used to initialize @ObjectLink.
+The [makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19) API encapsulates an unobservable object into an observable object of state management V1. **makeV1Observed** has the same capability as that of @Observed and its return value can be used to initialize @ObjectLink.
 
 >**NOTE**
 >
@@ -51,7 +51,7 @@ The [makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev
 - **makeV1Observed** does not execute recursively. It only wraps the first layer into the state variable of V1.
 
 **Constraints**
-- The [collections](../../reference/apis-arkts/js-apis-arkts-collections.md) type and [\@Sendable](../../arkts-utils/arkts-sendable.md) decorated classes are not supported.
+- The [collections](../../reference/apis-arkts/arkts-apis-arkts-collections.md) type and [\@Sendable](../../arkts-utils/arkts-sendable.md) decorated classes are not supported.
 - Non-object types are not supported.
 - **undefined** and **null** are not supported.
 - The return values of \@ObservedV2 and [makeObserved](../../reference/apis-arkui/js-apis-StateManagement.md#makeobserved), and variables of built-in types (such as Array, Map, Set, and Date) decorated by the decorators of V2 are not supported.
@@ -61,7 +61,7 @@ The [makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev
 
 static enableV2Compatibility\<T extends object\>(source: T): T
 
-[enableV2Compatibility](../../reference/apis-arkui/js-apis-StateManagement.md#enablev2compatibility18) enables the observation capability of V2 for the state variable of V1, that is, the state variable of V1 can be observed in \@ComponentV2.
+[enableV2Compatibility](../../reference/apis-arkui/js-apis-StateManagement.md#enablev2compatibility19) enables the observation capability of V2 for the state variable of V1, that is, the state variable of V1 can be observed in \@ComponentV2.
 
 >**NOTE**
 >
@@ -80,7 +80,7 @@ static enableV2Compatibility\<T extends object\>(source: T): T
 
 ## Mixed Use Paradigm
 
-Based on the [enableV2Compatibility](../../reference/apis-arkui/js-apis-StateManagement.md#enablev2compatibility18) and [makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18) APIs, the mixed use paradigm of V1 and V2 is as follows:
+Based on the [enableV2Compatibility](../../reference/apis-arkui/js-apis-StateManagement.md#enablev2compatibility19) and [makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19) APIs, the mixed use paradigm of V1 and V2 is as follows:
 
 ### V1->V2
 - The state variable of V1 is transferred to \@Param of V2. Call **UIUtils.enableV2Compatibility** to enable the state variable of V1 to be observed in \@ComponentV2. For details, see [Common Scenarios](#v1-v2-1).

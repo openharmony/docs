@@ -35,7 +35,7 @@ promptAction.openCustomDialog({
 
 To display a dialog box on a specific page, use the **levelUniqueId** parameter, which is the node ID on the target page. When this parameter is set, the system automatically queries the navigation page corresponding to the node ID and mounts the dialog box to that page.
 
-In the following example, a **Text** node is used as a reference node on a specific page. The [getFrameNodeById](../reference/apis-arkui/js-apis-arkui-UIContext.md#getframenodebyid12) API obtains the node, and the [getUniqueId](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuniqueid12) API obtains the internal ID of the node, which is then passed as the value of **levelUniqueId**.
+In the following example, a **Text** node is used as a reference node on a specific page. The [getFrameNodeById](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getframenodebyid12) API obtains the node, and the [getUniqueId](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuniqueid12) API obtains the internal ID of the node, which is then passed as the value of **levelUniqueId**.
 
 ```ts
 Text(this.message).id("test_text")

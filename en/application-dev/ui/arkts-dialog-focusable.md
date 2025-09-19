@@ -33,7 +33,7 @@ The [openCustomDialog](arkts-uicontext-custom-dialog.md) and [CustomDialog](arkt
   }
   ```
 
-2. Create a **TextInput** component. In its **onChange** event function, obtain the [PromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#promptaction) object by calling the [getPromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction) API of [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext). Then, use this object to call the [openCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12) API and set the [focusable](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11) parameter to **false** to create the dialog box.
+2. Create a **TextInput** component. In its **onChange** event function, obtain the [PromptAction](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md) object by calling the [getPromptAction](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getpromptaction) API of [UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md). Then, use this object to call the [openCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialog12) API and set the [focusable](../reference/apis-arkui/js-apis-promptAction.md#basedialogoptions11) parameter to **false** to create the dialog box.
 
   ```ts
   TextInput()

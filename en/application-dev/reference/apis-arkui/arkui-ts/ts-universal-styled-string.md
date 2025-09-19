@@ -801,7 +801,7 @@ Describes the image attachment.
 
 | Name          | Type             | Read Only  | Optional  | Description    |
 | ------------ |---------------------| ---- | ---- | ------ |
-| value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  Yes |  No | Image data source of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| value  | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) |  Yes |  No | Image data source of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
 | size  | [SizeOptions](ts-types.md#sizeoptions) |  Yes |  Yes | Image size of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
 | verticalAlign  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) |  Yes |  Yes | Image alignment mode of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
 | objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) |  Yes |  Yes | Image scale type of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -868,7 +868,7 @@ Defines the type for image color filter settings.
 | Type | Description  |
 | ------ | ---------- |
 | [ColorFilter](ts-types.md#colorfilter9) | Color filter settings of the ColorFilter type.|
-| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter) | Color filter settings of the DrawingColorFilter type.|
+| [DrawingColorFilter](../../apis-arkgraphics2d/arkts-apis-graphics-drawing-ColorFilter.md) | Color filter settings of the DrawingColorFilter type.|
 
 ## ImageAttachmentInterface
 
@@ -876,7 +876,7 @@ Defines the type for image color filter settings.
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  Yes | Image data source. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| value | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) |  Yes | Image data source. **Atomic service API**: This API can be used in atomic services since API version 12.|
 | size | [SizeOptions](ts-types.md#sizeoptions) | No  | Image size. **Atomic service API**: This API can be used in atomic services since API version 12.<br>The default value of **size** depends on the value of **objectFit**. For example, if the value of **objectFit** is **Cover**, the image height is the component height minus the top and bottom paddings, and the image width is the component width minus the left and right paddings.|
 | verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | No  | Alignment mode of the image with the text. **Atomic service API**: This API can be used in atomic services since API version 12.<br>Default value: **ImageSpanAlignment.BOTTOM**|
 | objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | No  | Image scale type. **Atomic service API**: This API can be used in atomic services since API version 12.<br>Default value: **ImageFit.Cover**|

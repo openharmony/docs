@@ -70,7 +70,7 @@ Defines the attributes specific to the dialog box and custom click actions for t
 
 | Name| Type| Mandatory| Description|
 | - | - | - | - |
-| uiContext | [UIContext](../js-apis-arkui-UIContext.md#uicontext) | Yes| UI context.|
+| uiContext | [UIContext](../arkts-apis-uicontext-uicontext.md) | Yes| UI context.|
 | bottomOffsetType | [BottomOffset](#bottomoffset) | No| Bottom offset type of the dialog box. Default value: **[BottomOffset](#bottomoffset).OFFSET_FOR_BAR**.|
 | title | [ResourceStr](ts-types.md#resourcestr) | No| Title of the dialog box. The default value is an empty string.|
 | subtitle | [ResourceStr](ts-types.md#resourcestr) | No| Subtitle of the dialog box. The default value is an empty string.|

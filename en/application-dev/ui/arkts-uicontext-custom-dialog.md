@@ -1,6 +1,6 @@
 # Global Custom Dialog Box Independent of UI Components (openCustomDialog) (Recommended)
 
-Due to the restrictions of [CustomDialogController](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontroller), such as lack of support for dynamic creation and refresh, for more complex use cases, you are advised to use the [openCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12) API provided by the **PromptAction** object obtained from **UIContext** to implement a custom dialog box.
+Due to the restrictions of [CustomDialogController](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontroller), such as lack of support for dynamic creation and refresh, for more complex use cases, you are advised to use the [openCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialog12) API provided by the **PromptAction** object obtained from **UIContext** to implement a custom dialog box.
 
 > **NOTE**
 > 
@@ -8,9 +8,9 @@ Due to the restrictions of [CustomDialogController](../reference/apis-arkui/arku
 > - **openCustomDialog** with **ComponentContent**: By encapsulating content using **ComponentContent**, the dialog box can be decoupled from the UI, offering greater flexibility and satisfying needs for encapsulation. This approach provides full customizability of the dialog box style and allows for dynamic updates to dialog box parameters using the **updateCustomDialog** API after the dialog box is opened.
 > - **openCustomDialog** with **builder**: Unlike **ComponentContent**, the builder must be bound to the context and is somewhat coupled with the UI. This approach provides a default dialog box style, suitable for those who want to achieve a look consistent with the system's default dialog box style.
 > 
-> This topic focuses on creating custom dialog boxes using **ComponentContent**. For the usage of the builder-based dialog box, see [openCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12-1).
+> This topic focuses on creating custom dialog boxes using **ComponentContent**. For the usage of the builder-based dialog box, see [openCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialog12-1).
 
-**openCustomDialog** can be configured with [isModal](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12) to create modal and non-modal dialog boxes. When **isModal** is set to **true**, the dialog box is modal. When **isModal** is set to **false**, the dialog box is non-modal.
+**openCustomDialog** can be configured with **isModal** to create modal and non-modal dialog boxes. When **isModal** is set to **true**, the dialog box is modal. When **isModal** is set to **false**, the dialog box is non-modal.
 
 ## Lifecycle
 

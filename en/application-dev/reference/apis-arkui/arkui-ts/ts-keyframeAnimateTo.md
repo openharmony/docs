@@ -1,12 +1,12 @@
 # Keyframe Animation (keyframeAnimateTo)
 
-The [UIContext](../js-apis-arkui-UIContext.md#uicontext) provides the **keyframeAnimateTo** API that allows you to define several keyframes to implement segment-based animations. In an animation that involves width and height changes, as in a property animation, a component's content (such as text and [canvas](ts-components-canvas-canvas.md) content) is changed straight to the final state. To enable the content to change with the width and height during the animation process, use the [renderFit](ts-universal-attributes-renderfit.md#renderfit) attribute.
+The [UIContext](../arkts-apis-uicontext-uicontext.md) provides the **keyframeAnimateTo** API that allows you to define several keyframes to implement segment-based animations. In an animation that involves width and height changes, as in a property animation, a component's content (such as text and [canvas](ts-components-canvas-canvas.md) content) is changed straight to the final state. To enable the content to change with the width and height during the animation process, use the [renderFit](ts-universal-attributes-renderfit.md) attribute.
 
 >  **NOTE**
 >
 >  This feature is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
 >
->  This API is a member function of the [UIContext](../js-apis-arkui-UIContext.md#uicontext) class and needs to be called through a **UIContext** instance.
+>  This API is a member function of the [UIContext](../arkts-apis-uicontext-uicontext.md) class and needs to be called through a **UIContext** instance.
 
 keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState&gt;): void
 

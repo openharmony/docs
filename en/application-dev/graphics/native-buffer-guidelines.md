@@ -20,7 +20,7 @@ Use the native buffer APIs to create an **OH_NativeBuffer** instance, obtain mem
 | OH_NativeBuffer_Unmap (OH_NativeBuffer \*buffer) | Unmaps the ION memory allocated to an **OH_NativeBuffer** instance from the process address space.| 
 | OH_NativeBuffer_GetSeqNum (OH_NativeBuffer \*buffer) | Obtains the sequence number of an **OH_NativeBuffer** instance.| 
 
-For details about the APIs, see [native_buffer](../reference/apis-arkgraphics2d/_o_h___native_buffer.md).
+For details about the APIs, see **native_buffer**.
 
 ## How to Develop
 

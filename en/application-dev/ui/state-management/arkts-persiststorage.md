@@ -25,7 +25,7 @@ The data storage path of PersistentStorage is at the module level. That is, the 
 
 The storage path of PersistentStorage, determined when the first ability of the application is started, is the module to which the ability belongs. If an ability calls PersistentStorage and can be started by different modules, the number of data copies is the same as the number of startup modes of the ability.
 
-PersistentStorage is coupled with AppStorage in terms of functions, and errors may occur when using data in different modules. Therefore, you are advised to use the **globalConnect** API of PersistenceV2 to replace the **persistProp** API of PersistentStorage. For details about how to migrate data from PersistentStorage to PersistenceV2, see [PersistentStorage->PersistenceV2](arkts-v1-v2-migration-application-and-others.md#persistentstorage-persistencev2). For details about PersistenceV2, see [PersistenceV2: Persisting Application State](arkts-new-persistencev2.md).
+PersistentStorage is coupled with AppStorage in terms of functions, and errors may occur when using data in different modules. Therefore, you are advised to use the **globalConnect** API of PersistenceV2 to replace the **persistProp** API of PersistentStorage. For details about PersistenceV2, see [PersistenceV2: Persisting Application State](arkts-new-persistencev2.md).
 
 ## Constraints
 

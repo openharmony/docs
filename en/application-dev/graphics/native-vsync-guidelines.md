@@ -13,7 +13,7 @@ The NativeVSync module is used to obtain virtual synchronization (VSync) signals
 | OH_NativeVSync_FrameCallback (long long timestamp, void \*data) | Sets a callback function. **timestamp** indicates the timestamp, and **data** indicates a pointer to the input parameters of the callback function.| 
 | OH_NativeVSync_RequestFrame (OH_NativeVSync \*nativeVsync, OH_NativeVSync_FrameCallback callback, void \*data) | Requests the next VSync signal. When the signal arrives, a callback function is invoked.| 
 
-For details about the APIs, see [native_vsync](../reference/apis-arkgraphics2d/_native_vsync.md).
+For details about the APIs, see **native_vsync**.
 
 ## How to Develop
 

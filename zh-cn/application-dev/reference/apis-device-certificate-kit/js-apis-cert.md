@@ -618,7 +618,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
   }
 });
 ```
@@ -689,7 +689,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob).then(x509Cert => {
-  console.log('createX509Cert success');
+  console.info('createX509Cert success');
 }).catch((error: BusinessError) => {
   console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
 });
@@ -761,7 +761,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
 
     // 业务需通过上级X509Cert证书对象（或当前证书对象为自签名的证书）的getPublicKey获取PubKey。
     try {
@@ -772,7 +772,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
         if (err) {
           console.error('verify failed, errCode: ' + err.code + ', errMsg: ' + err.message);
         } else {
-          console.log('verify success');
+          console.info('verify success');
         }
       });
     } catch (error) {
@@ -847,13 +847,13 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob).then(x509Cert => {
-  console.log('createX509Cert success');
+  console.info('createX509Cert success');
 
   try {
     // 业务需通过上级X509Cert证书对象（或当前证书对象为自签名的证书）的getPublicKey获取PubKey。
     let pubKey = x509Cert.getPublicKey();
     x509Cert.verify(pubKey).then(result => {
-      console.log('verify success');
+      console.info('verify success');
     }).catch((error: BusinessError) => {
       console.error('verify failed, errCode: ' + error.code + ', errMsg: ' + error.message);
     });
@@ -927,12 +927,12 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     x509Cert.getEncoded((error, data) => {
       if (error) {
         console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
-        console.log('getEncoded success');
+        console.info('getEncoded success');
       }
     });
   }
@@ -999,9 +999,9 @@ let encodingBlob: cert.EncodingBlob = {
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 cert.createX509Cert(encodingBlob).then(x509Cert => {
-  console.log('createX509Cert success');
+  console.info('createX509Cert success');
   x509Cert.getEncoded().then(result => {
-    console.log('getEncoded success');
+    console.info('getEncoded success');
   }).catch((error: BusinessError) => {
     console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   });
@@ -1071,7 +1071,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     try {
       let pubKey = x509Cert.getPublicKey();
     } catch (error) {
@@ -1146,7 +1146,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
 
     let date = '231001000001Z';
     // Verify the certificate validity period.
@@ -1210,7 +1210,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     let version = x509Cert.getVersion();
   }
 });
@@ -1269,7 +1269,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     let serialNumber = x509Cert.getSerialNumber();
   }
 });
@@ -1335,7 +1335,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     try {
       let serialNumber = x509Cert.getCertSerialNumber();
     } catch (err) {
@@ -1412,7 +1412,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     try {
       let issuerName = x509Cert.getIssuerName();
     } catch (err) {
@@ -1504,7 +1504,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     try {
       let issuerName = x509Cert.getIssuerName(cert.EncodingType.ENCODING_UTF8);
       console.info('issuerName output is ' + issuerName);
@@ -1589,7 +1589,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     try {
       let subjectName = x509Cert.getSubjectName();
     } catch (err) {
@@ -1668,7 +1668,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     try {
       let notBefore = x509Cert.getNotBeforeTime();
     } catch (err) {
@@ -1742,7 +1742,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     try {
       let notAfter = x509Cert.getNotAfterTime();
     } catch (err) {
@@ -1816,7 +1816,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     try {
       let signature = x509Cert.getSignature();
     } catch (err) {
@@ -1890,7 +1890,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     try {
       let sigAlgName = x509Cert.getSignatureAlgName();
     } catch (err) {
@@ -1963,7 +1963,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     try {
       let sigAlgOid = x509Cert.getSignatureAlgOid();
     } catch (err) {
@@ -2037,7 +2037,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     try {
       let sigAlgParams = x509Cert.getSignatureAlgParams();
     } catch (err) {
@@ -2109,7 +2109,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     try {
       let keyUsage = x509Cert.getKeyUsage();
     } catch (err) {
@@ -2182,7 +2182,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     try {
       let extKeyUsage = x509Cert.getExtKeyUsage();
     } catch (err) {
@@ -2244,7 +2244,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     let basicConstraints = x509Cert.getBasicConstraints();
   }
 });
@@ -2316,7 +2316,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     try {
       let subjectAltNames = x509Cert.getSubjectAltNames();
     } catch (err) {
@@ -2393,7 +2393,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     try {
       let issuerAltNames = x509Cert.getIssuerAltNames();
     } catch (err) {
@@ -2473,7 +2473,7 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     try {
       let tbs = x509Cert.getItem(cert.CertItemType.CERT_ITEM_TYPE_TBS);
       let pubKey = x509Cert.getItem(cert.CertItemType.CERT_ITEM_TYPE_PUBLIC_KEY);
@@ -2580,7 +2580,7 @@ async function matchX509Cert() {
       publicKeyAlgID: '1.2.840.113549.1.1.1'
     };
     const result = x509Cert.match(param);
-    console.log('call x509Cert match success');
+    console.info('call x509Cert match success');
   } catch (err) {
     console.error('call x509Cert match failed');
   }
@@ -2653,7 +2653,7 @@ async function certGetCRLDistributionPoint() {
   let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
     x509Cert = await cert.createX509Cert(encodingBlob);
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     let point = x509Cert.getCRLDistributionPoint();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -2738,7 +2738,7 @@ async function certGetIssuerX500DistinguishedName() {
   let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
     x509Cert = await cert.createX509Cert(encodingBlob);
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     let name = x509Cert.getIssuerX500DistinguishedName();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -2823,7 +2823,7 @@ async function certGetSubjectX500DistinguishedName() {
   let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
     x509Cert = await cert.createX509Cert(encodingBlob);
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     let name = x509Cert.getSubjectX500DistinguishedName();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -2908,7 +2908,7 @@ async function certToString() {
   let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
     x509Cert = await cert.createX509Cert(encodingBlob);
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     console.info('certToString success: ' + JSON.stringify(x509Cert.toString()));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -2998,7 +2998,7 @@ async function certToString() {
   let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
     x509Cert = await cert.createX509Cert(encodingBlob);
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     console.info('certToString success: ' + JSON.stringify(x509Cert.toString(cert.EncodingType.ENCODING_UTF8)));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -3083,7 +3083,7 @@ async function certHashCode() {
   let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
     x509Cert = await cert.createX509Cert(encodingBlob);
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     console.info('certHashCode success: ' + JSON.stringify(x509Cert.hashCode()));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -3168,7 +3168,7 @@ async function certGetExtensionsObject() {
   let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
     x509Cert = await cert.createX509Cert(encodingBlob);
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
     let object = x509Cert.getExtensionsObject();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -3233,7 +3233,7 @@ cert.createCertExtension(encodingBlob, (error, certExt) => {
   if (error) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createCertExtension success');
+    console.info('createCertExtension success');
   }
 });
 ```
@@ -3297,7 +3297,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createCertExtension(encodingBlob).then(certExt => {
-  console.log('createCertExtension success');
+  console.info('createCertExtension success');
 }).catch((error: BusinessError) => {
   console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
 });
@@ -3362,7 +3362,7 @@ cert.createCertExtension(encodingBlob, (error, certExt) => {
   if (error) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createCertExtension success');
+    console.info('createCertExtension success');
     try {
       let extEncodedBlob = certExt.getEncoded();
     } catch (err) {
@@ -3435,7 +3435,7 @@ cert.createCertExtension(encodingBlob, (error, certExt) => {
   if (error) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createCertExtension success');
+    console.info('createCertExtension success');
     try {
       let oidList = certExt.getOidList(cert.ExtensionOidType.EXTENSION_OID_TYPE_ALL);
     } catch (err) {
@@ -3509,7 +3509,7 @@ cert.createCertExtension(encodingBlob, (error, certExt) => {
   if (error) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createCertExtension success');
+    console.info('createCertExtension success');
     let oid = new Uint8Array([0x32, 0x2e, 0x35, 0x2e, 0x32, 0x39, 0x2e, 0x31, 0x35]);
     let oidBlob: cert.DataBlob = {
       data: oid
@@ -3579,7 +3579,7 @@ cert.createCertExtension(encodingBlob, (error, certExt) => {
   if (error) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createCertExtension success');
+    console.info('createCertExtension success');
     try {
       let res = certExt.checkCA();
     } catch (err) {
@@ -3639,9 +3639,9 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createCertExtension(encodingBlob).then((extensionObj) => {
-  console.log('createCertExtension success!');
+  console.info('createCertExtension success!');
   const result = extensionObj.hasUnsupportedCriticalExtension()
-  console.log('has unsupported critical extension result is:' + result);
+  console.info('has unsupported critical extension result is:' + result);
 }).catch((err: BusinessError) => {
   console.error('createCertExtension failed');
 });
@@ -3710,7 +3710,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Crl success');
+    console.info('createX509Crl success');
   }
 });
 ```
@@ -3781,7 +3781,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob).then(x509Crl => {
-  console.log('createX509Crl success');
+  console.info('createX509Crl success');
 }).catch((error: BusinessError) => {
   console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
 });
@@ -3848,7 +3848,7 @@ cert.createX509CRL(encodingBlob, (error, X509CRL) => {
   if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
   }
 });
 ```
@@ -3917,7 +3917,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob).then(X509CRL => {
-  console.log('createX509CRL success');
+  console.info('createX509CRL success');
 }).catch((error: BusinessError) => {
   console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
 });
@@ -4014,7 +4014,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Crl success');
+    console.info('createX509Crl success');
     // Create an X509Cert instance.
     cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
       if (error) {
@@ -4084,7 +4084,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Crl success');
+    console.info('createX509Crl success');
     let type = x509Crl.getType();
   }
 });
@@ -4153,12 +4153,12 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Crl success');
+    console.info('createX509Crl success');
     x509Crl.getEncoded((error, data) => {
       if (error) {
         console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
-        console.log('getEncoded success');
+        console.info('getEncoded success');
       }
     });
   }
@@ -4226,9 +4226,9 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob).then(x509Crl => {
-  console.log('createX509Crl success');
+  console.info('createX509Crl success');
   x509Crl.getEncoded().then(result => {
-    console.log('getEncoded success');
+    console.info('getEncoded success');
   }).catch((error: BusinessError) => {
     console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   });
@@ -4358,11 +4358,11 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Crl success');
+    console.info('createX509Crl success');
     try {
       // Generate the public key by AsyKeyGenerator.
       let keyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_3');
-      console.log('createAsyKeyGenerator success');
+      console.info('createAsyKeyGenerator success');
       let priEncodingBlob: cryptoFramework.DataBlob = {
         data: priKeyData,
       };
@@ -4373,12 +4373,12 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
         if (e) {
           console.error('convert key failed, message: ' + e.message + 'code: ' + e.code);
         } else {
-          console.log('convert key success');
+          console.info('convert key success');
           x509Crl.verify(keyPair.pubKey, (err, data) => {
             if (err) {
               console.error('verify failed, errCode: ' + err.code + ', errMsg: ' + err.message);
             } else  {
-              console.log('verify success');
+              console.info('verify success');
             }
           });
         }
@@ -4514,12 +4514,12 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob).then(x509Crl => {
-  console.log('createX509Crl success');
+  console.info('createX509Crl success');
 
   try {
     // 生成公钥对象。
     let keyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_3');
-    console.log('createAsyKeyGenerator success');
+    console.info('createAsyKeyGenerator success');
     let priEncodingBlob: cryptoFramework.DataBlob = {
       data: priKeyData,
     };
@@ -4527,9 +4527,9 @@ cert.createX509Crl(encodingBlob).then(x509Crl => {
       data: pubKeyData,
     };
     keyGenerator.convertKey(pubEncodingBlob, priEncodingBlob).then((keyPair) => {
-      console.log('convert key success');
+      console.info('convert key success');
       x509Crl.verify(keyPair.pubKey).then(result => {
-        console.log('verify success');
+        console.info('verify success');
       }).catch((error: BusinessError) => {
         console.error('verify failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       });
@@ -4597,7 +4597,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Crl success');
+    console.info('createX509Crl success');
     let version = x509Crl.getVersion();
   }
 });
@@ -4666,7 +4666,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Crl success');
+    console.info('createX509Crl success');
     try {
       let issuerName = x509Crl.getIssuerName();
     } catch (err) {
@@ -4740,7 +4740,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Crl success');
+    console.info('createX509Crl success');
     try {
       let lastUpdate = x509Crl.getLastUpdate();
     } catch (err) {
@@ -4814,7 +4814,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Crl success');
+    console.info('createX509Crl success');
     try {
       let nextUpdate = x509Crl.getNextUpdate();
     } catch (err) {
@@ -4894,7 +4894,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Crl success');
+    console.info('createX509Crl success');
     let serialNumber = 1000;
     try {
       let entry = x509Crl.getRevokedCert(serialNumber);
@@ -5006,12 +5006,12 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Crl success');
+    console.info('createX509Crl success');
     // 创建X509证书对象。
     cert.createX509Cert(certEncodingBlob).then((x509Cert) => {
       try {
         let entry = x509Crl.getRevokedCertWithCert(x509Cert);
-        console.log('getRevokedCertWithCert success');
+        console.info('getRevokedCertWithCert success');
       } catch (error) {
         let e: BusinessError = error as BusinessError;
         console.error('getRevokedCertWithCert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -5085,12 +5085,12 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Crl success');
+    console.info('createX509Crl success');
     x509Crl.getRevokedCerts((error, array) => {
       if (error) {
         console.error('getRevokedCerts failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
-        console.log('getRevokedCerts success');
+        console.info('getRevokedCerts success');
       }
     });
   }
@@ -5157,9 +5157,9 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob).then(x509Crl => {
-  console.log('createX509Crl success');
+  console.info('createX509Crl success');
   x509Crl.getRevokedCerts().then(array => {
-    console.log('getRevokedCerts success');
+    console.info('getRevokedCerts success');
   }).catch((error: BusinessError) => {
     console.error('getRevokedCerts failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   });
@@ -5231,7 +5231,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Crl success');
+    console.info('createX509Crl success');
     try {
       let tbsInfo = x509Crl.getTbsInfo();
     } catch (error) {
@@ -5305,7 +5305,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Crl success');
+    console.info('createX509Crl success');
     try {
       let signature = x509Crl.getSignature();
     } catch (err) {
@@ -5379,7 +5379,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Crl success');
+    console.info('createX509Crl success');
     try {
       let sigAlgName = x509Crl.getSignatureAlgName();
     } catch (err) {
@@ -5453,7 +5453,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Crl success');
+    console.info('createX509Crl success');
     try {
       let sigAlgOid = x509Crl.getSignatureAlgOid();
     } catch (err) {
@@ -5528,7 +5528,7 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Crl success');
+    console.info('createX509Crl success');
     try {
       let sigAlgParams = x509Crl.getSignatureAlgParams();
     } catch (err) {
@@ -5623,7 +5623,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     // Create an X509Cert instance.
     cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
       if (error) {
@@ -5691,7 +5691,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     let type = x509CRL.getType();
   }
 });
@@ -5758,12 +5758,12 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     x509CRL.getEncoded((error, data) => {
       if (error) {
         console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
-        console.log('getEncoded success');
+        console.info('getEncoded success');
       }
     });
   }
@@ -5829,9 +5829,9 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob).then(x509CRL => {
-  console.log('createX509CRL success');
+  console.info('createX509CRL success');
   x509CRL.getEncoded().then(result => {
-    console.log('getEncoded success');
+    console.info('getEncoded success');
   }).catch((error: BusinessError) => {
     console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   });
@@ -5959,11 +5959,11 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509Crl success');
+    console.info('createX509Crl success');
     try {
       // Generate the public key by AsyKeyGenerator.
       let keyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_3');
-      console.log('createAsyKeyGenerator success');
+      console.info('createAsyKeyGenerator success');
       let priEncodingBlob: cryptoFramework.DataBlob = {
         data: priKeyData,
       };
@@ -5974,12 +5974,12 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
         if (e) {
           console.error('convert key failed, message: ' + e.message + 'code: ' + e.code);
         } else {
-          console.log('convert key success');
+          console.info('convert key success');
           x509CRL.verify(keyPair.pubKey, (err, data) => {
             if (err) {
               console.error('verify failed, errCode: ' + err.code + ', errMsg: ' + err.message);
             } else {
-              console.log('verify success');
+              console.info('verify success');
             }
           });
         }
@@ -6113,12 +6113,12 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob).then(x509CRL => {
-  console.log('createX509Crl success');
+  console.info('createX509Crl success');
 
   try {
     // 生成公钥对象。
     let keyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024|PRIMES_3');
-    console.log('createAsyKeyGenerator success');
+    console.info('createAsyKeyGenerator success');
     let priEncodingBlob: cryptoFramework.DataBlob = {
       data: priKeyData,
     };
@@ -6126,9 +6126,9 @@ cert.createX509CRL(encodingBlob).then(x509CRL => {
       data: pubKeyData,
     };
     keyGenerator.convertKey(pubEncodingBlob, priEncodingBlob).then((keyPair) => {
-      console.log('convert key success');
+      console.info('convert key success');
       x509CRL.verify(keyPair.pubKey).then(result => {
-        console.log('verify success');
+        console.info('verify success');
       }).catch((error: BusinessError) => {
         console.error('verify failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       });
@@ -6194,7 +6194,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     let version = x509CRL.getVersion();
   }
 });
@@ -6265,7 +6265,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     try {
       let issuerName = x509CRL.getIssuerName();
     } catch (err) {
@@ -6347,7 +6347,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     try {
       let issuerName = x509CRL.getIssuerName(cert.EncodingType.ENCODING_UTF8);
       console.info('issuerName output is ' + issuerName);
@@ -6420,7 +6420,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     try {
       let lastUpdate  = x509CRL.getLastUpdate();
     } catch (err) {
@@ -6492,7 +6492,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     try {
       let nextUpdate = x509CRL.getNextUpdate();
     } catch (err) {
@@ -6570,7 +6570,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     let serialNumber = BigInt(1000);
     try {
       let entry = x509CRL.getRevokedCert(serialNumber);
@@ -6680,12 +6680,12 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     // 创建X509证书对象。
     cert.createX509Cert(certEncodingBlob).then((x509Cert) => {
       try {
         let entry = x509CRL.getRevokedCertWithCert(x509Cert);
-        console.log('getRevokedCertWithCert success');
+        console.info('getRevokedCertWithCert success');
       } catch (error) {
         let e: BusinessError = error as BusinessError;
         console.error('getRevokedCertWithCert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -6757,12 +6757,12 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     x509CRL.getRevokedCerts((error, array) => {
       if (error) {
         console.error('getRevokedCerts failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
-        console.log('getRevokedCerts success');
+        console.info('getRevokedCerts success');
       }
     });
   }
@@ -6827,9 +6827,9 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob).then(x509CRL => {
-  console.log('createX509CRL success');
+  console.info('createX509CRL success');
   x509CRL.getRevokedCerts().then(array => {
-    console.log('getRevokedCerts success');
+    console.info('getRevokedCerts success');
   }).catch((error: BusinessError) => {
     console.error('getRevokedCerts failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   });
@@ -6899,7 +6899,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     try {
       let signature = x509CRL.getSignature();
     } catch (err) {
@@ -6971,7 +6971,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     try {
       let sigAlgName = x509CRL.getSignatureAlgName();
     } catch (err) {
@@ -7043,7 +7043,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     try {
       let sigAlgOid = x509CRL.getSignatureAlgOid();
     } catch (err) {
@@ -7116,7 +7116,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     try {
       let sigAlgParams = x509CRL.getSignatureAlgParams();
     } catch (err) {
@@ -7188,7 +7188,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     try {
       let tbsInfo = x509CRL.getTBSInfo();
     } catch (error) {
@@ -7263,7 +7263,7 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     try {
       let extensions = x509CRL.getExtensions();
     } catch (error) {
@@ -7364,7 +7364,7 @@ async function crlMatch() {
   let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
     x509Cert = await cert.createX509Cert(certEncodingBlob);
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
   } catch (err) {
     console.error('createX509Cert failed');
   }
@@ -7373,7 +7373,7 @@ async function crlMatch() {
     if (error) {
       console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
     } else {
-      console.log('createX509CRL success');
+      console.info('createX509CRL success');
       try {
         const param: cert.X509CRLMatchParameters = {
           issuer: [new Uint8Array([0x30, 0x58, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x06, 0x13, 0x02, 0x43, 0x4E, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x08, 0x13, 0x07, 0x4A, 0x69, 0x61, 0x6E, 0x67, 0x73, 0x75, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x07, 0x13, 0x07, 0x4E, 0x61, 0x6E, 0x6A, 0x69, 0x6E, 0x67, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0A, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0B, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x03, 0x13, 0x02, 0x74, 0x73])],
@@ -7450,7 +7450,7 @@ async function crlGetIssuerX500DistinguishedName() {
   let x509Crl: cert.X509CRL = {} as cert.X509CRL;
   try {
     x509Crl = await cert.createX509CRL(crlEncodingBlob);
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     let name = x509Crl.getIssuerX500DistinguishedName();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -7520,7 +7520,7 @@ async function crlToString() {
   let x509Crl: cert.X509CRL = {} as cert.X509CRL;
   try {
     x509Crl = await cert.createX509CRL(crlEncodingBlob);
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     console.info('crlToString success: ' + JSON.stringify(x509Crl.toString()));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -7600,7 +7600,7 @@ async function crlToString() {
   let x509Crl: cert.X509CRL = {} as cert.X509CRL;
   try {
     x509Crl = await cert.createX509CRL(crlEncodingBlob);
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     console.info('crlToString success: ' + JSON.stringify(x509Crl.toString(cert.EncodingType.ENCODING_UTF8)));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -7670,7 +7670,7 @@ async function crlHashCode() {
   let x509Crl: cert.X509CRL = {} as cert.X509CRL;
   try {
     x509Crl = await cert.createX509CRL(crlEncodingBlob);
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     console.info('crlHashCode success: ' + JSON.stringify(x509Crl.hashCode()));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -7745,7 +7745,7 @@ async function crlHashCode() {
   let x509Crl: cert.X509CRL = {} as cert.X509CRL;
   try {
     x509Crl = await cert.createX509CRL(crlEncodingBlob);
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     let object = x509Crl.getExtensionsObject();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -7934,7 +7934,7 @@ try {
     if (error) {
       console.error('validate failed, errCode: ' + error.code + ', errMsg: ' + error.message);
     } else {
-      console.log('validate success');
+      console.info('validate success');
     }
   });
 } catch (error) {
@@ -8063,7 +8063,7 @@ let certChainData: cert.CertChainData = {
 try {
   let validator = cert.createCertChainValidator('PKIX');
   validator.validate(certChainData).then(result => {
-    console.log('validate success');
+    console.info('validate success');
   }).catch((error: BusinessError) => {
     console.error('validate failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   });
@@ -8144,7 +8144,7 @@ cert.createX509Crl(encodingBlob, (err, x509Crl) => {
   if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
-    console.log('create x509 crl success');
+    console.info('create x509 crl success');
 
     try {
       let serialNumber = 1000;
@@ -8153,7 +8153,7 @@ cert.createX509Crl(encodingBlob, (err, x509Crl) => {
         if (error) {
           console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
         } else {
-          console.log('getEncoded success');
+          console.info('getEncoded success');
         }
       });
     } catch (error) {
@@ -8227,13 +8227,13 @@ cert.createX509Crl(encodingBlob, (err, x509Crl) => {
   if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
-    console.log('create x509 crl success');
+    console.info('create x509 crl success');
 
     try {
       let serialNumber = 1000;
       let crlEntry = x509Crl.getRevokedCert(serialNumber);
       crlEntry.getEncoded().then(result => {
-        console.log('getEncoded success');
+        console.info('getEncoded success');
       }).catch((error: BusinessError) => {
         console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       });
@@ -8297,7 +8297,7 @@ cert.createX509Crl(encodingBlob, (err, x509Crl) => {
   if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
-    console.log('create x509 crl success');
+    console.info('create x509 crl success');
 
     try {
       let serialNumber = 1000;
@@ -8373,7 +8373,7 @@ cert.createX509Crl(encodingBlob, (err, x509Crl) => {
   if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
-    console.log('create x509 crl success');
+    console.info('create x509 crl success');
 
     try {
       let serialNumber = 1000;
@@ -8449,7 +8449,7 @@ cert.createX509Crl(encodingBlob, (err, x509Crl) => {
   if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
-    console.log('create x509 crl success');
+    console.info('create x509 crl success');
 
     try {
       let serialNumber = 1000;
@@ -8528,7 +8528,7 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
   if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
-    console.log('create x509 CRL success');
+    console.info('create x509 CRL success');
 
     try {
       let serialNumber = BigInt(1000);
@@ -8537,7 +8537,7 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
         if (error) {
           console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
         } else {
-          console.log('getEncoded success');
+          console.info('getEncoded success');
         }
       });
     } catch (error) {
@@ -8609,13 +8609,13 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
   if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
-    console.log('create x509 CRL success');
+    console.info('create x509 CRL success');
 
     try {
       let serialNumber = BigInt(1000);
       let crlEntry = x509CRL.getRevokedCert(serialNumber);
       crlEntry.getEncoded().then(result => {
-        console.log('getEncoded success');
+        console.info('getEncoded success');
       }).catch((error: BusinessError) => {
         console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       });
@@ -8687,7 +8687,7 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
   if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
-    console.log('create x509 crl success');
+    console.info('create x509 crl success');
 
     try {
       let serialNumber = BigInt(1000);
@@ -8766,7 +8766,7 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
   if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
-    console.log('create x509 CRL success');
+    console.info('create x509 CRL success');
 
     try {
       let serialNumber = BigInt(1000);
@@ -8849,7 +8849,7 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
   if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
-    console.log('create x509 CRL success');
+    console.info('create x509 CRL success');
 
     try {
       let serialNumber = BigInt(1591942200000);
@@ -8924,7 +8924,7 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
   if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
-    console.log('create x509 CRL success');
+    console.info('create x509 CRL success');
 
     try {
       let serialNumber = BigInt(1000);
@@ -9001,7 +9001,7 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
   if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
-    console.log('create x509 CRL success');
+    console.info('create x509 CRL success');
 
     try {
       let serialNumber = BigInt(4);
@@ -9075,7 +9075,7 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
   if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
-    console.log('create x509 CRL success');
+    console.info('create x509 CRL success');
 
     try {
       let serialNumber = BigInt(1000);
@@ -9149,7 +9149,7 @@ async function certGetCertIssuerX500DistinguishedName() {
   let x509Crl: cert.X509CRL = {} as cert.X509CRL;
   try {
     x509Crl = await cert.createX509CRL(encodingBlob);
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     let name = x509Crl.getRevokedCert(BigInt(1000)).getCertIssuerX500DistinguishedName();
   } catch (error) {
     let e: BusinessError = error as BusinessError;
@@ -9218,7 +9218,7 @@ async function certToString() {
   let x509Crl: cert.X509CRL = {} as cert.X509CRL;
   try {
     x509Crl = await cert.createX509CRL(encodingBlob);
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     console.info('toString success: ' + JSON.stringify(x509Crl.getRevokedCert(BigInt(1000)).toString()));
   } catch (error) {
     let e: BusinessError = error as BusinessError;
@@ -9287,7 +9287,7 @@ async function certHashCode() {
   let x509Crl: cert.X509CRL = {} as cert.X509CRL;
   try {
     x509Crl = await cert.createX509CRL(encodingBlob);
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     console.info('hashCode success: ' + JSON.stringify(x509Crl.getRevokedCert(BigInt(1000)).hashCode()));
   } catch (error) {
     let e: BusinessError = error as BusinessError;
@@ -9423,7 +9423,7 @@ async function certGetExtensionsObject() {
   let x509Crl: cert.X509CRL = {} as cert.X509CRL;
   try {
     x509Crl = await cert.createX509CRL(encodingBlob);
-    console.log('createX509CRL success');
+    console.info('createX509CRL success');
     let object = x509Crl.getRevokedCert(BigInt('14091103387070223745671018446433705560')).getExtensionsObject();
   } catch (error) {
     let e: BusinessError = error as BusinessError;
@@ -9537,7 +9537,7 @@ async function createCollection() {
   const x509CRL = await createX509CRL();
   try {
     const collection: cert.CertCRLCollection = cert.createCertCRLCollection([x509Cert], [x509CRL]);
-    console.log('createCertCRLCollection success');
+    console.info('createCertCRLCollection success');
   } catch (err) {
     console.error('createCertCRLCollection failed');
   }
@@ -9635,7 +9635,7 @@ async function selectCerts() {
       publicKeyAlgID: '1.2.840.10045.2.1'
     };
     const certs = await collection.selectCerts(param);
-    console.log('call selectCerts success');
+    console.info('call selectCerts success');
   } catch (err) {
     console.error('call selectCerts failed');
   }
@@ -9726,7 +9726,7 @@ async function selectCerts() {
     if (err) {
       console.error('selectCerts failed, errCode: ' + err.code + ', errMsg: ' + err.message);
     } else {
-      console.log('selectCerts success');
+      console.info('selectCerts success');
     }
   });
 }
@@ -9832,7 +9832,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
   let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
     x509Cert = await cert.createX509Cert(certEncodingBlob);
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
   } catch (err) {
     console.error('createX509Cert failed');
   }
@@ -9850,7 +9850,7 @@ async function selectCRLs() {
   }
   try {
     const crls = await collection.selectCRLs(param);
-    console.log('selectCRLs success');
+    console.info('selectCRLs success');
   } catch (err) {
     console.error('selectCRLs failed');
   }
@@ -9952,7 +9952,7 @@ async function createX509Cert(): Promise<cert.X509Cert> {
   let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
     x509Cert = await cert.createX509Cert(certEncodingBlob);
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
   } catch (err) {
     console.error('createX509Cert failed');
   }
@@ -9972,7 +9972,7 @@ async function selectCRLs() {
     if (err) {
       console.error('selectCRLs failed, errCode: ' + err.code + ', errMsg: ' + err.message);
     } else {
-      console.log('selectCRLs success');
+      console.info('selectCRLs success');
     }
   });
 }
@@ -10207,7 +10207,7 @@ cert.createX509CertChain(encodingBlob, (err, certChain) => {
   if (err) {
     console.error('createX509CertChain failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
-    console.log('createX509CertChain success');
+    console.info('createX509CertChain success');
   }
 });
 ```
@@ -10703,7 +10703,7 @@ try {
   cert.createTrustAnchorsWithKeyStore(
     new Uint8Array([0x30, 0x82, 0x07, 0x5C, 0x02, 0x01, 0x03, 0x30, 0x82, 0x07, 0x12, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x07, 0x01, 0xA0, 0x82, 0x07, 0x03, 0x04, 0x82, 0x06, 0xFF, 0x30, 0x82, 0x06, 0xFB, 0x30, 0x82, 0x05, 0xB2, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x07, 0x06, 0xA0, 0x82, 0x05, 0xA3, 0x30, 0x82, 0x05, 0x9F, 0x02, 0x01, 0x00, 0x30, 0x82, 0x05, 0x98, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x07, 0x01, 0x30, 0x57, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x05, 0x0D, 0x30, 0x4A, 0x30, 0x29, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x05, 0x0C, 0x30, 0x1C, 0x04, 0x08, 0xA9, 0x1C, 0x1B, 0x19, 0x36, 0xDE, 0xD4, 0x20, 0x02, 0x02, 0x08, 0x00, 0x30, 0x0C, 0x06, 0x08, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x02, 0x09, 0x05, 0x00, 0x30, 0x1D, 0x06, 0x09, 0x60, 0x86, 0x48, 0x01, 0x65, 0x03, 0x04, 0x01, 0x2A, 0x04, 0x10, 0x7D, 0xE5, 0x23, 0x96, 0x18, 0x8B, 0xF4, 0xBC, 0x9F, 0x4E, 0xE8, 0xE9, 0xAA, 0x52, 0x18, 0x39, 0x80, 0x82, 0x05, 0x30, 0x02, 0x2D, 0x59, 0xA9, 0x96, 0x5A, 0xFE, 0x20, 0x18, 0xB2, 0x25, 0xEA, 0xFC, 0x86, 0x0F, 0xA8, 0x3C, 0x2B, 0x26, 0x2F, 0x44, 0x6E, 0xF3, 0x15, 0xB7, 0x94, 0xE4, 0x43, 0xEE, 0xE6, 0xC3, 0xBB, 0x3C, 0x9E, 0x60, 0x08, 0xF8, 0x15, 0x61, 0x44, 0xD0, 0xEA, 0xD5, 0x6D, 0x1A, 0x3B, 0x9F, 0x4E, 0x2A, 0x1E, 0xBB, 0xB9, 0x4E, 0x15, 0x43, 0xB8, 0x68, 0xDB, 0x1A, 0x4E, 0x41, 0xBA, 0x29, 0x8E, 0x75, 0xEB, 0x12, 0xC1, 0xF0, 0x4B, 0x0D, 0x13, 0xB2, 0xC2, 0x48, 0x6F, 0xC4, 0xC4, 0x82, 0xF2, 0x26, 0xD4, 0x3D, 0x1F, 0x42, 0x7D, 0x67, 0xB0, 0x37, 0x55, 0x9E, 0xD9, 0x46, 0x99, 0x98, 0xB4, 0xE7, 0x4B, 0x07, 0x08, 0x3F, 0xD3, 0x96, 0x9A, 0xC5, 0xDA, 0x37, 0x74, 0x08, 0x5D, 0x3B, 0x06, 0x8A, 0x16, 0x6D, 0x81, 0x63, 0x01, 0x83, 0x94, 0xDA, 0x1B, 0x0E, 0x04, 0xCE, 0x18, 0xF0, 0x51, 0x22, 0xD8, 0x2D, 0xF1, 0x69, 0x0C, 0xCB, 0xC9, 0x51, 0x17, 0x07, 0x1F, 0x2B, 0xCF, 0x74, 0x26, 0xD7, 0x73, 0xB3, 0x2D, 0xF2, 0x82, 0xF0, 0x38, 0x5B, 0x8A, 0x8F, 0xCD, 0x84, 0x69, 0x40, 0x59, 0xCE, 0xB3, 0x39, 0xFE, 0xF6, 0xB7, 0x24, 0x89, 0x34, 0xFF, 0xF4, 0x40, 0x50, 0x06, 0x4D, 0xC6, 0x13, 0x82, 0xAF, 0x7F, 0x84, 0xB1, 0x67, 0x3C, 0x89, 0xBB, 0x5D, 0x32, 0xC3, 0xA6, 0xF1, 0x7D, 0xF5, 0x72, 0x68, 0x75, 0xCE, 0x69, 0xAB, 0x6C, 0x32, 0xDA, 0x16, 0x3B, 0xC4, 0xCA, 0x47, 0x45, 0xE9, 0x59, 0x1E, 0xB1, 0x70, 0xDA, 0x8A, 0x00, 0x69, 0x80, 0x40, 0xCA, 0x60, 0xE6, 0x07, 0x16, 0xF0, 0xA2, 0xF9, 0x12, 0x7D, 0x09, 0x43, 0x66, 0x46, 0x78, 0x35, 0xA6, 0x94, 0x35, 0x60, 0x82, 0xFC, 0xB8, 0x5E, 0x39, 0xE7, 0xA1, 0x22, 0xAD, 0xCC, 0x6F, 0x5E, 0xCE, 0x01, 0x6B, 0xA1, 0xDD, 0xE5, 0xDD, 0x79, 0x9B, 0xA1, 0x28, 0xC4, 0x03, 0x84, 0x8D, 0x6C, 0x07, 0xD4, 0xFE, 0x57, 0xFB, 0x89, 0x3F, 0x43, 0x44, 0x69, 0xF1, 0x9E, 0x53, 0x6C, 0x11, 0x11, 0x96, 0x79, 0xE4, 0xB8, 0x3B, 0x49, 0x2E, 0xF6, 0x3B, 0xC5, 0x6C, 0x76, 0x21, 0x22, 0x15, 0x85, 0x77, 0x8A, 0xDD, 0xD2, 0x43, 0x85, 0x73, 0x39, 0x77, 0x9F, 0xFA, 0x8F, 0xCF, 0xCB, 0xEA, 0x62, 0xBD, 0x5C, 0x66, 0x45, 0xCD, 0xB0, 0xCA, 0x42, 0xCC, 0xB9, 0xCF, 0xE3, 0x84, 0x63, 0x9F, 0x63, 0xCE, 0x49, 0xE9, 0x74, 0x26, 0xCC, 0x26, 0x78, 0xCE, 0x9F, 0x4E, 0x38, 0xA2, 0x9C, 0xEB, 0x75, 0xC5, 0x33, 0x6B, 0x00, 0x83, 0x85, 0xA3, 0x0F, 0xE7, 0xE1, 0x11, 0xA6, 0x48, 0xDC, 0xEF, 0x0C, 0x05, 0xB3, 0xDE, 0x94, 0xB9, 0x69, 0xCB, 0x27, 0x09, 0xAB, 0x27, 0xD8, 0x06, 0xED, 0x25, 0xBC, 0xA6, 0x2E, 0xB7, 0xF9, 0x2E, 0xAD, 0x84, 0x1D, 0xDD, 0x73, 0xD8, 0xC0, 0x46, 0x8A, 0xFE, 0x9A, 0xDF, 0x07, 0xE1, 0x33, 0xE2, 0x1C, 0x37, 0x6A, 0x8E, 0xA2, 0x91, 0x0B, 0xD7, 0x76, 0xEF, 0x3C, 0x87, 0x4A, 0x53, 0x84, 0xFA, 0xFA, 0xC5, 0x71, 0x76, 0xC0, 0x75, 0x70, 0x67, 0x67, 0x71, 0x9D, 0x8B, 0x81, 0x6F, 0x68, 0xC5, 0xB1, 0xFC, 0xA3, 0x59, 0xB5, 0xD0, 0x03, 0x56, 0xE7, 0x89, 0x03, 0xD7, 0x99, 0xDE, 0x66, 0x33, 0xFA, 0x53, 0x50, 0x5F, 0xB4, 0x9D, 0xB3, 0x90, 0x8F, 0x57, 0x20, 0xF0, 0x8B, 0xDB, 0x73, 0xCA, 0xA4, 0x71, 0x61, 0x67, 0x6A, 0x6D, 0xA5, 0xCA, 0x88, 0xD4, 0xCC, 0x82, 0x34, 0xC9, 0x3E, 0x10, 0x10, 0x57, 0xD1, 0x08, 0x96, 0x80, 0x09, 0xA8, 0xBB, 0x6F, 0x53, 0x8F, 0xFD, 0x87, 0xCF, 0x73, 0xFC, 0xE1, 0x3A, 0x92, 0x2E, 0x78, 0x66, 0xFB, 0x86, 0x5D, 0x62, 0xE0, 0xC4, 0x58, 0x55, 0x3F, 0xA4, 0xEA, 0xA1, 0xBE, 0x5B, 0x5E, 0x8E, 0x46, 0x50, 0x5E, 0x7C, 0x01, 0xD6, 0x63, 0xAA, 0x6F, 0xD5, 0xFD, 0xAF, 0xC5, 0x1D, 0xB3, 0x90, 0x9C, 0xD8, 0x5F, 0x8D, 0xF2, 0x81, 0xEB, 0xBF, 0xA1, 0xDE, 0xB7, 0x9D, 0xCD, 0x24, 0x82, 0x06, 0x0B, 0x63, 0xE6, 0xBF, 0x57, 0x51, 0xF0, 0xB6, 0xE9, 0x7F, 0xAA, 0x7B, 0x10, 0xBD, 0xCD, 0x85, 0x41, 0xE0, 0xD7, 0xF1, 0x53, 0xB7, 0xF8, 0x46, 0x91, 0x9E, 0x8D, 0x4B, 0xCB, 0x28, 0x35, 0x40, 0x37, 0x1E, 0x83, 0x64, 0x6A, 0x70, 0x01, 0x9D, 0xBF, 0xF1, 0x0E, 0xB6, 0x2E, 0x7A, 0xB7, 0x8F, 0x0F, 0x8C, 0x69, 0xD6, 0xF2, 0xD1, 0xF6, 0x1E, 0xCD, 0x08, 0xA8, 0xD4, 0x1B, 0xCB, 0x38, 0xEA, 0x26, 0x37, 0x5C, 0x60, 0x3A, 0x38, 0x5B, 0x12, 0x1D, 0x00, 0x7B, 0xEC, 0xCE, 0xFB, 0x89, 0x23, 0x8A, 0x11, 0xE1, 0x1B, 0xDE, 0x54, 0x91, 0x6A, 0x26, 0x22, 0xD0, 0x1C, 0x2E, 0xBA, 0xD0, 0x92, 0x87, 0xDA, 0xF0, 0x93, 0xBB, 0x3A, 0x2C, 0x52, 0xFB, 0xB2, 0xA9, 0xA8, 0x92, 0x19, 0xE3, 0x19, 0xDC, 0xB0, 0x0E, 0xC5, 0xE7, 0x9D, 0xFB, 0xF9, 0xA3, 0x23, 0x32, 0xD0, 0x4E, 0x2C, 0x05, 0x2D, 0x76, 0xDB, 0x93, 0x53, 0x5B, 0x0E, 0x2A, 0xA3, 0xDD, 0x5F, 0xD3, 0x1A, 0x3B, 0x1E, 0x1F, 0x26, 0x88, 0x43, 0xAD, 0x10, 0x1F, 0xA9, 0xC4, 0xF9, 0x1F, 0xCD, 0xA5, 0xD2, 0xDC, 0x24, 0x95, 0x1D, 0xE7, 0x57, 0xE1, 0x02, 0x0A, 0x20, 0xEA, 0x6A, 0x78, 0x4E, 0x96, 0xE2, 0xE5, 0x6D, 0x6F, 0xFD, 0x81, 0x7B, 0x61, 0x85, 0xA3, 0x3D, 0xC5, 0x7B, 0xEF, 0xAE, 0x58, 0xA2, 0xDB, 0x91, 0x73, 0xDB, 0x47, 0x8E, 0xD1, 0x7D, 0xD7, 0x8F, 0x56, 0x06, 0x28, 0x8C, 0x78, 0x73, 0x02, 0x65, 0xB0, 0x16, 0x4B, 0xE6, 0xA3, 0xD7, 0x06, 0x7C, 0xEA, 0x7D, 0xE2, 0xAE, 0xBB, 0xE5, 0xD2, 0xEB, 0xF0, 0x91, 0x71, 0x7C, 0xBC, 0xA6, 0x1A, 0xE8, 0x9F, 0xD3, 0xA9, 0x3C, 0x5D, 0x60, 0xCF, 0x59, 0x26, 0x46, 0x45, 0xF2, 0x7F, 0x85, 0x6B, 0xE7, 0xC2, 0x58, 0x52, 0x90, 0x12, 0x07, 0xBA, 0xE6, 0xB8, 0xE5, 0xD7, 0x24, 0x93, 0xD5, 0x6E, 0xB1, 0x74, 0x6C, 0xAA, 0xA0, 0x60, 0xBF, 0xF3, 0x32, 0x41, 0x0B, 0xA2, 0x01, 0x84, 0x0D, 0x83, 0xE4, 0x43, 0xD1, 0xBA, 0xC1, 0x92, 0x84, 0x26, 0xF8, 0xF2, 0x77, 0x20, 0x1B, 0xF2, 0x8F, 0x00, 0x69, 0x18, 0x2F, 0x6C, 0xA8, 0x58, 0xB5, 0x5D, 0xFA, 0x27, 0xD2, 0x38, 0xD2, 0x49, 0x6E, 0xDF, 0x55, 0x79, 0xAF, 0x1C, 0x44, 0xDA, 0x5A, 0xD7, 0x44, 0x53, 0x50, 0x8B, 0x77, 0x70, 0x4D, 0x91, 0xEC, 0x07, 0xA5, 0x64, 0x21, 0x3C, 0x31, 0x09, 0x68, 0x65, 0xB4, 0xFA, 0xBE, 0x23, 0xF9, 0xDF, 0x77, 0x46, 0xA2, 0x9A, 0x5D, 0xE3, 0xBE, 0x1E, 0xE3, 0x84, 0xEF, 0xAE, 0x7D, 0xF8, 0x1C, 0x54, 0xE8, 0x4E, 0xAE, 0xB5, 0xBB, 0xD6, 0xC3, 0x8D, 0x56, 0x79, 0xE8, 0x7C, 0x43, 0xDC, 0xF3, 0xB3, 0x7A, 0x30, 0x22, 0x09, 0xBC, 0x10, 0xD6, 0x84, 0xC4, 0x0F, 0x4C, 0x0B, 0xA2, 0xD1, 0xCB, 0xCD, 0x1F, 0x50, 0x3D, 0xF7, 0x23, 0x45, 0x55, 0x18, 0x21, 0x3D, 0x64, 0x05, 0x2E, 0x52, 0x3A, 0x73, 0xFD, 0xF2, 0xA9, 0xCA, 0x3F, 0xF6, 0x7F, 0x87, 0xE8, 0x56, 0x9B, 0x68, 0x6B, 0x20, 0xB0, 0x1D, 0x83, 0x04, 0x2F, 0x59, 0xFD, 0x84, 0x57, 0x7D, 0x82, 0x97, 0x96, 0xE8, 0xFB, 0xDF, 0x71, 0x8C, 0x26, 0x47, 0x85, 0xA5, 0xBE, 0xFB, 0xF5, 0x05, 0x4C, 0xD3, 0x3D, 0x73, 0xF4, 0xA5, 0xF1, 0xA3, 0x99, 0x98, 0x1B, 0x84, 0x8B, 0xB3, 0x53, 0xCE, 0x4D, 0xEA, 0x5A, 0x48, 0xD2, 0xB9, 0x7E, 0xB6, 0xEB, 0x9B, 0x94, 0x6F, 0xDD, 0x44, 0x80, 0x89, 0xD2, 0x78, 0x6D, 0xB9, 0xDA, 0x8B, 0x83, 0x49, 0xE0, 0x4D, 0x49, 0xDF, 0x6B, 0xFF, 0xF7, 0x04, 0x00, 0x32, 0xAA, 0x1D, 0x4F, 0x8D, 0x4B, 0xDE, 0xB8, 0x0D, 0xC6, 0x54, 0x1C, 0xB2, 0xCD, 0x60, 0x29, 0x72, 0x0A, 0x7E, 0xE7, 0xEB, 0x7A, 0xF6, 0x5B, 0x04, 0x3F, 0x5B, 0x93, 0x12, 0x0D, 0xD5, 0xFF, 0x7A, 0x41, 0x44, 0x0B, 0x37, 0x12, 0x82, 0x3D, 0xDD, 0x1E, 0x59, 0xB9, 0xBE, 0x0F, 0x9E, 0xD6, 0xD0, 0x68, 0x69, 0x74, 0xF9, 0xB1, 0x21, 0xA3, 0x70, 0x4F, 0xDA, 0xF8, 0x9F, 0xB9, 0x49, 0x3F, 0xC6, 0xB2, 0x69, 0xC8, 0xD8, 0x60, 0xF1, 0x6A, 0x52, 0x07, 0xFA, 0x42, 0xFD, 0xA9, 0x06, 0xCF, 0x97, 0x4A, 0x0E, 0xC5, 0xFC, 0x63, 0x27, 0x54, 0xC8, 0xBE, 0x8B, 0x4F, 0xB6, 0x42, 0xBC, 0xA2, 0xCC, 0x70, 0x4A, 0x6B, 0x24, 0x5B, 0x68, 0x28, 0x47, 0xFA, 0x6B, 0x89, 0x28, 0x07, 0x5D, 0xE0, 0x2C, 0x4A, 0xD9, 0x22, 0xE3, 0xB3, 0x2F, 0xAA, 0xC2, 0xA0, 0x7C, 0x0F, 0x92, 0xC5, 0xDD, 0xB6, 0x23, 0x8F, 0x73, 0x73, 0x0F, 0xD7, 0x73, 0x71, 0x2F, 0x0A, 0x78, 0xE8, 0x5B, 0xDB, 0xC2, 0xE0, 0xDB, 0xC9, 0x3E, 0xC3, 0x72, 0x9C, 0x14, 0xD7, 0xD1, 0x28, 0xFD, 0xF4, 0xEE, 0xBC, 0x0E, 0x13, 0x37, 0xCA, 0x85, 0x9F, 0xB9, 0xA2, 0x0E, 0xF6, 0xE7, 0x49, 0xD1, 0xD0, 0x11, 0x76, 0x53, 0xA3, 0x73, 0x95, 0x2A, 0x23, 0xC8, 0x0E, 0x97, 0x83, 0x07, 0x64, 0xB2, 0x51, 0xB7, 0xC8, 0x51, 0x9F, 0xA4, 0x3E, 0x7B, 0xA4, 0x18, 0x6D, 0x99, 0xF0, 0x6E, 0xC3, 0x97, 0xAE, 0xF4, 0xB7, 0x66, 0x37, 0xFA, 0x65, 0xFC, 0x5E, 0xE2, 0x57, 0xFA, 0x8B, 0x4C, 0x86, 0x10, 0xB4, 0x5C, 0xA4, 0xD2, 0x60, 0x83, 0x69, 0x1E, 0xFF, 0x36, 0x9B, 0xF9, 0x84, 0xFB, 0xB8, 0x83, 0x64, 0xF1, 0x41, 0xA5, 0x25, 0x56, 0x21, 0xBA, 0x13, 0x98, 0x0C, 0x3B, 0x04, 0xAA, 0x6C, 0x9A, 0xD4, 0xE3, 0x13, 0x15, 0x54, 0x05, 0x4C, 0x5C, 0xE1, 0x7A, 0x31, 0x5E, 0x90, 0xCF, 0x48, 0x4E, 0x83, 0xD7, 0x7F, 0xED, 0x93, 0x22, 0xAB, 0x67, 0xE7, 0x76, 0x32, 0x64, 0xBA, 0x5A, 0x21, 0x3E, 0x30, 0x82, 0x01, 0x41, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x07, 0x01, 0xA0, 0x82, 0x01, 0x32, 0x04, 0x82, 0x01, 0x2E, 0x30, 0x82, 0x01, 0x2A, 0x30, 0x82, 0x01, 0x26, 0x06, 0x0B, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x0C, 0x0A, 0x01, 0x02, 0xA0, 0x81, 0xEF, 0x30, 0x81, 0xEC, 0x30, 0x57, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x05, 0x0D, 0x30, 0x4A, 0x30, 0x29, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x05, 0x0C, 0x30, 0x1C, 0x04, 0x08, 0xED, 0x3E, 0xED, 0x07, 0x5C, 0x1F, 0x71, 0xAD, 0x02, 0x02, 0x08, 0x00, 0x30, 0x0C, 0x06, 0x08, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x02, 0x09, 0x05, 0x00, 0x30, 0x1D, 0x06, 0x09, 0x60, 0x86, 0x48, 0x01, 0x65, 0x03, 0x04, 0x01, 0x2A, 0x04, 0x10, 0xA7, 0x49, 0xA4, 0x6E, 0x00, 0x19, 0x75, 0x59, 0x75, 0x59, 0xBA, 0x4B, 0xC7, 0x24, 0x88, 0x34, 0x04, 0x81, 0x90, 0xCA, 0x23, 0x82, 0xAA, 0x16, 0x57, 0x99, 0xFA, 0x94, 0x9F, 0xAE, 0x32, 0x5C, 0x5B, 0xE7, 0x01, 0xD0, 0xED, 0xA7, 0x58, 0x57, 0x52, 0xBF, 0x57, 0x13, 0xD4, 0x15, 0xB0, 0x06, 0xF5, 0x38, 0xCC, 0x64, 0x23, 0x09, 0xD5, 0x8C, 0x0D, 0x64, 0x31, 0xFA, 0x74, 0xAA, 0x96, 0x7E, 0x9B, 0x16, 0xCA, 0x21, 0xFD, 0xC0, 0x54, 0x91, 0x40, 0x7F, 0xB3, 0xF2, 0xA3, 0xEC, 0xA1, 0x4A, 0x07, 0xF0, 0x87, 0x22, 0xDB, 0x8A, 0x49, 0x89, 0xF7, 0xF2, 0x6A, 0xFC, 0x8D, 0x03, 0x6E, 0x32, 0x4F, 0xD0, 0xD8, 0x93, 0x92, 0xA5, 0xF1, 0x41, 0xBD, 0xEA, 0xE1, 0x38, 0xA9, 0xD8, 0x9D, 0xAB, 0xB4, 0x8E, 0x4A, 0x40, 0x0E, 0xC7, 0xE3, 0xE9, 0xBF, 0x0E, 0xBA, 0x8D, 0xAA, 0x3E, 0x93, 0x53, 0x88, 0xEE, 0x0A, 0x2C, 0x71, 0xF1, 0x61, 0x44, 0xA5, 0xAD, 0xED, 0x3E, 0xAB, 0x32, 0x9A, 0x32, 0x85, 0x08, 0xF5, 0x8B, 0xCC, 0x15, 0x35, 0xEE, 0xFA, 0x17, 0x27, 0x97, 0x8D, 0xD9, 0x1C, 0x5E, 0x74, 0x9D, 0x7B, 0x31, 0x25, 0x30, 0x23, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x09, 0x15, 0x31, 0x16, 0x04, 0x14, 0x5F, 0x8E, 0xAB, 0x9C, 0x5F, 0xE2, 0x3B, 0xB1, 0x5C, 0x1A, 0x36, 0x1D, 0x7D, 0xCB, 0x90, 0x45, 0x20, 0x3C, 0x3B, 0xAC, 0x30, 0x41, 0x30, 0x31, 0x30, 0x0D, 0x06, 0x09, 0x60, 0x86, 0x48, 0x01, 0x65, 0x03, 0x04, 0x02, 0x01, 0x05, 0x00, 0x04, 0x20, 0x93, 0x25, 0xC4, 0x3E, 0x2A, 0x6D, 0x4C, 0x30, 0x87, 0x0F, 0xE3, 0x5A, 0x95, 0xB0, 0xF2, 0x6C, 0xBA, 0x07, 0x89, 0x7D, 0xFB, 0xCF, 0xCF, 0x1D, 0x54, 0xA3, 0x36, 0x24, 0x7B, 0x30, 0x97, 0xB5, 0x04, 0x08, 0xE7, 0x96, 0x59, 0xCC, 0x42, 0x9F, 0xEF, 0xFC, 0x02, 0x02, 0x08, 0x00]),
     '123456').then((data) => {
-      console.log('createTrustAnchorsWithKeyStore success, number of the result is: ' + JSON.stringify(data.length));
+      console.info('createTrustAnchorsWithKeyStore success, number of the result is: ' + JSON.stringify(data.length));
   }).catch((err : BusinessError) => {
     console.error('createTrustAnchorsWithKeyStore failed:' + JSON.stringify(err));
   })
@@ -10823,7 +10823,7 @@ cert.createX509CertChain(encodingBlob, (err, certChain) => {
   if (err) {
     console.error('createX509CertChain failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
-    console.log('createX509CertChain success');
+    console.info('createX509CertChain success');
     try {
       let certList = certChain.getCertList();
     } catch (err) {
@@ -10973,7 +10973,7 @@ async function validate() {
   }
   try {
     const validationRes = await certChain.validate(param);
-    console.log('X509CertChain validate success');
+    console.info('X509CertChain validate success');
   }
   catch (err) {
     console.error('X509CertChain validate failed');
@@ -11106,12 +11106,12 @@ cert.createX509CertChain(encodingBlob, (err, certChain) => {
   if (err) {
     console.error('createX509CertChain failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
-    console.log('createX509CertChain success');
+    console.info('createX509CertChain success');
     certChain.validate(param, (error, validationRes) => {
       if (error) {
         console.error('X509CertChain validate failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
-        console.log('X509CertChain validate success');
+        console.info('X509CertChain validate success');
       }
     });
   }
@@ -11237,7 +11237,7 @@ async function certChainToString() {
   let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
   try {
     x509CertChain = await cert.createX509CertChain(encodingBlob);
-    console.log('createX509CertChain success');
+    console.info('createX509CertChain success');
     console.info('toString success: ' + JSON.stringify(x509CertChain.toString()));
   } catch (error) {
     let e: BusinessError = error as BusinessError;
@@ -11364,7 +11364,7 @@ async function certChainHashCode() {
   let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
   try {
     x509CertChain = await cert.createX509CertChain(encodingBlob);
-    console.log('createX509CertChain success');
+    console.info('createX509CertChain success');
     console.info('hashCode success: ' + JSON.stringify(x509CertChain.hashCode()));
   } catch (error) {
     let e: BusinessError = error as BusinessError;
@@ -11461,7 +11461,7 @@ async function createCsrTest() {
     }
     try {
       let csrStr = cert.generateCsr(priKeyInfo, conf)
-      console.log('generateCsr success return str is' + csrStr.toString())
+      console.info('generateCsr success return str is' + csrStr.toString())
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error('generateCsr failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -11532,7 +11532,7 @@ async function createX500DistinguishedName() {
   try {
     cert.createX500DistinguishedName(nameStr)
       .then((data) => {
-        console.log('createX500DistinguishedName success');
+        console.info('createX500DistinguishedName success');
       })
       .catch((err: BusinessError) => {
         console.error('createX500DistinguishedName catch, errCode: ' + err.code + ', errMsg: ' + err.message);
@@ -11594,7 +11594,7 @@ async function createX500DistinguishedName() {
   try {
     cert.createX500DistinguishedName(nameDer)
       .then((data) => {
-        console.log('createX500DistinguishedName success');
+        console.info('createX500DistinguishedName success');
       })
       .catch((err: BusinessError) => {
         console.error('createX500DistinguishedName catch, errCode: ' + err.code + ', errMsg: ' + err.message);
@@ -11646,7 +11646,7 @@ async function getName() {
   try {
     cert.createX500DistinguishedName(nameDer)
       .then((data) => {
-        console.log('createX500DistinguishedName success');
+        console.info('createX500DistinguishedName success');
         console.info('createX500DistinguishedName getName: ' + JSON.stringify(data.getName()))
       })
       .catch((err: BusinessError) => {
@@ -11703,7 +11703,7 @@ async function getName() {
   try {
     cert.createX500DistinguishedName(nameStr)
       .then((data) => {
-        console.log('createX500DistinguishedName success');
+        console.info('createX500DistinguishedName success');
         console.info('createX500DistinguishedName getName: ' + JSON.stringify(data.getName("CN")))
       })
       .catch((err: BusinessError) => {
@@ -11760,7 +11760,7 @@ async function getName() {
   try {
     cert.createX500DistinguishedName(nameStr)
       .then((data) => {
-        console.log('createX500DistinguishedName success');
+        console.info('createX500DistinguishedName success');
         console.info('createX500DistinguishedName getName: ' + JSON.stringify(data.getName(cert.EncodingType.ENCODING_UTF8)))
       })
       .catch((err: BusinessError) => {
@@ -11810,7 +11810,7 @@ async function getEncoded() {
   try {
     cert.createX500DistinguishedName(nameStr)
       .then((data) => {
-        console.log('createX500DistinguishedName success');
+        console.info('createX500DistinguishedName success');
         let encodingBlobData = data.getEncoded();
       })
       .catch((err: BusinessError) => {
@@ -12239,7 +12239,7 @@ async function testDoFinalByPromise() {
           isDetached : true
         };
         cmsGenerator.doFinal(content, optionsFinal).then(result => {
-          console.log('testDoFinalByPromise doFinal success, result = %s', result);
+          console.info('testDoFinalByPromise doFinal success, result = %s', result);
         }).catch((error: BusinessError) => {
           console.error('testDoFinalByPromise failed, errCode: ' + error.code + ', errMsg: ' + error.message);
         });

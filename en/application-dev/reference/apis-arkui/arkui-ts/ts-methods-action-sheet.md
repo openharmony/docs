@@ -8,7 +8,7 @@ An action sheet is a dialog box that displays actions a user can take.
 >
 > The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](../arkts-apis-uicontext-uicontext.md).
 >
-> Since API version 10, you can use the [showActionSheet](../arkts-apis-uicontext-uicontext.md#showactionsheet) API in [UIContext](../arkts-apis-uicontext-uicontext.md), which ensures that the action sheet is shown in the intended UI instance.
+> Since API version 10, you can use the [showActionSheet](../js-apis-arkui-UIContext.md#showactionsheet) API in [UIContext](../arkts-apis-uicontext-uicontext.md), which ensures that the action sheet is shown in the intended UI instance.
 
 ## ActionSheet
 
@@ -154,7 +154,7 @@ Provides information about the action to dismiss the dialog box.
 
 >  **NOTE**
 >
-> For clarity in UI execution context, use the [showActionSheet](../arkts-apis-uicontext-uicontext.md#showactionsheet) API in [UIContext](../arkts-apis-uicontext-uicontext.md).
+> For clarity in UI execution context, use the [showActionSheet](../js-apis-arkui-UIContext.md#showactionsheet) API in [UIContext](../arkts-apis-uicontext-uicontext.md).
 
 ### Example 1: Displaying an Action Sheet
 

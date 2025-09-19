@@ -344,7 +344,7 @@ Whatever declared in **build()** are called UI descriptions. UI descriptions mus
   }
   ```
 
-- The **switch** syntax is not allowed. If conditional judgment is required, use the [if](./arkts-rendering-control-ifelse.md) statement. Refer to the code snippet below.
+- The **switch** syntax is not allowed. If conditional judgment is required, use the [if](../rendering-control/arkts-rendering-control-ifelse.md) statement. Refer to the code snippet below.
 
   ```ts
   build() {

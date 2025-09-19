@@ -39,7 +39,7 @@ Conversion between px and other pixel units is supported.
 
 > **NOTE**
 >
-> When performing pixel unit conversions, directly calling the **vp2px**, **px2vp**, **fp2px**, **px2fp**, **lpx2px**, or **px2lpx** API may result in ambiguity regarding which UI instance it is tied to. To avoid this issue, obtain a **UIContext** instance using the [getUIContext](../js-apis-arkui-UIContext.md#uicontext) API, and then call the pixel unit conversion API under the specific **UIContext** instance.
+> When performing pixel unit conversions, directly calling the **vp2px**, **px2vp**, **fp2px**, **px2fp**, **lpx2px**, or **px2lpx** API may result in ambiguity regarding which UI instance it is tied to. To avoid this issue, obtain a **UIContext** instance using the [getUIContext](../arkts-apis-uicontext-uicontext.md) API, and then call the pixel unit conversion API under the specific **UIContext** instance.
 
 ```ts
 // xxx.ets

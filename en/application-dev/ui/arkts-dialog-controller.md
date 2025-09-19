@@ -5,7 +5,7 @@ Since API version 18, you can set the [controller](../reference/apis-arkui/js-ap
 
 ## Constraints
 
-Currently, the [openCustomDialogWithController](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialogwithcontroller18) and [presentCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#presentcustomdialog18) APIs support binding dialog controllers through the **controller** parameter. The [getDialogController](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getdialogcontroller18) API can obtain the dialog controller for the custom component where the dialog box is located.
+Currently, the [openCustomDialogWithController](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialogwithcontroller18) and [presentCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#presentcustomdialog18) APIs support binding dialog controllers through the **controller** parameter. The [getDialogController](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getdialogcontroller18) API can obtain the dialog controller for the custom component where the dialog box is located.
 
 > **NOTE**
 > 
@@ -72,7 +72,7 @@ Currently, the [openCustomDialogWithController](../reference/apis-arkui/js-apis-
   }
   ```
 
-4. Initialize a dialog controller and create a dialog box content entity object by setting the **controller** parameter. Finally, obtain a [PromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#promptaction) object through the [getPromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction) API of [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext), and call the [openCustomDialogWithController](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialogwithcontroller18) API with the initialized content entity object and **controller** parameter to create the dialog box.
+4. Initialize a dialog controller and create a dialog box content entity object by setting the **controller** parameter. Finally, obtain a [PromptAction](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md) object through the [getPromptAction](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getpromptaction) API of [UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md), and call the [openCustomDialogWithController](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialogwithcontroller18) API with the initialized content entity object and **controller** parameter to create the dialog box.
 
   ```ts
   let dialogController: promptAction.CommonController = new promptAction.DialogController()
@@ -111,7 +111,7 @@ Currently, the [openCustomDialogWithController](../reference/apis-arkui/js-apis-
   }
   ```
 
-2. Initialize a dialog box controller and obtain a [PromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#promptaction) object through the [getPromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction) API of [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext), and call the [presentCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#presentcustomdialog18) API with the initialized content entity object and **controller** parameter to create the dialog box.
+2. Initialize a dialog box controller and obtain a [PromptAction](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md) object through the [getPromptAction](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getpromptaction) API of [UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md), and call the [presentCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#presentcustomdialog18) API with the initialized content entity object and **controller** parameter to create the dialog box.
 
   ```ts
   let dialogController: promptAction.CommonController = new promptAction.DialogController()
@@ -151,7 +151,7 @@ Currently, the [openCustomDialogWithController](../reference/apis-arkui/js-apis-
   }
   ```
 
-2. Initialize a dialog box controller and obtain a [PromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#promptaction) object through the [getPromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction) API of [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext), and call the [presentCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#presentcustomdialog18) API with the initialized content entity object and **controller** parameter to create the dialog box.
+2. Initialize a dialog box controller and obtain a [PromptAction](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md) object through the [getPromptAction](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getpromptaction) API of [UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md), and call the [presentCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#presentcustomdialog18) API with the initialized content entity object and **controller** parameter to create the dialog box.
 
   ```ts
   let dialogController: promptAction.CommonController = new promptAction.DialogController()

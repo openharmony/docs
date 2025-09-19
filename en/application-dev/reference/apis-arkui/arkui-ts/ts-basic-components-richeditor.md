@@ -830,7 +830,7 @@ Provides the image information returned by the backend.
 | Name              | Type                                                               | Mandatory | Description              |
 |------------------|-------------------------------------------------------------------|-----|------------------|
 | spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | Yes  | Span position.|
-| valuePixelMap    | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)                    | No  | Image content.|
+| valuePixelMap    | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)                    | No  | Image content.|
 | valueResourceStr | [ResourceStr](ts-types.md#resourcestr)                            | No  | Image resource ID.|
 | imageStyle       | [RichEditorImageSpanStyleResult](#richeditorimagespanstyleresult) | Yes| Image style.|
 | offsetInSpan     | [number, number] | Yes| Start and end positions of the image in the span.|
@@ -1135,7 +1135,7 @@ To avoid potential loading issues, do not directly add a network image.
 
 | Name    | Type                                    | Mandatory  | Description |
 | ------- | ---------------------------------------- | ---- | ----- |
-| value   | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)\|[ResourceStr](ts-types.md#resourcestr) | Yes   | Image content.|
+| value   | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)\|[ResourceStr](ts-types.md#resourcestr) | Yes   | Image content.|
 | options | [RichEditorImageSpanOptions](#richeditorimagespanoptions) | No   | Image options.|
 
 **Return value**
@@ -1576,7 +1576,7 @@ Describes the leading margin placeholder, which dictates the distance between th
 
 | Name      | Type                                      | Mandatory  | Description            |
 | -------- | ---------------------------------------- | ---- | -------------- |
-| pixelMap | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | Yes   | Image content.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| pixelMap | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | Yes   | Image content.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | size     | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\] | Yes   | Image size. This parameter cannot be set in percentage.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## RichEditorParagraphResult<sup>11+</sup>
@@ -1919,7 +1919,7 @@ Image span information.
 | Name              | Type                                                               | Mandatory | Description              |
 |------------------|-------------------------------------------------------------------|-----|------------------|
 | spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | Yes  | Span position.|
-| value            | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)\|[ResourceStr](ts-types.md#resourcestr)  | Yes  | Image content.|
+| value            | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)\|[ResourceStr](ts-types.md#resourcestr)  | Yes  | Image content.|
 | imageStyle       | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | No| Image style.|
 
 ## RichEditorUrlStyle<sup>18+</sup>

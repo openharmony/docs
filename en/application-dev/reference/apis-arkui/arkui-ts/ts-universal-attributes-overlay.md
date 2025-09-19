@@ -10,7 +10,7 @@ The overlay feature allows you to place elements on top of a component.
 
 overlay(value: string | CustomBuilder | ComponentContent, options?: OverlayOptions )
 
-Adds an overlay to this component, which can be text, a custom component, or **ComponentContent**. The overlay is not rendered through the component tree, meaning some APIs (for example, [getRectangleById](../js-apis-arkui-componentUtils.md#componentutilsgetrectanglebyid)) cannot access components within the overlay.
+Adds an overlay to this component, which can be text, a custom component, or **ComponentContent**. The overlay is not rendered through the component tree, meaning some APIs (for example, [getRectangleById](../js-apis-arkui-componentUtils.md#componentutilsgetrectanglebyiddeprecated)) cannot access components within the overlay.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 

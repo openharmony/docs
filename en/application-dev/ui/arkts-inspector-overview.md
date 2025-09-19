@@ -2,7 +2,7 @@
 
 You can use the Inspector to examine page layouts. Its bidirectional positioning feature helps quickly locate components, modify attributes, and debug components in DevEco Studio, thereby improving development efficiency.
 
-ArkUI obtains information about all components in the currently displayed page, including the parent-child structure of the component tree, size, position, styles, attributes, and states. After obtaining the component tree information, it generates and displays it as an Inspector component tree. For details about the usage in DevEco Studio, see [Using ArkUI Inspector](ui-inspector-profiler.md#using-arkui-inspector).
+ArkUI obtains information about all components in the currently displayed page, including the parent-child structure of the component tree, size, position, styles, attributes, and states. After obtaining the component tree information, it generates and displays it as an Inspector component tree.
 
 ## Constraints
 

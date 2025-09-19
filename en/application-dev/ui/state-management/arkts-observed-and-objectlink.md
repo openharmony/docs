@@ -32,7 +32,7 @@ The decorators including [\@State](./arkts-state.md), [\@Prop](./arkts-prop.md),
 | \@ObjectLink Decorator| Description                                      |
 | ----------------- | ---------------------------------------- |
 | Decorator parameters            | None.                                      |
-| Allowed variable types        | In versions earlier than API version 18, @ObjectLink must be initialized with an \@Observed decorated class instance.<br>Since API version 18, \@ObjectLink can also be initialized with the return value of [makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18).<br>\@ObjectLink does not support simple types. To use simple types, you can use [\@Prop](arkts-prop.md).<br>It supports class instances that inherit from Date, [Array](#two-dimensional-array), [Map](#extended-map-class), and [Set](#extended-set-class) (the latter two are supported since API version 11). For an example, see [Observed Changes](#observed-changes).<br>Since API version 11, @ObjectLink supports union types of @Observed decorated classes and **undefined** or **null**, for example, **ClassA \| ClassB**, **ClassA \| undefined**, or **ClassA \| null**. For details, see [Union Type @ObjectLink](#union-type-objectlink).<br>An @ObjectLink decorated variable accepts changes to its properties, but the variable itself is read-only.|
+| Allowed variable types        | In versions earlier than API version 18, @ObjectLink must be initialized with an \@Observed decorated class instance.<br>Since API version 18, \@ObjectLink can also be initialized with the return value of [makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19).<br>\@ObjectLink does not support simple types. To use simple types, you can use [\@Prop](arkts-prop.md).<br>It supports class instances that inherit from Date, [Array](#two-dimensional-array), [Map](#extended-map-class), and [Set](#extended-set-class) (the latter two are supported since API version 11). For an example, see [Observed Changes](#observed-changes).<br>Since API version 11, @ObjectLink supports union types of @Observed decorated classes and **undefined** or **null**, for example, **ClassA \| ClassB**, **ClassA \| undefined**, or **ClassA \| null**. For details, see [Union Type @ObjectLink](#union-type-objectlink).<br>An @ObjectLink decorated variable accepts changes to its properties, but the variable itself is read-only.|
 | Initial value for the decorated variable        | Not allowed.                                    |
 
 Example of a read-only \@ObjectLink decorated variable:
@@ -204,7 +204,7 @@ For a class that extends **Set**, the value changes of the **Set** instance can 
 3. The \@ObjectLink decorator must be used with complex types. Otherwise, an error is reported during compilation.
 
 4. In versions earlier than API version 18, the type of the variable decorated by \@ObjectLink must be a class explicitly decorated by @Observed. If the type is not specified or is not a class decorated by \@Observed, an error is reported during compilation.
-Since API version 18, \@ObjectLink can also be initialized with the return value of [makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18). If it is not properly initialized, an error is reported during runtime.
+Since API version 18, \@ObjectLink can also be initialized with the return value of [makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19). If it is not properly initialized, an error is reported during runtime.
 
   ```ts
   @Observed
@@ -509,7 +509,7 @@ An object array is a frequently used data structure. The following example shows
 
 > **NOTE**
 >
-> **NextID** is used to generate a unique, persistent key for each array item during [ForEach rendering](./arkts-rendering-control-foreach.md) to identify the corresponding component.
+> **NextID** is used to generate a unique, persistent key for each array item during [ForEach rendering](../rendering-control/arkts-rendering-control-foreach.md) to identify the corresponding component.
 
 ```ts
 let NextID: number = 1;
@@ -689,7 +689,7 @@ struct IndexPage {
 }
 ```
 
-Since API version 18, \@ObjectLink can also be initialized with the return value of [makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed18). Therefore, if you do not want to declare the class that inherits from array, you can use **makeV1Observed** to achieve the same effect.
+Since API version 18, \@ObjectLink can also be initialized with the return value of [makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19). Therefore, if you do not want to declare the class that inherits from array, you can use **makeV1Observed** to achieve the same effect.
 
 A complete example is as follows:
 
