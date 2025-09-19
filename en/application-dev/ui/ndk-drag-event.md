@@ -1,6 +1,6 @@
 # Drag Event
 
-The ArkUI framework provides a set of drag event APIs to help you implement drag-and-drop functionality. These events include [NODE_ON_PRE_DRAG](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype), [NODE_ON_DRAG_START](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype), [NODE_ON_DROP](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype), [NODE_ON_DRAG_ENTER](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype), [NODE_ON_DRAG_MOVE](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype), [NODE_ON_DRAG_LEAVE](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype), and [NODE_ON_DRAG_END](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype). These events are triggered at different stages of the drag operation, allowing you to perform specific actions and manage the drag interaction as needed.
+The ArkUI framework provides a set of drag event APIs to help you implement drag-and-drop functionality. These events include [NODE_ON_PRE_DRAG](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype), [NODE_ON_DRAG_START](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype), [NODE_ON_DROP](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype), [NODE_ON_DRAG_ENTER](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype), [NODE_ON_DRAG_MOVE](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype), [NODE_ON_DRAG_LEAVE](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype), and [NODE_ON_DRAG_END](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype). These events are triggered at different stages of the drag operation, allowing you to perform specific actions and manage the drag interaction as needed.
 
 ## Basic Drag Implementation
 
@@ -8,7 +8,7 @@ In ArkUI, you can implement the drag-and-drop functionality using C and C++ by c
 
 1. Set a component draggable.
 
-   Obtain the [Node-API](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_getmoduleinterface), which you'll need for node operations, such as creating a node.
+   Obtain the [Node-API](../reference/apis-arkui/capi-native-interface-h.md#oh_arkui_getmoduleinterface), which you'll need for node operations, such as creating a node.
 
     ```cpp
     ArkUI_NativeNodeAPI_1 *nodeAPI = nullptr;
@@ -36,7 +36,7 @@ In ArkUI, you can implement the drag-and-drop functionality using C and C++ by c
 
 2. Customize the drag preview and background image.
 
-   Create a [PixelMap](../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_createpixelmap) object and set its width, height, and other properties. Set [dragPreviewOption](../reference/apis-arkui/drag__and__drop_8h.md#functions) for the **Image** node to customize the rounded corners and badges of the drag preview.
+   Create a [PixelMap](../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_createpixelmap) object and set its width, height, and other properties. Set [dragPreviewOption](../reference/apis-arkui/capi-drag-and-drop-h.md#callback) for the **Image** node to customize the rounded corners and badges of the drag preview.
 
     ```cpp
       // Create a PixelMap.
@@ -69,7 +69,7 @@ In ArkUI, you can implement the drag-and-drop functionality using C and C++ by c
 
 3. Set related events.
 
-   Use a unified callback to handle events. Distinguish between different events using [eventType](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype).
+   Use a unified callback to handle events. Distinguish between different events using [eventType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype).
 
     ```cpp
     nodeAPI->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
@@ -123,7 +123,7 @@ In ArkUI, you can implement the drag-and-drop functionality using C and C++ by c
 
 4. Handle the **NODE_ON_DRAG_START** event.
 
-   In the **NODE_ON_DRAG_START** event, perform operations required to initiate the drag operation, typically involving data processing. For example, create a [UdmfRecord](../reference/apis-arkdata/_u_d_m_f.md#oh_udmfrecord), add the required data (such as **imageUri**) to the **UdmfRecord** in the **fileUri** type, set the **UdmfRecord** to [udmfData](../reference/apis-arkdata/_u_d_m_f.md#oh_udmfdata), and set **udmfData** to [DragEvent](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_dragevent).
+   In the **NODE_ON_DRAG_START** event, perform operations required to initiate the drag operation, typically involving data processing. For example, create a [UdmfRecord](../reference/apis-arkdata/capi-udmf-oh-udmfrecord.md), add the required data (such as **imageUri**) to the **UdmfRecord** in the **fileUri** type, set the **UdmfRecord** to [udmfData](../reference/apis-arkdata/capi-udmf-oh-udmfdata.md), and set **udmfData** to [DragEvent](../reference/apis-arkui/capi-arkui-nativemodule-arkui-dragevent.md).
 
     ```cpp
     case NODE_ON_DRAG_START: {
@@ -143,7 +143,7 @@ In ArkUI, you can implement the drag-and-drop functionality using C and C++ by c
 
 5. Handle the **NODE_ON_DROP** event.
 
-   In the **NODE_ON_DROP** event, perform operations related to the drop phase, typically involving retrieving the data passed during the drag process. For example, obtain [udmfData](../reference/apis-arkdata/_u_d_m_f.md#oh_udmfdata), check whether the required data type exists, extract the corresponding data from [UdmfRecord](../reference/apis-arkdata/_u_d_m_f.md#oh_udmfrecord), and destroy the pointer.
+   In the **NODE_ON_DROP** event, perform operations related to the drop phase, typically involving retrieving the data passed during the drag process. For example, obtain [udmfData](../reference/apis-arkdata/capi-udmf-oh-udmfdata.md), check whether the required data type exists, extract the corresponding data from [UdmfRecord](../reference/apis-arkdata/capi-udmf-oh-udmfrecord.md), and destroy the pointer.
 
     ```cpp
     case NODE_ON_DROP: {
@@ -191,7 +191,7 @@ In addition to the basic drag-and-drop functionality, ArkUI allows you to initia
 
 1. Register node events.
 
-   Create a **Button** node, set its attributes, and register the [NODE_ON_TOUCH_INTERCEPT](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype) event.
+   Create a **Button** node, set its attributes, and register the [NODE_ON_TOUCH_INTERCEPT](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype) event.
 
     ```cpp
     // Use buttonTouch as targetId to distinguish events from different targets.
@@ -217,7 +217,7 @@ In addition to the basic drag-and-drop functionality, ArkUI allows you to initia
     ```
 2. Receive the **NODE_ON_TOUCH_INTERCEPT** event.
 
-     In the **NODE_ON_TOUCH_INTERCEPT** event, you need to set up **DragAction** to initiate the drag operation. Use [targetId](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_nodeevent_gettargetid) to distinguish events triggered by different buttons.
+     In the **NODE_ON_TOUCH_INTERCEPT** event, you need to set up **DragAction** to initiate the drag operation. Use [targetId](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nodeevent_gettargetid) to distinguish events triggered by different buttons.
 
       ```cpp
       nodeAPI->registerNodeEventReceiver([](ArkUI_NodeEvent *event) {
@@ -247,7 +247,7 @@ In addition to the basic drag-and-drop functionality, ArkUI allows you to initia
       ```
 3. Set the drag action.
 
-     In the **NODE_ON_TOUCH_INTERCEPT** event, set **DragAction** to initiate the drag operation. Create a [PixelMap](../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_createpixelmap), set [dragPreviewOption](../reference/apis-arkui/drag__and__drop_8h.md#functions) and the touch point, and set the text data for the drag operation.
+     In the **NODE_ON_TOUCH_INTERCEPT** event, set **DragAction** to initiate the drag operation. Create a [PixelMap](../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_createpixelmap), set [dragPreviewOption](../reference/apis-arkui/capi-drag-and-drop-h.md#callback) and the touch point, and set the text data for the drag operation.
 
       ```cpp
       case NODE_ON_TOUCH_INTERCEPT: {
