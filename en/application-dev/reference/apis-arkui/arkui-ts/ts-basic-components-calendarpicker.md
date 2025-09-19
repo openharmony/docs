@@ -62,7 +62,7 @@ How the picker is aligned with the entry component. Compared with [edgeAlign](#e
 
 | Name   | Type                                                        | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| alignType | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CalendarAlign](#calendaralign)> | Yes  | Alignment type.<br>If **alignType** is set to **undefined**, the default value **CalendarAlign.END** is used.|
+| alignType | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[CalendarAlign](#calendaralign)> | Yes  | Alignment type.<br>If **alignType** is set to **undefined**, the default value **CalendarAlign.END** is used.|
 | offset    | [Offset](ts-types.md#offset)                                 | No  | Offset of the picker relative to the entry component after alignment based on the specified alignment type.<br>Default value: **{dx: 0, dy: 0}**|
 
 ### textStyle
@@ -95,7 +95,7 @@ Sets the font color, font size, and font weight in the entry area. Compared with
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](./ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight in the entry area.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](./ts-basic-components-datepicker.md#pickertextstyle10)> | Yes  | Font color, font size, and font weight in the entry area.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
 
 ### markToday<sup>18+</sup>
 
@@ -147,7 +147,7 @@ Triggered when a date is selected. Compared with [onChange](#onchange), this API
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Callback](ts-types.md#callback12)\<Date>> | Yes  | Selected date value<br>If **callback** is set to **undefined**, the callback function is not used.|
+| callback | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[Callback](ts-types.md#callback12)\<Date>> | Yes  | Selected date value<br>If **callback** is set to **undefined**, the callback function is not used.|
 
 ##  CalendarOptions
 
