@@ -26,9 +26,9 @@ Measures the width of the given text.
 
 > **NOTE**
 >
-> This API is deprecated since API version 18. You are advised to use [measureText](js-apis-arkui-UIContext.md#measuretext12) instead on the obtained [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) object.
+> This API is deprecated since API version 18. You are advised to use [MeasureUtils](arkts-apis-uicontext-measureutils.md) instead on the obtained [MeasureUtils](arkts-apis-uicontext-measureutils.md) object.
 >
-> Since API version 12, you can use the [getMeasureUtils](js-apis-arkui-UIContext.md#getmeasureutils12) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) object associated with the current UI context.
+> Since API version 12, you can use the [getMeasureUtils](arkts-apis-uicontext-uicontext.md#getmeasureutils12) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [MeasureUtils](arkts-apis-uicontext-measureutils.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -51,7 +51,7 @@ Measures the width of the given text.
 
 > **NOTE**
 >
->You are advised to use the [getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) instance associated with the current UI context.
+>You are advised to use the [getMeasureUtils](./arkts-apis-uicontext-uicontext.md#getmeasureutils12) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [MeasureUtils](arkts-apis-uicontext-measureutils.md) instance associated with the current UI context.
 
 ```ts
 import { MeasureText } from '@kit.ArkUI'
@@ -85,9 +85,9 @@ Measures the width and height of the given text.
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [measureTextSize](js-apis-arkui-UIContext.md#measuretextsize12) instead on the obtained [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) object.
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [measureTextSize](arkts-apis-uicontext-measureutils.md#measuretextsize12) instead on the obtained [MeasureUtils](arkts-apis-uicontext-measureutils.md) object.
 >
-> Since API version 12, you can use the [getMeasureUtils](js-apis-arkui-UIContext.md#getmeasureutils12) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) object associated with the current UI context.
+> Since API version 12, you can use the [getMeasureUtils](arkts-apis-uicontext-uicontext.md#getmeasureutils12) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [MeasureUtils](arkts-apis-uicontext-measureutils.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -110,7 +110,7 @@ Measures the width and height of the given text.
 
 > **NOTE**
 >
->You are advised to use the [getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) instance associated with the current UI context.
+>You are advised to use the [getMeasureUtils](./arkts-apis-uicontext-uicontext.md#getmeasureutils12) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [MeasureUtils](arkts-apis-uicontext-measureutils.md) instance associated with the current UI context.
 
 ```ts
 import { MeasureText } from '@kit.ArkUI'

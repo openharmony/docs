@@ -1494,6 +1494,7 @@
         - [SmartPerf User Guide](application-test/smartperf-guidelines.md)
         - [wukong User Guide](application-test/wukong-guidelines.md)
       - Debugging Commands<!--debugging-commands-->
+        - [Command Line Tools](tools/command-line-tools-overview.md)
         - [Ability Assistant](tools/aa-tool.md)
         - [Bundle Manager](tools/bm-tool.md)
         - Packing and Unpacking Tools<!--packing-unpacking-->
@@ -1510,6 +1511,7 @@
         - [param](tools/param-tool.md)
         - [power-shell](tools/power-shell.md)
         - [Access Token Manager](tools/atm-tool.md)
+        - [network-cfg](tools/network-cfg.md)
         <!--Del-->
         - [Account Manager](tools/acm-tool.md)
         <!--DelEnd-->
@@ -1518,6 +1520,7 @@
           - [mediatool](tools/mediatool.md)
           - [devicedebug](tools/devicedebug-tool.md)
           - [rawheap-translator](tools/rawheap-translator.md)
+        - [Binary Sign Tool](tools/binary-sign-tool.md)
   - Media<!--media-->
     - Audio Kit<!--audio-kit-->
       - [Introduction to Audio Kit](media/audio/audio-kit-intro.md)
@@ -1855,6 +1858,7 @@
         - [Using fdsan](napi/fdsan.md)
       - Using Node-API<!--using-napi-interaction-with-cpp-->
         - [Node-API Overview](napi/napi-introduction.md)
+        - [Node-API Status Codes](napi/napi_status_introduction.md)
         - [Node-API Data Types and APIs](napi/napi-data-types-interfaces.md)
         - [Node-API Development Specifications](napi/napi-guidelines.md)
         - [Node-API Development Process](napi/use-napi-process.md)
@@ -3944,6 +3948,7 @@
           <!--Del-->
           - [Screen Hopping Error Codes](reference/apis-distributedservice-kit/errorcode-devicestatus.md)
           <!--DelEnd-->
+          - [Link Enhancement Error Codes](reference/apis-distributedservice-kit/errorcode-link-enhance.md)
           - [Proxy Channel Management Error Codes](reference/apis-distributedservice-kit/errorcode_proxyChannelManager.md)
         - C APIs<!--distributed-service-c-->
           - Modules<!--distributed-service-module-->

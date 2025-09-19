@@ -8,7 +8,7 @@ The **mediaquery** module provides different styles for different media types.
 >
 > This module cannot be used in the file declaration of the [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md). In other words, the APIs of this module can be used only after a component instance is created; they cannot be called in the lifecycle of the UIAbility.
 >
-> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is unclear](../../ui/arkts-global-interface.md). For details, see [UIContext](js-apis-arkui-UIContext.md#uicontext).
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is unclear](../../ui/arkts-global-interface.md). For details, see [UIContext](arkts-apis-uicontext-uicontext.md).
 
 
 ## Modules to Import
@@ -26,9 +26,9 @@ Sets the media query condition. This API returns the corresponding media query l
 
 > **NOTE**
 >
-> This API is deprecated since API version 18. You are advised to use [matchMediaSync](js-apis-arkui-UIContext.md#matchmediasync) instead on the obtained [MediaQuery](js-apis-arkui-UIContext.md#mediaquery) object.
+> This API is deprecated since API version 18. You are advised to use [matchMediaSync](arkts-apis-uicontext-mediaquery.md#matchmediasync) instead on the obtained [MediaQuery](arkts-apis-uicontext-mediaquery.md) object.
 >
-> Since API version 10, you can use the [getMediaQuery](js-apis-arkui-UIContext.md#getmediaquery) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [MediaQuery](js-apis-arkui-UIContext.md#mediaquery) object associated with the current UI context.
+> Since API version 10, you can use the [getMediaQuery](arkts-apis-uicontext-uicontext.md#getmediaquery) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [MediaQuery](arkts-apis-uicontext-mediaquery.md) object associated with the current UI context.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -157,7 +157,7 @@ Provides the media query result.
 
 > **NOTE**
 >
-> You are advised to use the [getMediaQuery](js-apis-arkui-UIContext.md#getmediaquery) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [MediaQuery](js-apis-arkui-UIContext.md#mediaquery) object associated with the current UI context.
+> You are advised to use the [getMediaQuery](arkts-apis-uicontext-uicontext.md#getmediaquery) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [MediaQuery](arkts-apis-uicontext-mediaquery.md) object associated with the current UI context.
 
 ```ts
 import { mediaquery } from '@kit.ArkUI';

@@ -10,7 +10,7 @@ The **Animator** module provides APIs for applying animation effects, including 
 >
 > This module cannot be used in the file declaration of the [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md). In other words, the APIs of this module can be used only after a component instance is created; they cannot be called in the lifecycle of the UIAbility.
 >
-> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is unclear](../../ui/arkts-global-interface.md). For details, see [UIContext](js-apis-arkui-UIContext.md#uicontext).
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is unclear](../../ui/arkts-global-interface.md). For details, see [UIContext](arkts-apis-uicontext-uicontext.md).
 
 ## Modules to Import
 
@@ -34,9 +34,9 @@ Creates an **AnimatorResult** object for animations.
 
 > **NOTE**
 > 
-> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [createAnimator](js-apis-arkui-UIContext.md#createanimator) in [UIContext](js-apis-arkui-UIContext.md#uicontext) instead.
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [createAnimator](arkts-apis-uicontext-uicontext.md#createanimator) in [UIContext](arkts-apis-uicontext-uicontext.md) instead.
 >
-> Since API version 10, you can use the [createAnimator](js-apis-arkui-UIContext.md#createanimator) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the UI context.
+> Since API version 10, you can use the [createAnimator](arkts-apis-uicontext-uicontext.md#createanimator) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -66,7 +66,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 > **NOTE**
 >
-> For precise animation control, use the [createAnimator](js-apis-arkui-UIContext.md#createanimator) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to specify the UI context.
+> For precise animation control, use the [createAnimator](arkts-apis-uicontext-uicontext.md#createanimator) API in [UIContext](arkts-apis-uicontext-uicontext.md) to specify the UI context.
 
 <!--deprecated_code_no_check-->
 ```ts
@@ -119,7 +119,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 > **NOTE**
 >
-> For precise animation control, use the [createAnimator](js-apis-arkui-UIContext.md#createanimator) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to specify the UI context.
+> For precise animation control, use the [createAnimator](arkts-apis-uicontext-uicontext.md#createanimator) API in [UIContext](arkts-apis-uicontext-uicontext.md) to specify the UI context.
 
 <!--deprecated_code_no_check-->
 ```ts
@@ -134,7 +134,7 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 
 Creates an animation.
 
-This API is deprecated since API version 9. You are advised to use [createAnimator](js-apis-arkui-UIContext.md#createanimator) in [UIContext](js-apis-arkui-UIContext.md#uicontext) instead.
+This API is deprecated since API version 9. You are advised to use [createAnimator](arkts-apis-uicontext-uicontext.md#createanimator) in [UIContext](arkts-apis-uicontext-uicontext.md) instead.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -961,7 +961,7 @@ class DateT {
 
 > **NOTE**
 >
-> For precise animation control, use the [createAnimator](js-apis-arkui-UIContext.md#createanimator) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to specify the UI context.
+> For precise animation control, use the [createAnimator](arkts-apis-uicontext-uicontext.md#createanimator) API in [UIContext](arkts-apis-uicontext-uicontext.md) to specify the UI context.
 
 <!--deprecated_code_no_check-->
 ```ts

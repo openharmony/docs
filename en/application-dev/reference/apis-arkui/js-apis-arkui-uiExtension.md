@@ -21,7 +21,7 @@ import { uiExtension } from '@kit.ArkUI'
 
 | Name                                | Type                 | Read Only| Optional| Description                                                                                                    |
 | ------------------------------------| -------------------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------ |
-| properties<sup>14+</sup>            | [WindowProxyProperties](#windowproxyproperties14) |  No |  No | Information about the component (**EmbeddedComponent** or **UIExtensionComponent**).<br>**Atomic service API**: This API can be used in atomic services since API version 14.<br>**NOTE**<br>Due to architecture restrictions, avoid obtaining the value in [onSessionCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate). Instead, when possible, obtain the value after receiving the [on('windowSizeChange')](../apis-arkui/js-apis-arkui-uiExtension.md#onwindowsizechange) callback.                                                                           |
+| properties<sup>14+</sup>            | [WindowProxyProperties](#windowproxyproperties14) |  No |  No | Information about the component (**EmbeddedComponent** or **UIExtensionComponent**).<br>**Atomic service API**: This API can be used in atomic services since API version 14.<br>**NOTE**<br>Due to architecture restrictions, avoid obtaining the value in [onSessionCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate). Instead, when possible, obtain the value after receiving the [on('windowSizeChange')](../apis-arkui/js-apis-arkui-uiExtension.md#onwindowsizechange) callback.                                                                           |
 
 ### getWindowAvoidArea
 
@@ -35,13 +35,13 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type |[window.AvoidAreaType](./js-apis-window.md#avoidareatype7) | Yes| Type of the area.|
+| type |[window.AvoidAreaType](arkts-apis-window-e.md#avoidareatype7) | Yes| Type of the area.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-|[window.AvoidArea](./js-apis-window.md#avoidarea7) | Area where the window cannot be displayed.|
+|[window.AvoidArea](arkts-apis-window-i.md#avoidarea7) | Area where the window cannot be displayed.|
 
 **Error codes**
 
@@ -160,7 +160,7 @@ Subscribes to the window size change event of the host application.
 | Name  | Type                 | Mandatory| Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
 | type     | string                | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event.|
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | Yes  | Callback used to return the window size.|
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](arkts-apis-window-i.md#size7)> | Yes  | Callback used to return the window size.|
 
 **Error codes**
 
@@ -201,7 +201,7 @@ Unsubscribes from the window size change event of the host application.
 | Name  | Type                 | Mandatory| Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
 | type     | string                | Yes  | Event type. The value is fixed at **'windowSizeChange'**, indicating the window size change event.|
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | No  | Callback used for unsubscription. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](arkts-apis-window-i.md#size7)> | No  | Callback used for unsubscription. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Error codes**
 
@@ -329,13 +329,13 @@ Creates a subwindow for this window proxy. This API uses a promise to return the
 | Name| Type  | Mandatory| Description          |
 | ------ | ------ | ---- | -------------- |
 | name   | string | Yes  | Name of the subwindow.|
-| subWindowOptions | [window.SubWindowOptions](js-apis-window.md#subwindowoptions11) | Yes  | Parameters used for creating the subwindow. |
+| subWindowOptions | [window.SubWindowOptions](arkts-apis-window-i.md#subwindowoptions11) | Yes  | Parameters used for creating the subwindow. |
 
 **Return value**
 
 | Type                            | Description                                            |
 | -------------------------------- | ------------------------------------------------ |
-| Promise&lt;[window.Window](js-apis-window.md#window)&gt; | Promise used to return the subwindow created.|
+| Promise&lt;[window.Window](arkts-apis-window-Window.md)&gt; | Promise used to return the subwindow created.|
 
 **Error codes**
 
@@ -477,8 +477,8 @@ Describes the information about the area where the window cannot be displayed.
 
 | Name| Type                | Mandatory| Description       |
 | ------ | -------------------- | ------------------ | ------------------ |
-| type   | [window.AvoidAreaType](js-apis-window.md#avoidareatype7) | Yes| Type of the area where the window cannot be displayed.  |
-| area   | [window.AvoidArea](js-apis-window.md#avoidarea7)     | Yes| Area where the window cannot be displayed.|
+| type   | [window.AvoidAreaType](arkts-apis-window-e.md#avoidareatype7) | Yes| Type of the area where the window cannot be displayed.  |
+| area   | [window.AvoidArea](arkts-apis-window-i.md#avoidarea7)     | Yes| Area where the window cannot be displayed.|
 
 ## WindowProxyProperties<sup>14+</sup>
 
@@ -490,7 +490,7 @@ Provides information about a component.
 
 | Name                        | Type       | Mandatory     | Description                            |
 | ------------------------------ | ----------- | -------------------------------- | -------------------------------- |
-| uiExtensionHostWindowProxyRect | [window.Rect](js-apis-window.md#rect7) | Yes| Position and size of the component (**EmbeddedComponent** or **UIExtensionComponent**).|
+| uiExtensionHostWindowProxyRect | [window.Rect](arkts-apis-window-i.md#rect7) | Yes| Position and size of the component (**EmbeddedComponent** or **UIExtensionComponent**).|
 
 ## RectChangeReason<sup>14+</sup>
 
@@ -514,7 +514,7 @@ Provides the values and reasons returned when the rectangle (position and size) 
 
 | Name      | Type     | Readable| Writable| Description              |
 | ---------- | ------------- | ---- | ---- | ------------------ |
-| rect   | [window.Rect](js-apis-window.md#rect7) | Yes  | Yes  | New values of the rectangle of the component after the change.|
+| rect   | [window.Rect](arkts-apis-window-i.md#rect7) | Yes  | Yes  | New values of the rectangle of the component after the change.|
 | reason    | [RectChangeReason](#rectchangereason14) | Yes  | Yes  | Reason for the rectangle change.|
 
 ## Example

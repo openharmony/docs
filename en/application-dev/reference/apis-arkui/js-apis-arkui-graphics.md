@@ -252,7 +252,7 @@ Obtains the canvas used for drawing.
 
 | Type         | Description            |
 | ------------- | ---------------- |
-| [drawing.Canvas](../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | Canvas for drawing.|
+| [drawing.Canvas](../apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md) | Canvas for drawing.|
 
 **Example**
 
@@ -598,7 +598,7 @@ Creates a **ColorMetrics** instance using specified [ColorSpace](./arkui-ts/ts-a
 
 | Name| Type         | Mandatory| Description        |
 | ------ | ------------- | ---- | ------------ |
-| colorSpace   | [ColorSpace](./arkui-ts/ts-appendix-enums.md) | Yes  | Color space used to specify the color. To use **ColorSpace.DISPLAY_P3**, the corresponding window must be set to wide color gamut mode using [setWindowColorSpace](./js-apis-window.md#setwindowcolorspace9-1).|
+| colorSpace   | [ColorSpace](./arkui-ts/ts-appendix-enums.md) | Yes  | Color space used to specify the color. To use **ColorSpace.DISPLAY_P3**, the corresponding window must be set to wide color gamut mode using [setWindowColorSpace](./arkts-apis-window-Window.md#setwindowcolorspace9-1).|
 | red   | number | Yes  | Red component of the color. The value is a floating point number ranging from 0 to 1.|
 | green | number | Yes  | Green component of the color. The value is a floating point number ranging from 0 to 1.|
 | blue  | number | Yes  | Blue component of the color. The value is a floating point number ranging from 0 to 1.|

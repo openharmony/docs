@@ -1,6 +1,6 @@
 # NodeController
 
-The **NodeController** module provides APIs for managing custom nodes, such as creating, showing, and updating custom nodes, and APIs for mounting custom nodes to a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component.
+The **NodeController** module provides APIs for managing custom nodes, such as creating, showing, and updating custom nodes, and APIs for mounting custom nodes to a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md) component.
 
 > **NOTE**
 >
@@ -16,7 +16,7 @@ import {  NodeController  } from '@kit.ArkUI';
 
 ## NodeController
 
-Implements a **NodeController** instance to manage the bound [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component. One **NodeController** instance can be bound to only one [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component.
+Implements a **NodeController** instance to manage the bound [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md) component. One **NodeController** instance can be bound to only one [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md) component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -26,7 +26,7 @@ Implements a **NodeController** instance to manage the bound [NodeContainer](ark
 
 abstract makeNode(uiContext : UIContext): FrameNode | null
 
-Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component bound to this **NodeController** instance is created. This callback returns a node, which will be mounted to the **NodeContainer**.
+Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md) component bound to this **NodeController** instance is created. This callback returns a node, which will be mounted to the **NodeContainer**.
 This callback can also be invoked through the **rebuild()** method of **NodeController**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -37,19 +37,19 @@ This callback can also be invoked through the **rebuild()** method of **NodeCont
 
 | Name   | Type                                     | Mandatory| Description                                                                                                         |
 | --------- | ----------------------------------------- | ---- | ------------------------------------------------------------------------------------------------------------- |
-| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | Yes  | UI context of the bound **NodeContainer** component.|
+| uiContext | [UIContext](./arkts-apis-uicontext-uicontext.md) | Yes  | UI context of the bound **NodeContainer** component.|
 
 **Return value**
 
 | Type            | Description                                                                                                                                                                                                                                                       |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [FrameNode](./js-apis-arkui-frameNode.md#framenode)\| null | **FrameNode** object, which will be mounted to the placeholder node of the **NodeContainer** component. If a **null** object is returned, the child nodes of the corresponding **NodeContainer** component are removed.|
+| [FrameNode](./js-apis-arkui-frameNode.md)\| null | **FrameNode** object, which will be mounted to the placeholder node of the **NodeContainer** component. If a **null** object is returned, the child nodes of the corresponding **NodeContainer** component are removed.|
 
 ### aboutToAppear
 
 aboutToAppear?(): void
 
-Called after the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component bound to this **NodeController** instance is attached and about to appear.
+Called after the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md) component bound to this **NodeController** instance is attached and about to appear.
 
 > **NOTE**
 >
@@ -63,7 +63,7 @@ Called after the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#n
 
 aboutToDisappear?(): void
 
-Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component bound to this **NodeController** instance is detached and about to be hidden.
+Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md) component bound to this **NodeController** instance is detached and about to be hidden.
 
 > **NOTE**
 >
@@ -77,7 +77,7 @@ Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#no
 
 onAttach?(): void
 
-Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component bound to this **NodeController** instance is attached to the main node tree.
+Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md) component bound to this **NodeController** instance is attached to the main node tree.
 
 > **NOTE**
 >
@@ -91,7 +91,7 @@ Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#no
 
 onDetach?(): void
 
-Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component bound to this **NodeController** instance is detached from the main node tree.
+Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md) component bound to this **NodeController** instance is detached from the main node tree.
 
 > **NOTE**
 >
@@ -105,7 +105,7 @@ Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#no
 
 onWillBind?(containerId: number): void
 
-Called when this **NodeController** instance is about to be bound to a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component.
+Called when this **NodeController** instance is about to be bound to a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md) component.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -115,13 +115,13 @@ Called when this **NodeController** instance is about to be bound to a [NodeCont
 
 | Name   | Type                                     | Mandatory| Description                                                                                                         |
 | ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
-| containerId | number | Yes  | ID of the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component to which the **NodeController** instance is about to be bound.|
+| containerId | number | Yes  | ID of the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md) component to which the **NodeController** instance is about to be bound.|
 
 ### onWillUnbind<sup>18+</sup>
 
 onWillUnbind?(containerId: number): void
 
-Called when this **NodeController** instance is about to be unbound from a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component.
+Called when this **NodeController** instance is about to be unbound from a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md) component.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -131,13 +131,13 @@ Called when this **NodeController** instance is about to be unbound from a [Node
 
 | Name   | Type                                     | Mandatory| Description                                                                                                         |
 | ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
-| containerId | number | Yes  | ID of the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component from which the **NodeController** instance is about to be unbound.|
+| containerId | number | Yes  | ID of the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md) component from which the **NodeController** instance is about to be unbound.|
 
 ### onBind<sup>18+</sup>
 
 onBind?(containerId: number): void
 
-Called after this **NodeController** instance is bound to a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component.
+Called after this **NodeController** instance is bound to a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md) component.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -147,13 +147,13 @@ Called after this **NodeController** instance is bound to a [NodeContainer](arku
 
 | Name   | Type                                     | Mandatory| Description                                                                                                         |
 | ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
-| containerId | number | Yes  | ID of the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component to which the **NodeController** instance is bound.|
+| containerId | number | Yes  | ID of the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md) component to which the **NodeController** instance is bound.|
 
 ### onUnbind<sup>18+</sup>
 
 onUnbind?(containerId: number): void
 
-Called after this **NodeController** instance is unbound from a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component.
+Called after this **NodeController** instance is unbound from a [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md) component.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -163,13 +163,13 @@ Called after this **NodeController** instance is unbound from a [NodeContainer](
 
 | Name   | Type                                     | Mandatory| Description                                                                                                         |
 | ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
-| containerId | number | Yes  | ID of the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component from which the **NodeController** instance is unbound.|
+| containerId | number | Yes  | ID of the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md) component from which the **NodeController** instance is unbound.|
 
 ### aboutToResize
 
 aboutToResize?(size: Size): void
 
-Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component bound to this **NodeController** instance is resized.
+Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md) component bound to this **NodeController** instance is resized.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -185,7 +185,7 @@ Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#no
 
 onTouchEvent?(event: TouchEvent): void
 
-Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component bound to this **NodeController** instance receives a touch event.
+Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md) component bound to this **NodeController** instance receives a touch event.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -201,7 +201,7 @@ Called when the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#no
 
 rebuild(): void
 
-Instructs the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) component bound to this **NodeController** instance to call the [makeNode](#makenode) API again to change child nodes.
+Instructs the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md) component bound to this **NodeController** instance to call the [makeNode](#makenode) API again to change child nodes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -210,7 +210,7 @@ Instructs the [NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#node
 > **NOTE**
 > Since the **rebuild** API is actively called by the application and is tied to the UI, you need to ensure that the UI context is valid at the time of the call, that is, it must be consistent with the UI context of the bound NodeContainer.
 >
-> In cases where the UI context is unclear, for example, during event callbacks, you can use the [runScopedTask](./js-apis-arkui-UIContext.md#runscopedtask) method of [UIContext](./js-apis-arkui-UIContext.md) to explicitly define the UI context at the time of the call.
+> In cases where the UI context is unclear, for example, during event callbacks, you can use the [runScopedTask](./arkts-apis-uicontext-uicontext.md#runscopedtask) method of [UIContext](./arkts-apis-uicontext-uicontext.md) to explicitly define the UI context at the time of the call.
 
 ## Example
 

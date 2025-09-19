@@ -1760,7 +1760,7 @@ To obtain the component specified by the **id** parameter in the **getFilteredIn
 
 getCursorController(): CursorController
 
-Obtains a [CursorController](js-apis-arkui-UIContext.md#cursorcontroller12) object, which can be used to control the cursor.
+Obtains a [CursorController](arkts-apis-uicontext-cursorcontroller.md) object, which can be used to control the cursor.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

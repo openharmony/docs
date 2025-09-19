@@ -11393,7 +11393,7 @@ Sets whether this window is focusable, that is, whether the window can gain focu
 
 | Name     | Type                     | Mandatory| Description                        |
 | ----------- | ------------------------- | ---- | ---------------------------- |
-| isFocusable | boolean                   | Yes  | Whether the window is focusable. **true** if focusable, **false** otherwise. If this parameter is set to **false**, the window does not support binding to an input method or receiving keyboard events. If input logic needs to be processed, follow the instructions provided in [Input Box and Input Method Interaction in Non-Focus Windows](../../inputmethod/use-inputmethod-in-not-focusable-window.md).|
+| isFocusable | boolean                   | Yes  | Whether the window is focusable. **true** if focusable, **false** otherwise. If this parameter is set to **false**, the window does not support binding to an input method or receiving keyboard events. If input logic needs to be processed, follow the instructions provided in **Input Box and Input Method Interaction in Non-Focus Windows**.|
 | callback    | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                  |
 
 
@@ -11429,7 +11429,7 @@ Sets whether this window is focusable, that is, whether the window can gain focu
 
 | Name     | Type   | Mandatory| Description                        |
 | ----------- | ------- | ---- | ---------------------------- |
-| isFocusable | boolean | Yes  | Whether the window is focusable. **true** if focusable, **false** otherwise. If this parameter is set to **false**, the window does not support binding to an input method or receiving keyboard events. If input logic needs to be processed, follow the instructions provided in [Input Box and Input Method Interaction in Non-Focus Windows](../../inputmethod/use-inputmethod-in-not-focusable-window.md).|
+| isFocusable | boolean | Yes  | Whether the window is focusable. **true** if focusable, **false** otherwise. If this parameter is set to **false**, the window does not support binding to an input method or receiving keyboard events. If input logic needs to be processed, follow the instructions provided in **Input Box and Input Method Interaction in Non-Focus Windows**.|
 
 **Return value**
 

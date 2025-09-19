@@ -10,9 +10,9 @@ For routing management, it is recommended that you use the [Navigation](../../ui
 >
 > - Page routing APIs can be invoked only after page rendering is complete. Do not call these APIs in **onInit** and **onReady** when the page is still in the rendering phase.
 >
-> - The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is unclear](../../ui/arkts-global-interface.md). For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+> - The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is unclear](../../ui/arkts-global-interface.md). For details, see [UIContext](arkts-apis-uicontext-uicontext.md).
 >
-> - When using [pushUrl](js-apis-arkui-UIContext.md#pushurl-1) or [pushNamedRoute](js-apis-arkui-UIContext.md#pushnamedroute-1) with a callback to return the result, be aware that the stack information obtained through the callback using APIs such as [getLength](js-apis-arkui-UIContext.md#getlength) represents an intermediate state during the navigation operation. This temporary state might differ from the final stack information available after the stack operation is complete.
+> - When using [pushUrl](arkts-apis-uicontext-router.md#pushurl-1) or [pushNamedRoute](arkts-apis-uicontext-router.md#pushnamedroute-1) with a callback to return the result, be aware that the stack information obtained through the callback using APIs such as [getLength](arkts-apis-uicontext-router.md#getlength) represents an intermediate state during the navigation operation. This temporary state might differ from the final stack information available after the stack operation is complete.
 
 ## Modules to Import
 
@@ -28,9 +28,9 @@ Navigates to a specified page in the application.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [pushUrl](js-apis-arkui-UIContext.md#pushurl) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [pushUrl](arkts-apis-uicontext-router.md#pushurl) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -105,9 +105,9 @@ Navigates to a specified page in the application.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [[pushUrl](js-apis-arkui-UIContext.md#pushurl-1) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [[pushUrl](arkts-apis-uicontext-router.md#pushurl-1) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -174,9 +174,9 @@ Navigates to a specified page in the application.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [[pushUrl](js-apis-arkui-UIContext.md#pushurl-2) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [pushUrl](arkts-apis-uicontext-router.md#pushurl-2) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -252,9 +252,9 @@ Navigates to a specified page in the application.
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [[pushUrl](js-apis-arkui-UIContext.md#pushurl-3) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [pushUrl](arkts-apis-uicontext-router.md#pushurl-3) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -323,9 +323,9 @@ Replaces the current page with another one in the application and destroys the c
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [replaceUrl](js-apis-arkui-UIContext.md#replaceurl) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [replaceUrl](arkts-apis-uicontext-router.md#replaceurl) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -389,9 +389,9 @@ Replaces the current page with another one in the application and destroys the c
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [replaceUrl](js-apis-arkui-UIContext.md#replaceurl-1) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [replaceUrl](arkts-apis-uicontext-router.md#replaceurl-1) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -448,9 +448,9 @@ Replaces the current page with another one in the application and destroys the c
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [replaceUrl](js-apis-arkui-UIContext.md#replaceurl-2) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [replaceUrl](arkts-apis-uicontext-router.md#replaceurl-2) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -516,9 +516,9 @@ Replaces the current page with another one in the application and destroys the c
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [replaceUrl](js-apis-arkui-UIContext.md#replaceurl-3) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [replaceUrl](arkts-apis-uicontext-router.md#replaceurl-3) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -576,9 +576,9 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [pushNamedRoute](js-apis-arkui-UIContext.md#pushnamedroute) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [pushNamedRoute](arkts-apis-uicontext-router.md#pushnamedroute) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -655,9 +655,9 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [pushNamedRoute](js-apis-arkui-UIContext.md#pushnamedroute-1) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [pushNamedRoute](arkts-apis-uicontext-router.md#pushnamedroute-1) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -724,9 +724,9 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [pushNamedRoute](js-apis-arkui-UIContext.md#pushnamedroute-2) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [pushNamedRoute](arkts-apis-uicontext-router.md#pushnamedroute-2) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -802,9 +802,9 @@ Navigates to a page using the named route. This API uses a promise to return the
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [pushNamedRoute](js-apis-arkui-UIContext.md#pushnamedroute-3) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [pushNamedRoute](arkts-apis-uicontext-router.md#pushnamedroute-3) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -873,9 +873,9 @@ Replaces the current page with another one using the named route and destroys th
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [replaceNamedRoute](js-apis-arkui-UIContext.md#replacenamedroute) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [replaceNamedRoute](arkts-apis-uicontext-router.md#replacenamedroute) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -939,9 +939,9 @@ Replaces the current page with another one using the named route and destroys th
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [replaceNamedRoute](js-apis-arkui-UIContext.md#replacenamedroute-1) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [replaceNamedRoute](arkts-apis-uicontext-router.md#replacenamedroute-1) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -998,9 +998,9 @@ Replaces the current page with another one using the named route and destroys th
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [replaceNamedRoute](js-apis-arkui-UIContext.md#replacenamedroute-2) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [replaceNamedRoute](arkts-apis-uicontext-router.md#replacenamedroute-2) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1066,9 +1066,9 @@ Replaces the current page with another one using the named route and destroys th
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [replaceNamedRoute](js-apis-arkui-UIContext.md#replacenamedroute-3) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [replaceNamedRoute](arkts-apis-uicontext-router.md#replacenamedroute-3) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1126,9 +1126,9 @@ Returns to the previous page or a specified page, which deletes all pages betwee
 
 > **NOTE**
 >
-> This API is deprecated since API version 18. You are advised to use [back](js-apis-arkui-UIContext.md#back) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is deprecated since API version 18. You are advised to use [back](arkts-apis-uicontext-router.md#back) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1154,9 +1154,9 @@ Returns to the specified page, which deletes all pages between the current page 
 
 > **NOTE**
 >
-> This API is supported since API version 12 and deprecated since API version 18. You are advised to use [back](js-apis-arkui-UIContext.md#back12) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 12 and deprecated since API version 18. You are advised to use [back](arkts-apis-uicontext-router.md#back12) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 12, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 12, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1186,9 +1186,9 @@ Clears all historical pages in the stack and retains only the current page at th
 
 > **NOTE**
 >
-> This API is deprecated since API version 18. You are advised to use [clear](js-apis-arkui-UIContext.md#clear) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is deprecated since API version 18. You are advised to use [clear](arkts-apis-uicontext-router.md#clear) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1208,9 +1208,9 @@ Obtains the number of pages in the current stack.
 
 > **NOTE**
 >
-> This API is deprecated since API version 18. You are advised to use [getLength](js-apis-arkui-UIContext.md#getlength) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is deprecated since API version 18. You are advised to use [getLength](arkts-apis-uicontext-router.md#getlength) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1237,9 +1237,9 @@ Obtains state information about the page at the top of the navigation stack.
 
 > **NOTE**
 >
-> This API is deprecated since API version 18. You are advised to use [getState](js-apis-arkui-UIContext.md#getstate) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is deprecated since API version 18. You are advised to use [getState](arkts-apis-uicontext-router.md#getstate) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1268,9 +1268,9 @@ Obtains the status information about a page by its index.
 
 > **NOTE**
 >
-> This API is supported since API version 12 and deprecated since API version 18. You are advised to use [getStateByIndex](js-apis-arkui-UIContext.md#getstatebyindex12) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 12 and deprecated since API version 18. You are advised to use [getStateByIndex](arkts-apis-uicontext-router.md#getstatebyindex12) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 12, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 12, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1307,9 +1307,9 @@ Obtains the status information about a page by its URL.
 
 > **NOTE**
 >
-> This API is supported since API version 12 and deprecated since API version 18. You are advised to use [getStateByUrl](js-apis-arkui-UIContext.md#getstatebyurl12) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 12 and deprecated since API version 18. You are advised to use [getStateByUrl](arkts-apis-uicontext-router.md#getstatebyurl12) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 12, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 12, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1360,9 +1360,9 @@ Enables the display of a confirm dialog box before returning to the previous pag
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [showAlertBeforeBackPage](js-apis-arkui-UIContext.md#showalertbeforebackpage) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [showAlertBeforeBackPage](arkts-apis-uicontext-router.md#showalertbeforebackpage) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1416,9 +1416,9 @@ Disables the display of a confirm dialog box before returning to the previous pa
 
 > **NOTE**
 >
-> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [hideAlertBeforeBackPage](js-apis-arkui-UIContext.md#hidealertbeforebackpage) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [hideAlertBeforeBackPage](arkts-apis-uicontext-router.md#hidealertbeforebackpage) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1438,9 +1438,9 @@ Obtains the parameters passed from the page that initiates redirection to the cu
 
 > **NOTE**
 >
-> This API is deprecated since API version 18. You are advised to use [getParams](js-apis-arkui-UIContext.md#getparams) instead on the obtained [Router](js-apis-arkui-UIContext.md#router) object.
+> This API is deprecated since API version 18. You are advised to use [getParams](arkts-apis-uicontext-router.md#getparams) instead on the obtained [Router](arkts-apis-uicontext-router.md) object.
 >
-> Since API version 10, you can use the [getRouter](js-apis-arkui-UIContext.md#getrouter) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Router](js-apis-arkui-UIContext.md#router) object associated with the current UI context.
+> Since API version 10, you can use the [getRouter](arkts-apis-uicontext-uicontext.md#getrouter) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [Router](arkts-apis-uicontext-router.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1532,7 +1532,7 @@ export default {
 
 > **NOTE**
 > 
-> Directly using **router** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using [getUIContext](js-apis-arkui-UIContext.md#uicontext), and then obtain the associated **Router** object using [getRouter](js-apis-arkui-UIContext.md#getrouter).
+> Directly using **router** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using **getUIContext**, and then obtain the associated **Router** object using [getRouter](arkts-apis-uicontext-uicontext.md#getrouter).
 
 <!--deperecated_code_no_check-->
 ```ts
@@ -1658,7 +1658,7 @@ push(options: RouterOptions): void
 
 Navigates to a specified page in the application.
 
-This API is deprecated since API version 9. You are advised to use [pushUrl](js-apis-arkui-UIContext.md#pushurl) instead.
+This API is deprecated since API version 9. You are advised to use [pushUrl](arkts-apis-uicontext-router.md#pushurl) instead.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1702,7 +1702,7 @@ replace(options: RouterOptions): void
 
 Replaces the current page with another one in the application and destroys the current page.
 
-This API is deprecated since API version 9. You are advised to use [replaceUrl](js-apis-arkui-UIContext.md#replaceurl) instead.
+This API is deprecated since API version 9. You are advised to use [replaceUrl](arkts-apis-uicontext-router.md#replaceurl) instead.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
@@ -1735,7 +1735,7 @@ enableAlertBeforeBackPage(options: EnableAlertOptions): void
 
 Enables the display of a confirm dialog box before returning to the previous page.
 
-This API is deprecated since API version 9. You are advised to use [showAlertBeforeBackPage](js-apis-arkui-UIContext.md#showalertbeforebackpage) instead.
+This API is deprecated since API version 9. You are advised to use [showAlertBeforeBackPage](arkts-apis-uicontext-router.md#showalertbeforebackpage) instead.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1759,7 +1759,7 @@ disableAlertBeforeBackPage(): void
 
 Disables the display of a confirm dialog box before returning to the previous page.
 
-This API is deprecated since API version 9. You are advised to use [hideAlertBeforeBackPage](js-apis-arkui-UIContext.md#hidealertbeforebackpage) instead.
+This API is deprecated since API version 9. You are advised to use [hideAlertBeforeBackPage](arkts-apis-uicontext-router.md#hidealertbeforebackpage) instead.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
