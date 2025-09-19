@@ -123,7 +123,7 @@ imageAccess(imageAccess: boolean)
 
 javaScriptProxy(javaScriptProxy: JavaScriptProxy)
 
-将javaScriptProxy中的ArkTS对象注册到Web组件中，该对象将使用JavaScriptProxy中指定的名称注册到网页的所有框架中，包括所有iframe，这使得JavaScript可以调用javaScriptProxy中ArkTS对象的方法。
+将javaScriptProxy中的ArkTS对象注册到Web组件中，该对象将使用JavaScriptProxy中指定的名称注册到网页的所有框架中，包括所有iframe，这使得JavaScript可以调用javaScriptProxy中ArkTS对象的方法。当属性没有显式调用时，默认不将javaScriptProxy中的ArkTS对象注册到Web组件中。
 
 > **说明：**
 >
@@ -138,7 +138,7 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
 
 | 参数名        | 类型                                     | 必填   | 说明                                     |
 | ---------- | ---------------------------------------- | ---- |---------------------------------------- |
-| javaScriptProxy     | [JavaScriptProxy](./arkts-basic-components-web-i.md#javascriptproxy12)                                   | 是    |  参与注册的对象。只能声明方法，不能声明属性。                   |
+| javaScriptProxy     | [JavaScriptProxy](./arkts-basic-components-web-i.md#javascriptproxy12)                                   | 是    |  参与注册的对象。只能声明方法，不能声明属性。<br>传入undefined或null时不将javaScriptProxy中的ArkTS对象注册到Web组件中。                  |
 
 **示例：**
 
@@ -200,7 +200,7 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
 
 javaScriptAccess(javaScriptAccess: boolean)
 
-设置是否允许执行JavaScript脚本。
+设置是否允许执行JavaScript脚本。当属性没有显式调用时，默认允许执行JavaScript脚本。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -208,7 +208,7 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 | 参数名              | 类型    | 必填   | 说明                |
 | ---------------- | ------- | ---- | ------------------- |
-| javaScriptAccess | boolean | 是    | 是否允许执行JavaScript脚本。<br>true表示允许执行JavaScript脚本，false表示不允许执行JavaScript脚本。<br>传入undefined或null时不允许执行JavaScript脚本。 |
+| javaScriptAccess | boolean | 是    | 是否允许执行JavaScript脚本。<br>true表示允许执行JavaScript脚本，false表示不允许执行JavaScript脚本。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -267,7 +267,7 @@ overScrollMode(mode: OverScrollMode)
 
 mixedMode(mixedMode: MixedMode)
 
-设定当安全源尝试从非安全源加载资源时的行为。
+设定当安全源尝试从非安全源加载资源时的行为。当属性没有显式调用时，默认值为MixedMode.None，即禁止安全源从非安全源加载内容。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -275,7 +275,7 @@ mixedMode(mixedMode: MixedMode)
 
 | 参数名       | 类型                        | 必填   | 说明      |
 | --------- | --------------------------- | ---- | --------- |
-| mixedMode | [MixedMode](./arkts-basic-components-web-e.md#mixedmode) | 是    | 要设置的混合内容模式。 |
+| mixedMode | [MixedMode](./arkts-basic-components-web-e.md#mixedmode) | 是    | 要设置的混合内容模式。<br>传入undefined或null时为MixedMode.None。  |
 
 **示例：**
 
@@ -706,7 +706,7 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
 cacheMode(cacheMode: CacheMode)
 
-设置缓存模式。
+设置缓存模式。当属性没有显式调用时，默认为`CacheMode.Default`。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -714,7 +714,7 @@ cacheMode(cacheMode: CacheMode)
 
 | 参数名       | 类型                        | 必填   | 说明      |
 | --------- | --------------------------- | ---- | --------- |
-| cacheMode | [CacheMode](./arkts-basic-components-web-e.md#cachemode) | 是    | 要设置的缓存模式。 |
+| cacheMode | [CacheMode](./arkts-basic-components-web-e.md#cachemode) | 是    | 要设置的缓存模式。<br>传入undefined或null时为CacheMode.Default。  |
 
 **示例：**
 
@@ -845,7 +845,7 @@ initialScale(percent: number)
 
 blockNetwork(block: boolean)
 
-设置Web组件是否阻止从网络加载资源。
+设置Web组件是否阻止从网络加载资源。当属性没有显式调用时，默认允许从网络加载资源。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -853,7 +853,7 @@ blockNetwork(block: boolean)
 
 | 参数名   | 类型    | 必填   | 说明                |
 | ----- | ------- | ---- | ------------------- |
-| block | boolean | 是    | 设置Web组件是否允许从网络加载资源。<br>true表示不允许从网络加载资源，false表示允许从网络加载资源。<br>传入undefined或null时不允许从网络加载资源。 |
+| block | boolean | 是    | 设置Web组件是否允许从网络加载资源。<br>true表示不允许从网络加载资源，false表示允许从网络加载资源。<br>传入undefined或null时为true。 |
 
 **示例：**
 
@@ -1532,7 +1532,7 @@ mediaOptions(options: WebMediaOptions)
 
 javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
-将JavaScript脚本注入到Web组件中，当指定页面或者文档开始加载时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+将JavaScript脚本注入到Web组件中，当指定页面或者文档开始加载时，该脚本将在其来源与scriptRules匹配的任何页面中执行。当属性没有显式调用时，默认不将JavaScript脚本注入到Web组件中。
 
 > **说明：**
 >
@@ -1550,7 +1550,7 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 | 参数名     | 类型                                | 必填   | 说明               |
 | ------- | ----------------------------------- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组。 |
+| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组。<br>传入undefined或null时不将JavaScript脚本注入到Web组件中。 |
 
 **ets示例：**
 
@@ -1612,7 +1612,7 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 
-将JavaScript脚本注入到Web组件中，当指定页面或者文档加载完成时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+将JavaScript脚本注入到Web组件中，当指定页面或者文档加载完成时，该脚本将在其来源与scriptRules匹配的任何页面中执行。当属性没有显式调用时，默认不将JavaScript脚本注入到Web组件中。
 
 > **说明：**
 >
@@ -1630,7 +1630,7 @@ javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 
 | 参数名     | 类型                                | 必填   | 说明               |
 | ------- | ----------------------------------- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组 |
+| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组。<br>传入undefined或null时不将JavaScript脚本注入到Web组件中。 |
 
 **示例：**
 
@@ -1680,7 +1680,7 @@ Hello world!
 
 runJavaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
-将JavaScript脚本注入到Web组件中，当指定页面或者文档开始加载时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+将JavaScript脚本注入到Web组件中，当指定页面或者文档开始加载时，该脚本将在其来源与scriptRules匹配的任何页面中执行。当属性没有显式调用时，默认不将JavaScript脚本注入到Web组件中。
 
 > **说明：**
 >
@@ -1698,7 +1698,7 @@ runJavaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 | 参数名     | 类型                                | 必填   | 说明               |
 | ------- | ----------------------------------- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组 |
+| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组。<br>传入undefined或null时不将JavaScript脚本注入到Web组件中。 |
 
 **ets示例：**
 
@@ -1760,7 +1760,7 @@ runJavaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 runJavaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 
-将JavaScript脚本注入到Web组件中，当指定页面或者文档加载完成时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+将JavaScript脚本注入到Web组件中，当指定页面或者文档加载完成时，该脚本将在其来源与scriptRules匹配的任何页面中执行。当属性没有显式调用时，默认不将JavaScript脚本注入到Web组件中。
 
 > **说明：**
 >
@@ -1778,7 +1778,7 @@ runJavaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 
 | 参数名     | 类型                                | 必填   | 说明               |
 | ------- | ----------------------------------- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组 |
+| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组。<br>传入undefined或null时不将JavaScript脚本注入到Web组件中。 |
 
 **示例：**
 
@@ -1828,7 +1828,7 @@ Hello world!
 
 runJavaScriptOnHeadEnd(scripts: Array\<ScriptItem>)
 
-将JavaScript脚本注入到Web组件中，当页面DOM树head标签解析完成时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+将JavaScript脚本注入到Web组件中，当页面DOM树head标签解析完成时，该脚本将在其来源与scriptRules匹配的任何页面中执行。当属性没有显式调用时，默认不将JavaScript脚本注入到Web组件中。
 
 > **说明：**
 >
@@ -1842,7 +1842,7 @@ runJavaScriptOnHeadEnd(scripts: Array\<ScriptItem>)
 
 | 参数名     | 类型                                | 必填   | 说明               |
 | ------- | ----------------------------------- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组 |
+| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组。<br>传入undefined或null时不将JavaScript脚本注入到Web组件中。 |
 
 **示例：**
 
