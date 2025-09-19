@@ -6,13 +6,10 @@
 <!--Tester: @chenmingze-->
 <!--Adviser: @Brilliantry_Rui-->
 
-从API version 18开始，卡片开发服务支持将应用的ArkTS卡片添加到桌面。
-
-桌面提供统一的卡片管理页面。应用通过[formProvider](../reference/apis-form-kit/js-apis-app-form-formProvider.md)模块提供的[openFormManager](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovideropenformmanager18)接口，能够拉起卡片管理页面，触发卡片添加至桌面操作，点击“添加至桌面”，实现卡片添加至桌面的功能。
+从API version 18开始，系统支持应用主动请求引导用户将ArkTS卡片添加到桌面，以方便用户后续便捷查看信息或快速进入应用。
 
 ## 开发步骤
-下面给出示例，实现如下功能：在应用内点击按钮“添加卡片到桌面”，拉起卡片管理页面。
-拉起后，用户可在卡片管理页面，点击“添加至桌面”，此时在桌面即可看到新添加的卡片。
+下面给出示例，实现如下功能：在应用内点击“添加卡片到桌面”按钮，拉起卡片管理页面。用户可在卡片管理页面，点击“添加至桌面”按钮，此时在桌面即可看到新添加的卡片。
 1. [创建卡片](./arkts-ui-widget-creation.md)。
 2. 通过[openFormManager](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovideropenformmanager18)方法在应用内添加拉起卡片管理页面入口。
 ```ts
