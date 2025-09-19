@@ -10,7 +10,7 @@
 
 声明可以锁定并访问pixelmap数据的方法，声明解锁的方法。
 
-**库：** libpixelmap_ndk.so
+**库：** libpixelmap_ndk.z.so
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 

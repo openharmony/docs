@@ -1,4 +1,10 @@
 # 使用PixelMap完成位图操作
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yaozhupeng-->
+<!--Designer: @yaozhupeng-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @w_Machine_cc-->
 
 当需要对目标图片中的部分区域进行处理时，可以使用位图操作功能。此功能常用于图片美化等操作。
 
@@ -18,6 +24,7 @@
 
    ```ts
    import { image } from '@kit.ImageKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    // 获取图像像素的总字节数。
    let pixelBytesNumber : number = pixelMap.getPixelBytesNumber();
    // 获取图像像素每行字节数。
@@ -31,6 +38,7 @@
    > 建议readPixelsToBuffer和writeBufferToPixels成对使用，readPixels和writePixels成对使用，避免因图像像素格式不一致，造成PixelMap图像出现异常。
 
    ```ts
+   import { image } from '@kit.ImageKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    // 场景一：读取并修改整张图片数据。
    // 按照PixelMap的像素格式，读取PixelMap的图像像素数据，并写入缓冲区中。

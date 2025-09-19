@@ -38,7 +38,7 @@ import { image } from '@kit.ImageKit';
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
-按照PixelMap的像素格式，读取PixelMap的图像像素数据，并写入缓冲区中，使用Promise形式返回。
+按照PixelMap的像素格式，读取PixelMap的图像像素数据，并写入缓冲区中。使用Promise异步回调。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -157,7 +157,7 @@ function ReadPixelsToBufferSync(pixelMap : image.PixelMap) {
 
 readPixels(area: PositionArea): Promise\<void>
 
-固定按照BGRA_8888格式，读取PixelMap指定区域内的图像像素数据，并写入[PositionArea](arkts-apis-image-i.md#positionarea7).pixels缓冲区中，该区域由[PositionArea](arkts-apis-image-i.md#positionarea7).region指定，使用Promise形式返回。
+固定按照BGRA_8888格式，读取PixelMap指定区域内的图像像素数据，并写入[PositionArea](arkts-apis-image-i.md#positionarea7).pixels缓冲区中，该区域由[PositionArea](arkts-apis-image-i.md#positionarea7).region指定。使用Promise异步回调。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -339,7 +339,7 @@ function ReadPixelsSync(pixelMap : image.PixelMap) {
 
 writePixels(area: PositionArea): Promise\<void>
 
-固定按照BGRA_8888格式，读取[PositionArea](arkts-apis-image-i.md#positionarea7).pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由[PositionArea](arkts-apis-image-i.md#positionarea7).region指定，使用Promise形式返回。
+固定按照BGRA_8888格式，读取[PositionArea](arkts-apis-image-i.md#positionarea7).pixels缓冲区中的图像像素数据，并写入PixelMap指定区域内，该区域由[PositionArea](arkts-apis-image-i.md#positionarea7).region指定。使用Promise异步回调。
 
 可用公式计算PositionArea需要申请的内存大小。
 
@@ -537,7 +537,7 @@ function WritePixelsSync(pixelMap:image.PixelMap) {
 
 writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
-按照PixelMap的像素格式，读取缓冲区中的图像像素数据，并写入PixelMap，使用Promise形式返回。
+按照PixelMap的像素格式，读取缓冲区中的图像像素数据，并写入PixelMap。使用Promise异步回调。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -666,7 +666,7 @@ function WriteBufferToPixelsSync(pixelMap:image.PixelMap) {
 
 getImageInfo(): Promise\<ImageInfo>
 
-获取图像像素信息，使用Promise形式返回获取的图像像素信息。
+获取图像像素信息。使用Promise异步回调。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -894,7 +894,7 @@ async function Opacity(pixelMap:image.PixelMap) {
 
 opacity(rate: number): Promise\<void>
 
-通过设置透明比率来让PixelMap达到对应的透明效果，yuv图片不支持设置透明度，使用Promise形式返回。
+通过设置透明比率来让PixelMap达到对应的透明效果，yuv图片不支持设置透明度。使用Promise异步回调。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -971,7 +971,7 @@ function OpacitySync(pixelMap:image.PixelMap) {
 
 createAlphaPixelmap(): Promise\<PixelMap>
 
-根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，yuv格式不支持此接口，使用Promise形式返回。
+根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的pixelmap，可用于阴影效果，yuv格式不支持此接口。使用Promise异步回调。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1125,7 +1125,7 @@ async function Scale(pixelMap:image.PixelMap) {
 
 scale(x: number, y: number): Promise\<void>
 
-根据输入的宽高的缩放倍数对图片进行缩放，使用Promise形式返回。
+根据输入的宽高的缩放倍数对图片进行缩放。使用Promise异步回调。
 
 > **说明：**
 >
@@ -1216,7 +1216,7 @@ function ScaleSync(pixelMap: image.PixelMap) {
 
 scale(x: number, y: number, level: AntiAliasingLevel): Promise\<void>
 
-根据指定的缩放算法和输入的宽高的缩放倍数对图片进行缩放，使用Promise形式返回。
+根据指定的缩放算法和输入的宽高的缩放倍数对图片进行缩放。使用Promise异步回调。
 
 > **说明：**
 >
@@ -1318,7 +1318,7 @@ function ScaleSync(pixelMap: image.PixelMap) {
 
 createScaledPixelMap(x: number, y: number, level?: AntiAliasingLevel): Promise\<PixelMap>
 
-根据指定的缩放算法和输入的宽高的缩放倍数，创建一个新的缩放后的图片，使用Promise形式返回。
+根据指定的缩放算法和输入的宽高的缩放倍数，创建一个新的缩放后的图片。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1410,7 +1410,7 @@ function CreateScaledPixelMapSync(pixelMap:image.PixelMap) {
 
 clone(): Promise\<PixelMap>
 
-拷贝一份当前Pixelmap对象，使用Promise形式返回。
+拷贝一份当前Pixelmap对象。使用Promise异步回调。
 
 **系统能力：**: SystemCapability.Multimedia.Image.Core
 
@@ -1538,7 +1538,7 @@ async function Translate(pixelMap:image.PixelMap) {
 
 translate(x: number, y: number): Promise\<void>
 
-根据输入的坐标对图片进行位置变换，使用Promise形式返回。
+根据输入的坐标对图片进行位置变换。使用Promise异步回调。
 
 translate后的图片尺寸改变为：width+X ，height+Y，建议translate后的图片尺寸宽高不要超过屏幕的宽高。
 
@@ -1667,7 +1667,7 @@ async function Rotate(pixelMap:image.PixelMap) {
 
 rotate(angle: number): Promise\<void>
 
-根据输入的角度对图片进行旋转，使用Promise形式返回。
+根据输入的角度对图片进行旋转。使用Promise异步回调。
 
 > **说明：**
 >
@@ -1795,7 +1795,7 @@ async function Flip(pixelMap:image.PixelMap) {
 
 flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
-根据输入的条件对图片进行翻转，使用Promise形式返回。
+根据输入的条件对图片进行翻转。使用Promise异步回调。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -1917,7 +1917,7 @@ async function Crop(pixelMap:image.PixelMap) {
 
 crop(region: Region): Promise\<void>
 
-根据输入的尺寸对图片进行裁剪，使用Promise形式返回。
+根据输入的尺寸对图片进行裁剪。使用Promise异步回调。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -2058,7 +2058,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
 
 function SetColorSpace(pixelMap:image.PixelMap) {
-  let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
+  let colorSpaceName = colorSpaceManager.ColorSpace.SRGB; // colorSpaceManager.ColorSpace该对象当前仅支持2in1/PC设备使用。
   let csm: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
     pixelMap.setColorSpace(csm);
@@ -2099,7 +2099,7 @@ import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function ApplyColorSpace(pixelMap:image.PixelMap) {
-  let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
+  let colorSpaceName = colorSpaceManager.ColorSpace.SRGB; // colorSpaceManager.ColorSpace该对象当前仅支持2in1/PC设备使用。
   let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
     try {
@@ -2124,7 +2124,7 @@ function ApplyColorSpace(pixelMap:image.PixelMap) {
 
 applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\<void>
 
-根据输入的目标色彩空间对图像像素颜色进行色彩空间转换，使用Promise形式返回。
+根据输入的目标色彩空间对图像像素颜色进行色彩空间转换。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -2158,7 +2158,7 @@ import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function ApplyColorSpace(pixelMap:image.PixelMap) {
-  let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
+  let colorSpaceName = colorSpaceManager.ColorSpace.SRGB; // colorSpaceManager.ColorSpace该对象当前仅支持2in1/PC设备使用。
   let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
       pixelMap.applyColorSpace(targetColorSpace).then(() => {
@@ -2175,7 +2175,7 @@ function ApplyColorSpace(pixelMap:image.PixelMap) {
 
 toSdr(): Promise\<void>
 
-将HDR的图像内容转换为SDR的图像内容，异步使用Promise形式返回。
+将HDR的图像内容转换为SDR的图像内容。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -2574,7 +2574,7 @@ async function Unmarshalling() {
 
 release():Promise\<void>
 
-释放PixelMap对象，使用Promise形式返回释放结果。
+释放PixelMap对象。使用Promise异步回调。
 
 ArkTS有内存回收机制，PixelMap对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
