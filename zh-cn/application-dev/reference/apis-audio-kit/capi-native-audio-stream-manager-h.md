@@ -186,8 +186,8 @@ bool OH_AudioStreamManager_IsIntelligentNoiseReductionEnabledForCurrentDevice(OH
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioStreamManager](capi-ohaudio-oh-audiostreammanager.md) *streamManager | 音频流管理器句柄。通过[OH_AudioManager_GetAudioStreamManager](capi-native-audio-stream-manager-h.md#oh_audiomanager_getaudiostreammanager)获取句柄。 |
-| OH_AudioStream_SourceType source | 根据音频设备和管道类型选择结果得出的音频流使用场景。 |
+| [OH_AudioStreamManager](capi-ohaudio-oh-audiostreammanager.md) *streamManager | 音频流管理器句柄。通过[OH_AudioManager_GetAudioStreamManager](#oh_audiomanager_getaudiostreammanager)获取句柄。 |
+| [OH_AudioStream_SourceType](capi-native-audiostream-base-h.md#oh_audiostream_sourcetype) source | 根据音频设备和管道类型选择结果得出的音频流使用场景。 |
 
 **返回：**
 
