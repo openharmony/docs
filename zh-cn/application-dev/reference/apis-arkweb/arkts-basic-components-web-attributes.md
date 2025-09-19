@@ -880,7 +880,11 @@ blockNetwork(block: boolean)
 
 defaultFixedFontSize(size: number)
 
-设置网页的默认等宽字体大小。当属性没有显式调用时，默认等宽字体大小为13。
+
+设置网页的默认等宽字体大小。对于html前端使用monospace字体且未指定font-size样式的元素，将按此值渲染字体大小。
+
+当属性没有显式调用时，默认等宽字体大小为13。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -915,7 +919,11 @@ defaultFixedFontSize(size: number)
 
 defaultFontSize(size: number)
 
-设置网页的默认字体大小。当属性没有显式调用时，网页的默认字体大小为16。
+
+设置网页的默认字体大小。对于html前端使用非monospace字体且未指定font-size样式的元素，将按此值渲染字体大小。
+
+当属性没有显式调用时，网页的默认字体大小为16。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -950,7 +958,11 @@ defaultFontSize(size: number)
 
 minFontSize(size: number)
 
-设置网页字体大小最小值。当属性没有显式调用时，默认网页字体大小最小值为8。
+
+设置网页字体大小最小值。对于html前端元素，若元素字体大小低于该接口设置值，将采用接口设置值渲染字体大小。
+
+当属性没有显式调用时，默认网页字体大小最小值为8。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -985,7 +997,16 @@ minFontSize(size: number)
 
 minLogicalFontSize(size: number)
 
-设置网页逻辑字体大小最小值。当属性没有显式调用时，默认网页逻辑字体大小最小值为8。
+
+设置网页逻辑字体大小最小值。
+
+对于html前端未指定font-size样式的元素：
+1. 若元素字体大小低于该接口设置值，将采用接口设置值渲染字体大小。
+2. 若minLogicalFontSize和minFontSize同时设置时，对于未指定font-size样式元素，将采用两者中的较大值。
+
+
+当属性没有显式调用时，默认网页逻辑字体大小最小值为8。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1020,7 +1041,11 @@ minLogicalFontSize(size: number)
 
 webFixedFont(family: string)
 
-设置网页的fixed font字体库。当属性没有显式调用时，默认网页的fixed font字体库为monospace。
+
+设置网页的fixed font字体库，用于渲染html前端使用monospace字体的元素。
+
+当属性没有显式调用时，默认网页的fixed font字体库为monospace。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1055,7 +1080,11 @@ webFixedFont(family: string)
 
 webSansSerifFont(family: string)
 
-设置网页的sans-serif font字体库。当属性没有显式调用时，默认网页的sans-serif font字体库为sans-serif。
+
+设置网页的sans-serif font字体库，用于渲染html前端使用sans-serif字体的元素。
+
+当属性没有显式调用时，默认网页的sans-serif font字体库为sans-serif。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1090,7 +1119,11 @@ webSansSerifFont(family: string)
 
 webSerifFont(family: string)
 
-设置网页的serif font字体库。当属性没有显式调用时，默认网页的serif font字体库为serif。
+
+设置网页的serif font字体库，用于渲染html前端使用serif字体的元素。
+
+当属性没有显式调用时，默认网页的serif font字体库为serif。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1125,7 +1158,11 @@ webSerifFont(family: string)
 
 webStandardFont(family: string)
 
-设置网页的standard font字体库。当属性没有显式调用时，默认网页的tandard font字体库为sans-serif。
+
+设置网页的standard font字体库，用于渲染html前端未指定字体样式的元素。
+
+当属性没有显式调用时，默认网页的standard font字体库为sans-serif。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1160,7 +1197,11 @@ webStandardFont(family: string)
 
 webFantasyFont(family: string)
 
-设置网页的fantasy font字体库。当属性没有显式调用时，默认网页的fantasy font字体库为fantasy。
+
+设置网页的fantasy font字体库，用于渲染html前端使用fantasy字体的元素。
+
+当属性没有显式调用时，默认网页的fantasy font字体库为fantasy。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1194,7 +1235,11 @@ webFantasyFont(family: string)
 
 webCursiveFont(family: string)
 
-设置网页的cursive font字体库。当属性没有显式调用时，默认网页的cursive font字体库为cursive。
+
+设置网页的cursive font字体库，用于渲染html前端使用cursive字体的元素。
+
+当属性没有显式调用时，默认网页的cursive font字体库为cursive。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
