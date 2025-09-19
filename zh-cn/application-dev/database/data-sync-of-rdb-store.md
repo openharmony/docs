@@ -255,7 +255,6 @@
        try {
          // 查询组网内设备上的分布式表
          const resultSet = await store.remoteQuery(devices[0], 'EMPLOYEE', predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'CODES']);
-         console.info('Remote query success, row count: ' + resultSet.rowCount);
          console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
        } catch (e) {
          console.error('Remote query failed, code: ' + e.code + ', message: ' + e.message);
