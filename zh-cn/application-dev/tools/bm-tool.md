@@ -1027,13 +1027,13 @@ hdc shell df -h /data
 ### 9568289 权限请求失败导致安装失败
 **错误信息**
 
-error: install failed due to grant request permissions failed.
+error: install failed due to grant request permissions failed.<br>
 
-![示例图](figures/zh-cn_image_0000001585201996.png)
+![示例图](figures/zh-cn_image_9568289.png)
 
 **错误描述**
 
-在启动调试或运行应用/服务时，安装HAP出现错误，提示“error: install failed due to grant request permissions failed”错误信息。
+在启动调试或运行应用/服务时，安装HAP出现错误，提示授予请求权限失败。从API version 18开始，会在请求失败信息后打印具体的权限名称。
 
 **可能原因**
 
