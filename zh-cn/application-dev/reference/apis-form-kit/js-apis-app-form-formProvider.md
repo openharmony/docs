@@ -474,6 +474,9 @@ openFormManager(want: Want): void
 | 参数名  | 类型    | 必填 | 说明                                                                                                                                                                                                                                                                                                      |
 |------| ------ | ---- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 打开卡片管理页面的请求中的want参数，需包含以下字段。<br>bundleName: 卡片所属应用的包名。<br>abilityName: 卡片所属的ability名称。<br>parameters:<br>- ohos.extra.param.key.form_dimension: [卡片尺寸](js-apis-app-form-formInfo.md#formdimension)。<br>- ohos.extra.param.key.form_name: 卡片名称。<br>- ohos.extra.param.key.module_name: 卡片所属的模块名称。 |
+> **说明：**
+>
+> 如果parameters参数没有填全或者填错，就会默认展示[formconfig.json]()配置的默认卡片。
 
 **错误码：**
 
