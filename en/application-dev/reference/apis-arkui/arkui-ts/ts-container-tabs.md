@@ -580,7 +580,7 @@ This event is triggered when any of the following occurs:
 
 >  **NOTE**
 >
->  When a custom tab is used, relying solely on the **onChange** event for synchronization between tabs and swipe gestures may result in delayed visual updates, since it is triggered after the swipe-triggered tab switching animation is completed. For smooth animations, listen for the active tab index in [onAnimationStart](#onanimationstart11) and update the tab index accordingly. For details about the implementation, see [Example 3](#example-3-setting-up-custom-tab-switching-synchronization).
+>  When a custom tab is used, relying solely on the **onChange** event for synchronization between tabs and swipe gestures may result in delayed visual updates, since it is triggered after the swipe-triggered tab switching animation is completed. For smooth animations, listen for the active tab index in [onAnimationStart](#onanimationstart11) and update the tab index accordingly. For details about the implementation, see [Example 3](#example-3-implementing-custom-tab-switching-synchronization).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
