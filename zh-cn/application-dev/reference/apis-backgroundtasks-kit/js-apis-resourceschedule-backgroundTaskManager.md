@@ -265,7 +265,7 @@ try {
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
 
-申请长时任务，支持申请一种类型，使用callback异步回调。长时任务申请成功后，会有通知栏消息，没有提示音（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型，没有通知）。
+申请长时任务，支持申请一种类型，使用callback异步回调。长时任务申请成功后，会有通知栏消息，没有提示音（系统应用的[VOIP](#backgroundmode)类型和系统应用的[AUDIO_RECORDING](#backgroundmode)类型，没有通知）。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -356,7 +356,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
-申请长时任务，支持申请一种类型，使用promise异步回调。长时任务申请成功后，会有通知栏消息，没有提示音（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型，没有通知）。
+申请长时任务，支持申请一种类型，使用promise异步回调。长时任务申请成功后，会有通知栏消息，没有提示音（系统应用的[VOIP](#backgroundmode)类型和系统应用的[AUDIO_RECORDING](#backgroundmode)类型，没有通知）。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -565,7 +565,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent): Promise&lt;ContinuousTaskNotification&gt;
 
-申请长时任务，支持申请多种类型，使用promise异步回调。长时任务申请成功后，会有通知栏消息，没有提示音（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型，没有通知）。
+申请长时任务，支持申请多种类型，使用promise异步回调。长时任务申请成功后，会有通知栏消息，没有提示音（系统应用的[VOIP](#backgroundmode)类型和系统应用的[AUDIO_RECORDING](#backgroundmode)类型，没有通知）。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -700,7 +700,7 @@ export default class EntryAbility extends UIAbility {
 updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;ContinuousTaskNotification&gt;
 
 更新长时任务类型，使用promise异步回调。长时任务更新成功后，会有通知栏消息，没有提示音（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型，没有通知）。
-</br>更新长时任务时，需要已经存在长时任务，否则更新失败。
+</br>更新长时任务时，需要已经存在长时任务(可以通过[getAllContinuousTasks](#backgroundtaskmanagergetallcontinuoustasks20)接口判断当前是否有长时任务)，否则更新失败。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1376,16 +1376,21 @@ stopBackgroundRunning(context: Context, ContinuousTaskId: number): Promise&lt;vo
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 201 | Permission denied. |
 | 9800001 | Memory operation failed. |
 | 9800004 | System service operation failed. |
 | 9800005 | Continuous task verification failed. |
 | 9800006 | Notification verification failed for a continuous task. |
 | 9800007 | Continuous task storage failed. |
+
+**返回值**：
+
+| 类型             | 说明               |
+| -------------- | ---------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **示例**：
 
@@ -1578,15 +1583,15 @@ export default class EntryAbility extends UIAbility {
 ## ContinuousTaskRequest<sup>21+</sup>
 
 长时任务的请求信息。
-</br>1、申请任务时，需要通过combinedTaskNotification参数传入true指定可以合并通知，否则不能合并通知。
+1、申请任务时，需要通过combinedTaskNotification参数传入true指定可以合并通知，否则不能合并通知。
    如：所涉及的长时任务combinedTaskNotification参数都必须为true，且主类型和子类型申请个数和类型需完全匹配。
-</br>2、合并的通知的任务，必须主类型、子类型都相同。
-</br>3、如果该任务本身没有通知（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型）、则不支持合并。
-</br>4、如果任务类型里，包含了上传下载，则不支持合并。
-</br>5、合并通知后不能取消合并，本身合并的不能改成不合并。
-</br>6、如果需要合并，但传入的长时任务ID非法，则不支持合并。
-</br>7、通知合并后，删除通知，取消所有的长时任务。
-</br>8、通知合并后，点击通知，跳转到第一个申请的UIAbility，如果调用了更新接口，则跳转到最后一次更新的UIAbility。
+2、合并的通知的任务，必须主类型、子类型都相同。
+3、如果该任务本身没有通知（如系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型）、则不支持合并。
+4、如果任务类型里，包含了上传下载，则不支持合并。
+5、合并通知后不能取消合并，本身合并的不能改成不合并。
+6、如果需要合并，但传入的长时任务ID非法，则不支持合并。
+7、通知合并后，删除通知，取消所有的长时任务。
+8、通知合并后，点击通知，跳转到第一个申请的UIAbility，如果调用了更新接口，则跳转到最后一次更新的UIAbility。
 
 ### 属性
 
@@ -1595,16 +1600,16 @@ export default class EntryAbility extends UIAbility {
 | 名称             | 类型     | 只读   | 可选   | 说明                                       |
 | --------------- | ------ | ---- | ---- | ---------------------------------------- |
 | ContinuousTaskModes       | [ContinuousTaskMode](#continuoustaskmode21)[] | 否    | 否    | 长时任务主类型。<br/>**说明：** 主类型与子类型必须匹配。     |
-| ContinuousTaskSubmodes | [ContinuousTaskSubmode](#continuoustasksubmode21[]) | 否    | 否    | 长时任务子类型。 <br/>**说明：** 主类型与子类型必须匹配。|
+| ContinuousTaskSubmodes | [ContinuousTaskSubmode](#continuoustasksubmode21)[] | 否    | 否    | 长时任务子类型。 <br/>**说明：** 主类型与子类型必须匹配。|
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 否    | 否    | 通知参数，用于指定点击长时任务通知后跳转的界面。 |
 | combinedTaskNotification | boolean   | 否    | 是    | 是否合并通知， true表示合并， false表示不合并，默认为false。 |
-| continuousTaskId | number   | 否    | 是    | 长时任务Id。 <br/>**说明：** 合并通知时，此项为必填项，且必须是存在的Id。<br/>调用[updateBackgroundRunning](#backgroundtaskmanagerupdatebackgroundrunning21)接口时，此项为必填项，且必须是存在的Id。   |
+| continuousTaskId | number   | 否    | 是    | 长时任务Id，默认值为-1。 <br/>**说明：** 合并通知时，此项为必填项，且必须是存在的Id。<br/>调用[updateBackgroundRunning](#backgroundtaskmanagerupdatebackgroundrunning21)接口时，此项为必填项，且必须是存在的Id。   |
 
 ### isModeSupported<sup>21+</sup>
 
-isModeSupported(): boolean;
+isModeSupported(): boolean
 
-查询当前申请的长时任务主类型是否支持。根据[ContinuousTaskModes](#continuoustaskmode21)的类型判断。
+查询当前申请的长时任务主类型是否支持。根据[ContinuousTaskMode](#continuoustaskmode21)的类型判断。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1629,7 +1634,6 @@ isModeSupported(): boolean;
 import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { wantAgent, WantAgent } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -1641,10 +1645,8 @@ export default class EntryAbility extends UIAbility {
       isModeSupported = continuousTaskRequest.isModeSupported();
       console.info(`Operation isModeSupported succeeded. isModeSupported is ${isModeSupported}`);
     } catch (error) {
-        console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
-      }
-    } catch (error) {
-      console.error(`Operation getWantAgent failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+      console.error(`Operation startBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+    }
   }
 };
 ```
@@ -1660,6 +1662,7 @@ export default class EntryAbility extends UIAbility {
 | MODE_DATA_TRANSFER              | 1         | 数据传输。                 |
 | MODE_SHARE_POSITION             | 4         | 定位导航。                  |
 | MODE_ALLOW_BLUETOOTH_AWARE      | 5         | 蓝牙相关业务。            |
+| MODE_ALLOW_WIFI_AWARE           | 7         | WLAN相关业务(仅对系统应用开放)。            |
 | MODE_MULTI_DEVICE_CONNECTION    | 6         | 多设备互联。            |
 | MODE_TASK_KEEPING               | 9         | 计算任务（仅对2in1设备，或者申请ACL权限的应用开放）。 |
 | MODE_AV_PLAYBACK_AND_RECORD     | 10        | 音视频播放、录制和通话。              |
@@ -1674,19 +1677,20 @@ export default class EntryAbility extends UIAbility {
 | ----------------------- | ---- | --------------------- |
 | SUBMODE_CAR_KEY_NORMAL_NOTIFICATION     | 1    | 车钥匙类型通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_ALLOW_BLUETOOTH_AWARE。                 |
 | SUBMODE_NORMAL_NOTIFICATION    | 2    | 普通通知。                  |
-| SUBMODE_LIVE_VIEW_NOTIFICATION  | 3    | 实况窗通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_DATA_TRANSFER  |
-| SUBMODE_AUDIO_PLAYBACK_NORMAL_NOTIFICATION   | 4    | 播音类型普通通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD  |
-| SUBMODE_AVSESSION_AUDIO_PLAYBACK           | 5    | 接入播控中心[AVSession](../../media/avsession/avsession-overview.md)通知。<br/>**说明：** ContinuousTaskMode[ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD |
-| SUBMODE_AUDIO_RECORD_NORMAL_NOTIFICATION          | 6    | 录音类型普通通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD |
-| SUBMODE_SCREEN_RECORD_NORMAL_NOTIFICATION       | 7   | 录屏类型普通通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD  |
-| SUBMODE_VOICE_CHAT_NORMAL_NOTIFICATION       | 8   | 通话类型普通通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD  |
+| SUBMODE_LIVE_VIEW_NOTIFICATION  | 3    | 实况窗通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_DATA_TRANSFER。  |
+| SUBMODE_AUDIO_PLAYBACK_NORMAL_NOTIFICATION   | 4    | 播音类型普通通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD。  |
+| SUBMODE_AVSESSION_AUDIO_PLAYBACK           | 5    | 接入播控中心[AVSession](../../media/avsession/avsession-overview.md)通知。<br/>**说明：** ContinuousTaskMode[ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD。 |
+| SUBMODE_AUDIO_RECORD_NORMAL_NOTIFICATION          | 6    | 录音类型普通通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD。 |
+| SUBMODE_SCREEN_RECORD_NORMAL_NOTIFICATION       | 7   | 录屏类型普通通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD。  |
+| SUBMODE_VOICE_CHAT_NORMAL_NOTIFICATION       | 8   | 通话类型普通通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD。 |
 
 **长时任务主类型与子类型对照表：** 
-| 长时任务主类型                     | 对应的长时任务子类型  |
+| 长时任务主类型([ContinuousTaskMode](#continuoustaskmode21))  | 对应的长时任务子类型([ContinuousTaskSubmode](#continuoustasksubmode21))  |
 | --------------------------------- | ----------------------------------- |
 | MODE_DATA_TRANSFER                | SUBMODE_LIVE_VIEW_NOTIFICATION        |
 | MODE_SHARE_POSITION               | SUBMODE_NORMAL_NOTIFICATION         |
 | MODE_ALLOW_BLUETOOTH_AWARE        | SUBMODE_NORMAL_NOTIFICATION <br/>SUBMODE_CAR_KEY_NORMAL_NOTIFICATION         |
+| MODE_ALLOW_WIFI_AWARE             | SUBMODE_NORMAL_NOTIFICATION         |
 | MODE_MULTI_DEVICE_CONNECTION      | SUBMODE_NORMAL_NOTIFICATION         |
 | MODE_TASK_KEEPING                 | SUBMODE_NORMAL_NOTIFICATION         |
 | MODE_AV_PLAYBACK_AND_RECORD       | SUBMODE_NORMAL_NOTIFICATION  <br/>SUBMODE_AUDIO_PLAYBACK_NORMAL_NOTIFICATION <br/>SUBMODE_AVSESSION_AUDIO_PLAYBACK <br/>SUBMODE_AUDIO_RECORD_NORMAL_NOTIFICATION <br/>SUBMODE_SCREEN_RECORD_NORMAL_NOTIFICATION <br/>SUBMODE_VOICE_CHAT_NORMAL_NOTIFICATION      |
