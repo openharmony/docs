@@ -199,7 +199,7 @@ print.queryAllPrinterExtensionInfos((err: BusinessError, extensionInfos: print.P
     if (err) {
         console.error('queryAllPrinterExtensionInfos err ' + JSON.stringify(err));
     } else {
-        console.log('queryAllPrinterExtensionInfos success ' + JSON.stringify(extensionInfos));
+        console.info('queryAllPrinterExtensionInfos success ' + JSON.stringify(extensionInfos));
     }
 })
 ```
@@ -237,7 +237,7 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 print.queryAllPrinterExtensionInfos().then((extensionInfos: print.PrinterExtensionInfo[]) => {
-    console.log('queryAllPrinterExtensionInfos success ' + JSON.stringify(extensionInfos));
+    console.info('queryAllPrinterExtensionInfos success ' + JSON.stringify(extensionInfos));
     // ...
 }).catch((error: BusinessError) => {
     console.error('failed to get AllPrinterExtension because ' + JSON.stringify(error));
@@ -283,7 +283,7 @@ print.disconnectPrinter(printerId, (err: BusinessError) => {
     if (err) {
         console.error('failed to disconnect Printer because : ' + JSON.stringify(err));
     } else {
-        console.log('start disconnect Printer success');
+        console.info('start disconnect Printer success');
     }
 })
 ```
@@ -328,7 +328,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let printerId: string = 'printerId_32';
 print.disconnectPrinter(printerId).then(() => {
-    console.log('start disconnect Printer success');
+    console.info('start disconnect Printer success');
 }).catch((error: BusinessError) => {
     console.error('failed to disconnect Printer because : ' + JSON.stringify(error));
 })
@@ -373,7 +373,7 @@ print.queryPrinterCapability(printerId, (err: BusinessError) => {
     if (err) {
         console.error('failed to query Printer Capability because : ' + JSON.stringify(err));
     } else {
-        console.log('start query Printer Capability success');
+        console.info('start query Printer Capability success');
     }
 })
 ```
@@ -418,7 +418,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let printerId: string = 'printerId_32';
 print.queryPrinterCapability(printerId).then(() => {
-    console.log('start query Printer success');
+    console.info('start query Printer success');
 }).catch((error: BusinessError) => {
     console.error('failed to query Printer Capability because : ' + JSON.stringify(error));
 })
@@ -462,15 +462,15 @@ let jobInfo : print.PrintJob = {
     fdList : [44,45],
     jobId : 'jobId_12',
     printerId : 'printerId_32',
-    jobState : PRINT_JOB_COMPLETED,
+    jobState : print.PrintJobState.PRINT_JOB_COMPLETED,
     jobSubstate : print.PrintJobSubState.PRINT_JOB_COMPLETED_SUCCESS,
     copyNumber : 1,
     pageRange : {},
     isSequential : false,
     pageSize : {id : '', name : '', width : 10, height : 20},
     isLandscape : false,
-    colorMode : COLOR_MODE_COLOR,
-    duplexMode : DUPLEX_MODE_NONE,
+    colorMode : print.PrintColorMode.COLOR_MODE_COLOR,
+    duplexMode : print.PrintDuplexMode.DUPLEX_MODE_NONE,
     margin : undefined,
     preview : undefined,
     options : undefined
@@ -479,7 +479,7 @@ print.startPrintJob(jobInfo, (err: BusinessError) => {
     if (err) {
         console.error('failed to start Print Job because : ' + JSON.stringify(err));
     } else {
-        console.log('start Print Job success');
+        console.info('start Print Job success');
     }
 })
 ```
@@ -526,21 +526,21 @@ let jobInfo : print.PrintJob = {
     fdList : [44,45],
     jobId : 'jobId_12',
     printerId : 'printerId_32',
-    jobState : PRINT_JOB_COMPLETED,
+    jobState : print.PrintJobState.PRINT_JOB_COMPLETED,
     jobSubstate : print.PrintJobSubState.PRINT_JOB_COMPLETED_SUCCESS,
     copyNumber : 1,
     pageRange : {},
     isSequential : false,
     pageSize : {id : '', name : '', width : 10, height : 20},
     isLandscape : false,
-    colorMode : COLOR_MODE_COLOR,
-    duplexMode : DUPLEX_MODE_NONE,
+    colorMode : print.PrintColorMode.COLOR_MODE_COLOR,
+    duplexMode : print.PrintDuplexMode.DUPLEX_MODE_NONE,
     margin : undefined,
     preview : undefined,
     options : undefined
 };
 print.startPrintJob(jobInfo).then(() => {
-    console.log('start Print success');
+    console.info('start Print success');
 }).catch((error: BusinessError) => {
     console.error('failed to start Print because : ' + JSON.stringify(error));
 })
@@ -585,7 +585,7 @@ print.cancelPrintJob(jobId, (err: BusinessError) => {
     if (err) {
         console.error('cancelPrintJob failed, because : ' + JSON.stringify(err));
     } else {
-        console.log('cancelPrintJob success');
+        console.info('cancelPrintJob success');
     }
 })
 ```
@@ -630,7 +630,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let jobId : string = '121212';
 print.cancelPrintJob(jobId).then(() => {
-    console.log('cancelPrintJob success');
+    console.info('cancelPrintJob success');
 }).catch((error: BusinessError) => {
     console.error('cancelPrintJob failed, because : ' + JSON.stringify(error));
 })
@@ -675,7 +675,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let jobId : string = '121212';
 print.restartPrintJob(jobId).then(() => {
-    console.log('restartPrintJob success');
+    console.info('restartPrintJob success');
 }).catch((error: BusinessError) => {
     console.error('restartPrintJob failed, because : ' + JSON.stringify(error));
 })
@@ -732,7 +732,7 @@ let jobInfo : print.PrintJob = {
     options : undefined
 };
 print.requestPrintPreview(jobInfo, (num : number) => {
-    console.log('requestPrintPreview success, num : ' + JSON.stringify(num));
+    console.info('requestPrintPreview success, num : ' + JSON.stringify(num));
 
 })
 ```
@@ -793,7 +793,7 @@ let jobInfo : print.PrintJob = {
     options : undefined
 };
 print.requestPrintPreview(jobInfo).then((num: number) => {
-    console.log('requestPrintPreview success, num : ' + JSON.stringify(num));
+    console.info('requestPrintPreview success, num : ' + JSON.stringify(num));
 }).catch((error: BusinessError) => {
     console.error('requestPrintPreview failed, because : ' + JSON.stringify(error));
 })
@@ -837,8 +837,8 @@ print.on('printerStateChange', (state: print.PrinterState, info: print.PrinterIn
         console.error('printer state changed state is null or info is null');
         return;
     } else {
-        console.log('on printer state changed, state : ' + JSON.stringify(state));
-        console.log('on printer state changed, info : ' + JSON.stringify(info));
+        console.info('on printer state changed, state : ' + JSON.stringify(state));
+        console.info('on printer state changed, info : ' + JSON.stringify(info));
     }
 })
 ```
@@ -877,7 +877,7 @@ off(type: 'printerStateChange', callback?: Callback&lt;boolean&gt;): void
 import { print } from '@kit.BasicServicesKit';
 
 print.off('printerStateChange', (data: boolean) => {
-    console.log('off printerStateChange data : ' + JSON.stringify(data));
+    console.info('off printerStateChange data : ' + JSON.stringify(data));
 })
 ```
 
@@ -915,7 +915,7 @@ on(type: 'jobStateChange', callback: (state: PrintJobState, job: PrintJob) => vo
 import { print } from '@kit.BasicServicesKit';
 
 print.on('jobStateChange', (state: print.PrintJobState, job: print.PrintJob) => {
-    console.log('onJobStateChange, state : ' + JSON.stringify(state) + ', job : ' + JSON.stringify(job));
+    console.info('onJobStateChange, state : ' + JSON.stringify(state) + ', job : ' + JSON.stringify(job));
 })
 ```
 
@@ -953,7 +953,7 @@ off(type: 'jobStateChange', callback?: Callback&lt;boolean&gt;): void
 import { print } from '@kit.BasicServicesKit';
 
 print.off('jobStateChange', (data: boolean) => {
-    console.log('offJobStateChanged data : ' + JSON.stringify(data));
+    console.info('offJobStateChanged data : ' + JSON.stringify(data));
 })
 ```
 
@@ -991,7 +991,7 @@ on(type: 'extInfoChange', callback: (extensionId: string, info: string) => void)
 import { print } from '@kit.BasicServicesKit';
 
 print.on('extInfoChange', (extensionId: string, info: string) => {
-    console.log('onExtInfoChange, entensionId : ' + JSON.stringify(extensionId) + ', info : ' + JSON.stringify(info));
+    console.info('onExtInfoChange, entensionId : ' + JSON.stringify(extensionId) + ', info : ' + JSON.stringify(info));
 })
 ```
 
@@ -1029,7 +1029,7 @@ off(type: 'extInfoChange', callback?: Callback&lt;boolean&gt;): void
 import { print } from '@kit.BasicServicesKit';
 
 print.off('extInfoChange', (data: boolean) => {
-    console.log('offExtInfoChange data : ' + JSON.stringify(data));
+    console.info('offExtInfoChange data : ' + JSON.stringify(data));
 })
 ```
 
@@ -1080,7 +1080,7 @@ print.addPrinters([printerInfo], (err: BusinessError) => {
     if (err) {
         console.error('addPrinters failed, because : ' + JSON.stringify(err));
     } else {
-        console.log('addPrinters success');
+        console.info('addPrinters success');
     }
 })
 ```
@@ -1133,7 +1133,7 @@ let printerInfo : print.PrinterInfo = {
     options : 'opt'
 };
 print.addPrinters([printerInfo]).then(() => {
-    console.log('add printers success.');
+    console.info('add printers success.');
 }).catch((error: BusinessError) => {
     console.error('add printers error : ' + JSON.stringify(error));
 })
@@ -1178,7 +1178,7 @@ print.removePrinters([printerId], (err: BusinessError) => {
     if (err) {
         console.error('removePrinters failed, because : ' + JSON.stringify(err));
     } else {
-        console.log('removePrinters success');
+        console.info('removePrinters success');
     }
 })
 ```
@@ -1223,7 +1223,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let printerId : string = '1212';
 print.removePrinters([printerId]).then(() => {
-    console.log('remove printers success');
+    console.info('remove printers success');
 }).catch((error: BusinessError) => {
     console.error('remove printers error : ' + JSON.stringify(error));
 })
@@ -1276,7 +1276,7 @@ print.updatePrinters([printerInfo], (err: BusinessError) => {
     if (err) {
         console.error('updataPrinters failed, because : ' + JSON.stringify(err));
     } else {
-        console.log('updataPrinters success');
+        console.info('updataPrinters success');
     }
 })
 ```
@@ -1329,7 +1329,7 @@ let printerInfo : print.PrinterInfo = {
     options : 'opt'
 };
 print.updatePrinters([printerInfo]).then(() => {
-    console.log('update printers success');
+    console.info('update printers success');
 }).catch((error: BusinessError) => {
     console.error('update printers error : ' + JSON.stringify(error));
 })
@@ -1376,7 +1376,7 @@ print.updatePrinterState(printerId, state, (err: BusinessError) => {
     if (err) {
         console.error('updatePrinterState failed, because : ' + JSON.stringify(err));
     } else {
-        console.log('updatePrinterState success');
+        console.info('updatePrinterState success');
     }
 })
 ```
@@ -1423,7 +1423,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let printerId : string = '1212';
 let state : print.PrinterState = print.PrinterState.PRINTER_CONNECTED;
 print.updatePrinterState(printerId, state).then(() => {
-    console.log('update printer state success');
+    console.info('update printer state success');
 }).catch((error: BusinessError) => {
     console.error('update printer state error : ' + JSON.stringify(error));
 })
@@ -1472,7 +1472,7 @@ print.updatePrintJobState(jobId, state, subState, (err: BusinessError) => {
     if (err) {
         console.error('updataPrintJobState failed, because : ' + JSON.stringify(err));
     } else {
-        console.log('updatePrintJobState success');
+        console.info('updatePrintJobState success');
     }
 })
 ```
@@ -1521,7 +1521,7 @@ let jobId : string = '3434';
 let state : print.PrintJobState = print.PrintJobState.PRINT_JOB_PREPARE;
 let subState : print.PrintJobSubState = print.PrintJobSubState.PRINT_JOB_COMPLETED_SUCCESS;
 print.updatePrintJobState(jobId, state, subState).then(() => {
-    console.log('update print job state success');
+    console.info('update print job state success');
 }).catch((error: BusinessError) => {
     console.error('update print job state error : ' + JSON.stringify(error));
 })
@@ -1566,7 +1566,7 @@ print.updateExtensionInfo(info, (err: BusinessError) => {
     if (err) {
         console.error('updateExtensionInfo failed, because : ' + JSON.stringify(err));
     } else {
-        console.log('updateExtensionInfo success');
+        console.info('updateExtensionInfo success');
     }
 })
 ```
@@ -1611,7 +1611,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let info : string = 'WIFI_INACTIVE';
 print.updateExtensionInfo(info).then(() => {
-    console.log('update print job state success');
+    console.info('update print job state success');
 }).catch((error: BusinessError) => {
     console.error('update print job state error : ' + JSON.stringify(error));
 })
@@ -1656,7 +1656,7 @@ print.queryAllPrintJobs((err: BusinessError) => {
     if (err) {
         console.error('queryAllPrintJobs failed, because : ' + JSON.stringify(err));
     } else {
-        console.log('queryAllPrintJobs success');
+        console.info('queryAllPrintJobs success');
     }
 })
 ```
@@ -1697,7 +1697,7 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 print.queryAllPrintJobs().then(() => {
-    console.log('queryAllPrintJobs success');
+    console.info('queryAllPrintJobs success');
 }).catch((error: BusinessError) => {
     console.error('queryAllPrintJobs failed, error : ' + JSON.stringify(error));
 })
@@ -1736,7 +1736,7 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 print.queryAllActivePrintJobList().then((printJobs : print.PrintJob[]) => {
-    console.log('queryPrinqueryAllActivePrintJobListtJobList success, data : ' + JSON.stringify(printJobs));
+    console.info('queryPrinqueryAllActivePrintJobListtJobList success, data : ' + JSON.stringify(printJobs));
 }).catch((error: BusinessError) => {
     console.error('queryAllActivePrintJobList failed, error : ' + JSON.stringify(error));
 })
@@ -1778,7 +1778,7 @@ print.queryPrintJobList((err: BusinessError, printJobs : print.PrintJob[]) => {
     if (err) {
         console.error('queryPrintJobList failed, because : ' + JSON.stringify(err));
     } else {
-        console.log('queryPrintJobList success, data : ' + JSON.stringify(printJobs));
+        console.info('queryPrintJobList success, data : ' + JSON.stringify(printJobs));
     }
 })
 ```
@@ -1816,7 +1816,7 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 print.queryPrintJobList().then((printJobs : print.PrintJob[]) => {
-    console.log('queryPrintJobList success, data : ' + JSON.stringify(printJobs));
+    console.info('queryPrintJobList success, data : ' + JSON.stringify(printJobs));
 }).catch((error: BusinessError) => {
     console.error('queryPrintJobList failed, error : ' + JSON.stringify(error));
 })
@@ -1861,7 +1861,7 @@ print.queryPrintJobById(jobId, (err: BusinessError, printJob : print.PrintJob) =
     if (err) {
         console.error('queryPrintJobById failed, because : ' + JSON.stringify(err));
     } else {
-        console.log('queryPrintJobById success, data : ' + JSON.stringify(printJob));
+        console.info('queryPrintJobById success, data : ' + JSON.stringify(printJob));
     }
 })
 ```
@@ -1906,7 +1906,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let jobId : string = '1';
 print.queryPrintJobById(jobId).then((printJob : print.PrintJob) => {
-    console.log('queryPrintJobById data : ' + JSON.stringify(printJob));
+    console.info('queryPrintJobById data : ' + JSON.stringify(printJob));
 }).catch((error: BusinessError) => {
     console.error('queryPrintJobById error : ' + JSON.stringify(error));
 })
@@ -1946,7 +1946,6 @@ startGettingPrintFile(jobId: string, printAttributes: PrintAttributes, fd: numbe
 
 ```ts
 import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let jobId : string= '1';
 class MyPrintAttributes implements print.PrintAttributes {
@@ -1982,7 +1981,7 @@ printAttributes.duplexMode = print.PrintDuplexMode.DUPLEX_MODE_NONE;
 
 let fd : number = 1;
 print.startGettingPrintFile(jobId, printAttributes, fd, (state: print.PrintFileCreationState) => {
-    console.log('onFileStateChanged success, data : ' + JSON.stringify(state));
+    console.info('onFileStateChanged success, data : ' + JSON.stringify(state));
 })
 ```
 
@@ -2026,7 +2025,7 @@ print.notifyPrintService(jobId, 'spooler_closed_for_started', (err: BusinessErro
     if (err) {
         console.error('notifyPrintService failed, because : ' + JSON.stringify(err));
     } else {
-        console.log('notifyPrintService success');
+        console.info('notifyPrintService success');
     }
 })
 ```
@@ -2072,7 +2071,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let jobId : string = '1';
 print.notifyPrintService(jobId, 'spooler_closed_for_started').then(() => {
-    console.log('notifyPrintService success');
+    console.info('notifyPrintService success');
 }).catch((error: BusinessError) => {
     console.error('notifyPrintService error : ' + JSON.stringify(error));
 })
@@ -2118,7 +2117,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let printerId : string = '1';
 print.getPrinterInfoById(printerId).then((printerInfo : print.PrinterInfo) => {
-    console.log('getPrinterInfoById data : ' + JSON.stringify(printerInfo));
+    console.info('getPrinterInfoById data : ' + JSON.stringify(printerInfo));
 }).catch((error: BusinessError) => {
     console.error('getPrinterInfoById error : ' + JSON.stringify(error));
 })
@@ -2164,7 +2163,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let event : print.ApplicationEvent = print.ApplicationEvent.APPLICATION_CREATED;
 print.notifyPrintServiceEvent(event).then(() => {
-    console.log('notifyPrintServiceEvent success');
+    console.info('notifyPrintServiceEvent success');
 }).catch((error: BusinessError) => {
     console.error('notifyPrintServiceEvent error : ' + JSON.stringify(error));
 })
@@ -2236,7 +2235,7 @@ let printerInformation : print.PrinterInformation = {
     options : 'testOptions'
 };
 print.updatePrinterInformation(printerInformation).then(() => {
-    console.log('updatePrinterInformation success');
+    console.info('updatePrinterInformation success');
 }).catch((error: BusinessError) => {
     console.error('updatePrinterInformation error : ' + JSON.stringify(error));
 })
@@ -2286,7 +2285,7 @@ let preferences : print.PrinterPreferences = {
     defaultDuplexMode: print.PrintDuplexMode.DUPLEX_MODE_NONE
 };
 print.setPrinterPreferences(printerId, preferences).then(() => {
-    console.log('setPrinterPreferences success');
+    console.info('setPrinterPreferences success');
 }).catch((error: BusinessError) => {
     console.error('setPrinterPreferences error : ' + JSON.stringify(error));
 })
@@ -2325,7 +2324,7 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 print.discoverUsbPrinters().then((printers : print.PrinterInformation[]) => {
-    console.log('discoverUsbPrinters data : ' + JSON.stringify(printers));
+    console.info('discoverUsbPrinters data : ' + JSON.stringify(printers));
 }).catch((error: BusinessError) => {
     console.error('discoverUsbPrinters error : ' + JSON.stringify(error));
 })
@@ -2373,7 +2372,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let printerId : string = '1';
 let type : print.DefaultPrinterType = print.DefaultPrinterType.DEFAULT_PRINTER_TYPE_SET_BY_USER;
 print.setDefaultPrinter(printerId, type).then(() => {
-    console.log('setDefaultPrinter success');
+    console.info('setDefaultPrinter success');
 }).catch((error: BusinessError) => {
     console.error('setDefaultPrinter error : ' + JSON.stringify(error));
 })
@@ -2421,7 +2420,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let event : print.ApplicationEvent = print.ApplicationEvent.APPLICATION_CREATED;
 let jobId : string = '1';
 print.notifyPrintServiceEvent(event, jobId).then(() => {
-    console.log('notifyPrintServiceEvent success');
+    console.info('notifyPrintServiceEvent success');
 }).catch((error: BusinessError) => {
     console.error('notifyPrintServiceEvent error : ' + JSON.stringify(error));
 })
