@@ -1,4 +1,4 @@
-# @ohos.bundle.bundleManager (bundleManager模块)(系统接口)
+# @ohos.bundle.bundleManager (应用程序包管理模块)(系统接口)
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
