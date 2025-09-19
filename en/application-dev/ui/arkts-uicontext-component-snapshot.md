@@ -7,13 +7,13 @@ Component snapshot is the capability to generate a pixel map ([PixelMap](../refe
 
 > **NOTE**
 >
-> Component snapshot relies on UI context and must be called in an environment with a clear context. Therefore, preferably use the [ComponentSnapshot](../reference/apis-arkui/js-apis-arkui-UIContext.md#componentsnapshot12) object returned by the **getComponentSnapshot** API of **UIContext**. Avoid using the **componentSnapshot** API imported directly from @kit.ArkUI.
+> Component snapshot relies on UI context and must be called in an environment with a clear context. Therefore, preferably use the [ComponentSnapshot](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md) object returned by the **getComponentSnapshot** API of **UIContext**. Avoid using the **componentSnapshot** API imported directly from @kit.ArkUI.
 
 
 ### Taking a Snapshot of a Component Attached to the UI Tree
-To take a snapshot of a component that is already attached to the UI tree, use [get](../reference/apis-arkui/js-apis-arkui-UIContext.md#get12-1) or [getSync](../reference/apis-arkui/js-apis-arkui-UIContext.md#getsync12). Pass the component ID (configured in advance using the **id** universal attribute) to specify the component root node. The system only traverses components attached to the tree when searching for the component to take a snapshot; it does not search cached or off-screen components. The system uses the first found result, so the application must ensure the uniqueness of component IDs.
+To take a snapshot of a component that is already attached to the UI tree, use [get](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md#get12-1) or [getSync](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md#getsync12). Pass the component ID (configured in advance using the **id** universal attribute) to specify the component root node. The system only traverses components attached to the tree when searching for the component to take a snapshot; it does not search cached or off-screen components. The system uses the first found result, so the application must ensure the uniqueness of component IDs.
 
-If you know the ID of the component with [getUniqueId](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuniqueid12), you can also use [getWithUniqueId](../reference/apis-arkui/js-apis-arkui-UIContext.md#getwithuniqueid15) or [getSyncWithUniqueId](../reference/apis-arkui/js-apis-arkui-UIContext.md#getsyncwithuniqueid15) to take a snapshot of the component directly, bypassing the component search process.
+If you know the ID of the component with [getUniqueId](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuniqueid12), you can also use [getWithUniqueId](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md#getwithuniqueid15) or [getSyncWithUniqueId](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md#getsyncwithuniqueid15) to take a snapshot of the component directly, bypassing the component search process.
 
 The snapshot captures only the most recent frame. If you trigger a component update and immediately take a snapshot, the updated content will not be captured; the snapshot will return the previous frame's content.
 
@@ -23,7 +23,7 @@ The snapshot captures only the most recent frame. If you trigger a component upd
 
 
 ### Taking a Snapshot of an Offline Component
-Offline components are components that are encapsulated using **Builder** or **ComponentContent** but have not yet been attached to the tree. To take snapshots of them, use [createFromBuilder](../reference/apis-arkui/js-apis-arkui-UIContext.md#createfrombuilder12-1) and [createFromComponent](../reference/apis-arkui/js-apis-arkui-UIContext.md#createfromcomponent18).
+Offline components are components that are encapsulated using **Builder** or **ComponentContent** but have not yet been attached to the tree. To take snapshots of them, use [createFromBuilder](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md#createfromcomponent18) and [createFromComponent](../reference/apis-arkui/arkts-apis-uicontext-componentsnapshot.md#createfromcomponent18).
 
 Since offline components do not participate in actual rendering, taking snapshots of them takes longer because the system must first perform offline construction, layout, and resource loading. Snapshots taken before these operations complete may return unexpected results. Therefore, it is usually necessary to set a sufficient delay to ensure the system completes these operations. For image resources, set the [syncLoad](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md#syncload8) attribute of the **Image** component to **true** to force synchronous loading. This ensures images are loaded, downloaded, and decoded during offline component construction, allowing the image pixels to be correctly displayed during the snapshot process.
 

@@ -42,13 +42,13 @@ When the **Tab** key is pressed, the focus state is activated. Clicking the mous
 ![Active_Focus_1](figures/Active_Focus_1.gif)
 
 
-The [activate](../reference/apis-arkui/js-apis-arkui-UIContext.md#activate14) API is used to enter and exit the focus activation state.
+The [activate](../reference/apis-arkui/arkts-apis-uicontext-focuscontroller.md#activate14) API is used to enter and exit the focus activation state.
 
 ![Active_Focus_2](figures/Active_Focus_2.gif)
 
 Example steps:
-1. Click **Set Active** and call the [activate](../reference/apis-arkui/js-apis-arkui-UIContext.md#activate14) API to enter the focus activation state.
-2. Use the **Tab** key to move the focus to the **Set Not Active** button, and then press the **Enter** key to trigger the key event and call the [activate](../reference/apis-arkui/js-apis-arkui-UIContext.md#activate14) API to exit the focus activation state.
+1. Click **Set Active** and call the [activate](../reference/apis-arkui/arkts-apis-uicontext-focuscontroller.md#activate14) API to enter the focus activation state.
+2. Use the **Tab** key to move the focus to the **Set Not Active** button, and then press the **Enter** key to trigger the key event and call the [activate](../reference/apis-arkui/arkts-apis-uicontext-focuscontroller.md#activate14) API to exit the focus activation state.
 
 **Hierarchical Pages**
 
@@ -99,7 +99,7 @@ Moves focus to a specific component, which is allowed across hierarchical pages 
 For details, see [Active Focus Acquisition/Loss](#active-focus-acquisitionloss).
 
 - clearFocus
-Clears the focus within the current hierarchical page, with the focus reverting to the root container. For details, see [clearFocus](../reference/apis-arkui/js-apis-arkui-UIContext.md#clearfocus12).
+Clears the focus within the current hierarchical page, with the focus reverting to the root container. For details, see [clearFocus](../reference/apis-arkui/arkts-apis-uicontext-focuscontroller.md#clearfocus12).
 
 - focusOnTouch
 Enables a component to gain focus on touch. It is ineffective on non-focusable components. For container components, focus goes to the last focused child or the first focusable child upon touch. For details, see [focusOnTouch](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9).
@@ -434,7 +434,7 @@ Sets the component's interactivity. If [enabled](../reference/apis-arkui/arkui-t
 visibility(value: Visibility)
 ```
 
-Sets the component's visibility. If [visibility](../reference/apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility) set to **Visibility.None** or **Visibility.Hidden**, the component becomes invisible and cannot gain focus.
+Sets the component's visibility. If [visibility](../reference/apis-arkui/arkui-ts/ts-universal-attributes-visibility.md) set to **Visibility.None** or **Visibility.Hidden**, the component becomes invisible and cannot gain focus.
 
 
 ```ts
@@ -822,7 +822,7 @@ The preceding example includes two steps:
   - Provides exception handling, aiding in troubleshooting focus acquisition issues.
   - Prevents errors in multi-instance scenarios by avoiding incorrect instance retrieval.
 
-  You must first obtain an instance using the [getFocusController()](../reference/apis-arkui/js-apis-arkui-UIContext.md#getfocuscontroller12) API in **UIContext** and then use this instance to call the corresponding methods.
+  You must first obtain an instance using the [getFocusController()](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getfocuscontroller12) API in **UIContext** and then use this instance to call the corresponding methods.
 
   ```ts
   requestFocus(key: string): void

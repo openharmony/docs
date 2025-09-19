@@ -1,7 +1,7 @@
 # Implementing Custom Drawing
 When the registered event is detected as a drawing type, you can use the custom drawing feature to implement your own drawing logic and render custom content.
 > **NOTE**
-> - During event registration, you must register the event as a drawing event (for example, **ARKUI_NODE_CUSTOM_EVENT_ON_DRAW**). You can find the event types and their meanings by referring to the [ArkUI_NodeCustomEventType](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodecustomeventtype) enum.
+> - During event registration, you must register the event as a drawing event (for example, **ARKUI_NODE_CUSTOM_EVENT_ON_DRAW**). You can find the event types and their meanings by referring to the [ArkUI_NodeCustomEventType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodecustomeventtype) enum.
 > 
 > - To implement custom drawing logic, you must define custom **UserData** and pass it during event registration.
 
@@ -26,7 +26,7 @@ When the registered event is detected as a drawing type, you can use the custom 
     });
     ```
 
-- In the callback, obtain the event type, event ID, and UserData to determine the logic to execute, using the following APIs: [OH_ArkUI_NodeCustomEvent_GetEventType](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_nodecustomevent_geteventtype), [OH_ArkUI_NodeCustomEvent_GetEventTargetId](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_nodecustomevent_geteventtargetid), [OH_ArkUI_NodeCustomEvent_GetUserData](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_nodecustomevent_getuserdata).
+- In the callback, obtain the event type, event ID, and UserData to determine the logic to execute, using the following APIs: [OH_ArkUI_NodeCustomEvent_GetEventType](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nodecustomevent_geteventtype), [OH_ArkUI_NodeCustomEvent_GetEventTargetId](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nodecustomevent_geteventtargetid), [OH_ArkUI_NodeCustomEvent_GetUserData](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nodecustomevent_getuserdata).
 
     ```c++
     auto type = OH_ArkUI_NodeCustomEvent_GetEventType(event);
@@ -34,7 +34,7 @@ When the registered event is detected as a drawing type, you can use the custom 
     auto userData =reinterpret_cast<A *>( OH_ArkUI_NodeCustomEvent_GetUserData(event));
     ```
 
-- Use [OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_nodecustomevent_getdrawcontextindraw) to obtain the drawing context from the custom event, and then pass it to [OH_ArkUI_DrawContext_GetCanvas](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_drawcontext_getcanvas) to obtain the drawing canvas pointer. This pointer is then cast to an **OH_Drawing_Canvas** pointer for drawing operations.
+- Use [OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_nodecustomevent_getdrawcontextindraw) to obtain the drawing context from the custom event, and then pass it to [OH_ArkUI_DrawContext_GetCanvas](../reference/apis-arkui/capi-native-type-h.md#oh_arkui_drawcontext_getcanvas) to obtain the drawing canvas pointer. This pointer is then cast to an **OH_Drawing_Canvas** pointer for drawing operations.
     ```c++
     // Obtain the drawing context for the custom event.
     auto *drawContext = OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw(event);
