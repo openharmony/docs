@@ -55,7 +55,7 @@ async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions)
         console.info(`promise: generateKeyItem success`);
         ret = true;
       }).catch((error: BusinessError) => {
-        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMag : ${error.message}`);
+        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
       });
   } catch (error) {
     console.error(`promise: generateKeyItem input arg invalid`);
@@ -73,11 +73,11 @@ async function hasKeyItem(keyAlias: string, huksOptions: huks.HuksOptions): Prom
         console.info(`promise: hasKeyItem success, data = ${data}`);
         ret = true;
       }).catch((error: BusinessError) => {
-        console.error(`promise: hasKeyItem failed, errCode : ${error.code}, errMag : ${error.message}`);
+        console.error(`promise: hasKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
       });
     return ret;
   } catch (error) {
-    console.error(`promise: hasKeyItem input arg invalid, errCode : ${error.code}, errMag : ${error.message}`);
+    console.error(`promise: hasKeyItem input arg invalid, errCode : ${error.code}, errMsg : ${error.message}`);
   }
 
   return ret;
