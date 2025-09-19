@@ -38,6 +38,7 @@
       - [Integrated HSP](quick-start/integrated-hsp.md)
       - [Converting HAR to HSP](quick-start/har-to-hsp.md)
       - [Converting HSP to HAR](quick-start/hsp-to-har.md)
+      - [Converting HAP to HAR](quick-start/hap-to-har.md)
       - [Creating a Static Shortcut of the Application](quick-start/typical-scenario-configuration.md)
       - [Creating an Application Clone](quick-start/app-clone.md)
       - [Creating an Application Multi-Instance](quick-start/multiInstance.md)
@@ -529,8 +530,8 @@
         - Geometric Shapes<!--arkts-draw-graphics-->
           - [Drawing Geometric Shapes (Shape)](ui/arkts-geometric-shape-drawing.md)
           - [Clipping Shapes (clipShape)](ui/arkts-clip-shape.md)
-        - Adding Interaction Response
-          - Adding Gesture Response
+        - Adding Interaction Response<!--adding-interaction-response-->
+          - Adding Gesture Response<!--adding-gesture-response-->
           - [Interacting with Applications Using Gestures](ui/arkts-interaction-basic-principles.md)
           - [Handling Touchscreen Input Events](ui/arkts-interaction-development-guide-touch-screen.md)
           - [Crown Event (Recommended for Circular Screens)](ui/arkts-common-events-crown-event.md)

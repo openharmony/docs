@@ -395,7 +395,7 @@ Gesture recognition is based on the response chain results of [hit testing](./ar
 
 This is achieved using the [onTouchTestDone](../reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md) API:
 
-After hit testing is completed, the system returns all gesture recognizer objects through this API. Applications can filter recognizers by type, component ID, or associated component, and proactively disable specific recognizers by calling the [preventBegin](../reference/apis-arkui/arkui-ts/ts-gesture-common.md#preventbegin20) API.
+After hit testing is completed, the system returns all gesture recognizer objects through this API. Applications can filter recognizers by type, component ID, or associated component, and proactively disable specific recognizers by calling the preventBegin API.
 
 Disabling by gesture type:
 

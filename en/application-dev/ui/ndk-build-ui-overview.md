@@ -68,7 +68,7 @@ Using the NDK for UI development involves the following tasks.
 | [Integrating Accessibility Through XComponent](ndk-accessibility-xcomponent.md)| Describes how to connect third-party systems to the UI platform through **XComponent**.|
 | [Implementing Custom Drawing](arkts-user-defined-draw.md)| Describes how to use custom drawing capabilities to render custom content.|
 | Querying and Operating Custom Nodes | Introduces how to query and operate custom nodes.|
-| [Launching EmbeddedUIExtensionAbility with EmbeddedComponent](ndk-embedded-component.md) | Introduces how to launch **EmbeddedUIExtensionAbility** with **EmbeddedComponent** on the native side. This is mainly used in modular development scenarios with process isolation requirements.|
+| Launching EmbeddedUIExtensionAbility with EmbeddedComponent | Introduces how to launch **EmbeddedUIExtensionAbility** with **EmbeddedComponent** on the native side. This is mainly used in modular development scenarios with process isolation requirements.|
 | [Using Text](ndk-styled-string.md) | Describes how to render styled text using the **Text** component and how to listen for text box events.|
 | [Ensuring Functionality in Multi-Instance Scenarios](ndk-scope-task.md) | Introduces how to ensure the normal functionality of API calls in NDK multi-threaded scenarios.|
 

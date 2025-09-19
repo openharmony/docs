@@ -509,7 +509,7 @@ This example demonstrates how to set focus on a specific component using **focus
 
 > **NOTE**
 > 
-> Directly using **focusControl** can lead to the issue of [ambiguous UI context](../../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain a [UIContext](../arkts-apis-uicontext-uicontext.md) instance using **getUIContext()**, and then obtain the associated **focusControl** object using [getFocusController](../js-apis-arkui-UIContext.md#getfocuscontroller12).
+> Directly using **focusControl** can lead to the issue of [ambiguous UI context](../../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain a [UIContext](../arkts-apis-uicontext-uicontext.md) instance using **getUIContext()**, and then obtain the associated **focusControl** object using [getFocusController](../arkts-apis-uicontext-uicontext.md#getfocuscontroller12).
 
 ```ts
 // requestFocus.ets
