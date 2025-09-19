@@ -116,7 +116,7 @@ FileManagement_ErrCode OH_FileShare_PersistPermission(const FileShare_PolicyInfo
 
 | 类型 | 说明 |
 | -- | -- |
-| [FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode) | 返回FileManagement模块错误码[FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode)。<br>         E_PARAMS 401 - 输入参数无效。可能的原因有：<br>             1. 参数policies或参数result或参数resultNum为空指针；<br>             2. 参数policyNum值为0或者超过最大长度(500)；<br>             3. 参数policies中携带的uri为空或者length为0或者uri的长度与length不一致。<br>         E_DEVICE_NOT_SUPPORT 801 - 当前设备类型不支持此接口。<br>         E_PERMISSION 201 - 接口权限校验失败。<br>         E_ENOMEM 13900011 - 分配或者拷贝内存失败。<br>         E_EPERM 13900001 - 操作不被允许。<br>         E_UNKNOWN_ERROR 13900042 - 内部未知错误，调用其它部件返回的除以上错误之外的其它错误。<br>         E_NO_ERROR 0 - 接口调用成功。 |
+| [FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode) | 返回FileManagement模块错误码[FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode)。<br>         E_PARAMS 401 - 输入参数无效。可能的原因有：<br>             1. 参数policies或参数result或参数resultNum为空指针；<br>             2. 参数policyNum值为0或者超过最大长度(500)；<br>             3. 参数policies中携带的uri为空或者length为0或者uri的长度与length不一致。<br>         E_DEVICE_NOT_SUPPORT 801 - 当前设备类型不支持此接口。<br>         E_PERMISSION 201 - 接口权限校验失败。<br>         E_ENOMEM 13900011 - 分配或者拷贝内存失败。<br>         E_EPERM 13900001 - 操作不被允许。<br>         E_NO_ERROR 0 - 接口调用成功。 |
 
 ### OH_FileShare_RevokePermission()
 
@@ -146,7 +146,7 @@ FileManagement_ErrCode OH_FileShare_RevokePermission(const FileShare_PolicyInfo 
 
 | 类型 | 说明 |
 | -- | -- |
-| [FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode) | 返回FileManagement模块错误码[FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode)。<br>         E_PARAMS 401 - 输入参数无效。可能的原因有：1. 参数policies或参数result或参数resultNum为空指针；<br>             2. 参数policyNum值为0或者超过最大长度(500)；3. 参数policies中携带的uri为空或者length为0或者uri的长度与length不一致。<br>         E_DEVICE_NOT_SUPPORT 801 - 当前设备类型不支持此接口。<br>         E_PERMISSION 201 - 接口权限校验失败。<br>         E_ENOMEM 13900011 - 分配或者拷贝内存失败。<br>         E_EPERM 13900001 - 操作不被允许。<br>         E_UNKNOWN_ERROR 13900042 - 内部未知错误，调用其它部件返回的除以上错误之外的其它错误。<br>         E_NO_ERROR - 接口调用成功。 |
+| [FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode) | 返回FileManagement模块错误码[FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode)。<br>         E_PARAMS 401 - 输入参数无效。可能的原因有：1. 参数policies或参数result或参数resultNum为空指针；<br>             2. 参数policyNum值为0或者超过最大长度(500)；3. 参数policies中携带的uri为空或者length为0或者uri的长度与length不一致。<br>         E_DEVICE_NOT_SUPPORT 801 - 当前设备类型不支持此接口。<br>         E_PERMISSION 201 - 接口权限校验失败。<br>         E_ENOMEM 13900011 - 分配或者拷贝内存失败。<br>         E_EPERM 13900001 - 操作不被允许。<br>         E_NO_ERROR - 接口调用成功。 |
 
 ### OH_FileShare_ActivatePermission()
 
@@ -176,7 +176,7 @@ FileManagement_ErrCode OH_FileShare_ActivatePermission(const FileShare_PolicyInf
 
 | 类型 | 说明 |
 | -- | -- |
-| [FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode) | 返回FileManagement模块错误码[FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode)。<br>         E_PARAMS 401 - 输入参数无效。可能的原因有：<br>             1. 参数policies或参数result或参数resultNum为空指针；<br>             2. 参数policyNum值为0或者超过最大长度(500)；<br>             3. 参数policies中携带的uri为空或者length为0或者uri的长度与length不一致。<br>         E_DEVICE_NOT_SUPPORT 801 - 当前设备类型不支持此接口。<br>         E_PERMISSION 201 - 接口权限校验失败。<br>         E_ENOMEM 13900011 - 分配或者拷贝内存失败。<br>         E_EPERM 13900001 - 操作不被允许。<br>         E_UNKNOWN_ERROR 13900042 - 内部未知错误，调用其它部件返回的除以上错误之外的其它错误。<br>         E_NO_ERROR 0 - 接口调用成功。 |
+| [FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode) | 返回FileManagement模块错误码[FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode)。<br>         E_PARAMS 401 - 输入参数无效。可能的原因有：<br>             1. 参数policies或参数result或参数resultNum为空指针；<br>             2. 参数policyNum值为0或者超过最大长度(500)；<br>             3. 参数policies中携带的uri为空或者length为0或者uri的长度与length不一致。<br>         E_DEVICE_NOT_SUPPORT 801 - 当前设备类型不支持此接口。<br>         E_PERMISSION 201 - 接口权限校验失败。<br>         E_ENOMEM 13900011 - 分配或者拷贝内存失败。<br>         E_EPERM 13900001 - 操作不被允许。<br>         E_NO_ERROR 0 - 接口调用成功。 |
 
 ### OH_FileShare_DeactivatePermission()
 
@@ -206,7 +206,7 @@ FileManagement_ErrCode OH_FileShare_DeactivatePermission(const FileShare_PolicyI
 
 | 类型 | 说明 |
 | -- | -- |
-| [FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode) | 返回FileManagement模块错误码[FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode)。<br>         E_PARAMS 401 - 输入参数无效。可能的原因有：<br>             1. 参数policies或参数result或参数resultNum为空指针；<br>             2. 参数policyNum值为0或者超过最大长度(500)；<br>             3. 参数policies中携带的uri为空或者length为0或者uri的长度与length不一致。<br>         E_DEVICE_NOT_SUPPORT 801 - 当前设备类型不支持此接口。<br>         E_PERMISSION 201 - 接口权限校验失败。<br>          E_ENOMEM 13900011 - 分配或者拷贝内存失败。<br>         E_EPERM 13900001 - 操作不被允许。<br>         E_UNKNOWN_ERROR 13900042 - 内部未知错误，调用其它部件返回的除以上错误之外的其它错误。<br>         E_NO_ERROR - 接口调用成功。 |
+| [FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode) | 返回FileManagement模块错误码[FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode)。<br>         E_PARAMS 401 - 输入参数无效。可能的原因有：<br>             1. 参数policies或参数result或参数resultNum为空指针；<br>             2. 参数policyNum值为0或者超过最大长度(500)；<br>             3. 参数policies中携带的uri为空或者length为0或者uri的长度与length不一致。<br>         E_DEVICE_NOT_SUPPORT 801 - 当前设备类型不支持此接口。<br>         E_PERMISSION 201 - 接口权限校验失败。<br>          E_ENOMEM 13900011 - 分配或者拷贝内存失败。<br>         E_EPERM 13900001 - 操作不被允许。<br>         E_NO_ERROR - 接口调用成功。 |
 
 ### OH_FileShare_CheckPersistentPermission()
 
@@ -236,7 +236,7 @@ FileManagement_ErrCode OH_FileShare_CheckPersistentPermission(const FileShare_Po
 
 | 类型 | 说明 |
 | -- | -- |
-| [FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode) | 返回FileManagement模块错误码[FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode)。<br>         E_PARAMS 401 - 输入参数无效。可能的原因有：<br>             1. 参数policies或参数result或参数resultNum为空指针；<br>             2. 参数policyNum值为0或者超过最大长度(500)；<br>             3. 参数policies中携带的uri为空或者length为0或者uri的长度与length不一致。<br>         E_DEVICE_NOT_SUPPORT 801 - 当前设备类型不支持此接口。<br>         E_PERMISSION 201 - 接口权限校验失败。<br>         E_ENOMEM 13900011 - 分配或者拷贝内存失败。<br>         E_EPERM 13900001 - 操作不被允许。可能的原因为policies中携带的所有uri都不符合规范或者uri转换出来的路径不存在。<br>         E_UNKNOWN_ERROR 13900042 - 内部未知错误，调用其它部件返回的除以上错误之外的其它错误。<br>         E_NO_ERROR 0 - 接口调用成功。 |
+| [FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode) | 返回FileManagement模块错误码[FileManagement_ErrCode](capi-error-code-h.md#filemanagement_errcode)。<br>         E_PARAMS 401 - 输入参数无效。可能的原因有：<br>             1. 参数policies或参数result或参数resultNum为空指针；<br>             2. 参数policyNum值为0或者超过最大长度(500)；<br>             3. 参数policies中携带的uri为空或者length为0或者uri的长度与length不一致。<br>         E_DEVICE_NOT_SUPPORT 801 - 当前设备类型不支持此接口。<br>         E_PERMISSION 201 - 接口权限校验失败。<br>         E_ENOMEM 13900011 - 分配或者拷贝内存失败。<br>         E_EPERM 13900001 - 操作不被允许。可能的原因为policies中携带的所有uri都不符合规范或者uri转换出来的路径不存在。<br>         E_NO_ERROR 0 - 接口调用成功。 |
 
 ### OH_FileShare_ReleasePolicyErrorResult()
 
