@@ -35,7 +35,7 @@ import { Want } from '@kit.AbilityKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onCreate(want: Want): void {
-        console.log('onCreate');
+        console.info('onCreate');
         // ...
     }
 }
@@ -56,7 +56,7 @@ import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onStartDiscoverPrinter(): void {
-        console.log('onStartDiscoverPrinter enter');
+        console.info('onStartDiscoverPrinter enter');
         // ...
     }
 }
@@ -77,7 +77,7 @@ import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onStopDiscoverPrinter(): void {
-        console.log('onStopDiscoverPrinter enter');
+        console.info('onStopDiscoverPrinter enter');
         // ...
     }
 }
@@ -103,7 +103,7 @@ import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onConnectPrinter(printerId: number): void {
-        console.log('onConnectPrinter enter');
+        console.info('onConnectPrinter enter');
         // ...
     }
 }
@@ -129,7 +129,7 @@ import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onDisconnectPrinter(printerId: number): void {
-        console.log('onDisconnectPrinter enter');
+        console.info('onDisconnectPrinter enter');
         // ...
     }
 }
@@ -150,7 +150,7 @@ import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onDestroy(): void {
-        console.log('onDestroy');
+        console.info('onDestroy');
     }
 }
 ```
