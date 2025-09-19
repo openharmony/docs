@@ -828,5 +828,5 @@ eglSwapBuffers函数用于交换前后缓冲区的内容，并将渲染结果显
 
 针对OpenGL ES的使用和相关开发，有以下相关实例可供参考：
 
-- [简易Native C++示例](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo)
-- [Native XComponent组件的使用](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/XComponent)
+- [简易Native C++示例](https://gitcode.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo)
+- [Native XComponent组件的使用](https://gitcode.com/openharmony/codelabs/tree/master/NativeAPI/XComponent)

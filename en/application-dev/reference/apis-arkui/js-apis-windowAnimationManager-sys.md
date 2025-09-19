@@ -401,8 +401,8 @@ Describes a rounded rectangle.
 
 | Name     | Type    | Mandatory| Description|
 | ------- | ------ | ------|----------------------- |
-| left  | number | Yes|X coordinate of the upper-left corner of the target window relative to the screen.|
-| top | number | Yes|Y coordinate of the upper-left corner of the target window relative to the screen.|
+| left  | number | Yes|X coordinate of the top-left corner of the target window relative to the screen.|
+| top | number | Yes|Y coordinate of the top-left corner of the target window relative to the screen.|
 | width | number | Yes|Width of the target window.|
 | height | number | Yes|Height of the target window.|
 | radius | number | Yes|Radius of the rounded corner of the target window.|

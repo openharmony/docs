@@ -10,7 +10,7 @@
 hiperf是一款集成多种性能分析功能的命令行工具，可用于分析系统性能瓶颈、定位软件热点及优化代码效率，支持采集和统计程序运行时的性能数据。
 
 
-开发者可优先使用[Deveco Studio](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-insight-session-time)或[SmartPerf](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/smartperf_host/ide/src/doc/md/quickstart_hiperf.md)等图形前端工具采集函数的调用栈，获取调用栈上各层函数的执行时间，通过泳道图等方式查看调用链信息进而进行性能分析。若需要指定采集的事件、采样周期、采集时长、CPU核数等选项，可以单独使用 hiperf 命令行工具。采样数据 perf.data 文件可以使用SmartPerf工具打开并以可视化的火焰图进行展示。
+开发者可优先使用[Deveco Studio](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-insight-session-time)或[SmartPerf](https://gitcode.com/openharmony/developtools_smartperf_host/blob/master/smartperf_host/ide/src/doc/md/quickstart_hiperf.md)等图形前端工具采集函数的调用栈，获取调用栈上各层函数的执行时间，通过泳道图等方式查看调用链信息进而进行性能分析。若需要指定采集的事件、采样周期、采集时长、CPU核数等选项，可以单独使用 hiperf 命令行工具。采样数据 perf.data 文件可以使用SmartPerf工具打开并以可视化的火焰图进行展示。
 
 
 本文档详细说明了hiperf命令行工具的使用方法，帮助开发者借助该工具进行详细的性能分析。

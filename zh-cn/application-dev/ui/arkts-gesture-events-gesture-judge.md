@@ -98,7 +98,7 @@
                Stack().width('200vp').height('100vp').backgroundColor(Color.Red)
                Stack().width('200vp').height('100vp').backgroundColor(Color.Blue)
              }.width('200vp').height('200vp')
-             // Stack的下半区是绑定了拖动手势的图像区域。
+             // Stack的下半区是绑定了滑动手势的图像区域。
              Image($r('sys.media.ohos_app_icon'))
                .draggable(true)
                .onDragStart(()=>{

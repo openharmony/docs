@@ -126,7 +126,7 @@
 
 - [ArkTS组件集（ArkTS）（Full SDK）（API10）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/ComponentCollection)
 
-- [像素转换（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/PixelConversion)
+- [像素转换（ArkTS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/PixelConversion)
 
-- [购物应用（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts)
+- [购物应用（ArkTS）（API8）](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts)
 

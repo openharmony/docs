@@ -262,7 +262,7 @@ hilog -a 8
    11-15 16:04:08.603   506   506 I I02C01/CustCarrierMount: MountCarrierToShared start
    11-15 16:04:08.604   506   506 I I02C01/CustCarrierMount: success to mount carrier to shared
    11-15 16:04:15.394   972   972 I I02C01/CustCarrierMount: UpdateCotaOpkeyLink start
-   11-15 16:04:15.396   972   972 W I02C01/CustCarrierMount: not exsit CUST_GLOBAL_CARRIER_DIR or COTA_PARAM_CARRIER_DIR
+   11-15 16:04:15.396   972   972 W I02C01/CustCarrierMount: not exist CUST_GLOBAL_CARRIER_DIR or COTA_PARAM_CARRIER_DIR
    11-15 16:04:15.887   972   972 I I02C01/CustCarrierMount: success to update cota carrier
    11-15 16:04:48.749  5777  5901 I A00001/HiAI_Metadata: metadata is null
    11-15 16:04:48.749  5777  5901 I A00001/HiAI_PluginAbilityInfo: abilityInfo is null
@@ -657,7 +657,7 @@ Set flow control by domain to disabled successfully
 ```
 <!--RP11End-->
 
-本条日志表示进程com.example.myapplication在17:02:34时存在日志打印超限，在17:02:34.219的前一秒内，有3091行日志由于超限管控丢弃，未打印出来。
+本条日志表示进程com.example.myapplication存在日志打印超限，在17:02:34.219时间点前，有3091行日志由于超限管控丢弃，未打印出来。
 
 **处理方式**：可参考[进程超限开关](#进程超限开关)，关闭对应管控机制。
 
@@ -672,7 +672,7 @@ domainID维度管控，打印到LOG_CORE buffer里面的系统日志适配了dom
 ```
 <!--RP12End-->
 
-本条日志表示domainID为02C02的日志在17:02:34时存在日志打印超限，在17:02:34.219的前一秒内，有108行日志由于超限管控丢弃，未打印出来。
+本条日志表示domainID为02C02的日志存在日志打印超限，在17:02:34.219时间点前，有108行日志由于超限管控丢弃，未打印出来。
 
 **处理方式**：可参考[domain超限开关](#domain超限开关)，关闭对应管控机制。
 

@@ -25,7 +25,7 @@ lldb工具在SDK中的路径为`\ohos-sdk\[system]\native\llvm`，其中system�
 
 ## 功能列表
 
-此处列举LLDB调试器支持的部分功能，更多命令参考：[LLDB工具使用指导](https://gitee.com/openharmony/third_party_llvm-project/blob/master/lldb/README_zh.md)和[LLDB官网手册](https://lldb.llvm.org/use/map.html#)。Windows、Linux x86_64和Mac平台的LLDB工具有些许差异，以实际应用为准。
+此处列举LLDB调试器支持的部分功能，更多命令参考：[LLDB工具使用指导](https://gitcode.com/openharmony/third_party_llvm-project/blob/master/lldb/README_zh.md)和[LLDB官网手册](https://lldb.llvm.org/use/map.html#)。Windows、Linux x86_64和Mac平台的LLDB工具有些许差异，以实际应用为准。
 
 - 记录日志
 

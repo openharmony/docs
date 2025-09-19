@@ -20,7 +20,7 @@ OHAudio的开发指南见[使用OHAudio开发音频播放功能(C/C++)](using-oh
 
 ## OpenHarmony上的OpenSL ES
 
-OpenSL ES中提供了以下的接口，OpenHarmony当前仅实现了部分[接口](https://gitee.com/openharmony/third_party_opensles/blob/master/api/1.0.1/OpenSLES.h)，可以实现音频播放的基础功能。
+OpenSL ES中提供了以下的接口，OpenHarmony当前仅实现了部分[接口](https://gitcode.com/openharmony/third_party_opensles/blob/master/api/1.0.1/OpenSLES.h)，可以实现音频播放的基础功能。
 
 调用未实现接口后会返回**SL_RESULT_FEATURE_UNSUPPORTED**, 当前没有相关扩展可以使用。
 

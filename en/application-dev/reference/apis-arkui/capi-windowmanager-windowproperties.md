@@ -16,9 +16,9 @@ The struct describes the window properties.
 
 | Name| Description|
 | -- | -- |
-| WindowManager_Rect windowRect | Position and size of the window.|
-| WindowManager_Rect drawableRect | Size of the drawable area within the window.|
-| WindowManager_WindowType type | Window type.|
+| [WindowManager_Rect](capi-windowmanager-rect.md) windowRect | Position and size of the window.|
+| [WindowManager_Rect](capi-windowmanager-rect.md) drawableRect | Size of the drawable area within the window.|
+| [WindowManager_WindowType](capi-oh-window-comm-h.md#windowmanager_windowtype) type | Window type.|
 | bool isFullScreen | Whether the window is in full-screen mode. The default value is **false**. **true** if in full-screen mode, **false** otherwise.|
 | bool isLayoutFullScreen | Whether the window layout is immersive. The default value is **false**. **true** if immersive, **false** otherwise.|
 | bool focusable | Whether the window is focusable. The default value is **true**. **true** if focusable, **false** otherwise.|
