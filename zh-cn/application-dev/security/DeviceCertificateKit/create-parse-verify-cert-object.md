@@ -59,27 +59,27 @@ function certSample(): void {
       return;
     }
     // X509Cert实例创建成功。
-    console.log('createX509Cert success');
+    console.info('createX509Cert success');
 
     // 获取证书版本。
     let version = x509Cert.getVersion();
     // 获取证书序列号。
     let serial = x509Cert.getCertSerialNumber();
-    console.log(`X509 version: ${version} , X509 serial:${serial}`);
+    console.info(`X509 version: ${version} , X509 serial:${serial}`);
 
     // 获取证书颁发者名称。
     let issuerName = x509Cert.getIssuerName(cert.EncodingType.ENCODING_UTF8);
-    console.log(`X509 issuerName: ${issuerName}`);
+    console.info(`X509 issuerName: ${issuerName}`);
 
     // 获取证书主体名称。
     let subjectNameBin = x509Cert.getSubjectName(cert.EncodingType.ENCODING_UTF8);
     let encoder = util.TextDecoder.create();
     let subjectName = encoder.decodeToString(subjectNameBin.data);
-    console.log(`X509 subjectName: ${subjectName}`);
+    console.info(`X509 subjectName: ${subjectName}`);
 
     // 获取证书对象的字符串类型数据。
     let certString = x509Cert.toString(cert.EncodingType.ENCODING_UTF8);
-    console.log(`X509 certString: ${certString}`);
+    console.info(`X509 certString: ${certString}`);
 
     // 使用上级证书对象的getPublicKey()方法或本（自签名）证书对象获取公钥对象。
     try {
@@ -88,7 +88,7 @@ function certSample(): void {
       x509Cert.verify(pubKey, (err, data) => {
         if (err == null) {
           // 签名验证成功。
-          console.log('verify success');
+          console.info('verify success');
         } else {
           // 签名验证失败。
           console.error(`verify failed, errCode: ${err.code} , errMsg:${err.message}`);

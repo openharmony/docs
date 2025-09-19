@@ -116,7 +116,7 @@ async function sample() {
   };
   try {
     const validationRes = await x509CertChain.validate(param);
-    console.log('X509CertChain validate success');
+    console.info('X509CertChain validate success');
   } catch (err) {
     console.error('X509CertChain validate failed');
   }
