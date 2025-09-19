@@ -1355,6 +1355,7 @@ try {
 query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;DataShareResultSet&gt;): void
 
 查询数据库中的数据。使用callback异步回调。
+非静默场景下，调用此接口时，传入的predicates参数的大小不能超过128MB，否则接口返回失败。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1409,6 +1410,7 @@ try {
 query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;): Promise&lt;DataShareResultSet&gt;
 
 查询数据库中的数据。使用Promise异步回调。
+非静默场景下，调用此接口，传入的predicates参数的大小不能超过128MB，否则接口返回失败。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1686,6 +1688,7 @@ try {
 batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;number&gt;): void
 
 将批量数据插入数据库。使用callback异步回调。暂不支持静默访问。
+非静默场景下，调用此接口时，传入的values参数的大小不能超过128M，否则接口返回失败。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1740,6 +1743,7 @@ try {
 batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&gt;
 
 将批量数据插入数据库。使用Promise异步回调。暂不支持静默访问。
+非静默场景下，调用此接口时，传入的values参数的大小不能超过128M，否则接口返回失败。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
