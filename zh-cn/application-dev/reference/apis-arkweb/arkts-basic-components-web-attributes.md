@@ -233,7 +233,7 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 overScrollMode(mode: OverScrollMode)
 
-设置Web过滚动模式。当过滚动模式开启时，当用户在Web根页面上滑动到边缘时，Web会通过弹性动画弹回界面，根页面上的内部页面不会触发回弹。
+设置Web过滚动模式。当过滚动模式开启时，当用户在Web根页面上滑动到边缘时，Web会通过弹性动画弹回界面，根页面上的内部页面不会触发回弹。该属性没有显式调用时，默认关闭过滚动模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -241,7 +241,7 @@ overScrollMode(mode: OverScrollMode)
 
 | 参数名  | 类型                                    | 必填   | 说明               |
 | ---- | --------------------------------------- | ---- | ------------------ |
-| mode | [OverScrollMode](./arkts-basic-components-web-e.md#overscrollmode11) | 是    | 设置Web的过滚动模式为关闭或开启。<br>默认值：`OverScrollMode.NEVER`，表示关闭过滚动模式。 |
+| mode | [OverScrollMode](./arkts-basic-components-web-e.md#overscrollmode11) | 是    | 设置Web的过滚动模式为关闭或开启。<br>传入undefined与null时为OverScrollMode.NEVER。 |
 
 **示例：**
 
@@ -335,7 +335,7 @@ onlineImageAccess(onlineImageAccess: boolean)
 
 zoomAccess(zoomAccess: boolean)
 
-设置是否支持手势进行缩放。
+设置是否支持手势进行缩放。该属性没有显式调用时，默认支持手势进行缩放。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -343,7 +343,7 @@ zoomAccess(zoomAccess: boolean)
 
 | 参数名        | 类型    | 必填   | 说明          |
 | ---------- | ------- | ---- | ------------- |
-| zoomAccess | boolean | 是    | 设置是否支持手势进行缩放。<br>true表示设置支持手势进行缩放，false表示设置不支持手势进行缩放。<br>默认值：true。<br>传入undefined与null时为false。 |
+| zoomAccess | boolean | 是    | 设置是否支持手势进行缩放。<br>true表示设置支持手势进行缩放，false表示设置不支持手势进行缩放。<br>传入undefined与null时为false。 |
 
 **示例：**
 
@@ -542,7 +542,7 @@ multiWindowAccess(multiWindow: boolean)
 
 horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
-设置是否显示横向滚动条，包括系统默认滚动条和用户自定义滚动条。
+设置是否显示横向滚动条，包括系统默认滚动条和用户自定义滚动条。该属性没有显式调用时，默认显示横向滚动条。
 
 > **说明：**
 >
@@ -555,7 +555,7 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
 | 参数名                 | 类型    | 必填   | 说明         |
 | ------------------- | ------- | ---- | ------------ |
-| horizontalScrollBar | boolean | 是    | 设置是否显示横向滚动条。<br>true表示设置显示横向滚动条，false表示设置不显示横向滚动条。<br>默认值：true。<br>传入undefined与null时为false。 |
+| horizontalScrollBar | boolean | 是    | 设置是否显示横向滚动条。<br>true表示设置显示横向滚动条，false表示设置不显示横向滚动条。<br>传入undefined与null时为false。 |
 
 **示例：**
 
@@ -624,7 +624,7 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
 verticalScrollBarAccess(verticalScrollBar: boolean)
 
-设置是否显示纵向滚动条，包括系统默认滚动条和用户自定义滚动条。
+设置是否显示纵向滚动条，包括系统默认滚动条和用户自定义滚动条。该属性没有显式调用时，默认显示纵向滚动条。
 
 > **说明：**
 >
@@ -637,7 +637,7 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
 | 参数名               | 类型    | 必填   | 说明         |
 | ----------------- | ------- | ---- | ------------ |
-| verticalScrollBar | boolean | 是    | 设置是否显示纵向滚动条。<br>true表示设置显示纵向滚动条，false表示设置不显示纵向滚动条。<br>默认值：true。<br>传入undefined与null时为false。 |
+| verticalScrollBar | boolean | 是    | 设置是否显示纵向滚动条。<br>true表示设置显示纵向滚动条，false表示设置不显示纵向滚动条。<br>传入undefined与null时为false。 |
 
 **示例：**
 
@@ -741,7 +741,7 @@ cacheMode(cacheMode: CacheMode)
 
 copyOptions(value: CopyOptions)
 
-设置剪贴板复制范围选项。
+设置剪贴板复制范围选项。该属性没有显式调用时，默认支持复制后在当前设备内所有应用内粘贴。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -749,7 +749,7 @@ copyOptions(value: CopyOptions)
 
 | 参数名       | 类型                        | 必填   | 说明      |
 | --------- | --------------------------- | ---- | --------- |
-| value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | 是    | 要设置的剪贴板复制范围选项。<br>默认值：`CopyOptions.LocalDevice`。 |
+| value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | 是    | 要设置的剪贴板复制范围选项。<br>传入undefined与null时为CopyOptions.None。 |
 
 **示例：**
 
@@ -810,7 +810,7 @@ textZoomRatio(textZoomRatio: number)
 
 initialScale(percent: number)
 
-设置整体页面的缩放百分比。
+设置整体页面的缩放百分比。该属性没有显式调用时，默认缩放百分比为100。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -818,7 +818,7 @@ initialScale(percent: number)
 
 | 参数名     | 类型   | 必填   | 说明                          |
 | ------- | ------ | ---- | ----------------------------- |
-| percent | number | 是    | 要设置的整体页面的缩放百分比。<br>取值范围：(0, 1000]。<br>默认值：100。 |
+| percent | number | 是    | 要设置的整体页面的缩放百分比。<br>取值范围：(0, 1000]。<br>传入undefined与null时属性设置不生效。 |
 
 **示例：**
 
@@ -2139,7 +2139,7 @@ enableNativeEmbedMode(mode: boolean)
 forceDisplayScrollBar(enabled: boolean)
 
 
-设置滚动条是否常驻。在常驻状态下，当页面大小超过一页时，滚动条出现且不消失。
+设置滚动条是否常驻。在常驻状态下，当页面大小超过一页时，滚动条出现且不消失。该属性没有显式调用时，默认设置滚动条不常驻。
 
 全量展开模式下不支持滚动条常驻，即layoutMode为WebLayoutMode.FIT_CONTENT模式时，参数enabled为false。
 
@@ -2149,7 +2149,7 @@ forceDisplayScrollBar(enabled: boolean)
 
 | 参数名  | 类型 | 必填 | 说明           |
 | ------- | -------- | ---- | ------------------ |
-| enabled | boolean  | 是   | 滚动条是否常驻。<br>true表示滚动条常驻，false表示滚动条不常驻。<br>默认值：false。 |
+| enabled | boolean  | 是   | 滚动条是否常驻。<br>true表示滚动条常驻，false表示滚动条不常驻。<br>传入undefined与null时属性设置不生效。 |
 
 
 **示例：**
@@ -2773,7 +2773,7 @@ struct WebComponent {
 
 enableHapticFeedback(enabled: boolean)
 
-设置Web组件长按文本选择是否开启振动。需配置"ohos.permission.VIBRATE"。
+设置Web组件长按文本选择是否开启振动。需配置"ohos.permission.VIBRATE"。该属性没有显式调用时，默认开启振动。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2781,7 +2781,7 @@ enableHapticFeedback(enabled: boolean)
 
 | 参数名     | 类型        | 必填   | 说明 |
 | --------- | ---------   | ------ | ------------- |
-| enabled   | boolean | 是  | 是否开启振动。<br>true表示开启振动，false表示不开启振动。<br>默认值：true。<br>传入undefined与null时为false。 |
+| enabled   | boolean | 是  | 是否开启振动。<br>true表示开启振动，false表示不开启振动。<br>传入undefined与null时属性设置不生效。 |
 
 **示例：**
 
@@ -3172,7 +3172,7 @@ nativeEmbedOptions(options?: EmbedOptions)
 
 enableDataDetector(enable: boolean)
 
-设置是否识别网页文本特殊实体，如邮件、电话、网址等。该接口依赖设备底层具备文本识别能力，否则设置无效。
+设置是否识别网页文本特殊实体，如邮件、电话、网址等。该接口依赖设备底层具备文本识别能力，否则设置无效。该属性没有显式调用时，默认不启用。
 
 当enableDataDetector设置为true，同时不设置[dataDetectorConfig](#datadetectorconfig20)属性时，默认识别所有类型的实体，所识别实体的color和decoration会被更改为如下样式：
 <!--code_no_check-->
@@ -3197,7 +3197,7 @@ AI菜单生效时，需在选中范围内，包括一个完整的AI实体，才�
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable  | boolean | 是   | 是否启用Web文本识别，true表示启用，false表示不启用。<br/>默认值：false |
+| enable  | boolean | 是   | 是否启用Web文本识别，true表示启用，false表示不启用。<br>传入undefined与null时属性设置不生效。 |
 
 > **说明：** 
 > 
@@ -3319,7 +3319,7 @@ dataDetectorConfig(config: TextDataDetectorConfig)
 
 gestureFocusMode(mode: GestureFocusMode)
 
-设置Web组件手势获焦模式。
+设置Web组件手势获焦模式。该属性没有显式调用时，默认表示手势按下时，任何手势均会使Web组件获焦。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3327,7 +3327,7 @@ gestureFocusMode(mode: GestureFocusMode)
 
 | 参数名              | 类型                              | 必填   | 说明          |
 | ------------------- | ------------------------------   | ------ | ------------- |
-| mode | [GestureFocusMode](./arkts-basic-components-web-e.md#gesturefocusmode20) | 是     | 设置Web组件手势获焦模式。<br>默认值：`GestureFocusMode.DEFAULT`，表示手势按下时，任何手势均会使Web组件获焦。|
+| mode | [GestureFocusMode](./arkts-basic-components-web-e.md#gesturefocusmode20) | 是     | 设置Web组件手势获焦模式。传入undefined与null时为GestureFocusMode.DEFAULT。|
 
 **示例：**
 
@@ -3379,7 +3379,7 @@ password(password: boolean)
 
 | 参数名          | 类型   | 必填  | 说明                             |
 | ------------ | ------ | ---- | -------------------------------- |
-| password | boolean | 是   | 设置为true时，表示允许Web保存密码。<br>设置为false时，表示不允许Web保存密码。<br>默认值：false。 |
+| password | boolean | 是   | 设置为true时，表示允许Web保存密码。<br>设置为false时，表示不允许Web保存密码。 |
 
 ## textZoomAtio<sup>(deprecated)</sup>
 
