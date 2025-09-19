@@ -30,5 +30,5 @@ hdc shell param set web.debug.rcs true
 5. 要查看compile、runtime、builtin、JS_Execution不同类别的trace数据，可使用以下关键字进行过滤：
 - compile：RCS_v8.compile
 - runtime：RCS_V8.Runtime
-- Builtin：RCS_v8.runtime_V8.Builtin
+- builtin：RCS_v8.runtime_V8.Builtin
 - JS_Execution：RCS_JS_Execution
