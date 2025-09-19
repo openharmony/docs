@@ -307,7 +307,7 @@ struct MyView {
             this.celsius--;
           })
 
-        Text(`Celsius ${this.celsius.toFixed(1)}`).fontSize(50)
+        Text(`Celsius ${this.celsius.toFixed(1)}`).fontSize(40)
 
         Button('+')
           .onClick(() => {
@@ -315,8 +315,8 @@ struct MyView {
           })
       }
 
-      Text(`Fahrenheit ${this.fahrenheit.toFixed(2)}`).fontSize(50)
-      Text(`Kelvin ${this.kelvin.toFixed(2)}`).fontSize(50)
+      Text(`Fahrenheit ${this.fahrenheit.toFixed(2)}`).fontSize(40)
+      Text(`Kelvin ${this.kelvin.toFixed(2)}`).fontSize(40)
     }
     .width('100%')
   }
