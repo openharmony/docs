@@ -281,7 +281,7 @@ static napi_value ArrayBufferDemo(napi_env env, napi_callback_info info)
 }
 ```
 
-napi_create_arraybuffer等同于JS代码中的`new ArrayBuffer(size)`，其生成的对象不可直接在TS/JS中进行读取，需要将其包装为TyppedArray或DataView后方可进行读写。
+napi_create_arraybuffer等同于JS代码中的`new ArrayBuffer(size)`，其生成的对象不可直接在TS/JS中进行读取，需要将其包装为TypedArray或DataView后方可进行读写。
 
 **基准性能测试结果如下：**
 
