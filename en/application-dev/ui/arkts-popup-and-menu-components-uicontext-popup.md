@@ -1,10 +1,10 @@
 # Global Popups Independent of UI Components (openPopup)
 
-The [Popup](arkts-popup-and-menu-components-popup.md) API is a great option for creating popups, but it relies on a bound UI component to work. Since API version 18, however, the global API [openPopup](../reference/apis-arkui/js-apis-arkui-UIContext.md#openpopup18) offers a more flexible solution. This API can be used directly or encapsulated in scenarios where no bound UI components are available, making it ideal for use cases such as event callbacks or when integrating with external systems.
+The [Popup](arkts-popup-and-menu-components-popup.md) API is a great option for creating popups, but it relies on a bound UI component to work. Since API version 18, however, the global API [openPopup](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#openpopup18) offers a more flexible solution. This API can be used directly or encapsulated in scenarios where no bound UI components are available, making it ideal for use cases such as event callbacks or when integrating with external systems.
 
 ## Displaying a Popup
 
-To display a popup, call the [openPopup](../reference/apis-arkui/js-apis-arkui-UIContext.md#openpopup18) API. Here's a basic example:
+To display a popup, call the [openPopup](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#openpopup18) API. Here's a basic example:
    
    ```ts
    promptAction.openPopup(contentNode, { id: targetId }, {
@@ -26,7 +26,7 @@ To display a popup, call the [openPopup](../reference/apis-arkui/js-apis-arkui-U
    private contentNode: ComponentContent<Object> = new ComponentContent(uiContext, wrapBuilder(buildText), this.message);
    ```
    
-   If your **wrapBuilder** includes other components (such as [Popup](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Popup.md#popup) or [Chip](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md#chip)), the [ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md#componentcontent-1) constructor must include four parameters, and the **options** parameter must be **{ nestingBuilderSupported: true }**.
+   If your **wrapBuilder** includes other components (such as [Popup](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Popup.md) or [Chip](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md)), the [ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md#componentcontent-1) constructor must include four parameters, and the **options** parameter must be **{ nestingBuilderSupported: true }**.
    
    ```ts
    @Builder
@@ -79,7 +79,7 @@ To display a popup, call the [openPopup](../reference/apis-arkui/js-apis-arkui-U
 
 ### Providing Bound Component Information
    
-   When calling **openMenu**, you must provide the [TargetInfo](../reference/apis-arkui/js-apis-arkui-UIContext.md#targetinfo18) of the bound component. Without a valid target, the popup won't display.
+   When calling **openMenu**, you must provide the [TargetInfo](../reference/apis-arkui/arkts-apis-uicontext-i.md#targetinfo18) of the bound component. Without a valid target, the popup won't display.
    
    ```ts
    let frameNode: FrameNode | null = this.ctx.getFrameNodeByUniqueId(this.getUniqueId());
@@ -96,7 +96,7 @@ To display a popup, call the [openPopup](../reference/apis-arkui/js-apis-arkui-U
 
 ## Updating the Popup Style
 
-To update the popup style, use the [updatePopup](../reference/apis-arkui/js-apis-arkui-UIContext.md#updatepopup18) API. You can update the style fully or incrementally. However, certain properties, including **showInSubWindow**, **focusable**, **onStateChange**, **onWillDismiss**, and **transition**, cannot be updated.
+To update the popup style, use the [updatePopup](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#updatepopup18) API. You can update the style fully or incrementally. However, certain properties, including **showInSubWindow**, **focusable**, **onStateChange**, **onWillDismiss**, and **transition**, cannot be updated.
    
    ```ts
    promptAction.updatePopup(contentNode, {
@@ -112,7 +112,7 @@ To update the popup style, use the [updatePopup](../reference/apis-arkui/js-apis
 
 ## Closing the Popup
 
-To close the popup, call the [closePopup](../reference/apis-arkui/js-apis-arkui-UIContext.md#closepopup18) API.
+To close the popup, call the [closePopup](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#closepopup18) API.
    
    ```ts
    promptAction.closePopup(contentNode)
@@ -126,7 +126,7 @@ To close the popup, call the [closePopup](../reference/apis-arkui/js-apis-arkui-
 
 > **NOTE**
 >
-> The [updatePopup](../reference/apis-arkui/js-apis-arkui-UIContext.md#updatepopup18) and [closePopup](../reference/apis-arkui/js-apis-arkui-UIContext.md#closepopup18) APIs rely on the content to identify the menu. Therefore, you must maintain the content instance throughout the popup's lifecycle.
+> The [updatePopup](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#updatepopup18) and [closePopup](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#closepopup18) APIs rely on the content to identify the menu. Therefore, you must maintain the content instance throughout the popup's lifecycle.
 
 
 ## Using the Global Popup in HAR Packages

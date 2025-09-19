@@ -662,9 +662,9 @@ struct Index {
 
 To obtain a FrameNode, use any of the following methods:
 
-1. Use [getFrameNodeById](../reference/apis-arkui/js-apis-arkui-UIContext.md#getframenodebyid12).
+1. Use [getFrameNodeById](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getframenodebyid12).
 
-2. Use [getFrameNodeByUniqueId](../reference/apis-arkui/js-apis-arkui-UIContext.md#getframenodebyuniqueid12).
+2. Use [getFrameNodeByUniqueId](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getframenodebyuniqueid12).
 
 3. Use an [observer](../reference/apis-arkui/js-apis-arkui-observer.md).
 

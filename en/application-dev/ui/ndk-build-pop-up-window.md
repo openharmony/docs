@@ -7,23 +7,23 @@ You can display a custom dialog box by creating a dialog controller or by creati
 [Displaying a custom dialog box through a dialog controller](#displaying-a-custom-dialog-box-through-a-dialog-controller): In this approach, you use the APIs defined in a struct named **ArkUI_NativeDialogAPI_x** (where *x* denotes the version) for dialog box control.
 
 
-[Displaying a custom dialog box through a custom dialog content object](#displaying-a-custom-dialog-box-through-a-custom-dialog-content-object): In this approach, you use the APIs defined in the functions of [native_dialog.h](../reference/apis-arkui/native__dialog_8h.md#functions).
+[Displaying a custom dialog box through a custom dialog content object](#displaying-a-custom-dialog-box-through-a-custom-dialog-content-object): In this approach, you use the APIs defined in the functions of [native_dialog.h](../reference/apis-arkui/capi-native-dialog-h.md#functions).
 
 
 > **NOTE**
 >
-> - For details about how to display a custom dialog box through a dialog controller, see [openCustomDialogWithController](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialogwithcontroller18).
+> - For details about how to display a custom dialog box through a dialog controller, see [openCustomDialogWithController](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialogwithcontroller18).
 > 
-> - For details about how to display a custom dialog box through a custom dialog content object, see [openCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12).
+> - For details about how to display a custom dialog box through a custom dialog content object, see [openCustomDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#opencustomdialog12).
 > 
-> - [OH_ArkUI_QueryModuleInterfaceByName](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_querymoduleinterfacebyname) is used to obtain a collection of native module APIs of a specified type. You can call APIs in the native module using the returned data of the **ArkUI_NativeDialogHandle** type.
+> - [OH_ArkUI_QueryModuleInterfaceByName](../reference/apis-arkui/capi-native-interface-h.md#oh_arkui_querymoduleinterfacebyname) is used to obtain a collection of native module APIs of a specified type. You can call APIs in the native module using the returned data of the **ArkUI_NativeDialogHandle** type.
 
 ## Creating and Destroying a Custom Dialog Box
 
 ### Displaying a Custom Dialog Box Through a Dialog Controller
 
 - Creating a Dialog Controller
-  [ArkUI_NativeDialogHandle](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nativedialoghandle) represents a pointer to the dialog controller, which you can create by calling the [create](../reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md#create) API of [ArkUI_NativeDialogAPI_x](../reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md).
+  [ArkUI_NativeDialogHandle](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialog8h.md) represents a pointer to the dialog controller, which you can create by calling the [create](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialogapi-1.md#create) API of [ArkUI_NativeDialogAPI_x](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativedialogapi-1.md).
 This API returns data of the **ArkUI_NativeDialogHandle** type.
   ```
   ArkUI_NativeDialogAPI_1 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_1 *>(
@@ -41,7 +41,7 @@ This API returns data of the **ArkUI_NativeDialogHandle** type.
 ### Displaying a Custom Dialog Box Through a Custom Dialog Content Object
 
 - Creating a Dialog Content Object
-  You can create a custom dialog content object [ArkUI_CustomDialogOptions](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_customdialogoptions) by calling the [OH_ArkUI_CustomDialog_CreateOptions](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_customdialog_createoptions) API,
+  You can create a custom dialog content object [ArkUI_CustomDialogOptions](../reference/apis-arkui/capi-arkui-nativemodule-arkui-customdialogoptions.md) by calling the [OH_ArkUI_CustomDialog_CreateOptions](../reference/apis-arkui/capi-native-dialog-h.md#oh_arkui_customdialog_createoptions) API,
 which returns a pointer of the **ArkUI_CustomDialogOptions** type.
   ```
   auto textNode = std::make_shared<ArkUITextNode>();
@@ -51,7 +51,7 @@ which returns a pointer of the **ArkUI_CustomDialogOptions** type.
   > 
   > For details about how to declare **ArkUITextNode**, refer to the implementation of the text component in the [ArkUINode.h](../ui/ndk-access-the-arkts-page.md) file.
 
-- Destroying a Dialog Content Object<br>When dialog box operations are no longer needed, actively call the [OH_ArkUI_CustomDialog_DisposeOptions](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_customdialog_disposeoptions) API to destroy the dialog content object.
+- Destroying a Dialog Content Object<br>When dialog box operations are no longer needed, actively call the [OH_ArkUI_CustomDialog_DisposeOptions](../reference/apis-arkui/capi-native-dialog-h.md#oh_arkui_customdialog_disposeoptions) API to destroy the dialog content object.
   ```
   OH_ArkUI_CustomDialog_DisposeOptions(dialogOptions);
   ```
@@ -94,7 +94,7 @@ You can set the alignment, offset, corner radius of the background, background c
    }
    ```
 
-2. Control dialog box styles using either of the following methods. For details about the dialog box APIs, see [native_dialog.h](../reference/apis-arkui/native__dialog_8h.md).
+2. Control dialog box styles using either of the following methods. For details about the dialog box APIs, see [native_dialog.h](../reference/apis-arkui/capi-native-dialog-h.md).
 
 - Using the controller
    ```

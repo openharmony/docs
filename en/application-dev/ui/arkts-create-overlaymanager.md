@@ -4,7 +4,7 @@ Overlays, implemented using **OverlayManager**, are used to display custom UI co
 
 ![image](figures/overlayManager.png)
 
-You can use the [getOverlayManager](../reference/apis-arkui/js-apis-arkui-UIContext.md#getoverlaymanager12) API in [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext) to obtain the [OverlayManager](../reference/apis-arkui/js-apis-arkui-UIContext.md#overlaymanager12) object associated with the current UI context, and then call the corresponding APIs using this object.
+You can use the [getOverlayManager](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getoverlaymanager12) API in [UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md) to obtain the [OverlayManager](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md) object associated with the current UI context, and then call the corresponding APIs using this object.
 
 ## Specifications Constraints
 
@@ -15,7 +15,7 @@ You can use the [getOverlayManager](../reference/apis-arkui/js-apis-arkui-UICont
 
 ## Managing Overlays
 
-With **OverlayManager**, you can add a specified node ([addComponentContent](../reference/apis-arkui/js-apis-arkui-UIContext.md#addcomponentcontent12)), remove a specified node ([removeComponentContent](../reference/apis-arkui/js-apis-arkui-UIContext.md#removecomponentcontent12)), show all nodes ([showAllComponentContents](../reference/apis-arkui/js-apis-arkui-UIContext.md#showallcomponentcontents12)), and hide all nodes ([hideAllComponentContents](../reference/apis-arkui/js-apis-arkui-UIContext.md#hideallcomponentcontents12)).
+With **OverlayManager**, you can add a specified node ([addComponentContent](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md#addcomponentcontent12)), remove a specified node ([removeComponentContent](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md#removecomponentcontent12)), show all nodes ([showAllComponentContents](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md#showallcomponentcontents12)), and hide all nodes ([hideAllComponentContents](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md#hideallcomponentcontents12)).
 
 ```ts
 import { ComponentContent, OverlayManager, router } from '@kit.ArkUI';
@@ -187,7 +187,7 @@ struct OverlayExample {
 ```
 ![overlayManager-demo2](figures/overlaymanager-demo_2.gif)
 
-Since API version 18, you can use the **getOverlayManager** API in **UIContext** to obtain an **OverlayManager** object. With this object you can call [addComponentContentWithOrder](../reference/apis-arkui/js-apis-arkui-UIContext.md#addcomponentcontentwithorder18) to add components to specific layers, with overlays on higher layers covering those on lower ones.
+Since API version 18, you can use the **getOverlayManager** API in **UIContext** to obtain an **OverlayManager** object. With this object you can call [addComponentContentWithOrder](../reference/apis-arkui/arkts-apis-uicontext-overlaymanager.md#addcomponentcontentwithorder18) to add components to specific layers, with overlays on higher layers covering those on lower ones.
 
 ```ts
 import { ComponentContent, LevelOrder, OverlayManager } from '@kit.ArkUI';

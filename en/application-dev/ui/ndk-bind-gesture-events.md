@@ -100,12 +100,12 @@ The following introduces how to create different types of gestures:
 
 You can combine multiple gestures of different types into a gesture group, which acts as an integrated recognizer to identify sequences of different user gestures.
 
-The recognition mode of the gesture group (that is, the relationship between gestures in the group) is specified by setting [ArkUI_GroupGestureMode](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_groupgesturemode), including sequential recognition (**SEQUENTIAL_GROUP**), parallel recognition (**PARALLEL_GROUP**), and exclusive recognition (**EXCLUSIVE_GROUP**).
+The recognition mode of the gesture group (that is, the relationship between gestures in the group) is specified by setting [ArkUI_GroupGestureMode](../reference/apis-arkui/capi-native-gesture-h.md#arkui_groupgesturemode), including sequential recognition (**SEQUENTIAL_GROUP**), parallel recognition (**PARALLEL_GROUP**), and exclusive recognition (**EXCLUSIVE_GROUP**).
 
 
 ### Sequential Recognition
 
-For combined gestures with sequential recognition, the value of **ArkUI_GroupGestureMode** is **SEQUENTIAL_GROUP**. In this gesture recognition mode, gestures are recognized in the order they were registered until they are all recognized successfully. If any of the registered gestures fails to be recognized, subsequent gestures will also fail. Only the last gesture in a sequential group can respond to the [GESTURE_EVENT_ACTION_END](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_gestureeventactiontype) event.
+For combined gestures with sequential recognition, the value of **ArkUI_GroupGestureMode** is **SEQUENTIAL_GROUP**. In this gesture recognition mode, gestures are recognized in the order they were registered until they are all recognized successfully. If any of the registered gestures fails to be recognized, subsequent gestures will also fail. Only the last gesture in a sequential group can respond to the [GESTURE_EVENT_ACTION_END](../reference/apis-arkui/capi-native-gesture-h.md#arkui_gestureeventactiontype) event.
 
 The following demonstrates how to create a combined gesture that recognizes a long press followed by a swipe in sequence:
 
@@ -551,7 +551,7 @@ After the aforementioned modifications, the originally effective long press gest
 
 ## Obtaining Event Information
 
-After a gesture is bound to a component, you can use [OH_ArkUI_GestureEvent_GetRawInputEvent()](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_gestureevent_getrawinputevent) to obtain the basic event object from the gesture event when the gesture callback is executed. You can then call APIs such as [OH_ArkUI_PointerEvent_GetDisplayX()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_pointerevent_getdisplayx), [OH_ArkUI_PointerEvent_GetDisplayXByIndex()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_pointerevent_getdisplayxbyindex), [OH_ArkUI_UIInputEvent_GetAction()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_uiinputevent_getaction), and [OH_ArkUI_UIInputEvent_GetEventTime()](../reference/apis-arkui/_ark_u_i___event_module.md#oh_arkui_uiinputevent_geteventtime) to obtain more information from the basic event. Applications can implement differentiated interaction logic during gesture event execution based on the obtained information.
+After a gesture is bound to a component, you can use [OH_ArkUI_GestureEvent_GetRawInputEvent()](../reference/apis-arkui/capi-native-gesture-h.md#oh_arkui_gestureevent_getrawinputevent) to obtain the basic event object from the gesture event when the gesture callback is executed. You can then call APIs such as [OH_ArkUI_PointerEvent_GetDisplayX()](../reference/apis-arkui/capi-ui-input-event-h.md#oh_arkui_pointerevent_getdisplayx), [OH_ArkUI_PointerEvent_GetDisplayXByIndex()](../reference/apis-arkui/capi-ui-input-event-h.md#oh_arkui_pointerevent_getdisplayxbyindex), [OH_ArkUI_UIInputEvent_GetAction()](../reference/apis-arkui/capi-ui-input-event-h.md#oh_arkui_uiinputevent_getaction), and [OH_ArkUI_UIInputEvent_GetEventTime()](../reference/apis-arkui/capi-ui-input-event-h.md#oh_arkui_uiinputevent_geteventtime) to obtain more information from the basic event. Applications can implement differentiated interaction logic during gesture event execution based on the obtained information.
 
    ```cpp
    // Set a callback to handle gesture events when they are triggered.

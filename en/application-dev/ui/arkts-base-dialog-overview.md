@@ -22,4 +22,4 @@ A dialog box is a modal window designed to temporarily display information or pe
 ## Constraints
 
 * Except for UI-less scenarios<!--Del--> such as [ServiceExtension](../../application-dev/application-models/serviceextensionability.md)<!--DelEnd-->, it is recommended that you use the dialog APIs provided by **UIContext**.
-* You can use the [getPromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction) method in **UIContext** to obtain the [PromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#promptaction) object associated with the current UI context.
+* You can use the [getPromptAction](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getpromptaction) method in **UIContext** to obtain the [PromptAction](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md) object associated with the current UI context.
