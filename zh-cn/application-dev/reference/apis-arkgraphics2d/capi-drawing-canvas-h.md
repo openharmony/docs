@@ -190,8 +190,8 @@ enum OH_Drawing_VertexMode
 | 枚举项 | 描述 |
 | -- | -- |
 | VERTEX_MODE_TRIANGLES | 每三个顶点表示一个三角形，如果顶点数不是3的倍数，则多余的顶点会被忽略。 |
-| VERTEX_MODE_TRIANGLESSTRIP | 相邻三个顶点表示一个三角形，每个新的顶点将与前两个顶点组成一个新的三角形。 |
-| VERTEX_MODE_TRIANGLEFAN | 第一个顶点作为中心点，后续的每个顶点都与前一个顶点和中心点组成一个三角形。 |
+| VERTEX_MODE_TRIANGLES_STRIP | 相邻三个顶点表示一个三角形，每个新的顶点将与前两个顶点组成一个新的三角形。 |
+| VERTEX_MODE_TRIANGLE_FAN | 第一个顶点作为中心点，后续的每个顶点都与前一个顶点和中心点组成一个三角形。 |
 
 
 ## 函数说明
