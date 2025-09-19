@@ -1374,6 +1374,12 @@ stopBackgroundRunning(context: Context, ContinuousTaskId: number): Promise&lt;vo
 | context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | 是    | 应用运行的上下文。 |
 | ContinuousTaskId   | number | 是    | 长时任务Id。</br>**说明 :** 从申请长时任务[startBackgroundRunning](#backgroundtaskmanagerstartbackgroundrunning21)接口中获取。|
 
+**返回值**：
+
+| 类型             | 说明               |
+| -------------- | ---------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
 **错误码**：
 
 以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
@@ -1385,12 +1391,6 @@ stopBackgroundRunning(context: Context, ContinuousTaskId: number): Promise&lt;vo
 | 9800005 | Continuous task verification failed. |
 | 9800006 | Notification verification failed for a continuous task. |
 | 9800007 | Continuous task storage failed. |
-
-**返回值**：
-
-| 类型             | 说明               |
-| -------------- | ---------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
 
 **示例**：
 
@@ -1583,15 +1583,15 @@ export default class EntryAbility extends UIAbility {
 ## ContinuousTaskRequest<sup>21+</sup>
 
 长时任务的请求信息。
-1、申请任务时，需要通过combinedTaskNotification参数传入true指定可以合并通知，否则不能合并通知。
+1. 申请任务时，需要通过combinedTaskNotification参数传入true指定可以合并通知，否则不能合并通知。
    如：所涉及的长时任务combinedTaskNotification参数都必须为true，且主类型和子类型申请个数和类型需完全匹配。
-2、合并的通知的任务，必须主类型、子类型都相同。
-3、如果该任务本身没有通知（如系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型）、则不支持合并。
-4、如果任务类型里，包含了上传下载，则不支持合并。
-5、合并通知后不能取消合并，本身合并的不能改成不合并。
-6、如果需要合并，但传入的长时任务ID非法，则不支持合并。
-7、通知合并后，删除通知，取消所有的长时任务。
-8、通知合并后，点击通知，跳转到第一个申请的UIAbility，如果调用了更新接口，则跳转到最后一次更新的UIAbility。
+2. 合并的通知的任务，必须主类型、子类型都相同。
+3. 如果该任务本身没有通知（如系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型）、则不支持合并。
+4. 如果任务类型里，包含了上传下载，则不支持合并。
+5. 合并通知后不能取消合并，本身合并的不能改成不合并。
+6. 如果需要合并，但传入的长时任务ID非法，则不支持合并。
+7. 通知合并后，删除通知，取消所有的长时任务。
+8. 通知合并后，点击通知，跳转到第一个申请的UIAbility，如果调用了更新接口，则跳转到最后一次更新的UIAbility。
 
 ### 属性
 
@@ -1685,7 +1685,7 @@ export default class EntryAbility extends UIAbility {
 | SUBMODE_VOICE_CHAT_NORMAL_NOTIFICATION       | 8   | 通话类型普通通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD。 |
 
 **长时任务主类型与子类型对照表：** 
-| 长时任务主类型([ContinuousTaskMode](#continuoustaskmode21))  | 对应的长时任务子类型([ContinuousTaskSubmode](#continuoustasksubmode21))  |
+| [长时任务主类型](#continuoustaskmode21) | [对应的长时任务子类型](#continuoustasksubmode21)  |
 | --------------------------------- | ----------------------------------- |
 | MODE_DATA_TRANSFER                | SUBMODE_LIVE_VIEW_NOTIFICATION        |
 | MODE_SHARE_POSITION               | SUBMODE_NORMAL_NOTIFICATION         |
