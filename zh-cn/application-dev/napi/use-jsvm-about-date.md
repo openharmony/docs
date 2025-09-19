@@ -143,12 +143,12 @@ static JSVM_Value IsDate(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr));
-    bool isData = false;
-    JSVM_CALL(OH_JSVM_IsDate(env, args[0], &isData));
-    OH_LOG_INFO(LOG_APP, "JSVM IsDate success:%{public}d", isData);
+    bool isDate = false;
+    JSVM_CALL(OH_JSVM_IsDate(env, args[0], &isDate));
+    OH_LOG_INFO(LOG_APP, "JSVM IsDate success:%{public}d", isDate);
     
     JSVM_Value result = nullptr;
-    JSVM_CALL(OH_JSVM_GetBoolean(env, isData, &result));
+    JSVM_CALL(OH_JSVM_GetBoolean(env, isDate, &result));
     return result;
 }
 // CreateDate注册回调
