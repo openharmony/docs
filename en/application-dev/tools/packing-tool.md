@@ -42,7 +42,6 @@ The packaging tool verifies the validity of the attributes of the module.json fi
 You can use the JAR package of the packing tool to generate an HAP file for a module by passing in packing options and file paths.
 
 **Verify the validity of HAP during packaging.**
-- Since API version 21, if more than 50 URL schemes are configured for querySchemes in the module.json file when the HAP of the entry type is packaged, the value of minAPIVersion must be greater than or equal to 21.
 
 **The compression rules for HAP packaging are as follows:**
 - If compressNativeLibs is set to true, files in the directory specified by --lib-path are compressed based on the compression level specified by --compress-level.

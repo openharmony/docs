@@ -25,7 +25,7 @@ Text(content?: string | Resource , value?: TextOptions)
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) | No| Text content. This parameter does not take effect if the component contains a **Span** child component and does not have any [styled string](ts-universal-styled-string.md#styled-string) configured. In this case, the span content is displayed, and the style of the component does not take effect.<br>Default value: **' '**|
+| content | string \| [Resource](ts-types.md#resource) | No| Text content. This parameter does not take effect if the component contains a **Span** child component and does not have any [styled string](ts-universal-styled-string.md) configured. In this case, the span content is displayed, and the style of the component does not take effect.<br>Default value: **' '**|
 | value<sup>11+</sup> | [TextOptions](#textoptions11) | No| Initialization options of the component.|
 
 ## Attributes
@@ -883,7 +883,7 @@ The **marqueeOptions** settings take effect only when **textOverflow** is set to
 
 | Name| Type                                      | Mandatory| Description                                      |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
-| options | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextMarqueeOptions](#textmarqueeoptions18)> | Yes| Marquee settings, including the switch, step length, number of loops, and direction.|
+| options | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[TextMarqueeOptions](#textmarqueeoptions18)> | Yes| Marquee settings, including the switch, step length, number of loops, and direction.|
 
 ## TextSpanType<sup>11+</sup>
 

@@ -25,3 +25,5 @@ import { resourceManager } from '@kit.LocalizationKit'
 | id         | number | No   | No| Resource ID.     |
 | params     | any[] | No  | Yes| Other resource parameters, including the resource name, substitution value for the formatting API, and quantifier for the singular-plural formatting API.     |
 | type       | number | No   | Yes| Resource type.     |
+
+<!--no_check-->

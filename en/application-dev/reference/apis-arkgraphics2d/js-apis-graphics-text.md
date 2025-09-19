@@ -550,17 +550,6 @@ Enumerates the text superscript and subscript.
 | TEXT_SUPERSCRIPT | 1 | Enables the superscript.|
 | TEXT_SUBSCRIPT | 2 | Enables the subscript.|
 
-## LineHeightStyle<sup>21+</sup>
-
-Enumerates the line height scaling base.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-| Name  | Value| Description     |
-| ------ | - | --------- |
-| FONT_SIZE | 0 | Uses the font size as the scaling base. The final line height is calculated as follows: [TextStyle](#textstyle).fontSize x [TextStyle](#textstyle).heightScale.|
-| FONT_HEIGHT | 1 | Uses the glyph height as the scaling base. The final line height is calculated as follows: Height of the glyph after shaping x [TextStyle](#textstyle).heightScale.|
-
 ## TextStyle
 
 Describes a text style.
@@ -572,7 +561,6 @@ Describes a text style.
 | decoration    | [Decoration](#decoration)                            | No| Yes| Text decoration. By default, no decoration is used.            |
 | color         | [common2D.Color](js-apis-graphics-common2D.md#color) | No| Yes| Text color. The default color is white.                        |
 | fontWeight    | [FontWeight](#fontweight)                            | No| Yes| Font weight. The default value is **W400**. Currently, only the default system font supports font weight adjustment. For other fonts, if the weight is less than semi-bold (W600), there is no variation in stroke thickness. If the weight is greater than or equal to semi-bold, it might result in a fake bold effect.                        |
-| fontWidth<sup>21+</sup>     | [FontWidth](#fontwidth)                              | No| Yes| Font width. The default value is **NORMAL**.                         |
 | fontStyle     | [FontStyle](#fontstyle)                              | No| Yes| Font style. The default value is **NORMAL**.                         |
 | baseline      | [TextBaseline](#textbaseline)                        | No| Yes| Text baseline type. The default value is ALPHABETIC.              |
 | fontFamilies  | Array\<string>                                       | No| Yes| Array of font families. By default, the array is empty, indicating that all system fonts are matched.                   |
@@ -591,9 +579,6 @@ Describes a text style.
 | textShadows   | Array\<[TextShadow](#textshadow)>                    | No| Yes| Array of shadows.|
 | backgroundRect| [RectStyle](#rectstyle)                              | No| Yes| Rectangle style.|
 | badgeType<sup>20+</sup>   | [TextBadgeType](#textbadgetype20) | No  | Yes  | Sets whether to use superscript or subscript in text layout. TEXT_SUPERSCRIPT indicates that superscript is enabled, and TEXT_SUBSCRIPT indicates that subscript is enabled. The default value is TEXT_BADGE_NONE, indicating that superscript and subscript are disabled.|
-| lineHeightMaximum<sup>21+</sup> | number | No  | Yes  | Maximum line height. If line height scaling is also applied, the maximum line height takes effect when [TextStyle](#textstyle).heightScale is greater than 0. The value is a positive floating point number. The default value is Number.MAX_VALUE.|
-| lineHeightMinimum<sup>21+</sup> | number | No| Yes| Minimum line height. If line height scaling is also applied, the minimum line height takes effect when [TextStyle](#textstyle).heightScale is greater than 0. The value is a non-negative floating point number. The default value is 0.|
-| lineHeightStyle<sup>21+</sup> | [LineHeightStyle](#lineheightstyle21) | No| Yes| Line height scaling base style. The default value is FONT_SIZE.|
 
 ## StrutStyle
 
@@ -940,7 +925,6 @@ Describes a paragraph style.
 | trailingSpaceOptimized<sup>20+</sup>   | boolean | No  | Yes  | Whether the spaces at the end of a line are considered in alignment calculation during text layout. **true** means not to include; **false** (default) means to include.|
 | autoSpace<sup>20+</sup>   | boolean | No  | Yes  | Sets whether to enable automatic spacing during text typography. true: Automatic spacing is enabled. The spacing between CJK (Chinese, Japanese, and Korean) and Western characters (Latin, Cyrillic, and Greek), between CJK and digits, between CJK and copyright symbols, between copyright symbols and digits, and between copyright symbols and Western characters is automatically adjusted during text layout. false (default): Automatic spacing is disabled.|
 | verticalAlign<sup>20+</sup>   | [TextVerticalAlign](#textverticalalign20) | No  | Yes  | Vertical alignment mode of the text. This parameter takes effect when line height scaling (that is, heightScale of [TextStyle](#textstyle)) or mixed layout of different font sizes in a line (that is, fontSize of [TextStyle](#textstyle)) is enabled. If there is superscript or subscript text in a line (that is, badgeType of [TextStyle](#textstyle)), the superscript or subscript text participates in vertical alignment as common text.|
-| lineSpacing<sup>21+</sup>   | number | No  | Yes  | Line spacing. The default value is 0. lineSpacing is not restricted by lineHeightMaximum and lineHeightMinimum of [TextStyle](#textstyle). By default, line spacing is added to the last line. You can set textHeightBehavior of [TextStyle](#textstyle) to DISABLE_ALL or DISABLE_LAST_ASCENT to disable line spacing for the last line.|
 
 ## PlaceholderAlignment
 
