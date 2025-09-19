@@ -11,15 +11,15 @@
 桌面提供统一的卡片管理页面。应用通过[formProvider](../reference/apis-form-kit/js-apis-app-form-formProvider.md)模块提供的[openFormManager](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovideropenformmanager18)接口，能够拉起卡片管理页面，触发卡片添加至桌面操作，点击“添加至桌面”，实现卡片添加至桌面的功能。
 
 ## 开发步骤
-
-实现[formProvider](../reference/apis-form-kit/js-apis-app-form-formProvider.md)接口提供的[openFormManager](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovideropenformmanager18)方法。
+1. [创建卡片](./arkts-ui-widget-creation.md)。
+2. 通过[openFormManager](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formprovideropenformmanager18)方法在应用内添加拉起卡片管理页面入口。
 
 ```ts
 // entry/src/main/ets/pages/Index.ets
-
 import { formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
+import { Prompt } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -29,10 +29,10 @@ struct Index {
     Row() {
       Column() {
         //添加拉起卡片管理页面按钮，点击按钮后调用openFormManager方法，拉起卡片管理页面
-        Button('拉起卡片管理页面')
+        Button($r('app.string.open_form_manager_button'))
           .onClick(() => {
             const want: Want = {
-              bundleName: 'com.example.formbutton',
+              bundleName: "com.example.openmanager",
               abilityName: 'EntryFormAbility',
               parameters: {
                 'ohos.extra.param.key.form_dimension': 2,
@@ -43,6 +43,7 @@ struct Index {
             try {
               formProvider.openFormManager(want);
             } catch (error) {
+              Prompt.showToast({message: (error as BusinessError).message});
               console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
             }
           })
@@ -54,3 +55,6 @@ struct Index {
   }
 }
 ```
+
+## 运行结果
+
