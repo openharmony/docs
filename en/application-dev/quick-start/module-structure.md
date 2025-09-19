@@ -558,7 +558,7 @@ Example of the **forms** attribute structure:
 ```json
 "forms": [
   {
-    "name": "Form_Js",
+    "name": "Form_Js1",
     "description": "It's Js Form",
     "type": "JS",
     "jsComponentName": "card",
@@ -575,9 +575,9 @@ Example of the **forms** attribute structure:
     ]
   },
   {
-    "name": "Form_Js",
+    "name": "Form_Js2",
     "description": "It's JS Form",
-    "type": "Js",
+    "type": "JS",
     "colorMode": "auto",
     "isDefault": false,
     "updateEnabled": true,

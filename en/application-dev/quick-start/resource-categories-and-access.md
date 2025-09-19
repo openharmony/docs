@@ -442,7 +442,7 @@ If this is the case, you can use the following APIs to obtain resources for a sp
 
 **Example**
 
-The following example demonstrates how to obtain the specified resources for languages other than the one in use. Assume that the following resource files with the same name are defined in the **resources** directories for Chinese, English, and German:
+The following example demonstrates how to obtain the specified resources for languages other than the one in use. Assume that the following resource files with the same name are defined in the **resources** directories for Chinese, English, and Japanese:
 
 - entry/src/main/resources/zh_CN/element/string.json
 
@@ -470,14 +470,14 @@ The following example demonstrates how to obtain the specified resources for lan
 }
 ```
 
-- entry/src/main/resources/de_DE/element/string.json
+- entry/src/main/resources/ja_JP/element/string.json
 
 ```json
 {
   "string": [
     {
       "name": "greetings",
-      "value": "Hallo, Welt"
+      "value": "こんにちは、世界"
     }
   ]
 }
@@ -487,6 +487,7 @@ In **Index.ets**, add code to obtain the resources of the three languages and di
 
 ```ts
 import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -512,8 +513,8 @@ struct Index {
       let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig);
       this.englishString = overrideResMgr.getStringSync(resId);
 
-      // Obtain resources that match the current system configuration, including the color mode and resolution, for the German language.
-      overrideConfig.locale = "de_DE"; // Set the language to German and locale to de_DE.
+      // Obtain resources that match the current system configuration, including the color mode and resolution, for the Japanese language.
+      overrideConfig.locale = "ja_JP"; // Set the language to Japanese and locale to ja_JP.
       overrideResMgr.updateOverrideConfiguration(overrideConfig); // Equivalent to resMgr.updateOverrideConfiguration(overrideConfig).
       this.germanString = overrideResMgr.getStringSync(resId);
     } catch (err) {
@@ -548,15 +549,15 @@ struct Index {
 
 Overlay is a resource replacement mechanism. With overlay resource packages, you can enable your application UI to adapt to different styles of various brands and products, without having to repack your application HAPs. The overlay mechanism works in dynamic and static modes. Overlay resource packages contain only resource files, resource index files, and configuration files.
 
-The overlay feature is enabled by default. For details about how to enable and disable this feature, see [@ohos.bundle.overlay (overlay)](../reference/apis-ability-kit/js-apis-overlay.md).
-
 ### Using overlay in dynamic mode
 
-1. Place the overlay resource package in the target application installation path and install the package using **hdc install**. For example, for the com.example.overlay application, place the overlay resource package in **data/app/el1/bundle/public/com.example.overlay/**.
+1. Place the overlay resource package in the target application installation path. For example, for the com.example.overlay application, place the overlay resource package in **data/app/el1/bundle/public/com.example.overlay/**.
 
 2. The application uses [addResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#addresource10) to load overlay resources and uses [removeResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#removeresource10) to remove overlay resources. The path to an overlay resource consists of the application's sandbox root directory (obtained through **getContext().bundleCodeDir**) and the overlay resource bundle name. For example, **let path = getContext().bundleCodeDir + "overlay *resource bundle name*"**, such as **/data/storage/el1/bundle/overlayResourcePackageName**.
 
 ### Using overlay in static mode
+
+The overlay feature is enabled by default. For details about how to enable and disable this feature, see [@ohos.bundle.overlay (overlay)](../reference/apis-ability-kit/js-apis-overlay.md).
 
 The **app.json5** file in the inter-application overlay resource package supports the following fields:
 ```json

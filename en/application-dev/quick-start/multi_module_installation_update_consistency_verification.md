@@ -7,7 +7,7 @@ As applications become more and more complex, they are split into multiple modul
 >
 > If the values of the **versionCode** field in the [app.json5 configuration file](./app-configuration-file.md) are the same, the installed or updated packages are of the same version.
 >
-> If the packing tool is used, validity verification is performed during packing. For details, see [Packing Tool](../../application-dev/tools/packing-tool.md).
+> During application packaging, validity verification is performed. For details, see [Packing Tool](../../application-dev/tools/packing-tool.md).
 
 ## Consistency Verification for Signing Certificate
 
@@ -22,17 +22,17 @@ As applications become more and more complex, they are split into multiple modul
 
 ## Consistency Verification for Configuration File
 
-| Field               | Description                                                        | Consistency Verification for Installations                     | Consistency Verification for Updates|
-| ----------------------- | ------------------------------------------------------------ | --------------------------------------- | ------------------ |
-| bundleName              | Bundle name, which uniquely identifies an application. This field comes from the [app.json5 configuration file](./app-configuration-file.md).| Yes                                     | Yes                |
-| versionCode             | Version code of the application, whose value is a positive integer less than 2^31. It is used only to determine whether a version is later than another version. A larger value indicates a later version. Ensure that a new version of the application uses a value greater than any of its predecessors. This field comes from the [app.json5 configuration file](./app-configuration-file.md).| Yes                                     | Yes                |
-| apiReleaseType          | Release type of the SDK used to compile HAPs. An uninstalled application contains multiple module packages. When the modules are installed one by one, consistency verification is not performed. This field comes from the [app.json5 configuration file](./app-configuration-file.md).| No                                     | Yes                |
-| <!--DelRow--> singleton | Whether an application is installed for a single user (User 0).                                 | No                                     | Yes                |
-| <!--DelRow--> appType   | Application type. The value can be **SYSTEM_APP** (system application), **THIRD_SYSTEM_APP** (third-party system application), or **THIRD_PARTY_APP** (third-party application).| Yes                                     | Yes                |
-| <!--DelRow--> isStage   | Whether an application is in the stage model.                                   | Yes (In the same version, the FA or stage model cannot be changed.)          | Yes                |
-| targetBundleName        | Target bundle name. The application with this field has the overlay feature. This field comes from the [app.json5 configuration file](./app-configuration-file.md).| Yes                                     | Yes                |
-| targetPriority          | Priority of the target application. This field comes from the [app.json5 configuration file](./app-configuration-file.md).| Yes                                     | Yes                |
-| bundleType              | Bundle type. This field comes from the [app.json5 configuration file](./app-configuration-file.md).| Yes                                     | Yes                |
-| installationFree        | Whether installation-free is supported. This field comes from the [module.json5 configuration file](./module-configuration-file.md).| Yes                                     | Yes                |
-| debug                   | Whether the application is debuggable (with breakpoint debugging in the IDE). This field comes from the [app.json5 configuration file](./app-configuration-file.md).| Yes                                     | No                |
-| moduleType              | Module type. Only one type can be configured for a single module in an application. This field comes from the **type** field in the [module.json5 configuration file](./module-configuration-file.md).| Yes (In the same version, the module name of the entry type cannot be modified.)| Yes                |
+|Field|Description|Consistency Verification for Installations|Consistency Verification for Updates|
+|--|--|--|--|
+|bundleName|Bundle name. This field comes from the [app.json5 configuration file](./app-configuration-file.md).|Yes|Yes|
+|versionCode|Version code of the application. This field comes from the [app.json5 configuration file](./app-configuration-file.md).|Yes|Yes|
+|apiReleaseType|Release type of the SDK used to run an application. An uninstalled application contains multiple module packages. When the modules are installed one by one, consistency verification is not performed. This field comes from the [app.json5 configuration file](./app-configuration-file.md).|No|Yes|
+|<!--DelRow--> singleton|Whether an application is installed for a single user (User 0).|No|Yes|
+|<!--DelRow--> appType|Application type, which specifies the third-party application or system application.|Yes|Yes|
+|<!--DelRow--> isStage|Whether an application is in the stage model.|Yes. The FA model and stage model cannot be changed in the same version.|No|
+|targetBundleName|Target bundle name. The application with this field has the overlay feature. This field comes from the [app.json5 configuration file](./app-configuration-file.md).|Yes|Yes|
+|targetPriority|Priority of the target application. This field comes from the [app.json5 configuration file](./app-configuration-file.md).|Yes|Yes|
+|bundleType|Bundle type. This field comes from the [app.json5 configuration file](./app-configuration-file.md).|Yes|Yes|
+|installationFree|Whether installation-free is supported. This field comes from the [module.json5 configuration file](./module-configuration-file.md).|Yes|Yes|
+|debug|Whether the application can be debugged. This field comes from the [app.json5 configuration file](./app-configuration-file.md).|Yes|No|
+|moduleType|Module type. This field comes from the **type** field in the [module.json5 configuration file](./module-configuration-file.md).|Yes. In the same version, the module name of the entry type cannot be modified.|Yes|
