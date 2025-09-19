@@ -112,7 +112,7 @@ PKCS#7是用于存储签名或加密数据的标准语法。CMS作为PKCS#7的�
             isDetached : true
           };
           cmsGenerator.doFinal(content, optionsFinal).then(result => {
-            console.log('testPkcs7SignByPromise doFinal success, resullt = %s', result);
+            console.info('testPkcs7SignByPromise doFinal success, result = %s', result);
           }).catch((error: BusinessError) => {
             console.error('testPkcs7SignByPromise failed, errCode: ' + error.code + ', errMsg: ' + error.message);
           });
