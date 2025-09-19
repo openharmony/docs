@@ -173,6 +173,52 @@ HitTestMode.None自身不响应触摸测试，不会阻塞子节点和兄弟节�
 
 当组件A设置hitTestBehavior为HitTestMode.None时，点击组件B区域时，组件B的onTouch事件触发，而组件A的onTouch事件无法触发，组件B的点击手势触发。
 
+```ts
+Stack A() {
+    ComponentB()
+    .onTouch(() => {})
+    .gesture(TapGesture({count: 1}))
+    ComponentC() {
+        ComponentD()
+        .onTouch(() => {})
+        .gesture(TapGesture({count: 1}))
+    }
+    .onTouch(() => {})
+    .gesture(TapGesture({count: 1}))
+    .hitTestBehavior(HitTestMode.BLOCK_HIERARCHY)
+}
+.onTouch(() => {})
+.gesture(TapGesture({count: 1}))
+```
+从API version 20开始，HitTestMode.BLOCK_HIERARCHY自身和子节点响应触摸测试，阻止所有优先级较低的兄弟节点和父节点参与触摸测试。
+
+当组件C未设置hitTestBehavior时，点击组件B和组件D的重叠区域时，组件A，组件C和组件D的onTouch事件均会触发，组件D的点击手势会触发。
+
+当组件C设置hitTestBehavior为BLOCK_HIERARCHY时，点击组件B和组件D的重叠区域时，组件C和组件D的onTouch事件触发，组件A和组件B的onTouch事件无法触发，组件D的点击手势会触发。
+
+```ts
+Stack A() {
+    ComponentB()
+    .onTouch(() => {})
+    .gesture(TapGesture({count: 1}))
+    ComponentC() {
+        ComponentD()
+        .onTouch(() => {})
+        .gesture(TapGesture({count: 1}))
+    }
+    .onTouch(() => {})
+    .gesture(TapGesture({count: 1}))
+    .hitTestBehavior(HitTestMode.BLOCK_DESCENDANTS)
+}
+.onTouch(() => {})
+.gesture(TapGesture({count: 1}))
+```
+从API version 20开始，[HitTestMode](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#hittestmode9).BLOCK_DESCENDANTS自身不响应触摸测试，并且所有的后代（孩子，孙子等）也不响应触摸测试，不会影响祖先节点的触摸测试。
+
+若组件C未设置[hitTestBehavior](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md#hittestbehavior)，点击组件B和组件D的重叠区域时，组件A、组件C和组件D都会触发[onTouch](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)事件，同时组件D的点击手势也会被触发。
+
+当组件C设置[hitTestBehavior](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md#hittestbehavior)为BLOCK_DESCENDANTS时，点击组件B和组件D的重叠区域时，组件A和组件B的[onTouch](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)事件触发，组件C和组件D的[onTouch](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)事件无法触发，组件B的点击手势会触发。
+
 针对简单的场景，建议在单个组件上绑定hitTestBehavior。
 针对复杂场景，建议在多个组件上绑定不同的hitTestBehavior来控制Touch事件的分发。
 
