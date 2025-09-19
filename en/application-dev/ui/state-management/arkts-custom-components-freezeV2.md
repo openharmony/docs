@@ -353,7 +353,7 @@ In the preceding example:
 >
 > Repeat supports custom component freezing since API version 18.
 
-Freezing custom components in the cache pool of **Repeat** prevents unnecessary component re-renders. Before proceeding, reviewing the [Node Update and Reuse Mechanism](./arkts-new-rendering-control-repeat.md#node-update-and-reuse-mechanism) is recommended.
+Freezing custom components in the cache pool of **Repeat** prevents unnecessary component re-renders. Before proceeding, reviewing the [Node Update and Reuse Mechanism](../rendering-control/arkts-new-rendering-control-repeat.md#node-update-and-reuse-mechanism) is recommended.
 
 ```ts
 @Entry

@@ -12,7 +12,7 @@ Modal transition is a type of transition achieved by a modal – a view that app
 | [bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11) | Binds a menu to the component, which is displayed when the component is clicked.    | Use this API where a menu is required, for example, for the plus sign (+), a common menu indicator in applications.                |
 | [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu12) | Binds a context menu to the component, which is displayed when the user long-presses or right-clicks the component.| Use this API for components that bounce up when long-pressed, for example, home screen icons.            |
 | [bindPopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup) | Binds a popup to the component.       | Use this API to display a popup containing additional information about a component when the component is clicked.              |
-| [if](../ui/state-management/arkts-rendering-control-ifelse.md)                                       | Adds or deletes the component.     | Use this API to display a temporary page in a certain state. In this mode, the return navigation needs to be implemented with a listener. |
+| [if](../ui/rendering-control/arkts-rendering-control-ifelse.md)                                       | Adds or deletes the component.     | Use this API to display a temporary page in a certain state. In this mode, the return navigation needs to be implemented with a listener. |
 
 
 ## Creating Modal Transition with bindContentCover

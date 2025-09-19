@@ -58,7 +58,7 @@ When building a UI with NDK APIs, you need to create placeholder components in t
 
 ## NDK Component Module
 
-The UI component capabilities provided by the NDK, including component creation, tree operations, attribute setting, and event registration, are exposed using the function pointer structs (such as [ArkUI_NativeNodeAPI_1](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md)), which can be obtained through the [module query API](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_getmoduleinterface).
+The UI component capabilities provided by the NDK, including component creation, tree operations, attribute setting, and event registration, are exposed using the function pointer structs (such as [ArkUI_NativeNodeAPI_1](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md)), which can be obtained through the [module query API](../reference/apis-arkui/capi-native-interface-h.md#oh_arkui_getmoduleinterface).
 
 ```
 ArkUI_NativeNodeAPI_1* arkUINativeNodeApi = nullptr;
@@ -75,7 +75,7 @@ After obtaining a function pointer struct, use the functions within the struct t
   arkUINativeNodeApi->disposeNode(listNode);
   ```
 
-  You can query the range of components supported by the NDK API through the [ArkUI_NodeType](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodetype) API.
+  You can query the range of components supported by the NDK API through the [ArkUI_NodeType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodetype) API.
 
 - Perform component tree operations.
   ```
@@ -96,7 +96,7 @@ After obtaining a function pointer struct, use the functions within the struct t
   arkUINativeNodeApi->setAttribute(stack, NODE_BACKGROUND_COLOR, &item);
   ```
 
-  You can query the range of attributes supported by the NDK API through the [ArkUI_NodeAttributeType](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeattributetype) API.
+  You can query the range of attributes supported by the NDK API through the [ArkUI_NodeAttributeType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeattributetype) API.
 
 - Register events.
   ```
@@ -107,7 +107,7 @@ After obtaining a function pointer struct, use the functions within the struct t
   arkUINativeNodeApi->registerNodeEvent(stack, NODE_ON_CLICK, 0, nullptr);
   ```
 
-  You can query the range of events supported by the NDK API through the [ArkUI_NodeEventType](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodeeventtype) API.
+  You can query the range of events supported by the NDK API through the [ArkUI_NodeEventType](../reference/apis-arkui/capi-native-node-h.md#arkui_nodeeventtype) API.
 
 
 ## Example
@@ -294,7 +294,7 @@ The following example demonstrates how to use **ContentSlot** to mount a native 
 
 4. Since the NDK provides C APIs, to simplify programming and project management in an object-oriented manner, it is recommended that you use C++ for secondary encapsulation. The following example shows the encapsulation classes required for the list and text components on the example page.
    
-   (1) Obtain the entry module of ArkUI in the NDK API [ArkUI_NativeNodeAPI_1](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md), which provides a series of function pointers for component creation, tree construction, attribute setting, and event registration.
+   (1) Obtain the entry module of ArkUI in the NDK API [ArkUI_NativeNodeAPI_1](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md), which provides a series of function pointers for component creation, tree construction, attribute setting, and event registration.
    
    ```c
    // NativeModule.h

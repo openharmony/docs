@@ -393,9 +393,9 @@ The following example demonstrates a nested scrolling scenario with two **Scroll
 
 Gesture recognition is based on the response chain results of [hit testing](./arkts-interaction-basic-principles.md#hit-testing). Therefore, it is efficient to dynamically intervene in gesture processing by controlling the participation status of gesture recognizers in the response chain when the user presses down.
 
-This is achieved using the [onTouchTestDone](../reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md#ontouchtestdone20) API:
+This is achieved using the [onTouchTestDone](../reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md) API:
 
-After hit testing is completed, the system returns all gesture recognizer objects through this API. Applications can filter recognizers by type, component ID, or associated component, and proactively disable specific recognizers by calling the [preventBegin](../reference/apis-arkui/arkui-ts/ts-gesture-blocking-enhancement.md#preventbegin20) API.
+After hit testing is completed, the system returns all gesture recognizer objects through this API. Applications can filter recognizers by type, component ID, or associated component, and proactively disable specific recognizers by calling the [preventBegin](../reference/apis-arkui/arkui-ts/ts-gesture-common.md#preventbegin20) API.
 
 Disabling by gesture type:
 

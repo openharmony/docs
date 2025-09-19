@@ -6,7 +6,7 @@ The fixed-style dialog box uses a predefined layout format, allowing you to focu
 
 - You can use the APIs in this document in non-UI pages or certain asynchronous callbacks by calling **UIContext** or **getUIContext**. This operation is not supported by **CalendarPickerDialog**.
 
-- For **showActionMenu** and **showDialog** APIs, you must first call [getPromptAction()](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction) in **UIContext** to obtain the **PromptAction** object, and then use the object to call the corresponding API.
+- For **showActionMenu** and **showDialog** APIs, you must first call [getPromptAction()](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getpromptaction) in **UIContext** to obtain the **PromptAction** object, and then use the object to call the corresponding API.
 
 - For **ActionSheet**, **AlertDialog**, and **PickerDialog** APIs, except **CalendarPickerDialog**, you must first call [getUIContext()](../reference/apis-arkui/arkts-apis-window-Window.md#getuicontext10) in **ohos.window** to obtain the **UIContext** instance, and then use the instance to call the corresponding API. Alternatively, you can obtain a **UIContext** instance through the built-in method [getUIContext()](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#getuicontext) of the custom component.
 
@@ -29,7 +29,7 @@ Since API version 19, the dialog boxes created using **showDialog**, **ActionShe
 
 ## Action Menu (showActionMenu)
 
-The action menu is implemented by obtaining the **PromptAction** object from the [showActionMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#showactionmenu11) method in **UIContext** and then calling the [showActionMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#showactionmenu11) API through this object. It can be used in callbacks or in classes you define.
+The action menu is implemented by obtaining the **PromptAction** object from the [showActionMenu](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#showactionmenu11) method in **UIContext** and then calling the [showActionMenu](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#showactionmenu11) API through this object. It can be used in callbacks or in classes you define.
 
 After an action menu is created and displayed, the index of the selected button in the **buttons** array will be returned asynchronously as the response result.
 
@@ -66,7 +66,7 @@ try {
 
 ## Common Dialog Box (showDialog)
 
-The common dialog box is implemented by obtaining the **PromptAction** object from the **getPromptAction** method in **UIContext** and then calling the [showDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdialog) API through this object. It can be used in callbacks or in classes you define.
+The common dialog box is implemented by obtaining the **PromptAction** object from the **getPromptAction** method in **UIContext** and then calling the [showDialog](../reference/apis-arkui/arkts-apis-uicontext-promptaction.md#showdialog) API through this object. It can be used in callbacks or in classes you define.
 
 After a common dialog box is created and displayed, the index of the selected button in the **buttons** array will be returned asynchronously as the response result.
 
@@ -111,7 +111,7 @@ The picker dialog box is typically used to display specific information or optio
 
 The calendar picker dialog box provides a calendar view that includes year, month, and weekday information, implemented through the [CalendarPickerDialog](../reference/apis-arkui/arkui-ts/ts-methods-calendarpicker-dialog.md) API. You can call the **show** API to define and display the calendar picker dialog box.
 
-The display of the calendar picker dialog box depends on the UI execution context and cannot be used in places where the [UI context is ambiguous](./arkts-global-interface.md). For specific constraints, see the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext) documentation.
+The display of the calendar picker dialog box depends on the UI execution context and cannot be used in places where the [UI context is ambiguous](./arkts-global-interface.md). For specific constraints, see the [UIContext](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md) documentation.
 
 You can also define custom button styles by configuring **acceptButtonStyle** and **cancelButtonStyle**.
 
@@ -159,7 +159,7 @@ struct CalendarPickerDialogExample {
 
 The date picker dialog box allows users to select a date from the given range, presenting the date information clearly.
 
-You use the [showDatePickerDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showdatepickerdialog) API in **UIContext** to implement a date picker dialog box.
+You use the [showDatePickerDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showdatepickerdialog) API in **UIContext** to implement a date picker dialog box.
 
 When **lunarSwitch** and **showTime** are set to **true** for the dialog box, it displays a switch for toggling the lunar calendar and time. When the check box is selected, the lunar calendar is shown. When the confirm button is touched, the dialog box returns the currently selected date through **onDateAccept**. To display the last confirmed date when the dialog box is shown again, reassign the value to **selectTime** in the callback.
 
@@ -238,7 +238,7 @@ struct DatePickerDialogExample {
 
 The time picker dialog box allows users to select a time from the 24-hour range, presenting the time information clearly.
 
-You use the [showTimePickerDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showtimepickerdialog) API in **UIContext** to implement a time picker dialog box.
+You use the [showTimePickerDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showtimepickerdialog) API in **UIContext** to implement a time picker dialog box.
 
 In this example, **disappearTextStyle**, **textStyle**, **selectedTextStyle**, **acceptButtonStyle**, and **cancelButtonStyle** are configured to customize the text and button style.
 
@@ -285,7 +285,7 @@ struct TimePickerDialogExample {
 
 The text picker dialog box allows users to select text from the given range, presenting the text information clearly.
 
-You use the [showTextPickerDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showtextpickerdialog) API in **UIContext** to implement a date picker dialog box.
+You use the [showTextPickerDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showtextpickerdialog) API in **UIContext** to implement a date picker dialog box.
 
 This example demonstrates how to implement a three-column text picker dialog box by setting the **range** parameter type to **TextCascadePickerRangeContent[]**. When the confirm button is touched, the dialog box returns the currently selected text and index value through the **onAccept** callback. To display the last confirmed text when the dialog box is shown again, reassign the value to **select** in the callback.
 
@@ -335,7 +335,7 @@ struct TextPickerDialogExample {
 
 The action sheet is ideal for presenting multiple action options, especially when the UI only needs to display a list of actions without additional content.
 
-You use the [showActionSheet](../reference/apis-arkui/js-apis-arkui-UIContext.md#showactionsheet) API in UIContext to implement an action sheet.
+You use the [showActionSheet](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showactionsheet) API in UIContext to implement an action sheet.
 
 This example shows how to configure the style and animation effects of the action sheet by setting APIs like **width**, **height**, and **transition**.
 
@@ -405,7 +405,7 @@ The alert dialog box is used when you need to ask a question or get permission f
 * The alert dialog box interrupts the current task. Therefore, only use it to provide necessary information and useful operations.
 * Avoid using alert dialog boxes to provide information only; users do not like to be interrupted by information-rich but non-operable alerts.
 
-You use the [showAlertDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#showalertdialog) API in UIContext to implement an alert dialog box.
+You use the [showAlertDialog](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showalertdialog) API in UIContext to implement an alert dialog box.
 
 This example shows how to configure the style and animation effects of an alert dialog with multiple buttons by setting APIs like **width**, **height**, and **transition**.
 
