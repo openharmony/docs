@@ -1348,7 +1348,7 @@ forceDarkAccess(access: boolean)
 
 pinchSmooth(isEnabled: boolean)
 
-设置网页是否开启捏合流畅模式。
+设置网页是否开启捏合流畅模式。该属性没有显式调用时，默认不开启捏合流畅模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1356,7 +1356,7 @@ pinchSmooth(isEnabled: boolean)
 
 | 参数名       | 类型    | 必填   | 说明          |
 | --------- | ------- | ---- | ------------- |
-| isEnabled | boolean | 是    | 网页是否开启捏合流畅模式。<br>true表示设置网页开启捏合流畅模式，false表示设置网页不开启捏合流畅模式。<br>默认值：false。 |
+| isEnabled | boolean | 是    | 网页是否开启捏合流畅模式。<br>true表示设置网页开启捏合流畅模式，false表示设置网页不开启捏合流畅模式。<br>传入undefined与null时为false。 |
 
 **示例：**
 
@@ -2067,7 +2067,7 @@ nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
 
 bypassVsyncCondition(condition: WebBypassVsyncCondition)
 
-当开发者调用scrollBy接口进行页面滚动时，可以通过bypassVsyncCondition接口设置渲染流程跳过vsync（垂直同步）调度，直接触发绘制。
+当开发者调用scrollBy接口进行页面滚动时，可以通过bypassVsyncCondition接口设置渲染流程跳过vsync（垂直同步）调度，直接触发绘制。该属性没有显式调用时，默认不跳过vsync调度。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2075,7 +2075,7 @@ bypassVsyncCondition(condition: WebBypassVsyncCondition)
 
 | 参数名  | 类型                                  | 必填   | 说明                  |
 | ---- | ------------------------------------- | ---- | --------------------- |
-| condition | [WebBypassVsyncCondition](./arkts-basic-components-web-e.md#webbypassvsynccondition20) | 是    | 触发渲染流程跳过vsync调度的条件。 |
+| condition | [WebBypassVsyncCondition](./arkts-basic-components-web-e.md#webbypassvsynccondition20) | 是    | 触发渲染流程跳过vsync调度的条件。 <br> 传入undefined与null时为NONE。|
 
 **示例：**
 
