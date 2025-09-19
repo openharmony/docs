@@ -63,7 +63,7 @@ OH_AudioCommon_Result OH_AudioManager_GetAudioStreamManager(OH_AudioStreamManage
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_AudioCommon_Result | AUDIOCOMMON_RESULT_SUCCESS = 0：函数执行成功。<br>         AUDIOCOMMON_RESULT_ERROR_SYSTEM = 6800301：系统状态错误。 |
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | AUDIOCOMMON_RESULT_SUCCESS = 0：函数执行成功。<br>         AUDIOCOMMON_RESULT_ERROR_SYSTEM = 6800301：系统状态错误。 |
 
 ### OH_AudioStreamManager_GetDirectPlaybackSupport()
 
@@ -82,15 +82,15 @@ OH_AudioCommon_Result OH_AudioStreamManager_GetDirectPlaybackSupport(OH_AudioStr
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AudioStreamManager](capi-ohaudio-oh-audiostreammanager.md) *audioStreamManager | 音频流管理器句柄。通过 [OH_AudioManager_GetAudioStreamManager](capi-native-audio-stream-manager-h.md#oh_audiomanager_getaudiostreammanager)获取句柄。 |
-| OH_AudioStreamInfo *streamInfo | 音频流信息指针。 |
-| OH_AudioStream_Usage usage | 音频流使用场景。 |
-| OH_AudioStream_DirectPlaybackMode *directPlaybackMode | 指向 {@link OH_AudioStream_DirectPlaybackMode}，用于获取当前音频流支持的direct通路播放模式。 |
+| [OH_AudioStreamInfo](capi-ohaudio-oh-audiostreaminfo.md) *streamInfo | 音频流信息指针。 |
+| [OH_AudioStream_Usage](capi-native-audiostream-base-h.md#oh_audiostream_usage) usage | 音频流使用场景。 |
+| [OH_AudioStream_DirectPlaybackMode](capi-native-audiostream-base-h.md#oh_audiostream_directplaybackmode) *directPlaybackMode | 指向 [OH_AudioStream_DirectPlaybackMode](capi-native-audiostream-base-h.md#oh_audiostream_directplaybackmode)，用于获取当前音频流支持的direct通路播放模式。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_AudioCommon_Result | AUDIOCOMMON_RESULT_SUCCESS = 0：函数执行成功。<br>         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM = 6800101：<br>                                                        1. 参数audioStreamManager为nullptr；<br>                                                        2. 参数streamInfo为nullptr；<br>                                                        3. 参数usage无效；<br>                                                        4. 参数directPlaybackMode为nullptr。 |
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | AUDIOCOMMON_RESULT_SUCCESS = 0：函数执行成功。<br>         AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM = 6800101：<br>                                                        1. 参数audioStreamManager为nullptr；<br>                                                        2. 参数streamInfo为nullptr；<br>                                                        3. 参数usage无效；<br>                                                        4. 参数directPlaybackMode为nullptr。 |
 
 ### OH_AudioStreamManager_IsAcousticEchoCancelerSupported()
 
@@ -109,14 +109,14 @@ OH_AudioCommon_Result OH_AudioStreamManager_IsAcousticEchoCancelerSupported(OH_A
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AudioStreamManager](capi-ohaudio-oh-audiostreammanager.md) *streamManager | 音频流管理器句柄。通过 [OH_AudioManager_GetAudioStreamManager](capi-native-audio-stream-manager-h.md#oh_audiomanager_getaudiostreammanager)获取句柄。 |
-| OH_AudioStream_SourceType sourceType | 指向{@link OH_AudioStream_SourceType}，用于设置音频输入流的使用场景。 |
+| [OH_AudioStream_SourceType](capi-native-audiostream-base-h.md#oh_audiostream_sourcetype) sourceType | 指向[OH_AudioStream_SourceType](capi-native-audiostream-base-h.md#oh_audiostream_sourcetype)，用于设置音频输入流的使用场景。 |
 | bool *supported | 查询指定的source type是否支持回声消除的结果。true表示支持回声消除，false表示不支持回声消除。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_AudioCommon_Result | AUDIOCOMMON_RESULT_SUCCESS = 0 ：函数执行成功。<br>          AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM = 6800101 ：<br>                                                    1.参数audioStreamManager为nullptr；<br>                                                    2.参数sourceType无效；<br>                                                    3.参数supported为nullptr。 |
+| [OH_AudioCommon_Result](capi-native-audio-common-h.md#oh_audiocommon_result) | AUDIOCOMMON_RESULT_SUCCESS = 0 ：函数执行成功。<br>          AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM = 6800101 ：<br>                                                    1.参数audioStreamManager为nullptr；<br>                                                    2.参数sourceType无效；<br>                                                    3.参数supported为nullptr。 |
 
 ### OH_AudioStreamManager_IsFastPlaybackSupported()
 
@@ -135,8 +135,8 @@ bool OH_AudioStreamManager_IsFastPlaybackSupported(OH_AudioStreamManager *stream
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AudioStreamManager](capi-ohaudio-oh-audiostreammanager.md) *streamManager | 音频流管理器句柄。通过[OH_AudioManager_GetAudioStreamManager](capi-native-audio-stream-manager-h.md#oh_audiomanager_getaudiostreammanager)获取句柄。 |
-| OH_AudioStreamInfo *streamInfo | 音频流信息指针。 |
-| OH_AudioStream_Usage usage | 音频流使用场景。 |
+| [OH_AudioStreamInfo](capi-ohaudio-oh-audiostreaminfo.md) *streamInfo | 音频流信息指针。 |
+| [OH_AudioStream_Usage](capi-native-audiostream-base-h.md#oh_audiostream_usage) usage | 音频流使用场景。 |
 
 **返回：**
 
@@ -161,8 +161,8 @@ bool OH_AudioStreamManager_IsFastRecordingSupported(OH_AudioStreamManager *strea
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AudioStreamManager](capi-ohaudio-oh-audiostreammanager.md) *streamManager | 音频流管理器句柄。通过[OH_AudioManager_GetAudioStreamManager](capi-native-audio-stream-manager-h.md#oh_audiomanager_getaudiostreammanager)获取句柄。 |
-| OH_AudioStreamInfo *streamInfo | 音频流信息指针。 |
-| OH_AudioStream_SourceType source | 音频流使用场景。 |
+| [OH_AudioStreamInfo](capi-ohaudio-oh-audiostreaminfo.md) *streamInfo | 音频流信息指针。 |
+| [OH_AudioStream_SourceType](capi-native-audiostream-base-h.md#oh_audiostream_sourcetype) source | 音频流使用场景。 |
 
 **返回：**
 
