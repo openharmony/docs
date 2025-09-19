@@ -1,5 +1,12 @@
 # Crypto Architecture Kit（加解密算法框架服务）
 
+<!--Kit: Crypto Architecture Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @zxz--3-->
+<!--Designer: @lanming-->
+<!--Tester: @PAFT-->
+<!--Adviser: @zengyawen-->
+
 - [Crypto Architecture Kit简介](crypto-architecture-kit-intro.md)
 - 密钥生成和转换<!--crypto-key-generation-conversion-->
   - [密钥生成与转换介绍](crypto-key-generation-conversion-overview.md)
@@ -102,8 +109,11 @@
   - [消息认证码计算HMAC(C/C++)](crypto-compute-hmac-ndk.md)
   - [消息认证码计算CMAC(ArkTS)](crypto-compute-cmac.md)
   - [消息认证码计算CMAC(C/C++)](crypto-compute-cmac-ndk.md)
-- [安全随机数生成(ArkTS)](crypto-generate-random-number.md)
-- [安全随机数生成(C/C++)](crypto-generate-random-number-ndk.md)
+- 随机数<!--crypto-compute-rand-->
+  - [安全随机数生成(ArkTS)](crypto-generate-random-number.md)
+  - [安全随机数生成(C/C++)](crypto-generate-random-number-ndk.md)
+  - [使用硬件熵源生成安全随机数(ArkTS)](crypto-generate-random-number-hardware.md)
+  - [使用硬件熵源生成安全随机数(C/C++)](crypto-generate-random-number-hardware-ndk.md)
 - 密钥派生<!--crypto-key-derivation-->
   - [密钥派生介绍及算法规格](crypto-key-derivation-overview.md)
   - [使用PBKDF2进行密钥派生(ArkTS)](crypto-key-derivation-using-pbkdf2.md)
