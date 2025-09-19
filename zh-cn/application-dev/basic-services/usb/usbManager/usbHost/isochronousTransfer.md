@@ -132,7 +132,7 @@
       return;
     }
 
-    // 传输类型类型为“实时传输”时，需设置设备接口。设置成功返回0，注册失败返回其他错误码。
+    // 传输类型为“实时传输”时，需设置设备接口。设置成功返回0，注册失败返回其他错误码。
     if (usbEndpoint.type === usbManager.UsbEndpointTransferType.TRANSFER_TYPE_ISOCHRONOUS) {
       let setInterfaceResult = usbManager.setInterface(devicePipe, usbInterface);
       if (setInterfaceResult !== 0) {
