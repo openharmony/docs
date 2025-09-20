@@ -69,7 +69,7 @@ enum OH_Rdb_ErrCode
 | RDB_E_INVALID_BIND_ARGS_COUNT = (E_BASE + 19)                | SQL语句中绑定的参数个数非法。                               |
 | RDB_E_INVALID_OBJECT_TYPE = (E_BASE + 20)                    | 对象类型非法。                                              |
 | RDB_E_INVALID_CONFLICT_FLAG = (E_BASE + 21)                  | 冲突解决类型非法。                                          |
-| RDB_E_HAVING_CLAUSE_NOT_IN_GROUP_BY = (E_BASE + 22)          | HAVING关键字只能用于GROUP BY之后.                           |
+| RDB_E_HAVING_CLAUSE_NOT_IN_GROUP_BY = (E_BASE + 22)          | HAVING关键字只能用于GROUP BY之后。                           |
 | RDB_E_NOT_SUPPORTED_BY_STEP_RESULT_SET = (E_BASE + 23)       | 不支持step形式数据库结果集。                                |
 | RDB_E_STEP_RESULT_SET_CROSS_THREADS = (E_BASE + 24)          | 结果集查询出错。                                            |
 | RDB_E_STEP_RESULT_QUERY_NOT_EXECUTED = (E_BASE + 25)         | 结果集查询语句未被执行。                                    |
