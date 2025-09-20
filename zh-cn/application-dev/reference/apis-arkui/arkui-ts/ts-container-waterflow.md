@@ -1229,7 +1229,7 @@ struct WaterFlowDemo {
           .onClick(() => {
             const sections: Array<SectionOptions> = this.sections.values();
             for (const value of sections) {
-              console.log(JSON.stringify(value));
+              console.info(JSON.stringify(value));
             }
             console.info('count:' + this.sections.length());
           })
