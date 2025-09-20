@@ -1,4 +1,10 @@
 # @ohos.uiAppearance (用户界面外观)(系统接口)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @lushi871202-->
+<!--Designer: @lushi871202-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 用户界面外观提供管理系统外观的一些基础能力，目前仅包括深浅色模式配置。
 
@@ -141,6 +147,10 @@ setFontScale(fontScale: number): Promise\<void>
 
 错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[errcode-uiappearance](errorcode-uiappearance.md)。
 
+> **说明：**
+>
+> 在未申请`ohos.permission.UPDATE_CONFIGURATION`权限时，应用安装将失败，不会返回202错误码。
+
 | 错误码ID | 错误信息 |
 | -- | -- |
 | 201 | Permission denied. |
@@ -196,6 +206,10 @@ setFontWeightScale(fontWeightScale: number): Promise\<void>
 **错误码：**
 
 错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[errcode-uiappearance](errorcode-uiappearance.md)。
+
+> **说明：**
+>
+> 在未申请`ohos.permission.UPDATE_CONFIGURATION`权限时，应用安装将失败，不会返回202错误码。
 
 | 错误码ID | 错误信息 |
 | -- | -- |
