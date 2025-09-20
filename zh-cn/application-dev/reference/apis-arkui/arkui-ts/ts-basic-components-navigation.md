@@ -2287,7 +2287,7 @@ export struct PageTwo {
 }
 ```
 
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置"routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
 {
   "routerMap": [
@@ -2769,7 +2769,7 @@ export class CustomTransition {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置"routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
 {
   "routerMap": [
@@ -3055,7 +3055,7 @@ export struct PageTwo {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置"routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
 {
   "routerMap": [
@@ -3082,41 +3082,115 @@ export struct PageTwo {
 该示例主要演示设置Navigation主页的标题栏、工具栏和NavDestination页面的标题栏的背景颜色和背景模糊效果。
 
 ```ts
-const COLOR1: string = "#80004AAF";
-const COLOR2: string = "#802787D9";
-const BLUR_STYLE_1: BlurStyle = BlurStyle.BACKGROUND_THIN;
-const BLUR_STYLE_2: BlurStyle = BlurStyle.BACKGROUND_THICK;
-const BLUR_STYLE_OPTION_1: BackgroundBlurStyleOptions = {
-  colorMode: ThemeColorMode.DARK,
-  adaptiveColor: AdaptiveColor.DEFAULT,
-  blurOptions: { grayscale: [20, 20] },
-  scale: 1
-};
-const BLUR_STYLE_OPTION_2: BackgroundBlurStyleOptions = {
-  colorMode: ThemeColorMode.LIGHT,
-  adaptiveColor: AdaptiveColor.AVERAGE,
-  blurOptions: { grayscale: [20, 20] },
-  scale: 1
-};
-const EFFECT_OPTION_1: BackgroundEffectOptions = {
-  radius: 20,
-  saturation: 10,
-  brightness: 0,
-  color: '#66FFFFFF',
-  adaptiveColor: AdaptiveColor.DEFAULT,
-  blurOptions: { grayscale: [0, 0] },
-};
-const EFFECT_OPTION_2: BackgroundEffectOptions = {
-  radius: 60,
-  saturation: 40,
-  brightness: 1,
-  color: '#661A1A1A',
-  adaptiveColor: AdaptiveColor.AVERAGE,
-  blurOptions: { grayscale: [20, 20] },
-};
+// Index
+import {
+  COLOR1,
+  COLOR2,
+  BLUR_STYLE_1,
+  BLUR_STYLE_2,
+  BLUR_STYLE_OPTION_1,
+  BLUR_STYLE_OPTION_2,
+} from './Utils';
+
+@Entry
+@Component
+struct Index {
+  @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
+  @State useColor1: boolean = true;
+  @State useBlur1: boolean = true;
+  @State useBlurOption1: boolean = true;
+
+  build() {
+    Navigation(this.navPathStack) {
+      Stack({ alignContent: Alignment.Center }) {
+        BackComponent()
+          .width('100%')
+          .height('100%')
+        Column() {
+          Stack({ alignContent: Alignment.Center }) {
+            Button("switch color")
+              .onClick(() => {
+                this.useColor1 = !this.useColor1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+
+          Stack({ alignContent: Alignment.Center }) {
+            Button("switch blur")
+              .onClick(() => {
+                this.useBlur1 = !this.useBlur1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+
+          Stack({ alignContent: Alignment.Center }) {
+            Button("switch blurOption")
+              .onClick(() => {
+                this.useBlurOption1 = !this.useBlurOption1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+
+          Stack({ alignContent: Alignment.Center }) {
+            Button("push page")
+              .onClick(() => {
+                this.navPathStack.pushPathByName('NavigationMenu', null);
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+        }
+        .width('100%')
+        .height('80%')
+      }.width('100%')
+      .height('100%')
+    }
+    .width('100%')
+    .height('100%')
+    // 开发者可以设置标题栏的背景颜色和背景模糊效果
+    .title("NavTitle", {
+      backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
+      backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
+      barStyle: BarStyle.STACK,
+      backgroundBlurStyleOptions: this.useBlurOption1 ? BLUR_STYLE_OPTION_1 : BLUR_STYLE_OPTION_2,
+    })
+    // 开发者可以设置菜单的背景颜色和背景模糊效果
+    .menus([
+      { value: "A" },
+      { value: "B" },
+      { value: "C" },
+      { value: "D" },
+    ], {
+      moreButtonOptions: {
+        backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
+        backgroundBlurStyleOptions: this.useBlurOption1 ? BLUR_STYLE_OPTION_1 : BLUR_STYLE_OPTION_2,
+      }
+    })
+    // 开发者可以设置工具栏的背景颜色和背景模糊效果
+    .toolbarConfiguration([
+      { value: "A" },
+      { value: "B" },
+      { value: "C" },
+      { value: "D" },
+      { value: "E" },
+      { value: "F" }
+    ], {
+      backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
+      backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
+      // 开发者可以设置工具栏的菜单的背景颜色和背景模糊效果
+      moreButtonOptions: {
+        backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
+        backgroundBlurStyleOptions: this.useBlurOption1 ? BLUR_STYLE_OPTION_1 : BLUR_STYLE_OPTION_2,
+      }
+    })
+  }
+}
 
 @Component
-struct BackComponent {
+export struct BackComponent {
   build() {
     Row() {
       Column() {
@@ -3140,6 +3214,23 @@ struct BackComponent {
     .height('100%')
     .width('100%')
   }
+}
+```
+```ts
+// PageOne.ets
+import {
+  COLOR1,
+  COLOR2,
+  BLUR_STYLE_1,
+  BLUR_STYLE_2,
+  EFFECT_OPTION_1,
+  EFFECT_OPTION_2
+} from './Utils';
+import { BackComponent } from './Index';
+
+@Builder
+export function PageBuilder(name: string, param?: Object) {
+  ColorAndBlur();
 }
 
 @Component
@@ -3224,112 +3315,62 @@ struct ColorAndBlur {
     })
   }
 }
+```
 
-@Entry
-@Component
-struct Index {
-  @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
-  @State useColor1: boolean = true;
-  @State useBlur1: boolean = true;
-  @State useBlurOption1: boolean = true;
+```ts
+// Utils.ets
+export const COLOR1: string = "#80004AAF";
+export const COLOR2: string = "#802787D9";
+export const BLUR_STYLE_1: BlurStyle = BlurStyle.BACKGROUND_THIN;
+export const BLUR_STYLE_2: BlurStyle = BlurStyle.BACKGROUND_THICK;
+export const BLUR_STYLE_OPTION_1: BackgroundBlurStyleOptions = {
+  colorMode: ThemeColorMode.DARK,
+  adaptiveColor: AdaptiveColor.DEFAULT,
+  blurOptions: { grayscale: [20, 20] },
+  scale: 1
+};
+export const BLUR_STYLE_OPTION_2: BackgroundBlurStyleOptions = {
+  colorMode: ThemeColorMode.LIGHT,
+  adaptiveColor: AdaptiveColor.AVERAGE,
+  blurOptions: { grayscale: [20, 20] },
+  scale: 1
+};
+export const EFFECT_OPTION_1: BackgroundEffectOptions = {
+  radius: 20,
+  saturation: 10,
+  brightness: 0,
+  color: '#66FFFFFF',
+  adaptiveColor: AdaptiveColor.DEFAULT,
+  blurOptions: { grayscale: [0, 0] },
+};
+export const EFFECT_OPTION_2: BackgroundEffectOptions = {
+  radius: 60,
+  saturation: 40,
+  brightness: 1,
+  color: '#661A1A1A',
+  adaptiveColor: AdaptiveColor.AVERAGE,
+  blurOptions: { grayscale: [20, 20] },
+};
 
-  @Builder
-  PageBuilder(name: string, param?: Object) {
-    if (name === 'NavigationMenu') {
-      ColorAndBlur();
-    }
-  }
+```
 
-  build() {
-    Navigation(this.navPathStack) {
-      Stack({ alignContent: Alignment.Center }) {
-        BackComponent()
-          .width('100%')
-          .height('100%')
-        Column() {
-          Stack({ alignContent: Alignment.Center }) {
-            Button("switch color")
-              .onClick(() => {
-                this.useColor1 = !this.useColor1;
-              })
-          }
-          .width('100%')
-          .layoutWeight(1)
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置"routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 
-          Stack({ alignContent: Alignment.Center }) {
-            Button("switch blur")
-              .onClick(() => {
-                this.useBlur1 = !this.useBlur1;
-              })
-          }
-          .width('100%')
-          .layoutWeight(1)
-
-          Stack({ alignContent: Alignment.Center }) {
-            Button("switch blurOption")
-              .onClick(() => {
-                this.useBlurOption1 = !this.useBlurOption1;
-              })
-          }
-          .width('100%')
-          .layoutWeight(1)
-
-          Stack({ alignContent: Alignment.Center }) {
-            Button("push page")
-              .onClick(() => {
-                this.navPathStack.pushPathByName('NavigationMenu', null);
-              })
-          }
-          .width('100%')
-          .layoutWeight(1)
-        }
-        .width('100%')
-        .height('80%')
-      }.width('100%')
-      .height('100%')
-    }
-    .width('100%')
-    .height('100%')
-    .navDestination(this.PageBuilder)
-    // 开发者可以设置标题栏的背景颜色和背景模糊效果
-    .title("NavTitle", {
-      backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
-      backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
-      barStyle: BarStyle.STACK,
-      backgroundBlurStyleOptions: this.useBlurOption1 ? BLUR_STYLE_OPTION_1 : BLUR_STYLE_OPTION_2,
-    })
-    // 开发者可以设置菜单的背景颜色和背景模糊效果
-    .menus([
-      { value: "A" },
-      { value: "B" },
-      { value: "C" },
-      { value: "D" },
-    ], {
-      moreButtonOptions: {
-        backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
-        backgroundBlurStyleOptions: this.useBlurOption1 ? BLUR_STYLE_OPTION_1 : BLUR_STYLE_OPTION_2,
+```json
+{
+  "routerMap": [
+    {
+      "name": "NavigationMenu",
+      "pageSourceFile": "src/main/ets/pages/PageOne.ets",
+      "buildFunction": "PageBuilder",
+      "data": {
+        "description": "this is pageOne"
       }
-    })
-    // 开发者可以设置工具栏的背景颜色和背景模糊效果
-    .toolbarConfiguration([
-      { value: "A" },
-      { value: "B" },
-      { value: "C" },
-      { value: "D" },
-      { value: "E" },
-      { value: "F" }
-    ], {
-      backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
-      backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
-      // 开发者可以设置工具栏的菜单的背景颜色和背景模糊效果
-      moreButtonOptions: {
-        backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
-        backgroundBlurStyleOptions: this.useBlurOption1 ? BLUR_STYLE_OPTION_1 : BLUR_STYLE_OPTION_2,
-      }
-    })
-  }
+    }
+  ]
 }
 ```
+
 ![navigationColorBlur.gif](figures/navigationColorBlur.gif)
 
 ### 示例6（嵌套场景下获取外层栈）
@@ -3382,7 +3423,7 @@ export function PageOneBuilder(name: string) {
   .title(name)
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置"routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
 {
   "routerMap": [
@@ -3492,7 +3533,7 @@ struct NavigationExample2 {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置"routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
 {
   "routerMap": [
@@ -3610,7 +3651,7 @@ struct NavigationExample3 {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置"routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
 {
   "routerMap": [
@@ -3705,50 +3746,8 @@ struct NavigationExample {
 该示例主要演示如何定义NavPathStack的派生类和派生类在Navigation中的基本用法。
 
 ```ts
-class DerivedNavPathStack extends NavPathStack {
-  // usr defined property 'id'
-  id: string = "__default__";
-
-  // new function in derived class
-  setId(id: string) {
-    this.id = id;
-  }
-
-  // new function in derived class
-  getInfo(): string {
-    return "this page used Derived NavPathStack, id: " + this.id;
-  }
-
-  // overwrite function of NavPathStack
-  pushPath(info: NavPathInfo, animated?: boolean): void
-  pushPath(info: NavPathInfo, options?: NavigationOptions): void
-  pushPath(info: NavPathInfo, secArg?: boolean | NavigationOptions): void {
-    console.info('[derive-test] reached DerivedNavPathStack\'s pushPath');
-    if (typeof secArg === 'boolean') {
-      super.pushPath(info, secArg);
-    } else {
-      super.pushPath(info, secArg);
-    }
-  }
-
-  // overwrite and overload function of NavPathStack
-  pop(animated?: boolean | undefined): NavPathInfo | undefined
-  pop(result: Object, animated?: boolean | undefined): NavPathInfo | undefined
-  pop(result?: Object, animated?: boolean | undefined): NavPathInfo | undefined {
-    console.info('[derive-test] reached DerivedNavPathStack\'s pop');
-    return super.pop(result, animated);
-  }
-
-  // other function of base class...
-}
-
-class NewParam {
-  info: string = "__default_param__";
-
-  constructor(info: string) {
-    this.info = info;
-  }
-}
+// Index.ets
+import { DerivedNavPathStack, NewParam } from './Utils';
 
 @Entry
 @Component
@@ -3758,12 +3757,7 @@ struct Index {
   aboutToAppear(): void {
     this.derivedStack.setId('origin stack');
   }
-
-  @Builder
-  pageMap(name: string) {
-    PageOne();
-  }
-
+  
   build() {
     Navigation(this.derivedStack) {
       Button('to Page One').margin(20).onClick(() => {
@@ -3772,9 +3766,18 @@ struct Index {
           param: new NewParam('push pageOne in homePage when stack size: ' + this.derivedStack.size())
         });
       })
-    }.navDestination(this.pageMap)
+    }
     .title('Home Page')
   }
+}
+```
+```ts
+// PageOne.ets
+import { DerivedNavPathStack, NewParam } from './Utils';
+
+@Builder
+export function pageMap(name: string) {
+  PageOne();
 }
 
 @Component
@@ -3810,7 +3813,7 @@ struct PageOne {
     }.title('Page One')
     .onReady((context: NavDestinationContext) => {
       console.info('[derive-test] reached PageOne\'s onReady');
-      // get derived stack from navdestinationContext
+      // 从navdestinationContext获取派生堆栈
       this.derivedStack = context.pathStack as DerivedNavPathStack;
       console.info('[derive-test] -- got derivedStack: ' + this.derivedStack.id);
       this.curStringifyParam = JSON.stringify(context.pathInfo.param);
@@ -3819,6 +3822,72 @@ struct PageOne {
   }
 }
 ```
+
+```ts
+// Utils.ets
+export class DerivedNavPathStack extends NavPathStack {
+  // 用户定义的属性'id'
+  id: string = "__default__";
+
+  // 派生类中的新功能
+  setId(id: string) {
+    this.id = id;
+  }
+
+  // 派生类中的新功能
+  getInfo(): string {
+    return "this page used Derived NavPathStack, id: " + this.id;
+  }
+
+  // 重载NavPathStack的功能
+  pushPath(info: NavPathInfo, animated?: boolean): void
+  pushPath(info: NavPathInfo, options?: NavigationOptions): void
+  pushPath(info: NavPathInfo, secArg?: boolean | NavigationOptions): void {
+    console.info('[derive-test] reached DerivedNavPathStack\'s pushPath');
+    if (typeof secArg === 'boolean') {
+      super.pushPath(info, secArg);
+    } else {
+      super.pushPath(info, secArg);
+    }
+  }
+
+  // 重写和重载NavPathStack的函数
+  pop(animated?: boolean | undefined): NavPathInfo | undefined
+  pop(result: Object, animated?: boolean | undefined): NavPathInfo | undefined
+  pop(result?: Object, animated?: boolean | undefined): NavPathInfo | undefined {
+    console.info('[derive-test] reached DerivedNavPathStack\'s pop');
+    return super.pop(result, animated);
+  }
+
+  // 基类的其他功能...
+}
+
+export class NewParam {
+  info: string = "__default_param__";
+
+  constructor(info: string) {
+    this.info = info;
+  }
+}
+```
+
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置"routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
+
+```json
+{
+  "routerMap": [
+    {
+      "name": "pageOne",
+      "pageSourceFile": "src/main/ets/pages/PageOne.ets",
+      "buildFunction": "pageMap",
+      "data": {
+        "description": "this is pageOne"
+      }
+    }
+  ]
+}
+```
+
 ![derive_stack.gif](figures/derive_stack.gif)
 
 ### 示例11（使用Symbol组件）
@@ -3826,6 +3895,7 @@ struct PageOne {
 该示例主要演示Navigation和NavDestination如何使用Symbol组件。
 
 ```ts
+// Index.ets
 import { SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
@@ -3881,13 +3951,6 @@ struct NavigationExample {
     }
   ];
 
-  @Builder
-  myRouter(name: string, param?: Object) {
-    if (name === 'NavigationMenu') {
-      NavigationMenu();
-    }
-  }
-
   build() {
     Navigation(this.navPathStack) {
       Column() {
@@ -3901,8 +3964,16 @@ struct NavigationExample {
     .menus(this.menuItems)
     .toolbarConfiguration(this.toolItems)
     .title('一级页面')
-    .navDestination(this.myRouter)
   }
+}
+```
+```ts
+// PageOne.ets
+import { SymbolGlyphModifier } from '@kit.ArkUI';
+
+@Builder
+export function myRouter(name: string, param?: Object) {
+  NavigationMenu();
 }
 
 @Component
@@ -3944,11 +4015,29 @@ export struct NavigationMenu {
     .title('NavDestination title')
     .backgroundColor($r('sys.color.ohos_id_color_titlebar_sub_bg'))
     .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_star'))
-    .fontColor([Color.Blue]))
+      .fontColor([Color.Blue]))
     .menus(this.menuItems)
   }
 }
 ```
+
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置"routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
+
+```json
+{
+  "routerMap": [
+    {
+      "name": "NavigationMenu",
+      "pageSourceFile": "src/main/ets/pages/PageOne.ets",
+      "buildFunction": "myRouter",
+      "data": {
+        "description": "this is pageOne"
+      }
+    }
+  ]
+}
+```
+
 ![navigation_symbol.gif](figures/navigation_symbol.gif)
 
 ### 示例12（设置自定义标题栏边距）
@@ -3956,53 +4045,9 @@ export struct NavigationMenu {
 该示例主要演示Navigation和NavDestination如何设置自定义标题栏边距，如何通过TextModifier修改主副标题文本样式。
 
 ```ts
+// Index.ets
 import { LengthMetrics } from '@kit.ArkUI';
-import { TextModifier } from '@ohos.arkui.modifier';
-
-class MainTitleTextModifier extends TextModifier {
-  useStyle1: boolean = true;
-
-  applyNormalAttribute(instance: TextModifier): void {
-    if (this.useStyle1) {
-      console.info(`testTag mainTitle use style1`);
-      instance.fontColor('#FFFFC000');
-      instance.fontSize(35);
-      instance.fontWeight(FontWeight.Bolder);
-      instance.fontStyle(FontStyle.Normal);
-      instance.textShadow({ radius: 5, offsetX: 9 });
-    } else {
-      console.info(`testTag mainTitle use style2`);
-      instance.fontColor('#FF23A98D');
-      instance.fontSize(20);
-      instance.heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST);
-      instance.fontWeight(FontWeight.Lighter);
-      instance.fontStyle(FontStyle.Italic);
-      instance.textShadow({ radius: 3, offsetX: 3 });
-    }
-  }
-}
-
-class SubTitleTextModifier extends TextModifier {
-  useStyle1: boolean = true;
-
-  applyNormalAttribute(instance: TextModifier): void {
-    if (this.useStyle1) {
-      console.info(`testTag subTitle use style1`);
-      instance.fontColor('#FFFFC000');
-      instance.fontSize(15);
-      instance.fontWeight(FontWeight.Bolder);
-      instance.fontStyle(FontStyle.Normal);
-      instance.textShadow({ radius: 5, offsetX: 9 });
-    } else {
-      console.info(`testTag subTitle use style2`);
-      instance.fontColor('#FF23A98D');
-      instance.fontSize(10);
-      instance.fontWeight(FontWeight.Lighter);
-      instance.fontStyle(FontStyle.Italic);
-      instance.textShadow({ radius: 3, offsetX: 3 });
-    }
-  }
-}
+import { MainTitleTextModifier, SubTitleTextModifier } from './Utils';
 
 @Entry
 @Component
@@ -4018,13 +4063,6 @@ struct NavigationExample {
   @State subTitleModifier: SubTitleTextModifier = new SubTitleTextModifier();
   @State applyModifier: boolean = false;
   @State useStyle1: boolean = true;
-
-  @Builder
-  myRouter(name: string, param?: Object) {
-    if (name === 'NavDestinationExample') {
-      NavDestinationExample();
-    }
-  }
 
   build() {
     Navigation(this.navPathStack) {
@@ -4088,10 +4126,18 @@ struct NavigationExample {
         paddingStart: this.paddingStart,
         paddingEnd: this.paddingEnd
       })
-    .navDestination(this.myRouter)
   }
 }
+```
+```ts
+// PageOne.ets
+import { LengthMetrics } from '@kit.ArkUI';
+import { MainTitleTextModifier, SubTitleTextModifier } from './Utils';
 
+@Builder
+export function myRouter(name: string, param?: Object) {
+  NavDestinationExample();
+}
 @Component
 export struct NavDestinationExample {
   @State menuItems: Array<NavigationMenuItem> = [
@@ -4172,6 +4218,75 @@ export struct NavDestinationExample {
   }
 }
 ```
+```ts
+// Utils.ets
+import { TextModifier } from '@kit.ArkUI';
+
+export class MainTitleTextModifier extends TextModifier {
+  useStyle1: boolean = true;
+
+  applyNormalAttribute(instance: TextModifier): void {
+    if (this.useStyle1) {
+      console.info(`testTag mainTitle use style1`);
+      instance.fontColor('#FFFFC000');
+      instance.fontSize(35);
+      instance.fontWeight(FontWeight.Bolder);
+      instance.fontStyle(FontStyle.Normal);
+      instance.textShadow({ radius: 5, offsetX: 9 });
+    } else {
+      console.info(`testTag mainTitle use style2`);
+      instance.fontColor('#FF23A98D');
+      instance.fontSize(20);
+      instance.heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST);
+      instance.fontWeight(FontWeight.Lighter);
+      instance.fontStyle(FontStyle.Italic);
+      instance.textShadow({ radius: 3, offsetX: 3 });
+    }
+  }
+}
+
+export class SubTitleTextModifier extends TextModifier {
+  useStyle1: boolean = true;
+
+  applyNormalAttribute(instance: TextModifier): void {
+    if (this.useStyle1) {
+      console.info(`testTag subTitle use style1`);
+      instance.fontColor('#FFFFC000');
+      instance.fontSize(15);
+      instance.fontWeight(FontWeight.Bolder);
+      instance.fontStyle(FontStyle.Normal);
+      instance.textShadow({ radius: 5, offsetX: 9 });
+    } else {
+      console.info(`testTag subTitle use style2`);
+      instance.fontColor('#FF23A98D');
+      instance.fontSize(10);
+      instance.fontWeight(FontWeight.Lighter);
+      instance.fontStyle(FontStyle.Italic);
+      instance.textShadow({ radius: 3, offsetX: 3 });
+    }
+  }
+}
+```
+
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置"routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
+
+```json
+{
+  "routerMap": [
+    {
+      "name": "NavDestinationExample",
+      "pageSourceFile": "src/main/ets/pages/PageOne.ets",
+      "buildFunction": "myRouter",
+      "data": {
+        "description": "this is pageOne"
+      }
+    }
+  ]
+}
+```
+
+![navigation_symbol.gif](figures/navigation_symbol.gif)
+
 ![titlebarPaddingAndModifier.gif](figures/titlebarPaddingAndModifier.gif)
 
 ### 示例13（自定义转场动画）
@@ -4397,7 +4512,7 @@ export class CustomTransition {
   }
 }
 ```
-在src/main目录下的工程配置文件[module.json5](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置"routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
 {
   "routerMap": [
@@ -4665,7 +4780,7 @@ struct Index {
   }
 }
 ```
-在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置 "routerMap": "$profile:router_map"。
+在src/main目录下的[module.json5配置文件](../../../quick-start/module-configuration-file.md)中的module字段里配置"routerMap": "$profile:router_map"，并在src/main/resources/base/profile目录下新增router_map.json。router_map.json示例如下。
 ```json
 // src/main/resources/base/profile/router_map.json
 {

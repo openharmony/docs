@@ -20,7 +20,7 @@
 
 **相关模块：** [ArkUI_NativeModule](capi-arkui-nativemodule.md)
 
-**相关示例：** <!--PR1-->[native_node_napi](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NativeNodeNapi/native_node_napi)<!--PR1End-->
+**相关示例：** <!--PR1-->[native_node_napi](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/NativeNodeNapi/native_node_napi)<!--PR1End-->
 
 ## 汇总
 
