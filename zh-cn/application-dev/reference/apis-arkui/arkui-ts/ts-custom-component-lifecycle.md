@@ -174,11 +174,11 @@ export class routerParam {
 @Component
 struct Index {
   aboutToAppear(): void {
-    console.log('onNewParam', 'Index aboutToAppear');
+    console.info('onNewParam', 'Index aboutToAppear');
   }
 
   onNewParam(param: ESObject) {
-    console.log('onNewParam', 'Index onNewParam, param: ' + JSON.stringify(param));
+    console.info('onNewParam', 'Index onNewParam, param: ' + JSON.stringify(param));
   }
 
   build() {
@@ -215,11 +215,11 @@ import { routerParam } from './Index';
 @Component
 struct PageOne {
   aboutToAppear(): void {
-    console.log('onNewParam', 'PageOne aboutToAppear');
+    console.info('onNewParam', 'PageOne aboutToAppear');
   }
 
   onNewParam(param: ESObject) {
-    console.log('onNewParam', 'PageOne onNewParam, param: ' + JSON.stringify(param));
+    console.info('onNewParam', 'PageOne onNewParam, param: ' + JSON.stringify(param));
   }
 
   build() {
@@ -352,7 +352,7 @@ struct Index {
 struct ReusableV2Component {
   @Local message: string = 'Hello World';
   aboutToReuse() {
-    console.log('ReusableV2Component aboutToReuse'); // 复用时被调用
+    console.info('ReusableV2Component aboutToReuse'); // 复用时被调用
   }
   build() {
     Column() {
