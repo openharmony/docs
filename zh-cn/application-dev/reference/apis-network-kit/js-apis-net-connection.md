@@ -2191,7 +2191,7 @@ netCon.on('netAvailable', (data: connection.NetHandle) => {
   console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
-// 注册网络状态变化事件。调用on后，才能接收到此事件通知。
+// 注册网络状态变化事件。此接口要在调用on后调用。
 netCon.register((error: BusinessError) => {
   console.error(JSON.stringify(error));
 });
@@ -2231,7 +2231,7 @@ netCon.on('netBlockStatusChange', (data: connection.NetBlockStatusInfo) => {
   console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
-// 注册网络状态变化事件。调用on后，才能接收到此事件通知。
+// 注册网络状态变化事件。此接口要在调用on后调用。
 netCon.register((error: BusinessError) => {
   console.error(JSON.stringify(error));
 });
@@ -2268,12 +2268,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // 创建NetConnection对象。
 let netCon: connection.NetConnection = connection.createNetConnection();
 
-//先使用on接口订阅网络能力变化事件。
+// 先使用on接口订阅网络能力变化事件。
 netCon.on('netCapabilitiesChange', (data: connection.NetCapabilityInfo) => {
   console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
-//  注册网络状态变化事件。调用on后，才能接收到此事件通知。
+//  注册网络状态变化事件。此接口要在调用on后调用。
 netCon.register((error: BusinessError) => {
   console.error(JSON.stringify(error));
 });
@@ -2313,7 +2313,7 @@ netCon.on('netConnectionPropertiesChange', (data: connection.NetConnectionProper
   console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
-// 注册网络状态变化事件。先使用on接口注册网络状态变化事件。
+// 注册网络状态变化事件。此接口要在调用on后调用。
 netCon.register((error: BusinessError) => {
   console.error(JSON.stringify(error));
 });
@@ -2355,7 +2355,7 @@ netCon.on('netLost', (data: connection.NetHandle) => {
   console.info("Succeeded to get data: " + JSON.stringify(data));
 });
 
-// 注册网络状态变化事件。调用on后，才能接收到此事件通知。
+// 注册网络状态变化事件。此接口要在调用on后调用。
 netCon.register((error: BusinessError) => {
   console.error(JSON.stringify(error));
 });
@@ -2397,7 +2397,7 @@ netCon.on('netUnavailable', () => {
   console.info("Succeeded to get unavailable net event");
 });
 
-// 注册网络状态变化事件。调用on后，才能接收到此事件通知。
+// 注册网络状态变化事件。此接口要在调用on后调用。
 netCon.register((error: BusinessError) => {
   console.error(JSON.stringify(error));
 });
