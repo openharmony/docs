@@ -32,7 +32,7 @@
 | [int (*putDouble)(OH_VObject *valueObject, double *value, uint32_t count)](#putdouble) | 将double类型的单个参数或者数组转换为OH_VObject类型的值。 |
 | [int (*putText)(OH_VObject *valueObject, const char *value)](#puttext) | 将char *类型的字符数组转换为OH_VObject类型的值。         |
 | [int (*putTexts)(OH_VObject *valueObject, const char **value, uint32_t count)](#puttexts) | 将char *类型的字符串数组转换为OH_VObject类型的值。       |
-| [int (*destroy)(OH_VObject *valueObject)](#destroy)          | OH_VObject，并回收该对象占用的内存。                     |
+| [int (*destroy)(OH_VObject *valueObject)](#destroy)          | 销毁OH_VObject对象，并回收该对象占用的内存。                     |
 
 ## 成员函数说明
 
