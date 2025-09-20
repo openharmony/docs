@@ -1234,11 +1234,11 @@ export default class EntryAbility extends UIAbility {
       wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
         try {
           // 如果要合并通知，主类型和子类型都必须相同，combinedTaskNotification为true，continuousTaskId必须存在且合法
-          let modeList: Array<number> = [backgroundTaskManager.ContinuousTaskMode.MODE_SHARE_POSITION];
-          let subModeList: Array<number> = [backgroundTaskManager.ContinuousTaskSubmode.SUBMODE_NORMAL_NOTIFICATION];
+          let modeList: Array<number> = [backgroundTaskManager.BackgroundTaskMode.MODE_LOCATION];
+          let subModeList: Array<number> = [backgroundTaskManager.BackgroundTaskSubmode.SUBMODE_NORMAL_NOTIFICATION];
           let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
-          continuousTaskRequest.continuousTaskModes =  modeList;
-          continuousTaskRequest.continuousTaskSubmodes = subModeList;
+          continuousTaskRequest.backgroundTaskModes =  modeList;
+          continuousTaskRequest.backgroundTaskSubmodes = subModeList;
           continuousTaskRequest.wantAgent = wantAgentObj;
           continuousTaskRequest.combinedTaskNotification = false;
           continuousTaskRequest.continuousTaskId = this.continuousTaskId;
@@ -1331,11 +1331,11 @@ export default class EntryAbility extends UIAbility {
       wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
         try {
           // 必须先执行startBackgroundRunning，才能调用updateBackgroundRunning，这里假设已经申请过
-          let modeList: Array<number> = [backgroundTaskManager.ContinuousTaskMode.MODE_SHARE_POSITION];
-          let subModeList: Array<number> = [backgroundTaskManager.ContinuousTaskSubmode.SUBMODE_NORMAL_NOTIFICATION];
+          let modeList: Array<number> = [backgroundTaskManager.BackgroundTaskMode.MODE_LOCATION];
+          let subModeList: Array<number> = [backgroundTaskManager.BackgroundTaskSubmode.SUBMODE_NORMAL_NOTIFICATION];
           let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
-          continuousTaskRequest.continuousTaskModes =  modeList;
-          continuousTaskRequest.continuousTaskSubmodes = subModeList;
+          continuousTaskRequest.backgroundTaskModes =  modeList;
+          continuousTaskRequest.backgroundTaskSubmodes = subModeList;
           continuousTaskRequest.wantAgent = wantAgentObj;
           continuousTaskRequest.combinedTaskNotification = false;
           continuousTaskRequest.continuousTaskId = this.continuousTaskId; //对于更新接口，长时任务Id必须要传且为存在的id，否则更新失败
@@ -1400,18 +1400,18 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
-    continuousTaskId: number = 0;
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        try {
-            backgroundTaskManager.stopBackgroundRunning(this.context, this.continuousTaskId).then(() => {
-                console.info("Operation stopBackgroundRunning succeeded");
-            }).catch((error: BusinessError) => {
-                console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
-            });
-        } catch (error) {
-            console.error(`Operation stopBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
-        }
+  continuousTaskId: number = 0;
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    try {
+        backgroundTaskManager.stopBackgroundRunning(this.context, this.continuousTaskId).then(() => {
+            console.info("Operation stopBackgroundRunning succeeded");
+        }).catch((error: BusinessError) => {
+            console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+        });
+    } catch (error) {
+        console.error(`Operation stopBackgroundRunning failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
     }
+  }
 };
 ```
 
@@ -1599,8 +1599,8 @@ export default class EntryAbility extends UIAbility {
 
 | 名称             | 类型     | 只读   | 可选   | 说明                                       |
 | --------------- | ------ | ---- | ---- | ---------------------------------------- |
-| ContinuousTaskModes       | [ContinuousTaskMode](#continuoustaskmode21)[] | 否    | 否    | 长时任务主类型。<br/>**说明：** 主类型与子类型必须匹配。     |
-| ContinuousTaskSubmodes | [ContinuousTaskSubmode](#continuoustasksubmode21)[] | 否    | 否    | 长时任务子类型。 <br/>**说明：** 主类型与子类型必须匹配。|
+| backgroundTaskModes       | [BackgroundTaskMode](#backgroundtaskmode21)[] | 否    | 否    | 长时任务主类型。<br/>**说明：** 主类型与子类型必须匹配。     |
+| backgroundTaskSubmodes | [BackgroundTaskSubmode](#backgroundtasksubmode21)[] | 否    | 否    | 长时任务子类型。 <br/>**说明：** 主类型与子类型必须匹配。|
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 否    | 否    | 通知参数，用于指定点击长时任务通知后跳转的界面。 |
 | combinedTaskNotification | boolean   | 否    | 是    | 是否合并通知， true表示合并， false表示不合并，默认为false。 |
 | continuousTaskId | number   | 否    | 是    | 长时任务Id，默认值为-1。 <br/>**说明：** 合并通知时，此项为必填项，且必须是存在的Id。<br/>调用[updateBackgroundRunning](#backgroundtaskmanagerupdatebackgroundrunning21)接口时，此项为必填项，且必须是存在的Id。   |
@@ -1609,7 +1609,7 @@ export default class EntryAbility extends UIAbility {
 
 isModeSupported(): boolean
 
-查询当前申请的长时任务主类型是否支持。根据[ContinuousTaskMode](#continuoustaskmode21)的类型判断。
+查询当前申请的长时任务主类型是否支持。根据[BackgroundTaskMode](#backgroundtaskmode21)的类型判断。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1639,8 +1639,8 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     let isModeSupported: boolean = false; 
     let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
-    let modeList: Array<number> = [backgroundTaskManager.ContinuousTaskMode.MODE_TASK_KEEPING];
-    continuousTaskRequest.continuousTaskModes = modeList;
+    let modeList: Array<number> = [backgroundTaskManager.BackgroundTaskMode.MODE_TASK_KEEPING];
+    continuousTaskRequest.backgroundTaskModes = modeList;
     try {
       isModeSupported = continuousTaskRequest.isModeSupported();
       console.info(`Operation isModeSupported succeeded. isModeSupported is ${isModeSupported}`);
@@ -1651,7 +1651,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## ContinuousTaskMode<sup>21+</sup>
+## BackgroundTaskMode<sup>21+</sup>
 
 长时任务主类型。
 
@@ -1660,13 +1660,15 @@ export default class EntryAbility extends UIAbility {
 | 名称                     | 值  | 说明                    |
 | ------------------------ | ---- | --------------------- |
 | MODE_DATA_TRANSFER              | 1         | 数据传输。                 |
-| MODE_SHARE_POSITION             | 4         | 定位导航。                  |
-| MODE_ALLOW_BLUETOOTH_AWARE      | 5         | 蓝牙相关业务。            |
+| MODE_AUDIO_PLAYBACK             | 2         | 音视频播放。                 |
+| MODE_AUDIO_RECORDING            | 3         | 录制。                 |
+| MODE_LOCATION                   | 4         | 定位导航。                  |
+| MODE_BLUETOOTH_INTERACTION      | 5         | 蓝牙相关业务。            |
 | MODE_MULTI_DEVICE_CONNECTION    | 6         | 多设备互联。            |
+| MODE_VOIP                       | 8         | 音视频通话。            |
 | MODE_TASK_KEEPING               | 9         | 计算任务（仅对2in1设备，或者申请ACL权限的应用开放）。 |
-| MODE_AV_PLAYBACK_AND_RECORD     | 10        | 音视频播放、录制和通话。              |
 
-## ContinuousTaskSubmode<sup>21+</sup>
+## BackgroundTaskSubmode<sup>21+</sup>
 
 长时任务子类型。
 
@@ -1674,21 +1676,18 @@ export default class EntryAbility extends UIAbility {
 
 | 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
-| SUBMODE_CAR_KEY_NORMAL_NOTIFICATION     | 1    | 车钥匙类型通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_ALLOW_BLUETOOTH_AWARE。                 |
+| SUBMODE_CAR_KEY_NORMAL_NOTIFICATION     | 1    | 车钥匙类型通知。<br/>**说明：** [BackgroundTaskMode](#backgroundtaskmode21)类型必须为MODE_BLUETOOTH_INTERACTION。                 |
 | SUBMODE_NORMAL_NOTIFICATION    | 2    | 普通通知。                  |
-| SUBMODE_LIVE_VIEW_NOTIFICATION  | 3    | 实况窗通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_DATA_TRANSFER。  |
-| SUBMODE_AUDIO_PLAYBACK_NORMAL_NOTIFICATION   | 4    | 播音类型普通通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD。  |
-| SUBMODE_AVSESSION_AUDIO_PLAYBACK           | 5    | 接入播控中心[AVSession](../../media/avsession/avsession-overview.md)通知。<br/>**说明：** ContinuousTaskMode[ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD。 |
-| SUBMODE_AUDIO_RECORD_NORMAL_NOTIFICATION          | 6    | 录音类型普通通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD。 |
-| SUBMODE_SCREEN_RECORD_NORMAL_NOTIFICATION       | 7   | 录屏类型普通通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD。  |
-| SUBMODE_VOICE_CHAT_NORMAL_NOTIFICATION       | 8   | 通话类型普通通知。<br/>**说明：** [ContinuousTaskMode](#continuoustaskmode21)类型必须为MODE_AV_PLAYBACK_AND_RECORD。 |
+| SUBMODE_LIVE_VIEW_NOTIFICATION  | 3    | 实况窗通知。<br/>**说明：** [BackgroundTaskMode](#backgroundtaskmode21)类型必须为MODE_DATA_TRANSFER。  |
 
 **长时任务主类型与子类型对照表：** 
-| [长时任务主类型](#continuoustaskmode21) | [对应的长时任务子类型](#continuoustasksubmode21)  |
+| [长时任务主类型](#backgroundtaskmode21) | [对应的长时任务子类型](#backgroundtasksubmode21)  |
 | --------------------------------- | ----------------------------------- |
 | MODE_DATA_TRANSFER                | SUBMODE_LIVE_VIEW_NOTIFICATION        |
-| MODE_SHARE_POSITION               | SUBMODE_NORMAL_NOTIFICATION         |
-| MODE_ALLOW_BLUETOOTH_AWARE        | SUBMODE_NORMAL_NOTIFICATION <br/>SUBMODE_CAR_KEY_NORMAL_NOTIFICATION         |
+| MODE_AUDIO_PLAYBACK               | SUBMODE_NORMAL_NOTIFICATION         |
+| MODE_AUDIO_RECORDING              | SUBMODE_NORMAL_NOTIFICATION         |
+| MODE_LOCATION                     | SUBMODE_NORMAL_NOTIFICATION         |
+| MODE_BLUETOOTH_INTERACTION        | SUBMODE_NORMAL_NOTIFICATION <br/>SUBMODE_CAR_KEY_NORMAL_NOTIFICATION         |
 | MODE_MULTI_DEVICE_CONNECTION      | SUBMODE_NORMAL_NOTIFICATION         |
+| MODE_VOIP                         | SUBMODE_NORMAL_NOTIFICATION         |
 | MODE_TASK_KEEPING                 | SUBMODE_NORMAL_NOTIFICATION         |
-| MODE_AV_PLAYBACK_AND_RECORD       | SUBMODE_NORMAL_NOTIFICATION  <br/>SUBMODE_AUDIO_PLAYBACK_NORMAL_NOTIFICATION <br/>SUBMODE_AVSESSION_AUDIO_PLAYBACK <br/>SUBMODE_AUDIO_RECORD_NORMAL_NOTIFICATION <br/>SUBMODE_SCREEN_RECORD_NORMAL_NOTIFICATION <br/>SUBMODE_VOICE_CHAT_NORMAL_NOTIFICATION      |
