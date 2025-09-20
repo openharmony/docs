@@ -129,7 +129,7 @@
          }
 
          // 如果数据库版本不为0且和当前数据库版本不匹配，需要进行升降级操作
-         // 当数据库存在并假定版本为1时，例应用从某一版本升级到当前版本，数据库需要从1版本升级到2版本
+         // 当前数据库存在并且版本为1，数据库需要从1版本升级到2版本
          if (storeVersion === 1) {
            // version = 1：表结构：EMPLOYEE (NAME, SALARY, CODES, ADDRESS) => version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS)
            try {
@@ -142,7 +142,7 @@
            }
          }
 
-         // 当数据库存在并假定版本为2时，例应用从某一版本升级到当前版本，数据库需要从2版本升级到3版本
+         // 当前数据库存在并且版本为2，数据库需要从2版本升级到3版本
          if (storeVersion === 2) {
            // version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) => version = 3：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
            try {
@@ -201,7 +201,7 @@
      }
 
      // 如果数据库版本不为0且和当前数据库版本不匹配，需要进行升降级操作
-     // 当数据库存在并假定版本为1时，例应用从某一版本升级到当前版本，数据库需要从1版本升级到2版本
+     // 当前数据库存在并且版本为1，数据库需要从1版本升级到2版本
      if (storeVersion === 1) {
        try {
          // version = 1：表结构：EMPLOYEE (NAME, SALARY, CODES, ADDRESS) => version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS)
@@ -214,7 +214,7 @@
        }
      }
 
-     // 当数据库存在并假定版本为2时，例应用从某一版本升级到当前版本，数据库需要从2版本升级到3版本
+     // 当前数据库存在并且版本为2，数据库需要从2版本升级到3版本
      if (storeVersion === 2) {
        try {
          // version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) => version = 3：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
@@ -422,7 +422,7 @@
 
          // 使用事务对象删除数据
          await transaction.execute('DELETE FROM EMPLOYEE WHERE age = ? OR age = ?', [21, 20]);
-         console.log(`execute delete success`);
+         console.info(`execute delete success`);
 
          // 提交事务
          await transaction.commit();

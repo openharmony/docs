@@ -127,7 +127,7 @@
              return;
            }
            console.info(`The data of device:${device} has been changed.`);
-           // 获取device对应的组网内设备分分布式表名
+           // 获取device对应的分布式表名。
            const distributedTableName = await store.obtainDistributedTableName(device, 'EMPLOYEE');
            // 创建查询谓词，查询组网内设备分布式表的数据
            const predicates = new relationalStore.RdbPredicates(distributedTableName);
@@ -255,7 +255,6 @@
        try {
          // 查询组网内设备上的分布式表
          const resultSet = await store.remoteQuery(devices[0], 'EMPLOYEE', predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'CODES']);
-         console.info('Remote query success, row cout: ' + resultSet.rowCount);
          console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
        } catch (e) {
          console.error('Remote query failed, code: ' + e.code + ', message: ' + e.message);
