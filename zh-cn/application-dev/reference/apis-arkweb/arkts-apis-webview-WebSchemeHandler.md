@@ -26,7 +26,7 @@ import { webview } from '@kit.ArkWeb';
 
 onRequestStart(callback: (request: WebSchemeHandlerRequest, handler: WebResourceHandler) => boolean): void
 
-当请求开始时的回调，在该回调函数中可以决定是否拦截该请求。当回调返回false是表示不拦截此请求，此时handler失效；当回调返回true，表示拦截此请求。
+当请求开始时的回调，在该回调函数中可以决定是否拦截该请求。当回调返回false时，表示不拦截此请求，此时handler失效；当回调返回true时，表示拦截此请求。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -145,7 +145,7 @@ struct WebComponent {
 
 onRequestStop(callback: Callback\<WebSchemeHandlerRequest\>): void
 
-当请求完成时的回调，仅当前面onRequestStart中回调决定拦截此请求中触发。触发的时机有以下两点：
+当请求完成时的回调，仅当[onRequestStart](#onrequeststart12)回调决定拦截此请求时触发。触发的时机有以下两点：
 
 1.WebResourceHandler调用didFail或者didFinish。
 
