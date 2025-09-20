@@ -26,7 +26,7 @@ pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: Pick
 
 > **说明：**
 >
-> 应用在阔折叠设备上运行，如已在设备展开态时启动相机picker，当设备由展开态切换到折叠态时，相机picker将自动推至后台。
+> 当应用在阔折叠设备上运行时，如果已在设备展开态下启动相机picker，将设备由展开态切换到折叠态，相机picker被自动推至后台。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

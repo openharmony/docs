@@ -2623,8 +2623,8 @@ function setExposure(nightPhotoSession: camera.NightPhotoSession): void {
 
 | 名称     | 类型        |   只读   |   可选   | 说明       |
 | -------- | ---------- | -------- | -------- | ---------- |
-| featureType |   [SceneFeatureType](#scenefeaturetype12)   |   是     |    是    | 特性类型。 |
-| detected |   boolean   |   是     |    否    | 检测结果。true为检测到指定特性场景，false为未检测到指定特性场景。 |
+| featureType |   [SceneFeatureType](#scenefeaturetype12)   |   是     |    否    | 特性类型。 |
+| detected |   boolean   |   是     |    否    | 表示是否检测到指定特性场景。true为检测到指定特性场景，false为未检测到指定特性场景。 |
 
 ## TripodDetectionResult<sup>13+</sup>
 
@@ -2886,7 +2886,7 @@ function unprepareZoom(sessionExtendsZoom: camera.Zoom): void {
 
 | 名称     | 类型           | 只读 | 可选 | 说明         |
 | -------- | ------------- |---- | ---- | -------------|
-| min      | number        | 是  |  否  | 获取的可变焦距范围的最小值  |
+| min      | number        | 是  |  否  | 获取的可变焦距范围的最小值。  |
 | max      | number        | 是  |  否  | 获取的可变焦距范围的最大值。 |
 
 ## Beauty<sup>11+</sup>
@@ -4796,6 +4796,7 @@ function unregisterFocusStateChange(highResolutionPhotoSession: camera.HighResol
 | ------------- | -------- | ---- | ---- | ---------- |
 | status        | number   | 否   | 否   | 画中画当前的状态。0：已停止，1：已启动，2：停止中，3：启动中。|
 | sketchRatio   | number   | 否   | 否   | 画中画画面的Zoom倍率。|
+| centerPointOffset | Point | 否  | 否   | 画中画的偏移点。  |
 
 ## SlowMotionVideoSession<sup>12+</sup>
 
