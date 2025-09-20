@@ -184,7 +184,7 @@ async function enableQuickThumbnail(baseContext: common.BaseContext, photoProfil
 }
 
 function showOrSavePicture(pixelMap: image.PixelMap): void {
-  // do something.
+  // 根据业务需要添加处理逻辑。
 }
 ```
 
