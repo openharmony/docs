@@ -450,7 +450,7 @@ getRootInActiveWindow(windowId ?: number): Promise\<[AccessibilityElement](#acce
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowId | number | No | 表示查询的窗口ID。 |
+| windowId | number | 否 | 表示查询的窗口ID。 |
 
 **返回值:**
 | 类型                                 | 描述                    |
@@ -494,7 +494,7 @@ getAccessibilityWindowsSync(displayId?: number): Array\<[AccessibilityElement](#
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| displayId | number | No | 显示ID。如果未提供此参数，则表示默认displayId。 |
+| displayId | number | 否 | 显示ID。如果未提供此参数，则表示默认displayId。 |
 
 **返回值:**
 
