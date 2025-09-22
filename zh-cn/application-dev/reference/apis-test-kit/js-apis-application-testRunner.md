@@ -1,5 +1,12 @@
 # @ohos.application.testRunner (TestRunner)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @li-weifeng2024; @xuzhihao666-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 TestRunner模块提供了框架测试的能力。包括准备单元测试环境、运行测试用例。
 
 如果您想实现自己的单元测试框架，您必须继承这个类并覆盖它的所有方法。
@@ -33,11 +40,12 @@ import { TestRunner } from '@kit.TestKit';
 
 export default class UserTestRunner implements TestRunner {
   onPrepare() {
-    console.log('Trigger onPrepare');
+    console.info('Trigger onPrepare');
   }
+
   onRun() {
   }
-};
+}
 ```
 
 
@@ -60,8 +68,9 @@ import { TestRunner } from '@kit.TestKit';
 export default class UserTestRunner implements TestRunner {
   onPrepare() {
   }
+
   onRun() {
-    console.log('Trigger onRun');
+    console.info('Trigger onRun');
   }
-};
+}
 ```
