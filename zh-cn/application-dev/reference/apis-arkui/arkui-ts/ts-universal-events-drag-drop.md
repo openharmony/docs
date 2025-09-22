@@ -212,6 +212,9 @@ onPreDrag(callback: Callback\<PreDragStatus>): T
 | -------- | -------- |
 | T | 返回当前组件。 |
 
+> **说明：**
+>- 从API version 20开始，该接口支持在[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)中调用。
+
 ## onDragSpringLoading<sup>20+</sup>
 
 onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configuration?: DragSpringLoadingConfiguration): T
