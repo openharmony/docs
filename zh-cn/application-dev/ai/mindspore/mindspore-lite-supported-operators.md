@@ -13,7 +13,7 @@
 >
 > - 以下所有算子，均不支持int64类型输入。
 
-| MindSpore Lite算子名称 | 算子功能                                                     | 对应ONNX算子名称                                             | 说明                                                         |
+| MindSpore Lite算子名称 | 算子功能                                                     | 对应ONNX算子名称                                             | 算子规格                                                     |
 | ---------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Abs                    | 逐元素计算绝对值                                             | Abs                                                          | 不支持uint8类型。不支持输入张量量化参数为空。                |
 | Activation             | 激活函数                                                     | Celu<br/>Clip<br/>Elu<br/>Gelu<br/>HSigmoid<br/>LeakyRelu<br/>PRelu<br/>Relu<br/>Sigmoid<br/>SoftMax<br/>SoftPlus<br/>Tanh | -                                                            |
@@ -54,7 +54,7 @@
 | MulFusion              | 逐元素乘法                                                   | Mul                                                          | -                                                            |
 | Neg                    | 逐元素求负数                                                 | Neg                                                          | -                                                            |
 | PadFusion              | 将输入张量加上指定的 padding，使其达到指定的大小             | Pad                                                          | 不支持int32类型。                                            |
-| PowFusion              | 逐元素求幂                                                   | Pow                                                          | -                                                            |
+| PowFusion              | 逐元素求幂                                                   | Pow                                                          | 仅支持指数为单个常数。                                       |
 | PReLUFusion            | PRelu激活函数                                                | PRelu                                                        | -                                                            |
 | Range                  | 生成某个区间内的元素                                         | Range                                                        | -                                                            |
 | Reciprocal             | 返回倒数                                                     | Reciprocal                                                   | -                                                            |
