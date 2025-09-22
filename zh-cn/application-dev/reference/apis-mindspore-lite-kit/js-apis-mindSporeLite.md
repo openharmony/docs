@@ -464,8 +464,6 @@ if (allDevices == null) {
 
 定义运行环境的配置信息。
 
-### 属性
-
 **系统能力：** SystemCapability.AI.MindSporeLite
 
 
@@ -485,8 +483,6 @@ context.target = ['cpu','nnrt'];
 ## CpuDevice
 
 CPU后端设备选项。
-
-### 属性
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
@@ -527,8 +523,6 @@ context.cpu.threadAffinityCoreList = [0, 1, 2];
 
 Neural Network Runtime表示神经网络运行时，简称NNRt。作为中间桥梁，连通上层 AI 推理框架和底层加速芯片，实现 AI 模型的跨芯片推理计算。MindSpore Lite 可配置NNRt后端。
 
-### 属性
-
 **系统能力：** SystemCapability.AI.MindSporeLite
 
 | 名称                          | 类型                                | 只读 | 可选 | 说明                     |
@@ -568,8 +562,6 @@ NNRt推理任务优先级枚举。
 ## Extension<sup>12+</sup>
 
 定义NNRt设备的扩展信息。
-
-### 属性
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
@@ -690,8 +682,6 @@ NNRt设备类型枚举。
 ## TrainCfg<sup>12+</sup>
 
 端侧训练相关参数的配置文件。
-
-### 属性
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
