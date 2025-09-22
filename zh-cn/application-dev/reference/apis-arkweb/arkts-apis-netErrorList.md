@@ -81,7 +81,7 @@ ArkWeb的网络协议栈错误列表
 |ERR_SOCKS_CONNECTION_FAILED | -120 |  无法为目标主机建立与 SOCKS 代理服务器的连接。    |
 |ERR_SOCKS_CONNECTION_HOST_UNREACHABLE | -121 | 域名不可达。 |
 |ERR_ALPN_NEGOTIATION_FAILED | -122 | 协商备用协议的请求失败。|
-|ERR_SSL_NO_RENEGOTIATION | -123 | 对方发送了SSL no_regregation警报消息。|
+|ERR_SSL_NO_RENEGOTIATION | -123 | 对方发送了SSL no_renegotiation警报消息。|
 |ERR_WINSOCK_UNEXPECTED_WRITTEN_BYTES | -124 | Winsock有时会报告写入的数据多于传递的数据。这可能是由于LSP损坏。|
 |ERR_SSL_DECOMPRESSION_FAILURE_ALERT | -125 | SSL对等端向本端发送了致命的解压失败警报。当对等方错误地认为它支持DEFLATE压缩时，通常会发生这种情况。|
 |ERR_SSL_BAD_RECORD_MAC_ALERT | -126 | SSL对等端向本端发送了致命的bad_record_mac警报。一个对DELEGATE支持有问题的服务器可能发生这个情况。|
