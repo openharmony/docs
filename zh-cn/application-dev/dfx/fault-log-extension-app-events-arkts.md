@@ -2,8 +2,8 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @rr_cn-->
-<!--Designer: @peterhuangyu-->
+<!--Owner: @chenshi51-->
+<!--Designer: @Maplestory91-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @foryourself-->
 
@@ -11,7 +11,7 @@
 
 ## 约束与限制
 
-- FaultLogExtensionAbility被拉起后只有很短的时间完成故障处理，建议处理时间不要超过10秒。超时没有处理完成可以在[onDisconnect](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-FaultLogExtensionAbility.md#ondisconnect)中保存状态。
+- FaultLogExtensionAbility被拉起后只有很短的时间完成故障处理，建议处理时间不要超过10秒。超时没有处理完成可以在[onDisconnect](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-FaultLogExtensionAbility.md#onDisconnect)中保存状态。
 
 - 从开机或上次拉起FaultLogExtensionAbility后，应用首次触发崩溃或冻屏开始计时。在拉起FaultLogExtensionAbility前反复触发崩溃或冻屏事件均不会重新计时。
 
@@ -31,8 +31,8 @@ API接口使用说明，包括参数使用限制和具体取值范围。请参�
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| [onConnect(): void](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-FaultLogExtensionAbility.md#onconnect) | 生命周期回调函数，系统连接FaultLogExtensionAbility时触发。 |
-| [onDisConnect(): void](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-FaultLogExtensionAbility.md#ondisconnect) | 生命周期回调函数，系统断开FaultLogExtensionAbility时触发。 |
+| [onConnect(): void](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-FaultLogExtensionAbility.md#onConnect) | 生命周期回调函数，系统连接FaultLogExtensionAbility时触发。 |
+| [onDisconnect(): void](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-FaultLogExtensionAbility.md#onDisconnect) | 生命周期回调函数，系统断开FaultLogExtensionAbility时触发。 |
 | [onFaultReportReady(): void](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-FaultLogExtensionAbility.md#onfaultreportready) | 生命周期回调函数，系统准备好故障信息后，回调该函数通知ability进行处理。回调函数中的业务逻辑建议不超过10s。|
 
 ## 事件订阅开发指导
