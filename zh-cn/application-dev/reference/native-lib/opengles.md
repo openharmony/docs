@@ -421,17 +421,17 @@ Column() {
 ```typescript
 class MyXComponentController extends XComponentController {
     onSurfaceCreated(surfaceId: string): void {
-        console.log(`onSurfaceCreated surfaceId: ${surfaceId}`);
+        console.info(`onSurfaceCreated surfaceId: ${surfaceId}`);
         nativeRender.SetSurfaceId(BigInt(surfaceId));
         // 之后会使用 surfaceId 关联 native window
     }
 
     onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
-        console.log(`onSurfaceChanged surfaceId: ${surfaceId}`);
+        console.info(`onSurfaceChanged surfaceId: ${surfaceId}`);
     }
     
     onSurfaceDestroyed(surfaceId: string): void {
-        console.log(`onSurfaceDestroyed surfaceId: ${surfaceId}`);
+        console.info(`onSurfaceDestroyed surfaceId: ${surfaceId}`);
     }
 }
 ```
