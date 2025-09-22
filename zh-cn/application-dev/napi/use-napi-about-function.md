@@ -76,6 +76,7 @@ ArkTS 侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 function summation(arr: Array<number>) {
   let sum: number = 0;
   for (let i = 0; i < arr.length; i++) {

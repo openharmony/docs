@@ -80,6 +80,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 try {
   class Obj {
     data: number = 0
@@ -143,6 +144,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 try {
   class Obj {
     data: number = 0
@@ -197,6 +199,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 try {
   class Obj {
     data: number = 0
@@ -255,6 +258,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 try {
   class Obj {
     data: number = 0
@@ -323,6 +327,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 class Obj {
   first: number = 0;
 }
@@ -586,6 +591,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 interface NestedObj {
   nestedStr: string;
   nestedNum: number;
@@ -718,6 +724,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 // 定义method类型的属性
 hilog.info(0x0000, 'testTag', 'Test Node-API define_method_properties:%{public}d', testNapi.defineMethodProperties()
   .defineMethodPropertiesExample());
@@ -776,6 +783,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 try {
   class Obj {
     data: number = 0
