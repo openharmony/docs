@@ -9,23 +9,19 @@
 ## 配置文件示例
 
 通过一个示例，整体了解module.json5配置文件。
-<!--RP1-->
 ```json
 {
   "module": {
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
-    "srcEntry": "./ets/entryability/EntryAbility.ets",
     "mainElement": "EntryAbility",
     "deviceTypes": [
-      "default",
+      "tv",
       "tablet"
     ],
     "deliveryWithInstall": true,
-    "installationFree": false,
     "pages": "$profile:main_pages",
-    "virtualMachine": "ark",
     "appStartup": "$profile:app_startup_config",
     "metadata": [
       {
@@ -70,7 +66,7 @@
         "reason": "$string:reason",
         "usedScene": {
           "abilities": [
-            "FormAbility"
+            "EntryAbility"
           ],
           "when": "inuse"
         }
@@ -98,7 +94,6 @@
   }
 }
 ```
-<!--RP1End-->
 
 ## 配置文件标签
 
@@ -160,8 +155,8 @@ module.json5配置文件包含以下标签。
 | 智慧屏 | tv | - |
 | 智能手表 | wearable | 系统能力较丰富的手表，具备电话功能。 |
 | 车机 | car | - |
-| PC/2in1 | 2in1 | 即PC设备，主要交互方式以多窗口、多任务及键盘鼠标操作为主，充分发挥设备的生产力属性。在OpenHarmony文档中，所有“2in1”均代表“PC/2in1”。|
-| 默认设备 | default | 支持使用所有系统能力的设备。 |
+| PC/2in1 | 2in1 | 即PC设备，主要交互方式以多窗口、多任务及键盘鼠标操作为主，充分发挥设备的生产力属性。所有“2in1”均代表“PC/2in1”。|
+| 默认设备 | default | 默认设备类型，详情参考[标准系统开发板](../../device-dev/dev-board-on-the-master.md#标准系统开发板)。 |
 <!--RP2End-->
 
 deviceTypes示例：
@@ -296,7 +291,6 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 
 abilities示例：
 
-<!--RP3-->
 ```json
 {
   "abilities": [{
@@ -318,7 +312,6 @@ abilities示例：
     "backgroundModes": [
       "dataTransfer"
     ],
-    "startWindow": "$profile:start_window",
     "startWindowIcon": "$media:icon",
     "startWindowBackground": "$color:red",
     "removeMissionAfterTerminate": true,
@@ -331,8 +324,6 @@ abilities示例：
     "maxWindowHeight": 300,
     "minWindowHeight": 200,
     "excludeFromMissions": false,
-    "unclearableMission": false,
-    "excludeFromDock": false,
     "preferMultiWindowOrientation": "default",
     "isolationProcess": false,
     "continueType": [
@@ -347,7 +338,6 @@ abilities示例：
   }]
 }
 ```
-<!--RP3End-->
 
 ## skills标签
 
