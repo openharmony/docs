@@ -27,14 +27,14 @@
    ```ts
    let playerHandle: media.AVPlayer;
    async function initPlayer() {
-    playerHandle = await media.createAVPlayer();
-    }
-    initPlayer();
-    playerHandle.on('mediaKeySystemInfoUpdate', async (mediaKeySystemInfo: drm.MediaKeySystemInfo[]) => {
-    console.info('player has received drmInfo signal: ' + JSON.stringify(mediaKeySystemInfo))
-     // 处理DRM信息。
-     // 设置解密session。
+   playerHandle = await media.createAVPlayer();
+   playerHandle.on('mediaKeySystemInfoUpdate', async (mediaKeySystemInfo: drm.MediaKeySystemInfo[]) => {
+   console.info('player has received drmInfo signal: ' + JSON.stringify(mediaKeySystemInfo))
+   // 处理DRM信息。
+   // 设置解密session。
    })
+   }
+   initPlayer();
    ```
 
 4. 调用[createMediaKeySystem](../../reference/apis-drm-kit/arkts-apis-drm-f.md#drmcreatemediakeysystem)和[createMediaKeySession](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySystem.md#createmediakeysession)根据DRM信息中的uuid创建MediaKeySystem和MediaKeySession实例。
