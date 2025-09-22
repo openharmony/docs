@@ -181,6 +181,6 @@ rawheap文件的大小和生成耗时与当前ArkTS堆内存大小及存活对�
 [ERROR] Initialize              open file failed
 ```
 **原因**<br>
-定的生成文件路径没有写入权限。<br>
+指定的生成文件路径没有写入权限。<br>
 **解决措施**<br>
 更改到有写权限的路径可以解决。

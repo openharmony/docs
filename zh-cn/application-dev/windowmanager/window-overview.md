@@ -58,6 +58,8 @@ OpenHarmony的窗口模块将窗口界面分为系统窗口、应用窗口两种
 
 ![windowMode](figures/windowMode.png)
 
+针对窗口模式的适配开发指导，具体可参考[窗口模式最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-multi-device-window-mode)。
+
 
 ## 实现原理
 
@@ -115,7 +117,7 @@ Stage模型下主窗口的生命周期状态包括切到前台（SHOWN）、可�
 如果需要感知应用主窗口生命周期变化，开发者可以使用下述注册监听接口来监听应用主窗口的生命周期变化。
 
 - API version 20之前，通过调用[on('windowStageEvent')](../reference/apis-arkui/arkts-apis-window-WindowStage.md#onwindowstageevent9)注册WindowStage生命周期变化的监听，通过调用[off('windowStageEvent')](../reference/apis-arkui/arkts-apis-window-WindowStage.md#offwindowstageevent9)注销WindowStage生命周期变化的监听。本接口无法保证生命周期状态切换间的顺序，对于状态间的顺序有要求的情况下不建议使用。
-- API version 20开始，通过调用[on('windowStageLifecycleEvent')](../reference/apis-arkui/arkts-apis-window-WindowStage.md#onwindowstagelifecycleevent20)注册WindowStage生命周期变化的监听，通过调用接口[off('windowStageLifecycleEvent')](../reference/apis-arkui/arkts-apis-window-WindowStage.md#offwindowstagelifecycleevent20)注销WindowStage新生命周期变化的监听。本接口不提供WindowStage的获焦失焦状态监听，对于WindowStage获焦失焦状态有监听需求的情况下，推荐使用[on('windowEvent')](../reference/apis-arkui/arkts-apis-window-Window.md#onwindowevent10)， 对生命周期状态间的顺序有要求的情况下建议使用本接口。
+- API version 20开始，通过调用[on('windowStageLifecycleEvent')](../reference/apis-arkui/arkts-apis-window-WindowStage.md#onwindowstagelifecycleevent20)注册WindowStage生命周期变化的监听，通过调用接口[off('windowStageLifecycleEvent')](../reference/apis-arkui/arkts-apis-window-WindowStage.md#offwindowstagelifecycleevent20)注销WindowStage生命周期变化的监听。本接口不提供WindowStage的获焦失焦状态监听，对于WindowStage获焦失焦状态有监听需求的情况下，推荐使用[on('windowEvent')](../reference/apis-arkui/arkts-apis-window-Window.md#onwindowevent10)， 对生命周期状态间的顺序有要求的情况下建议使用本接口。
 
 ### 不同设备生命周期的差异化行为
 
@@ -139,6 +141,4 @@ Stage模型下主窗口的生命周期状态包括切到前台（SHOWN）、可�
 
 -  在FA模型下，不支持系统窗口的相关开发。
 
--  应用主窗口与子窗口存在大小限制，宽度范围：[320, 2560]，高度范围：[240, 2560]，单位为vp。
-
--  系统窗口存在大小限制，宽度范围：(0, 2560]，高度范围：(0, 2560]，单位为vp。
+-  窗口存在大小限制[WindowLimits](../reference/apis-arkui/arkts-apis-window-i.md#windowlimits11)，该限制由产品配置决定。未调用[setWindowLimits](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowlimits11)配置过WindowLimits时，使用[getWindowLimits](../reference/apis-arkui/arkts-apis-window-Window.md#getwindowlimits11)可获取系统限制，单位为px。

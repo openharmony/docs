@@ -58,7 +58,7 @@ hiAppEvent.setEventConfig(hiappEvent.event.RESOURCE_OVERLIMIT, configParams);
 >
 > 在同一个应用生命周期内，可以多次调用setEventConfig，以最后一次成功调用的值为准。
 >
-> 开发者在调式以及自测试过程中，单日内触发oom次数过多，可能会遇到无法收到hiappevent回传js内存泄漏事件的情况，可以通过将系统时间往后调一天进行规避。
+> 开发者在调试以及自测试过程中，单日内触发oom次数过多，可能会遇到无法收到hiappevent回传js内存泄漏事件的情况，可以通过将系统时间往后调一天进行规避。
 
 ## params字段说明
 
@@ -83,8 +83,8 @@ hiAppEvent.setEventConfig(hiappEvent.event.RESOURCE_OVERLIMIT, configParams);
 | 取值 | 说明 |
 | -------- | -------- |
 | pss_memory | pss内存泄漏。 |
-| ion_memory | ion内存泄漏。 |
-| gpu_memory | gpu内存泄漏。 |
+| ion_memory | ion内存泄漏。<br />**说明**：从API version 20开始，支持该字段。 |
+| gpu_memory | gpu内存泄漏。<br />**说明**：从API version 20开始，支持该字段。 |
 | js_heap | js内存泄漏。 |
 | fd | 句柄泄漏。 |
 | thread | 线程泄漏。 |
@@ -96,8 +96,8 @@ hiAppEvent.setEventConfig(hiappEvent.event.RESOURCE_OVERLIMIT, configParams);
 | rss | number | （resource_type为pss_memory、ion_memory、gpu_memory专有）进程实际占用内存大小，单位：KB。 |
 | vss | number | （resource_type为pss_memory、ion_memory、gpu_memory专有）进程向系统申请的虚拟内存大小，单位：KB。 |
 | pss | number | （resource_type为pss_memory、ion_memory、gpu_memory专有）进程实际使用的物理内存大小，单位：KB。 |
-| ion | number | （resource_type为pss_memory、ion_memory、gpu_memory专有）进程实际使用的ION内存大小，单位：KB。 |
-| gpu | number | （resource_type为pss_memory、ion_memory、gpu_memory专有）进程实际使用的GPU内存大小，单位：KB。 |
+| ion | number | （resource_type为pss_memory、ion_memory、gpu_memory专有）进程实际使用的ION内存大小，单位：KB。<br />**说明**：从API version 20开始，支持该字段。 |
+| gpu | number | （resource_type为pss_memory、ion_memory、gpu_memory专有）进程实际使用的GPU内存大小，单位：KB。<br />**说明**：从API version 20开始，支持该字段。 |
 | sys_free_mem | number | （resource_type为pss_memory、ion_memory、gpu_memory专有）空闲内存大小，单位：KB。 |
 | sys_avail_mem | number | （resource_type为pss_memory、ion_memory、gpu_memory专有）可用内存大小，单位：KB。 |
 | sys_total_mem | number | （resource_type为pss_memory、ion_memory、gpu_memory专有）总内存大小，单位：KB。 |

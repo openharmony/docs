@@ -180,7 +180,7 @@ getSupportedCoordTypes(): Array&lt;string&gt;
 ```
 export default {    
   getSupportedCoordTypes() {       
-    var types = geolocation.getSupportedCoordTypes();    
+    var types = geolocation.getSupportedCoordTypes();   
   },
 }
 ```

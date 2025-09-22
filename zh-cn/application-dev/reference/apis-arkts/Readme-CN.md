@@ -34,7 +34,7 @@
     - [SendableLruCache<K, V>](arkts-apis-arkts-utils-SendableLruCache.md)
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
   - [@ohos.convertxml (xml转换JavaScript)](js-apis-convertxml.md)
-  - [@ohos.fastbuffer (线性容器FastBuffer)](js-apis-fastbuffer.md)
+  - [@ohos.fastbuffer (FastBuffer)](js-apis-fastbuffer.md)
   - [@ohos.process (获取进程相关的信息)](js-apis-process.md)
   - [@ohos.taskpool (启动任务池)](js-apis-taskpool.md)
   - [@ohos.uri (URI字符串解析)](js-apis-uri.md)

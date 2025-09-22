@@ -61,7 +61,7 @@ MDNS管理的典型场景有：
 
     // addLocalService添加本地服务。
     mdns.addLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
-      console.log(JSON.stringify(data));
+      console.info(JSON.stringify(data));
     });
     ```
 
@@ -70,7 +70,7 @@ MDNS管理的典型场景有：
      ```ts
     // resolveLocalService解析本地服务对象（非必要，根据需求使用）。
     mdns.resolveLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
-      console.log(JSON.stringify(data));
+      console.info(JSON.stringify(data));
     });
     ```
 
@@ -79,7 +79,7 @@ MDNS管理的典型场景有：
     ```ts
     // removeLocalService移除本地服务。
     mdns.removeLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
-      console.log(JSON.stringify(data));
+      console.info(JSON.stringify(data));
     });
     ```
 
@@ -112,16 +112,16 @@ MDNS管理的典型场景有：
     ```ts
     // 订阅MDNS服务发现相关状态变化。
     discoveryService.on('discoveryStart', (data: mdns.DiscoveryEventInfo) => {
-      console.log(JSON.stringify(data));
+      console.info(JSON.stringify(data));
     });
     discoveryService.on('discoveryStop', (data: mdns.DiscoveryEventInfo) => {
-      console.log(JSON.stringify(data));
+      console.info(JSON.stringify(data));
     });
     discoveryService.on('serviceFound', (data: mdns.LocalServiceInfo) => {
-      console.log(JSON.stringify(data));
+      console.info(JSON.stringify(data));
     });
     discoveryService.on('serviceLost', (data: mdns.LocalServiceInfo) => {
-      console.log(JSON.stringify(data));
+      console.info(JSON.stringify(data));
     });
     ```
 
@@ -144,16 +144,16 @@ MDNS管理的典型场景有：
     ```ts
     // 取消订阅的MDNS服务。
     discoveryService.off('discoveryStart', (data: mdns.DiscoveryEventInfo) => {
-      console.log(JSON.stringify(data));
+      console.info(JSON.stringify(data));
     });
     discoveryService.off('discoveryStop', (data: mdns.DiscoveryEventInfo) => {
-      console.log(JSON.stringify(data));
+      console.info(JSON.stringify(data));
     });
     discoveryService.off('serviceFound', (data: mdns.LocalServiceInfo) => {
-      console.log(JSON.stringify(data));
+      console.info(JSON.stringify(data));
     });
     discoveryService.off('serviceLost', (data: mdns.LocalServiceInfo) => {
-      console.log(JSON.stringify(data));
+      console.info(JSON.stringify(data));
     });
     ```
 

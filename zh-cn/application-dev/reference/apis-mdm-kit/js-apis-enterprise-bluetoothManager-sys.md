@@ -16,7 +16,7 @@
 >
 > 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-term.md#mdm应用设备管理应用)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2)后调用。
 > 
-> 当前页面仅包含本模块的系统接口，其他公开接口参见。其他公开接口参见[@ohos.enterprise.bluetoothManager](js-apis-enterprise-bluetoothManager.md)。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.enterprise.bluetoothManager](js-apis-enterprise-bluetoothManager.md)。
 
 ## 导入模块
 
@@ -76,7 +76,7 @@ let wantTemp: Want = {
 
 try {
   let isDisabled: boolean = bluetoothManager.isBluetoothDisabled(wantTemp);
-  console.info(`Succeeded in query the bluetooth is disabled or not, isDisabled : ${isDisabled}`);
+  console.info(`Succeeded in querying the bluetooth is disabled or not, isDisabled : ${isDisabled}`);
 } catch(err) {
   console.error(`Failed to query the bluetooth is disabled or not. Code: ${err.code}, message: ${err.message}`);
 };
@@ -129,7 +129,7 @@ let wantTemp: Want = {
 
 try {
   bluetoothManager.setBluetoothDisabled(wantTemp, true);
-  console.info('Succeeded in set the bluetooth disabled.');
+  console.info('Succeeded in setting the bluetooth disabled.');
 } catch(err) {
   console.error(`Failed to set the bluetooth disabled. Code: ${err.code}, message: ${err.message}`);
 };

@@ -1,4 +1,10 @@
 # Class (ProxyRule)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements a **ProxyRule** object used in [insertProxyRule](./arkts-apis-webview-ProxyConfig.md#insertproxyrule15).
 

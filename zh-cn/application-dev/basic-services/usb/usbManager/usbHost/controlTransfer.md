@@ -9,7 +9,7 @@
 
 ## 场景介绍
 
-控制传输主要用于主机（Host）和设备（Device）进行设备状态的获取和设置，进行设备属性状态的的控制。根据设备支持的端点类型支持控制传输读和写。
+控制传输主要用于主机（Host）和设备（Device）进行设备状态的获取和设置，进行设备属性状态的控制。根据设备支持的端点类型支持控制传输读和写。
 
 ## 环境准备
 
@@ -32,7 +32,7 @@
 ### 搭建环境
 
 - 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
-- 将public-SDK更新到API 16或以上<!--Del-->，更新SDK的具体操作可参见[更新指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)<!--DelEnd-->。
+- 将public-SDK更新到API 16或以上<!--Del-->，更新SDK的具体操作可参见[更新指南](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)<!--DelEnd-->。
 - PC安装HDC工具，通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互。
 - 用USB线缆将搭载OpenHarmony的设备连接到PC。
 

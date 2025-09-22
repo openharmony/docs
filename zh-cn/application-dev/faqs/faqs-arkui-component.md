@@ -1,4 +1,10 @@
 # ArkUI组件开发常见问题(ArkTS)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @piggyguy; @jiyujia926; @yangfan229-->
+<!--Designer: @piggyguy; @s10021109; @yangfan229-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
 
 
 ## 自定义弹窗能否在ts文件中定义和使用(API 9)
@@ -821,11 +827,11 @@ List组件设置layoutWeight(1)属性，将剩余空间全部分配给List组件
 
 1.进展：ArkUI-X当前已经开源，首版本已于2023-12-15正式发布，当前支持Android、iOS跨平台；另外，也在探索和试验桌面平台与Web平台的支持。
 
-2.[路线图](https://gitee.com/arkui-x/docs/blob/master/zh-cn/roadmap/ArkUI-X-roadmap-2023.md)。
+2.[路线图](https://gitcode.com/arkui-x/docs/blob/master/zh-cn/roadmap/ArkUI-X-roadmap-2023.md)。
 
 **参考链接**
 
-[ArkUI-X](https://gitee.com/arkui-x)
+[ArkUI-X](https://gitcode.com/arkui-x)
 
 ## 应用如何在自定义组件的构建流程里跟踪组件数据或者状态(API 10)
 

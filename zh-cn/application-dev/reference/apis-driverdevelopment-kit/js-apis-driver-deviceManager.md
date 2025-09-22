@@ -65,6 +65,112 @@ try {
 }
 ```
 
+## deviceManager.bindDriverWithDeviceId<sup>19+</sup>
+
+bindDriverWithDeviceId(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;RemoteDeviceDriver&gt;
+
+根据queryDevices()返回的设备信息绑定设备。使用Promise异步回调。
+
+需要调用[deviceManager.queryDevices](#devicemanagerquerydevices)获取设备信息列表。
+
+**需要权限：** ohos.permission.ACCESS_DDK_DRIVERS
+
+**系统能力：** SystemCapability.Driver.ExternalDevice
+
+**参数：**
+
+| 参数名       | 类型                        | 必填 | 说明                         |
+| ------------ | --------------------------- | ---- | ---------------------------- |
+| deviceId     | number                      | 是   | 设备ID，通过queryDevices获得。 |
+| onDisconnect | AsyncCallback&lt;number&gt; | 是   | 绑定设备断开的回调。           |
+
+**返回值：**
+
+| 类型                              | 说明                                      |
+| --------------------------------- | -----------------------------------------|
+| Promise&lt;[RemoteDeviceDriver](#remotedevicedriver11)&gt; | Promise对象，返回RemoteDeviceDriver对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[驱动错误码](errorcode-deviceManager.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 201      | The permission check failed.             |
+| 26300001  | ExternalDeviceManager service exception. |
+| 26300002  | The driver service does not allow any client to bind. |
+
+**示例：**
+
+```ts
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
+  deviceManager.bindDriverWithDeviceId(12345678, (error : BusinessError, data : number) => {
+    console.error(`Device is disconnected`);
+  }).then((data: deviceManager.RemoteDeviceDriver) => {
+    console.info(`bindDriverWithDeviceId success, Device_Id is ${data.deviceId}.
+    remote is ${data.remote != null ? data.remote.getDescriptor() : "null"}`);
+  }, (error: BusinessError) => {
+    console.error(`bindDriverWithDeviceId async fail. Code is ${error.code}, message is ${error.message}`);
+  });
+} catch (error) {
+  console.error(`bindDriverWithDeviceId fail. Code is ${error.code}, message is ${error.message}`);
+}
+```
+
+## deviceManager.unbindDriverWithDeviceId<sup>19+</sup>
+
+unbindDriverWithDeviceId(deviceId: number): Promise&lt;number&gt;
+
+解除设备绑定。使用Promise异步回调。
+
+**需要权限**：ohos.permission.ACCESS_DDK_DRIVERS
+
+**系统能力：**  SystemCapability.Driver.ExternalDevice
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                           |
+| -------- | ------ | ---- | ------------------------------ |
+| deviceId | number | 是   | 设备ID，通过[queryDevices](#devicemanagerquerydevices)获得。 |
+
+**返回值：**
+
+| 类型                  | 说明                      |
+| --------------------- | ------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回设备ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[驱动错误码](errorcode-deviceManager.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 201      | The permission check failed.             |
+| 26300001 | ExternalDeviceManager service exception. |
+| 26300003 | There is no binding relationship. |
+
+**示例：**
+
+```ts
+import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
+  deviceManager.unbindDriverWithDeviceId(12345678).then((data : number) => {
+    console.info(`unbindDriverWithDeviceId success, Device_Id is ${data}.`);
+  }, (error : BusinessError) => {
+    console.error(`unbindDriverWithDeviceId async fail. Code is ${error.code}, message is ${error.message}`);
+  });
+} catch (error) {
+  console.error(`unbindDriverWithDeviceId fail. Code is ${error.code}, message is ${error.message}`);
+}
+```
+
 ## deviceManager.bindDevice<sup>(deprecated)</sup>
 
 bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
@@ -148,7 +254,7 @@ bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 | ------------ | --------------------------- | ---- | ---------------------------- |
 | deviceId     | number                      | 是   | 设备ID，通过queryDevices获得。 |
 | onDisconnect | AsyncCallback&lt;number&gt; | 是   | 绑定设备断开的回调。           |
-| callback     | AsyncCallback&lt;RemoteDeviceDriver&gt;| 是 | 指示绑定结果，包括设备 ID 和远程对象。 |
+| callback     | AsyncCallback&lt;[RemoteDeviceDriver](#remotedevicedriver11)&gt;| 是 | 指示绑定结果，包括设备 ID 和远程对象。 |
 
 **错误码：**
 
@@ -268,7 +374,7 @@ bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): P
 
 | 类型                              | 说明                                      |
 | --------------------------------- | -----------------------------------------|
-| Promise&lt;RemoteDeviceDriver&gt; | Promise对象，返回RemoteDeviceDriver对象。 |
+| Promise&lt;[RemoteDeviceDriver](#remotedevicedriver11)&gt; | Promise对象，返回RemoteDeviceDriver对象。 |
 
 **错误码：**
 
@@ -400,111 +506,6 @@ try {
   });
 } catch (error) {
   console.error(`unbindDevice fail. Code is ${error.code}, message is ${error.message}`);
-}
-```
-## deviceManager.bindDriverWithDeviceId<sup>19+</sup>
-
-bindDriverWithDeviceId(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;RemoteDeviceDriver&gt;;
-
-根据queryDevices()返回的设备信息绑定设备。
-
-需要调用[deviceManager.queryDevices](#devicemanagerquerydevices)获取设备信息列表。
-
-**需要权限：** ohos.permission.ACCESS_DDK_DRIVERS
-
-**系统能力：** SystemCapability.Driver.ExternalDevice
-
-**参数：**
-
-| 参数名       | 类型                        | 必填 | 说明                         |
-| ------------ | --------------------------- | ---- | ---------------------------- |
-| deviceId     | number                      | 是   | 设备ID，通过queryDevices获得。 |
-| onDisconnect | AsyncCallback&lt;number&gt; | 是   | 绑定设备断开的回调。           |
-
-**返回值：**
-
-| 类型                              | 说明                                      |
-| --------------------------------- | -----------------------------------------|
-| Promise&lt;RemoteDeviceDriver&gt; | Promise对象，返回[RemoteDeviceDriver](#remotedevicedriver11)对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[驱动错误码](errorcode-deviceManager.md)。
-
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 201      | The permission check failed.             |
-| 26300001  | ExternalDeviceManager service exception. |
-| 26300002  | The driver service does not allow any client to bind. |
-
-**示例：**
-
-```ts
-import { deviceManager } from '@kit.DriverDevelopmentKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-  deviceManager.bindDriverWithDeviceId(12345678, (error : BusinessError, data : number) => {
-    console.error(`Device is disconnected`);
-  }).then((data: deviceManager.RemoteDeviceDriver) => {
-    console.info(`bindDriverWithDeviceId success, Device_Id is ${data.deviceId}.
-    remote is ${data.remote != null ? data.remote.getDescriptor() : "null"}`);
-  }, (error: BusinessError) => {
-    console.error(`bindDriverWithDeviceId async fail. Code is ${error.code}, message is ${error.message}`);
-  });
-} catch (error) {
-  console.error(`bindDriverWithDeviceId fail. Code is ${error.code}, message is ${error.message}`);
-}
-```
-
-## deviceManager.unbindDriverWithDeviceId<sup>19+</sup>
-
-unbindDriverWithDeviceId(deviceId: number): Promise&lt;number&gt;
-
-解除设备绑定。
-
-**需要权限**：ohos.permission.ACCESS_DDK_DRIVERS
-
-**系统能力：**  SystemCapability.Driver.ExternalDevice
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明                           |
-| -------- | ------ | ---- | ------------------------------ |
-| deviceId | number | 是   | 设备ID，通过queryDevices获得。 |
-
-**返回值：**
-
-| 类型                  | 说明                      |
-| --------------------- | ------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回设备ID。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[驱动错误码](errorcode-deviceManager.md)。
-
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 201      | The permission check failed.             |
-| 26300001 | ExternalDeviceManager service exception. |
-| 26300003 | There is no binding relationship. |
-
-**示例：**
-
-```ts
-import { deviceManager } from '@kit.DriverDevelopmentKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  // 12345678为示例deviceId，应用开发时可通过queryDevices查询到相应设备的deviceId作为入参
-  deviceManager.unbindDriverWithDeviceId(12345678).then((data : number) => {
-    console.info(`unbindDriverWithDeviceId success, Device_Id is ${data}.`);
-  }, (error : BusinessError) => {
-    console.error(`unbindDriverWithDeviceId async fail. Code is ${error.code}, message is ${error.message}`);
-  });
-} catch (error) {
-  console.error(`unbindDriverWithDeviceId fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
 

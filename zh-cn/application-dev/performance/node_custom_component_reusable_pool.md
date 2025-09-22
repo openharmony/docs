@@ -1,4 +1,10 @@
 # 全局自定义组件复用实现
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
 
 ## 简介
 
@@ -534,4 +540,4 @@ NodeItem继承NodeController，并实现makeNode方法，创建组件。NodePool
 
 ## 参考资料
 
-[场景示例代码](https://gitee.com/harmonyos-cases/cases/tree/master/CommonAppDevelopment/feature/perfermance/customreusablepool)
+[场景示例代码](https://gitcode.com/harmonyos-cases/cases/tree/master/CommonAppDevelopment/feature/perfermance/customreusablepool)

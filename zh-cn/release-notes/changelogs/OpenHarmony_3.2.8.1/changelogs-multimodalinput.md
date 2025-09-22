@@ -13,7 +13,7 @@
 
  - 输入监听模块：系统接口，@ohos.multimodalInput.inputMonitor.d.ts
 
- - 鼠标指针管理模块：系统接口和三方接口，@ohos.multimodalInput.pointer.d.ts
+ - 鼠标光标管理模块：系统接口和三方接口，@ohos.multimodalInput.pointer.d.ts
 
 以上模块中的异步接口变更为参数检查错误同步抛出，业务逻辑错误通过AsyncCallback或Promise的error对象抛出，同步接口不作变更。
 

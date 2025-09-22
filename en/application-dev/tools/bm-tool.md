@@ -2523,7 +2523,7 @@ Reconfigure pluginDistributionIDs in <!--RP5--> [signature certificate profile f
         "pluginDistributionIDs":"value-1,value-2,···"
     }
 }
-``` 
+```
 
 ### 9568433 The Application Does Not Have the ohos.permission.SUPPORT_PLUGIN Permission
 **Error Message**
@@ -2708,7 +2708,7 @@ The Application Binary Interface (ABI) supported by the device does not match th
 
 **Solution**
 
-1. Connect the device or simulator to DevEco Studio. For details, please refer to [Running an App/FA](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-run-device).
+1. Connect the device or Emulator to DevEco Studio. For details, please refer to [Running an App/FA](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-run-device).
 
 2. Run the hdc command on the CLI to query the list of Abis supported by the device.
 

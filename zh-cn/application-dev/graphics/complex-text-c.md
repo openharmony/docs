@@ -954,13 +954,13 @@ OH_Drawing_TypographyPaint(typography, canvas, position[0], position[1]);
 
 // 生成第二段文本，其中，文本样式和段落样式均由第一段文本拷贝而来
 // 复制文本样式
-OH_Drawing_TextStyle *textsyleCopy = OH_Drawing_CopyTextStyle(txtStyle);
+OH_Drawing_TextStyle *textStyleCopy = OH_Drawing_CopyTextStyle(txtStyle);
 // 复制段落样式
 OH_Drawing_TypographyStyle *typographyStyleCopy = OH_Drawing_CopyTypographyStyle(typoStyle);
 
 // 使用复制的样式创建段落二，后续可以观察段落一和段落二是否绘制效果一致
 OH_Drawing_TypographyCreate *handlerCopy = OH_Drawing_CreateTypographyHandler(typographyStyleCopy, fc);
-OH_Drawing_TypographyHandlerPushTextStyle(handlerCopy, textsyleCopy);
+OH_Drawing_TypographyHandlerPushTextStyle(handlerCopy, textStyleCopy);
 OH_Drawing_TypographyHandlerAddText(handlerCopy, text);
 OH_Drawing_Typography *typographyCopy = OH_Drawing_CreateTypography(handlerCopy);
 OH_Drawing_TypographyLayout(typographyCopy, layoutWidth);
@@ -977,7 +977,7 @@ OH_Drawing_DestroyTypography(typography);
 // 拷贝的段落样式也需要释放内存
 OH_Drawing_DestroyTypographyStyle(typographyStyleCopy);
 // 拷贝的文本样式也需要释放内存
-OH_Drawing_DestroyTextStyle(textsyleCopy);
+OH_Drawing_DestroyTextStyle(textStyleCopy);
 OH_Drawing_DestroyTypographyHandler(handlerCopy);
 OH_Drawing_DestroyTypography(typographyCopy);
 ```

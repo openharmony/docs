@@ -1,4 +1,10 @@
 # @ohos.data.dataShare (DataShare)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @woodenarow-->
+<!--Designer: @woodenarow; @xuelei3-->
+<!--Tester: @chenwan188; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 The **DataShare** module allows an application to manage its own data and share data with other applications on the same device.
 
@@ -76,7 +82,7 @@ Defines a struct for shared configurations.
 | ---------- | ----------------------------------------------------------- | ----| ---- | -------------- |
 | uri        | string                                                      | No| No | Unique ID of a shared configuration, fixed at the format of **"datashareproxy://{*bundleName*}/{*path*}"**, in which **bundleName** indicates the bundle name of the publisher application, and **path** can be set to any value but must be unique in the same application. The value is a string with a maximum of 255 bytes.|
 | value      | [ValueType](js-apis-data-valuesBucket.md#valuetype)         | No| Yes  | Value of a shared configuration. If not specified, the value is an empty string. The value is a string with a maximum of 4096 bytes. If this parameter is not set when the shared configuration is published for the first time, the value will be an empty string by default. If this parameter is not set when a shared configuration is updated, the value of the shared configuration will not be updated.    |
-| allowList  | string\[]                                         | No| Yes  | List of applications that can subscribe to and read shared configurations. If this parameter is left empty, the value is an empty string array. The array can contain a maximum of 256 elements. Excess elements are invalid. Each element in the array is the **appIdentifier** of an application. The maximum length of a single **appIdentifier** is 128 bytes and the excess value is invalid. If this parameter is not set when the shared configuration is published for the first time, the allowlist is empty by default. If this parameter is not set when the shared configuration is updated, the allowlist will not be updated. An empty allowlist indicates that only the publisher can access the shared configuration. |
+| allowList  | string\[]                                         | No| Yes  | List of applications that can subscribe to and read shared configurations. If this parameter is left empty, the value is an empty string array. The array can contain a maximum of 256 elements. Excess elements are invalid. Each element in the array is the [appIdentifier](../../quick-start/common_problem_of_application.md#what-is-appidentifier) of an application. The maximum length of a single **appIdentifier** is 128 bytes and the excess value is invalid. If this parameter is not set when the shared configuration is published for the first time, the allowlist is empty by default. If this parameter is not set when the shared configuration is updated, the allowlist will not be updated. An empty allowlist indicates that only the publisher can access the shared configuration.|
 
 ## DataProxyChangeInfo<sup>20+</sup>
 
@@ -268,7 +274,7 @@ results.forEach((result) => {
 
 publish(data: ProxyData[], config: DataProxyConfig): Promise&lt;DataProxyResult[]&gt;
 
-Publishes shared configuration items. After the publish, the publisher and the applications in the allowlist can access these items. If the URI to be published already exists, the corresponding shared configuration item is updated. If any URI in the configuration item to be published exceeds the maximum length or fails the format verification, the current publish operation fails. Only the publisher can update shared configuration items. Each application supports a maximum of 32 shared configurations.
+Publishes shared configuration items. After shared configuration items are published, the publisher and the applications in the allowlist can access these items. If the URI to be published already exists, the corresponding shared configuration item is updated. If any URI in the configuration item to be published exceeds the maximum length or fails the format verification, the current publish operation fails. Only the publisher can update shared configuration items. Each application supports a maximum of 32 shared configurations.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 

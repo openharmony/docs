@@ -4,7 +4,7 @@
 <!--Owner: @yp99ustc; @aohui; @zourongchun-->
 <!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 ## 使用场景
 
@@ -63,6 +63,6 @@ Web组件为开发者提供了丰富的控制Web页面能力。包括：
 
 针对Web组件开发，有以下相关实例可供参考：
 
-- [Web组件的使用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/WebCookie)
+- [Web组件的使用（ArkTS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/WebCookie)
 
-- [Web组件抽奖案例（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/WebComponent)
+- [Web组件抽奖案例（ArkTS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/WebComponent)

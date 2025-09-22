@@ -26,7 +26,7 @@ setOnClick(callback: Callback\<ClickEvent> | undefined): void
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [Callback](./ts-types.md#callback12)<[ClickEvent](./ts-universal-events-click.md#clickevent对象说明)> \| undefined | 是   | 点击事件的回调函数。 |
+| callback  | [Callback](./ts-types.md#callback12)<[ClickEvent](./ts-universal-events-click.md#clickevent)> \| undefined | 是   | 点击事件的回调函数。 |
 
 ### setOnTouch
 

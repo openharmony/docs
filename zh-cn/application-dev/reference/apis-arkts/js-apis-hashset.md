@@ -349,7 +349,7 @@ hashSet.forEach((value: string, key: string): void => {
 // value:sparrow key:sparrow
 ```
 ```ts
-// 不建议在forEach中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+// 不建议在forEach中使用add、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
 let hashSet = new HashSet<string>();
 for(let i = 0; i < 10; i++) {
   hashSet.add("sparrow" + i);

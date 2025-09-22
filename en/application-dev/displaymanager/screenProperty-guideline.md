@@ -1,4 +1,10 @@
 # Using Display to Obtain Display Properties and Listen for Status Changes (ArkTS)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## When to Use
 
@@ -17,7 +23,7 @@ The following table lists the common APIs related to display properties. For det
 | API                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | getAllDisplays(): Promise<Array\<Display>>                   | Obtains all display objects. This API uses a promise to return the result.            |
-| getDefaultDisplaySync(): Display                             | Obtains the default display object. This API uses an asynchronous callback to return the result.                                 |
+| getDefaultDisplaySync(): Display                             | Obtains the default Display object.                                 |
 | getDisplayByIdSync(displayId: number): Display               | Obtains a display object based on the display ID.                        |
 | on(type: 'add'\|'remove'\|'change', callback: Callback\<number>): void | Subscribes to display change events.                                    |
 | off(type: 'add'\|'remove'\|'change', callback?: Callback\<number>): void | Unsubscribes from display change events.                                    |
@@ -43,7 +49,11 @@ The following example demonstrates how to use **getDefaultDisplaySync()** to obt
 import { display } from '@kit.ArkUI';
 
 let displayClass: display.Display | null = null;
-displayClass = display.getDefaultDisplaySync();
+try {
+  displayClass = display.getDefaultDisplaySync();
+} catch (exception) {
+  console.error(`Failed to get default display. Code: ${exception.code}, message: ${exception.message}`);
+}
 // Ensure that the display object, displayClass in this example, is obtained before the operations of querying the display properties and listening for events and status changes.
 ```
 
@@ -55,17 +65,20 @@ displayClass = display.getDefaultDisplaySync();
    import { display } from '@kit.ArkUI';
    
    let displayClass: display.Display | null = null;
-   displayClass = display.getDefaultDisplaySync();
-   
-   // Obtain the display ID.
-   console.info(`The screen Id is ${displayClass.id}.`);
-   // Obtain the refresh rate.
-   console.info(`The screen is ${displayClass.refreshRate}.`);
-   // Obtain the display width.
-   console.info(`The screen width is ${displayClass.width}.`);
-   // Obtain the display height.
-   console.info(`The screen height is ${displayClass.height}.`);
+   try {
+    displayClass = display.getDefaultDisplaySync();
+    // Obtain the display ID.
+    console.info(`The screen Id is ${displayClass.id}.`);
+    // Obtain the refresh rate.
+    console.info(`The screen is ${displayClass.refreshRate}.`);
+    // Obtain the display width.
+    console.info(`The screen width is ${displayClass.width}.`);
+    // Obtain the display height.
+    console.info(`The screen height is ${displayClass.height}.`);
    // ...
+   } catch (exception) {
+    console.error(`Failed to get default display. Code: ${exception.code}, message: ${exception.message}`);
+   }
    ```
 
 2. To enhance UI layout design, you can use **getCutoutInfo()** to obtain information about unusable areas of the display, including punch hole, notch, and curved area of a waterfall display. You can also use **getAvailableArea()** to obtain the available area of the display.
@@ -106,10 +119,10 @@ displayClass = display.getDefaultDisplaySync();
    // The following uses the addition event as an example.
    display.on("add", callback1);
    
-   // Unregister all the callbacks that have been registered through on().
-   display.off("add");
    // Unregister a single callback.
    display.off('add', callback1);
+   // Unregister all the callbacks that have been registered through on().
+   display.off("add");
    ```
 
 2. To listen for screen capture, casting, or recording status changes, call **display.on('captureStatusChange')**. To end the listening, call **display.off('captureStatusChange')**.
@@ -150,7 +163,7 @@ displayClass = display.getDefaultDisplaySync();
 
 1. Call **display.isFoldable()** to check whether the device is foldable.
 
-   ```
+   ```ts
    import { display } from '@kit.ArkUI';
    
    let ret: boolean = false;

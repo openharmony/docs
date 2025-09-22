@@ -19,7 +19,9 @@
 import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 ```
 
-## PrintExtensionAbility.onCreate
+## PrintExtensionAbility
+
+### onCreate
 
 onCreate(want: Want): void
 
@@ -30,23 +32,23 @@ onCreate(want: Want): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| want | Want | 是 | 表示调用打印页面需要参数 |
+| want | [Want](../apis-ability-kit/js-apis-application-want.md#want) | 是 | 表示调用打印页面需要参数。 |
 
 **示例：**
 
 ```ts
 import { PrintExtensionAbility } from '@kit.BasicServicesKit';
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onCreate(want: Want): void {
-        console.log('onCreate');
+        console.info('onCreate');
         // ...
     }
 }
 ```
 
-## PrintExtensionAbility.onStartDiscoverPrinter
+### onStartDiscoverPrinter
 
 onStartDiscoverPrinter(): void
 
@@ -61,13 +63,13 @@ import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onStartDiscoverPrinter(): void {
-        console.log('onStartDiscoverPrinter enter');
+        console.info('onStartDiscoverPrinter enter');
         // ...
     }
 }
 ```
 
-## PrintExtensionAbility.onStopDiscoverPrinter
+### onStopDiscoverPrinter
 
 onStopDiscoverPrinter(): void
 
@@ -82,13 +84,13 @@ import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onStopDiscoverPrinter(): void {
-        console.log('onStopDiscoverPrinter enter');
+        console.info('onStopDiscoverPrinter enter');
         // ...
     }
 }
 ```
 
-## PrintExtensionAbility.onConnectPrinter
+### onConnectPrinter
 
 onConnectPrinter(printerId: number): void
 
@@ -99,7 +101,7 @@ onConnectPrinter(printerId: number): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printerId | number | 是 | 表示打印机ID |
+| printerId | number | 是 | 表示打印机ID。 |
 
 **示例：**
 
@@ -108,13 +110,13 @@ import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onConnectPrinter(printerId: number): void {
-        console.log('onConnectPrinter enter');
+        console.info('onConnectPrinter enter');
         // ...
     }
 }
 ```
 
-## PrintExtensionAbility.onDisconnectPrinter
+### onDisconnectPrinter
 
 onDisconnectPrinter(printerId: number): void
 
@@ -125,7 +127,7 @@ onDisconnectPrinter(printerId: number): void
 **参数：**
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| printerId | number | 是 | 表示打印机ID |
+| printerId | number | 是 | 表示打印机ID。 |
 
 **示例：**
 
@@ -134,13 +136,13 @@ import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onDisconnectPrinter(printerId: number): void {
-        console.log('onDisconnectPrinter enter');
+        console.info('onDisconnectPrinter enter');
         // ...
     }
 }
 ```
 
-## PrintExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void
 
@@ -155,7 +157,7 @@ import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onDestroy(): void {
-        console.log('onDestroy');
+        console.info('onDestroy');
     }
 }
 ```

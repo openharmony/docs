@@ -63,9 +63,9 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo,callback:As
 import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
 
-class Tmp{
-  event:DragEvent|undefined = undefined
-  extraParams:string = ''
+class DragInfo {
+  event: DragEvent | undefined = undefined;
+  extraParams: string = '';
 }
 
 @Entry
@@ -101,7 +101,7 @@ struct DragControllerPage {
                 data: unifiedData,
                 extraParams: ''
               }
-              let eve:tmp = new tmp()
+              let eve: DragInfo = new DragInfo();
               this.getUIContext().getDragController().executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => { // 建议使用 this.getUIContext().getDragController().executeDrag()接口
                 if(eve.event){
                   if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
@@ -180,9 +180,9 @@ import { dragController } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
-class Tmp{
-  event:DragResult|undefined = undefined
-  extraParams:string = ''
+class DragInfo {
+  event: DragEvent | undefined = undefined;
+  extraParams: string = '';
 }
 
 @Entry
@@ -243,7 +243,7 @@ struct DragControllerPage {
                 builder: ()=>{this.DraggingBuilder()},
                 extraInfo: "DragItemInfoTest"
               }
-              let eve:tmp = new tmp()
+              let eve: DragInfo = new DragInfo();
               this.getUIContext().getDragController().executeDrag(dragItemInfo, dragInfo) // 建议使用 this.getUIContext().getDragController().executeDrag()接口
                 .then((eve) => {
                   if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
@@ -1035,9 +1035,9 @@ import { dragController, curves, promptAction, UIContext } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-class Tmp{
-  event:DragEvent|undefined = undefined
-  extraParams:string = ''
+class DragInfo {
+  event: DragEvent | undefined = undefined;
+  extraParams: string = '';
 }
 
 @Entry()
@@ -1101,7 +1101,7 @@ struct DragControllerPage {
               data: unifiedData,
               extraParams: ''
             }
-            let eve:tmp = new tmp()
+            let eve: DragInfo = new DragInfo();
             this.getUIContext().getDragController().executeDrag(() => { // 建议使用 this.getUIContext().getDragController().executeDrag()接口
               this.DraggingBuilder()
             }, dragInfo, (err , eve) => {
@@ -1127,7 +1127,7 @@ struct DragControllerPage {
 
 ## DragStartRequestStatus<sup>18+</sup>
 
-定义应用是否可以发起拖拽的枚举类型。
+定义应用是否可以发起拖拽的枚举类型。仅在[onDragStart](./arkui-ts/ts-universal-events-drag-drop.md#ondragstart)调用时有效。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1135,7 +1135,7 @@ struct DragControllerPage {
 
 | 名称     | 值 | 说明                                                         |
 | -------- | -- | ------------------------------------------------------------ |
-| WAITING   | 0 | 应用准备数据中，无法发起拖拽。 |
+| WAITING   | 0 | 应用在准备数据阶段，无法发起拖拽。 |
 | READY | 1 | 应用数据准备完成，可以发起拖拽。 |
 
 ## DragSpringLoadingState<sup>20+</sup>
@@ -1149,14 +1149,14 @@ struct DragControllerPage {
 
 | 名称 | 值|说明                                                          |
 | ------ | --------------------- |--------------------------------------- |
-| BEGIN  | - |拖拽进入组件范围静止一段时间，被识别被悬停状态。                  |
-| UPDATE | - |拖拽已处于悬停状态，如果继续静止会定期触发UPDATE通知，以检查悬停状态。 |
-| END    | - |如果最后一次UPDATE通知后拖拽继续静止会进入END，整个悬停检测结束。进入END后拖拽需要移出组件范围后再次进入组件或移入组件内子组件才会重新开始悬停检测。 |
-| CANCEL | - |拖拽进入BEGIN后，在手指/鼠标抬起、切换窗口、息屏、移出组件范围、移入组件内子组件或组件内移动超过检测阈值等场景会触发CANCEL通知，悬停检测中断。 |
+| BEGIN  | - |拖拽进入组件范围静止一段时间，被识别为悬停状态。此时允许进行一些悬停检测的准备操作。 |
+| UPDATE | - |拖拽已处于悬停状态，如果继续静止会定期触发UPDATE通知，以检查悬停状态。此时允许UI效果刷新以突出悬停状态。 |
+| END    | - |如果最后一次UPDATE通知后拖拽继续静止会进入END，整个悬停检测结束。进入END后拖拽需要移出组件范围后再次进入组件或移入组件内子组件才会重新开始悬停检测。此时应用程序可进行清理、导航或视图切换操作。 |
+| CANCEL | - |拖拽进入BEGIN后，在手指/鼠标抬起、切换窗口、息屏、移出组件范围、移入组件内子组件或组件内移动超过检测阈值等场景会触发CANCEL通知，悬停检测中断。应用程序将恢复UI样式，并取消待定的导航及视图切换操作。 |
 
 ## DragSpringLoadingConfiguration<sup>20+</sup>
 
-定义拖拽的悬停检测配置参数的接口。
+定义拖拽的悬停检测配置参数的接口。默认的配置参数通常已能满足需求。可以通过在绑定[onDragSpringLoading](./arkui-ts/ts-universal-events-drag-drop.md#ondragspringloading20)时指定配置，或者通过在BEGIN状态期间使用[updateConfiguration](#updateconfiguration20)方法动态修改的方式以自定义该配置参数。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1171,7 +1171,7 @@ struct DragControllerPage {
 
 ## SpringLoadingDragInfos<sup>20+</sup>
 
-定义触发悬停检测时拖拽事件信息的接口。
+定义触发悬停检测时拖拽事件信息的接口。该接口提供了拖拽数据摘要和拖拽事件额外信息，应用程序可以据此决定是否响应悬停检测回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1184,7 +1184,7 @@ struct DragControllerPage {
 
 ## SpringLoadingContext<sup>20+</sup>
 
-定义回调上下文信息的类，用于在悬停检测回调中传递给应用程序，使其能访问拖拽状态。
+定义回调上下文信息的类，用于在悬停检测回调中传递给应用程序，使其能访问拖拽状态、动态刷新UI效果以及访问拖拽数据以确定是否处理拖拽操作。
 
 ### 属性
 
@@ -1196,14 +1196,14 @@ struct DragControllerPage {
 | :----- | -------- | ---- | ---- | ---------------------------------------- |
 | state                 | [DragSpringLoadingState](#dragspringloadingstate20)    |否     |否   | 当前悬停检测的状态。         |
 | currentNotifySequence | number  |否      |否   |在一次悬停检测流转中的回调通知次数，从0开始。 |
-| dragInfos             | [SpringLoadingDragInfos](#springloadingdraginfos20)  |否    |是   | 拖拽信息，为undefined时取[SpringLoadingDragInfos](#springloadingdraginfos20)默认值。      |
-| currentConfig         | [DragSpringLoadingConfiguration](#dragspringloadingconfiguration20)   |否    |是   | 当前回调中的配置信息，为undefined时取[DragSpringLoadingConfiguration](#dragspringloadingconfiguration20)默认值。    |
+| dragInfos             | [SpringLoadingDragInfos](#springloadingdraginfos20)  |否    |是   | 拖拽信息，当悬停检测状态为CANCEL时缺失，为undefined时取[SpringLoadingDragInfos](#springloadingdraginfos20)默认值。      |
+| currentConfig         | [DragSpringLoadingConfiguration](#dragspringloadingconfiguration20)   |否    |是   | 当前回调中的配置信息，当悬停检测状态为CANCEL时缺失，为undefined时取[DragSpringLoadingConfiguration](#dragspringloadingconfiguration20)默认值。    |
 
 ### abort<sup>20+</sup>
 
 abort(): void
 
-终止后续的悬停检测。
+终止后续的悬停检测。本方法不会触发CANCEL状态通知，应用程序需要在执行本方法时进行状态清理。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1213,7 +1213,7 @@ abort(): void
 
 updateConfiguration(config: DragSpringLoadingConfiguration): void
 
-更新后续的悬停检测配置。
+更新悬停检测的配置，仅在悬停检测状态为BEGIN时生效。应用程序通常在绑定[onDragSpringLoading](./arkui-ts/ts-universal-events-drag-drop.md#ondragspringloading20)时设置悬停检测配置或使用默认配置。本方法不会修改绑定时的原始配置，而是在后续悬停检测中更新动态的配置信息。请谨慎使用本方法，因为不同的拖拽数据类型可能需要不同的UX时间。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 

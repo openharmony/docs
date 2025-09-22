@@ -100,7 +100,7 @@ Picker配置选项。
 | photoBrowserCheckboxPosition<sup>13+</sup>    | [number, number]                        | 否   | 设置大图页checkbox的位置。第一个参数为X方向偏移量，第二个参数为Y方向偏移量。传参范围0-1，代表距离组件左上角0%-100%的偏移量。默认值为[0, 0]。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | gridMargin<sup>14+</sup>        | [Margin](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)                        | 否   | 设置组件宫格页margin。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | photoBrowserMargin<sup>14+</sup>    | [Margin](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)                        | 否   | 设置组件大图页margin。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| singleLineConfig<sup>20+</sup>             | [SingleLineConfig](#singlelineconfig)                                                | 否   | 设置组件宫格页单行显示模式。单行模式下，组件不提供打开大图浏览相关功能。组件不支持大图相关回调，PickerController不支持大图相关的接口，接口调用将无效。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。      |  
+| singleLineConfig<sup>20+</sup>             | [SingleLineConfig](#singlelineconfig20)                                                | 否   | 设置组件宫格页单行显示模式。单行模式下，组件不提供打开大图浏览相关功能。组件不支持大图相关回调，PickerController不支持大图相关的接口，接口调用将无效。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。      |  
 | uiComponentColorMode<sup>20+</sup>             | [PickerColorMode](#pickercolormode)                                                | 否   | Picker的颜色模式。Picker宫格界面除背景色之外其他组件的深浅色风格，包括搜索框、相机入口、安全使用图库提示组件、推荐气泡等组件，一般与backgroundColor配合使用。默认为PickerColorMode.AUTO，跟随系统深浅色切换。<br>该属性一般设置PickerColorMode.LIGHT时不与深颜色的backgroundColor搭配；设置PickerColorMode.DARK时不与浅颜色的backgroundColor搭配，否则会出现组件背景或文字无法看清楚的问题。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。  |
 | gridStartOffset<sup>20+</sup>    | number                              | 否   | 组件宫格缩略图第一行与组件顶部的预留空间。默认值0，单位vp。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 | gridEndOffset<sup>20+</sup>    | number                              | 否   | 组件宫格缩略图最后一行与组件底部的预留空间。默认值0，单位vp。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
@@ -355,7 +355,7 @@ saveTrustedPhotoAssets(trustedUris: Array&lt;string&gt;, callback: AsyncCallback
 |----------|--------|-----|---------|
 | data | Map&lt;[MaxCountType](#maxcounttype), number&gt; | 否             | 最大选择数量（包含图片的最大选择数量、视频的最大选择数量以及总的最大选择数量） |
 
-## SingleLineConfig
+## SingleLineConfig<sup>20+</sup>
 
 单行显示模式配置项。单行模式下，组件不提供打开大图浏览相关功能。组件不支持大图相关回调，PickerController不支持大图相关的接口，接口调用将无效。
 
@@ -380,7 +380,7 @@ saveTrustedPhotoAssets(trustedUris: Array&lt;string&gt;, callback: AsyncCallback
 | 名称                | 值   | 说明                                                                                                                 |
 |-------------------|-----|--------------------------------------------------------------------------------------------------------------------|
 | SET_SELECTED_URIS | 1   | 发送已选择的数据列表，通知picker组件勾选状态刷新，需要传入string数组类型。<br>例如：应用在自己的页面中删除某张图片后，需要把剩下的已选择的数据列表通过setData接口通知到picker组件，从而触发picker组件勾选框状态刷新正确。 |
-| SET_ALBUM_URI | 2   | 发送已选择相册，通知picker组件刷新相册，需要传入string类型。<br>例如：应用在自己的页面中选择相册后，需要把已选择的相册uri通过setData接口通知到picker组件，从而触发picker组件刷新新相册数据。 |
+| SET_ALBUM_URI | 2   | 发送已选择相册，通知picker组件刷新相册，需要传入string类型。<br>例如：应用在自己的页面中选择相册后，需要把已选择的相册uri通过setData接口通知到picker组件，从而触发picker组件刷新相册数据。 |
 
 ## ItemType
 
@@ -632,7 +632,7 @@ struct PickerDemo {
           this.selectUris.push(uri);
           this.pickerOptions.preselectedUris = [...this.selectUris];
         }
-        return true; // 返回true则勾选，否则则不响应勾选。
+        return true; // 返回true则勾选，否则不响应勾选。
       } else {
         if (uri) {
           this.selectUris = this.selectUris.filter((item: string) => {

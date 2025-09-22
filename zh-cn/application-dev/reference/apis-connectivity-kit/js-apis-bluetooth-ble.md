@@ -122,7 +122,7 @@ getConnectedBLEDevices(): Array&lt;string&gt;
 
 | 类型                  | 说明                  |
 | ------------------- | ------------------- |
-| Array&lt;string&gt; | 返回和本机设备已建立GATT连接的BLE设备地址集合。<br>基于信息安全考虑，此处获取的设备地址为虚拟MAC地址。<br>- 若和该设备地址配对成功后，该地址不会变更。<br>- 取消配对该设备或蓝牙关闭后，若重新获取，该虚拟地址会变更。<br>- 若要持久化保存该地址，可使用[access.addPersistentDeviceId](js-apis-bluetooth-access.md#accessaddpersistentdeviceid16)方法 |
+| Array&lt;string&gt; | 返回和本机设备已建立GATT连接的BLE设备地址集合。<br>基于信息安全考虑，此处获取的设备地址为虚拟MAC地址。<br>- 若和该设备地址配对成功后，该地址不会变更。<br>- 若该设备重启蓝牙开关，重新获取到的虚拟地址会立即变更。<br>- 若取消配对，蓝牙子系统会根据该地址的实际使用情况，决策后续变更时机；若其他应用正在使用该地址，则不会立刻变更。<br>- 若要持久化保存该地址，可使用[access.addPersistentDeviceId](js-apis-bluetooth-access.md#accessaddpersistentdeviceid16)方法。 |
 
 **错误码**：
 
@@ -4377,7 +4377,7 @@ GATT描述符结构定义，是特征值[BLECharacteristic](#blecharacteristic)�
 
 | 名称       | 类型        | 只读 | 可选   | 说明                                 |
 | -------- | ----------- | ---- | ---- | ---------------------------------- |
-| deviceId | string      | 否 | 否    | 扫描到的蓝牙设备地址。例如："XX:XX:XX:XX:XX:XX"。<br>基于信息安全考虑，此处获取的设备地址为虚拟MAC地址。<br>- 若和该设备地址配对成功后，该地址不会变更。<br>- 若取消配对该设备或蓝牙关闭后，再次重新发起扫描，该虚拟地址会变更。<br>- 若要持久化保存该地址，可使用[access.addPersistentDeviceId](js-apis-bluetooth-access.md#accessaddpersistentdeviceid16)方法。 |
+| deviceId | string      | 否 | 否    | 扫描到的蓝牙设备地址。例如："XX:XX:XX:XX:XX:XX"。<br>基于信息安全考虑，此处获取的设备地址为虚拟MAC地址。<br>- 若和该设备地址配对成功后，该地址不会变更。<br>- 若该设备重启蓝牙开关，重新获取到的虚拟地址会立即变更。<br>- 若取消配对，蓝牙子系统会根据该地址的实际使用情况，决策后续变更时机；若其他应用正在使用该地址，则不会立刻变更。<br>- 若要持久化保存该地址，可使用[access.addPersistentDeviceId](js-apis-bluetooth-access.md#accessaddpersistentdeviceid16)方法。 |
 | rssi     | number      | 否 | 否    | 扫描到的设备信号强度，单位：dBm。                    |
 | data     | ArrayBuffer | 否 | 否    | 扫描到的设备发送的广播报文内容。                    |
 | deviceName | string | 否 | 否    | 扫描到的设备名称。                    |

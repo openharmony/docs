@@ -13,7 +13,7 @@
 
 播放管理类，用于管理和播放媒体资源。在调用AVPlayer的方法前，需要先通过[createAVPlayer()](arkts-apis-media-f.md#mediacreateavplayer9)构建一个AVPlayer实例。
 
-应用需要按照实际业务需求合理使用AVPlayer对象，按需创建并及时释放，避免持有过多AVPlayer实例导致内存消耗过大，否则在一定情况下可能导致系统查杀应用。
+应用需要按照实际业务需求合理使用AVPlayer对象，按需创建并及时释放，避免持有过多AVPlayer实例导致内存消耗过大，否则在一定情况下可能导致系统终止应用。
 
 Audio/Video播放demo可参考：[音频播放开发指导](../../media/media/using-avplayer-for-playback.md)、[视频播放开发指导](../../media/media/video-playback.md)。
 
@@ -1811,6 +1811,55 @@ async function test(){
   let avPlayer = await media.createAVPlayer();
   avPlayer.off('mediaKeySystemInfoUpdate');
 }
+```
+
+## setLoudnessGain<sup>21+</sup>
+
+setLoudnessGain(loudnessGain: double): Promise\<void>
+
+设置播放器的响度。调用该接口后，响度增益立即生效。使用Promise异步回调。
+
+> **说明：**
+>
+> - 当播放处于prepared/playing/paused/completed/stopped状态时，可调用该接口。
+> - 调用此接口时，需确保已设置音频渲染信息AVPlayer.audioRendererInfo，audioRendererInfo的usage参数必须是[STREAM_USAGE_MUSIC](../apis-audio-kit/arkts-apis-audio-e.md#streamusage)、[STREAM_USAGE_MOVIE](../apis-audio-kit/arkts-apis-audio-e.md#streamusage)、[STREAM_USAGE_AUDIOBOOK](../apis-audio-kit/arkts-apis-audio-e.md#streamusage)其中之一。
+
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| loudnessGain | double | 是   |设置播放器的响度值，单位为dB，响度范围为[-90.0, 24.0]。默认值为0.0dB。|
+
+**返回值：**
+
+| 类型           | 说明                                       |
+| -------------- | ------------------------------------------ |
+| Promise\<void> | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by promise. e.g. The function is called in an incorrect state, or the stream usage of audioRendererInfo is not one of [STREAM_USAGE_MUSIC](../apis-audio-kit/arkts-apis-audio-e.md#streamusage), [STREAM_USAGE_MOVIE](../apis-audio-kit/arkts-apis-audio-e.md#streamusage) or [STREAM_USAGE_AUDIOBOOK](../apis-audio-kit/arkts-apis-audio-e.md#streamusage).|
+| 5400105  | Service died. |
+| 5400108  | Parameter check failed. Returned by promise. |
+
+**示例：**
+
+```ts
+let avPlayer = await media.createAVPlayer();
+
+let loudnessGain: double = 1.0;
+avPlayer.audioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MOVIE,
+  rendererFlags: 0
+}
+avPlayer.setLoudnessGain(loudnessGain);
 ```
 
 ## setVolume<sup>9+</sup>

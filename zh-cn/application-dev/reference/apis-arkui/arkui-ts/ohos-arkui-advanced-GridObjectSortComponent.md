@@ -3,7 +3,7 @@
 <!--Subsystem: ArkUI-->
 <!--Owner: @fengluochenai-->
 <!--Designer: @YanSanzo-->
-<!--Tester: @tinygreyy-->
+<!--Tester: @ybhou1993-->
 <!--Adviser: @HelloCrease-->
 
 
@@ -62,14 +62,14 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称           | 类型                      | 必填 | 说明                                                          |
-| -------------- | ------------------------- | ---- |-------------------------------------------------------------|
-| type           | [GridObjectSortComponentType](#gridobjectsortcomponenttype) | 否   | 组件展示形态：文字\|图片+文字。<br />默认值：GridObjectSortComponentType.TEXT |
-| imageSize      | number \| [Resource](ts-types.md#resource) | 否   | 图片的尺寸，单位vp。<br />取值范围：大于等于0。<br />默认值：56vp                  |
-| normalTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 未编辑状态下显示的标题。<br />默认值：频道。                                   |
-| showAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 展示区域标题，第一个子标题。<br />默认值：长按拖动排序。                             |
-| addAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 添加区域标题，第二个子标题。<br />默认值：点击添加。                               |
-| editTitle      | [ResourceStr](ts-types.md#resourcestr)     | 否   | 编辑状态下头部标题显示。<br />默认值：编辑。                                   |
+| 名称           | 类型                      | 只读 | 可选 | 说明                                                          |
+| -------------- | ------------------------- |---|---|-------------------------------------------------------------|
+| type           | [GridObjectSortComponentType](#gridobjectsortcomponenttype) | 否 | 是 | 组件展示形态：文字\|图片+文字。<br />默认值：GridObjectSortComponentType.TEXT |
+| imageSize      | number \| [Resource](ts-types.md#resource) | 否 | 是 | 图片的尺寸，单位vp。<br />取值范围：大于等于0。<br />默认值：56vp                  |
+| normalTitle | [ResourceStr](ts-types.md#resourcestr)     | 否 | 是 | 未编辑状态下显示的标题。<br />默认值：频道。                                   |
+| showAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否 | 是 | 展示区域标题，第一个子标题。<br />默认值：长按拖动排序。                             |
+| addAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否 | 是 | 添加区域标题，第二个子标题。<br />默认值：点击添加。                               |
+| editTitle      | [ResourceStr](ts-types.md#resourcestr)     | 否 | 是 | 编辑状态下头部标题显示。<br />默认值：编辑。                                   |
 
 ## GridObjectSortComponentType
 
@@ -94,14 +94,14 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称     | 类型                                   | 必填 | 说明                                                                                                                       |
-| -------- | -------------------------------------- | ---- |--------------------------------------------------------------------------------------------------------------------------|
-| id       | number&nbsp;\|&nbsp;string             | 是   | 数据id序号，不可重复。<br />默认值：空字符串。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                          |
-| text     | [ResourceStr](ts-types.md#resourcestr) | 是   | 显示文本信息。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                              |
-| selected | boolean                                | 是   | 是否已经被添加，已添加：true，未添加：false。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                           |
-| url      | [ResourceStr](ts-types.md#resourcestr) | 否   | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入图片地址。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
-| symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | 否   | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入Symbol图标资源。配置优先级高于url。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| order    | number                                 | 是   | 顺序序号。<br />取值范围：大于等于0。<br />默认值：0 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                   |
+| 名称     | 类型                                   | 只读 | 可选 | 说明                                                                                                                       |
+| -------- | -------------------------------------- |---|---|--------------------------------------------------------------------------------------------------------------------------|
+| id       | number&nbsp;\|&nbsp;string             | 否 | 否 | 数据id序号，不可重复。<br />默认值：空字符串。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                          |
+| text     | [ResourceStr](ts-types.md#resourcestr) | 否 | 否 | 显示文本信息。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                              |
+| selected | boolean                                | 否 | 否 | 是否已经被添加，已添加：true，未添加：false。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                           |
+| url      | [ResourceStr](ts-types.md#resourcestr) | 否 | 是 | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入图片地址。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
+| symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-symbolglyphmodifier.md#symbolglyphmodifier) | 否 | 是 | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入Symbol图标资源。配置优先级高于url。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| order    | number                                 | 否 | 否 | 顺序序号。<br />取值范围：大于等于0。<br />默认值：0 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                   |
 
 ## 事件
 

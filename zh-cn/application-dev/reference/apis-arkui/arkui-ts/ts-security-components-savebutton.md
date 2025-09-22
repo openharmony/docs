@@ -301,7 +301,7 @@ struct Index {
           // 关闭文件
           await fileIo.close(file.fd);
         } catch (error) {
-          console.error("error is " + JSON.stringify(error));
+          console.error(`errCode: ${error.code}, errMessage: ${error.message}`);
         }
       } else if (result === SaveButtonOnClickResult.CANCELED_BY_USER) {
         console.info("errCode: " + error?.code);

@@ -2,8 +2,9 @@
 <!--Kit: AVSession Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @ccfriend; @liao_qian-->
-<!--SE: @ccfriend-->
-<!--TSE: @chenmingxi1_huawei-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -1026,25 +1027,25 @@ struct Index {
   build() { 
     Column() {
         Text(this.message)
-          .onClick(()=>{
+          .onClick(() => {
             let currentAVSession: avSession.AVSession | undefined = undefined;
             let tag = "createNewSession";
             let context: Context = this.getUIContext().getHostContext() as Context;
 
             avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-            if (err) {
+              if (err) {
                 console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-            } else {
+              } else {
                 currentAVSession = data;
-            }
+                if (currentAVSession !== undefined) {
+                  (currentAVSession as avSession.AVSession).setExtras({extras : "This is custom media packet"}).then(() => {
+                      console.info('setExtras successfully');
+                  }).catch((err: BusinessError) => {
+                      console.error(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+                  })
+                }
+              }
             });
-            if (currentAVSession !== undefined) {
-            (currentAVSession as avSession.AVSession).setExtras({extras : "This is custom media packet"}).then(() => {
-                console.info('setExtras successfully');
-            }).catch((err: BusinessError) => {
-                console.error(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
-            })
-            }
           })
       }
     .width('100%')
@@ -1150,7 +1151,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 6600101  | Session service exception. |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist.                                  |
 
 **Example**
@@ -1232,15 +1233,21 @@ struct Index {
     Column() {
       Text(this.message)
         .onClick(async ()=>{
-          let context: Context = this.getUIContext().getHostContext() as Context;
-          let currentAVSession: avSession.AVSession = await avSession.createAVSession(context, 'SESSION_NAME', 'audio');
-          let avsessionController: avSession.AVSessionController;
-          currentAVSession.getController().then(async (avcontroller: avSession.AVSessionController) => {
-            avsessionController = avcontroller;
-            console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
-          }).catch((err: BusinessError) => {
-            console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
-          });
+          try {
+            let context: Context = this.getUIContext().getHostContext() as Context;
+            let currentAVSession: avSession.AVSession = await avSession.createAVSession(context, 'SESSION_NAME', 'audio');
+            let avSessionController: avSession.AVSessionController;
+            currentAVSession.getController().then((avController: avSession.AVSessionController) => {
+              avsessionController = avController;
+              console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
+            }).catch((err: BusinessError) => {
+              console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
+            });
+          } catch (err) {
+            if (err) {
+              console.error(`AVSession create Error: ${JSON.stringify(err)}`);
+            }
+          }
         })
     }
     .width('100%')
@@ -3129,7 +3136,7 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 | Name   | Type                 | Mandatory| Description                  |
 | -------- | -------------------- | ---- | ---------------------- |
 | type     | string    | Yes  | Event type. The event **'castDisplayChange'** is triggered when the cast display in the case of extended screens changes.|
-| callback | Callback<[CastDisplayInfo](arkts-apis-avsession-i.md#castdisplayinfo12)>>   | Yes  | Callback used to return the information about the cast display.                           |
+| callback | Callback\<[CastDisplayInfo](arkts-apis-avsession-i.md#castdisplayinfo12)\>   | Yes  | Callback used to return the information about the cast display.                           |
 
 **Error codes**
 
@@ -3170,7 +3177,7 @@ Unsubscribes from cast display change events in the case of extended screens. If
 | Name   | Type                 | Mandatory| Description                  |
 | -------- | -------------------- | ---- | ---------------------- |
 | type     | string    | Yes  | Event type, which is **'castDisplayChange'** in this case.|
-| callback | Callback<[CastDisplayInfo](arkts-apis-avsession-i.md#castdisplayinfo12)   | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
+| callback | Callback\<[CastDisplayInfo](arkts-apis-avsession-i.md#castdisplayinfo12)\>  | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
 
 **Error codes**
 
@@ -3437,7 +3444,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 6600101  | Session service exception. |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist.                                  |
 
 **Example**
@@ -3471,7 +3478,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 6600101  | Session service exception. |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist.                                  |
 
 **Example**

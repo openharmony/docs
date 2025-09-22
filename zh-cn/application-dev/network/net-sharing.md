@@ -52,7 +52,7 @@
 | getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<string>>): void;  | 获取与指定类型匹配的网卡正则表达式列表，type 为类型，目前支持 Wifi 热点、蓝牙、USB，使用 callback 方式作为异步方法。 |
 | on(type: 'sharingStateChange', callback: Callback\<boolean>): void;        | 注册共享状态改变监听，返回网络共享的状态。                                                                |
 | off(type: 'sharingStateChange', callback?: Callback\<boolean>): void;      | 注销共享状态改变监听，返回网络共享的状态。                                                                |
-| unction on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void;    | 注册指定网卡共享状态改变监听。    |
+| function on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void;    | 注册指定网卡共享状态改变监听。    |
 | off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void; | 注销指定网卡共享状态改变监听。             |
 | on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void;               | 注册上行网卡改变监听。                                                                         |
 | off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void;             | 注销上行网卡改变监听。                                                                         |
@@ -103,7 +103,7 @@ sharing.on('sharingStateChange', (data: boolean) => {
 
 // 调用stopSharing方法，来停止指定类型共享
 sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
-  console.log('start wifi sharing successful');
+  console.log('stop wifi sharing successful');
 }).catch((error: BusinessError) => {
   console.error('start wifi sharing failed');
 });
@@ -139,7 +139,7 @@ sharing.getStatsTotalBytes().then((data: number) => {
 
 // 调用stopSharing方法，来停止指定类型共享，共享网络数据量清零
 sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
-  console.log('start wifi sharing successful');
+  console.log('stop wifi sharing successful');
 }).catch((error: BusinessError) => {
   console.error('start wifi sharing failed');
 });

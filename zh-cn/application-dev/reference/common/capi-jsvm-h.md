@@ -142,7 +142,7 @@
 | [JSVM_EXTERN JSVM_Status OH_JSVM_Equals(JSVM_Env env,JSVM_Value lhs,JSVM_Value rhs,bool* result)](#oh_jsvm_equals) | 提供类似调用宽松相等算法的行为。无论JavaScript值类型如何，只要值相等，就返回true。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_DetachArraybuffer(JSVM_Env env,JSVM_Value arraybuffer)](#oh_jsvm_detacharraybuffer) | 提供类似于调用ArrayBuffer detach操作的行为。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_IsDetachedArraybuffer(JSVM_Env env,JSVM_Value value,bool* result)](#oh_jsvm_isdetachedarraybuffer) | 提供类似调用ArrayBuffer IsDetachedBuffer操作的行为。 |
-| [JSVM_EXTERN JSVM_Status OH_JSVM_GetPropertyNames(JSVM_Env env,JSVM_Value object,JSVM_Value* result)](#oh_jsvm_getpropertynames) | 以字符数数组的形式返回object的可枚举属性的名称。key为符号的object的属性将不会被包含在内。 |
+| [JSVM_EXTERN JSVM_Status OH_JSVM_GetPropertyNames(JSVM_Env env,JSVM_Value object,JSVM_Value* result)](#oh_jsvm_getpropertynames) | 以字符数组的形式返回object的可枚举属性的名称。key为符号的object的属性将不会被包含在内。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_GetAllPropertyNames(JSVM_Env env,JSVM_Value object,JSVM_KeyCollectionMode keyMode,JSVM_KeyFilter keyFilter,JSVM_KeyConversion keyConversion,JSVM_Value* result)](#oh_jsvm_getallpropertynames) | 返回包含object所有可用属性名称的数组。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_SetProperty(JSVM_Env env,JSVM_Value object,JSVM_Value key,JSVM_Value value)](#oh_jsvm_setproperty) | 为传入的object设置名为key的属性。 |
 | [JSVM_EXTERN JSVM_Status OH_JSVM_GetProperty(JSVM_Env env,JSVM_Value object,JSVM_Value key,JSVM_Value* result)](#oh_jsvm_getproperty) | 从传入的object中获取名为key的属性。 |
@@ -3129,7 +3129,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetPropertyNames(JSVM_Env env,JSVM_Value object,
 
 **描述**
 
-以字符数数组的形式返回object的可枚举属性的名称。key为符号的object的属性将不会被包含在内。
+以字符数组的形式返回object的可枚举属性的名称。key为符号的object的属性将不会被包含在内。
 
 **起始版本：** 11
 
@@ -4440,7 +4440,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_WaitForDebugger(JSVM_Env env,bool breakNextLine)
 | 参数项 | 描述 |
 | -- | -- |
 | [JSVM_Env](capi-jsvm-jsvm-env--8h.md) env | 调用JSVM-API的环境。 |
-| bool breakNextLine | 是否在下一行JavaScript代码中中断。breakNextLine为true将暂停运行下一行JS代码，开发者需要通过调试器的调试按钮控制JS继续执行；false则不会终端中断。|
+| bool breakNextLine | 是否在下一行JavaScript代码中断。breakNextLine为true将暂停运行下一行JS代码，开发者需要通过调试器的调试按钮控制JS继续执行；false则不会终端中断。|
 
 **返回：**
 
@@ -6003,7 +6003,7 @@ JSVM_Status JSVM_CDECL OH_JSVM_CreateExternalStringLatin1(JSVM_Env env,char* str
 
 此 API 使用 ISO-8859-1 编码的 C 字符串，创建一个外部的 JavaScript 字符串。创建外部字符串失败时会复制原生字符串。
 
-**起始版本：** 12
+**起始版本：** 18
 
 
 **参数：**
@@ -6034,7 +6034,7 @@ JSVM_Status JSVM_CDECL OH_JSVM_CreateExternalStringUtf16(JSVM_Env env,char16_t* 
 
 此 API 使用 UTF16-LE 编码的 C 字符串，创建一个外部的 JavaScript 字符串。创建外部字符串失败时会复制原生字符串。
 
-**起始版本：** 12
+**起始版本：** 18
 
 
 **参数：**
@@ -6065,7 +6065,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreatePrivate(JSVM_Env env,JSVM_Value descriptio
 
 创建一个 JavaScript private key 对象。
 
-**起始版本：** 12
+**起始版本：** 18
 
 
 **参数：**
@@ -6092,7 +6092,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_SetPrivate(JSVM_Env env,JSVM_Value object,JSVM_D
 
 为传入的object设置一个 private 属性。
 
-**起始版本：** 12
+**起始版本：** 18
 
 
 **参数：**
@@ -6120,7 +6120,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_GetPrivate(JSVM_Env env,JSVM_Value object,JSVM_D
 
 从传入的object获取 private key 对应的 private 属性。
 
-**起始版本：** 12
+**起始版本：** 18
 
 
 **参数：**
@@ -6148,7 +6148,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_DeletePrivate(JSVM_Env env,JSVM_Value object,JSV
 
 从传入的 object 上删除 private key 对应的 private 属性。
 
-**起始版本：** 12
+**起始版本：** 18
 
 
 **参数：**
@@ -6175,7 +6175,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CreateDataReference(JSVM_Env env,JSVM_Data data,
 
 创建一个对于给定 JSVM_Data 对象的引用，初始的引用计数为传入的 initialRefcount。
 
-**起始版本：** 12
+**起始版本：** 18
 
 
 **参数：**
@@ -6204,7 +6204,7 @@ EXTERN_C_END
 
 如果引用仍然有效，通过 result 参数返回对应的 JSVM_Data，表示与 JSVM_Ref 关联的 JavaScript 值。否则结果将为空。
 
-**起始版本：** 12
+**起始版本：** 18
 
 
 **参数：**

@@ -66,8 +66,8 @@ bm install [-h] [-p filePath] [-r] [-w waitingTime] [-s hspDirPath] [-u userId]
 | 参数 | 参数说明 |
 | -------- | -------- |
 | -h | 帮助信息。 |
-| -p | 可选参数，指定HAP路径，多HAP应用可指定多HAP所在文件夹路径。 |
-| -r | 可选参数，覆盖安装一个HAP。默认值为覆盖安装。 |
+| -p | 可选参数，指定HAP/HSP路径，多HAP/HSP应用可指定多HAP/HSP所在文件夹路径。 |
+| -r | 可选参数，覆盖安装一个HAP/HSP。默认值为覆盖安装。 |
 | -s | 根据场景判断，安装应用间HSP时为必选参数，其他场景为可选参数。安装应用间共享库， 每个路径目录下只能存在一个同包名的HSP。 |
 | -w | 可选参数，安装HAP时指定bm工具等待时间，最小的等待时长为5s，最大的等待时长为600s,&nbsp;默认缺省为180s。 |
 | -u | 可选参数，指定[用户](#userid)，默认在当前活跃用户下安装应用。仅支持在当前活跃用户或0用户下安装。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm install -p /data/local/tmp/ohos.app.hap -u 102`安装时，只会在当前活跃用户100下安装应用。 |
@@ -334,7 +334,7 @@ delete quick fix successfully
 ## 共享库查询命令（dump-shared）
 
 ```bash
-bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
+bm dump-shared [-h] [-a] [-n bundleName]
 ```
 
   **共享库查询命令参数列表**
@@ -344,7 +344,6 @@ bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
 | -h | 帮助信息。 |
 | -a | 可选参数，查询系统中所有已安装的共享库。|
 | -n | 可选参数，查询指定包名的共享库详细信息。|
-| -m | 可选参数，查询指定模块名的共享库详细信息。|
 
 
 示例：
@@ -354,8 +353,6 @@ bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
 bm dump-shared -a
 # 显示该共享库的详细信息
 bm dump-shared -n com.ohos.lib
-# 显示指定应用指定模块依赖的共享库信息
-bm dump-dependencies -n com.ohos.app -m entry
 ```
 
 ## 共享库依赖关系查询命令（dump-dependencies）
@@ -425,7 +422,7 @@ bm copy-ap -n com.example.myapplication
 ## 查询overlay应用信息命令（dump-overlay）
 
 ```bash
-bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-u userId]
+bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-t targetModuleName] [-u userId]
 ```
 
 **dump-overlay命令参数列表**
@@ -433,7 +430,8 @@ bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-u userId]
 | -------- | -------- |
 | -h | 帮助信息。 |
 | -b | 必选参数，获取指定Overlay应用的所有OverlayModuleInfo信息。|
-| -m | 可选参数，默认当前Overlay应用主模块名。根据指定Overlay应用的包名和module名查询OverlayModuleInfo信息。|
+| -m | 可选参数，根据指定Overlay特征module的名称查询OverlayModuleInfo信息，默认当前Overlay应用主模块名。|
+| -t | 可选参数，根据指定目标module的名称查询OverlayModuleInfo信息，默认参数为空。|
 | -u | 可选参数，在指定[用户](#userid)下查询OverlayModuleInfo信息，默认在当前活跃用户下查询。仅支持在当前活跃用户或0用户下查询。<br>**说明：**<br> 如果当前活跃用户是100，使用命令`bm dump-overlay -b com.ohos.app -u 102`查询OverlayModuleInfo信息，只会返回当前活跃用户100下的OverlayModuleInfo信息。 |
 
 示例：
@@ -445,11 +443,11 @@ bm dump-overlay -b com.ohos.app
 # 在用户100下，根据包名来获取overlay应用com.ohos.app中的所有OverlayModuleInfo信息
 bm dump-overlay -b com.ohos.app -u 100
 
-# 根据包名和module来获取overlay应用com.ohos.app中overlay module为entry的所有OverlayModuleInfo信息
-bm dump-overlay -b com.ohos.app -m entry
+# 根据包名和module来获取overlay应用com.ohos.app中overlay module为libraryModuleName的所有OverlayModuleInfo信息
+bm dump-overlay -b com.ohos.app -m libraryModuleName
 
-# 根据包名和module来获取overlay应用com.ohos.app中目标module为feature的所有OverlayModuleInfo信息
-bm dump-overlay -b com.ohos.app -m feature
+# 根据目标包名和module来获取overlay应用com.ohos.app中目标module为entryModuleName的所有OverlayModuleInfo信息
+bm dump-overlay -b com.ohos.app -t entryModuleName
 ```
 
 ## 查询应用的overlay相关信息命令（dump-target-overlay）
@@ -836,13 +834,11 @@ error: install parse profile prop check error.
 ### 9568305 依赖的模块不存在
 **错误信息**
 
-error: dependent module does not exist.
-
-![示例图](figures/zh-cn_image_0000001560338986.png)
+error: Failed to install the HAP or HSP because the dependent module does not exist.
 
 **错误描述**
 
-在启动调试或运行应用/服务时，安装HAP出现错误，提示“error: dependent module does not exist”错误信息。
+在启动调试或运行应用/服务时，安装HAP出现错误，提示“error: Failed to install the HAP or HSP because the dependent module does not exist.”错误信息。
 
 **可能原因**
 
@@ -850,6 +846,7 @@ error: dependent module does not exist.
 
 **处理步骤**
 
+场景一：依赖的HSP与HAP在同一工程内：
 1. 先安装依赖的动态共享包（SharedLibrary）模块，再在应用运行配置页勾选Keep Application Data，点击OK保存配置，再运行/调试。
 ![示例图](figures/zh-cn_image_0000001560201786.png)
 2. 在运行配置页，选择Deploy Multi Hap标签页，勾选Deploy Multi Hap Packages，选择依赖的模块，点击OK保存配置，再进行运行/调试。
@@ -857,6 +854,9 @@ error: dependent module does not exist.
 3. 单击Run > Edit Configurations，在General中，勾选Auto Dependencies。点击OK保存配置，再运行/调试。
 ![示例图](figures/zh-cn_image_9568305.png)
 
+场景二：依赖的HSP与HAP不在同一工程内：
+在安装HAP前，使用[bm install](#安装命令install)命令安装依赖的HSP。
+  
 ### 9568259 安装解析配置文件缺少字段
 **错误信息**
 
@@ -2274,7 +2274,7 @@ HAP包中需要安装的native软件包损坏。
 
 **处理步骤**
 
-1. 检查HAP包中的native软件包，替换正确的native软件包并重新签名打包。参考[Native软件包开发指南](https://gitee.com/openharmony/startup_appspawn/blob/master/service/hnp/README_zh.md)。
+1. 检查HAP包中的native软件包，替换正确的native软件包并重新签名打包。参考[Native软件包开发指南](https://gitcode.com/openharmony/startup_appspawn/blob/master/service/hnp/README_zh.md)。
 
 ### 9568408 卸载应用失败，native软件包卸载失败
 **错误信息**
@@ -2291,7 +2291,7 @@ error: Failed to uninstall the HAP because uninstalling the native package faile
 
 **处理步骤**
 
-1. 检查是否存在进程占用相应的native软件包，若存在则结束进程后重新卸载。参考[Native软件包开发指南](https://gitee.com/openharmony/startup_appspawn/blob/master/service/hnp/README_zh.md)。
+1. 检查是否存在进程占用相应的native软件包，若存在则结束进程后重新卸载。参考[Native软件包开发指南](https://gitcode.com/openharmony/startup_appspawn/blob/master/service/hnp/README_zh.md)。
 
 ### 9568409 安装失败，native软件包提取失败
 **错误信息**
@@ -2308,7 +2308,7 @@ HAP包中native软件包目录下不存在module.json5中配置的native软件�
 
 **处理步骤**
 
-1. 检查HAP包中的native软件包目录，重新打入需要安装的native软件包并完成签名或删除module.json5中缺失的native软件包配置信息。参考[Native软件包开发指南](https://gitee.com/openharmony/startup_appspawn/blob/master/service/hnp/README_zh.md)。
+1. 检查HAP包中的native软件包目录，重新打入需要安装的native软件包并完成签名或删除module.json5中缺失的native软件包配置信息。参考[Native软件包开发指南](https://gitcode.com/openharmony/startup_appspawn/blob/master/service/hnp/README_zh.md)。
 
 ### 9568410 安装失败，设备受管控
 **错误信息**
@@ -2416,22 +2416,22 @@ error: Failed to uninstall the app because the app is locked.
 
 1. 检查应用是否设置了卸载处置规则，由设置方取消卸载处置规则。
 
-### 9568420 禁止通过bm安装release的预装应用
+### 9568420 禁止通过bm安装release的预置应用
 **错误信息**
 
 error: os_integration Bundle is not allowed to install for shell.
 
 **错误描述**
 
-禁止通过bm安装release的预装应用。
+禁止通过bm安装release的预置应用。
 
 **可能原因**
 
-通过bm安装release的预装应用。
+通过bm安装release的预置应用。
 
 **处理步骤**
 
-1. 检查应用是否是release的预装应用。
+检查应用是否为预置的release版本。如果是，需要替换应用的<!--RP5-->[Profile签名文件](../security/app-provision-structure.md)<!--RP5End-->的类型，重新签名并安装。
 
 ### 9568278 安装包的版本号不一致
 **错误信息**

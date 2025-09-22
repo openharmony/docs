@@ -26,7 +26,6 @@
           "designWidth": 720,
           "autoDesignWidth": true
         },
-        "colorMode": "auto",
         "isDefault": true,
         "updateEnabled": true,
         "scheduledUpdateTime": "10:30",
@@ -106,7 +105,6 @@
           "designWidth": 720,
           "autoDesignWidth": true
         },
-        "colorMode": "auto",
         "isDefault": true,
         "updateEnabled": true,
         "scheduledUpdateTime": "10:30",
@@ -133,11 +131,10 @@
           "designWidth": 720,
           "autoDesignWidth": true
         },
-        "colorMode": "auto",
         "isDefault": true,
         "updateEnabled": true,
         "scheduledUpdateTime": "10:30",
-        "multiScheduledUpdateTime": "11:30,16:30,",
+        "multiScheduledUpdateTime": "11:30,16:30",
         "updateDuration": 0,
         "defaultDimension": "2*2",
         "supportDimensions": [
@@ -186,7 +183,6 @@
           "designWidth": 720,
           "autoDesignWidth": true
         },
-        "colorMode": "auto",
         "isDefault": true,
         "updateEnabled": true,
         "scheduledUpdateTime": "10:30",

@@ -35,7 +35,12 @@
 2. 判断设备是否支持安全单元能力。
 3. 访问安全单元，实现数据的读取或写入。
 4. 释放通道资源。
-   
+
+> **注意：**
+>
+> - 从API version 9之后的应用开发新增支持Stage模型，作为目前主推并长期演进的模型。
+> - 由于SE的安全级别较高，必须将构建模式设置为release进行打包，否则应用将无法正常运行。
+
 ```ts
 import { omapi } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';

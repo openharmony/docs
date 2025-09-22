@@ -1,4 +1,10 @@
 # WindowExtensionContext (System API)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @chbchb12-->
+<!--Designer: @stupidb-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 The WindowExtensionContext module provides the context environment for the WindowExtensionAbility. It inherits from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md).
 
@@ -6,6 +12,8 @@ The module provides the capabilities of the [WindowExtensionAbility](js-apis-app
 
 > **NOTE**
 >
+>  - This module is deprecated since API version 21. You are advised to use [UIExtensionContext](../apis-ability-kit/js-apis-inner-application-uiExtensionContext.md) instead.
+> 
 >  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 >  - The APIs provided by this module are system APIs.
@@ -28,27 +36,31 @@ class WindowExtAbility extends WindowExtensionAbility {
 }
 ```
 
-## WindowExtensionContext.startAbility
+## WindowExtensionContext.startAbility<sup>(deprecated)</sup>
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
 Starts an ability. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+>  This API is supported since API version 9 and deprecated since API version 21. You are advised to use [UIExtensionContext.startability](../apis-ability-kit/js-apis-inner-application-uiExtensionContext.md#startability-1) instead.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md)  | Yes | Want information about the target ability. |
-| options | [StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md) | Yes | Parameters used for starting the ability. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md)  | Yes| Want information about the target ability.|
+| options | [StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
@@ -93,32 +105,36 @@ class WindowExtAbility extends WindowExtensionAbility {
 }
 ```
 
-## WindowExtensionContext.startAbility
+## WindowExtensionContext.startAbility<sup>(deprecated)</sup>
 
 startAbility(want: Want, options?: StartOptions): Promise\<void>
 
 Starts an ability. This API uses a promise to return the result.
 
+> **NOTE**
+>
+>  This API is supported since API version 9 and deprecated since API version 21. You are advised to use [UIExtensionContext.startability](../apis-ability-kit/js-apis-inner-application-uiExtensionContext.md#startability-2) instead.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md)  | Yes | Want information about the target ability, such as the ability name and bundle name. |
-| options | [StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md) | No | Parameters used for starting the ability. |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md)  | Yes| Want information about the target ability, such as the ability name and bundle name.|
+| options | [StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | --------------------------------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
 | 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |

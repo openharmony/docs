@@ -1,4 +1,10 @@
 # @ohos.util.List (Linear Container List)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 List is implemented based on the singly linked list. Each node has a reference pointing to the next element. Elements must be traversed from the beginning, making querying inefficient. However, insertion and deletion operations are highly efficient. List allows null elements.
 
@@ -16,6 +22,8 @@ This topic uses the following to identify the use of generics:
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> Container classes, implemented in static languages, have restrictions on storage locations and properties, and do not support custom properties or methods.
 
 
 ## Modules to Import
@@ -33,7 +41,7 @@ import { List } from '@kit.ArkTS';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | Yes| No| Number of elements in a List.|
 
@@ -59,7 +67,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let list: List<string | number | boolean | object> = new List();
+let list = new List<string | number | boolean | object>();
 ```
 
 
@@ -96,7 +104,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let list: List<string | number | boolean | object> = new List();
+let list = new List<string | number | boolean | object>();
 let result1 = list.add("a");
 let result2 = list.add(1);
 let b = [1, 2, 3];
@@ -108,6 +116,7 @@ class C {
 let c: C = {name : "Dylan", age : "13"};
 let result4 = list.add(c);
 let result5 = list.add(false);
+console.info("result = ", result5) // result =  true
 ```
 
 ### insert
@@ -140,10 +149,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let list: List<string | number | boolean> = new List();
+let list = new List<string | number | boolean>();
 list.insert("A", 0);
 list.insert(0, 1);
 list.insert(true, 2);
+console.info("result:", list.get(1));  // result: 0
 ```
 
 ### has
@@ -179,9 +189,10 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let list: List<string> = new List();
+let list = new List<string>();
 list.add("squirrel");
 let result = list.has("squirrel");
+console.info("result:", result);  // result: true
 ```
 
 ### get
@@ -218,7 +229,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
@@ -227,6 +238,7 @@ list.add(1);
 list.add(2);
 list.add(4);
 let result = list.get(2);
+console.info("result:", result);  // result: 5
 ```
 
 ### getLastIndexOf
@@ -262,7 +274,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
@@ -271,6 +283,7 @@ list.add(1);
 list.add(2);
 list.add(4);
 let result = list.getLastIndexOf(2);
+console.info("result:", result); // result: 5
 ```
 
 ### getIndexOf
@@ -306,7 +319,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
@@ -315,6 +328,7 @@ list.add(1);
 list.add(2);
 list.add(4);
 let result = list.getIndexOf(2);
+console.info("result:", result); // result: 0
 ```
 
 ### equal
@@ -350,15 +364,16 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
-let obj: List<number> = new List();
+let obj = new List<number>();
 obj.add(2);
 obj.add(4);
 obj.add(5);
 let result = list.equal(obj);
+console.info("result:", result);  // result: true
 ```
 
 ### removeByIndex
@@ -396,13 +411,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(2);
 list.add(4);
 let result = list.removeByIndex(2);
+console.info("result:", result);  // result: 5
 ```
 
 ### remove
@@ -438,12 +454,13 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
 let result = list.remove(2);
+console.info("result:", result);  // result: true
 ```
 
 ### replaceAllElements
@@ -484,15 +501,20 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
 list.replaceAllElements((value: number) => {
   // Add the user operation logic based on the actual scenario.
+  if (value === 5) {
+    return value * 2;
+  }
   return value;
 });
+
+console.info("result:", list.get(2));  // result: 10
 ```
 
 ### forEach
@@ -500,7 +522,7 @@ list.replaceAllElements((value: number) => {
 forEach(callbackFn: (value: T, index?: number, List?: List&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the elements in this List and obtain their indexes.
+Uses a callback to traverse each element in the **List** instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -510,7 +532,7 @@ Uses a callback to traverse the elements in this List and obtain their indexes.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes| Callback invoked for the replacement.|
+| callbackFn | function | Yes| Callback function.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
 callbackFn parameters
@@ -533,14 +555,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.forEach((value: number, index?: number) => {
-  console.log("value:" + value, "index:" + index);
+list.forEach((value: number, index: number) => {
+  console.info("value:" + value, "index:" + index);
 });
+// value:2 index:0
+// value:4 index:1
+// value:5 index:2
+// value:4 index:3
 ```
 
 ### sort
@@ -578,13 +604,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
+list.add(1);
+list.add(3);
 list.add(4);
-list.add(5);
-list.add(4);
-list.sort((a: number, b: number) => a - b); // The elements are sorted in ascending order.
-list.sort((a: number, b: number) => b - a); // The elements are sorted in descending order.
+list.sort((a: number, b: number) => a - b);  // The elements are sorted in ascending order.
+console.info("result:", list.convertToArray());  // result: 1,2,3,4
+
+list.sort((a: number, b: number) => b - a);  // The elements are sorted in descending order.
+console.info("result:", list.convertToArray());  // result: 4,3,2,1
 ```
 
 ### getSubList
@@ -623,12 +652,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
-list.add(5);
-list.add(4);
+list.add(6);
+list.add(8);
 let result = list.getSubList(1, 3);
+console.info("result:", result.convertToArray());  // result: 4,6
 ```
 
 ### clear
@@ -652,12 +682,14 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
 list.clear();
+let result = list.isEmpty();
+console.info("result:", result);  // result: true
 ```
 
 ### set
@@ -696,12 +728,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let list: List<number | string> = new List();
+let list = new List<number | string>();
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
 let result = list.set(2, "b");
+console.info("result:", JSON.stringify(list));  // result: {"0":2,"1":4,"2":"b","3":4}
 ```
 
 ### convertToArray
@@ -731,12 +764,13 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
 let result = list.convertToArray();
+console.info("result:", result);  // result: 2,4,5,4
 ```
 
 ### isEmpty
@@ -766,12 +800,13 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
 let result = list.isEmpty();
+console.info("result:", result);  // result: false
 ```
 
 ### getFirst
@@ -801,12 +836,13 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
 let result = list.getFirst();
+console.info("result:", result);  // result: 2
 ```
 
 ### getLast
@@ -836,12 +872,13 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>()
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
 let result = list.getLast();
+console.info("result:", result);  // result: 4
 ```
 
 ### [Symbol.iterator]
@@ -871,23 +908,30 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-let list: List<number> = new List();
+let list = new List<number>();
 list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
 
 // Method 1:
-let items = Array.from(list);
-for (let item of items) {
-  console.log("value: " + item);
+for (let item of list) {
+  console.info("value: " + item);
 }
+// value: 2
+// value: 4
+// value: 5
+// value: 4
 
 // Method 2:
 let iter = list[Symbol.iterator]();
 let temp: IteratorResult<number> = iter.next();
 while(!temp.done) {
-  console.log("value: " + temp.value);
+  console.info("value: " + temp.value);
   temp = iter.next();
 }
+// value: 2
+// value: 4
+// value: 5
+// value: 4
 ```

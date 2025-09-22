@@ -182,7 +182,7 @@ struct AllChooseComponent {
 }
 
 @Component
-struct ThingsComponent1 {
+struct ThingComponent1 {
   @Prop isFinished: boolean;
 
   build() {
@@ -215,7 +215,7 @@ struct ThingsComponent1 {
 }
 
 @Component
-struct ThingsComponent2 {
+struct ThingComponent2 {
   @Prop isFinished: boolean;
 
   build() {
@@ -261,10 +261,10 @@ struct Index {
       AllChooseComponent({isFinished: this.isFinished})
 
       // 待办事项1
-      ThingsComponent1({isFinished: this.isFinished})
+      ThingComponent1({isFinished: this.isFinished})
 
       // 待办事项2
-      ThingsComponent2({isFinished: this.isFinished})
+      ThingComponent2({isFinished: this.isFinished})
     }
     .height('100%')
     .width('100%')
@@ -318,9 +318,9 @@ struct AllChooseComponent {
 }
 
 @Component
-struct ThingsComponent {
+struct ThingComponent {
   @Prop isFinished: boolean;
-  @Prop things: string;
+  @Prop thing: string;
   build() {
     // 待办事项1
     Row({space: 15}) {
@@ -336,7 +336,7 @@ struct ThingsComponent {
           .width(28)
           .height(28)
       }
-      Text(`${this.things}`)
+      Text(`${this.thing}`)
         .fontSize(24)
         .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
     }
@@ -379,11 +379,10 @@ struct Index {
       List() {
         ForEach(this.planList, (item: string) => {
           // 待办事项1
-          ThingsComponent({isFinished: this.isFinished, things: item})
+          ThingComponent({isFinished: this.isFinished, thing: item})
             .margin(5)
         })
       }
-
     }
     .height('100%')
     .width('100%')
@@ -450,9 +449,9 @@ struct AllChooseComponent {
 }
 
 @Component
-struct ThingsComponent {
+struct ThingComponent {
   @Prop isFinished: boolean;
-  @Prop things: string;
+  @Prop thing: string;
 
   @Builder displayIcon(icon: Resource) {
     Image(icon)
@@ -474,11 +473,11 @@ struct ThingsComponent {
         // 此处'app.media.unfinished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
         this.displayIcon($r('app.media.unfinished'));
       }
-      Text(`${this.things}`)
+      Text(`${this.thing}`)
         .fontSize(24)
         .decoration({type: this.isFinished ? TextDecorationType.LineThrough : TextDecorationType.None})
         .onClick(() => {
-          this.things += '啦';
+          this.thing += '啦';
         })
     }
     .height('8%')
@@ -509,11 +508,10 @@ struct Index {
       List() {
         ForEach(this.data.planList, (item: string) => {
           // 待办事项1
-          ThingsComponent({isFinished: this.isFinished, things: item})
+          ThingComponent({isFinished: this.isFinished, thing: item})
             .margin(5)
         })
       }
-
     }
     .height('100%')
     .width('100%')
@@ -529,7 +527,7 @@ struct Index {
 
 ### 总结
 
-* 通过逐步优化代码结构，可以看到`\@Entry`组件作为页面的入口，其build函数应该仅考虑将需要的组件组合起来，类似于搭积木。被page调用的子组件则如同积木，等着被需要的page进行调用。状态变量类似于粘合剂，当触发UI刷新事件时，状态变量自动刷新绑定的组件，实现page的按需刷新。
+* 通过逐步优化代码结构，可以看到`@Entry`组件作为页面的入口，其build函数应该仅考虑将需要的组件组合起来，类似于搭积木。被page调用的子组件则如同积木，等着被需要的page进行调用。状态变量类似于粘合剂，当触发UI刷新事件时，状态变量自动刷新绑定的组件，实现page的按需刷新。
 * 虽然现有的架构并未使用到MVVM的设计理念，但MVVM的核心理念已初见端倪。ArkUI的UI开发天然适合MVVM模式。在ArkUI中，page和组件构成View层，page负责组织组件，组件则作为构成元素。当组件需要更新时，通过状态变量驱动组件刷新，从而更新page。ViewModel的数据则来源于Model层。
 * 示例中的代码功能较为简单，但随着功能的增加，主页面的代码量也会逐渐增多。当备忘录需要添加更多功能，且其他页面也需要使用到主页面的组件时，可以考虑采用MVVM模式来组织项目结构。
 
@@ -539,14 +537,17 @@ struct Index {
 
 ### MVVM文件结构说明
 
-* src
-  * ets
-    * pages ------ 存放页面组件
-    * views ------ 存放业务组件
-    * shares ------ 存放通用组件
-    * viewModel ------ 数据服务
-      * LoginViewModel ----- 登录页ViewModel
-      * xxxViewModel ------ 其他页ViewModel
+```
+├── src
+│   ├── ets
+│   │   ├── pages 存放页面组件。
+│   │   ├── views 存放业务组件。
+│   │   ├── shares 存放通用组件。
+│   │   └── viewModel 数据服务。
+│   │   │   ├── LoginViewModel.ets 登录页ViewModel。
+│   │   │   └── xxxViewModel.ets 其他页ViewModel。
+│
+```
 
 ### 分层设计技巧
 
@@ -582,24 +583,27 @@ View层根据需要来组织，但View层需要区分一下三种组件：
 
 按MVVM模式组织结构，重构如下：
 
-* src
-  * ets
-    * model
-      * ThingModel
-      * TodoListModel
-    * pages
-      * Index
-    * view
-      * AllChooseComponent
-      * ThingsComponent
-      * TodoComponent
-      * TodoListComponent
-    * viewModel
-      * ThingsViewModel
-      * TodoListViewModel
-  * resources
-    * rawfile
-      * default_tasks.json
+```
+├── src
+│   ├── ets
+│   │   ├── model
+│   │   │   ├── ThingModel.ets
+│   │   │   └── TodoListModel.ets
+│   │   ├── pages
+│   │   │   ├── Index.ets
+│   │   ├── views
+│   │   │   ├── AllChooseComponent.ets
+│   │   │   ├── ThingComponent.ets
+│   │   │   ├── TodoComponent.ets
+│   │   │   └── TodoListComponent.ets
+│   │   ├── viewModel
+│   │   │   ├── ThingViewModel.ets
+│   │   │   └── TodoListViewModel.ets
+│   └── resources
+│   │   ├── rawfile
+│   │   │   ├── default_tasks.json
+│
+```
 
 文件代码如下：
 
@@ -608,12 +612,12 @@ View层根据需要来组织，但View层需要区分一下三种组件：
   ```typescript
   import { common } from '@kit.AbilityKit';
   // import ViewModel
-  import TodoListViewModel from '../ViewModel/TodoListViewModel';
+  import TodoListViewModel from '../viewModel/TodoListViewModel';
 
   // import View
-  import { TodoComponent } from '../View/TodoComponent';
-  import { AllChooseComponent } from '../View/AllChooseComponent';
-  import { TodoListComponent } from '../View/TodoListComponent';
+  import { TodoComponent } from '../views/TodoComponent';
+  import { AllChooseComponent } from '../views/AllChooseComponent';
+  import { TodoListComponent } from '../views/TodoListComponent';
 
   @Entry
   @Component
@@ -635,7 +639,7 @@ View层根据需要来组织，但View层需要区分一下三种组件：
         }
 
         Column() {
-          TodoListComponent({ thingsViewModelArray: this.todoListViewModel.things })
+          TodoListComponent({ thingViewModelArray: this.todoListViewModel.things })
         }
       }
       .height('100%')
@@ -650,7 +654,7 @@ View层根据需要来组织，但View层需要区分一下三种组件：
 
   ```typescript
   export default class ThingModel {
-    thingsName: string = 'Todo';
+    thingName: string = 'Todo';
     isFinish: boolean = false;
   }
   ```
@@ -682,7 +686,7 @@ View层根据需要来组织，但View层需要区分一下三种组件：
   * AllChooseComponent.ets
 
   ```typescript
-  import TodoListViewModel from "../ViewModel/TodoListViewModel";
+  import TodoListViewModel from "../viewModel/TodoListViewModel";
 
   @Component
   export struct AllChooseComponent {
@@ -707,14 +711,14 @@ View层根据需要来组织，但View层需要区分一下三种组件：
   }
   ```
 
-  * ThingsComponent.ets
+  * ThingComponent.ets
 
   ```typescript
-  import ThingsViewModel from "../ViewModel/ThingsViewModel";
+  import ThingViewModel from "../viewModel/ThingViewModel";
 
   @Component
-  export struct ThingsComponent {
-    @Prop things: ThingsViewModel;
+  export struct ThingComponent {
+    @ObjectLink thing: ThingViewModel;
 
     @Builder
     displayIcon(icon: Resource) {
@@ -722,14 +726,14 @@ View层根据需要来组织，但View层需要区分一下三种组件：
         .width(28)
         .height(28)
         .onClick(() => {
-          this.things.updateIsFinish(); // View层点击事件发生时，调用ViewModel层方法updateIsFinish处理逻辑
+          this.thing.updateIsFinish(); // View层点击事件发生时，调用ViewModel层方法updateIsFinish处理逻辑
         })
     }
 
     build() {
       // 待办事项
       Row({ space: 15 }) {
-        if(this.things.isFinish) {
+        if (this.thing.isFinish) {
           // 此处'app.media.finished'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
           this.displayIcon($r('app.media.finished'));
         } else {
@@ -737,17 +741,17 @@ View层根据需要来组织，但View层需要区分一下三种组件：
           this.displayIcon($r('app.media.unfinished'));
         }
 
-        Text(`${this.things.thingsName}`)
+        Text(`${this.thing.thingName}`)
           .fontSize(24)
-          .decoration({ type: this.things.isFinish ? TextDecorationType.LineThrough: TextDecorationType.None })
+          .decoration({ type: this.thing.isFinish ? TextDecorationType.LineThrough : TextDecorationType.None })
           .onClick(() => {
-            this.things.addSuffixes(); // View层点击事件发生时，调用ViewModel层方法addSuffixes处理逻辑
+            this.thing.addSuffixes(); // View层点击事件发生时，调用ViewModel层方法addSuffixes处理逻辑
           })
       }
       .height('8%')
       .width('90%')
       .padding({ left: 15 })
-      .opacity(this.things.isFinish ? 0.3 : 1)
+      .opacity(this.thing.isFinish ? 0.3 : 1)
       .border({ width: 1 })
       .borderColor(Color.White)
       .borderRadius(25)
@@ -777,25 +781,25 @@ View层根据需要来组织，但View层需要区分一下三种组件：
   * TodoListComponent.ets
 
   ```typescript
-  import ThingsViewModel from "../ViewModel/ThingsViewModel";
-  import { ThingsViewModelArray } from "../ViewModel/TodoListViewModel"
-  import { ThingsComponent } from "./ThingsComponent";
+  import ThingViewModel from "../viewModel/ThingViewModel";
+  import { ThingViewModelArray } from "../viewModel/TodoListViewModel"
+  import { ThingComponent } from "./ThingComponent";
 
   @Component
   export struct TodoListComponent {
-    @ObjectLink thingsViewModelArray: ThingsViewModelArray;
+    @ObjectLink thingViewModelArray: ThingViewModelArray;
 
     build() {
       Column() {
         List() {
-          ForEach(this.thingsViewModelArray, (item: ThingsViewModel) => {
+          ForEach(this.thingViewModelArray, (item: ThingViewModel) => {
             // 待办事项
             ListItem() {
-              ThingsComponent({ things: item })
+              ThingComponent({ thing: item })
                 .margin(5)
             }
-          }, (item: ThingsViewModel) => {
-            return item.thingsName;
+          }, (item: ThingViewModel) => {
+            return item.thingName;
           })
         }
       }
@@ -803,19 +807,19 @@ View层根据需要来组织，但View层需要区分一下三种组件：
   }
   ```
 
-  * ThingsViewModel.ets
+  * ThingViewModel.ets
 
   ```typescript
-  import ThingModel from "../Model/ThingModel";
+  import ThingModel from "../model/ThingModel";
 
   @Observed
-  export default class ThingsViewModel {
-    @Track thingsName: string = 'Todo';
+  export default class ThingViewModel {
+    @Track thingName: string = 'Todo';
     @Track isFinish: boolean = false;
 
-    updateTask(things: ThingModel) {
-      this.thingsName = things.thingsName;
-      this.isFinish = things.isFinish;
+    updateTask(thing: ThingModel) {
+      this.thingName = thing.thingName;
+      this.isFinish = thing.isFinish;
     }
 
     updateIsFinish(): void {
@@ -823,7 +827,7 @@ View层根据需要来组织，但View层需要区分一下三种组件：
     }
 
     addSuffixes(): void {
-      this.thingsName += '啦';
+      this.thingName += '啦';
     }
   }
   ```
@@ -831,32 +835,32 @@ View层根据需要来组织，但View层需要区分一下三种组件：
   * TodoListViewModel.ets
 
   ```typescript
-  import ThingsViewModel from "./ThingsViewModel";
+  import ThingViewModel from "./ThingViewModel";
   import { common } from "@kit.AbilityKit";
-  import TodoListModel from "../Model/TodoListModel";
+  import TodoListModel from "../model/TodoListModel";
 
   @Observed
-  export class ThingsViewModelArray extends Array<ThingsViewModel> {
+  export class ThingViewModelArray extends Array<ThingViewModel> {
   }
 
   @Observed
   export default class TodoListViewModel {
     @Track isChoosen: boolean = true;
-    @Track things: ThingsViewModelArray = new ThingsViewModelArray();
+    @Track things: ThingViewModelArray = new ThingViewModelArray();
 
     async loadTasks(context: common.UIAbilityContext) {
       let todoList = new TodoListModel([]);
       await todoList.loadTasks(context);
-      for(let things of todoList.things) {
-        let todoListViewModel = new ThingsViewModel();
-        todoListViewModel.updateTask(things);
+      for (let thing of todoList.things) {
+        let todoListViewModel = new ThingViewModel();
+        todoListViewModel.updateTask(thing);
         this.things.push(todoListViewModel);
       }
     }
 
     chooseAll(): void {
-      for(let things of this.things) {
-        things.isFinish = this.isChoosen;
+      for (let thing of this.things) {
+        thing.isFinish = this.isChoosen;
       }
       this.isChoosen = !this.isChoosen;
     }
@@ -867,13 +871,13 @@ View层根据需要来组织，但View层需要区分一下三种组件：
 
   ```typescript
   [
-    {"thingsName": "7.30起床", "isFinish": false},
-    {"thingsName": "8.30早餐", "isFinish": false},
-    {"thingsName": "11.30中餐", "isFinish": false},
-    {"thingsName": "17.30晚餐", "isFinish": false},
-    {"thingsName": "21.30夜宵", "isFinish": false},
-    {"thingsName": "22.30洗澡", "isFinish": false},
-    {"thingsName": "1.30睡觉", "isFinish": false}
+    {"thingName": "7.30起床", "isFinish": false},
+    {"thingName": "8.30早餐", "isFinish": false},
+    {"thingName": "11.30中餐", "isFinish": false},
+    {"thingName": "17.30晚餐", "isFinish": false},
+    {"thingName": "21.30夜宵", "isFinish": false},
+    {"thingName": "22.30洗澡", "isFinish": false},
+    {"thingName": "1.30睡觉", "isFinish": false}
   ]
   ```
 

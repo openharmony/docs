@@ -4,7 +4,7 @@
 <!--Owner: @yp99ustc; @aohui; @zourongchun-->
 <!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 > **说明：**
 >
@@ -16,7 +16,7 @@ ConsoleMessage的信息级别。
 
 > **说明：**
 >
-> - 在html5侧，调用console.log或console.info对应ConsoleMessage的信息级别都为MessageLevel.Info。  
+> - 在html5侧，调用console.log或console.info对应ConsoleMessage的信息级别都为MessageLevel.Info。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -40,11 +40,15 @@ ConsoleMessage的信息级别。
 | Compatible | 1 | 兼容模式：混合内容兼容性模式，部分不安全的内容可能被加载。           |
 | None       | 2 | 严格模式：不允许加载HTTP和HTTPS混合内容。               |
 
-## HitTestType
+## HitTestType<sup>(deprecated)</sup>
 
 点击事件检测结果类型。
 
  **系统能力：** SystemCapability.Web.Webview.Core
+
+> **说明：**
+>
+> 从API version9开始支持，从API version 21开始废弃。建议使用[WebHitTestType](./arkts-apis-webview-e.md#webhittesttype)替代。
 
 | 名称            | 值 | 说明                       |
 | ------------- | -- | ------------------------ |
@@ -255,6 +259,18 @@ Web布局模式的配置。
 | ENTER_BFCACHE<sup>12+</sup>   | 3 | 同层标签进入BFCache。   |
 | LEAVE_BFCACHE<sup>12+</sup>   | 4 | 同层标签离开BFCache。 |
 
+## NativeEmbedParamStatus<sup>21+</sup>
+
+定义同层渲染object标签内嵌param元素的状态变化类型，当添加param元素时触发ADD，修改param元素属性触发UPDATE，删除param元素触发DELETE。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称                           | 值 | 说明           |
+| ----------------------------- | -- | ------------ |
+| ADD                           | 0 | 添加param元素。   |
+| UPDATE                        | 1 | 更改param元素属性。   |
+| DELETE                        | 2 | 删除param元素。 |
+
 ## ContextMenuEditStateFlags<sup>9+</sup>
 
 支持以按位或的方式使用此枚举。例如，如果需要同时支持CAN_CUT、CAN_COPY和CAN_SELECT_ALL，可使用CAN_CUT | CAN_COPY | CAN_SELECT_ALL或11。
@@ -332,6 +348,7 @@ Web布局模式的配置。
 | --------- | -- | ----------------- |
 | IMAGE     | 1 | 网页元素为图像类型。 |
 | LINK<sup>20+</sup>     | 2 | 网页元素为超链接类型。 |
+| TEXT<sup>21+</sup>     | 3 | 网页元素为文本或可编辑区域类型。 |
 
 ## WebResponseType<sup>13+</sup>
 
@@ -344,6 +361,7 @@ Web布局模式的配置。
 | 名称            | 值 | 说明                |
 | -------------- | -- | ------------------  |
 | LONG_PRESS     | 1 | 通过长按触发菜单弹出。 |
+| RIGHT_CLICK<sup>21+</sup>    | 2 | 通过鼠标右键触发菜单弹出。 |
 
 ## AudioSessionType<sup>20+</sup>
 

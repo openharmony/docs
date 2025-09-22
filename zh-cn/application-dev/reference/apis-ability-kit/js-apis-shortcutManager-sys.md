@@ -25,7 +25,7 @@ import { shortcutManager } from '@kit.AbilityKit';
 
 addDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortcutInfo.md), userId: number) : Promise\<void>
 
-增加指定用户的快捷方式信息。
+增加指定用户的快捷方式信息，使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_SHORTCUTS
 
@@ -44,7 +44,7 @@ addDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortc
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -110,7 +110,7 @@ struct ShortcutExample {
 
 deleteDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortcutInfo.md), userId: number) : Promise\<void>
 
-删除指定用户的快捷方式信息。
+删除指定用户的快捷方式信息，使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_SHORTCUTS
 
@@ -129,7 +129,7 @@ deleteDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-sho
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 

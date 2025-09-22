@@ -71,7 +71,7 @@
 6. Executing 状态具有三个子状态：Flushed、Running和End-of-Stream：
    - 在调用了OH_VideoEncoder_Start接口之后，编码器立即进入Running子状态。
    - 对于处于Executing状态的编码器，可以调用OH_VideoEncoder_Flush接口返回到Flushed子状态。
-   - 当待处理数据全部传递给编码器后，可以在input buffers队列中为最后一个入队的input buffer中添加[AVCODEC_BUFFER_FLAGS_EOS](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags-1)标记，遇到这个标记时，编码器会转换为End-of-Stream子状态。在此状态下，编码器不再接受新的输入，但是仍然会继续生成输出，直到输出到达尾帧。
+   - 当待处理数据全部传递给编码器后，可以在input buffers队列中为最后一个入队的input buffer中添加[AVCODEC_BUFFER_FLAGS_EOS](../../reference/apis-avcodec-kit/capi-native-avbuffer-info-h.md#oh_avcodecbufferflags)标记，遇到这个标记时，编码器会转换为End-of-Stream子状态。在此状态下，编码器不再接受新的输入，但是仍然会继续生成输出，直到输出到达尾帧。
 
 7. 使用完编码器后，必须调用OH_VideoEncoder_Destroy接口销毁编码器实例，使编码器进入Released状态。
 
@@ -349,7 +349,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 配置视频帧速率。
     double frameRate = 30.0;
     // 配置视频YUV值范围标志。
-    bool rangeFlag = false;
+    int32_t rangeFlag = 0;
     // 配置视频原色。
     int32_t primary = static_cast<int32_t>(OH_ColorPrimary::COLOR_PRIMARY_BT709);
     // 配置传输特性。
@@ -517,7 +517,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     以下示例中，bufferInfo的成员变量：
 
     - index：回调函数OnNewOutputBuffer传入的参数，与buffer唯一对应的标识；
-    - buffer：回调函数OnNewOutputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针；
+    - buffer：回调函数OnNewOutputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/capi-native-avbuffer-h.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针；
     - isValid：bufferInfo中存储的buffer实例是否有效。
 
     <!--RP6-->
@@ -843,7 +843,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     - heightStride：获取到的buffer数据的高跨距。
     
     bufferInfo的成员变量：
-    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针；
+    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/capi-native-avbuffer-h.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针；
     - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识；
     - isValid：bufferInfo中存储的buffer实例是否有效。
     
@@ -984,7 +984,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     以下示例中，bufferInfo的成员变量：
     - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识；
-    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针;
+    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/capi-native-avbuffer-h.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针;
     - isValid：bufferInfo中存储的buffer实例是否有效。
 
     与“步骤-8. 写入编码图像”一样，使用同一个接口OH_VideoEncoder_PushInputBuffer，通知编码器输入结束，需要将flag标识成AVCODEC_BUFFER_FLAGS_EOS。

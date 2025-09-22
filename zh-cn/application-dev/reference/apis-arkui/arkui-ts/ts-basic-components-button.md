@@ -80,7 +80,7 @@ Button()
 | 名称                      | 类型                                          | 只读 | 可选 | 说明                                                       |
 | ------------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | type                      | [ButtonType](#buttontype枚举说明)             | 否   | 是  | 按钮显示样式。<br/>默认值：ButtonType.ROUNDED_RECTANGLE<br/>从API version 18及之后，ButtonType的默认值修改为ButtonType.ROUNDED_RECTANGLE。API version 18之前的版本，ButtonType的默认值为ButtonType.Capsule。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| stateEffect               | boolean                                       | 否   | 是  | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。设置为true时，开启按压效果。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| stateEffect               | boolean                                       | 否   | 是  | 按钮按下时是否开启按压态显示效果。<br/>true：开启按压效果；false：关闭按压效果。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11枚举说明) | 否   | 是  | 按钮的样式和重要程度。<br/>默认值：ButtonStyleMode.EMPHASIZED <br/>**说明：**  <br/>按钮重要程度：强调按钮>普通按钮>文字按钮。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | controlSize<sup>11+</sup> | [ControlSize](#controlsize11枚举说明)         | 否   | 是  | 按钮的尺寸。<br/>默认值：ControlSize.NORMAL<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | role<sup>12+</sup> | [ButtonRole](#buttonrole12枚举说明)         | 否   | 是  | 按钮的角色。<br/>默认值：ButtonRole.NORMAL <br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -195,7 +195,7 @@ stateEffect(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。设置为true时，开启按压效果。<br/>默认值：true |
+| value  | boolean | 是   | 按钮按下时是否开启按压态显示效果。<br/>true：开启按压效果；false：关闭按压效果。<br/>默认值：true |
 
 >  **说明：**
 > 
@@ -358,7 +358,6 @@ maxFontScale(scale: number | Resource)
 >  - 设置[颜色渐变](ts-universal-attributes-gradient-color.md)需先设置[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)为透明色。
 >  - 在不设置borderRadius时，圆角矩形按钮的圆角大小保持默认值不变。圆角大小不会随按钮高度变化而变化，和controlSize属性有关，controlSize为NORMAL时圆角大小20vp，controlSize为SMALL时圆角大小14vp。
 >  - 设置Button的[border](ts-universal-attributes-border.md#border)时，会有默认的[borderRadius](ts-universal-attributes-border.md#borderradius)值。如果同时使用`border`和`borderRadius`，需将`borderRadius`放在`border`之后，以确保`borderRadius`不会被`border`中的默认`radius`覆盖。
-按钮中文本的显示样式。
 
 ## LabelStyle<sup>10+</sup>对象说明
 
@@ -432,7 +431,7 @@ maxFontScale(scale: number | Resource)
 | 名称  | 类型    | 只读  | 可选 | 说明              |
 | ------ | ------ | ---------------- | ---------------- | ---------------- |
 | label | string | 否 | 否 | Button的文本标签。<br/>**说明**：当文本字符的长度超过按钮本身的宽度时，文本将会被截断。 |
-| pressed | boolean | 否 | 否 | 指示是否按下Button。值为true时，表示按下，值为false时，表示未按下。<br/>**说明：**  <br/>此属性指示的是原本Button是否被按压，而非build出来的新组件。若新build出来的组件超过原本组件的大小，那么超出部分按压不触发。<br/>默认值：false |
+| pressed | boolean | 否 | 否 | 指示是否按下Button。<br/>true：按下；false：未按下。<br/>默认值：false <br/>**说明：**  <br/>此按压属性生效区域大小为原本Button组件的大小，而非build出来的新组件大小。|
 | triggerClick | [ButtonTriggerClickCallback](#buttontriggerclickcallback12) | 否 | 否 | 使用builder新构建出来组件的点击事件。 |
 
 ## ButtonTriggerClickCallback<sup>12+</sup>

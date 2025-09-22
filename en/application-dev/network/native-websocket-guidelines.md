@@ -1,4 +1,10 @@
-# WebSocket Connection (C/C++)
+# Using WebSocket for Network Access (C/C++)
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
 
 ## When to Use
 
@@ -6,12 +12,12 @@ The WebSocket module can be used to establish bidirectional connections between 
 
 ## Available APIs
 
-The following table lists the common **WebSocket** APIs. For details, see [net_websocket.h](../reference/apis-network-kit/net__websocket_8h.md).
+The following table lists the common WebSocket APIs. For details, see [net_websocket.h](../reference/apis-network-kit/capi-net-websocket-h.md).
 
 
 | API| Description|
 | -------- | -------- |
-| OH_WebSocketClient_Constructor(WebSocket_OnOpenCallback onOpen, WebSocket_OnMessageCallback onMessage, WebSocket_OnErrorCallback onError, WebSocket_OnCloseCallback onclose) | Constructor used to create a **WebSocketClient** instance. |
+| OH_WebSocketClient_Constructor(WebSocket_OnOpenCallback onOpen, WebSocket_OnMessageCallback onMessage, WebSocket_OnErrorCallback onError, WebSocket_OnCloseCallback onclose) | Constructor used to create a WebSocket client. |
 | OH_WebSocketClient_AddHeader(struct WebSocket \*client, struct WebSocket_Header header) | Adds the header information to the client request. |
 | OH_WebSocketClient_Connect(struct WebSocket \*client, const char \*url, struct WebSocket_RequestOptions options) | Connects the WebSocket client to the server. |
 | OH_WebSocketClient_Send(struct WebSocket \*client, char \*data, size_t length) | Sends data from the WebSocket client to the server. |
@@ -22,7 +28,7 @@ The following table lists the common **WebSocket** APIs. For details, see [net_w
 
 ### How to Develop
 
-To use related APIs to establish a connection to the WebSocket server, you need to create a Native C++ project, encapsulate the APIs in the source file, and call these APIs at the ArkTS layer. You can use hilog or console.log to print the log information on the console or generate device logs.
+To use related APIs to establish a connection to the WebSocket server, you need to create a Native C++ project, encapsulate the APIs in the source file, and call these APIs at the ArkTS layer. You can use **hilog** or **console.log** to print the log information on the console or generate device logs.
 
 The following walks you through on how to establish a connection to the WebSocket server, send messages to the WebSocket server, and close the WebSocket connection.
 
@@ -189,7 +195,7 @@ static napi_value CloseWebsocket(napi_env env, napi_callback_info info)
 
 ```
 
-On receiving a WebSocket URL, the `ConnectWebsocket` function attempts to connect to the server identified by the URL. If the connection is successful, **true** is returned. Otherwise, **false** is returned. Before creating a pointer to the **WebSocketClient** object, define the **onOpen**, **onMessage**, **onError**, and **onClose** callbacks for the WebSocket connection. In the sample code, functions such as `OH_WebSocketClient_Send` and `OH_WebSocketClient_Close` are also called to send messages to the server and proactively close the WebSocket connection.
+On receiving a WebSocket URL, the **ConnectWebsocket** function attempts to connect to the server identified by the URL. If the connection is successful, **true** is returned. Otherwise, **false** is returned. Before creating a pointer to the **WebSocketClient** object, define the **onOpen**, **onMessage**, **onError**, and **onClose** callbacks for the WebSocket connection. In the sample code, functions such as `OH_WebSocketClient_Send` and `OH_WebSocketClient_Close` are also called to send messages to the server and proactively close the WebSocket connection.
 
 
 2. Initialize and export the `napi_value` objects encapsulated through **NAPI**, and expose the preceding functions to JavaScript through external function APIs. In the sample code, the `ConnectWebsocket` function is exposed as the external function `Connect`, the `SendMessage` function is exposed as the external function `Send`, and the `CloseWebsocket` function is exposed as the external function `Close`.
@@ -351,3 +357,4 @@ Description of settings:
 ![Demo input](./figures/websocket-demo-2.jpg)
 
 ![Demo log output](./figures/websocket-demo-log.png)
+

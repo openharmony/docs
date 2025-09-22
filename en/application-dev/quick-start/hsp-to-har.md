@@ -17,7 +17,6 @@ The HSP has requirements on the consistency of bundle names and signatures. Inst
             "name": "har",
             "type": "har",
             "deviceTypes": [
-            "default",
             "tablet",
             "2in1"
             ]

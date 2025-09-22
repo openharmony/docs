@@ -6,7 +6,7 @@
 <!--Tester: @songyanhong-->
 <!--Adviser: @HelloCrease-->
 
-物理按键产生的按键事件为非指向性事件，与触摸等指向性事件不同，其事件并没有坐标位置信息，所以其会按照一定次序向用户操作的焦点进行派发，一些文字输入场景，按键事件都会优先派发给输入法软键盘进行处理，以便其处理文字的联想和候选词，应用可以通过`onKeyPreIme`提前感知事件。
+物理按键产生的按键事件为非指向性事件，与触摸等指向性事件不同，其事件并没有坐标位置信息，所以其会按照一定次序向获焦组件进行派发，大多数文字输入场景下，按键事件都会优先派发给输入法进行处理，以便其处理文字的联想和候选词，应用可以通过`onKeyPreIme`提前感知事件。
 
 > **说明：**
 >
@@ -21,11 +21,11 @@
 
 1. 首先分发给ArkUI框架用于触发获焦组件绑定的onKeyPreIme回调和页面快捷键。
 2. 再向输入法分发，输入法会消费按键用作输入。
-3. 再次将事件发给ArkUI框架，用于响应系统默认Key事件（例如走焦）以及获焦组件绑定的onKeyEvent回调。
+3. 再次将事件发给ArkUI框架，用于响应onKeyEventDispatch事件、获焦组件绑定的onKeyEvent回调以及走焦。
 
 因此，当某输入框组件获焦，且打开了输入法，此时大部分按键事件均会被输入法消费。例如字母键会被输入法用来往输入框中输入对应字母字符、方向键会被输入法用来切换选中备选词。如果在此基础上给输入框组件绑定了快捷键，那么快捷键会优先响应事件，事件也不再会被输入法消费。
 
-按键事件到ArkUI框架之后，会先找到完整的父子节点获焦链。从叶子节点到根节点，逐一发送按键事件。 
+按键事件到ArkUI框架之后，会先找到完整的节点获焦链。从叶子节点到根节点，逐一发送按键事件，若有子组件可以处理则优先给子组件处理，若子组件无法处理，则进行冒泡寻找父组件进行处理。 
 
 Web组件的KeyEvent流程与上述过程有所不同。在onKeyPreIme返回false时，Web组件不会匹配快捷键。而在第三次按键派发过程中，Web组件会将未消费的KeyEvent通过ReDispatch重新派发回ArkUI，在ReDispatch中再执行匹配快捷键等操作。
 
@@ -38,7 +38,7 @@ onKeyPreIme(event: Callback<KeyEvent, boolean>): T
 onKeyEventDispatch(event: Callback<KeyEvent, boolean>): T
 ```
 
-上述两种方法的区别仅在于触发的时机（见[按键事件数据流](#按键事件数据流)）。其中onKeyPreIme的返回值决定了该按键事件后续是否会被继续分发给页面快捷键、输入法和onKeyEvent。
+上述四种方法的区别仅在于触发的时机（见[按键事件数据流](#按键事件数据流)）。其中onKeyPreIme的返回值决定了该按键事件后续是否会被继续分发给页面快捷键、输入法、onKeyEventDispatch和onKeyEvent。
 
 
 当绑定方法的组件处于获焦状态下，外设键盘的按键事件会触发该方法，回调参数为[KeyEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-key.md#keyevent对象说明)，可由该参数获得当前按键事件的按键行为（[KeyType](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#keytype)）、键码（[keyCode](../reference/apis-input-kit/js-apis-keycode.md#keycode)）、按键英文名称（keyText）、事件来源设备类型（[KeySource](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#keysource)）、事件来源设备id（deviceId）、元键按压状态（metaKey）、时间戳（timestamp）、阻止冒泡设置（stopPropagation）。

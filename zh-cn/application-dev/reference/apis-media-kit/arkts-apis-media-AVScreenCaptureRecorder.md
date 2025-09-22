@@ -23,7 +23,7 @@ import { media } from '@kit.MediaKit';
 
 init(config: AVScreenCaptureRecordConfig): Promise\<void>
 
-异步方式进行录屏初始化，设置录屏参数。通过Promise获取返回值。
+进行录屏初始化，设置录屏参数。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -37,7 +37,7 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| Promise\<void> | 异步录屏初始化方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -71,7 +71,7 @@ let avCaptureConfig: media.AVScreenCaptureRecordConfig = {
 avScreenCaptureRecorder.init(avCaptureConfig).then(() => {
     console.info('Succeeded in initing avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('Failed to init avScreenCaptureRecorder, error: ' + err.message);
+    console.error(`Failed to init avScreenCaptureRecorder. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -79,7 +79,7 @@ avScreenCaptureRecorder.init(avCaptureConfig).then(() => {
 
 startRecording(): Promise\<void>
 
-异步方式开始录屏。通过Promise获取返回值。
+开始录屏。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -106,7 +106,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avScreenCaptureRecorder.startRecording().then(() => {
     console.info('Succeeded in starting avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('Failed to start avScreenCaptureRecorder, error: ' + err.message);
+    console.error(`Failed to start avScreenCaptureRecorder. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -114,7 +114,7 @@ avScreenCaptureRecorder.startRecording().then(() => {
 
 stopRecording(): Promise\<void>
 
-异步方式结束录屏。通过Promise获取返回值。
+结束录屏。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -122,7 +122,7 @@ stopRecording(): Promise\<void>
 
 | 类型           | 说明                              |
 | -------------- | --------------------------------- |
-| Promise\<void> | 异步结束录屏方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -149,7 +149,7 @@ avScreenCaptureRecorder.stopRecording().then(() => {
 
 skipPrivacyMode(windowIDs: Array\<number>): Promise\<void>
 
-录屏时，应用可对本应用的隐私窗口做安全豁免。通过Promise获取返回值。
+录屏时，应用可对本应用的隐私窗口做安全豁免。使用Promise异步回调。
 如录屏时，用户在本应用进行输入密码等操作，应用不会进行黑屏处理。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
@@ -184,7 +184,7 @@ let windowIDs = [];
 avScreenCaptureRecorder.skipPrivacyMode(windowIDs).then(() => {
     console.info('Succeeded in skipping privacy mode');
 }).catch((err: BusinessError) => {
-    console.info('Failed to skip privacy mode, error: ' + err.message);
+    console.error(`Failed to skip privacy mode. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -192,7 +192,7 @@ avScreenCaptureRecorder.skipPrivacyMode(windowIDs).then(() => {
 
 setMicEnabled(enable: boolean): Promise\<void>
 
-异步方式设置麦克风开关。通过Promise获取返回值。
+设置麦克风开关。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -206,7 +206,7 @@ setMicEnabled(enable: boolean): Promise\<void>
 
 | 类型           | 说明                                    |
 | -------------- | --------------------------------------- |
-| Promise\<void> | 异步设置麦克风开关方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -233,7 +233,7 @@ avScreenCaptureRecorder.setMicEnabled(true).then(() => {
 
 release(): Promise\<void>
 
-异步方式释放录屏。通过Promise获取返回值。
+释放录屏。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -241,7 +241,7 @@ release(): Promise\<void>
 
 | 类型           | 说明                              |
 | -------------- | --------------------------------- |
-| Promise\<void> | 异步释放录屏方法的Promise返回值。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -316,7 +316,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```ts
 avScreenCaptureRecorder.on('error', (err: BusinessError) => {
-    console.error('avScreenCaptureRecorder error:' + err.message);
+    console.error(`avScreenCaptureRecorder error: Code: ${err.code}, message: ${err.message}`);
 });
 ```
 

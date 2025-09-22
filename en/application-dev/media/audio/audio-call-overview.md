@@ -1,4 +1,10 @@
 # Audio Call Overview
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 Typically, audio calls are classified into VoIP calls and cellular calls.
 
@@ -6,11 +12,11 @@ Typically, audio calls are classified into VoIP calls and cellular calls.
   
 - Cellular call refers to the traditional telephony service provided by carriers. Currently, APIs for developing cellular calling are available only for system applications.
 
-When developing the audio call service, you must use a proper audio processing policy based on the [audio scene](#audio-scene) and [ringer mode](#ringer-mode).
+When developing the audio call service, you must use a proper audio processing strategy based on the [audio scene](#audio-scene) and [ringer mode](#ringer-mode).
 
 ## Audio Scene
 
-When an application uses the audio call service, the system switches to the call-related audio scene (specified by [AudioScene](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audioscene8)). The system has preset multiple audio scenes, including ringing, cellular call, and voice chat, and uses a scene-specific policy to process audio.
+When an application uses the audio call service, the system switches to the call-related audio scene (specified by [AudioScene](../../reference/apis-audio-kit/arkts-apis-audio-e.md#audioscene8)). The system has preset multiple audio scenes, including ringing, cellular call, and voice chat, and uses a scene-specific strategy to process audio.
 <!--Del-->
 For example, in the cellular call audio scene, the system prioritizes voice clarity. To deliver a crystal clear voice during calls, the system uses the 3A algorithm to preprocess audio data, suppress echoes, eliminates background noise, and adjusts the volume range. The 3A algorithm refers to three audio processing algorithms: Acoustic Echo Cancellation (AEC), Active Noise Control (ANC), and Automatic Gain Control (AGC).<!--DelEnd-->
 
@@ -38,7 +44,7 @@ The system has preset the following ringer modes:
 
 - **RINGER_MODE_NORMAL**: normal mode, in which a ringtone is played when a call is coming in.
 
-The application can call **getRingerMode** in the [AudioVolumeGroupManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioVolumeGroupManager.md) class to obtain the ringer mode in use so as to use a proper policy to notify the user.
+The application can call **getRingerMode** in the [AudioVolumeGroupManager](../../reference/apis-audio-kit/arkts-apis-audio-AudioVolumeGroupManager.md) class to obtain the ringer mode in use so as to use a proper strategy to notify the user.
 
 If the application wants to obtain the ringer mode changes in time, it can call **on('ringerModeChange')** in the **AudioVolumeGroupManager** class to listen for the changes. When the ringer mode changes, it will receive a notification and can make adjustment accordingly.
 

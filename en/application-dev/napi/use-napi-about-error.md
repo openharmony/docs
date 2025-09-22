@@ -1,4 +1,10 @@
 # Error Handling Using Node-API
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 ## Introduction
 
@@ -17,7 +23,7 @@ These concepts are important in exception and error handling. Properly using met
 
 ## Available APIs
 
-The following table lists the APIs provided by the Node-API module for handling ArkTS errors and exceptions in C/C++.  
+The following table lists the APIs provided by the Node-API module for handling ArkTS errors and exceptions in C/C++. Procedure:
 | API| Description|
 | -------- | -------- |
 | napi_create_error, napi_create_type_error, napi_create_range_error| Creates an error, which can be thrown to ArkTS using **napi_throw**.|
@@ -69,6 +75,7 @@ static napi_value GetLastErrorInfo(napi_env env, napi_callback_info info)
     return result;
 }
 ```
+<!-- @[napi_get_last_error_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
@@ -76,11 +83,12 @@ API declaration:
 // index.d.ts
 export const getLastErrorInfo: (str: string) => string;
 ```
+<!-- @[napi_get_last_error_info_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_last_error_info: %{public}s', testNapi.getLastErrorInfo('message'));
@@ -88,6 +96,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_get_last_error_info error: %{public}s', error);
 }
 ```
+<!-- @[ark_napi_get_last_error_info](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_type_error
 
@@ -111,6 +120,7 @@ static napi_value CreateTypeError(napi_env env, napi_callback_info info)
     return error;
 }
 ```
+<!-- @[napi_create_type_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
@@ -118,11 +128,12 @@ API declaration:
 // index.d.ts
 export const createTypeError: () => Error;
 ```
+<!-- @[napi_create_type_error_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   throw testNapi.createTypeError();
@@ -130,6 +141,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_create_type_error errorCode: %{public}s, errorMessage %{public}s', error.code, error.message);
 }
 ```
+<!-- @[ark_napi_create_type_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_range_error
 
@@ -153,6 +165,7 @@ static napi_value CreateRangeError(napi_env env, napi_callback_info info)
     return error;
 }
 ```
+<!-- @[napi_create_range_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
@@ -160,11 +173,12 @@ API declaration:
 // index.d.ts
 export const createRangeError: () => Error;
 ```
+<!-- @[napi_create_range_error_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   throw testNapi.createRangeError();
@@ -172,6 +186,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_create_range_error errorCode: %{public}s, errorMessage: %{public}s', error.code, error.message);
 }
 ```
+<!-- @[ark_napi_create_range_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_create_error
 
@@ -203,6 +218,7 @@ static napi_value NapiThrow(napi_env env, napi_callback_info info)
     return nullptr;
 }
 ```
+<!-- @[napi_create_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
@@ -210,11 +226,12 @@ API declaration:
 // index.d.ts
 export const napiThrow: () => void;
 ```
+<!-- @[napi_create_error_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   testNapi.napiThrow();
@@ -222,6 +239,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_throw errorCode: %{public}s, errorMessage: %{public}s', error.code, error.message);
 }
 ```
+<!-- @[ark_napi_create_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_throw_error
 
@@ -256,6 +274,7 @@ static napi_value NapiThrowError(napi_env env, napi_callback_info info)
     return nullptr;
 }
 ```
+<!-- @[napi_throw_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
@@ -264,11 +283,12 @@ API declaration:
 export const napiThrowErrorMessage: () => void;
 export const napiThrowError: (dividend: number, divisor: number) => void;
 ```
+<!-- @[napi_throw_error_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   testNapi.napiThrowErrorMessage();
@@ -278,13 +298,14 @@ try {
 try {
   testNapi.napiThrowError(5, 0);
 } catch (error) {
-  hilog.error(0x0000, 'testTag', 'Test Node-API napi_throw_error errorCode: %{public}s , errorManager: %{public}s', error.code, error.message);
+  hilog.error(0x0000, 'testTag', 'Test Node-API napi_throw_error errorCode: %{public}s , errorMessage: %{public}s', error.code, error.message);
 }
 ```
+<!-- @[ark_napi_throw_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_throw_type_error
 
-Call **napi_throw_type_error** to throw an ArkTS **TypeError** object with text information.
+Use **napi_throw_type_error** to throw an ArkTS **TypeError** object with text information.
 
 CPP code:
 
@@ -315,6 +336,7 @@ static napi_value ThrowTypeError(napi_env env, napi_callback_info info)
     return nullptr;
 }
 ```
+<!-- @[napi_throw_type_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
@@ -323,11 +345,12 @@ API declaration:
 export const throwTypeErrorMessage: () => void;
 export const throwTypeError: (message: string) => void;
 ```
+<!-- @[napi_throw_type_error_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   testNapi.throwTypeErrorMessage();
@@ -340,10 +363,11 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_throw_type_error errorCode: %{public}s, errorMessage: %{public}s', error.code, error.message);
 }
 ```
+<!-- @[ark_napi_throw_type_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_throw_range_error
 
-Call **napi_create_range_error** to create an ArkTS **RangeError** with text information.
+Use **napi_throw_range_error** to throw an ArkTS **RangeError** with text information.
 
 CPP code:
 
@@ -380,19 +404,21 @@ static napi_value ThrowRangeError(napi_env env, napi_callback_info info)
     return resultValue;
 }
 ```
+<!-- @[napi_throw_range_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
 ```ts
 // index.d.ts
 export const throwRangeErrorMessage: () => void;
-export const throwRangeError: (num: number) => number | void;
+export const throwRangeError: (num: number) => number | undefined;
 ```
+<!-- @[napi_throw_range_error_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   testNapi.throwRangeErrorMessage();
@@ -406,6 +432,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_throw_range_error errorCode: %{public}s, errorMessage: %{public}s', error.code, error.message);
 }
 ```
+<!-- @[ark_napi_throw_range_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_is_error
 
@@ -432,6 +459,7 @@ static napi_value NapiIsError(napi_env env, napi_callback_info info)
     return returnValue;
 }
 ```
+<!-- @[napi_is_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
@@ -439,11 +467,12 @@ API declaration:
 // index.d.ts
 export const napiIsError: <T>(obj: T) => boolean;
 ```
+<!-- @[napi_is_error_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   throw new Error("throwing an error");
@@ -454,6 +483,7 @@ try {
     .toString());
 }
 ```
+<!-- @[ark_napi_is_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_get_and_clear_last_exception
 
@@ -477,23 +507,26 @@ static napi_value GetAndClearLastException(napi_env env, napi_callback_info info
     return result;
 }
 ```
+<!-- @[napi_get_and_clear_last_exception](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
 ```ts
 // index.d.ts
-export const getAndClearLastException: () => Error | void;
+export const getAndClearLastException: () => Error | undefined;
 ```
+<!-- @[napi_get_and_clear_last_exception_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 // Obtain the last unprocessed exception.
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_and_clear_last_exception, error.message: %{public}s',
            testNapi.getAndClearLastException());
 ```
+<!-- @[ark_napi_get_and_clear_last_exception](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_is_exception_pending
 
@@ -528,18 +561,20 @@ static napi_value IsExceptionPending(napi_env env, napi_callback_info info)
     return nullptr;
 }
 ```
+<!-- @[napi_is_exception_pending](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
 ```ts
 // index.d.ts
-export const isExceptionPending: () => Object | void;
+export const isExceptionPending: () => Object | undefined;
 ```
+<!-- @[napi_is_exception_pending_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 interface MyObject {
   code: string;
@@ -553,6 +588,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_is_exception_pending error');
 }
 ```
+<!-- @[ark_napi_is_exception_pending](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_fatal_error
 
@@ -565,7 +601,7 @@ CPP code:
 
 static napi_value FatalError(napi_env env, napi_callback_info info)
 {
-    // Calling napi_fatal_error will terminate the application process immediately. Use this API only when a fatal error that cannot be rectified occurs.
+    // Calling **napi_fatal_error** will terminate the application process immediately. Use this API only when a fatal error that cannot be rectified occurs.
     // Simulate a fatal error.
     bool errorCondition = true;
     if (errorCondition) {
@@ -575,6 +611,7 @@ static napi_value FatalError(napi_env env, napi_callback_info info)
     return nullptr;
 }
 ```
+<!-- @[napi_fatal_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
@@ -582,11 +619,12 @@ API declaration:
 // index.d.ts
 export const fatalError: () => void;
 ```
+<!-- @[napi_fatal_error_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   testNapi.fatalError();
@@ -594,6 +632,7 @@ try {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_fatal_error error');
 }
 ```
+<!-- @[ark_napi_fatal_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/ets/pages/Index.ets) -->
 
 ### napi_fatal_exception
 Call **napi_fatal_exception** in the context of the main thread to throw a fatal exception. As a result, the application is terminated and a crash log is generated. Exercise caution when using this API. Avoid frequently calling this API during normal operations.
@@ -612,7 +651,7 @@ static napi_value FatalException(napi_env env, napi_callback_info info)
     if (status != napi_ok) {
       return nullptr;
     }
-    // Calling napi_fatal_exception will terminate the application process. Use this API only when a fatal error that cannot be rectified occurs in the main thread.
+    // Calling **napi_fatal_exception** will terminate the application process. Use this API only when a fatal error that cannot be rectified occurs in the main thread.
     // Simulate a fatal error.
     status = napi_fatal_exception(env, args[0]);
     if (status != napi_ok) {
@@ -621,6 +660,7 @@ static napi_value FatalException(napi_env env, napi_callback_info info)
     return nullptr;
 }
 ```
+<!-- @[napi_fatal_exception](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/napi_init.cpp) -->
 
 API declaration:
 
@@ -628,16 +668,18 @@ API declaration:
 // index.d.ts
 export const fatalException: (err: Error) => void;
 ```
+<!-- @[napi_fatal_exception_api](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 const err = new Error("a fatal exception occurred");
 testNapi.fatalException(err);
 ```
+<!-- @[ark_napi_fatal_exception](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPIError/entry/src/main/ets/pages/Index.ets) -->
 
 To print logs in the native CPP, add the following information to the **CMakeLists.txt** file and add the header file by using **#include "hilog/log.h"**.
 
@@ -645,5 +687,5 @@ To print logs in the native CPP, add the following information to the **CMakeLis
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

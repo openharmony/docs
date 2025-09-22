@@ -207,10 +207,10 @@ notifyDataChange(accountId: string, bundleName: string, callback: AsyncCallback&
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
 
-| 名称     | 类型   | 必填 | 说明 |
-| ---------- | ------ | ---- | ---- |
-| eventId | string | 是   | 变更事件id。|
-| extraData | ExtraData | 是   | 云端数据变更信息。|
+| 名称     | 类型   | 只读 | 可选 | 说明 |
+| ---------- | ------ | ---- | ---- | ---- |
+| eventId | string | 否   | 否   | 变更事件id。|
+| extraData | string | 否   | 否   | 云端数据变更信息。|
 
 ## cloudSyncManager.notifyDataChange<sup>11+</sup>
 
@@ -649,6 +649,8 @@ constructor(bundleName: string)
 **示例：**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   let bundleName = 'com.demo.a';
   try {
     let downgradeMgr = new cloudSyncManager.DowngradeDownload(bundleName);
@@ -750,11 +752,11 @@ startDownload(callback: Callback&lt;DownloadProgress&gt;): Promise&lt;void&gt;
   let bundleName: string = "com.demo.a";
   let downgradeMgr = new cloudSyncManager.DowngradeDownload(bundleName);
   let callback = (data: cloudSyncManager.DownloadProgress) => {
-    console.info(`Dwongrade progress: downloadedSize: ${data.downloadedSize}, totalSize: ${data.totalSize}`);
+    console.info(`Downgrade progress: downloadedSize: ${data.downloadedSize}, totalSize: ${data.totalSize}`);
     if (data.state == cloudSyncManager.DownloadState.COMPLETED) {
-      console.info('Dwongrade finished.');
+      console.info('Downgrade finished.');
     } else if (data.state == cloudSyncManager.DownloadState.STOPPED) {
-      console.info(`Dwongrade stopped, reason: ${data.stopReason}.`);
+      console.info(`Downgrade stopped, reason: ${data.stopReason}.`);
     }
   };
   downgradeMgr.startDownload(callback).then(() => {

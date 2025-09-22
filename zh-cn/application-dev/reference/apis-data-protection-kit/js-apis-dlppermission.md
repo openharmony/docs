@@ -178,7 +178,7 @@ getDLPPermissionInfo(callback: AsyncCallback&lt;DLPPermissionInfo&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[DLPPermissionInfo](#dlppermissioninfo)&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;[DLPPermissionInfo](#dlppermissioninfo)&gt; | 是 | 回调函数。err为undefined时表示查询成功；否则为错误对象。 |
 
 **错误码：**
 
@@ -424,7 +424,7 @@ isInSandbox(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。返回true表示当前应用运行在沙箱中，返回false表示当前应用不是运行在沙箱中。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。err为undefined时表示查询成功；否则为错误对象。返回true表示当前应用运行在沙箱中，返回false表示当前应用不是运行在沙箱中。 |
 
 **错误码：**
 
@@ -504,7 +504,7 @@ getDLPSupportedFileTypes(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数。err为undefined时表示查询成功；否则为错误对象。 |
 
 **错误码：**
 
@@ -598,7 +598,7 @@ setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。Array不限长度，每个string不超过4095字节。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。err为undefine时表示设置成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。err为undefined时表示设置成功；否则为错误对象。 |
 
 **错误码：**
 
@@ -689,7 +689,7 @@ cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | docUris | Array&lt;string&gt; | 是 | 表示需要设置保留状态的文件uri列表。Array不限长度，每个string不超过4095字节。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。err为undefine时表示设置成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。err为undefined时表示设置成功；否则为错误对象。 |
 
 **错误码：**
 
@@ -781,7 +781,7 @@ getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 指定应用包名。最小7字节，最大128字节。 |
-| callback | AsyncCallback&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | 是 | 回调函数。err为undefined时表示查询成功；否则为错误对象。 |
 
 **错误码：**
 
@@ -825,7 +825,7 @@ getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | 是 | 回调函数。err为undefined时表示查询成功；否则为错误对象。 |
 
 **错误码：**
 
@@ -909,7 +909,7 @@ getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt;&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt;&gt; | 是 | 回调函数。err为undefined时表示查询成功；否则为错误对象。 |
 
 **错误码：**
 
@@ -1318,3 +1318,415 @@ DLP文件授权类型的枚举。
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | policyString | string | 否 | 否 | 表示企业定制策略的json字符串。长度不超过4M（单位：兆）。 |
+
+## dlpPermission.generateDlpFileForEnterprise<sup>21+</sup>
+
+generateDLPFileForEnterprise(plaintextFd: number, dlpFd: number, property: DLPProperty, customProperty: CustomProperty): Promise&lt;void&gt;
+
+获取DLPFile管理对象。使用Promise异步回调。
+>**说明：**
+>
+> 使用该接口可以将明文文件加密生成权限受控文件，仅拥有完全控制权限的用户可以打开。
+
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| plaintextFd | number | 是 | 明文文件的文件描述符。 |
+| dlpFd | number | 是 | 加密文件的文件描述符。 |
+| property | [DLPProperty](#dlpproperty21) | 是 | DLP文件通用策略。 |
+| customProperty | [CustomProperty](#customproperty21) | 是 | 企业定制策略。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 19100001 | Invalid parameter value. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
+| 19100005 | Credential authentication server error. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | The system ability works abnormally. |
+| 19100014 | Account not logged in. |
+  
+**示例：**
+
+```ts
+import { dlpPermission } from '@kit.DataProtectionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function ExampleFunction(plainFilePath: string, dlpFilePath: string) {
+  let plaintextFd: number | undefined = undefined;
+  let dlpFd: number | undefined = undefined;
+  try {
+    plaintextFd = fileIo.openSync(plainFilePath, fileIo.OpenMode.READ_ONLY).fd;
+    dlpFd = fileIo.openSync(dlpFilePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE).fd;
+    let dlpProperty: dlpPermission.DLPProperty = {
+      ownerAccount: 'zhangsan',
+      ownerAccountType: dlpPermission.AccountType.DOMAIN_ACCOUNT,
+      authUserList: [],
+      contactAccount: 'zhangsan',
+      offlineAccess: true,
+      ownerAccountID: 'xxxxxxx',
+      everyoneAccessList: []
+    };
+    let customProperty: dlpPermission.CustomProperty = {
+      enterprise: 'customProperty'
+    };
+    await dlpPermission.generateDlpFileForEnterprise(plaintextFd, dlpFd, dlpProperty, customProperty);
+    console.info('Successfully generate DLP file for enterprise.');
+  } catch(err) {
+    console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
+  } finally {
+    if (dlpFd) {
+      fileIo.closeSync(dlpFd);
+    }
+    if (plaintextFd) {
+      fileIo.closeSync(plaintextFd);
+    }
+  }
+}
+```
+
+## dlpPermission.decryptDlpFile<sup>21+</sup>
+
+decryptDlpFile(dlpFd: number, plaintextFd: number): Promise&lt;void&gt;
+
+将DLP文件解密生成明文文件。使用Promise异步回调。
+>**说明：**
+>
+> 仅拥有完全控制权限的用户可以解密DLP文件。
+
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| dlpFd | number | 是 | 待解密文件的fd。 |
+| plaintextFd | number | 是 | 目标解密文件的fd。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 19100001 | Invalid parameter value. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
+| 19100005 | Credential authentication server error. |
+| 19100008 | The file is not a DLP file. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | The system ability works abnormally. |
+| 19100013 | The user does not have the permission. |
+
+**示例：**
+
+```ts
+import { dlpPermission } from '@kit.DataProtectionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function ExampleFunction(plainFilePath: string, dlpFilePath: string) {
+  let plaintextFd: number | undefined = undefined;
+  let dlpFd: number | undefined = undefined;
+  try {
+    plaintextFd = fileIo.openSync(plainFilePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE).fd;
+    dlpFd = fileIo.openSync(dlpFilePath, fileIo.OpenMode.READ_ONLY).fd;
+    await dlpPermission.decryptDlpFile(dlpFd, plaintextFd);
+    console.info('Successfully decrypt DLP file.');
+  } catch(err) {
+    console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
+  } finally {
+    if (dlpFd) {
+      fileIo.closeSync(dlpFd);
+    }
+    if (plaintextFd) {
+      fileIo.closeSync(plaintextFd);
+    }
+  }
+}
+```
+
+## dlpPermission.queryDlpPolicy<sup>21+</sup>
+
+queryDlpPolicy(dlpFd: number): Promise&lt;string&gt;
+
+在DLP文件中解析文件头，获取DLP明文策略。使用Promise异步回调。
+
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| dlpFd | number | 是 | 待解密文件的fd。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;string&gt; | Promise对象，返回当前DLP策略的json字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 19100001 | Invalid parameter value. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
+| 19100005 | Credential authentication server error. |
+| 19100008 | The file is not a DLP file. |
+| 19100009 | Failed to operate the DLP file. |
+| 19100011 | The system ability works abnormally. |
+| 19100013 | The user does not have the permission. |
+
+**示例：**
+
+```ts
+import { dlpPermission } from '@kit.DataProtectionKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function ExampleFunction(dlpFilePath: string) {
+  let dlpFd : number | undefined = undefined;
+  try {
+    dlpFd = fileIo.openSync(dlpFilePath, fileIo.OpenMode.READ_ONLY).fd;
+    let policy: string = await dlpPermission.queryDlpPolicy(dlpFd);
+    console.info('DLP policy:' + policy);
+  } catch(err) {
+    console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
+  } finally {
+    if (dlpFd) {
+      fileIo.closeSync(dlpFd);
+    }
+  }
+}
+```
+
+## ActionType<sup>21+</sup>
+
+表示在文件设定的权限时间到期后所执行的动作枚举，默认为NOT_OPEN。
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| NOT_OPEN | 0 | 表示超过权限管控时间后，用户无权限打开DLP文件。 |
+| OPEN | 1 | 表示超过权限管控时间后，登录账号的用户拥有编辑权限。 |
+  
+## AccountType<sup>21+</sup>
+
+表示授权账号类型的枚举。
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| CLOUD_ACCOUNT | 1 | 表示云账号。 |
+| DOMAIN_ACCOUNT | 2 | 表示域账号。 |
+| ENTERPRISE_ACCOUNT | 4 | 表示企业账号。 |
+
+## CustomProperty<sup>21+</sup>
+
+表示自定义策略。
+
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| enterprise | string | 否 | 否 | 表示企业定制策略的json字符串。长度不超过4M（单位：兆）。 |
+
+## DLPProperty<sup>21+</sup>
+
+表示授权相关信息。
+
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| ownerAccount | string | 否 | 否 | 表示权限设置者账号。不超过255字节。 |
+| ownerAccountID | string | 否 | 否 | 表示权限设置者账号的ID。不超过255字节。 |
+| ownerAccountType | [AccountType](#accounttype21) | 否 | 否 | 表示权限设置者账号类型。 |
+| authUserList | Array&lt;[AuthUser](#authuser21)&gt; | 否 | 是 | 表示授权用户列表，默认为空。 |
+| contactAccount | string | 否 | 否 | 表示联系人账号。不超过255字节。 |
+| offlineAccess | boolean | 否 | 否 | 表示是否是离线打开。true表示允许离线打开，false表示不可离线打开。 |
+| everyoneAccessList | Array&lt;[DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess)&gt; | 否 | 是 | 表示授予所有人的权限，默认为空。 |
+| expireTime | number | 否 | 是 | 表示文件权限到期时间戳，默认为空。 |
+| actionUponExpiry | [ActionType](#actiontype21) | 否 | 是 | 表示到期后文件是否允许打开（打开后拥有编辑权限），仅在expireTime不为空时生效。 |
+| fileId | string | 否 | 是 | 表示文件的标识。不超过255字节。 |
+| allowedOpenCount | number | 否 | 是 | 表示允许打开的次数。 |
+ 
+## AuthUser<sup>21+</sup>
+
+表示授权用户数据。
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| authAccount | string | 否 | 否 | 表示被授权用户账号。不超过255字节。 |
+| authAccountType | [AccountType](#accounttype21) | 否 | 否 | 表示被授权用户账号类型。 |
+| dlpFileAccess | [DLPFileAccess](js-apis-dlppermission.md#dlpfileaccess) | 否 | 否 | 表示被授予的权限。 |
+| permExpiryTime | number | 否 | 否 | 表示授权到期时间。 |
+
+## DlpConnPlugin<sup>21+</sup>
+
+被用于registerPlugin接口中，将回调能力注册到SA（System Ability）中。
+
+>**说明：**
+>
+> [registerPlugin](#registerplugin21)接口的参数需要继承该接口，[connectServer](#connectserver21)由SA（System Ability）侧调用，通过callback进行回传参数。
+
+### connectServer<sup>21+</sup>
+connectServer(requestId: string, requestData: string, callback: Callback\<string\>): void
+  
+该函数提供给SA（System Ability）侧调用，待该函数处理完连云能力后，通过callback调用回SA（System Ability）中。
+
+>**说明：**
+>
+> connectServer接口代表系统能力侧向前端通信的一次调用。
+
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+  
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| requestId | string | 是 | SA（System Ability）侧传递的本次请求的标识。|
+| requestData | string | 是 | SA（System Ability）侧传递的数据。|
+| callback | Callback\<string\>| 是 | SA（System Ability）侧传递的接口，用于回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 19100011 | The system ability works abnormally. |
+
+ 
+## DlpConnManager<sup>21+</sup>
+  
+用于调用registerPlugin和unregisterPlugin接口，将回调能力在SA（System Ability）中注册/注销。
+
+>**说明：**
+>
+> registerPlugin接口将回调能力注册进SA（System Ability），而unregisterPlugin接口将回调能力从SA（System Ability）中注销。
+
+### constructor<sup>21+</sup>
+
+constructor()
+
+[DlpConnManager](#dlpconnmanager21) 实例化时的构造函数。
+ 
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+ 
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. |
+
+### registerPlugin<sup>21+</sup>
+static registerPlugin(plugin: DlpConnPlugin): number
+  
+该接口提供将回调注册到SA（System Ability）侧的功能。
+
+>**说明：**
+>
+> registerPlugin将plugin注册到SA（System Ability）侧，待SA（System Ability）调用。
+
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| plugin | [DlpConnPlugin](#dlpconnplugin21) | 是 |代表回调能力。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 注册结果，代表该回调的id。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 19100001 | Invalid parameter value. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |
+
+### unregisterPlugin<sup>21+</sup>
+static unregisterPlugin(): void
+  
+提供将回调从SA（System Ability）侧注销的能力。
+
+>**说明：**
+>
+> unregisterPlugin将plugin从SA（System Ability）侧注销注册。
+  
+**需要权限：** ohos.permission.ENTERPEISE_ACCESS_DLP_FILE
+
+**系统能力：** SystemCapability.Security.DataLossPrevention
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[DLP服务错误码](errorcode-dlp.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. |
+| 19100001 | Invalid parameter value. |
+| 19100002 | Credential service busy due to too many tasks or duplicate tasks. |
+| 19100003 | Credential task time out. |
+| 19100004 | Credential service error. |

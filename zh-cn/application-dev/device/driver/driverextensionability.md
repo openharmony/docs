@@ -107,7 +107,7 @@
             "name": "ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER" // 此处为扩展外设相关权限，必须配置。
           },
           {
-            "name": "ohos.permission.ACCESS_DDK_DRIVERS" // 此处为允许该扩展外设应用访问扩展外设驱动的权限，API verison 18及以上版本，必须配置。
+            "name": "ohos.permission.ACCESS_DDK_DRIVERS" // 此处为允许该扩展外设应用访问扩展外设驱动的权限，API version 18及以上版本，必须配置。
           }
         ],
         "deliveryWithInstall": true,

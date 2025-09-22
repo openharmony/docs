@@ -43,7 +43,8 @@ V1：
 @Component
 struct Child {
   @State val: number = 10;
-  build(){
+
+  build() {
     Text(this.val.toString())
   }
 }
@@ -56,7 +57,8 @@ V2迁移策略：直接替换。
 @ComponentV2
 struct Child {
   @Local val: number = 10;
-  build(){
+
+  build() {
     Text(this.val.toString())
   }
 }
@@ -77,7 +79,8 @@ class Child {
 @Entry
 struct example {
   @State child: Child = new Child();
-  build(){
+
+  build() {
     Column() {
       Text(this.child.value.toString())
       // @State可以观察第一层变化
@@ -102,7 +105,8 @@ class Child {
 @Entry
 struct example {
   @Local child: Child = new Child();
-  build(){
+
+  build() {
     Column() {
       Text(this.child.value.toString())
       // @Local只能观察自身，需要给Child加上@ObservedV2和@Trace
@@ -125,6 +129,7 @@ V1实现：
 @Component
 struct Child {
   @State value: number = 0;
+
   build() {
     Text(this.value.toString())
   }
@@ -134,7 +139,7 @@ struct Child {
 @Component
 struct Parent {
   build() {
-    Column(){
+    Column() {
       // @State可以从外部初始化
       Child({ value: 30 })
     }
@@ -148,6 +153,7 @@ V2迁移策略：使用\@Param和\@Once。
 @ComponentV2
 struct Child {
   @Param @Once value: number = 0;
+
   build() {
     Text(this.value.toString())
   }
@@ -157,7 +163,7 @@ struct Child {
 @ComponentV2
 struct Parent {
   build() {
-    Column(){
+    Column() {
       // @Local禁止从外部初始化，可以用@Param和@Once替代实现
       Child({ value: 30 })
     }
@@ -180,10 +186,11 @@ V1实现：
 struct Child {
   // @Link可以双向同步数据
   @Link val: number;
+
   build() {
-    Column(){
-      Text("child: " + this.val.toString())
-      Button("+1")
+    Column() {
+      Text('child: ' + this.val.toString())
+      Button('+1')
         .onClick(() => {
           this.val++;
         })
@@ -195,10 +202,11 @@ struct Child {
 @Component
 struct Parent {
   @State myVal: number = 10;
+
   build() {
-    Column(){
-      Text("parent: " + this.myVal.toString())
-      Child({val: this.myVal})
+    Column() {
+      Text('parent: ' + this.myVal.toString())
+      Child({ val: this.myVal })
     }
   }
 }
@@ -210,13 +218,14 @@ V2迁移策略：使用\@Param和\@Event。
 @ComponentV2
 struct Child {
   // @Param搭配@Event回调实现数据双向同步
-  @Param val: number  = 0;
+  @Param val: number = 0;
   @Event addOne: () => void;
+
   build() {
-    Column(){
-      Text("child: " + this.val.toString())
-      Button("+1")
-        .onClick(()=> { 
+    Column() {
+      Text('child: ' + this.val.toString())
+      Button('+1')
+        .onClick(() => {
           this.addOne();
         })
     }
@@ -227,10 +236,11 @@ struct Child {
 @ComponentV2
 struct Parent {
   @Local myVal: number = 10
+
   build() {
     Column() {
-      Text("parent: " + this.myVal.toString())
-      Child({ val: this.myVal, addOne: () => this.myVal++})
+      Text('parent: ' + this.myVal.toString())
+      Child({ val: this.myVal, addOne: () => this.myVal++ })
     }
   }
 }
@@ -258,6 +268,7 @@ V1实现：
 @Component
 struct Child {
   @Prop value: number;
+
   build() {
     Text(this.value.toString())
   }
@@ -267,7 +278,7 @@ struct Child {
 @Component
 struct Parent {
   build() {
-    Column(){
+    Column() {
       Child({ value: 30 })
     }
   }
@@ -280,6 +291,7 @@ V2迁移策略：直接替换。
 @ComponentV2
 struct Child {
   @Param value: number = 0;
+
   build() {
     Text(this.value.toString())
   }
@@ -289,7 +301,7 @@ struct Child {
 @ComponentV2
 struct Parent {
   build() {
-    Column(){
+    Column() {
       Child({ value: 30 })
     }
   }
@@ -311,15 +323,16 @@ class Fruit {
 struct Child {
   // @Prop传递Fruit类，当子类修改属性，父类不受影响
   @Prop fruit: Fruit;
+
   build() {
     Column() {
-      Text("child apple: "+ this.fruit.apple.toString())
-      Text("child orange: "+ this.fruit.orange.toString())
-      Button("apple+1")
+      Text('child apple: ' + this.fruit.apple.toString())
+      Text('child orange: ' + this.fruit.orange.toString())
+      Button('apple+1')
         .onClick(() => {
           this.fruit.apple++;
         })
-      Button("orange+1")
+      Button('orange+1')
         .onClick(() => {
           this.fruit.orange++;
         })
@@ -331,10 +344,11 @@ struct Child {
 @Component
 struct Parent {
   @State parentFruit: Fruit = new Fruit();
+
   build() {
-    Column(){
-      Text("parent apple: "+this.parentFruit.apple.toString())
-      Text("parent orange: "+this.parentFruit.orange.toString())
+    Column() {
+      Text('parent apple: ' + this.parentFruit.apple.toString())
+      Text('parent orange: ' + this.parentFruit.orange.toString())
       Child({ fruit: this.parentFruit })
     }
   }
@@ -345,9 +359,10 @@ V2迁移策略：使用深拷贝。
 
 ```ts
 @ObservedV2
-class Fruit{
+class Fruit {
   @Trace apple: number = 5;
   @Trace orange: number = 10;
+
   // 实现深拷贝，子组件不会修改父组件的数据
   clone(): Fruit {
     let newFruit: Fruit = new Fruit();
@@ -360,16 +375,17 @@ class Fruit{
 @ComponentV2
 struct Child {
   @Param fruit: Fruit = new Fruit();
+
   build() {
     Column() {
-      Text("child")
+      Text('child')
       Text(this.fruit.apple.toString())
       Text(this.fruit.orange.toString())
-      Button("apple+1")
-        .onClick( ()=> {
+      Button('apple+1')
+        .onClick(() => {
           this.fruit.apple++;
         })
-      Button("orange+1")
+      Button('orange+1')
         .onClick(() => {
           this.fruit.orange++;
         })
@@ -381,12 +397,13 @@ struct Child {
 @ComponentV2
 struct Parent {
   @Local parentFruit: Fruit = new Fruit();
+
   build() {
-    Column(){
-      Text("parent")
+    Column() {
+      Text('parent')
       Text(this.parentFruit.apple.toString())
       Text(this.parentFruit.orange.toString())
-      Child({ fruit: this.parentFruit.clone()})
+      Child({ fruit: this.parentFruit.clone() })
     }
   }
 }
@@ -403,11 +420,12 @@ V1实现：
 struct Child {
   // @Prop可以直接修改变量值
   @Prop value: number;
+
   build() {
-    Column(){
+    Column() {
       Text(this.value.toString())
-      Button("+1")
-        .onClick(()=> {
+      Button('+1')
+        .onClick(() => {
           this.value++;
         })
     }
@@ -418,7 +436,7 @@ struct Child {
 @Component
 struct Parent {
   build() {
-    Column(){
+    Column() {
       Child({ value: 30 })
     }
   }
@@ -432,10 +450,11 @@ V2迁移策略：使用\@Param和\@Once。
 struct Child {
   // @Param搭配@Once使用，可以在本地修改@Param变量
   @Param @Once value: number = 0;
+
   build() {
-    Column(){
+    Column() {
       Text(this.value.toString())
-      Button("+1")
+      Button('+1')
         .onClick(() => {
           this.value++;
         })
@@ -447,7 +466,7 @@ struct Child {
 @ComponentV2
 struct Parent {
   build() {
-    Column(){
+    Column() {
       Child({ value: 30 })
     }
   }
@@ -481,6 +500,7 @@ struct Child {
 @Component
 struct Parent {
   @State value: number = 10;
+
   build() {
     Column() {
       Button('Parent +1')
@@ -505,6 +525,7 @@ V2实现：
 struct Child {
   @Local localValue: number = 0;
   @Param value: number = 0;
+
   @Monitor('value')
   onValueChange(mon: IMonitor) {
     console.info(`value has been changed from ${mon.value()?.before} to ${mon.value()?.now}`);
@@ -528,6 +549,7 @@ struct Child {
 @ComponentV2
 struct Parent {
   @Local value: number = 10;
+
   build() {
     Column() {
       Button('Parent +1')
@@ -567,8 +589,9 @@ struct Child {
   // alias和属性名都为key，alias和属性名都可以匹配
   @Consume('text') childMessage: string;
   @Consume message: string;
-  build(){
-    Column(){
+
+  build() {
+    Column() {
       Text(this.childMessage)
       Text(this.message) // Text是Hello World
     }
@@ -578,9 +601,10 @@ struct Child {
 @Entry
 @Component
 struct Parent {
-  @Provide('text') message: string = "Hello World";
-  build(){
-    Column(){
+  @Provide('text') message: string = 'Hello World';
+
+  build() {
+    Column() {
       Child()
     }
   }
@@ -593,10 +617,11 @@ V2迁移策略：确保alias一致，没有指定alias的情况下，依赖属�
 @ComponentV2
 struct Child {
   // alias是唯一匹配的key，有alias情况下无法通过属性名匹配
-  @Consumer('text') childMessage: string = "default";
-  @Consumer() message: string = "default";
-  build(){
-    Column(){
+  @Consumer('text') childMessage: string = 'default';
+  @Consumer() message: string = 'default';
+
+  build() {
+    Column() {
       Text(this.childMessage)
       Text(this.message) // Text是default
     }
@@ -606,9 +631,10 @@ struct Child {
 @Entry
 @ComponentV2
 struct Parent {
-  @Provider('text') message: string = "Hello World";
-  build(){
-    Column(){
+  @Provider('text') message: string = 'Hello World';
+
+  build() {
+    Column() {
       Child()
     }
   }
@@ -626,7 +652,8 @@ V1实现：
 struct Child {
   // @Consume禁止本地初始化，当找不到对应的@Provide时抛出异常
   @Consume message: string;
-  build(){
+
+  build() {
     Text(this.message)
   }
 }
@@ -634,9 +661,10 @@ struct Child {
 @Entry
 @Component
 struct Parent {
-  @Provide message: string = "Hello World";
-  build(){
-    Column(){
+  @Provide message: string = 'Hello World';
+
+  build() {
+    Column() {
       Child()
     }
   }
@@ -649,8 +677,9 @@ V2迁移策略：\@Consumer可以本地初始化。
 @ComponentV2
 struct Child {
   // @Consumer允许本地初始化，当找不到@Provider的时候使用本地默认值
-  @Consumer() message: string = "Hello World";
-  build(){
+  @Consumer() message: string = 'Hello World';
+
+  build() {
     Text(this.message)
   }
 }
@@ -658,8 +687,8 @@ struct Child {
 @Entry
 @ComponentV2
 struct Parent {
-  build(){
-    Column(){
+  build() {
+    Column() {
       Child()
     }
   }
@@ -677,6 +706,7 @@ V1实现：
 @Component
 struct Parent {
   @State parentValue: number = 42;
+
   build() {
     Column() {
       // @Provide可以从父组件初始化
@@ -688,8 +718,9 @@ struct Parent {
 @Component
 struct Child {
   @Provide childValue: number = 0;
-  build(){
-    Column(){
+
+  build() {
+    Column() {
       Text(this.childValue.toString())
     }
   }
@@ -703,6 +734,7 @@ V2迁移策略：使用\@Param接受初始值，再赋值给\@Provider。
 @ComponentV2
 struct Parent {
   @Local parentValue: number = 42;
+
   build() {
     Column() {
       // @Provider禁止从父组件初始化，替代方案为先用@Param接受，再赋值给@Provider
@@ -715,8 +747,9 @@ struct Parent {
 struct Child {
   @Param @Once initialValue: number = 0;
   @Provider() childValue: number = this.initialValue;
+
   build() {
-    Column(){
+    Column() {
       Text(this.childValue.toString())
     }
   }
@@ -733,9 +766,10 @@ V1实现：
 @Entry
 @Component
 struct GrandParent {
-  @Provide("reviewVotes") reviewVotes: number = 40;
+  @Provide('reviewVotes') reviewVotes: number = 40;
+
   build() {
-    Column(){
+    Column() {
       Parent()
     }
   }
@@ -744,7 +778,8 @@ struct GrandParent {
 @Component
 struct Parent {
   // @Provide默认不支持重载，支持重载需设置allowOverride函数
-  @Provide({ allowOverride: "reviewVotes" }) reviewVotes: number = 20;
+  @Provide({ allowOverride: 'reviewVotes' }) reviewVotes: number = 20;
+
   build() {
     Child()
   }
@@ -752,7 +787,8 @@ struct Parent {
 
 @Component
 struct Child {
-  @Consume("reviewVotes") reviewVotes: number;
+  @Consume('reviewVotes') reviewVotes: number;
+
   build() {
     Text(this.reviewVotes.toString()) // Text显示20
   }
@@ -765,9 +801,10 @@ V2迁移策略：去掉allowOverride。
 @Entry
 @ComponentV2
 struct GrandParent {
-  @Provider("reviewVotes") reviewVotes: number = 40;
+  @Provider('reviewVotes') reviewVotes: number = 40;
+
   build() {
-    Column(){
+    Column() {
       Parent()
     }
   }
@@ -777,6 +814,7 @@ struct GrandParent {
 struct Parent {
   // @Provider默认支持重载，@Consumer向上查找最近的@Provider
   @Provider() reviewVotes: number = 20;
+
   build() {
     Child()
   }
@@ -785,6 +823,7 @@ struct Parent {
 @ComponentV2
 struct Child {
   @Consumer() reviewVotes: number = 0;
+
   build() {
     Text(this.reviewVotes.toString()) // Text显示20
   }
@@ -811,14 +850,15 @@ V1实现：
 @Component
 struct watchExample {
   @State @Watch('onAppleChange') apple: number = 0;
+
   onAppleChange(): void {
-    console.log("apple count changed to "+this.apple);
+    console.info('apple count changed to ' + this.apple);
   }
 
   build() {
-    Column(){
+    Column() {
       Text(`apple count: ${this.apple}`)
-      Button("add apple")
+      Button('add apple')
         .onClick(() => {
           this.apple++;
         })
@@ -834,16 +874,17 @@ V2迁移策略：直接替换。
 @ComponentV2
 struct monitorExample {
   @Local apple: number = 0;
+
   @Monitor('apple')
   onFruitChange(monitor: IMonitor) {
-    console.log(`apple changed from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    console.info(`apple changed from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   build() {
-    Column(){
+    Column() {
       Text(`apple count: ${this.apple}`)
-      Button("add apple")
-        .onClick(()=> {
+      Button('add apple')
+        .onClick(() => {
           this.apple++;
         })
     }
@@ -863,23 +904,25 @@ V1实现：
 struct watchExample {
   @State @Watch('onAppleChange') apple: number = 0;
   @State @Watch('onOrangeChange') orange: number = 0;
+
   // @Watch 回调，只能监听单个变量，不能获取变化前的值
   onAppleChange(): void {
-    console.log("apple count changed to "+this.apple);
+    console.info('apple count changed to ' + this.apple);
   }
+
   onOrangeChange(): void {
-    console.log("orange count changed to "+this.orange);
+    console.info('orange count changed to ' + this.orange);
   }
 
   build() {
-    Column(){
+    Column() {
       Text(`apple count: ${this.apple}`)
       Text(`orange count: ${this.orange}`)
-      Button("add apple")
+      Button('add apple')
         .onClick(() => {
           this.apple++;
         })
-      Button("add orange")
+      Button('add orange')
         .onClick(() => {
           this.orange++;
         })
@@ -901,7 +944,7 @@ struct monitorExample {
   @Monitor('apple','orange')
   onFruitChange(monitor: IMonitor) {
     monitor.dirty.forEach((name: string) => {
-      console.log(`${name} changed from ${monitor.value(name)?.before} to ${monitor.value(name)?.now}`);
+      console.info(`${name} changed from ${monitor.value(name)?.before} to ${monitor.value(name)?.now}`);
     });
   }
 
@@ -909,11 +952,11 @@ struct monitorExample {
     Column() {
       Text(`apple count: ${this.apple}`)
       Text(`orange count: ${this.orange}`)
-      Button("add apple")
+      Button('add apple')
         .onClick(() => {
           this.apple++;
         })
-      Button("add orange")
+      Button('add orange')
         .onClick(() => {
           this.orange++;
         })

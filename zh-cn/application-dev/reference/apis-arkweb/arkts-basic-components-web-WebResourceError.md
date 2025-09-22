@@ -4,7 +4,7 @@
 <!--Owner: @aohui-->
 <!--Designer: @yaomingliu-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 Web组件资源管理错误信息对象。示例代码参考[onErrorReceive事件](./arkts-basic-components-web-events.md#onerrorreceive)。
 

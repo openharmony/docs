@@ -1,5 +1,12 @@
 # OH_AVCodecBufferAttr
 
+<!--Kit: AVCodec Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zhanghongran-->
+<!--Designer: @dpy2650--->
+<!--Tester: @cyakee-->
+<!--Adviser: @zengyawen-->
+
 ## 概述
 
 定义OH_AVCodec的缓冲区描述信息。

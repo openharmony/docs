@@ -97,7 +97,7 @@ OH_AVErrCode OH_AVTranscoderConfig_Release(OH_AVTranscoder_Config* config)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：释放成功。<br>         AV_ERR_INVALID_VAL：config是空指针。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：释放成功。<br>         AV_ERR_INVALID_VAL：config是空指针。 |
 
 ### OH_AVTranscoderConfig_SetSrcFD()
 
@@ -127,7 +127,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetSrcFD(OH_AVTranscoder_Config *config, int3
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：设置成功。<br>         AV_ERR_INVALID_VAL：输入config为空指针，或者源视频文件相关参数错误。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：设置成功。<br>         AV_ERR_INVALID_VAL：输入config为空指针，或者源视频文件相关参数错误。 |
 
 ### OH_AVTranscoderConfig_SetDstFD()
 
@@ -155,7 +155,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstFD(OH_AVTranscoder_Config *config, int3
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：设置成功。<br>         AV_ERR_INVALID_VAL：输入config为空指针，或者输出视频文件描述符是无效的。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：设置成功。<br>         AV_ERR_INVALID_VAL：输入config为空指针，或者输出视频文件描述符是无效的。 |
 
 ### OH_AVTranscoderConfig_SetDstVideoType()
 
@@ -183,7 +183,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoType(OH_AVTranscoder_Config *confi
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：设置成功。<br>         AV_ERR_INVALID_VAL：输入的config为空指针，或者mimeType是不被允许的。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：设置成功。<br>         AV_ERR_INVALID_VAL：输入的config为空指针，或者mimeType是不被允许的。 |
 
 ### OH_AVTranscoderConfig_SetDstAudioType()
 
@@ -211,7 +211,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstAudioType(OH_AVTranscoder_Config *confi
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：设置成功。<br>         AV_ERR_INVALID_VAL：输入的config为空指针，或者mimeType是不被允许的。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：设置成功。<br>         AV_ERR_INVALID_VAL：输入的config为空指针，或者mimeType是不被允许的。 |
 
 ### OH_AVTranscoderConfig_SetDstFileType()
 
@@ -239,7 +239,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstFileType(OH_AVTranscoder_Config *config
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：设置成功。<br>         AV_ERR_INVALID_VAL：输入的config为空指针，或者mimeType是无效的。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：设置成功。<br>         AV_ERR_INVALID_VAL：输入的config为空指针，或者mimeType是无效的。 |
 
 ### OH_AVTranscoderConfig_SetDstAudioBitrate()
 
@@ -267,7 +267,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstAudioBitrate(OH_AVTranscoder_Config *co
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：设置成功。<br>         AV_ERR_INVALID_VAL：输入的config为空指针，或者bitrate值是无效的。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：设置成功。<br>         AV_ERR_INVALID_VAL：输入的config为空指针，或者bitrate值是无效的。 |
 
 ### OH_AVTranscoderConfig_SetDstVideoBitrate()
 
@@ -295,7 +295,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoBitrate(OH_AVTranscoder_Config *co
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：设置成功。<br>         AV_ERR_INVALID_VAL：输入的config为空指针，或者bitrate值是无效的。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：设置成功。<br>         AV_ERR_INVALID_VAL：输入的config为空指针，或者bitrate值是无效的。 |
 
 ### OH_AVTranscoderConfig_SetDstVideoResolution()
 
@@ -324,7 +324,7 @@ OH_AVErrCode OH_AVTranscoderConfig_SetDstVideoResolution(OH_AVTranscoder_Config 
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：设置成功。<br>         AV_ERR_INVALID_VAL：输入的config为空指针，或者width、height值是无效的。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：设置成功。<br>         AV_ERR_INVALID_VAL：输入的config为空指针，或者width、height值是无效的。 |
 
 ### OH_AVTranscoderConfig_EnableBFrame()
 
@@ -352,7 +352,7 @@ OH_AVErrCode OH_AVTranscoderConfig_EnableBFrame(OH_AVTranscoder_Config *config, 
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：设置成功。<br>         AV_ERR_INVALID_VAL：输入的config为空指针。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：设置成功。<br>         AV_ERR_INVALID_VAL：输入的config为空指针。 |
 
 ### OH_AVTranscoder_Create()
 
@@ -400,7 +400,7 @@ OH_AVErrCode OH_AVTranscoder_Prepare(OH_AVTranscoder *transcoder, OH_AVTranscode
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：成功设置视频转码的参数设置，进入AVTRANSCODER_PREPARED状态。<br>         AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码准备操作失败。<br>         AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Prepare操作，或者是不支持的格式。<br>         AV_ERR_IO：IO访问相关的错误。<br>         AV_ERR_SERVICE_DIED：媒体服务已停止。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：成功设置视频转码的参数设置，进入AVTRANSCODER_PREPARED状态。<br>         AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码准备操作失败。<br>         AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Prepare操作，或者是不支持的格式。<br>         AV_ERR_IO：IO访问相关的错误。<br>         AV_ERR_SERVICE_DIED：媒体服务已停止。 |
 
 ### OH_AVTranscoder_Start()
 
@@ -427,7 +427,7 @@ OH_AVErrCode OH_AVTranscoder_Start(OH_AVTranscoder *transcoder)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：成功开始转码，进入AVTRANSCODER_STARTED状态。<br>         AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码开始操作失败。<br>         AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Start操作。<br>         AV_ERR_IO：IO访问相关的错误。<br>         AV_ERR_SERVICE_DIED：媒体服务已停止。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：成功开始转码，进入AVTRANSCODER_STARTED状态。<br>         AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码开始操作失败。<br>         AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Start操作。<br>         AV_ERR_IO：IO访问相关的错误。<br>         AV_ERR_SERVICE_DIED：媒体服务已停止。 |
 
 ### OH_AVTranscoder_Pause()
 
@@ -454,7 +454,7 @@ OH_AVErrCode OH_AVTranscoder_Pause(OH_AVTranscoder *transcoder)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：成功暂停转码，进入AVTRANSCODER_PAUSED状态。<br>         AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码暂停操作失败。<br>         AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Pause操作。<br>         AV_ERR_IO：IO访问相关的错误。<br>         AV_ERR_SERVICE_DIED：媒体服务已停止。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：成功暂停转码，进入AVTRANSCODER_PAUSED状态。<br>         AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码暂停操作失败。<br>         AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Pause操作。<br>         AV_ERR_IO：IO访问相关的错误。<br>         AV_ERR_SERVICE_DIED：媒体服务已停止。 |
 
 ### OH_AVTranscoder_Resume()
 
@@ -481,7 +481,7 @@ OH_AVErrCode OH_AVTranscoder_Resume(OH_AVTranscoder *transcoder)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：成功恢复转码，进入AVTRANSCODER_STARTED状态。<br>         AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码恢复操作失败。<br>         AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Resume操作。<br>         AV_ERR_IO：IO访问相关的错误。<br>         AV_ERR_SERVICE_DIED：媒体服务已停止。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：成功恢复转码，进入AVTRANSCODER_STARTED状态。<br>         AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码恢复操作失败。<br>         AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Resume操作。<br>         AV_ERR_IO：IO访问相关的错误。<br>         AV_ERR_SERVICE_DIED：媒体服务已停止。 |
 
 ### OH_AVTranscoder_Cancel()
 
@@ -508,7 +508,7 @@ OH_AVErrCode OH_AVTranscoder_Cancel(OH_AVTranscoder *transcoder)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：成功取消转码，进入AVTRANSCODER_CANCELLED状态。<br>         AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码取消操作失败。<br>         AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Cancel操作。<br>         AV_ERR_IO：IO访问相关的错误。<br>         AV_ERR_SERVICE_DIED：媒体服务已停止。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：成功取消转码，进入AVTRANSCODER_CANCELLED状态。<br>         AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码取消操作失败。<br>         AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Cancel操作。<br>         AV_ERR_IO：IO访问相关的错误。<br>         AV_ERR_SERVICE_DIED：媒体服务已停止。 |
 
 ### OH_AVTranscoder_Release()
 
@@ -535,7 +535,7 @@ OH_AVErrCode OH_AVTranscoder_Release(OH_AVTranscoder *transcoder)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：成功释放转码实例资源。<br>         AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码释放资源操作失败。<br>         AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Release操作。<br>         AV_ERR_IO：IO访问相关的错误。<br>         AV_ERR_SERVICE_DIED：媒体服务已停止。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：成功释放转码实例资源。<br>         AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者转码释放资源操作失败。<br>         AV_ERR_OPERATE_NOT_PERMIT：当前状态不允许执行Release操作。<br>         AV_ERR_IO：IO访问相关的错误。<br>         AV_ERR_SERVICE_DIED：媒体服务已停止。 |
 
 ### OH_AVTranscoder_SetStateCallback()
 
@@ -564,7 +564,7 @@ OH_AVErrCode OH_AVTranscoder_SetStateCallback(OH_AVTranscoder *transcoder, OH_AV
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：注册成功。<br>         AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者callback是空指针。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：注册成功。<br>         AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者callback是空指针。 |
 
 ### OH_AVTranscoder_SetErrorCallback()
 
@@ -593,7 +593,7 @@ OH_AVErrCode OH_AVTranscoder_SetErrorCallback(OH_AVTranscoder *transcoder, OH_AV
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：注册成功。<br>         AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者callback是空指针。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：注册成功。<br>         AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者callback是空指针。 |
 
 ### OH_AVTranscoder_SetProgressUpdateCallback()
 
@@ -622,6 +622,6 @@ OH_AVErrCode OH_AVTranscoder_SetProgressUpdateCallback(OH_AVTranscoder *transcod
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：注册成功。<br>         AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者callback是空指针。 |
+| [OH_AVErrCode](../apis-avcodec-kit/capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：注册成功。<br>         AV_ERR_INVALID_VAL：输入的transcoder是空指针，或者callback是空指针。 |
 
 

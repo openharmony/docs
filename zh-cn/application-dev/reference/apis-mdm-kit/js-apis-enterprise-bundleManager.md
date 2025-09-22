@@ -38,8 +38,8 @@ addAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
-| appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组。                                                 |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
+| appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组。<br/>**说明：** 从API version 21版本开始，支持传入应用的[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，推荐使用[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)。API version 20及之前版本，仅支持[appId](../../quick-start/common_problem_of_application.md#什么是appid)。 |
 | accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **错误码**：
@@ -93,7 +93,7 @@ removeAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accoun
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
-| appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组。                                                 |
+| appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组。<br/>**说明：** 从API version 21版本开始，数组中的元素支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，仅移除传入的[appId](../../quick-start/common_problem_of_application.md#什么是appid)（或[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)），不会移除同一应用的[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)（或[appId](../../quick-start/common_problem_of_application.md#什么是appid)）。API version 20及之前版本，数组中的元素只支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)。       |
 | accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **错误码**：
@@ -203,7 +203,7 @@ addDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accoun
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
-| appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组。                                                 |
+| appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组。<br/>**说明：** 从API version 21版本开始，支持传入应用的[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，推荐使用[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)。API version 20及之前版本，仅支持[appId](../../quick-start/common_problem_of_application.md#什么是appid)。 |
 | accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **错误码**：
@@ -257,7 +257,7 @@ removeDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, acc
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
-| appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组。                                                 |
+| appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组。<br/>**说明：** 从API version 21版本开始，数组中的元素支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，仅移除传入的[appId](../../quick-start/common_problem_of_application.md#什么是appid)（或[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)），不会移除同一应用的[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)（或[appId](../../quick-start/common_problem_of_application.md#什么是appid)）。API version 20及之前版本，数组中的元素只支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)。               |
 | accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **错误码**：
@@ -368,7 +368,7 @@ addDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, acco
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
-| appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组。                                                 |
+| appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组。<br/>**说明：** 从API version 21版本开始，支持传入应用的[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，推荐使用[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)。API version 20及之前版本，仅支持[appId](../../quick-start/common_problem_of_application.md#什么是appid)。 |
 | accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **错误码**：
@@ -422,7 +422,7 @@ removeDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, a
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
-| appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组。                                                 |
+| appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组。<br/>**说明：** 从API version 21版本开始，数组中的元素支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，仅移除传入的[appId](../../quick-start/common_problem_of_application.md#什么是appid)（或[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)），不会移除同一应用的[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)（或[appId](../../quick-start/common_problem_of_application.md#什么是appid)）。API version 20及之前版本，数组中的元素只支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)。                   |
 | accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **错误码**：

@@ -3,7 +3,7 @@
 <!--Subsystem: ArkUI-->
 <!--Owner: @fengluochenai-->
 <!--Designer: @YanSanzo-->
-<!--Tester: @tinygreyy-->
+<!--Tester: @ybhou1993-->
 <!--Adviser: @HelloCrease-->
 
 
@@ -77,12 +77,12 @@ type ClickCallback = () => void
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称              | 类型           | 必填 | 装饰器类型   | 说明                         |
-|-----------------|--------------|----|---------|----------------------------|
-| progressColor   | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | \@Trace | 进度条颜色。<br/>默认值：#330A59F7  |
-| borderColor     | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | \@Trace | 按钮描边颜色。<br/>默认值：#330A59F7 |
-| textColor       | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | \@Trace | 按钮文本颜色。<br/>默认值：系统默认值，#CE000000 |
-| backgroundColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | \@Trace | 按钮背景颜色。<br/>默认值：\$r('sys.color.ohos_id_color_foreground_contrary') |
+| 名称              | 类型           | 只读 | 可选 | 装饰器类型   | 说明                         |
+|-----------------|--------------|---|----|---------|----------------------------|
+| progressColor   | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否 | 是 | \@Trace | 进度条颜色。<br/>默认值：#330A59F7  |
+| borderColor     | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否 | 是 | \@Trace | 按钮描边颜色。<br/>默认值：#330A59F7 |
+| textColor       | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否 | 是 | \@Trace | 按钮文本颜色。<br/>默认值：系统默认值，#CE000000 |
+| backgroundColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否 | 是 | \@Trace | 按钮背景颜色。<br/>默认值：\$r('sys.color.ohos_id_color_foreground_contrary') |
 
 ### constructor
 constructor(options: ProgressButtonV2ColorOptions);
@@ -111,12 +111,12 @@ constructor(options: ProgressButtonV2ColorOptions);
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称              | 类型           | 必填 | 说明                                                                 |
-|-----------------|--------------|----|--------------------------------------------------------------------|
-| progressColor   | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| 否  | 进度条颜色。<br/>默认值：#330A59F7                                           |
-| borderColor     | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| 否  | 按钮描边颜色。<br/>默认值：#330A59F7                                          |
-| textColor       | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| 否  | 按钮文本颜色。<br/>默认值：系统默认值(#CE000000)                                   |
-| backgroundColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| 否  | 按钮背景颜色。<br/>默认值：\$r('sys.color.ohos_id_color_foreground_contrary') |
+| 名称              | 类型           | 只读 | 可选 | 说明                                                                 |
+|-----------------|--------------|---|---|--------------------------------------------------------------------|
+| progressColor   | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| 否 | 是 | 进度条颜色。<br/>默认值：#330A59F7                                           |
+| borderColor     | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| 否 | 是 | 按钮描边颜色。<br/>默认值：#330A59F7                                          |
+| textColor       | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| 否 | 是 | 按钮文本颜色。<br/>默认值：系统默认值(#CE000000)                                   |
+| backgroundColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| 否 | 是 | 按钮背景颜色。<br/>默认值：\$r('sys.color.ohos_id_color_foreground_contrary') |
 
 ## 事件
 不支持[通用事件](ts-component-general-events.md)。

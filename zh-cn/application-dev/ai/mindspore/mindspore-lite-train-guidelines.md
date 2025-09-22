@@ -26,7 +26,7 @@ MindSpore Lite是一款AI引擎，它提供了面向不同硬件设备AI模型�
 |OH_AI_TrainCfgHandle OH_AI_TrainCfgCreate()|创建训练配置对象指针。|
 |void OH_AI_TrainCfgDestroy(OH_AI_TrainCfgHandle *train_cfg)|销毁训练配置对象指针。|
 |OH_AI_ModelHandle OH_AI_ModelCreate()|创建一个模型对象。|
-|OH_AI_Status OH_AI_TrainModelBuildFromFile(OH_AI_ModelHandle model, const char *model_path, OH_AI_ModelType model_type, const OH_AI_ContextHandle model_context, const OH_AI_TrainCfgHandle train_cfg)|通过模型文件加载并编译MindSpore训练模型。|
+|OH_AI_Status OH_AI_TrainModelBuildFromFile(OH_AI_ModelHandle model, const char *model_path, OH_AI_ModelType model_type, const OH_AI_ContextHandle model_context, const OH_AI_TrainCfgHandle train_cfg)|通过模型文件加载并编译MindSpore Lite训练模型。|
 |OH_AI_Status OH_AI_RunStep(OH_AI_ModelHandle model, const OH_AI_KernelCallBack before, const OH_AI_KernelCallBack after)|单步训练模型。|
 |OH_AI_Status OH_AI_ModelSetTrainMode(OH_AI_ModelHandle model, bool train)|设置训练模式。|
 |OH_AI_Status OH_AI_ExportModel(OH_AI_ModelHandle model, OH_AI_ModelType model_type, const char *model_file, OH_AI_QuantizationType quantization_type, bool export_inference_only, char **output_tensor_name, size_t num)|导出训练后的ms模型。|
@@ -71,7 +71,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
     准备的模型格式为`.ms`，本文以lenet_train.ms为例（此模型是提前准备的`ms`模型，本文相关效果仅以此模型文件为例）。开发者请自行准备所需的模型，可以按如下步骤操作：
 
     - 首先基于MindSpore架构使用Python创建网络模型，并导出为`.mindir`文件，详细指南参考[这里](https://www.mindspore.cn/tutorials/zh-CN/r2.1/beginner/quick_start.html)。
-    - 然后将`.mindir`模型文件转换成`.ms`文件，转换操作步骤可以参考[训练模型转换](https://www.mindspore.cn/lite/docs/zh-CN/r2.1/use/converter_train.html)，`.ms`文件可以导入端侧设备并基于MindSpore端侧框架进行训练。
+    - 然后将`.mindir`模型文件转换成`.ms`文件，转换操作步骤可以参考[训练模型转换](https://www.mindspore.cn/lite/docs/zh-CN/r2.1/use/converter_train.html)，`.ms`文件可以导入端侧设备并基于MindSpore Lite端侧框架进行训练。
 
 2. 创建上下文，设置设备类型、训练配置等参数。
 

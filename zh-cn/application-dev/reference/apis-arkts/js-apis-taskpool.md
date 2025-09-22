@@ -918,7 +918,7 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 
 表示所创建任务（Task）执行时的优先级。工作线程优先级跟随任务优先级更新，对应关系参考[QoS等级定义](../../napi/qos-guidelines.md#qos等级定义)。
 
-**系统能力：**  SystemCapability.Utils.Lang
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -975,11 +975,11 @@ for (let i: number = 0; i < taskArray.length; i+=4) { // 4: 每次执行4个任�
 | -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
 | function             | Function  | 否   | 否   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | arguments            | Object[]  | 否   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| name<sup>11+</sup>   | string    | 是   | 否   | 创建任务时指定的任务名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| taskId<sup>18+</sup>   | number    | 是   | 否   | 任务的ID。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。单位为ms。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。单位为ms。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。单位为ms。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| name<sup>11+</sup>   | string    | 否   | 否   | 创建任务时指定的任务名称。不建议修改此值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| taskId<sup>18+</sup>   | number    | 否   | 否   | 任务的ID。任务的标识符，系统默认提供全局唯一值，不建议修改此值。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| totalDuration<sup>11+</sup>  | number    | 否   | 否   | 执行任务总耗时。单位为ms。不建议修改此值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| ioDuration<sup>11+</sup>     | number    | 否   | 否   | 执行任务异步IO耗时。单位为ms。不建议修改此值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| cpuDuration<sup>11+</sup>    | number    | 否   | 否   | 执行任务CPU耗时。单位为ms。不建议修改此值。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 
 ### constructor
 
@@ -1871,11 +1871,13 @@ type CallbackFunctionWithError = (e: Error) => void
 
 ## LongTask<sup>12+</sup>
 
-**系统能力：** SystemCapability.Utils.Lang
-
 表示长时任务。LongTask继承自[Task](#task)。
 长时任务不设置执行时间上限，长时间运行不会触发超时异常，但不支持将同一任务多次执行或者将该任务加入任务组（TaskGroup）。
 执行长时任务的线程会持续存在，直到任务完成并调用[terminateTask](#taskpoolterminatetask12)后，该线程在空闲时被回收。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **示例：**
 
@@ -1892,10 +1894,10 @@ let task: taskpool.LongTask = new taskpool.LongTask(printArgs, "this is my first
 
 ## GenericsTask<sup>13+</sup>
 
-**系统能力：** SystemCapability.Utils.Lang
-
 表示泛型任务。GenericsTask继承自[Task](#task)。
 相比创建Task，创建GenericsTask可以在编译阶段校验并发函数的传参和返回值类型。其余行为与Task相同。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 ### constructor<sup>13+</sup>
 
@@ -2460,7 +2462,7 @@ async function asyRunner2() {
 
 | 名称     | 类型                | 只读 | 可选 | 说明                                                           |
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
-| name<sup>12+</sup> | string   | 否   | 否   | 任务的名字。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                    |
+| name<sup>12+</sup> | string   | 否   | 否   | 任务的名字，不建议修改此值。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                    |
 | taskId   | number             | 否   | 否   | 任务的ID。任务的标识符，系统默认提供全局唯一值，不建议修改此值。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                     |
 | state    | [State](#state10)  | 否   | 否   | 任务的状态。state标识任务的当前状态，不建议修改此值。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                    |
 | duration | number             | 否   | 是   | 任务执行至当前所用的时间，默认为0，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。不建议修改此值。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |

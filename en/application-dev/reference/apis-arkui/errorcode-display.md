@@ -1,4 +1,10 @@
 # Display Error Codes
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @oh_wangxk; @logn-->
+<!--Designer: @hejunfei1991-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 > **NOTE**
 >
@@ -22,6 +28,7 @@ This error code is reported when an invalid display, including a virtual screen,
 1. Before operating the virtual screen, check whether the virtual screen has been created.
 2. Check whether the virtual screen has been destroyed.
 
+<!--Del-->
 ## 1400002 Unauthorized Operation
 **Error Message**
 
@@ -38,6 +45,7 @@ The creator and destroyer of the virtual screen are different.
 **Solution**
 
 Check whether unauthorized operations are performed on the object of another process. If yes, delete the operations.
+<!--DelEnd-->
 
 ## 1400003 Abnormal Display Manager Service
 **Error Message**
@@ -56,3 +64,20 @@ This error code is reported when the display manager service is abnormal.
 **Solution**
 
 Try again later or restart the device.
+
+## 1400004 Parameter Error
+**Error Message**
+
+Parameter error. 
+
+**Description**
+
+This error code is reported when an input parameter is incorrect.
+
+**Possible Causes**
+
+The parameter value is out of range.
+
+**Solution**
+
+Correct the parameters.

@@ -9,23 +9,19 @@
 ## 配置文件示例
 
 通过一个示例，整体了解module.json5配置文件。
-<!--RP1-->
 ```json
 {
   "module": {
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
-    "srcEntry": "./ets/entryability/EntryAbility.ets",
     "mainElement": "EntryAbility",
     "deviceTypes": [
-      "default",
+      "tv",
       "tablet"
     ],
     "deliveryWithInstall": true,
-    "installationFree": false,
     "pages": "$profile:main_pages",
-    "virtualMachine": "ark",
     "appStartup": "$profile:app_startup_config",
     "metadata": [
       {
@@ -70,7 +66,7 @@
         "reason": "$string:reason",
         "usedScene": {
           "abilities": [
-            "FormAbility"
+            "EntryAbility"
           ],
           "when": "inuse"
         }
@@ -98,7 +94,6 @@
   }
 }
 ```
-<!--RP1End-->
 
 ## 配置文件标签
 
@@ -161,7 +156,7 @@ module.json5配置文件包含以下标签。
 | 智能手表 | wearable | 系统能力较丰富的手表，具备电话功能。 |
 | 车机 | car | - |
 | PC/2in1 | 2in1 | 即PC设备，主要交互方式以多窗口、多任务及键盘鼠标操作为主，充分发挥设备的生产力属性。在OpenHarmony文档中，所有“2in1”均代表“PC/2in1”。|
-| 默认设备 | default | 支持使用所有系统能力的设备。 |
+| 默认设备 | default | 默认设备类型，详情参考[标准系统开发板](../../device-dev/dev-board-on-the-master.md#标准系统开发板)。 |
 <!--RP2End-->
 
 deviceTypes示例：
@@ -276,7 +271,7 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | startWindowBackground | 标识当前UIAbility组件启动页面背景颜色资源文件的索引，取值为长度不超过255字节的字符串。<br/>取值示例：$color:red。| 字符串 | 该标签不可缺省。 |
 | removeMissionAfterTerminate | 标识当前UIAbility组件销毁后，是否从任务列表中移除任务。<br/>-&nbsp;true表示销毁后移除任务。<br/>-&nbsp;false表示销毁后不移除任务。<br/>**说明：**<br/>2in1设备和平板设备的自由多窗模式下配置不生效，默认移除任务。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | orientation | 标识当前UIAbility组件启动时的方向，支持配置枚举，或启动方向资源索引。<br/>**启动方向枚举支持的取值如下：**<br/>-&nbsp;unspecified：未指定方向，由系统自动判断显示方向。<br/>-&nbsp;landscape：横屏。<br/>-&nbsp;portrait：竖屏。<br/>-&nbsp;follow_recent：跟随背景窗口的旋转模式。<br/>-&nbsp;landscape_inverted：反向横屏。<br/>-&nbsp;portrait_inverted：反向竖屏。<br/>-&nbsp;auto_rotation：随传感器旋转。<br/>-&nbsp;auto_rotation_landscape：传感器横屏旋转，包括横屏和反向横屏。<br/>-&nbsp;auto_rotation_portrait：传感器竖屏旋转，包括竖屏和反向竖屏。<br/>-&nbsp;auto_rotation_restricted：传感器开关打开，方向可随传感器旋转。<br/>-&nbsp;auto_rotation_landscape_restricted：传感器开关打开，方向可随传感器旋转为横屏，&nbsp;包括横屏和反向横屏。<br/>-&nbsp;auto_rotation_portrait_restricted：传感器开关打开，方向随可传感器旋转为竖屏，&nbsp;包括竖屏和反向竖屏。<br/>-&nbsp;locked：传感器开关关闭，方向锁定。<br/>-&nbsp;auto_rotation_unspecified：受开关控制和由系统判定的自动旋转模式。<br/>-&nbsp;follow_desktop：跟随桌面的旋转模式。<br/>&nbsp;**配置启动方向的资源索引时**，取值为长度不超过255字节的字符串，配置示例：$string:orientation。<br/>&nbsp;**说明：**<br/>&nbsp;-&nbsp;从API version 14开始，支持配置启动方向资源索引。 | 字符串 | 该标签可缺省，缺省值为unspecified。 |
-| supportWindowMode | 标识当前UIAbility组件所支持的窗口模式。支持的取值如下：<br/>-&nbsp;fullscreen：全屏模式。<br/>-&nbsp;split：分屏模式。<br/>-&nbsp;floating：悬浮窗模式。<br/>此外，还可以通过metadata配置窗口模式，具体的配置规则和优先级请参考[metadata](#metadata标签)。 | 字符串数组 | 该标签可缺省，缺省值为<br/>["fullscreen",&nbsp;"split",&nbsp;"floating"]。 |
+| supportWindowMode | 标识当前UIAbility组件所支持的窗口模式。支持的取值如下：<br/>-&nbsp;fullscreen：全屏模式。<br/>-&nbsp;split：分屏模式。<br/>-&nbsp;floating：悬浮窗模式。<br/>在[自由窗口](../windowmanager/window-terminology.md#自由窗口)状态下同时配置fullscreen和split时，如果应用的[targetAPIVersion](./app-configuration-file.md#配置文件标签)小于15，窗口将以悬浮窗模式启动；如果应用的[targetAPIVersion](./app-configuration-file.md#配置文件标签)大于等于15，窗口将以全屏模式启动。<br/>此外，还可以通过metadata配置窗口模式，具体的配置规则和优先级请参考[metadata](#metadata标签)。 | 字符串数组 | 该标签可缺省，缺省值为<br/>["fullscreen",&nbsp;"split",&nbsp;"floating"]。 |
 | <!--DelRow-->priority | 标识当前UIAbility组件的优先级。[隐式查询](../application-models/explicit-implicit-want-mappings.md)时，优先级越高，UIAbility在返回列表越靠前。取值范围0~10，数值越大，优先级越高。<br/>**说明：**<br/>三方应用的配置不生效，当前配置仅在系统应用中有效。 | 整型数值 | 该标签可缺省，缺省值为0。 |
 | maxWindowRatio | 标识当前UIAbility组件支持的最大的宽高比。该标签最小取值为0。 | 数值 | 该标签可缺省，缺省值为平台支持的最大的宽高比。 |
 | minWindowRatio | 标识当前UIAbility组件支持的最小的宽高比。该标签最小取值为0。 | 数值 | 该标签可缺省，缺省值为平台支持的最小的宽高比。 |
@@ -292,11 +287,10 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | preferMultiWindowOrientation | 标识当前UIAbility组件多窗布局方向：<br/>-&nbsp;default：缺省值，参数不配置默认值，建议其他应用类配置。<br/>-&nbsp;portrait：多窗布局方向为竖向，建议竖向游戏类应用配置。<br/>-&nbsp;landscape：多窗布局方向为横向，配置后支持横屏悬浮窗和上下分屏，建议横向游戏类应用配置。<br/>-&nbsp;landscape_auto：多窗布局动态可变为横向，需要配合API enableLandScapeMultiWindow/disableLandScapeMultiWindow使用，建议视频类应用配置。 | 字符串 | 该标签可缺省，缺省值为default。 |
 | continueType | 标识当前UIAbility组件的跨端迁移类型。 | 字符串数组 | 该标签可缺省，缺省值为当前组件的名称。 |
 | continueBundleName | 标识当前应用支持跨端迁移的其它应用名称列表。<br/>**说明：**<br/>不能配置为本应用包名，仅为了做异包名迁移使用。<br/>从API version 13开始，支持该标签。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
-| process | 标识组件的进程标签。<br/>**说明：**<br/>仅在[2in1](./module-configuration-file.md#devicetypes标签)设备上生效，UIAbility组件和type为embeddedUI的ExtensionAbility组件标签一致时运行在同一个进程中。从API version 14开始，支持该标签。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| process | 标识组件的进程名称。具体使用方式参考[进程模型定义](../application-models/process-model-stage.md#其他进程类型)中的"静态指定进程"。<br/>**说明：**<br/>1. 仅在[PC/2in1](./module-configuration-file.md#devicetypes标签)和[Tablet](./module-configuration-file.md#devicetypes标签)设备上生效。<br/>2. UIAbility组件和type为embeddedUI的ExtensionAbility组件标签一致时运行在同一个进程中。<br/>3. 从API version 14开始，支持该标签。 | 字符串 | 该标签可缺省，缺省值为空。 |
 
 abilities示例：
 
-<!--RP3-->
 ```json
 {
   "abilities": [{
@@ -318,7 +312,6 @@ abilities示例：
     "backgroundModes": [
       "dataTransfer"
     ],
-    "startWindow": "$profile:start_window",
     "startWindowIcon": "$media:icon",
     "startWindowBackground": "$color:red",
     "removeMissionAfterTerminate": true,
@@ -331,8 +324,6 @@ abilities示例：
     "maxWindowHeight": 300,
     "minWindowHeight": 200,
     "excludeFromMissions": false,
-    "unclearableMission": false,
-    "excludeFromDock": false,
     "preferMultiWindowOrientation": "default",
     "isolationProcess": false,
     "continueType": [
@@ -347,7 +338,6 @@ abilities示例：
   }]
 }
 ```
-<!--RP3End-->
 
 ## skills标签
 
@@ -428,7 +418,7 @@ skills示例：
 | description | 标识当前ExtensionAbility组件的描述，开发者可以通过该标签描述当前组件的功能与作用，取值为长度不超过255字节的字符串，可以是对描述内容的资源索引，用于支持多语言。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | icon | 标识当前ExtensionAbility组件的图标，取值为资源文件的索引。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | label | 标识当前ExtensionAbility组件对用户显示的名称，取值为该名称的资源索引，以支持多语言，字符串长度不超过255字节。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| type | 标识当前ExtensionAbility组件的类型，支持的取值如下：<br/>-&nbsp;form：卡片的ExtensionAbility。<br/>-&nbsp;workScheduler：延时任务的ExtensionAbility。<br/>-&nbsp;inputMethod：输入法的ExtensionAbility。<!--Del--><br/>-&nbsp;service：后台运行的service组件。<!--DelEnd--><br/>-&nbsp;accessibility：辅助能力的ExtensionAbility。<!--Del--><br/>-&nbsp;fileAccess：公共数据访问的ExtensionAbility，允许应用程序提供文件和文件夹给文件管理类应用展示。<br/>-&nbsp;dataShare：数据共享的ExtensionAbility。<br/>-&nbsp;staticSubscriber：静态广播的ExtensionAbility。<!--DelEnd--><br/>-&nbsp;wallpaper：壁纸的ExtensionAbility。<br/>-&nbsp;backup：数据备份的ExtensionAbility。<br/>-&nbsp;enterpriseAdmin：[企业设备管理](../mdm/mdm-kit-admin.md)的ExtensionAbility。企业设备管理应用必须拥有此类型的ExtensionAbility。<!--Del--><br/>-&nbsp;window：该ExtensionAbility会在启动过程中创建一个window，为开发者提供界面开发。开发者开发出来的界面将通过UIExtensionComponent控件组合到其他应用的窗口中。<!--DelEnd--><br/>-&nbsp;thumbnail：获取文件缩略图的ExtensionAbility，开发者可以对自定义文件类型的文件提供缩略。<br/>-&nbsp;preview：该ExtensionAbility会将文件解析后在一个窗口中显示，开发者可以通过将此窗口组合到其他应用窗口中。<br/>-&nbsp;print：打印框架的ExtensionAbility。<br/>-&nbsp;push：推送的ExtensionAbility。<br/>-&nbsp;driver：驱动框架的ExtensionAbility。应用配置了driver类型的ExtensionAbility后会被视为驱动应用，驱动应用在安装、卸载和恢复时不会区分用户，且创建新用户时也会安装设备上已有的驱动应用。例如，创建子用户时会默认安装主用户已有的驱动应用，在子用户上卸载驱动应用时，主用户上对应的驱动应用也会同时被卸载。<br/>-&nbsp;remoteNotification：远程通知的ExtensionAbility。<br/>-&nbsp;remoteLocation：远程定位的ExtensionAbility。<br/>-&nbsp;voip：网络音视频通话的ExtensionAbility。<br/>-&nbsp;action：自定义操作业务模板的ExtensionAbility，为开发者提供基于UIExtension的自定义操作业务模板。<!--Del--><br/>-&nbsp;adsService：广告业务的ExtensionAbility，提供广告业务框架。<!--DelEnd--><br/>-&nbsp;embeddedUI：嵌入式UI扩展能力，提供跨进程界面嵌入的能力。<br/>-&nbsp;insightIntentUI：为开发者提供能被小艺意图调用，以窗口形态呈现内容的扩展能力。<br/>-&nbsp;ads：广告业务的ExtensionAbility，与AdComponent控件组合使用，将广告页面展示到其他应用中。仅支持设备厂商使用。<br/>-&nbsp;photoEditor：图片编辑业务的ExtensionAbility，为开发者提供基于UIExtension的图片编辑业务模版。<br/>-&nbsp;appAccountAuthorization：应用账号授权扩展能力的ExtensionAbility，用于处理账号授权请求，比如账号登录授权。<br/>-&nbsp;autoFill/password：用于账号和密码自动填充业务的ExtensionAbility，支持数据的保存、填充能力。<br/>-&nbsp;hms/account：应用账号管理能力的ExtensionAbility。<!--Del--><br/>-&nbsp;sysDialog/atomicServicePanel：提供构建原子化服务服务面板的基础能力的ExtensionAbility，使用时基于UIExtensionAbility实现。<br/>-&nbsp;sysDialog/userAuth：本地用户鉴权的ExtensionAbility。<br/>-&nbsp;sysDialog/common：通用弹窗的ExtensionAbility。<br/>-&nbsp;sysDialog/power：关机重启弹窗的ExtensionAbility。<br/>-&nbsp;sysDialog/print：打印模态弹窗的ExtensionAbility。<br/>-&nbsp;sysDialog/meetimeCall：畅连通话的ExtensionAbility。<br/>-&nbsp;sysDialog/meetimeContact：畅连联系人的ExtensionAbility。<br/>-&nbsp;sysPicker/meetimeMessage：畅连消息的ExtensionAbility。<br/>-&nbsp;sysPicker/meetimeContact：畅连联系人列表的ExtensionAbility。<br/>-&nbsp;sysPicker/meetimeCallLog：畅连通话记录列表的ExtensionAbility。<br/>-&nbsp;sysPicker/share：系统分享的ExtensionAbility。<br/>-&nbsp;sysPicker/mediaControl：投播组件的ExtensionAbility。<br/>-&nbsp;sysPicker/photoPicker：三方应用通过对应的UIExtensionType拉起图库picker界面。<br/>-&nbsp;sysPicker/filePicker：文件下载弹窗的ExtensionAbility。<br/>-&nbsp;sysPicker/audioPicker：音频管理弹窗的ExtensionAbility。<br/>-&nbsp;sysPicker/photoEditor：图片编辑弹窗的ExtensionAbility。<br/>-&nbsp;sys/commonUI：非通用的ExtensionAbility，提供业务属性强相关的嵌入式显示或弹框。<!--DelEnd--><br/>-&nbsp;autoFill/smart：用于情景化场景自动填充业务的ExtensionAbility，支持数据的保存、填充能力。<!--Del--><br/>-&nbsp;uiService：弹窗服务组件，在启动过程中会创建window，并支持双向通信。<!--DelEnd--> <!--RP9--><!--RP9End--><br/>-&nbsp;recentPhoto：最近照片推荐的ExtensionAbility。<br/>-&nbsp;fence：地理围栏的ExtensionAbility。<br/>-&nbsp;callerInfoQuery：企业联系人查询的ExtensionAbility。<br/>-&nbsp;assetAcceleration：资源预下载的ExtensionAbility。<br/>-&nbsp;formEdit：卡片编辑的ExtensionAbility。<br/>-&nbsp;distributed：分布式扩展的ExtensionAbility。<br/>-&nbsp;liveForm：互动卡片的[ExtensionAbility](../reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)。从API version 20开始，支持该标签。<br/>-&nbsp;appService：为应用提供后台服务相关扩展能力[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)，包括后台服务的创建、销毁、连接、断开等生命周期回调。从API version 20开始，支持该标签。<!--Del--><br/>-&nbsp;awc/webpage：通用网页浏览的ExtensionAbility。<br/>-&nbsp;awc/newsfeed：信息流资讯业务的ExtensionAbility。<br/>-&nbsp;selection：划词扩展的[ExtensionAbility](../reference/apis-basic-services-kit/js-apis-selectionInput-selectionExtensionAbility-sys.md)。从API version 20开始，支持该标签。<br/>**说明：**<br/>其中service、adsService、staticSubscriber、window、sys/commonUI、fileAccess、selection、sysDialog类型、sysPicker类型、dataShare类型和uiService类型，三方应用的配置不生效，当前配置仅在系统应用中有效。<!--DelEnd--> | 字符串 | 该标签不可缺省。 |
+| type | 标识当前ExtensionAbility组件的类型，支持的取值如下：<br/>-&nbsp;form：卡片的ExtensionAbility。<br/>-&nbsp;workScheduler：延时任务的ExtensionAbility。<br/>-&nbsp;inputMethod：输入法的ExtensionAbility。<!--Del--><br/>-&nbsp;service：后台运行的service组件。<!--DelEnd--><br/>-&nbsp;accessibility：辅助能力的ExtensionAbility。<!--Del--><br/>-&nbsp;fileAccess：公共数据访问的ExtensionAbility，允许应用程序提供文件和文件夹给文件管理类应用展示。<br/>-&nbsp;dataShare：数据共享的ExtensionAbility。<br/>-&nbsp;staticSubscriber：静态广播的ExtensionAbility。<!--DelEnd--><br/>-&nbsp;wallpaper：壁纸的ExtensionAbility。<br/>-&nbsp;backup：数据备份的ExtensionAbility。<br/>-&nbsp;enterpriseAdmin：[企业设备管理](../mdm/mdm-kit-admin.md)的ExtensionAbility。企业设备管理应用必须拥有此类型的ExtensionAbility。<!--Del--><br/>-&nbsp;window：该ExtensionAbility会在启动过程中创建一个window，为开发者提供界面开发。开发者开发出来的界面将通过UIExtensionComponent控件组合到其他应用的窗口中。<!--DelEnd--><br/>-&nbsp;thumbnail：获取文件缩略图的ExtensionAbility，开发者可以对自定义文件类型的文件提供缩略。<br/>-&nbsp;preview：该ExtensionAbility会将文件解析后在一个窗口中显示，开发者可以通过将此窗口组合到其他应用窗口中。<br/>-&nbsp;print：打印框架的ExtensionAbility。<br/>-&nbsp;push：推送的ExtensionAbility。<br/>-&nbsp;driver：驱动框架的ExtensionAbility。应用配置了driver类型的ExtensionAbility后会被视为驱动应用，驱动应用在安装、卸载和恢复时不会区分用户，且创建新用户时也会安装设备上已有的驱动应用。例如，创建子用户时会默认安装主用户已有的驱动应用，在子用户上卸载驱动应用时，主用户上对应的驱动应用也会同时被卸载。<br/>-&nbsp;remoteNotification：远程通知的ExtensionAbility。<br/>-&nbsp;remoteLocation：远程定位的ExtensionAbility。<br/>-&nbsp;voip：网络音视频通话的ExtensionAbility。<br/>-&nbsp;action：自定义操作业务模板的ExtensionAbility，为开发者提供基于UIExtension的自定义操作业务模板。<!--Del--><br/>-&nbsp;adsService：广告业务的ExtensionAbility，提供广告业务框架。<!--DelEnd--><br/>-&nbsp;embeddedUI：嵌入式UI扩展能力，提供跨进程界面嵌入的能力。<br/>-&nbsp;insightIntentUI：为开发者提供能被小艺意图调用，以窗口形态呈现内容的扩展能力。<br/>-&nbsp;ads：广告业务的ExtensionAbility，与AdComponent控件组合使用，将广告页面展示到其他应用中。仅支持设备厂商使用。<br/>-&nbsp;photoEditor：图片编辑业务的ExtensionAbility，为开发者提供基于UIExtension的图片编辑业务模版。<br/>-&nbsp;appAccountAuthorization：应用账号授权扩展能力的ExtensionAbility，用于处理账号授权请求，比如账号登录授权。<br/>-&nbsp;autoFill/password：用于账号和密码自动填充业务的ExtensionAbility，支持数据的保存、填充能力。<br/>-&nbsp;hms/account：应用账号管理能力的ExtensionAbility。<!--Del--><br/>-&nbsp;sysDialog/atomicServicePanel：提供构建原子化服务服务面板的基础能力的ExtensionAbility，使用时基于UIExtensionAbility实现。<br/>-&nbsp;sysDialog/userAuth：本地用户鉴权的ExtensionAbility。<br/>-&nbsp;sysDialog/common：通用弹窗的ExtensionAbility。<br/>-&nbsp;sysDialog/power：关机重启弹窗的ExtensionAbility。<br/>-&nbsp;sysDialog/print：打印模态弹窗的ExtensionAbility。<br/>-&nbsp;sysDialog/meetimeCall：畅连通话的ExtensionAbility。<br/>-&nbsp;sysDialog/meetimeContact：畅连联系人的ExtensionAbility。<br/>-&nbsp;sysPicker/meetimeMessage：畅连消息的ExtensionAbility。<br/>-&nbsp;sysPicker/meetimeContact：畅连联系人列表的ExtensionAbility。<br/>-&nbsp;sysPicker/meetimeCallLog：畅连通话记录列表的ExtensionAbility。<br/>-&nbsp;sysPicker/share：系统分享的ExtensionAbility。<br/>-&nbsp;sysPicker/mediaControl：投播组件的ExtensionAbility。<br/>-&nbsp;sysPicker/photoPicker：三方应用通过对应的UIExtensionType拉起图库picker界面。<br/>-&nbsp;sysPicker/filePicker：文件下载弹窗的ExtensionAbility。<br/>-&nbsp;sysPicker/audioPicker：音频管理弹窗的ExtensionAbility。<br/>-&nbsp;sysPicker/photoEditor：图片编辑弹窗的ExtensionAbility。<br/>-&nbsp;sys/commonUI：非通用的ExtensionAbility，提供业务属性强相关的嵌入式显示或弹框。<!--DelEnd--><br/>-&nbsp;autoFill/smart：用于情景化场景自动填充业务的ExtensionAbility，支持数据的保存、填充能力。<!--Del--><br/>-&nbsp;uiService：弹窗服务组件，在启动过程中会创建window，并支持双向通信。<!--DelEnd--> <!--RP9--><!--RP9End--><br/>-&nbsp;recentPhoto：最近照片推荐的ExtensionAbility。<br/>-&nbsp;fence：地理围栏的ExtensionAbility。<br/>-&nbsp;callerInfoQuery：企业联系人查询的ExtensionAbility。<br/>-&nbsp;assetAcceleration：资源预下载的ExtensionAbility。<br/>-&nbsp;formEdit：卡片编辑的ExtensionAbility。<br/>-&nbsp;distributed：分布式扩展的ExtensionAbility。<br/>-&nbsp;liveForm：互动卡片的[ExtensionAbility](../reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)。从API version 20开始，支持该标签。<br/>-&nbsp;appService：为应用提供后台服务相关扩展能力[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)，包括后台服务的创建、销毁、连接、断开等生命周期回调。从API version 20开始，支持该标签。<br/>-&nbsp;faultLog：故障延迟通知的[ExtensionAbility](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-FaultLogExtensionAbility.md)。从API version 21开始，支持该标签。<!--Del--><br/>-&nbsp;awc/webpage：通用网页浏览的ExtensionAbility。<br/>-&nbsp;awc/newsfeed：信息流资讯业务的ExtensionAbility。<br/>-&nbsp;selection：划词扩展的[ExtensionAbility](../reference/apis-basic-services-kit/js-apis-selectionInput-selectionExtensionAbility-sys.md)。从API version 20开始，支持该标签。<br/>**说明：**<br/>其中service、adsService、staticSubscriber、window、sys/commonUI、fileAccess、selection、sysDialog类型、sysPicker类型、dataShare类型和uiService类型，三方应用的配置不生效，当前配置仅在系统应用中有效。<!--DelEnd--> | 字符串 | 该标签不可缺省。 |
 | permissions | 标识当前ExtensionAbility组件的权限信息。当其他应用访问该ExtensionAbility时，需要申请相应的权限。<br/>一个数组元素为一个权限名称。不超过255字节，取值请参考[应用权限列表](../security/AccessToken/app-permissions.md)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | appIdentifierAllowList | 标识允许启动此ExtensionAbility的应用程序列表。<br/>一个数组元素为一个应用程序的appIdentifier，appIdentifier信息可参考[什么是appIdentifier](../quick-start/common_problem_of_application.md#什么是appidentifier)。<br/>**说明：**<br/>仅当ExtensionAbility组件的type为appService时支持配置该标签。<br/>从API version 20开始，支持该标签。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | readPermission | 标识读取当前ExtensionAbility组件数据所需的权限，取值为长度不超过255字节的字符串。仅当ExtensionAbility组件的type为dataShare时支持配置该标签。 | 字符串 | 该标签可缺省，缺省值为空。 |
@@ -439,7 +429,7 @@ skills示例：
 | exported | 标识当前ExtensionAbility组件是否可以被其他应用调用。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用，包括无法被aa工具命令拉起应用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | extensionProcessMode | 标识当前ExtensionAbility组件的多进程实例模型,当前只对UIExtensionAbility以及从UIExtensionAbility扩展的ExtensionAbility生效。<br/>-&nbsp;instance：表示该ExtensionAbility每个实例一个进程。<br/>-&nbsp;type：表示该ExtensionAbility实例都运行在同一个进程里，与其他ExtensionAbility分离进程。<br/>-&nbsp;bundle：表示该ExtensionAbility实例都运行在应用统一进程里，与其他配置了bundle模型的ExtensionAbility共进程。<!--RP10--><!--RP10End--> | 字符串 | 该标签可缺省，缺省值为空。 |
 | dataGroupIds | 标识当前ExtensionAbility组件的dataGroupId集合。如果当前ExtensionAbility组件所在的应用在应用市场申请的证书里groupIds也申请了某个dataGroupId，那么当前ExtensionAbility组件可以和应用共享这一个dataGroupId生成的目录，所以ExtensionAbility组件的dataGroupId需要是应用的签名证书中groupIds标签里配置的才能生效。 且该标签仅在当前ExtensionAbility组件存在独立的沙箱目录时生效。<!--RP8--><!--RP8End--> | 字符串数组 | 该标签可缺省，缺省值为空。 |
-| process | 标识组件的进程标签，只有type为embeddedUI时可以配置该标签。<br/>**说明：**<br/>仅在[2in1](./module-configuration-file.md#devicetypes标签)设备上生效，UIAbility组件和ExtensionAbility组件标签一致时运行在同一个进程中。从API version 14开始，支持该标签。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| process | 标识组件的进程名称，只有type为embeddedUI时可以配置该标签。具体使用方式参考[进程模型定义](../application-models/process-model-stage.md#其他进程类型)中的"静态指定进程"。<br/>**说明：**<br/>1. 仅在[PC/2in1](./module-configuration-file.md#devicetypes标签)和[Tablet](./module-configuration-file.md#devicetypes标签)设备上生效。<br/>2. UIAbility组件和ExtensionAbility组件标签一致时运行在同一个进程中。<br/>3. 从API version 14开始，支持该标签。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | isolationProcess | 标识ExtensionAbility组件能否运行在独立的进程中。<br/>-&nbsp;true：表示能运行在独立的进程中。<br/>-&nbsp;false：表示不能运行在独立的进程中。<br/>**说明：**<br/>仅当ExtensionAbility组件的type为"sys/commonUI"时该标签配置生效，且仅支持由系统应用配置type为"sys/commonUI"。<br/>从API version 20开始，支持该标签。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 
 extensionAbilities示例：
@@ -497,7 +487,7 @@ shortcuts标识应用的快捷方式信息。标签值为数组，包含四个�
 | -------- | -------- | -------- | -------- |
 | shortcutId | 标识快捷方式的ID，取值为长度不超过63字节的字符串。**不支持通过资源索引的方式（$string）配置该标签。** | 字符串 | 该标签不可缺省。 |
 | label | 标识快捷方式的标签信息，即快捷方式对外显示的文字描述信息。取值为长度不超过255字节的字符串，可以是描述性内容，也可以是标识label的资源索引。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| icon | 标识快捷方式的图标，取值为资源文件的索引。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| icon | 标识快捷方式的图标，取值为资源文件的索引。<br/>**说明：**<br/>图标分为单层图标和分层图标，单层图标包含一个图片，分层图标包含前景图和背景图，推荐使用如下配置的分层图标：<br/>1.前景图：图标显示大小为450\*450px，资源大小为1024\*1024px的透明图层。<br/>2.背景图：大小为1024\*1024px。<br/> | 字符串 | 该标签可缺省，缺省值为空。 |
 | visible | 标识快捷方式是否显示，取值为true时显示快捷方式，取值为false时不显示快捷方式。<br/>**说明：**<br/>1.从API version 20开始，支持该标签。<br/> | 布尔值 | 该标签可缺省，缺省为true。 |
 | [wants](#wants标签) | 标识快捷方式内定义的目标wants信息集合，在调用launcherBundleManager的startShortcut接口时，会拉起wants标签里的第一个目标组件，推荐只配置一个wants元素。 | 对象 | 该标签可缺省，缺省为空。 |
 
@@ -567,9 +557,9 @@ shortcuts标识应用的快捷方式信息。标签值为数组，包含四个�
 
 | 属性名称 | 含义 | 类型  | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| bundleName | 表示快捷方式的目标包名。 | 字符串 | 该标签不可缺省。 |
+| bundleName | 表示快捷方式的目标包名。 | 字符串 | 该标签可缺省。 |
 | moduleName | 表示快捷方式的目标模块名。 | 字符串 | 该标签可缺省。 |
-| abilityName| 表示快捷方式的目标组件名。 | 字符串 | 该标签不可缺省。 |
+| abilityName| 表示快捷方式的目标组件名。 | 字符串 | 该标签可缺省。 |
 | parameters | 表示拉起快捷方式时的自定义数据，仅支持配置字符串类型的数据。其中键值均最大支持1024长度的字符串。 | 对象 | 该标签可缺省。 |
 
 data标签示例：
@@ -1174,7 +1164,7 @@ resources/base/profile路径下的theme_config.json资源文件示例如下：
 <!--Del-->
 ## definePermissions标签
 
-该标签仅支持系统资源hap定义权限，不支持应用自定义权限。权限定义方式参见[系统资源权限定义](https://gitee.com/openharmony/utils_system_resources/blob/master/systemres/main/config.json)。
+该标签仅支持系统资源hap定义权限，不支持应用自定义权限。权限定义方式参见[系统资源权限定义](https://gitcode.com/openharmony/utils_system_resources/blob/master/systemres/main/config.json)。
 
 **表30** definePermissions标签说明
 

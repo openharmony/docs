@@ -62,8 +62,8 @@
       const deviceId = 1;
       // 第一个参数deviceId 非必填，缺省默认查询的为本地设备。
       const sensorList: sensor.Sensor[] = sensor.getSensorListByDeviceSync(deviceId);
-      console.log(`sensorList length: ${sensorList.length}`);
-      console.log(`sensorList: ${JSON.stringify(sensorList)}`);
+      console.info(`sensorList length: ${sensorList.length}`);
+      console.info(`sensorList: ${JSON.stringify(sensorList)}`);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error(`Failed to get sensorList. Code: ${e.code}, message: ${e.message}`);
@@ -134,7 +134,7 @@
     注册监听, SensorStatusEvent 会返回事件时间戳、传感器ID、传感器索引、上线或下线、设备id、设备名称等值。
     ```ts
     sensor.on('sensorStatusChange', (data: sensor.SensorStatusEvent) => {
-          console.log(`timestamp: ${data.timestamp},
+          console.info(`timestamp: ${data.timestamp},
             deviceId: ${data.deviceId} deviceName: ${data.deviceName}
             sensorId: ${data.sensorId} sensorIndex:${data.sensorIndex} isSensorOnline: ${data.isSensorOnline}`)
     });

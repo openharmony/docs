@@ -29,7 +29,7 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
 
 aboutToAppear?(): void
 
-aboutToAppear函数在创建自定义组件的新实例后，在其build()函数执行前调用。允许在aboutToAppear函数中改变状态变量，更改将在后续执行build()函数中生效。实现自定义布局的自定义组件的aboutToAppear生命周期在布局过程中触发。
+aboutToAppear函数在创建自定义组件的新实例后，在其build()函数执行前调用。允许在aboutToAppear函数中改变状态变量，更改将在后续执行build()函数中生效。实现[自定义布局](./ts-custom-component-layout.md)的自定义组件的aboutToAppear生命周期在布局过程中触发。
 
 > **说明：**
 >
@@ -617,3 +617,133 @@ pageTransition?(): void
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+## onFormRecycle<sup>11+</sup>
+
+onFormRecycle?(): string
+
+onFormRecycle回调函数在卡片回收时执行，卡片提供方可以返回需要卡片管理服务代保存的数据，在卡片恢复时通过[onFormRecover](#onformrecover11)接口传给卡片提供方。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | ---------   |
+| string | 返回卡片提供方需要卡片管理服务代保存的数据。 |
+
+**示例：**
+```ts
+@Entry
+@Component
+struct WidgetCard {
+  readonly title: string = 'Hello World';
+  readonly actionType: string = 'router';
+  readonly abilityName: string = 'EntryAbility';
+  readonly message: string = 'add detail';
+  readonly fullWidthPercent: string = '100%';
+  readonly fullHeightPercent: string = '100%';
+
+  onFormRecycle(): string {
+    let formId: string = "1859635745"
+    console.info("card is recycled, formID: " + formId);
+    return formId;
+  }
+
+  onFormRecover(statusData: string): void {
+    console.info("card has been restored, formID: " + statusData);
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.title)
+          .fontSize($r('app.float.font_size'))
+          .fontWeight(FontWeight.Medium)
+          .fontColor($r('sys.color.font'))
+      }
+      .width(this.fullWidthPercent)
+    }
+    .height(this.fullHeightPercent)
+    .backgroundColor($r('sys.color.comp_background_primary'))
+    .onClick(() => {
+      postCardAction(this, {
+        action: this.actionType,
+        abilityName: this.abilityName,
+        params: {
+          message: this.message
+        }
+      });
+    })
+  }
+}
+```
+
+## onFormRecover<sup>11+</sup>
+
+onFormRecover?(statusData: string): void
+
+onFormRecover回调函数在卡片恢复时执行，卡片提供方可以拿到卡片回收时卡片管理服务代保存的数据，该数据可以通过[onFormRecycle](#onformrecycle11)卡片回收回调函数保存到卡片管理服务。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                                       | 必填    | 说明         |
+|--------|------------------------------------------|------------|-------------------------|
+| statusData | string | 是     | 卡片回收时卡片管理服务代保存的数据。|
+
+**示例：**
+```ts
+@Entry
+@Component
+struct WidgetCard {
+  readonly title: string = 'Hello World';
+  readonly actionType: string = 'router';
+  readonly abilityName: string = 'EntryAbility';
+  readonly message: string = 'add detail';
+  readonly fullWidthPercent: string = '100%';
+  readonly fullHeightPercent: string = '100%';
+
+  onFormRecycle(): string {
+    let formId: string = "1859635745"
+    console.info("card is recycled, formID: " + formId);
+    return formId;
+  }
+
+  onFormRecover(statusData: string): void {
+    console.info("card has been restored, formID: " + statusData);
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.title)
+          .fontSize($r('app.float.font_size'))
+          .fontWeight(FontWeight.Medium)
+          .fontColor($r('sys.color.font'))
+      }
+      .width(this.fullWidthPercent)
+    }
+    .height(this.fullHeightPercent)
+    .backgroundColor($r('sys.color.comp_background_primary'))
+    .onClick(() => {
+      postCardAction(this, {
+        action: this.actionType,
+        abilityName: this.abilityName,
+        params: {
+          message: this.message
+        }
+      });
+    })
+  }
+}
+```

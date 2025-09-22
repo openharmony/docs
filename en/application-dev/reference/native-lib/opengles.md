@@ -1,5 +1,10 @@
 # OpenGL ES
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @samhu1989-->
+<!--Designer: @shi-yang-2012-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @ge-yafang-->
 OpenGL is a cross-platform graphics API that specifies a standard software interface for 3D graphics processing hardware. [OpenGL ES](https://www.khronos.org/opengles/) is a flavor of the OpenGL specification intended for embedded devices. OpenHarmony now supports OpenGL ES 3.2.
 
 ## Supported Capabilities
@@ -8,7 +13,7 @@ OpenGL ES 3.2
 
 ## Symbols Exported from the Standard Library
 
-[OpenGL ES 3.2 Symbols Exported](openglesv3-symbol.md)
+[OpenGL ES 3.2 Symbols Exported from Native APIs](openglesv3-symbol.md)
 
 ## Introducing OpenGL
 
@@ -141,8 +146,8 @@ int main() {
 
     // Define vertex data.
     GLfloat vertices[] = {
-        -0.5f, -0.5f, 0.0f, // Lower left corner.
-         0.5f, -0.5f, 0.0f, // Lower right corner.
+        -0.5f, -0.5f, 0.0f, // Lower-left corner.
+         0.5f, -0.5f, 0.0f, // Lower-right corner.
          0.0f, 0.5f, 0.0f // Top.
     };
 
@@ -230,7 +235,7 @@ This example uses EGL to create a render surface, which can be a window surface,
 EGLDisplay eglGetDisplay(EGLNativeDisplayType display_id);
 ```
 
-The **eglGetDisplay** function returns an **EGLDisplay** object, which represents the connection to an EGL display. If no connection is available, **EGL_NO_DISPLAY** is returned.
+The **eglGetDisplay** function returns an EGLDisplay object, which represents the connection to an EGL display. If no connection is available, **EGL_NO_DISPLAY** is returned.
 
 The **display_id** parameter indicates the local display type of the display. The **EGLNativeDisplayType** parameter is the window display type, which has different definitions on different platforms. If you just want to use the default display, use **EGL_DEFAULT_DISPLAY** without explicitly specifying **display_id**.
 
@@ -363,7 +368,7 @@ The following values can be passed in to **attrib_list** of **eglCreateWindowSur
 ```cpp
 EGL_RENDER_BUFFER EGL_SINGLE_BUFFER or EGL_BACK_BUFFER
 EGL_SINGLE_BUFFER // There is only one render buffer on the EGL surface. After the rendering is complete, the content in the render buffer is directly displayed on the screen. As a result, screen flickering or tearing may occur.
-EGL_BACK_BUFFER // There are a front buffer and a back buffer. After the rendering is complete, the content in the render buffer is first rendered to the back buffer, and then the content in the back buffer is displayed on the screen by means of buffer swapping. In this way, screen flickering or tearing can be avoided. 
+EGL_BACK_BUFFER // There is a front buffer and a back buffer. After the rendering is complete, the content in the render buffer is first rendered to the back buffer, and then the content in the back buffer is displayed on the screen by means of buffer swapping. In this way, screen flickering or tearing can be avoided. 
 // The default value is EGL_BACK_BUFFER. If this parameter is set to null, the default value is used.
 ```
 The possible causes of a failure to call **eglCreateWindowSurface** are as follows:
@@ -441,6 +446,8 @@ napi_value PluginManager::SetSurfaceId(napi_env env, napi_callback_info info)
     if (windowMap_.find(surfaceId) == windowMap_.end()) {
         OH_NativeWindow_CreateNativeWindowFromSurfaceId(surfaceId, &nativeWindow);
         windowMap_[surfaceId] = nativeWindow;
+    } else {
+        return nullptr;
     }
     if (pluginRenderMap_.find(surfaceId) == pluginRenderMap_.end()) {
         pluginRender = new PluginRender(surfaceId);
@@ -450,7 +457,7 @@ napi_value PluginManager::SetSurfaceId(napi_env env, napi_callback_info info)
     return nullptr;
 }
 ```
-For details about how to use the **XComponent**, see [ArkTS XComponent Usage Example](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/XComponent).
+For details about how to use the **XComponent**, see [ArkTS XComponent Usage Example](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/XComponent).
 ### Using eglCreateContext to Create a Rendering Context
 
 The **eglCreateContext** function is used to create an EGL rendering context and associate it with a specific display and configuration. You can specify a shared context to share status information with an existing OpenGL context. The parameters in the function are described as follows:
@@ -485,7 +492,7 @@ EGLBoolean eglMakeCurrent(EGLDisplay display, // Handle to the EGL display conne
 void glViewport(GLint x, GLint y, GLsizei width, GLsizei height)
 ```
 
-The **glViewport** function is used to set the viewport and specify the position and size of the OpenGL ES rendering area in the window. The **x** and **y** parameters specify the coordinates of the lower left corner of the viewport in the window. The **width** and **height** parameters specify the width and height of the viewport.
+The **glViewport** function is used to set the viewport and specify the position and size of the OpenGL ES rendering area in the window. The **x** and **y** parameters specify the coordinates of the lower-left corner of the viewport in the window. The **width** and **height** parameters specify the width and height of the viewport.
 
 ### Using glClearColor to Set the Color Used to Clear the Color Buffer
 
@@ -510,13 +517,13 @@ You can call **glClear(GL_COLOR_BUFFER_BIT)** to clear the color buffer and fill
 ```cpp
   // Define vertex data.
     GLfloat vertices[] = {
-        -0.5f, -0.5f, 0.0f, // Lower left corner.
-         0.5f, -0.5f, 0.0f, // Lower right corner.
+        -0.5f, -0.5f, 0.0f, // Lower-left corner.
+         0.5f, -0.5f, 0.0f, // Lower-right corner.
          0.0f, 0.5f, 0.0f // Top.
     };
 ```
 
-In OpenGL, Normalized Device Coordinates (NDCs) are usually used to represent the position of a vertex. NDC is a coordinate space in the screen. In this space, the lower left corner is (-1, -1), and the upper right corner is (1, 1). This coordinate space makes the position of the vertex independent of the size and aspect ratio of the screen.
+In OpenGL, Normalized Device Coordinates (NDCs) are usually used to represent the position of a vertex. NDC is a coordinate space in the screen. In this space, the lower-left corner is (-1, -1), and the upper-right corner is (1, 1). This coordinate space makes the position of the vertex independent of the size and aspect ratio of the screen.
 ### Managing Vertex Data
 
 You can save the vertex data on the GPU to minimize data transfer between the CPU and GPU.
@@ -550,7 +557,7 @@ Once the **glBufferData** function is called, the data is copied to the OpenGL b
 ```cpp
     const char* vertexShaderSource = R"(
         #version 320 es // Shader of OpenGL ES 3.2 is used.
-        precision mediump float; // The floating point number uses the medium precision.
+        precision mediump float; // The floating-point number uses the medium precision.
         layout (location = 0) in vec3 aPos; // Vertex attribute variable. The variable name is aPos, the type is vec3, and the index in the vertex shader is 0. This variable receives the vertex data from the VBO. Each time the vertex shader is called, aPos is set to the position of the currently processed vertex. (The data is obtained from the VBO and stored in the GPU.)
         void main() {
             // gl_Position, a built-in variable of OpenGL ES, specifies the final position of each vertex. The position is the coordinates in the clip space after perspective projection transformation.
@@ -568,7 +575,7 @@ Once the **glBufferData** function is called, the data is copied to the OpenGL b
 
 const char* fragmentShaderSource = R"(
     #version 320 es // Shader of OpenGL ES 3.2 is used.
-    precision mediump float; // The floating point number uses the medium precision.
+    precision mediump float; // The floating-point number uses the medium precision.
     out vec4 FragColor; // Color of the output fragment.
 
     void main() {
@@ -619,7 +626,7 @@ In the OpenGL ES rendering pipeline, the following steps describe the entire pro
 
    - Stencil test: uses the stencil buffer for test.
 
-   - Depth-buffer test: compares the depth values of the fragment to determine whether it visible.
+   - Depth-buffer test: compares the depth values of the fragment to determine whether it is visible.
 
    - Blending: combines the newly calculated color with the existing color in the frame buffer.
 
@@ -811,3 +818,5 @@ EGLBoolean eglSwapBuffers(EGLDisplay dpy, // EGL display connection.
 ```
 
 The **eglSwapBuffers** function is used to swap the front and back buffers and display the rendering result on the screen.
+
+<!--RP1--><!--RP1End-->

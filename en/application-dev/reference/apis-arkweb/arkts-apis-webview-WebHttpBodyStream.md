@@ -1,4 +1,10 @@
 # Class (WebHttpBodyStream)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Represents the body of the data being sent in POST and PUT requests. It accepts data of the BYTES, FILE, BLOB, and CHUNKED types. Note that other APIs in this class can be called only after [initialize](#initialize12) is called successfully.
 
@@ -69,7 +75,7 @@ struct WebComponent {
         .onControllerAttached(() => {
           try {
             this.schemeHandler.onRequestStart((request: webview.WebSchemeHandlerRequest, resourceHandler: webview.WebResourceHandler) => {
-              console.log("[schemeHandler] onRequestStart");
+              console.info("[schemeHandler] onRequestStart");
               try {
                 let stream = request.getHttpBodyStream();
                 if (stream) {
@@ -77,18 +83,18 @@ struct WebComponent {
                     if (!stream) {
                       return;
                     }
-                    console.log("[schemeHandler] onRequestStart postDataStream size:" + stream.getSize());
-                    console.log("[schemeHandler] onRequestStart postDataStream position:" + stream.getPosition());
-                    console.log("[schemeHandler] onRequestStart postDataStream isChunked:" + stream.isChunked());
-                    console.log("[schemeHandler] onRequestStart postDataStream isEof:" + stream.isEof());
-                    console.log("[schemeHandler] onRequestStart postDataStream isInMemory:" + stream.isInMemory());
+                    console.info("[schemeHandler] onRequestStart postDataStream size:" + stream.getSize());
+                    console.info("[schemeHandler] onRequestStart postDataStream position:" + stream.getPosition());
+                    console.info("[schemeHandler] onRequestStart postDataStream isChunked:" + stream.isChunked());
+                    console.info("[schemeHandler] onRequestStart postDataStream isEof:" + stream.isEof());
+                    console.info("[schemeHandler] onRequestStart postDataStream isInMemory:" + stream.isInMemory());
                     stream.read(stream.getSize()).then((buffer) => {
                       if (!stream) {
                         return;
                       }
-                      console.log("[schemeHandler] onRequestStart postDataStream readlength:" + buffer.byteLength);
-                      console.log("[schemeHandler] onRequestStart postDataStream isEof:" + stream.isEof());
-                      console.log("[schemeHandler] onRequestStart postDataStream position:" + stream.getPosition());
+                      console.info("[schemeHandler] onRequestStart postDataStream readlength:" + buffer.byteLength);
+                      console.info("[schemeHandler] onRequestStart postDataStream isEof:" + stream.isEof());
+                      console.info("[schemeHandler] onRequestStart postDataStream position:" + stream.getPosition());
                     }).catch((error: BusinessError) => {
                       console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
                     })
@@ -96,7 +102,7 @@ struct WebComponent {
                     console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
                   })
                 } else {
-                  console.log("[schemeHandler] onRequestStart has no http body stream");
+                  console.info("[schemeHandler] onRequestStart has no http body stream");
                 }
               } catch (error) {
                 console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -106,7 +112,7 @@ struct WebComponent {
             })
 
             this.schemeHandler.onRequestStop((request: webview.WebSchemeHandlerRequest) => {
-              console.log("[schemeHandler] onRequestStop");
+              console.info("[schemeHandler] onRequestStop");
             });
 
             this.controller.setWebSchemeHandler('https', this.schemeHandler);

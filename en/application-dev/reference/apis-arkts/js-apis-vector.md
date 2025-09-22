@@ -1,4 +1,10 @@
 # @ohos.util.Vector (Linear Container Vector)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 Vector is a linear data structure that is implemented based on arrays. When the memory of a vector is used up, a larger contiguous memory area is automatically allocated, all the elements are copied to the new memory area, and the current memory area is reclaimed. Vector can be used to efficiently access elements.
 
@@ -6,7 +12,7 @@ Both Vector and [ArrayList](js-apis-arraylist.md) are implemented based on array
 
 **Recommended use case**: Use Vector when the data volume is large.
 
-This topic uses the following to identify the use of generics:
+This topic uses the following to identify the use of generics:<br>
 - T: Type
 
 > **NOTE**
@@ -28,7 +34,7 @@ import { Vector } from '@kit.ArkTS';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | Yes| No| Number of elements in a Vector.|
 
@@ -365,7 +371,7 @@ vector.add(4);
 vector.add(5);
 vector.add(4);
 vector.forEach((value : number, index ?: number) : void => {
-  console.log("value:" + value, "index:" + index);
+  console.info("value:" + value, "index:" + index);
 });
 ```
 
@@ -858,14 +864,14 @@ vector.add(4);
 // Method 1:
 let nums: Array<number> =  vector.convertToArray()
 for (let item of nums) {
-  console.log("value:" + item);
+  console.info("value:" + item);
 }
 
 // Method 2:
 let iter = vector[Symbol.iterator]();
 let temp: IteratorResult<number> = iter.next().value;
 while(temp != undefined) {
-  console.log("value:" + temp);
+  console.info("value:" + temp);
   temp = iter.next().value;
 }
 ```

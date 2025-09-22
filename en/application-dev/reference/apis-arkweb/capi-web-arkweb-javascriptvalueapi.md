@@ -1,8 +1,14 @@
 # ArkWeb_JavaScriptValueAPI
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 ## Overview
 
-Defines the native ArkWeb **JavaScriptValue** API. Before calling the API, you are advised to use **ARKWEB_MEMBER_MISSING** to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM.
+Defines the JavaScriptValue API of ArkWeb. Before calling this API, you are advised to use [ARKWEB_MEMBER_MISSING](capi-arkweb-type-h.md#macros) to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM.
 
 **Since**: 18
 
@@ -34,9 +40,9 @@ ArkWeb_JavaScriptValuePtr (*createJavaScriptValue)(ArkWeb_JavaScriptValueType ty
 
 **Description**
 
-Creates a JavaScript value to be returned to HTML.
+Sets the mode for processing key events.
 
-**Since**: 15
+**Since**: 18
 
 **Parameters**
 

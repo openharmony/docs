@@ -1,4 +1,10 @@
 # Transferable Object (NativeBinding Object)
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @wang_zhaoyong-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 
 A Transferable object, also known as a NativeBinding object, is a JS object that is bound to a C++ object, with the primary functionality provided by C++. Its JS object wrapper is allocated in the local heap of the virtual machine. During cross-thread communication, the same C++ object is reused. Compared with the pass-by-copy mode of JS objects, this method offers higher transfer efficiency. Therefore, NativeBinding objects that can be shared or transferred are also referred to as Transferable objects. You can also customize Transferable objects. For details, see [Multithreaded Operations with Custom Native Transferable Objects](napi-coerce-to-native-binding-object.md).
@@ -12,7 +18,7 @@ If the C++ implementation can ensure thread safety, the C++ part of the NativeBi
 ![nativeBinding](figures/nativeBinding.png)
 
 
-A typical shared-mode NativeBinding object includes context. A context object contains contextual information for application components and provides a way to access system services and resources, enabling the application components to interact with the system. For details about how to obtain context, see [Context (Stage Model)](../application-models/application-context-stage.md).
+A typical shared-mode NativeBinding object includes ApplicationContext, WindowContext, and AbilityContext or ComponentContext. These context objects encapsulate the context information of application components and provide the capability to access system services and resources, enabling the application components to interact with the system. For details about how to obtain context, see [Context (Stage Model)](../application-models/application-context-stage.md).
 
 For details about the development example, see [Using TaskPool for Frequent Database Operations](batch-database-operations-guide.md#using-taskpool-for-frequent-database-operations).
 
@@ -25,14 +31,12 @@ If the C++ implementation contains data and cannot ensure thread safe, the C++ p
 
 A typical transfer-mode NativeBinding object includes a PixelMap. The [PixelMap object](../reference/apis-image-kit/arkts-apis-image-f.md#imagecreatepixelmap8) can read or write image data and obtain image information, and is usually used for image display.
 
-### Usage Example
-
-Here is an example of passing a PixelMap object across threads to help you better understand the process. First, obtain the image resource from the **rawfile** folder, and then create a PixelMap object in the child thread and pass it to the main thread. The specific implementation is as follows:
+Here is an example of passing a PixelMap object across threads. Obtain the image resource from the **rawfile** folder, and create a PixelMap object in the child thread and pass it to the main thread. The specific implementation is as follows:
 
 ```ts
 // Index.ets
 import { taskpool } from '@kit.ArkTS';
-import { loadPixelMap } from './pixelMapTest';
+import { loadPixelMap } from './PixelMapTest';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
@@ -49,7 +53,7 @@ struct Index {
       taskpool.execute(loadPixelMap, rawFileDescriptor).then(pixelMap => {
         if (pixelMap) {
           this.pixelMap = pixelMap as PixelMap;
-          console.log('Succeeded in creating pixelMap.');
+          console.info('Succeeded in creating pixelMap.');
           // The main thread releases the pixelMap. Because setTransferDetached has been called when the child thread returns the pixelMap, the pixelMap can be released immediately.
           this.pixelMap.release();
         } else {
@@ -62,28 +66,25 @@ struct Index {
   }
 
   build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('HelloWorld')
-        .fontSize(50)
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: 'container', align: VerticalAlign.Center },
-          middle: { anchor: 'container', align: HorizontalAlign.Center }
-        })
-        .onClick(() => {
-          this.loadImageFromThread();
-        })
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            this.loadImageFromThread();
+          })
+      }
+      .width('100%')
     }
     .height('100%')
-    .width('100%')
   }
 }
 ```
-<!-- @[example_pass_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/CommunicationObjects/entry/src/main/ets/managers/TransferabledObject.ets) -->
+<!-- @[example_pass_obj](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/CommunicationObjects/entry/src/main/ets/managers/TransferabledObject.ets) -->
 
 ```ts
-// pixelMapTest.ets
+// PixelMapTest.ets
 import { image } from '@kit.ImageKit';
 
 @Concurrent
@@ -100,6 +101,4 @@ export async function loadPixelMap(rawFileDescriptor: number): Promise<PixelMap>
   return pixelMap;
 }
 ```
-<!-- @[example_pass_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/CommunicationObjects/entry/src/main/ets/managers/pixelMapTest.ets) -->
-
-<!--no_check-->
+<!-- @[example_pass_obj](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/CommunicationObjects/entry/src/main/ets/managers/pixelMapTest.ets) -->

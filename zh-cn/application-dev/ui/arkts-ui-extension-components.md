@@ -178,12 +178,12 @@ UIExtensionComponent组件（使用方）可以访问调用集成了UIExtensionA
 
 | 场景     | 分类                       | 是否支持 | 同步/异步（宿主与提供方） | 备注                                                         |
 | -------- | -------------------------- | -------- | ------------------------- | ------------------------------------------------------------ |
-| 通用事件 | 点击事件（Click）          | 支持     | 异步                      | —                                                            |
-| 通用事件 | 触摸事件（Touch）          | 支持     | 异步                      | —                                                            |
-| 通用事件 | 拖拽事件（onDragXXX）      | 支持     | 异步                      | —                                                            |
-| 通用事件 | 按键事件（KeyEvent）       | 支持     | 同步                      | 循环嵌套或者嵌套过深会导致应用无法响应，提供默认兜底机制：支持超时等待机制，超时后会结束等待，对上层来说相当于事件未处理。 |
-| 通用事件 | 焦点事件（onFocus/onBlur） | 支持     | 同步                      | 循环嵌套或者嵌套过深会导致应用无法响应，提供默认兜底机制：支持超时等待机制，超时后会结束等待，对上层来说相当于事件未处理。 |
-| 通用事件 | 鼠标事件（onHove/onMouse） | 支持     | 异步                      | —                                                            |
+| 通用事件 | [点击事件](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md)（Click）          | 支持     | 异步                      | —                                                            |
+| 通用事件 | [触摸事件](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md)（Touch）          | 支持     | 异步                      | —                                                            |
+| 通用事件 | [拖拽事件](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md)（onDragXXX）      | 支持     | 异步                      | —                                                            |
+| 通用事件 | [按键事件](../reference/apis-arkui/arkui-ts/ts-universal-events-key.md)（KeyEvent）       | 支持     | 同步                      | 循环嵌套或者嵌套过深会导致应用无法响应，提供默认兜底机制：支持超时等待机制，超时后会结束等待，对上层来说相当于事件未处理。 |
+| 通用事件 | [焦点事件](../reference/apis-arkui/arkui-ts/ts-universal-focus-event.md)（onFocus/onBlur） | 支持     | 同步                      | 循环嵌套或者嵌套过深会导致应用无法响应，提供默认兜底机制：支持超时等待机制，超时后会结束等待，对上层来说相当于事件未处理。 |
+| 通用事件 | [鼠标事件](../reference/apis-arkui/arkui-ts/ts-universal-mouse-key.md)（onHove/onMouse） | 支持     | 异步                      | —                                                            |
 | 手势处理 | —                          | 支持     | 异步                      | —                                                            |
 | 无障碍   | —                          | 支持     | 同步                      | 循环嵌套或者嵌套过深会导致应用无法响应，提供默认兜底机制：支持超时等待机制，超时后会结束等待，对上层来说相当于事件未处理。 |
 

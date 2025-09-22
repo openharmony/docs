@@ -1,4 +1,10 @@
 # @ohos.data.rdb (RDB Store)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 The relational database (RDB) manages data based on relational models. With the underlying SQLite database, the RDB provides a complete mechanism for managing local databases. To satisfy different needs in complicated scenarios, the RDB offers a series of methods for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. The worker threads are not supported.
 
@@ -749,7 +755,7 @@ Creates an **RdbPredicates** object to search for the records in the specified c
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the database table.|
-| value | string | Yes| Value to match.<br><br>Wildcards are supported. ***** indicates zero, one, or multiple digits or characters. **?** indicates a single digit or character.|
+| value | string | Yes| Value to match.<br>Wildcards are supported. ***** indicates zero, one, or multiple digits or characters. **?** indicates a single digit or character. |
 
 **Return value**
 
@@ -1521,7 +1527,7 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | predicates | [RdbPredicates](#rdbpredicates) | Yes| Deletion conditions specified by the **RdbPredicates** object.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of rows updated.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of rows deleted.|
 
 **Example**
 
@@ -1555,7 +1561,7 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the number of rows updated.|
+| Promise&lt;number&gt; | Promise used to return the number of rows deleted.|
 
 **Example**
 
@@ -2156,7 +2162,7 @@ Registers an observer for this RDB store. When the data in the RDB store changes
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event | string | Yes| The value is'dataChange', which indicates a data change event.|
+| event | string | Yes| Event to observe. The value is **dataChange**, which indicates a data change event.|
 | type | [SubscribeType](#subscribetype8) | Yes| Subscription type to register.|
 | observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Observer that listens for the data changes in the RDB store. **Array&lt;string>** indicates the ID of the peer device whose data in the database is changed.|
 
@@ -2188,7 +2194,7 @@ Unregisters the observer of the specified type from the RDB store. This API uses
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| event | string | Yes| The value is'dataChange', which indicates a data change event.|
+| event | string | Yes| Event to observe. The value is **dataChange**, which indicates a data change event.|
 | type | [SubscribeType](#subscribetype8)    | Yes| Subscription type to register.|
 | observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Data change observer registered. **Array&lt;string>** indicates the ID of the peer device whose data in the database is changed.|
 

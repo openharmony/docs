@@ -96,7 +96,7 @@
 
 ### 大致定位问题
 
-通过SmartPerf Host工具打开应用Trace。选择收藏置顶，FrameTimeLine、App主进程和RanderService进程中的Actual Timeline，以及RenderService进程中的主线程。
+通过SmartPerf Host工具打开应用Trace。选择收藏置顶，FrameTimeLine、App主进程和RenderService进程中的Actual Timeline，以及RenderService进程中的主线程。
 
 框选RenderService主线程的一段时间，SmartPerf会通过其中`RSMainThread::DoComposition`或`Repaint`标签，自动计算该段平均帧率。如下图所示，平均滑动帧率为118.8fps，不满足120fps，需要优化。
 
@@ -106,7 +106,7 @@
 
 ### 逐帧分析问题
 
-鉴于异常帧都集中在App侧，所以可以只保留App主进程中的Actual Timeline以辅助定位，取消置顶FrameTimeLine和RanderService进程中的Actual Timeline，以及RenderService进程中的主线程。
+鉴于异常帧都集中在App侧，所以可以只保留App主进程中的Actual Timeline以辅助定位，取消置顶FrameTimeLine和RenderService进程中的Actual Timeline，以及RenderService进程中的主线程。
 
 针对示例场景是长列表抛滑，为了将实际操作的动作与Trace数据打点的时间相结合，以方便问题的分段与对照定位，开发者可以收藏置顶下面两个泳道：
 

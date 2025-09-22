@@ -390,7 +390,7 @@ navDestination(builder: (name: string, param: unknown) => void)
 
 | 参数名  | 类型                                   | 必填 | 说明                     |
 | ------- | -------------------------------------- | ---- | ------------------------ |
-| builder | (name: string, param: unknown) => void | 是   | 创建NavDestination组件。name：NavDestination页面名称。param：开发者设置的NavDestination页面详细参数，unkown可以是用户自定义的类型。 |
+| builder | (name: string, param: unknown) => void | 是   | 创建NavDestination组件。name：NavDestination页面名称。param：开发者设置的NavDestination页面详细参数，unknown可以是用户自定义的类型。 |
 
 ### navBarWidthRange<sup>10+</sup>
 
@@ -779,7 +779,7 @@ pushPathByName(name: string, param: unknown, animated?: boolean): void
 | 参数名    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
-| param | unknown | 是    | 开发者设置的NavDestination页面详细参数，unkown可以是用户自定义的类型。 |
+| param | unknown | 是    | 开发者设置的NavDestination页面详细参数，unknown可以是用户自定义的类型。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 ### pushPathByName<sup>11+</sup>
@@ -1327,7 +1327,7 @@ getParamByIndex(index: number): unknown | undefined
 
 | 类型        | 说明                         |
 | --------- | -------------------------- |
-| unknown&nbsp;\|&nbsp;undefined | unknown：返回对应NavDestination页面的参数信息，unkown可以是用户自定义的类型。<br/>undefined: 传入index无效时返回undefined。  |
+| unknown&nbsp;\|&nbsp;undefined | unknown：返回对应NavDestination页面的参数信息，unknown可以是用户自定义的类型。<br/>undefined: 传入index无效时返回undefined。  |
 
 ### getParamByName<sup>10+</sup>
 
@@ -1495,7 +1495,7 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>, isEntry?: 
 | 参数名    | 类型      | 必填   | 说明                   |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
-| param | unknown | 是    | 开发者设置的NavDestination页面详细参数，unkown可以是用户自定义的类型。 |
+| param | unknown | 是    | 开发者设置的NavDestination页面详细参数，unknown可以是用户自定义的类型。 |
 | onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发[pop](#pop11)、[popToName](#poptoname11)、[popToIndex](#poptoindex11)时返回的回调。仅[pop](#pop11)、[popToName](#poptoname11)、[popToIndex](#poptoindex11)中设置result参数后触发。 |
 | isEntry<sup>12+</sup> | boolean | 否 | 标记NavDestination是否为入口页面。<br/>默认值：false。<br/>true：NavDestination是入口页面。<br/>false：NavDestination不是入口页面。 <br/>标记清理时机：1、在当前navDestination页面触发一次全局返回事件。2、应用退至后台。<br/>**说明**：<br/>入口NavDestination不响应应用内的全局back事件，直接触发应用间的全局back事件。 |
 
@@ -1508,7 +1508,7 @@ NavPathInfo参数信息。
 | 名称    | 类型      | 必填   | 说明                   |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| param | unknown | 否    | 开发者设置的NavDestination页面详细参数，unkown可以是用户自定义的类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| param | unknown | 否    | 开发者设置的NavDestination页面详细参数，unknown可以是用户自定义的类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发[pop](#pop11)、[popToName](#poptoname11)、[popToIndex](#poptoindex11)时返回的回调。仅[pop](#pop11)、[popToName](#poptoname11)、[popToIndex](#poptoindex11)中设置result参数后触发。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | isEntry<sup>12+</sup> | boolean | 否 | 标记NavDestination是否为入口页面。<br/>默认值：false。<br/>true：NavDestination是入口页面。<br/>false：NavDestination不是入口页面。 <br/>标记清理时机：1、在当前navDestination页面触发一次全局back事件。2、应用退至后台。<br/>**说明**：<br/>入口NavDestination不响应应用内的全局back事件，直接触发应用间的全局back事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | navDestinationId<sup>19+</sup>  | string  | 否    | NavDestination页面唯一标识符，该id由系统默认生成且全局唯一，通过[getPathStack](#getpathstack19)接口可读取，但不可以主动赋新值。 <br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。   |
@@ -1784,8 +1784,24 @@ Navigation自定义标题。
 | 名称  | 说明                                                         |
 | ----- | ------------------------------------------------------------ |
 | Stack | 导航栏与内容区独立显示，相当于两个页面。                     |
-| Split | 导航栏与内容区分两栏显示。<br/>以下navBarWidthRange的值用[minNavBarWidth,maxNavBarWidth]表示<br/>**1.** 当navBarWidth属性的值，在navBarWidthRange属性的值范围以外时，navBarWidth按如下规则显示：<br/>navBarWidth < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp) > maxNavBarWidth时，navBarWidth修正为maxNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp) < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp)在navBarWidthRange范围内，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth。<br/>**2.** 当navBarWidth属性的值，在navBarWidthRange属性的值范围以内时，navBarWidth按如下规则显示：<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为minNavBarWidth；<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth;<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度时，navBarWidth为设置的值。<br/>**3.** 缩小组件尺寸时，先缩小内容区的尺寸至minContentWidth，然后再缩小导航栏的尺寸至minNavBarWidth。若继续缩小，先缩小内容区，内容区消失后再缩小导航栏。<br/>**4.** 设置导航栏为固定尺寸时，若持续缩小组件尺寸，导航栏最后压缩显示。<br/>**5.** 若只设置了navBarWidth属性，则导航栏宽度为navBarWidth，且分割线不可拖动。<br/>**6.** 分割线的热区左右各2vp，建议避让4vp以上。<br/>**7.** Split模式下，内容区若只存在一个页面，则页面左上角不会显示返回按钮。 |
+| Split | 导航栏与内容区分两栏显示。<br/>**1.** navBarWidth最终取值与开发者设置值的关系参见表1。<br/>**2.** 缩小组件尺寸时，先缩小内容区的尺寸至minContentWidth，然后再缩小导航栏的尺寸至minNavBarWidth。若继续缩小，先缩小内容区，内容区消失后再缩小导航栏。<br/>**3.** 设置导航栏为固定尺寸时，若持续缩小组件尺寸，导航栏最后压缩显示。<br/>**4.** 若只设置了navBarWidth属性，则导航栏宽度为navBarWidth，且分割线不可拖动。<br/>**5.** 分割线的热区左右各2vp，建议避让4vp以上。<br/>**6.** Split模式下，内容区若只存在一个页面，则页面左上角不会显示返回按钮。 |
 | Auto  | API version 9之前：窗口宽度>=520vp时，采用Split模式显示；窗口宽度<520vp时，采用Stack模式显示。<br/>API version 10及以上：窗口宽度>=600vp时，采用Split模式显示；窗口宽度<600vp时，采用Stack模式显示，600vp等于minNavBarWidth(240vp) + minContentWidth (360vp)。 |
+
+**表1** navBarWidth最终取值与开发者设置值的关系表
+
+| 开发者设置的navBarWidth值 | calcNavBarWidth计算值 | navBarWidth最终取值 |
+| --- | --- | --- |
+| navBarWidth < minNavBarWidth | NA | minNavBarWidth |
+| navBarWidth > maxNavBarWidth | calcNavBarWidth > maxNavBarWidth | maxNavBarWidth |
+| navBarWidth > maxNavBarWidth | calcNavBarWidth < minNavBarWidth | minNavBarWidth |
+| navBarWidth > maxNavBarWidth | minNavBarWidth ≤ calcNavBarWidth ≤ maxNavBarWidth | calcNavBarWidth |
+| minNavBarWidth ≤ navBarWidth ≤ maxNavBarWidth | calcNavBarWidth ≤ minNavBarWidth | minNavBarWidth |
+| minNavBarWidth ≤ navBarWidth ≤ maxNavBarWidth | minNavBarWidth < calcNavBarWidth <= navBarWidth | calcNavBarWidth |
+| minNavBarWidth ≤ navBarWidth ≤ maxNavBarWidth | calcNavBarWidth > navBarWidth | navBarWidth |
+
+> **说明：**
+>
+> 为了简化表示，可以将`组件宽度 - minContentWidth - 分割线宽度 (1vp)`称为calcNavBarWidth。
 
 ## NavigationOperation<sup>11+</sup>枚举说明
 
@@ -2019,9 +2035,9 @@ struct NavigationExample {
       .titleMode(NavigationTitleMode.Full)
       .toolbarConfiguration([
         {
-          // $r("app.string.navigation_toolbar_add")和$r("app.media.ic_public_highlightsed")需要替换为开发者所需的资源文件
+          // $r("app.string.navigation_toolbar_add")和$r("app.media.ic_public_highlights_ed")需要替换为开发者所需的资源文件
           value: $r("app.string.navigation_toolbar_add"),
-          icon: $r("app.media.ic_public_highlightsed")
+          icon: $r("app.media.ic_public_highlights_ed")
         },
         {
           // $r("app.string.navigation_toolbar_app")和$r("app.media.ic_public_highlights")需要替换为开发者所需的资源文件

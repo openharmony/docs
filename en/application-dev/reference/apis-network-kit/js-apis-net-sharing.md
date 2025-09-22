@@ -1,6 +1,6 @@
 # @ohos.net.sharing (Network Sharing)
 
-The network sharing module allows you to share your device's network connectivity with other connected devices.
+This module allows you to share your device's network connectivity with other connected devices.
 
 > **NOTE**
 >
@@ -23,4 +23,4 @@ Defines the handle of the data network. Before calling the **NetHandle** functio
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| [connection.NetHandle](./js-apis-net-connection.md#nethandle) | Network link address information.|
+| [connection.NetHandle](./js-apis-net-connection.md#nethandle) | Network connection information.|

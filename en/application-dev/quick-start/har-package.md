@@ -113,9 +113,7 @@ export function func2() {
 In the **Index.ets** file, declare the APIs that the HAR exposes to external systems. The code snippet is as follows:
 ```ts
 // library/Index.ets
-export { Log } from './src/main/ets/test';
-export { func } from './src/main/ets/test';
-export { func2 } from './src/main/ets/test';
+export { Log, func, func2 } from './src/main/ets/test';
 ```
 
 ### Exporting Native Methods
@@ -161,7 +159,7 @@ Before referencing the HAR, you need to configure the dependency on it. For deta
 
 ### Referencing ArkUI Components
 
-After configuring the dependency on the HAR, you can reference ArkUI components exported from the HAR by using **import**. The code snippet is as follows:
+After configuring the dependency on the HAR, you can use **import** to import the ArkUI component exported from HAR. The following is an example:
 ```ts
 // entry/src/main/ets/pages/IndexSec.ets
 import { MainPage } from 'library';

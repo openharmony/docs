@@ -46,7 +46,7 @@ animate( keyframes: Keyframes, options: Options)：void
 
 | 参数                     | 类型                         | 默认值    | 说明                                       |
 | ---------------------- | -------------------------- | ------ | ---------------------------------------- |
-| duration               | number                     | 0      | 指定当前动画的运行时长，单位毫秒。                        |
+| duration               | number                     | 0      | 指定当前动画的运行时长，单位毫秒。有效取值范围为[0, +∞)，小于0时取默认值。                        |
 | easing                 | string                     | linear | 描述动画的时间曲线，支持类型见表4 easing有效值说明。           |
 | delay                  | number                     | 0      | 设置动画执行的延迟时间，默认值表示无延迟。                    |
 | iterations             | number&nbsp;\|&nbsp;string | 1      | 设置动画执行的次数。number表示固定次数，Infinity枚举表示无限次数播放。 |

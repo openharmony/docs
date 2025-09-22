@@ -137,7 +137,7 @@ ArkUI状态管理V1提供了多种装饰器，通过使用这些装饰器，状�
 
 - [状态管理（ArkTS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentCollection/StateManagement)
 
-- [目标管理（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TargetManagement)
+- [目标管理（ArkTS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/TargetManagement)
 
 ## 状态管理（V2）
 

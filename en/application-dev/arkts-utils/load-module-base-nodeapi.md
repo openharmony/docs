@@ -1,3 +1,19 @@
 # Loading Modules Using Node-API
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @yao_dashuai-->
+<!--Designer: @yao_dashuai-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
 
-The [napi_load_module](../napi/use-napi-load-module.md) function in Node-API is used to load modules within the current HAP/HSP/HAR package project from the host thread. Although its usage scenarios are somewhat restricted, it offers a straightforward way to pass parameters. In contrast, the [napi_load_module_with_info](../napi/use-napi-load-module-with-info.md) function supports loading of multiple file types, including HAR packages, HSP packages, and native modules, from both the host thread and child threads. This interface provides more extensive capabilities but requires marking the information of the loaded package during usage.
+Node-API provides multiple methods for you to load in-project modules and files on the C++ side. The **napi_load_module_with_info** API is recommended.
+
+## napi_load_module_with_info
+
+Loads the HAP, HSP, HAR, or native module in the main thread or child thread. When using this API, you must specify the information of the package to be loaded. It supports various scenarios.
+For details, see [napi_load_module_with_info](../napi/use-napi-load-module-with-info.md).
+
+## napi_load_module
+
+Loads the HAP, HSP, HAR, or native module in the main thread, facilitating parameter transfer. The loading scenario is restricted. For example, this API cannot be used in a child thread.
+For details, see [napi_load_module](../napi/use-napi-load-module.md).

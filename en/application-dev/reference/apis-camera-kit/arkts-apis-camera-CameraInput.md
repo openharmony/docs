@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -33,7 +34,7 @@ Opens this camera device. This API uses an asynchronous callback to return the r
 
 | Name    | Type                 | Mandatory| Description                 |
 | -------- | -------------------- | ---- | ------------------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) is returned.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the camera device is opened successfully, **err** is **undefined**; otherwise, **err** is an error object with an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode).|
 
 **Error codes**
 
@@ -106,7 +107,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
 
 open(isSecureEnabled: boolean): Promise\<bigint\>
 
-Opens this camera device and obtains the handle to the camera in secure mode.
+Opens this camera device. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
 
@@ -122,7 +123,7 @@ Opens this camera device and obtains the handle to the camera in secure mode.
 
 | Type          | Description                     |
 | -------------- | ----------------------- |
-| Promise\<bigint\> | Promise used to return the handle to the camera.|
+| Promise\<bigint\> | Promise used to return the handle to the camera device in secure mode.|
 
 **Error codes**
 
@@ -152,7 +153,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
 
 open(type: CameraConcurrentType): Promise\<void\>
 
-Opens the camera with the specified concurrency type.
+Opens the camera with the specified concurrency type. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
 
@@ -209,7 +210,7 @@ Closes this camera device. This API uses an asynchronous callback to return the 
 
 | Name    | Type                  | Mandatory| Description                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation fails, an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode) is returned.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the camera device is closed successfully, **err** is **undefined**. Otherwise, **err** is an error object with an error code defined in [CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode).|
 
 **Error codes**
 
@@ -269,7 +270,7 @@ function closeCameraInput(cameraInput: camera.CameraInput): void {
     console.info('Promise returned with camera closed.');
   }).catch((error: BusinessError) => {
     console.error(`Failed to close the cameras, error code: ${error.code}.`);
-  });
+  }); 
 }
 ```
 
@@ -332,5 +333,95 @@ Unsubscribes from CameraInput error events.
 ```ts
 function unregisterCameraInputError(cameraInput: camera.CameraInput, camera: camera.CameraDevice): void {
   cameraInput.off('error', camera);
+}
+```
+
+## isPhysicalCameraOrientationVariable<sup>21+</sup>
+
+isPhysicalCameraOrientationVariable(): boolean
+
+Checks whether the physical camera orientation is adjustable in different fold states.
+
+**Atomic service API**: This API can be used in atomic services since API version 21.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type       | Description                                        |
+| ---------- | -------------------------------------------- |
+| boolean    | Check result for whether the physical camera orientation is adjustable. **true** if adjustable, **false** otherwise.|
+
+**Example**
+
+```ts
+function isPhysicalCameraOrientationVariable(cameraInput: camera.CameraInput): boolean {
+  let isVariable: boolean = cameraInput.isPhysicalCameraOrientationVariable();
+  return isVariable;
+}
+```
+
+## getPhysicalCameraOrientation<sup>21+</sup>
+
+getPhysicalCameraOrientation(): number
+
+Obtains the physical camera orientation in the current fold state.
+
+**Atomic service API**: This API can be used in atomic services since API version 21.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type       | Description                                        |
+| ---------- | -------------------------------------------- |
+| number    | Physical camera orientation.|
+
+**Example**
+
+```ts
+function getPhysicalCameraOrientation(cameraInput: camera.CameraInput): number {
+  let physicalCameraOrientation: number = cameraInput.getPhysicalCameraOrientation();
+  return physicalCameraOrientation;
+}
+```
+
+## usePhysicalCameraOrientation<sup>21+</sup>
+
+usePhysicalCameraOrientation(isUsed: boolean): void
+
+Enables or disables the use of the physical camera orientation.
+
+**Atomic service API**: This API can be used in atomic services since API version 21.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                        | Mandatory| Description                                              |
+| -------- | ------------------------------------------- | ---- |--------------------------------------------------|
+| isUsed  | boolean         | Yes  | Whether to enable the use of the physical camera orientation. **true** to enable, **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID  | Error Message                                     |
+|---------|-------------------------------------------|
+| 7400102 | Operation not allowed.                    |
+| 7400201 | Camera service fatal error.               |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function usePhysicalCameraOrientation(cameraInput: camera.CameraInput, isUsed: boolean): void {
+  try {
+    cameraInput.usePhysicalCameraOrientation(isUsed);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The usePhysicalCameraOrientation call failed. error code: ${err.code}`);
+  }
 }
 ```

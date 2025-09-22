@@ -609,7 +609,7 @@ strip-language-default
 
 ### -use-keep-in-source
 
-支持在`.ts`/`.ets`源码中通过以下两种注释标记白名单（不支持声明文件）：
+从API version 19开始，支持在`.ts`和`.ets`源码中通过以下两种注释标记到白名单中，不支持在声明文件中使用。
 
 `// @KeepSymbol`：用来标记需要保留的名称，通常写在代码上一行，表示该名称在编译时不会被混淆。
 
@@ -1364,26 +1364,31 @@ a*
 
 2. 如果在`consumerFiles`指定的混淆配置文件中添加`-keep-dts`选项，该选项会被转换成`-keep-global-name`和`-keep-property-name`。
 
-## 混淆各功能上线SDK版本
+## 混淆各功能起始API版本
 
-| 混淆选项 | 功能描述  | 最低版本号 |
+| 混淆选项 | 功能描述  | 起始API版本 |
 | ------- | --------- | ------ |
-| -disable-obfuscation         | 关闭混淆 | 4.0.9.2 |
-| -enable-property-obfuscation | 属性混淆 | 4.0.9.2 |
-| -enable-string-property-obfuscation | 字符串字面量属性名混淆 | 4.0.9.2 |
-| -enable-toplevel-obfuscation | 顶层作用域名称混淆 | 4.0.9.2 |
-| -enable-filename-obfuscation | HAR包文件/文件夹名称混淆 <br> HAP/HSP文件/文件夹名称混淆 | 4.1.5.3 <br> 5.0.0.19 |
-| -enable-export-obfuscation   | 向外导入或导出的名称混淆 | 4.1.5.3 |
-| -compact                     | 去除不必要的空格符和所有的换行符 | 4.0.9.2 |
-| -remove-log                  | 删除特定场景中的console.* | 4.0.9.2 |
-| -print-namecache             | 将名称缓存保存到指定的文件路径 | 4.0.9.2 |
-| -apply-namecache             | 复用指定的名称缓存文件 | 4.0.9.2 |
-| -remove-comments             | 删除文件中所有注释 | 4.1.5.3 |
-| -keep-property-name          | 保留属性名 | 4.0.9.2 |
-| -keep-global-name            | 保留顶层作用域的名称 | 4.0.9.2 |
-| -keep-file-name              | 保留HAR包的文件/文件夹的名称 <br> 保留HAP/HSP包的文件/文件夹的名称 | 4.1.5.3 <br> 5.0.0.19 |
-| -keep-dts                    | 保留指定路径的.d.ts文件中的名称 | 4.0.9.2 |
-| -keep-comments               | 保留编译生成的声明文件中class、function、namespace、enum、struct、interface、module、type及属性上方的JsDoc注释 | 4.1.5.3 |
-| -keep                        | 保留指定路径中的所有名称 | 5.0.0.18 |
-| 通配符                       | 名称类和路径类的保留选项支持通配符 | 5.0.0.24 |
-| -use-keep-in-source          | 通过注释在源码中标记白名单 | 5.1.0.57 |
+| -disable-obfuscation         | 关闭混淆 | 10  |
+| -enable-property-obfuscation | 属性混淆 | 10 |
+| -enable-string-property-obfuscation | 字符串字面量属性名混淆 | 10 |
+| -enable-toplevel-obfuscation | 顶层作用域名称混淆 | 10 |
+| -enable-filename-obfuscation | HAR包文件/文件夹名称混淆 <br> HAP/HSP文件/文件夹名称混淆 | 10 <br> 12 |
+| -enable-export-obfuscation   | 向外导入或导出的名称混淆 | 10 |
+| -compact                     | 去除不必要的空格符和所有的换行符 | 10 |
+| -remove-log                  | 删除特定场景中的console.* | 10 |
+| -print-namecache             | 将名称缓存保存到指定的文件路径 | 10 |
+| -apply-namecache             | 复用指定的名称缓存文件 | 10 |
+| -remove-comments             | 删除文件中所有注释 | 10 |
+| -keep-property-name          | 保留属性名 | 10 |
+| -keep-global-name            | 保留顶层作用域的名称 | 10 |
+| -keep-file-name              | 保留HAR包的文件/文件夹的名称 <br> 保留HAP/HSP包的文件/文件夹的名称 | 10 <br> 12 |
+| -keep-dts                    | 保留指定路径的.d.ts文件中的名称 | 12 |
+| -keep-comments               | 保留编译生成的声明文件中class、function、namespace、enum、struct、interface、module、type及属性上方的JsDoc注释 | 12 |
+| -keep                        | 保留指定路径中的所有名称 | 12 |
+| 通配符                       | 名称类和路径类的保留选项支持通配符 | 12 |
+| -print-kept-names | 输出未混淆名单 | 18 |
+| -extra-options strip-language-default | 缩减语言预置白名单 | 18 |
+| -extra-options strip-system-api-args | 缩减系统预置白名单 | 18 |
+| -keep-parameter-names | 保留声明文件参数 | 18 |
+| -enable-lib-obfuscation-options | 合并依赖模块选项 | 18 |
+| -use-keep-in-source          | 通过注释在源码中标记白名单 | 19 |
