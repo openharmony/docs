@@ -1789,7 +1789,7 @@ struct Index {
   }
 }
 ```
-![example](figures/node_render_status.gif)
+
 
 ## off('nodeRenderState')<sup>20+</sup>
 

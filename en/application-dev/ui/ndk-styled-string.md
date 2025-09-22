@@ -188,4 +188,3 @@ void CreateNativeNode() {
 ```
 
 ![ndk_text_styled_string](figures/ndk_text_styled_string.png)
-<!--no_check-->

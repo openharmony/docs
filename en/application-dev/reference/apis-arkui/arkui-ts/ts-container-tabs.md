@@ -1407,7 +1407,7 @@ struct TabsDivider1 {
 }
 ```
 
-![tabs4](figures/tabs_divider.gif)
+
 
 ### Example 5: Setting Tab Bar Fading
 
@@ -2166,7 +2166,7 @@ struct TabsExample {
 }
 ```
 
-![tabs12](figures/tabBar_translate_opacity.gif)
+
 
 ### Example 13: Implementing Lazy Loading and Resource Release of Pages
 
@@ -2274,7 +2274,7 @@ struct TabsSwiperExample {
 }
 ```
 
-![tabs13](figures/tabs_swiper_lazyForEach.gif)
+
 
 ### Example 14: Implementing the Tab Switching Animation
 
@@ -2438,7 +2438,7 @@ struct TabsBarModifierExample {
 }
 ```
 
-![tabs15](figures/tabs_barModifier_clip.gif)
+
 
 ### Example 16: Aligning Tabs
 
@@ -2541,7 +2541,7 @@ struct TabsBarModifierExample {
 }
 ```
 
-![tabs16](figures/tabs_barModifier_align.gif)
+
 
 ### Example 17: Implementing Synchronized Switching Between the Tabs and TabBar Components
 
@@ -2860,4 +2860,3 @@ struct TabsExample {
 }
 ```
 ![tabs_curve](figures/tabs_curve.gif)
-<!--no_check-->
