@@ -43,7 +43,7 @@
                workerInstance.postMessage("start");
                workerInstance.onmessage = (e: MessageEvents): void => {
                  // 接收Worker子线程的结果
-                 console.info("mainthread: " + e.data);
+                 console.info("mainThread: " + e.data);
                  // 销毁Worker
                  workerInstance.terminate();
                }
