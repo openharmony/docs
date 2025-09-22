@@ -25,7 +25,11 @@
 3. 调用[createAVPlayer](../../reference/apis-media-kit/arkts-apis-media-f.md#mediacreateavplayer9)，创建AVPlayer实例并设置DRM信息监听事件。
 
    ```ts
-   let playerHandle: media.AVPlayer = await media.createAVPlayer()
+   let playerHandle: media.AVPlayer;
+   async function initPlayer() {
+  playerHandle = await media.createAVPlayer();
+  }
+  initPlayer();
    playerHandle.on('mediaKeySystemInfoUpdate', async (mediaKeySystemInfo: drm.MediaKeySystemInfo[]) => {
      console.info('player has received drmInfo signal: ' + JSON.stringify(mediaKeySystemInfo))
      // 处理DRM信息。
