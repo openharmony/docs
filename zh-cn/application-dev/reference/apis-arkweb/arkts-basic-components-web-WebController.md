@@ -340,7 +340,7 @@ getHitTest(): HitTestType
 
 | 类型                              | 说明          |
 | ------------------------------- | ----------- |
-| [HitTestType](./arkts-basic-components-web-e.md#hittesttype) | 被点击区域的元素类型。 |
+| [HitTestType](./arkts-basic-components-web-e.md#hittesttypedeprecated) | 被点击区域的元素类型。 |
 
 **示例：**
 
