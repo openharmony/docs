@@ -142,7 +142,7 @@ struct Child {
 
 1. 自定义组件Parent和Child初始化：
     - Child中`@Consumer() str: string = 'world'`向上查找，查找到Parent中声明的`@Provider() str: string = 'hello'`。
-    - `@Consumer() str: string = 'world'`初始化为其查找到的`@Provider`的值，即‘hello’。
+    - `@Consumer() str: string = 'world'`初始化为其查找到的`@Provider`的值，即'hello'。
     - 两者建立双向同步关系。
 2. 点击Parent中的按钮，改变\@Provider装饰的str，通知其对应的\@Consumer，对应UI刷新。
 3. 点击Child中的按钮，改变\@Consumer装饰的str，通知其对应的\@Provider，对应UI刷新。
@@ -185,7 +185,7 @@ struct Child {
 下面的例子中，\@Provider和\@Consumer由于aliasName值不同，无法建立双向同步关系。
 1. 自定义组件Parent和Child初始化：
     - Child中`@Consumer() str: string = 'world'`向上查找，未查找到其数据提供方@Provider。
-    - `@Consumer() str: string = 'world'`使用其本地默认值为‘world’。
+    - `@Consumer() str: string = 'world'`使用其本地默认值为'world'。
     - 两者未建立双向同步关系。
 2. 点击Parent中的按钮，改变\@Provider装饰的str1，仅刷新\@Provider关联的Button组件。
 3. 点击Child中的按钮，改变\@Consumer装饰的str，仅刷新\@Consumer关联的Button组件。
