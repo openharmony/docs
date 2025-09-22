@@ -158,12 +158,12 @@ struct Index {
   onContentWillChangeCallBack:  OnContentWillChangeCallback = (currentIndex: number, comingIndex: number): boolean => {
     this.currentIndex = currentIndex;
     this.comingIndex = comingIndex;
-    console.log('OnContentWillChangeCallback')
+    console.info('OnContentWillChangeCallback')
      return true;
   }
   onTabClick: Callback<number> = (index:number)=>{
     this.onClickNumber ++;
-    console.log('onTabClick');
+    console.info('onTabClick');
   }
   @Builder
   tabContent1() {
@@ -227,15 +227,15 @@ struct Index {
   @State onClickNumber: number = 0;
   @State currentIndex: number = 0;
   @State comingIndex: number = 0;
-  onContentWillChangeCallBack:  OnContentWillChangeCallback = (currentIndex: number, comingIndex: number): boolean => {
+  onContentWillChangeCallBack: OnContentWillChangeCallback = (currentIndex: number, comingIndex: number): boolean => {
     this.currentIndex = currentIndex;
     this.comingIndex = comingIndex;
-    console.log('OnContentWillChangeCallback')
-     return true;
+    console.info('OnContentWillChangeCallback');
+    return true;
   }
   onTabClick: Callback<number> = (index:number)=>{
     this.onClickNumber ++;
-    console.log('onTabClick');
+    console.info('onTabClick');
   }
   @Builder
   tabContent1() {
@@ -267,9 +267,9 @@ struct Index {
         }
       ],
       tabBarOptionsArray: [
-          new TabBarOptions($r('sys.media.ohos_ic_public_phone'), '', Color.Black, Color.Blue),
-          new TabBarOptions($r('sys.media.ohos_ic_public_location'), '', Color.Black, Color.Blue),
-          new TabBarOptions($r('sys.media.ohos_ic_public_more'), '', Color.Black, Color.Blue),
+        new TabBarOptions($r('sys.media.ohos_ic_public_phone'), '', Color.Black, Color.Blue),
+        new TabBarOptions($r('sys.media.ohos_ic_public_location'), '', Color.Black, Color.Blue),
+        new TabBarOptions($r('sys.media.ohos_ic_public_more'), '', Color.Black, Color.Blue),
       ],
       tabBarPosition: TabBarPosition.BOTTOM,
       barBackgroundColor: $r('sys.color.ohos_id_color_bottom_tab_bg'),
@@ -305,16 +305,16 @@ struct AtomicserviceTabs  {
   onContentWillChangeCallBack: OnContentWillChangeCallback = (currentIndex: number, comingIndex: number): boolean => {
     this.currentIndex = currentIndex;
     this.comingIndex = comingIndex;
-    console.log('OnContentWillChangeCallback')
+    console.info('OnContentWillChangeCallback');
     return true;
   }
   onTabClick: Callback<number> = (index: number) => {
     this.onClickNumber++;
-    console.log('onTabClick');
+    console.info('onTabClick');
   }
   onChange: Callback<number, void> = (Index: number) => {
-    console.log('onChange');
-    console.log('onChange2');
+    console.info('onChange');
+    console.info('onChange2');
   }
 
   @Builder
