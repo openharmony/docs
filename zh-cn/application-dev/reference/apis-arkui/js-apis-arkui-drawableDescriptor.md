@@ -127,7 +127,7 @@ try {
 
 load(): Promise\<DrawableDescriptorLoadedResult>
 
-发起图片资源的异步加载，并返回结果。使用Promise异步回调。
+发起图片资源的异步加载，并返回加载结果。使用Promise异步回调。
 
 **原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
 
@@ -517,9 +517,9 @@ struct Index {
 
 | 名称      | 类型    | 只读 | 可选  | 说明                                    |
 | :--------- | :----- | :----| :----| :-------------------------------------- |
-| duration   | number | 否   | 是  | 设置图片数组播放总时间。<br/>PixelMap数组的默认值是每张图片播放1秒。本地图片或者应用资源的默认值是图片资源中携带的播放时延。<br/>单位：毫秒<br/> 取值范围：[0, +∞)<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| duration   | number | 否   | 是  | 设置图片数组播放总时间。<br/>PixelMap数组的默认值是每张图片播放1秒。本地图片或者应用资源的默认值是图片资源中携带的播放时延。<br/>单位：毫秒<br/> 取值范围：[0, +∞)<br>设置负数取默认值。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | iterations | number | 否   | 是 |设置图片数组播放次数。<br/>值为-1时表示无限播放，值为0时表示不播放，值大于0时表示有限的播放次数。<br/>默认值为1。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| frameDurations<sup>21+</sup> | Array\<number> | 否 | 是 |设置动图中的单帧播放时间。不设置则按照总时间播放。<br/>设置的优先级高于duration，即设置了frameDurations时，duration不生效。<br/>单位：毫秒<br/> **原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。 |
+| frameDurations<sup>21+</sup> | Array\<number> | 否 | 是 |设置动图中的单帧播放时间。不设置则按照总时间播放。<br/>设置的优先级高于duration，即同时设置了duration和frameDurations时，duration不生效。<br/>单位：毫秒<br/> **原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。 |
 | autoPlay<sup>21+</sup> | boolean | 否  | 是 |设置动图是否自动播放。<br/> true表示自动播放，false表示不自动播放。<br/>默认值为true。<br/> **原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
@@ -573,7 +573,7 @@ struct Example {
 
 ## AnimatedDrawableDescriptor<sup>12+</sup>
 
-使用Image组件播放PixelMap数组或动图资源时传入AnimatedDrawableDescriptor对象，该对象继承自[DrawableDescriptor](#drawabledescriptor)。
+使用[Image](./arkui-ts/ts-basic-components-image.md)组件播放PixelMap数组或动图资源时传入AnimatedDrawableDescriptor对象，该对象继承自[DrawableDescriptor](#drawabledescriptor)。
 
 ### constructor<sup>12+</sup>
 
@@ -655,7 +655,7 @@ getAnimationController(id?: string): AnimationController | undefined
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| id     | string | 否   | 组件的id。<br/>当Image组件与AnimatedDrawableDescriptor确保1比1持有（仅传入一个Image组件）时，id非必填；<br/>若同一AnimatedDrawableDescriptor需绑定多个Image组件，则必须设置唯一id以准确获取对应组件的动画控制器（唯一性由开发者保证）。<br/>此规则基于动画系统设计原则：动画数据可多组件共享，但各组件动画独立运行，AnimationController与组件严格1比1持有关系（一个组件一个AnimationController对象）。<br/>另外，[AnimatedDrawableDescriptor](#animateddrawabledescriptor12)支持不可见时自动暂停播放功能，详见[onVisibleAreaChange](./arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)。 |
+| id     | string | 否   | 组件的id。<br/>当[Image](./arkui-ts/ts-basic-components-image.md)组件与AnimatedDrawableDescriptor确保1比1持有（仅传入一个[Image](./arkui-ts/ts-basic-components-image.md)组件）时，id非必填；<br/>若同一AnimatedDrawableDescriptor需绑定多个[Image](./arkui-ts/ts-basic-components-image.md)组件，则必须设置唯一id以准确获取对应组件的动画控制器（唯一性由开发者保证）。<br/>此规则基于动画系统设计原则：动画数据可多组件共享，但各组件动画独立运行，AnimationController与组件严格1比1持有关系（一个组件一个AnimationController对象）。<br/>另外，[AnimatedDrawableDescriptor](#animateddrawabledescriptor12)支持不可见时自动暂停播放功能，详见[onVisibleAreaChange](./arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)。 |
 
 **返回值：**
 
@@ -665,7 +665,7 @@ getAnimationController(id?: string): AnimationController | undefined
 
 **示例：**
 
-Image组件与AnimatedDrawableDescriptor保持1比1持有关系，示例代码如下。
+[Image](./arkui-ts/ts-basic-components-image.md)组件与AnimatedDrawableDescriptor保持1比1持有关系，示例代码如下。
 
 ```ts
 import { AnimationOptions, AnimatedDrawableDescriptor, AnimationController } from '@kit.ArkUI';
@@ -698,7 +698,7 @@ struct Example {
 }
 ```
 
-Image组件与AnimatedDrawableDescriptor保持1比N持有关系，示例代码如下。
+[Image](./arkui-ts/ts-basic-components-image.md)组件与AnimatedDrawableDescriptor保持1比N持有关系，示例代码如下。
 
 ```ts
 import { AnimationOptions, AnimatedDrawableDescriptor, AnimationController } from '@kit.ArkUI';
