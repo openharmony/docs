@@ -98,7 +98,7 @@ imageAccess(imageAccess: boolean)
 
 | 参数名         | 类型    | 必填   | 说明            |
 | ----------- | ------- | ---- | --------------- |
-| imageAccess | boolean | 是    | 设置是否允许自动加载图片资源。<br>true表示设置允许自动加载图片资源，false表示设置不允许自动加载图片资源。<br>传入undefined与null时为false。 |
+| imageAccess | boolean | 是    | 设置是否允许自动加载图片资源。<br>true表示设置允许自动加载图片资源，false表示设置不允许自动加载图片资源。<br>传入undefined或null时为false。 |
 
 **示例：**
   ```ts
@@ -309,7 +309,7 @@ onlineImageAccess(onlineImageAccess: boolean)
 
 | 参数名               | 类型    | 必填   | 说明             |
 | ----------------- | ------- | ---- | ---------------- |
-| onlineImageAccess | boolean | 是    | 设置是否允许从网络加载图片资源。<br>true表示设置允许从网络加载图片资源，false表示设置不允许从网络加载图片资源。<br>传入undefined与null时为false。 |
+| onlineImageAccess | boolean | 是    | 设置是否允许从网络加载图片资源。<br>true表示设置允许从网络加载图片资源，false表示设置不允许从网络加载图片资源。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -343,7 +343,7 @@ zoomAccess(zoomAccess: boolean)
 
 | 参数名        | 类型    | 必填   | 说明          |
 | ---------- | ------- | ---- | ------------- |
-| zoomAccess | boolean | 是    | 设置是否支持手势进行缩放。<br>true表示设置支持手势进行缩放，false表示设置不支持手势进行缩放。<br>默认值：true。<br>传入undefined与null时为false。 |
+| zoomAccess | boolean | 是    | 设置是否支持手势进行缩放。<br>true表示设置支持手势进行缩放，false表示设置不支持手势进行缩放。<br>默认值：true。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -379,7 +379,7 @@ overviewModeAccess(overviewModeAccess: boolean)
 
 | 参数名                | 类型    | 必填   | 说明            |
 | ------------------ | ------- | ---- | --------------- |
-| overviewModeAccess | boolean | 是    | 设置是否使用概览模式加载网页。<br>true表示设置使用概览模式加载网页，false表示设置不使用概览模式加载网页。<br>传入undefined与null时为false。 |
+| overviewModeAccess | boolean | 是    | 设置是否使用概览模式加载网页。<br>true表示设置使用概览模式加载网页，false表示设置不使用概览模式加载网页。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -447,7 +447,7 @@ geolocationAccess(geolocationAccess: boolean)
 
 | 参数名               | 类型    | 必填   | 说明            |
 | ----------------- | ------- | ---- | --------------- |
-| geolocationAccess | boolean | 是    | 设置是否开启获取地理位置权限。<br>true表示设置开启获取地理位置权限，false表示设置不开启获取地理位置权限。<br>传入undefined与null时为false。 |
+| geolocationAccess | boolean | 是    | 设置是否开启获取地理位置权限。<br>true表示设置开启获取地理位置权限，false表示设置不开启获取地理位置权限。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -481,7 +481,7 @@ mediaPlayGestureAccess(access: boolean)
 
 | 参数名    | 类型    | 必填   | 说明                |
 | ------ | ------- | ---- | ------------------- |
-| access | boolean | 是    | 设置有声视频的自动播放是否需要用户手动点击。<br>true表示设置有声视频的自动播放需要用户手动点击，false表示设置有声视频的自动播放不需要用户手动点击，能自动播放。<br>传入undefined与null时为false。 |
+| access | boolean | 是    | 设置有声视频的自动播放是否需要用户手动点击。<br>true表示设置有声视频的自动播放需要用户手动点击，false表示设置有声视频的自动播放不需要用户手动点击，能自动播放。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -555,7 +555,7 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
 | 参数名                 | 类型    | 必填   | 说明         |
 | ------------------- | ------- | ---- | ------------ |
-| horizontalScrollBar | boolean | 是    | 设置是否显示横向滚动条。<br>true表示设置显示横向滚动条，false表示设置不显示横向滚动条。<br>默认值：true。<br>传入undefined与null时为false。 |
+| horizontalScrollBar | boolean | 是    | 设置是否显示横向滚动条。<br>true表示设置显示横向滚动条，false表示设置不显示横向滚动条。<br>默认值：true。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -637,7 +637,7 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
 | 参数名               | 类型    | 必填   | 说明         |
 | ----------------- | ------- | ---- | ------------ |
-| verticalScrollBar | boolean | 是    | 设置是否显示纵向滚动条。<br>true表示设置显示纵向滚动条，false表示设置不显示纵向滚动条。<br>默认值：true。<br>传入undefined与null时为false。 |
+| verticalScrollBar | boolean | 是    | 设置是否显示纵向滚动条。<br>true表示设置显示纵向滚动条，false表示设置不显示纵向滚动条。<br>默认值：true。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -1356,7 +1356,7 @@ pinchSmooth(isEnabled: boolean)
 
 | 参数名       | 类型    | 必填   | 说明          |
 | --------- | ------- | ---- | ------------- |
-| isEnabled | boolean | 是    | 网页是否开启捏合流畅模式。<br>true表示设置网页开启捏合流畅模式，false表示设置网页不开启捏合流畅模式。<br>传入undefined与null时为false。 |
+| isEnabled | boolean | 是    | 网页是否开启捏合流畅模式。<br>true表示设置网页开启捏合流畅模式，false表示设置网页不开启捏合流畅模式。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -1505,7 +1505,7 @@ mediaOptions(options: WebMediaOptions)
 
 | 参数名     | 类型                                  | 必填   | 说明                                     |
 | ------- | ------------------------------------- | ---- | ---------------------------------------- |
-| options | [WebMediaOptions](./arkts-basic-components-web-i.md#webmediaoptions10) | 是    | 设置Web的媒体策略。<br>属性参数更新后需重新播放音频方可生效。<br>传入undefined与null时为`{resumeInterval: 0, audioExclusive: true}` |
+| options | [WebMediaOptions](./arkts-basic-components-web-i.md#webmediaoptions10) | 是    | 设置Web的媒体策略。<br>属性参数更新后需重新播放音频方可生效。<br>传入undefined或null时为`{resumeInterval: 0, audioExclusive: true}` |
 
 **示例：**
 
@@ -2075,7 +2075,7 @@ bypassVsyncCondition(condition: WebBypassVsyncCondition)
 
 | 参数名  | 类型                                  | 必填   | 说明                  |
 | ---- | ------------------------------------- | ---- | --------------------- |
-| condition | [WebBypassVsyncCondition](./arkts-basic-components-web-e.md#webbypassvsynccondition20) | 是    | 触发渲染流程跳过vsync调度的条件。 <br> 传入undefined与null时为NONE。|
+| condition | [WebBypassVsyncCondition](./arkts-basic-components-web-e.md#webbypassvsynccondition20) | 是    | 触发渲染流程跳过vsync调度的条件。 <br> 传入undefined或null时为NONE。|
 
 **示例：**
 
@@ -2351,7 +2351,7 @@ defaultTextEncodingFormat(textEncodingFormat: string)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| textEncodingFormat | string | 是    | 默认字符编码。 |
+| textEncodingFormat | string | 是    | 默认字符编码。<br>传入null或undefined时为"UTF-8"。 |
 
   **示例：**
 
@@ -2407,7 +2407,7 @@ metaViewport(enabled: boolean)
 
 | 参数名 | 类型 | 必填 | 说明                         |
 | ------ | -------- | ---- | -------------------------------- |
-| enabled | boolean  | 是   | 是否支持meta标签的viewport属性。<br>true表示支持meta标签的viewport属性，将解析viewport属性，并根据viewport属性布局。<br>false表示不支持meta标签的viewport属性，将不解析viewport属性，进行默认布局。<br>当传入null或undefined时为true。 |
+| enabled | boolean  | 是   | 是否支持meta标签的viewport属性。<br>true表示支持meta标签的viewport属性，将解析viewport属性，并根据viewport属性布局。<br>false表示不支持meta标签的viewport属性，将不解析viewport属性，进行默认布局。<br>传入null或undefined时为true。 |
 
 **示例：**
 
@@ -2466,7 +2466,7 @@ textAutosizing(textAutosizing: boolean)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| textAutosizing | boolean | 是    | 文本自动调整大小。<br>true表示文本自动调整大小，false表示文本不自动调整大小。 |
+| textAutosizing | boolean | 是    | 文本自动调整大小。<br>true表示文本自动调整大小，false表示文本不自动调整大小。<br>传入undefined或null时为true。 |
 
   **示例：**
 
@@ -2499,7 +2499,7 @@ enableNativeMediaPlayer(config: NativeMediaPlayerConfig)
 
 | 参数名  | 类型   | 必填   | 说明 |
 | ---- | ------ | ---- | ---------------------|
-| config | [NativeMediaPlayerConfig](./arkts-basic-components-web-i.md#nativemediaplayerconfig12) | 是    | enable: 是否开启该功能。<br/> shouldOverlay: 该功能开启后， 应用接管网页视频的播放器画面是否覆盖网页内容。<br>传入undefined与null时为`{enable: false, shouldOverlay: false}`。|
+| config | [NativeMediaPlayerConfig](./arkts-basic-components-web-i.md#nativemediaplayerconfig12) | 是    | enable: 是否开启该功能。<br/> shouldOverlay: 该功能开启后， 应用接管网页视频的播放器画面是否覆盖网页内容。<br>传入undefined或null时为`{enable: false, shouldOverlay: false}`。|
 
   **示例：**
 
@@ -2781,7 +2781,7 @@ enableHapticFeedback(enabled: boolean)
 
 | 参数名     | 类型        | 必填   | 说明 |
 | --------- | ---------   | ------ | ------------- |
-| enabled   | boolean | 是  | 是否开启振动。<br>true表示开启振动，false表示不开启振动。<br>默认值：true。<br>传入undefined与null时为false。 |
+| enabled   | boolean | 是  | 是否开启振动。<br>true表示开启振动，false表示不开启振动。<br>默认值：true。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -3296,7 +3296,7 @@ enableWebAVSession(enabled: boolean)
 
 | 参数名  | 类型 | 必填 | 说明           |
 | ------- | -------- | ---- | ------------------ |
-| enabled | boolean  | 是   | 设置是否支持应用对接到播控中心。<br>true表示支持应用对接到播控中心，false表示不支持应用对接到播控中心。<br>传入undefined与null时为true。 |
+| enabled | boolean  | 是   | 设置是否支持应用对接到播控中心。<br>true表示支持应用对接到播控中心，false表示不支持应用对接到播控中心。<br>传入undefined或null时为true。 |
 
 **示例：**
 
@@ -3347,7 +3347,7 @@ nativeEmbedOptions(options?: EmbedOptions)
 
 | 参数名       | 类型                             | 必填 | 说明                                |
 | ------------ | ------------------------------- | ---- | ----------------------------------- |
-| options | [EmbedOptions](./arkts-basic-components-web-i.md#embedoptions16) | 否    | 同层渲染相关配置。 |
+| options | [EmbedOptions](./arkts-basic-components-web-i.md#embedoptions16) | 否    | 同层渲染相关配置。<br>传入undefined或null时为`{supportDefaultIntrinsicSize: false}`。 |
 
 **示例：**
 
