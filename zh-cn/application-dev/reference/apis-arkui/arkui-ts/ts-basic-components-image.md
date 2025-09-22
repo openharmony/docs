@@ -2278,6 +2278,7 @@ struct Index {
     Row() {
       Column() {
         Text('supportSvg2参数设置为true')
+        // $r('app.media.cloud1')需要替换为开发者所需的图像资源文件。
         Image($rawfile('image.svg'))
           .width(200)
           .height(200)
@@ -2285,6 +2286,7 @@ struct Index {
           .supportSvg2(true)
           .margin({ bottom: 30 })
         Text('supportSvg2参数设置为false（默认值）')
+        // $r('app.media.cloud1')需要替换为开发者所需的图像资源文件。
         Image($rawfile('image.svg'))
           .width(200)
           .height(200)
