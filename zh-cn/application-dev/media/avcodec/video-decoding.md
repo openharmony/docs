@@ -768,11 +768,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     // 调用OH_VideoDecoder_Destroy，注销解码器。
     OH_AVErrCode ret = AV_ERR_OK;
     if (videoDec != nullptr) {
-        ret = OH_VideoDecoder_Destroy(videoDec);
+        OH_VideoDecoder_Destroy(videoDec);
         videoDec = nullptr;
-    }
-    if (ret != AV_ERR_OK) {
-        // 异常处理。
     }
     inQueue.Flush();
     outQueue.Flush();
