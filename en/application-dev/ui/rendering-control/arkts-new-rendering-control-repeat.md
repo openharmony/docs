@@ -1327,7 +1327,7 @@ struct entryCompSucc {
 
 The figure below shows the effect.
 
-![Repeat-Case2-Succ](./figures/Repeat-Case2-Succ.gif)
+![Repeat-Case2-Succ](./figures/repeat-case2-succ.gif)
 
 ### Using Repeat with @Builder
 
