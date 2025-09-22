@@ -1583,11 +1583,11 @@ export default class EntryAbility extends UIAbility {
 ## ContinuousTaskRequest<sup>21+</sup>
 
 长时任务的请求信息。
-1. 申请任务时，需要通过combinedTaskNotification参数传入true指定可以合并通知，否则不能合并通知。
+1. 申请任务时，需要通过combinedTaskNotification参数传入true指定可以合并长时任务的通知，否则不能合并通知。
    如：所涉及的长时任务combinedTaskNotification参数都必须为true，且主类型和子类型申请个数和类型需完全匹配。
-2. 合并的通知的任务，必须主类型、子类型都相同。
-3. 如果该任务本身没有通知<!--Del-->（如系统应用申请[VOIP](#backgroundmode)、[AUDIO_RECORDING](#backgroundmode)类型的长时任务）<!--DelEnd-->。、则不支持合并。
-4. 如果任务类型里，包含了上传下载，则不支持合并。
+2. 合并的通知的长时任务，必须主类型、子类型都相同。
+3. 如果该长时任务本身没有通知<!--Del-->（如系统应用申请[VOIP](#backgroundmode)、[AUDIO_RECORDING](#backgroundmode)类型的长时任务）<!--DelEnd-->。、则不支持合并。
+4. 如果长时任务类型里，包含了上传下载，则不支持合并。
 5. 合并通知后不能取消合并，本身合并的不能改成不合并。
 6. 如果需要合并，但传入的长时任务ID非法，则不支持合并。
 7. 通知合并后，删除通知，取消所有的长时任务。
