@@ -27,11 +27,11 @@
    ```ts
    let playerHandle: media.AVPlayer;
    async function initPlayer() {
-  playerHandle = await media.createAVPlayer();
-  }
-  initPlayer();
-   playerHandle.on('mediaKeySystemInfoUpdate', async (mediaKeySystemInfo: drm.MediaKeySystemInfo[]) => {
-     console.info('player has received drmInfo signal: ' + JSON.stringify(mediaKeySystemInfo))
+    playerHandle = await media.createAVPlayer();
+    }
+    initPlayer();
+    playerHandle.on('mediaKeySystemInfoUpdate', async (mediaKeySystemInfo: drm.MediaKeySystemInfo[]) => {
+    console.info('player has received drmInfo signal: ' + JSON.stringify(mediaKeySystemInfo))
      // 处理DRM信息。
      // 设置解密session。
    })
@@ -98,9 +98,9 @@
       if (state == 'released') {
     mediaKeySession.destroy();
     mediaKeySystem.destroy();
-  } else if (state == 'releasing') {  
+    } else if (state == 'releasing') {  
     await playerHandle.release();    
-  }
+    }
    })
   
    ```
