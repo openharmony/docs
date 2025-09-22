@@ -259,7 +259,7 @@ import { ChipSize, ChipGroup } from '@kit.ArkUI';
 @Preview
 @Component
 struct Index {
-  @State selected_index: Array<number> = [0, 1, 2, 3, 4, 5, 6]
+  @State selected_index: Array<number> = [0, 1, 2, 3, 4, 5, 6];
 
   build() {
     Column() {
@@ -268,33 +268,33 @@ struct Index {
           {
             // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
             prefixIcon: { src: $r('app.media.icon') },
-            label: { text: "操作块1" },
+            label: { text: '操作块1' },
             suffixIcon: { src: $r('sys.media.ohos_ic_public_cut') },
             allowClose: false
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_copy') },
-            label: { text: "操作块2" },
+            label: { text: '操作块2' },
             allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_clock') },
-            label: { text: "操作块3" },
+            label: { text: '操作块3' },
             allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_stream') },
-            label: { text: "操作块4" },
+            label: { text: '操作块4' },
             allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_mirror') },
-            label: { text: "操作块5" },
+            label: { text: '操作块5' },
             allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_stream') },
-            label: { text: "操作块6" },
+            label: { text: '操作块6' },
             allowClose: true
           },
         ],
@@ -310,7 +310,7 @@ struct Index {
         chipGroupSpace: { itemSpace: 8, endSpace: 0 },
         chipGroupPadding: { top: 10, bottom: 10 },
         onChange: (activatedChipsIndex: Array<number>) => {
-          console.info('chips on clicked, activated index ' + activatedChipsIndex)
+          console.info('chips on clicked, activated index ' + activatedChipsIndex);
         },
       })
     }
@@ -318,7 +318,7 @@ struct Index {
 }
 ```
 
-![](figures/chipGroupDemo1.jpeg)
+![](figures/ChipGroupDemo1.png)
 
 ### 示例2（有最右侧的builder）
 
@@ -331,7 +331,7 @@ import { ChipSize, ChipGroup, IconGroupSuffix } from '@kit.ArkUI';
 @Preview
 @Component
 struct Index {
-  @State selected_index: Array<number> = [0, 1, 2, 3, 4, 5, 6]
+  @State selected_index: Array<number> = [0, 1, 2, 3, 4, 5, 6];
   @State selected_state: boolean = true;
 
   @LocalBuilder
@@ -341,11 +341,11 @@ struct Index {
         icon: { src: $r('sys.media.ohos_ic_public_search_filled'), size: { width: 36, height: 36 } },
         action: () => {
           if (this.selected_state == false) {
-            this.selected_index = [0, 1, 2, 3, 4, 5, 6]
-            this.selected_state = true
+            this.selected_index = [0, 1, 2, 3, 4, 5, 6];
+            this.selected_state = true;
           } else {
-            this.selected_index = []
-            this.selected_state = false
+            this.selected_index = [];
+            this.selected_state = false;
           }
         }
       }
@@ -360,33 +360,33 @@ struct Index {
           {
             // $r('app.media.icon')需要替换为开发者所需的图像资源文件。
             prefixIcon: { src: $r('app.media.icon') },
-            label: { text: "操作块1" },
+            label: { text: '操作块1' },
             suffixIcon: { src: $r('sys.media.ohos_ic_public_cut') },
             allowClose: false
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_copy') },
-            label: { text: "操作块2" },
+            label: { text: '操作块2' },
             allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_clock') },
-            label: { text: "操作块3" },
+            label: { text: '操作块3' },
             allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_stream') },
-            label: { text: "操作块4" },
+            label: { text: '操作块4' },
             allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_mirror') },
-            label: { text: "操作块5" },
+            label: { text: '操作块5' },
             allowClose: true
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_stream') },
-            label: { text: "操作块6" },
+            label: { text: '操作块6' },
             allowClose: true
           },
         ],
@@ -402,7 +402,7 @@ struct Index {
         chipGroupSpace: { itemSpace: 8, endSpace: 0 },
         chipGroupPadding: { top: 10, bottom: 10 },
         onChange: (activatedChipsIndex: Array<number>) => {
-          console.info('chips on clicked, activated index ' + activatedChipsIndex)
+          console.info('chips on clicked, activated index ' + activatedChipsIndex);
         },
         suffix: this.ChipGroupSuffix
       })
@@ -411,7 +411,7 @@ struct Index {
 }
 ```
 
-![](figures/chipGroupDemo2.jpeg)
+![](figures/ChipGroupDemo2.png)
 
 ### 示例3（设置Symbol类型图标）
 该示例实现了IconGroupSuffix和ChipGroup传入SymbolGlyph资源。
@@ -455,33 +455,33 @@ struct Index {
         items: [
           {
             prefixSymbol: { normal: this.prefixModifierNormal, activated: this.prefixModifierActivated },
-            label: { text: "操作块1" },
+            label: { text: '操作块1' },
             suffixSymbol: { normal: this.suffixModifierNormal, activated: this.suffixModifierActivated },
             allowClose: false,
           },
           {
             prefixSymbol: { normal: this.prefixModifierNormal, activated: this.prefixModifierActivated },
-            label: { text: "操作块2" },
+            label: { text: '操作块2' },
             allowClose: true,
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_clock') },
-            label: { text: "操作块3" },
+            label: { text: '操作块3' },
             allowClose: true,
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_stream') },
-            label: { text: "操作块4" },
+            label: { text: '操作块4' },
             allowClose: true,
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_mirror') },
-            label: { text: "操作块5" },
+            label: { text: '操作块5' },
             allowClose: true,
           },
           {
             prefixIcon: { src: $r('sys.media.ohos_ic_public_cast_stream') },
-            label: { text: "操作块6" },
+            label: { text: '操作块6' },
             allowClose: true,
           },
         ],
@@ -497,7 +497,7 @@ struct Index {
         chipGroupSpace: { itemSpace: 8, endSpace: 0 },
         chipGroupPadding: { top: 10, bottom: 10 },
         onChange: (activatedChipsIndex: Array<number>) => {
-          console.info('chips on clicked, activated index ' + activatedChipsIndex)
+          console.info('chips on clicked, activated index ' + activatedChipsIndex);
         },
         suffix: this.ChipGroupSuffix
       })
@@ -505,7 +505,7 @@ struct Index {
   }
 }
 ```
-![](figures/chipGroupDemo3.jpeg)
+![](figures/ChipGroupDemo3.png)
 
 ### 示例4（单选时无障碍朗读）
 
@@ -616,7 +616,7 @@ export struct ChipGroupExample2 {
                     prefixIcon: {
                       src: $r('app.media.startIcon')
                     },
-                    label: { text: "选项1" },
+                    label: { text: '选项1' },
                     suffixImageIcon: {
                       src: $r('sys.media.save_button_picture'),
                       accessibilityText: '保存',
@@ -628,7 +628,7 @@ export struct ChipGroupExample2 {
                     }
                   },
                   {
-                    label: { text: "选项2" },
+                    label: { text: '选项2' },
                     suffixSymbol: {
                       normal: new SymbolGlyphModifier($r('sys.symbol.save')),
                       activated: new SymbolGlyphModifier($r('sys.symbol.save'))
@@ -645,15 +645,15 @@ export struct ChipGroupExample2 {
                     }
                   },
                   {
-                    label: { text: "选项3" },
+                    label: { text: '选项3' },
                     suffixIcon: { src: $r('sys.media.save_button_picture'), }
                   },
-                  { label: { text: "选项4" } },
-                  { label: { text: "选项5" } },
-                  { label: { text: "选项6" } },
-                  { label: { text: "选项7" } },
-                  { label: { text: "选项8" } },
-                  { label: { text: "选项9" } },
+                  { label: { text: '选项4' } },
+                  { label: { text: '选项5' } },
+                  { label: { text: '选项6' } },
+                  { label: { text: '选项7' } },
+                  { label: { text: '选项8' } },
+                  { label: { text: '选项9' } },
                 ]
               })
             }
@@ -661,15 +661,15 @@ export struct ChipGroupExample2 {
             SectionItem({ title: '单选 有后缀区域' }) {
               ChipGroup({
                 items: [
-                  { label: { text: "选项1" } },
-                  { label: { text: "选项2" } },
-                  { label: { text: "选项3" } },
-                  { label: { text: "选项4" } },
-                  { label: { text: "选项5" } },
-                  { label: { text: "选项6" } },
-                  { label: { text: "选项7" } },
-                  { label: { text: "选项8" } },
-                  { label: { text: "选项9" } },
+                  { label: { text: '选项1' } },
+                  { label: { text: '选项2' } },
+                  { label: { text: '选项3' } },
+                  { label: { text: '选项4' } },
+                  { label: { text: '选项5' } },
+                  { label: { text: '选项6' } },
+                  { label: { text: '选项7' } },
+                  { label: { text: '选项8' } },
+                  { label: { text: '选项9' } },
                 ],
                 suffix: this.Suffix,
               })
@@ -795,15 +795,15 @@ export struct ChipGroupExample2 {
             SectionItem({ title: '多选 无后缀区域' }) {
               ChipGroup({
                 items: [
-                  { label: { text: "选项1" } },
-                  { label: { text: "选项2" } },
-                  { label: { text: "选项3" } },
-                  { label: { text: "选项4" } },
-                  { label: { text: "选项5" } },
-                  { label: { text: "选项6" } },
-                  { label: { text: "选项7" } },
-                  { label: { text: "选项8" } },
-                  { label: { text: "选项9" } },
+                  { label: { text: '选项1' } },
+                  { label: { text: '选项2' } },
+                  { label: { text: '选项3' } },
+                  { label: { text: '选项4' } },
+                  { label: { text: '选项5' } },
+                  { label: { text: '选项6' } },
+                  { label: { text: '选项7' } },
+                  { label: { text: '选项8' } },
+                  { label: { text: '选项9' } },
                 ],
                 multiple: true
               })
@@ -812,15 +812,15 @@ export struct ChipGroupExample2 {
             SectionItem({ title: '多选 有后缀区域' }) {
               ChipGroup({
                 items: [
-                  { label: { text: "选项1" } },
-                  { label: { text: "选项2" } },
-                  { label: { text: "选项3" } },
-                  { label: { text: "选项4" } },
-                  { label: { text: "选项5" } },
-                  { label: { text: "选项6" } },
-                  { label: { text: "选项7" } },
-                  { label: { text: "选项8" } },
-                  { label: { text: "选项9" } },
+                  { label: { text: '选项1' } },
+                  { label: { text: '选项2' } },
+                  { label: { text: '选项3' } },
+                  { label: { text: '选项4' } },
+                  { label: { text: '选项5' } },
+                  { label: { text: '选项6' } },
+                  { label: { text: '选项7' } },
+                  { label: { text: '选项8' } },
+                  { label: { text: '选项9' } },
                 ],
                 suffix: this.Suffix,
                 multiple: true,
