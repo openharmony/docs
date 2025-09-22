@@ -1168,7 +1168,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promise&lt;ContinuousTaskNotification&gt;
 
-申请长时任务，支持一个UIAbility下申请多个长时任务，使用Promise异步回调。</br>同一时间最多可存在10个长时任务，长时任务申请成功后，会有通知栏消息，没有提示音（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型，没有通知）。
+申请长时任务，支持一个UIAbility下申请多个长时任务，使用Promise异步回调。</br>同一时间最多可存在10个长时任务，长时任务申请成功后，会有通知栏消息，没有提示音<!--Del-->（系统应用申请[VOIP](#backgroundmode)、[AUDIO_RECORDING](#backgroundmode)类型的长时任务，没有通知栏消息）<!--DelEnd-->。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1265,7 +1265,7 @@ export default class EntryAbility extends UIAbility {
 
 updateBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promise&lt;ContinuousTaskNotification&gt;
 
-更新长时任务，支持更新对应的长时任务信息，使用Promise异步回调。</br>长时任务更新成功后，会有通知栏消息，没有提示音（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型，没有通知）。</br>已经合并的任务，后台任务同类型只能更新want，非同类型更新失败，返回错误码。</br>待更新任务包含上传下载类型，且需要更新的类型也包含上传下载类型，则直接返回成功，不做任何操作。</br>若待更新任务和需要更新的任务中，有且只有一个任务包含上传下载类型，则返回失败。
+更新长时任务，支持更新对应的长时任务信息，使用Promise异步回调。</br>长时任务更新成功后，会有通知栏消息，没有提示音<!--Del-->（系统应用申请[VOIP](#backgroundmode)、[AUDIO_RECORDING](#backgroundmode)类型的长时任务，没有通知栏消息）<!--DelEnd-->。</br>已经合并的任务，后台任务同类型只能更新want，非同类型更新失败，返回错误码。</br>待更新任务包含上传下载类型，且需要更新的类型也包含上传下载类型，则直接返回成功，不做任何操作。</br>若待更新任务和需要更新的任务中，有且只有一个任务包含上传下载类型，则返回失败。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
