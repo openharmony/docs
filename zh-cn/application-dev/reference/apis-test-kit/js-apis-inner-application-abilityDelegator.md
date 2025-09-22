@@ -359,7 +359,7 @@ let monitor: abilityDelegatorRegistry.AbilityMonitor = {
 };
 
 function onAbilityCreateCallback(data: UIAbility) {
-  console.info('onAbilityCreateCallback');
+  console.info(`onAbilityCreateCallback, data: ${JSON.stringify(data)}`);
 }
 
 abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
@@ -367,7 +367,7 @@ abilityDelegator.waitAbilityMonitor(monitor, (error: BusinessError, data: UIAbil
   if (error) {
     console.error(`waitAbilityMonitor fail, error: ${JSON.stringify(error)}`);
   } else {
-    console.log(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
+    console.info(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
   }
 });
 ```
@@ -414,7 +414,7 @@ let monitor: abilityDelegatorRegistry.AbilityMonitor = {
 };
 
 function onAbilityCreateCallback(data: UIAbility) {
-  console.info('onAbilityCreateCallback');
+  console.info(`onAbilityCreateCallback, data: ${JSON.stringify(data)}.`);
 }
 
 abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
@@ -422,7 +422,7 @@ abilityDelegator.waitAbilityMonitor(monitor, timeout, (error: BusinessError, dat
   if (error && error.code !== 0) {
     console.error(`waitAbilityMonitor fail, error: ${JSON.stringify(error)}`);
   } else {
-    console.log(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
+    console.info(`waitAbilityMonitor success, data: ${JSON.stringify(data)}`);
   }
 });
 ```
