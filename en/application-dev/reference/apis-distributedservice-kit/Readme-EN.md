@@ -6,7 +6,8 @@
   - [@ohos.distributedsched.abilityConnectionManager (Cross-Device Connection Management)](js-apis-distributed-abilityConnectionManager.md)
   - [@ohos.application.DistributedExtensionAbility (Distributed Extension)](js-apis-distributedExtensionAbility.md)
   - [@ohos.distributedsched.linkEnhance (Enhanced Connection)](js-apis-link-enhance.md)
-  
+  - [@ohos.distributedsched.proxyChannelManager (Proxy Channel Management)](js-apis-proxyChannelManager.md)
+
   <!--Del-->
   
   - [@ohos.distributedHardware.hardwareManager (Distributed Hardware Management) (System API)](js-apis-distributedHardwareManager-sys.md)
