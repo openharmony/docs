@@ -481,7 +481,7 @@
 |[int32_t OH_ArkUI_PositionEdges_GetBottom(ArkUI_PositionEdges* edges, float* value)](#oh_arkui_positionedges_getbottom)|获取PositionEdges属性对象的下方向值。|
 |[void OH_ArkUI_PositionEdges_SetRight(ArkUI_PositionEdges* edges, float value)](#oh_arkui_positionedges_setright)|设置PositionEdges属性对象的右方向值。|
 |[int32_t OH_ArkUI_PositionEdges_GetRight(ArkUI_PositionEdges* edges, float* value)](#oh_arkui_positionedges_getright)|获取PositionEdges属性对象的右方向值。|
-|[ArkUI_ContentTransitionEffect* OH_ArkUI_ContentTransitionEffect_Create(int32_t type)](#oh_arkui_contenttransitioneffect_create)|创建ContentTransitionEffect属性的转场动效方式。|
+|[ArkUI_ContentTransitionEffect* OH_ArkUI_ContentTransitionEffect_Create(int32_t type)](#oh_arkui_contenttransitioneffect_create)|创建ContentTransitionEffect属性对象。|
 
 ## 枚举类型说明
 
@@ -9422,7 +9422,7 @@ ArkUI_ContentTransitionEffect* OH_ArkUI_ContentTransitionEffect_Create(int32_t t
 
 | 参数项 | 描述                           |
 | -- |------------------------------|
-| int32_t | 指定动效的转场方式。</br>值为0时，无动效转场。 </br>值为1时，渐入淡出动效转场。|
+| int32_t | 指定动效的转场方式。值为0表示无动效转场，值为1时表示淡入淡出动效转场。|
 
 **返回：**
 
