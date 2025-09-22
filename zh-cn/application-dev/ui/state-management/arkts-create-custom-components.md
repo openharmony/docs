@@ -478,4 +478,35 @@ struct MyComponent {
 > **说明：**
 >
 > ArkUI给自定义组件设置样式时，相当于给ChildComponent套了一个不可见的容器组件，这些样式是设置在容器组件上，而非直接设置给ChildComponent的Button组件。渲染结果显示，背景颜色红色并没有直接设置到Button上，而是设置在Button所在的不可见容器组件上。
+
+## 限制条件
+
+### V1自定义组件不支持静态代码块
+
+静态代码块用于初始化静态属性。
+- 在\@Component或\@CustomDialog装饰的自定义组件中编写静态代码块时，该代码不会被执行。
+
+  ```ts
+  @Component
+  struct MyComponent {
+    static a: string = '';
+    // 静态代码块不生效，a的值仍为空字符串''
+    static {
+      this.a = 'hello world';
+    }
+  }
+  ```
+
+- 在\@ComponentV2装饰的自定义组件中支持使用。
+
+  ```ts
+  @ComponentV2
+  struct MyComponentV2 {
+    static a: string = '';
+    // 静态代码块生效，a的值变为'hello world'
+    static {
+      this.a = 'hello world';
+    }
+  }
+  ```
 <!--no_check-->
