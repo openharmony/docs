@@ -35,6 +35,9 @@ onTouchIntercept(callback: Callback<TouchEvent, HitTestMode>): T
 | -------- | -------- |
 | T | 返回当前组件。 |
 
+> **说明：**
+>- 从API version 20开始，该接口支持在[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)中调用。
+
 ## 示例
 
 该示例通过onTouchIntercept修改组件的HitTestMode属性。
