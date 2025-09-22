@@ -41,17 +41,17 @@ export default {
     value: "组件创建"
   },
   onInit() {
-    console.log("组件创建")
+    console.info("组件创建")
   },
   onAttached() {
     this.value = "组件挂载",
-    console.log("组件挂载")
+    console.info("组件挂载")
   },
   onShow() {
-    console.log("Page显示")
+    console.info("Page显示")
   },
   onHide() {
-    console.log("Page隐藏")
+    console.info("Page隐藏")
   }
 }
 ```
