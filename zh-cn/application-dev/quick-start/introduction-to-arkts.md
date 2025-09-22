@@ -2212,53 +2212,53 @@ class C {
 **编译器自动生成的.d.ets文件**<br>
 当编译器根据ets代码自动生成.d.ets文件时，存在以下2种情况。
 1. 当注解定义被导出时，源代码中的注解定义会在.d.ets文件中保留。
-```typescript
-// a.ets
-export @interface ClassAuthor {}
+   ```typescript
+   // a.ets
+   export @interface ClassAuthor {}
 
-@interface MethodAnno { // 没导出
-  data: number;
-}
+   @interface MethodAnno { // 没导出
+     data: number;
+   }
 
-// a.d.ets 编译器生成的声明文件
-export declare @interface ClassAuthor {}
-```
+   // a.d.ets 编译器生成的声明文件
+   export declare @interface ClassAuthor {}
+   ```
 2. 当下面所有条件成立时，源代码中实体的注解实例会在.d.ets文件中保留。<br>
-    2.1 注解的定义被导出（import的注解也算作被导出）。<br>
-    2.2 如果实体是类，则类被导出。<br>
-    2.3 如果实体是方法，则类被导出，并且方法不是私有方法。
-```typescript
-// a.ets
-import { ClassAuthor } from './author';
+  2.1 注解的定义被导出（import的注解也算作被导出）。<br>
+  2.2 如果实体是类，则类被导出。<br>
+  2.3 如果实体是方法，则类被导出，并且方法不是私有方法。
+   ```typescript
+   // a.ets
+   import { ClassAuthor } from './author';
 
-export @interface MethodAnno {
-  data: number = 0;
-}
+   export @interface MethodAnno {
+     data: number = 0;
+   }
 
-@ClassAuthor
-class MyClass {
-  @MethodAnno({data: 123})
-  foo() {}
+   @ClassAuthor
+   class MyClass {
+     @MethodAnno({data: 123})
+     foo() {}
 
-  @MethodAnno({data: 456})
-  private bar() {}
-}
+     @MethodAnno({data: 456})
+     private bar() {}
+   }
 
-// a.d.ets 编译器生成的声明文件
-import {ClassAuthor} from "./author";
+   // a.d.ets 编译器生成的声明文件
+   import {ClassAuthor} from "./author";
 
-export declare @interface MethodAnno {
-  data: number = 0;
-}
+   export declare @interface MethodAnno {
+     data: number = 0;
+   }
 
-@ClassAuthor
-export declare class MyClass {
-  @MethodAnno({data: 123})
-  foo(): void;
+   @ClassAuthor
+   export declare class MyClass {
+     @MethodAnno({data: 123})
+     foo(): void;
 
-  bar; // 私有方法不保留注解
-}
-```
+     bar; // 私有方法不保留注解
+   }
+   ```
 
 **开发者生成的.d.ets文件**<br>
 开发者生成的.d.ets文件中的注解信息不会自动应用到实现的源代码中。<br>
