@@ -912,15 +912,15 @@ struct Index {
 
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
     if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end)
+      console.info("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end)
       return true
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end)
+      console.info("拦截 COPY start:" + textRange.start + "; end:" + textRange.end)
       return true
     }
     if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
+      console.info("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
       return false
     }
     return false
