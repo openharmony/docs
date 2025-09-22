@@ -92,7 +92,7 @@
   - [animate](js-components-svg-animate.md)
   - [animateMotion](js-components-svg-animatemotion.md)
   - [animateTransform](js-components-svg-animatetransform.md)
-- 自定义组件!<!--js-full-custom-comp-->
+- 自定义组件<!--js-full-custom-comp-->
   - [自定义组件的基本用法](js-components-custom-basic-usage.md)
   - [数据传递与处理](js-components-custom-props.md)
   - [继承样式](js-components-custom-style.md)

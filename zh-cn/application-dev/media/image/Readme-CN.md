@@ -41,8 +41,8 @@
   - [如何获取图片的旋转角度信息](image-faqs/image-rotate-faq.md)
   - [Image Kit异常处理](image-faqs/image-error-faq.md)
 - 图片开发指导(依赖JS对象)(不再推荐)<!--image-native-js-objects-->
-    - [图片解码](image-decoding-native.md)
-    - [图片编码](image-encoding-native.md)
-    - [图像变换](image-transformation-native.md)
-    - [位图操作](image-pixelmap-operation-native.md)
-    - [图片接收](image-receiver-native.md)
+  - [图片解码](image-decoding-native.md)
+  - [图片编码](image-encoding-native.md)
+  - [图像变换](image-transformation-native.md)
+  - [位图操作](image-pixelmap-operation-native.md)
+  - [图片接收](image-receiver-native.md)

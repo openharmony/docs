@@ -12,7 +12,7 @@
   <!--Del-->
   - [@ohos.driver.deviceManager (外设管理)(系统接口)](js-apis-driver-deviceManager-sys.md)
   <!--DelEnd-->
-  - application
+  - application<!--driver-development-arkts-application-->
     - [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)
 - C API<!--driver-development-c-->
   - 模块<!--driver-development-module-->
@@ -71,5 +71,5 @@
     - [Usb_DeviceArray](capi-usbddk-usb-devicearray.md)
     - [UsbSerial_Params](capi-serialddk-usbserial-params.md)
     - [UsbSerial_DeviceHandle](capi-serialddk-usbserial-devicehandle.md)
-- 错误码
+- 错误码<!--driver-development-errcode-->
   - [驱动错误码](errorcode-deviceManager.md)
