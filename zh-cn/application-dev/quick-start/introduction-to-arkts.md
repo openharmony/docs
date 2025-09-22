@@ -2224,9 +2224,9 @@ class C {
    export declare @interface ClassAuthor {}
    ```
 2. 当下面所有条件成立时，源代码中实体的注解实例会在.d.ets文件中保留。<br>
-    2.1 注解的定义被导出（import的注解也算作被导出）。<br>
-    2.2 如果实体是类，则类被导出。<br>
-    2.3 如果实体是方法，则类被导出，并且方法不是私有方法。
+  2.1 注解的定义被导出（import的注解也算作被导出）。<br>
+  2.2 如果实体是类，则类被导出。<br>
+  2.3 如果实体是方法，则类被导出，并且方法不是私有方法。
    ```typescript
    // a.ets
    import { ClassAuthor } from './author';
