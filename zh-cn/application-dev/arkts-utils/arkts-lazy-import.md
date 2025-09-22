@@ -475,7 +475,7 @@ struct Index {
       Button('点击执行A文件')
         .onClick(() => {
           // 点击后触发A文件的执行
-          console.log("执行A文件", A);
+          console.info("执行A文件", A);
         })
     }
     // ...
@@ -522,7 +522,7 @@ struct Index {
       Button('点击执行A文件')
         .onClick(() => {
           // 点击后触发A文件的执行
-          console.log("执行A文件", A);
+          console.info("执行A文件", A);
         })
     }
     // ...
