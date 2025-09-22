@@ -4802,7 +4802,7 @@ function unregisterFocusStateChange(highResolutionPhotoSession: camera.HighResol
 | ------------- | -------- | ---- | ---- | ---------- |
 | status        | number   | 否   | 否   | 画中画当前的状态。0：已停止，1：已启动，2：停止中，3：启动中。|
 | sketchRatio   | number   | 否   | 否   | 画中画画面的Zoom倍率。|
-| centerPointOffset | Point | 否  | 否   | 画中画的偏移点。  |
+| centerPointOffset<sup>20+</sup> | Point | 否  | 否   | 画中画的偏移点。  |
 
 ## SlowMotionVideoSession<sup>12+</sup>
 
