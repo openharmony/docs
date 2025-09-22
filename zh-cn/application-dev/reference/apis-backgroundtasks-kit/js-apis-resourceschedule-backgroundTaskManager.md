@@ -133,7 +133,7 @@ backgroundTaskManager.getRemainingDelayTime(id, (error: BusinessError, res: numb
 
 getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
-获取本次短时任务的剩余时间，使用promise异步回调。
+获取本次短时任务的剩余时间，使用Promise异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -265,7 +265,7 @@ try {
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
 
-申请长时任务，支持申请一种类型，使用callback异步回调。长时任务申请成功后，会有通知栏消息，没有提示音（系统应用的[VOIP](#backgroundmode)类型和系统应用的[AUDIO_RECORDING](#backgroundmode)类型，没有通知）。
+申请长时任务，支持申请一种类型，使用callback异步回调。长时任务申请成功后，会有通知栏消息，没有提示音<!--Del-->（系统应用申请[VOIP](#backgroundmode)、[AUDIO_RECORDING](#backgroundmode)类型的长时任务，没有通知栏消息）<!--DelEnd-->。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -356,7 +356,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
-申请长时任务，支持申请一种类型，使用promise异步回调。长时任务申请成功后，会有通知栏消息，没有提示音（系统应用的[VOIP](#backgroundmode)类型和系统应用的[AUDIO_RECORDING](#backgroundmode)类型，没有通知）。
+申请长时任务，支持申请一种类型，使用Promise异步回调。长时任务申请成功后，会有通知栏消息，没有提示音<!--Del-->（系统应用申请[VOIP](#backgroundmode)、[AUDIO_RECORDING](#backgroundmode)类型的长时任务，没有通知栏消息）<!--DelEnd-->。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -448,7 +448,7 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
-取消长时任务，使用callback异步回调。
+取消长时任务，使用callback异步回调。也可以通过[stopBackgroundRunning](#backgroundtaskmanagerstopbackgroundrunning21)接口取消指定Id的长时任务。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -506,7 +506,7 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
-取消长时任务，使用promise异步回调。
+取消长时任务，使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -565,7 +565,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent): Promise&lt;ContinuousTaskNotification&gt;
 
-申请长时任务，支持申请多种类型，使用promise异步回调。长时任务申请成功后，会有通知栏消息，没有提示音（系统应用的[VOIP](#backgroundmode)类型和系统应用的[AUDIO_RECORDING](#backgroundmode)类型，没有通知）。
+申请长时任务，支持申请多种类型，使用Promise异步回调。长时任务申请成功后，会有通知栏消息，没有提示音<!--Del-->（系统应用申请[VOIP](#backgroundmode)、[AUDIO_RECORDING](#backgroundmode)类型的长时任务，没有通知栏消息）<!--DelEnd-->。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -699,8 +699,8 @@ export default class EntryAbility extends UIAbility {
 
 updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;ContinuousTaskNotification&gt;
 
-更新长时任务类型，使用promise异步回调。长时任务更新成功后，会有通知栏消息，没有提示音（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型，没有通知）。
-</br>更新长时任务时，需要已经存在长时任务(可以通过[getAllContinuousTasks](#backgroundtaskmanagergetallcontinuoustasks20)接口判断当前是否有长时任务)，否则更新失败。
+更新长时任务类型，使用Promise异步回调。长时任务更新成功后，会有通知栏消息，没有提示音（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型，没有通知）。
+</br>更新长时任务前，可以通过[getAllContinuousTasks](#backgroundtaskmanagergetallcontinuoustasks20)接口获取当前所有长时任务信息，如果当前没有已经存在的长时任务，会更新失败。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1168,7 +1168,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promise&lt;ContinuousTaskNotification&gt;
 
-申请长时任务，支持一个UIAbility下申请多个长时任务，使用promise异步回调。</br>同一时间最多可存在10个，长时任务申请成功后，会有通知栏消息，没有提示音（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型，没有通知）。
+申请长时任务，支持一个UIAbility下申请多个长时任务，使用Promise异步回调。</br>同一时间最多可存在10个长时任务，长时任务申请成功后，会有通知栏消息，没有提示音（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型，没有通知）。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1265,7 +1265,7 @@ export default class EntryAbility extends UIAbility {
 
 updateBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promise&lt;ContinuousTaskNotification&gt;
 
-更新长时任务，支持更新对应的长时任务信息，使用promise异步回调。</br>长时任务更新成功后，会有通知栏消息，没有提示音（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型，没有通知）。</br>传入的continuousTaskId必须存在，否则更新失败。</br>已经合并的任务，同类型只能更新want，非同类型更新失败，返回错误码。</br>待更新任务包含上传下载类型，且需要更新的类型也包含上传下载类型，则直接返回成功，不做任何操作。</br>若待更新任务和需要更新的任务中，有且只有一个任务包含上传下载类型，则返回失败。
+更新长时任务，支持更新对应的长时任务信息，使用Promise异步回调。</br>长时任务更新成功后，会有通知栏消息，没有提示音（系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型，没有通知）。</br>已经合并的任务，后台任务同类型只能更新want，非同类型更新失败，返回错误码。</br>待更新任务包含上传下载类型，且需要更新的类型也包含上传下载类型，则直接返回成功，不做任何操作。</br>若待更新任务和需要更新的任务中，有且只有一个任务包含上传下载类型，则返回失败。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1361,7 +1361,7 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context, ContinuousTaskId: number): Promise&lt;void&gt;
 
-通过长时任务Id取消长时任务，使用promise异步回调。也可以通过API9接口[stopBackgroundRunning](#backgroundtaskmanagerstopbackgroundrunning)取消整个UIAbility下所有长时任务。
+取消指定Id的长时任务，使用Promise异步回调。也可以通过[stopBackgroundRunning](#backgroundtaskmanagerstopbackgroundrunning)取消整个UIAbility下所有长时任务。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1372,7 +1372,7 @@ stopBackgroundRunning(context: Context, ContinuousTaskId: number): Promise&lt;vo
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | 是    | 应用运行的上下文。 |
-| ContinuousTaskId   | number | 是    | 长时任务Id。</br>**说明 :** 从申请长时任务[startBackgroundRunning](#backgroundtaskmanagerstartbackgroundrunning21)接口中获取。|
+| ContinuousTaskId   | number | 是    | 长时任务Id。</br>**说明 :** 可以通过申请长时任务[startBackgroundRunning](#backgroundtaskmanagerstartbackgroundrunning21)或者获取所有长时任务信息[getAllContinuousTasks](#backgroundtaskmanagergetallcontinuoustasks20-1)接口中获取。|
 
 **返回值**：
 
@@ -1586,12 +1586,13 @@ export default class EntryAbility extends UIAbility {
 1. 申请任务时，需要通过combinedTaskNotification参数传入true指定可以合并通知，否则不能合并通知。
    如：所涉及的长时任务combinedTaskNotification参数都必须为true，且主类型和子类型申请个数和类型需完全匹配。
 2. 合并的通知的任务，必须主类型、子类型都相同。
-3. 如果该任务本身没有通知（如系统应用的VOIP类型和系统应用的AUDIO_RECORDING类型）、则不支持合并。
+3. 如果该任务本身没有通知<!--Del-->（如系统应用申请[VOIP](#backgroundmode)、[AUDIO_RECORDING](#backgroundmode)类型的长时任务）<!--DelEnd-->。、则不支持合并。
 4. 如果任务类型里，包含了上传下载，则不支持合并。
 5. 合并通知后不能取消合并，本身合并的不能改成不合并。
 6. 如果需要合并，但传入的长时任务ID非法，则不支持合并。
 7. 通知合并后，删除通知，取消所有的长时任务。
 8. 通知合并后，点击通知，跳转到第一个申请的UIAbility，如果调用了更新接口，则跳转到最后一次更新的UIAbility。
+9. [更新长时任务](#backgroundtaskmanagerupdatebackgroundrunning21)时，传入的continuousTaskId必须存在，否则更新失败。
 
 ### 属性
 
@@ -1602,14 +1603,14 @@ export default class EntryAbility extends UIAbility {
 | backgroundTaskModes       | [BackgroundTaskMode](#backgroundtaskmode21)[] | 否    | 否    | 长时任务主类型。<br/>**说明：** 主类型与子类型必须匹配。     |
 | backgroundTaskSubmodes | [BackgroundTaskSubmode](#backgroundtasksubmode21)[] | 否    | 否    | 长时任务子类型。 <br/>**说明：** 主类型与子类型必须匹配。|
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 否    | 否    | 通知参数，用于指定点击长时任务通知后跳转的界面。 |
-| combinedTaskNotification | boolean   | 否    | 是    | 是否合并通知， true表示合并， false表示不合并，默认为false。 |
-| continuousTaskId | number   | 否    | 是    | 长时任务Id，默认值为-1。 <br/>**说明：** 合并通知时，此项为必填项，且必须是存在的Id。<br/>调用[updateBackgroundRunning](#backgroundtaskmanagerupdatebackgroundrunning21)接口时，此项为必填项，且必须是存在的Id。   |
+| combinedTaskNotification | boolean   | 否    | 是    | 是否合并通知，true表示合并，false表示不合并，默认为false。 |
+| continuousTaskId | number   | 否    | 是    | 长时任务Id，默认值为-1。 <br/>**说明：** 合并通知时，此项为必填项，且必须是存在的Id。<br/>调用[updateBackgroundRunning](#backgroundtaskmanagerupdatebackgroundrunning21)接口时，此项为必填项，且必须是存在的Id。<br/>可以通过[getAllContinuousTasks](#backgroundtaskmanagergetallcontinuoustasks20-1)接口查看当前所有长时任务信息。   |
 
 ### isModeSupported<sup>21+</sup>
 
 isModeSupported(): boolean
 
-查询当前申请的长时任务主类型是否支持。根据[BackgroundTaskMode](#backgroundtaskmode21)的类型判断。
+查询当前申请的长时任务主类型是否支持申请长时任务。根据[BackgroundTaskMode](#backgroundtaskmode21)的类型判断是否支持申请长时任务。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1666,7 +1667,7 @@ export default class EntryAbility extends UIAbility {
 | MODE_BLUETOOTH_INTERACTION      | 5         | 蓝牙相关业务。            |
 | MODE_MULTI_DEVICE_CONNECTION    | 6         | 多设备互联。            |
 | MODE_VOIP                       | 8         | 音视频通话。            |
-| MODE_TASK_KEEPING               | 9         | 计算任务（仅对2in1设备，或者申请ACL权限的应用开放）。 |
+| MODE_TASK_KEEPING               | 9         | 计算任务（仅对PC/2in1设备，或者申请ACL权限为ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM的应用开放）。   |
 
 ## BackgroundTaskSubmode<sup>21+</sup>
 
