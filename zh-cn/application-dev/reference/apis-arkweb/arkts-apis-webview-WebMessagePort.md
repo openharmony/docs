@@ -523,6 +523,7 @@ struct WebComponent {
           try {
             if (this.msgPort && this.msgPort.length == 2) {
               this.msgPort[1].close();
+              this.msgPort = [];
             } else {
               console.error("msgPort is null, Please initialize first");
             }

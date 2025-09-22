@@ -1,4 +1,10 @@
 # oh_window_pip.h
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 
@@ -951,8 +957,8 @@ Sets the initial position and size of the PiP surface when the PiP launch animat
 | Parameter| Description|
 | -- | -- |
 | uint32_t controllerId | ID of the PiP controller. The value is a non-negative integer.|
-| int32_t positionX | X coordinate of the PiP window relative to the upper-left corner of the screen when the PiP window is started, in px.|
-| int32_t positionY | Y coordinate of the PiP window relative to the upper-left corner of the screen when the PiP window is started, in px.|
+| int32_t positionX | X coordinate of the PiP window relative to the top-left corner of the screen when the PiP window is started, in px.|
+| int32_t positionY | Y coordinate of the PiP window relative to the top-left corner of the screen when the PiP window is started, in px.|
 | uint32_t width | Width of the PiP window when the PiP window is started. The value is greater than 0, measured in px.|
 | uint32_t height | Height of the PiP window when the PiP window is started. The value is greater than 0, measured in px.|
 

@@ -44,8 +44,8 @@ public:
 };
 static map<int, deque<Task *>> g_taskQueueMap;
 
-// 自定义Consoleinfo方法
-static JSVM_Value Consoleinfo(JSVM_Env env, JSVM_CallbackInfo info) {
+// 自定义ConsoleInfo方法
+static JSVM_Value ConsoleInfo(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
     JSVM_Value args[1];
     char log[256] = "";
@@ -178,7 +178,7 @@ static int CreateJsCore(uint32_t *result) {
     for (int i = 0; i < 4; i++) {
         g_callBackStructMap[ENVTAG_NUMBER][i].data = nullptr;
     }
-    g_callBackStructMap[ENVTAG_NUMBER][0].callback = Consoleinfo;
+    g_callBackStructMap[ENVTAG_NUMBER][0].callback = ConsoleInfo;
     g_callBackStructMap[ENVTAG_NUMBER][1].callback = Add;
     g_callBackStructMap[ENVTAG_NUMBER][2].callback = AssertEqual;
     g_callBackStructMap[ENVTAG_NUMBER][3].callback = CreatePromise;

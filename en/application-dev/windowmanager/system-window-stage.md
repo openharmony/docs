@@ -1,4 +1,10 @@
 # System Window Development (Stage Model Only)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 
@@ -169,10 +175,10 @@ You can determine whether to play an animation when a system window is showing o
 import { window } from '@kit.ArkUI';
 
 export class AnimationConfig {
-  private animationForShownCallFunc_: Function = undefined;
-  private animationForHiddenCallFunc_: Function = undefined;
+  private animationForShownCallFunc_: ((context: window.TransitionContext) => void) | undefined = undefined;
+  private animationForHiddenCallFunc_: ((context: window.TransitionContext) => void) | undefined = undefined;
 
-  ShowWindowWithCustomAnimation(windowClass: window.Window, callback) {
+  ShowWindowWithCustomAnimation(windowClass: window.Window, callback: (context: window.TransitionContext) => void) {
     if (!windowClass) {
       console.error('LOCAL-TEST windowClass is undefined');
       return false;
@@ -190,7 +196,7 @@ export class AnimationConfig {
     return true;
   }
 
-  HideWindowWithCustomAnimation(windowClass: window.Window, callback) {
+  HideWindowWithCustomAnimation(windowClass: window.Window, callback: (context: window.TransitionContext) => void) {
     if (!windowClass) {
       console.error('LOCAL-TEST window is undefined');
       return false;
@@ -308,12 +314,6 @@ struct Index {
   }
 
   private CreateTransferSubWindow(){
-    if(this.subWindow_){
-      this.subWindow_ = AppStorage.get<window.Window>("TransferSubWindow");
-      if(!this.subWindow_){
-        this.subWindow_ = undefined;
-      }
-    }
     let context = AppStorage.get<common.UIAbilityContext>("currentContext");
     console.log('LOCAL-TEST try to CreateTransferSubWindow');
     let windowConfig:window.Configuration = {
@@ -321,8 +321,8 @@ struct Index {
       windowType : window.WindowType.TYPE_FLOAT,
       ctx : context,
     };
-    let promise = window?.createWindow(windowConfig);
-    promise?.then(async(subWin) => {
+    let promise = window.createWindow(windowConfig);
+    promise.then(async(subWin: window.Window) => {
       this.subWindow_ = subWin;
       AppStorage.setOrCreate<window.Window>("systemTypeWindow", subWin);
       await subWin.setUIContent("pages/transferCtrlSubWindow",()=>{});
@@ -340,7 +340,7 @@ struct Index {
     let animationConfig = new AnimationConfig();
     let systemTypeWindow = window.findWindow("systemTypeWindow");
     console.log("LOCAL-TEST try to ShowWindowWithCustomAnimation");
-    animationConfig.ShowWindowWithCustomAnimation(systemTypeWindow,(context:window.TransitionContext)=>{
+    animationConfig.ShowWindowWithCustomAnimation(systemTypeWindow, (context:window.TransitionContext) => {
       console.info('LOCAL-TEST start show window animation');
       let toWindow = context.toWindow;
       this.getUIContext()?.animateTo({
@@ -361,7 +361,7 @@ struct Index {
           z: 0.0
         };
         try {
-          toWindow.translate(obj); // Set the transition animation.
+          toWindow?.translate(obj); // Set the transition animation.
         }catch(exception){
           console.error('Failed to translate. Cause: ' + JSON.stringify(exception));
         }
@@ -378,7 +378,7 @@ struct Index {
     let animationConfig = new AnimationConfig();
     let systemTypeWindow = window.findWindow("systemTypeWindow");
     console.log("LOCAL-TEST try to HideWindowWithCustomAnimation");
-    animationConfig.HideWindowWithCustomAnimation(systemTypeWindow,(context:window.TransitionContext)=>{
+    animationConfig.HideWindowWithCustomAnimation(systemTypeWindow, (context:window.TransitionContext) => {
       console.info('LOCAL-TEST start hide window animation');
       let toWindow = context.toWindow;
       this.getUIContext()?.animateTo({
@@ -399,7 +399,7 @@ struct Index {
           z: 0.0
         };
         try {
-          toWindow.translate(obj); // Set the transition animation.
+          toWindow?.translate(obj); // Set the transition animation.
         }catch(exception){
           console.error('Failed to translate. Cause: ' + JSON.stringify(exception));
         }

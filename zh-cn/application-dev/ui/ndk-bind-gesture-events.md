@@ -7,7 +7,7 @@
 <!--Adviser: @HelloCrease-->
 
 
-ArkUI开发框架在NDK接口主要提供点击手势、拖动手势、滑动手势、长按手势、捏合手势和旋转手势，通过给指定的组件绑定不同的手势并设置相应的回调，实现期望的手势交互能力。
+ArkUI开发框架在NDK接口主要提供点击手势、滑动手势、快滑手势、长按手势、捏合手势和旋转手势，通过给指定的组件绑定不同的手势并设置相应的回调，实现期望的手势交互能力。
 
 
 下面通过一个简单的示例来介绍如何实现手势绑定。
@@ -69,13 +69,13 @@ ArkUI开发框架在NDK接口主要提供点击手势、拖动手势、滑动手
    auto tapGesture = gestureApi->createTapGesture(1, 1);
   ```
 
-- 拖动手势
-  通过给组件绑定拖动手势可在用户拖动组件时触发回调，可指定触发回调需要的手指个数、拖动方向、拖动距离。单位为px。
+- 滑动手势
+  通过给组件绑定滑动手势可在用户滑动组件时触发回调，可指定触发回调需要的手指个数、滑动方向、滑动距离。单位为px。
   ```
     // 获取手势Native接口集合
     auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
-    // 创建拖动手势
+    // 创建滑动手势
     auto panGesture = gestureApi->createPanGesture(1, GESTURE_DIRECTION_ALL, 1);
   ```
 
@@ -112,14 +112,14 @@ ArkUI开发框架在NDK接口主要提供点击手势、拖动手势、滑动手
     auto rotationGesture = gestureApi->createRotationGesture(1, 10);
   ```
 
-- 滑动手势
-  通过给组件绑定滑动手势可在用户滑动组件时触发回调，可指定触发回调需要的手指个数（最小为1）、滑动方向、滑动速度（单位px/s）。
+- 快滑手势
+  通过给组件绑定快滑手势可在用户快速滑动组件时触发回调，可指定触发回调需要的手指个数（最小为1）、滑动方向、滑动速度（单位px/s）。
 
   ```
     // 获取手势Native接口集合
     auto gestureApi = reinterpret_cast<ArkUI_NativeGestureAPI_1 *>(
         OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_GESTURE, "ArkUI_NativeGestureAPI_1"));
-    // 创建滑动手势
+    // 创建快滑手势
     auto swipeGesture = gestureApi->createSwipeGesture(1, GESTURE_DIRECTION_ALL, 50);
   
   ```
@@ -216,14 +216,14 @@ ArkUI_NodeHandle testGestureExample() {
         gestureApi->addChildGesture(groupGesture, longPressGesture);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GestureSampleLog, addChildGesture longPressGesture");
     }
-    // 创建滑动手势 swipe
+    // 创建快滑手势 swipe
     auto swipeGesture = gestureApi->createSwipeGesture(1, GESTURE_DIRECTION_ALL, 100);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(swipeGesture);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
                      "GestureSampleLog, ArkUI_GestureRecognizerType %{public}d", type);
     }
-    // 给滑动手势绑定回调
+    // 给快滑手势绑定回调
     auto onActionCallBack = [](ArkUI_GestureEvent *event, void *extraParam) {
         ArkUI_GestureEventActionType actionType = OH_ArkUI_GestureEvent_GetActionType(event);
 
@@ -262,7 +262,7 @@ ArkUI_NodeHandle testGestureExample() {
         swipeGesture, GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE | GESTURE_EVENT_ACTION_END, column,
         onActionCallBack);
 
-    // 将滑动手势添加到手势组
+    // 将快滑手势添加到手势组
     if (gestureApi->addChildGesture) {
         gestureApi->addChildGesture(groupGesture, swipeGesture);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
@@ -279,7 +279,7 @@ ArkUI_NodeHandle testGestureExample() {
 
 并行识别组合手势对应的ArkUI_GroupGestureMode为PARALLEL_GROUP。并行识别组合手势中注册的手势将同时进行识别，直到所有手势识别结束。并行识别手势组合中的手势进行识别时互不影响。
 
-以并行识别长按和滑动手势为例：
+以并行识别长按和快滑手势为例：
 
 ```
 #include "napi/native_api.h"
@@ -362,14 +362,14 @@ ArkUI_NodeHandle testGestureExample() {
         gestureApi->addChildGesture(groupGesture, longPressGesture);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GestureSampleLog, addChildGesture longPressGesture");
     }
-    // 创建滑动手势 swipe
+    // 创建快滑手势 swipe
     auto swipeGesture = gestureApi->createSwipeGesture(1, GESTURE_DIRECTION_ALL, 100);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(swipeGesture);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
                      "GestureSampleLog, ArkUI_GestureRecognizerType %{public}d", type);
     }
-    // 给滑动手势绑定回调
+    // 给快滑手势绑定回调
     auto onActionCallBack = [](ArkUI_GestureEvent *event, void *extraParam) {
         ArkUI_GestureEventActionType actionType = OH_ArkUI_GestureEvent_GetActionType(event);
 
@@ -408,7 +408,7 @@ ArkUI_NodeHandle testGestureExample() {
         swipeGesture, GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE | GESTURE_EVENT_ACTION_END, column,
         onActionCallBack);
 
-    // 将滑动手势添加到手势组
+    // 将快滑手势添加到手势组
     if (gestureApi->addChildGesture) {
         gestureApi->addChildGesture(groupGesture, swipeGesture);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
@@ -425,7 +425,7 @@ ArkUI_NodeHandle testGestureExample() {
 
 互斥识别组合手势对应的ArkUI_GroupGestureMode为EXCLUSIVE_GROUP。互斥识别组合手势中注册的手势将同时进行识别，若有一个手势识别成功，则结束手势识别，其他所有手势识别失败。
 
-以互斥识别拖动手势和捏合手势为例：
+以互斥识别滑动手势和捏合手势为例：
 
 ```
 #include "napi/native_api.h"
@@ -467,14 +467,14 @@ ArkUI_NodeHandle testGestureExample() {
     }
     auto groupGesture = gestureApi->createGroupGesture(ArkUI_GroupGestureMode::EXCLUSIVE_GROUP);
 
-    // 创建拖动手势
+    // 创建滑动手势
     auto panGesture = gestureApi->createPanGesture(1, GESTURE_DIRECTION_VERTICAL, 5);
     if (gestureApi->getGestureType) {
         ArkUI_GestureRecognizerType type = gestureApi->getGestureType(panGesture);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager",
                      "GestureSampleLog panGesture, ArkUI_GestureRecognizerType %{public}d", type);
     }
-    // 给拖动手势绑定回调
+    // 给滑动手势绑定回调
     auto onActionCallBackPan = [](ArkUI_GestureEvent *event, void *extraParam) {
         ArkUI_GestureEventActionType actionType = OH_ArkUI_GestureEvent_GetActionType(event);
 
@@ -506,7 +506,7 @@ ArkUI_NodeHandle testGestureExample() {
                                       GESTURE_EVENT_ACTION_ACCEPT | GESTURE_EVENT_ACTION_UPDATE |
                                           GESTURE_EVENT_ACTION_END | GESTURE_EVENT_ACTION_CANCEL,
                                       column, onActionCallBackPan);
-    // 将拖动手势添加到手势组
+    // 将滑动手势添加到手势组
     if (gestureApi->addChildGesture) {
         gestureApi->addChildGesture(groupGesture, panGesture);
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager", "GestureSampleLog, addChildGesture panGesture");

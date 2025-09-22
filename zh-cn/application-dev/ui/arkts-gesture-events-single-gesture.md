@@ -68,17 +68,10 @@ struct Index {
 
 
 ```ts
-TapGesture(value?:{count?:number, fingers?:number})
+TapGesture(value?: TapGestureParameters)
 ```
 
-
-点击手势支持单次点击和多次点击，拥有两个可选参数：
-
-
-- count：声明该点击手势识别的连续点击次数。默认值为1，非法值（即小于1的值）将被转化为默认值。当配置多次点击时，上一次抬起和下一次按下的超时时间为300毫秒。
-
-- fingers：用于声明触发点击的手指数量，最小值为1，最大值为10，默认值为1。当配置多指时，若第一根手指按下300毫秒内未有足够的手指数按下则手势识别失败。
-    以在Text组件上绑定双击手势（count值为2的点击手势）为例：
+点击手势支持单次点击和多次点击，参数定义参考[TapGesture](../reference/apis-arkui/arkui-ts/ts-basic-gestures-tapgesture.md)。
 
   ```ts
   // xxx.ets
@@ -119,20 +112,9 @@ TapGesture(value?:{count?:number, fingers?:number})
 LongPressGesture(value?:{fingers?:number, repeat?:boolean, duration?:number})
 ```
 
-
-长按手势用于触发长按手势事件，拥有三个可选参数：
-
-
-- fingers：用于声明触发长按手势所需要的最少手指数量，最小值为1，最大值为10，默认值为1。
-
-- repeat：用于声明是否连续触发事件回调，默认值为false。
-
-- duration：用于声明触发长按所需的最短时间，单位为毫秒，默认值为500。
-
+长按手势用于触发长按手势事件，参数定义参考[LongPressGesture](../reference/apis-arkui/arkui-ts/ts-basic-gestures-longpressgesture.md)。
 
 以在Text组件上绑定可以重复触发的长按手势为例：
-
-
 
 ```ts
 // xxx.ets
@@ -172,32 +154,22 @@ struct Index {
 ![longPress](figures/longPress.gif)
 
 
-## 拖动手势（PanGesture）
+## 滑动手势（PanGesture）
 
 
 ```ts
-PanGesture(value?:{ fingers?:number, direction?:PanDirection, distance?:number})
+PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: number } | PanGestureOptions)
 ```
 
+滑动手势用于触发滑动手势事件，滑动达到最小滑动距离（默认值为5vp）时滑动手势识别成功，参数定义参考[PanGesture](../reference/apis-arkui/arkui-ts/ts-basic-gestures-pangesture.md)。
 
-拖动手势用于触发拖动手势事件，滑动达到最小滑动距离（默认值为5vp）时拖动手势识别成功，拥有三个可选参数：
-
-
-- fingers：用于声明触发拖动手势所需要的最少手指数量，最小值为1，最大值为10，默认值为1。
-
-- direction：用于声明触发拖动的手势方向，此枚举值支持逻辑与（&amp;）和逻辑或（|）运算。默认值为PanDirection.All。
-
-- distance：用于声明触发拖动的最小拖动识别距离，单位为vp，默认值为5。
-
-
-以下以实现一个简单的音量控制为例，可以通过拖动手势的回调函数处理多种不同的输入情况下的音量值增减的逻辑。
+以下以实现一个简单的音量控制为例，可以通过滑动手势的回调函数处理多种不同的输入情况下的音量值增减的逻辑。
 支持以下五种操作方式：
 1、单指上下滑动；
 2、按住鼠标左键上下滑动；
 3、鼠标滚轮滚动；
 4、单指按住触控板上下滑动；
 5、使用触控板双指滑动。
-
 
 ```ts
 // xxx.ets
@@ -285,9 +257,9 @@ struct VolumeControlDemo {
 
 >**说明：**
 >
->大部分可滑动组件，如List、Grid、Scroll、Tab等组件是通过PanGesture实现滑动，在组件内部的子组件绑定[拖动手势（PanGesture）](#拖动手势pangesture)或者[滑动手势（SwipeGesture）](#滑动手势swipegesture)会导致手势竞争。
+>大部分可滑动组件，如List、Grid、Scroll、Tab等组件是通过PanGesture实现滑动，在组件内部的子组件绑定[滑动手势（PanGesture）](#滑动手势pangesture)或者[滑动手势（SwipeGesture）](#快滑手势swipegesture)会导致手势竞争。
 >
->当在子组件绑定PanGesture时，在子组件区域进行滑动仅触发子组件的PanGesture。如果需要父组件响应，需要通过修改手势绑定方法或者子组件向父组件传递消息进行实现，或者通过修改父子组件的PanGesture参数distance使得拖动更灵敏。当子组件绑定SwipeGesture时，由于PanGesture和SwipeGesture触发条件不同，需要修改PanGesture和SwipeGesture的参数以达到所需效果。
+>当在子组件绑定PanGesture时，在子组件区域进行滑动仅触发子组件的PanGesture。如果需要父组件响应，需要通过修改手势绑定方法或者子组件向父组件传递消息进行实现，或者通过修改父子组件的PanGesture参数distance使得滑动更灵敏。当子组件绑定SwipeGesture时，由于PanGesture和SwipeGesture触发条件不同，需要修改PanGesture和SwipeGesture的参数以达到所需效果。
 >
 >不合理的阈值设置会导致滑动不跟手（响应时延慢）的问题。
 
@@ -296,21 +268,12 @@ struct VolumeControlDemo {
 
 
 ```ts
-PinchGesture(value?:{fingers?:number, distance?:number})
+PinchGesture(value?: { fingers?: number; distance?: number })
 ```
 
-
-捏合手势用于触发捏合手势事件，拥有两个可选参数：
-
-
-- fingers：用于声明触发捏合手势所需要的最少手指数量，最小值为2，最大值为5，默认值为2。
-
-- distance：用于声明触发捏合手势的最小距离，单位为vp，默认值为5。
-
+捏合手势用于触发捏合手势事件，参数定义参考[PinchGesture](../reference/apis-arkui/arkui-ts/ts-basic-gestures-pinchgesture.md)。
 
 以在Column组件上绑定三指捏合手势为例，可以通过在捏合手势的函数回调中获取缩放比例，实现对组件的缩小或放大：
-
-
 
 ```ts
 // xxx.ets
@@ -366,21 +329,12 @@ struct Index {
 
 
 ```ts
-RotationGesture(value?:{fingers?:number, angle?:number})
+RotationGesture(value?: { fingers?: number; angle?: number })
 ```
 
-
-旋转手势用于触发旋转手势事件，拥有两个可选参数：
-
-
-- fingers：用于声明触发旋转手势所需要的最少手指数量，最小值为2，最大值为5，默认值为2。
-
-- angle：用于声明触发旋转手势的最小改变度数，单位为deg，默认值为1。
-
+旋转手势用于触发旋转手势事件，参数定义参考[RotationGesture](../reference/apis-arkui/arkui-ts/ts-basic-gestures-rotationgesture.md)。
 
 以在Text组件上绑定旋转手势实现组件的旋转为例，可以通过在旋转手势的回调函数中获取旋转角度，从而实现组件的旋转：
-
-
 
 ```ts
 // xxx.ets
@@ -430,27 +384,16 @@ struct Index {
 ![rotation](figures/rotation.png)
 
 
-## 滑动手势（SwipeGesture）
+## 快滑手势（SwipeGesture）
 
 
 ```ts
-SwipeGesture(value?:{fingers?:number, direction?:SwipeDirection, speed?:number})
+SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: number })
 ```
 
+快滑手势用于触发快滑事件，当滑动速度大于100vp/s时可以识别成功，参数定义参考[SwipeGesture](../reference/apis-arkui/arkui-ts/ts-basic-gestures-swipegesture.md)。
 
-滑动手势用于触发滑动事件，当滑动速度大于100vp/s时可以识别成功，拥有三个可选参数：
-
-
-- fingers：用于声明触发滑动手势所需要的最少手指数量，最小值为1，最大值为10，默认值为1。
-
-- direction：用于声明触发滑动手势的方向，此枚举值支持逻辑与（&amp;）和逻辑或（|）运算。默认值为SwipeDirection.All。
-
-- speed：用于声明触发滑动的最小滑动识别速度，单位为vp/s，默认值为100。
-
-
-以在Column组件上绑定滑动手势实现组件的旋转为例：
-
-
+以在Column组件上绑定快滑手势实现组件的旋转为例：
 
 ```ts
 // xxx.ets
@@ -470,12 +413,12 @@ struct Index {
       .width(300)
       .height(200)
       .margin(100)
-      // 在Column组件上绑定旋转，通过滑动手势的滑动速度和角度修改旋转的角度
+      // 在Column组件上绑定旋转，通过快滑手势的滑动速度和角度修改旋转的角度
       .rotate({ angle: this.rotateAngle })
       .gesture(
-        // 绑定滑动手势且限制仅在竖直方向滑动时触发
+        // 绑定快滑手势且限制仅在竖直方向滑动时触发
         SwipeGesture({ direction: SwipeDirection.Vertical })
-          // 当滑动手势触发时，获取滑动的速度和角度，实现对组件的布局参数的修改
+          // 当快滑手势触发时，获取滑动的速度和角度，实现对组件的布局参数的修改
           .onAction((event: GestureEvent|undefined) => {
             if(event){
               this.speed = event.speed;

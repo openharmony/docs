@@ -4783,7 +4783,7 @@
 
 ## ohos.permission.VIRUS_PROTECTION_SERVICE
 
-允许应用启动病毒查杀任务。
+允许应用启动病毒终止任务。
 
 **权限级别**：system_basic
 

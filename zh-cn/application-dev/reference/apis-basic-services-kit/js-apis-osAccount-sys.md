@@ -5913,7 +5913,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | ----------- | ------ | ---- | ---- | ---------- |
 | fromAccountId | number | 否 | 否 | 切换来源系统账号ID。 |
 | toAccountId | number | 否 | 否 | 切换目标系统账号ID。 |
-| displayId<sup>21+</sup> | number | 否 | 是 | 切换事件发生的逻辑屏ID。 |
+| displayId<sup>21+</sup> | number | 否 | 是 | 切换事件发生的逻辑屏ID，默认值为0。 |
 
 ## CreateOsAccountOptions<sup>12+</sup>
 

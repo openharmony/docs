@@ -108,7 +108,7 @@ do {                                                                            
 **描述：**
 
 
-基于结构体类型获取对应结构体指针的宏函数。此宏函数接收[ArkUI_NativeAPIVariantKind](capi-native-interface-h.md#arkui_nativeapivariantkind)类型枚举参数nativeAPIVariantKind、const char\*类型参数structType、structType\*类型参数structPtr，调用[OH_ArkUI_QueryModuleInterfaceByName](#oh_arkui_getmoduleinterface)获取native接口抽象指针，转换为structType\*类型后赋值给structPtr。
+基于结构体类型获取对应结构体指针的宏函数。此宏函数接收[ArkUI_NativeAPIVariantKind](capi-native-interface-h.md#arkui_nativeapivariantkind)类型枚举参数nativeAPIVariantKind、const char\*类型参数structType、structType\*类型参数structPtr，调用[OH_ArkUI_QueryModuleInterfaceByName](#oh_arkui_querymoduleinterfacebyname)获取native接口抽象指针，转换为structType\*类型后赋值给structPtr。
 
 **起始版本：** 12
 

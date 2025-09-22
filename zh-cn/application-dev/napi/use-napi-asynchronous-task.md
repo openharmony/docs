@@ -31,6 +31,7 @@ napi_queue_async_work接口使用uv_queue_work能力，并管理回调中napi_va
 1. 使用napi_create_async_work创建异步任务，使用napi_queue_async_work将任务加入队列，等待执行。
 
    ```cpp
+   #include "napi/native_api.h"
    // 调用方提供的data context，该数据会传递给execute和complete函数
    struct CallbackData {
        napi_async_work asyncWork = nullptr;
@@ -118,6 +119,8 @@ napi_queue_async_work接口使用uv_queue_work能力，并管理回调中napi_va
    export const asyncWork: (data: number) => Promise<number>;
 
    // ArkTS侧调用接口
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+   import testNapi from 'libentry.so';
    nativeModule.asyncWork(1024).then((result) => {
        hilog.info(0x0000, 'XXX', 'result is %{public}d', result);
    });

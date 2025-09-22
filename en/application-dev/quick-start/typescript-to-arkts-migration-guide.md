@@ -1,127 +1,97 @@
 # TypeScript to ArkTS Cookbook
 
-Welcome to the "TypeScript to ArkTS cookbook". This document gives you short
-recipes to rewrite your standard TypeScript code to ArkTS. Although ArkTS is
-designed to be close to TypeScript, some limitations were added for the sake of
-performance. As a result, all TypeScript features can be divided into the following
-categories:
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @husenlin-->
+<!--Designer: @qyhuo32-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @zhang_yixin13-->
 
-- **Fully supported features**: The original code requires no modification
-   at all. According to our measurements, projects that already follow the
-   best TypeScript practices can keep 90% to 97% of their codebase intact.
-- **Partially supported features**: Some minor code refactoring is needed.
-   Example: The keyword `let` must be used in place of `var` to declare
-   variables. Your code will remain a valid TypeScript code
-   after rewriting by our recipes.
-- **Unsupported features**: A greater code refactoring effort is required.
-   Example: The type `any` is unsupported, and you need to introduce explicit
-   typing to your code everywhere `any` is used.
+ArkTS restricts the features of TypeScript (TS) that undermine development correctness or increase runtime overhead. This topic lists the TypeScript features restricted by ArkTS and provides recipes on code refactoring. ArkTS retains most syntax features of TypeScript. TypeScript features that are not mentioned in this topic are fully supported by ArkTS. For example, the custom decorators supported by ArkTS have the same syntax as those supported by TypeScript. After code refactoring based on the recipes in this topic, the code is still valid TypeScript code.
 
-The document is built on the feature-by-feature basis, and if you do not
-find a specific feature, then you can safely consider it **fully supported**. Otherwise,
-a recipe will give you a suggestion on how to rewrite your code and work
-around an unsupported case. For example, the custom decorators supported by ArkTS have the same syntax as those supported by TypeScript.
+**Example**
 
-**Recipe Explained**
-
-The original TypeScript code contains the keyword `var`:
+Original TypeScript code containing the keyword **var**:
 
 ```typescript
 function addTen(x: number): number {
-  var ten = 10
-  return x + ten
+  var ten = 10;
+  return x + ten;
 }
 ```
 
-The code must be rewritten as follows:
+Refactored code:
 
 ```typescript
-// Important! This is still valid TypeScript code.
 function addTen(x: number): number {
-  let ten = 10
-  return x + ten
+  let ten = 10;
+  return x + ten;
 }
 ```
-**Severity Levels**
 
-Each recipe is marked with the the severity level. Supported values:
+**Severity levels**
 
-- **Severity: error**: The recipe should be followed, otherwise the program
-  will fail to compile.
-- **Severity: warning**: It is highly recommended to follow the recipe. Although
-  violating the recipe does not currently affect the compilation, in future
-  versions, it will cause compilation to fail.
+Each recipe is marked with the severity level. Supported values:
 
-**Status of Unsupported Features**
+- **Error**: The recipe should be followed, otherwise the program will fail to compile.
+- **Warning**: It is highly recommended to follow the recipe. Although violating the recipe does not currently affect the compilation, in future versions, it will cause compilation to fail.
+
+**Unsupported Features**
 
 Currently, unsupported features are mainly either of the following:
 
 - Features relate to dynamic typing that degrades runtime performance
 - Features that require extra support in the compiler, thereby degrading project build time
 
-However, the ArkTS team reserves the right to reconsider the list and
-**shrink** it in the future releases based on the feedback from developers
-and real-world data experiments.
+However, the ArkTS team reserves the right to reconsider the list and shrink it in the future releases based on the feedback from developers and real-world data experiments.
 
 ## Recipes Summarized
 
-This document provides an informal summary of TypeScript features that ArkTS either
-can support with limitations, or cannot support. See [Recipes](#recipes) for the
-full list with more detailed code examples and workaround suggestions.
+This topic lists the TypeScript features that are not supported or partially supported by ArkTS. For details about the full feature list, detailed code examples, and workaround suggestions, see [Recipes](#recipes). For more cases, see [Adaptation Cases](arkts-more-cases.md).
 
 ### Static Typing Is Enforced
 
-ArkTS was designed with the following goals in mind:
+One of the most important features of ArkTS is static typing. If a program is statically typed (all types are known at compile time), it is much easier to understand what data structures are used in the code. Since all types are known before the program actually runs, the compiler can verify code correctness, thereby eliminating many runtime type checks and improving performance.
 
-- ArkTS programs must be easy for developers to read and understand because
-  the code is read more often than written.
-- ArkTS must execute fast and consume as little power as possible because
-  it is particularly critical on mobile devices that ArkTS targets.
-
-One of the most important features of ArkTS that helps achieving both goals
-is static typing. If a program is statically typed (all types
-are known at compile time), it is much easier to understand what data
-structures are used in the code. Since all types are known before the program
-actually runs, the compiler can verify code correctness, thereby
-eliminating many runtime type checks and improving performance.
-
-Therefore, the usage of the type `any` in ArkTS is prohibited.
+Therefore, the usage of the type **any** in ArkTS is prohibited.
 
 **Example**
 
 ```typescript
 // Not supported:
-let res: any = some_api_function('hello', 'world')
-// What is `res`? A numeric error code, a string, or an object?
-// How should we work with it?
+let res: any = some_api_function('hello', 'world');
 // Supported:
 class CallResult {
-  public succeeded(): boolean { ... }
-  public errorMessage(): string { ... }
+  public succeeded(): boolean {
+    return false;
+  }
+  public errorMessage(): string {
+    return '123';
+  }
+}
+function some_api_function(param1: string, param2: string): CallResult {
+  return new CallResult();
 }
 
-let res: CallResult = some_api_function('hello', 'world')
+let res: CallResult = some_api_function('hello', 'world');
 if (!res.succeeded()) {
-  console.log('Call failed: ' + res.errorMessage())
-}
+  console.info('Call failed: ' + res.errorMessage());   
+}  
 ```
 
-According to our measurements, `any` is already not welcome in TypeScript. It is used in approximately 1% of
-TypeScript codebases. Moreover, today's code linters (for example, ESLint) include a set
-of rules that prohibit the usage of `any`. Prohibiting `any` results in a strong positive impact on performance at the cost of low-effort code refactoring.
+According to our measurements, **any** is already not welcome in TypeScript. It is used in approximately 1% of TypeScript codebases. Moreover, today's code linters (for example, ESLint) include a set of rules that prohibit the usage of **any**. Prohibiting **any** results in a strong positive impact on performance at the cost of low-effort code refactoring.
 
 ### Changing Object Layout in Runtime Is Prohibited
 
-To achieve maximum performance benefits, ArkTS requires the layout of objects
-to remain unchanged during program execution. In other words, it is prohibited to:
+To achieve maximum performance benefits, ArkTS requires the layout of objects to remain unchanged during program execution. In other words, it is prohibited to:
 
 - Add new properties or methods to objects.
 - Delete existing properties or methods from objects.
 - Assign values of arbitrary types to object properties.
 
-It is noteworthy that many such operations are already prohibited by the TypeScript
-compiler. However, it can still be "tricked", for example, by `as any` casting that
-ArkTS does not support (see the detailed example below).
+It is noteworthy that many such operations are already prohibited by the TS compiler. However, it can still be "tricked" by, for example, using **as any** to convert the object type, disabling strict type check when compiling TS code, or ignoring type check using **@ts-ignore** in the code.
+
+In ArkTS, strict type check is not configurable. ArkTS enforces strict type check and prohibits the use of **any** and **@ts-ignore** in the code.
 
 **Example**
 
@@ -131,87 +101,73 @@ class Point {
   public y: number = 0
 
   constructor(x: number, y: number) {
-    this.x = x
-    this.y = y
+    this.x = x;
+    this.y = y;
   }
 }
 
 // It is impossible to delete a property from the object. It is guaranteed that all Point objects have the property x.
-let p1 = new Point(1.0, 1.0)
-delete p1.x           // Compile-time error in TypeScript and ArkTS
-delete (p1 as any).x  // OK in TypeScript; compile-time error in ArkTS
+let p1 = new Point(1.0, 1.0);
+delete p1.x;           // Compile-time error in TypeScript and ArkTS
+delete (p1 as any).x;  // OK in TypeScript; compile-time error in ArkTS
 
 // Class Point does not define any property named `z`, and it is impossible to add it while the program runs.
-let p2 = new Point(2.0, 2.0)
+let p2 = new Point(2.0, 2.0);
 p2.z = 'Label';           // Compile-time error in TypeScript and ArkTS
-(p2 as any).z = 'Label'   // OK in TypeScript; compile-time error in ArkTS
+(p2 as any).z = 'Label';   // OK in TypeScript; compile-time error in ArkTS
 
-// It is guaranteed that all Point objects have only properties x and y, it is impossible to generate some arbitrary identifier and use it as a new property:
-let p3 = new Point(3.0, 3.0)
-let prop = Symbol();     // OK in TypeScript; compile-time error in ArkTS
-(p3 as any)[prop] = p3.x // OK in TypeScript; compile-time error in ArkTS
-p3[prop] = p3.x          // Compile-time error in TypeScript and ArkTS
+// It is guaranteed that all Point objects have only properties x and y and other properties cannot be added.
+let p3 = new Point(3.0, 3.0);
+let prop = Symbol();      // OK in TypeScript; compile-time error in ArkTS
+(p3 as any)[prop] = p3.x; // OK in TypeScript; compile-time error in ArkTS
+p3[prop] = p3.x;          // Compile-time error in TypeScript and ArkTS
 
 // It is guaranteed that all Point objects have properties x and y of type number, so assigning a value of any other type is impossible:
-let p4 = new Point(4.0, 4.0)
-p4.x = 'Hello!';         // Compile-time error in TypeScript and ArkTS
-(p4 as any).x = 'Hello!' // OK in TypeScript; compile-time error in ArkTS
+let p4 = new Point(4.0, 4.0);
+p4.x = 'Hello!';          // Compile-time error in TypeScript and ArkTS
+(p4 as any).x = 'Hello!'; // OK in TypeScript; compile-time error in ArkTS
 
 // Usage of Point objects which is compliant with the class definition:
 function distance(p1: Point, p2: Point): number {
   return Math.sqrt(
     (p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y)
-  )
+  );
 }
-let p5 = new Point(5.0, 5.0)
-let p6 = new Point(6.0, 6.0)
-console.log('Distance between p5 and p6: ' + distance(p5, p6))
+let p5 = new Point(5.0, 5.0);
+let p6 = new Point(6.0, 6.0);
+console.info('Distance between p5 and p6: ' + distance(p5, p6));
 ```
 
-Unpredictable changing of object layout contradicts both good readability and
-good performance of code. Indeed, having class definition at one place and
-modifying actual object layout elsewhere is confusing and error-prone from the
-developer's point of view. It opposes the idea of static typing
-and requires extra runtime support that causes undesired execution overhead.
+Unpredictable changing of object layout contradicts both good readability and good performance of code. Indeed, having class definition at one place and modifying actual object layout elsewhere is confusing and error-prone from the developer's point of view. It opposes the idea of static typing and requires extra runtime support that causes undesired execution overhead. When an explicit type is used, properties cannot be added or deleted.
 
-According to our observations and experiments, this feature is already not
-welcome in TypeScript. It is used in a marginal number of real-world projects,
-and state-of-the-art linters have rules to prohibit its usage.
-
-Prohibiting runtime changes to object layouts results in a
-strong positive impact on performance at the cost of low-effort refactoring.
+Currently, only a few projects allow object layout changes at runtime, and some common code linters have added corresponding constraints. Although a small amount of code refactoring is required, the performance improvement benefits are considerable.
 
 ### Semantics of Operators Is Restricted
 
-To achieve better performance and encourage developers to write clearer code,
-ArkTS restricts the semantics of some operators. An example is
-given below, and the full list of restrictions is outlined in [Recipes](#recipes).
+To achieve better performance and encourage developers to write clearer code, ArkTS restricts the semantics of some operators. An example is given below, and the full list of constraints is outlined in [Recipes](#recipes).
 
 **Example**
 
 ```typescript
 // Unary `+` is defined only for numbers, but not for strings:
-let t = +42; // OK
+let t = +42;   // OK
 let s = +'42'; // Compile-time error
 ```
 
-Loading language operators with extra semantics complicates the language
-specification, and forces developers to remember all possible corner cases with
-appropriate handling rules. Besides, in certain cases it causes some undesired
-runtime overhead.
+Loading language operators with extra semantics complicates the language specification, and forces developers to remember all possible corner cases with appropriate handling rules. Besides, in certain cases it causes some undesired runtime overhead.
 
 According to our observations and experiments, this feature is not popular in TypeScript. It is used in less than 1% of real-world codebases, and such cases are easy to refactor. Restricting the operator semantics results in a clearer and more performant at the cost of low-effort changes in code.
 
-### Structural Typing Is Not Supported (Yet)
+### Structural Typing Is Not Supported
 
-Assuming that two unrelated classes `T` and `U` have the same public API:
+Assume that two unrelated classes **T** and **U** have the same **public** API:
 
 ```typescript
 class T {
   public name: string = ''
 
   public greet(): void {
-    console.log('Hello, ' + this.name)
+    console.info('Hello, ' + this.name);
   }
 }
 
@@ -219,75 +175,61 @@ class U {
   public name: string = ''
 
   public greet(): void {
-    console.log('Greetings, ' + this.name)
+    console.info('Greetings, ' + this.name);
   }
 }
 ```
 
-Can we assign a value of `T` to a variable of `U`?
+Can we assign a value of **T** to a variable of **U**?
 
 ```typescript
-let u: U = new T() // Is this allowed?
+let u: U = new T(); // Is this allowed?
 ```
 
-Can we pass a value of `T` to a function that accepts a parameter of `U`?
+Can we pass a value of **T** to a function that accepts a parameter of **U**?
 
 ```typescript
 function greeter(u: U) {
-  console.log('To ' + u.name)
-  u.greet()
+  console.info('To ' + u.name);
+  u.greet();
 }
 
-let t: T = new T()
-greeter(t) // Is this allowed?
+let t: T = new T();
+greeter(t); // Is this allowed?
 ```
 
 In other words, which approach will we take:
 
-- `T` and `U` are not related by inheritance or any common interface, but
-  they are "somewhat equivalent" since they have the same public API, and so
-  the answer to both questions above is "yes".
-- `T` and `U` are not related by inheritance or any common interface, and
-  always must be considered as totally different types, and so the answer to
-  both questions above is "no".
+- **T** and **U** are not related by inheritance or any common interface, but they are "somewhat equivalent" since they have the same **public** API, and so the answer to both questions above is "yes".
+- **T** and **U** are not related by inheritance or any common interface, and always must be considered as totally different types, and so the answer to both questions above is "no".
 
-The languages that take the first approach are said to support structural
-typing, whereas the languages that take the second approach do not support it.
-Currently, TypeScript supports structural typing, and ArkTS does not.
+The languages that take the first approach are said to support structural typing, whereas the languages that take the second approach do not support it. Currently, TypeScript supports structural typing, and ArkTS does not.
 
-It is debatable whether structural typing helps to produce code that
-is clearer and more understandable, and both *pro* and *contra* arguments can
-be found. Why not just support it then?
+It is debatable whether structural typing helps to produce code that is clearer and more understandable, and both pro and contra arguments can be found. Why not just support it then?
 
-The answer is that supporting structural typing is a major feature that needs
-a lot of considerations and careful implementation in language specification,
-compiler, and runtime. More importantly, in case if ArkTS, which enforces static
-typing (see above), runtime support for structural typing implies performance
-overhead. So since functionally correct and performant implementation requires
-taking that many aspects into account, the support to this feature is postponed.
+The answer is that supporting structural typing is a major feature that needs a lot of considerations and careful implementation in language specification, compiler, and runtime. More importantly, in case if ArkTS, which enforces static typing (see above), runtime support for structural typing implies performance overhead.
 
-The ArkTS team is ready to reconsider based on real-world scenarios and feedback.
-More cases and suggested workarounds can be found in [Recipes](#recipes).
+So since functionally correct and performant implementation requires taking that many aspects into account, the support to this feature is postponed. The ArkTS team is ready to reconsider based on real-world scenarios and feedback. More cases and suggested workarounds can be found in [Recipes](#recipes).
 
 ## Recipes
 
-### Recipe: Objects with Property Names That Are Not Identifiers Are Not Supported
+### Objects with Property Names That Are Not Identifiers Are Not Supported
 
-**Rule:** `arkts-identifiers-as-prop-names`
+**Rule:** arkts-identifiers-as-prop-names
 
 **Severity: error**
 
-ArkTS does not support objects with name properties that are numbers or
-strings. Exceptions are string type enumeration constants and string literal. Use classes to access data by property names. Use arrays to access
-data by numeric indices.
+**Error code: 10605001**
+
+ArkTS does not support objects with name properties that are numbers or strings. Exceptions are string type enumeration constants and string literal. Use classes to access data by property names. Use arrays to access data by numeric indices.
 
 **TypeScript**
 
 ```typescript
-var x = { 'name': 'x', 2: '3' }
+var x = { 'name': 'x', 2: '3' };
 
-console.log(x['name'])
-console.log(x[2])
+console.info(x['name']); // x
+console.info(x[2]); // 3
 ```
 
 **ArkTS**
@@ -296,18 +238,18 @@ console.log(x[2])
 class X {
   public name: string = ''
 }
-let x: X = { name: 'x' }
-console.log(x.name)
+let x: X = { name: 'x' };
+console.info(x.name); // x
 
-let y = ['a', 'b', 'c']
-console.log(y[2])
+let y = ['a', 'b', 'c'];
+console.info(y[2]); // c
 
 // If you still need a container to store keys of different types, use Map<Object, some_type>.
-let z = new Map<Object, string>()
-z.set('name', '1')
-z.set(2, '2')
-console.log(z.get('name'))
-console.log(z.get(2))
+let z = new Map<Object, string>();
+z.set('name', '1');
+z.set(2, '2');
+console.info(z.get('name'));  // 1
+console.info(z.get(2)); // 2
 
 enum Test {
   A = 'aaa',
@@ -321,27 +263,27 @@ let obj: Record<string, number> = {
 }
 ```
 
-### Recipe: `Symbol()` Is Not Supported
+### Symbol() Is Not Supported
 
-**Rule:** `arkts-no-symbol`
-
-**Severity: error**
-
-TypeScript uses the `Symbol()` API among other things to generate
-unique property names at runtime. ArkTS does not support the `Symbol()` API
-because its most popular use cases make no sense in the statically typed
-environment. In particular, the object layout is defined at compile time
-and cannot be changed at runtime.
-
-Only `Symbol.iterator` is supported.
-
-### Recipe: Private `#` Identifiers Are Not Supported
-
-**Rule:** `arkts-no-private-identifiers`
+**Rule:** arkts-no-symbol
 
 **Severity: error**
 
-ArkTS does not use private identifiers starting with the symbol `#`. Use the keyword  `private` instead.
+**Error code: 10605002**
+
+ArkTS does not support the **Symbol()** API because its most popular use cases make no sense in the statically typed environment. In particular, the object layout is defined at compile time and cannot be changed at runtime.
+
+Only **Symbol.iterator** is supported.
+
+### Private # Identifiers Are Not Supported
+
+**Rule:** arkts-no-private-identifiers
+
+**Severity: error**
+
+**Error code: 10605003**
+
+ArkTS does not use private identifiers starting with the symbol **#**. Use the keyword **private** instead.
 
 **TypeScript**
 
@@ -359,11 +301,13 @@ class C {
 }
 ```
 
-### Recipe: Use Unique Names for Types and Namespaces
+### Use Unique Names for Types and Namespaces
 
-**Rule:** `arkts-unique-names`
+**Rule:** arkts-unique-names
 
 **Severity: error**
+
+**Error code: 10605004**
 
 Names for all types (classes, interfaces, and enums) and namespaces must be unique and distinct from other names such as, variable names, and function names.
 
@@ -381,35 +325,37 @@ let X: string
 type T = number[] // X is not allowed here to avoid name collisions.
 ```
 
-### Recipe: Use `let` Instead of `var`
+### Use let Instead of var
 
-**Rule:** `arkts-no-var`
+**Rule:** arkts-no-var
 
 **Severity: error**
 
-ArkTS does not support `var`. Use `let` instead.
+**Error code: 10605005**
+
+The **let** keyword can declare variables in block scope, helping programmers avoid errors. Therefore, ArkTS does not support **var**. Use **let** instead.
 
 **TypeScript**
 
 ```typescript
 function f(shouldInitialize: boolean) {
   if (shouldInitialize) {
-     var x = 'b'
+     var x = 'b';
   }
-  return x
+  return x;
 }
 
-console.log(f(true))  // b
-console.log(f(false)) // undefined
+console.info(f(true));  // b
+console.info(f(false)); // undefined
 
-let upperLet = 0
+let upperLet = 0;
 {
-  var scopedVar = 0
-  let scopedLet = 0
-  upperLet = 5
+  var scopedVar = 0;
+  let scopedLet = 0;
+  upperLet = 5;
 }
-scopedVar = 5 // Visible
-scopedLet = 5 // Compile-time error
+scopedVar = 5; // Visible
+scopedLet = 5; // Compile-time error
 ```
 
 **ArkTS**
@@ -423,55 +369,59 @@ function f(shouldInitialize: boolean): string {
   return x;
 }
 
-console.log(f(true));  // b
-console.log(f(false)); // a
+console.info(f(true));  // b
+console.info(f(false)); // a
 
-let upperLet = 0
-let scopedVar = 0
+let upperLet = 0;
+let scopedVar = 0;
 {
-  let scopedLet = 0
-  upperLet = 5
+  let scopedLet = 0;
+  upperLet = 5;
 }
-scopedVar = 5
-scopedLet = 5 // Compile-time error
+scopedVar = 5;
+scopedLet = 5; // Compile-time error
 ```
 
-### Recipe: Use Explicit Types Instead of `any` or `unknown`
+### Use Explicit Types Instead of any or unknown
 
-**Rule:** `arkts-no-any-unknown`
+**Rule:** arkts-no-any-unknown
 
 **Severity: error**
 
-ArkTS does not support the types `any` and `unknown`. Specify types explicitly.
+**Error code: 10605008**
+
+ArkTS does not support the types **any** and **unknown**. Specify types explicitly.
 
 **TypeScript**
 
 ```typescript
 let value1: any
-value1 = true
-value1 = 42
+value1 = true;
+value1 = 42;
 
 let value2: unknown
-value2 = true
-value2 = 42
+value2 = true;
+value2 = 42;
 ```
 
 **ArkTS**
 
 ```typescript
-let value_b: boolean = true // OR: let value_b = true
-let value_n: number = 42 // OR: let value_n = 42
-let value_o1: Object = true
-let value_o2: Object = 42
+let value_b: boolean = true; // OR: let value_b = true
+let value_n: number = 42; // OR: let value_n = 42
+let value_o1: Object = true;
+let value_o2: Object = 42;
 ```
 
-### Recipe: Use `class` Instead of a Type with a Call Signature
+### Use class Instead of a Type with a Call Signature
 
-**Rule:** `arkts-no-call-signatures`
+**Rule:** arkts-no-call-signatures
 
 **Severity: error**
 
-ArkTS does not support call signatures in object types. Use `class` instead.
+**Error code: 10605014**
+
+ArkTS does not support call signatures in object types. Use **class** instead.
 
 **TypeScript**
 
@@ -482,7 +432,7 @@ type DescribableFunction = {
 }
 
 function doSomething(fn: DescribableFunction): void {
-  console.log(fn.description + ' returned ' + fn(''))
+  console.info(fn.description + ' returned ' + fn(''));
 }
 ```
 
@@ -492,27 +442,29 @@ function doSomething(fn: DescribableFunction): void {
 class DescribableFunction {
   description: string
   public invoke(someArg: string): string {
-    return someArg
+    return someArg;
   }
   constructor() {
-    this.description = 'desc'
+    this.description = 'desc';
   }
 }
 
 function doSomething(fn: DescribableFunction): void {
-  console.log(fn.description + ' returned ' + fn.invoke(''))
+  console.info(fn.description + ' returned ' + fn.invoke(''));
 }
 
-doSomething(new DescribableFunction())
+doSomething(new DescribableFunction());
 ```
 
-### Recipe: Use `class` Instead of a Type with a Constructor Signature
+### Use class Instead of a Type with a Constructor Signature
 
-**Rule:** `arkts-no-ctor-signatures-type`
+**Rule:** arkts-no-ctor-signatures-type
 
 **Severity: error**
 
-ArkTS does not support constructor signatures in object types. Use `class` instead.
+**Error code: 10605015**
+
+ArkTS does not support constructor signatures in object types. Use **class** instead.
 
 **TypeScript**
 
@@ -524,7 +476,7 @@ type SomeConstructor = {
 }
 
 function fn(ctor: SomeConstructor) {
-  return new ctor('hello')
+  return new ctor('hello');
 }
 ```
 
@@ -534,20 +486,22 @@ function fn(ctor: SomeConstructor) {
 class SomeObject {
   public f: string
   constructor (s: string) {
-    this.f = s
+    this.f = s;
   }
 }
 
 function fn(s: string): SomeObject {
-  return new SomeObject(s)
+  return new SomeObject(s);
 }
 ```
 
-### Recipe: Only One Static Block Is Supported
+### Only One Static Block Is Supported
 
-**Rule:** `arkts-no-multiple-static-blocks`
+**Rule:** arkts-no-multiple-static-blocks
 
 **Severity: error**
+
+**Error code: 10605016**
 
 ArkTS does not allow several static blocks for class initialization. Combine static block statements into one static block.
 
@@ -579,15 +533,13 @@ class C {
 }
 ```
 
-**NOTE**
+### Indexed Signatures Are Not Supported
 
-Currently, the static block syntax is not supported. This rule must be followed in .ets files when the syntax is supported.
-
-### Recipe: Indexed Signatures Are Not Supported
-
-**Rule:** `arkts-no-indexed-signatures`
+**Rule:** arkts-no-indexed-signatures
 
 **Severity: error**
+
+**Error code: 10605017**
 
 ArkTS does not allow indexed signatures. Use arrays instead.
 
@@ -600,11 +552,11 @@ interface StringArray {
 }
 
 function getStringArray(): StringArray {
-  return ['a', 'b', 'c']
+  return ['a', 'b', 'c'];
 }
 
-const myArray: StringArray = getStringArray()
-const secondItem = myArray[1]
+const myArray: StringArray = getStringArray();
+const secondItem = myArray[1];
 ```
 
 **ArkTS**
@@ -614,15 +566,17 @@ class X {
   public f: string[] = []
 }
 
-let myArray: X = new X()
-const secondItem = myArray.f[1]
+let myArray: X = new X();
+const secondItem = myArray.f[1];
 ```
 
-### Recipe: Use Inheritance Instead of Intersection Types
+### Use Inheritance Instead of Intersection Types
 
-**Rule:** `arkts-no-intersection-types`
+**Rule:** arkts-no-intersection-types
 
 **Severity: error**
+
+**Error code: 10605019**
 
 Currently, ArkTS does not support intersection types. Use inheritance as a workaround.
 
@@ -658,13 +612,15 @@ interface Contact {
 interface Employee extends Identity,  Contact {}
 ```
 
-### Recipe: Type Notation Using `this` Is Not Supported
+### Type Notation Using this Is Not Supported
 
-**Rule:** `arkts-no-typing-with-this`
+**Rule:** arkts-no-typing-with-this
 
 **Severity: error**
 
-ArkTS does not support type notation using the `this` keyword. Use the explicit type instead.
+**Error code: 10605021**
+
+ArkTS does not support type notation using the **this** keyword. Use the explicit type instead.
 
 **TypeScript**
 
@@ -685,8 +641,8 @@ class C {
 **ArkTS**
 
 ```typescript
-interface ListItem {
-  getHead(): ListItem
+interface testListItem {
+  getHead(): testListItem
 }
 
 class C {
@@ -698,14 +654,16 @@ class C {
 }
 ```
 
-### Recipe: Conditional Types Are Not Supported
+### Conditional Types Are Not Supported
 
-**Rule:** `arkts-no-conditional-types`
+**Rule:** arkts-no-conditional-types
 
 **Severity: error**
 
-ArkTS does not support conditional type aliases. Introduce a new type with constraints explicitly, or rewrite logic using `Object`.
-The keyword `infer` is not supported.
+**Error code: 10605022**
+
+ArkTS does not support conditional type aliases. Introduce a new type with constraints explicitly, or rewrite logic using **Object**.
+The keyword **infer** is not supported.
 
 **TypeScript**
 
@@ -727,13 +685,15 @@ type X2<T> = Object
 type YI<Item, T extends Array<Item>> = Item
 ```
 
-### Recipe: Declaring Fields in `constructor` Is Not Supported
+### Declaring Fields in constructor Is Not Supported
 
-**Rule:** `arkts-no-ctor-prop-decls`
+**Rule:** arkts-no-ctor-prop-decls
 
 **Severity: error**
 
-ArkTS does not support declaring class fields in `constructor`. Declare class fields inside the `class` declaration instead.
+**Error code: 10605025**
+
+ArkTS does not support declaring class fields in **constructor**. Declare class fields inside the **class** declaration instead.
 
 **TypeScript**
 
@@ -744,13 +704,13 @@ class Person {
     private firstName: string,
     private lastName: string
   ) {
-    this.ssn = ssn
-    this.firstName = firstName
-    this.lastName = lastName
+    this.ssn = ssn;
+    this.firstName = firstName;
+    this.lastName = lastName;
   }
 
   getFullName(): string {
-    return this.firstName + ' ' + this.lastName
+    return this.firstName + ' ' + this.lastName;
   }
 }
 ```
@@ -764,24 +724,26 @@ class Person {
   private lastName: string
 
   constructor(ssn: string, firstName: string, lastName: string) {
-    this.ssn = ssn
-    this.firstName = firstName
-    this.lastName = lastName
+    this.ssn = ssn;
+    this.firstName = firstName;
+    this.lastName = lastName;
   }
 
   getFullName(): string {
-    return this.firstName + ' ' + this.lastName
+    return this.firstName + ' ' + this.lastName;
   }
 }
 ```
 
-### Recipe: Constructor Signatures Are Not Supported in Interfaces
+### Constructor Signatures Are Not Supported in Interfaces
 
-**Rule:** `arkts-no-ctor-signatures-iface`
+**Rule:** arkts-no-ctor-signatures-iface
 
 **Severity: error**
 
-ArkTS does not support constructor signatures. Use methods instead.
+**Error code: 10605027**
+
+ArkTS does not allow constructor signatures to be defined in interfaces. Use common functions or methods instead.
 
 **TypeScript**
 
@@ -791,7 +753,7 @@ interface I {
 }
 
 function fn(i: I) {
-  return new i('hello')
+  return new i('hello');
 }
 ```
 
@@ -803,33 +765,32 @@ interface I {
 }
 
 function fn(i: I) {
-  return i.create('hello')
+  return i.create('hello');
 }
 ```
 
-### Recipe: Indexed Access Types Are Not Supported
+### Indexed Access Types Are Not Supported
 
-**Rule:** `arkts-no-aliases-by-index`
+**Rule:** arkts-no-aliases-by-index
 
 **Severity: error**
+
+**Error code: 10605028**
 
 ArkTS does not support indexed access types. Use the type name instead.
 
-### Recipe: Indexed Access Is Not Supported for Fields
+### Indexed Access Is Not Supported for Fields
 
-**Rule:** `arkts-no-props-by-index`
+**Rule:** arkts-no-props-by-index
 
 **Severity: error**
 
-ArkTS does not support dynamic field declaration and access. Declare all
-object fields immediately in the class. Access only those class fields
-that are either declared in the class, or accessible via inheritance. Accessing
-any other fields is prohibited, and causes compile-time errors.
+**Error code: 10605029**
 
-To access a field, use the `obj.field` syntax. Indexed access (`obj["field"]`)
-is not supported. An exception is all typed arrays from the standard library
-(for example, `Int32Array`), which support access to their elements through the
-`container[index]` syntax.
+ArkTS does not support dynamic field declaration and access. Access only those class fields that are either declared in the class, or accessible via inheritance. Accessing any other fields is prohibited, and causes compile-time errors.
+To access a field, use the **obj.field** syntax. Indexed access (**obj['field']**) is not supported.
+An exception is all typed arrays from the standard library (for example, **Int32Array**), which support access to their elements through the **container[index]** syntax.
+
 **TypeScript**
 
 ```typescript
@@ -837,12 +798,12 @@ class Point {
   x: string = ''
   y: string = ''
 }
-let p: Point = {x: '1', y: '2'}
-console.log(p['x'])
+let p: Point = {x: '1', y: '2'};
+console.info(p['x']); // 1
 
 class Person {
   name: string = ''
-  age: number = 0; // A semicolon is required here.
+  age: number = 0;
   [key: string]: string | number
 }
 
@@ -861,8 +822,8 @@ class Point {
   x: string = ''
   y: string = ''
 }
-let p: Point = {x: '1', y: '2'}
-console.log(p.x)
+let p: Point = {x: '1', y: '2'};
+console.info(p.x); // 1
 
 class Person {
   name: string
@@ -872,31 +833,30 @@ class Person {
 
   constructor(name: string, age: number, email: string,
         phoneNumber: string) {
-    this.name = name
-    this.age = age
-    this.email = email
-    this.phoneNumber = phoneNumber
+    this.name = name;
+    this.age = age;
+    this.email = email;
+    this.phoneNumber = phoneNumber;
   }
 }
 
 let person = new Person('John', 30, '***@example.com', '18*********');
-console.log(person['name']);     // Compile-time error
-console.log(person.unknownProperty); // Compile-time error
+console.info(person['name']);     // Compile-time error
+console.info(person.unknownProperty); // Compile-time error
 
 let arr = new Int32Array(1);
 arr[0];
 ```
 
-### Recipe: Structural Typing Is Not Supported
+### Structural Typing Is Not Supported
 
-**Rule:** `arkts-no-structural-typing`
+**Rule:** arkts-no-structural-typing
 
 **Severity: error**
 
-Currently, ArkTS does not support structural typing. This means that  the compiler
-cannot compare public APIs of two types and decide whether they are
-identical. Use other mechanisms (inheritance, interfaces, or type aliases)
-instead.
+**Error code: 10605030**
+
+Currently, ArkTS does not support structural typing. This means that the compiler cannot compare **public** APIs of two types and decide whether they are identical. Use other mechanisms (inheritance, interfaces, or type aliases) instead.
 
 **TypeScript**
 
@@ -919,22 +879,22 @@ class Y { // Y is structurally equivalent to X.
   s: string = ''
 }
 
-let x = new X()
-let y = new Y()
+let x = new X();
+let y = new Y();
 
-console.log('Assign X to Y')
-y = x
+// Assign the X object to the Y object.
+y = x;
 
-console.log('Assign Y to X')
-x = y
+// Assign the Y object to the X object.
+x = y;
 
 function foo(x: X) {
-  console.log(x.n + x.s)
+  console.info(x.n + x.s);
 }
 
-// X and Y are equivalent because their public API is equivalent. Therefore, the second call is allowed.
-foo(new X())
-foo(new Y())
+// X and Y are equivalent because their public API is equivalent.
+foo(new X());
+foo(new Y());
 ```
 
 **ArkTS**
@@ -958,11 +918,11 @@ class D extends B {
   }
 }
 
-let b = new B()
-let d = new D()
+let b = new B();
+let d = new D();
 
-console.log('Assign D to B')
-b = d // OK. B is the superclass of D.
+console.info('Assign D to B');
+b = d; // OK. B is the superclass of D.
 
 // An attempt to assign b to d will result in a compile-time error.
 // d = b
@@ -972,59 +932,59 @@ interface Z {
    s: string
 }
 
-// X implements interface Z, which makes relation between X and Y explicit.
+// X implements interface Z, which makes relationship between X and Y explicit.
 class X implements Z {
   n: number = 0
   s: string = ''
 }
 
-// Y implements interface Z, which makes relation between X and Y explicit.
+// Y implements interface Z, which makes relationship between X and Y explicit.
 class Y implements Z {
   n: number = 0
   s: string = ''
 }
 
-let x: Z = new X()
-let y: Z = new Y()
+let x: Z = new X();
+let y: Z = new Y();
 
-console.log('Assign X to Y')
-y = x // ok, both are of the same type
+console.info('Assign X to Y');
+y = x // OK, both are of the same type
 
-console.log('Assign Y to X')
-x = y // ok, both are of the same type
+console.info('Assign Y to X');
+x = y // OK, both are of the same type
 
 function foo(c: Z): void {
-  console.log(c.n + c.s)
+  console.info(c.n + c.s);
 }
 
 // X and Y implement the same interface. Therefore both calls are allowed.
-foo(new X())
-foo(new Y())
+foo(new X());
+foo(new Y());
 ```
 
-### Recipe: Type Inference in Case of Generic Function Calls Is Limited
+### Type Inference in Case of Generic Function Calls Is Limited
 
-**Rule:** `arkts-no-inferred-generic-params`
+**Rule: **arkts-no-inferred-generic-params
 
 **Severity: error**
 
-ArkTS allows to omit generic type parameters if it is possible to infer
-the concrete types from the parameters passed to the function. A compile-time
-error occurs otherwise. In particular, inference of generic type parameters
-based only on function return types is prohibited.
+**Error code: 10605034**
+
+ArkTS allows to omit generic type parameters if it is possible to infer the concrete types from the parameters passed to the function. A compile-time error occurs otherwise. 
+In particular, inference of generic type parameters based only on function return types is prohibited.
 
 **TypeScript**
 
 ```typescript
 function choose<T>(x: T, y: T): T {
-  return Math.random() < 0.5 ? x: y
+  return Math.random() < 0.5 ? x: y;
 }
 
-let x = choose(10, 20)   // OK. choose<number>(...) is inferred.
-let y = choose('10', 20) // Compile-time error
+let x = choose(10, 20);   // OK. choose<number>(...) is inferred.
+let y = choose('10', 20); // Compile-time error
 
 function greet<T>(): T {
-  return 'Hello' as T
+  return 'Hello' as T;
 }
 let z = greet() // Type of T is inferred as "unknown".
 ```
@@ -1033,43 +993,45 @@ let z = greet() // Type of T is inferred as "unknown".
 
 ```typescript
 function choose<T>(x: T, y: T): T {
-  return Math.random() < 0.5 ? x: y
+  return Math.random() < 0.5 ? x: y;
 }
 
-let x = choose(10, 20)   // OK. choose<number>(...) is inferred.
-let y = choose('10', 20) // Compile-time error
+let x = choose(10, 20);   // OK. choose<number>(...) is inferred.
+let y = choose('10', 20); // Compile-time error
 
 function greet<T>(): T {
-  return 'Hello' as T
+  return 'Hello' as T;
 }
-let z = greet<string>()
+let z = greet<string>();
 ```
 
-### Recipe: Object Literal Must Correspond to Some Explicitly Declared Class or Interface
+### Object Literal Must Correspond to Some Explicitly Declared Class or Interface
 
-**Rule:** `arkts-no-untyped-obj-literals`
+**Rule:** arkts-no-untyped-obj-literals
 
 **Severity: error**
 
-ArkTS supports usage of object literals if the compiler can infer to the classes or interfaces that such literals correspond to. Otherwise, a compile-time error occurs.
+**Error code: 10605038**
+
+ArkTS supports usage of object literals if the compiler can infer to the classes or interfaces that such literals correspond to. Otherwise, a compile-time error occurs. In some scenarios, the compiler can infer the type of the literal based on the context.
 
 Using literals to initialize classes and interfaces is specifically not supported in the following contexts:
 
-* Initialization of anything that has `any`, `Object`, or `object` type
+* Initialization of anything that has **any**, **Object**, or **object** type
 * Initialization of classes or interfaces with methods
-* Initialization of classes which declare a `constructor` with parameters
-* Initialization of classes with `readonly` fields
+* Initialize a class that contains a custom **constructor** with parameters.
+* Initialization of classes with **readonly** fields
 
 **Example 1**
 
 **TypeScript**
 
 ```typescript
-let o1 = {n: 42, s: 'foo'}
-let o2: Object = {n: 42, s: 'foo'}
-let o3: object = {n: 42, s: 'foo'}
+let o1 = {n: 42, s: 'foo'};
+let o2: Object = {n: 42, s: 'foo'};
+let o3: object = {n: 42, s: 'foo'};
 
-let oo: Object[] = [{n: 1, s: '1'}, {n: 2, s: '2'}]
+let oo: Object[] = [{n: 1, s: '1'}, {n: 2, s: '2'}];
 ```
 
 **ArkTS**
@@ -1080,11 +1042,11 @@ class C1 {
   s: string = ''
 }
 
-let o1: C1 = {n: 42, s: 'foo'}
-let o2: C1 = {n: 42, s: 'foo'}
-let o3: C1 = {n: 42, s: 'foo'}
+let o1: C1 = {n: 42, s: 'foo'};
+let o2: C1 = {n: 42, s: 'foo'};
+let o3: C1 = {n: 42, s: 'foo'};
 
-let oo: C1[] = [{n: 1, s: '1'}, {n: 2, s: '2'}]
+let oo: C1[] = [{n: 1, s: '1'}, {n: 2, s: '2'}];
 ```
 
 **Example 2**
@@ -1095,10 +1057,10 @@ let oo: C1[] = [{n: 1, s: '1'}, {n: 2, s: '2'}]
 class C2 {
   s: string
   constructor(s: string) {
-    this.s = 's =' + s
+    this.s = 's =' + s;
   }
 }
-let o4: C2 = {s: 'foo'}
+let o4: C2 = {s: 'foo'};
 ```
 
 **ArkTS**
@@ -1107,10 +1069,10 @@ let o4: C2 = {s: 'foo'}
 class C2 {
   s: string
   constructor(s: string) {
-    this.s = 's =' + s
+    this.s = 's =' + s;
   }
 }
-let o4 = new C2('foo')
+let o4 = new C2('foo');
 ```
 
 **Example 3**
@@ -1122,7 +1084,7 @@ class C3 {
   readonly n: number = 0
   readonly s: string = ''
 }
-let o5: C3 = {n: 42, s: 'foo'}
+let o5: C3 = {n: 42, s: 'foo'};
 ```
 
 **ArkTS**
@@ -1132,7 +1094,7 @@ class C3 {
   n: number = 0
   s: string = ''
 }
-let o5: C3 = {n: 42, s: 'foo'}
+let o5: C3 = {n: 42, s: 'foo'};
 ```
 
 **Example 4**
@@ -1141,7 +1103,7 @@ let o5: C3 = {n: 42, s: 'foo'}
 
 ```typescript
 abstract class A {}
-let o6: A = {}
+let o6: A = {};
 ```
 
 **ArkTS**
@@ -1149,7 +1111,7 @@ let o6: A = {}
 ```typescript
 abstract class A {}
 class C extends A {}
-let o6: C = {} // Or let o6: C = new C()
+let o6: C = {}; // Or let o6: C = new C()
 ```
 
 **Example 5**
@@ -1161,10 +1123,10 @@ class C4 {
   n: number = 0
   s: string = ''
   f() {
-    console.log('Hello')
+    console.info('Hello');
   }
 }
-let o7: C4 = {n: 42, s: 'foo', f: () => {}}
+let o7: C4 = {n: 42, s: 'foo', f: () => {}};
 ```
 
 **ArkTS**
@@ -1174,12 +1136,12 @@ class C4 {
   n: number = 0
   s: string = ''
   f() {
-    console.log('Hello')
+    console.info('Hello');
   }
 }
-let o7 = new C4()
-o7.n = 42
-o7.s = 'foo'
+let o7 = new C4();
+o7.n = 42;
+o7.s = 'foo';
 ```
 
 **Example 6**
@@ -1193,15 +1155,15 @@ class Point {
 }
 
 function getPoint(o: Point): Point {
-  return o
+  return o;
 }
 
 // Structural typing is used to deduce that p is Point.
-let p = {x: 5, y: 10}
-getPoint(p)
+let p = {x: 5, y: 10};
+getPoint(p);
 
 // A literal can be contextually (i.e., implicitly) typed as Point.
-getPoint({x: 5, y: 10})
+getPoint({x: 5, y: 10});
 ```
 
 **ArkTS**
@@ -1211,29 +1173,31 @@ class Point {
   x: number = 0
   y: number = 0
 
-    // constructor() is used before literal initialization to create a valid object.
-    // Since there is no other Point constructors, constructor() is automatically added by compiler.
+  // constructor() is used before literal initialization to create a valid object.
+  // Since there is no other Point constructors, constructor() is automatically added by compiler.
 }
 
 function getPoint(o: Point): Point {
-  return o
+  return o;
 }
 
 // Explicit type is required for literal initialization.
-let p: Point = {x: 5, y: 10}
-getPoint(p)
+let p: Point = {x: 5, y: 10};
+getPoint(p);
 
 // getPoint expects Point explicitly. A new instance of Point is initialized with the literal.
-getPoint({x: 5, y: 10})
+getPoint({x: 5, y: 10});
 ```
 
-### Recipe: Object Literals Cannot Be Used as Type Declarations
+### Object Literals Cannot Be Used as Type Declarations
 
-**Rule:** `arkts-no-obj-literals-as-types`
+**Rule:** arkts-no-obj-literals-as-types
 
 **Severity: error**
 
-ArkTS does not support the usage of object literals to declare types in place. Declare classes and interfaces explicitly instead.
+**Error code: 10605040**
+
+ArkTS does not support the usage of object literals to declare types in place. Use classes or interfaces to declare types instead.
 
 **TypeScript**
 
@@ -1254,25 +1218,25 @@ class O {
   y: number = 0
 }
 
-let o: O = {x: 2, y: 3}
+let o: O = {x: 2, y: 3};
 
 type S = Set<O>
 ```
 
-### Recipe: Array Literals Must Contain Elements of Only Inferrable Types
+### Array Literals Must Contain Elements of Only Inferrable Types
 
-**Rule:** `arkts-no-noninferrable-arr-literals`
+**Rule:** arkts-no-noninferrable-arr-literals
 
 **Severity: error**
 
-Basically, ArkTS infers the type of an array literal as a union type of its
-contents. However, a compile-time error occurs if there is at least one
-element with a non-inferrable type (for example, untyped object literal).
+**Error code: 10605043**
+
+Basically, ArkTS infers the type of an array literal as a union type of its contents. However, a compile-time error occurs if there is at least one element with a non-inferrable type (for example, untyped object literal).
 
 **TypeScript**
 
 ```typescript
-let a = [{n: 1, s: '1'}, {n: 2, s: '2'}]
+let a = [{n: 1, s: '1'}, {n: 2, s: '2'}];
 ```
 
 **ArkTS**
@@ -1283,15 +1247,17 @@ class C {
   s: string = ''
 }
 
-let a1 = [{n: 1, s: '1'} as C, {n: 2, s: '2'} as C] // a1 is of type "C[]"
-let a2: C[] = [{n: 1, s: '1'}, {n: 2, s: '2'}]    // a2 is of type "C[]"
+let a1 = [{n: 1, s: '1'} as C, {n: 2, s: '2'} as C]; // a1 is of type "C[]"
+let a2: C[] = [{n: 1, s: '1'}, {n: 2, s: '2'}];    // a2 is of type "C[]"
 ```
 
-### Recipe: Use Arrow Functions Instead of Function Expressions
+### Use Arrow Functions Instead of Function Expressions
 
-**Rule:** `arkts-no-func-expressions`
+**Rule:** arkts-no-func-expressions
 
 **Severity: error**
+
+**Error code: 10605046**
 
 ArkTS does not support function expressions. Use arrow functions instead to specify explicitly.
 
@@ -1299,7 +1265,7 @@ ArkTS does not support function expressions. Use arrow functions instead to spec
 
 ```typescript
 let f = function (s: string) {
-  console.log(s)
+  console.info(s);
 }
 ```
 
@@ -1307,15 +1273,17 @@ let f = function (s: string) {
 
 ```typescript
 let f = (s: string) => {
-  console.log(s)
+  console.info(s);
 }
 ```
 
-### Recipe: Class Literals Are Not Supported
+### Class Literals Are Not Supported
 
-**Rule:** `arkts-no-class-literals`
+**Rule:** arkts-no-class-literals
 
 **Severity: error**
+
+**Error code: 10605050**
 
 ArkTS does not support class literals. Introduce new named class types explicitly.
 
@@ -1324,40 +1292,42 @@ ArkTS does not support class literals. Introduce new named class types explicitl
 ```typescript
 const Rectangle = class {
   constructor(height: number, width: number) {
-    this.height = height
-    this.width = width
+    this.height = height;
+    this.width = width;
   }
 
-  height
-  width
+  height;
+  width;
 }
 
-const rectangle = new Rectangle(0.0, 0.0)
+const rectangle = new Rectangle(0.0, 0.0);
 ```
 
 **ArkTS**
 
 ```typescript
-class Rectangle {
-  constructor(height: number, width: number) {
-    this.height = height
-    this.width = width
+class testRectangle {
+  constructor(testHeight: number, testWidth: number) {
+    this.testHeight = testHeight;
+    this.testWidth = testWidth;
   }
 
-  height: number
-  width: number
+  testHeight: number;
+  testWidth: number;
 }
 
-const rectangle = new Rectangle(0.0, 0.0)
+const rectangle = new testRectangle(0.0, 0.0);
 ```
 
-### Recipe: Classes Cannot Be Specified in the `implements` Clause
+### Classes Cannot Be Specified in the implements Clause
 
-**Rule:** `arkts-implements-only-iface`
+**Rule:** arkts-implements-only-iface
 
 **Severity: error**
 
-ArkTS does not allow to specify a class in the `implements` clause. Only interfaces may be specified.
+**Error code: 10605051**
+
+ArkTS does not allow to specify a class in the **implements** clause. Only interfaces may be specified.
 
 **TypeScript**
 
@@ -1383,38 +1353,36 @@ class C1 implements C {
 }
 ```
 
-### Recipe: Reassigning Object Methods Is Not Supported
+### Reassigning Object Methods Is Not Supported
 
-**Rule:** `arkts-no-method-reassignment`
+**Rule:** arkts-no-method-reassignment
 
 **Severity: error**
 
-ArkTS does not support reassigning a method for objects. In the statically
-typed languages, the layout of objects is fixed and all instances of the same
-object must share the same code of each method.
+**Error code: 10605052**
 
-If you need to add specific behavior for certain objects, you can create
-separate wrapper functions or use inheritance.
+ArkTS does not support reassigning a method for objects. In the statically typed languages, the layout of objects is fixed and all instances of the same object must share the same code of each method.
+If you need to add specific behavior for certain objects, you can create separate wrapper functions or use inheritance.
 
 **TypeScript**
 
 ```typescript
 class C {
   foo() {
-    console.log('foo')
+    console.info('foo');
   }
 }
 
 function bar() {
-  console.log('bar')
+  console.info('bar');
 }
 
-let c1 = new C()
-let c2 = new C()
-c2.foo = bar
+let c1 = new C();
+let c2 = new C();
+c2.foo = bar;
 
-c1.foo() // foo
-c2.foo() // bar
+c1.foo(); // foo
+c2.foo(); // bar
 ```
 
 **ArkTS**
@@ -1422,163 +1390,159 @@ c2.foo() // bar
 ```typescript
 class C {
   foo() {
-    console.log('foo')
+    console.info('foo');
   }
 }
 
 class Derived extends C {
   foo() {
-    console.log('Extra')
-    super.foo()
+    console.info('Extra');
+    super.foo();
   }
 }
 
 function bar() {
-  console.log('bar')
+  console.info('bar');
 }
 
-let c1 = new C()
-let c2 = new C()
-c1.foo() // foo
-c2.foo() // foo
+let c1 = new C();
+let c2 = new C();
+c1.foo(); // foo
+c2.foo(); // foo
 
-let c3 = new Derived()
-c3.foo() // Extra foo
+let c3 = new Derived();
+c3.foo(); // Extra foo
 ```
-### Recipe: Only the `as T` Syntax Is Supported for Type Casting
 
-**Rule:** `arkts-as-casts`
+### Only the as T Syntax Is Supported for Type Casting
+
+**Rule:** arkts-as-casts
 
 **Severity: error**
 
-ArkTS supports the keyword `as` as the only syntax for type casting.
-Incorrect casting causes a compile-time error or runtime `ClassCastException`.
-The `<type>` syntax for type casting is not supported.
+**Error code: 10605053**
 
-Use the expression `new ...` instead of `as` if a **primitive** type
-(such as a `number` or a `boolean`) must be cast to the reference type.
+ArkTS supports the keyword **as** as the only syntax for type casting. Incorrect casting causes a compile-time error or runtime **ClassCastException**. The **\<type>** syntax for type casting is not supported.
+
+Use the expression **new** instead of **as** if a **primitive** type (such as a **number** or a **boolean**) must be cast to the reference type.
 
 **TypeScript**
 
 ```typescript
-class Shape {}
-class Circle extends Shape {x: number = 5}
-class Square extends Shape {y: string = 'a'}
+class testShape {}
+class testCircle extends testShape { x: number = 5 }
+class testSquare extends testShape { y: string = 'a' }
 
 function createShape(): Shape {
-  return new Circle()
+  return new Circle();
 }
 
-let c1 = <Circle> createShape()
+let c1 = <Circle> createShape();
 
-let c2 = createShape() as Circle
+let c2 = createShape() as Circle;
 
 // No report is provided during compilation or runtime if casting is wrong.
-let c3 = createShape() as Square
-console.log(c3.y) // undefined
+let c3 = createShape() as Square;
+console.info(c3.y); // undefined
 
-// Important corner case for casting primitives to the boxed counterparts:
-// The left operand is not properly boxed here in runtime
-// because "as" has no runtime effect in TypeScript.
-let e1 = (5.0 as Number) instanceof Number // false
+// Important corner case for casting primitives to the boxed counterparts: The left operand is not properly boxed here in runtime because "as" has no runtime effect in TypeScript.
+let e1 = (5.0 as Number) instanceof Number; // false
 
 // A Number object is created and instanceof works as expected.
-let e2 = (new Number(5.0)) instanceof Number // True
+let e2 = (new Number(5.0)) instanceof Number; // true
 ```
 
 **ArkTS**
 
 ```typescript
-class Shape {}
-class Circle extends Shape {x: number = 5}
-class Square extends Shape {y: string = 'a'}
+class testShape {}
+class testCircle extends testShape { x: number = 5 }
 
-function createShape(): Shape {
-  return new Circle()
+function createShape(): testShape {
+  return new Circle();
 }
 
-let c2 = createShape() as Circle
-
-// ClassCastException is thrown during runtime.
-let c3 = createShape() as Square
+let c2 = createShape() as testCircle;
 
 // A Number object is created and instanceof works as expected.
-let e2 = (new Number(5.0)) instanceof Number // True
+let e2 = (new Number(5.0)) instanceof Number; // true
 ```
 
-### Recipe: JSX Expressions Are Not Supported
+### JSX Expressions Are Not Supported
 
-**Rule:** `arkts-no-jsx`
+**Rule:** arkts-no-jsx
 
 **Severity: error**
+
+**Error code: 10605054**
 
 Do not use JSX since no alternative is provided to rewrite it.
 
-### Recipe: Unary Operators `+`, `-`, and `~` Work Only on Numbers
+### Unary Operators +, -, and ~ Work Only on Numbers
 
-**Rule:** `arkts-no-polymorphic-unops`
+**Rule:** arkts-no-polymorphic-unops
 
 **Severity: error**
 
-ArkTS allows unary operators to work on numeric types only. A compile-time
-error occurs if these operators are applied to a non-numeric type. Unlike in
-TypeScript, implicit casting of strings in this context is not supported and casting must
-be done explicitly.
+**Error code: 10605055**
+
+ArkTS allows unary operators to work on numeric types only. A compile-time error occurs if these operators are applied to a non-numeric type. Unlike in TypeScript, implicit casting of strings in this context is not supported and casting must be done explicitly.
 
 **TypeScript**
 
 ```typescript
-let a = +5        // 5 as number
-let b = +'5'      // 5 as number
-let c = -5        // -5 as number
-let d = -'5'      // -5 as number
-let e = ~5        // -6 as number
-let f = ~'5'      // -6 as number
-let g = +'string' // NaN as number
+let a = +5;    // 5 as number
+let b = +'5';    // 5 as number
+let c = -5;    // -5 as number
+let d = -'5';    // -5 as number
+let e = ~5;    // -6 as number
+let f = ~'5';    // -6 as number
+let g = +'string'; // NaN as number
 
 function returnTen(): string {
-  return '-10'
+  return '-10';
 }
 
 function returnString(): string {
-  return 'string'
+  return 'string';
 }
 
-let x = +returnTen()    // -10 as number
-let y = +returnString() // NaN
+let x = +returnTen();  // -10 as number
+let y = +returnString(); // NaN
 ```
 
 **ArkTS**
 
 ```typescript
-let a = +5        // 5 as number
-let b = +'5'      // Compile-time error
-let c = -5        // -5 as number
-let d = -'5'      // Compile-time error
-let e = ~5        // -6 as number
-let f = ~'5'      // Compile-time error
-let g = +'string' // Compile-time error
+let a = +5;    // 5 as number
+let b = +'5';    // Compile-time error
+let c = -5;    // -5 as number
+let d = -'5';    // Compile-time error
+let e = ~5;    // -6 as number
+let f = ~'5';    // Compile-time error
+let g = +'string'; // Compile-time error
 
 function returnTen(): string {
-  return '-10'
+  return '-10';
 }
 
 function returnString(): string {
-  return 'string'
+  return 'string';
 }
 
-let x = +returnTen()    // Compile-time error
-let y = +returnString() // Compile-time error
+let x = +returnTen();  // Compile-time error
+let y = +returnString(); // Compile-time error
 ```
 
-### Recipe: `delete` Operator Is Not Supported
+### delete Operator Is Not Supported
 
-**Rule:** `arkts-no-delete`
+**Rule:** arkts-no-delete
 
 **Severity: error**
 
-ArkTS assumes that object layout is known at compile time and cannot be
-changed at runtime. Therefore, the operation of deleting a property makes no sense.
+**Error code: 10605059**
+
+ArkTS assumes that object layout is known at compile time and cannot be changed at runtime. Therefore, the operation of deleting a property makes no sense.
 
 **TypeScript**
 
@@ -1588,39 +1552,40 @@ class Point {
   y?: number = 0.0
 }
 
-let p = new Point()
-delete p.y
+let p = new Point();
+delete p.y;
 ```
 
 **ArkTS**
 
 ```typescript
 // To mimic the original semantics, you may declare a nullable type and assign null to mark the value absence.
-
 class Point {
   x: number | null = 0
   y: number | null = 0
 }
 
-let p = new Point()
-p.y = null
+let p = new Point();
+p.y = null;
 ```
 
-### Recipe: `typeof` Operator Is Allowed Only in Expression Contexts
+### typeof Operator Is Allowed Only in Expression Contexts
 
-**Rule:** `arkts-no-type-query`
+**Rule:** arkts-no-type-query
 
 **Severity: error**
 
-ArkTS supports the `typeof` operator only in the expression context. Using `typeof` to specify type notations is not supported.
+**Error code: 10605060**
+
+ArkTS supports the **typeof** operator only in the expression context. Using **typeof** to specify type notations is not supported.
 
 **TypeScript**
 
 ```typescript
-let n1 = 42
-let s1 = 'foo'
-console.log(typeof n1) // 'number'
-console.log(typeof s1) // 'string'
+let n1 = 42;
+let s1 = 'foo';
+console.info(typeof n1); // 'number'
+console.info(typeof s1); // 'string'
 let n2: typeof n1
 let s2: typeof s1
 ```
@@ -1628,35 +1593,48 @@ let s2: typeof s1
 **ArkTS**
 
 ```typescript
-let n1 = 42
-let s1 = 'foo'
-console.log(typeof n1) // 'number'
-console.log(typeof s1) // 'string'
+let n1 = 42;
+let s1 = 'foo';
+console.info(typeof n1); // 'number'
+console.info(typeof s1); // 'string'
 let n2: number
 let s2: string
 ```
 
-### Recipe: `instanceof` Operator Is Partially Supported
+### instanceof Operator Is Partially Supported
 
-**Rule:** `arkts-instanceof-ref-types`
-
-**Severity: error**
-
-In TypeScript, the left-hand side of an `instanceof` expression must be of the type
-`any`, an object type, or a type parameter. Otherwise, the result is `false`. 
-In ArkTS, the left-hand side of an expression may be of any reference type, for example, an object, an array, or a function. Otherwise, a compile-time error occurs. In addition, the left operand in ArkTS
-cannot be a type. It must be an object instance.
-
-### Recipe: `in` Operator Is Not Supported
-
-**Rule:** `arkts-no-in`
+**Rule:** arkts-instanceof-ref-types
 
 **Severity: error**
 
-ArkTS does not support the operator `in`. This operator makes
-little sense since the object layout is known at compile time and cannot
-be changed at runtime. Use `instanceof` as a workaround if you want
-to check whether certain class members exist.
+**Error code: 10605065**
+
+In TypeScript, the left-hand side of an **instanceof** expression must be of the type **any**, an object type, or a type parameter. Otherwise, the result is **false**. In ArkTS, the left-hand side of an expression may be of any reference type, for example, an object, an array, or a function. Otherwise, a compile-time error occurs. In addition, the left operand in ArkTS cannot be a type. It must be an object instance.
+
+**TypeScript**
+
+```typescript
+let num: number = 42;
+let result = num instanceof Number;
+console.info('result = ', result); // result = false
+```
+
+**ArkTS**
+
+```typescript
+let num: number = 42;
+let result = num instanceof Number; // Compile-time error
+```
+
+### in Operator Is Not Supported
+
+**Rule:** arkts-no-in
+
+**Severity: error**
+
+**Error code: 10605066**
+
+ArkTS does not support the operator **in**. This operator makes little sense since the object layout is known at compile time and cannot be changed at runtime. Use **instanceof** as a workaround if you want to check whether certain class members exist.
 
 **TypeScript**
 
@@ -1664,9 +1642,9 @@ to check whether certain class members exist.
 class Person {
   name: string = ''
 }
-let p = new Person()
+let p = new Person();
 
-let b = 'name' in p // true
+let b = 'name' in p; // true
 ```
 
 **ArkTS**
@@ -1675,60 +1653,60 @@ let b = 'name' in p // true
 class Person {
   name: string = ''
 }
-let p = new Person()
+let p = new Person();
 
-let b = p instanceof Person // True. "name" is guaranteed to be present.
+let b = p instanceof Person; // True. "name" is guaranteed to be present.
 ```
 
-### Recipe: Destructuring Assignment Is Not Supported
+### Destructuring Assignment Is Not Supported
 
-**Rule:** `arkts-no-destruct-assignment`
+**Rule:** arkts-no-destruct-assignment
 
 **Severity: error**
+
+**Error code: 10605069**
 
 ArkTS does not support destructuring assignment. Use other idioms (for example, a temporary variable, where applicable) instead.
 
 **TypeScript**
 
 ```typescript
-let [one, two] = [1, 2]; // Semicolon is required here
-[one, two] = [two, one]
+let [one, two] = [1, 2]; // Semicolon is required here.
+[one, two] = [two, one];
 
 let head, tail
-[head, ...tail] = [1, 2, 3, 4]
+[head, ...tail] = [1, 2, 3, 4];
 ```
 
 **ArkTS**
 
 ```typescript
-let arr: number[] = [1, 2]
-let one = arr[0]
-let two = arr[1]
+let arr: number[] = [1, 2];
+let one = arr[0];
+let two = arr[1];
 
-let tmp = one
-one = two
-two = tmp
+let tmp = one;
+one = two;
+two = tmp;
 
-let data: Number[] = [1, 2, 3, 4]
-let head = data[0]
-let tail: Number[] = []
+let data: Number[] = [1, 2, 3, 4];
+let head = data[0];
+let tail: Number[] = [];
 for (let i = 1; i < data.length; ++i) {
-  tail.push(data[i])
+  tail.push(data[i]);
 }
 ```
 
-### Recipe: Comma Operator `,` Is Supported Only in `for` Loops
+### Comma Operator Is Supported Only in for Loops
 
-**Rule:** `arkts-no-comma-outside-loops`
+**Rule:** arkts-no-comma-outside-loops
 
 **Severity: error**
 
-ArkTS supports the comma operator `,` only in `for` loops. In other cases,
-the comma operator is useless as it makes the execution order harder to understand.
+**Error code: 10605071**
 
-Please note that this rule is applied only to the "comma operator". Other cases, when
-comma is used to delimit variable declarations or parameters of a function call, are
-of course allowed.
+ArkTS supports the comma operator (,) only in **for** loops. In other cases, the comma operator is useless as it makes the execution order harder to understand.
+>**NOTE**<br>This is different from the comma separator used to declare variables and pass function parameters.
 
 **TypeScript**
 
@@ -1737,8 +1715,8 @@ for (let i = 0, j = 0; i < 10; ++i, j += 2) {
   // ...
 }
 
-let x = 0
-x = (++x, x++) // 1
+let x = 0;
+x = (++x, x++); // 1
 ```
 
 **ArkTS**
@@ -1749,20 +1727,20 @@ for (let i = 0, j = 0; i < 10; ++i, j += 2) {
 }
 
 // Use the explicit execution order instead of the comma operator.
-let x = 0
-++x
-x = x++
+let x = 0;
+++x;
+x = x++;
 ```
 
-### Recipe: Destructuring Variable Declarations Are Not Supported
+### Destructuring Variable Declarations Are Not Supported
 
-**Rule:** `arkts-no-destruct-decls`
+**Rule:** arkts-no-destruct-decls
 
 **Severity: error**
 
-ArkTS does not support destructuring variable declarations. This is a dynamic
-feature relying on structural compatibility. In addition, names in destructuring
-declarations must be equal to properties within destructed classes.
+**Error code: 10605074**
+
+ArkTS does not support destructuring variable declarations. This is a dynamic feature relying on structural compatibility. In addition, names in destructuring declarations must be equal to properties within destructed classes.
 
 **TypeScript**
 
@@ -1773,10 +1751,10 @@ class Point {
 }
 
 function returnZeroPoint(): Point {
-  return new Point()
+  return new Point();
 }
 
-let {x, y} = returnZeroPoint()
+let {x, y} = returnZeroPoint();
 ```
 
 **ArkTS**
@@ -1788,23 +1766,24 @@ class Point {
 }
 
 function returnZeroPoint(): Point {
-  return new Point()
+  return new Point();
 }
 
 // Create an intermediate object and work with it field by field without name restrictions.
-let zp = returnZeroPoint()
-let x = zp.x
-let y = zp.y
+let zp = returnZeroPoint();
+let x = zp.x;
+let y = zp.y;
 ```
 
-### Recipe: Type Annotation in the Catch Clause Is Not Supported
+### Type Annotation in the Catch Clause Is Not Supported
 
-**Rule:** `arkts-no-types-in-catch`
+**Rule:** arkts-no-types-in-catch
 
 **Severity: error**
 
-In TypeScript, the catch clause variable type annotation must be `any` or `unknown`
-if specified. As ArkTS does not support these types, omit type annotations.
+**Error code: 10605079**
+
+In TypeScript, the catch clause variable type annotation must be **any** or **unknown** if specified. As ArkTS does not support these types, omit type annotations.
 
 **TypeScript**
 
@@ -1826,42 +1805,43 @@ try {
 }
 ```
 
-### Recipe: `for .. in` Is Not Supported
+### for .. in Is Not Supported
 
-**Rule:** `arkts-no-for-in`
+**Rule:** arkts-no-for-in
 
 **Severity: error**
 
-ArkTS does not support iteration over object contents by the
-`for .. in` loop. For objects, iteration over properties at runtime is
-considered redundant because object layout is known at compile time and
-cannot change at runtime. For arrays, use the regular `for` loop for iteration.
+**Error code: 10605080**
+
+ArkTS does not support iteration over object contents by the **for .. in** loop. For objects, iteration over properties at runtime is considered redundant because object layout is known at compile time and cannot change at runtime.
 
 **TypeScript**
 
 ```typescript
-let a: string[] = ['1.0', '2.0', '3.0']
+let a: string[] = ['1.0', '2.0', '3.0'];
 for (let i in a) {
-  console.log(a[i])
+  console.info(a[i]);
 }
 ```
 
 **ArkTS**
 
 ```typescript
-let a: string[] = ['1.0', '2.0', '3.0']
+let a: string[] = ['1.0', '2.0', '3.0'];
 for (let i = 0; i < a.length; ++i) {
-  console.log(a[i])
+  console.info(a[i]);
 }
 ```
 
-### Recipe: Mapped Type Expression Is Not Supported
+### Mapped Type Expression Is Not Supported
 
-**Rule:** `arkts-no-mapped-types`
+**Rule:** arkts-no-mapped-types
 
 **Severity: error**
 
-ArkTS does not support mapped types. Use other language idioms and regular classes to achieve the same behaviour.
+**Error code: 10605083**
+
+ArkTS does not support mapped types. Use other language idioms and regular classes to achieve the same behavior.
 
 **TypeScript**
 
@@ -1885,13 +1865,15 @@ class CFlags {
 }
 ```
 
-### Recipe: `with` Statement Is Not Supported
+### with Statement Is Not Supported
 
-**Rule:** `arkts-no-with`
+**Rule:** arkts-no-with
 
 **Severity: error**
 
-ArkTS does not support the `with` statement. Use other language idioms to achieve the same behaviour.
+**Error code: 10605084**
+
+ArkTS does not support the **with** statement. Use other language idioms to achieve the same behavior.
 
 **TypeScript**
 
@@ -1909,40 +1891,39 @@ let r: number = 42;
 let area: number = Math.PI * r * r;
 ```
 
-### Recipe: `throw` Statements Do Not Accept Values of Arbitrary Types
+### throw Statements Do Not Accept Values of Arbitrary Types
 
-**Rule:** `arkts-limited-throw`
+**Rule:** arkts-limited-throw
 
 **Severity: error**
 
-ArkTS supports throwing only objects of the class `Error` or any
-derived class. Throwing an arbitrary type (for example, a `number` or `string`)
-is prohibited.
+**Error code: 10605087**
+
+ArkTS supports throwing only objects of the class **Error** or any derived class. Throwing an arbitrary type (for example, **number** or **string**) is prohibited.
 
 **TypeScript**
 
 ```typescript
-throw 4
-throw ''
-throw new Error()
+throw 4;
+throw '';
+throw new Error();
 ```
 
 **ArkTS**
 
 ```typescript
-throw new Error()
+throw new Error();
 ```
 
-### Recipe: Function Return Type Inference Is Limited
+### Function Return Type Inference Is Limited
 
-**Rule:** `arkts-no-implicit-return-types`
+**Rule:** arkts-no-implicit-return-types
 
 **Severity: error**
 
-ArkTS supports type inference for function return types, but this functionality
-is currently restricted. In particular, when the expression in the `return`
-statement is a call to a function or method whose return value type is omitted,
-a compile-time error occurs. If this is the case, specify the return type explicitly.
+**Error code: 10605090**
+
+ArkTS supports type inference for function return types, but this functionality is currently restricted. In particular, when the expression in the **return** statement is a call to a function or method whose return value type is omitted, a compile-time error occurs. If this is the case, specify the return type explicitly.
 
 **TypeScript**
 
@@ -1984,7 +1965,7 @@ function g(x: number): number {
   return f(x - 1);
 }
 
-// In this case, the return type will be inferred.
+// Return type may be omitted.
 function doOperation(x: number, y: number) {
   return x + y;
 }
@@ -1993,13 +1974,15 @@ f(10);
 doOperation(2, 3);
 ```
 
-### Recipe: Destructuring Parameter Declarations Are Not Supported
+### Destructuring Parameter Declarations Are Not Supported
 
-**Rule:** `arkts-no-destruct-params`
+**Rule:** arkts-no-destruct-params
 
 **Severity: error**
 
-ArkTS requires parameters to be passed directly to the function, and local names to be assigned manually.
+**Error code: 10605091**
+
+ArkTS requires that arguments be explicitly passed to function parameters without destructing.
 
 **TypeScript**
 
@@ -2011,7 +1994,7 @@ function drawText({ text = '', location: [x, y] = [0, 0], bold = false }) {
   bold;
 }
 
-drawText({ text: 'Hello, world!', location: [100, 50], bold: true })
+drawText({ text: 'Hello, world!', location: [100, 50], bold: true });
 ```
 
 **ArkTS**
@@ -2031,11 +2014,13 @@ function main() {
 }
 ```
 
-### Recipe: Nested Functions Are Not Supported
+### Nested Functions Are Not Supported
 
-**Rule:** `arkts-no-nested-funcs`
+**Rule:** arkts-no-nested-funcs
 
 **Severity: error**
+
+**Error code: 10605092**
 
 ArkTS does not support nested functions. Use lambdas instead.
 
@@ -2044,15 +2029,15 @@ ArkTS does not support nested functions. Use lambdas instead.
 ```typescript
 function addNum(a: number, b: number): void {
 
-    // Nested function
+  // Nested function
   function logToConsole(message: string): void {
-    console.log(message)
+    console.info(message);
   }
 
-  let result = a + b
+  let result = a + b;
 
-    // Invoke the nested function.
-  logToConsole('result is ' + result)
+  // Invoke the nested function.
+  logToConsole('result is ' + result);
 }
 ```
 
@@ -2060,30 +2045,32 @@ function addNum(a: number, b: number): void {
 
 ```typescript
 function addNum(a: number, b: number): void {
-    // Use lambda instead of a nested function.
+  // Use lambda instead of a nested function.
   let logToConsole: (message: string) => void = (message: string): void => {
-    console.log(message)
+    console.info(message);
   }
 
-  let result = a + b
+  let result = a + b;
 
-  logToConsole('result is ' + result)
+  logToConsole('result is ' + result);
 }
 ```
 
-### Recipe: Using `this` Inside Stand-Alone Functions Is Not Supported
+### Using this Inside Stand-Alone Functions Is Not Supported
 
-**Rule:** `arkts-no-standalone-this`
+**Rule:** arkts-no-standalone-this
 
 **Severity: error**
 
-ArkTS does not support the usage of `this` inside stand-alone functions and inside static methods. `this` can be used in instance methods only.
+**Error code: 10605093**
+
+ArkTS does not support the usage of **this** inside stand-alone functions and inside static methods. **this** can be used in instance methods only.
 
 **TypeScript**
 
 ```typescript
 function foo(i: string) {
-    this.count = i // Compile-time error only when noImplicitThis is enabled.
+  this.count = i; // Compile-time error only when noImplicitThis is enabled.
 }
 
 class A {
@@ -2092,9 +2079,9 @@ class A {
 }
 
 let a = new A();
-console.log(a.count); // Prints "a".
-a.m(b);
-console.log(a.count); // Prints "b".
+console.info(a.count); // Print "a".
+a.m('b');
+console.info(a.count); // Print "b".
 ```
 
 **ArkTS**
@@ -2109,31 +2096,33 @@ class A {
 
 function main(): void {
   let a = new A();
-  console.log(a.count);  // Prints "a".
+  console.info(a.count);  // Print "a".
   a.m('b');
-  console.log(a.count);  // Prints "b".
+  console.info(a.count);  // Print "b".
 }
 ```
 
-### Recipe: Generator Functions Are Not Supported
+### Generator Functions Are Not Supported
 
-**Rule:** `arkts-no-generators`
+**Rule:** arkts-no-generators
 
 **Severity: error**
 
-Currently, ArkTS does not support generator functions. Use the `async`/`await` mechanism for multitasking.
+**Error code: 10605094**
+
+Currently, ArkTS does not support generator functions. Use the **async** or **await** mechanism for multitasking.
 
 **TypeScript**
 
 ```typescript
 function* counter(start: number, end: number) {
   for (let i = start; i <= end; i++) {
-    yield i
+    yield i;
   }
 }
 
 for (let num of counter(1, 5)) {
-  console.log(num)
+  console.info(num.toString());
 }
 ```
 
@@ -2154,15 +2143,15 @@ async function foo() {
 foo()
 ```
 
-### Recipe: Type Guarding Is Supported with `instanceof` and `as`
+### Type Guarding Is Supported with instanceof and as
 
-**Rule:** `arkts-no-is`
+**Rule:** arkts-no-is
 
 **Severity: error**
 
-ArkTS does not support the `is` operator, which must be replaced by the
-`instanceof` operator. Note that the fields of an object must be cast to the
-appropriate type with the `as` operator before being used.
+**Error code: 10605096**
+
+ArkTS does not support the **is** operator, which must be replaced by the **instanceof** operator. Note that the fields of an object must be cast to the appropriate type with the **as** operator before **instanceof** is used.
 
 **TypeScript**
 
@@ -2178,21 +2167,21 @@ class Bar {
 }
 
 function isFoo(arg: any): arg is Foo {
-  return arg.foo !== undefined
+  return arg.foo !== undefined;
 }
 
 function doStuff(arg: Foo | Bar) {
   if (isFoo(arg)) {
-    console.log(arg.foo)  // OK
-    console.log(arg.bar)  // Compile-time error
+    console.info(arg.foo);  // OK
+    console.info(arg.bar);  // Compile-time error
   } else {
-    console.log(arg.foo)  // Compile-time error
-    console.log(arg.bar)  // OK
+    console.info(arg.foo);  // Compile-time error
+    console.info(arg.bar);  // OK
   }
 }
 
-doStuff({ foo: 123, common: '123' })
-doStuff({ bar: 123, common: '123' })
+doStuff({ foo: '123', common: '123' });
+doStuff({ bar: '123', common: '123' });
 ```
 
 **ArkTS**
@@ -2209,38 +2198,38 @@ class Bar {
 }
 
 function isFoo(arg: Object): boolean {
-  return arg instanceof Foo
+  return arg instanceof Foo;
 }
 
 function doStuff(arg: Object): void {
   if (isFoo(arg)) {
-    let fooArg = arg as Foo
-    console.log(fooArg.foo)   // OK
-    console.log(arg.bar)    // Compile-time error
+    let fooArg = arg as Foo;
+    console.info(fooArg.foo);   // OK
+    console.info(arg.bar);    // Compile-time error
   } else {
-    let barArg = arg as Bar
-    console.log(arg.foo)    // Compile-time error
-    console.log(barArg.bar)   // OK
+    let barArg = arg as Bar;
+    console.info(arg.foo);    // Compile-time error
+    console.info(barArg.bar);   // OK
   }
 }
 
 function main(): void {
-  doStuff(new Foo())
-  doStuff(new Bar())
+  doStuff(new Foo());
+  doStuff(new Bar());
 }
 ```
 
-### Recipe: It is possible to spread only arrays or classes derived from arrays into the rest parameter or array literals
+### Spread Operator Is Supported in Partial Scenarios
 
-**Rule:** `arkts-no-spread`
+**Rule:** arkts-no-spread
 
 **Severity: error**
 
-The only supported scenario for the spread operator is to spread an array or
-class derived from array into the rest parameter or array literal.
-Otherwise, manually "unpack" data from arrays and objects, where necessary.
-All typed arrays from the standard library (for example, ``Int32Array``)
-are also supported.
+**Error code: 10605099**
+
+The only supported scenario for the spread operator is to spread an array, a child class of an array, or a typed array (for example, **Int32Array**). A spread operator can be used only in the following scenarios:
+1. Being passed to the rest parameter;
+2. Copying an array to an array literal.
 
 **TypeScript**
 
@@ -2297,17 +2286,15 @@ let arr3 = new DerivedFromArray([7, 8, 9]);
 let arr4 = [...arr1, 10, ...arr2, 11, ...arr3];
 ```
 
-### Recipe: Interface Cannot Extend Interfaces with the Same Method
+### Interface Cannot Extend Interfaces with the Same Method
 
-**Rule:** `arkts-no-extend-same-prop`
+**Rule:** arkts-no-extend-same-prop
 
 **Severity: error**
 
-In TypeScript, an interface that extends two other interfaces with the same method
-must declare that method with a combined return type. It is not allowed in
-ArkTS because ArkTS does not allow an interface to contain two methods with
-signatures that are not distinguishable, for example, two methods that have the same
-parameter lists but different return types.
+**Error code: 106050102**
+
+In TypeScript, an interface that extends two other interfaces with the same method must declare that method with a combined return type. It is not allowed in ArkTS because ArkTS does not allow an interface to contain two methods with signatures that are not distinguishable, for example, two methods that have the same parameter lists but different return types.
 
 **TypeScript**
 
@@ -2331,7 +2318,7 @@ class C implements MoverShaker {
   private frequency: number = 0
 
   getStatus() {
-    return { speed: this.speed, frequency: this.frequency }
+    return { speed: this.speed, frequency: this.frequency };
   }
 }
 ```
@@ -2342,7 +2329,7 @@ class C implements MoverShaker {
 class MoveStatus {
   public speed: number
   constructor() {
-    this.speed = 0
+    this.speed = 0;
   }
 }
 interface Mover {
@@ -2352,7 +2339,7 @@ interface Mover {
 class ShakeStatus {
   public frequency: number
   constructor() {
-    this.frequency = 0
+    this.frequency = 0;
   }
 }
 interface Shaker {
@@ -2363,8 +2350,8 @@ class MoveAndShakeStatus {
   public speed: number
   public frequency: number
   constructor() {
-    this.speed = 0
-    this.frequency = 0
+    this.speed = 0;
+    this.frequency = 0;
   }
 }
 
@@ -2373,32 +2360,34 @@ class C implements Mover, Shaker {
   private shake_status: ShakeStatus
 
   constructor() {
-    this.move_status = new MoveStatus()
-    this.shake_status = new ShakeStatus()
+    this.move_status = new MoveStatus();
+    this.shake_status = new ShakeStatus();
   }
 
   public getMoveStatus(): MoveStatus {
-    return this.move_status
+    return this.move_status;
   }
 
   public getShakeStatus(): ShakeStatus {
-    return this.shake_status
+    return this.shake_status;
   }
 
   public getStatus(): MoveAndShakeStatus {
     return {
       speed: this.move_status.speed,
       frequency: this.shake_status.frequency
-    }
+    };
   }
 }
 ```
 
-### Recipe: Declaration Merging Is Not Supported
+### Declaration Merging Is Not Supported
 
-**Rule:** `arkts-no-decl-merging`
+**Rule:** arkts-no-decl-merging
 
 **Severity: error**
+
+**Error code: 10605103**
 
 ArkTS does not support merging declarations. Keep all definitions of classes and interfaces compact in the codebase.
 
@@ -2406,17 +2395,17 @@ ArkTS does not support merging declarations. Keep all definitions of classes and
 
 ```typescript
 interface Document {
-  createElement(tagName: any): Element
+  createElement(tagName: any): number;
 }
 
 interface Document {
-  createElement(tagName: string): HTMLElement
+  createElement(tagName: string): boolean;
 }
 
 interface Document {
-  createElement(tagName: number): HTMLDivElement
-  createElement(tagName: boolean): HTMLSpanElement
-  createElement(tagName: string, value: number): HTMLCanvasElement
+  createElement(tagName: number): number;
+  createElement(tagName: boolean): boolean;
+  createElement(tagName: string, value: number): string;
 }
 ```
 
@@ -2424,19 +2413,21 @@ interface Document {
 
 ```typescript
 interface Document {
-  createElement(tagName: number): HTMLDivElement
-  createElement(tagName: boolean): HTMLSpanElement
-  createElement(tagName: string, value: number): HTMLCanvasElement
-  createElement(tagName: string): HTMLElement
-  createElement(tagName: Object): Element
+  createElement(tagName: number): number;
+  createElement(tagName: boolean): boolean;
+  createElement(tagName: string, value: number): number;
+  createElement(tagName: string): string;
+  createElement(tagName: Object): object;
 }
 ```
 
-### Recipe: Interfaces Cannot Extend Classes
+### Interfaces Cannot Extend Classes
 
-**Rule:** `arkts-extends-only-class`
+**Rule:** arkts-extends-only-class
 
 **Severity: error**
+
+**Error code: 10605104**
 
 ArkTS does not support interfaces that extend classes. Interfaces can extend only interfaces.
 
@@ -2464,11 +2455,13 @@ interface SelectableControl extends Control {
 }
 ```
 
-### Recipe: Constructor Function Type Is Not Supported
+### Constructor Function Type Is Not Supported
 
-**Rule:** `arkts-no-ctor-signatures-funcs`
+**Rule:** arkts-no-ctor-signatures-funcs
 
 **Severity: error**
+
+**Error code: 10605106**
 
 ArkTS does not support the usage of the constructor function type. Use lambdas instead.
 
@@ -2485,10 +2478,10 @@ type PersonCtor = new (name: string, age: number) => Person
 
 function createPerson(Ctor: PersonCtor, name: string, age: number): Person
 {
-  return new Ctor(name, age)
+  return new Ctor(name, age);
 }
 
-const person = createPerson(Person, 'John', 30)
+const person = createPerson(Person, 'John', 30);
 ```
 
 **ArkTS**
@@ -2503,25 +2496,25 @@ class Person {
 type PersonCtor = (n: string, a: number) => Person
 
 function createPerson(Ctor: PersonCtor, n: string, a: number): Person {
-  return Ctor(n, a)
+  return Ctor(n, a);
 }
 
 let Impersonizer: PersonCtor = (n: string, a: number): Person => {
-  return new Person(n, a)
+  return new Person(n, a);
 }
 
-const person = createPerson(Impersonizer, 'John', 30)
+const person = createPerson(Impersonizer, 'John', 30);
 ```
 
-### Recipe: Enumeration Members Can Be Initialized Only with Compile Time Expressions of the Same Type
+### Enumeration Members Can Be Initialized Only with Compile Time Expressions of the Same Type
 
-**Rule:** `arkts-no-enum-mixed-types`
+**Rule:** arkts-no-enum-mixed-types
 
 **Severity: error**
 
-ArkTS does not support initializing members of enumerations with expressions
-that are evaluated during program runtime. Besides, all explicitly set
-initializers must be of the same type.
+**Error code: 10605111**
+
+ArkTS does not support initializing members of enumerations with expressions that are evaluated during program runtime. Besides, all explicitly set initializers must be of the same type.
 
 **TypeScript**
 
@@ -2561,13 +2554,15 @@ enum E2 {
 }
 ```
 
-### Recipe: `enum` Declaration Merging Is Not Supported
+### enum Declaration Merging Is Not Supported
 
-**Rule:** `arkts-no-enum-merging`
+**Rule:** arkts-no-enum-merging
 
 **Severity: error**
 
-ArkTS does not support merging declarations for `enum`. Keep the declaration of each `enum` compact in the codebase.
+**Error code: 10605113**
+
+ArkTS does not support merging declarations for **enum**. Keep the declaration of each **enum** compact in the codebase.
 
 **TypeScript**
 
@@ -2597,11 +2592,13 @@ enum ColorSet {
 }
 ```
 
-### Recipe: Namespaces Cannot Be Used as Objects
+### Namespaces Cannot Be Used as Objects
 
-**Rule:** `arkts-no-ns-as-obj`
+**Rule:** arkts-no-ns-as-obj
 
 **Severity: error**
+
+**Error code: 10605114**
 
 ArkTS does not support the usage of namespaces as objects. Classes or modules can be interpreted as analogs of namespaces.
 
@@ -2612,8 +2609,8 @@ namespace MyNamespace {
   export let x: number
 }
 
-let m = MyNamespace
-m.x = 2
+let m = MyNamespace;
+m.x = 2;
 ```
 
 **ArkTS**
@@ -2623,23 +2620,25 @@ namespace MyNamespace {
   export let x: number
 }
 
-MyNamespace.x = 2
+MyNamespace.x = 2;
 ```
 
-### Recipe: Non-declaration Statements in Namespaces Are Not Supported
+### Non-declaration Statements in Namespaces Are Not Supported
 
-**Rule:** `arkts-no-ns-statements`
+**Rule:** arkts-no-ns-statements
 
 **Severity: error**
 
-ArkTS does not support statements in namespaces. Use a function to execute statements.
+**Error code: 10605116**
+
+In ArkTS, namespaces are used to define the visibility scope of identifiers. Namespaces are valid only during compilation. Therefore, non-declaration statements are not supported in namespaces. Use a function to execute non-declaration statements.
 
 **TypeScript**
 
 ```typescript
 namespace A {
   export let x: number
-  x = 1
+  x = 1;
 }
 ```
 
@@ -2650,23 +2649,23 @@ namespace A {
   export let x: number
 
   export function init() {
-    x = 1
+    x = 1;
   }
 }
 
 // Initialization function should be called to execute statements.
-A.init()
+A.init();
 ```
 
-### Recipe: `require` and `import` Assignment Are Not Supported
+### require and import Assignment Are Not Supported
 
-**Rule:** `arkts-no-require`
+**Rule:** arkts-no-require
 
 **Severity: error**
 
-ArkTS does not support importing via `require`.
-It does not support `import` assignments either.
-Use the regular `import` syntax  instead.
+**Error code: 10605121**
+
+ArkTS does not support importing via **require**. It does not support **import** assignments either. Use the regular **import** syntax instead.
 
 **TypeScript**
 
@@ -2680,14 +2679,15 @@ import m = require('mod')
 import * as m from 'mod'
 ```
 
-### Recipe: `export = ...` Is Not Supported
+### export = ... Is Not Supported
 
-**Rule:** `arkts-no-export-assignment`
+**Rule:** arkts-no-export-assignment
 
 **Severity: error**
 
-ArkTS does not support the `export = ...` syntax.
-Use the ordinary `export` and `import` syntaxes instead.
+**Error code: 10605126**
+
+ArkTS does not support the **export = ...** syntax. Use the ordinary **export** and **import** syntaxes instead.
 
 **TypeScript**
 
@@ -2703,7 +2703,7 @@ class Point {
 // module2
 import Pt = require('module1')
 
-let p = Pt.Point.origin
+let p = Pt.Point.origin;
 ```
 
 **ArkTS**
@@ -2721,11 +2721,13 @@ import * as Pt from 'module1'
 let p = Pt.Point.origin
 ```
 
-### Recipe: Ambient Module Declaration Is Not Supported
+### Ambient Module Declaration Is Not Supported
 
-**Rule:** `arkts-no-ambient-decls`
+**Rule:** arkts-no-ambient-decls
 
 **Severity: error**
+
+**Error code: 10605128**
 
 ArkTS does not support ambient module declaration because it has its own mechanisms for interoperating with JavaScript.
 
@@ -2741,53 +2743,54 @@ declare module 'someModule' {
 
 ```typescript
 // Import what you need from the original module.
-import { normalize } from "someModule"
+import { normalize } from 'someModule'
 ```
 
-### Recipe: Wildcards in Module Names Are Not Supported
+### Wildcards in Module Names Are Not Supported
 
-**Rule:** `arkts-no-module-wildcards`
+**Rule:** arkts-no-module-wildcards
 
 **Severity: error**
 
+**Error code: 10605129**
+
 ArkTS does not support wildcards in module names, because import is a compile-time feature in ArkTS, not a runtime feature.
-Use the ordinary `export` syntax instead.
 
 **TypeScript**
 
 ```typescript
-// Declaration:
+// Declaration
 declare module '*!text' {
   const content: string
   export default content
 }
 
-// Consuming code:
+// Consuming code
 import fileContent from 'some.txt!text'
 ```
 
 **ArkTS**
 
 ```typescript
-// Declaration:
+// Declaration
 declare namespace N {
   function foo(x: number): number
 }
 
-// Consuming code:
+// Consuming code
 import * as m from 'module'
-console.log('N.foo called: ' + N.foo(42))
+console.info('N.foo called: ' + N.foo(42));
 ```
 
-### Recipe: UMD Is Not Supported
+### UMD Is Not Supported
 
-**Rule:** `arkts-no-umd`
+**Rule:** arkts-no-umd
 
 **Severity: error**
 
-ArkTS does not support universal module definitions (UMD), because it does not have the concept of "script" (as opposed to "module").
-In addition, import is a compile-time feature in ArkTS, not a runtime feature.
-Use the ordinary `export` and `import` syntaxes instead.
+**Error code: 10605130**
+
+ArkTS does not support universal module definitions (UMD), because it does not have the concept of "script" (as opposed to "module"). In addition, import is a compile-time feature in ArkTS, not a runtime feature. Use the ordinary **export** and **import** syntaxes instead.
 
 **TypeScript**
 
@@ -2809,82 +2812,81 @@ namespace mathLib {
 }
 
 // In program
-import { mathLib } from "math-lib"
+import { mathLib } from 'math-lib'
 mathLib.isPrime(2)
 ```
 
-### Recipe: `new.target` Is Not Supported
+### new.target Is Not Supported
 
-**Rule:** `arkts-no-new-target`
+**Rule:** arkts-no-new-target
 
 **Severity: error**
 
-ArkTS does not support `new.target`, because there is no concept of runtime
-prototype inheritance in the language. This feature is considered not applicable
-to static typing.
+**Error code: 10605132**
 
-### Recipe: Definite Assignment Assertions Are Not Supported
+ArkTS does not support **new.target**, because there is no concept of runtime prototype inheritance in the language. This feature is considered not applicable to static typing.
 
-**Rule:** `arkts-no-definite-assignment`
+### Definite Assignment Assertions Are Not Supported
+
+**Rule:** arkts-no-definite-assignment
 
 **Severity: warning**
 
-ArkTS does not support definite assignment assertions `let v!: T` because
-they are considered an excessive compiler hint.
-Use declarations with initialization instead.
+**Error code: 10605134**
+
+ArkTS does not support definite assignment assertions **let v!: T** because they are considered an excessive compiler hint. Use declarations with initialization instead.
 
 **TypeScript**
 
 ```typescript
 let x!: number // Hint: x will be initialized before usage.
 
-initialize()
+initialize();
 
 function initialize() {
-  x = 10
+  x = 10;
 }
 
-console.log('x = ' + x)
+console.info('x = ' + x);
 ```
 
 **ArkTS**
 
 ```typescript
 function initialize(): number {
-  return 10
+  return 10;
 }
 
-let x: number = initialize()
+let x: number = initialize();
 
-console.log('x = ' + x)
+console.info('x = ' + x);
 ```
 
-### Recipe: Prototype Assignment Is Not Supported
+### Prototype Assignment Is Not Supported
 
-**Rule:** `arkts-no-prototype-assignment`
+**Rule:** arkts-no-prototype-assignment
 
 **Severity: error**
 
-ArkTS does not support prototype assignment because there is no concept of
-runtime prototype inheritance in the language. This feature is considered not
-applicable to static typing. Mechanism of classes and/or interfaces must
-be used instead to statically "combine" methods to data together.
+**Error code: 10605136**
+
+ArkTS does not support prototype assignment because there is no concept of runtime prototype inheritance in the language. This feature is considered not applicable to static typing.
 
 **TypeScript**
 
 ```typescript
 let C = function(p) {
-  this.p = p // Compile-time error only when noImplicitThis is enabled
+  this.p = p; // Compile-time error only when noImplicitThis is enabled
 }
 
 C.prototype = {
   m() {
-    console.log(this.p)
+    console.info(this.p);
   }
 }
 
 C.prototype.q = function(r: string) {
-  return this.p == r
+  return this.p == r;
 }
 ```
 
@@ -2894,140 +2896,142 @@ C.prototype.q = function(r: string) {
 class C {
   p: string = ''
   m() {
-    console.log(this.p)
+    console.info(this.p);
   }
   q(r: string) {
-    return this.p == r
+    return this.p === r;
   }
 }
 ```
 
-### Recipe: `globalThis` Is Not Supported
+### globalThis Is Not Supported
 
-**Rule:** `arkts-no-globalthis`
+**Rule:** arkts-no-globalthis
 
 **Severity: warning**
 
-ArkTS does not support both global scope and `globalThis` because untyped
-objects with dynamically changed layout are not supported.
+**Error code: 10605137**
+
+ArkTS does not support dynamic changes to the layout of objects. Therefore, **global scope** and **globalThis** are not supported.
 
 **TypeScript**
 
 ```typescript
 // In a global file:
-var abc = 100
+var abc = 100;
 
-// Refers to 'abc' from above.
-let x = globalThis.abc
+// Reference 'abc' from the code above.
+let x = globalThis.abc;
 ```
 
 **ArkTS**
 
 ```typescript
-// File 1
-export let abc: number = 100
+// file1
+export let abc: number = 100;
 
-// File 2
+// file2
 import * as M from 'file1'
 
-let x = M.abc
+let x = M.abc;
 ```
 
-### Recipe: Some Utility Types Are Not Supported
+### Some Utility Types Are Not Supported
 
-**Rule:** `arkts-no-utility-types`
-
-**Severity: error**
-
-Currently ArkTS does not support utility types from TypeScript extensions to the
-standard library. Exceptions are `Partial`, `Required`, `Readonly` and `Record`.
-
-For the type *Record<K, V>*, the type of an indexing expression *rec[index]* is of the type *V | undefined*.
-
-### Recipe: Declaring Properties on Functions Is Not Supported
-
-**Rule:** `arkts-no-func-props`
+**Rule:** arkts-no-utility-types
 
 **Severity: error**
 
-ArkTS does not support declaring properties on functions because there is no
-support for objects with dynamically changing layout. Function objects follow
-this rule and their layout cannot be changed at runtime.
+**Error code: 10605138**
 
-### Recipe: `Function.apply` and `Function.call` Are Not Supported
+ArkTS supports only **Partial**, **Required**, **Readonly**, and **Record**, and does not support other utility types in TypeScript.
 
-**Rule:** `arkts-no-func-apply-call`
+For the **Partial\<T>** type, the generic parameter **T** must be a class or interface type.
+
+For objects of the **Record** type, the type of the value accessed using an index is a union type that contains **undefined**.
+
+### Declaring Properties on Functions Is Not Supported
+
+**Rule:** arkts-no-func-props
 
 **Severity: error**
 
-ArkTS does not support `Function.apply` or `Function.call`. These APIs are needed in the standard
-library to explicitly set the parameter `this` for the called function.
-In ArkTS, the semantics of `this` is restricted to the conventional OOP
-style, and the usage of `this` in stand-alone functions is prohibited.
+**Error code: 10605139**
 
-### Recipe:`Function.bind` Is Not Supported
+ArkTS does not support dynamic change of function object layout. Therefore, declaring properties on functions is not supported.
 
-**Rule:** `arkts-no-func-bind`
+### Function.apply and Function.call Are Not Supported
+
+**Rule:** arkts-no-func-apply-call
+
+**Severity: error**
+
+**Error code: 10605152**
+
+ArkTS does not support **Function.apply** or **Function.call** because these APIs are needed in the standard library to explicitly set the parameter **this** for the called function. In ArkTS, the semantics of **this** is restricted to the conventional OOP style, and the usage of **this** in function body is prohibited.
+
+### Function.bind Is Not Supported
+
+**Rule:** arkts-no-func-bind
 
 **Severity: warning**
 
-ArkTS does not support `Function.bind`. These APIs are needed in the standard
-library to explicitly set the parameter `this` for the called function.
-In ArkTS, the semantics of `this` is restricted to the conventional OOP
-style, and the usage of `this` in stand-alone functions is prohibited.
+**Error code: 10605140**
 
-### Recipe: `as const` Assertions Are Not Supported
+ArkTS does not support **Function.bind**. These APIs are needed in the standard library to explicitly set the parameter **this** for the called function. In ArkTS, the semantics of **this** is restricted to the conventional OOP style, and the usage of **this** in function body is prohibited.
 
-**Rule:** `arkts-no-as-const`
+
+### as const Assertions Are Not Supported
+
+**Rule:** arkts-no-as-const
 
 **Severity: error**
 
-ArkTS does not support `as const` assertions, because in standard TypeScript
-`as const` is used to annotate literals with corresponding literal types, and ArkTS
-does not support literal types.
+**Error code: 10605142**
+
+ArkTS does not support **as const** assertions and literal types. In standard TypeScript, **as const** is used to mark literal types.
 
 **TypeScript**
 
 ```typescript
-// Type 'hello':
-let x = 'hello' as const
+// Type 'hello'
+let x = 'hello' as const;
 
-// Type 'readonly [10, 20]':
-let y = [10, 20] as const
+// Type 'readonly [10, 20]'
+let y = [10, 20] as const;
 
-// Type '{ readonly text: "hello" }':
-let z = { text: 'hello' } as const
+// Type '{ readonly text: 'hello' }'
+let z = { text: 'hello' } as const;
 ```
 
 **ArkTS**
 
 ```typescript
-// Type 'string':
-let x: string = 'hello'
+// Type 'string'
+let x: string = 'hello';
 
-// Type 'number[]':
-let y: number[] = [10, 20]
+// Type 'number[]'
+let y: number[] = [10, 20];
 
 class Label {
   text: string = ''
 }
 
-// Type 'Label':
+// Type 'Label'
 let z: Label = {
   text: 'hello'
 }
 ```
 
-### Recipe: Import Assertions Are Not Supported
+### Import Assertions Are Not Supported
 
-**Rule:** `arkts-no-import-assertions`
+**Rule:** arkts-no-import-assertions
 
 **Severity: error**
 
-ArkTS does not support import assertions, because import is a
-compile-time feature in ArkTS, not a runtime feature. So asserting the correctness of imported APIs
-in runtime does not make sense for the statically typed language. Use the ordinary
-`import` syntax instead.
+**Error code: 10605143**
+
+ArkTS does not support import assertions because import is a compile-time feature in ArkTS, not a runtime feature. So asserting the correctness of imported APIs in runtime does not make sense for the statically typed language. Use the ordinary **import** syntax instead.
 
 **TypeScript**
 
@@ -3042,49 +3046,51 @@ import { obj } from 'something.json' assert { type: 'json' }
 import { something } from 'module'
 ```
 
-### Recipe: Usage of Standard Libraries Is Restricted
+### Usage of Standard Libraries Is Restricted
 
-**Rule:** `arkts-limited-stdlib`
-
-**Severity: error**
-
-ArkTS does not support certain APIs in the TypeScript and JavaScript standard libraries.
-Most of these restricted APIs are used to manipulate objects in a
-dynamic manner, which is not compatible with static typing. The usage of
-the following APIs is prohibited:
-
-Properties and functions of the global object: `eval`
-
-`Object`: `__proto__`, `__defineGetter__`, `__defineSetter__`,
-`__lookupGetter__`, `__lookupSetter__`, `assign`, `create`,
-`defineProperties`, `defineProperty`, `freeze`,
-`fromEntries`, `getOwnPropertyDescriptor`, `getOwnPropertyDescriptors`,
-`getOwnPropertySymbols`, `getPrototypeOf`,
-`hasOwnProperty`, `is`, `isExtensible`, `isFrozen`,
-`isPrototypeOf`, `isSealed`, `preventExtensions`,
-`propertyIsEnumerable`, `seal`, `setPrototypeOf`
-
-`Reflect`: `apply`, `construct`, `defineProperty`, `deleteProperty`,
-`getOwnPropertyDescriptor`, `getPrototypeOf`,
-`isExtensible`, `preventExtensions`,
-`setPrototypeOf`
-
-`Proxy`: `handler.apply()`, `handler.construct()`,
-`handler.defineProperty()`, `handler.deleteProperty()`, `handler.get()`,
-`handler.getOwnPropertyDescriptor()`, `handler.getPrototypeOf()`,
-`handler.has()`, `handler.isExtensible()`, `handler.ownKeys()`,
-`handler.preventExtensions()`, `handler.set()`, `handler.setPrototypeOf()`
-
-### Recipe: Strict Type Checking Is Enforced
-
-**Rule:** `arkts-strict-typing`
+**Rule:** arkts-limited-stdlib
 
 **Severity: error**
 
-Type checking in ArkTS is not optional. Any code must be explicitly and
-correctly typed to be compiled and run. When porting code from standard TypeScript,
-enable the following flags: `noImplicitReturns`, `strictFunctionTypes`,
-`strictNullChecks`, and `strictPropertyInitialization`.
+**Error code: 10605144**
+
+ArkTS does not support certain APIs in the TypeScript and JavaScript standard libraries. Most of these restricted APIs are used to manipulate objects in a dynamic manner, which is not compatible with static typing. The usage of the following APIs is prohibited:
+
+Properties and functions of the global object: **eval**
+
+**Object**: **__proto__**, **__defineGetter__**, **__defineSetter__**,
+**__lookupGetter__**, **__lookupSetter__**, **assign**, **create**,
+**defineProperties**, **defineProperty**, **freeze**,
+**fromEntries**, **getOwnPropertyDescriptor**, **getOwnPropertyDescriptors**,
+**getOwnPropertySymbols**, **getPrototypeOf**,
+**hasOwnProperty**, **is**, **isExtensible**, **isFrozen**,
+**isPrototypeOf**, **isSealed**, **preventExtensions**,
+**propertyIsEnumerable**, **seal**, **setPrototypeOf**
+
+**Reflect**: **apply**, **construct**, **defineProperty**, **deleteProperty**,
+**getOwnPropertyDescriptor**, **getPrototypeOf**,
+**isExtensible**, **preventExtensions**,
+**setPrototypeOf**
+
+**Proxy**: **handler.apply()**, **handler.construct()**,
+**handler.defineProperty()**, **handler.deleteProperty()**, **handler.get()**,
+**handler.getOwnPropertyDescriptor()**, **handler.getPrototypeOf()**,
+**handler.has()**, **handler.isExtensible()**, **handler.ownKeys()**,
+**handler.preventExtensions()**, **handler.set()**, **handler.setPrototypeOf()**
+
+### Strict Type Checking Is Enforced
+
+**Rule:** arkts-strict-typing
+
+**Severity: error**
+
+**Error code: 10605145**
+
+During compilation, the TypeScript strict mode is used to check the following types:
+**noImplicitReturns**,
+**strictFunctionTypes**,
+**strictNullChecks**,
+**strictPropertyInitialization**.
 
 **TypeScript**
 
@@ -3092,43 +3098,45 @@ enable the following flags: `noImplicitReturns`, `strictFunctionTypes`,
 // Compile-time error only when noImplicitReturns is enabled.
 function foo(s: string): string {
   if (s != '') {
-    console.log(s)
-    return s
+    console.info(s);
+    return s;
   } else {
-    console.log(s)
+    console.info(s);
   }
 }
 
-let n: number = null // Compile-time error only when strictNullChecks is enabled.
+let n: number = null; // Compile-time error only when strictNullChecks is enabled.
 ```
 
 **ArkTS**
 
 ```typescript
 function foo(s: string): string {
-  console.log(s)
-  return s
+  console.info(s);
+  return s;
 }
 
-let n1: number | null = null
-let n2: number = 0
+let n1: number | null = null;
+let n2: number = 0;
 ```
 
-If you cannot initialize an instance property by declaration or in a constructor when defining a class, you can use the definite assignment assertion operator (!) to clear the `strictPropertyInitialization` error.
+If you cannot initialize an instance property by declaration or in a constructor when defining a class, you can use the definite assignment assertion operator (!) to clear the **strictPropertyInitialization** error.
 
 However, the use of the definite assignment assertion operator (!) increases the risk of code errors. Therefore, you must ensure that the instance property has been assigned a value before being used. Otherwise, the runtime exceptions may occur.
 
-In addition, the use of the definite assignment assertion operator (!) requires a runtime type check, resulting in additional runtime overhead. It also generates the error `warning: arkts-no-definite-assignment` at the compile time. Therefore, use it only when quite necessary.
+In addition, the use of the definite assignment assertion operator (!) requires a runtime type check, resulting in additional runtime overhead. Therefore, use it only when necessary.
+
+It also generates the error **warning: arkts-no-definite-assignment** at the compile time.
 
 **TypeScript**
 
 ```typescript
 class C {
-  name: string  // ֻCompile-time error only when strictPropertyInitialization is enabled.
-  age: number   // ֻCompile-time error only when strictPropertyInitialization is enabled.
+  name: string  // Compile-time error only when strictPropertyInitialization is enabled.
+  age: number   // Compile-time error only when strictPropertyInitialization is enabled.
 }
 
-let c = new C()
+let c = new C();
 ```
 
 **ArkTS**
@@ -3139,24 +3147,23 @@ class C {
   age!: number      // warning: arkts-no-definite-assignment
 
   initAge(age: number) {
-    this.age = age
+    this.age = age;
   }
 }
 
-let c = new C()
-c.initAge(10)
+let c = new C();
+c.initAge(10);
 ```
 
-### Recipe: Disabling Type Checking with In-Place Comments Is Not Allowed
+### Disabling Type Checking with In-Place Comments Is Not Allowed
 
-**Rule:** `arkts-strict-typing-required`
+**Rule:** arkts-strict-typing-required
 
 **Severity: error**
 
-Type checking in ArkTS is not optional. Any code must be explicitly and
-correctly typed to be compiled and run. Disabling type checking in-place
-with special comments is not allowed. In particular, `@ts-ignore` and
-`@ts-nocheck` annotations are not supported.
+**Error code: 10605146**
+
+Type checking in ArkTS is not optional. Disabling type checking in-place with special comments is not allowed. In particular, **@ts-ignore** and **@ts-nocheck** annotations are not supported.
 
 **TypeScript**
 
@@ -3166,28 +3173,28 @@ with special comments is not allowed. In particular, `@ts-ignore` and
 // Some code with type checking disabled.
 // ...
 
-let s1: string = null // No error, since type checking is disabled.
+let s1: string = null; // No error is reported.
 
 // @ts-ignore
-let s2: string = null // No error, since type checking is disabled.
+let s2: string = null; // No error is reported.
 ```
 
 **ArkTS**
 
 ```typescript
-let s1: string | null = null // No error. The types are proper.
-let s2: string = null // Compile-time error.
+let s1: string | null = null; // No error is reported. The types are proper.
+let s2: string = null; // Compile-time error
 ```
 
-### Recipe: No Dependencies on TypeScript Code Are Allowed
+### TS/JS File Cannot Import Source Code of ETS File
 
-**Rule:** `arkts-no-ts-deps`
+**Rule:** arkts-no-ts-deps
 
 **Severity: error**
 
-Currently, the codebase implemented in the standard TypeScript language must not
-depend on ArkTS by importing an ArkTS codebase. Imports in the reverse
-direction are supported.
+**Error code: 10605147**
+
+An .ets file can import source code of an .ets/.ts/.js file, but a .ts/.js file cannot import source code of an .ets file.
 
 **TypeScript**
 
@@ -3213,23 +3220,25 @@ export class C {
 import { C } from 'lib1'
 ```
 
-### Recipe: Classes Cannot Be Used as Objects
+### Classes Cannot Be Used as Objects
 
-**Rule:** `arkts-no-classes-as-obj`
+**Rule:** arkts-no-classes-as-obj
 
 **Severity: warning**
 
-ArkTS does not support using classes as objects (assigning them to variables,
-etc.). This is because in ArkTS, a `class` declaration introduces a new type,
-not a value.
+**Error Code: 10605149**
 
-### Recipe: `import` Statements After Other Statements Are Not Allowed
+ArkTS does not support using classes as objects (assigning them to variables, etc.). This is because in ArkTS, a **class** declaration introduces a new type, not a value.
 
-**Rule:** `arkts-no-misplaced-imports`
+### import Statements After Other Statements Are Not Allowed
+
+**Rule:** arkts-no-misplaced-imports
 
 **Severity: error**
 
-In ArkTS, all `import` statements should go before all other statements in the program.
+**Error Code: 10605150**
+
+In ArkTS, all **import** statements except dynamic **import** statements should go before all other statements in the program.
 
 **TypeScript**
 
@@ -3251,27 +3260,21 @@ class C {
   s: string = ''
   n: number = 0
 }
+
+import('module2').then(() => {}).catch(() => {})  // Dynamic import
 ```
 
-### Recipe: Usage of `ESObject` Type Is Restricted
+### Usage of ESObject Type Is Restricted
 
-**Rule:** `arkts-limited-esobj`
+**Rule:** arkts-limited-esobj
 
 **Severity: warning**
 
-**Error codes: 10605151**
+**Error Code: 10605151**
 
-ArkTS does not allow using `ESObject` type in some cases. The most part of
-limitations are put in place in order to prevent spread of dynamic objects in
-the static codebase. 
-For API version 15 or eariler, the only scenario where it is permited to use `ESObject` as type specifier is in local variable declaration. Initialization of variables
-with `ESObject` type is also limited. Such variables can only be initialized
-with values that originate from interop: other `ESObject` typed variables,
-any, unknown, variables with anonymous type, etc. It is prohibited to
-initialize `ESObject` typed variable with statically typed value. Varaible
-of type `ESObject` can only be passed to interop calls and assigned to other
-variables of type `ESObject`.
-Since API version 16, the `ESObject` type prohibits object literal assignment while supporting: type annotations in dynamic imports, property access (using both **.** and **[]** operators), **call** expressions, and **new** expressions.
+ArkTS does not allow using ESObject type in some cases. The most part of limitations are put in place in order to prevent spread of dynamic objects (from an .ts/.js file) in the static codebase (from an .ets file).
+Before API version 18, the only scenario where it is allowed to use ESObject as type specifier is in local variable declaration. ESObject type variables can only be assigned by objects that can be called across languages, for example, ESObject, **any**, **unknown**, and anonymous types. It is prohibited to initialize ESObject typed variable with statically typed value defined in the .ets file. ESObject typed variables can only be used for functions that can be called across languages or assigned to another ESObject typed variable.
+Since API version 18, the ESObject type prohibits object literal assignment while supporting: type annotations in dynamic imports, property access (using both **.** and **[]** operators), call expressions, and **new** expressions.
 
 **ArkTS**
 
@@ -3281,20 +3284,20 @@ declare function foo(): any;
 declare function bar(a: any): number;
 
 // main.ets
-let e0: ESObject = foo(); // For API version 15 or eariler, compile-time error: 'ESObject' typed variable can only be local; since API version 16, the ESObject type supports explicit type annotation.
+let e0: ESObject = foo(); // Before API version 18, compile-time error: 'ESObject' typed variable can only be local; since API version 18, the ESObject type supports explicit type annotation.
 
 function f() {
   let e1 = foo();        // Compile-time error: type of e1 is 'any';
-  let e2: ESObject = 1;  // For API version 15 or eariler, compile-time error: Cannot initialize an ESObject with non-dynamic values; since API version 16, the number type is supported.
-  let e3: ESObject = {}; // For API version 15 or eariler, compile-time error: Cannot initialize an ESObject with non-dynamic values; since API version 16, compile-time error: object literal type is not supported.
-  let e4: ESObject = []; // For API version 15 or eariler, compile-time error: Cannot initialize an ESObject with non-dynamic values; since API version 16, the array type is supported.
-  let e5: ESObject = ""; // For API version 15 or eariler, compile-time error: Cannot initialize an ESObject with non-dynamic values; since API version 16, the string type is supported.
-  e5['prop']             // For API version 15 or eariler, compile-time error: Cannot access dynamic properties of 'ESObject'; since API version 16, property access using square brackets is supported.
-  e5[1]                  // For API version 15 or eariler, compile-time error: Cannot access dynamic properties of 'ESObject'; since API version 16, property access using square brackets is supported.
-  e5.prop                // For API version 15 or eariler, compile-time error: Cannot access dynamic properties of 'ESObject'; since API version 16, property access using a dot (.) is supported.
+  let e2: ESObject = 1;  // Before API version 18, compile-time error: Cannot initialize an ESObject with non-dynamic values; since API version 18, the number type is supported.
+  let e3: ESObject = {}; // Before API version 18, compile-time error: Cannot initialize an ESObject with non-dynamic values; since API version 18, compile-time error: object literal type is not supported.
+  let e4: ESObject = []; // Before API version 18, compile-time error: Cannot initialize an ESObject with non-dynamic values; since API version 18, the array type is supported.
+  let e5: ESObject = ''; // Before API version 18, compile-time error: Cannot initialize an ESObject with non-dynamic values; since API version 18, the string type is supported.
+  e5['prop'];            // Before API version 18, compile-time error: Cannot access dynamic properties of 'ESObject'; since API version 18, property access using square brackets is supported.
+  e5[1];                 // Before API version 18, compile-time error: Cannot access dynamic properties of 'ESObject'; since API version 18, property access using square brackets is supported.
+  e5.prop;               // Before API version 18, compile-time error: Cannot access dynamic properties of 'ESObject'; since API version 18, property access using a dot (.) is supported.
 
-  let e6: ESObject = foo(); // OK - Explicitly annotated as 'ESObject'
-  let e7 = e6;              // OK - Initialize 'ESObject' with 'ESObject'
-  bar(e7)                   // OK - 'ESObject' is passed to interop call
+  let e6: ESObject = foo(); // OK - Explicitly annotated as 'ESObject'.
+  let e7: ESObject = e6;    // OK - Initialize 'ESObject' with 'ESObject'.
+  bar(e7);                  // OK - 'ESObject' is passed to a cross-language function.
 }
 ```

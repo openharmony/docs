@@ -58,6 +58,8 @@ OpenHarmony的窗口模块将窗口界面分为系统窗口、应用窗口两种
 
 ![windowMode](figures/windowMode.png)
 
+针对窗口模式的适配开发指导，具体可参考[窗口模式最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-multi-device-window-mode)。
+
 
 ## 实现原理
 

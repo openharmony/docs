@@ -90,7 +90,7 @@ struct GestureGroupExample {
     .margin(20)
     .border({ width: 3, style: this.borderStyles })
     .gesture(
-      // 以下组合手势为顺序识别，当长按手势事件未正常触发时则不会触发拖动手势事件
+      // 以下组合手势为顺序识别，当长按手势事件未正常触发时则不会触发滑动手势事件
       GestureGroup(GestureMode.Sequence,
         LongPressGesture({ repeat: true })
           .onAction((event?: GestureEvent) => {

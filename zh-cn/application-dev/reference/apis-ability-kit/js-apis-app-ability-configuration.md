@@ -1,5 +1,12 @@
 # @ohos.app.ability.Configuration (环境变量)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wkljy-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 定义了应用运行时的环境变量，包含语言、深浅色、屏幕方向、字体等。开发者可以通过订阅环境变量，适配不同用户偏好，提升交互体验。
 
 > **说明：**
@@ -56,13 +63,13 @@ export default class EntryAbility extends UIAbility {
         let locale = config.locale;
       },
       onMemoryLevel(level) {
-        console.log(`onMemoryLevel level: ${level}`);
+        console.info(`onMemoryLevel level: ${level}`);
       }
     };
     try {
       let applicationContext = this.context.getApplicationContext();
       let callbackId = applicationContext.on('environment', envCallback);
-      console.log(`callbackId: ${callbackId}`);
+      console.info(`callbackId: ${callbackId}`);
     } catch (paramError) {
       console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }

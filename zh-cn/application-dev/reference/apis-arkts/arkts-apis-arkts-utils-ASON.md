@@ -93,10 +93,10 @@ type Transformer = (this: ISendable, key: string, value: ISendable | undefined |
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型| 必填 | 说明            |
-| ------ | ------ | ---- | --------------- |
-| bigIntMode   | [BigIntMode](#bigintmode) | 是 |定义处理BigInt的模式。|
-| parseReturnType   | [ParseReturnType](#parsereturntype) | 是 |定义解析结果的返回类型。|
+| 名称 | 类型| 只读 | 可选 | 说明            |
+| ------ | ------ | ---- | ---- |--------------- |
+| bigIntMode   | [BigIntMode](#bigintmode) | 否  | 否 |定义处理BigInt的模式。|
+| parseReturnType   | [ParseReturnType](#parsereturntype) | 否  | 否 |定义解析结果的返回类型。|
 
 ## parse
 

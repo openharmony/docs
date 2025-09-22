@@ -7,7 +7,7 @@
 
 服务创建此回调对象后，可以调用[IPowerInterface](interface_i_power_interface.md)的接口注册回调，从而订阅带标记的休眠/唤醒状态的变化。
 
-这个回调必须通过调用[IPowerInterface](interface_i_power_interface.md)的RegisterPowerCallbackExt接口与UnRegisterRunningLockCallback接口进行注册回调与注销回调。
+这个回调必须通过调用[IPowerInterface](interface_i_power_interface.md)的RegisterPowerCallbackExt接口与UnRegisterPowerCallbackExt接口进行注册回调与注销回调。
 
 **起始版本：** 6.0
 

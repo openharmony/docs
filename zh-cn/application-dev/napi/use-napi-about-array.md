@@ -755,9 +755,9 @@ enum InfoType {
     BYTE_OFFSET = 4 // 数组的第一个元素所在的基础原生数组中的字节偏移量
 };
 try {
-  let arrbuff = testNapi.getTypedarrayInfo(int8Array, InfoType.ARRAY_BUFFER) as ArrayBuffer;
+  let arrBuffer = testNapi.getTypedarrayInfo(int8Array, InfoType.ARRAY_BUFFER) as ArrayBuffer;
   // 将arraybuffer转为数组
-  let arr = new Array(new Int8Array(arrbuff));
+  let arr = new Array(new Int8Array(arrBuffer));
   hilog.info(0x0000, 'Node-API', 'get_typedarray_info_arraybuffer: %{public}s', arr.toString());
   hilog.info(0x0000, 'Node-API', 'get_typedarray_info_isIn8Array: %{public}s', testNapi.getTypedarrayInfo(int8Array, InfoType.TYPE).toString());
   hilog.info(0x0000, 'Node-API', 'get_typedarray_info_length: %{public}d', testNapi.getTypedarrayInfo(int8Array, InfoType.LENGTH));
@@ -972,9 +972,9 @@ try {
   // 传入DataView类型参数查询DataView的字节数
   hilog.info(0x0000, 'Node-API', 'get_dataview_info_bytelength %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_LENGTH));
   // 传入DataView类型参数查询DataView的ArrayBuffer
-  let arrbuff = testNapi.getDataViewInfo(dataView, InfoType.ARRAY_BUFFER) as ArrayBuffer;
+  let arrBuffer = testNapi.getDataViewInfo(dataView, InfoType.ARRAY_BUFFER) as ArrayBuffer;
   // 将arraybuffer转为数组
-  let arr = Array.from(new Int8Array(arrbuff));
+  let arr = Array.from(new Int8Array(arrBuffer));
   hilog.info(0x0000, 'Node-API', 'get_dataview_info_arraybuffer %{public}s', arr.toString());
   // 传入DataView类型参数查询DataView开始投影的数据缓冲区中的字节偏移量
   hilog.info(0x0000, 'Node-API', 'get_dataview_info_byteoffset %{public}d', testNapi.getDataViewInfo(dataView, InfoType.BYTE_OFFSET));

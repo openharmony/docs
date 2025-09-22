@@ -43,7 +43,7 @@ static setSystemLanguage(language: string): void
 
 | 参数名      | 类型     | 必填   | 说明    |
 | -------- | ------ | ---- | ----- |
-| language | string | 是    | [合法的语言ID](../../internationalization/i18n-locale-culture.md#实现原理)。 |
+| language | string | 是    | [合法的语言ID](../../internationalization/i18n-locale-culture.md#实现原理)。<br/>**说明：**<br/>可以通过[i18n.System.getSystemLanguage()](js-apis-i18n.md#getsystemlanguage9)接口获取系统语言。<br/>从API version 21开始，也可以使用[param工具](../../tools/param-tool.md#获取系统参数的值)的“param get persist.global.language”命令获取系统语言。 |
 
 **错误码：**
 

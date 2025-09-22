@@ -216,6 +216,10 @@
      console.info('showBlurAnim E');
      // 获取已完成的surface截图。
      let shotPixel = BlurAnimateUtil.getSurfaceShot();
+     if (shotPixel === undefined) {
+       console.error(`pixelMap is undefined`);
+       return;
+     }
      // 后置。
      if (this.curPosition === 0) {
        console.info('showBlurAnim BACK');
@@ -290,6 +294,10 @@
      console.info('rotateFirstAnim E');
      // 获取已完成的surface截图。
      let shotPixel = BlurAnimateUtil.getSurfaceShot();
+     if (shotPixel === undefined) {
+       console.error(`pixelMap is undefined`);
+       return;
+     }
      // 后置切前置。
      if (this.curPosition === 1) {
        console.info('rotateFirstAnim BACK');
@@ -336,6 +344,10 @@
      console.info('rotateSecondAnim E');
      // 获取已完成的surface截图。
      let shotPixel = BlurAnimateUtil.getSurfaceShot();
+     if (shotPixel === undefined) {
+       console.error(`pixelMap is undefined`);
+       return;
+     }
      // 后置。
      if (this.curPosition === 1) {
        // 直板机后置镜头内容旋转补偿90°。

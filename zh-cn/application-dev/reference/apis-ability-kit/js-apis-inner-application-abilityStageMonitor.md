@@ -38,7 +38,7 @@ abilityDelegator.waitAbilityStageMonitor(monitor, (error, data) => {
   if (error) {
     console.error(`waitAbilityStageMonitor fail, error: ${JSON.stringify(error)}`);
   } else {
-    console.log(`waitAbilityStageMonitor success, data: ${JSON.stringify(data)}`);
+    console.info(`waitAbilityStageMonitor success, data: ${JSON.stringify(data)}`);
   }
 });
 ```
