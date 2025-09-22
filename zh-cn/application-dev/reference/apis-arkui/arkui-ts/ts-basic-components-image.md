@@ -610,7 +610,7 @@ contentTransition(transition: ContentTransitionEffect)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| contentTransition  | [ContentTransitionEffect](ts-image-common.md#contenttransitioneffect21) | 是   | 内容变换动效的类型。<br/>默认值：无动效，ContentTransitionEffect.IDENTITY <br/>设置为undefined或null时，取值为ContentTransitionEffect.IDENTITY。 |
+| contentTransition  | [ContentTransitionEffect](ts-image-common.md#contenttransitioneffect21) | 是   | 内容变换动效的类型。<br/>对动态图片资源不生效。<br/>默认值：无动效，ContentTransitionEffect.IDENTITY <br/>设置为undefined或null时，取值为ContentTransitionEffect.IDENTITY。 |
 
 ## ImageContent<sup>12+</sup>
 
