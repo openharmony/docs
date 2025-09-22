@@ -97,8 +97,6 @@ UX规格变更，不涉及接口和组件。
 
 **变更影响**
 
-此变更不涉及应用适配。
-
 变更前：ButtonOptions中type的默认值为ButtonType.Capsule。
 
 变更后：ButtonOptions中type的默认值为ButtonType.ROUNDED_RECTANGLE。
@@ -119,7 +117,7 @@ Button组件中ButtonOptions对象的type属性默认值。
 
 **适配指导**
 
-开发者在使用Button组件，创建默认类型的Button按钮时，Button按钮为ROUNDED_RECTANGLE类型。
+开发者在使用Button组件时，按钮的默认类型会从Capsule类型改为ROUNDED_RECTANGLE类型，两个类型在圆角大小上会有一定的改变，如果应用期望保持变更之前的圆角大小，需要手动添加type属性指定为Capsule类型。
 
 ```ts
 
