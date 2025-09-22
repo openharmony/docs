@@ -1503,6 +1503,7 @@
           - [事件上报](dfx/hiappevent-event-reporting.md)
           <!--DelEnd-->
           - [HiAppEvent常见问题](dfx/hiappevent-faq.md)
+          - [使用FaultLogExtensionAbility订阅事件](dfx/fault-log-extension-app-events-arkts.md)
         - 性能跟踪<!--hitracemeter-->
           - [HiTraceMeter介绍](dfx/hitracemeter-intro.md)
           - [使用HiTraceMeter跟踪性能（ArkTS）](dfx/hitracemeter-guidelines-arkts.md)

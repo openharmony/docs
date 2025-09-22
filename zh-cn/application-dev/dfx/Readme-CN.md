@@ -60,6 +60,7 @@
   - [事件上报](hiappevent-event-reporting.md)
   <!--DelEnd-->
   - [HiAppEvent常见问题](hiappevent-faq.md)
+  - [使用FaultLogExtensionAbility订阅事件](fault-log-extension-app-events-arkts.md)
 - 性能跟踪<!--hitracemeter-->
   - [HiTraceMeter介绍](hitracemeter-intro.md)
   - [使用HiTraceMeter跟踪性能（ArkTS）](hitracemeter-guidelines-arkts.md)
