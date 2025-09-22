@@ -21,8 +21,8 @@ As applications become more and more complex, they are split into multiple modul
 |--|--|--|--|
 |appId|Application ID, which is a unique identifier of the application. For details, see [What Is appId](common_problem_of_application.md#what-is-appid).|Yes|Either **appId** or **appIdentifier** is the same.|
 |appIdentifier|Unique ID of the application. For details, see [What Is appIdentifier](common_problem_of_application.md#what-is-appidentifier).|Yes|Either **appId** or **appIdentifier** is the same.|
-|appDistributionType|<!--RP1-->Application distribution type specified in **app-distribution-type** of the application [profile](../security/app-provision-structure.md).<!--RP1End-->|Yes|No consistency verification is performed when an application is updated to a later version.|
-|appProvisionType|Profile type. <!--RP3-->The value comes from **type** defined in the application [profile](../security/app-provision-structure.md). Profiles are classified into two types: debug profiles are used for local debugging and release profiles are used for application release.<!--RP3End-->|Yes|No consistency verification is performed when an application is updated to a later version.|
+|appDistributionType|<!--RP1-->Application distribution type specified in **app-distribution-type** of the application profile.<!--RP1End-->|Yes|No consistency verification is performed when an application is updated to a later version.|
+|appProvisionType|Profile type. <!--RP3-->The value comes from **type** defined in the application profile. Profiles are classified into two types: debug profiles are used for local debugging and release profiles are used for application release.<!--RP3End-->|Yes|No consistency verification is performed when an application is updated to a later version.|
 |apl|Application [APLs](../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism), which are classified into three levels: normal, system_basic, and system_core.|Yes|No consistency verification is performed when an application is updated to a later version.|
 
 
