@@ -2607,6 +2607,8 @@ function setExposure(nightPhotoSession: camera.NightPhotoSession): void {
 
 枚举，场景特性枚举。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                            | 值   | 说明                        |
@@ -2618,6 +2620,8 @@ function setExposure(nightPhotoSession: camera.NightPhotoSession): void {
 ## SceneFeatureDetectionResult<sup>12+</sup>
 
 场景检测结果信息。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2631,6 +2635,8 @@ function setExposure(nightPhotoSession: camera.NightPhotoSession): void {
 TripodDetectionResult extends [SceneFeatureDetectionResult](#scenefeaturedetectionresult12)
 
 脚架检测信息。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
