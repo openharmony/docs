@@ -17,11 +17,11 @@
 
 - FaultLogExtensionAbility自身崩溃时，不会再次被系统服务拉起。
 
-- FaultLogExtensionAbility调用限制的API名单见[附录](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-FaultLogExtensionAbility.md#附录)
+- FaultLogExtensionAbility调用限制的API名单见[附录](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-FaultLogExtensionAbility.md#附录)。
 
 ## 接口说明
 
-API接口使用说明，包括参数使用限制和具体取值范围。请参考[@ohos.hiviewdfx.FaultLogExtensionAbility (故障延迟通知)](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-FaultLogExtensionAbility.md) 。
+API接口使用说明，包括参数使用限制和具体取值范围。请参考[@ohos.hiviewdfx.FaultLogExtensionAbility (故障延迟通知)](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-FaultLogExtensionAbility.md)。
 
 仅适用于Stage模型。
 
