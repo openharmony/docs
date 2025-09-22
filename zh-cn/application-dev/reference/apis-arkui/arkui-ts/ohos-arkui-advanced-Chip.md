@@ -299,10 +299,10 @@ struct Index {
           fillColor: Color.Red
         },
         label: {
-          text: "操作块",
+          text: '操作块',
           fontSize: 12,
           fontColor: Color.Blue,
-          fontFamily: "HarmonyOS Sans",
+          fontFamily: 'HarmonyOS Sans',
           labelMargin: { left: 20, right: 30 }
         },
         suffixIcon: {
@@ -345,10 +345,10 @@ struct Index {
           fillColor: Color.Blue
         },
         label: {
-          text: "操作块",
+          text: '操作块',
           fontSize: 12,
           fontColor: Color.Blue,
-          fontFamily: "HarmonyOS Sans",
+          fontFamily: 'HarmonyOS Sans',
           labelMargin: { left: 20, right: 30 }
         },
         size: ChipSize.NORMAL,
@@ -385,10 +385,10 @@ struct Index {
           fillColor: Color.Blue
         },
         label: {
-          text: "操作块",
+          text: '操作块',
           fontSize: 12,
           fontColor: Color.Blue,
-          fontFamily: "HarmonyOS Sans",
+          fontFamily: 'HarmonyOS Sans',
           labelMargin: { left: 20, right: 30 }
         },
         size: ChipSize.SMALL,
@@ -397,7 +397,7 @@ struct Index {
         backgroundColor: $r('sys.color.ohos_id_color_button_normal'),
         borderRadius: $r('sys.float.ohos_id_corner_radius_button'),
         onClose: () => {
-          console.info("chip on close")
+          console.info('chip on close');
         }
       })
     }
@@ -431,11 +431,11 @@ struct Index {
           activatedFillColor: $r('sys.color.ohos_id_color_text_primary_contrary')
         },
         label: {
-          text: "操作块",
+          text: '操作块',
           fontSize: 12,
           fontColor: Color.Blue,
           activatedFontColor: $r('sys.color.ohos_id_color_text_primary_contrary'),
-          fontFamily: "HarmonyOS Sans",
+          fontFamily: 'HarmonyOS Sans',
           labelMargin: { left: 20, right: 30 }
         },
         size: ChipSize.NORMAL,
@@ -446,15 +446,15 @@ struct Index {
         activatedBackgroundColor: $r('sys.color.ohos_id_color_emphasize'),
         borderRadius: $r('sys.float.ohos_id_corner_radius_button'),
         onClose: () => {
-          console.info("chip on close")
+          console.info('chip on close');
         },
         onClicked: () => {
-          console.info("chip on clicked")
+          console.info('chip on clicked');
         }
       })
 
       Button('改变激活状态').onClick(() => {
-        this.isActivated = !this.isActivated
+        this.isActivated = !this.isActivated;
       })
     }
   }
@@ -474,7 +474,7 @@ import { Chip, ChipSize, SymbolGlyphModifier } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  @State isActivated: boolean = false
+  @State isActivated: boolean = false;
 
   build() {
     Column({ space: 10 }) {
@@ -491,11 +491,11 @@ struct Index {
           activated: new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontSize(16).fontColor([Color.Red]),
         },
         label: {
-          text: "操作块",
+          text: '操作块',
           fontSize: 12,
           fontColor: Color.Blue,
           activatedFontColor: $r('sys.color.ohos_id_color_text_primary_contrary'),
-          fontFamily: "HarmonyOS Sans",
+          fontFamily: 'HarmonyOS Sans',
           labelMargin: { left: 20, right: 30 },
         },
         size: ChipSize.NORMAL,
@@ -506,15 +506,15 @@ struct Index {
         activatedBackgroundColor: $r('sys.color.ohos_id_color_emphasize'),
         borderRadius: $r('sys.float.ohos_id_corner_radius_button'),
         onClose: () => {
-          console.info("chip on close")
+          console.info('chip on close');
         },
         onClicked: () => {
-          console.info("chip on clicked")
+          console.info('chip on clicked');
         }
       })
 
       Button('改变激活状态').onClick(() => {
-        this.isActivated = !this.isActivated
+        this.isActivated = !this.isActivated;
       })
     }
   }
@@ -544,10 +544,10 @@ struct ChipPage {
           fillColor: Color.Red,
         },
         label: {
-          text: "操作块",
+          text: '操作块',
           fontSize: 12,
           fontColor: Color.Blue,
-          fontFamily: "HarmonyOS Sans",
+          fontFamily: 'HarmonyOS Sans',
           localizedLabelMargin: { start: LengthMetrics.vp(20), end: LengthMetrics.vp(20) },
         },
         suffixIcon: {
@@ -808,81 +808,81 @@ struct ChipAccessibilityExample {
 
   build() {
     Column({ space: 20 }) {
-      Text("Chip组件无障碍属性示例").fontSize(20).fontWeight(FontWeight.Bold)
+      Text('Chip组件无障碍属性示例').fontSize(20).fontWeight(FontWeight.Bold)
 
       // 点击型Chip - CLICKED类型
       Chip({
-        label: { text: "点击型Chip" },
+        label: { text: '点击型Chip' },
         prefixIcon: {
           src: $r('sys.media.ohos_app_icon'),
           fillColor: Color.Blue
         },
         size: ChipSize.NORMAL,
         accessibilitySelectedType: AccessibilitySelectedType.CLICKED, // 点击型
-        accessibilityDescription: "这是一个点击型Chip", // 整体无障碍描述
-        accessibilityLevel: "yes", // 确保可被无障碍服务识别
+        accessibilityDescription: '这是一个点击型Chip', // 整体无障碍描述
+        accessibilityLevel: 'yes', // 确保可被无障碍服务识别
         closeOptions: {
-          accessibilityDescription: "删除此Chip，此操作无法撤销" // 为删除按钮提供详细说明
+          accessibilityDescription: '删除此Chip，此操作无法撤销' // 为删除按钮提供详细说明
         },
         activated: this.clickedChipActivated,
         onClicked: () => {
           this.clickedChipActivated = !this.clickedChipActivated;
-          this.getUIContext().getPromptAction().showToast({ message: "点击型Chip被点击" });
+          this.getUIContext().getPromptAction().showToast({ message: '点击型Chip被点击' });
         },
         onClose: () => {
-          this.getUIContext().getPromptAction().showToast({ message: "点击型Chip的关闭按钮被点击" });
+          this.getUIContext().getPromptAction().showToast({ message: '点击型Chip的关闭按钮被点击' });
         }
       })
 
       // 复选型Chip - CHECKED类型
       Chip({
-        label: { text: "复选型Chip" },
+        label: { text: '复选型Chip' },
         prefixIcon: {
           src: $r('sys.media.ohos_app_icon'),
           fillColor: Color.Green
         },
         size: ChipSize.NORMAL,
         accessibilitySelectedType: AccessibilitySelectedType.CHECKED, // 复选型
-        accessibilityDescription: "这是一个复选型Chip", // 整体无障碍描述
+        accessibilityDescription: '这是一个复选型Chip', // 整体无障碍描述
         activated: this.checkedChipActivated,
         onClicked: () => {
           this.checkedChipActivated = !this.checkedChipActivated;
           this.getUIContext().getPromptAction().showToast({
-            message: this.checkedChipActivated ? "复选型Chip被选中" : "复选型Chip被取消选中"
+            message: this.checkedChipActivated ? '复选型Chip被选中' : '复选型Chip被取消选中'
           });
         }
       })
 
       // 单选型Chip - SELECTED类型
       Chip({
-        label: { text: "单选型Chip" },
+        label: { text: '单选型Chip' },
         prefixIcon: {
           src: $r('sys.media.ohos_app_icon'),
           fillColor: Color.Red
         },
         size: ChipSize.NORMAL,
         accessibilitySelectedType: AccessibilitySelectedType.SELECTED, // 单选型
-        accessibilityDescription: "这是一个单选型Chip", // 整体无障碍描述
+        accessibilityDescription: '这是一个单选型Chip', // 整体无障碍描述
         activated: this.selectedChipActivated,
         onClicked: () => {
           this.selectedChipActivated = !this.selectedChipActivated;
           this.getUIContext().getPromptAction().showToast({
-            message: this.selectedChipActivated ? "单选型Chip被选中" : "单选型Chip被取消选中"
+            message: this.selectedChipActivated ? '单选型Chip被选中' : '单选型Chip被取消选中'
           });
         }
       })
 
       // 无障碍级别设置示例
       Chip({
-        label: { text: "无障碍级别为no" },
+        label: { text: '无障碍级别为no' },
         size: ChipSize.NORMAL,
-        accessibilityLevel: "no", // 此Chip不能被无障碍服务识别
+        accessibilityLevel: 'no', // 此Chip不能被无障碍服务识别
         closeOptions: {
-          accessibilityLevel: "no"
+          accessibilityLevel: 'no'
         },
         backgroundColor: '#CCCCCC',
         onClicked: () => {
-          this.getUIContext().getPromptAction().showToast({ message: "此Chip无法被无障碍服务识别" });
+          this.getUIContext().getPromptAction().showToast({ message: '此Chip无法被无障碍服务识别' });
         }
       })
     }
