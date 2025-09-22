@@ -105,7 +105,7 @@
 | 接口名称                                     | 描述                 |
 | ---------------------------------------- | ------------------ |
 | enableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt; | 数据提供方动态开启静默访问。<br />当访问方通过静默访问调用DataShare相关接口的时候，校验静默访问的开关状态。<br />如果静默访问的是开启的，DataShare相关接口会执行原逻辑。 |
-| disableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt; | 数据提供方来动态关闭静默访问。<br />当访问方通过静默访问调用DataShare相关接口的时候，校验静默访问的开关状态。<br />如果静默访问的是关闭的，DataShare相关接口接口将会直接返回。 |
+| disableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt; | 数据提供方来动态关闭静默访问。<br />当访问方通过静默访问调用DataShare相关接口的时候，校验静默访问的开关状态。<br />如果静默访问的是关闭的，DataShare相关接口将会直接返回。 |
 
 ## 持久化数据实现说明
 

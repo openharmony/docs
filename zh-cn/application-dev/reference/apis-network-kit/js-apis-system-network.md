@@ -1,5 +1,12 @@
 # @system.network (网络状态)
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 > **说明：**
 > - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
@@ -122,7 +129,7 @@ network.unsubscribe();
 
 **系统能力：** SystemCapability.Communication.NetManager.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| metered | boolean | 否 |是否按照流量计费。true：按照流量计费；false：不按照流量计费。 |
-| type | string | 是|网络类型，可能的值有2g，3g，4g，5g，wifi，none等。 |
+| 名称   | 类型                                           | 只读 | 可选 |说明                    |
+| -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
+| metered | boolean | 否 | 是  |是否按照流量计费。true：按照流量计费；false：不按照流量计费。 |
+| type | string | 否 | 否 |网络类型，可能的值有2g，3g，4g，5g，wifi，none等。 |

@@ -759,8 +759,8 @@ struct MapSample {
 
 ### \@Trace装饰Set类型
 
-* 被\@Trace装饰的Set类型属性可以观测到调用API带来的变化，包括 add, clear, delete。
-* 因为Info类被\@ObservedV2装饰且属性memberSet被\@Trace装饰，点击Button('init set')对memberSet赋值也可以观察变化。
+* 被\@Trace装饰的Set类型属性可以观测到调用API带来的变化，包括 add、clear和delete。
+* 因为Info类被\@ObservedV2装饰且属性memberSet被\@Trace装饰，点击Button('init set')对memberSet赋值也可以观测到变化。
 
 ```ts
 @ObservedV2

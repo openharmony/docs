@@ -8,7 +8,7 @@
 
 软总线具备常驻运行能力，可为跨设备通信提供稳定可靠的底层通道。本模块基于软总线进程开发，支持手机与穿戴设备间高效的数据互通，可为用户提供无缝的设备互联体验。使用场景：手机侧APP与手表侧APP协同时，当手机APP不在前台被使用，手机应用的下行消息经由通知服务器，通过代理模块发送给手表侧。模块核心功能包括：代理通道管理、数据路由管理、 应用状态感知和唤醒、链路状态监听。
 
-- 代理通道管理：通过蓝牙 BR 协议建立手机与穿戴设备的双向数据通道，支持的数据通道 ID 范围是[1，2147483647] 。
+- 代理通道管理：通过蓝牙 BR 协议建立手机与穿戴设备的双向数据通道，支持的数据通道 ID 范围是[1,2147483647] 。
 
 - 数据路由管理：基于 UUID 服务识别机制，精准转发穿戴设备数据。
 
@@ -73,8 +73,9 @@ openProxyChannel(channelInfo:&nbsp;ChannelInfo):&nbsp;Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import proxyChannelManager from '@ohos.distributedsched.proxyChannelManager';
-import { BusinessError } from '@ohos.base';
+import { proxyChannelManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct Index {
@@ -140,8 +141,9 @@ closeProxyChannel(channelId:&nbsp;number):&nbsp;void
 **示例：**
 
 ```ts
-import proxyChannelManager from '@ohos.distributedsched.proxyChannelManager';
-import { BusinessError } from '@ohos.base';
+import { proxyChannelManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct Index {
@@ -151,7 +153,7 @@ struct Index {
         .onClick(() => {
           // 以下为使用 try/catch 判断
           try {
-            proxyChannelManager.closeProxyChannel(1);  // 假设通道id为1
+            proxyChannelManager.closeProxyChannel(1); // 假设通道id为1
           } catch (err) {
             let error = err as BusinessError;
             console.error(`getErr: ${error.code} ${error.message}`);
@@ -205,8 +207,9 @@ sendData(channelId:number, data:ArrayBuffer):Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import proxyChannelManager from '@ohos.distributedsched.proxyChannelManager';
-import { BusinessError } from '@ohos.base';
+import { proxyChannelManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct Index {
@@ -216,13 +219,13 @@ struct Index {
         .onClick(() => {
           const data = new ArrayBuffer(10); // 创建一个长度为 10 的 ArrayBuffer
           try {
-            proxyChannelManager.sendData(1, data)  // 假设通道id为1
+            proxyChannelManager.sendData(1, data)// 假设通道id为1
               .then(() => {
               })
               .catch((error: BusinessError) => {
                 console.error(`getErr: ${error.code} ${error.message}`);
               });
-          }catch (err) {
+          } catch (err) {
             let error = err as BusinessError;
             console.error(`getErr: ${error.code} ${error.message}`);
           }
@@ -267,8 +270,9 @@ on(type:&nbsp;'receiveData', channelId:&nbsp;number, callback:&nbsp;Callback&lt;
 **示例：**
 
 ```ts
-import proxyChannelManager from '@ohos.distributedsched.proxyChannelManager';
-import { BusinessError } from '@ohos.base';
+import { proxyChannelManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct Index {
@@ -278,9 +282,9 @@ struct Index {
         .onClick(() => {
           const receiveDataCallback = (dataInfo: proxyChannelManager.DataInfo) => {
           };
-          try{
-            proxyChannelManager.on('receiveData', 1, receiveDataCallback);  // 假设通道id为1
-          } catch(err) {
+          try {
+            proxyChannelManager.on('receiveData', 1, receiveDataCallback); // 假设通道id为1
+          } catch (err) {
             let error = err as BusinessError;
             console.error(`register receiveData error: ${error.code} ${error.message}`);
           }
@@ -325,8 +329,9 @@ off(type:&nbsp;'receiveData', channelId:&nbsp;number, callback?:&nbsp;Callback&l
 **示例：**
 
 ```ts
-import proxyChannelManager from '@ohos.distributedsched.proxyChannelManager';
-import { BusinessError } from '@ohos.base';
+import { proxyChannelManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct Index {
@@ -334,9 +339,9 @@ struct Index {
     RelativeContainer() {
       Button("测试")
         .onClick(() => {
-          try{
-            proxyChannelManager.off('receiveData', 1);  // 假设通道id为1
-          } catch(err) {
+          try {
+            proxyChannelManager.off('receiveData', 1); // 假设通道id为1
+          } catch (err) {
             let error = err as BusinessError;
             console.error(`getErr: ${error.code} ${error.message}`);
           }
@@ -381,8 +386,9 @@ on(type:&nbsp;'channelStateChange', channelId:&nbsp;number, callback:&nbsp;Callb
 **示例：**
 
 ```ts
-import proxyChannelManager from '@ohos.distributedsched.proxyChannelManager';
-import { BusinessError } from '@ohos.base';
+import { proxyChannelManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct Index {
@@ -392,9 +398,9 @@ struct Index {
         .onClick(() => {
           const receiveStatusCallback = (channelStateInfo: proxyChannelManager.ChannelStateInfo) => {
           };
-          try{
-            proxyChannelManager.on('channelStateChange', 1, receiveStatusCallback);  // 假设打开的通道id为1
-          } catch(err) {
+          try {
+            proxyChannelManager.on('channelStateChange', 1, receiveStatusCallback); // 假设打开的通道id为1
+          } catch (err) {
             let error = err as BusinessError;
             console.error(`getErr: ${error.code} ${error.message}`);
           }
@@ -439,8 +445,9 @@ off(type:&nbsp;'channelStateChange', channelId:&nbsp;number, callback?:&nbsp;Cal
 **示例：**
 
 ```ts
-import proxyChannelManager from '@ohos.distributedsched.proxyChannelManager';
-import { BusinessError } from '@ohos.base';
+import { proxyChannelManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct Index {
@@ -448,9 +455,9 @@ struct Index {
     RelativeContainer() {
       Button("测试")
         .onClick(() => {
-          try{
-            proxyChannelManager.off('channelStateChange', 1);  // 假设打开的通道id为1
-          } catch(err) {
+          try {
+            proxyChannelManager.off('channelStateChange', 1); // 假设打开的通道id为1
+          } catch (err) {
             let error = err as BusinessError;
             console.error(`getErr: ${error.code} ${error.message}`);
           }

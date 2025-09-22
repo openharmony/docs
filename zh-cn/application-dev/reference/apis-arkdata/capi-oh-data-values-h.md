@@ -629,7 +629,7 @@ int OH_Values_GetAssetsCount(OH_Data_Values *values, int index, size_t *length)
 
 | 参数项                                           | 描述                                                         |
 | ------------------------------------------------ | ------------------------------------------------------------ |
-| [OH_Data_Values](capi-rdb-oh-data-values.md) *values | 表示指向[OH_Data_Values](capi-rdb-oh-data-values.md)实例的指针。表示指向[OH_Data_Values](capi-rdb-oh-data-values.md)实例的指针。 |
+| [OH_Data_Values](capi-rdb-oh-data-values.md) *values | 表示指向[OH_Data_Values](capi-rdb-oh-data-values.md)实例的指针。 |
 | int index                                        | 表示values中目标数据的从零开始的索引。                       |
 | size_t *length                                   | 该参数为输出参数，表示ASSETS类型数据的大小。                 |
 

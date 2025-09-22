@@ -47,7 +47,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 target_link_libraries(entry PUBLIC libavmetadata_extractor.so libnative_media_core.so)
 ```
 
-开发者通过引入[avimage_generator.h](../../reference/apis-media-kit/capi-avimage-generator-h.md)、[avimage_generator_base.h](../../reference/apis-media-kit/capi-avimage-generator-base-h.md)和[native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md)头文件，使用获取视频帧相关API。
+开发者通过引入[avimage_generator.h](../../reference/apis-media-kit/capi-avimage-generator-h.md)、[avimage_generator_base.h](../../reference/apis-media-kit/capi-avimage-generator-base-h.md)和[native_averrors.h](../../reference/apis-avcodec-kit/capi-native-averrors-h.md)头文件，使用获取视频帧相关API。
 详细的API说明请参考[AVImageGenerator API参考](../../reference/apis-media-kit/capi-avimagegenerator.md)。
 
 1. 使用[OH_AVImageGenerator_Create()](../../reference/apis-media-kit/capi-avimage-generator-h.md#oh_avimagegenerator_create)创建实例。

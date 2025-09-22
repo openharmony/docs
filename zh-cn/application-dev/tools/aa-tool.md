@@ -52,10 +52,10 @@ aa help
 
 ```bash
 # 显示启动Ability
-aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-D] [-R] [-S] [-W] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
+aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-c] [-E] [-D] [-R] [-S] [-W] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
 
 # 隐式启动Ability。如果命令中的参数都不填，会导致启动失败。
-aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [-R] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
+aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-c] [-D] [-E] [-R] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
 ```
 
   **启动命令参数列表**
@@ -79,6 +79,8 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
   | --wt | 可选参数，windowTop，窗口上边距，单位px。<br>**约束：**<br>仅当2in1设备处于开发者模式下，且被启动应用采用调试签名时，该字段生效。|
   | --wh | 可选参数，windowHeight，窗口高度，单位px。<br>**约束：**<br>仅当2in1设备处于开发者模式下，且被启动应用采用调试签名时，该字段生效。|
   | --ww | 可选参数，windowWidth，窗口宽度，单位px。<br>**约束：**<br>仅当2in1设备处于开发者模式下，且被启动应用采用调试签名时，该字段生效。|
+  | -c | 可选参数，调试时是否通过跨端迁移启动Ability。携带该参数代表跨端迁移场景，不携带代表非跨端迁移场景。 |
+  | -E | 可选参数，调试时是否显示详细的异常信息。携带该参数代表显示，不携带代表不显示。<br>**说明：** 从API version 14开始，支持该参数。 |
   | -R | 可选参数，调试时是否开启多线程错误检测。携带该参数代表开启，不携带代表关闭。<br>**说明：** 从API version 14开始，支持该参数。 |
   | -S | 可选参数，调试时是否进入应用沙箱。携带该参数代表进入，不携带代表不进入。 |
   | -D | 可选参数，调试模式。        |
@@ -738,7 +740,7 @@ aa start命令的参数wl、wt、wh、ww或aa test命令不支持release签名�
 
 **处理步骤**
 
-使用Debug签名证书重新签名，安装新签名出的HAP后，再尝试执行该该命令。
+使用Debug签名证书重新签名，安装新签名出的HAP后，再尝试执行该命令。
 
 ### 10100101 获取应用信息失败
 
@@ -1126,5 +1128,5 @@ Cannot debug applications using a release certificate.
 
 **处理步骤**
 
-使用Debug签名证书重新签名，安装新签名出的HAP后，再尝试执行该该命令。
+使用Debug签名证书重新签名，安装新签名出的HAP后，再尝试执行该命令。
 签名工具及签名证书的生成方式可以参考：[签名工具指导](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)。

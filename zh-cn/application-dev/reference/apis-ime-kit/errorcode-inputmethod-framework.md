@@ -56,6 +56,7 @@ Input method engine error. Possible causes:
 Input method client error. Possible causes: 
 1. the edit box is not focused.
 2. no edit box is bound to current input method application.
+3. ipc failed due to the large amount of data transferred or other reasons.
 
 **错误描述**
 
@@ -65,11 +66,13 @@ Input method client error. Possible causes:
 
 1. 应用没有获得焦点。
 2. 应用客户端服务异常导致输入法应用与应用客户端断连。
+3. 传输的数据量过大等原因，导致IPC失败。
 
 **处理步骤**
 
 1. 重新将输入法应用与应用进行绑定：将应用后台进程杀死，重新启动应用，通过点击对话框等方式触发输入法键盘的显示，若键盘正常显示，则问题解决。
 2. 将第应用切换至前台，并确保无其他应用或窗口遮挡。通过点击对话框等方式触发键盘弹出。
+3. 根据[IPC的约束与限制](../../ipc/ipc-rpc-overview.md#约束与限制)，需先调整传输数据量，控制为较小规模后再发起请求。需特别注意：一次接口调用在IPC层的总传输数据量=应用侧发送的数据量+系统层处理所需的必要数据量，因此应用调用接口时实际可发送的最大数据量，会小于IPC本身限制的最大数据量。
 
 ## 12800004 不是输入法应用
 

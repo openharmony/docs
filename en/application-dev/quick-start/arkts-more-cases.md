@@ -177,7 +177,7 @@ type ControllerConstructor = {
   new (value: string): Controller;
 }
 
-class Menu {
+class testMenu {
   controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
@@ -187,7 +187,7 @@ class Menu {
   }
 }
 
-let t = new Menu();
+let t = new testMenu();
 console.log(t.createController()!.value);
 ```
 
@@ -204,7 +204,7 @@ class Controller {
 
 type ControllerConstructor = () => Controller;
 
-class Menu {
+class testMenu {
   controller: ControllerConstructor = () => {
     return new Controller('abc');
   }
@@ -217,7 +217,7 @@ class Menu {
   }
 }
 
-let t: Menu = new Menu();
+let t: testMenu = new testMenu();
 console.log(t.createController()!.value);
 ```
 
@@ -319,7 +319,7 @@ interface ControllerConstructor {
   new (value: string): Controller;
 }
 
-class Menu {
+class testMenu {
   controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
@@ -329,7 +329,7 @@ class Menu {
   }
 }
 
-let t = new Menu();
+let t = new testMenu();
 console.log(t.createController()!.value);
 ```
 
@@ -346,7 +346,7 @@ class Controller {
 
 type ControllerConstructor = () => Controller;
 
-class Menu {
+class testMenu {
   controller: ControllerConstructor = () => {
     return new Controller('abc');
   }
@@ -359,7 +359,7 @@ class Menu {
   }
 }
 
-let t: Menu = new Menu();
+let t: testMenu = new testMenu();
 console.log(t.createController()!.value);
 ```
 
@@ -891,7 +891,7 @@ let d = +'string';
 let a = Number.parseInt('5'); // Explicit conversion using Number.parseInt.
 let b = -Number.parseInt('5');
 let c = ~Number.parseInt('5');
-let d = new Number('string');
+let d = new Number('123');
 ```
 
 ## arkts-no-type-query
@@ -1262,7 +1262,7 @@ class Controller {
 
 type ControllerConstructor = new (value: string) => Controller;
 
-class Menu {
+class testMenu {
   controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
@@ -1272,7 +1272,7 @@ class Menu {
   }
 }
 
-let t = new Menu()
+let t = new testMenu()
 console.log(t.createController()!.value)
 ```
 
@@ -1288,7 +1288,7 @@ class Controller {
 
 type ControllerConstructor = () => Controller;
 
-class Menu {
+class testMenu {
   controller: ControllerConstructor = () => { return new Controller('abc') }
   createController() {
     if (this.controller) {
@@ -1298,7 +1298,7 @@ class Menu {
   }
 }
 
-let t: Menu = new Menu();
+let t: testMenu = new testMenu();
 console.log(t.createController()!.value);
 ```
 
@@ -1532,33 +1532,11 @@ let entries = new Map([
 ]);
 
 let obj: Record<string, Object> = {};
-entries.forEach((value, key) => {
+entries.forEach((key, value) => {
   if (key != undefined && key != null) {
     obj[key] = value;
   }
 })
-```
-
-### Using Properties and Methods of Number
-
-ArkTS does not allow the use of the following properties and methods for global objects: **Infinity**, **NaN**, **isFinite**, **isNaN**, **parseFloat**, and **parseInt**.
-
-You can use them for **Number**.
-
-**Before adaptation**
-
-```typescript
-NaN;
-isFinite(123);
-parseInt('123');
-```
-
-**After adaptation**
-
-```typescript
-Number.NaN;
-Number.isFinite(123);
-Number.parseInt('123');
 ```
 
 ## arkts-strict-typing(StrictModeError)
@@ -1784,30 +1762,6 @@ class Test {
 }
 ```
 
-### '***' is of type 'unknown'
-
-**Before adaptation**
-
-```typescript
-try {
-  
-} catch (error) {
-  console.log(error.message);
-}
-```
-
-**After adaptation**
-
-```typescript
-import { BusinessError } from '@kit.BasicServicesKit'
-
-try {
-  
-} catch (error) {
-  console.log((error as BusinessError).message);
-}
-```
-
 ### Type '*** | null' is not assignable to type '\*\*\*'
 
 **Before adaptation**
@@ -1880,7 +1834,7 @@ function foo(v: number): A | null {
 let a: A = foo(123)!;
 ```
 
-### Cannot invoke an object which possibly 'undefined'
+### Cannot invoke an object which is possibly 'undefined'
 
 **Before adaptation**
 
@@ -1999,7 +1953,7 @@ Remove the @ts-nocheck comment and explicitly declare types for all variables.
 **Before adaptation**
 
 ```typescript
-// @ts-nocheck
+// @ts-ignore
 var a: any = 123;
 ```
 
@@ -2060,7 +2014,7 @@ interface ControllerConstructor {
   new (value: string): Controller;
 }
 
-class Menu {
+class TestMenu {
   controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
@@ -2070,7 +2024,7 @@ class Menu {
   }
 }
 
-let t = new Menu();
+let t = new TestMenu();
 console.log(t.createController()!.value);
 ```
 
@@ -2079,15 +2033,19 @@ console.log(t.createController()!.value);
 ```typescript
 class Controller {
   value: string = ''
+
   constructor(value: string) {
-    this.value = value
+    this.value = value;
   }
 }
 
 type ControllerConstructor = () => Controller;
 
-class Menu {
-  controller: ControllerConstructor = () => { return new Controller('abc'); }
+class TestMenu {
+  controller: ControllerConstructor = () => {
+    return new Controller('abc');
+  }
+
   createController() {
     if (this.controller) {
       return this.controller();
@@ -2096,7 +2054,7 @@ class Menu {
   }
 }
 
-let t: Menu = new Menu();
+let t: TestMenu = new TestMenu();
 console.log(t.createController()!.value);
 ```
 
@@ -2205,10 +2163,13 @@ Use specific types (such as **number**, **string**) or **interface** instead of 
 **Before adaptation**
 
 ```typescript
-// lib.d.ts
-declare function foo(): any;
+// testa.ts
+export function foo(): any {
+  return null;
+}
 
 // main.ets
+import {foo} from './testa'
 let e0: ESObject = foo();
 
 function f() {
@@ -2222,10 +2183,13 @@ function f() {
 **After adaptation**
 
 ```typescript
-// lib.d.ts
-declare function foo(): any;
+// testa.ts
+export function foo(): any {
+  return null;
+}
 
 // main.ets
+import {foo} from './testa'
 interface I {}
 
 function f() {

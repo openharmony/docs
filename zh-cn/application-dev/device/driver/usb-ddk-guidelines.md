@@ -114,7 +114,7 @@ libusb_ndk.z.so
     // 释放配置描述符
     OH_Usb_FreeConfigDescriptor(config);
     ```
-3. 获取当前激活接口的备用设置及激活备用设置。
+3. 获取当前激活接口的备用设置及激活备用设置（可选）。
 
     使用 **usb_ddk_api.h** 的 **OH_Usb_GetCurrentInterfaceSetting** 获取备用设置，并使用 **OH_Usb_SelectInterfaceSetting** 激活备用设置。
 
@@ -126,7 +126,7 @@ libusb_ndk.z.so
     // 激活备用设置
     OH_Usb_SelectInterfaceSetting(interfaceHandle, settingIndex);
     ```
-4. 发送控制读请求、发送控制写请求。
+4. 发送控制读请求、发送控制写请求（可选）。
 
     使用 **usb_ddk_api.h** 的**OH_Usb_SendControlReadRequest**发送控制读请求，或者使用**OH_Usb_SendControlWriteRequest**发送控制写请求。
 
@@ -154,10 +154,10 @@ libusb_ndk.z.so
     uint8_t dataWrite[256] = {0};
     uint32_t dataWriteLen = 256;
     // 发送控制写请求
-    OH_Usb_SendControlWriteRequest(interfaceHandle, &setupWrite, timeout, dataWrite, &dataWriteLen);
+    OH_Usb_SendControlWriteRequest(interfaceHandle, &setupWrite, timeout, dataWrite, dataWriteLen);
     ```
 
-5. 创建内存映射缓冲区及发送请求。
+5. 创建内存映射缓冲区及发送请求（可选）。
 
     使用 **usb_ddk_api.h** 的**OH_Usb_CreateDeviceMemMap**接口创建内存映射缓冲区**devMmap**，并使用**OH_Usb_SendPipeRequest**发送请求。
 

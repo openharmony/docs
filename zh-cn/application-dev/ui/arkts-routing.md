@@ -360,6 +360,10 @@ struct Page {
 ```
 ![router_2025-07-02_152548](figures/router_2025-07-02_152548.gif)
 
+## 自定义转场
+
+router自定义转场可以通过[pageTransition](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#pagetransition9)实现，具体参考[页面间转场 (pageTransition)](../reference/apis-arkui/arkui-ts/ts-page-transition-animation.md)。
+
 ## 页面返回前增加一个询问框
 
 在开发应用时，为了避免用户误操作或者丢失数据，有时候需要在用户从一个页面返回到另一个页面之前，弹出一个询问框，让用户确认是否要执行这个操作。

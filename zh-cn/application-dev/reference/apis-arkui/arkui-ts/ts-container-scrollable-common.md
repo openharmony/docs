@@ -59,6 +59,28 @@ scrollBarColor(color: Color | number | string): T
 | --- | -------------- |
 | T | 返回当前滚动组件。 |
 
+### scrollBarColor<sup>22+</sup>
+
+scrollBarColor(color: Color | number | string | Resource): T
+
+设置滚动条的颜色。
+
+**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明           |
+| ------ | ------------------------------------------------------------ | ---- | -------------- |
+| color  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 滚动条的颜色。<br/>默认值：'\#182431'（40%不透明度）<br/>number为HEX格式颜色，支持rgb或者argb，示例：0xffffff。string为rgb或者argb格式颜色，示例：'#ffffff'。 |
+
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
+
 ### scrollBarWidth<sup>11+</sup>
 
 scrollBarWidth(value: number | string): T
@@ -501,6 +523,29 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 | --- | -------------- |
 | T | 返回当前滚动组件。 |
 
+### onWillStartDragging<sup>22+</sup>
+
+onWillStartDragging(handler: VoidCallback): T
+
+滚动组件开始拖动时触发。
+
+**卡片能力：** 从API version 22开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                        | 必填 | 说明                         |
+| ------- | ------------------------------------------ | ---- | ---------------------------- |
+| handler | [VoidCallback](ts-types.md#voidcallback12) | 是   | 滚动组件开始拖动时触发的回调。 |
+
+**返回值：**
+
+| 类型 | 说明               |
+| ---- | ------------------ |
+| T    | 返回当前滚动组件。 |
 
 ### onWillStopDragging<sup>20+</sup>
 
@@ -526,6 +571,77 @@ onWillStopDragging(handler: OnWillStopDraggingCallback): T
 | ---- | ------------------ |
 | T    | 返回当前滚动组件。 |
 
+### onDidStopDragging<sup>22+</sup>
+
+onDidStopDragging(handler: OnDidStopDraggingCallback): T
+
+滚动组件结束拖拽时触发。
+
+**卡片能力：** 从API version 22开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                       | 必填 | 说明                         |
+| ------- | --------------------------------------------------------- | ---- | --------------------------- |
+| handler | [OnDidStopDraggingCallback](#ondidstopdraggingcallback22) | 是   | 滚动组件结束拖动时触发的回调。 |
+
+**返回值：**
+
+| 类型 | 说明               |
+| ---- | ------------------ |
+| T    | 返回当前滚动组件。 |
+
+### onWillStartFling<sup>22+</sup>
+
+onWillStartFling(handler: VoidCallback): T
+
+滚动组件将要开始Fling动效时触发。
+
+**卡片能力：** 从API version 22开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                        | 必填 | 说明                         |
+| ------- | ------------------------------------------ | ---- | ---------------------------- |
+| handler | [VoidCallback](ts-types.md#voidcallback12) | 是   | 滚动组件将要开始Fling动效时触发的回调。 |
+
+**返回值：**
+
+| 类型 | 说明               |
+| ---- | ------------------ |
+| T    | 返回当前滚动组件。 |
+
+### onDidStopFling<sup>22+</sup>
+
+onDidStopFling(handler: VoidCallback): T
+
+滚动组件结束Fling动效后触发，进行中的Fling动效被新的滑动事件打断时不触发。
+
+**卡片能力：** 从API version 22开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                        | 必填 | 说明                         |
+| ------- | ------------------------------------------ | ---- | ---------------------------- |
+| handler | [VoidCallback](ts-types.md#voidcallback12) | 是   | 滚动组件结束Fling动效后触发的回调。 |
+
+**返回值：**
+
+| 类型 | 说明               |
+| ---- | ------------------ |
+| T    | 返回当前滚动组件。 |
 
 ## ItemDragInfo对象说明
 
@@ -909,6 +1025,24 @@ type OnWillStopDraggingCallback = (velocity: number) => void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | velocity | number | 是   | 划动离手速度，滚动组件的内容向上滚动时速度为正，向下滚动时速度为负。<br/>单位vp/s。 |
+
+## OnDidStopDraggingCallback<sup>22+</sup>
+
+type OnDidStopDraggingCallback = (willFling: boolean) => void
+
+滚动组件在结束拖拽时触发的回调。
+
+**卡片能力：** 从API version 22开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型    | 必填 | 说明                                                                              |
+| --------  | ------- | ---- | -------------------------------------------------------------------------------- |
+| willFling | boolean | 是   | 结束拖拽后是否会有Fling动效。返回true代表拖拽结束后有Fling动效，返回false代表没有Fling动效。 |
 
 ## 示例
 

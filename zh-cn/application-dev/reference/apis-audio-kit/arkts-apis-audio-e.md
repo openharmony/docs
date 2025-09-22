@@ -412,8 +412,9 @@
 
 | 名称                 | 值   | 说明                             |
 | -------------------- | ---- | -------------------------------- |
-| PRIVACY_TYPE_PUBLIC  | 0    | 表示音频流可以被其他应用录制。   |
-| PRIVACY_TYPE_PRIVATE | 1    | 表示音频流不可以被其他应用录制。 |
+| PRIVACY_TYPE_PUBLIC  | 0    | 表示音频流可以被其他应用录制或屏幕投射，不包含隐私类型的流。|
+| PRIVACY_TYPE_PRIVATE | 1    | 表示音频流不可以被其他应用录制或屏幕投射。 |
+| PRIVACY_TYPE_SHARED<sup>21+</sup>  | 2    | 表示音频流可以被其他应用录制或屏幕投射，包含隐私类型的流。 <br/> 例如，在PRIVACY_TYPE_PUBLIC策略下，[STREAM_USAGE_VOICE_COMMUNICATION](#streamusage)类型音频流不会被其他应用录制或屏幕投射。 <br/> 然而，在PRIVACY_TYPE_SHARED策略下，这些音频流将会允许被其他应用录制或屏幕投射。 <br> **原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。|
 
 ## ChannelBlendMode<sup>11+</sup>
 
@@ -490,7 +491,7 @@
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | 短语音消息的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_CAMCORDER<sup>13+</sup>          | 13     | 录像的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_UNPROCESSED<sup>14+</sup>     | 14 |  麦克风纯净录音的音频源（系统不做任何算法处理）。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
-|  SOURCE_TYPE_LIVE<sup>20+</sup>     | 17 |  直播场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
+| SOURCE_TYPE_LIVE<sup>20+</sup>     | 17 |  直播场景的音频源，在支持的设备上会提供系统回声消除能力。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 
 ## AudioScene<sup>8+</sup>
 

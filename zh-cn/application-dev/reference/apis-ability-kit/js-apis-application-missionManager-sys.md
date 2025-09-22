@@ -54,15 +54,29 @@ registerMissionListener(listener: MissionListener): number
 ```ts
 import missionManager from '@ohos.application.missionManager';
 
-console.log('registerMissionListener');
-let listenerid = missionManager.registerMissionListener({
-  onMissionCreated: (mission) => {console.log('--------onMissionCreated-------');},
-  onMissionDestroyed: (mission) => {console.log('--------onMissionDestroyed-------');},
-  onMissionSnapshotChanged: (mission) => {console.log('--------onMissionSnapshotChanged-------');},
-  onMissionMovedToFront: (mission) => {console.log('--------onMissionMovedToFront-------');},
-  onMissionIconUpdated: (mission, icon) => {console.log('--------onMissionIconUpdated-------');},
-  onMissionClosed: (mission) => {console.log('--------onMissionClosed-------');},
-  onMissionLabelUpdated: (mission) => {console.log('--------onMissionLabelUpdated-------');}
+console.info('registerMissionListener');
+let listenerId = missionManager.registerMissionListener({
+  onMissionCreated: (mission) => {
+    console.info('--------onMissionCreated-------');
+  },
+  onMissionDestroyed: (mission) => {
+    console.info('--------onMissionDestroyed-------');
+  },
+  onMissionSnapshotChanged: (mission) => {
+    console.info('--------onMissionSnapshotChanged-------');
+  },
+  onMissionMovedToFront: (mission) => {
+    console.info('--------onMissionMovedToFront-------');
+  },
+  onMissionIconUpdated: (mission, icon) => {
+    console.info('--------onMissionIconUpdated-------');
+  },
+  onMissionClosed: (mission) => {
+    console.info('--------onMissionClosed-------');
+  },
+  onMissionLabelUpdated: (mission) => {
+    console.info('--------onMissionLabelUpdated-------');
+  }
 });
 ```
 
@@ -89,22 +103,36 @@ unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt
 **示例：**
 
 ```ts
-  import missionManager from '@ohos.application.missionManager';
+import missionManager from '@ohos.application.missionManager';
 
-  console.log('registerMissionListener');
-  let listenerid = missionManager.registerMissionListener({
-    onMissionCreated: (mission) => {console.log('--------onMissionCreated-------');},
-    onMissionDestroyed: (mission) => {console.log('--------onMissionDestroyed-------');},
-    onMissionSnapshotChanged: (mission) => {console.log('--------onMissionSnapshotChanged-------');},
-    onMissionMovedToFront: (mission) => {console.log('--------onMissionMovedToFront-------');},
-    onMissionIconUpdated: (mission, icon) => {console.log('--------onMissionIconUpdated-------');},
-    onMissionClosed: (mission) => {console.log('--------onMissionClosed-------');},
-    onMissionLabelUpdated: (mission) => {console.log('--------onMissionLabelUpdated-------');}
-  });
+console.info('registerMissionListener');
+let listenerId = missionManager.registerMissionListener({
+  onMissionCreated: (mission) => {
+    console.info('--------onMissionCreated-------');
+  },
+  onMissionDestroyed: (mission) => {
+    console.info('--------onMissionDestroyed-------');
+  },
+  onMissionSnapshotChanged: (mission) => {
+    console.info('--------onMissionSnapshotChanged-------');
+  },
+  onMissionMovedToFront: (mission) => {
+    console.info('--------onMissionMovedToFront-------');
+  },
+  onMissionIconUpdated: (mission, icon) => {
+    console.info('--------onMissionIconUpdated-------');
+  },
+  onMissionClosed: (mission) => {
+    console.info('--------onMissionClosed-------');
+  },
+  onMissionLabelUpdated: (mission) => {
+    console.info('--------onMissionLabelUpdated-------');
+  }
+});
 
-  missionManager.unregisterMissionListener(listenerid, (error) => {
-      console.error(`unregisterMissionListener fail, error: ${error}`);
-  });
+missionManager.unregisterMissionListener(listenerId, (error) => {
+  console.error(`unregisterMissionListener fail, error: ${JSON.stringify(error)}`);
+});
 ```
 
 
@@ -135,22 +163,40 @@ unregisterMissionListener(listenerId: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-  import missionManager from '@ohos.application.missionManager';
-  import { BusinessError } from '@ohos.base';
+import missionManager from '@ohos.application.missionManager';
+import { BusinessError } from '@ohos.base';
 
-  console.log('registerMissionListener');
-  let listenerid = missionManager.registerMissionListener({
-    onMissionCreated: (mission) => {console.log('--------onMissionCreated-------');},
-    onMissionDestroyed: (mission) => {console.log('--------onMissionDestroyed-------');},
-    onMissionSnapshotChanged: (mission) => {console.log('--------onMissionSnapshotChanged-------');},
-    onMissionMovedToFront: (mission) => {console.log('--------onMissionMovedToFront-------');},
-    onMissionIconUpdated: (mission, icon) => {console.log('--------onMissionIconUpdated-------');},
-    onMissionClosed: (mission) => {console.log('--------onMissionClosed-------');},
-    onMissionLabelUpdated: (mission) => {console.log('--------onMissionLabelUpdated-------');}
-  });
+console.info('registerMissionListener');
+let listenerId = missionManager.registerMissionListener({
+  onMissionCreated: (mission) => {
+    console.info('--------onMissionCreated-------');
+  },
+  onMissionDestroyed: (mission) => {
+    console.info('--------onMissionDestroyed-------');
+  },
+  onMissionSnapshotChanged: (mission) => {
+    console.info('--------onMissionSnapshotChanged-------');
+  },
+  onMissionMovedToFront: (mission) => {
+    console.info('--------onMissionMovedToFront-------');
+  },
+  onMissionIconUpdated: (mission, icon) => {
+    console.info('--------onMissionIconUpdated-------');
+  },
+  onMissionClosed: (mission) => {
+    console.info('--------onMissionClosed-------');
+  },
+  onMissionLabelUpdated: (mission) => {
+    console.info('--------onMissionLabelUpdated-------');
+  }
+});
 
-  missionManager.unregisterMissionListener(listenerid).catch((error: BusinessError) => {
-      console.error(`unregisterMissionListener fail, error: ${error}`);
+missionManager.unregisterMissionListener(listenerId)
+  .then(() => {
+    console.info(`UnregisterMissionListener success.`)
+  })
+  .catch((error: BusinessError) => {
+    console.error(`UnregisterMissionListener fail, error: ${JSON.stringify(error)}.`);
   });
 ```
 
@@ -188,12 +234,12 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
       return;
     }
 
-    console.log(`mission.missionId = ${mission.missionId}`);
-    console.log(`mission.runningState = ${mission.runningState}`);
-    console.log(`mission.lockedState = ${mission.lockedState}`);
-    console.log(`mission.timestamp = ${mission.timestamp}`);
-    console.log(`mission.label = ${mission.label}`);
-    console.log(`mission.iconPath = ${mission.iconPath}`);
+    console.info(`mission.missionId = ${mission.missionId}`);
+    console.info(`mission.runningState = ${mission.runningState}`);
+    console.info(`mission.lockedState = ${mission.lockedState}`);
+    console.info(`mission.timestamp = ${mission.timestamp}`);
+    console.info(`mission.label = ${mission.label}`);
+    console.info(`mission.iconPath = ${mission.iconPath}`);
   });
   ```
 
@@ -230,15 +276,15 @@ getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;
   import { BusinessError } from '@ohos.base';
 
   let testMissionId = 1;
-try {
+  try {
     missionManager.getMissionInfo('', testMissionId).then((data) => {
-        console.info(`getMissionInfo successfully. Data: ${JSON.stringify(data)}`);
+      console.info(`getMissionInfo successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error(`getMissionInfo failed. Cause: ${error.message}`);
+      console.error(`getMissionInfo failed. Cause: ${error.message}`);
     });
-} catch (error) {
+  } catch (error) {
     console.error(`getMissionInfo failed. Cause: ${error.message}`);
-}
+  }
   ```
 
 
@@ -268,12 +314,12 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
   import missionManager from '@ohos.application.missionManager';
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
-      if (error.code) {
-          console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
-          return;
-      }
-      console.log(`size = ${missions.length}`);
-      console.log(`missions = ${JSON.stringify(missions)}`);
+    if (error.code) {
+      console.error(`getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}`);
+      return;
+    }
+    console.info(`size = ${missions.length}`);
+    console.info(`missions = ${JSON.stringify(missions)}`);
   });
   ```
 
@@ -311,13 +357,13 @@ getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionIn
 
   try {
     missionManager.getMissionInfos('', 10).then((data) => {
-        console.info(`getMissionInfos successfully. Data: ${JSON.stringify(data)}`);
+      console.info(`getMissionInfos successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error(`getMissionInfos failed. Cause: ${error.message}`);
+      console.error(`getMissionInfos failed. Cause: ${error.message}`);
     });
-} catch (error) {
+  } catch (error) {
     console.error(`getMissionInfos failed. Cause: ${error.message}`);
-}
+  }
   ```
 
 
@@ -347,17 +393,17 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
   import missionManager from '@ohos.application.missionManager';
 
   let testMissionId = 2;
-try {
+  try {
     missionManager.getMissionSnapShot('', testMissionId, (err, data) => {
-        if (err) {
-            console.error(`getMissionSnapShot failed: ${err.message}`);
-        } else {
-            console.info(`getMissionSnapShot successfully: ${JSON.stringify(data)}`);
-        }
+      if (err) {
+        console.error(`getMissionSnapShot failed: ${err.message}`);
+      } else {
+        console.info(`getMissionSnapShot successfully: ${JSON.stringify(data)}`);
+      }
     });
-} catch (err) {
+  } catch (err) {
     console.error(`getMissionSnapShot failed: ${err.message}`);
-}
+  }
   ```
 
 
@@ -393,15 +439,15 @@ getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnaps
   import { BusinessError } from '@ohos.base';
 
   let testMissionId = 2;
-try {
+  try {
     missionManager.getMissionSnapShot('', testMissionId).then((data) => {
-        console.info(`getMissionSnapShot successfully. Data: ${JSON.stringify(data)}`);
+      console.info(`getMissionSnapShot successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error(`getMissionSnapShot failed. Cause: ${error.message}`);
+      console.error(`getMissionSnapShot failed. Cause: ${error.message}`);
     });
-} catch (error) {
+  } catch (error) {
     console.error(`getMissionSnapShot failed. Cause: ${error.message}`);
-}
+  }
   ```
 
 ## missionManager.lockMission
@@ -429,17 +475,17 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
   import missionManager from '@ohos.application.missionManager';
 
   let testMissionId = 2;
-try {
+  try {
     missionManager.lockMission(testMissionId, (err, data) => {
-        if (err) {
-            console.error(`lockMission failed: ${err.message}`);
-        } else {
-            console.info(`lockMission successfully: ${JSON.stringify(data)}`);
-        }
+      if (err) {
+        console.error(`lockMission failed: ${err.message}`);
+      } else {
+        console.info(`lockMission successfully: ${JSON.stringify(data)}`);
+      }
     });
-} catch (err) {
+  } catch (err) {
     console.error(`lockMission failed: ${err.message}`);
-}
+  }
   ```
 
 
@@ -474,15 +520,15 @@ lockMission(missionId: number): Promise&lt;void&gt;
   import { BusinessError } from '@ohos.base';
 
   let testMissionId = 2;
-try {
+  try {
     missionManager.lockMission(testMissionId).then((data) => {
-        console.info(`lockMission successfully. Data: ${JSON.stringify(data)}`);
+      console.info(`lockMission successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error(`lockMission failed. Cause: ${error.message}`);
+      console.error(`lockMission failed. Cause: ${error.message}`);
     });
-} catch (error) {
+  } catch (error) {
     console.error(`lockMission failed. Cause: ${error.message}`);
-}
+  }
   ```
 
 
@@ -511,17 +557,17 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
   import missionManager from '@ohos.application.missionManager';
 
   let testMissionId = 2;
-try {
+  try {
     missionManager.unlockMission(testMissionId, (err, data) => {
-        if (err) {
-            console.error(`unlockMission failed: ${err.message}`);
-        } else {
-            console.info(`unlockMission successfully: ${JSON.stringify(data)}`);
-        }
+      if (err) {
+        console.error(`unlockMission failed: ${err.message}`);
+      } else {
+        console.info(`unlockMission successfully: ${JSON.stringify(data)}`);
+      }
     });
-} catch (err) {
+  } catch (err) {
     console.error(`unlockMission failed: ${err.message}`);
-}
+  }
   ```
 
 
@@ -556,15 +602,15 @@ unlockMission(missionId: number): Promise&lt;void&gt;
   import { BusinessError } from '@ohos.base';
 
   let testMissionId = 2;
-try {
+  try {
     missionManager.unlockMission(testMissionId).then((data) => {
-        console.info(`unlockMission successfully. Data: ${JSON.stringify(data)}`);
+      console.info(`unlockMission successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error(`unlockMission failed. Cause: ${error.message}`);
+      console.error(`unlockMission failed. Cause: ${error.message}`);
     });
-} catch (error) {
+  } catch (error) {
     console.error(`unlockMission failed. Cause: ${error.message}`);
-}
+  }
   ```
 
 
@@ -593,17 +639,17 @@ clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
   import missionManager from '@ohos.application.missionManager';
 
   let testMissionId = 2;
-try {
+  try {
     missionManager.clearMission(testMissionId, (err, data) => {
-        if (err) {
-            console.error(`clearMission failed: ${err.message}`);
-        } else {
-            console.info(`clearMission successfully: ${JSON.stringify(data)}`);
-        }
+      if (err) {
+        console.error(`clearMission failed: ${err.message}`);
+      } else {
+        console.info(`clearMission successfully: ${JSON.stringify(data)}`);
+      }
     });
-} catch (err) {
+  } catch (err) {
     console.error(`clearMission failed: ${err.message}`);
-}
+  }
   ```
 
 
@@ -638,15 +684,15 @@ clearMission(missionId: number): Promise&lt;void&gt;
   import { BusinessError } from '@ohos.base';
 
   let testMissionId = 2;
-try {
+  try {
     missionManager.clearMission(testMissionId).then((data) => {
-        console.info(`clearMission successfully. Data: ${JSON.stringify(data)}`);
+      console.info(`clearMission successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error(`clearMission failed. Cause: ${error.message}`);
+      console.error(`clearMission failed. Cause: ${error.message}`);
     });
-} catch (error) {
+  } catch (error) {
     console.error(`clearMission failed. Cause: ${error.message}`);
-}
+  }
   ```
 
 
@@ -675,15 +721,15 @@ clearAllMissions(callback: AsyncCallback&lt;void&gt;): void
 
   try {
     missionManager.clearAllMissions(err => {
-        if (err) {
-            console.error('clearAllMissions failed: ${err.message}');
-        } else {
-            console.info('clearAllMissions successfully.');
-        }
+      if (err) {
+        console.error('clearAllMissions failed: ${err.message}');
+      } else {
+        console.info('clearAllMissions successfully.');
+      }
     });
-} catch (err) {
+  } catch (err) {
     console.error('clearAllMissions failed: ${err.message}');
-}
+  }
   ```
 
 
@@ -713,13 +759,13 @@ clearAllMissions(): Promise&lt;void&gt;
 
   try {
     missionManager.clearAllMissions().then((data) => {
-        console.info(`clearAllMissions successfully. Data: ${JSON.stringify(data)}`);
+      console.info(`clearAllMissions successfully. Data: ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
-        console.error(`clearAllMissions failed: ${err.message}`);
+      console.error(`clearAllMissions failed: ${err.message}`);
     });
-} catch (err) {
+  } catch (err) {
     console.error(`clearAllMissions failed: ${err.message}`);
-}
+  }
   ```
 
 
@@ -748,17 +794,17 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
   import missionManager from '@ohos.application.missionManager';
 
   let testMissionId = 2;
-try {
+  try {
     missionManager.moveMissionToFront(testMissionId, (err, data) => {
-        if (err) {
-            console.error(`moveMissionToFront failed: ${err.message}`);
-        } else {
-            console.info(`moveMissionToFront successfully: ${JSON.stringify(data)}`);
-        }
+      if (err) {
+        console.error(`moveMissionToFront failed: ${err.message}`);
+      } else {
+        console.info(`moveMissionToFront successfully: ${JSON.stringify(data)}`);
+      }
     });
-} catch (err) {
+  } catch (err) {
     console.error(`moveMissionToFront failed: ${err.message}`);
-}
+  }
   ```
 
 
@@ -788,17 +834,17 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
   import missionManager from '@ohos.application.missionManager';
 
   let testMissionId = 2;
-try {
-    missionManager.moveMissionToFront(testMissionId, {windowMode : 101}, (err, data) => {
-        if (err) {
-            console.error(`moveMissionToFront failed: ${err.message}`);
-        } else {
-            console.info(`moveMissionToFront successfully: ${JSON.stringify(data)}`);
-        }
+  try {
+    missionManager.moveMissionToFront(testMissionId, { windowMode: 101 }, (err, data) => {
+      if (err) {
+        console.error(`moveMissionToFront failed: ${err.message}`);
+      } else {
+        console.info(`moveMissionToFront successfully: ${JSON.stringify(data)}`);
+      }
     });
-} catch (err) {
+  } catch (err) {
     console.error(`moveMissionToFront failed: ${err.message}`);
-}
+  }
   ```
 
 
@@ -834,13 +880,13 @@ moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&g
   import { BusinessError } from '@ohos.base';
 
   let testMissionId = 2;
-try {
+  try {
     missionManager.moveMissionToFront(testMissionId).then((data) => {
-        console.info(`moveMissionToFront successfully. Data: ${JSON.stringify(data)}`);
+      console.info(`moveMissionToFront successfully. Data: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-        console.error(`moveMissionToFront failed. Cause: ${error.message}`);
+      console.error(`moveMissionToFront failed. Cause: ${error.message}`);
     });
-} catch (error) {
+  } catch (error) {
     console.error(`moveMissionToFront failed. Cause: ${error.message}`);
-}
+  }
   ```

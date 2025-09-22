@@ -58,6 +58,8 @@ OpenHarmony的窗口模块将窗口界面分为系统窗口、应用窗口两种
 
 ![windowMode](figures/windowMode.png)
 
+针对窗口模式的适配开发指导，具体可参考[窗口模式最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-multi-device-window-mode)。
+
 
 ## 实现原理
 
@@ -139,6 +141,4 @@ Stage模型下主窗口的生命周期状态包括切到前台（SHOWN）、可�
 
 -  在FA模型下，不支持系统窗口的相关开发。
 
--  应用主窗口与子窗口存在大小限制，宽度范围：[320, 2560]，高度范围：[240, 2560]，单位为vp。
-
--  系统窗口存在大小限制，宽度范围：(0, 2560]，高度范围：(0, 2560]，单位为vp。
+-  窗口存在大小限制[WindowLimits](../reference/apis-arkui/arkts-apis-window-i.md#windowlimits11)，该限制由产品配置决定。未调用[setWindowLimits](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowlimits11)配置过WindowLimits时，使用[getWindowLimits](../reference/apis-arkui/arkts-apis-window-Window.md#getwindowlimits11)可获取系统限制，单位为px。

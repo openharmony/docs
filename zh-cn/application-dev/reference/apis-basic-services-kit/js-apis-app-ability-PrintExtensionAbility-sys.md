@@ -46,12 +46,11 @@ onStartPrintJob(jobInfo: print.PrintJob): void
 **示例：**
 
 ```ts
-import { PrintExtensionAbility } from '@kit.BasicServicesKit';
-import { print } from '@kit.BasicServicesKit';
+import { print, PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onStartPrintJob(jobInfo: print.PrintJob): void {
-        console.log('onStartPrintJob, jobId is: ' + jobInfo.jobId);
+        console.info('onStartPrintJob, jobId is: ' + jobInfo.jobId);
         // ...
     }
 }
@@ -81,12 +80,11 @@ onCancelPrintJob(jobInfo: print.PrintJob): void
 **示例：**
 
 ```ts
-import { PrintExtensionAbility } from '@kit.BasicServicesKit';
-import { print } from '@kit.BasicServicesKit';
+import { print, PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onCancelPrintJob(jobInfo: print.PrintJob): void {
-        console.log('onCancelPrintJob, jobId is: ' + jobInfo.jobId);
+        console.info('onCancelPrintJob, jobId is: ' + jobInfo.jobId);
         // ...
     }
 }
@@ -121,12 +119,11 @@ onRequestPrinterCapability(printerId: number): print.PrinterCapability
 **示例：**
 
 ```ts
-import { PrintExtensionAbility } from '@kit.BasicServicesKit';
-import { print } from '@kit.BasicServicesKit';
+import { print, PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onRequestPrinterCapability(printerId: number): print.PrinterCapability {
-        console.log('onRequestPrinterCapability enter');
+        console.info('onRequestPrinterCapability enter');
         // ...
         let tmp : print.PrinterCapability = {
             colorMode : 1,
@@ -167,12 +164,11 @@ onRequestPreview(jobInfo: print.PrintJob): string
 **示例：**
 
 ```ts
-import { PrintExtensionAbility } from '@kit.BasicServicesKit';
-import { print } from '@kit.BasicServicesKit';
+import { print, PrintExtensionAbility } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onRequestPreview(jobInfo: print.PrintJob): string {
-        console.log('onRequestPreview enter');
+        console.info('onRequestPreview enter');
         // ...
         let tmp : string = '';
         return tmp;

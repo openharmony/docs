@@ -2,8 +2,9 @@
 <!--Kit: AVSession Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @ccfriend; @liao_qian-->
-<!--SE: @ccfriend-->
-<!--TSE: @chenmingxi1_huawei-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 The module provides the functionality to create an **AVCastPicker** component, which offers a unified entry for device discovery and connection.
 
@@ -78,9 +79,9 @@ struct Index {
 
   private onStateChange(state: AVCastPickerState) {
     if (state == AVCastPickerState.STATE_APPEARING) {
-      console.log('The picker starts showing.');
+      console.info('The picker starts showing.');
     } else if (state == AVCastPickerState.STATE_DISAPPEARING) {
-      console.log('The picker finishes presenting.');
+      console.info('The picker finishes presenting.');
     }
   }
 

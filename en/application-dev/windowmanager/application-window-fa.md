@@ -1,4 +1,10 @@
 # Application Window Development (FA Model)
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## Basic Concepts
 
@@ -30,8 +36,8 @@ The table below lists the common APIs used for application window development. F
 | Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.                                              |
 | Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | Sets the brightness for this window.                                            |
 | Window         | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | Changes the window size.                                          |
-| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt; | Sets whether to enable the full-screen mode for the window layout.                                 |
-| Window         | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | Sets whether to display the status bar and navigation bar in this window.                                |
+| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt; | Sets whether to enable an immersive layout for the main window or child window. **true** to enable, **false** otherwise.|
+| Window         | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | <!--RP1-->Sets whether to show the status bar and three-button navigation bar in the main window. The visibility of the status bar and three-button navigation bar is controlled by **status** and **navigation**, respectively.<!--RP1End--><br>For example, if this parameter is set to **['status',&nbsp;'navigation']**, all of them are shown. If this parameter is set to **[]**, they are hidden.|
 | Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt; | Sets the properties of the status bar and navigation bar in this window.<br>**systemBarProperties**: properties of the status bar and navigation bar.|
 | Window         | showWindow(callback: AsyncCallback\<void>): void             | Shows this window.                                              |
 | Window         | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | Enables listening for touch events outside this window.                          |
@@ -54,6 +60,11 @@ You can create a child window, such as a dialog box, and set its properties.
 1. Create or obtain a child window.
 
    - Call **window.createWindow** to create a child window.
+
+     In non-[freeform window](../windowmanager/window-terminology.md#freeform-window) mode, the child window created uses an [immersive layout](../windowmanager/window-terminology.md#immersive-layout) by default.
+
+     In freeform window mode, the child window created uses an immersive layout when [decorEnabled](../reference/apis-arkui/arkts-apis-window-i.md#configuration9) is set to **false**, and it uses a non-immersive layout when this parameter is set to **true**.
+
    - Call **window.findWindow** to find an available child window.
 
    ```ts

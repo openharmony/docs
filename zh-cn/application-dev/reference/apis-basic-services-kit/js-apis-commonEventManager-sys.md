@@ -1,5 +1,12 @@
 # @ohos.commonEventManager (公共事件模块)(系统应用)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @fang-jinxu-->
+
 本模块提供了公共事件相关的能力，包括发布公共事件、订阅公共事件以及退订公共事件。
 
 > **说明：**
@@ -46,6 +53,7 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |  
 | 1500003  | The common event sending frequency too high. |
+| 1500006  | Invalid userId. |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
 | 1500009  | Failed to obtain system parameters.  |
@@ -100,6 +108,7 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |  
 | 1500003  | The common event sending frequency too high. |
+| 1500006  | Invalid userId. |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
 | 1500009  | Failed to obtain system parameters.  |

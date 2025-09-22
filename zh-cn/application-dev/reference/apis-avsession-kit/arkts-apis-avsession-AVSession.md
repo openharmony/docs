@@ -199,7 +199,9 @@ import { image } from '@kit.ImageKit';
 import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let value = await resourceManager.getSysResourceManager().getRawFileContent('IMAGE_URI');
+async function setCallMetadata() {
+  try {
+    let value = await resourceManager.getSysResourceManager().getRawFileContent('IMAGE_URI');
     let imageSource = await image.createImageSource(value.buffer);
     let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
     let calldata: avSession.CallMetadata = {
@@ -207,11 +209,17 @@ let value = await resourceManager.getSysResourceManager().getRawFileContent('IMA
       phoneNumber: "111xxxxxxxx",
       avatar: imagePixel
     };
-currentAVSession.setCallMetadata(calldata).then(() => {
-  console.info('setCallMetadata successfully');
-}).catch((err: BusinessError) => {
-  console.error(`setCallMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
-});
+    currentAVSession.setCallMetadata(calldata).then(() => {
+      console.info('setCallMetadata successfully');
+    }).catch((err: BusinessError) => {
+      console.error(`setCallMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
+    });
+  } catch (err) {
+    if (err) {
+      console.error(`setCallMetadata Error: code: ${err.code}, message: ${err.message}`);
+    }
+  }
+}
 ```
 
 ## setCallMetadata<sup>11+</sup>
@@ -247,21 +255,27 @@ import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function setCallMetadata() {
-  let value = await resourceManager.getSysResourceManager().getRawFileContent('IMAGE_URI');
-  let imageSource = await image.createImageSource(value.buffer);
-  let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
-  let calldata: avSession.CallMetadata = {
-    name: "xiaoming",
-    phoneNumber: "111xxxxxxxx",
-    avatar: imagePixel
-  };
-  currentAVSession.setCallMetadata(calldata, (err: BusinessError) => {
+  try {
+    let value = await resourceManager.getSysResourceManager().getRawFileContent('IMAGE_URI');
+    let imageSource = await image.createImageSource(value.buffer);
+    let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
+    let calldata: avSession.CallMetadata = {
+      name: "xiaoming",
+      phoneNumber: "111xxxxxxxx",
+      avatar: imagePixel
+    };
+    currentAVSession.setCallMetadata(calldata, (err: BusinessError) => {
+      if (err) {
+        console.error(`setCallMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
+      } else {
+        console.info('setCallMetadata successfully');
+      }
+    });
+  } catch (err) {
     if (err) {
-      console.error(`setCallMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-      console.info('setCallMetadata successfully');
+      console.error(`setCallMetadata Error: code: ${err.code}, message: ${err.message}`);
     }
-  });
+  }
 }
 ```
 
@@ -653,20 +667,20 @@ struct Index {
             let context: Context = this.getUIContext().getHostContext() as Context;
 
             avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-            if (err) {
+              if (err) {
                 console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-            } else {
+              } else {
                 currentAVSession = data;
-            }
+                let eventName = "dynamic_lyric";
+                if (currentAVSession !== undefined) {
+                  (currentAVSession as avSession.AVSession).dispatchSessionEvent(eventName, {lyric : "This is lyric"}).then(() => {
+                    console.info('dispatchSessionEvent successfully');
+                  }).catch((err: BusinessError) => {
+                    console.error(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+                  })
+                }
+              }
             });
-            let eventName = "dynamic_lyric";
-            if (currentAVSession !== undefined) {
-            (currentAVSession as avSession.AVSession).dispatchSessionEvent(eventName, {lyric : "This is lyric"}).then(() => {
-                console.info('dispatchSessionEvent successfully');
-            }).catch((err: BusinessError) => {
-                console.error(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
-            })
-            }
           })
       }
     .width('100%')
@@ -724,20 +738,20 @@ struct Index {
             let context: Context = this.getUIContext().getHostContext() as Context;
 
             avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-            if (err) {
+              if (err) {
                 console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-            } else {
+              } else {
                 currentAVSession = data;
-            }
-            });
-            let eventName: string = "dynamic_lyric";
-            if (currentAVSession !== undefined) {
-            (currentAVSession as avSession.AVSession).dispatchSessionEvent(eventName, {lyric : "This is lyric"}, (err: BusinessError) => {
-                if (err) {
-                console.error(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+                let eventName: string = "dynamic_lyric";
+                if (currentAVSession !== undefined) {
+                  (currentAVSession as avSession.AVSession).dispatchSessionEvent(eventName, {lyric : "This is lyric"}, (err: BusinessError) => {
+                    if (err) {
+                      console.error(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+                    }
+                  })
                 }
-            })
-            }
+              }
+            });
           })
       }
     .width('100%')
@@ -786,39 +800,45 @@ import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function setAVQueueItems() {
-  let value = await resourceManager.getSysResourceManager().getRawFileContent('IMAGE_URI');
-  let imageSource = await image.createImageSource(value.buffer);
-  let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
-  let queueItemDescription_1: avSession.AVMediaDescription = {
-    assetId: '001',
-    title: 'music_name',
-    subtitle: 'music_sub_name',
-    description: 'music_description',
-    mediaImage : imagePixel,
-    extras: {extras:'any'}
-  };
-  let queueItem_1: avSession.AVQueueItem = {
-    itemId: 1,
-    description: queueItemDescription_1
-  };
-  let queueItemDescription_2: avSession.AVMediaDescription = {
-    assetId: '002',
-    title: 'music_name',
-    subtitle: 'music_sub_name',
-    description: 'music_description',
-    mediaImage: imagePixel,
-    extras: {extras:'any'}
-  };
-  let queueItem_2: avSession.AVQueueItem = {
-    itemId: 2,
-    description: queueItemDescription_2
-  };
-  let queueItemsArray: avSession.AVQueueItem[] = [queueItem_1, queueItem_2];
-  currentAVSession.setAVQueueItems(queueItemsArray).then(() => {
-    console.info('SetAVQueueItems successfully');
-  }).catch((err: BusinessError) => {
-    console.error(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
-  });
+  try {
+    let value = await resourceManager.getSysResourceManager().getRawFileContent('IMAGE_URI');
+    let imageSource = await image.createImageSource(value.buffer);
+    let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
+    let queueItemDescription_1: avSession.AVMediaDescription = {
+      assetId: '001',
+      title: 'music_name',
+      subtitle: 'music_sub_name',
+      description: 'music_description',
+      mediaImage : imagePixel,
+      extras: {extras:'any'}
+    };
+    let queueItem_1: avSession.AVQueueItem = {
+      itemId: 1,
+      description: queueItemDescription_1
+    };
+    let queueItemDescription_2: avSession.AVMediaDescription = {
+      assetId: '002',
+      title: 'music_name',
+      subtitle: 'music_sub_name',
+      description: 'music_description',
+      mediaImage: imagePixel,
+      extras: {extras:'any'}
+    };
+    let queueItem_2: avSession.AVQueueItem = {
+      itemId: 2,
+      description: queueItemDescription_2
+    };
+    let queueItemsArray: avSession.AVQueueItem[] = [queueItem_1, queueItem_2];
+    currentAVSession.setAVQueueItems(queueItemsArray).then(() => {
+      console.info('SetAVQueueItems successfully');
+    }).catch((err: BusinessError) => {
+      console.error(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
+    });
+  } catch (err) {
+    if (err) {
+      console.error(`ImageSource or PixelMap create Error: code: ${err.code}, message: ${err.message}`);
+    }
+  }
 }
 ```
 
@@ -855,41 +875,47 @@ import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function setAVQueueItems() {
-  let value = await resourceManager.getSysResourceManager().getRawFileContent('IMAGE_URI');
-  let imageSource = await image.createImageSource(value.buffer);
-  let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
-  let queueItemDescription_1: avSession.AVMediaDescription = {
-    assetId: '001',
-    title: 'music_name',
-    subtitle: 'music_sub_name',
-    description: 'music_description',
-    mediaImage : imagePixel,
-    extras: {extras:'any'}
-  };
-  let queueItem_1: avSession.AVQueueItem = {
-    itemId: 1,
-    description: queueItemDescription_1
-  };
-  let queueItemDescription_2: avSession.AVMediaDescription = {
-    assetId: '002',
-    title: 'music_name',
-    subtitle: 'music_sub_name',
-    description: 'music_description',
-    mediaImage: imagePixel,
-    extras: {extras:'any'}
-  };
-  let queueItem_2: avSession.AVQueueItem = {
-    itemId: 2,
-    description: queueItemDescription_2
-  };
-  let queueItemsArray: avSession.AVQueueItem[] = [queueItem_1, queueItem_2];
-  currentAVSession.setAVQueueItems(queueItemsArray, (err: BusinessError) => {
+  try {
+    let value = await resourceManager.getSysResourceManager().getRawFileContent('IMAGE_URI');
+    let imageSource = await image.createImageSource(value.buffer);
+    let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
+    let queueItemDescription_1: avSession.AVMediaDescription = {
+      assetId: '001',
+      title: 'music_name',
+      subtitle: 'music_sub_name',
+      description: 'music_description',
+      mediaImage : imagePixel,
+      extras: {extras:'any'}
+    };
+    let queueItem_1: avSession.AVQueueItem = {
+      itemId: 1,
+      description: queueItemDescription_1
+    };
+    let queueItemDescription_2: avSession.AVMediaDescription = {
+      assetId: '002',
+      title: 'music_name',
+      subtitle: 'music_sub_name',
+      description: 'music_description',
+      mediaImage: imagePixel,
+      extras: {extras:'any'}
+    };
+    let queueItem_2: avSession.AVQueueItem = {
+      itemId: 2,
+      description: queueItemDescription_2
+    };
+    let queueItemsArray: avSession.AVQueueItem[] = [queueItem_1, queueItem_2];
+    currentAVSession.setAVQueueItems(queueItemsArray, (err: BusinessError) => {
+      if (err) {
+        console.error(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
+      } else {
+        console.info('SetAVQueueItems successfully');
+      }
+    });
+  } catch (err) {
     if (err) {
-      console.error(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-      console.info('SetAVQueueItems successfully');
+      console.error(`ImageSource or PixelMap create Error: code: ${err.code}, message: ${err.message}`);
     }
-  });
+  }
 }
 ```
 
@@ -1102,19 +1128,19 @@ struct Index {
             let context: Context = this.getUIContext().getHostContext() as Context;
 
             avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-            if (err) {
+              if (err) {
                 console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-            } else {
+              } else {
                 currentAVSession = data;
-            }
-            });
-            if (currentAVSession !== undefined) {
-            (currentAVSession as avSession.AVSession).setExtras({extras : "This is custom media packet"}, (err: BusinessError) => {
-                if (err) {
-                console.error(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+                if (currentAVSession !== undefined) {
+                  (currentAVSession as avSession.AVSession).setExtras({extras : "This is custom media packet"}, (err: BusinessError) => {
+                    if (err) {
+                      console.error(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+                    }
+                  })
                 }
-            })
-            }
+              }
+            });
           })
       }
     .width('100%')
@@ -1152,7 +1178,8 @@ sendCustomData(data: Record\<string, Object>): Promise\<void>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
-| 6600102  | The session does not exist.                                  |
+| 6600102 | The session does not exist. |
+
 
 **示例：**
 
@@ -1238,8 +1265,8 @@ struct Index {
             let currentAVSession: avSession.AVSession = await avSession.createAVSession(context, 'SESSION_NAME', 'audio');
             let avSessionController: avSession.AVSessionController;
             currentAVSession.getController().then((avController: avSession.AVSessionController) => {
-              avsessionController = avController;
-              console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
+              avSessionController = avController;
+              console.info(`GetController : SUCCESS : sessionid : ${avSessionController.sessionId}`);
             }).catch((err: BusinessError) => {
               console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
             });
@@ -1294,17 +1321,23 @@ struct Index {
     Column() {
       Text(this.message)
         .onClick(async () => {
-          let context: Context = this.getUIContext().getHostContext() as Context;
-          let currentAVSession: avSession.AVSession = await avSession.createAVSession(context, 'SESSION_NAME', 'audio');
-          let avsessionController: avSession.AVSessionController;
-          currentAVSession.getController((err: BusinessError, avcontroller: avSession.AVSessionController) => {
+          try {
+            let context: Context = this.getUIContext().getHostContext() as Context;
+            let currentAVSession: avSession.AVSession = await avSession.createAVSession(context, 'SESSION_NAME', 'audio');
+            let avsessionController: avSession.AVSessionController;
+            currentAVSession.getController((err: BusinessError, avcontroller: avSession.AVSessionController) => {
+              if (err) {
+                console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
+              } else {
+                avsessionController = avcontroller;
+                console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
+              }
+            });
+          } catch (err) {
             if (err) {
-              console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
-            } else {
-              avsessionController = avcontroller;
-              console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
+              console.error(`AVSession create Error: code: ${err.code}, message: ${err.message}`);
             }
-          });
+          }
         })
     }
     .width('100%')
@@ -1709,7 +1742,7 @@ on(type: 'play', callback: () => void): void
 | callback | () => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则为错误对象。                                        |
 
 **错误码：**
-
+  
 以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
 
 | 错误码ID | 错误信息 |
@@ -2363,17 +2396,17 @@ struct Index {
             let context: Context = this.getUIContext().getHostContext() as Context;
 
             avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-            if (err) {
+              if (err) {
                 console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-            } else {
+              } else {
                 currentAVSession = data;
-            }
+                if (currentAVSession !== undefined) {
+                  (currentAVSession as avSession.AVSession).on('commonCommand', (commonCommand, args) => {
+                      console.info(`OnCommonCommand, the command is ${commonCommand}, args: ${JSON.stringify(args)}`);
+                  });
+                }
+              }
             });
-            if (currentAVSession !== undefined) {
-            (currentAVSession as avSession.AVSession).on('commonCommand', (commonCommand, args) => {
-                console.info(`OnCommonCommand, the command is ${commonCommand}, args: ${JSON.stringify(args)}`);
-            });
-            }
           })
       }
     .width('100%')
@@ -3442,8 +3475,8 @@ on(type: 'customDataChange', callback: Callback\<Record\<string, Object>>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
-| 6600102  | The session does not exist.                                  |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it.   |
+| 6600102  | The session does not exist. |
 
 **示例：**
 
@@ -3476,8 +3509,8 @@ off(type: 'customDataChange', callback?: Callback\<Record\<string, Object>>): vo
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
-| 6600102  | The session does not exist.                                  |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it.  |
+| 6600102  | The session does not exist. |
 
 **示例：**
 

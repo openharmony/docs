@@ -6,7 +6,7 @@
 <!--Tester: @kongjing2-->
 <!--Adviser: @Brilliantry_Rui-->
 
-This topic describes how to configure the application icon and label. Application icons are classified into single-layer icons and layered icons. A single-layer icon contains only one image, and a layered icon contains a foreground image and a background image. For details about the icon specifications and icon configuration rules, see <!--RP1-->[Icon Deliverables](https://gitcode.com/openharmony/docs/blob/master/en/design/ux-design/visual-app-icons.md#icon-deliverables)<!--RP1End--> and [Configuring Icons and Labels](../application-models/application-component-configuration-stage.md#configuring-icons-and-labels), respectively.
+This topic describes how to configure the application icon and label. Application icons are classified into single-layer icons and layered icons. A single-layer icon contains only one image, and a layered icon contains a foreground image and a background image. For details about the icon specifications and icon configuration rules, see <!--RP1-->[Icon Deliverables](https://gitcode.com/openharmony/docs/blob/master/en/design/ux-design/visual-app-icons.md#icon-deliverables)<!--RP1End--> and [Configuring the Application Icon and Label](../application-models/application-component-configuration-stage.md#configuring-the-application-icon-and-label), respectively.
 
 ## Use Scenarios
 
@@ -33,7 +33,7 @@ The display effects are as follows.
 >
 > **NOTE**
 > 
-> During compilation and build, resource files in the **AppScope** directory where the **app.json5** file is located are incorporated into the resource directory of the module. If resource files with the same name exist in these two directories, only the ones in the **AppScope** directory are retained after compilation and packaging.
+> The resource files in the **AppScope** directory are merged into the **resources** directory of the module. If files with the same name exist in these two directories, the ones in the **AppScope** directory will overwrite those in the module after build and packaging.
 >
 > For example, if the labels of the layered icon files configured in **app.json5** and **module.json5** are the same but the icons are different, the resource files in the **AppScope** directory overwrite those in the module. Finally, the icon configured in **app.json5** is used.
 > 

@@ -757,7 +757,7 @@ struct SwiperExample {
 
 针对Swiper组件开发，有以下相关实例可供参考：
 
-- [电子相册（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ElectronicAlbum)
+- [电子相册（ArkTS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/ElectronicAlbum)
 
-- [Swiper的使用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SwiperArkTS)
+- [Swiper的使用（ArkTS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/SwiperArkTS)
 <!--RP1--><!--RP1End-->

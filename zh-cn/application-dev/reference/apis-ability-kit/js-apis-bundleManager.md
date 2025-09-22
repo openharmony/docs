@@ -1,4 +1,4 @@
-# @ohos.bundle.bundleManager (bundleManager模块)
+# @ohos.bundle.bundleManager (应用程序包管理模块)
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
@@ -74,6 +74,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | DISTRIBUTED<sup>20+</sup> | 28 | [DistributedExtensionAbility](../apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)：提供分布式相关扩展能力，提供分布式创建、销毁、连接的生命周期回调。 |
 | APP_SERVICE<sup>20+</sup> | 29 | [AppServiceExtensionAbility](../apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)：为企业普通应用提供后台服务能力。 |
 | LIVE_FORM<sup>20+</sup> | 30 | [LiveFormExtensionAbility](../apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)：互动卡片相关扩展能力，提供互动卡片创建、销毁的生命周期回调。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| FAULT_LOG<sup>21+</sup> | 33 | [FaultLogExtensionAbility](../apis-performance-analysis-kit/js-apis-hiviewdfx-FaultLogExtensionAbility.md)：故障日志扩展能力，提供应用故障后拉起对应ExtensionAbility的能力。|
 | UNSPECIFIED      | 255 | 不指定类型<!--Del-->，配合[queryExtensionAbilityInfo接口](js-apis-bundleManager-sys.md#bundlemanagerqueryextensionabilityinfo)可以查询所有类型的ExtensionAbility<!--DelEnd-->。 |
 <!--RP2--><!--RP2End-->
 
@@ -106,7 +107,7 @@ import { bundleManager } from '@kit.AbilityKit';
 
 ## LaunchType
 
-指示组件的启动方式。
+标识组件的[启动模式](../../application-models/uiability-launch-type.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -114,13 +115,13 @@ import { bundleManager } from '@kit.AbilityKit';
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|:---:|
-| SINGLETON        | 0   | ability的启动模式，表示单实例。 |
-| MULTITON         | 1   | ability的启动模式，表示普通多实例。 |
-| SPECIFIED        | 2   | ability的启动模式，表示该ability内部根据业务自己指定多实例。 |
+| SINGLETON        | 0   | UIAbility的启动模式，表示单实例。 |
+| MULTITON         | 1   | UIAbility的启动模式，表示普通多实例。 |
+| SPECIFIED        | 2   | UIAbility的启动模式，表示该UIAbility内部根据业务自己指定多实例。 |
 
 ## AbilityType
 
-指示Ability组件的类型。
+标识Ability组件的类型。
 
 **模型约束：** 仅可在FA模型下使用。
 
@@ -134,7 +135,7 @@ import { bundleManager } from '@kit.AbilityKit';
 
 ## DisplayOrientation
 
-标识该Ability的显示模式。仅适用于page类型的Ability。
+标识该Ability的显示模式。仅适用于FA模型的[PageAbility](../../application-models/pageability-overview.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -160,7 +161,7 @@ import { bundleManager } from '@kit.AbilityKit';
 
 ## CompatiblePolicy<sup>10+</sup>
 
-标识共享库的版本兼容类型。
+标识动态共享库的版本兼容类型。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -332,9 +333,10 @@ try {
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
-根据给定的moduleName、abilityName和metadataName（module.json5中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取自身相应配置文件的json格式字符串，使用callback异步回调。
+根据给定的moduleName、abilityName和metadataName（module.json5中[abilities标签](../../quick-start/module-configuration-file.md#abilities标签)下的metadata标签的name）获取自身相应配置文件的json格式字符串，使用callback异步回调。
 
->如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过[资源管理模块](../apis-localization-kit/js-apis-resource-manager.md)的相关接口，来获取引用的资源。
+> 说明：
+> 如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过[资源管理模块](../apis-localization-kit/js-apis-resource-manager.md)的相关接口，来获取引用的资源。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -390,9 +392,10 @@ try {
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string\>\>
 
-根据给定的moduleName、abilityName和metadataName（module.json5中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取自身相应配置文件的json格式字符串，使用Promise异步回调。
+根据给定的moduleName、abilityName和metadataName（module.json5中[abilities标签](../../quick-start/module-configuration-file.md#abilities标签)下的metadata标签的name）获取自身相应配置文件的json格式字符串，使用Promise异步回调。
 
->如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过[资源管理模块](../apis-localization-kit/js-apis-resource-manager.md)的相关接口，来获取引用的资源。
+> 说明：
+> 如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过[资源管理模块](../apis-localization-kit/js-apis-resource-manager.md)的相关接口，来获取引用的资源。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -791,7 +794,7 @@ try {
 
 canOpenLink(link: string): boolean
 
-查询给定的链接是否可以打开。链接中的scheme需要在[module.json5文件](../../quick-start/module-configuration-file.md)的querySchemes字段下配置。
+根据给定的链接判断目标应用是否可访问，链接中的scheme需要在[module.json5文件](../../quick-start/module-configuration-file.md)的querySchemes字段下配置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -840,7 +843,7 @@ try {
 
 getLaunchWant(): Want
 
-获取本应用启动应用程序的Want参数。
+获取本应用[入口UIAbility](../../quick-start/application-package-glossary.md#uiability)的Want参数。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -881,7 +884,7 @@ try {
 
 getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<BundleInfo>): void
 
-根据给定的bundleName、bundleFlags和userId获取BundleInfo，使用callback异步回调。
+根据给定的bundleName、bundleFlags和userId获取[BundleInfo](./js-apis-bundleManager-bundleInfo.md)，使用callback异步回调。
 
 获取调用方自身信息时不需要权限。
 

@@ -457,7 +457,10 @@ napi_value PluginManager::SetSurfaceId(napi_env env, napi_callback_info info)
     return nullptr;
 }
 ```
+<!--Del-->
 有关ArkTS XComponent 组件的使用，请参考：[ArkTS XComponent组件使用示例](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Native/XComponent/README_zh.md#)。
+<!--DelEnd-->
+
 ### 使用eglCreateContext创建渲染上下文 
 
 eglCreateContext函数用于创建一个新的EGL上下文，并将其与特定的显示设备（display）和配置（config）关联起来。允许指定共享上下文（shareContext），以便与已经存在的OpenGL上下文共享状态信息。该函数的参数说明如下：
@@ -825,5 +828,5 @@ eglSwapBuffers函数用于交换前后缓冲区的内容，并将渲染结果显
 
 针对OpenGL ES的使用和相关开发，有以下相关实例可供参考：
 
-- [简易Native C++示例](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo)
-- [Native XComponent组件的使用](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/XComponent)
+- [简易Native C++示例](https://gitcode.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo)
+- [Native XComponent组件的使用](https://gitcode.com/openharmony/codelabs/tree/master/NativeAPI/XComponent)

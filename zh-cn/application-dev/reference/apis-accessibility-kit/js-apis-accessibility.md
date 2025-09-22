@@ -35,18 +35,20 @@ type AbilityState = 'enable' | 'disable' | 'install'
 
 ## AbilityType
 
+type AbilityType = 'audible' | 'generic' | 'haptic' | 'spoken' | 'visual' | 'all'
+
 无障碍辅助应用类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称               | 描述        |
+| 类型               | 说明        |
 | ---------------- | --------- |
-| audible          | 表示具有听觉反馈。 |
-| generic          | 表示具有通用反馈。 |
-| haptic           | 表示具有触觉反馈。 |
-| spoken           | 表示具有语音反馈。 |
-| visual           | 表示具有视觉反馈。 |
-| all<sup>9+</sup> | 表示以上所有类别。 |
+| 'audible'          | 表示具有听觉反馈。 |
+| 'generic'          | 表示具有通用反馈。 |
+| 'haptic'           | 表示具有触觉反馈。 |
+| 'spoken'           | 表示具有语音反馈。 |
+| 'visual'           | 表示具有视觉反馈。 |
+| 'all'<sup>9+</sup> | 表示以上所有类别。 |
 
 ## AccessibilityAbilityInfo
 
@@ -1432,7 +1434,7 @@ sendEvent(event: EventInfo): Promise&lt;void&gt;
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **示例：**
 
@@ -1512,7 +1514,7 @@ sendAccessibilityEvent(event: EventInfo): Promise&lt;void&gt;
 
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 

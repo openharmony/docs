@@ -134,7 +134,7 @@
     - [进度条 (Progress)](arkts-common-components-progress-indicator.md)
   - 使用弹窗<!--arkts-use-dialog-->
      - [弹窗概述](arkts-dialog-overview.md)
-     - 使用弹出框 (Dialog)<!--arkts-use-dialogs-->
+     - 弹出框 (Dialog)<!--arkts-use-dialogs-->
        - [弹出框概述](arkts-base-dialog-overview.md)
        - [不依赖UI组件的全局自定义弹出框 (openCustomDialog) (推荐)](arkts-uicontext-custom-dialog.md)
        - [基础自定义弹出框 (CustomDialog) (不推荐)](arkts-common-components-custom-dialog.md)
@@ -243,7 +243,7 @@
     - [跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)](arkts-isolated-components.md)
     <!--DelEnd-->
 - UI开发 (基于NDK构建UI)<!--arkts-use-ndk-->
-  - [NDK接口概述](ndk-build-ui-overview.md)
+  - [基于NDK构建UI概述](ndk-build-ui-overview.md)
   - [接入ArkTS页面](ndk-access-the-arkts-page.md)
   - 添加交互事件<!--arkts-add-event-->
     - [监听组件事件](ndk-listen-to-component-events.md)
@@ -346,6 +346,7 @@
     - [UI相关应用崩溃常见问题](arkts-stability-crash-issues.md)
     - [UI相关应用无响应常见问题](arkts-stability-freeze-issues.md)
   - [UI显示异常调试](arkts-layout-debug.md)
+  - [UI上下文异常调试](arkts-wrong-uicontext-debug.md)
   - [UI预览](ui-ide-previewer.md)
   - [UI调优](ui-inspector-profiler.md)
   - [UI高性能开发](ui-performance-overview.md)

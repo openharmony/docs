@@ -1,4 +1,10 @@
 # 拨打电话
+<!--Kit: Telephony Kit-->
+<!--Subsystem: Telephony-->
+<!--Owner: @shao-yikai-->
+<!--Designer: @wnazgul-->
+<!--Tester: @jiang_99-->
+<!--Adviser: @zhang_yixin13-->
 
 ## 场景介绍
 
@@ -75,7 +81,7 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
         }
         let slotId: SlotId = {slotId: 0}
         observer.on("callStateChange", slotId, (data: CallStateCallback) => {
-            console.log("call state change, data is:" + JSON.stringify(data));
+            console.info("call state change, data is:" + JSON.stringify(data));
         });
     }
    ```
@@ -99,7 +105,7 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
         // 从API15开始支持tel格式电话号码，如："tel:13xxxx"
         call.makeCall("13xxxx", (err: BusinessError) => {
             if (!err) {
-                console.log("make call success.");
+                console.info("make call success.");
             } else {
                 console.error("make call fail, err is:" + JSON.stringify(err));
             }
@@ -112,7 +118,7 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
         }
         let slotId: SlotId = {slotId: 0}
         observer.on("callStateChange", slotId, (data: CallStateCallback) => {
-            console.log("call state change, data is:" + JSON.stringify(data));
+            console.info("call state change, data is:" + JSON.stringify(data));
         });
     }
    ```

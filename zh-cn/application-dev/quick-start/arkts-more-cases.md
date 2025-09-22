@@ -177,7 +177,7 @@ type ControllerConstructor = {
   new (value: string): Controller;
 }
 
-class Menu {
+class testMenu {
   controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
@@ -187,7 +187,7 @@ class Menu {
   }
 }
 
-let t = new Menu();
+let t = new testMenu();
 console.log(t.createController()!.value);
 ```
 
@@ -204,7 +204,7 @@ class Controller {
 
 type ControllerConstructor = () => Controller;
 
-class Menu {
+class testMenu {
   controller: ControllerConstructor = () => {
     return new Controller('abc');
   }
@@ -217,7 +217,7 @@ class Menu {
   }
 }
 
-let t: Menu = new Menu();
+let t: testMenu = new testMenu();
 console.log(t.createController()!.value);
 ```
 
@@ -319,7 +319,7 @@ interface ControllerConstructor {
   new (value: string): Controller;
 }
 
-class Menu {
+class testMenu {
   controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
@@ -329,7 +329,7 @@ class Menu {
   }
 }
 
-let t = new Menu();
+let t = new testMenu();
 console.log(t.createController()!.value);
 ```
 
@@ -346,7 +346,7 @@ class Controller {
 
 type ControllerConstructor = () => Controller;
 
-class Menu {
+class testMenu {
   controller: ControllerConstructor = () => {
     return new Controller('abc');
   }
@@ -359,7 +359,7 @@ class Menu {
   }
 }
 
-let t: Menu = new Menu();
+let t: testMenu = new testMenu();
 console.log(t.createController()!.value);
 ```
 
@@ -1262,7 +1262,7 @@ class Controller {
 
 type ControllerConstructor = new (value: string) => Controller;
 
-class Menu {
+class testMenu {
   controller: ControllerConstructor = Controller
   createController() {
     if (this.controller) {
@@ -1272,7 +1272,7 @@ class Menu {
   }
 }
 
-let t = new Menu()
+let t = new testMenu()
 console.log(t.createController()!.value)
 ```
 
@@ -1288,7 +1288,7 @@ class Controller {
 
 type ControllerConstructor = () => Controller;
 
-class Menu {
+class testMenu {
   controller: ControllerConstructor = () => { return new Controller('abc') }
   createController() {
     if (this.controller) {
@@ -1298,7 +1298,7 @@ class Menu {
   }
 }
 
-let t: Menu = new Menu();
+let t: testMenu = new testMenu();
 console.log(t.createController()!.value);
 ```
 
@@ -1708,16 +1708,22 @@ foo((value: string) => { console.info(value.toUpperCase()) }, ''); // Cannot rea
 
 ```typescript
 class Test {
-  private value?: string
+  private value?: string;
   
   public printValue () {
-    console.log(this.value.toLowerCase());
+    console.info(this.value.toLowerCase());
   }
 }
 
 let t = new Test();
 t.printValue();
 ```
+
+**应用代码运行时错误原因**
+
+编译期不开启严格空值检查，应用代码可以通过编译，但是在运行时会报错。
+
+因为`t`的属性`value`为`undefined`，在调用`printValue`方法时，由于在该方法内未对`this.value`的值进行空值检查，直接按照`string`类型访问其属性，导致了运行时的错误。
 
 **建议改法**
 
@@ -1725,11 +1731,11 @@ t.printValue();
 
 ```typescript
 class Test {
-  private value?: string
+  private value?: string;
 
   public printValue () {
     if (this.value) {
-      console.log(this.value.toLowerCase());
+      console.info(this.value.toLowerCase());
     }
   }
 }
@@ -1737,10 +1743,6 @@ class Test {
 let t = new Test();
 t.printValue();
 ```
-
-**原因**
-
-在第一段代码中，如果编译期不开启严格空值检查，那么该段代码可以编译通过，但是在运行时会产生非预期的行为。这是因为`t`的属性`value`为`undefined`（`value?: string`是`value: string | undefined = undefined`的语法糖），在第11行调用`printValue`方法时，由于在该方法体内未对`this.value`的值进行空值检查，而直接按照`string`类型访问其属性，这就导致了运行时的错误。为了避免运行时的非预期行为，如果在编译时开启严格空值检查，这段代码将编译不通过从而可以提醒开发者修改代码（如按照第二段代码的方式），保证程序安全。
 
 ### 函数返回类型不匹配
 

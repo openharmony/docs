@@ -1,5 +1,11 @@
 # @ohos.wifi (WLAN)（系统接口）
 
+<!--Kit: Connectivity Kit-->	
+<!--Subsystem: Communication-->	
+<!--Owner: @qq_43802146-->	
+<!--Designer: @qq_43802146-->	
+<!--Tester: @furryfurry123-->	
+<!--Adviser: @zhang_yixin13-->	
 该模块主要提供WLAN基础功能、P2P（peer-to-peer）功能和WLAN消息通知的相应服务，让应用可以通过WLAN和其他设备互联互通。
 
 > **说明：**
@@ -120,8 +126,8 @@ try {
 		randomMacAddr:  "****",
 		ipType: 0,
 		staticIp: {
-			ipAddress: 0,
-			gateway: 0,
+			ipAddress: "",
+			gateway: "",
 			dnsServers: [],
 			domains: []
 		}
@@ -243,8 +249,8 @@ try {
 		randomMacAddr:  "****",
 		ipType: 0,
 		staticIp: {
-			ipAddress: 0,
-			gateway: 0,
+			ipAddress: "",
+			gateway: "",
 			dnsServers: [],
 			domains: []
 		}
@@ -338,8 +344,8 @@ try {
 		randomMacAddr:  "****",
 		ipType: 0,
 		staticIp: {
-		ipAddress: 0,
-			gateway: 0,
+		    ipAddress: "",
+			gateway: "",
 			dnsServers: [],
 			domains: []
 		}
@@ -619,8 +625,8 @@ try {
 		randomMacAddr:  "****",
 		ipType: 0,
 		staticIp: {
-			ipAddress: 0,
-			gateway: 0,
+			ipAddress: "",
+			gateway: "",
 			dnsServers: [],
 			domains: []
 		}

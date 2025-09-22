@@ -93,7 +93,7 @@ ArkGraphics 3D中支持的.shader文件基于JSON格式，书写.shader文件时
       | "never" | 永不通过深度测试，像素不会被绘制。 |
       | "less" | 当前像素深度小于已有深度值时通过测试，像素被绘制。 |
       | "equal" | 当前像素深度等于已有深度值时通过测试，像素被绘制。 |
-      | "less_or_equal" | 前像素深度小于或等于已有深度值时通过测试，像素被绘制。 |
+      | "less_or_equal" | 当前像素深度小于或等于已有深度值时通过测试，像素被绘制。 |
       | "greater" | 当前像素深度大于已有深度值时通过测试，像素被绘制。 |
       | "not_equal" | 当前像素深度不等于已有深度值时通过测试，像素被绘制。 |
       | "greater_or_equal" | 当前像素深度大于或等于已有深度值时通过测试，像素被绘制。 |
@@ -131,7 +131,7 @@ ArkGraphics 3D中支持的.shader文件基于JSON格式，书写.shader文件时
      | "src1_color" | 第二源颜色 | 源颜色×第二源颜色 | 新颜色按第二源颜色比例混合显示。 |
      | "one_minus_src1_color" | 1-第二源颜色 | 源颜色×(1-第二源颜色) | 新颜色按第二源颜色剩余比例混合显示。 |
      | "src1_alpha" | 第二源Alpha | 源颜色×第二源Alpha | 新颜色按第二源Alpha比例混合显示。 |
-     | "one_minus-src1_alpha" | 1-第二源Alpha | 源颜色×(1-第二源Alpha) | 新颜色按第二源Alpha剩余比例混合显示。 |
+     | "one_minus_src1_alpha" | 1-第二源Alpha | 源颜色×(1-第二源Alpha) | 新颜色按第二源Alpha剩余比例混合显示。 |
 
    - dstColorBlendFactor：指定渲染目标颜色通道的混合因子，可取值及含义见下表。
      | 可取值 | 因子 | 结果 | 应用场景 |
@@ -156,7 +156,7 @@ ArkGraphics 3D中支持的.shader文件基于JSON格式，书写.shader文件时
      | "src1_alpha" | 第二源Alpha | 目标颜色×第二源Alpha | 背景按第二源Alpha比例混合显示。 |
      | "one_minus_src1_alpha" | 1-第二源Alpha | 目标颜色×(1-第二源Alpha) | 背景按第二源Alpha剩余比例混合显示。 |
 
-   - colorBlendOp：指定渲染源和渲染目标颜色通道的混合的混合方式，可取值及含义见下表。
+   - colorBlendOp：指定渲染源和渲染目标颜色通道的混合方式，可取值及含义见下表。
      | 可取值 | 说明 |
      | :----: | :----: |
      | "add" | 源颜色+目标颜色。 |
@@ -186,7 +186,7 @@ ArkGraphics 3D中支持的.shader文件基于JSON格式，书写.shader文件时
      | "src1_color" | 第二源颜色 | 源Alpha×第二源颜色 | 新颜色透明度按第二源颜色比例混合显示。 |
      | "one_minus_src1_color" | 1-第二源颜色 | 源Alpha×(1-第二源颜色) | 新颜色透明度按第二源颜色剩余比例混合显示。 |
      | "src1_alpha" | 第二源Alpha | 源Alpha×第二源Alpha | 新颜色透明度按第二源Alpha比例混合显示。 |
-     | "one_minus-src1_alpha" | 1-第二源Alpha | 源Alpha×(1-第二源Alpha) | 新颜色透明度按第二源Alpha剩余比例混合显示。 |
+     | "one_minus_src1_alpha" | 1-第二源Alpha | 源Alpha×(1-第二源Alpha) | 新颜色透明度按第二源Alpha剩余比例混合显示。 |
 
    - dstAlphaBlendFactor：指定渲染目标透明通道的混合因子，可取值及含义见下表。
      | 可取值 | 因子 | 结果 | 应用场景 |
@@ -209,7 +209,7 @@ ArkGraphics 3D中支持的.shader文件基于JSON格式，书写.shader文件时
      | "src1_color" | 第二源颜色 | 目标Alpha×第二源颜色 | 背景透明度按第二源颜色比例混合显示。 |
      | "one_minus_src1_color" | 1-第二源颜色 | 目标Alpha×(1-第二源颜色) | 背景透明度按第二源颜色剩余比例混合显示。 |
      | "src1_alpha" | 第二源Alpha | 目标Alpha×第二源Alpha | 背景透明度按第二源Alpha比例混合显示。 |
-     | "one_minus-src1_alpha" | 1-第二源Alpha | 目标Alpha×(1-第二源Alpha) | 背景透明度按第二源Alpha剩余比例混合显示。 |
+     | "one_minus_src1_alpha" | 1-第二源Alpha | 目标Alpha×(1-第二源Alpha) | 背景透明度按第二源Alpha剩余比例混合显示。 |
 
    - alphaBlendOp：指定渲染源和渲染目标透明通道的混合方式，可取值及含义见下表。
      | 可取值 | 说明 |
@@ -229,8 +229,8 @@ ArkGraphics 3D中支持的.shader文件基于JSON格式，书写.shader文件时
 
 ### customProperties
 用于指定渲染中传入的自定义属性。包括data数组，用于指定渲染中传入的自定义数据。data数组中的对象包含以下属性：
-   - name：用于指定渲染中传入的自定义数据名字与自定义渲染中的数据名对应。
-   - displayName：用于指定3D编辑器中显示的名字。
+   - name：用于指定渲染中传入的自定义数据名称与自定义渲染中的数据名对应。
+   - displayName：用于指定3D编辑器中显示的名称。
    - type：用于指定数据类型，可取值及含义见下表。
      | 可取值 | 说明 |
      | :----: | :----: |

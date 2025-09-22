@@ -1,4 +1,10 @@
 # Window Error Codes
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 > **NOTE**
 >
@@ -72,7 +78,7 @@ The window object of another process is operated.
 
 Check whether unauthorized operations are performed on the object of another process. If yes, delete the operations.
 
-## 1300005 Abnormal Window Stage
+## 1300005 Abnormal WindowStage
 **Error Message**
 
 This window stage is abnormal.
@@ -106,6 +112,7 @@ The window context has been destroyed when being operated.
 
 Before operating the window context, check whether it exists.
 
+<!--Del-->
 ## 1300007 Application Startup Failure by WindowExtensionAbility
 
 **Error Message**
@@ -123,7 +130,9 @@ Incorrect parameters are passed into the API used by the WindowExtensionAbility 
 **Solution**
 
 Pass in the correct parameters.
+<!--DelEnd-->
 
+<!--Del-->
 ## 1300008 Display Device Exception
 
 **Error Message**
@@ -143,6 +152,7 @@ This error code is reported when the display device is abnormal.
 **Solution**
 
 Ensure that the display device is normal.
+<!--DelEnd-->
 
 ## 1300009 Invalid Parent Window
 
@@ -298,24 +308,6 @@ This error code is reported when parameters are incorrect. For example, the para
 
 Verify that the parameters adhere to the required standards.
 
-## 1300017 Filter Controller Calling Error
-
-**Error Message**
-
-Incorrect filter calling.
-
-**Description**
-
-This error code is reported when the filter controller is invalidly invoked. For example, the invoking sequence is incorrect.
-
-**Possible Causes**
-
-**setBackgroundFilter** is called after **animateBackgroungFilter**.
-
-**Solution**
-
-Check the order of operations to ensure that **setBackgroundFilter** is called before **animateBackgroungFilter**.
-
 ## 1300018 API Call Timeout
 
 **Error Message**
@@ -358,6 +350,8 @@ This error code is reported when parameters are incorrect. For example, the para
 
 3. The parameter format is incorrect.
 
+4. A mandatory parameter is not passed.
+
 **Solution**
 
 1. Ensure that the parameter value is within the allowed range.
@@ -365,6 +359,10 @@ This error code is reported when parameters are incorrect. For example, the para
 2. Ensure that the parameter length is within the allowed limits.
 
 3. Use the correct format for parameters.
+
+4. Check whether any mandatory parameter is not passed.
+
+   For details about the floating ball parameters, see [FloatingBallParams](js-apis-floatingBall.md#floatingballparams).
 
 ## 1300020 Failure in Creating a Floating Ball Window
 
@@ -520,7 +518,7 @@ This error code is reported when launching an application window via the floatin
 
 1. Incorrect parameters are passed.
 
-2. The application window is not launched within 5 seconds after clicking.
+2. The floating ball is not tapped before launching the application window.
 
 3. Attempt to launch a window that belongs to another application.
 
@@ -528,7 +526,7 @@ This error code is reported when launching an application window via the floatin
 
 1. Check the parameters used to launch the application window.
 
-2. Ensure to launch the application window within 5 seconds after clicking.
+2. Tap the floating ball before launching the application window.
 
 3. Launch the window that belongs to the current application.
 

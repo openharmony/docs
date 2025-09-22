@@ -193,7 +193,7 @@ isModifiable(): boolean
 
 | 类型    | 说明                                                                                                                                  |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| boolean | 判断当前节点是否可修改。<br/>true表示当前节点可修改，false表示当前节点不可修改。<br/>当节点为系统组件的代理节点或节点已经[dispose](#dispose12)时返回false。<br/>当返回false时，当前FrameNode不支持[appendChild](#appendchild12)、[insertChildAfter](#insertchildafter12)、[removeChild](#removechild12)、[clearChildren](#clearchildren12)、[createAnimation](#createanimation20)、[cancelAnimations](#cancelanimations20)的操作。 |
+| boolean | 判断当前节点是否可修改。<br/>true表示当前节点可修改，false表示当前节点不可修改。<br/>当节点为[自定义组件节点](../../ui/arkts-user-defined-node.md#自定义组件节点-framenode)中的系统组件代理节点或节点已经[dispose](#dispose12)时返回false。<br/>当返回false时，当前FrameNode不支持[appendChild](#appendchild12)、[insertChildAfter](#insertchildafter12)、[removeChild](#removechild12)、[clearChildren](#clearchildren12)、[createAnimation](#createanimation20)、[cancelAnimations](#cancelanimations20)的操作。 |
 
 **示例：**
 
@@ -1254,6 +1254,10 @@ getOpacity(): number
 isVisible(): boolean
 
 获取节点是否可见。
+
+> **说明：**
+>
+> 根据组件设置的visibility属性值判断该节点是否可见。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

@@ -4,7 +4,7 @@
 <!--Owner: @yp99ustc; @aohui; @zourongchun-->
 <!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 通用属性仅支持[aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio)、[backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur)、[backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor)、[bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)、[bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)、[bindMenu ](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)、[bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)、[borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor)、[borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius)、[borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle)、[borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth)、[clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip12)、[constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize)、[defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9)、[focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable)、[tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9)、[groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9)、[displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority)、[enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled)、[flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis)、[flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink)、[layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight)、[id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md#id)、[gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#属性)、[gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#属性)、[useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md#属性)、[height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height)、[touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md#touchabledeprecated)、[margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)、[markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor)、[offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset)、[width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width)、[zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex)、[visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility)、[scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale)、[translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate)、[responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion)、[size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size)、[opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity)、[shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow)、[sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md)、[transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md)、[position](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#position)。
 
@@ -18,7 +18,7 @@
 
 domStorageAccess(domStorageAccess: boolean)
 
-设置是否开启文档对象模型存储接口（DOM Storage API）权限，默认未开启。
+设置是否开启文档对象模型存储接口（DOM Storage API）权限，当属性没有显式调用时，默认不开启文档对象模型存储接口（DOM Storage API）权限。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -26,7 +26,7 @@ domStorageAccess(domStorageAccess: boolean)
 
 | 参数名              | 类型    | 必填   | 说明                                 |
 | ---------------- | ------- | ---- | ------------------------------------ |
-| domStorageAccess | boolean | 是    | 设置是否开启文档对象模型存储接口（DOM Storage API）权限。<br>true表示开启文档对象模型存储接口权限，false表示不开启文档对象模型存储接口权限。<br>默认值：false。 |
+| domStorageAccess | boolean | 是    | 设置是否开启文档对象模型存储接口（DOM Storage API）权限。<br>true表示开启文档对象模型存储接口权限，false表示不开启文档对象模型存储接口权限。<br>传入undefined或null时为false。 |
 
 > **说明：**
 >
@@ -56,7 +56,7 @@ domStorageAccess(domStorageAccess: boolean)
 
 fileAccess(fileAccess: boolean)
 
-设置是否开启应用中文件系统的访问。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中的文件不受该属性影响而被限制访问。
+设置是否开启应用中文件系统的访问。[$rawfile(filepath/filename)](../../quick-start/resource-categories-and-access.md)中的文件不受该属性影响而被限制访问。API version 11及以前，当属性没有显式调用时，默认开启应用中文件系统的访问。API version 12及以后，当属性没有显式调用时，默认不开启应用中文件系统的访问。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -64,7 +64,7 @@ fileAccess(fileAccess: boolean)
 
 | 参数名        | 类型    | 必填   | 说明                   |
 | ---------- | ------- | ---- | ---------------------- |
-| fileAccess | boolean | 是    | 设置是否开启应用中文件系统的访问。<br>true表示开启应用中文件系统的访问。false表示不开启应用中文件系统的访问。<br>API version 11及以前：默认值：true。<br>API version 12及以后：默认值：false，同时，当fileAccess为false的时候，仅只读资源目录`/data/storage/el1/bundle/entry/resources/resfile`里面的资源依然可以通过file协议访问，不受fileAccess管控。 |
+| fileAccess | boolean | 是    | 设置是否开启应用中文件系统的访问。<br>true表示开启应用中文件系统的访问。false表示不开启应用中文件系统的访问。<br>同时，当fileAccess为false的时候，仅只读资源目录`/data/storage/el1/bundle/entry/resources/resfile`里面的资源依然可以通过file协议访问，不受fileAccess管控。<br>API version 11及以前，传入undefined或null时为true，API version 12及以后传入undefined或null时为false。 |
 
 **示例：**
 
@@ -90,7 +90,7 @@ fileAccess(fileAccess: boolean)
 
 imageAccess(imageAccess: boolean)
 
-设置是否允许自动加载图片资源。
+设置是否允许自动加载图片资源。当属性没有显式调用时，允许自动加载图片资源。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -98,7 +98,7 @@ imageAccess(imageAccess: boolean)
 
 | 参数名         | 类型    | 必填   | 说明            |
 | ----------- | ------- | ---- | --------------- |
-| imageAccess | boolean | 是    | 设置是否允许自动加载图片资源。<br>true表示设置允许自动加载图片资源，false表示设置不允许自动加载图片资源。<br>默认值：true。<br>传入undefined与null时为false。 |
+| imageAccess | boolean | 是    | 设置是否允许自动加载图片资源。<br>true表示设置允许自动加载图片资源，false表示设置不允许自动加载图片资源。<br>传入undefined与null时为false。 |
 
 **示例：**
   ```ts
@@ -123,7 +123,7 @@ imageAccess(imageAccess: boolean)
 
 javaScriptProxy(javaScriptProxy: JavaScriptProxy)
 
-将javaScriptProxy中的ArkTS对象注册到Web组件中，该对象将使用JavaScriptProxy中指定的名称注册到网页的所有框架中，包括所有iframe，这使得JavaScript可以调用javaScriptProxy中ArkTS对象的方法。
+将javaScriptProxy中的ArkTS对象注册到Web组件中，该对象将使用JavaScriptProxy中指定的名称注册到网页的所有框架中，包括所有iframe，这使得JavaScript可以调用javaScriptProxy中ArkTS对象的方法。当属性没有显式调用时，默认不将javaScriptProxy中的ArkTS对象注册到Web组件中。
 
 > **说明：**
 >
@@ -138,7 +138,7 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
 
 | 参数名        | 类型                                     | 必填   | 说明                                     |
 | ---------- | ---------------------------------------- | ---- |---------------------------------------- |
-| javaScriptProxy     | [JavaScriptProxy](./arkts-basic-components-web-i.md#javascriptproxy12)                                   | 是    |  参与注册的对象。只能声明方法，不能声明属性。                   |
+| javaScriptProxy     | [JavaScriptProxy](./arkts-basic-components-web-i.md#javascriptproxy12)                                   | 是    |  参与注册的对象。只能声明方法，不能声明属性。<br>传入undefined或null时不将javaScriptProxy中的ArkTS对象注册到Web组件中。                  |
 
 **示例：**
 
@@ -200,7 +200,7 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
 
 javaScriptAccess(javaScriptAccess: boolean)
 
-设置是否允许执行JavaScript脚本。
+设置是否允许执行JavaScript脚本。当属性没有显式调用时，默认允许执行JavaScript脚本。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -208,7 +208,7 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 | 参数名              | 类型    | 必填   | 说明                |
 | ---------------- | ------- | ---- | ------------------- |
-| javaScriptAccess | boolean | 是    | 是否允许执行JavaScript脚本。<br>true表示允许执行JavaScript脚本，false表示不允许执行JavaScript脚本。<br>传入undefined或null时不允许执行JavaScript脚本。 |
+| javaScriptAccess | boolean | 是    | 是否允许执行JavaScript脚本。<br>true表示允许执行JavaScript脚本，false表示不允许执行JavaScript脚本。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -233,7 +233,7 @@ javaScriptAccess(javaScriptAccess: boolean)
 
 overScrollMode(mode: OverScrollMode)
 
-设置Web过滚动模式。当过滚动模式开启时，当用户在Web根页面上滑动到边缘时，Web会通过弹性动画弹回界面，根页面上的内部页面不会触发回弹。
+设置Web过滚动模式。当过滚动模式开启时，当用户在Web根页面上滑动到边缘时，Web会通过弹性动画弹回界面，根页面上的内部页面不会触发回弹。该属性没有显式调用时，默认关闭过滚动模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -241,7 +241,7 @@ overScrollMode(mode: OverScrollMode)
 
 | 参数名  | 类型                                    | 必填   | 说明               |
 | ---- | --------------------------------------- | ---- | ------------------ |
-| mode | [OverScrollMode](./arkts-basic-components-web-e.md#overscrollmode11) | 是    | 设置Web的过滚动模式为关闭或开启。<br>默认值：`OverScrollMode.NEVER`，表示关闭过滚动模式。 |
+| mode | [OverScrollMode](./arkts-basic-components-web-e.md#overscrollmode11) | 是    | 设置Web的过滚动模式为关闭或开启。<br>传入undefined与null时为OverScrollMode.NEVER。 |
 
 **示例：**
 
@@ -267,7 +267,7 @@ overScrollMode(mode: OverScrollMode)
 
 mixedMode(mixedMode: MixedMode)
 
-设定当安全源尝试从非安全源加载资源时的行为。
+设定当安全源尝试从非安全源加载资源时的行为。当属性没有显式调用时，默认值为MixedMode.None，即禁止安全源从非安全源加载内容。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -275,7 +275,7 @@ mixedMode(mixedMode: MixedMode)
 
 | 参数名       | 类型                        | 必填   | 说明      |
 | --------- | --------------------------- | ---- | --------- |
-| mixedMode | [MixedMode](./arkts-basic-components-web-e.md#mixedmode) | 是    | 要设置的混合内容模式。 |
+| mixedMode | [MixedMode](./arkts-basic-components-web-e.md#mixedmode) | 是    | 要设置的混合内容模式。<br>传入undefined或null时为MixedMode.None。  |
 
 **示例：**
 
@@ -301,7 +301,7 @@ mixedMode(mixedMode: MixedMode)
 
 onlineImageAccess(onlineImageAccess: boolean)
 
-设置是否允许从网络加载图片资源（通过HTTP和HTTPS访问的资源）。
+设置是否允许从网络加载图片资源（通过HTTP和HTTPS访问的资源）。当属性没有显式调用时，默认允许从网络加载图片资源。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -309,7 +309,7 @@ onlineImageAccess(onlineImageAccess: boolean)
 
 | 参数名               | 类型    | 必填   | 说明             |
 | ----------------- | ------- | ---- | ---------------- |
-| onlineImageAccess | boolean | 是    | 设置是否允许从网络加载图片资源。<br>true表示设置允许从网络加载图片资源，false表示设置不允许从网络加载图片资源。<br>默认值：true。<br>传入undefined与null时为false。 |
+| onlineImageAccess | boolean | 是    | 设置是否允许从网络加载图片资源。<br>true表示设置允许从网络加载图片资源，false表示设置不允许从网络加载图片资源。<br>传入undefined与null时为false。 |
 
 **示例：**
 
@@ -335,7 +335,7 @@ onlineImageAccess(onlineImageAccess: boolean)
 
 zoomAccess(zoomAccess: boolean)
 
-设置是否支持手势进行缩放。
+设置是否支持手势进行缩放。该属性没有显式调用时，默认支持手势进行缩放。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -343,7 +343,7 @@ zoomAccess(zoomAccess: boolean)
 
 | 参数名        | 类型    | 必填   | 说明          |
 | ---------- | ------- | ---- | ------------- |
-| zoomAccess | boolean | 是    | 设置是否支持手势进行缩放。<br>true表示设置支持手势进行缩放，false表示设置不支持手势进行缩放。<br>默认值：true。<br>传入undefined与null时为false。 |
+| zoomAccess | boolean | 是    | 设置是否支持手势进行缩放。<br>true表示设置支持手势进行缩放，false表示设置不支持手势进行缩放。<br>传入undefined与null时为false。 |
 
 **示例：**
 
@@ -369,7 +369,7 @@ zoomAccess(zoomAccess: boolean)
 
 overviewModeAccess(overviewModeAccess: boolean)
 
-设置是否使用概览模式加载网页，即缩小内容以适应屏幕宽度。
+设置是否使用概览模式加载网页，即缩小内容以适应屏幕宽度。当属性没有显式调用时，默认允许使用概览模式加载网页。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -379,7 +379,7 @@ overviewModeAccess(overviewModeAccess: boolean)
 
 | 参数名                | 类型    | 必填   | 说明            |
 | ------------------ | ------- | ---- | --------------- |
-| overviewModeAccess | boolean | 是    | 设置是否使用概览模式加载网页。<br>true表示设置使用概览模式加载网页，false表示设置不使用概览模式加载网页。<br>默认值：true。<br>传入undefined与null时为false。 |
+| overviewModeAccess | boolean | 是    | 设置是否使用概览模式加载网页。<br>true表示设置使用概览模式加载网页，false表示设置不使用概览模式加载网页。<br>传入undefined与null时为false。 |
 
 **示例：**
 
@@ -405,7 +405,7 @@ overviewModeAccess(overviewModeAccess: boolean)
 
 databaseAccess(databaseAccess: boolean)
 
-设置是否开启数据库存储API权限。
+设置是否开启数据库存储API权限，当属性没有显式调用时，默认不开启数据库存储API权限。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -413,7 +413,7 @@ databaseAccess(databaseAccess: boolean)
 
 | 参数名            | 类型    | 必填   | 说明              |
 | -------------- | ------- | ---- | ----------------- |
-| databaseAccess | boolean | 是    | 设置是否开启数据库存储API权限。<br>true表示设置开启数据库存储API权限，false表示设置不开启数据库存储API权限。<br>默认值：false。 |
+| databaseAccess | boolean | 是    | 设置是否开启数据库存储API权限。<br>true表示设置开启数据库存储API权限，false表示设置不开启数据库存储API权限。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -439,7 +439,7 @@ databaseAccess(databaseAccess: boolean)
 
 geolocationAccess(geolocationAccess: boolean)
 
-设置是否开启获取地理位置权限。具体使用方式参考[管理位置权限](../../web/web-geolocation-permission.md)。
+设置是否开启获取地理位置权限。当属性没有显式调用时，默认开启获取地理位置权限。具体使用方式参考[管理位置权限](../../web/web-geolocation-permission.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -447,7 +447,7 @@ geolocationAccess(geolocationAccess: boolean)
 
 | 参数名               | 类型    | 必填   | 说明            |
 | ----------------- | ------- | ---- | --------------- |
-| geolocationAccess | boolean | 是    | 设置是否开启获取地理位置权限。<br>true表示设置开启获取地理位置权限，false表示设置不开启获取地理位置权限。<br>默认值：true。<br>传入undefined与null时为false。 |
+| geolocationAccess | boolean | 是    | 设置是否开启获取地理位置权限。<br>true表示设置开启获取地理位置权限，false表示设置不开启获取地理位置权限。<br>传入undefined与null时为false。 |
 
 **示例：**
 
@@ -473,7 +473,7 @@ geolocationAccess(geolocationAccess: boolean)
 
 mediaPlayGestureAccess(access: boolean)
 
-设置有声视频的自动播放是否需要用户手动点击，静音视频播放不受该接口管控。
+设置有声视频的自动播放是否需要用户手动点击，静音视频播放不受该接口管控。当该属性未显式设置时，默认有声视频的自动播放需要用户手动点击。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -481,7 +481,7 @@ mediaPlayGestureAccess(access: boolean)
 
 | 参数名    | 类型    | 必填   | 说明                |
 | ------ | ------- | ---- | ------------------- |
-| access | boolean | 是    | 设置有声视频的自动播放是否需要用户手动点击。<br>true表示设置有声视频的自动播放需要用户手动点击，false表示设置有声视频的自动播放不需要用户手动点击，能自动播放。<br>默认值：true。<br>传入undefined与null时为false。 |
+| access | boolean | 是    | 设置有声视频的自动播放是否需要用户手动点击。<br>true表示设置有声视频的自动播放需要用户手动点击，false表示设置有声视频的自动播放不需要用户手动点击，能自动播放。<br>传入undefined与null时为false。 |
 
 **示例：**
 
@@ -542,7 +542,7 @@ multiWindowAccess(multiWindow: boolean)
 
 horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
-设置是否显示横向滚动条，包括系统默认滚动条和用户自定义滚动条。
+设置是否显示横向滚动条，包括系统默认滚动条和用户自定义滚动条。该属性没有显式调用时，默认显示横向滚动条。
 
 > **说明：**
 >
@@ -555,7 +555,7 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
 | 参数名                 | 类型    | 必填   | 说明         |
 | ------------------- | ------- | ---- | ------------ |
-| horizontalScrollBar | boolean | 是    | 设置是否显示横向滚动条。<br>true表示设置显示横向滚动条，false表示设置不显示横向滚动条。<br>默认值：true。<br>传入undefined与null时为false。 |
+| horizontalScrollBar | boolean | 是    | 设置是否显示横向滚动条。<br>true表示设置显示横向滚动条，false表示设置不显示横向滚动条。<br>传入undefined与null时为false。 |
 
 **示例：**
 
@@ -624,7 +624,7 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
 verticalScrollBarAccess(verticalScrollBar: boolean)
 
-设置是否显示纵向滚动条，包括系统默认滚动条和用户自定义滚动条。
+设置是否显示纵向滚动条，包括系统默认滚动条和用户自定义滚动条。该属性没有显式调用时，默认显示纵向滚动条。
 
 > **说明：**
 >
@@ -637,7 +637,7 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
 | 参数名               | 类型    | 必填   | 说明         |
 | ----------------- | ------- | ---- | ------------ |
-| verticalScrollBar | boolean | 是    | 设置是否显示纵向滚动条。<br>true表示设置显示纵向滚动条，false表示设置不显示纵向滚动条。<br>默认值：true。<br>传入undefined与null时为false。 |
+| verticalScrollBar | boolean | 是    | 设置是否显示纵向滚动条。<br>true表示设置显示纵向滚动条，false表示设置不显示纵向滚动条。<br>传入undefined与null时为false。 |
 
 **示例：**
 
@@ -706,7 +706,7 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
 cacheMode(cacheMode: CacheMode)
 
-设置缓存模式。
+设置缓存模式。当属性没有显式调用时，默认为`CacheMode.Default`。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -714,7 +714,7 @@ cacheMode(cacheMode: CacheMode)
 
 | 参数名       | 类型                        | 必填   | 说明      |
 | --------- | --------------------------- | ---- | --------- |
-| cacheMode | [CacheMode](./arkts-basic-components-web-e.md#cachemode) | 是    | 要设置的缓存模式。 |
+| cacheMode | [CacheMode](./arkts-basic-components-web-e.md#cachemode) | 是    | 要设置的缓存模式。<br>传入undefined或null时为CacheMode.Default。  |
 
 **示例：**
 
@@ -741,7 +741,7 @@ cacheMode(cacheMode: CacheMode)
 
 copyOptions(value: CopyOptions)
 
-设置剪贴板复制范围选项。
+设置剪贴板复制范围选项。该属性没有显式调用时，默认支持复制后在当前设备内所有应用内粘贴。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -749,7 +749,7 @@ copyOptions(value: CopyOptions)
 
 | 参数名       | 类型                        | 必填   | 说明      |
 | --------- | --------------------------- | ---- | --------- |
-| value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | 是    | 要设置的剪贴板复制范围选项。<br>默认值：`CopyOptions.LocalDevice`。 |
+| value | [CopyOptions](../apis-arkui/arkui-ts/ts-appendix-enums.md#copyoptions9) | 是    | 要设置的剪贴板复制范围选项。<br>传入undefined与null时为CopyOptions.None。 |
 
 **示例：**
 
@@ -775,7 +775,7 @@ struct WebComponent {
 
 textZoomRatio(textZoomRatio: number)
 
-设置页面的文本缩放百分比。
+设置页面的文本缩放百分比。当属性没有显式调用时，默认缩放百分比为100%。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -783,7 +783,7 @@ textZoomRatio(textZoomRatio: number)
 
 | 参数名           | 类型   | 必填   | 说明                             |
 | ------------- | ------ | ---- | -------------------------------- |
-| textZoomRatio | number | 是    | 要设置的页面的文本缩放百分比。<br>取值为整数，范围为(0, 2147483647]。<br>默认值：100。 |
+| textZoomRatio | number | 是    | 要设置的页面的文本缩放百分比。<br>取值为整数，范围为(0, 2147483647]。|
 
 **示例：**
 
@@ -810,7 +810,7 @@ textZoomRatio(textZoomRatio: number)
 
 initialScale(percent: number)
 
-设置整体页面的缩放百分比。
+设置整体页面的缩放百分比。该属性没有显式调用时，默认缩放百分比为100。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -818,7 +818,7 @@ initialScale(percent: number)
 
 | 参数名     | 类型   | 必填   | 说明                          |
 | ------- | ------ | ---- | ----------------------------- |
-| percent | number | 是    | 要设置的整体页面的缩放百分比。<br>取值范围：(0, 1000]。<br>默认值：100。 |
+| percent | number | 是    | 要设置的整体页面的缩放百分比。<br>取值范围：(0, 1000]。<br>传入undefined与null时属性设置不生效。 |
 
 **示例：**
 
@@ -845,7 +845,7 @@ initialScale(percent: number)
 
 blockNetwork(block: boolean)
 
-设置Web组件是否阻止从网络加载资源。
+设置Web组件是否阻止从网络加载资源。当属性没有显式调用时，默认允许从网络加载资源。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -853,7 +853,7 @@ blockNetwork(block: boolean)
 
 | 参数名   | 类型    | 必填   | 说明                |
 | ----- | ------- | ---- | ------------------- |
-| block | boolean | 是    | 设置Web组件是否允许从网络加载资源。<br>true表示不允许从网络加载资源，false表示允许从网络加载资源。<br>传入undefined或null时不允许从网络加载资源。 |
+| block | boolean | 是    | 设置Web组件是否允许从网络加载资源。<br>true表示不允许从网络加载资源，false表示允许从网络加载资源。<br>传入undefined或null时为true。 |
 
 **示例：**
 
@@ -880,7 +880,11 @@ blockNetwork(block: boolean)
 
 defaultFixedFontSize(size: number)
 
-设置网页的默认等宽字体大小。
+
+设置网页的默认等宽字体大小。对于html前端使用monospace字体且未指定font-size样式的元素，将按此值渲染字体大小。
+
+当属性没有显式调用时，默认等宽字体大小为13。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -888,7 +892,7 @@ defaultFixedFontSize(size: number)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| size | number | 是    | 设置网页的默认等宽字体大小，单位px。<br>输入值的范围为[-2^31, 2^31-1]，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>默认值：13。 |
+| size | number | 是    | 设置网页的默认等宽字体大小，单位px。<br>输入值的范围为[-2^31, 2^31-1]，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br><br>传入null或undefined时为13。 |
 
 **示例：**
 
@@ -915,7 +919,11 @@ defaultFixedFontSize(size: number)
 
 defaultFontSize(size: number)
 
-设置网页的默认字体大小。
+
+设置网页的默认字体大小。对于html前端使用非monospace字体且未指定font-size样式的元素，将按此值渲染字体大小。
+
+当属性没有显式调用时，网页的默认字体大小为16。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -923,7 +931,7 @@ defaultFontSize(size: number)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| size | number | 是    | 设置网页的默认字体大小，单位px。<br>输入值的范围为[-2^31, 2^31-1]，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>默认值：16。 |
+| size | number | 是    | 设置网页的默认字体大小，单位px。<br>输入值的范围为[-2^31, 2^31-1]，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>传入null或undefined时为16。|
 
 **示例：**
 
@@ -950,7 +958,11 @@ defaultFontSize(size: number)
 
 minFontSize(size: number)
 
-设置网页字体大小最小值。
+
+设置网页字体大小最小值。对于html前端元素，若元素字体大小低于该接口设置值，将采用接口设置值渲染字体大小。
+
+当属性没有显式调用时，默认网页字体大小最小值为8。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -958,7 +970,7 @@ minFontSize(size: number)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| size | number | 是    | 设置网页字体大小最小值，单位px。<br>输入值的范围为[-2^31, 2^31-1]，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>默认值：8。 |
+| size | number | 是    | 设置网页字体大小最小值，单位px。<br>输入值的范围为[-2^31, 2^31-1]，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>传入null或undefined时为8。 |
 
 **示例：**
 
@@ -985,7 +997,16 @@ minFontSize(size: number)
 
 minLogicalFontSize(size: number)
 
+
 设置网页逻辑字体大小最小值。
+
+对于html前端未指定font-size样式的元素：
+1. 若元素字体大小低于该接口设置值，将采用接口设置值渲染字体大小。
+2. 若minLogicalFontSize和minFontSize同时设置时，对于未指定font-size样式元素，将采用两者中的较大值。
+
+
+当属性没有显式调用时，默认网页逻辑字体大小最小值为8。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -993,7 +1014,7 @@ minLogicalFontSize(size: number)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| size | number | 是    | 设置网页逻辑字体大小最小值，单位px。<br>输入值的范围为[-2^31, 2^31-1]，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>默认值：8。 |
+| size | number | 是    | 设置网页逻辑字体大小最小值，单位px。<br>输入值的范围为[-2^31, 2^31-1]，实际渲染时超过72px的值按照72px进行渲染，低于1px的值按照1px进行渲染。<br>传入null或undefined时为18。 |
 
 **示例：**
 
@@ -1020,7 +1041,11 @@ minLogicalFontSize(size: number)
 
 webFixedFont(family: string)
 
-设置网页的fixed font字体库。
+
+设置网页的fixed font字体库，用于渲染html前端使用monospace字体的元素。
+
+当属性没有显式调用时，默认网页的fixed font字体库为monospace。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1028,7 +1053,7 @@ webFixedFont(family: string)
 
 | 参数名    | 类型   | 必填   | 说明                     |
 | ------ | ------ | ---- | ------------------------ |
-| family | string | 是    | 设置网页的fixed font字体库。<br>默认值：monospace。 |
+| family | string | 是    | 设置网页的fixed font字体库。<br>传入null或undefined时为monospace。 |
 
 **示例：**
 
@@ -1055,7 +1080,11 @@ webFixedFont(family: string)
 
 webSansSerifFont(family: string)
 
-设置网页的sans-serif font字体库。
+
+设置网页的sans-serif font字体库，用于渲染html前端使用sans-serif字体的元素。
+
+当属性没有显式调用时，默认网页的sans-serif font字体库为sans-serif。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1063,7 +1092,7 @@ webSansSerifFont(family: string)
 
 | 参数名    | 类型   | 必填   | 说明                     |
 | ------ | ------ | ---- | ------------------------ |
-| family | string | 是    | 设置网页的sans-serif font字体库。<br>默认值：sans-serif。 |
+| family | string | 是    | 设置网页的sans-serif font字体库。<br>传入null或undefined时为sans-serif。 |
 
 **示例：**
 
@@ -1090,7 +1119,11 @@ webSansSerifFont(family: string)
 
 webSerifFont(family: string)
 
-设置网页的serif font字体库。
+
+设置网页的serif font字体库，用于渲染html前端使用serif字体的元素。
+
+当属性没有显式调用时，默认网页的serif font字体库为serif。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1098,7 +1131,7 @@ webSerifFont(family: string)
 
 | 参数名    | 类型   | 必填   | 说明                     |
 | ------ | ------ | ---- | ------------------------ |
-| family | string | 是    | 设置网页的serif font字体库。<br>默认值：serif。 |
+| family | string | 是    | 设置网页的serif font字体库。<br>传入null或undefined时为serif。 |
 
 **示例：**
 
@@ -1125,7 +1158,11 @@ webSerifFont(family: string)
 
 webStandardFont(family: string)
 
-设置网页的standard font字体库。
+
+设置网页的standard font字体库，用于渲染html前端未指定字体样式的元素。
+
+当属性没有显式调用时，默认网页的standard font字体库为sans-serif。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1133,7 +1170,7 @@ webStandardFont(family: string)
 
 | 参数名    | 类型   | 必填   | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| family | string | 是    | 设置网页的standard font字体库。<br>默认值：sans-serif。 |
+| family | string | 是    | 设置网页的standard font字体库。<br>传入null或undefined时为sans-serif。 |
 
 **示例：**
 
@@ -1160,7 +1197,11 @@ webStandardFont(family: string)
 
 webFantasyFont(family: string)
 
-设置网页的fantasy font字体库。
+
+设置网页的fantasy font字体库，用于渲染html前端使用fantasy字体的元素。
+
+当属性没有显式调用时，默认网页的fantasy font字体库为fantasy。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1168,7 +1209,7 @@ webFantasyFont(family: string)
 
 | 参数名    | 类型   | 必填   | 说明                     |
 | ------ | ------ | ---- | ------------------------ |
-| family | string | 是    | 设置网页的fantasy font字体库。<br>默认值：fantasy。 |
+| family | string | 是    | 设置网页的fantasy font字体库。<br>传入null或undefined时为fantasy。 |
 
 **示例：**
 
@@ -1194,7 +1235,11 @@ webFantasyFont(family: string)
 
 webCursiveFont(family: string)
 
-设置网页的cursive font字体库。
+
+设置网页的cursive font字体库，用于渲染html前端使用cursive字体的元素。
+
+当属性没有显式调用时，默认网页的cursive font字体库为cursive。
+
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1202,7 +1247,7 @@ webCursiveFont(family: string)
 
 | 参数名    | 类型   | 必填   | 说明                     |
 | ------ | ------ | ---- | ------------------------ |
-| family | string | 是    | 设置网页的cursive font字体库。<br>默认值：cursive。 |
+| family | string | 是    | 设置网页的cursive font字体库。<br>传入null或undefined时为cursive。 |
 
 **示例：**
 
@@ -1229,7 +1274,9 @@ webCursiveFont(family: string)
 
 darkMode(mode: WebDarkMode)
 
-设置Web深色模式。当深色模式开启时，Web将启用媒体查询prefers-color-scheme中网页所定义的深色样式，若网页未定义深色样式，则保持原状。如需开启强制深色模式，建议配合[forceDarkAccess](#forcedarkaccess9)使用。深色模式具体用法可参考[Web深色模式适配](../../web/web-set-dark-mode.md)。
+设置Web深色模式。当属性没有显式调用时，默认Web深色模式关闭。
+
+当深色模式开启时，Web将启用媒体查询prefers-color-scheme中网页所定义的深色样式，若网页未定义深色样式，则保持原状。如需开启强制深色模式，建议配合[forceDarkAccess](#forcedarkaccess9)使用。深色模式具体用法可参考[Web深色模式适配](../../web/web-set-dark-mode.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1237,7 +1284,7 @@ darkMode(mode: WebDarkMode)
 
 | 参数名  | 类型                             | 必填   | 说明                     |
 | ---- | -------------------------------- | ---- | ------------------------ |
-| mode | [WebDarkMode](./arkts-basic-components-web-e.md#webdarkmode9) | 是    | 设置Web的深色模式为关闭、开启或跟随系统。<br>默认值：`WebDarkMode.Off`。 |
+| mode | [WebDarkMode](./arkts-basic-components-web-e.md#webdarkmode9) | 是    | 设置Web的深色模式为关闭、开启或跟随系统。 |
 
 **示例：**
 
@@ -1264,7 +1311,7 @@ darkMode(mode: WebDarkMode)
 
 forceDarkAccess(access: boolean)
 
-设置网页是否开启强制深色模式。该属性仅在[darkMode](#darkmode9)开启深色模式时生效。
+设置网页是否开启强制深色模式。该属性仅在[darkMode](#darkmode9)开启深色模式时生效。当属性没有显式调用时，默认网页不开启强制深色模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1272,7 +1319,7 @@ forceDarkAccess(access: boolean)
 
 | 参数名    | 类型    | 必填   | 说明            |
 | ------ | ------- | ---- | --------------- |
-| access | boolean | 是    | 设置网页是否开启强制深色模式。<br>true表示设置网页开启强制深色模式，false表示设置网页不开启强制深色模式。<br>默认值：false。 |
+| access | boolean | 是    | 设置网页是否开启强制深色模式。<br>true表示设置网页开启强制深色模式，false表示设置网页不开启强制深色模式。<br>传入null或undefined时为false。 |
 
 **示例：**
 
@@ -1301,7 +1348,7 @@ forceDarkAccess(access: boolean)
 
 pinchSmooth(isEnabled: boolean)
 
-设置网页是否开启捏合流畅模式。
+设置网页是否开启捏合流畅模式。该属性没有显式调用时，默认不开启捏合流畅模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1309,7 +1356,7 @@ pinchSmooth(isEnabled: boolean)
 
 | 参数名       | 类型    | 必填   | 说明          |
 | --------- | ------- | ---- | ------------- |
-| isEnabled | boolean | 是    | 网页是否开启捏合流畅模式。<br>true表示设置网页开启捏合流畅模式，false表示设置网页不开启捏合流畅模式。<br>默认值：false。 |
+| isEnabled | boolean | 是    | 网页是否开启捏合流畅模式。<br>true表示设置网页开启捏合流畅模式，false表示设置网页不开启捏合流畅模式。<br>传入undefined与null时为false。 |
 
 **示例：**
 
@@ -1443,7 +1490,7 @@ struct WebComponent {
 
 mediaOptions(options: WebMediaOptions)
 
-设置Web媒体播放的策略，其中包括：Web中的音频在重新获焦后能够自动续播的有效期、应用内多个Web实例的音频是否独占。
+设置Web媒体播放的策略，其中包括：Web中的音频在重新获焦后能够自动续播的有效期、应用内多个Web实例的音频是否独占。当该属性未显式设置时，默认Web中的音频重新获焦后无法自动续播、应用内多个Web实例的音频是独占的。
 
 > **说明：**
 >
@@ -1458,7 +1505,7 @@ mediaOptions(options: WebMediaOptions)
 
 | 参数名     | 类型                                  | 必填   | 说明                                     |
 | ------- | ------------------------------------- | ---- | ---------------------------------------- |
-| options | [WebMediaOptions](./arkts-basic-components-web-i.md#webmediaoptions10) | 是    | 设置Web的媒体策略。<br>属性参数更新后需重新播放音频方可生效。<br>默认值：`{resumeInterval: 0, audioExclusive: true}` |
+| options | [WebMediaOptions](./arkts-basic-components-web-i.md#webmediaoptions10) | 是    | 设置Web的媒体策略。<br>属性参数更新后需重新播放音频方可生效。<br>传入undefined与null时为`{resumeInterval: 0, audioExclusive: true}` |
 
 **示例：**
 
@@ -1485,7 +1532,7 @@ mediaOptions(options: WebMediaOptions)
 
 javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
-将JavaScript脚本注入到Web组件中，当指定页面或者文档开始加载时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+将JavaScript脚本注入到Web组件中，当指定页面或者文档开始加载时，该脚本将在其来源与scriptRules匹配的任何页面中执行。当属性没有显式调用时，默认不将JavaScript脚本注入到Web组件中。
 
 > **说明：**
 >
@@ -1496,8 +1543,6 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 > - 不建议与[runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15)同时使用。
 >
 > - 内容相同的脚本多次注入时将被静默去重，不展示，不提醒，使用首次注入时的scriptRules。
->
-> - javaScriptOnDocumentStart在[onControllerAttached](./arkts-basic-components-web-events.md#oncontrollerattached10)之后执行。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1505,7 +1550,7 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 | 参数名     | 类型                                | 必填   | 说明               |
 | ------- | ----------------------------------- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组。 |
+| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组。<br>传入undefined或null时不将JavaScript脚本注入到Web组件中。 |
 
 **ets示例：**
 
@@ -1567,7 +1612,7 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 
-将JavaScript脚本注入到Web组件中，当指定页面或者文档加载完成时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+将JavaScript脚本注入到Web组件中，当指定页面或者文档加载完成时，该脚本将在其来源与scriptRules匹配的任何页面中执行。当属性没有显式调用时，默认不将JavaScript脚本注入到Web组件中。
 
 > **说明：**
 >
@@ -1585,7 +1630,7 @@ javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 
 | 参数名     | 类型                                | 必填   | 说明               |
 | ------- | ----------------------------------- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组 |
+| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组。<br>传入undefined或null时不将JavaScript脚本注入到Web组件中。 |
 
 **示例：**
 
@@ -1635,7 +1680,7 @@ Hello world!
 
 runJavaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
-将JavaScript脚本注入到Web组件中，当指定页面或者文档开始加载时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+将JavaScript脚本注入到Web组件中，当指定页面或者文档开始加载时，该脚本将在其来源与scriptRules匹配的任何页面中执行。当属性没有显式调用时，默认不将JavaScript脚本注入到Web组件中。
 
 > **说明：**
 >
@@ -1653,7 +1698,7 @@ runJavaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 | 参数名     | 类型                                | 必填   | 说明               |
 | ------- | ----------------------------------- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组 |
+| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组。<br>传入undefined或null时不将JavaScript脚本注入到Web组件中。 |
 
 **ets示例：**
 
@@ -1715,7 +1760,7 @@ runJavaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 runJavaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 
-将JavaScript脚本注入到Web组件中，当指定页面或者文档加载完成时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+将JavaScript脚本注入到Web组件中，当指定页面或者文档加载完成时，该脚本将在其来源与scriptRules匹配的任何页面中执行。当属性没有显式调用时，默认不将JavaScript脚本注入到Web组件中。
 
 > **说明：**
 >
@@ -1733,7 +1778,7 @@ runJavaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 
 | 参数名     | 类型                                | 必填   | 说明               |
 | ------- | ----------------------------------- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组 |
+| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组。<br>传入undefined或null时不将JavaScript脚本注入到Web组件中。 |
 
 **示例：**
 
@@ -1783,7 +1828,7 @@ Hello world!
 
 runJavaScriptOnHeadEnd(scripts: Array\<ScriptItem>)
 
-将JavaScript脚本注入到Web组件中，当页面DOM树head标签解析完成时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+将JavaScript脚本注入到Web组件中，当页面DOM树head标签解析完成时，该脚本将在其来源与scriptRules匹配的任何页面中执行。当属性没有显式调用时，默认不将JavaScript脚本注入到Web组件中。
 
 > **说明：**
 >
@@ -1797,7 +1842,7 @@ runJavaScriptOnHeadEnd(scripts: Array\<ScriptItem>)
 
 | 参数名     | 类型                                | 必填   | 说明               |
 | ------- | ----------------------------------- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组 |
+| scripts | Array\<[ScriptItem](./arkts-basic-components-web-i.md#scriptitem11)> | 是    | 需要注入的ScriptItem数组。<br>传入undefined或null时不将JavaScript脚本注入到Web组件中。 |
 
 **示例：**
 
@@ -1847,7 +1892,7 @@ Hello world!
 
 layoutMode(mode: WebLayoutMode)
 
-设置Web布局模式。常见问题请参考[Web组件大小自适应页面内容布局](../../web/web-fit-content.md)。
+设置Web布局模式。当属性没有显式调用时，默认Web布局跟随系统模式。常见问题请参考[Web组件大小自适应页面内容布局](../../web/web-fit-content.md)。
 
 > **说明：**
 >
@@ -1868,7 +1913,7 @@ layoutMode(mode: WebLayoutMode)
 
 | 参数名  | 类型                                  | 必填   | 说明                  |
 | ---- | ------------------------------------- | ---- | --------------------- |
-| mode | [WebLayoutMode](./arkts-basic-components-web-e.md#weblayoutmode11) | 是    | 设置web布局模式，跟随系统或自适应布局。<br>默认值：`WebLayoutMode.NONE。` |
+| mode | [WebLayoutMode](./arkts-basic-components-web-e.md#weblayoutmode11) | 是    | 设置web布局模式，跟随系统或自适应布局。<br>传入null或undefined时为`WebLayoutMode.NONE` |
 
 **示例：**
 
@@ -2022,7 +2067,7 @@ nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
 
 bypassVsyncCondition(condition: WebBypassVsyncCondition)
 
-当开发者调用scrollBy接口进行页面滚动时，可以通过bypassVsyncCondition接口设置渲染流程跳过vsync（垂直同步）调度，直接触发绘制。
+当开发者调用scrollBy接口进行页面滚动时，可以通过bypassVsyncCondition接口设置渲染流程跳过vsync（垂直同步）调度，直接触发绘制。该属性没有显式调用时，默认不跳过vsync调度。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2030,7 +2075,7 @@ bypassVsyncCondition(condition: WebBypassVsyncCondition)
 
 | 参数名  | 类型                                  | 必填   | 说明                  |
 | ---- | ------------------------------------- | ---- | --------------------- |
-| condition | [WebBypassVsyncCondition](./arkts-basic-components-web-e.md#webbypassvsynccondition20) | 是    | 触发渲染流程跳过vsync调度的条件。 |
+| condition | [WebBypassVsyncCondition](./arkts-basic-components-web-e.md#webbypassvsynccondition20) | 是    | 触发渲染流程跳过vsync调度的条件。 <br> 传入undefined与null时为NONE。|
 
 **示例：**
 
@@ -2061,7 +2106,7 @@ bypassVsyncCondition(condition: WebBypassVsyncCondition)
 
 enableNativeEmbedMode(mode: boolean)
 
-设置是否开启同层渲染功能。
+设置是否开启同层渲染功能。当属性没有显式调用时，默认不开启同层渲染功能。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2069,7 +2114,7 @@ enableNativeEmbedMode(mode: boolean)
 
 | 参数名   | 类型                      | 必填   | 说明             |
 | ----- | ---------------------------------------- | ---- | ---------------- |
-| mode |  boolean | 是    | 是否开启同层渲染功能。<br>true表示开启同层渲染功能，false表示不开启同层渲染功能。|
+| mode |  boolean | 是    | 是否开启同层渲染功能。<br>true表示开启同层渲染功能，false表示不开启同层渲染功能。<br>传入null或undefined时为false。|
 
 **示例：**
 
@@ -2094,7 +2139,7 @@ enableNativeEmbedMode(mode: boolean)
 forceDisplayScrollBar(enabled: boolean)
 
 
-设置滚动条是否常驻。在常驻状态下，当页面大小超过一页时，滚动条出现且不消失。
+设置滚动条是否常驻。在常驻状态下，当页面大小超过一页时，滚动条出现且不消失。该属性没有显式调用时，默认设置滚动条不常驻。
 
 全量展开模式下不支持滚动条常驻，即layoutMode为WebLayoutMode.FIT_CONTENT模式时，参数enabled为false。
 
@@ -2104,7 +2149,7 @@ forceDisplayScrollBar(enabled: boolean)
 
 | 参数名  | 类型 | 必填 | 说明           |
 | ------- | -------- | ---- | ------------------ |
-| enabled | boolean  | 是   | 滚动条是否常驻。<br>true表示滚动条常驻，false表示滚动条不常驻。<br>默认值：false。 |
+| enabled | boolean  | 是   | 滚动条是否常驻。<br>true表示滚动条常驻，false表示滚动条不常驻。<br>传入undefined与null时属性设置不生效。 |
 
 
 **示例：**
@@ -2298,7 +2343,7 @@ registerNativeEmbedRule(tag: string, type: string)
 
 defaultTextEncodingFormat(textEncodingFormat: string)
 
-设置网页的默认字符编码。
+设置网页的默认字符编码。当属性没有显式调用时，网页的默认字符编码为"UTF-8"。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2306,7 +2351,7 @@ defaultTextEncodingFormat(textEncodingFormat: string)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| textEncodingFormat | string | 是    | 默认字符编码。默认值："UTF-8"。 |
+| textEncodingFormat | string | 是    | 默认字符编码。   |
 
   **示例：**
 
@@ -2348,7 +2393,7 @@ defaultTextEncodingFormat(textEncodingFormat: string)
 
 metaViewport(enabled: boolean)
 
-设置meta标签的viewport属性是否可用。
+设置meta标签的viewport属性是否可用。当属性没有显式调用时，默认支持meta标签的viewport属性。
 
 > **说明：**
 >
@@ -2362,7 +2407,7 @@ metaViewport(enabled: boolean)
 
 | 参数名 | 类型 | 必填 | 说明                         |
 | ------ | -------- | ---- | -------------------------------- |
-| enabled | boolean  | 是   | 是否支持meta标签的viewport属性。<br>true表示支持meta标签的viewport属性，将解析viewport属性，并根据viewport属性布局。<br>false表示不支持meta标签的viewport属性，将不解析viewport属性，进行默认布局。<br>默认值：true。 |
+| enabled | boolean  | 是   | 是否支持meta标签的viewport属性。<br>true表示支持meta标签的viewport属性，将解析viewport属性，并根据viewport属性布局。<br>false表示不支持meta标签的viewport属性，将不解析viewport属性，进行默认布局。<br>当传入null或undefined时为true。 |
 
 **示例：**
 
@@ -2401,7 +2446,7 @@ struct WebComponent {
 
 textAutosizing(textAutosizing: boolean)
 
-设置Web组件是否开启文本字体大小自动调整。
+设置Web组件是否开启文本字体大小自动调整。当属性没有显式调用时，Web组件默认开启文本字体大小自动调整。
 
 文本字体大小自动调整生效后，对于字号过小的文本将自动加大字号至16px~32px，避免屏幕较小（默认视口宽度 < 980px）的设备因为缺少移动端适配出现字体过小的可读性问题。
 
@@ -2421,7 +2466,7 @@ textAutosizing(textAutosizing: boolean)
 
 | 参数名  | 类型   | 必填   | 说明                                     |
 | ---- | ------ | ---- | ---------------------------------------- |
-| textAutosizing | boolean | 是    | 文本自动调整大小。<br>true表示文本自动调整大小，false表示文本不自动调整大小。<br>默认值：true。 |
+| textAutosizing | boolean | 是    | 文本自动调整大小。<br>true表示文本自动调整大小，false表示文本不自动调整大小。 |
 
   **示例：**
 
@@ -2446,7 +2491,7 @@ textAutosizing(textAutosizing: boolean)
 
 enableNativeMediaPlayer(config: NativeMediaPlayerConfig)
 
-开启[应用接管网页媒体播放功能](../../web/app-takeovers-web-media.md)。
+开启[应用接管网页媒体播放功能](../../web/app-takeovers-web-media.md)。当属性没有显式调用时，默认不开启接管网页媒体播放功能。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2454,7 +2499,7 @@ enableNativeMediaPlayer(config: NativeMediaPlayerConfig)
 
 | 参数名  | 类型   | 必填   | 说明 |
 | ---- | ------ | ---- | ---------------------|
-| config | [NativeMediaPlayerConfig](./arkts-basic-components-web-i.md#nativemediaplayerconfig12) | 是    | enable: 是否开启该功能。<br/> shouldOverlay: 该功能开启后， 应用接管网页视频的播放器画面是否覆盖网页内容。<br>默认值：`{enable: false, shouldOverlay: false}`。|
+| config | [NativeMediaPlayerConfig](./arkts-basic-components-web-i.md#nativemediaplayerconfig12) | 是    | enable: 是否开启该功能。<br/> shouldOverlay: 该功能开启后， 应用接管网页视频的播放器画面是否覆盖网页内容。<br>传入undefined与null时为`{enable: false, shouldOverlay: false}`。|
 
   **示例：**
 
@@ -2728,7 +2773,7 @@ struct WebComponent {
 
 enableHapticFeedback(enabled: boolean)
 
-设置Web组件长按文本选择是否开启振动。需配置"ohos.permission.VIBRATE"。
+设置Web组件长按文本选择是否开启振动。需配置"ohos.permission.VIBRATE"。该属性没有显式调用时，默认开启振动。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2736,7 +2781,7 @@ enableHapticFeedback(enabled: boolean)
 
 | 参数名     | 类型        | 必填   | 说明 |
 | --------- | ---------   | ------ | ------------- |
-| enabled   | boolean | 是  | 是否开启振动。<br>true表示开启振动，false表示不开启振动。<br>默认值：true。<br>传入undefined与null时为false。 |
+| enabled   | boolean | 是  | 是否开启振动。<br>true表示开启振动，false表示不开启振动。<br>传入undefined与null时属性设置不生效。 |
 
 **示例：**
 
@@ -2795,14 +2840,23 @@ bindSelectionMenu(elementType: WebElementType, content: CustomBuilder, responseT
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
+import { pasteboard } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 interface PreviewBuilderParam {
+  width: number;
+  height: number;
+  url:Resource | string | undefined;
+}
+
+interface PreviewBuilderParamForImage {
   previewImage: Resource | string | undefined;
   width: number;
   height: number;
 }
 
-@Builder function PreviewBuilderGlobal($$: PreviewBuilderParam) {
+
+@Builder function PreviewBuilderGlobalForImage($$: PreviewBuilderParamForImage) {
   Column() {
     Image($$.previewImage)
       .objectFit(ImageFit.Fill)
@@ -2812,63 +2866,192 @@ interface PreviewBuilderParam {
 
 @Entry
 @Component
-struct WebComponent {
+struct SelectionMenuLongPress {
   controller: webview.WebviewController = new webview.WebviewController();
+  previewController: webview.WebviewController = new webview.WebviewController();
+  @Builder PreviewBuilder($$: PreviewBuilderParam){
+    Column() {
+      Stack(){
+        Text("") // 可选择是否展示url
+          .padding(5)
+          .width('100%')
+          .textAlign(TextAlign.Start)
+          .backgroundColor(Color.White)
+          .copyOption(CopyOptions.LocalDevice)
+          .maxLines(1)
+          .textOverflow({overflow:TextOverflow.Ellipsis})
+        Progress({ value: this.progressValue, total: 100, type: ProgressType.Linear }) // 展示进度条
+          .style({ strokeWidth: 3, enableSmoothEffect: true })
+          .backgroundColor(Color.White)
+          .opacity(this.progressVisible?1:0)
+          .backgroundColor(Color.White)
+      }.alignContent(Alignment.Bottom)
+      Web({src:$$.url,controller: new webview.WebviewController()})
+        .javaScriptAccess(true)
+        .fileAccess(true)
+        .onlineImageAccess(true)
+        .imageAccess(true)
+        .domStorageAccess(true)
+        .onPageBegin(()=>{
+          this.progressValue = 0;
+          this.progressVisible = true;
+        })
+        .onProgressChange((event)=>{
+          this.progressValue = event.newProgress;
+        })
+        .onPageEnd(()=>{
+          this.progressVisible = false;
+        })
+        .hitTestBehavior(HitTestMode.None) // 使预览Web不响应手势
+    }.width($$.width).height($$.height) // 设置预览宽高
+  }
 
   private result: WebContextMenuResult | undefined = undefined;
   @State previewImage: Resource | string | undefined = undefined;
-  @State previewWidth: number = 0;
-  @State previewHeight: number = 0;
+  @State previewWidth: number = 1;
+  @State previewHeight: number = 1;
+  @State previewWidthImage: number = 1;
+  @State previewHeightImage: number = 1;
+  @State linkURL:string = "";
+  @State progressValue:number = 0;
+  @State progressVisible:boolean = true;
   uiContext: UIContext = this.getUIContext();
+  enablePaste = false;
+
+  clearSelection() {
+    try {
+      this.controller.runJavaScript(
+        'clearSelection()',
+        (error, result) => {
+          if (error) {
+            console.error(`run clearSelection JavaScript error, ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            return;
+          }
+          if (result) {
+            console.info(`The clearSelection() return value is: ${result}`);
+          }
+        });
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
 
   @Builder
-  MenuBuilder() {
+  LinkMenuBuilder() {
+    Menu() {
+      MenuItem({ content: '复制链接', })
+        .onClick(() => {
+          const pasteboardData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, this.linkURL);
+          const systemPasteboard = pasteboard.getSystemPasteboard();
+          systemPasteboard.setData(pasteboardData);
+        })
+      MenuItem({content:'打开链接'})
+        .onClick(()=>{
+          this.controller.loadUrl(this.linkURL);
+        })
+    }
+  }
+  @Builder
+  ImageMenuBuilder() {
+    Menu() {
+      MenuItem({ content: '复制图片', })
+        .onClick(() => {
+          this.result?.copyImage();
+          this.result?.closeContextMenu();
+        })
+    }
+  }
+  @Builder
+  TextMenuBuilder() {
     Menu() {
       MenuItem({ content: '复制', })
         .onClick(() => {
-          this.result?.copy();
-          this.result?.closeContextMenu();
-        })
-      MenuItem({ content: '全选', })
-        .onClick(() => {
-          this.result?.selectAll();
-          this.result?.closeContextMenu();
-        })
+          try {
+            this.controller.runJavaScript(
+              'copySelectedText()',
+              (error, result) => {
+                if (error) {
+                  console.error(`run copySelectedText JavaScript error, ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+                  return;
+                }
+                if (result) {
+                  console.info(`The copySelectedText() return value is: ${result}`);
+                }
+              });
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+          this.clearSelection()
+        }).backgroundColor(Color.Pink)
     }
   }
   build() {
     Column() {
       Web({ src: $rawfile("index.html"), controller: this.controller })
-        .bindSelectionMenu(WebElementType.IMAGE, this.MenuBuilder, WebResponseType.LONG_PRESS,
+        .javaScriptAccess(true)
+        .fileAccess(true)
+        .onlineImageAccess(true)
+        .imageAccess(true)
+        .domStorageAccess(true)
+        .bindSelectionMenu(WebElementType.TEXT, this.TextMenuBuilder, WebResponseType.LONG_PRESS,
+          {
+            onAppear: () => {},
+            onDisappear: () => {},
+            menuType: MenuType.SELECTION_MENU,
+          })
+        .bindSelectionMenu(WebElementType.LINK, this.LinkMenuBuilder, WebResponseType.LONG_PRESS,
           {
             onAppear: () => {},
             onDisappear: () => {
               this.result?.closeContextMenu();
             },
-            preview: PreviewBuilderGlobal({
-              previewImage: this.previewImage,
-              width: this.previewWidth,
-              height: this.previewHeight
+            preview: this.PreviewBuilder({
+              width: 500,
+              height: 400,
+              url:this.linkURL
             }),
             menuType: MenuType.PREVIEW_MENU
           })
-        .onContextMenuShow((event) => {
-            if (event) {
-              this.result = event.result;
-              if (event.param.getLinkUrl()) {
-                return false;
-              }
-              this.previewWidth = this.uiContext!.px2vp(event.param.getPreviewWidth());
-              this.previewHeight = this.uiContext!.px2vp(event.param.getPreviewHeight());
-              if (event.param.getSourceUrl().indexOf("resource://rawfile/") == 0) {
-                this.previewImage = $rawfile(event.param.getSourceUrl().substr(19));
-              } else {
-                this.previewImage = event.param.getSourceUrl();
-              }
-              return true;
-            }
-            return false;
+        .bindSelectionMenu(WebElementType.IMAGE, this.ImageMenuBuilder, WebResponseType.LONG_PRESS,
+          {
+            onAppear: () => {},
+            onDisappear: () => {
+              this.result?.closeContextMenu();
+            },
+            preview: PreviewBuilderGlobalForImage({
+              previewImage: this.previewImage,
+              width: this.previewWidthImage,
+              height: this.previewHeightImage,
+            }),
+            menuType: MenuType.PREVIEW_MENU,
           })
+        .zoomAccess(true)
+        .onContextMenuShow((event) => {
+          if (event) {
+            this.result = event.result;
+            this.previewWidthImage = this.uiContext!.px2vp(event.param.getPreviewWidth());
+            this.previewHeightImage = this.uiContext!.px2vp(event.param.getPreviewHeight());
+            if (event.param.getSourceUrl().indexOf("resource://rawfile/") == 0) {
+              this.previewImage = $rawfile(event.param.getSourceUrl().substring(19));
+            } else {
+              this.previewImage = event.param.getSourceUrl();
+            }
+            this.linkURL = event.param.getLinkUrl()
+            return true;
+          }
+          return false;
+        })
+    }
+
+  }
+  // 侧滑返回
+  onBackPress(): boolean | void {
+    if (this.controller.accessStep(-1)) {
+      this.controller.backward();
+      return true;
+    } else {
+      return false;
     }
   }
 }
@@ -2878,15 +3061,94 @@ struct WebComponent {
 ```html
 <!--index.html-->
 <!DOCTYPE html>
-<html>
-  <head>
-      <title>测试网页</title>
-  </head>
-  <body>
-    <h1>bindSelectionMenu Demo</h1>
-    <!--img.png为html同目录下图片-->
-    <img src="./img.png" >
-  </body>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>长按复制文本</title>
+    <style>
+        .container {
+            background-color: white;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .context {
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        .context span {
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+
+        .context a {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px 24px;
+            border: 2px solid #3498db;
+            border-radius: 30px;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .context img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .context:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="context">
+        <!--img.png为html同目录下图片-->
+        <img src="img.png">
+    </div>
+
+    <div class="context">
+        <a  href="https://www.example.com">长按链接唤起菜单</a>
+    </div>
+
+    <div class="context">
+        <span>在这个数字时代，文本复制功能变得日益重要。无论是引用名言、保存重要信息，还是分享有趣的内容，复制文本都是我们日常操作的一部分。</span>
+    </div>
+
+</div>
+<br>
+
+<script>
+    function copySelectedText() {
+        const selectedText = window.getSelection().toString();
+        if (selectedText.length > 0) {
+            // 使用Clipboard API复制文本
+            navigator.clipboard.writeText(selectedText)
+                .then(() => {
+                    showNotification();
+                })
+                .catch(err => {
+                    console.error('复制失败:', err);
+                });
+        }
+    }
+     function clearSelection() {
+        if (window.getSelection) {
+            window.getSelection().removeAllRanges();
+        }
+    }
+</script>
+</body>
 </html>
 ```
 
@@ -2949,7 +3211,7 @@ blurOnKeyboardHideMode(mode: BlurOnKeyboardHideMode)
 
 enableFollowSystemFontWeight(follow: boolean)
 
-设置Web组件是否开启字重跟随系统设置变化。
+设置Web组件是否开启字重跟随系统设置变化。当属性没有显式调用时，Web组件默认开启字重跟随系统设置变化。
 
 > **说明：**
 >
@@ -2986,7 +3248,7 @@ enableFollowSystemFontWeight(follow: boolean)
 
 optimizeParserBudget(optimizeParserBudget: boolean)
 
-设置是否开启分段解析HTML优化。
+设置是否开启分段解析HTML优化。当属性没有显式调用时，默认使用解析时间作为HTML分段解析的分段点。
 
 ArkWeb内核在解析HTML文档结构时采取分段解析策略，旨在避免过多占用主线程资源，并使网页具有渐进式加载能力。ArkWeb内核默认使用解析时间作为分段点，当单次解析时间超过阈值时，会中断解析，随后进行布局和渲染操作。
 
@@ -3000,7 +3262,7 @@ ArkWeb内核在解析HTML文档结构时采取分段解析策略，旨在避免�
 
 | 参数名        | 类型    | 必填   | 说明                   |
 | ---------- | ------- | ---- | ---------------------- |
-| optimizeParserBudget | boolean | 是    | 设置开启分段解析HTML优化。<br>true表示使用解析个数代替解析时间作为HTML分段解析的分段点，并减少每段解析的个数上限。false表示使用解析时间作为HTML分段解析的分段点。<br>默认值：false。 |
+| optimizeParserBudget | boolean | 是    | 设置开启分段解析HTML优化。<br>true表示使用解析个数代替解析时间作为HTML分段解析的分段点，并减少每段解析的个数上限。false表示使用解析时间作为HTML分段解析的分段点。<br>传入undefined或null时为false。 |
 
 
 **示例：**
@@ -3026,7 +3288,7 @@ ArkWeb内核在解析HTML文档结构时采取分段解析策略，旨在避免�
 
 enableWebAVSession(enabled: boolean)
 
-设置是否支持应用对接到播控中心。
+设置是否支持应用对接到播控中心。当属性没有显式设置时，默认支持应用对接到播控中心。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3034,7 +3296,7 @@ enableWebAVSession(enabled: boolean)
 
 | 参数名  | 类型 | 必填 | 说明           |
 | ------- | -------- | ---- | ------------------ |
-| enabled | boolean  | 是   | 设置是否支持应用对接到播控中心。<br>true表示支持应用对接到播控中心，false表示不支持应用对接到播控中心。<br>默认值：true。 |
+| enabled | boolean  | 是   | 设置是否支持应用对接到播控中心。<br>true表示支持应用对接到播控中心，false表示不支持应用对接到播控中心。<br>传入undefined与null时为true。 |
 
 **示例：**
 
@@ -3077,7 +3339,7 @@ enableWebAVSession(enabled: boolean)
 
 nativeEmbedOptions(options?: EmbedOptions)
 
-设置同层渲染相关配置，该属性仅在[enableNativeEmbedMode](#enablenativeembedmode11)开启时生效，不支持动态修改。
+设置同层渲染相关配置，该属性仅在[enableNativeEmbedMode](#enablenativeembedmode11)开启时生效，不支持动态修改。当属性没有显式调用时，默认为`{supportDefaultIntrinsicSize: false}`。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3085,7 +3347,7 @@ nativeEmbedOptions(options?: EmbedOptions)
 
 | 参数名       | 类型                             | 必填 | 说明                                |
 | ------------ | ------------------------------- | ---- | ----------------------------------- |
-| options | [EmbedOptions](./arkts-basic-components-web-i.md#embedoptions16) | 否    | 同层渲染相关配置，默认值：`{supportDefaultIntrinsicSize: false}`。 |
+| options | [EmbedOptions](./arkts-basic-components-web-i.md#embedoptions16) | 否    | 同层渲染相关配置。 |
 
 **示例：**
 
@@ -3127,7 +3389,7 @@ nativeEmbedOptions(options?: EmbedOptions)
 
 enableDataDetector(enable: boolean)
 
-设置是否识别网页文本特殊实体，如邮件、电话、网址等。该接口依赖设备底层具备文本识别能力，否则设置无效。
+设置是否识别网页文本特殊实体，如邮件、电话、网址等。该接口依赖设备底层具备文本识别能力，否则设置无效。该属性没有显式调用时，默认不启用。
 
 当enableDataDetector设置为true，同时不设置[dataDetectorConfig](#datadetectorconfig20)属性时，默认识别所有类型的实体，所识别实体的color和decoration会被更改为如下样式：
 <!--code_no_check-->
@@ -3152,7 +3414,7 @@ AI菜单生效时，需在选中范围内，包括一个完整的AI实体，才�
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable  | boolean | 是   | 是否启用Web文本识别，true表示启用，false表示不启用。<br/>默认值：false |
+| enable  | boolean | 是   | 是否启用Web文本识别，true表示启用，false表示不启用。<br>传入undefined与null时属性设置不生效。 |
 
 > **说明：** 
 > 
@@ -3274,7 +3536,7 @@ dataDetectorConfig(config: TextDataDetectorConfig)
 
 gestureFocusMode(mode: GestureFocusMode)
 
-设置Web组件手势获焦模式。
+设置Web组件手势获焦模式。该属性没有显式调用时，默认表示手势按下时，任何手势均会使Web组件获焦。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3282,7 +3544,7 @@ gestureFocusMode(mode: GestureFocusMode)
 
 | 参数名              | 类型                              | 必填   | 说明          |
 | ------------------- | ------------------------------   | ------ | ------------- |
-| mode | [GestureFocusMode](./arkts-basic-components-web-e.md#gesturefocusmode20) | 是     | 设置Web组件手势获焦模式。<br>默认值：`GestureFocusMode.DEFAULT`，表示手势按下时，任何手势均会使Web组件获焦。|
+| mode | [GestureFocusMode](./arkts-basic-components-web-e.md#gesturefocusmode20) | 是     | 设置Web组件手势获焦模式。传入undefined与null时为GestureFocusMode.DEFAULT。|
 
 **示例：**
 
@@ -3330,7 +3592,7 @@ forceEnableZoom(enable: boolean)
 
 | 参数名        | 类型    | 必填   | 说明          |
 | ---------- | ------- | ---- | ------------- |
-| enable | boolean | 是    | 设置是否遵从网页中`<meta name="viewport">`标签设置的缩放限制。<br>设置为`true`时，不遵从网页缩放限制；设置为`false`时，遵从网页缩放限制。<br>传入`undefined`与`null`时为`false`。 |
+| enable | boolean | 是    | 设置是否遵从网页中`<meta name="viewport">`标签设置的缩放限制。<br>设置为`true`时，不遵从网页缩放限制；设置为`false`时，遵从网页缩放限制。<br>传入`undefined`与`null`时属性设置不生效。 |
 
 **示例：**
 
@@ -3384,7 +3646,7 @@ password(password: boolean)
 
 | 参数名          | 类型   | 必填  | 说明                             |
 | ------------ | ------ | ---- | -------------------------------- |
-| password | boolean | 是   | 设置为true时，表示允许Web保存密码。<br>设置为false时，表示不允许Web保存密码。<br>默认值：false。 |
+| password | boolean | 是   | 设置为true时，表示允许Web保存密码。<br>设置为false时，表示不允许Web保存密码。 |
 
 ## textZoomAtio<sup>(deprecated)</sup>
 
@@ -3463,7 +3725,7 @@ userAgent(userAgent: string)
 
 tableData(tableData: boolean)
 
-设置是否应保存表单数据。该接口为空接口。
+设置是否应保存表单数据。当属性没有显式调用时，默认允许Web保存表单数据。该接口为空接口。
 
 > **说明：**
 >
@@ -3475,7 +3737,7 @@ tableData(tableData: boolean)
 
 | 参数名          | 类型   | 必填  | 说明                             |
 | ------------ | ------ | ---- | -------------------------------- |
-| tableData | boolean | 是   | 设置为true时，表示允许Web保存表单数据。<br>设置为false时，表示不允许Web保存表单数据。<br>默认值：false。 |
+| tableData | boolean | 是   | 设置为true时，表示允许Web保存表单数据。<br>设置为false时，表示不允许Web保存表单数据。 |
 
 ## wideViewModeAccess<sup>(deprecated)</sup>
 

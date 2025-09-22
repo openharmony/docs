@@ -96,7 +96,7 @@ getModifierKeyState?(keys: Array\<string>): boolean
 
 ### 示例1（自定义手势判定）
 
-该示例通过配置onGestureJudgeBegin实现了对长按、滑动和拖动手势的自定义判定。
+该示例通过配置onGestureJudgeBegin实现了对长按、快滑和滑动手势的自定义判定。
 
 ```ts
 // xxx.ets
@@ -135,14 +135,14 @@ struct Index {
     )
     .gesture(
       SwipeGesture()
-        .tag("swipe1")// 设置滑动手势标志
+        .tag("swipe1")// 设置快滑手势标志
         .onAction(() => {
           this.message = 'swipe1'
         })
     )
     .gesture(
       PanGesture()
-        .tag("pan1")// 设置拖动手势标志
+        .tag("pan1")// 设置滑动手势标志
         .onActionStart(() => {
           this.message = 'pan1'
         })
@@ -153,12 +153,12 @@ struct Index {
         let longPressEvent = event as LongPressGestureEvent;
         console.log("repeat " + longPressEvent.repeat)
       }
-      // 若该手势类型为滑动手势，转换为滑动手势事件
+      // 若该手势类型为快滑手势，转换为快滑手势事件
       if (gestureInfo.type == GestureControl.GestureType.SWIPE_GESTURE) {
         let swipeEvent = event as SwipeGestureEvent;
         console.log("angle " + swipeEvent.angle)
       }
-      // 若该手势类型为拖动手势，转换为拖动手势事件
+      // 若该手势类型为滑动手势，转换为滑动手势事件
       if (gestureInfo.type == GestureControl.GestureType.PAN_GESTURE) {
         let panEvent = event as PanGestureEvent;
         console.log("velocity " + panEvent.velocity)

@@ -250,4 +250,4 @@ export default class EntryAbility extends UIAbility {
 
 针对UIAbility生命周期，有以下相关实例可供参考：
 
-- [UIAbility和自定义组件生命周期（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/blob/master/Ability/UIAbilityLifeCycle/README.md)
+- [UIAbility和自定义组件生命周期（ArkTS）（API9）](https://gitcode.com/openharmony/codelabs/blob/master/Ability/UIAbilityLifeCycle/README.md)

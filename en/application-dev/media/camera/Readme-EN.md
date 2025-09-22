@@ -31,6 +31,7 @@
   - [Practices for Camera Recovery from the Background (ArkTS)](camera-background-recovery.md)
   - [Practices for Automatic Camera Switching (ArkTS)](camera-auto-switch.md)
   - [White Balance Settings (ArkTS)](camera-whitebalance.md)
+  - [Pressure Management (ArkTS)](camera-system-pressure.md)
   <!--Del-->
   - [High-Performance Photo Capture (for System Applications Only) (ArkTS)](camera-deferred-photo.md)
   - [Practices for High-Performance Photo Capture (for System Applications Only) (ArkTS)](camera-deferred-photo-case.md)
@@ -51,3 +52,4 @@
   - [Video Recording Practices (C/C++)](native-camera-recording-case.md)
   - [Camera Metadata (C/C++)](native-camera-metadata.md)
   - [Using the Flashlight (C/C++)](native-camera-torch-use.md)
+  - [Pressure Management (C/C++)](native-camera-system-pressure.md)

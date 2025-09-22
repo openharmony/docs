@@ -31,10 +31,10 @@
 | -- | -- |
 | [ArkUI_GestureRecognizer* (\*createTapGesture)(int32_t countNum, int32_t fingersNum)](#createtapgesture) | 创建敲击手势。1. 支持单击、双击和多次点击事件的识别。<br>        2. 当配置多击时，上一次的最后一根手指抬起和下一次的第一根手指按下的超时时间为300毫秒。<br>        3. 当上次点击的位置与当前点击的位置距离超过60vp等效像素点时，手势识别失败。<br>        4. 当配置多指时，第一根手指按下后300毫秒内未有足够的手指数按下，手势识别失败，<br>           第一根手指抬起后300毫秒内未有足够的手指抬起，手势识别失败。<br>        5. 实际点击手指数超过配置值，手势识别成功。<br> |
 | [ArkUI_GestureRecognizer* (\*createLongPressGesture)(int32_t fingersNum, bool repeatResult, int32_t durationNum)](#createlongpressgesture) | 创建长按手势。1. 用于触发长按手势事件，触发长按手势的最少手指数为1，最短长按时间为500毫秒。<br>        2. 当组件默认支持可拖拽时，如Text、TextInput、TextArea、HyperLink、Image和RichEditor等组件。<br>           长按手势与拖拽会出现冲突，事件优先级如下：<br>           长按触发时间 < 500ms，长按事件优先拖拽事件响应。<br>           长按触发时间 >= 500ms，拖拽事件优先长按事件响应。<br>        3. 手指按下后若发生超过15px的移动，则判定当前长按手势识别失败。<br> |
-| [ArkUI_GestureRecognizer* (\*createPanGesture)(int32_t fingersNum, ArkUI_GestureDirectionMask directions, double distanceNum)](#createpangesture) | 创建拖动手势。1. 当滑动的最小距离超过设定的最小值时触发拖动手势事件。<br>        2. Tabs组件滑动与该拖动手势事件同时存在时，可将distanceNum值设为1，使拖动更灵敏，避免造成事件错乱。<br> |
+| [ArkUI_GestureRecognizer* (\*createPanGesture)(int32_t fingersNum, ArkUI_GestureDirectionMask directions, double distanceNum)](#createpangesture) | 创建滑动手势。1. 当滑动的最小距离超过设定的最小值时触发滑动手势事件。<br>        2. Tabs组件滑动与该滑动手势事件同时存在时，可将distanceNum值设为1，使拖动更灵敏，避免造成事件错乱。<br> |
 | [ArkUI_GestureRecognizer* (\*createPinchGesture)(int32_t fingersNum, double distanceNum)](#createpinchgesture) | 创建捏合手势。1. 触发捏合手势的最少手指为2指，最大为5指，最小识别距离为distanceNum 像素点。<br>        2. 触发手势手指可以多于fingersNum数目，但只有先落下的与fingersNum相同数目的手指参与手势计算。<br> |
 | [ArkUI_GestureRecognizer* (\*createRotationGesture)(int32_t fingersNum, double angleNum)](#createrotationgesture) | 创建旋转手势。1. 触发旋转手势的最少手指为2指，最大为5指，最小改变度数为1度。<br>        2. 触发手势手指可以多于fingers数目，但只有先落下的两指参与手势计算。<br> |
-| [ArkUI_GestureRecognizer* (\*createSwipeGesture)(int32_t fingersNum, ArkUI_GestureDirectionMask directions, double speedNum)](#createswipegesture) | 创建滑动手势。1. 用于触发滑动事件，滑动速度大于speedNum px/s时可识别成功。<br> |
+| [ArkUI_GestureRecognizer* (\*createSwipeGesture)(int32_t fingersNum, ArkUI_GestureDirectionMask directions, double speedNum)](#createswipegesture) | 创建快滑手势。1. 用于触发快滑事件，滑动速度大于speedNum px/s时可识别成功。<br> |
 | [ArkUI_GestureRecognizer* (\*createGroupGesture)(ArkUI_GroupGestureMode gestureMode)](#creategroupgesture) | 创建手势组。 |
 | [void (\*dispose)(ArkUI_GestureRecognizer* recognizer)](#dispose) | 销毁手势，释放资源。 |
 | [int32_t (\*addChildGesture)(ArkUI_GestureRecognizer* group, ArkUI_GestureRecognizer* child)](#addchildgesture) | 手势组增加子手势。 |
@@ -107,21 +107,21 @@ ArkUI_GestureRecognizer* (*createPanGesture)(int32_t fingersNum, ArkUI_GestureDi
 **描述：**
 
 
-创建拖动手势。1. 当滑动的最小距离超过设定的最小值时触发拖动手势事件。<br>        2. Tabs组件滑动与该拖动手势事件同时存在时，可将distanceNum值设为1，使拖动更灵敏，避免造成事件错乱。<br>
+创建滑动手势。1. 当滑动的最小距离超过设定的最小值时触发滑动手势事件。<br>        2. Tabs组件滑动与该滑动手势事件同时存在时，可将distanceNum值设为1，使拖动更灵敏，避免造成事件错乱。<br>
 
 **参数：**
 
 | 参数项                                                                  | 描述 |
 |----------------------------------------------------------------------| -- |
-| int32_t fingersNum                                                   | 用于指定触发拖动的最少手指数，最小为1指，最大取值为10指。当设置的值小于1或不设置时，会被转化为默认值 1。 |
-| [ArkUI_GestureDirectionMask](capi-native-gesture-h.md#变量) directions | 用于指定触发拖动的手势方向，此枚举值支持逻辑与(&)和逻辑或（\|）运算。 |
-| double distanceNum                                                   | 用于指定触发拖动手势事件的最小拖动距离，单位为px。当设定的值小于等于0时，按默认值5px处理。 |
+| int32_t fingersNum                                                   | 用于指定触发滑动的最少手指数，最小为1指，最大取值为10指。当设置的值小于1或不设置时，会被转化为默认值 1。 |
+| [ArkUI_GestureDirectionMask](capi-native-gesture-h.md#变量) directions | 用于指定触发滑动的手势方向，此枚举值支持逻辑与(&)和逻辑或（\|）运算。 |
+| double distanceNum                                                   | 用于指定触发滑动手势事件的最小拖动距离，单位为px。当设定的值小于等于0时，按默认值5px处理。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [ArkUI_GestureRecognizer](capi-arkui-nativemodule-arkui-gesturerecognizer.md)* | 返回创建的拖动手势指针。 |
+| [ArkUI_GestureRecognizer](capi-arkui-nativemodule-arkui-gesturerecognizer.md)* | 返回创建的滑动手势指针。 |
 
 ### createPinchGesture()
 
@@ -180,14 +180,14 @@ ArkUI_GestureRecognizer* (*createSwipeGesture)(int32_t fingersNum, ArkUI_Gesture
 **描述：**
 
 
-创建滑动手势。1. 用于触发滑动事件，滑动速度大于speedNum px/s时可识别成功。<br>
+创建快滑手势。1. 用于触发快滑事件，滑动速度大于speedNum px/s时可识别成功。<br>
 
 **参数：**
 
 | 参数项 | 描述 |
 | -- | -- |
 | int32_t fingersNum | 触发滑动的最少手指数，默认为1，最小为1指，最大为10指。 |
-|  [ArkUI_GestureDirectionMask](capi-native-gesture-h.md#变量) directions | 触发滑动手势的滑动方向。 |
+|  [ArkUI_GestureDirectionMask](capi-native-gesture-h.md#变量) directions | 触发快滑手势的滑动方向。 |
 |  double speedNum | 识别滑动的最小速度，单位 px/s。当设置滑动速度的值小于等于0时，会被转化为默认值100px/s。 |
 
 **返回：**

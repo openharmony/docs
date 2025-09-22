@@ -1,5 +1,12 @@
 # @ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)（系统接口）
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: MiscServices-->
+<!--Owner: @gcw_jQMboB9m-->
+<!--Designer: @gcw_jQMboB9m-->
+<!--Tester: @murphy84-->
+<!--Adviser: @zhang_yixin13-->
+
 WallpaperExtensionAbility为壁纸拓展模块，提供应用生命周期回调和监听壁纸变化的能力。
 
 > **说明：**
@@ -40,7 +47,7 @@ import { Want } from '@kit.AbilityKit';
 
 class WallpaperExt extends WallpaperExtensionAbility {
     onCreate(want: Want): void {
-        console.log('onCreate, want:' + want.abilityName);
+        console.info('onCreate, want:' + want.abilityName);
     }
 }
 ```
@@ -69,7 +76,7 @@ import { wallpaper } from '@kit.BasicServicesKit';
 
 class WallpaperExt extends WallpaperExtensionAbility {
     onWallpaperChange(wallpaperType: wallpaper.WallpaperType): void {
-        console.log('onWallpaperChange, wallpaperType:' + wallpaperType);
+        console.info('onWallpaperChange, wallpaperType:' + wallpaperType);
     }
 }
 ```
@@ -91,7 +98,7 @@ import { WallpaperExtensionAbility } from '@kit.BasicServicesKit';
 
 class WallpaperExt extends WallpaperExtensionAbility {
     onDestroy(): void {
-        console.log('onDestroy');
+        console.info('onDestroy');
     }
 }
 ```

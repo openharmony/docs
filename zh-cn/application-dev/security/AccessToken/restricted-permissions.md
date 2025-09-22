@@ -300,6 +300,18 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **变更信息**：API 8-13，权限等级为system_core；从API 14开始，权限等级变更为system_basic，向普通应用开放。
 
+## ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+
+允许运营商应用添加eSIM配置文件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：13
+
+**变更信息**：在API 13，权限等级为normal；从API 14开始，权限等级变更为system_basic。
+
 ## ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION
 
 允许应用禁用本应用的代码运行时完整性保护。
@@ -454,9 +466,9 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 ## ohos.permission.PERSISTENT_BLUETOOTH_PEERS_MAC
 
-允许应用固化对端蓝牙设备MAC对应的虚拟随机地址。
+允许应用固化对端蓝牙设备MAC对应的虚拟地址。
 
-通过BLE扫描、BR扫描或连接监听获取到对端蓝牙设备MAC对应的虚拟随机地址，申请该权限后，可保持该虚拟随机地址长时间保持，即使是开/关/重启蓝牙也不发生变化。
+通过BLE扫描、BR扫描或连接监听获取到对端蓝牙设备MAC对应的虚拟地址，申请该权限且调用[access.addPersistentDeviceId](../../reference/apis-connectivity-kit/js-apis-bluetooth-access.md#accessaddpersistentdeviceid16)方法后，可保持该虚拟地址长时间存储，即使是开/关/重启蓝牙也不发生变化。
 
 <!--RP36--><!--RP36End-->
 
@@ -573,6 +585,22 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：18
 
+## ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
+
+允许扩展外设驱动访问SCSI DDK接口开发SCSI Peripheral扩展外设驱动。
+
+支持以下类型的外设扩展驱动开发：
+外设以USB总线接入主机，且满足：
+
+1. 外设InterfaceClass为Mass Storage(0x08)、InterfaceSubClass为SCSI透明命令集(0x06)。
+2. 外设能够以对操作系统透明的方式来模拟SCSI设备。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：18
+
 ## ohos.permission.kernel.SUPPORT_PLUGIN
 
 允许主体应用安装插件。
@@ -625,7 +653,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 ## ohos.permission.GET_ABILITY_INFO
 
-允许应用根据URI查询Ability信息。
+允许应用根据URI或者FileType查询Ability信息。
 
 <!--RP42--><!--RP42End-->
 
@@ -756,6 +784,46 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **支持设备**：General
 
 **起始版本**：20
+
+## ohos.permission.READ_WHOLE_CALENDAR
+
+允许应用读取所有的日历信息。
+
+**权限级别**：system_basic
+
+**授权方式**：用户授权（user_grant）
+
+**起始版本**：9
+
+**变更信息**：在API 9-19，该权限面向系统应用开放；从API 20开始，面向普通应用开放。
+
+## ohos.permission.WRITE_WHOLE_CALENDAR
+
+允许应用添加、移除或更改所有的日历活动。
+
+**权限级别**：system_basic
+
+**授权方式**：用户授权（user_grant）
+
+**起始版本**：9
+
+**变更信息**：在API 9-19，该权限面向系统应用开放；从API 20开始，面向普通应用开放。
+
+## ohos.permission.SET_SYSTEMSHARE_APPLAUNCHTRUSTLIST
+
+允许应用配置系统分享的目标应用名单。
+
+获取该权限后，应用可控制系统分享的目标应用范围。
+
+<!--RP53--><!--RP53End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：21
 
 ## ohos.permission.HOOK_KEY_EVENT
 

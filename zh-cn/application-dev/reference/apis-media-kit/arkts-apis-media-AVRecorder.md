@@ -97,7 +97,7 @@ let avRecorderConfig: media.AVRecorderConfig = {
 
 avRecorder.prepare(avRecorderConfig, (err: BusinessError) => {
   if (err) {
-    console.error('Failed to prepare and error is: ' + err.message);
+    console.error(`Failed to prepare and error is: Code: ${err.code}, message: ${err.message}`);
   } else {
     console.info('Succeeded in preparing');
   }
@@ -177,7 +177,7 @@ avRecorder.prepare(avRecorderConfig).then(() => {
   console.info('Succeeded in preparing');
 }).catch((err: Error) => {
   let error: BusinessError = err as BusinessError;
-  console.error('Failed to prepare and error is: ' + error.message);
+  console.error(`Failed to prepare and error is: Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -218,7 +218,7 @@ let surfaceID: string; // 该surfaceID用于传递给相机接口创造videoOutp
 
 avRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
   if (err) {
-    console.error('Failed to do getInputSurface and error is: ' + err.message);
+    console.error(`Failed to do getInputSurface and error is: Code: ${err.code}, message: ${err.message}`);
   } else {
     console.info('Succeeded in doing getInputSurface');
     surfaceID = surfaceId;
@@ -267,7 +267,7 @@ avRecorder.getInputSurface().then((surfaceId: string) => {
   surfaceID = surfaceId;
 }).catch((err: Error) => {
   let error: BusinessError = err as BusinessError;
-  console.error('Failed to get InputSurface and error is: ' + error.message);
+  console.error(`Failed to get InputSurface and error is: Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -315,7 +315,7 @@ avRecorder.updateRotation(rotation).then(() => {
   console.info('Succeeded in doing updateRotation');
 }).catch((err: Error) => {
   let error: BusinessError = err as BusinessError;
-  console.error('Failed to do updateRotation and error is: ' + error.message);
+  console.error(`Failed to do updateRotation and error is: Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -357,7 +357,7 @@ avRecorder.setWillMuteWhenInterrupted(true).then(() => {
   console.info('Succeeded in doing setWillMuteWhenInterrupted');
 }).catch((err: Error) => {
   let error: BusinessError = err as BusinessError;
-  console.error('Failed to do setWillMuteWhenInterrupted and error is: ' + error.message);
+  console.error(`Failed to do setWillMuteWhenInterrupted and error is: Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -394,7 +394,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.start((err: BusinessError) => {
   if (err) {
-    console.error('Failed to start AVRecorder and error is: ' + err.message);
+    console.error(`Failed to start AVRecorder and error is: Code: ${err.code}, message: ${err.message}`);
   } else {
     console.info('Succeeded in starting AVRecorder');
   }
@@ -438,7 +438,7 @@ avRecorder.start().then(() => {
   console.info('Succeeded in starting AVRecorder');
 }).catch((err: Error) => {
   let error: BusinessError = err as BusinessError;
-  console.error('Failed to start AVRecorder and error is: ' + error.message);
+  console.error(`Failed to start AVRecorder and error is: Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -475,7 +475,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.pause((err: BusinessError) => {
   if (err) {
-    console.error('Failed to pause AVRecorder and error is: ' + err.message);
+    console.error(`Failed to pause AVRecorder and error is: Code: ${err.code}, message: ${err.message}`);
   } else {
     console.info('Succeeded in pausing');
   }
@@ -519,7 +519,7 @@ avRecorder.pause().then(() => {
   console.info('Succeeded in pausing');
 }).catch((err: Error) => {
   let error: BusinessError = err as BusinessError;
-  console.error('Failed to pause AVRecorder and error is: ' + error.message);
+  console.error(`Failed to pause AVRecorder and error is: Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -556,7 +556,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.resume((err: BusinessError) => {
   if (err) {
-    console.error('Failed to resume AVRecorder and error is: ' + err.message);
+    console.error(`Failed to resume AVRecorder and error is: Code: ${err.code}, message: ${err.message}`);
   } else {
     console.info('Succeeded in resuming AVRecorder');
   }
@@ -600,7 +600,7 @@ avRecorder.resume().then(() => {
   console.info('Succeeded in resuming AVRecorder');
 }).catch((err: Error) => {
   let error: BusinessError = err as BusinessError;
-  console.error('Failed to resume AVRecorder failed and error is: ' + error.message);
+  console.error(`Failed to resume AVRecorder failed and error is: Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -639,7 +639,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.stop((err: BusinessError) => {
   if (err) {
-    console.error('Failed to stop AVRecorder and error is: ' + err.message);
+    console.error(`Failed to stop AVRecorder and error is: Code: ${err.code}, message: ${err.message}`);
   } else {
     console.info('Succeeded in stopping AVRecorder');
   }
@@ -685,7 +685,7 @@ avRecorder.stop().then(() => {
   console.info('Succeeded in stopping AVRecorder');
 }).catch((err: Error) => {
   let error: BusinessError = err as BusinessError;
-  console.error('Failed to stop AVRecorder and error is: ' + error.message);
+  console.error(`Failed to stop AVRecorder and error is: Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -721,7 +721,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.reset((err: BusinessError) => {
   if (err) {
-    console.error('Failed to reset AVRecorder and error is: ' + err.message);
+    console.error(`Failed to reset AVRecorder and error is: Code: ${err.code}, message: ${err.message}`);
   } else {
     console.info('Succeeded in resetting AVRecorder');
   }
@@ -762,7 +762,7 @@ avRecorder.reset().then(() => {
   console.info('Succeeded in resetting AVRecorder');
 }).catch((err: Error) => {
   let error: BusinessError = err as BusinessError;
-  console.error('Failed to reset AVRecorder and error is: ' + error.message);
+  console.error(`Failed to reset AVRecorder and error is: Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -797,7 +797,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.release((err: BusinessError) => {
   if (err) {
-    console.error('Failed to release AVRecorder and error is: ' + err.message);
+    console.error(`Failed to release AVRecorder and error is: Code: ${err.code}, message: ${err.message}`);
   } else {
     console.info('Succeeded in releasing AVRecorder');
   }
@@ -839,7 +839,7 @@ avRecorder.release().then(() => {
   console.info('Succeeded in releasing AVRecorder');
 }).catch((err: Error) => {
   let error: BusinessError = err as BusinessError;
-  console.error('Failed to release AVRecorder and error is: ' + error.message);
+  console.error(`Failed to release AVRecorder and error is: Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -879,7 +879,7 @@ let currentCapturerInfo: audio.AudioCapturerChangeInfo;
 
 avRecorder.getCurrentAudioCapturerInfo((err: BusinessError, capturerInfo: audio.AudioCapturerChangeInfo) => {
   if (err) {
-    console.error('Failed to get CurrentAudioCapturerInfo and error is: ' + err.message);
+    console.error(`Failed to get CurrentAudioCapturerInfo and error is: Code: ${err.code}, message: ${err.message}`);
   } else {
     console.info('Succeeded in getting CurrentAudioCapturerInfo');
     currentCapturerInfo = capturerInfo;
@@ -926,7 +926,7 @@ avRecorder.getCurrentAudioCapturerInfo().then((capturerInfo: audio.AudioCapturer
   currentCapturerInfo = capturerInfo;
 }).catch((err: Error) => {
   let error: BusinessError = err as BusinessError;
-  console.error('Failed to get CurrentAudioCapturerInfo and error is: ' + error.message);
+  console.error(`Failed to get CurrentAudioCapturerInfo and error is: Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -966,7 +966,7 @@ let maxAmplitude: number;
 
 avRecorder.getAudioCapturerMaxAmplitude((err: BusinessError, amplitude: number) => {
   if (err) {
-    console.error('Failed to get AudioCapturerMaxAmplitude and error is: ' + err.message);
+    console.error(`Failed to get AudioCapturerMaxAmplitude and error is: Code: ${err.code}, message: ${err.message}`);
   } else {
     console.info('Succeeded in getting AudioCapturerMaxAmplitude');
     maxAmplitude = amplitude;
@@ -1013,7 +1013,7 @@ avRecorder.getAudioCapturerMaxAmplitude().then((amplitude: number) => {
   maxAmplitude = amplitude;
 }).catch((err: Error) => {
   let error: BusinessError = err as BusinessError;
-  console.error('Failed to get AudioCapturerMaxAmplitude and error is: ' + error.message);
+  console.error(`Failed to get AudioCapturerMaxAmplitude and error is: Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1049,7 +1049,7 @@ let encoderInfo: media.EncoderInfo;
 
 avRecorder.getAvailableEncoder((err: BusinessError, info: media.EncoderInfo[]) => {
   if (err) {
-    console.error('Failed to get AvailableEncoder and error is: ' + err.message);
+    console.error(`Failed to get AvailableEncoder and error is: Code: ${err.code}, message: ${err.message}`);
   } else {
     console.info('Succeeded in getting AvailableEncoder');
     if (info.length > 0) {
@@ -1100,7 +1100,7 @@ avRecorder.getAvailableEncoder().then((info: media.EncoderInfo[]) => {
     }
 }).catch((err: Error) => {
   let error: BusinessError = err as BusinessError;
-  console.error('Failed to get AvailableEncoder and error is: ' + error.message);
+  console.error(`Failed to get AvailableEncoder and error is: Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1139,7 +1139,7 @@ let avConfig: media.AVRecorderConfig;
 
 avRecorder.getAVRecorderConfig((err: BusinessError, config: media.AVRecorderConfig) => {
   if (err) {
-    console.error('Failed to get avConfig and error is: ' + err.message);
+    console.error(`Failed to get avConfig and error is: Code: ${err.code}, message: ${err.message}`);
   } else {
     console.info('Succeeded in getting AVRecorderConfig');
     avConfig = config;
@@ -1185,7 +1185,7 @@ avRecorder.getAVRecorderConfig().then((config: media.AVRecorderConfig) => {
   avConfig = config;
 }).catch((err: Error) => {
   let error: BusinessError = err as BusinessError;
-  console.error('Failed to get AVRecorderConfig and error is: ' + error.message);
+  console.error(`Failed to get AVRecorderConfig and error is: Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1288,7 +1288,7 @@ on(type: 'error', callback: ErrorCallback): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.on('error', (err: BusinessError) => {
-  console.info('case avRecorder.on(error) called, errMessage is ' + err.message);
+  console.error(`case avRecorder.on(error) called. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 

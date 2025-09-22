@@ -1,4 +1,10 @@
 # native_drm_err.h
+<!--Kit: Drm Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qin_wei_jie-->
+<!--Designer: @chris2981-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 
 ## 概述
 
@@ -6,7 +12,7 @@
 
 **引用文件：** <multimedia/drm_framework/native_drm_err.h>
 
-**库：** libnative_drm.z.so
+**库：** libnative_drm.so
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 

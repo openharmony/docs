@@ -622,11 +622,11 @@ static void RunScriptWithOption(JSVM_Env env, string& src,
     JSVM_Script script;
     // 编译js代码
 	JSVM_ScriptOrigin origin {
-	    // 以包名 helloworld 为例, 假如存在对应的 sourcemap, source map 的的路径可以是 /data/app/el2/100/base/com.example.helloworld/files/index.js.map
+	    // 以包名 helloworld 为例, 假如存在对应的 sourcemap, sourcemap 的路径可以是 /data/app/el2/100/base/com.example.helloworld/files/index.js.map
 	    .sourceMapUrl = "/data/app/el2/100/base/com.example.helloworld/files/index.js.map",
 	    // 源文件名字
 	    .resourceName = "index.js",
-	    // scirpt 在源文件中的起始行列号
+	    // script 在源文件中的起始行列号
 	    .resourceLineOffset = 0,
 	    .resourceColumnOffset = 0,
 	};
@@ -678,11 +678,11 @@ static void RunScript(JSVM_Env env, string& src,
     // 编译js代码
     if (withOrigin) {
 	    JSVM_ScriptOrigin origin {
-	        // 以包名 helloworld 为例, 假如存在对应的 sourcemap, source map 的的路径可以是 /data/app/el2/100/base/com.example.helloworld/files/index.js.map
+	        // 以包名 helloworld 为例, 假如存在对应的 sourcemap, sourcemap 的路径可以是 /data/app/el2/100/base/com.example.helloworld/files/index.js.map
 		    .sourceMapUrl = "/data/app/el2/100/base/com.example.helloworld/files/index.js.map",
 		    // 源文件名字
 		    .resourceName = "index.js",
-		    // scirpt 在源文件中的起始行列号
+		    // script 在源文件中的起始行列号
 		    .resourceLineOffset = 0,
 		    .resourceColumnOffset = 0,
 	    };

@@ -549,9 +549,103 @@ struct Demo {
 ```
 <!--DelEnd-->
 
+## 控制页面缓存数
+
+从API version 19开始，开发者可以通过[cachedMaxCount](../reference/apis-arkui/arkui-ts/ts-container-tabs.md#cachedmaxcount19)接口，设置子组件的最大缓存个数和缓存模式。默认情况下Tabs创建时会一次性预加载所有TabContent，而且已加载的页面不会释放，可能会带来性能内存问题。此时可以设置[cachedMaxCount](../reference/apis-arkui/arkui-ts/ts-container-tabs.md#cachedmaxcount19)属性控制缓存的页面数量，设置此属性后不会进行页面预加载，使用懒加载机制(仅切换到页面时才加载)，当切换页面时根据所设置的[TabsCacheMode](../reference/apis-arkui/arkui-ts/ts-container-tabs.md#tabscachemode19枚举说明)决定保留缓存或者释放页面。
+
+>  **说明：** 
+>
+> 1.TabsCacheMode枚举值为CACHE_BOTH_SIDE时，缓存当前显示的子组件和其两侧的子组件。
+>
+> 2.TabsCacheMode枚举值为CACHE_LATEST_SWITCHED时，缓存当前显示的子组件和最近切换过的子组件。
+>
+> 3.存在翻页动画时，从页面1直接切换到页面3，翻页动画会包含页面2，页面2也会被加载，如果此时页面2不在缓存范围内，页面切换完成后会立马释放。
+
+**图15** 在页面缓存场景下通过点击yellow按键切换界面。
+
+![cachedMaxCount2](figures/cachedMaxCount1.gif)
+```ts
+@Entry
+@Component
+struct TabsExample {
+  build() {
+    Tabs() {
+      TabContent() {
+        MyComponent({ color: '#00CB87' })
+      }.tabBar(SubTabBarStyle.of('green'))
+
+      TabContent() {
+        MyComponent({ color: '#007DFF' })
+      }.tabBar(SubTabBarStyle.of('blue'))
+
+      TabContent() {
+        MyComponent({ color: '#FFBF00' })
+      }.tabBar(SubTabBarStyle.of('yellow'))
+
+      TabContent() {
+        MyComponent({ color: '#E67C92' })
+      }.tabBar(SubTabBarStyle.of('pink'))
+
+      TabContent() {
+        MyComponent({ color: '#FF0000' })
+      }.tabBar(SubTabBarStyle.of('red'))
+    }
+    .width(360)
+    .height(296)
+    .backgroundColor('#F1F3F5')
+    .cachedMaxCount(1, TabsCacheMode.CACHE_BOTH_SIDE)
+  }
+}
+
+@Component
+struct MyComponent {
+  private color: string = '';
+
+  aboutToAppear(): void {
+    console.info('aboutToAppear backgroundColor:' + this.color);
+  }
+
+  aboutToDisappear(): void {
+    console.info('aboutToDisappear backgroundColor:' + this.color);
+  }
+
+  build() {
+    Column()
+      .width('100%')
+      .height('100%')
+      .backgroundColor(this.color)
+  }
+}
+```
+基于以上示例代码为例，不同场景下的缓存策略如下：
+
+1. 如图16所示，使用默认翻页动画，CACHE_BOTH_SIDE模式，n设置为2，点击TabBar切换到yellow页，TabContent1~3被缓存。再切换到red页，TabContenet1~2释放，TabContent3~5被缓存。
+
+**图16** 默认翻页动画，CACHE_BOTH_SIDE模式示意图
+
+![cachedMaxCount1](figures/cachedMaxCount1.png)
+
+2. 如图17所示，使用默认翻页动画，CACHE_LATEST_SWITCHED模式，n设置为2，点击TabBar切换到yellow页，TabContent1、3被缓存，TabContenet2释放。再切换到red页，TabContent1、3、5被缓存，TabContenet4释放。
+
+**图17** 默认翻页动画，CACHE_LATEST_SWITCHED模式示意图
+
+![cachedMaxCount2](figures/cachedMaxCount2.png)
+
+3. 如图18所示，关闭翻页动画，CACHE_BOTH_SIDE模式，n设置为2，点击TabBar切换到yellow页，TabContent1、3被缓存。再切换到red页，TabContent3、5被缓存，TabContent1释放。
+
+**图18** 关闭翻页动画，CACHE_BOTH_SIDE模式示意图
+
+![cachedMaxCount3](figures/cachedMaxCount3.png)
+
+4. 如图19所示，关闭翻页动画，CACHE_LATEST_SWITCHED模式，n设置为2，点击TabBar切换到yellow页，TabContent1、3被缓存。再切换到red页，TabContent1、3、5被缓存。
+
+**图19** 关闭翻页动画，CACHE_LATEST_SWITCHED模式示意图
+
+![cachedMaxCount4](figures/cachedMaxCount4.png)
+
 ## 相关实例
 
 如需详细了解Tabs的更多实现，请参考以下示例：
 
-- [常用组件与布局](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ArkTSComponents)
+- [常用组件与布局](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/ArkTSComponents)
 <!--RP1--><!--RP1End-->

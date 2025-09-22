@@ -22,7 +22,7 @@ import { sendableImage } from '@kit.ImageKit';
 
 createPixelMap(colors: ArrayBuffer, options: image.InitializationOptions): Promise\<PixelMap>
 
-通过属性创建PixelMap，默认采用BGRA_8888格式处理数据，通过Promise返回结果。
+通过属性创建PixelMap，默认采用BGRA_8888格式处理数据。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -157,7 +157,7 @@ async function Demo() {
 
 createPixelMapFromSurface(surfaceId: string, region: image.Region): Promise\<PixelMap>
 
-根据Surface ID和区域信息创建一个PixelMap对象。该区域的大小由[Region](arkts-apis-image-i.md#region8).size指定。使用Promise形式返回。
+根据Surface ID和区域信息创建一个PixelMap对象。该区域的大小由[Region](arkts-apis-image-i.md#region8).size指定。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -361,7 +361,9 @@ sendableImage下的PixelMap支持sendable属性，支持worker线程共享。sen
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
-读取图像像素数据，结果写入ArrayBuffer里，使用Promise形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
+读取图像像素数据，结果写入ArrayBuffer里。使用Promise异步回调。
+
+该接口指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -440,7 +442,7 @@ async function Demo(pixelMap: sendableImage.PixelMap) {
 
 readPixels(area: image.PositionArea): Promise\<void>
 
-读取区域内的图片数据，使用Promise形式返回。
+读取区域内的图片数据。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -530,7 +532,7 @@ async function Demo(pixelMap : sendableImage.PixelMap) {
 
 writePixels(area: image.PositionArea): Promise\<void>
 
-将PixelMap写入指定区域内，使用Promise形式返回写入结果。
+将PixelMap写入指定区域内。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -628,7 +630,7 @@ async function Demo(pixelMap : sendableImage.PixelMap) {
 
 writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
-读取缓冲区中的图片数据，结果写入PixelMap中，使用Promise形式返回。
+读取缓冲区中的图片数据，结果写入PixelMap中。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -715,7 +717,7 @@ async function Demo(pixelMap: sendableImage.PixelMap) {
 
 getImageInfo(): Promise\<image.ImageInfo>
 
-获取图像像素信息，使用Promise形式返回获取的图像像素信息。
+获取图像像素信息。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -866,7 +868,7 @@ async function Demo(pixelMap : sendableImage.PixelMap) {
 
 opacity(rate: number): Promise\<void>
 
-通过设置透明比率来让PixelMap达到对应的透明效果，使用Promise形式返回。
+通过设置透明比率来让PixelMap达到对应的透明效果。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -944,7 +946,7 @@ async function Demo(pixelMap : sendableImage.PixelMap) {
 
 createAlphaPixelmap(): Promise\<PixelMap>
 
-根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的PixelMap，可用于阴影效果，使用Promise形式返回。
+根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的PixelMap，可用于阴影效果。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1013,7 +1015,7 @@ async function Demo(pixelMap : sendableImage.PixelMap) {
 
 scale(x: number, y: number): Promise\<void>
 
-根据输入的宽高对图片进行缩放，使用Promise形式返回。
+根据输入的宽高对图片进行缩放。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1096,7 +1098,7 @@ async function Demo(pixelMap : sendableImage.PixelMap) {
 
 translate(x: number, y: number): Promise\<void>
 
-根据输入的坐标对图片进行位置变换，使用Promise形式返回。
+根据输入的坐标对图片进行位置变换。使用Promise异步回调。
 
 translate后的图片尺寸改变为：width+X，height+Y，建议translate后的图片尺寸宽高不超过屏幕的宽高。
 
@@ -1182,7 +1184,7 @@ async function Demo(pixelMap : sendableImage.PixelMap) {
 
 rotate(angle: number): Promise\<void>
 
-根据输入的角度对图片进行旋转，使用Promise形式返回。
+根据输入的角度对图片进行旋转。使用Promise异步回调。
 
 > **说明：**
 >
@@ -1270,7 +1272,7 @@ async function Demo(pixelMap : sendableImage.PixelMap) {
 
 flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
-根据输入的条件对图片进行翻转，使用Promise形式返回。
+根据输入的条件对图片进行翻转。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1353,7 +1355,7 @@ async function Demo(pixelMap : sendableImage.PixelMap) {
 
 crop(region: image.Region): Promise\<void>
 
-根据输入的尺寸对图片进行裁剪，使用Promise形式返回。
+根据输入的尺寸对图片进行裁剪。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1496,7 +1498,7 @@ import { sendableImage } from '@kit.ImageKit';
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
 
 async function Demo(pixelMap : sendableImage.PixelMap) {
-  let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
+  let colorSpaceName = colorSpaceManager.ColorSpace.SRGB; // colorSpaceManager.ColorSpace该对象当前仅支持2in1/PC设备使用。
   let csm: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
   if (pixelMap != undefined) {
     pixelMap.setColorSpace(csm);
@@ -1508,7 +1510,7 @@ async function Demo(pixelMap : sendableImage.PixelMap) {
 
 applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\<void>
 
-根据输入的目标色彩空间对图像像素颜色进行色彩空间转换，使用Promise形式返回。
+根据输入的目标色彩空间对图像像素颜色进行色彩空间转换。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1543,7 +1545,7 @@ import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo(pixelMap : sendableImage.PixelMap) {
-    let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
+    let colorSpaceName = colorSpaceManager.ColorSpace.SRGB; // colorSpaceManager.ColorSpace该对象当前仅支持2in1/PC设备使用。
     let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
     pixelMap.applyColorSpace(targetColorSpace).then(() => {
         console.info('Succeeded in applying color space for pixelmap object.');
@@ -1729,7 +1731,7 @@ async function Demo() {
 
 release():Promise\<void>
 
-释放PixelMap对象，使用Promise形式返回释放结果。
+释放PixelMap对象。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1990,7 +1992,7 @@ async function Demo(context : Context) {
 
 release(): Promise\<void>
 
-释放ImageSource实例，使用Promise形式返回结果。release是线程不安全的。
+释放ImageSource实例。使用Promise异步回调。release是线程不安全的。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2036,7 +2038,7 @@ async function Demo(context : Context) {
 
 getComponent(componentType: image.ComponentType): Promise\<image.Component>
 
-根据图像的组件类型从图像中获取组件缓存并使用Promise方式返回结果。getComponent是线程不安全的。
+根据图像的组件类型从图像中获取组件缓存。使用Promise异步回调。getComponent是线程不安全的。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -2078,7 +2080,7 @@ async function Demo() {
 
 release(): Promise\<void>
 
-释放当前图像并使用Promise方式返回结果。
+释放当前图像。使用Promise异步回调。
 
 在接收另一个图像前必须先释放对应资源。release是线程不安全的。
 
@@ -2133,7 +2135,7 @@ async function Demo() {
 
 getReceivingSurfaceId(): Promise\<string>
 
-用于获取一个surface id供Camera或其他组件使用。使用promise返回结果。
+用于获取一个surface id供Camera或其他组件使用。使用promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -2168,7 +2170,7 @@ async function Demo() {
 
 readLatestImage(): Promise\<Image>
 
-从ImageReceiver读取最新的图片，并使用promise返回结果。
+从ImageReceiver读取最新的图片。使用promise异步回调。
 
 **注意**：此接口需要在[on](#on)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](#image)对象使用完毕后需要调用[release](#release-2)方法释放，释放后才可以继续接收新的数据。
 
@@ -2205,7 +2207,7 @@ async function Demo() {
 
 readNextImage(): Promise\<Image>
 
-从ImageReceiver读取下一张图片，并使用promise返回结果。
+从ImageReceiver读取下一张图片。使用promise异步回调。
 
 **注意**：此接口需要在[on](#on)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](#image)对象使用完毕后需要调用[release](#release-2)方法释放，释放后才可以继续接收新的数据。
 
@@ -2242,7 +2244,7 @@ async function Demo() {
 
 on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 
-接收图片时注册回调。
+接收图片时注册。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -2275,7 +2277,7 @@ async function Demo() {
 
 release(): Promise\<void>
 
-释放ImageReceiver实例并使用promise返回结果。release是线程不安全的。
+释放ImageReceiver实例。使用promise异步回调。release是线程不安全的。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 

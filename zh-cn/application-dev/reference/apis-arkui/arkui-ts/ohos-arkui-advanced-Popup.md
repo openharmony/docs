@@ -51,14 +51,14 @@ PopupOptions定义Popup的具体式样参数。
 
 | 名称        | 类型       | 只读      | 可选      | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- | --------------------------------- |
-| icon      | [PopupIconOptions](#popupiconoptions)                        | 否   | 是 | 设置popup图标。<br />**说明：**<br />当size设置异常值或0时不显示。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| icon      | [PopupIconOptions](#popupiconoptions)                        | 否   | 是 | 设置popup图标。<br />**说明：**<br />当width和height设置异常值或0时不显示。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | title     | [PopupTextOptions](#popuptextoptions)                        | 否   | 是  | 设置popup标题文本。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | message   | [PopupTextOptions](#popuptextoptions)                        | 否  | 否  | 设置popup内容文本。<br />**说明：**<br />message不支持设置fontWeight。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| showClose | boolean \| [Resource](ts-types.md#resource)                | 否   | 是  | 设置popup关闭按钮。值为true时，显示关闭按钮，值为false时，不显示关闭按钮。设置为Resource，显示对应的图标。<br />默认值：true<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| showClose | boolean \| [Resource](ts-types.md#resource)                | 否   | 是  | 设置popup关闭按钮。<br/>true：显示关闭按钮；false：不显示关闭按钮。<br/>Resource：显示对应的图标。<br />默认值：true<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onClose   | () => void                                                   | 否   | 是  | 设置popup关闭按钮回调函数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | buttons   | [[PopupButtonOptions](#popupbuttonoptions)?,[PopupButtonOptions](#popupbuttonoptions)?] | 否   | 是  | 设置popup操作按钮，按钮最多设置两个。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 否                                | 是                               | 布局方向。<br/>默认值：Direction.Auto<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| maxWidth<sup>18+</sup> | [Dimension](ts-types.md#dimension10)                                             | 否                                | 是                               | 设置popup的最大宽度，通过此接口popup可以自定义宽度显示。<br />**说明：** <br />在使用引用资源类型时，规定其参数类型要与属性方法本身类型一致。maxWidth是数字类型，支持float和integer，例如$r('app.float.maxWidth')、$r('app.integer.maxWidth')。<br/>默认值：400vp<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| maxWidth<sup>18+</sup> | [Dimension](ts-types.md#dimension10)                                             | 否                                | 是                               | 设置popup的最大宽度，通过此接口popup可以自定义宽度显示。<br />**说明：** <br />1. 在使用引用资源类型时，规定其参数类型要与属性方法本身类型一致。<br/>2. maxWidth是数字类型，支持float和integer，例如`$r('app.float.maxWidth')`、`$r('app.integer.maxWidth')`。<br/>3. 当类型为Resource时，如果未设置单位，默认单位为px。<br/>默认值：400vp<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## PopupTextOptions
 
@@ -91,12 +91,12 @@ PopupButtonOptions定义按钮的相关属性和事件。
 | --------- | ---------------------------------------------------- | ---- | ---------------------- | ---------------------- |
 | text      | [ResourceStr](ts-types.md#resourcestr)               | 否  | 否  | 设置按钮内容。         |
 | action    | () => void                                           | 否   | 是  | 设置按钮click回调。 |
-| fontSize  | number \| string \| [Resource](ts-types.md#resource) | 否   | 是  | 设置按钮文本字体大小。 <br />默认值：`$r('sys.float.ohos_id_text_size_button2')`<br/>string类型可选值：可以转化为数字的字符串（如'10'）或带长度单位的字符串（如'10px'），不支持设置百分比字符串。<br/>异常值时取默认值。 |
+| fontSize  | number \| string \| [Resource](ts-types.md#resource) | 否   | 是  | 设置按钮文本字体大小。 <br />默认值：`$r('sys.float.ohos_id_text_size_button2')`<br/>string类型可选值：可以转化为数字的字符串（如'10'）或带长度单位的字符串（如'10px'），不支持设置百分比字符串。<br/>设置值为异常值时取默认值。 |
 | fontColor | [ResourceColor](ts-types.md#resourcecolor)           | 否   | 是  | 设置按钮文本字体颜色。<br />默认值：`$r('sys.color.ohos_id_color_text_primary_activated')` |
 
 ##  PopupIconOptions
 
-PopupIconOptions定义icon（左上角图标）的属性。
+PopupIconOptions定义图标的属性。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

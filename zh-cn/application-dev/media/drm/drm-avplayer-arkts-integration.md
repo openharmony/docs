@@ -94,9 +94,9 @@
       if (state == 'released') {
     mediaKeySession.destroy();
     mediaKeySystem.destroy();
-  } else if (state == 'releasing') {  
-    await playerHandle.release();    
-  }
+   } else if (state == 'releasing') {  
+    await playerHandle.release();
+    }
    })
-  
+   
    ```

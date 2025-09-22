@@ -1062,51 +1062,51 @@ The target token ID is invalid.
 
 **错误信息**
 
-Current application is not in kiosk app list, can not exit kiosk mode.
+The current application is not in Kiosk app list and cannot enter Kiosk mode.
 
 **错误描述**
 
-当前应用不在EDM配置的支持Kiosk模式的应用列表内，尝试进入或退出Kiosk模式时，将返回错误码。
+当前应用不在Kiosk名单列表内，无法进入Kiosk模式。
 
 **可能原因**
 
-应用不在EDM配置的支持Kiosk模式的应用列表内。
+当前应用不在Kiosk名单列表，不支持该应用进入Kiosk模式。
 
 **处理步骤**
 
-检查应用是否在EDM配置的支持Kiosk模式的应用列表内。
+需要EDM管控模块将当前应用添加到Kiosk应用列表内。
 
 ## 16000111 已经有应用进入了Kiosk模式
 
 **错误信息**
 
-System is already in kiosk mode, can not enter again.
+The system is already in Kiosk mode and cannot enter Kiosk mode again.
 
 **错误描述**
 
-当前系统已有应用进入Kiosk模式，调用方尝试进入时将返回错误码。
+当前系统已处于Kiosk模式，无法再次进入。
 
 **可能原因**
 
-已经有应用进入Kiosk模式。
+同一时间只允许一个应用进入Kiosk模式。
 
 **处理步骤**
 
-检查系统内是否存在应用已经进入Kiosk模式。
+将已进入Kiosk模式的应用退出Kiosk模式。
 
 ## 16000112 当前系统没有应用进入Kiosk模式
 
 **错误信息**
 
-Current application is not in kiosk mode, can not exit.
+The current application is not in Kiosk mode and cannot exit Kiosk mode.
 
 **错误描述**
 
-如果系统中没有应用进入Kiosk模式，尝试退出Kiosk模式时将返回错误码。
+当前应用未进入Kiosk模式，不能退出Kiosk模式。
 
 **可能原因**
 
-当前系统没有应用进入Kiosk模式。
+该应用进程之前未进入Kiosk模式，无法主动退出Kiosk模式。
 
 **处理步骤**
 
@@ -1257,6 +1257,24 @@ Want中传入了DLP文件。
 
 检查Want是否携带了DLP文件。
 <!--DelEnd-->
+
+## 16000135 UIAbility的主窗不存在
+
+**错误信息**
+
+The main window of this ability of this context does not exits.
+
+**错误描述**
+
+该UIAbility的主窗不存在。
+
+**可能原因**
+
+Window还未创建或已销毁的时候调用该接口。
+
+**处理步骤**
+
+在windowStage创建前和销毁后不要调用该接口。
 
 ## 16000151 无效wantAgent对象
 

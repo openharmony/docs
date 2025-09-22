@@ -45,7 +45,7 @@
 | [OH_AVErrCode OH_AudioCodec_Stop(OH_AVCodec *codec)](#oh_audiocodec_stop) | 停止编解码器。停止后，可以通过Start重新进入已启动状态（started），但需要注意的是，如果编解码器之前已输入数据，则需要重新输入编解码器数据。 |
 | [OH_AVErrCode OH_AudioCodec_Flush(OH_AVCodec *codec)](#oh_audiocodec_flush) | 清除编解码器中缓存的输入和输出数据。调用此接口后，以前通过异步回调上报的所有缓冲区索引都将失效，请确保不要访问这些索引对应的缓冲区。 |
 | [OH_AVErrCode OH_AudioCodec_Reset(OH_AVCodec *codec)](#oh_audiocodec_reset) | 重置编解码器。此时会清空已配置的参数和输入输出数据。<br> 如果要继续编解码，需要再次调用Configure接口配置编解码器实例。 |
-| [OH_AVFormat *OH_AudioCodec_GetOutputDescription(OH_AVCodec *codec)](#oh_audiocodec_getoutputdescription) | 获取编解码器输出数据的OH_AVFormat信息。<br> 需要注意的是，返回值所指向的OH_AVFormat实例需要开发者调用[OH_AVFormat_Destroy](_core.md#oh_avformat_destroy)接口手动释放。 |
+| [OH_AVFormat *OH_AudioCodec_GetOutputDescription(OH_AVCodec *codec)](#oh_audiocodec_getoutputdescription) | 获取编解码器输出数据的OH_AVFormat信息。<br> 需要注意的是，返回值所指向的OH_AVFormat实例需要开发者调用[OH_AVFormat_Destroy](capi-native-avformat-h.md#oh_avformat_destroy)接口手动释放。 |
 | [OH_AVErrCode OH_AudioCodec_SetParameter(OH_AVCodec *codec, const OH_AVFormat *format)](#oh_audiocodec_setparameter) | 配置编解码器的动态参数。<br> 注意，该接口必须在编解码器启动后才能调用。另外，参数配置错误可能会导致编解码失败。 |
 | [OH_AVErrCode OH_AudioCodec_PushInputBuffer(OH_AVCodec *codec, uint32_t index)](#oh_audiocodec_pushinputbuffer) | 通知音频编解码器已完成对index所对应缓冲区进行输入数据的填充。<br> [OH_AVCodecOnNeedInputBuffer](_codec_base.md#oh_avcodeconneedinputbuffer)回调将报告可用的输入缓冲区和对应的索引值。<br> 一旦具有指定索引的缓冲区被提交给音频编解码器，该缓冲区将无法再次访问，直到再次收到[OH_AVCodecOnNeedInputBuffer](_codec_base.md#oh_avcodeconneedinputbuffer)回调，收到相同索引时此缓冲区才可使用。<br> 此外，对于某些编解码器，需要在开始时向编解码器输入编解码特定配置数据(Codec-Specific-Data)，以初始化编解码器的编解码过程。<br> 注意：当返回值为AV_ERR_UNKNOWN时此次调用不生效，输入缓冲区仍为未处理状态，需根据返回的特定错误代码处理后输入相同的index重新调用OH_AudioCodec_PushInputBuffer。 |
 | [OH_AVErrCode OH_AudioCodec_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index)](#oh_audiocodec_freeoutputbuffer) | 将处理后的输出缓冲区返回给编解码器。使用完输出缓冲区后需及时调用此接口进行释放，否则会阻塞编解码流程。 |
@@ -77,7 +77,7 @@ OH_AVCodec *OH_AudioCodec_CreateByMime(const char *mime, bool isEncoder)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const char *mime | MIME类型描述字符串，请参阅请参阅[AVCODEC_MIMETYPE](_codec_base.md#变量)。 |
+| const char *mime | MIME类型描述字符串，请参阅[AVCODEC_MIMETYPE](_codec_base.md#变量)。 |
 | bool isEncoder | true表示需要创建编码器，false表示需要创建解码器。 |
 
 **返回：**
@@ -138,7 +138,7 @@ OH_AVErrCode OH_AudioCodec_Destroy(OH_AVCodec *codec)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。<br>         AV_ERR_NO_MEMORY：内部资源已经释放。<br>         AV_ERR_UNKNOWN：发生内部错误，建议检查日志。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。<br>         AV_ERR_NO_MEMORY：内部资源已经释放。<br>         AV_ERR_UNKNOWN：发生内部错误，建议检查日志。 |
 
 ### OH_AudioCodec_RegisterCallback()
 
@@ -159,7 +159,7 @@ OH_AVErrCode OH_AudioCodec_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallbac
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVCodec](capi-codecbase-oh-avcodec.md) *codec | 指向OH_AVCodec实例的指针。 |
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 |
 | [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) callback | 所有回调函数的集合，请参见[OH_AVCodecCallback](_o_h___a_v_codec_callback.md)。 |
 | void *userData | 用户特定数据。 |
 
@@ -167,7 +167,7 @@ OH_AVErrCode OH_AudioCodec_RegisterCallback(OH_AVCodec *codec, OH_AVCodecCallbac
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：输入参数为nullptr或无效。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：输入参数为nullptr或无效。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。 |
 
 ### OH_AudioCodec_Configure()
 
@@ -188,14 +188,14 @@ OH_AVErrCode OH_AudioCodec_Configure(OH_AVCodec *codec, const OH_AVFormat *forma
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVCodec](capi-codecbase-oh-avcodec.md) *codec | 指向OH_AVCodec实例的指针。 |
-| [const OH_AVFormat](_core.md#oh_avformat) *format | 指向OH_AVFormat的指针，给出要编解码的音频轨道的描述。 |
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 |
+| [const OH_AVFormat](capi-core-oh-avformat.md) *format | 指向OH_AVFormat的指针，给出要编解码的音频轨道的描述。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：输入参数为nullptr或无效。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。<br>         AV_ERR_UNKNOWN：发生内部错误，建议检查日志。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：输入参数为nullptr或无效。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。<br>         AV_ERR_UNKNOWN：发生内部错误，建议检查日志。 |
 
 ### OH_AudioCodec_Prepare()
 
@@ -216,13 +216,13 @@ OH_AVErrCode OH_AudioCodec_Prepare(OH_AVCodec *codec)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVCodec](capi-codecbase-oh-avcodec.md) *codec | 指向OH_AVCodec实例的指针。 |
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。<br>         AV_ERR_UNKNOWN：发生内部错误，建议检查日志。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。<br>         AV_ERR_UNKNOWN：发生内部错误，建议检查日志。 |
 
 ### OH_AudioCodec_Start()
 
@@ -243,13 +243,13 @@ OH_AVErrCode OH_AudioCodec_Start(OH_AVCodec *codec)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVCodec](capi-codecbase-oh-avcodec.md) *codec | 指向OH_AVCodec实例的指针。 |
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。<br>         AV_ERR_UNKNOWN：发生内部错误，建议检查日志。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。<br>         AV_ERR_UNKNOWN：发生内部错误，建议检查日志。 |
 
 ### OH_AudioCodec_Stop()
 
@@ -270,13 +270,13 @@ OH_AVErrCode OH_AudioCodec_Stop(OH_AVCodec *codec)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVCodec](capi-codecbase-oh-avcodec.md) *codec | 指向OH_AVCodec实例的指针。 |
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。<br>         AV_ERR_UNKNOWN：发生内部错误，建议检查日志。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。<br>         AV_ERR_UNKNOWN：发生内部错误，建议检查日志。 |
 
 ### OH_AudioCodec_Flush()
 
@@ -297,13 +297,13 @@ OH_AVErrCode OH_AudioCodec_Flush(OH_AVCodec *codec)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVCodec](capi-codecbase-oh-avcodec.md) *codec | 指向OH_AVCodec实例的指针。 |
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。<br>         AV_ERR_UNKNOWN：发生内部错误，建议检查日志。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。<br>         AV_ERR_UNKNOWN：发生内部错误，建议检查日志。 |
 
 ### OH_AudioCodec_Reset()
 
@@ -324,13 +324,13 @@ OH_AVErrCode OH_AudioCodec_Reset(OH_AVCodec *codec)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVCodec](capi-codecbase-oh-avcodec.md) *codec | 指向OH_AVCodec实例的指针。 |
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。 |
 
 ### OH_AudioCodec_GetOutputDescription()
 
@@ -340,7 +340,7 @@ OH_AVFormat *OH_AudioCodec_GetOutputDescription(OH_AVCodec *codec)
 
 **描述**
 
-获取编解码器输出数据的OH_AVFormat信息。<br> 需要注意的是，返回值所指向的OH_AVFormat实例需要开发者调用[OH_AVFormat_Destroy](_core.md#oh_avformat_destroy)接口手动释放。
+获取编解码器输出数据的OH_AVFormat信息。<br> 需要注意的是，返回值所指向的OH_AVFormat实例需要开发者调用[OH_AVFormat_Destroy](capi-native-avformat-h.md#oh_avformat_destroy)接口手动释放。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioCodec
 
@@ -351,7 +351,7 @@ OH_AVFormat *OH_AudioCodec_GetOutputDescription(OH_AVCodec *codec)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVCodec](capi-codecbase-oh-avcodec.md) *codec | 指向OH_AVCodec实例的指针。 |
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 |
 
 **返回：**
 
@@ -378,14 +378,14 @@ OH_AVErrCode OH_AudioCodec_SetParameter(OH_AVCodec *codec, const OH_AVFormat *fo
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVCodec](capi-codecbase-oh-avcodec.md) *codec | 指向OH_AVCodec实例的指针。 |
-| const [OH_AVFormat](_core.md#oh_avformat) *format | OH_AVFormat句柄指针。 |
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 |
+| const [OH_AVFormat](capi-core-oh-avformat.md) *format | OH_AVFormat句柄指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：输入参数为nullptr或无效。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。<br>         AV_ERR_UNKNOWN：发生内部错误，建议检查日志。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：输入参数为nullptr或无效。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。<br>         AV_ERR_UNKNOWN：发生内部错误，建议检查日志。 |
 
 ### OH_AudioCodec_PushInputBuffer()
 
@@ -406,14 +406,14 @@ OH_AVErrCode OH_AudioCodec_PushInputBuffer(OH_AVCodec *codec, uint32_t index)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVCodec](capi-codecbase-oh-avcodec.md) *codec | 指向OH_AVCodec实例的指针。 |
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 |
 | uint32_t index | 输入回调[OH_AVCodecOnNeedInputBuffer](_codec_base.md#oh_avcodeconneedinputbuffer)给出的索引值。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：输入的index已使用或无效，需使用其他[OH_AVCodecOnNeedInputBuffer](_codec_base.md#oh_avcodeconneedinputbuffer)回调返回的index。<br>         AV_ERR_INVALID_STATE：编解码器状态错误，调用OH_AudioCodec_PushInputBuffer前需确保按顺序成功调用[OH_AudioCodec_Configure](#oh_audiocodec_configure)、[OH_AudioCodec_Prepare](#oh_audiocodec_prepare)、[OH_AudioCodec_Start](#oh_audiocodec_start)。<br>         AV_ERR_UNKNOWN：输入buffer size无效，需确保buffer设置了正确的buffer size和flags。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：输入的index已使用或无效，需使用其他[OH_AVCodecOnNeedInputBuffer](_codec_base.md#oh_avcodeconneedinputbuffer)回调返回的index。<br>         AV_ERR_INVALID_STATE：编解码器状态错误，调用OH_AudioCodec_PushInputBuffer前需确保按顺序成功调用[OH_AudioCodec_Configure](#oh_audiocodec_configure)、[OH_AudioCodec_Prepare](#oh_audiocodec_prepare)、[OH_AudioCodec_Start](#oh_audiocodec_start)。<br>         AV_ERR_UNKNOWN：输入buffer size无效，需确保buffer设置了正确的buffer size和flags。 |
 
 ### OH_AudioCodec_FreeOutputBuffer()
 
@@ -434,14 +434,14 @@ OH_AVErrCode OH_AudioCodec_FreeOutputBuffer(OH_AVCodec *codec, uint32_t index)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVCodec](capi-codecbase-oh-avcodec.md) *codec | 指向OH_AVCodec实例的指针。 |
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 |
 | uint32_t index | 输出[OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer)给出的索引值。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：输入参数为nullptr或无效。缓冲区索引应该由[OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer)给出。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。<br>         AV_ERR_UNKNOWN：发生内部错误，建议检查日志。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：输入参数为nullptr或无效。缓冲区索引应该由[OH_AVCodecOnNewOutputBuffer](_codec_base.md#oh_avcodeconnewoutputbuffer)给出。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。<br>         AV_ERR_OPERATE_NOT_PERMIT：不允许操作，这可能是由于状态不正确或不支持的操作。<br>         AV_ERR_UNKNOWN：发生内部错误，建议检查日志。 |
 
 ### OH_AudioCodec_IsValid()
 
@@ -462,14 +462,14 @@ OH_AVErrCode OH_AudioCodec_IsValid(OH_AVCodec *codec, bool *isValid)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVCodec](capi-codecbase-oh-avcodec.md) *codec | 指向OH_AVCodec实例的指针。 |
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 |
 | bool *isValid | 输出参数。指向布尔类型的指针，true：编解码器实例有效，false：编解码器实例无效。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：输入参数为nullptr或无效。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：输入参数为nullptr或无效。 |
 
 ### OH_AudioCodec_SetDecryptionConfig()
 
@@ -490,7 +490,7 @@ OH_AVErrCode OH_AudioCodec_SetDecryptionConfig(OH_AVCodec *codec, MediaKeySessio
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVCodec](capi-codecbase-oh-avcodec.md) *codec | 指向OH_AVCodec实例的指针。 |
+| [OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 |
 | [MediaKeySession](capi-audiocodec-mediakeysession.md) *mediaKeySession | 带有解密功能的媒体秘钥会话实例。 |
 | bool secureAudio | 是否使用安全解码器。使用安全解码器为true,否则为false。<br> 注意：当前音频解密尚不支持使用安全解码器。 |
 
@@ -498,7 +498,7 @@ OH_AVErrCode OH_AudioCodec_SetDecryptionConfig(OH_AVCodec *codec, MediaKeySessio
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效，mediaKeySystemInfo实例为nullptr或无效。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。<br>         AV_ERR_NO_MEMORY：请求内存失败。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：OH_AVCodec实例为nullptr或无效，mediaKeySystemInfo实例为nullptr或无效。<br>         AV_ERR_INVALID_STATE：编解码器服务不可用。<br>         AV_ERR_NO_MEMORY：请求内存失败。 |
 
 ### OH_AudioCodec_QueryInputBuffer()
 
@@ -519,7 +519,7 @@ OH_AVErrCode OH_AudioCodec_QueryInputBuffer(struct OH_AVCodec *codec, uint32_t *
 
 | 参数项 | 描述 |
 | -- | -- |
-| [struct OH_AVCodec](capi-codecbase-oh-avcodec.md) *codec | 指向OH_AVCodec实例的指针。 |
+| [struct OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 |
 | uint32_t *index | 输出参数，获取到的输入缓冲区的索引值。 |
 | int64_t timeoutUs | 超时时间，单位：微秒。设置为负值时表示无限等待。 |
 
@@ -527,7 +527,7 @@ OH_AVErrCode OH_AudioCodec_QueryInputBuffer(struct OH_AVCodec *codec, uint32_t *
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：执行失败，输入参数错误。<br>         AV_ERR_INVALID_STATE：执行失败，状态非法，没有启动编解码器等。<br>         AV_ERR_OPERATE_NOT_PERMIT：执行失败，不允许非同步模式下调用。<br>         AV_ERR_TRY_AGAIN_LATER：执行失败，超时时间内获取不到可用的缓冲区。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：执行失败，输入参数错误。<br>         AV_ERR_INVALID_STATE：执行失败，状态非法，没有启动编解码器等。<br>         AV_ERR_OPERATE_NOT_PERMIT：执行失败，不允许非同步模式下调用。<br>         AV_ERR_TRY_AGAIN_LATER：执行失败，超时时间内获取不到可用的缓冲区。 |
 
 ### OH_AudioCodec_GetInputBuffer()
 
@@ -548,7 +548,7 @@ OH_AVBuffer *OH_AudioCodec_GetInputBuffer(struct OH_AVCodec *codec, uint32_t ind
 
 | 参数项 | 描述 |
 | -- | -- |
-| [struct OH_AVCodec](capi-codecbase-oh-avcodec.md) *codec | 指向OH_AVCodec实例的指针。 |
+| [struct OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 |
 | uint32_t index | 输入缓冲区的索引值。该索引值通过接口[OH_AudioCodec_QueryInputBuffer](#oh_audiocodec_queryinputbuffer)获取。 |
 
 **返回：**
@@ -576,7 +576,7 @@ OH_AVErrCode OH_AudioCodec_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_t 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [struct OH_AVCodec](capi-codecbase-oh-avcodec.md) *codec | 指向OH_AVCodec实例的指针。 |
+| [struct OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 |
 | uint32_t *index | 输出参数，获取到的输出缓冲区的索引值。 |
 | int64_t timeoutUs | 超时时间，单位：微秒。设置为负值时表示无限等待。 |
 
@@ -584,7 +584,7 @@ OH_AVErrCode OH_AudioCodec_QueryOutputBuffer(struct OH_AVCodec *codec, uint32_t 
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVErrCode](_core.md#oh_averrcode-1) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：执行失败，输入参数错误。<br>         AV_ERR_INVALID_STATE：执行失败，状态非法，没有启动编解码器等。<br>         AV_ERR_OPERATE_NOT_PERMIT：执行失败，不允许非同步模式下调用。<br>         AV_ERR_STREAM_CHANGED：解码输出流格式发生变化, 可以通过调用[OH_AudioCodec_GetOutputDescription](#oh_audiocodec_getoutputdescription)接口获取新的流信息。<br>         AV_ERR_TRY_AGAIN_LATER：执行失败，超时时间内获取不到可用的缓冲区。 |
+| [OH_AVErrCode](capi-native-averrors-h.md#oh_averrcode) | AV_ERR_OK：执行成功。<br>         AV_ERR_INVALID_VAL：执行失败，输入参数错误。<br>         AV_ERR_INVALID_STATE：执行失败，状态非法，没有启动编解码器等。<br>         AV_ERR_OPERATE_NOT_PERMIT：执行失败，不允许非同步模式下调用。<br>         AV_ERR_STREAM_CHANGED：解码输出流格式发生变化, 可以通过调用[OH_AudioCodec_GetOutputDescription](#oh_audiocodec_getoutputdescription)接口获取新的流信息。<br>         AV_ERR_TRY_AGAIN_LATER：执行失败，超时时间内获取不到可用的缓冲区。 |
 
 ### OH_AudioCodec_GetOutputBuffer()
 
@@ -605,13 +605,13 @@ OH_AVBuffer *OH_AudioCodec_GetOutputBuffer(struct OH_AVCodec *codec, uint32_t in
 
 | 参数项 | 描述 |
 | -- | -- |
-| [struct OH_AVCodec](capi-codecbase-oh-avcodec.md) *codec | 指向OH_AVCodec实例的指针。 |
+| [struct OH_AVCodec](_codec_base.md#oh_avcodec) *codec | 指向OH_AVCodec实例的指针。 |
 | uint32_t index | 输出缓冲区的索引值。该索引值通过接口[OH_AudioCodec_QueryOutputBuffer](#oh_audiocodec_queryoutputbuffer)获取。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVBuffer](_core.md#oh_avbuffer) * | 如果执行成功，则返回一个指向OH_AVBuffer实例的指针，否则返回NULL。 |
+| [OH_AVBuffer](capi-core-oh-avbuffer.md) * | 如果执行成功，则返回一个指向OH_AVBuffer实例的指针，否则返回NULL。 |
 
 

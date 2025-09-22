@@ -497,7 +497,7 @@ shortcuts标识应用的快捷方式信息。标签值为数组，包含四个�
 | -------- | -------- | -------- | -------- |
 | shortcutId | 标识快捷方式的ID，取值为长度不超过63字节的字符串。**不支持通过资源索引的方式（$string）配置该标签。** | 字符串 | 该标签不可缺省。 |
 | label | 标识快捷方式的标签信息，即快捷方式对外显示的文字描述信息。取值为长度不超过255字节的字符串，可以是描述性内容，也可以是标识label的资源索引。 | 字符串 | 该标签可缺省，缺省值为空。 |
-| icon | 标识快捷方式的图标，取值为资源文件的索引。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| icon | 标识快捷方式的图标，取值为资源文件的索引。<br/>**说明：**<br/>图标分为单层图标和分层图标，单层图标包含一个图片，分层图标包含前景图和背景图，推荐使用如下配置的分层图标：<br/>1.前景图：图标显示大小为450\*450px，资源大小为1024\*1024px的透明图层。<br/>2.背景图：大小为1024\*1024px。<br/> | 字符串 | 该标签可缺省，缺省值为空。 |
 | visible | 标识快捷方式是否显示，取值为true时显示快捷方式，取值为false时不显示快捷方式。<br/>**说明：**<br/>1.从API version 20开始，支持该标签。<br/> | 布尔值 | 该标签可缺省，缺省为true。 |
 | [wants](#wants标签) | 标识快捷方式内定义的目标wants信息集合，在调用launcherBundleManager的startShortcut接口时，会拉起wants标签里的第一个目标组件，推荐只配置一个wants元素。 | 对象 | 该标签可缺省，缺省为空。 |
 
@@ -1174,7 +1174,7 @@ resources/base/profile路径下的theme_config.json资源文件示例如下：
 <!--Del-->
 ## definePermissions标签
 
-该标签仅支持系统资源hap定义权限，不支持应用自定义权限。权限定义方式参见[系统资源权限定义](https://gitee.com/openharmony/utils_system_resources/blob/master/systemres/main/config.json)。
+该标签仅支持系统资源hap定义权限，不支持应用自定义权限。权限定义方式参见[系统资源权限定义](https://gitcode.com/openharmony/utils_system_resources/blob/master/systemres/main/config.json)。
 
 **表30** definePermissions标签说明
 

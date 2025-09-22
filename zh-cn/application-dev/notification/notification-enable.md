@@ -47,7 +47,7 @@
       if(!data){
         notificationManager.requestEnableNotification(context).then(() => {
           hilog.info(DOMAIN_NUMBER, TAG, `[ANS] requestEnableNotification success`);
-        }).catch((err : BusinessError) => {
+        }).catch((err: BusinessError) => {
           if(1600004 == err.code){
             hilog.error(DOMAIN_NUMBER, TAG, `[ANS] requestEnableNotification refused, code is ${err.code}, message is ${err.message}`);
           } else {
@@ -55,7 +55,7 @@
           }
         });
       }
-    }).catch((err : BusinessError) => {
+    }).catch((err: BusinessError) => {
         hilog.error(DOMAIN_NUMBER, TAG, `isNotificationEnabled fail, code is ${err.code}, message is ${err.message}`);
     });
     ```
@@ -73,7 +73,7 @@
             hilog.error(DOMAIN_NUMBER, TAG, `[ANS] openNotificationSettings failed, code is ${err.code}, message is ${err.message}`);
           });
       }
-    }).catch((err : BusinessError) => {
+    }).catch((err: BusinessError) => {
         hilog.error(DOMAIN_NUMBER, TAG, `isNotificationEnabled fail, code is ${err.code}, message is ${err.message}`);
     });
     ```
