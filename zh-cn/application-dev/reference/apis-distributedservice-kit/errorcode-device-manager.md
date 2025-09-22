@@ -10,6 +10,10 @@
 
 Failed to execute the function.
 
+**错误描述**
+
+业务调用时，服务内部异常导致调用失败。
+
 **可能原因**
 
 服务内部调用异常。
@@ -23,6 +27,10 @@ Failed to execute the function.
 **错误信息**
 
 Failed to obtain the service.
+
+**错误描述**
+
+服务未启动, 获取服务异常。
 
 **可能原因**
 
@@ -38,6 +46,10 @@ Failed to obtain the service.
 
 Authentication unavailable.
 
+**错误描述**
+
+业务调用时，上一次绑定任务未结束，导致调用重入。
+
 **可能原因**
 
 上一次认证业务未结束。
@@ -51,6 +63,10 @@ Authentication unavailable.
 **错误信息**
 
 Discovery unavailable.
+
+**错误描述**
+
+业务调用时，上一次发现任务未结束，导致调用重入。
 
 **可能原因**
 
@@ -66,6 +82,10 @@ Discovery unavailable.
 
 Publish unavailable.
 
+**错误描述**
+
+业务调用时，上一次发布任务未结束，导致调用重入。
+
 **可能原因**
 
 上一次发布业务未结束。
@@ -79,6 +99,10 @@ Publish unavailable.
 **错误信息**
 
 Failed to get data from the cloud.
+
+**错误描述**
+
+网络链路异常，从云端获取数据失败。
 
 **可能原因**
 
@@ -94,6 +118,10 @@ Failed to get data from the cloud.
 
 A login account is required.
 
+**错误描述**
+
+进行此业务需要登录账号。
+
 **可能原因**
 
 设备没有登录账号。
@@ -107,6 +135,10 @@ A login account is required.
 **错误信息**
 
 The device name contains non-compliant content.
+
+**错误描述**
+
+设备名称含有非法信息，无法设置。
 
 **可能原因**
 
