@@ -17,7 +17,7 @@
 
 - FaultLogExtensionAbility自身崩溃时，不会再次被系统服务拉起。
 
-- FaultLogExtensionAbility调用限制的API名单见[附录](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-FaultLogExtensionAbility.md)
+- FaultLogExtensionAbility调用限制的API名单见[附录](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-FaultLogExtensionAbility.md#附录)
 
 ## 接口说明
 
