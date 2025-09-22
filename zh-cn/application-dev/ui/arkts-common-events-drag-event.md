@@ -11,27 +11,29 @@
 ## 基本概念
 
 * 拖拽操作：在可响应拖出的组件上长按并滑动以触发拖拽行为，当用户释放手指或鼠标时，拖拽操作即告结束。
-* 拖拽背景（背板）：用户拖动数据时的形象化表示。开发者可以通过[onDragStart](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)的[CustomerBuilder](../reference/apis-arkui/arkui-ts/ts-types.md#custombuilder8)或[DragItemInfo](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo)进行设置，也可以通过[dragPreview](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#dragpreview11)通用属性进行自定义。
+* 拖拽背景（背板）：用户拖动数据时的形象化表示。开发者可以通过[onDragStart](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)的[CustomBuilder](../reference/apis-arkui/arkui-ts/ts-types.md#custombuilder8)或[DragItemInfo](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo)进行设置，也可以通过[dragPreview](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#dragpreview11)通用属性进行自定义。
 * 拖拽内容：被拖动的数据，使用UDMF统一API [UnifiedData](../reference/apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) 进行封装，确保数据的一致性和安全性。
 * 拖出对象：触发拖拽操作并提供数据的组件，通常具有响应拖拽的特性。
 * 拖入目标：可接收并处理拖动数据的组件，能够根据拖入的数据执行相应的操作。
 * 拖拽点：鼠标或手指与屏幕的接触位置，用于判断是否进入组件范围。判定依据是接触点是否位于组件的范围内。
 
-## 拖拽流程
+## 拖拽方式
 
-拖拽流程包含手势拖拽流程和鼠标拖拽流程，有助于开发者理解回调事件触发的时机。
+拖拽方式包含手势拖拽和鼠标拖拽，有助于开发者理解回调事件触发的时机。
 
-### ​手势拖拽流程
+### ​手势拖拽
 
-对于手势长按触发拖拽的场景，ArkUI在发起拖拽前会校验当前组件是否具备拖拽功能。对于具备默认可拖出能力的组件（[Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md)、[TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)、[TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)、[RichEditor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md)、[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md)、[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)、[Hyperlink](../reference/apis-arkui/arkui-ts/ts-container-hyperlink.md)）需要判断是否设置了[draggable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#draggable)为true（系统通过[系统资源](../quick-start/resource-categories-and-access.md#系统资源)初始化具备默认可拖出能力的组件的[draggable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#draggable)属性默认值）。其他组件则需额外确认是否已设置onDragStart回调函数。在满足上述条件后，长按时间达到或超过500ms即可触发拖拽，而长按800ms时，系统开始执行预览图的浮起动效。若与Menu功能结合使用，并通过isShow控制其显示与隐藏，建议避免在用户操作800ms后才控制菜单显示，此举可能引发非预期的行为。
+在手势长按触发拖拽的场景中，ArkUI在发起拖拽前会校验当前组件是否具备拖拽功能。若为默认支持拖出能力的组件（[Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md)、[TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)、[TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md)、[RichEditor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md)、[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md)、[Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)、[Hyperlink](../reference/apis-arkui/arkui-ts/ts-container-hyperlink.md)），需要判断是否设置了[draggable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#draggable)为true<!--Del-->（对于默认支持拖出能力的组件，可通过[系统资源](../quick-start/resource-categories-and-access.md#系统资源)初始化其[draggable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#draggable)属性的默认值）<!--DelEnd-->。其他组件则需额外确认是否已设置onDragStart回调函数。在满足上述条件后，长按时间达到或超过500ms即可触发拖拽，而长按800ms时，系统开始执行预览图的浮起动效。若与Menu功能结合使用，并通过isShow控制其显示与隐藏，建议避免在用户操作800ms后才控制菜单显示，此举可能引发非预期的行为。
 
 手势拖拽（手指/手写笔）触发拖拽流程：
 
 ![zh-cn_image_0000001562820825](figures/zh-cn_image_0000001562820825.png)
 
-### ​鼠标拖拽流程
+### ​鼠标拖拽
 
-鼠标拖拽操作遵循即拖即走的模式，当鼠标左键在可拖拽的组件上按下并移动超过1vp时，即可触发拖拽功能。
+鼠标拖拽操作遵循即拖即走的模式，当鼠标左键在可拖拽的组件上按下并移动超过1vp时，即可触发拖拽功能。鼠标拖拽的其他流程与手势拖拽流程相似，可参考[手势拖拽](#手势拖拽)。
+
+## 拖拽回调
 
 当前不仅支持应用内部的拖拽，还支持跨应用的拖拽操作。为了帮助开发者更好地感知拖拽状态并调整系统默认的拖拽行为，ArkUI提供了多个回调事件，具体详情如下：
 
@@ -46,7 +48,11 @@
 | [onPreDrag](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#onpredrag12) | 当触发拖拽事件的不同阶段时，绑定此事件的组件会触发该回调函数。<br>开发者可利用此方法，在拖拽开始前的不同阶段，根据[PreDragStatus](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#predragstatus12枚举说明)枚举准备相应数据。<br>1. ACTION\_DETECTING\_STATUS：拖拽手势启动阶段。按下50ms时触发。<br>2. READY\_TO\_TRIGGER\_DRAG\_ACTION：拖拽准备完成，可发起拖拽阶段。按下500ms时触发。<br>3. PREVIEW\_LIFT\_STARTED：拖拽浮起动效发起阶段。按下800ms时触发。<br>4. PREVIEW\_LIFT\_FINISHED：拖拽浮起动效结束阶段。浮起动效完全结束时触发。<br>5. PREVIEW\_LANDING\_STARTED：拖拽落回动效发起阶段。落回动效发起时触发。<br>6. PREVIEW\_LANDING\_FINISHED：拖拽落回动效结束阶段。落回动效结束时触发。<br>7. ACTION\_CANCELED\_BEFORE\_DRAG：拖拽浮起落位动效中断。已满足READY_TO_TRIGGER_DRAG_ACTION状态后，未达到动效阶段，手指抬起时触发。<br>8. PREPARING\_FOR_DRAG\_DETECTION<sup>18+</sup>：拖拽准备完成，可发起拖拽阶段。按下350ms时触发。|
 | [onDragSpringLoading](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragspringloading20) | 当拖拽对象悬停在绑定此事件的组件上时，触发回调通知。此时只有一个目标可以成为响应方，并且子组件始终具有更高的响应优先级。<br>开发者可以通过[SpringLoadingContext](../reference/apis-arkui/js-apis-arkui-dragController.md#springloadingcontext20)配置回调的上下文信息，包括当前悬停检测的状态、一次悬停检测中的回调通知次数、拖拽信息和配置信息等。|
 
-[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7)支持的get方法可用于获取拖拽行为的详细信息，下表展示了在相应的拖拽回调中，这些get方法是否能够返回有效数据。
+## 拖拽事件
+
+拖拽回调函数可以接收[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7)对象。通过该对象发出拖拽事件，其中包含了拖拽行为的详细信息，以及拖出时组件向系统提供的数据等。
+
+通过[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7)支持的get方法可以获取拖拽行为的详细信息。下表展示了在相应的拖拽回调中，这些get方法是否能够返回有效数据。
 | 回调事件 | onDragStart | onDragEnter | onDragMove | onDragLeave | onDrop | onDragEnd |
 | - | - | - | - | - | - | - |
 | getData         |—|—|—|—| 支持 |—|
@@ -65,7 +71,7 @@
 | getGlobalDisplayX/Y | 支持 | 支持 | 支持 | 支持 | 支持 |—|
 | behavior        |—|—|—|—|—| 支持 |
 
-[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7)支持相关set方法向系统传递信息，这些信息部分会影响系统对UI或数据的处理方式。下表列出了set方法应该在回调的哪个阶段执行才会被系统接受并处理。
+[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7)支持相关set方法向系统传递信息，这些信息部分会影响系统对UI或数据的处理方式。下表列出了set方法应该在回调的哪个阶段执行才会被系统接收并处理。
 | 回调事件 | onDragStart | onDragEnter | onDragMove | onDragLeave | onDrop |
 | - | - | - | - | - | - |
 | useCustomDropAnimation |—|—|—|—| 支持 |
@@ -100,13 +106,15 @@
     ```ts
     import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 
-    Image($r('app.media.startIcon'))
+    // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件
+    Image($r('app.media.app_icon'))
         .width(100)
         .height(100)
         .draggable(true)
         .onDragStart((event) => {
             let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
-            data.imageUri = 'common/pic/img.png';
+            // 'resources/base/media/app_icon.png'需要替换为开发者所需的图像资源文件
+            data.imageUri = 'resources/base/media/app_icon.png';
             let unifiedData = new unifiedDataChannel.UnifiedData(data);
             event.setData(unifiedData);
 
@@ -119,7 +127,7 @@
         })
     ```
 
-   手势场景触发的拖拽功能依赖于底层绑定的长按手势。如果开发者在可拖拽组件上也绑定了长按手势，这将与底层的长按手势产生冲突，进而导致拖拽操作失败。为解决此类问题，可以采用并行手势的方案，具体如下。
+   手势场景触发的拖拽功能依赖于底层绑定的长按手势。如果开发者在可拖拽组件上也绑定了长按手势，这将与底层的长按手势产生冲突，进而导致拖拽操作失败。为解决此类问题，可以采用并行手势的方案，具体如下：
 
     ```ts
     .parallelGesture(LongPressGesture().onAction(() => {
@@ -189,13 +197,13 @@
 
 4. 拖拽过程显示角标样式。
 
-   通过设置[allowDrop](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)来定义接收的数据类型，这将影响角标显示。当拖拽的数据符合定义的允许落入的数据类型时，显示“COPY”角标。当拖拽的数据类型不在允许范围内时，显示“FORBIDDEN”角标。若未设置allowDrop，则显示“MOVE”角标。以下代码示例表示仅接收UnifiedData中定义的HYPERLINK和PLAIN\_TEXT类型数据，其他类型数据将被禁止落入。
+   通过设置[allowDrop](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)来定义接收的数据类型，这将影响角标显示。当拖拽的数据符合定义的允许落入的数据类型时，角标会显示加号。当拖拽的数据类型不在允许范围内时，可强制设置为显示禁用角标。若未设置allowDrop，则角标不会显示加号。以下代码示例表示仅接收UnifiedData中定义的HYPERLINK和PLAIN\_TEXT类型数据，其他类型数据将被禁止落入。
 
     ```ts
     .allowDrop([uniformTypeDescriptor.UniformDataType.HYPERLINK, uniformTypeDescriptor.UniformDataType.PLAIN_TEXT])
     ```
 
-   在实现onDrop回调的情况下，还可以通过在onDragMove中设置[DragResult](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragresult10枚举说明)为DROP_ENABLED，并将[DragBehavior](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragbehavior10)设置为COPY或MOVE，以此来控制角标显示。如下代码将移动时的角标强制设置为“COPY”。
+   在实现onDrop回调的情况下，还可以在onDragMove中设置[DragResult](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragresult10枚举说明)为DROP_ENABLED，并将[DragBehavior](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragbehavior10)设置为COPY或MOVE，以此来控制角标中的加号是否显示。当设置为COPY时，角标显示加号；设置为MOVE时，角标不显示加号。
 
     ```ts
     .onDragMove((event) => {
@@ -289,7 +297,8 @@ struct Index {
   @Builder
   pixelMapBuilder() {
     Column() {
-      Image($r('app.media.startIcon'))
+      // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件
+      Image($r('app.media.app_icon'))
         .width(100)
         .height(100)
     }
@@ -349,7 +358,8 @@ struct Index {
           .margin(10)
           .backgroundColor('#008888')
         Row() {
-          Image($r('app.media.startIcon'))
+          // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件
+          Image($r('app.media.app_icon'))
             .width(100)
             .height(100)
             .draggable(true)
@@ -361,7 +371,8 @@ struct Index {
             }))
             .onDragStart((event) => {
               let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
-              data.imageUri = 'common/pic/img.png';
+              // 'resources/base/media/app_icon.png'需要替换为开发者所需的图像资源文件
+              data.imageUri = 'resources/base/media/app_icon.png';
               let unifiedData = new unifiedDataChannel.UnifiedData(data);
               event.setData(unifiedData);
 
@@ -639,8 +650,9 @@ struct GridEts {
 当开发者需要实现自定义落位动效时，可以禁用系统的默认动效。从API version 18开始，ArkUI提供了[executeDropAnimation](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#executedropanimation18)接口，用于自定义落位动效。以下以Image组件为例，详细介绍使用[executeDropAnimation](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#executedropanimation18)接口的基本步骤，以及开发过程中需要注意的事项。
 
 1. 组件拖拽设置。
-   设置draggable为true，并配置onDragStart，onDragEnd等回调函数。
+   设置draggable为true，并配置onDragStart、onDragEnd等回调函数。
     ```ts
+    // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件
     Image($r('app.media.app_icon'))
       .width(100)
       .height(100)
@@ -716,6 +728,7 @@ struct DropAnimationExample {
   build() {
     Row() {
       Column() {
+        // $r('app.media.app_icon')需要替换为开发者所需的图像资源文件
         Image($r('app.media.app_icon'))
           .width(100)
           .height(100)
@@ -826,6 +839,7 @@ struct DropAnimationExample {
       this.isSelectedGrid[idx] = !this.isSelectedGrid[idx];
       if (this.isSelectedGrid[idx]) {
         let data: UDC.Image = new UDC.Image();
+        // '/resource/image.jpeg'需要替换为开发者所需的图像资源文件
         data.uri = '/resource/image.jpeg';
         if (!this.unifiedData) {
           this.unifiedData = new UDC.UnifiedData(data);
@@ -845,6 +859,7 @@ struct DropAnimationExample {
         for (let i=0; i<this.isSelectedGrid.length; i++) {
           if (this.isSelectedGrid[i] === true) {
             let data: UDC.Image = new UDC.Image();
+            // '/resource/image.jpeg'需要替换为开发者所需的图像资源文件
             data.uri = '/resource/image.jpeg';
             if (!this.unifiedData) {
               this.unifiedData = new UDC.UnifiedData(data);
@@ -951,6 +966,7 @@ struct GridEts {
               this.numberBadge++;
               this.isSelectedGrid[i] = true;
               let data: UDC.Image = new UDC.Image();
+              // '/resource/image.jpeg'需要替换为开发者所需的图像资源文件
               data.uri = '/resource/image.jpeg';
               if (!this.unifiedData) {
                 this.unifiedData = new UDC.UnifiedData(data);
@@ -989,6 +1005,7 @@ struct GridEts {
             this.isSelectedGrid[idx] = !this.isSelectedGrid[idx];
             if (this.isSelectedGrid[idx]) {
               let data: UDC.Image = new UDC.Image();
+              // '/resource/image.jpeg'需要替换为开发者所需的图像资源文件
               data.uri = '/resource/image.jpeg';
               if (!this.unifiedData) {
                 this.unifiedData = new UDC.UnifiedData(data);
@@ -1008,6 +1025,7 @@ struct GridEts {
               for (let i=0; i<this.isSelectedGrid.length; i++) {
                 if (this.isSelectedGrid[i] === true) {
                   let data: UDC.Image = new UDC.Image();
+                  // '/resource/image.jpeg'需要替换为开发者所需的图像资源文件
                   data.uri = '/resource/image.jpeg';
                   if (!this.unifiedData) {
                     this.unifiedData = new UDC.UnifiedData(data);
@@ -1239,7 +1257,7 @@ Spring Loading的整个过程包含三个阶段：悬停检测 -> 回调通知 -
     }
   ```
 
-**完整代码如下**
+**完整示例：**
 
   ```typescript
   import { dragController } from '@kit.ArkUI';
@@ -1367,8 +1385,6 @@ Spring Loading的整个过程包含三个阶段：悬停检测 -> 回调通知 -
     }
   }
 ```
-
-**运行效果**
 
 ![drag spring loading sample gif](figures/spring-loading-record.gif)
 
