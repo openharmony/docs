@@ -51,7 +51,7 @@ let wantInfo: W = {
 
 ```typescript
 function printObj(obj: any) {
-  console.log(obj);
+  console.info(obj);
 }
 
 printObj('abc'); // abc
@@ -61,7 +61,7 @@ printObj('abc'); // abc
 
 ```typescript
 function printObj(obj: string) {
-  console.log(obj);
+  console.info(obj);
 }
 
 printObj('abc'); // abc
@@ -109,8 +109,8 @@ class A {
 
 ```typescript
 function printProperties(obj: any) {
-  console.log(obj.name);
-  console.log(obj.value);
+  console.info(obj.name);
+  console.info(obj.value);
 }
 ```
 
@@ -118,8 +118,8 @@ function printProperties(obj: any) {
 
 ```typescript
 function printProperties(obj: Record<string, Object>) {
-  console.log(obj.name as string);
-  console.log(obj.value as string);
+  console.info(obj.name as string);
+  console.info(obj.value as string);
 }
 ```
 
@@ -139,7 +139,7 @@ function foo(fn: I) {
 }
 
 foo((value: string) => {
-  console.log(value);
+  console.info(value);
 })
 ```
 
@@ -154,7 +154,7 @@ function foo(fn: I) {
 }
 
 foo((value: string) => {
-  console.log(value);
+  console.info(value);
 })
 ```
 
@@ -188,7 +188,7 @@ class testMenu {
 }
 
 let t = new testMenu();
-console.log(t.createController()!.value);
+console.info(t.createController()!.value);
 ```
 
 **建议改法**
@@ -218,7 +218,7 @@ class testMenu {
 }
 
 let t: testMenu = new testMenu();
-console.log(t.createController()!.value);
+console.info(t.createController()!.value);
 ```
 
 ## arkts-no-indexed-signatures
@@ -330,7 +330,7 @@ class testMenu {
 }
 
 let t = new testMenu();
-console.log(t.createController()!.value);
+console.info(t.createController()!.value);
 ```
 
 **建议改法**
@@ -360,7 +360,7 @@ class testMenu {
 }
 
 let t: testMenu = new testMenu();
-console.log(t.createController()!.value);
+console.info(t.createController()!.value);
 ```
 
 ## arkts-no-props-by-index
@@ -962,8 +962,8 @@ function test(str: string, obj: Record<string, Object>) {
 ```typescript
 let map = new Map<string, string>([['a', 'a'], ['b', 'b']]);
 for (let [key, value] of map) {
-  console.log(key);
-  console.log(value);
+  console.info(key);
+  console.info(value);
 }
 ```
 
@@ -976,8 +976,8 @@ let map = new Map<string, string>([['a', 'a'], ['b', 'b']]);
 for (let arr of map) {
   let key = arr[0];
   let value = arr[1];
-  console.log(key);
-  console.log(value);
+  console.info(key);
+  console.info(value);
 }
 ```
 
@@ -1026,7 +1026,7 @@ let p: Person = {
 };
 
 for (let t in p) {
-  console.log(p[t]);  // log: "tom", "18" 
+  console.info(p[t]);  // info: "tom", "18" 
 }
 ```
 
@@ -1039,7 +1039,7 @@ let p: Record<string, string> = {
 };
 
 for (let ele of Object.entries(p)) {
-  console.log(ele[1]);  // log: "tom", "18" 
+  console.info(ele[1]);  // info: "tom", "18" 
 }
 ```
 
@@ -1108,7 +1108,7 @@ function ThrowError(error: BusinessError) {
 
 ```typescript
 function foo() {
-  console.log(this.value);
+  console.info(this.value);
 }
 
 let obj = { value: 'abc' };
@@ -1127,7 +1127,7 @@ class Test {
   }
   
   foo() {
-    console.log(this.value);
+    console.info(this.value);
   }
 }
 
@@ -1141,7 +1141,7 @@ obj.foo();
 
 ```typescript
 function foo(obj: Test) {
-  console.log(obj.value);
+  console.info(obj.value);
 }
 
 class Test {
@@ -1157,7 +1157,7 @@ foo(obj);
 将属性作为参数传入。
 ```typescript
 function foo(value: string) {
-  console.log(value);
+  console.info(value);
 }
 
 class Test {
@@ -1273,7 +1273,7 @@ class testMenu {
 }
 
 let t = new testMenu()
-console.log(t.createController()!.value)
+console.info(t.createController()!.value)
 ```
 
 **建议改法**
@@ -1299,7 +1299,7 @@ class testMenu {
 }
 
 let t: testMenu = new testMenu();
-console.log(t.createController()!.value);
+console.info(t.createController()!.value);
 ```
 
 ## arkts-no-globalthis
@@ -1414,7 +1414,7 @@ class Test {
   }
   
   foo() {
-    console.log(this.value);
+    console.info(this.value);
   }
 }
 ```
@@ -1435,7 +1435,7 @@ class Test {
   }
   
   foo() {
-    console.log(this.value);
+    console.info(this.value);
   }
 }
 ```
@@ -1451,7 +1451,7 @@ class A {
 class Test {
   value: string = '1234'
   foo: () => void = () => {
-    console.log(this.value);
+    console.info(this.value);
   }
   obj: A = {
     value: this.value,
@@ -1472,7 +1472,7 @@ class A {
   }
 
   foo() {
-    console.log(this.value);
+    console.info(this.value);
   }
 }
 
@@ -1497,7 +1497,7 @@ class A {
   }
 
   fooApply(a: A) {
-    console.log(a.value);
+    console.info(a.value);
   }
 }
 
@@ -2027,7 +2027,7 @@ class TestMenu {
 }
 
 let t = new TestMenu();
-console.log(t.createController()!.value);
+console.info(t.createController()!.value);
 ```
 
 **建议改法**
@@ -2057,7 +2057,7 @@ class TestMenu {
 }
 
 let t: TestMenu = new TestMenu();
-console.log(t.createController()!.value);
+console.info(t.createController()!.value);
 ```
 
 ### 访问静态属性
@@ -2077,8 +2077,8 @@ function getValue(obj: any) {
   return obj['value'];
 }
 
-console.log(getValue(C1));
-console.log(getValue(C2));
+console.info(getValue(C1));
+console.info(getValue(C2));
 ```
 
 **建议改法**
@@ -2100,8 +2100,8 @@ function getC2Value(): string {
   return C2.value;
 }
 
-console.log(getC1Value());
-console.log(getC2Value());
+console.info(getC1Value());
+console.info(getC2Value());
 ```
 
 ## arkts-no-side-effects-imports
@@ -2128,7 +2128,7 @@ import('module')
 
 ```typescript
 function foo(value: number): void {
-  console.log(value.toString());
+  console.info(value.toString());
 }
 
 foo.add = (left: number, right: number) => {
@@ -2145,7 +2145,7 @@ foo.sub = (left: number, right: number) => {
 ```typescript
 class Foo {
   static foo(value: number): void {
-    console.log(value.toString());
+    console.info(value.toString());
   }
 
   static add(left: number, right: number): number {
