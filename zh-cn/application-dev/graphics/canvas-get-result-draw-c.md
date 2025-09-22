@@ -219,7 +219,6 @@ Canvas是图形绘制的核心，本章中提到的所有绘制操作（包括�
    ```c++
    OH_Drawing_CanvasClear(pixelmapCanvas, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0xFF, 0xFF));
    ```
-   <!-- [ndk_graphics_draw_pixelmap_clear](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Drawing/NDKGraphicsDraw/entry/src/main/cpp/samples/sample_graphics.cpp) -->
 
 4. 将上一步中创建的像素图绘制到[窗口画布](#获取可直接显示的canvas画布)上。
 
