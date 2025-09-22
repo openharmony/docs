@@ -77,7 +77,7 @@ class User {
   }
 
   sayHi() {
-    console.log('hi' + this.username);
+    console.info('hi' + this.username);
   }
 }
 
@@ -369,7 +369,7 @@ if(isJedi) {
 
 // 函数名fight和左括号 ( 之间加了空格
 function fight (): void {
-  console.log('Swooosh!');
+  console.info('Swooosh!');
 }
 ```
 
@@ -383,7 +383,7 @@ if (isJedi) {
 
 // 函数名fight和左括号 ( 之间不加空格
 function fight(): void {
-  console.log('Swooosh!');
+  console.info('Swooosh!');
 }
 ```
 
@@ -439,14 +439,14 @@ myFunc(bar, foo, baz);  // 函数的多个参数之间的逗号后加个空格�
 
 ```
 let message = "world";
-console.log(message);
+console.info(message);
 ```
 
 **【正例】**
 
 ```
 let message = 'world';
-console.log(message);
+console.info(message);
 ```
 
 ### 对象字面量属性超过4个，需要都换行
@@ -752,7 +752,7 @@ function foo() {
     // ...
     return 2;
   } finally {
-    console.log('XXX!');
+    console.info('XXX!');
   }
 }
 ```
