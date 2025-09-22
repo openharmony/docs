@@ -27,8 +27,8 @@
 
 | 名称                                                           | typedef关键字 | 描述                                |
 |--------------------------------------------------------------|------------|-----------------------------------|
-| [OH_AI_ContextHandle](capi-mindspore-oh-ai-contexthandle.md) | void*      | MindSpore的上下文信息的指针，该指针会指向Context。 |
-| [OH_AI_DeviceInfoHandle](capi-mindspore-oh-ai-DeviceInfoHandle.md)   | void*          | MindSpore的运行设备信息的指针。                                  |
+| [OH_AI_ContextHandle](capi-mindspore-oh-ai-contexthandle.md) | void*      | MindSpore Lite的上下文信息的指针，该指针会指向Context。 |
+| [OH_AI_DeviceInfoHandle](capi-mindspore-oh-ai-DeviceInfoHandle.md)   | void*          | MindSpore Lite的运行设备信息的指针。                                  |
 
 ### 函数
 
