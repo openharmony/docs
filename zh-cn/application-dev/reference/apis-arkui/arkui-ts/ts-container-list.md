@@ -419,6 +419,24 @@ contentStartOffset + contentEndOffset超过List内容区长度后contentStartOff
 | ------ | ------ | ---- | ----------------------------------------------- |
 | value  | number | 是   | 内容区域起始偏移量。<br/>默认值：0<br/>单位：vp <br/>**说明：**<br/>设置为负数时，按默认值处理。|
 
+### contentStartOffset<sup>22+</sup>
+
+contentStartOffset(offset: number | Resource)
+
+设置内容区域起始偏移量。列表滚动到起始位置时，列表内容与列表显示区域边界保留指定距离。
+
+contentStartOffset + contentEndOffset超过List内容区长度后contentStartOffset和contentEndOffset会置0。
+
+**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                            |
+| ------ | ------ | ---- | ----------------------------------------------- |
+| offset  | number \| [Resource](ts-types.md#resource) | 是   | 内容区域起始偏移量。<br/>默认值：0<br/>单位：vp <br/>设置为负数时，按默认值处理。|
+
 ### contentEndOffset<sup>11+</sup>
 
 contentEndOffset(value: number)
@@ -436,6 +454,24 @@ contentStartOffset + contentEndOffset超过List内容区长度后contentStartOff
 | 参数名 | 类型   | 必填 | 说明                                          |
 | ------ | ------ | ---- | --------------------------------------------- |
 | value  | number | 是   | 内容区末尾偏移量。<br/>默认值：0<br/>单位：vp <br/>**说明：**<br/>设置为负数时，按默认值处理。|
+
+### contentEndOffset<sup>22+</sup>
+
+contentEndOffset(offset: number | Resource)
+
+设置内容区末尾偏移量。列表滚动到末尾位置时，列表内容与列表显示区域边界保留指定距离。
+
+contentStartOffset + contentEndOffset超过List内容区长度后contentStartOffset和contentEndOffset会置0。
+
+**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                          |
+| ------ | ------ | ---- | --------------------------------------------- |
+| offset  | number \| [Resource](ts-types.md#resource) | 是   | 内容区末尾偏移量。<br/>默认值：0<br/>单位：vp <br/>设置为负数时，按默认值处理。|
 
 ### childrenMainSize<sup>12+</sup>
 
