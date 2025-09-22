@@ -84,9 +84,11 @@ Canvas是图形绘制的核心，本章中提到的所有绘制操作（包括�
 5. 创建窗口画布。
 
    ```c++
-   OH_Drawing_Image_Info screenImageInfo = {static_cast<int32_t>(width), static_cast<int32_t>(height), COLOR_FORMAT_RGBA_8888, ALPHA_FORMAT_OPAQUE};
-   // OH_Drawing_Bitmap* screenBitmap = OH_Drawing_BitmapCreateFromPixels(&screenImageInfo, mappedAddr, bufferHandle->stride); 直接创建map的写法
-   OH_Drawing_Bitmap* cScreenBitmap_ = OH_Drawing_BitmapCreate();
+   // 创建bitmap的方式一：使用OH_Drawing_BitmapCreateFromPixels创建cScreenBitmap_
+   // OH_Drawing_Image_Info screenImageInfo = {static_cast<int32_t>(width), static_cast<int32_t>(height), COLOR_FORMAT_RGBA_8888, ALPHA_FORMAT_OPAQUE};
+   // OH_Drawing_Bitmap* cScreenBitmap_ = OH_Drawing_BitmapCreateFromPixels(&screenImageInfo, mappedAddr, bufferHandle->stride); 直
+   // 创建bitmap的方式二：使用OH_Drawing_BitmapCreate创建OH_Drawing_Bitmap*类型的cScreenBitmap_
+   cScreenBitmap_ = OH_Drawing_BitmapCreate();
    // 定义bitmap的像素格式
    OH_Drawing_BitmapFormat cFormat{COLOR_FORMAT_RGBA_8888, ALPHA_FORMAT_OPAQUE};
    // 构造对应格式的bitmap
