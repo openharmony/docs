@@ -44,7 +44,7 @@ MindSpore Lite是一款AI引擎，它提供了面向不同硬件设备AI模型�
 | 接口名称        | 描述        |
 | ------------------ | ----------------- |
 |OH_AI_ModelHandle OH_AI_ModelCreate()|创建一个模型对象。|
-|OH_AI_Status OH_AI_ModelBuildFromFile(OH_AI_ModelHandle model, const char *model_path,OH_AI_ModelType model_type, const OH_AI_ContextHandle model_context)|通过模型文件加载并编译MindSpore模型。|
+|OH_AI_Status OH_AI_ModelBuildFromFile(OH_AI_ModelHandle model, const char *model_path,OH_AI_ModelType model_type, const OH_AI_ContextHandle model_context)|通过模型文件加载并编译MindSpore Lite模型。|
 |void OH_AI_ModelDestroy(OH_AI_ModelHandle *model)|释放一个模型对象。|
 
 ### Tensor 相关接口
