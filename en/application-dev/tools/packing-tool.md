@@ -637,7 +637,7 @@ When an app package whose [bundleType](../quick-start/app-configuration-file.md)
 
 1. More than two [HSP packages](../quick-start/in-app-hsp.md) exist. As shown in the following figure, when you use DevEco Studio to build an app, the project contains two HSP packages: library and library1. In this case, the app package fails to be packaged.
 
-![alt text](figures/zh_cn_packing_tool_image_10012017_01.png)
+![alt text](figures/en_us_packing_tool_image_10012017_01.png)
 
 2. `dependencies` is configured in `module.json5` of the HSP package.
 
