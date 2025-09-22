@@ -580,7 +580,7 @@ This event is triggered when any of the following occurs:
 
 >  **NOTE**
 >
->  When a custom tab is used, relying solely on the **onChange** event for synchronization between tabs and swipe gestures may result in delayed visual updates, since it is triggered after the swipe-triggered tab switching animation is completed. For smooth animations, listen for the active tab index in [onAnimationStart](#onanimationstart11) and update the tab index accordingly. For details about the implementation, see [Example 3](#example-3-setting-up-custom-tab-switching-synchronization).
+>  When a custom tab is used, relying solely on the **onChange** event for synchronization between tabs and swipe gestures may result in delayed visual updates, since it is triggered after the swipe-triggered tab switching animation is completed. For smooth animations, listen for the active tab index in [onAnimationStart](#onanimationstart11) and update the tab index accordingly. For details about the implementation, see [Example 3](#example-3-implementing-custom-tab-switching-synchronization).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1407,7 +1407,7 @@ struct TabsDivider1 {
 }
 ```
 
-![tabs4](figures/tabs_divider.gif)
+
 
 ### Example 5: Setting Tab Bar Fading
 
@@ -2166,7 +2166,7 @@ struct TabsExample {
 }
 ```
 
-![tabs12](figures/tabBar_translate_opacity.gif)
+
 
 ### Example 13: Implementing Lazy Loading and Resource Release of Pages
 
@@ -2274,7 +2274,7 @@ struct TabsSwiperExample {
 }
 ```
 
-![tabs13](figures/tabs_swiper_lazyForEach.gif)
+
 
 ### Example 14: Implementing the Tab Switching Animation
 
@@ -2438,7 +2438,7 @@ struct TabsBarModifierExample {
 }
 ```
 
-![tabs15](figures/tabs_barModifier_clip.gif)
+
 
 ### Example 16: Aligning Tabs
 
@@ -2541,7 +2541,7 @@ struct TabsBarModifierExample {
 }
 ```
 
-![tabs16](figures/tabs_barModifier_align.gif)
+
 
 ### Example 17: Implementing Synchronized Switching Between the Tabs and TabBar Components
 
@@ -2860,4 +2860,3 @@ struct TabsExample {
 }
 ```
 ![tabs_curve](figures/tabs_curve.gif)
-<!--no_check-->

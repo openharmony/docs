@@ -16,7 +16,7 @@ A scene-based widget can be in either active state or inactive state. The widget
 
 **Figure 2** Process of triggering an interactive widget animation
 
-![live-form-judge.PNG](figures/live-form-judge.PNG)
+![live-form-judge.png](figures/live-form-judge.png)
 
 ## How to Implement
 

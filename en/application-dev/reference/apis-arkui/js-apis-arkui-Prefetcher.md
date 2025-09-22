@@ -133,7 +133,7 @@ Called when the boundaries of the visible area change. This API works with the *
 
 ## IDataSourcePrefetching
 
-Extends the [IDataSource](./arkui-ts/ts-rendering-control-lazyforeach.md#idatasource10) API to provide a data source with prefetching capabilities.
+Extends the [IDataSource](./arkui-ts/ts-rendering-control-lazyforeach.md#idatasource) API to provide a data source with prefetching capabilities.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

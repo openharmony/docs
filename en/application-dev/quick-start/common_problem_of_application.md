@@ -44,11 +44,11 @@ bm dump -n com.example.myapplication | grep fingerprint
 
 ## What is appIdentifier?
 
-**appIdentifier**, generated during application signing, is a field in the <!--RP1-->[profile](../security/app-provision-structure.md)<!--RP1End--> and is the unique identifier of an application. There are two ways to generate an application identifier:
+**appIdentifier**, generated during application signing, is a field in the <!--RP1-->profile<!--RP1End--> and is the unique identifier of an application. There are two ways to generate an application identifier:
 
 1. Randomly generate the **appIdentifier** field through [automatic signing](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section18815157237) on DevEco Studio. Signing on different devices or re-signing will result in different values of **appIdentifier**.
 <!--RP2-->
-2. Manually configure the signature. The **appIdentifier** field here is the same as the **app-identifier** field in the [HarmonyAppProvision configuration file](../security/app-provision-structure.md). For details, see [hapsigner Guide](../security/hapsigntool-guidelines.md).
+2. Manually configure the signature. The **appIdentifier** field here is the same as the **app-identifier** field in the HarmonyAppProvision configuration file. For details, see [hapsigner Guide](../security/hapsigntool-guidelines.md).
 <!--RP2End-->
 
 Therefore, manual signing is recommended in scenarios where **appIdentifier** must remain unchanged, such as cross-device debugging, cross-application interaction debugging, or multi-user development with a shared key. For details, see [Use Cases for Automatic and Manual Signing](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section54361623194519).

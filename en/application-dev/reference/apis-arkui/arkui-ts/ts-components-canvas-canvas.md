@@ -50,8 +50,8 @@ In addition to the [universal attributes](ts-component-general-attributes.md), t
 ### enableAnalyzer<sup>12+</sup>
 
 Sets whether to enable the AI analyzer, which supports subject recognition, text recognition, and object lookup.
-For the settings to take effect, this attribute must be used together with [StartImageAnalyzer](ts-canvasrenderingcontext2d.md#startimageanalyzer12) and [StopImageAnalyzer](ts-canvasrenderingcontext2d.md#stopimageanalyzer12) of [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#canvasrenderingcontext2d).
-This attribute cannot be used together with the [overlay](ts-universal-attributes-overlay.md#overlay) attribute. If they are set at the same time, the **CustomBuilder** attribute in **overlay** has no effect. This feature depends on device capabilities.
+For the settings to take effect, this attribute must be used together with [StartImageAnalyzer](ts-canvasrenderingcontext2d.md#startimageanalyzer12) and [StopImageAnalyzer](ts-canvasrenderingcontext2d.md#stopimageanalyzer12).
+This attribute cannot be used together with the [overlay](ts-universal-attributes-overlay.md) attribute. If they are set at the same time, the **CustomBuilder** attribute in **overlay** has no effect. This feature depends on device capabilities.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -73,7 +73,7 @@ onReady(event: VoidCallback)
 
 Triggered when the **Canvas** component is initialized or when its size changes.
 
-When this event is triggered, the canvas is cleared. The width and height of the **Canvas** component are then determined and can be obtained, allowing you to use APIs related to the **Canvas** component for drawing. If only the position of the canvas changes, only the [onAreaChange](ts-universal-component-area-change-event.md#onAreaChange) event is triggered, not the **onReady** event. The [onAreaChange](ts-universal-component-area-change-event.md#onAreaChange) event is triggered after the **onReady** event.
+When this event is triggered, the canvas is cleared. The width and height of the **Canvas** component are then determined and can be obtained, allowing you to use APIs related to the **Canvas** component for drawing. If only the position of the canvas changes, only the [onAreaChange](ts-universal-component-area-change-event.md#onareachange) event is triggered, not the **onReady** event. The [onAreaChange](ts-universal-component-area-change-event.md#onareachange) event is triggered after the **onReady** event.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 

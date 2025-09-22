@@ -26,9 +26,10 @@
   - [Screen Hopping Error Codes](errorcode-devicestatus.md)
   
   <!--DelEnd-->
-  - [Enhanced Connection Error Codes](errorcode_linkEnhance.md)
+  - [Enhanced Connection Error Codes](errorcode-link-enhance.md)
+  - [Proxy Channel Management Error Codes](errorcode_proxyChannelManager.md)
 - C API<!--distributed-service-c-->
-  - Modules<!--distributed-service-moudle-->
+  - Modules<!--distributed-service-module-->
     - [DeviceManager](capi-devicemanager.md)
   - Header Files<!-- distributed-service-headerfile -->
     - [oh_device_manager.h](capi-oh-device-manager-h.md)

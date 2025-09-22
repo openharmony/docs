@@ -1,5 +1,10 @@
 # 包管理开发常见问题
-
+<!--Kit: Ability Kit-->
+<!--Subsystem: BundleManager-->
+<!--Owner: @wanghang904-->
+<!--Designer: @hanfeng6-->
+<!--Tester: @kongjing2-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ## 如何判断某个应用是否为系统应用(API 9)
 
@@ -9,7 +14,7 @@
 
 **参考链接**
 
-[bundleManager模块](../reference/apis-ability-kit/js-apis-bundleManager.md)
+[@ohos.bundle.bundleManager \(应用程序包管理模块\)](../reference/apis-ability-kit/js-apis-bundleManager.md)
 
 
 ## 如何获取应用配置的versionCode和versionName(API 9)
@@ -129,7 +134,7 @@ console.log(`bundleName: ${context.abilityInfo.bundleName}`)
 
 **参考链接**
 
-[@ohos.bundle.bundleManager \(bundleManager模块\)](../reference/apis-ability-kit/js-apis-bundleManager.md)
+[@ohos.bundle.bundleManager \(应用程序包管理模块\)](../reference/apis-ability-kit/js-apis-bundleManager.md)
 
 
 ## 如何查询进程的pid(API 9)

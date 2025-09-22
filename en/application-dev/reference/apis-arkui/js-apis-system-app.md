@@ -216,7 +216,7 @@ static requestFullWindow(options?: RequestFullWindowOptions): void
 
 Requests the application to run in full window. You can call this API when the FA runs in a non-full window, for example, semi-modal FA. This API is invalid for an application already in full-window mode.
 
-You are advised to use [@ohos.window](js-apis-window.md) since API version 7.
+You are advised to use [@ohos.window](arkts-apis-window.md) since API version 7.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

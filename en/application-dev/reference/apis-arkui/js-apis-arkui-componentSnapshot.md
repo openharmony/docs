@@ -8,9 +8,9 @@ Transformation properties such as scaling, translation, and rotation only apply 
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
->In scenarios where [XComponent](arkui-ts/ts-basic-components-xcomponent.md) is used to, for example, display video or camera streams, obtain images through [surface](../apis-image-kit/js-apis-image.md#imagecreatepixelmapfromsurface11), instead of through an API in this module.
+>In scenarios where [XComponent](arkui-ts/ts-basic-components-xcomponent.md) is used to, for example, display video or camera streams, obtain images through [surface](../apis-image-kit/arkts-apis-image-f.md#imagecreatepixelmapfromsurface11), instead of through an API in this module.
 >
->If the content of a component does not fill the entire area allocated for it, any remaining space in the snapshot will be rendered as transparent pixels. In addition, if the component uses [image effects](arkui-ts/ts-universal-attributes-image-effect.md) or other effect-related attributes, the resulting snapshot may not be as expected. To address these potential issues, check whether to fill the component's transparent content area or to use an alternative method such as taking a [window screenshot](js-apis-window.md#snapshot9).
+>If the content of a component does not fill the entire area allocated for it, any remaining space in the snapshot will be rendered as transparent pixels. In addition, if the component uses [image effects](arkui-ts/ts-universal-attributes-image-effect.md) or other effect-related attributes, the resulting snapshot may not be as expected. To address these potential issues, check whether to fill the component's transparent content area or to use an alternative method such as taking a [window screenshot](arkts-apis-window-Window.md#snapshot9).
 >
 > You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
 
@@ -29,9 +29,9 @@ Obtains the snapshot of a component that has been loaded. This API uses an async
 
 > **NOTE**
 >
-> This API is deprecated since API version 18. You are advised to use [get](js-apis-arkui-UIContext.md#get12) instead on the obtained [ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12) object.
+> This API is deprecated since API version 18. You are advised to use [get](arkts-apis-uicontext-componentsnapshot.md#get12) instead on the obtained [ComponentSnapshot](arkts-apis-uicontext-componentsnapshot.md) object.
 >
-> Since API version 12, you can use the [getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12) object associated with the current UI context.
+> Since API version 12, you can use the [getComponentSnapshot](arkts-apis-uicontext-uicontext.md#getcomponentsnapshot12) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [ComponentSnapshot](arkts-apis-uicontext-componentsnapshot.md) object associated with the current UI context.
 > 
 > The snapshot captures content rendered in the last frame. If this API is called when the component triggers an update, the re-rendered content will not be included in the obtained snapshot.
 
@@ -44,7 +44,7 @@ Obtains the snapshot of a component that has been loaded. This API uses an async
 | Name     | Type                                 | Mandatory  | Description                                      |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | id       | string                              | Yes   | [ID](arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
-| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback used to return the result.                              |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Yes   | Callback used to return the result.                              |
 | options<sup>12+</sup>       | [SnapshotOptions](#snapshotoptions12)                              | No   | Custom settings of the snapshot.|
 
 **Error codes**
@@ -60,7 +60,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 > **NOTE**
 > 
-> Directly using **componentSnapshot** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using [getUIContext](js-apis-arkui-UIContext.md#uicontext), and then obtain the associated **componentSnapshot** object using [getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12).
+> Directly using **componentSnapshot** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using getUIContext(), and then obtain the associated **componentSnapshot** object using [getComponentSnapshot](arkts-apis-uicontext-uicontext.md#getcomponentsnapshot12).
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
@@ -106,9 +106,9 @@ Obtains the snapshot of a component that has been loaded. This API uses a promis
 
 > **NOTE**
 >
-> This API is deprecated since API version 18. You are advised to use [get](js-apis-arkui-UIContext.md#get12-1) instead on the obtained [ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12) object.
+> This API is deprecated since API version 18. You are advised to use [get](arkts-apis-uicontext-componentsnapshot.md#get12-1) instead on the obtained [ComponentSnapshot](arkts-apis-uicontext-componentsnapshot.md) object.
 >
-> Since API version 12, you can use the [getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12) object associated with the current UI context.
+> Since API version 12, you can use the [getComponentSnapshot](arkts-apis-uicontext-uicontext.md#getcomponentsnapshot12) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [ComponentSnapshot](arkts-apis-uicontext-componentsnapshot.md) object associated with the current UI context.
 > 
 > The snapshot captures content rendered in the last frame. If this API is called when the component triggers an update, the re-rendered content will not be included in the obtained snapshot.
 
@@ -127,7 +127,7 @@ Obtains the snapshot of a component that has been loaded. This API uses a promis
 
 | Type                           | Description      |
 | ----------------------------- | -------- |
-| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise used to return the result.|
+| Promise&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -142,7 +142,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 > **NOTE**
 > 
-> Directly using **componentSnapshot** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using [getUIContext](js-apis-arkui-UIContext.md#uicontext), and then obtain the associated **componentSnapshot** object using [getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12).
+> Directly using **componentSnapshot** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using getUIContext(), and then obtain the associated **componentSnapshot** object using [getComponentSnapshot](arkts-apis-uicontext-uicontext.md#getcomponentsnapshot12).
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
@@ -187,15 +187,15 @@ Renders a custom component in the application background and outputs its snapsho
 
 > **NOTE**
 >
-> This API is deprecated since API version 18. You are advised to use [createFromBuilder](js-apis-arkui-UIContext.md#createfrombuilder12) instead on the obtained [ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12) object.
+> This API is deprecated since API version 18. You are advised to use [createFromBuilder](arkts-apis-uicontext-componentsnapshot.md#createfrombuilder12) instead on the obtained [ComponentSnapshot](arkts-apis-uicontext-componentsnapshot.md) object.
 >
-> Since API version 12, you can use the [getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12) object associated with the current UI context.
+> Since API version 12, you can use the [getComponentSnapshot](arkts-apis-uicontext-uicontext.md#getcomponentsnapshot12) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [ComponentSnapshot](arkts-apis-uicontext-componentsnapshot.md) object associated with the current UI context.
 >
 > To account for the time spent in awaiting component building and rendering, the callback of offscreen snapshots has a delay of less than 500 ms.
 >
 > Components in the builder do not support the setting of animation-related attributes, such as [transition](arkui-ts/ts-transition-animation-component.md).
 >
-> If a component is on a time-consuming task, for example, an [Image](arkui-ts/ts-basic-components-image.md) or [Web](../apis-arkweb/ts-basic-components-web.md) component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
+> If a component is on a time-consuming task, for example, an [Image](arkui-ts/ts-basic-components-image.md) or [Web](../apis-arkweb/arkts-basic-components-web.md) component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -206,7 +206,7 @@ Renders a custom component in the application background and outputs its snapsho
 | Name     | Type                                      | Mandatory  | Description        |
 | -------- | ---------------------------------------- | ---- | ---------- |
 | builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | Yes   | Builder of the custom component.<br>**NOTE**<br>The global builder is not supported.|
-| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;      | Yes   | Callback used to return the result. The coordinates and size of the offscreen component's drawing area can be obtained through the callback.|
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt;      | Yes   | Callback used to return the result. The coordinates and size of the offscreen component's drawing area can be obtained through the callback.|
 | delay<sup>12+</sup>   | number | No   | Delay time for triggering the screenshot command. When the layout includes an image component, it is necessary to set a delay time to allow the system to decode the image resources. The decoding time is subject to the resource size. In light of this, whenever possible, use pixel map resources that do not require decoding.<br> When pixel map resources are used or when **syncload** to **true** for the **Image** component, you can set **delay** to **0** to forcibly capture snapshots without waiting. This delay time does not refer to the time from the API call to the return: As the system needs to temporarily construct the passed-in **builder** offscreen, the return time is usually longer than this delay.<br>**NOTE**<br>In the **builder** passed in, state variables should not be used to control the construction of child components. If they are used, they should not change when the API is called, so as to avoid unexpected snapshot results.<br> Default value: **300**<br> Unit: ms<br> Value range: [0, +∞). If the value is less than 0, the default value is used.|
 | checkImageStatus<sup>12+</sup>  | boolean | No   | Whether to check the image decoding status before taking a snapshot. If the value is **true**, the system checks whether all **Image** components have been decoded before taking the snapshot. If the check is not completed, the system aborts the snapshot and returns an exception.<br>Default value: **false**|
 | options<sup>12+</sup>       | [SnapshotOptions](#snapshotoptions12)           | No   | Custom settings of the snapshot.|
@@ -225,7 +225,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 > **NOTE**
 > 
-> Directly using **componentSnapshot** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using [getUIContext](js-apis-arkui-UIContext.md#uicontext), and then obtain the associated **componentSnapshot** object using [getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12).
+> Directly using **componentSnapshot** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using getUIContext(), and then obtain the associated **componentSnapshot** object using [getComponentSnapshot](arkts-apis-uicontext-uicontext.md#getcomponentsnapshot12).
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
@@ -294,15 +294,15 @@ Renders a custom component in the application background and outputs its snapsho
 
 > **NOTE**
 >
-> This API is deprecated since API version 18. You are advised to use [createFromBuilder](js-apis-arkui-UIContext.md#createfrombuilder12-1)instead on the obtained [ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12) object.
+> This API is deprecated since API version 18. You are advised to use [createFromBuilder](arkts-apis-uicontext-componentsnapshot.md#createfrombuilder12-1) instead on the obtained [ComponentSnapshot](arkts-apis-uicontext-componentsnapshot.md) object.
 >
-> Since API version 12, you can use the [getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12) object associated with the current UI context.
+> Since API version 12, you can use the [getComponentSnapshot](arkts-apis-uicontext-uicontext.md#getcomponentsnapshot12) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [ComponentSnapshot](arkts-apis-uicontext-componentsnapshot.md) object associated with the current UI context.
 > 
 > To account for the time spent in awaiting component building and rendering, the callback of offscreen snapshots has a delay of less than 500 ms.
 >
 > Components in the builder do not support the setting of animation-related attributes, such as [transition](arkui-ts/ts-transition-animation-component.md).
 >
-> If a component is on a time-consuming task, for example, an [Image](arkui-ts/ts-basic-components-image.md) or [Web](../apis-arkweb/ts-basic-components-web.md) component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
+> If a component is on a time-consuming task, for example, an [Image](arkui-ts/ts-basic-components-image.md) or [Web](../apis-arkweb/arkts-basic-components-web.md) component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -321,7 +321,7 @@ Renders a custom component in the application background and outputs its snapsho
 
 | Type                           | Description      |
 | ----------------------------- | -------- |
-| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise used to return the result.|
+| Promise&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise used to return the result.|
 
 **Error codes**
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -336,7 +336,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 > **NOTE**
 > 
-> Directly using **componentSnapshot** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using [getUIContext](js-apis-arkui-UIContext.md#uicontext), and then obtain the associated **componentSnapshot** object using [getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12).
+> Directly using **componentSnapshot** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using getUIContext(), and then obtain the associated **componentSnapshot** object using [getComponentSnapshot](arkts-apis-uicontext-uicontext.md#getcomponentsnapshot12).
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI'
@@ -399,7 +399,7 @@ struct OffscreenSnapshotExample {
 
 getSync(id: string, options?: SnapshotOptions): image.PixelMap
 
-Obtains the snapshot of a component that has been loaded. This API synchronously waits for the snapshot to complete and returns a [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) object.
+Obtains the snapshot of a component that has been loaded. This API synchronously waits for the snapshot to complete and returns a [PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) object.
 
 > **NOTE**
 >
@@ -420,7 +420,7 @@ Obtains the snapshot of a component that has been loaded. This API synchronously
 
 | Type                           | Description      |
 | ----------------------------- | -------- |
-| image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Promise used to return the result.|
+| image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | Promise used to return the result.|
 
 **Error codes**
 
@@ -436,7 +436,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 > **NOTE**
 > 
-> Directly using **componentSnapshot** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using [getUIContext](js-apis-arkui-UIContext.md#uicontext), and then obtain the associated **componentSnapshot** object using [getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12).
+> Directly using **componentSnapshot** can lead to [ambiguous instance issues](../../ui/arkts-global-interface.md). To avoid this, obtain a **UIContext** instance using getUIContext(), and then obtain the associated **componentSnapshot** object using [getComponentSnapshot](arkts-apis-uicontext-uicontext.md#getcomponentsnapshot12).
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';

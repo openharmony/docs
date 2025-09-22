@@ -222,7 +222,7 @@ dragEnd(e) {
 ```
 ### setDragImage<sup>9+</sup>
 
-setDragImage(pixelmap: PixelMap, offsetX: number,offsetY: number): boolean
+setDragImage(pixelMap: PixelMap, offsetX: number,offsetY: number): boolean
 
 Sets a custom drag image.
 

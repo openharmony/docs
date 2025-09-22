@@ -68,7 +68,7 @@ A custom component is deleted when the branch of the **if** statement or the num
 
 1. Before the component is deleted, the **aboutToDisappear** callback is invoked to mark the component for deletion. The component deletion mechanism of ArkUI is as follows:<br>(1) The backend component is directly removed from the component tree and destroyed.<br>(2) The reference to the destroyed component is released from the frontend components.<br>(3) The JS Engine garbage collects the destroyed component.
 
-2. The custom component and all its variables are deleted. Any variables linked to this component, such as [@Link](arkts-link.md), [@Prop](arkts-prop.md), or [@StorageLink](arkts-appstorage.md#storagelink) decorated variables, are unregistered from their [synchronization sources](arkts-state-management-overview.md#basic-concepts).
+2. The custom component and all its variables are deleted. Any variables linked to this component, such as [@Link](arkts-link.md), [@Prop](arkts-prop.md), or [@StorageLink](arkts-appstorage.md#storagelink) decorated variables, are unregistered from their [synchronization sources](arkts-state-management-overview.md#fundamental-concepts).
 
 
 Use of **async await** is not recommended inside the **aboutToDisappear** callback. In case of an asynchronous operation (a promise or a callback) being started from the **aboutToDisappear** callback, the custom component will remain in the Promise closure until the function is executed, which prevents the component from being garbage collected.
@@ -234,7 +234,7 @@ In the preceding example, the **Index** page contains two custom components. One
 
 ## Custom Component's Listening for Page Changes
 
-You can use the listener API in [Observer](../../reference/apis-arkui/js-apis-arkui-observer.md#observeronrouterpageupdate11) to listen for page changes in custom components.
+You can use the listener API in Observer to listen for page changes in custom components.
 
 ```ts
 // Index.ets

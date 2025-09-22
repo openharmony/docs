@@ -1037,7 +1037,7 @@ error: install provision type not same.
 
 **Symptom**
 
-When you start debugging or run an app/service, the type in the <!--RP5--> [profile signature file](../security/app-provision-structure.md)<!--RP5End--> of the installed app is different from that of the installed app. As a result, an error occurs during HAP installation.
+When you start debugging or run an app/service, the type in the <!--RP5--> profile signature file<!--RP5End--> of the installed app is different from that of the installed app. As a result, an error occurs during HAP installation.
 
 **Possible Causes**
 
@@ -1146,7 +1146,7 @@ error: install failed due to apptype not same.
 
 **Symptom**
 
-During application installation, the [app-feature](../security/app-provision-structure.md) configuration in the signature file of the installed HAP package is inconsistent with that in the signature file of the HAP package to be installed. As a result, the installation fails.
+During application installation, the app-feature configuration in the signature file of the installed HAP package is inconsistent with that in the signature file of the HAP package to be installed. As a result, the installation fails.
 
 **Possible Causes**
 
@@ -1215,8 +1215,8 @@ When you start debugging or run an application, the error message "error: instal
 
 **Possible Causes**
 
-1. The signatures of the existing application and new application are different, or the signatures of HAPs and HSPs are different. If at least one of the signature [key](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section462703710326) or <!--RP7--&gt of two applications and the app-identifier<!--RP7End--&gt in the [profile signature file](../security/app-provision-structure.md) of the two applications is the same, the signatures of the two applications are considered to be the same. **Keep Application Data** is selected in **Edit Configurations** (the application installation is overwritten) and the application is re-signed.
-2. If an application is uninstalled but its data is kept, and a new application with the same bundle name is later installed, it is necessary to check whether the identity details match. This error is reported if the values of [key](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section462703710326) and <!--RP7--&gt in the signature information and the value of app-identifier<!--RP7End--&gt in the [profile signature file](../security/app-provision-structure.md) are different.
+1. The signatures of the existing application and new application are different, or the signatures of HAPs and HSPs are different. If at least one of the signature [key](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section462703710326) or <!--RP7--> of two applications and the app-identifier<!--RP7End--> in the profile signature file of the two applications is the same, the signatures of the two applications are considered to be the same. **Keep Application Data** is selected in **Edit Configurations** (the application installation is overwritten) and the application is re-signed.
+2. If an application is uninstalled but its data is kept, and a new application with the same bundle name is later installed, it is necessary to check whether the identity details match. This error is reported if the values of [key](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section462703710326) and <!--RP7--> in the signature information and the value of app-identifier<!--RP7End--> in the profile signature file are different.
 
 
 **Solution**
@@ -2216,7 +2216,7 @@ Enterprise MDM apps or common enterprise apps cannot be installed on the current
 
 **Possible Causes**
 
-The following two types of apps in <!--RP5--> [profile signature file] (../security/app-provision-structure.md)<!--RP5End--> cannot be installed on the current device: enterprise_mdm (enterprise MDM app) and enterprise_normal (common enterprise app).
+The following two types of apps in <!--RP5--> profile signature file<!--RP5End--> cannot be installed on the current device: enterprise_mdm (enterprise MDM app) and enterprise_normal (common enterprise app).
 For details about the profile signature file types, see [ApplicationInfo.appDistributionType](../reference/apis-ability-kit/js-apis-bundleManager-applicationInfo.md#applicationinfo-1).
 
 **Solution**
@@ -2230,15 +2230,15 @@ error: Release bundle can not be installed.
 
 **Symptom**
 
-Do not run the bm command to install apps whose type is app_gallery and signature certificate type is release in <!--RP5--> [Profile signature file](../security/app-provision-structure.md)<!--RP5End-->.
+Do not run the bm command to install apps whose type is app_gallery and signature certificate type is release in <!--RP5--> Profile signature file<!--RP5End-->.
 
 **Possible Causes**
 
-Install the app. The type in <!--RP5--> [Profile signature file](../security/app-provision-structure.md)<!--RP5End--> is app_gallery and the signature certificate type is release.
+Install the app. The type in <!--RP5--> Profile signature file<!--RP5End--> is app_gallery and the signature certificate type is release.
 
 **Solution**
 
-1. Use a file whose type is not app_gallery in <!--RP5--> [profile signature file](../security/app-provision-structure.md)<!--RP5End--> to re-sign the app.
+1. Use a file whose type is not app_gallery in <!--RP5--> profile signature file<!--RP5End--> to re-sign the app.
 2. Use the **debug** certificate to re-sign the bundle.
 
 ### 9568403 The Encryption Check Fails During the Installation
@@ -2392,11 +2392,11 @@ If a pre-installed app is uninstalled and then an app with the same bundle name 
 
 **Possible Causes**
 
-The [key](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section462703710326) and <!--RP7--&gt in the app signature information and the app-identifier<!--RP7End--&gt in the app [profile signature file](../security/app-provision-structure.md) are different from those of the uninstalled pre-installed app.
+The [key](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section462703710326) and <!--RP7--> in the app signature information and the app-identifier<!--RP7End--> in the app profile signature file are different from those of the uninstalled pre-installed app.
 
 **Solution**
 
-1. Re-sign the app to ensure that the [key](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section462703710326) and <!--RP7--&gt in the app signature information and the app-identifier<!--RP7End--&gt in the [app profile signature file](../security/app-provision-structure.md) are the same as those of the pre-installed app.
+1. Re-sign the app to ensure that the [key](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section462703710326) and <!--RP7--> in the app signature information and the app-identifier<!--RP7End--> in the app profile signature file are the same as those of the pre-installed app.
 2. Modify [bundleName](../quick-start/app-configuration-file.md) of the installed application to ensure that it is different from that of the preset application.
 
 ### 9568418 Failed to Uninstall an Application Configured with an Uninstallation Disposed Rule
@@ -2431,7 +2431,7 @@ The preset application of the release version is installed through the BM.
 
 **Solution**
 
-Check whether the application is of the preset release version. If yes, replace the type of the application profile signature file (../security/app-provision-structure.md) and re-sign and install the application.
+Check whether the application is of the preset release version. If yes, replace the type of the application profile signature file and re-sign and install the application.
 
 ### 9568278 Version Codes of Bundles Are Inconsistent
 **Error Message**
@@ -2457,7 +2457,7 @@ The application fails to be installed on the device because the distribution typ
 
 **Possible Causes**
 
-The type in the <!--RP5--> [signature profile file](../security/app-provision-structure.md)<!--RP5End--> is restricted and cannot be installed on the current device.
+The type in the <!--RP5--> signature profile file<!--RP5End--> is restricted and cannot be installed on the current device.
 
 **Solution**
 
@@ -2474,7 +2474,7 @@ The profile file of the signature certificate does not contain the UDID configur
 
 **Possible Causes**
 
-The <!--RP5--> [profile signature file](../security/app-provision-structure.md)<!--RP5End--&gt of the application is of the debugging type, and the UDID of the current device is not configured.
+The <!--RP5--> profile signature file<!--RP5End--> of the application is of the debugging type, and the UDID of the current device is not configured.
 
 **Solution**
 
@@ -2530,7 +2530,7 @@ The pluginDistributionIDs of the application and plug-in do not have the same va
 
 **Solution**
 
-Reconfigure pluginDistributionIDs in <!--RP5--> [signature certificate profile file](../security/app-provision-structure.md)<!--RP5End--> of the application or plug-in. as follows:
+Reconfigure pluginDistributionIDs in <!--RP5--> signature certificate profile file<!--RP5End--> of the application or plug-in. as follows:
 ```
 "app-services-capabilities":{
     "ohos.permission.kernel.SUPPORT_PLUGIN":{
@@ -2856,7 +2856,7 @@ The pluginDistributionIDs configuration in the plug-in signature information doe
 
 **Solution**
 
-Reconfigure the app-services-capabilities field in <!--RP5--> [signature certificate profile file](../security/app-provision-structure.md)<!--RP5End--> by referring to the following format:
+Reconfigure the app-services-capabilities field in <!--RP5--> signature certificate profile file<!--RP5End--> by referring to the following format:
 ```
 "app-services-capabilities":{
     "ohos.permission.kernel.SUPPORT_PLUGIN":{
@@ -2910,7 +2910,7 @@ The installation fails because the value of U1Enabled in the signature informati
 
 **Possible Causes**
 
-The U1Enabled configuration of the allowed-acls field in <!--RP5--> [profile signature file](../security/app-provision-structure.md)<!--RP5End--> is changed. For example:
+The U1Enabled configuration of the allowed-acls field in <!--RP5--> profile signature file<!--RP5End--> is changed. For example:
 1. The installed application is configured with U1Enabled in allowed-acls, but the application to be installed is not configured with U1Enabled in allowed-acls.
 2. U1Enabled is not configured in allowed-acls for the installed application, but is configured in allowed-acls for the to-be-installed application.
 
@@ -2930,7 +2930,7 @@ The U1Enabled configuration in the signature information is inconsistent. As a r
 
 **Possible Causes**
 
-The <!--RP5--> [Profile signature file](../security/app-provision-structure.md)<!--RP5End--&gt used for signing the multi-HAP package is inconsistent. As a result, the U1Enabled configurations of allowed-acls in the signature information are inconsistent.
+The <!--RP5--> Profile signature file<!--RP5End--> used for signing the multi-HAP package is inconsistent. As a result, the U1Enabled configurations of allowed-acls in the signature information are inconsistent.
 
 **Solution**
 

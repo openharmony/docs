@@ -32,7 +32,7 @@ Obtains this **pixelMap** object.
 
 | Type                                      | Description      |
 | ---------------------------------------- | -------- |
-| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | **PixelMap** object.|
+| [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | **PixelMap** object.|
 
 **Example**
   ```ts
@@ -63,7 +63,7 @@ A constructor used to create a **PixelMapDrawableDescriptor** object.
 
 | Name    | Type             | Mandatory | Description                                      |
 | --------- | ---------------- | ---- | ------------------------------------------ |
-| src | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | No| **PixelMap** image data.|
+| src | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)  | No| **PixelMap** image data.|
 
 
 ## LayeredDrawableDescriptor
@@ -336,7 +336,7 @@ A constructor used to create an **AnimatedDrawableDescriptor** instance.
 
 | Name    | Type             | Mandatory | Description                                      |
 | --------- | ---------------- | ---- | ------------------------------------------ |
-| pixelMaps | Array\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>  | Yes  | **PixelMap** image data.|
+| pixelMaps | Array\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)>  | Yes  | **PixelMap** image data.|
 | options   | [AnimationOptions](#animationoptions12) | No  | Animation options.                              |
 
 **Example**

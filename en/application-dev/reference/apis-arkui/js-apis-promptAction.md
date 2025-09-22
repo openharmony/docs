@@ -8,7 +8,7 @@ The **PromptAction** module provides APIs for creating and showing toasts, dialo
 >
 > This module cannot be used in the file declaration of the [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md). In other words, the APIs of this module can be used only after a component instance is created; they cannot be called in the lifecycle of the UIAbility.
 >
-> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is ambiguous](../../ui/arkts-global-interface.md#ambiguous-ui-context). For details, see [UIContext](js-apis-arkui-UIContext.md#uicontext). It is recommended that you use the dialog box APIs provided by **UIContext**<!--Del-->, except for UI-less scenarios such as [ServiceExtension](../../application-models/serviceextensionability.md)<!--DelEnd-->.
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is ambiguous](../../ui/arkts-global-interface.md#ambiguous-ui-context). For details, see [UIContext](arkts-apis-uicontext-uicontext.md). It is recommended that you use the dialog box APIs provided by **UIContext**<!--Del-->, except for UI-less scenarios such as [ServiceExtension](../../application-models/serviceextensionability.md)<!--DelEnd-->.
 
 ## Modules to Import
 
@@ -51,7 +51,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 > **NOTE**
 > 
-> Directly using **openToast** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the **PromptAction** object using the **getPromptAction** API in **UIContext** and then call the [openToast](js-apis-arkui-UIContext.md#opentoast18) API through this object.
+> Directly using **openToast** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the **PromptAction** object using the **getPromptAction** API in **UIContext** and then call the [openToast](arkts-apis-uicontext-promptaction.md#opentoast18) API through this object.
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -130,7 +130,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 > **NOTE**
 > 
-> Directly using **closeToast** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the **PromptAction** object using the **getPromptAction** API in **UIContext** and then call the [openToast](js-apis-arkui-UIContext.md#closetoast18) API through this object.
+> Directly using **closeToast** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the **PromptAction** object using the **getPromptAction** API in **UIContext** and then call the [openToast](arkts-apis-uicontext-promptaction.md#closetoast18) API through this object.
 
 See the example for [promptAction.openToaset18](#promptactionopentoast18).
 
@@ -265,7 +265,7 @@ Enumerates states of the custom dialog box.
 
 Implements a custom dialog controller that inherits from [CommonController](#commoncontroller18).
 
-It can be used as a member variable of **UIContext** to display custom dialog boxes. For specific usage, see the examples for [openCustomDialogWithController](js-apis-arkui-UIContext.md#opencustomdialogwithcontroller18) and [presentCustomDialog](js-apis-arkui-UIContext.md#presentcustomdialog18).
+It can be used as a member variable of **UIContext** to display custom dialog boxes. For specific usage, see the examples for [openCustomDialogWithController](arkts-apis-uicontext-promptaction.md#opencustomdialogwithcontroller18) and [presentCustomDialog](arkts-apis-uicontext-promptaction.md#presentcustomdialog18).
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -659,9 +659,9 @@ Creates and displays a toast.
 
 > **NOTE**
 >
-> This API is deprecated since API version 18. Directly using **showToast** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object using the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) and then call the [showToast](js-apis-arkui-UIContext.md#showtoast) API through this object.
+> This API is deprecated since API version 18. Directly using **showToast** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the [PromptAction](arkts-apis-uicontext-promptaction.md) object using the [getPromptAction](arkts-apis-uicontext-uicontext.md#getpromptaction) API in [UIContext](arkts-apis-uicontext-uicontext.md) and then call the [showToast](arkts-apis-uicontext-promptaction.md#showtoast) API through this object.
 >
-> Since API version 10, you can use the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object associated with the current UI context.
+> Since API version 10, you can use the [getPromptAction](arkts-apis-uicontext-uicontext.md#getpromptaction) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [PromptAction](arkts-apis-uicontext-promptaction.md) object associated with the current UI context.
 >
 > The toast has a fixed style and does not support content customization. For specific supported capabilities, see [ShowToastOptions](#showtoastoptions).
 
@@ -729,9 +729,9 @@ Creates and displays a dialog box in the given settings. This API uses a promise
 
 > **NOTE**
 >
-> This API is deprecated since API version 18. Directly using **showDialog** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object using the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) and then call the [showDialog](js-apis-arkui-UIContext.md#showdialog-1) API through this object.
+> This API is deprecated since API version 18. Directly using **showDialog** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the [PromptAction](arkts-apis-uicontext-promptaction.md) object using the [getPromptAction](arkts-apis-uicontext-uicontext.md#getpromptaction) API in [UIContext](arkts-apis-uicontext-uicontext.md) and then call the [showDialog](arkts-apis-uicontext-promptaction.md#showdialog-1) API through this object.
 >
-> Since API version 10, you can use the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object associated with the current UI context.
+> Since API version 10, you can use the [getPromptAction](arkts-apis-uicontext-uicontext.md#getpromptaction) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [PromptAction](arkts-apis-uicontext-promptaction.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -795,9 +795,9 @@ Creates and displays a dialog box. This API uses an asynchronous callback to ret
 
 > **NOTE**
 >
-> This API is deprecated since API version 18. Directly using **showDialog** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object using the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) and then call the [showDialog](js-apis-arkui-UIContext.md#showdialog) API through this object.
+> This API is deprecated since API version 18. Directly using **showDialog** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the [PromptAction](arkts-apis-uicontext-promptaction.md) object using the [getPromptAction](arkts-apis-uicontext-uicontext.md#getpromptaction) API in [UIContext](arkts-apis-uicontext-uicontext.md) and then call the [showDialog](arkts-apis-uicontext-promptaction.md#showdialog) API through this object.
 >
-> Since API version 10, you can use the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object associated with the current UI context.
+> Since API version 10, you can use the [getPromptAction](arkts-apis-uicontext-uicontext.md#getpromptaction) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [PromptAction](arkts-apis-uicontext-promptaction.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -966,9 +966,9 @@ Creates and displays an action menu. This API uses an asynchronous callback to r
 
 > **NOTE**
 >
-> This API is deprecated since API version 18. Directly using **showActionMenu** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object using the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) and then call the [showActionMenu](js-apis-arkui-UIContext.md#showactionmenu11) API through this object.
+> This API is deprecated since API version 18. Directly using **showActionMenu** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the [PromptAction](arkts-apis-uicontext-promptaction.md) object using the [getPromptAction](arkts-apis-uicontext-uicontext.md#getpromptaction) API in [UIContext](arkts-apis-uicontext-uicontext.md) and then call the [showActionMenu](arkts-apis-uicontext-promptaction.md#showactionmenu11) API through this object.
 >
-> Since API version 11, you can use the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object associated with the current UI context.
+> Since API version 11, you can use the [getPromptAction](arkts-apis-uicontext-uicontext.md#getpromptaction) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [PromptAction](arkts-apis-uicontext-promptaction.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1108,9 +1108,9 @@ Creates and displays an action menu in the given settings. This API uses a promi
 
 > **NOTE**
 >
-> This API is deprecated since API version 18. Directly using **showActionMenu** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object using the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) and then call the [showActionMenu](js-apis-arkui-UIContext.md#showactionmenu) API through this object.
+> This API is deprecated since API version 18. Directly using **showActionMenu** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the [PromptAction](arkts-apis-uicontext-promptaction.md) object using the [getPromptAction](arkts-apis-uicontext-uicontext.md#getpromptaction) API in [UIContext](arkts-apis-uicontext-uicontext.md) and then call the [showActionMenu](arkts-apis-uicontext-promptaction.md#showactionmenu) API through this object.
 >
-> Since API version 10, you can use the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object associated with the current UI context.
+> Since API version 10, you can use the [getPromptAction](arkts-apis-uicontext-uicontext.md#getpromptaction) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [PromptAction](arkts-apis-uicontext-promptaction.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1179,9 +1179,9 @@ By default, the width of the dialog box in portrait mode is the width of the win
 
 > **NOTE**
 >
-> This API is supported since API version 11 and deprecated since API version 18. Directly using **openCustomDialog** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object using the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) and then call the [openCustomDialog](js-apis-arkui-UIContext.md#opencustomdialog12-1) API through this object.
+> This API is supported since API version 11 and deprecated since API version 18. Directly using **openCustomDialog** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the [PromptAction](arkts-apis-uicontext-promptaction.md) object using the [getPromptAction](arkts-apis-uicontext-uicontext.md#getpromptaction) API in [UIContext](arkts-apis-uicontext-uicontext.md) and then call the [openCustomDialog](arkts-apis-uicontext-promptaction.md#opencustomdialog12-1) API through this object.
 >
-> Since API version 12, you can use the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object associated with the current UI context.
+> Since API version 12, you can use the [getPromptAction](arkts-apis-uicontext-uicontext.md#getpromptaction) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [PromptAction](arkts-apis-uicontext-promptaction.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1286,7 +1286,7 @@ This example demonstrates how to set styles of a dialog box, including the width
 
 > **NOTE**
 >
-> Directly using **openCustomDialog** can lead to ambiguous instance issues. To avoid this, it is recommended that you obtain a [PromptAction](js-apis-arkui-UIContext.md#promptaction) instance using the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext), and then call [openCustomDialog](js-apis-arkui-UIContext.md#opencustomdialog12-1) on the obtained instance.
+> Directly using **openCustomDialog** can lead to ambiguous instance issues. To avoid this, it is recommended that you obtain a [PromptAction](arkts-apis-uicontext-promptaction.md) instance using the [getPromptAction](arkts-apis-uicontext-uicontext.md#getpromptaction) API in [UIContext](arkts-apis-uicontext-uicontext.md), and then call [openCustomDialog](arkts-apis-uicontext-promptaction.md#opencustomdialog12-1) on the obtained instance.
 
 ```ts
 import { LevelMode, ImmersiveMode } from '@kit.ArkUI';
@@ -1369,7 +1369,7 @@ This example shows how to implement a dialog box on a page.
 
 > **NOTE**
 >
-> Directly using **openCustomDialog** can lead to ambiguous instance issues. To avoid this, it is recommended that you obtain a [PromptAction](js-apis-arkui-UIContext.md#promptaction) instance using the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext), and then call [openCustomDialog](js-apis-arkui-UIContext.md#opencustomdialog12-1) on the obtained instance.
+> Directly using **openCustomDialog** can lead to ambiguous instance issues. To avoid this, it is recommended that you obtain a [PromptAction](arkts-apis-uicontext-promptaction.md) instance using the [getPromptAction](arkts-apis-uicontext-uicontext.md#getpromptaction) API in [UIContext](arkts-apis-uicontext-uicontext.md), and then call [openCustomDialog](arkts-apis-uicontext-promptaction.md#opencustomdialog12-1) on the obtained instance.
 
 ```ts
 // Index.ets
@@ -1463,9 +1463,9 @@ Closes the specified custom dialog box.
 
 > **NOTE**
 >
-> This API is supported since API version 11 and deprecated since API version 18. Directly using **closeCustomDialog** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object using the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) and then call the [closeCustomDialog](js-apis-arkui-UIContext.md#closecustomdialog12-1) API through this object.
+> This API is supported since API version 11 and deprecated since API version 18. Directly using **closeCustomDialog** can lead to the issue of [ambiguous UI context](../../ui/arkts-global-interface.md#ambiguous-ui-context). To avoid this, obtain the [PromptAction](arkts-apis-uicontext-promptaction.md) object using the [getPromptAction](arkts-apis-uicontext-uicontext.md#getpromptaction) API in [UIContext](arkts-apis-uicontext-uicontext.md) and then call the [closeCustomDialog](arkts-apis-uicontext-promptaction.md#closecustomdialog12-1) API through this object.
 >
-> Since API version 12, you can use the [getPromptAction](js-apis-arkui-UIContext.md#getpromptaction) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [PromptAction](js-apis-arkui-UIContext.md#promptaction) object associated with the current UI context.
+> Since API version 12, you can use the [getPromptAction](arkts-apis-uicontext-uicontext.md#getpromptaction) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [PromptAction](arkts-apis-uicontext-promptaction.md) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

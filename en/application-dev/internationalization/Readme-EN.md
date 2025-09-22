@@ -4,12 +4,10 @@
 - Application Internationalization<!--i18n-->
     - [UI Design for Internationalization](i18n-ui-design.md)
     - [Locale and Cultural Habit Division](i18n-locale-culture.md)
-    - Language and User Preference Setting<!--i18n-language-user-preferences-->
-        - [System Language and Region Setting](i18n-system-language-region.md)
-        - [Preferred Language Setting](i18n-preferred-language.md)
-        <!--Del-->
-        - [User Preference Setting (for System Applications Only)](i18n-user-preferences.md)
-        <!--DelEnd-->
+    - Language and User Preferences<!--i18n-language-user-preferences-->
+        - [System Language and Locale](i18n-system-language-region.md)
+        - [Preferred Language](i18n-preferred-language.md)
+        - [User Preferences](i18n-user-preferences.md)
     - [Date and Time Formatting](i18n-time-date.md)
     - [Number and Unit of Measurement Formatting](i18n-numbers-weights-measures.md)
     - [Phone Number Formatting](i18n-phone-numbers.md)
@@ -26,13 +24,13 @@
         - [Overview](i18n-display-overview.md)
         - [Language and Locale Name Localization](i18n-language-region-display.md)
         - [Time Zone Name Localization](i18n-time-zone-display.md)
-- Application Localization<!--i10n-->
+- Application Localization<!--l10n-->
     - [Multilingual Resource Provisioning](l10n-multilingual-resources.md)
-    - Application Translation<!--i10n-translation-->
+    - Application Translation<!--l10n-translation-->
         - [Hard Coding and Concatenation Prevention](l10n-hard-coding-concatenate.md)
         - [Scene and Context Clarification for Translation](l10n-translation-scene.md)
         - [Singular/Plural Form Selection](l10n-singular-plural.md)
-- Localization Testing<!--i10n-testing-->
+- Localization Testing<!--l10n-testing-->
     - Pseudo-Localization Testing<!--pseudo-i18n-testing-->
         - [Overview of Pseudo-Localization Testing](pseudo-i18n-testing-overview.md)
         - [Pseudo-Localization Testing for Translation](pseudo-i18n-testing-translation.md)

@@ -6,7 +6,7 @@ The **componentUtils** module provides API for obtaining the coordinates and siz
 >
 > The APIs of this module are supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
 >
-> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is unclear](../../ui/arkts-global-interface.md). For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is unclear](../../ui/arkts-global-interface.md). For details, see [UIContext](./arkts-apis-uicontext-uicontext.md).
 
 ## Modules to Import
 
@@ -21,9 +21,9 @@ Obtains a **ComponentInfo** object based on the component ID and synchronously r
 
 > **NOTE**
 >
-> This API is deprecated since API version 18. You are advised to use [getRectangleById](js-apis-arkui-UIContext.md#getrectanglebyid) instead on the obtained [ComponentUtils](js-apis-arkui-UIContext.md#componentutils) object.
+> This API is deprecated since API version 18. You are advised to use [getRectangleById](arkts-apis-uicontext-componentutils.md#getrectanglebyid) instead on the obtained [ComponentUtils](arkts-apis-uicontext-componentutils.md) object.
 >
-> Since API version 10, you can use the [getComponentUtils](js-apis-arkui-UIContext.md#getcomponentutils) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [ComponentUtils](js-apis-arkui-UIContext.md#componentutils) object associated with the current UI context. For this API to work correctly, call it after the notification indicating completion of component layout is received through [@ohos.arkui.inspector (layout callback)](js-apis-arkui-inspector.md).
+> Since API version 10, you can use the [getComponentUtils](arkts-apis-uicontext-uicontext.md#getcomponentutils) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the [ComponentUtils](arkts-apis-uicontext-componentutils.md) object associated with the current UI context. For this API to work correctly, call it after the notification indicating completion of component layout is received through [@ohos.arkui.inspector (layout callback)](js-apis-arkui-inspector.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -173,7 +173,7 @@ type Matrix4Result = [number,number,number,number,number,number,number,number,nu
 
 > **NOTE**
 >
-> You are advised to use the [getComponentUtils](./js-apis-arkui-UIContext.md#getcomponentutils) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **ComponentUtils** object associated with the current UI context.
+> You are advised to use the [getComponentUtils](./arkts-apis-uicontext-uicontext.md#getcomponentutils) API in [UIContext](arkts-apis-uicontext-uicontext.md) to obtain the **ComponentUtils** object associated with the current UI context.
 
   ```ts
 import { matrix4, componentUtils } from '@kit.ArkUI';

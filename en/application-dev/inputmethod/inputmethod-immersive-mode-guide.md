@@ -11,7 +11,7 @@
 To implement consistent immersive experience, a communication mechanism between foreground applications and input method applications is provided. You can set the immersive input mode based on the immersive mode of the foreground application.
 
 ## Working Principles
-![Immersive mode of the input method](./figures/immersive-mode-of-the-input-method.png)
+![Immersive mode of the input method](./figures/immersive-mode-of-the-input-method.PNG)
 - The foreground application sets the desired immersive mode based on the application scenario.
 - The desired immersive mode of the foreground application is then passed to the input method application through the input method framework.
 - The input method application determines the final immersive mode for the input method framework based on the immersive mode of the foreground application.

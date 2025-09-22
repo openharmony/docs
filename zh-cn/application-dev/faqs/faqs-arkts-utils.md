@@ -19,7 +19,7 @@ TaskPool的生命周期无需开发者手动去管理。有一定时间没有执
 
 ## TaskPool对于任务时间有没有限制
 
-任务时常上限3分钟（不包含Promise和async/await异步调用的耗时）。
+任务时长上限3分钟（不包含Promise和async/await异步调用的耗时）。
 
 
 ## 对于预加载任务量大的场景推荐使用Worker还是TaskPool
@@ -367,7 +367,7 @@ TaskPool与Worker不影响。两者独立，Worker是固定数量，当前是8�
 
 **原理澄清**
 
-TaskPool与Worker采用事件事件循环接收线程间通信的消息。
+TaskPool与Worker采用事件循环接收线程间通信的消息。
 Worker不支持消息的优先级。
 TaskPool中的任务支持优先级设置，会影响消息的处理优先级。
 
@@ -544,7 +544,7 @@ ArkTS层接口的异步如果不涉及I/O操作，则异步任务会在主线程
 ##  在ArkTS的主线程中使用await会堵塞主线程吗？（API 10）
 
 比如如下代码在主线程中执行：  
-`const response = await reqeust.buildCall().execute<string>();`  
+`const response = await request.buildCall().execute<string>();`  
 这种写法会导致主线程堵塞吗？
 
 **解决方案**
@@ -652,7 +652,7 @@ AST属于编译器编译过程中间数据结构，该数据本身不稳定，�
 
 当前ArkTS创建线程(worker)会创建一个新的ArkTS引擎实例，会占用额外的内存。
 
-同时，ArkTS提供了TaskPool并发API，类似GCD的线程池能力，可以执行任务，而且不需要开发者进行线程生命周期管理。Task会被调度到有限数量的工作线程执行，多个task会共享这些工作线程（ArkTS引擎实例），系统会根据负载情况扩容/缩容工作线程的数量，充分发挥硬性性能。
+同时，ArkTS提供了TaskPool并发API，类似GCD的线程池能力，可以执行任务，而且不需要开发者进行线程生命周期管理。Task会被调度到有限数量的工作线程执行，多个task会共享这些工作线程（ArkTS引擎实例），系统会根据负载情况扩容/缩容工作线程的数量，充分发挥硬件性能。
 
 **解决方案**
 
