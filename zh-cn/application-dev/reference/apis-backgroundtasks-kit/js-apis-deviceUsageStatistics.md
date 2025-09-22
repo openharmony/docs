@@ -1,4 +1,10 @@
 # @ohos.bundleState (设备使用信息统计)
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: ResourceSchedule-->
+<!--Owner: @cheng-shichang-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
 
 本模块提供设备使用信息统计能力。
 
@@ -40,7 +46,7 @@ bundleState.isIdleState("com.ohos.camera", (err: BusinessError, res: boolean) =>
   if (err) {
     console.error('BUNDLE_ACTIVE isIdleState callback failed, because: ' + err.code);
   } else {
-    console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
+    console.info('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
   }
 });
 ```
@@ -72,7 +78,7 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 import { BusinessError } from '@ohos.base';
 // 三方应用使用示例代码时，注意将bundleName更换为自己应用的bundleName
 bundleState.isIdleState("com.ohos.camera").then((res: boolean) => {
-  console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
+  console.info('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
   console.error('BUNDLE_ACTIVE isIdleState promise failed, because: ' + err.code);
 });
