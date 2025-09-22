@@ -428,7 +428,7 @@ export const createMyExternal: () => Object;
 
 // 应用代码
 import testNapi from 'libentry.so';
-import worker from '@ohos.worker';
+import { worker } from '@kit.Arkts';
 
 const mWorker = new worker.ThreadWorker('../workers/Worker');
 
