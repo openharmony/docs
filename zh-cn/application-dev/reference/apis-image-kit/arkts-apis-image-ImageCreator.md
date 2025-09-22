@@ -211,7 +211,7 @@ async function On(creator : image.ImageCreator) {
 
 off(type: 'imageRelease', callback?: AsyncCallback\<void>): void
 
-释放buffer时，移除注册的回调函数。
+释放buffer时，移除注册的回调函数。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
@@ -220,7 +220,7 @@ off(type: 'imageRelease', callback?: AsyncCallback\<void>): void
 | 参数名        | 类型                     | 必填 | 说明                                         |
 | ------------- | -------------------------|----|--------------------------------------------|
 | type          | string                   | 是  | 监听事件类型，如'imageRelease'。                    |
-| callback      | AsyncCallback\<void>     | 否  | 将被移除的回调函数。 |
+| callback      | AsyncCallback\<void>     | 否  | 回调函数。当移除注册成功时，err返回null，否则为错误对象。 |
 
 **示例：**
 

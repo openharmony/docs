@@ -24,6 +24,10 @@ import { image } from '@kit.ImageKit';
 
 图像解码设置选项。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
@@ -59,7 +63,7 @@ createPictureByHdrAndSdrPixelMap(hdrPixelMap: PixelMap, sdrPixelMap: PixelMap): 
 | 参数名       | 类型                | 必填 | 说明             |
 | ------------ | ------------------- | ---- | ---------------- |
 | hdrPixelMap | [PixelMap](arkts-apis-image-PixelMap.md) | 是   | HDR PixelMap，位深16bit或10bit，像素格式为FP16/RGBA1010102/YCBCR_P010，色彩空间是BT2020_HLG。 |
-| sdrPixelMap | [PixelMap](arkts-apis-image-PixelMap.md) | 是   | SDR PIxelMap，位深8bit，像素格式为RGBA8888/NV21，色彩空间是P3。 |
+| sdrPixelMap | [PixelMap](arkts-apis-image-PixelMap.md) | 是   | SDR PixelMap，位深8bit，像素格式为RGBA8888/NV21，色彩空间是P3。 |
 
 **返回值：**
 
