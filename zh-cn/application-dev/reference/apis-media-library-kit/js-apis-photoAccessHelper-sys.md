@@ -1806,7 +1806,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 }
 ```
 
-### getDataAnalysisProgress<sup>12+</sup>
+### getDataAnalysisProgress<sup>22+</sup>
 
 getDataAnalysisProgress(analysisType?: AnalysisType): Promise&lt;string&gt;
 
