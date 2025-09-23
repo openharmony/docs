@@ -185,7 +185,7 @@ bool OH_MediaKeySystem_IsSupported(const char *name)
 
 | 类型 | 说明 |
 | -- | -- |
-| bool | 表示是否支持指定DRM解决方案及媒体类型。true表示支持，false表示不支持。   |
+| bool | 表示是否支持指定DRM解决方案。true表示支持，false表示不支持。   |
 
 
 ### OH_MediaKeySystem_IsSupported2()
