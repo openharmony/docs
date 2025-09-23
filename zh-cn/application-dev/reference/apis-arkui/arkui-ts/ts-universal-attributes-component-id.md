@@ -65,7 +65,7 @@ key(value: string): T
 
 ## 基于组件标识的拓展能力
 
-组件标识的拓展能力仅用于对应用的测试，以下各个接口示例，需要在应用工程的ohosTest/ets/test目录中调试，具体可以参考<!--RP1-->[自动化测试框架使用指导](../../../../application-dev/application-test/arkxtest-guidelines.md)<!--RP1-->。
+组件标识的拓展能力仅用于对应用的测试，以下各个接口示例，需要在应用工程的ohosTest/ets/test目录中调试，具体可以参考<!--RP1-->[自动化测试框架使用指导](../../../../application-dev/application-test/arkxtest-guidelines.md)<!--RP1End-->。
 
 ### getInspectorByKey<sup>9+</sup>
 
