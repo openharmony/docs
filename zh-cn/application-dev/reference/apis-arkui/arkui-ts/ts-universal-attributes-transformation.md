@@ -272,7 +272,7 @@ type Matrix4Transit = Matrix4Transit
 | angle                     | number&nbsp;\|&nbsp;string | 否   | 否   | 旋转角度。取值为正时相对于旋转轴方向顺时针转动，取值为负时相对于旋转轴方向逆时针转动。取值可为string类型，如'90deg'。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | centerX                   | number&nbsp;\|&nbsp;string | 否   | 是   | 变换中心点x轴坐标。表示组件变换中心点（即锚点）的x方向坐标。取值可为string类型，如'50'，'50%'。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | centerY                   | number&nbsp;\|&nbsp;string | 否   | 是   | 变换中心点y轴坐标。表示组件变换中心点（即锚点）的y方向坐标。取值可为string类型，如'50'，'50%'。<br/>单位：vp<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
-| centerZ<sup>10+</sup>     | number                     | 否   | 是   | z轴锚点，即3D旋转中心点的z轴分量。<br/>默认值：0<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+| centerZ<sup>10+</sup>     | number                     | 否   | 是   | z轴锚点，即3D旋转中心点的z轴分量。<br/>默认值：0<br/>单位：px<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | perspective<sup>10+</sup> | number                     | 否   | 是   | 相机放置的z轴坐标。数值大小表示视距，即相机到z=0平面的距离。取值的正负决定了相机观察的方向。当perspective=0，系统会自动计算适合的相机z轴位置，取值为负数。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值：0<br/>单位：px<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 
 ## RotateAngleOptions<sup>20+</sup>对象说明
@@ -291,7 +291,7 @@ type Matrix4Transit = Matrix4Transit
 | angleZ                    | number&nbsp;\|&nbsp;string | 否   | 是   | Z轴方向上的旋转角。取值为正时相对于旋转轴方向顺时针转动，取值为负时逆时针转动。取值可为string类型，如'90deg'。<br/>默认值：0<br/>取值范围：(-∞, +∞) |
 | centerX                   | number&nbsp;\|&nbsp;string | 否   | 是   | 变换中心点x轴坐标。表示组件变换中心点（即锚点）的x方向坐标。<br/>单位：vp<br/>默认值：'50%'<br/>取值范围：(-∞, +∞) |
 | centerY                   | number&nbsp;\|&nbsp;string | 否   | 是   | 变换中心点y轴坐标。表示组件变换中心点（即锚点）的y方向坐标。<br/>单位：vp<br/>默认值：'50%'<br/>取值范围：(-∞, +∞) |
-| centerZ                   | number                     | 否   | 是   | z轴锚点，即3D旋转中心点的z轴分量。<br/>默认值：0<br/>取值范围：(-∞, +∞) |
+| centerZ                   | number                     | 否   | 是   | z轴锚点，即3D旋转中心点的z轴分量。<br/>默认值：0<br/>单位：px<br/>取值范围：(-∞, +∞) |
 | perspective               | number                     | 否   | 是   | 相机放置的z轴坐标。数值大小表示视距，即相机到z=0平面的距离。取值的正负决定了相机观察的方向。当perspective=0，系统会自动计算适合的相机z轴位置，取值为负数。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值：0<br/>单位：px<br/>取值范围：(-∞, +∞) |
 
 ## TranslateOptions对象说明
