@@ -1,8 +1,14 @@
 # OH_ImageNative
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
-The OH_ImageNative struct describes the alias for an image object at the native layer.
+The struct describes the alias for an image object at the native layer.
 
 The struct cannot be directly operated. Instead, its fields must be operated by calling functions. The table below describes the content and operation mode of the OH_ImageNative struct.
 

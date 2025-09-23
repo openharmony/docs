@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -66,24 +67,22 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-// 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-let filePath: string = context.filesDir + "/test.jpg";
-const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
-let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-const imagePackerApi: image.ImagePacker = image.createImagePacker();
-imagePackerApi.packToData(imageSourceApi, packOpts)
-  .then((data: ArrayBuffer) => {
-    console.info('Succeeded in packing the image.');
-  }).catch((error: BusinessError) => {
-    console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
-  })
+async function PackToData(context : Context) {
+  // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+  let filePath: string = context.filesDir + "/test.jpg";
+  const imageSourceObj: image.ImageSource = image.createImageSource(filePath);
+  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
+  imagePackerObj.packToData(imageSourceObj, packOpts)
+    .then((data: ArrayBuffer) => {
+      console.info('Succeeded in packing the image.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
+    })
+}
 ```
 
 ## packToData<sup>13+</sup>
@@ -134,20 +133,22 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
-let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
-  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-  const imagePackerApi: image.ImagePacker = image.createImagePacker();
-  imagePackerApi.packToData(pixelMap, packOpts)
-    .then((data: ArrayBuffer) => {
-      console.info('Succeeded in packing the image.');
-    }).catch((error: BusinessError) => {
-    console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
+async function PackToData() {
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+  image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
+    let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+    const imagePackerObj: image.ImagePacker = image.createImagePacker();
+    imagePackerObj.packToData(pixelMap, packOpts)
+      .then((data: ArrayBuffer) => {
+        console.info('Succeeded in packing the image.');
+      }).catch((error: BusinessError) => {
+      console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
+    })
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to create PixelMap.code ${error.code},message is ${error.message}`);
   })
-}).catch((error: BusinessError) => {
-  console.error(`Failed to create PixelMap.code ${error.code},message is ${error.message}`);
-})
+}
 ```
 
 ## packing<sup>13+</sup>
@@ -184,7 +185,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
 async function Packing(context: Context) {
   const resourceMgr = context.resourceManager;
@@ -195,20 +195,20 @@ async function Packing(context: Context) {
   let imageSource: image.ImageSource = image.createImageSource(rawFile.buffer as ArrayBuffer, ops);
   let commodityPixelMap: image.PixelMap = await imageSource.createPixelMap();
   let pictureObj: image.Picture = image.createPicture(commodityPixelMap);
-  const imagePackerApi: image.ImagePacker = image.createImagePacker();
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
   let funcName = "Packing";
-  if (imagePackerApi != null) {
+  if (imagePackerObj != null) {
     let opts: image.PackingOption = {
       format: "image/jpeg",
       quality: 98,
       bufferSize: 10,
       desiredDynamicRange: image.PackingDynamicRange.AUTO,
       needsPackProperties: true};
-    await imagePackerApi.packing(pictureObj, opts).then((data: ArrayBuffer) => {
-        console.info(funcName, 'Succeeded in packing the image.'+ data);
-      }).catch((error: BusinessError) => {
-        console.error(funcName, 'Failed to pack the image.code ${error.code},message is ${error.message}');
-      });
+    await imagePackerObj.packing(pictureObj, opts).then((data: ArrayBuffer) => {
+      console.info(funcName, 'Succeeded in packing the image.'+ data);
+    }).catch((error: BusinessError) => {
+      console.error(funcName, `Failed to pack the image.code ${error.code},message is ${error.message}`);
+    });
   }
 }
 ```
@@ -245,33 +245,30 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
-import image from "@ohos.multimedia.image";
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-const resourceMgr = context.resourceManager;
-// 'moving_test.gif' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-const fileData = resourceMgr.getRawFileContent('moving_test.gif');
-const color = fileData.buffer;
-let imageSource = image.createImageSource(color);
-let pixelMapList = imageSource.createPixelMapList();
-let ops: image.PackingOptionsForSequence = {
-  frameCount: 3, // Set the number of frames in GIF encoding to 3.
-  delayTimeList: [10, 10, 10], // Set the delay time of three frames in GIF encoding to 100 ms, 100 ms, and 100 ms, respectively.
-  disposalTypes: [3, 2, 3], // Specify the frame transition modes of the three frames in GIF encoding as 3 (restore to the previous state), 2 (restore to the background color), and 3 (restore to the previous state).
-  loopCount: 0 // Set the number of loops in GIF encoding to infinite.
-};
-let Packer = image.createImagePacker();
-Packer.packToDataFromPixelmapSequence(pixelMapList, ops)
-  .then((data: ArrayBuffer) => {
-    console.info('Succeeded in packing.');
-  }).catch((error: BusinessError) => {
-  console.error('Failed to packing.');
+async function PackToDataFromPixelmapSequence(context : Context) {
+  const resourceMgr = context.resourceManager;
+  // 'moving_test.gif' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+  const fileData = await resourceMgr.getRawFileContent('moving_test.gif');
+  const color = fileData.buffer as ArrayBuffer;
+  let imageSource = image.createImageSource(color);
+  let pixelMapList = await imageSource.createPixelMapList();
+  let ops: image.PackingOptionsForSequence = {
+    frameCount: 3, // Set the number of frames in GIF encoding to 3.
+    delayTimeList: [10, 10, 10], // Set the delay time of three frames in GIF encoding to 100 ms, 100 ms, and 100 ms, respectively.
+    disposalTypes: [3, 2, 3], // Specify the frame transition modes of the three frames in GIF encoding as 3 (restore to the previous state), 2 (restore to the background color), and 3 (restore to the previous state).
+    loopCount: 0 // Set the number of loops in GIF encoding to infinite.
+  };
+  let packer = image.createImagePacker();
+  packer.packToDataFromPixelmapSequence(pixelMapList, ops)
+    .then((data: ArrayBuffer) => {
+      console.info('Succeeded in packing.');
+    }).catch((error: BusinessError) => {
+    console.error('Failed to packing.');
   })
+}
 ```
 
 ## release
@@ -295,14 +292,16 @@ ArkTS supports memory reclamation. Even if the application does not call **relea
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const imagePackerApi: image.ImagePacker = image.createImagePacker();
-imagePackerApi.release((err: BusinessError)=>{
-  if (err) {
-    console.error(`Failed to release image packaging.code ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in releasing image packaging.');
-  }
-})
+async function Release() {
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
+  imagePackerObj.release((err: BusinessError)=>{
+    if (err) {
+      console.error(`Failed to release image packaging.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in releasing image packaging.');
+    }
+  })
+}
 ```
 
 ## release
@@ -326,12 +325,14 @@ ArkTS supports memory reclamation. Even if the application does not call **relea
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const imagePackerApi: image.ImagePacker = image.createImagePacker();
-imagePackerApi.release().then(() => {
-  console.info('Succeeded in releasing image packaging.');
-}).catch((error: BusinessError) => {
-  console.error(`Failed to release image packaging.code ${error.code},message is ${error.message}`);
-})
+async function Release() {
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
+  imagePackerObj.release().then(() => {
+    console.info('Succeeded in releasing image packaging.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to release image packaging.code ${error.code},message is ${error.message}`);
+  })
+}
 ```
 
 ## packToFile<sup>11+</sup>
@@ -369,28 +370,26 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-// 'test.png' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-const path: string = context.filesDir + "/test.png";
-const imageSourceApi: image.ImageSource = image.createImageSource(path);
-let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
-const filePath: string = context.filesDir + "/image_source.jpg";
-let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-const imagePackerApi: image.ImagePacker = image.createImagePacker();
-imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err: BusinessError) => {
-  if (err) {
-    console.error(`Failed to pack the image to file.code ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in packing the image to file.');
-  }
-})
+async function PackToFile(context : Context) {
+  // 'test.png' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+  const path: string = context.filesDir + "/test.png";
+  const imageSourceObj: image.ImageSource = image.createImageSource(path);
+  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
+  const filePath: string = context.filesDir + "/image_source.jpg";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
+  imagePackerObj.packToFile(imageSourceObj, file.fd, packOpts, (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to pack the image to file.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in packing the image to file.');
+    }
+  })
+}
 ```
 
 ## packToFile<sup>11+</sup>
@@ -433,26 +432,24 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-// 'test.png' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-const path: string = context.filesDir + "/test.png";
-const imageSourceApi: image.ImageSource = image.createImageSource(path);
-let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
-const filePath: string = context.filesDir + "/image_source.jpg";
-let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-const imagePackerApi: image.ImagePacker = image.createImagePacker();
-imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(() => {
-  console.info('Succeeded in packing the image to file.');
-}).catch((error: BusinessError) => { 
-  console.error(`Failed to pack the image to file.code ${error.code},message is ${error.message}`);
-}) 
+async function PackToFile(context : Context) {
+  // 'test.png' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+  const path: string = context.filesDir + "/test.png";
+  const imageSourceObj: image.ImageSource = image.createImageSource(path);
+  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
+  const filePath: string = context.filesDir + "/image_source.jpg";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
+  imagePackerObj.packToFile(imageSourceObj, file.fd, packOpts).then(() => {
+    console.info('Succeeded in packing the image to file.');
+  }).catch((error: BusinessError) => { 
+    console.error(`Failed to pack the image to file.code ${error.code},message is ${error.message}`);
+  })
+}
 ```
 
 ## packToFile<sup>11+</sup>
@@ -493,29 +490,27 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
-let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-const path: string = context.filesDir + "/pixel_map.jpg";
-image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
-  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-  let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  const imagePackerApi: image.ImagePacker = image.createImagePacker();
-  imagePackerApi.packToFile(pixelmap, file.fd, packOpts, (err: BusinessError) => {
-    if (err) {
-      console.error(`Failed to pack the image to file.code ${err.code},message is ${err.message}`);
-    } else {
-      console.info('Succeeded in packing the image to file.');
-    }
+async function PackToFile(context : Context) {
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
+  const path: string = context.filesDir + "/pixel_map.jpg";
+  image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
+    let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    const imagePackerObj: image.ImagePacker = image.createImagePacker();
+    imagePackerObj.packToFile(pixelmap, file.fd, packOpts, (err: BusinessError) => {
+      if (err) {
+        console.error(`Failed to pack the image to file.code ${err.code},message is ${err.message}`);
+      } else {
+        console.info('Succeeded in packing the image to file.');
+      }
+    })
   })
-})
+}
 ```
 
 ## packToFile<sup>11+</sup>
@@ -561,28 +556,26 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
-let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-const path: string = context.filesDir + "/pixel_map.jpg";
-image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
-  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-  let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  const imagePackerApi: image.ImagePacker = image.createImagePacker();
-  imagePackerApi.packToFile(pixelmap, file.fd, packOpts)
-    .then(() => {
-      console.info('Succeeded in packing the image to file.');
-    }).catch((error: BusinessError) => {
-    console.error(`Failed to pack the image to file.code ${error.code},message is ${error.message}`);
+async function PackToFile(context : Context) {
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
+  const path: string = context.filesDir + "/pixel_map.jpg";
+  image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
+    let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    const imagePackerObj: image.ImagePacker = image.createImagePacker();
+    imagePackerObj.packToFile(pixelmap, file.fd, packOpts)
+      .then(() => {
+        console.info('Succeeded in packing the image to file.');
+      }).catch((error: BusinessError) => {
+      console.error(`Failed to pack the image to file.code ${error.code},message is ${error.message}`);
+    })
   })
-})
+}
 ```
 
 ## packToFile<sup>13+</sup>
@@ -620,7 +613,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
 async function PackToFile(context: Context) {
@@ -634,8 +626,8 @@ async function PackToFile(context: Context) {
   let pictureObj: image.Picture = image.createPicture(commodityPixelMap);
 
   let funcName = "PackToFile";
-  const imagePackerApi: image.ImagePacker = image.createImagePacker();
-  if (imagePackerApi != null) {
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
+  if (imagePackerObj != null) {
     const filePath: string = context.filesDir + "/test.jpg";
     let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
     let packOpts: image.PackingOption = {
@@ -644,10 +636,10 @@ async function PackToFile(context: Context) {
       bufferSize: 10,
       desiredDynamicRange: image.PackingDynamicRange.AUTO,
       needsPackProperties: true};
-    await imagePackerApi.packToFile(pictureObj, file.fd, packOpts).then(() => {
+    await imagePackerObj.packToFile(pictureObj, file.fd, packOpts).then(() => {
       console.info(funcName, 'Succeeded in packing the image to file.');
     }).catch((error: BusinessError) => {
-      console.error(funcName, 'Failed to pack the image to file.code ${error.code},message is ${error.message}');
+      console.error(funcName, `Failed to pack the image to file.code ${error.code},message is ${error.message}`);
     });
   }
 }
@@ -686,36 +678,33 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
-import fs from '@ohos.file.fs';
-import image from "@ohos.multimedia.image";
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-const resourceMgr = context.resourceManager;
-// 'moving_test.gif' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-const fileData = await resourceMgr.getRawFileContent('moving_test.gif');
-const color = fileData.buffer;
-let imageSource = image.createImageSource(color);
-let pixelMapList = await imageSource.createPixelMapList();
-let path: string = context.cacheDir + '/result.gif';
-let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-let ops: image.PackingOptionsForSequence = {
-  frameCount: 3, // Set the number of frames in GIF encoding to 3.
-  delayTimeList: [10, 10, 10], // Set the delay time of three frames in GIF encoding to 100 ms, 100 ms, and 100 ms, respectively.
-  disposalTypes: [3, 2, 3], // Specify the frame transition modes of the three frames in GIF encoding as 3 (restore to the previous state), 2 (restore to the background color), and 3 (restore to the previous state).
-  loopCount: 0 // Set the number of loops in GIF encoding to infinite.
-};
-let Packer = image.createImagePacker();
-Packer.packToFileFromPixelmapSequence(pixelMapList, file.fd, ops)
-  .then(() => {
-    console.info('Succeeded in packToFileMultiFrames.');
-  }).catch((error: BusinessError) => {
-  console.error('Failed to packToFileMultiFrames.');
+async function PackToFile(context : Context) {
+  const resourceMgr = context.resourceManager;
+  // 'moving_test.gif' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+  const fileData = await resourceMgr.getRawFileContent('moving_test.gif');
+  const color = fileData.buffer;
+  let imageSource = image.createImageSource(color);
+  let pixelMapList = await imageSource.createPixelMapList();
+  let path: string = context.cacheDir + '/result.gif';
+  let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  let ops: image.PackingOptionsForSequence = {
+    frameCount: 3, // Set the number of frames in GIF encoding to 3.
+    delayTimeList: [10, 10, 10], // Set the delay time of three frames in GIF encoding to 100 ms, 100 ms, and 100 ms, respectively.
+    disposalTypes: [3, 2, 3], // Specify the frame transition modes of the three frames in GIF encoding as 3 (restore to the previous state), 2 (restore to the background color), and 3 (restore to the previous state).
+    loopCount: 0 // Set the number of loops in GIF encoding to infinite.
+  };
+  let packer = image.createImagePacker();
+  packer.packToFileFromPixelmapSequence(pixelMapList, file.fd, ops)
+    .then(() => {
+      console.info('Succeeded in packToFileMultiFrames.');
+    }).catch((error: BusinessError) => {
+    console.error('Failed to packToFileMultiFrames.');
   })
+}
 ```
 
 ## packing<sup>(deprecated)</sup>
@@ -742,25 +731,23 @@ Compresses or re-encodes an image. This API uses an asynchronous callback to ret
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-// 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-let filePath: string = context.filesDir + "/test.jpg";
-const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
-let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
-const imagePackerApi: image.ImagePacker = image.createImagePacker();
-imagePackerApi.packing(imageSourceApi, packOpts, (err: BusinessError, data: ArrayBuffer) => {
-  if (err) {
-    console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in packing the image.');
-  }
-})
+async function Packing(context : Context) {
+  // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+  let filePath: string = context.filesDir + "/test.jpg";
+  const imageSourceObj: image.ImageSource = image.createImageSource(filePath);
+  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
+  imagePackerObj.packing(imageSourceObj, packOpts, (err: BusinessError, data: ArrayBuffer) => {
+    if (err) {
+      console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in packing the image.');
+    }
+  })
+}
 ```
 
 ## packing<sup>(deprecated)</sup>
@@ -792,24 +779,22 @@ Compresses or re-encodes an image. This API uses a promise to return the result.
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-// 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-let filePath: string = context.filesDir + "/test.jpg";
-const imageSourceApi: image.ImageSource = image.createImageSource(filePath);
-let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-const imagePackerApi: image.ImagePacker = image.createImagePacker();
-imagePackerApi.packing(imageSourceApi, packOpts)
-  .then((data: ArrayBuffer) => {
-    console.info('Succeeded in packing the image.');
-  }).catch((error: BusinessError) => {
-    console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
-  })
+async function Packing(context : Context) {
+  // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+  let filePath: string = context.filesDir + "/test.jpg";
+  const imageSourceObj: image.ImageSource = image.createImageSource(filePath);
+  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
+  imagePackerObj.packing(imageSourceObj, packOpts)
+    .then((data: ArrayBuffer) => {
+      console.info('Succeeded in packing the image.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
+    })
+}
 ```
 
 ## packing<sup>(deprecated)</sup>
@@ -842,21 +827,23 @@ Compresses or re-encodes an image. This API uses an asynchronous callback to ret
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
-let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
-  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-  const imagePackerApi: image.ImagePacker = image.createImagePacker();
-  imagePackerApi.packing(pixelMap, packOpts, (err: BusinessError, data: ArrayBuffer) => {
-    if (err) {
-      console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
-    } else {
-      console.info('Succeeded in packing the image.');
-    }
+async function Packing() {
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
+  image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
+    let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+    const imagePackerObj: image.ImagePacker = image.createImagePacker();
+    imagePackerObj.packing(pixelMap, packOpts, (err: BusinessError, data: ArrayBuffer) => {
+      if (err) {
+        console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
+      } else {
+        console.info('Succeeded in packing the image.');
+      }
+    })
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to create the PixelMap.code ${error.code},message is ${error.message}`);
   })
-}).catch((error: BusinessError) => {
-  console.error(`Failed to create the PixelMap.code ${error.code},message is ${error.message}`);
-})
+}
 ```
 
 ## packing<sup>(deprecated)</sup>
@@ -893,18 +880,20 @@ Compresses or re-encodes an image. This API uses a promise to return the result.
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
-let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
-  let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
-  const imagePackerApi: image.ImagePacker = image.createImagePacker();
-  imagePackerApi.packing(pixelMap, packOpts)
-    .then((data: ArrayBuffer) => {
-      console.info('Succeeded in packing the image.');
-    }).catch((error: BusinessError) => {
-    console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
+async function Packing() {
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
+  image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
+    let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
+    const imagePackerObj: image.ImagePacker = image.createImagePacker();
+    imagePackerObj.packing(pixelMap, packOpts)
+      .then((data: ArrayBuffer) => {
+        console.info('Succeeded in packing the image.');
+      }).catch((error: BusinessError) => {
+      console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
+    })
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to create PixelMap.code ${error.code},message is ${error.message}`);
   })
-}).catch((error: BusinessError) => {
-  console.error(`Failed to create PixelMap.code ${error.code},message is ${error.message}`);
-})
+}
 ```

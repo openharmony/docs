@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 This topic describes how to create an ImageSource object, obtain the width and height of the PixelMap, and release the ImageSource object.
 
@@ -28,7 +29,6 @@ Create a native C++ application in DevEco Studio. The project created by default
 After creating an ImageSource instance, obtain and modify property values, create a PixelMap object by using decoding parameters, and obtain the number of image frames.
 
 ```c++
-#include <linux/kd.h>
 #include <string>
 #include <hilog/log.h>
 #include <multimedia/image_framework/image/image_common.h>
@@ -56,7 +56,7 @@ static napi_value sourceTest(napi_env env, napi_callback_info info)
     size_t argCount = NUM_1;
     if (napi_get_cb_info(env, info, &argCount, argValue, nullptr, nullptr) != napi_ok || argCount < NUM_1 ||
         argValue[NUM_0] == nullptr) {
-        OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest napi_get_cb_info failed, argCount: %{public}d.", argCount);
+        OH_LOG_ERROR(LOG_APP, "ImageSourceNativeCTest sourceTest napi_get_cb_info failed, argCount: %{public}lu.", static_cast<int>(argCount));
         return getJsResult(env, IMAGE_BAD_PARAMETER);
     }
     char name[1024];

@@ -2,14 +2,17 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
 The file declares the APIs used to decode an image source into a PixelMap.
 
 **Library**: libimage_source_ndk.z.so
+
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **File to include**: <multimedia/image_framework/image_source_mdk.h>
 
@@ -25,10 +28,10 @@ The file declares the APIs used to decode an image source into a PixelMap.
 | -- | -- | -- |
 | [OhosImageRegion](capi-image-ohosimageregion.md) | - | Describes the region of an image source to decode. It is a member variable of [OhosImageDecodingOps](capi-image-ohosimagedecodingops.md).|
 | [ImageSourceNative_](capi-image-imagesourcenative-.md) | ImageSourceNative | Describes an image source object at the native layer.|
-| [OhosImageSourceOps](capi-image-ohosimagesourceops.md) | - | Describes the image source options. It is used in [OH_ImageSource_Create](#oh_imagesource_create) and [OH_ImageSource_CreateIncremental](#oh_imagesource_createincremental).|
+| [OhosImageSourceOps](capi-image-ohosimagesourceops.md) | - | Describes the image source options. It is used in [OH_ImageSource_CreateFromUri](capi-image-source-mdk-h.md#oh_imagesource_createfromuri), [OH_ImageSource_CreateFromFd](capi-image-source-mdk-h.md#oh_imagesource_createfromfd), [OH_ImageSource_CreateFromData](capi-image-source-mdk-h.md#oh_imagesource_createfromdata), and [OH_ImageSource_CreateIncremental](#oh_imagesource_createincremental).|
 | [OhosImageDecodingOps](capi-image-ohosimagedecodingops.md) | - | Describes the options for decoding an image source. It is used in [OH_ImageSource_CreatePixelMap](#oh_imagesource_createpixelmap) and [OH_ImageSource_CreatePixelMapList](#oh_imagesource_createpixelmaplist).|
 | [OhosImageSourceInfo](capi-image-ohosimagesourceinfo.md) | - | Describes the image source information, which is obtained by calling [OH_ImageSource_GetImageInfo](#oh_imagesource_getimageinfo).|
-| [OhosImageSource](capi-image-ohosimagesource.md) | - | Describes the input resource of an image source. Only one type of resource is accepted at a time. The image source is obtained by calling [OH_ImageSource_Create](#oh_imagesource_create).|
+| [OhosImageSource](capi-image-ohosimagesource.md) | - | Describes the input resource of an image source. Only one type of resource is accepted at a time. The image source is obtained by calling [OH_ImageSource_CreateFromUri](capi-image-source-mdk-h.md#oh_imagesource_createfromuri), [OH_ImageSource_CreateFromFd](capi-image-source-mdk-h.md#oh_imagesource_createfromfd), or [OH_ImageSource_CreateFromData](capi-image-source-mdk-h.md#oh_imagesource_createfromdata).|
 | [OhosImageSourceDelayTimeList](capi-image-ohosimagesourcedelaytimelist.md) | - | Describes the delay time list of an image source. The delay time list is obtained by calling [OH_ImageSource_GetDelayTime](#oh_imagesource_getdelaytime).|
 | [OhosImageSourceSupportedFormat](capi-image-ohosimagesourcesupportedformat.md) | - | Describes the format string supported by an image source. It is used in [OhosImageSourceSupportedFormatList](capi-image-ohosimagesourcesupportedformatlist.md) and [OH_ImageSource_GetSupportedFormats](#oh_imagesource_getsupportedformats).|
 | [OhosImageSourceSupportedFormatList](capi-image-ohosimagesourcesupportedformatlist.md) | - | Describes the format string list supported by an image source. It is obtained by calling [OH_ImageSource_GetSupportedFormats](#oh_imagesource_getsupportedformats).|
@@ -40,19 +43,19 @@ The file declares the APIs used to decode an image source into a PixelMap.
 | Name| Description|
 | -- | -- |
 | [int32_t OH_ImageSource_Create(napi_env env, struct OhosImageSource* src, struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_create) | Creates an ImageSource object at the JavaScript native layer based on the specified OhosImageSource and OhosImageSourceOps structs.|
-| [int32_t OH_ImageSource_CreateFromUri(napi_env env, char* uri, size_t size,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromuri) | Creates an ImageSource object at the JavaScript native layer based on the specified URI and [OhosImageSourceOps](capi-image-ohosimagesourceops.md) struct.|
-| [int32_t OH_ImageSource_CreateFromFd(napi_env env, int32_t fd,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromfd) | Creates an ImageSource object at the JavaScript native layer based on the specified file descriptor and [OhosImageSourceOps](capi-image-ohosimagesourceops.md) struct.|
-| [int32_t OH_ImageSource_CreateFromData(napi_env env, uint8_t* data, size_t dataSize,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromdata) | Creates an ImageSource object at the JavaScript native layer based on the specified image source buffer (defined by **data**) and [OhosImageSourceOps](capi-image-ohosimagesourceops.md) struct.|
-| [int32_t OH_ImageSource_CreateFromRawFile(napi_env env, RawFileDescriptor rawFile,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromrawfile) | Creates an ImageSource object at the JavaScript native layer based on the specified [RawFileDescriptor](../apis-localization-kit/capi-rawfile-rawfiledescriptor.md) and [OhosImageSourceOps](capi-image-ohosimagesourceops.md) structs.|
+| [int32_t OH_ImageSource_CreateFromUri(napi_env env, char* uri, size_t size, struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromuri) | Creates an ImageSource object at the JavaScript native layer based on the specified URI and [OhosImageSourceOps](capi-image-ohosimagesourceops.md) struct.|
+| [int32_t OH_ImageSource_CreateFromFd(napi_env env, int32_t fd, struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromfd) | Creates an ImageSource object at the JavaScript native layer based on the specified file descriptor and [OhosImageSourceOps](capi-image-ohosimagesourceops.md) struct.|
+| [int32_t OH_ImageSource_CreateFromData(napi_env env, uint8_t* data, size_t dataSize, struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromdata) | Creates an ImageSource object at the JavaScript native layer based on the specified image source buffer (defined by **data**) and [OhosImageSourceOps](capi-image-ohosimagesourceops.md) struct.|
+| [int32_t OH_ImageSource_CreateFromRawFile(napi_env env, RawFileDescriptor rawFile, struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createfromrawfile) | Creates an ImageSource object at the JavaScript native layer based on the specified [RawFileDescriptor](../apis-localization-kit/capi-rawfile-rawfiledescriptor.md) and [OhosImageSourceOps](capi-image-ohosimagesourceops.md) structs.|
 | [int32_t OH_ImageSource_CreateIncremental(napi_env env, struct OhosImageSource* source, struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createincremental) | Creates an ImageSource object at the JavaScript native layer based on the specified [OhosImageSource](capi-image-ohosimagesource.md) and [OhosImageSourceOps](capi-image-ohosimagesourceops.md) structs. The image source data will be updated through [OH_ImageSource_UpdateData](#oh_imagesource_updatedata).|
-| [int32_t OH_ImageSource_CreateIncrementalFromData(napi_env env, uint8_t* data, size_t dataSize,struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createincrementalfromdata) | Creates an ImageSource object of the incremental type at the JavaScript native layer based on the specified image source buffer (defined by **data**) and [OhosImageSourceOps](capi-image-ohosimagesourceops.md) struct. The image data is updated through [OH_ImageSource_UpdateData](#oh_imagesource_updatedata).|
+| [int32_t OH_ImageSource_CreateIncrementalFromData(napi_env env, uint8_t* data, size_t dataSize, struct OhosImageSourceOps* ops, napi_value *res)](#oh_imagesource_createincrementalfromdata) | Creates an ImageSource object of the incremental type at the JavaScript native layer based on the specified image source buffer (defined by **data**) and [OhosImageSourceOps](capi-image-ohosimagesourceops.md) struct. The image data is updated through [OH_ImageSource_UpdateData](#oh_imagesource_updatedata).|
 | [int32_t OH_ImageSource_GetSupportedFormats(struct OhosImageSourceSupportedFormatList* res)](#oh_imagesource_getsupportedformats) | Obtains all supported decoding formats.|
 | [ImageSourceNative* OH_ImageSource_InitNative(napi_env env, napi_value source)](#oh_imagesource_initnative) | Converts an ImageSource object at the JavaScript native layer into an [ImageSourceNative](capi-image-imagesourcenative-.md) object.|
-| [int32_t OH_ImageSource_CreatePixelMap(const ImageSourceNative* native,struct OhosImageDecodingOps* ops, napi_value *res)](#oh_imagesource_createpixelmap) | Decodes an ImageSourceNative object to obtain a PixelMap object at the JavaScript native layer based on the specified [OhosImageDecodingOps](capi-image-ohosimagedecodingops.md) struct.|
-| [int32_t OH_ImageSource_CreatePixelMapList(const ImageSourceNative* native,struct OhosImageDecodingOps* ops, napi_value *res)](#oh_imagesource_createpixelmaplist) | Decodes an ImageSourceNative object to obtain all PixelMap objects at the JavaScript native layer based on the specified [OhosImageDecodingOps](capi-image-ohosimagedecodingops.md) struct.|
-| [int32_t OH_ImageSource_GetDelayTime(const ImageSourceNative* native,struct OhosImageSourceDelayTimeList* res)](#oh_imagesource_getdelaytime) | Obtains the delay time list from an ImageSourceNative object (such as GIF image source).|
+| [int32_t OH_ImageSource_CreatePixelMap(const ImageSourceNative* native, struct OhosImageDecodingOps* ops, napi_value *res)](#oh_imagesource_createpixelmap) | Decodes an ImageSourceNative object to obtain a PixelMap object at the JavaScript native layer based on the specified [OhosImageDecodingOps](capi-image-ohosimagedecodingops.md) struct.|
+| [int32_t OH_ImageSource_CreatePixelMapList(const ImageSourceNative* native, struct OhosImageDecodingOps* ops, napi_value *res)](#oh_imagesource_createpixelmaplist) | Decodes an ImageSourceNative object to obtain all PixelMap objects at the JavaScript native layer based on the specified [OhosImageDecodingOps](capi-image-ohosimagedecodingops.md) struct.|
+| [int32_t OH_ImageSource_GetDelayTime(const ImageSourceNative* native, struct OhosImageSourceDelayTimeList* res)](#oh_imagesource_getdelaytime) | Obtains the delay time list from an ImageSourceNative object (such as GIF image source).|
 | [int32_t OH_ImageSource_GetFrameCount(const ImageSourceNative* native, uint32_t *res)](#oh_imagesource_getframecount) | Obtains the number of frames from an ImageSourceNative object.|
-| [int32_t OH_ImageSource_GetImageInfo(const ImageSourceNative* native, int32_t index,struct OhosImageSourceInfo* info)](#oh_imagesource_getimageinfo) | Obtains image source information from an ImageSourceNative object by index.|
+| [int32_t OH_ImageSource_GetImageInfo(const ImageSourceNative* native, int32_t index, struct OhosImageSourceInfo* info)](#oh_imagesource_getimageinfo) | Obtains image source information from an ImageSourceNative object by index.|
 | [int32_t OH_ImageSource_GetImageProperty(const ImageSourceNative* native, struct OhosImageSourceProperty* key, struct OhosImageSourceProperty* value)](#oh_imagesource_getimageproperty) | Obtains the value of an image property from an ImageSourceNative object.|
 | [int32_t OH_ImageSource_UpdateData(const ImageSourceNative* native, struct OhosImageSourceUpdateData* data)](#oh_imagesource_updatedata) | Updates the data of an ImageSourceNative object.|
 | [int32_t OH_ImageSource_Release(ImageSourceNative* native)](#oh_imagesource_release) | Releases an ImageSourceNative object.|

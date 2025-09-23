@@ -2,7 +2,7 @@
 
 ## Overview
 
-The ImageEffect_FilterNames struct describes the filter name information.
+The struct describes the filter name information.
 
 **Since**: 12
 

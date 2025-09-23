@@ -1,8 +1,14 @@
 # ImagePacker_Native_
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
-ImagePacker_Native_ defines an image packer object at the native layer.
+The struct describes an image packer object at the native layer.
 
 **Since**: 11
 

@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -37,7 +38,7 @@ Creates a Picture object based on a main PixelMap.
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -46,8 +47,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
 async function CreatePicture(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("test.jpg");
@@ -87,7 +86,7 @@ Creates a Picture object from a MessageSequence object.
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -99,7 +98,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
 class MySequence implements rpc.Parcelable {
   picture: image.Picture | null = null;
@@ -119,9 +117,9 @@ class MySequence implements rpc.Parcelable {
   unmarshalling(messageSequence : rpc.MessageSequence) {
     this.picture = image.createPictureFromParcel(messageSequence);
     this.picture.getMainPixelmap().getImageInfo().then((imageInfo : image.ImageInfo) => {
-      console.info('Unmarshalling to get mainPixelmap information height:' + imageInfo.size.height + ' width:' + imageInfo.size.width);
+      console.info(`Unmarshalling to get mainPixelmap information height:${imageInfo.size.height} width:${imageInfo.size.width}`);
     }).catch((error: BusinessError) => {
-      console.error('Unmarshalling failed error.code: ${error.code} ,error.message: ${error.message}');
+      console.error(`Unmarshalling failed error.code: ${error.code} ,error.message: ${error.message}`);
     });
     return true;
   }
@@ -139,10 +137,10 @@ async function Marshalling_UnMarshalling(context: Context) {
   if (pictureObj != null) {
     let parcelable: MySequence = new MySequence(pictureObj);
     let data: rpc.MessageSequence = rpc.MessageSequence.create();
-    // marshalling.
+    // Implement serialization.
     data.writeParcelable(parcelable);
     let ret: MySequence = new MySequence(pictureObj);
-    // unmarshalling.
+    // Implement deserialization.
     data.readParcelable(ret);
   } else {
     console.error('PictureObj is null');
@@ -309,7 +307,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { image } from '@kit.ImageKit';
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -373,7 +370,7 @@ Creates a PixelMap object based on the surface ID and region information. The si
 
 > **NOTE**
 >
-> When working with foldable devices, switching between folded and unfolded states may cause the API call to fail due to the rotation angle of surface. To address this, you need to adjust the width and height according to the rotation angle. In such cases, [image.createPixelMapFromSurface](#imagecreatepixelmapfromsurface15) is recommended.
+> For foldable devices, during switching between folded and unfolded states, the API call may fail because of the built-in rotation angle of the surface. You need to adjust the width and height to match the rotation angle. You are advised to use [image.createPixelMapFromSurface](#imagecreatepixelmapfromsurface15).
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -382,7 +379,7 @@ Creates a PixelMap object based on the surface ID and region information. The si
 | Name                | Type                | Mandatory| Description                                    |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | Yes  | Surface ID, which can be obtained through the preview component, for example, [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).|
-| region                 | [Region](arkts-apis-image-i.md#region8)  | Yes  | Region information. The width and height in [Region](arkts-apis-image-i.md#region8).size must be the same as those of the preview stream.|
+| region                 | [Region](arkts-apis-image-i.md#region8)  | Yes  | Area of the image to capture. Capture must start from the top-left corner of the screen, so **x** and **y** in **Region** must be **0**, and **Width** and **height** in **Region.size** must be within the range [1, preview stream width] and [1, preview stream height], respectively. To capture any area, first use [image.createPixelMapFromSurface](#imagecreatepixelmapfromsurface15) to obtain the full screen, and then use [crop](arkts-apis-image-PixelMap.md#crop9) to capture the desired area.|
 
 **Return value**
 
@@ -423,7 +420,7 @@ Creates a PixelMap object based on the surface ID and region information. This A
 
 > **NOTE**
 >
-> When working with foldable devices, switching between folded and unfolded states may cause the API call to fail due to the rotation angle of surface. To address this, you need to adjust the width and height according to the rotation angle. In such cases, [image.createPixelMapFromSurfaceSync](#imagecreatepixelmapfromsurfacesync15) is recommended.
+> For foldable devices, during switching between folded and unfolded states, the API call may fail because of the built-in rotation angle of the surface. You need to adjust the width and height to match the rotation angle. In such cases, [image.createPixelMapFromSurfaceSync](#imagecreatepixelmapfromsurfacesync15) is recommended.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -432,7 +429,7 @@ Creates a PixelMap object based on the surface ID and region information. This A
 | Name                | Type                | Mandatory| Description                                    |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | Yes  | Surface ID, which can be obtained through the preview component, for example, [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).|
-| region                 | [Region](arkts-apis-image-i.md#region8)  | Yes  | Region information. The width and height in [Region](arkts-apis-image-i.md#region8).size must be the same as those of the preview stream.|
+| region                 | [Region](arkts-apis-image-i.md#region8)  | Yes  | Area of the image to capture. Capture must start from the top-left corner of the screen, so **x** and **y** in **Region** must be **0**, and **Width** and **height** in **Region.size** must be within the range [1, preview stream width] and [1, preview stream height], respectively. To capture any area, first use [image.createPixelMapFromSurfaceSync](#imagecreatepixelmapfromsurfacesync15) to obtain the full screen, and then use [cropSync](arkts-apis-image-PixelMap.md#cropsync12) to capture the desired area.|
 
 **Return value**
 
@@ -442,7 +439,7 @@ Creates a PixelMap object based on the surface ID and region information. This A
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -453,11 +450,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
 async function Demo(surfaceId: string) {
   let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-  let pixelMap : image.PixelMap = image.createPixelMapFromSurfaceSync(surfaceId, region);
+  let pixelMap: image.PixelMap = image.createPixelMapFromSurfaceSync(surfaceId, region);
   return pixelMap;
 }
 ```
@@ -484,7 +479,7 @@ Creates a PixelMap object from a surface ID. This API uses a promise to return t
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -497,7 +492,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo(surfaceId: string) {
+async function CreatePixelMapFromSurface(surfaceId: string) {
   image.createPixelMapFromSurface(surfaceId).then(() => {
     console.info('Succeeded in creating pixelmap from Surface');
   }).catch((error: BusinessError) => {
@@ -528,7 +523,7 @@ Creates a PixelMap object from a surface ID. This API returns the result synchro
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -539,13 +534,12 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function Demo(surfaceId: string) {
+async function CreatePixelMapFromSurfaceSync(surfaceId: string) {
   let pixelMap : image.PixelMap = image.createPixelMapFromSurfaceSync(surfaceId);
   return pixelMap;
 }
 ```
+
 ## image.createPixelMapSync<sup>12+</sup>
 
 createPixelMapSync(colors: ArrayBuffer, options: InitializationOptions): PixelMap
@@ -569,7 +563,7 @@ Creates a PixelMap object with the specified properties. By default, the BGRA_88
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -578,9 +572,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function CreatePixelMapSync() {
+function CreatePixelMapSync() {
   const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
   let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
   let pixelMap : image.PixelMap = image.createPixelMapSync(color, opts);
@@ -609,7 +601,7 @@ Creates a PixelMap object with the specified pixel properties. This API returns 
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -618,9 +610,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function CreatePixelMapSync() {
+function CreatePixelMapSync() {
   let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
   let pixelMap : image.PixelMap = image.createPixelMapSync(opts);
   return pixelMap;
@@ -662,9 +652,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function CreatePixelMapSync() {
+function CreatePixelMapSync() {
   const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
   let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
   let pixelMap : image.PixelMap = image.createPixelMapUsingAllocatorSync(color, opts, image.AllocatorType.AUTO);
@@ -705,9 +693,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function CreatePixelMapSync() {
+function CreatePixelMapSync() {
   let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
   let pixelMap : image.PixelMap = image.createPixelMapUsingAllocatorSync(opts, image.AllocatorType.AUTO);
   return pixelMap;
@@ -732,7 +718,7 @@ Converts a non-premultiplied alpha of a PixelMap to a premultiplied one and stor
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -793,7 +779,7 @@ Converts a non-premultiplied alpha of a PixelMap to a premultiplied one and stor
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -846,7 +832,7 @@ Converts a premultiplied alpha of a PixelMap to a non-premultiplied one and stor
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -907,7 +893,7 @@ Converts a premultiplied alpha of a PixelMap to a non-premultiplied one and stor
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -966,16 +952,12 @@ Creates an ImageSource instance based on a given URI.
 | [ImageSource](arkts-apis-image-ImageSource.md) | ImageSource instance. If the operation fails, undefined is returned.|
 
 **Example**
-
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
-
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-// 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-const path: string = context.filesDir + "/test.jpg";
-const imageSourceApi: image.ImageSource = image.createImageSource(path);
+async function CreateImageSource(context : Context) {
+  // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+  const path: string = context.filesDir + "/test.jpg";
+  const imageSourceObj: image.ImageSource = image.createImageSource(path);
+}
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -1005,16 +987,13 @@ Creates an ImageSource instance based on a given URI.
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
-
-let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-// 'test.png' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-const path: string = context.filesDir + "/test.png";
-let imageSourceApi: image.ImageSource = image.createImageSource(path, sourceOptions);
+async function CreateImageSource(context : Context) {
+  let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
+  // 'test.png' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+  const path: string = context.filesDir + "/test.png";
+  let imageSourceObj: image.ImageSource = image.createImageSource(path, sourceOptions);
+}
 ```
 
 ## image.createImageSource<sup>7+</sup>
@@ -1041,17 +1020,15 @@ Creates an ImageSource instance based on a given file descriptor.
 
 **Example**
 
-<!--code_no_check-->
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
-import { common } from '@kit.AbilityKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-// 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-let filePath: string = context.filesDir + "/test.jpg";
-let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-const imageSourceApi: image.ImageSource = image.createImageSource(file.fd);
+async function CreateImageSource(context : Context) {
+  // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+  let filePath: string = context.filesDir + "/test.jpg";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  const imageSourceObj: image.ImageSource = image.createImageSource(file.fd);
+}
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -1081,18 +1058,16 @@ Creates an ImageSource instance based on a given file descriptor.
 
 **Example**
 
-<!--code_no_check-->
 ```ts
 import { fileIo as fs } from '@kit.CoreFileKit';
-import { common } from '@kit.AbilityKit';
 
-let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-// 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-const filePath: string = context.filesDir + "/test.jpg";
-let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-const imageSourceApi: image.ImageSource = image.createImageSource(file.fd, sourceOptions);
+async function CreateImageSource(context : Context) {
+  let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
+  // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+  const filePath: string = context.filesDir + "/test.jpg";
+  let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  const imageSourceObj: image.ImageSource = image.createImageSource(file.fd, sourceOptions);
+}
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -1119,12 +1094,13 @@ Creates an ImageSource instance based on buffers. The data passed by **buf** mus
 | --------------------------- | -------------------------------------------- |
 | [ImageSource](arkts-apis-image-ImageSource.md) | ImageSource instance. If the operation fails, undefined is returned.|
 
-
 **Example**
 
 ```ts
-const buf: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
-const imageSourceApi: image.ImageSource = image.createImageSource(buf);
+async function CreateImageSource() {
+  const buf: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
+  const imageSourceObj: image.ImageSource = image.createImageSource(buf);
+}
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -1155,9 +1131,11 @@ Creates an ImageSource instance based on buffers. The data passed by **buf** mus
 **Example**
 
 ```ts
-const data: ArrayBuffer = new ArrayBuffer(112);
-let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
-const imageSourceApi: image.ImageSource = image.createImageSource(data, sourceOptions);
+async function CreateImageSource() {
+  const data: ArrayBuffer = new ArrayBuffer(112);
+  let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
+  const imageSourceObj: image.ImageSource = image.createImageSource(data, sourceOptions);
+}
 ```
 
 ## image.createImageSource<sup>11+</sup>
@@ -1185,21 +1163,20 @@ Creates an ImageSource instance based on the raw file descriptor of an image res
 
 **Example**
 
-<!--code_no_check-->
 ```ts
 import { resourceManager } from '@kit.LocalizationKit';
-import { common } from '@kit.AbilityKit';
-
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-// Obtain a resource manager.
-const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
-// 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor: resourceManager.RawFileDescriptor) => {
-  const imageSourceApi: image.ImageSource = image.createImageSource(rawFileDescriptor);
-}).catch((error: BusinessError) => {
-  console.error(`Failed to get RawFileDescriptor.code is ${error.code}, message is ${error.message}`);
-})
+import { BusinessError } from '@kit.BasicServicesKit';
+  
+async function CreateImageSource(context : Context) {
+  // Obtain a resource manager.
+  const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+  // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+  resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor: resourceManager.RawFileDescriptor) => {
+    const imageSourceObj: image.ImageSource = image.createImageSource(rawFileDescriptor);
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to get RawFileDescriptor.code is ${error.code}, message is ${error.message}`);
+  })
+}
 ```
 
 ## image.CreateIncrementalSource<sup>9+</sup>
@@ -1233,31 +1210,27 @@ The ImageSource instance created in incremental mode supports the following capa
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { resourceManager } from '@kit.LocalizationKit';
-import { image } from '@kit.ImageKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id); // Obtain the image resource.
-// 'app.media.startIcon' is only an example. Replace it with the actual one in use. Otherwise, the imageArray instance fails to be created, and subsequent operations cannot be performed.
-let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2);  // Image slice.
-let splitBuff2 = imageArray.slice(imageArray.byteLength / 2);
-const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSource(new ArrayBuffer(imageArray.byteLength));
-imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLength).then(() => {
-  imageSourceIncrementalSApi.updateData(splitBuff2, true, 0, splitBuff2.byteLength).then(() => {
-    let pixelMap = imageSourceIncrementalSApi.createPixelMapSync();
-    let imageInfo = pixelMap.getImageInfoSync();
-    console.info('Succeeded in creating pixelMap');
+async function CreateIncrementalImageSource(context : Context) {
+  let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id); // Obtain the image resource.
+  // 'app.media.startIcon' is only an example. Replace it with the actual one in use. Otherwise, the imageArray instance fails to be created, and subsequent operations cannot be performed.
+  let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2);  // Image slice.
+  let splitBuff2 = imageArray.slice(imageArray.byteLength / 2);
+  const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSource(new ArrayBuffer(imageArray.byteLength));
+  imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLength).then(() => {
+    imageSourceIncrementalSApi.updateData(splitBuff2, true, 0, splitBuff2.byteLength).then(() => {
+      let pixelMap = imageSourceIncrementalSApi.createPixelMapSync();
+      let imageInfo = pixelMap.getImageInfoSync();
+      console.info('Succeeded in creating pixelMap');
+    }).catch((error : BusinessError) => {
+      console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`);
+    })
   }).catch((error : BusinessError) => {
     console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`);
   })
-}).catch((error : BusinessError) => {
-  console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`);
-})
+}
 ```
 
 ## image.CreateIncrementalSource<sup>9+</sup>
@@ -1285,33 +1258,29 @@ The capabilities supported by the ImageSource instance created by this API are t
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { resourceManager } from '@kit.LocalizationKit';
-import { image } from '@kit.ImageKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id) // Obtain the image resource.
-// 'app.media.startIcon' is only an example. Replace it with the actual one in use. Otherwise, the imageArray instance fails to be created, and subsequent operations cannot be performed.
-let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2);  // Image slice.
-let splitBuff2 = imageArray.slice(imageArray.byteLength / 2);
-let sourceOptions: image.SourceOptions = { sourceDensity: 120};
+async function CreateIncrementalImageSource(context : Context) {
+  let imageArray = context.resourceManager.getMediaContentSync($r('app.media.startIcon').id); // Obtain the image resource.
+  // 'app.media.startIcon' is only an example. Replace it with the actual one in use. Otherwise, the imageArray instance fails to be created, and subsequent operations cannot be performed.
+  let splitBuff1 = imageArray.slice(0, imageArray.byteLength / 2);  // Image slice.
+  let splitBuff2 = imageArray.slice(imageArray.byteLength / 2);
+  let sourceOptions: image.SourceOptions = { sourceDensity: 120};
 
-const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSource(new ArrayBuffer(imageArray.byteLength), sourceOptions);
-imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLength).then(() => {
-  imageSourceIncrementalSApi.updateData(splitBuff2, true, 0, splitBuff2.byteLength).then(() => {
-    let pixelMap = imageSourceIncrementalSApi.createPixelMapSync();
-    let imageInfo = pixelMap.getImageInfoSync();
-    console.info('Succeeded in creating pixelMap');
+  const imageSourceIncrementalSApi: image.ImageSource = image.CreateIncrementalSource(new ArrayBuffer(imageArray.byteLength), sourceOptions);
+  imageSourceIncrementalSApi.updateData(splitBuff1, false, 0, splitBuff1.byteLength).then(() => {
+    imageSourceIncrementalSApi.updateData(splitBuff2, true, 0, splitBuff2.byteLength).then(() => {
+      let pixelMap = imageSourceIncrementalSApi.createPixelMapSync();
+      let imageInfo = pixelMap.getImageInfoSync();
+      console.info('Succeeded in creating pixelMap');
+    }).catch((error : BusinessError) => {
+      console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`);
+    })
   }).catch((error : BusinessError) => {
     console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`);
   })
-}).catch((error : BusinessError) => {
-  console.error(`Failed to updateData error code is ${error.code}, message is ${error.message}`);
-})
+}
 ```
 
 ## image.getImageSourceSupportedFormats<sup>20+</sup>
@@ -1331,8 +1300,7 @@ Obtains the supported decoding formats, represented by MIME types.
 **Example**
 
 ```ts
-import { image } from '@kit.ImageKit';
-function GetImageSourceSupportedFormats() {
+async function GetImageSourceSupportedFormats() {
     let formats = image.getImageSourceSupportedFormats();
     console.info('formats:', formats);
 }
@@ -1357,7 +1325,9 @@ Creates an ImagePacker instance.
 **Example**
 
 ```ts
-const imagePackerApi: image.ImagePacker = image.createImagePacker();
+async function CreateImagePacker() {
+  const imagePackerObj: image.ImagePacker = image.createImagePacker();
+}
 ```
 
 ## image.getImagePackerSupportedFormats<sup>20+</sup>
@@ -1377,8 +1347,7 @@ Obtains the supported encoding formats, represented by MIME types.
 **Example**
 
 ```ts
-import { image } from '@kit.ImageKit';
-function GetImagePackerSupportedFormats() {
+async function GetImagePackerSupportedFormats() {
     let formats = image.getImagePackerSupportedFormats();
     console.info('formats:', formats);
 }
@@ -1408,7 +1377,7 @@ Creates an AuxiliaryPicture instance based on the ArrayBuffer image data, auxili
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -1417,8 +1386,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
 async function CreateAuxiliaryPicture(context: Context) {
   let funcName = "CreateAuxiliaryPicture";
   const resourceMgr = context.resourceManager;
@@ -1432,7 +1399,7 @@ async function CreateAuxiliaryPicture(context: Context) {
   let auxPictureObj: image.AuxiliaryPicture | null = image.createAuxiliaryPicture(auxBuffer, auxSize, auxType);
   if(auxPictureObj != null) {
     let type: image.AuxiliaryPictureType = auxPictureObj.getType();
-    console.info(funcName, 'CreateAuxiliaryPicture succeeded this.Aux_picture.type.' + JSON.stringify(type));
+    console.info(funcName, `CreateAuxiliaryPicture succeeded this.Aux_picture.type ${type}`);
   } else {
     console.error(funcName, 'CreateAuxiliaryPicture failed');
   }
@@ -1453,7 +1420,7 @@ Creates an ImageReceiver instance by specifying the image size, format, and capa
 | -------- | ------ | ---- | ---------------------- |
 | size    | [Size](arkts-apis-image-i.md#size)  | Yes  | Default size of the image. This parameter does not affect the size of the received image. The actual returned size is determined by the producer, for example, the camera.      |
 | format   | [ImageFormat](arkts-apis-image-e.md#imageformat9) | Yes  | Image format, which is a constant of [ImageFormat](arkts-apis-image-e.md#imageformat9). (Currently, only **ImageFormat:JPEG** is supported. The format actually returned is determined by the producer, for example, camera.)            |
-| capacity | number | Yes  | Maximum number of images that can be accessed at the same time.|
+| capacity | number | Yes  | Maximum number of images that can be accessed at the same time. This parameter is used only as an expected value. The actual capacity is determined by the device hardware.|
 
 **Return value**
 
@@ -1463,7 +1430,7 @@ Creates an ImageReceiver instance by specifying the image size, format, and capa
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -1474,7 +1441,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 let size: image.Size = {
   height: 8192,
-  width: 8
+  width: 8192
 }
 let receiver: image.ImageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
 ```
@@ -1493,7 +1460,7 @@ Creates an ImageCreator instance by specifying the image size, format, and capac
 | -------- | ------ | ---- | ---------------------- |
 | size    | [Size](arkts-apis-image-i.md#size)  | Yes  | Default size of the image.      |
 | format   | [ImageFormat](arkts-apis-image-e.md#imageformat9) | Yes  | Image format, for example, YCBCR_422_SP or JPEG.            |
-| capacity | number | Yes  | Maximum number of images that can be accessed at the same time.|
+| capacity | number | Yes  | Maximum number of images that can be accessed at the same time. This parameter is used only as an expected value. The actual capacity is determined by the device hardware.|
 
 **Return value**
 
@@ -1504,7 +1471,7 @@ Creates an ImageCreator instance by specifying the image size, format, and capac
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -1515,7 +1482,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 let size: image.Size = {
   height: 8192,
-  width: 8
+  width: 8192
 }
 let creator: image.ImageCreator = image.createImageCreator(size, image.ImageFormat.JPEG, 8);
 ```
@@ -1528,7 +1495,7 @@ Creates an ImageReceiver instance by specifying the image width, height, format,
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [createImageReceiver](#imagecreateimagereceiver11).
+> This API is supported since API version 9 and is deprecated since API version 11. You are advised to use [createImageReceiver](#imagecreateimagereceiver11) instead.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -1539,7 +1506,7 @@ Creates an ImageReceiver instance by specifying the image width, height, format,
 | width    | number | Yes  | Default image width, in px. This parameter does not affect the width of the received image. The actual width is determined by the producer, for example, the camera.      |
 | height   | number | Yes  | Default image height, in px. This parameter does not affect the height of the received image. The actual height is determined by the producer, for example, the camera.      |
 | format   | number | Yes  | Image format, which is a constant of [ImageFormat](arkts-apis-image-e.md#imageformat9). (Currently, only **ImageFormat:JPEG** is supported. The format actually returned is determined by the producer, for example, camera.) |
-| capacity | number | Yes  | Maximum number of images that can be accessed at the same time.|
+| capacity | number | Yes  | Maximum number of images that can be accessed at the same time. This parameter is used only as an expected value. The actual capacity is determined by the device hardware.|
 
 **Return value**
 
@@ -1550,7 +1517,7 @@ Creates an ImageReceiver instance by specifying the image width, height, format,
 **Example**
 
 ```ts
-let receiver: image.ImageReceiver = image.createImageReceiver(8192, 8, image.ImageFormat.JPEG, 8);
+let receiver: image.ImageReceiver = image.createImageReceiver(8192, 8192, image.ImageFormat.JPEG, 8);
 ```
 
 ## image.createImageCreator<sup>(deprecated)</sup>
@@ -1561,7 +1528,7 @@ Creates an ImageCreator instance by specifying the image width, height, format, 
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [createImageCreator](#imagecreateimagecreator11).
+> This API is supported since API version 9 and is deprecated since API version 11. You are advised to use [createImageCreator](#imagecreateimagecreator11) instead.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageCreator
 
@@ -1572,7 +1539,7 @@ Creates an ImageCreator instance by specifying the image width, height, format, 
 | width    | number | Yes  | Default image width, in px.      |
 | height   | number | Yes  | Default image height, in px.      |
 | format   | number | Yes  | Image format, for example, YCBCR_422_SP or JPEG.            |
-| capacity | number | Yes  | Maximum number of images that can be accessed at the same time.|
+| capacity | number | Yes  | Maximum number of images that can be accessed at the same time. This parameter is used only as an expected value. The actual capacity is determined by the device hardware.|
 
 **Return value**
 
@@ -1583,7 +1550,7 @@ Creates an ImageCreator instance by specifying the image width, height, format, 
 **Example**
 
 ```ts
-let creator: image.ImageCreator = image.createImageCreator(8192, 8, image.ImageFormat.JPEG, 8);
+let creator: image.ImageCreator = image.createImageCreator(8192, 8192, image.ImageFormat.JPEG, 8);
 ```
 
 ## SVG Tags
@@ -1591,7 +1558,7 @@ let creator: image.ImageCreator = image.createImageCreator(8192, 8, image.ImageF
 The SVG tags are supported since API version 10. The used version is (SVG) 1.1, and the width and height of the SVG tag must be set. An XML declaration can be added to an SVG file and start with **<?xml**. The following tags are supported:
 
 - a
-- circla
+- circle
 - clipPath
 - defs
 - ellipse

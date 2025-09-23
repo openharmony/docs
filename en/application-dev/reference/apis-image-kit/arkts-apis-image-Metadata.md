@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -22,7 +23,9 @@ import { image } from '@kit.ImageKit';
 
 getProperties(key: Array\<string>): Promise\<Record\<string, string | null>>
 
-Obtains the values of properties from the image's metadata. This API uses a promise to return the result. For details about how to obtain the property values, see [PropertyKey](arkts-apis-image-e.md#propertykey7), [FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13), and [GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20).
+Obtains the values of properties from the image's metadata. This API uses a promise to return the result.
+
+For details about how to obtain the property values, see [PropertyKey](arkts-apis-image-e.md#propertykey7), [FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13), and [GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20).
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -51,7 +54,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
 async function GetProperties(context: Context) {
   const resourceMgr = context.resourceManager;
@@ -68,7 +70,7 @@ async function GetProperties(context: Context) {
     await metaData.getProperties(["ImageWidth", "ImageLength"]).then((data2) => {
       console.info('Get properties ',JSON.stringify(data2));
     }).catch((error: BusinessError) => {
-      console.error('Get properties failed error.code: ' +JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
+      console.error(`Get properties failed error.code is ${error.code}, error.message is ${error.message}`);
     });
   } else {
     console.error('Metadata is null.');
@@ -80,7 +82,9 @@ async function GetProperties(context: Context) {
 
 setProperties(records: Record\<string, string | null>): Promise\<void>
 
-Sets the values of properties for the image's metadata. This API uses a promise to return the result. For details about how to obtain the property values, see [PropertyKey](arkts-apis-image-e.md#propertykey7), [FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13), and [GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20).
+Sets the values of properties for the image's metadata. This API uses a promise to return the result.
+
+For details about how to obtain the property values, see [PropertyKey](arkts-apis-image-e.md#propertykey7), [FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13), and [GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20).
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -109,7 +113,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
 async function SetProperties(context: Context) {
   const resourceMgr = context.resourceManager;
@@ -128,9 +131,9 @@ async function SetProperties(context: Context) {
       "ImageLength": "300"
     };
     await metaData.setProperties(setkey).then(async () => {
-      console.info('Set auxpictureobj properties success.');
+      console.info('Set AuxPictureObj properties success.');
     }).catch((error: BusinessError) => {
-      console.error('Failed to set metadata Properties. code is ${error.code}, message is ${error.message}');
+      console.error(`Failed to set metadata Properties. code is ${error.code}, message is ${error.message}`);
     })
   } else {
     console.error('AuxPictureObj metadata is null. ');
@@ -142,7 +145,9 @@ async function SetProperties(context: Context) {
 
 getAllProperties(): Promise\<Record<string, string | null>>
 
-Obtains all properties and values from the image's metadata. This API uses a promise to return the result. For details about how to obtain the property values, see [PropertyKey](arkts-apis-image-e.md#propertykey7), [FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13), and [GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20).
+Obtains all properties and values from the image's metadata. This API uses a promise to return the result.
+
+For details about how to obtain the property values, see [PropertyKey](arkts-apis-image-e.md#propertykey7), [FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13), and [GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20).
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -156,7 +161,6 @@ Obtains all properties and values from the image's metadata. This API uses a pro
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
 async function GetAllProperties(context: Context) {
   const resourceMgr = context.resourceManager;
@@ -173,9 +177,9 @@ async function GetAllProperties(context: Context) {
     await metaData.getAllProperties().then((data2) => {
       const count = Object.keys(data2).length;
       console.info('Metadata have ', count, ' properties');
-      console.info('Get metadata all properties: ', JSON.stringify(data2));
+      console.info(`Get metadata all properties: ${data2}`);
     }).catch((error: BusinessError) => {
-      console.error('Get metadata all properties failed error.code: ' +JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
+      console.error(`Get metadata all properties failed error.code is ${error.code}, error.message is ${error.message}`);
     });
   } else {
     console.error('Metadata is null.');
@@ -201,9 +205,8 @@ Clones the metadata. This API uses a promise to return the result.
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
-async function clone(context: Context) {
+async function Clone(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("exif.jpg"); // The image contains EXIF metadata.
   let ops: image.SourceOptions = {
@@ -217,9 +220,9 @@ async function clone(context: Context) {
   if (metaData != null) {
     let new_metadata: image.Metadata = await metaData.clone();
     new_metadata.getProperties(["ImageWidth"]).then((data1) => {
-      console.info('Clone new_metadata and get Properties.', JSON.stringify(data1));
+      console.info(`Clone new_metadata and get Properties: ${data1}`);
     }).catch((err: BusinessError) => {
-      console.error('Clone new_metadata failed.', JSON.stringify(err));
+      console.error(`Clone new_metadata failed, error : ${err}`);
     });
   } else {
     console.error('Metadata is null.');

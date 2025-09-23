@@ -2,7 +2,7 @@
 
 ## Overview
 
-The ImageEffect_DataValue union describes the data values.
+The union describes the data values.
 
 **Since**: 12
 

@@ -1,8 +1,14 @@
 # OH_ImageReceiverOptions
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
-The OH_ImageReceiverOptions struct describes the data type name of the image receiver options.
+The struct describes the data type name of the image receiver options.
 
 OH_ImageReceiverOptions is the image receiver option setter struct encapsulated at the native layer. It is used to pass parameters during the creation of an OH_ImageReceiverNative object. The struct cannot be directly operated. Instead, functions must be called to create and release the struct and operate the fields in the struct.
 
