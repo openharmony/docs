@@ -30,8 +30,8 @@ import { settings } from '@kit.BasicServicesKit';
 
 | 名称                          | 类型   | 只读 | 可选 | 说明                   |
 |-----------------------------| ------ | ---- | ---- |----------------------|
-| DEVICE_SHARED<sup>11+</sup> | string | 是   | 是   | 设备属性共享域，所有设置项不区分多用户。 |
-| USER_PROPERTY<sup>11+</sup> | string | 是   | 是   | 为用户属性域，该域下所有配置区分多用户。 |
+| DEVICE_SHARED<sup>11+</sup> | string | 是   | 否   | 设备属性共享域，所有设置项不区分多用户。 |
+| USER_PROPERTY<sup>11+</sup> | string | 是   | 否   | 为用户属性域，该域下所有配置区分多用户。 |
 
 ## date
 
