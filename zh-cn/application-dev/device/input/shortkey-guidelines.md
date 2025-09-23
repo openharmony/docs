@@ -1,5 +1,12 @@
 # 系统预置全局快捷键开发指导
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 场景介绍
 
 系统预置全局快捷键提供设置快捷键拉起Ability延迟时间的能力。使用场景例如：按下快捷键五秒后截屏。
