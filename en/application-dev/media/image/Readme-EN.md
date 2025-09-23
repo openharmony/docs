@@ -1,4 +1,10 @@
 # Image Kit
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 - [Introduction to Image Kit](image-overview.md)
 - Image Development (ArkTS)<!--image-arkts-dev-->
@@ -33,8 +39,8 @@
 - FAQs About Image Kit<!--image-faqs-->
   - [Handling HEIF Images](image-faqs/heif-adapter-faq.md)
   - [Obtaining the Rotation Angle of an Image](image-faqs/image-rotate-faq.md)
-- Not Recommended<!--imagekit-not-recommended-->
-  - Image Development (Dependent on JS Objects) (C/C++)<!--image-native-js-objects-->
+  - [Image Kit Exception Handling](image-faqs/image-error-faq.md)
+- Image Development (Dependent on JS Objects) (Not Recommended)<!--image-native-js-objects-->
     - [Image Decoding](image-decoding-native.md)
     - [Image Encoding](image-encoding-native.md)
     - [Image Transformation](image-transformation-native.md)

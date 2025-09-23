@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OhosPixelMapInfos struct describes the information about a PixelMap.
+The struct describes the information about a PixelMap.
 
 **Since**: 10
 

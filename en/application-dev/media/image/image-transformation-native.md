@@ -1,4 +1,18 @@
 # Image Transformation
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yaozhupeng-->
+<!--Designer: @yaozhupeng-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @zengyawen-->
+
+> **NOTE**
+>
+> This guide uses the APIs provided by the [Image](../../reference/apis-image-kit/capi-image.md) module, which supports basic functionalities such as image encoding/decoding, image receiver operations, and image data processing. These APIs are introduced prior to API version 11, and no additional features will be included in later versions. Therefore, these APIs are not recommended.
+>
+> You can also use the C APIs provided by the [Image_NativeModule](../../reference/apis-image-kit/capi-image-nativemodule.md) module, which includes all the foundational features of the Image module while adding new capabilities like multi-image encoding/decoding. For details about the development guide, see [Using Image_NativeModule to Decode Images (C/C++)](image-source-c.md). These APIs are available since API version 12 and are expected to keep evolving. You are encouraged to use them.
+>
+> You are not advised to use both sets of C APIs in your code. It may cause compatibility issues in some scenarios.
 
 This topic describes how to use native image APIs to implement image transformation.
 
@@ -62,7 +76,7 @@ Open **src/main/cpp/hello.cpp**, and add the reference file.
         OHOS::Media::OH_GetImageInfo(env, argValue[0], &pixelMapInfo);
         return result;
     }
-    ```
+   ```
 
 2. Obtain the memory address of a PixelMap object and lock the memory.
 

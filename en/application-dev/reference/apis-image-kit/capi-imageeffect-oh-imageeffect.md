@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_ImageEffect struct describes the image effector.
+The struct describes the image effector.
 
 **Since**: 12
 

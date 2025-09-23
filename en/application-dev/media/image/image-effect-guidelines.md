@@ -1,5 +1,10 @@
 # Using ImageEffect to Edit Images
-
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @zyj208-->
+<!--Designer: @wangshoucheng-->
+<!--Tester: @gengfei-->
+<!--Adviser: @zengyawen-->
 ## When to Use
 
 The **ImageEffect** class provides a series of APIs for editing an image. You can use the APIs to implement various filter effects on images of different input types (pixel map, native window, native buffer, or URI).
@@ -34,6 +39,7 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
 **Adding the Header Files**
 
 ```c++
+#include <hilog/log.h>
 #include <multimedia/image_effect/image_effect.h>
 #include <multimedia/image_effect/image_effect_filter.h>
 #include <multimedia/image_effect/image_effect_errors.h>
@@ -53,8 +59,10 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
     ```c++
     // Add a filter to obtain an OH_EffectFilter instance. You can call this API multiple times to add multiple filters to form a filter chain.
     OH_EffectFilter *filter = OH_ImageEffect_AddFilter(imageEffect, OH_EFFECT_BRIGHTNESS_FILTER);
-    CHECK_AND_RETURN_LOG(filter != nullptr, "OH_ImageEffect_AddFilter fail!");
-    
+    if (filter == nullptr) {
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_AddFilter fail!");
+        return;
+    }
     // Set a filter parameter. For example, set the intensity to 50.
     ImageEffect_Any value = { .dataType = ImageEffect_DataType::EFFECT_DATA_TYPE_FLOAT, .dataValue.floatValue = 50.f };
     ImageEffect_ErrorCode errorCode = OH_EffectFilter_SetValue(filter, OH_EFFECT_FILTER_INTENSITY_KEY, &value);
@@ -69,11 +77,17 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
     ```c++
     // Set an input pixel map.
     errorCode = OH_ImageEffect_SetInputPixelmap(imageEffect, inputPixelmap);
-    CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetInputPixelmap fail!");
+    if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_SetInputPixelmap fail!");
+        return;
+    }
     
     // (Optional) Set an output pixel map. If this API is not called, the filter effect directly takes effect on the input pixel map.
     errorCode = OH_ImageEffect_SetOutputPixelmap(imageEffect, outputPixelmap);
-    CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetOutputPixelmap fail!");
+    if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_SetOutputPixelmap fail!");
+        return;
+    }
     ```
 
     **Scenario 2: Set the OH_NativeBuffer input type.**
@@ -83,11 +97,17 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
     ```c++
     // Set an input native buffer.
     errorCode = OH_ImageEffect_SetInputNativeBuffer(imageEffect, inputNativeBuffer);
-    CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetInputNativeBuffer fail!");
+    if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_SetInputNativeBuffer fail!");
+        return;
+    }
     
     // (Optional) Set an output native buffer. If this API is not called, the filter effect directly takes effect on the input native buffer.
     errorCode = OH_ImageEffect_SetOutputNativeBuffer(imageEffect, outputNativeBuffer);
-    CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetOutputNativeBuffer fail!");
+    if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_SetOutputNativeBuffer fail!");
+        return;
+    }
     ```
 
     **Scenario 3: Set the URI input type.**
@@ -95,11 +115,16 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
     ```c++
     // Set an input URI.
     errorCode = OH_ImageEffect_SetInputUri(imageEffect, inputUri);
-    CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetInputUri fail!");
-    
+    if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_SetInputUri fail!");
+        return;
+    }
     // (Optional) Set an output URI. If this API is not called, the filter effect directly takes effect on the input URI.
     errorCode = OH_ImageEffect_SetOutputUri(imageEffect, outputUri);
-    CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetOutputUri fail!");
+    if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_SetOutputUri fail!");
+        return;
+    }
     ```
     **Scenario 4: Set the texture input type.**
 
@@ -107,18 +132,27 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
     ```c++
     // Set the input texture ID.
     errorCode = OH_ImageEffect_SetInputTextureId(imageEffect, inputTex, ColorSpaceName::SRGB);
-    CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetInputTextureId fail!");
-
+    if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_SetInputTextureId fail!");
+        return;
+    }
+    
     // Set the output texture ID. Note that the output texture ID cannot be the same as the input texture ID. Otherwise, rendering exceptions may occur.
     errorCode = OH_ImageEffect_SetOutputTextureId(imageEffect, outputTex);
-    CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetOutputTextureId fail!");
+    if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_SetOutputTextureId fail!");
+        return;
+    }
     ```
 
     **Scenario 5: Set the OHNativeWindow input type.**
 
     The following uses camera preview as an example to describe the scenario. The surface ID provided by the **XComponent** for camera preview streams can be converted into an OHNativeWindow instance at the native C++ layer.
+
     For details about how to use the **XComponent**, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
+
     For details about how to use the native window module, see [OHNativeWindow](../../reference/apis-arkgraphics2d/capi-nativewindow.md).
+
     For details about how to use the camera, see [Camera Preview (C/C++)](../camera/native-camera-preview.md).
 
     (1) Add an **XComponent** to the .ets file.
@@ -133,10 +167,10 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
      .onLoad(() => {
          // Obtain the surface ID of the XComponent.
          this.mSurfaceId = this.mXComponentController.getXComponentSurfaceId()
- 
+     
          // Obtain the input surface ID.
          this.mSurfaceId = imageEffect.getSurfaceId(this.mSurfaceId)
- 
+     
          // Call the camera API to start preview and transfer the input surface ID to the camera framework.
          // ...
      })
@@ -144,7 +178,7 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
      .height('100%')
      ```
 
-    (2) Implement imageEffect.getSurfaceId at the native C++ layer.
+    (2) Implement **imageEffect.getSurfaceId** at the native C++ layer.
 
      ```c++
      // Create a NativeWindow instance based on the surface ID. Note that the instance must be released by calling OH_NativeWindow_DestoryNativeWindow when it is no longer needed.
@@ -153,21 +187,32 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
      issue >> outputSurfaceId;
      OHNativeWindow *outputNativeWindow = nullptr;
      int32_t res = OH_NativeWindow_CreateNativeWindowFromSurfaceId(outputSurfaceId, &outputNativeWindow);
-     CHECK_AND_RETURN_LOG(res == 0, "OH_NativeWindow_CreateNativeWindowFromSurfaceId fail!");
+    if (res != 0) {
+    	OH_LOG_ERROR(LOG_APP, "OH_NativeWindow_CreateNativeWindowFromSurfaceId fail!");
+        return;
+    }
      
      // Set an output surface.
      ImageEffect_ErrorCode errorCode = OH_ImageEffect_SetOutputSurface(imageEffect, outputNativeWindow);
-     CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetOutputSurface fail!");
-     
+    if (res != 0) {
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_SetOutputSurface fail!");
+        return;
+    }
      // Obtain the input surface. Note that the obtained inputNativeWindow instance must be released by calling OH_NativeWindow_DestoryNativeWindow when it is no longer needed.
      OHNativeWindow *inputNativeWindow = nullptr;
      errorCode = OH_ImageEffect_GetInputSurface(imageEffect, &inputNativeWindow);
-     CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_GetInputSurface fail!");
+    if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_GetInputSurface fail!");
+        return;
+     }
      
      // Obtain the surface ID from the inputNativeWindow instance.
      uint64_t inputSurfaceId = 0;
      res = OH_NativeWindow_GetSurfaceId(inputNativeWindow, &inputSurfaceId);
-     CHECK_AND_RETURN_LOG(res == 0, "OH_NativeWindow_GetSurfaceId fail!");
+    if (res != 0) {
+    	OH_LOG_ERROR(LOG_APP, "OH_NativeWindow_GetSurfaceId fail!");
+        return;
+     }
      
      // Convert the surface ID to a string and return the string.
      std::string inputSurfaceIdStr = std::to_string(inputSurfaceId);
@@ -178,7 +223,10 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
     ```c++
     // Start the image effector.
     errorCode = OH_ImageEffect_Start(imageEffect);
-    CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_Start fail!");
+    if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_Start fail!");
+        return;
+    }
     ```
 
 5. (Optional) Stop the image effector. This operation is required only in the input surface scenario.
@@ -186,7 +234,10 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
     ```c++
     // Stop the image effector.
     errorCode = OH_ImageEffect_Stop(imageEffect);
-    CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_Stop fail!");
+    if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_Stop fail!");
+        return;
+    }
     ```
 
 6. (Optional) Serialize the image effector.
@@ -194,7 +245,10 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
     ```c++
     char *info = nullptr;
     errorCode = OH_ImageEffect_Save(imageEffect, &info);
-    CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_Save fail!");
+    if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_Save fail!");
+        return;
+    }
     ```
 
 7. Destroy the ImageEffect instance.
@@ -202,7 +256,10 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
     ```c++
     // Release the ImageEffect instance.
     errorCode = OH_ImageEffect_Release(imageEffect);
-    CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, result, "OH_ImageEffect_Release fail!");
+    if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
+    	OH_LOG_ERROR(LOG_APP, "OH_ImageEffect_Release fail!");
+        return;
+    }
     ```
 
 ### Customizing a Filter
@@ -235,7 +292,10 @@ To implement and register a custom filter, perform the following steps:
             // Obtain the custom filter parameter. In this example, Brightness is the key of the custom filter.
             ImageEffect_Any value;
             ImageEffect_ErrorCode errorCode = OH_EffectFilter_GetValue(filter, "Brightness", &value);
-            CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, false, "OH_EffectFilter_GetValue fail!");
+            if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
+    			OH_LOG_ERROR(LOG_APP, "OH_EffectFilter_GetValue fail!");
+        		return false;
+    		}
             
             // Generate a key-value pair.
             json values;
@@ -333,7 +393,10 @@ To implement and register a custom filter, perform the following steps:
     ```c++
     // Create an OH_EffectFilterInfo instance.
     OH_EffectFilterInfo *customFilterInfo = OH_EffectFilterInfo_Create();
-    CHECK_AND_RETURN_LOG(customFilterInfo != nullptr, "OH_EffectFilter_GetValue fail!");
+    if (customFilterInfo ==nullptr) {
+    	OH_LOG_ERROR(LOG_APP, "OH_EffectFilter_GetValue fail!");
+        return;
+    }
     
     // Set the name of the custom filter.
     OH_EffectFilterInfo_SetFilterName(customFilterInfo, "CustomBrightness");
@@ -352,7 +415,10 @@ To implement and register a custom filter, perform the following steps:
     ```c++
     // Register the custom filter.
     ImageEffect_ErrorCode errorCode = OH_EffectFilter_Register(customFilterInfo, &filterDelegate);
-    CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_EffectFilter_Register fail!");
+    if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
+    	OH_LOG_ERROR(LOG_APP, "OH_EffectFilter_Register fail!");
+        return;
+    }
     ```
 
 ### Using a System Defined Filter
@@ -370,7 +436,10 @@ To implement and register a custom filter, perform the following steps:
     // Set a filter parameter. For example, set the intensity to 50.
     ImageEffect_Any value = {.dataType = ImageEffect_DataType::EFFECT_DATA_TYPE_FLOAT, .dataValue.floatValue = 50.f};
     ImageEffect_ErrorCode errorCode = OH_EffectFilter_SetValue(filter, OH_EFFECT_FILTER_INTENSITY_KEY, &value);
-    CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_EffectFilter_SetValue fail!");
+    if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
+    	OH_LOG_ERROR(LOG_APP, "OH_EffectFilter_SetValue fail!");
+        return;
+    }
     ```
 
 3. Make the filter take effect.
@@ -394,11 +463,17 @@ To implement and register a custom filter, perform the following steps:
     ```c++
     // Create an OH_EffectFilterInfo instance.
     OH_EffectFilterInfo *filterInfo = OH_EffectFilterInfo_Create();
-    CHECK_AND_RETURN_LOG(filterInfo != nullptr, "OH_EffectFilterInfo_Create fail!");
+    if (filterInfo == nullptr) {
+    	OH_LOG_ERROR(LOG_APP, "OH_EffectFilterInfo_Create fail!");
+        return;
+    }
 
     // Query the filter information based on the filter name.
     ImageEffect_ErrorCode errorCode = OH_EffectFilter_LookupFilterInfo(OH_EFFECT_BRIGHTNESS_FILTER, filterInfo);
-    CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_EffectFilter_LookupFilterInfo fail!");
+    if (errorCode != ImageEffect_ErrorCode::EFFECT_SUCCESS) {
+    	OH_LOG_ERROR(LOG_APP, "OH_EffectFilter_LookupFilterInfo fail!");
+        return;
+    }
 
     // Obtain the filter name from the filter information.
     char *name = nullptr;

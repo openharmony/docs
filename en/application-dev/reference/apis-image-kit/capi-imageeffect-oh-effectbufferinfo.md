@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_EffectBufferInfo struct describes the image buffer information.
+The struct describes the image buffer information.
 
 **Since**: 12
 

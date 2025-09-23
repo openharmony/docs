@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_Pixelmap_HdrGainmapMetadata struct describes the gain map metadata values available for the key **HDR_GAINMAP_METADATA**. For details, see ISO 21496-1.
+The struct describes the gain map metadata values available for the key **HDR_GAINMAP_METADATA**. For details, see ISO 21496-1.
 
 **Since**: 12
 

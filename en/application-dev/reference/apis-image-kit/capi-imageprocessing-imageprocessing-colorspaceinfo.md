@@ -2,7 +2,7 @@
 
 ## Overview
 
-Defines a struct for the color space information, which is used in CSC capability query.
+The struct describes the color space information, which is used in Color Space Conversion (CSC) capability query.
 
 **See also**
 
@@ -23,4 +23,5 @@ Defines a struct for the color space information, which is used in CSC capabilit
 | int32_t metadataType | Metadata type. For details, see [OH_Pixelmap_HdrMetadataKey](capi-pixelmap-native-h.md#oh_pixelmap_hdrmetadatakey).|
 | int32_t colorSpace | Color space. For details, see [ColorSpaceName](../apis-arkgraphics2d/capi-native-color-space-manager-h.md#colorspacename).|
 | int32_t pixelFormat | Pixel format. For details, see [PIXEL_FORMAT](capi-pixelmap-native-h.md#pixel_format).|
+
 <!--no_check-->

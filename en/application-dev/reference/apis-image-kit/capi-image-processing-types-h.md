@@ -1,8 +1,17 @@
 # image_processing_types.h
 
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xjtu_liushang-->
+<!--Designer: @yangwang01-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
+
 ## Overview
 
-The **image_processing_types.h** file declares the image processing types.
+The file declares the image processing types.
+
+**File to include**: <multimedia/video_processing_engine/image_processing_types.h>
 
 **Library**: libimage_processing.so
 
@@ -21,7 +30,7 @@ The **image_processing_types.h** file declares the image processing types.
 | [ImageProcessing_ColorSpaceInfo](capi-imageprocessing-imageprocessing-colorspaceinfo.md) | ImageProcessing_ColorSpaceInfo | Describes the color space information, which is used in Color Space Conversion (CSC) capability query.|
 | [OH_ImageProcessing](capi-imageprocessing-oh-imageprocessing.md) | OH_ImageProcessing | Provides the declaration of the OH_ImageProcessing struct.<br>To use it, first declare a null pointer of OH_ImageProcessing, and then initialize it by calling [OH_ImageProcessing_Create](capi-image-processing-h.md#oh_imageprocessing_create). This function creates an image processing instance. Multiple instances can be created for different image processing tasks.|
 | [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) | OH_PixelmapNative | Provides the declaration of the OH_PixelmapNative struct.|
-| [OH_AVFormat](../apis-avcodec-kit/_core.md#oh_avformat) | OH_AVFormat | Provides the declaration of the OH_AVFormat struct.|
+| [OH_AVFormat](../apis-avcodec-kit/capi-core-oh-avformat.md) | OH_AVFormat | Provides the declaration of the OH_AVFormat struct.|
 
 ### Enums
 

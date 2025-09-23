@@ -2,37 +2,37 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 When an application performs image decoding, it needs to allocate the corresponding memory. This guide describes different types of memory and how to allocate them.
 
 The application obtains a PixelMap through the decoding API and passes it to the **Image** component for display.
 
-When the PixelMap is large and uses regular memory, the RenderService main thread will experience a longer texture upload time, leading to lag. The zero-copy feature of DMA memory provided by the graphics side can avoid the time cost of texture upload when the system renders images of the same size.
+When the PixelMap is large and uses shared memory, the RenderService main thread will experience a longer texture upload time, leading to lag. The zero-copy feature of DMA memory provided by the graphics side can avoid the time cost of texture upload when the system renders images.
 
 ## Memory Types
 
 The memory types for the PixelMap are as follows:
 
-- DMA_ALLOC: DMA memory. IPC latency is relatively low, and texture upload is not required.
-- SHARE_MEMORY: shared memory. IPC latency is minimal, but texture upload is required.
+- SHARE_MEMORY: shared memory. Texture upload is required.
+- DMA_ALLOC: DMA memory. Texture upload is not required.
 
-Given that the current memory allocation strategy of the decoding API cannot meet the requirements in certain scenarios, the system provides [OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/capi-image-source-native-h.md#oh_imagesourcenative_createpixelmapusingallocator), allowing you to customize the memory allocation type for decoding.
+You can call [OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/capi-image-source-native-h.md#oh_imagesourcenative_createpixelmapusingallocator) to customize the memory allocation type for decoding.
 
-### Differences Between DMA_ALLOC and SHARE_MEMORY
+### Differences Between SHARE_MEMORY and DMA_ALLOC
 
-| Item              | DMA_ALLOC                                                               | SHARE_MEMORY                                                                             |
-| ------------------ | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| Definition              | The hardware decoder directly transfers decoded image data to memory or video memory without CPU intervention.        | The memory sharing mechanism provided by the operating system allows multiple threads and processes to directly access the same physical memory for collaborative image data processing.|
-| Working principle          | The decoder uses the DMA controller to directly transfer the decoded image data from the device to memory or display buffer.| Image data decoded by the GPU is directly mapped into shared memory for collaborative processing or access by multiple threads or processes.                 |
-| Use case          | Used for high-speed data transfer.                                                     | Used for data sharing between processes or threads.                                                            |
-| CPU usage           | Extremely low CPU usage: The CPU is only involved in the configuration of the DMA controller, with no intervention in actual data transfer.          | The CPU is involved in managing and synchronizing shared memory (for example, locking and unlocking), which incurs additional overhead.                         |
-| Hardware dependency          | Strongly dependent on the hardware DMA controller.                                                  | Dependent on the shared memory mechanism of the operating system.                                                        |
-| Memory allocation and access permissions| The DMA controller directly operates the physical memory, requiring pre-allocated DMA buffers (usually contiguous memory).     | The system allocates physical or virtual memory areas for shared memory, with access requiring user or kernel mapping operations.                    |
-| Advantages              | High efficiency and low latency, suitable for transfer of large data volumes and continuous data blocks.                         | High flexibility. Supports simultaneous data sharing by multiple threads or processes, facilitating image post-processing and collaboration.                        |
-| Disadvantages              | Hardware support is required, and the data transfer range is limited by DMA address space (usually requiring contiguous physical memory).  | Shared memory operations require additional synchronization mechanisms, increasing programming complexity and CPU load.                               |
-| Use in the decoding workflow| The hardware decoder directly outputs data to the target memory through DMA without CPU intervention.                 | After the decoding is complete, the data is stored in the shared memory for other processes or threads to read and process.                                |
+| Item              | SHARE_MEMORY                                | DMA_ALLOC              |
+| ------------------ | --------------------- | ----------------------------------------- |
+| Definition              | Shared memory (such as ashmem/anonymous sharing) provided by the operating system, allowing multiple processes to read/write the same physical pages.| Buffers allocated for direct DMA access by peripherals, GPU, or display pipelines. Common implementations include dmabuf and SurfaceBuffer, designed for zero-copy operations.|
+| Working principle          | Processes access a shared memory region via the CPU. Transferring this data to GPU or display pipelines typically requires a copy.| Data is written directly to the buffer (for example, by a decoder via DMA), which the GPU or display pipelines can then access without any copying.|
+| Use case          | Inter-process or inter-thread data sharing (for example, exchanging intermediate results in algorithms or post-processing).| High-bandwidth data transfer scenarios such as hardware decoding of images/videos, camera preview, and display rendering.|
+| CPU usage           | The CPU is involved in managing and synchronizing shared memory (for example, locking and unlocking), which incurs additional overhead.| Extremely low CPU usage: The CPU is only involved in the configuration of the DMA controller, with no intervention in actual data transfer.|
+| Hardware dependency          | Dependent on the shared memory mechanism of the operating system.| Strongly dependent on the hardware DMA controller.|
+| Memory allocation and access permissions| The system allocates physical or virtual memory areas for shared memory, with access requiring user or kernel mapping operations.| The DMA controller directly operates the physical memory, requiring pre-allocated DMA buffers (usually contiguous memory).|
+| Advantages              | High flexibility. Supports simultaneous data sharing by multiple threads or processes, facilitating image post-processing and collaboration.| High efficiency and low latency, suitable for transfer of large data volumes and continuous data blocks.|
+| Disadvantages              | Shared memory operations require additional synchronization mechanisms, increasing programming complexity and CPU load.| Hardware support is required, and the data transfer range is limited by DMA address space (usually requiring contiguous physical memory).|
 
 ### Advantages of Using DMA_ALLOC Memory
 
@@ -40,8 +40,9 @@ Given that the current memory allocation strategy of the decoding API cannot mee
 
   When SHARE_MEMORY is used, image data needs to be copied to GPU memory through the CPU, increasing the texture upload time. With DMA_ALLOC, data is directly stored in memory that is accessible by the GPU, avoiding the time-consuming copy process.
 
-  - Traditional upload time: For a 4K image, a single frame rendering takes about 20 ms.
-  - DMA_ALLOC upload time: For a 4K image, the time for a single frame rendering can be reduced to about 4 ms. This optimization is particularly significant in scenarios involving the display of large images and frequent dynamic image loading.
+  - SHARE_MEMORY time consumption: Single-frame rendering of a 4K image takes about 20 ms.
+  - DMA_ALLOC time consumption: The time of single-frame rendering for a 4K image can be reduced to about 4ms. This optimization is particularly significant in scenarios involving the display of large images and frequent dynamic image loading.
+
 - **Reduced CPU load**
 
   DMA_ALLOC allows the GPU to directly access decoded data, reducing the load caused by memory copying.
@@ -54,8 +55,8 @@ DMA_ALLOC is used in the following scenarios:
 
 - Decoding HDR images.
 - Decoding HEIF images.
-- Decoding JPEG images, when the original image's width and height are both between 1024 and 8192, [desiredPixelFormat](../../reference/apis-image-kit/capi-image-nativemodule-oh-decodingoptions.md) is RGBA_8888 or NV21, and the hardware is not busy (concurrency is 3).
-- Decoding images in other formats. The value of [desiredSize](../../reference/apis-image-kit/capi-image-nativemodule-oh-decodingoptions.md) must be greater than or equal to 512 * 512 (consider the original image size if **desiredSize** is not set), and the width must be a multiple of 64.
+- Decoding JPEG images, when the original image's width and height are both between 1024 pixels and 8192 pixels, [pixelFormat](../../reference/apis-image-kit/capi-image-nativemodule-oh-decodingoptions.md) is [PIXEL_FORMAT_RGBA_8888](../../reference/apis-image-kit/capi-pixelmap-native-h.md#pixel_format) or [PIXEL_FORMAT_NV21](../../reference/apis-image-kit/capi-pixelmap-native-h.md#pixel_format), and the hardware is not busy (concurrency is 3).
+- Decoding images in other formats. The value of [desiredSize](../../reference/apis-image-kit/capi-image-nativemodule-oh-decodingoptions.md) must be greater than or equal to 512 * 512 pixels (consider the original image size if **desiredSize** is not set), and the width must be a multiple of 64.
 
 In all other cases, SHARE_MEMORY is used.
 
@@ -88,7 +89,7 @@ The stride describes the storage width of each row of pixel data of an image in 
 When memory is allocated using DMA_ALLOC, the stride must meet the hardware alignment requirements.
 
 - The stride value must be an integer multiple of the number of bytes required by the hardware platform.
-- If the stride calculated using the above formula does not meet the alignment requirements, the system automatically pads the data.
+- If the stride does not meet the alignment requirements, the system automatically pads the data.
   The stride value can be obtained by calling [OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_getimageinfo).
 
 1. Call [OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_getimageinfo) to obtain an OH_Pixelmap_ImageInfo object.
@@ -166,9 +167,10 @@ int32_t GetPixelFormatBytes(int32_t pixelFormat) {
 }
 
 OH_PixelmapNative* TestStrideWithAllocatorType() {
+    char* filePath = const_cast<char *>("/data/storage/el2/base/haps/entry/files/test.jpg");
     size_t filePathSize = 1024;
     OH_ImageSourceNative* imageSource = nullptr;
-    Image_ErrorCode image_ErrorCode = OH_ImageSourceNative_CreateFromUri("/data/storage/el2/base/haps/entry/files/test.jpg", filePathSize, &imageSource);
+    Image_ErrorCode image_ErrorCode = OH_ImageSourceNative_CreateFromUri(filePath, filePathSize, &imageSource);
     OH_DecodingOptions *options = nullptr;
     OH_DecodingOptions_Create(&options);
     IMAGE_ALLOCATOR_TYPE allocatorType = IMAGE_ALLOCATOR_TYPE::IMAGE_ALLOCATOR_TYPE_DMA;  // Use DMA to create a PixelMap.

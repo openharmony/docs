@@ -1,4 +1,10 @@
 # Using Image_NativeModule for PixelMap Operations
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yaozhupeng-->
+<!--Designer: @yaozhupeng-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @zengyawen-->
 
 You can use the **Pixelmap** class to create, operate, and release a PixelMap, and obtain its width, height, pixel format, alpha type, and row stride.
 
@@ -23,10 +29,6 @@ Create a native C++ application in DevEco Studio. The project created by default
 Create a Pixelmap instance after parameter initialization, read and write pixel data, and perform operations such as scaling, translating, flipping, rotating, and cropping on the image.
 
 ```c++
-
-#include <linux/kd.h>
-#include <string>
-
 #include <hilog/log.h>
 #include <multimedia/image_framework/image/pixelmap_native.h>
 

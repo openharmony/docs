@@ -2,12 +2,13 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
-The OhosImageSize struct describes the image size. It is a member variable of [OhosImageDecodingOps](capi-image-ohosimagedecodingops.md).
+The struct describes the image size. It is a member variable of [OhosImageDecodingOps](capi-image-ohosimagedecodingops.md).
 
 **Since**: 10
 

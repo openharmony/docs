@@ -2,12 +2,13 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
-The OH_AuxiliaryPictureNative struct describes the auxiliary picture, which is used to perform operations related to the auxiliary picture.
+The struct describes the auxiliary picture, which is used to perform operations related to the auxiliary picture.
 
 **Since**: 13
 
