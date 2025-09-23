@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_EffectFilterInfo struct describes the image effect filter information.
+The struct describes the image effect filter information.
 
 **Since**: 12
 

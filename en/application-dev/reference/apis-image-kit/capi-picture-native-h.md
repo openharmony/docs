@@ -2,14 +2,19 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
 The file declares the APIs for obtaining picture data and information.
 
+**File to include**: <multimedia/image_framework/image/picture_native.h>
+
 **Library**: libpicture.so
+
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **Since**: 13
 

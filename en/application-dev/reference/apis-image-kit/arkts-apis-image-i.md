@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -96,7 +97,7 @@ Defines PixelMap initialization options.
 | Name                    | Type                              | Read Only|Optional|  Description          |
 | ------------------------ | ---------------------------------- | ----| -----|  -------------- |
 | alphaType<sup>9+</sup>   | [AlphaType](arkts-apis-image-e.md#alphatype9)           | No  | Yes| Alpha type. The default value is **IMAGE_ALPHA_TYPE_PREMUL**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.     |
-| editable                 | boolean                            | No  | Yes| Whether the image is editable. The value **true** means that the image is editable, and **false** means the opposite. The default value is **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
+| editable                 | boolean                            | No  | Yes| Whether the image is editable. **true** if editable, **false** otherwise. The default value is **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
 | srcPixelFormat<sup>12+</sup>  | [PixelMapFormat](arkts-apis-image-e.md#pixelmapformat7) | No| Yes| Pixel format of the passed-in buffer data. The default value is **BGRA_8888**.|
 | pixelFormat              | [PixelMapFormat](arkts-apis-image-e.md#pixelmapformat7) | No| Yes| Pixel format of the generated PixelMap. The default value is **RGBA_8888**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.    |
 | scaleMode<sup>9+</sup>   | [ScaleMode](arkts-apis-image-e.md#scalemode9)           | No | Yes| Scale mode. The default value is **0**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.      |
@@ -112,7 +113,7 @@ Describes the image decoding options.
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
 | sampleSize         | number                             | No  | Yes  | Sampling size of the thumbnail. The default value is **1**. Currently, the value can only be **1**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
 | rotate             | number                             | No  | Yes  | Rotation angle. The default value is **0**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.      |
-| editable           | boolean                            | No  | Yes  | Whether the image is editable. The value **true** means that the image is editable, and **false** means the opposite. The default value is **false**. If this option is set to **false**, the image cannot be edited again, and operations such as writing pixels will fail.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12. |
+| editable           | boolean                            | No  | Yes  | Whether the image is editable. **true** if editable, **false** otherwise. The default value is **false**. If this option is set to **false**, the image cannot be edited again, and operations such as writing pixels will fail.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12. |
 | desiredSize        | [Size](#size)                      | No  | Yes  | Expected output size. The value must be a positive integer and defaults to the original image size. If the output size is different from the original size, the output is stretched or scaled to the specified size.<br>Note: If both **desiredSize** and **desiredRegion** are passed to the decoding API, you must also include **cropAndScaleStrategy** to determine whether to crop or scale first. **CROP_FIRST** is recommended.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.  |
 | desiredRegion      | [Region](#region8)                 | No  | Yes  | Rectangle specified by **Region** in the decoded image. When the original image is large and only a specific part of the image is required, you can set this parameter to improve performance. The default value is the original image size.<br>Note: If both **desiredSize** and **desiredRegion** are passed to the decoding API, you must also include **cropAndScaleStrategy** to determine whether to crop or scale first. **CROP_FIRST** is recommended.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.      |
 | desiredPixelFormat | [PixelMapFormat](arkts-apis-image-e.md#pixelmapformat7) | No  | Yes  | Pixel format for decoding. The default value is **RGBA_8888**. Only RGBA_8888, BGRA_8888, and RGB_565 are supported. RGB_565 is not supported for images with alpha channels, such as PNG, GIF, ICO, and WEBP.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
@@ -145,8 +146,8 @@ Describes the region information.
 | Name| Type         | Read Only| Optional| Description        |
 | ---- | ------------- | ---- | ---- | ------------ |
 | size<sup>7+</sup> | [Size](#size) | No  | No  | Region size.  |
-| x<sup>7+</sup>    | number        | No  | No | X coordinate of the upper left corner of the region, in px.|
-| y<sup>7+</sup>    | number        | No | No | Y coordinate of the upper left corner of the region, in px.|
+| x<sup>7+</sup>    | number        | No  | No | X coordinate of the top-left corner of the region, in px.|
+| y<sup>7+</sup>    | number        | No | No | Y coordinate of the top-left corner of the region, in px.|
 
 ## PackingOption
 
@@ -160,7 +161,7 @@ Describes the options for image encoding.
 | quality | number | No  | No  | Quality of the output image set. This parameter takes effect only for JPEG and HEIF images. The value range is [0, 100]. The value **0** means the lowest quality, and **100** means the highest quality. The higher the quality, the larger the space occupied by the generated image. WebP and PNG images are lossless.<br>In the case of sdr_astc_4x4 encoding, the parameter can be set to **92** and **85**.<br>In the case of sut encoding, the parameter can be set to **92**.<br>(Available since API version 20) In the case of hdr_astc_4x4 encoding, the parameter can be set to **85**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | bufferSize<sup>9+</sup> | number | No  | Yes  | Size of the buffer for receiving the encoded data, in bytes. If this parameter is not set, the default value 25 MB is used. If the size of an image exceeds 25 MB, you must specify the size. The value of **bufferSize** must be greater than the size of the encoded image. The use of [packToFile](arkts-apis-image-ImagePacker.md#packtofile11) is not restricted by this parameter.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](arkts-apis-image-e.md#packingdynamicrange12) | No  | Yes  | Desired dynamic range. The default value is **SDR**.|
-| needsPackProperties<sup>12+</sup> | boolean | No  | Yes  | Whether to encode image property information, for example, EXIF. The value **true** means to encode image property information, and **false** means the opposite. The default value is **false**.|
+| needsPackProperties<sup>12+</sup> | boolean | No  | Yes  | Whether encoding image property information, for example, EXIF, is required. **true** if required, **false** otherwise. The default value is **false**.|
 
 ## PackingOptionsForSequence<sup>18+</sup>
 
@@ -241,7 +242,7 @@ Describes the metadata keys used by a gain map, that is, the values available fo
 | writerVersion     | number   | No| No| Version used by the metadata editor. |
 | miniVersion     | number   | No| No| Minimum version that needs to be understood for metadata parsing. |
 | gainmapChannelCount  | number    | No| No| Number of color channels of the gain map. When the value is 3, the metadata values of the RGB channels are different. When the value is 1, the metadata values of the RGB channels are the same. For details, see ISO 21496-1. |
-| useBaseColorFlag  | boolean     | No| No| Whether to use the color space of the base graphic. For details, see ISO 21496-1. The value **true** means to use the color space of the base graphic, and **false** means the opposite.  |
+| useBaseColorFlag  | boolean     | No| No| Whether the color space of the base graphic is used. For details, see ISO 21496-1. **true** if used, **false** otherwise.  |
 | baseHeadroom  | number    | No| No|  Headroom of the base graphic, which means the additional brightness that can be added to the base graphic. For details, see ISO 21496-1.  |
 | alternateHeadroom  | number     | No| No|  Headroom of the alternate graphic. For details, see ISO 21496-1. |
 | channels  | Array<[GainmapChannel](#gainmapchannel12)> | No| No| Number of channels. The length is 3. For details, see ISO 21496-1.|
@@ -252,7 +253,7 @@ Describes the image properties.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [ImagePropertyOptions](#imagepropertyoptions11).
+> This API is supported since API version 7 and is deprecated since API version 11. You are advised to use [ImagePropertyOptions](#imagepropertyoptions11) instead.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 

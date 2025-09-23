@@ -2,7 +2,7 @@
 
 ## Overview
 
-The ImageEffect_FilterDelegate struct describes the callback functions of a custom image effect filter.
+The struct describes the callback functions of a custom image effect filter.
 
 **Since**: 12
 

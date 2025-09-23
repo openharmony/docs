@@ -2,22 +2,31 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
 The file declares the common enums and structs used by the image interface.
 
+**File to include**: <multimedia/image_framework/image_mdk_common.h>
+
 **Library**: libimage_ndk.z.so
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **Since**: 10
 
 **Related module**: [Image](capi-image.md)
 
 ## Summary
+
+### Macros
+
+| Name| Description|
+| -- | -- |
+| IMAGE_RESULT_BASE 62980096 | Common image error code, indicating that the operation fails.<br>**Since**: 10|
 
 ### Structs
 
@@ -67,7 +76,7 @@ Enumerates the return values that may be used by the interface.
 | IMAGE_RESULT_SOURCE_DATA = IMAGE_RESULT_BASE + 14 | The image source data is incorrect.|
 | IMAGE_RESULT_SOURCE_DATA_INCOMPLETE = IMAGE_RESULT_BASE + 15 | The image source data is incomplete.|
 | IMAGE_RESULT_MISMATCHED_FORMAT = IMAGE_RESULT_BASE + 16 | The image format does not match.|
-| IIMAGE_RESULT_UNKNOWN_FORMAT = IMAGE_RESULT_BASE + 17 | Unknown image format.|
+| IMAGE_RESULT_UNKNOWN_FORMAT = IMAGE_RESULT_BASE + 17 | Unknown image format.|
 | IMAGE_RESULT_SOURCE_UNRESOLVED = IMAGE_RESULT_BASE + 18 | The image source is not parsed.|
 | IMAGE_RESULT_INVALID_PARAMETER = IMAGE_RESULT_BASE + 19 | Invalid image parameter.|
 | IMAGE_RESULT_DECODE_FAILED = IMAGE_RESULT_BASE + 20 | Failed to decode the image.|
@@ -75,7 +84,7 @@ Enumerates the return values that may be used by the interface.
 | IMAGE_RESULT_PLUGIN_CREATE_FAILED = IMAGE_RESULT_BASE + 22 | Failed to create the plug-in.|
 | IMAGE_RESULT_ENCODE_FAILED = IMAGE_RESULT_BASE + 23 | Failed to encode the image.|
 | IMAGE_RESULT_ADD_PIXEL_MAP_FAILED = IMAGE_RESULT_BASE + 24 | Failed to add the PixelMap.|
-| IIMAGE_RESULT_HW_DECODE_UNSUPPORT = IMAGE_RESULT_BASE + 25 | Hardware decoding is not supported.|
+| IMAGE_RESULT_HW_DECODE_UNSUPPORT = IMAGE_RESULT_BASE + 25 | Hardware decoding is not supported.|
 | IMAGE_RESULT_DECODE_HEAD_ABNORMAL = IMAGE_RESULT_BASE + 26 | Failed to decode the image header.|
 | IMAGE_RESULT_DECODE_EXIF_UNSUPPORT = IMAGE_RESULT_BASE + 27 | Exchangeable Image File (EXIF) is not supported for image decoding.|
 | IMAGE_RESULT_PROPERTY_NOT_EXIST = IMAGE_RESULT_BASE + 28 | The image property does not exist.|
@@ -124,7 +133,7 @@ Enumerates the return values that may be used by the interface.
 | IMAGE_RESULT_MEDIA_SET_VOLUME = IMAGE_RESULT_BASE + 72 | Failed to set the volume.|
 | IMAGE_RESULT_MEDIA_NUMBER_OVERFLOW = IMAGE_RESULT_BASE + 73 | The number of operations overflows.|
 | IMAGE_RESULT_MEDIA_DIS_PLAYER_UNSUPPORTED = IMAGE_RESULT_BASE + 74 | The distributed media player is not supported.|
-| IIMAGE_RESULT_MEDIA_DENCODE_ICC_FAILED = IMAGE_RESULT_BASE + 75 | Failed to decode the ICC.|
+| IMAGE_RESULT_MEDIA_DENCODE_ICC_FAILED = IMAGE_RESULT_BASE + 75 | Failed to decode the ICC.|
 | IMAGE_RESULT_MEDIA_ENCODE_ICC_FAILED = IMAGE_RESULT_BASE + 76 | Failed to encode the ICC.|
 | IMAGE_RESULT_MEDIA_READ_PIXELMAP_FAILED = IMAGE_RESULT_BASE + 150 | Failed to read the PixelMap.|
 | IMAGE_RESULT_MEDIA_WRITE_PIXELMAP_FAILED = IMAGE_RESULT_BASE + 151 | Failed to write the PixelMap.|
@@ -135,7 +144,7 @@ Enumerates the return values that may be used by the interface.
 | IMAGE_RESULT_CREATE_SURFACE_FAILED = IMAGE_RESULT_BASE + 156 | Failed to create the surface.|
 | IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED = IMAGE_RESULT_BASE + 157 | Failed to obtain parameters from the surface.|
 | IMAGE_RESULT_GET_SURFACE_FAILED = IMAGE_RESULT_BASE + 158 | Failed to obtain the surface.| 
-| IIMAGE_RESULT_SURFACE_ACQUIRE_BUFFER_FAILED = IMAGE_RESULT_BASE + 159 | Failed to allocate the memory.|
+| IMAGE_RESULT_SURFACE_ACQUIRE_BUFFER_FAILED = IMAGE_RESULT_BASE + 159 | Failed to allocate the memory.|
 | IMAGE_RESULT_SURFACE_REQUEST_BUFFER_FAILED = IMAGE_RESULT_BASE + 160 | Failed to allocate the memory.|
 | IMAGE_RESULT_REGISTER_LISTENER_FAILED = IMAGE_RESULT_BASE + 161 | Failed to register the listener.|
 | IMAGE_RESULT_REGISTER_BUFFER_FAILED = IMAGE_RESULT_BASE + 162 | Failed to register the buffer.|
@@ -143,9 +152,9 @@ Enumerates the return values that may be used by the interface.
 | IMAGE_RESULT_PEEK_FAILED = IMAGE_RESULT_BASE + 164 | Failed to peek the file.|
 | IMAGE_RESULT_SEEK_FAILED = IMAGE_RESULT_BASE + 165 | Failed to seek the file.|
 | IMAGE_RESULT_STREAM_SIZE_ERROR = IMAGE_RESULT_BASE + 166 | The data stream is damaged.|
-| IIMAGE_RESULT_FILE_FD_ERROR = IMAGE_RESULT_BASE + 167, | The file descriptor is corrupted.|
+| IMAGE_RESULT_FILE_FD_ERROR = IMAGE_RESULT_BASE + 167, | The file descriptor is corrupted.|
 | IMAGE_RESULT_FILE_DAMAGED = IMAGE_RESULT_BASE + 168 | The file is damaged.|
-| IIMAGE_RESULT_CREATE_DECODER_FAILED = IMAGE_RESULT_BASE + 169 | Failed to create a decoder.|
+| IMAGE_RESULT_CREATE_DECODER_FAILED = IMAGE_RESULT_BASE + 169 | Failed to create a decoder.|
 | IMAGE_RESULT_CREATE_ENCODER_FAILED = IMAGE_RESULT_BASE + 170 | Failed to create an encoder.|
 | IMAGE_RESULT_CHECK_FORMAT_ERROR = IMAGE_RESULT_BASE + 171 | Failed to check the format.|
 | IMAGE_RESULT_THIRDPART_SKIA_ERROR = IMAGE_RESULT_BASE + 172 | Skia decoding failed.|

@@ -2,7 +2,9 @@
 
 ## Overview
 
-The **image_processing_types.h** file declares the image processing types.
+The file declares the image processing types.
+
+**File to include**: <multimedia/video_processing_engine/image_processing_types.h>
 
 **Library**: libimage_processing.so
 

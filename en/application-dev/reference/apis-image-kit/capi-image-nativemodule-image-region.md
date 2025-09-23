@@ -1,8 +1,14 @@
 # Image_Region
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
-The Image_Region struct describes the region of an image to decode.
+The struct describes the region of an image to decode.
 
 **Since**: 12
 

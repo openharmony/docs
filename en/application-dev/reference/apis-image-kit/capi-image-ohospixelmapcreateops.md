@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OhosPixelMapCreateOps struct describes the options used for creating a PixelMap.
+The struct describes the options used for creating a PixelMap.
 
 **Since**: 10
 

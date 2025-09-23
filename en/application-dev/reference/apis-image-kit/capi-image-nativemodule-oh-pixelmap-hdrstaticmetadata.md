@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_Pixelmap_HdrStaticMetadata struct describes the static metadata values available for the key **HDR_STATIC_METADATA**.
+The struct describes the static metadata values available for the key **HDR_STATIC_METADATA**.
 
 **Since**: 12
 
