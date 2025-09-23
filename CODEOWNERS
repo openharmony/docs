@@ -507,9 +507,9 @@ zh-cn/application-dev/device/usb-overview.md @w_Machine_cc @Kevin-Lau @liuhongga
 zh-cn/application-dev/device/usb-guidelines.md @w_Machine_cc @Kevin-Lau @liuhonggang123 @fang-jinxu
 
 [开发-Basic Services Kit-升级服务]
-zh-cn/application-dev/basic-services/update/Readme-CN.md @zhang_yixin13 @fang-jinxu
-zh-cn/application-dev/basic-services/update/sample-server-overview.md  @zhang_yixin13 @fang-jinxu
-zh-cn/application-dev/basic-services/update/sample-server-guidelines.md  @zhang_yixin13 @fang-jinxu
+zh-cn/application-dev/basic-services/update/Readme-CN.md  @fang-jinxu
+zh-cn/application-dev/basic-services/update/sample-server-overview.md   @fang-jinxu
+zh-cn/application-dev/basic-services/update/sample-server-guidelines.md   @fang-jinxu
 
 [开发-Basic Services Kit-压缩解压]
 zh-cn/application-dev/basic-services/compress  @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer @fang-jinxu
@@ -1692,12 +1692,12 @@ zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power-sys.md @w_
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usbManager-sys.md @w_Machine_cc @Kevin-Lau @liuhonggang123 @fang-jinxu
 
 [API参考-Basic Services Kit-数据文件处理]
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request-sys.md @zhang_yixin13  @murphy1984 @hu-kai45 @fang-jinxu
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md @zhang_yixin13  @murphy1984 @hu-kai45 @fang-jinxu
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-request.md @zhang_yixin13  @murphy1984 @hu-kai45 @fang-jinxu
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-update-sys.md @hughes802 @zhang_yixin13 @zhangzhengxue @mamba-ting @fang-jinxu
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-request.md @zhang_yixin13 @murphy1984 @hu-kai45 @fang-jinxu
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-update.md @hughes802 @zhang_yixin13 @zhangzhengxue @mamba-ting @fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request-sys.md   @murphy1984 @hu-kai45 @fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md   @murphy1984 @hu-kai45 @fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-request.md   @murphy1984 @hu-kai45 @fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-update-sys.md @hughes802  @zhangzhengxue @mamba-ting @fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-request.md  @murphy1984 @hu-kai45 @fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-update.md @hughes802  @zhangzhengxue @mamba-ting @fang-jinxu
 
 [API参考-Basic Services Kit-时间时区、公共回调、系统设置]
 zh-cn/application-dev/reference/common/js-apis-timer.md @yao_dashuai @yao_dashuai @kirl75; @zsw_zhushiwei @foryourself
