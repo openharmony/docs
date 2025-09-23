@@ -8884,29 +8884,29 @@ async function example(context: Context) {
       = await cloudEnhancementInstance.queryCloudEnhancementTaskState(asset);
     let taskStage = cloudEnhancementTaskState.taskStage;
     if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_EXCEPTION) {
-      console.log("task has exception");
+      console.info("task has exception");
     } else if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_PREPARING) {
-      console.log("task is preparing");
+      console.info("task is preparing");
     } else if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_UPLOADING) {
       let transferredFileSize = cloudEnhancementTaskState.transferredFileSize;
       let totalFileSize = cloudEnhancementTaskState.totalFileSize;
       let message = `task is uploading, transferredFileSize: ${transferredFileSize}, totalFileSize: ${totalFileSize}`;
-      console.log(message);
+      console.info(message);
     } else if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_EXECUTING) {
       let expectedDuration = cloudEnhancementTaskState.expectedDuration;
       let message = `task is executing, expectedDuration: ${expectedDuration}`;
-      console.log(message);
+      console.info(message);
     } else if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_DOWNLOADING) {
       let transferredFileSize = cloudEnhancementTaskState.transferredFileSize;
       let totalFileSize = cloudEnhancementTaskState.totalFileSize;
       let message = `task is downloading, transferredFileSize: ${transferredFileSize}, totalFileSize: ${totalFileSize}`;
-      console.log(message);
+      console.info(message);
     } else if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_FAILED) {
       let errCode = cloudEnhancementTaskState.statusCode;
       let message = `task is failed, errCode: ${errCode}`;
-      console.log(message);
+      console.info(message);
     } else if (taskStage == photoAccessHelper.CloudEnhancementTaskStage.TASK_STAGE_COMPLETED) {
-      console.log("task is completed");
+      console.info("task is completed");
     }
   } catch (err) {
     console.error(`queryCloudEnhancementTaskStateDemo failed with error: ${err.code}, ${err.message}`);
@@ -9359,7 +9359,7 @@ async function example(context: Context) {
     let taskInfo = cloudMediaAssetStatus.taskInfo;
     let errorCode = cloudMediaAssetStatus.errorCode;
     let message = `taskStatus: ${taskStatus}, taskInfo: ${taskInfo}, errorCode: ${errorCode}`;
-    console.log(message);
+    console.info(message);
   } catch (err) {
     console.error(`getCloudMediaAssetStatusDemo failed with error: ${err.code}, ${err.message}`);
   }
@@ -10256,13 +10256,13 @@ async function example(context: Context) {
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称                   | 类型                | 必定提供 | 说明                                              |
-| ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-|taskStage       |[CloudEnhancementTaskStage](#cloudenhancementtaskstage13)  |是 | 云增强任务状态。 |
-|transferredFileSize          |number  |否 | 已传输的文件大小。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_UPLOADING或者CloudEnhancementTaskStage.TASK_STAGE_DOWNLOADING时提供。  |
-|totalFileSize          |number  |否 | 总文件大小。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_UPLOADING或者CloudEnhancementTaskStage.TASK_STAGE_DOWNLOADING时提供。  |
-|expectedDuration          |number  |否 | 排队时间。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_EXECUTING时提供。  |
-|statusCode          |number  |否 | 状态码。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_FAILED时提供。  |
+| 名称    | 类型                        | 只读 | 可选 | 说明                                                         |
+| ---- | ------- | ---- |  ---- | ----- |
+| taskStage  | [CloudEnhancementTaskStage](#cloudenhancementtaskstage13)  | 是 | 否 | 云增强任务状态。  |
+| transferredFileSize  | number  | 是 | 是 | 已传输的文件大小。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_UPLOADING或者CloudEnhancementTaskStage.TASK_STAGE_DOWNLOADING时提供。  |
+| totalFileSize  | number  | 是 | 是 | 总文件大小。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_UPLOADING或者CloudEnhancementTaskStage.TASK_STAGE_DOWNLOADING时提供。  |
+| expectedDuration  | number  | 是 | 是 | 排队时间。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_EXECUTING时提供。  |
+| statusCode  | number  | 是 | 是 | 状态码。当taskStage为CloudEnhancementTaskStage.TASK_STAGE_FAILED时提供。  |
 
 ## VideoEnhancementType<sup>13+</sup>
 
