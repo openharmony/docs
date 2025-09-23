@@ -76,6 +76,7 @@
 | [ArkUI_TextCascadePickerRangeContentArray](capi-arkui-nativemodule-arkui-textcascadepickerrangecontentarray.md) | ArkUI_TextCascadePickerRangeContentArray | 定义多列联动数据选择器的多列联动数据选择列表。 |
 | [ArkUI_VisibleAreaEventOptions](capi-arkui-nativemodule-arkui-visibleareaeventoptions.md) | ArkUI_VisibleAreaEventOptions | 可见区域变化监听的参数。 |
 |[ArkUI_PositionEdges](capi-arkui-nativemodule-arkui-positionedges.md)|ArkUI_PositionEdges|相对容器内容区边界的位置参数。|
+|[ArkUI_PixelRoundPolicy](capi-arkui-nativemodule-arkui-pixelroundpolicy.md)|ArkUI_PixelRoundPolicy|定义组件的像素取整策略结构体。|
 |[ArkUI_ContentTransitionEffect](capi-arkui-nativemodule-arkui-contenttransitioneffect.md)|ArkUI_ContentTransitionEffect|内容过渡效果。|
 
 ### 枚举
@@ -198,6 +199,7 @@
 | [ArkUI_EdgeDirection](#arkui_edgedirection)                         | ArkUI_EdgeDirection             | 定义矩形边方向。                         |
 | [ArkUI_CornerDirection](#arkui_cornerdirection)                     | ArkUI_CornerDirection           | 定义角度方向。                         |
 | [ArkUI_LayoutPolicy](#arkui_layoutpolicy)                         | ArkUI_LayoutPolicy             | 布局策略枚举。                         |
+| [ArkUI_PixelRoundCalcPolicy](#arkui_pixelroundcalcpolicy) | ArkUI_PixelRoundCalcPolicy | 定义像素取整计算策略枚举。 |
 
 ### 函数
 
@@ -481,6 +483,16 @@
 |[int32_t OH_ArkUI_PositionEdges_GetBottom(ArkUI_PositionEdges* edges, float* value)](#oh_arkui_positionedges_getbottom)|获取PositionEdges属性对象的下方向值。|
 |[void OH_ArkUI_PositionEdges_SetRight(ArkUI_PositionEdges* edges, float value)](#oh_arkui_positionedges_setright)|设置PositionEdges属性对象的右方向值。|
 |[int32_t OH_ArkUI_PositionEdges_GetRight(ArkUI_PositionEdges* edges, float* value)](#oh_arkui_positionedges_getright)|获取PositionEdges属性对象的右方向值。|
+|[ArkUI_PixelRoundPolicy* OH_ArkUI_PixelRoundPolicy_Create()](#oh_arkui_pixelroundpolicy_create)|创建PixelRoundPolicy属性对象。|
+|[void OH_ArkUI_PixelRoundPolicy_Dispose(ArkUI_PixelRoundPolicy* policy)](#oh_arkui_pixelroundpolicy_dispose)|释放PixelRoundPolicy属性对象。|
+|[void OH_ArkUI_PixelRoundPolicy_SetTop(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy value)](#oh_arkui_pixelroundpolicy_settop)|设置PixelRoundPolicy属性对象的上部方向值。|
+|[int32_t OH_ArkUI_PixelRoundPolicy_GetTop(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy* value)](#oh_arkui_pixelroundpolicy_gettop)|获取PixelRoundPolicy属性对象的上部方向值。|
+|[void OH_ArkUI_PixelRoundPolicy_SetStart(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy value)](#oh_arkui_pixelroundpolicy_setstart)|设置PixelRoundPolicy属性对象的前部方向值。|
+|[int32_t OH_ArkUI_PixelRoundPolicy_GetStart(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy* value)](#oh_arkui_pixelroundpolicy_getstart)|获取PixelRoundPolicy属性对象的前部方向值。|
+|[void OH_ArkUI_PixelRoundPolicy_SetBottom(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy value)](#oh_arkui_pixelroundpolicy_setbottom)|设置PixelRoundPolicy属性对象的下部方向值。|
+|[int32_t OH_ArkUI_PixelRoundPolicy_GetBottom(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy* value)](#oh_arkui_pixelroundpolicy_getbottom)|获取PixelRoundPolicy属性对象的下部方向值。|
+|[void OH_ArkUI_PixelRoundPolicy_SetEnd(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy value)](#oh_arkui_pixelroundpolicy_setend)|设置PixelRoundPolicy属性对象的尾部方向值。|
+|[int32_t OH_ArkUI_PixelRoundPolicy_GetEnd(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy* value)](#oh_arkui_pixelroundpolicy_getend)|获取PixelRoundPolicy属性对象的尾部方向值。|
 |[ArkUI_ContentTransitionEffect* OH_ArkUI_ContentTransitionEffect_Create(int32_t type)](#oh_arkui_contenttransitioneffect_create)|创建ContentTransitionEffect属性对象。|
 
 ## 枚举类型说明
@@ -2944,6 +2956,24 @@ enum ArkUI_LayoutPolicy
 | ARKUI_LAYOUTPOLICY_MATCHPARENT = 0 | 组件自适应父组件布局。 |
 | ARKUI_LAYOUTPOLICY_WRAPCONTENT | 组件自适应子组件（内容），且其大小受父组件内容区大小约束。 |
 | ARKUI_LAYOUTPOLICY_FIXATIDEALSIZE | 组件自适应子组件（内容），且其大小不受父组件内容区大小约束。 |
+
+### ArkUI_PixelRoundCalcPolicy
+
+```
+enum ArkUI_PixelRoundCalcPolicy
+```
+
+**描述：**
+
+定义像素取整计算策略枚举。
+
+**起始版本：** 21
+
+| 枚举项 | 描述 |
+| -- | -- |
+| ARKUI_PIXELROUNDCALCPOLICY_NOFORCE = 0 | 非取整计算。 |
+| ARKUI_PIXELROUNDCALCPOLICY_FORCECEIL | 向上取整计算。 |
+| ARKUI_PIXELROUNDCALCPOLICY_FORCEFLOOR | 向下取整计算。 |
 
 ## 函数说明
 
@@ -9404,6 +9434,218 @@ int32_t OH_ArkUI_PositionEdges_GetRight(ArkUI_PositionEdges* edges, float* value
 
 | 类型 | 说明 |
 | -- | -- |
+| int32_t | 错误码。<br>         [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>         [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数无效。 |
+
+### OH_ArkUI_PixelRoundPolicy_Create()
+
+```
+ArkUI_PixelRoundPolicy* OH_ArkUI_PixelRoundPolicy_Create()
+```
+
+**描述：**
+
+创建PixelRoundPolicy属性对象。
+
+**起始版本：** 21
+
+**返回：**
+
+| 类型                                                         | 说明                             |
+| ------------------------------------------------------------ | -------------------------------- |
+| [ArkUI_PixelRoundPolicy](capi-arkui-nativemodule-arkui-pixelroundpolicy.md)* | 指向PixelRoundPolicy对象的指针。 |
+
+### OH_ArkUI_PixelRoundPolicy_Dispose()
+
+```
+void OH_ArkUI_PixelRoundPolicy_Dispose(ArkUI_PixelRoundPolicy* policy)
+```
+
+**描述：**
+
+释放PixelRoundPolicy属性对象。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项                                                       | 描述                                     |
+| ------------------------------------------------------------ | ---------------------------------------- |
+| [ArkUI_PixelRoundPolicy](capi-arkui-nativemodule-arkui-pixelroundpolicy.md)* policy | 指向要释放的PixelRoundPolicy对象的指针。 |
+
+### OH_ArkUI_PixelRoundPolicy_SetTop()
+
+```
+void OH_ArkUI_PixelRoundPolicy_SetTop(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy value)
+```
+
+**描述：**
+
+设置PixelRoundPolicy属性对象的上部方向值。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项                                                       | 描述                                 |
+| ------------------------------------------------------------ | ------------------------------------ |
+| [ArkUI_PixelRoundPolicy](capi-arkui-nativemodule-arkui-pixelroundpolicy.md)* policy | 指向PixelRoundPolicy对象的指针。     |
+| [ArkUI_PixelRoundCalcPolicy](#arkui_pixelroundcalcpolicy) value | PixelRoundPolicy对应方向的取整策略。 |
+
+### OH_ArkUI_PixelRoundPolicy_GetTop()
+
+```
+int32_t OH_ArkUI_PixelRoundPolicy_GetTop(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy* value)
+```
+
+**描述：**
+
+获取PixelRoundPolicy属性对象的上部方向值。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项                                                       | 描述                                 |
+| ------------------------------------------------------------ | ------------------------------------ |
+| [ArkUI_PixelRoundPolicy](capi-arkui-nativemodule-arkui-pixelroundpolicy.md)* policy | 指向PixelRoundPolicy对象的指针。     |
+| [ArkUI_PixelRoundCalcPolicy](#arkui_pixelroundcalcpolicy)* value | PixelRoundPolicy对应方向的取整策略。 |
+
+**返回：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| int32_t | 错误码。<br>         [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>         [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数无效。 |
+
+### OH_ArkUI_PixelRoundPolicy_SetStart()
+
+```
+void OH_ArkUI_PixelRoundPolicy_SetStart(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy value)
+```
+
+**描述：**
+
+设置PixelRoundPolicy属性对象的前部方向值。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项                                                       | 描述                                 |
+| ------------------------------------------------------------ | ------------------------------------ |
+| [ArkUI_PixelRoundPolicy](capi-arkui-nativemodule-arkui-pixelroundpolicy.md)* policy | 指向PixelRoundPolicy对象的指针。     |
+| [ArkUI_PixelRoundCalcPolicy](#arkui_pixelroundcalcpolicy) value | PixelRoundPolicy对应方向的取整策略。 |
+
+### OH_ArkUI_PixelRoundPolicy_GetStart()
+
+```
+int32_t OH_ArkUI_PixelRoundPolicy_GetStart(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy* value)
+```
+
+**描述：**
+
+获取PixelRoundPolicy属性对象的前部方向值。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项                                                       | 描述                                 |
+| ------------------------------------------------------------ | ------------------------------------ |
+| [ArkUI_PixelRoundPolicy](capi-arkui-nativemodule-arkui-pixelroundpolicy.md)* policy | 指向PixelRoundPolicy对象的指针。     |
+| [ArkUI_PixelRoundCalcPolicy](#arkui_pixelroundcalcpolicy)* value | PixelRoundPolicy对应方向的取整策略。 |
+
+**返回：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| int32_t | 错误码。<br>         [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>         [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数无效。 |
+
+### OH_ArkUI_PixelRoundPolicy_SetBottom()
+
+```
+void OH_ArkUI_PixelRoundPolicy_SetBottom(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy value)
+```
+
+**描述：**
+
+设置PixelRoundPolicy属性对象的下部方向值。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项                                                       | 描述                                 |
+| ------------------------------------------------------------ | ------------------------------------ |
+| [ArkUI_PixelRoundPolicy](capi-arkui-nativemodule-arkui-pixelroundpolicy.md)* policy | 指向PixelRoundPolicy对象的指针。     |
+| [ArkUI_PixelRoundCalcPolicy](#arkui_pixelroundcalcpolicy) value | PixelRoundPolicy对应方向的取整策略。 |
+
+### OH_ArkUI_PixelRoundPolicy_GetBottom()
+
+```
+int32_t OH_ArkUI_PixelRoundPolicy_GetBottom(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy* value)
+```
+
+**描述：**
+
+获取PixelRoundPolicy属性对象的下部方向值。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项                                                       | 描述                                 |
+| ------------------------------------------------------------ | ------------------------------------ |
+| [ArkUI_PixelRoundPolicy](capi-arkui-nativemodule-arkui-pixelroundpolicy.md)* policy | 指向PixelRoundPolicy对象的指针。     |
+| [ArkUI_PixelRoundCalcPolicy](#arkui_pixelroundcalcpolicy)* value | PixelRoundPolicy对应方向的取整策略。 |
+
+**返回：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| int32_t | 错误码。<br>         [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>         [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数无效。 |
+
+### OH_ArkUI_PixelRoundPolicy_SetEnd()
+
+```
+void OH_ArkUI_PixelRoundPolicy_SetTop(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy value)
+```
+
+**描述：**
+
+设置PixelRoundPolicy属性对象的尾部方向值。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项                                                       | 描述                                 |
+| ------------------------------------------------------------ | ------------------------------------ |
+| [ArkUI_PixelRoundPolicy](capi-arkui-nativemodule-arkui-pixelroundpolicy.md)* policy | 指向PixelRoundPolicy对象的指针。     |
+| [ArkUI_PixelRoundCalcPolicy](#arkui_pixelroundcalcpolicy) value | PixelRoundPolicy对应方向的取整策略。 |
+
+### OH_ArkUI_PixelRoundPolicy_GetEnd()
+
+```
+int32_t OH_ArkUI_PixelRoundPolicy_GetEnd(ArkUI_PixelRoundPolicy* policy, ArkUI_PixelRoundCalcPolicy* value)
+```
+
+**描述：**
+
+获取PixelRoundPolicy属性对象的尾部方向值。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项                                                       | 描述                                 |
+| ------------------------------------------------------------ | ------------------------------------ |
+| [ArkUI_PixelRoundPolicy](capi-arkui-nativemodule-arkui-pixelroundpolicy.md)* policy | 指向PixelRoundPolicy对象的指针。     |
+| [ArkUI_PixelRoundCalcPolicy](#arkui_pixelroundcalcpolicy)* value | PixelRoundPolicy对应方向的取整策略。 |
+
+**返回：**
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
 | int32_t | 错误码。<br>         [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>         [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数无效。 |
 
 ### OH_ArkUI_ContentTransitionEffect_Create()
