@@ -1,5 +1,12 @@
 # 全局快捷键开发指导
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 场景介绍
 
 全局快捷键功能提供订阅全局快捷键、设置屏蔽按键拦截状态等能力。使用场景例如：当用户需要通过全局快捷键实现快捷功能时，开发者可以订阅全局快捷键，通过组合按键启用快捷功能。
