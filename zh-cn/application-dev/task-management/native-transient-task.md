@@ -203,22 +203,22 @@
 
      RequestSuspendDelay() {
        let requestId = testTransientTask.RequestSuspendDelay();
-       console.log("The return requestId is " + requestId);
+       console.info("The return requestId is " + requestId);
      }
 
      GetRemainingDelayTime() {
        let time = testTransientTask.GetRemainingDelayTime();
-       console.log("The time is " + time);
+       console.info("The time is " + time);
      }
 
      CancelSuspendDelay() {
        let ret = testTransientTask.CancelSuspendDelay();
-       console.log("The ret is " + ret);
+       console.info("The ret is " + ret);
      }
 
      GetTransientTaskInfo() {
        let ret = testTransientTask.GetTransientTaskInfo();
-       console.log("The ret is " + JSON.stringify(ret));
+       console.info("The ret is " + JSON.stringify(ret));
      }
    }
 
