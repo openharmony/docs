@@ -27,7 +27,7 @@
       - [使用Node-API接口创建基本数据类型](use-napi-basic-data-types.md)
       - [使用Node-API进行class相关开发](use-napi-about-class.md)
       - [使用Node-API接口注册和使用环境清理钩子](use-napi-about-cleanuphook.md)
-      - [使用Node-API接口进行date相关开发](use-napi-about-date.md)
+      - [使用Node-API接口进行Date相关开发](use-napi-about-date.md)
       - [使用Node-API接口进行错误处理开发](use-napi-about-error.md)
       - [使用Node-API接口关联数据，使其生命周期与当前环境的生命周期相关联](use-napi-about-environmental-life-cycle.md)
       - [使用Node-API接口进行函数创建和调用](use-napi-about-function.md)
