@@ -1298,7 +1298,7 @@ on(type: 'touchscreenSwipe', fingers: number, receiver: Callback&lt;TouchGesture
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 输入设备事件类型，取值'touchscreenSwipe'。                    |
 | fingers  | number                                                       | 是   | 滑动手势的手指数，取值范围：[3,5]。 |
-| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | 是   | 回调函数，异步上报触摸屏滑动手势事件。 |
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent18)&gt; | 是   | 回调函数，异步上报触摸屏滑动手势事件。 |
 
 **错误码**：
 
@@ -1353,7 +1353,7 @@ off(type: 'touchscreenSwipe', fingers: number, receiver?: Callback&lt;TouchGestu
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 输入设备事件类型，取值'touchscreenSwipe'。                    |
 | fingers  | number                                                       | 是   | 滑动手势的手指数，取值范围：[3,5]。 |
-| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | 否   | 需要取消监听的回调函数。若不填，则取消当前应用监听的所有回调函数。 |
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent18)&gt; | 否   | 需要取消监听的回调函数。若不填，则取消当前应用监听的所有回调函数。 |
 
 **错误码**：
 
@@ -1438,7 +1438,7 @@ on(type: 'touchscreenPinch', fingers: number, receiver: Callback&lt;TouchGesture
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 输入设备事件类型，取值'touchscreenPinch'。                    |
 | fingers  | number                                                       | 是   | 捏合手势的手指数，取值范围：[4,5]。 |
-| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | 是   | 回调函数，异步上报触摸屏捏合手势事件。 |
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent18)&gt; | 是   | 回调函数，异步上报触摸屏捏合手势事件。 |
 
 **错误码**：
 
@@ -1493,7 +1493,7 @@ off(type: 'touchscreenPinch', fingers: number, receiver?: Callback&lt;TouchGestu
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 输入设备事件类型，取值'touchscreenPinch'。                    |
 | fingers  | number                                                       | 是   | 捏合手势的手指数，取值范围：[4,5]。 |
-| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | 否   | 需要取消监听的回调函数。若不填，则取消当前应用监听的所有回调函数。 |
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent18)&gt; | 否   | 需要取消监听的回调函数。若不填，则取消当前应用监听的所有回调函数。 |
 
 **错误码**：
 
