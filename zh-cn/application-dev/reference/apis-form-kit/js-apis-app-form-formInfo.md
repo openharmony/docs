@@ -30,7 +30,7 @@ import { formInfo } from '@kit.FormKit';
 | descriptionId<sup>10+</sup>      | number               | 否    | 否     | 卡片描述id。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | type        | [FormType](#formtype)             | 否    | 否     | 卡片类型。当前支持JS卡片、ArkTS卡片。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | jsComponentName      | string               | 否    | 否     | js卡片的组件名。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| colorMode  | [ColorMode](#colormodedeprecated) | 否    | 否     | 卡片颜色模式。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| colorMode  | [ColorMode](#colormode) | 否    | 否     | 卡片颜色模式。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | isDefault    | boolean      | 否    | 否     | 卡片是否是默认卡片。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | updateEnabled  | boolean               | 否    | 否     | 卡片是否使能更新。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | formVisibleNotify  | boolean        | 否    | 否     | 卡片是否使能可见通知。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
