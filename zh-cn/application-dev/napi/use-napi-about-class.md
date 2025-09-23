@@ -44,6 +44,8 @@ Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程
 cpp部分代码
 
 ```cpp
+#include "napi/native_api.h"
+
 static napi_value NewInstance(napi_env env, napi_callback_info info)
 {
     // 传入并解析参数，第一个参数为传入的构造函数，第二个参数为需要传入构造函数的参数
@@ -71,6 +73,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 class Fruit {
   name: string;
   constructor(name: string) {
@@ -219,6 +222,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 try {
     class Obj {}
     let obj: Obj = {};

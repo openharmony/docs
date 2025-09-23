@@ -85,6 +85,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 let data = 5;
 let value = testNapi.setInstanceData(data);
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_instance_data:%{public}s', value);
@@ -127,6 +128,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 let data = 5;
 testNapi.setInstanceData(data);
 let value = testNapi.getInstanceData();
