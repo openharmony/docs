@@ -397,9 +397,9 @@ OpenHarmony 5.0.3 Release版本对标准系统的能力进行持续完善，以�
 
 | ISSUE单 | 问题描述 | 
 | ------- | ------- |
-| IANQF3 | 在执行WuKong压测过程有较高概率出现重启现象。 |
-| IBJ6LH | 因新引入安全校验机制导致删除多张图片的处理时长可能过长，影响体验。 |
-| IBDPFF | 进程intell_voice_service下的SaOndemand线程小概率出现cppcrash，崩溃栈：libintell_voice_server.z.so |
+| [481](https://gitcode.com/openharmony/kernel_linux_5.10/issues/481) | 在执行WuKong压测过程有较高概率出现重启现象。 |
+| [1619](https://gitcode.com/openharmony/distributeddatamgr_relational_store/issues/1619) | 因新引入安全校验机制导致删除多张图片的处理时长可能过长，影响体验。 |
+| [65](https://gitcode.com/openharmony/ai_intelligent_voice_framework/issues/65) | 进程intell_voice_service下的SaOndemand线程小概率出现cppcrash，崩溃栈：libintell_voice_server.z.so |
 
 ## 遗留缺陷列表
 
@@ -407,9 +407,9 @@ OpenHarmony 5.0.3 Release版本对标准系统的能力进行持续完善，以�
 
 | ISSUE | 问题描述 | 影响 | 计划解决日期 | 
 | -------- | -------- | -------- | -------- |
-| IBTXFK | 从图库删除多张图片的完整用时可能稍长（1000+ ms）。 | 轻微影响使用体验。 | 2025年4月30日 |
-| IBTCKR | SystemUI状态栏下拉到内容渲染耗完成时的完整用时可能稍长（160+ ms）。 | 轻微影响使用体验。 | 2025年4月30日 |
-| IBTCJQ | FWX图片放大缩小的移动帧率不足60帧。 | 轻微影响使用体验。 | 2025年4月30日 |
-| IBBZPS | 进程com.ohos.systemui下的OS_IPC_0_1067线程小概率出现cppcrash，崩溃栈：ld-musl-arm.so.1(__libc_free+172) | 系统异常，用户无感知。 | 2025年4月30日 | 
-| IBE36X</br>IBO3MF | 进程render_service小概率出现因SERVICE_BLOCK导致的的sysfreeze问题。 | 桌面无响应后黑屏，自动恢复后回到桌面。 | 2025年4月30日 |
-| IBINUK | 进程com.ohos.camera有一定概率出现因LIFECYCLE_TIMEOUT卡在libcamera_framework.z.so导致的sysfreeze。 | 相机调用异常，重启可恢复。 | 2025年4月30日 |
+| [710](https://gitcode.com/openharmony/applications_photos/issues/710) | 从图库删除多张图片的完整用时可能稍长（1000+ ms）。 | 轻微影响使用体验。 | 2025年4月30日 |
+| [542](https://gitcode.com/openharmony/applications_systemui/issues/542) | SystemUI状态栏下拉到内容渲染耗完成时的完整用时可能稍长（160+ ms）。 | 轻微影响使用体验。 | 2025年4月30日 |
+| [9385](https://gitcode.com/openharmony/window_window_manager/issues/9385) | FWX图片放大缩小的移动帧率不足60帧。 | 轻微影响使用体验。 | 2025年4月30日 |
+| [9238](https://gitcode.com/openharmony/multimedia_audio_framework/issues/9238) | 进程com.ohos.systemui下的OS_IPC_0_1067线程小概率出现cppcrash，崩溃栈：ld-musl-arm.so.1(__libc_free+172) | 系统异常，用户无感知。 | 2025年4月30日 | 
+| [211](https://gitcode.com/openharmony/device_soc_rockchip/issues/211)</br>[15483](https://gitcode.com/openharmony/graphic_graphic_2d/issues/15483) | 进程render_service小概率出现因SERVICE_BLOCK导致的的sysfreeze问题。 | 桌面无响应后黑屏，自动恢复后回到桌面。 | 2025年4月30日 |
+| [3460](https://gitcode.com/openharmony/multimedia_camera_framework/issues/3460) | 进程com.ohos.camera有一定概率出现因LIFECYCLE_TIMEOUT卡在libcamera_framework.z.so导致的sysfreeze。 | 相机调用异常，重启可恢复。 | 2025年4月30日 |
