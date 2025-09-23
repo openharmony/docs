@@ -53,7 +53,7 @@ FormLink(options: FormLinkOptions)
 | bundleName  | string  | 否 | 是   | action为router&nbsp;/&nbsp;call&nbsp;类型时跳转的包名。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | abilityName | string  | 否 | 是   | action为router&nbsp;/&nbsp;call&nbsp;类型时跳转的UIAbility名。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | uri<sup>11+</sup> | string | 否  | 是   | action为router&nbsp;类型时跳转的UIAbility的统一资源标识符。uri和abilityName同时存在时，abilityName优先。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。 |
-| params      | Object | 否  | 是   | 当前action携带的额外参数，内容使用JSON格式的键值对形式。call&nbsp;类型时需填入参数'method'，且类型需要为string类型，用于触发UIAbility中对应的方法。 <br/>**说明：** <br/>不推荐通过params传递卡片内部的状态变量。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+| params      | Object | 否  | 是   | 当前action携带的额外参数，内容使用JSON格式的键值对形式。call&nbsp;类型时需填入参数'method'，且类型需要为string类型，用于触发UIAbility中对应的方法。 <br/>**说明：** <br/>不建议通过params传递卡片内部的状态变量。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 
 ## 属性
 
