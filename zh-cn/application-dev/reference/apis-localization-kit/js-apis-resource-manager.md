@@ -4078,7 +4078,7 @@ export default class EntryAbility extends UIAbility {
     try {
       // "test.txt"仅作示例，请替换为实际使用的资源
       let rawfile = this.context.resourceManager.getRawFdSync("test.txt");
-      // doing something
+      // 根据实际业务场景，使用rawfile资源
 
       this.context.resourceManager.closeRawFdSync("test.txt");
       console.info(`closeRawFdSync test success.`);
@@ -4126,7 +4126,7 @@ export default class EntryAbility extends UIAbility {
     try {
       // "test.txt"仅作示例，请替换为实际使用的资源
       let rawfile = this.context.resourceManager.getRawFdSync("test.txt");
-      //doing something
+      // 根据实际业务场景，使用rawfile资源
       this.context.resourceManager.closeRawFd("test.txt", (error: BusinessError) => {
         if (error != null) {
           console.error("error is " + error);
@@ -4183,7 +4183,7 @@ export default class EntryAbility extends UIAbility {
     try {
       // "test.txt"仅作示例，请替换为实际使用的资源
       let rawfile = this.context.resourceManager.getRawFdSync("test.txt");
-      //doing something
+      // 根据实际业务场景，使用rawfile资源
       this.context.resourceManager.closeRawFd("test.txt");
       console.info(`closeRawFd test success.`);
     } catch (error) {
