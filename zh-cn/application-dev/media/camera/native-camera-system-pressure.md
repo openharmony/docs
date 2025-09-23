@@ -1,4 +1,4 @@
-# 压力管控(C++)
+# 压力管控(C/C++)
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
