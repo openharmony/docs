@@ -22,7 +22,9 @@ import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 submitMetadata(metadata: string): void
 
 第三方应用将需要编码的内容传递给MSDP，MSDP决定适时将内容传递给调用编码接口的系统应用或服务。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.MultimodalAwareness.MetadataBinding
 
 **参数**：
@@ -57,8 +59,11 @@ try {
 on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback&lt;number&gt;): void 
 
 订阅系统事件以获取编码内容，应用注册回调，事件发生时回传编码内容。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.MultimodalAwareness.MetadataBinding  
+
 **参数**： 
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
@@ -98,8 +103,11 @@ try {
 off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback&lt;number&gt;): void
 
 取消订阅系统获取编码内容的事件。取消注册回调接口。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.MultimodalAwareness.MetadataBinding  
+
 **参数**：
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
