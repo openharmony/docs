@@ -13,10 +13,10 @@
 
 在查询关键资产时，关键资产属性的内容参数如下表所示：
 
->**注意：**
+> **注意：**
 >
->下表中“ASSET_TAG_ALIAS”和名称包含“ASSET_TAG_DATA_LABEL”的关键资产属性，用于存储业务自定义信息，其内容不会被加密，请勿存放敏感个人数据。
->查询关键资产明文ASSET_TAG_SECRET需要解密，查询时间较长，需要将Asset_ReturnType设置为ASSET_RETURN_ALL；只查询其他关键资产属性不需解密，查询时间较短，需要将Asset_ReturnType设置为ASSET_RETURN_ATTRIBUTES。
+> 下表中“ASSET_TAG_ALIAS”和名称包含“ASSET_TAG_DATA_LABEL”的关键资产属性，用于存储业务自定义信息，其内容不会被加密，请勿存放敏感个人数据。
+> 查询关键资产明文ASSET_TAG_SECRET需要解密，查询时间较长，需要将Asset_ReturnType设置为ASSET_RETURN_ALL；只查询其他关键资产属性不需解密，查询时间较短，需要将Asset_ReturnType设置为ASSET_RETURN_ATTRIBUTES。
 
 | 属性名称（Asset_Tag）            | 属性内容（Asset_Value）                                       | 是否必选 | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
