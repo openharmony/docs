@@ -59,7 +59,7 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
 <!--code_no_check_fa-->
   ```js
 import  resourceManager  from '@ohos.resourceManager';
-//FA模型下请使用上述方式导入模块
+//FA模型请使用上述方式导入模块
 export default {
     onCreate() {
         resourceManager.getResourceManager((error, mgr) => {
@@ -102,7 +102,8 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
 <!--code_no_check_fa-->
   ```js
 import  resourceManager  from '@ohos.resourceManager';
-//FA模型下请使用上述方式导入模块
+//FA模型请使用上述方式导入模块
+
 // 'com.example.testapp'仅作示例，请替换为实际应用包名
 const BUNDLE_NAME = 'com.example.testapp';
 export default {
@@ -145,7 +146,7 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
 <!--code_no_check_fa-->
   ```js
 import resourceManager from '@ohos.resourceManager';
-//FA模型下请使用上述方式导入模块
+//FA模型请使用上述方式导入模块
 export default {
     onCreate() {
         resourceManager.getResourceManager().then(resMgr => {
@@ -189,7 +190,8 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 <!--code_no_check_fa-->
   ```js
 import resourceManager from '@ohos.resourceManager';
-//FA模型下请使用上述方式导入模块
+//FA模型请使用上述方式导入模块
+
 // 'com.example.testapp'仅作示例，请替换为实际应用包名
 const BUNDLE_NAME = 'com.example.testapp';
 
