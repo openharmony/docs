@@ -356,7 +356,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
-申请长时任务，支持申请一种类型，使用Promise异步回调。长时任务申请成功后，会有通知栏消息，没有提示音。
+申请长时任务，支持申请一种类型，使用Promise异步回调。长时任务申请成功后，会有通知栏消息，没有提示音。一个UIAbility（FA模型则为ServiceAbility）同一时刻仅支持通过本接口支持申请一个长时任务，可以通过API version 21新增接口[startBackgroundRunning](#backgroundtaskmanagerstartbackgroundrunning21)申请多个长时任务。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -448,7 +448,7 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
-取消当前UIAbility下所有长时任务，使用callback异步回调。也可以通过[stopBackgroundRunning](#backgroundtaskmanagerstopbackgroundrunning21)接口取消指定Id的长时任务。
+取消当前UIAbility（FA模型则为ServiceAbility）下所有长时任务，使用callback异步回调。也可以通过[stopBackgroundRunning](#backgroundtaskmanagerstopbackgroundrunning21)接口取消指定Id的长时任务。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -506,7 +506,7 @@ export default class EntryAbility extends UIAbility {
 
 stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
-取消当前UIAbility下所有长时任务，使用Promise异步回调。也可以通过[stopBackgroundRunning](#backgroundtaskmanagerstopbackgroundrunning21)接口取消指定Id的长时任务。
+取消当前UIAbility（FA模型则为ServiceAbility）下所有长时任务，使用Promise异步回调。也可以通过[stopBackgroundRunning](#backgroundtaskmanagerstopbackgroundrunning21)接口取消指定Id的长时任务。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -565,7 +565,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent): Promise&lt;ContinuousTaskNotification&gt;
 
-申请长时任务，支持申请多种类型，使用Promise异步回调。长时任务申请成功后，会有通知栏消息，没有提示音。
+申请长时任务，支持申请多种类型，使用Promise异步回调。长时任务申请成功后，会有通知栏消息，没有提示音。一个UIAbility（FA模型则为ServiceAbility）同一时刻仅支持通过本接口支持申请一个长时任务，可以通过API version 21新增接口[startBackgroundRunning](#backgroundtaskmanagerstartbackgroundrunning21)申请多个长时任务。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -658,7 +658,7 @@ export default class EntryAbility extends UIAbility {
 
   // 应用更新进度
   updateProcess(process: number) {
-    // 应用定义下载类通知模版
+    // 定义通知类型，更新进度时的通知类型必须为实况窗
     let downLoadTemplate: notificationManager.NotificationTemplate = {
       name: 'downloadTemplate', // 当前只支持downloadTemplate，保持不变
       data: {
@@ -1168,7 +1168,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promise&lt;ContinuousTaskNotification&gt;
 
-申请长时任务，支持一个UIAbility下申请多个长时任务，使用Promise异步回调。</br>同一时间最多可存在10个长时任务，长时任务申请成功后，会有通知栏消息，没有提示音。
+申请长时任务，一个UIAbility（FA模型则为ServiceAbility）下支持通过本接口申请多个长时任务，使用Promise异步回调。通过本接口申请长时任务时，支持与已存在的长时任务合并通知，具体请参考[ContinuousTaskRequest](#continuoustaskrequest21)。</br>同一时间最多可存在10个长时任务，长时任务申请成功后，会有通知栏消息，没有提示音。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1179,13 +1179,13 @@ startBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promis
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | 是    | 应用运行的上下文。 |
-| request   | [ContinuousTaskRequest](#continuoustaskrequest21) | 是    | 长时任务请求信息。|
+| request   | [ContinuousTaskRequest](#continuoustaskrequest21) | 是    | 长时任务请求信息，包括长时任务主类型、子类型等。|
 
 **返回值**：
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<ContinuousTaskNotification> | Promise对象，返回[ContinuousTaskNotification](#continuoustasknotification12)类型对象。 |
+| Promise\<ContinuousTaskNotification> | Promise对象，返回长时任务通知信息，包括长时任务Id等。 |
 
 **错误码**：
 
@@ -1221,11 +1221,11 @@ export default class EntryAbility extends UIAbility {
           abilityName: "EntryAbility"
         }
       ],
-      // 点击通知后，动作类型
+      // 点击通知后的动作类型
       actionType: wantAgent.OperationType.START_ABILITY,
-      // 使用者自定义的一个私有值
+      // 开发者自定义的请求码，用于标识将被执行的动作。
       requestCode: 0,
-      // 点击通知后，动作执行属性
+      // 点击通知后的动作执行属性
       wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
     };
 
@@ -1234,6 +1234,7 @@ export default class EntryAbility extends UIAbility {
       wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
         try {
           // 如果要合并通知，主类型和子类型都必须相同，combinedTaskNotification为true，continuousTaskId必须存在且合法
+          // 申请主类型为MODE_LOCATION的长时任务
           let modeList: Array<number> = [backgroundTaskManager.BackgroundTaskMode.MODE_LOCATION];
           let subModeList: Array<number> = [backgroundTaskManager.BackgroundTaskSubmode.SUBMODE_NORMAL_NOTIFICATION];
           let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
@@ -1244,7 +1245,6 @@ export default class EntryAbility extends UIAbility {
           continuousTaskRequest.continuousTaskId = this.continuousTaskId;
           backgroundTaskManager.startBackgroundRunning(this.context, continuousTaskRequest).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
             console.info(`Operation startBackgroundRunning succeeded. notificationId is ${res.notificationId} continuousTaskId is ${res.continuousTaskId}`);
-            // 对于上传下载类的长时任务，应用可以使用res中返回的notificationId来更新通知，比如发送带进度条的模板通知
             this.notificationId = res.notificationId;
             this.continuousTaskId = res.continuousTaskId;
           }).catch((error: BusinessError) => {
@@ -1265,7 +1265,10 @@ export default class EntryAbility extends UIAbility {
 
 updateBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promise&lt;ContinuousTaskNotification&gt;
 
-更新长时任务，支持更新对应的长时任务信息，使用Promise异步回调。</br>长时任务更新成功后，会有通知栏消息，没有提示音。</br>已经合并的任务，后台任务同类型只能更新want，非同类型更新失败，返回错误码。</br>待更新任务包含上传下载类型，且需要更新的类型也包含上传下载类型，则直接返回成功，不做任何操作。</br>若待更新任务和需要更新的任务中，有且只有一个任务包含上传下载类型，则返回失败。
+更新长时任务，使用Promise异步回调。长时任务更新成功后，会有通知栏消息，没有提示音。
+1. 本接口仅支持更新如下接口申请的长时任务：startBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promise。
+2. 已经合并的长时任务，且后台任务主类型和子类型均相同，仅支持更新Want(abilityName等)，如果类型不同，更新失败。
+3. 如果待更新的长时任务、指定的更新类型中均包含数据传输类型，则直接返回成功，不做任何操作。如果有有且只有一个包含数据传输类型，则更新失败。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1282,7 +1285,7 @@ updateBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promi
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<ContinuousTaskNotification> | Promise对象，返回[ContinuousTaskNotification](#continuoustasknotification12)类型对象。 |
+| Promise\<ContinuousTaskNotification> | Promise对象，返回更新后的长时任务通知信息，包括长时任务Id等。。 |
 
 **错误码**：
 
@@ -1311,18 +1314,18 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     let wantAgentInfo: wantAgent.WantAgentInfo = {
       // 点击通知后，将要执行的动作列表
-      // 添加需要被拉起应用的bundleName和abilityName
+      // 添加需要被拉起应用的bundleName和abilityName, 请开发者替换为实际的bundleName和abilityName
       wants: [
         {
           bundleName: "com.example.myapplication",
           abilityName: "EntryAbility"
         }
       ],
-      // 点击通知后，动作类型
+      // 点击通知后的动作类型
       actionType: wantAgent.OperationType.START_ABILITY,
-      // 使用者自定义的一个私有值
+      // 开发者自定义的请求码，用于标识将被执行的动作。
       requestCode: 0,
-      // 点击通知后，动作执行属性
+      // 点击通知后的动作执行属性
       wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
     };
 
@@ -1330,7 +1333,7 @@ export default class EntryAbility extends UIAbility {
       // 通过wantAgent模块下getWantAgent方法获取WantAgent对象
       wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: WantAgent) => {
         try {
-          // 必须先执行startBackgroundRunning，才能调用updateBackgroundRunning，这里假设已经申请过
+          // 必须先执行startBackgroundRunning，才能调用updateBackgroundRunning，请开发者提前申请长时任务
           let modeList: Array<number> = [backgroundTaskManager.BackgroundTaskMode.MODE_LOCATION];
           let subModeList: Array<number> = [backgroundTaskManager.BackgroundTaskSubmode.SUBMODE_NORMAL_NOTIFICATION];
           let continuousTaskRequest = new backgroundTaskManager.ContinuousTaskRequest();
@@ -1341,7 +1344,6 @@ export default class EntryAbility extends UIAbility {
           continuousTaskRequest.continuousTaskId = this.continuousTaskId; //对于更新接口，长时任务Id必须要传且为存在的id，否则更新失败
           backgroundTaskManager.updateBackgroundRunning(this.context, continuousTaskRequest).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
             console.info("Operation updateBackgroundRunning succeeded");
-            // 对于上传下载类的长时任务，应用可以使用res中返回的notificationId来更新通知，比如发送带进度条的模板通知
             this.notificationId = res.notificationId;
           }).catch((error: BusinessError) => {
             console.error(`Operation updateBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
@@ -1372,7 +1374,7 @@ stopBackgroundRunning(context: Context, ContinuousTaskId: number): Promise&lt;vo
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | 是    | 应用运行的上下文。 |
-| ContinuousTaskId   | number | 是    | 长时任务Id。</br>**说明 :** 可以通过申请长时任务[startBackgroundRunning](#backgroundtaskmanagerstartbackgroundrunning21)或者获取所有长时任务信息[getAllContinuousTasks](#backgroundtaskmanagergetallcontinuoustasks20-1)接口中获取。|
+| ContinuousTaskId   | number | 是    | 长时任务Id。</br>**说明 :** 可以通过申请长时任务[startBackgroundRunning](#backgroundtaskmanagerstartbackgroundrunning21)或者[getAllContinuousTasks](#backgroundtaskmanagergetallcontinuoustasks20-1)接口中获取所有长时任务信息。|
 
 **返回值**：
 
@@ -1443,15 +1445,17 @@ export default class EntryAbility extends UIAbility {
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
+**原子化服务API：** 从API version 12开始，该属性支持在原子化服务中使用。
+
 | 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
 | DATA_TRANSFER           | 1    | 数据传输。<br/>**说明：** 在数据传输时，应用需要更新进度，如果进度长时间（超过10分钟）未更新，数据传输的长时任务会被取消。<br/>更新进度的通知类型必须为实况窗，具体实现可参考[startBackgroundRunning()](#backgroundtaskmanagerstartbackgroundrunning12)中的示例。       |
 | AUDIO_PLAYBACK          | 2    | 音视频播放。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 <br/>**说明：** 从API version 20开始，申请/更新AUDIO_PLAYBACK类型长时任务但不接入AVSession，申请/更新长时任务成功后会在通知栏显示通知。 <br/>接入AVSession后，后台任务模块不会发送通知栏通知，由AVSession发送通知。 <br/>对于API version 19及之前的版本，后台任务模块不会在通知栏显示通知。                 |
-| AUDIO_RECORDING         | 3    | 录制。<!--Del--><br/>**说明：** 系统应用申请/更新该类型的长时任务，没有通知栏消息<!--DelEnd-->                    |
+| AUDIO_RECORDING         | 3    | 录制。<!--Del--><br/>**说明：** 系统应用申请/更新该类型的长时任务，没有通知栏消息。<!--DelEnd-->                    |
 | LOCATION                | 4    | 定位导航。                  |
 | BLUETOOTH_INTERACTION   | 5    | 蓝牙相关业务。                  |
 | MULTI_DEVICE_CONNECTION | 6    | 多设备互联。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
-| VOIP<sup>13+</sup> | 8    | 音视频通话。<!--Del--><br/>**说明：** 系统应用申请/更新该类型的长时任务，没有通知栏消息<!--DelEnd-->                 |
+| VOIP<sup>13+</sup> | 8    | 音视频通话。<!--Del--><br/>**说明：** 系统应用申请/更新该类型的长时任务，没有通知栏消息。<!--DelEnd-->                 |
 | TASK_KEEPING            | 9    | 计算任务（仅对2in1设备开放）。        |
 
 ## ContinuousTaskNotification<sup>12+</sup>
@@ -1459,6 +1463,8 @@ export default class EntryAbility extends UIAbility {
 长时任务通知信息。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+**原子化服务API：** 从API version 12开始，该属性支持在原子化服务中使用。
 
 | 名称             | 类型     | 只读     | 可选   | 说明                                       |
 | --------------- | ------ | ---- | ---- | ---------------------------------------- |
@@ -1547,7 +1553,6 @@ export default class EntryAbility extends UIAbility {
 | SYSTEM_SUSPEND_MULTI_DEVICE_NOT_USED       | 10   | 申请MULTI_DEVICE_CONNECTION类型长时任务，但是未使用多设备互联。  |
 | SYSTEM_SUSPEND_USED_ILLEGALLY              | 11    | 使用非法类型的长时任务，如申请AUDIO_PLAYBACK类型长时任务，但是使用音视频播放及定位导航业务。预留接口，暂未启用。        |
 | SYSTEM_SUSPEND_SYSTEM_LOAD_WARNING         | 12    | 系统高负载暂停长时任务。预留接口，暂未启用。        |
-| SYSTEM_SUSPEND_VOIP_NOT_USED<sup>21+</sup>               | 13    | 申请VOIP类型长时任务，但是未使用音视频通话。预留接口，暂未启用。        |
 
 ## ContinuousTaskActiveInfo<sup>20+</sup>
 
@@ -1582,16 +1587,16 @@ export default class EntryAbility extends UIAbility {
 
 ## ContinuousTaskRequest<sup>21+</sup>
 
-长时任务的请求信息。
+通常作为[startBackgroundRunning()](#backgroundtaskmanagerstartbackgroundrunning21)和[updateBackgroundRunning](#backgroundtaskmanagerupdatebackgroundrunning21)接口的入参，用于指定申请或更新的长时任务信息。
 1. 申请任务时，需要通过combinedTaskNotification参数传入true指定可以合并长时任务的通知，否则不能合并通知。
 如：所涉及的长时任务combinedTaskNotification参数都必须为true，且主类型和子类型申请个数和类型需完全匹配。
 2. 合并的通知的长时任务，必须主类型、子类型都相同。
-3. 如果该长时任务本身没有通知<!--Del-->（如系统应用申请[VOIP](#backgroundmode)、[AUDIO_RECORDING](#backgroundmode)类型的长时任务）<!--DelEnd-->。、则不支持合并。
-4. 如果长时任务类型里，包含了上传下载，则不支持合并。
+3. 如果该长时任务本身没有通知<!--Del-->（如系统应用申请[VOIP](#backgroundmode)、[AUDIO_RECORDING](#backgroundmode)类型的长时任务）<!--DelEnd-->。，则不支持合并。
+4. 如果长时任务类型里，包含了数据传输类型，则不支持合并。
 5. 合并通知后不能取消合并，本身合并的不能改成不合并。
 6. 如果需要合并，但传入的长时任务ID非法，则不支持合并。
-7. 通知合并后，删除通知，取消所有的长时任务。
-8. 通知合并后，点击通知，跳转到第一个申请的UIAbility，如果调用了更新接口，则跳转到最后一次更新的UIAbility。
+7. 通知合并后，删除通知，取消所有合并通知的长时任务。
+8. 点击通知，跳转到第一个申请的UIAbility，如果调用了更新接口，则跳转到最后一次更新的UIAbility。
 9. [更新长时任务](#backgroundtaskmanagerupdatebackgroundrunning21)时，传入的continuousTaskId必须存在，否则更新失败。
 
 ### 属性
@@ -1603,7 +1608,7 @@ export default class EntryAbility extends UIAbility {
 | backgroundTaskModes       | [BackgroundTaskMode](#backgroundtaskmode21)[] | 否    | 否    | 长时任务主类型。<br/>**说明：** 主类型与子类型必须匹配。     |
 | backgroundTaskSubmodes | [BackgroundTaskSubmode](#backgroundtasksubmode21)[] | 否    | 否    | 长时任务子类型。 <br/>**说明：** 主类型与子类型必须匹配。|
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | 否    | 否    | 通知参数，用于指定点击长时任务通知后跳转的界面。 |
-| combinedTaskNotification | boolean   | 否    | 是    | 是否合并通知，true表示合并，false表示不合并，默认为false。 |
+| combinedTaskNotification | boolean   | 否    | 是    | 是否合并通知，true表示合并，false表示不合并，默认为false。<br/>**说明：** 该属性在[updateBackgroundRunning](#backgroundtaskmanagerupdatebackgroundrunning21)接口中不生效，如需在已有任务上合并通知，请重新申请，并支持合并通知，在进行通知合并操作。|
 | continuousTaskId | number   | 否    | 是    | 长时任务Id，默认值为-1。 <br/>**说明：** 合并通知时，此项为必填项，且必须是存在的Id。<br/>调用[updateBackgroundRunning](#backgroundtaskmanagerupdatebackgroundrunning21)接口时，此项为必填项，且必须是存在的Id。<br/>可以通过[getAllContinuousTasks](#backgroundtaskmanagergetallcontinuoustasks20-1)接口查看当前所有长时任务信息。   |
 
 ### isModeSupported<sup>21+</sup>
@@ -1654,7 +1659,7 @@ export default class EntryAbility extends UIAbility {
 
 ## BackgroundTaskMode<sup>21+</sup>
 
-长时任务主类型。
+长时任务主类型。通常与长时任务子类型[BackgroundTaskSubmode](#backgroundtasksubmode21)配合使用，对照关系请参考长时任务主类型与子类型对照表，两者共同作为API version 21新增的申请、更新长时任务接口入参，用于指定长时任务类型。
 
 **系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -1662,16 +1667,16 @@ export default class EntryAbility extends UIAbility {
 | ------------------------ | ---- | --------------------- |
 | MODE_DATA_TRANSFER              | 1         | 数据传输。                 |
 | MODE_AUDIO_PLAYBACK             | 2         | 音视频播放。<br/>**说明：** 从API version 20开始，申请/更新AUDIO_PLAYBACK类型长时任务但不接入AVSession，申请/更新长时任务成功后会在通知栏显示通知。 <br/>接入AVSession后，后台任务模块不会发送通知栏通知，由AVSession发送通知。 <br/>对于API version 19及之前的版本，后台任务模块不会在通知栏显示通知。               |
-| MODE_AUDIO_RECORDING            | 3         | 录制。<!--Del--><br/>**说明：** 系统应用申请/更新该类型的长时任务，没有通知栏消息<!--DelEnd-->                 |
+| MODE_AUDIO_RECORDING            | 3         | 录制。<!--Del--><br/>**说明：** 系统应用申请/更新该类型的长时任务，没有通知栏消息。<!--DelEnd-->                 |
 | MODE_LOCATION                   | 4         | 定位导航。                  |
 | MODE_BLUETOOTH_INTERACTION      | 5         | 蓝牙相关业务。            |
 | MODE_MULTI_DEVICE_CONNECTION    | 6         | 多设备互联。            |
-| MODE_VOIP                       | 8         | 音视频通话。 <!--Del--><br/>**说明：** 系统应用申请/更新该类型的长时任务，没有通知栏消息<!--DelEnd-->            |
-| MODE_TASK_KEEPING               | 9         | 计算任务（仅对PC/2in1设备，或者申请ACL权限为ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM的应用开放）。   |
+| MODE_VOIP                       | 8         | 音视频通话。 <!--Del--><br/>**说明：** 系统应用申请/更新该类型的长时任务，没有通知栏消息。<!--DelEnd-->            |
+| MODE_TASK_KEEPING               | 9         | 计算任务（仅对PC/2in1设备开放，或者申请ACL权限为ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM的应用开放）。   |
 
 ## BackgroundTaskSubmode<sup>21+</sup>
 
-长时任务子类型。
+长时任务子类型。通常与长时任务主类型[BackgroundTaskMode](#backgroundtaskmode21)配合使用，对照关系请参考长时任务主类型与子类型对照表，两者共同作为API version 21新增的申请、更新长时任务接口入参，用于指定长时任务类型。
 
 **系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -1682,7 +1687,7 @@ export default class EntryAbility extends UIAbility {
 | SUBMODE_LIVE_VIEW_NOTIFICATION  | 3    | 实况窗通知。<br/>**说明：** [BackgroundTaskMode](#backgroundtaskmode21)类型必须为MODE_DATA_TRANSFER。  |
 
 **长时任务主类型与子类型对照表：** 
-| [长时任务主类型](#backgroundtaskmode21) | [对应的长时任务子类型](#backgroundtasksubmode21)  |
+| [长时任务主类型](#backgroundtaskmode21) | [长时任务子类型](#backgroundtasksubmode21)  |
 | --------------------------------- | ----------------------------------- |
 | MODE_DATA_TRANSFER                | SUBMODE_LIVE_VIEW_NOTIFICATION        |
 | MODE_AUDIO_PLAYBACK               | SUBMODE_NORMAL_NOTIFICATION         |
