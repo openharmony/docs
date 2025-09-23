@@ -8,27 +8,27 @@
 
 从API version 21开始，当Image组件的[supportSvg2](./ts-basic-components-image.md#supportsvg221)属性设置为true时，将启用新增的解析处理能力，主要涉及以下方面。
 
-- 易用性提升：SVG图源颜色默认解析格式从#ARGB变更为符合SVG标准规范的#RGBA，引用的URL类型进行严格校验，Image组件的[colorFilter](./ts-basic-components-image.md#colorfilter9)属性对整个SVG图源生效，Image组件的[fillColor](./ts-basic-components-image.md#fillcolor20)属性不对SVG图源中fill = 'none'的元素填充颜色。
+- 易用性提升：SVG图源颜色默认解析格式从#ARGB变更为符合SVG标准规范的#RGBA；引用的URL类型进行严格校验；Image组件的[colorFilter](./ts-basic-components-image.md#colorfilter9)属性对整个SVG图源生效；Image组件的[fillColor](./ts-basic-components-image.md#fillcolor20)属性不对SVG图源中fill = 'none'的元素填充颜色。
 
-- 仿射变换能力扩展：支持变换全局中心点可配置，支持rotate旋转的局部中心点，支持矩阵(matrix)转换方式，支持非法值的校验，裁剪路径内支持仿射变换操作，组合场景支持仿射变换操作。
+- 仿射变换能力扩展：支持变换全局中心点可配置；支持rotate旋转的局部中心点；支持矩阵(matrix)转换方式；支持非法值的校验；裁剪路径内支持仿射变换操作；组合场景支持仿射变换操作。
 
-- 解析能力扩展：viewBox属性支持对齐和缩放规则可配置。支持裁剪路径单元的解析，支持渐变单元的解析，支持遮罩单元和遮罩内容单元的解析，支持图案单元和图案内容单元的解析，支持滤镜单元和原语单元解析。
+- 解析能力扩展：viewBox属性支持对齐和缩放规则可配置；支持裁剪路径单元的解析；支持渐变单元的解析；支持遮罩单元和遮罩内容单元的解析；支持图案单元和图案内容单元的解析；支持滤镜单元和原语单元解析。
 
-- 显示效果扩展：分组标签g元素中透明度opacity对整个分组下的多层子元素生效，新增g标签内clip-path裁剪路径规则的处理，pattern新增平铺效果和偏移值处理，线性渐变和径向渐变新增平移和缩放效果，mask和filter的参数异常时默认效果变更。
+- 显示效果扩展：分组标签g元素中透明度opacity对整个分组下的多层子元素生效；新增g标签内clip-path裁剪路径规则的处理；pattern新增平铺效果和偏移值处理；线性渐变和径向渐变新增平移和缩放效果；mask和filter的参数异常时默认效果变更。
 
 ## SVG易用性提升
 
-颜色解析格式变更，引用国际化资源标识（IRI）类型严格校验，调整Image组件的[colorFilter](./ts-basic-components-image.md#colorfilter9)属性生效范围，调整Image组件的[fillColor](./ts-basic-components-image.md#fillcolor20)属性生效范围。
+SVG图源颜色默认解析格式从#ARGB变更为符合SVG标准规范的#RGBA；引用国际化资源标识（IRI）类型严格校验；调整Image组件的[colorFilter](./ts-basic-components-image.md#colorfilter9)属性生效范围；调整Image组件的[fillColor](./ts-basic-components-image.md#fillcolor20)属性生效范围。
 
 ### 颜色解析格式变更
 
-当Image组件的SVG图源使用十六进制格式的颜色时，颜色默认解析格式从#ARGB变更为符合SVG标准规范的#RGBA，涉及的SVG属性包括fill, stroke, stopColor, stop-color。
+当Image组件的SVG图源使用十六进制格式的颜色时，颜色默认解析格式从#ARGB变更为符合SVG标准规范的#RGBA，涉及的SVG属性包括fill、stroke、stopColor、stop-color。
 
 >**说明：**
 >
 >SVG图片最终显示效果受Image组件的'objectFit'参数值影响，为了确保SVG图形完整且正确的显示，文档中用例图片都配置了'objectFit(ImageFit.Contain)'，开发者需要根据实际显示效果正确配置objectFit参数。
 
-SVG图源属性设置8位十六进制格式的颜色时，示例图源和效果如下。
+SVG图源属性设置8位十六进制格式的颜色时，示例图源和效果如下：
 
 ```xml
 <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
@@ -40,7 +40,7 @@ SVG图源属性设置8位十六进制格式的颜色时，示例图源和效果�
 | :------------------------------------------------------------: | :------------------------------------------------------------: |
 | 系统会把8位的十六进制颜色当#ARGB格式解析并显示。<br>例如fill="#ff000030"的矩形显示效果。<br> ![提升前](figures/8hex_color_before.PNG) | 系统会把8位的十六进制颜色当#RGBA格式解析并显示。<br>例如fill="#ff000030"的矩形显示效果。<br>![提升后](figures/8hex_color_after.PNG) |
 
-SVG图源属性设置7位十六进制格式的颜色时，示例图源和效果如下。
+SVG图源属性设置7位十六进制格式的颜色时，示例图源和效果如下：
 
 ```xml
 <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
@@ -52,7 +52,7 @@ SVG图源属性设置7位十六进制格式的颜色时，示例图源和效果�
 | :------------------------------------------------------------: | :------------------------------------------------------------: |
 | 系统会把7位的十六进制颜色当#ARGB格式解析并显示。<br>例如fill="#BB88990"的矩形显示效果。<br> ![提升前](figures/7hex_color_before.png) | 系统会把7位十六进制颜色解析成默认黑色并显示。<br>例如fill="#BB88990"的矩形显示效果。<br> ![提升后](figures/7hex_color_after.png) |
 
-SVG图源属性设置4位十六进制格式的颜色时，示例图源和效果如下。
+SVG图源属性设置4位十六进制格式的颜色时，示例图源和效果如下：
 
 ```xml
 <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
@@ -76,7 +76,7 @@ SVG图源属性设置4位十六进制格式的颜色时，示例图源和效果�
 | :---------------------------------------------------------: | :-------------------------------------------------: |
 | 滤镜/裁剪路径/遮罩引用的URL类型不匹配，导致错误的显示效果。 | 滤镜/裁剪路径/遮罩引用的URL类型不匹配时，不显示对应效果。<br> 例如，mask、clippath、filter、pattern、渐变等标签都有各自的id，filter、clip-path和mask属性绑定其它类型的标签id时，对应效果不生效。只有mask属性绑定mask标签id、clip-path属性绑定clipPath标签id和filter属性绑定filter标签id时，对应效果才生效。 |
 
-示例图源如下，当URL类型不匹配时，效果不生效。
+当URL类型不匹配时，遮罩效果不生效，示例图源如下：
 ```xml
 <svg width="200" height="100" xmlns="http://www.w3.org/2000/svg">
   <!-- 定义遮罩 -->
@@ -106,7 +106,7 @@ Image组件的[colorFilter](./ts-basic-components-image.md#colorfilter9)属性�
 | :------------------------------------------------------------: | :------------------------------------------------------------: | :------------------------------------------------------------: |
 | ![原始图源](figures/color_filter_origin.PNG) | Image组件的colorFilter属性只对图源的stroke边框起作用。<br> ![提升前](figures/color_filter_before.PNG) | Image组件的colorFilter属性对整个SVG图源起作用。<br> ![提升后](figures/color_filter_after.PNG) |
 
-示例图源和demo如下。
+示例图源和示例代码如下：
 
 ```xml
 <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
@@ -155,7 +155,7 @@ struct Index {
 | :------------------------------------------------------------: | :------------------------------------------------------------: |
 | Image组件的fillColor属性只对SVG图源中fill='none'的元素仍然填充颜色。<br> ![提升前](figures/fill_none_before.PNG) | Image组件的fillColor属性对SVG图源中fill='none'的元素不填充颜色。<br> ![提升后](figures/fill_none_after.PNG) |
 
-示例图源和demo如下。
+示例图源和示例代码如下：
 ```xml
 <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
   <!-- 矩形 -->
@@ -188,11 +188,11 @@ struct Index {
 
 ## 仿射变换能力扩展
 
-对于transform属性，支持变换全局中心点可配置，支持rotate旋转的局部中心点，支持矩阵(matrix)转换方式，支持非法值的校验，裁剪路径内支持仿射变换操作，组合场景支持仿射变换操作。
+对于transform属性：支持变换全局中心点可配置；支持rotate旋转的局部中心点；支持矩阵(matrix)转换方式；支持非法值的校验；裁剪路径内支持仿射变换操作；组合场景支持仿射变换操作。
 
 ### 支持变换全局中心点配置
 
-SVG新增支持解析transform-origin属性来配置全局中心点的能力，前后效果对比如下表格说明。
+SVG新增支持解析transform-origin属性来配置全局中心点的能力，前后效果对比如下表格说明：
 
 >**说明：**
 >
@@ -222,7 +222,7 @@ SVG新增支持解析rotate旋转的局部中心点功能，例如'rotate(30, -1
 
 ### 支持矩阵(matrix)转换
 
-SVG新增支持解析transform属性的matrix矩阵转换能力。matrix允许对元素进行复杂的线性变换，包括平移、旋转、缩放和倾斜等，例如matrix(a, b, c, d, e, f)。其中各个字段的对元素作用如下，a‌：控制元素在x方向上的缩放，b‌：控制元素在x方向上的倾斜，c‌：控制元素在y方向上的倾斜‌ d‌：控制元素在y方向上的缩放‌，e：控制元素在x方向上的平移‌，f：控制元素在y方向上的平移。
+SVG新增支持解析transform属性的matrix矩阵转换能力。matrix允许对元素进行复杂的线性变换，包括平移、旋转、缩放和倾斜等，例如matrix(a, b, c, d, e, f)。其中各个字段的元素作用如下：a‌控制元素在x方向上的缩放，b‌控制元素在x方向上的倾斜，c‌控制元素在y方向上的倾斜‌，d‌控制元素在y方向上的缩放‌，e控制元素在x方向上的平移‌，f控制元素在y方向上的平移。
 
 >**说明：**
 >
@@ -234,7 +234,7 @@ SVG新增支持解析transform属性的matrix矩阵转换能力。matrix允许�
 
 ### 支持非法值校验
 
-SVG新增支持校验transform属性非法值的能力。对于transform属性，当设置参数为非法值或者参数个数非法时，按如下表格说明处理。
+SVG新增支持校验transform属性非法值的能力。对于transform属性，当设置参数为非法值或者参数个数非法时，按如下表格说明处理：
 
 >**说明：**
 >
@@ -324,7 +324,7 @@ transform操作在g标签中，且不包含scale操作。
 
 ## SVG解析能力扩展
 
-viewBox属性支持对齐和缩放规则可配置。支持裁剪路径单元的解析，支持渐变单元的解析，支持遮罩单元和遮罩内容单元的解析，支持图案单元和图案内容单元的解析，支持滤镜单元和原语单元解析。
+viewBox属性支持对齐和缩放规则可配置；支持裁剪路径单元的解析；支持渐变单元的解析；支持遮罩单元和遮罩内容单元的解析；支持图案单元和图案内容单元的解析；支持滤镜单元和原语单元解析。
 
 ### viewBox属性支持对齐和缩放规则可配置
 
@@ -334,7 +334,7 @@ viewBox主要用来控制在SVG动态拉伸效果，可以通过参数preserveAs
 >
 >SVG图片最终显示效果受Image组件的'objectFit'参数值影响，为了确保SVG图形完整且正确的显示，文档中用例图片都配置了'objectFit(ImageFit.Contain)'，开发者需要根据实际显示效果正确配置objectFit参数。
 
-SVG包含“preserveAspectRatio”属性且值为“none”，示例图源和行为变更如下。
+SVG包含“preserveAspectRatio”属性且值为“none”，示例图源和行为变更如下：
 
 ```xml
 <svg width="200" height="100" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -348,7 +348,7 @@ SVG包含“preserveAspectRatio”属性且值为“none”，示例图源和行
 | ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | none   | 按宽高比最小值进行统一缩放。<br/>同时将SVG元素的viewBox属性的X的中点值与视图的X的中点值对齐，<br/>将SVG元素的viewBox属性的Y的中点值与视图的Y的中点值对齐。<br/>![](figures/circle_none_before.png) | 缩放元素的图形内容，使元素的边界完全匹配视图矩形。<br/><br/><br/>![](figures/circle_none.png) |
 
-SVG包含“preserveAspectRatio”属性且值为“&lt;align&gt;  [&lt;meetOrSlice&gt;]”，示例图源和对齐方式、缩放比例变更如下。
+SVG包含“preserveAspectRatio”属性且值为“&lt;align&gt;  [&lt;meetOrSlice&gt;]”，示例图源和对齐方式、缩放比例变更如下：
 
 ```xml
 <svg width="200" height="100" viewBox="0 0 100 100" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg">
@@ -453,7 +453,7 @@ SVG包含“preserveAspectRatio”属性且值为“&lt;align&gt;  [&lt;meetOrSl
 >
 >SVG图片最终显示效果受Image组件的'objectFit'参数值影响，为了确保SVG图形完整且正确的显示，文档中用例图片都配置了'objectFit(ImageFit.Contain)'，开发者需要根据实际显示效果正确配置objectFit参数。
 
-图源示例显示一个五角星遮罩范围从绝对坐标 (10，10)到(200，200)， 遮罩内容相对于应用矩形左上角，水平尺寸乘以图形包围盒宽度，垂直尺寸乘以图形包围盒高度。
+图源示例显示一个五角星遮罩范围从绝对坐标 (10，10)到(200，200)，遮罩内容相对于应用矩形左上角，水平尺寸乘以图形包围盒宽度，垂直尺寸乘以图形包围盒高度。
 
 ```xml
 <svg width="220" height="220" xmlns="http://www.w3.org/2000/svg">
@@ -531,7 +531,7 @@ SVG包含“preserveAspectRatio”属性且值为“&lt;align&gt;  [&lt;meetOrSl
 
 ## 显示效果扩展
 
-分组标签g元素中透明度opacity对整个分组下的多层子元素生效，新增g标签内clip-path裁剪路径规则的处理，pattern新增平铺效果和偏移值处理，线性渐变和径向渐变新增平移和缩放效果，mask和filter的参数异常时默认效果变更。
+分组标签g元素中透明度opacity对整个分组下的多层子元素生效；新增g标签内clip-path裁剪路径规则的处理；pattern新增平铺效果和偏移值处理；线性渐变和径向渐变新增平移和缩放效果；mask和filter的参数异常时默认效果变更。
 
 ### 分组标签中透明度
 
@@ -601,7 +601,7 @@ pattern图案新增重复平铺效果。
 >
 >SVG图片最终显示效果受Image组件的'objectFit'参数值影响，为了确保SVG图形完整且正确的显示，文档中用例图片都配置了'objectFit(ImageFit.Contain)'，开发者需要根据实际显示效果正确配置objectFit参数。
 
-示例图源如下。
+示例图源如下：
 
 ```xml
   <svg width="210" height="210" xmlns="http://www.w3.org/2000/svg">
@@ -695,7 +695,7 @@ radialGradient径向渐变支持做平移和缩放。
 
 ### mask参数异常时默认效果变更
 
-mask遮罩的x，y，width，height等参数允许是数字、百分数、小数，当参数赋予错误类型时，从取0值变更为取默认值{-10%，-10%，120%，120%}。
+mask遮罩的x、y、width、height等参数允许是数字、百分数、小数，当参数赋予错误类型时，从取0值变更为取默认值{-10%，-10%，120%，120%}。
 
 >**说明：**
 >
@@ -719,7 +719,7 @@ mask遮罩的x，y，width，height等参数允许是数字、百分数、小数
 
 ### filter参数异常时默认效果变更
 
-filter滤镜的x，y，width，height等参数允许是数字、百分数、小数，当参数赋予错误类型时，从取0值变更为取默认值{-10%，-10%，120%，120%}。
+filter滤镜的x、y、width、height等参数允许是数字、百分数、小数，当参数赋予错误类型时，从取0值变更为取默认值{-10%，-10%，120%，120%}。
 
 >**说明：**
 >
