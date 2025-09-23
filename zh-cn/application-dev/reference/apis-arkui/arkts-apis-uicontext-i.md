@@ -1,7 +1,7 @@
 # Interfaces (其他)
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @jiangtao92; @liyi0903; @mayaolll-->
+<!--Owner: @yihao-lin; @liyi0903; @mayaolll-->
 <!--Designer: @piggyguy; @liyi0903; @jiangdayuan-->
 <!--Tester: @fredyuan912-->
 <!--Adviser: @HelloCrease-->
@@ -57,12 +57,12 @@ Router和NavDestination等页面信息，若无对应的Router或NavDestination�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型   | 必填       |说明       |
-| ------ | ---- | ---------- |---------- |
-| event | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-common.md#gestureevent对象说明)   |是       |手势事件对象。 |
-| current | [GestureRecognizer](arkui-ts/ts-gesture-common.md#gesturerecognizer12)    |是      |手势识别器对象。可从中获取手势的详细信息，但请勿在本地保留此对象，因为当节点释放后该对象可能失效。 |
-| currentPhase  | [GestureActionPhase](arkts-apis-uicontext-e.md#gestureactionphase20) |是      | 手势动作回调阶段。|
-| node  | [FrameNode](js-apis-arkui-frameNode.md) |否      |触发手势的节点。默认值为null，表示没有触发手势的节点。 |
+| 名称   | 类型   | 只读   |   可选    |说明       |
+| ------ | ---- | ---------- |---------- |---------- |
+| event | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-common.md#gestureevent对象说明)   |否  |  否       |手势事件对象。 |
+| current | [GestureRecognizer](arkui-ts/ts-gesture-common.md#gesturerecognizer12)    |否  |  否      |手势识别器对象。可从中获取手势的详细信息，但请勿在本地保留此对象，因为当节点释放后该对象可能失效。 |
+| currentPhase  | [GestureActionPhase](arkts-apis-uicontext-e.md#gestureactionphase20) |否  |  否      | 手势动作回调阶段。|
+| node  | [FrameNode](js-apis-arkui-frameNode.md) |否   |  是   |触发手势的节点。默认值为null，表示没有触发手势的节点。 |
 
 ## GestureObserverConfigs<sup>20+</sup>
 
@@ -72,6 +72,6 @@ Router和NavDestination等页面信息，若无对应的Router或NavDestination�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型   | 必填       |说明       |
-| ------ | ---- | ---------- |---------- |
-|  actionPhases | Array\<[GestureActionPhase](arkts-apis-uicontext-e.md#gestureactionphase20)\>    |是       |手势事件对象。 |
+| 名称   | 类型   | 只读  |  可选       |说明       |
+| ------ | ---- | ---------- |---------- |---------- |
+|  actionPhases | Array\<[GestureActionPhase](arkts-apis-uicontext-e.md#gestureactionphase20)\>    |否  |  否       |手势事件对象。 |
