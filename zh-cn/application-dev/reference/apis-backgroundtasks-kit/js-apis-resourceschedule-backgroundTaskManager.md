@@ -1321,7 +1321,7 @@ export default class EntryAbility extends UIAbility {
 | abilityName | string   | 否    | 否    | UIAbility名称。          |
 | uid         | number   | 否    | 否    | 应用的UID。               |
 | pid         | number   | 否    | 否    | 应用进程的PID。               |
-| isFromWebView | boolean  | 否    | 否    | 是否通过Webview方式申请，即通过系统代理应用申请长时任务。true表示是，false表示不是。|
+| isFromWebView | boolean  | 否    | 否    | 是否通过Webview方式申请，即通过系统代理应用申请长时任务。true表示通过Webview方式申请，false表示不通过Webview方式申请。|
 | [backgroundModes](#backgroundmode) | string[] | 否    | 否    | 长时任务类型。               |
 | [backgroundSubModes](#backgroundsubmode16) | string[] | 否    | 否    | 长时任务子类型。              |
 | notificationId | number   | 否    | 否    | 通知 Id。                |
