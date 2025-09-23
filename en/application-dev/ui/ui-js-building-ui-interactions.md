@@ -1,6 +1,10 @@
 # Adding Interactions
-
-You can make the UI interactive by binding events to components. This section describes how to bind **\<div>**, **\<text>**, and **\<image>** components to click events to build a thumb up button, as shown in the following figure.
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 **Figure 1** Thumb up button effect
 

@@ -1,4 +1,10 @@
 # &lt;switch&gt; Development
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @houguobiao-->
+<!--Designer: @liyi0309-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 
 The **&lt;switch&gt;** component is used to switch between the on and off states. For details, see [switch](../reference/apis-arkui/arkui-js/js-components-basic-switch.md).
@@ -168,7 +174,6 @@ switch{
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
 export default {
   data:{
     address: '',

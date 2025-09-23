@@ -1,4 +1,10 @@
 # Layout Description
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fenglinbailu-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 
 The baseline width for page design is 720 logical pixels. The display width of a page element depends on the ratio of the screen width to the baseline width.

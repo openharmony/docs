@@ -1,5 +1,10 @@
 # Animation with the background-position Attribute
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 By changing the **background-position** attribute (where the first value is the position on the x-axis and the second value is the position on the y-axis), you move a background image. If the background image goes beyond the respective component boundaries, the excess parts will not be displayed.
 
@@ -74,7 +79,7 @@ By changing the **background-position** attribute (where the first value is the 
     background-position:right bottom;
   }
   100%{
-    background-position:left top;;
+    background-position:left top;
   }
 }
 ```

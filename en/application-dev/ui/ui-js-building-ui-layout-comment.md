@@ -1,4 +1,10 @@
 # Adding a Comment
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fenglinbailu-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 
 After a user enters a comment and clicks the submit button, the content is displayed in the comment area. The user can click the delete button to delete the current comment and enter another comment again.

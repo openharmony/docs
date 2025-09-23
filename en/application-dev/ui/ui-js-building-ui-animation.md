@@ -1,5 +1,11 @@
 # Developing Animations
 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 Animations are classified into [Static Animation](#static-animation) and [Continuous Animation](#continuous-animation).
 
@@ -14,7 +20,7 @@ The transform attributes are the core of the static animation. A static animatio
 
 - rotate: rotates a specified component by a specified angle along the horizontal axis, vertical axis, or center point.
 
-For more information, see [Component Methods](../reference/apis-arkui/arkui-js/js-components-common-methods.md). The following is an example:
+For more information, see [Animation Styles](../reference/apis-arkui/arkui-js/js-components-common-animation.md). The following is an example.
 
 ```html
 <!-- xxx.hml -->

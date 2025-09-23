@@ -1,4 +1,10 @@
 # CanvasRenderingContext2D
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sd-wu-->
+<!--Designer: @sunbees-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 
 Use **CanvasRenderingContext2D** to draw objects such as graphics, texts, line segments, and images on the **&lt;canvas&gt;** component. For details, see [CanvasRenderingContext2D](../reference/apis-arkui/arkui-js/js-components-canvas-canvasrenderingcontext2d.md).
@@ -223,8 +229,6 @@ Globally define the canvas (**el**) and brush (**ctx**), and create a rectangle 
 </div>
 ```
 
-
-
 ```css
 /* xxx.css */
 .container{
@@ -234,6 +238,7 @@ Globally define the canvas (**el**) and brush (**ctx**), and create a rectangle 
   justify-content: center;
   align-items: center;
   background-color: #F1F3F5;
+  display: flex;
 }
 canvas{
   width: 600px;
@@ -248,8 +253,6 @@ select{
   background-color: white;
 }
 ```
-
-
 
 ```js
 // xxx.js
@@ -332,6 +335,7 @@ Add the **createLinearGradient** and **createRadialGradient** attributes to crea
   justify-content: center;
   align-items: center;
   background-color: #F1F3F5;
+  display: flex;
 }
 canvas{
   width: 600px;
@@ -502,7 +506,7 @@ export default {
       // Initialize textBaseline.
       this.ctx.textBaseline = 'alphabetic';
       // Set the font.
-      this.ctx.font = '30px';
+      this.ctx.font = '30px Arial';
       let text = "Hello World";
       // Obtain the font width.
       this.ctx.fillText("with:"+this.ctx.measureText(text).width, 200, 300);
@@ -641,6 +645,7 @@ export default {
     // Create an image object.
     let img = new Image();
     // Set the image path.
+    // Replace "common/images/2.png" with the image resource file you use.
     img.src = 'common/images/2.png';
     // Set the image width.
     img.width= 150;
@@ -667,6 +672,7 @@ export default {
       ctx.drawImage(img, 150, 20, 200, 200);
     };
     let img1 = new Image();
+    // Replace "common/images/3.png" with the image resource file you use.
     img1.src = 'common/images/3.png';
     img1.onload = function() {
       // Draw an image.
@@ -739,7 +745,7 @@ export default {
 > 
 > - The following formulas calculate coordinates of the transformed graph. **x** and **y** represent coordinates before transformation, and **x'** and **y'** represent coordinates after transformation.
 >   x' = scaleX \* x + skewY \* y + translateX
-> 
+>
 >   y' = skewX \* x + scaleY \* y + translateY
 
 
@@ -808,7 +814,7 @@ export default {
   },
   onShow(){
     this.ctx = this.$refs.canvas.getContext("2d");
-    this.ctx.fillStyle = "red"
+    this.ctx.fillStyle = "red";
     this.ctx.fillRect(200, 150, 200, 200);
   },
   save(){

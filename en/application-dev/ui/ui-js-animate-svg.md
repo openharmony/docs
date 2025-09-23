@@ -1,4 +1,10 @@
 # Animation for SVG Components
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 You can use child components in the **\<svg>** component to animate attributes over time.
 

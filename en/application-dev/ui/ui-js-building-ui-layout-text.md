@@ -1,4 +1,10 @@
 # Adding Title and Paragraph Text
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiangyuan6-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 The **Text** component is most commonly used to display text in title and paragraph areas. You can set attributes and styles for a **Text** component and add the text to be displayed between the **Text** and **\</text>** tags. For details about the attributes and styles, see [text](../reference/apis-arkui/arkui-js/js-components-basic-text.md). The following is an example of adding title and paragraph text on a page:
 

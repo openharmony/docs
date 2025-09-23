@@ -1,4 +1,10 @@
 # \<rating> Development
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @liyi0309-->
+<!--Designer: @liyi0309-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 
 The **\<rating>** component provides a rating bar used for reviews and ratings. For details, see [rating](../reference/apis-arkui/arkui-js/js-components-basic-rating.md).
@@ -27,7 +33,7 @@ Create a **\<rating>** component in the .hml file under **pages/index**.
   align-items: center;
   background-color: #F1F3F5;
 }
-rating {
+.rating {
   width: 80%;
   height: 150px;
 }
@@ -145,7 +151,7 @@ Add the **change** event to the **\<rating>** component to display the current r
   align-items: center;
   background-color: #F1F3F5;
 }
-rating {
+.rating {
   width: 80%;
   height: 150px;
 }
@@ -182,7 +188,7 @@ Change the switch status to toggle between the star background images and drag t
     </div>
     <div style="flex-direction: column;width: 80%;align-items: center;">
         <div style="width: 100%;height: 100px;align-items: center;justify-content: space-around;">
-            <text&>Use custom image</text&>
+            <text>Use custom image</text>
             <switch checked="false" showtext="true" onchange="setstar"></switch>
         </div>
         <div style="width: 100%;height:120px;margin-top: 50px;margin-bottom: 50px;flex-direction: column;align-items: center;
@@ -205,7 +211,7 @@ Change the switch status to toggle between the star background images and drag t
     width: 500px;
     height: 100px;
 }
-switch{
+.switch{
     font-size: 40px;
 }
 ```
@@ -229,7 +235,7 @@ export default {
     },
     setstar(e) {
         if (e.checked == true) {
-            this.backstar = '/common/love.PNG'
+            this.backstar = '/common/love.png'
             this.secstar = 'common/love.png'
             this.forestar = 'common/love1.png'
         } else {

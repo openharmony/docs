@@ -1,6 +1,10 @@
 # Multi-Language Capability
-
-Applications designed based on the JS UI framework apply to different countries and regions. With the multi-language capability, you do not need to develop application versions in different languages, and your users can switch between various locales. This also facilitates project maintenance.
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sunfei2021-->
+<!--Designer: @sunfei2021-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 
 You only need to perform operations in [Defining Resource Files](#defining-resource-files) and [Referencing Resources](#referencing-resources) to use the multi-language capability of this framework. For details about how to obtain the current system language, see [Obtaining the Language](#obtaining-the-language).

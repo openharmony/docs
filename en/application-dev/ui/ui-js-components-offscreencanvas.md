@@ -1,4 +1,10 @@
 # OffscreenCanvasRenderingContext2D
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sd-wu-->
+<!--Designer: @sunbees-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 **OffscreenCanvasRenderingContext2D** allows you to draw rectangles, text, images, and other objects on an offscreen canvas, which is a new buffer created by the GPU outside of the current buffer. For details, see [OffscreenCanvasRenderingContext2D](../reference/apis-arkui/arkui-js/js-offscreencanvasrenderingcontext2d.md).
 
@@ -63,6 +69,7 @@ export default {
     this.offscreen = new OffscreenCanvas(600, 500);
     this.offCanvas = this.offscreen.getContext("2d");
     this.img = new Image();
+    // Replace "common/images/2.png" with the image resource file you use.
     this.img.src = 'common/images/2.png';
     // Invoked when the image is successfully obtained.
     let _this = this;
@@ -72,7 +79,8 @@ export default {
     this.img.onerror = function() {
       promptAction.showToast({message:"error",duration:2000})
     };
-    var bitmap = this.offscreen.transferToImageBitmap();    this.ctx.transferFromImageBitmap(bitmap);
+    var bitmap = this.offscreen.transferToImageBitmap();
+    this.ctx.transferFromImageBitmap(bitmap);
   },
   change(e){
     this.offCanvas.filter = e.newValue;this.offCanvas.drawImage(this.img, 100, 100, 400, 300);
@@ -114,6 +122,7 @@ Use **isPointInPath** to determine whether a coordinate is within the path area 
   justify-content: center;
   align-items: center;
   background-color: #F1F3F5;
+  display: flex;
 }
 canvas{
   width: 600px;
