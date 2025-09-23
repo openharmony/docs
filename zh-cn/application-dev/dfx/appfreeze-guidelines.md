@@ -118,6 +118,7 @@ Uid:20020177
 Reason:THREAD_BLOCK_6S
 appfreeze: com.samples.freezedebug THREAD_BLOCK_6S at 20250628140837
 DisplayPowerInfo:powerState:UNKNOWN
+HitraceIdInfo: hitrace_id: a92ab27238f409a, span_id: 1cd61c9, parent_span_id: 3072e, trace_flag: 0
 Page switch history:
   14:08:30:327 /ets/pages/Index:Appfreeze
   14:08:28:986 /ets/pages/Index
@@ -138,6 +139,8 @@ NOTE: Current fault may be caused by the system's low memory or thermal throttli
 ```
 
 从API version 20开始，当整机资源告警（如整机低内存或热限频）时，会输出NOTE行。出现此行时，开发者可以忽略应用冻屏故障。在之前的API版本中，无论整机资源状态如何，均无此行输出。
+
+从API verrsion 20开始，发生THREAD_BLOCK_6S故障时，日志中新增[HiTraceId](../reference/apis-performance-analysis-kit/js-apis-hitracechain.md#hitraceid)信息打印。HitraceId是HiTraceChain提供的唯一跟踪标识，用于跟踪业务流程调用链。可以协助开发者查看故障时间段内，故障流程的hilog日志，分析日志查看应用的执行状态。
 
 三种AppFreeze事件都包含以下几部分信息，具体解释如下：
 
