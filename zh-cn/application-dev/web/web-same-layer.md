@@ -455,7 +455,7 @@ display，position，z-index，visibility，opacity, background-color，backgrou
    - 使用鼠标左键、中键、右键进行点击或长按。
    - 使用触摸板进行对应鼠标左键、中键、右键点击长按的操作。
 
-   开发者则需要调用[onNativeEmbedMouseEvent](../reference/apis-arkweb/arkts-basic-components-web-events.md#onnativeembedmouseevent20)来监听同层渲染同层渲染区域的鼠标事件。
+   开发者则需要调用[onNativeEmbedMouseEvent](../reference/apis-arkweb/arkts-basic-components-web-events.md#onnativeembedmouseevent20)来监听同层渲染区域的鼠标事件。
 
     ```ts
     build() {

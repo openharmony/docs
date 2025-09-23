@@ -77,7 +77,7 @@ Web组件根据[GeolocationPermissions](../reference/apis-arkweb/arkts-apis-webv
     controller: webview.WebviewController = new webview.WebviewController();
     uiContext: UIContext = this.getUIContext();
 
-    // 组件的声明周期函数，创建组件实例后触发
+    // 组件的生命周期函数，创建组件实例后触发
     aboutToAppear(): void {
       let context : Context | undefined = this.uiContext.getHostContext() as common.UIAbilityContext;
       if (!context) {
