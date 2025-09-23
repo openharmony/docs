@@ -315,7 +315,7 @@ struct Page1 {
 【反例】
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component
@@ -349,7 +349,7 @@ struct Index {
 【正例】
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Entry
 @Component

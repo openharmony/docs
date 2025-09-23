@@ -174,7 +174,7 @@ struct Parent {
         .onClick(() => {
           this.newData.data = new DateClass('2023-07-07');
         })
-      Button('ViewB: this.newData = new NewDate(new DateClass('2023-08-20'))')
+      Button(`ViewB: this.newData = new NewDate(new DateClass('2023-08-20'))`)
         .onClick(() => {
           this.newData = new NewDate(new DateClass('2023-08-20'));
         })
