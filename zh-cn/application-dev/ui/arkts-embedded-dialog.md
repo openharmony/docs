@@ -39,7 +39,7 @@ this.getUIContext().getPromptAction().openCustomDialog({
 
 ## 弹出框在指定页面内弹出
 
-如果希望弹出框显示在某个指定页面内，需通过第二个参数levelUniqueId来实现。此参数接收页面内的节点id，设置后，弹出框显示时会自动查询此id对应的节点所在的Navigation页面，并将其挂载在此页面下。
+如果希望弹出框显示在某个指定页面内，需通过第二个参数levelUniqueId来实现。此参数接收页面内的节点id，设置后，弹出框显示时会自动查询此id对应的节点所在的[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)页面，并将其挂载在子页面的[NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md)节点下。
 
 如下代码示例所示，Text节点为指定页面的节点，设置自定义id后，通过[getFrameNodeById](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#getframenodebyid12)方法获取该节点，再通过[getUniqueId](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuniqueid12)获取节点的内部id，并将其作为levelUniqueId的值传入。
 
