@@ -1535,7 +1535,7 @@
       - Test Kit（应用测试服务）<!--test-kit-->
         <!--Del-->
         - [自动化测试框架使用指导](application-test/arkxtest-guidelines.md)
-        <!--DelEnd>
+        <!--DelEnd-->
         - [SmartPerf性能工具使用指导](application-test/smartperf-guidelines.md)
         - [wukong稳定性工具使用指导](application-test/wukong-guidelines.md)
       - 调试命令<!--debugging-commands-->
