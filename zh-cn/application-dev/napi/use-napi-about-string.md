@@ -98,6 +98,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 // 分别传入字符和非字符检测接口，传入字符串类型的数据将返回原字符串，传入其他类型返回undefined
 hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_utf8_string %{public}s', testNapi.getValueStringUtf8('aaBC+-$%^你好123'));
 hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_utf8_not_string %{public}s', testNapi.getValueStringUtf8(50));
@@ -285,6 +286,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 // 传入非字符型数据，函数返回undefined
 hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_latin1_not_string %{public}s', testNapi.getValueStringLatin1(10));
 // ISO-8859-1编码不支持中文，传入中文字符会乱码
