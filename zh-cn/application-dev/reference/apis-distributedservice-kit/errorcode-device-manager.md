@@ -1,8 +1,8 @@
 # 设备管理错误码
 <!--Kit: Distributed Service Kit-->
 <!--Subsystem: DistributedHardware-->
-<!--Owner: @zhangchuang-->
-<!--Designer: @zhangchuang-->
+<!--Owner: @hwzhangchuang-->
+<!--Designer: @hwzhangchuang-->
 <!--Tester: @Lyuxin-->
 <!--Adviser: @hu-zhiqiong-->
 

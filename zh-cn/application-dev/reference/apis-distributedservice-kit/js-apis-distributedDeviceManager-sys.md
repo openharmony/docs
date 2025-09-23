@@ -1,8 +1,8 @@
 # @ohos.distributedDeviceManager (设备管理)(系统接口)
 <!--Kit: Distributed Service Kit-->
 <!--Subsystem: DistributedHardware-->
-<!--Owner: @zhangchuang-->
-<!--Designer: @zhangchuang-->
+<!--Owner: @hwzhangchuang-->
+<!--Designer: @hwzhangchuang-->
 <!--Tester: @Lyuxin-->
 <!--Adviser: @hu-zhiqiong-->
 
