@@ -8,7 +8,7 @@
 
 本文档介绍自定义节点的常见问题并提供参考。
 
-## 自定义节点的子节点在页面退出后未立即回调自定义组件的aboutToDisappear方法
+## 自定义组件的aboutToDisappear回调异常
 
 **问题现象**
 
@@ -16,15 +16,15 @@
 
 **可能原因**
 
-- 自定义组件存在父节点且其父节点未销毁。
-- 自定义组件由[BuilderNode](./arkts-user-defined-arktsNode-builderNode.md)创建，且该前端对象既未被回收也未解除对后端自定义组件的引用。BuilderNode创建时默认持有后端节点的强引用。
-- 使用了[OH_ArkUI_GetNodeHandleFromNapiValue](../reference/apis-arkui/capi-native-node-napi-h.md#oh_arkui_getnodehandlefromnapivalue)获取了BuilderNode或者ComponentContent对象中的root节点，该方法会导致后端节点的引用计数增加一。
-- [NodeContent](../reference/apis-arkui/js-apis-arkui-NodeContent.md)中通过[addFrameNode](../reference/apis-arkui/js-apis-arkui-NodeContent.md#addframenode12)增加了其对被添加的FrameNode对象对应的节点的引用关系，但是该NodeContent对象未被回收且未通过[removeFrameNode](../reference/apis-arkui/js-apis-arkui-NodeContent.md#removeframenode12)接口删除增加的引用关系。
+- 自定义组件存在父节点且父节点未销毁。
+- 自定义组件由[BuilderNode](./arkts-user-defined-arktsNode-builderNode.md)创建，该前端对象既未被回收，也未解除对后端自定义组件的引用。BuilderNode创建时，默认持有后端节点的强引   用。
+- 通过调用[OH_ArkUI_GetNodeHandleFromNapiValue](../reference/apis-arkui/capi-native-node-napi-h.md#oh_arkui_getnodehandlefromnapivalue)方法，可以获取BuilderNode或ComponentContent对象中的root节点，此操作会使后端节点的引用计数加一。。
+- 在[NodeContent](../reference/apis-arkui/js-apis-arkui-NodeContent.md)中，通过[addFrameNode](../reference/apis-arkui/js-apis-arkui-NodeContent.md#addframenode12)方法增加了对被添加的FrameNode对象节点的引用关系。然而，该NodeContent对象未被回收，且未通过[removeFrameNode](../reference/apis-arkui/js-apis-arkui-NodeContent.md#removeframenode12)接口删除所增加的引用关系。
 
 **解决措施**
 
 - 将需要释放的自定义组件从父节点上移除，排除父节点对自定义组件生命周期的影响。
-- 自定义组件由[BuilderNode](./arkts-user-defined-arktsNode-builderNode.md)创建的场景下，调用[dispose](../reference/apis-arkui/js-apis-arkui-builderNode.md#dispose12)接口，立即释放前端BuilderNode对象对于后端节点的强引用。
+- 自定义组件由[BuilderNode](./arkts-user-defined-arktsNode-builderNode.md)创建时，调用[dispose](../reference/apis-arkui/js-apis-arkui-builderNode.md#dispose12)接口，立即释放前端BuilderNode对象对于后端节点的强引用。
 - 对于使用OH_ArkUI_GetNodeHandleFromNapiValue获取BuilderNode或ComponentContent对象的root节点，
 调用[disposenode](../reference/apis-arkui/capi-arkui-nativemodule-arkui-nativenodeapi-1.md#disposenode)减少OH_ArkUI_GetNodeHandleFromNapiValue增加的引用计数。
 - 未调用dispose时，当前端的BuilderNode对象在[GC](../arkts-utils/gc-introduction.md)中被回收会释放对后端根节点的引用。调试阶段可使用[hidumper](../dfx/hidumper.md)指令触发GC或[查询堆内存](../dfx/hidumper.md#查询虚拟机堆内存)来分析引用关系。
@@ -34,7 +34,7 @@
 下文中，根节点表示BuilderNode的根节点，aboutToDisappear表示BuilderNode中构建的自定义组件（即BuilderNodePage）中的回调。
 
 - 跳转至pageOneTmp页面后返回，通过指令触发GC，继续操作设备后可以看到aboutToDisappear回调。根节点相关的引用关系和解决方案：
-  - NodeContent对根节点的引用关系：需要触发NodeContent对象的回收，或主动调用removeFrameNode接口解除该引用关系。
+  - NodeContent对根节点的引用关系：需要触发NodeContent对象的回收，或主动调用removeFrameNode接口。
   - 全局对象对BuilderNode的引用关系：通过[ArrayList](../reference/apis-arkts/js-apis-arraylist.md)的[clear](../reference/apis-arkts/js-apis-arraylist.md#clear)方法清除对BuilderNode的引用。
   - BuilderNode对象对根节点的引用关系：确保BuilderNode对象无其他引用关系，触发该对象的回收可以解除其对根节点的引用。
 
