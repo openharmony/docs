@@ -1822,7 +1822,7 @@ getDataAnalysisProgress(analysisType?: AnalysisType): Promise&lt;string&gt;
 
 | 参数名  | 类型             | 必填   | 说明    |
 | ---- | -------------- | ---- | ----- |
-| analysisType | [AnalysisType](#analysistype11) | 否    | 需要获取的智慧分析类型。<br>该参数在API 12-21为必选参数，从API 22开始及以后为可选参数。 |
+| analysisType | [AnalysisType](#analysistype11) | 否    | 需要获取的智慧分析类型，默认为空值。<br>该参数在API 12-21为必选参数，从API 22开始及以后为可选参数。 |
 
 **返回值：**
 
