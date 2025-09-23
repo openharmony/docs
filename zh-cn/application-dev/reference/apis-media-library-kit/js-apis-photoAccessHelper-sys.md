@@ -1828,7 +1828,7 @@ getDataAnalysisProgress(analysisType?: AnalysisType): Promise&lt;string&gt;
 
 | 类型                        | 说明           |
 | --------------------------- | -------------- |
-| Promise&lt;string&gt; | Promise对象，返回一个json格式的字符串。表示资产分析的进度。 |
+| Promise&lt;string&gt; | Promise对象，返回一个json格式的字符串。表示资产分析的进度。<br>参数为空时返回整体的进度，参数不为空时返回analysisType对应的进度。 |
 
 **错误码：**
 
