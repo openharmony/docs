@@ -721,6 +721,7 @@ ArkUI在Native侧提供的能力作为ArkTS的子集，部分能力不会在Nati
                        delete handle;
                        delete customData;
                    }
+                   delete callbackData;
                },
                4000, 4000);
            uv_run(loop, UV_RUN_DEFAULT);

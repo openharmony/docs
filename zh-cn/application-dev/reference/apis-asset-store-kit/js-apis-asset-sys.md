@@ -28,6 +28,8 @@ addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 
 设置[IS_PERSISTENT](js-apis-asset.md#tag)属性，需申请ohos.permission.STORE_PERSISTENT_DATA权限。
 
+**系统接口：** 此接口为系统接口。
+
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Security.Asset
@@ -96,6 +98,8 @@ removeAsUser(userId: number, query: AssetMap): Promise\<void>
 
 从指定用户空间中删除符合条件的一条或多条关键资产。使用Promise异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Security.Asset
@@ -157,6 +161,8 @@ asset.removeAsUser(userId, query).then(() => {
 updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 
 在指定用户空间中更新符合条件的一条关键资产。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -225,6 +231,8 @@ preQueryAsUser(userId: number, query: AssetMap): Promise\<Uint8Array>
 
 在指定用户空间中查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.queryAsUser](#assetqueryasuser)和[asset.postQueryAsUser](#assetpostqueryasuser)接口。使用Promise异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Security.Asset
@@ -289,6 +297,8 @@ asset.preQueryAsUser(userId, query).then((challenge: Uint8Array) => {
 queryAsUser(userId: number, query: AssetMap): Promise\<Array\<AssetMap>>
 
 在指定用户空间中查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQueryAsUser](#assetprequeryasuser)接口，在本函数后调用[asset.postQueryAsUser](#assetpostqueryasuser)接口，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -359,6 +369,8 @@ asset.queryAsUser(userId, query).then((res: Array<asset.AssetMap>) => {
 postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 
 在指定用户空间中查询的后置处理，用于需要用户认证的关键资产（与[asset.preQueryAsUser](#assetprequeryasuser)函数成对出现）。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 

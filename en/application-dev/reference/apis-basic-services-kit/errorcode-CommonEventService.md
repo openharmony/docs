@@ -171,7 +171,7 @@ Try again later.
 
 **Error Message**
 
-The number of subscribers exceeds the upper limit.
+The count of subscriber exceed system specification.
 
 **Description**
 

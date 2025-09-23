@@ -33,7 +33,7 @@
 ```ts
 this.myBuilderFunction()
 ```
-- 允许在自定义组件内定义一个或多个@LocalBuilder函数，该函数被认为是该组件的私有、特殊类型的成员函数。
+- 允许在自定义组件内定义一个或多个\@LocalBuilder函数，该函数被认为是该组件的私有、特殊类型的成员函数。
 
 - 自定义构建函数可以在所属组件的build函数和其他自定义构建函数中调用，但不允许在组件外调用。
 
@@ -75,7 +75,7 @@ this.myBuilderFunction()
 
 > **说明：**
 >
-> 若\@LocalBuilder函数和$$参数一起使用，子组件调用父组件的@LocalBuilder函数，子组件传入的参数发生变化，不会引起\@LocalBuilder函数内的UI刷新。
+> 若\@LocalBuilder函数和`$$`参数一起使用，子组件调用父组件的\@LocalBuilder函数，子组件传入的参数发生变化，不会引起\@LocalBuilder函数内的UI刷新。
 
 组件Parent内的\@LocalBuilder函数在build函数内调用，按键值对写法进行传值，当点击Click me时，\@LocalBuilder内的Text文本内容会随着状态变量内容的改变而改变。
 
@@ -107,9 +107,9 @@ struct Parent {
 }
 ```
 
-按引用传递参数时，如果在\@LocalBuilder函数内调用自定义组件，ArkUI提供[$$](arkts-two-way-sync.md)作为按引用传递参数的范式。
+按引用传递参数时，如果在\@LocalBuilder函数内调用自定义组件，ArkUI提供`$$`作为按引用传递参数的范式。
 
-组件Parent内的\@LocalBuilder函数内调用自定义组件，且按照引用传递参数将值传递到自定义组件，当Parent组件内状态变量值发生变化时，\@LocalBuilder函数内的自定义组件HelloComponent的message值也会发生变化。
+组件Parent内的\@LocalBuilder函数内调用自定义组件，且按照引用传递参数将值传递到自定义组件，当Parent组件内状态变量值发生变化时，\@LocalBuilder函数内的自定义组件HelloComponent的message值也会随之更新。
 
 ```ts
 class ReferenceType {

@@ -7,9 +7,9 @@
 <!--Tester: @liuzhenshuo-->
 <!--Adviser: @HelloCrease-->
 
-弧形列表是一种专为圆形屏幕设备设计的特殊列表，它能够以结构化、可滚动的形式高效展示信息。具体用法可参考[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)。
+从API version 18开始支持弧形列表。弧形列表是一种专为圆形屏幕设备设计的特殊列表，它能够以结构化、可滚动的形式高效展示信息。具体用法可参考[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)。
 
-使用弧形列表可以通过在[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)组件中按垂直方向线性排列子组件[ArcListItem](../reference/apis-arkui/arkui-ts/ts-container-arclistitem.md)，可以为弧形列表中的每一项提供独立视图。此外，可以使用[循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)来迭代一组列表项，或结合任意数量的单个视图与[ForEach](../ui/state-management/arkts-rendering-control-foreach.md)结构，构建复杂的弧形列表。[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)组件支持多种[渲染控制](../ui/state-management/arkts-rendering-control-overview.md)方式，包括条件渲染、循环渲染和懒加载，以生成子组件。
+使用弧形列表可以通过在[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)组件中按垂直方向线性排列子组件[ArcListItem](../reference/apis-arkui/arkui-ts/ts-container-arclistitem.md)，可以为弧形列表中的每一项提供独立视图。此外，可以使用[循环渲染](../ui/rendering-control/arkts-rendering-control-foreach.md)来迭代一组列表项，或结合任意数量的单个视图与[ForEach](../ui/rendering-control/arkts-rendering-control-foreach.md)结构，构建复杂的弧形列表。[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)组件支持多种[渲染控制](../ui/rendering-control/arkts-rendering-control-overview.md)方式，包括条件渲染、循环渲染和懒加载，以生成子组件。
 
 ## 创建弧形列表
 
@@ -43,99 +43,101 @@ import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute, LengthMet
 @Component
 struct ArcListExample {
   build() {
-    ArcList({ initialIndex: 2 }) {
-      ArcListItem() {
-        Row() {
-          Image($r("app.media.wlan")).width("99px").height("99px")
-            .borderRadius("50px").margin({ left: 7 })
-          Column() {
-            Text("WLAN").fontSize("38px").fontColor("#FFFFFFFF")
-            Text("已开启").fontSize("20px").fontColor("#FFFFFFFF")
-          }.width("190px")
+    Stack() {
+      ArcList({ initialIndex: 2 }) {
+        ArcListItem() {
+          Row() {
+            Image($r("app.media.wlan")).width("99px").height("99px")
+              .borderRadius("50px").margin({ left: 7 })
+            Column() {
+              Text("WLAN").fontSize("38px").fontColor("#FFFFFFFF")
+              Text("已开启").fontSize("20px").fontColor("#FFFFFFFF")
+            }.width("190px")
 
-          Image($r("app.media.ic_settings_arrow")).width("92px").height("92px")
-            .borderRadius("50px")
+            Image($r("app.media.ic_settings_arrow")).width("92px").height("92px")
+              .borderRadius("50px")
+          }
         }
-      }
-      .borderRadius("65px")
-      .width("414px")
-      .height("129px")
-      .backgroundColor("#26FFFFFF")
+        .borderRadius("65px")
+        .width("414px")
+        .height("129px")
+        .backgroundColor("#26FFFFFF")
 
-      ArcListItem() {
-        Row() {
-          Image($r("app.media.blueTooth")).width("99px").height("99px")
-            .borderRadius("50px").margin({ left: 7 })
-          Column() {
-            Text("蓝牙").fontSize("38px").fontColor("#FFFFFFFF")
-            Text("已开启").fontSize("20px").fontColor("#FFFFFFFF")
-          }.width("190px")
-          
-          Image($r("app.media.ic_settings_arrow")).width("92px").height("92px")
-            .borderRadius("50px")
+        ArcListItem() {
+          Row() {
+            Image($r("app.media.blueTooth")).width("99px").height("99px")
+              .borderRadius("50px").margin({ left: 7 })
+            Column() {
+              Text("蓝牙").fontSize("38px").fontColor("#FFFFFFFF")
+              Text("已开启").fontSize("20px").fontColor("#FFFFFFFF")
+            }.width("190px")
+
+            Image($r("app.media.ic_settings_arrow")).width("92px").height("92px")
+              .borderRadius("50px")
+          }
         }
-      }
-      .borderRadius("65px")
-      .width("414px")
-      .height("129px")
-      .backgroundColor("#26FFFFFF")
+        .borderRadius("65px")
+        .width("414px")
+        .height("129px")
+        .backgroundColor("#26FFFFFF")
 
-      ArcListItem() {
-        Row() {
-          Image($r("app.media.mobileData")).width("99px").height("99px")
-            .borderRadius("50px").margin({ left: 7 })
-          Column() {
-            Text("移动网络").fontSize("38px").fontColor("#FFFFFFFF")
-          }.width("190px")
+        ArcListItem() {
+          Row() {
+            Image($r("app.media.mobileData")).width("99px").height("99px")
+              .borderRadius("50px").margin({ left: 7 })
+            Column() {
+              Text("移动网络").fontSize("38px").fontColor("#FFFFFFFF")
+            }.width("190px")
 
-          Image($r("app.media.ic_settings_arrow")).width("92px").height("92px")
-            .borderRadius("50px")
+            Image($r("app.media.ic_settings_arrow")).width("92px").height("92px")
+              .borderRadius("50px")
+          }
         }
-      }
-      .borderRadius("65px")
-      .width("414px")
-      .height("129px")
-      .backgroundColor("#26FFFFFF")
+        .borderRadius("65px")
+        .width("414px")
+        .height("129px")
+        .backgroundColor("#26FFFFFF")
 
-      ArcListItem() {
-        Row() {
-          Image($r("app.media.ic_settings_more_connections")).width("99px").height("99px")
-            .borderRadius("50px").margin({ left: 7 })
-          Column() {
-            Text("更多连接").fontSize("38px").fontColor("#FFFFFFFF")
-          }.width("190px")
+        ArcListItem() {
+          Row() {
+            Image($r("app.media.ic_settings_more_connections")).width("99px").height("99px")
+              .borderRadius("50px").margin({ left: 7 })
+            Column() {
+              Text("更多连接").fontSize("38px").fontColor("#FFFFFFFF")
+            }.width("190px")
 
-          Image($r("app.media.ic_settings_arrow")).width("92px").height("92px")
-            .borderRadius("50px")
+            Image($r("app.media.ic_settings_arrow")).width("92px").height("92px")
+              .borderRadius("50px")
+          }
         }
-      }
-      .borderRadius("65px")
-      .width("414px")
-      .height("129px")
-      .backgroundColor("#26FFFFFF")
+        .borderRadius("65px")
+        .width("414px")
+        .height("129px")
+        .backgroundColor("#26FFFFFF")
 
-      ArcListItem() {
-        Row() {
-          Image($r("app.media.displayAndBrightness")).width("99px").height("99px")
-            .borderRadius("50px").margin({ left: 7 })
-          Column() {
-            Text("显示和亮度").fontSize("38px").fontColor("#FFFFFFFF")
-          }.width("190px")
+        ArcListItem() {
+          Row() {
+            Image($r("app.media.displayAndBrightness")).width("99px").height("99px")
+              .borderRadius("50px").margin({ left: 7 })
+            Column() {
+              Text("显示和亮度").fontSize("38px").fontColor("#FFFFFFFF")
+            }.width("190px")
 
-          Image($r("app.media.ic_settings_arrow")).width("92px").height("92px")
-            .borderRadius("50px")
+            Image($r("app.media.ic_settings_arrow")).width("92px").height("92px")
+              .borderRadius("50px")
+          }
         }
+        .borderRadius("65px")
+        .width("414px")
+        .height("129px")
+        .backgroundColor("#26FFFFFF")
       }
-      .borderRadius("65px")
-      .width("414px")
-      .height("129px")
-      .backgroundColor("#26FFFFFF")
+      .width("466px")
+      .height("466px")
+      .space(LengthMetrics.px(10))
+      .borderRadius("233px")
+      .backgroundColor(Color.Black)
     }
-    .width("466px")
-    .height("466px")
-    .space(LengthMetrics.px(10))
-    .borderRadius("233px")
-    .backgroundColor(Color.Black)
   }
 }
 ```
@@ -146,9 +148,9 @@ struct ArcListExample {
 
 ## 迭代弧形列表内容
 
-通常，应用会通过数据集合动态创建列表。采用[循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)的方式，可以从数据源中迭代获取数据，在每次迭代过程中创建相应的组件，从而降低代码的复杂度。
+通常，应用会通过数据集合动态创建列表。采用[循环渲染](../ui/rendering-control/arkts-rendering-control-foreach.md)的方式，可以从数据源中迭代获取数据，在每次迭代过程中创建相应的组件，从而降低代码的复杂度。
 
-ArkTS通过[ForEach](../ui/state-management/arkts-rendering-control-foreach.md)提供了组件的循环渲染能力。以简单的联系人列表为例，将联系人名称和头像数据以Contact类结构存储到contacts数组中，使用[ForEach](../ui/state-management/arkts-rendering-control-foreach.md)中嵌套的[ArcListItem](../reference/apis-arkui/arkui-ts/ts-container-arclistitem.md)来代替多个平铺的、内容相似的[ArcListItem](../reference/apis-arkui/arkui-ts/ts-container-arclistitem.md)，从而减少重复代码，使代码更加简洁高效。
+ArkTS通过[ForEach](../ui/rendering-control/arkts-rendering-control-foreach.md)提供了组件的循环渲染能力。以简单的联系人列表为例，将联系人名称和头像数据以Contact类结构存储到contacts数组中，使用[ForEach](../ui/rendering-control/arkts-rendering-control-foreach.md)中嵌套的[ArcListItem](../reference/apis-arkui/arkui-ts/ts-container-arclistitem.md)来代替多个平铺的、内容相似的[ArcListItem](../reference/apis-arkui/arkui-ts/ts-container-arclistitem.md)，从而减少重复代码，使代码更加简洁高效。
 
 ```ts
 // xxx.ets
@@ -178,32 +180,34 @@ struct SimpleContacts {
   ];
 
   build() {
-    ArcList({ initialIndex: 2 }) {
-      ForEach(this.contacts, (item: Contact) => {
-        ArcListItem() {
-          Row() {
-            Image(item.icon)
-              .width(40)
-              .height(40)
-              .margin(10)
-              .backgroundColor("#FF9CC998")
-              .borderRadius(20)
-            Text(item.name).fontSize("38px").fontColor("#FFFFFFFF")
+    Stack() {
+      ArcList({ initialIndex: 2 }) {
+        ForEach(this.contacts, (item: Contact) => {
+          ArcListItem() {
+            Row() {
+              Image(item.icon)
+                .width(40)
+                .height(40)
+                .margin(10)
+                .backgroundColor("#FF9CC998")
+                .borderRadius(20)
+              Text(item.name).fontSize("38px").fontColor("#FFFFFFFF")
+            }
+            .width('100%')
+            .justifyContent(FlexAlign.Start)
           }
-          .width('100%')
-          .justifyContent(FlexAlign.Start)
-        }
-        .borderRadius("65px")
-        .width("410px")
-        .height('130px')
-        .backgroundColor("#26FFFFFF")
-      }, (item: Contact) => JSON.stringify(item))
+          .borderRadius("65px")
+          .width("410px")
+          .height('130px')
+          .backgroundColor("#26FFFFFF")
+        }, (item: Contact) => JSON.stringify(item))
+      }
+      .space(LengthMetrics.px(10))
+      .width('466px')
+      .height('466px')
+      .borderRadius('233px')
+      .backgroundColor(Color.Black)
     }
-    .space(LengthMetrics.px(10))
-    .width('466px')
-    .height('466px')
-    .borderRadius('233px')
-    .backgroundColor(Color.Black)
   }
 }
 ```
@@ -450,9 +454,9 @@ struct ContactsArcList {
 
 ## 处理长列表
 
-[循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)适用于短列表，当构建具有大量列表项的长列表时，如果直接采用循环渲染方式，会一次性加载所有的列表元素，会导致页面启动时间过长，影响用户体验。因此，推荐使用[数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)（LazyForEach）方式实现按需迭代加载数据，从而提升列表性能。关于长列表按需加载优化的具体实现可参考[数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)章节中的示例。
+[循环渲染](../ui/rendering-control/arkts-rendering-control-foreach.md)适用于短列表，当构建具有大量列表项的长列表时，如果直接采用循环渲染方式，会一次性加载所有的列表元素，会导致页面启动时间过长，影响用户体验。因此，推荐使用[数据懒加载](../ui/rendering-control/arkts-rendering-control-lazyforeach.md)（LazyForEach）方式实现按需迭代加载数据，从而提升列表性能。关于长列表按需加载优化的具体实现可参考[数据懒加载](../ui/rendering-control/arkts-rendering-control-lazyforeach.md)章节中的示例。
 
-当使用懒加载方式渲染列表时，为了减少列表滑动时出现白块，[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)组件提供了[cachedCount](../reference/apis-arkui/arkui-ts/ts-container-arclist.md#cachedcount)属性，该属性用于设置列表项缓存数，只在懒加载[LazyForEach](../ui/state-management/arkts-rendering-control-lazyforeach.md)中生效。
+当使用懒加载方式渲染列表时，为了减少列表滑动时出现白块，[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)组件提供了[cachedCount](../reference/apis-arkui/arkui-ts/ts-container-arclist.md#cachedcount)属性，该属性用于设置列表项缓存数，只在懒加载[LazyForEach](../ui/rendering-control/arkts-rendering-control-lazyforeach.md)中生效。
 
 ```ts
 ArcList() {

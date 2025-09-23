@@ -119,17 +119,21 @@ int main()
 }
 ```
 
+> **说明：**
+>
+> `ffrt_queue_submit_h_f`接口可以接收裸函数指针任务作为参数，如果任务存在前后处理可以参见[ffrt_alloc_auto_managed_function_storage_base](ffrt-api-guideline-c.md#ffrt_alloc_auto_managed_function_storage_base)函数查看如何构造任务结构体。
+
 ## 接口说明
 
 上述样例中涉及到主要的FFRT的接口包括：
 
-| 名称                                                                                               | 描述                   |
-| -------------------------------------------------------------------------------------------------- | ---------------------- |
-| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_t)                                     | 创建队列。             |
-| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_t)                                   | 销毁队列。             |
-| [ffrt_task_attr_set_queue_priority](ffrt-api-guideline-c.md#ffrt_task_attr_t)     | 设置队列任务优先级。   |
-| [ffrt_queue_attr_set_max_concurrency](ffrt-api-guideline-c.md#ffrt_queue_attr_t) | 设置并发队列的并发度。 |
-| [ffrt_queue_submit_h_f](ffrt-api-guideline-c.md#ffrt_queue_t)                             | 向队列提交一个任务。   |
+| 名称                                                                             | 描述                                                                  |
+| -------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [ffrt_queue_create](ffrt-api-guideline-c.md#ffrt_queue_t)                        | 创建队列。                                                            |
+| [ffrt_queue_destroy](ffrt-api-guideline-c.md#ffrt_queue_t)                       | 销毁队列。                                                            |
+| [ffrt_task_attr_set_queue_priority](ffrt-api-guideline-c.md#ffrt_task_attr_t)    | 设置队列任务优先级。                                                  |
+| [ffrt_queue_attr_set_max_concurrency](ffrt-api-guideline-c.md#ffrt_queue_attr_t) | 设置并发队列的并发度。                                                |
+| [ffrt_queue_submit_h_f](ffrt-api-guideline-c.md#ffrt_queue_t)                    | 向队列提交一个任务。<br/>**说明**：从API version 20开始，支持该接口。 |
 
 > **说明：**
 >

@@ -6,7 +6,7 @@
 <!--Tester: @xchaosioda-->
 <!--Adviser: @zengyawen-->
 
-在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+在开发相机应用时，需要先[申请相关权限](camera-preparation.md)。
 
 相机应用可通过调用和控制相机设备，完成预览、拍照和录像等基础操作。
 
@@ -25,7 +25,7 @@
    >
    > 在相机设备输入之前需要先完成相机管理，详细开发步骤请参考[相机管理](camera-device-management.md)。
 
-2. 通过[cameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md)类中的[createCameraInput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createcamerainput)方法创建相机输入流。
+2. 通过[cameraManager](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md)中的[createCameraInput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createcamerainput)方法创建相机输入流。
 
    ```ts
    async function createInput(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): Promise<camera.CameraInput | undefined> {

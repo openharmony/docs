@@ -12,6 +12,8 @@
 
 提供通过查询数据库生成的数据库结果集的访问方法。结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
 
+ResultSet实例不会实时刷新。使用结果集后，如果数据库中的数据发生变化（如增删改操作），需要重新查询才能获取到最新的数据。
+
 下列API示例中，都需先使用[query](arkts-apis-data-relationalStore-RdbStore.md#query)、[querySql](arkts-apis-data-relationalStore-RdbStore.md#querysql)、[remoteQuery](arkts-apis-data-relationalStore-RdbStore.md#remotequery-1)、[queryLockedRow](arkts-apis-data-relationalStore-RdbStore.md#querylockedrow12)等query类方法中任一方法获取到ResultSet实例，再通过此实例调用对应方法。
 
 ## 导入模块
@@ -632,8 +634,14 @@ getValue(columnIndex: number): ValueType
 **示例：**
 
 ```ts
-if (resultSet != undefined) {
-  const codes = (resultSet as relationalStore.ResultSet).getValue((resultSet as relationalStore.ResultSet).getColumnIndex("BIGINT_COLUMN"));
+if (resultSet !== undefined) {
+  while (resultSet.goToNextRow()) {
+    const colIndex = resultSet.getColumnIndex("NAME");
+    if (colIndex > -1) {
+      const name = resultSet.getValue(colIndex);
+      console.info(`Get value success, name is ${name}`);
+    }
+  }
 }
 ```
 
@@ -798,8 +806,14 @@ getLong(columnIndex: number): number
 **示例：**
 
 ```ts
-if (resultSet != undefined) {
-  const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
+if (resultSet !== undefined) {
+  while (resultSet.goToNextRow()) {
+    const colIndex = resultSet.getColumnIndex("AGE");
+    if (colIndex > -1) {
+      const age = resultSet.getLong(colIndex);
+      console.info(`Get long success, age is ${age}`);
+    }
+  }
 }
 ```
 
@@ -853,8 +867,14 @@ getDouble(columnIndex: number): number
 **示例：**
 
 ```ts
-if (resultSet != undefined) {
-  const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
+if (resultSet !== undefined) {
+  while (resultSet.goToNextRow()) {
+    const colIndex = resultSet.getColumnIndex("SALARY");
+    if (colIndex > -1) {
+      const salary = resultSet.getDouble(colIndex);
+      console.info(`Get double success, salary is ${salary}`);
+    }
+  }
 }
 ```
 
@@ -1227,8 +1247,14 @@ isColumnNull(columnIndex: number): boolean
 **示例：**
 
 ```ts
-if (resultSet != undefined) {
-  const isColumnNull = (resultSet as relationalStore.ResultSet).isColumnNull((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
+if (resultSet !== undefined) {
+  while (resultSet.goToNextRow()) {
+    const colIndex = resultSet.getColumnIndex("CODES");
+    if (colIndex > -1) {
+      const isColumnNull = resultSet.isColumnNull(colIndex);
+      console.info(`Column is null: ${isColumnNull}`);
+    }
+  }
 }
 ```
 

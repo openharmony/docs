@@ -4,7 +4,7 @@
 <!--Owner: @aohui-->
 <!--Designer: @yaomingliu-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 用于拦截指定scheme的请求的拦截器。
 
@@ -26,7 +26,7 @@ import { webview } from '@kit.ArkWeb';
 
 onRequestStart(callback: (request: WebSchemeHandlerRequest, handler: WebResourceHandler) => boolean): void
 
-当请求开始时的回调，在该回调函数中可以决定是否拦截该请求。当回调返回false是表示不拦截此请求，此时handler失效；当回调返回true，表示拦截此请求。
+当请求开始时的回调，在该回调函数中可以决定是否拦截该请求。当回调返回false时，表示不拦截此请求，此时handler失效；当回调返回true时，表示拦截此请求。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -38,7 +38,7 @@ onRequestStart(callback: (request: WebSchemeHandlerRequest, handler: WebResource
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -66,25 +66,25 @@ struct WebComponent {
         .onControllerAttached(() => {
           try {
             this.schemeHandler.onRequestStart((request: webview.WebSchemeHandlerRequest, resourceHandler: webview.WebResourceHandler) => {
-              console.log("[schemeHandler] onRequestStart");
+              console.info("[schemeHandler] onRequestStart");
               try {
-                console.log("[schemeHandler] onRequestStart url:" + request.getRequestUrl());
-                console.log("[schemeHandler] onRequestStart method:" + request.getRequestMethod());
-                console.log("[schemeHandler] onRequestStart referrer:" + request.getReferrer());
-                console.log("[schemeHandler] onRequestStart isMainFrame:" + request.isMainFrame());
-                console.log("[schemeHandler] onRequestStart hasGesture:" + request.hasGesture());
-                console.log("[schemeHandler] onRequestStart header size:" + request.getHeader().length);
-                console.log("[schemeHandler] onRequestStart resource type:" + request.getRequestResourceType());
-                console.log("[schemeHandler] onRequestStart frame url:" + request.getFrameUrl());
+                console.info("[schemeHandler] onRequestStart url:" + request.getRequestUrl());
+                console.info("[schemeHandler] onRequestStart method:" + request.getRequestMethod());
+                console.info("[schemeHandler] onRequestStart referrer:" + request.getReferrer());
+                console.info("[schemeHandler] onRequestStart isMainFrame:" + request.isMainFrame());
+                console.info("[schemeHandler] onRequestStart hasGesture:" + request.hasGesture());
+                console.info("[schemeHandler] onRequestStart header size:" + request.getHeader().length);
+                console.info("[schemeHandler] onRequestStart resource type:" + request.getRequestResourceType());
+                console.info("[schemeHandler] onRequestStart frame url:" + request.getFrameUrl());
                 let header = request.getHeader();
                 for (let i = 0; i < header.length; i++) {
-                  console.log("[schemeHandler] onRequestStart header:" + header[i].headerKey + " " + header[i].headerValue);
+                  console.info("[schemeHandler] onRequestStart header:" + header[i].headerKey + " " + header[i].headerValue);
                 }
                 let stream = request.getHttpBodyStream();
                 if (stream) {
-                  console.log("[schemeHandler] onRequestStart has http body stream");
+                  console.info("[schemeHandler] onRequestStart has http body stream");
                 } else {
-                  console.log("[schemeHandler] onRequestStart has no http body stream");
+                  console.info("[schemeHandler] onRequestStart has no http body stream");
                 }
               } catch (error) {
                 console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -110,12 +110,12 @@ struct WebComponent {
               let buf = buffer.from(this.htmlData)
               try {
                 if (buf.length == 0) {
-                  console.log("[schemeHandler] length 0");
+                  console.info("[schemeHandler] length 0");
                   resourceHandler.didReceiveResponse(response);
                   // 如果认为buf.length为0是正常情况，则调用resourceHandler.didFinish，否则调用resourceHandler.didFail
                   resourceHandler.didFail(WebNetErrorList.ERR_FAILED);
                 } else {
-                  console.log("[schemeHandler] length 1");
+                  console.info("[schemeHandler] length 1");
                   resourceHandler.didReceiveResponse(response);
                   resourceHandler.didReceiveResponseBody(buf.buffer);
                   resourceHandler.didFinish();
@@ -127,7 +127,7 @@ struct WebComponent {
             })
 
             this.schemeHandler.onRequestStop((request: webview.WebSchemeHandlerRequest) => {
-              console.log("[schemeHandler] onRequestStop");
+              console.info("[schemeHandler] onRequestStop");
             });
 
             this.controller.setWebSchemeHandler('https', this.schemeHandler);
@@ -145,7 +145,7 @@ struct WebComponent {
 
 onRequestStop(callback: Callback\<WebSchemeHandlerRequest\>): void
 
-当请求完成时的回调，仅当前面onRequestStart中回调决定拦截此请求中触发。触发的时机有以下两点：
+当请求完成时的回调，仅当[onRequestStart](#onrequeststart12)回调决定拦截此请求时触发。触发的时机有以下两点：
 
 1.WebResourceHandler调用didFail或者didFinish。
 
@@ -161,7 +161,7 @@ onRequestStop(callback: Callback\<WebSchemeHandlerRequest\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |

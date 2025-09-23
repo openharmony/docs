@@ -1,4 +1,10 @@
 # Interface (AudioVolumeManager)
+<!--Kit: Audio Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @songshenke-->
+<!--Designer: @caixuejiang; @hao-liangfei; @zhanganxiang-->
+<!--Tester: @Filger-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -19,7 +25,7 @@ import { audio } from '@kit.AudioKit';
 
 getVolumeGroupManager(groupId: number, callback: AsyncCallback<AudioVolumeGroupManager\>\): void
 
-Obtains the volume group manager. This API uses an asynchronous callback to return the result.
+Obtains a VolumeGroupManager instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -28,7 +34,7 @@ Obtains the volume group manager. This API uses an asynchronous callback to retu
 | Name    | Type                                                        | Mandatory| Description                                                       |
 | ---------- | ------------------------------------------------------------ | ---- |-----------------------------------------------------------|
 | groupId    | number                                    | Yes  | Volume group ID. The default value is **DEFAULT_VOLUME_GROUP_ID**.                        |
-| callback   | AsyncCallback&lt;[AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the volume group manager obtained; otherwise, **err** is an error object.|
+| callback   | AsyncCallback&lt;[AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the VolumeGroupManager instance obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -39,10 +45,10 @@ let groupId: number = audio.DEFAULT_VOLUME_GROUP_ID;
 
 audioVolumeManager.getVolumeGroupManager(groupId, (err: BusinessError, value: audio.AudioVolumeGroupManager) => {
   if (err) {
-    console.error(`Failed to obtain the volume group infos list. ${err}`);
+    console.error(`Failed to getVolumeGroupManager. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+  console.info('Succeeded in doing getVolumeGroupManager.');
 });
 
 ```
@@ -51,7 +57,7 @@ audioVolumeManager.getVolumeGroupManager(groupId, (err: BusinessError, value: au
 
 getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 
-Obtains the volume group manager. This API uses a promise to return the result.
+Obtains a VolumeGroupManager instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -65,27 +71,28 @@ Obtains the volume group manager. This API uses a promise to return the result.
 
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
-| Promise&lt; [AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md) &gt; | Promise used to return the volume group manager.|
+| Promise&lt; [AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md) &gt; | Promise used to return the VolumeGroupManager instance.|
 
 **Example**
 
 ```ts
 import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let groupId: number = audio.DEFAULT_VOLUME_GROUP_ID;
-let audioVolumeGroupManager: audio.AudioVolumeGroupManager | undefined = undefined;
 
-async function getVolumeGroupManager(){
-  audioVolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(groupId);
-  console.info('Promise returned to indicate that the volume group infos list is obtained.');
-}
+audioVolumeManager.getVolumeGroupManager(groupId).then((audioVolumeGroupManager: audio.AudioVolumeGroupManager) => {
+  console.info('Succeeded in doing getVolumeGroupManager.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getVolumeGroupManager. Code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ## getVolumeGroupManagerSync<sup>10+</sup>
 
 getVolumeGroupManagerSync(groupId: number\): AudioVolumeGroupManager
 
-Obtains the volume group manager. This API returns the result synchronously.
+Obtains a VolumeGroupManager instance. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -99,7 +106,7 @@ Obtains the volume group manager. This API returns the result synchronously.
 
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
-| [AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md) | Volume group manager.|
+| [AudioVolumeGroupManager](arkts-apis-audio-AudioVolumeGroupManager.md) | VolumeGroupManager instance.|
 
 **Error codes**
 
@@ -495,7 +502,7 @@ Checks whether a specified audio stream is muted.
 
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
-| boolean | Check result. The value **true** means the audio stream is muted, and **false** means the opposite.|
+| boolean | Check result for whether the audio stream is muted. **true** if muted, **false** otherwise.|
 
 **Error codes**
 

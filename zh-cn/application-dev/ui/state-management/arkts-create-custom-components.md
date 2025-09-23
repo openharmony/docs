@@ -187,14 +187,14 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
 
 自定义组件可以包含成员变量，成员变量具有以下约束：
 
-- 自定义组件的成员变量仅能从组件内部访问，且不建议声明成静态变量。
+- 自定义组件的成员变量仅能从组件内部访问，且不建议声明为静态变量。
 
 - 自定义组件的成员变量本地初始化有些是可选的，有些是必选的。具体是否需要本地初始化，是否需要从父组件通过参数传递初始化子组件的成员变量，请参考[状态管理](arkts-state-management-overview.md)。
 
 
 ## 自定义组件的参数规定
 
-以上示例中，可以在build方法里创建自定义组件，同时在创建自定义组件的过程中，根据装饰器的规则来初始化自定义组件的参数。
+以下示例展示了如何在build方法里创建自定义组件，并在创建自定义组件的过程中，根据装饰器的规则来初始化自定义组件的参数。
 
 ```ts
 @Component
@@ -344,7 +344,7 @@ struct Son {
   }
   ```
 
-- 不允许使用switch语法，当需要使用条件判断时，请使用[if](./arkts-rendering-control-ifelse.md)。示例如下。
+- 不允许使用switch语法，当需要使用条件判断时，请使用[if](../rendering-control/arkts-rendering-control-ifelse.md)。示例如下。
 
   ```ts
   build() {
@@ -478,4 +478,35 @@ struct MyComponent {
 > **说明：**
 >
 > ArkUI给自定义组件设置样式时，相当于给ChildComponent套了一个不可见的容器组件，这些样式是设置在容器组件上，而非直接设置给ChildComponent的Button组件。渲染结果显示，背景颜色红色并没有直接设置到Button上，而是设置在Button所在的不可见容器组件上。
+
+## 限制条件
+
+### V1自定义组件不支持静态代码块
+
+静态代码块用于初始化静态属性。
+- 在\@Component或\@CustomDialog装饰的自定义组件中编写静态代码块时，该代码不会被执行。
+
+  ```ts
+  @Component
+  struct MyComponent {
+    static a: string = '';
+    // 静态代码块不生效，a的值仍为空字符串''
+    static {
+      this.a = 'hello world';
+    }
+  }
+  ```
+
+- 在\@ComponentV2装饰的自定义组件中支持使用。
+
+  ```ts
+  @ComponentV2
+  struct MyComponentV2 {
+    static a: string = '';
+    // 静态代码块生效，a的值变为'hello world'
+    static {
+      this.a = 'hello world';
+    }
+  }
+  ```
 <!--no_check-->

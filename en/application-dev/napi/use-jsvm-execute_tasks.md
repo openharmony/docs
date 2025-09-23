@@ -1,8 +1,14 @@
 # Working with Tasks Using JSVM-API
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## Introduction
 
-JSVM-API provides APIs for processing and dispatching the tasks that are queued up for execution. You can use the APIs to start the running of a task queue in a JSVM and check whether there are micro tasks waiting in the queue. The task queue can be executed cyclically by external events.
+Start the task queue on the VM and check whether there are micro-tasks to be processed in the queue. The task queue may be cyclically executed by an external event.
 
 ## Basic Concepts
 
@@ -19,9 +25,10 @@ JSVM-API provides APIs for processing and dispatching the tasks that are queued 
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in task queue development.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in proxy-related APIs.
 > **NOTE**<br>To run the WebAssembly (Wasm) bytecode, the application must have the JIT permission. For details about how to apply for the permission, see [Requesting the JIT Permission](jsvm-apply-jit-profile.md).
-### OH_JSVM_PumpMessageLoop and OH_JSVM_PerformMicrotaskCheckpoint
+Running restriction: In the current JSVM version, all functional modules of WebAssembly are disabled in Shield Guard mode. You need to evaluate the app compatibility based on this restriction. For details, see [JSVM Shield Guard Mode](jsvm-secure-shield-mode.md).
+### OH_JSVM_PumpMessageLoop & OH_JSVM_PerformMicrotaskCheckpoint
 
 Call **OH_JSVM_PumpMessageLoop** to start running a task queue.
 
@@ -31,6 +38,7 @@ CPP code:
 #include <chrono>
 #include <string.h>
 
+static int g_aa = 0;
 
 // JS code to be executed.
 static const char *STR_TASK = R"JS( 
@@ -63,7 +71,7 @@ static JSVM_Value ConsoleInfo(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
     JSVM_Value args[1];
     char log[256] = "";
-    size_t logLength;
+    size_t logLength = 0;
     JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
 
     OH_JSVM_GetValueStringUtf8(env, args[0], log, 255, &logLength);
@@ -131,6 +139,7 @@ static int32_t TestJSVM() {
 }
 
 ```
+<!-- @[oh_jsvm_pump_message_loop_and_perform_microtask_checkpoint](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/pumpmessageloop/src/main/cpp/hello.cpp) -->
 Expected result:
 ```
 JSVM API TEST: Called with instance [object Object]
@@ -145,7 +154,7 @@ The execution policy can be any of the following:
 
 CPP code:
 
-```
+```cpp
 // Define OH_JSVM_SetMicrotaskPolicy.
 static int SetMicrotaskPolicy(JSVM_VM vm, JSVM_Env env) {
     // Use the default policy or set the policy to JSVM_MICROTASK_AUTO.
@@ -165,7 +174,7 @@ static int SetMicrotaskPolicy(JSVM_VM vm, JSVM_Env env) {
     CHECK_RET(OH_JSVM_GetGlobal(env, &global));
     JSVM_Value hasEvaluateMicrotask;
     CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "evaluateMicrotask", &hasEvaluateMicrotask));
-    bool val;
+    bool val = false;
     CHECK_RET(OH_JSVM_GetValueBool(env, hasEvaluateMicrotask, &val));
 
     OH_LOG_INFO(LOG_APP, "Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask : %{public}d", val);

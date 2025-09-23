@@ -52,7 +52,7 @@ static OH_Crypto_ErrCode doTestEccPointUncompressedToCompressed()
 ```C++
 #include "CryptoArchitectureKit/crypto_architecture_kit.h"
 
-static OH_Crypto_ErrCode doTestEccPointeccPointCompressedToPoint()
+static OH_Crypto_ErrCode doTestEccPointCompressedToPoint()
 {
     uint8_t pk[] = {
         2, 143, 39, 57, 249, 145, 50, 63, 222, 35, 70, 178, 121, 202, 154, 21, 146, 129, 75, 76, 63, 8, 195, 157, 111,

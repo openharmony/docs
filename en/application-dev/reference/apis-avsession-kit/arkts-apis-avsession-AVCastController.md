@@ -2,8 +2,9 @@
 <!--Kit: AVSession Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @ccfriend; @liao_qian-->
-<!--SE: @ccfriend-->
-<!--TSE: @chenmingxi1_huawei-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -165,8 +166,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let decoderType = avSession.DecoderType.OH_AVCODEC_MIMETYPE_VIDEO_AVC;
-let resolutionLeve = avSession.ResolutionLevel;
-aVCastController.getRecommendedResolutionLevel(decoderType).then((resolutionLeve) => {
+aVCastController.getRecommendedResolutionLevel(decoderType).then((resolutionLevel: avSession.ResolutionLevel) => {
   console.info('getRecommendedResolutionLevel successfully');
 }).catch((err: BusinessError) => {
   console.error(`getRecommendedResolutionLevel BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -277,7 +277,7 @@ Sends a control command to the session through the controller. This API uses a p
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -316,7 +316,7 @@ Sends a control command to the session through the controller. This API uses an 
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ------------------------------- |
@@ -368,7 +368,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 6600101  | Session service exception. |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 
 **Example**
 
@@ -395,7 +395,7 @@ Prepares for the playback of a media asset, that is, loads and buffers a media a
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -460,7 +460,7 @@ Prepares for the playback of a media asset, that is, loads and buffers a media a
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -515,7 +515,7 @@ Prepares for the playback of a media asset. This API uses an asynchronous callba
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -580,7 +580,7 @@ Prepares for the playback of a media asset. This API uses a promise to return th
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -785,7 +785,7 @@ Processes the response to a media key request during online DRM resource project
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -900,7 +900,7 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ------------------------------ |
@@ -939,7 +939,7 @@ Unsubscribes from playback state change events. If a callback is specified, the 
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------- |
@@ -973,7 +973,7 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ------------------------------ |
@@ -1006,7 +1006,7 @@ Unsubscribes from media asset change events. If a callback is specified, the cor
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------- |
@@ -1040,7 +1040,7 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ------------------------------ |
@@ -1073,7 +1073,7 @@ Unsubscribes from playNext command events. If a callback is specified, the corre
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------- |
@@ -1107,7 +1107,7 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ------------------------------ |
@@ -1140,7 +1140,7 @@ Unsubscribes from playPrevious command events. If a callback is specified, the c
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------- |
@@ -1172,7 +1172,7 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ------------------------------ |
@@ -1204,7 +1204,7 @@ Unsubscribes from playback request events. If a callback is specified, the corre
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------- |
@@ -1236,7 +1236,7 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ------------------------------ |
@@ -1268,7 +1268,7 @@ Unsubscribes from the playback end events. If a callback is specified, the corre
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------- |
@@ -1302,7 +1302,7 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ------------------------------ |
@@ -1335,7 +1335,7 @@ Unsubscribes from the seek done events. If a callback is specified, the correspo
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ---------------- |
@@ -1367,7 +1367,7 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ------------------------------ |
@@ -1401,7 +1401,7 @@ Unsubscribes from valid command change events. If a callback is specified, the c
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message          |
 | -------- | ---------------- |
@@ -1433,7 +1433,7 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message|
 | -------- | ------------------------------ |
@@ -1461,15 +1461,15 @@ Unsubscribes from video size change events. If a callback is specified, the corr
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The event **'videoSizeChange'** is triggered when the video size changes.|
-| callback | (width: number, height: number) => void   | Yes  | Callback used to return the result.                   |
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ------------------------------ |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -1498,7 +1498,7 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md) and [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message             |
 | -------- | --------------------- |
@@ -1539,7 +1539,7 @@ Unsubscribes from remote player errors. If a callback is specified, the correspo
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md) and [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md), [Media Error Codes](../apis-media-kit/errorcode-media.md), and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message             |
 | -------- | --------------------- |
@@ -1580,7 +1580,7 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message          |
 | -------- | ---------------- |
@@ -1615,7 +1615,7 @@ Unsubscribes from media key requests during the cast of online DRM resources. If
 
 **Error codes**
 
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message          |
 | -------- | ---------------- |
@@ -1648,6 +1648,8 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 | callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message             |
 | -------- | --------------------- |
@@ -1694,6 +1696,8 @@ Unsubscribes from generic error events during cast control. If a callback is spe
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message             |
 | -------- | --------------------- |
 | 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1724,6 +1728,8 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 | callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message             |
 | -------- | --------------------- |
@@ -1773,6 +1779,8 @@ Unsubscribes from input/output error events during cast control. If a callback i
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message             |
 | -------- | --------------------- |
 | 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1803,6 +1811,8 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 | callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID | Error Message             |
 | -------- | --------------------- |
@@ -1840,6 +1850,8 @@ Unsubscribes from parsing error events during cast control. If a callback is spe
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message             |
 | -------- | --------------------- |
 | 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1870,6 +1882,8 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 | callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message             |
 | -------- | --------------------- |
@@ -1908,6 +1922,8 @@ Unsubscribes from decoding error events during cast control. If a callback is sp
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message             |
 | -------- | --------------------- |
 | 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -1939,7 +1955,7 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md) and [AVSession Management Error Codes](errorcode-avsession.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message             |
 | -------- | --------------------- |
@@ -1975,6 +1991,8 @@ Unsubscribes from audio renderer error events during cast control. If a callback
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message             |
 | -------- | --------------------- |
 | 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
@@ -2005,6 +2023,8 @@ Multiple callbacks can be registered for this event. To ensure only the latest c
 | callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [AVSession Error Codes](errorcode-avsession.md).
 
 | ID| Error Message             |
 | -------- | --------------------- |
@@ -2047,6 +2067,8 @@ Unsubscribes from DRM error events during cast control. If a callback is specifi
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message             |
 | -------- | --------------------- |
 | 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
@@ -2080,7 +2102,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 6600101  | Session service exception. |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 
 **Example**
 
@@ -2113,7 +2135,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 6600101  | Session service exception. |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 
 **Example**
 

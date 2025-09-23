@@ -6,17 +6,15 @@
 <!--Tester: @kongjing2-->
 <!--Adviser: @Brilliantry_Rui-->
 
-本模块提供overlay特征应用的安装，overlay特征应用的[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)信息的查询以及overlay特征应用的禁用使能的能力。
+本模块提供overlay特征应用的[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)信息查询以及禁用使能的能力。
 
-overlay特征应用指应用中包含有[overlay特征](../../quick-start/resource-categories-and-access.md#overlay机制)的module。该特征module一般是为设备上存在的非overlay特征的module提供额外的资源文件，以便目标module在运行阶段可以使用这些额外的资源文件来展示不同的颜色、标签、主题等。
-
-在DevEco Studio中创建应用工程时，若module的配置文件module.json5中包含targetModuleName和targetPriority字段，该module将会在安装阶段被识别为overlay特征的module。
+overlay特征应用指应用中包含有overlay资源包，overlay资源包详见[overlay机制](../../quick-start/resource-categories-and-access.md#overlay机制)。
 
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> overlay特征仅适用于stage模型。
+> 本模块接口仅适用于stage模型，且仅适用于[静态overlay](../../quick-start/resource-categories-and-access.md#静态overlay配置方式)。
 
 
 ## 导入模块
@@ -133,7 +131,7 @@ try {
 
 getOverlayModuleInfo(moduleName: string): Promise\<OverlayModuleInfo>
 
-获取当前应用中指定的module的overlayModuleInfo信息。使用promise异步回调。
+获取当前应用中overlay特征module的OverlayModuleInfo信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -184,7 +182,7 @@ let moduleName = "feature";
 
 getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleInfo>): void
 
-获取当前应用中指定的module的overlayModuleInfo信息。使用callback异步回调。
+获取当前应用中overlay特征module的OverlayModuleInfo信息。使用callback异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -233,7 +231,7 @@ try {
 
 getTargetOverlayModuleInfos(targetModuleName: string): Promise\<Array\<OverlayModuleInfo>>
 
-获取指定的目标module的OverlayModuleInfo。使用promise异步回调。
+获取指定的目标module所关联的OverlayModuleInfo。overlay特征的module一般是为设备上存在的非overlay特征的module提供覆盖的资源文件，其中非overlay特征的module被称作目标module。使用Promise异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -283,7 +281,7 @@ let targetModuleName = "feature";
 
 getTargetOverlayModuleInfos(targetModuleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void
 
-获取指定的目标module的OverlayModuleInfo。使用callback异步回调。
+获取指定的目标module所关联的OverlayModuleInfo。overlay特征的module一般是为设备上存在的非overlay特征的module提供覆盖的资源文件，其中非overlay特征的module被称作目标module。使用callback异步回调。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 

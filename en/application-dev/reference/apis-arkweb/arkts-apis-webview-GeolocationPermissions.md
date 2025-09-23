@@ -1,4 +1,10 @@
 # Class (GeolocationPermissions)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @zhang-yinglie-->
+<!--Designer: @handyohos-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Implements a **GeolocationPermissions** object.
 
@@ -176,7 +182,7 @@ struct WebComponent {
                 console.error(`getAccessibleGeolocationAsync error, ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
                 return;
               }
-              console.log('getAccessibleGeolocationAsync result: ' + result);
+              console.info('getAccessibleGeolocationAsync result: ' + result);
             });
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -238,7 +244,7 @@ struct WebComponent {
           try {
             webview.GeolocationPermissions.getAccessibleGeolocation(this.origin)
               .then(result => {
-                console.log('getAccessibleGeolocationPromise result: ' + result);
+                console.info('getAccessibleGeolocationPromise result: ' + result);
               }).catch((error: BusinessError) => {
               console.error(`getAccessibleGeolocationPromise error, ErrorCode: ${error.code},  Message: ${error.message}`);
             });
@@ -298,7 +304,7 @@ struct WebComponent {
                 return;
               }
               let origins_str: string = origins.join();
-              console.log('getStoredGeolocationAsync origins: ' + origins_str);
+              console.info('getStoredGeolocationAsync origins: ' + origins_str);
             });
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -358,7 +364,7 @@ struct WebComponent {
             webview.GeolocationPermissions.getStoredGeolocation()
               .then(origins => {
                 let origins_str: string = origins.join();
-                console.log('getStoredGeolocationPromise origins: ' + origins_str);
+                console.info('getStoredGeolocationPromise origins: ' + origins_str);
               }).catch((error: BusinessError) => {
               console.error(`getStoredGeolocationPromise error, ErrorCode: ${error.code},  Message: ${error.message}`);
             });

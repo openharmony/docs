@@ -6,6 +6,8 @@
 <!--Tester: @liuli0427-->
 <!--Adviser: @HelloCrease-->
 
+可以灵活排列、对齐和分配容器内的子组件空间，使元素根据可用空间扩展或收缩，以满足不同屏幕尺寸下的响应式布局。
+
 >  **说明：**
 >  - 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
@@ -65,6 +67,10 @@ flexShrink(value: number): T
 
 设置父容器压缩尺寸分配给此属性所在组件的比例。当父容器为Column、Row时，需设置主轴方向的尺寸。
 
+>  **说明：**
+>
+>  使用[getInspectorByKey](ts-universal-attributes-component-id.md#getinspectorbykey9)获取flexShrink属性时，如果该节点未设置flexShrink属性，默认返回1。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -75,7 +81,7 @@ flexShrink(value: number): T
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 设置父容器压缩尺寸分配给此属性所在组件的比例。<br/>父容器为[Column](ts-container-column.md)、[Row](ts-container-row.md)时，默认值：0, 取值范围[0,+∞)。<br/> 父容器为[Flex](ts-container-flex.md)时，默认值：1 <br/>[constraintSize](ts-universal-attributes-size.md#constraintsize)限制组件的尺寸范围。[Column](ts-container-column.md)和[Row](ts-container-row.md)即使设置了[constraintSize](ts-universal-attributes-size.md#constraintsize)，在未设置主轴尺寸（[width](ts-universal-attributes-size.md#width)/[height](ts-universal-attributes-size.md#height)/[size](ts-universal-attributes-size.md#size)）时仍遵守默认布局行为，在主轴上自适应子组件尺寸，此时flexShrink不生效。|
+| value  | number | 是   | 设置父容器压缩尺寸分配给此属性所在组件的比例。<br/>父容器为[Column](ts-container-column.md)、[Row](ts-container-row.md)时，默认值：0，取值范围[0,+∞)。<br/> 父容器为[Flex](ts-container-flex.md)时，默认值：1 <br/>[constraintSize](ts-universal-attributes-size.md#constraintsize)限制组件的尺寸范围。[Column](ts-container-column.md)和[Row](ts-container-row.md)即使设置了[constraintSize](ts-universal-attributes-size.md#constraintsize)，在未设置主轴尺寸（[width](ts-universal-attributes-size.md#width)/[height](ts-universal-attributes-size.md#height)/[size](ts-universal-attributes-size.md#size)）时仍遵守默认布局行为，在主轴上自适应子组件尺寸，此时flexShrink不生效。|
 
 **返回值：**
 

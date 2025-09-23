@@ -748,7 +748,7 @@ addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
 | 参数名           | 类型                                                    | 必填 | 说明               |
 | ---------------- | ------------------------------------------------------- | ---- | ------------------ |
 | admin            | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。     |
-| domainFilterRule | [DomainFilterRule](#domainfilterrule)                   | 是   | 添加域名过滤规则。 |
+| domainFilterRule | [DomainFilterRule](#domainfilterrule)                   | 是   | 添加域名过滤规则。DomainFilterRule中的[Direction](#direction)项仅支持设置为输出链。如果设为输入链，将按照输出链处理。如果设置为转发链，会报401错误码。 |
 
 **错误码**：
 

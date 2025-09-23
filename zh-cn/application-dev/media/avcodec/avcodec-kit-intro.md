@@ -11,8 +11,9 @@ AVCodec Kit（Audio & Video Codec Kit，音视频编解码，封装解析）是�
 基于性能考虑，AVCodec Kit仅提供C接口。
 
 ## 能力范围
+
 - 媒体数据输入：媒体应用可以传入文件fd、或者流媒体url，进行后续的媒体信息解析等处理。
-- 媒体基础能力（Media Foundation）：提供媒体数据处理的公共基础类型，包括[AVBuffer](../../reference/apis-avcodec-kit/native__avbuffer_8h.md)、[AVFormat](../../reference/apis-avcodec-kit/native__avformat_8h.md)等。
+- 媒体基础能力（Media Foundation）：提供媒体数据处理的公共基础类型，包括[AVBuffer](../../reference/apis-avcodec-kit/capi-native-avbuffer-h.md)、[AVFormat](../../reference/apis-avcodec-kit/capi-native-avformat-h.md)等。
 - 音频编码：音频类应用（比如音频通话、音频录制等）可以将未压缩的音频数据送到音频编码器进行编码，应用可以设置编码要用到的编码格式、码率、采样率等参数，控制编码的输出，达到压缩音频文件的目的。
 - 视频编码：视频类应用（比如视频通话、视频录制等）可以将未压缩的视频数据送到视频编码器进行编码，应用可以设置编码要用到的编码格式、码率、帧率等参数，控制编码的输出，达到压缩视频文件的目的。
 - 音频解码：音频类应用（比如音频通话、音频播放器等）将音频码流通过音频解码器解码，解码后的数据可以送到音频设备播放。
@@ -21,11 +22,12 @@ AVCodec Kit（Audio & Video Codec Kit，音视频编解码，封装解析）是�
 - 媒体文件封装：在媒体应用（音视频录制等），将音视频编码器编码后的码流数据封装成媒体文件（mp4、m4a），将音视频的码流、音视频的呈现时间、编码格式、文件的一些基本属性信息等按照文件格式写入应用指定的文件中。
 
 ## 亮点/特征
-- 系统内部数据零拷贝：在视频解码过程，AVCodec通过回调函数提供AVBuffer给应用，由应用将要解码的sample数据写入AVBuffer，在AVCodec中数据不再需要从内存拷入硬件解码器，而是直接送入解码器解码，实现系统内数据零拷贝。
 
+- 系统内部数据零拷贝：在视频解码过程，AVCodec通过回调函数提供AVBuffer给应用，由应用将要解码的sample数据写入AVBuffer，在AVCodec中数据不再需要从内存拷入硬件解码器，而是直接送入解码器解码，实现系统内数据零拷贝。
 - 视频编码、解码支持硬件加速：支持H.264、H.265、H.265 10bit的硬件编解码。
 
 ## 基础概念
+
 - 媒体文件：携带有音视频、字幕等媒体数据的文件，如.mp4、.m4a。
 - 流媒体：可以边下载，边播放的媒体传输形式，下载协议如HTTP/HTTPS、HLS协议。
 - 音视频编码：将未压缩原序列音视频数据转换为另一种格式数据，如H.264、AAC。
@@ -38,9 +40,10 @@ AVCodec Kit（Audio & Video Codec Kit，音视频编解码，封装解析）是�
 
   对于字幕，通常包含对应时间点的字幕内容。
 
-  所有的轨道结尾数据都是为空。
+  所有的轨道结尾数据都为空。
 
 ## 使用方式
+
 - 视频编解码
 
   视频编码的输入和视频解码的输出支持Surface模式。
@@ -64,7 +67,6 @@ AVCodec Kit（Audio & Video Codec Kit，音视频编解码，封装解析）是�
   ![](figures/avcodec-acodec-logic.png)
 
   具体开发指导请参考[音频解码](audio-decoding.md)、[音频编码](audio-encoding.md)。
-
 
 - 文件解析封装
 

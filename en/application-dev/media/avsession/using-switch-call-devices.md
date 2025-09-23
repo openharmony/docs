@@ -2,8 +2,9 @@
 <!--Kit: AVSession Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @ccfriend; @liao_qian-->
-<!--SE: @ccfriend-->
-<!--TSE: @chenmingxi1_huawei-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 ## Switching Call Output Devices
 
@@ -29,10 +30,14 @@ Currently, the system provides the default style and custom style for the **AVCa
       build() { 
         Column() {
             Text(this.message)
-              .onClick(()=>{
-                let context = this.getUIContext().getHostContext() as Context;
+              .onClick(async ()=> {
+                try {
+                  let context = this.getUIContext().getHostContext() as Context;
                 // Create an AVSession of the voice_call type.
                 let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'voiptest', 'voice_call');
+                } catch (err) {
+                  console.error(`avsession create :  Error: ${JSON.stringify(err)}`);
+                }
               })
           }
         .width('100%')
@@ -90,7 +95,7 @@ Currently, the system provides the default style and custom style for the **AVCa
 
    this.audioRenderer?.start((err: BusinessError) => {
     if (err) {
-      console.error(`audioRender start faild :  Error: ${JSON.stringify(err)}`);
+      console.error(`audioRenderer start failed -Code : ${err.code}, Message ${err.message}`);
     } else {
       console.info('audioRender start success');
     }
@@ -126,7 +131,7 @@ Currently, the system provides the default style and custom style for the **AVCa
 
 ### Implementing a Custom Style
 
-You can customize a style by setting the **customPicker** parameter of the [CustomBuilder](../../reference/apis-avsession-kit/ohos-multimedia-avcastpicker.md) type.
+You can customize a style by setting the [customPicker](../../reference/apis-avsession-kit/ohos-multimedia-avcastpicker.md#avcastpicker) parameter of the [CustomBuilder](../../reference/apis-arkui/arkui-ts/ts-types.md#custombuilder8) type.
 
 The procedure for implementing a custom style is similar to that for implementing the default style. You can create an AVSession and implement audio playback by referring to [Implementing the Default Style Implementation](#implementing-the-default-style).
 
@@ -181,6 +186,9 @@ The differences are as follows:
 
    // Refresh the custom resource pickerImage after the device is changed.
    private changePickerShow(desc: audio.AudioDeviceDescriptors) {
+     if(!desc || !desc.length || !desc[0]) {
+      return;
+     }
      if (desc[0].deviceType === 2) {
        this.pickerImage = $r('app.media.sound');
      } else if (desc[0].deviceType === 7) {
@@ -210,9 +218,9 @@ Currently, the system provides the default style and custom style for the **AVCa
 
    // (Optional) Callback for the device list state change.
    private onStateChange(state: AVCastPickerState) {
-     if (state == AVCastPickerState.STATE_APPEARING) {
+     if (state === AVCastPickerState.STATE_APPEARING) {
        console.info('The picker starts showing.');
-     } else if (state == AVCastPickerState.STATE_DISAPPEARING) {
+     } else if (state === AVCastPickerState.STATE_DISAPPEARING) {
        console.info('The picker finishes presenting.');
      }
    }
@@ -246,9 +254,9 @@ You can customize a style by setting the **customPicker** parameter of the [AVIn
 
    // (Optional) Callback for the device list state change.
    private onStateChange(state: AVCastPickerState) {
-     if (state == AVCastPickerState.STATE_APPEARING) {
+     if (state === AVCastPickerState.STATE_APPEARING) {
        console.info('The picker starts showing.');
-     } else if (state == AVCastPickerState.STATE_DISAPPEARING) {
+     } else if (state === AVCastPickerState.STATE_DISAPPEARING) {
        console.info('The picker finishes presenting.');
      }
    }

@@ -16,6 +16,7 @@ The **CommonEventSubscriber** module provides APIs for describing the common eve
 
 Before using the **CommonEventSubscriber** module, you must obtain a **subscriber** object by calling **commonEventManager.createSubscriber**.
 
+<!--code_no_check-->
 ```ts
 import { commonEventManager } from '@kit.BasicServicesKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -52,9 +53,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.getCode((err: BusinessError, code: number) => {
@@ -84,6 +87,8 @@ Obtains the result code (number type) of an ordered common event. This API uses 
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.getCode().then((code: number) => {
   console.info(`Succeeded in getting code, code is ${JSON.stringify(code)}`);
@@ -106,9 +111,11 @@ Obtains the result code (number type) of an ordered common event.
 
 | Type            | Description                |
 | ---------------- | -------------------- |
-| number | Result code of an ordered common event. |
+| number | Result code of an ordered common event.|
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 let code: number = subscriber.getCodeSync();
@@ -138,9 +145,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.setCode(1, (err: BusinessError) => {
@@ -166,7 +175,7 @@ Sets the result code (number type) of an ordered common event. This API uses a p
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| code   | number | Yes  | Result code of an ordered common event. |
+| code   | number | Yes  | Result code of an ordered common event.|
 
 **Return value**
 
@@ -180,9 +189,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.setCode(1).then(() => {
@@ -206,7 +217,7 @@ Sets the result code (number type) of an ordered common event.
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| code   | number | Yes  | Result code of an ordered common event. |
+| code   | number | Yes  | Result code of an ordered common event.|
 
 **Error codes**
 
@@ -214,9 +225,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.                    |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.                    | 
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 try {
@@ -249,9 +262,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 // Obtain the result data (string type) of an ordered common event.
@@ -282,6 +297,8 @@ Obtains the result data (string type) of an ordered common event. This API uses 
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.getData().then((data: string) => {
   console.info(`Succeeded in getting data, data is ${JSON.stringify(data)}`);
@@ -304,9 +321,11 @@ Obtains the result data (string type) of an ordered common event.
 
 | Type            | Description              |
 | ---------------- | ------------------ |
-| string | Result data of an ordered common event. |
+| string | Result data of an ordered common event.|
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 let data: string = subscriber.getDataSync();
@@ -327,7 +346,7 @@ Sets the result data (string type) of an ordered common event. This API uses an 
 
 | Name  | Type                | Mandatory| Description                |
 | -------- | -------------------- | ---- | -------------------- |
-| data     | string               | Yes  | Result data of an ordered common event. |
+| data     | string               | Yes  | Result data of an ordered common event.  |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -336,9 +355,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.setData('publish_data_changed', (err: BusinessError) => {
@@ -364,7 +385,7 @@ Sets the result data (string type) of an ordered common event. This API uses a p
 
 | Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
-| data   | string | Yes  | Result data of an ordered common event. |
+| data   | string | Yes  | Result data of an ordered common event.|
 
 **Return value**
 
@@ -378,9 +399,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.setData('publish_data_changed').then(() => {
@@ -404,7 +427,7 @@ Sets the result data (string type) of an ordered common event.
 
 | Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
-| data   | string | Yes  | Result data of an ordered common event. |
+| data   | string | Yes  | Result data of an ordered common event.|
 
 **Error codes**
 
@@ -412,9 +435,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.                    |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.                    | 
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 try {
@@ -449,9 +474,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.setCodeAndData(1, 'publish_data_changed', (err: BusinessError) => {
@@ -477,8 +504,8 @@ Sets the result code and data of an ordered common event. This API uses a promis
 
 | Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
-| code   | number | Yes  | Result code of an ordered common event. |
-| data   | string | Yes  | Result data of an ordered common event. |
+| code   | number | Yes  | Result code of an ordered common event.|
+| data   | string | Yes  | Result data of an ordered common event.|
 
 **Return value**
 
@@ -492,9 +519,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.setCodeAndData(1, 'publish_data_changed').then(() => {
@@ -518,8 +547,8 @@ Sets the result code and data of an ordered common event.
 
 | Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
-| code   | number | Yes  | Result code of an ordered common event. |
-| data   | string | Yes  | Result data of an ordered common event. |
+| code   | number | Yes  | Result code of an ordered common event.|
+| data   | string | Yes  | Result data of an ordered common event.|
 
 **Error codes**
 
@@ -527,9 +556,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.                    |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.                    | 
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 try {
@@ -561,9 +592,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.isOrderedCommonEvent((err: BusinessError, isOrdered:boolean) => {
@@ -591,6 +624,8 @@ Checks whether the current common event is an ordered common event. This API use
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.isOrderedCommonEvent().then((isOrdered:boolean) => {
   console.info(`isOrderedCommonEvent ${JSON.stringify(isOrdered)}`);
@@ -614,6 +649,8 @@ Checks whether the current common event is an ordered common event.
 | boolean |Returns **true** if the common event is an ordered one; returns **false** if the common event is an unordered one.|
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 let isOrdered: boolean = subscriber.isOrderedCommonEventSync();
@@ -640,9 +677,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.isStickyCommonEvent((err: BusinessError, isSticky:boolean) => {
@@ -670,6 +709,8 @@ Checks whether a common event is a sticky one. This API uses a promise to return
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.isStickyCommonEvent().then((isSticky:boolean) => {
   console.info(`isStickyCommonEvent ${JSON.stringify(isSticky)}`);
@@ -694,6 +735,8 @@ Checks whether a common event is a sticky one.
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 let isSticky: boolean = subscriber.isStickyCommonEventSync();
 console.info(`isStickyCommonEventSync ${JSON.stringify(isSticky)}`);
@@ -703,7 +746,7 @@ console.info(`isStickyCommonEventSync ${JSON.stringify(isSticky)}`);
 
 abortCommonEvent(callback: AsyncCallback\<void>): void
 
-Aborts an ordered common event when used with [finishCommonEvent](#finishcommonevent9). With the aborted state, the common event is not sent to the next subscriber. This API uses an asynchronous callback to return the result.
+Aborts an ordered common event. This API is used with [finishCommonEvent](#finishcommonevent9). After the abort, the common event is not sent to the next subscriber. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -719,9 +762,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.abortCommonEvent((err: BusinessError) => {
@@ -744,7 +789,7 @@ subscriber.finishCommonEvent((err: BusinessError) => {
 
 abortCommonEvent(): Promise\<void>
 
-Aborts an ordered common event when used with [finishCommonEvent](#finishcommonevent9). With the aborted state, the common event is not sent to the next subscriber. This API uses a promise to return the result.
+Aborts this ordered common event. This API is used with [finishCommonEvent](#finishcommonevent9). After the abort, the common event is not sent to the next subscriber. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -755,6 +800,8 @@ Aborts an ordered common event when used with [finishCommonEvent](#finishcommone
 | Promise\<void>   | Promise that returns no value.|
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.abortCommonEvent().then(() => {
@@ -773,11 +820,13 @@ subscriber.finishCommonEvent().then(() => {
 
 abortCommonEventSync(): void
 
-Aborts an ordered common event when used with [finishCommonEvent](#finishcommonevent9). With the aborted state, the common event is not sent to the next subscriber.
+Aborts this ordered common event synchronously. This API is used with [finishCommonEvent](#finishcommonevent9). After the abort, the common event is not sent to the next subscriber.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.abortCommonEventSync();
@@ -792,7 +841,7 @@ subscriber.finishCommonEvent().then(() => {
 
 clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 
-Clears the aborted state of an ordered common event when used with [finishCommonEvent](#finishcommonevent9). After the clearance, the common event is sent to the next subscriber. This API uses an asynchronous callback to return the result.
+Clears the aborted state of an ordered common event. Use this API together with [finishCommonEvent](#finishcommonevent9), and the common event can be passed to the next subscriber. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -808,9 +857,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.clearAbortCommonEvent((err: BusinessError) => {
@@ -833,7 +884,7 @@ subscriber.finishCommonEvent((err: BusinessError) => {
 
 clearAbortCommonEvent(): Promise\<void>
 
-Clears the aborted state of an ordered common event when used with [finishCommonEvent](#finishcommonevent9). After the clearance, the common event is sent to the next subscriber. This API uses a promise to return the result.
+Clears the aborted state of this ordered common event. Use this API together with [finishCommonEvent](#finishcommonevent9), and the common event can be passed to the next subscriber. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -844,6 +895,8 @@ Clears the aborted state of an ordered common event when used with [finishCommon
 | Promise\<void>   | Promise that returns no value.|
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.clearAbortCommonEvent().then(() => {
@@ -862,11 +915,13 @@ subscriber.finishCommonEvent().then(() => {
 
 clearAbortCommonEventSync(): void
 
-Clears the aborted state of an ordered common event when used with [finishCommonEvent](#finishcommonevent9). After the clearance, the common event is sent to the next subscriber.
+Clears the aborted state of this ordered common event. Use this API together with [finishCommonEvent](#finishcommonevent9), and the common event can be passed to the next subscriber.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.clearAbortCommonEventSync();
@@ -897,9 +952,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.getAbortCommonEvent((err: BusinessError, abortEvent: boolean) => {
@@ -927,6 +984,8 @@ Checks whether this ordered common event should be aborted. This API uses a prom
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.getAbortCommonEvent().then((abortEvent: boolean) => {
   console.info(`Succeeded in getting abort common event, abortEvent is ${JSON.stringify(abortEvent)}`);
@@ -950,6 +1009,8 @@ Checks whether this ordered common event should be aborted.
 | boolean |Returns **true** if the ordered common event is in the aborted state; returns **false** otherwise.|
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 let abortEvent: boolean = subscriber.getAbortCommonEventSync();
@@ -978,9 +1039,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.getSubscribeInfo((err: BusinessError, subscribeInfo: commonEventManager.CommonEventSubscribeInfo) => {
@@ -1010,6 +1073,8 @@ Obtains the subscriber information. This API uses a promise to return the result
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.getSubscribeInfo().then((subscribeInfo: commonEventManager.CommonEventSubscribeInfo) => {
   console.info(`Succeeded in getting subscribe info, subscribe info is ${JSON.stringify(subscribeInfo)}`);
@@ -1036,6 +1101,8 @@ Obtains the subscriber information.
 
 **Example**
 
+<!--code_no_check-->
+
 ```ts
 let subscribeInfo = subscriber.getSubscribeInfoSync();
 console.info(`Succeeded in getting subscribe info, subscribe info is ${JSON.stringify(subscribeInfo)}`);
@@ -1061,9 +1128,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.finishCommonEvent((err: BusinessError) => {
@@ -1090,6 +1159,8 @@ Finishes this ordered common event. This API uses a promise to return the result
 | Promise\<void>   | Promise that returns no value.|
 
 **Example**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.finishCommonEvent().then(() => {

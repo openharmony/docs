@@ -142,6 +142,8 @@ getSystemInputMethodConfigAbility(): ElementName
 **示例：**
 
 ```ts
+import { bundleManager } from '@kit.AbilityKit';
+
 let inputMethodConfig: bundleManager.ElementName = inputMethod.getSystemInputMethodConfigAbility();
 ```
 
@@ -223,7 +225,7 @@ inputMethod.switchInputMethod(currentIme, (err: BusinessError, result: boolean) 
 
 > **说明：**
 >
-> 在 api11 中 ` 201 permissions check fails.` 这个错误码被移除。
+> 在 API11 中 ` 201 permissions check fails.` 这个错误码被移除。
 
 ## inputMethod.switchInputMethod<sup>9+</sup>
 switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
@@ -277,7 +279,7 @@ inputMethod.switchInputMethod(currentIme).then((result: boolean) => {
 
 > **说明：**
 >
-> 在 api11 中 ` 201 permissions check fails.` 这个错误码被移除。
+> 在 API11 中 ` 201 permissions check fails.` 这个错误码被移除。
 
 ## inputMethod.getCurrentInputMethod<sup>9+</sup>
 
@@ -361,7 +363,7 @@ inputMethod.switchCurrentInputMethodSubtype({
 
 > **说明：**
 >
-> 在 api11 中 ` 201 permissions check fails.` 这个错误码被移除。
+> 在 API11 中 ` 201 permissions check fails.` 这个错误码被移除。
 
 ## inputMethod.switchCurrentInputMethodSubtype<sup>9+</sup>
 
@@ -422,13 +424,13 @@ inputMethod.switchCurrentInputMethodSubtype({
     console.error('Failed to switchCurrentInputMethodSubtype.');
   }
 }).catch((err: BusinessError) => {
-  console.error(`Failed to switchCurrentInputMethodSubtype, code: ${error.code}, message: ${error.message}`);
+  console.error(`Failed to switchCurrentInputMethodSubtype, code: ${err.code}, message: ${err.message}`);
 });
 ```
 
 > **说明：**
 >
-> 在 api11 中 ` 201 permissions check fails.` 这个错误码被移除。
+> 在 API11 中 ` 201 permissions check fails.` 这个错误码被移除。
 
 ## inputMethod.getCurrentInputMethodSubtype<sup>9+</sup>
 
@@ -447,6 +449,8 @@ getCurrentInputMethodSubtype(): InputMethodSubtype
 **示例：**
 
 ```ts
+import { InputMethodSubtype } from '@kit.IMEKit';
+
 let currentImeSubType: InputMethodSubtype = inputMethod.getCurrentInputMethodSubtype();
 ```
 
@@ -504,7 +508,7 @@ inputMethod.switchCurrentInputMethodAndSubtype(currentIme, imSubType, (err: Busi
 
 > **说明：**
 >
-> 在 api11 中 ` 201 permissions check fails.` 这个错误码被移除。
+> 在 API11 中 ` 201 permissions check fails.` 这个错误码被移除。
 
 ## inputMethod.switchCurrentInputMethodAndSubtype<sup>9+</sup>
 
@@ -563,7 +567,7 @@ inputMethod.switchCurrentInputMethodAndSubtype(currentIme, imSubType).then((resu
 
 > **说明：**
 >
-> 在 api11 中 ` 201 permissions check fails.` 这个错误码被移除。
+> 在 API11 中 ` 201 permissions check fails.` 这个错误码被移除。
 
 ## inputMethod.getInputMethodController<sup>(deprecated)</sup>
 
@@ -748,7 +752,7 @@ Enter键的功能类型。
 | inputAttribute<sup>10+</sup>  | [InputAttribute](#inputattribute10) | 否 | 否 | 编辑框属性。|
 | cursorInfo<sup>10+</sup>  | [CursorInfo](#cursorinfo10) | 否 | 是 | 光标信息。|
 | selection<sup>10+</sup>  | [Range](#range10) | 否 | 是 | 文本选中的范围。|
-| windowId<sup>10+</sup>  | number | 否 | 是 | 编辑框所在的窗口Id。|
+| windowId<sup>10+</sup>  | number | 否 | 是 | 编辑框所在的窗口Id，该参数应为整数。<br>推荐使用[getWindowProperties()](../apis-arkui/arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。|
 | newEditBox<sup>20+</sup> | boolean | 否 | 是 | 表示是否为新编辑框。true表示新编辑框，false表示非新编辑框。 |
 | capitalizeMode<sup>20+</sup> | [CapitalizeMode](#capitalizemode20) | 否 | 是 | 编辑框设置大小写模式。如果没有设置或设置非法值，默认不进行任何首字母大写处理。|
 
@@ -760,10 +764,10 @@ Enter键的功能类型。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| left  | number | 否 | 否 | 光标的left坐标。|
-| top  | number | 否 | 否 | 光标的top坐标。|
-| width  | number | 否 | 否 | 光标的宽度。|
-| height  | number | 否 | 否 | 光标的高度。|
+| left  | number | 否 | 否 | 光标的横坐标，单位为px。该参数应为整数，最小值为0，最大值为当前屏幕的宽度。|
+| top  | number | 否 | 否 | 光标的纵坐标，单位为px。该参数应为整数，最小值为0，最大值为当前屏幕的高度。|
+| width  | number | 否 | 否 | 光标的宽度，单位为px。该参数应为整数，最小值为0，最大值为当前屏幕的宽度。|
+| height  | number | 否 | 否 | 光标的高度,单位为px。该参数应为整数，最小值为0，最大值为当前屏幕的高度|
 
 ## Range<sup>10+</sup>
 
@@ -773,8 +777,8 @@ Enter键的功能类型。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| start  | number | 否 | 否 | 选中文本的首字符在编辑框的索引值。|
-| end  | number | 否 | 否 | 选中文本的末字符在编辑框的索引值。|
+| start  | number | 否 | 否 | 选中文本的首字符在编辑框的索引值。该参数应为大于或等于0的整数，不超过文本实际长度。|
+| end  | number | 否 | 否 | 选中文本的末字符在编辑框的索引值。该参数应为大于或等于0的整数，不超过文本实际长度，end值要大于start值。|
 
 ## Movement<sup>10+</sup>
 
@@ -795,10 +799,10 @@ Enter键的功能类型。
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | name  | string | 否 | 否 | 输入法窗口的名称。|
-| left  | number | 否 | 否 | 输入法窗口左上顶点的横坐标，单位为px。|
-| top  | number | 否 | 否 | 输入法窗口左上顶点的纵坐标，单位为px。|
-| width  | number | 否 | 否 | 输入法窗口的宽度，单位为px。|
-| height  | number | 否 | 否 | 输入法窗口的高度，单位为px。|
+| left  | number | 否 | 否 | 输入法窗口左上顶点的横坐标，单位为px。该参数应为整数，最小值为0，最大值为当前屏幕的宽度。|
+| top  | number | 否 | 否 | 输入法窗口左上顶点的纵坐标，单位为px。该参数应为整数，最小值为0，最大值为当前屏幕的高度。|
+| width  | number | 否 | 否 | 输入法窗口的宽度，单位为px。该参数应为整数，最小值为0，最大值为当前屏幕的宽度。|
+| height  | number | 否 | 否 | 输入法窗口的高度，单位为px。该参数应为整数，最小值为0，最大值为当前屏幕的高度。|
 
 ## EnabledState<sup>15+</sup>
 
@@ -932,6 +936,8 @@ attach(showKeyboard: boolean, textConfig: TextConfig, callback: AsyncCallback&lt
 > **说明：**
 >
 > 需要先调用此接口，完成自绘控件与输入法的绑定，才能使用以下功能：显示/隐藏键盘、更新光标信息、更改编辑框选中范围、保存配置信息、监听处理由输入法应用发送的信息或命令等。
+>
+> 当自绘控件所在窗口通过[setWindowFocusable](../apis-arkui/arkts-apis-window-Window.md#setwindowfocusable9)设置为不可获焦窗口时，系统将无法保证自绘输入控件与输入法正常交互。若开发者希望在不可获焦窗口中绘制输入框，建议参考[不可获焦窗口中输入框与输入法交互指南](../../inputmethod/use-inputmethod-in-not-focusable-window.md)。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -950,7 +956,7 @@ attach(showKeyboard: boolean, textConfig: TextConfig, callback: AsyncCallback&lt
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 
 **示例：**
@@ -981,6 +987,8 @@ attach(showKeyboard: boolean, textConfig: TextConfig): Promise&lt;void&gt;
 > **说明：**
 >
 > 需要先调用此接口，完成自绘控件与输入法的绑定，才能使用以下功能：显示/隐藏键盘、更新光标信息、更改编辑框选中范围、保存配置信息、监听处理由输入法应用发送的信息或命令等。
+>
+> 当自绘控件所在窗口通过[setWindowFocusable](../apis-arkui/arkts-apis-window-Window.md#setwindowfocusable9)设置为不可获焦窗口时，系统将无法保证自绘输入控件与输入法正常交互。若开发者希望在不可获焦窗口中绘制输入框，建议参考[不可获焦窗口中输入框与输入法交互指南](../../inputmethod/use-inputmethod-in-not-focusable-window.md)。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1004,7 +1012,7 @@ attach(showKeyboard: boolean, textConfig: TextConfig): Promise&lt;void&gt;
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 
 **示例：**
@@ -1033,6 +1041,8 @@ attach(showKeyboard: boolean, textConfig: TextConfig, requestKeyboardReason: Req
 > **说明：**
 >
 > 需要先调用此接口，完成自绘控件与输入法的绑定，才能使用以下功能：显示/隐藏键盘、更新光标信息、更改编辑框选中范围、保存配置信息、监听处理由输入法应用发送的信息或命令等。
+>
+> 当自绘控件所在窗口通过[setWindowFocusable](../apis-arkui/arkts-apis-window-Window.md#setwindowfocusable9)设置为不可获焦窗口时，系统将无法保证自绘输入控件与输入法正常交互。若开发者希望在不可获焦窗口中绘制输入框，建议参考[不可获焦窗口中输入框与输入法交互指南](../../inputmethod/use-inputmethod-in-not-focusable-window.md)。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1057,7 +1067,7 @@ attach(showKeyboard: boolean, textConfig: TextConfig, requestKeyboardReason: Req
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 
 **示例：**
@@ -1103,7 +1113,7 @@ discardTypingText(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800009 | input method client detached. |
 | 12800015 | the other side does not accept the request. |
 
@@ -1143,7 +1153,7 @@ showTextInput(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 | 12800009 | input method client detached. |
 
@@ -1185,7 +1195,7 @@ showTextInput(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 | 12800009 | input method client detached. |
 
@@ -1231,7 +1241,7 @@ showTextInput(requestKeyboardReason: RequestKeyboardReason): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 | 12800009 | input method client detached. |
 
@@ -1275,7 +1285,7 @@ hideTextInput(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 | 12800009 | input method client detached.             |
 
@@ -1319,7 +1329,7 @@ hideTextInput(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 | 12800009 | input method client detached. |
 
@@ -1355,7 +1365,7 @@ detach(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 
 **示例：**
@@ -1392,7 +1402,7 @@ detach(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 
 **示例：**
@@ -1423,7 +1433,7 @@ setCallingWindow(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowId | number | 是 | 绑定输入法应用的应用程序所在的窗口Id。 |
+| windowId | number | 是 | 绑定输入法应用的应用程序所在的窗口Id。该参数应为整数。|
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当设置成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
@@ -1433,7 +1443,7 @@ setCallingWindow(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 | 12800009 | input method client detached.             |
 
@@ -1468,7 +1478,7 @@ setCallingWindow(windowId: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| windowId | number | 是 | 绑定输入法应用的应用程序所在的窗口Id。 |
+| windowId | number | 是 | 绑定输入法应用的应用程序所在的窗口Id。该参数应为整数。 |
 
 **返回值：**
 
@@ -1483,7 +1493,7 @@ setCallingWindow(windowId: number): Promise&lt;void&gt;
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 | 12800009 | input method client detached. |
 
@@ -1522,7 +1532,7 @@ updateCursor(cursorInfo: CursorInfo, callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 | 12800009 | input method client detached.             |
 
@@ -1574,7 +1584,7 @@ updateCursor(cursorInfo: CursorInfo): Promise&lt;void&gt;
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 | 12800009 | input method client detached. |
 
@@ -1609,8 +1619,8 @@ changeSelection(text: string, start: number, end: number, callback: AsyncCallbac
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | text | string | 是 | 整个输入文本。 |
-| start | number | 是 | 所选文本的起始位置。 |
-| end | number | 是 | 所选文本的结束位置。 |
+| start | number | 是 | 所选文本的起始位置。该参数应为大于或等于0的整数。 |
+| end | number | 是 | 所选文本的结束位置。该参数应为大于或等于0的整数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当文本信息更新成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
@@ -1620,7 +1630,7 @@ changeSelection(text: string, start: number, end: number, callback: AsyncCallbac
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 | 12800009 | input method client detached.             |
 
@@ -1651,8 +1661,8 @@ changeSelection(text: string, start: number, end: number): Promise&lt;void&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | text | string | 是 | 整个输入文本。 |
-| start | number | 是 | 所选文本的起始位置。 |
-| end | number | 是 | 所选文本的结束位置。 |
+| start | number | 是 | 所选文本的起始位置。该参数应为大于或等于0的整数。 |
+| end | number | 是 | 所选文本的结束位置。该参数应为大于或等于0的整数。 |
 
 **返回值：**
 
@@ -1667,7 +1677,7 @@ changeSelection(text: string, start: number, end: number): Promise&lt;void&gt;
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 | 12800009 | input method client detached. |
 
@@ -1705,7 +1715,7 @@ updateAttribute(attribute: InputAttribute, callback: AsyncCallback&lt;void&gt;):
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 | 12800009 | input method client detached.             |
 
@@ -1751,7 +1761,7 @@ updateAttribute(attribute: InputAttribute): Promise&lt;void&gt;
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 | 12800009 | input method client detached. |
 
@@ -1792,7 +1802,7 @@ stopInputSession(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 
 **示例：**
@@ -1837,7 +1847,7 @@ stopInputSession(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 
 **示例：**
@@ -1883,7 +1893,7 @@ showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 201      | permissions check fails.  |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 
 **示例：**
@@ -1927,7 +1937,7 @@ showSoftKeyboard(): Promise&lt;void&gt;
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 201      | permissions check fails.  |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 
 **示例：**
@@ -1969,7 +1979,7 @@ hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 201      | permissions check fails.  |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 
 **示例：**
@@ -2013,7 +2023,7 @@ hideSoftKeyboard(): Promise&lt;void&gt;
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 201      | permissions check fails.  |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 
 **示例：**
@@ -2062,7 +2072,7 @@ sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Incorrect parameter types. 2. Incorrect parameter length.  |
-| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. 3.ipc failed due to the large amount of data transferred or other reasons. |
 | 12800009 | input method client detached.               |
 | 12800014 | the input method is in basic mode.          |
 | 12800015 | the other side does not accept the request. |
@@ -3159,8 +3169,8 @@ import { InputMethodSubtype } from '@kit.IMEKit';
 
 inputMethod.getSetting()
   .on('imeChange', (inputMethodProperty: inputMethod.InputMethodProperty, inputMethodSubtype: InputMethodSubtype) => {
-    console.info('Succeeded in subscribing imeChange: inputMethodProperty: ' + JSON.stringify(inputMethodProperty) +
-      " , inputMethodSubtype: " + JSON.stringify(inputMethodSubtype));
+    console.info(`Succeeded in subscribing imeChange: inputMethodProperty.name: ${inputMethodProperty.name} ` +
+      `, inputMethodSubtype.id: ${inputMethodSubtype.id}`);
   });
 ```
 

@@ -1,4 +1,10 @@
 # 使用AOT进行性能优化
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
 
 ## AOT编译概述
 
@@ -23,7 +29,7 @@ ArkTS在运行期间默认情况下会通过解释器执行字节码。字节码
 
 轨道计算作为一个计算密集型程序，会大量占用系统资源计算能力的任务，需要长时间运行，这段时间会阻塞线程其它事件的处理，不适宜放在主线程进行。所以，本文案例基于多线程并发机制，以提高CPU利用率，提升应用程序响应速度。针对500万次时间推移的轨道计算，任务不需要长时间（>3分钟）占据后台线程，且是一个个独立的任务时，所以使用TaskPool开启多线程实现。
 
-关于开启AOT编译的方法可以参考[开启AOT编译模式](https://gitee.com/openharmony/arkcompiler_ets_runtime/blob/master/docs/aot-guide_zh.md)。
+关于开启AOT编译的方法可以参考[开启AOT编译模式](https://gitcode.com/openharmony/arkcompiler_ets_runtime/blob/master/docs/aot-guide_zh.md)。
 
 ## 代码实现      
 

@@ -993,7 +993,7 @@ console.info(reducedValue + ''); // 预期输出： 15
 ```
 
 ## reduce
-reduce\<U>(callbackFn: TypedArrayReduceCallback\<U, number, Int16Array>, initialValue: U): U
+reduce(callbackFn: TypedArrayReduceCallback\<number, number, Int16Array>, initialValue: number): number
 
 对ArkTS Int16Array中的每个元素执行归约函数，且接收一个初始值作为归约函数首次调用的参数，并返回最终的归约结果。
 
@@ -1497,7 +1497,7 @@ for (const value of iterator) {
 
 | 类型                      | 说明             |
 | ------------------------- | ---------------- |
-| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+| IterableIterator&lt;number&gt; | 返回一个迭代器。 |
 
 **错误码：**
 

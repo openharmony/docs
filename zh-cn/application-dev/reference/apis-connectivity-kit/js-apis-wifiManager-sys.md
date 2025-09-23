@@ -313,10 +313,10 @@ connectToDevice(config: WifiDeviceConfig): void
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| networkId | number | 是 | 否 | 网络配置ID。 <br /> **系统接口：** 此接口为系统接口。 |
-| chload | number | 是 | 否 | 连接负载，值越大表示负载约高。 <br /> **系统接口：** 此接口为系统接口。 |
-| snr | number | 是 | 否 | 信噪比。 <br /> **系统接口：** 此接口为系统接口。 |
-| suppState | [SuppState](#suppstate9) | 是 | 否 | 请求状态。 <br /> **系统接口：** 此接口为系统接口。 |
+| networkId | number | 否 | 否 | 网络配置ID。 <br /> **系统接口：** 此接口为系统接口。 |
+| chload | number | 否 | 否 | 连接负载，值越大表示负载约高。 <br /> **系统接口：** 此接口为系统接口。 |
+| snr | number | 否 | 否 | 信噪比。 <br /> **系统接口：** 此接口为系统接口。 |
+| suppState | [SuppState](#suppstate9) | 否 | 否 | 请求状态。 <br /> **系统接口：** 此接口为系统接口。 |
 | isHiLinkProNetwork<sup>20+</sup> | boolean | 否 | 是 | 是否是HiLinkPro网络。true表示是HiLinkPro网络，false表示不是HiLinkPro网络。<br /> **系统接口：** 此接口为系统接口。 |
 
 
@@ -402,49 +402,6 @@ getSupportedFeatures(): number
 
 ```
 
-
-## wifiManager.getDeviceMacAddress<sup>15+</sup>
-
-getDeviceMacAddress(): string[]
-
-获取设备的MAC地址。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.GET_WIFI_LOCAL_MAC 和 ohos.permission.GET_WIFI_INFO，仅系统应用可用。
-
-**系统能力：** SystemCapability.Communication.WiFi.STA
-
-**返回值：**
-
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | string[] | MAC地址。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
-
-| **错误码ID** | **错误信息** |
-| -------- | -------- |
-| 201 | Permission denied.                 |
-| 202 | System API is not allowed called by Non-system application. |
-| 801 | Capability not supported.          |
-| 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled.|
-
-**示例：**
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-
-	try {
-		let ret = wifiManager.getDeviceMacAddress();
-		console.info("deviceMacAddress:" + JSON.stringify(ret));
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
-
-```
 
 ## wifiManager.getWifiDetailState<sup>12+</sup>
 

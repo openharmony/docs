@@ -634,4 +634,4 @@ struct FlexExample {
 
 针对Flex开发，有以下相关实例可供参考：
 
-- [弹性布局（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/FlexLayout)
+- [弹性布局（ArkTS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/ETSUI/FlexLayout)

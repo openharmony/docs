@@ -1,5 +1,12 @@
 # resmgr_common.h
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @liule_123-->
+<!--Designer: @buda_wy-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 概述
 
 提供接口所需要的枚举类型和结构体。
@@ -114,8 +121,8 @@ enum ResourceManager_ColorMode
 
 | 枚举项 | 描述 |
 | -- | -- |
-| DARK = 0 | 表示深色模式。 |
-| LIGHT = 1 | 表示浅色模式。 |
+| COLOR_MODE_DARK = 0 | 表示深色模式。 |
+| COLOR_MODE_LIGHT = 1 | 表示浅色模式。 |
 
 ### ResourceManager_DeviceType
 

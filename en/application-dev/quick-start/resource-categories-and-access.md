@@ -52,8 +52,8 @@ Table 1 Description of resource directories
 |--- | --- |
 | base directory| The **base** directory is provided by default. Under this directory, the **element** subdirectory stores basic elements such as strings, colors, and Boolean values, and the **media** and **profile** subdirectories store resource files such as media, animations, and layouts.<br>Resource files in the directories are compiled into binary files, and each resource file is assigned an ID. Access resource files in the directories based on the resource type and resource name.|
 | Qualifiers directory| The qualifiers directory needs to be created as required. Under this directory, the **element** subdirectory stores basic elements such as strings, colors, and Boolean values, and the **media** and **profile** subdirectories store resource files such as media, animations, and layouts.<br>Similarly, resource files in the directories are compiled into binary files, and each resource file is assigned an ID. Access resource files in the directories based on the resource type and resource name. For details about the meaning and value range of qualifiers and the naming rules of this directory, see [Qualifiers Directory](#qualifiers-directory).|
-| rawfile directory| You can create multiple levels of subdirectories with custom names to store various resource files.<br>Resource files in the sub-directory are directly packed into the application without being compiled, and no IDs will be assigned to the resource files. Access the directories based on the specified file path and file name.|
-| resfile Directory| You can create multiple levels of subdirectories with custom names to store various resource files.<br>Resource files in the sub-directory are directly packed into the application without being compiled, and no IDs will be assigned to the resource files. After the application is installed, resources in the **resfile** repository are decompressed to the application sandbox path. After the **resfile** directory is obtained through the **Context** attribute [resourceDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties), the resources can be accessed through the file path in read-only mode.|
+| rawfile directory| You can create multiple levels of subdirectories with custom names to store various resource files.<br>Resource files in the subdirectory are directly packed into the application without being compiled, and no IDs will be assigned to the resource files. Access the directories based on the specified file path and file name.|
+| resfile Directory| You can create multiple levels of subdirectories with custom names to store various resource files.<br>Resource files in the subdirectory are directly packed into the application without being compiled, and no IDs will be assigned to the resource files. After the application is installed, resources in the **resfile** repository are decompressed to the application sandbox path. After the **resfile** directory is obtained through the **Context** attribute [resourceDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#properties), the resources can be accessed through the file path in read-only mode.|
 
 ### Resource Group Directories
 
@@ -286,7 +286,7 @@ The following shows the **attr** attribute configured in **string**. The **strin
 
 ### HAP Resources
 
- - Access resources through **$r()** or **$rawfile()**.<br>Resources of the color, float, string, plural, media and profile types are accessed through **$r('app.type.name')**, in which **app** indicates the resource defined in the **resources** directory, **type** indicates the resource type, and **name** indicates the resource name.<br>To access strings with multiple placeholders in the **string.json** file, for example, **$s** and **$d** in a value, use the **$r('app.string.label', 'aaa', 444)** format, where **label** indicates the resource name, and **'aaa'** and **444** are used to replace placeholders.<br>To access resources in the **rawfile** subdirectory, use the **$rawfile('filename')** format. Wherein **filename** indicates the relative path of a file in the **rawfile** subdirectory, which must contain the file name extension and cannot start with a slash (/).
+ - Access resources through **$r()** or **$rawfile()**.<br>Resources of the color, float, string, plural, media and profile types are accessed through **$r('app.type.name')**, in which **app** indicates the resource defined in the **resources** directory, **type** indicates the resource type, and **name** indicates the resource name.<br>To access strings with multiple placeholders in the **string.json** file, for example, **%1$s** and **%2$d** in a value, use the **$r('app.string.label', 'aaa', 444)** format, where **label** indicates the resource name, and **'aaa'** and **444** are used to replace placeholders.<br>To access resources in the **rawfile** subdirectory, use the **$rawfile('filename')** format. Wherein **filename** indicates the relative path of a file in the **rawfile** subdirectory, which must contain the file name extension and cannot start with a slash (/).
 
    > **NOTE**
    >
@@ -314,9 +314,13 @@ The following shows the **attr** attribute configured in **string**. The **strin
     .height(200)
     .width(300)
 
-    // For a string in **string.json** whose name is "message_notification" and value is "Hello, %1$s!,You have %2$d new messages.",
-    // replace the placeholders $s and $d with 'LiHua' and 2, respectively. The sample code is as follows:
+    // For a string in string.json whose name is "message_notification", its value is "Hello, %1$s!,You have %2$d new messages."
+    // Replace the placeholders %1$s and %2$d with 'LiHua' and 2, respectively. Access the resource as follows:
     Text($r('app.string.message_notification', 'LiHua', 2))
+    // For a string in plural.json whose name is "eat_apple", its value of the singular form is "%d apple" and that of the plural form is "%d apples".
+    // You can access the plural.json resources. The first parameter determines whether a string is displayed in the singular or plural form. The value 1 indicates the singular form, and a value greater than 1 indicates the plural form.
+    // The resource has one placeholder %d, which should be replaced with 2. You can access the resource in the following way:
+    Text($r('app.plural.eat_apple', 2, 2))
   ```
 
 - After obtaining a **ResourceManager** object through the application context, call APIs of [resource management](../reference/apis-localization-kit/js-apis-resource-manager.md) to access different resources. Example:<br>Call **getContext().resourceManager.getStringByNameSync('test')** to obtain string resources.<br>Call **getContext().resourceManager.getRawFd('rawfilepath')** to obtain the descriptor information of the HAP where the raw file is located, and then use **{fd, offset, length}** to access the raw file.
@@ -339,15 +343,7 @@ The following shows the **attr** attribute configured in **string**. The **strin
 
   ![Alt text](figures/add_dependencies.png)
 
-  2. Obtain resources by using the literal **[hsp].*type*.*name***, where **hsp** indicates the HSP module name, **type** indicates the resource type, and **name** indicates the resource name. The following is an example:
-  
-    ```ts
-      Text($r('[hsp].string.test_string'))
-        .fontSize($r('[hsp].float.font_size'))
-        .fontColor($r('[hsp].color.font_color'))  
-      Image($rawfile('[hsp].icon.png'))
-    ```
-  3. Use variables. The following is an example:
+  2. Obtain resources using variables or the literal **[*Module name*].*type*.*name***, where ***module name*** indicates the name of the HSP module, ***type*** indicates the resource type, and ***name*** indicates the resource name. The following is an example:
 
    ```ts
     @Entry
@@ -361,6 +357,13 @@ The following shows the **attr** attribute configured in **string**. The **strin
   
       build() {
         Row() {
+          // Use the literal [module name].type.name to obtain resources.
+          Text($r('[hsp].string.test_string'))
+            .fontSize($r('[hsp].float.font_size'))
+            .fontColor($r('[hsp].color.font_color'))  
+          Image($rawfile('[hsp].icon.png'))
+
+          // Use variables to obtain resources.
           Text($r(this.text))
             .fontSize($r(this.fontSize))
             .fontColor($r(this.fontColor))
@@ -374,7 +377,7 @@ The following shows the **attr** attribute configured in **string**. The **strin
    ```
   > **NOTE**
   >
-  > The HSP module name must be placed in the brackets ([]). If the **rawfile** directory contains multiple levels of folders, the path must start from the first level, for example, **$rawfile('[hsp].oneFile/twoFile/icon.png')**. When **$r** or **$rawfile** is used for cross-HSP resource access, resource verification is not available at compile time, and you need to manually check that the target resources exist in the corresponding location.
+  > The HSP module name must be placed in the brackets ([]). If the **rawfile** directory contains multiple levels of folders, the path must start from the first level, for example, **$rawfile('[hsp].oneDir/twoDir/icon.png')**. When **$r** or **$rawfile** is used for cross-HSP resource access, resource verification is not available at compile time, and you need to manually check that the target resources exist in the corresponding location.
 
 
 ### System Resources
@@ -449,7 +452,7 @@ If this is the case, you can use the following APIs to obtain resources for a sp
 
 **Example**
 
-The following example demonstrates how to obtain the specified resources for languages other than the one in use. Assume that the following resource files with the same name are defined in the **resources** directories for Chinese, English, and German:
+The following example demonstrates how to obtain the specified resources for languages other than the one in use. Assume that the following resource files with the same name are defined in the **resources** directories for Chinese, English, and Japanese:
 
 - entry/src/main/resources/zh_CN/element/string.json
 
@@ -477,14 +480,14 @@ The following example demonstrates how to obtain the specified resources for lan
 }
 ```
 
-- entry/src/main/resources/de_DE/element/string.json
+- entry/src/main/resources/ja_JP/element/string.json
 
 ```json
 {
   "string": [
     {
       "name": "greetings",
-      "value": "Hallo, Welt"
+      "value": "こんにちは、世界"
     }
   ]
 }
@@ -494,6 +497,7 @@ In **Index.ets**, add code to obtain the resources of the three languages and di
 
 ```ts
 import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -519,8 +523,8 @@ struct Index {
       let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig);
       this.englishString = overrideResMgr.getStringSync(resId);
 
-      // Obtain resources that match the current system configuration, including the color mode and resolution, for the German language.
-      overrideConfig.locale = "de_DE"; // Set the language to German and locale to de_DE.
+      // Obtain resources that match the current system configuration, including the color mode and resolution, for the Japanese language.
+      overrideConfig.locale = "ja_JP"; // Set the language to Japanese and locale to ja_JP.
       overrideResMgr.updateOverrideConfiguration(overrideConfig); // Equivalent to resMgr.updateOverrideConfiguration(overrideConfig).
       this.germanString = overrideResMgr.getStringSync(resId);
     } catch (err) {
@@ -555,15 +559,14 @@ struct Index {
 
 Overlay is a resource replacement mechanism. With overlay resource packages, you can enable your application UI to adapt to different styles of various brands and products, without having to repack your application HAPs. The overlay mechanism works in dynamic and static modes. Overlay resource packages contain only resource files, resource index files, and configuration files.
 
-The overlay feature is enabled by default. For details about how to enable and disable this feature, see [@ohos.bundle.overlay (overlay)](../reference/apis-ability-kit/js-apis-overlay.md).
-
 ### Using overlay in dynamic mode
 
-1. Place the overlay resource package in the target application installation path and install the package using **hdc install**. For example, for the com.example.overlay application, place the overlay resource package in **data/app/el1/bundle/public/com.example.overlay/**.
-
+1. Place the overlay resource package in the target application installation path. For example, for the com.example.overlay application, place the overlay resource package in **data/app/el1/bundle/public/com.example.overlay/**.
 2. The application uses [addResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#addresource10) to load overlay resources and uses [removeResource(path)](../reference/apis-localization-kit/js-apis-resource-manager.md#removeresource10) to remove overlay resources. The path to an overlay resource consists of the application's sandbox root directory (obtained through **getContext().bundleCodeDir**) and the overlay resource bundle name. For example, **let path = getContext().bundleCodeDir + "overlay *resource bundle name*"**, such as **/data/storage/el1/bundle/overlayResourcePackageName**.
 
 ### Using overlay in static mode
+
+The overlay feature is enabled by default. For details about how to enable and disable this feature, see [@ohos.bundle.overlay (overlay)](../reference/apis-ability-kit/js-apis-overlay.md).
 
 The **app.json5** file in the inter-application overlay resource package supports the following fields:
 ```json
@@ -642,5 +645,8 @@ The **module.json5** file in the cross-application overlay resource package supp
 > - The overlay feature does not support JSON images.
 
 If the **module.json5** file of a module contains the **targetModuleName** and **targetPriority fields** during project creation on DevEco Studio, the module is identified as a module with the overlay feature in the installation phase. Modules with the overlay feature generally provide an overlay resource file for other modules on the device, so that the module specified by **targetModuleName** can display different colors, labels, themes, and the like by using the overlay resource file in a running phase.
+
+<!--Del-->
+<!--DelEnd-->
 
  <!--no_check--> 

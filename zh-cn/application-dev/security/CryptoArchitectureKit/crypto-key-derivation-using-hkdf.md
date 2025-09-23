@@ -88,7 +88,6 @@
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
   import { buffer } from '@kit.ArkTS';
 
   function kdfSync() {

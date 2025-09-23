@@ -1,5 +1,12 @@
 # 应用文件概述
 
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangfenging -->
+<!--Designer: @liveery; @zl_startup-->
+<!--Tester: @liuhaonan2-->
+<!--Adviser: @foryourself-->
+
 应用文件包括应用安装文件、应用资源文件和应用缓存文件，文件所有者是应用。
 
 - 设备上应用所使用及存储的数据，以文件、键值对、数据库等形式保存在一个应用专属的目录内。该专属目录我们称为“应用文件目录”，该目录下所有数据以不同的文件格式存放，这些文件即应用文件。

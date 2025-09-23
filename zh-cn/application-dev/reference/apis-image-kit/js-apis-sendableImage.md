@@ -22,7 +22,7 @@ import { sendableImage } from '@kit.ImageKit';
 
 createPixelMap(colors: ArrayBuffer, options: image.InitializationOptions): Promise\<PixelMap>
 
-通过属性创建PixelMap，默认采用BGRA_8888格式处理数据，通过Promise返回结果。
+通过属性创建PixelMap，默认采用BGRA_8888格式处理数据。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -42,6 +42,7 @@ createPixelMap(colors: ArrayBuffer, options: image.InitializationOptions): Promi
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -82,8 +83,8 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | If the operation failed|
-| 62980097 | If the ipc error|
+| 62980096 | Operation failed|
+| 62980097 | IPC error|
 | 62980115 | Invalid input parameter|
 | 62980105 | Failed to get the data|
 | 62980177 | Abnormal API environment|
@@ -101,54 +102,54 @@ import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class MySequence implements rpc.Parcelable {
-    pixel_map: sendableImage.PixelMap;
-    constructor(conPixelmap: sendableImage.PixelMap) {
-        this.pixel_map = conPixelmap;
+  pixel_map: sendableImage.PixelMap;
+  constructor(conPixelmap: sendableImage.PixelMap) {
+    this.pixel_map = conPixelmap;
+  }
+  marshalling(messageSequence: rpc.MessageSequence) {
+    this.pixel_map.marshalling(messageSequence);
+    return true;
+  }
+  unmarshalling(messageSequence: rpc.MessageSequence) {
+    try {
+      this.pixel_map = sendableImage.createPixelMapFromParcel(messageSequence);
+    } catch(e) {
+      let error = e as BusinessError;
+      console.error(`createPixelMapFromParcel error. code is ${error.code}, message is ${error.message}`);
+      return false;
     }
-    marshalling(messageSequence: rpc.MessageSequence) {
-        this.pixel_map.marshalling(messageSequence);
-        return true;
-    }
-    unmarshalling(messageSequence: rpc.MessageSequence) {
-        try {
-            this.pixel_map = sendableImage.createPixelMapFromParcel(messageSequence);
-        } catch(e) {
-            let error = e as BusinessError;
-            console.error(`createPixelMapFromParcel error. code is ${error.code}, message is ${error.message}`);
-            return false;
-        }
-      return true;
-    }
+    return true;
+  }
 }
 async function Demo() {
-   const color: ArrayBuffer = new ArrayBuffer(96);
-   let bufferArr: Uint8Array = new Uint8Array(color);
-   for (let i = 0; i < bufferArr.length; i++) {
-      bufferArr[i] = 0x80;
-   }
-   let opts: image.InitializationOptions = {
-      editable: true,
-      pixelFormat: 4,
-      size: { height: 4, width: 6 },
-      alphaType: 3
-   }
-   let pixelMap: sendableImage.PixelMap | undefined = undefined;
-   await sendableImage.createPixelMap(color, opts).then((srcPixelMap: sendableImage.PixelMap) => {
-      pixelMap = srcPixelMap;
-   })
-   if (pixelMap != undefined) {
-     // 序列化。
-     let parcelable: MySequence = new MySequence(pixelMap);
-     let data: rpc.MessageSequence = rpc.MessageSequence.create();
-     data.writeParcelable(parcelable);
+  const color: ArrayBuffer = new ArrayBuffer(96);
+  let bufferArr: Uint8Array = new Uint8Array(color);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = 0x80;
+  }
+  let opts: image.InitializationOptions = {
+    editable: true,
+    pixelFormat: 4,
+    size: { height: 4, width: 6 },
+    alphaType: 3
+  }
+  let pixelMap: sendableImage.PixelMap | undefined = undefined;
+  await sendableImage.createPixelMap(color, opts).then((srcPixelMap: sendableImage.PixelMap) => {
+    pixelMap = srcPixelMap;
+  })
+  if (pixelMap != undefined) {
+    // 序列化。
+    let parcelable: MySequence = new MySequence(pixelMap);
+    let data: rpc.MessageSequence = rpc.MessageSequence.create();
+    data.writeParcelable(parcelable);
 
-     // 反序列化 rpc获取到data。
-     let ret: MySequence = new MySequence(pixelMap);
-     data.readParcelable(ret);
+    // 反序列化rpc获取到data。
+    let ret: MySequence = new MySequence(pixelMap);
+    data.readParcelable(ret);
 
-     // 获取到pixelmap。
-     let unmarshPixelmap = ret.pixel_map;
-   }
+    // 获取到pixelmap。
+    let unmarshPixelmap = ret.pixel_map;
+  }
 }
 ```
 
@@ -156,7 +157,7 @@ async function Demo() {
 
 createPixelMapFromSurface(surfaceId: string, region: image.Region): Promise\<PixelMap>
 
-从Surface id创建一个PixelMap对象。
+根据Surface ID和区域信息创建一个PixelMap对象。该区域的大小由[Region](arkts-apis-image-i.md#region8).size指定。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -164,8 +165,8 @@ createPixelMapFromSurface(surfaceId: string, region: image.Region): Promise\<Pix
 
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
-| surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
-| region                 | [image.Region](../apis-image-kit/arkts-apis-image-i.md#region8)  | 是   | 裁剪的尺寸。                         |
+| surfaceId              | string              | 是   | 对应Surface的ID，可通过预览组件获取，如[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件。 |
+| region                 | [image.Region](arkts-apis-image-i.md#region8)  | 是   | 截取的画面区域。仅支持从画面左上角开始截取部分或整个画面，即Region中的x和y必须为0，Region.size中width和height的取值范围分别为[1, 预览流宽度]和[1, 预览流高度]。如需截取任意区域，可先获取整个画面，再使用[crop](#crop)截取所需区域。 |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -178,23 +179,24 @@ createPixelMapFromSurface(surfaceId: string, region: image.Region): Promise\<Pix
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980115 | Invalid input parameter|
+| 62980115 | If the image parameter invalid.|
 | 62980105 | Failed to get the data|
 | 62980178 | Failed to create the PixelMap|
 
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo(surfaceId: string) {
-    let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    sendableImage.createPixelMapFromSurface(surfaceId, region).then(() => {
-        console.info('Succeeded in creating pixelmap from Surface');
-    }).catch((error: BusinessError) => {
-        console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
-    });
+  let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+  sendableImage.createPixelMapFromSurface(surfaceId, region).then(() => {
+    console.info('Succeeded in creating pixelmap from Surface');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
+  });
 }
 ```
 
@@ -229,6 +231,7 @@ createPixelMapSync(colors: ArrayBuffer, options: image.InitializationOptions): P
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -242,7 +245,7 @@ async function Demo() {
 
 ## sendableImage.convertFromPixelMap
 
-convertFromPixelMap(pixelMap: image.PixelMap): PixelMap
+convertFromPixelMap(pixelmap: image.PixelMap): PixelMap
 
 通过image下的PixelMap创建出一个sendableImage下的PixelMap，同步返回PixelMap结果。原PixelMap的方法均不可再调用。
 
@@ -252,7 +255,7 @@ convertFromPixelMap(pixelMap: image.PixelMap): PixelMap
 
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| pixelMap | [image.PixelMap](arkts-apis-image-PixelMap.md) | 是   | image下的非sendable的PixelMap。 |
+| pixelmap | [image.PixelMap](arkts-apis-image-PixelMap.md) | 是   | image下的非sendable的PixelMap。 |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -265,27 +268,27 @@ convertFromPixelMap(pixelMap: image.PixelMap): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+|  401    | If the image parameter invalid. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 62980104 | Failed to initialize the internal object.|
 
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
-    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-    let pixelMap : image.PixelMap = image.createPixelMapSync(color, opts);
-    let sendablePixelMap : sendableImage.PixelMap = sendableImage.convertFromPixelMap(pixelMap);
-    return sendablePixelMap;
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+  let pixelMap : image.PixelMap = image.createPixelMapSync(color, opts);
+  let sendablePixelMap : sendableImage.PixelMap = sendableImage.convertFromPixelMap(pixelMap);
+  return sendablePixelMap;
 }
 ```
 
 ## sendableImage.convertToPixelMap
 
-convertToPixelMap(pixelMap: PixelMap): image.PixelMap
+convertToPixelMap(pixelmap: PixelMap): image.PixelMap
 
 通过sendableImage下的PixelMap创建出一个image下的PixelMap，同步返回PixelMap结果。原PixelMap的方法均不可再调用。
 
@@ -295,12 +298,12 @@ convertToPixelMap(pixelMap: PixelMap): image.PixelMap
 
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| pixelMap | [PixelMap](#pixelmap) | 是   | sendableImage下的PixelMap。 |
+| pixelmap | [PixelMap](#pixelmap) | 是   | sendableImage下的PixelMap。 |
 
 **返回值：**
 | 类型                             | 说明                  |
 | -------------------------------- | --------------------- |
-| [PixelMap](arkts-apis-image-PixelMap.md) | 成功同步返回image下的非sendable的PixelMap对象，失败抛出异常。 |
+| [image.PixelMap](arkts-apis-image-PixelMap.md) | 成功同步返回image下的非sendable的PixelMap对象，失败抛出异常。 |
 
 **错误码：**
 
@@ -308,23 +311,34 @@ convertToPixelMap(pixelMap: PixelMap): image.PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+|  401    | If the image parameter invalid. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 62980104 | Failed to initialize the internal object.|
 
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
-    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-    let sendablePixelMap : sendableImage.PixelMap = sendableImage.createPixelMapSync(color, opts);
-    let pixelMap : image.PixelMap = sendableImage.convertToPixelMap(sendablePixelMap);
-    return pixelMap;
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+  let sendablePixelMap : sendableImage.PixelMap = sendableImage.createPixelMapSync(color, opts);
+  let pixelMap : image.PixelMap = sendableImage.convertToPixelMap(sendablePixelMap);
+  return pixelMap;
 }
 ```
+
+## ISendable
+type ISendable = lang.ISendable
+
+ISendable是所有Sendable类型（除null和undefined）的父类型。自身没有任何必须的方法和属性。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 类型                | 说明                     |
+| ------------------ | ------------------------ |
+| [lang.ISendable](../apis-arkts/js-apis-arkts-lang.md#langisendable)  | 所有Sendable类型的父类型。               |
 
 ## PixelMap
 
@@ -347,7 +361,9 @@ sendableImage下的PixelMap支持sendable属性，支持worker线程共享。sen
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
-读取图像像素数据，结果写入ArrayBuffer里，使用Promise形式返回。指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
+读取图像像素数据，结果写入ArrayBuffer里。使用Promise异步回调。
+
+该接口指定BGRA_8888格式创建pixelmap，读取的像素数据与原数据保持一致。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -372,14 +388,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { sendableImage } from '@kit.ImageKit';
 
 async function Demo(pixelMap : sendableImage.PixelMap) {
-    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
-    if (pixelMap != undefined) {
-        pixelMap.readPixelsToBuffer(readBuffer).then(() => {
-            console.info('Succeeded in reading image pixel data.'); // 符合条件则进入。 
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入。
-        })
-    }
+  const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
+  if (pixelMap != undefined) {
+    pixelMap.readPixelsToBuffer(readBuffer).then(() => {
+      console.info('Succeeded in reading image pixel data.'); // 符合条件则进入。 
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入。
+    })
+  }
 }
 ```
 
@@ -411,15 +427,14 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
 import { sendableImage } from '@kit.ImageKit';
 
 async function Demo(pixelMap: sendableImage.PixelMap) {
-    const bufferSize = pixelMap.getPixelBytesNumber();
-    const readBuffer: ArrayBuffer = new ArrayBuffer(bufferSize);
-    if (pixelMap != undefined) {
-        pixelMap.readPixelsToBufferSync(readBuffer);
-    }
+  const bufferSize = pixelMap.getPixelBytesNumber();
+  const readBuffer: ArrayBuffer = new ArrayBuffer(bufferSize);
+  if (pixelMap != undefined) {
+    pixelMap.readPixelsToBufferSync(readBuffer);
+  }
 }
 ```
 
@@ -427,7 +442,7 @@ async function Demo(pixelMap: sendableImage.PixelMap) {
 
 readPixels(area: image.PositionArea): Promise\<void>
 
-读取区域内的图片数据，使用Promise形式返回。
+读取区域内的图片数据。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -448,23 +463,24 @@ readPixels(area: image.PositionArea): Promise\<void>
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    const area: image.PositionArea = {
-        pixels: new ArrayBuffer(8),
-        offset: 0,
-        stride: 8,
-        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-    };
-    if (pixelMap != undefined) {
-        pixelMap.readPixels(area).then(() => {
-            console.info('Succeeded in reading the image data in the area.'); //符合条件则进入。
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入。
-        })
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  const area: image.PositionArea = {
+    pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  if (pixelMap != undefined) {
+    pixelMap.readPixels(area).then(() => {
+      console.info('Succeeded in reading the image data in the area.'); // 符合条件则进入。
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入。
+    })
+  }
 }
 ```
 
@@ -496,19 +512,19 @@ readPixelsSync(area: image.PositionArea): void
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    const area : image.PositionArea = {
-        pixels: new ArrayBuffer(8),
-        offset: 0,
-        stride: 8,
-        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-    };
-    if (pixelMap != undefined) {
-        pixelMap.readPixelsSync(area);
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  const area : image.PositionArea = {
+    pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  if (pixelMap != undefined) {
+    pixelMap.readPixelsSync(area);
+  }
 }
 ```
 
@@ -516,7 +532,7 @@ async function Demo() {
 
 writePixels(area: image.PositionArea): Promise\<void>
 
-将PixelMap写入指定区域内，使用Promise形式返回写入结果。
+将PixelMap写入指定区域内。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -537,27 +553,28 @@ writePixels(area: image.PositionArea): Promise\<void>
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    const area: image.PositionArea = {
-        pixels: new ArrayBuffer(8),
-        offset: 0,
-        stride: 8,
-        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-    };
-    let bufferArr: Uint8Array = new Uint8Array(area.pixels);
-    for (let i = 0; i < bufferArr.length; i++) {
-        bufferArr[i] = i + 1;
-    }
-    if (pixelMap != undefined) {
-        pixelMap.writePixels(area).then(() => {
-            console.info('Succeeded to write pixelmap into the specified area.');
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
-        })
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  const area: image.PositionArea = {
+    pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  let bufferArr: Uint8Array = new Uint8Array(area.pixels);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+  }
+  if (pixelMap != undefined) {
+    pixelMap.writePixels(area).then(() => {
+      console.info('Succeeded to write pixelmap into the specified area.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
+    })
+  }
 }
 ```
 
@@ -589,23 +606,23 @@ writePixelsSync(area: image.PositionArea): void
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    const area: image.PositionArea = {
-        pixels: new ArrayBuffer(8),
-        offset: 0,
-        stride: 8,
-        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-    };
-    let bufferArr: Uint8Array = new Uint8Array(area.pixels);
-    for (let i = 0; i < bufferArr.length; i++) {
-        bufferArr[i] = i + 1;
-    }
-    if (pixelMap != undefined) {
-        pixelMap.writePixelsSync(area);
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  const area: image.PositionArea = {
+    pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  let bufferArr: Uint8Array = new Uint8Array(area.pixels);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+  }
+  if (pixelMap != undefined) {
+    pixelMap.writePixelsSync(area);
+  }
 }
 ```
 
@@ -613,7 +630,7 @@ async function Demo() {
 
 writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
-读取缓冲区中的图片数据，结果写入PixelMap中，使用Promise形式返回。
+读取缓冲区中的图片数据，结果写入PixelMap中。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -634,21 +651,22 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
-    let bufferArr: Uint8Array = new Uint8Array(color);
-    for (let i = 0; i < bufferArr.length; i++) {
-        bufferArr[i] = i + 1;
-    }
-    if (pixelMap != undefined) {
-        pixelMap.writeBufferToPixels(color).then(() => {
-            console.info("Succeeded in writing data from a buffer to a PixelMap.");
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
-        })
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
+  let bufferArr: Uint8Array = new Uint8Array(color);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+  }
+  if (pixelMap != undefined) {
+    pixelMap.writeBufferToPixels(color).then(() => {
+      console.info("Succeeded in writing data from a buffer to a PixelMap.");
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
+    })
+  }
 }
 ```
 
@@ -680,18 +698,18 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
 async function Demo(pixelMap: sendableImage.PixelMap) {
-    const bufferSize = pixelMap.getPixelBytesNumber();
-    const color : ArrayBuffer = new ArrayBuffer(bufferSize);
-    let bufferArr : Uint8Array = new Uint8Array(color);
-    for (let i = 0; i < bufferArr.length; i++) {
-        bufferArr[i] = i + 1;
-    }
-    if (pixelMap != undefined) {
-        pixelMap.writeBufferToPixelsSync(color);
-    }
+  const bufferSize = pixelMap.getPixelBytesNumber();
+  const color : ArrayBuffer = new ArrayBuffer(bufferSize);
+  let bufferArr : Uint8Array = new Uint8Array(color);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+  }
+  if (pixelMap != undefined) {
+    pixelMap.writeBufferToPixelsSync(color);
+  }
 }
 ```
 
@@ -699,7 +717,7 @@ async function Demo(pixelMap: sendableImage.PixelMap) {
 
 getImageInfo(): Promise\<image.ImageInfo>
 
-获取图像像素信息，使用Promise形式返回获取的图像像素信息。
+获取图像像素信息。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -709,24 +727,25 @@ getImageInfo(): Promise\<image.ImageInfo>
 
 | 类型                              | 说明                                                        |
 | --------------------------------- | ----------------------------------------------------------- |
-| Promise\<[ImageInfo](arkts-apis-image-i.md#imageinfo)> | Promise实例，用于异步获取图像像素信息，失败时返回错误信息。 |
+| Promise\<[image.ImageInfo](arkts-apis-image-i.md#imageinfo)> | Promise实例，用于异步获取图像像素信息，失败时返回错误信息。 |
 
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    if (pixelMap != undefined) {
-        pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
-            if (imageInfo != undefined) {
-                console.info("Succeeded in obtaining the image pixel map information."+ imageInfo.size.height);
-            }
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to obtain the image pixel map information. code is ${error.code}, message is ${error.message}`);
-        })
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  if (pixelMap != undefined) {
+    pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
+      if (imageInfo != undefined) {
+        console.info("Succeeded in obtaining the image pixel map information."+ imageInfo.size.height);
+      }
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to obtain the image pixel map information. code is ${error.code}, message is ${error.message}`);
+    })
+  }
 }
 ```
 
@@ -744,7 +763,7 @@ getImageInfoSync(): image.ImageInfo
 
 | 类型                              | 说明                                                        |
 | --------------------------------- | ----------------------------------------------------------- |
-| [ImageInfo](arkts-apis-image-i.md#imageinfo)           | 图像像素信息。                                                |
+| [image.ImageInfo](arkts-apis-image-i.md#imageinfo)           | 图像像素信息。                                                |
 
 **错误码：**
 
@@ -755,15 +774,15 @@ getImageInfoSync(): image.ImageInfo
 |  501    | Resource Unavailable |
 
 **示例：**
- 
+
 ```ts
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
-async function Demo() {
-    if (pixelMap != undefined) {
-        let imageInfo : image.ImageInfo = pixelMap.getImageInfoSync();
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  if (pixelMap != undefined) {
+    let imageInfo : image.ImageInfo = pixelMap.getImageInfoSync();
+  }
 }
 ```
 
@@ -786,7 +805,11 @@ getBytesNumberPerRow(): number
 **示例：**
 
 ```ts
-let rowCount: number = pixelMap.getBytesNumberPerRow();
+import { sendableImage } from '@kit.ImageKit';
+
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let rowCount: number = pixelMap.getBytesNumberPerRow();
+}
 ```
 
 ### getPixelBytesNumber
@@ -808,7 +831,11 @@ getPixelBytesNumber(): number
 **示例：**
 
 ```ts
-let pixelBytesNumber: number = pixelMap.getPixelBytesNumber();
+import { sendableImage } from '@kit.ImageKit';
+
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let pixelBytesNumber: number = pixelMap.getPixelBytesNumber();
+}
 ```
 
 ### getDensity
@@ -830,14 +857,18 @@ getDensity():number
 **示例：**
 
 ```ts
-let getDensity: number = pixelMap.getDensity();
+import { sendableImage } from '@kit.ImageKit';
+
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let getDensity: number = pixelMap.getDensity();
+}
 ```
 
 ### opacity
 
 opacity(rate: number): Promise\<void>
 
-通过设置透明比率来让PixelMap达到对应的透明效果，使用Promise形式返回。
+通过设置透明比率来让PixelMap达到对应的透明效果。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -858,17 +889,18 @@ opacity(rate: number): Promise\<void>
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    let rate: number = 0.5;
-    if (pixelMap != undefined) {
-        pixelMap.opacity(rate).then(() => {
-            console.info('Succeeded in setting opacity.');
-        }).catch((err: BusinessError) => {
-            console.error(`Failed to set opacity. code is ${err.code}, message is ${err.message}`);
-        })
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let rate: number = 0.5;
+  if (pixelMap != undefined) {
+    pixelMap.opacity(rate).then(() => {
+      console.info('Succeeded in setting opacity.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to set opacity. code is ${err.code}, message is ${err.message}`);
+    })
+  }
 }
 ```
 
@@ -900,13 +932,13 @@ opacitySync(rate: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
-async function Demo() {
-    let rate : number = 0.5;
-    if (pixelMap != undefined) {
-        pixelMap.opacitySync(rate);
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let rate : number = 0.5;
+  if (pixelMap != undefined) {
+    pixelMap.opacitySync(rate);
+  }
 }
 ```
 
@@ -914,7 +946,7 @@ async function Demo() {
 
 createAlphaPixelmap(): Promise\<PixelMap>
 
-根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的PixelMap，可用于阴影效果，使用Promise形式返回。
+根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的PixelMap，可用于阴影效果。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -929,16 +961,17 @@ createAlphaPixelmap(): Promise\<PixelMap>
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    if (pixelMap != undefined) {
-        pixelMap.createAlphaPixelmap().then((alphaPixelMap: sendableImage.PixelMap) => {
-            console.info('Succeeded in creating alpha pixelmap.');
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to create alpha pixelmap. code is ${error.code}, message is ${error.message}`);
-        })
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  if (pixelMap != undefined) {
+    pixelMap.createAlphaPixelmap().then((alphaPixelMap: sendableImage.PixelMap) => {
+      console.info('Succeeded in creating alpha pixelmap.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to create alpha pixelmap. code is ${error.code}, message is ${error.message}`);
+    })
+  }
 }
 ```
 
@@ -964,18 +997,17 @@ createAlphaPixelmapSync(): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  401    | Parameter error. Possible causes: 1.Parameter verification failed. |
 |  501    | Resource Unavailable. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
 import { sendableImage } from '@kit.ImageKit';
 
 async function Demo(pixelMap : sendableImage.PixelMap) {
-    let resPixelMap : sendableImage.PixelMap = pixelMap.createAlphaPixelmapSync();
-    return resPixelMap;
+  let resPixelMap : sendableImage.PixelMap = pixelMap.createAlphaPixelmapSync();
+  return resPixelMap;
 }
 ```
 
@@ -983,7 +1015,7 @@ async function Demo(pixelMap : sendableImage.PixelMap) {
 
 scale(x: number, y: number): Promise\<void>
 
-根据输入的宽高对图片进行缩放，使用Promise形式返回。
+根据输入的宽高对图片进行缩放。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1005,19 +1037,20 @@ scale(x: number, y: number): Promise\<void>
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    let scaleX: number = 2.0;
-    let scaleY: number = 1.0;
-    if (pixelMap != undefined) {
-        pixelMap.scale(scaleX, scaleY).then(() => {
-            console.info('Succeeded in scaling pixelmap.');
-        }).catch((err: BusinessError) => {
-            console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
-            
-        })   
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+    pixelMap.scale(scaleX, scaleY).then(() => {
+      console.info('Succeeded in scaling pixelmap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
+
+    })
+  }
 }
 ```
 
@@ -1050,14 +1083,14 @@ scaleSync(x: number, y: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
-async function Demo() {
-    let scaleX: number = 2.0;
-    let scaleY: number = 1.0;
-    if (pixelMap != undefined) {
-        pixelMap.scaleSync(scaleX, scaleY);
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+    pixelMap.scaleSync(scaleX, scaleY);
+  }
 }
 ```
 
@@ -1065,7 +1098,7 @@ async function Demo() {
 
 translate(x: number, y: number): Promise\<void>
 
-根据输入的坐标对图片进行位置变换，使用Promise形式返回。
+根据输入的坐标对图片进行位置变换。使用Promise异步回调。
 
 translate后的图片尺寸改变为：width+X，height+Y，建议translate后的图片尺寸宽高不超过屏幕的宽高。
 
@@ -1089,18 +1122,19 @@ translate后的图片尺寸改变为：width+X，height+Y，建议translate后�
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    let translateX: number = 50.0;
-    let translateY: number = 10.0;
-    if (pixelMap != undefined) {
-        pixelMap.translate(translateX, translateY).then(() => {
-            console.info('Succeeded in translating pixelmap.');
-        }).catch((err: BusinessError) => {
-            console.error(`Failed to translate pixelmap. code is ${err.code}, message is ${err.message}`);
-        })
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let translateX: number = 50.0;
+  let translateY: number = 10.0;
+  if (pixelMap != undefined) {
+    pixelMap.translate(translateX, translateY).then(() => {
+      console.info('Succeeded in translating pixelmap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to translate pixelmap. code is ${err.code}, message is ${err.message}`);
+    })
+  }
 }
 ```
 
@@ -1135,14 +1169,14 @@ translate后的图片尺寸改变为：width+X，height+Y，建议translate后�
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
-async function Demo() {
-    let translateX : number = 50.0;
-    let translateY : number = 10.0;
-    if (pixelMap != undefined) {
-        pixelMap.translateSync(translateX, translateY);
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let translateX : number = 50.0;
+  let translateY : number = 10.0;
+  if (pixelMap != undefined) {
+    pixelMap.translateSync(translateX, translateY);
+  }
 }
 ```
 
@@ -1150,7 +1184,7 @@ async function Demo() {
 
 rotate(angle: number): Promise\<void>
 
-根据输入的角度对图片进行旋转，使用Promise形式返回。
+根据输入的角度对图片进行旋转。使用Promise异步回调。
 
 > **说明：**
 >
@@ -1176,17 +1210,18 @@ rotate(angle: number): Promise\<void>
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    let angle: number = 90.0;
-    if (pixelMap != undefined) {
-        pixelMap.rotate(angle).then(() => {
-            console.info('Succeeded in rotating pixelmap.');
-        }).catch((err: BusinessError) => {
-            console.error(`Failed to rotate pixelmap. code is ${err.code}, message is ${err.message}`); 
-        })
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let angle: number = 90.0;
+  if (pixelMap != undefined) {
+    pixelMap.rotate(angle).then(() => {
+      console.info('Succeeded in rotating pixelmap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to rotate pixelmap. code is ${err.code}, message is ${err.message}`);
+    })
+  }
 }
 ```
 
@@ -1223,13 +1258,13 @@ rotateSync(angle: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
-async function Demo() {
-    let angle : number = 90.0;
-    if (pixelMap != undefined) {
-        pixelMap.rotateSync(angle);
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let angle : number = 90.0;
+  if (pixelMap != undefined) {
+    pixelMap.rotateSync(angle);
+  }
 }
 ```
 
@@ -1237,7 +1272,7 @@ async function Demo() {
 
 flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
-根据输入的条件对图片进行翻转，使用Promise形式返回。
+根据输入的条件对图片进行翻转。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1259,19 +1294,20 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    let horizontal: boolean = true;
-    let vertical: boolean = false;
-    if (pixelMap != undefined) {
-        pixelMap.flip(horizontal, vertical).then(() => {
-            console.info('Succeeded in flipping pixelmap.');
-        }).catch((err: BusinessError) => {
-            console.error(`Failed to flip pixelmap. code is ${err.code}, message is ${err.message}`);
-            
-        })
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let horizontal: boolean = true;
+  let vertical: boolean = false;
+  if (pixelMap != undefined) {
+    pixelMap.flip(horizontal, vertical).then(() => {
+      console.info('Succeeded in flipping pixelmap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to flip pixelmap. code is ${err.code}, message is ${err.message}`);
+
+    })
+  }
 }
 ```
 
@@ -1304,14 +1340,14 @@ flipSync(horizontal: boolean, vertical: boolean): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
-async function Demo() {
-    let horizontal : boolean = true;
-    let vertical : boolean = false;
-    if (pixelMap != undefined) {
-        pixelMap.flipSync(horizontal, vertical);
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let horizontal : boolean = true;
+  let vertical : boolean = false;
+  if (pixelMap != undefined) {
+    pixelMap.flipSync(horizontal, vertical);
+  }
 }
 ```
 
@@ -1319,7 +1355,7 @@ async function Demo() {
 
 crop(region: image.Region): Promise\<void>
 
-根据输入的尺寸对图片进行裁剪，使用Promise形式返回。
+根据输入的尺寸对图片进行裁剪。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1329,7 +1365,7 @@ crop(region: image.Region): Promise\<void>
 
 | 参数名 | 类型               | 必填 | 说明        |
 | ------ | ------------------ | ---- | ----------- |
-| region | [Region](../apis-image-kit/arkts-apis-image-i.md#region8) | 是   | 裁剪的尺寸。|
+| region | [image.Region](../apis-image-kit/arkts-apis-image-i.md#region8) | 是   | 裁剪的尺寸。|
 
 **返回值：**
 
@@ -1340,19 +1376,20 @@ crop(region: image.Region): Promise\<void>
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    if (pixelMap != undefined) {
-        pixelMap.crop(region).then(() => {
-            console.info('Succeeded in cropping pixelmap.');
-        }).catch((err: BusinessError) => {
-            console.error(`Failed to crop pixelmap. code is ${err.code}, message is ${err.message}`);
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+  if (pixelMap != undefined) {
+    pixelMap.crop(region).then(() => {
+      console.info('Succeeded in cropping pixelmap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to crop pixelmap. code is ${err.code}, message is ${err.message}`);
 
-        });
-    }
+    });
+  }
 }
 ```
 
@@ -1370,7 +1407,7 @@ cropSync(region: image.Region): void
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| region   | [Region](../apis-image-kit/arkts-apis-image-i.md#region8)   | 是   | 裁剪的尺寸。                  |
+| region   | [image.Region](../apis-image-kit/arkts-apis-image-i.md#region8)   | 是   | 裁剪的尺寸。                  |
 
 **错误码：**
 
@@ -1384,14 +1421,14 @@ cropSync(region: image.Region): void
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    if (pixelMap != undefined) {
-        pixelMap.cropSync(region);
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+  if (pixelMap != undefined) {
+    pixelMap.cropSync(region);
+  }
 }
 ```
 
@@ -1422,10 +1459,12 @@ getColorSpace(): colorSpaceManager.ColorSpaceManager
 **示例：**
 
 ```ts
-async function Demo() {
-    if (pixelMap != undefined) {
-        let csm = pixelMap.getColorSpace();
-    }
+import { sendableImage } from '@kit.ImageKit';
+
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  if (pixelMap != undefined) {
+    let csm = pixelMap.getColorSpace();
+  }
 }
 ```
 
@@ -1455,13 +1494,15 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
-async function Demo() {
-    let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
-    let csm: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    if (pixelMap != undefined) {
-        pixelMap.setColorSpace(csm);
-    }
+
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let colorSpaceName = colorSpaceManager.ColorSpace.SRGB; // colorSpaceManager.ColorSpace该对象当前仅支持2in1/PC设备使用。
+  let csm: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
+  if (pixelMap != undefined) {
+    pixelMap.setColorSpace(csm);
+  }
 }
 ```
 
@@ -1469,7 +1510,7 @@ async function Demo() {
 
 applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\<void>
 
-根据输入的目标色彩空间对图像像素颜色进行色彩空间转换，使用Promise形式返回。
+根据输入的目标色彩空间对图像像素颜色进行色彩空间转换。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -1504,7 +1545,7 @@ import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo(pixelMap : sendableImage.PixelMap) {
-    let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
+    let colorSpaceName = colorSpaceManager.ColorSpace.SRGB; // colorSpaceManager.ColorSpace该对象当前仅支持2in1/PC设备使用。
     let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
     pixelMap.applyColorSpace(targetColorSpace).then(() => {
         console.info('Succeeded in applying color space for pixelmap object.');
@@ -1538,59 +1579,61 @@ marshalling(sequence: rpc.MessageSequence): void
 | 62980097 | IPC error.             |
 
 **示例：**
+
 ```ts
 import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 import { rpc } from '@kit.IPCKit';
 
 class MySequence implements rpc.Parcelable {
-    pixel_map: sendableImage.PixelMap;
-    constructor(conPixelMap : sendableImage.PixelMap) {
-        this.pixel_map = conPixelMap;
-    }
-    marshalling(messageSequence : rpc.MessageSequence) {
-        this.pixel_map.marshalling(messageSequence);
-        console.info('marshalling');
-        return true;
-    }
-    unmarshalling(messageSequence : rpc.MessageSequence) {
-      sendableImage.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel: sendableImage.PixelMap) => {
-        pixelParcel.unmarshalling(messageSequence).then(async (pixelMap: sendableImage.PixelMap) => {
-          this.pixel_map = pixelMap;
-          pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
-            console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
-          })
+  pixel_map: sendableImage.PixelMap;
+  constructor(conPixelMap : sendableImage.PixelMap) {
+    this.pixel_map = conPixelMap;
+  }
+  marshalling(messageSequence : rpc.MessageSequence) {
+    this.pixel_map.marshalling(messageSequence);
+    console.info('marshalling');
+    return true;
+  }
+  unmarshalling(messageSequence : rpc.MessageSequence) {
+    sendableImage.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel: sendableImage.PixelMap) => {
+      pixelParcel.unmarshalling(messageSequence).then(async (pixelMap: sendableImage.PixelMap) => {
+        this.pixel_map = pixelMap;
+        pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
+          console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
         })
-      });
-      return true;
-    }
+      })
+    });
+    return true;
+  }
 }
-async function Demo() {
-   const color: ArrayBuffer = new ArrayBuffer(96);
-   let bufferArr: Uint8Array = new Uint8Array(color);
-   for (let i = 0; i < bufferArr.length; i++) {
-      bufferArr[i] = 0x80;
-   }
-   let opts: image.InitializationOptions = {
-      editable: true,
-      pixelFormat: 4,
-      size: { height: 4, width: 6 },
-      alphaType: 3
-   }
-   let pixelMap: sendableImage.PixelMap | undefined = undefined;
-   await sendableImage.createPixelMap(color, opts).then((srcPixelMap: sendableImage.PixelMap) => {
-      pixelMap = srcPixelMap;
-   })
-   if (pixelMap != undefined) {
-    // 序列化。
-     let parcelable: MySequence = new MySequence(pixelMap);
-     let data: rpc.MessageSequence = rpc.MessageSequence.create();
-     data.writeParcelable(parcelable);
 
-    // 反序列化 rpc获取到data。
-     let ret: MySequence = new MySequence(pixelMap);
-     data.readParcelable(ret);
-   }
+async function Demo() {
+  const color: ArrayBuffer = new ArrayBuffer(96);
+  let bufferArr: Uint8Array = new Uint8Array(color);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = 0x80;
+  }
+  let opts: image.InitializationOptions = {
+    editable: true,
+    pixelFormat: 4,
+    size: { height: 4, width: 6 },
+    alphaType: 3
+  }
+  let pixelMap: sendableImage.PixelMap | undefined = undefined;
+  await sendableImage.createPixelMap(color, opts).then((srcPixelMap: sendableImage.PixelMap) => {
+    pixelMap = srcPixelMap;
+  })
+  if (pixelMap != undefined) {
+    // 序列化。
+    let parcelable: MySequence = new MySequence(pixelMap);
+    let data: rpc.MessageSequence = rpc.MessageSequence.create();
+    data.writeParcelable(parcelable);
+
+    // 反序列化rpc获取到data。
+    let ret: MySequence = new MySequence(pixelMap);
+    data.readParcelable(ret);
+  }
 }
 ```
 
@@ -1633,53 +1676,54 @@ import { image } from '@kit.ImageKit';
 import { rpc } from '@kit.IPCKit';
 
 class MySequence implements rpc.Parcelable {
-    pixel_map: sendableImage.PixelMap;
-    constructor(conPixelMap: sendableImage.PixelMap) {
-        this.pixel_map = conPixelMap;
-    }
-    marshalling(messageSequence: rpc.MessageSequence) {
-        this.pixel_map.marshalling(messageSequence);
-        console.info('marshalling');
-        return true;
-    }
-    unmarshalling(messageSequence: rpc.MessageSequence) {
-      sendableImage.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel : sendableImage.PixelMap) => {
-        pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : sendableImage.PixelMap) => {
-          this.pixel_map = pixelMap;
-          pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
-            console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
-          })
+  pixel_map: sendableImage.PixelMap;
+  constructor(conPixelMap: sendableImage.PixelMap) {
+    this.pixel_map = conPixelMap;
+  }
+  marshalling(messageSequence: rpc.MessageSequence) {
+    this.pixel_map.marshalling(messageSequence);
+    console.info('marshalling');
+    return true;
+  }
+  unmarshalling(messageSequence: rpc.MessageSequence) {
+    sendableImage.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel : sendableImage.PixelMap) => {
+      pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : sendableImage.PixelMap) => {
+        this.pixel_map = pixelMap;
+        pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
+          console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
         })
-      });
-      return true;
-    }
+      })
+    });
+    return true;
+  }
 }
-async function Demo() {
-   const color: ArrayBuffer = new ArrayBuffer(96);
-   let bufferArr: Uint8Array = new Uint8Array(color);
-   for (let i = 0; i < bufferArr.length; i++) {
-      bufferArr[i] = 0x80;
-   }
-   let opts: image.InitializationOptions = {
-      editable: true,
-      pixelFormat: 4,
-      size: { height: 4, width: 6 },
-      alphaType: 3
-   }
-   let pixelMap: sendableImage.PixelMap | undefined = undefined;
-   await sendableImage.createPixelMap(color, opts).then((srcPixelMap : sendableImage.PixelMap) => {
-      pixelMap = srcPixelMap;
-   })
-   if (pixelMap != undefined) {
-    // 序列化。
-     let parcelable: MySequence = new MySequence(pixelMap);
-     let data : rpc.MessageSequence = rpc.MessageSequence.create();
-     data.writeParcelable(parcelable);
 
-    // 反序列化 rpc获取到data。
-     let ret : MySequence = new MySequence(pixelMap);
-     data.readParcelable(ret);
-   }
+async function Demo() {
+  const color: ArrayBuffer = new ArrayBuffer(96);
+  let bufferArr: Uint8Array = new Uint8Array(color);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = 0x80;
+  }
+  let opts: image.InitializationOptions = {
+    editable: true,
+    pixelFormat: 4,
+    size: { height: 4, width: 6 },
+    alphaType: 3
+  }
+  let pixelMap: sendableImage.PixelMap | undefined = undefined;
+  await sendableImage.createPixelMap(color, opts).then((srcPixelMap : sendableImage.PixelMap) => {
+    pixelMap = srcPixelMap;
+  })
+  if (pixelMap != undefined) {
+    // 序列化。
+    let parcelable: MySequence = new MySequence(pixelMap);
+    let data : rpc.MessageSequence = rpc.MessageSequence.create();
+    data.writeParcelable(parcelable);
+
+    // 反序列化rpc获取到data。
+    let ret : MySequence = new MySequence(pixelMap);
+    data.readParcelable(ret);
+  }
 }
 ```
 
@@ -1687,7 +1731,7 @@ async function Demo() {
 
 release():Promise\<void>
 
-释放PixelMap对象，使用Promise形式返回释放结果。
+释放PixelMap对象。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1706,13 +1750,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { sendableImage } from '@kit.ImageKit';
 
 async function Demo(pixelMap: sendableImage.PixelMap) {
-    if (pixelMap != undefined) {
-        await pixelMap.release().then(() => {
-            console.info('Succeeded in releasing pixelmap object.');
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to release pixelmap object. code is ${error.code}, message is ${error.message}`);
-        })
-    }
+  if (pixelMap != undefined) {
+    await pixelMap.release().then(() => {
+      console.info('Succeeded in releasing pixelmap object.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to release pixelmap object. code is ${error.code}, message is ${error.message}`);
+    })
+  }
 }
 ```
 
@@ -1774,14 +1818,13 @@ createImageSource(uri: string): ImageSource
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
+import { sendableImage } from '@kit.ImageKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-const path: string = context.cacheDir + "/test.jpg";
-const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(path);
+async function Demo(context : Context) {
+  const path: string = context.cacheDir + "/test.jpg";
+  const sendableImageSourceObj: sendableImage.ImageSource = sendableImage.createImageSource(path);
+}
 ```
 
 ## sendableImage.createImageSource
@@ -1808,16 +1851,15 @@ createImageSource(fd: number): ImageSource
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
+import { sendableImage } from '@kit.ImageKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-const path: string = context.cacheDir + "/test.jpg";
-let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(file.fd);
+async function Demo(context : Context) {
+  const path: string = context.cacheDir + "/test.jpg";
+  let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  const sendableImageSourceObj: sendableImage.ImageSource = sendableImage.createImageSource(file.fd);
+}
 ```
 
 ## sendableImage.createImageSource
@@ -1844,12 +1886,15 @@ createImageSource(buf: ArrayBuffer): ImageSource
 | --------------------------- | -------------------------------------------- |
 | [ImageSource](#imagesource) | 返回ImageSource类实例，失败时返回undefined。 |
 
-
 **示例：**
 
 ```ts
-const buf: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
-const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(buf);
+import { sendableImage } from '@kit.ImageKit';
+
+async function Demo() {
+  const buf: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
+  const sendableImageSourceObj: sendableImage.ImageSource = sendableImage.createImageSource(buf);
+}
 ```
 
 ## sendableImage.createImageReceiver
@@ -1866,7 +1911,7 @@ createImageReceiver(size: image.Size, format: image.ImageFormat, capacity: numbe
 | -------- | ------ | ---- | ---------------------- |
 | size    | [image.Size](./arkts-apis-image-i.md#size)  | 是   | 图像的默认大小。       |
 | format   | [image.ImageFormat](./arkts-apis-image-e.md#imageformat9) | 是   | 图像格式，取值为image.ImageFormat常量，目前仅支持 ImageFormat:JPEG。             |
-| capacity | number | 是   | 同时访问的最大图像数。 |
+| capacity | number | 是   | 同时访问的最大图像数。该参数仅作为期望值，实际capacity由设备硬件决定。 |
 
 **返回值：**
 
@@ -1880,18 +1925,21 @@ createImageReceiver(size: image.Size, format: image.ImageFormat, capacity: numbe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  401    |  The parameter check failed. |
 
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 
-let size: image.Size = {
-    height: 8192,
-    width: 8
-} 
-let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+async function Demo() {
+    let size: image.Size = {
+        height: 8192,
+        width: 8
+    } 
+    let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+}
 ```
 
 ## ImageSource
@@ -1925,27 +1973,26 @@ createPixelMap(options?: image.DecodingOptions): Promise\<PixelMap>
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-const path: string = context.cacheDir + "/test.jpg";
-const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(path);
-sendableImageSourceApi.createPixelMap().then((pixelMap: sendableImage.PixelMap) => {
+async function Demo(context : Context) {
+  const path: string = context.cacheDir + "/test.jpg";
+  const sendableImageSourceObj: sendableImage.ImageSource = sendableImage.createImageSource(path);
+  sendableImageSourceObj.createPixelMap().then((pixelMap: sendableImage.PixelMap) => {
     console.info('Succeeded in creating pixelMap object through image decoding parameters.');
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`Failed to create pixelMap object through image decoding parameters. code ${error.code}, message is ${error.message}`);
-})
+  })
+}
 ```
 
 ### release
 
 release(): Promise\<void>
 
-释放ImageSource实例，使用Promise形式返回结果。release是线程不安全的。
+释放ImageSource实例。使用Promise异步回调。release是线程不安全的。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1957,20 +2004,19 @@ release(): Promise\<void>
 
 **示例：**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-const path: string = context.cacheDir + "/test.jpg";
-const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(path);
-sendableImageSourceApi.release().then(() => {
+async function Demo(context : Context) {
+  const path: string = context.cacheDir + "/test.jpg";
+  const sendableImageSourceObj: sendableImage.ImageSource = sendableImage.createImageSource(path);
+  sendableImageSourceObj.release().then(() => {
     console.info('Succeeded in releasing the image source instance.');
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`Failed to release the image source instance. code ${error.code}, message is ${error.message}`);
-})
+  })
+}
 ```
 
 ## Image
@@ -1992,7 +2038,7 @@ sendableImageSourceApi.release().then(() => {
 
 getComponent(componentType: image.ComponentType): Promise\<image.Component>
 
-根据图像的组件类型从图像中获取组件缓存并使用Promise方式返回结果。getComponent是线程不安全的。
+根据图像的组件类型从图像中获取组件缓存。使用Promise异步回调。getComponent是线程不安全的。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -2011,6 +2057,7 @@ getComponent(componentType: image.ComponentType): Promise\<image.Component>
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
@@ -2021,7 +2068,7 @@ async function Demo() {
   }
   let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
   let img = await receiver.readNextImage();
-  img.getComponent(4).then((component: image.Component) => {
+  img.getComponent(image.ComponentType.JPEG).then((component: image.Component) => {
     console.info('getComponent succeeded.');
   }).catch((error: BusinessError) => {
     console.error(`getComponent failed code ${error.code}, message is ${error.message}`);
@@ -2033,7 +2080,7 @@ async function Demo() {
 
 release(): Promise\<void>
 
-释放当前图像并使用Promise方式返回结果。
+释放当前图像。使用Promise异步回调。
 
 在接收另一个图像前必须先释放对应资源。release是线程不安全的。
 
@@ -2049,6 +2096,7 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
@@ -2080,14 +2128,14 @@ async function Demo() {
 | 名称     | 类型                         | 只读 | 可选 | 说明               |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
 | size     | [image.Size](./arkts-apis-image-i.md#size)                | 是   | 否   | 图片大小。         |
-| capacity | number                       | 是   | 否   | 同时访问的图像数。 |
+| capacity | number                       | 是   | 否   | 同时访问的图像数。该参数仅作为期望值，实际capacity由设备硬件决定。 |
 | format   | [image.ImageFormat](./arkts-apis-image-e.md#imageformat9) | 是   | 否   | 图像格式。         |
 
 ### getReceivingSurfaceId
 
 getReceivingSurfaceId(): Promise\<string>
 
-用于获取一个surface id供Camera或其他组件使用。使用promise返回结果。
+用于获取一个surface id供Camera或其他组件使用。使用promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -2100,26 +2148,29 @@ getReceivingSurfaceId(): Promise\<string>
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-let size: image.Size = {
+async function Demo() {
+  let size: image.Size = {
     height: 8192,
     width: 8
-}
-let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
-receiver.getReceivingSurfaceId().then((id: string) => {
+  }
+  let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+  receiver.getReceivingSurfaceId().then((id: string) => {
     console.info('Succeeded in getting the ReceivingSurfaceId.');
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`Failed to get the ReceivingSurfaceId.code ${error.code}, message is ${error.message}`);
-})
+  })
+}
 ```
 
 ### readLatestImage
 
 readLatestImage(): Promise\<Image>
 
-从ImageReceiver读取最新的图片，并使用promise返回结果。
+从ImageReceiver读取最新的图片。使用promise异步回调。
 
 **注意**：此接口需要在[on](#on)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](#image)对象使用完毕后需要调用[release](#release-2)方法释放，释放后才可以继续接收新的数据。
 
@@ -2134,26 +2185,29 @@ readLatestImage(): Promise\<Image>
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-let size: image.Size = {
+async function Demo() {
+  let size: image.Size = {
     height: 8192,
     width: 8
-}
-let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
-receiver.readLatestImage().then((img: image.Image) => {
+  }
+  let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+  receiver.readLatestImage().then((img: image.Image) => {
     console.info('readLatestImage succeeded.');
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`readLatestImage failed. code ${error.code}, message is ${error.message}`);
-})
+  })
+}
 ```
 
 ### readNextImage
 
 readNextImage(): Promise\<Image>
 
-从ImageReceiver读取下一张图片，并使用promise返回结果。
+从ImageReceiver读取下一张图片。使用promise异步回调。
 
 **注意**：此接口需要在[on](#on)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](#image)对象使用完毕后需要调用[release](#release-2)方法释放，释放后才可以继续接收新的数据。
 
@@ -2168,26 +2222,29 @@ readNextImage(): Promise\<Image>
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-let size: image.Size = {
+async function Demo() {
+  let size: image.Size = {
     height: 8192,
     width: 8
-}
-let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
-receiver.readNextImage().then((img: image.Image) => {
+  }
+  let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+  receiver.readNextImage().then((img: image.Image) => {
     console.info('readNextImage succeeded.');
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`readNextImage failed. code ${error.code}, message is ${error.message}`);
-})
+  })
+}
 ```
 
 ### on
 
 on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 
-接收图片时注册回调。
+接收图片时注册。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -2201,24 +2258,26 @@ on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 
-let size: image.Size = {
+async function Demo() {
+  let size: image.Size = {
     height: 8192,
     width: 8
+  }
+  let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+  receiver.on('imageArrival', () => {
+    // 接收到图片，实现回调函数逻辑。
+  })
 }
-let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
-receiver.on('imageArrival', () => {
-    // image arrival, do something.
-})
 ```
 
 ### release
 
 release(): Promise\<void>
 
-释放ImageReceiver实例并使用promise返回结果。release是线程不安全的。
+释放ImageReceiver实例。使用promise异步回调。release是线程不安全的。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -2231,17 +2290,20 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-let size: image.Size = {
+async function Demo() {
+  let size: image.Size = {
     height: 8192,
     width: 8
-}
-let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
-receiver.release().then(() => {
+  }
+  let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+  receiver.release().then(() => {
     console.info('release succeeded.');
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`release failed. code ${error.code}, message is ${error.message}`);
-})
+  })
+}
 ```

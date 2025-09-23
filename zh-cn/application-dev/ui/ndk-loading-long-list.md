@@ -47,7 +47,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/capi-arkui-nativemodule-arkui-
    
    #include "ArkUIListItemNode.h"
    #include "ArkUITextNode.h"
-   #include "nativeModule.h"
+   #include "NativeModule.h"
    #include <hilog/log.h>
    
    namespace NativeModule {
@@ -177,7 +177,15 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/capi-arkui-nativemodule-arkui-
                textNode->SetBackgroundColor(0xFFfffacd);
                textNode->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER);
                listItem->AddChild(textNode);
-               listItem->RegisterOnClick([index]() { OH_LOG_INFO(LOG_APP, "on %{public}d list item click", index); });
+               auto swipeNode = std::make_shared<ArkUITextNode>();
+               swipeNode->RegisterOnClick([this, data = data_[index]](ArkUI_NodeEvent *event) {
+                   auto it = std::find(data_.begin(), data_.end(), data);
+                   if (it != data_.end()) {
+                       auto index = std::distance(data_.begin(), it);
+                       RemoveItem(index);
+                   }
+               });
+               listItem->SetSwiperAction(swipeNode);
                handle = listItem->GetHandle();
                // 保持文本列表项的引用。
                items_.emplace(handle, listItem);
@@ -230,7 +238,9 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/capi-arkui-nativemodule-arkui-
            : ArkUINode((NativeModuleInstance::GetInstance()->GetNativeNodeAPI())->createNode(ARKUI_NODE_LIST)) {}
    
        ~ArkUIListNode() override {
-           nativeModule_->unregisterNodeEvent(handle_, NODE_LIST_ON_SCROLL_INDEX);
+           if (nativeModule_) {
+               nativeModule_->unregisterNodeEvent(handle_, NODE_LIST_ON_SCROLL_INDEX);
+           }
            if (adapter_) {
                // 析构的时候卸载adapter下的UI组件。
                nativeModule_->resetAttribute(handle_, NODE_LIST_NODE_ADAPTER);
@@ -321,10 +331,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/capi-arkui-nativemodule-arkui-
    
    #include "NativeEntry.h"
    
-   #include "ArkUIMixedRefresh.h"
    #include "LazyTextListExample.h"
-   #include "MixedRefreshExample.h"
-   #include "TextListExample.h"
    
    #include <arkui/native_node_napi.h>
    #include <arkui/native_type.h>
@@ -350,7 +357,6 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/capi-arkui-nativemodule-arkui-
    
        // 保持Native侧对象到管理类中，维护生命周期。
        NativeEntry::GetInstance()->SetRootNode(node);
-       g_env = env;
        return nullptr;
    }
    
@@ -437,10 +443,14 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/capi-arkui-nativemodule-arkui-
         std::shared_ptr<ArkUINode> GetSwipeContent() const { 
             return swipeContent_; 
         }
+        std::list<std::shared_ptr<ArkUIBaseNode>> &GetChildren() {
+            return children_;
+        }
     private: 
         ArkUI_ListItemSwipeActionOption* swipeAction_ = nullptr; 
         ArkUI_ListItemSwipeActionItem* swipeItem_ = nullptr;
         std::shared_ptr<ArkUINode> swipeContent_ = nullptr; 
+        std::list<std::shared_ptr<ArkUIBaseNode>> children_;
     }; 
     }// namespace NativeModule 
     #endif// MYAPPLICATION_ARKUILISTITEMNODE_H
@@ -618,7 +628,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/capi-arkui-nativemodule-arkui-
             header->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER);
             auto listItemGroup = std::make_shared<ArkUIListItemGroupNode>(); 
             listItemGroup->SetHeader(header); 
-            auto adapter = std::make_shared<ArkUIListItemAdapter>(4); 
+            auto adapter = std::make_shared<ArkUIListItemAdapter>(); 
             listItemGroup->SetLazyAdapter(adapter); 
             list->AddChild(listItemGroup); 
         }

@@ -1,4 +1,11 @@
-# @ohos.app.ability.PrintExtensionAbility (Print Extension Ability)
+# @ohos.app.ability.PrintExtensionAbility (PrintExtensionAbility)
+
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Print-->
+<!--Owner: @guoshengbang-->
+<!--Designer: @gcw_4D6e0BBd-->
+<!--Tester: @guoshengbang-->
+<!--Adviser: @RayShih-->
 
 The **PrintExtensionAbility** module provides operation APIs of the print extension ability.
 

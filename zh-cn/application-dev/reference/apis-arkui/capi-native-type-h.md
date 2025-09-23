@@ -20,6 +20,8 @@
 
 **相关模块：** [ArkUI_NativeModule](capi-arkui-nativemodule.md)
 
+**相关示例：** <!--PR1-->[native_type_sample](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NativeType/native_type_sample)<!--PR1End-->
+
 ## 汇总
 
 ### 结构体
@@ -73,6 +75,8 @@
 | [ArkUI_TextPickerRangeContentArray](capi-arkui-nativemodule-arkui-textpickerrangecontentarray.md) | ArkUI_TextPickerRangeContentArray | 定义文本选择器的数据选择列表。 |
 | [ArkUI_TextCascadePickerRangeContentArray](capi-arkui-nativemodule-arkui-textcascadepickerrangecontentarray.md) | ArkUI_TextCascadePickerRangeContentArray | 定义多列联动数据选择器的多列联动数据选择列表。 |
 | [ArkUI_VisibleAreaEventOptions](capi-arkui-nativemodule-arkui-visibleareaeventoptions.md) | ArkUI_VisibleAreaEventOptions | 可见区域变化监听的参数。 |
+|[ArkUI_PositionEdges](capi-arkui-nativemodule-arkui-positionedges.md)|ArkUI_PositionEdges|相对容器内容区边界的位置参数。|
+|[ArkUI_ContentTransitionEffect](capi-arkui-nativemodule-arkui-contenttransitioneffect.md)|ArkUI_ContentTransitionEffect|内容过渡效果。|
 
 ### 枚举
 
@@ -175,6 +179,7 @@
 | [ArkUI_AnimationDirection](#arkui_animationdirection)               | ArkUI_AnimationDirection        | 动画播放模式。                           |
 | [ArkUI_ListItemSwipeActionState](#arkui_listitemswipeactionstate)   | ArkUI_ListItemSwipeActionState  | 定义 Listitem 组件SwipeAction方法的显隐模式。 |
 | [ArkUI_ListItemSwipeEdgeEffect](#arkui_listitemswipeedgeeffect)     | ArkUI_ListItemSwipeEdgeEffect   | 定义 Listitem 组件SwipeAction方法的滚动模式。 |
+| [ArkUI_ListItemSwipeActionDirection](#arkui_listitemswipeactiondirection) | ArkUI_ListItemSwipeActionDirection | ListItem划出菜单的展开方向。 |
 | [ArkUI_AnimationStatus](#arkui_animationstatus)                     | ArkUI_AnimationStatus           | 定义帧动画的播放状态。                       |
 | [ArkUI_AnimationFillMode](#arkui_animationfillmode)                 | ArkUI_AnimationFillMode         | 定义帧动画组件在动画开始前和结束后的状态。             |
 | [ArkUI_ErrorCode](#arkui_errorcode)                                 | ArkUI_ErrorCode                 | 定义错误码枚举值。                         |
@@ -192,6 +197,7 @@
 | [ArkUI_FocusWrapMode](#arkui_focuswrapmode)                         | ArkUI_FocusWrapMode             | 组件走焦换行规则。                         |
 | [ArkUI_EdgeDirection](#arkui_edgedirection)                         | ArkUI_EdgeDirection             | 定义矩形边方向。                         |
 | [ArkUI_CornerDirection](#arkui_cornerdirection)                     | ArkUI_CornerDirection           | 定义角度方向。                         |
+| [ArkUI_LayoutPolicy](#arkui_layoutpolicy)                         | ArkUI_LayoutPolicy             | 布局策略枚举。                         |
 
 ### 函数
 
@@ -362,6 +368,8 @@
 | [int32_t OH_ArkUI_ListItemSwipeActionOption_GetEdgeEffect(ArkUI_ListItemSwipeActionOption* option)](#oh_arkui_listitemswipeactionoption_getedgeeffect) | 获取滑动效果。 |
 | [void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChange(ArkUI_ListItemSwipeActionOption* option, void (\*callback)(float offset))](#oh_arkui_listitemswipeactionoption_setonoffsetchange) | 滑动操作偏移量更改时调用的事件。 |
 | [void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChangeWithUserData (ArkUI_ListItemSwipeActionOption* option, void* userData, void (\*callback)(float offset, void* userData))](#oh_arkui_listitemswipeactionoption_setonoffsetchangewithuserdata) | 滑动操作偏移量更改时调用的事件。 |
+| [int32_t OH_ArkUI_ListItemSwipeAction_Expand(ArkUI_NodeHandle node, ArkUI_ListItemSwipeActionDirection direction)](#oh_arkui_listitemswipeaction_expand) |  展开指定ListItem的划出菜单。 |
+| [int32_t OH_ArkUI_ListItemSwipeAction_Collapse(ArkUI_NodeHandle node)](#oh_arkui_listitemswipeaction_collapse) |  收起指定ListItem的划出菜单。 |
 | [ArkUI_AccessibilityState* OH_ArkUI_AccessibilityState_Create(void)](#oh_arkui_accessibilitystate_create) | 创建无障碍状态。 |
 | [void OH_ArkUI_AccessibilityState_Dispose(ArkUI_AccessibilityState* state)](#oh_arkui_accessibilitystate_dispose) | 销毁无障碍状态指针。 |
 | [void OH_ArkUI_AccessibilityState_SetDisabled(ArkUI_AccessibilityState* state, int32_t isDisabled)](#oh_arkui_accessibilitystate_setdisabled) | 设置无障碍状态是否禁用。 |
@@ -462,6 +470,18 @@
 | [void OH_ArkUI_EmbeddedComponentOption_Dispose(ArkUI_EmbeddedComponentOption* option)](#oh_arkui_embeddedcomponentoption_dispose) | 删除EmbeddedComponent组件选项的对象。 |
 | [void OH_ArkUI_EmbeddedComponentOption_SetOnError (ArkUI_EmbeddedComponentOption* option, void (\*callback)(int32_t code, const char* name, const char* message))](#oh_arkui_embeddedcomponentoption_setonerror) | 设置EmbeddedComponent组件的onError回调。EmbeddedComponent组件在运行过程中发生异常时触发本回调。 |
 | [void OH_ArkUI_EmbeddedComponentOption_SetOnTerminated (ArkUI_EmbeddedComponentOption* option, void (\*callback)(int32_t code, AbilityBase_Want* want))](#oh_arkui_embeddedcomponentoption_setonterminated) | 设置EmbeddedComponent组件的onTerminated回调。EmbeddedComponent组件正常退出时触发本回调。 |
+|[ArkUI_PositionEdges* OH_ArkUI_PositionEdges_Create()](#oh_arkui_positionedges_create)|创建PositionEdges属性对象。|
+|[ArkUI_PositionEdges* OH_ArkUI_PositionEdges_Copy(const ArkUI_PositionEdges* edges)](#oh_arkui_positionedges_copy)|深拷贝PositionEdges属性对象。|
+|[void OH_ArkUI_PositionEdges_Dispose(ArkUI_PositionEdges* edges)](#oh_arkui_positionedges_dispose)|销毁PositionEdges属性对象。|
+|[void OH_ArkUI_PositionEdges_SetTop(ArkUI_PositionEdges* edges, float value)](#oh_arkui_positionedges_settop)|设置PositionEdges属性对象的上方向值。|
+|[int32_t OH_ArkUI_PositionEdges_GetTop(ArkUI_PositionEdges* edges, float* value)](#oh_arkui_positionedges_gettop)|获取PositionEdges属性对象的上方向值。|
+|[void OH_ArkUI_PositionEdges_SetLeft(ArkUI_PositionEdges* edges, float value)](#oh_arkui_positionedges_setleft)|设置PositionEdges属性对象的左方向值。|
+|[int32_t OH_ArkUI_PositionEdges_GetLeft(ArkUI_PositionEdges* edges, float* value)](#oh_arkui_positionedges_getleft)|获取PositionEdges属性对象的左方向值。|
+|[void OH_ArkUI_PositionEdges_SetBottom(ArkUI_PositionEdges* edges, float value)](#oh_arkui_positionedges_setbottom)|设置PositionEdges属性对象的下方向值。|
+|[int32_t OH_ArkUI_PositionEdges_GetBottom(ArkUI_PositionEdges* edges, float* value)](#oh_arkui_positionedges_getbottom)|获取PositionEdges属性对象的下方向值。|
+|[void OH_ArkUI_PositionEdges_SetRight(ArkUI_PositionEdges* edges, float value)](#oh_arkui_positionedges_setright)|设置PositionEdges属性对象的右方向值。|
+|[int32_t OH_ArkUI_PositionEdges_GetRight(ArkUI_PositionEdges* edges, float* value)](#oh_arkui_positionedges_getright)|获取PositionEdges属性对象的右方向值。|
+|[ArkUI_ContentTransitionEffect* OH_ArkUI_ContentTransitionEffect_Create(int32_t type)](#oh_arkui_contenttransitioneffect_create)|创建ContentTransitionEffect属性对象。|
 
 ## 枚举类型说明
 
@@ -598,6 +618,25 @@ enum ArkUI_TextVerticalAlignment
 | ARKUI_TEXT_VERTICAL_ALIGNMENT_BOTTOM | 底部对齐。 |
 | ARKUI_TEXT_VERTICAL_ALIGNMENT_CENTER | 居中对齐。 |
 | ARKUI_TEXT_VERTICAL_ALIGNMENT_TOP | 顶部对齐。 |
+
+### ArkUI_TextContentAlign
+
+```
+enum ArkUI_TextContentAlign
+```
+
+**描述：**
+
+
+定义文本内容区垂直对齐样式枚举值。
+
+**起始版本：** 21
+
+| 枚举项 | 描述 |
+| -- | -- |
+| ARKUI_TEXT_CONTENT_ALIGN_TOP = 0 | 顶部对齐。 |
+| ARKUI_TEXT_CONTENT_ALIGN_CENTER = 1 | 居中对齐。 |
+| ARKUI_TEXT_CONTENT_ALIGN_BOTTOM = 2 | 底部对齐。 |
 
 ### ArkUI_EnterKeyType
 
@@ -2487,6 +2526,23 @@ enum ArkUI_ListItemSwipeEdgeEffect
 | ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_SPRING = 0 | ListItem划动距离超过划出组件大小后可以继续划动。 |
 | ARKUI_LIST_ITEM_SWIPE_EDGE_EFFECT_NONE | ListItem划动距离不能超过划出组件大小。 |
 
+### ArkUI_ListItemSwipeActionDirection
+
+```
+enum ArkUI_ListItemSwipeActionDirection
+```
+
+**描述：**
+
+ListItem划出菜单的展开方向。
+
+**起始版本：** 21
+
+| 枚举项 | 描述 |
+| -- | -- |
+| ARKUI_LIST_ITEM_SWIPE_ACTION_DIRECTION_START = 0 | 当列表方向是垂直方向时，LTR模式下表示ListItem的左边，RTL模式下表示ListItem的右边。当列表是水平方向时，表示ListItem的上边。 |
+| ARKUI_LIST_ITEM_SWIPE_ACTION_DIRECTION_END = 1 | 当列表方向是垂直方向时，LTR模式下表示ListItem的右边，RTL模式下表示ListItem的左边。当列表是水平方向时，表示ListItem的下边。 |
+
 ### ArkUI_AnimationStatus
 
 ```
@@ -2546,9 +2602,10 @@ enum ArkUI_ErrorCode
 | ARKUI_ERROR_CODE_PARAM_INVALID = 401 | 参数错误。 |
 | ARKUI_ERROR_CODE_CAPI_INIT_ERROR = 500 |  接口初始化错误。<br>**起始版本：** 18 |
 | ARKUI_ERROR_CODE_INTERNAL_ERROR = 100001 |  出现内部错误，例如内部环境错误导致失败，或者由于内部执行失败导致操作失败。<br>**起始版本：** 15 |
+| ARKUI_ERROR_CODE_PARAM_ERROR = 100023 |  参数错误。错误码的详细介绍请参见[自定义节点错误码](../apis-arkui/errorcode-node.md)。<br>**起始版本：** 21 |
 | ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID = 103501 |  当前XComponent状态异常，方法调用失败。错误码的详细介绍请参见[XComponent组件错误码](../apis-arkui/errorcode-xcomponent.md)。<br>**起始版本：** 19 |
 | ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED = 106102 | 组件不支持特定的属性或者事件。错误码的详细介绍请参见[交互事件错误码](../apis-arkui/errorcode-event.md)。 |
-| ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED = 106103 | 对应的操作不支持ArkTS创建的节点。错误码的详细介绍请参见[自定义节点错误码](../apis-arkui/errorcode-node.md)。 |
+| ARKUI_ERROR_CODE_NOT_SUPPORTED_FOR_ARKTS_NODE = 106103 | 对应的操作不支持ArkTS创建的节点。错误码的详细介绍请参见[自定义节点错误码](../apis-arkui/errorcode-node.md)。 |
 | ARKUI_ERROR_CODE_ADAPTER_NOT_BOUND = 106104 | 懒加载适配器未绑定到组件上。 |
 | ARKUI_ERROR_CODE_ADAPTER_EXIST = 106105 | 适配器已存在。 |
 | ARKUI_ERROR_CODE_CHILD_NODE_EXIST = 106106 | 对应节点已存在子节点，无法添加适配器。 |
@@ -2869,6 +2926,24 @@ enum ArkUI_CornerDirection
 | ARKUI_CORNER_DIRECTION_TOP_RIGHT = 1 << 1 | 设置右上侧方向内容。 |
 | ARKUI_CORNER_DIRECTION_BOTTOM_LEFT = 1 << 2 | 设置左下侧方向内容。 |
 | ARKUI_CORNER_DIRECTION_BOTTOM_RIGHT = 1 << 3 | 设置右下侧方向容。 |
+
+### ArkUI_LayoutPolicy
+
+```
+enum ArkUI_LayoutPolicy
+```
+
+**描述：**
+
+定义布局策略枚举。
+
+**起始版本：** 21
+
+| 枚举项 | 描述 |
+| -- | -- |
+| ARKUI_LAYOUTPOLICY_MATCHPARENT = 0 | 组件自适应父组件布局。 |
+| ARKUI_LAYOUTPOLICY_WRAPCONTENT | 组件自适应子组件（内容），且其大小受父组件内容区大小约束。 |
+| ARKUI_LAYOUTPOLICY_FIXATIDEALSIZE | 组件自适应子组件（内容），且其大小不受父组件内容区大小约束。 |
 
 ## 函数说明
 
@@ -6733,6 +6808,59 @@ void OH_ArkUI_ListItemSwipeActionOption_SetOnOffsetChangeWithUserData(ArkUI_List
 |  void* userData | 用户自定义数据。 |
 | callback | 回调事件。offset 滑动偏移量。 |
 
+### OH_ArkUI_ListItemSwipeAction_Expand()
+
+```
+int32_t OH_ArkUI_ListItemSwipeAction_Expand(ArkUI_NodeHandle node, ArkUI_ListItemSwipeActionDirection direction)
+```
+
+**描述：**
+
+展开指定ListItem的划出菜单。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| node | ListItem节点对象。 |
+| [ArkUI_ListItemSwipeActionDirection](#arkui_listitemswipeactiondirection) direction | ListItem划出菜单的展开方向。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 错误码。<br>         [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>         [ARKUI_ERROR_CODE_PARAM_ERROR](capi-native-type-h.md#arkui_errorcode) 传入的节点对象类型错误。<br>         [ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE](capi-native-type-h.md#arkui_errorcode) 传入的节点未挂载到组件树上。 |
+
+> **说明：**
+>
+> - 如果List组件NODE_LIST_CACHED_COUNT属性设置显示预加载ListItem，List显示区域外已预加载完成的ListItem支持展开，否则List显示区域外节点不支持展开。
+
+### OH_ArkUI_ListItemSwipeAction_Collapse()
+
+```
+int32_t OH_ArkUI_ListItemSwipeAction_Collapse(ArkUI_NodeHandle node)
+```
+
+**描述：**
+
+收起指定ListItem的划出菜单。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| node | ListItem节点对象。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 错误码。<br>         [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>         [ARKUI_ERROR_CODE_PARAM_ERROR](capi-native-type-h.md#arkui_errorcode) 传入的节点对象类型错误。<br>         [ARKUI_ERROR_CODE_NODE_NOT_ON_MAIN_TREE](capi-native-type-h.md#arkui_errorcode) 传入的节点未挂载到组件树上。 |
+
 ### OH_ArkUI_AccessibilityState_Create()
 
 ```
@@ -9040,4 +9168,264 @@ void OH_ArkUI_EmbeddedComponentOption_SetOnTerminated(ArkUI_EmbeddedComponentOpt
 | [ArkUI_EmbeddedComponentOption](capi-arkui-nativemodule-arkui-embeddedcomponentoption.md)* option | EmbeddedComponent组件选项的对象的指针。 |
 | void (\*callback)(int32_t code, [AbilityBase_Want](capi-arkui-nativemodule-abilitybase-want.md)* want) | 开发者自定义回调函数。<br>- code：被拉起EmbeddedUIExtensionAbility退出时返回的结果码。若Ability通过调用terminateSelfWithResult退出，结果码为Ability设置的值。若Ability通过调用terminateSelf退出，结果码为默认值"0"。<br>- want：被拉起EmbeddedUIExtensionAbility退出时返回的数据。   |
 
+### OH_ArkUI_PositionEdges_Create()
 
+```
+ArkUI_PositionEdges* OH_ArkUI_PositionEdges_Create()
+```
+
+**描述：**
+
+创建PositionEdges属性对象。
+
+**起始版本：** 21
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [ArkUI_PositionEdges](capi-arkui-nativemodule-arkui-positionedges.md)* | 指向PositionEdges对象的指针。 |
+
+
+### OH_ArkUI_PositionEdges_Copy()
+
+```
+ArkUI_PositionEdges* OH_ArkUI_PositionEdges_Copy(const ArkUI_PositionEdges* edges)
+```
+
+**描述：**
+
+深拷贝PositionEdges属性对象。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述                           |
+| -- |------------------------------|
+| [ArkUI_PositionEdges](capi-arkui-nativemodule-arkui-positionedges.md)* edges | 指向PositionEdges对象的指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [ArkUI_PositionEdges](capi-arkui-nativemodule-arkui-positionedges.md)* | 指向新PositionEdges对象的指针。 |
+
+### OH_ArkUI_PositionEdges_Dispose()
+
+```
+void OH_ArkUI_PositionEdges_Dispose(ArkUI_PositionEdges* edges)
+```
+
+**描述：**
+
+销毁PositionEdges属性对象。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述                           |
+| -- |------------------------------|
+| [ArkUI_PositionEdges](capi-arkui-nativemodule-arkui-positionedges.md)* edges | 指向PositionEdges对象的指针。 |
+
+### OH_ArkUI_PositionEdges_SetTop()
+
+```
+void OH_ArkUI_PositionEdges_SetTop(ArkUI_PositionEdges* edges, float value)
+```
+
+**描述：**
+
+设置PositionEdges属性对象的上方向值。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述                           |
+| -- |------------------------------|
+| [ArkUI_PositionEdges](capi-arkui-nativemodule-arkui-positionedges.md)* edges | 指向PositionEdges对象的指针。 |
+|float value|PositionEdges对应方向的值，单位vp。|
+
+### OH_ArkUI_PositionEdges_GetTop()
+
+```
+int32_t OH_ArkUI_PositionEdges_GetTop(ArkUI_PositionEdges* edges, float* value)
+```
+
+**描述：**
+
+获取PositionEdges属性对象的上方向值。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述                           |
+| -- |------------------------------|
+| [ArkUI_PositionEdges](capi-arkui-nativemodule-arkui-positionedges.md)* edges | 指向PositionEdges对象的指针。 |
+|float* value|PositionEdges对应方向的值，单位vp。|
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 错误码。<br>         [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>         [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数无效。 |
+
+### OH_ArkUI_PositionEdges_SetLeft()
+
+```
+void OH_ArkUI_PositionEdges_SetLeft(ArkUI_PositionEdges* edges, float value)
+```
+
+**描述：**
+
+设置PositionEdges属性对象的左方向值。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述                           |
+| -- |------------------------------|
+| [ArkUI_PositionEdges](capi-arkui-nativemodule-arkui-positionedges.md)* edges | 指向PositionEdges对象的指针。 |
+|float value|PositionEdges对应方向的值，单位vp。|
+
+### OH_ArkUI_PositionEdges_GetLeft()
+
+```
+int32_t OH_ArkUI_PositionEdges_GetLeft(ArkUI_PositionEdges* edges, float* value)
+```
+
+**描述：**
+
+获取PositionEdges属性对象的左方向值。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述                           |
+| -- |------------------------------|
+| [ArkUI_PositionEdges](capi-arkui-nativemodule-arkui-positionedges.md)* edges | 指向PositionEdges对象的指针。 |
+|float* value|PositionEdges对应方向的值，单位vp。|
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 错误码。<br>         [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>         [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数无效。 |
+
+
+### OH_ArkUI_PositionEdges_SetBottom()
+
+```
+void OH_ArkUI_PositionEdges_SetBottom(ArkUI_PositionEdges* edges, float value)
+```
+
+**描述：**
+
+设置PositionEdges属性对象的下方向值。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述                           |
+| -- |------------------------------|
+| [ArkUI_PositionEdges](capi-arkui-nativemodule-arkui-positionedges.md)* edges | 指向PositionEdges对象的指针。 |
+|float value|PositionEdges对应方向的值，单位vp。|
+
+### OH_ArkUI_PositionEdges_GetBottom()
+
+```
+int32_t OH_ArkUI_PositionEdges_GetBottom(ArkUI_PositionEdges* edges, float* value)
+```
+
+**描述：**
+
+获取PositionEdges属性对象的下方向值。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述                           |
+| -- |------------------------------|
+| [ArkUI_PositionEdges](capi-arkui-nativemodule-arkui-positionedges.md)* edges | 指向PositionEdges对象的指针。 |
+|float* value|PositionEdges对应方向的值，单位vp。|
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 错误码。<br>         [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>         [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数无效。 |
+
+### OH_ArkUI_PositionEdges_SetRight()
+
+```
+void OH_ArkUI_PositionEdges_SetRight(ArkUI_PositionEdges* edges, float value)
+```
+
+**描述：**
+
+设置PositionEdges属性对象的右方向值。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述                           |
+| -- |------------------------------|
+| [ArkUI_PositionEdges](capi-arkui-nativemodule-arkui-positionedges.md)* edges | 指向PositionEdges对象的指针。 |
+|float value|PositionEdges对应方向的值，单位vp。|
+
+### OH_ArkUI_PositionEdges_GetRight()
+
+```
+int32_t OH_ArkUI_PositionEdges_GetRight(ArkUI_PositionEdges* edges, float* value)
+```
+
+**描述：**
+
+获取PositionEdges属性对象的右方向值。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述                           |
+| -- |------------------------------|
+| [ArkUI_PositionEdges](capi-arkui-nativemodule-arkui-positionedges.md)* edges | 指向PositionEdges对象的指针。 |
+|float* value|PositionEdges对应方向的值，单位vp。|
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 错误码。<br>         [ARKUI_ERROR_CODE_NO_ERROR](capi-native-type-h.md#arkui_errorcode) 成功。<br>         [ARKUI_ERROR_CODE_PARAM_INVALID](capi-native-type-h.md#arkui_errorcode) 函数参数无效。 |
+
+### OH_ArkUI_ContentTransitionEffect_Create()
+
+```
+ArkUI_ContentTransitionEffect* OH_ArkUI_ContentTransitionEffect_Create(int32_t type)
+```
+
+**描述：**
+
+创建ContentTransitionEffect属性对象。
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述                           |
+| -- |------------------------------|
+| int32_t | 指定动效的转场方式。值为0表示无动效转场，值为1时表示淡入淡出动效转场。|
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [ArkUI_ContentTransitionEffect](capi-arkui-nativemodule-arkui-contenttransitioneffect.md)* | 指向ContentTransitionEffect对象的指针。 |

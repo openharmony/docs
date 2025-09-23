@@ -16,7 +16,7 @@ You can install and uninstall applications using debug commands, for example, th
 ![hap-intall-uninstall](figures/hap-install-uninstall-developer.png)
 
 
-After an application is released to AppGallery, users can install or uninstall the application on their devices through the AppGallery.
+After an application is released to AppGallery, users can install the application on their devices through the AppGallery.
 
 **Figure 2** Process of installing and uninstalling an application (applicable to consumers)
 
@@ -25,7 +25,7 @@ After an application is released to AppGallery, users can install or uninstall t
 ## Updating an Application
 
 
-For developers, you need to first update the **versionCode** field in the [app.json5FrF configuration file](./app-configuration-file.md), package the application using DevEco Studio, and release it on AppGallery. For users, you can update the application in either of the following ways after a new version is released:
+For developers, you need to first update the **versionCode** field in the [app.json5 configuration file](./app-configuration-file.md), package the application using DevEco Studio, and release it on AppGallery. For users, you can update the application in either of the following ways after a new version is released:
 
 - On AppGallery: AppGallery notifies the user of an available update, and the user can install the update by following the on-screen instructions.
 - In the application: <!--RP1-->When the application for which an update is available starts up, it notifies the user of the update, and the user can install the update by following the on-screen instructions.<!--RP1End-->

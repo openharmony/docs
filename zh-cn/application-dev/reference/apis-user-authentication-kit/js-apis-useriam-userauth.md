@@ -173,7 +173,7 @@ try {
 | 名称     | 类型                           | 必填 | 说明                                                         |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
 | result   | number                         | 是   | 用户认证结果。若成功返回SUCCESS，若失败返回相应错误码，参见[UserAuthResultCode](#userauthresultcode9)。 |
-| token    | Uint8Array                     | 否   | 认证成功时，返回认证成功的令牌信息。                  |
+| token    | Uint8Array                     | 否   | 认证成功时，返回认证成功的令牌信息。最大长度为1024字节。 |
 | authType | [UserAuthType](#userauthtype8) | 否   | 认证成功时，返回认证类型。                           |
 | enrolledState<sup>12+</sup> | [EnrolledState](#enrolledstate12) | 否   |  认证成功时，返回注册凭据的状态。|
 
@@ -439,7 +439,7 @@ try {
 
 on(type: 'result', callback: IAuthCallback): void
 
-订阅用户身份认证的结果。
+订阅用户身份认证的最终结果。通过该接口获取到的是用户在认证控件完成身份认证交互后的最终身份认证结果。认证控件消失前，用户中间的认证失败尝试并不会通过该接口返回。如果需要感知整个认证过程中用户的每一次认证失败尝试，请通过[on('authTip')](#on20)接口订阅。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -796,7 +796,7 @@ try {
 
 on(type: 'authTip', callback: AuthTipCallback): void
 
-订阅身份认证中间状态。
+订阅身份认证过程中的提示信息。通过该接口可以获取到认证过程中控件的拉起和退出提示，以及认证过程中用户的每一次认证失败尝试。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 

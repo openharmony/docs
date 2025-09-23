@@ -31,6 +31,8 @@ openToast(options: ShowToastOptions): Promise&lt;number&gt;
 > **说明：**
 > 
 > 不支持在输入法类型窗口中使用子窗（showMode设置为TOP_MOST或者SYSTEM_TOP_MOST）的openToast，详情见输入法框架的约束与限制说明[createPanel](../apis-ime-kit/js-apis-inputmethodengine.md#createpanel10-1)。
+>
+> 直接使用openToast可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用[openToast](arkts-apis-uicontext-promptaction.md#opentoast18)实现。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -58,10 +60,6 @@ openToast(options: ShowToastOptions): Promise&lt;number&gt;
 | 100001   | Internal error.                                              |
 
 **示例：**
-
-> **说明：**
-> 
-> 直接使用openToast可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用[openToast](arkts-apis-uicontext-promptaction.md#opentoast18)实现。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -116,6 +114,10 @@ closeToast(toastId: number): void
 
 关闭即时反馈。
 
+> **说明：**
+> 
+> 直接使用closeToast可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用[openToast](arkts-apis-uicontext-promptaction.md#closetoast18)实现。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -137,10 +139,6 @@ closeToast(toastId: number): void
 | 103401   | Cannot find the toast.                                       |
 
 **示例：**
-
-> **说明：**
-> 
-> 直接使用closeToast可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用[openToast](arkts-apis-uicontext-promptaction.md#closetoast18)实现。
 
 示例请看[promptAction.openToast18](#promptactionopentoast18)的示例。
 
@@ -569,7 +567,7 @@ Dialog关闭的信息。
 | ----- | ---------------------------------------- | ---- | ------- | ------- |
 | text  | string&nbsp;\|&nbsp; [Resource](arkui-ts/ts-types.md#resource) | 否   | 否   | 按钮文本内容。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | color | string&nbsp;\| &nbsp;[Resource](arkui-ts/ts-types.md#resource) | 否   | 否   | 按钮文本颜色。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| primary<sup>12+</sup> | boolean | 否    | 是   | 在弹窗获焦且未进行tab键走焦时，按钮是否默认响应Enter键。多个Button时，只允许一个Button的该字段配置为true，否则所有Button均不响应。多重弹窗可自动获焦连续响应。值为true表示按钮默认响应Entry键，值为false时，按钮不默认响应Entry键。<br/>默认值：false<br />**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| primary<sup>12+</sup> | boolean | 否    | 是   | 在弹窗获焦且未进行tab键走焦时，按钮是否默认响应Enter键。多个Button时，只允许一个Button的该字段配置为true，否则所有Button均不响应。多重弹窗可自动获焦连续响应。值为true表示按钮默认响应Enter键，值为false时，按钮不默认响应Enter键。<br/>默认值：false<br />**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
 
@@ -743,7 +741,7 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
 | 类型                                                         | 说明             |
 | ------------------------------------------------------------ | ---------------- |
-| Promise&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | 对话框响应结果。 |
+| Promise&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | Promise对象，返回对话框的响应结果。 |
 
 **错误码：**
 
@@ -787,7 +785,7 @@ promptAction.showDialog({
 
 showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSuccessResponse&gt;):void
 
-创建并显示对话框，对话框响应结果异步返回。
+创建并显示对话框，对话框响应结果使用callback异步回调返回。
 
 > **说明：**
 >
@@ -804,7 +802,7 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 | 参数名   | 类型                                                         | 必填 | 说明                     |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------ |
 | options  | [ShowDialogOptions](#showdialogoptions)                      | 是   | 页面显示对话框信息描述。 |
-| callback | AsyncCallback&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | 是   | 对话框响应结果回调。     |
+| callback | AsyncCallback&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | 是   | 回调函数。弹出对话框成功，err为undefined，data为获取到的对话框响应结果，否则为错误对象。   |
 
 **错误码：**
 
@@ -958,7 +956,7 @@ struct DialogExample {
 
 showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenuSuccessResponse&gt;):void
 
-创建并显示操作菜单，菜单响应结果异步返回。
+创建并显示操作菜单，菜单响应结果使用callback异步回调返回。
 
 > **说明：**
 >
@@ -975,7 +973,7 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 | 参数名   | 类型                                                         | 必填 | 说明               |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | options  | [ActionMenuOptions](#actionmenuoptions)                      | 是   | 操作菜单选项。     |
-| callback | AsyncCallback&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)> | 是   | 菜单响应结果回调。 |
+| callback | AsyncCallback&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)> | 是   | 回调函数。弹出操作菜单成功，err为undefined，data为获取到的操作菜单响应结果，否则为错误对象。 |
 
 **错误码：**
 
@@ -1116,13 +1114,13 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 
 | 参数名  | 类型                                    | 必填 | 说明           |
 | ------- | --------------------------------------- | ---- | -------------- |
-| options | [ActionMenuOptions](#actionmenuoptions) | 是   | 操作菜单选项。 |
+| options | [ActionMenuOptions](#actionmenuoptions) | 是   | Promise对象，返回菜单的响应结果。 |
 
 **返回值：**
 
 | 类型                                                         | 说明           |
 | ------------------------------------------------------------ | -------------- |
-| Promise&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)&gt; | 菜单响应结果。 |
+| Promise&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)&gt; | Promise对象，返回菜单的响应结果。 |
 
 **错误码：**
 

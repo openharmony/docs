@@ -154,5 +154,7 @@
    HiAppEvent eventInfo.params.test_data=100
    ```
 
+2. 若应用无法启动或长时间未启动，开发者可以参考[使用FaultLogExtensionAbility订阅事件](./fault-log-extension-app-events-arkts.md)回调重写的函数，进行延迟上报。
+
 <!--RP1-->
 <!--RP1End-->

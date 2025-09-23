@@ -100,15 +100,16 @@ export default class EntryAbility extends UIAbility {
     let accountId = 100;
 
     try {
-      this.context.startAbilityForResultWithAccount(want, accountId, (err: BusinessError, result: common.AbilityResult) => {
-        if (err.code) {
-          // 处理业务逻辑错误
-          console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
-          return;
-        }
-        // 执行正常业务
-        console.info('startAbilityForResultWithAccount succeed');
-      });
+      this.context.startAbilityForResultWithAccount(want, accountId,
+        (err: BusinessError, result: common.AbilityResult) => {
+          if (err.code) {
+            // 处理业务逻辑错误
+            console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
+            return;
+          }
+          // 执行正常业务
+          console.info('startAbilityForResultWithAccount succeed');
+        });
     } catch (err) {
       // 处理入参错误异常
       let code = (err as BusinessError).code;
@@ -244,7 +245,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Ability被销毁时的回调函数，包含AbilityResult参数。 |
+| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise对象，包含AbilityResult参数。 |
 
 **错误码：**
 
@@ -928,8 +929,6 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 将当前Ability连接到一个指定account的ServiceExtensionAbility。仅支持在主线程调用。
 
-当前仅在Phone、Tablet设备上生效。
-
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
@@ -940,6 +939,8 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统接口**：此接口为系统接口。
+
+**设备行为差异**：该接口在Phone、Tablet中可正常调用，在其他设备类型中返回16000006错误码。
 
 **参数：**
 
@@ -1729,7 +1730,8 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;
 
-根据accountId对指定的Ability进行call调用，并且可以使用返回的Caller通信接口与被调用方进行通信。仅支持在主线程调用。
+根据accountId对指定的Ability进行call调用，并且可以使用返回的Caller通信接口与被调用方进行通信。仅支持在主线程调用。使用Promise异步回调。
+
 该接口不支持拉起启动模式为[specified模式](../../application-models/uiability-launch-type.md#specified启动模式)的UIAbility。
 
 使用规则：
@@ -1755,7 +1757,7 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[Caller](js-apis-app-ability-uiAbility.md#caller)&gt; | 获取要通讯的caller对象。 |
+| Promise&lt;[Caller](js-apis-app-ability-uiAbility.md#caller)&gt; | Promise对象，返回要通讯的caller对象。 |
 
 **错误码：**
 

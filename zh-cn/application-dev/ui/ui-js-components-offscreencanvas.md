@@ -79,7 +79,8 @@ export default {
     this.img.onerror = function() {
       promptAction.showToast({message:"error",duration:2000})
     };
-    var bitmap = this.offscreen.transferToImageBitmap();    this.ctx.transferFromImageBitmap(bitmap);
+    var bitmap = this.offscreen.transferToImageBitmap();
+    this.ctx.transferFromImageBitmap(bitmap);
   },
   change(e){
     this.offCanvas.filter = e.newValue;this.offCanvas.drawImage(this.img, 100, 100, 400, 300);
@@ -121,6 +122,7 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #F1F3F5;
+  display: flex;
 }
 canvas{
   width: 600px;

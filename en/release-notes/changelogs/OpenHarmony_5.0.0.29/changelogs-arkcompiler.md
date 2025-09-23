@@ -50,4 +50,4 @@ N/A
 
 **Adaptation Guide**
 
-You are advised to change the property name from a numeric literal to a constant string or identifier in the declaration phase. For details about the description and modification method, see [Recipes](../../../application-dev/quick-start/typescript-to-arkts-migration-guide.md#recipe-objects-with-property-names-that-are-not-identifiers-are-not-supported).
+You are advised to change the property name from a numeric literal to a constant string or identifier in the declaration phase. For details about the description and modification method, see [Recipes](../../../application-dev/quick-start/typescript-to-arkts-migration-guide.md#objects-with-property-names-that-are-not-identifiers-are-not-supported).

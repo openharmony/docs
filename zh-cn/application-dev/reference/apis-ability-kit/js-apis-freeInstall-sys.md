@@ -150,7 +150,7 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 
 ```js
 import { freeInstall } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
 let upgradeFlag = freeInstall.UpgradeFlag.SINGLE_UPGRADE;
@@ -183,7 +183,7 @@ isHapModuleRemovable(bundleName: string, moduleName: string, callback: AsyncCall
 | ---------- | ---------------------- | ---- | --------------------------------------------- |
 | bundleName | string                 | 是   | 应用Bundle名称。                      |
 | moduleName | string                 | 是   | 应用程序模块名称。                            |
-| callback   | AsyncCallback\<boolean> | 是   | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)。返回true表示可以移除；返回false表示不可移除。 |
+| callback   | AsyncCallback\<boolean> | 是   | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)。当获取成功时，err为null，data为bool值，true表示可以移除；false表示不可移除；否则为错误对象。 |
 
 **错误码：**
 
@@ -259,7 +259,7 @@ isHapModuleRemovable(bundleName: string, moduleName: string): Promise\<boolean>
 
 ```js
 import { freeInstall } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = 'com.example.myapplication';
 let moduleName = 'entry';
 try {
@@ -364,7 +364,7 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\
 
 ```js
 import { freeInstall } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = 'com.example.myapplication';
 let bundlePackFlag = freeInstall.BundlePackFlag.GET_PACK_INFO_ALL;
 try {
@@ -455,7 +455,7 @@ getDispatchInfo(): Promise\<DispatchInfo>
 
 ```js
 import { freeInstall } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
     freeInstall.getDispatchInfo().then(data => {
         console.info('Operation succeed:' + JSON.stringify(data));

@@ -3,7 +3,7 @@
 <!--Subsystem: ArkUI-->
 <!--Owner: @fengluochenai-->
 <!--Designer: @YanSanzo-->
-<!--Tester: @tinygreyy-->
+<!--Tester: @ybhou1993-->
 <!--Adviser: @HelloCrease-->
 
 
@@ -38,14 +38,14 @@ boolean, colorOptions?: ProgressButtonColorOptions, progressButtonRadius?: Lengt
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称                                | 类型                                                            | 必填 | 装饰器类型  | 说明                                                                                                                                      |
-|-----------------------------------|---------------------------------------------------------------|----|--------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| progress                          | number                                                        | 是  | \@Prop | 下载按钮的当前进度值。<br/>取值范围：[0,100]。设置小于0的数值时置为0，设置大于100的数值置为100。<br/>默认值：0<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                |
-| content                           | [ResourceStr](ts-types.md#resourcestr)                        | 是  | \@Prop | 下载按钮的文本。<br/>默认值：空字符串。<br/>**说明**：最长显示组件宽度，超出部分用省略号代替。从API version 20开始，支持Resource类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| progressButtonWidth               | [Length](ts-types.md#length)                                  | 否  | -      | 下载按钮的宽度，单位vp。<br/>取值范围：大于等于44vp。<br/>默认值：44vp。小于默认值和非法值设置为默认值。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
-| clickCallback                     | () => void                                                 | 是  | -      | 下载按钮的点击回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                          |
-| enable                            | boolean                                                       | 是  | \@Prop | 下载按钮是否可以点击。<br> enable为true时，表示可以点击。<br> enable为false时，表示不可点击。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
-| colorOptions<sup>18+<sup>         | [ProgressButtonColorOptions](#progressbuttoncoloroptions18)   | 否  | \@Prop | 下载按钮颜色。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                             |
-| progressButtonRadius<sup>18+<sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | \@Prop | 下载按钮的圆角（不支持百分比设置）。<br/>取值范围：[0, height/2]<br/>默认值：height/2<br/>设置非法数值时，按照默认值处理。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。    |
+|-----------------------------------|---------------------------------------------------------------|---|--------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| progress                          | number                                                        | 是 | \@Prop | 下载按钮的当前进度值。<br/>取值范围：[0,100]。设置小于0的数值时置为0，设置大于100的数值置为100。<br/>默认值：0<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                |
+| content                           | [ResourceStr](ts-types.md#resourcestr)                        | 是 | \@Prop | 下载按钮的文本。<br/>默认值：空字符串。<br/>**说明**：最长显示组件宽度，超出部分用省略号代替。从API version 20开始，支持Resource类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| progressButtonWidth               | [Length](ts-types.md#length)                                  | 否 | -      | 下载按钮的宽度，单位vp。<br/>取值范围：大于等于44vp。<br/>默认值：44vp。当取值为非Resource类型且小于默认值或取值为非法值时，识别值为默认值。当取值为Resource类型且小于默认值时识别为默认值，为非法值时下载按钮的宽度显示为容器宽度的100%。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
+| clickCallback                     | () => void                                                 | 是 | -      | 下载按钮的点击回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                          |
+| enable                            | boolean                                                       | 是 | \@Prop | 下载按钮是否可以点击。<br> enable为true时，表示可以点击。<br> enable为false时，表示不可点击。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
+| colorOptions<sup>18+<sup>         | [ProgressButtonColorOptions](#progressbuttoncoloroptions18)   | 否 | \@Prop | 下载按钮颜色。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                             |
+| progressButtonRadius<sup>18+<sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | \@Prop | 下载按钮的圆角（不支持百分比设置）。<br/>取值范围：[0, height/2]<br/>默认值：height/2<br/>设置值小于0时按照0处理，设置其他非法数值时，按照默认值处理。当直接入参为undefined时，按照默认值处理，入参为LengthMetrics.vp时，建议传入具体数值，传入null/undefined会导致显示异常。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。    |
 
 ## ProgressButtonColorOptions<sup>18+<sup>
 
@@ -57,12 +57,12 @@ boolean, colorOptions?: ProgressButtonColorOptions, progressButtonRadius?: Lengt
 
 **设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
-| 名称              | 类型                                     | 必填 | 说明                                                               |
-|-----------------|----------------------------------------|----|------------------------------------------------------------------|
-| progressColor   | [ResourceColor](ts-types.md#resourcecolor) | 否  | 进度条颜色。<br/>默认值：#330A59F7                                         |
-| borderColor     | [ResourceColor](ts-types.md#resourcecolor) | 否  | 按钮描边颜色。<br/>默认值：#330A59F7                                        |
-| textColor       | [ResourceColor](ts-types.md#resourcecolor) | 否  | 按钮文本颜色。<br/>默认值：系统默认值（#CE000000）                                 |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否  | 按钮背景色。<br/>默认值：\$r('sys.color.ohos_id_color_foreground_contrary') |
+| 名称              | 类型                                     | 只读 | 可选 | 说明                                                               |
+|-----------------|----------------------------------------|---|---|------------------------------------------------------------------|
+| progressColor   | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 进度条颜色。<br/>默认值：#330A59F7                                         |
+| borderColor     | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 按钮描边颜色。<br/>默认值：#330A59F7                                        |
+| textColor       | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 按钮文本颜色。<br/>默认值：系统默认值（#CE000000）                                 |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 是 | 按钮背景色。<br/>默认值：\$r('sys.color.ohos_id_color_foreground_contrary') |
 
 ## 事件
 不支持[通用事件](ts-component-general-events.md)。

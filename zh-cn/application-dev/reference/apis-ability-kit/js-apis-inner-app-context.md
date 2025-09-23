@@ -1,4 +1,12 @@
 # Context (FA模型的上下文基类)
+
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @xialiangwei-->
+<!--Designer: @ykzp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 <!--deprecated_code_no_check-->
 
 Context模块提供了Ability或Application的上下文的基础能力，包括允许访问特定于应用程序的资源、请求和验证权限等。
@@ -588,7 +596,7 @@ setShowOnLockScreen(show: boolean, callback: AsyncCallback\<void>): void
 
 > **说明：**
 >
-> 从API version 9开始不再支持。建议使用window.setShowOnLockScreen替代，新接口为系统接口。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用window.setShowOnLockScreen替代，新接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -620,7 +628,7 @@ setShowOnLockScreen(show: boolean): Promise\<void>
 
 > **说明：**
 >
-> 从API version 9开始不再支持。建议使用window.setShowOnLockScreen替代，新接口为系统接口。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用window.setShowOnLockScreen替代，新接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

@@ -9,7 +9,7 @@
 
 ## 简介
 
-当应用的主线程执行耗时任务时，开发者会感知到应用卡顿，但卡顿时间未达到系统设定的[应用冻屏](appfreeze-guidelines.md)时间限制，因此不会生成故障日志。为了更好地定位和分析问题，开发者可以利用[主线程超时事件检测原理](apptask-timeout-guidelines.md)，根据生成的采样[主线程超时事件日志规格](apptask-timeout-guidelines.md)，主动分析主线程任务的执行情况。
+当应用的主线程执行耗时任务时，开发者会感知到应用卡顿，但卡顿时间未达到系统设定的[应用冻屏](appfreeze-guidelines.md)时间限制，因此不会生成故障日志。为了更好地定位和分析问题，开发者可以利用[主线程超时事件检测原理](apptask-timeout-guidelines.md#检测原理)，根据生成的采样[主线程超时事件日志规格](apptask-timeout-guidelines.md#日志规格)，主动分析主线程任务的执行情况。
 
 ## 检测原理
 

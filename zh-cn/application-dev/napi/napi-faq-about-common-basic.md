@@ -317,4 +317,4 @@ void FinalizeB(napi_env env, void* data, void* hint) {
 
 OpenHarmony提供了丰富的Node-API接口示例。参考开发指南和示例工程，可以快速掌握Node-API模块开发流程。
 
-可以使用[AKI](https://gitcode.com/openharmony-sig/aki)或[napi-generator](https://gitee.com/openharmony/napi_generator)等开发工具，辅助Node-API开发，降低学习难度并提高开发效率。
+可以使用[AKI](https://gitcode.com/openharmony-sig/aki)或[napi-generator](https://gitcode.com/openharmony/napi_generator)等开发工具，辅助Node-API开发，降低学习难度并提高开发效率。

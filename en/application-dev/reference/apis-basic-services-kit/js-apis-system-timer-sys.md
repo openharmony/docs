@@ -1,4 +1,10 @@
 # @ohos.systemTimer (System Timer) (System API)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Time-->
+<!--Owner: @huaxin05-->
+<!--Designer: @hu-kai45-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 The **systemTimer** module provides system timer features. You can use the APIs of this module to implement the alarm clock and other timer services.
 
@@ -36,10 +42,10 @@ Defines the initialization options for **createTimer**.
 | Name       | Type                                         | Mandatory| Description                                                                                                                                                                                                  |
 |-----------| --------------------------------------------- | ---- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | type      | number                                        | Yes  | Timer types. Use pipe (\|) symbol|to combine two or more types.<br>**1**: CPU time type. (The start time of the timer cannot be later than the current system time.)<br>**2**: wakeup type.<br>**4**: exact type. (If an application is frozen, the timer is also frozen. In addition, the timer is controlled by a unified heartbeat. Therefore, even a timer of the exact type cannot be triggered at specified time.)<br>**8**: idle timer type (supported only for system services, but not applications).|
-| repeat    | boolean                                       | Yes  | Whether the timer is a repeating timer.<br>The value **true** means that the timer is a repeating timer, and **false** means that the timer is a one-shot timer.                                                                                                                                                                |
+| repeat    | boolean                                       | Yes  | Whether the timer is a repeating timer. The value **true** means that the timer is a repeating timer, and **false** means that the timer is a one-shot timer.                                                                                                                                                                |
 | autoRestore<sup>15+</sup> | boolean                                     | No  | Whether the timer is restored after the device is restarted.<br>The value **true** means that the timer is restored after the restart, and the value **false** means the opposite.<br>This parameter can be set to **true** only for timers that are not of the **TIMER_TYPE_REALTIME** type and have **wantAgent** configured.                                                                                                     |                                               |     |                                                                                                                                                                                                      |
 | name<sup>15+</sup> | string | No| Timer name, with a maximum length of 64 bytes.<br>A UID cannot contain two timers with the same name. If a timer with the same name as an existing timer is created, the existing timer is destroyed.|
-| interval  | number                                        | No  | Repeat interval. Default value: **0**.<br>For a repeating timer, the minimum value of **interval** is 1s and the maximum value is 365 days. It is recommended that the value be greater than or equal to 5000 ms.<br>For a one-shot timer, the value is **0**.                                                                                                              |
+| interval  | number                                        | No  | Interval between two consecutive timers, in milliseconds. Default value: **0**.<br>For a repeating timer, the minimum value of **interval** is 1s and the maximum value is 365 days. It is recommended that the value be greater than or equal to 5000 ms.<br>For a one-shot timer, the value is **0**.                                                                                                              |
 | wantAgent | WantAgent | No  | **WantAgent** object of the notification to be sent when the timer expires. (An application MainAbility can be started, but not a Service ability.)                                                                                                                                    |
 | callback  | void                                          | No | Callback to be executed by the user.                                                                                                                                                                                         |
 
@@ -97,7 +103,7 @@ try {
 
 createTimer(options: TimerOptions): Promise&lt;number&gt;
 
-Creates a timer. This API uses a promise to return the result.
+Creates a timer. This API uses a promise to return the timer ID.
 
 **NOTE**<br>This function must be used together with [systemTimer.destroyTimer](#systemtimerdestroytimer). Otherwise, memory leakage occurs.
 
@@ -264,7 +270,7 @@ try {
 
 stopTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 
-Stops a timer. This API uses an asynchronous callback to return the result.
+Stops the timer. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.Time
 

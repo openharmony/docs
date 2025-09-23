@@ -60,7 +60,7 @@
     - [postCardAction](js-apis-postCardAction.md)
     <!--Del-->
     - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)(系统接口)](js-apis-arkui-drawableDescriptor-sys.md)
-    - [@ohos.arkui.performanceMonitor (性能监测)(系统接口)](js-apis-arkui-performancemonitor-sys.md)  
+    - [@ohos.arkui.performanceMonitor (性能监测)(系统接口)](js-apis-arkui-performancemonitor-sys.md)
     - [@ohos.arkui.uiExtension (uiExtension)(系统接口)](js-apis-arkui-uiExtension-sys.md)
     - [@ohos.deviceStatus.dragInteraction (拖拽)(系统接口)](js-apis-devicestatus-draginteraction-sys.md)
     - [@ohos.pluginComponent (PluginComponentManager)(系统接口)](js-apis-plugincomponent-sys.md)
@@ -79,6 +79,7 @@
       - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
       - [Content](js-apis-arkui-Content.md)
       - [NodeContent](js-apis-arkui-NodeContent.md)
+      - [Resource](js-apis-arkui-resource.md)
   - 窗口管理<!--window-manager-api-->
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
     - [@ohos.window.floatingBall (闪控球窗口)](js-apis-floatingBall.md)
@@ -92,9 +93,7 @@
       - [Types](arkts-apis-window-t.md)
     <!--Del-->
     - [@ohos.animation.windowAnimationManager (窗口动画管理)(系统接口)](js-apis-windowAnimationManager-sys.md)
-    - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](js-apis-application-windowExtensionAbility-sys.md)
     - [@ohos.window (窗口)(系统接口)](js-apis-window-sys.md)
-    - [WindowExtensionContext (系统接口)](js-apis-inner-application-windowExtensionContext-sys.md)
     <!--DelEnd-->
   - 屏幕管理<!--display-manager-api-->
     - [@ohos.display (屏幕属性)](js-apis-display.md)
@@ -112,6 +111,10 @@
     - [@system.prompt (弹窗)](js-apis-system-prompt.md)
     - [@system.router (页面路由)](js-apis-system-router.md)
     - [XComponentNode](js-apis-arkui-xcomponentNode.md)
+    <!--Del-->
+    - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](js-apis-application-windowExtensionAbility-sys.md)
+    - [WindowExtensionContext (系统接口)](js-apis-inner-application-windowExtensionContext-sys.md)
+    <!--DelEnd-->
 - ArkTS组件<!--arkui-declarative-comp-->
   - [通用事件](arkui-ts/ts-component-general-events.md)
     - 基础输入事件<!--basic-raw-input-event-->
@@ -217,6 +220,7 @@
     - 绑定手势<!--gesture-binding-->
       - [绑定手势方法](arkui-ts/ts-gesture-settings.md)
       - [设置组件绑定的手势](arkui-ts/ts-uigestureevent.md)
+      - [手势处理器](arkui-ts/ts-gesturehandler.md)
     - 基础手势<!--basic-gestures-->
       - [TapGesture](arkui-ts/ts-basic-gestures-tapgesture.md)
       - [LongPressGesture](arkui-ts/ts-basic-gestures-longpressgesture.md)
@@ -291,7 +295,6 @@
     - [Rating](arkui-ts/ts-basic-components-rating.md)
     - [Select](arkui-ts/ts-basic-components-select.md)
     - [Slider](arkui-ts/ts-basic-components-slider.md)
-    - [SegmentButtonV2](arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md)
     - [ArcButton](arkui-ts/ohos-arkui-advanced-ArcButton.md)
     - [ArcSlider](arkui-ts/ohos-arkui-advanced-ArcSlider.md)
     - [选择器（Picker）公共接口](arkui-ts/ts-picker-common.md)
@@ -322,6 +325,7 @@
     - [ImageAnimator](arkui-ts/ts-basic-components-imageanimator.md)
     - [Video](arkui-ts/ts-media-components-video.md)
     - [图像类型定义](arkui-ts/ts-image-common.md)
+    - [SVG新增解析能力](arkui-ts/ts-image-svg2-capabilities.md)
     <!--Del-->
     - [Image (系统接口)](arkui-ts/ts-basic-components-image-sys.md)
     - [MediaCachedImage (系统接口)](arkui-ts/ts-basic-components-mediacachedimage-sys.md)
@@ -332,7 +336,6 @@
     - [ArcAlphabetIndexer](arkui-ts/ts-container-arc-alphabet-indexer.md)
     - [Badge](arkui-ts/ts-container-badge.md)
     - [Counter](arkui-ts/ts-container-counter.md)
-    - [advanced.Counter](arkui-ts/ohos-arkui-advanced-Counter.md)
     - [DataPanel](arkui-ts/ts-basic-components-datapanel.md)
     - [Gauge](arkui-ts/ts-basic-components-gauge.md)
     - [LoadingProgress](arkui-ts/ts-basic-components-loadingprogress.md)
@@ -390,7 +393,7 @@
     - [显式动画立即下发 (animateToImmediately)](arkui-ts/ts-explicit-animatetoimmediately.md)
     <!--Del-->
     - [组件内隐式共享元素转场 (geometryTransition)(系统接口)](arkui-ts/ts-transition-animation-geometrytransition-sys.md)
-    <!--DelEnd-->  
+    <!--DelEnd-->
   - 弹窗<!--dialog-boxes-->
     - [警告弹窗 (AlertDialog)](arkui-ts/ts-methods-alert-dialog-box.md)
     - [列表选择弹窗 (ActionSheet)](arkui-ts/ts-methods-action-sheet.md)
@@ -413,7 +416,7 @@
     - [SaveButton (系统接口)](arkui-ts/ts-security-components-savebutton-sys.md)
     <!--DelEnd-->
   - 主题<!--themes-->
-    - [WithTheme](arkui-ts/ts-container-with-theme.md) 
+    - [WithTheme](arkui-ts/ts-container-with-theme.md)
   - 原子化服务<!--atomic-services-->
     - [AtomicServiceNavigation](arkui-ts/ohos-atomicservice-AtomicServiceNavigation.md)
     - [AtomicServiceSearch](arkui-ts/ohos-atomicservice-AtomicServiceSearch.md)
@@ -437,6 +440,8 @@
       - [定义可动画属性 (@AnimatableExtend)](arkui-ts/ts-animatable-extend.md)
       - [@Entry：页面入口](arkui-ts/ts-universal-entry.md)
       - [wrapBuilder: 封装全局@Builder](arkui-ts/ts-universal-wrapBuilder.md)
+  - 组件预览<!--component-preview-->
+    - [组件预览](arkui-ts/ts-universal-component-previewer.md)
   - 系统预置UI组件库<!--system-preset-ui-component-library-->
     - [Chip](arkui-ts/ohos-arkui-advanced-Chip.md)
     - [ChipGroup](arkui-ts/ohos-arkui-advanced-ChipGroup.md)
@@ -456,6 +461,7 @@
     - [ProgressButton](arkui-ts/ohos-arkui-advanced-ProgressButton.md)
     - [ProgressButtonV2](arkui-ts/ohos-arkui-advanced-ProgressButtonV2.md)
     - [SegmentButton](arkui-ts/ohos-arkui-advanced-SegmentButton.md)
+    - [SegmentButtonV2](arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md)
     - [SelectTitleBar](arkui-ts/ohos-arkui-advanced-SelectTitleBar.md)
     - [SelectionMenu](arkui-ts/ohos-arkui-advanced-SelectionMenu.md)
     - [SplitLayout](arkui-ts/ohos-arkui-advanced-SplitLayout.md)
@@ -466,6 +472,7 @@
     - [ToolBar](arkui-ts/ohos-arkui-advanced-ToolBar.md)
     - [ToolBarV2](arkui-ts/ohos-arkui-advanced-ToolBarV2.md)
     - [TreeView](arkui-ts/ohos-arkui-advanced-TreeView.md)
+    - [advanced.Counter](arkui-ts/ohos-arkui-advanced-Counter.md)
   - 状态管理与渲染控制<!--state-management-and-rendering-control-->
     - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
     - [状态管理V1装饰器参数](arkui-ts/ts-state-management-v1-parameter.md)
@@ -477,8 +484,6 @@
     <!--Del-->
     - [应用级变量的状态管理（系统接口）](arkui-ts/ts-state-management-sys.md)
     <!--DelEnd-->
-  - 组件预览<!--component-preview-->
-    - [组件预览](arkui-ts/ts-universal-component-previewer.md)
   - 公共定义<!--common-definitions-->
     - [基础类型定义](arkui-ts/ts-types.md)
     - [像素单位](arkui-ts/ts-pixel-units.md)
@@ -507,7 +512,7 @@
     - [点击控制](arkui-ts/ts-universal-attributes-click.md)
     - [栅格设置](arkui-ts/ts-universal-attributes-grid.md)
 - JS组件 <!--arkui-js-comp-->
-  - [兼容JS的类Web开发范式（ArkUI.Full）](arkui-js/Readme-CN.md)    
+  - [兼容JS的类Web开发范式（ArkUI.Full）](arkui-js/Readme-CN.md)
   - [兼容JS的类Web开发范式（ArkUI.Lite）](arkui-js-lite/Readme-CN.md)
   - [JS服务卡片UI组件](js-service-widget-ui/Readme-CN.md)
 - C API<!--arkui-c-->
@@ -660,6 +665,7 @@
     - [ArkUI_TextPickerRangeContentArray](capi-arkui-nativemodule-arkui-textpickerrangecontentarray.md)
     - [ArkUI_TextCascadePickerRangeContentArray](capi-arkui-nativemodule-arkui-textcascadepickerrangecontentarray.md)
     - [ArkUI_VisibleAreaEventOptions](capi-arkui-nativemodule-arkui-visibleareaeventoptions.md)
+    - [ArkUI_PositionEdges](capi-arkui-nativemodule-arkui-positionedges.md)
     - [ArkUI_StyledString](capi-arkui-nativemodule-arkui-styledstring.md)
     - [ArkUI_UIInputEvent](capi-arkui-eventmodule-arkui-uiinputevent.md)
     - [PictureInPicture_PipConfig](capi-pictureinpicture-pipconfig.md)
@@ -692,6 +698,7 @@
     - [ArkUI_RoundRectShapeOption](capi-arkui-nativemodule-arkui-roundrectshapeoption.md)
     - [ArkUI_Vector2AnimatablePropertyHandle](capi-arkui-nativemodule-arkui-vector2animatablepropertyhandle.md)
     - [ArkUI_Vector2PropertyHandle](capi-arkui-nativemodule-arkui-vector2propertyhandle.md)
+    - [ArkUI_ContentTransitionEffect](capi-arkui-nativemodule-arkui-contenttransitioneffect.md)
 - 错误码<!--arkui-arkts-errcode-->
   - UI界面<!--arkui-ui-arkts-errcode-->
     - [动画错误码](errorcode-animator.md)
@@ -709,7 +716,7 @@
     - [注册节点渲染状态监听错误码](errorcode-node-render-monitor.md)
     - [交互事件错误码](errorcode-event.md)
     - [Canvas错误码](errorcode-canvas.md)
-    - [自定义节点错误码](errorcode-node.md)   
+    - [自定义节点错误码](errorcode-node.md)
     - [UIExtension错误码](errorcode-uiextension.md)
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
     - [NodeAdapter错误码](errorcode-nodeadapter.md)
@@ -717,9 +724,9 @@
     - [Video组件错误码](errorcode-video.md)
     - [状态管理错误码](errorcode-stateManagement.md)
     - [渲染节点错误码](errorcode-node-render.md)
+    - [DrawableDescriptor错误码](errorcode-drawable-descriptor.md)
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)
   - UI编译
     - [编译错误码](_ark_ui_compile.md)
-

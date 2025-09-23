@@ -3,9 +3,11 @@
 
 ## Overview
 
-The **media_types.h** file declares the common media types.
+The file declares the common media types.
 
 **Library**: libnative_media_core.so
+
+**File to include**: <multimedia/player_framework/media_types.h>
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 

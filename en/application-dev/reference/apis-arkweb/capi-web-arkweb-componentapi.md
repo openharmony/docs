@@ -1,4 +1,10 @@
 # ArkWeb_ComponentAPI
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 ## Overview
 
@@ -25,7 +31,7 @@ Defines a native component API.
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [void (\*onControllerAttached)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData)](#oncontrollerattached) | Triggered when a controller is attached to the **Web** component.                 |
 | [void (\*onPageBegin)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData)](#onpagebegin) | Triggered when the web page starts to be loaded. This callback is called only for the main frame content, and not for the iframe or frameset content.|
-| [void (\*onPageEnd)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData)](#onpageend) | Triggered when the web page loading is complete. This callback is triggered only for the main frame content.               |
+| [void (\*onPageEnd)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData)](#onpageend) | Triggered when the web page loading is finished. This callback is called only for the main frame content, and not for the iframe or frameset content.  |
 | [void (\*onDestroy)(const char* webTag, ArkWeb_OnComponentCallback callback, void* userData)](#ondestroy) | Triggered when this **Web** component is destroyed.                               |
 
 ## Member Function Description
@@ -74,7 +80,7 @@ void (*onPageEnd)(const char* webTag, ArkWeb_OnComponentCallback callback, void*
 
 **Description**
 
-Triggered when the web page loading is complete. This callback is triggered only for the main frame content.
+Triggered when the web page loading is finished. This callback is called only for the main frame content, and not for the iframe or frameset content.
 
 **Parameters**
 

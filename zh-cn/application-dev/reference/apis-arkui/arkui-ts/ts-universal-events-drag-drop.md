@@ -33,11 +33,11 @@ onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | D
 
 第一次拖拽此事件绑定的组件时，长按时间 >= 500ms，然后手指移动距离 >= 10vp，触发回调。
 
-针对默认支持拖拽能力的组件，如果开发者设置了onDragStart，优先执行开发者的onDragStart，并根据执行情况决定是否使用系统默认的拖拽能力，具体为：
-- 如果开发者返回了自定义背板图，则不再使用系统默认的拖拽背板图；
+针对默认支持拖拽能力的组件，如果开发者设置了onDragStart，优先执行onDragStart，并根据执行情况决定是否使用系统默认的拖拽能力，具体规则为：
+- 如果开发者返回了自定义预览图，则不再使用系统默认的拖拽预览图；
 - 如果开发者设置了拖拽数据，则不再使用系统默认填充的拖拽数据。
 
-文本类组件[Text](ts-basic-components-text.md)、[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)对选中的文本内容进行拖拽时，不支持背板图的自定义。当onDragStart与菜单预览一起使用或使用了默认支持拖拽的组件时，预览及菜单项上的自定义内容不支持拖拽。
+文本类组件[Text](ts-basic-components-text.md)、[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)对选中的文本内容进行拖拽时，不支持自定义预览图。当onDragStart与菜单预览一起使用或使用了默认支持拖拽能力的组件时，预览及菜单项上的自定义内容不支持拖拽。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -127,7 +127,7 @@ onDragLeave(event: (event: DragEvent, extraParams?: string) => void): T
 
 onDrop(event: (event: DragEvent, extraParams?: string) => void): T
 
-绑定此事件的组件可作为释放目标。当在本组件范围内停止拖放行为时，将触发回调。如果开发者未在onDrop中主动调用event.setResult()来设置拖拽接收的结果，对于系统支持的默认可拖入组件，处理结果将依据系统实际处理的数据。对于其他组件，系统将默认视为数据接收成功。
+绑定此事件的组件可作为释放目标。当在本组件范围内停止拖放行为时，将触发回调。如果开发者未在onDrop中主动调用event.setResult()来设置拖拽接收的结果，对于系统支持的默认可拖入组件，处理结果将以系统实际处理的数据为准。对于其他组件，系统将默认视为数据接收成功。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -194,7 +194,7 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void): T
 
 onPreDrag(callback: Callback\<PreDragStatus>): T
 
-绑定此事件的组件，当处于拖拽发起前的不同阶段时，触发回调。
+绑定此事件的组件，当处于手势拖拽发起前的不同阶段时，触发回调。此接口不支持在鼠标拖拽中触发。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -211,6 +211,9 @@ onPreDrag(callback: Callback\<PreDragStatus>): T
 | 类型 | 说明 |
 | -------- | -------- |
 | T | 返回当前组件。 |
+
+> **说明：**
+>- 从API version 20开始，该接口支持在[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)中调用。
 
 ## onDragSpringLoading<sup>20+</sup>
 
@@ -259,7 +262,7 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 
 | 名称       | 类型 | 只读 | 可选 | 说明                                                         |
 | ---------- | ---- | ---- | ---- | ------------------------------------------------------------ |
-| onlyForLifting | boolean | 否    | 是    | 自定义配置的预览图是否仅用于浮起。<br /> **说明：** <br/>默认值为false。true表示自定义预览图仅用于浮起，false表示可用于浮起和拖拽。设置为true时，如果发起长按拖拽，浮起时的预览图为自定义配置的预览图，拖拽时的预览图不使用[dragPreview](ts-universal-attributes-drag-drop.md#dragpreview11)属性，优先使用开发者在[onDragStart](ts-universal-events-drag-drop.md#ondragstart)中返回的背板图，如果[onDragStart](ts-universal-events-drag-drop.md#ondragstart)中没有返回背板图则使用组件自截图。|
+| onlyForLifting | boolean | 否    | 是    | 自定义配置的预览图是否仅用于浮起。<br /> **说明：** <br/>默认值为false。true表示自定义预览图仅用于浮起，false表示可用于浮起和拖拽。设置为true时，如果发起长按拖拽，浮起时的预览图为自定义配置的预览图，拖拽时的预览图不使用[dragPreview](ts-universal-attributes-drag-drop.md#dragpreview11)属性，优先使用开发者在[onDragStart](ts-universal-events-drag-drop.md#ondragstart)中返回的预览图，如果[onDragStart](ts-universal-events-drag-drop.md#ondragstart)中没有返回预览图则使用组件自截图。|
 | delayCreating  | boolean | 否    | 是    | 组件预览builder是否在设置时加载。<br/>默认值为false。true表示组件预览builder在设置时加载，false表示组件预览builder不在设置时加载。|
 
 ## extraParams说明
@@ -564,11 +567,27 @@ startDataLoading(options: DataSyncOptions): string
 | ------ | ---------------------------------- |
 | string | 拖拽数据的标识，用于区分每次拖拽。 |
 
+### executeDropAnimation<sup>18+</sup>
+
+executeDropAnimation(customDropAnimation: Callback\<void\>): void
+
+设置自定义落位动效的执行函数，仅在useCustomDropAnimation为true时有效。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名    | 类型  | 必填 | 说明      |
+| ------ | ------ | --- | --------- |
+| customDropAnimation | [Callback\<void\>](../../../reference/apis-basic-services-kit/js-apis-base.md#callback)  | 是 |在此回调函数中实现自定义落位动效。<br/> **说明：** <br/>1. 该接口仅在onDrop回调中使用有效。<br/> 2. 使用前需设置useCustomDropAnimation为true，否则该接口不生效。<br/> 3. 不要在动画callback中实现与动效无关的逻辑，避免影响执行效率。|
+
 ### getDisplayId<sup>20+</sup>
 
 getDisplayId(): number
 
-获取当前拖拽事件发生时所在的屏幕ID，不支持当eventType为NODE_ON_DRAG_END时获取。
+获取当前拖拽事件发生时所在的屏幕ID，不支持在onDragEnd阶段使用。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -704,7 +723,7 @@ getGlobalDisplayY(): number
 
 ## DragBehavior<sup>10+</sup>
 
-当设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED后，可设置DragBehavior为复制（COPY）或剪切（MOVE）。DragBehavior用来向开发者描述数据的处理方式是复制（COPY）还是剪切（MOVE），但无法最终决定对数据的实际处理方式。DragBehavior会通过onDragEnd带回给数据拖出方，发起拖拽的一方可通过DragBehavior来区分做出的是复制（COPY）还是剪切（MOVE）数据的不同行为。
+当设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED后，可设置DragBehavior为复制（COPY）或剪切（MOVE）。当DragBehavior为复制（COPY）时，拖拽对象的角标会显示加号；为剪切（MOVE）时，拖拽对象的角标不会显示加号。DragBehavior用来向开发者描述数据的处理方式是复制（COPY）还是剪切（MOVE），但无法最终决定对数据的实际处理方式。DragBehavior会通过onDragEnd带回给数据拖出方，发起拖拽的一方可通过DragBehavior来区分做出的是复制（COPY）还是剪切（MOVE）数据的不同行为。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -772,20 +791,6 @@ type DataLoadParams = DataLoadParams
 | ----- | ----------------- |
 | [DataLoadParams](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#dataloadparams20) | 落入操作时使用的数据加载参数。|
 
-## executeDropAnimation<sup>18+</sup>
-
-executeDropAnimation(customDropAnimation: Callback\<void\>): void
-
-设置一个自定义落位动效的执行函数，仅在useCustomDropAnimation为true时有效。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名    | 类型  | 必填 | 说明      |
-| ------ | ------ | --- | --------- |
-| customDropAnimation | Callback\<void\>  | 是 |在此回调函数中实现自定义落位动效。<br/> **说明：** <br/>1. 该接口仅在 onDrop 回调中使用有效。<br/> 2. 使用前需设置 useCustomDropAnimation 为 true，否则该接口不生效。<br/> 3. 不要在动画callback中实现与动效无关的逻辑，避免影响执行效率。|
-
 ## DataSyncOptions<sup>15+</sup>
 
 type DataSyncOptions = GetDataParams
@@ -826,6 +831,20 @@ type OnDragEventCallback = (event: DragEvent, extraParams?: string) => void
 | 名称     | 类型  | 只读 | 可选 | 说明           |
 | ------ | ------ | ---------------- | ------ | ------ |
 | disableDataPrefetch | boolean  | 否  | 否  | 设置拖拽是否提前获取数据。true表示不提前获取数据，false表示提前获取数据，默认值为false。<br/>**说明：**<br/> 当使用[startDataLoading](#startdataloading15)获取数据时需设置该参数为true，防止拖拽提前获取数据。 |
+
+## DragSpringLoadingConfiguration<sup>20+</sup>
+
+type DragSpringLoadingConfiguration = DragSpringLoadingConfiguration
+
+定义拖拽的悬停检测配置参数的接口。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| ----- | ----------------- |
+| [DragSpringLoadingConfiguration](../js-apis-arkui-dragController.md#dragspringloadingconfiguration20) | 定义拖拽的悬停检测配置参数的接口。|
 
 ## SpringLoadingContext<sup>20+</sup>
 

@@ -14,6 +14,7 @@
   - [@ohos.multimodalAwareness.userStatus (用户状态感知)](js-apis-awareness-userStatus.md) 
   <!--Del-->
   - [@js-apis-awareness-metadataBinding (记忆链接)(系统接口)](js-apis-awareness-metadataBinding-sys.md)
+  - [@js-apis-awareness-deviceStatus (设备状态感知)(系统接口)](js-apis-awareness-deviceStatus-sys.md)
   <!--DelEnd-->
 - 错误码<!--ultimodal-awareness-arkts-errcode-->
   - [动作感知错误码](errorcode-motion.md)

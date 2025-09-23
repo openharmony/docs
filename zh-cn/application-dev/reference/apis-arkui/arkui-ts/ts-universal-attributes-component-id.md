@@ -65,7 +65,7 @@ key(value: string): T
 
 ## 基于组件标识的拓展能力
 
-组件标识的拓展能力仅用于对应用的测试，以下各个接口示例，需要在应用工程的ohosTest/ets/test目录中调试，具体可以参考[自动化测试框架使用指导 ](../../../../application-dev/application-test/arkxtest-guidelines.md)。
+组件标识的拓展能力仅用于对应用的测试，以下各个接口示例，需要在应用工程的ohosTest/ets/test目录中调试，具体可以参考<!--RP1-->[自动化测试框架使用指导](../../../../application-dev/application-test/arkxtest-guidelines.md)<!--RP1-->。
 
 ### getInspectorByKey<sup>9+</sup>
 
@@ -214,7 +214,7 @@ sendTouchEvent(event: TouchObject): boolean
 
 | 参数名      | 类型            | 必填  | 说明                                                         |
 | ----- | ----------- | ---- | ------------------------------------------------------------ |
-| event | [TouchObject](ts-universal-events-touch.md#touchobject对象说明) | 是    | 触发触摸事件的位置，event参数见[TouchObject](ts-universal-events-touch.md#touchobject对象说明)的介绍。 |
+| event | [TouchObject](ts-universal-events-touch.md#touchobject) | 是    | 触发触摸事件的位置，event参数见[TouchObject](ts-universal-events-touch.md#touchobject)的介绍。 |
 
 **返回值:**
 
@@ -340,11 +340,11 @@ struct IdExample {
             x: rect.left + (rect.right - rect.left) / 2, // 相对于组件左上角的水平方向坐标
             y: rect.top + (rect.bottom - rect.top) / 2, // 相对于组件左上角的垂直方向坐标
             screenX: rect.left + (rect.right - rect.left) / 2, // 相对于应用窗口左上角的水平方向坐标，API10已废弃，采用windowX替代
-            screenY: rect.left + (rect.right - rect.left) / 2, // 相对于应用窗口左上角的垂直方向坐标，API10已废弃，采用windowY替代
+            screenY: rect.top + (rect.bottom - rect.top) / 2, // 相对于应用窗口左上角的垂直方向坐标，API10已废弃，采用windowY替代
             windowX: rect.left + (rect.right - rect.left) / 2, // 相对于应用窗口左上角的水平方向坐标
-            windowY: rect.left + (rect.right - rect.left) / 2, // 相对于应用窗口左上角的垂直方向坐标
+            windowY: rect.top + (rect.bottom - rect.top), // 相对于应用窗口左上角的垂直方向坐标
             displayX: rect.left + (rect.right - rect.left) / 2, // 相对于设备屏幕左上角的水平方向坐标
-            displayY: rect.left + (rect.right - rect.left) / 2, // 相对于设备屏幕左上角的垂直方向坐标
+            displayY: rect.top + (rect.bottom - rect.top) / 2, // 相对于设备屏幕左上角的垂直方向坐标
           };
           sendTouchEvent(touchPoint); // 发送触摸事件
           touchPoint.type = TouchType.Up;

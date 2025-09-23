@@ -25,8 +25,8 @@
 
 ### 宏定义
 
-| 名称                                                                                               | 描述         |
-|--------------------------------------------------------------------------------------------------|------------|
+| 名称 | 描述 |
+| -- | -- |
 | [PARAM_USER_ID](#param_user_id) "user_id"                                                        | 用户ID。<br>**起始版本：** 8  |
 | [PARAM_DISTRIBUTED_SERVICE_NAME](#param_distributed_service_name) "ds_name"                      | 分布式服务名称。<br>**起始版本：** 8   |
 | [PARAM_DISTRIBUTED_SERVICE_INSTANCE_ID](#param_distributed_service_instance_id) "ds_instance_id" | 分布式服务实例ID。<br>**起始版本：** 8 |

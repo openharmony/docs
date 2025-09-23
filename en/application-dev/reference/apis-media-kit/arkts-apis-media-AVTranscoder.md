@@ -1,4 +1,10 @@
 # Interface (AVTranscoder)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -46,7 +52,7 @@ Sets video transcoding parameters. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                              |
 | -------- | -------------------------------------- |
@@ -60,21 +66,26 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
-// Configure the parameters based on those supported by the hardware device.
-let avTranscoderConfig: media.AVTranscoderConfig = {
-  audioBitrate : 200000,
-  audioCodec : media.CodecMimeType.AUDIO_AAC,
-  fileFormat : media.ContainerFormatType.CFT_MPEG_4,
-  videoBitrate : 3000000,
-  videoCodec : media.CodecMimeType.VIDEO_AVC,
-};
+async function test() {
+  // Create an AVTranscoder instance.
+  let avTranscoder = await media.createAVTranscoder();
+  // Configure the parameters based on those supported by the hardware device.
+  let avTranscoderConfig: media.AVTranscoderConfig = {
+    audioBitrate : 200000,
+    audioCodec : media.CodecMimeType.AUDIO_AAC,
+    fileFormat : media.ContainerFormatType.CFT_MPEG_4,
+    videoBitrate : 3000000,
+    videoCodec : media.CodecMimeType.VIDEO_AVC,
+  };
 
-avTranscoder.prepare(avTranscoderConfig).then(() => {
-  console.info('prepare success');
-}).catch((err: BusinessError) => {
-  console.error('prepare failed and catch error is ' + err.message);
-});
+  avTranscoder.prepare(avTranscoderConfig).then(() => {
+    console.info('prepare success');
+  }).catch((err: BusinessError) => {
+    console.error('prepare failed and catch error is ' + err.message);
+  });
+}
 ```
 
 ## start<sup>12+</sup>
@@ -107,12 +118,17 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
-avTranscoder.start().then(() => {
-  console.info('start AVTranscoder success');
-}).catch((err: BusinessError) => {
-  console.error('start AVTranscoder failed and catch error is ' + err.message);
-});
+async function test() {
+  // Create an AVTranscoder instance.
+  let avTranscoder = await media.createAVTranscoder();
+  avTranscoder.start().then(() => {
+    console.info('start AVTranscoder success');
+  }).catch((err: BusinessError) => {
+    console.error('start AVTranscoder failed and catch error is ' + err.message);
+  });
+}
 ```
 
 ## pause<sup>12+</sup>
@@ -145,12 +161,17 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
-avTranscoder.pause().then(() => {
-  console.info('pause AVTranscoder success');
-}).catch((err: BusinessError) => {
-  console.error('pause AVTranscoder failed and catch error is ' + err.message);
-});
+async function test() {
+  // Create an AVTranscoder instance.
+  let avTranscoder = await media.createAVTranscoder();
+  avTranscoder.pause().then(() => {
+    console.info('pause AVTranscoder success');
+  }).catch((err: BusinessError) => {
+    console.error('pause AVTranscoder failed and catch error is ' + err.message);
+  });
+}
 ```
 
 ## resume<sup>12+</sup>
@@ -183,12 +204,17 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
-avTranscoder.resume().then(() => {
-  console.info('resume AVTranscoder success');
-}).catch((err: BusinessError) => {
-  console.error('resume AVTranscoder failed and catch error is ' + err.message);
-});
+async function test() {
+  // Create an AVTranscoder instance.
+  let avTranscoder = await media.createAVTranscoder();
+  avTranscoder.resume().then(() => {
+    console.info('resume AVTranscoder success');
+  }).catch((err: BusinessError) => {
+    console.error('resume AVTranscoder failed and catch error is ' + err.message);
+  });
+}
 ```
 
 ## cancel<sup>12+</sup>
@@ -221,12 +247,17 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
-avTranscoder.cancel().then(() => {
-  console.info('cancel AVTranscoder success');
-}).catch((err: BusinessError) => {
-  console.error('cancel AVTranscoder failed and catch error is ' + err.message);
-});
+async function test() {
+  // Create an AVTranscoder instance.
+  let avTranscoder = await media.createAVTranscoder();
+  avTranscoder.cancel().then(() => {
+    console.info('cancel AVTranscoder success');
+  }).catch((err: BusinessError) => {
+    console.error('cancel AVTranscoder failed and catch error is ' + err.message);
+  });
+}
 ```
 
 ## release<sup>12+</sup>
@@ -258,12 +289,17 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
-avTranscoder.release().then(() => {
-  console.info('release AVTranscoder success');
-}).catch((err: BusinessError) => {
-  console.error('release AVTranscoder failed and catch error is ' + err.message);
-});
+async function test() {
+  // Create an AVTranscoder instance.
+  let avTranscoder = await media.createAVTranscoder();
+  avTranscoder.release().then(() => {
+    console.info('release AVTranscoder success');
+  }).catch((err: BusinessError) => {
+    console.error('release AVTranscoder failed and catch error is ' + err.message);
+  });
+}
 ```
 
 ## on('progressUpdate')<sup>12+</sup>
@@ -284,9 +320,15 @@ Subscribes to transcoding progress updates. An application can subscribe to only
 **Example**
 
 ```ts
-avTranscoder.on('progressUpdate', (progress: number) => {
-  console.info('avTranscoder progressUpdate = ' + progress);
-});
+import { media } from '@kit.MediaKit';
+
+async function test() {
+  // Create an AVTranscoder instance.
+  let avTranscoder = await media.createAVTranscoder();
+  avTranscoder.on('progressUpdate', (progress: number) => {
+    console.info('avTranscoder progressUpdate = ' + progress);
+  });
+}
 ```
 
 ## off('progressUpdate')<sup>12+</sup>
@@ -307,7 +349,13 @@ Unsubscribes from transcoding progress updates.
 **Example**
 
 ```ts
-avTranscoder.off('progressUpdate');
+import { media } from '@kit.MediaKit';
+
+async function test() {
+  // Create an AVTranscoder instance.
+  let avTranscoder = await media.createAVTranscoder();
+  avTranscoder.off('progressUpdate');
+}
 ```
 
 ## on('error')<sup>12+</sup>
@@ -329,7 +377,7 @@ An application can subscribe to only one AVTranscoder error event. When the appl
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                  |
 | -------- | ------------------------------------------ |
@@ -346,10 +394,15 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
-avTranscoder.on('error', (err: BusinessError) => {
-  console.info('case avTranscoder.on(error) called, errMessage is ' + err.message);
-});
+async function test() {
+  // Create an AVTranscoder instance.
+  let avTranscoder = await media.createAVTranscoder();
+  avTranscoder.on('error', (err: BusinessError) => {
+    console.info('case avTranscoder.on(error) called, errMessage is ' + err.message);
+  });
+}
 ```
 
 ## off('error')<sup>12+</sup>
@@ -370,7 +423,13 @@ Unsubscribes from AVTranscoder errors. After the unsubscription, your applicatio
 **Example**
 
 ```ts
-avTranscoder.off('error');
+import { media } from '@kit.MediaKit';
+
+async function test() {
+  // Create an AVTranscoder instance.
+  let avTranscoder = await media.createAVTranscoder();
+  avTranscoder.off('error');
+}
 ```
 
 ## on('complete')<sup>12+</sup>
@@ -393,13 +452,22 @@ When this event is reported, the current transcoding operation is complete. You 
 **Example**
 
 ```ts
-avTranscoder.on('complete', async () => {
-  console.info('avTranscoder complete');
-  // Listen for transcoding completion events.
-  // Wait until avTranscoder.release() is complete and then forward, upload, or save the transcoded file.
-  await avTranscoder.release();
-  avTranscoder = undefined;
-});
+import { media } from '@kit.MediaKit';
+
+async function test() {
+  let avTranscoder: media.AVTranscoder | undefined = undefined;
+  // Create an AVTranscoder instance.
+  avTranscoder = await media.createAVTranscoder();
+  avTranscoder.on('complete', async () => {
+    console.info('avTranscoder complete');
+    if (avTranscoder != undefined) {
+      // Listen for transcoding completion events.
+      // Ensure that avTranscoder.release() has released the AVTranscoder instance before you proceed with forwarding, uploading, or storing the transcoded file.
+      await avTranscoder.release();
+      avTranscoder = undefined;
+    }
+  });
+}
 ```
 
 ## off('complete')<sup>12+</sup>
@@ -420,5 +488,11 @@ Unsubscribes from the event indicating that transcoding is complete.
 **Example**
 
 ```ts
-avTranscoder.off('complete');
+import { media } from '@kit.MediaKit';
+
+async function test() {
+  // Create an AVTranscoder instance.
+  let avTranscoder = await media.createAVTranscoder();
+  avTranscoder.off('complete');
+}
 ```

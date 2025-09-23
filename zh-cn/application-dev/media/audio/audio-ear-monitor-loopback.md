@@ -6,6 +6,8 @@
 <!--Tester: @Filger-->
 <!--Adviser: @zengyawen-->
 
+从API20开始支持音频低时延耳返。
+
 AudioLoopback是音频返听器，可将音频以更低时延的方式实时传输到耳机中，让用户可以实时听到自己或者其他的相关声音。
 
 常用于K歌类应用，将录制的人声和背景音乐实时传送到耳机中，使用户通过反馈即时进行调整，获得更好的使用体验。
@@ -45,7 +47,7 @@ AudioLoopback是音频返听器，可将音频以更低时延的方式实时传�
     import { audio } from '@kit.AudioKit';
     import { BusinessError } from '@kit.BasicServicesKit';
     
-    let mode: audio.AudioLoopbackMode.HARDWARE;
+    let mode: audio.AudioLoopbackMode = audio.AudioLoopbackMode.HARDWARE;
     let audioLoopback: audio.AudioLoopback;
     let isSupported = audio.getAudioManager().getStreamManager().isAudioLoopbackSupported(mode);
     if (isSupported) {
@@ -90,7 +92,65 @@ AudioLoopback是音频返听器，可将音频以更低时延的方式实时传�
     });
    ```
 
-4. 调用[enable](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#enable20)方法，启用或禁用音频返听功能。
+4. 调用[setReverbPreset](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#setreverbpreset21)方法，设置音频返听的混响模式。
+
+    > **注意：**
+    > - 在启用返听前设置混响模式，混响模式将在启用返听成功后生效。
+    > - 在启用返听后设置混响模式，混响模式将立即生效。
+    > - 启用返听前未设置混响模式，启用返听时将采用默认混响模式THEATER。
+
+   ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
+    try {
+      audioLoopback.setReverbPreset(audio.AudioLoopbackReverbPreset.THEATER);
+    } catch (err) {
+      console.error(`setReverbPreset :ERROR: ${err}`);
+    }
+   ```
+
+5. 调用[getReverbPreset](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#getreverbpreset21)方法，查询当前的音频返听的混响模式。
+
+    > **注意：**
+    > 若未设置混响模式，查询得到将是默认混响模式THEATER。
+   ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
+    try {
+      let reverbPreset = audioLoopback.getReverbPreset();
+    } catch (err) {
+      console.error(`getReverbPreset:ERROR: ${err}`);
+    }
+   ```
+
+6. 调用[setEqualizerPreset](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#setequalizerpreset21)方法，设置音频返听的均衡器类型。
+
+    > **注意：**
+    > - 在启用返听前设置均衡器类型，均衡器类型将在启用返听成功后生效。
+    > - 在启用返听后设置均衡器类型，均衡器类型将立即生效。
+    > - 启用返听前未设置均衡器类型，启用返听时将采用默认均衡器类型FULL。
+
+   ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
+    try {
+      audioLoopback.setEqualizerPreset(audio.AudioLoopbackEqualizerPreset.FULL);
+    } catch (err) {
+      console.error(`setEqualizerPreset :ERROR: ${err}`);
+    }
+   ```
+
+7. 调用[getEqualizerPreset](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#getequalizerpreset21)方法，查询当前的音频返听的均衡器类型。
+
+    > **注意：**
+    > 若未设置均衡器类型，查询得到将是默认均衡器类型FULL。
+   ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
+    try {
+      let reverbPreset = audioLoopback.getEqualizerPreset();
+    } catch (err) {
+      console.error(`getEqualizerPreset:ERROR: ${err}`);
+    }
+   ```
+
+8. 调用[enable](../../reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md#enable20)方法，启用或禁用音频返听功能。
 
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -127,8 +187,10 @@ import { common } from '@kit.AbilityKit';
 
 const TAG = 'AudioLoopbackDemo';
 
-let mode: audio.AudioLoopbackMode.HARDWARE;
+let mode: audio.AudioLoopbackMode = audio.AudioLoopbackMode.HARDWARE;
 let audioLoopback: audio.AudioLoopback | undefined = undefined;
+let currentReverbPreset: audio.AudioLoopbackReverbPreset = audio.AudioLoopbackReverbPreset.THEATER;
+let currentEqualizerPreset: audio.AudioLoopbackEqualizerPreset = audio.AudioLoopbackEqualizerPreset.FULL;
 
 let statusChangeCallback = (status: audio.AudioLoopbackStatus) => {
   if (status == audio.AudioLoopbackStatus.UNAVAILABLE_DEVICE) {
@@ -168,6 +230,36 @@ async function setVolume(volume: number) {
     }
   } else {
     console.error('Audio loopback not created.');
+  }
+}
+
+// 设置音频返听的混响模式。
+async function setReverbPreset(preset: audio.AudioLoopbackReverbPreset): void {
+  if (audioLoopback !== undefined) {
+    try {
+      audioLoopback.setReverbPreset(preset);
+      Logger.info(`setReverbPreset( ${preset} succeeded.`);
+      currentReverbPreset = this.audioLoopback.getReverbPreset(); // 查询当前的混响模式，防止设置失败。
+    } catch (err) {
+      Logger.error(`setReverbPreset( failed, code is ${err.code}, message is ${err.message}.`);
+    }
+  } else {
+    Logger.error('Audio loopback not created.');
+  }
+}
+
+// 设置音频返听的混响模式。
+async function setEqualizerPreset(preset: audio.AudioLoopbackEqualizerPreset) {
+  if (audioLoopback !== undefined) {
+    try {
+      audioLoopback.setEqualizerPreset(preset);
+      Logger.info(`setEqualizerPreset ${preset} succeeded.`);
+      currentEqualizerPreset = this.audioLoopback.getEqualizerPreset(); // 查询当前的均衡器类型，防止设置失败。
+    } catch (err) {
+      Logger.error(`setEqualizerPreset failed, code is ${err.code}, message is ${err.message}.`);
+    }
+  } else {
+    Logger.error('Audio loopback not created.');
   }
 }
 
@@ -225,3 +317,6 @@ async function disable() {
   }
 }
 ```
+
+### 音频低时延返听示例
+可参考[使用AudioLoopback启用音频低时延返听的示例](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Audio)。

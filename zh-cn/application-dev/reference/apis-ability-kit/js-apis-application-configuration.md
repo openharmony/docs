@@ -1,5 +1,12 @@
 # @ohos.application.Configuration (Configuration)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wkljy-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 定义环境变化信息。Configuration是接口定义，仅做字段声明。
 
 > **说明：**
@@ -17,10 +24,10 @@ import Configuration from '@ohos.application.Configuration';
 
 **系统能力**：SystemCapability.Ability.AbilityBase
 
-  | 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| language<sup>8+</sup> | string | 是 | 是 | 表示应用程序的当前语言。例如：zh。 |
-| colorMode<sup>8+</sup> | [ConfigurationConstant.ColorMode](js-apis-application-configurationConstant.md#colormode) | 是 | 是 | 表示深浅色模式，取值范围：浅色模式（COLOR_MODE_LIGHT），深色模式（COLOR_MODE_DARK）。默认为浅色。 |
+| language<sup>8+</sup> | string | 否 | 是 | 表示应用程序的当前语言。例如：zh。 |
+| colorMode<sup>8+</sup> | [ConfigurationConstant.ColorMode](js-apis-application-configurationConstant.md#colormode) | 否 | 是 | 表示深浅色模式，取值范围：浅色模式（COLOR_MODE_LIGHT），深色模式（COLOR_MODE_DARK）。默认为浅色。 |
 
 具体字段描述参考ohos.application.Configuration.d.ts文件
 
@@ -34,39 +41,39 @@ import Window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+  }
+
+  onDestroy() {
+  }
+
+  onWindowStageCreate(windowStage: Window.WindowStage) {
+    let envCallback: EnvironmentCallback = {
+      onConfigurationUpdated(config) {
+        console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`);
+        let language = config.language;
+        let colorMode = config.colorMode;
+      },
+      onMemoryLevel(level) {
+        console.info(`onMemoryLevel level: ${JSON.stringify(level)}`);
+      }
+    };
+
+    let applicationContext = this.context.getApplicationContext();
+    try {
+      applicationContext.on('environment', envCallback);
+    } catch (paramError) {
+      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
 
-    onDestroy() {
-    }
-
-    onWindowStageCreate(windowStage: Window.WindowStage) {
-        let envCallback: EnvironmentCallback = {
-            onConfigurationUpdated(config) {
-                console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`);
-                let language = config.language;
-                let colorMode = config.colorMode;
-            },
-            onMemoryLevel(level){
-                console.log(`onMemoryLevel level: ${JSON.stringify(level)}`);
-            }
-        };
-
-        let applicationContext = this.context.getApplicationContext();
-        try {
-            applicationContext.on('environment',envCallback);
-        } catch (paramError) {
-            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
-        }
-
-        windowStage.loadContent('pages/index', (err, data) => {
-            if (err.code) {
-                console.error(`failed to load the content, error: ${JSON.stringify(err)}`);
-                return;
-            }
-            console.info(`Succeeded in loading the content, data: ${JSON.stringify(data)}`);
-        });
-    }
+    windowStage.loadContent('pages/index', (err, data) => {
+      if (err.code) {
+        console.error(`failed to load the content, error: ${JSON.stringify(err)}`);
+        return;
+      }
+      console.info(`Succeeded in loading the content, data: ${JSON.stringify(data)}`);
+    });
+  }
 }
   ```
 

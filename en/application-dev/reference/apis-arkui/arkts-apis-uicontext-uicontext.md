@@ -104,7 +104,7 @@ struct UIContextCompare {
             const ctx: UIContext = this.getUIContext();
             const available: boolean = ctx.isAvailable();
             this.result1 = `Status: ${available} (Valid UI instance)`;
-            console.log("getUIContext test:", available);
+            console.info("getUIContext test:", available);
           } catch (e) {
             this.result1 = "Error: " + (e instanceof Error ? e.message : String(e));
           }
@@ -119,7 +119,7 @@ struct UIContextCompare {
             const ctx: UIContext = new UIContext();
             const available: boolean = ctx.isAvailable();
             this.result2 = `Status: ${available} (Invalid UI instance)`;
-            console.log("new UIContext test:", available);
+            console.info("new UIContext test:", available);
           } catch (e) {
             this.result2 = "Error: " + (e instanceof Error ? e.message : String(e));
           }
@@ -366,7 +366,7 @@ See the example for [OverlayManager](arkts-apis-uicontext-overlaymanager.md).
 
 getOverlayManagerOptions(): OverlayManagerOptions
 
-Obtains the current parameters of [OverlayManager](arkts-apis-uicontext-overlaymanager.md).
+Obtains the current parameters of [OverlayManagerOptions](arkts-apis-uicontext-i.md#overlaymanageroptions15).
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
@@ -611,9 +611,7 @@ Obtains a FrameNode on the component tree based on the component ID.
 >
 > The **getFrameNodeById** API searches for a node with a specific ID by traversing the tree, which can lead to poor performance. To deliver better performance, use the [getAttachedFrameNodeById](#getattachedframenodebyid12) API.
 
-**Example**
 
-See [Example of Obtaining the Root Node](js-apis-arkui-frameNode.md#example-of-obtaining-the-root-node).
 
 ## getAttachedFrameNodeById<sup>12+</sup>
 
@@ -1353,6 +1351,7 @@ Sets the avoidance mode for the virtual keyboard.
 
 See [Example 4: Setting the Keyboard Avoidance Mode to Resize](./arkui-ts/ts-universal-attributes-expand-safe-area.md#example-4-setting-the-keyboard-avoidance-mode-to-resize), [Example 5: Setting Keyboard Avoidance Mode to Offset](./arkui-ts/ts-universal-attributes-expand-safe-area.md#example-5-setting-keyboard-avoidance-mode-to-offset), and [Example 6: Switching Avoidance Modes](./arkui-ts/ts-universal-attributes-expand-safe-area.md#example-6-switching-avoidance-modes).
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
@@ -1396,6 +1395,7 @@ Obtains the avoidance mode for the virtual keyboard.
 
 See [Example 4: Setting the Keyboard Avoidance Mode to Resize](./arkui-ts/ts-universal-attributes-expand-safe-area.md#example-4-setting-the-keyboard-avoidance-mode-to-resize), [Example 5: Setting Keyboard Avoidance Mode to Offset](./arkui-ts/ts-universal-attributes-expand-safe-area.md#example-5-setting-keyboard-avoidance-mode-to-offset), and [Example 6: Switching Avoidance Modes](./arkui-ts/ts-universal-attributes-expand-safe-area.md#example-6-switching-avoidance-modes).
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { KeyboardAvoidMode, UIContext } from '@kit.ArkUI';
@@ -1442,18 +1442,18 @@ Obtains an **AtomicServiceBar** object, which can be used to set the properties 
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
-import { hilog } from '@kit.PerformanceAnalysisKit';
+
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+    console.info('Ability onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err, data) => {
       let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
       let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
       if (atomicServiceBar != undefined) {
-        hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+        console.info('Get AtomServiceBar Successfully.');
       } else {
-        hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+        console.error('Get AtomicServiceBar failed.');
       }
     });
   }
@@ -1494,7 +1494,7 @@ Generates a key frame animation. For details about how to use this API, see [key
 | Name| Type                                             | Mandatory| Description                     |
 | ------------ | ---------------------------------------------------- | ------- | ---------------------------- |
 | param        | [KeyframeAnimateParam](arkui-ts/ts-keyframeAnimateTo.md#keyframeanimateparam) | Yes     | Overall animation parameter of the keyframe animation.    |
-| keyframes    | Array&lt;[KeyframeState](arkui-ts/ts-keyframeAnimateTo.md#keyframestate)&gt;  | Yes     | States of all keyframes.           |
+| keyframes    | Array&lt;[KeyframeState](arkui-ts/ts-keyframeAnimateTo.md#keyframestate)&gt;  | Yes     | List of all keyframe states.           |
 
 **Example**
 
@@ -1522,7 +1522,7 @@ struct KeyframeDemo {
         .scale({ x: this.myScale, y: this.myScale })
         .onClick(() => {
           if (!this.uiContext) {
-            console.info("no uiContext, keyframe failed");
+            console.error("no uiContext, keyframe failed");
             return;
           }
           this.myScale = 1;
@@ -1621,7 +1621,7 @@ import { UIContext } from '@kit.ArkUI';
 @Component
 struct ComponentPage {
   loopConsole(inspectorStr: string, i: string) {
-    console.log(`InsTree ${i}| type: ${JSON.parse(inspectorStr).$type}, ID: ${JSON.parse(inspectorStr).$ID}`);
+    console.info(`InsTree ${i}| type: ${JSON.parse(inspectorStr).$type}, ID: ${JSON.parse(inspectorStr).$ID}`);
     if (JSON.parse(inspectorStr).$children) {
       i += '-';
       for (let index = 0; index < JSON.parse(inspectorStr).$children.length; index++) {
@@ -1635,14 +1635,14 @@ struct ComponentPage {
       Button('content').onClick(() => {
         const uiContext: UIContext = this.getUIContext();
         let inspectorStr = uiContext.getFilteredInspectorTree(['content']);
-        console.log(`InsTree : ${inspectorStr}`);
+        console.info(`InsTree : ${inspectorStr}`);
         inspectorStr = JSON.stringify(JSON.parse(inspectorStr));
         this.loopConsole(inspectorStr, '-');
       })
       Button('isLayoutInspector').onClick(() => {
         const uiContext: UIContext = this.getUIContext();
         let inspectorStr = uiContext.getFilteredInspectorTree(['isLayoutInspector']);
-        console.log(`InsTree : ${inspectorStr}`);
+        console.info(`InsTree : ${inspectorStr}`);
         inspectorStr = JSON.stringify(JSON.parse(inspectorStr).content);
         this.loopConsole(inspectorStr, '-');
       })
@@ -2517,7 +2517,7 @@ Creates a sheet whose content is as defined in **bindSheetContent** and displays
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    Promise used to return the result.|
+|   Promise&lt;void&gt;           |    Promise that returns no value.|
 
 **Error codes**
 
@@ -2563,7 +2563,7 @@ function buildText(params: Params) {
             console.info('updateBindSheet success');
           })
           .catch((err: BusinessError) => {
-            console.info('updateBindSheet error: ' + err.code + ' ' + err.message);
+            console.error('updateBindSheet error: ' + err.code + ' ' + err.message);
           })
       })
 
@@ -2575,7 +2575,7 @@ function buildText(params: Params) {
             console.info('closeBindSheet success');
           })
           .catch((err: BusinessError) => {
-            console.info('closeBindSheet error: ' + err.code + ' ' + err.message);
+            console.error('closeBindSheet error: ' + err.code + ' ' + err.message);
           })
       })
   }
@@ -2610,7 +2610,7 @@ struct UIContextBindSheet {
                 console.info('openBindSheet success');
               })
               .catch((err: BusinessError) => {
-                console.info('openBindSheet error: ' + err.code + ' ' + err.message);
+                console.error('openBindSheet error: ' + err.code + ' ' + err.message);
               })
           })
       }
@@ -2648,7 +2648,7 @@ Updates the style of the sheet corresponding to the provided **bindSheetContent*
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    Promise used to return the result.|
+|   Promise&lt;void&gt;           |    Promise that returns no value.|
 
 **Error codes**
 
@@ -2691,7 +2691,7 @@ function buildText(params: Params) {
             console.info('updateBindSheet success');
           })
           .catch((err: BusinessError) => {
-            console.info('updateBindSheet error: ' + err.code + ' ' + err.message);
+            console.error('updateBindSheet error: ' + err.code + ' ' + err.message);
           })
       })
 
@@ -2703,7 +2703,7 @@ function buildText(params: Params) {
             console.info('closeBindSheet success');
           })
           .catch((err: BusinessError) => {
-            console.info('closeBindSheet error: ' + err.code + ' ' + err.message);
+            console.error('closeBindSheet error: ' + err.code + ' ' + err.message);
           })
       })
   }
@@ -2738,7 +2738,7 @@ struct UIContextBindSheet {
                 console.info('openBindSheet success');
               })
               .catch((err: BusinessError) => {
-                console.info('openBindSheet error: ' + err.code + ' ' + err.message);
+                console.error('openBindSheet error: ' + err.code + ' ' + err.message);
               })
           })
       }
@@ -2774,7 +2774,7 @@ Closes the sheet corresponding to **bindSheetContent**. This API uses a promise 
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    Promise used to return the result.|
+|   Promise&lt;void&gt;           |    Promise that returns no value.|
 
 **Error codes**
 
@@ -2817,7 +2817,7 @@ function buildText(params: Params) {
             console.info('updateBindSheet success');
           })
           .catch((err: BusinessError) => {
-            console.info('updateBindSheet error: ' + err.code + ' ' + err.message);
+            console.error('updateBindSheet error: ' + err.code + ' ' + err.message);
           })
       })
 
@@ -2829,7 +2829,7 @@ function buildText(params: Params) {
             console.info('closeBindSheet success');
           })
           .catch((err: BusinessError) => {
-            console.info('closeBindSheet error: ' + err.code + ' ' + err.message);
+            console.error('closeBindSheet error: ' + err.code + ' ' + err.message);
           })
       })
   }
@@ -2864,7 +2864,7 @@ struct UIContextBindSheet {
                 console.info('openBindSheet success');
               })
               .catch((err: BusinessError) => {
-                console.info('openBindSheet error: ' + err.code + ' ' + err.message);
+                console.error('openBindSheet error: ' + err.code + ' ' + err.message);
               })
           })
       }
@@ -2893,9 +2893,19 @@ Checks whether this UI context follows the system font scale settings.
 
 **Example**
 
-<!--code_no_check-->
+Refer to the [configuration tag](../../quick-start/app-configuration-file.md#configuration) and set the value of **fontSizeScale** to **"followSystem"**.
 ```ts
-uiContext.isFollowingSystemFontScale();
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Button('isFollowingSystemFontScale').onClick(() => {
+        console.info('isFollowingSystemFontScale', this.getUIContext().isFollowingSystemFontScale());
+      });
+    }
+  }
+}
 ```
 
 ## getMaxFontScale<sup>13+</sup>
@@ -2916,9 +2926,19 @@ Obtains the maximum font scale of this UI context.
 
 **Example**
 
-<!--code_no_check-->
+Refer to the [configuration tag](../../quick-start/app-configuration-file.md#configuration) and set the value of **fontSizeMaxScale** to **"1.75"**.
 ```ts
-uiContext.getMaxFontScale();
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Button('getMaxFontScale').onClick(() => {
+        console.info('getMaxFontScale', this.getUIContext().getMaxFontScale().toFixed(2));
+      });
+    }
+  }
+}
 ```
 
 ## bindTabsToScrollable<sup>13+</sup>
@@ -3279,11 +3299,11 @@ struct Index {
     Row() {
       Row() {
         Button('Button1').id('Button1').onKeyEvent((event) => {
-          console.log("Button1");
+          console.info("Button1");
           return true;
         })
         Button('Button2').id('Button2').onKeyEvent((event) => {
-          console.log("Button2");
+          console.info("Button2");
           return true;
         })
       }
@@ -3328,6 +3348,7 @@ Sets the pixel rounding mode for this page.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIContext } from '@kit.ArkUI';
@@ -3369,6 +3390,7 @@ Obtains the pixel rounding mode for this page.
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
 import { UIContext } from '@kit.ArkUI';
@@ -3391,4 +3413,3 @@ export default class EntryAbility extends UIAbility{
     }
 }
 ```
-<!--no_check-->

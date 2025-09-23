@@ -1,4 +1,10 @@
 # ArkData (ArkData Management)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @widecode-->
+<!--Designer: @widecode-->
+<!--Tester: @logic42-->
+<!--Adviser: @ge-yafang-->
 
 - ArkTS APIs<!--arkdata-arkts-->
   - [@ohos.data.commonType (Common Data Types)](js-apis-data-commonType.md)

@@ -1,5 +1,10 @@
 # 刷新本地图片和网络图片
-
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+<!--Adviser: @Brilliantry_Rui-->
 
 在卡片上通常需要展示本地图片或从网络上下载的图片，获取本地图片和网络图片需要通过FormExtensionAbility来实现，如下示例代码介绍了如何在卡片上显示本地图片和网络图片。
 
@@ -187,5 +192,3 @@
 > - Image组件通过入参(memory://fileName)中的(memory://)标识来进行远端内存图片显示，其中fileName需要和EntryFormAbility传递对象('formImages': {key: fd})中的key相对应。
 >
 > - Image组件通过传入的参数是否有变化来决定是否刷新图片，因此EntryFormAbility每次传递过来的imgName都需要不同，连续传递两个相同的imgName时，图片不会刷新。
->
-> - 在卡片上展示的图片，大小需要控制在2MB以内。

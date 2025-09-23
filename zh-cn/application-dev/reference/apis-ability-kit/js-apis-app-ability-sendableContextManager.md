@@ -18,19 +18,20 @@ sendableContextManager模块提供Context与[SendableContext](js-apis-inner-appl
 
 本模块主要用于ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）的数据传递。
 
-例如，以主线程向子线程传递Sendable数据，转换过程如下：
+例如，从主线程向子线程（如TaskPool或Worker工作线程）传递Sendable数据（符合[Sendable协议](../../arkts-utils/arkts-sendable.md#sendable协议)的数据）时，需要通过Context与SendableContext之间的相互转换来实现。过程如下：
 - 主线程向子线程传递Sendable数据时，需要将Context转换为SendableContext。
 - 子线程使用Sendable数据时，需要将SendableContext转换为Context。
 
 这里的Context与[createModuleContext](./js-apis-app-ability-application.md#applicationcreatemodulecontext12)方法创建的Context不同，具体差异如下：
 - 与SendableContext相互转换的Context：ArkTS并发实例持有的应用侧Context是不同的实例，底层对应同一个Context对象。当一个实例中Context属性和方法被修改时，相关实例中的Context属性和方法将会同步修改。其中，Context实例中的eventHub属性比较特殊，不同实例中的eventHub是独立的对象，不支持跨ArkTS实例使用。如果需要使用[EventHub](./js-apis-inner-application-eventHub.md)跨实例传递数据，可以通过[setEventHubMultithreadingEnabled](#sendablecontextmanagerseteventhubmultithreadingenabled20)启用跨线程数据传递功能。
 
-
 - 通过[createModuleContext](./js-apis-app-ability-application.md#applicationcreatemodulecontext12)创建的Context：ArkTS并发实例持有的应用侧Context是不同的实例，底层对应不同的Context对象。
 
 ## 约束限制
 
-“Context转换为SendableContext”和“SendableContext转换为Context”两个环节中的Context类型必须保持一致。目前支持转换的Context包括[Context](js-apis-inner-application-context.md)、[ApplicationContext](js-apis-inner-application-applicationContext.md)、[AbilityStageContext](js-apis-inner-application-abilityStageContext.md)、[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)。
+“Context转换为SendableContext”和“SendableContext转换为Context”两个环节中的Context类型必须保持一致。例如，主线程使用[convertFromContext](#sendablecontextmanagerconvertfromcontext)将[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)转换为SendableContext，子线程收到该SendableContext之后，需要通过[convertToUIAbilityContext](#sendablecontextmanagerconverttouiabilitycontext)将SendableContext转换为[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)。
+
+目前支持转换的Context包括[Context](js-apis-inner-application-context.md)、[ApplicationContext](js-apis-inner-application-applicationContext.md)、[AbilityStageContext](js-apis-inner-application-abilityStageContext.md)、[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)。
 
 ## 导入模块
 
@@ -58,9 +59,9 @@ convertFromContext(context: common.Context): SendableContext
 
 将Context转换为SendableContext对象。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -107,7 +108,8 @@ export default class EntryAbility extends UIAbility {
 
     // convert and post
     try {
-      let sendableContext: sendableContextManager.SendableContext = sendableContextManager.convertFromContext(this.context);
+      let sendableContext: sendableContextManager.SendableContext =
+        sendableContextManager.convertFromContext(this.context);
       let object: SendableObject = new SendableObject(sendableContext);
       hilog.info(0x0000, 'testTag', '%{public}s', 'Ability post message');
       this.worker.postMessageWithSharedSendable(object);
@@ -124,9 +126,9 @@ convertToContext(sendableContext: SendableContext): common.Context
 
 将SendableContext对象转换为Context。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -236,9 +238,9 @@ convertToApplicationContext(sendableContext: SendableContext): common.Applicatio
 
 将SendableContext对象转换为ApplicationContext。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -289,7 +291,8 @@ export default class EntryAbility extends UIAbility {
     try {
       let context: common.Context = this.context as common.Context;
       let applicationContext = context.getApplicationContext();
-      let sendableContext: sendableContextManager.SendableContext = sendableContextManager.convertFromContext(applicationContext);
+      let sendableContext: sendableContextManager.SendableContext =
+        sendableContextManager.convertFromContext(applicationContext);
       let object: SendableObject = new SendableObject(sendableContext, 'ApplicationContext');
       hilog.info(0x0000, 'testTag', '%{public}s', 'Ability post message');
       this.worker.postMessageWithSharedSendable(object);
@@ -349,9 +352,9 @@ convertToAbilityStageContext(sendableContext: SendableContext): common.AbilitySt
 
 将SendableContext对象转换为AbilityStageContext。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -400,7 +403,8 @@ export default class EntryAbility extends UIAbility {
 
     // convert and post
     try {
-      let sendableContext: sendableContextManager.SendableContext = sendableContextManager.convertFromContext(this.context);
+      let sendableContext: sendableContextManager.SendableContext =
+        sendableContextManager.convertFromContext(this.context);
       let object: SendableObject = new SendableObject(sendableContext, 'AbilityStageContext');
       hilog.info(0x0000, 'testTag', '%{public}s', 'AbilityStage post message');
       this.worker.postMessageWithSharedSendable(object);
@@ -460,9 +464,9 @@ convertToUIAbilityContext(sendableContext: SendableContext): common.UIAbilityCon
 
 将SendableContext对象转换为UIAbilityContext。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -511,7 +515,8 @@ export default class EntryAbility extends UIAbility {
 
     // convert and post
     try {
-      let sendableContext: sendableContextManager.SendableContext = sendableContextManager.convertFromContext(this.context);
+      let sendableContext: sendableContextManager.SendableContext =
+        sendableContextManager.convertFromContext(this.context);
       let object: SendableObject = new SendableObject(sendableContext, 'EntryAbilityContext');
       hilog.info(0x0000, 'testTag', '%{public}s', 'Ability post message');
       this.worker.postMessageWithSharedSendable(object);
@@ -568,23 +573,22 @@ workerPort.onerror = (e: ErrorEvent) => {
 
 setEventHubMultithreadingEnabled(context: common.Context, enabled: boolean): void
 
-如果需要使用[Context](js-apis-inner-application-context.md)中的[EventHub](./js-apis-inner-application-eventHub.md)进行跨线程通信，可以通过该接口来启用该Context的Eventhub跨线程数据传递功能。
+设置[Context](js-apis-inner-application-context.md)中的[EventHub](./js-apis-inner-application-eventHub.md)是否启用跨线程通信能力。
 
 > **说明：**
-> 
+>
 > - 当多个Context进行通信时，需要调用该接口设置每个Context都支持EventHub跨线程数据传递功能。
-> - 启用该接口前，数据是通过引用的方式传递的。启用该接口后，数据是通过序列化的方式传递的，即发送端线程与接收端线程的数据相互独立。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
 | 参数名  | 类型           | 必填 | 说明                                                         |
 | ------- | -------------- | ---- | ------------------------------------------------------------ |
 | context | [common.Context](js-apis-inner-application-context.md) | 是   | Context对象。其中，Eventhub支持传递的序列化数据类型参见[序列化支持的类型](../apis-arkts/js-apis-taskpool.md#序列化支持类型)，数据大小不超过16MB。 |
-| enabled  | boolean        | 是   | 表示是否启用Context的EventHub跨线程通信能力。true表示启用，false表示禁用。                                |
+| enabled  | boolean        | 是   | 表示是否启用Context的EventHub跨线程通信能力。<br>- true：表示启用跨线程通信能力，数据将通过引用的方式传递。<br>- false：表示禁用跨线程通信能力，数据将通过序列化的方式传递，即发送端线程与接收端线程的数据相互独立。 |
 
 **示例：**
 

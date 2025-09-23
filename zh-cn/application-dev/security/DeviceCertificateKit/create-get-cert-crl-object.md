@@ -93,7 +93,7 @@ async function sample() {
   let collection: cert.CertCRLCollection = {} as cert.CertCRLCollection;
   try {
     collection = cert.createCertCRLCollection([x509Cert], [x509CRL]);
-    console.log('createCertCRLCollection success');
+    console.info('createCertCRLCollection success');
   } catch (err) {
     console.error('createCertCRLCollection failed');
   }
@@ -112,7 +112,7 @@ async function sample() {
   }
   try {
     let crls: cert.X509CRL[] = await collection.selectCRLs(crlParam);
-    console.error('selectCRLs success');
+    console.info('selectCRLs success');
   } catch (err) {
     console.error('selectCRLs failed');
   }

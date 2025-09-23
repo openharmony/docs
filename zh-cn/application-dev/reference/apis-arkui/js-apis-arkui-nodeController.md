@@ -257,19 +257,19 @@ class MyNodeController extends NodeController {
   }
 
   aboutToResize(size: Size) {
-    console.log("aboutToResize width : " + size.width + " height : " + size.height)
+    console.info("aboutToResize width : " + size.width + " height : " + size.height)
   }
 
   aboutToAppear() {
-    console.log("aboutToAppear")
+    console.info("aboutToAppear")
   }
 
   aboutToDisappear() {
-    console.log("aboutToDisappear");
+    console.info("aboutToDisappear");
   }
 
   onTouchEvent(event:TouchEvent) {
-    console.log("onTouchEvent");
+    console.info("onTouchEvent");
   }
 }
 
@@ -326,27 +326,27 @@ class MyNodeController extends NodeController {
   }
 
   onAttach(): void {
-    console.log("myButton on attach");
+    console.info("myButton on attach");
   }
 
   onDetach(): void {
-    console.log("myButton on detach");
+    console.info("myButton on detach");
   }
 
   onWillBind(containerId: number): void{
-    console.log("myButton on WillBind" + containerId);
+    console.info("myButton on WillBind" + containerId);
   }
 
   onWillUnbind(containerId: number): void{
-    console.log("myButton on WillUnbind" + containerId);
+    console.info("myButton on WillUnbind" + containerId);
   }
 
   onBind(containerId: number): void {
-    console.log("myButton on bind: " + containerId);
+    console.info("myButton on bind: " + containerId);
   }
 
   onUnbind(containerId: number): void {
-    console.log("myButton on unbind: " + containerId);
+    console.info("myButton on unbind: " + containerId);
   }
 }
 

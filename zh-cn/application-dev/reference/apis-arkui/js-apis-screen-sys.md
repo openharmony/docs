@@ -26,6 +26,8 @@ getAllScreens(callback: AsyncCallback&lt;Array&lt;Screen&gt;&gt;): void
 
 获取所有的屏幕，使用callback异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -52,11 +54,13 @@ let screenClass: screen.Screen | null = null;
 screen.getAllScreens((err: BusinessError, data: Array<screen.Screen>) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error(`Failed to get all screens. Code:${err.code},message is ${err.message}`);
+    console.error(`Failed to get all screens. Code:${err.code}, message is ${err.message}`);
     return;
   }
-  console.info('Succeeded in getting all screens. Data:' + JSON.stringify(data));
-  screenClass = data[0];
+  console.info(`Succeeded in getting all screens. Data: ${JSON.stringify(data)}`);
+  if(data.length > 0 ）{
+    screenClass = data[0];
+  }
 });
 ```
 
@@ -65,6 +69,8 @@ screen.getAllScreens((err: BusinessError, data: Array<screen.Screen>) => {
 getAllScreens(): Promise&lt;Array&lt;Screen&gt;&gt;
 
 获取所有的屏幕，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -91,10 +97,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let screenClass: screen.Screen | null = null;
 let promise: Promise<Array<screen.Screen>> = screen.getAllScreens();
 promise.then((data: Array<screen.Screen>) => {
-  screenClass = data[0];
-  console.log('Succeeded in getting all screens. Data:' + JSON.stringify(data));
+  if(data.length > 0){
+  	screenClass = data[0];
+  }
+  console.info(`Succeeded in getting all screens. Data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-  console.log('Failed to get all screens. Cause: ' + JSON.stringify(err));
+  console.error(`Failed to get all screens. Code: ${err.code}, message : ${err.message}`);
 });
 ```
 
@@ -103,6 +111,8 @@ promise.then((data: Array<screen.Screen>) => {
 on(eventType: 'connect' | 'disconnect' | 'change', callback: Callback&lt;number&gt;): void
 
 开启屏幕状态变化的监听。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -126,7 +136,7 @@ on(eventType: 'connect' | 'disconnect' | 'change', callback: Callback&lt;number&
 
 ```ts
 let callback: Callback<number> = (data: number) => {
-  console.info('Succeeded in registering the callback for screen changes. Data: ' + JSON.stringify(data))
+  console.info(`Succeeded in registering the callback for screen changes. Data: ${data}`)
 };
 screen.on('connect', callback);
 ```
@@ -136,6 +146,8 @@ screen.on('connect', callback);
 off(eventType: 'connect' | 'disconnect' | 'change', callback?: Callback&lt;number&gt;): void
 
 关闭屏幕状态变化的监听。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -159,7 +171,7 @@ off(eventType: 'connect' | 'disconnect' | 'change', callback?: Callback&lt;numbe
 
 ```ts
 let callback: Callback<number> = (data: number) => {
-  console.info('Succeeded in unregistering the callback for screen changes. Data: ' + JSON.stringify(data))
+  console.info(`Succeeded in unregistering the callback for screen changes. Data: ${data}`)
 };
 screen.off('connect', callback);
 screen.off('connect');
@@ -171,14 +183,16 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncC
 
 将屏幕设置为镜像模式，使用callback异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
 | 参数名       | 类型                        | 必填 | 说明                 |
 | ------------ | --------------------------- | ---- |--------------------|
-| mainScreen   | number                      | 是   | 主屏幕id，该参数仅支持整数输入。  |
-| mirrorScreen | Array&lt;number&gt;         | 是   | 镜像屏幕id集合，其中id应为整数。 |
+| mainScreen   | number                      | 是   | 主屏幕ID，该参数仅支持整数输入。  |
+| mirrorScreen | Array&lt;number&gt;         | 是   | 镜像屏幕ID集合，其中ID应为整数。 |
 | callback     | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回镜像屏幕的群组id，其中id为整数。  |
 
 **错误码：**
@@ -201,10 +215,10 @@ let mirrorScreenIds: Array<number> = [1, 2, 3];
 screen.makeMirror(mainScreenId, mirrorScreenIds, (err: BusinessError, data: number) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error(`Failed to set screen mirroring. Code:${err.code},message is ${err.message}`);
+    console.error(`Failed to set screen mirroring. Code:${err.code}, message is ${err.message}`);
     return;
   }
-  console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in setting screen mirroring. Data: ${data}`);
 });
 ```
 
@@ -214,14 +228,16 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;): Promise&lt;numb
 
 将屏幕设置为镜像模式，使用Promise异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
 | 参数名       | 类型                | 必填 | 说明                 |
 | ------------ | ------------------- | ---- |--------------------|
-| mainScreen   | number              | 是   | 主屏幕id，该参数仅支持整数输入。  |
-| mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕id集合。其中id应为整数。 |
+| mainScreen   | number              | 是   | 主屏幕ID，该参数仅支持整数输入。  |
+| mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕ID集合。其中ID应为整数。 |
 
 **返回值：**
 
@@ -247,9 +263,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let mainScreenId: number = 0;
 let mirrorScreenIds: Array<number> = [1, 2, 3];
 screen.makeMirror(mainScreenId, mirrorScreenIds).then((data: number) => {
-  console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in setting screen mirroring. Data: ${data}`);
 }).catch((err: BusinessError) => {
-  console.error(`Failed to set screen mirroring. Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to set screen mirroring. Code:${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -259,13 +275,15 @@ stopMirror(mirrorScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;
 
 停止屏幕的镜像模式，使用callback异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明                                      |
 | ------------ | --------------------------- | --- |-----------------------------------------|
-| mirrorScreen | Array&lt;number&gt;         | 是   | 镜像屏幕id集合，其中id应为整数。 mirrorScreen数组大小不应超过1000。 |
+| mirrorScreen | Array&lt;number&gt;         | 是   | 镜像屏幕ID集合，其中ID应为整数。 mirrorScreen数组大小不应超过1000。 |
 | callback     | AsyncCallback&lt;void&gt; | 是   | 回调函数。当停止屏幕镜像模式成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -287,7 +305,7 @@ let mirrorScreenIds: Array<number> = [1, 2, 3];
 screen.stopMirror(mirrorScreenIds, (err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error(`Failed to stop mirror screens. Code:${err.code},message is ${err.message}`);
+    console.error(`Failed to stop mirror screens. Code:${err.code}, message is ${err.message}`);
     return;
   }
   console.info('Succeeded in stopping mirror screens.');
@@ -300,13 +318,15 @@ stopMirror(mirrorScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 
 停止屏幕的镜像模式，使用Promise异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明                 |
 | ------------ | ------------------- | --- |--------------------|
-| mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕id集合，其中id应为整数。mirrorScreen数组大小不应超过1000。 |
+| mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕ID集合，其中ID应为整数。mirrorScreen数组大小不应超过1000。 |
 
 **返回值：**
 
@@ -333,7 +353,7 @@ let mirrorScreenIds: Array<number> = [1, 2, 3];
 screen.stopMirror(mirrorScreenIds).then(() => {
   console.info('Succeeded in stopping mirror screens.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to stop mirror screens.Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to stop mirror screens.Code:${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -343,13 +363,15 @@ makeUnique(uniqueScreen: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt
 
 将屏幕设置为异源模式，使用Promise异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
 
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
-| uniqueScreen  | Array&lt;number&gt; | 是   | 异源屏幕id集合。其中id应为大于0的整数，否则返回401错误码。 |
+| uniqueScreen  | Array&lt;number&gt; | 是   | 异源屏幕ID集合。其中ID应为大于0的整数，否则返回401错误码。 |
 
 **返回值：**
 
@@ -378,7 +400,7 @@ let uniqueScreenIds: Array<number> = [1001, 1002, 1003];
 screen.makeUnique(uniqueScreenIds).then((data: Array<number>) => {
   console.info('Succeeded in making unique screens.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to make unique screens. Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to make unique screens. Code:${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -387,6 +409,8 @@ screen.makeUnique(uniqueScreenIds).then((data: Array<number>) => {
 createVirtualScreen(options:VirtualScreenOption, callback: AsyncCallback&lt;Screen&gt;): void
 
 创建虚拟屏幕，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -434,11 +458,11 @@ let option : VirtualScreenOption = {
 screen.createVirtualScreen(option, (err: BusinessError, data: screen.Screen) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+    console.error(`Failed to create the virtual screen. Code:${err.code}, message is ${err.message}`);
     return;
   }
   screenClass = data;
-  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in creating the virtual screen. Data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -447,6 +471,8 @@ screen.createVirtualScreen(option, (err: BusinessError, data: screen.Screen) => 
 createVirtualScreen(options:VirtualScreenOption): Promise&lt;Screen&gt;
 
 创建虚拟屏幕，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -499,9 +525,9 @@ let option : VirtualScreenOption = {
 
 screen.createVirtualScreen(option).then((data: screen.Screen) => {
   screenClass = data;
-  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in creating the virtual screen. Data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to create the virtual screen. Code:${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -510,6 +536,8 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 destroyVirtualScreen(screenId:number, callback: AsyncCallback&lt;void&gt;): void
 
 销毁虚拟屏幕，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -539,7 +567,7 @@ let screenId: number = 1;
 screen.destroyVirtualScreen(screenId, (err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error(`Failed to destroy the virtual screen. Code:${err.code},message is ${err.message}`);
+    console.error(`Failed to destroy the virtual screen. Code:${err.code}, message is ${err.message}`);
     return;
   }
   console.info('Succeeded in destroying the virtual screen.');
@@ -551,6 +579,8 @@ screen.destroyVirtualScreen(screenId, (err: BusinessError) => {
 destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
 
 销毁虚拟屏幕，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -585,7 +615,7 @@ let screenId: number = 1;
 screen.destroyVirtualScreen(screenId).then(() => {
   console.info('Succeeded in destroying the virtual screen.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to destroy the virtual screen.Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to destroy the virtual screen.Code:${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -594,6 +624,8 @@ screen.destroyVirtualScreen(screenId).then(() => {
 setVirtualScreenSurface(screenId:number, surfaceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 设置虚拟屏幕的surface，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -628,7 +660,7 @@ let surfaceId: string = '2048';
 screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error(`Failed to set the surface for the virtual screen. Code:${err.code},message is ${err.message}`);
+    console.error(`Failed to set the surface for the virtual screen. Code:${err.code}, message is ${err.message}`);
     return;
   }
   console.info('Succeeded in setting the surface for the virtual screen.');
@@ -640,6 +672,8 @@ screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
 setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 
 设置虚拟屏幕的surface，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -679,7 +713,7 @@ let surfaceId: string = '2048';
 screen.setVirtualScreenSurface(screenId, surfaceId).then(() => {
   console.info('Succeeded in setting the surface for the virtual screen.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to set the surface for the virtual screen. Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to set the surface for the virtual screen. Code:${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -688,6 +722,8 @@ screen.setVirtualScreenSurface(screenId, surfaceId).then(() => {
 setScreenPrivacyMaskImage(screenId:number, image?: image.PixelMap): Promise&lt;void&gt;
 
 设置屏幕的隐私蒙版图片，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -730,7 +766,7 @@ image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
   screen.setScreenPrivacyMaskImage(screenId, pixelMap).then(() => {
     console.info('Succeeded in setting the privacy mask image for the screen.');
   }).catch((err: BusinessError) => {
-    console.error(`Failed to set the privacy mask image for the screen. Code:${err.code},message is ${err.message}`);
+    console.error(`Failed to set the privacy mask image for the screen. Code:${err.code}, message is ${err.message}`);
   });
 }).catch((error: BusinessError) => {
   console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
@@ -742,6 +778,8 @@ image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
 isScreenRotationLocked(): Promise&lt;boolean&gt;
 
 查询当前自动转屏是否锁定，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -765,9 +803,9 @@ isScreenRotationLocked(): Promise&lt;boolean&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 screen.isScreenRotationLocked().then((isLocked: boolean) => {
-  console.info('Succeeded in getting the screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
+  console.info(`Succeeded in getting the screen rotation lock status. isLocked: ${islocked}`);
 }).catch((err: BusinessError) => {
-  console.error(`Failed to get the screen rotation lock status. Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to get the screen rotation lock status. Code:${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -776,6 +814,8 @@ screen.isScreenRotationLocked().then((isLocked: boolean) => {
 isScreenRotationLocked(callback: AsyncCallback&lt;boolean&gt;): void
 
 查询当前自动转屏是否锁定，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -801,10 +841,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 screen.isScreenRotationLocked((err: BusinessError, isLocked: boolean) => {
 const errCode: number = err.code;
 if (errCode) {
-  console.error(`Failed to get the screen rotation lock status. Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to get the screen rotation lock status. Code:${err.code}, message is ${err.message}`);
   return;
 }
-console.info('Succeeded in getting the screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
+console.info(`Succeeded in getting the screen rotation lock status. isLocked: ${islocked}`);
 });
 ```
 
@@ -812,9 +852,13 @@ console.info('Succeeded in getting the screen rotation lock status. isLocked:' +
 
 setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 
-设置自动转屏开关是否锁定，使用Promise异步回调，不适用于2in1设备。
+设置自动转屏开关是否锁定，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**设备行为差异：** 仅在支持跟随sensor旋转的设备中生效，其他设备调用不生效不报错。
 
 **参数：**
 
@@ -846,7 +890,7 @@ let isLocked: boolean = false;
 screen.setScreenRotationLocked(isLocked).then(() => {
   console.info('Succeeded in unlocking auto rotate');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to unlock auto rotate. Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to unlock auto rotate. Code:${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -854,9 +898,13 @@ screen.setScreenRotationLocked(isLocked).then(() => {
 
 setScreenRotationLocked(isLocked: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置自动转屏开关是否锁定，使用callback异步回调，不适用于2in1设备。
+设置自动转屏开关是否锁定，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**设备行为差异：** 仅在支持跟随sensor旋转的设备中生效，其他设备调用不生效不报错。
 
 **参数：**
 
@@ -883,7 +931,7 @@ let isLocked: boolean = false;
 screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error(`Failed to unlock auto rotate. Code:${err.code},message is ${err.message}`);
+    console.error(`Failed to unlock auto rotate. Code:${err.code}, message is ${err.message}`);
     return;
   }
   console.info('Succeeded in unlocking auto rotate.');
@@ -895,6 +943,8 @@ screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
 setMultiScreenMode(primaryScreenId: number, secondaryScreenId: number, secondaryScreenMode: MultiScreenMode): Promise&lt;void&gt;
 
 设置扩展屏幕的显示模式（镜像/扩展），使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -933,7 +983,7 @@ let screenMode: screen.MultiScreenMode = screen.MultiScreenMode.SCREEN_MIRROR;
 screen.setMultiScreenMode(primaryScreenId, secondaryScreenId, screenMode).then(() => {
   console.info('Succeeded in setting multi screen mode. Data: ');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to set multi screen mode. Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to set multi screen mode. Code:${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -942,6 +992,8 @@ screen.setMultiScreenMode(primaryScreenId, secondaryScreenId, screenMode).then((
 setMultiScreenRelativePosition(mainScreenOptions: MultiScreenPositionOptions, secondaryScreenOptions: MultiScreenPositionOptions): Promise&lt;void&gt;
 
 仅在扩展模式下，设置主屏和扩展屏幕的位置信息，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -986,9 +1038,9 @@ let secondaryScreenOptions: screen.MultiScreenPositionOptions = {
 };
 
 screen.setMultiScreenRelativePosition(mainScreenOptions, secondaryScreenOptions).then(() => {
-  console.info('Succeeded in setting multi screen relative position. Data: ');
+  console.info('Succeeded in setting multi screen relative position.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to set multi screen relative position. Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to set multi screen relative position. Code:${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -998,14 +1050,16 @@ makeMirrorWithRegion(mainScreen:number, mirrorScreen:Array&lt;number&gt;, mainSc
 
 将屏幕的某一矩形区域设置为镜像模式，使用Promise异步回调。调用该接口后，不建议再进行屏幕的旋转/折叠，否则可能导致镜像内容异常。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
 | 参数名       | 类型                | 必填 | 说明                 |
 | ------------ | ------------------- | ---- |--------------------|
-| mainScreen   | number              | 是   | 主屏幕id，该参数仅支持正整数输入。  |
-| mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕id集合。其中id应为正整数。  |
+| mainScreen   | number              | 是   | 主屏幕ID，该参数仅支持正整数输入。  |
+| mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕ID集合。其中ID应为正整数。  |
 | mainScreenRegion | [Rect](#rect19) | 是   | 主屏创建镜像的矩形区域。         |
 
 **返回值：**
@@ -1037,9 +1091,9 @@ let mainScreenRegion: screen.Rect = {
   height : 1080
 };
 screen.makeMirrorWithRegion(mainScreenId, mirrorScreenIds, mainScreenRegion).then((data: number) => {
-  console.info(`Succeeded in setting screen mirroring. Data: ${JSON.stringify(data)}`);
+  console.info(`Succeeded in setting screen mirroring. Data: ${data}`);
 }).catch((err: BusinessError) => {
-  console.error(`Failed to set screen area mirroring. Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to set screen area mirroring. Code:${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1052,6 +1106,8 @@ makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&
 > **说明：**
 > 
 > 从API version 9开始支持，从API version 20开始废弃。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1089,11 +1145,11 @@ let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ]
 screen.makeExpand(expandOptionArray, (err: BusinessError, data: number) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error(`Failed to expand the screen. Code:${err.code},message is ${err.message}`);
+    console.error(`Failed to expand the screen. Code:${err.code}, message is ${err.message}`);
     return;
   }
   groupId = data;
-  console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in expanding the screen. Data: ${data}`);
 });
 ```
 
@@ -1106,6 +1162,8 @@ makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
 > **说明：**
 > 
 > 从API version 9开始支持，从API version 20开始废弃。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1146,9 +1204,9 @@ let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
 let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
 screen.makeExpand(expandOptionArray).then((
   data: number) => {
-  console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in expanding the screen. Data: ${data}`);
 }).catch((err: BusinessError) => {
-  console.error(`Failed to expand the screen. Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to expand the screen. Code:${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1162,13 +1220,15 @@ stopExpand(expandScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;
 > 
 > 从API version 10开始支持，从API version 20开始废弃。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明                                      |
 | ------------ | --------------------------- | --- |-----------------------------------------|
-| expandScreen | Array&lt;number&gt;         | 是   | 扩展屏幕id集合，其中id为整数。 expandScreen数组大小不应超过1000。  |
+| expandScreen | Array&lt;number&gt;         | 是   | 扩展屏幕ID集合，其中ID为整数。 expandScreen数组大小不应超过1000。  |
 | callback     | AsyncCallback&lt;void&gt; | 是   | 回调函数。当停止屏幕扩展模式成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -1190,7 +1250,7 @@ let expandScreenIds: Array<number> = [1, 2, 3];
 screen.stopExpand(expandScreenIds, (err: BusinessError) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error(`Failed to stop expand screens. Code:${err.code},message is ${err.message}`);
+    console.error(`Failed to stop expand screens. Code:${err.code}, message is ${err.message}`);
     return;
   }
   console.info('Succeeded in stopping expand screens.');
@@ -1207,13 +1267,15 @@ stopExpand(expandScreen:Array&lt;number&gt;): Promise&lt;void&gt;
 > 
 > 从API version 10开始支持，从API version 20开始废弃。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明                 |
 | ------------ | ------------------- | --- |--------------------|
-| expandScreen | Array&lt;number&gt; | 是   | 扩展屏幕id集合，其中id为整数。expandScreen数组大小不应超过1000。 |
+| expandScreen | Array&lt;number&gt; | 是   | 扩展屏幕ID集合，其中ID为整数。expandScreen数组大小不应超过1000。 |
 
 **返回值：**
 
@@ -1240,13 +1302,15 @@ let expandScreenIds: Array<number> = [1, 2, 3];
 screen.stopExpand(expandScreenIds).then(() => {
   console.info('Succeeded in stopping expand screens.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to stop expand screens. Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to stop expand screens. Code:${err.code}, message is ${err.message}`);
 });
 ```
 
 ## ExpandOption
 
 扩展屏幕的参数。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1260,6 +1324,8 @@ screen.stopExpand(expandScreenIds).then(() => {
 
 屏幕模式枚举。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称              | 值  | 说明                            |
@@ -1271,17 +1337,21 @@ screen.stopExpand(expandScreenIds).then(() => {
 
 屏幕位置信息。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称    | 类型     | 只读 | 可选  | 说明                |
 | -------- | -------- | ---- | ---- | ------------------- |
-| id       | number   | 否   | 否   | 屏幕的id，该参数应为正整数，非正整数会作为非法参数报错。|
+| id       | number   | 否   | 否   | 屏幕的ID，该参数应为正整数，非正整数会作为非法参数报错。|
 | startX   | number   | 否   | 否   | 屏幕的起始X轴坐标。以两块屏幕外接矩形的左上顶点为原点，向右为正方向。该参数应为正整数，非正整数会作为非法参数报错。 |
 | startY   | number   | 否   | 否   | 屏幕的起始Y轴坐标。以两块屏幕外接矩形的左上顶点为原点，向下为正方向。该参数应为正整数，非正整数会作为非法参数报错。 |
 
 ## VirtualScreenOption
 
 创建虚拟屏幕的参数。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1301,22 +1371,29 @@ screen.stopExpand(expandScreenIds).then(() => {
 
 ### 属性
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
 
 | 名称              | 类型                                       | 只读 | 可选 | 说明                                                          |
 | ----------------- | ---------------------------------------------- | ---- | ---- |-------------------------------------------------------------|
-| id                | number                                         | 是   | 否   | 屏幕的id，该参数为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                              |
-| parent            | number                                         | 是   | 否   | 屏幕所属群组的id，该参数为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                          |
-| supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                                  |
-| activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。该参数为整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
-| orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                                       |
-| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core                                                     |
-| serialNumber<sup>15+</sup> | string        | 是   | 是   | 扩展屏幕的序列号，当前仅2in1设备支持此属性。其他设备暂不支持使用此属性。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager                        |       
+| id                | number                                         | 是   | 否   | 屏幕的ID，该参数为整数。                           |
+| rsId<sup>21+</sup> |number | 是 | 否 | 屏幕端口的id，该参数为整数。|
+| parent            | number                                         | 是   | 否   | 屏幕所属群组的id，该参数为整数。             |
+| supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。   |
+| activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。该参数为整数。 |
+| orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。       |
+| sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。     |
+| serialNumber<sup>15+</sup> | string        | 是   | 是   | 扩展屏幕的序列号，默认返回为空字符串。<br> **设备行为差异：** 该接口在2in1设备中可正常调用，在其他设备中不可用。  |       
 
 ### setOrientation
 
 setOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
 
 设置屏幕方向，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1360,17 +1437,17 @@ let option : VirtualScreenOption = {
 
 screen.createVirtualScreen(option).then((data: screen.Screen) => {
   let screenClass: screen.Screen = data;
-  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in creating the virtual screen. Data: ${JSON.stringify(data)}`);
   screenClass.setOrientation(screen.Orientation.VERTICAL, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error(`Failed to set the vertical orientation. Code:${err.code},message is ${err.message}`);
+      console.error(`Failed to set the vertical orientation. Code:${err.code}, message is ${err.message}`);
       return;
     }
     console.info('Succeeded in setting the vertical orientation.');
   });
 }).catch((err: BusinessError) => {
-  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to create the virtual screen. Code:${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1379,6 +1456,8 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 setOrientation(orientation: Orientation): Promise&lt;void&gt;
 
 设置屏幕方向，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1427,15 +1506,15 @@ let option : VirtualScreenOption = {
 
 screen.createVirtualScreen(option).then((data: screen.Screen) => {
   let screenClass: screen.Screen = data;
-  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in creating the virtual screen. Data: ${JSON.stringify(data)}`);
   let promise: Promise<void> = screenClass.setOrientation(screen.Orientation.VERTICAL);
   promise.then(() => {
     console.info('Succeeded in setting the vertical orientation.');
   }).catch((err: BusinessError) => {
-    console.error(`Failed to set the vertical orientation. Code:${err.code},message is ${err.message}`);
+    console.error(`Failed to set the vertical orientation. Code:${err.code}, message is ${err.message}`);
   });
 }).catch((err: BusinessError) => {
-  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to create the virtual screen. Code:${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1444,6 +1523,8 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 setScreenActiveMode(modeIndex: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置屏幕当前显示模式，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1487,18 +1568,18 @@ let option : VirtualScreenOption = {
 
 screen.createVirtualScreen(option).then((data: screen.Screen) => {
   let screenClass: screen.Screen = data;
-  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in creating the virtual screen. Data: ${JSON.stringify(data)}`);
   let modeIndex: number = 0;
   screenClass.setScreenActiveMode(modeIndex, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error(`Failed to set screen active mode 0. Code:${err.code},message is ${err.message}`);
+      console.error(`Failed to set screen active mode 0. Code:${err.code}, message is ${err.message}`);
       return;
     }
-    console.info('Succeeded in setting the vertical orientation.');
+    console.info('Succeeded in setting the screen active mode 0.');
   });
 }).catch((err: BusinessError) => {
-  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to create the virtual screen. Code:${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1507,6 +1588,8 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 setScreenActiveMode(modeIndex: number): Promise&lt;void&gt;
 
 设置屏幕当前显示模式，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1555,16 +1638,16 @@ let option : VirtualScreenOption = {
 
 screen.createVirtualScreen(option).then((data: screen.Screen) => {
   let screenClass: screen.Screen = data;
-  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in creating the virtual screen. Data: ${JSON.stringify(data)}`);
   let modeIndex: number = 0;
   let promise: Promise<void> = screenClass.setScreenActiveMode(modeIndex);
   promise.then(() => {
     console.info('Succeeded in setting screen active mode 0.');
   }).catch((err: BusinessError) => {
-    console.error(`Failed to set screen active mode 0.Code:${err.code},message is ${err.message}`);
+    console.error(`Failed to set screen active mode 0.Code:${err.code}, message is ${err.message}`);
   });
 }).catch((err: BusinessError) => {
-  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to create the virtual screen. Code:${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1573,6 +1656,8 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 setDensityDpi(densityDpi: number, callback: AsyncCallback&lt;void&gt;): void;
 
 设置屏幕的像素密度，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1617,17 +1702,17 @@ let option : VirtualScreenOption = {
 
 screen.createVirtualScreen(option).then((data: screen.Screen) => {
   let screenClass: screen.Screen = data;
-  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in creating the virtual screen. Data: ${JSON.stringify(data)}`);
   screenClass.setDensityDpi(densityDpi, (err: BusinessError) => {
     const errCode: number = err.code;
     if (errCode) {
-      console.error(`Failed to set the pixel density of the screen to 320. Code:${err.code},message is ${err.message}`);
+      console.error(`Failed to set the pixel density of the screen to 320. Code:${err.code}, message is ${err.message}`);
       return;
     }
-    console.info('Succeeded in setting the vertical orientation.');
+    console.info('Succeeded in setting the density dpi.');
   });
 }).catch((err: BusinessError) => {
-  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to create the virtual screen. Code:${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1636,6 +1721,8 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 setDensityDpi(densityDpi: number): Promise&lt;void&gt;
 
 设置屏幕的像素密度，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1689,16 +1776,18 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
   promise.then(() => {
     console.info('Succeeded in setting the pixel density of the screen to 320.');
   }).catch((err: BusinessError) => {
-    console.error(`Failed to set the pixel density of the screen to 320. Code:${err.code},message is ${err.message}`);
+    console.error(`Failed to set the pixel density of the screen to 320. Code:${err.code}, message is ${err.message}`);
   });
 }).catch((err: BusinessError) => {
-  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to create the virtual screen. Code:${err.code}, message is ${err.message}`);
 });
 ```
 
 ## Orientation
 
 屏幕方向枚举。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1714,6 +1803,8 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 
 屏幕显示内容来源模式枚举。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称               | 值   | 说明                             |
@@ -1727,11 +1818,13 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 
 屏幕显示模式信息。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称        | 类型 | 只读 | 可选 | 说明                                               |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |
-| id          | number   | 否   | 否   | 模式id，所支持的模式由具体设备分辨率和刷新率决定，该参数为整数。 | 
+| id          | number   | 否   | 否   | 模式ID，所支持的模式由具体设备分辨率和刷新率决定，该参数为整数。 | 
 | width       | number   | 否   | 否   | 屏幕的宽度，单位为px，该参数为整数。                                |
 | height      | number   | 否   | 否   | 屏幕的高度，单位为px，该参数为整数。                                |
 | refreshRate | number   | 否   | 否   | 屏幕的刷新率，单位为hz，该参数为整数。                                     |
@@ -1739,6 +1832,8 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 ## Rect<sup>19+</sup>
 
 矩形信息。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 

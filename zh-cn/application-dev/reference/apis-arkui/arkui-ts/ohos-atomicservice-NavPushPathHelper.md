@@ -503,7 +503,7 @@ export struct PageOne {
             }}).catch((error: BusinessError) => {
               console.error(`[pushPath]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log(`[pushPath]success.`);
+              console.info(`[pushPath]success.`);
             });
           })
 
@@ -517,7 +517,7 @@ export struct PageOne {
             }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {
               console.error(`[pushPath with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log(`[pushPath with NavigationOptions]success.`);
+              console.info(`[pushPath with NavigationOptions]success.`);
             });
           })
 
@@ -532,7 +532,7 @@ export struct PageOne {
             }).catch((error: BusinessError) => {
               console.error(`[pushPathByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log(`[pushPathByName]success.`);
+              console.info(`[pushPathByName]success.`);
             });
           })
 
@@ -546,7 +546,7 @@ export struct PageOne {
             .catch((error: BusinessError) => {
               console.error(`[pushPathByNameWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log(`[pushPathByNameWithoutOnPop]success.`);
+              console.info(`[pushPathByNameWithoutOnPop]success.`);
             });
           })
 
@@ -619,7 +619,7 @@ export struct PageOne {
             }}).catch((error: BusinessError) => {
               console.error(`[replacePath]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log(`[replacePath]success.`);
+              console.info(`[replacePath]success.`);
             });
           })
 
@@ -633,7 +633,7 @@ export struct PageOne {
             }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {
               console.error(`[replacePath with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log(`[replacePath with NavigationOptions]success.`);
+              console.info(`[replacePath with NavigationOptions]success.`);
             });
           })
 
@@ -647,7 +647,7 @@ export struct PageOne {
               .catch((error: BusinessError) => {
               console.error(`[replacePathByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
             }).then(() => {
-              console.log(`[replacePathByName]success.`);
+              console.info(`[replacePathByName]success.`);
             });
           })
 

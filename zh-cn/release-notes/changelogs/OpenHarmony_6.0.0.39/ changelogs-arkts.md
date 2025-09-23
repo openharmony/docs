@@ -21,7 +21,7 @@
 原因在于扩容后比较器丢失，remove(a1)失败，后续行为异常。
 
 ```ts
-import TreeSet from '@kit.ArkTS';
+import { TreeSet } from '@kit.ArkTS';
 class A {
 time: number;
 constructor(time: number) {

@@ -35,10 +35,10 @@
 <!--RP1End-->
 
 - 标注1：用户认证界面的标题（WidgetParam.title），不支持传空字串，最大长度为500字符。应用可在此配置符合场景的字符串，建议传入认证目的，例如用于支付、登录应用等。
-
+<!--RP2-->
 - 标注2：导航按键上显示的文本（WidgetParam.navigationButtonText），最大长度为60字符。API 10-17仅在单指纹、单人脸场景下支持配置。从API 18开始，增加支持人脸+指纹场景。
-   
-  当生物认证失败后，将显示一个按钮。点击该按钮，可以从生物认证切换到应用自定义认证。
+
+  当生物认证失败后，将显示一个按钮。点击该按钮，可以从生物认证切换到应用自定义认证。<!--RP2End-->
 
 <!--Del-->
 - 如图所示，认证控件的显示形式（WidgetParam.windowMode）为弹窗。
@@ -134,6 +134,8 @@ try {
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
+<!-- [authentication_example1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/UserAuthentication/entry/src/main/ets/pages/Index.ets) -->
+
 **示例2：**
 
 发起用户认证，采用认证可信等级≥ATL3的人脸+认证类型相关+复用设备解锁最大有效时长认证，获取认证结果。
@@ -193,6 +195,8 @@ try {
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
+<!-- [authentication_example2](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/UserAuthentication/entry/src/main/ets/pages/Index.ets) -->
+
 **示例3：**
 
 发起用户认证，采用认证可信等级≥ATL3的人脸+任意应用认证类型相关+复用任意应用最大有效时长认证，获取认证结果。
@@ -252,6 +256,7 @@ try {
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
+<!-- [authentication_example3](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/UserAuthentication/entry/src/main/ets/pages/Index.ets) -->
 
 **示例4：**
 
@@ -303,3 +308,4 @@ try {
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
+<!-- [authentication_example4](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/UserAuthentication/entry/src/main/ets/pages/Index.ets) -->

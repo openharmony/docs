@@ -515,7 +515,7 @@ struct CustomDialogUser {
 
 ### 示例4（悬停态弹窗）
 
-该示例展示了在折叠屏悬停态下设置dialog布局区域的效果。
+<!--RP1-->该示例展示了在悬停态下设置dialog布局区域的效果。<!--RP1End-->
 
 ```ts
 @CustomDialog
@@ -548,9 +548,6 @@ struct CustomDialogExample {
             }
           }).backgroundColor(0xffffff).fontColor(Color.Red)
       }.margin({ bottom: 10 })
-
-      Button('点我打开第二个弹窗')
-        .margin(20)
     }.borderRadius(10)
     // 如果需要使用border属性或cornerRadius属性，请和borderRadius属性一起使用。
   }
@@ -608,7 +605,7 @@ struct CustomDialogUser {
 }
 ```
 
-![zh-cn_image_custom](figures/zh-cn_image_custom_hovermode.gif)
+<!--RP2--><!--RP2End-->
 
 ### 示例5（获取弹窗的状态）
 

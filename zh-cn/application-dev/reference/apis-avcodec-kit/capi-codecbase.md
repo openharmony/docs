@@ -57,7 +57,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 
 用于描述媒体数据的键值对查找表如下。键的类型是常量字符串，值的类型可以是int32_t/int64_t/float/double/char */uint8_t *。
 
-使用以下key的主要接口是[OH_AVFormat](_core.md#函数)，通过以下key可以进行参数配置或查询。
+使用以下key的主要接口是[OH_AVFormat](capi-core-oh-avformat.md)，通过以下key可以进行参数配置或查询。
 
 ### 能力查询专有的键值对
 
@@ -84,7 +84,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | OH_ED_KEY_EOS                         | 表示surfacebuffer流结束符的键，值类型为int32_t。该键是可选的。（API14废弃）|
 | OH_MD_KEY_WIDTH                          | 视频宽度的键，值类型为int32_t。                             |
 | OH_MD_KEY_HEIGHT                        | 视频高度键，值类型为int32_t。                               |
-| OH_MD_KEY_PIXEL_FORMAT            | 视频像素格式的键，值类型为int32_t，请参见[OH_AVPixelFormat](_core.md#oh_avpixelformat)。 |
+| OH_MD_KEY_PIXEL_FORMAT            | 视频像素格式的键，值类型为int32_t，请参见[OH_AVPixelFormat](capi-native-avformat-h.md#oh_avpixelformat)。 |
 | OH_MD_KEY_FRAME_RATE                | 视频帧率的键，值类型为double。该键是可选的。                 |
 | OH_MD_KEY_RANGE_FLAG           | 视频YUV值域标志的键，值类型为int32_t，1表示full range，0表示limited range。该键是可选的。 |
 | OH_MD_KEY_COLOR_PRIMARIES      | 视频色域的键，值类型为int32_t，请参见[OH_ColorPrimary](capi-native-avcodec-base-h.md#oh_colorprimary)，遵循H.273标准Table2。该键是可选的。 |
@@ -106,7 +106,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT        | 描述长期参考帧个数的键，值类型为int32_t，必须在支持的值范围内使用。该键是可选的且只用于视频编码。|
 | OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR  | 标记当前帧为长期参考帧的键，值类型为int32_t，1表示被标记，0表示其它情况。该键是可选的且只用于视频编码。 |
 | OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR    | 	描述当前帧参考的长期参考帧帧的POC号的键，值类型为int32_t。该键是可选的且只用于视频编码。 |
-| OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR      | 当前[OH_AVBuffer](_core.md#oh_avbuffer)中输出的码流对应的帧是否为长期参考帧的键，值类型为int32_t，1表示是LTR，0表示其它情况。该键是可选的且只用于视频编码。 |
+| OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR      | 当前[OH_AVBuffer](capi-core-oh-avbuffer.md)中输出的码流对应的帧是否为长期参考帧的键，值类型为int32_t，1表示是LTR，0表示其它情况。该键是可选的且只用于视频编码。 |
 | OH_MD_KEY_VIDEO_PER_FRAME_POC            | 描述帧的POC号的键，值类型为int32_t。该键是可选的且只用于视频编码。 |
 | OH_MD_KEY_VIDEO_ENCODER_QP_MAX       | 描述视频编码器允许的最大量化参数的键，值类型为int32_t。该键是可选的且只用于视频编码。 |
 | OH_MD_KEY_VIDEO_ENCODER_QP_MIN      | 描述视频编码器允许的最小量化参数的键，值类型为int32_t。该键是可选的且只用于视频编码。 |
@@ -135,7 +135,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | OH_MD_KEY_AUD_CHANNEL_COUNT  | 音频通道计数键，值类型为int32_t。                           |
 | OH_MD_KEY_AUD_SAMPLE_RATE      | 音频采样率键，值类型为int32_t。                             |
 | OH_MD_KEY_AUDIO_COMPRESSION_LEVEL | 音频编解码压缩水平的键，只在音频编码使用，值类型为int32_t。该键是可选的。     |
-| OH_MD_KEY_CHANNEL_LAYOUT        | 所需编码通道布局的键。值类型为int64_t，此键仅适用于编码器。请参见[OH_AudioChannelLayout](_core.md#oh_audiochannellayout-1)。  |
+| OH_MD_KEY_CHANNEL_LAYOUT        | 所需编码通道布局的键。值类型为int64_t，此键仅适用于编码器。请参见[OH_AudioChannelLayout](capi-native-audio-channel-layout-h.md#oh_audiochannellayout)。  |
 | OH_MD_KEY_BITS_PER_CODED_SAMPLE | 每个编码样本位数的键，值类型为int32_t。该键是可选的。<br>API 20前，FLAC编码必须设置此参数，设置为1即可；未设置此参数配置FLAC编码器时，调用OH_AudioCodec_Configure会返回错误码AV_ERR_INVALID_VAL。该值无实际作用，不会影响编码结果。从API 20开始，无需设置此参数。|
 | OH_MD_KEY_SBR                              | aac sbr模式的键，值类型为int32_t，aac编码器支持。该键是可选的。 |
 | OH_MD_KEY_COMPLIANCE_LEVEL    | flac兼容性等级的键，值类型为int32_t，仅在音频编码使用。该键是可选的。          |

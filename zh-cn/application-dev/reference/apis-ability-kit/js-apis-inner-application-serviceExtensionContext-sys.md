@@ -968,7 +968,7 @@ class EntryAbility extends ServiceExtensionAbility {
     // 使用启动方的Caller身份信息启动新Ability
     this.context.startAbilityAsCaller(localWant, (err) => {
       if (err && err.code != 0) {
-        console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
+        console.error(`startAbilityAsCaller failed, err: ${JSON.stringify(err)}`);
       } else {
         console.info('startAbilityAsCaller success.');
       }
@@ -1050,7 +1050,7 @@ class EntryAbility extends ServiceExtensionAbility {
     // 使用启动方的Caller身份信息启动新Ability
     this.context.startAbilityAsCaller(localWant, option, (err) => {
       if (err && err.code != 0) {
-        console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
+        console.error(`startAbilityAsCaller failed, err: ${JSON.stringify(err)}`);
       } else {
         console.info('startAbilityAsCaller success.');
       }
@@ -1143,7 +1143,7 @@ class EntryAbility extends ServiceExtensionAbility {
         console.info('startAbilityAsCaller success.');
       })
       .catch((err: BusinessError) => {
-        console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
+        console.error(`startAbilityAsCaller failed, err: ${JSON.stringify(err)}`);
       })
   }
 }
@@ -2659,9 +2659,9 @@ startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 **系统接口**：此接口为系统接口。
 
 **参数：**
-| 参数名 | 类型 | 只读 | 可选 | 说明                 |
-| ------ | ---- | ---- | -------------------- | -------------------- |
-| want   | [Want](js-apis-app-ability-want.md) | 是  | 否 | Want类型参数，传入需要启动的Ability的信息，如Ability名称，Bundle名称等。 |
+| 参数名 | 类型 | 必填 | 说明                 |
+| ------ | ---- | ---- | -------------------- |
+| want   | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，传入需要启动的Ability的信息，如Ability名称，Bundle名称等。 |
 
 **返回值：**
 
@@ -2824,7 +2824,7 @@ startUIAbilities(wantList: Array\<Want>): Promise\<void>
 | 202 | Not system application. |
 | 801 | Capability not supported. |
 | 16000001 | The specified ability does not exist. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |

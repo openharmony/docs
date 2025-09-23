@@ -4,7 +4,7 @@
 <!--Owner: @michael_woo888-->
 <!--Designer: @dongqingran; @wulong158-->
 <!--Tester: @wanghong1997-->
-<!--Adviser: @huipeizi-->
+<!--Adviser: @fang-jinxu-->
 
 ## 场景介绍
 
@@ -137,7 +137,7 @@
    | **属性名称** | **含义**                                                     | **数据类型** | **是否可缺省**   |
    | ------------ | ------------------------------------------------------------ | ------------ | ---------------- |
    | event        | 标识静态订阅事件需要过滤的事件名，与事件列表进行匹配，否则配置无效。 | 字符串       | 该标签不可缺省。 |
-   | conditions   | 标识当前事件的过滤条件，从[发布者CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md#commoneventpublishdata)中进行过滤。 | 对象         | 该标签不可缺省。 |
+   | conditions   | 标识当前事件的过滤条件，从[发布者CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md)中进行过滤。 | 对象         | 该标签不可缺省。 |
 
    conditions标签标识静态订阅过滤事件需要的条件配置，标签值为对象类型，包含code、data、parameters三个子标签。
 
@@ -150,7 +150,7 @@
    | parameters   | 标识静态订阅事件需要过滤的附加信息，仅支持配置布尔值/数值/字符串类型的数据。 | 对象 | 该标签可缺省，缺省值为空。 |
 
 
-4. 修改设备的[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_capability.json)。预置配置文件在设备上的路径为`/system/variant/phone/base/etc/app/install_list_capability.json`，设备开机启动时会读取该配置文件，在应用安装时会对在文件中配置的`allowCommonEvent`公共事件类型进行授权。预授权配置文件字段内容包括`bundleName`、`app_signature`和`allowCommonEvent`。
+4. 修改设备的[预置配置文件](https://gitcode.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_capability.json)。预置配置文件在设备上的路径为`/system/variant/phone/base/etc/app/install_list_capability.json`，设备开机启动时会读取该配置文件，在应用安装时会对在文件中配置的`allowCommonEvent`公共事件类型进行授权。预授权配置文件字段内容包括`bundleName`、`app_signature`和`allowCommonEvent`。
 
    - `bundleName`字段配置为应用的Bundle名称。
    - `app_signature`字段配置为应用的指纹信息。指纹信息的配置请参见[应用特权配置指南](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md#install_list_capabilityjson中配置)，或者通过[bm工具](../../tools/bm-tool.md)获取并填写该应用的`appId`。

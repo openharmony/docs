@@ -1,23 +1,29 @@
 # Publishing Common Events in C
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 ## When to Use
 
-You can use the [OH_CommonEvent_Publish](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_publish) and [OH_CommonEvent_PublishWithInfo](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_publishwithinfo) methods to publish a custom common event, which can carry data for subscribers to parse and process.
+You can use the [OH_CommonEvent_Publish](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_publish) and [OH_CommonEvent_PublishWithInfo](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_publishwithinfo) methods to publish a common event, which can carry data for subscribers to parse and process.
 
 ## Available APIs
 
-For details about the APIs, see [CommonEvent](../../reference/apis-basic-services-kit/capi-common-event.md).
+For details about the APIs, see [oh_commonevent.h](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md).
 
 | API                              | Description                                                            |
 | ------------------------------------ | ---------------------------------------------------------------- |
-|[struct CommonEvent_PublishInfo](../../reference/apis-basic-services-kit/capi-common-event.md#commonevent_publishinfo)|Describes an attribute object used for publishing a custom common event.|
-|[CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_publish)|Publishes a custom common event.|
-|[CommonEvent_ErrCode OH_CommonEvent_PublishWithInfo(const char* event, const CommonEvent_PublishInfo* info)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_publishwithinfo)| Publishes a custom common event with specified attributes.|
-|[CommonEvent_PublishInfo* OH_CommonEvent_CreatePublishInfo(bool ordered)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_createpublishinfo)|Creates an attribute object of a common event.|
-|[void OH_CommonEvent_DestroyPublishInfo(CommonEvent_PublishInfo* info)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_destroypublishinfo)|Destroys an attribute object of a common event.|
-|[CommonEvent_Parameters* OH_CommonEvent_CreateParameters()](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_createparameters)|Creates an additional information object of a common event.|
-|[void OH_CommonEvent_DestroyParameters(CommonEvent_Parameters* param)](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_destroyparameters)|Destroys an additional information object of a common event.|
+|[struct CommonEvent_PublishInfo](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#structs)|Defines the property object used for publishing a common event.|
+|[CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event)](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_publish)|Publish a common event.|
+|[CommonEvent_ErrCode OH_CommonEvent_PublishWithInfo(const char* event, const CommonEvent_PublishInfo* info)](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_publishwithinfo)| Publishes a common event with specified properties.|
+|[CommonEvent_PublishInfo* OH_CommonEvent_CreatePublishInfo(bool ordered)](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_createpublishinfo)|Creates an attribute object of a common event.|
+|[void OH_CommonEvent_DestroyPublishInfo(CommonEvent_PublishInfo* info)](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_destroypublishinfo)|Destroys an attribute object of a common event.|
+|[CommonEvent_Parameters* OH_CommonEvent_CreateParameters()](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_createparameters)|Creates an additional information object of a common event.|
+|[void OH_CommonEvent_DestroyParameters(CommonEvent_Parameters* param)](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_destroyparameters)|Destroys an additional information object of a common event.|
 
 ## How to Develop
 
@@ -44,7 +50,7 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
 
 3. (Optional) Create an attribute object of a common event.
 
-   When publishing a custom common event that carries data, you need to create an attribute object of the common event using [OH_CommonEvent_CreatePublishInfo](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_createpublishinfo) and set the attributes using the following APIs:
+   When publishing a common event that carries data, you need to create a property object of the common event using [OH_CommonEvent_CreatePublishInfo](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_createpublishinfo) and set the properties using the following APIs:
 
    ```c++
    // Create and add additional information of common event attributes.
@@ -96,7 +102,7 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
        OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetCharToParameters ret <%{public}d>.", ret);
 
        // Set the additional information and key of the char array type.
-       char* value= "AAAAAAAAAAAAAA";
+       const char* value= "Char Array";
        size_t valueLength = strlen(value);
        ret = OH_CommonEvent_SetCharArrayToParameters(param, "charArrayKey", value, valueLength);
        OH_LOG_Print(LOG_APP, LOG_INFO, 1, "CES_TEST", "OH_CommonEvent_SetCharArrayToParameters ret <%{public}d>.", ret);
@@ -136,7 +142,7 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
 
 4. Publish a common event.
 
-   - Use [OH_CommonEvent_Publish](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_publish) to publish common events that do not carry information.
+   - Use [OH_CommonEvent_Publish](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_publish) to publish common events that do not carry information.
 
      > **NOTE**
      >
@@ -150,7 +156,7 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
      }
      ```
 
-   - Use [OH_CommonEvent_PublishWithInfo](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_publishwithinfo) to publish common events that carry information.
+   - Use [OH_CommonEvent_PublishWithInfo](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_publishwithinfo) to publish common events that carry information.
 
      ```c++
      void PublishWithInfo(const char* event, CommonEvent_PublishInfo* info)
@@ -163,7 +169,7 @@ For details about the APIs, see [CommonEvent](../../reference/apis-basic-service
 
 5. Destroy a common event object.
 
-   If the created common event object is no longer used to publish a common event, destroy the **CommonEvent_Parameters** object by using [OH_CommonEvent_DestroyParameters](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_destroyparameters), and then destroy the common event object by using [OH_CommonEvent_DestroyPublishInfo](../../reference/apis-basic-services-kit/capi-common-event.md#oh_commonevent_destroypublishinfo).
+   If the created common event object is no longer used to publish a common event, destroy the **CommonEvent_Parameters** object by using [OH_CommonEvent_DestroyParameters](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_destroyparameters), and then destroy the common event object by using [OH_CommonEvent_DestroyPublishInfo](../../reference/apis-basic-services-kit/capi-oh-commonevent-h.md#oh_commonevent_destroypublishinfo).
    
    ```c++
    void DestroyPublishInfo(CommonEvent_Parameters* param, CommonEvent_PublishInfo* info)

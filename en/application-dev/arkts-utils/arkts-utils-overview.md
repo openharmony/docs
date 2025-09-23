@@ -1,4 +1,10 @@
 # Overview of the ArkTS Common Library
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @yuanyao14-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
 
 The ArkTS common library is a rich set of APIs designed to provide a series of essential and practical functional modules.
 

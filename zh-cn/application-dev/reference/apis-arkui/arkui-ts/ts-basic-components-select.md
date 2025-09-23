@@ -1302,7 +1302,6 @@ struct SelectExample {
             this.text = text;
           }
         })
-        .width('90%')
         .margin({ top: 20,left:30 })
         .borderRadius(12)
         .width(200)

@@ -1,4 +1,10 @@
 # Node-API Development Specifications
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 ## Obtaining Arguments Passed by JS
 
@@ -41,9 +47,9 @@ static napi_value GetArgvDemo1(napi_env env, napi_callback_info info) {
     napi_value* argv = new napi_value[argc];
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     // Service code.
-    // ...
+    // ... ...
     // argv is an object created by new and must be manually released when it is not required.
-    delete argv;
+    delete[] argv;
     return nullptr;
 }
 
@@ -53,14 +59,14 @@ static napi_value GetArgvDemo2(napi_env env, napi_callback_info info) {
     // napi_get_cb_info writes the arguments (of the quantity specified by argc) passed by JS or undefined to argv.
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     // Service code.
-    // ...
+    // ... ...
     return nullptr;
 }
 ```
 
 ## Lifecycle Management
 
-**[Rule]** Properly use **napi_open_handle_scope** and **napi_close_handle_scope** to minimize the lifecycle of **napi_value** and avoid memory leaks.
+**[Rule]** Properly use **napi_open_handle_scope** and **napi_close_handle_scope** to minimize the lifecycle of **napi_value** and avoid memory leakage.
 
 Each **napi_value** belongs to a specific **HandleScope**, which is opened and closed by **napi_open_handle_scope** and **napi_close_handle_scope**, respectively. After a **HandleScope** is closed, its **napi_value** is automatically released.
 
@@ -150,7 +156,7 @@ The Node-API framework will not be used when the **uv_queue_work** method is cal
 **Example (correct)**
 
 ```cpp
-void callbackTest(CallbackContext* context)
+void CallbackTest(CallbackContext* context)
 {
     uv_loop_s* loop = nullptr;
     napi_get_uv_event_loop(context->env, &loop);
@@ -211,7 +217,7 @@ Generally, you can directly pass in **nullptr** for the last parameter **result*
 // Case 1: Pass in nullptr via the last parameter in napi_wrap. In this case, the created napi_ref is a weak reference, which is managed by the system and does not need manual release.
 napi_wrap(env, jsobject, nativeObject, cb, nullptr, nullptr);
 
-// Case 2: The last parameter in napi_wrap is not nullptr. In this case, the returned napi_ref is a strong reference and needs to be manually released. Otherwise, a memory leak may occur.
+// Case 2: The last parameter in napi_wrap is not nullptr. In this case, the returned napi_ref is a strong reference and needs to be manually released. Otherwise, memory leakage may occur.
 napi_ref result;
 napi_wrap(env, jsobject, nativeObject, cb, nullptr, &result);
 // When js_object and result are no longer used, call napi_remove_wrap to release result.
@@ -364,6 +370,40 @@ extern "C" __attribute__((constructor)) void RegisterNativeRenderModule()
 }
 ```
 
+## dlopen and module registration
+
+**[Rule]**
+If the module to be registered has been opened by dlopen, register the module as follows:
+
+The module needs to export the function with the fixed name napi_onLoad and call the registration function in this function. The napi_onLoad function is proactively called only in the import statement of the ArkTS code to prevent module registration from being triggered in advance when dlopen is executed.
+
+**Example**
+
+```cpp
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports)
+{
+    // ...
+    return exports;
+}
+EXTERN_C_END
+
+static napi_module nativeModule = {
+    .nm_version = 1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = Init,
+    .nm_modname = "nativerender",
+    .nm_priv = nullptr,
+    .reserved = { 0 },
+};
+
+extern "C" void napi_onLoad()
+{
+    napi_module_register(&nativeModule);
+}
+```
+
 ## Using JS Objects Created by napi_create_external APIs
 
 **[Rule]** The JS object created by **napi_create_external** APIs can be passed and used only in the calling thread. If it is passed across threads (for example, using **post_message** of the **worker** interface), the application may crash. If a JS object bound with a native object needs to be passed across threads, use **napi_coerce_to_native_binding_object** to bind the two objects.
@@ -453,6 +493,6 @@ If the semantics are violated in strict mode (default), an error will be thrown.
 
 [How do I directly call ArkTS APIs in a C++ subthread on the native side without triggering callbacks on the ArkTS side?](https://developer.huawei.com/consumer/en/doc/harmonyos-faqs-V5/faqs-ndk-8-V5)
 
-[Are napi_env and napi_value instances shared across worker threads?] (https://developer.huawei.com/consumer/en/doc/harmonyos-faqs-V5/faqs-ndk-55-V5)
+[Are napi_env and napi_value instances shared across worker threads?](https://developer.huawei.com/consumer/en/doc/harmonyos-faqs-V5/faqs-ndk-55-V5)
 
 [How do I create a subthread on the native side? What are the restrictions? How does the native subthread communicate with the main thread?](https://developer.huawei.com/consumer/en/doc/harmonyos-faqs-V5/faqs-ndk-68-V5)

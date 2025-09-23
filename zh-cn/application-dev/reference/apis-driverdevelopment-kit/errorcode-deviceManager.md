@@ -29,7 +29,7 @@ ExternalDeviceManager service exception or busType parameter error.
 **处理步骤**
 
 1. 请更换目标产品形态。
-2. 请尝试重启设备，<!--RP1-->或通过[在线提交issue](https://gitee.com/openharmony/drivers_external_device_manager/issues/new)来反映问题。<!--RP1End-->
+2. 请尝试重启设备，<!--RP1-->或通过[在线提交issue](https://gitcode.com/openharmony/drivers_external_device_manager/issues/create/choose)来反映问题。<!--RP1End-->
 3. 通过[deviceManager.BusType](js-apis-driver-deviceManager.md#bustype)查询支持的枚举值。
 
 ## 26300001 扩展外设驱动服务异常
@@ -50,7 +50,7 @@ ExternalDeviceManager service exception.
 **处理步骤**
 
 1. 请更换目标产品形态。
-2. 请尝试重启设备，<!--RP1-->或通过[在线提交issue](https://gitee.com/openharmony/drivers_external_device_manager/issues/new)来反映问题。<!--RP1End-->
+2. 请尝试重启设备，<!--RP1-->或通过[在线提交issue](https://gitcode.com/openharmony/drivers_external_device_manager/issues/create/choose)来反映问题。<!--RP1End-->
 
 ## 26300002 驱动服务端不允许驱动客户端绑定
 

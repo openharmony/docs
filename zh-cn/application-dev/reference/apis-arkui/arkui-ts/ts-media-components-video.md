@@ -131,7 +131,7 @@ controls(value: boolean)
 
 > **说明：**
 >
-> Video组件自带的控制器无法自定义。若有其他需求，可隐藏自带控制器并自定义控制器的样式或功能。参考<!--RP1-->[视频播放](https://gitee.com/harmonyos_samples/video-play)<!--RP1End-->。
+> Video组件自带的控制器无法自定义。若有其他需求，可隐藏自带控制器并自定义控制器的样式或功能。参考<!--RP1-->[视频播放](https://gitcode.com/harmonyos_samples/video-play)<!--RP1End-->。
 
 ### objectFit
 
@@ -290,14 +290,7 @@ onError(event: VoidCallback | ErrorCallback)
 
 | 参数名 | 类型                                           | 必填 | 说明                                 |
 | ------ | --------------------------------------------- | ---- | ----------------------------------- |
-| event  | [VoidCallback](ts-types.md#voidcallback12) \| [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)<sup>20+</sup> | 是   | 视频播放失败时的回调函数，[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)入参用于接收异常信息。|
-
-以下错误码的详细介绍请参见[Video组件错误码](../errorcode-video.md)，其余错误码请参考[媒体错误码](../../apis-media-kit/errorcode-media.md)。
-
-|错误码ID|错误信息|
-|--|--|
-|103601 |Failed to create the media player.|
-|103602 |Not a valid source.|
+| event  | [VoidCallback](ts-types.md#voidcallback12) \| [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)<sup>20+</sup> | 是   | 视频播放失败时的回调函数。其中[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)类型入参的回调函数用于接收异常信息，回调返回的错误码详细介绍请参见[Video组件错误码](../errorcode-video.md)和[媒体错误码](../../apis-media-kit/errorcode-media.md)。|
 
 ### onStop<sup>12+</sup>
 
@@ -447,13 +440,12 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 用于描述当前视频是否配置首帧送显。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称       | 类型    | 只读 | 可选 | 说明                         |
 | ----------- | ------- | ---- | ---- | ---------------------------- |
-| showFirstFrame   | boolean | 否 | 是 | 当前视频是否配置首帧送显，当开启首帧送显时，[VideoOptions对象](#videooptions对象说明)中的previewUri字段不生效。<br/>true：开启首帧送显；false：关闭首帧送显。<br/>默认值：false      |
+| showFirstFrame   | boolean | 否 | 是 | 当前视频是否配置首帧送显，当开启首帧送显时，[VideoOptions对象](#videooptions对象说明)中的previewUri字段不生效。<br/>true：开启首帧送显；false：关闭首帧送显。<br/>默认值：false<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。      |
+| contentTransitionEffect<sup>21+</sup>   | [ContentTransitionEffect](ts-image-common.md#contenttransitioneffect21) | 否 | 是 | 当前视频的预览图内容变化时的转场动效。配置showFirstFrame为true（即配置开启首帧送显时），或未配置有效的[VideoOptions对象](#videooptions对象说明)的previewUri时，该字段不生效。<br/>默认值：ContentTransitionEffect.IDENTITY<br/>设置为undefined或null时，取值为ContentTransitionEffect.IDENTITY。<br/>**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。      |
 
 ## VideoController
 
@@ -466,7 +458,7 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 ### 导入对象
 
 ```ts
-let controller: VideoController = new VideoController()
+let controller: VideoController = new VideoController();
 ```
 
 ### constructor
@@ -612,7 +604,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 @Entry
 @Component
 struct VideoCreateComponent {
-  // $rawfile('video1.mp4')、$r('app.media.poster1')需要分别替换为开发者所需的视频、图片资源文件
+  // $rawfile('video1.mp4')、$r('app.media.poster1')需要分别替换为开发者所需的视频、图片资源文件。
   @State videoSrc: Resource = $rawfile('video1.mp4');
   @State previewUri: Resource = $r('app.media.poster1');
   @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
@@ -626,10 +618,10 @@ struct VideoCreateComponent {
     Column() {
       Video({
         src: this.videoSrc,
-        previewUri: this.previewUri, // 设置预览图
-        currentProgressRate: this.curRate, // 设置播放速度
+        previewUri: this.previewUri, // 设置预览图。
+        currentProgressRate: this.curRate, // 设置播放速度。
         controller: this.controller,
-        posterOptions: { showFirstFrame: this.showFirstFrame } // 关闭首帧送显
+        posterOptions: { showFirstFrame: this.showFirstFrame, contentTransitionEffect: ContentTransitionEffect.OPACITY } // 关闭首帧送显, 设置预览图淡入淡出动效。
       })
         .width('100%')
         .height(600)
@@ -637,86 +629,86 @@ struct VideoCreateComponent {
         .controls(this.showControls)
         .enableShortcutKey(this.isShortcutKeyEnabled)
         .onStart(() => {
-          console.info('onStart')
+          console.info('onStart');
         })
         .onPause(() => {
-          console.info('onPause')
+          console.info('onPause');
         })
         .onFinish(() => {
-          console.info('onFinish')
+          console.info('onFinish');
         })
         .onError(() => {
-          console.info('onError')
+          console.info('onError');
         })
         .onStop(() => {
-          console.info('onStop')
+          console.info('onStop');
         })
         .onPrepared((e?: DurationObject) => {
           if (e != undefined) {
-            console.info('onPrepared is ' + e.duration)
+            console.info('onPrepared is ' + e.duration);
           }
         })
         .onSeeking((e?: TimeObject) => {
           if (e != undefined) {
-            console.info('onSeeking is ' + e.time)
+            console.info('onSeeking is ' + e.time);
           }
         })
         .onSeeked((e?: TimeObject) => {
           if (e != undefined) {
-            console.info('onSeeked is ' + e.time)
+            console.info('onSeeked is ' + e.time);
           }
         })
         .onUpdate((e?: TimeObject) => {
           if (e != undefined) {
-            console.info('onUpdate is ' + e.time)
+            console.info('onUpdate is ' + e.time);
           }
         })
         .onFullscreenChange((e?: FullscreenObject) => {
           if (e != undefined) {
-            console.info('onFullscreenChange is ' + e.fullscreen)
+            console.info('onFullscreenChange is ' + e.fullscreen);
           }
         })
 
       Row() {
-        // $rawfile('video2.mp4')、$r('app.media.poster2')需要分别替换为开发者所需的视频、图片资源文件
+        // $rawfile('video2.mp4')、$r('app.media.poster2')需要分别替换为开发者所需的视频、图片资源文件。
         Button('src').onClick(() => {
-          this.videoSrc = $rawfile('video2.mp4') // 切换视频源。
+          this.videoSrc = $rawfile('video2.mp4'); // 切换视频源。
         }).margin(5)
         Button('previewUri').onClick(() => {
-          this.previewUri = $r('app.media.poster2') // 切换视频预览海报。
+          this.previewUri = $r('app.media.poster2'); // 切换视频预览海报。
         }).margin(5)
         Button('controls').onClick(() => {
-          this.showControls = !this.showControls // 切换是否显示视频控制栏
+          this.showControls = !this.showControls; // 切换是否显示视频控制栏。
         }).margin(5)
       }
 
       Row() {
         Button('start').onClick(() => {
-          this.controller.start() // 开始播放
+          this.controller.start(); // 开始播放。
         }).margin(2)
         Button('pause').onClick(() => {
-          this.controller.pause() // 暂停播放
+          this.controller.pause(); // 暂停播放。
         }).margin(2)
         Button('stop').onClick(() => {
-          this.controller.stop() // 结束播放
+          this.controller.stop(); // 结束播放。
         }).margin(2)
         Button('reset').onClick(() => {
-          this.controller.reset() // 重置AVPlayer
+          this.controller.reset(); // 重置AVPlayer。
         }).margin(2)
         Button('setTime').onClick(() => {
-          this.controller.setCurrentTime(10, SeekMode.Accurate) // 精准跳转到视频的10s位置
+          this.controller.setCurrentTime(10, SeekMode.Accurate); // 精准跳转到视频的10s位置。
         }).margin(2)
       }
 
       Row() {
         Button('rate 0.75').onClick(() => {
-          this.curRate = PlaybackSpeed.Speed_Forward_0_75_X // 0.75倍速播放
+          this.curRate = PlaybackSpeed.Speed_Forward_0_75_X; // 0.75倍速播放。
         }).margin(5)
         Button('rate 1').onClick(() => {
-          this.curRate = PlaybackSpeed.Speed_Forward_1_00_X // 原倍速播放
+          this.curRate = PlaybackSpeed.Speed_Forward_1_00_X; // 原倍速播放。
         }).margin(5)
         Button('rate 2').onClick(() => {
-          this.curRate = PlaybackSpeed.Speed_Forward_2_00_X // 2倍速播放
+          this.curRate = PlaybackSpeed.Speed_Forward_2_00_X; // 2倍速播放。
         }).margin(5)
       }
     }
@@ -772,21 +764,21 @@ struct ImageAnalyzerExample {
         .enableAnalyzer(true)
         .analyzerConfig(this.config)
         .onStart(() => {
-          console.info('onStart')
+          console.info('onStart');
         })
         .onPause(() => {
-          console.info('onPause')
+          console.info('onPause');
         })
 
       Row() {
         Button('start').onClick(() => {
-          this.controller.start() // 开始播放
+          this.controller.start(); // 开始播放
         }).margin(5)
         Button('pause').onClick(() => {
-          this.controller.pause() // 暂停播放
+          this.controller.pause(); // 暂停播放
         }).margin(5)
         Button('getTypes').onClick(() => {
-            this.aiController.getImageAnalyzerSupportTypes()
+            this.aiController.getImageAnalyzerSupportTypes();
         }).margin(5)
       }
     }
@@ -945,49 +937,49 @@ struct VideoErrorComponent {
 class MyVideoModifier implements AttributeModifier<VideoAttribute> {
   applyNormalAttribute(instance: VideoAttribute): void {
     // 设置开启组件AI分析功能，长按触发AI识别功能
-    instance.enableAnalyzer(true)
+    instance.enableAnalyzer(true);
     let config: ImageAnalyzerConfig = {
       types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
     }
-    instance.analyzerConfig(config)
+    instance.analyzerConfig(config);
     instance.onStart(() => {
-      console.info('video: onStart')
+      console.info('video: onStart');
     })
     instance.onPause(() => {
-      console.info('video: onPause')
+      console.info('video: onPause');
     })
     instance.onFinish(() => {
-      console.info('video: onFinish')
+      console.info('video: onFinish');
     })
     instance.onError((err) => {
-      console.error('video: onError is code = ' + err.code + ', message = ' + err.message)
+      console.error('video: onError is code = ' + err.code + ', message = ' + err.message);
     })
     instance.onStop(() => {
-      console.info('video: onStop')
+      console.info('video: onStop');
     })
     instance.onPrepared((e?: DurationObject) => {
       if (e != undefined) {
-        console.info('video: onPrepared is ' + e.duration)
+        console.info('video: onPrepared is ' + e.duration);
       }
     })
     instance.onSeeking((e?: TimeObject) => {
       if (e != undefined) {
-        console.info('video: onSeeking is ' + e.time)
+        console.info('video: onSeeking is ' + e.time);
       }
     })
     instance.onSeeked((e?: TimeObject) => {
       if (e != undefined) {
-        console.info('video: onSeeked is ' + e.time)
+        console.info('video: onSeeked is ' + e.time);
       }
     })
     instance.onUpdate((e?: TimeObject) => {
       if (e != undefined) {
-        console.info('video: onUpdate is ' + e.time)
+        console.info('video: onUpdate is ' + e.time);
       }
     })
     instance.onFullscreenChange((e?: FullscreenObject) => {
       if (e != undefined) {
-        console.info('video: onFullscreenChange is ' + e.fullscreen)
+        console.info('video: onFullscreenChange is ' + e.fullscreen);
       }
     })
   }
@@ -1018,25 +1010,25 @@ struct VideoModifierDemo {
         .attributeModifier(this.modifier)
       Row() {
         Button('start').onClick(() => {
-          this.controller.start() // 开始播放
+          this.controller.start(); // 开始播放
         }).margin(2)
         Button('pause').onClick(() => {
-          this.controller.pause() // 暂停播放
+          this.controller.pause(); // 暂停播放
         }).margin(2)
         Button('stop').onClick(() => {
-          this.controller.stop() // 结束播放
+          this.controller.stop(); // 结束播放
         }).margin(2)
         Button('reset').onClick(() => {
-          this.controller.reset() // 重置AVPlayer
+          this.controller.reset(); // 重置AVPlayer
         }).margin(2)
       }
 
       Row() {
         Button('Fullscreen').onClick(() => {
-          this.controller.requestFullscreen(true) // 全屏
+          this.controller.requestFullscreen(true); // 全屏
         }).margin(2)
         Button('showControls').onClick(() => {
-          this.showControls = !this.showControls // 显示控制栏
+          this.showControls = !this.showControls; // 显示控制栏
         }).margin(2)
       }
     }

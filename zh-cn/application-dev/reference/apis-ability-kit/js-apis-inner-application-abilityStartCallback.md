@@ -1,4 +1,17 @@
 # AbilityStartCallback
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zexin_c-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 定义拉起UIExtensionAbility执行结果的回调。
 
@@ -17,6 +30,14 @@ import { common } from '@kit.AbilityKit';
 ```
 
 ## AbilityStartCallback
+
+### 属性
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称             | 类型                                      | 只读 | 可选 | 说明                                       |
+| ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
+| completionHandler<sup>21+</sup>      | [CompletionHandlerForAbilityStartCallback](js-apis-app-ability-CompletionHandlerForAbilityStartCallback.md) | 否   | 是   | 用于返回拉起指定类型的Ability组件的回调结果。<br>**原子化服务API**：从API version 21开始，该接口支持在原子化服务中使用。 |
 
 ### onError
 
@@ -49,18 +70,18 @@ export default class EntryAbility extends UIAbility {
     };
     let abilityStartCallback: common.AbilityStartCallback = {
       onError: (code: number, name: string, message: string) => {
-        console.log(`code:` + code + `name:` + name + `message:` + message);
+        console.info(`code: ${code}, name: ${name}, message: ${message}`);
       },
       onResult: (abilityResult: common.AbilityResult) => {
-        console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
+        console.info(`resultCode: ${abilityResult.resultCode}, bundleName: ${abilityResult.want?.bundleName}`);
       }
     };
 
-    this.context.startAbilityByType("photoEditor", wantParam, abilityStartCallback, (err: BusinessError) => {
+    this.context.startAbilityByType('photoEditor', wantParam, abilityStartCallback, (err: BusinessError) => {
       if (err) {
         console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
       } else {
-        console.log(`success`);
+        console.info(`success`);
       }
     });
   }
@@ -96,18 +117,18 @@ export default class EntryAbility extends UIAbility {
     };
     let abilityStartCallback: common.AbilityStartCallback = {
       onError: (code: number, name: string, message: string) => {
-        console.log(`code:` + code + `name:` + name + `message:` + message);
+        console.info(`code:` + code + `name:` + name + `message:` + message);
       },
       onResult: (abilityResult: common.AbilityResult) => {
-        console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
+        console.info(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
       }
     };
 
-    this.context.startAbilityByType("photoEditor", wantParam, abilityStartCallback, (err: BusinessError) => {
+    this.context.startAbilityByType('photoEditor', wantParam, abilityStartCallback, (err: BusinessError) => {
       if (err) {
         console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
       } else {
-        console.log(`success`);
+        console.info(`success`);
       }
     });
   }

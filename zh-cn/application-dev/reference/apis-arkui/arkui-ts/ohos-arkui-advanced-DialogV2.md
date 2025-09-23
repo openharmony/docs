@@ -3,7 +3,7 @@
 <!--Subsystem: ArkUI-->
 <!--Owner: @fengluochenai-->
 <!--Designer: @YanSanzo-->
-<!--Tester: @tinygreyy-->
+<!--Tester: @ybhou1993-->
 <!--Adviser: @HelloCrease-->
 
 
@@ -29,7 +29,7 @@
 
 TipsDialogV2({imageRes: ResourceStr | PixelMap, imageSize?: SizeOptions, imageBorderColor: ColorMetrics, imageBorderWidth: LengthMetrics, title?: ResourceStr, content?: ResourceStr, checkTips?: ResourceStr, checked?: boolean, onCheckedChange?: AdvancedDialogV2OnCheckedChange, primaryButton?: AdvancedDialogV2Button, secondaryButton?: AdvancedDialogV2Button})
 
-提示弹出框，即为带图形确认框，必要时可通过图形化方式展现确认框。
+提示弹出框，即为带图形确认弹出框，必要时可通过图形化方式展现确认弹出框。
 
 **装饰器类型：**@ComponentV2
 
@@ -48,8 +48,8 @@ TipsDialogV2({imageRes: ResourceStr | PixelMap, imageSize?: SizeOptions, imageBo
 | checkTips        | [ResourceStr](ts-types.md#resourcestr)                                                                | 否  | @Param               | 选择框的提示内容。<br />默认不显示。                                           |
 | checked          | boolean                                                                                               | 否  | @Param               | checked为true时，表示选择框已选中。checked为false时，表示选择框未选中。<br />默认值：false |
 | onCheckedChange  | [AdvancedDialogV2OnCheckedChange](#advanceddialogv2oncheckedchange)                                   | 否  | @Param               | 选择框的选中状态改变事件。<br />默认无事件。                                       |
-| primaryButton    | [AdvancedDialogV2Button](#advanceddialogv2button)                                                     | 否  | @Param               | 提示框左侧按钮。<br />默认不显示。                                            |
-| secondaryButton  | [AdvancedDialogV2Button](#advanceddialogv2button)                                                     | 否  | @Param               | 提示框右侧按钮。<br />默认不显示。                                            |
+| primaryButton    | [AdvancedDialogV2Button](#advanceddialogv2button)                                                     | 否  | @Param               | 提示弹出框左侧按钮。<br />默认不显示。                                            |
+| secondaryButton  | [AdvancedDialogV2Button](#advanceddialogv2button)                                                     | 否  | @Param               | 提示弹出框右侧按钮。<br />默认不显示。                                            |
 
 ## AdvancedDialogV2OnCheckedChange
 
@@ -106,8 +106,8 @@ ConfirmDialogV2({title: ResourceStr, content?: ResourceStr, checkTips?: Resource
 | checkTips       | [ResourceStr](ts-types.md#resourcestr)                              | 否  | @Param | checkbox的提示内容。<br />默认不显示。                            |
 | checked         | boolean                                                             | 否  | @Param | checked为true时，表示checkbox已选中，为false时，表示未选中。<br />默认值：false |
 | onCheckedChange | [AdvancedDialogV2OnCheckedChange](#advanceddialogv2oncheckedchange) | 否  | @Param | checkbox的选中状态改变事件。<br />默认无事件。                        |
-| primaryButton   | [AdvancedDialogV2Button](#advanceddialogv2button)                   | 否  | @Param | 确认框左侧按钮。<br />默认不显示。                                  |
-| secondaryButton | [AdvancedDialogV2Button](#advanceddialogv2button)                   | 否  | @Param | 确认框右侧按钮。<br />默认不显示。                                  |
+| primaryButton   | [AdvancedDialogV2Button](#advanceddialogv2button)                   | 否  | @Param | 确认弹出框左侧按钮。<br />默认不显示。                                  |
+| secondaryButton | [AdvancedDialogV2Button](#advanceddialogv2button)                   | 否  | @Param | 确认弹出框右侧按钮。<br />默认不显示。                                  |
 
 ## AlertDialogV2
 
@@ -123,11 +123,11 @@ AlertDialogV2({primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, content
 
 | 名称              | 类型                                                | 必填 | 装饰器类型                | 说明                   |
 | --------------- | ------------------------------------------------- | -- | :------------------- | -------------------- |
-| primaryTitle    | [ResourceStr](ts-types.md#resourcestr)            | 否  | @Param               | 确认框一级标题。<br />默认不显示。<br/>**说明：** 标题超过两行会显示“...”。  |
-| secondaryTitle  | [ResourceStr](ts-types.md#resourcestr)            | 否  | @Param               | 确认框二级标题。<br />默认不显示。<br/>**说明：** 标题超过两行会显示“...”。       |
+| primaryTitle    | [ResourceStr](ts-types.md#resourcestr)            | 否  | @Param               | 确认弹出框一级标题。<br />默认不显示。<br/>**说明：** 标题超过两行会显示“...”。  |
+| secondaryTitle  | [ResourceStr](ts-types.md#resourcestr)            | 否  | @Param               | 确认弹出框二级标题。<br />默认不显示。<br/>**说明：** 标题超过两行会显示“...”。       |
 | content         | [ResourceStr](ts-types.md#resourcestr)            | 是  | @Param<br />@Require | 确认弹出框内容。<br />       |
-| primaryButton   | [AdvancedDialogV2Button](#advanceddialogv2button) | 否  | @Param               | 确认框左侧按钮。<br />默认不显示。 |
-| secondaryButton | [AdvancedDialogV2Button](#advanceddialogv2button) | 否  | @Param               | 确认框右侧按钮。<br />默认不显示。 |
+| primaryButton   | [AdvancedDialogV2Button](#advanceddialogv2button) | 否  | @Param               | 确认弹出框左侧按钮。<br />默认不显示。 |
+| secondaryButton | [AdvancedDialogV2Button](#advanceddialogv2button) | 否  | @Param               | 确认弹出框右侧按钮。<br />默认不显示。 |
 
 ## LoadingDialogV2
 
@@ -185,7 +185,7 @@ type PopoverDialogV2OnVisibleChange = (visible: boolean) => void
 
 PopoverDialogV2({visible: boolean, \$visible: PopoverDialogV2OnVisibleChange, popover: PopoverDialogV2Options, targetBuilder: CustomBuilder})
 
-跟手弹窗，基于目标组件位置弹出，上文中的TipsDialogV2、SelectDialogV2、ConfirmDialogV2、AlertDialogV2、LoadingDialogV2、CustomContentDialogV2都可作为弹窗内容。
+跟手弹出框，基于目标组件位置弹出，上文中的TipsDialogV2、SelectDialogV2、ConfirmDialogV2、AlertDialogV2、LoadingDialogV2、CustomContentDialogV2都可作为弹出框内容。
 
 **装饰器类型：**@ComponentV2
 
@@ -197,12 +197,12 @@ PopoverDialogV2({visible: boolean, \$visible: PopoverDialogV2OnVisibleChange, po
 | ------------- |-------------------------------------------------------------------| -- |---------------------| -------------------------------------------------- |
 | visible       | boolean                                                           | 是  | @Param<br/>@Require | 跟手弹出框显示状态。<br />值为true时跟手弹出框显示，为false时隐藏。                                         |
 | \$visible     | [PopoverDialogV2OnVisibleChange](#popoverdialogv2onvisiblechange) | 否  | @Event              | 修改跟手弹出框显示状态时触发的回调函数，建议在visible后使用!!语法设置双向同步。<br />默认无事件。 |
-| popover       | [PopoverDialogV2Options](#popoverdialogv2options)                 | 是  | @Param<br/>@Require | 配置跟手弹窗的参数。                                         |
+| popover       | [PopoverDialogV2Options](#popoverdialogv2options)                 | 是  | @Param<br/>@Require | 配置跟手弹出框的参数。                                         |
 | targetBuilder | [CustomBuilder](ts-types.md#custombuilder8)                       | 是  | @BuilderParam       | 跟手弹出框基于的目标组件。                                      |
 
 ## PopoverDialogV2Options
 
-跟手弹窗参数，用于设置弹窗内容、位置属性等。
+跟手弹出框参数，用于设置弹出框内容、位置属性等。
 
 继承自[CustomPopupOptions](../arkui-ts/ts-universal-attributes-popup.md#custompopupoptions8类型说明)。
 
@@ -234,16 +234,16 @@ type AdvancedDialogV2ButtonAction = () => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称           | 类型                                                                     | 必填 | 装饰器类型  | 说明                                                                          |
-|:-------------|:-----------------------------------------------------------------------|:---|:-------|:----------------------------------------------------------------------------|
-| content      | [ResourceStr](ts-types.md#resourcestr)                                 | 是  | @Trace | 按钮的内容。                                                                      |
-| action       | [AdvancedDialogV2ButtonAction](#advanceddialogv2buttonaction)          | 否  | @Trace | 按钮的点击事件。<br />默认无事件。                                                        |
-| background   | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                | 否  | @Trace | 按钮的背景。<br />默认值跟随buttonStyle。                                               |
-| fontColor    | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                | 否  | @Trace | 按钮的字体颜色。<br />默认值跟随buttonStyle。                                             |
-| buttonStyle  | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否  | @Trace | 按钮的样式。<br />默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。 |
-| role         | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明)           | 否  | @Trace | 按钮的角色。<br />默认值：ButtonRole.NORMAL                                          |
-| defaultFocus | boolean                                                                | 否  | @Trace | 是否为默认焦点。<br/>true：按钮是默认焦点。<br/>false：按钮不是默认焦点。<br />默认值：false              |
-| enabled       | boolean                                                                | 否  | @Trace | 是否可用。<br/>true：按钮可用。<br/>false：按钮不可用。<br />默认值：true                        |
+| 名称           | 类型                                                                     | 只读 | 可选 | 装饰器类型  | 说明                                                                          |
+|:-------------|:-----------------------------------------------------------------------|:---|:---|:-------|:----------------------------------------------------------------------------|
+| content      | [ResourceStr](ts-types.md#resourcestr)                                 | 否  | 否  | @Trace | 按钮的内容。                                                                      |
+| action       | [AdvancedDialogV2ButtonAction](#advanceddialogv2buttonaction)          | 否  | 是  | @Trace | 按钮的点击事件。<br />默认无事件。                                                        |
+| background   | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                | 否  | 是  | @Trace | 按钮的背景。<br />默认值跟随buttonStyle。                                               |
+| fontColor    | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                | 否  | 是  | @Trace | 按钮的字体颜色。<br />默认值跟随buttonStyle。                                             |
+| buttonStyle  | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否  | 是  | @Trace | 按钮的样式。<br />默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。 |
+| role         | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明)           | 否  | 是  | @Trace | 按钮的角色。<br />默认值：ButtonRole.NORMAL                                           |
+| defaultFocus | boolean                                                                | 否  | 是  | @Trace | 是否为默认焦点。<br/>true：按钮是默认焦点。<br/>false：按钮不是默认焦点。<br />默认值：false               |
+| enabled       | boolean                                                                | 否  | 是  | @Trace | 是否可用。<br/>true：按钮可用。<br/>false：按钮不可用。<br />默认值：true                         |
 
 > **说明：**
 >
@@ -275,16 +275,16 @@ AdvancedDialogV2Button的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称           | 类型                                                                     | 必填 | 说明                                                                          |
-|:-------------|:-----------------------------------------------------------------------|:---|:----------------------------------------------------------------------------|
-| content      | [ResourceStr](ts-types.md#resourcestr)                                 | 是  | 按钮的内容。                                                                      |
-| action       | [AdvancedDialogV2ButtonAction](#advanceddialogv2buttonaction)          | 否  | 按钮的点击事件。<br />默认无事件。                                                        |
-| background   | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                              | 否  | 按钮的背景。<br /> 默认值跟随buttonStyle。                                              |
-| fontColor    | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                              | 否  | 按钮的字体颜色。<br />默认值跟随buttonStyle。                                             |
-| buttonStyle  | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否  | 按钮的样式。<br />默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。 |
-| role         | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明)           | 否  | 按钮的角色。<br />默认值：ButtonRole.NORMAL                                          |
-| defaultFocus | boolean                                                                | 否  | 是否为默认焦点。<br/>true：按钮是默认焦点。<br/>false：按钮不是默认焦点。<br />默认值：false              |
-| enabled       | boolean                                                                | 否  | 是否可用。<br/>true：按钮可用。<br/>false：按钮不可用。<br />默认值：true                        |
+| 名称           | 类型                                                                     | 只读 | 可选 | 说明                                                                          |
+|:-------------|:-----------------------------------------------------------------------|:---|:---|:----------------------------------------------------------------------------|
+| content      | [ResourceStr](ts-types.md#resourcestr)                                 | 否  | 否  | 按钮的内容。                                                                      |
+| action       | [AdvancedDialogV2ButtonAction](#advanceddialogv2buttonaction)          | 否  | 是  | 按钮的点击事件。<br />默认无事件。                                                        |
+| background   | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                              | 否  | 是  | 按钮的背景。<br /> 默认值跟随buttonStyle。                                              |
+| fontColor    | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                              | 否  | 是  | 按钮的字体颜色。<br />默认值跟随buttonStyle。                                             |
+| buttonStyle  | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否  | 是  | 按钮的样式。<br />默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。 |
+| role         | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明)           | 否  | 是  | 按钮的角色。<br />默认值：ButtonRole.NORMAL                                           |
+| defaultFocus | boolean                                                                | 否  | 是  | 是否为默认焦点。<br/>true：按钮是默认焦点。<br/>false：按钮不是默认焦点。<br />默认值：false               |
+| enabled       | boolean                                                                | 否  | 是  | 是否可用。<br/>true：按钮可用。<br/>false：按钮不可用。<br />默认值：true                         |
 
 ## 示例
 
@@ -332,7 +332,7 @@ struct Index {
     Row() {
       Stack() {
         Column() {
-          Button("打开TipsDialogV2弹窗")
+          Button("打开TipsDialogV2弹出框")
             .width(96)
             .height(40)
             .onClick(() => {
@@ -467,7 +467,7 @@ struct Index {
     Row() {
       Stack() {
         Column() {
-          Button("打开ConfirmDialogV2弹窗")
+          Button("打开ConfirmDialogV2弹出框")
             .width(96)
             .height(40)
             .onClick(() => {
@@ -527,7 +527,7 @@ struct Index {
     Row() {
       Stack() {
         Column() {
-          Button("打开AlertDialogV2弹窗")
+          Button("打开AlertDialogV2弹出框")
             .width(96)
             .height(40)
             .onClick(() => {
@@ -550,9 +550,9 @@ struct Index {
 
 ![AlertDialog](figures/AlertDialog.png)
 
-### 示例5（进度条弹出框）
+### 示例5（进度加载类弹出框）
 
-进度条弹出框，包含content等内容。
+进度加载类弹出框，包含content等内容。
 
 ```ts
 import { LoadingDialogV2, UIContext  } from '@kit.ArkUI';
@@ -571,7 +571,7 @@ struct Index {
     Row() {
       Stack() {
         Column() {
-          Button("打开LoadingDialogV2弹窗")
+          Button("打开LoadingDialogV2弹出框")
             .width(96)
             .height(40)
             .onClick(() => {
@@ -630,7 +630,7 @@ struct Index {
     Row() {
       Stack() {
         Column() {
-          Button("打开LoadingDialogV2弹窗")
+          Button("打开LoadingDialogV2弹出框")
             .width(96)
             .height(40)
             .onClick(() => {
@@ -687,7 +687,7 @@ struct Index {
 
   build() {
     Column() {
-      Button("打开CustomContentDialogV2弹窗")
+      Button("打开CustomContentDialogV2弹出框")
         .onClick(() => {
             let uiContext: UIContext = this.getUIContext();
             uiContext.getPromptAction().openCustomDialog({
@@ -713,9 +713,9 @@ struct Index {
 
 ![custom\_content\_dialog](figures/advanced_dialog_custom_content_dialog.png)
 
-### 示例8（跟手弹窗）
+### 示例8（跟手弹出框）
 
-跟手弹窗（警告弹窗为例），包含visible、popover、targetBuilder等内容。
+跟手弹出框（警告弹出框为例），包含visible、popover、targetBuilder等内容。
 
 ```ts
 import { AlertDialogV2, PopoverDialogV2, PopoverDialogV2Options, AdvancedDialogV2Button} from '@kit.ArkUI';
@@ -749,7 +749,7 @@ struct Index {
   }
 
   @Builder buttonBuilder() {
-    Button('跟手弹窗目标组件').onClick(() => {
+    Button('跟手弹出框目标组件').onClick(() => {
       this.isShow = true;
     });
   }

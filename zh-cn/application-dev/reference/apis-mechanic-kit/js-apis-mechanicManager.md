@@ -228,7 +228,7 @@ off(type: 'trackingStateChange', callback?: Callback\<TrackingEventInfo>): void
 
 | 参数名     | 类型                    | 必填 | 说明   |
 | ---------- | ---------------------- | ---- | ----- |
-| type | 'trackingStateChange' | 是 | 取消注册注册监听事件的类型。取值为：'trackingStateChange'。 |
+| type | 'trackingStateChange' | 是 | 取消注册的监听事件类型。取值为：'trackingStateChange'。 |
 | callback | Callback\<[TrackingEventInfo](#trackingeventinfo)> | 否 | mechanicManager.off('trackingStateChange')注册的回调函数。不填时默认取消所有注册的回调函数。 |
 
 **错误码：**

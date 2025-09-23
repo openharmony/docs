@@ -1,5 +1,12 @@
 #  组件复用性能优化指导
 
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 ## 概述
 
 在滑动场景下，常常会对同一类自定义组件的实例进行频繁的创建与销毁。此时可以考虑通过组件复用减少频繁创建与销毁的能耗。组件复用时，可能存在许多影响组件复用效率的操作，本篇文章将重点介绍如何通过**组件复用性能优化四建议**提升复用性能。
@@ -58,7 +65,7 @@ export struct OneMomentNoBuilder {
     
   // 无需对@Prop修饰的变量进行aboutToReuse赋值，因为这些变量是由父组件传递给子组件的。如果在子组件中重新赋值这些变量，会导致重用的组件的内容重新触发状态刷新，从而降低组件的复用性能。
   build() {
-    ...
+    // ...
     // 在复用组件中嵌套使用自定义组件
     Row() {
         InteractiveButton({
@@ -76,7 +83,7 @@ export struct OneMomentNoBuilder {
           text: $r('app.string.friendMomentsPage_message')
         })
     }
-    ...
+    // ...
   }
 }
 
@@ -139,7 +146,7 @@ export struct OneMoment {
   @Prop moment: FriendMoment;
 
   build() {
-    ...
+    // ...
     // 使用@Builder，可以减少自定义组件创建和渲染的耗时
     Row() {
         interactiveButton({
@@ -157,7 +164,7 @@ export struct OneMoment {
           text: $r('app.string.friendMomentsPage_message')
         })
     }
-    ...
+    // ...
   }
 }
 
@@ -418,9 +425,9 @@ export struct OneMoment {
     
   build() {
     Column() {
-      ...
+      // ...
       Text(`${this.moment.userName}`)
-      ...
+      // ...
     }
   }
 }
@@ -487,9 +494,9 @@ export struct OneMoment {
     
   build() {
     Column() {
-      ...
+      // ...
       Text(`${this.moment.userName}`)
-      ...
+      // ...
     }
   }
 }
@@ -579,9 +586,9 @@ export struct OneMoment {
     
   build() {
     Column() {
-      ...
+      // ...
       Text(`${this.moment.userName}`)
-      ...
+      // ...
     }
   }
 }
@@ -647,9 +654,9 @@ export struct OneMoment {
     
   build() {
     Column() {
-      ...
+      // ...
       Text(`${this.moment.userName}`)
-      ...
+      // ...
     }
   }
 }
@@ -869,9 +876,9 @@ export struct OneMoment {
 
   build() {
     Column() {
-      ...
+      // ...
       Text(`${this.moment.userName} （${this.moment.id} / ${this.sum}）`)
-      ...
+      // ...
     }
   }
 }
@@ -937,9 +944,9 @@ export struct OneMoment {
 
   build() {
     Column() {
-      ...
+      // ...
       Text(`${this.moment.userName} （${this.moment.id} / ${this.sum}）`)
-      ...
+      // ...
     }
   }
 }

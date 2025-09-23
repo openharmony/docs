@@ -1,5 +1,12 @@
 # @ohos.net.ethernet (Ethernet Connection Management) (System API)
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 The **ethernet** module provides wired network capabilities, which allow users to set the IP address, subnet mask, gateway, and Domain Name System (DNS) server, and HTTP proxy of a wired network.
 
 > **NOTE**
@@ -64,9 +71,9 @@ let config: ethernet.InterfaceConfiguration = {
 
 ethernet.setIfaceConfig("eth0", config, (error: BusinessError) => {
   if (error) {
-    console.log("setIfaceConfig callback error = " + JSON.stringify(error));
+    console.error("setIfaceConfig callback error = " + JSON.stringify(error));
   } else {
-    console.log("setIfaceConfig callback ok");
+    console.info("setIfaceConfig callback ok");
   }
 });
 ```
@@ -129,9 +136,9 @@ let config: ethernet.InterfaceConfiguration = {
 const setConfigPromise = ethernet.setIfaceConfig("eth0", config);
 
 setConfigPromise.then(() => {
-  console.log("setIfaceConfig promise ok");
+  console.info("setIfaceConfig promise ok");
 }).catch((error: BusinessError)  => {
-  console.log("setIfaceConfig promise error = " + JSON.stringify(error));
+  console.error("setIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -151,8 +158,8 @@ Obtains the configuration of a network interface. This API uses an asynchronous 
 
 | Name  | Type                                           | Mandatory | Description        |
 | -------- | ----------------------------------------------- | ----- | ------------ |
-| iface    | string                                          | Yes   | Interface name.|
-| callback | AsyncCallback\<[InterfaceConfiguration](#interfaceconfiguration9)> | Yes   | Callback used to return the result.  |
+| iface    | string                                          | Yes   | Network interface.|
+| callback | AsyncCallback\<[InterfaceConfiguration](#interfaceconfiguration9)> | Yes   | Callback used to return the result. Returns information about the specified network interface.  |
 
 **Error codes**
 
@@ -174,14 +181,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getIfaceConfig("eth0", (error: BusinessError, value: ethernet.InterfaceConfiguration) => {
   if (error) {
-    console.log("getIfaceConfig  callback error = " + JSON.stringify(error));
+    console.error("getIfaceConfig  callback error = " + JSON.stringify(error));
   } else {
-    console.log("getIfaceConfig callback mode = " + JSON.stringify(value.mode));
-    console.log("getIfaceConfig callback ipAddr = " + JSON.stringify(value.ipAddr));
-    console.log("getIfaceConfig callback route = " + JSON.stringify(value.route));
-    console.log("getIfaceConfig callback gateway = " + JSON.stringify(value.gateway));
-    console.log("getIfaceConfig callback netMask = " + JSON.stringify(value.netMask));
-    console.log("getIfaceConfig callback dnsServers = " + JSON.stringify(value.dnsServers));
+    console.info("getIfaceConfig callback mode = " + JSON.stringify(value.mode));
+    console.info("getIfaceConfig callback ipAddr = " + JSON.stringify(value.ipAddr));
+    console.info("getIfaceConfig callback route = " + JSON.stringify(value.route));
+    console.info("getIfaceConfig callback gateway = " + JSON.stringify(value.gateway));
+    console.info("getIfaceConfig callback netMask = " + JSON.stringify(value.netMask));
+    console.info("getIfaceConfig callback dnsServers = " + JSON.stringify(value.dnsServers));
   }
 });
 ```
@@ -202,7 +209,7 @@ Obtains the configuration of a network interface. This API uses a promise to ret
 
 | Name  | Type                                   | Mandatory| Description        |
 | -------- | --------------------------------------- | ---- | ------------ |
-| iface    | string                                  | Yes  | Interface name.|
+| iface    | string                                  | Yes  | Network interface.|
 
 **Return value**
 
@@ -229,14 +236,14 @@ import { ethernet } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => {
-  console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
-  console.log("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
-  console.log("getIfaceConfig promise route = " + JSON.stringify(data.route));
-  console.log("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
-  console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
-  console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
+  console.info("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
+  console.info("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
+  console.info("getIfaceConfig promise route = " + JSON.stringify(data.route));
+  console.info("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
+  console.info("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
+  console.info("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
 }).catch((error: BusinessError) => {
-  console.log("getIfaceConfig promise error = " + JSON.stringify(error));
+  console.error("getIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -279,9 +286,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.isIfaceActive("eth0", (error: BusinessError, value: number) => {
   if (error) {
-    console.log("whether2Activate callback error = " + JSON.stringify(error));
+    console.error("whether2Activate callback error = " + JSON.stringify(error));
   } else {
-    console.log("whether2Activate callback = " + JSON.stringify(value));
+    console.info("whether2Activate callback = " + JSON.stringify(value));
   }
 });
 ```
@@ -329,9 +336,9 @@ import { ethernet } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.isIfaceActive("eth0").then((data: number) => {
-  console.log("isIfaceActive promise = " + JSON.stringify(data));
+  console.info("isIfaceActive promise = " + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-  console.log("isIfaceActive promise error = " + JSON.stringify(error));
+  console.error("isIfaceActive promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -351,7 +358,7 @@ Obtains the list of all active network interfaces. This API uses an asynchronous
 
 | Name  | Type                                | Mandatory| Description                          |
 | -------- | ------------------------------------ | ---- | ------------------------------ |
-| callback | AsyncCallback\<Array\<string>>         | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<Array\<string>>         | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -370,11 +377,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getAllActiveIfaces((error: BusinessError, value: string[]) => {
   if (error) {
-    console.log("getAllActiveIfaces callback error = " + JSON.stringify(error));
+    console.error("getAllActiveIfaces callback error = " + JSON.stringify(error));
   } else {
-    console.log("getAllActiveIfaces callback value.length = " + JSON.stringify(value.length));
+    console.info("getAllActiveIfaces callback value.length = " + JSON.stringify(value.length));
     for (let i = 0; i < value.length; i++) {
-      console.log("getAllActiveIfaces callback = " + JSON.stringify(value[i]));
+      console.info("getAllActiveIfaces callback = " + JSON.stringify(value[i]));
     }
   }
 });
@@ -414,12 +421,12 @@ import { ethernet } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getAllActiveIfaces().then((data: string[]) => {
-  console.log("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
+  console.info("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
   for (let i = 0; i < data.length; i++) {
-    console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
+    console.info("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
   }
 }).catch((error:BusinessError) => {
-  console.log("getAllActiveIfaces promise error = " + JSON.stringify(error));
+  console.error("getAllActiveIfaces promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -456,7 +463,7 @@ Registers an observer for NIC hot swap events. This API uses an asynchronous cal
 import { ethernet } from '@kit.NetworkKit';
 
 ethernet.on('interfaceStateChange', (data: object) => {
-  console.log('on interfaceSharingStateChange: ' + JSON.stringify(data));
+  console.info('on interfaceSharingStateChange: ' + JSON.stringify(data));
 });
 ```
 
@@ -493,6 +500,51 @@ Unregisters the observer for NIC hot swap events. This API uses an asynchronous 
 import { ethernet } from '@kit.NetworkKit';
 
 ethernet.off('interfaceStateChange');
+```
+
+
+## ethernet.getEthernetDeviceInfos<sup>20+</sup>
+
+getEthernetDeviceInfos(): Promise\<Array\<EthernetDeviceInfos>>
+
+Obtains Ethernet device information. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Ethernet
+
+**Return value**
+
+| Type               | Description                                                       |
+| ------------------- | ----------------------------------------------------------- |
+| Promise\<Array\<[EthernetDeviceInfos](#ethernetdeviceinfos20)>>  | Promise used to return the result. If the operation is successful, the Ethernet device information list is returned. If the operation fails, an error code is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ethernet Connection Error Codes](errorcode-net-ethernet.md).
+
+| ID| Error Message                               |
+| ------- | ----------------------------------------|
+| 201     | Permission denied.                      |
+| 202     | Non-system applications use system APIs.|
+| 2201005 | Device information does not exist.      |
+
+**Example**
+
+```ts
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+ethernet.getEthernetDeviceInfos().then((data: Array<ethernet.EthernetDeviceInfos>) => {
+  console.info("getEthernetDeviceInfos data.length = " + JSON.stringify(data.length));
+  for (let i = 0; i < data.length; i++) {
+    console.info("getEthernetDeviceInfos = " + JSON.stringify(data[i]));
+  }
+}).catch((err: BusinessError) => {
+  console.error("getEthernetDeviceInfos err = " + err.code);
+});
 ```
 
 ## InterfaceConfiguration<sup>9+</sup>
@@ -540,3 +592,34 @@ Defines the configuration mode of the Ethernet connection.
 | DHCP                  | 1    | Dynamic network configuration for an Ethernet connection.|
 | LAN_STATIC<sup>11+</sup>| 2    | Static network configuration for a LAN connection.   |
 | LAN_DHCP<sup>11+</sup>  | 3    | Dynamic network configuration for a LAN connection.   |
+
+## EthernetDeviceInfos<sup>20+</sup>
+
+Defines Ethernet device information.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.Ethernet
+
+| Name          | Type                   | Read-Only| Optional| Description                                                        |
+| ------------   | ----------------------- | ---| ---|------------------------------------------------------------ |
+| ifaceName      | string                  | No| No| Interface name.     |
+| deviceName     | string                  | No| No| Device name.   |
+| connectionMode | [DeviceConnectionType](#deviceconnectiontype20)  | No| No| Device connection mode.|
+| supplierName   | string                  | No| No| Vendor name.|
+| supplierId     | string                  | No| No| Supplier ID.|
+| productName    | string                  | No| No| Product name.|
+| maximumRate    | string                  | No| No| Maximum connection rate.|
+
+## DeviceConnectionType<sup>20+</sup>
+
+Enumerates Ethernet device connection modes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.NetManager.Ethernet
+
+| Name                 | Value  | Description                       |
+| --------------------- | ---- | -------------------------- |
+| BUILT_IN              | 0    | Internal connection mode.|
+| EXTERNAL              | 1    | External connection mode. For example, the Ethernet device is connected through a USB.|

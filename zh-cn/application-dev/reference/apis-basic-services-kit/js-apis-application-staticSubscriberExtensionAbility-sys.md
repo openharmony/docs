@@ -4,14 +4,7 @@
 <!--Owner: @michael_woo888-->
 <!--Designer: @dongqingran; @wulong158-->
 <!--Tester: @wanghong1997-->
-<!--Adviser: @huipeizi-->
-
-<!--Kit: Basic Services Kit-->
-<!--Subsystem: Notification-->
-<!--Owner: @peixu-->
-<!--Designer: @dongqingran; @wulong158-->
-<!--Tester: @wanghong1997-->
-<!--Adviser: @huipeizi-->
+<!--Adviser: @fang-jinxu-->
 
 StaticSubscriberExtensionAbility模块提供静态订阅者ExtensionAbility类别的能力。
 
@@ -61,7 +54,7 @@ onReceiveEvent(event: CommonEventData): void
 
     class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
         onReceiveEvent(event: commonEventManager.CommonEventData) {
-            console.log(`onReceiveEvent, event: ${JSON.stringify(event)}`);
+            console.info(`onReceiveEvent, event: ${JSON.stringify(event)}`);
         }
     }
   ```

@@ -34,6 +34,7 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -88,6 +89,8 @@ setDateTime(admin: Want, time: number): Promise\<void>
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -147,6 +150,8 @@ disallowModifyDateTime(admin: Want, disallow: boolean, callback: AsyncCallback\<
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
@@ -199,6 +204,8 @@ disallowModifyDateTime(admin: Want, disallow: boolean): Promise\<void>
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -257,6 +264,8 @@ isModifyDateTimeDisallowed(admin: Want, callback: AsyncCallback\<boolean>): void
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
@@ -308,6 +317,8 @@ isModifyDateTimeDisallowed(admin: Want): Promise\<boolean>
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 

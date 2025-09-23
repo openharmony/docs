@@ -37,3 +37,4 @@ try {
   console.error(`get current enrolled state failed, Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
+<!-- [obtain_enrolled_capabilities](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/UserAuthentication/entry/src/main/ets/pages/Index.ets) -->

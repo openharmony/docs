@@ -1,5 +1,12 @@
 # @ohos.print (Print)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Print-->
+<!--Owner: @guoshengbang-->
+<!--Designer: @gcw_4D6e0BBd-->
+<!--Tester: @guoshengbang-->
+<!--Adviser: @RayShih-->
+
 The **print** module provides APIs for basic print operations.
 
 > **NOTE** 
@@ -28,7 +35,7 @@ Registers a listener for the print task block event. This API uses a callback to
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'block'**,<br>indicating blocking of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'block'**, indicating blocking of the print task. |
 | callback | Callback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -71,7 +78,7 @@ Registers a listener for the print task success event. This API uses a callback 
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'succeed'**,<br>indicating success of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'succeed'**, indicating success of the print task. |
 | callback | Callback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -114,7 +121,7 @@ Registers a listener for the print task failure event. This API uses a callback 
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'fail'**,<br>indicating failure of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'fail'**, indicating failure of the print task. |
 | callback | Callback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -157,7 +164,7 @@ Registers a listener for the print task cancellation event. This API uses a call
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'cancel'**,<br>indicating cancellation of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'cancel'**, indicating cancellation of the print task. |
 | callback | Callback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -200,7 +207,7 @@ Unregisters the listener for the print task block event. This API uses a callbac
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'block'**,<br>indicating blocking of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'block'**, indicating blocking of the print task. |
 | callback | Callback&lt;void&gt; | No| Callback used to return the result.|
 
 **Error codes**
@@ -243,7 +250,7 @@ Unregisters the listener for the print task success event. This API uses a callb
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'succeed'**,<br>indicating success of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'succeed'**, indicating success of the print task. |
 | callback | Callback&lt;void&gt; | No| Callback used to return the result.|
 
 **Error codes**
@@ -286,7 +293,7 @@ Unregisters the listener for the print task failure event. This API uses a callb
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'fail'**,<br>indicating failure of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'fail'**, indicating failure of the print task. |
 | callback | Callback&lt;void&gt; | No| Callback used to return the result.|
 
 **Error codes**
@@ -329,7 +336,7 @@ Unregisters the listener for the print task cancellation event. This API uses a 
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'cancel'**,<br>indicating cancellation of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'cancel'**, indicating cancellation of the print task. |
 | callback | Callback&lt;void&gt; | No| Callback used to return the result.|
 
 **Error codes**
@@ -954,6 +961,7 @@ Enumerates the print job substates.
 | PRINT_JOB_BLOCK_LOW_ON_TONER | 14 | The printer is low on toner.|
 | PRINT_JOB_BLOCK_REALLY_LOW_ON_INK | 15 | The printer is extremely low on ink.|
 | PRINT_JOB_BLOCK_BAD_CERTIFICATE | 16 | The print certificate is incorrect.|
+| PRINT_JOB_BLOCK_DRIVER_EXCEPTION<sup>20+</sup> | 17 | The print driver is abnormal.|
 | PRINT_JOB_BLOCK_ACCOUNT_ERROR | 18 | There is an error with the printer account.|
 | PRINT_JOB_BLOCK_PRINT_PERMISSION_ERROR | 19 | There is an error with the printer permission.|
 | PRINT_JOB_BLOCK_PRINT_COLOR_PERMISSION_ERROR | 20 | There is an error with the color printing permission.|
@@ -965,6 +973,9 @@ Enumerates the print job substates.
 | PRINT_JOB_RUNNING_UPLOADING_FILES | 26 | The file is uploading.|
 | PRINT_JOB_RUNNING_CONVERTING_FILES | 27 | The file is converting.|
 | PRINT_JOB_BLOCK_FILE_UPLOADING_ERROR<sup>18+</sup> | 30 | The file fails to be uploaded.|
+| PRINT_JOB_BLOCK_DRIVER_MISSING<sup>20+</sup> | 34 | The print driver is missing.|
+| PRINT_JOB_BLOCK_INTERRUPT<sup>20+</sup> | 35 | The print job is interrupted.|
+| PRINT_JOB_BLOCK_PRINTER_UNAVAILABLE<sup>20+</sup> | 98 | The printer is unavailable.|
 | PRINT_JOB_BLOCK_UNKNOWN | 99 | There is an unknown error with the printer.|
 
 ## PrintErrorCode<sup>14+</sup>
@@ -1043,8 +1054,8 @@ let printerInformation : print.PrinterInformation = {
     printerMake : 'testPrinterMake',
     options : 'testOps'
 };
-print.addPrinterToDiscovery(printerInformation).then((data : void) => {
-    console.log('addPrinterToDiscovery data : ' + JSON.stringify(data));
+print.addPrinterToDiscovery(printerInformation).then(() => {
+    console.log('addPrinterToDiscovery success');
 }).catch((error: BusinessError) => {
     console.error('addPrinterToDiscovery error : ' + JSON.stringify(error));
 })
@@ -1112,8 +1123,8 @@ let printerInformation : print.PrinterInformation = {
     printerMake : 'testPrinterMake',
     options : 'testOptions'
 };
-print.updatePrinterInDiscovery(printerInformation).then((data : void) => {
-    console.log('updatePrinterInDiscovery data : ' + JSON.stringify(data));
+print.updatePrinterInDiscovery(printerInformation).then(() => {
+    console.log('updatePrinterInDiscovery success');
 }).catch((error: BusinessError) => {
     console.error('updatePrinterInDiscovery error : ' + JSON.stringify(error));
 })
@@ -1155,8 +1166,8 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let printerId : string = 'testPrinterId';
-print.removePrinterFromDiscovery(printerId).then((data : void) => {
-    console.log('removePrinterFromDiscovery data : ' + JSON.stringify(data));
+print.removePrinterFromDiscovery(printerId).then(() => {
+    console.log('removePrinterFromDiscovery success');
 }).catch((error: BusinessError) => {
     console.error('removePrinterFromDiscovery error : ' + JSON.stringify(error));
 })
@@ -1294,7 +1305,7 @@ Defines the printer preferences.
 | defaultMediaType | string | No| Default paper type.|
 | defaultPageSizeId | string | No| ID of the default paper size. The value can be a standard paper size defined by the International Organization for Standardization (ISO), for example, ISO_A4, or a non-standard paper size defined in the system, for example, Custom.178 × 254 mm.|
 | defaultOrientation | [PrintOrientationMode](#printorientationmode14) | No| Default print orientation.|
-| borderless | boolean | No| Whether to print without margins.<br>- **true**: Print without margins.<br>- **false** (default): Print with margins.|
+| borderless | boolean | No| Whether to print without margins. The value **true** means to print without margins, and **false** means the opposite. The default value is **false**.|
 | options | string | No| Other fields in the printer preferences. The fields are queried from the printer or obtained from the printer driver and stored in the string in JSON format.|
 
 ## PrinterEvent<sup>18+</sup>
@@ -1449,4 +1460,248 @@ let onPrinterChange =
     };
 print.on('printerChange', onPrinterChange);
 print.off('printerChange');
+```
+
+## print.startDiscoverPrinter<sup>20+</sup>
+
+startDiscoverPrinter(extensionList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+Discovers printers by specifying the extension list. The discovered printers contain the specified print extension abilities. If an empty extension list is specified, all extension abilities are loaded. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB or ohos.permission.PRINT
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| extensionList | Array&lt;string&gt; | Yes| List of [PrintExtensionAbilities](./js-apis-app-ability-PrintExtensionAbility.md) to be loaded. The list members are the bundle names of the applications with print extension abilities. An empty list indicates that all extension abilities are loaded.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+// Load all print extension abilities.
+let extensionList: string[] = [];
+// Specify the bundle name of your applications to load required print extension abilities during printer discovery.
+// let extensionList: string[] = ['com.myapplication.test'];
+print.startDiscoverPrinter(extensionList, (err: BusinessError) => {
+    if (err) {
+        console.error('failed to start Discover Printer because : ' + JSON.stringify(err));
+    } else {
+        console.log('start Discover Printer success');
+    }
+})
+```
+
+## print.startDiscoverPrinter<sup>20+</sup>
+
+startDiscoverPrinter(extensionList: Array&lt;string&gt;): Promise&lt;void&gt;
+
+Discovers printers by specifying the extension list. The discovered printers contain the specified print extension abilities. If an empty extension list is specified, all extension abilities are loaded. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB or ohos.permission.PRINT
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| extensionList | Array&lt;string&gt; | Yes| List of [PrintExtensionAbilities](./js-apis-app-ability-PrintExtensionAbility.md) to be loaded. The list members are the bundle names of the applications with print extension abilities. An empty list indicates that all extension abilities are loaded.|
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+// Load all print extension abilities.
+let extensionList: string[] = [];
+// Specify the bundle name of your applications to load required print extension abilities during printer discovery.
+// let extensionList: string[] = ['com.myapplication.test'];
+print.startDiscoverPrinter(extensionList).then(() => {
+    console.log('start Discovery success');
+}).catch((error: BusinessError) => {
+    console.error('failed to start Discovery because : ' + JSON.stringify(error));
+})
+```
+
+## print.stopDiscoverPrinter<sup>20+</sup>
+
+stopDiscoverPrinter(callback: AsyncCallback&lt;void&gt;): void
+
+Stops discovering printers. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB or ohos.permission.PRINT
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+print.stopDiscoverPrinter((err: BusinessError) => {
+    if (err) {
+        console.error('failed to stop Discover Printer because : ' + JSON.stringify(err));
+    } else {
+        console.log('stop Discover Printer success');
+    }
+})
+```
+
+## print.stopDiscoverPrinter<sup>20+</sup>
+
+stopDiscoverPrinter(): Promise&lt;void&gt;
+
+Stops discovering printers. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB or ohos.permission.PRINT
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+print.stopDiscoverPrinter().then(() => {
+    console.log('stop Discovery success');
+}).catch((error: BusinessError) => {
+    console.error('failed to stop Discovery because : ' + JSON.stringify(error));
+})
+```
+
+## print.connectPrinter<sup>20+</sup>
+
+connectPrinter(printerId: string, callback: AsyncCallback&lt;void&gt;): void
+
+Connects to a printer by printer ID. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB or ohos.permission.PRINT
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| printerId | string | Yes| Printer ID.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+let printerId: string = 'printerId_32';
+print.connectPrinter(printerId, (err: BusinessError) => {
+    if (err) {
+        console.error('failed to connect Printer because : ' + JSON.stringify(err));
+    } else {
+        console.log('start connect Printer success');
+    }
+})
+```
+
+## print.connectPrinter<sup>20+</sup>
+
+connectPrinter(printerId: string): Promise&lt;void&gt;
+
+Connects to a printer by printer ID. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB or ohos.permission.PRINT
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| printerId | string | Yes| Printer ID.|
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;void&gt; |Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+let printerId: string = 'printerId_32';
+print.connectPrinter(printerId).then(() => {
+    console.log('start connect Printer success');
+}).catch((error: BusinessError) => {
+    console.error('failed to connect Printer because : ' + JSON.stringify(error));
+})
 ```

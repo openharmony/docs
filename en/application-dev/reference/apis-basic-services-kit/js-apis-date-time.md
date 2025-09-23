@@ -1,4 +1,10 @@
 # @ohos.systemDateTime (System Time and Time Zone)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Time-->
+<!--Owner: @huaxin05-->
+<!--Designer: @hu-kai45-->
+<!--Tester: @murphy1984-->
+<!--Adviser: @zhang_yixin13-->
 
 The **systemTime** module provides system time and time zone features. You can use the APIs of this module to set and obtain the system time and time zone.
 
@@ -555,7 +561,7 @@ try {
       console.error(`Failed to get date. message: ${error.message}, code: ${error.code}`);
       return;
     }
-    console.info(`Succeeded in getting date : ${date}`);;
+    console.info(`Succeeded in getting date : ${date}`);
   });
 } catch(e) {
   let error = e as BusinessError;
@@ -631,7 +637,7 @@ try {
       console.error(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
       return;
     }
-    console.info(`Succeeded in get timezone : ${data}`);;
+    console.info(`Succeeded in get timezone : ${data}`);
   });
 } catch(e) {
   let error = e as BusinessError;

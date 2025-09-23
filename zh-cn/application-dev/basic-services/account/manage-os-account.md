@@ -54,8 +54,8 @@ let name: string = 'Bob';
 let type: osAccount.OsAccountType = osAccount.OsAccountType.NORMAL;
 
 accountManager.createOsAccount(name, type, (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
-  console.log('createOsAccount err:' + JSON.stringify(err));
-  console.log('createOsAccount osAccountInfo:' + JSON.stringify(osAccountInfo));
+  console.info(`createOsAccount code is ${err.code}, message is ${err.message}`);
+  console.info('createOsAccount osAccountInfo:' + JSON.stringify(osAccountInfo));
 });
 ```
 
@@ -69,8 +69,8 @@ accountManager.createOsAccount(name, type, (err: BusinessError, osAccountInfo: o
 
 ```ts
 accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: osAccount.OsAccountInfo[])=>{
-  console.log('queryAllCreatedOsAccounts err:' + JSON.stringify(err));
-  console.log('queryAllCreatedOsAccounts accountArr:' + JSON.stringify(accountArr));
+  console.info(`queryAllCreatedOsAccounts code is ${err.code}, message is ${err.message}`);
+  console.info('queryAllCreatedOsAccounts accountArr:' + JSON.stringify(accountArr));
 });
 ```
 
@@ -85,8 +85,8 @@ accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: osAcco
 ```ts
 let localId: number = 100;
 accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: osAccount.OsAccountInfo)=>{
-  console.log('queryOsAccountById err:' + JSON.stringify(err));
-  console.log('queryOsAccountById accountInfo:' + JSON.stringify(accountInfo));
+  console.info(`queryOsAccountById code is ${err.code}, message is ${err.message}`);
+  console.info('queryOsAccountById accountInfo:' + JSON.stringify(accountInfo));
 });
 ```
 
@@ -106,7 +106,7 @@ accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: osA
    '+7q0mP0DZW9pNmoEFUzrQjp5cCnaen2kSJXLFD8ghbXyZCMQf/8e8Ns1XVAG/XAgqKzVnJFAAAAABJRU5ErkJggg=='
 
    accountManager.setOsAccountProfilePhoto(localId, newPhoto, (err: BusinessError)=>{
-     console.log('setOsAccountProfilePhoto err:' + JSON.stringify(err));
+     console.info(`setOsAccountProfilePhoto code is ${err.code}, message is ${err.message}`);
    });
    ```
 
@@ -117,9 +117,9 @@ accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: osA
    let newName: string = 'Tom';
    accountManager.setOsAccountName(localId, newName, (err: BusinessError) => {
      if (err) {
-       console.error('setOsAccountName failed, error: ' + JSON.stringify(err));
+       console.error(`setOsAccountName failed, code is ${err.code}, message is ${err.message}`);
      } else {
-       console.log('setOsAccountName successfully');
+       console.info('setOsAccountName successfully');
      }
    });
    ```
@@ -138,7 +138,7 @@ accountManager.activateOsAccount(localId, (err: BusinessError)=>{
   if (err) {
     console.error(`activateOsAccount failed, code is ${err.code}, message is ${err.message}`);
   } else {
-    console.log('activateOsAccount successfully');
+    console.info('activateOsAccount successfully');
   }
 });
 ```
@@ -155,9 +155,9 @@ accountManager.activateOsAccount(localId, (err: BusinessError)=>{
 let localId: number = 101;
 accountManager.removeOsAccount(localId, (err: BusinessError)=>{
   if (err) {
-      console.error('removeOsAccount failed, error: ' + JSON.stringify(err));
+      console.error(`removeOsAccount failed, code is ${err.code}, message is ${err.message}`);
   } else {
-      console.log('removeOsAccount successfully');
+      console.info('removeOsAccount successfully');
   }
 });
 ```

@@ -1,11 +1,17 @@
 # Using AVMetadataExtractor to Obtain Metadata (C/C++)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 You can use the AVMetadataExtractor to obtain metadata from a raw media asset. This topic walks you through on how to obtain the metadata of a media asset.
 
 The full process of obtaining the metadata of a media asset includes creating an AVMetadataExtractor instance, setting resources, obtaining the metadata, and releasing the instance.
 
 ## How to Develop
-Link the dynamic library in the CMake script.
+Link the dynamic libraries in the CMake script.
 ```
 target_link_libraries(entry PUBLIC libavmetadata_extractor.so libace_napi.z.so )
 ```
@@ -15,7 +21,7 @@ To use [OH_AVFormat](../../reference/apis-avcodec-kit/_core.md#oh_avformat) APIs
 #include <multimedia/player_framework/native_avformat.h>
 ```
 
-In addition, link the following dynamic link library in the CMake script:
+In addition, link the following dynamic libraries in the CMake script:
 ```
 target_link_libraries(entry PUBLIC libnative_media_core.so)
 ```
@@ -25,7 +31,7 @@ To use [OH_PixelmapNative_ConvertPixelmapNativeToNapi()](../../reference/apis-im
 #include <multimedia/image_framework/image/pixelmap_native.h>
 ```
 
-In addition, link the following dynamic link library in the CMake script:
+In addition, link the following dynamic libraries in the CMake script:
 ```
 target_link_libraries(entry PUBLIC libpixelmap.so libpixelmap_ndk.z.so)
 ```
@@ -35,7 +41,7 @@ To use system logging, include the following header file:
 #include <hilog/log.h>
 ```
 
-In addition, link the following dynamic link library in the CMake script:
+In addition, link the following dynamic libraries in the CMake script:
 ```
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 ```

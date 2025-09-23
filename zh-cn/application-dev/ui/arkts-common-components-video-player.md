@@ -292,5 +292,5 @@ Video组件已经封装好了视频播放的基础能力，开发者无需进行
 
 - [ 媒体库视频（ArkTS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/VideoShow)
 
-- [简易视频播放器（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/SimpleVideo)
+- [简易视频播放器（ArkTS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/Media/SimpleVideo)
 <!--RP1--><!--RP1End-->

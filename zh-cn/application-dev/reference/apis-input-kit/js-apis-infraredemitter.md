@@ -34,8 +34,8 @@ transmitInfrared(infraredFrequency: number, pattern: Array&lt;number&gt;): void
 
 | 参数名       | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| infraredFrequency | number             | 是    | 红外频率，单位Hz。 |
-| pattern | Array&lt;number&gt; | 是    | 红外电平信号，单位是us。电平信号的数量取值范围为[0,1024]。电平信号的取值需大于0。<br/>比如[100,200,300,400]该电平信号数组，其中100us为高电平信号、200us为低电平信号、300us为高电平信号、400us为低电平信号。 |
+| infraredFrequency | number             | 是    | 红外频率，单位：Hz。 |
+| pattern | Array&lt;number&gt; | 是    | 红外电平信号，单位：μs。电平信号的数量取值范围为[0,1024]。电平信号的取值需大于0。<br/>比如[100,200,300,400]该电平信号数组，其中100us为高电平信号、200us为低电平信号、300us为高电平信号、400us为低电平信号。 |
 
 **错误码：**
 
@@ -73,7 +73,7 @@ struct Index {
 
 getInfraredFrequencies(): Array&lt;InfraredFrequency&gt;
 
-查询手机支持的红外信号的频率范围。
+查询设备支持的红外信号的频率范围。
 
 **需要权限**：ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
 
@@ -83,7 +83,7 @@ getInfraredFrequencies(): Array&lt;InfraredFrequency&gt;
 
 | 类型                  | 说明                  |
 | ------------------- | ------------------- |
-| Array&lt;[InfraredFrequency](#infraredfrequency15)&gt; | 频率范围，包含多组最大和最小频率。 |
+| Array&lt;[InfraredFrequency](#infraredfrequency15)&gt; | 红外信号的频率范围，包含多组最大和最小频率。 |
 
 **错误码：**
 

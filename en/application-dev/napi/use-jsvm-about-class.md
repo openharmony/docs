@@ -1,4 +1,10 @@
 # Working with Class Using JSVM-API
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## Introduction
 
@@ -17,8 +23,8 @@ To begin with, it is important to understand the following basic concepts:
 | ------------------- | ---------------------------------- |
 | OH_JSVM_NewInstance   | Creates an instance from the given constructor.|
 | OH_JSVM_GetNewTarget  | Obtains the meta property **new.target** of a function.|
-| OH_JSVM_DefineClass   | Defines a JS class and associated functions within a C/C++ addon. It allows you to define a constructor, methods, and properties that can be accessed from JS.|
-| OH_JSVM_Wrap           | Wraps a native instance in a JS object. You can use **OH_JSVM_Unwrap()** to unwrap the native instance later.|
+| OH_JSVM_DefineClass   | Defines a JS class and associated functions within a C/C++ addon. It provides the capabilities of creating class constructors, defining attributes and methods, and supporting data interaction between C and JavaScript.|
+| OH_JSVM_Wrap           | Wraps a native instance in a JS object. You can use **OH_JSVM_Unwrap()** to retrieve the native instance later.|
 | OH_JSVM_Unwrap         | Unwraps the native instance that is previously encapsulated in a JS object.|
 | OH_JSVM_RemoveWrap     | Removes the wrapping after the native instance is unwrapped from a JS object.|
 |OH_JSVM_DefineClassWithOptions | Defines a JS class with the given class name, constructor, properties, callback handler, and parent class. The **DefineClassOptions** parameter specifies whether to set a property proxy for the defined class, reserve the internal-field slot, and set a callback when the class is called as a function.|
@@ -39,7 +45,7 @@ CPP code:
 #include <fstream>
 
 std::string ToString(JSVM_Env env, JSVM_Value val) {
-    JSVM_Value jsonString;
+    JSVM_Value jsonString = nullptr;
     JSVM_CALL(OH_JSVM_JsonStringify(env, val, &jsonString));
     size_t totalLen = 0;
     JSVM_CALL(OH_JSVM_GetValueStringUtf8(env, jsonString, nullptr, 0, &totalLen));
@@ -79,28 +85,30 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"newInstance", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
+<!-- @[oh_jsvm_newinstance](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/newinstance/src/main/cpp/hello.cpp) -->
 
-#### JS Example
-
+JS Example
+```cpp
 const char *srcCallNative = R"JS( 
    function Fruit(name) {
        this.name = name;
    }
    newInstance(Fruit, "apple");
 )JS";
-
-#### Execution Result
+```
+**Execution result**
 
 The following information is displayed in the log:
+```cpp
 NewInstance:{"name":"apple"}
-
+```
 ### OH_JSVM_GetNewTarget
 
 Call **OH_JSVM_GetNewTarget** to obtain the **new.target** value in a function. In JS, **new.target** is a special meta-property used to determine whether a function or constructor is called using the **new** operator.
 
 ### OH_JSVM_DefineClass
 
-Call **OH_JSVM_DefineClass** to define a JS class and associated functions within a C/C++ addon. It allows you to define a constructor, methods, and properties that can be accessed from JS.
+Defines a JS class and associated functions within a C/C++ addon. It allows you to define a constructor, methods, and properties that can be accessed from JS.
 
 CPP code:
 
@@ -125,7 +133,7 @@ JSVM_Value CreateInstance(JSVM_Env env, JSVM_CallbackInfo info) {
 }
 
 std::string ToString(JSVM_Env env, JSVM_Value val) {
-    JSVM_Value jsonString;
+    JSVM_Value jsonString = nullptr;
     JSVM_CALL(OH_JSVM_JsonStringify(env, val, &jsonString));
     size_t totalLen = 0;
     JSVM_CALL(OH_JSVM_GetValueStringUtf8(env, jsonString, nullptr, 0, &totalLen));
@@ -153,12 +161,12 @@ JSVM_Value DefineClass(JSVM_Env env, JSVM_CallbackInfo info) {
     OH_LOG_INFO(LOG_APP, "NewInstance:%{public}s", str.c_str());
     
     // Called as a common function.
-    JSVM_Value global;
+    JSVM_Value global = nullptr;
     JSVM_CALL(OH_JSVM_GetGlobal(env, &global));
     JSVM_Value key;
     JSVM_CALL(OH_JSVM_CreateStringUtf8(env, "Constructor", JSVM_AUTO_LENGTH, &key));
     JSVM_CALL(OH_JSVM_SetProperty(env, global, key, cons));
-    JSVM_Value result;
+    JSVM_Value result = nullptr;
     JSVM_CALL(OH_JSVM_CallFunction(env, global, cons, 0, nullptr, &result));
     std::string buf = ToString(env, result);
     OH_LOG_INFO(LOG_APP, "NewInstance:%{public}s", buf.c_str());
@@ -178,17 +186,18 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 
 ```
+<!-- @[oh_jsvm_defineclass](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/defineclass/src/main/cpp/hello.cpp) -->
 
-#### JS Example
-
+JS Example
+```cpp
 const char *srcCallNative = R"JS( 
     defineClass();
 )JS";
-
-#### Execution Result
+```
+**Execution result**
 
 The following information is displayed in the log:
-
+```cpp
 Create Instance
 
 NAPI MyObject::New newTarget != nullptr
@@ -200,14 +209,14 @@ Create Instance
 NAPI MyObject::New newTarget == nullptr
 
 NewInstance:{"name":"lilei"}
-
+```
 ### OH_JSVM_Wrap
 
 Call **OH_JSVM_Wrap** to wrap a native instance in a JS object. You can use **OH_JSVM_Unwrap()** to retrieve the native instance later.
 
 ### OH_JSVM_Unwrap
 
-Call **OH_JSVM_Unwrap** to unwrap the native instance that is previously encapsulated in a JS object.
+Unpacks the previously encapsulated native instance in the JavaScript object.
 
 ### OH_JSVM_RemoveWrap
 
@@ -290,19 +299,20 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"removeWrap", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
+<!-- @[oh_jsvm_removewrap](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/removewrap/src/main/cpp/hello.cpp) -->
 
-#### JS Example
-
+JS Example
+```cpp
 const char *srcCallNative = R"JS( 
     class Obj {};
     wrapObject(new Obj());
     removeWrap(new Obj());
 )JS";
-
-#### Execution Result
+```
+**Execution result**
 
 The following information is displayed in the log:
-
+```cpp
 JSVM wrap
 
 JSVM name: lilei
@@ -314,16 +324,19 @@ JSVM removeWrap
 JSVM OH_JSVM_RemoveWrap success
 
 JSVM deref_item
-
+```
 ### OH_JSVM_DefineClassWithOptions
 > **NOTE**<br>The parent class passed in must be created by using an **OH_JSVM_DefineClass** API. Otherwise, the **JSVM_INVALID_ARG** error will be returned.
 **DefineClassOptions** supports the following options:
 - **JSVM_DEFINE_CLASS_NORMAL**: defines a class in normal mode. The default status is **JSVM_DEFINE_CLASS_NORMAL**.
 - **JSVM_DEFINE_CLASS_WITH_COUNT**: reserves **internal-field** slot for the created class.
 - **JSVM_DEFINE_CLASS_WITH_PROPERTY_HANDLER**: sets a listener property for the created class and sets a callback to be invoked when it is called as a function.
-#### CPP Code
+
+CPP code:
+
 ```c++
 #include <string>
+#include <memory>
 static JSVM_PropertyHandlerConfigurationStruct propertyCfg{
   nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr
 };
@@ -345,7 +358,8 @@ static JSVM_Value Add(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 2;
     JSVM_Value args[2];
     OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL);
-    double num1, num2;
+    double num1 = 0;
+    double num2 = 0;
     OH_JSVM_GetValueDouble(env, args[0], &num1);
     OH_JSVM_GetValueDouble(env, args[1], &num2);
     JSVM_Value sum = nullptr;
@@ -360,11 +374,10 @@ std::string ToString(JSVM_Env jsvm_env, JSVM_Value val)
     size_t length = 0;
     OH_JSVM_GetValueStringUtf8(jsvm_env, js_string, NULL, 0, &length);
     size_t capacity = length + 1;
-    char *buffer = new char[capacity];
+    auto buffer = std::make_unique<char[]>(capacity);
     size_t copy_length = 0;
-    OH_JSVM_GetValueStringUtf8(jsvm_env, js_string, buffer, capacity, &copy_length);
-    std::string str(buffer);
-    delete[] buffer;
+    OH_JSVM_GetValueStringUtf8(jsvm_env, js_string, buffer.get(), capacity, &copy_length);
+    std::string str(buffer.get());
     return str;
 }
 
@@ -377,7 +390,7 @@ JSVM_Value Run(JSVM_Env env, const char *s)
     JSVM_Script script;
     OH_JSVM_CompileScript(env, str, nullptr, JSVM_AUTO_LENGTH,   false, nullptr, &script);
     // 3. Execute JS_Script.
-    JSVM_Value result;
+    JSVM_Value result = nullptr;
     OH_JSVM_RunScript(env, script, &result);
     return result;
 }
@@ -466,10 +479,10 @@ static JSVM_Value TestDefineClassWithOptions(JSVM_Env env, JSVM_CallbackInfo inf
     // 6. Verify the validity of 'options'.
     Run(env, "obj()");
     Run(env, "obj.x = 123;");
-    if (g_call_as_function_flag == true &&
-    g_set_named_property_flag == true &&
-    g_call_as_constructor_flag == true &&
-    g_properties_flag == true) {
+    if (g_call_as_function_flag &&
+    g_set_named_property_flag &&
+    g_call_as_constructor_flag &&
+    g_properties_flag) {
         OH_LOG_INFO(LOG_APP, "Run OH_JSVM_DefineClassWithOptions: Success");
     } else {
         OH_LOG_ERROR(LOG_APP, "Run OH_JSVM_DefineClassWithOptions: Failed");
@@ -489,10 +502,13 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 
 ```
-#### JS Example
-
+JS Example
+```cpp
 const char *srcCallNative = R"JS(testDefineClassWithOptions();)JS";
-#### Execution Result
+```
+**Execution result**
 
 The following information is displayed in the log:
+```cpp
 Run OH_JSVM_DefineClassWithOptions: Success
+```

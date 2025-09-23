@@ -1,4 +1,10 @@
 # Creating an Asynchronous Thread for AVTranscoder Video Transcoding (ArkTS)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @wang-haizhou6-->
+<!--Designer: @HmQQQ-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 During development, applications often create asynchronous threads to perform video transcoding tasks to meet various requirements, including:
 
@@ -83,10 +89,11 @@ This example uses a Worker thread to perform asynchronous transcoding. For detai
      private sendableContext: sendableContextManager.SendableContext;
      private data: string;
 
+
      public getSendableContext() {
        return this.sendableContext;
      }
-    
+
      public getData() {
        return this.data;
      }
@@ -217,7 +224,7 @@ Refer to the sample project to use a Worker thread to implement asynchronous tra
     entry/build-profile.json5 (Configure fields to package Worker thread files into the application.)
     entry/src/main/ets/
     ├── pages
-    │    └── Index.ets (Transcoding screen)
+    │    └── Index.ets (Transcoding UI)
     ├── util
     │    └── SendableObject.ets (Sendable object)
     │

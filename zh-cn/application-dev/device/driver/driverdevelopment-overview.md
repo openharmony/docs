@@ -83,10 +83,10 @@ HDF扩展驱动框架为扩展外设驱动开发，提供稳定统一的外设�
 
 | 名称 | 作用 | 
 | --------- | --------- |
-| PerformanceAnalysisKit | 引入{hilog}用于日志打印。| 
-| BasicServicesKit       | 引入{BusinessError}用于捕获错误信息。 |
-| IPCKit                 | 引入{rpc}用于驱动与客户端IPC（Inter-Process Communication）通信。|
-| AbilityKit             | 引入{want}用于生命周期管理。|
+| PerformanceAnalysisKit | 引入{[hilog](../../dfx/hilog.md)}用于日志打印。| 
+| BasicServicesKit       | 引入{[BusinessError](../../reference/apis-basic-services-kit/js-apis-base.md#businesserror)}用于捕获错误信息。 |
+| IPCKit                 | 引入{[rpc](../../reference/apis-ipc-kit/js-apis-rpc.md)}用于驱动与客户端IPC（Inter-Process Communication）通信。|
+| AbilityKit             | 引入{[want](../../reference/apis-ability-kit/js-apis-application-want.md)}用于生命周期管理。|
 
 ## 驱动应用规格说明
 1.驱动应用定义
@@ -101,7 +101,7 @@ HDF扩展驱动框架为扩展外设驱动开发，提供稳定统一的外设�
 
 3.基于DriverExtensionAbility生命周期管理说明
 - ExtensionAbility是基于场景服务的扩展能力的统称，简称为扩展能力（例如用户态扩展驱动、卡片、输入法等）以便满足不同的使用场景。
-- 各类Extension的生命周期由各个SA管理，通过connectAbility启动Extension，并驱动定义的业务接口；业务结束，SA调用disconnnectAbility接口断开Extension连接，AMS会根据该Extension是否有SA连接来决定是否销毁该Extension及进程。在用户态扩展驱动开发场景下，管理DriverExtensionAbility生命周期的系统SA为外设扩展服务SA。
+- 各类Extension的生命周期由各个SA管理，通过connectAbility启动Extension，并驱动定义的业务接口；业务结束，SA调用disconnectAbility接口断开Extension连接，AMS会根据该Extension是否有SA连接来决定是否销毁该Extension及进程。在用户态扩展驱动开发场景下，管理DriverExtensionAbility生命周期的系统SA为外设扩展服务SA。
 
 4.在DriverExtensionAbility中API访问安全管控说明
 - 系统支持基于ExtensionAbility构建场景化扩展Ability，DriverExtensionAbility为支持开发用户态扩展驱动的一类Ability。
@@ -109,4 +109,4 @@ HDF扩展驱动框架为扩展外设驱动开发，提供稳定统一的外设�
 - 基于驱动开发安全约束及驱动开发业务场景，在DriverExtensionAbility中不支持访问其它ArkTS API，以防止恶意行为和数据泄露。
 - DriverExtensionAbility受限访问ArkTS API方案说明：
   - ArkTS API受限原理：在孵化和创建Extension进程时，会根据Extension配置的受限访问ArkTS API名单加载系统模块。在运行时，如果在DriverExtensionAbility中调用限制ArkTS API，由于孵化和创建阶段未加载相应系统模块，API会调用失败。
-- DriverExtensionAbility具体受限ArkTS API名单，请参考[受限ArkTS API](https://gitee.com/openharmony/ability_ability_runtime/blob/master/frameworks/native/ability/native/etc/extension_blocklist_config.json)中DriverExtension配置。
+- DriverExtensionAbility具体受限ArkTS API名单，请参考[受限ArkTS API](https://gitcode.com/openharmony/ability_ability_runtime/blob/master/frameworks/native/ability/native/etc/extension_blocklist_config.json)中DriverExtension配置。

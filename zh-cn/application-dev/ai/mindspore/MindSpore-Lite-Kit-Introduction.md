@@ -19,7 +19,7 @@ MindSpore Lite是OpenHarmony内置的轻量化AI引擎，面向全场景构建�
 
 ## 约束与限制
 
-- 本Kit仅适用于手机、平板设备，且不支持使用模拟器运行调试。
+- 本Kit适用于Phone、Tablet、PC/2in1、TV设备，支持使用模拟器运行调试。
 
 ## 亮点/优势
 
@@ -33,7 +33,8 @@ MindSpore Lite提供面向不同硬件设备的AI模型推理能力，使用Mind
 ## 开发流程
 
 **图 1** 使用MindSpore Lite进行模型推理的开发流程
-![mindspore workflow](figures/mindspore_workflow.png)
+
+![mindspore workflow](figures/mindspore_workflow.jpg)
 
 MindSpore Lite开发流程分为两个阶段：
 
@@ -62,5 +63,5 @@ MindSpore Lite已作为系统部件在OpenHarmony标准系统内置，基于Mind
 <!--RP1-->
 Neural Network Runtime（NNRt，神经网络运行时）是面向AI领域的跨芯片推理计算运行时，作为中间桥梁连通上层AI推理框架和底层加速芯片，实现AI模型的跨芯片推理计算。
 
-MindSpore Lite支持配置Neural Network Runtime使能AI专用芯片（如NPU）加速推理，开发者可直接配置MindSpore Lite来使用NNRt硬件。因此，这里不再对NNRt具体展开说明，主要针对MindSpore开发AI应用提供指导。关于更多NNRt的Native使用，请参见[NNRt Native模块](../nnrt/neural-network-runtime-guidelines.md)。
+MindSpore Lite支持配置Neural Network Runtime使能AI专用芯片（如NPU）加速推理，开发者可直接配置MindSpore Lite来使用NNRt硬件。因此，这里不再对NNRt具体展开说明，主要针对MindSpore Lite开发AI应用提供指导。关于更多NNRt的Native使用，请参见[NNRt Native模块](../nnrt/neural-network-runtime-guidelines.md)。
 <!--RP1End-->

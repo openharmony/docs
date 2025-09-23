@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 The module provides APIs for an application to use the system camera to take photos or record videos, depending on the media type specified by the application. The application must call these APIs within a UIAbility. Otherwise, the camera picker cannot be started.
 
@@ -17,7 +18,7 @@ The module provides APIs for an application to use the system camera to take pho
 import { cameraPicker as picker } from '@kit.CameraKit';
 ```
 
-## cameraPicker.pick
+## picker.pick
 
 pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: PickerProfile): Promise\<PickerResult\>
 
@@ -39,7 +40,7 @@ Starts the camera picker and enters the corresponding mode based on the media ty
 
 | Type                                            | Description                                                                                  |
 | ----------------------------------------------- | -------------------------------------------------------------------------------------- |
-| Promise\<PickerResult\>                         | Promise used to return the result, which is defined in [PickerResult](#pickerresult).       |
+| Promise\<PickerResult\>                         | Promise used to return the processing result ([PickerResult](#pickerresult)) of the camera picker.       |
 
 **Example**
 
@@ -55,7 +56,7 @@ async function demo(context: Context) {
     };
     let pickerResult: picker.PickerResult = await picker.pick(context,
       [picker.PickerMediaType.PHOTO, picker.PickerMediaType.VIDEO], pickerProfile);
-    console.log("the pick pickerResult is:" + JSON.stringify(pickerResult));
+    console.info("the pick pickerResult is:" + JSON.stringify(pickerResult));
   } catch (error) {
     let err = error as BusinessError;
     console.error(`the pick call failed. error code: ${err.code}`);
@@ -73,8 +74,8 @@ Enumerates the media types displayed in the camera picker.
 
 | Name            | Value   | Description    |
 | ----------------| ----  | ---------|
-| PHOTO           | photo | Photo mode. |
-| VIDEO           | video | Video mode.|
+| PHOTO           | 'photo' | Photo mode. |
+| VIDEO           | 'video' | Video mode.|
 
 
 ## PickerProfile
@@ -88,8 +89,8 @@ Defines the configuration information about the camera picker.
 | Name          | Type                              | Read-Only| Optional| Description        |
 | -------------- | --------------------------------- | ----- | ----- | ------------ |
 | cameraPosition       | [camera.CameraPosition](arkts-apis-camera-e.md#cameraposition) | No  | No  | Camera position.  |
-| saveUri        | string                            | No  | Yes  | URI for saving the configuration information. For details about the default value, see [File URI](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).|
-| videoDuration  | number                            | No  | Yes  | Maximum video duration, in seconds.|
+| saveUri        | string                            | No  | Yes  | URI for saving the configuration information. For details about the default value, see [File URI](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10). The **saveUri** parameter is optional. If it is not specified, images and videos are automatically saved to the media library. To prevent them from being saved to the media library, specify a valid file path within your application's sandbox. When you use your own resource path, ensure that the file exists and is writable; otherwise, the save operation fails.|
+| videoDuration  | number                            | No  | Yes  | Maximum video duration, in seconds. The default value is **0**, indicating that the maximum video duration is not set.|
 
 
 ## PickerResult

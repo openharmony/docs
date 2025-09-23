@@ -5,20 +5,19 @@
 <!--Owner: @peixu-->
 <!--Designer: @dongqingran; @wulong158-->
 <!--Tester: @wanghong1997-->
-<!--Adviser: @huipeizi-->
+<!--Adviser: @fang-jinxu-->
 
 默认情况下，通知消息会进行跨设备协同。如果应用已通过分布式通信能力实现跨设备协同（例如短信通知消息由短信应用本身协同到手表、平板、2in1等设备），为了避免通知消息在不同设备上重复发送，需要针对分布式通知的协同设备进行管理。
 
 从API version 18开始，支持系统应用通过以下方式对分布式通知的协同设备进行管理：
 
 - 当应用的某个通知消息仅在当前设备发布时，需要将[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest-sys.md)参数中的**notDistributed**字段配置为true。
-- 当应用的某个通知消息需要按设备管控名单发布时，需要将[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest-sys.md)参数中的**notDistributed**字段配置为false，**forceDistributed**字段为配置true。
+- 当应用的某个通知消息需要按设备管控名单发布时，需要将[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest-sys.md)参数中的**notDistributed**字段配置为false，**forceDistributed**字段配置为true。
 
 ## 接口说明
 
 | **接口名**  | **描述** | **说明** |
 | -------- | -------- |-------- |
-| [publish](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerpublish-1)(request: NotificationRequest): Promise\<void\>       | 发布通知。  | 具体使用方法见入参对象[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest-sys.md)中**notDistributed**与**forceDistributed**字段说明。|
 | [publish](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerpublish)(request: NotificationRequest, callback: AsyncCallback\<void\>): void | 发布通知。 | 具体使用方法见入参对象[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest-sys.md)中**notDistributed**与**forceDistributed**字段说明。 |
 
 ## 前提条件
@@ -87,9 +86,9 @@
           additionalText: 'test_additionalText'
         }
       },
-      // 仅当应用在跨设备协同管控名单中且未配置notDistributed字段时，forceDistributed才会生效,且当forceDistributed为false按照协同管控名单显示
+      // 仅当应用在跨设备协同管控名单中且notDistributed为false时，forceDistributed才会生效，且当forceDistributed为false按照协同管控名单显示
       notDistributed: false,
-      forceDistributed: true
+      forceDistributed: false
     };
     notificationManager.publish(notificationRequest, publishCallback);
     ```

@@ -120,7 +120,7 @@ void CreateShareEglContext()
 
 **参考链接：**  
 
-[Native XComponent组件的使用（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/XComponent)
+[Native XComponent组件的使用（ArkTS）](https://gitcode.com/openharmony/codelabs/tree/master/NativeAPI/XComponent)
 
 ## 如何在EGL多线程绘制的场景下同时操作一块buffer进行图形绘制(API 10)
 

@@ -66,7 +66,7 @@
     });
    ```
 
-3. 编辑工程中的“entry > src > main > ets > entryability > EntryAbility.ets”文件，在 `onCreate` 函数中添加系统事件的订阅。示例代码如下：
+3. 编辑工程中的“entry > src > main > ets > entryability > EntryAbility.ets”文件，在 `onCreate` 函数中订阅系统事件。示例代码如下：
 
    ```ts
     let watcher: hiAppEvent.Watcher = {
@@ -164,6 +164,8 @@
 **应用未主动捕获崩溃异常场景**
 
 若应用未主动捕获崩溃异常，系统处理崩溃后应用将退出。**应用下次启动时**，HiAppEvent将崩溃事件上报给已注册的监听，完成回调。
+
+若应用无法启动或长时间未启动，开发者可以参考[使用FaultLogExtensionAbility订阅事件](./fault-log-extension-app-events-arkts.md)回调重写的函数，进行延迟上报。
 
 **应用主动捕获崩溃异常场景**
 

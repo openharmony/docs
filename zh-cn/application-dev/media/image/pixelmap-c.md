@@ -1,4 +1,10 @@
 # 使用Image_NativeModule完成位图操作
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yaozhupeng-->
+<!--Designer: @yaozhupeng-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @zengyawen-->
 
 创建位图，获取位图的宽、高、pixelFormat、alphaType、rowStride信息、对位图进行操作以及释放位图实例。
 
@@ -23,10 +29,6 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libpixelmap.so)
 在初始化参数后创建Pixelmap实例，进行图片像素数据的读写，对图片进行缩放、位置变换、反转、旋转、裁剪等操作。
 
 ```c++
-
-#include <linux/kd.h>
-#include <string>
-
 #include <hilog/log.h>
 #include <multimedia/image_framework/image/pixelmap_native.h>
 

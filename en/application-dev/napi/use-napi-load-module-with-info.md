@@ -1,4 +1,10 @@
 # Loading a Module Using Node-API
+<!--Kit: NDK-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
+<!--Designer: @shilei123-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @fang-jinxu-->
 
 You can use **napi_load_module_with_info** to load a module. After the module is loaded, you can use **napi_get_property** to obtain the variables of the module or use **napi_get_named_property** to obtain the functions of the module. The **napi_load_module_with_info** API can be used in a [new ArkTS runtime environment](use-napi-ark-runtime.md) created by the **napi_create_ark_runtime** API.
 
@@ -17,8 +23,8 @@ napi_status napi_load_module_with_info(napi_env env, const char* path, const cha
 
 > **NOTE**
 >
-> - **bundleName** indicates the project name configured in **AppScope/app.json5**.
-> - **moduleName** must be set to the module name configured in the **module.json5** file in the HAP to which the module belongs.
+> 1. **bundleName** indicates the project name configured in **AppScope/app.json5**.
+> 2. **moduleName** must be set to the module name configured in the **module.json5** file in the HAP to which the module belongs.
 
 ## When to Use
 
@@ -33,14 +39,14 @@ napi_status napi_load_module_with_info(napi_env env, const char* path, const cha
 
 > **NOTE**
 >
-> - The module name to be loaded is the entry file, generally **index.ets/ts**, of the module.
-> - To load a HAR to another HAR, ensure that **module_info** is correct. The value of **moduleName** must be that of the HAP or HSP.
-> - If a third-party package is directly or indirectly used in a HAP/HSP and the third-party package has loaded another module, for example, module A, using **napi_load_module_with_info**, you must add module A in the dependencies of the HAP/HSP.
+> 1. The module name to be loaded is the entry file, generally **index.ets/ts**, of the module.
+> 2. To load a HAR to another HAR, ensure that **module_info** is correct. The value of **moduleName** must be that of the HAP or HSP.
+> 3. If a third-party package is directly or indirectly used in a HAP/HSP and the third-party package has loaded another module, for example, module A, using **napi_load_module_with_info**, you must add module A in the dependencies of the HAP/HSP.
 
 ## Exception Scenarios
-1. The HSP fails to be loaded due to an incorrect module name, and the error code "napi_generic_failure" is returned.
-2. A link error occurs or a file cannot be found in the package during module loading process, and the API throws **referenceError** and returns "napi_pending_exception".
-3. The module loading fails due to unexpected behavior on the system side, and **cppcrash** is thrown.
+1. During module loading, if the corresponding file is not found in the package or the build-profile.json5 configuration is incorrect, the error code `napi_generic_failure` is returned and an error log is recorded.
+![napi_load_module_with_info](figures/napi_load_module_with_info.png)
+2. The module loading fails due to unexpected behavior on the system side, and **cppcrash** is thrown.
 
 ## How to Use
 
@@ -52,7 +58,7 @@ Load a module from a file, as shown in the following ArkTS code.
 //./src/main/ets/Test.ets
 let value = 123;
 function test() {
-  console.log("Hello OpenHarmony");
+  console.info("Hello OpenHarmony");
 }
 export {value, test};
 ```
@@ -89,7 +95,7 @@ export {value, test};
         // 1. Call napi_load_module_with_info to load the module from the Test.ets file.
         napi_status status = napi_load_module_with_info(env, "entry/src/main/ets/Test", "com.example.application/entry", &result);
         if (status != napi_ok) {
-        return nullptr;
+            return nullptr;
         }
 
         napi_value testFn;
@@ -116,7 +122,7 @@ The **Index.ets** file in the HAR is as follows:
 //library Index.ets
 let value = 123;
 function test() {
-    console.log("Hello OpenHarmony");
+    console.info("Hello OpenHarmony");
 }
 export {value, test};
 ```
@@ -162,14 +168,20 @@ export {value, test};
         // 2. Call napi_get_named_property to obtain the test function.
         napi_get_named_property(env, result, "test", &testFn);
         // 3. Call napi_call_function to invoke the test function.
-        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        status = napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        if (status != napi_ok) {
+           return nullptr;
+        }
     
         napi_value value;
         napi_value key;
         std::string keyStr = "value";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
         // 4. Call napi_get_property to obtain a variable value.
-        napi_get_property(env, result, key, &value);
+        status = napi_get_property(env, result, key, &value);
+        if (status != napi_ok) {
+           return nullptr;
+        }
         return result;
     }
     ```
@@ -182,7 +194,7 @@ The **Index.ets** file in the HSP is as follows:
 //hsp Index.ets
 let value = 123;
 function test() {
-    console.log("Hello World");
+    console.info("Hello World");
 }
 export {value, test};
 ```
@@ -226,16 +238,25 @@ export {value, test};
 
         napi_value testFn;
         // 2. Call napi_get_named_property to obtain the test function.
-        napi_get_named_property(env, result, "test", &testFn);
+        status = napi_get_named_property(env, result, "test", &testFn);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         // 3. Call napi_call_function to invoke the test function.
-        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        status = napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        if (status != napi_ok) {
+            return nullptr;
+        }
 
         napi_value value;
         napi_value key;
         std::string keyStr = "value";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
         // 4. Call napi_get_property to obtain a variable value.
-        napi_get_property(env, result, key, &value);
+        status = napi_get_property(env, result, key, &value);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         return result;
     }
     ```
@@ -363,7 +384,10 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 
     // 2. Call napi_get_named_property to obtain the info function.
     napi_value infoFn;
-    napi_get_named_property(env, result, "info", &infoFn);
+    status = napi_get_named_property(env, result, "info", &infoFn);
+    if (status != napi_ok) {
+        return nullptr;
+    }
 
     napi_value tag;
     std::string formatStr = "test";
@@ -378,7 +402,10 @@ static napi_value loadModule(napi_env env, napi_callback_info info) {
 
     napi_value args[3] = {flag, tag, outputString};
     // 3. Call napi_call_function to invoke the info function.
-    napi_call_function(env, result, infoFn, 3, args, nullptr);
+    status = napi_call_function(env, result, infoFn, 3, args, nullptr);
+    if (status != napi_ok) {
+        return nullptr;
+    }
     return result;
 }
 ```
@@ -456,7 +483,7 @@ For example, load **har2** to **har1**. The **Index.ets** file of **har2** is as
 //har2 Index.ets
 let value = 123;
 function test() {
-  console.log("Hello OpenHarmony");
+  console.info("Hello OpenHarmony");
 }
 export {value, test};
 ```
@@ -487,7 +514,7 @@ export {value, test};
     }
     ```
 
-3. Call **napi_load_module_with_info** to load **har2** to **har1**, call the **test** function, and obtain the **value** variable.
+3. Call **napi_load_module_with_info** to load **har2** to **har1**, call the **test** function, and obtain the variable **value**.
 
     ```cpp
     static napi_value loadModule(napi_env env, napi_callback_info info) {
@@ -500,16 +527,25 @@ export {value, test};
     
         napi_value testFn;
         // 2. Call napi_get_named_property to obtain the test function.
-        napi_get_named_property(env, result, "test", &testFn);
+        status = napi_get_named_property(env, result, "test", &testFn);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         // 3. Call napi_call_function to invoke the test function.
-        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        status = napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+        if (status != napi_ok) {
+            return nullptr;
+        }
     
         napi_value value;
         napi_value key;
         std::string keyStr = "value";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
         // 4. Call napi_get_property to obtain a variable value.
-        napi_get_property(env, result, key, &value);
+        status = napi_get_property(env, result, key, &value);
+        if (status != napi_ok) {
+            return nullptr;
+        }
         return result;
     }
     ```

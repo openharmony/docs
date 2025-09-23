@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 As an important feature of the camera, high-performance photo capture enables deferred photo delivery and further reduces the response delay, delivering a better user experience. High-performance photo capture is implemented as follows: After an application delivers a phot capture request, the system quickly returns a thumbnail to the application, and the application stores the thumbnail and related information in the mediaLibrary. Then the subservice performs scheduling based on the system pressure and custom scenarios and sends the postprocessed original image to the mediaLibrary.
 
@@ -22,7 +23,7 @@ To develop high-performance photo capture, perform the following steps:
 
 ## How to Develop
 
-Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
+Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 1. Import dependencies. Specifically, import the camera, image, and mediaLibrary modules.
 
@@ -35,23 +36,29 @@ Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) 
 
 2. Determine the photo output stream.
 
-   You can use the **photoProfiles** property of the [CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability) class to obtain the photo output streams supported by the device and use [createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11) to create a photo output stream.
+   You can use the **photoProfiles** property of [CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability) to obtain the photo output streams supported by the device and use [createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11) to create a photo output stream.
 
    ```ts
-   function getPhotoOutput(cameraManager: camera.CameraManager, 
-                           cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
-     let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
-     if (!photoProfilesArray) {
-       console.error("createOutput photoProfilesArray == null || undefined");
-     }
-     let photoOutput: camera.PhotoOutput | undefined = undefined;
-     try {
-       photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
-     } catch (error) {
-       let err = error as BusinessError;
-       console.error(`Failed to createPhotoOutput. error: ${err}`);
-     }
-     return photoOutput;
+   function getPhotoOutput(cameraManager: camera.CameraManager,
+    cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
+    let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
+    if (photoProfilesArray === null || photoProfilesArray === undefined) {
+      console.error("createOutput photoProfilesArray is null!");
+      return undefined;
+    }
+    let photoOutput: camera.PhotoOutput | undefined = undefined;
+    try {
+      if (photoProfilesArray.length > 0) {
+        photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
+      } else {
+        console.log("the length of photoProfilesArray<=0!");
+        return undefined;
+      }
+    } catch (error) {
+      let err = error as BusinessError;
+      console.error(`Failed to createPhotoOutput. error: ${err}`);
+    }
+    return photoOutput;
    }
    ```
 
@@ -91,8 +98,6 @@ Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) 
 
 6. Trigger photo capture. This procedure is the same as that in the common photo capture mode. For details, see [Photo Capture](camera-shooting.md).
 
-
-
 ## Status Listening
 
 1. Listen for thumbnails.
@@ -114,8 +119,6 @@ Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) 
      });
    }
    ```
-
-   
 
 2. Call the mediaLibrary APIs to flush the thumbnail to the disk.
 

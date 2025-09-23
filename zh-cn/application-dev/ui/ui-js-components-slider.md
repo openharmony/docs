@@ -144,13 +144,13 @@ export default {
     endValue: 0,
   },
   setValue(e) {
-    if (e.mode == "start") {
+    if (e.mode === "start") {
       this.value = e.value;
       this.startValue = e.value;
-    } else if (e.mode == "move") {
+    } else if (e.mode === "move") {
       this.value = e.value;
       this.currentValue = e.value;
-    } else if (e.mode == "end") {
+    } else if (e.mode === "end") {
       this.value = e.value;
       this.endValue = e.value;
     }
@@ -189,14 +189,14 @@ export default {
   align-items: center;
   background-color: #F1F3F5;
 }
-.txt{
+.text{
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: fixed;
   top: 65%;
 }
-text{
+.text{
   margin-top: 30px;
 }
 ```
@@ -224,6 +224,6 @@ export default{
 
 针对slider开发，有以下相关实例可供参考：
 
-- [slider组件的使用（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/SliderApplication)
+- [slider组件的使用（JS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/JSUI/SliderApplication)
 
-- [简易视频播放器（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)
+- [简易视频播放器（JS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)

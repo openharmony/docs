@@ -1,5 +1,10 @@
 # Introduction to Common Events
-
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 Common Event Service (CES) is provided for applications to subscribe to, publish, and unsubscribe from common events.
 

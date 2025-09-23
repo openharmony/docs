@@ -731,30 +731,6 @@ openSync(path: string, flags?: number, mode?: number): number
   | ------ | ----------- |
   | number | 打开文件的文件描述符。 |
 
-**示例：**
-
-  ```ts
-  let filePath = pathDir + "/test.txt";
-  let fd = fileio.openSync(filePath, 0o102, 0o640);
-  ```
-  ```ts
-  let filePath = pathDir + "/test.txt";
-  let fd = fileio.openSync(filePath, 0o102, 0o666);
-  fileio.writeSync(fd, 'hello world');
-  let fd1 = fileio.openSync(filePath, 0o2002);
-  fileio.writeSync(fd1, 'hello world');
-  class Option {
-    offset: number = 0;
-    length: number = 4096;
-    position: number = 0;
-  }
-  let option = new Option();
-  option.position = 0;
-  let buf = new ArrayBuffer(4096)
-  let num = fileio.readSync(fd1, buf, option);
-  console.info("num == " + num);
-  ```
-
 
 ## fileio.read
 
@@ -782,24 +758,6 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   | ---------------------------------- | ------ |
   | Promise&lt;[ReadOut](#readout)&gt; | Promise对象。返回读取的结果。 |
 
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  import buffer from '@ohos.buffer';
-  let filePath = pathDir + "/test.txt";
-  let fd = fileio.openSync(filePath, 0o102, 0o640);
-  let arrayBuffer = new ArrayBuffer(4096);
-  fileio.read(fd, arrayBuffer).then((readResult: fileio.ReadOut) => {
-    console.info("read file data succeed");
-    let buf = buffer.from(arrayBuffer, 0, readResult.bytesRead);
-    console.log(`The content of file: ${buf.toString()}`);
-    fileio.closeSync(fd);
-  }).catch((err: BusinessError) => {
-    console.error("read file data failed with error:" + err);
-  });
-  ```
-
 
 ## fileio.read
 
@@ -821,24 +779,6 @@ read(fd: number, buffer: ArrayBuffer, options: { offset?: number; length?: numbe
   | buffer   | ArrayBuffer                              | 是    | 用于保存读取到的文件数据的缓冲区。                        |
   | options  | Object                                   | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示将数据读取到缓冲区的位置，即相对于缓冲区首地址的偏移。可选，默认为0。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>约束：offset+length<=buffer.size。  |
   | callback | AsyncCallback&lt;[ReadOut](#readout)&gt; | 是    | 异步读取数据之后的回调。                             |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  import buffer from '@ohos.buffer';
-  let filePath = pathDir + "/test.txt";
-  let fd = fileio.openSync(filePath, 0o102, 0o640);
-  let arrayBuffer = new ArrayBuffer(4096);
-  fileio.read(fd, arrayBuffer, (err: BusinessError, readResult: fileio.ReadOut) => {
-    if (readResult) {
-      console.info("read file data succeed");
-      let buf = buffer.from(arrayBuffer, 0, readResult.bytesRead);
-      console.info(`The content of file: ${buf.toString()}`);
-    }
-    fileio.closeSync(fd);
-  });
-  ```
 
 
 ## fileio.readSync
@@ -2967,13 +2907,17 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 
 监听文件或者目录的变化，使用callback异步回调。
 
+> **说明**：
+>
+> 从API version 10开始废弃。
+
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
 
 | 参数名   | 类型                              | 必填 | 说明                                                         |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| filePath | string                            | 是   | 待监视文件的应用沙箱路径。                                   |
+| filename | string                            | 是   | 待监视文件的应用沙箱路径。                                   |
 | events   | number                            | 是   | -&nbsp;1:&nbsp;监听文件或者目录是否发生重命名。<br/>-&nbsp;2：监听文件或者目录内容的是否修改。<br/>-&nbsp;3：两者都有。 |
 | callback | AsyncCallback&lt;number&gt; | 是   | 每发生变化一次，调用一次此函数。                             |
 
@@ -3224,12 +3168,19 @@ isSymbolicLink(): boolean
 
 Watcher是文件变化监听的实例，调用Watcher.stop()方法（同步或异步）来停止文件监听。
 
+> **说明**：
+>
+> 从API version 10开始废弃。
 
 ### stop<sup>7+</sup>
 
 stop(): Promise&lt;void&gt;
 
 关闭watcher监听，使用Promise异步回调。
+
+> **说明**：
+>
+> 从API version 10开始废弃。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -3251,6 +3202,10 @@ stop(): Promise&lt;void&gt;
 stop(callback: AsyncCallback&lt;void&gt;): void
 
 关闭watcher监听，使用callback异步回调。
+
+> **说明**：
+>
+> 从API version 10开始废弃。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 

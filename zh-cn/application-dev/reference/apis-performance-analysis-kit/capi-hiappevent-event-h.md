@@ -10,6 +10,7 @@
 ## 概述
 
 定义所有预定义事件的事件名称。除了与特定应用关联的自定义事件之外，开发者还可以使用预定义事件进行打点。
+
 **引用文件：** &lt;hiappevent/hiappevent_event.h&gt;
 
 **库：** libhiappevent_ndk.z.so
@@ -24,8 +25,8 @@
 
 ### 宏定义
 
-| 名称                                                                                                         | 描述                            |
-|------------------------------------------------------------------------------------------------------------|-------------------------------|
+| 名称 | 描述 |
+| -- | -- |
 | [EVENT_USER_LOGIN](#event_user_login) "hiappevent.user_login"                                              | 用户登录事件。<br>**起始版本：** 8        |
 | [EVENT_USER_LOGOUT](#event_user_logout) "hiappevent.user_logout"                                           | 用户登出事件。<br>**起始版本：** 8        |
 | [EVENT_DISTRIBUTED_SERVICE_START](#event_distributed_service_start) "hiappevent.distributed_service_start" | 分布式服务事件。<br>**起始版本：** 8       |
@@ -39,7 +40,7 @@
 | [EVENT_ADDRESS_SANITIZER](#event_address_sanitizer) "ADDRESS_SANITIZER"                                    | 地址越界事件。<br>**起始版本：** 12      |
 | [EVENT_MAIN_THREAD_JANK](#event_main_thread_jank) "MAIN_THREAD_JANK"                                       | 主线程超时事件。<br>**起始版本：** 12    |
 | [EVENT_APP_HICOLLIE](#event_app_hicollie) "APP_HICOLLIE"                                                   | 任务执行超时事件。<br>**起始版本：** 18   |
-| [EVENT_APP_KILLED](#event_app_killed) "APP_KILLED"                                                         | 应用查杀事件。<br>**起始版本：** 20      |
+| [EVENT_APP_KILLED](#event_app_killed) "APP_KILLED"                                                         | 应用终止事件。<br>**起始版本：** 20      |
 | [DOMAIN_OS](#domain_os) "OS"                                                                               | OS作用域。<br>**起始版本：** 12        |
 
 ## 宏定义说明
@@ -208,7 +209,7 @@ CPU高负载事件。
 
 **描述**
 
-应用查杀事件。
+应用终止事件。
 
 **起始版本：** 20
 
@@ -223,6 +224,4 @@ CPU高负载事件。
 OS作用域。
 
 **起始版本：** 12
-
-
 

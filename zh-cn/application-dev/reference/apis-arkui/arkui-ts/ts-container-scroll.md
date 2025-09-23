@@ -21,6 +21,7 @@
 ## 子组件
 
 支持单个子组件。
+> 从API version 21开始，Scroll单个子组件的宽高最大为16777216px；API version 20及之前，Scroll单个子组件的宽高最大为1000000px。子组件超出该大小可能导致滚动或显示异常。
 
 
 ## 接口
@@ -47,7 +48,7 @@ Scroll(scroller?: Scroller)
 
 scrollable(value: ScrollDirection)
 
-设置滚动方向。
+设置滚动方向。该值被修改后会重置滚动偏移量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -94,6 +95,22 @@ scrollBarColor(color: Color | number | string)
 | 参数名 | 类型                                                         | 必填 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
 | color  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 滚动条的颜色。<br/>默认值：'\#66182431'<br/>number为HEX格式颜色，支持rgb或者argb，示例：0xffffff。string为rgb或者argb格式颜色，示例：'#ffffff'。   |
+
+### scrollBarColor<sup>22+</sup>
+
+scrollBarColor(color: Color | number | string | Resource)
+
+设置滚动条的颜色。
+
+**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明           |
+| ------ | ------------------------------------------------------------ | ---- | -------------- |
+| color  | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 滚动条的颜色。<br/>默认值：'\#66182431'<br/>number为HEX格式颜色，支持rgb或者argb，示例：0xffffff。string为rgb或者argb格式颜色，示例：'#ffffff'。   |
 
 ### scrollBarWidth
 
@@ -363,7 +380,7 @@ onScrollFrameBegin(event: OnScrollFrameBeginCallback)
 
 支持offsetRemain为负值。
 
-若通过onScrollFrameBegin事件和scrollBy方法实现容器嵌套滚动，需设置子滚动节点的EdgeEffect为None。如Scroll嵌套List滚动时，List组件的edgeEffect属性需设置为EdgeEffect.None。
+若通过onScrollFrameBegin事件和scrollBy方法实现容器嵌套滚动，需设置子滚动节点的EdgeEffect为None。如Scroll嵌套List滚动时，List组件的edgeEffect属性需设置为EdgeEffect.None，否则抛滑List，会触发List的边缘回弹动画，导致嵌套滚动失效。
 
 满足以下任一条件时触发该事件：
 
@@ -957,7 +974,7 @@ getItemRect(index: number): RectResult
 
 | 类型       | 说明       |
 | -------------------  | -------- |
-| [RectResult](ts-types.md#rectresult10) | 子组件的大小和相对于组件的位置。<br/>单位：vp。 |
+| [RectResult](ts-universal-attributes-on-child-touch-test.md#rectresult) | 子组件的大小和相对于组件的位置。<br/>单位：vp。 |
 
 **错误码**：
 

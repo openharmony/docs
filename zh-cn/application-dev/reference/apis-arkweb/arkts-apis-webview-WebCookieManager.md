@@ -4,7 +4,7 @@
 <!--Owner: @aohui-->
 <!--Designer: @yaomingliu-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有Web组件共享一个WebCookieManager实例。
 
@@ -55,7 +55,7 @@ static fetchCookieSync(url: string, incognito?: boolean): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -80,7 +80,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let value = webview.WebCookieManager.fetchCookieSync('https://www.example.com');
-            console.log("fetchCookieSync cookie = " + value);
+            console.info("fetchCookieSync cookie = " + value);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -108,7 +108,7 @@ static fetchCookie(url: string, callback: AsyncCallback\<string>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -138,7 +138,7 @@ struct WebComponent {
                 return;
               }
               if (cookie) {
-                console.log('fetchCookie cookie = ' + cookie);
+                console.info('fetchCookie cookie = ' + cookie);
               }
             })
           } catch (error) {
@@ -173,7 +173,7 @@ static fetchCookie(url: string): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -199,7 +199,7 @@ struct WebComponent {
           try {
             webview.WebCookieManager.fetchCookie('https://www.example.com')
               .then(cookie => {
-                console.log("fetchCookie cookie = " + cookie);
+                console.info("fetchCookie cookie = " + cookie);
               })
               .catch((error: BusinessError) => {
                 console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -237,7 +237,7 @@ static fetchCookie(url: string, incognito: boolean): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -263,7 +263,7 @@ struct WebComponent {
           try {
             webview.WebCookieManager.fetchCookie('https://www.example.com', false)
               .then(cookie => {
-                console.log("fetchCookie cookie = " + cookie);
+                console.info("fetchCookie cookie = " + cookie);
               })
               .catch((error: BusinessError) => {
                 console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -306,7 +306,7 @@ static configCookieSync(url: string, value: string, incognito?: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -362,7 +362,7 @@ static configCookieSync(url: string, value: string, incognito: boolean, includeH
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -417,7 +417,7 @@ static configCookie(url: string, value: string, callback: AsyncCallback\<void>):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -480,7 +480,7 @@ static configCookie(url: string, value: string): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -507,10 +507,10 @@ struct WebComponent {
           try {
             webview.WebCookieManager.configCookie('https://www.example.com', 'a=b')
               .then(() => {
-                console.log('configCookie success!');
+                console.info('configCookie success!');
               })
               .catch((error: BusinessError) => {
-                console.log('error: ' + JSON.stringify(error));
+                console.info('error: ' + JSON.stringify(error));
               })
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -547,7 +547,7 @@ static configCookie(url: string, value: string, incognito: boolean, includeHttpO
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -574,10 +574,10 @@ struct WebComponent {
           try {
             webview.WebCookieManager.configCookie('https://www.example.com', 'a=b', false, false)
               .then(() => {
-                console.log('configCookie success!');
+                console.info('configCookie success!');
               })
               .catch((error: BusinessError) => {
-                console.log('error: ' + JSON.stringify(error));
+                console.info('error: ' + JSON.stringify(error));
               })
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -649,7 +649,7 @@ static saveCookieAsync(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -703,7 +703,7 @@ static saveCookieAsync(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -728,7 +728,7 @@ struct WebComponent {
           try {
             webview.WebCookieManager.saveCookieAsync()
               .then(() => {
-                console.log("saveCookieAsyncCallback success!");
+                console.info("saveCookieAsyncCallback success!");
               })
               .catch((error: BusinessError) => {
                 console.error("error: " + error);
@@ -759,7 +759,7 @@ static putAcceptCookieEnabled(accept: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -823,7 +823,7 @@ struct WebComponent {
       Button('isCookieAllowed')
         .onClick(() => {
           let result = webview.WebCookieManager.isCookieAllowed();
-          console.log("result: " + result);
+          console.info("result: " + result);
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -843,11 +843,11 @@ static putAcceptThirdPartyCookieEnabled(accept: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | :----------------------------------------- |
-| accept | boolean | 是   | 设置是否拥有发送和接收第三方cookie的权限。<br>true表示设置拥有发送和接收第三方cookie的权限，false表示设置无发送和接收第三方cookie的权限。<br>默认值：false。 |
+| accept | boolean | 是   | 是否允许设置、获取第三方cookie。<br>true表示允许设置、获取第三方cookie，false表示不允许设置、获取第三方cookie。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -911,7 +911,7 @@ struct WebComponent {
       Button('isThirdPartyCookieAllowed')
         .onClick(() => {
           let result = webview.WebCookieManager.isThirdPartyCookieAllowed();
-          console.log("result: " + result);
+          console.info("result: " + result);
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -955,7 +955,7 @@ struct WebComponent {
       Button('existCookie')
         .onClick(() => {
           let result = webview.WebCookieManager.existCookie();
-          console.log("result: " + result);
+          console.info("result: " + result);
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -1016,7 +1016,7 @@ static clearAllCookies(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -1070,7 +1070,7 @@ static clearAllCookies(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -1092,17 +1092,13 @@ struct WebComponent {
     Column() {
       Button('clearAllCookies')
         .onClick(() => {
-          try {
-            webview.WebCookieManager.clearAllCookies()
-              .then(() => {
-                console.log("clearAllCookies success!");
-              })
-              .catch((error: BusinessError) => {
-                console.error("error: " + error);
-              });
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
+          webview.WebCookieManager.clearAllCookies()
+            .then(() => {
+              console.info("clearAllCookies success!");
+            })
+            .catch((error: BusinessError) => {
+              console.error("error: " + error);
+            });
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -1157,7 +1153,7 @@ static clearSessionCookie(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -1211,7 +1207,7 @@ static clearSessionCookie(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
@@ -1236,7 +1232,7 @@ struct WebComponent {
           try {
             webview.WebCookieManager.clearSessionCookie()
               .then(() => {
-                console.log("clearSessionCookie success!");
+                console.info("clearSessionCookie success!");
               })
               .catch((error: BusinessError) => {
                 console.error("error: " + error);
@@ -1277,7 +1273,7 @@ static getCookie(url: string): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
@@ -1302,7 +1298,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let value = webview.WebCookieManager.getCookie('https://www.example.com');
-            console.log("value: " + value);
+            console.info("value: " + value);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -1334,7 +1330,7 @@ static setCookie(url: string, value: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+以下错误码的详细介绍请参见[Webview错误码](errorcode-webview.md)、[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |

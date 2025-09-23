@@ -4,7 +4,7 @@
 <!--Owner: @aohui-->
 <!--Designer: @yaomingliu-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 通过DataResubmissionHandler可以重新提交表单数据或取消提交表单数据。
 
@@ -47,7 +47,7 @@ resend(): void
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onDataResubmitted((event) => {
-            console.log('onDataResubmitted');
+            console.info('onDataResubmitted');
             event.handler.resend();
           })
       }
@@ -78,7 +78,7 @@ cancel(): void
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onDataResubmitted((event) => {
-            console.log('onDataResubmitted');
+            console.info('onDataResubmitted');
             event.handler.cancel();
           })
       }

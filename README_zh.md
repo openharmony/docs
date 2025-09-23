@@ -18,7 +18,7 @@
 
  - master：最新开发版本。  
 
- - OpenHarmony 6.0 Beta1版本（API Level 20）：点击[此处](zh-cn/release-notes/OpenHarmony-v6.0-beta1.md)了解版本详情。
+ - OpenHarmony 6.0 Release版本（API Level 20）：点击[此处](zh-cn/release-notes/OpenHarmony-v6.0-release.md)了解版本详情。
 
  - OpenHarmony 5.1.0 Release版本（API Level 18）：点击[此处](zh-cn/release-notes/OpenHarmony-v5.1.0-release.md)了解版本详情。
 
@@ -47,7 +47,7 @@
  - OpenHarmony 3.0 LTS版本：点击[此处](zh-cn/release-notes/OpenHarmony-v3.0-LTS.md)了解版本详情。
 
  - OpenHarmony-1.0.1-Release
-如需了解更多版本详情，请点击[此处](zh-cn/release-notes/)。
+
 如需了解各版本的维护策略，请点击[此处](https://gitee.com/openharmony/release-management)。
 
 

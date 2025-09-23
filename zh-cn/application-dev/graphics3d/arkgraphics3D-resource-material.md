@@ -131,7 +131,7 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
        ```ts
        let shaderMaterialPromise = await rf.createMaterial({ name: "shaderMat" }, MaterialType.SHADER);
        let shaderMat = shaderMaterialPromise as ShaderMaterial;
-       // 绑定自定义Shader代码示例（自定义Shader）
+       // 绑定自定义Shader代码示例（创建shader资源，路径和文件名可根据项目实际资源自定义）
        let shader = await rf.createShader({ name: "MyShader", uri: $rawfile("shaders/my_shader.shader") });
        shaderMat.colorShader = shader;
        ```
@@ -142,6 +142,7 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
        let pbrMaterialPromise = await rf.createMaterial({ name: "pbrMat" }, MaterialType.METALLIC_ROUGHNESS);
        let pbrMat = pbrMaterialPromise as MetallicRoughnessMaterial;
        // 设置基础颜色贴图和因子
+       // 加载图片资源，路径和文件名可根据项目实际资源自定义，但PBR材质贴图类型必须与材质属性匹配
        let baseColorImage = await rf.createImage({ name: "baseColorTex", uri: $rawfile("textures/baseColor.png") });
        pbrMat.baseColor.image = baseColorImage;
        pbrMat.baseColor.factor = { x: 1, y: 1, z: 1, w: 1 };
@@ -164,6 +165,7 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
        不同属性的贴图内容通常不同，需分别创建；如多个材质共用相同贴图，可复用同一个Image实例以节省内存。所有材质属性中的factor各分量取值范围均为[0, 1]。
 
        ```ts
+       // 图片路径和文件名可根据项目实际资源自定义，但PBR材质贴图类型必须与材质属性匹配
        // 设置基础颜色贴图和颜色因子（支持透明通道）
        let baseColorImage = await rf.createImage({ name: "baseColorTex", uri: $rawfile("textures/baseColor.png") });
        pbrMat.baseColor.image = baseColorImage;
@@ -237,9 +239,8 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
   ### 创建Shader材质并设置属性
 
    ```ts
-   import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-     LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry,
-     CullMode } from '@ohos.graphics.scene';
+   import { MaterialType, ShaderMaterial, SceneResourceParameters, SceneResourceFactory, Scene, Geometry,
+     CullMode } from '@kit.ArkGraphics3D';
 
    function createAndApplyShaderMaterial(): Promise<void> {
      // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
@@ -254,7 +255,7 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
        let materialParams: SceneResourceParameters = { name: "material" };
        let material = await rf.createMaterial(materialParams, MaterialType.SHADER);
        let shaderMat = material as ShaderMaterial;
-       // 加载并绑定自定义Shader代码
+       // 加载并绑定自定义Shader代码（创建shader资源，路径和文件名可根据项目实际资源自定义）
        let shader = await rf.createShader({
          name: "shaderResource",
          uri: $rawfile("shaders/custom_shader/custom_material_sample.shader")
@@ -283,9 +284,8 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
   不同模型支持的PBR属性可能有所不同，设置材质前建议根据模型内容进行适配。本例使用CompareClearcoat模型作为示例，设置其支持的PBR属性，开发者可根据需要使用对应模型并设置相关属性。
 
    ```ts
-   import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-     LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, MetallicRoughnessMaterial,
-     Geometry, CullMode } from '@ohos.graphics.scene';
+   import { MaterialType, SceneResourceParameters, SceneResourceFactory, Scene, MetallicRoughnessMaterial, Geometry,
+     CullMode } from '@kit.ArkGraphics3D';
 
    function createAndApplyPBRMaterial(): Promise<void> {
      // 加载场景资源，支持.gltf和.glb格式，路径和文件名可根据项目实际资源自定义
@@ -302,7 +302,7 @@ ArkGraphics 3D中的材质类型通过[MaterialType](../reference/apis-arkgraphi
        let material = await rf.createMaterial(materialParams, MaterialType.METALLIC_ROUGHNESS);
        let pbrMat = material as MetallicRoughnessMaterial;
 
-       // 共享metallic-roughness贴图，可供多个材质复用，节省资源
+       // 加载共享的metallic-roughness贴图（可复用，节省资源），图片路径和文件名可根据项目实际资源自定义，但贴图类型必须与材质属性匹配
        let metallicImage = await rf.createImage({
          name: "materialTex",
          uri: $rawfile("gltf/DamagedHelmet/glTF/Default_metalRoughness.jpg")

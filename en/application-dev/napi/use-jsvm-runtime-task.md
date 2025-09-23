@@ -1,4 +1,10 @@
 # Creating and Destroying JSVMs Using JSVM-API
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## When to Use
 
@@ -21,6 +27,7 @@ static map<int, JSVM_Env *> g_envMap;
 static map<int, JSVM_CallbackStruct *> g_callBackStructMap;
 static uint32_t ENVTAG_NUMBER = 0;
 static std::mutex envMapLock;
+static int g_aa = 0;
 
 #define CHECK_COND(cond)                                                                                               \
     do {                                                                                                               \
@@ -42,7 +49,7 @@ static JSVM_Value Consoleinfo(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
     JSVM_Value args[1];
     char log[256] = "";
-    size_t log_length;
+    size_t log_length = 0;
     JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
 
     JSVM_CALL(OH_JSVM_GetValueStringUtf8(env, args[0], log, 255, &log_length));
@@ -107,7 +114,7 @@ static JSVM_Value Add(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 2;
     JSVM_Value args[2];
     JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
-    double num1, num2;
+    double num1 = 0, num2 = 0;
     JSVM_CALL(OH_JSVM_GetValueDouble(env, args[0], &num1));
     JSVM_CALL(OH_JSVM_GetValueDouble(env, args[1], &num2));
     JSVM_Value sum = nullptr;
@@ -133,11 +140,12 @@ static JSVM_Value AssertEqual(JSVM_Env env, JSVM_CallbackInfo info) {
 }
 
 static int fromOHStringValue(JSVM_Env &env, JSVM_Value &value, std::string &result) {
-    size_t size;
+    size_t size = 0;
     CHECK_RET(OH_JSVM_GetValueStringUtf8(env, value, nullptr, 0, &size));
-    char resultStr[size + 1];
+    char *resultStr = new char[size + 1];
     CHECK_RET(OH_JSVM_GetValueStringUtf8(env, value, resultStr, size + 1, &size));
     result = resultStr;
+    delete[] resultStr;
     return 0;
 }
 
@@ -258,7 +266,7 @@ static int EvaluateJS(uint32_t envId, const char *source, std::string &res) {
             CHECK_RET(OH_JSVM_GetValueBool(env, result, &ret));
             ret ? res = "true" : res = "false";
         } else if (type == JSVM_NUMBER) {
-            int32_t num;
+            int32_t num = 0;
             CHECK_RET(OH_JSVM_GetValueInt32(env, result, &num));
             res = std::to_string(num);
         } else if (type == JSVM_OBJECT) {
@@ -303,7 +311,7 @@ static int32_t TestJSVM() {
     };";
 
     // Create the first VM and bind the TS callback.
-    uint32_t coreId1;
+    uint32_t coreId1 = 0;
     CHECK_COND(CreateJsCore(&coreId1) == 0);
     OH_LOG_INFO(LOG_APP, "TEST coreId: %{public}d", coreId1);
     // Run JS code in the first VM.
@@ -312,7 +320,7 @@ static int32_t TestJSVM() {
     OH_LOG_INFO(LOG_APP, "TEST evaluateJS: %{public}s", result1.c_str());
 
     // Create the second VM and bind it with the TS callback.
-    uint32_t coreId2;
+    uint32_t coreId2 = 0;
     CHECK_COND(CreateJsCore(&coreId2) == 0);
     OH_LOG_INFO(LOG_APP, "TEST coreId: %{public}d", coreId2);
     // Run JS code in the second VM.
@@ -329,6 +337,7 @@ static int32_t TestJSVM() {
     return 0;
 }
 ```
+<!-- @[runtime_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmDebug/runtimetask/src/main/cpp/hello.cpp) -->
 Expected result:
 ```
 JSVM CreateJsCore START

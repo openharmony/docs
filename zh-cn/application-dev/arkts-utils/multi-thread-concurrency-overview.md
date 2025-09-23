@@ -222,7 +222,7 @@ async function produce(): Promise<number> {
 }
 
 class Consumer {
-  public consume(value: Object) {
+  public consume(value: number) {
     // 添加消费相关逻辑
     console.info('consuming value: ' + value);
   }

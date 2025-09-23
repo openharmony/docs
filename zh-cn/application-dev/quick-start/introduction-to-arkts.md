@@ -1622,7 +1622,7 @@ class Derived1 extends Base implements Interface { }
 // Derived1在语义上等价于Derived2
 class Derived2 extends Base<SomeType> implements Interface<SomeType> { }
 
-function foo<T = number>(): T {
+function foo<T = number>(): void {
   // ...
 }
 foo();
@@ -1923,6 +1923,7 @@ class MyClass {
 }
 ```
 
+- 使用@interface声明注解。
 - 注解`ClassAuthor`需要将元信息添加到类声明中。
 - 注解必须放置在声明之前。
 - 注解可以包含上述示例中所示的参数。
@@ -1947,13 +1948,15 @@ class MyClass {
 
 > **注意**
 > 
-> HarmonyOS应用开发中，在[release模式下构建](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-har#section19788284410)源码HAR，并同时开启混淆时，由于编译产物为JS文件，而在JS中没有注解的实现机制，因此会在编译过程中被移除，导致无法通过注解实现AOP插桩。
+> 应用开发中，在[release模式下构建](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-har#section19788284410)源码HAR，并同时[开启混淆](../../application-dev/arkts-utils/source-obfuscation.md)时，由于编译产物为JS文件，而在JS中没有注解的实现机制，因此会在编译过程中被移除，导致无法通过注解实现AOP插桩。
 >
 > 为避免因此引起的功能异常，禁止在JS HAR(编译产物中存在JS的HAR包)中使用注解。
 >
-> 如果需要在release模式并且开启混淆的情况下构建含有注解的HAR包，可以构建[TS HAR](har-package.md#编译生成ts文件)或者[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-har#section16598338112415)。
+> 如果需要在release模式并且开启混淆的情况下构建含有注解的HAR包，可以构建[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-har#section16598338112415)。
 
 ### 用户自定义注解
+
+**从API version 20及之后版本，支持用户自定义注解。**
 
 **用户自定义注解的声明**
 `用户自定义注解`的定义与`interface`的定义类似，其中的`interface`关键字以符号`@`为前缀。<br>
@@ -2209,53 +2212,53 @@ class C {
 **编译器自动生成的.d.ets文件**<br>
 当编译器根据ets代码自动生成.d.ets文件时，存在以下2种情况。
 1. 当注解定义被导出时，源代码中的注解定义会在.d.ets文件中保留。
-```typescript
-// a.ets
-export @interface ClassAuthor {}
+   ```typescript
+   // a.ets
+   export @interface ClassAuthor {}
 
-@interface MethodAnno { // 没导出
-  data: number;
-}
+   @interface MethodAnno { // 没导出
+     data: number;
+   }
 
-// a.d.ets 编译器生成的声明文件
-export declare @interface ClassAuthor {}
-```
+   // a.d.ets 编译器生成的声明文件
+   export declare @interface ClassAuthor {}
+   ```
 2. 当下面所有条件成立时，源代码中实体的注解实例会在.d.ets文件中保留。<br>
-    2.1 注解的定义被导出（import的注解也算作被导出）。<br>
-    2.2 如果实体是类，则类被导出。<br>
-    2.3 如果实体是方法，则类被导出，并且方法不是私有方法。
-```typescript
-// a.ets
-import { ClassAuthor } from './author';
+  2.1 注解的定义被导出（import的注解也算作被导出）。<br>
+  2.2 如果实体是类，则类被导出。<br>
+  2.3 如果实体是方法，则类被导出，并且方法不是私有方法。
+   ```typescript
+   // a.ets
+   import { ClassAuthor } from './author';
 
-export @interface MethodAnno {
-  data: number = 0;
-}
+   export @interface MethodAnno {
+     data: number = 0;
+   }
 
-@ClassAuthor
-class MyClass {
-  @MethodAnno({data: 123})
-  foo() {}
+   @ClassAuthor
+   class MyClass {
+     @MethodAnno({data: 123})
+     foo() {}
 
-  @MethodAnno({data: 456})
-  private bar() {}
-}
+     @MethodAnno({data: 456})
+     private bar() {}
+   }
 
-// a.d.ets 编译器生成的声明文件
-import {ClassAuthor} from "./author";
+   // a.d.ets 编译器生成的声明文件
+   import {ClassAuthor} from "./author";
 
-export declare @interface MethodAnno {
-  data: number = 0;
-}
+   export declare @interface MethodAnno {
+     data: number = 0;
+   }
 
-@ClassAuthor
-export declare class C {
-  @MethodAnno({data: 123})
-  foo(): void;
+   @ClassAuthor
+   export declare class MyClass {
+     @MethodAnno({data: 123})
+     foo(): void;
 
-  bar; // 私有方法不保留注解
-}
-```
+     bar; // 私有方法不保留注解
+   }
+   ```
 
 **开发者生成的.d.ets文件**<br>
 开发者生成的.d.ets文件中的注解信息不会自动应用到实现的源代码中。<br>

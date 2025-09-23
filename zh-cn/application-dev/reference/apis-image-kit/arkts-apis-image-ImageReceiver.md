@@ -11,9 +11,9 @@
 > - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本Interface首批接口从API version 9开始支持。
 
-图像接收类，用于获取组件surface id，接收最新的图片和读取下一张图片，以及释放ImageReceiver实例。ImageReceiver做为图片的接收方、消费者，它的参数属性实际上不会对接收到的图片产生影响。图片属性的配置应在发送方、生产者进行，如相机预览流[createPreviewOutput](../apis-camera-kit/arkts-apis-camera-CameraManager.md#createpreviewoutput)。
+图像接收类，用于获取组件surface id，接收最新的图片和读取下一张图片，以及释放ImageReceiver实例。ImageReceiver作为图片的接收方、消费者，它的参数属性实际上不会对接收到的图片产生影响。图片属性的配置应在发送方、生产者进行，如相机预览流[createPreviewOutput](../apis-camera-kit/arkts-apis-camera-CameraManager.md#createpreviewoutput)。
 
-在调用以下方法前需要先创建ImageReceiver实例。
+在调用以下方法前需要先通过[createImageReceiver](arkts-apis-image-f.md#imagecreateimagereceiver11)创建ImageReceiver实例。
 
 ## 导入模块
 
@@ -35,7 +35,7 @@ import { image } from '@kit.ImageKit';
 
 getReceivingSurfaceId(callback: AsyncCallback\<string>): void
 
-用于获取一个surface id供Camera或其他组件使用。使用callback返回结果。
+用于获取一个surface id供Camera或其他组件使用。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -50,20 +50,22 @@ getReceivingSurfaceId(callback: AsyncCallback\<string>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-receiver.getReceivingSurfaceId((err: BusinessError, id: string) => {
-  if (err) {
-    console.error(`Failed to get the ReceivingSurfaceId.code ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in getting the ReceivingSurfaceId.');
-  }
-});
+async function GetReceivingSurfaceId(receiver : image.ImageReceiver) {
+  receiver.getReceivingSurfaceId((err: BusinessError, id: string) => {
+    if (err) {
+      console.error(`Failed to get the ReceivingSurfaceId.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in getting the ReceivingSurfaceId.');
+    }
+  });
+}
 ```
 
 ## getReceivingSurfaceId<sup>9+</sup>
 
 getReceivingSurfaceId(): Promise\<string>
 
-用于获取一个surface id供Camera或其他组件使用。使用promise返回结果。
+用于获取一个surface id供Camera或其他组件使用。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -78,18 +80,20 @@ getReceivingSurfaceId(): Promise\<string>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-receiver.getReceivingSurfaceId().then((id: string) => { 
-  console.info('Succeeded in getting the ReceivingSurfaceId.');
-}).catch((error: BusinessError) => {
-  console.error(`Failed to get the ReceivingSurfaceId.code ${error.code},message is ${error.message}`);
-})
+async function GetReceivingSurfaceId(receiver : image.ImageReceiver) {
+  receiver.getReceivingSurfaceId().then((id: string) => { 
+    console.info('Succeeded in getting the ReceivingSurfaceId.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to get the ReceivingSurfaceId.code ${error.code},message is ${error.message}`);
+  })
+}
 ```
 
 ## readLatestImage<sup>9+</sup>
 
 readLatestImage(callback: AsyncCallback\<Image>): void
 
-从ImageReceiver读取最新的图片，并使用callback返回结果。
+从ImageReceiver读取最新的图片。使用callback异步回调。
 
 **注意**：此接口需要在[on](#on9)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](arkts-apis-image-Image.md)对象使用完毕后需要调用[release](arkts-apis-image-Image.md#release9)方法释放，释放后才可以继续接收新的数据。
 
@@ -106,20 +110,22 @@ readLatestImage(callback: AsyncCallback\<Image>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-receiver.readLatestImage((err: BusinessError, img: image.Image) => {
-  if (err) {
-    console.error(`Failed to read the latest Image.code ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in reading the latest Image.');
-  }
-});
+async function ReadLatestImage(receiver : image.ImageReceiver) {
+  receiver.readLatestImage((err: BusinessError, img: image.Image) => {
+    if (err) {
+      console.error(`Failed to read the latest Image.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in reading the latest Image.');
+    }
+  });
+}
 ```
 
 ## readLatestImage<sup>9+</sup>
 
 readLatestImage(): Promise\<Image>
 
-从ImageReceiver读取最新的图片，并使用promise返回结果。
+从ImageReceiver读取最新的图片。使用Promise异步回调。
 
 **注意**：此接口需要在[on](#on9)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](arkts-apis-image-Image.md)对象使用完毕后需要调用[release](arkts-apis-image-Image.md#release9)方法释放，释放后才可以继续接收新的数据。
 
@@ -136,18 +142,20 @@ readLatestImage(): Promise\<Image>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-receiver.readLatestImage().then((img: image.Image) => {
-  console.info('Succeeded in reading the latest Image.');
-}).catch((error: BusinessError) => {
-  console.error(`Failed to read the latest Image.code ${error.code},message is ${error.message}`);
-})
+async function ReadLatestImage(receiver : image.ImageReceiver) {
+  receiver.readLatestImage().then((img: image.Image) => {
+    console.info('Succeeded in reading the latest Image.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to read the latest Image.code ${error.code},message is ${error.message}`);
+  });
+}
 ```
 
 ## readNextImage<sup>9+</sup>
 
 readNextImage(callback: AsyncCallback\<Image>): void
 
-从ImageReceiver读取下一张图片，并使用callback返回结果。
+从ImageReceiver读取下一张图片。使用callback异步回调。
 
 **注意**：此接口需要在[on](#on9)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](arkts-apis-image-Image.md)对象使用完毕后需要调用[release](arkts-apis-image-Image.md#release9)方法释放，释放后才可以继续接收新的数据。
 
@@ -164,20 +172,22 @@ readNextImage(callback: AsyncCallback\<Image>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-receiver.readNextImage((err: BusinessError, img: image.Image) => {
-  if (err) {
-    console.error(`Failed to read the next Image.code ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in reading the next Image.');
-  }
-});
+async function ReadNextImage(receiver : image.ImageReceiver) {
+  receiver.readNextImage((err: BusinessError, img: image.Image) => {
+    if (err) {
+      console.error(`Failed to read the next Image.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in reading the next Image.');
+    }
+  });
+}
 ```
 
 ## readNextImage<sup>9+</sup>
 
 readNextImage(): Promise\<Image>
 
-从ImageReceiver读取下一张图片，并使用promise返回结果。
+从ImageReceiver读取下一张图片。使用Promise异步回调。
 
 **注意**：此接口需要在[on](#on9)回调触发后调用，才能正常的接收到数据。且此接口返回的[Image](arkts-apis-image-Image.md)对象使用完毕后需要调用[release](arkts-apis-image-Image.md#release9)方法释放，释放后才可以继续接收新的数据。
 
@@ -194,11 +204,13 @@ readNextImage(): Promise\<Image>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-receiver.readNextImage().then((img: image.Image) => {
-  console.info('Succeeded in reading the next Image.');
-}).catch((error: BusinessError) => {
-  console.error(`Failed to read the next Image.code ${error.code},message is ${error.message}`);
-})
+async function ReadNextImage(receiver : image.ImageReceiver) {
+  receiver.readNextImage().then((img: image.Image) => {
+    console.info('Succeeded in reading the next Image.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to read the next Image.code ${error.code},message is ${error.message}`);
+  });
+}
 ```
 
 ## on<sup>9+</sup>
@@ -219,9 +231,11 @@ on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-receiver.on('imageArrival', () => {
-  // image arrival, do something.
-})
+async function On(receiver : image.ImageReceiver) {
+  receiver.on('imageArrival', () => {
+    // 接收到图片，实现回调函数逻辑。
+  });
+}
 ```
 
 ## off<sup>13+</sup>
@@ -242,11 +256,13 @@ off(type: 'imageArrival', callback?: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-let callbackFunc = ()=>{
-    // do something.
+async function Off(receiver : image.ImageReceiver) {
+  let callbackFunc = ()=>{
+      // 实现回调函数逻辑。
+  };
+  receiver.on('imageArrival', callbackFunc);
+  receiver.off('imageArrival', callbackFunc);
 }
-receiver.on('imageArrival', callbackFunc)
-receiver.off('imageArrival', callbackFunc)
 ```
 
 ## release<sup>9+</sup>
@@ -270,20 +286,22 @@ ArkTS有内存回收机制，ImageReceiver对象不调用release方法，内存�
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-receiver.release((err: BusinessError) => {
-  if (err) {
-    console.error(`Failed to release the receiver.code ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in releasing the receiver.');
-  }
-})
+async function Release(receiver : image.ImageReceiver) {
+  receiver.release((err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to release the receiver.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in releasing the receiver.');
+    }
+  })
+}
 ```
 
 ## release<sup>9+</sup>
 
 release(): Promise\<void>
 
-释放ImageReceiver实例并使用promise返回结果。
+释放ImageReceiver实例。使用Promise异步回调。
 
 ArkTS有内存回收机制，ImageReceiver对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
@@ -300,9 +318,11 @@ ArkTS有内存回收机制，ImageReceiver对象不调用release方法，内存�
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-receiver.release().then(() => {
-  console.info('Succeeded in releasing the receiver.');
-}).catch((error: BusinessError) => {
-  console.error(`Failed to release the receiver.code ${error.code},message is ${error.message}`);
-})
+async function Release(receiver : image.ImageReceiver) {
+  receiver.release().then(() => {
+    console.info('Succeeded in releasing the receiver.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to release the receiver.code ${error.code},message is ${error.message}`);
+  })
+}
 ```

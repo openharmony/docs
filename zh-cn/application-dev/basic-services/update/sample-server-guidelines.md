@@ -189,7 +189,7 @@
 
 8. 升级包制作
 
-	参考[update_packaging_tools仓](https://gitee.com/openharmony/update_packaging_tools)制作升级包。
+	参考[update_packaging_tools仓](https://gitcode.com/openharmony/update_packaging_tools)制作升级包。
 
 9. 启动搜包服务器
 

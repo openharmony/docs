@@ -16,7 +16,7 @@
 >
 > 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-term.md#mdm应用设备管理应用)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2)后调用。
 > 
-> 当前页面仅包含本模块的系统接口，其他公开接口参见。其他公开接口参见[@ohos.enterprise.bundleManager](js-apis-enterprise-bundleManager.md)。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.enterprise.bundleManager](js-apis-enterprise-bundleManager.md)。
 
 ## 导入模块
 
@@ -36,12 +36,14 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCal
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。<br/>**说明：** 从API version 21版本开始，支持传入应用的[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，推荐使用[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)。API version 20及之前版本，仅支持[appId](../../quick-start/common_problem_of_application.md#什么是appid)。  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
@@ -91,12 +93,14 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, ca
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。<br/>**说明：** 从API version 21版本开始，支持传入应用的[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，推荐使用[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)。API version 20及之前版本，仅支持[appId](../../quick-start/common_problem_of_application.md#什么是appid)。    |
 | userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
@@ -147,12 +151,14 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): 
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。<br/>**说明：** 从API version 21版本开始，支持传入应用的[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，推荐使用[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)。API version 20及之前版本，仅支持[appId](../../quick-start/common_problem_of_application.md#什么是appid)。        |
 | userId     | number                             | 否    |用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
@@ -207,12 +213,14 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。<br/>**说明：** 从API version 21版本开始，数组中的元素支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，仅移除传入的[appId](../../quick-start/common_problem_of_application.md#什么是appid)（或[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)），不会移除同一应用的[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)（或[appId](../../quick-start/common_problem_of_application.md#什么是appid)）。API version 20及之前版本，数组中的元素只支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)。     |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
@@ -262,12 +270,14 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。<br/>**说明：** 从API version 21版本开始，数组中的元素支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，仅移除传入的[appId](../../quick-start/common_problem_of_application.md#什么是appid)（或[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)），不会移除同一应用的[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)（或[appId](../../quick-start/common_problem_of_application.md#什么是appid)）。API version 20及之前版本，数组中的元素只支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)。      |
 | userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
@@ -318,12 +328,14 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
-| appIds    | Array&lt;string&gt;         | 是    | 应用ID数组。                  |
+| appIds    | Array&lt;string&gt;         | 是    | 应用ID数组。<br/>**说明：** 从API version 21版本开始，数组中的元素支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，仅移除传入的[appId](../../quick-start/common_problem_of_application.md#什么是appid)（或[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)），不会移除同一应用的[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)（或[appId](../../quick-start/common_problem_of_application.md#什么是appid)）。API version 20及之前版本，数组中的元素只支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)。                  |
 | userId     | number                             | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
@@ -378,6 +390,8 @@ getAllowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -429,6 +443,8 @@ getAllowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -482,6 +498,8 @@ getAllowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;stri
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -540,12 +558,14 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。<br/>**说明：** 从API version 21版本开始，支持传入应用的[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，推荐使用[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)。API version 20及之前版本，仅支持[appId](../../quick-start/common_problem_of_application.md#什么是appid)。    |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
@@ -595,12 +615,14 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。<br/>**说明：** 从API version 21版本开始，支持传入应用的[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，推荐使用[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)。API version 20及之前版本，仅支持[appId](../../quick-start/common_problem_of_application.md#什么是appid)。      |
 | userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
@@ -651,12 +673,14 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。<br/>**说明：** 从API version 21版本开始，支持传入应用的[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，推荐使用[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)。API version 20及之前版本，仅支持[appId](../../quick-start/common_problem_of_application.md#什么是appid)。                  |
 | userId     | number                             | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
@@ -711,12 +735,14 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: As
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。<br/>**说明：** 从API version 21版本开始，数组中的元素支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，仅移除传入的[appId](../../quick-start/common_problem_of_application.md#什么是appid)（或[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)），不会移除同一应用的[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)（或[appId](../../quick-start/common_problem_of_application.md#什么是appid)）。API version 20及之前版本，数组中的元素只支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)。         |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
@@ -766,12 +792,14 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: numb
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。<br/>**说明：** 从API version 21版本开始，数组中的元素支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，仅移除传入的[appId](../../quick-start/common_problem_of_application.md#什么是appid)（或[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)），不会移除同一应用的[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)（或[appId](../../quick-start/common_problem_of_application.md#什么是appid)）。API version 20及之前版本，数组中的元素只支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)。                  |
 | userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
@@ -822,12 +850,14 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: num
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
-| appIds    | Array&lt;string&gt;        | 是    | 应用ID数组。                  |
+| appIds    | Array&lt;string&gt;        | 是    | 应用ID数组。<br/>**说明：** 从API version 21版本开始，数组中的元素支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，仅移除传入的[appId](../../quick-start/common_problem_of_application.md#什么是appid)（或[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)），不会移除同一应用的[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)（或[appId](../../quick-start/common_problem_of_application.md#什么是appid)）。API version 20及之前版本，数组中的元素只支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)。        |
 | userId     | number                             | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
@@ -882,6 +912,8 @@ getDisallowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;str
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -933,6 +965,8 @@ getDisallowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -986,6 +1020,8 @@ getDisallowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;s
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -1044,12 +1080,14 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, callback: Asy
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。<br/>**说明：** 从API version 21版本开始，支持传入应用的[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，推荐使用[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)。API version 20及之前版本，仅支持[appId](../../quick-start/common_problem_of_application.md#什么是appid)。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
@@ -1099,12 +1137,14 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId: numbe
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。<br/>**说明：** 从API version 21版本开始，支持传入应用的[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，推荐使用[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)。API version 20及之前版本，仅支持[appId](../../quick-start/common_problem_of_application.md#什么是appid)。                  |
 | userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
@@ -1155,12 +1195,14 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: numb
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。<br/>**说明：** 从API version 21版本开始，支持传入应用的[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，推荐使用[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)。API version 20及之前版本，仅支持[appId](../../quick-start/common_problem_of_application.md#什么是appid)。           |
 | userId     | number                             | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
@@ -1215,12 +1257,14 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, callback: 
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。<br/>**说明：** 从API version 21版本开始，数组中的元素支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，仅移除传入的[appId](../../quick-start/common_problem_of_application.md#什么是appid)（或[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)），不会移除同一应用的[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)（或[appId](../../quick-start/common_problem_of_application.md#什么是appid)）。API version 20及之前版本，数组中的元素只支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)。         |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
@@ -1270,12 +1314,14 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId: nu
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。<br/>**说明：** 从API version 21版本开始，数组中的元素支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，仅移除传入的[appId](../../quick-start/common_problem_of_application.md#什么是appid)（或[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)），不会移除同一应用的[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)（或[appId](../../quick-start/common_problem_of_application.md#什么是appid)）。API version 20及之前版本，数组中的元素只支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)。            |
 | userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
@@ -1326,12 +1372,14 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: n
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
-| appIds    | Array&lt;string&gt;        | 是    | 应用ID数组。                  |
+| appIds    | Array&lt;string&gt;        | 是    | 应用ID数组。<br/>**说明：** 从API version 21版本开始，数组中的元素支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，仅移除传入的[appId](../../quick-start/common_problem_of_application.md#什么是appid)（或[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)），不会移除同一应用的[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)（或[appId](../../quick-start/common_problem_of_application.md#什么是appid)）。API version 20及之前版本，数组中的元素只支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)。                  |
 | userId     | number                             | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
@@ -1386,6 +1434,8 @@ getDisallowedUninstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;s
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -1437,6 +1487,8 @@ getDisallowedUninstallBundles(admin: Want, userId: number, callback: AsyncCallba
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -1490,6 +1542,8 @@ getDisallowedUninstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -1548,6 +1602,8 @@ uninstall(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&gt;):
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -1600,6 +1656,8 @@ uninstall(admin: Want, bundleName: string, userId: number, callback: AsyncCallba
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -1655,6 +1713,8 @@ uninstall(admin: Want, bundleName: string, isKeepData: boolean, callback: AsyncC
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -1708,6 +1768,8 @@ uninstall(admin: Want, bundleName: string, userId: number, isKeepData: boolean, 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -1764,6 +1826,8 @@ install(admin: Want, hapFilePaths: Array\<string>, callback: AsyncCallback\<void
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -1819,6 +1883,8 @@ install(admin: Want, hapFilePaths: Array\<string>, installParam: InstallParam, c
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 

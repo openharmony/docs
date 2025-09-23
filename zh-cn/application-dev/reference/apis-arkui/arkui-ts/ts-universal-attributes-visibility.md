@@ -28,7 +28,7 @@ visibility(value: Visibility): T
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Visibility](ts-appendix-enums.md#visibility) | 是   | 控制当前组件显示或隐藏。根据具体场景需要可使用[条件渲染](../../../ui/state-management/arkts-rendering-control-ifelse.md)代替。 |
+| value  | [Visibility](ts-appendix-enums.md#visibility) | 是   | 控制当前组件显示或隐藏。根据具体场景需要可使用[条件渲染](../../../ui/rendering-control/arkts-rendering-control-ifelse.md)代替。 |
 
 **返回值：**
 

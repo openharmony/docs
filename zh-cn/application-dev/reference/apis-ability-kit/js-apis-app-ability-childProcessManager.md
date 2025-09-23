@@ -18,8 +18,6 @@ childProcessManager模块提供子进程管理能力，支持子进程创建和�
 
 ## 约束限制
 
-- 本模块中的接口当前仅支持2in1、tablet设备。
-
 - 通过本模块中接口创建的子进程有如下限制:
   - 创建的子进程不支持创建UI界面。  
   - 创建的子进程不支持依赖Context的API调用（包括Context模块自身API及将Context实例作为入参的API）。  
@@ -59,6 +57,8 @@ startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**设备行为差异**：该接口在Tablet、PC/2in1中可正常调用，在其他设备类型中返回16000061错误码。
+
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
@@ -92,7 +92,7 @@ import { ChildProcess } from '@kit.AbilityKit';
 
 export default class DemoProcess extends ChildProcess {
   onStart() {
-    console.log("DemoProcess OnStart() called");
+    console.info('DemoProcess OnStart() called');
   }
 }
 ```
@@ -109,12 +109,12 @@ try {
   DemoProcess.toString(); // 这里要调用下DemoProcess类的任意方法，防止没有引用到而被构建工具优化掉
   childProcessManager.startChildProcess("./ets/process/DemoProcess.ets", childProcessManager.StartMode.SELF_FORK)
     .then((data) => {
-      console.log(`startChildProcess success, pid: ${data}`);
+      console.info(`startChildProcess success, pid: ${data}`);
     }, (err: BusinessError) => {
       console.error(`startChildProcess error, errorCode: ${err.code}`);
     })
 } catch (err) {
-  console.error(`startChildProcess error, errorCode: ${(err as BusinessError).code}`);
+  console.error(`startChildProcess error, errorCode: ${(err as BusinessError).code}, errorMsg: ${(err as BusinessError).message}.`);
 }
 ```
 
@@ -131,6 +131,8 @@ startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallbac
 > 调用该接口创建的子进程不支持异步ArkTS API调用，仅支持同步ArkTS API调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口在Tablet、PC/2in1中可正常调用，在其他设备类型中返回16000061错误码。
 
 **参数：**
 
@@ -160,7 +162,7 @@ import { ChildProcess } from '@kit.AbilityKit';
 
 export default class DemoProcess extends ChildProcess {
   onStart() {
-    console.log("DemoProcess OnStart() called");
+    console.info('DemoProcess OnStart() called');
   }
 }
 ```
@@ -177,13 +179,13 @@ try {
   DemoProcess.toString(); // 这里要调用下DemoProcess类的任意方法，防止没有引用到而被构建工具优化掉
   childProcessManager.startChildProcess("./ets/process/DemoProcess.ets", childProcessManager.StartMode.SELF_FORK, (err, data) => {
     if (data) {
-      console.log(`startChildProcess success, pid: ${data}`);
+      console.info(`startChildProcess success, pid: ${data}`);
     } else {
       console.error(`startChildProcess error, errorCode: ${err.code}`);
     }
   });
 } catch (err) {
-  console.error(`startChildProcess error, errorCode: ${(err as BusinessError).code}`);
+  console.error(`startChildProcess error, errorCode: ${(err as BusinessError).code}, errorMsg: ${(err as BusinessError).message}.`);
 }
 ```
 
@@ -200,6 +202,8 @@ startArkChildProcess(srcEntry: string, args: ChildProcessArgs, options?: ChildPr
 
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口在Tablet、PC/2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **参数：**
 
@@ -311,6 +315,8 @@ startNativeChildProcess(entryPoint: string, args: ChildProcessArgs, options?: Ch
 > 调用该接口创建的子进程不会继承父进程资源，子进程创建成功会返回子进程pid，然后加载参数中指定的动态链接库文件并执行子进程的入口函数，入口函数执行完后子进程会自动销毁。调用该接口的进程销毁后，所创建的子进程也会一并销毁。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口在Tablet、PC/2in1中可正常调用，在其他设备类型中返回801错误码。
 
 **参数：**
 

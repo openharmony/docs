@@ -1,5 +1,10 @@
 # native_image.h
-
+<!--Kit: ArkGraphics 2D-->
+<!--Subsystem: Graphics-->
+<!--Owner: @Flix-fangyang; @li_hui180; @ding-panyun-->
+<!--Designer: @conan13234-->
+<!--Tester: @nobuggers-->
+<!--Adviser: @ge-yafang-->
 ## 概述
 
 定义获取和使用NativeImage的相关函数。
@@ -262,7 +267,7 @@ int32_t OH_NativeImage_GetTransformMatrix(OH_NativeImage* image, float matrix[16
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeImage](capi-oh-nativeimage-oh-nativeimage.md)* image | 指向OH_NativeImage实例的指针。 |
-| matrix |  用来存储要获取的44的变化矩阵。 |
+| matrix |  用来存储要获取的4*4的变化矩阵。 |
 
 **返回：**
 
@@ -394,7 +399,7 @@ int32_t OH_NativeImage_GetTransformMatrixV2(OH_NativeImage* image, float matrix[
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeImage](capi-oh-nativeimage-oh-nativeimage.md)* image | 指向OH_NativeImage实例的指针。 |
-| matrix |  用来存储要获取的44的变化矩阵。 |
+| matrix |  用来存储要获取的4*4的变化矩阵。 |
 
 **返回：**
 
@@ -422,7 +427,7 @@ int32_t OH_NativeImage_GetBufferMatrix(OH_NativeImage* image, float matrix[16])
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeImage](capi-oh-nativeimage-oh-nativeimage.md)* image | 指向[OH_NativeImage](capi-oh-nativeimage-oh-nativeimage.md)实例的指针。 |
-| matrix |  用于存储获取的44变换矩阵。 |
+| matrix |  用于存储获取的4*4变换矩阵。 |
 
 **返回：**
 

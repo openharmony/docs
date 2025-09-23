@@ -34,14 +34,14 @@ function notifyOne(conditionVariable: ArkTSUtils.locks.ConditionVariable) {
 @Concurrent
 async function wait(conditionVariable: ArkTSUtils.locks.ConditionVariable) {
   await conditionVariable.wait().then(() => {
-    console.log(`TaskPool Thread Wait: success`);
+    console.info(`TaskPool Thread Wait: success`);
   });
 }
 
 @Concurrent
 async function waitFor(conditionVariable: ArkTSUtils.locks.ConditionVariable) {
   await conditionVariable.waitFor(3000).then(() => {
-    console.log(`TaskPool Thread WaitFor: success`);
+    console.info(`TaskPool Thread WaitFor: success`);
   });
 }
 

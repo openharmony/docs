@@ -1,5 +1,12 @@
 # USB Error Codes
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -98,7 +105,7 @@ Unsupported operation. The function is not supported.
 
 **Description**
 
-This error code is reported if the USB device function is switched.
+This error code is reported if the unsupported USB device function is used.
 
 **Possible Causes**
 

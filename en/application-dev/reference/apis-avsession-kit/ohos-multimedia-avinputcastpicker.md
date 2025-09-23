@@ -2,8 +2,9 @@
 <!--Kit: AVSession Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @ccfriend; @liao_qian-->
-<!--SE: @ccfriend-->
-<!--TSE: @chenmingxi1_huawei-->
+<!--Designer: @ccfriend-->
+<!--Tester: @chenmingxi1_huawei-->
+<!--Adviser: @zengyawen-->
 
 The module provides the functionality to create an **AVInputCastPicker** component, which offers a unified entry for discovering and connecting recording devices.
 
@@ -29,7 +30,7 @@ The [universal properties](../apis-arkui/arkui-ts/ts-component-general-attribute
 ```
 AVInputCastPicker({
   customPicker?: CustomBuilder;
-  onStateChange?: (state: AVCastPickerState) => void;
+  onStateChange?: OnPickerStateCallback;
 })
 ```
 
@@ -48,10 +49,12 @@ This component is a custom component. Some basic knowledge of [@Component](../..
 | Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | customPicker | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | No| @Prop | Custom style. You are advised to customize a component style so that the component can be displayed quickly.|
-| onStateChange | (state: [AVCastPickerState](js-apis-avCastPickerParam.md#avcastpickerstate11)) => void | No| - | Callback invoked when the device list state changes.<br>**state**: callback parameter for device list state changes.|
+| onStateChange | [OnPickerStateCallback](#onpickerstatecallback) | No| - | Callback invoked when the device list state changes.|
 
 ## OnPickerStateCallback
 type OnPickerStateCallback = (state: AVCastPickerState) => void
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVInputCast
 
@@ -59,7 +62,7 @@ type OnPickerStateCallback = (state: AVCastPickerState) => void
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| state | [AVCastPickerState](js-apis-avCastPickerParam.md#avcastpickerstate11) | No| Device list state.|
+| state | [AVCastPickerState](js-apis-avCastPickerParam.md#avcastpickerstate11) | Yes| Device list state.|
 
 ## Events
 

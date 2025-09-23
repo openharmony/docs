@@ -1,4 +1,10 @@
 # Class (SwiperDynamicSyncScene)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @Hu_ZeQi-->
+<!--Designer: @jiangdayuan-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 提供Swiper组件相关帧率的配置。
 
@@ -48,7 +54,10 @@ struct Frame {
         .backgroundColor(Color.Blue)
         .autoPlay(true)
         .onAppear(()=>{
-          this.scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[];
+          let scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[];
+          if (scenes) {
+            this.scenes = scenes;
+          }
         })
       }
 

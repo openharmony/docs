@@ -1,5 +1,12 @@
 # @ohos.usb (USB Manager) (System API)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: USB-->
+<!--Owner: @hwymlgitcode-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
+
 The **usb** module provides USB device management functions, including USB device list query, bulk data transfer, control transfer, and permission control.
 
 >  **NOTE**

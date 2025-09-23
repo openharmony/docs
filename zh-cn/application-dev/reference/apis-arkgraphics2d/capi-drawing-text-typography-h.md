@@ -59,6 +59,9 @@
 | [OH_Drawing_TextHeightBehavior](#oh_drawing_textheightbehavior) | - | 文本高度修饰符模式枚举。 |
 | [OH_Drawing_TextStyleType](#oh_drawing_textstyletype) | - | 文本样式类型枚举。 |
 | [OH_Drawing_TextVerticalAlignment](#oh_drawing_textverticalalignment) | OH_Drawing_TextVerticalAlignment | 垂直对齐方式枚举。 |
+| [OH_Drawing_LineHeightStyle](#oh_drawing_lineheightstyle) | OH_Drawing_LineHeightStyle | 行高缩放基数样式枚举。默认样式为TEXT_LINE_HEIGHT_BY_FONT_SIZE。 |
+| [OH_Drawing_TextStyleAttributeId](#oh_drawing_textstyleattributeid) | OH_Drawing_TextStyleAttributeId | 文本样式属性枚举。 |
+| [OH_Drawing_TypographyStyleAttributeId](#oh_drawing_typographystyleattributeid) | OH_Drawing_TypographyStyleAttributeId | 段落样式属性枚举。<br>针对段落样式和文本样式中的共有属性，建议优先使用文本样式属性（可由[OH_Drawing_TextStyleAttributeId](capi-drawing-text-typography-h.md#oh_drawing_textstyleattributeid)获取）。 |
 
 ### 函数
 
@@ -272,6 +275,14 @@
 | [OH_Drawing_TypographyStyle* OH_Drawing_CopyTypographyStyle(OH_Drawing_TypographyStyle* style)](#oh_drawing_copytypographystyle) | 创建一个段落样式的对象副本，用于拷贝一个已有的段落样式对象。 |
 | [OH_Drawing_TextStyle* OH_Drawing_CopyTextStyle(OH_Drawing_TextStyle* style)](#oh_drawing_copytextstyle) | 创建一个文本样式的对象副本，用于拷贝一个已有的文本样式对象。 |
 | [OH_Drawing_TextShadow* OH_Drawing_CopyTextShadow(OH_Drawing_TextShadow* shadow)](#oh_drawing_copytextshadow) | 创建一个文本阴影的对象副本，用于拷贝一个已有的文本阴影对象。 |
+| [OH_Drawing_ErrorCode OH_Drawing_SetTextStyleAttributeDouble(OH_Drawing_TextStyle* style, OH_Drawing_TextStyleAttributeId id, double value)](#oh_drawing_settextstyleattributedouble) | 设置double类型文本样式的属性。 |
+| [OH_Drawing_ErrorCode OH_Drawing_GetTextStyleAttributeDouble(OH_Drawing_TextStyle* style, OH_Drawing_TextStyleAttributeId id, double* value)](#oh_drawing_gettextstyleattributedouble) | 获取double类型文本样式的属性。 |
+| [OH_Drawing_ErrorCode OH_Drawing_SetTextStyleAttributeInt(OH_Drawing_TextStyle* style, OH_Drawing_TextStyleAttributeId id, int value)](#oh_drawing_settextstyleattributeint) | 设置int类型文本样式的属性。 |
+| [OH_Drawing_ErrorCode OH_Drawing_GetTextStyleAttributeInt(OH_Drawing_TextStyle* style, OH_Drawing_TextStyleAttributeId id, int* value)](#oh_drawing_gettextstyleattributeint) | 获取int类型文本样式的属性。 |
+| [OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeDouble(OH_Drawing_TextStyle* style, OH_Drawing_TextStyleAttributeId id, double value)](#oh_drawing_settypographystyleattributedouble) | 设置double类型排版样式的属性。 |
+| [OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeDouble(OH_Drawing_TextStyle* style, OH_Drawing_TextStyleAttributeId id, double* value)](#oh_drawing_gettypographystyleattributedouble) | 获取double类型排版样式的属性。 |
+| [OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeInt(OH_Drawing_TextStyle* style, OH_Drawing_TextStyleAttributeId id, int value)](#oh_drawing_settypographystyleattributeint) | 设置int类型排版样式的属性。 |
+| [OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeInt(OH_Drawing_TextStyle* style, OH_Drawing_TextStyleAttributeId id, int* value)](#oh_drawing_gettypographystyleattributeint) | 获取int类型排版样式的属性。 |
 
 ## 枚举类型说明
 
@@ -637,6 +648,62 @@ enum OH_Drawing_TextStyleType
 | TEXT_STYLE_DECORATIONS | 文本装饰样式。 |
 | TEXT_STYLE_LETTER_SPACING | 文本字符间距样式。 |
 | TEXT_STYLE_WORD_SPACING | 文本单词间距样式。 |
+
+### OH_Drawing_LineHeightStyle
+
+```
+enum OH_Drawing_LineHeightStyle
+```
+
+**描述**
+
+行高缩放基数样式枚举。默认样式为TEXT_LINE_HEIGHT_BY_FONT_SIZE。
+
+**起始版本：** 21
+
+| 枚举项 | 描述 |
+| -- | -- |
+| TEXT_LINE_HEIGHT_BY_FONT_SIZE = 0 | 以字号大小作为缩放基数。<br>行高计算公式：FontSize * FontHeight。<br>FontSize可由[OH_Drawing_TextStyleGetFontSize](capi-drawing-text-typography-h.md#oh_drawing_textstylegetfontsize)接口获取。<br>FontHeight可由[OH_Drawing_TextStyleGetFontHeight](capi-drawing-text-typography-h.md#oh_drawing_textstylegetfontheight)接口获取。 |
+| TEXT_LINE_HEIGHT_BY_FONT_HEIGHT = 1 | 以字形高度作为缩放基数。<br>行高计算公式：字形高度 * FontHeight。<br>字形高度由文本经过字体文件塑形得到。<br>FontHeight（可由[OH_Drawing_TextStyleGetFontHeight](capi-drawing-text-typography-h.md#oh_drawing_textstylegetfontheight)获取）。 |
+
+### OH_Drawing_TextStyleAttributeId
+
+```
+enum OH_Drawing_TextStyleAttributeId
+```
+
+**描述**
+
+文本样式属性枚举。
+
+**起始版本：** 21
+
+| 枚举项 | 描述 |
+| -- | -- |
+| TEXT_STYLE_ATTR_D_LINE_HEIGHT_MAXIMUM = 0 | 行高上限。<br>若同时开启行高缩放，当FontHeight（可由[OH_Drawing_TextStyleGetFontHeight](capi-drawing-text-typography-h.md#oh_drawing_textstylegetfontheight)接口获取）大于0时行高上限才生效。<br>取值范围为单精度浮点数正数部分，默认值为单精度浮点数上限。 |
+| TEXT_STYLE_ATTR_D_LINE_HEIGHT_MINIMUM = 1 | 行高下限。<br>若同时开启行高缩放，当FontHeight（可由[OH_Drawing_TextStyleGetFontHeight](capi-drawing-text-typography-h.md#oh_drawing_textstylegetfontheight)接口获取）大于0时行高下限才生效。<br>取值范围为单精度浮点数非负部分，默认值为0。 |
+| TEXT_STYLE_ATTR_I_LINE_HEIGHT_STYLE = 2 | 行高缩放基数样式。具体行高缩放基数样式可见[OH_Drawing_LineHeightStyle](capi-drawing-text-typography-h.md#oh_drawing_lineheightstyle)。 |
+| TEXT_STYLE_ATTR_I_FONT_WIDTH = 3 | 字宽。 |
+
+### OH_Drawing_TypographyStyleAttributeId
+
+```
+enum OH_Drawing_TypographyStyleAttributeId
+```
+
+**描述**
+
+段落样式属性枚举。<br>针对段落样式和文本样式中的共有属性，建议优先使用文本样式属性（可由[OH_Drawing_TextStyleAttributeId](capi-drawing-text-typography-h.md#oh_drawing_textstyleattributeid)获取）。
+
+**起始版本：** 21
+
+| 枚举项 | 描述 |
+| -- | -- |
+| TYPOGRAPHY_STYLE_ATTR_D_LINE_HEIGHT_MAXIMUM = 0 | 行高上限。<br>若同时开启行高缩放，当FontHeight（可由[OH_Drawing_TextStyleGetFontHeight](capi-drawing-text-typography-h.md#oh_drawing_textstylegetfontheight)接口获取）大于0时行高上限才生效。<br>取值范围为单精度浮点数正数部分。 |
+| TYPOGRAPHY_STYLE_ATTR_D_LINE_HEIGHT_MINIMUM = 1 | 行高下限。<br>若同时开启行高缩放，当FontHeight（可由[OH_Drawing_TextStyleGetFontHeight](capi-drawing-text-typography-h.md#oh_drawing_textstylegetfontheight)接口获取）大于0时行高下限才生效。<br>取值范围为单精度浮点数非负部分，默认值为0。 |
+| TYPOGRAPHY_STYLE_ATTR_D_LINE_SPACING = 2 | 行间距。<br>lineSpacing不受行高上下限的限制。<br>尾行默认添加行间距。<br>可通过[OH_Drawing_TypographyTextSetHeightBehavior](capi-drawing-text-typography-h.md#oh_drawing_typographytextsetheightbehavior)接口设置textHeightBehavior为DISABLE_LAST_ASCENT禁用尾行行间距。<br>默认值为0。 |
+| TYPOGRAPHY_STYLE_ATTR_I_LINE_HEIGHT_STYLE = 3 | 行高缩放基数样式。具体行高缩放基数样式可见[OH_Drawing_LineHeightStyle](capi-drawing-text-typography-h.md#oh_drawing_lineheightstyle)。 |
+| TYPOGRAPHY_STYLE_ATTR_I_FONT_WIDTH = 4 | 字宽。 |
 
 
 ## 函数说明
@@ -2379,7 +2446,7 @@ void OH_Drawing_SetTextStyleEllipsisModal(OH_Drawing_TextStyle* style, int ellip
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)* style | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](capi-drawing-text-typography-h.md#oh_drawing_createtextstyle)获取。 |
-| int ellipsisModal | 设置省略号样式，支持可选的省略号样式具体可见[OH_Drawing_EllipsisModal](capi-drawing-text-typography-h.md#oh_drawing_ellipsismodal)枚举。 |
+| int ellipsisModal | 设置省略号样式，可选的省略号样式具体可见[OH_Drawing_EllipsisModal](capi-drawing-text-typography-h.md#oh_drawing_ellipsismodal)枚举。 |
 
 ### OH_Drawing_SetTypographyTextBreakStrategy()
 
@@ -2445,7 +2512,7 @@ void OH_Drawing_SetTypographyTextEllipsisModal(OH_Drawing_TypographyStyle* style
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_TypographyStyle](capi-drawing-oh-drawing-typographystyle.md)* style | 指向OH_Drawing_TypographyStyle对象的指针，由[OH_Drawing_CreateTypographyStyle](capi-drawing-text-typography-h.md#oh_drawing_createtypographystyle)获取。 |
-| int ellipsisModal | 设置省略号样式，支持可选的省略号样式样式具体可见[OH_Drawing_EllipsisModal](capi-drawing-text-typography-h.md#oh_drawing_ellipsismodal)枚举。 |
+| int ellipsisModal | 设置省略号样式，可选的省略号样式具体可见[OH_Drawing_EllipsisModal](capi-drawing-text-typography-h.md#oh_drawing_ellipsismodal)枚举。 |
 
 ### OH_Drawing_SetTypographyTextEllipsis()
 
@@ -4660,7 +4727,7 @@ void OH_Drawing_TypographyTextlineStyleDestroyFontFamilies(char** fontFamilies, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| char** fontFamilies | 表示指向字体字体类型的指针。 |
+| char** fontFamilies | 表示指向字体类型的指针。 |
 | size_t fontFamiliesNum | 字体名称的数量。 |
 
 ### OH_Drawing_TypographyTextlineStyleGetFontSize()
@@ -5716,3 +5783,227 @@ OH_Drawing_TextShadow* OH_Drawing_CopyTextShadow(OH_Drawing_TextShadow* shadow)
 | 类型 | 说明 |
 | -- | -- |
 | [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* | 返回拷贝的[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)对象指针。如果返回空指针，表示创建失败；可能的原因是无可用内存，或者shadow为空指针。不再需要时，请使用[OH_Drawing_DestroyTextShadow](capi-drawing-text-typography-h.md#oh_drawing_destroytextshadow)释放该对象指针。 |
+
+### OH_Drawing_SetTextStyleAttributeDouble()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_SetTextStyleAttributeDouble(OH_Drawing_TextStyle* style, OH_Drawing_TextStyleAttributeId id, double value)
+```
+
+**描述**
+
+设置double类型文本样式的属性。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)* style | 指向文本样式对象[OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)的指针。 |
+| [OH_Drawing_TextStyleAttributeId](capi-drawing-text-typography-h.md#oh_drawing_textstyleattributeid) id | 文本样式属性id。 |
+| double value | 文本样式属性值。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数执行结果。<br>返回OH_DRAWING_SUCCESS，表示执行成功。<br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。<br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。<br>返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE，表示传入的value超出待设置属性取值范围。 |
+
+### OH_Drawing_GetTextStyleAttributeDouble()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_GetTextStyleAttributeDouble(OH_Drawing_TextStyle* style, OH_Drawing_TextStyleAttributeId id, double* value)
+```
+
+**描述**
+
+获取double类型文本样式的属性。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)* style | 指向文本样式对象[OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)的指针。 |
+| [OH_Drawing_TextStyleAttributeId](capi-drawing-text-typography-h.md#oh_drawing_textstyleattributeid) id | 文本样式属性id。 |
+| double* value | 指向double类型属性的指针。作为出参使用。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数执行结果。<br>返回OH_DRAWING_SUCCESS，表示执行成功。<br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。<br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。 |
+
+### OH_Drawing_SetTextStyleAttributeInt()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_SetTextStyleAttributeInt(OH_Drawing_TextStyle* style, OH_Drawing_TextStyleAttributeId id, int value)
+```
+
+**描述**
+
+设置int类型文本样式的属性。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)* style | 指向文本样式对象[OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)的指针。 |
+| [OH_Drawing_TextStyleAttributeId](capi-drawing-text-typography-h.md#oh_drawing_textstyleattributeid) id | 文本样式属性id。 |
+| int value | 待设置属性值。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数执行结果。<br>返回OH_DRAWING_SUCCESS，表示执行成功。<br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。<br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。<br>返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE，表示传入的value超出待设置属性取值范围。 |
+
+### OH_Drawing_GetTextStyleAttributeInt()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_GetTextStyleAttributeInt(OH_Drawing_TextStyle* style, OH_Drawing_TextStyleAttributeId id, int* value)
+```
+
+**描述**
+
+获取int类型文本样式的属性。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)* style | 指向文本样式对象[OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)的指针。 |
+| [OH_Drawing_TextStyleAttributeId](capi-drawing-text-typography-h.md#oh_drawing_textstyleattributeid) id | 文本样式属性id。 |
+| int* value | 指向int类型属性的指针。作为出参使用。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数执行结果。<br>返回OH_DRAWING_SUCCESS，表示执行成功。<br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。<br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。 |
+
+### OH_Drawing_SetTypographyStyleAttributeDouble()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeDouble(OH_Drawing_TextStyle* style, OH_Drawing_TextStyleAttributeId id, double value)
+```
+
+**描述**
+
+设置double类型排版样式的属性。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)* style | 指向排版样式对象[OH_Drawing_TypographyStyle](capi-drawing-oh-drawing-typographystyle.md)的指针。 |
+| [OH_Drawing_TextStyleAttributeId](capi-drawing-text-typography-h.md#oh_drawing_textstyleattributeid) id | 排版样式属性id。 |
+| double value | 待设置属性值。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数执行结果。<br>返回OH_DRAWING_SUCCESS，表示执行成功。<br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。<br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。<br>返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE，表示传入的value超出待设置属性取值范围。 |
+
+### OH_Drawing_GetTypographyStyleAttributeDouble()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeDouble(OH_Drawing_TextStyle* style, OH_Drawing_TextStyleAttributeId id, double* value)
+```
+
+**描述**
+
+获取double类型排版样式的属性。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)* style | 指向排版样式对象[OH_Drawing_TypographyStyle](capi-drawing-oh-drawing-typographystyle.md)的指针。 |
+| [OH_Drawing_TextStyleAttributeId](capi-drawing-text-typography-h.md#oh_drawing_textstyleattributeid) id | 排版样式属性id。 |
+| double* value | 指向double类型属性的指针。作为出参使用。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数执行结果。<br>返回OH_DRAWING_SUCCESS，表示执行成功。<br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。<br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。 |
+
+### OH_Drawing_SetTypographyStyleAttributeInt()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_SetTypographyStyleAttributeInt(OH_Drawing_TextStyle* style, OH_Drawing_TextStyleAttributeId id, int value)
+```
+
+**描述**
+
+设置int类型排版样式的属性。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)* style | 指向排版样式对象[OH_Drawing_TypographyStyle](capi-drawing-oh-drawing-typographystyle.md)的指针。 |
+| [OH_Drawing_TextStyleAttributeId](capi-drawing-text-typography-h.md#oh_drawing_textstyleattributeid) id | 排版样式属性id。 |
+| int value | 待设置属性值。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数执行结果。<br>返回OH_DRAWING_SUCCESS，表示执行成功。<br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。<br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。<br>返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE，表示传入的value超出待设置属性取值范围。 |
+
+### OH_Drawing_GetTypographyStyleAttributeInt()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_GetTypographyStyleAttributeInt(OH_Drawing_TextStyle* style, OH_Drawing_TextStyleAttributeId id, int* value)
+```
+
+**描述**
+
+获取int类型排版样式的属性。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 21
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)* style | 指向排版样式对象[OH_Drawing_TypographyStyle](capi-drawing-oh-drawing-typographystyle.md)的指针。 |
+| [OH_Drawing_TextStyleAttributeId](capi-drawing-text-typography-h.md#oh_drawing_textstyleattributeid) id | 排版样式属性id。 |
+| int* value | 指向int类型属性的指针。作为出参使用。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数执行结果。<br>返回OH_DRAWING_SUCCESS，表示执行成功。<br>返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数style为空指针。<br>返回OH_DRAWING_ERROR_ATTRIBUTE_ID_MISMATCH，表示传入属性id与调用函数不匹配。 |

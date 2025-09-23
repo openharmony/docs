@@ -298,3 +298,93 @@ Failed to obtain the hotpot MAC address because the Wi-Fi is not connected.
 1.请打开Wi-Fi开关。
 
 2.请连接路由器或者热点。
+
+## 3501100 由于位置功能开关未打开导致添加beacon围栏失败
+
+**错误信息**
+
+Failed to add a beacon fence because the location switch is off.
+
+**错误描述**
+
+设备未打开位置功能开关，导致添加beacon围栏失败。
+
+**可能原因**
+
+位置功能开关未开启。
+
+**处理步骤**
+
+请提示用户开启位置功能的开关。
+
+## 3501101 由于蓝牙功能开关未打开导致添加beacon围栏失败
+
+**错误信息**
+
+Failed to add a beacon fence because the bluetooth switch is off.
+
+**错误描述**
+
+设备未打开蓝牙功能开关，导致添加beacon围栏失败。
+
+**可能原因**
+
+蓝牙功能开关未开启。
+
+**处理步骤**
+
+请提示用户开启蓝牙功能开关。
+
+## 3501601 由于beacon围栏个数超过最大值限制导致添加围栏失败
+
+**错误信息**
+
+The number of beacon fence exceeds the maximum.
+
+**错误描述**
+
+beacon围栏个数超过最大值限制导致添加围栏失败。
+
+**可能原因**
+
+系统中存在的beacon围栏个数超过最大值(16)限制。
+
+**处理步骤**
+
+请在删除多余围栏之后再添加新的围栏。
+
+## 3501602 由于beacon围栏信息不正确导致删除围栏失败
+
+**错误信息**
+
+Failed to delete the fence due to incorrect beacon fence information.
+
+**错误描述**
+
+beacon围栏信息不正确导致删除围栏失败。
+
+**可能原因**
+
+待删除围栏信息不正确。
+
+**处理步骤**
+
+请在调用删除beacon围栏接口时传入正确的围栏信息。
+
+## 3501603 由于存在重复的beacon围栏导致添加围栏失败
+
+**错误信息**
+
+Duplicate beacon fence information.
+
+**错误描述**
+
+存在重复的beacon围栏导致添加围栏失败。
+
+**可能原因**
+
+系统中已存在相同的beacon围栏请求。
+
+**处理步骤**
+
+请在删除之前围栏之后再添加新的围栏。

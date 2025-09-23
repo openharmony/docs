@@ -29,9 +29,9 @@ const myString: string = myIcon.value
 
 **变更的接口/组件**
 
-navigation的menus接口
+Navigation的menus接口
 
-navDestination的menus和title接口
+NavDestination的menus和title接口
 
 **适配指导**
 
@@ -41,22 +41,22 @@ navDestination的menus和title接口
 Navigation() {
     // xxx
 }
-// 需要替换为开发者所需的资源文件
+// $r('app.string.MyTestNavigationTitle')需要替换为开发者所需的资源文件
 .title($r('app.string.MyTestNavigationTitle'))  // 可直接将resource类型资源传递给title接口
 // menus内的item设置可直接支持resource类型资源
 .menus([
   {
-    // 需要替换为开发者所需的资源文件
+    // $r("app.string.MyTestMenuValue1")和$r("app.media.1")需要替换为开发者所需的资源文件
     value: $r("app.string.MyTestMenuValue1"),
     icon: $r("app.media.1")
   },
   {
-    // 需要替换为开发者所需的资源文件
+    // $r("app.string.MyTestMenuValue2")和$r("app.media.2")需要替换为开发者所需的资源文件
     value: $r("app.string.MyTestMenuValue2"),
     icon: $r("app.media.2")
   },
   {
-    // 需要替换为开发者所需的资源文件
+    // $r("app.string.MyTestMenuValue3")和$r("app.media.3")需要替换为开发者所需的资源文件
     value: $r("app.string.MyTestMenuValue3"),
     icon: $r("app.media.3")
   }
@@ -74,17 +74,17 @@ NavDestination() {
 }
 .menus([
   {
-    // 需要替换为开发者所需的资源文件
+    // $r("app.string.MyTestMenuValue1")和$r("app.media.4")需要替换为开发者所需的资源文件
     value: $r("app.string.MyTestMenuValue1"),
     icon: $r("app.media.4")
   },
   {
-    // 需要替换为开发者所需的资源文件
+    // $r("app.string.MyTestMenuValue2")和$r("app.media.5")需要替换为开发者所需的资源文件
     value: $r("app.string.MyTestMenuValue2"),
     icon: $r("app.media.5")
   },
   {
-    // 需要替换为开发者所需的资源文件
+    // $r("app.string.MyTestMenuValue3")和$r("app.media.6")需要替换为开发者所需的资源文件
     value: $r("app.string.MyTestMenuValue3"),
     icon: $r("app.media.6")
   }
@@ -201,7 +201,7 @@ struct MyComponent {
 }
 ```
 
-## cl.arkui.3 Navdestination的Dialog模式默认支持系统动画
+## cl.arkui.3 NavDestination的Dialog模式默认支持系统动画
 
 **访问级别**
 
@@ -209,14 +209,14 @@ struct MyComponent {
 
 **变更原因**
 
-Navdestination的Dialog模式支持系统动画。
+NavDestination的Dialog模式支持系统动画。
 
 **变更影响**
 该变更为不兼容变更。
 
-变更前：Navdestination的Dialog模式，无系统默认动画。
+变更前：NavDestination的Dialog模式，无系统默认动画。
 
-变更后：Navdestination的Dialog模式，默认带有系统转场动画。
+变更后：NavDestination的Dialog模式，默认带有系统转场动画。
 
 | 变更前 | 变更后 |
 |---------|---------|
@@ -232,15 +232,13 @@ Navdestination的Dialog模式支持系统动画。
 
 **变更的接口/组件**
 
-Navdestination
+NavDestination
 
 **适配指导**
 
-开发者可以通过在pop与push接口中设置false关闭Navdestination的系统默认动画。
+开发者可以通过在pop与push接口中设置false关闭NavDestination的系统默认动画。
 
 示例：
-
-其中，NavDestination的内容区需自行构造，可参考[开发指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-navigation-navigation.md)。
 
 ```ts
 @Entry
@@ -252,11 +250,12 @@ struct NavigationDemo {
 	@Builder
 	pageOneTmp() {
 		NavDestination() {
-          // ...
-          // 需自行构造NavDestination
+          Text("This is a sample")
+            .fontSize(50)
 		}
 		.title("PageOne")
 		.mode(NavDestinationMode.DIALOG)
+    .backgroundColor(Color.Blue)
 	}
 
 	@Builder
@@ -270,13 +269,13 @@ struct NavigationDemo {
 		Column({ space: 10 }) {
 			Button('Pop Dialog')
 			.onClick(() => {
-				// set false to close system pop animation
-				this.pageInfos.pop(false)
+				// Set true to enable system animations, or set false to disable system animations.
+				this.pageInfos.pop(true)
 			})
 			Button('Push Dialog')
 			.onClick(() => {
-				// set false to close system push animation
-				this.pageInfos.pushPath({ name: 'pageOne' }, false)
+				// Set true to enable system animations, or set false to disable system animations.
+				this.pageInfos.pushPath({ name: 'pageOne' }, true)
 			})
 			Navigation(this.pageInfos) {
 				Column({ space: 10 }) {

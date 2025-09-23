@@ -56,7 +56,7 @@
 
 2. 不支持collections.Set、collections.Map等类型。
 
-3. 不支持非buildin类型。如PixelMap、NativePointer、ArrayList等Native类型。
+3. 不支持非built-in类型。如PixelMap、NativePointer、ArrayList等Native类型。
 
 4. 不支持简单类型。如string、number、boolean等。
 

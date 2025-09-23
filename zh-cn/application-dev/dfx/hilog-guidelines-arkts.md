@@ -26,6 +26,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 | error(domain: number, tag: string, format: string, ...args: any[]) | 输出ERROR级别日志。表示存在错误。 | 
 | fatal(domain: number, tag: string, format: string, ...args: any[]) | 输出FATAL级别日志。表示出现致命错误、不可恢复错误。 | 
 | setMinLogLevel(level: LogLevel) | 设置应用日志打印的最低日志级别，用于拦截低级别日志打印。<br/>需要注意：如果设置的日志级别低于[全局日志级别](hilog.md#查看和设置日志级别)，设置不生效。<br/>**说明**：从API version 15开始，支持该接口。 | 
+| setLogLevel(level: LogLevel, prefer: PreferStrategy) | 设置当前应用程序进程的最低日志级别。可以配置不同的偏好策略。<br/>**说明**：从API version 21开始，支持该接口。 | 
 
 
 ### 参数解析
@@ -129,6 +130,10 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
              hilog.setMinLogLevel(hilog.LogLevel.WARN);
              hilog.info(0x0000, 'testTag', 'this is an info level log');
              hilog.error(0x0000, 'testTag', 'this is an error level log');
+             // 设置应用日志PREFER_OPEN_LOG策略的最低打印级别，设置完成后，不低于INFO级别的日志都可打印
+             hilog.setLogLevel(hilog.LogLevel.INFO, hilog.PreferStrategy.PREFER_OPEN_LOG);
+             hilog.info(0x0000, 'testTag', 'this is an another info level log');
+             hilog.error(0x0000, 'testTag', 'this is an another error level log');
            })
          }
          .width('100%')
@@ -167,6 +172,8 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
    01-02 08:18:24.947   30988-30988   A0ff00/testTag                  com.example.hilogDemo  I     hello World 3
    01-02 08:18:24.947   30988-30988   A0ff00/testTag                  com.example.hilogDemo  I     peter is {"name":"peter","age":15}
    01-02 08:18:24.947   30988-30988   A00000/testTag                  com.example.hilogDemo  E     this is an error level log
+   01-02 08:18:24.947   30988-30988   A00000/testTag                  com.example.hilogDemo  I     this is an another info level log
+   01-02 08:18:24.947   30988-30988   A00000/testTag                  com.example.hilogDemo  E     this is an another error level log
    ```
 <!--RP3End-->
 

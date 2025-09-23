@@ -122,21 +122,21 @@ eSIM.addProfile(profile).then(() => {
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
-| 名称 | 类型                                   | 必填 | 说明 |
-| ----- |--------------------------------------| ----- | -----|
-| activationCode   | string                               |  是  | 激活码。对于不基于激活码的配置文件，可能为空。 |
-| confirmationCode | string                               |  否  | 确认码。      |
-| carrierName      | string                               |  否  | 订阅名称。    |
-| accessRules      | Array\<[AccessRule](#accessrule18)\> |  否  | 访问规则数组。 |
+| 名称 | 类型                                   |  只读 | 可选 | 说明 |
+| ----- |--------------------------------------| ----- | ---- | -----|
+| activationCode   | string                               |  否  |  否  | 激活码。对于不基于激活码的配置文件，可能为空。 |
+| confirmationCode | string                               |  否  |  是  | 确认码。     |
+| carrierName      | string                               |  否  |  是  | 订阅名称。   |
+| accessRules      | Array\<[AccessRule](#accessrule20)\> |  否  |  是  | 访问规则数组。 |
 
-## AccessRule<sup>18+</sup>
+## AccessRule<sup>20+</sup>
 
 访问规则。
 
 **系统能力**：SystemCapability.Telephony.CoreService.Esim
 
-| 名称 | 类型 | 必填 | 说明 |
-| ----- | ----- | ----- | -----|
-| certificateHashHexStr | string  |  是  | 证书哈希的十六进制字符串。 |
-| packageName           | string  |  是  | 规则适用的程序包名称。 |
-| accessType            | number  |  是  | 规则的类型。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ----- | ----- |----|----| -----|
+| certificateHashHexStr | string  | 否  | 否  | 证书哈希的十六进制字符串。 |
+| packageName           | string  | 否  | 否  | 规则适用的程序包名称。 |
+| accessType            | number  | 否  | 否  | 规则的类型。 |

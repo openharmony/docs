@@ -31,13 +31,13 @@
         - [概述](i18n-display-overview.md)
         - [本地化语言与地区名称](i18n-language-region-display.md)
         - [本地化时区名称](i18n-time-zone-display.md)
-- 应用本地化<!--i10n-->
+- 应用本地化<!--l10n-->
     - [提供多语言资源](l10n-multilingual-resources.md)
-    - 提升可翻译性<!--i10n-translation-->
+    - 提升可翻译性<!--l10n-translation-->
         - [避免硬编码与拼接](l10n-hard-coding-concatenate.md)
         - [提供翻译场景](l10n-translation-scene.md)
         - [支持单复数](l10n-singular-plural.md)
-- 本地化测试<!--i10n-testing-->
+- 本地化测试<!--l10n-testing-->
     - 伪本地化测试<!--pseudo-i18n-testing-->
         - [伪本地化测试概述](pseudo-i18n-testing-overview.md)
         - [翻译伪本地化测试](pseudo-i18n-testing-translation.md)

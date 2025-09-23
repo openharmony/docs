@@ -47,7 +47,7 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 
 ## motion.on('operatingHandChanged')
 
-on(type: 'operatingHandChanged', callback: Callback&lt;OperatingHandStatus&gt;): void;
+on(type: 'operatingHandChanged', callback: Callback&lt;OperatingHandStatus&gt;): void
 
 订阅触控操作手感知事件。
 
@@ -80,7 +80,6 @@ on(type: 'operatingHandChanged', callback: Callback&lt;OperatingHandStatus&gt;):
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { Callback } from '@ohos.base';
 
 let callback:Callback<motion.OperatingHandStatus> = (data:motion.OperatingHandStatus) => {
     console.info('callback succeeded' + data);
@@ -97,7 +96,7 @@ try {
 
 ## motion.off('operatingHandChanged')
 
-off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;): void;
+off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;): void
 
 取消订阅触控操作手感知事件。
 
@@ -140,7 +139,7 @@ try {
 
 ## motion.getRecentOperatingHandStatus()
 
-getRecentOperatingHandStatus(): OperatingHandStatus;
+getRecentOperatingHandStatus(): OperatingHandStatus
 
 获取最新触控操作手状态。
 
@@ -180,7 +179,7 @@ try {
 
 ## motion.on('holdingHandChanged') <sup>20+</sup>
 
-on(type: 'holdingHandChanged', callback: Callback&lt;HoldingHandStatus&gt;): void;
+on(type: 'holdingHandChanged', callback: Callback&lt;HoldingHandStatus&gt;): void
 
 订阅握持手状态变化感知事件。
 
@@ -210,7 +209,6 @@ on(type: 'holdingHandChanged', callback: Callback&lt;HoldingHandStatus&gt;): voi
 
 ```typescript
 import { BusinessError } from '@kit.BasicServicesKit';
-import { Callback } from '@ohos.base';
 
 let callback:Callback<motion.HoldingHandStatus> = (data:motion.HoldingHandStatus) => {
   console.info('callback succeeded: ' + data);
@@ -227,7 +225,7 @@ try {
 
 ## motion.off('holdingHandChanged') <sup>20+</sup>
 
-off(type: 'holdingHandChanged', callback?: Callback&lt;HoldingHandStatus&gt;): void;
+off(type: 'holdingHandChanged', callback?: Callback&lt;HoldingHandStatus&gt;): void
 
 取消订阅握持手状态变化感知事件。
 

@@ -1,4 +1,10 @@
 # Using AVPlayer to Play Audio (ArkTS)
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xushubo; @chennotfound-->
+<!--Designer: @dongyu_dy-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 The [AVPlayer](media-kit-intro.md#avplayer) is used to play raw media assets in an end-to-end manner. In this topic, you will learn how to use the AVPlayer to play a complete piece of music. To play PCM audio data, call [AudioRenderer](../audio/using-audiorenderer-for-playback.md).
 
@@ -29,12 +35,19 @@ Read [AVPlayer](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md) for
 
 1. Call **createAVPlayer()** to create an AVPlayer instance. The AVPlayer is the **idle** state.
 
+    ```ts
+    import { media } from '@kit.MediaKit';
+
+    // Create an AVPlayer instance.
+    let avPlayer = await media.createAVPlayer();
+    ```
+
 2. Set the events to listen for, which will be used in the full-process scenario. The table below lists the supported events.
 
    | Event Type| Description|
    | -------- | -------- |
-   | stateChange | Mandatory; used to listen for changes of the **state** property of the AVPlayer.|
-   | error | Mandatory; used to listen for AVPlayer errors.|
+   | stateChange | Mandatory; used to listen for changes of the **state** property of the AVPlayer.<br>To ensure proper functionality, the listener must be configured when the AVPlayer is in the idle state and before the resource setting API is called. If the listener is set after the resource setting API is called, the stateChange event reported during resource setting may fail to be received.|
+   | error | Mandatory; used to listen for AVPlayer errors.<br>To ensure proper functionality, the listener must be configured when the AVPlayer is in the idle state and before the resource setting API is called. If the listener is set after the resource setting API is called, the error event reported during resource setting may fail to be received.|
    | durationUpdate | Used to listen for progress bar updates to refresh the media asset duration.|
    | timeUpdate | Used to listen for the current position of the progress bar to refresh the current time.|
    | seekDone | Used to listen for the completion status of the **seek()** request.<br>This event is reported when the AVPlayer seeks to the playback position specified in **seek()**.|
@@ -42,6 +55,40 @@ Read [AVPlayer](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md) for
    | volumeChange | Used to listen for the completion status of the **setVolume()** request.<br>This event is reported when the AVPlayer plays music at the volume specified in **setVolume()**.|
    | bufferingUpdate | Used to listen for network playback buffer information. This event reports the buffer percentage and playback progress.|
    | audioInterrupt | Used to listen for audio interruption. This event is used together with the **audioInterruptMode** property.<br>This event is reported when the current audio playback is interrupted by another (for example, when a call is coming), so the application can process the event in time.|
+
+    ```ts
+    // This is only an example. You can set the events to listen for as required.
+    import { BusinessError } from '@kit.BasicServicesKit';
+    import { audio } from '@kit.AudioKit';
+
+    avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
+        // Add your service logic as required.
+    });
+    avPlayer.on('error', (error: BusinessError) => {
+        // Add your service logic as required.
+    });
+    avPlayer.on('durationUpdate', (duration: number) => {
+        // Add your service logic as required.
+    });
+    avPlayer.on('timeUpdate', (time:number) => {
+        // Add your service logic as required.
+    });
+    avPlayer.on('seekDone', (seekDoneTime:number) => {
+        // Add your service logic as required.
+    });
+    avPlayer.on('speedDone', (speed:number) => {
+        // Add your service logic as required.
+    });
+    avPlayer.on('volumeChange', (vol: number) => {
+        // Add your service logic as required.
+    });
+    avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
+        // Add your service logic as required.
+    });
+    avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
+        // Add your service logic as required.
+    });
+    ```
 
 3. Set the media asset URL. The AVPlayer enters the **initialized** state.
    > **NOTE**
@@ -58,13 +105,94 @@ Read [AVPlayer](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md) for
    > 
    > In addition, the audio renderer information (if required) must be set only when the AVPlayer is in the initialized state, that is, before **prepare()** is called for the first time. If the media source contains videos, the default value of **usage** is **STREAM_USAGE_MOVIE**. Otherwise, the default value of **usage** is **STREAM_USAGE_MUSIC**. The default value of **rendererFlags** is 0. To ensure that the audio behavior meets the expectation, you are advised to proactively configure [audio.AudioRendererInfo](../../reference/apis-audio-kit/arkts-apis-audio-i.md#audiorendererinfo8) and select a proper stream type (specified by [usage](../../media/audio/using-right-streamusage-and-sourcetype.md)) based on your service scenario and requirements.
 
+    ```ts
+    let url = 'https://xxx.xxx.xxx.mp3';
+    if (avPlayer == null) {
+        return;
+    }
+    avPlayer.url = url;
+    ```
+
 4. Call **prepare()** to switch the AVPlayer to the **prepared** state. In this state, you can obtain the duration of the media asset to play and set the volume.
+
+    ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    avPlayer.prepare((err: BusinessError) => {
+        if (err) {
+            console.error('Failed to prepare,error message is :' + err.message);
+        } else {
+            console.info('Succeeded in preparing');
+        }
+    });
+    ```
 
 5. Call **play()**, **pause()**, **seek()**, and **stop()** to perform audio playback control as required.
 
+    ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    // Playback operation.
+    avPlayer.play().then(() => {
+        console.info('Succeeded in playing');
+    }, (err: BusinessError) => {
+        console.error('Failed to play,error message is :' + err.message);
+    });
+    // Pause operation.
+    avPlayer.pause((err: BusinessError) => {
+        if (err) {
+            console.error('Failed to pause,error message is :' + err.message);
+        } else {
+            console.info('Succeeded in pausing');
+        }
+    });
+    // Seek operation.
+    let seekTime: number = 1000;
+    avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC);
+    // Stop operation.
+    avPlayer.stop((err: BusinessError) => {
+        if (err) {
+            console.error('Failed to stop,error message is :' + err.message);
+        } else {
+            console.info('Succeeded in stopping');
+        }
+    });
+    ```
+
 6. (Optional) Call **reset()** to reset the AVPlayer. The AVPlayer enters the **idle** state again and you can change the media asset URL.
 
+    ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    avPlayer.reset((err: BusinessError) => {
+        avPlayer.url = url;
+        if (err) {
+            console.error('Failed to reset,error message is :' + err.message);
+        } else {
+            console.info('Succeeded in resetting');
+        }
+    });
+    // Change the URL.
+    let url = 'https://xxx.xxx.xxx.mp3';
+    if (avPlayer == null) {
+        return;
+    }
+    avPlayer.url = url;
+    ```
+
 7. Call **release()** to switch the AVPlayer to the **released** state. Now your application exits the playback.
+
+    ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    avPlayer.release((err: BusinessError) => {
+        if (err) {
+            console.error('Failed to release,error message is :' + err.message);
+        } else {
+            console.info('Succeeded in releasing');
+        }
+    });
+    ```
 
 ## Running the Sample Project
 

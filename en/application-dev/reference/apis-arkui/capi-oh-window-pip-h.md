@@ -1,4 +1,10 @@
 # oh_window_pip.h
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 
@@ -519,7 +525,7 @@ Starts PiP.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_PIP_STATE_ABNORMAL**: The PiP window is abnormal.<br>**WINDOW_MANAGER_ERRORCODE_PIP_CREATE_FAILED**: Creating the PiP window fails.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.<br>**WINDOW_MANAGER_ERRORCODE_PIP_REPEAT_OPERATION**: The PiP window is manipulated repeatedly.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.|
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_PIP_STATE_ABNORMAL**: The PiP window is abnormal.<br>**WINDOW_MANAGER_ERRORCODE_PIP_CREATE_FAILED**: Creating the PiP window fails.<br>**WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.<br>**WINDOW_MANAGER_ERRORCODE_PIP_REPEATED_OPERATION**: The PiP window is manipulated repeatedly.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.|
 
 ### OH_PictureInPicture_StopPip()
 
@@ -544,7 +550,7 @@ Stops PiP.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_PIP_DESTROY_FAILED**: Destroying the PiP window fails.<br>**WINDOW_MANAGER_ERRORCODE_PIP_STATE_ABNORMAL**: The PiP window is abnormal.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.<br>**WINDOW_MANAGER_ERRORCODE_PIP_REPEAT_OPERATION**: The PiP window is manipulated repeatedly.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.|
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_PIP_DESTROY_FAILED**: Destroying the PiP window fails.<br>**WINDOW_MANAGER_ERRORCODE_PIP_STATE_ABNORMAL**: The PiP window is abnormal.<br>**WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.<br>**WINDOW_MANAGER_ERRORCODE_PIP_REPEATED_OPERATION**: The PiP window is manipulated repeatedly.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.|
 
 ### OH_PictureInPicture_UpdatePipContentSize()
 
@@ -571,7 +577,7 @@ Updates the media content size when the media content changes.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
 
 ### OH_PictureInPicture_UpdatePipControlStatus()
 
@@ -598,7 +604,7 @@ Updates the PiP component status.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
 
 ### OH_PictureInPicture_SetPipControlEnabled()
 
@@ -625,7 +631,7 @@ Sets the PiP component enabled status.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
 
 ### OH_PictureInPicture_RegisterStartPipCallback()
 
@@ -651,7 +657,7 @@ Registers a callback to listen for the completion of PiP surface creation.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
 
 ### OH_PictureInPicture_UnregisterStartPipCallback()
 
@@ -677,7 +683,7 @@ Unregisters the callback used to listen for the completion of PiP surface creati
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
 
 ### OH_PictureInPicture_UnregisterAllStartPipCallbacks()
 
@@ -702,7 +708,7 @@ Unregisters all the callbacks used to listen for the completion of PiP surface c
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
 
 ### OH_PictureInPicture_RegisterLifecycleListener()
 
@@ -728,7 +734,7 @@ Registers a callback to listen for PiP lifecycle state changes.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
 
 ### OH_PictureInPicture_UnregisterLifecycleListener()
 
@@ -754,7 +760,7 @@ Unregisters the callback used to listen for PiP lifecycle state changes.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
 
 ### OH_PictureInPicture_UnregisterAllLifecycleListeners()
 
@@ -779,7 +785,7 @@ Unregisters all the callbacks used to listen for PiP lifecycle state changes.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
 
 ### OH_PictureInPicture_RegisterControlEventListener()
 
@@ -805,7 +811,7 @@ Registers a callback to listen for control panel action events in PiP mode.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
 
 ### OH_PictureInPicture_UnregisterControlEventListener()
 
@@ -831,7 +837,7 @@ Unregisters the callback used to listen for control panel action events in PiP m
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
 
 ### OH_PictureInPicture_UnregisterAllControlEventListeners()
 
@@ -856,7 +862,7 @@ Unregisters all the callbacks used to listen for control panel action events in 
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
 
 ### OH_PictureInPicture_RegisterResizeListener()
 
@@ -882,7 +888,7 @@ Registers a callback to listen for PiP window size changes.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
 
 ### OH_PictureInPicture_UnregisterResizeListener()
 
@@ -908,7 +914,7 @@ Unregisters the callback used to listen for PiP window size changes.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
 
 ### OH_PictureInPicture_UnregisterAllResizeListeners()
 
@@ -932,7 +938,7 @@ Unregisters all the callbacks used to listen for PiP window size changes.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED**: The device does not support PiP.<br>**WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
 
 ### OH_PictureInPicture_SetPipInitialSurfaceRect()
 
@@ -951,8 +957,8 @@ Sets the initial position and size of the PiP surface when the PiP launch animat
 | Parameter| Description|
 | -- | -- |
 | uint32_t controllerId | ID of the PiP controller. The value is a non-negative integer.|
-| int32_t positionX | X coordinate of the PiP window relative to the upper-left corner of the screen when the PiP window is started, in px.|
-| int32_t positionY | Y coordinate of the PiP window relative to the upper-left corner of the screen when the PiP window is started, in px.|
+| int32_t positionX | X coordinate of the PiP window relative to the top-left corner of the screen when the PiP window is started, in px.|
+| int32_t positionY | Y coordinate of the PiP window relative to the top-left corner of the screen when the PiP window is started, in px.|
 | uint32_t width | Width of the PiP window when the PiP window is started. The value is greater than 0, measured in px.|
 | uint32_t height | Height of the PiP window when the PiP window is started. The value is greater than 0, measured in px.|
 
@@ -960,7 +966,7 @@ Sets the initial position and size of the PiP surface when the PiP launch animat
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
 
 ### OH_PictureInPicture_UnsetPipInitialSurfaceRect()
 
@@ -984,4 +990,4 @@ Cancels the previously set initial position and size for the PiP surface.
 
 | Type| Description|
 | -- | -- |
-| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|
+| int32_t | One of the following result codes:<br>**OK**: The function is successfully called.<br>**WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM**: A parameter is incorrect.<br>**WINDOW_MANAGER_ERRORCODE_PIP_INTERNAL_ERROR**: An internal error occurs in PiP.|

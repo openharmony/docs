@@ -1,5 +1,12 @@
 # @system.battery (Battery Information)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: PowerManager-->
+<!--Owner: @zhang-yinglie; @volcano_wang-->
+<!--Designer: @wangyantian0-->
+<!--Tester: @alien0208-->
+<!--Adviser: @w_Machine_cc-->
+
 The **battery** module allows you to query the charging status and remaining power of a device.
 
 >  **NOTE**

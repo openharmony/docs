@@ -415,7 +415,7 @@ The property \'xxx\' in the custom component \'yyy\' is missing (mandatory to sp
 
 ## 10905317 装饰器变量初始化校验异常
 **错误信息**<br>
-The property \'xxx\' in the custom component \'yyy\' cannot be initialized here (fobidden to specify).
+The property \'xxx\' in the custom component \'yyy\' cannot be initialized here (forbidden to specify).
 
 **错误描述**<br>
 @StorageProp、@StorageLink、@Consume等装饰器装饰的变量不能在父组件调用子组件时初始化。

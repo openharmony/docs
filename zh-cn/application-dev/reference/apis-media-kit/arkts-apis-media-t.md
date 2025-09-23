@@ -242,7 +242,8 @@ type SourceOpenCallback = (request: MediaSourceLoadingRequest) => number
 **示例：**
 
 ```ts
-import HashMap from '@ohos.util.HashMap';
+import { HashMap } from '@kit.ArkTS';
+import { media } from '@kit.MediaKit';
 
 let uuid: number = 1;
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();

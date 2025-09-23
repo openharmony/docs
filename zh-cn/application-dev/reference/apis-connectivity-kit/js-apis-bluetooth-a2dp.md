@@ -7,7 +7,7 @@
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
 
-本模块提供基于增强音频分发协议（Advanced Audio Distribution Profile，A2DP）的蓝牙媒体音频能力，支持获取媒体播放状态和连接状态等方法。
+本模块提供基于增强音频分发协议（Advanced Audio Distribution Profile，[A2DP](../../connectivity/terminology.md#a2dp)）的蓝牙媒体音频能力，支持获取媒体播放状态和连接状态等方法。
 
 > **说明：**
 >
@@ -30,14 +30,14 @@ type BaseProfile = baseProfile.BaseProfile
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md#ohosbluetoothbaseprofile-蓝牙baseprofile模块) | 基础Profile接口定义。 |
+| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md#baseprofile) | 基础Profile接口定义。 |
 
 
 ## a2dp.createA2dpSrcProfile
 
 createA2dpSrcProfile(): A2dpSourceProfile
 
-创建蓝牙媒体音频源实例。通过该实例可使用本端作为音频源设备的方法，如：获取和其他设备间的蓝牙媒体音频播放状态。
+创建蓝牙媒体[A2DP Source](../../connectivity/terminology.md#a2dp-source)实例。通过该实例可使用本端作为A2DP Source设备的方法，如：获取和其他设备间的蓝牙媒体音频播放状态。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
@@ -72,10 +72,10 @@ try {
 
 ## A2dpSourceProfile
 
-该实例表示音频源设备端，负责发送音频数据。
+该实例表示蓝牙媒体音频中的[A2DP Source](../../connectivity/terminology.md#a2dp-source)角色。
 - 该类继承于[BaseProfile](#baseprofile)，因此可以使用其父类中的方法。
 - 使用该类的方法前，需通过[createA2dpSrcProfile](#a2dpcreatea2dpsrcprofile)方法构造该类的实例。
-- 和该实例角色相对应的是音频接收器（A2DP Sink），即接收音频数据的设备端，典型设备如：耳机或者音箱。
+- 和该实例角色相对应的是[A2DP Sink](../../connectivity/terminology.md#a2dp-sink)。
 
 ### getPlayingState
 

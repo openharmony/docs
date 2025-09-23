@@ -1,4 +1,10 @@
 # ArkWeb（方舟Web）
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc-->
+<!--Designer: @ctqctq99-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloShuo-->
 
 - [ArkWeb简介](web-component-overview.md)
 - [ArkWeb进程](web_component_process.md)
@@ -15,6 +21,7 @@
   - [Web渲染模式](web-render-mode.md)
   - [使用Web组件大小自适应页面内容布局](web-fit-content.md)
   - [优化跳转至新Web组件过程中的页面闪烁现象](web-router-flash-optimization.md)
+  - [获取网页内容高度](web-getpage-height.md)
 - 在应用中使用前端页面JavaScript<!--web-use-frontend-page-js-->
   - [应用侧调用前端页面函数](web-in-app-frontend-page-function-invoking.md)
   - [前端页面调用应用侧函数](web-in-page-app-function-invoking.md)
@@ -62,7 +69,6 @@
 - [同层渲染](web-same-layer.md)
 - [使用离线Web组件](web-offline-mode.md)
 - [使用WebNativeMessagingExtensionAbility组件实现浏览器扩展和原生应用通信场景](web-native-messaging.md)
-- [web插件对接native应用](web-native-messaging-extension.md)
 - Web调试维测<!--web-debugging-->
   - [使用DevTools工具调试前端页面](web-debugging-with-devtools.md)
   - [使用crashpad收集Web组件崩溃信息](web-crashpad.md)

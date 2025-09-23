@@ -1,4 +1,10 @@
 # @ohos.application.StaticSubscriberExtensionContext (StaticSubscriberExtensionContext)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 The **StaticSubscriberExtensionContext** module, inherited from **ExtensionContext**, provides context for StaticSubscriberExtensionAbilities.
 
@@ -28,7 +34,7 @@ import { StaticSubscriberExtensionAbility, StaticSubscriberExtensionContext } fr
 
 ## StaticSubscriberExtensionContext.startAbility
 
-startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
+startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 Starts an ability that belongs to the same application as this StaticSubscriberExtensionAbility. This API uses an asynchronous callback to return the result.
 
@@ -51,9 +57,13 @@ Observe the following when using this API:
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201     | The application does not have permission to call the interface. |
+| 202     | The application is not system-app, can not use system-api. |
+| 401     | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.      |
 | 16000001 | The specified ability does not exist.                        |
 | 16000002 | Incorrect ability type.                                      |
 | 16000004 | Cannot start an invisible component.                           |
@@ -68,8 +78,6 @@ Observe the following when using this API:
 | 16200001 | The caller has been released.                                |
 | 16300003 | The target application is not the current application.       |
 
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
-
 **Example**
 
   ```ts
@@ -83,25 +91,23 @@ let want: Want = {
 
 class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
   onReceiveEvent(event: commonEventManager.CommonEventData) {
-    console.log(`onReceiveEvent, event: ${JSON.stringify(event)}`);
+    console.info(`onReceiveEvent, event: ${JSON.stringify(event)}`);
 
     try {
       this.context.startAbility(want, (error: BusinessError) => {
         if (error) {
           // Process service logic errors.
-          console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-            ' error.message: ' + JSON.stringify(error.message));
+          console.error(`startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}.`);
           return;
         }
         // Carry out normal service processing.
-        console.log('startAbility succeed');
+        console.info('startAbility succeed');
       });
     } catch (paramError) {
       // Process input parameter errors.
       let code = (paramError as BusinessError).code;
       let message = (paramError as BusinessError).message;
-      console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
-        ' error.message: ' + JSON.stringify(message));
+      console.error(`startAbility failed, error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}.`);
     }
   }
 }
@@ -109,7 +115,7 @@ class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbilit
 
 ## StaticSubscriberExtensionContext.startAbility
 
-startAbility(want: Want): Promise&lt;void&gt;;
+startAbility(want: Want): Promise&lt;void&gt;
 
 Starts an ability that belongs to the same application as this StaticSubscriberExtensionAbility. This API uses a promise to return the result.
 
@@ -137,9 +143,13 @@ Observe the following when using this API:
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
+
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 201     | The application does not have permission to call the interface. |
+| 202     | The application is not system-app, can not use system-api. |
+| 401     | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.      |
 | 16000001 | The specified ability does not exist.                        |
 | 16000002 | Incorrect ability type.                                      |
 | 16000004 | Cannot start an invisible component.                           |
@@ -154,8 +164,6 @@ Observe the following when using this API:
 | 16200001 | The caller has been released.                                |
 | 16300003 | The target application is not the current application.       |
 
-For details about the error codes, see [Ability Error Codes](../apis-ability-kit/errorcode-ability.md).
-
 **Example**
 
   ```ts
@@ -169,24 +177,22 @@ let want: Want = {
 
 class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
   onReceiveEvent(event: commonEventManager.CommonEventData) {
-    console.log(`onReceiveEvent, event: ${JSON.stringify(event)}`);
+    console.info(`onReceiveEvent, event: ${JSON.stringify(event)}`);
     try {
       this.context.startAbility(want)
         .then(() => {
           // Carry out normal service processing.
-          console.log('startAbility succeed');
+          console.info('startAbility succeed');
         })
         .catch((error: BusinessError) => {
           // Process service logic errors.
-          console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-            ' error.message: ' + JSON.stringify(error.message));
+          console.error(`startAbility failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}.`);
         });
     } catch (paramError) {
       // Process input parameter errors.
       let code = (paramError as BusinessError).code;
       let message = (paramError as BusinessError).message;
-      console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
-        ' error.message: ' + JSON.stringify(message));
+      console.error(`startAbility failed, error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}.`);
     }
   }
 }

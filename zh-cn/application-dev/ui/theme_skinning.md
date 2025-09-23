@@ -14,12 +14,13 @@
 当应用需要使用换肤功能时，应自定义主题颜色。[CustomTheme](../reference/apis-arkui/js-apis-arkui-theme.md#customtheme)用于自定义主题色的内容，其属性可选，仅需要复写需修改的部分，未修改内容将继承系统默认设置，可参考[系统默认的token颜色值](#系统缺省token色值)。请参照以下示例自定义主题色：
 
   ```ts
+    // AppTheme.ets
     import { CustomColors, CustomTheme } from '@kit.ArkUI';
 
     export class AppColors implements CustomColors {
       // 自定义主题色
       brand: ResourceColor = '#FF75D9';
-      // 使用$r设置深浅色
+      // 使用$r，让一级警示色在深色和浅色模式下，设置为不同的颜色
       warning: ResourceColor = $r('app.color.start_window_background');
     }
 
@@ -31,10 +32,11 @@
   ```
 
 ## 设置应用内组件自定义主题色
-- 可以在页面入口处统一设置应用内组件自定义主题色，但需确保在页面build前执行[ThemeControl](../reference/apis-arkui/js-apis-arkui-theme.md#themecontrol)。
-  其中，[onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)回调函数用于使自定义组件获取当前生效的Theme对象。
+- 若在页面入口处设置应用内组件自定义主题色，需确保在页面build前执行[ThemeControl](../reference/apis-arkui/js-apis-arkui-theme.md#themecontrol).[setDefaultTheme](../reference/apis-arkui/js-apis-arkui-theme.md#setdefaulttheme)。
+  示例代码中，[onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)回调函数用于使自定义组件获取当前生效的Theme对象。
 
   ```ts
+    // Index.ets
     import { Theme, ThemeControl } from '@kit.ArkUI';
     import { gAppTheme } from './AppTheme';
     
@@ -128,6 +130,24 @@
               .borderRadius('10vp')
               .backgroundColor(this.menuItemColor)
             }
+            ListItem() {
+              Column() {
+                Text('Warning')
+                  .width('100%')
+                  .margin({ top: '5vp', left: '14fp' })
+                Button() {
+                  Text('Text')
+                    .fontSize(30)
+                    .fontWeight(FontWeight.Bold)
+                }
+                .type(ButtonType.Capsule)
+                .role(ButtonRole.ERROR)
+                .width('40%')
+              }
+              .width('100%')
+              .height('70vp')
+              .borderRadius('10vp')
+            }
           }
         }
         .padding('10vp')
@@ -138,9 +158,10 @@
     }
   ```
 
-- 在UIAbility中设置[ThemeControl](../reference/apis-arkui/js-apis-arkui-theme.md#themecontrol)，需要在onWindowStageCreate()方法中[setDefaultTheme](../reference/apis-arkui/js-apis-arkui-theme.md#setdefaulttheme)，设置应用内组件的自定义主题色。
+- 若在UIAbility中设置应用内组件自定义主题色，需在onWindowStageCreate()方法的windowStage.[loadContent](../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9)的完成时回调中调用[ThemeControl](../reference/apis-arkui/js-apis-arkui-theme.md#themecontrol).[setDefaultTheme](../reference/apis-arkui/js-apis-arkui-theme.md#setdefaulttheme)，设置应用内组件的自定义主题色。
 
   ```ts
+    // EntryAbility.ets
     import {AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { window, CustomColors, ThemeControl } from '@kit.ArkUI';
@@ -192,7 +213,7 @@
 ## 设置应用局部页面自定义主题风格
 通过设置[WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md)，将自定义主题Theme的配色应用于内部组件的默认样式。在WithTheme的作用范围内，组件的配色会根据Theme的配色进行调整。
 
-如示例所示，使用WithTheme({ theme: this.myTheme })可将作用域内组件的配色设置为自定义主题风格。后续可以通过更新this.myTheme来更换主题风格。[onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)回调函数用于使自定义组件能够获取当前生效的Theme对象。
+如示例所示，使用WithTheme({ theme: this.CustomTheme })可将作用域内组件的配色设置为自定义主题风格。后续可以通过更新this.CustomTheme来更换主题风格。[onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)回调函数用于使自定义组件能够获取当前生效的Theme对象。
 
   ```ts
     import { CustomColors, CustomTheme, Theme } from '@kit.ArkUI';
@@ -274,7 +295,7 @@ dark.json数据示例：
       "color": [
         {
           "name": "start_window_background",
-          "value": "#FFFFFF"
+          "value": "#000000"
         }
       ]
     }
@@ -304,7 +325,7 @@ dark.json数据示例：
             }
             .width('100%')
           }
-          .backgroundColor($r('sys.color.background_primary'))
+          .backgroundColor($r('app.color.start_window_background'))
           .height('100%')
           .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.END, SafeAreaEdge.BOTTOM, SafeAreaEdge.START])
         }
@@ -369,3 +390,5 @@ dark.json数据示例：
 | theme.colors.interactiveActive             | 通用激活交互式颜色 | #ff0a59f7 |![](figures/ff0a59f7.png "#ff0a59f7")| #ff317af7 |![](figures/ff317af7.png "#ff317af7")|
 | theme.colors.interactiveSelect             | 通用选择交互式颜色 | #33000000 |![](figures/33000000.png "#33000000")| #33ffffff |![](figures/33ffffff.png "#33ffffff")|
 | theme.colors.interactiveClick              | 通用点击交互式颜色 | #19000000 |![](figures/19000000.png "#19000000")| #19ffffff |![](figures/19ffffff.png "#19ffffff")|
+
+各个token色值可影响的组件可参考[Colors](../reference/apis-arkui/js-apis-arkui-theme.md#colors)接口说明。

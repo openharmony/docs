@@ -112,36 +112,6 @@
 | rendererInfo       | [AudioRendererInfo](#audiorendererinfo8)  | 是   | 否   | 音频渲染器信息。               |
 | deviceDescriptors  | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)      | 是   | 否   | 音频设备描述。|
 
-**示例：**
-
-```ts
-import { audio } from '@kit.AudioKit';
-
-const audioManager = audio.getAudioManager();
-let audioStreamManager = audioManager.getStreamManager();
-
-audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
-  for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
-    console.info(`## RendererChange on is called for ${i} ##`);
-    console.info(`StreamId for ${i} is: ${AudioRendererChangeInfoArray[i].streamId}`);
-    console.info(`Content for ${i} is: ${AudioRendererChangeInfoArray[i].rendererInfo.content}`);
-    console.info(`Stream for ${i} is: ${AudioRendererChangeInfoArray[i].rendererInfo.usage}`);
-    console.info(`Flag ${i} is: ${AudioRendererChangeInfoArray[i].rendererInfo.rendererFlags}`);
-    let devDescriptor = AudioRendererChangeInfoArray[i].deviceDescriptors;
-    for (let j = 0; j < AudioRendererChangeInfoArray[i].deviceDescriptors.length; j++) {
-      console.info(`Id: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].id}`);
-      console.info(`Type: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
-      console.info(`Role: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].deviceRole}`);
-      console.info(`Name: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].name}`);
-      console.info(`Addr: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].address}`);
-      console.info(`SR: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
-      console.info(`C ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
-      console.info(`CM: ${i} : ${AudioRendererChangeInfoArray[i].deviceDescriptors[j].channelMasks[0]}`);
-    }
-  }
-});
-```
-
 ## AudioCapturerChangeInfo<sup>9+</sup>
 
 描述音频采集器更改信息。
@@ -154,35 +124,6 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
 | capturerInfo       | [AudioCapturerInfo](#audiocapturerinfo8)  | 是   | 否   | 音频采集器信息。               |
 | deviceDescriptors  | [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors)      | 是   | 否   | 音频设备信息。|
 | muted<sup>11+</sup>  | boolean    | 是   | 是 | 音频采集器是否处于静音状态。true表示静音，false表示非静音。|
-
-**示例：**
-
-```ts
-import { audio } from '@kit.AudioKit';
-
-const audioManager = audio.getAudioManager();
-let audioStreamManager = audioManager.getStreamManager();
-
-audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
-  for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
-    console.info(`## CapChange on is called for element ${i} ##`);
-    console.info(`StrId for  ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
-    console.info(`Src for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
-    console.info(`Flag ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-    let devDescriptor = AudioCapturerChangeInfoArray[i].deviceDescriptors;
-    for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
-      console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
-      console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
-      console.info(`Role: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole}`);
-      console.info(`Name: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name}`);
-      console.info(`Addr: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address}`);
-      console.info(`SR: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
-      console.info(`C ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
-      console.info(`CM ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks[0]}`);
-    }
-  }
-});
-```
 
 ## AudioDeviceDescriptor
 
@@ -201,30 +142,6 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 | displayName<sup>10+</sup>     | string                     | 是   | 否   | 设备显示名。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | encodingTypes<sup>11+</sup>    | Array&lt;[AudioEncodingType](arkts-apis-audio-e.md#audioencodingtype8)&gt;                     | 是   | 是 | 支持的编码类型。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Core <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | spatializationSupported<sup>18+</sup>     | boolean                     | 是   | 是 | 设备是否支持空间音频。true表示支持空间音频，false表示不支持空间音频。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Spatialization|
-
-**示例：**
-
-```ts
-import { audio } from '@kit.AudioKit';
-
-let deviceRoleValue: audio.DeviceRole | undefined = undefined;
-let deviceTypeValue: audio.DeviceType | undefined = undefined;
-
-function displayDeviceProp(value: audio.AudioDeviceDescriptor) {
-  deviceRoleValue = value.deviceRole;
-  deviceTypeValue = value.deviceType;
-}
-
-audio.getAudioManager().getRoutingManager().getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((value: audio.AudioDeviceDescriptors) => {
-  console.info('AudioFrameworkTest: Promise: getDevices OUTPUT_DEVICES_FLAG');
-  value.forEach(displayDeviceProp);
-  if (deviceTypeValue != undefined && deviceRoleValue != undefined){
-    console.info('AudioFrameworkTest: Promise: getDevices : OUTPUT_DEVICES_FLAG :  PASS');
-  } else {
-    console.error('Failed to getDevices.');
-  }
-});
-```
 
 ## VolumeEvent<sup>9+</sup>
 

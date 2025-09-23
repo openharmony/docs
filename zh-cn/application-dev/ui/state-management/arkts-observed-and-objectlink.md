@@ -20,11 +20,11 @@
 
 \@ObjectLink和\@Observed类装饰器用于在涉及嵌套对象或数组的场景中进行双向数据同步：
 
-- 使用new创建被\@Observed装饰的类，可以被观察到属性的变化。
+- 使用new创建被\@Observed装饰的类，可以观察到类中属性的变化。
 
-- 子组件中\@ObjectLink装饰器装饰的状态变量用于接收\@Observed装饰的类的实例，和父组件中对应的状态变量建立双向数据绑定。这个实例可以是数组中的被\@Observed装饰的项，或者是class object中的属性，这个属性同样也需要被\@Observed装饰。
+- 子组件中\@ObjectLink装饰器装饰的状态变量用于接收\@Observed装饰的类的实例，和父组件中对应的状态变量建立双向数据绑定。这个实例可以是数组中的被\@Observed装饰的项，或者是class、object中的属性，这个属性同样也需要被\@Observed装饰。
 
-- \@Observed用于嵌套类场景中，观察对象类属性变化，要配合自定义组件使用（示例详见[嵌套对象](#嵌套对象)），如果要做数据双/单向同步，需要搭配\@ObjectLink或者\@Prop使用（示例详见[\@Prop与\@ObjectLink的差异](#prop与objectlink的差异)）。
+- \@Observed用于嵌套类场景中，观察对象类属性变化，要配合自定义组件使用，示例请参考[嵌套对象](#嵌套对象)，如果要做数据双/单向同步，需要搭配\@ObjectLink或者\@Prop使用，示例请参考[\@Prop与\@ObjectLink的差异](#prop与objectlink的差异)。
 
 
 ## 装饰器说明
@@ -37,7 +37,7 @@
 | \@ObjectLink变量装饰器 | 说明                                       |
 | ----------------- | ---------------------------------------- |
 | 装饰器参数             | 无。                                       |
-| 允许装饰的变量类型         | 支持继承Date、[Array](#二维数组)的class实例，API11及以上支持继承[Map](#继承map类)、[Set](#继承set类)的class实例。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>API version 19之前，必须为被\@Observed装饰的class实例。<br/>API version 19及以后，\@ObjectLink也可以被[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19)的返回值初始化。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>**说明：**<br/>\@ObjectLink不支持简单类型，如果开发者需要使用简单类型，可以使用[\@Prop](arkts-prop.md)。 |
+| 允许装饰的变量类型         | 支持继承Date、[Array](#二维数组)的class实例，API11及以上支持继承[Map](#继承map类)、[Set](#继承set类)的class实例。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例请参考[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>API version 19之前，必须为被\@Observed装饰的class实例。<br/>API version 19及以后，\@ObjectLink也可以被[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19)的返回值初始化。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>**说明：**<br/>\@ObjectLink不支持简单类型，如果开发者需要使用简单类型，可以使用[\@Prop](arkts-prop.md)。 |
 | 被装饰变量的初始值         | 禁止本地初始化。                                     |
 
 \@ObjectLink的属性可以被改变，但不允许整体赋值，即\@ObjectLink装饰的变量是只读的。
@@ -54,7 +54,7 @@ this.objLink= ...
 >
 > \@ObjectLink装饰的变量不能被赋值，如果要使用赋值操作，请使用[@Prop](arkts-prop.md)。
 >
-> - \@Prop装饰的变量和数据源的关系是单向同步，\@Prop装饰的变量在本地拷贝了数据源，所以它允许本地更改，如果父组件中的数据源有更新，\@Prop装饰的变量本地的修改将被覆盖。
+> - \@Prop装饰的变量和数据源的关系是单向同步，\@Prop装饰的变量在本地拷贝了数据源，所以它允许本地更改，如果父组件中的数据源有更新，\@Prop装饰的变量在本地的修改将被覆盖。
 >
 > - \@ObjectLink装饰的变量和数据源的关系是双向同步，\@ObjectLink装饰的变量相当于指向数据源的指针。禁止对\@ObjectLink装饰的变量赋值，如果发生\@ObjectLink装饰的变量的赋值，则同步链将被打断。
 
@@ -78,7 +78,7 @@ this.objLink= ...
 
 ### 观察变化
 
-\@Observed装饰的类，如果其属性为非简单类型，比如class、Object或者数组，也需要被\@Observed装饰，否则将观察不到其属性的变化。
+\@Observed装饰的类，如果其属性为非简单类型，比如class、Object或者数组，那么这些属性也需要被\@Observed装饰，否则将观察不到这些属性的变化。
 
 
 ```ts
@@ -120,9 +120,9 @@ this.parent.child.num = 5;
 
 - 其属性的数值的变化，其中属性是指Object.keys(observedObject)返回的所有属性，示例请参考[嵌套对象](#嵌套对象)。
 
-- 如果数据源是数组，则可以观察到数组item的替换，如果数据源是class，可观察到class的属性的变化，示例请参考[对象数组](#对象数组)。
+- 如果数据源是数组，则可以观察到数组项的替换，如果数据源是class，可观察到class的属性的变化，示例请参考[对象数组](#对象数组)。
 
-继承Date的class时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。
+\@ObjectLink装饰继承于Date的class时，可以观察到Date整体的赋值，同时可通过调用Date的接口`setFullYear`, `setMonth`, `setDate`, `setHours`, `setMinutes`, `setSeconds`, `setMilliseconds`, `setTime`, `setUTCFullYear`, `setUTCMonth`, `setUTCDate`, `setUTCHours`, `setUTCMinutes`, `setUTCSeconds`, `setUTCMilliseconds` 更新Date的属性。
 
 ```ts
 @Observed
@@ -148,7 +148,7 @@ struct Child {
 
   build() {
     Column() {
-      Button(`child increase the day by 1`)
+      Button('child increase the day by 1')
         .onClick(() => {
           this.data.setDate(this.data.getDate() + 1);
         })
@@ -170,11 +170,11 @@ struct Parent {
     Column() {
       Child({ label: 'date', data: this.newData.data })
 
-      Button(`parent update the new date`)
+      Button('parent update the new date')
         .onClick(() => {
           this.newData.data = new DateClass('2023-07-07');
         })
-      Button(`ViewB: this.newData = new NewDate(new DateClass('2023-08-20'))`)
+      Button('ViewB: this.newData = new NewDate(new DateClass('2023-08-20'))')
         .onClick(() => {
           this.newData = new NewDate(new DateClass('2023-08-20'));
         })
@@ -183,9 +183,9 @@ struct Parent {
 }
 ```
 
-继承Map的class时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。详见[继承Map类](#继承map类)。
+\@ObjectLink装饰继承于Map的class时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。示例请参考[继承Map类](#继承map类)。
 
-继承Set的class时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见[继承Set类](#继承set类)。
+\@ObjectLink装饰继承于Set的class时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。示例请参考[继承Set类](#继承set类)。
 
 
 ### 框架行为
@@ -196,7 +196,7 @@ struct Parent {
 
    b. 子组件中\@ObjectLink装饰的变量从父组件初始化，接收被\@Observed装饰的class的实例，\@ObjectLink的包装类会将自己注册给\@Observed class。这里的注册行为指的是，\@ObjectLink包装类会向\@Observed实例提供自身的引用，让\@Observed实例将其添加到依赖列表中，以便属性变化时能通知到它。
 
-2. 属性更新：当\@Observed装饰的class属性改变时，会执行到代理的setter和getter，然后遍历依赖它的\@ObjectLink包装类，通知数据更新。
+2. 属性更新：当\@Observed装饰的class属性改变时，会执行代理的setter和getter，然后遍历依赖它的\@ObjectLink包装类，通知数据更新。
 
 
 ## 限制条件
@@ -208,31 +208,31 @@ struct Parent {
 3. \@ObjectLink装饰的类型必须是复杂类型，否则会有编译期报错。
 
 4. API version 19前，\@ObjectLink装饰的变量类型必须是显式地由\@Observed装饰的类。如果未指定类型，或不是\@Observed装饰的class，编译期会报错。
-API version 19及以后，\@ObjectLink也可以被[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19)的返回值初始化，否则会有运行时告警日志。
+  API version 19及以后，\@ObjectLink也可以被[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19)的返回值初始化，否则会有运行时告警日志。
 
     ```ts
     @Observed
     class Info {
       count: number;
-  
+    
       constructor(count: number) {
         this.count = count;
       }
     }
-  
+    
     class Test {
       msg: number;
-  
+    
       constructor(msg: number) {
         this.msg = msg;
       }
     }
-  
+    
     // 错误写法，count未指定类型，编译报错
     @ObjectLink count;
     // 错误写法，Test未被@Observed装饰，编译报错
     @ObjectLink test: Test;
-  
+    
     // 正确写法
     @ObjectLink count: Info;
     ```
@@ -243,15 +243,15 @@ API version 19及以后，\@ObjectLink也可以被[makeV1Observed](../../referen
     @Observed
     class Info {
       count: number;
-  
+    
       constructor(count: number) {
         this.count = count;
       }
     }
-  
+    
     // 错误写法，编译报错
     @ObjectLink count: Info = new Info(10);
-  
+    
     // 正确写法
     @ObjectLink count: Info;
     ```
@@ -264,32 +264,32 @@ API version 19及以后，\@ObjectLink也可以被[makeV1Observed](../../referen
     @Observed
     class Info {
       count: number;
-  
+    
       constructor(count: number) {
         this.count = count;
       }
     }
-  
+    
     @Component
     struct Child {
       @ObjectLink num: Info;
-  
+    
       build() {
         Column() {
           Text(`num的值: ${this.num.count}`)
             .onClick(() => {
-              // 错误写法，@ObjectLink装饰的变量不能被赋值
+              // 错误写法，@ObjectLink装饰的变量不能被赋值，运行时报错
               this.num = new Info(10);
             })
         }
       }
     }
-
+    
     @Entry
     @Component
     struct Parent {
       @State num: Info = new Info(10);
-  
+    
       build() {
         Column() {
           Text(`count的值: ${this.num.count}`)
@@ -305,16 +305,16 @@ API version 19及以后，\@ObjectLink也可以被[makeV1Observed](../../referen
     @Observed
     class Info {
       count: number;
-  
+    
       constructor(count: number) {
         this.count = count;
       }
     }
-  
+    
     @Component
     struct Child {
       @ObjectLink num: Info;
-  
+    
       build() {
         Column() {
           Text(`num的值: ${this.num.count}`)
@@ -325,12 +325,12 @@ API version 19及以后，\@ObjectLink也可以被[makeV1Observed](../../referen
         }
       }
     }
-  
+    
     @Entry
     @Component
     struct Parent {
       @State num: Info = new Info(10);
-  
+    
       build() {
         Column() {
           Text(`count的值: ${this.num.count}`)
@@ -505,15 +505,18 @@ struct Index {
 
 ![Observed_ObjectLink_nested_object](figures/Observed_ObjectLink_nested_object.gif)
 
-上述示例中，点击Index组件中Button，Index组件中的Text组件不刷新，因为该变化属于第二层的变化，\@State无法观察到第二层的变化。然而，Book被\@Observed装饰，Book的属性name可以被\@ObjectLink观察到，所以BookCard组件中Text可以刷新。当然直接点击BookCard组件中Button，Bookcard组件中的Text组件也刷新，因为该变化在BooKCard中属于第一层的变化，亦可被\@ObjectLink观察到。
+上述示例中：
+
+- 点击`change bag.book.name`，Index组件中的Text组件不刷新，因为该变化属于第二层的变化，\@State无法观察到第二层的变化。然而，Book被\@Observed装饰，Book的属性name可以被\@ObjectLink观察到，所以BookCard组件中Text组件可以刷新。
+- 点击`change book.name`，Bookcard组件中的Text组件刷新，因为该变化在BooKCard中属于第一层的变化，亦可被\@ObjectLink观察到。
 
 ### 对象数组
 
-对象数组是一种常用的数据结构。以下示例展示了数组对象的用法。
+对象数组是一种常用的数据结构。以下示例展示了对象数组的用法。
 
 > **说明：**
 >
-> NextID是用来在[ForEach循环渲染](./arkts-rendering-control-foreach.md)过程中，为每个数组元素生成一个唯一且持久的键值，用于标识对应的组件。
+> NextID是用来在[ForEach循环渲染](../rendering-control/arkts-rendering-control-foreach.md)过程中，为每个数组元素生成一个唯一且持久的键值，标识对应的组件。
 
 ```ts
 let NextID: number = 1;
@@ -562,22 +565,22 @@ struct Parent {
         (item: Info): string => item.id.toString()
       )
       // 使用@State装饰的数组的数组项初始化@ObjectLink，其中数组项是被@Observed装饰的Info的实例
-      Child({ label: `ViewChild this.arrA[first]`, info: this.arrA[0] })
-      Child({ label: `ViewChild this.arrA[last]`, info: this.arrA[this.arrA.length-1] })
+      Child({ label: 'ViewChild this.arrA[first]', info: this.arrA[0] })
+      Child({ label: 'ViewChild this.arrA[last]', info: this.arrA[this.arrA.length-1] })
 
-      Button(`ViewParent: reset array`)
+      Button('ViewParent: reset array')
         .width(320)
         .margin(10)
         .onClick(() => {
           this.arrA = [new Info(0), new Info(0)];
         })
-      Button(`ViewParent: push`)
+      Button('ViewParent: push')
         .width(320)
         .margin(10)
         .onClick(() => {
           this.arrA.push(new Info(0));
         })
-      Button(`ViewParent: shift`)
+      Button('ViewParent: shift')
         .width(320)
         .margin(10)
         .onClick(() => {
@@ -587,13 +590,13 @@ struct Parent {
             console.info('length <= 0');
           }
         })
-      Button(`ViewParent: item property in middle`)
+      Button('ViewParent: item property in middle')
         .width(320)
         .margin(10)
         .onClick(() => {
           this.arrA[Math.floor(this.arrA.length / 2)].info = 10;
         })
-      Button(`ViewParent: item property in middle`)
+      Button('ViewParent: item property in middle')
         .width(320)
         .margin(10)
         .onClick(() => {
@@ -608,11 +611,11 @@ struct Parent {
 
 - this.arrA[Math.floor(this.arrA.length/2)] = new Info(..) ：该状态变量的改变触发2次更新：
   1. ForEach：数组项的赋值导致ForEach的[itemGenerator](../../reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)被修改，因此数组项被识别为有更改，ForEach的item builder将执行，创建新的Child组件实例。
-  2. Child({ label: `ViewChild this.arrA[last]`, info: this.arrA[this.arrA.length-1] })：上述更改改变了数组中第二个元素，所以绑定this.arrA[1]的Child将被更新。
+  2. Child({ label: 'ViewChild this.arrA[last]', info: this.arrA[this.arrA.length-1] })：上述更改改变了数组中第二个元素，所以绑定this.arrA[1]的Child将被更新。
 
 - this.arrA.push(new Info(0)) ： 将触发2次不同效果的更新：
   1. ForEach：新添加的Info对象对于ForEach是未知的[itemGenerator](../../reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)，ForEach的item builder将执行，创建新的Child组件实例。
-  2. Child({ label: `ViewChild this.arrA[last]`, info: this.arrA[this.arrA.length-1] })：数组的最后一项有更改，因此引起第二个Child的实例的更改。对于Child({ label: `ViewChild this.arrA[first]`, info: this.arrA[0] })，数组的更改并没有触发一个数组项更改的改变，所以第一个Child不会刷新。
+  2. Child({ label: 'ViewChild this.arrA[last]', info: this.arrA[this.arrA.length-1] })：数组的最后一项有更改，因此引起第二个Child的实例的更改。对于Child({ label: 'ViewChild this.arrA[first]', info: this.arrA[0] })，数组的更改并没有触发一个数组项更改的改变，所以第一个Child不会刷新。
 
 - this.arrA[Math.floor(this.arrA.length/2)].info：@State无法观察到第二层的变化，但是Info被\@Observed装饰，Info的属性的变化将被\@ObjectLink观察到。
 
@@ -628,7 +631,7 @@ class ObservedArray<T> extends Array<T> {
 }
 ```
 
-声明一个继承自Array的类ObservedArray\<T\>并使用new操作符创建ObservedArray\<string\>的实例。通过new操作符创建的ObservedArray的实例可以观察到属性变化。
+声明一个继承自Array的类ObservedArray\<T\>，并使用new操作符创建ObservedArray\<string\>的实例，该实例可以观察到属性变化。
 
 在下面的示例中，展示了如何利用\@Observed观察二维数组的变化。
 
@@ -945,7 +948,7 @@ struct SetSampleNestedChild {
 
 ### ObjectLink支持联合类型
 
-\@ObjectLink支持\@Observed装饰类和undefined或null组成的联合类型，在下面的示例中，count类型为Source | Data | undefined，点击父组件Parent中的Button改变count的属性或者类型，Child中也会对应刷新。
+\@ObjectLink支持\@Observed装饰类和undefined或null组成的联合类型，在下面的示例中，count类型为Source | Data | undefined，点击父组件Parent中的Button改变count的属性或者类型，Child组件中对应的Text组件刷新。
 
 ```ts
 @Observed
@@ -1034,109 +1037,11 @@ struct Child {
 
 ## 常见问题
 
-### 在子组件中给\@ObjectLink装饰的变量赋值
-
-在子组件中给\@ObjectLink装饰的变量赋值是不允许的。
-
-【反例】
-
-```ts
-@Observed
-class Info {
-  public info: number = 0;
-
-  constructor(info: number) {
-    this.info = info;
-  }
-}
-
-@Component
-struct ObjectLinkChild {
-  @ObjectLink testNum: Info;
-
-  build() {
-    Text(`ObjectLinkChild testNum ${this.testNum.info}`)
-      .onClick(() => {
-        // ObjectLink不能被赋值
-        this.testNum = new Info(47);
-      })
-  }
-}
-
-@Entry
-@Component
-struct Parent {
-  @State testNum: Info[] = [new Info(1)];
-
-  build() {
-    Column() {
-      Text(`Parent testNum ${this.testNum[0].info}`)
-        .onClick(() => {
-          this.testNum[0].info += 1;
-        })
-
-      ObjectLinkChild({ testNum: this.testNum[0] })
-    }
-  }
-}
-```
-
-点击ObjectLinkChild给\@ObjectLink装饰的变量赋值：
-
-```
-this.testNum = new Info(47); 
-```
-
-这是不允许的，对于实现双向数据同步的\@ObjectLink，赋值相当于要更新父组件中的数组项或者class的属性，这个对于 TypeScript/JavaScript是不能实现的。框架对于这种行为会发生运行时报错。
-
-【正例】
-
-```ts
-@Observed
-class Info {
-  public info: number = 0;
-
-  constructor(info: number) {
-    this.info = info;
-  }
-}
-
-@Component
-struct ObjectLinkChild {
-  @ObjectLink testNum: Info;
-
-  build() {
-    Text(`ObjectLinkChild testNum ${this.testNum.info}`)
-      .onClick(() => {
-        // 可以对ObjectLink装饰对象的属性赋值
-        this.testNum.info = 47;
-      })
-  }
-}
-
-@Entry
-@Component
-struct Parent {
-  @State testNum: Info[] = [new Info(1)];
-
-  build() {
-    Column() {
-      Text(`Parent testNum ${this.testNum[0].info}`)
-        .onClick(() => {
-          this.testNum[0].info += 1;
-        })
-
-      ObjectLinkChild({ testNum: this.testNum[0] })
-    }
-  }
-}
-```
-
 ### 基础嵌套对象属性更改失效
 
 在应用开发中，有很多嵌套对象场景，例如，开发者更新了某个属性，但UI没有进行对应的更新。
 
-每个装饰器都有自己可以观察的能力，并不是所有的改变都可以被观察到，只有可以被观察到的变化才会进行UI更新。\@Observed装饰器可以观察到嵌套对象的属性变化，其他装饰器仅能观察到第一层的变化。
+每个装饰器都有观察能力，但并非所有的改变都可以被观察到，只有可以被观察到的变化才会触发UI更新。\@Observed装饰器可以观察到嵌套对象的属性变化，其他装饰器仅能观察到第一层的变化。
 
 【反例】
 
@@ -1462,11 +1367,11 @@ incrSubCounter和setSubCounter都是同一个SubCounter的函数。在第一个�
 
 ```ts
 CounterComp({ value: this.counter[0] }); // ParentComp组件传递 ParentCounter 给 CounterComp 组件
-@ObjectLink value：ParentCounter; // @ObjectLink 接收 ParentCounter
+@ObjectLink value: ParentCounter; // @ObjectLink 接收 ParentCounter
 
 // CounterChild 是 CounterComp 的子组件，CounterComp 传递 this.value.subCounter 给 CounterChild 组件
 CounterChild({ subValue: this.value.subCounter });
-@ObjectLink subValue：SubCounter; // @ObjectLink 接收 SubCounter
+@ObjectLink subValue: SubCounter; // @ObjectLink 接收 SubCounter
 ```
 
 该方法使得\@ObjectLink分别代理了ParentCounter和SubCounter的属性，这样对于这两个类的属性的变化都可以观察到，即都会对UI视图进行刷新。即使删除了上面所说的this.counter[0].incrCounter()，UI也会进行正确的刷新。
@@ -1692,7 +1597,7 @@ struct Index {
 }
 ```
 
-上文的示例代码中在RenderClass的构造函数中使用定时器在1秒后修改了waitToRender的值，但是不会触发UI的刷新。此时点击按钮，强行刷新Text组件可以看到waitToRender的值已经被修改成了true。
+上文的示例代码中在RenderClass的构造函数中使用定时器在1秒后修改了waitToRender的值，但是不会触发UI的刷新。此时，点击按钮强行刷新Text组件，可以看到waitToRender的值已经被修改成了true。
 
 【正例】
 
@@ -1717,7 +1622,6 @@ struct Index {
   onPageShow() {
     setTimeout(() => {
       this.renderClass.waitToRender = true;
-      console.info('更改renderClass的值为：' + this.renderClass.waitToRender);
     }, 1000)
   }
 
@@ -1736,7 +1640,7 @@ struct Index {
 
 上文的示例代码将定时器修改移入到组件内，此时界面显示时会先显示“renderClass的值为：false”。待定时器触发时，renderClass的值改变，触发[@Watch](./arkts-watch.md)回调，此时界面刷新显示“renderClass的值为：true”，日志输出“renderClass的值被更改为：true”。
 
-因此，更推荐开发者在组件中对\@Observed装饰的类成员变量进行修改实现刷新。
+因此，更推荐开发者在组件中对\@Observed装饰的类成员变量进行修改，以实现刷新。
 
 ### \@ObjectLink数据源更新时机
 

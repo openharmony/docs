@@ -1,4 +1,10 @@
 # Creating Basic Data Types Using JSVM-API
+<!--Kit: NDK Development-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Designer: @knightaoko-->
+<!--Tester: @test_lzz-->
+<!--Adviser: @fang-jinxu-->
 
 ## Introduction
 
@@ -6,7 +12,7 @@ In JavaScript (JS), the integer type represents a number without a decimal point
 
 ## Basic Concepts
 
-Before using JSVM-API to create and obtain numbers, you need to understand the following concepts:
+Before using the JSVM-API to create and obtain numeric types, you need to understand the following basic concepts:
 
 - Number type<br>When using JSVM-API, you may need to convert values of number types between C and JS. When converting the data, pay attention to the data range, signedness (signed or unsigned), and precision (single or double precision).
 - Error handling<br>You also need to use JSVM-API to capture and handle errors that may occur during the conversion. For example, when an integer is created, you may need to capture and handle memory allocation failures or other runtime errors.
@@ -31,7 +37,7 @@ If you are just starting out with JSVM-API, see [JSVM-API Development Process](u
 
 ### OH_JSVM_GetValueUint32
 
-Use **OH_JSVM_GetValueUint32** to obtain a C uint32 value from a JS value.
+Use **OH_JSVM_GetValueInt32** to obtain a C uint32 value from a JS value.
 
 CPP code:
 
@@ -74,8 +80,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char* srcCallNative = R"JS(getValueUint32(123))JS";
 ```
+<!-- @[oh_jsvm_get_value_uint32](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/getvalueuint32/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 
 ```
 JSVM GetValueUint32 success: 123
@@ -83,7 +90,7 @@ JSVM GetValueUint32 success: 123
 
 ### OH_JSVM_GetValueInt32
 
-Use **OH_JSVM_GetValueInt32** to obtain a C int32 value from a JS value.
+Use **OH_JSVM_GetValueInt32** to obtain a C Int32 value from a JS value.
 
 CPP code:
 
@@ -127,8 +134,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char* srcCallNative = R"JS(getValueInt32(-123))JS";
 ```
+<!-- @[oh_jsvm_get_value_int32](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/getvalueint32/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 
 ```
 JSVM GetValueInt32 success: -123
@@ -136,7 +144,7 @@ JSVM GetValueInt32 success: -123
 
 ### OH_JSVM_GetValueInt64
 
-Use **OH_JSVM_GetValueInt64** to obtain a C int64 value from a JS value.
+Use **OH_JSVM_GetValueInt32** to obtain a C Int64 value from a JS value.
 
 CPP code:
 
@@ -177,8 +185,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char* srcCallNative = R"JS(getValueInt64(-123))JS";
 ```
+<!-- @[oh_jsvm_get_value_int64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/getvalueint64/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 
 ```
 JSVM GetValueInt64 success: -123
@@ -202,7 +211,7 @@ static JSVM_Value GetDouble(JSVM_Env env, JSVM_CallbackInfo info)
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
-    double value;
+    double value = 0;
     JSVM_Status status = OH_JSVM_GetValueDouble(env, args[0], &value);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM GetDouble fail");
@@ -225,8 +234,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char* srcCallNative = R"JS(getDouble(-110.0456))JS";
 ```
+<!-- @[oh_jsvm_get_value_double](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/getvaluedouble/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 
 ```
 JSVM GetDouble success: -110.045600
@@ -234,7 +244,7 @@ JSVM GetDouble success: -110.045600
 
 ### OH_JSVM_CreateInt32
 
-Use **OH_JSVM_CreateInt32** to create a JS number of the int32 type.
+Creates a JavaScript number object based on the int32_t data.
 
 CPP code:
 
@@ -274,8 +284,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char* srcCallNative = R"JS(createInt32())JS";
 ```
+<!-- @[oh_jsvm_create_int32](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/createint32/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 
 ```
 JSVM CreateInt32 success: -20
@@ -283,7 +294,7 @@ JSVM CreateInt32 success: -20
 
 ### OH_JSVM_CreateUint32
 
-Use **OH_JSVM_CreateUint32** to create a JS number of the uint32 type.
+Creates a JavaScript number object based on the uint32_t data.
 
 CPP code:
 
@@ -327,8 +338,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char* srcCallNative = R"JS(createUInt32())JS";
 ```
+<!-- @[oh_jsvm_create_uint32](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/createuint32/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 
 ```
 JSVM CreateUInt32 success: 26
@@ -336,7 +348,7 @@ JSVM CreateUInt32 success: 26
 
 ### OH_JSVM_CreateInt64
 
-Use **OH_JSVM_CreateInt64** to create a JS number of the int64 type. You are advised to use the **BigInt** API to indicate the large JS number.
+Creates a JavaScript number object based on the int64_t data. If you need to indicate a large number of JS files, you are advised to use the BigInt interface.
 
 CPP code:
 
@@ -376,8 +388,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char* srcCallNative = R"JS(createInt64())JS";
 ```
+<!-- @[oh_jsvm_create_int64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/createint64/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 
 ```
 JSVM CreateInt64 success: 2147483648
@@ -385,7 +398,7 @@ JSVM CreateInt64 success: 2147483648
 
 ### OH_JSVM_CreateDouble
 
-Use **OH_JSVM_CreateDouble** to create a JS number of the double type.
+Creates a JavaScript number object based on double data.
 
 CPP code:
 
@@ -425,8 +438,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call the C++ code from JS.
 const char* srcCallNative = R"JS(createDouble())JS";
 ```
+<!-- @[oh_jsvm_create_double](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/createdouble/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 
 ```
 JSVM CreateDouble success: 1.234000

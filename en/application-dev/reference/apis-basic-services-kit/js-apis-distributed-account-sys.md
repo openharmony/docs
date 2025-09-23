@@ -1,5 +1,12 @@
 # @ohos.account.distributedAccount (Distributed Account Management) (System API)
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Account-->
+<!--Owner: @steven-q-->
+<!--Designer: @JiDong-CS1-->
+<!--Tester: @zhaimengchao-->
+<!--Adviser: @zengyawen-->
+
 The **distributedAccount** module provides APIs for managing distributed accounts, including querying and updating account login states.
 
 > **NOTE**
@@ -27,7 +34,7 @@ Obtains distributed information about a system account. This API uses an asynchr
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**Required permissions**: ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS; or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS and ohos.permission.GET_DISTRIBUTED_ACCOUNTS
 
 **Parameters**
 
@@ -42,7 +49,6 @@ Obtains distributed information about a system account. This API uses an asynchr
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 
@@ -76,7 +82,7 @@ Obtains distributed information about a system account. This API uses a promise 
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**Required permissions**: ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS; or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS and ohos.permission.GET_DISTRIBUTED_ACCOUNTS
 
 **Parameters**
 
@@ -96,7 +102,6 @@ Obtains distributed information about a system account. This API uses a promise 
 | -------- | ------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
 

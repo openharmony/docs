@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 As an important feature of the camera, deferred photo delivery enables the system, after receiving a photo capture task from an application, to report images of different quality levels in multiple phases.
 
@@ -24,7 +25,7 @@ To develop deferred photo delivery, perform the following steps:
 
 ## How to Develop
 
-Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
+Read [Camera](../../reference/apis-camera-kit/arkts-apis-camera.md) for the API reference.
 
 1. Import dependencies. Specifically, import the camera, image, and media library modules.
 
@@ -36,18 +37,24 @@ Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) 
 
 2. Determine the photo output stream.
 
-   You can use the **photoProfiles** property of the [CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability) class to obtain the photo output streams supported by the device and use [createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11) to create a photo output stream.
+   You can use the **photoProfiles** property of [CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability) to obtain the photo output streams supported by the device and use [createPhotoOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createphotooutput11) to create a photo output stream.
 
    ```ts
    function getPhotoOutput(cameraManager: camera.CameraManager, 
      cameraOutputCapability: camera.CameraOutputCapability): camera.PhotoOutput | undefined {
      let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
-     if (!photoProfilesArray) {
-       console.error("createOutput photoProfilesArray == null || undefined");
+     if (photoProfilesArray===null || photoProfilesArray===undefined) {
+       console.error("createOutput photoProfilesArray is null!");
+       return undefined;
      }
      let photoOutput: camera.PhotoOutput | undefined = undefined;
      try {
-       photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
+      if (photoProfilesArray.length > 0) {
+          photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
+      } else {
+          console.log("the length of photoProfilesArray<=0!");
+          return undefined;
+      }
      } catch (error) {
        let err = error as BusinessError;
        console.error(`Failed to createPhotoOutput. error: ${err}`);
@@ -59,8 +66,10 @@ Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) 
 3. Set the **photoAssetAvailable** callback.
 
    > **NOTE**
-   > 
-   > If the **photoAssetAvailable** callback has been registered and the **photoAvailable** callback is registered after the session starts, the stream will be restarted. In this case, only the **photoAssetAvailable** callback takes effect. Therefore, you are not advised to register both **photoAvailable** and **photoAssetAvailable**.
+   >
+   > If the **photoAssetAvailable** callback has been registered and the **photoAvailable** callback is registered after the session starts, the stream will be restarted. In this case, only the **photoAssetAvailable** callback takes effect.
+   >
+   > You are not advised to register both [photoAvailable](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#onphotoavailable11) and [photoAssetAvailable](../../reference/apis-camera-kit/arkts-apis-camera-PhotoOutput.md#onphotoassetavailable12).
 
    ```ts
    function getPhotoAccessHelper(context: Context): photoAccessHelper.PhotoAccessHelper {
@@ -130,7 +139,7 @@ Read [Module Description](../../reference/apis-camera-kit/arkts-apis-camera.md) 
 
 During camera application development, you can listen for the status of the photo output stream, including the start of the photo stream, the start and end of the photo frame, and errors of the photo output stream.
 
-- Register the **'captureStart'** event to listen for photo capture start events. This event can be registered when a PhotoOutput instance is created and is triggered when the camera device starts photo capture. The capture ID is returned.
+- Register the **captureStartWithInfo** event to listen for photo capture start events. This event can be registered when a PhotoOutput instance is created and is triggered when the camera device starts photo capture. The capture ID is returned.
 
   ```ts
   function onPhotoOutputCaptureStart(photoOutput: camera.PhotoOutput): void {

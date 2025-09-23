@@ -2,7 +2,7 @@
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @CCFFWW-->
-<!--Designer: @yangfan229-->
+<!--Designer: @CCFFWW-->
 <!--Tester: @lxl007-->
 <!--Adviser: @HelloCrease-->
 
@@ -177,6 +177,10 @@ bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions): T
 5. 不支持指定其他显示层级接口，如showInSubWindow = true、mode = SheetMode.EMBEDDED。侧边弹窗的层级同SheetMode.OVERLAY，只支持在当前UIContext内顶层显示，在所有页面之上。和弹窗类组件显示在一个层级。
 
 6. 无悬停态避让能力。
+
+7. SIDE样式的半模态width的默认值规格：
+   - [断点](../../../../application-dev/ui/arkts-layout-development-grid-layout.md#栅格容器断点)为md的场景，默认宽度为窗口的1/2。
+   - [断点](../../../../application-dev/ui/arkts-layout-development-grid-layout.md#栅格容器断点)大于md的场景，默认宽度400vp。
 
 
 **侧边弹窗样式不支持的接口**

@@ -948,7 +948,7 @@ SENSOR_TYPE_ACCELEROMETER:data[0]、data[1]、data[2]分别表示设备x、y、z
 
 SENSOR_TYPE_GYROSCOPE:data[0]、data[1]、data[2]分别表示设备x、y、z轴的旋转角速度，单位弧度/s；
 
-SENSOR_TYPE_AMBIENT_LIGHT:data[0]表示环境光强度，in lux；
+SENSOR_TYPE_AMBIENT_LIGHT:data[0]表示环境光强度，单位lux；
 
 SENSOR_TYPE_MAGNETIC_FIELD:data[0]、data[1]、data[2]分别表示设备x、y、z轴的地磁分量，单位微特斯拉； 
 

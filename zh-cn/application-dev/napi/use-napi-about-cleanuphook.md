@@ -137,7 +137,7 @@ ArkTS侧示例代码
 ```ts
 // index.ets
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 let wk = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 // 发送消息到worker线程
@@ -153,7 +153,7 @@ wk.onmessage = (message) => {
 ```ts
 // worker.ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 import testNapi from 'libentry.so';
 
 let parent = worker.workerPort;
@@ -162,7 +162,7 @@ parent.onmessage = (message) => {
   hilog.info(0x0000, 'testTag', 'Test Node-API message from main thread: %{public}s', JSON.stringify(message));
   // 发送消息到主线程
   parent.postMessage('Test Node-API worker:' + testNapi.napiEnvCleanUpHook());
-}
+};
 ```
 <!-- @[connect_with_main_thread](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIUse/NodeAPICleanuphook/entry/src/main/ets/workers/worker.ts) -->
 

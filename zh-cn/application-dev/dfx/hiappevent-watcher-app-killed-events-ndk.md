@@ -1,4 +1,4 @@
-# 订阅应用查杀事件（C/C++）
+# 订阅应用终止事件（C/C++）
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
@@ -7,9 +7,9 @@
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @foryourself-->
 
-## 应用查杀事件规格说明
+## 应用终止事件规格说明
 
-请参考[应用查杀事件介绍](./hiappevent-watcher-app-killed-events.md)。
+请参考[应用终止事件介绍](./hiappevent-watcher-app-killed-events.md)。
 
 ## 接口说明
 
@@ -185,7 +185,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 8. 点击DevEco Studio界面中的运行按钮，运行应用工程，触发泄漏后，等待2-3分钟，应用会退出。
 
-9. 应用被查杀后，重新打开应用，会触发查杀事件上报，系统会回调应用的onReceive函数，可以在Log窗口看到对系统事件数据的处理日志：
+9. 应用被终止后，重新打开应用，会触发终止事件上报，系统会回调应用的onReceive函数，可以在Log窗口看到对系统事件数据的处理日志：
 
     ```text
       HiAppEvent eventInfo.domain=OS
@@ -198,7 +198,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
     > **说明：**
     >
-    > 根据日志报错内容，可查看具体[查杀原因](./hiappevent-watcher-app-killed-events.md)。
+    > 根据日志报错内容，可查看具体[终止原因](./hiappevent-watcher-app-killed-events.md)。
 
 10. 移除事件观察者：
 

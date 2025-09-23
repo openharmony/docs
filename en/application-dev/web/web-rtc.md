@@ -1,10 +1,16 @@
 # Starting a Camera and Microphone
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @qq_42700029-->
+<!--Designer: @qiu-gongkai-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Web Real-Time Communications (WebRTC) is a real-time communication technology that allows network applications or sites to establish peer-to-peer (P2P) connections between browsers without an intermediary, implementing the transmission of video streams, audio streams, or other data. It enables users to create peer-to-peer (P2P) data sharing and conference calls without installing any plug-in or third-party software. WebRTC is applicable to all modern browsers and native clients on major platforms. The underlying technology is implemented as an open web standard and provided as a common JavaScript API in all major browsers.
 
 The **Web** component can start a camera and microphone by calling the W3C Standards-compliant API **navigator.mediaDevices.getUserMedia()** in JavaScript, and receive the permission request notification through [onPermissionRequest](../reference/apis-arkweb/arkts-basic-components-web-events.md#onpermissionrequest9). To call these APIs, you need to declare the audio permissions in the **module.json5** file.
 
-- For details about how to add audio permissions, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+- For details about how to add audio permissions, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md).
 
    ```json
     // src/main/resources/base/element/string.json
@@ -41,7 +47,7 @@ The **Web** component can start a camera and microphone by calling the W3C Stand
           "when":"inuse"
         }
       }
-    ],
+    ]
    ```
 
 Invoke the **navigator.mediaDevices.getUserMedia()** API in JavaScript to start the camera and microphone. The **constraints** parameter in the API is a **MediaStreamConstraints** object that specifies the types of media to request. It contains two members: **video** and **audio**.
@@ -118,7 +124,7 @@ In the following example, when a user clicks the button for enabling the camera 
     <meta charset="UTF-8">
   </head>
   <body>
-  <video id="video" width="500px" height="500px" autoplay="autoplay"></video>
+  <video id="video" width="500px" height="500px" autoplay></video>
   <canvas id="canvas" width="500px" height="500px"></canvas>
   <br>
   <input type="button" title="HTML5 Camera" value="Enable Camera" onclick="getMedia()"/>
@@ -134,9 +140,11 @@ In the following example, when a user clicks the button for enabling the camera 
       // Returned Promise object
       let promise = navigator.mediaDevices.getUserMedia(constraints);
       // then() is asynchronous. Invoke the MediaStream object as a parameter.
-      promise.then(function (MediaStream) {
+      promise.then(function(MediaStream) {
         video.srcObject = MediaStream;
         video.play();
+      }).catch(function(err) {
+    	  console.info(err.name + ": " + err.message);
       });
     }
   </script>

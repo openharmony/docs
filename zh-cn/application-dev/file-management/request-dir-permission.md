@@ -230,7 +230,7 @@ void WriteUserDownloadDirPathExample()
         return;
     }
     std::string msg = "Write a message";
-    outfile.write(msg.c_str(), sizeof(msg));
+    outfile.write(msg.c_str(), msg.size());
     outfile.close();
 }
 ```

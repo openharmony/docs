@@ -277,8 +277,8 @@ struct ImageExample {
           .width('100%')
           .allowDrop([uniformTypeDescriptor.UniformDataType.TEXT])
           .onDrop((event?: DragEvent, extraParams?: string) => {
-            this.uri = JSON.parse(extraParams as string).extraInfo;
-            this.aBlockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
+            this.uri = JSON.parse(extraParams as string)?.extraInfo;
+            this.aBlockArr.splice(JSON.parse(extraParams as string)?.insertIndex, 0, this.uri);
             console.info("ondrop not udmf data");
           })
           .border({width: 1})
@@ -314,7 +314,7 @@ struct ImageExample {
               if(arr.length > 0) {
                 let image = arr[0] as unifiedDataChannel.Image;
                 this.uri = image.imageUri;
-                this.bBlockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
+                this.bBlockArr.splice(JSON.parse(extraParams as string)?.insertIndex, 0, this.uri);
               } else {
                 console.info(`dragData arr is null`)
               }
@@ -682,12 +682,14 @@ struct ImageDrag {
           .height('70%')
           .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
           .onDrop((event: DragEvent, extraParams: string) => {
+            if (extraParams === null || extraParams === undefined) {
+              return;
+            }
             // 通过extraParams获取图片
             let arr: Record<string, object> = JSON.parse(extraParams) as Record<string, object>;
             let uri = arr['extraInfo'];
             if (typeof uri == 'string') {
               this.targetImage1 = uri;
-
               try {
                 request.downloadFile(this.context, {
                   url: uri,

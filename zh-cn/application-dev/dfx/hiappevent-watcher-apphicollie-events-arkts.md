@@ -59,7 +59,7 @@
 4. 订阅系统事件，编辑“EntryAbility.ets”文件，在onCreate函数中添加订阅代码，示例代码如下：
 
    ```ts
-   hiAppEvent.addWatcher({
+   let watcher: hiAppEvent.Watcher = {
      // 开发者可以自定义观察者名称，系统会使用名称来标识不同的观察者
      name: "watcher",
      // 开发者可以订阅感兴趣的系统事件，此处是订阅了任务执行超时事件
@@ -94,7 +94,7 @@
          }
        }
      }
-   });
+    };
    hiAppEvent.addWatcher(watcher);
    ```
 
@@ -104,7 +104,13 @@
 
    ```c++
    // 引入hicollie.h头文件
+   #include "napi/native_api.h"
    #include "hicollie/hicollie.h"
+   #include "hilog/log.h"
+   #include <unistd.h>
+   #undef LOG_TAG
+   #define LOG_TAG "testTag"
+   
    static napi_value TestHiCollieTimerNdk(napi_env env, napi_callback_info exports)
    {
        // 定义执行任务超时id值

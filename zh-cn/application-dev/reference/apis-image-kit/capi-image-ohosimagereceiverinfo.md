@@ -25,6 +25,6 @@
 | int32_t width | 消费端接收图片时的默认图像宽度，用pixels表示。 |
 | int32_t height | 消费端接收图片时的默认图像高度，用pixels表示。 |
 | int32_t format | 通过接收器创建图像格式OHOS_IMAGE_FORMAT_JPEG。 |
-| int32_t capacity | 图片缓存数量的最大值。 |
+| int32_t capacity | 图片缓存数量的最大值。该参数仅作为期望值，实际capacity由设备硬件决定。 |
 
 

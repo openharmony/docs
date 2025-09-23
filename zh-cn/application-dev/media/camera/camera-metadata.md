@@ -6,7 +6,7 @@
 <!--Tester: @xchaosioda-->
 <!--Adviser: @zengyawen-->
 
-在开发相机应用时，需要先参考开发准备[申请相关权限](camera-preparation.md)。
+在开发相机应用时，需要先[申请相关权限](camera-preparation.md)。
 
 元数据（Metadata）是对相机返回的图像信息数据的描述和上下文，针对图像信息，提供的更详细的数据，如照片或视频中，识别人像的取景框坐标等信息。
 
@@ -22,7 +22,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. 调用[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)类中的supportedMetadataObjectTypes属性，获取当前设备支持的元数据类型，并通过[createMetadataOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createmetadataoutput)方法创建元数据输出流。
+2. 调用[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)中的supportedMetadataObjectTypes属性，获取当前设备支持的元数据类型，并通过[createMetadataOutput](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#createmetadataoutput)方法创建元数据输出流。
 
    ```ts
    function getMetadataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.MetadataOutput | undefined {
@@ -45,33 +45,44 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
    ```ts
    async function startMetadataOutput(previewOutput: camera.PreviewOutput, metadataOutput: camera.MetadataOutput, cameraManager: camera.CameraManager): Promise<void> {
      let cameraArray: Array<camera.CameraDevice> = [];
-     cameraArray = cameraManager.getSupportedCameras();
-     if (cameraArray.length == 0) {
-       console.error('no camera.');
-       return;
+     try {
+       cameraArray = cameraManager.getSupportedCameras();
+       if (cameraArray.length == 0) {
+         console.error('no camera.');
+         return;
+       }
+       // 示例代码默认选择第一个镜头，实际开发需根据所需镜头。
+       const cameraDevice: camera.CameraDevice = cameraArray[0];
+       // 获取支持的模式类型。
+       let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraDevice);
+       let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
+       if (!isSupportPhotoMode) {
+         console.error('photo mode not support');
+         return;
+       }
+       let cameraInput: camera.CameraInput | undefined = undefined;
+       cameraInput = cameraManager.createCameraInput(cameraDevice);
+       if (cameraInput === undefined) {
+         console.error('cameraInput is undefined');
+         return;
+       }
+       // 打开相机。
+       await cameraInput.open();
+       let session = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+       if (!session) {
+         console.error('session is null');
+         return;
+       }
+       let photoSession: camera.PhotoSession = session as camera.PhotoSession;
+       photoSession.beginConfig();
+       photoSession.addInput(cameraInput);
+       photoSession.addOutput(previewOutput);
+       photoSession.addOutput(metadataOutput);
+       await photoSession.commitConfig();
+       await photoSession.start();
+     } catch (error) {
+       console.error('startMetadataOutput call failed');
      }
-     // 获取支持的模式类型。
-     let sceneModes: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(cameraArray[0]);
-     let isSupportPhotoMode: boolean = sceneModes.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
-     if (!isSupportPhotoMode) {
-       console.error('photo mode not support');
-       return;
-     }
-     let cameraInput: camera.CameraInput | undefined = undefined;
-     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
-     if (cameraInput === undefined) {
-       console.error('cameraInput is undefined');
-       return;
-     }
-     // 打开相机。
-     await cameraInput.open();
-     let session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
-     session.beginConfig();
-     session.addInput(cameraInput);
-     session.addOutput(previewOutput);
-     session.addOutput(metadataOutput);
-     await session.commitConfig();
-     await session.start();
    }
    ```
 

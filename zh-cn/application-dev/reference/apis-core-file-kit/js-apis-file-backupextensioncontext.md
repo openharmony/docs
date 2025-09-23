@@ -42,27 +42,27 @@ import { contextConstant } from '@kit.AbilityKit';
 
 export default class MyBackupExtAbility extends BackupExtensionAbility {
     async onBackup() {
-        console.log("onBackup begin");
+        console.info("onBackup begin");
         // 使用者可通过改变 this.context.area 来进行切换el1，el2对应的沙箱路径
         this.context.area = contextConstant.AreaMode.EL1;
         // 使用者可通过 this.context.backupDir 对沙箱路径进行获取
         let dir = this.context.backupDir;
-        console.log(`onBackup el1 dir: ${dir}`);
+        console.info(`onBackup el1 dir: ${dir}`);
         this.context.area = contextConstant.AreaMode.EL2;
         dir = this.context.backupDir;
-        console.log(`onBackup el2 dir: ${dir}`);
-        console.log("onBackup end");
+        console.info(`onBackup el2 dir: ${dir}`);
+        console.info("onBackup end");
     }
 
     async onRestore() {
-        console.log("onRestore begin");
+        console.info("onRestore begin");
         this.context.area = contextConstant.AreaMode.EL1;
         let dir = this.context.backupDir;
-        console.log(`onRestore el1 dir: ${dir}`);
+        console.info(`onRestore el1 dir: ${dir}`);
         this.context.area = contextConstant.AreaMode.EL2;
         dir = this.context.backupDir;
-        console.log(`onRestore el2 dir: ${dir}`);
-        console.log("onRestore end");
+        console.info(`onRestore el2 dir: ${dir}`);
+        console.info("onRestore end");
     }
 }
 ```

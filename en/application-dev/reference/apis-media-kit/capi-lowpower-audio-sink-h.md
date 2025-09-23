@@ -1,5 +1,12 @@
 # lowpower_audio_sink.h
 
+<!--Kit: Media Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @Saber_e-->
+<!--Designer: @yangde_dy-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
+
 ## Overview
 
 The file declares the native APIs provided by the OH_LowPowerAudioSink instance. You can use the APIs to implement low-power audio playback.
@@ -38,12 +45,12 @@ The file declares the native APIs provided by the OH_LowPowerAudioSink instance.
 | [OH_AVErrCode OH_LowPowerAudioSink_RegisterCallback(OH_LowPowerAudioSink* sink, OH_LowPowerAudioSinkCallback* callback)](#oh_lowpoweraudiosink_registercallback) | Registers a callback for an OH_LowPowerAudioSink instance.|
 | [OH_LowPowerAudioSinkCallback* OH_LowPowerAudioSinkCallback_Create(void)](#oh_lowpoweraudiosinkcallback_create) | Creates an OH_LowPowerAudioSinkCallback instance.|
 | [OH_AVErrCode OH_LowPowerAudioSinkCallback_Destroy(OH_LowPowerAudioSinkCallback* callback)](#oh_lowpoweraudiosinkcallback_destroy) | Destroys an OH_LowPowerAudioSinkCallback instance.|
-| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetPositionUpdateListener(OH_LowPowerAudioSinkCallback* callback,OH_LowPowerAudioSink_OnPositionUpdated onPositionUpdated,void* userData)](#oh_lowpoweraudiosinkcallback_setpositionupdatelistener) | Sets a progress update listener for an OH_LowPowerAudioSinkCallback instance.|
-| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetDataNeededListener(OH_LowPowerAudioSinkCallback* callback,OH_LowPowerAudioSink_OnDataNeeded onDataNeeded,void* userData)](#oh_lowpoweraudiosinkcallback_setdataneededlistener) | Sets a data needed listener for an OH_LowPowerAudioSinkCallback instance.|
-| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetErrorListener(OH_LowPowerAudioSinkCallback* callback,OH_LowPowerAudioSink_OnError onError,void* userData)](#oh_lowpoweraudiosinkcallback_seterrorlistener) | Sets an error listener for an OH_LowPowerAudioSinkCallback instance.|
-| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetInterruptListener(OH_LowPowerAudioSinkCallback* callback,OH_LowPowerAudioSink_OnInterrupted onInterrupted,void* userData)](#oh_lowpoweraudiosinkcallback_setinterruptlistener) | Sets an audio focus interruption listener for an OH_LowPowerAudioSinkCallback instance.|
-| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetDeviceChangeListener(OH_LowPowerAudioSinkCallback* callback,OH_LowPowerAudioSink_OnDeviceChanged onDeviceChanged,void* userData)](#oh_lowpoweraudiosinkcallback_setdevicechangelistener) | Sets an audio device change listener for an OH_LowPowerAudioSinkCallback instance.|
-| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetEosListener(OH_LowPowerAudioSinkCallback *callback,OH_LowPowerAudioSink_OnEos onEos,void* userData)](#oh_lowpoweraudiosinkcallback_seteoslistener) | Sets an end-of-stream listener for an OH_LowPowerAudioSinkCallback instance.|
+| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetPositionUpdateListener(OH_LowPowerAudioSinkCallback* callback, OH_LowPowerAudioSink_OnPositionUpdated onPositionUpdated, void* userData)](#oh_lowpoweraudiosinkcallback_setpositionupdatelistener) | Sets a progress update listener for an OH_LowPowerAudioSinkCallback instance.|
+| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetDataNeededListener(OH_LowPowerAudioSinkCallback* callback, OH_LowPowerAudioSink_OnDataNeeded onDataNeeded, void* userData)](#oh_lowpoweraudiosinkcallback_setdataneededlistener) | Sets a data needed listener for an OH_LowPowerAudioSinkCallback instance.|
+| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetErrorListener(OH_LowPowerAudioSinkCallback* callback, OH_LowPowerAudioSink_OnError onError, void* userData)](#oh_lowpoweraudiosinkcallback_seterrorlistener) | Sets an error listener for an OH_LowPowerAudioSinkCallback instance.|
+| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetInterruptListener(OH_LowPowerAudioSinkCallback* callback, OH_LowPowerAudioSink_OnInterrupted onInterrupted, void* userData)](#oh_lowpoweraudiosinkcallback_setinterruptlistener) | Sets an audio focus interruption listener for an OH_LowPowerAudioSinkCallback instance.|
+| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetDeviceChangeListener(OH_LowPowerAudioSinkCallback* callback, OH_LowPowerAudioSink_OnDeviceChanged onDeviceChanged, void* userData)](#oh_lowpoweraudiosinkcallback_setdevicechangelistener) | Sets an audio device change listener for an OH_LowPowerAudioSinkCallback instance.|
+| [OH_AVErrCode OH_LowPowerAudioSinkCallback_SetEosListener(OH_LowPowerAudioSinkCallback *callback, OH_LowPowerAudioSink_OnEos onEos, void* userData)](#oh_lowpoweraudiosinkcallback_seteoslistener) | Sets an end-of-stream listener for an OH_LowPowerAudioSinkCallback instance.|
 
 ## Function Description
 
@@ -64,7 +71,7 @@ Creates an OH_LowPowerAudioSink instance.
 
 | Name| Description|
 | -- | -- |
-| const char* mime | Pointer to the MIME type of the audio decoder. For details about the available options, see [AVCODEC_MIME_TYPE](../apis-avcodec-kit/_codec_base.md#variables). |
+| const char* mime | Pointer to the MIME type of the audio decoder. For details about the available options, see [AVCODEC_MIME_TYPE](../apis-avcodec-kit/_codec_base.md#variables).|
 
 **Returns**
 

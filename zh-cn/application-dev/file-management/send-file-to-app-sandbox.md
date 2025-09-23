@@ -1,5 +1,13 @@
 # 向应用沙箱推送文件
 
+<!--Kit: Core File Kit-->
+<!--Subsystem: FileManagement-->
+<!--Owner: @wangfenging -->
+<!--Designer: @liveery; @zl_startup-->
+<!--Tester: @liuhaonan2-->
+<!--Adviser: @foryourself-->
+
+
 开发者在应用开发调试时，可能需要向应用沙箱下推送一些文件以期望在应用内访问或测试，此时有两种方式：
 
 1. 可以通过DevEco Studio向应用安装路径中放入目标文件，详见[应用安装资源访问](../quick-start/resource-categories-and-access.md#资源访问)。

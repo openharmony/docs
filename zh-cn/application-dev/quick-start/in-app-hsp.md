@@ -273,7 +273,7 @@ struct Index {
           application.createModuleContext(this.getUIContext()?.getHostContext(), "library").then((context:Context)=>{
               context.resourceManager.getStringValue(ResManager.getDesc().id)
               .then(value => {
-                console.log('getStringValue is ' + value);
+                console.info('getStringValue is ' + value);
                 this.message = 'getStringValue is ' + value;
               })
               .catch((err: BusinessError) => {

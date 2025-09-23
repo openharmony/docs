@@ -8,7 +8,7 @@
 
 本模块提供获取组件截图的能力，包括已加载的组件的截图和没有加载的组件的截图。组件截图只能够截取组件大小的区域，如果组件的绘制超出了它的区域，或子组件的绘制超出了父组件的区域，这些在组件区域外绘制的内容不会在截图中呈现。兄弟节点堆叠在组件区域内，截图不会显示兄弟组件。
 
-缩放、平移、旋转等图形变换属性只对被截图组件的子组件生效；对目标组件本身应用图形变换属性不生效，显示的是还是图形变换前的效果。
+缩放、平移、旋转等图形变换属性只对被截图组件的子组件生效；对目标组件本身应用图形变换属性不生效，显示的还是图形变换前的效果。
 
 组件截图典型使用场景（如长截图）及最佳实践请参考[使用组件截图](../../ui/arkts-uicontext-component-snapshot.md)。
 
@@ -299,7 +299,7 @@ struct OffscreenSnapshotExample {
 
 createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boolean, options?: SnapshotOptions): Promise<image.PixelMap>
 
-在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过Promise返回结果并支持获取离屏组件绘制区域坐标和大小。
+在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过Promise返回结果，支持获取离屏组件绘制区域的坐标和大小。
 
 > **说明：** 
 >
@@ -445,7 +445,7 @@ getSync(id: string, options?: SnapshotOptions): image.PixelMap
 
 > **说明：**
 > 
-> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext()获取[UIContext](arkts-apis-uicontext-uicontext.md)实例，并使用[getComponentSnapshot](arkts-apis-uicontext-uicontext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题。建议使用getUIContext()获取[UIContext](arkts-apis-uicontext-uicontext.md)实例，并使用[getComponentSnapshot](arkts-apis-uicontext-uicontext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
