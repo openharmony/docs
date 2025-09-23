@@ -152,7 +152,7 @@ async function Marshalling_UnMarshalling(context: Context) {
 
 createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<PixelMap>
 
-通过属性创建PixelMap，默认采用BGRA_8888格式处理数据，通过Promise返回结果。
+通过属性创建PixelMap，默认采用BGRA_8888格式处理数据。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -189,7 +189,7 @@ async function CreatePixelMap() {
 
 createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: AsyncCallback\<PixelMap>): void
 
-通过属性创建PixelMap，默认采用BGRA_8888格式处理数据，通过callback返回结果。
+通过属性创建PixelMap，默认采用BGRA_8888格式处理数据。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -366,7 +366,7 @@ async function CreatePixelMapFromParcel() {
 
 createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 
-根据Surface ID和区域信息创建一个PixelMap对象。该区域的大小由[Region](arkts-apis-image-i.md#region8).size指定。使用Promise形式返回。
+根据Surface ID和区域信息创建一个PixelMap对象。该区域的大小由[Region](arkts-apis-image-i.md#region8).size指定。使用Promise异步回调。
 
 > **说明：**
 > 当设备为折叠屏，且折叠状态切换时，可能因Surface自带旋转角度导致接口创建失败。需将宽高适配旋转角度。推荐使用[image.createPixelMapFromSurface](#imagecreatepixelmapfromsurface15)。
@@ -459,7 +459,7 @@ async function Demo(surfaceId: string) {
 
 createPixelMapFromSurface(surfaceId: string): Promise\<PixelMap>
 
-从Surface ID创建一个PixelMap对象。使用Promise异步回调，返回PixelMap。
+从Surface ID创建一个PixelMap对象。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -702,7 +702,7 @@ function CreatePixelMapSync() {
 
 createPremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallback\<void>): void
 
-将PixelMap的透明通道非预乘模式转变为预乘模式，转换后的数据存入目标PixelMap，通过回调函数返回结果。
+将PixelMap的透明通道非预乘模式转变为预乘模式，转换后的数据存入目标PixelMap。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -758,7 +758,7 @@ async function CreatePremultipliedPixelMap() {
 
 createPremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 
-将PixelMap数据按照透明度非预乘格式转为预乘格式，转换后的数据存入另一个PixelMap，通过Promise返回结果。
+将PixelMap数据按照透明度非预乘格式转为预乘格式，转换后的数据存入另一个PixelMap。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -816,7 +816,7 @@ async function CreatePremultipliedPixelMap() {
 
 createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallback\<void>): void
 
-将PixelMap的透明通道预乘模式转变为非预乘模式，转换后的数据存入目标PixelMap，通过回调函数返回结果。
+将PixelMap的透明通道预乘模式转变为非预乘模式，转换后的数据存入目标PixelMap。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -872,7 +872,7 @@ async function CreateUnpremultipliedPixelMap() {
 
 createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
 
-将PixelMap的透明通道预乘模式转变为非预乘模式，转换后的数据存入目标PixelMap，通过Promise返回结果。
+将PixelMap的透明通道预乘模式转变为非预乘模式，转换后的数据存入目标PixelMap。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
