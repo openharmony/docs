@@ -344,3 +344,4 @@ USB管理新增支持检查应用程序是否有权访问USB配件。（[API参�
 | [9238](https://gitcode.com/openharmony/multimedia_audio_framework/issues/9238) | 进程com.ohos.systemui下的OS_IPC_0_1067线程小概率出现cppcrash，崩溃栈：ld-musl-arm.so.1(__libc_free+172) | 系统异常，用户无感知。 | 2025年2月15日 | 
 | [211](https://gitcode.com/openharmony/device_soc_rockchip/issues/211) | render_service小概率出现因SERVICE_BLOCK导致的的sysfreeze问题。 | 桌面无响应后黑屏，自动恢复后回到桌面。 | 2025年2月15日 | 
 | [65](https://gitcode.com/openharmony/ai_intelligent_voice_framework/issues/65) | 进程intell_voice_service下的SaOndemand线程小概率出现cppcrash，崩溃栈：libintell_voice_server.z.so | 系统异常，用户无感知。 | 2025年2月15日 | 
+
