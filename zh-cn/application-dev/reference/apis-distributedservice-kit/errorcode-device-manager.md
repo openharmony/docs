@@ -1,4 +1,10 @@
 # 设备管理错误码
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedHardware-->
+<!--Owner: @zhangchuang-->
+<!--Designer: @zhangchuang-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @hu-zhiqiong-->
 
 > **说明：**
 >
