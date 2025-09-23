@@ -816,16 +816,16 @@ SDK提供的开放能力以Kit维度呈现给开发者。开发者可按Kit查�
 
 | ISSUE单 | 问题描述 | 
 | -------- | -------- |
-| I8PEOF | 进程com.ohos.mms有一定概率出现因为LIFECYCLE_TIMEOUT导致的sysfreeze问题。 |
-| I8QET3 | 进程bluetooth_servi下的OS_IPC_10_25363线程有一定概率出现因libbluetooth_server.z.so导致的cppcrash。 |
-| I8QH9S | 进程com.ohos.settingsdata下的os.settingsdata线程小概率出现因libnative_appdatafwk.z.so导致的cppcrash。 |
-| I8QNI7 | 进程foundation由于SERVICE_BLOCK小概率出现因netsysnative导致的sysfreeze。 |
-| I8QSZ1 | 进程com.ohos.systemui有一定概率出现由于THREAD_BLOCK_6S卡在libsamgr_proxy.z.so导致的appfreeze。 |
-| I7TYTF等43个开源组件漏洞 | 内核errseq_set函数protection_fault 等43个开源组件漏洞。 |
-| I78THF | RK3568 kernel patch中的maligpu版本过旧（11.29），存在大量未修复CVE漏洞。 |
-| I83D6I | 进入设置反复打开关闭蓝牙，有一定概率会导致设置出现appfreeze。 |
-| I827LU | 进入设置反复打开关闭蓝牙开关会出现内存泄漏，经测试一个小时泄露15MB。 |
-| I82V2W | 进入设置反复打开关闭蓝牙开关出现内存泄漏，经测试“设置”一个小时内存涨幅到180M。 |
+| [107](https://gitcode.com/openharmony/applications_mms/issues/107) | 进程com.ohos.mms有一定概率出现因为LIFECYCLE_TIMEOUT导致的sysfreeze问题。 |
+| [152](https://gitcode.com/openharmony/communication_bluetooth_service/issues/152) | 进程bluetooth_servi下的OS_IPC_10_25363线程有一定概率出现因libbluetooth_server.z.so导致的cppcrash。 |
+| [639](https://gitcode.com/openharmony/distributeddatamgr_relational_store/issues/639) | 进程com.ohos.settingsdata下的os.settingsdata线程小概率出现因libnative_appdatafwk.z.so导致的cppcrash。 |
+| [884](https://gitcode.com/openharmony/communication_netmanager_base/issues/884) | 进程foundation由于SERVICE_BLOCK小概率出现因netsysnative导致的sysfreeze。 |
+| [119](https://gitcode.com/openharmony/applications_systemui/issues/119) | 进程com.ohos.systemui有一定概率出现由于THREAD_BLOCK_6S卡在libsamgr_proxy.z.so导致的appfreeze。 |
+| [2468](https://gitcode.com/openharmony/kernel_linux_5.10/issues/2468)等43个开源组件漏洞 | 内核errseq_set函数protection_fault 等43个开源组件漏洞。 |
+| [211](https://gitcode.com/openharmony/vendor_hihope/issues/211) | RK3568 kernel patch中的maligpu版本过旧（11.29），存在大量未修复CVE漏洞。 |
+| [246](https://gitcode.com/openharmony/applications_settings/issues/246) | 进入设置反复打开关闭蓝牙，有一定概率会导致设置出现appfreeze。 |
+| [471](https://gitcode.com/openharmony/communication_bluetooth/issues/471) | 进入设置反复打开关闭蓝牙开关会出现内存泄漏，经测试一个小时泄露15MB。 |
+| [251](https://gitcode.com/openharmony/applications_settings/issues/251) | 进入设置反复打开关闭蓝牙开关出现内存泄漏，经测试“设置”一个小时内存涨幅到180M。 |
 
 
 
@@ -835,28 +835,27 @@ SDK提供的开放能力以Kit维度呈现给开发者。开发者可按Kit查�
 
 | ISSUE | 问题描述 | 影响 | 计划解决日期 | 
 | -------- | -------- | -------- | -------- |
-| I8WP8M | 移动桌面一个图标使之与另一图标重叠创建大文件夹，之后选中文件夹内的一个应用移出文件夹，重复此操作，launcher出现内存泄露，操作五分钟，内存泄漏约25M，操作一次泄露约673.68KB。 | 泄漏达到一定程度后造成系统卡顿。<br/>规避措施：清理后台应用或重启可释放。 | 4月30日 |
-| I98AV0 | 点击设置里的位置信息开关，重复此操作，distributeddata进程出现内存泄露，操作五分钟，泄露约14M，操作一次泄露约95.57KB。 | 泄漏达到一定程度后造成系统卡顿。<br/>规避措施：退出当前界面内存可释放。 | 4月30日 |
-| I9A9NO | 不停执行点击短信界面右上角新建短信和返回操作，5分钟短信应用内存上涨约50M，操作一次泄露约341.33KB。 | 泄漏达到一定程度后造成系统卡顿。<br/>规避措施：退出应用内存可释放。 | 4月30日 |
-| I8QLRO | 小概率在进程bluetooth_servi下的Stack线程出现cppcrash，崩溃栈：libbtstack.z.so。 | 蓝牙服务出现异常后服务自动恢复，用户无异常感知。 | 4月30日 |
-| I8TLYJ | 小概率在进程bluetooth_servi下的SaInit1线程出现cppcrash，崩溃栈：libbtstack.z.so。 | 蓝牙服务出现异常后服务自动恢复，用户无异常感知。 | 4月30日 |
-| I8TM99 | 小概率在进程softbus_server下的softbus_server线程出现cppcrash，崩溃栈：libbtframework.z.so。 | 软总线服务出现异常后服务自动恢复，用户无异常感知。 | 4月30日 |
-| I8VFJS | 小概率在进程com.ohos.settings下出现jscrash，栈名：ObservedPropertyAbstractPU。 | settings应用小概率出现闪退，退出应用内存可释放。 | 4月30日 |
-| I98NGO | 小概率下进程com.ohos.settings由于THREAD_BLOCK_6S卡在libbtframework.z.so发生appfreeze。 | settings应用小概率出现闪退，退出应用内存可释放。 | 4月30日 |
-| I90A2N | 一定概率下，进程com.ohos.systemui由于THREAD_BLOCK_6S卡在libeventhandler.z.so出现appfreeze。 | 点击或滑动无响应，重新进入控制中心或通知中心可恢复。 | 5月30日 |
-| I963UO | 一定概率下，进程com.ohos.systemui下的RSRenderThread线程导致libEGL.so出现cppcrash。 | 系统会自动进入锁屏界面，重新解锁可恢复。 | 5月30日 |
-| I9A089 | 中等概率下进程foundation由于SERVICE_BLOCK出现sysfreeze。 | 卡顿5秒后会播放1秒开机动画，然后进入锁屏。此时重新解锁可恢复。 | 4月15日 |
-| I9AYM2 | 小概率下进程com.ohos.note由于THREAD_BLOCK_6S卡在libweb_engine.so出现appfreeze。 | 备忘录应用界面卡顿。重启备忘录应用可恢复。 | 5月30日 |
-| I9CGOZ | 有较高概率，进程com.ohos.camera由于THREAD_BLOCK_6S卡在libcamera_framework.z.so出现appfreeze。 | 相机应用拍照/预览无响应，重新打开相机应用可恢复。 | 4月30日 |
-| I9AEO0 | 小概率在进程com.ohos.settings出现APP_INPUT_BLOCK的appfreeze。 | settings应用无响应，重启应用可恢复。 | 4月30日 |
-| I8QH9S | 小概率在进程com.ohos.settingsdata下的os.settingsdata线程出现cppcrash，崩溃栈：libnative_appdatafwk.z.so。 | settingsdata服务崩溃，再次访问数据时会自行启动。对用户无影响。 | 4月15日 |
-| I963TL | 小概率因进程com.ohos.mms下的com.ohos.mms线程导致libark_jsruntime.so出现cppcrash。 | 短信应用无响应或自动退出，重启应用可恢复。 | 4月30日 |
-| I9635I | 设备极小概率自动重启。 | 影响可控，无需规避。 | 4月30日 |
-| I96JJ7 | 小概率在进程com.ohos.note下的com.ohos.note线程出现cppcrash，崩溃栈：libace_compatible.z.so。 | 使用备忘录应用时可能出现闪退，重启应用可恢复。 | 4月30日 |
-| I993H9 | 一定概率下进程com.ohos.smartperf由于THREAD_BLOCK_6S卡在libglobal_resmgr.z.so出现appfreeze。 | 用户在使用smartperf应用测试其他应用性能数据时，触发查看实时性能数据功能时，应用有卡顿。<br/>规避措施：系统会自动清理掉应用进程，重启smartperf可恢复。 | 4月30日 |
-| I97U6G | 小概率下进程com.ohos.certmanager由于THREAD_BLOCK_6S卡在librender_service_client.z.so出现appfreeze。 | 证书管理应用Freeze后系统自动退出该应用。影响可控。 | 4月30日 |
-| I98KIG | 小概率下进程com.ohos.camera由于THREAD_BLOCK_6S卡在libcamera_framework.z.so出现appfreeze。 | 点击相机应用后出现卡顿。退出应用，清理内存后重新打开相机可恢复。 | 4月15日 |
-| I98NFR | 小概率在进程com.ohos.smartperf下的ohos.smartperf线程出现cppcrash，崩溃栈：libwm.z.so。 | 会有很低概率导致应用退出，退出后重启应用可恢复。 | 4月30日 |
-| I98AWP | 小概率在进程com.ohos.note下的com.ohos.note线程出现cppcrash，崩溃栈：libweb_engine.so。 | 备忘录可能出现闪退。重启应用可恢复。 | 4月30日 |
-| I96ZWB | 设备组网后查不到对端设备。 | OpenHarmony 4.0设备和4.1设备使用分布式音频无法兼容和互通。影响可控。 | 5月30日 |
-| I96CJL | 轻量级设备之间组网失败。 | 影响可控，暂无规避措施。 | 5月30日 |
+| [100](https://gitcode.com/openharmony/applications_launcher/issues/100) | 移动桌面一个图标使之与另一图标重叠创建大文件夹，之后选中文件夹内的一个应用移出文件夹，重复此操作，launcher出现内存泄露，操作五分钟，内存泄漏约25M，操作一次泄露约673.68KB。 | 泄漏达到一定程度后造成系统卡顿。<br/>规避措施：清理后台应用或重启可释放。 | 4月30日 |
+| [120](https://gitcode.com/openharmony/applications_settings/issues/120) | 点击设置里的位置信息开关，重复此操作，distributeddata进程出现内存泄露，操作五分钟，泄露约14M，操作一次泄露约95.57KB。 | 泄漏达到一定程度后造成系统卡顿。<br/>规避措施：退出当前界面内存可释放。 | 4月30日 |
+| [63](https://gitcode.com/openharmony/applications_mms/issues/63) | 不停执行点击短信界面右上角新建短信和返回操作，5分钟短信应用内存上涨约50M，操作一次泄露约341.33KB。 | 泄漏达到一定程度后造成系统卡顿。<br/>规避措施：退出应用内存可释放。 | 4月30日 |
+| [346](https://gitcode.com/openharmony/communication_bluetooth/issues/346) | 小概率在进程bluetooth_servi下的Stack线程出现cppcrash，崩溃栈：libbtstack.z.so。 | 蓝牙服务出现异常后服务自动恢复，用户无异常感知。 | 4月30日 |
+| [339](https://gitcode.com/openharmony/communication_bluetooth/issues/339) | 小概率在进程bluetooth_servi下的SaInit1线程出现cppcrash，崩溃栈：libbtstack.z.so。 | 蓝牙服务出现异常后服务自动恢复，用户无异常感知。 | 4月30日 |
+| [338](https://gitcode.com/openharmony/communication_bluetooth/issues/338) | 小概率在进程softbus_server下的softbus_server线程出现cppcrash，崩溃栈：libbtframework.z.so。 | 软总线服务出现异常后服务自动恢复，用户无异常感知。 | 4月30日 |
+| [143](https://gitcode.com/openharmony/applications_settings/issues/143) | 小概率在进程com.ohos.settings下出现jscrash，栈名：ObservedPropertyAbstractPU。 | settings应用小概率出现闪退，退出应用内存可释放。 | 4月30日 |
+| [104](https://gitcode.com/openharmony/communication_bluetooth_service/issues/104) | 小概率下进程com.ohos.settings由于THREAD_BLOCK_6S卡在libbtframework.z.so发生appfreeze。 | settings应用小概率出现闪退，退出应用内存可释放。 | 4月30日 |
+| [104](https://gitcode.com/openharmony/applications_systemui/issues/104) | 一定概率下，进程com.ohos.systemui由于THREAD_BLOCK_6S卡在libeventhandler.z.so出现appfreeze。 | 点击或滑动无响应，重新进入控制中心或通知中心可恢复。 | 5月30日 |
+| [5789](https://gitcode.com/openharmony/graphic_graphic_2d/issues/5789) | 一定概率下，进程com.ohos.systemui下的RSRenderThread线程导致libEGL.so出现cppcrash。 | 系统会自动进入锁屏界面，重新解锁可恢复。 | 5月30日 |
+| [3830](https://gitcode.com/openharmony/window_window_manager/issues/3830) | 中等概率下进程foundation由于SERVICE_BLOCK出现sysfreeze。 | 卡顿5秒后会播放1秒开机动画，然后进入锁屏。此时重新解锁可恢复。 | 4月15日 |
+| [1983](https://gitcode.com/openharmony/web_webview/issues/1983) | 小概率下进程com.ohos.note由于THREAD_BLOCK_6S卡在libweb_engine.so出现appfreeze。 | 备忘录应用界面卡顿。重启备忘录应用可恢复。 | 5月30日 |
+| [1249](https://gitcode.com/openharmony/drivers_peripheral/issues/1249) | 有较高概率，进程com.ohos.camera由于THREAD_BLOCK_6S卡在libcamera_framework.z.so出现appfreeze。 | 相机应用拍照/预览无响应，重新打开相机应用可恢复。 | 4月30日 |
+| [102](https://gitcode.com/openharmony/applications_settings/issues/102) | 小概率在进程com.ohos.settings出现APP_INPUT_BLOCK的appfreeze。 | settings应用无响应，重启应用可恢复。 | 4月30日 |
+| [639](https://gitcode.com/openharmony/distributeddatamgr_relational_store/issues/639) | 小概率在进程com.ohos.settingsdata下的os.settingsdata线程出现cppcrash，崩溃栈：libnative_appdatafwk.z.so。 | settingsdata服务崩溃，再次访问数据时会自行启动。对用户无影响。 | 4月15日 |
+| [77](https://gitcode.com/openharmony/applications_mms/issues/77) | 小概率因进程com.ohos.mms下的com.ohos.mms线程导致libark_jsruntime.so出现cppcrash。 | 短信应用无响应或自动退出，重启应用可恢复。 | 4月30日 |
+| [1852](https://gitcode.com/openharmony/kernel_linux_5.10/issues/1852) | 设备极小概率自动重启。 | 影响可控，无需规避。 | 4月30日 |
+| [443](https://gitcode.com/openharmony/developtools_profiler/issues/443) | 一定概率下进程com.ohos.smartperf由于THREAD_BLOCK_6S卡在libglobal_resmgr.z.so出现appfreeze。 | 用户在使用smartperf应用测试其他应用性能数据时，触发查看实时性能数据功能时，应用有卡顿。<br/>规避措施：系统会自动清理掉应用进程，重启smartperf可恢复。 | 4月30日 |
+| [101](https://gitcode.com/openharmony/security_certificate_manager/issues/101) | 小概率下进程com.ohos.certmanager由于THREAD_BLOCK_6S卡在librender_service_client.z.so出现appfreeze。 | 证书管理应用Freeze后系统自动退出该应用。影响可控。 | 4月30日 |
+| [1323](https://gitcode.com/openharmony/drivers_peripheral/issues/1323) | 小概率下进程com.ohos.camera由于THREAD_BLOCK_6S卡在libcamera_framework.z.so出现appfreeze。 | 点击相机应用后出现卡顿。退出应用，清理内存后重新打开相机可恢复。 | 4月15日 |
+| [3876](https://gitcode.com/openharmony/window_window_manager/issues/3876) | 小概率在进程com.ohos.smartperf下的ohos.smartperf线程出现cppcrash，崩溃栈：libwm.z.so。 | 会有很低概率导致应用退出，退出后重启应用可恢复。 | 4月30日 |
+| [2044](https://gitcode.com/openharmony/web_webview/issues/2044) | 小概率在进程com.ohos.note下的com.ohos.note线程出现cppcrash，崩溃栈：libweb_engine.so。 | 备忘录可能出现闪退。重启应用可恢复。 | 4月30日 |
+| [239](https://gitcode.com/openharmony/distributedhardware_distributed_hardware_fwk/issues/239) | 设备组网后查不到对端设备。 | OpenHarmony 4.0设备和4.1设备使用分布式音频无法兼容和互通。影响可控。 | 5月30日 |
+| [2541](https://gitcode.com/openharmony/communication_dsoftbus/issues/2541) | 轻量级设备之间组网失败。 | 影响可控，暂无规避措施。 | 5月30日 |
