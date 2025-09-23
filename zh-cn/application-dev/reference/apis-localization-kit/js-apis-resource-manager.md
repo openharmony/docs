@@ -56,7 +56,7 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
 | callback | [AsyncCallback](#asynccallbackdeprecated)&lt;[ResourceManager](#resourcemanager)&gt; | 是    | 回调函数，返回资源管理ResourceManager对象。 |
 
 **示例：**
-
+<!--code_no_check_fa-->
   ```js
 import  resourceManager  from '@ohos.resourceManager';
 export default {
@@ -98,7 +98,7 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
 | callback   | [AsyncCallback](#asynccallbackdeprecated)&lt;[ResourceManager](#resourcemanager)&gt; | 是    | 回调函数，返回应用包名对应的资源管理ResourceManager对象。 |
 
 **示例：**
-
+<!--code_no_check_fa-->
   ```js
 import  resourceManager  from '@ohos.resourceManager';
 // 'com.example.testapp'仅作示例，请替换为实际应用包名
@@ -140,7 +140,7 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise对象，返回资源管理ResourceManager对象。 |
 
 **示例：**
-
+<!--code_no_check_fa-->
   ```js
 import resourceManager from '@ohos.resourceManager';
 
@@ -184,7 +184,7 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise对象，返回应用包名对应的资源管理ResourceManager对象。 |
 
 **示例：**
-
+<!--code_no_check_fa-->
   ```js
 import resourceManager from '@ohos.resourceManager';
 
