@@ -106,7 +106,7 @@ export default {
     // ... some drawing for the canvas using the offscreenCanvasCtx ...
 
     var dataURL = offscreen.toDataURL();
-    console.log(dataURL); //data:image/png;base64,xxxxxx
+    console.info(dataURL); //data:image/png;base64,xxxxxx
 
     var bitmap = offscreen.transferToImageBitmap();
     canvas.transferFromImageBitmap(bitmap);

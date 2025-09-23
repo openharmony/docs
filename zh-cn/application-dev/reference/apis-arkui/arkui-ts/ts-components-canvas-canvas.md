@@ -204,10 +204,10 @@ struct attributeDemo {
           .onClick(() => {
             this.context.startImageAnalyzer(this.config)
               .then(() => {
-                console.log("analysis complete")
+                console.info("analysis complete")
               })
               .catch((error: BusinessError) => {
-                console.log("error code: " + error.code)
+                console.info("error code: " + error.code)
               })
           })
         Button('stop')
