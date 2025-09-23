@@ -1808,7 +1808,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 ### getDataAnalysisProgress<sup>12+</sup>
 
-getDataAnalysisProgress(analysisType: AnalysisType): Promise&lt;string&gt;
+getDataAnalysisProgress(analysisType?: AnalysisType): Promise&lt;string&gt;
 
 获取资产的分析进度。使用Promise异步回调。
 
@@ -1822,13 +1822,13 @@ getDataAnalysisProgress(analysisType: AnalysisType): Promise&lt;string&gt;
 
 | 参数名  | 类型             | 必填   | 说明    |
 | ---- | -------------- | ---- | ----- |
-| analysisType | [AnalysisType](#analysistype11) | 是    | 需要获取的智慧分析类型。 |
+| analysisType | [AnalysisType](#analysistype11) | 否    | 需要获取的智慧分析类型，默认为空值。<br>该参数在API 12-21为必选参数，从API 22开始及以后为可选参数。 |
 
 **返回值：**
 
 | 类型                        | 说明           |
 | --------------------------- | -------------- |
-| Promise&lt;string&gt; | Promise对象，返回一个json格式的字符串。表示资产分析的进度。 |
+| Promise&lt;string&gt; | Promise对象，返回一个json格式的字符串。表示资产分析的进度。<br>参数为空时返回整体的进度，参数不为空时返回analysisType对应的进度。 |
 
 **错误码：**
 
@@ -1838,7 +1838,7 @@ getDataAnalysisProgress(analysisType: AnalysisType): Promise&lt;string&gt;
 | -------- | ---------------------------------------- |
 | 201      | Permission denied.                                           |
 | 202      | Called by non-system application.                            |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types; 2. Parameter verification failed. | 
 | 14000011       | Internal system error.         |
 
 **示例：**
@@ -1850,7 +1850,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getDataAnalysisProgress test start');
 
-    let result: string = await phAccessHelper.getDataAnalysisProgress(photoAccessHelper.AnalysisType.ANALYSIS_FACE);
+    let result: string = await phAccessHelper.getDataAnalysisProgress();
     console.info('getDataAnalysisProgress:' + result);
 
   } catch (err) {
