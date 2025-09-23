@@ -24,11 +24,15 @@ ClientAuthenticationHandler的构造函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-## confirm<sup>9+</sup>
+## confirm<sup>(deprecated)</sup>
 
 confirm(priKeyFile : string, certChainFile : string): void
 
 通知Web组件使用指定的私钥和客户端证书链。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 22开始废弃。建议使用[confirm](./arkts-basic-components-web-ClientAuthenticationHandler.md#confirm10)<sup>10+</sup>替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
