@@ -12,7 +12,7 @@
 
 **引用文件：** <usb_serial/usb_serial_api.h>
 
-**库：** libusb_serial.z.so
+**库：** libusb_serial_ndk.z.so
 
 **系统能力：** SystemCapability.Driver.UsbSerial.Extension
 
