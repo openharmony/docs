@@ -100,7 +100,7 @@ struct Index {
       NodeContainer(this.baseNode)
         .borderWidth(1)
         .onClick(() => {
-          console.log("click event");
+          console.info("click event");
         })
     }
     .padding({ left: 35, right: 35, top: 35 })
