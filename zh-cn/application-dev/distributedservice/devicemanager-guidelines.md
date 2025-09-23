@@ -1,4 +1,10 @@
 # 分布式设备管理开发指南
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedHardware-->
+<!--Owner: @zhangchuang-->
+<!--Designer: @zhangchuang-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @hu-zhiqiong-->
 
 ## 分布式设备管理简介
 

@@ -1,4 +1,10 @@
 # @ohos.distributedHardware.deviceManager (设备管理)(系统接口)
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedHardware-->
+<!--Owner: @zhangchuang-->
+<!--Designer: @zhangchuang-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @hu-zhiqiong-->
 
 本模块能力已更新至新模块。建议使用新模块的接口进行开发，参见[@ohos.distributedDeviceManager](js-apis-distributedDeviceManager.md)。
 

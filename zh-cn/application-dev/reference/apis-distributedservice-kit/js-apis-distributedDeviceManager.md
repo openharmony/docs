@@ -1,4 +1,10 @@
 # @ohos.distributedDeviceManager (设备管理)
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedHardware-->
+<!--Owner: @zhangchuang-->
+<!--Designer: @zhangchuang-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @hu-zhiqiong-->
 
 本模块提供分布式设备管理能力。
 
