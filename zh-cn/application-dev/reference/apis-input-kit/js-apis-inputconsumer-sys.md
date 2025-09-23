@@ -46,8 +46,8 @@ on(type: 'key', keyOptions: KeyOptions, callback: Callback&lt;KeyOptions&gt;): v
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 202  | SystemAPI permission error. |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 202  | Permission denied, non-system app called system api. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：** 
 
@@ -106,8 +106,8 @@ off(type: 'key', keyOptions: KeyOptions, callback?: Callback&lt;KeyOptions&gt;):
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 202  | SystemAPI permission error. |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 202  | Permission denied, non-system app called system api. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：** 
 
@@ -195,7 +195,7 @@ setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | SystemAPI permission error. |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：** 
 
@@ -252,7 +252,7 @@ getShieldStatus(shieldMode: ShieldMode): boolean
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202  | SystemAPI permission error. |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：** 
 
