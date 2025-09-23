@@ -570,3 +570,7 @@ struct ChildComponent {
 | [visualEffect](ts-universal-attributes-filter-effect.md#visualeffect)             | 不支持   | is not callable           | -                                         |
 | [bindMenu](ts-universal-attributes-menu.md#bindmenu11)                 | 部分支持 | -                         | 不支持入参为CustomBuilder。               |
 | [dragPreview](ts-universal-attributes-drag-drop.md#dragpreview15)              | 部分支持 | Builder is not supported. | 不支持入参为CustomBuilder。               |
+| [onVisibleAreaChange](ts-universal-component-visible-area-change-event.md#onvisibleareachange)              | 部分支持 | Method not implemented. | 从API version 20开始支持。              |
+| [onTouchIntercept](ts-universal-attributes-on-touch-intercept.md#ontouchintercept)              | 部分支持 | is not callable. | 从API version 20开始支持。              |
+| [onPreDrag](ts-universal-events-drag-drop.md#onpredrag12)              | 部分支持 | Method not implemented. | 从API version 20开始支持。              |
+| [onChildTouchTest](ts-universal-attributes-on-child-touch-test.md#onchildtouchtest11)              | 部分支持 | is not callable. | 从API version 20开始支持。              |

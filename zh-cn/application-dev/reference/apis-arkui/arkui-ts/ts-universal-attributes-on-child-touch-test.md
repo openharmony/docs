@@ -38,7 +38,9 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 >**说明：**
 >
->子节点信息数组中仅包含命名节点的信息，即开发者通过id属性设置了id的节点。
+>- 子节点信息数组中仅包含命名节点的信息，即开发者通过id属性设置了id的节点。
+>
+>- 从API version 20开始，该接口支持在[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)中调用。
 
 ## TouchTestInfo<sup>11+</sup>
 

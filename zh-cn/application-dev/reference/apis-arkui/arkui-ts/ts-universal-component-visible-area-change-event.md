@@ -36,7 +36,7 @@ onVisibleAreaChange(ratios: Array&lt;number&gt;, event: VisibleAreaChangeCallbac
 | T | 返回当前组件。 |
 
 > **说明：**
->
+>- 从API version 20开始，该接口支持在[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)中调用。
 >
 >- 仅提供自身节点相对于所有祖先节点（直到window边界）的相对裁切面积与自身面积的比值及其变化趋势。
 > 
