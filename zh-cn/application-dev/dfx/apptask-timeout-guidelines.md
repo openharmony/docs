@@ -22,7 +22,8 @@
 ### 检测原理
 
 1. 触发流程
-   主线程超时150ms~450ms，触发采样调用栈流程；主线程超时450ms，触发采集trace流程。
+
+   主线程超时150ms~450ms，触发采样调用栈流程，生成以txt结尾的堆栈文件；主线程超时450ms，触发采集trace流程，生成以trace结尾的堆栈文件。
 
    150ms &lt; 主线程处理时长 &lt; 450ms：主线程超时采样栈。**同一个应用的PID一个生命周期仅会触发一次主线程超时事件采样栈。开发者选项打开，一小时一次。应用启动10s内不进行检测。**
 
@@ -32,7 +33,7 @@
 
    > **注意：**
    >
-   > 启动主线程超时检测抓取trace的功能的前提：**开发者使用nolog版本，开发者模式处于关闭状态**；
+   > 启动主线程超时检测抓取trace的功能的前提：**开发者使用[nolog](performance-analysis-kit-terminology.md#nolog版本)版本，关闭[开发者模式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-developer-mode#section530763213432)**；
    >
    > log和nolog版本：在手机中，点击设置——搜索关键字“关于本机”——软件版本进行查看。log版本会以log结尾；
    >
@@ -134,9 +135,9 @@ HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hia
    ```
 
 3. 采样trace规格
-   trace文件大小约为1-5M左右。trace文件可以通过[HiSmartPerf](https://gitee.com/openharmony/developtools_smartperf_host)工具进行可视化分析。工具下载链接：[developtools_smartperf_host官方发行版](https://gitee.com/openharmony/developtools_smartperf_host/releases)。
+   trace文件大小约为1-5M左右。trace文件可以通过[HiSmartPerf](https://gitcode.com/openharmony/developtools_smartperf_host)工具进行可视化分析。工具下载链接：[developtools_smartperf_host官方发行版](https://gitcode.com/openharmony/developtools_smartperf_host/releases)。
 
-   trace文件说明参考：[web端加载trace说明](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/smartperf_host/ide/src/doc/md/quickstart_systemtrace.md)。
+   trace文件说明参考：[web端加载trace说明](https://gitcode.com/openharmony/developtools_smartperf_host/blob/master/smartperf_host/ide/src/doc/md/quickstart_systemtrace.md)。
 
 ## 任务执行超时检测
 

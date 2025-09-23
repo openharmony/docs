@@ -4313,24 +4313,6 @@
 
 **起始版本**：18
 
-## ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
-
-允许扩展外设驱动访问SCSI DDK接口开发SCSI Peripheral扩展外设驱动。
-
-支持以下类型的外设扩展驱动开发：
-外设以USB总线接入主机，且满足：
-
-1. 外设InterfaceClass为Mass Storage(0x08)、InterfaceSubClass为SCSI透明命令集(0x06)。
-2. 外设能够以对操作系统透明的方式来模拟SCSI设备。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：18
-
 ## ohos.permission.ACCESS_DDK_USB_SERIAL
 
 允许扩展外设驱动访问USBSerial DDK接口开发USB Serial扩展外设驱动。
@@ -4801,7 +4783,7 @@
 
 ## ohos.permission.VIRUS_PROTECTION_SERVICE
 
-允许应用启动病毒查杀任务。
+允许应用启动病毒终止任务。
 
 **权限级别**：system_basic
 
@@ -5094,3 +5076,33 @@
 **支持设备**：PC/2in1
 
 **起始版本**：20
+
+## ohos.permission.MANAGE_SELF_SKILLS
+
+允许应用管理本应用的skills配置。
+
+获取该权限后，应用可管理自身的skills配置，扩展隐式匹配能力，如支持打开特定类型文件等。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1
+
+**起始版本**：22
+
+## ohos.permission.DATA_IDENTIFY_ANONYMIZE
+
+允许系统应用调用数据识别脱敏能力。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1 | Phone | Tablet | TV | Car
+
+**起始版本**：21

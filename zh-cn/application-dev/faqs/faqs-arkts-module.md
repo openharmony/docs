@@ -170,7 +170,7 @@ export function A() {
 import { a } from './A'
 export class Animal {
   static {
-    console.log("this is in class");
+    console.info("this is in class");
     let str = a; // 报错信息：a is not initialized
   }
 }
@@ -182,7 +182,7 @@ export class Animal {
 import { a } from './A'
 export class Animal {
   static {
-    console.log("this is in class");
+    console.info("this is in class");
   }
   str = a;  // 修改点
 }
@@ -199,8 +199,8 @@ ArkTS语言规范是基于ECMAScript规范的子集，根据语言规范，当�
 ### const/let声明前访问
 
 ``` typescript
-console.log(a); // 报错信息：Variable 'a' is used before being assigned.
-console.log(b); // 报错信息：Variable 'b' is used before being assigned.
+console.info(a); // 报错信息：Variable 'a' is used before being assigned.
+console.info(b); // 报错信息：Variable 'b' is used before being assigned.
 
 let a = '1';
 const b = '2';
@@ -211,8 +211,8 @@ const b = '2';
 let a = '1';
 const b = '2';
 
-console.log(a);
-console.log(b);
+console.info(a);
+console.info(b);
 ```
 
 

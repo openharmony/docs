@@ -1,5 +1,12 @@
 # @ohos.accessibility.config (SystemAPI)
 
+<!--Kit: Accessibility Kit-->
+<!--Subsystem: BarrierFree-->
+<!--Owner: @qiiiiiiian-->
+<!--Designer: @z7o-->
+<!--Tester: @A_qqq-->
+<!--Adviser: @w_Machine_cc-->
+
 The **accessibility.config** module provides APIs for configuring system accessibility features, including accessibility extension, high-contrast text, mouse buttons, and captions.
 
 > **NOTE**
@@ -13,41 +20,42 @@ The **accessibility.config** module provides APIs for configuring system accessi
 import { config } from '@kit.AccessibilityKit';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-| Name                                | Type                                                                                        | Readable| Writable| Description                                                       |
+| Name                                | Type                                                                                    | Read-Only| Optional| Description                        |
 |------------------------------------|--------------------------------------------------------------------------------------------| -------- | -------- |-----------------------------------------------------------|
-| highContrastText                   | [Config](#config)\<boolean>                                                                | Yes| Yes| Whether to enable high-contrast text. The value **true** indicates that high-contrast text is enabled, and **false** indicates the opposite.<br>Default value: **false**.                                          |
-| invertColor                        | [Config](#config)\<boolean>                                                                | Yes| Yes| Whether to enable color inversion. The value **true** indicates that color inversion is enabled, and **false** indicates the opposite.<br>Default value: **false**.                                            |
-| daltonizationState<sup>11+</sup>   | [Config](#config)\<boolean>                                                                | Yes| Yes| Whether to enable daltonization. It must be used with **daltonizationColorFilter**. The value **true** indicates that daltonization is enabled, and **false** indicates the opposite.<br>Default value: **false**.               |
-| daltonizationColorFilter           | [Config](#config)&lt;[DaltonizationColorFilter](#daltonizationcolorfilter)&gt;             | Yes| Yes| Configuration of the daltonization filter.                                              |
-| contentTimeout                     | [Config](#config)\<number>                                                                 | Yes| Yes| Recommended duration for content display. The value ranges from 0 to 5000, in milliseconds. Default value: **0**.                            |
-| animationOff                       | [Config](#config)\<boolean>                                                                | Yes| Yes| Whether to disable animation. The value **true** indicates that animation is disabled, and **false** indicates the opposite.<br>Default value: **0**.                                            |
-| brightnessDiscount                 | [Config](#config)\<number>                                                                 | Yes| Yes| Brightness discount. The value ranges from 0 to 1.0. Default value: **0.0**.                                     |
-| mouseKey                           | [Config](#config)\<boolean>                                                                | Yes| Yes| Whether to enable the mouse button. The value **true** indicates that the mouse button is enabled, and **false** indicates the opposite. <br>Default value: **0**.                                             |
-| mouseAutoClick                     | [Config](#config)\<number>                                                                 | Yes| Yes| Configuration of the automatic mouse click operation. The value ranges from 0 to 5000, in milliseconds. The value **0** indicates that the automatic mouse click is not triggered; other values indicate that the operation is triggered when the mouse pointer is hovered for a specified period of time.<br>Default value: **0**.               |
-| shortkey                           | [Config](#config)\<boolean>                                                                | Yes| Yes| Whether to enable the accessibility extension shortcut key. The value **true** indicates that the auxiliary extension shortcut key is enabled, and **false** indicates the opposite.<br>Default value: **false**.                                         |
-| shortkeyTarget                     | [Config](#config)\<string>                                                                 | Yes| Yes| Target application for the accessibility extension shortcut key. The value format is 'bundleName/abilityName'.  |
-| captions                           | [Config](#config)\<boolean>                                                                | Yes| Yes| Whether to enable captions. The value **true** indicates that caption is enabled, and **false** indicates the opposite.<br>Default value: **false**.                                            |
-| captionsStyle                      | [Config](#config)\<[accessibility.CaptionsStyle](js-apis-accessibility.md#captionsstyle8)> | Yes| Yes| Captions style.                                               |
-| audioMono<sup>10+</sup>            | [Config](#config)\<boolean>                                                                | Yes| Yes| Whether to enable mono audio. The value **true** indicates that mono audio is enabled, and **false** indicates the opposite.<br>Default value: **false**.                                           |
-| audioBalance<sup>10+</sup>         | [Config](#config)\<number>                                                                 | Yes| Yes| Audio balance for the left and right audio channels. The value ranges from -1.0 to 1.0. Default value: **0.0**.                               |
-| shortkeyMultiTargets<sup>11+</sup> | [Config](#config)&lt;Array\<string>&gt;                                                    | Yes| Yes| List of target applications for the accessibility shortcut keys. The value format is ['bundleName/abilityName'].|
-| clickResponseTime<sup>11+</sup>    | [Config](#config)&lt;[ClickResponseTime](#clickresponsetime11)&gt;                         | Yes| Yes| Length of time required for a click.                                            |
-| ignoreRepeatClick<sup>11+</sup>    | [Config](#config)\<boolean>                                                                | Yes| Yes| Whether to ignore repeated clicks. This parameter must be used together with **repeatClickInterval**. The value **true** indicates that the feature of ignoring repeated clicks is enabled, and **false** indicates the opposite.<br>Default value: **false**.                  |
-| repeatClickInterval<sup>11+</sup>  | [Config](#config)&lt;[RepeatClickInterval](#repeatclickinterval11)&gt;                     | Yes| Yes| Interval between repeated clicks.                                            |
+| highContrastText                   | [Config](#config)\<boolean>                                                                | No| No| Whether to enable high-contrast text. The value **true** indicates that high-contrast text is enabled, and **false** indicates the opposite.<br>Default value: **false**                                          |
+| invertColor                        | [Config](#config)\<boolean>                                                                | No| No| Whether to enable color inversion. The value **true** indicates that color inversion is enabled, and **false** indicates the opposite.<br>Default value: **false**                                            |
+| daltonizationState<sup>11+</sup>   | [Config](#config)\<boolean>                                                                | No| No| Whether to enable daltonization. It must be used with **daltonizationColorFilter**. The value **true** indicates that daltonization is enabled, and **false** indicates the opposite.<br>Default value: **false**               |
+| daltonizationColorFilter           | [Config](#config)&lt;[DaltonizationColorFilter](#daltonizationcolorfilter)&gt;             | No| No| Configuration of the daltonization filter.                                              |
+| contentTimeout                     | [Config](#config)\<number>                                                                 | No| No| Recommended duration for content display. The value ranges from 0 to 5000, in milliseconds.<br> Default value: **0**                            |
+| animationOff                       | [Config](#config)\<boolean>                                                                | No| No| Whether to disable animation. The value **true** indicates that animation is disabled, and **false** indicates the opposite.<br>Default value: **0**                                            |
+| brightnessDiscount                 | [Config](#config)\<number>                                                                 | No| No| Brightness discount. The value ranges from 0 to 1.0.<br> Default value: **0.0**                                     |
+| mouseKey                           | [Config](#config)\<boolean>                                                                | No| No| Whether to enable the mouse button. The value **true** indicates that the mouse button is enabled, and **false** indicates the opposite. <br>Default value: **0**                                             |
+| mouseAutoClick                     | [Config](#config)\<number>                                                                 | No| No| Configuration of the automatic mouse click operation. The value ranges from 0 to 5000, in milliseconds. The value **0** indicates that the automatic mouse click is not triggered; other values indicate that the operation is triggered when the mouse pointer is hovered for a specified period of time.<br>Default value: **0**               |
+| shortkey                           | [Config](#config)\<boolean>                                                                | No| No| Whether to enable the accessibility extension shortcut key. The value **true** indicates that the auxiliary extension shortcut key is enabled, and **false** indicates the opposite.<br>Default value: **false**                                         |
+| shortkeyTarget                     | [Config](#config)\<string>                                                                 | No| No| Target application for the accessibility extension shortcut key. The value format is 'bundleName/abilityName'.  |
+| captions                           | [Config](#config)\<boolean>                                                                | No| No| Whether to enable captions. The value **true** indicates that caption is enabled, and **false** indicates the opposite.<br>Default value: **false**                                            |
+| captionsStyle                      | [Config](#config)\<[accessibility.CaptionsStyle](js-apis-accessibility.md#captionsstyle8)> | No| No| Captions style.                                               |
+| audioMono<sup>10+</sup>            | [Config](#config)\<boolean>                                                                | No| No| Whether to enable mono audio. The value **true** indicates that mono audio is enabled, and **false** indicates the opposite.<br>Default value: **false**                                           |
+| audioBalance<sup>10+</sup>         | [Config](#config)\<number>                                                                 | No| No| Audio balance for the left and right audio channels. The value ranges from -1.0 to 1.0.<br> Default value: **0.0**                               |
+| shortkeyMultiTargets<sup>11+</sup> | [Config](#config)&lt;Array\<string>&gt;                                                    | No| No| List of target applications for the accessibility shortcut keys. The value format is ['bundleName/abilityName'].|
+| clickResponseTime<sup>11+</sup>    | [Config](#config)&lt;[ClickResponseTime](#clickresponsetime11)&gt;                         | No| No| Length of time required for a click.                                            |
+| ignoreRepeatClick<sup>11+</sup>    | [Config](#config)\<boolean>                                                                | No| No| Whether to ignore repeated clicks. This parameter must be used together with **repeatClickInterval**. The value **true** indicates that the feature of ignoring repeated clicks is enabled, and **false** indicates the opposite.<br>Default value: **false**                  |
+| repeatClickInterval<sup>11+</sup>  | [Config](#config)&lt;[RepeatClickInterval](#repeatclickinterval11)&gt;                     | No| No| Interval between repeated clicks.                                            |
 
 For a boolean return value, **True** means that the feature is enabled, and **False** means the opposite.
-[]()
 ## enableAbility
 
-enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): Promise&lt;void&gt;;
-
-**Required permissions**: ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): Promise&lt;void&gt;
 
 Enables an accessibility extension ability. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -66,7 +74,7 @@ Enables an accessibility extension ability. This API uses a promise to return th
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | Error Code| Error Message|
 | ------- | -------------------------------- |
@@ -94,11 +102,13 @@ config.enableAbility(name, capability).then(() => {
 
 ## enableAbility
 
-enableAbility(name: string, capability: Array&lt;[accessibility.Capability](js-apis-accessibility.md#capability)&gt;, callback: AsyncCallback&lt;void&gt;): void;
-
-**Required permissions**: ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+enableAbility(name: string, capability: Array&lt;[accessibility.Capability](js-apis-accessibility.md#capability)&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Enables an accessibility extension ability. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -112,7 +122,7 @@ Enables an accessibility extension ability. This API uses an asynchronous callba
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | Error Code| Error Message|
 | ------- | -------------------------------- |
@@ -142,11 +152,13 @@ config.enableAbility(name, capability, (err: BusinessError) => {
 
 ## disableAbility
 
-disableAbility(name: string): Promise&lt;void&gt;;
-
-**Required permissions**: ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+disableAbility(name: string): Promise&lt;void&gt;
 
 Disables an accessibility extension ability. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -164,7 +176,7 @@ Disables an accessibility extension ability. This API uses a promise to return t
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | Error Code| Error Message|
 | ------- | -------------------------------- |
@@ -190,11 +202,13 @@ config.disableAbility(name).then(() => {
 
 ## disableAbility
 
-disableAbility(name: string, callback: AsyncCallback&lt;void&gt;): void;
-
-**Required permissions**: ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+disableAbility(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 Disables an accessibility extension ability. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -207,7 +221,7 @@ Disables an accessibility extension ability. This API uses an asynchronous callb
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
 
 | Error Code| Error Message|
 | ------- | -------------------------------- |
@@ -235,11 +249,13 @@ config.disableAbility(name, (err: BusinessError) => {
 
 ## on('enabledAccessibilityExtensionListChange')
 
-on(type: 'enabledAccessibilityExtensionListChange', callback: Callback&lt;void&gt;): void;
-
-**Required permissions**: ohos.permission.READ_ACCESSIBILITY_CONFIG
+on(type: 'enabledAccessibilityExtensionListChange', callback: Callback&lt;void&gt;): void
 
 Adds a listener for changes in the list of enabled accessibility extension abilities. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -252,7 +268,7 @@ Adds a listener for changes in the list of enabled accessibility extension abili
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | Error Code| Error Message|
 | ------- | -------------------------------- |
@@ -272,11 +288,13 @@ config.on('enabledAccessibilityExtensionListChange', () => {
 
 ## off('enabledAccessibilityExtensionListChange')
 
-off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void&gt;): void;
-
-**Required permissions**: ohos.permission.READ_ACCESSIBILITY_CONFIG
+off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void&gt;): void
 
 Cancels a listener for changes in the list of enabled accessibility extension abilities. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -289,7 +307,7 @@ Cancels a listener for changes in the list of enabled accessibility extension ab
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | Error Code| Error Message|
 | ------- | -------------------------------- |
@@ -309,11 +327,13 @@ config.off('enabledAccessibilityExtensionListChange', () => {
 
 ## on('installedAccessibilityListChange')<sup>12+</sup>
 
-on(type: 'installedAccessibilityListChange', callback: Callback&lt;void&gt;): void;
-
-**Required permissions**: ohos.permission.READ_ACCESSIBILITY_CONFIG
+on(type: 'installedAccessibilityListChange', callback: Callback&lt;void&gt;): void
 
 Adds a listener for changes in the list of installed accessibility extension abilities. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -321,12 +341,12 @@ Adds a listener for changes in the list of installed accessibility extension abi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type. The value is fixed at 'installedAccessibilityListChange', indicating listening for changes in the list of enabled accessibility extension abilities.|
+| type | string | Yes| Listening type. The value is fixed at **'installedAccessibilityListChange'**, indicating listening for changes in the list of installed accessibility extension abilities.|
 | callback | Callback&lt;void&gt; | Yes| Callback invoked when the list of installed accessibility extension abilities changes.|
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | Error Code| Error Message|
 | ------- | -------------------------------- |
@@ -346,11 +366,13 @@ config.on('installedAccessibilityListChange', () => {
 
 ## off('installedAccessibilityListChange')<sup>12+</sup>
 
-off(type: 'installedAccessibilityListChange', callback?: Callback&lt;void&gt;): void;
-
-**Required permissions**: ohos.permission.READ_ACCESSIBILITY_CONFIG
+off(type: 'installedAccessibilityListChange', callback?: Callback&lt;void&gt;): void
 
 Cancels a listener for changes in the list of installed accessibility extension abilities. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -358,12 +380,12 @@ Cancels a listener for changes in the list of installed accessibility extension 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type |  string | Yes| Listening type. The value is fixed at 'installedAccessibilityListChange', indicating listening for changes in the list of enabled accessibility extension abilities.|
+| type |  string | Yes| Listening type. The value is fixed at **'installedAccessibilityListChange'**, indicating listening for changes in the list of installed accessibility extension abilities.|
 | callback | Callback&lt;void&gt; | No| Callback for the event. The value must be the same as the value of **callback** in **on('installedAccessibilityListChange')**. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | Error Code| Error Message|
 | ------- | -------------------------------- |
@@ -380,18 +402,15 @@ config.off('installedAccessibilityListChange', () => {
   console.info('Unsubscribe installed accessibility extension list change state success');
 });
 ```
+## setMagnificationState<sup>20+</sup>
 
-## Config
+setMagnificationState(state: boolean): void
 
-Implements configuration, acquisition, and listening for attributes.
+Sets the magnification state. Ensure that magnification is enabled before calling this API.
 
-### set
-
-set(value: T): Promise&lt;void&gt;;
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.WRITE_ACCESSIBILITY_CONFIG
-
-Sets the attribute value. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -399,7 +418,52 @@ Sets the attribute value. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Attribute value to set.|
+| state |  boolean | Yes| Whether to trigger or disable the magnification feature.<br>- **true**: to trigger the magnification feature.<br>- **false**: to disable the magnification feature.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Accessibility Error Codes](errorcode-accessibility.md).
+
+| Error Code| Error Message|
+| ------- | -------------------------------- |
+| 201  | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 9300007  | Trigger magnification failed. |
+
+**Example**
+
+```ts
+import { config } from '@kit.AccessibilityKit';
+
+try {
+  config.setMagnificationState(true);
+} catch (e) {
+  console.error(`Set magnification failed,  error code: ${e?.code}, error msg: ${e?.message}`);
+}
+```
+
+## Config
+
+Implements configuration, acquisition, and listening for properties.
+
+### set
+
+set(value: T): Promise&lt;void&gt;
+
+Sets the property value. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | T | Yes| Property value to set.|
 
 **Return value**
 
@@ -409,7 +473,7 @@ Sets the attribute value. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | Error Code| Error Message|
 | ------- | -------------------------------- |
@@ -434,11 +498,13 @@ config.highContrastText.set(value).then(() => {
 
 ### set
 
-set(value: T, callback: AsyncCallback&lt;void&gt;): void;
+set(value: T, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the property value. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.WRITE_ACCESSIBILITY_CONFIG
-
-Sets the attribute value. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -446,12 +512,12 @@ Sets the attribute value. This API uses an asynchronous callback to return the r
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | Yes| Attribute value to set.|
+| value | T | Yes| Property value to set.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | Error Code| Error Message|
 | ------- | -------------------------------- |
@@ -478,9 +544,11 @@ config.highContrastText.set(value, (err: BusinessError) => {
 
 ### get
 
-get(): Promise&lt;T&gt;;
+get(): Promise&lt;T&gt;
 
-Obtains the attribute value. This API uses a promise to return the result.
+Obtains the property value. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -492,7 +560,7 @@ Obtains the attribute value. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | Error Code| Error Message|
 | ------- | -------------------------------- |
@@ -514,9 +582,11 @@ config.highContrastText.get().then((data: boolean) => {
 
 ### get
 
-get(callback: AsyncCallback&lt;T&gt;): void;
+get(callback: AsyncCallback&lt;T&gt;): void
 
-Obtains the attribute value. This API uses an asynchronous callback to return the result.
+Obtains the property value. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -524,11 +594,11 @@ Obtains the attribute value. This API uses an asynchronous callback to return th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;T&gt; | Yes| Callback used to return the attribute value.|
+| callback | AsyncCallback&lt;T&gt; | Yes| Callback used to return the property value.|
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | Error Code| Error Message|
 | ------- | -------------------------------- |
@@ -551,11 +621,13 @@ config.highContrastText.get((err: BusinessError, data: boolean) => {
 
 ### on
 
-on(callback: Callback&lt;T&gt;): void;
+on(callback: Callback&lt;T&gt;): void
+
+Adds a listener for property changes. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.READ_ACCESSIBILITY_CONFIG
-
-Adds a listener for attribute changes. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -563,11 +635,11 @@ Adds a listener for attribute changes. This API uses an asynchronous callback to
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;T&gt; | Yes| Callback invoked when the attribute changes.|
+| callback | Callback&lt;T&gt; | Yes| Callback invoked when the property changes.|
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | Error Code| Error Message|
 | ------- | -------------------------------- |
@@ -587,11 +659,13 @@ config.highContrastText.on((data: boolean) => {
 
 ### off
 
-off(callback?: Callback&lt;T&gt;): void;
+off(callback?: Callback&lt;T&gt;): void
+
+Cancels the listener for property changes. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.READ_ACCESSIBILITY_CONFIG
-
-Cancels the listener for attribute changes. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -603,7 +677,7 @@ Cancels the listener for attribute changes. This API uses an asynchronous callba
 
 **Error codes**
 
-For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | Error Code| Error Message|
 | ------- | -------------------------------- |
@@ -623,7 +697,7 @@ config.highContrastText.off((data: boolean) => {
 ## DaltonizationColorFilter
 
 Enumerates the daltonization filters. 
-**DaltonizationColorFilter** takes effect only when the daltonization filter is enabled ([daltonizationState](#attributes) set to **true**).
+**DaltonizationColorFilter** takes effect only when the daltonization filter is enabled ([daltonizationState](#properties) set to **true**).
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -649,7 +723,7 @@ Defines the length of time for a click.
 ## RepeatClickInterval<sup>11+</sup>
 
 Defines the interval between repeated clicks. 
-**RepeatClickInterval** takes effect only when repeated clicks are ignored ([ignoreRepeatClick](#attributes) set to **true**).
+**RepeatClickInterval** takes effect only when repeated clicks are ignored ([ignoreRepeatClick](#properties) set to **true**).
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 

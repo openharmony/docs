@@ -13,7 +13,7 @@
 
 播放管理类，用于管理和播放媒体资源。在调用AVPlayer的方法前，需要先通过[createAVPlayer()](arkts-apis-media-f.md#mediacreateavplayer9)构建一个AVPlayer实例。
 
-应用需要按照实际业务需求合理使用AVPlayer对象，按需创建并及时释放，避免持有过多AVPlayer实例导致内存消耗过大，否则在一定情况下可能导致系统查杀应用。
+应用需要按照实际业务需求合理使用AVPlayer对象，按需创建并及时释放，避免持有过多AVPlayer实例导致内存消耗过大，否则在一定情况下可能导致系统终止应用。
 
 Audio/Video播放demo可参考：[音频播放开发指导](../../media/media/using-avplayer-for-playback.md)、[视频播放开发指导](../../media/media/video-playback.md)。
 
@@ -1846,13 +1846,15 @@ setLoudnessGain(loudnessGain: double): Promise\<void>
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
 | 5400102  | Operation not allowed. Return by promise. e.g. The function is called in an incorrect state, or the stream usage of audioRendererInfo is not one of [STREAM_USAGE_MUSIC](../apis-audio-kit/arkts-apis-audio-e.md#streamusage), [STREAM_USAGE_MOVIE](../apis-audio-kit/arkts-apis-audio-e.md#streamusage) or [STREAM_USAGE_AUDIOBOOK](../apis-audio-kit/arkts-apis-audio-e.md#streamusage).|
+| 5400105  | Service died. |
+| 5400108  | Parameter check failed. Returned by promise. |
 
 **示例：**
 
 ```ts
 let avPlayer = await media.createAVPlayer();
 
-let loudnessGain: number = 1.0;
+let loudnessGain: double = 1.0;
 avPlayer.audioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MOVIE,
   rendererFlags: 0

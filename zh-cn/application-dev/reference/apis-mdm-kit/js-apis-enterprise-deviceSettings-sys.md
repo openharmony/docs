@@ -509,7 +509,7 @@ try {
   let powerPolicyAction: deviceSettings.PowerPolicyAction = deviceSettings.PowerPolicyAction.AUTO_SUSPEND;
   let powerPolicy: deviceSettings.PowerPolicy = {powerPolicyAction, delayTime};
   deviceSettings.setPowerPolicy(wantTemp, powerScene, powerPolicy);
-  console.info(`Succeeded in setting power polilcy`);
+  console.info(`Succeeded in setting power policy`);
 } catch (err) {
   console.error(`Failed to set power policy. Code: ${err.code}, message: ${err.message}`);
 }

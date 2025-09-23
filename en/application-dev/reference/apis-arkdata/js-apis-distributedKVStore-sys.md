@@ -1,6 +1,12 @@
 # @ohos.data.distributedKVStore (Distributed KV Store) (System API)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @ding_dong_dong-->
+<!--Designer: @dboy190; @houpengtao1-->
+<!--Tester: @logic42-->
+<!--Adviser: @ge-yafang-->
 
-The **distributedKVStore** module implements collaboration between databases for different devices that forms a Super Device. You can use the APIs provided by this module to save application data to a distributed key-value (KV) store and perform operations, such as adding, deleting, modifying, querying, and synchronizing data in distributed KV stores.
+The **distributedKVStore** module implements collaboration between databases for different devices that form a Super Device. You can use the APIs provided by this module to save application data to a distributed key-value (KV) store and perform operations, such as adding, deleting, modifying, querying, and synchronizing data in distributed KV stores.
 
 The **distributedKVStore** module provides the following functionalities:
 
@@ -153,7 +159,7 @@ try {
 
 ### delete
 
-delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;void&gt;)
+delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes KV pairs from this KV store. This API uses an asynchronous callback to return the result.
 
@@ -348,7 +354,7 @@ try {
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred. Code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -374,7 +380,7 @@ Obtains a **KVStoreResultSet** object that matches the specified conditions. Thi
 
 | Type                                                | Description                     |
 | ---------------------------------------------------- | ------------------------- |
-| Promise&lt;[KVStoreResultSet](js-apis-distributedKVStore.md#kvstoreresultset)&gt; | Promise used to return the **KVStoreResultSet** object obtained.|
+| Promise&lt;[KVStoreResultSet](js-apis-distributedKVStore.md#kvstoreresultset)&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -414,7 +420,7 @@ try {
 
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -488,7 +494,7 @@ try {
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -514,7 +520,7 @@ Obtains a **KVStoreResultSet** object that matches the specified conditions for 
 
 | Type                                                | Description                     |
 | ---------------------------------------------------- | ------------------------- |
-| Promise&lt;[KVStoreResultSet](js-apis-distributedKVStore.md#kvstoreresultset)&gt; | Promise used to return the **KVStoreResultSet** object obtained.|
+| Promise&lt;[KVStoreResultSet](js-apis-distributedKVStore.md#kvstoreresultset)&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -553,7 +559,7 @@ try {
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -622,7 +628,7 @@ try {
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```
 
@@ -653,7 +659,7 @@ Obtains a **KVStoreResultSet** object that matches the specified conditions for 
 
 | Type                                                | Description                     |
 | ---------------------------------------------------- | ------------------------- |
-| Promise&lt;[KVStoreResultSet](js-apis-distributedKVStore.md#kvstoreresultset)&gt; | Promise used to return the **KVStoreResultSet** object obtained.|
+| Promise&lt;[KVStoreResultSet](js-apis-distributedKVStore.md#kvstoreresultset)&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -692,6 +698,6 @@ try {
   });
 } catch (e) {
   let error = e as BusinessError;
-  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
+  console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
 ```

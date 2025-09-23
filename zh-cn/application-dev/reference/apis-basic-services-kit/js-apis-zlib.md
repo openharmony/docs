@@ -4587,7 +4587,7 @@ async function gzgetcDemo(pathDir: string) {
   await gzip.gzputc(1);
   await gzip.gzclose();
   await gzip.gzopen(path, "rb");
-  let resulit = await gzip.gzgetc();
+  let result = await gzip.gzgetc();
   await gzip.gzclose();
 }
 
@@ -4734,7 +4734,7 @@ async function gzfwriteDemo(pathDir: string) {
   for (let i = 0; i < uint8View.length; i++) {
     uint8View[i] = i;
   }
-  let resulit = await gzip.gzfwrite(bufferWithData, 8, 2)
+  let result = await gzip.gzfwrite(bufferWithData, 8, 2)
   await gzip.gzclose();
 }
 

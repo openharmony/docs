@@ -92,8 +92,8 @@ int main()
 
 | 名称                                                                                                                  | 描述           |
 | --------------------------------------------------------------------------------------------------------------------- | -------------- |
-| class [queue](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#queue)   | 队列类。       |
-| [sleep_for](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#sleep_for) | 延迟一定时间。 |
+| class [queue](https://gitcode.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#queue)   | 队列类。       |
+| [sleep_for](https://gitcode.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#sleep_for) | 延迟一定时间。 |
 
 > **说明：**
 >

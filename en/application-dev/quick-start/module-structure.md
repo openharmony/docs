@@ -452,7 +452,7 @@ Example of the **skills** attribute structure:
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| designWidth | Baseline width for page design. The size of an element is scaled by the actual device width.| Number| Yes (initial value: 720px)|
+| designWidth | Baseline width for page design. The size of an element is scaled by the actual device width.| Number| Yes (initial value: **720 px**) |
 | autoDesignWidth | Whether to automatically calculate the baseline width for page design. If it is set to **true**, the **designWidth** attribute becomes invalid. The baseline width is calculated based on the device width and screen density. If it is set to **false**, the design reference width is **designWidth**.| Boolean| Yes (initial value: **false**)|
 
 ## Internal Structure of the mode Attribute
@@ -564,7 +564,7 @@ Example of the **forms** attribute structure:
 ```json
 "forms": [
   {
-    "name": "Form_Js",
+    "name": "Form_Js1",
     "description": "It's Js Form",
     "type": "JS",
     "jsComponentName": "card",
@@ -581,9 +581,9 @@ Example of the **forms** attribute structure:
     ]
   },
   {
-    "name": "Form_Js",
+    "name": "Form_Js2",
     "description": "It's JS Form",
-    "type": "Js",
+    "type": "JS",
     "colorMode": "auto",
     "isDefault": false,
     "updateEnabled": true,

@@ -229,7 +229,7 @@ struct Index {
 // pages/xxx.ets
 // 将网络资源文件下载到应用文件目录并读取一段内容
 import { common } from '@kit.AbilityKit';
-import fs from '@ohos.file.fs';
+import fileIo from '@ohos.file.fs';
 import { BusinessError, request } from '@kit.BasicServicesKit';
 import { buffer } from '@kit.ArkTS';
 
@@ -288,7 +288,6 @@ struct Index {
     }
   }
 }
-
 ```
 
 ## 下载网络资源文件至用户文件

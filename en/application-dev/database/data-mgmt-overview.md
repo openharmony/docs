@@ -1,4 +1,10 @@
 # Introduction to ArkData
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @widecode-->
+<!--Designer: @widecode-->
+<!--Tester: @logic42-->
+<!--Adviser: @ge-yafang-->
 
 
 ## Function

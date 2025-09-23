@@ -641,8 +641,8 @@ class C {
 **ArkTS**
 
 ```typescript
-interface ListItem {
-  getHead(): ListItem
+interface testListItem {
+  getHead(): testListItem
 }
 
 class C {
@@ -1429,20 +1429,20 @@ c3.foo(); // Extra foo
 **TypeScript**
 
 ```typescript
-class Shape {}
-class Circle extends Shape { x: number = 5 }
-class Square extends Shape { y: string = 'a' }
+class testShape {}
+class testCircle extends testShape { x: number = 5 }
+class testSquare extends testShape { y: string = 'a' }
 
-function createShape(): Shape {
-  return new Circle();
+function createShape(): testShape {
+  return new testCircle();
 }
 
-let c1 = <Circle> createShape();
+let c1 = <testCircle> createShape();
 
-let c2 = createShape() as Circle;
+let c2 = createShape() as testCircle;
 
 // 如果转换错误，不会产生编译时或运行时报错
-let c3 = createShape() as Square;
+let c3 = createShape() as testSquare;
 console.info(c3.y); // undefined
 
 // 在TS中，由于`as`关键字不会在运行时生效，所以`instanceof`的左操作数不会在运行时被装箱成引用类型
@@ -1455,18 +1455,17 @@ let e2 = (new Number(5.0)) instanceof Number; // true
 **ArkTS**
 
 ```typescript
-class Shape {}
-class Circle extends Shape { x: number = 5 }
-class Square extends Shape { y: string = 'a' }
+class testShape {}
+class testCircle extends testShape { x: number = 5 }
 
-function createShape(): Shape {
-  return new Circle();
+function createShape(): testShape {
+  return new testCircle();
 }
 
-let c2 = createShape() as Circle;
+let c1 = createShape() as testCircle;
 
 // 创建Number对象，获得预期结果：
-let e2 = (new Number(5.0)) instanceof Number; // true
+let e1 = (new Number(5.0)) instanceof Number; // true
 ```
 
 ### 不支持JSX表达式

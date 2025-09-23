@@ -257,8 +257,6 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
-
 **系统接口**：此接口为系统接口。
 
 **参数：**
@@ -308,8 +306,6 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 取消订阅。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
-
-**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
 **系统接口**：此接口为系统接口。
 

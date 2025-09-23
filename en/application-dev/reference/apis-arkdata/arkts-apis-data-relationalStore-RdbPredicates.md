@@ -1,4 +1,10 @@
 # Class (RdbPredicates)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 > **NOTE**
 > 
@@ -490,7 +496,7 @@ Creates an **RdbPredicates** object to search for the records in the specified c
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | Yes  | Column name in the database table.    |
-| value  | string | Yes  | Value to match.|
+| value  | string | Yes  | Condition for fuzzy match. Generally, this parameter is used together with a wildcard: **%** represents any character of any length, and **_** represents a single character.|
 
 **Return value**
 
@@ -1010,7 +1016,11 @@ predicates.indexedBy("SALARY");
 
 in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
-Creates an **RdbPredicates** object to search for the records that are in the given range in the specified column.
+Creates an **RdbPredicates** object to search for the records in the specified column that are in the given range in the specified column.
+
+> **NOTE**
+>
+> The **value** array cannot be empty; otherwise, this condition becomes invalid. As a result, the operation (such as full query, update, or deletion) is performed on all data. Before calling this API, check whether the **value** array is empty to avoid misoperations.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1121,7 +1131,7 @@ predicates.notContains("NAME", "os");
 
 notLike(field: string, value: string): RdbPredicates
 
-Creates an **RdbPredicates** object to search for the records that are not similar to the given value in the specified column.
+Creates an **RdbPredicates** object to search for the records in the specified column that are not similar to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1130,7 +1140,7 @@ Creates an **RdbPredicates** object to search for the records that are not simil
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | Yes  | Column name in the database table.    |
-| value  | string | Yes  | Value to match.|
+| value  | string | Yes  | Condition for fuzzy match. Generally, this parameter is used together with a wildcard: **%** represents any character of any length, and **_** represents a single character.|
 
 **Return value**
 
@@ -1149,9 +1159,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**:
 
 ```ts
-// Find the records that are not "os" in the NAME column, for example, Rose.
+// Find all the records that are not similar to "os" in the NAME column, for example, Lisa.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.notLike("NAME", "os");
+predicates.notLike("NAME", "%os%");
 ```
 
 ## having<sup>20+</sup>
@@ -1181,7 +1191,7 @@ For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
 
 | **ID**| **Error Message**                                                                                                      |
 | --------- |----------------------------------------------------------------------------------------------------------------|
-| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+| 14800001       | Invalid arguments. Possible causes: 1. Parameter is out of valid range; 2. Missing GROUP BY clause. |
 
 **Example 1**:
 

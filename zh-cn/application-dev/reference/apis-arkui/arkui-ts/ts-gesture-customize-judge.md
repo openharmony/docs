@@ -74,36 +74,6 @@ getModifierKeyState?(keys: Array\<string>): boolean
 
 **参数：**
 
-| 参数名  | 类型         | 必填 | 说明   |
-| ------- | ----------- | ---- | --------------------- |
-| keys | Array\<string> | 是    | 需要查询的功能键。 |
-
-**返回值：**
-
-| 类型              |       说明       |
-| ------- | --------------------------------- | 
-| boolean | 功能键的按压状态。true表示功能键被按下，false表示功能键未被按下。|
-
-**错误码**
-
-以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
-
-### getModifierKeyState<sup>12+</sup>
-
-getModifierKeyState?(keys: Array&lt;string&gt;): boolean
-
-获取功能键按压状态。支持功能键 'Ctrl'\|'Alt'\|'Shift'。此接口不支持在手写笔场景下使用。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
 | keys  | Array&lt;string&gt; | 是   | 功能键列表。 |
@@ -126,7 +96,7 @@ getModifierKeyState?(keys: Array&lt;string&gt;): boolean
 
 ### 示例1（自定义手势判定）
 
-该示例通过配置onGestureJudgeBegin实现了对长按、滑动和拖动手势的自定义判定。
+该示例通过配置onGestureJudgeBegin实现了对长按、快滑和滑动手势的自定义判定。
 
 ```ts
 // xxx.ets
@@ -165,14 +135,14 @@ struct Index {
     )
     .gesture(
       SwipeGesture()
-        .tag("swipe1")// 设置滑动手势标志
+        .tag("swipe1")// 设置快滑手势标志
         .onAction(() => {
           this.message = 'swipe1'
         })
     )
     .gesture(
       PanGesture()
-        .tag("pan1")// 设置拖动手势标志
+        .tag("pan1")// 设置滑动手势标志
         .onActionStart(() => {
           this.message = 'pan1'
         })
@@ -183,12 +153,12 @@ struct Index {
         let longPressEvent = event as LongPressGestureEvent;
         console.log("repeat " + longPressEvent.repeat)
       }
-      // 若该手势类型为滑动手势，转换为滑动手势事件
+      // 若该手势类型为快滑手势，转换为快滑手势事件
       if (gestureInfo.type == GestureControl.GestureType.SWIPE_GESTURE) {
         let swipeEvent = event as SwipeGestureEvent;
         console.log("angle " + swipeEvent.angle)
       }
-      // 若该手势类型为拖动手势，转换为拖动手势事件
+      // 若该手势类型为滑动手势，转换为滑动手势事件
       if (gestureInfo.type == GestureControl.GestureType.PAN_GESTURE) {
         let panEvent = event as PanGestureEvent;
         console.log("velocity " + panEvent.velocity)

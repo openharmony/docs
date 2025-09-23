@@ -37,12 +37,12 @@
     ```ts
     // wlan0为主WiFi网卡名，获取主WiFi实时下行流量数据。
     statistics.getIfaceRxBytes("wlan0").then((stats: number) => {
-      console.log(JSON.stringify(stats));
+      console.info(JSON.stringify(stats));
     });
 
     // wlan0为主WiFi网卡名，获取主WiFi实时上行流量数据。
     statistics.getIfaceTxBytes("wlan0").then((stats: number) => {
-      console.log(JSON.stringify(stats));
+      console.info(JSON.stringify(stats));
     });
     ```
 
@@ -53,12 +53,12 @@
     ```ts
     // 获取蜂窝实时下行流量数据。
     statistics.getCellularRxBytes().then((stats: number) => {
-      console.log(JSON.stringify(stats));
+      console.info(JSON.stringify(stats));
     });
 
     // 获取蜂窝实时上行流量数据。
     statistics.getCellularTxBytes().then((stats: number) => {
-      console.log(JSON.stringify(stats));
+      console.info(JSON.stringify(stats));
     });
     ```
 
@@ -69,12 +69,12 @@
     ```ts
     // 获取所有网卡实时下行流量数据。
     statistics.getAllRxBytes().then((stats: number) => {
-      console.log(JSON.stringify(stats));
+      console.info(JSON.stringify(stats));
     });
 
     // 获取所有网卡实时上行流量数据。
     statistics.getAllTxBytes().then((stats: number) => {
-      console.log(JSON.stringify(stats));
+      console.info(JSON.stringify(stats));
     });
     ```
 
@@ -86,13 +86,13 @@
     // 获取指定应用实时下行流量数据。
     let uid = 20010038;
     statistics.getUidRxBytes(uid).then((stats: number) => {
-      console.log(JSON.stringify(stats));
+      console.info(JSON.stringify(stats));
     });
 
     // 获取指定应用实时上行流量数据。
     let uid = 20010038;
     statistics.getUidTxBytes(uid).then((stats: number) => {
-      console.log(JSON.stringify(stats));
+      console.info(JSON.stringify(stats));
     });
     ```
 
@@ -105,7 +105,7 @@
     let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
     tcp.getSocketFd().then((sockfd: number) => {
       statistics.getSockfdRxBytes(sockfd).then((stats: number) => {
-        console.log(JSON.stringify(stats));
+        console.info(JSON.stringify(stats));
       }).catch((err: BusinessError) => {
         console.error(JSON.stringify(err));
       });
@@ -114,7 +114,7 @@
     // 获取指定socket实时上行流量数据。
     tcp.getSocketFd().then((sockfd: number) => {
       statistics.getSockfdTxBytes(sockfd).then((stats: number) => {
-        console.log(JSON.stringify(stats));
+        console.info(JSON.stringify(stats));
       }).catch((err: BusinessError) => {
         console.error(JSON.stringify(err));
       });
@@ -138,19 +138,19 @@ class IfaceInfo {
 }
 // 获取指定网卡历史流量信息。
 statistics.getTrafficStatsByIface(new IfaceInfo()).then((statsInfo: statistics.NetStatsInfo) => {
-  console.log(
+  console.info(
     "getTrafficStatsByIface bytes of received = " +
     JSON.stringify(statsInfo.rxBytes)
   );
-  console.log(
+  console.info(
     "getTrafficStatsByIface bytes of sent = " +
     JSON.stringify(statsInfo.txBytes)
   );
-  console.log(
+  console.info(
     "getTrafficStatsByIface packets of received = " +
     JSON.stringify(statsInfo.rxPackets)
   );
-  console.log(
+  console.info(
     "getTrafficStatsByIface packets of sent = " +
     JSON.stringify(statsInfo.txPackets)
   );
@@ -165,10 +165,10 @@ let uidInfo = new UidInfo()
 
 // 获取指定应用历史流量信息。
 statistics.getTrafficStatsByUid(uidInfo).then((statsInfo: statistics.NetStatsInfo) => {
-  console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
-  console.log("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
-  console.log("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
-  console.log("getTrafficStatsByUid packets of sent = " + JSON.stringify(statsInfo.txPackets));
+  console.info("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
+  console.info("getTrafficStatsByUid bytes of sent = " + JSON.stringify(statsInfo.txBytes));
+  console.info("getTrafficStatsByUid packets of received = " + JSON.stringify(statsInfo.rxPackets));
+  console.info("getTrafficStatsByUid packets of sent = " + JSON.stringify(statsInfo.txPackets));
 })
 ```
 
@@ -186,7 +186,7 @@ class Data {
 }
 
 let callback = (data: Data) => {
-  console.log('on netStatsChange, data:' + JSON.stringify(data));
+  console.info('on netStatsChange, data:' + JSON.stringify(data));
 };
 // 订阅流量改变事件通知。
 statistics.on('netStatsChange', callback);

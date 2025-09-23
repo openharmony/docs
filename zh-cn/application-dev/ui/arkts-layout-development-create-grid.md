@@ -11,7 +11,7 @@
 
 网格布局是由“行”和“列”分割的单元格所组成，通过指定“项目”所在的单元格做出各种各样的布局。网格布局具有较强的页面均分能力，子组件占比控制能力，是一种重要自适应布局，其使用场景有九宫格图片展示、日历、计算器等。
 
-ArkUI提供了[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)容器组件和子组件[GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md)，用于构建网格布局。Grid用于设置网格布局相关参数，GridItem定义子组件相关特征。Grid组件支持使用[条件渲染](../ui/state-management/arkts-rendering-control-ifelse.md)、[循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)、[懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)等方式生成子组件。
+ArkUI提供了[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)容器组件和子组件[GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md)，用于构建网格布局。Grid用于设置网格布局相关参数，GridItem定义子组件相关特征。Grid组件支持使用[条件渲染](../ui/rendering-control/arkts-rendering-control-ifelse.md)、[循环渲染](../ui/rendering-control/arkts-rendering-control-foreach.md)、[懒加载](../ui/rendering-control/arkts-rendering-control-lazyforeach.md)等方式生成子组件。
 
 > **说明：** 
 >
@@ -339,9 +339,9 @@ Column({ space: 5 }) {
 
 ## 性能优化
 
-与[长列表的处理](arkts-layout-development-create-list.md#长列表的处理)类似，[循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)适用于数据量较小的布局场景，当构建具有大量网格项的可滚动网格布局时，推荐使用[数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)方式实现按需迭代加载数据，从而提升网格性能。
+与[长列表的处理](arkts-layout-development-create-list.md#长列表的处理)类似，[循环渲染](../ui/rendering-control/arkts-rendering-control-foreach.md)适用于数据量较小的布局场景，当构建具有大量网格项的可滚动网格布局时，推荐使用[数据懒加载](../ui/rendering-control/arkts-rendering-control-lazyforeach.md)方式实现按需迭代加载数据，从而提升网格性能。
 
-关于按需加载优化的具体实现可参考[数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)章节中的示例。
+关于按需加载优化的具体实现可参考[数据懒加载](../ui/rendering-control/arkts-rendering-control-lazyforeach.md)章节中的示例。
 
 当使用懒加载方式渲染网格时，为了更好的滚动体验，减少滑动时出现白块，Grid组件中也可通过cachedCount属性设置GridItem的预加载数量，只在懒加载LazyForEach中生效。
 

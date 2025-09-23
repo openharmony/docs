@@ -243,8 +243,8 @@ struct Index {
               iconStyle: IconStyle.DARK,
               titlePosition: TitlePosition.TOP,
               bottomOffsetType: BottomOffset.OFFSET_FOR_NONE,
-              onDialogClick: () => { console.log('outer dialog click action') },
-              onDialogClose: () => { console.log('outer close action') }
+              onDialogClick: () => { console.info('outer dialog click action') },
+              onDialogClose: () => { console.info('outer close action') }
             });
             interstitialDialogAction.openDialog();
           })
@@ -370,8 +370,8 @@ struct Index {
               iconStyle: IconStyle.LIGHT,
               titlePosition: TitlePosition.BOTTOM,
               bottomOffsetType: BottomOffset.OFFSET_FOR_BAR,
-              onDialogClick: () => { console.log('outer dialog click action') },
-              onDialogClose: () => { console.log('outer close action') }
+              onDialogClick: () => { console.info('outer dialog click action') },
+              onDialogClose: () => { console.info('outer close action') }
             });
             interstitialDialogAction.openDialog();
           })

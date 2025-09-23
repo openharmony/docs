@@ -1,5 +1,10 @@
 # WindowExtensionAbility (for System Applications Only)
-
+<!--Kit: ArkUI-->
+<!--Subsystem: Window-->
+<!--Owner: @waterwin-->
+<!--Designer: @nyankomiya-->
+<!--Tester: @qinliwen0417-->
+<!--Adviser: @ge-yafang-->
 
 [WindowExtensionAbility](../reference/apis-arkui/js-apis-application-windowExtensionAbility-sys.md) is a type of ExtensionAbility component that allows only a system application to be embedded in and displayed over another application.
 

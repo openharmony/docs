@@ -1,4 +1,10 @@
 # Managing Cookies and Data Storage
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
 Cookies are data sent from the server to the client. The client holds cookies so that the server can quickly identify its identity and status.
 
@@ -52,9 +58,9 @@ Use [cacheMode()](../reference/apis-arkweb/arkts-basic-components-web-attributes
 
 - **Default**: Page resources in a cache that has not expired are preferentially used. If the cache does not exist, page resources are obtained from the network.
 
-- **None**: Page resources are loaded from the cache. If the cache does not exist, page resources are obtained from the network.
+- **None**: Page resources are loaded from the cache. If the cache does not contain the page resources, page resources are obtained from the network.
 
-- **Online**: Page resources are not loaded from the cache. All resources are obtained from the network.
+- **Online**: Page resources are not loaded from the cache. They are all obtained from the network.
 
 - **Only**: Page resources are only loaded from the cache.
 

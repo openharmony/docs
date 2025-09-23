@@ -1,6 +1,13 @@
 # Ark Bytecode File Format
-This topic describes the Ark bytecode file format in detail, aiming to help you understand its structure and facilitate the analysis and modification of bytecode files.
 
+<!--Kit: ArkTS-->
+<!--Subsystem: ArkCompiler-->
+<!--Owner: @huyunhui1; @oh-rgx1; @zmw1-->
+<!--Designer: @ctw-ian; @hufeng20-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @foryourself-->
+
+This topic describes the Ark bytecode file format in detail, aiming to help you understand its structure and facilitate the analysis and modification of bytecode files.
 
 ## Constraints
 This topic is based on Ark bytecode of version 12.0.6.0. The version number is an internal field of the ArkCompiler and does not require your attention.
@@ -47,9 +54,9 @@ Represents [class](#class) names in the format of **L_ClassName;**, where **Clas
 
 
 ## Bytecode File Layout
-The bytecode file begins with the [Header](#header) structure, from which all other structures can be accessed directly or indirectly. References within the file use offsets (32-bit) and indexes (16-bit). Offsets indicate the position relative to the file header, starting from 0. Indexes point to specific entries within index regions. More details are provided in [IndexSection](#indexsection).
+The bytecode file begins with the [Header](#header) structure, from which all other structures can be accessed directly or indirectly. References within the file use offsets (32-bit) and indexes (16-bit). The byte offsets indicate the position relative to the file header, starting from 0. Indexes point to specific entries within index regions. More details are provided in [IndexSection](#indexsection).
 
-All multi-byte values in bytecode files are stored in little-endian format.
+All multi-byte values (such as u16, u32, and i32) in bytecode files are stored in little-endian format.
 
 
 ### Header
@@ -67,16 +74,15 @@ All multi-byte values in bytecode files are stored in little-endian format.
 | `foreign_size`      | `uint32_t`       | Size of the foreign region, in bytes.                              |
 | `num_classes`       | `uint32_t`       | Number of elements in the [ClassIndex](#classindex) structure, that is, the number of [classes](#class) defined in the file.|
 | `class_idx_off`     | `uint32_t`       | An offset that points to [ClassIndex](#classindex).|
-| `num_lnps`          | `uint32_t`       | Number of elements in the [LineNumberProgramIndex](#linenumberprogramindex) structure, that is, the number of [line number programs](#line-number-program) defined in the file.|
+| `num_lnps`          | `uint32_t`       | Number of elements in the [LineNumberProgramIndex](#linenumberprogramindex) structure, that is, the number of line number programs defined in the file.|
 | `lnp_idx_off`       | `uint32_t`       | An offset that points to [LineNumberProgramIndex](#linenumberprogramindex).|
-| `reserved`          | `uint32_t`       | Reserved field for internal use by the Ark bytecode file.                          |
 | `reserved`          | `uint32_t`       | Reserved field for internal use by the Ark bytecode file.                          |
 | `num_index_regions` | `uint32_t`       | Number of elements in the [IndexSection](#indexsection) structure, that is, the number of [IndexHeaders](#indexheader) in the file.|
 | `index_section_off` | `uint32_t`       | An offset that points to [IndexSection](#indexsection).|
 
 
 ### Version
-The bytecode version number consists of four parts in the format of major.minor.feature.build.
+The bytecode version number consists of four parts in the format of `major.minor.feature.build`.
 
 | **Name**| **Format**| **Description**                                            |
 | -------------- | -------------- | ---------------------------------------------------------- |
@@ -123,7 +129,7 @@ Facilitates quick lookup of class definitions by name.
 
 | **Name**| **Format**| **Description**                                              |
 | -------------- | -------------- | ------------------------------------------------------------ |
-| `offsets`        | `uint32_t[]`     | An array of offsets pointing to [classes](#class). Elements in the array are sorted by the class name, which follows the [TypeDescriptor](#typedescriptor) syntax. The array length is specified by **num_classes** in [Header](#header).|
+| `offsets`        | `uint32_t[]`     | An array of offsets pointing to [classes](#class). Elements in the array are sorted by the class name, which follows the [TypeDescriptor](#typedescriptor) syntax. The array length is specified by `num_classes` in [Header](#header).|
 
 
 ### Class
@@ -160,7 +166,7 @@ Represents either a source code file or an internal [Annotation](#annotation). F
 | **Name**| **Value**| **Quantity**| **Format**| **Description**                                              |
 | -------------- | ------------ | -------------- | -------------- | ------------------------------------------------------------ |
 | `NOTHING`        | `0x00`  | `1`  | `none`    | Marks a [TaggedValue](#taggedvalue) as the final item in **class_data**.|
-| `SOURCE_LANG`    | `0x02`  | `0-1 ` | `uint8_t` | **data** of a [TaggedValue](#taggedvalue) with this tag is **0**, indicating that the source code language is in ArkTS, TS, or JS.|
+| `SOURCE_LANG`    | `0x02`  | `0-1` | `uint8_t` | `data` of a [TaggedValue](#taggedvalue) with this tag is **0**, indicating that the source code language is in ArkTS, TS, or JS.|
 | `SOURCE_FILE`    | `0x07`  | `0-1`  | `uint32_t`| **data** of a [TaggedValue](#taggedvalue) with this tag is an offset that points to a [string](#string) representing the source file name.|
 
 > **NOTE**
@@ -200,7 +206,7 @@ Represents fields within the bytecode file.
 
 > **NOTE**
 > 
-> **FieldTag** is a marker of the element ([TaggedValue](#taggedvalue)) in **field_data**. **Quantity** in the table header refers to the number of occurrences of the element with this tag in **field_data** of a [field](#field).
+> **FieldTag** is the tag of the element ([TaggedValue](#taggedvalue)) in `field_data`. **Quantity** in the table header refers to the number of occurrences of the element with this tag in `field_data` of a [field](#field).
 
 
 ### Method
@@ -228,7 +234,7 @@ A 32-bit unsigned integer, divided into three parts.
 | **Bit**| **Name**| **Format**| **Description**                                              |
 | ------------ | -------------- | -------------- | ------------------------------------------------------------ |
 | 0 - 15       | `header_index`   | `uint16_t`       | Points to a position in [IndexSection](#indexsection). The value of this position is [IndexHeader](#indexheader). You can use **IndexHeader** to find the offsets of all methods ([Method](#method)), [string](#string), or literal array ([LiteralArray](#literalarray)) referenced by this method.|
-| 16 - 23      | `function_kind`  | `uint8_t`        | Function type ([FunctionKind](#functionkind)) of a method.|
+| 16 - 23      | `function_kind`  | `uint8_t`        | Function type (**FunctionKind**) of a method.|
 | 24 - 31      | `reserved`       | `uint8_t`        | Reserved field for internal use by the Ark bytecode file.                          |
 
 
@@ -250,14 +256,14 @@ A 32-bit unsigned integer, divided into three parts.
 | **Name**| **Value**| **Quantity**| **Format**| **Description**                                              |
 | -------------- | ------------ | -------------- | -------------- | ------------------------------------------------------------ |
 | `NOTHING`        | `0x00`         | `1`             | `none`           | Marks a [TaggedValue](#taggedvalue) as the final item in **method_data**.|
-| `CODE`           | `0x01`         | `0-1 `           | `uint32_t`       | **data** of a [TaggedValue](#taggedvalue) with this tag is an offset pointing to [Code](#code), indicating the code segment of the method.|
-| `SOURCE_LANG`    | `0x02`         | `0-1`            | `uint8_t`        | **data** of a [TaggedValue](#taggedvalue) with this tag is **0**, indicating that the source code language is in ArkTS, TS, or JS.|
+| `CODE`           | `0x01`         | `0-1`           | `uint32_t`       | **data** of a [TaggedValue](#taggedvalue) with this tag is an offset pointing to [Code](#code), indicating the code segment of the method.|
+| `SOURCE_LANG`    | `0x02`         | `0-1`            | `uint8_t`        | `data` of a [TaggedValue](#taggedvalue) with this tag is **0**, indicating that the source code language is in ArkTS, TS, or JS.|
 | `DEBUG_INFO`     | `0x05`         | `0-1`            | `uint32_t`       | **data** of a [TaggedValue](#taggedvalue) with this tag is an offset pointing to [DebugInfo](#debuginfo), indicating the debugging information of the method.|
 | `ANNOTATION`     | `0x06`         | `>=0`            | `uint32_t`       | **data** of a [TaggedValue](#taggedvalue) with this tag is an offset pointing to [Annotation](#annotation), indicating the annotation of the method.|
 
 > **NOTE**
 > 
-> **MethodTag** is a marker of the element ([TaggedValue](#taggedvalue)) in **method_data**. **Quantity** in the table header refers to the number of occurrences of the element with this tag in **method_data** of a [method](#method).
+> **MethodTag** is the tag of the element ([TaggedValue](#taggedvalue)) in `method_data`. **Quantity** in the table header refers to the number of occurrences of the element with this tag in `method_data` of a [method](#method).
 
 
 ### Code
@@ -267,10 +273,10 @@ A 32-bit unsigned integer, divided into three parts.
 
 | **Name**| **Format**| **Description**                                              |
 | -------------- | -------------- | ------------------------------------------------------------ |
-| `num_vregs`      | `uleb128`        | Number of registers. Registers that store input and default parameters are not counted.        |
+| `num_vregs`      | `uleb128`        | Number of registers, excluding the registers that store input and default parameters.        |
 | `num_args`       | `uleb128`        | Total number of input and default parameters.                                    |
 | `code_size`      | `uleb128`        | Total size of all instructions, in bytes.                            |
-| `tries_size`     | `uleb128`        | Length of the **try_blocks** array, that is, the number of [TryBlocks](#tryblock).   |
+| `tries_size`     | `uleb128`        | Length of the `try_blocks` array, that is, the number of [TryBlocks](#tryblock).|
 | `instructions`   | `uint8_t[]`      | Array of all instructions.                                          |
 | `try_blocks`     | `TryBlock[]`     | An array of **TryBlock** elements.|
 
@@ -364,7 +370,7 @@ Different value types have different value encoding formats, including **INTEGER
 
 
 ### LineNumberProgramIndex
-An array that facilitates the use of a more compact index to access the [line number program](#line-number-program).
+An array that facilitates the use of a more compact index to access the line number program.
 
 - Alignment: 4-byte aligned
 - Format
@@ -375,7 +381,7 @@ An array that facilitates the use of a more compact index to access the [line nu
 
 
 ### DebugInfo
-Contains mappings between program counters of the method and the line/column numbers in the source code, as well as information about local variables. The format of the debugging information is derived from the contents in section 6.2 of [DWARF 3.0 Standard](https://dwarfstd.org/dwarf3std.html). The execution model of the [state machine](#state-machine) interprets the [line number program](#line-number-program) to obtain the mappings and local variable information code. To deduplicate programs with the same line number in different methods, all constants referenced in the programs are moved to the [constant pool](#constant-pool).
+Contains mappings between program counters of the method and the line/column numbers in the source code, as well as information about local variables. The format of the debugging information is derived from the contents in section 6.2 of [DWARF 3.0 Standard](https://dwarfstd.org/dwarf3std.html). The execution model of the state machine interprets the line number program to obtain the mappings and local variable information code. To deduplicate programs with the same line number in different methods, all constants referenced in the programs are moved to the constant pool.
 
 - Alignment: single-byte aligned
 - Format
@@ -384,10 +390,10 @@ Contains mappings between program counters of the method and the line/column num
 | ----------------------- | -------------- | ------------------------------------------------------------ |
 | `line_start`              | `uleb128`        | Initial value of the line number register of the state machine.                                |
 | `num_parameters`          | `uleb128`        | Total number of input and default parameters.                                    |
-| `parameters`              | `uleb128[]`      | Array that stores the names of input parameters. The array length is specified by **num_parameters**. The value of each element is the offset to the string or **0**. If the value is **0**, the corresponding parameter does not have a name.|
+| `parameters`              | `uleb128[]`      | Array that stores the names of input parameters. The array length is specified by `num_parameters`. The value of each element is the offset to the string or **0**. If the value is **0**, the corresponding parameter does not have a name.|
 | `constant_pool_size`      | `uleb128`        | Size of the constant pool, in bytes.                                |
 | `constant_pool`           | `uleb128[]`      | Array for storing constant pool data. The array length is **constant_pool_size**.        |
-| `line_number_program_idx` | `uleb128`        | An index that points to a position in [LineNumberProgramIndex](#linenumberprogramindex). The value of this position is an offset pointing to [Line number program](#line-number-program). The length of **Line number program** is variable and ends with the **END_SEQUENCE** operation code.|
+| `line_number_program_idx` | `uleb128`        | An index that points to a position in [LineNumberProgramIndex](#linenumberprogramindex). The value of the position is an offset pointing to the line number program. The length of **Line number program** is variable and ends with the **END_SEQUENCE** operation code.|
 
 
 #### Constant Pool
@@ -404,7 +410,7 @@ Generates [DebugInfo](#debuginfo) information. It contains the following registe
 | `column`            | 0                                                            | Unsigned integer, corresponding to the column number in the source code.                              |
 | `file`              | Value of **SOURCE_FILE** in **class_data** (see [Class](#class)), or 0.| An offset to a [string](#string) representing the source file name. If there is no file name (no **SOURCE_FILE** tag in [Class](#class)), the register value is **0**.|
 | `source_code`       | 0                                                            | An offset to a [string](#string) representing the source code of the source file. If there is no source code information, the register value is **0**.|
-| `constant_pool_ptr` | Address of the first byte of the constant pool in [DebugInfo](#debuginfo).| Pointer to the current constant value.                                      |
+| `constant_pool_ptr` | Start address of the constant pool in [DebugInfo](#debuginfo).| Pointer to the current constant value.                                      |
 
 
 #### Line Number Program
@@ -415,11 +421,11 @@ Consists of instructions, each containing a single-byte operation code and optio
 | `END_SEQUENCE`         | `0x00`  |       |          |        | Marks the end of the line number program.   |
 | `ADVANCE_PC`           | `0x01`  |    | `uleb128 addr_diff`   | **addr_diff**: value to increment the **address** register.   | Increments the **address** register by **addr_diff** to point to the next address, without generating a location entry.|
 | `ADVANCE_LINE`         | `0x02` |     | `sleb128 line_diff`  | **line_diff**: value to increment the **line** register.   | Increments the **line** register by **line_diff** to point to the next line position, without generating a location entry.|
-| `START_LOCAL`          | `0x03` | `sleb128 register_num` | `uleb128 name_idx`<br>`uleb128 type_idx`   | **register_num**: register containing the local variable.<br>**name_idx**: an offset to a [string](#string) representing the variable name.<br>**type_idx**: an offset to a [string](#string) representing the variable type.| Introduces a local variable with a name and type at the current address. The number of the register that will contain this variable is encoded in the instruction. If **register_num** is **-1**, it indicates an accumulator register. The values of **name_idx** and **type_idx** may be **0**, indicating no such information.|
-| `START_LOCAL_EXTENDED` | `0x04` | `sleb128 register_num` | `uleb128 name_idx`<br>`uleb128 type_idx`<br>`uleb128 sig_idx` | **register_num**: register containing the local variable.<br>**name_idx**: an offset to a [string](#string) representing the variable name.<br>**type_idx**: an offset to a [string](#string) representing the variable type.<br>**sig_idx**: an offset to a [string](#string) representing the variable signature.| Introduces a local variable with a name, type, and signature at the current address. The number of the register that will contain this variable is encoded in the instruction. If **register_num** is **-1**, it indicates an accumulator register. The values of **name_idx**, **type_idx**, and **sig_idx** may be **0**, indicating no such information.|
-| `END_LOCAL`            | `0x05` | `sleb128 register_num` |    | **register_num**: register containing the local variable. | Marks the local variable in the specified register as out of scope at the current address. If **register_num** is **-1**, it indicates an accumulator register.|
-| `SET_FILE`             | `0x09`  |    | `uleb128 name_idx`  | **name_idx**: an offset to a [string](#string) representing the file name.| Sets the value of the file register. The value of **name_idx** may be **0**, indicating no such information.|
-| `SET_SOURCE_CODE`      | `0x0a`  |    | `uleb128 source_idx` | **source_idx**: an offset to a [string](#string) representing the source code of the file.| Sets the value of the **source_code** register. The value of **source_idx** may be **0**, indicating no such information.|
+| `START_LOCAL`          | `0x03` | `sleb128 register_num` | `uleb128 name_idx`<br>`uleb128 type_idx`   | **register_num**: register containing the local variable.<br>**name_idx**: an offset to a [string](#string) representing the variable name.<br>**type_idx**: an offset to a [string](#string) representing the variable type.| Introduces a local variable with a name and type at the current address. The number of the register that will contain this variable is encoded in the instruction. If the register number is **-1**, the register is the accumulator register. The values of `name_idx` and `type_idx` may be **0**, indicating no such information.|
+| `START_LOCAL_EXTENDED` | `0x04` | `sleb128 register_num` | `uleb128 name_idx`<br>`uleb128 type_idx`<br>`uleb128 sig_idx` | **register_num**: register containing the local variable.<br>**name_idx**: an offset to a [string](#string) representing the variable name.<br>**type_idx**: an offset to a [string](#string) representing the variable type.<br>**sig_idx**: an offset to a [string](#string) representing the variable signature.| Introduces a local variable with a name, type, and signature at the current address. The number of the register that will contain this variable is encoded in the instruction. If the register number is **-1**, the register is the accumulator register. The values of `name_idx`, `type_idx`, and `sig_idx` may be **0**, indicating no such information.|
+| `END_LOCAL`            | `0x05` | `sleb128 register_num` |    | **register_num**: register containing the local variable. | Marks the local variable in the specified register as out of scope at the current address. If the register number is **-1**, the register is the accumulator register.|
+| `SET_FILE`             | `0x09`  |    | `uleb128 name_idx`  | **name_idx**: an offset to a [string](#string) representing the file name.| Sets the value of the `file` register. The value of `name_idx` may be **0**, indicating no such information.|
+| `SET_SOURCE_CODE`      | `0x0a`  |    | `uleb128 source_idx` | **source_idx**: an offset to a [string](#string) representing the source code of the file.| Sets the value of the **source_code** register. The value of `source_idx` may be **0**, indicating no such information.|
 | `SET_COLUMN`           | `0x0b` |    | `uleb128 column_num`   | **column_num**: column number to be set.  | Sets the value of the **column** register and generates a location entry. |
 | Special operation code          | `0x0c..0xff`   |   |  |   | Adjusts the **line** and **address** registers to the next address and generate a location entry. Details are described below.|
 
@@ -464,10 +470,6 @@ Represents an index region. Each index region has two types of indexes: indexes 
 | `method_string_literal_region_idx_size` | `uint32_t`       | Number of elements in [MethodStringLiteralRegionIndex](#methodstringliteralregionindex) of the region. The maximum value is **65536**.|
 | `method_string_literal_region_idx_off`  | `uint32_t`       | An offset to [MethodStringLiteralRegionIndex](#methodstringliteralregionindex).|
 | `reserved`                              | `uint32_t`       | Reserved field for internal use by the Ark bytecode file.                          |
-| `reserved`                              | `uint32_t`       | Reserved field for internal use by the Ark bytecode file.                          |
-| `reserved`                              | `uint32_t`       | Reserved field for internal use by the Ark bytecode file.                          |
-| `reserved`                              | `uint32_t`       | Reserved field for internal use by the Ark bytecode file.                          |
-
 
 ### ClassRegionIndex
 Provides compact indexing for locating [Type](#type) entries.
@@ -525,7 +527,7 @@ Describes a literal array in the bytecode file.
 
 
 ### Literal
-Describes literals in the bytecode file. Depending on the number of bytes in the literal value, there are four encoding formats: single-byte encoding, double-byte encoding, four-byte encoding, and eight-byte encoding. These formats optimize the size of the bytecode file by matching the encoding to the length of the value.
+Describes literals in the bytecode file. There are four encoding formats based on the number of bytes of the literals: single-byte encoding, double-byte encoding, four-byte encoding, and eight-byte encoding. These formats optimize the size of the bytecode file by matching the encoding to the length of the value.
 
 - Alignment: Each format has its corresponding alignment rules.
 - Format

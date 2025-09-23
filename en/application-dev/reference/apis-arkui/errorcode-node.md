@@ -1,4 +1,10 @@
 # Custom Node Error Codes
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @wangchensu1-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 > **NOTE**
 >
@@ -93,3 +99,25 @@ The passed node is not mounted to the component tree when the API is called.
 **Solution**
 
 Adjust the API call timing to ensure the node is mounted to the component tree.
+
+## 106204 Operations on the Provided Node Not Supported on Non-UI Threads
+
+**Error Message**
+
+Operation on passed in nodes in non UI threads is not supported.
+
+**Description**
+
+This error code is reported when an attempt is made to manipulate nodes on a non-UI thread.
+
+**Possible Causes**
+
+1. The API can be called only on the UI thread.
+2. The API supports multi-threaded calls, but the passed node has already been mounted to the main UI tree.
+3. The API supports multi-threaded calls, but the passed node is not created using the thread-safe [createNode](capi-arkui-nativemodule-arkui-nativenodeapi-1.md#createnode) API.
+
+**Solution**
+
+1. Adjust the API call timing to ensure the API is called from the UI thread.
+2. Unmount the passed node from the main UI tree before calling the API.
+3. Use the thread-safe [createNode](capi-arkui-nativemodule-arkui-nativenodeapi-1.md#createnode) API to create nodes before calling this API.

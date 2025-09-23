@@ -1,4 +1,5 @@
 # camera_input.h
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
@@ -41,6 +42,9 @@
 | [Camera_ErrorCode OH_CameraInput_OpenConcurrentCameras(Camera_Input* cameraInput, Camera_ConcurrentType type)](#oh_camerainput_openconcurrentcameras) | - | 根据指定并发类型打开相机。 |
 | [Camera_ErrorCode OH_CameraInput_Close(Camera_Input* cameraInput)](#oh_camerainput_close) | - | 关闭相机。 |
 | [Camera_ErrorCode OH_CameraInput_Release(Camera_Input* cameraInput)](#oh_camerainput_release) | - | 释放相机输入实例。<br> 和[OH_CameraInput_Close](capi-camera-input-h.md#oh_camerainput_close)只需要调用其中一个，调用之后无须再调用[OH_CameraInput_Close](capi-camera-input-h.md#oh_camerainput_close)。 |
+| [Camera_ErrorCode OH_CameraInput_IsPhysicalCameraOrientationVariable(Camera_Input* cameraInput, bool* isVariable)](#oh_camerainput_isphysicalcameraorientationvariable) | - | 查询不同折叠状态下相机物理镜头角度是否可变。 |
+| [Camera_ErrorCode OH_CameraInput_GetPhysicalCameraOrientation(Camera_Input* cameraInput, uint32_t* orientation)](#oh_camerainput_getphysicalcameraorientation) | - | 获取当前折叠状态下的物理镜头角度。 |
+| [Camera_ErrorCode OH_CameraInput_UsePhysicalCameraOrientation(Camera_Input* cameraInput, bool isUsed)](#oh_camerainput_usephysicalcameraorientation) | - | 选择是否使用物理镜头角度。 |
 
 ## 函数说明
 
@@ -62,11 +66,18 @@ typedef void (*OH_CameraInput_OnError)(const Camera_Input* cameraInput, Camera_E
 | 参数项 | 描述 |
 | -- | -- |
 | const [Camera_Input](capi-oh-camera-camera-input.md)* cameraInput | 传递回调的Camera_Input。 |
-|  [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) errorCode | 相机输入的Camera_ErrorCode。 |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) errorCode | 相机输入的Camera_ErrorCode。 |
 
 **参考：**
 
+[CAMERA_CONFLICT_CAMERA](capi-camera-h.md#camera_errorcode)
+
+[CAMERA_DEVICE_DISABLED](capi-camera-h.md#camera_errorcode)
+
+[CAMERA_DEVICE_PREEMPTED](capi-camera-h.md#camera_errorcode)
+
 [CAMERA_SERVICE_FATAL_ERROR](capi-camera-h.md#camera_errorcode)
+
 
 ### OH_CameraInput_RegisterCallback()
 
@@ -246,5 +257,83 @@ Camera_ErrorCode OH_CameraInput_Release(Camera_Input* cameraInput)
 | 类型 | 说明 |
 | -- | -- |
 | [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。<br>         CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。 |
+
+### OH_CameraInput_IsPhysicalCameraOrientationVariable()
+
+```
+Camera_ErrorCode OH_CameraInput_IsPhysicalCameraOrientationVariable(Camera_Input* cameraInput, bool* isVariable)
+```
+
+**描述**
+
+查询不同折叠状态下相机物理镜头角度是否可变。
+
+**起始版本：** 21
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Camera_Input](capi-oh-camera-camera-input.md)* cameraInput | Camera_Input实例。 |
+| bool* isVariable | 查询不同折叠状态下相机物理镜头角度是否可变。true表示可变，false表示不可变。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。 |
+
+### OH_CameraInput_GetPhysicalCameraOrientation()
+
+```
+Camera_ErrorCode OH_CameraInput_GetPhysicalCameraOrientation(Camera_Input* cameraInput, uint32_t* orientation)
+```
+
+**描述**
+
+获取当前折叠状态下的物理镜头角度。
+
+**起始版本：** 21
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Camera_Input](capi-oh-camera-camera-input.md)* cameraInput | Camera_Input实例。 |
+| uint32_t* orientation | 如果方法调用成功，将返回当前折叠状态下的物理镜头角度。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。 |
+
+### OH_CameraInput_UsePhysicalCameraOrientation()
+
+```
+Camera_ErrorCode OH_CameraInput_UsePhysicalCameraOrientation(Camera_Input* cameraInput, bool isUsed)
+```
+
+**描述**
+
+选择是否使用物理镜头角度。
+
+**起始版本：** 21
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Camera_Input](capi-oh-camera-camera-input.md)* cameraInput | Camera_Input实例。 |
+| bool isUsed | 选择是否使用物理镜头角度。true表示使用，false表示不使用。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) | CAMERA_OK：方法调用成功。<br>         CAMERA_INVALID_ARGUMENT：参数丢失或参数类型不正确。<br>         CAMERA_OPERATION_NOT_ALLOWED：操作不允许。<br>         CAMERA_SERVICE_FATAL_ERROR：相机服务出现致命错误。 |
 
 

@@ -154,7 +154,7 @@ ArkUI提供了使用C和C++开发拖拽功能的能力，开发者可调用C API
     ```cpp
     case NODE_ON_DROP: {
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "dragTest",
-                      "NODE_ON_DRAG_START EventReceiver");
+                      "NODE_ON_DROP EventReceiver");
         // 获取UDMF data
         int returnValue;
         // 创建OH_UdmfData对象

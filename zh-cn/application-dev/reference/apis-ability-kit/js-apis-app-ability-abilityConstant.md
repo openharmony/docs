@@ -72,7 +72,7 @@ import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
 export default class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     if (launchParam.launchReason === AbilityConstant.LaunchReason.START_ABILITY) {
-      console.log('The ability has been started by the way of startAbility.');
+      console.info('The ability has been started by the way of startAbility.');
     }
   }
 }
@@ -93,7 +93,7 @@ Ability上次退出原因，该类型为枚举，可配合UIAbility的[onCreate(
 | JS_ERROR<sup>10+</sup>  | 4    | 当应用存在JS语法错误并未被开发者捕获时，触发JS_ERROR故障，导致应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | APP_FREEZE<sup>10+</sup>  | 5    | [应用冻屏](../../dfx/appfreeze-guidelines.md)导致的应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | PERFORMANCE_CONTROL<sup>10+</sup>  | 6    | 因系统性能问题（如设备内存不足）导致的应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。<br>**说明**：该接口即将废弃，建议使用RESOURCE_CONTROL替代。 |
-| RESOURCE_CONTROL<sup>10+</sup>  | 7    | 系统资源使用不当导致的应用程序退出。具体错误原因可以通过[LaunchParam.lastExitMessage](#launchparam)获取，可能原因如下: <br> - CPU Highload，CPU高负载。<br> - CPU_EXT Highload，快速CPU负载检测。<br> - IO Manage Control，I/O管控。<br> - App Memory Deterioration，应用内存超限劣化。<br> - Temperature Control，温度管控。<br> - Memory Pressure，整机低内存触发按优先级由低到高查杀。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| RESOURCE_CONTROL<sup>10+</sup>  | 7    | 系统资源使用不当导致的应用程序退出。具体错误原因可以通过[LaunchParam.lastExitMessage](#launchparam)获取，可能原因如下: <br> - CPU Highload，CPU高负载。<br> - CPU_EXT Highload，快速CPU负载检测。<br> - IO Manage Control，I/O管控。<br> - App Memory Deterioration，应用内存超限劣化。<br> - Temperature Control，温度管控。<br> - Memory Pressure，整机低内存触发按优先级由低到高终止进程。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
 | UPGRADE<sup>10+</sup>  | 8    | 应用升级导致的应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | USER_REQUEST<sup>18+</sup>  | 9    | 应用程序因多任务中心请求而退出。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 | SIGNAL<sup>18+</sup>  | 10    | 应用程序因收到系统kill指令信号而退出。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
@@ -106,10 +106,10 @@ import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
 export default class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     if (launchParam.lastExitReason === AbilityConstant.LastExitReason.APP_FREEZE) {
-      console.log('The ability has exit last because the ability was not responding.');
+      console.info('The ability has exit last because the ability was not responding.');
     }
     if (launchParam.lastExitReason === AbilityConstant.LastExitReason.RESOURCE_CONTROL) {
-      console.log('The ability has exit last because the rss control，the lastExitReason is '+  launchParam.lastExitReason + ', the lastExitMessage is ' + launchParam.lastExitMessage);
+      console.info(`The ability has exit last because the rss control，the lastExitReason is ${launchParam.lastExitReason}, the lastExitMessage is ${launchParam.lastExitMessage}.`);
     }
   }
 }
@@ -141,15 +141,15 @@ import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
 export default class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     if (launchParam.lastExitDetailInfo) {
-      console.log('pid: ' + launchParam.lastExitDetailInfo.pid +
-        '\n processName: ' + launchParam.lastExitDetailInfo.processName +
-        '\n uid: ' + launchParam.lastExitDetailInfo.uid +
-        '\n exitSubReason: ' + launchParam.lastExitDetailInfo.exitSubReason +
-        '\n exitMsg: ' + launchParam.lastExitDetailInfo.exitMsg +
-        '\n rss: ' + launchParam.lastExitDetailInfo.rss +
-        '\n pss: ' + launchParam.lastExitDetailInfo.pss +
-        '\n timestamp: ' + launchParam.lastExitDetailInfo.timestamp +
-        '\n processState: ' + launchParam.lastExitDetailInfo.processState
+      console.info(`pid: ${launchParam.lastExitDetailInfo.pid}
+      \n processName: ${launchParam.lastExitDetailInfo.processName}
+      \n uid: ${launchParam.lastExitDetailInfo.uid}
+      \n exitSubReason: ${launchParam.lastExitDetailInfo.exitSubReason}
+      \n exitMsg: ${launchParam.lastExitDetailInfo.exitMsg}
+      \n rss: ${launchParam.lastExitDetailInfo.rss}
+      \n pss: ${launchParam.lastExitDetailInfo.pss}
+      \n timestamp: ${launchParam.lastExitDetailInfo.timestamp}
+      \n processState: ${launchParam.lastExitDetailInfo.processState}.`
       );
     }
   }
@@ -211,7 +211,7 @@ import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 export default class MyAbility extends UIAbility {
   onMemoryLevel(level: AbilityConstant.MemoryLevel) {
     if (level === AbilityConstant.MemoryLevel.MEMORY_LEVEL_CRITICAL) {
-      console.log('The memory of device is critical, please release some memory.');
+      console.info('The memory of device is critical, please release some memory.');
     }
   }
 }
@@ -247,7 +247,7 @@ let option: StartOptions = {
 export default class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.startAbility(want, option).then(() => {
-      console.log('Succeed to start ability.');
+      console.info('Succeed to start ability.');
     }).catch((error: BusinessError) => {
       console.error(`Failed to start ability with error: ${JSON.stringify(error)}`);
     });
@@ -305,7 +305,7 @@ import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 export default class MyAbility extends UIAbility {
   onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
     if (reason === AbilityConstant.StateType.CONTINUATION) {
-      console.log('Save the ability data when the ability continuation.');
+      console.info('Save the ability data when the ability continuation.');
     }
     return AbilityConstant.OnSaveResult.ALL_AGREE;
   }

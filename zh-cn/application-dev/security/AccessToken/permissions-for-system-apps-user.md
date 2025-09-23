@@ -17,30 +17,6 @@
 
 申请流程可参考[选择申请权限的方式](determine-application-mode.md)。
 
-## ohos.permission.READ_WHOLE_CALENDAR
-
-允许应用读取所有的日历信息。
-
-**权限级别**：system_basic
-
-**授权方式**：用户授权（user_grant）
-
-**ACL使能**：true
-
-**起始版本**：9
-
-## ohos.permission.WRITE_WHOLE_CALENDAR
-
-允许应用添加、移除或更改所有的日历活动。
-
-**权限级别**：system_basic
-
-**授权方式**：用户授权（user_grant）
-
-**ACL使能**：true
-
-**起始版本**：9
-
 ## ohos.permission.GET_INSTALLED_BUNDLE_LIST
 
 允许应用读取已安装应用列表。

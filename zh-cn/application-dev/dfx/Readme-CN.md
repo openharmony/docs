@@ -17,7 +17,7 @@
   - [AddrSanitizer（地址越界）检测](address-sanitizer-guidelines.md)
   - [AppFreeze（应用冻屏）检测](appfreeze-guidelines.md)
   - [任务超时检测](apptask-timeout-guidelines.md)
-  - [应用查杀检测](appkilled-guidelines.md)
+  - [应用终止检测](appkilled-guidelines.md)
 - 日志打印<!--hilog-dev-->
   - [使用HiLog打印日志（ArkTS）](hilog-guidelines-arkts.md)
   - [使用HiLog打印日志（C/C++）](hilog-guidelines-ndk.md)
@@ -52,14 +52,15 @@
         - [任务执行超时事件介绍](hiappevent-watcher-apphicollie-events.md)
         - [订阅任务执行超时事件（ArkTS）](hiappevent-watcher-apphicollie-events-arkts.md)
         - [订阅任务执行超时事件（C/C++）](hiappevent-watcher-apphicollie-events-ndk.md)
-      - 应用查杀事件<!--app-killed-events-->
-        - [应用查杀事件介绍](hiappevent-watcher-app-killed-events.md)
-        - [订阅应用查杀事件（ArkTS）](hiappevent-watcher-app-killed-events-arkts.md)
-        - [订阅应用查杀事件（C/C++）](hiappevent-watcher-app-killed-events-ndk.md)
+      - 应用终止事件<!--app-killed-events-->
+        - [应用终止事件介绍](hiappevent-watcher-app-killed-events.md)
+        - [订阅应用终止事件（ArkTS）](hiappevent-watcher-app-killed-events-arkts.md)
+        - [订阅应用终止事件（C/C++）](hiappevent-watcher-app-killed-events-ndk.md)
   <!--Del-->
   - [事件上报](hiappevent-event-reporting.md)
   <!--DelEnd-->
   - [HiAppEvent常见问题](hiappevent-faq.md)
+  - [使用FaultLogExtensionAbility订阅事件](fault-log-extension-app-events-arkts.md)
 - 性能跟踪<!--hitracemeter-->
   - [HiTraceMeter介绍](hitracemeter-intro.md)
   - [使用HiTraceMeter跟踪性能（ArkTS）](hitracemeter-guidelines-arkts.md)

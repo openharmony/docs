@@ -16,7 +16,7 @@
 ## 导入模块
 
 ```ts
-import volumemanager from "@ohos.file.volumeManager";
+import { volumeManager } from '@kit.CoreFileKit';
 ```
 
 ## volumemanager.getAllVolumes
@@ -24,6 +24,8 @@ import volumemanager from "@ohos.file.volumeManager";
 getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 
 异步获取当前外置存储中所有卷设备信息，以promise方式返回。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -51,7 +53,7 @@ getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+  volumeManager.getAllVolumes().then((volumes: Array<volumeManager.Volume>) => {
     // do something with volumes, which is an array
   }).catch((error: BusinessError) => {
     console.error("getAllVolumes failed");
@@ -63,6 +65,8 @@ getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 
 异步获取当前外置存储中所有卷设备信息，以callback方式返回。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -90,7 +94,7 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  volumemanager.getAllVolumes((error: BusinessError, volumes: Array<volumemanager.Volume>) => {
+  volumeManager.getAllVolumes((error: BusinessError, volumes: Array<volumeManager.Volume>) => {
     // do something
   });
   ```
@@ -100,6 +104,8 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 mount(volumeId: string): Promise&lt;void&gt;
 
 异步挂载指定卷设备，以promise方式返回。当前仅支持vfat、exfat以及ntfs三种文件系统的卷设备挂载。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -138,7 +144,7 @@ mount(volumeId: string): Promise&lt;void&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
-  volumemanager.mount(volumeId).then(() => {
+  volumeManager.mount(volumeId).then(() => {
     // do something
   }).catch((error: BusinessError) => {
     console.error("mount failed");
@@ -150,6 +156,8 @@ mount(volumeId: string): Promise&lt;void&gt;
 mount(volumeId: string, callback:AsyncCallback&lt;void&gt;):void
 
 异步挂载指定卷设备，以callback方式返回。当前仅支持vfat、exfat以及ntfs三种文件系统的卷设备挂载。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -183,7 +191,7 @@ mount(volumeId: string, callback:AsyncCallback&lt;void&gt;):void
   ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
-  volumemanager.mount(volumeId, (error: BusinessError) => {
+  volumeManager.mount(volumeId, (error: BusinessError) => {
     // do something
   });
   ```
@@ -193,6 +201,8 @@ mount(volumeId: string, callback:AsyncCallback&lt;void&gt;):void
 unmount(volumeId: string): Promise&lt;void&gt;
 
 异步卸载指定卷设备，以promise方式返回。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -231,7 +241,7 @@ unmount(volumeId: string): Promise&lt;void&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
-  volumemanager.unmount(volumeId).then(() => {
+  volumeManager.unmount(volumeId).then(() => {
     // do something
   }).catch((error: BusinessError) => {
     console.error("mount failed");
@@ -243,6 +253,8 @@ unmount(volumeId: string): Promise&lt;void&gt;
 unmount(volumeId: string, callback: AsyncCallback&lt;void&gt;): void
 
 异步卸载指定卷设备，以callback方式返回。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -276,7 +288,7 @@ unmount(volumeId: string, callback: AsyncCallback&lt;void&gt;): void
   ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
-  volumemanager.unmount(volumeId, (error: BusinessError) => {
+  volumeManager.unmount(volumeId, (error: BusinessError) => {
     // do something
   });
   ```
@@ -286,6 +298,8 @@ unmount(volumeId: string, callback: AsyncCallback&lt;void&gt;): void
 getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
 
 异步通过卷设备uuid获得指定卷设备信息，以promise方式返回。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -301,7 +315,7 @@ getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
 
   | 类型                               | 说明                       |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)&gt; | Promise对象，返回当前所有可获得的卷设备信息。 |
+  | Promise&lt;[Volume](#volume)&gt; | Promise对象，返回当前uuid的卷设备信息。 |
 
 **错误码：**
 
@@ -321,7 +335,7 @@ getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
   let uuid: string = "";
-  volumemanager.getVolumeByUuid(uuid).then((volume: volumemanager.Volume) => {
+  volumeManager.getVolumeByUuid(uuid).then((volume: volumeManager.Volume) => {
     console.info("getVolumeByUuid successfully:" + JSON.stringify(volume));
   }).catch((error: BusinessError) => {
     console.error("getVolumeByUuid failed with error:" + JSON.stringify(error));
@@ -333,6 +347,8 @@ getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
 getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
 
 异步通过卷设备uuid获得指定卷设备信息，以callback方式返回。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -363,7 +379,7 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
   ```ts
   import { BusinessError } from '@ohos.base';
   let uuid: string = "";
-  volumemanager.getVolumeByUuid(uuid, (error: BusinessError, volume: volumemanager.Volume) => {
+  volumeManager.getVolumeByUuid(uuid, (error: BusinessError, volume: volumeManager.Volume) => {
     // do something    
   });
   ```
@@ -373,6 +389,8 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
 getVolumeById(volumeId: string): Promise&lt;Volume&gt;
 
 异步通过卷设备id获得指定卷设备信息，以promise方式返回。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -388,7 +406,7 @@ getVolumeById(volumeId: string): Promise&lt;Volume&gt;
 
   | 类型                               | 说明                       |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)&gt; | Promise对象，返回当前所有可获得的卷设备信息。 |
+  | Promise&lt;[Volume](#volume)&gt; | Promise对象，返回当前id的卷设备信息。 |
 
 **错误码：**
 
@@ -408,7 +426,7 @@ getVolumeById(volumeId: string): Promise&lt;Volume&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
-  volumemanager.getVolumeById(volumeId).then((volume: volumemanager.Volume) => {
+  volumeManager.getVolumeById(volumeId).then((volume: volumeManager.Volume) => {
     console.info("getVolumeById successfully:" + JSON.stringify(volume));
   }).catch((error: BusinessError) => {
     console.error("getVolumeById failed with error:" + JSON.stringify(error));
@@ -420,6 +438,8 @@ getVolumeById(volumeId: string): Promise&lt;Volume&gt;
 getVolumeById(volumeId: string, callback: AsyncCallback&lt;Volume&gt;): void
 
 异步通过指定卷设备id获得卷设备信息，以callback方式返回。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.STORAGE_MANAGER
 
@@ -450,7 +470,7 @@ getVolumeById(volumeId: string, callback: AsyncCallback&lt;Volume&gt;): void
   ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
-  volumemanager.getVolumeById(volumeId, (error: BusinessError, volume: volumemanager.Volume) => {
+  volumeManager.getVolumeById(volumeId, (error: BusinessError, volume: volumeManager.Volume) => {
     // do something    
   });
   ```
@@ -460,6 +480,8 @@ getVolumeById(volumeId: string, callback: AsyncCallback&lt;Volume&gt;): void
 setVolumeDescription(uuid: string, description: string): Promise&lt;void&gt;
 
 异步修改指定卷设备描述，以promise方式返回。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -499,7 +521,7 @@ setVolumeDescription(uuid: string, description: string): Promise&lt;void&gt;
   import { BusinessError } from '@ohos.base';
   let uuid: string = "";
   let description: string = "";
-  volumemanager.setVolumeDescription(uuid, description).then(() => {
+  volumeManager.setVolumeDescription(uuid, description).then(() => {
     console.info("setVolumeDescription successfully");
   }).catch((error: BusinessError) => {
     console.error("setVolumeDescription failed with error:" + JSON.stringify(error));
@@ -511,6 +533,8 @@ setVolumeDescription(uuid: string, description: string): Promise&lt;void&gt;
 setVolumeDescription(uuid: string, description: string, callback: AsyncCallback&lt;void&gt;): void
 
 异步修改指定卷设备描述，以callback方式返回。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -545,7 +569,7 @@ setVolumeDescription(uuid: string, description: string, callback: AsyncCallback&
   import { BusinessError } from '@ohos.base';
   let uuid: string = "";
   let description: string = "";
-  volumemanager.setVolumeDescription(uuid, description, (error: BusinessError) => {
+  volumeManager.setVolumeDescription(uuid, description, (error: BusinessError) => {
     // do something    
   });
   ```
@@ -555,6 +579,8 @@ setVolumeDescription(uuid: string, description: string, callback: AsyncCallback&
 format(volumeId: string, fsType: string): Promise&lt;void&gt;
 
 异步对指定卷设备进行格式化，以promise方式返回。当前仅支持vfat和exfat两种文件系统类型的格式化，只有处于卸载状态的卷设备可以进行格式化，格式化后卷设备的uuid、挂载路径和卷设备描述均会发生变化。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MOUNT_FORMAT_MANAGER
 
@@ -594,7 +620,7 @@ format(volumeId: string, fsType: string): Promise&lt;void&gt;
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
   let fsType: string = "";
-  volumemanager.format(volumeId, fsType).then(() => {
+  volumeManager.format(volumeId, fsType).then(() => {
     console.info("format successfully");
   }).catch((error: BusinessError) => {
     console.error("format failed with error:" + JSON.stringify(error));
@@ -606,6 +632,8 @@ format(volumeId: string, fsType: string): Promise&lt;void&gt;
 format(volumeId: string, fsType: string, callback: AsyncCallback&lt;void&gt;): void
 
 异步对指定卷设备进行格式化，以callback方式返回。当前仅支持vfat和exfat两种文件系统类型的格式化，只有处于卸载状态的卷设备可以进行格式化，格式化后卷设备的uuid、挂载路径和卷设备描述均会发生变化。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MOUNT_FORMAT_MANAGER
 
@@ -640,7 +668,7 @@ format(volumeId: string, fsType: string, callback: AsyncCallback&lt;void&gt;): v
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
   let fsType: string = "";
-  volumemanager.format(volumeId, fsType, (error: BusinessError) => {
+  volumeManager.format(volumeId, fsType, (error: BusinessError) => {
     // do something    
   });
   ```
@@ -650,6 +678,8 @@ format(volumeId: string, fsType: string, callback: AsyncCallback&lt;void&gt;): v
 partition(diskId: string, type: number): Promise&lt;void&gt;
 
 异步对磁盘设备进行分区，以promise方式返回。当前仅支持将磁盘设备重新分区为一个分区，系统是支持读取多分区的磁盘设备。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MOUNT_FORMAT_MANAGER
 
@@ -687,7 +717,7 @@ partition(diskId: string, type: number): Promise&lt;void&gt;
   import { BusinessError } from '@ohos.base';
   let diskId: string = "";
   let type: number = 0;
-  volumemanager.partition(diskId, type).then(() => {
+  volumeManager.partition(diskId, type).then(() => {
     console.info("partition successfully");
   }).catch((error: BusinessError) => {
     console.error("partition failed with error:" + JSON.stringify(error));
@@ -699,6 +729,8 @@ partition(diskId: string, type: number): Promise&lt;void&gt;
 partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): void
 
 异步对磁盘进行分区，以callback方式返回。当前仅支持将磁盘设备重新分区为一个分区，系统是支持读取多分区的磁盘设备。
+
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.MOUNT_FORMAT_MANAGER
 
@@ -731,12 +763,14 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
   import { BusinessError } from '@ohos.base';
   let diskId: string = "";
   let type: number = 0;
-  volumemanager.partition(diskId, type, (error: BusinessError) => {
+  volumeManager.partition(diskId, type, (error: BusinessError) => {
     // do something    
   });
   ```
 
 ## Volume
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.FileManagement.StorageService.Volume。
 

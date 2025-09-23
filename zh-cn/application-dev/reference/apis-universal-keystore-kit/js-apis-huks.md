@@ -3159,7 +3159,7 @@ let emptyOptions: huks.HuksOptions = {
     properties: []
 };
 let result = huks.deleteKey(keyAlias, emptyOptions).then((data) => {
-    console.info('delete key seccuss');
+    console.info('delete key success');
 }).catch((err: BusinessError) => {
     console.error("密钥删除失败，错误码是： " + err.code + " 错误码信息： " + err.message)
 });
@@ -3529,7 +3529,7 @@ init操作密钥接口，使用Callback回调异步返回结果。huks.init, huk
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | keyAlias | string                 | 是   | Init操作密钥的别名。 |
 | options  | [HuksOptions](#huksoptions) | 是   | Init操作的参数集合。 |
-| callback | AsyncCallback\<[HuksHandle](#hukshandledeprecated)> | 是   | 回调函数。将Init操作操作返回的handle添加到回调函数中。 |
+| callback | AsyncCallback\<[HuksHandle](#hukshandledeprecated)> | 是   | 回调函数。将Init操作返回的handle添加到回调函数中。 |
 
 ## huks.init<sup>(deprecated)</sup>
 

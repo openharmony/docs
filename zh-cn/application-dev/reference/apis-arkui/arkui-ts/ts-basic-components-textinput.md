@@ -67,6 +67,8 @@ type(value: InputType)
 
 设置输入框类型。
 
+不同的InputType会拉起对应类型的键盘，同时限制输入。<!--RP4--><!--RP4End-->
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -249,9 +251,9 @@ inputFilter(value: ResourceStr, error?: Callback\<string>)
 
 通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。
 
-单字符输入场景仅支持单字符匹配，多字符输入场景支持字符串匹配，例如粘贴。
+单字符输入场景仅支持单字符匹配，多字符输入场景支持字符串匹配，例如粘贴。<!--RP5--><!--RP5End-->
 
-从API version 11开始，设置inputFilter且输入的字符不为空字符，会导致设置输入框类型(即type接口)附带的文本过滤效果失效。
+从API version 11开始，设置inputFilter且输入的字符不为空字符，会导致[type](#type)接口附带的文本过滤效果失效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -714,6 +716,12 @@ decoration(value: TextDecorationOptions)
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [TextDecorationOptions](ts-universal-attributes-text-style.md#textdecorationoptions12对象说明) | 是   | 文本装饰线对象。<br />默认值：{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
+
+>  **说明：**
+>
+>  当文字的下边缘轮廓与装饰线位置相交时，会触发下划线避让规则，下划线将在这些字符处避让文字。常见“gjyqp”等英文字符。
+>
+>  当文本装饰线的颜色设置为Color.Transparent时，装饰线颜色设置为跟随每行第一个字的字体颜色。当文本装饰线的颜色设置为透明色16进制对应值“#00FFFFFF”时，装饰线颜色设置为透明色。
 
 ### letterSpacing<sup>12+</sup>
 
@@ -1208,11 +1216,11 @@ enableAutoSpacing(enabled: Optional\<boolean>)
 | Number                        | - | 纯数字输入模式。<br/>不支持负数、小数。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | PhoneNumber<sup>9+</sup>      | - | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | NUMBER_PASSWORD<sup>11+</sup> | 8 | 纯数字密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。密码输入模式不支持下划线样式。在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| USER_NAME<sup>11+</sup>       | 10 | 用户名输入模式。<br/>在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| NEW_PASSWORD<sup>11+</sup>    | 11 | 新密码输入模式。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。在已启用密码保险箱的情况下，支持自动生成新密码。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| USER_NAME<sup>11+</sup>       | 10 | 用户名输入模式，无特殊限制。<br/>在已启用密码保险箱的情况下，支持用户名、密码的自动保存和自动填充。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NEW_PASSWORD<sup>11+</sup>    | 11 | 新密码输入模式，无特殊限制。<br/>密码显示小眼睛图标，默认输入文字短暂显示后变成圆点，从API version 12开始，特定设备上输入文字直接显示为圆点。在已启用密码保险箱的情况下，支持自动生成新密码。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NUMBER_DECIMAL<sup>11+</sup>  | 12 | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。不支持负数小数，负数小数的数字输入模式请使用inputFilter实现。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| URL<sup>12+</sup>  | 13 | 带URL的输入模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| ONE_TIME_CODE<sup>20+</sup>  | 14 | 验证码输入模式。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| URL<sup>12+</sup>  | 13 | 带URL的输入模式，无特殊限制。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| ONE_TIME_CODE<sup>20+</sup>  | 14 | 验证码输入模式，无特殊限制。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## ContentType<sup>12+</sup>枚举说明
 
@@ -2055,7 +2063,7 @@ struct TextInputExample {
   @State submitValue: string = '';
   @State text: string = '';
   public readonly NUM_TEXT_MAXSIZE_LENGTH = 13;
-  @State teleNumberNoSpace: string = "";
+  @State telNumberNoSpace: string = "";
   @State nextCaret: number = -1; // 用于记录下次光标设置的位置
   @State actualCh: number = -1; // 用于记录光标在第i个数字后插入或者第i个数字前删除
   @State lastCaretPosition: number = 0;
@@ -2099,13 +2107,13 @@ struct TextInputExample {
   calcCaretPosition(nextText: string) {
     let befNumberNoSpace: string = this.removeSpace(this.text);
     this.actualCh = 0;
-    if (befNumberNoSpace.length < this.teleNumberNoSpace.length) { // 插入场景
+    if (befNumberNoSpace.length < this.telNumberNoSpace.length) { // 插入场景
       for (let i = 0; i < this.lastCaretPosition; i++) {
         if (this.text[i] != ' ') {
           this.actualCh += 1;
         }
       }
-      this.actualCh += this.teleNumberNoSpace.length - befNumberNoSpace.length;
+      this.actualCh += this.telNumberNoSpace.length - befNumberNoSpace.length;
       console.info("actualCh: " + this.actualCh);
       for (let i = 0; i < nextText.length; i++) {
         if (nextText[i] != ' ') {
@@ -2116,7 +2124,7 @@ struct TextInputExample {
           }
         }
       }
-    } else if (befNumberNoSpace.length > this.teleNumberNoSpace.length) { // 删除场景
+    } else if (befNumberNoSpace.length > this.telNumberNoSpace.length) { // 删除场景
       if (this.lastCaretPosition === this.text.length) {
         console.info("Caret at last, no need to change");
       } else if (this.lastCaretPosition === this.lastCaretPositionEnd) {
@@ -2147,20 +2155,20 @@ struct TextInputExample {
       Row() {
         TextInput({ text: `${this.text}`, controller: this.controller }).type(InputType.PhoneNumber).height('48vp')
           .onChange((value: string) => {
-            this.teleNumberNoSpace = this.removeSpace(value);
+            this.telNumberNoSpace = this.removeSpace(value);
             let nextText: string = "";
-            if (this.teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
-              nextText = this.teleNumberNoSpace;
+            if (this.telNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
+              nextText = this.telNumberNoSpace;
             } else if (this.checkNeedNumberSpace(value)) {
-              if (this.teleNumberNoSpace.length <= 3) {
-                nextText = this.teleNumberNoSpace;
+              if (this.telNumberNoSpace.length <= 3) {
+                nextText = this.telNumberNoSpace;
               } else {
-                let split1: string = this.teleNumberNoSpace.substring(0, 3);
-                let split2: string = this.teleNumberNoSpace.substring(3);
+                let split1: string = this.telNumberNoSpace.substring(0, 3);
+                let split2: string = this.telNumberNoSpace.substring(3);
                 nextText = split1 + ' ' + split2;
-                if (this.teleNumberNoSpace.length > 7) {
-                  split2 = this.teleNumberNoSpace.substring(3, 7);
-                  let split3: string = this.teleNumberNoSpace.substring(7);
+                if (this.telNumberNoSpace.length > 7) {
+                  split2 = this.telNumberNoSpace.substring(3, 7);
+                  let split3: string = this.telNumberNoSpace.substring(7);
                   nextText = split1 + ' ' + split2 + ' ' + split3;
                 }
               }

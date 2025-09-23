@@ -4,7 +4,7 @@
 
 ## 问题场景
 
-假设开发者想要在应用中开发一个在线音乐显示列表，列表中每一个Item包含专辑封面、歌曲名称都要在线实时下载后再显示。专辑封面图片的下载和显示需要一些时间，具体取决于网络的通道质量、图像大小等因素。如果当前Item显示在屏幕上时，其对应的图像尚未加载完成，则将出现白块（图像的占位符）。为列表显示提供数据加载能力常用方法是使用[LazyForEach](../ui/state-management/arkts-rendering-control-lazyforeach.md)。LazyForEach会在提供的数据源上进行迭代，并在每次迭代中创建相应的组件。当在列表组件中使用LazyForEach时，ArkUI框架会在列表的可见区域按需创建Item组件。当Item超出屏幕时，ArkUI框架会销毁并回收组件，以减少内存占用。目前仅[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swpier](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)和[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持使用LazyForEach。
+假设开发者想要在应用中开发一个在线音乐显示列表，列表中每一个Item包含专辑封面、歌曲名称都要在线实时下载后再显示。专辑封面图片的下载和显示需要一些时间，具体取决于网络的通道质量、图像大小等因素。如果当前Item显示在屏幕上时，其对应的图像尚未加载完成，则将出现白块（图像的占位符）。为列表显示提供数据加载能力常用方法是使用[LazyForEach](../ui/rendering-control/arkts-rendering-control-lazyforeach.md)。LazyForEach会在提供的数据源上进行迭代，并在每次迭代中创建相应的组件。当在列表组件中使用LazyForEach时，ArkUI框架会在列表的可见区域按需创建Item组件。当Item超出屏幕时，ArkUI框架会销毁并回收组件，以减少内存占用。目前仅[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swpier](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)和[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持使用LazyForEach。
 
 ## 优化思路
 

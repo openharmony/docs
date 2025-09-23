@@ -29,6 +29,8 @@ fastConvertToJSObject(xml: string, options?: ConvertOptions) : Object
 
 > **说明：**
 >
+> 该接口无法满足解析大数据量的XML文件，当单元素文本内容超过10M时，会打印异常信息并返回一个仅包含XML标签头的基础Object对象。
+>
 > 在Windows环境中，通常以回车符（CR）和换行符（LF）一对字符来表示换行。fastConvertToJSObject接口转换后的对象以换行符（LF）表示换行。
 
 **原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。

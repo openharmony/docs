@@ -23,6 +23,7 @@
    #include <cstdlib>
    #include <cstring>
    #include <memory>
+   #include <mutex>
    #include "hilog/log.h"
    #include "napi/native_api.h"
    #include <ohcamera/camera.h>
@@ -127,15 +128,13 @@
        auto buffer = std::make_unique<uint8_t[]>(bufferSize);
        imageErr = OH_ImagePackerNative_PackToDataFromPixelmap(imagePacker, options, pixelmapNative, buffer.get(), &bufferSize);
        OH_LOG_INFO(LOG_APP, "OnImageDataPrepared: packToData ret code:%{public}u outsize:%{public}zu", imageErr, bufferSize);
-       {
-           std::lock_guard<std::mutex> lock(g_mediaAssetMutex);
-           if (g_mediaAsset_ == nullptr) {
-               OH_LOG_ERROR(LOG_APP,  "OnImageDataPrepared: get current mediaAsset failed!");
-               return;
-           }
-           // 调用媒体库接口通过buffer存图。
-           OH_MediaAssetChangeRequest* changeRequest = OH_MediaAssetChangeRequest_Create(g_mediaAsset_);
+       std::lock_guard<std::mutex> lock(g_mediaAssetMutex);
+       if (g_mediaAsset_ == nullptr) {
+         OH_LOG_ERROR(LOG_APP,  "OnImageDataPrepared: get current mediaAsset failed!");
+         return;
        }
+       // 调用媒体库接口通过buffer存图。
+       OH_MediaAssetChangeRequest* changeRequest = OH_MediaAssetChangeRequest_Create(g_mediaAsset_);
        MediaLibrary_ErrorCode mediaErr = OH_MediaAssetChangeRequest_AddResourceWithBuffer(changeRequest,
            MEDIA_LIBRARY_IMAGE_RESOURCE, buffer.get(), bufferSize);
        OH_LOG_INFO(LOG_APP,  "OnImageDataPrepared: AddResourceWithBuffer get errCode:%{public}d", mediaErr);

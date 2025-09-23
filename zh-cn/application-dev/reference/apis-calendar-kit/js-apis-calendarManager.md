@@ -1202,9 +1202,9 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 
 getEvents(callback: AsyncCallback\<Event[]>): void
 
-默认查询字段：id、type、title、startTime、endTime、isAllDay、description、timeZone、location、service、attendee、reminderTime、identifier。
-
 查询当前日历下所有日程，使用callback异步回调。
+
+默认查询字段：id、type、title、startTime、endTime、isAllDay、description、timeZone、location、service、attendee、reminderTime、identifier。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 

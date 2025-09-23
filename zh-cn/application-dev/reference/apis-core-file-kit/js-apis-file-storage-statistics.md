@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import  { storageStatistics } from '@kit.CoreFileKit';
+import { storageStatistics } from '@kit.CoreFileKit';
 ```
 
 ## storageStatistics.getCurrentBundleStats<sup>9+</sup>

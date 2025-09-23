@@ -4,7 +4,7 @@
 <!--Owner: @yp99ustc; @aohui; @zourongchun-->
 <!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 > **说明：**
 >
@@ -16,7 +16,7 @@ ConsoleMessage的信息级别。
 
 > **说明：**
 >
-> - 在html5侧，调用console.log或console.info对应ConsoleMessage的信息级别都为MessageLevel.Info。  
+> - 在html5侧，调用console.log或console.info对应ConsoleMessage的信息级别都为MessageLevel.Info。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -40,11 +40,15 @@ ConsoleMessage的信息级别。
 | Compatible | 1 | 兼容模式：混合内容兼容性模式，部分不安全的内容可能被加载。           |
 | None       | 2 | 严格模式：不允许加载HTTP和HTTPS混合内容。               |
 
-## HitTestType
+## HitTestType<sup>(deprecated)</sup>
 
 点击事件检测结果类型。
 
  **系统能力：** SystemCapability.Web.Webview.Core
+
+> **说明：**
+>
+> 从API version9开始支持，从API version 21开始废弃。建议使用[WebHitTestType](./arkts-apis-webview-e.md#webhittesttype)替代。
 
 | 名称            | 值 | 说明                       |
 | ------------- | -- | ------------------------ |

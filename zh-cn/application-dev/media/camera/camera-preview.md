@@ -277,7 +277,7 @@ struct Index {
       let surfaceRatio : number = this.imageWidth / this.imageHeight; // 最接近16:9宽高比。
       let previewProfile: camera.Profile = capability.previewProfiles[0];
       // 应用开发者根据实际业务需求选择一个支持的预览流previewProfile。
-      // 此处以选择CAMERA_FORMAT_YUV_420_SP（NV21）格式、满足限定条件条件分辨率的预览流previewProfile为例。
+      // 此处以选择CAMERA_FORMAT_YUV_420_SP（NV21）格式、满足限定条件分辨率的预览流previewProfile为例。
       for (let index = 0; index < capability.previewProfiles.length; index++) {
         const tempProfile = capability.previewProfiles[index];
         let tempRatio = tempProfile.size.width >= tempProfile.size.height ?

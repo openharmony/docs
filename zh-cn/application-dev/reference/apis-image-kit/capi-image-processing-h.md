@@ -259,7 +259,7 @@ ImageProcessing_ErrorCode OH_ImageProcessing_SetParameter(OH_ImageProcessing* im
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_ImageProcessing](capi-imageprocessing-oh-imageprocessing.md)* imageProcessor | 指向图片处理模块实例的指针。 |
-| const [OH_AVFormat](../apis-avcodec-kit/_core.md#oh_avformat)* parameter | 图片处理参数。 |
+| const [OH_AVFormat](../apis-avcodec-kit/capi-core-oh-avformat.md)* parameter | 图片处理参数。 |
 
 **返回：**
 
@@ -285,7 +285,7 @@ ImageProcessing_ErrorCode OH_ImageProcessing_GetParameter(OH_ImageProcessing* im
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_ImageProcessing](capi-imageprocessing-oh-imageprocessing.md)* imageProcessor | 指向图片处理模块实例的指针。 |
-| [OH_AVFormat](../apis-avcodec-kit/_core.md#oh_avformat)* parameter | 该图片处理模块实例使用的参数。 |
+| [OH_AVFormat](../apis-avcodec-kit/capi-core-oh-avformat.md)* parameter | 该图片处理模块实例使用的参数。 |
 
 **返回：**
 

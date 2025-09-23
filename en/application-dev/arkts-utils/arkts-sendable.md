@@ -1,10 +1,17 @@
 # Overview of Sendable Objects
+<!--Kit: ArkTS-->
+<!--Subsystem: CommonLibrary-->
+<!--Owner: @lijiamin2025-->
+<!--Designer: @weng-changcheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
+<!--Adviser: @ge-yafang-->
+
 
 In traditional JS engines, there is only one way to optimize the overhead of concurrent object communication: moving the implementation to the native side and reducing costs through the transfer or sharing of [Transferable objects](transferabled-object.md). However, this solution falls short of addressing the extensive demand for concurrent object communication. The issue remains unresolved in current JS engine implementations.
 
 ArkTS introduces the concept of Sendable objects, which support pass-by-reference during concurrent communication.
 
-Sendable objects are designed to be shareable across threads, maintaining a consistent reference to the same JS object before and after crossing thread boundaries. If a Sendable object contains JS or native content, it can be directly shared. However, if the underlying implementation is native, thread safety must be carefully considered. The following figure shows the communication process.
+Sendable objects are designed to be shareable across threads, maintaining a consistent reference to the same JS object before and after crossing thread boundaries. If a Sendable object contains JS or native content, it can be directly shared. However, if the underlying implementation is native, thread safety must be ensured. The following figure shows the communication process.
 
 ![sendable](figures/sendable.png)
 
@@ -13,18 +20,17 @@ Unlike other ArkTS objects, Sendable objects must have a fixed type at runtime.
 When multiple concurrent instances attempt to update Sendable data at the same time, data races occur, such as multithreaded operations on [ArkTS shared container](arkts-collections-introduction.md). To address data race issues between concurrent instances and manage the timing of multithreaded data processing, ArkTS introduces the mechanisms of [asynchronous lock](arkts-async-lock-introduction.md) and [asynchronous waiting](arkts-condition-variable-introduction.md). Additionally, objects can be frozen using the [object freezing interface](sendable-freeze.md), making them read-only and thereby eliminating the risk of data races.
 
 Sendable objects offer efficient communication between concurrent instances by means of pass by reference. They are generally suitable for scenarios where large custom objects need to be transferred between threads, such as when a child thread reads data from a database and returns it to the main thread. For details about the code implementation, see [Transmitting Large Data Across Concurrent Instances](sendable-guide.md#transmitting-large-data-across-concurrent-instances).
-
 ## Basic Concepts
 
 ### Sendable Protocol
 
-The Sendable protocol defines the Sendable object system and its specifications in ArkTS. Data that complies with the Sendable protocol (referred to as Sendable objects) can be passed between concurrent instances in ArkTS.
+The Sendable protocol defines the Sendable object system and its specifications in ArkTS. Data that complies with the Sendable protocol (referred to as Sendable data) can be passed between concurrent instances in ArkTS.
 
 By default, Sendable data is passed by reference between concurrent instances (including the UI main thread, TaskPool thread, and Worker thread). Pass-by-copy is also supported.
 
 ### ISendable
 
-The interface **ISendable** is introduced to the ArkTS common library [@arkts.lang](../reference/apis-arkts/js-apis-arkts-lang.md). It has no required methods or properties. ISendable is the parent type of all Sendable types except for null and undefined. ISendable is mainly used when you want to customize Sendable data structures. The class decorator [@Sendable decorator](#sendable-decorator) is the syntax sugar for implementing ISendable.
+The interface **ISendable** is introduced to the ArkTS common library [@arkts.lang](../reference/apis-arkts/js-apis-arkts-lang.md). It has no methods or properties. ISendable is the parent type of all Sendable types except for null and undefined. ISendable is mainly used when you want to customize Sendable data structures. The class decorator [@Sendable decorator](#sendable-decorator) is the syntax sugar for implementing ISendable.
 
 ### Sendable Class
 
@@ -66,11 +72,11 @@ A Sendable interface must meet the following requirements:
 
 - ArkTS basic data types: boolean, number, string, bigint, null, and undefined.
 
-- [Container types](arkts-collections-introduction.md) defined in ArkTS ([@arkts.collections](../reference/apis-arkts/js-apis-arkts-collections.md) must be explicitly introduced).
+- [Container types](arkts-collections-introduction.md) defined in ArkTS ([@arkts.collections](../reference/apis-arkts/arkts-apis-arkts-collections.md) must be explicitly introduced).
 
-- [Asynchronous lock objects](arkts-async-lock-introduction.md) defined in ArkTS ([@arkts.utils](../reference/apis-arkts/js-apis-arkts-utils.md) must be explicitly introduced).
+- [Asynchronous lock objects](arkts-async-lock-introduction.md) defined in ArkTS ([@arkts.utils](../reference/apis-arkts/arkts-apis-arkts-utils.md) must be explicitly introduced).
 
-- [Asynchronous waiting objects](arkts-condition-variable-introduction.md) defined in ArkTS ([@arkts.utils](../reference/apis-arkts/js-apis-arkts-utils.md) must be explicitly introduced).
+- [Asynchronous waiting objects](arkts-condition-variable-introduction.md) defined in ArkTS ([@arkts.utils](../reference/apis-arkts/arkts-apis-arkts-utils.md) must be explicitly introduced).
 
 - Interfaces that inherit from [ISendable](#isendable).
 
@@ -87,7 +93,7 @@ A Sendable interface must meet the following requirements:
 
 - Elements whose union type data is of the Sendable type.
 
-- You can also customize Native Sendable objects. For details, see [Multithreaded Operations with Custom Native Sendable Objects](napi-define-sendable-object.md).
+- You can also customize Native Sendable objects. You can also customize Native Sendable objects. For details, see [Multithreaded Operations with Custom Native Sendable Objects](napi-define-sendable-object.md).
 
 > **NOTE**
 >
@@ -101,13 +107,13 @@ A Sendable interface must meet the following requirements:
 To implement pass-by-reference of [Sendable data](#sendable-data-types) between different concurrent instances, Sendable objects are allocated in a shared heap to achieve memory sharing across concurrent instances.
 
 
-The shared heap is a process-level heap space. Unlike the local heap of a virtual machine, which can only be accessed by a single concurrent instance, the shared heap can be accessed by all threads. The cross-thread behavior of a Sendable object is pass-by-reference. Therefore, a Sendable object may be referenced by multiple concurrent instances, and its liveness depends on whether any concurrent instance holds a reference to it.
+The shared heap is a process-level heap space. Unlike the local heap of a virtual machine, which can only be accessed by a single concurrent instance, the shared heap can be accessed by all threads. The cross-thread behavior of Sendable objects is pass-by-reference. Therefore, a Sendable object may be referenced by multiple concurrent instances, and its liveness depends on whether any concurrent instance holds a reference to it.
 
-Relationship between the shared heap and local heap
+**Relationship between the shared heap and local heap**
 
 ![image_0000002001521153](figures/image_0000002001521153.png)
 
-The local heap of each concurrent instance is isolated, whereas the shared heap is a process-level heap that can be referenced by all concurrent instances. However, the shared heap cannot reference objects in the local heap.
+The local heap of each concurrent instance is isolated, whereas the shared heap is a process-level heap that can be shared by all concurrent instances. However, the shared heap cannot reference objects in the local heap.
 
 
 ## \@Sendable Decorator
@@ -120,7 +126,7 @@ The \@Sendable decorator declares and verifies Sendable classes and functions.
 | Usage restrictions| This decorator can be used only in .ets files of the stage model.|
 | Supported function types| Only regular functions and async functions can be decorated by @Sendable.|
 | Class inheritance restrictions| Sendable classes can only inherit from other Sendable classes. Regular classes cannot inherit from Sendable classes.|
-| Property type restrictions| 1. The following types are supported: string, number, boolean, bigint, null, undefined, Sendable class, collections, ArkTSUtils.locks.AsyncLock, ArkTSUtils.SendableLruCache, and custom Sendable functions.<br>2. Closure variables are not allowed, except for top-level Sendable classes and functions.<br>3. Private properties defined with \# are not supported; use **private** instead.<br>4. Computed properties are not supported.|
+| Property type restrictions| 1. The following types are supported: string, number, boolean, bigint, null, undefined, Sendable class, collections, ArkTSUtils.locks.AsyncLock, ArkTSUtils.SendableLruCache, ArkTSUtils.locks.ConditionVariable, and custom Sendable functions.<br>2. Closure variables are not allowed, except for top-level Sendable classes and functions.<br>3. Private properties defined with \# are not supported; use **private** instead.<br>4. Computed properties are not supported.|
 | Other property restrictions| 1. Member properties must be initialized explicitly. The exclamation mark (!) cannot be used.<br>2. Adding or deleting properties is not allowed. Modifying properties is allowed, but the type must remain consistent before and after modification. Modifying methods is not supported.|
 | Parameter restrictions for decorated functions or class methods| Local variables, parameters, and variables imported through **import** are allowed. Closure variables are not allowed, except for top-level Sendable classes and functions. In API version 18 and later versions, variables exported from the current file can be accessed.|
 | Use scenario| 1. Scenarios where class methods or Sendable functions are used in TaskPool or Worker.<br>2. Scenarios involving large amounts of object data transmission. The time required for serialization increases with the data volume. After transforming data with Sendable, the efficiency of transmitting 100 KB of data is approximately 20 times higher, and for 1 MB of data, it is about 100 times higher.|
@@ -135,12 +141,12 @@ class SendableTestClass {
   printName() {
     console.info("sendable: SendableTestClass desc is: " + this.desc);
   }
-  get getNum(): number {
+  getNum(): number {
     return this.num;
   }
 }
 ```
-<!-- @[example_modify_class](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectIntroduction/class/Index.ets) -->
+<!-- @[example_modify_class](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectIntroduction/class/Index.ets) -->
 
 The following is an example of using the decorator on a function:
 
@@ -185,4 +191,4 @@ let sendableClass = new SendableTestClass(SendableTestFunction);
 sendableClass.callback();
 sendableClass.CallSendableFunc();
 ```
-<!-- @[example_modify_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectIntroduction/entry/src/main/ets/managers/functionusage.ets) -->
+<!-- @[example_modify_function](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectIntroduction/entry/src/main/ets/managers/functionusage.ets) -->

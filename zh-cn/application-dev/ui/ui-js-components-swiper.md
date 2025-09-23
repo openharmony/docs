@@ -377,4 +377,4 @@ export default {
 
 针对swiper开发，有以下相关实例可供参考：
 
-- [简易视频播放器（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)
+- [简易视频播放器（JS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/Media/VideoOpenHarmony)

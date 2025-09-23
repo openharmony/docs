@@ -16,7 +16,7 @@
 >
 > 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-term.md#mdm应用设备管理应用)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2)后调用。
 > 
-> 当前页面仅包含本模块的系统接口，其他公开接口参见。其他公开接口参见[@ohos.enterprise.applicationManager](js-apis-enterprise-applicationManager.md)。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.enterprise.applicationManager](js-apis-enterprise-applicationManager.md)。
 
 ## 导入模块
 
@@ -28,7 +28,7 @@ import { applicationManager } from '@kit.MDMKit';
 
 addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
-添加应用至应用运行禁止名单，添加至禁止名单的应用不允许在当前用户下运行，不在禁止名单中的应用允许运行。使用callback异步回调。
+添加应用至应用运行禁止名单，添加至禁止名单的应用不允许在当前用户下运行，不在禁止名单中的应用允许运行。使用callback异步回调。从API version 21开始，如果应用运行允许名单[addallowedRunningBundles](./js-apis-enterprise-applicationManager.md#applicationmanageraddallowedrunningbundles21)非空，就不能再通过本接口添加应用运行禁止名单，否则会报9200010冲突错误码。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -54,6 +54,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: Async
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.            |
 | 9200002 | The administrator application does not have permission to manage the device. |
+| 9200010 | A conflict policy has been configured. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -86,7 +87,7 @@ applicationManager.addDisallowedRunningBundles(wantTemp, appIds, (err) => {
 
 addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
-添加应用至应用运行禁止名单，添加至禁止名单的应用不允许在指定用户（通过userId指定）下运行，不在禁止名单中的应用允许运行。使用callback异步回调。
+添加应用至应用运行禁止名单，添加至禁止名单的应用不允许在指定用户（通过userId指定）下运行，不在禁止名单中的应用允许运行。使用callback异步回调。从API version 21开始，如果应用运行允许名单[addallowedRunningBundles](./js-apis-enterprise-applicationManager.md#applicationmanageraddallowedrunningbundles21)非空，就不能再通过本接口添加应用运行禁止名单，否则会报9200010冲突错误码。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -113,6 +114,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number,
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.            |
 | 9200002 | The administrator application does not have permission to manage the device. |
+| 9200010  | A conflict policy has been configured. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
@@ -144,7 +146,7 @@ applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100, (err) => {
 
 addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
-添加应用至应用运行禁止名单，添加至禁止名单的应用不允许在当前/指定用户下运行。使用promise异步回调。
+添加应用至应用运行禁止名单，添加至禁止名单的应用不允许在当前/指定用户下运行。使用promise异步回调。从API version 21开始，如果应用运行允许名单[addallowedRunningBundles](./js-apis-enterprise-applicationManager.md#applicationmanageraddallowedrunningbundles21)非空，就不能再通过本接口添加应用运行禁止名单，否则会报9200010冲突错误码。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -176,6 +178,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.            |
 | 9200002 | The administrator application does not have permission to manage the device. |
+| 9200010 | A conflict policy has been configured. |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |

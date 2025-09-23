@@ -1,5 +1,10 @@
 # DRM Solution Development
-
+<!--Kit: Drm Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @qin_wei_jie-->
+<!--Designer: @chris2981-->
+<!--Tester: @xdlinc-->
+<!--Adviser: @zengyawen-->
 DRM plugins implement the DRM HDI, and the DRM framework of DRM Kit loads the DRM plugins through the HDI.
 
 Plugins are developed by DRM solution integrators and placed in the /vendor partition of devices.
@@ -401,7 +406,7 @@ The **passwd** file is a system user configuration file that stores basic inform
 
 ```
 //base/startup/init/services/etc/passwd
-clearplay_host:x:1089:1089:::/bin/false
+clearplay_host:x:1089:1089::/bin/false
 ```
 
 In **//base/startup/init/services/etc/passwd**, each line of user information is divided into 7 fields, separated by colons (:). The meaning of each field is as follows:

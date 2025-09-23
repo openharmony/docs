@@ -333,7 +333,7 @@ struct Index {
 
 showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt;): void
 
-创建并显示操作菜单，菜单响应结果异步返回。
+创建并显示操作菜单，菜单响应结果使用callback异步回调返回。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1787,7 +1787,7 @@ struct Index {
 
 showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)): void
 
-创建并显示操作菜单，菜单响应结果异步返回。
+创建并显示操作菜单，菜单响应结果使用callback异步回调返回。
 
 从API version11开始不再维护，建议使用[showActionMenu](#showactionmenu11)。
 
@@ -1798,7 +1798,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.
 | 参数名   | 类型                                                         | 必填 | 说明               |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | 是   | 操作菜单选项。     |
-| callback | [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse) | 是   | 菜单响应结果回调。 |
+| callback | [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse) | 是   | 回调函数，返回菜单的响应结果。 |
 
 **错误码：**
 

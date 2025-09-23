@@ -1,4 +1,10 @@
 # Class (WebDownloadItem)
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @aohui-->
+<!--Designer: @yaomingliu-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
 
  Implements a **WebDownloadItem** object. You can use this object to perform operations on the corresponding download task.
 
@@ -11,6 +17,8 @@
 > - You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
 >
 > - During the download, the download process is notified to the user through **WebDownloadDelegate**. The user can operate the download task through the **WebDownloadItem** parameter.
+>
+> - Currently, the maximum length of the download file name supported by **WebDownloadItem** is 255 bytes. <!--RP--><!--RPEnd-->
 
 ## Modules to Import
 
@@ -51,18 +59,18 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("will start a download.");
+              console.info("will start a download.");
               // Pass in a download path and start the download.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download update guid: " + webDownloadItem.getGuid());
+              console.info("download update guid: " + webDownloadItem.getGuid());
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.info("download failed guid: " + webDownloadItem.getGuid());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.info("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
@@ -116,18 +124,18 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("will start a download.");
+              console.info("will start a download.");
               // Pass in a download path and start the download.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download update current speed: " + webDownloadItem.getCurrentSpeed());
+              console.info("download update current speed: " + webDownloadItem.getCurrentSpeed());
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.info("download failed guid: " + webDownloadItem.getGuid());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.info("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
@@ -160,7 +168,7 @@ Obtains the download progress. The value **100** indicates that the download is 
 
 | Type  | Description                     |
 | ------ | ------------------------- |
-| number | Download progress. The value **100** indicates that the download is complete.|
+| number | Download progress. The value **100** indicates that the download is complete, and the value **-1** indicates that the progress is unknown.|
 
 **Example**
 
@@ -181,18 +189,18 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("will start a download.");
+              console.info("will start a download.");
               // Pass in a download path and start the download.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              console.info("download update percent complete: " + webDownloadItem.getPercentComplete());
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.info("download failed guid: " + webDownloadItem.getGuid());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.info("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
@@ -225,7 +233,7 @@ Obtains the total length of the file to be downloaded.
 
 | Type  | Description                     |
 | ------ | ------------------------- |
-| number | Total length of the file to be downloaded.|
+| number | Total length of the file to download. If the value is **-1**, the total size is unknown.|
 
 **Example**
 
@@ -246,18 +254,18 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("will start a download.");
+              console.info("will start a download.");
               // Pass in a download path and start the download.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download update total bytes: " + webDownloadItem.getTotalBytes());
+              console.info("download update total bytes: " + webDownloadItem.getTotalBytes());
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.info("download failed guid: " + webDownloadItem.getGuid());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.info("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
@@ -311,18 +319,18 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("will start a download.");
+              console.info("will start a download.");
               // Pass in a download path and start the download.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download update download state: " + webDownloadItem.getState());
+              console.info("download update download state: " + webDownloadItem.getState());
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.info("download failed guid: " + webDownloadItem.getGuid());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.info("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
@@ -376,19 +384,19 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("will start a download.");
+              console.info("will start a download.");
               // Pass in a download path and start the download.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              console.info("download update percent complete: " + webDownloadItem.getPercentComplete());
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
-              console.log("download error code: " + webDownloadItem.getLastErrorCode());
+              console.info("download failed guid: " + webDownloadItem.getGuid());
+              console.info("download error code: " + webDownloadItem.getLastErrorCode());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.info("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
@@ -442,18 +450,18 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("Download will start. Method:" + webDownloadItem.getMethod());
+              console.info("will start a download, method:" + webDownloadItem.getMethod());
               // Pass in a download path and start the download.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              console.info("download update percent complete: " + webDownloadItem.getPercentComplete());
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.info("download failed guid: " + webDownloadItem.getGuid());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.info("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
@@ -507,18 +515,18 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("Download will start. MIME type:" + webDownloadItem.getMimeType());
+              console.info("will start a download, mime type:" + webDownloadItem.getMimeType());
               // Pass in a download path and start the download.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              console.info("download update percent complete: " + webDownloadItem.getPercentComplete());
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.info("download failed guid: " + webDownloadItem.getGuid());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.info("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
@@ -572,18 +580,18 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("will start a download, url:" + webDownloadItem.getUrl());
+              console.info("will start a download, url:" + webDownloadItem.getUrl());
               // Pass in a download path and start the download.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              console.info("download update percent complete: " + webDownloadItem.getPercentComplete());
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.info("download failed guid: " + webDownloadItem.getGuid());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.info("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
@@ -637,18 +645,18 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("will start a download, suggest name:" + webDownloadItem.getSuggestedFileName());
+              console.info("will start a download, suggest name:" + webDownloadItem.getSuggestedFileName());
               // Pass in a download path and start the download.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              console.info("download update percent complete: " + webDownloadItem.getPercentComplete());
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.info("download failed guid: " + webDownloadItem.getGuid());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.info("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
@@ -702,19 +710,19 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("will start a download.");
+              console.info("will start a download.");
               // Pass in a download path and start the download.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
-              console.log("download update received bytes: " + webDownloadItem.getReceivedBytes());
+              console.info("download update percent complete: " + webDownloadItem.getPercentComplete());
+              console.info("download update received bytes: " + webDownloadItem.getReceivedBytes());
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.info("download failed guid: " + webDownloadItem.getGuid());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.info("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
@@ -768,19 +776,19 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("will start a download.");
+              console.info("will start a download.");
               // Pass in a download path and start the download.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              console.info("download update percent complete: " + webDownloadItem.getPercentComplete());
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.info("download failed guid: " + webDownloadItem.getGuid());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download finish guid: " + webDownloadItem.getGuid());
-              console.log("download finish full path: " + webDownloadItem.getFullPath());
+              console.info("download finish guid: " + webDownloadItem.getGuid());
+              console.info("download finish full path: " + webDownloadItem.getFullPath());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
@@ -835,20 +843,20 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("will start a download.");
+              console.info("will start a download.");
               // Pass in a download path and start the download.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              console.info("download update percent complete: " + webDownloadItem.getPercentComplete());
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.info("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download to a byte array.
               this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.info("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
@@ -917,20 +925,20 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("will start a download.");
+              console.info("will start a download.");
               // Pass in a download path and start the download.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              console.info("download update percent complete: " + webDownloadItem.getPercentComplete());
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.info("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download to a byte array.
               this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.info("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
@@ -1005,20 +1013,20 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("will start a download.");
+              console.info("will start a download.");
               // Pass in a download path and start the download.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              console.info("download update percent complete: " + webDownloadItem.getPercentComplete());
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.info("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download to a byte array.
               this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.info("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
@@ -1076,21 +1084,21 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("will start a download.");
+              console.info("will start a download.");
               // Pass in a download path and start the download.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              console.info("download update percent complete: " + webDownloadItem.getPercentComplete());
               this.download = webDownloadItem;
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.info("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download to a byte array.
               this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.info("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
@@ -1164,21 +1172,21 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("will start a download.");
+              console.info("will start a download.");
               // Pass in a download path and start the download.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              console.info("download update percent complete: " + webDownloadItem.getPercentComplete());
               this.download = webDownloadItem;
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.info("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download to a byte array.
               this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.info("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {
@@ -1260,21 +1268,21 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.delegate.onBeforeDownload((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("will start a download.");
+              console.info("will start a download.");
               // Pass in a download path and start the download.
               webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              console.info("download update percent complete: " + webDownloadItem.getPercentComplete());
               this.download = webDownloadItem;
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.info("download failed guid: " + webDownloadItem.getGuid());
               // Serialize the failed download to a byte array.
               this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.info("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
           } catch (error) {

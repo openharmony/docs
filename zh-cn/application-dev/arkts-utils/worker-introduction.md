@@ -369,26 +369,26 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
 // 宿主线程中创建父worker对象
-const parentworker = new worker.ThreadWorker('entry/ets/workers/parentworker.ets');
+const parentWorker = new worker.ThreadWorker('entry/ets/workers/ParentWorker.ets');
 
-parentworker.onmessage = (e: MessageEvents) => {
+parentWorker.onmessage = (e: MessageEvents) => {
   console.info('宿主线程收到父worker线程信息 ' + e.data);
 }
 
-parentworker.onexit = () => {
+parentWorker.onexit = () => {
   console.info('父worker退出');
 }
 
-parentworker.onAllErrors = (err: ErrorEvent) => {
+parentWorker.onAllErrors = (err: ErrorEvent) => {
   console.error('宿主线程接收到父worker报错 ' + err.message);
 }
 
-parentworker.postMessage('宿主线程发送消息给父worker-推荐示例');
+parentWorker.postMessage('宿主线程发送消息给父worker-推荐示例');
 ```
 <!-- @[recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/recommend.ets) -->
 
 ```ts
-// parentworker.ets
+// ParentWorker.ets
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
 // 创建父Worker线程中与宿主线程通信的对象
@@ -396,33 +396,33 @@ const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 
 workerPort.onmessage = (e : MessageEvents) => {
   if (e.data == '宿主线程发送消息给父worker-推荐示例') {
-    let childworker = new worker.ThreadWorker('entry/ets/workers/childworker.ets');
+    let childWorker = new worker.ThreadWorker('entry/ets/workers/ChildWorker.ets');
 
-    childworker.onmessage = (e: MessageEvents) => {
+    childWorker.onmessage = (e: MessageEvents) => {
       console.info('父Worker收到子Worker的信息 ' + e.data);
       if (e.data == '子Worker向父Worker发送信息') {
         workerPort.postMessage('父Worker向宿主线程发送信息');
       }
     }
 
-    childworker.onexit = () => {
+    childWorker.onexit = () => {
       console.info('子Worker退出');
       // 子Worker退出后再销毁父Worker
       workerPort.close();
     }
 
-    childworker.onAllErrors = (err: ErrorEvent) => {
+    childWorker.onAllErrors = (err: ErrorEvent) => {
       console.error('子Worker发生报错 ' + err.message);
     }
 
-    childworker.postMessage('父Worker向子Worker发送信息-推荐示例');
+    childWorker.postMessage('父Worker向子Worker发送信息-推荐示例');
   }
 }
 ```
 <!-- @[recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/recommendworkers/parentworker.ets) -->
 
 ```ts
-// childworker.ets
+// ChildWorker.ets
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
 // 创建子Worker线程中与父Worker线程通信的对象
@@ -446,26 +446,26 @@ workerPort.onmessage = (e: MessageEvents) => {
 ```ts
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
-const parentworker = new worker.ThreadWorker('entry/ets/workers/parentworker.ets');
+const parentWorker = new worker.ThreadWorker('entry/ets/workers/ParentWorker.ets');
 
-parentworker.onmessage = (e: MessageEvents) => {
+parentWorker.onmessage = (e: MessageEvents) => {
   console.info('宿主线程收到父Worker信息' + e.data);
 }
 
-parentworker.onexit = () => {
+parentWorker.onexit = () => {
   console.info('父Worker退出');
 }
 
-parentworker.onAllErrors = (err: ErrorEvent) => {
+parentWorker.onAllErrors = (err: ErrorEvent) => {
   console.error('宿主线程接收到父Worker报错 ' + err.message);
 }
 
-parentworker.postMessage('宿主线程发送消息给父Worker');
+parentWorker.postMessage('宿主线程发送消息给父Worker');
 ```
 <!-- @[not_recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/notrecommendedone.ets) -->
 
 ```ts
-// parentworker.ets
+// ParentWorker.ets
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
@@ -473,22 +473,22 @@ const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 workerPort.onmessage = (e : MessageEvents) => {
   console.info('父Worker收到宿主线程的信息 ' + e.data);
 
-  let childworker = new worker.ThreadWorker('entry/ets/workers/childworker.ets')
+  let childWorker = new worker.ThreadWorker('entry/ets/workers/ChildWorker.ets')
 
-  childworker.onmessage = (e: MessageEvents) => {
+  childWorker.onmessage = (e: MessageEvents) => {
     console.info('父Worker收到子Worker的信息 ' + e.data);
   }
 
-  childworker.onexit = () => {
+  childWorker.onexit = () => {
     console.info('子Worker退出');
     workerPort.postMessage('父Worker向宿主线程发送信息');
   }
 
-  childworker.onAllErrors = (err: ErrorEvent) => {
+  childWorker.onAllErrors = (err: ErrorEvent) => {
     console.error('子Worker发生报错 ' + err.message);
   }
 
-  childworker.postMessage('父Worker向子Worker发送信息');
+  childWorker.postMessage('父Worker向子Worker发送信息');
 
   // 创建子Worker后，销毁父Worker
   workerPort.close();
@@ -497,7 +497,7 @@ workerPort.onmessage = (e : MessageEvents) => {
 <!-- @[not_recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/notrecommendedoneworker/parentworker.ets) -->
 
 ```ts
-// childworker.ets
+// ChildWorker.ets
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
@@ -519,26 +519,26 @@ workerPort.onmessage = (e: MessageEvents) => {
 ```ts
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
-const parentworker = new worker.ThreadWorker('entry/ets/workers/parentworker.ets');
+const parentWorker = new worker.ThreadWorker('entry/ets/workers/ParentWorker.ets');
 
-parentworker.onmessage = (e: MessageEvents) => {
+parentWorker.onmessage = (e: MessageEvents) => {
   console.info('宿主线程收到父Worker信息' + e.data);
 }
 
-parentworker.onexit = () => {
+parentWorker.onexit = () => {
   console.info('父Worker退出');
 }
 
-parentworker.onAllErrors = (err: ErrorEvent) => {
+parentWorker.onAllErrors = (err: ErrorEvent) => {
   console.error('宿主线程接收到父Worker报错 ' + err.message);
 }
 
-parentworker.postMessage('宿主线程发送消息给父Worker');
+parentWorker.postMessage('宿主线程发送消息给父Worker');
 ```
 <!-- @[not_recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/managers/notrecommendedtwo.ets) -->
 
 ```ts
-// parentworker.ets
+// ParentWorker.ets
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
@@ -548,32 +548,32 @@ workerPort.onmessage = (e : MessageEvents) => {
 
   // 父Worker销毁后创建子Worker，行为不可预期
   workerPort.close();
-  let childworker = new worker.ThreadWorker('entry/ets/workers/childworker.ets');
+  let childWorker = new worker.ThreadWorker('entry/ets/workers/ChildWorker.ets');
 
   // 子Worker线程未确认创建成功前销毁父Worker，行为不可预期
-  // let childworker = new worker.ThreadWorker('entry/ets/workers/childworker.ets');
+  // let childWorker = new worker.ThreadWorker('entry/ets/workers/ChildWorker.ets');
   // workerPort.close();
 
-  childworker.onmessage = (e: MessageEvents) => {
+  childWorker.onmessage = (e: MessageEvents) => {
     console.info('父Worker收到子Worker的信息 ' + e.data);
   }
 
-  childworker.onexit = () => {
+  childWorker.onexit = () => {
     console.info('子Worker退出');
     workerPort.postMessage('父Worker向宿主线程发送信息');
   }
 
-  childworker.onAllErrors = (err: ErrorEvent) => {
+  childWorker.onAllErrors = (err: ErrorEvent) => {
     console.error('子Worker发生报错 ' + err.message);
   }
 
-  childworker.postMessage('父Worker向子Worker发送信息');
+  childWorker.postMessage('父Worker向子Worker发送信息');
 }
 ```
 <!-- @[not_recommended_example](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/notrecommendedtwoworker/parentworker.ets) -->
 
 ```ts
-// childworker.ets
+// ChildWorker.ets
 import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
 
 const workerPort: ThreadWorkerGlobalScope = worker.workerPort;

@@ -1,4 +1,10 @@
 # 运行时动态加载页面提升性能
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
 
 ## 简介
 
@@ -29,7 +35,7 @@
    @Component
    export struct WebViewPage {
      webController: WebviewController = new webview.WebviewController();
-     url: string = 'https://gitee.com/harmonyos-cases/cases';
+     url: string = 'https://gitcode.com/harmonyos-cases/cases';
    
      aboutToAppear(): void {
        webview.WebviewController.initializeWebEngine();

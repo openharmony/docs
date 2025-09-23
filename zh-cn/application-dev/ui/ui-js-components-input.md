@@ -255,7 +255,7 @@ import promptAction from '@ohos.promptAction'
   </div>    
   <div class="label-item">        
     <label class="lab" target="input3">date:</label>        
-    <input class="flex" id="input3" type="date" placeholder="Enter data" />    
+    <input class="flex" id="input3" type="date" placeholder="Enter date" />    
   </div>    
   <div class="label-item">        
     <label class="lab" target="input4">time:</label>        

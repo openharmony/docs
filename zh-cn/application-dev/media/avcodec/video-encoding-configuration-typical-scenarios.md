@@ -103,7 +103,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 2.1 创建AVFormat参数实例。
     OH_AVFormat *format = OH_AVFormat_Create();
     // 2.2 填充编码参数键值对（动态请求IDR帧）。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_REQUEST_I_FRAME, true);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_REQUEST_I_FRAME, 1);
     // 2.3 设置编码器参数生效。
     ret = OH_VideoEncoder_SetParameter(videoEnc, format);
     if (ret != AV_ERR_OK) {

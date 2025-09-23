@@ -82,7 +82,8 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
           console.info('distributed information: ' + JSON.stringify(data));
         }
       });
-  } catch (err) {
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -123,7 +124,8 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
     }).catch((err: BusinessError) => {
         console.error(`getOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -238,8 +240,9 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
         console.info('setOsAccountDistributedInfo successfully');
       }
     });
-  } catch (err) {
-      console.error(`setOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
+  } catch (e) {
+    const err = e as BusinessError;
+    console.error(`setOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -290,8 +293,9 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
     }).catch((err: BusinessError) => {
         console.error(`setOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-      console.error(`setOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
+  } catch (e) {
+    const err = e as BusinessError;
+    console.error(`setOsAccountDistributedInfo exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
 
@@ -391,7 +395,7 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 
 表示分布式账号状态枚举。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+**系统能力：** SystemCapability.Account.OsAccount
 
 | 名称  | 值 | 说明        |
 | ---- | ------ | ----------- |

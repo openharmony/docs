@@ -27,9 +27,9 @@ constructor(width: number, height: number, data?: Uint8ClampedArray)
 **参数：**
 | 参数名 | 类型  | 必填  | 说明 |
 | ------ | ----- | ----- | ----- |
-| width | number |是| 矩形区域宽度，默认单位为vp。 |
-| height | number |是| 矩形区域高度，默认单位为vp。|
-| data | [Uint8ClampedArray](../../apis-arkts/arkts-apis-arkts-collections-Uint8ClampedArray.md) |否| 一维数组，保存了相应的颜色数据，数据值范围为0到255。<br/>默认值：值全为0的一维数组 |
+| width | number |是| 矩形区域宽度，默认单位为vp。<br>异常值NaN和Infinity按0处理。 |
+| height | number |是| 矩形区域高度，默认单位为vp。<br>异常值NaN和Infinity按0处理。|
+| data | [Uint8ClampedArray](../../apis-arkts/arkts-apis-arkts-collections-Uint8ClampedArray.md) |否| 一维数组，保存了相应的颜色数据，数据值范围为0到255。<br>传入异常值undefined时，data为undefined。<br/>默认值：值全为0的一维数组 |
 
 ## constructor<sup>12+<sup>
 
@@ -47,10 +47,10 @@ constructor(width: number, height: number, data?: Uint8ClampedArray, unit?: Leng
 
 | 参数名 | 类型  | 必填  | 说明 |
 | ------ | ----- | ----- | ----- |
-| width | number |是| 矩形区域宽度，默认单位为vp。 |
-| height | number |是| 矩形区域高度，默认单位为vp。|
-| data | [Uint8ClampedArray](../../apis-arkts/arkts-apis-arkts-collections-Uint8ClampedArray.md) |否| 一维数组，保存了相应的颜色数据，数据值范围为0到255。<br/>默认值：值全为0的一维数组 |
-| unit  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否   |  用来配置ImageData对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)。<br>默认值：DEFAULT |
+| width | number |是| 矩形区域宽度，默认单位为vp。<br>异常值NaN和Infinity按0处理。 |
+| height | number |是| 矩形区域高度，默认单位为vp。<br>异常值NaN和Infinity按0处理。|
+| data | [Uint8ClampedArray](../../apis-arkts/arkts-apis-arkts-collections-Uint8ClampedArray.md) |否| 一维数组，保存了相应的颜色数据，数据值范围为0到255。<br>传入异常值undefined时，data为undefined。<br/>默认值：值全为0的一维数组 |
+| unit  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否   |  用来配置ImageData对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)。<br>异常值undefined、NaN和Infinity按默认值处理。<br>默认值：DEFAULT |
 
 ## 属性
 

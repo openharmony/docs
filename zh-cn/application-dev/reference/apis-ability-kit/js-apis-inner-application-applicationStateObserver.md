@@ -6,7 +6,7 @@
 <!--Tester: @lixueqing513-->
 <!--Adviser: @huipeizi-->
 
-定义应用状态监听，可以作为[on](js-apis-app-ability-appManager.md#appmanageronapplicationstate14)的入参监听当前应用的生命周期变化。
+应用状态监听器，可以作为入参传入[on('applicationState')](js-apis-app-ability-appManager.md#appmanageronapplicationstate14)方法，监听应用的生命周期变化。
 
 > **说明：**
 > 
@@ -36,7 +36,7 @@ onForegroundApplicationChanged(appStateData: AppStateData): void
 
 onAbilityStateChanged(abilityStateData: AbilityStateData): void
 
-ability状态发生变化时执行的回调函数。
+Ability状态发生变化时执行的回调函数。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -134,25 +134,25 @@ import { appManager } from '@kit.AbilityKit';
 
 let applicationStateObserver: appManager.ApplicationStateObserver = {
   onForegroundApplicationChanged(appStateData) {
-    console.log(`onForegroundApplicationChanged, appStateData: ${JSON.stringify(appStateData)}.`);
+    console.info(`onForegroundApplicationChanged, appStateData: ${JSON.stringify(appStateData)}.`);
   },
   onAbilityStateChanged(abilityStateData) {
-    console.log(`onAbilityStateChanged, abilityStateData: ${JSON.stringify(abilityStateData)}.`);
+    console.info(`onAbilityStateChanged, abilityStateData: ${JSON.stringify(abilityStateData)}.`);
   },
   onProcessCreated(processData) {
-    console.log(`onProcessCreated, processData: ${JSON.stringify(processData)}.`);
+    console.info(`onProcessCreated, processData: ${JSON.stringify(processData)}.`);
   },
   onProcessDied(processData) {
-    console.log(`onProcessDied, processData: ${JSON.stringify(processData)}.`);
+    console.info(`onProcessDied, processData: ${JSON.stringify(processData)}.`);
   },
   onProcessStateChanged(processData) {
-    console.log(`onProcessStateChanged, processData: ${JSON.stringify(processData)}.`);
+    console.info(`onProcessStateChanged, processData: ${JSON.stringify(processData)}.`);
   },
   onAppStarted(appStateData) {
-    console.log(`onAppStarted, appStateData: ${JSON.stringify(appStateData)}.`);
+    console.info(`onAppStarted, appStateData: ${JSON.stringify(appStateData)}.`);
   },
   onAppStopped(appStateData) {
-    console.log(`onAppStopped, appStateData: ${JSON.stringify(appStateData)}.`);
+    console.info(`onAppStopped, appStateData: ${JSON.stringify(appStateData)}.`);
   }
 };
 let observerCode = appManager.on('applicationState', applicationStateObserver);

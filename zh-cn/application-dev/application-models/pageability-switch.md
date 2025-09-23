@@ -1,7 +1,13 @@
 # PageAbility切换
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wkljy-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-FA模型中PageAbility对应Stage模型中的UIAbility，PageAbility切换为UIAbility的方法如下。
+[FA模型](ability-terminology.md#fa模型)中PageAbility对应[Stage模型](ability-terminology.md#stage模型)中的UIAbility，PageAbility切换为UIAbility的方法如下。
 
 
 1. 在Stage应用中[创建UIAbility](uiability-usage.md)。

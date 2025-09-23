@@ -29,6 +29,7 @@ HiLog模块日志接口定义，通过这些接口实现日志打印相关功能
 | -- | -- | -- |
 | [LogType](#logtype) | LogType | 日志类型。该枚举类型用于定义应用开发者可以使用的日志类型。当前有应用日志LOG_APP。<br> |
 | [LogLevel](#loglevel) | LogLevel | 日志级别。该枚举类型用于定义日志级别。各级别建议使用方式：<br> DEBUG：比INFO级别更详细的流程记录，通过该级别的日志可以更详细地分析业务流程和定位分析问题。DEBUG级别的日志在正式发布版本中默认不会被打印，只有在调试版本或打开调试开关的情况下才会打印。<br> INFO：用来记录业务关键流程节点，可以还原业务的主要运行过程；用来记录非正常情况信息，但这些情况都是可以预期的(如无网络信号、登录失败等)。这些日志都应该由该业务内处于支配地位的模块来记录，避免在多个被调用的模块或低级函数中重复记录。<br> WARN：发生了较为严重的非预期情况，但是对用户影响不大，程序可以自动恢复或通过简单的操作就可以恢复的问题。<br> ERROR：程序或功能发生了错误，该错误会影响功能的正常运行或用户的正常使用，可以恢复但恢复代价较高，如重置数据等。<br> FATAL：重大致命异常，表明程序或功能即将崩溃，故障无法恢复。<br> |
+| [PreferStrategy](#preferstrategy) | PreferStrategy | 偏好策略。在[OH_LOG_SetLogLevel](#oh_log_setloglevel)中使用。不同策略，实际生效的最低日志级别也不同。<br> |
 
 ### 宏定义
 
@@ -52,6 +53,7 @@ HiLog模块日志接口定义，通过这些接口实现日志打印相关功能
 | [typedef void (\*LogCallback)(const LogType type, const LogLevel level, const unsigned int domain, const char *tag,const char *msg)](#logcallback) | LogCallback | 函数指针，开发者自定义回调函数内容，在回调函数中，可自行对hilog日志进行处理。 |
 | [void OH_LOG_SetCallback(LogCallback callback)](#oh_log_setcallback) | - | 注册函数。调用此函数后，用户实现的回调函数可以接收当前进程的所有hilog日志。<br> 请注意，无论是否调用该接口，它都不会更改当前进程的hilog日志的默认行为。 |
 | [void OH_LOG_SetMinLogLevel(LogLevel level)](#oh_log_setminloglevel) | - | 设置应用日志打印的最低日志级别，用于拦截低级别日志打印。需要注意：如果设置的日志级别低于[全局日志级别](../../dfx/hilog.md#查看和设置日志级别)，设置不生效。 |
+| [void OH_LOG_SetLogLevel(LogLevel level, PreferStrategy prefer)](#oh_log_setloglevel) | - | 设置当前应用程序进程的最低日志级别。可以配置不同的偏好策略。  |
 
 ## 枚举类型说明
 
@@ -91,6 +93,23 @@ enum LogLevel
 | LOG_ERROR = 6 | ERROR日志级别，使用OH_LOG_ERROR接口打印。 |
 | LOG_FATAL = 7 | FATAL日志级别，使用OH_LOG_FATAL接口打印。 |
 
+### PreferStrategy
+
+```
+enum PreferStrategy
+```
+
+**描述**
+
+偏好策略。在[OH_LOG_SetLogLevel](#oh_log_setloglevel)中使用。不同策略，实际生效的最低日志级别也不同。
+
+**起始版本：** 21
+
+| 枚举项 | 描述 |
+| -- | -- |
+| UNSET_LOGLEVEL = 0 | 清除设置, 实际生效的最低日志级别是系统控制的最低级别。 |
+| PREFER_CLOSE_LOG = 1 | 实际生效的最低日志级别是新设置的级别和系统控制的最低级别两个值的较大值。 |
+| PREFER_OPEN_LOG = 2 | 实际生效的最低日志级别是新设置的级别和系统控制的最低级别两个值的较小值。 |
 
 ## 函数说明
 
@@ -430,6 +449,26 @@ void OH_LOG_SetMinLogLevel(LogLevel level)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [LogLevel](capi-log-h.md#loglevel) level | 指定日志level。 |
+| [LogLevel](capi-log-h.md#loglevel) level | 日志级别。 |
+
+### OH_LOG_SetLogLevel()
+
+```
+void OH_LOG_SetLogLevel(LogLevel level, PreferStrategy prefer)
+```
+
+**描述**
+
+设置当前应用程序进程的最低日志级别。
+
+可通过prefer参数配置不同的偏好策略。如果选择策略PREFER_CLOSE_LOG，等同于调用OH_LOG_SetMinLogLevel。
+
+**起始版本：** 21
 
 
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [LogLevel](capi-log-h.md#loglevel) level | 日志级别。 |
+| [PreferStrategy](capi-log-h.md#preferstrategy) prefer | 偏好策略。 |

@@ -4,7 +4,7 @@
 <!--Owner: @aohui-->
 <!--Designer: @yaomingliu-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 Web组件返回的SSL客户端证书请求事件用户处理功能对象。示例代码参考[onClientAuthenticationRequest事件](./arkts-basic-components-web-events.md#onclientauthenticationrequest9)。
 
@@ -24,11 +24,15 @@ ClientAuthenticationHandler的构造函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-## confirm<sup>9+</sup>
+## confirm<sup>(deprecated)</sup>
 
 confirm(priKeyFile : string, certChainFile : string): void
 
 通知Web组件使用指定的私钥和客户端证书链。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 22开始废弃。建议使用[confirm](./arkts-basic-components-web-ClientAuthenticationHandler.md#confirm10)<sup>10+</sup>替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

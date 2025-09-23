@@ -46,11 +46,11 @@ The table below lists the common APIs used for application window development. F
 | Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a child window or system window.<br>**config**: parameters used for creating the window.            |
 | Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the content of a page, with its path in the current project specified, to this window.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project in the stage model.                                    |
 | Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | Sets the brightness for this window.                                            |
-| Window         | setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void | Sets whether this window is touchable.                                    |
+| Window         | setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void | Sets whether this window is touchable. **true** if touchable, **false** otherwise.|
 | Window         | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.                                          |
 | Window         | resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | Changes the window size.                                          |
-| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt; | Sets whether to enable the immersive mode for the window layout.                                |
-| Window         | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | Sets whether to display the status bar and navigation bar in this window.                                |
+| Window         | setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt; | Sets whether to enable an immersive layout for the main window or child window. **true** to enable, **false** otherwise.|
+| Window         | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | <!--RP4-->Sets whether to show the status bar and three-button navigation bar in the main window. The visibility of the status bar and three-button navigation bar is controlled by **status** and **navigation**, respectively.<!--RP4End--><br>For example, if this parameter is set to **['status',&nbsp;'navigation']**, all of them are shown. If this parameter is set to **[]**, they are hidden.|
 | Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt; | Sets the properties of the status bar and navigation bar in this window.<br>**systemBarProperties**: properties of the status bar and navigation bar.|
 | Window         | showWindow(callback: AsyncCallback\<void>): void             | Shows this window.                                              |
 | Window         | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | Subscribes to touch events outside this window.                          |
@@ -132,6 +132,8 @@ You can create an application child window, such as a dialog box, and set its pr
 1. Create a child window.
 
    Call **createSubWindow** to create a child window.
+
+   The child window created uses an [immersive layout](../windowmanager/window-terminology.md#immersive-layout) by default.
 
 2. Set the properties of the child window.
 

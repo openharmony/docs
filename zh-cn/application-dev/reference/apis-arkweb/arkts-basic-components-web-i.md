@@ -4,7 +4,7 @@
 <!--Owner: @yp99ustc; @aohui; @zourongchun-->
 <!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 
 > **说明：**
 >
@@ -239,6 +239,7 @@ Web同层渲染的配置。
 | -------------- | ---- | ---- | ------------|---------------------------- |
 | url         | string  | 否 | 否 | 访问的url。                                  |
 | isRefreshed | boolean | 否 | 否 | true表示该页面是被重新加载的（调用[refresh<sup>9+</sup>](./arkts-apis-webview-WebviewController.md#refresh)接口），false表示该页面是新加载的。 |
+| isMainFrame<sup>22+</sup> | boolean | 否 | 是 | 是否是主文档触发。<br>true表示是主文档触发，false表示不是主文档触发。|
 
 ## OnRenderExitedEvent<sup>12+</sup>
 

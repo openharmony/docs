@@ -1,7 +1,14 @@
 # FA模型绑定Stage模型ServiceExtensionAbility
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wkljy-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-本文介绍FA模型的三种应用组件如何绑定Stage模型的ServiceExtensionAbility组件。
+
+本文介绍[FA模型](ability-terminology.md#fa模型)的三种应用组件如何绑定[Stage模型](ability-terminology.md#stage模型)的ServiceExtensionAbility组件。
 
 
 ## PageAbility关联访问ServiceExtensionAbility

@@ -2,8 +2,9 @@
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
-<!--SE: @leo_ysl-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @leo_ysl-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -122,8 +123,8 @@ Sets smooth zoom.
 
 | Name      | Type           | Mandatory| Description              |
 | ------------ | -------------- | ---- | ----------------- |
-| targetRatio  | number         | Yes  | Target zoom ratio.     |
-| mode         | [SmoothZoomMode](arkts-apis-camera-e.md#smoothzoommode11) | No  | Smooth zoom mode.     |
+| targetRatio  | number         | Yes  | Target zoom ratio. The supported zoom ratio range can be obtained by calling [getZoomRatioRange](arkts-apis-camera-ZoomQuery.md#getzoomratiorange11). If the value passed in is not within the supported range, the value within the precision range is retained.     |
+| mode         | [SmoothZoomMode](arkts-apis-camera-e.md#smoothzoommode11) | No  | Smooth zoom mode. The default value is **0**.    |
 
 **Example**
 

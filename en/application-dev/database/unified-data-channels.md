@@ -1,9 +1,15 @@
 # Sharing Data via Unified Data Channels (ArkTS)
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @jcwen-->
+<!--Designer: @junathuawei1; @zph000-->
+<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 
 ## When to Use
 
-In many-to-many data sharing across applications, a data channel needs to be provided to access data of different applications and share the data with other applications.
+In many-to-many data sharing across applications, a data channel needs to be provided to write data of different applications and share the data with other applications.
 
 The Unified Data Management Framework (UDMF) provides unified data channels and standard data access interfaces for different service scenarios of many-to-many cross-application data sharing.
 
@@ -11,7 +17,7 @@ The Unified Data Management Framework (UDMF) provides unified data channels and 
 
 The unified data channel provides cross-application data access for various service scenarios. It can temporarily store the unified data objects to be shared by an application, and manage the data modification and deletion permissions and lifecycle of the data according to certain policies.
 
-The unified data channel is implemented by the system ability provided by the UDMF. When an application (data provider) needs to share data, it calls the **insertData()** method provided by the UDMF to write the data to the UDMF data channel, and calls UDMF **updateData()** or **deleteData()** to update or delete the data saved by the application. The target application (data consumer) can access the data by the APIs provided by the UDMF. The UDMF manages the data lifecycle in a unified manner and deletes the data that has been stored for more than one hour every hour.
+The unified data channel is implemented by the system ability provided by UDMF. When an application (data provider) needs to share data, it calls the **insertData()** method provided by UDMF to write the data to the UDMF data channel, and calls UDMF **updateData()** or **deleteData()** to update or delete the data saved by the application. The target application (data consumer) can access the data by the APIs provided by UDMF.
 
 Avoid using **unifiedDataChannel** APIs in multi-threaded calls.
 
@@ -19,31 +25,31 @@ The unified data object (**UnifiedData**) is uniquely identified by a URI in the
 
 + **udmf**: protocol used to provide the data channel.
 
-+ *intention*: an enum of the data channel types supported by the UDMF.
++ ***intention***: an enum of the data channel types supported by UDMF.
 
-+ *bundleName*: bundle name of the data source application.
++ ***bundleName***: bundle name of the data source application.
 
-+ *groupId*: group ID used for batch data management.
++ ***groupId***: group ID used for batch data management.
 
-Currently, the UDMF provides the public data channel for cross-application data sharing.
+Currently, UDMF provides the public data channel for cross-application data sharing.
 
-The public data channel allows all applications to write data into it. When data is written, a unique identifier is generated. Then, the unique identifier can be used to update, delete, query, and retrieve the specified data, and perform a full query. To read all data in the public data channel, set **Intention** to **DATA_HUB**. The public data channel is used only to transmit process data between applications and cannot be used to transmit permission-controlled data, such as files in sandbox directories.
+The public data channel allows all applications to write data into it. When data is written, a unique identifier is generated. Then, the unique identifier can be used to update, delete, query, and retrieve the specified data, and perform a full query. To read all data in the public data channel, set **Intention** to **DATA_HUB**. The public data channel is used only to transmit process data between applications and cannot be used to transmit permission-controlled data, such as files in sandbox directories. UDMF manages the data lifecycle in a unified manner and deletes the data that has been stored for more than one hour every hour.
 
 ## Available APIs
 
-The following table lists the UDMF APIs. All of them are executed asynchronously in callback or promise mode. In the following table, callback-based APIs are used as an example. For details about more APIs and their usage, see [Unified Data Channel](../reference/apis-arkdata/js-apis-data-unifiedDataChannel.md) and [Standard Data Definition and Description](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md).
+The following table lists the UDMF APIs. All of them are executed asynchronously in callback or promise mode. The following table uses the callback mode as an example. For details about more APIs and their usage, see [Unified Data Channel](../reference/apis-arkdata/js-apis-data-unifiedDataChannel.md) and [Standard Data Definition and Description](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md).
 
-| API                                                                                   | Description                                         |
+| API                                                                                   | Description                                         | 
 |-----------------------------------------------------------------------------------------|---------------------------------------------|
-| insertData(options: Options, data: UnifiedData, callback: AsyncCallback\<string>): void | Inserts data to the UDMF public data channel. A unique data identifier is returned.|
-| updateData(options: Options, data: UnifiedData, callback: AsyncCallback\<void>): void   | Updates the data in the UDMF public data channel.          |
-| queryData(options: Options, callback: AsyncCallback\<Array\<UnifiedData>>): void        | Queries data in the UDMF public data channel.              |
-| deleteData(options: Options, callback: AsyncCallback\<Array\<UnifiedData>>): void       | Deletes data from the UDMF public data channel. The deleted data set is returned.|
+| insertData(options: Options, data: UnifiedData, callback: AsyncCallback\<string>): void | Inserts data to the UDMF public data channel. This API uses an asynchronous callback to return a unique data identifier.| 
+| updateData(options: Options, data: UnifiedData, callback: AsyncCallback\<void>): void   | Updates the data in the UDMF public data channel. This API uses an asynchronous callback to return the result.          | 
+| queryData(options: Options, callback: AsyncCallback\<Array\<UnifiedData>>): void        | Queries data in the UDMF public data channel. This API uses an asynchronous callback to return the result.              | 
+| deleteData(options: Options, callback: AsyncCallback\<Array\<UnifiedData>>): void       | Deletes data from the UDMF public data channel. This API uses an asynchronous callback to return the deleted data set.|
 
 
 ## How to Develop
 
-The following example walks you through on how to implement many-to-many sharing of PlainText, HTML, and PixelMap data. The data provider calls **insertData()** provided by the UMDF to write data to the public data channel. The return value (unique identifier of the data written) can be used to update or delete the data. The data consumer uses the query() APIs provided by the UDMF to obtain full data of the public data channel.
+The following example walks you through on how to implement many-to-many sharing of [PlainText](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#plaintext), [HTML](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#html), and [PixelMap](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#pixelmap15) data. The data provider calls **insertData()** provided by UDMF to write data to the public data channel. The return value (unique identifier of the data written) can be used to update or delete the data. The data consumer uses the query() APIs provided by UDMF to obtain full data of the public data channel.
 
 ### Data Provider
 
@@ -52,7 +58,7 @@ The following example walks you through on how to implement many-to-many sharing
    ```ts
    import { unifiedDataChannel, uniformTypeDescriptor, uniformDataStruct } from '@kit.ArkData';
    ```
-2. Create a **UnifiedData** object and insert it into the UDMF public data channel.
+2. Create a **UnifiedData** object and insert it to the UDMF public data channel.
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -61,14 +67,14 @@ The following example walks you through on how to implement many-to-many sharing
    let plainTextObj : uniformDataStruct.PlainText = {
      uniformDataType: 'general.plain-text',
      textContent : 'Hello world',
-     abstract : 'This is abstract',
+     abstract : 'This is abstract'
    }
    let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextObj);
    // Create HTML data.
    let htmlObj : uniformDataStruct.HTML = {
      uniformDataType :'general.html',
      htmlContent : '<div><p>Hello world</p></div>',
-     plainContent : 'Hello world',
+     plainContent : 'Hello world'
    }
    // Add a new entry to the data record, storing the same data in another format.
    record.addEntry(uniformTypeDescriptor.UniformDataType.HTML, htmlObj);
@@ -79,7 +85,7 @@ The following example walks you through on how to implement many-to-many sharing
    let opt : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 3, width: 3 }, alphaType: 3 };
    let pixelMap : uniformDataStruct.PixelMap = {
      uniformDataType : 'openharmony.pixel-map',
-     pixelMap : image.createPixelMapSync(arrayBuffer, opt),
+     pixelMap : image.createPixelMapSync(arrayBuffer, opt)
    }
    unifiedData.addRecord(new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP, pixelMap));
    // Specify the type of the data channel to which the data is to be inserted.
@@ -105,13 +111,13 @@ The following example walks you through on how to implement many-to-many sharing
    let plainTextUpdate : uniformDataStruct.PlainText = {
      uniformDataType: 'general.plain-text',
      textContent : 'How are you',
-     abstract : 'This is abstract',
+     abstract : 'This is abstract'
    }
    let recordUpdate = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainTextUpdate);
    let htmlUpdate : uniformDataStruct.HTML = {
      uniformDataType :'general.html',
      htmlContent : '<div><p>How are you</p></div>',
-     plainContent : 'How are you',
+     plainContent : 'How are you'
    }
    recordUpdate.addEntry(uniformTypeDescriptor.UniformDataType.HTML, htmlUpdate);
    let unifiedDataUpdate = new unifiedDataChannel.UnifiedData(recordUpdate);

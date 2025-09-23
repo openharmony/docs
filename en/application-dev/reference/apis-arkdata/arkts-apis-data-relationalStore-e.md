@@ -1,4 +1,10 @@
 # Enums
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @baijidong-->
+<!--Designer: @widecode; @htt1997-->
+<!--Tester: @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 > **NOTE**
 > 
@@ -77,7 +83,6 @@ The following is an example of the table creation statement when **ICU_TOKENIZER
 ```ts
 import { relationalStore } from '@kit.ArkData'; // Import the relationalStore module.
 import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
 // In this example, Ability is used to obtain an RdbStore instance in the stage model. You can use other implementations as required.
@@ -110,7 +115,6 @@ The following is an example of the table creation statement when **CUSTOM_TOKENI
 ```ts
 import { relationalStore } from '@kit.ArkData'; // Import the relationalStore module.
 import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
 // In this example, Ability is used to obtain an RdbStore instance in the stage model. You can use other implementations as required.

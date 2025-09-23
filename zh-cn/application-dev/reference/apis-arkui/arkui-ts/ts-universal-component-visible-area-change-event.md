@@ -36,11 +36,11 @@ onVisibleAreaChange(ratios: Array&lt;number&gt;, event: VisibleAreaChangeCallbac
 | T | 返回当前组件。 |
 
 > **说明：**
->
+>- 从API version 20开始，该接口支持在[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)中调用。
 >
 >- 仅提供自身节点相对于所有祖先节点（直到window边界）的相对裁切面积与自身面积的比值及其变化趋势。
 > 
->- 不支持兄弟组件对自身节点的遮挡计算，不支持所有祖先的兄弟节点对自身节点的遮挡计算，如[Stack](ts-container-stack.md)、[Z序控制](ts-universal-attributes-z-order.md)等。
+>- 不支持兄弟组件对自身节点的遮挡计算，不支持所有祖先的兄弟节点对自身节点的遮挡计算，不支持窗口遮挡计算，不支持组件旋转计算，如[Stack](ts-container-stack.md)、[Z序控制](ts-universal-attributes-z-order.md)、[rotate](ts-universal-attributes-transformation.md#rotate)等。
 >
 >- 不支持非挂树节点的可见面积变化计算。例如，预加载的节点、通过[overlay](ts-universal-attributes-overlay.md#overlay)能力挂载的自定义节点。
 
@@ -63,9 +63,11 @@ onVisibleAreaApproximateChange(options: VisibleAreaEventOptions, event: VisibleA
 
 >**说明：**
 >
-> 此接口与[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)接口存在如下差异，onVisibleAreaChange在每一帧都会进行可见区域比例的计算，如果注册节点太多，系统功耗存在劣化。此接口降低了可见区域比例计算的频度，计算间隔由[VisibleAreaEventOptions](#visibleareaeventoptions12)的expectedUpdateInterval参数决定。
+>- 此接口与[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)接口存在如下差异：onVisibleAreaChange在每一帧都会进行可见区域比例的计算，如果注册节点太多，系统功耗存在劣化。而此接口降低了可见区域比例计算的频度，计算间隔由[VisibleAreaEventOptions](#visibleareaeventoptions12)的expectedUpdateInterval参数决定。
 >
-> 当前接口的可见区域回调阈值默认包含0。例如，开发者设置回调阈值为[0.5]，实际生效的阈值为[0.0, 0.5]。
+>- 当前接口的可见区域回调阈值默认包含0。例如，开发者设置回调阈值为[0.5]，实际生效的阈值为[0.0, 0.5]。
+>
+>- 从API version 18开始，支持在自定义组件中调用该接口。
 
 ## VisibleAreaEventOptions<sup>12+</sup>
 

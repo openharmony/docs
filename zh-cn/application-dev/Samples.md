@@ -20,7 +20,7 @@
 
 3.若存在三级导航（如Border 边框、点击事件等），点击跳转至详情页面。
 ##### 基本原理
-示例使用 [Tabs容器组件](reference/apis-arkui/arkui-ts/ts-container-tabs.md) 搭建整体应用框架，每个 [TabContent内容视图](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 使用 [List容器组件](reference/apis-arkui/arkui-ts/ts-container-list.md) 布局，在每个 [ListItem](reference/apis-arkui/arkui-ts/ts-container-listitem.md) 中使用 [循环渲染](ui/state-management/arkts-rendering-control-foreach.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 设置自定义样式 。
+示例使用 [Tabs容器组件](reference/apis-arkui/arkui-ts/ts-container-tabs.md) 搭建整体应用框架，每个 [TabContent内容视图](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 使用 [List容器组件](reference/apis-arkui/arkui-ts/ts-container-list.md) 布局，在每个 [ListItem](reference/apis-arkui/arkui-ts/ts-container-listitem.md) 中使用 [循环渲染](ui/rendering-control/arkts-rendering-control-foreach.md) 加载此分类下分类导航数据，底部导航菜单使用 [TabContent中tabBar属性](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md) 设置自定义样式 。
 将组件库分成四大类：  
 组件模块：  
 1、空白与分隔：使用全局组件TitleBar，CommonItemSlider，CommonItemSelect，引入全局样式搭建分隔器组件页面。  

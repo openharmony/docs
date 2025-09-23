@@ -82,7 +82,7 @@ target_link_libraries(sample PUBLIC ${BASE_LIBRARY})
 
 1.  创建播放器。
 
-     根据实际情况，应用可使用自研解封装或可通过[OH_AVSource_CreateWithDataSource()](../../reference/apis-avcodec-kit/_a_v_source.md#oh_avsource_createwithdatasource)/[OH_AVSource_CreateWithFD()](../../reference/apis-avcodec-kit/_a_v_source.md#oh_avsource_createwithfd)/[OH_AVSource_CreateWithURI()](../../reference/apis-avcodec-kit/_a_v_source.md#oh_avsource_createwithuri)来创建[OH_AVSource](../../reference/apis-avcodec-kit/_a_v_source.md#oh_avsource) ，通过`OH_AVSource`调用[OH_AVDemuxer_CreateWithSource()](../../reference/apis-avcodec-kit/capi-native-avdemuxer-h.md#oh_avdemuxer_createwithsource)，创建解封装器，获取视频的元信息。
+     根据实际情况，应用可使用自研解封装或可通过[OH_AVSource_CreateWithDataSource()](../../reference/apis-avcodec-kit/capi-native-avsource-h.md#oh_avsource_createwithdatasource)/[OH_AVSource_CreateWithFD()](../../reference/apis-avcodec-kit/capi-native-avsource-h.md#oh_avsource_createwithfd)/[OH_AVSource_CreateWithURI()](../../reference/apis-avcodec-kit/capi-native-avsource-h.md#oh_avsource_createwithuri)来创建[OH_AVSource](../../reference/apis-avcodec-kit/capi-avsource-oh-avsource.md) ，通过`OH_AVSource`调用[OH_AVDemuxer_CreateWithSource()](../../reference/apis-avcodec-kit/capi-native-avdemuxer-h.md#oh_avdemuxer_createwithsource)，创建解封装器，获取视频的元信息。
 
     ```
     source_ = OH_AVSource_CreateWithFD(info.inputFd, info.inputFileOffset, info.inputFileSize);
@@ -110,7 +110,7 @@ target_link_libraries(sample PUBLIC ${BASE_LIBRARY})
 
 4.  配置播放器。
 
-     根据之前通过解封装获得的元信息，创建并配置 [OH_AVFormat](../../reference/apis-avcodec-kit/_core.md#oh_avformat)。通过configure接口 [OH_LowPowerAudioSink_Configure](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_configure) / [OH_LowPowerVideoSink_Configure](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_configure)进行播放器的配置，详细参数可参考实例代码。视频流需要使用[OH_LowPowerVideoSink_SetVideoSurface](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_setvideosurface)接口来设置显示窗口。
+     根据之前通过解封装获得的元信息，创建并配置[OH_AVFormat](../../reference/apis-avcodec-kit/capi-core-oh-avformat.md)。通过configure接口 [OH_LowPowerAudioSink_Configure](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_configure) / [OH_LowPowerVideoSink_Configure](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_configure)进行播放器的配置，详细参数可参考示例代码。视频流需要使用[OH_LowPowerVideoSink_SetVideoSurface](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_setvideosurface)接口来设置显示窗口。
 
     ```
     OH_AVFormat *format = OH_AVFormat_Create();

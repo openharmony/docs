@@ -42,12 +42,12 @@ onMouse(event: (event?: MouseEvent) => void)
 struct MouseExample {
   @State buttonText: string = '';
   @State columnText: string = '';
-  @State hoverText: string = 'Not Hover';
+  @State text: string = 'OnMouse Sample Button';
   @State Color: Color = Color.Gray;
 
   build() {
     Column() {
-      Button(this.hoverText)
+      Button(this.text, { type: ButtonType.Capsule })
         .width(200)
         .height(100)
         .backgroundColor(this.Color)
@@ -93,56 +93,59 @@ struct MouseExample {
    右键点击时：button = 2（MouseButton.Right的枚举值），按下时：action = 1（MouseAction.Press的枚举值），抬起时：action = 2（MouseAction.Release的枚举值）。
 
 
-![onMouse1](figures/onMouse1.gif)
+![onMouse1](figures/onMouse_1.gif)
 
 如果需要阻止鼠标事件冒泡，可以通过调用stopPropagation方法进行设置。
 
 ```ts
-class ish{
-  isHovered:boolean = false
-  set(val:boolean){
-    this.isHovered = val;
-  }
-}
-class butf{
-  buttonText:string = ''
-  set(val:string){
-    this.buttonText = val
-  }
-}
+// xxx.ets
 @Entry
 @Component
 struct MouseExample {
-  @State isHovered:ish = new ish()
-  build(){
-    Column(){
-      Button(this.isHovered ? 'Hovered!' : 'Not Hover')
+  @State buttonText: string = '';
+  @State columnText: string = '';
+  @State text: string = 'OnMouse Sample Button';
+  @State Color: Color = Color.Gray;
+
+  build() {
+    Column() {
+      Button(this.text, { type: ButtonType.Capsule })
         .width(200)
         .height(100)
-        .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
-        .onHover((isHover?: boolean) => {
-          if(isHover) {
-            let ishset = new ish()
-            ishset.set(isHover)
-          }
-        })
-        .onMouse((event?: MouseEvent) => {
+        .backgroundColor(this.Color)
+        .onMouse((event?: MouseEvent) => { // 设置Button的onMouse回调
           if (event) {
-            if (event.stopPropagation) {
-              event.stopPropagation(); // 在Button的onMouse事件中设置阻止冒泡
-            }
-            let butset = new butf()
-            butset.set('Button onMouse:\n' + '' +
+            event.stopPropagation(); // 在Button的onMouse事件中设置阻止冒泡
+            this.buttonText = 'Button onMouse:\n' + '' +
               'button = ' + event.button + '\n' +
               'action = ' + event.action + '\n' +
-              'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
-              'windowXY=(' + event.windowX + ',' + event.windowY + ')');
+              'x,y = ' + '\n' + '(' + event.x + ',' + event.y + ')' + '\n' +
+              'windowXY=' + '\n' + '(' + event.windowX + ',' + event.windowY + ')';
           }
         })
+      Divider()
+      Text(this.buttonText).fontColor(Color.Green)
+      Divider()
+      Text(this.columnText).fontColor(Color.Red)
     }
+    .width('100%')
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+    .borderWidth(2)
+    .borderColor(Color.Red)
+    .onMouse((event?: MouseEvent) => { // 设置Column的onMouse回调
+      if (event) {
+        this.columnText = 'Column onMouse:\n' + '' +
+          'button = ' + event.button + '\n' +
+          'action = ' + event.action + '\n' +
+          'x,y = ' + '\n' + '(' + event.x + ',' + event.y + ')' + '\n' +
+          'windowXY=' + '\n' + '(' + event.windowX + ',' + event.windowY + ')';
+      }
+    })
   }
 }
 ```
+![onMouse2](figures/onMouse_2.gif)
 
 在子组件（Button）的onMouse中，通过回调参数event调用stopPropagation回调方法（如下）即可阻止Button子组件的鼠标事件冒泡到父组件Column上。
 
@@ -154,7 +157,7 @@ struct MouseExample {
 onHover(event: (isHover: boolean) => void)
 ```
 
-悬浮事件回调。参数isHover类型为boolean，表示鼠标进入组件或离开组件。该事件不支持自定义冒泡设置，默认父子冒泡。
+悬浮事件回调。参数isHover类型为boolean，表示鼠标进入组件或离开组件。该事件支持自定义冒泡设置，默认父子冒泡。
 
 
 若组件绑定了该接口，当鼠标指针从组件外部进入到该组件的瞬间会触发事件回调，参数isHover等于true；鼠标指针离开组件的瞬间也会触发该事件回调，参数isHover等于false。
@@ -333,8 +336,8 @@ struct ListExample {
 
 ## 处理滚轮
 
-鼠标的滚轮是一种可以产生纵向滚动量的输入设备，当用户滚动鼠标滚轮时，系统会产生纵向轴事件上报，应用可在组件上通过`onAxisEvent(event: (event: AxisEvent) => void): T`接口接收轴事件，轴事件中上报的坐标，为鼠标光标所在的位置，而滚轮上报的角度变化可从axisVertical中获得。
-鼠标滚轮轴事件的上报，每次都以Begin类型开始，当停止滚动时以End结束，慢速滚动时，会产生多段的Begin,End上报。当你处理axisVertical时，应确保理解它的数值含义与单位，其有以下特点：
+鼠标的滚轮是一种可以产生纵向滚动量的输入设备，当用户滚动鼠标滚轮时，系统会产生纵向[轴事件](../reference/apis-arkui/arkui-ts/ts-universal-events-axis.md)上报，应用可在组件上通过[onAxisEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-axis.md#onaxisevent)接口接收轴事件，轴事件中上报的坐标，为鼠标光标所在的位置，而滚轮上报的角度变化可从[BaseEvent](../reference/apis-arkui/arkui-ts/ts-gesture-customize-judge.md#baseevent8)的axisVertical获得。
+鼠标滚轮轴事件的上报，每次都以[AxisAction](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#axisaction17).BEGIN类型开始，当停止滚动时以[AxisAction](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#axisaction17).End结束，慢速滚动时，会产生多段的BEGIN、END上报。当你处理axisVertical时，应确保理解它的数值含义与单位，其有以下特点：
 - 上报的数值单位为角度，为单次变化量，非总量。
 - 上报数值大小受系统设置中对滚轮放大倍数设置的影响。
 - 系统设置中的放大倍数通过AxisEvent中的scrollStep告知。
@@ -349,3 +352,127 @@ struct ListExample {
 > 2. 系统会在发现鼠标指针下只有能够响应横向滚动的组件时，也可以触发横向滚动。
 > 3. 但只要指针下有一个可以响应纵向滚动，则会优先处理纵向，不再处理横向。
 
+以下是纵向和横向的List响应滚轮的示例：
+
+```ts
+// ListDataSource.ets
+export class ListDataSource implements IDataSource {
+  private list: number[] = [];
+  private listeners: DataChangeListener[] = [];
+
+  constructor(list: number[]) {
+    this.list = list;
+  }
+
+  totalCount(): number {
+    return this.list.length;
+  }
+
+  getData(index: number): number {
+    return this.list[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  // 通知控制器数据删除
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    });
+  }
+
+  // 通知控制器添加数据
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    });
+  }
+
+  // 在指定索引位置删除一个元素
+  public deleteItem(index: number): void {
+    this.list.splice(index, 1);
+    this.notifyDataDelete(index);
+  }
+
+  // 在指定索引位置插入一个元素
+  public insertItem(index: number, data: number): void {
+    this.list.splice(index, 0, data);
+    this.notifyDataAdd(index);
+  }
+}
+```
+
+```ts
+import { ListDataSource } from './ListDataSource';
+
+@Entry
+@Component
+struct ListExample {
+  private arr: ListDataSource = new ListDataSource([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  @State dir1: Axis = Axis.Vertical;
+
+  build() {
+    Column() {
+      Button('Click to Change ListDirection')
+        .margin(20)
+        .onClick(() => {
+          if (this.dir1 == Axis.Vertical) {
+            this.dir1 = Axis.Horizontal
+          } else {
+            this.dir1 = Axis.Vertical
+          }
+        })
+      List({ space: 20, initialIndex: 0 }) {
+        LazyForEach(this.arr, (item: number) => {
+          ListItem() {
+            Text('' + item)
+              .width('100%')
+              .height(100)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
+          }
+          .margin(20)
+          // 为ListItem绑定滑动手势，当在ListItem上滚动鼠标滚轮时，会优先触发ListItem的滑动手势
+          .gesture(PanGesture({ direction: PanDirection.Vertical })
+            .onActionStart(() => {
+              console.info('Vertical PanGesture start is called');
+            })
+            .onActionUpdate(() => {
+              console.info('Vertical PanGesture update is called');
+            }))
+        }, (item: number) => item.toString())
+      }
+      .borderWidth(1)
+      .listDirection(this.dir1) // 排列方向
+      .scrollBar(BarState.Off)
+      .friction(0.6)
+      .divider({
+        strokeWidth: 2,
+        color: 0xFFFFFF,
+        startMargin: 20,
+        endMargin: 20
+      }) // 每行之间的分界线
+      .edgeEffect(EdgeEffect.Spring) // 边缘效果设置为Spring
+      .width('90%')
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xDCDCDC)
+    .padding(20)
+  }
+}
+```
+![ListAxis](figures/listAxis.gif)

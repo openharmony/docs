@@ -121,7 +121,7 @@ import { display } from '@kit.ArkUI';
 
 | 名称   | 类型 | 只读 | 可选 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| displayId   | number   | 是   | 否   | 屏幕id，用于识别折痕所在的屏幕。 |
+| displayId   | number   | 是   | 否   | 屏幕ID，用于识别折痕所在的屏幕。 |
 | creaseRects    | Array\<[Rect](#rect9)>   | 是   | 否   | 折痕区域。 |
 
 ## Rect<sup>9+</sup>
@@ -241,7 +241,7 @@ getDisplayByIdSync(displayId: number): Display
 
 | 参数名 | 类型                      | 必填 | 说明       |
 | ------ | ------------------------- | ---- |----------|
-| displayId     | number                    | 是   | 屏幕id。该参数仅支持整数输入，该参数大于等于0。需要确保displayId准确才能成功获取到对应结果。可以通过[WindowProperties](arkts-apis-window-i.md#windowproperties)的displayId属性获取到准确的displayId作为入参。 |
+| displayId     | number                    | 是   | 屏幕ID。该参数仅支持整数输入，该参数大于等于0。需要确保displayId准确才能成功获取到对应结果。可以通过[WindowProperties](arkts-apis-window-i.md#windowproperties)的displayId属性获取到准确的displayId作为入参。 |
 
 **返回值：**
 
@@ -426,7 +426,7 @@ display.getAllDisplays((err: BusinessError, data: Array<display.Display>) => {
     console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in obtaining all the display objects. Data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -464,7 +464,7 @@ let displayClass: Array<display.Display> =[];
 let promise: Promise<Array<display.Display>> = display.getAllDisplays();
 promise.then((data: Array<display.Display>) => {
   displayClass = data;
-  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in obtaining all the display objects. Data:  ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
@@ -485,7 +485,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 | 参数名 | 类型 | 必填 | 说明                                                                                                                              |
 | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------------------------|
 | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
-| callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的屏幕id，该参数为整数。                                                                                                     |
+| callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的屏幕ID，该参数为整数。                                                                     |
 
 **错误码：**
 
@@ -501,7 +501,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<number> = (data: number) => {
-  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+  console.info(`Listening enabled. Data: ${data}`);
 };
 
 display.on("add", callback);
@@ -522,7 +522,7 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
-| callback | Callback&lt;number&gt; | 否 | 需要取消注册的回调函数。返回监听到的屏幕id，该参数为整数。若无此参数，则取消注册当前type类型事件监听的所有回调函数。 |
+| callback | Callback&lt;number&gt; | 否 | 需要取消注册的回调函数。返回监听到的屏幕ID，该参数为整数。若无此参数，则取消注册当前type类型事件监听的所有回调函数。 |
 
 **错误码：**
 
@@ -540,7 +540,7 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 display.off("remove");
 
 let callback: Callback<number> = (data: number) => {
-  console.info('Succeeded in unregistering the callback for display remove. Data: ' + JSON.stringify(data))
+  console.info(`Succeeded in unregistering the callback for display remove. Data: ${data}`)
 };
 // 关闭传入的callback监听
 display.off('remove', callback);
@@ -607,7 +607,7 @@ getFoldStatus(): FoldStatus
 import { display } from '@kit.ArkUI';
 
 let data: display.FoldStatus = display.getFoldStatus();
-console.info('Succeeded in obtaining fold status. Data: ' + JSON.stringify(data));
+console.info(`Succeeded in obtaining fold status. Data: ${data}`);
 ```
 
 ## display.getFoldDisplayMode<sup>10+</sup>
@@ -641,7 +641,7 @@ getFoldDisplayMode(): FoldDisplayMode
 import { display } from '@kit.ArkUI';
 
 let data: display.FoldDisplayMode = display.getFoldDisplayMode();
-console.info('Succeeded in obtaining fold display mode. Data: ' + JSON.stringify(data));
+console.info(`Succeeded in obtaining fold display mode. Data: ${data}`);
 ```
 
 ## display.getCurrentFoldCreaseRegion<sup>10+</sup>
@@ -675,7 +675,7 @@ getCurrentFoldCreaseRegion(): FoldCreaseRegion
 import { display } from '@kit.ArkUI';
 
 let data: display.FoldCreaseRegion = display.getCurrentFoldCreaseRegion();
-console.info('Succeeded in obtaining current fold crease region. Data: ' + JSON.stringify(data));
+console.info(`Succeeded in obtaining current fold crease region. Data: ${JSON.stringify(data)}`);
 ```
 
 ## display.on('foldStatusChange')<sup>10+</sup>
@@ -720,7 +720,7 @@ import { Callback } from '@kit.BasicServicesKit';
  * 若使用匿名函数注册，每次调用会创建一个新的底层对象，引起内存泄漏问题。
 */
 let callback: Callback<display.FoldStatus> = (data: display.FoldStatus) => {
-  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+  console.info(`Listening enabled. Data: ${data}`);
 };
 display.on('foldStatusChange', callback);
 ```
@@ -759,7 +759,7 @@ off(type: 'foldStatusChange', callback?: Callback&lt;FoldStatus&gt;): void
 display.off('foldStatusChange');
 
 let callback: Callback<display.FoldStatus> = (data: display.FoldStatus) => {
-  console.info('unregistering FoldStatus changes callback. Data: ' + JSON.stringify(data));
+  console.info(`unregistering FoldStatus changes callback. Data: ${data}`);
 };
 // 关闭传入的callback监听
 display.off('foldStatusChange', callback);
@@ -993,7 +993,7 @@ import { Callback } from '@kit.BasicServicesKit';
  * 若使用匿名函数注册，每次调用会创建一个新的底层对象，引起内存泄漏问题。
 */
 let callback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode) => {
-  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+  console.info(`Listening enabled. Data: ${data}`);
 }; 
 display.on('foldDisplayModeChange', callback);
 ```
@@ -1034,7 +1034,7 @@ off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): 
 display.off('foldDisplayModeChange');
 
 let callback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode) => {
-  console.info('unregistering FoldDisplayMode changes callback. Data: ' + JSON.stringify(data));
+  console.info(`unregistering FoldDisplayMode changes callback. Data: ${data}`);
 };
 // 关闭传入的callback监听
 display.off('foldDisplayModeChange', callback);
@@ -1095,7 +1095,7 @@ let config : VirtualScreenConfig = {
 };
 
 display.createVirtualScreen(config).then((screenId: number) => {
-  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(screenId));
+  console.info(`Succeeded in creating the virtual screen.ScreenId : ${screenId}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
 });
@@ -1115,7 +1115,7 @@ destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
 
 | 参数名   | 类型   | 必填 | 说明       |
 | -------- | ------ | ---- | ---------- |
-| screenId | number | 是   | 屏幕id，与创建的虚拟屏幕id保持一致，即使用[createVirtualScreen()](#displaycreatevirtualscreen16)接口成功创建对应虚拟屏幕时的返回值，该参数仅支持整数输入。 |
+| screenId | number | 是   | 屏幕ID，与创建的虚拟屏幕ID保持一致，即使用[createVirtualScreen()](#displaycreatevirtualscreen16)接口成功创建对应虚拟屏幕时的返回值，该参数仅支持整数输入。 |
 
 **返回值：**
 
@@ -1162,7 +1162,7 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
-| screenId  | number | 是   | 屏幕id，与创建的虚拟屏幕id保持一致，即使用[createVirtualScreen()](#displaycreatevirtualscreen16)接口成功创建对应虚拟屏幕时的返回值，该参数仅支持整数输入。    |
+| screenId  | number | 是   | 屏幕ID，与创建的虚拟屏幕ID保持一致，即使用[createVirtualScreen()](#displaycreatevirtualscreen16)接口成功创建对应虚拟屏幕时的返回值，该参数仅支持整数输入。    |
 | surfaceId | string | 是   | 代表虚拟屏幕的surfaceId，用户可自行定义，该参数最大长度为4096个字节，超出最大长度时则取前4096个字节。 |
 
 **返回值：**
@@ -1211,7 +1211,7 @@ makeUnique(screenId:number): Promise&lt;void&gt;
 
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
-| screenId  | number | 是   | 要设置成异源模式的屏幕id。其中id应为大于0的整数，否则返回401错误码。 |
+| screenId  | number | 是   | 要设置成异源模式的屏幕ID。其中id应为大于0的整数，否则返回401错误码。 |
 
 **返回值：**
 
@@ -1378,7 +1378,7 @@ display.getDefaultDisplay((err: BusinessError, data: display.Display) => {
     console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+  console.info(`Succeeded in obtaining the default display object. Data: ${JSON.stringify(data)}`);
   displayClass = data;
 });
 ```
@@ -1410,7 +1410,7 @@ let displayClass: display.Display | null = null;
 let promise: Promise<display.Display> = display.getDefaultDisplay();
 promise.then((data: display.Display) => {
   displayClass = data;
-  console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+  console.info(`Succeeded in obtaining the default display object. Data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}`);
 });
@@ -1445,7 +1445,7 @@ display.getAllDisplay((err: BusinessError, data: Array<display.Display>) => {
     console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in obtaining the default display objects. Data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -1474,7 +1474,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise: Promise<Array<display.Display>> = display.getAllDisplay();
 promise.then((data: Array<display.Display>) => {
-  console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in obtaining the default display objects. Data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
@@ -1489,7 +1489,7 @@ promise.then((data: Array<display.Display>) => {
 
 | 名称 | 类型 | 只读 | 可选 | 说明                                                                                                            |
 | -------- | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------|
-| id | number | 是 | 否 | 屏幕id，该参数为大于等于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
+| id | number | 是 | 否 | 屏幕ID，该参数为大于等于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
 | name | string | 是 | 否 | 显示设备的名称。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                      |
 | alive | boolean | 是 | 否 | 显示设备是否启用。true表示设备启用，false表示设备未启用。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                     |
 | state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                      |
@@ -1505,8 +1505,8 @@ promise.then((data: Array<display.Display>) => {
 | yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值，该参数为浮点数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | colorSpaces<sup>11+</sup> | Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md)> | 是 | 否 | 显示设备支持的所有色域类型。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                |
 | hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md)> | 是 | 否 | 显示设备支持的所有HDR格式。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                               |
-| availableWidth<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域宽度，单位为px，该参数为大于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
-| availableHeight<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域高度，单位为px，该参数为大于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
+| availableWidth<sup>12+</sup> | number | 是 | 否 | 屏幕的可用区域宽度，单位为px，该参数为大于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用；在其他设备中不可用，请通过width属性获取当前设备屏幕的可用区域宽度。                                                 |
+| availableHeight<sup>12+</sup> | number | 是 | 否 | 屏幕的可用区域高度，单位为px，该参数为大于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **设备行为差异：** 该接口在2in1设备、Tablet设备中可正常调用；在其他设备中不可用，请通过height属性获取当前设备屏幕的可用区域高度。                                                |
 | screenShape<sup>18+</sup> | [ScreenShape](#screenshape18) | 是 | 是 | 显示设备的屏幕形状，默认值为RECTANGLE。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | sourceMode<sup>19+</sup> | [DisplaySourceMode](#displaysourcemode19) | 是 | 是 | 屏幕显示内容的显示模式枚举，默认值为DisplaySourceMode.NONE。<br/>**系统能力：** SystemCapability.Window.SessionManager <br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。                                                                                    |
 | x<sup>19+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的x轴坐标，原点为主屏左上角，单位为px，该参数为整数，默认值为0。仅DisplaySourceMode为MAIN和EXTEND时返回。<br/>**系统能力：** SystemCapability.Window.SessionManager<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。                                                                                    |
@@ -1551,7 +1551,7 @@ displayClass.getCutoutInfo((err: BusinessError, data: display.CutoutInfo) => {
     console.error(`Failed to get cutoutInfo. Code: ${err.code}, message: ${err.message}`);
     return;
   }
-  console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
+  console.info(`Succeeded in getting cutoutInfo. Data: ${JSON.stringify(data)}`);
 });
 ```
 ### getCutoutInfo<sup>9+</sup>
@@ -1586,7 +1586,7 @@ let displayClass: display.Display | null = null;
 displayClass = display.getDefaultDisplaySync();
 let promise: Promise<display.CutoutInfo> = displayClass.getCutoutInfo();
 promise.then((data: display.CutoutInfo) => {
-  console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in getting cutoutInfo. Data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}`);
 });
@@ -1629,7 +1629,7 @@ try {
   displayClass = display.getDefaultDisplaySync();
   let promise = displayClass.getAvailableArea();
   promise.then((data) => {
-    console.info('Succeeded get the available area in this display. data: ' + JSON.stringify(data));
+    console.info(`Succeeded get the available area in this display. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to get the available area in this display. Code: ${err.code}, message: ${err.message}`);
   })
@@ -1673,7 +1673,7 @@ import { Callback } from '@kit.BasicServicesKit';
 import { display } from '@kit.ArkUI';
 
 let callback: Callback<display.Rect> = (data: display.Rect) => {
-  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+  console.info(`Listening enabled. Data: ${JSON.stringify(data)}`);
 };
 let displayClass: display.Display | null = null;
 try {
@@ -1720,7 +1720,7 @@ import { Callback } from '@kit.BasicServicesKit';
 import { display } from '@kit.ArkUI';
 
 let callback: Callback<display.Rect> = (data: display.Rect) => {
-  console.info('Listening enabled. Data: ' + JSON.stringify(data));
+  console.info(`Listening enabled. Data: ${JSON.stringify(data)}`);
 };
 let displayClass: display.Display | null = null;
 try {
@@ -1762,7 +1762,7 @@ let displayClass: display.Display | null = null;
 try {
   displayClass = display.getDefaultDisplaySync();
   let data: display.FoldCreaseRegion = displayClass.getLiveCreaseRegion();
-  console.info('Succeeded in getting the live crease region. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in getting the live crease region. Data: ${JSON.stringify(data)}`);
 } catch (exception) {
   console.error(`Failed to get the live crease region. Code: ${exception.code}, message: ${exception.message}`);
 }

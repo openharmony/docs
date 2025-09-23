@@ -33,7 +33,7 @@ createAppAccountManager(): AppAccountManager
 
 | 类型                | 说明           |
 | ----------------- | ------------ |
-| AppAccountManager | 应用账号管理器对象。 |
+| [AppAccountManager](#appaccountmanager) | 应用账号管理器对象。 |
 
 **示例：**
   ```ts
@@ -42,7 +42,7 @@ createAppAccountManager(): AppAccountManager
 
 ## AppAccountManager
 
-应用账号管理器类。
+应用账号管理器，可用于管理应用自身的账号信息。
 
 ### createAccount<sup>9+</sup>
 
@@ -84,8 +84,8 @@ createAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
         console.info('createAccount successful.');
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`createAccount err: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -260,8 +260,8 @@ createAccountImplicitly(owner: string, callback: AuthCallback): void
           onResult: this.onResultCallback,
           onRequestRedirected: this.onRequestRedirectedCallback
         });
-      } catch (err) {
-        const err = err as BusinessError;
+      } catch (e) {
+        const err = e as BusinessError;
         console.error(`createAccountImplicitly exception: code is ${err.code}, message is ${err.message}`);
       }
     }
@@ -339,8 +339,8 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
           onResult: this.onResultCallback,
           onRequestRedirected: this.onRequestRedirectedCallback
         });
-      } catch (err) {
-        const err = err as BusinessError;
+      } catch (e) {
+        const err = e as BusinessError;
         console.error(`createAccountImplicitly exception: code is ${err.code}, message is ${err.message}`);
       }
     }
@@ -434,8 +434,8 @@ removeAccount(name: string): Promise&lt;void&gt;
     }).catch((err: BusinessError) => {
       console.error(`removeAccount failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`removeAccount exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -482,8 +482,8 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean, callback: 
         console.info('setAppAccess successfully');
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`setAppAccess exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -533,8 +533,8 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean): Promise&l
     }).catch((err: BusinessError) => {
       console.error(`setAppAccess failed: code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`setAppAccess exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -580,8 +580,8 @@ checkAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;bool
           console.info('checkAppAccess successfully');
         }
       });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`checkAppAccess exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -629,8 +629,8 @@ checkAppAccess(name: string, bundleName: string): Promise&lt;boolean&gt;
     }).catch((err: BusinessError) => {
       console.error(`checkAppAccess failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`checkAppAccess exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -674,8 +674,8 @@ setDataSyncEnabled(name: string, isEnabled: boolean, callback: AsyncCallback&lt;
       appAccountManager.setDataSyncEnabled('ZhangSan', true, (err: BusinessError) => { 
           console.error(`setDataSyncEnabled err: code is ${err.code}, message is ${err.message}`);
       });
-  } catch (err) {
-      const err = err as BusinessError;
+  } catch (e) {
+      const err = e as BusinessError;
       console.error(`setDataSyncEnabled err: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -726,8 +726,8 @@ setDataSyncEnabled(name: string, isEnabled: boolean): Promise&lt;void&gt;
       }).catch((err: BusinessError) => {
           console.error(`setDataSyncEnabled err: code is ${err.code}, message is ${err.message}`);
       });
-  } catch (err) {
-      const err = err as BusinessError;
+  } catch (e) {
+      const err = e as BusinessError;
       console.error(`setDataSyncEnabled err: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -774,8 +774,8 @@ checkDataSyncEnabled(name: string, callback: AsyncCallback&lt;boolean&gt;): void
         console.info('checkDataSyncEnabled successfully, isEnabled: ' + isEnabled);
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`checkDataSyncEnabled err: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -825,8 +825,8 @@ checkDataSyncEnabled(name: string): Promise&lt;boolean&gt;
     }).catch((err: BusinessError) => {
       console.error(`checkDataSyncEnabled failed, err: code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`checkDataSyncEnabled err: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -872,8 +872,8 @@ setCredential(name: string, credentialType: string, credential: string,callback:
         console.info('setCredential successfully');
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`setCredential exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -922,8 +922,8 @@ setCredential(name: string, credentialType: string, credential: string): Promise
     }).catch((err: BusinessError) => {
       console.error(`setCredential failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`setCredential exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -969,8 +969,8 @@ getCredential(name: string, credentialType: string, callback: AsyncCallback&lt;s
           console.info('getCredential successfully, result: ' + result);
         }
       });
-  } catch (err) {
-      const err = err as BusinessError;
+  } catch (e) {
+      const err = e as BusinessError;
       console.error(`getCredential err: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -1019,8 +1019,8 @@ getCredential(name: string, credentialType: string): Promise&lt;string&gt;
     }).catch((err: BusinessError) => {
         console.error(`getCredential failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getCredential exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -1067,8 +1067,8 @@ setCustomData(name: string, key: string, value: string, callback: AsyncCallback&
         console.info('setCustomData successfully');
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`setCustomData exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -1118,8 +1118,8 @@ setCustomData(name: string, key: string, value: string): Promise&lt;void&gt;
     }).catch((err: BusinessError) => {
       console.error(`setCustomData failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`setCustomData exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -1165,8 +1165,8 @@ getCustomData(name: string, key: string, callback: AsyncCallback&lt;string&gt;):
         console.info('getCustomData successfully, data: ' + data);
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getCustomData exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -1215,8 +1215,8 @@ getCustomData(name: string, key: string): Promise&lt;string&gt;
     }).catch((err: BusinessError) => {
       console.error(`getCustomData failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getCustomData exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -1260,8 +1260,8 @@ getCustomDataSync(name: string, key: string): string
   try {
       let value = appAccountManager.getCustomDataSync('ZhangSan', 'age');
       console.info('getCustomDataSync successfully, value: ' + value);
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getCustomDataSync failed, code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -1302,8 +1302,8 @@ getAllAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
         console.debug('getAllAccounts successfully');
       }
     });
-  } catch (err) {
-      const err = err as BusinessError;
+  } catch (e) {
+      const err = e as BusinessError;
       console.error(`getAllAccounts exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -1341,8 +1341,8 @@ getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
     }).catch((err: BusinessError) => {
       console.error(`getAllAccounts failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getAllAccounts exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -1386,8 +1386,8 @@ getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccount
           console.debug('getAccountsByOwner successfully, data:' + JSON.stringify(data));
         }
       });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getAccountsByOwner exception:code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -1434,8 +1434,8 @@ getAccountsByOwner(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
     }).catch((err: BusinessError) => {
       console.error(`getAccountsByOwner failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getAccountsByOwner exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -1590,8 +1590,8 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
           onResult: this.onResultCallback,
           onRequestRedirected: this.onRequestRedirectedCallback
         });
-      } catch (err) {
-        const err = err as BusinessError;
+      } catch (e) {
+        const err = e as BusinessError;
         console.error(`auth exception: code is ${err.code}, message is ${err.message}`);
       }
     }
@@ -1670,8 +1670,8 @@ auth(name: string, owner: string, authType: string, options: Record<string, Obje
           onResult: this.onResultCallback,
           onRequestRedirected: this.onRequestRedirectedCallback
         });
-      } catch (err) {
-        const err = err as BusinessError;
+      } catch (e) {
+        const err = e as BusinessError;
         console.error(`auth exception: code is ${err.code}, message is ${err.message}`);
       }
     }
@@ -1722,8 +1722,8 @@ getAuthToken(name: string, owner: string, authType: string, callback: AsyncCallb
           console.info('getAuthToken successfully, token: ' + token);
         }
       });
-  } catch (err) {
-      const err = err as BusinessError;
+  } catch (e) {
+      const err = e as BusinessError;
       console.error(`getAuthToken exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -1773,8 +1773,8 @@ getAuthToken(name: string, owner: string, authType: string): Promise&lt;string&g
     }).catch((err: BusinessError) => {
       console.error(`getAuthToken failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-      const err = err as BusinessError;
+  } catch (e) {
+      const err = e as BusinessError;
       console.error(`getAuthToken exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -1821,8 +1821,8 @@ setAuthToken(name: string, authType: string, token: string, callback: AsyncCallb
         console.info('setAuthToken successfully');
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`setAuthToken exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -1872,8 +1872,8 @@ setAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;
     }).catch((err: BusinessError) => {
         console.error(`setAuthToken failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`setAuthToken exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -1922,8 +1922,8 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string, ca
           console.info('deleteAuthToken successfully');
         }
       });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`deleteAuthToken exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -1974,8 +1974,8 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string): P
     }).catch((err: BusinessError) => {
       console.error(`deleteAuthToken failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`deleteAuthToken exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -2025,8 +2025,8 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
           console.info('setAuthTokenVisibility successfully');
         }
       });
-  } catch (err) {
-      const err = err as BusinessError;
+  } catch (e) {
+      const err = e as BusinessError;
       console.error(`setAuthTokenVisibility exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -2078,8 +2078,8 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
     }).catch((err: BusinessError) => {
       console.error(`setAuthTokenVisibility failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`setAuthTokenVisibility exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -2127,8 +2127,8 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string, cal
           console.info('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
         }
       });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`checkAuthTokenVisibility exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -2179,8 +2179,8 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string): Pr
     }).catch((err: BusinessError) => {
       console.error(`checkAuthTokenVisibility failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`checkAuthTokenVisibility exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -2226,8 +2226,8 @@ getAllAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&l
           console.info('getAllAuthTokens successfully, tokenArr: ' + tokenArr);
         }
       });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getAllAuthTokens exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -2276,8 +2276,8 @@ getAllAuthTokens(name: string, owner: string): Promise&lt;Array&lt;AuthTokenInfo
     }).catch((err: BusinessError) => {
       console.error(`getAllAuthTokens failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getAllAuthTokens exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -2323,8 +2323,8 @@ getAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt;
         console.info('getAuthList successfully, authList: ' + authList);
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getAuthList exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -2373,8 +2373,8 @@ getAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
     }).catch((err: BusinessError) => {
         console.error(`getAuthList failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`getAuthList exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -2432,8 +2432,8 @@ getAuthCallback(sessionId: string, callback: AsyncCallback&lt;AuthCallback&gt;):
           }; 
           callback.onResult(0, result);
         });
-      } catch (err) {
-          const err = err as BusinessError;
+      } catch (e) {
+          const err = e as BusinessError;
           console.error(`getAuthCallback exception: code is ${err.code}, message is ${err.message}`);
       }
     }
@@ -2496,8 +2496,8 @@ getAuthCallback(sessionId: string): Promise&lt;AuthCallback&gt;
         }).catch((err: BusinessError) => {
           console.error(`getAuthCallback err: code is ${err.code}, message is ${err.message}`);
         });
-      } catch (err) {
-        const err = err as BusinessError;
+      } catch (e) {
+        const err = e as BusinessError;
         console.error(`getAuthCallback exception: code is ${err.code}, message is ${err.message}`);
       }
     }
@@ -2544,8 +2544,8 @@ queryAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorIn
           console.info('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
         }
       });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`queryAuthenticatorInfo exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -2593,8 +2593,8 @@ queryAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
     }).catch((err: BusinessError) => {
       console.error(`queryAuthenticatorInfo failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`queryAuthenticatorInfo exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -2645,8 +2645,8 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
           console.info('checkAccountLabels successfully, hasAllLabels: ' + hasAllLabels);
         }
       });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`checkAccountLabels exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -2700,8 +2700,8 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Pr
     }).catch((err: BusinessError) => {
       console.error(`checkAccountLabels failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`checkAccountLabels exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -2747,8 +2747,8 @@ deleteCredential(name: string, credentialType: string, callback: AsyncCallback&l
         console.info('deleteCredential successfully');
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`deleteCredential exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -2797,8 +2797,8 @@ deleteCredential(name: string, credentialType: string): Promise&lt;void&gt;
     }).catch((err: BusinessError) => {
       console.error(`deleteCredential failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`deleteCredential exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -2848,8 +2848,8 @@ selectAccountsByOptions(options: SelectAccountsOptions, callback: AsyncCallback&
           console.info('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
         }
       });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`selectAccountsByOptions exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -2900,8 +2900,8 @@ selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;Array&lt;App
     }).catch((err: BusinessError) => {
       console.error(`selectAccountsByOptions failed, code is ${err.code}, message is ${err.message}`);
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`selectAccountsByOptions exception: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -2951,8 +2951,8 @@ verifyCredential(name: string, owner: string, callback: AuthCallback): void
               console.info('verifyCredential onRequestRedirected, request: ' + JSON.stringify(request));
           }
       });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`verifyCredential err: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -3007,8 +3007,8 @@ verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, 
         console.info('verifyCredential onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`verifyCredential err: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -3056,8 +3056,8 @@ setAuthenticatorProperties(owner: string, callback: AuthCallback): void
         console.info('setAuthenticatorProperties onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`setAuthenticatorProperties err: code is ${err.code}, message is ${err.message}`);
   }
   ```
@@ -3109,8 +3109,8 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
         console.info('setAuthenticatorProperties onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
-  } catch (err) {
-    const err = err as BusinessError;
+  } catch (e) {
+    const err = e as BusinessError;
     console.error(`setAuthenticatorProperties err: code is ${err.code}, message is ${err.message}`);
   } 
 
@@ -5023,9 +5023,9 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称               | 类型            | 只读  | 可选   | 说明              |
 | -------------------- | -------------- | -----| ----- | ---------------- |
-| authType<sup>9+</sup>             | string         | 否 | 否    | 令牌的鉴权类型。   |
-| token<sup>9+</sup>                | string         | 否 | 否    | 令牌的取值。       |
-| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | 否 | 是    | 令牌所属的账号信息，默认为空。|
+| authType            | string         | 否 | 否    | 令牌的鉴权类型。   |
+| token               | string         | 否 | 否    | 令牌的取值。       |
+| account | [AppAccountInfo](#appaccountinfo) | 否 | 是    | 令牌所属的账号信息，默认为空。|
 
 ## OAuthTokenInfo<sup>(deprecated)</sup>
 
@@ -5542,7 +5542,7 @@ checkAccountRemovable(name: string, callback: AuthCallback): void
 
 ### getRemoteObject<sup>9+</sup>
 
-getRemoteObject(): rpc.RemoteObject;
+getRemoteObject(): rpc.RemoteObject
 
 获取认证器的远程对象，不可以重载实现。
 

@@ -1,4 +1,10 @@
 # Text Component Common APIs (System API)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiangyuan6-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 This topic covers the common APIs of text components.
 
@@ -78,3 +84,27 @@ Describes the keyboard visual style configuration.
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | gradientMode  | [KeyboardGradientMode](#keyboardgradientmode20) | No  | Keyboard gradient effect.<br>Default value: **KeyboardGradientMode.NONE**.|
 | fluidLightMode  | [KeyboardFluidLightMode](#keyboardfluidlightmode20) | No  | Keyboard fluid lighting effect.<br>Default value: **KeyboardFluidLightMode.NONE**.|
+
+## TextChangeReason<sup>20+</sup>
+
+Enumerates the reasons for component content changes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Value| Description|
+| ------- | ---- | ------------------- |
+| UNKNOWN | 0 | Unknown reason.|
+| INPUT | 1 | User input.|
+| PASTE | 2 | Paste operation.|
+| CUT | 3 | Cut operation.|
+| DRAG | 4 | Drag and drop operation.|
+| AUTO_FILL | 5 | Auto-fill operation.|
+| AI_WRITE | 6 | AI-assisted writing.|
+| REDO | 7 | Redo operation.|
+| UNDO | 8 | Undo operation.|
+| CONTROLLER | 9 | Component API call.|
+| ACCESSIBILITY | 10 | Accessibility API.|
+| COLLABORATION | 11 | Cross-device photographing.|
+| STYLUS | 12 | Stylus input.|

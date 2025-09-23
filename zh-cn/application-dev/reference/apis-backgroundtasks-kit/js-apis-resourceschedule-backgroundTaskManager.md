@@ -658,7 +658,7 @@ export default class EntryAbility extends UIAbility {
 
   // 应用更新进度
   updateProcess(process: number) {
-    // 应用定义下载类通知模版
+    // 定义通知类型，更新进度时的通知类型必须为实况窗
     let downLoadTemplate: notificationManager.NotificationTemplate = {
       name: 'downloadTemplate', // 当前只支持downloadTemplate，保持不变
       data: {
@@ -1443,6 +1443,8 @@ export default class EntryAbility extends UIAbility {
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
+**原子化服务API：** 从API version 12开始，该属性支持在原子化服务中使用。
+
 | 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
 | DATA_TRANSFER           | 1    | 数据传输。                  |
@@ -1459,6 +1461,8 @@ export default class EntryAbility extends UIAbility {
 长时任务通知信息。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
+
+**原子化服务API：** 从API version 12开始，该属性支持在原子化服务中使用。
 
 | 名称             | 类型     | 只读     | 可选   | 说明                                       |
 | --------------- | ------ | ---- | ---- | ---------------------------------------- |

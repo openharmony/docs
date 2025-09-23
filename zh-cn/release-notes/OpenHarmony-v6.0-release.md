@@ -18,7 +18,7 @@ OpenHarmony 6.0 Release版本进一步增强ArkUI组件能力，提供更安全�
 
 - 新增支持互动卡片。（[指南](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/form/arkts-ui-liveform-overview.md)）
 
-- 新增支持Kiosk模式。Kiosk模式是一种特殊的设备锁定模式，可以确保设备界面只服务于特定的交互场景。（[指南](https://gitcode.com/RayShih/docs/blob/master/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-kioskManager.md)）
+- 新增支持Kiosk模式。Kiosk模式是一种特殊的设备锁定模式，可以确保设备界面只服务于特定的交互场景。（[指南](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-kioskManager.md)）
 
 - 应用启动框架支持在feature类型的HAP中配置，以及支持添加任务匹配规则。（[指南](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/application-models/app-startup.md#%E6%94%AF%E6%8C%81%E7%9A%84%E8%8C%83%E5%9B%B4)）
 
@@ -103,7 +103,7 @@ OpenHarmony 6.0 Release版本进一步增强ArkUI组件能力，提供更安全�
 
 ### 分布式软总线
 
-新开放底层连接能力接口，实现连接能力提升。（[指南](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/distributedservice/linnkEnhance_development-guide.md)）
+新开放底层连接能力接口，实现连接能力提升。（[指南](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/distributedservice/linkEnhance_development-guide.md)）
 
 
 ### 分布式服务
@@ -159,7 +159,7 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 
 - 新增addProcessorFromConfig接口，支持异步添加数据处理者和及其配置信息。（[API参考](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md#hiappeventaddprocessorfromconfig20)）
 
-- HiAppEvent的C API新增EVENT_APP_KILLED接口，订阅应用查杀事件。（[API参考](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hiappevent-event-h.md#event_app_killed)）
+- HiAppEvent的C API新增EVENT_APP_KILLED接口，订阅应用终止事件。（[API参考](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/reference/apis-performance-analysis-kit/capi-hiappevent-event-h.md#event_app_killed)）
 
 ### 升级
 
@@ -186,9 +186,9 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 
 - 新增支持音频低时延耳返的能力，可将音频以更低时延的方式实时传输到有线耳机中。（[指南](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/media/audio/audio-ear-monitor-loopback.md)）
 
-- 新增星闪音频设备播放和录制能力，支持应用获取当前音频的输出类型为星闪设备类型。
+- 新增星闪音频设备播放和录制能力，支持应用获取当前音频的输出类型为星闪设备类型。（[API参考](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/reference/apis-audio-kit/arkts-apis-audio-e.md#devicetype)）
 
-- 新增为直播场景打造的高清AEC录音能力，支持应用使用新增的直播录音流类型。
+- 新增为直播场景打造的高清AEC录音能力，支持应用使用新增的直播录音流类型。（[API参考](https://gitcode.com/openharmony/docs/blob/OpenHarmony-6.0-Release/zh-cn/application-dev/reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8)）
 
 
 ### 安全

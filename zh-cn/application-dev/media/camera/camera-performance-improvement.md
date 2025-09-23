@@ -8,9 +8,9 @@
 
 在开发相机应用时，需要先[申请相关权限](camera-preparation.md)。
 
-相机启动性能受限于底层器件上电、流程Pipeline初始化等耗时操作影响，本文档将为开发者提供更进一步的指导，提升相机启动速度以及拍照返回缩略图速度。相关能力与底层器件相关，请开发者在使用前需确认是否支持相关特性。
+相机启动性能受限于底层器件上电、流程Pipeline初始化等耗时操作影响，本文档将为开发者提供更进一步的指导，提升相机启动速度以及拍照返回缩略图速度。相关能力与底层器件相关，请开发者在使用前确认是否支持相关特性。
 
-​相关特性分别在打开相机设备过程、配流过程以及拍照过程中。本文档针对三个场景分别进行介绍。
+相关特性分别在打开相机设备过程、配流过程以及拍照过程中。本文档针对三个场景分别进行介绍。
 
 ## 延时配流
 
@@ -184,7 +184,7 @@ async function enableQuickThumbnail(baseContext: common.BaseContext, photoProfil
 }
 
 function showOrSavePicture(pixelMap: image.PixelMap): void {
-  //do something。
+  // 根据业务需要添加处理逻辑。
 }
 ```
 

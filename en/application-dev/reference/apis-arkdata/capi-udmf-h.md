@@ -1,4 +1,10 @@
 # udmf.h
+<!--Kit: ArkData-->
+<!--Subsystem: DistributedDataManager-->
+<!--Owner: @jcwen-->
+<!--Designer: @junathuawei1; @zph000-->
+<!--Tester: @lj_liujing; @yippo; @logic42-->
+<!--Adviser: @ge-yafang-->
 
 ## Overview
 
@@ -279,7 +285,7 @@ Destroys an [OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md) instance
 
 | Name| Description|
 | -- | -- |
-| [OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)* pThis | Creates an [OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md) instance and a pointer to it.|
+| [OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)* pThis | Pointer to the [OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md) instance.|
 
 ### OH_UdmfDataLoadParams_SetLoadHandler()
 
@@ -297,7 +303,7 @@ Sets the processing function for data loading in an [OH_UdmfDataLoadParams](capi
 
 | Name| Description|
 | -- | -- |
-| [OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)* params | Creates an [OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md) instance and a pointer to it.|
+| [OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)* params | Pointer to the [OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md) instance.|
 | [const OH_Udmf_DataLoadHandler](capi-udmf-h.md#oh_udmf_dataloadhandler) dataLoadHandler | User-defined processing function for data loading.|
 
 ### OH_UdmfDataLoadParams_SetDataLoadInfo()
@@ -396,7 +402,7 @@ Sets the data type in an [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)
 
 | Name| Description|
 | -- | -- |
-| [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)* dataLoadInfo | Creates an [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md) instance.|
+| [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)* dataLoadInfo | Pointer to the [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md) instance.|
 | const char* type | A sting indicating the data type.|
 
 ### OH_UdmfDataLoadInfo_GetRecordCount()
@@ -415,7 +421,7 @@ Obtains the number of records in an [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdatal
 
 | Name| Description|
 | -- | -- |
-| [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)* dataLoadInfo | Creates an [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md) instance.|
+| [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)* dataLoadInfo | Pointer to the [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md) instance.|
 
 **Returns**
 
@@ -439,7 +445,7 @@ Sets the number of records in an [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataload
 
 | Name| Description|
 | -- | -- |
-| [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)* dataLoadInfo | Creates an [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md) instance.|
+| [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)* dataLoadInfo | Pointer to the [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md) instance.|
 | unsigned int recordCount | Number of records.|
 
 ### OH_Udmf_DataLoadHandler()
@@ -586,7 +592,7 @@ Destroys an [OH_UdmfData](capi-udmf-oh-udmfdata.md) instance.
 
 | Name| Description|
 | -- | -- |
-| [OH_UdmfData](capi-udmf-oh-udmfdata.md)* pThis | Pointer to the [OH_UdmfData](../apis-arkdata/capi-udmf-oh-udmfdata.md) instance.|
+| [OH_UdmfData](capi-udmf-oh-udmfdata.md)* pThis | Pointer to the [OH_UdmfData](capi-udmf-oh-udmfdata.md) instance.|
 
 **See**
 
@@ -609,7 +615,7 @@ Adds an [OH_UdmfRecord](capi-udmf-oh-udmfrecord.md) to an [OH_UdmfData](capi-udm
 
 | Name| Description|
 | -- | -- |
-| [OH_UdmfData](capi-udmf-oh-udmfdata.md)* pThis | Pointer to the [OH_UdmfData](../apis-arkdata/capi-udmf-oh-udmfdata.md) instance.|
+| [OH_UdmfData](capi-udmf-oh-udmfdata.md)* pThis | Pointer to the [OH_UdmfData](capi-udmf-oh-udmfdata.md) instance.|
 | [OH_UdmfRecord](capi-udmf-oh-udmfrecord.md)* record | Pointer to the [OH_UdmfRecord](capi-udmf-oh-udmfrecord.md) instance.|
 
 **Returns**
@@ -635,7 +641,7 @@ Checks whether the specified type exists in an [OH_UdmfData](capi-udmf-oh-udmfda
 
 | Name| Description|
 | -- | -- |
-| [OH_UdmfData](capi-udmf-oh-udmfdata.md)* pThis | Pointer to the [OH_UdmfData](../apis-arkdata/capi-udmf-oh-udmfdata.md) instance.|
+| [OH_UdmfData](capi-udmf-oh-udmfdata.md)* pThis | Pointer to the [OH_UdmfData](capi-udmf-oh-udmfdata.md) instance.|
 | const char* type | Pointer to the type to check.|
 
 **Returns**
@@ -661,7 +667,7 @@ Obtains all data types in an [OH_UdmfData](capi-udmf-oh-udmfdata.md) instance.
 
 | Name| Description|
 | -- | -- |
-| [OH_UdmfData](capi-udmf-oh-udmfdata.md)* pThis | Pointer to the [OH_UdmfData](../apis-arkdata/capi-udmf-oh-udmfdata.md) instance.|
+| [OH_UdmfData](capi-udmf-oh-udmfdata.md)* pThis | Pointer to the [OH_UdmfData](capi-udmf-oh-udmfdata.md) instance.|
 | unsigned int* count | Pointer to the number of data types obtained.|
 
 **Returns**
@@ -687,7 +693,7 @@ Obtains all records contained in an [OH_UdmfData](capi-udmf-oh-udmfdata.md) inst
 
 | Name| Description|
 | -- | -- |
-| [OH_UdmfData](capi-udmf-oh-udmfdata.md)* pThis | Pointer to the [OH_UdmfData](../apis-arkdata/capi-udmf-oh-udmfdata.md) instance.|
+| [OH_UdmfData](capi-udmf-oh-udmfdata.md)* pThis | Pointer to the [OH_UdmfData](capi-udmf-oh-udmfdata.md) instance.|
 | unsigned int* count | Pointer to the number of records obtained.|
 
 **Returns**
@@ -2019,7 +2025,7 @@ Sets an [OH_UdmfData](capi-udmf-oh-udmfdata.md) instance in the UDMF database.
 | -- | -- |
 | [Udmf_Intention](#udmf_intention) intention | Data channel type [Udmf_Intent](capi-udmf-h.md#udmf_intention).|
 | [OH_UdmfData](capi-udmf-oh-udmfdata.md)* unifiedData | Pointer to the [OH_UdmfData](capi-udmf-oh-udmfdata.md) instance.|
-| key | Pointer to the key that uniquely identifies the data in the database.|
+| char* key | Pointer to the key that uniquely identifies the data in the database.|
 | unsigned int keyLen | Length of the key. The memory size must be greater than or equal to 512 bytes.|
 
 **Returns**

@@ -4,7 +4,7 @@
 <!--Owner: @zourongchun-->
 <!--Designer: @zhufenghao-->
 <!--Tester: @ghiker-->
-<!--Adviser: @HelloCrease-->
+<!--Adviser: @HelloShuo-->
 在移动端或支持触控的Web应用中，用户通过触摸屏与页面交互，Web组件支持了常见的手势识别，例如长按、滑动、点击等，以支持丰富的用户交互体验。
 ## ArkWeb手势识别
 ArkWeb接收ArkUI的[触摸事件](../ui/arkts-interaction-development-guide-touch-screen.md#触摸事件)，并识别出手势（触摸事件的分发策略详见[交互基础机制说明](../ui/arkts-interaction-basic-principles.md)）。ArkWeb手势符合W3C标准：Touch Events、UI Events、Pointer Events。
@@ -79,7 +79,7 @@ struct Index {
 ## Web组件的手势拦截
 - ArkUI手势
 
-  ArkWeb会消费部分ArkUI手势，例如[拖动手势](../ui/arkts-gesture-events-single-gesture.md#拖动手势pangesture)，若希望自行处理这些手势而非由ArkWeb消费，可以参考ArkUI的[手势拦截](../ui/arkts-gesture-events-gesture-judge.md)。
+  ArkWeb会消费部分ArkUI手势，例如[滑动手势](../ui/arkts-gesture-events-single-gesture.md#滑动手势pangesture)，若希望自行处理这些手势而非由ArkWeb消费，可以参考ArkUI的[手势拦截](../ui/arkts-gesture-events-gesture-judge.md)。
 
 - ArkWeb手势
 

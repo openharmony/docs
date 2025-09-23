@@ -153,6 +153,6 @@ export default {
 
 针对Canvas开发，有以下相关实例可供参考：
 
-- [自定义抽奖转盘（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/JSCanvasComponent)
+- [自定义抽奖转盘（JS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/JSUI/JSCanvasComponent)
 
-- [图片编辑（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/ImageEditorTemplate)
+- [图片编辑（JS）（API9）](https://gitcode.com/openharmony/codelabs/tree/master/Media/ImageEditorTemplate)

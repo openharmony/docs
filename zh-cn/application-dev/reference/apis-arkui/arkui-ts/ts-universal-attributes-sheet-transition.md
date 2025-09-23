@@ -178,6 +178,10 @@ bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions): T
 
 6. 无悬停态避让能力。
 
+7. SIDE样式的半模态width的默认值规格：
+   - [断点](../../../../application-dev/ui/arkts-layout-development-grid-layout.md#栅格容器断点)为md的场景，默认宽度为窗口的1/2。
+   - [断点](../../../../application-dev/ui/arkts-layout-development-grid-layout.md#栅格容器断点)大于md的场景，默认宽度400vp。
+
 
 **侧边弹窗样式不支持的接口**
 | 名称             | 说明              |
