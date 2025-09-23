@@ -561,7 +561,7 @@ asset.query(query).then((res: Array<asset.AssetMap>) => {
 
 querySync(query: AssetMap): Array\<AssetMap>
 
-查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQuerySync](#assetprequerysync12)，在本函数后调用[asset.postQuerySync](#assetpostquerysync12)，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用同步方式返回结果。
+查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQuerySync](#assetprequerysync12)，在本函数后调用[asset.postQuerySync](#assetpostquerysync12)，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用同步方式返回结果。如果查询不到符合条件的关键资产，会抛出未找到关键资产异常，而不是返回空的查询结果列表。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
