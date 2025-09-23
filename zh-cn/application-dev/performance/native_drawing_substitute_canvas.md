@@ -314,7 +314,7 @@ static napi_value OnDraw(napi_env env, napi_callback_info info) {
     int32_t height;
     napi_get_value_int32(env, args[3], &height);
     
-    DRAWING_LOGI("OnDraw, width:%{public}d, helght:%{public}d", width, height);
+    DRAWING_LOGI("OnDraw, width:%{public}d, height:%{public}d", width, height);
     int32_t drawOption;
     napi_get_value_int32(env, args[4], &drawOption);
     // 背景图参数
