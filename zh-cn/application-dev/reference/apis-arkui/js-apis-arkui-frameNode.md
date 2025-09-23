@@ -9210,14 +9210,16 @@ struct FrameNodeTypeTest {
 
 ``` ts
 import { FrameNode, NodeController, UIContext } from '@kit.ArkUI';
+
 // 继承NodeController实现自定义UI控制器
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
   private isRunning: boolean = false; // 表示节点上动画是否在运行
+
   private startInitAnimation() {
     if (this.rootNode) {
       let result: boolean = this.rootNode.createAnimation(AnimationPropertyType.ROTATION, [0, 0, 0], [0, 0, 360],
-        {duration: 3000, curve: Curve.Linear, iterations: -1});// 创建动画，第一次创建时显式指定初值，旋转角从[0,0,0]变成[0,0,360]，无限循环
+        { duration: 3000, curve: Curve.Linear, iterations: -1 }); // 创建动画，第一次创建时显式指定初值，旋转角从[0,0,0]变成[0,0,360]，无限循环
       if (result) {
         this.isRunning = true;
       } else {
@@ -9225,6 +9227,7 @@ class MyNodeController extends NodeController {
       }
     }
   }
+
   cancelAnimation(cnt: number) {
     if (this.rootNode && this.isRunning) {
       let result: boolean = this.rootNode.cancelAnimations([AnimationPropertyType.ROTATION]);
@@ -9241,20 +9244,25 @@ class MyNodeController extends NodeController {
       }
     }
   }
+
   continueAnimation() {
     if (this.rootNode && !this.isRunning) {
-      let currentProperty: number[] = this.rootNode.getNodePropertyValue(AnimationPropertyType.ROTATION);// 获取当前节点上的旋转属性终值
+      let currentProperty: number[] =
+        this.rootNode.getNodePropertyValue(AnimationPropertyType.ROTATION); // 获取当前节点上的旋转属性终值
       if (currentProperty.length == 3) { // 获取属性正常，旋转属性对应的数组长度为3，分别是x、y、z方向的旋转角
         let endValue: number[];
         let startValue: number[] | undefined = undefined;
         if (currentProperty[2] >= 360) {
-          startValue = [currentProperty[0], currentProperty[1], currentProperty[2] - 360]; // 当旋转属性过大时使z方向少转360度，避免z方向角度由于多次启停动画一直增加
+          startValue = [currentProperty[0], currentProperty[1],
+            currentProperty[2] - 360]; // 当旋转属性过大时使z方向少转360度，避免z方向角度由于多次启停动画一直增加
           endValue = [currentProperty[0], currentProperty[1], currentProperty[2]];
         } else {
           endValue = [currentProperty[0], currentProperty[1], currentProperty[2] + 360]; // 此时旋转属性小于360度，可以从上次旋转角再多旋转一圈
         }
-        let result: boolean = this.rootNode.createAnimation(AnimationPropertyType.ROTATION, startValue, endValue, {duration: 3000, curve: Curve.Linear, iterations: -1});
-        console.info(`create rotation animation from ${startValue? String(startValue[2]): "undefined"} to ${endValue[2]}`);
+        let result: boolean = this.rootNode.createAnimation(AnimationPropertyType.ROTATION, startValue, endValue,
+          { duration: 3000, curve: Curve.Linear, iterations: -1 });
+        console.info(`create rotation animation from ${startValue ? String(startValue[2]) :
+          "undefined"} to ${endValue[2]}`);
         if (result) {
           this.isRunning = true;
         } else {
@@ -9263,15 +9271,17 @@ class MyNodeController extends NodeController {
       }
     }
   }
-
+  
   makeNode(uiContext: UIContext): FrameNode | null {
     if (this.rootNode) {
       return this.rootNode;
     }
     this.rootNode = new FrameNode(uiContext);
-    this.rootNode.commonAttribute.width(100).height(100).backgroundColor(Color.Blue);//设置节点属性
+    this.rootNode.commonAttribute.width(100)
+      .height(100)
+      .backgroundColor(Color.Blue); // 设置节点属性
     this.startInitAnimation();
-    this.rootNode.commonEvent.setOnClick(()=>{
+    this.rootNode.commonEvent.setOnClick(() => {
       if (this.isRunning) {
         this.cancelAnimation(1);
       } else {
@@ -9281,6 +9291,7 @@ class MyNodeController extends NodeController {
     return this.rootNode;
   }
 }
+
 @Entry
 @Component
 struct CreateAnimationExample {
@@ -9289,7 +9300,7 @@ struct CreateAnimationExample {
   build() {
     Column() {
       NodeContainer(this.myNodeController)
-    }.width('100%').padding({top: 50})
+    }.width('100%').padding({ top: 50 })
   }
 }
 ```
