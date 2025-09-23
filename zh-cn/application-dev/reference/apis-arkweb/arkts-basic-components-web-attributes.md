@@ -2708,18 +2708,12 @@ struct WebComponent {
     <h1>editMenuOptions Demo</h1>
     <span>edit menu options</span>
     <script>
-      function callArkTS() {
-        let str = testObjName.test();
-        document.getElementById("demo").innerHTML = str;
-      }
-
       document.addEventListener('selectionchange', () => {
         var selection = window.getSelection();
         if (selection.rangeCount > 0) {
           var selectedText = selection.toString();
           testObjName.setSelectText(selectedText);
         }
-        callArkTS();
       });
   </script>
   </body>
