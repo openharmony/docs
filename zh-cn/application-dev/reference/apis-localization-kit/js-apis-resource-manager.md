@@ -66,7 +66,7 @@ export default {
                 console.error("error is " + error);
                 return;
             }
-            // 'test'仅作示例，请替换为实际使用的资源
+            // 'test'仅作示例，请替换为实际使用的资源名称
             mgr.getStringByName('test', (error, value) => {
                 if (error) {
                     console.error("error is " + JSON.stringify(error));
@@ -110,7 +110,7 @@ export default {
                 console.error("getResourceManager error is " + error);
                 return;
             }
-            // 'test'仅作示例，请替换为实际使用的资源
+            // 'test'仅作示例，请替换为实际使用的资源名称
             mgr.getStringByName('test', (error, value) => {
                 if (error) {
                     console.error("getResourceManager error is " + JSON.stringify(error));
@@ -148,7 +148,7 @@ export default {
     onCreate() {
         resourceManager.getResourceManager().then(resMgr => {
             try {
-                // 'test'仅作示例，请替换为实际使用的资源
+                // 'test'仅作示例，请替换为实际使用的资源名称
                 let testStr = resMgr.getStringByNameSync('test')
                 console.info("getResourceManager success is " + testStr);
             } catch (error) {
@@ -195,7 +195,7 @@ export default {
     onCreate() {
         resourceManager.getResourceManager(BUNDLE_NAME).then(resMgr => {
             try {
-                // 'test'仅作示例，请替换为实际使用的资源
+                // 'test'仅作示例，请替换为实际使用的资源名称
                 let testStr = resMgr.getStringByNameSync('test')
                 console.info("getResourceManager success is " + testStr);
             } catch (error) {
