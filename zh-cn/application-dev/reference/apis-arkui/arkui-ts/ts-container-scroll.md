@@ -48,7 +48,7 @@ Scroll(scroller?: Scroller)
 
 scrollable(value: ScrollDirection)
 
-设置滚动方向。
+设置滚动方向。该值被修改后会重置滚动偏移量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -380,7 +380,7 @@ onScrollFrameBegin(event: OnScrollFrameBeginCallback)
 
 支持offsetRemain为负值。
 
-若通过onScrollFrameBegin事件和scrollBy方法实现容器嵌套滚动，需设置子滚动节点的EdgeEffect为None。如Scroll嵌套List滚动时，List组件的edgeEffect属性需设置为EdgeEffect.None。
+若通过onScrollFrameBegin事件和scrollBy方法实现容器嵌套滚动，需设置子滚动节点的EdgeEffect为None。如Scroll嵌套List滚动时，List组件的edgeEffect属性需设置为EdgeEffect.None，否则抛滑List，会触发List的边缘回弹动画，导致嵌套滚动失效。
 
 满足以下任一条件时触发该事件：
 

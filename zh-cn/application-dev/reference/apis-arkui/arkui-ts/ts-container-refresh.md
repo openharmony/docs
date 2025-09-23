@@ -259,7 +259,7 @@ struct RefreshExample {
         setTimeout(() => {
           this.isRefreshing = false;
         }, 2000)
-        console.log('onRefreshing test');
+        console.info('onRefreshing test');
       })
       .backgroundColor(0x89CFF0)
       .refreshOffset(64)
@@ -322,7 +322,7 @@ struct RefreshExample {
         setTimeout(() => {
           this.isRefreshing = false;
         }, 2000)
-        console.log('onRefreshing test');
+        console.info('onRefreshing test');
       })
     }
   }
@@ -394,7 +394,7 @@ struct RefreshExample {
         setTimeout(() => {
           this.isRefreshing = false;
         }, 2000)
-        console.log('onRefreshing test');
+        console.info('onRefreshing test');
       })
     }
   }
@@ -488,7 +488,7 @@ struct RefreshExample {
         setTimeout(() => {
           this.isRefreshing = false;
         }, 2000)
-        console.log('onRefreshing test');
+        console.info('onRefreshing test');
       })
     }
   }
@@ -573,7 +573,7 @@ struct RefreshExample {
         setTimeout(() => {
           this.isRefreshing = false;
         }, 2000)
-        console.log('onRefreshing test');
+        console.info('onRefreshing test');
       })
     }
   }
@@ -730,7 +730,7 @@ struct RefreshExample {
         setTimeout(() => {
           this.isRefreshing = false
         }, 2000)
-        console.log('onRefreshing test')
+        console.info('onRefreshing test')
       })
       .backgroundColor(0x89CFF0)
       .refreshOffset(64)
@@ -803,7 +803,7 @@ struct RefreshExample {
         setTimeout(() => {
           this.isRefreshing = false;
         }, 2000)
-        console.log('onRefreshing test');
+        console.info('onRefreshing test');
       })
     }
   }
