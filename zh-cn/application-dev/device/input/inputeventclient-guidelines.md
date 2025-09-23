@@ -1,5 +1,12 @@
 # 事件注入开发指导
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 场景介绍
 
 事件注入提供注入输入事件功能，比如注入鼠标点击事件、键盘组合键等。使用场景例如：当用户需要验证应用的组合键功能时，开发者可以通过注入组合键事件判断功能是否生效。
