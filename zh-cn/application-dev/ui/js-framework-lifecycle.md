@@ -34,19 +34,168 @@
 | onInactive()<sup>5+</sup> | ()&nbsp;=&gt;&nbsp;void | 页面暂停 | 页面暂停时触发。 |
 | onNewRequest()<sup>5+</sup> | ()&nbsp;=&gt;&nbsp;void | FA重新请求 | FA已经启动时收到新的请求后触发。 |
 
-页面A的生命周期接口的调用顺序
-- 打开页面A：onInit() -&gt; onReady() -&gt; onShow()
+生命周期函数的一般调用顺序如下所示：
+
+ **图1** 生命周期函数调用顺序图示
+
+![zh-cn_image_0000001147417424](figures/zh-cn_image_0000001147417424.png)
+
+## 示例代码
+
+通过以下示例，详细说明生命周期函数的调用顺序。首先创建两个页面，分别为pageA和pageB，并在config.json中配置页面路由信息：
+
+```json
+{
+    // ...
+    "pages": [
+        "pages/pageA/pageA",
+        "pages/pageB/pageB"
+    ],
+    // ...
+}
+```
+
+pageA实现代码如下：
+
+```html
+<!-- pageA.hml -->
+<div class="container">
+  <text class="title">This is PageA</text>
+  <input type="button" value="Go to the PageB" onclick="launch"></input>
+</div>
+```
+
+```css
+/* pageA.css */
+.container {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.title {
+  font-size: 38px;
+  text-align: center;
+  width: 100%;
+  height: 40%;
+}
+```
+
+```js
+// pageA.js
+import router from '@ohos.router';
+export default {
+  launch() {
+    router.push ({
+      url: 'pages/pageB/pageB'
+    });
+  },
+  onInit() {
+    console.info('PageA onInit');
+  },
+  onReady() {
+    console.info('PageA onReady');
+  },
+  onShow() {
+    console.info('PageA onShow');
+  },
+  onHide() {
+    console.info('PageA onHide');
+  },
+  onDestroy() {
+    console.info('PageA onDestroy');
+  },
+  onBackPress() {
+    console.info('PageA onBackPress');
+  },
+  onActive() {
+    console.info('PageA onActive');
+  },
+  onInactive() {
+    console.info('PageA onInactive');
+  },
+  onNewRequest() {
+    console.info('PageA onNewRequest');
+  }
+}
+```
+
+pageB实现代码如下：
+
+```html
+<!-- pageB.hml -->
+<div class="container">
+  <text class="title">This is PageB</text>
+</div>
+```
+
+```css
+/* pageB.css */
+.container {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.title {
+  font-size: 38px;
+  text-align: center;
+  width: 100%;
+  height: 40%;
+}
+```
+
+```js
+// pageB.js
+export default {
+  onInit() {
+    console.info('PageB onInit');
+  },
+  onReady() {
+    console.info('PageB onReady');
+  },
+  onShow() {
+    console.info('PageB onShow');
+  },
+  onHide() {
+    console.info('PageB onHide');
+  },
+  onDestroy() {
+    console.info('PageB onDestroy');
+  },
+  onBackPress() {
+    console.info('PageB onBackPress');
+  },
+  onActive() {
+    console.info('PageB onActive');
+  },
+  onInactive() {
+    console.info('PageB onInactive');
+  },
+  onNewRequest() {
+    console.info('PageB onNewRequest');
+  }
+}
+```
+
+运行程序，通过日志观察生命周期函数的调用顺序。其中pageA的生命周期函数的调用顺序为：
+- 打开应用进入页面A：onInit() -&gt; onReady() -&gt; onActive() -&gt; onShow()
 
 - 在页面A打开页面B：onHide()
 
 - 从页面B返回页面A：onShow()
 
-- 退出页面A：onBackPress() -&gt; onHide() -&gt; onDestroy()
+- 退出页面A：onBackPress() -&gt; onInactive() -&gt; onHide()
 
-- 页面隐藏到后台运行：onInactive() -&gt; onHide()
+- 页面A隐藏到后台运行：onInactive() -&gt; onHide()
 
-- 页面从后台运行恢复到前台：onShow() -&gt; onActive()
+- 页面A从后台运行恢复到前台：onNewRequest() -&gt; onShow() -&gt; onActive()
 
-![zh-cn_image_0000001147417424](figures/zh-cn_image_0000001147417424.png)
+pageB的生命周期函数的调用顺序为：
+- 在页面A打开页面B：onInit() -&gt; onReady() -&gt; onShow()
 
+- 从页面B返回页面A：onBackPress() -&gt; onHide() -&gt; onDestroy()
 
+- 页面B隐藏到后台运行：onInactive() -&gt; onHide()
+
+- 页面B从后台运行恢复到前台：onNewRequest() -&gt; onShow() -&gt; onActive()
