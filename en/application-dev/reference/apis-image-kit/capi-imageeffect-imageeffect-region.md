@@ -2,7 +2,7 @@
 
 ## Overview
 
-The ImageEffect_Region struct describes the image region.
+The struct describes the image region.
 
 **Since**: 12
 

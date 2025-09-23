@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 Image decoding refers to the process of decoding an image in a supported format into a [PixelMap](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md) for image display or processing. Currently, the following image formats are supported: JPEG, PNG, GIF, WebP, BMP, SVG, ICO, DNG, and HEIF. The supported formats may vary depending on the hardware.
 
@@ -46,18 +47,18 @@ Read the [API reference](../../reference/apis-image-kit/arkts-apis-image-ImageSo
       import { resourceManager } from '@kit.LocalizationKit';
 
       async function getFileBuffer(context: Context): Promise<ArrayBuffer | undefined> {
-         try {
-            const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
-            // Obtain the resource file content. The Uint8Array is returned.
-            const fileData: Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
-            console.info('Successfully got RawFileContent');
-            // Convert the array to an ArrayBuffer and return the ArrayBuffer.
-            const buffer: ArrayBuffer = fileData.buffer.slice(0);
-            return buffer;
-         } catch (error) {
-            console.error("Failed to get RawFileContent");
-            return undefined;
-         }
+        try {
+          const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+          // Obtain the resource file content. The Uint8Array is returned.
+          const fileData: Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
+          console.info('Successfully got RawFileContent');
+          // Convert the array to an ArrayBuffer and return the ArrayBuffer.
+          const buffer: ArrayBuffer = fileData.buffer.slice(0);
+          return buffer;
+        } catch (error) {
+          console.error("Failed to get RawFileContent");
+          return undefined;
+        }
       }
       ```
 
@@ -66,15 +67,15 @@ Read the [API reference](../../reference/apis-image-kit/arkts-apis-image-ImageSo
       import { resourceManager } from '@kit.LocalizationKit';
 
       async function getRawFd(context: Context): Promise<resourceManager.RawFileDescriptor | undefined> {
-         try {
-            const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
-            const rawFileDescriptor: resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
-            console.info('Successfully got RawFileDescriptor');
-            return rawFileDescriptor;
-         } catch (error) {
-            console.error('Failed to get RawFileDescriptor:');
-            return undefined;
-         }
+        try {
+          const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+          const rawFileDescriptor: resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
+          console.info('Successfully got RawFileDescriptor');
+          return rawFileDescriptor;
+        } catch (error) {
+          console.error('Failed to get RawFileDescriptor:');
+          return undefined;
+        }
       }
       ```
 
@@ -145,7 +146,7 @@ Read the [API reference](../../reference/apis-image-kit/arkts-apis-image-ImageSo
          console.info("Succeeded in creating PixelMap");
          // Check whether the PixelMap is the HDR content.
          let info = pixelMap.getImageInfoSync();
-         console.info("pixelmap isHdr:" + info.isHdr);
+         console.info("pixelMap isHdr:" + info.isHdr);
       }).catch((err : BusinessError) => {
          console.error("Failed to create PixelMap");
       });
@@ -156,8 +157,10 @@ Read the [API reference](../../reference/apis-image-kit/arkts-apis-image-ImageSo
 
    Ensure that the asynchronous operations of the PixelMap and ImageSource instances have finished executing. After these variables are no longer needed, you can manually call the APIs below to release them.
    ```ts
-   pixelMap.release();
-   imageSource.release();
+   // Ensure that the PixelMap instance is no longer needed before releasing it.
+   // pixelMap.release();
+   // Ensure that the ImageSource instance is no longer needed before releasing it.
+   // imageSource.release();
    ```
 
    > **NOTE**

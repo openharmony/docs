@@ -1,5 +1,12 @@
 # @ohos.multimedia.videoProcessingEngine (Video Processing Engine)
 
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @pxh123456-->
+<!--Designer: @gongzheng92-->
+<!--Tester: @gongzheng92-->
+<!--Adviser: @zengyawen-->
+
 The module provides the capabilities for enhancing the clarity and scaling of image content.
 
 This module includes a base class: [ImageProcessor](#imageprocessor).
@@ -46,8 +53,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { videoProcessingEngine } from '@kit.ImageKit';
+
 async function initializeEnvironment() {
-videoProcessingEngine.initializeEnvironment();
+  videoProcessingEngine.initializeEnvironment();
 }
 ```
 
@@ -79,6 +87,7 @@ For details about the error codes, see [Video Processing Engine Error Codes](err
 
 ```ts
 import { videoProcessingEngine } from '@kit.ImageKit';
+
 async function deinitializeEnvironment() {
   videoProcessingEngine.initializeEnvironment();
   videoProcessingEngine.deinitializeEnvironment();
@@ -115,9 +124,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { videoProcessingEngine } from '@kit.ImageKit';
+
 async function create() {
-videoProcessingEngine.initializeEnvironment();
-let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
+  videoProcessingEngine.initializeEnvironment();
+  let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
 }
 ```
 
@@ -169,10 +179,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { image, videoProcessingEngine } from '@kit.ImageKit';
+
 async function enhanceDetail(sourceImage: image.PixelMap, width: number, height: number) {
   videoProcessingEngine.initializeEnvironment();
   let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
-  let enhancedPixelmap: Promise<image.PixelMap> = imageProcessor.enhanceDetail(sourceImage, width, height, videoProcessingEngine.QualityLevel.HIGH);
+  let enhancedPixelmap: Promise<image.PixelMap> =
+    imageProcessor.enhanceDetail(sourceImage, width, height, videoProcessingEngine.QualityLevel.HIGH);
 }
 ```
 
@@ -214,10 +226,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { image, videoProcessingEngine } from '@kit.ImageKit';
+
 async function enhanceDetail(sourceImage: image.PixelMap, scale: number) {
   videoProcessingEngine.initializeEnvironment();
   let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
-  let enhancedPixelmap: Promise<image.PixelMap> = imageProcessor.enhanceDetail(sourceImage, scale, videoProcessingEngine.QualityLevel.HIGH);
+  let enhancedPixelmap: Promise<image.PixelMap> =
+    imageProcessor.enhanceDetail(sourceImage, scale, videoProcessingEngine.QualityLevel.HIGH);
 }
 ```
 
@@ -261,11 +275,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { image, videoProcessingEngine } from '@kit.ImageKit';
-async function enhanceDetailSync(sourceImage:image.PixelMap, width: number, height: number) {
+
+async function enhanceDetailSync(sourceImage: image.PixelMap, width: number, height: number) {
   videoProcessingEngine.initializeEnvironment();
   let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
   let enhancedPixelmap: image.PixelMap = imageProcessor.enhanceDetailSync(
-sourceImage, width, height, videoProcessingEngine.QualityLevel.HIGH);
+    sourceImage, width, height, videoProcessingEngine.QualityLevel.HIGH);
 }
 ```
 
@@ -308,11 +323,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { image, videoProcessingEngine } from '@kit.ImageKit';
-async function enhanceDetailSync(sourceImage:image.PixelMap, scale: number) {
+
+async function enhanceDetailSync(sourceImage: image.PixelMap, scale: number) {
   videoProcessingEngine.initializeEnvironment();
   let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.ImageProcessor;
   let enhancedPixelmap: image.PixelMap = imageProcessor.enhanceDetailSync(
-sourceImage, scale, videoProcessingEngine.QualityLevel.HIGH);
+    sourceImage, scale, videoProcessingEngine.QualityLevel.HIGH);
 }
 ```
 

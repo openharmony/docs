@@ -2,7 +2,7 @@
 
 ## Overview
 
-The ImageEffect_Size struct describes the image size.
+The struct describes the image size.
 
 **Since**: 12
 

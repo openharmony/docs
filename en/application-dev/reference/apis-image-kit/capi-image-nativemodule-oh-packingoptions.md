@@ -1,8 +1,14 @@
 # OH_PackingOptions
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
-The OH_PackingOptions struct describes the image packing options encapsulated at the native layer. The struct cannot be directly operated. Instead, functions must be called to create and release the struct and operate the fields in the struct.
+The struct describes the image packing options encapsulated at the native layer. The struct cannot be directly operated. Instead, functions must be called to create and release the struct and operate the fields in the struct.
 
 To create an OH_PackingOptions object, call [OH_PackingOptions_Create](capi-image-packer-native-h.md#oh_packingoptions_create).
 

@@ -1,8 +1,14 @@
 # ImagePacker_Opts_
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
-The ImagePacker_Opts_ struct describes the image encoding options.
+The struct describes the image encoding options.
 
 **Since**: 11
 

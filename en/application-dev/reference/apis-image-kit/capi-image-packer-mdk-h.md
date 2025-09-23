@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
@@ -19,9 +20,11 @@ The packing process is as follows:
 
 4. Call **OH_ImagePacker_Release** to release an ImagePacker_Native object.
 
+**File to include**: <multimedia/image_framework/image_packer_mdk.h>
+
 **Library**: libimage_packer_ndk.z.so
 
-**System capability**: SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **Since**: 11
 
@@ -43,7 +46,7 @@ The packing process is as follows:
 | [int32_t OH_ImagePacker_Create(napi_env env, napi_value *res)](#oh_imagepacker_create) | Obtains an ImagePacker object at the JavaScript native layer.|
 | [ImagePacker_Native* OH_ImagePacker_InitNative(napi_env env, napi_value packer)](#oh_imagepacker_initnative) | Converts an ImagePacker object at the JavaScript native layer into an ImagePacker_Native object.|
 | [int32_t OH_ImagePacker_PackToData(ImagePacker_Native* native, napi_value source,ImagePacker_Opts* opts, uint8_t* outData, size_t* size)](#oh_imagepacker_packtodata) | Packs a PixelMap object or an ImagePacker object at the JavaScript native layer to a buffer (defined by **outData**) based on the specified ImagePacker_Opts struct.|
-| [int32_t OH_ImagePacker_PackToFile(ImagePacker_Native* native, napi_value source,ImagePacker_Opts* opts, int fd)](#oh_imagepacker_packtofile) | Packs a PixelMap object or an ImagePacker object at the JavaScript native layer to a file based on the specified ImagePacker_Opts struct.|
+| [int32_t OH_ImagePacker_PackToFile(ImagePacker_Native* native, napi_value source, ImagePacker_Opts* opts, int fd)](#oh_imagepacker_packtofile) | Packs a PixelMap object or an ImagePacker object at the JavaScript native layer to a file based on the specified ImagePacker_Opts struct.|
 | [int32_t OH_ImagePacker_Release(ImagePacker_Native* native)](#oh_imagepacker_release) | Releases an [ImagePacker_Native](capi-image-imagepacker-native-.md) object.<br>It is not used to release the ImagePacker object at the JavaScript native layer.|
 
 ## Function Description

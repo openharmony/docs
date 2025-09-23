@@ -1,8 +1,17 @@
 # image_processing.h
 
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xjtu_liushang-->
+<!--Designer: @yangwang01-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
+
 ## Overview
 
-The **image_processing.h** file declares the image processing functions. It provides capabilities such as Color Space Conversion (CSC), metadata generation, and image scaling.
+The file declares the image processing functions. It provides capabilities such as Color Space Conversion (CSC), metadata generation, and image scaling.
+
+**File to include**: <multimedia/video_processing_engine/image_processing.h>
 
 **Library**: libimage_processing.so
 
@@ -20,19 +29,19 @@ The **image_processing.h** file declares the image processing functions. It prov
 | -- | -- |
 | [ImageProcessing_ErrorCode OH_ImageProcessing_InitializeEnvironment(void)](#oh_imageprocessing_initializeenvironment) | Initializes the global environment of the image processing module.<br>This function is optional. Generally, this function is called when the main process is started. It is used to initialize the global environment of the image processing module and reduce the time consumed by [OH_ImageProcessing_Create](capi-image-processing-h.md#oh_imageprocessing_create). It must be used in pair with [OH_ImageProcessing_DeinitializeEnvironment](capi-image-processing-h.md#oh_imageprocessing_deinitializeenvironment), which is used to deinitialize the global environment. This function can be used to check whether the GPU works properly.|
 | [ImageProcessing_ErrorCode OH_ImageProcessing_DeinitializeEnvironment(void)](#oh_imageprocessing_deinitializeenvironment) | Deinitializes the global environment of the image processing module.<br>This function must be called after [OH_ImageProcessing_InitializeEnvironment](capi-image-processing-h.md#oh_imageprocessing_initializeenvironment) is called. Generally, this function is called when the main process is about to exit. Do not call this function when an image processing instance exists or when [OH_ImageProcessing_InitializeEnvironment](capi-image-processing-h.md#oh_imageprocessing_initializeenvironment) is not called.|
-| [bool OH_ImageProcessing_IsColorSpaceConversionSupported(const ImageProcessing_ColorSpaceInfo* sourceImageInfo,const ImageProcessing_ColorSpaceInfo* destinationImageInfo)](#oh_imageprocessing_iscolorspaceconversionsupported) | Checks whether CSC is supported for an image.|
-| [bool OH_ImageProcessing_IsCompositionSupported(const ImageProcessing_ColorSpaceInfo* sourceImageInfo,const ImageProcessing_ColorSpaceInfo* sourceGainmapInfo,const ImageProcessing_ColorSpaceInfo* destinationImageInfo)](#oh_imageprocessing_iscompositionsupported) | Checks whether a dual-layer HDR image can be converted into a single-layer HDR image.|
-| [bool OH_ImageProcessing_IsDecompositionSupported(const ImageProcessing_ColorSpaceInfo* sourceImageInfo,const ImageProcessing_ColorSpaceInfo* destinationImageInfo,const ImageProcessing_ColorSpaceInfo* destinationGainmapInfo)](#oh_imageprocessing_isdecompositionsupported) | Checks whether a single-layer HDR image can be converted into a dual-layer HDR image.|
+| [bool OH_ImageProcessing_IsColorSpaceConversionSupported(const ImageProcessing_ColorSpaceInfo* sourceImageInfo, const ImageProcessing_ColorSpaceInfo* destinationImageInfo)](#oh_imageprocessing_iscolorspaceconversionsupported) | Checks whether CSC is supported for an image.|
+| [bool OH_ImageProcessing_IsCompositionSupported(const ImageProcessing_ColorSpaceInfo* sourceImageInfo, const ImageProcessing_ColorSpaceInfo* sourceGainmapInfo,const ImageProcessing_ColorSpaceInfo* destinationImageInfo)](#oh_imageprocessing_iscompositionsupported) | Checks whether a dual-layer HDR image can be converted into a single-layer HDR image.|
+| [bool OH_ImageProcessing_IsDecompositionSupported(const ImageProcessing_ColorSpaceInfo* sourceImageInfo, const ImageProcessing_ColorSpaceInfo* destinationImageInfo, const ImageProcessing_ColorSpaceInfo* destinationGainmapInfo)](#oh_imageprocessing_isdecompositionsupported) | Checks whether a single-layer HDR image can be converted into a dual-layer HDR image.|
 | [bool OH_ImageProcessing_IsMetadataGenerationSupported(const ImageProcessing_ColorSpaceInfo* sourceImageInfo)](#oh_imageprocessing_ismetadatagenerationsupported) | Checks whether metadata generation is supported for an image.|
 | [ImageProcessing_ErrorCode OH_ImageProcessing_Create(OH_ImageProcessing** imageProcessor, int32_t type)](#oh_imageprocessing_create) | Creates an image processing instance.|
 | [ImageProcessing_ErrorCode OH_ImageProcessing_Destroy(OH_ImageProcessing* imageProcessor)](#oh_imageprocessing_destroy) | Destroys an image processing instance.|
-| [ImageProcessing_ErrorCode OH_ImageProcessing_SetParameter(OH_ImageProcessing* imageProcessor,const OH_AVFormat* parameter)](#oh_imageprocessing_setparameter) | Sets a parameter for the image processing module. This function sets the parameter by key.|
-| [ImageProcessing_ErrorCode OH_ImageProcessing_GetParameter(OH_ImageProcessing* imageProcessor,OH_AVFormat* parameter)](#oh_imageprocessing_getparameter) | Obtains a parameter of the image processing module. This function obtains the parameter by key.|
-| [ImageProcessing_ErrorCode OH_ImageProcessing_ConvertColorSpace(OH_ImageProcessing* imageProcessor,OH_PixelmapNative* sourceImage, OH_PixelmapNative* destinationImage)](#oh_imageprocessing_convertcolorspace) | Converts the color space for a single-layer image. This function enables CSC from HDR images to SDR images, CSC from SDR images to HDR images, CSC from SDR images to SDR images, and CSC from HDR images to SDR images.|
-| [ImageProcessing_ErrorCode OH_ImageProcessing_Compose(OH_ImageProcessing* imageProcessor,OH_PixelmapNative* sourceImage, OH_PixelmapNative* sourceGainmap, OH_PixelmapNative* destinationImage)](#oh_imageprocessing_compose) | Converts a dual-layer HDR image into a single-layer HDR image. This function is used to generate an output image based on an input image and input gain map.|
-| [ImageProcessing_ErrorCode OH_ImageProcessing_Decompose(OH_ImageProcessing* imageProcessor,OH_PixelmapNative* sourceImage, OH_PixelmapNative* destinationImage, OH_PixelmapNative* destinationGainmap)](#oh_imageprocessing_decompose) | Converts a single-layer HDR image into a double-layer HDR image. This function is used to generate an output image and output gain map based on an input image.|
-| [ImageProcessing_ErrorCode OH_ImageProcessing_GenerateMetadata(OH_ImageProcessing* imageProcessor,OH_PixelmapNative* sourceImage)](#oh_imageprocessing_generatemetadata) | Generates metadata for an HDR image.  |
-| [ImageProcessing_ErrorCode OH_ImageProcessing_EnhanceDetail(OH_ImageProcessing* imageProcessor,OH_PixelmapNative* sourceImage, OH_PixelmapNative* destinationImage)](#oh_imageprocessing_enhancedetail) | Enhances the image definition and details. This function performs necessary scaling operations on the source image based on the preset sizes of the input and output images to generate the target image. It uses multiple scaling methods to balance performance and image quality.|
+| [ImageProcessing_ErrorCode OH_ImageProcessing_SetParameter(OH_ImageProcessing* imageProcessor, const OH_AVFormat* parameter)](#oh_imageprocessing_setparameter) | Sets a parameter for the image processing module. This function sets the parameter by key.|
+| [ImageProcessing_ErrorCode OH_ImageProcessing_GetParameter(OH_ImageProcessing* imageProcessor, OH_AVFormat* parameter)](#oh_imageprocessing_getparameter) | Obtains a parameter of the image processing module. This function obtains the parameter by key.|
+| [ImageProcessing_ErrorCode OH_ImageProcessing_ConvertColorSpace(OH_ImageProcessing* imageProcessor, OH_PixelmapNative* sourceImage, OH_PixelmapNative* destinationImage)](#oh_imageprocessing_convertcolorspace) | Converts the color space for a single-layer image. This function enables CSC from HDR images to SDR images, CSC from SDR images to HDR images, CSC from SDR images to SDR images, and CSC from HDR images to SDR images.|
+| [ImageProcessing_ErrorCode OH_ImageProcessing_Compose(OH_ImageProcessing* imageProcessor, OH_PixelmapNative* sourceImage, OH_PixelmapNative* sourceGainmap, OH_PixelmapNative* destinationImage)](#oh_imageprocessing_compose) | Converts a dual-layer HDR image into a single-layer HDR image. This function is used to generate an output image based on an input image and input gain map.|
+| [ImageProcessing_ErrorCode OH_ImageProcessing_Decompose(OH_ImageProcessing* imageProcessor, OH_PixelmapNative* sourceImage, OH_PixelmapNative* destinationImage, OH_PixelmapNative* destinationGainmap)](#oh_imageprocessing_decompose) | Converts a single-layer HDR image into a double-layer HDR image. This function is used to generate an output image and output gain map based on an input image.|
+| [ImageProcessing_ErrorCode OH_ImageProcessing_GenerateMetadata(OH_ImageProcessing* imageProcessor, OH_PixelmapNative* sourceImage)](#oh_imageprocessing_generatemetadata) | Generates metadata for an HDR image.  |
+| [ImageProcessing_ErrorCode OH_ImageProcessing_EnhanceDetail(OH_ImageProcessing* imageProcessor, OH_PixelmapNative* sourceImage, OH_PixelmapNative* destinationImage)](#oh_imageprocessing_enhancedetail) | Enhances the image definition and details. This function performs necessary scaling operations on the source image based on the preset sizes of the input and output images to generate the target image. It uses multiple scaling methods to balance performance and image quality.|
 
 ## Function Description
 
@@ -100,7 +109,7 @@ Checks whether CSC is supported for an image.
 
 | Type| Description|
 | -- | -- |
-| bool | Check result. The value **true** is returned if CSC is supported.<br> **false** is returned otherwise.|
+| bool | Check result for the support of CSC. **true** if supported, **false** otherwise.|
 
 ### OH_ImageProcessing_IsCompositionSupported()
 
@@ -127,7 +136,7 @@ Checks whether a dual-layer HDR image can be converted into a single-layer HDR i
 
 | Type| Description|
 | -- | -- |
-| bool | Check result. The value **true** is returned if such a conversion is supported.<br> **false** is returned otherwise.|
+| bool | Check result for the support of a conversion from a dual-layer HDR image into a single-layer HDR image. **true** if supported, **false** otherwise.|
 
 ### OH_ImageProcessing_IsDecompositionSupported()
 
@@ -154,7 +163,7 @@ Checks whether a single-layer HDR image can be converted into a dual-layer HDR i
 
 | Type| Description|
 | -- | -- |
-| bool | Check result. The value **true** is returned if such a conversion is supported.<br> **false** is returned otherwise.|
+| bool | Check result for support of a conversion from a single-layer HDR image into a dual-layer HDR image. **true** if supported, **false** otherwise.|
 
 ### OH_ImageProcessing_IsMetadataGenerationSupported()
 
@@ -179,7 +188,7 @@ Checks whether metadata generation is supported for an image.
 
 | Type| Description|
 | -- | -- |
-| bool | Check result. The value **true** is returned if metadata generation is supported.<br> **false** is returned otherwise.|
+| bool | Check result for the support of metadata generation. **true** if supported, **false** otherwise.|
 
 ### OH_ImageProcessing_Create()
 
@@ -250,7 +259,7 @@ Sets a parameter for the image processing module. This function sets the paramet
 | Name| Description|
 | -- | -- |
 | [OH_ImageProcessing](capi-imageprocessing-oh-imageprocessing.md)* imageProcessor | Pointer to an image processing instance.|
-| const [OH_AVFormat](../apis-avcodec-kit/_core.md#oh_avformat)* parameter | Pointer to the parameter.|
+| const [OH_AVFormat](../apis-avcodec-kit/capi-core-oh-avformat.md)* parameter | Pointer to the parameter.|
 
 **Returns**
 
@@ -276,13 +285,13 @@ Obtains a parameter of the image processing module. This function obtains the pa
 | Name| Description|
 | -- | -- |
 | [OH_ImageProcessing](capi-imageprocessing-oh-imageprocessing.md)* imageProcessor | Pointer to an image processing instance.|
-| [OH_AVFormat](../apis-avcodec-kit/_core.md#oh_avformat)* parameter | Pointer to the parameter.|
+| [OH_AVFormat](../apis-avcodec-kit/capi-core-oh-avformat.md)* parameter | Pointer to the parameter.|
 
 **Returns**
 
 | Type| Description|
 | -- | -- |
-| [ImageProcessing_ErrorCode](capi-image-processing-types-h.md#imageprocessing_errorcode) | **IMAGE_PROCESSING_SUCCESS**: The operation is successful.<br> **IMAGE_PROCESSING_ERROR_INVALID_INSTANCE**: The instance is null or is not an image processing instance.<br> **IMAGE_PROCESSING_ERROR_INVALID_PARAMETER**: **parameter** is empty.|
+| [ImageProcessing_ErrorCode](capi-image-processing-types-h.md#imageprocessing_errorcode) | **IMAGE_PROCESSING_SUCCESS**: The parameters fail to be obtained.<br> **IMAGE_PROCESSING_ERROR_INVALID_INSTANCE**: The instance is null or is not an image processing instance.<br> **IMAGE_PROCESSING_ERROR_INVALID_PARAMETER**: **parameter** is empty.|
 
 ### OH_ImageProcessing_ConvertColorSpace()
 

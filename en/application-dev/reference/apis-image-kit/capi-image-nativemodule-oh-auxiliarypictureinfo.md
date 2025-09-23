@@ -2,12 +2,13 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
-The OH_AuxiliaryPictureInfo struct describes the auxiliary picture information, which is used to perform operations related to the auxiliary picture information.
+The struct describes the auxiliary picture information, which is used to perform operations related to the auxiliary picture information.
 
 **Since**: 13
 

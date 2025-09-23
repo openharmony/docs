@@ -1,8 +1,14 @@
 # Image_Size
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
-The Image_Size struct describes the image size.
+The struct describes the image size.
 
 **Since**: 12
 

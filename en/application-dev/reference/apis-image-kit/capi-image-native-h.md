@@ -2,12 +2,15 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
 The file declares the cropping rectangle, size, and component data of an image.
+
+**File to include**: <multimedia/image_framework/image/image_native.h>
 
 **Library**: libohimage.so
 
@@ -30,11 +33,11 @@ The file declares the cropping rectangle, size, and component data of an image.
 | Name| Description|
 | -- | -- |
 | [Image_ErrorCode OH_ImageNative_GetImageSize(OH_ImageNative *image, Image_Size *size)](#oh_imagenative_getimagesize) | Obtains the [Image_Size](capi-image-nativemodule-image-size.md) information of an [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md) object.|
-| [Image_ErrorCode OH_ImageNative_GetComponentTypes(OH_ImageNative *image,uint32_t **types, size_t *typeSize)](#oh_imagenative_getcomponenttypes) | Obtains the component types of an [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md) object.|
-| [Image_ErrorCode OH_ImageNative_GetByteBuffer(OH_ImageNative *image,uint32_t componentType, OH_NativeBuffer **nativeBuffer)](#oh_imagenative_getbytebuffer) | Obtains the buffer corresponding to a component type in an [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md) object.|
-| [Image_ErrorCode OH_ImageNative_GetBufferSize(OH_ImageNative *image,uint32_t componentType, size_t *size)](#oh_imagenative_getbuffersize) | Obtains the size of the buffer corresponding to a component type in an [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md) object.|
-| [Image_ErrorCode OH_ImageNative_GetRowStride(OH_ImageNative *image,uint32_t componentType, int32_t *rowStride)](#oh_imagenative_getrowstride) | Obtains the row stride corresponding to a component type in an [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md) object.|
-| [Image_ErrorCode OH_ImageNative_GetPixelStride(OH_ImageNative *image,uint32_t componentType, int32_t *pixelStride)](#oh_imagenative_getpixelstride) | Obtains the pixel stride corresponding to a component type in an [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md) object.|
+| [Image_ErrorCode OH_ImageNative_GetComponentTypes(OH_ImageNative *image, uint32_t **types, size_t *typeSize)](#oh_imagenative_getcomponenttypes) | Obtains the component types of an [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md) object.|
+| [Image_ErrorCode OH_ImageNative_GetByteBuffer(OH_ImageNative *image, uint32_t componentType, OH_NativeBuffer **nativeBuffer)](#oh_imagenative_getbytebuffer) | Obtains the buffer corresponding to a component type in an [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md) object.|
+| [Image_ErrorCode OH_ImageNative_GetBufferSize(OH_ImageNative *image, uint32_t componentType, size_t *size)](#oh_imagenative_getbuffersize) | Obtains the size of the buffer corresponding to a component type in an [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md) object.|
+| [Image_ErrorCode OH_ImageNative_GetRowStride(OH_ImageNative *image, uint32_t componentType, int32_t *rowStride)](#oh_imagenative_getrowstride) | Obtains the row stride corresponding to a component type in an [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md) object.|
+| [Image_ErrorCode OH_ImageNative_GetPixelStride(OH_ImageNative *image, uint32_t componentType, int32_t *pixelStride)](#oh_imagenative_getpixelstride) | Obtains the pixel stride corresponding to a component type in an [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md) object.|
 | [Image_ErrorCode OH_ImageNative_GetTimestamp(OH_ImageNative *image, int64_t *timestamp)](#oh_imagenative_gettimestamp) | Obtains the timestamp of an [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md) object.|
 | [Image_ErrorCode OH_ImageNative_Release(OH_ImageNative *image)](#oh_imagenative_release) | Releases an [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md) object.|
 
@@ -184,7 +187,6 @@ Camera preview stream data must be read based on the stride. For details, see [S
 
 ```
 Image_ErrorCode OH_ImageNative_GetPixelStride(OH_ImageNative *image,uint32_t componentType, int32_t *pixelStride)
-	
 ```
 
 **Description**
@@ -262,4 +264,5 @@ Releases an [OH_ImageNative](capi-image-nativemodule-oh-imagenative.md) object.
 | Type| Description|
 | -- | -- |
 | [Image_ErrorCode](capi-image-common-h.md#image_errorcode) | **IMAGE_SUCCESS**: The operation is successful.<br>**IMAGE_BAD_PARAMETER**: A parameter is incorrect.|
+
 <!--no_check-->
