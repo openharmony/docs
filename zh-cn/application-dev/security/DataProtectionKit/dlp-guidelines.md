@@ -90,8 +90,8 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
       let context = new UIContext().getHostContext() as common.UIAbilityContext; // 获取当前UIAbilityContext。
 
       try {
-        console.log('openDLPFile:' + JSON.stringify(want));
-        console.log('openDLPFile: delegator:' + JSON.stringify(context));
+        console.info('openDLPFile:' + JSON.stringify(want));
+        console.info('openDLPFile: delegator:' + JSON.stringify(context));
         context.startAbility(want);
       } catch (err) {
         console.error('openDLPFile startAbility failed', (err as BusinessError).code, (err as BusinessError).message);
@@ -408,22 +408,22 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     try {
       let attributeValues: Array<string> = [ '1' ];
       let attribute: Attribute = {
-        attributeId: 'DeviceHealthyStatus';
-        attributeValues: attributeValues;
-        valueType: 0;
-        opt: 2;
+        attributeId: 'DeviceHealthyStatus',
+        attributeValues: attributeValues,
+        valueType: 0,
+        opt: 2
       }; // 属性信息。
       let rule: Rule = {
-        ruleId: 'ruleId';
-        attributes: [ attribute ];
+        ruleId: 'ruleId',
+        attributes: [ attribute ]
       }; // 规则。
       let policy: Policy = {
-        rules: [ rule ];
-        policyId: 'policyId';
-        ruleConflictAlg: 0;
+        rules: [ rule ],
+        policyId: 'policyId',
+        ruleConflictAlg: 0
       }; // 策略。
       let enterprisePolicy: dlpPermission.EnterprisePolicy = {
-        policyString: JSON.stringify(policy);
+        policyString: JSON.stringify(policy)
       };
       dlpPermission.setEnterprisePolicy(enterprisePolicy);
       console.info('set enterprise policy success');
