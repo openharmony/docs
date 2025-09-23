@@ -24,7 +24,7 @@
 
 \@BuilderParam装饰的方法只能被自定义构建函数（\@Builder装饰的方法）初始化。
 
-- 使用所属自定义组件的自定义构建函数或者全局的自定义构建函数，在本地初始化\@BuilderParam。
+- 使用所属自定义组件的自定义构建函数或者全局的自定义构建函数，在本地初始化\@BuilderParam装饰的方法。
 
   ```ts
   @Builder
@@ -37,9 +37,9 @@
     doNothingBuilder() {
     }
   
-    // 使用自定义组件的自定义构建函数初始化@BuilderParam
+    // 使用自定义组件的自定义构建函数初始化@BuilderParam装饰的方法
     @BuilderParam customBuilderParam: () => void = this.doNothingBuilder;
-    // 使用全局自定义构建函数初始化@BuilderParam
+    // 使用全局自定义构建函数初始化@BuilderParam装饰的方法
     @BuilderParam customOverBuilderParam: () => void = overBuilder;
   
     build() {
@@ -239,7 +239,7 @@ struct CustomContainer {
   closerBuilder() {
   }
 
-  // 使用父组件的尾随闭包{}(@Builder装饰的方法)初始化子组件@BuilderParam
+  // 使用父组件的尾随闭包{}(@Builder装饰的方法)初始化子组件@BuilderParam装饰的方法
   @BuilderParam closer: () => void = this.closerBuilder;
 
   build() {
@@ -286,7 +286,7 @@ struct CustomContainerUser {
 
 ![builderparam-demo4](figures/builderparam-demo4.png)
 
-可以使用全局或局部\@Builder通过尾随闭包的形式对\@ComponentV2装饰的自定义组件中的\@BuilderParam进行初始化。
+可以使用全局或局部\@Builder通过尾随闭包的形式对\@ComponentV2装饰的自定义组件中的\@BuilderParam装饰的方法进行初始化。
 
 示例2：
 
@@ -339,7 +339,7 @@ struct ParentPage {
   build() {
     Column() {
       ChildPage({ message: this.label }) {
-        Column() { // 使用局部@Builder，通过组件后紧跟一个大括号“{}”形成尾随闭包去初始化自定义组件@BuilderParam
+        Column() { // 使用局部@Builder，通过组件后紧跟一个大括号“{}”形成尾随闭包去初始化自定义组件@BuilderParam装饰的方法
           this.componentBuilder();
         }
       }
@@ -348,7 +348,7 @@ struct ParentPage {
         .width('100%')
         .height(10)
         .backgroundColor('#000000').margin(10)
-      ChildPage({ message: this.label }) { // 使用全局@Builder，通过组件后紧跟一个大括号“{}”形成尾随闭包去初始化自定义组件@BuilderParam
+      ChildPage({ message: this.label }) { // 使用全局@Builder，通过组件后紧跟一个大括号“{}”形成尾随闭包去初始化自定义组件@BuilderParam装饰的方法
         Column() {
           overBuilder();
         }
