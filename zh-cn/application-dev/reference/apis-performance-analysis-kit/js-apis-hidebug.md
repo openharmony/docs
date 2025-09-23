@@ -464,9 +464,9 @@ console.info(`totalHeap = ${vmMemory.totalHeap}, heapUsed = ${vmMemory.heapUsed}
   `allArraySize = ${vmMemory.allArraySize}` );
 ```
 
-## hidebug.getAppVMObjectUsed<sup>21+</sup>
+## hidebug.getAppVMObjectUsedSize<sup>21+</sup>
 
-getAppVMObjectUsed(): bigint
+getAppVMObjectUsedSize(): bigint
 
 获取当前虚拟机中ArkTS对象所占用的内存大小。
 
@@ -483,7 +483,7 @@ getAppVMObjectUsed(): bigint
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 
-console.info(`getAppVMObjectUsed = ${hidebug.getAppVMObjectUsed()}`);
+console.info(`getAppVMObjectUsedSize = ${hidebug.getAppVMObjectUsedSize()}`);
 ```
 
 ## hidebug.getAppThreadCpuUsage<sup>12+</sup>
