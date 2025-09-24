@@ -7,7 +7,7 @@
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> OpenHarmony还为开发者提供了[Docker环境](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/get-code/gettools-acquire.md)，整合的docker包在很大程度上简化了编译前的环境配置，习惯使用命令行的开发者也可以选择Docker环境进行编译 。
+> OpenHarmony还为开发者提供了[Docker环境](../get-code/gettools-acquire.md)，整合的docker包在很大程度上简化了编译前的环境配置，习惯使用命令行的开发者也可以选择Docker环境进行编译 。
 
 
 进行工具安装之前，需要做如下准备。

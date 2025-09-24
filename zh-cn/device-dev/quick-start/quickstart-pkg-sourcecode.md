@@ -6,9 +6,9 @@
 
 ## 准备工作
 
-1. 注册码云gitee帐号。
+1. 注册gitcode帐号。
 
-2. 注册码云SSH公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)。
+2. 注册gitcode的SSH公钥，请参考[gitcode帮助中心](https://docs.gitcode.com/docs/help/home/user_center/security_management/ssh)。
 
 3. 安装git客户端和git-lfs。（上述工具已在安装必要的库和工具小节安装。如已安装，请忽略）
    
@@ -32,13 +32,13 @@
    git config --global credential.helper store
    ```
 
-5. 执行如下命令安装码云repo工具。
+5. 执行如下命令安装gitcode的repo工具。
    
    下述命令中的安装路径以"~/bin"为例，请用户自行创建所需目录。
    
    ```
    mkdir ~/bin
-   curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 -o ~/bin/repo 
+   curl https://raw.gitcode.com/gitcode-dev/repo/raw/main/repo-py3 -o ~/bin/repo 
    chmod a+x ~/bin/repo
    pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests
    ```
@@ -72,10 +72,10 @@
   ```
   
 
-   方式一（推荐）：通过repo + ssh下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
+   方式一（推荐）：通过repo + ssh下载（需注册公钥，请参考[gitcode帮助中心](https://docs.gitcode.com/docs/help/home/user_center/security_management/ssh)）。
    
   ```
-  repo init -u git@gitee.com:openharmony/manifest.git -b master --no-repo-verify
+  repo init -u git@gitcode.com:openharmony/manifest.git -b master --no-repo-verify
   repo sync -c
   repo forall -c 'git lfs pull'
   ```
@@ -84,7 +84,7 @@
 
   
   ```
-  repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify
+  repo init -u https://gitcode.com/openharmony/manifest.git -b master --no-repo-verify
   repo sync -c
   repo forall -c 'git lfs pull'
   ```
