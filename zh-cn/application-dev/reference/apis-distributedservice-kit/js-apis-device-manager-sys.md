@@ -1,4 +1,10 @@
 # @ohos.distributedHardware.deviceManager (设备管理)(系统接口)
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedHardware-->
+<!--Owner: @hwzhangchuang-->
+<!--Designer: @hwzhangchuang-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @hu-zhiqiong-->
 
 本模块能力已更新至新模块。建议使用新模块的接口进行开发，参见[@ohos.distributedDeviceManager](js-apis-distributedDeviceManager.md)。
 
@@ -431,7 +437,7 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
         console.error("getTrustedDeviceList errCode:" + err.code + ",errMessage:" + err.message);
         return;
       }
-      console.log('get trusted device info: ' + JSON.stringify(data));
+      console.info('get trusted device info: ' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -473,7 +479,7 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
   import { BusinessError } from '@ohos.base';
 
   dmInstance.getTrustedDeviceList().then((data: Array<deviceManager.DeviceInfo>) => {
-    console.log('get trusted device info: ' + JSON.stringify(data));
+    console.info('get trusted device info: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
       console.error("getTrustedDeviceList errCode:" + err.code + ",errMessage:" + err.message);
   });
@@ -563,7 +569,7 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
         console.error("getLocalDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
         return;
       }
-      console.log('get local device info: ' + JSON.stringify(data));
+      console.info('get local device info: ' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -605,7 +611,7 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
   import { BusinessError } from '@ohos.base';
 
   dmInstance.getLocalDeviceInfo().then((data: deviceManager.DeviceInfo) => {
-    console.log('get local device info: ' + JSON.stringify(data));
+    console.info('get local device info: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.error("getLocalDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
   });
@@ -654,7 +660,7 @@ getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
         console.error("getDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
         return;
       }
-      console.log('get device info: ' + JSON.stringify(data));
+      console.info('get device info: ' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -705,7 +711,7 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
   // 设备网络标识，可以从可信设备列表中获取
   let networkId = "xxxxxxx";
   dmInstance.getDeviceInfo(networkId).then((data: deviceManager.DeviceInfo) => {
-    console.log('get device info: ' + JSON.stringify(data));
+    console.info('get device info: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.error("getDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
   });
@@ -1560,10 +1566,10 @@ ui状态变更回调。
 
   try {
     dmInstance.on('uiStateChange', (data: Data) => {
-      console.log("uiStateChange executed, dialog closed" + JSON.stringify(data));
+      console.info("uiStateChange executed, dialog closed" + JSON.stringify(data));
       let tmpStr: TmpStr = JSON.parse(data.param);
       let isShow = tmpStr.verifyFailed;
-      console.log("uiStateChange executed, dialog closed" + isShow);
+      console.info("uiStateChange executed, dialog closed" + isShow);
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
