@@ -21,9 +21,9 @@ import settings from '@ohos.settings';
 
 **系统能力：** SystemCapability.Applications.Settings.Core
 
-| 名称                | 类型  | 说明                                                         |
-| ------------------- | ------ | ------------------------------------------------------------ |
-| USER_SECURITY<sup>11+</sup>      | string | 用户安全属性域                                          |
+| 名称                | 类型   | 值      | 说明                                                         |
+| ------------------- | ------ |--------| ------------------------------------------------------------ |
+| USER_SECURITY<sup>11+</sup>      | string | secure | 用户安全属性域                                          |
 
 ## settings.setValue<sup>(deprecated)</sup>
 
