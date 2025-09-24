@@ -96,9 +96,7 @@ placeholderColor(value: ResourceColor)
 
 placeholderFont(value?: Font)
 
-设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。当前支持'HarmonyOS Sans'字体和注册自定义字体[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)。
-
-Wearable设备上默认字体大小为18fp。
+设置placeholder文本样式，包括字体大小、字体粗细、字体族、字体风格。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -110,11 +108,15 @@ Wearable设备上默认字体大小为18fp。
 | ------ | ------------------------ | ---- | --------------------- |
 | value  | [Font](ts-types.md#font) | 否   | placeholder文本样式。 |
 
+> **说明：**
+>
+> 可以使用[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)注册自定义字体。
+
 ### textFont
 
 textFont(value?: Font)
 
-设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。
+设置搜索框内输入文本样式，包括字体大小、字体粗细、字体族、字体风格。
 
 Wearable设备上默认字体大小为18fp。
 
