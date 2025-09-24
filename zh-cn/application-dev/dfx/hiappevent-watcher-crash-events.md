@@ -91,7 +91,9 @@ Timestamp:2025-05-17 19:17:07.000
 
 ### params字段说明
 
-崩溃事件信息中params属性的详细描述如下：
+params是[AppEventInfo](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md#appeventinfo)中事件参数对象，包含每个事件参数的参数名和参数值。开发者可根据实际需求，添加对应信息。
+
+下表仅列举出崩溃事件信息中系统预定义的通用信息：
 
 | 名称 | 类型 | 说明 |
 | -------- | -------- | -------- |
