@@ -101,7 +101,7 @@ export default {
   handleClick() {
     const el = this.$refs.canvas1;
     var dataURL = el.toDataURL();
-    console.log(dataURL);
+    console.info(dataURL);
     // "data:image/png;base64,xxxxxxxx..."
   }
 }

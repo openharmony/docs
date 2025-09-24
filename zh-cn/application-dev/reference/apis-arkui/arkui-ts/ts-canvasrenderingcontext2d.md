@@ -2824,7 +2824,7 @@ getTransform(): Matrix2D
           .onReady(() =>{
             this.context2.fillRect(50, 50, 50, 50);
             let storedTransform = this.context1.getTransform();
-            console.log("Matrix [scaleX = " + storedTransform.scaleX + ", scaleY = " + storedTransform.scaleY +
+            console.info("Matrix [scaleX = " + storedTransform.scaleX + ", scaleY = " + storedTransform.scaleY +
             ", rotateX = " + storedTransform.rotateX + ", rotateY = " + storedTransform.rotateY +
             ", translateX = " + storedTransform.translateX + ", translateY = " + storedTransform.translateY + "]")
             this.context2.setTransform(storedTransform);
@@ -4113,10 +4113,10 @@ struct ImageAnalyzerExample {
         .onClick(() => {
           this.context.startImageAnalyzer(this.config)
             .then(() => {
-              console.log("analysis complete")
+              console.info("analysis complete")
             })
             .catch((error: BusinessError) => {
-              console.log("error code: " + error.code)
+              console.info("error code: " + error.code)
             })
         })
       Button('stop')
