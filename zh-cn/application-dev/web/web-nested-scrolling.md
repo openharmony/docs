@@ -99,14 +99,14 @@ struct NestedScroll {
 
 **实现思路**
 
-1. 手指向上划动：
+1. 手指向上滑动：
 
     (1) 如果Web页面没有滚动到底部，Scroll组件将滚动偏移量派发给Web，Scroll组件自身不滚动。
 
     (2) 如果Web页面滚动至底部，而Scroll组件尚未滚动至底部，则仅Scroll组件自身滚动，不向Web组件和List组件传递滚动位移。
 
     (3) 如果Scroll组件滚动到底部，则滚动偏移量派发给List组件，Scroll组件自身不滚动。
-2. 手指向下划动：
+2. 手指向下滑动：
 
     (1) 如果List组件没有滚动到顶部，则Scroll组件将滚动偏移量派发给List组件，Scroll组件自身不滚动。
 
