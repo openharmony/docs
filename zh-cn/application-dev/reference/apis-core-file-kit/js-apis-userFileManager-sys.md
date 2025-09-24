@@ -4688,6 +4688,8 @@ type ChangeEvent = 'deviceChange' | 'albumChange' | 'imageChange' | 'audioChange
 
 图片或视频的创建选项。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
 | 名称                   | 类型                | 只读 | 可选 | 说明                                              |
