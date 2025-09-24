@@ -79,7 +79,7 @@ lcd闪光灯信息项。
 
 | 名称   | 类型                            | 只读  | 可选       | 说明 |
 | ------ | ----------------------------- |-----| ---------- | ---------- |
-| raw<sup>12+</sup> | [image.Image](../apis-image-kit/arkts-apis-image-Image.md)| NA  | 是   | raw图。 |
+| raw<sup>12+</sup> | [image.Image](../apis-image-kit/arkts-apis-image-Image.md)| 是  | 是   | raw图。 |
 
 ## ExposureMode
 
@@ -154,7 +154,6 @@ createDepthDataOutput(profile: DepthProfile): DepthDataOutput
 | --------------- | --------------- |
 | 202                    |  Not System Application.               |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
-| 7400201                |  Camera service fatal error.               |
 
 **示例：**
 
@@ -575,7 +574,7 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 | ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
 | isCameraOccluded                 | boolean              |  是  | 否 |遮挡状态，true为遮挡状态，false为不遮挡状态。        |
 
-## CameraOutputCapability<sup>13+</sup>
+## CameraOutputCapability<sup>10+</sup>
 
 相机输出能力项。
 
@@ -597,6 +596,8 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 
 | 名称                     | 值        | 说明         |
 | ----------------------- | --------- | ------------ |
+| CAMERA_FORMAT_DNG<sup>12+</sup> |   4   | DBG图。      |
+| CAMERA_FORMAT_DNG_XDRAW<sup>18+</sup> |    5    | XDRAW图。    |
 | CAMERA_FORMAT_DEPTH_16<sup>13+</sup> |   3000   | DEPTH_16格式的深度图。      |
 | CAMERA_FORMAT_DEPTH_32<sup>13+</sup> |   3001   | DEPTH_32格式的深度图。      |
 
