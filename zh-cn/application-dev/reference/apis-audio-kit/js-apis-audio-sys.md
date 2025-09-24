@@ -448,6 +448,32 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 | VOLUME_UP              | 0      | 向上调节音量。 |
 | VOLUME_DOWN            | 1      | 向下调节音量。 |
 
+## DeviceType
+
+枚举，设备类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称                         | 值     | 说明                              |
+|----------------------------| ------ |---------------------------------|
+| ACCESSORY<sup>19+</sup>    | 26 | 附件设备，如遥控器上的麦克风。                 |
+| BLUETOOTH_SPP<sup>20+</sup> | 33 | 蓝牙设备SPP（Serial Port Profile）连接。 |
+| NEARLINK_PORT<sup>20+</sup> | 34 | 星闪设备PORT连接。                     |
+
+## AudioCapturerOptions<sup>8+</sup>
+
+音频采集器选项信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+| 名称                                | 类型                                                                   | 只读 | 可选 | 说明                                                                                                                                                                                                        |
+| ----------------------------------- |----------------------------------------------------------------------| ---- |---|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| preferredInputDevice<sup>20+</sup> | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor) | 否 | 是 | 指定设备的描述。<br>当SourceType指定为[SOURCE_TYPE_VOICE_TRANSCRIPTION](#sourcetype8)或者[SOURCE_TYPE_VOICE_RECOGNITION](arkts-apis-audio-e.md#sourcetype8)时可指定输入设备。<br>如果指定设备在线，系统会默认使用指定录音设备；如果指定设备不在线，系统会自动选择一个录音设备。 |
+
 ## AudioManager
 
 管理音频音量和音频设备。在调用AudioManager的接口前，需要先通过[getAudioManager](arkts-apis-audio-f.md#audiogetaudiomanager)创建实例。
