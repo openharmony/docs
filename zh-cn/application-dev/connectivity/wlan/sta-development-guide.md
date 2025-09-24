@@ -6,7 +6,6 @@
 <!--Designer: @qq_43802146-->
 <!--Tester: @furryfurry123-->
 <!--Adviser: @zhang_yixin13-->
-
 ## 简介
 Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端接入无线局域网（WLAN）的工作模式。在该模式下，设备（如手机、电脑、平板等）通过连接到接入点（AP，Access Point）或无线路由器，实现对网络的访问。
 
@@ -45,7 +44,7 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
 4. 开启设备Wi-Fi。
 5. 示例代码：
 
-```ts
+   ```ts
    import { wifiManager } from '@kit.ConnectivityKit';
    try {
    let recvPowerNotifyFunc = (result:number) => {
@@ -81,7 +80,7 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
    } catch (error) {
      console.error(`WiFi state monitor failed. ${error.message}`);
    }
-```
+   ```
 
 ### 建立Wi-Fi连接
 1. 导入需要的Wi-Fi模块。
