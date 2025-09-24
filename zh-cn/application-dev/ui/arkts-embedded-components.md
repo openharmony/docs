@@ -26,7 +26,7 @@ EmbeddedComponent组件主要用于实现跨模块、跨进程的嵌入式界面
 
 - 设备要求
 
-  EmbeddedComponent组件仅支持在拥有多进程权限的设备上使用。
+  EmbeddedComponent组件仅可在支持[EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)的设备上正常运行。
 
 - 应用范围
 
@@ -244,18 +244,8 @@ struct Extension {
 
 **预期效果**
 
-1. 启动应用，由于设备默认未开启多进程，会出现报错信息；
-
-   ![zh-cn_image_0000001502261185](figures/zh-cn_image_0000001502261185.jpg)
-
-2. 设备测试开启多进程后重启设备，开启多进程的hdc命令如下：
-
-   ```bash
-   hdc shell param set persist.sys.abilityms.multi_process_model true
-   ```
-
-3. 启动应用，界面显示正常；
+1. 在支持EmbeddedUIExtensionAbility的设备上启动应用；
 
    ![zh-cn_image_0000001502261065](figures/zh-cn_image_0000001502261065.jpg)
 
-4. 点击terminateSelfWithResult按钮，提供方内容消失，页面显示onTerminated信息。
+2. 点击terminateSelfWithResult按钮，提供方内容消失，页面显示onTerminated信息。
