@@ -45,7 +45,7 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
 4. 开启设备Wi-Fi。
 5. 示例代码：
 
-```ts
+   ```ts
    import { wifiManager } from '@kit.ConnectivityKit';
    try {
    let recvPowerNotifyFunc = (result:number) => {
@@ -81,7 +81,7 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
    } catch (error) {
      console.error(`WiFi state monitor failed. ${error.message}`);
    }
-```
+   ```
 
 ### 建立Wi-Fi连接
 1. 导入需要的Wi-Fi模块。
