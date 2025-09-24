@@ -131,10 +131,10 @@ FaultLogExtensionAbility回调。系统服务通知FaultLogExtensionAbility可�
 | MediaLibraryKit | [@ohos.multimedia.movingphotoview (动态照片)](../apis-media-library-kit/ohos-multimedia-movingphotoview.md) |
 | NotificationKit | [@ohos.notification (Notification模块)](../apis-notification-kit/js-apis-notification.md) |
 | NotificationKit | [@ohos.notificationManager (NotificationManager模块)](../apis-notification-kit/js-apis-notificationManager.md) |
-| <!--DelRow> NotificationKit | [@ohos.notificationSubscribe (NotificationSubscribe模块)](../apis-notification-kit/js-apis-notificationSubscribe-sys.md) |
+| <!--DelRow--> NotificationKit | [@ohos.notificationSubscribe (NotificationSubscribe模块)](../apis-notification-kit/js-apis-notificationSubscribe-sys.md) |
 | SensorServiceKit | [@ohos.vibrator (振动)](../apis-sensor-service-kit/js-apis-vibrator.md) |
 | TelephonyKit | [@ohos.telephony.call (拨打电话)](../apis-telephony-kit/js-apis-call.md) |
 | TelephonyKit | [@ohos.telephony.sim (SIM卡管理)](../apis-telephony-kit/js-apis-sim.md) |
 | TelephonyKit | [@ohos.telephony.sms (短信服务)](../apis-telephony-kit/js-apis-sms.md) |
-| <!--DelRow> UserAuthenticationKit | [@ohos.userIAM.faceAuth (人脸认证)](../apis-user-authentication-kit/js-apis-useriam-faceauth-sys.md) |
+| <!--DelRow--> UserAuthenticationKit | [@ohos.userIAM.faceAuth (人脸认证)](../apis-user-authentication-kit/js-apis-useriam-faceauth-sys.md) |
 | UserAuthenticationKit | [@ohos.userIAM.userAuth (用户认证)](../apis-user-authentication-kit/js-apis-useriam-userauth.md) |
