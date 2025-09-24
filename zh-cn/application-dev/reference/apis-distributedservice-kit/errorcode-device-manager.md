@@ -1,4 +1,10 @@
 # 设备管理错误码
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedHardware-->
+<!--Owner: @hwzhangchuang-->
+<!--Designer: @hwzhangchuang-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @hu-zhiqiong-->
 
 > **说明：**
 >
@@ -9,6 +15,10 @@
 **错误信息**
 
 Failed to execute the function.
+
+**错误描述**
+
+业务调用时，服务内部异常导致调用失败。
 
 **可能原因**
 
@@ -24,6 +34,10 @@ Failed to execute the function.
 
 Failed to obtain the service.
 
+**错误描述**
+
+服务启动异常, 业务访问服务失败。
+
 **可能原因**
 
 服务未启动或者服务启动失败。
@@ -37,6 +51,10 @@ Failed to obtain the service.
 **错误信息**
 
 Authentication unavailable.
+
+**错误描述**
+
+业务调用时，上一次认证业务未结束，导致本次调用不可用。
 
 **可能原因**
 
@@ -52,6 +70,10 @@ Authentication unavailable.
 
 Discovery unavailable.
 
+**错误描述**
+
+业务调用时，上一次发现业务未结束，导致本次调用不可用。
+
 **可能原因**
 
 上一次发现业务未结束。
@@ -65,6 +87,10 @@ Discovery unavailable.
 **错误信息**
 
 Publish unavailable.
+
+**错误描述**
+
+业务调用时，上一次发布业务未结束。，导致本次调用不可用。
 
 **可能原因**
 
@@ -80,6 +106,10 @@ Publish unavailable.
 
 Failed to get data from the cloud.
 
+**错误描述**
+
+网络异常，从云端获取数据失败。
+
 **可能原因**
 
 网络链路异常，或网络请求返回异常信息。
@@ -94,6 +124,10 @@ Failed to get data from the cloud.
 
 A login account is required.
 
+**错误描述**
+
+业务调用需要登录账号。
+
 **可能原因**
 
 设备没有登录账号。
@@ -107,6 +141,10 @@ A login account is required.
 **错误信息**
 
 The device name contains non-compliant content.
+
+**错误描述**
+
+设备名称含有非法信息，无法使用。
 
 **可能原因**
 

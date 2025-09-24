@@ -1,4 +1,10 @@
 # @ohos.distributedDeviceManager (设备管理)
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedHardware-->
+<!--Owner: @hwzhangchuang-->
+<!--Designer: @hwzhangchuang-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @hu-zhiqiong-->
 
 本模块提供分布式设备管理能力。
 
@@ -207,7 +213,7 @@ getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt
         console.error('getAvailableDeviceList errCode:' + err.code + ',errMessage:' + err.message);
         return;
       }
-      console.log('get available device info: ' + JSON.stringify(data));
+      console.info('get available device info: ' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -247,7 +253,7 @@ getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
   dmInstance.getAvailableDeviceList().then((data: Array<distributedDeviceManager.DeviceBasicInfo>) => {
-    console.log('get available device info: ' + JSON.stringify(data));
+    console.info('get available device info: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
       console.error('getAvailableDeviceList errCode:' + err.code + ',errMessage:' + err.message);
   });
@@ -287,7 +293,7 @@ getLocalDeviceNetworkId(): string
   try {
     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceNetworkId: string = dmInstance.getLocalDeviceNetworkId();
-    console.log('local device networkId: ' + JSON.stringify(deviceNetworkId));
+    console.info('local device networkId: ' + JSON.stringify(deviceNetworkId));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('getLocalDeviceNetworkId errCode:' + e.code + ',errMessage:' + e.message);
@@ -328,7 +334,7 @@ getLocalDeviceName(): string
   try {
     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceName: string = dmInstance.getLocalDeviceName();
-    console.log('local device name: ' + JSON.stringify(deviceName));
+    console.info('local device name: ' + JSON.stringify(deviceName));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('getLocalDeviceName errCode:' + e.code + ',errMessage:' + e.message);
@@ -369,7 +375,7 @@ getLocalDeviceType(): number
   try {
     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceType: number = dmInstance.getLocalDeviceType();
-    console.log('local device type: ' + JSON.stringify(deviceType));
+    console.info('local device type: ' + JSON.stringify(deviceType));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('getLocalDeviceType errCode:' + e.code + ',errMessage:' + e.message);
@@ -410,7 +416,7 @@ getLocalDeviceId(): string
   try {
     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceId: string = dmInstance.getLocalDeviceId();
-    console.log('local device id: ' + JSON.stringify(deviceId));
+    console.info('local device id: ' + JSON.stringify(deviceId));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('getLocalDeviceId errCode:' + e.code + ',errMessage:' + e.message);
@@ -460,7 +466,7 @@ getDeviceName(networkId: string): string
     let networkId = 'xxxxxxx';
     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceName: string = dmInstance.getDeviceName(networkId);
-    console.log('device name: ' + JSON.stringify(deviceName)); 
+    console.info('device name: ' + JSON.stringify(deviceName)); 
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('getDeviceName errCode:' + e.code + ',errMessage:' + e.message);
@@ -510,7 +516,7 @@ getDeviceType(networkId: string): number
     let networkId = 'xxxxxxx';
     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     let deviceType: number = dmInstance.getDeviceType(networkId);
-    console.log('device type: ' + JSON.stringify(deviceType)); 
+    console.info('device type: ' + JSON.stringify(deviceType)); 
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('getDeviceType errCode:' + e.code + ',errMessage:' + e.message);
