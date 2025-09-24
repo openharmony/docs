@@ -63,7 +63,7 @@ Worker initialization failed.
 
 **处理步骤**
 
-1. 检查Worker的数量是否超出8个，如果存在，及时销毁空闲的Worker。
+1. 检查Worker的数量是否超出64个，如果超出，及时销毁空闲的Worker。
 2. 如果设置WorkerOptions，检查参数类型及其合法性。
 
 ## 10200004 Worker处于非运行状态
@@ -133,7 +133,7 @@ The worker file path is invalid.
 
 **可能原因**
 
-Worker文件路径异常导致无法正常编译生成合法的worker.abc。
+Worker文件路径异常。
 
 **处理步骤**
 
