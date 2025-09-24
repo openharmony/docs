@@ -4512,11 +4512,11 @@ type MemberType = number | string | boolean
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称   | 类型                     | 必填 | 说明                      |
-| -------- | ------------------------- | ---- | ----- |
-| number | number | 是    | number类型。 |
-| string | string | 是    | string类型。 |
-| boolean | boolean | 是    | boolean类型。 |
+| 类型  | 说明                      |
+| ----- |  ---- |
+| number | number类型。 |
+| string | string类型。 |
+| boolean | boolean类型。 |
 
 ## ChangeEvent
 
@@ -4528,14 +4528,14 @@ type ChangeEvent = 'deviceChange' | 'albumChange' | 'imageChange' | 'audioChange
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称   | 类型                     | 必填 | 说明                      |
-| -------- | ------------------------- | ---- | ----- |
-| deviceChange | string | 是    | 设备。 |
-| albumChange | string | 是    | 相册。 |
-| imageChange | string | 是    | 图片。 |
-| audioChange | string | 是    | 音频。 |
-| videoChange | string | 是    | 视频。 |
-| remoteFileChange | string | 是    | 远程文件。 |
+| 类型  | 说明                      |
+| ----- |  ---- |
+| 'deviceChange' | 表示设备。string类型。 |
+| 'albumChange' | 表示相册。string类型。 |
+| 'imageChange' | 表示图片。string类型。 |
+| 'audioChange' | 表示音频。string类型。 |
+| 'videoChange' | 表示视频。string类型。 |
+| 'remoteFileChange' | 表示远程文件。string类型。 |
 
 ## PeerInfo
 
