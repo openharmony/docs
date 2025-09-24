@@ -1,5 +1,11 @@
 # P2P模式开发指南
 
+<!--Kit: Connectivity Kit-->	
+<!--Subsystem: Communication-->	
+<!--Owner: @qq_43802146-->	
+<!--Designer: @qq_43802146-->	
+<!--Tester: @furryfurry123-->	
+<!--Adviser: @zhang_yixin13-->
 ## 简介
 P2P模式，主要提供了WLAN设备的一种点对点连接技术，它可以在两台STA之间直接建立TCP/IP连接，并不需要AP的参与。
 
