@@ -61,7 +61,7 @@ struct Index {
                 console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
                 return;
               }
-              console.log(`Set pointer visible success`);
+              console.info(`Set pointer visible success`);
             });
           } catch (error) {
             console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -115,7 +115,7 @@ struct Index {
         .onClick(() => {
           try {
             pointer.setPointerVisible(false).then(() => {
-              console.log(`Set pointer visible success`);
+              console.info(`Set pointer visible success`);
             });
           } catch (error) {
             console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -162,7 +162,7 @@ struct Index {
         .onClick(() => {
           try {
             pointer.setPointerVisibleSync(false);
-            console.log(`Set pointer visible success`);
+            console.info(`Set pointer visible success`);
           } catch (error) {
             console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -212,7 +212,7 @@ struct Index {
                 console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
                 return;
               }
-              console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
+              console.info(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
             });
           } catch (error) {
             console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -251,7 +251,7 @@ struct Index {
         .onClick(() => {
           try {
             pointer.isPointerVisible().then((visible: boolean) => {
-              console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
+              console.info(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
             });
           } catch (error) {
             console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -290,7 +290,7 @@ struct Index {
         .onClick(() => {
           try {
             let visible: boolean = pointer.isPointerVisibleSync();
-            console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
+            console.info(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
           } catch (error) {
             console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -344,12 +344,12 @@ struct Index {
             }
             let windowId = win.getWindowProperties().id;
             if (windowId < 0) {
-              console.log(`Invalid windowId`);
+              console.info(`Invalid windowId`);
               return;
             }
             try {
               pointer.getPointerStyle(windowId, (error: Error, style: pointer.PointerStyle) => {
-                console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
+                console.info(`Get pointer style success, style: ${JSON.stringify(style)}`);
               });
             } catch (error) {
               console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -410,12 +410,12 @@ struct Index {
             }
             let windowId = win.getWindowProperties().id;
             if (windowId < 0) {
-              console.log(`Invalid windowId`);
+              console.info(`Invalid windowId`);
               return;
             }
             try {
               pointer.getPointerStyle(windowId).then((style: pointer.PointerStyle) => {
-                console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
+                console.info(`Get pointer style success, style: ${JSON.stringify(style)}`);
               });
             } catch (error) {
               console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -470,7 +470,7 @@ struct Index {
           let windowId = -1;
           try {
             let style: pointer.PointerStyle = pointer.getPointerStyleSync(windowId);
-            console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
+            console.info(`Get pointer style success, style: ${JSON.stringify(style)}`);
           } catch (error) {
             console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -525,12 +525,12 @@ struct Index {
             }
             let windowId = win.getWindowProperties().id;
             if (windowId < 0) {
-              console.log(`Invalid windowId`);
+              console.info(`Invalid windowId`);
               return;
             }
             try {
               pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS, error => {
-                console.log(`Set pointer style success`);
+                console.info(`Set pointer style success`);
               });
             } catch (error) {
               console.error(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -591,12 +591,12 @@ struct Index {
             }
             let windowId = win.getWindowProperties().id;
             if (windowId < 0) {
-              console.log(`Invalid windowId`);
+              console.info(`Invalid windowId`);
               return;
             }
             try {
               pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS).then(() => {
-                console.log(`Set pointer style success`);
+                console.info(`Set pointer style success`);
               });
             } catch (error) {
               console.error(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -651,12 +651,12 @@ struct Index {
             }
             let windowId = win.getWindowProperties().id;
             if (windowId < 0) {
-              console.log(`Invalid windowId`);
+              console.info(`Invalid windowId`);
               return;
             }
             try {
               pointer.setPointerStyleSync(windowId, pointer.PointerStyle.CROSS);
-              console.log(`Set pointer style success`);
+              console.info(`Set pointer style success`);
             } catch (error) {
               console.error(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
             }
@@ -796,21 +796,21 @@ struct Index {
           // app_icon为示例资源，请开发者根据实际需求配置资源文件。
           this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent(
             $r("app.media.app_icon").id, (error: BusinessError, svgFileData: Uint8Array) => {
-              const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
-              let svgImageSource: image.ImageSource = image.createImageSource(svgBuffer);
-              let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-              svgImageSource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-                window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-                  let windowId = win.getWindowProperties().id;
-                  try {
-                    pointer.setCustomCursor(windowId, pixelMap).then(() => {
-                      console.log(`setCustomCursor success`);
-                    });
-                  } catch (error) {
-                    console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-                  }
-                });
+            const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
+            let svgImageSource: image.ImageSource = image.createImageSource(svgBuffer);
+            let svgDecodingOptions: image.DecodingOptions = { desiredSize: { width: 50, height: 50 } };
+            svgImageSource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+              window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+                let windowId = win.getWindowProperties().id;
+                try {
+                  pointer.setCustomCursor(windowId, pixelMap).then(() => {
+                    console.info(`setCustomCursor success`);
+                  });
+                } catch (error) {
+                  console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                }
               });
+            });
           });
         })
     }
@@ -888,21 +888,22 @@ struct Index {
           // app_icon为示例资源，请开发者根据实际需求配置资源文件。
           this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent(
             $r("app.media.app_icon").id, (error: BusinessError, svgFileData: Uint8Array) => {
-              const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
-              let svgImageSource: image.ImageSource = image.createImageSource(svgBuffer);
-              let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-              svgImageSource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-                window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-                  let windowId = win.getWindowProperties().id;
-                  try {
-                    pointer.setCustomCursor(windowId, {pixelMap: pixelMap, focusX: 25, focusY: 25}, {followSystem: false}).then(() => {
-                      console.log(`setCustomCursor success`);
-                    });
-                  } catch (error) {
-                    console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-                  }
-                });
+            const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
+            let svgImageSource: image.ImageSource = image.createImageSource(svgBuffer);
+            let svgDecodingOptions: image.DecodingOptions = { desiredSize: { width: 50, height: 50 } };
+            svgImageSource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+              window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+                let windowId = win.getWindowProperties().id;
+                try {
+                  pointer.setCustomCursor(windowId, { pixelMap: pixelMap, focusX: 25, focusY: 25 },
+                    { followSystem: false }).then(() => {
+                    console.info(`setCustomCursor success`);
+                  });
+                } catch (error) {
+                  console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                }
               });
+            });
           });
         })
     }
@@ -953,20 +954,20 @@ struct Index {
           // app_icon为示例资源，请开发者根据实际需求配置资源文件。
           this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent(
             $r("app.media.app_icon").id, (error: BusinessError, svgFileData: Uint8Array) => {
-              const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
-              let svgImageSource: image.ImageSource = image.createImageSource(svgBuffer);
-              let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-              svgImageSource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-                window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-                  let windowId = win.getWindowProperties().id;
-                  try {
-                    pointer.setCustomCursorSync(windowId, pixelMap, 25, 25);
-                    console.log(`setCustomCursorSync success`);
-                  } catch (error) {
-                    console.error(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-                  }
-                });
+            const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
+            let svgImageSource: image.ImageSource = image.createImageSource(svgBuffer);
+            let svgDecodingOptions: image.DecodingOptions = { desiredSize: { width: 50, height: 50 } };
+            svgImageSource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+              window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+                let windowId = win.getWindowProperties().id;
+                try {
+                  pointer.setCustomCursorSync(windowId, pixelMap, 25, 25);
+                  console.info(`setCustomCursorSync success`);
+                } catch (error) {
+                  console.error(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                }
               });
+            });
           });
         })
     }

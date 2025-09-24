@@ -47,6 +47,7 @@ on(type: 'touch', receiver: TouchEventReceiver): void
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 201  | Permission denied.   |
+| 202  | Permission denied, non-system app called system api.   |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -64,7 +65,7 @@ struct Index {
         .onClick(() => {
           try {
             inputMonitor.on('touch', (touchEvent: TouchEvent) => {
-              console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
+              console.info(`Monitor on success ${JSON.stringify(touchEvent)}`);
               return false;
             });
           } catch (error) {
@@ -100,6 +101,7 @@ on(type: 'mouse', receiver: Callback&lt;MouseEvent&gt;): void
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 201  | Permission denied.   |
+| 202  | Permission denied, non-system app called system api.   |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -117,7 +119,7 @@ struct Index {
         .onClick(() => {
           try {
             inputMonitor.on('mouse', (mouseEvent: MouseEvent) => {
-              console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
+              console.info(`Monitor on success ${JSON.stringify(mouseEvent)}`);
               return false;
             });
           } catch (error) {
@@ -178,7 +180,7 @@ struct Index {
             this.getUIContext().getPromptAction().showToast({
               message: `监听成功：${JSON.stringify(mouseEvent)}`
             })
-            console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
+            console.info(`Monitor on success ${JSON.stringify(mouseEvent)}`);
             return false;
           };
 
@@ -232,6 +234,7 @@ off(type: 'touch', receiver?: TouchEventReceiver): void
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 201  | Permission denied.   |
+| 202  | Permission denied, non-system app called system api.  |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -249,13 +252,13 @@ struct Index {
         .onClick(() => {
           // 取消监听单个回调函数
           let callback = (touchEvent: TouchEvent) => {
-            console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
+            console.info(`Monitor on success ${JSON.stringify(touchEvent)}`);
             return false;
           };
           try {
             inputMonitor.on('touch', callback);
             inputMonitor.off('touch', callback);
-            console.log(`Monitor off success`);
+            console.info(`Monitor off success`);
           } catch (error) {
             console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -278,13 +281,13 @@ struct Index {
         .onClick(() => {
           // 取消监听所有回调函数
           let callback = (touchEvent: TouchEvent) => {
-            console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
+            console.info(`Monitor on success ${JSON.stringify(touchEvent)}`);
             return false;
           };
           try {
             inputMonitor.on('touch', callback);
             inputMonitor.off('touch');
-            console.log(`Monitor off success`);
+            console.info(`Monitor off success`);
           } catch (error) {
             console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -318,6 +321,7 @@ off(type: 'mouse', receiver?: Callback&lt;MouseEvent&gt;): void
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 201  | Permission denied.   |
+| 202  | Permission denied, non-system app called system api.   |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -335,13 +339,13 @@ struct Index {
         .onClick(() => {
           // 取消监听单个回调函数
           let callback = (mouseEvent: MouseEvent) => {
-            console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
+            console.info(`Monitor on success ${JSON.stringify(mouseEvent)}`);
             return false;
           };
           try {
             inputMonitor.on('mouse', callback);
             inputMonitor.off('mouse', callback);
-            console.log(`Monitor off success`);
+            console.info(`Monitor off success`);
           } catch (error) {
             console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -364,13 +368,13 @@ struct Index {
         .onClick(() => {
           // 取消监听所有回调函数
           let callback = (mouseEvent: MouseEvent) => {
-            console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
+            console.info(`Monitor on success ${JSON.stringify(mouseEvent)}`);
             return false;
           };
           try {
             inputMonitor.on('mouse', callback);
             inputMonitor.off('mouse');
-            console.log(`Monitor off success`);
+            console.info(`Monitor off success`);
           } catch (error) {
             console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -473,7 +477,7 @@ struct Index {
         .onClick(() => {
           try {
             inputMonitor.on('pinch', (pinchEvent) => {
-              console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
+              console.info(`Monitor on success ${JSON.stringify(pinchEvent)}`);
               return false;
             });
           } catch (error) {
@@ -527,13 +531,13 @@ struct Index {
         .onClick(() => {
           // 取消监听单个回调函数
           let callback = (pinchEvent: Pinch) => {
-            console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
+            console.info(`Monitor on success ${JSON.stringify(pinchEvent)}`);
             return false;
           };
           try {
             inputMonitor.on('pinch', callback);
             inputMonitor.off('pinch', callback);
-            console.log(`Monitor off success`);
+            console.info(`Monitor off success`);
           } catch (error) {
             console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -556,13 +560,13 @@ struct Index {
         .onClick(() => {
           // 取消监听所有回调函数
           let callback = (pinchEvent: Pinch) => {
-            console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
+            console.info(`Monitor on success ${JSON.stringify(pinchEvent)}`);
             return false;
           };
           try {
             inputMonitor.on('pinch', callback);
             inputMonitor.off('pinch');
-            console.log(`Monitor off success`);
+            console.info(`Monitor off success`);
           } catch (error) {
             console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -613,7 +617,7 @@ struct Index {
         .onClick(() => {
           try {
             inputMonitor.on('threeFingersSwipe', (threeFingersSwipe) => {
-              console.log(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
+              console.info(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
               return false;
             });
           } catch (error) {
@@ -667,13 +671,13 @@ struct Index {
         .onClick(() => {
           // 取消监听单个回调函数
           let callback = (threeFingersSwipe: ThreeFingersSwipe) => {
-            console.log(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
+            console.info(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
             return false;
           };
           try {
             inputMonitor.on('threeFingersSwipe', callback);
             inputMonitor.off("threeFingersSwipe", callback);
-            console.log(`Monitor off success`);
+            console.info(`Monitor off success`);
           } catch (error) {
             console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -696,13 +700,13 @@ struct Index {
         .onClick(() => {
           // 取消监听所有回调函数
           let callback = (threeFingersSwipe: ThreeFingersSwipe) => {
-            console.log(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
+            console.info(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
             return false;
           };
           try {
             inputMonitor.on("threeFingersSwipe", callback);
             inputMonitor.off("threeFingersSwipe");
-            console.log(`Monitor off success`);
+            console.info(`Monitor off success`);
           } catch (error) {
             console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -753,7 +757,7 @@ struct Index {
         .onClick(() => {
           try {
             inputMonitor.on('fourFingersSwipe', (fourFingersSwipe) => {
-              console.log(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
+              console.info(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
               return false;
             });
           } catch (error) {
@@ -807,13 +811,13 @@ struct Index {
         .onClick(() => {
           // 取消监听单个回调函数
           let callback = (fourFingersSwipe: FourFingersSwipe) => {
-            console.log(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
+            console.info(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
             return false;
           };
           try {
             inputMonitor.on('fourFingersSwipe', callback);
             inputMonitor.off('fourFingersSwipe', callback);
-            console.log(`Monitor off success`);
+            console.info(`Monitor off success`);
           } catch (error) {
             console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -836,13 +840,13 @@ struct Index {
         .onClick(() => {
           // 取消监听所有回调函数
           let callback = (fourFingersSwipe: FourFingersSwipe) => {
-            console.log(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
+            console.info(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
             return false;
           };
           try {
             inputMonitor.on('fourFingersSwipe', callback);
             inputMonitor.off('fourFingersSwipe');
-            console.log(`Monitor off success`);
+            console.info(`Monitor off success`);
           } catch (error) {
             console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -895,7 +899,7 @@ struct Index {
         .onClick(() => {
           try {
             inputMonitor.on('rotate', 2, (rotateEvent: Rotate) => {
-              console.log(`Monitor on success ${JSON.stringify(rotateEvent)}`);
+              console.info(`Monitor on success ${JSON.stringify(rotateEvent)}`);
               return false;
             });
           } catch (error) {
@@ -950,13 +954,13 @@ struct Index {
         .onClick(() => {
           // 取消监听单个回调函数
           let callback = (rotateEvent: Rotate) => {
-            console.log(`Monitor on success ${JSON.stringify(rotateEvent)}`);
+            console.info(`Monitor on success ${JSON.stringify(rotateEvent)}`);
             return false;
           };
           try {
             inputMonitor.on('rotate', 2, callback);
             inputMonitor.off('rotate', 2, callback);
-            console.log(`Monitor off success`);
+            console.info(`Monitor off success`);
           } catch (error) {
             console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -979,13 +983,13 @@ struct Index {
         .onClick(() => {
           // 取消监听所有回调函数
           let callback = (rotateEvent: Rotate) => {
-            console.log(`Monitor on success ${JSON.stringify(rotateEvent)}`);
+            console.info(`Monitor on success ${JSON.stringify(rotateEvent)}`);
             return false;
           };
           try {
             inputMonitor.on('rotate', 2, callback);
             inputMonitor.off('rotate', 2);
-            console.log(`Monitor off success`);
+            console.info(`Monitor off success`);
           } catch (error) {
             console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -1038,7 +1042,7 @@ struct Index {
         .onClick(() => {
           try {
             inputMonitor.on('pinch', 2, (pinchEvent: Pinch) => {
-              console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
+              console.info(`Monitor on success ${JSON.stringify(pinchEvent)}`);
               return false;
             });
           } catch (error) {
@@ -1093,13 +1097,13 @@ struct Index {
         .onClick(() => {
           // 取消监听单个回调函数
           let callback = (pinchEvent: Pinch) => {
-            console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
+            console.info(`Monitor on success ${JSON.stringify(pinchEvent)}`);
             return false;
           };
           try {
             inputMonitor.on('pinch', 2, callback);
             inputMonitor.off('pinch', 2, callback);
-            console.log(`Monitor off success`);
+            console.info(`Monitor off success`);
           } catch (error) {
             console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -1122,13 +1126,13 @@ struct Index {
         .onClick(() => {
           // 取消监听所有回调函数
           let callback = (pinchEvent: Pinch) => {
-            console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
+            console.info(`Monitor on success ${JSON.stringify(pinchEvent)}`);
             return false;
           };
           try {
             inputMonitor.on('pinch', 2, callback);
             inputMonitor.off('pinch', 2);
-            console.log(`Monitor off success`);
+            console.info(`Monitor off success`);
           } catch (error) {
             console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -1179,7 +1183,7 @@ struct Index {
         .onClick(() => {
           try {
             inputMonitor.on('threeFingersTap', (threeFingersTap) => {
-              console.log(`Monitor on success ${JSON.stringify(threeFingersTap)}`);
+              console.info(`Monitor on success ${JSON.stringify(threeFingersTap)}`);
               return false;
             });
           } catch (error) {
@@ -1233,13 +1237,13 @@ struct Index {
         .onClick(() => {
           // 取消监听单个回调函数
           let callback = (threeFingersTap: ThreeFingersTap) => {
-            console.log(`Monitor on success ${JSON.stringify(threeFingersTap)}`);
+            console.info(`Monitor on success ${JSON.stringify(threeFingersTap)}`);
             return false;
           };
           try {
             inputMonitor.on('threeFingersTap', callback);
             inputMonitor.off("threeFingersTap", callback);
-            console.log(`Monitor off success`);
+            console.info(`Monitor off success`);
           } catch (error) {
             console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -1262,13 +1266,13 @@ struct Index {
         .onClick(() => {
           // 取消监听所有回调函数
           let callback = (threeFingersTap: ThreeFingersTap) => {
-            console.log(`Monitor on success ${JSON.stringify(threeFingersTap)}`);
+            console.info(`Monitor on success ${JSON.stringify(threeFingersTap)}`);
             return false;
           };
           try {
             inputMonitor.on('threeFingersTap', callback);
             inputMonitor.off("threeFingersTap");
-            console.log(`Monitor off success`);
+            console.info(`Monitor off success`);
           } catch (error) {
             console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -1294,7 +1298,7 @@ on(type: 'touchscreenSwipe', fingers: number, receiver: Callback&lt;TouchGesture
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 输入设备事件类型，取值'touchscreenSwipe'。                    |
 | fingers  | number                                                       | 是   | 滑动手势的手指数，取值范围：[3,5]。 |
-| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | 是   | 回调函数，异步上报触摸屏滑动手势事件。 |
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent18)&gt; | 是   | 回调函数，异步上报触摸屏滑动手势事件。 |
 
 **错误码**：
 
@@ -1303,7 +1307,7 @@ on(type: 'touchscreenSwipe', fingers: number, receiver: Callback&lt;TouchGesture
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 201  | Permission denied.   |
-| 202  | SystemAPI permission error.  |
+| 202  | Caller is not a system application.  |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -1322,7 +1326,7 @@ struct Index {
           let fingers: number = 4;
           try {
             inputMonitor.on('touchscreenSwipe', fingers, (event: TouchGestureEvent) => {
-              console.log(`Monitor on success ${JSON.stringify(event)}`);
+              console.info(`Monitor on success ${JSON.stringify(event)}`);
             });
           } catch (error) {
             console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -1349,7 +1353,7 @@ off(type: 'touchscreenSwipe', fingers: number, receiver?: Callback&lt;TouchGestu
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 输入设备事件类型，取值'touchscreenSwipe'。                    |
 | fingers  | number                                                       | 是   | 滑动手势的手指数，取值范围：[3,5]。 |
-| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | 否   | 需要取消监听的回调函数。若不填，则取消当前应用监听的所有回调函数。 |
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent18)&gt; | 否   | 需要取消监听的回调函数。若不填，则取消当前应用监听的所有回调函数。 |
 
 **错误码**：
 
@@ -1358,7 +1362,7 @@ off(type: 'touchscreenSwipe', fingers: number, receiver?: Callback&lt;TouchGestu
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 201  | Permission denied.   |
-| 202  | SystemAPI permission error.  |
+| 202  | Caller is not a system application.  |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -1376,7 +1380,7 @@ struct Index {
         .onClick(() => {
           // 取消监听单个回调函数
           let callback = (event: TouchGestureEvent) => {
-            console.log(`Monitor on success ${JSON.stringify(event)}`);
+            console.info(`Monitor on success ${JSON.stringify(event)}`);
           };
           let fingers: number = 4;
           try {
@@ -1406,7 +1410,7 @@ struct Index {
           let fingers: number = 4;
           try {
             inputMonitor.on('touchscreenSwipe', fingers, (event: TouchGestureEvent) => {
-              console.log(`Monitor on success ${JSON.stringify(event)}`);
+              console.info(`Monitor on success ${JSON.stringify(event)}`);
             });
             inputMonitor.off('touchscreenSwipe', fingers);
           } catch (error) {
@@ -1434,7 +1438,7 @@ on(type: 'touchscreenPinch', fingers: number, receiver: Callback&lt;TouchGesture
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 输入设备事件类型，取值'touchscreenPinch'。                    |
 | fingers  | number                                                       | 是   | 捏合手势的手指数，取值范围：[4,5]。 |
-| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | 是   | 回调函数，异步上报触摸屏捏合手势事件。 |
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent18)&gt; | 是   | 回调函数，异步上报触摸屏捏合手势事件。 |
 
 **错误码**：
 
@@ -1443,7 +1447,7 @@ on(type: 'touchscreenPinch', fingers: number, receiver: Callback&lt;TouchGesture
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 201  | Permission denied.   |
-| 202  | SystemAPI permission error.  |
+| 202  | Caller is not a system application.  |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -1462,7 +1466,7 @@ struct Index {
           let fingers: number = 4;
           try {
             inputMonitor.on('touchscreenPinch', fingers, (event: TouchGestureEvent) => {
-              console.log(`Monitor on success ${JSON.stringify(event)}`);
+              console.info(`Monitor on success ${JSON.stringify(event)}`);
             });
           } catch (error) {
             console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -1489,7 +1493,7 @@ off(type: 'touchscreenPinch', fingers: number, receiver?: Callback&lt;TouchGestu
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 输入设备事件类型，取值'touchscreenPinch'。                    |
 | fingers  | number                                                       | 是   | 捏合手势的手指数，取值范围：[4,5]。 |
-| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent)&gt; | 否   | 需要取消监听的回调函数。若不填，则取消当前应用监听的所有回调函数。 |
+| receiver | Callback&lt;[TouchGestureEvent](js-apis-multimodalinput-gestureevent-sys.md#touchgestureevent18)&gt; | 否   | 需要取消监听的回调函数。若不填，则取消当前应用监听的所有回调函数。 |
 
 **错误码**：
 
@@ -1498,7 +1502,7 @@ off(type: 'touchscreenPinch', fingers: number, receiver?: Callback&lt;TouchGestu
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 201  | Permission denied.   |
-| 202  | SystemAPI permission error.  |
+| 202  | Caller is not a system application.  |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
@@ -1516,7 +1520,7 @@ struct Index {
         .onClick(() => {
           // 取消监听单个回调函数
           let callback = (event: TouchGestureEvent) => {
-            console.log(`Monitor on success ${JSON.stringify(event)}`);
+            console.info(`Monitor on success ${JSON.stringify(event)}`);
           };
           let fingers: number = 4;
           try {
@@ -1546,7 +1550,7 @@ struct Index {
           let fingers: number = 4;
           try {
             inputMonitor.on('touchscreenPinch', fingers, (event: TouchGestureEvent) => {
-              console.log(`Monitor on success ${JSON.stringify(event)}`);
+              console.info(`Monitor on success ${JSON.stringify(event)}`);
             });
             inputMonitor.off("touchscreenPinch", fingers);
           } catch (error) {
@@ -1602,7 +1606,7 @@ struct Index {
           try {
             let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
             inputMonitor.on('keyPressed', keys, (event: KeyEvent ) => {
-              console.log(`Monitor on success ${JSON.stringify(event)}`);
+              console.info(`Monitor on success ${JSON.stringify(event)}`);
             });
           } catch (error) {
             console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -1655,7 +1659,7 @@ struct Index {
           // 取消监听单个回调函数
           try {
             let callback = (event: KeyEvent) => {
-              console.log(`Monitor on success ${JSON.stringify(event)}`);
+              console.info(`Monitor on success ${JSON.stringify(event)}`);
             };
             let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
             inputMonitor.on('keyPressed', keys, callback);
@@ -1683,7 +1687,7 @@ struct Index {
           try {
             let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
             inputMonitor.on('keyPressed', keys, (event: KeyEvent) => {
-              console.log(`Monitor on success ${JSON.stringify(event)}`);
+              console.info(`Monitor on success ${JSON.stringify(event)}`);
             });
             inputMonitor.off("keyPressed");
           } catch (error) {

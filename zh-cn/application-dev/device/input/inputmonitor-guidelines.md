@@ -1,5 +1,12 @@
 # 输入监听开发指导
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 场景介绍
 
 输入监听提供监听按键，触控板特殊手势等能力。使用场景例如：当用户需要应用在触控板三指上划实现特定功能时，开发者可以通过监听三指上划判断特定功能是否启用。
@@ -49,14 +56,14 @@ struct Index {
           let BUTTON_DOWN = 2;
           let callback = (mouseEvent: MouseEvent) => {
             console.info(`Monitor on success ${JSON.stringify(mouseEvent)}`);
-            if(mouseEvent.action = BUTTON_DOWN){
-              return true;//鼠标按下回调
+            if (mouseEvent.action = BUTTON_DOWN) {
+              return true; //鼠标按下回调
             }
             return false;
           };
 
           try {
-            inputMonitor.on('mouse', (mouseEvent: MouseEvent) => {//开始监听鼠标事件
+            inputMonitor.on('mouse', (mouseEvent: MouseEvent) => { //开始监听鼠标事件
               console.info(`Monitor on success ${JSON.stringify(mouseEvent)}`);
               return false;
             });
@@ -65,7 +72,7 @@ struct Index {
           }
           //监听鼠标按下，按下callbackreturn true
           try {
-            inputMonitor.off('mouse', callback);//关闭监听鼠标事件
+            inputMonitor.off('mouse', callback); //关闭监听鼠标事件
             console.info(`Monitor off success`);
           } catch (error) {
             console.error(`Monitor off failed, error: ${JSON.stringify(error, ["code", "message"])}`);
