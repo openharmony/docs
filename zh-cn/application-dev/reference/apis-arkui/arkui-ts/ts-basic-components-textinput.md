@@ -102,7 +102,7 @@ placeholderColor(value: ResourceColor)
 
 placeholderFont(value?: Font)
 
-设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。当前支持'HarmonyOS Sans'字体和注册自定义字体[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)。
+设置placeholder文本样式，包括字体大小、字体粗细、字体族、字体风格。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -113,6 +113,10 @@ placeholderFont(value?: Font)
 | 参数名 | 类型                     | 必填 | 说明                  |
 | ------ | ------------------------ | ---- | --------------------- |
 | value  | [Font](ts-types.md#font) | 否   | placeholder文本样式。<br/>Wearable设备上默认值为：18fp |
+
+> **说明：**
+>
+> 推荐使用[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)注册自定义字体。
 
 ### enterKeyType
 
@@ -243,7 +247,11 @@ fontFamily(value: ResourceStr)
 
 | 参数名 | 类型                                   | 必填 | 说明                                                         |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>使用多个字体时，请用逗号','分隔，字体的优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和注册自定义字体[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>使用多个字体时，请用逗号','分隔，字体的优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和自定义字体。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
+
+> **说明：**
+>
+> 推荐使用[loadFontSync](../../apis-arkgraphics2d/js-apis-graphics-text.md#loadfontsync)注册自定义字体。
 
 ### inputFilter<sup>8+</sup>
 
@@ -270,7 +278,7 @@ inputFilter(value: ResourceStr, error?: Callback\<string>)
 
 copyOption(value: CopyOptions)
 
-设置输入的文本是否可复制。设置CopyOptions.None时，当前TextInput中的文字无法被复制、剪切、翻译、分享、搜索和帮写，支持粘贴和全选。
+设置输入的文本是否可复制。设置CopyOptions.None时，只支持粘贴和全选。
 
 设置CopyOptions.None时，不允许拖拽。
 
@@ -322,9 +330,15 @@ textAlign(value: TextAlign)
 
 设置文本在输入框中的水平对齐方式。
 
-仅支持TextAlign.Start、TextAlign.Center和TextAlign.End。
+支持TextAlign.Start、TextAlign.Center和TextAlign.End。从API version 11开始，新增TextAlign.JUSTIFY选项。
 
-可通过[align](ts-universal-attributes-location.md)属性控制文本段落在垂直方向上的位置，此组件中不可通过align属性控制文本段落在水平方向上的位置，即align属性中Alignment.TopStart、Alignment.Top、Alignment.TopEnd效果相同，控制内容在顶部，Alignment.Start、Alignment.Center、Alignment.End效果相同，控制内容垂直居中，Alignment.BottomStart、Alignment.Bottom、Alignment.BottomEnd效果相同，控制内容在底部。
+可通过[align](ts-universal-attributes-location.md#align)属性控制文本段落在垂直方向上的位置。此组件中不可使用align属性控制文本段落在水平方向上的位置。
+
+- Alignment.TopStart、Alignment.Top、Alignment.TopEnd：内容顶部对齐。
+
+- Alignment.Start、Alignment.Center、Alignment.End：内容垂直居中。
+
+- Alignment.BottomStart、Alignment.Bottom、Alignment.BottomEnd：内容底部对齐。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
