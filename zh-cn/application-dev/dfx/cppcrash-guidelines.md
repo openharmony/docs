@@ -188,7 +188,7 @@ HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hia
 | Enabled app log configs | 使能的配置参数列表 | 20 | 否 | 仅用户配置时打印，详见[应用通过HiAppEvent设置崩溃日志配置参数场景日志规格](#应用通过hiappevent设置崩溃日志配置参数场景日志规格)。 |
 | Module name | 模块名 | 8 | 是 | - |
 | Version | 应用版本号(点分格式) | 8 | 否 | 仅在应用进程提供。 |
-| Version Code | 应用版本号(整数格式) | 8 | 否 | 仅在应用进程提供。 |
+| VersionCode | 应用版本号(整数格式) | 8 | 否 | 仅在应用进程提供。 |
 | PreInstalled | 是否预制应用 | 8 | 否 | 仅在应用进程提供。 |
 | Foreground | 前后台状态 | 8 | 否 | 仅在应用进程提供。 |
 | Page switch history | 页面切换轨迹 | 20 | 否 | 如果维测服务进程出现故障或未缓存切换轨迹，则不包含此字段，详见[实现原理](#实现原理)。 |
@@ -329,7 +329,7 @@ pc(/system/lib/ld-musl-arm.so.1):
     f7bb0404 e59f1024
     ...
 FaultStack: <- 崩溃线程的栈地址空间
-    ffc09810 00000001 
+    ffc09810 00000001
     ffc09814 00000001
     ...
 sp0:ffc09850 7467a186 <- #00层栈帧顶部位置
@@ -646,7 +646,7 @@ pc(/system/lib/ld-musl-arm.so.1): <- pc寄存器地址附近的内存值
     f7f19938 e3a03008 <- extend_pc_lr_printing设置为false时，向前打印内存值到此
     f7f1993c ef000000
     f7f19940 e51b0014 <- pc寄存器地址（f7f19940）的内存值（e51b0014）
-    ... 
+    ...
     f7f199b4 e2b52000 <- extend_pc_lr_printing设置为false时，向后打印内存值到此
     f7f199b8 03530000
     f7f199bc 0a000003
