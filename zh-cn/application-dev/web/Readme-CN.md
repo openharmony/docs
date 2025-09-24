@@ -68,6 +68,7 @@
   - [使用Web组件的智能分词能力](web-data-detector.md)
 - [同层渲染](web-same-layer.md)
 - [使用离线Web组件](web-offline-mode.md)
+- [使用WebNativeMessagingExtensionAbility组件实现浏览器扩展和原生应用通信场景](web-native-messaging.md)
 - Web调试维测<!--web-debugging-->
   - [使用DevTools工具调试前端页面](web-debugging-with-devtools.md)
   - [使用crashpad收集Web组件崩溃信息](web-crashpad.md)

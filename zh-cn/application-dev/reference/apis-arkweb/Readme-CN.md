@@ -43,6 +43,9 @@
     - [Enums](arkts-apis-webview-e.md)
     - [Types](arkts-apis-webview-t.md)
   - [@ohos.web.netErrorList](arkts-apis-netErrorList.md)
+  - [@ohos.web.webNativeMessagingExtensionAbility](arkts-apis-web-webNativeMessagingExtensionAbility.md)
+  - [@ohos.web.webNativeMessagingExtensionContext](arkts-apis-web-webNativeMessagingExtensionContext.md)
+  - [@ohos.web.webNativeMessagingExtensionManager](arkts-apis-web-webNativeMessagingExtensionManager.md)
 - ArkTS 组件<!--arkweb-comp-->
   - Web<!--ts-basic-components-web-->
     - [组件描述](arkts-basic-components-web.md)
