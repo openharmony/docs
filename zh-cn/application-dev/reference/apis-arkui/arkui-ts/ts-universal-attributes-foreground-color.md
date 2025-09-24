@@ -6,7 +6,7 @@
 <!--Tester: @lxl007-->
 <!--Adviser: @HelloCrease-->
 
-设置组件的前景色。
+设置组件的前景色。与背景色相对应，前景色会影响绘制组件内容的颜色。主要影响文字的颜色、形状绘制组件的填充色。
 
 >  **说明：**
 >
@@ -69,11 +69,11 @@ foregroundColor(color: Optional\<ResourceColor | ColoringStrategy>): T
 struct ForegroundColorExample {
   build() {
     Column({ space: 100 }) {
-      // 绘制一个直径为150的圆,默认填充色为黑色
-      Circle({ width: 150, height: 200 })
-      // 绘制一个直径为150的圆，
-      Circle({ width: 150, height: 200 }).foregroundColor(Color.Red)
-    }.width('100%').backgroundColor(Color.Blue)
+      // 绘制一个直径为150的圆，默认填充色为黑色
+      Circle({ width: 150, height: 200 }).margin(20)
+      // 绘制一个直径为150的圆，设置前景色为橙色
+      Circle({ width: 150, height: 200 }).foregroundColor(Color.Orange)
+    }.width('100%').backgroundColor(Color.Gray)
   }
 }
 ```
@@ -117,9 +117,9 @@ struct ForegroundColorInherit {
       Button('设置前景色为橘色').fontSize(20).foregroundColor(Color.Orange).backgroundColor(Color.Gray)
       Divider()
       Button('未设置前景色继承自父组件').fontSize(20).backgroundColor(Color.Gray)
-    }.foregroundColor(Color.Red)
+    }.foregroundColor(Color.Pink)
   }
 }
 ```
 
-![foregroundColor_circle](figures/foregroundColorInherit.jpg)
+![foregroundColor_circle](figures/foregroundColorInherit.png)
