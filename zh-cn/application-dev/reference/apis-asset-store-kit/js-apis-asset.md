@@ -498,6 +498,8 @@ query(query: AssetMap): Promise\<Array\<AssetMap>>
 
 查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQuery](#assetprequery)接口，在本函数后调用[asset.postQuery](#assetpostquery)接口，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用Promise异步回调。
 
+如果未查询到符合条件的关键资产，将抛出“未找到关键资产”的异常，而非返回空的查询结果列表。
+
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Asset
@@ -548,6 +550,8 @@ function stringToArray(str: string): Uint8Array {
 
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
+// 如果只需要返回关键资产的属性，可以将RETURN_TYPE设置为ATTRIBUTES。返回属性不需解密，查询时间较短。
+query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ALL); // 此处表示需要返回关键资产的所有信息，即属性+明文。返回明文需要解密，查询时间较长。
 asset.query(query).then((res: Array<asset.AssetMap>) => {
   for (let i = 0; i < res.length; i++) {
     // 解析属性。
@@ -563,6 +567,8 @@ asset.query(query).then((res: Array<asset.AssetMap>) => {
 querySync(query: AssetMap): Array\<AssetMap>
 
 查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQuerySync](#assetprequerysync12)，在本函数后调用[asset.postQuerySync](#assetpostquerysync12)，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用同步方式返回结果。
+
+如果未查询到符合条件的关键资产，将抛出“未找到关键资产”的异常，而非返回空的查询结果列表。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -614,6 +620,8 @@ function stringToArray(str: string): Uint8Array {
 
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
+// 如果只需要返回关键资产的属性，可以将RETURN_TYPE设置为ATTRIBUTES。返回属性不需解密，查询时间较短。
+query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ALL); // 此处表示需要返回关键资产的所有信息，即属性+明文。返回明文需要解密，查询时间较长。
 let res: Array<asset.AssetMap> = asset.querySync(query);
 for (let i = 0; i < res.length; i++) {
   // 解析属性。
