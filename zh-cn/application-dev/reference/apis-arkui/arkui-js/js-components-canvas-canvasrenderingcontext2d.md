@@ -1040,7 +1040,7 @@ createPattern(image: Image, repetition: string): Object
 
 bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number, y: number): void
 
-创建三次贝赛尔曲线的路径。
+创建三次贝塞尔曲线的路径。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1083,7 +1083,7 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
-创建二次贝赛尔曲线的路径。
+创建二次贝塞尔曲线的路径。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

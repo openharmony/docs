@@ -2963,7 +2963,7 @@ getTransform(): Matrix2D
           .onReady(() =>{
             this.offcontext2.fillRect(50, 50, 50, 50);
             let storedTransform = this.offcontext1.getTransform();
-            console.log("Matrix [scaleX = " + storedTransform.scaleX + ", scaleY = " + storedTransform.scaleY +
+            console.info("Matrix [scaleX = " + storedTransform.scaleX + ", scaleY = " + storedTransform.scaleY +
             ", rotateX = " + storedTransform.rotateX + ", rotateY = " + storedTransform.rotateY +
             ", translateX = " + storedTransform.translateX + ", translateY = " + storedTransform.translateY + "]")
             this.offcontext2.setTransform(storedTransform);
