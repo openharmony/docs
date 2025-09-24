@@ -1592,16 +1592,12 @@ export default class EntryAbility extends UIAbility {
 ## ContinuousTaskRequest<sup>21+</sup>
 
 通常作为[startBackgroundRunning()](#backgroundtaskmanagerstartbackgroundrunning21)和[updateBackgroundRunning](#backgroundtaskmanagerupdatebackgroundrunning21)接口的入参，用于指定申请或更新的长时任务信息。
-1. 申请任务时，需要通过combinedTaskNotification参数传入true指定可以合并长时任务的通知，否则不能合并通知。
-如：所涉及的长时任务combinedTaskNotification参数都必须为true，且主类型和子类型申请个数和类型需完全匹配。
-2. 合并的通知的长时任务，必须主类型、子类型都相同。
-3. 如果该长时任务本身没有通知<!--Del-->（如系统应用申请[VOIP](#backgroundmode)、[AUDIO_RECORDING](#backgroundmode)类型的长时任务）<!--DelEnd-->。，则不支持合并。
-4. 如果长时任务类型里，包含了数据传输类型，则不支持合并。
-5. 合并通知后不能取消合并，本身合并的不能改成不合并。
-6. 如果需要合并，但传入的长时任务ID非法，则不支持合并。
-7. 通知合并后，删除通知，取消所有合并通知的长时任务。
-8. 点击通知，跳转到第一个申请的UIAbility，如果调用了更新接口，则跳转到最后一次更新的UIAbility。
-9. [更新长时任务](#backgroundtaskmanagerupdatebackgroundrunning21)时，传入的continuousTaskId必须存在，否则更新失败。
+1. 通过[startBackgroundRunning()](#backgroundtaskmanagerstartbackgroundrunning21)接口申请长时任务时，如果待申请长时任务与已存在长时任务，两者的主类型和子类型均相同，且combinedTaskNotification均取值为true，则会合并通知。否则不会合并通知。
+2. 如果长时任务本身没有通知，则不会合并，长时任务类型是否会通知请参考[BackgroundTaskMode](#backgroundtaskmode21)。
+3. 如果长时任务类型中包含上传下载，则不会合并通知。
+4. 通知合并后不能取消合并，已合并的不能更新成不合并。
+5. 通知合并后，点击通知栏消息，跳转到第一个申请的UIAbility，如果调用了更新接口，则跳转到最后一次更新的UIAbility。
+6. 通过[updateBackgroundRunning](#backgroundtaskmanagerupdatebackgroundrunning21)接口更新长时任务时，传入的continuousTaskId必须存在，否则更新失败。
 
 ### 属性
 
@@ -1669,7 +1665,7 @@ export default class EntryAbility extends UIAbility {
 
 | 名称                     | 值  | 说明                    |
 | ------------------------ | ---- | --------------------- |
-| MODE_DATA_TRANSFER              | 1         | 数据传输。                 |
+| MODE_DATA_TRANSFER              | 1         | 数据传输。<br/>**说明：** 在数据传输时，应用需要更新进度，如果进度长时间（超过10分钟）未更新，数据传输的长时任务会被取消。<br/>更新进度的通知类型必须为实况窗，具体实现可参考[startBackgroundRunning()](#backgroundtaskmanagerstartbackgroundrunning12)中的示例。                 |
 | MODE_AUDIO_PLAYBACK             | 2         | 音视频播放。<br/>**说明：** 从API version 20开始，申请/更新AUDIO_PLAYBACK类型长时任务但不接入AVSession，申请/更新长时任务成功后会在通知栏显示通知。 <br/>接入AVSession后，后台任务模块不会发送通知栏通知，由AVSession发送通知。 <br/>对于API version 19及之前的版本，后台任务模块不会在通知栏显示通知。               |
 | MODE_AUDIO_RECORDING            | 3         | 录制。<!--Del--><br/>**说明：** 系统应用申请/更新该类型的长时任务，没有通知栏消息。<!--DelEnd-->                 |
 | MODE_LOCATION                   | 4         | 定位导航。                  |
