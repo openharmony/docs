@@ -670,7 +670,7 @@ let ret = settings.unregisterKeyObserver(context, settings.display.SCREEN_BRIGHT
 
 openNetworkManagerSettings(context: Context): Promise\<boolean>
 
-打开网络管理器设置页面。使用Promise异步回调。
+打开WLAN设置弹窗。使用Promise异步回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
