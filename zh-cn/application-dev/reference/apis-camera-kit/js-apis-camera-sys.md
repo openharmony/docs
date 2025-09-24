@@ -79,7 +79,7 @@ lcd闪光灯信息项。
 
 | 名称   | 类型                            | 只读  | 可选       | 说明 |
 | ------ | ----------------------------- |-----| ---------- | ---------- |
-| raw<sup>12+</sup> | [image.Image](../apis-image-kit/arkts-apis-image-Image.md)| 是  | 是   | raw图。 |
+| raw<sup>12+</sup> | [image.Image](../apis-image-kit/arkts-apis-image-Image.md)| 否  | 是   | raw图。 |
 
 ## ExposureMode
 
@@ -596,8 +596,8 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 
 | 名称                     | 值        | 说明         |
 | ----------------------- | --------- | ------------ |
-| CAMERA_FORMAT_DNG<sup>12+</sup> |   4   | DBG图。      |
-| CAMERA_FORMAT_DNG_XDRAW<sup>18+</sup> |    5    | XDRAW图。    |
+| CAMERA_FORMAT_DNG<sup>12+</sup> |   4   | Digital Negative格式的图。      |
+| CAMERA_FORMAT_DNG_XDRAW<sup>18+</sup> |    5    | Extreme Digital格式的图。   |
 | CAMERA_FORMAT_DEPTH_16<sup>13+</sup> |   3000   | DEPTH_16格式的深度图。      |
 | CAMERA_FORMAT_DEPTH_32<sup>13+</sup> |   3001   | DEPTH_32格式的深度图。      |
 
