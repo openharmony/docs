@@ -20,7 +20,7 @@
 |-------------------------------| -------------------------------------------------------- | ----- | --- |-----------------------------------------------------------------------|
 | content                       | [NotificationContent](js-apis-inner-notification-notificationContent.md#notificationcontent-1)   |   否  | 否  | 通知内容。                                                                 |
 | id                            | number                                                   |   否  | 是  | 通知ID，默认为0。当相同通知ID存在时，将更新该通知的内容。                                                                 |
-| slotType<sup>(deprecated)</sup> | [notification.SlotType](./js-apis-notification.md#slottype)    |   否  | 是  | 通知渠道类型。<br>从API version 11开始不再维护，建议使用notificationSlotType代替。                        |
+| slotType<sup>(deprecated)</sup> | [notification.SlotType](./js-apis-notification.md#slottype)    |   否  | 是  | 通知渠道类型。<br>从API version 7开始支持，从API version 11开始废弃，建议使用notificationSlotType替代。                        |
 | notificationSlotType<sup>11+</sup> | [notificationManager.SlotType](js-apis-notificationManager.md#slottype) |   否  | 是  | 通知渠道类型，默认为OTHER_TYPES。                        |
 | isOngoing                     | boolean                                                  |   否  | 是  | 预留能力，暂未支持。  |
 | isUnremovable                 | boolean                                                  |   否  | 是  | 预留能力，暂未支持。  |

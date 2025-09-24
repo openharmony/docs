@@ -1318,7 +1318,7 @@ requestEnableNotification(callback: AsyncCallback\<void\>): void
 
 > **说明：**
 >
-> 从API version 12开始不再维护，建议使用有context入参的[requestEnableNotification](#notificationmanagerrequestenablenotification10)代替。
+> 从API version 9开始支持，从API version 12开始废弃，建议使用有context入参的[requestEnableNotification](#notificationmanagerrequestenablenotification10)替代。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1364,7 +1364,7 @@ requestEnableNotification(): Promise\<void\>
 
 > **说明：**
 >
-> 从API version 12开始不再维护，建议使用有context入参的[requestEnableNotification](#notificationmanagerrequestenablenotification10-1)代替。
+> 从API version 9开始支持，从API version 12开始废弃，建议使用有context入参的[requestEnableNotification](#notificationmanagerrequestenablenotification10-1)替代。
 
 **系统能力**：SystemCapability.Notification.Notification
 
