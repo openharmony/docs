@@ -4530,12 +4530,12 @@ type ChangeEvent = 'deviceChange' | 'albumChange' | 'imageChange' | 'audioChange
 
 | 类型  | 说明                      |
 | ----- |  ---- |
-| 'deviceChange' | 表示设备。string类型。 |
-| 'albumChange' | 表示相册。string类型。 |
-| 'imageChange' | 表示图片。string类型。 |
-| 'audioChange' | 表示音频。string类型。 |
-| 'videoChange' | 表示视频。string类型。 |
-| 'remoteFileChange' | 表示远程文件。string类型。 |
+| 'deviceChange' | 表示设备，值固定为'deviceChange'字符串。 |
+| 'albumChange' | 表示相册，值固定为'albumChange'字符串。 |
+| 'imageChange' | 表示图片，值固定为'imageChange'字符串。 |
+| 'audioChange' | 表示音频，值固定为'audioChange'字符串。 |
+| 'videoChange' | 表示视频，值固定为'videoChange'字符串。 |
+| 'remoteFileChange' | 表示远程文件，值固定为'remoteFileChange'字符串。 |
 
 ## PeerInfo
 
