@@ -25,7 +25,7 @@ import { workScheduler } from '@kit.BackgroundTasksKit';
 
 startWork(work: WorkInfo): void
 
-申请延迟任务，申请成功后会把任务添加到执行队列，满足执行条件后由系统调度执行。
+申请延迟任务，成功后会把任务添加到执行队列，满足触发条件后由系统调度执行。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -33,7 +33,7 @@ startWork(work: WorkInfo): void
 
 | 参数名  | 类型                    | 必填   | 说明             |
 | ---- | --------------------- | ---- | -------------- |
-| work | [WorkInfo](#workinfo) | 是    | 指定延迟任务具体信息，比如延迟任务ID、执行条件等。|
+| work | [WorkInfo](#workinfo) | 是    | 指定延迟任务具体信息，比如延迟任务ID、触发条件等。|
 
 **错误码**：
 
@@ -497,7 +497,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | bundleName      | string                            | 是    | 延迟任务所在应用的包名。           |
 | abilityName     | string                            | 是    | 包内ability名称。 |
 | networkType     | [NetworkType](#networktype)       | 否    | 网络类型。             |
-| isCharging      | boolean                           | 否    | 是否充电，默认为false。<br>- true表示充电触发延迟回调。<br>- false表示不充电触发延迟回调。|
+| isCharging      | boolean                           | 否    | 是否充电，默认为false。<br>- true表示充电触发延迟任务回调。<br>- false表示不充电触发延迟任务回调。|
 | chargerType     | [ChargingType](#chargingtype)     | 否    | 充电类型。             |
 | batteryLevel    | number                            | 否    | 电量。              |
 | batteryStatus   | [BatteryStatus](#batterystatus)   | 否    | 电池状态。             |
@@ -512,7 +512,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 ## NetworkType
 
-触发延迟回调的网络类型。
+触发延迟任务回调的网络类型。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -527,7 +527,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 ## ChargingType
 
-触发延迟回调的充电类型。
+触发延迟任务回调的充电类型。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -540,7 +540,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 ## BatteryStatus
 
-触发延迟回调的电池状态。
+触发延迟任务回调的电池状态。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -552,7 +552,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 ## StorageRequest
 
-触发延迟回调的存储状态。
+触发延迟任务回调的存储状态。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
