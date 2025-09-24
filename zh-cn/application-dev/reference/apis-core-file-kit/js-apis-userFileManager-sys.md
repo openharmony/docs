@@ -4483,8 +4483,11 @@ async function example(mgr: userFileManager.UserFileManager) {
 
 ## MemberType
 
-type MemberType = number | string | boolean;
+type MemberType = number | string | boolean
+
 文件资产成员的类型。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -4496,8 +4499,11 @@ type MemberType = number | string | boolean;
 
 ## ChangeEvent
 
-type ChangeEvent = 'deviceChange' | 'albumChange' | 'imageChange' | 'audioChange' | 'videoChange' | 'remoteFileChange';
+type ChangeEvent = 'deviceChange' | 'albumChange' | 'imageChange' | 'audioChange' | 'videoChange' | 'remoteFileChange'
+
 变更监听的媒体文件类型。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -4665,8 +4671,8 @@ type ChangeEvent = 'deviceChange' | 'albumChange' | 'imageChange' | 'audioChange
 
 | 名称                   | 类型                | 只读 | 可选 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| subType           | [PhotoSubType](#photosubtype10) | 否   | 否   | 图片或者视频的子类型。 |
-| cameraShotKey           | string | 否   | 否   | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。 |
+| subType           | [PhotoSubType](#photosubtype10) | 否   | 是   | 图片或者视频的子类型。 |
+| cameraShotKey           | string | 否   | 是   | 锁屏相机拍照或录像的标记字段（仅开放给系统相机，其key值由系统相机定义）。 |
 
 ## FetchOptions
 
