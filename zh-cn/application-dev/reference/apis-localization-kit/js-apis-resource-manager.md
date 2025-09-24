@@ -324,8 +324,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 表示当前设备的状态。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Global.ResourceManager
 
 | 名称                        | 类型                            | 只读 | 可选 | 说明               |
