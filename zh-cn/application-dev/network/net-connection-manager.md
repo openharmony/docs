@@ -65,7 +65,7 @@
     let conn = connection.createNetConnection(netSpecifier, timeout);
     ```
     
-4. 调用该对象的[on()](../reference/apis-network-kit/js-apis-net-connection.md#onnetavailable)方法，传入type和callback，订阅关心的事件。
+4. 调用该对象的[on()](../reference/apis-network-kit/js-apis-net-connection.md#onnetavailable)方法，传入type和callback参数，订阅关心的事件。
 
     ```ts
     // 订阅事件，如果当前指定网络可用，通过on_netAvailable通知用户。
