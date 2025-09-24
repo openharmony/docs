@@ -329,14 +329,14 @@ group(...arguments: Object[]): void
 **示例：**
 
 ```js
-console.log("outter");
+console.info("outter");
 // outter
 console.group();
-console.log("level 1");
+console.info("level 1");
 //   level 1
 console.group("in level1");
 //   in level1
-console.log("level 2");
+console.info("level 2");
 //     level 2
 ```
 
@@ -364,11 +364,11 @@ groupCollapsed(...arguments: Object[]): void
 console.groupCollapsed("outter");
 // outter
 console.groupCollapsed();
-console.log("level 1");
+console.info("level 1");
 //   level 1
 console.groupCollapsed("in level1");
 //   in level1
-console.log("level 2");
+console.info("level 2");
 //     level 2
 ```
 
@@ -386,13 +386,13 @@ groupEnd(): void
 **示例：**
 
 ```js
-console.log("outter");
+console.info("outter");
 // outter
 console.group();
-console.log("level 1");
+console.info("level 1");
 //   level 1
 console.groupEnd();
-console.log("outter");
+console.info("outter");
 // outter
 ```
 
