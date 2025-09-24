@@ -176,7 +176,7 @@
 
 示例主要展示了如何获取和使用多线程NDK接口，并使用[OH_ArkUI_PostAsyncUITask](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_postasyncuitask)、[OH_ArkUI_PostUITask](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_postuitask)和[OH_ArkUI_PostUITaskAndWait](../reference/apis-arkui/capi-native-node-h.md#oh_arkui_postuitaskandwait)等接口将组件创建和属性设置等任务分发到多线程并行执行。
 
-为简化编程和工程管理，在开始编写并行化组件创建代码前，请先参考[接入ArkTS页面](ndk-access-the-arkts-page.md)指导文档，在native侧使用面向对象的方式将ArkUI_NodeHandle封装为ArkUINode对象。
+为简化编程和工程管理，在开始编写并行化组件创建代码前，请先参考[接入ArkTS页面](ndk-access-the-arkts-page.md)指导文档，在Native侧使用面向对象的方式将ArkUI_NodeHandle封装为ArkUINode对象。
 
 ```ts
 // index.ets
@@ -494,15 +494,15 @@ napi_value CreateNodeTreeOnMultiThread(napi_env env, napi_callback_info info) {
         }
     }
     
-    // 创建native侧组件树根节点。
+    // 创建Native侧组件树根节点。
     auto scrollNode = std::make_shared<ArkUIScrollNode>();
-    // 将native侧组件树根节点挂载到UI主树上。
+    // 将Native侧组件树根节点挂载到UI主树上。
     result = OH_ArkUI_NodeContent_AddNode(contentHandle, scrollNode->GetHandle());
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_ERROR(LOG_APP, "OH_ArkUI_NodeContent_AddNode Failed %{public}d", result);
         return nullptr;
     }
-    // 保存native侧组件树。
+    // 保存Native侧组件树。
     g_nodeMap[contentHandle] = scrollNode;
     
     auto columnNode = std::make_shared<ArkUIColumnNode>();
@@ -534,13 +534,13 @@ napi_value DisposeNodeTreeOnMultiThread(napi_env env, napi_callback_info info)
         return nullptr;
     }
     auto rootNode = it->second;
-    // 将native侧组件树根节点从UI主树上卸载。
+    // 将Native侧组件树根节点从UI主树上卸载。
     result = OH_ArkUI_NodeContent_RemoveNode(contentHandle, rootNode->GetHandle());
     if (result != ARKUI_ERROR_CODE_NO_ERROR) {
         OH_LOG_ERROR(LOG_APP, "OH_ArkUI_NodeContent_RemoveNode Failed %{public}d", result);
         return nullptr;
     }
-    // 释放native侧组件树。
+    // 释放Native侧组件树。
     g_nodeMap.erase(contentHandle);
     return nullptr;
 }
