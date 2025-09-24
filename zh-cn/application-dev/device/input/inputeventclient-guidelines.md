@@ -1,5 +1,12 @@
 # 事件注入开发指导
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 场景介绍
 
 事件注入提供注入输入事件功能，比如注入鼠标点击事件、键盘组合键等。使用场景例如：当用户需要验证应用的组合键功能时，开发者可以通过注入组合键事件判断功能是否生效。
@@ -40,28 +47,28 @@ struct Index {
               keyCode: 2,
               keyDownDuration: 0,
               isIntercepted: false
-            }//Home按键按下事件
+            } //Home按键按下事件
 
             class EventDown {
               KeyEvent: inputEventClient.KeyEvent | null = null
             }
 
             let eventDown: EventDown = { KeyEvent: backKeyDown }
-            inputEventClient.injectEvent(eventDown);//注入Home按键按下事件
+            inputEventClient.injectEvent(eventDown); //注入Home按键按下事件
 
             let backKeyUp: inputEventClient.KeyEvent = {
               isPressed: false,
               keyCode: 2,
               keyDownDuration: 0,
               isIntercepted: false
-            };//Home按键抬起事件
+            }; //Home按键抬起事件
 
             class EventUp {
               KeyEvent: inputEventClient.KeyEvent | null = null
             }
 
             let eventUp: EventUp = { KeyEvent: backKeyUp }
-            inputEventClient.injectEvent(eventUp);//注入Home按键抬起事件,查看Home键功能是否生效，应用是否返回桌面
+            inputEventClient.injectEvent(eventUp); //注入Home按键抬起事件,查看Home键功能是否生效，应用是否返回桌面
           } catch (error) {
             console.error(`Failed to inject KeyEvent, error: ${JSON.stringify(error, ["code", "message"])}`);
           }

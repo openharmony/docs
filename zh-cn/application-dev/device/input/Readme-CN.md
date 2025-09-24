@@ -1,5 +1,12 @@
 # Input Kit（多模输入服务）<!--input-kit-->
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 - [Input Kit简介](input-overview.md)
 - [输入设备开发指导](inputdevice-guidelines.md)
 - [按键拦截监听开发指导](keypressed-guidelines.md)

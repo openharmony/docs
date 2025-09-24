@@ -84,7 +84,7 @@ struct Index {
       Text()
         .onClick(() => {
           inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOptions>) => {
-            console.log(`List of system hotkeys : ${JSON.stringify(data)}`);
+            console.info(`List of system hotkeys : ${JSON.stringify(data)}`);
           });
         })
     }
@@ -134,12 +134,12 @@ struct Index {
           let leftCtrlKey = 2072;
           let zKey = 2042;
           let hotkeyOptions: inputConsumer.HotkeyOptions = {
-            preKeys: [ leftCtrlKey ],
+            preKeys: [leftCtrlKey],
             finalKey: zKey,
             isRepeat: true
           };
           let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
-            console.log(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
+            console.info(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
           }
           try {
             inputConsumer.on("hotkeyChange", hotkeyOptions, hotkeyCallback);
@@ -193,13 +193,13 @@ struct Index {
           let zKey = 2042;
           // 取消订阅单个应用快捷键回调函数
           let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
-            console.log(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
+            console.info(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
           }
-          let hotkeyOption: inputConsumer.HotkeyOptions = {preKeys: [leftCtrlKey], finalKey: zKey, isRepeat: true};
+          let hotkeyOption: inputConsumer.HotkeyOptions = { preKeys: [leftCtrlKey], finalKey: zKey, isRepeat: true };
           try {
             inputConsumer.on("hotkeyChange", hotkeyOption, hotkeyCallback);
             inputConsumer.off("hotkeyChange", hotkeyOption, hotkeyCallback);
-            console.log(`Unsubscribe success`);
+            console.info(`Unsubscribe success`);
           } catch (error) {
             console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -223,13 +223,13 @@ struct Index {
           let zKey = 2042;
           // 取消订阅所有应用快捷键回调函数
           let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
-            console.log(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
+            console.info(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
           }
-          let hotkeyOption: inputConsumer.HotkeyOptions = {preKeys: [leftCtrlKey], finalKey: zKey, isRepeat: true};
+          let hotkeyOption: inputConsumer.HotkeyOptions = { preKeys: [leftCtrlKey], finalKey: zKey, isRepeat: true };
           try {
             inputConsumer.on("hotkeyChange", hotkeyOption, hotkeyCallback);
             inputConsumer.off("hotkeyChange", hotkeyOption);
-            console.log(`Unsubscribe success`);
+            console.info(`Unsubscribe success`);
           } catch (error) {
             console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }
@@ -287,7 +287,7 @@ struct Index {
               isRepeat: false,
             }
             inputConsumer.on('keyPressed', options, (event: KeyEvent) => {
-              console.log(`Subscribe success ${JSON.stringify(event)}`);
+              console.info(`Subscribe success ${JSON.stringify(event)}`);
             });
           } catch (error) {
             console.error(`Subscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -339,7 +339,7 @@ struct Index {
           try {
             // 取消指定回调函数
             inputConsumer.off('keyPressed', (event: KeyEvent) => {
-              console.log(`Unsubscribe success ${JSON.stringify(event)}`);
+              console.info(`Unsubscribe success ${JSON.stringify(event)}`);
             });
             // 取消当前已订阅的所有回调函数
             inputConsumer.off("keyPressed");
