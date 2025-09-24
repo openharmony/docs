@@ -85,7 +85,7 @@ InputMethod_ErrorCode OH_InputMethodProxy_ShowTextInput(InputMethod_InputMethodP
 | 参数项                                                                                                | 描述                                                                                                                                                                                                                     |
 |----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [InputMethod_InputMethodProxy](capi-inputmethod-inputmethod-inputmethodproxy.md) *inputMethodProxy | 表示指向[InputMethod_InputMethodProxy](capi-inputmethod-inputmethod-inputmethodproxy.md)实例的指针。inputMethodProxy由调用[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)获取。                                                             |
-| [InputMethod_AttachOptions](capi-inputmethod-inputmethod-attachoptions.md) *options                                                             | 表示指向[InputMethod_AttachOptions](capi-inputmethod-inputmethod-attachoptions.md)实例的指针，用于获取配置选项。ShowKeyboard - 属性始终为true，不可更改，因此无需关注。[InputMethod_RequestKeyboardReason](capi-inputmethod-types-capi-h.md#inputmethod_requestkeyboardreason) - 表示请求键盘输入原因。 |
+| [InputMethod_AttachOptions](capi-inputmethod-inputmethod-attachoptions.md) *options                                                             | 表示指向[InputMethod_AttachOptions](capi-inputmethod-inputmethod-attachoptions.md)实例的指针，用于获取配置选项。<br>此接口中只需关注[InputMethod_RequestKeyboardReason](capi-inputmethod-types-capi-h.md#inputmethod_requestkeyboardreason) - 表示请求键盘输入的原因。 |
 
 **返回：**
 
@@ -219,7 +219,7 @@ InputMethod_ErrorCode OH_InputMethodProxy_SendPrivateCommand(InputMethod_InputMe
 |----------------------------------------------------------------------------------------------------| -- |
 | [InputMethod_InputMethodProxy](capi-inputmethod-inputmethod-inputmethodproxy.md) *inputMethodProxy | 表示指向[InputMethod_InputMethodProxy](capi-inputmethod-inputmethod-inputmethodproxy.md)实例的指针。inputMethodProxy由调用[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)获取。 |
 | [InputMethod_PrivateCommand](capi-inputmethod-inputmethod-privatecommand.md) *privateCommand[]                                                    | 私有命令, 定义在[InputMethod_PrivateCommand](capi-inputmethod-inputmethod-privatecommand.md)，最大大小为32KB。 |
-| size_t size                                                                                        | 私有命令的大小. 最大大小为5。 |
+| size_t size                                                                                        | 私有命令数组的大小，最大为5。 |
 
 **返回：**
 
