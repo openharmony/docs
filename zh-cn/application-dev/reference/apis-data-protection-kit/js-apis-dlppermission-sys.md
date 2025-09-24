@@ -1881,10 +1881,10 @@ try {
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| appIndex | number | 是 | 否 | 表示DLP沙箱应用索引。 |
-| tokenID | number | 是 | 否 | 表示DLP沙箱应用的tokenID。 |
+| appIndex | number | 否 | 否 | 表示DLP沙箱应用索引。 |
+| tokenID | number | 否 | 否 | 表示DLP沙箱应用的tokenID。 |
 
 ## DLPSandboxState
 
@@ -1894,10 +1894,10 @@ DLP沙箱身份。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| bundleName | string | 是 | 否 | 表示应用包名。最小7字节，最大128字节。 |
-| appIndex | number | 是 | 否 | 表示DLP沙箱应用索引。 |
+| bundleName | string | 否 | 否 | 表示应用包名。最小7字节，最大128字节。 |
+| appIndex | number | 否 | 否 | 表示DLP沙箱应用索引。 |
 
 ## GatheringPolicyType
 
