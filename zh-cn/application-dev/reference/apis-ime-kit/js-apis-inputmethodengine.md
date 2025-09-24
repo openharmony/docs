@@ -821,7 +821,7 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
 | ctx     | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
-| info    | [PanelInfo](#panelinfo10)   | 是   | 输入法应用信息。 |
+| info    | [PanelInfo](#panelinfo10)   | 是   | 输入法面板信息。 |
 | callback | AsyncCallback\<[Panel](#panel10)> | 是   | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
 
 **错误码：**
@@ -4790,7 +4790,7 @@ try {
 
 | 名称   | 类型   | 只读 | 可选 | 说明                                                         |
 | ------ | ------ | ---- | ---- | ---------------------------------------------------------- |
-| requestKeyboardReason    | [RequestKeyboardReason](#requestkeyboardreason19) | 否   | 是   | 请求键盘输入原因。 |
+| requestKeyboardReason    | [RequestKeyboardReason](#requestkeyboardreason19) | 否   | 是   | 请求键盘输入的原因。 |
 
 ## WindowInfo<sup>12+</sup>
 
@@ -4818,7 +4818,7 @@ try {
 
 ## RequestKeyboardReason<sup>19+</sup>
 
-枚举，请求键盘输入原因。
+枚举，请求键盘输入的原因。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 

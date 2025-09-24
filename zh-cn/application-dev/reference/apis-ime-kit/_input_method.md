@@ -59,7 +59,7 @@ InputMethod模块提供方法来使用输入法和开发输入法。
 | [InputMethod_TextInputType](#inputmethod_textinputtype) | 文本输入类型。 | 
 | [InputMethod_CommandValueType](#inputmethod_commandvaluetype) | 私有数据类型。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) | 输入法错误码。 | 
-| [InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason) | 请求键盘输入原因。 | 
+| [InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason) | 请求键盘输入的原因。 | 
 
 
 ### 枚举
@@ -73,7 +73,7 @@ InputMethod模块提供方法来使用输入法和开发输入法。
 | [InputMethod_TextInputType](#inputmethod_textinputtype) {<br/>IME_TEXT_INPUT_TYPE_NONE = -1,<br/>IME_TEXT_INPUT_TYPE_TEXT = 0,<br/>IME_TEXT_INPUT_TYPE_MULTILINE = 1,<br/>IME_TEXT_INPUT_TYPE_NUMBER = 2,<br/>IME_TEXT_INPUT_TYPE_PHONE = 3,<br/>IME_TEXT_INPUT_TYPE_DATETIME = 4,<br/>IME_TEXT_INPUT_TYPE_EMAIL_ADDRESS = 5,<br/>IME_TEXT_INPUT_TYPE_URL = 6,<br/>IME_TEXT_INPUT_TYPE_VISIBLE_PASSWORD = 7,<br/>IME_TEXT_INPUT_TYPE_NUMBER_PASSWORD = 8,<br/>IME_TEXT_INPUT_TYPE_SCREEN_LOCK_PASSWORD = 9,<br/>IME_TEXT_INPUT_TYPE_USER_NAME = 10,<br/>IME_TEXT_INPUT_TYPE_NEW_PASSWORD = 11,<br/>IME_TEXT_INPUT_TYPE_NUMBER_DECIMAL = 12<br/>} | 文本输入类型。 | 
 | [InputMethod_CommandValueType](#inputmethod_commandvaluetype) {<br/>IME_COMMAND_VALUE_TYPE_NONE = 0,<br/>IME_COMMAND_VALUE_TYPE_STRING = 1,<br/>IME_COMMAND_VALUE_TYPE_BOOL = 2,<br/>IME_COMMAND_VALUE_TYPE_INT32 = 3<br/>} | 私有数据类型。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) {<br/>IME_ERR_OK = 0, IME_ERR_UNDEFINED = 1,<br/>IME_ERR_PARAMCHECK = 401,<br/>IME_ERR_PACKAGEMANAGER = 12800001,<br/>IME_ERR_IMENGINE = 12800002,<br/>IME_ERR_IMCLIENT = 12800003,<br/>IME_ERR_CONFIG_PERSIST = 12800005,<br/>IME_ERR_CONTROLLER = 12800006,<br/>IME_ERR_SETTINGS = 12800007,<br/>IME_ERR_IMMS = 12800008,<br/>IME_ERR_DETACHED = 12800009,<br/>IME_ERR_NULL_POINTER = 12802000,<br/>IME_ERR_QUERY_FAILED = 12802001<br/>} | 输入法错误码。 | 
-| [InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason) {<br/>IME_REQUEST_REASON_NONE = 0,<br/>IME_REQUEST_REASON_MOUSE = 1,<br/>IME_REQUEST_REASON_TOUCH = 2,<br/>IME_REQUEST_REASON_OTHER = 20<br/>} | 请求键盘输入原因。 | 
+| [InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason) {<br/>IME_REQUEST_REASON_NONE = 0,<br/>IME_REQUEST_REASON_MOUSE = 1,<br/>IME_REQUEST_REASON_TOUCH = 2,<br/>IME_REQUEST_REASON_OTHER = 20<br/>} | 请求键盘输入的原因。 | 
 
 
 ### 函数
@@ -84,7 +84,7 @@ InputMethod模块提供方法来使用输入法和开发输入法。
 | [InputMethod_AttachOptions](#inputmethod_attachoptions) \* [OH_AttachOptions_CreateWithRequestKeyboardReason](#oh_attachoptions_createwithrequestkeyboardreason) (bool showKeyboard, [InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason) requestKeyboardReason) | 创建一个新的[InputMethod_AttachOptions](#inputmethod_attachoptions)实例。 | 
 | void [OH_AttachOptions_Destroy](#oh_attachoptions_destroy) ([InputMethod_AttachOptions](#inputmethod_attachoptions) \*options) | 销毁一个[InputMethod_AttachOptions](#inputmethod_attachoptions)实例。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_AttachOptions_IsShowKeyboard](#oh_attachoptions_isshowkeyboard) ([InputMethod_AttachOptions](#inputmethod_attachoptions) \*options, bool \*showKeyboard) | 从[InputMethod_AttachOptions](#inputmethod_attachoptions)中获取是否显示键盘的值。 | 
-| [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_AttachOptions_GetRequestKeyboardReason](#oh_attachoptions_getrequestkeyboardreason) ([InputMethod_AttachOptions](#inputmethod_attachoptions) \*options, int \*requestKeyboardReason) | 从[InputMethod_AttachOptions](#inputmethod_attachoptions)中获取是否显示键盘的值。 | 
+| [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_AttachOptions_GetRequestKeyboardReason](#oh_attachoptions_getrequestkeyboardreason) ([InputMethod_AttachOptions](#inputmethod_attachoptions) \*options, int \*requestKeyboardReason) | 从[InputMethod_AttachOptions](#inputmethod_attachoptions)中取取请求软键盘输入的原因。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_InputMethodController_Attach](#oh_inputmethodcontroller_attach) ([InputMethod_TextEditorProxy](#inputmethod_texteditorproxy) \*textEditorProxy, [InputMethod_AttachOptions](#inputmethod_attachoptions) \*options, [InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) \*\*inputMethodProxy) | 将应用绑定到输入法服务。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_InputMethodController_Detach](#oh_inputmethodcontroller_detach) ([InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) \*inputMethodProxy) | 将应用从输入法服务解绑。 | 
 | [InputMethod_CursorInfo](#inputmethod_cursorinfo) \* [OH_CursorInfo_Create](#oh_cursorinfo_create) (double left, double top, double width, double height) | 创建一个新的[InputMethod_CursorInfo](#inputmethod_cursorinfo)实例。 | 
@@ -252,7 +252,7 @@ typedef enum InputMethod_RequestKeyboardReason InputMethod_RequestKeyboardReason
 
 **描述**
 
-请求键盘输入原因。
+请求键盘输入的原因。
 
 **起始版本：** 15
 
@@ -829,7 +829,7 @@ enum InputMethod_ExtendAction
 | -------- | -------- |
 | IME_EXTEND_ACTION_SELECT_ALL | 全选。 | 
 | IME_EXTEND_ACTION_CUT | 剪切。 | 
-| IME_EXTEND_ACTION_COPY | 赋值。 | 
+| IME_EXTEND_ACTION_COPY | 复制。 | 
 | IME_EXTEND_ACTION_PASTE | 粘贴。 | 
 
 
@@ -860,7 +860,7 @@ enum InputMethod_RequestKeyboardReason
 
 **描述**
 
-请求键盘输入原因。
+请求键盘输入的原因。
 
 **起始版本：** 15
 
@@ -945,7 +945,7 @@ InputMethod_AttachOptions* OH_AttachOptions_CreateWithRequestKeyboardReason (boo
 | 名称 | 描述 | 
 | -------- | -------- |
 | showKeyboard | 表示是否显示键盘。 | 
-| requestKeyboardReason | 表示请求键盘输入原因，具体定义详见[InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason)。 | 
+| requestKeyboardReason | 表示请求键盘输入的原因，具体定义详见[InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason)。 | 
 
 **返回：**
 
@@ -1018,7 +1018,7 @@ InputMethod_ErrorCode OH_AttachOptions_GetRequestKeyboardReason (InputMethod_Att
 | 名称 | 描述 | 
 | -------- | -------- |
 | options | 表示被读取值的[InputMethod_AttachOptions](#inputmethod_attachoptions)实例。 | 
-| requestKeyboardReason |  表示请求键盘输入原因，具体定义详见[InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason)。 |  
+| requestKeyboardReason |  表示请求键盘输入的原因，具体定义详见[InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason)。 |  
 
 **返回：**
 
@@ -1385,7 +1385,7 @@ InputMethod_ErrorCode OH_InputMethodProxy_SendPrivateCommand (InputMethod_InputM
 | -------- | -------- |
 | inputMethodProxy | 表示指向[InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy)实例的指针。 inputMethodProxy由调用[OH_InputMethodController_Attach](#oh_inputmethodcontroller_attach)获取。 | 
 | privateCommand | 私有命令, 定义在[InputMethod_PrivateCommand](#inputmethod_privatecommand)，最大大小为32KB。 | 
-| size | 私有命令的大小，最大大小为5。 | 
+| size | 私有命令数组的大小，最大为5。 | 
 
 **返回：**
 
