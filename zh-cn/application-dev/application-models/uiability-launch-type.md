@@ -187,7 +187,7 @@ specified启动模式为指定实例模式，针对一些特殊场景使用（�
     }
    ```
    
-3. 开发者根据业务在SpecifiedAbility的[onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onacceptwant)生命周期回调设置该UIAbility的标识。示例中标识设置为`SpecifiedAbilityInstance_KEY`。
+3. 开发者根据业务在SpecifiedAbility所对应AbilityStage的[onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onacceptwant)生命周期回调设置该UIAbility的标识。示例中标识设置为`SpecifiedAbilityInstance_KEY`。
 
    ```ts
     import { AbilityStage, Want } from '@kit.AbilityKit';
