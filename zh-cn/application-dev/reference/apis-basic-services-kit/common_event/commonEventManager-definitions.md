@@ -64,7 +64,7 @@
 > 
 > <!--Del-->系统应用可以监听自身应用和其他应用的快速修复事件。<!--DelEnd-->
 > 
-> 三方应用只能监听自身应用的安快速修复事件。
+> 三方应用只能监听自身应用的快速修复事件。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1502,7 +1502,7 @@ Store Kit面向应用发布如下系统公共事件。
 
 ### COMMON_EVENT_DISK_UNMOUNTED
 
-（预留事件，暂未支持）部存储设备状态变更为卸载时发送此公共事件。
+（预留事件，暂未支持）外部存储设备状态变更为卸载时发送此公共事件。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
