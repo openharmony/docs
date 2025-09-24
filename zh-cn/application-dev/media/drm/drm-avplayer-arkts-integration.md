@@ -25,12 +25,15 @@
 3. 调用[createAVPlayer](../../reference/apis-media-kit/arkts-apis-media-f.md#mediacreateavplayer9)，创建AVPlayer实例并设置DRM信息监听事件。
 
    ```ts
-   let playerHandle: media.AVPlayer = await media.createAVPlayer()
+   let playerHandle: media.AVPlayer;
+   async function initPlayer() {
+   playerHandle = await media.createAVPlayer();
    playerHandle.on('mediaKeySystemInfoUpdate', async (mediaKeySystemInfo: drm.MediaKeySystemInfo[]) => {
-     console.info('player has received drmInfo signal: ' + JSON.stringify(mediaKeySystemInfo))
-     // 处理DRM信息。
-     // 设置解密session。
+   console.info('player has received drmInfo signal: ' + JSON.stringify(mediaKeySystemInfo))
+   // 处理DRM信息。
+   // 设置解密session。
    })
+   }
    ```
 
 4. 调用[createMediaKeySystem](../../reference/apis-drm-kit/arkts-apis-drm-f.md#drmcreatemediakeysystem)和[createMediaKeySession](../../reference/apis-drm-kit/arkts-apis-drm-MediaKeySystem.md#createmediakeysession)根据DRM信息中的uuid创建MediaKeySystem和MediaKeySession实例。
@@ -94,8 +97,8 @@
       if (state == 'released') {
     mediaKeySession.destroy();
     mediaKeySystem.destroy();
-   } else if (state == 'releasing') {  
-    await playerHandle.release();
+    } else if (state == 'releasing') {  
+    await playerHandle.release();    
     }
    })
    
