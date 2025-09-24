@@ -2164,7 +2164,7 @@ netCon.unregister((error: BusinessError) => {
 
 on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 
-订阅网络可用事件。此接口要在register接口调用前调用，不需要网络状态变化回调通知时，使用unregister取消订阅默认网络状态变化的通知。
+订阅网络可用事件。此接口需在调用register接口之前调用。若无需接收网络状态变化的回调通知，应使用unregister取消订阅默认的网络状态变化通知。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2206,7 +2206,7 @@ netCon.unregister((error: BusinessError) => {
 
 on(type: 'netBlockStatusChange', callback: Callback\<NetBlockStatusInfo>): void
 
-订阅网络阻塞状态事件。此接口要在register接口调用前调用，不需要网络状态变化回调通知时，使用unregister取消订阅默认网络状态变化的通知。
+订阅网络阻塞状态事件。此接口需要在调用register接口之前调用。若无需接收网络状态变化的回调通知，应使用unregister取消订阅默认的网络状态变化通知。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
