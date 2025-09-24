@@ -1,5 +1,12 @@
 # @ohos.connectedTag (有源标签)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @bitbegin-->
+<!--Designer: @guofan912-->
+<!--Tester: @wuqingyang1-->
+<!--Adviser: @zhang_yixin13-->
+
 本模块提供有源标签的使用，包括初始化有源标签芯片、读取有源标签内容、写入内容到有源标签等。
 
 > **说明：**
@@ -119,7 +126,7 @@ import { connectedTag } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connectedTag.readNdefTag().then((data) => {
-    console.log("connectedTag readNdefTag Promise data = " + data);
+    console.info("connectedTag readNdefTag Promise data = " + data);
 }).catch((err: BusinessError)=> {
     console.error("connectedTag readNdefTag Promise err: " + err);
 });
@@ -158,7 +165,7 @@ import { connectedTag } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connectedTag.read().then((data) => {
-    console.log("connectedTag read Promise data = " + data);
+    console.info("connectedTag read Promise data = " + data);
 }).catch((err: BusinessError)=> {
     console.error("connectedTag read Promise err: " + err);
 });
@@ -193,7 +200,7 @@ connectedTag.readNdefTag((err, data)=> {
     if (err) {
         console.error("connectedTag readNdefTag AsyncCallback err: " + err);
     } else {
-        console.log("connectedTag readNdefTag AsyncCallback data: " + data);
+        console.info("connectedTag readNdefTag AsyncCallback data: " + data);
     }
 });
 ```
@@ -233,7 +240,7 @@ connectedTag.read((err, data)=> {
     if (err) {
         console.error("connectedTag read AsyncCallback err: " + err);
     } else {
-        console.log("connectedTag read AsyncCallback data: " + data);
+        console.info("connectedTag read AsyncCallback data: " + data);
     }
 });
 ```
@@ -272,7 +279,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData).then(() => {
-    console.log("connectedTag.writeNdefTag Promise success.");
+    console.info("connectedTag.writeNdefTag Promise success.");
 }).catch((err: BusinessError)=> {
     console.error("connectedTag.writeNdefTag Promise err: " + err);
 });
@@ -319,7 +326,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData).then(() => {
-    console.log("connectedTag.writeNdefTag Promise success.");
+    console.info("connectedTag.writeNdefTag Promise success.");
 }).catch((err: BusinessError)=> {
     console.error("connectedTag.writeNdefTag Promise err: " + err);
 });
@@ -356,7 +363,7 @@ connectedTag.writeNdefTag(rawData, (err)=> {
     if (err) {
         console.error("connectedTag.writeNdefTag AsyncCallback err: " + err);
     } else {
-        console.log("connectedTag.writeNdefTag AsyncCallback success.");
+        console.info("connectedTag.writeNdefTag AsyncCallback success.");
     }
 });
 ```
@@ -399,7 +406,7 @@ connectedTag.write(rawData, (err)=> {
     if (err) {
         console.error("connectedTag.writeNdefTag AsyncCallback err: " + err);
     } else {
-        console.log("connectedTag.writeNdefTag AsyncCallback success.");
+        console.info("connectedTag.writeNdefTag AsyncCallback success.");
     }
 });
 ```
@@ -443,30 +450,44 @@ off(type: "notify", callback?: Callback&lt;number&gt;): void
 ```js
 import { connectedTag } from '@kit.ConnectivityKit';
 
-async function nfcTagTest(): Promise<void> {
-  // Register event
-  connectedTag.on("notify", (rfState : number)=> {
-    console.log("connectedTag on Callback rfState: " + rfState);
-  });
-  try {
-      connectedTag.initialize();
-      let tag = [3, 1, 0];
-      console.log("connectedTag write: tag=" + tag);
-      await connectedTag.write(tag);
-      let data = await connectedTag.read();
-      console.log("connectedTag read: data=" + data);
-      connectedTag.uninitialize();
-  } catch (error) {
-      console.error("connectedTag error: " + error);
-  }
-
-  // Unregister event
-  connectedTag.off("notify", (rfState : number)=> {
-    console.log("connectedTag off Callback rfState: " + rfState);
-  });
+function nfcStatusCb(rfState: connectedTag.NfcRfType) {
+    console.info("connectedTag on Callback rfState: ", rfState);
 }
 
-export { nfcTagTest }
+// 有源nfc标签的使用流程
+async function nfcTagTestOn(): Promise<void> {
+    try {
+        console.info("connectedTag initialize");
+        connectedTag.initialize();
+    } catch (error) {
+        console.error("initialize error:" + error);
+    }
+    // 注册回调以接收nfc进离场状态更改通知
+    connectedTag.on("notify", nfcStatusCb);
+    try {
+        let tag = [3, 1, 0];
+        console.info("connectedTag write: tag=" + tag);
+        await connectedTag.write(tag);
+        let data = await connectedTag.read();
+        console.info("connectedTag read: data=" + data);
+    } catch (error) {
+        console.error("connectedTag error: " + error);
+    }
+}
+
+// 业务退出时，取消注册回调、取消初始化
+async function nfcTagTestOff(): Promise<void> {
+    // 取消注册回调
+    connectedTag.off("notify", nfcStatusCb);
+    try {
+        console.info("connectedTag uninitialize");
+        connectedTag.uninitialize();
+    } catch (error) {
+        console.error("connectedTag error: " + error);
+    }
+}
+
+export { nfcTagTestOn, nfcTagTestOff }
 ```
 
 ## NfcRfType
