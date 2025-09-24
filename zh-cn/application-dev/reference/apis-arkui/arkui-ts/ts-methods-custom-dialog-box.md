@@ -39,7 +39,7 @@ constructor(value: CustomDialogControllerOptions)
 
 > **说明：**
 >
-> 自定义弹窗的所有参数，不支持动态刷新。
+> 自定义弹窗的所有参数，不支持动态刷新，但可以通过设置customStyle为true，并在自定义组件上设置[背景色](ts-universal-attributes-background.md#backgroundcolor)、[背景模糊](ts-universal-attributes-background.md#backgroundblurstyle9)、[宽高](ts-universal-attributes-size.md)等属性，通过属性绑定的状态变量来实现动态刷新的效果。
 >
 > 在CustomDialogController作为全局变量以实现全局自定义弹窗的场景下，若对controller重新赋值，则无法通过其关闭之前的弹窗。建议在重新赋值前先关闭弹窗。
 >
@@ -1309,3 +1309,70 @@ struct CustomDialogUser {
 ```
 
 ![zh-cn_image_custom-backgroundEffect](figures/zh-cn_image_custom-backgroundEffect.png)
+
+### 示例13（自定义弹窗动态刷新宽度）
+
+该示例通过状态变量同步自定义组件的宽度，实现自定义弹窗宽度动态切换。
+
+```ts
+@CustomDialog
+struct CustomDialogExample {
+  controller?: CustomDialogController;
+  @Link currentWidth: number;
+
+  build() {
+    Column() {
+      Text('这是自定义弹窗')
+        .fontSize(30)
+        .height(100)
+      Button('点我关闭弹窗')
+        .onClick(() => {
+          if (this.controller != undefined) {
+            this.controller.close();
+          }
+        })
+        .margin(20)
+    }
+    .borderRadius(32)
+    .backgroundColor(Color.White)
+    .shadow(ShadowStyle.OUTER_DEFAULT_SM)
+    .width(this.currentWidth + "%")
+  }
+}
+
+@Entry
+@Component
+struct CustomDialogUser {
+  @State currentWidth: number = 0
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample({ currentWidth: this.currentWidth }),
+    customStyle: true,
+    isModal: false,
+  })
+
+  build() {
+    Column() {
+
+      Row() {
+        Text("宽度设置：")
+          .height(50)
+        Slider({ min: 60, max: 100, step: 5 })
+          .showTips(true, this.currentWidth + '%')
+          .onChange((value: number, mode: SliderChangeMode) => {
+            this.currentWidth = value;
+          }).width(200)
+      }
+
+      Button('CustomDialog')
+        .margin(20)
+        .onClick(() => {
+          if (this.dialogController != null) {
+            this.dialogController.open();
+          }
+        })
+    }.width('100%')
+  }
+}
+```
+
+![zh-cn_image_custom-backgroundEffect](figures/zh-cn_image_dynamicRefreshwidth.gif)
