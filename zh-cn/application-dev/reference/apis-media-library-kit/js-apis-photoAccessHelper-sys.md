@@ -4957,7 +4957,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 | dateYear | string | 否 | 否 | 图片资产创建年份时间。<br>**系统接口**：此接口为系统接口。|
 | dateMonth | string | 否 | 否 | 图片资产创建月份时间。<br>**系统接口**：此接口为系统接口。|
 | dateDay | string | 否 | 否 | 图片资产创建日时间。<br>**系统接口**：此接口为系统接口。|
-| pending | boolean | 否 | 否 | 图片资产等待状态，true为等待，false为解除等待。<br>**系统接口**：此接口为系统接口。|
+| pending | boolean | 否 | 否 | 图片资产等待状态，true表示等待，false表示解除等待。<br>**系统接口**：此接口为系统接口。|
 | dateAddedMs | number | 否 | 否 | 图片资产数据添加后经过时间。<br>**系统接口**：此接口为系统接口。|
 | dateTrashedMs | number | 否 | 否 | 图片资产数据进回收站后经过时间。<br>**系统接口**：此接口为系统接口。|
 | subtype | [PhotoSubtype](#photosubtype) | 否 | 否 | 图片资产子类型。<br>**系统接口**：此接口为系统接口。|
@@ -10377,7 +10377,7 @@ async function example(context: Context) {
 | 名称    | 类型                        | 只读 | 可选 | 说明                                                         |
 | ---- | ------- | ---- |  ---- | ----- |
 | taskStatus | [CloudMediaAssetTaskStatus](#cloudmediaassettaskstatus14)  | 是 | 否 | 云端媒体资产下载任务状态。  |
-| taskInfo | string  | 是 | 否 | 下载资产的总个数和总大小(byte)，以及未下载的总个数和总大小(byte)。  |
+| taskInfo | string  | 是 | 否 | 下载资产的总个数和总大小（byte），以及未下载的总个数和总大小（byte）。  |
 | errorCode | [CloudMediaTaskPauseCause](#cloudmediataskpausecause14)  | 是 | 否 | 云端媒体资产下载任务暂停类型。  |
 
 ## RecommendationType<sup>11+</sup>
