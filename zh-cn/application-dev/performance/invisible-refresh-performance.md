@@ -39,6 +39,8 @@
 由于onVisibleAreaChange()在可见时会每帧进行一次计算检测，当组件数量较多、节点层次较深且帧率较高时，使用setOnVisibleAreaApproximateChange()可以减少计算负载，从而显著提升性能和降低功耗。
 
 ```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
 @Component
 struct ImageAnimatorTest {
   private uid: number = -1;
@@ -105,6 +107,9 @@ struct ImageAnimatorTest {
 > **说明：**
 > 
 > [ohos_apng](https://gitcode.com/openharmony-sig/ohos_apng)是以开源库[apng-js](https://github.com/davidmz/apng-js)为参考，基于1.1.2版本，通过重构解码算法，拆分出apng里各个帧图层的数据；使用arkts能力，将每一帧数据组合成imagebitmap，使用定时器调用每一帧数据，通过canvas渲染，从而达到帧动画效果。
+>
+> ohos_apng需要将开源库手动添加依赖到oh-package.json5中，详见[OpenHarmony JS和TS三方组件使用指导](../../third-party-components/ohpm-third-party-guide.md)。
+
 
 ```ts
 import { apng, ApngController } from '@ohos/apng'; //开发者自行导入apng依赖库，详见上述说明。
@@ -134,7 +139,7 @@ struct RefreshExample {
 ```
 
 ### 状态变量监听法
-列表组件下拉刷新时，管理刷新动画的不可见现象。使用Canvas实现的[ohos_apng组件](https://gitcode.com/openharmony-sig/ohos_apng)置于Refresh组件中，默认隐藏。监听Refresh组件的多种状态，通过onStateChange()方法监听RefreshStatus值。当Refresh组件处于收起状态（RefreshStatus为0和4）时，控制apngcontroller停止播放动画；当RefreshStatus处于拉起、回弹等状态（RefreshStatus为1、2和3）时，播放动画。
+列表组件下拉刷新时，管理刷新动画的不可见现象。使用Canvas实现的[ohos_apng组件](https://gitcode.com/openharmony-sig/ohos_apng)置于Refresh组件中，默认隐藏。监听Refresh组件的多种状态，通过onStateChange()方法监听RefreshStatus值。当Refresh组件处于收起状态（RefreshStatus为0和4）时，控制apngcontroller停止播放动画；当RefreshStatus处于拉起、回弹等状态（RefreshStatus为1、2和3）时，播放动画。其中，ImageAnimatorTest()的实现可参考[接入可见接口法](#接入可见接口法)中的示例代码。
 
 ```ts
 // VisibleComponent/entry/src/main/ets/pages/Index.ets
