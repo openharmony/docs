@@ -10,7 +10,7 @@
 
 ### 功能介绍
 
-应用退至后台后，需要执行实时性要求不高的任务，例如有网络时不定期主动获取邮件等，可以使用延迟任务。当应用满足设定条件（包括网络类型、充电类型、存储状态、电池状态、定时状态等）时，将任务添加到执行队列，系统会根据内存、功耗、设备温度、用户使用习惯等统一调度拉起应用。
+应用退至后台后，需要执行实时性要求不高的任务，例如有网络时不定期主动获取邮件等，可以使用延迟任务。当应用满足设定的触发条件（包括网络类型、充电类型、存储状态、电池状态、定时状态等）时，将任务添加到执行队列，系统会根据内存、功耗、设备温度、用户使用习惯等统一调度拉起应用。
 
 ### 运行原理
 
@@ -80,7 +80,7 @@
 | bundleName      | string                            | 是    | 延迟任务所在应用的包名。           |
 | abilityName     | string                            | 是    | 包内ability名称。 |
 | networkType     | [NetworkType](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#networktype)       | 否    | 网络类型。             |
-| isCharging      | boolean                           | 否    | 是否充电。<br>- true表示充电触发延迟回调。<br>- false表示不充电触发延迟回调。|
+| isCharging      | boolean                           | 否    | 是否充电。<br>- true表示充电触发延迟任务回调。<br>- false表示不充电触发延迟任务回调。|
 | chargerType     | [ChargingType](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#chargingtype)     | 否    | 充电类型。             |
 | batteryLevel    | number                            | 否    | 电量。              |
 | batteryStatus   | [BatteryStatus](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md#batterystatus)   | 否    | 电池状态。             |
