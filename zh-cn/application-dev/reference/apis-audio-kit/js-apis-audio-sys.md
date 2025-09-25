@@ -473,7 +473,8 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 | 名称                                | 类型                                                                   | 只读 | 可选 | 说明                                                                                                                                                                                                        |
 | ----------------------------------- |----------------------------------------------------------------------| ---- |---|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| preferredInputDevice<sup>20+</sup> | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor) | 否 | 是 | * 此音频捕获器的首选输入设备。首选输入设备必须是一个输入设备，并且 {@link captureInfo} 中的源类型必须是 {@link SourceType#SOURCE_TYPE_RECONGITION} 或 {@link SourceType#SOURCE_TYPE_VOICE_TRANSCRIPTION}，否则此参数将被忽略。<br/>如果用户未指定设备，系统将自动为音频捕获器选择录音设备。当用户指定一个首选设备以创建识别或转录录音时，<br/>1） 如果首选设备在线，当前的音频捕获器可能会使用首选设备进行录音；如果首选设备在操作过程中离线，系统将自动选择一个录音设备。<br/>2） 如果首选设备离线，系统将自动选择录音设备；如果首选设备在操作过程中上线，可能会切换到首选设备进行录音。用户可以通过 {@link AudioCapturer#getCurrentAudioCapturerChangeInfo} 查询当前使用的设备。 |
+| preferredInputDevice<sup>20+</sup> | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor) | 否 | 是 | 当前audio capturer的偏好输入设备。此设备必须为输入设备，并且{@link captureInfo}的source type必须为{@link SourceType#SOURCE_TYPE_RECONGITION} 或 {@link SourceType#SOURCE_TYPE_VOICE_TRANSCRIPTION}。否则，此参数将会被忽略。如果调用者未指定偏好设备，则系统会自动选择一个设备。如果调用者指定了偏好设备取创建语音识别或者语音转写流：<br/>1. 如果设备在线，当前audiocapturer会使用偏好设备；如果运行过程中，偏好设备下线，则系统会自动选择一个录音设备；<br/>2. 如果设备不在线，当前audiocapturer会自动选择一个录音设备；如果运行过程中，偏好设备上线，则会自动切换到偏好设备上。
+      调用者可以通过{@link AudioCapturer#getCurrentAudioCapturerChangeInfo}查询当前实际使用的录音设备。 |
                                                                                                   
 
 ## AudioManager
