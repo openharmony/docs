@@ -43,7 +43,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: Async
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。            |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组，指定具体应用。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组，指定具体应用。<br/>**说明：** 从API version 21版本开始，支持传入应用的[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，推荐使用[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)。API version 20及之前版本，仅支持[appId](../../quick-start/common_problem_of_application.md#什么是appid)。|
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
@@ -102,7 +102,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number,
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。            |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组，指定具体应用。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组，指定具体应用。<br/>**说明：** 从API version 21版本开始，支持传入应用的[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，推荐使用[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)。API version 20及之前版本，仅支持[appId](../../quick-start/common_problem_of_application.md#什么是appid)。|
 | userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
@@ -161,7 +161,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。            |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组，指定具体应用。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组，指定具体应用。<br/>**说明：** 从API version 21版本开始，支持传入应用的[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，推荐使用[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)。API version 20及之前版本，仅支持[appId](../../quick-start/common_problem_of_application.md#什么是appid)。|
 | userId     | number                             | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
@@ -224,7 +224,7 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: As
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。            |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组，指定具体应用。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组，指定具体应用。<br/>**说明：** 从API version 21版本开始，数组中的元素支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，仅移除传入的[appId](../../quick-start/common_problem_of_application.md#什么是appid)（或[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)），不会移除同一应用的[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)（或[appId](../../quick-start/common_problem_of_application.md#什么是appid)）。API version 20及之前版本，数组中的元素只支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)。|
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
@@ -281,7 +281,7 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: numb
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。            |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组，指定具体应用。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组，指定具体应用。<br/>**说明：** 从API version 21版本开始，数组中的元素支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，仅移除传入的[appId](../../quick-start/common_problem_of_application.md#什么是appid)（或[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)），不会移除同一应用的[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)（或[appId](../../quick-start/common_problem_of_application.md#什么是appid)）。API version 20及之前版本，数组中的元素只支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)。|
 | userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
@@ -340,7 +340,7 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: num
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。            |
-| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组，指定具体应用。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组，指定具体应用。<br/>**说明：** 从API version 21版本开始，数组中的元素支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)和[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)，仅移除传入的[appId](../../quick-start/common_problem_of_application.md#什么是appid)（或[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)），不会移除同一应用的[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)（或[appId](../../quick-start/common_problem_of_application.md#什么是appid)）。API version 20及之前版本，数组中的元素只支持使用[appId](../../quick-start/common_problem_of_application.md#什么是appid)。|
 | userId     | number                             | 否    | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入userId，表示指定用户。<br> - 调用接口时，若未传入userId，表示当前用户。 |
 
 **返回值：**
@@ -400,7 +400,7 @@ getDisallowedRunningBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;str
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。            |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | 是    | 回调函数，当获取应用运行禁止名单成功时，err为null，否则为错误对象。<br/>**说明：** API version 20及之前版本，返回值为应用[appId](../../quick-start/common_problem_of_application.md#什么是appid)列表。从API version 21版本开始，返回值为应用[appId](../../quick-start/common_problem_of_application.md#什么是appid)或[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)列表。|
 
 **错误码**：
 
@@ -455,7 +455,7 @@ getDisallowedRunningBundles(admin: Want, userId: number, callback: AsyncCallback
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。            |
 | userId     | number                             | 是    | 用户ID，指定具体用户。取值范围：大于等于0。 |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。       |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;       | 是    | 回调函数，当获取应用运行禁止名单成功时，err为null，否则为错误对象。<br/>**说明：** API version 20及之前版本，返回值为应用[appId](../../quick-start/common_problem_of_application.md#什么是appid)列表。从API version 21版本开始，返回值为应用[appId](../../quick-start/common_problem_of_application.md#什么是appid)或[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)列表。|
 
 **错误码**：
 
@@ -515,7 +515,7 @@ getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;s
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回当前/指定用户下的应用运行禁止名单。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回当前/指定用户下的应用运行禁止名单。<br/>**说明：** API version 20及之前版本，返回值为应用[appId](../../quick-start/common_problem_of_application.md#什么是appid)列表。从API version 21版本开始，返回值为应用[appId](../../quick-start/common_problem_of_application.md#什么是appid)或[appIdentifier](../../quick-start/common_problem_of_application.md#什么是appidentifier)列表。|
 
 **错误码**：
 
