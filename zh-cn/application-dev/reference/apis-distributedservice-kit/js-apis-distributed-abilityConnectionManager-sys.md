@@ -128,7 +128,6 @@ off(type:&nbsp;'collaborateEvent',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&
 
   ```ts
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let sessionId = 100;
   abilityConnectionManager.off("collaborateEvent", sessionId);
@@ -165,7 +164,6 @@ off(type:&nbsp;'receiveImage',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp
 
   ```ts
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let sessionId = 100;
   abilityConnectionManager.off("receiveImage", sessionId);
@@ -641,8 +639,8 @@ Surface配置参数。
 
 | 名称          | 类型    | 只读   | 可选   | 说明          |
 | ----------- | ------- | ---- | ---- | ----------- |
-| needSendStream    | boolean  | 否    | 否    | true表示需要发送流，false表示不需要发送流。    |
-| needReceiveStream    | boolean  | 否    | 否    | true表示需要接收流，false表示不需要接收流。     |
+| needSendStream    | boolean  | 否    | 是    | true表示需要发送流，false表示不需要发送流。    |
+| needReceiveStream    | boolean  | 否    | 是    | true表示需要接收流，false表示不需要接收流。     |
 
 ## EventCallbackInfo
 

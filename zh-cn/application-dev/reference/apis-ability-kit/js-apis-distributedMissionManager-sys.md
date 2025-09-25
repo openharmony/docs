@@ -55,15 +55,15 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback, 
   
   // 实现回调函数
   function NotifyMissionsChanged(deviceId: string): void {
-    console.log('NotifyMissionsChanged deviceId ' + JSON.stringify(deviceId));
+    console.info('NotifyMissionsChanged deviceId ' + JSON.stringify(deviceId));
   }
   function NotifySnapshot(deviceId: string, missionId: number): void {
-    console.log('NotifySnapshot deviceId ' + JSON.stringify(deviceId));
-    console.log('NotifySnapshot missionId ' + JSON.stringify(missionId));
+    console.info('NotifySnapshot deviceId ' + JSON.stringify(deviceId));
+    console.info('NotifySnapshot missionId ' + JSON.stringify(missionId));
   }
   function NotifyNetDisconnect(deviceId: string, state: number): void {
-    console.log('NotifyNetDisconnect deviceId ' + JSON.stringify(deviceId));
-    console.log('NotifyNetDisconnect state ' + JSON.stringify(state));
+    console.info('NotifyNetDisconnect deviceId ' + JSON.stringify(deviceId));
+    console.info('NotifyNetDisconnect state ' + JSON.stringify(state));
   }
   try {
     // 调用registerMissionListener接口
@@ -125,15 +125,15 @@ registerMissionListener(parameter: MissionDeviceInfo, options: MissionCallback):
 
   // 实现回调函数
   function NotifyMissionsChanged(deviceId: string): void {
-    console.log('NotifyMissionsChanged deviceId ' + JSON.stringify(deviceId));
+    console.info('NotifyMissionsChanged deviceId ' + JSON.stringify(deviceId));
   }
   function NotifySnapshot(deviceId: string, missionId: number): void {
-    console.log('NotifySnapshot deviceId ' + JSON.stringify(deviceId));
-    console.log('NotifySnapshot missionId ' + JSON.stringify(missionId));
+    console.info('NotifySnapshot deviceId ' + JSON.stringify(deviceId));
+    console.info('NotifySnapshot missionId ' + JSON.stringify(missionId));
   }
   function NotifyNetDisconnect(deviceId: string, state: number): void {
-    console.log('NotifyNetDisconnect deviceId ' + JSON.stringify(deviceId));
-    console.log('NotifyNetDisconnect state ' + JSON.stringify(state));
+    console.info('NotifyNetDisconnect deviceId ' + JSON.stringify(deviceId));
+    console.info('NotifyNetDisconnect state ' + JSON.stringify(state));
   }
   try {
       // 调用registerMissionListener接口
@@ -495,7 +495,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 
   // 实现回调函数
   function onContinueDone(resultCode: number): void {
-    console.log('onContinueDone resultCode: ' + JSON.stringify(resultCode));
+    console.info('onContinueDone resultCode: ' + JSON.stringify(resultCode));
   };
   try {
     // 调用continueMission接口
@@ -566,7 +566,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 
   // 实现回调函数
   function onContinueDone(resultCode: number): void {
-    console.log('onContinueDone resultCode: ' + JSON.stringify(resultCode));
+    console.info('onContinueDone resultCode: ' + JSON.stringify(resultCode));
   };
   try {
     // 调用continueMission接口
