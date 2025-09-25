@@ -71,7 +71,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 audioVolumeManager.getVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
 
 // 获取指定流的最小音量。
-audioVolumeManager.getMinVolumeByStream(audio.StreamUsage.STREA_MUSAGE_MUSIC);
+audioVolumeManager.getMinVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
 
 // 获取指定流的最大音量。
 audioVolumeManager.getMaxVolumeByStream(audio.StreamUsage.STREAM_USAGE_MUSIC);
