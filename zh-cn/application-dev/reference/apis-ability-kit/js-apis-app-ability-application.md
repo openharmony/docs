@@ -2,8 +2,8 @@
 
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
-<!--Owner: @li-weifeng2-->
-<!--Designer: @li-weifeng2-->
+<!--Owner: @li-weifeng2024-->
+<!--Designer: @li-weifeng2024-->
 <!--Tester: @lixueqing513-->
 
 开发者可以通过该模块管理和获取应用的上下文[Context](../../application-models/application-context-stage.md)，以及控制应用进程的状态。
