@@ -131,7 +131,7 @@ AlertDialog({controller: CustomDialogController, primaryTitle?: ResourceStr, sec
 
 LoadingDialog({controller: CustomDialogController, content?: ResourceStr, theme?: Theme | CustomTheme, themeColorMode?: ThemeColorMode})
 
-进度加载类弹出框，用于显示操作执行中的的提示信息。
+进度加载类弹出框，用于显示操作执行中的提示信息。
 
 **装饰器类型：**\@CustomDialog
 
