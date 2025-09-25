@@ -1,5 +1,10 @@
 # &lt;text&gt; Development
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiangyuan6-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 The **&lt;text&gt;** component is used to display a piece of textual information. For details, see [text](../reference/apis-arkui/arkui-js/js-components-basic-text.md).
 
@@ -42,7 +47,7 @@ Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
     <text style="color: blueviolet; font-size: 40px; allow-scale:true"> 
       This is a passage
     </text>
-    <text style="color: blueviolet; font-size: 40px; margin-top: 20px; allow-scale:true;word-spacing: 20px;" >
+    <text style="color: blueviolet; font-size: 40px; margin-top: 20px; allow-scale:true;word-spacing: 20px;text-align: center">
       This is a passage
     </text>
   </div> 
@@ -51,6 +56,7 @@ Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
   ```css
   /* xxx.css */
   .container {
+    display: flex;
     width: 100%;
     height: 100%;
     flex-direction: column;
@@ -63,7 +69,7 @@ Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
     ![en-us_image_0000001222967764](figures/en-us_image_0000001222967764.png)
 
 
-- Adding a text modifier
+- Adding a text decoration
   
   Set the **text-decoration** and **text-decoration-color** attributes to add an underline, overline, line-through, or a combination of lines in the specified color to selected text. For values of **text-decoration**, see [Text Styles](../reference/apis-arkui/arkui-js/js-components-basic-text.md).
 
@@ -98,9 +104,8 @@ Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
 
 
 - Hiding text content
-  
 
-Set the **text-overflow** attribute to **ellipsis** so that overflowed text is displayed as an ellipsis.
+  Set the **text-overflow** attribute to **ellipsis** so that overflowed text is displayed as an ellipsis.
 
 
   ```html
@@ -134,64 +139,6 @@ Set the **text-overflow** attribute to **ellipsis** so that overflowed text is d
   > - **max-lines** indicates the maximum number of lines in the text.
 
   ![en-us_image_0000001267647865](figures/en-us_image_0000001267647865.png)
-
-
-- Setting the text line breaking mode
-  
-
-Set the **word-break** attribute to specify how to break lines of text. For values of **word-break**, see [Text Styles](../reference/apis-arkui/arkui-js/js-components-basic-text.md).
-
-
-  ```html
-  <!-- xxx.hml -->
-  <div class="container">
-    <div class="content">
-      <text class="text1">
-        Welcome to the world
-      </text>
-        <text class="text2">
-          Welcome to the world
-        </text>
-    </div>
-  </div>
-  ```
-
-  ```css
-  /* xxx.css */
-  .container {
-    width: 100%;
-    height: 100%;
-    background-color: #F1F3F5;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .content{
-    width: 50%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .text1{
-    width: 100%;
-    height: 200px;
-    border:1px solid #1a1919;
-    margin-bottom: 50px;
-    text-align: center;
-    word-break: break-word;
-    font-size: 40px;
-  }
-  .text2{
-    width: 100%;
-    height: 200px;
-    border:1px solid #0931e8;
-    text-align: center;
-    word-break: break-all;
-    font-size: 40px;
-  }
-  ```
-
-    ![en-us_image_0000001267767865](figures/en-us_image_0000001267767865.png)
 
 
 - Setting the [&lt;span&gt;](../reference/apis-arkui/arkui-js/js-components-basic-span.md) child component

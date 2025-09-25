@@ -1,5 +1,10 @@
 # Resource Limitations and Access
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sunfei2021-->
+<!--Designer: @sunfei2021-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 ## Resource Qualifiers
 

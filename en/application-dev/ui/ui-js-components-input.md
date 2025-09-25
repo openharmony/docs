@@ -1,5 +1,10 @@
 # &lt;input&gt; Development
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @kangshihui-->
+<!--Designer: @pssea-->
+<!--Tester: @jiaoaozihao-->
+<!--Adviser: @HelloCrease-->
 
 The **&lt;input&gt;** component provides an interactive way to receive user input of various types, including **date**, **checkbox**, and **button**. For details, see [input](../reference/apis-arkui/arkui-js/js-components-basic-input.md).
 
@@ -116,11 +121,10 @@ export default {
 ```html
 <!-- xxx.hml -->
 <div class="content">
-  <text style="margin-left: -7px;">
-    <span>Enter text and then touch and hold what you've entered</span>
-  </text>
-  <input class="input" type="text" onsearch="search" placeholder="search"> </input>
-  <input class="input" type="text" ontranslate="translate" placeholder="translate"> </input>
+    <text style="margin-left: -7px;">
+        <span>Enter text and then touch and hold what you've entered</span>
+    </text>
+    <input class="input" type="text" ontranslate="translate" placeholder="translate"> </input>
 </div>
 ```
 
@@ -149,23 +153,18 @@ text{
 ```js
 // xxx.js
 import promptAction from '@ohos.promptAction'
+
 export default {
-  search(e){
-    promptAction.showToast({
-      message:  e.value,
-      duration: 3000,
-    });
-  },
-  translate(e){
-    promptAction.showToast({
-      message:  e.value,
-      duration: 3000,
-    });
-  }
+    translate(e) {
+        promptAction.showToast({
+            message: e.value,
+            duration: 3000,
+        });
+    }
 }
 ```
 
-![en-us_image_0000001267647853](figures/en-us_image_0000001267647853.gif)
+
 
 
 ## Setting the Input Error Message
@@ -258,7 +257,7 @@ Enter information by using the **&lt;input&gt;** component of the type that suit
   </div>    
   <div class="label-item">        
     <label class="lab" target="input3">date:</label>        
-    <input class="flex" id="input3" type="date" placeholder="Enter data" />    
+    <input class="flex" id="input3" type="date" placeholder="Enter date" />    
   </div>    
   <div class="label-item">        
     <label class="lab" target="input4">time:</label>        

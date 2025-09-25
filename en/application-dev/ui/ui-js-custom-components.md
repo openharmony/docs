@@ -1,5 +1,10 @@
 # Custom Components
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @seaside_wu1-->
+<!--Designer: @shiyu_huang-->
+<!--Tester: @TerryTsao-->
+<!--Adviser: @zhang_yixin13-->
 
 The ArkUI that uses the JavaScript-based web-like development paradigm supports custom components for you to extend existing components. You can encapsulate custom private attributes and events into new components to reuse them multiple times in your project. This also improves code readability. The following is an example:
 
@@ -85,7 +90,7 @@ The ArkUI that uses the JavaScript-based web-like development paradigm supports 
   // xxx.js
    export default { 
      data: {
-       text: 'Start'
+       text: 'Start',
        isShow: false,
      },
      textClicked (e) {

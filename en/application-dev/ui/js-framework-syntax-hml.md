@@ -199,7 +199,7 @@ Binding for event capturing covers the following:
   ```js
   // xxx.js
   export default {
-      touchstartfuc: function(e) {
+      touchstartfunc: function(e) {
           console.log(e);
       },
   }

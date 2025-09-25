@@ -212,7 +212,6 @@ Switch between the button types for different types of text.
   justify-content: center;
   margin-left: 30px;
   margin-right: 30px;
-  justify-content: space-around;
 }
 .input-text {
   height: 80px;
@@ -239,7 +238,7 @@ Switch between the button types for different types of text.
   color: #ffffff;
 }
 .color-3 {
-  background-color: #0598db;;
+  background-color: #0598db;
 }
 ```
 

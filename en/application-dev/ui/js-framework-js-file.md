@@ -3,7 +3,7 @@
 
 ## Application Lifecycle
 
-You can customize the [lifecycle](../ui/js-framework-lifecycle.md) implementation logic on an application-by-application basis in app.js. The following example only prints the corresponding logs in the lifecycle function:
+You can customize the [lifecycle](js-framework-lifecycle.md) implementation logic on an application-by-application basis in app.js. The following example only prints the corresponding logs in the lifecycle function:
 
 ```js
 // app.js
@@ -30,7 +30,7 @@ The following is a sample code snippet:
 // app.js
 export default {
     data: {
-        test: "by getAPP"
+        test: "by getApp"
     },
     onCreate() {
         console.info('AceApplication onCreate');
@@ -38,9 +38,8 @@ export default {
     onDestroy() {
         console.info('AceApplication onDestroy');
     },
-};
+}
 ```
-
 
 ```js
 // test.js Customize the logic code.

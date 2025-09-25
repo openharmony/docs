@@ -1,5 +1,10 @@
 # Animation with the transform Attribute
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 Set the transform attribute for component rotation, scaling, translation, and skewing.
 
@@ -350,7 +355,7 @@ Set the scaling values for the x-axis, y-axis, and z-axis in **scale3d** to impl
 .ripple{
     margin-top: 400px;
     margin-left: 40%;
-    position: absolute;  z-index: 0;
+    position: absolute; z-index: 0;
     width: 100px;
     height: 100px;
     border-radius: 50px;

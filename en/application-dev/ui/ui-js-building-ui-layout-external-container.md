@@ -1,5 +1,10 @@
 # Adding a Container
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @fenglinbailu-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 To assemble the basic elements of a page, you need a container component. The &lt;div&gt;, &lt;list&gt;, and &lt;tabs&gt; components are commonly used for laying out page elements. You can use &lt;div&gt; as the container in a page with simple layout. &lt;div&gt; supports a variety of child components required to build the page.
 

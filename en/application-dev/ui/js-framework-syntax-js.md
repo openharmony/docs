@@ -1,4 +1,10 @@
 # JavaScript
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @sunfei2021-->
+<!--Designer: @sunfei2021-->
+<!--Tester: @fredyuan912-->
+<!--Adviser: @HelloCrease-->
 
 
 You can use a .js file in the ECMAScript compliant JavaScript language to define the service logic of an HML page. With dynamic typing, JavaScript can make your application more expressive with a flexible design. The following describes the JavaScript compilation and running.
@@ -54,7 +60,6 @@ The ES6 syntax is supported.
   };
   ```
 
-  
   ```js
   // index.js
   export default {
@@ -148,8 +153,10 @@ The ES6 syntax is supported.
 
   
   ```js
-  this.$rootElement().scrollTo({position: 0})
-  this.$rootElement().scrollTo({id: 'id', duration: 200, timingFunction: 'ease-in', complete: ()=>void})
+  this.$rootElement().scrollTo({ position: 0 });
+  this.$rootElement().scrollTo({ id: 'id', duration: 200, timingFunction: 'ease-in', complete: () => {
+      console.info('Scroll completed');
+  } });
   ```
 
 
@@ -177,9 +184,9 @@ The ES6 syntax is supported.
      handleClick() {
        const animator = this.$refs.animator; // Obtain the DOM element whose $refs attribute is animator.
        const state = animator.getState();
-       if (state === 'paused') {
+       if (state === 'Paused') {
          animator.resume();
-       } else if (state === 'stopped') {
+       } else if (state === 'Stopped') {
          animator.start();
        } else {
          animator.pause();
@@ -210,9 +217,9 @@ The ES6 syntax is supported.
      handleClick() {
        const animator = this.$element('animator'); // Obtain the DOM element whose ID is animator.
        const state = animator.getState();
-       if (state === 'paused') {
+       if (state === 'Paused') {
          animator.resume();
-       } else if (state === 'stopped') {
+       } else if (state === 'Stopped') {
          animator.start();
        } else {
          animator.pause();
@@ -283,8 +290,8 @@ Customize the child component.
 ```html
 <!-- child.hml -->
 <div class="item" onclick="textClicked">
-  <text class="text-style" onclick="childClicked">Child component clicked</text>
-  <text class="text-style" if="{{isShow}}">Hello child component</text>
+  <text class="text-style" onclick="childClicked">child component clicked</text>
+  <text class="text-style" if="{{isShow}}">hello child component</text>
 </div>
 ```
 

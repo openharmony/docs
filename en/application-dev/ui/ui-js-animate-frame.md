@@ -1,5 +1,10 @@
 # Animation Frame
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @yangfan229-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 ## Requesting an Animation Frame
 
@@ -85,7 +90,7 @@ export default {
         this.animation = requestAnimationFrame(this.step);
       }
       if (this.left == 250 || this.left == 0) {
-        this.flag = !this.flag
+        this.flag = !this.flag;
      }
     },
     onDestroy() {
@@ -175,7 +180,7 @@ export default {
       this.animation = requestAnimationFrame(this.step);
     }
     if (this.left == 250 || this.left == 0) {
-      this.flag = !this.flag
+      this.flag = !this.flag;
     }
   },
   onDestroy() {

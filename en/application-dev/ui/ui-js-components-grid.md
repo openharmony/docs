@@ -1,5 +1,10 @@
 # Grid Layout
-
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @zju_ljz-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
 The **\<grid-container>** component is the root container of the grid layout. Within the root container, you can use **\<grid-row>** and **\<grid-col>** for the grid layout. For details, see [Grid-container](../reference/apis-arkui/arkui-js/js-components-grid-container.md).
 
@@ -113,7 +118,7 @@ export default {
 
 After adding a **\<grid-row>** child component to **\<grid-container>**, add a **\<grid-col>** child component to **\<grid-row>** to form a layout.
 
-
+<!--code_no_check-->
 ```html
 <!-- index.hml -->
 <div class="container">
