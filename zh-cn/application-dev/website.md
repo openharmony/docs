@@ -2,7 +2,7 @@
 - reference文件夹<!--reference-fold-->
   - 原子化服务批量添加标签<!--reference-atomic-tag-->
     - [AtomicServiceNavigation](onlyfortest/reference/apis-arkdata/ohos-atomicservice-AtomicServiceNavigation.md)
-  - C APIC API新增版本筛选标签需求（api-info起始标签）<!--reference-fold--0624-->
+  - C APIC API新增版本筛选标签需求（api-info起始标签）<!--reference-fold-0624-->
     - [@ohos.data.dataAbility (DataAbility谓词)](onlyfortest/reference/apis-arkdata/js-apis-data-ability.md)
     - [以errorcode-*开头文档](onlyfortest/reference/apis-media-kit/errorcode-media.md)
     - [SplitLayout](onlyfortest/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SplitLayout.md)
@@ -85,7 +85,7 @@
       - [测试错误码标签](onlyfortest/reference/apis-mindspore-lite-kit/errorcode-i18n.md)
     - C API<!--reference-big-file-c-->
       - AI<!--reference-big-file-c-ai-->
-        - 模块<!--reference-c-ai-module-->
+        - 模块<!--reference-big-file-c-ai-module-->
           - [组件描述](onlyfortest/reference/apis-arkgraphics2d/arkts-apis-graphics-drawing.md)
           - [MindSpore](onlyfortest/reference/apis-mindspore-lite-kit/capi-_mind_spore.md)
         - 头文件<!--reference-big-file-c-ai-head-file-->
