@@ -1586,7 +1586,7 @@ export default class EntryAbility extends UIAbility {
 | abilityId | number   | 否    | 否    | UIAbility Id。         |
 | wantAgentBundleName | string   | 否    | 否    |  [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) 配置的包名。WantAgent为通知参数，用于指定点击长时任务通知后跳转的界面，在申请长时任务时作为参数传入。        |
 | wantAgentAbilityName | string   | 否    | 否    |  [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) 配置的ability名称。WantAgent为通知参数，用于指定点击长时任务通知后跳转的界面，在申请长时任务时作为参数传入。 |
-| suspendState | boolean   | 否    | 否    | 申请的长时任务是否处于暂停状态。 |
+| suspendState | boolean   | 否    | 否    | 申请的长时任务是否处于暂停状态。true表示处于暂停状态，false表示处于激活状态。|
 
 ## ContinuousTaskRequest<sup>21+</sup>
 
