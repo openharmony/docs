@@ -51,7 +51,7 @@
 1. 导入机械体设备管理模块。
 
     ```ts
-    import mechanicManager from '@kit.MechanicKit';
+    import { mechanicManager } from '@kit.MechanicKit';
     ```
 
 2. 获取已连接的机械体设备列表。
