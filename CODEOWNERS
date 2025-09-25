@@ -461,6 +461,7 @@ zh-cn/application-dev/web/web-geolocation-permission.md @handyohos @glzt2l @Hell
 zh-cn/application-dev/web/web-gesture.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
 zh-cn/application-dev/web/web-nested-scrolling.md @zhufenghao @glzt2l @HelloShuo @jerrywangxmu
 zh-cn/application-dev/web/web-offline-mode.md @qianlf @glzt2l @HelloShuo @xzc_astile
+zh-cn/application-dev/web/web-native-messaging.md @libing23232323 @glzt2l @HelloShuo @zhu-sheng-le
 zh-cn/application-dev/web/web-open-in-new-window.md @libing23232323 @glzt2l @HelloShuo @zhu-sheng-le
 zh-cn/application-dev/web/web-pdf-preview.md @qiu-gongkai @glzt2l @HelloShuo @d0ub1eh
 zh-cn/application-dev/web/web-picture-in-picture.md @qiu-gongkai @glzt2l @HelloShuo @d0ub1eh
@@ -1586,6 +1587,9 @@ zh-cn/application-dev/reference/apis-arkweb/capi-web-arkweb-controllerapi.md @ct
 zh-cn/application-dev/reference/apis-arkweb/capi-web.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
 zh-cn/application-dev/reference/apis-arkweb/errorcode-webview.md @ctqctq99 @glzt2l @HelloShuo @yp99ustc
 zh-cn/application-dev/reference/apis-arkweb/arkts-apis-netErrorList.md @aohui @glzt2l @HelloShuo
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-web-webNativeMessagingExtensionAbility.md @libing23232323 @glzt2l @HelloShuo @zhu-sheng-le
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-web-webNativeMessagingExtensionContext.md @libing23232323 @glzt2l @HelloShuo @zhu-sheng-le
+zh-cn/application-dev/reference/apis-arkweb/arkts-apis-web-webNativeMessagingExtensionManager.md @libing23232323 @glzt2l @HelloShuo @zhu-sheng-le
 zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-AdsBlockManager.md @aohui @glzt2l @HelloShuo
 zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-BackForwardCacheOptions.md @aohui @glzt2l @HelloShuo
 zh-cn/application-dev/reference/apis-arkweb/arkts-apis-webview-BackForwardCacheSupportedFeatures.md @aohui @glzt2l @HelloShuo
