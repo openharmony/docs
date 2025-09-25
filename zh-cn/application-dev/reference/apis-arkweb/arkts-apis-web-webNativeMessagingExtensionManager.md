@@ -113,13 +113,13 @@ export default class EntryAbility extends UIAbility {
 
         let callback: webNativeMessagingExtensionManager.WebExtensionConnectionCallback = {
             onConnect(connection) {
-                console.log('onConnect, connectionId:' + connection.connectionId);
+                console.info('onConnect, connectionId:' + connection.connectionId);
             },
             onDisconnect(connection) {
-                console.log('onDisconnect');
+                console.info('onDisconnect');
             },
             onFailed(code) {
-                console.log('onFailed, code:' + code);
+                console.info('onFailed, code:' + code);
             }
         };
 
@@ -178,7 +178,7 @@ export default class EntryAbility extends UIAbility {
         let connectionId = 1;
         // 假设之前已连接并获得connectionId
         await webNativeMessagingExtensionManager.disconnectNative(connectionId).then(() => {
-            console.log('disconnectNative success');
+            console.info('disconnectNative success');
         })
     } catch (err) {
       // 处理入参错误异常

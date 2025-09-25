@@ -85,7 +85,7 @@ export class MyWebNativeMessagingExtension extends WebNativeMessagingExtensionAb
     try {
         const context = this.context; // 获取 WebNativeMessagingExtensionContext 实例
         context.startAbility(abilityWant);
-        console.log('Ability started successfully');
+        console.info('Ability started successfully');
     } catch (err) {
         console.error(`Failed to start ability. Code: ${err.code}, Message: ${err.message}`);
     }
@@ -128,7 +128,7 @@ export class MyWebNativeMessagingExtension extends WebNativeMessagingExtensionAb
     try {
         const context = this.context; // 获取 WebNativeMessagingExtensionContext 实例
         context.terminateSelf();
-        console.log('Extension terminated successfully');
+        console.info('Extension terminated successfully');
     } catch (err) {
         console.error(`Failed to terminate extension. Code: ${err.code}, Message: ${err.message}`);
     }
@@ -177,7 +177,7 @@ export class MyWebNativeMessagingExtension extends WebNativeMessagingExtensionAb
     try {
         const context = this.context;// 获取 WebNativeMessagingExtensionContext 实例
         context.stopNativeConnection(CONNECTION_ID);
-        console.log('Native connection stopped successfully');
+        console.info('Native connection stopped successfully');
     } catch (err) {
         console.error(`Failed to stop native connection. Code: ${err.code}, Message: ${err.message}`);
     }
