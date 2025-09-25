@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 You can use the **ImageReceiver** class to obtain the surface ID of a component, read the latest image or the next image, and release ImageReceiver instances. For details about the sample code of camera preview implemented with the use of the camera API, see [Secondary Processing of Preview Streams (C/C++)](../camera/native-camera-preview-imageReceiver.md).
 
@@ -48,7 +49,7 @@ static OH_ImageReceiverOptions* options = nullptr;
 static void OnCallback(OH_ImageReceiverNative *receiver)
 {
     // Callback for processing the received image data.
-    OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer avaliable.");
+    OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer available.");
 
     // Read the next image object of OH_ImageReceiverNative.
     OH_ImageNative* image = nullptr;
@@ -158,7 +159,7 @@ static void ImageReceiverNativeCTest()
         OH_ImageReceiverNative_Release(receiver);
         return;
     }
-    OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest get image receiver surfaceID: %{public}llu.", surfaceID);
+    OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest get image receiver surfaceID: %{public}lu.", surfaceID);
 
     // Read the size attribute of OH_ImageReceiverNative.
     errCode = OH_ImageReceiverNative_GetSize(receiver, &imgSizeRead);

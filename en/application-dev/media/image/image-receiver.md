@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 You can use the **ImageReceiver** class to obtain the surface ID of a component, read the latest image or the next image, and release ImageReceiver instances.
 
@@ -23,10 +24,11 @@ Create an ImageReceiver object, obtain the surface ID to create a preview stream
 
     ```ts
     import { image } from '@kit.ImageKit';
+
     let imageWidth: number = 1920; // Use the width in the profile size supported by the device.
     let imageHeight: number = 1080; // Use the height in the profile size supported by the device.
 
-    async function initImageReceiver():Promise<void>{
+    async function initImageReceiver(): Promise<void> {
       // Create an ImageReceiver object. The parameters in createImageReceiver do not have any impact on the received data.
       let size: image.Size = { width: imageWidth, height: imageHeight };
       let imageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
@@ -92,7 +94,6 @@ Create an ImageReceiver object, obtain the surface ID to create a preview stream
       })
     }
     ```
-
 
     The following methods are available for parsing the image buffer data by using [image.Component](../../reference/apis-image-kit/arkts-apis-image-i.md#component9).
 

@@ -174,7 +174,7 @@ struct Parent {
         .onClick(() => {
           this.newData.data = new DateClass('2023-07-07');
         })
-      Button('ViewB: this.newData = new NewDate(new DateClass('2023-08-20'))')
+      Button(`ViewB: this.newData = new NewDate(new DateClass('2023-08-20'))`)
         .onClick(() => {
           this.newData = new NewDate(new DateClass('2023-08-20'));
         })
@@ -347,94 +347,6 @@ struct Parent {
 
 
 ## 使用场景
-
-### 继承对象
-
-```ts
-@Observed
-class Animal {
-  name: string;
-  age: number;
-
-  constructor(name: string, age: number) {
-    this.name = name;
-    this.age = age;
-  }
-}
-
-@Observed
-class Dog extends Animal {
-  kinds: string;
-
-  constructor(name: string, age: number, kinds: string) {
-    super(name, age);
-    this.kinds = kinds;
-  }
-}
-
-@Entry
-@Component
-struct Index {
-  @State dog: Dog = new Dog('Molly', 2, 'Husky');
-
-  @Styles
-  pressedStyles() {
-    .backgroundColor('#ffd5d5d5')
-  }
-
-  @Styles
-  normalStyles() {
-    .backgroundColor('#ffffff')
-  }
-
-  build() {
-    Column() {
-      Text(`${this.dog.name}`)
-        .width(320)
-        .margin(10)
-        .fontSize(30)
-        .textAlign(TextAlign.Center)
-        .stateStyles({
-          pressed: this.pressedStyles,
-          normal: this.normalStyles
-        })
-        .onClick(() => {
-          this.dog.name = 'DouDou';
-        })
-
-      Text(`${this.dog.age}`)
-        .width(320)
-        .margin(10)
-        .fontSize(30)
-        .textAlign(TextAlign.Center)
-        .stateStyles({
-          pressed: this.pressedStyles,
-          normal: this.normalStyles
-        })
-        .onClick(() => {
-          this.dog.age = 3;
-        })
-
-      Text(`${this.dog.kinds}`)
-        .width(320)
-        .margin(10)
-        .fontSize(30)
-        .textAlign(TextAlign.Center)
-        .stateStyles({
-          pressed: this.pressedStyles,
-          normal: this.normalStyles
-        })
-        .onClick(() => {
-          this.dog.kinds = 'Samoyed';
-        })
-    }
-  }
-}
-```
-
-![Observed_ObjectLink_inheritance_object](figures/Observed_ObjectLink_inheritance_object.gif)
-
-上述示例中，Dog类中的部分属性（name、age）继承自Animal类，直接修改\@State装饰的变量dog中的属性name和age可以正常触发UI刷新。
 
 ### 嵌套对象
 

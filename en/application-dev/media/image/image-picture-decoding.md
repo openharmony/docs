@@ -2,10 +2,11 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
-Image decoding refers to the process of decoding an image in a supported format (JPEG and HEIF currently) into a [picture](image-overview.md).  
+Image decoding refers to the process of decoding an image in a supported format (JPEG and HEIF currently) into a [picture](image-overview.md#basic-concepts).  
 
 ## How to Develop
 
@@ -49,18 +50,18 @@ Read the [API reference](../../reference/apis-image-kit/arkts-apis-image-ImageSo
       import { resourceManager } from '@kit.LocalizationKit';
 
       async function getFileBuffer(context: Context): Promise<ArrayBuffer | undefined> {
-         try {
-            const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
-            // Obtain the resource file content. The Uint8Array is returned.
-            const fileData: Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
-            console.info('Successfully got RawFileContent');
-            // Convert the array to an ArrayBuffer and return the ArrayBuffer.
-            const buffer: ArrayBuffer = fileData.buffer.slice(0);
-            return buffer;
-         } catch (error) {
-            console.error("Failed to get RawFileContent");
-            return undefined;
-         }
+        try {
+          const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+          // Obtain the resource file content. The Uint8Array is returned.
+          const fileData: Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
+          console.info('Successfully got RawFileContent');
+          // Convert the array to an ArrayBuffer and return the ArrayBuffer.
+          const buffer: ArrayBuffer = fileData.buffer.slice(0);
+          return buffer;
+        } catch (error) {
+          console.error("Failed to get RawFileContent");
+          return undefined;
+        }
       }
       ```
 
@@ -69,15 +70,15 @@ Read the [API reference](../../reference/apis-image-kit/arkts-apis-image-ImageSo
       import { resourceManager } from '@kit.LocalizationKit';
 
       async function getRawFd(context: Context): Promise<resourceManager.RawFileDescriptor | undefined> {
-         try {
-            const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
-            const rawFileDescriptor: resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
-            console.info('Successfully got RawFileDescriptor');
-            return rawFileDescriptor;
-         } catch (error) {
-            console.error('Failed to get RawFileDescriptor:');
-            return undefined;
-         }
+        try {
+          const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+          const rawFileDescriptor: resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
+          console.info('Successfully got RawFileDescriptor');
+          return rawFileDescriptor;
+        } catch (error) {
+          console.error('Failed to get RawFileDescriptor:');
+          return undefined;
+        }
       }
       ```
 
@@ -115,35 +116,36 @@ Read the [API reference](../../reference/apis-image-kit/arkts-apis-image-ImageSo
       ```ts
       import { BusinessError } from '@kit.BasicServicesKit';
       import { image } from '@kit.ImageKit';
+
       // Create an ImageSource object. Select a proper method in step 3 to replace the preceding code.
-      let fd : number = 0;
-      let imageSource : image.ImageSource = image.createImageSource(fd);
+      let fd: number = 0;
+      let imageSource: image.ImageSource = image.createImageSource(fd);
       // Set the decoding options.
       let options: image.DecodingOptionsForPicture = {
-         desiredAuxiliaryPictures: [image.AuxiliaryPictureType.GAINMAP] // GAINMAP indicates the type of the auxiliary picture to be decoded.
+        desiredAuxiliaryPictures: [image.AuxiliaryPictureType.GAINMAP] // GAINMAP indicates the type of the auxiliary picture to be decoded.
       };
       // Create a Picture instance.
       imageSource.createPicture(options).then((picture: image.Picture) => {
-         console.info("Create picture succeeded.");
-         let type: image.AuxiliaryPictureType = image.AuxiliaryPictureType.GAINMAP;
-         let auxPicture: image.AuxiliaryPicture | null = picture.getAuxiliaryPicture(type);
-         // Obtain the information of the auxiliary picture.
-         if(auxPicture != null) {
-            let auxInfo: image.AuxiliaryPictureInfo = auxPicture.getAuxiliaryPictureInfo();
-            console.info('GetAuxiliaryPictureInfo Type: ' + auxInfo.auxiliaryPictureType +
-               ' height: ' + auxInfo.size.height + ' width: ' + auxInfo.size.width +
-               ' rowStride: ' +  auxInfo.rowStride +  ' pixelFormat: ' + auxInfo.pixelFormat +
-               ' colorSpace: ' +  auxInfo.colorSpace);
-            // Read data of the auxiliary picture and write the data to an ArrayBuffer.
-            auxPicture.readPixelsToBuffer().then((pixelsBuffer: ArrayBuffer) => {
-               console.info('Read pixels to buffer success.');
-            }).catch((error: BusinessError) => {
-               console.error('Read pixels to buffer failed error.code: ' + JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
-            });
-            auxPicture.release();
-         }
+        console.info("Create picture succeeded.");
+        let type: image.AuxiliaryPictureType = image.AuxiliaryPictureType.GAINMAP;
+        let auxPicture: image.AuxiliaryPicture | null = picture.getAuxiliaryPicture(type);
+        // Obtain the information of the auxiliary picture.
+        if (auxPicture != null) {
+          let auxInfo: image.AuxiliaryPictureInfo = auxPicture.getAuxiliaryPictureInfo();
+          console.info('GetAuxiliaryPictureInfo Type: ' + auxInfo.auxiliaryPictureType +
+            ' height: ' + auxInfo.size.height + ' width: ' + auxInfo.size.width +
+            ' rowStride: ' + auxInfo.rowStride + ' pixelFormat: ' + auxInfo.pixelFormat +
+            ' colorSpace: ' + auxInfo.colorSpace);
+          // Read data of the auxiliary picture and write the data to an ArrayBuffer.
+          auxPicture.readPixelsToBuffer().then((pixelsBuffer: ArrayBuffer) => {
+            console.info('Read pixels to buffer success.');
+          }).catch((error: BusinessError) => {
+            console.error(`Read pixels to buffer failed, error.code: ${error.code}, error.message: ${error.message}`);
+          });
+          auxPicture.release();
+        }
       }).catch((err: BusinessError) => {
-         console.error("Create picture failed.");
+        console.error("Create picture failed.");
       });
       ```
 
@@ -151,5 +153,6 @@ Read the [API reference](../../reference/apis-image-kit/arkts-apis-image-ImageSo
 
    Ensure that the asynchronous operations of the Picture instance have finished executing. After these variables are no longer needed, you can manually call the APIs below to release it.
    ```ts
-   picture.release();
+   // Ensure that the Picture instance is no longer needed before releasing it.
+   // picture.release();
    ```

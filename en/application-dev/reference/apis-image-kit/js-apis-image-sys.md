@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 The module provides APIs for image processing. You can use the APIs to create a PixelMap object with specified properties or read image pixel data (even in an area).
 
@@ -16,12 +17,16 @@ The module provides APIs for image processing. You can use the APIs to create a 
 ## Modules to Import
 
 ```ts
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 ```
 
 ## DecodingOptions<sup>12+</sup>
 
 Describes the image decoding options.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System API**: This is a system API.
 
@@ -57,14 +62,14 @@ Creates a Picture object based on an HDR PixelMap and an SDR PixelMap. The syste
 
 | Name      | Type               | Mandatory| Description            |
 | ------------ | ------------------- | ---- | ---------------- |
-| hdrPixelmap | [PixelMap](arkts-apis-image-PixelMap.md#interface-pixelmap) | Yes  | HDR PixelMap, with 16-bit or 10-bit depth, in FP16/RGBA1010102/YCBCR_P010 format, and BT2020_HLG color space.|
-| sdrPixelmap | [PixelMap](arkts-apis-image-PixelMap.md#interface-pixelmap) | Yes  | SDR PixelMap, with 8-bit depth, in RGBA8888/NV21 format, and P3 color space.|
+| hdrPixelMap | [PixelMap](arkts-apis-image-PixelMap.md) | Yes  | HDR PixelMap, with 16-bit or 10-bit depth, in FP16/RGBA1010102/YCBCR_P010 format, and BT2020_HLG color space.|
+| sdrPixelMap | [PixelMap](arkts-apis-image-PixelMap.md) | Yes  | SDR PixelMap, with 8-bit depth, in RGBA8888/NV21 format, and P3 color space.|
 
 **Returns**
 
 | Type              | Description             |
 | ------------------ | ----------------- |
-|Promise\<[Picture](arkts-apis-image-Picture.md#interface-picture)> | Picture object that contains the SDR PixelMap and gainmap, both in RGBA8888 format.|
+|Promise\<[Picture](arkts-apis-image-Picture.md)> | Picture object that contains the SDR PixelMap and gainmap, both in RGBA8888 format.|
 
 **Error codes**
 
@@ -77,9 +82,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import image from '@ohos.multimedia.image';
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function CreatePictureTest(context: Context) {
   const resourceMgr = context.resourceManager;
@@ -101,12 +105,12 @@ async function CreatePictureTest(context: Context) {
   } else {
     console.error('Create picture failed');
   }
-  const imagePackerApi = image.createImagePacker();
+  const imagePackerObj = image.createImagePacker();
   let packOpts : image.PackingOption = { format : "image/jpeg", quality: 98};
   packOpts.desiredDynamicRange = image.PackingDynamicRange.AUTO;
   const path: string = context.filesDir + "/hdr-test.jpg";
   let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  imagePackerApi.packToFile(picture, file.fd, packOpts).then(() => {
+  imagePackerObj.packToFile(picture, file.fd, packOpts).then(() => {
   }).catch((error : BusinessError) => {
     console.error('Failed to pack the image. And the error is: ' + error);
   })

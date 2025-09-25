@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 With Image_NativeModule, you can create and release ImagePacker instances and encode picture objects.
 
@@ -33,12 +34,6 @@ After an ImagePacker instance is created and encoding parameters are specified, 
 
 ```c++
 #include <hilog/log.h>
-#include <bits/alltypes.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <sstream>
 #include <multimedia/image_framework/image/image_native.h>
 #include <multimedia/image_framework/image/image_packer_native.h>
 #include <multimedia/image_framework/image/image_source_native.h>

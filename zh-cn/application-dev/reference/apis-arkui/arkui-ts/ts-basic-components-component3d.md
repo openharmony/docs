@@ -175,7 +175,7 @@ renderWidth(value: Dimension)
 
 | 参数名 | 类型                                 | 必填 | 说明                 |
 | ------ | ------------------------------------ | ---- | -------------------- |
-| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的宽度，当前仅支持设置Dimension.Percetage，取值范围是[0, 100%]。 |
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的宽度，当前仅支持设置Dimension.Percentage，取值范围是[0, 100%]。 |
 
 ### renderHeight
 
@@ -195,7 +195,7 @@ renderHeight(value: Dimension)
 
 | 参数名 | 类型                                 | 必填 | 说明                 |
 | ------ | ------------------------------------ | ---- | -------------------- |
-| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的长度，当前仅支持设置Dimension.Percetage，取值范围是[0, 100%]。 |
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 3D渲染分辨率的长度，当前仅支持设置Dimension.Percentage，取值范围是[0, 100%]。 |
 
 ## 事件
 
@@ -266,7 +266,7 @@ struct Index {
   @State timeDelta: number[] = [1.0, 2.0];
   create() {
     this.backAnimator.onFinish = () => {
-      console.log('backAnimator onfinish');
+      console.info('backAnimator onfinish');
     }
     this.backAnimator.onFrame = (value: number) => {
       TickFrame();

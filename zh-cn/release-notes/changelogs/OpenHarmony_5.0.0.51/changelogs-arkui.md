@@ -222,23 +222,19 @@ ImageAttributeModifier的colorFilter接口。
 已知bug修复，无需适配。使用ImageAttributeModifier的colorFilter接口时，已经支持new方式创建ColorFilter对象传入接口中。示例如下:
 
 ```ts
-class ColorFilterModifier implements AttributeModifier<ImageAttribute> {
-  private colorFilter: ColorFilter | undefined = undefined
+import { ImageModifier } from '@kit.ArkUI'
 
-  constructor(colorFilter: ColorFilter) {
-    this.colorFilter = colorFilter
-  }
-
+class SelfImageModifier extends ImageModifier {
   applyNormalAttribute(instance: ImageAttribute): void {
-    instance.colorFilter(this.colorFilter)
+    let colorFilter = new ColorFilter([0.5, 0.5, 0.5, 0, 0.1, 0.2, 0.2, 0.2, 0, 0.1, 0.1, 0.1, 0.1, 0, 0.1, 0.8, 0.8, 0.8, 0, 0.3])
+    instance.colorFilter(colorFilter)
   }
 }
-
 
 @Entry
 @Component
 struct ColorFilters {
-  @State modifier: ColorFilterModifier = new ColorFilterModifier(new ColorFilter([0.1, 0.1, 0.1, 0.1, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.8, 0,]))
+  @State modifier: ImageModifier = new SelfImageModifier()
 
   build() {
     Column() {

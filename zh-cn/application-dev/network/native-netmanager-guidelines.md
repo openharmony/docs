@@ -68,146 +68,146 @@ libnet_connection.so
 
 1. 在源文件中编写调用该API的代码，并将结果封装成一个`napi_value`类型的值返回给Node.js环境。
 
-```C
-// Get the execution results of the default network connection.
-static napi_value GetDefaultNet(napi_env env, napi_callback_info info)
-{
-    size_t argc = 1;
-    napi_value args[1] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    int32_t param;
-    napi_get_value_int32(env, args[0], &param);
+    ```C
+    // Get the execution results of the default network connection.
+    static napi_value GetDefaultNet(napi_env env, napi_callback_info info)
+    {
+        size_t argc = 1;
+        napi_value args[1] = {nullptr};
+        napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+        int32_t param;
+        napi_get_value_int32(env, args[0], &param);
 
-    NetConn_NetHandle netHandle;
-    if (param== 0) {
-        param= OH_NetConn_GetDefaultNet(NULL);
-    } else {
-        param= OH_NetConn_GetDefaultNet(&netHandle);
+        NetConn_NetHandle netHandle;
+        if (param== 0) {
+            param= OH_NetConn_GetDefaultNet(NULL);
+        } else {
+            param= OH_NetConn_GetDefaultNet(&netHandle);
+        }
+        
+        napi_value result;
+        napi_create_int32(env, param, &result);
+        return result;
     }
-    
-    napi_value result;
-    napi_create_int32(env, param, &result);
-    return result;
-}
 
-// Get the ID of the default network connection.
-static napi_value NetId(napi_env env, napi_callback_info info) {
-    int32_t defaultNetId;
+    // Get the ID of the default network connection.
+    static napi_value NetId(napi_env env, napi_callback_info info) {
+        int32_t defaultNetId;
 
-    NetConn_NetHandle netHandle;
-    OH_NetConn_GetDefaultNet(&netHandle);
-    defaultNetId = netHandle.netId; // Get the default netId
+        NetConn_NetHandle netHandle;
+        OH_NetConn_GetDefaultNet(&netHandle);
+        defaultNetId = netHandle.netId; // Get the default netId
 
-    napi_value result;
-    napi_create_int32(env, defaultNetId, &result);
+        napi_value result;
+        napi_create_int32(env, defaultNetId, &result);
 
-    return result;
-}
-```
+        return result;
+    }
+    ```
 
-简要说明：这两个函数用于获取系统默认网络连接的相关信息。其中，GetDefaultNet是接收ArkTs端传入的测试参数，返回调用接口后对应的返回值，param可以自行调整；如果返回值为0，代表获取成功，401代表参数错误，201代表没有权限；而NetId函数则用于获取默认网络连接的ID。这些信息可以用于进一步的网络操作。
+    简要说明：这两个函数用于获取系统默认网络连接的相关信息。其中，GetDefaultNet是接收ArkTs端传入的测试参数，返回调用接口后对应的返回值，param可以自行调整；如果返回值为0，代表获取成功，401代表参数错误，201代表没有权限；而NetId函数则用于获取默认网络连接的ID。这些信息可以用于进一步的网络操作。
 
 
 2. 将通过napi封装好的`napi_value`类型对象初始化导出，通过外部函数接口，将以上两个函数暴露给JavaScript使用。
 
-```C
-EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports)
-{
-    // Information used to describe an exported attribute. Two properties are defined here: `GetDefaultNet` and `NetId`.
-    napi_property_descriptor desc[] = {
-        {"GetDefaultNet", nullptr, GetDefaultNet, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"NetId", nullptr, NetId, nullptr, nullptr, nullptr, napi_default, nullptr}};
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-    return exports;
-}
-EXTERN_C_END
-```
+    ```C
+    EXTERN_C_START
+    static napi_value Init(napi_env env, napi_value exports)
+    {
+        // Information used to describe an exported attribute. Two properties are defined here: `GetDefaultNet` and `NetId`.
+        napi_property_descriptor desc[] = {
+            {"GetDefaultNet", nullptr, GetDefaultNet, nullptr, nullptr, nullptr, napi_default, nullptr},
+            {"NetId", nullptr, NetId, nullptr, nullptr, nullptr, napi_default, nullptr}};
+        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+        return exports;
+    }
+    EXTERN_C_END
+    ```
 
 3. 将上一步中初始化成功的对象通过`RegisterEntryModule`函数，使用`napi_module_register`函数将模块注册到Node.js中。
 
-```C
-static napi_module demoModule = {
-    .nm_version = 1,
-    .nm_flags = 0,
-    .nm_filename = nullptr,
-    .nm_register_func = Init,
-    .nm_modname = "entry",
-    .nm_priv = ((void*)0),
-    .reserved = { 0 },
-};
+    ```C
+    static napi_module demoModule = {
+        .nm_version = 1,
+        .nm_flags = 0,
+        .nm_filename = nullptr,
+        .nm_register_func = Init,
+        .nm_modname = "entry",
+        .nm_priv = ((void*)0),
+        .reserved = { 0 },
+    };
 
-extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
-{
-    napi_module_register(&demoModule);
-}
-```
+    extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+    {
+        napi_module_register(&demoModule);
+    }
+    ```
 
 4. 在工程的index.d.ts文件中定义两个函数的类型。
 
-- GetDefaultNet函数接受一个数字参数code，返回一个数字类型的值。
-- NetId函数不接受参数，返回一个数字类型的值。
+    - GetDefaultNet函数接受一个数字参数code，返回一个数字类型的值。
+    - NetId函数不接受参数，返回一个数字类型的值。
 
-```ts
-export const GetDefaultNet: (code: number) => number;
-export const NetId: () => number;
-```
+    ```ts
+    export const GetDefaultNet: (code: number) => number;
+    export const NetId: () => number;
+    ```
 
 5. 在index.ets文件中对上述封装好的接口进行调用。
 
-```ts
-import testNetManager from 'libentry.so';
+    ```ts
+    import testNetManager from 'libentry.so';
 
-@Entry
-@Component
-struct Index {
-  @State message: string = '';
+    @Entry
+    @Component
+    struct Index {
+      @State message: string = '';
 
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        Button('GetDefaultNet').onClick(event => {
-          this.GetDefaultNet();
-        })
-        Button('CodeNumber').onClick(event =>{
-          this.CodeNumber();
-        })
+      build() {
+        Row() {
+          Column() {
+            Text(this.message)
+              .fontSize(50)
+              .fontWeight(FontWeight.Bold)
+            Button('GetDefaultNet').onClick(event => {
+              this.GetDefaultNet();
+            })
+            Button('CodeNumber').onClick(event =>{
+              this.CodeNumber();
+            })
+          }
+          .width('100%')
+        }
+        .height('100%')
       }
-      .width('100%')
+
+      GetDefaultNet() {
+        let netid = testNetManager.NetId();
+        console.log("The defaultNetId is [" + netid + "]");
+      }
+
+      CodeNumber() {
+        let testParam = 0;
+        let codeNumber = testNetManager.GetDefaultNet(testParam);
+        if (codeNumber === 0) {
+          console.log("Test success. [" + codeNumber + "]");
+        } else if (codeNumber === 201) {
+          console.log("Missing permissions. [" + codeNumber + "]");
+        } else if (codeNumber === 401) {
+          console.log("Parameter error. [" + codeNumber + "]");
+        }
+      }
     }
-    .height('100%')
-  }
 
-  GetDefaultNet() {
-    let netid = testNetManager.NetId();
-    console.log("The defaultNetId is [" + netid + "]");
-  }
-
-  CodeNumber() {
-    let testParam = 0;
-    let codeNumber = testNetManager.GetDefaultNet(testParam);
-    if (codeNumber === 0) {
-      console.log("Test success. [" + codeNumber + "]");
-    } else if (codeNumber === 201) {
-      console.log("Missing permissions. [" + codeNumber + "]");
-    } else if (codeNumber === 401) {
-      console.log("Parameter error. [" + codeNumber + "]");
-    }
-  }
-}
-
-```
+    ```
 
 6. 配置`CMakeLists.txt`，本模块需要用到的共享库是`libnet_connection.so`，在工程自动生成的`CMakeLists.txt`中的`target_link_libraries`中添加此共享库。
 
-> **注意：**
->
-> 如图所示，在`add_library`中的`entry`是工程自动生成的`modename`。若要做修改，需和步骤3中`.nm_modname`保持一致。
+    > **注意：**
+    >
+    > 如图所示，在`add_library`中的`entry`是工程自动生成的`modename`。若要做修改，需和步骤3中`.nm_modname`保持一致。
 
-![netmanager-4.png](./figures/netmanager-4.png)
+    ![netmanager-4.png](./figures/netmanager-4.png)
 
 经过以上步骤，整个工程的搭建已经完成，接下来就可以连接设备运行工程进行日志查看了。
 
@@ -217,18 +217,18 @@ struct Index {
 
 2. 运行工程，设备上会弹出以下所示图片。
 
-- 点击`GetDefaultNet`时获取的是默认网络ID。
-- 点击`codeNumber`时获取的是接口返回的响应状态码。
+    - 点击`GetDefaultNet`时获取的是默认网络ID。
+    - 点击`codeNumber`时获取的是接口返回的响应状态码。
 
-![netmanager-1.png](./figures/netmanager-1.png)
+    ![netmanager-1.png](./figures/netmanager-1.png)
 
 3. 点击`GetDefaultNet`按钮，控制台会打印日志。
 
-![netmanager-2.png](./figures/netmanager-2.png)
+    ![netmanager-2.png](./figures/netmanager-2.png)
 
 4. 点击`codeNumber`按钮，控制台会打印相应的响应状态码。
 
-![netmanager-3.png](./figures/netmanager-3.png)
+    ![netmanager-3.png](./figures/netmanager-3.png)
 
 ## 相关实例
 

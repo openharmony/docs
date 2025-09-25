@@ -2,7 +2,7 @@
 
 ## Overview
 
-The ImageEffect module provides the APIs for editing an image.
+The module provides the APIs for editing an image.
 
 For details about the development guide and sample, see [Using ImageEffect to Edit Images](../../media/image/image-effect-guidelines.md).
 

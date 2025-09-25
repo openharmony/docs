@@ -1,4 +1,10 @@
 # 分布式设备管理开发指南
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedHardware-->
+<!--Owner: @hwzhangchuang-->
+<!--Designer: @hwzhangchuang-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @hu-zhiqiong-->
 
 ## 分布式设备管理简介
 
@@ -77,7 +83,7 @@ ohos.permission.DISTRIBUTED_DATASYNC：分布式数据同步权限
    let atManager = abilityAccessCtrl.createAtManager();
    try {
      atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
-       console.log('data: ' + JSON.stringify(data));
+       console.info('data: ' + JSON.stringify(data));
      }).catch((err: object) => {
        console.error('err: ' + JSON.stringify(err));
      })
@@ -120,8 +126,8 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptio
    ```ts
    try {
      let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
-     dmInstance.on('discoverSuccess', data => console.log('discoverSuccess on:' + JSON.stringify(data)));
-     dmInstance.on('discoverFailure', data => console.log('discoverFailure on:' + JSON.stringify(data)));
+     dmInstance.on('discoverSuccess', data => console.info('discoverSuccess on:' + JSON.stringify(data)));
+     dmInstance.on('discoverFailure', data => console.info('discoverFailure on:' + JSON.stringify(data)));
    } catch(err) {
      let e: BusinessError = err as BusinessError;
      console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);
@@ -273,7 +279,7 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange;
    ```ts
    try {
      let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
-     dmInstance.on('deviceStateChange', data => console.log('deviceStateChange on:' + JSON.stringify(data)));
+     dmInstance.on('deviceStateChange', data => console.info('deviceStateChange on:' + JSON.stringify(data)));
    } catch(err) {
      let e: BusinessError = err as BusinessError;
      console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);

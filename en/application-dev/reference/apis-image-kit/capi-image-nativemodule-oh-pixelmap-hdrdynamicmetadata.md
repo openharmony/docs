@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OH_Pixelmap_HdrDynamicMetadata struct describes the dynamic metadata values available for the key **DR_DYNAMIC_METADATA**.
+The struct describes the dynamic metadata values available for the key **DR_DYNAMIC_METADATA**.
 
 **Since**: 12
 

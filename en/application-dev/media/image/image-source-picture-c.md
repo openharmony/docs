@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 This topic describes how to create an ImageSource object, decode it to obtain a Picture object, and release the ImageSource object.
 
@@ -29,12 +30,6 @@ After creating an ImageSource instance, obtain and modify property values, creat
 
 ```c++
 #include <hilog/log.h>
-#include <bits/alltypes.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <sstream>
 #include <multimedia/image_framework/image/image_native.h>
 #include <multimedia/image_framework/image/image_packer_native.h>
 #include <multimedia/image_framework/image/image_source_native.h>

@@ -2,7 +2,7 @@
 
 ## Overview
 
-OH_ImageProcessing provides the declaration of the OH_ImageProcessing struct.
+The OH_ImageProcessing struct provides its declaration.
 
 To use it, first declare a null pointer of OH_ImageProcessing, and then initialize it by calling [OH_ImageProcessing_Create](capi-image-processing-h.md#oh_imageprocessing_create). This function creates an image processing instance. Multiple instances can be created for different image processing tasks.
 

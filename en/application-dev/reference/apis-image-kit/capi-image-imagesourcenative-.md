@@ -1,8 +1,14 @@
 # ImageSourceNative_
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @aulight02-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
-ImageSourceNative_ defines an image source object at the native layer.
+The struct describes an image source object at the native layer.
 
 **Since**: 10
 

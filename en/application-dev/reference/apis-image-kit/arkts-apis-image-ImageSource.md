@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
@@ -29,7 +30,7 @@ import { image } from '@kit.ImageKit';
 
 getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 
-Obtains information about an image with the specified index. This API uses an asynchronous callback to return the result.
+Obtains the image information with the specified index. This API uses an asynchronous callback to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -49,20 +50,22 @@ Obtains information about an image with the specified index. This API uses an as
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getImageInfo(0, (error: BusinessError, imageInfo: image.ImageInfo) => {
-  if (error) {
-    console.error(`Failed to obtain the image information.code is ${error.code}, message is ${error.message}`);
-  } else {
-    console.info('Succeeded in obtaining the image information.');
-  }
-})
+async function GetImageInfo(imageSourceObj : image.ImageSource) {
+  imageSourceObj.getImageInfo(0, (error: BusinessError, imageInfo: image.ImageInfo) => {
+    if (error) {
+      console.error(`Failed to obtain the image information.code is ${error.code}, message is ${error.message}`);
+    } else {
+      console.info('Succeeded in obtaining the image information.');
+    }
+  })
+}
 ```
 
 ## getImageInfo
 
 getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
-Obtains information about this image. This API uses an asynchronous callback to return the result.
+Obtains the image information. This API uses an asynchronous callback to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -81,20 +84,22 @@ Obtains information about this image. This API uses an asynchronous callback to 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => {
-  if (err) {
-    console.error(`Failed to obtain the image information.code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info('Succeeded in obtaining the image information.');
-  }
-})
+async function GetImageInfo(imageSourceObj : image.ImageSource) {
+  imageSourceObj.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => {
+    if (err) {
+      console.error(`Failed to obtain the image information.code is ${err.code}, message is ${err.message}`);
+    } else {
+      console.info('Succeeded in obtaining the image information.');
+    }
+  })
+}
 ```
 
 ## getImageInfo
 
 getImageInfo(index?: number): Promise\<ImageInfo>
 
-Obtains information about an image with the specified index. This API uses a promise to return the result.
+Obtains the image information. This API uses a promise to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -119,19 +124,21 @@ Obtains information about an image with the specified index. This API uses a pro
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getImageInfo(0)
-  .then((imageInfo: image.ImageInfo) => {
-    console.info('Succeeded in obtaining the image information.');
-  }).catch((error: BusinessError) => {
-    console.error(`Failed to obtain the image information.code is ${error.code}, message is ${error.message}`);
-  })
+async function GetImageInfo(imageSourceObj : image.ImageSource) {
+  imageSourceObj.getImageInfo(0)
+    .then((imageInfo: image.ImageInfo) => {
+      console.info('Succeeded in obtaining the image information.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to obtain the image information.code is ${error.code}, message is ${error.message}`);
+    })
+}
 ```
 
 ## getImageInfoSync<sup>12+</sup>
 
 getImageInfoSync(index?: number): ImageInfo
 
-Obtains information about an image with the specified index. This API returns the result synchronously.
+Obtains the image information with the specified index. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -149,23 +156,19 @@ Obtains information about an image with the specified index. This API returns th
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
-import { image } from '@kit.ImageKit';
-
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-// 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-let filePath: string = context.filesDir + "/test.jpg";
-let imageSource = image.createImageSource(filePath);
-let imageInfo = imageSource.getImageInfoSync(0);
-if (imageInfo == undefined) {
-  console.error('Failed to obtain the image information.');
-} else {
-  console.info('Succeeded in obtaining the image information.');
-  console.info('imageInfo.size.height:' + imageInfo.size.height);
-  console.info('imageInfo.size.width:' + imageInfo.size.width);
+function GetImageInfoSync(context : Context) {
+  // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+  let filePath: string = context.filesDir + "/test.jpg";
+  let imageSource = image.createImageSource(filePath);
+  let imageInfo = imageSource.getImageInfoSync(0);
+  if (imageInfo == undefined) {
+    console.error('Failed to obtain the image information.');
+  } else {
+    console.info('Succeeded in obtaining the image information.');
+    console.info('imageInfo.size.height:' + imageInfo.size.height);
+    console.info('imageInfo.size.width:' + imageInfo.size.width);
+  }
 }
 ```
 
@@ -173,7 +176,9 @@ if (imageInfo == undefined) {
 
 getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<string>
 
-Obtains the value of a property with the specified index in this image. This API uses a promise to return the result. This API applies only to images that are in JPEG, PNG, or HEIF<sup>12+</sup> (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
+Obtains the value of a property with the specified index in this image. This API uses a promise to return the result.
+
+This API applies only to images that are in JPEG, PNG, or HEIF<sup>12+</sup> (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -214,20 +219,24 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let options: image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
-imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options)
-.then((data: string) => {
-  console.info('Succeeded in getting the value of the specified attribute key of the image.');
-}).catch((error: BusinessError) => {
-  console.error('Failed to get the value of the specified attribute key of the image.');
-})
+async function GetImageProperty(imageSourceObj : image.ImageSource) {
+  let options: image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
+  imageSourceObj.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options)
+    .then((data: string) => {
+      console.info('Succeeded in getting the value of the specified attribute key of the image.');
+    }).catch((error: BusinessError) => {
+    console.error(`Failed to get the value of the specified attribute key of the image, error.code ${error.code}, error.message ${error.message}`);
+  })
+}
 ```
 
 ## getImageProperties<sup>12+</sup>
 
 getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey, string|null>>
 
-Obtains the values of properties with the given names in this image. This API uses a promise to return the result. This API applies only to images that are in JPEG, PNG, or HEIF (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
+Obtains the values of properties with the given names in this image. This API uses a promise to return the result.
+
+This API applies only to images that are in JPEG, PNG, or HEIF (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -258,22 +267,23 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let key = [image.PropertyKey.IMAGE_WIDTH, image.PropertyKey.IMAGE_LENGTH];
-imageSourceApi.getImageProperties(key).then((data) => {
-  console.info(JSON.stringify(data));
-}).catch((err: BusinessError) => {
-  console.error(JSON.stringify(err));
-});
+async function GetImageProperties(imageSourceObj : image.ImageSource) {
+  let key = [image.PropertyKey.IMAGE_WIDTH, image.PropertyKey.IMAGE_LENGTH];
+  imageSourceObj.getImageProperties(key).then((data) => {
+    console.info(JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error(JSON.stringify(err));
+  });
+}
 ```
 
 ## getImagePropertySync<sup>20+</sup>
 
 getImagePropertySync(key:PropertyKey): string
 
-Obtains the value of a specified EXIF property. This API returns the property value in a string.
+Obtains the value of a specified EXIF property. This API returns the result synchronously.
 
 >**NOTE**
 >
@@ -307,30 +317,28 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { image } from '@kit.ImageKit';
-import { common } from '@kit.AbilityKit';
+function GetImagePropertySync(context : Context) {
+  let resourceMgr = context.resourceManager;
+  if (resourceMgr == null) {
+    return;
+  }
+  let fd = resourceMgr.getRawFdSync("example.jpg");
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let resourceMgr = context.resourceManager;
-if (resourceMgr == null) {
-  return;
+  const imageSourceObj = image.createImageSource(fd);
+  console.info("getImagePropertySync");
+  let bits_per_sample = imageSourceObj.getImagePropertySync(image.PropertyKey.BITS_PER_SAMPLE);
+  console.info("bits_per_sample : " + bits_per_sample);
 }
-let fd = resourceMgr.getRawFdSync("example.jpg");
-
-const imageSourceApi = image.createImageSource(fd);
-console.info("getImagePropertySync");
-let bits_per_sample = imageSourceApi.getImagePropertySync(image.PropertyKey.BITS_PER_SAMPLE);
-console.info("bits_per_sample : " + bits_per_sample);
 ```
 
 ## modifyImageProperty<sup>11+</sup>
 
 modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 
-Modifies the value of a property in this image. This API uses a promise to return the result. This API applies only to images that are in JPEG, PNG, or HEIF<sup>12+</sup> (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
+Modifies the value of a property in this image. This API uses a promise to return the result.
+
+This API applies only to images that are in JPEG, PNG, or HEIF<sup>12+</sup> (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
 
 > **NOTE**
 >
@@ -368,22 +376,26 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.modifyImageProperty(image.PropertyKey.IMAGE_WIDTH, "120").then(() => {
-  imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH).then((width: string) => {
-    console.info(`ImageWidth is :${width}`);
+async function ModifyImageProperty(imageSourceObj : image.ImageSource) {
+  imageSourceObj.modifyImageProperty(image.PropertyKey.IMAGE_WIDTH, "120").then(() => {
+    imageSourceObj.getImageProperty(image.PropertyKey.IMAGE_WIDTH).then((width: string) => {
+      console.info(`ImageWidth is :${width}`);
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to get the Image Width, error.code ${error.code}, error.message ${error.message}`);
+    })
   }).catch((error: BusinessError) => {
-    console.error('Failed to get the Image Width.');
+    console.error(`Failed to modify the Image Width, error.code ${error.code}, error.message ${error.message}`);
   })
-}).catch((error: BusinessError) => {
-  console.error('Failed to modify the Image Width');
-})
+}
 ```
 
 ## modifyImageProperties<sup>12+</sup>
 
 modifyImageProperties(records: Record<PropertyKey, string|null>): Promise\<void>
 
-Modifies the values of properties in this image. This API uses a promise to return the result. This API applies only to images that are in JPEG, PNG, or HEIF (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
+Modifies the values of properties in this image. This API uses a promise to return the result.
+
+This API applies only to images that are in JPEG, PNG, or HEIF (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
 
 > **NOTE**
 >
@@ -418,23 +430,24 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let keyValues: Record<PropertyKey, string|null> = {
+async function ModifyImageProperties(imageSourceObj : image.ImageSource) {
+  let keyValues: Record<PropertyKey, string|null> = {
     [image.PropertyKey.IMAGE_WIDTH] : "1024",
     [image.PropertyKey.IMAGE_LENGTH] : "1024"
-};
-let checkKey = [image.PropertyKey.IMAGE_WIDTH, image.PropertyKey.IMAGE_LENGTH];
-imageSourceApi.modifyImageProperties(keyValues).then(() => {
-  imageSourceApi.getImageProperties(checkKey).then((data) => {
-    console.info(JSON.stringify(data));
+  };
+  let checkKey = [image.PropertyKey.IMAGE_WIDTH, image.PropertyKey.IMAGE_LENGTH];
+  imageSourceObj.modifyImageProperties(keyValues).then(() => {
+    imageSourceObj.getImageProperties(checkKey).then((data) => {
+      console.info(`Image Width and Image Height:${data}`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to modify the Image Width and Image Height, error.code ${err.code}, error.message ${err.message}`);
+    });
   }).catch((err: BusinessError) => {
-    console.error(JSON.stringify(err));
+    console.error(`Failed to modify the Image Width and Image Height, error.code ${err.code}, error.message ${err.message}`);
   });
-}).catch((err: BusinessError) => {
-  console.error(JSON.stringify(err));
-});
+}
 ```
 
 ## updateData<sup>9+</sup>
@@ -465,12 +478,14 @@ Updates incremental data. This API uses a promise to return the result.
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const array: ArrayBuffer = new ArrayBuffer(100);
-imageSourceApi.updateData(array, false, 0, 10).then(() => {
-  console.info('Succeeded in updating data.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to update data.code is ${err.code},message is ${err.message}`);
-})
+async function UpdateDatay(imageSourceObj : image.ImageSource) {
+  const array: ArrayBuffer = new ArrayBuffer(100);
+  imageSourceObj.updateData(array, false, 0, 10).then(() => {
+    console.info('Succeeded in updating data.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to update data.code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 
@@ -497,14 +512,16 @@ Updates incremental data. This API uses an asynchronous callback to return the r
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const array: ArrayBuffer = new ArrayBuffer(100);
-imageSourceApi.updateData(array, false, 0, 10, (err: BusinessError) => {
-  if (err) {
-    console.error(`Failed to update data.code is ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in updating data.');
-  }
-})
+async function UpdateDatay(imageSourceObj : image.ImageSource) {
+  const array: ArrayBuffer = new ArrayBuffer(100);
+  imageSourceObj.updateData(array, false, 0, 10, (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to update data.code is ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in updating data.');
+    }
+  })
+}
 ```
 
 ## createPicture<sup>13+</sup>
@@ -539,13 +556,11 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
-async function CreatePicture() {
+async function CreatePicture(imageSourceObj : image.ImageSource) {
   let options: image.DecodingOptionsForPicture = {
     desiredAuxiliaryPictures: [image.AuxiliaryPictureType.GAINMAP] // GAINMAP indicates the type of the auxiliary picture to be decoded.
   };
-  let pictureObj: image.Picture = await imageSourceApi.createPicture(options);
+  let pictureObj: image.Picture = await imageSourceObj.createPicture(options);
   if (pictureObj != null) {
     console.info('Create picture succeeded');
   } else {
@@ -589,13 +604,11 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
-async function CreatePictures() {
-  let frameCount: number = await imageSourceApi.getFrameCount();
+async function CreatePictures(imageSourceObj : image.ImageSource) {
+  let frameCount: number = await imageSourceObj.getFrameCount();
   for (let index = 0; index < frameCount; index++) {
     try {
-      let pictureObj: image.Picture = await imageSourceApi.createPictureAtIndex(index);
+      let pictureObj: image.Picture = await imageSourceObj.createPictureAtIndex(index);
       console.info('Create picture succeeded for frame: ' + index);
     } catch (e) {
       console.error('Create picture failed for frame: ' + index);
@@ -635,11 +648,13 @@ Starting from API version 15, you are advised to use [createPixelMapUsingAllocat
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.createPixelMap().then((pixelMap: image.PixelMap) => {
-  console.info('Succeeded in creating pixelMap object through image decoding parameters.');
-}).catch((error: BusinessError) => {
-  console.error('Failed to create pixelMap object through image decoding parameters.');
-})
+async function CreatePixelMap(imageSourceObj : image.ImageSource) {
+  imageSourceObj.createPixelMap().then((pixelMap: image.PixelMap) => {
+    console.info('Succeeded in creating pixelMap object through image decoding parameters.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to create pixelMap object through image decoding parameters, error.code ${error.code}, error.message ${error.message}`);
+  })
+}
 ```
 
 ## createPixelMap<sup>7+</sup>
@@ -667,13 +682,15 @@ Starting from API version 15, you are advised to use [createPixelMapUsingAllocat
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.createPixelMap((err: BusinessError, pixelMap: image.PixelMap) => {
-  if (err) {
-    console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in creating pixelMap object.');
-  }
-})
+async function CreatePixelMap(imageSourceObj : image.ImageSource) {
+  imageSourceObj.createPixelMap((err: BusinessError, pixelMap: image.PixelMap) => {
+    if (err) {
+      console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in creating pixelMap object.');
+    }
+  })
+}
 ```
 
 ## createPixelMap<sup>7+</sup>
@@ -702,24 +719,26 @@ Starting from API version 15, you are advised to use [createPixelMapUsingAllocat
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let decodingOptions: image.DecodingOptions = {
-  sampleSize: 1,
-  editable: true,
-  desiredSize: { width: 1, height: 2 },
-  rotate: 10,
-  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { width: 1, height: 2 }, x: 0, y: 0 },
-  // If both desiredSize and desiredRegion are passed to the decoding API, you must also include cropAndScaleStrategy to determine whether to crop or scale first. CROP_FIRST is recommended.
-  cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
-  index: 0
-};
-imageSourceApi.createPixelMap(decodingOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
-  if (err) {
-    console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in creating pixelMap object.');
-  }
-})
+async function CreatePixelMap(imageSourceObj : image.ImageSource) {
+  let decodingOptions: image.DecodingOptions = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 1, height: 2 },
+    rotate: 10,
+    desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+    desiredRegion: { size: { width: 1, height: 2 }, x: 0, y: 0 },
+    // If both desiredSize and desiredRegion are passed to the decoding API, you must also include cropAndScaleStrategy to determine whether to crop or scale first. CROP_FIRST is recommended.
+    cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
+    index: 0
+  };
+  imageSourceObj.createPixelMap(decodingOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
+    if (err) {
+      console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in creating pixelMap object.');
+    }
+  })
+}
 ```
 
 ## createPixelMapSync<sup>12+</sup>
@@ -746,32 +765,28 @@ Starting from API version 15, you are advised to use [createPixelMapUsingAllocat
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
-import { image } from '@kit.ImageKit';
-
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-// 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-let filePath: string = context.filesDir + "/test.jpg";
-let imageSource = image.createImageSource(filePath);
-let decodingOptions: image.DecodingOptions = {
-  sampleSize: 1,
-  editable: true,
-  desiredSize: { width: 1, height: 2 },
-  rotate: 10,
-  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { width: 1, height: 2 }, x: 0, y: 0 },
-  // If both desiredSize and desiredRegion are passed to the decoding API, you must also include cropAndScaleStrategy to determine whether to crop or scale first. CROP_FIRST is recommended.
-  cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
-  index: 0
-};
-let pixelmap = imageSource.createPixelMapSync(decodingOptions);
-if (pixelmap != undefined) {
-  console.info('Succeeded in creating pixelMap object.');
-} else {
-  console.error('Failed to create pixelMap.');
+function CreatePixelMapSync(context : Context) {
+  // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+  let filePath: string = context.filesDir + "/test.jpg";
+  let imageSource = image.createImageSource(filePath);
+  let decodingOptions: image.DecodingOptions = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 1, height: 2 },
+    rotate: 10,
+    desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+    desiredRegion: { size: { width: 1, height: 2 }, x: 0, y: 0 },
+    // If both desiredSize and desiredRegion are passed to the decoding API, you must also include cropAndScaleStrategy to determine whether to crop or scale first. CROP_FIRST is recommended.
+    cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
+    index: 0
+  };
+  let pixelmap = imageSource.createPixelMapSync(decodingOptions);
+  if (pixelmap != undefined) {
+    console.info('Succeeded in creating pixelMap object.');
+  } else {
+    console.error('Failed to create pixelMap.');
+  }
 }
 ```
 
@@ -824,26 +839,30 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let decodeOpts: image.DecodingOptions = {
-  sampleSize: 1,
-  editable: true,
-  desiredSize: { width: 198, height: 202 },
-  rotate: 0,
-  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  index: 0,
-};
-imageSourceApi.createPixelMapList(decodeOpts).then((pixelMapList: Array<image.PixelMap>) => {
-  console.info('Succeeded in creating pixelMapList object.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to create pixelMapList object, error code is ${err}`);
-})
+async function CreatePixelMapList(imageSourceObj : image.ImageSource) {
+  let decodeOpts: image.DecodingOptions = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 198, height: 202 },
+    rotate: 0,
+    desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+    index: 0,
+  };
+  imageSourceObj.createPixelMapList(decodeOpts).then((pixelMapList: Array<image.PixelMap>) => {
+    console.info('Succeeded in creating pixelMapList object.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create pixelMapList object, error code is ${err}`);
+  })
+}
 ```
 
 ## createPixelMapList<sup>10+</sup>
 
 createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
-Creates an array of PixelMap objects based on the default parameters. This API uses an asynchronous callback to return the result. For dynamic images such as GIF and WebP images, this API returns the data of each frame of the image. For static images, this API returns the data of the unique frame of the image.
+Creates an array of PixelMap objects based on the default parameters. This API uses an asynchronous callback to return the result.
+
+For dynamic images such as GIF and WebP images, this API returns the data of each frame of the image. For static images, this API returns the data of the unique frame of the image.
 
 > **NOTE**
 >
@@ -882,20 +901,24 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.createPixelMapList((err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
-  if (err) {
-    console.error(`Failed to create pixelMapList object, error code is ${err}`);
-  } else {
-    console.info('Succeeded in creating pixelMapList object.');
-  }
-})
+async function CreatePixelMapList(imageSourceObj : image.ImageSource) {
+  imageSourceObj.createPixelMapList((err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
+    if (err) {
+      console.error(`Failed to create pixelMapList object, error code is ${err}`);
+    } else {
+      console.info('Succeeded in creating pixelMapList object.');
+    }
+  })
+}
 ```
 
 ## createPixelMapList<sup>10+</sup>
 
 createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<PixelMap>>): void
 
-Creates an array of PixelMap objects based on decoding options. This API uses an asynchronous callback to return the result. For dynamic images such as GIF and WebP images, this API returns the data of each frame of the image. For static images, this API returns the data of the unique frame of the image.
+Creates an array of PixelMap objects based on decoding options. This API uses an asynchronous callback to return the result.
+
+For dynamic images such as GIF and WebP images, this API returns the data of each frame of the image. For static images, this API returns the data of the unique frame of the image.
 
 > **NOTE**
 >
@@ -935,21 +958,23 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let decodeOpts: image.DecodingOptions = {
-  sampleSize: 1,
-  editable: true,
-  desiredSize: { width: 198, height: 202 },
-  rotate: 0,
-  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  index: 0,
-};
-imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
-  if (err) {
-    console.error(`Failed to create pixelMapList object, error code is ${err}`);
-  } else {
-    console.info('Succeeded in creating pixelMapList object.');
-  }
-})
+async function CreatePixelMapList(imageSourceObj : image.ImageSource) {
+  let decodeOpts: image.DecodingOptions = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 198, height: 202 },
+    rotate: 0,
+    desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+    index: 0,
+  };
+  imageSourceObj.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
+    if (err) {
+      console.error(`Failed to create pixelMapList object, error code is ${err}`);
+    } else {
+      console.info('Succeeded in creating pixelMapList object.');
+    }
+  })
+}
 ```
 
 ## createPixelMapUsingAllocator<sup>15+</sup>
@@ -990,31 +1015,27 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
-import image from '@ohos.multimedia.image';
-
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-// 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-let filePath: string = context.filesDir + "/test.jpg";
-let imageSource = image.createImageSource(filePath);
-let decodingOptions: image.DecodingOptions = {
-  editable: true,
-  desiredSize: { width: 3072, height: 4096 },
-  rotate: 10,
-  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { width: 3072, height: 4096 }, x: 0, y: 0 },
-  // If both desiredSize and desiredRegion are passed to the decoding API, you must also include cropAndScaleStrategy to determine whether to crop or scale first. CROP_FIRST is recommended.
-  cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
-  index: 0
-};
-let pixelmap = imageSource.createPixelMapUsingAllocator(decodingOptions, image.AllocatorType.AUTO);
-if (pixelmap != undefined) {
-  console.info('Succeeded in creating pixelMap object.');
-} else {
-  console.error('Failed to create pixelMap.');
+async function CreatePixelMapUsingAllocator(context : Context) {
+  // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+  let filePath: string = context.filesDir + "/test.jpg";
+  let imageSource = image.createImageSource(filePath);
+  let decodingOptions: image.DecodingOptions = {
+    editable: true,
+    desiredSize: { width: 3072, height: 4096 },
+    rotate: 10,
+    desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+    desiredRegion: { size: { width: 3072, height: 4096 }, x: 0, y: 0 },
+    // If both desiredSize and desiredRegion are passed to the decoding API, you must also include cropAndScaleStrategy to determine whether to crop or scale first. CROP_FIRST is recommended.
+    cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
+    index: 0
+  };
+  let pixelmap = imageSource.createPixelMapUsingAllocator(decodingOptions, image.AllocatorType.AUTO);
+  if (pixelmap != undefined) {
+    console.info('Succeeded in creating pixelMap object.');
+  } else {
+    console.error('Failed to create pixelMap.');
+  }
 }
 ```
 
@@ -1056,31 +1077,27 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
-import image from '@ohos.multimedia.image';
-
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-// 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
-let filePath: string = context.filesDir + "/test.jpg";
-let imageSource = image.createImageSource(filePath);
-let decodingOptions: image.DecodingOptions = {
-  editable: true,
-  desiredSize: { width: 3072, height: 4096 },
-  rotate: 10,
-  desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
-  desiredRegion: { size: { width: 3072, height: 4096 }, x: 0, y: 0 },
-  // If both desiredSize and desiredRegion are passed to the decoding API, you must also include cropAndScaleStrategy to determine whether to crop or scale first. CROP_FIRST is recommended.
-  cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
-  index: 0
-};
-let pixelmap = imageSource.createPixelMapUsingAllocatorSync(decodingOptions, image.AllocatorType.AUTO);
-if (pixelmap != undefined) {
-  console.info('Succeeded in creating pixelMap object.');
-} else {
-  console.error('Failed to create pixelMap.');
+async function CreatePixelMapUsingAllocator(context : Context) {
+  // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+  let filePath: string = context.filesDir + "/test.jpg";
+  let imageSource = image.createImageSource(filePath);
+  let decodingOptions: image.DecodingOptions = {
+    editable: true,
+    desiredSize: { width: 3072, height: 4096 },
+    rotate: 10,
+    desiredPixelFormat: image.PixelMapFormat.RGBA_8888,
+    desiredRegion: { size: { width: 3072, height: 4096 }, x: 0, y: 0 },
+    // If both desiredSize and desiredRegion are passed to the decoding API, you must also include cropAndScaleStrategy to determine whether to crop or scale first. CROP_FIRST is recommended.
+    cropAndScaleStrategy: image.CropAndScaleStrategy.CROP_FIRST,
+    index: 0
+  };
+  let pixelmap = imageSource.createPixelMapUsingAllocatorSync(decodingOptions, image.AllocatorType.AUTO);
+  if (pixelmap != undefined) {
+    console.info('Succeeded in creating pixelMap object.');
+  } else {
+    console.error('Failed to create pixelMap.');
+  }
 }
 ```
 
@@ -1118,13 +1135,15 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) => {
-  if (err) {
-    console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in getting delayTimes object.');
-  }
-})
+async function GetDelayTimeList(imageSourceObj : image.ImageSource) {
+  imageSourceObj.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) => {
+    if (err) {
+      console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in getting delayTimes object.');
+    }
+  })
+}
 ```
 
 ## getDelayTimeList<sup>10+</sup>
@@ -1161,11 +1180,13 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getDelayTimeList().then((delayTimes: Array<number>) => {
-  console.info('Succeeded in getting delayTimes object.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
-})
+async function GetDelayTimeList(imageSourceObj : image.ImageSource) {
+  imageSourceObj.getDelayTimeList().then((delayTimes: Array<number>) => {
+    console.info('Succeeded in getting delayTimes object.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ## getFrameCount<sup>10+</sup>
@@ -1203,13 +1224,15 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getFrameCount((err: BusinessError, frameCount: number) => {
-  if (err) {
-    console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in getting frame count.');
-  }
-})
+async function GetFrameCount(imageSourceObj : image.ImageSource) {
+  imageSourceObj.getFrameCount((err: BusinessError, frameCount: number) => {
+    if (err) {
+      console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in getting frame count.');
+    }
+  })
+}
 ```
 
 ## getFrameCount<sup>10+</sup>
@@ -1247,11 +1270,13 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getFrameCount().then((frameCount: number) => {
-  console.info('Succeeded in getting frame count.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
-})
+async function GetFrameCount(imageSourceObj : image.ImageSource) {
+  imageSourceObj.getFrameCount().then((frameCount: number) => {
+    console.info('Succeeded in getting frame count.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ## getDisposalTypeList<sup>12+</sup>
@@ -1283,11 +1308,14 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-imageSourceApi.getDisposalTypeList().then((disposalTypes: Array<number>) => {
-  console.info('Succeeded in getting disposalTypes object.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to get disposalTypes object.code ${err.code},message is ${err.message}`);
-})
+
+async function GetDisposalTypeList(imageSourceObj : image.ImageSource) {
+  imageSourceObj.getDisposalTypeList().then((disposalTypes: Array<number>) => {
+    console.info('Succeeded in getting disposalTypes object.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get disposalTypes object.code ${err.code},message is ${err.message}`);
+  })
+}
 ```
 
 ## release
@@ -1311,13 +1339,15 @@ ArkTS supports memory reclamation. Even if the application does not call **relea
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.release((err: BusinessError) => {
-  if (err) {
-    console.error(`Failed to release the image source instance.code ${err.code},message is ${err.message}`);
-  } else {
-    console.info('Succeeded in releasing the image source instance.');
-  }
-})
+async function Release(imageSourceObj : image.ImageSource) {
+  imageSourceObj.release((err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to release the image source instance.code ${err.code},message is ${err.message}`);
+    } else {
+      console.info('Succeeded in releasing the image source instance.');
+    }
+  })
+}
 ```
 
 ## release
@@ -1341,22 +1371,26 @@ ArkTS supports memory reclamation. Even if the application does not call **relea
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.release().then(() => {
-  console.info('Succeeded in releasing the image source instance.');
-}).catch((error: BusinessError) => {
-  console.error(`Failed to release the image source instance.code ${error.code},message is ${error.message}`);
-})
+async function Release(imageSourceObj : image.ImageSource) {
+  imageSourceObj.release().then(() => {
+    console.info('Succeeded in releasing the image source instance.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to release the image source instance.code ${error.code},message is ${error.message}`);
+  })
+}
 ```
 
 ## getImageProperty<sup>(deprecated)</sup>
 
 getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string>
 
-Obtains the value of a property with the specified index in this image. This API uses a promise to return the result. This API applies only to images that are in JPEG, PNG, or HEIF<sup>12+</sup> (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
+Obtains the value of a property with the specified index in this image. This API uses a promise to return the result.
+
+This API applies only to images that are in JPEG, PNG, or HEIF<sup>12+</sup> (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [getImageProperty](#getimageproperty11).
+> This API is supported since API version 7 and is deprecated since API version 11. You are advised to use [getImageProperty](#getimageproperty11) instead.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1378,23 +1412,27 @@ Obtains the value of a property with the specified index in this image. This API
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getImageProperty("BitsPerSample")
-  .then((data: string) => {
-    console.info('Succeeded in getting the value of the specified attribute key of the image.');
-  }).catch((error: BusinessError) => {
-    console.error('Failed to get the value of the specified attribute key of the image.');
+async function GetImageProperty(imageSourceObj : image.ImageSource) {
+  imageSourceObj.getImageProperty("BitsPerSample")
+    .then((data: string) => {
+      console.info('Succeeded in getting the value of the specified attribute key of the image.');
+    }).catch((error: BusinessError) => {
+    console.error(`Failed to get the value of the specified attribute key of the image, error.code ${error.code}, error.message ${error.message}`);
   })
+}
 ```
 
 ## getImageProperty<sup>(deprecated)</sup>
 
 getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
-Obtains the value of a property with the specified index in this image. This API uses an asynchronous callback to return the result. This API applies only to images that are in JPEG, PNG, or HEIF<sup>12+</sup> (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
+Obtains the value of a property with the specified index in this image. This API uses an asynchronous callback to return the result.
+
+This API applies only to images that are in JPEG, PNG, or HEIF<sup>12+</sup> (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [getImageProperty](#getimageproperty11).
+> This API is supported since API version 7 and is deprecated since API version 11. You are advised to use [getImageProperty](#getimageproperty11) instead.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1410,24 +1448,28 @@ Obtains the value of a property with the specified index in this image. This API
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.getImageProperty("BitsPerSample", (error: BusinessError, data: string) => {
-  if (error) {
-    console.error('Failed to get the value of the specified attribute key of the image.');
-  } else {
-    console.info('Succeeded in getting the value of the specified attribute key of the image.');
-  }
-})
+async function GetImageProperty(imageSourceObj : image.ImageSource) {
+  imageSourceObj.getImageProperty("BitsPerSample", (error: BusinessError, data: string) => {
+    if (error) {
+      console.error('Failed to get the value of the specified attribute key of the image.');
+    } else {
+      console.info('Succeeded in getting the value of the specified attribute key of the image.');
+    }
+  })
+}
 ```
 
 ## getImageProperty<sup>(deprecated)</sup>
 
 getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback\<string>): void
 
-Obtains the value of a property in this image. This API uses an asynchronous callback to return the result. This API applies only to images that are in JPEG, PNG, or HEIF<sup>12+</sup> (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
+Obtains the value of a property in this image. This API uses an asynchronous callback to return the result.
+
+This API applies only to images that are in JPEG, PNG, or HEIF<sup>12+</sup> (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
 
 > **NOTE**
 >
-> This API is deprecated since API version 11. You are advised to use [getImageProperty](#getimageproperty11).
+> This API is supported since API version 7 and is deprecated since API version 11. You are advised to use [getImageProperty](#getimageproperty11) instead.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1444,27 +1486,31 @@ Obtains the value of a property in this image. This API uses an asynchronous cal
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let property: image.GetImagePropertyOptions = { index: 0, defaultValue: '9999' }
-imageSourceApi.getImageProperty("BitsPerSample", property, (error: BusinessError, data: string) => {
-  if (error) {
-    console.error('Failed to get the value of the specified attribute key of the image.');
-  } else {
-    console.info('Succeeded in getting the value of the specified attribute key of the image.');
-  }
-})
+async function GetImageProperty(imageSourceObj : image.ImageSource) {
+  let property: image.GetImagePropertyOptions = { index: 0, defaultValue: '9999' }
+  imageSourceObj.getImageProperty("BitsPerSample", property, (error: BusinessError, data: string) => {
+    if (error) {
+      console.error('Failed to get the value of the specified attribute key of the image.');
+    } else {
+      console.info('Succeeded in getting the value of the specified attribute key of the image.');
+    }
+  })
+}
 ```
 
 ## modifyImageProperty<sup>(deprecated)</sup>
 
 modifyImageProperty(key: string, value: string): Promise\<void>
 
-Modifies the value of a property in this image. This API uses a promise to return the result. This API applies only to images that are in JPEG, PNG, or HEIF<sup>12+</sup> (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
+Modifies the value of a property in this image. This API uses a promise to return the result.
+
+This API applies only to images that are in JPEG, PNG, or HEIF<sup>12+</sup> (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
 
 > **NOTE**
 >
 > The property byte length is changed when the **modifyImageProperty** API is called to modify the value of a property. Currently, you can call the API in an ImageSource instance created based on a file descriptor or path, but not an ImageSource instance created based on buffers.
 >
-> This API is deprecated since API version 11. You are advised to use [modifyImageProperty](#modifyimageproperty11).
+> This API is supported since API version 9 and is deprecated since API version 11. You are advised to use [modifyImageProperty](#modifyimageproperty11) instead.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1486,28 +1532,32 @@ Modifies the value of a property in this image. This API uses a promise to retur
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
-  imageSourceApi.getImageProperty("ImageWidth").then((width: string) => {
-    console.info(`ImageWidth is :${width}`);
+async function ModifyImageProperty(imageSourceObj : image.ImageSource) {
+  imageSourceObj.modifyImageProperty("ImageWidth", "120").then(() => {
+    imageSourceObj.getImageProperty("ImageWidth").then((width: string) => {
+      console.info(`ImageWidth is :${width}`);
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to get the Image Width, error.code ${error.code}, error.message ${error.message}`);
+    })
   }).catch((error: BusinessError) => {
-    console.error('Failed to get the Image Width.');
+    console.error(`Failed to modify the Image Width, error.code ${error.code}, error.message ${error.message}`);
   })
-}).catch((error: BusinessError) => {
-  console.error('Failed to modify the Image Width');
-})
+}
 ```
 
 ## modifyImageProperty<sup>(deprecated)</sup>
 
 modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>): void
 
-Modifies the value of a property in this image. This API uses an asynchronous callback to return the result. This API applies only to images that are in JPEG, PNG, or HEIF<sup>12+</sup> (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
+Modifies the value of a property in this image. This API uses an asynchronous callback to return the result.
+
+This API applies only to images that are in JPEG, PNG, or HEIF<sup>12+</sup> (depending on the hardware) format and contain the EXIF information. You can use the **supportedFormats** property to check whether the EXIF read/write operation for images in HEIF format is supported.
 
 > **NOTE**
 >
 > The property byte length is changed when the **modifyImageProperty** API is called to modify the value of a property. Currently, you can call the API in an ImageSource instance created based on a file descriptor or path, but not an ImageSource instance created based on buffers.
-> 
->This API is deprecated since API version 11. You are advised to use [modifyImageProperty](#modifyimageproperty11).
+>
+> This API is supported since API version 9 and is deprecated since API version 11. You are advised to use [modifyImageProperty](#modifyimageproperty11) instead.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1524,11 +1574,13 @@ Modifies the value of a property in this image. This API uses an asynchronous ca
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageSourceApi.modifyImageProperty("ImageWidth", "120", (err: BusinessError) => {
-  if (err) {
-    console.error(`Failed to modify the Image Width.code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info('Succeeded in modifying the Image Width.');
-  }
-})
+async function ModifyImageProperty(imageSourceObj : image.ImageSource) {
+  imageSourceObj.modifyImageProperty("ImageWidth", "120", (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to modify the Image Width.code is ${err.code}, message is ${err.message}`);
+    } else {
+      console.info('Succeeded in modifying the Image Width.');
+    }
+  })
+}
 ```

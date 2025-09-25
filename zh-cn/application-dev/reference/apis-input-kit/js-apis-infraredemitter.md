@@ -107,7 +107,7 @@ struct Index {
         .onClick(() => {
           try {
             let frequencies = infraredEmitter.getInfraredFrequencies();
-            console.log(`frequencies: ${JSON.stringify(frequencies)}`);
+            console.info(`frequencies: ${JSON.stringify(frequencies)}`);
           } catch (error) {
             console.error(`Get infrared frequencies failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
           }

@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 Image Kit provides the capabilities of reading and editing Exchangeable Image File Format (EXIF) data.
 
@@ -31,19 +32,19 @@ const imageSourceApi : image.ImageSource = image.createImageSource(fd);
 // Read the EXIF data, where BitsPerSample indicates the number of bits per pixel.
 let options : image.ImagePropertyOptions = { index: 0, defaultValue: 'This key has no value!' };
 imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options).then((data : string) => {
-    console.info('Succeeded in getting the value of the specified attribute key of the image.');
+  console.info('Succeeded in getting the value of the specified attribute key of the image.');
 }).catch((error : BusinessError) => {
-    console.error('Failed to get the value of the specified attribute key of the image.');
+  console.error(`Failed to get the value of the specified attribute key of the image, error.code: ${error.code}, error.message: ${error.message}`);
 })
 
 // Edit the EXIF data.
 imageSourceApi.modifyImageProperty(image.PropertyKey.IMAGE_WIDTH, "120").then(() => {
-    imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH).then((width : string) => {
-        console.info('The new imageWidth is ' + width);
-    }).catch((error : BusinessError) => {
-        console.error('Failed to get the Image Width.');
-    })
+  imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH).then((width : string) => {
+    console.info('The new imageWidth is ' + width);
+  }).catch((error : BusinessError) => {
+    console.error(`Failed to get the Image Width, error.code: ${error.code}, error.message: ${error.message}`);
+  })
 }).catch((error : BusinessError) => {
-    console.error('Failed to modify the Image Width');
+  console.error(`Failed to modify the Image Width, error.code: ${error.code}, error.message: ${error.message}`);
 })
 ```

@@ -2,8 +2,9 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 The module provides APIs for image processing based on sendable objects. You can use the APIs to create a PixelMap object with specified properties or read pixels of an image (or even in a region of an image).
 
@@ -41,6 +42,7 @@ Creates a PixelMap object with the default BGRA_8888 format and specified pixel 
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -81,8 +83,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980096 | If the operation failed|
-| 62980097 | If the ipc error|
+| 62980096 | Operation failed|
+| 62980097 | IPC error|
 | 62980115 | Invalid input parameter|
 | 62980105 | Failed to get the data|
 | 62980177 | Abnormal API environment|
@@ -100,54 +102,54 @@ import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class MySequence implements rpc.Parcelable {
-    pixel_map: sendableImage.PixelMap;
-    constructor(conPixelmap: sendableImage.PixelMap) {
-        this.pixel_map = conPixelmap;
+  pixel_map: sendableImage.PixelMap;
+  constructor(conPixelmap: sendableImage.PixelMap) {
+    this.pixel_map = conPixelmap;
+  }
+  marshalling(messageSequence: rpc.MessageSequence) {
+    this.pixel_map.marshalling(messageSequence);
+    return true;
+  }
+  unmarshalling(messageSequence: rpc.MessageSequence) {
+    try {
+      this.pixel_map = sendableImage.createPixelMapFromParcel(messageSequence);
+    } catch(e) {
+      let error = e as BusinessError;
+      console.error(`createPixelMapFromParcel error. code is ${error.code}, message is ${error.message}`);
+      return false;
     }
-    marshalling(messageSequence: rpc.MessageSequence) {
-        this.pixel_map.marshalling(messageSequence);
-        return true;
-    }
-    unmarshalling(messageSequence: rpc.MessageSequence) {
-        try {
-            this.pixel_map = sendableImage.createPixelMapFromParcel(messageSequence);
-        } catch(e) {
-            let error = e as BusinessError;
-            console.error(`createPixelMapFromParcel error. code is ${error.code}, message is ${error.message}`);
-            return false;
-        }
-      return true;
-    }
+    return true;
+  }
 }
 async function Demo() {
-   const color: ArrayBuffer = new ArrayBuffer(96);
-   let bufferArr: Uint8Array = new Uint8Array(color);
-   for (let i = 0; i < bufferArr.length; i++) {
-      bufferArr[i] = 0x80;
-   }
-   let opts: image.InitializationOptions = {
-      editable: true,
-      pixelFormat: 4,
-      size: { height: 4, width: 6 },
-      alphaType: 3
-   }
-   let pixelMap: sendableImage.PixelMap | undefined = undefined;
-   await sendableImage.createPixelMap(color, opts).then((srcPixelMap: sendableImage.PixelMap) => {
-      pixelMap = srcPixelMap;
-   })
-   if (pixelMap != undefined) {
-     // Implement serialization.
-     let parcelable: MySequence = new MySequence(pixelMap);
-     let data: rpc.MessageSequence = rpc.MessageSequence.create();
-     data.writeParcelable(parcelable);
+  const color: ArrayBuffer = new ArrayBuffer(96);
+  let bufferArr: Uint8Array = new Uint8Array(color);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = 0x80;
+  }
+  let opts: image.InitializationOptions = {
+    editable: true,
+    pixelFormat: 4,
+    size: { height: 4, width: 6 },
+    alphaType: 3
+  }
+  let pixelMap: sendableImage.PixelMap | undefined = undefined;
+  await sendableImage.createPixelMap(color, opts).then((srcPixelMap: sendableImage.PixelMap) => {
+    pixelMap = srcPixelMap;
+  })
+  if (pixelMap != undefined) {
+    // Implement serialization.
+    let parcelable: MySequence = new MySequence(pixelMap);
+    let data: rpc.MessageSequence = rpc.MessageSequence.create();
+    data.writeParcelable(parcelable);
 
-     // Implement deserialization to obtain data through the RPC.
-     let ret: MySequence = new MySequence(pixelMap);
-     data.readParcelable(ret);
+    // Implement deserialization to obtain data through the RPC.
+    let ret: MySequence = new MySequence(pixelMap);
+    data.readParcelable(ret);
 
-     // Obtain the PixelMap object.
-     let unmarshPixelmap = ret.pixel_map;
-   }
+    // Obtain the PixelMap object.
+    let unmarshPixelmap = ret.pixel_map;
+  }
 }
 ```
 
@@ -155,7 +157,7 @@ async function Demo() {
 
 createPixelMapFromSurface(surfaceId: string, region: image.Region): Promise\<PixelMap>
 
-Creates a PixelMap object from a surface ID.
+Creates a PixelMap object based on the surface ID and region information. The size of the region is specified by [Region](arkts-apis-image-i.md#region8).size. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -163,8 +165,8 @@ Creates a PixelMap object from a surface ID.
 
 | Name                | Type                | Mandatory| Description                                    |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
-| surfaceId              | string              | Yes  | Surface ID, which is obtained from [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).|
-| region                 | [image.Region](../apis-image-kit/arkts-apis-image-i.md#region8)  | Yes  | Size of the image after cropping.                        |
+| surfaceId              | string              | Yes  | Surface ID, which can be obtained through the preview component, for example, [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).|
+| region                 | [image.Region](arkts-apis-image-i.md#region8)  | Yes  | Area of the image to capture. Capture must start from the top-left corner of the screen, so **x** and **y** in **Region** must be **0**, and **Width** and **height** in **Region.size** must be within the range [1, preview stream width] and [1, preview stream height], respectively. To capture any area, first obtain the full screen, and then use [crop](#crop) to capture the desired area.|
 
 **Return value**
 | Type                            | Description                 |
@@ -177,23 +179,24 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 62980115 | Invalid input parameter|
+| 62980115 | If the image parameter invalid.|
 | 62980105 | Failed to get the data|
 | 62980178 | Failed to create the PixelMap|
 
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo(surfaceId: string) {
-    let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    sendableImage.createPixelMapFromSurface(surfaceId, region).then(() => {
-        console.info('Succeeded in creating pixelmap from Surface');
-    }).catch((error: BusinessError) => {
-        console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
-    });
+  let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+  sendableImage.createPixelMapFromSurface(surfaceId, region).then(() => {
+    console.info('Succeeded in creating pixelmap from Surface');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
+  });
 }
 ```
 
@@ -219,7 +222,7 @@ Creates a PixelMap object with the specified pixel properties. This API returns 
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -228,6 +231,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -241,7 +245,7 @@ async function Demo() {
 
 ## sendableImage.convertFromPixelMap
 
-convertFromPixelMap(pixelMap: image.PixelMap): PixelMap
+convertFromPixelMap(pixelmap: image.PixelMap): PixelMap
 
 Creates a PixelMap object under **sendableImage** from a PixelMap object under **image**. This API returns the result synchronously. The APIs of the PixelMap object under **image** cannot be called anymore.
 
@@ -251,7 +255,7 @@ Creates a PixelMap object under **sendableImage** from a PixelMap object under *
 
 | Name | Type                                            | Mandatory| Description                                                            |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| pixelMap | [image.PixelMap](arkts-apis-image-PixelMap.md) | Yes  | PixelMap object under image.|
+| pixelmap | [image.PixelMap](arkts-apis-image-PixelMap.md) | Yes  | PixelMap object under image.|
 
 **Return value**
 | Type                            | Description                 |
@@ -260,31 +264,31 @@ Creates a PixelMap object under **sendableImage** from a PixelMap object under *
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+|  401    | If the image parameter invalid. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 62980104 | Failed to initialize the internal object.|
 
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
-    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-    let pixelMap : image.PixelMap = image.createPixelMapSync(color, opts);
-    let sendablePixelMap : sendableImage.PixelMap = sendableImage.convertFromPixelMap(pixelMap);
-    return sendablePixelMap;
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+  let pixelMap : image.PixelMap = image.createPixelMapSync(color, opts);
+  let sendablePixelMap : sendableImage.PixelMap = sendableImage.convertFromPixelMap(pixelMap);
+  return sendablePixelMap;
 }
 ```
 
 ## sendableImage.convertToPixelMap
 
-convertToPixelMap(pixelMap: PixelMap): image.PixelMap
+convertToPixelMap(pixelmap: PixelMap): image.PixelMap
 
 Creates a PixelMap object under **image** from a PixelMap object under **sendableImage**. This API returns the result synchronously. The APIs of the PixelMap object under **sendableImage** cannot be called anymore.
 
@@ -294,36 +298,47 @@ Creates a PixelMap object under **image** from a PixelMap object under **sendabl
 
 | Name | Type                                            | Mandatory| Description                                                            |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| pixelMap | [PixelMap](#pixelmap) | Yes  | PixelMap object under **sendableImage**.|
+| pixelmap | [PixelMap](#pixelmap) | Yes  | PixelMap object under **sendableImage**.|
 
 **Return value**
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| [PixelMap](arkts-apis-image-PixelMap.md) | PixelMap object, which is not sendable. If the operation fails, an error is thrown.|
+| [image.PixelMap](arkts-apis-image-PixelMap.md) | PixelMap object, which is not sendable. If the operation fails, an error is thrown.|
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+|  401    | If the image parameter invalid. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 62980104 | Failed to initialize the internal object.|
 
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
-    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-    let sendablePixelMap : sendableImage.PixelMap = sendableImage.createPixelMapSync(color, opts);
-    let pixelMap : image.PixelMap = sendableImage.convertToPixelMap(sendablePixelMap);
-    return pixelMap;
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+  let sendablePixelMap : sendableImage.PixelMap = sendableImage.createPixelMapSync(color, opts);
+  let pixelMap : image.PixelMap = sendableImage.convertToPixelMap(sendablePixelMap);
+  return pixelMap;
 }
 ```
+
+## ISendable
+type ISendable = lang.ISendable
+
+**ISendable** is the parent type of all sendable types except null and undefined. It does not have any necessary methods or properties.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+| Type               | Description                    |
+| ------------------ | ------------------------ |
+| [lang.ISendable](../apis-arkts/js-apis-arkts-lang.md#langisendable)  | Parent type of all sendable types.              |
 
 ## PixelMap
 
@@ -346,7 +361,9 @@ Before calling any API in PixelMap, you must use [sendableImage.createPixelMap](
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
-Reads the pixels of this image and writes the data to an ArrayBuffer. This API uses a promise to return the result. If the PixelMap is created in the BGRA_8888 format, the data read is the same as the original data.
+Reads the pixels of this image and writes the data to an ArrayBuffer. This API uses a promise to return the result.
+
+If the PixelMap is created in the BGRA_8888 format, the data read is the same as the original data.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -371,14 +388,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { sendableImage } from '@kit.ImageKit';
 
 async function Demo(pixelMap : sendableImage.PixelMap) {
-    const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
-    if (pixelMap != undefined) {
-        pixelMap.readPixelsToBuffer(readBuffer).then(() => {
-            console.info('Succeeded in reading image pixel data.'); // Called if the condition is met.
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`); // Called if no condition is met.
-        })
-    }
+  const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
+  if (pixelMap != undefined) {
+    pixelMap.readPixelsToBuffer(readBuffer).then(() => {
+      console.info('Succeeded in reading image pixel data.'); // Called if the condition is met.
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`); // Called if no condition is met.
+    })
+  }
 }
 ```
 
@@ -400,7 +417,7 @@ Reads the pixels of this image and writes the data to an ArrayBuffer. This API r
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -410,15 +427,14 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
 import { sendableImage } from '@kit.ImageKit';
 
 async function Demo(pixelMap: sendableImage.PixelMap) {
-    const bufferSize = pixelMap.getPixelBytesNumber();
-    const readBuffer: ArrayBuffer = new ArrayBuffer(bufferSize);
-    if (pixelMap != undefined) {
-        pixelMap.readPixelsToBufferSync(readBuffer);
-    }
+  const bufferSize = pixelMap.getPixelBytesNumber();
+  const readBuffer: ArrayBuffer = new ArrayBuffer(bufferSize);
+  if (pixelMap != undefined) {
+    pixelMap.readPixelsToBufferSync(readBuffer);
+  }
 }
 ```
 
@@ -447,23 +463,24 @@ Reads the pixels in an area. This API uses a promise to return the result.
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    const area: image.PositionArea = {
-        pixels: new ArrayBuffer(8),
-        offset: 0,
-        stride: 8,
-        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-    };
-    if (pixelMap != undefined) {
-        pixelMap.readPixels(area).then(() => {
-            console.info('Succeeded in reading the image data in the area.'); // Called if the condition is met.
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`); // Called if no condition is met.
-        })
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  const area: image.PositionArea = {
+    pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  if (pixelMap != undefined) {
+    pixelMap.readPixels(area).then(() => {
+      console.info('Succeeded in reading the image data in the area.'); // Called if the condition is met.
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`); // Called if no condition is met.
+    })
+  }
 }
 ```
 
@@ -485,7 +502,7 @@ Reads the pixels in an area. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -495,19 +512,19 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    const area : image.PositionArea = {
-        pixels: new ArrayBuffer(8),
-        offset: 0,
-        stride: 8,
-        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-    };
-    if (pixelMap != undefined) {
-        pixelMap.readPixelsSync(area);
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  const area : image.PositionArea = {
+    pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  if (pixelMap != undefined) {
+    pixelMap.readPixelsSync(area);
+  }
 }
 ```
 
@@ -536,27 +553,28 @@ Writes the pixels to an area. This API uses a promise to return the result.
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    const area: image.PositionArea = {
-        pixels: new ArrayBuffer(8),
-        offset: 0,
-        stride: 8,
-        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-    };
-    let bufferArr: Uint8Array = new Uint8Array(area.pixels);
-    for (let i = 0; i < bufferArr.length; i++) {
-        bufferArr[i] = i + 1;
-    }
-    if (pixelMap != undefined) {
-        pixelMap.writePixels(area).then(() => {
-            console.info('Succeeded to write pixelmap into the specified area.');
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
-        })
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  const area: image.PositionArea = {
+    pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  let bufferArr: Uint8Array = new Uint8Array(area.pixels);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+  }
+  if (pixelMap != undefined) {
+    pixelMap.writePixels(area).then(() => {
+      console.info('Succeeded to write pixelmap into the specified area.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
+    })
+  }
 }
 ```
 
@@ -578,7 +596,7 @@ Writes the pixels to an area. This API returns the result synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -588,23 +606,23 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    const area: image.PositionArea = {
-        pixels: new ArrayBuffer(8),
-        offset: 0,
-        stride: 8,
-        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-    };
-    let bufferArr: Uint8Array = new Uint8Array(area.pixels);
-    for (let i = 0; i < bufferArr.length; i++) {
-        bufferArr[i] = i + 1;
-    }
-    if (pixelMap != undefined) {
-        pixelMap.writePixelsSync(area);
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  const area: image.PositionArea = {
+    pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+  };
+  let bufferArr: Uint8Array = new Uint8Array(area.pixels);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+  }
+  if (pixelMap != undefined) {
+    pixelMap.writePixelsSync(area);
+  }
 }
 ```
 
@@ -612,7 +630,7 @@ async function Demo() {
 
 writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
-Reads image data in an ArrayBuffer and writes the data to a PixelMap object. This API uses a promise to return the result.
+Reads the pixels in the buffer and writes the result to a PixelMap. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -633,21 +651,22 @@ Reads image data in an ArrayBuffer and writes the data to a PixelMap object. Thi
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
-    let bufferArr: Uint8Array = new Uint8Array(color);
-    for (let i = 0; i < bufferArr.length; i++) {
-        bufferArr[i] = i + 1;
-    }
-    if (pixelMap != undefined) {
-        pixelMap.writeBufferToPixels(color).then(() => {
-            console.info("Succeeded in writing data from a buffer to a PixelMap.");
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
-        })
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
+  let bufferArr: Uint8Array = new Uint8Array(color);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+  }
+  if (pixelMap != undefined) {
+    pixelMap.writeBufferToPixels(color).then(() => {
+      console.info("Succeeded in writing data from a buffer to a PixelMap.");
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
+    })
+  }
 }
 ```
 
@@ -655,7 +674,7 @@ async function Demo() {
 
 writeBufferToPixelsSync(src: ArrayBuffer): void
 
-Reads image data in an ArrayBuffer and writes the data to a PixelMap object. This API returns the result synchronously.
+Reads the pixels in the buffer and writes the result to a PixelMap. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -669,7 +688,7 @@ Reads image data in an ArrayBuffer and writes the data to a PixelMap object. Thi
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -679,18 +698,18 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
 async function Demo(pixelMap: sendableImage.PixelMap) {
-    const bufferSize = pixelMap.getPixelBytesNumber();
-    const color : ArrayBuffer = new ArrayBuffer(bufferSize);
-    let bufferArr : Uint8Array = new Uint8Array(color);
-    for (let i = 0; i < bufferArr.length; i++) {
-        bufferArr[i] = i + 1;
-    }
-    if (pixelMap != undefined) {
-        pixelMap.writeBufferToPixelsSync(color);
-    }
+  const bufferSize = pixelMap.getPixelBytesNumber();
+  const color : ArrayBuffer = new ArrayBuffer(bufferSize);
+  let bufferArr : Uint8Array = new Uint8Array(color);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+  }
+  if (pixelMap != undefined) {
+    pixelMap.writeBufferToPixelsSync(color);
+  }
 }
 ```
 
@@ -708,24 +727,25 @@ Obtains the image information. This API uses a promise to return the result.
 
 | Type                             | Description                                                       |
 | --------------------------------- | ----------------------------------------------------------- |
-| Promise\<[ImageInfo](arkts-apis-image-i.md#imageinfo)> | Promise used to return the image information. If the operation fails, an error message is returned.|
+| Promise\<[image.ImageInfo](arkts-apis-image-i.md#imageinfo)> | Promise used to return the image information. If the operation fails, an error message is returned.|
 
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    if (pixelMap != undefined) {
-        pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
-            if (imageInfo != undefined) {
-                console.info("Succeeded in obtaining the image pixel map information."+ imageInfo.size.height);
-            }
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to obtain the image pixel map information. code is ${error.code}, message is ${error.message}`);
-        })
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  if (pixelMap != undefined) {
+    pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
+      if (imageInfo != undefined) {
+        console.info("Succeeded in obtaining the image pixel map information."+ imageInfo.size.height);
+      }
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to obtain the image pixel map information. code is ${error.code}, message is ${error.message}`);
+    })
+  }
 }
 ```
 
@@ -743,7 +763,7 @@ Obtains the image information. This API returns the result synchronously.
 
 | Type                             | Description                                                       |
 | --------------------------------- | ----------------------------------------------------------- |
-| [ImageInfo](arkts-apis-image-i.md#imageinfo)           | Image information.                                               |
+| [image.ImageInfo](arkts-apis-image-i.md#imageinfo)           | Image information.                                               |
 
 **Error codes**
 
@@ -754,15 +774,15 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 |  501    | Resource Unavailable |
 
 **Example**
- 
+
 ```ts
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
-async function Demo() {
-    if (pixelMap != undefined) {
-        let imageInfo : image.ImageInfo = pixelMap.getImageInfoSync();
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  if (pixelMap != undefined) {
+    let imageInfo : image.ImageInfo = pixelMap.getImageInfoSync();
+  }
 }
 ```
 
@@ -785,7 +805,11 @@ Obtains the number of bytes per row of this image.
 **Example**
 
 ```ts
-let rowCount: number = pixelMap.getBytesNumberPerRow();
+import { sendableImage } from '@kit.ImageKit';
+
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let rowCount: number = pixelMap.getBytesNumberPerRow();
+}
 ```
 
 ### getPixelBytesNumber
@@ -807,7 +831,11 @@ Obtains the total number of bytes of this image.
 **Example**
 
 ```ts
-let pixelBytesNumber: number = pixelMap.getPixelBytesNumber();
+import { sendableImage } from '@kit.ImageKit';
+
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let pixelBytesNumber: number = pixelMap.getPixelBytesNumber();
+}
 ```
 
 ### getDensity
@@ -829,14 +857,18 @@ Obtains the pixel density of this image.
 **Example**
 
 ```ts
-let getDensity: number = pixelMap.getDensity();
+import { sendableImage } from '@kit.ImageKit';
+
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let getDensity: number = pixelMap.getDensity();
+}
 ```
 
 ### opacity
 
 opacity(rate: number): Promise\<void>
 
-Sets an opacity rate for this image. This API uses a promise to return the result.
+Sets the opacity rate to enable the PixelMap to achieve the corresponding opacity effect. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -857,17 +889,18 @@ Sets an opacity rate for this image. This API uses a promise to return the resul
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    let rate: number = 0.5;
-    if (pixelMap != undefined) {
-        pixelMap.opacity(rate).then(() => {
-            console.info('Succeeded in setting opacity.');
-        }).catch((err: BusinessError) => {
-            console.error(`Failed to set opacity. code is ${err.code}, message is ${err.message}`);
-        })
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let rate: number = 0.5;
+  if (pixelMap != undefined) {
+    pixelMap.opacity(rate).then(() => {
+      console.info('Succeeded in setting opacity.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to set opacity. code is ${err.code}, message is ${err.message}`);
+    })
+  }
 }
 ```
 
@@ -889,7 +922,7 @@ Sets the opacity rate for this PixelMap and initializes the PixelMap.
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -899,13 +932,13 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
-async function Demo() {
-    let rate : number = 0.5;
-    if (pixelMap != undefined) {
-        pixelMap.opacitySync(rate);
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let rate : number = 0.5;
+  if (pixelMap != undefined) {
+    pixelMap.opacitySync(rate);
+  }
 }
 ```
 
@@ -928,16 +961,17 @@ Creates a PixelMap object that contains only the alpha channel information. This
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    if (pixelMap != undefined) {
-        pixelMap.createAlphaPixelmap().then((alphaPixelMap: sendableImage.PixelMap) => {
-            console.info('Succeeded in creating alpha pixelmap.');
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to create alpha pixelmap. code is ${error.code}, message is ${error.message}`);
-        })
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  if (pixelMap != undefined) {
+    pixelMap.createAlphaPixelmap().then((alphaPixelMap: sendableImage.PixelMap) => {
+      console.info('Succeeded in creating alpha pixelmap.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to create alpha pixelmap. code is ${error.code}, message is ${error.message}`);
+    })
+  }
 }
 ```
 
@@ -959,22 +993,21 @@ Creates a PixelMap object that contains only the alpha channel information. This
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  401    | Parameter error. Possible causes: 1.Parameter verification failed. |
 |  501    | Resource Unavailable. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
 import { sendableImage } from '@kit.ImageKit';
 
 async function Demo(pixelMap : sendableImage.PixelMap) {
-    let resPixelMap : sendableImage.PixelMap = pixelMap.createAlphaPixelmapSync();
-    return resPixelMap;
+  let resPixelMap : sendableImage.PixelMap = pixelMap.createAlphaPixelmapSync();
+  return resPixelMap;
 }
 ```
 
@@ -982,7 +1015,7 @@ async function Demo(pixelMap : sendableImage.PixelMap) {
 
 scale(x: number, y: number): Promise\<void>
 
-Scales this image based on a given width and height. This API uses a promise to return the result.
+Scales this PixelMap based on a given width and height. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1004,19 +1037,20 @@ Scales this image based on a given width and height. This API uses a promise to 
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    let scaleX: number = 2.0;
-    let scaleY: number = 1.0;
-    if (pixelMap != undefined) {
-        pixelMap.scale(scaleX, scaleY).then(() => {
-            console.info('Succeeded in scaling pixelmap.');
-        }).catch((err: BusinessError) => {
-            console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
-            
-        })   
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+    pixelMap.scale(scaleX, scaleY).then(() => {
+      console.info('Succeeded in scaling pixelmap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
+
+    })
+  }
 }
 ```
 
@@ -1039,7 +1073,7 @@ Scales this image based on a given width and height. This API returns the result
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -1049,14 +1083,14 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
-async function Demo() {
-    let scaleX: number = 2.0;
-    let scaleY: number = 1.0;
-    if (pixelMap != undefined) {
-        pixelMap.scaleSync(scaleX, scaleY);
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let scaleX: number = 2.0;
+  let scaleY: number = 1.0;
+  if (pixelMap != undefined) {
+    pixelMap.scaleSync(scaleX, scaleY);
+  }
 }
 ```
 
@@ -1064,7 +1098,9 @@ async function Demo() {
 
 translate(x: number, y: number): Promise\<void>
 
-Translates this image based on given coordinates. This API uses a promise to return the result.
+Translates this PixelMap based on given coordinates. This API uses a promise to return the result.
+
+The size of the translated image is changed to width+X and height+Y. It is recommended that the new width and height not exceed the width and height of the screen.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1086,18 +1122,19 @@ Translates this image based on given coordinates. This API uses a promise to ret
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    let translateX: number = 50.0;
-    let translateY: number = 10.0;
-    if (pixelMap != undefined) {
-        pixelMap.translate(translateX, translateY).then(() => {
-            console.info('Succeeded in translating pixelmap.');
-        }).catch((err: BusinessError) => {
-            console.error(`Failed to translate pixelmap. code is ${err.code}, message is ${err.message}`);
-        })
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let translateX: number = 50.0;
+  let translateY: number = 10.0;
+  if (pixelMap != undefined) {
+    pixelMap.translate(translateX, translateY).then(() => {
+      console.info('Succeeded in translating pixelmap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to translate pixelmap. code is ${err.code}, message is ${err.message}`);
+    })
+  }
 }
 ```
 
@@ -1106,6 +1143,8 @@ async function Demo() {
 translateSync(x: number, y: number): void
 
 Translates this image based on given coordinates. This API returns the result synchronously.
+
+The size of the translated image is changed to width+X and height+Y. It is recommended that the new width and height not exceed the width and height of the screen.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1120,7 +1159,7 @@ Translates this image based on given coordinates. This API returns the result sy
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -1130,14 +1169,14 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
-async function Demo() {
-    let translateX : number = 50.0;
-    let translateY : number = 10.0;
-    if (pixelMap != undefined) {
-        pixelMap.translateSync(translateX, translateY);
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let translateX : number = 50.0;
+  let translateY : number = 10.0;
+  if (pixelMap != undefined) {
+    pixelMap.translateSync(translateX, translateY);
+  }
 }
 ```
 
@@ -1145,7 +1184,12 @@ async function Demo() {
 
 rotate(angle: number): Promise\<void>
 
-Rotates this image based on a given angle. This API uses a promise to return the result.
+Rotates this PixelMap based on a given angle. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> - The allowable range for image rotation angles is [0, 360]. Angles outside this range are automatically adjusted according to the 360-degree cycle. For example, an angle of -100 degrees will produce the same result as 260 degrees.
+> - If the rotation angle is not an integer multiple of 90 degrees, the image size will change after rotation.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1166,17 +1210,18 @@ Rotates this image based on a given angle. This API uses a promise to return the
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    let angle: number = 90.0;
-    if (pixelMap != undefined) {
-        pixelMap.rotate(angle).then(() => {
-            console.info('Succeeded in rotating pixelmap.');
-        }).catch((err: BusinessError) => {
-            console.error(`Failed to rotate pixelmap. code is ${err.code}, message is ${err.message}`); 
-        })
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let angle: number = 90.0;
+  if (pixelMap != undefined) {
+    pixelMap.rotate(angle).then(() => {
+      console.info('Succeeded in rotating pixelmap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to rotate pixelmap. code is ${err.code}, message is ${err.message}`);
+    })
+  }
 }
 ```
 
@@ -1185,6 +1230,11 @@ async function Demo() {
 rotateSync(angle: number): void
 
 Rotates this image based on a given angle. This API returns the result synchronously.
+
+> **NOTE**
+>
+> - The allowable range for image rotation angles is [0, 360]. Angles outside this range are automatically adjusted according to the 360-degree cycle. For example, an angle of -100 degrees will produce the same result as 260 degrees.
+> - If the rotation angle is not an integer multiple of 90 degrees, the image size will change after rotation.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1198,7 +1248,7 @@ Rotates this image based on a given angle. This API returns the result synchrono
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -1208,13 +1258,13 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
-async function Demo() {
-    let angle : number = 90.0;
-    if (pixelMap != undefined) {
-        pixelMap.rotateSync(angle);
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let angle : number = 90.0;
+  if (pixelMap != undefined) {
+    pixelMap.rotateSync(angle);
+  }
 }
 ```
 
@@ -1222,7 +1272,7 @@ async function Demo() {
 
 flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
-Flips this image horizontally or vertically, or both. This API uses a promise to return the result.
+Flips this PixelMap horizontally or vertically, or both. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1244,19 +1294,20 @@ Flips this image horizontally or vertically, or both. This API uses a promise to
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    let horizontal: boolean = true;
-    let vertical: boolean = false;
-    if (pixelMap != undefined) {
-        pixelMap.flip(horizontal, vertical).then(() => {
-            console.info('Succeeded in flipping pixelmap.');
-        }).catch((err: BusinessError) => {
-            console.error(`Failed to flip pixelmap. code is ${err.code}, message is ${err.message}`);
-            
-        })
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let horizontal: boolean = true;
+  let vertical: boolean = false;
+  if (pixelMap != undefined) {
+    pixelMap.flip(horizontal, vertical).then(() => {
+      console.info('Succeeded in flipping pixelmap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to flip pixelmap. code is ${err.code}, message is ${err.message}`);
+
+    })
+  }
 }
 ```
 
@@ -1279,7 +1330,7 @@ Flips this image horizontally or vertically, or both. This API returns the resul
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -1289,14 +1340,14 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
-async function Demo() {
-    let horizontal : boolean = true;
-    let vertical : boolean = false;
-    if (pixelMap != undefined) {
-        pixelMap.flipSync(horizontal, vertical);
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let horizontal : boolean = true;
+  let vertical : boolean = false;
+  if (pixelMap != undefined) {
+    pixelMap.flipSync(horizontal, vertical);
+  }
 }
 ```
 
@@ -1304,7 +1355,7 @@ async function Demo() {
 
 crop(region: image.Region): Promise\<void>
 
-Crops this image based on a given size. This API uses a promise to return the result.
+Crops this PixelMap based on a given size. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1314,7 +1365,7 @@ Crops this image based on a given size. This API uses a promise to return the re
 
 | Name| Type              | Mandatory| Description       |
 | ------ | ------------------ | ---- | ----------- |
-| region | [Region](../apis-image-kit/arkts-apis-image-i.md#region8) | Yes  | Size of the image after cropping.|
+| region | [image.Region](../apis-image-kit/arkts-apis-image-i.md#region8) | Yes  | Size of the image after cropping.|
 
 **Return value**
 
@@ -1325,19 +1376,20 @@ Crops this image based on a given size. This API uses a promise to return the re
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    if (pixelMap != undefined) {
-        pixelMap.crop(region).then(() => {
-            console.info('Succeeded in cropping pixelmap.');
-        }).catch((err: BusinessError) => {
-            console.error(`Failed to crop pixelmap. code is ${err.code}, message is ${err.message}`);
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+  if (pixelMap != undefined) {
+    pixelMap.crop(region).then(() => {
+      console.info('Succeeded in cropping pixelmap.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to crop pixelmap. code is ${err.code}, message is ${err.message}`);
 
-        });
-    }
+    });
+  }
 }
 ```
 
@@ -1355,11 +1407,11 @@ Crops this image based on a given size. This API returns the result synchronousl
 
 | Name  | Type                | Mandatory| Description                         |
 | -------- | -------------------- | ---- | ----------------------------- |
-| region   | [Region](../apis-image-kit/arkts-apis-image-i.md#region8)   | Yes  | Size of the image after cropping.                 |
+| region   | [image.Region](../apis-image-kit/arkts-apis-image-i.md#region8)   | Yes  | Size of the image after cropping.                 |
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
@@ -1369,14 +1421,14 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 
-async function Demo() {
-    let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    if (pixelMap != undefined) {
-        pixelMap.cropSync(region);
-    }
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+  if (pixelMap != undefined) {
+    pixelMap.cropSync(region);
+  }
 }
 ```
 
@@ -1407,10 +1459,12 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-async function Demo() {
-    if (pixelMap != undefined) {
-        let csm = pixelMap.getColorSpace();
-    }
+import { sendableImage } from '@kit.ImageKit';
+
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  if (pixelMap != undefined) {
+    let csm = pixelMap.getColorSpace();
+  }
 }
 ```
 
@@ -1440,13 +1494,15 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
-async function Demo() {
-    let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
-    let csm: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    if (pixelMap != undefined) {
-        pixelMap.setColorSpace(csm);
-    }
+
+async function Demo(pixelMap : sendableImage.PixelMap) {
+  let colorSpaceName = colorSpaceManager.ColorSpace.SRGB; // The colorSpaceManager.ColorSpace object is supported only on 2-in-1 devices/PCs.
+  let csm: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
+  if (pixelMap != undefined) {
+    pixelMap.setColorSpace(csm);
+  }
 }
 ```
 
@@ -1472,7 +1528,7 @@ Performs Color Space Converters (CSC) on the image pixel color based on a given 
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | ------------------------------------------|
@@ -1489,7 +1545,7 @@ import { colorSpaceManager } from '@kit.ArkGraphics2D';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function Demo(pixelMap : sendableImage.PixelMap) {
-    let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
+    let colorSpaceName = colorSpaceManager.ColorSpace.SRGB; // The colorSpaceManager.ColorSpace object is supported only on 2-in-1 devices/PCs.
     let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
     pixelMap.applyColorSpace(targetColorSpace).then(() => {
         console.info('Succeeded in applying color space for pixelmap object.');
@@ -1523,59 +1579,61 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | 62980097 | IPC error.             |
 
 **Example**
+
 ```ts
 import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 import { rpc } from '@kit.IPCKit';
 
 class MySequence implements rpc.Parcelable {
-    pixel_map: sendableImage.PixelMap;
-    constructor(conPixelMap : sendableImage.PixelMap) {
-        this.pixel_map = conPixelMap;
-    }
-    marshalling(messageSequence : rpc.MessageSequence) {
-        this.pixel_map.marshalling(messageSequence);
-        console.info('marshalling');
-        return true;
-    }
-    unmarshalling(messageSequence : rpc.MessageSequence) {
-      sendableImage.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel: sendableImage.PixelMap) => {
-        pixelParcel.unmarshalling(messageSequence).then(async (pixelMap: sendableImage.PixelMap) => {
-          this.pixel_map = pixelMap;
-          pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
-            console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
-          })
+  pixel_map: sendableImage.PixelMap;
+  constructor(conPixelMap : sendableImage.PixelMap) {
+    this.pixel_map = conPixelMap;
+  }
+  marshalling(messageSequence : rpc.MessageSequence) {
+    this.pixel_map.marshalling(messageSequence);
+    console.info('marshalling');
+    return true;
+  }
+  unmarshalling(messageSequence : rpc.MessageSequence) {
+    sendableImage.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel: sendableImage.PixelMap) => {
+      pixelParcel.unmarshalling(messageSequence).then(async (pixelMap: sendableImage.PixelMap) => {
+        this.pixel_map = pixelMap;
+        pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
+          console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
         })
-      });
-      return true;
-    }
+      })
+    });
+    return true;
+  }
 }
+
 async function Demo() {
-   const color: ArrayBuffer = new ArrayBuffer(96);
-   let bufferArr: Uint8Array = new Uint8Array(color);
-   for (let i = 0; i < bufferArr.length; i++) {
-      bufferArr[i] = 0x80;
-   }
-   let opts: image.InitializationOptions = {
-      editable: true,
-      pixelFormat: 4,
-      size: { height: 4, width: 6 },
-      alphaType: 3
-   }
-   let pixelMap: sendableImage.PixelMap | undefined = undefined;
-   await sendableImage.createPixelMap(color, opts).then((srcPixelMap: sendableImage.PixelMap) => {
-      pixelMap = srcPixelMap;
-   })
-   if (pixelMap != undefined) {
+  const color: ArrayBuffer = new ArrayBuffer(96);
+  let bufferArr: Uint8Array = new Uint8Array(color);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = 0x80;
+  }
+  let opts: image.InitializationOptions = {
+    editable: true,
+    pixelFormat: 4,
+    size: { height: 4, width: 6 },
+    alphaType: 3
+  }
+  let pixelMap: sendableImage.PixelMap | undefined = undefined;
+  await sendableImage.createPixelMap(color, opts).then((srcPixelMap: sendableImage.PixelMap) => {
+    pixelMap = srcPixelMap;
+  })
+  if (pixelMap != undefined) {
     // Implement serialization.
-     let parcelable: MySequence = new MySequence(pixelMap);
-     let data: rpc.MessageSequence = rpc.MessageSequence.create();
-     data.writeParcelable(parcelable);
+    let parcelable: MySequence = new MySequence(pixelMap);
+    let data: rpc.MessageSequence = rpc.MessageSequence.create();
+    data.writeParcelable(parcelable);
 
     // Implement deserialization to obtain data through the RPC.
-     let ret: MySequence = new MySequence(pixelMap);
-     data.readParcelable(ret);
-   }
+    let ret: MySequence = new MySequence(pixelMap);
+    data.readParcelable(ret);
+  }
 }
 ```
 
@@ -1618,53 +1676,54 @@ import { image } from '@kit.ImageKit';
 import { rpc } from '@kit.IPCKit';
 
 class MySequence implements rpc.Parcelable {
-    pixel_map: sendableImage.PixelMap;
-    constructor(conPixelMap: sendableImage.PixelMap) {
-        this.pixel_map = conPixelMap;
-    }
-    marshalling(messageSequence: rpc.MessageSequence) {
-        this.pixel_map.marshalling(messageSequence);
-        console.info('marshalling');
-        return true;
-    }
-    unmarshalling(messageSequence: rpc.MessageSequence) {
-      sendableImage.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel : sendableImage.PixelMap) => {
-        pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : sendableImage.PixelMap) => {
-          this.pixel_map = pixelMap;
-          pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
-            console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
-          })
+  pixel_map: sendableImage.PixelMap;
+  constructor(conPixelMap: sendableImage.PixelMap) {
+    this.pixel_map = conPixelMap;
+  }
+  marshalling(messageSequence: rpc.MessageSequence) {
+    this.pixel_map.marshalling(messageSequence);
+    console.info('marshalling');
+    return true;
+  }
+  unmarshalling(messageSequence: rpc.MessageSequence) {
+    sendableImage.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel : sendableImage.PixelMap) => {
+      pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : sendableImage.PixelMap) => {
+        this.pixel_map = pixelMap;
+        pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
+          console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
         })
-      });
-      return true;
-    }
+      })
+    });
+    return true;
+  }
 }
+
 async function Demo() {
-   const color: ArrayBuffer = new ArrayBuffer(96);
-   let bufferArr: Uint8Array = new Uint8Array(color);
-   for (let i = 0; i < bufferArr.length; i++) {
-      bufferArr[i] = 0x80;
-   }
-   let opts: image.InitializationOptions = {
-      editable: true,
-      pixelFormat: 4,
-      size: { height: 4, width: 6 },
-      alphaType: 3
-   }
-   let pixelMap: sendableImage.PixelMap | undefined = undefined;
-   await sendableImage.createPixelMap(color, opts).then((srcPixelMap : sendableImage.PixelMap) => {
-      pixelMap = srcPixelMap;
-   })
-   if (pixelMap != undefined) {
+  const color: ArrayBuffer = new ArrayBuffer(96);
+  let bufferArr: Uint8Array = new Uint8Array(color);
+  for (let i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = 0x80;
+  }
+  let opts: image.InitializationOptions = {
+    editable: true,
+    pixelFormat: 4,
+    size: { height: 4, width: 6 },
+    alphaType: 3
+  }
+  let pixelMap: sendableImage.PixelMap | undefined = undefined;
+  await sendableImage.createPixelMap(color, opts).then((srcPixelMap : sendableImage.PixelMap) => {
+    pixelMap = srcPixelMap;
+  })
+  if (pixelMap != undefined) {
     // Implement serialization.
-     let parcelable: MySequence = new MySequence(pixelMap);
-     let data : rpc.MessageSequence = rpc.MessageSequence.create();
-     data.writeParcelable(parcelable);
+    let parcelable: MySequence = new MySequence(pixelMap);
+    let data : rpc.MessageSequence = rpc.MessageSequence.create();
+    data.writeParcelable(parcelable);
 
     // Implement deserialization to obtain data through the RPC.
-     let ret : MySequence = new MySequence(pixelMap);
-     data.readParcelable(ret);
-   }
+    let ret : MySequence = new MySequence(pixelMap);
+    data.readParcelable(ret);
+  }
 }
 ```
 
@@ -1691,13 +1750,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { sendableImage } from '@kit.ImageKit';
 
 async function Demo(pixelMap: sendableImage.PixelMap) {
-    if (pixelMap != undefined) {
-        await pixelMap.release().then(() => {
-            console.info('Succeeded in releasing pixelmap object.');
-        }).catch((error: BusinessError) => {
-            console.error(`Failed to release pixelmap object. code is ${error.code}, message is ${error.message}`);
-        })
-    }
+  if (pixelMap != undefined) {
+    await pixelMap.release().then(() => {
+      console.info('Succeeded in releasing pixelmap object.');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to release pixelmap object. code is ${error.code}, message is ${error.message}`);
+    })
+  }
 }
 ```
 
@@ -1759,14 +1818,13 @@ Creates an ImageSource instance based on a given URI.
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
+import { sendableImage } from '@kit.ImageKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-const path: string = context.cacheDir + "/test.jpg";
-const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(path);
+async function Demo(context : Context) {
+  const path: string = context.cacheDir + "/test.jpg";
+  const sendableImageSourceObj: sendableImage.ImageSource = sendableImage.createImageSource(path);
+}
 ```
 
 ## sendableImage.createImageSource
@@ -1793,16 +1851,15 @@ Creates an ImageSource instance based on a given file descriptor.
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
+import { sendableImage } from '@kit.ImageKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-const path: string = context.cacheDir + "/test.jpg";
-let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(file.fd);
+async function Demo(context : Context) {
+  const path: string = context.cacheDir + "/test.jpg";
+  let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+  const sendableImageSourceObj: sendableImage.ImageSource = sendableImage.createImageSource(file.fd);
+}
 ```
 
 ## sendableImage.createImageSource
@@ -1829,12 +1886,15 @@ Creates an ImageSource instance based on buffers.
 | --------------------------- | -------------------------------------------- |
 | [ImageSource](#imagesource) | ImageSource instance. If the operation fails, undefined is returned.|
 
-
 **Example**
 
 ```ts
-const buf: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
-const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(buf);
+import { sendableImage } from '@kit.ImageKit';
+
+async function Demo() {
+  const buf: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel buffer to create. The value is calculated as follows: height * width *4.
+  const sendableImageSourceObj: sendableImage.ImageSource = sendableImage.createImageSource(buf);
+}
 ```
 
 ## sendableImage.createImageReceiver
@@ -1851,7 +1911,7 @@ Creates an ImageReceiver instance based on the specified image size, format, and
 | -------- | ------ | ---- | ---------------------- |
 | size    | [image.Size](./arkts-apis-image-i.md#size)  | Yes  | Default size of the image.      |
 | format   | [image.ImageFormat](./arkts-apis-image-e.md#imageformat9) | Yes  | Image format, which is a constant of **image.ImageFormat**. (Currently, only **ImageFormat:JPEG** is supported.)            |
-| capacity | number | Yes  | Maximum number of images that can be accessed at the same time.|
+| capacity | number | Yes  | Maximum number of images that can be accessed at the same time. This parameter is used only as an expected value. The actual capacity is determined by the device hardware.|
 
 **Return value**
 
@@ -1861,22 +1921,25 @@ Creates an ImageReceiver instance based on the specified image size, format, and
 
 **Error codes**
 
-For details about the error codes, see [Image Error Codes](errorcode-image.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+|  401    |  The parameter check failed. |
 
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 
-let size: image.Size = {
-    height: 8192,
-    width: 8
-} 
-let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+async function Demo() {
+    let size: image.Size = {
+        height: 8192,
+        width: 8
+    } 
+    let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+}
 ```
 
 ## ImageSource
@@ -1910,20 +1973,19 @@ Creates a PixelMap object based on decoding options. This API uses a promise to 
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-const path: string = context.cacheDir + "/test.jpg";
-const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(path);
-sendableImageSourceApi.createPixelMap().then((pixelMap: sendableImage.PixelMap) => {
+async function Demo(context : Context) {
+  const path: string = context.cacheDir + "/test.jpg";
+  const sendableImageSourceObj: sendableImage.ImageSource = sendableImage.createImageSource(path);
+  sendableImageSourceObj.createPixelMap().then((pixelMap: sendableImage.PixelMap) => {
     console.info('Succeeded in creating pixelMap object through image decoding parameters.');
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`Failed to create pixelMap object through image decoding parameters. code ${error.code}, message is ${error.message}`);
-})
+  })
+}
 ```
 
 ### release
@@ -1942,20 +2004,19 @@ Releases this ImageSource instance. This API uses a promise to return the result
 
 **Example**
 
-<!--code_no_check-->
 ```ts
-import { common } from '@kit.AbilityKit';
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-const path: string = context.cacheDir + "/test.jpg";
-const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createImageSource(path);
-sendableImageSourceApi.release().then(() => {
+async function Demo(context : Context) {
+  const path: string = context.cacheDir + "/test.jpg";
+  const sendableImageSourceObj: sendableImage.ImageSource = sendableImage.createImageSource(path);
+  sendableImageSourceObj.release().then(() => {
     console.info('Succeeded in releasing the image source instance.');
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`Failed to release the image source instance. code ${error.code}, message is ${error.message}`);
-})
+  })
+}
 ```
 
 ## Image
@@ -1996,6 +2057,7 @@ Obtains the component buffer from the Image instance based on the color componen
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
@@ -2006,7 +2068,7 @@ async function Demo() {
   }
   let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
   let img = await receiver.readNextImage();
-  img.getComponent(4).then((component: image.Component) => {
+  img.getComponent(image.ComponentType.JPEG).then((component: image.Component) => {
     console.info('getComponent succeeded.');
   }).catch((error: BusinessError) => {
     console.error(`getComponent failed code ${error.code}, message is ${error.message}`);
@@ -2034,6 +2096,7 @@ The corresponding resources must be released before another image arrives. The t
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
@@ -2065,7 +2128,7 @@ Before calling any APIs in ImageReceiver, you must create an ImageReceiver insta
 | Name    | Type                        | Read-Only| Optional| Description              |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
 | size     | [image.Size](./arkts-apis-image-i.md#size)                | Yes  | No  | Image size.        |
-| capacity | number                       | Yes  | No  | Maximum number of images that can be accessed at the same time.|
+| capacity | number                       | Yes  | No  | Maximum number of images that can be accessed at the same time. This parameter is used only as an expected value. The actual capacity is determined by the device hardware.|
 | format   | [image.ImageFormat](./arkts-apis-image-e.md#imageformat9) | Yes  | No  | Image format.        |
 
 ### getReceivingSurfaceId
@@ -2085,19 +2148,22 @@ Obtains a surface ID for the camera or other components. This API uses a promise
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-let size: image.Size = {
+async function Demo() {
+  let size: image.Size = {
     height: 8192,
     width: 8
-}
-let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
-receiver.getReceivingSurfaceId().then((id: string) => {
+  }
+  let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+  receiver.getReceivingSurfaceId().then((id: string) => {
     console.info('Succeeded in getting the ReceivingSurfaceId.');
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`Failed to get the ReceivingSurfaceId.code ${error.code}, message is ${error.message}`);
-})
+  })
+}
 ```
 
 ### readLatestImage
@@ -2119,19 +2185,22 @@ This API can be called to receive data only after the [on](#on) callback is trig
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-let size: image.Size = {
+async function Demo() {
+  let size: image.Size = {
     height: 8192,
     width: 8
-}
-let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
-receiver.readLatestImage().then((img: image.Image) => {
+  }
+  let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+  receiver.readLatestImage().then((img: image.Image) => {
     console.info('readLatestImage succeeded.');
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`readLatestImage failed. code ${error.code}, message is ${error.message}`);
-})
+  })
+}
 ```
 
 ### readNextImage
@@ -2153,26 +2222,29 @@ This API can be called to receive data only after the [on](#on) callback is trig
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-let size: image.Size = {
+async function Demo() {
+  let size: image.Size = {
     height: 8192,
     width: 8
-}
-let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
-receiver.readNextImage().then((img: image.Image) => {
+  }
+  let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+  receiver.readNextImage().then((img: image.Image) => {
     console.info('readNextImage succeeded.');
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`readNextImage failed. code ${error.code}, message is ${error.message}`);
-})
+  })
+}
 ```
 
 ### on
 
 on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 
-Listens for image arrival events.
+Listens for image arrival events. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -2186,17 +2258,19 @@ Listens for image arrival events.
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 import { image } from '@kit.ImageKit';
 
-let size: image.Size = {
+async function Demo() {
+  let size: image.Size = {
     height: 8192,
     width: 8
+  }
+  let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+  receiver.on('imageArrival', () => {
+    // Implement the callback logic when an image is received.
+  })
 }
-let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
-receiver.on('imageArrival', () => {
-    // image arrival, do something.
-})
 ```
 
 ### release
@@ -2216,19 +2290,22 @@ Releases this ImageReceiver instance. This API uses a promise to return the resu
 **Example**
 
 ```ts
+import { sendableImage } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-let size: image.Size = {
+async function Demo() {
+  let size: image.Size = {
     height: 8192,
     width: 8
-}
-let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
-receiver.release().then(() => {
+  }
+  let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+  receiver.release().then(() => {
     console.info('release succeeded.');
-}).catch((error: BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`release failed. code ${error.code}, message is ${error.message}`);
-})
+  })
+}
 ```
 
 <!--no_check-->

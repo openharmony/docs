@@ -1,5 +1,12 @@
 # 按键拦截监听开发指导
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 场景介绍
 
 按键拦截监听支持应用在前台状态下监听物理按键的按下事件，当前按键仅支持音量加和音量减。该接口不仅可以订阅用户按键行为，还可屏蔽按键的系统默认响应，如音量调节。

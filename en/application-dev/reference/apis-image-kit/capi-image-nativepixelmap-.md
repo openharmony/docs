@@ -2,7 +2,7 @@
 
 ## Overview
 
-NativePixelMap_ defines the data type name of the PixelMap at the native layer.
+The struct defines the data type name of the PixelMap at the native layer.
 
 **Since**: 10
 

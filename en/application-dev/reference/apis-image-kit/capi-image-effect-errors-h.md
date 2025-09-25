@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **image_effect_errors.h** file declares the error codes used by the image effector.
+The file declares the error codes used by the image effector.
 
 **Library**: libimage_effect.so
 

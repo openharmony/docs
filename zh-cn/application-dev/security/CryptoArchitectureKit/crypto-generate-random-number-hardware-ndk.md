@@ -47,7 +47,7 @@
 
 1. 调用[OH_CryptoRand_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-rand-h.md#oh_cryptorand_create)，创建随机数生成器。
 
-2. 调用OH_CryptoRand_EnableHardwareEntropy，开启硬件熵源。
+2. 调用[OH_CryptoRand_EnableHardwareEntropy](../../reference/apis-crypto-architecture-kit/capi-crypto-rand-h.md#oh_cryptorand_enablehardwareentropy)，开启硬件熵源。
 
 3. （可选）调用[OH_CryptoRand_SetSeed](../../reference/apis-crypto-architecture-kit/capi-crypto-rand-h.md#oh_cryptorand_setseed)，为随机数生成器设置种子。
 

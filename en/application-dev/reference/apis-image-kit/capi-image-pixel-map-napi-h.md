@@ -1,10 +1,18 @@
 # image_pixel_map_napi.h
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @yaozhupeng-->
+<!--Designer: @yaozhupeng-->
+<!--Tester: @zhaoxiaoguang2-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
-The **image_pixel_map_napi.h** file declares the APIs used to lock, access, and unlock a PixelMap.
+The file declares the APIs used to lock, access, and unlock a PixelMap.
 
-**Library**: libpixelmap_ndk.so
+**Library**: libpixelmap_ndk.z.so
+
+**System capability**: SystemCapability.Multimedia.Image.Core
 
 **File to include**: <multimedia/image_framework/image_pixel_map_napi.h>
 

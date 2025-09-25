@@ -37,3 +37,4 @@ import { wantAgent as abilityWantAgent } from '@kit.AbilityKit';
 | actionFlags<sup>11+</sup> | Array<[abilityWantAgent.WantAgentFlags](js-apis-app-ability-wantAgent.md#wantagentflags)> | 否 | 是 | 动作执行属性。           |
 | extraInfo      | { [key: string]: any }            | 否 | 是 | 额外数据。               |
 | extraInfos<sup>11+</sup> | Record\<string, Object>            | 否 | 是 | 额外数据。推荐使用该属性替代extraInfo，设置该属性后，extraInfo不再生效。               |
+| userId<sup>22+</sup>    | number                          | 否 | 是 | 用户ID。<br>取值范围：大于等于0。<br>默认值为调用方所在用户ID。 |

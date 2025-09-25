@@ -391,9 +391,9 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 
 | ISSUE单 | 问题描述 | 
 | ------- | ------- |
-| IBTXFK | 从图库删除多张图片的完整用时可能稍长（1000+ ms）。 |
-| IBTCJQ | FWX图片放大缩小的移动帧率不足60帧。 |
-| IBINUK | 进程com.ohos.camera有一定概率出现因LIFECYCLE_TIMEOUT卡在libcamera_framework.z.so导致的sysfreeze。 |
+| [710](https://gitcode.com/openharmony/applications_photos/issues/710) | 从图库删除多张图片的完整用时可能稍长（1000+ ms）。 |
+| [9385](https://gitcode.com/openharmony/window_window_manager/issues/9385) | FWX图片放大缩小的移动帧率不足60帧。 |
+| [3460](https://gitcode.com/openharmony/multimedia_camera_framework/issues/3460) | 进程com.ohos.camera有一定概率出现因LIFECYCLE_TIMEOUT卡在libcamera_framework.z.so导致的sysfreeze。 |
 
 ## 遗留缺陷列表
 
@@ -401,19 +401,19 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 
 | ISSUE | 问题描述 | 影响 | 计划解决日期 | 
 | -------- | -------- | -------- | -------- |
-| IBTCKR | SystemUI状态栏下拉到内容渲染耗完成时的完整用时可能稍长（160+ ms）。 | 轻微影响使用体验。 | 2025年5月30日 |
-| IBBZPS | 进程com.ohos.systemui下的OS_IPC_0_1067线程小概率出现cppcrash，崩溃栈：ld-musl-arm.so.1(__libc_free+172) | 系统异常，用户无感知。 | 2025年5月30日 | 
-| IBE36X</br>IBO3MF | 进程render_service小概率出现因SERVICE_BLOCK导致的的sysfreeze问题。 | 桌面无响应后黑屏，自动恢复后回到桌面。 | 2025年5月30日 |
-| IC313T | 图库缩略图列表滑动的动画帧率未达到基线要求。 | 轻微影响使用体验。预计5月10日解决后评估回合5.1.0版本。 | 2025年5月10日 | 
-| IC32I0 | 浏览器微博首页滑动、浏览器天猫界面缩放的动画帧率未达到基线要求。 | 轻微影响使用体验。 | 2025年5月30日 | 
-| IC32SL | 首次启动浏览器到启动完成的耗时稍长，未达到基线要求。 | 轻微影响使用体验。 | 2025年6月23日 | 
-| IBUCOT | com.ohos.settingsdata进程的常驻内存实测值为16MB，远超基线要求。  | 内存占用不符合预期，对实际使用无影响。 | 2025年5月30日 | 
-| IC4UFM | 通话拨号盘按键的按键响应时延稍长，未达到基线要求。  | 轻微影响使用体验。 | 2025年5月16日 | 
-| IC04TG | 进程com.ohos.note下的com.ohos.note线程有一定概率出现因libarkweb_engine.so导致的cppcrash。  | 备忘录应用异常，重启可恢复。 | 2025年5月8日 | 
-| IBZYWM | 进程com.ohos.note下的CompositorGpuTh线程有一定概率出现因libmali-bifrost-g52-g7p0-ohos.so导致的cppcrash。  | 备忘录应用异常，重启可恢复。 | 2025年5月8日 | 
-| IC22OQ | 进程com.ohos.note下的RSRenderThread线程小概率出现因libskia_canvaskit.z.so导致的cppcrash。  | 备忘录应用异常，重启可恢复。 | 2025年5月15日 | 
-| IC4ZPS | 执行XTS测试时，ActslocationErrorCodeApiTest测试套因RK3568开发板位置服务不支持Geofence能力导致执行结果出现失败项。  | 该问题已在master解决，可通过增加配置项处理。<br/>配置方式可参考https://gitee.com/openharmony/vendor_hihope/pulls/1505 | 2025年4月30日 | 
-| IC57IO | 桌面->右上角下划进入控制中心->点击控制中心飞行模式，该操作按钮功能失效。  | 该问题已在master解决，可手动修改代码规避。<br/>处理方式可参考https://gitee.com/openharmony/distributeddatamgr_datamgr_service/pulls/2967 | 2025年4月30日 | 
+| [542](https://gitcode.com/openharmony/applications_systemui/issues/542) | SystemUI状态栏下拉到内容渲染耗完成时的完整用时可能稍长（160+ ms）。 | 轻微影响使用体验。 | 2025年5月30日 |
+| [9238](https://gitcode.com/openharmony/multimedia_audio_framework/issues/9238) | 进程com.ohos.systemui下的OS_IPC_0_1067线程小概率出现cppcrash，崩溃栈：ld-musl-arm.so.1(__libc_free+172) | 系统异常，用户无感知。 | 2025年5月30日 | 
+| [211](https://gitcode.com/openharmony/device_soc_rockchip/issues/211)</br>[15483](https://gitcode.com/openharmony/graphic_graphic_2d/issues/15483) | 进程render_service小概率出现因SERVICE_BLOCK导致的的sysfreeze问题。 | 桌面无响应后黑屏，自动恢复后回到桌面。 | 2025年5月30日 |
+| [55111](https://gitcode.com/openharmony/arkui_ace_engine/issues/55111) | 图库缩略图列表滑动的动画帧率未达到基线要求。 | 轻微影响使用体验。预计5月10日解决后评估回合5.1.0版本。 | 2025年5月10日 | 
+| [5456](https://gitcode.com/openharmony/multimodalinput_input/issues/5456) | 浏览器微博首页滑动、浏览器天猫界面缩放的动画帧率未达到基线要求。 | 轻微影响使用体验。 | 2025年5月30日 | 
+| [4491](https://gitcode.com/openharmony/web_webview/issues/4491) | 首次启动浏览器到启动完成的耗时稍长，未达到基线要求。 | 轻微影响使用体验。 | 2025年6月23日 | 
+| [83](https://gitcode.com/openharmony/applications_settings_data/issues/83) | com.ohos.settingsdata进程的常驻内存实测值为16MB，远超基线要求。  | 内存占用不符合预期，对实际使用无影响。 | 2025年5月30日 | 
+| [2658](https://gitcode.com/openharmony/communication_netmanager_base/issues/2658) | 通话拨号盘按键的按键响应时延稍长，未达到基线要求。  | 轻微影响使用体验。 | 2025年5月16日 | 
+| [4446](https://gitcode.com/openharmony/web_webview/issues/4446) | 进程com.ohos.note下的com.ohos.note线程有一定概率出现因libarkweb_engine.so导致的cppcrash。  | 备忘录应用异常，重启可恢复。 | 2025年5月8日 | 
+| [225](https://gitcode.com/openharmony/device_soc_rockchip/issues/225) | 进程com.ohos.note下的CompositorGpuTh线程有一定概率出现因libmali-bifrost-g52-g7p0-ohos.so导致的cppcrash。  | 备忘录应用异常，重启可恢复。 | 2025年5月8日 | 
+| [16659](https://gitcode.com/openharmony/graphic_graphic_2d/issues/16659) | 进程com.ohos.note下的RSRenderThread线程小概率出现因libskia_canvaskit.z.so导致的cppcrash。  | 备忘录应用异常，重启可恢复。 | 2025年5月15日 | 
+| [1371](https://gitcode.com/openharmony/base_location/issues/1371) | 执行XTS测试时，ActslocationErrorCodeApiTest测试套因RK3568开发板位置服务不支持Geofence能力导致执行结果出现失败项。  | 该问题已在master解决，可通过增加配置项处理。<br/>配置方式可参考https://gitee.com/openharmony/vendor_hihope/pulls/1505 | 2025年4月30日 | 
+| [1826](https://gitcode.com/openharmony/distributeddatamgr_datamgr_service/issues/1826) | 桌面->右上角下划进入控制中心->点击控制中心飞行模式，该操作按钮功能失效。  | 该问题已在master解决，可手动修改代码规避。<br/>处理方式可参考https://gitee.com/openharmony/distributeddatamgr_datamgr_service/pulls/2967 | 2025年4月30日 | 
 
 
 <!--no_check-->

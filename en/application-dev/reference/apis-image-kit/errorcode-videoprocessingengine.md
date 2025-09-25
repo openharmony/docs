@@ -1,5 +1,12 @@
 # Video Processing Engine Error Codes
 
+<!--Kit: Image Kit-->
+<!--Subsystem: Multimedia-->
+<!--Owner: @xjtu_liushang-->
+<!--Designer: @changjiuy-->
+<!--Tester: @yangwang01-->
+<!--Adviser: @zengyawen-->
+
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -28,11 +35,11 @@ An unknown error occurs. For example, GPU computation fails or content copy fail
 
 **Error Message**
 
-The global environment initialization for video processing failed, such as failure to initialize the GPU environment.
+The global environment initialization for image processing failed, such as failure to initialize the GPU environment.
 
 **Description**
 
-Initialization of the global environment for video processing fails. For example, GPU environment initialization fails.
+Initialization of the global environment for image processing fails. For example, GPU environment initialization fails.
 
 **Possible Causes**
 
@@ -46,11 +53,11 @@ Check the log for any GPU exceptions.
 
 **Error Message**
 
-Failed to create video processing instance. For example, the number of instances exceeds the upper limit.
+Failed to create image processing instance. For example, the number of instances exceeds the upper limit.
 
 **Description**
 
-Creation of a video processing instance fails. For example, the number of instances exceeds the upper limit.
+Creation of an image processing instance fails. For example, the number of instances exceeds the upper limit.
 
 **Possible Causes**
 
@@ -64,11 +71,11 @@ Reduce the number of instances created.
 
 **Error Message**
 
-Failed to process video buffer. For example, the processing times out.
+Failed to process image buffer. For example, the processing times out.
 
 **Description**
 
-Processing the video buffer fails. For example, processing timed out.
+Processing the image buffer fails. For example, processing timed out.
 
 **Possible Causes**
 
@@ -82,11 +89,11 @@ Reduce the load.
 
 **Error Message**
 
-The processing is not supported. You may call OH_VideoProcessing_IsXXXSupported to check whether the capability is supported.
+The processing is not supported. You may call OH_ImageProcessing_IsXXXSupported to check whether the capability is supported.
 
 **Description**
 
-The processing is not supported. You can call OH_VideoProcessing_IsXXXSupported to check whether the capability is supported.
+The processing is not supported. You can call **OH_ImageProcessing_Is*XXX*Supported** to check whether the capability is supported.
 
 **Possible Causes**
 
@@ -136,11 +143,11 @@ Reduce memory allocation.
 
 **Error Message**
 
-The video processing instance is invalid. This may be caused by null instance.
+The image processing instance is invalid. This may be caused by null instance.
 
 **Description**
 
-The video processing instance is invalid, possibly due to a null instance.
+The image processing instance is invalid, possibly due to a null instance.
 
 **Possible Causes**
 
@@ -155,14 +162,14 @@ Check instance creation.
 **Error Message**
 
 Input value is invalid. This error is returned for all of the following error conditions:
-1. Invalid input or output video buffer - The video buffer width(height) is too large or colorspace is incorrect.
+1. Invalid input or output image buffer - The image buffer width(height) is too large or colorspace is incorrect.
 2. Invalid parameter - The parameter does not contain valid information, such as detail enhancer level is incorrect.
 
 **Description**
 
 The input value is invalid. This error code is returned for all the following cases:
 
-1. Invalid input or output video buffer: The video buffer width (height) is too large or the color space is incorrect.
+1. Invalid input or output image buffer: The image buffer width (height) is too large or the color space is incorrect.
 2. Invalid parameter: The parameter does not contain valid information (for example, incorrect algorithm level).
 
 **Possible Causes**

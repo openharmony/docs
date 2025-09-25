@@ -2,12 +2,13 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
-The OhosImageReceiverInfo struct describes the information about an image receiver.
+The struct describes the information about an image receiver.
 
 **Since**: 10
 
@@ -24,4 +25,4 @@ The OhosImageReceiverInfo struct describes the information about an image receiv
 | int32_t width | Default width of the image received by the consumer, in pixels.|
 | int32_t height | Default height of the image received by the consumer, in pixels.|
 | int32_t format | Image format **OHOS_IMAGE_FORMAT_JPEG** created by using the receiver.|
-| int32_t capicity | Maximum number of images that can be cached.|
+| int32_t capacity | Maximum number of images that can be cached. This parameter is used only as an expected value. The actual capacity is determined by the device hardware.|

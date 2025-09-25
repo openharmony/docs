@@ -2,15 +2,16 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The initial APIs of this interface are supported since API version 13.
 
-The auxiliary picture is generally used to assist the main picture in displaying special information, so that the image includes richer information. The **AuxiliaryPicture** class is used to read or write auxiliary picture data of an image and obtain auxiliary picture information of an image. Before calling any API in AuxiliaryPicture, you must use [createAuxiliaryPicture](arkts-apis-image-f.md#imagecreateauxiliarypicture13) to create a AuxiliaryPicture object.
+The auxiliary picture is generally used to assist the main picture in displaying special information, so that the image includes richer information. The AuxiliaryPicture class is used to read or write auxiliary picture data of an image and obtain auxiliary picture information of an image. Before calling any API in AuxiliaryPicture, you must use [createAuxiliaryPicture](arkts-apis-image-f.md#imagecreateauxiliarypicture13) to create a AuxiliaryPicture object.
 
 ## Modules to Import
 
@@ -49,8 +50,6 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
 async function WritePixelsFromBuffer(context: Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("hdr.jpg"); // Support for HDR images is required.
@@ -89,7 +88,6 @@ Reads pixels of this auxiliary picture and writes the data to an ArrayBuffer. Th
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
 async function ReadPixelsToBuffer(context: Context) {
   const resourceMgr = context.resourceManager;
@@ -105,7 +103,7 @@ async function ReadPixelsToBuffer(context: Context) {
     await auxPictureObj.readPixelsToBuffer().then((pixelsBuffer: ArrayBuffer) => {
       console.info('Read pixels to buffer success.' );
     }).catch((error: BusinessError) => {
-      console.error('Read pixels to buffer failed error.code: ' + JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
+      console.error(`Read pixels to buffer failed error.code: ${error.code}, error.message: ${error.message}`);
     });
   } else {
     console.error('AuxPictureObj is null.');
@@ -130,9 +128,7 @@ Obtains the type of this auxiliary picture.
 **Example**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
-async function GetAuxiliaryPictureType() {
+async function GetAuxiliaryPictureType(auxPictureObj : image.AuxiliaryPicture) {
   if (auxPictureObj != null) {
     let type: image.AuxiliaryPictureType = auxPictureObj.getType();
     console.info('Success get auxiliary picture type ' +  JSON.stringify(type));
@@ -146,7 +142,7 @@ async function GetAuxiliaryPictureType() {
 
 setMetadata(metadataType: MetadataType, metadata: Metadata): Promise\<void>
 
-Sets the metadata for this auxiliary picture.
+Sets the metadata for this auxiliary picture. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -176,9 +172,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
 
-async function SetAuxPictureObjMetadata(exifContext: Context) {
+async function SetAuxPictureObjMetadata(exifContext: Context, auxPictureObj: image.AuxiliaryPicture) {
   const exifResourceMgr = exifContext.resourceManager;
   const exifRawFile = await exifResourceMgr.getRawFileContent("exif.jpg"); // The image contains EXIF metadata.
   let exifOps: image.SourceOptions = {
@@ -199,7 +194,7 @@ async function SetAuxPictureObjMetadata(exifContext: Context) {
     auxPictureObj.setMetadata(metadataType, exifMetaData).then(() => {
       console.info('Set metadata success');
     }).catch((error: BusinessError) => {
-      console.error('Set metadata failed.error.code: ${error.code}, error.message: ${error.message}');
+      console.error(`Set metadata failed.error.code: ${error.code}, error.message: ${error.message}`);
     });
   } else {
     console.error('AuxPictureObjMetaData is null');
@@ -211,7 +206,7 @@ async function SetAuxPictureObjMetadata(exifContext: Context) {
 
 getMetadata(metadataType: MetadataType): Promise\<Metadata>
 
-Obtains the metadata of this auxiliary picture.
+Obtains the metadata of this auxiliary picture. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -225,7 +220,7 @@ Obtains the metadata of this auxiliary picture.
 
 | Type                            | Description            |
 | -------------------------------- | ---------------- |
-| Promise<[Metadata](arkts-apis-image-Metadata.md)> | Metadata object.|
+| Promise<[Metadata](arkts-apis-image-Metadata.md)> | Promise that returns the metadata.|
 
 **Error codes**
 
@@ -239,19 +234,17 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 **Example**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
-async function GetAuxPictureObjMetadata() {
+async function GetAuxPictureObjMetadata(auxPictureObj: image.AuxiliaryPicture) {
   if (auxPictureObj != null) {
     let metadataType: image.MetadataType = image.MetadataType.EXIF_METADATA;
     let auxPictureObjMetaData: image.Metadata | null = await auxPictureObj.getMetadata(metadataType);
     if (auxPictureObjMetaData != null) {
-      console.info('Get auxpictureobj Metadata success' );
+      console.info('Get AuxPictureObj Metadata success' );
     } else {
-      console.error('Get auxpictureobj Metadata failed');
+      console.error('Get AuxPictureObj Metadata failed');
     }
   } else {
-    console.error('Get auxpictureobj is null.');
+    console.error('Get AuxPictureObj is null.');
   }
 }
 ```
@@ -268,14 +261,12 @@ Obtains the auxiliary picture information.
 
 | Type                                           | Description                             |
 | ----------------------------------------------- | --------------------------------- |
-| [AuxiliaryPictureInfo](arkts-apis-image-i.md#auxiliarypictureinfo13) | Promise used to return the auxiliary picture information.|
+| [AuxiliaryPictureInfo](arkts-apis-image-i.md#auxiliarypictureinfo13) | Auxiliary picture information.|
 
 **Example**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
-async function GetAuxiliaryPictureInfo() {
+async function GetAuxiliaryPictureInfo(auxPictureObj: image.AuxiliaryPicture) {
   if(auxPictureObj != null) {
     let auxinfo: image.AuxiliaryPictureInfo = auxPictureObj.getAuxiliaryPictureInfo();
     console.info('GetAuxiliaryPictureInfo Type: ' + auxinfo.auxiliaryPictureType +
@@ -314,9 +305,8 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { colorSpaceManager } from '@kit.ArkGraphics2D';
-import { image } from '@kit.ImageKit';
 
-async function SetAuxiliaryPictureInfo() {
+async function SetAuxiliaryPictureInfo(auxPictureObj: image.AuxiliaryPicture) {
   if(auxPictureObj != null) {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let info: image.AuxiliaryPictureInfo = {
@@ -342,9 +332,7 @@ Releases this AuxiliaryPicture object. No value is returned.
 **Example**
 
 ```ts
-import { image } from '@kit.ImageKit';
-
-async function Release() {
+async function Release(auxPictureObj: image.AuxiliaryPicture) {
   let funcName = "Release";
   if (auxPictureObj != null) {
     auxPictureObj.release();

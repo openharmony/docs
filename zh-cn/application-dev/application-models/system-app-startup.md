@@ -47,7 +47,7 @@
  
 
 - **通知管理：** 当应用通过[requestEnableNotification()](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification10)接口拉起通知授权弹框时，如果用户拒绝授权，将无法使用该接口再次拉起弹框，需要调用[openNotificationSettings()](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanageropennotificationsettings13)接口，支持拉起通知管理弹窗。
-
+- **网络管理：** 当应用需要通过WLAN连接网络时，可以通过[openNetworkManagerSettings()](../reference/apis-basic-services-kit/js-apis-settings.md#settingsopennetworkmanagersettings18)接口拉起WLAN设置弹窗。
 
 
 <!--RP1-->

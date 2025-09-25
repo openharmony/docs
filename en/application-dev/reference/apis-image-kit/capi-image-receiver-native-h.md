@@ -2,12 +2,15 @@
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--SE: @liyang_bryan-->
-<!--TSE: @xchaosioda-->
+<!--Designer: @liyang_bryan-->
+<!--Tester: @xchaosioda-->
+<!--Adviser: @zengyawen-->
 
 ## Overview
 
 The file declares the APIs used to obtain image data from the native layer.
+
+**File to include**: <multimedia/image_framework/image/image_receiver_native.h>
 
 **Library**: libimage_receiver.so
 
@@ -47,8 +50,8 @@ The file declares the APIs used to obtain image data from the native layer.
 | [Image_ErrorCode OH_ImageReceiverNative_GetSize(OH_ImageReceiverNative* receiver, Image_Size* size)](#oh_imagereceivernative_getsize) | - | Obtains the size of an **OH_ImageReceiverNative**.|
 | [Image_ErrorCode OH_ImageReceiverNative_GetCapacity(OH_ImageReceiverNative* receiver, int32_t* capacity)](#oh_imagereceivernative_getcapacity) | - | Obtains the capacity of an **OH_ImageReceiverNative**.|
 | [Image_ErrorCode OH_ImageReceiverNative_Release(OH_ImageReceiverNative* receiver)](#oh_imagereceivernative_release) | - | Releases an OH_ImageReceiverNative object.|
-| [Image_ErrorCode OH_ImageReceiverNative_OnImageArrive(OH_ImageReceiverNative *receiver,OH_ImageReceiver_ImageArriveCallback callback, void *userData)](#oh_imagereceivernative_onimagearrive) | - | Registers the [OH_ImageReceiver_ImageArriveCallback](#oh_imagereceiver_imagearrivecallback) callback.|
-| [Image_ErrorCode OH_ImageReceiverNative_OffImageArrive(OH_ImageReceiverNative *receiver,OH_ImageReceiver_ImageArriveCallback callback)](#oh_imagereceivernative_offimagearrive) | - | Unregisters the [OH_ImageReceiver_ImageArriveCallback](#oh_imagereceiver_imagearrivecallback) callback.|
+| [Image_ErrorCode OH_ImageReceiverNative_OnImageArrive(OH_ImageReceiverNative *receiver, OH_ImageReceiver_ImageArriveCallback callback, void *userData)](#oh_imagereceivernative_onimagearrive) | - | Registers the [OH_ImageReceiver_ImageArriveCallback](#oh_imagereceiver_imagearrivecallback) callback.|
+| [Image_ErrorCode OH_ImageReceiverNative_OffImageArrive(OH_ImageReceiverNative *receiver, OH_ImageReceiver_ImageArriveCallback callback)](#oh_imagereceivernative_offimagearrive) | - | Unregisters the [OH_ImageReceiver_ImageArriveCallback](#oh_imagereceiver_imagearrivecallback) callback.|
 
 ## Function Description
 
