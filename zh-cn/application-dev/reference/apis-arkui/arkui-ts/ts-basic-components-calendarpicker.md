@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
-> - 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -20,6 +20,8 @@ CalendarPicker(options?: CalendarOptions)
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 **参数：** 
 
@@ -169,6 +171,8 @@ onChange(callback: Optional\<Callback\<Date>>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
+
 | 名称      | 类型       | 只读 | 可选        | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- | --------------------------------- |
 | hintRadius | number \| [Resource](ts-types.md#resource) | 否   | 是    | 描述日期选中态底板样式。<br />取值范围：[0, 16]<br />单位：vp<br/>默认值：底板样式为圆形。<br />**说明：**<br />当hintRadius为0时，底板样式为直角矩形。当hintRadius的值在0到16之间时，底板样式为圆角矩形。当hintRadius大于或等于16时，底板样式为圆形。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -195,6 +199,8 @@ onChange(callback: Optional\<Callback\<Date>>)
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**设备行为差异：** 该接口在Wearable设备上使用时，应用程序运行异常，异常信息中提示接口未定义，在其他设备中可正常调用。
 
 | 名称   | 值 | 说明                     |
 | ------ | - | ------------------------ |
