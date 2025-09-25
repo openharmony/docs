@@ -1,10 +1,17 @@
 # 精准控制组件的更新范围
 
+<!--Kit: Common-->
+<!--Subsystem: Demo&Sample-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @huipeizi-->
+
 在复杂页面开发的场景下，精准控制组件更新的范围对提高应用运行性能尤为重要。
 
 ## 多组件关联同一对象的不同属性
 
-在学习本示例之前，需要了解当前状态管理的刷新机制。
+在学习本示例之前，需要了解当前[状态管理的刷新机制](../ui/state-management/arkts-observed-and-objectlink.md)。
 
 ```ts
 @Observed
@@ -12,15 +19,18 @@ class ClassA {
   prop1: number = 0;
   prop2: string = "This is Prop2";
 }
+
 @Component
 struct CompA {
   @ObjectLink a: ClassA;
   private sizeFont: number = 30; // the private variable does not invoke rendering
-  private isRenderText() : number {
+
+  private isRenderText(): number {
     this.sizeFont++; // the change of sizeFont will not invoke rendering, but showing that the function is called
     console.info("Text prop2 is rendered");
     return this.sizeFont;
   }
+
   build() {
     Column() {
       Text(this.a.prop2) // when this.a.prop2 changes, it will invoke Text rerendering
@@ -28,22 +38,24 @@ struct CompA {
     }
   }
 }
+
 @Entry
 @Component
 struct Page {
   @State a: ClassA = new ClassA();
+
   build() {
     Row() {
       Column() {
         Text("Prop1: " + this.a.prop1)
           .fontSize(50)
           .margin({ bottom: 20 })
-        CompA({a: this.a})
+        CompA({ a: this.a })
         Button("Change prop1")
           .width(200)
           .margin({ top: 20 })
           .onClick(() => {
-            this.a.prop1 = this.a.prop1 + 1 ;
+            this.a.prop1 = this.a.prop1 + 1;
           })
       }
       .width('100%')
@@ -81,13 +93,16 @@ class UIStyle {
   translateImageY: number = 0;
   fontSize: number = 20;
 }
+
 @Component
 struct SpecialImage {
   @ObjectLink uiStyle: UIStyle;
-  private isRenderSpecialImage() : number { // function to show whether the component is rendered
+
+  private isRenderSpecialImage(): number { // function to show whether the component is rendered
     console.info("SpecialImage is rendered");
     return 1;
   }
+
   build() {
     Image($r('app.media.icon'))
       .width(this.uiStyle.imageWidth)
@@ -100,26 +115,32 @@ struct SpecialImage {
       .opacity(this.isRenderSpecialImage()) // if the Image is rendered, it will call the function
   }
 }
+
 @Component
 struct CompA {
   @ObjectLink uiStyle: UIStyle;
+
   // the following functions are used to show whether the component is called to be rendered
-  private isRenderColumn() : number {
+  private isRenderColumn(): number {
     console.info("Column is rendered");
     return 1;
   }
-  private isRenderStack() : number {
+
+  private isRenderStack(): number {
     console.info("Stack is rendered");
     return 1;
   }
-  private isRenderImage() : number {
+
+  private isRenderImage(): number {
     console.info("Image is rendered");
     return 1;
   }
-  private isRenderText() : number {
+
+  private isRenderText(): number {
     console.info("Text is rendered");
     return 1;
   }
+
   build() {
     Column() {
       // when you compile this code in API9, IDE may tell you that
@@ -130,18 +151,19 @@ struct CompA {
       })
       Stack() {
         Column() {
-            Image($r('app.media.icon'))
-              .opacity(this.uiStyle.alpha)
-              .scale({
-                x: this.uiStyle.scaleX,
-                y: this.uiStyle.scaleY
-              })
-              .padding(this.isRenderImage())
-              .width(300)
-              .height(300)
+          Image($r('app.media.icon'))
+            .opacity(this.uiStyle.alpha)
+            .scale({
+              x: this.uiStyle.scaleX,
+              y: this.uiStyle.scaleY
+            })
+            .padding(this.isRenderImage())
+            .width(300)
+            .height(300)
         }
         .width('100%')
         .position({ y: -80 })
+
         Stack() {
           Text("Hello World")
             .fontColor("#182431")
@@ -168,6 +190,7 @@ struct CompA {
         x: this.uiStyle.translateX,
         y: this.uiStyle.translateY
       })
+
       Column() {
         Button("Move")
           .width(312)
@@ -177,7 +200,7 @@ struct CompA {
           .onClick(() => {
             this.getUIContext().animateTo({
               duration: 500
-            },() => {
+            }, () => {
               this.uiStyle.translateY = (this.uiStyle.translateY + 180) % 250;
             })
           })
@@ -191,7 +214,7 @@ struct CompA {
           })
       }
       .position({
-        y:666
+        y: 666
       })
       .height('100%')
       .width('100%')
@@ -203,10 +226,12 @@ struct CompA {
 
   }
 }
+
 @Entry
 @Component
 struct Page {
   @State uiStyle: UIStyle = new UIStyle();
+
   build() {
     Stack() {
       CompA({
@@ -235,21 +260,25 @@ struct Page {
 class ClassB {
   subProp1: number = 100;
 }
+
 @Observed
 class ClassA {
   prop1: number = 0;
   prop2: string = "This is Prop2";
   prop3: ClassB = new ClassB();
 }
+
 @Component
 struct CompA {
   @ObjectLink a: ClassA;
   private sizeFont: number = 30; // the private variable does not invoke rendering
-  private isRenderText() : number {
+
+  private isRenderText(): number {
     this.sizeFont++; // the change of sizeFont will not invoke rendering, but showing that the function is called
     console.info("Text prop2 is rendered");
     return this.sizeFont;
   }
+
   build() {
     Column() {
       Text(this.a.prop2) // when this.a.prop1 changes, it will invoke Text rerendering
@@ -260,17 +289,19 @@ struct CompA {
     }
   }
 }
+
 @Entry
 @Component
 struct Page {
   @State a: ClassA = new ClassA();
+
   build() {
     Row() {
       Column() {
         Text("Prop1: " + this.a.prop1)
           .margin({ bottom: 20 })
           .fontSize(50)
-        CompA({a: this.a})
+        CompA({ a: this.a })
         Button("Change prop1")
           .width(200)
           .fontSize(20)
@@ -280,7 +311,7 @@ struct Page {
             bottom: 10
           })
           .onClick(() => {
-            this.a.prop1 = this.a.prop1 + 1 ;
+            this.a.prop1 = this.a.prop1 + 1;
           })
         Button("Change subProp1")
           .width(200)
@@ -311,27 +342,32 @@ struct Page {
 class ClassB {
   subProp1: number = 100;
 }
+
 @Observed
 class ClassA {
   prop1: number = 0;
   prop2: string = "This is Prop2";
   prop3: ClassB = new ClassB();
 }
+
 @Component
 struct CompA {
   @ObjectLink a: ClassA;
   @ObjectLink b: ClassB; // a new objectlink variable
   private sizeFont: number = 30;
-  private isRenderText() : number {
+
+  private isRenderText(): number {
     this.sizeFont++;
     console.info("Text prop2 is rendered");
     return this.sizeFont;
   }
-  private isRenderTextSubProp1() : number {
+
+  private isRenderTextSubProp1(): number {
     this.sizeFont++;
     console.info("Text subProp1 is rendered");
     return this.sizeFont;
   }
+
   build() {
     Column() {
       Text(this.a.prop2) // when this.a.prop1 changes, it will invoke Text rerendering
@@ -343,10 +379,12 @@ struct CompA {
     }
   }
 }
+
 @Entry
 @Component
 struct Page {
   @State a: ClassA = new ClassA();
+
   build() {
     Row() {
       Column() {
@@ -366,7 +404,7 @@ struct Page {
             bottom: 10
           })
           .onClick(() => {
-            this.a.prop1 = this.a.prop1 + 1 ;
+            this.a.prop1 = this.a.prop1 + 1;
           })
         Button("Change subProp1")
           .width(200)
@@ -401,41 +439,49 @@ struct Page {
 class NeedRenderImage { // properties only used in the same component can be divided into the same new divided class
   public translateImageX: number = 0;
   public translateImageY: number = 0;
-  public imageWidth:number = 78;
-  public imageHeight:number = 78;
+  public imageWidth: number = 78;
+  public imageHeight: number = 78;
 }
+
 @Observed
 class NeedRenderScale { // properties usually used together can be divided into the same new divided class
   public scaleX: number = 0.3;
   public scaleY: number = 0.3;
 }
+
 @Observed
 class NeedRenderAlpha { // properties that may be used in different places can be divided into the same new divided class
   public alpha: number = 0.5;
 }
+
 @Observed
 class NeedRenderSize { // properties usually used together can be divided into the same new divided class
   public width: number = 336;
   public height: number = 178;
 }
+
 @Observed
 class NeedRenderPos { // properties usually used together can be divided into the same new divided class
   public posX: number = 10;
   public posY: number = 50;
 }
+
 @Observed
 class NeedRenderBorderRadius { // properties that may be used in different places can be divided into the same new divided class
   public borderRadius: number = 24;
 }
+
 @Observed
 class NeedRenderFontSize { // properties that may be used in different places can be divided into the same new divided class
   public fontSize: number = 20;
 }
+
 @Observed
 class NeedRenderTranslate { // properties usually used together can be divided into the same new divided class
   public translateX: number = 0;
   public translateY: number = 0;
 }
+
 @Observed
 class UIStyle {
   // define new variable instead of using old one
@@ -448,19 +494,22 @@ class UIStyle {
   needRenderScale: NeedRenderScale = new NeedRenderScale();
   needRenderImage: NeedRenderImage = new NeedRenderImage();
 }
+
 @Component
 struct SpecialImage {
-  @ObjectLink uiStyle : UIStyle;
+  @ObjectLink uiStyle: UIStyle;
   @ObjectLink needRenderImage: NeedRenderImage; // receive the new class from its parent component
-  private isRenderSpecialImage() : number { // function to show whether the component is rendered
+
+  private isRenderSpecialImage(): number { // function to show whether the component is rendered
     console.info("SpecialImage is rendered");
     return 1;
   }
+
   build() {
     Image($r('app.media.icon'))
       .width(this.needRenderImage.imageWidth) // !! use this.needRenderImage.xxx rather than this.uiStyle.needRenderImage.xxx !!
       .height(this.needRenderImage.imageHeight)
-      .margin({top:20})
+      .margin({ top: 20 })
       .translate({
         x: this.needRenderImage.translateImageX,
         y: this.needRenderImage.translateImageY
@@ -468,6 +517,7 @@ struct SpecialImage {
       .opacity(this.isRenderSpecialImage()) // if the Image is rendered, it will call the function
   }
 }
+
 @Component
 struct CompA {
   @ObjectLink uiStyle: UIStyle;
@@ -478,23 +528,28 @@ struct CompA {
   @ObjectLink needRenderSize: NeedRenderSize;
   @ObjectLink needRenderAlpha: NeedRenderAlpha;
   @ObjectLink needRenderScale: NeedRenderScale;
+
   // the following functions are used to show whether the component is called to be rendered
-  private isRenderColumn() : number {
+  private isRenderColumn(): number {
     console.info("Column is rendered");
     return 1;
   }
-  private isRenderStack() : number {
+
+  private isRenderStack(): number {
     console.info("Stack is rendered");
     return 1;
   }
-  private isRenderImage() : number {
+
+  private isRenderImage(): number {
     console.info("Image is rendered");
     return 1;
   }
-  private isRenderText() : number {
+
+  private isRenderText(): number {
     console.info("Text is rendered");
     return 1;
   }
+
   build() {
     Column() {
       // when you compile this code in API9, IDE may tell you that
@@ -590,10 +645,12 @@ struct CompA {
     .height('100%')
   }
 }
+
 @Entry
 @Component
 struct Page {
   @State uiStyle: UIStyle = new UIStyle();
+
   build() {
     Stack() {
       CompA({
@@ -641,9 +698,9 @@ struct Page {
 
 // sample
 Text("some text")
-.width(this.needRenderSize.width)
-.height(this.needRenderSize.height)
-.opacity(this.needRenderAlpha.alpha)
+  .width(this.needRenderSize.width)
+  .height(this.needRenderSize.height)
+  .opacity(this.needRenderAlpha.alpha)
 ```
 
 在父组件改变属性的值时，可以通过外层的父类去修改，即：
@@ -674,16 +731,20 @@ this.needRenderScale.scaleX = (this.needRenderScale.scaleX + 0.6) % 1;
 @Observed
 class NeedRenderProperty {
   public property: number = 1;
-};
+}
+;
+
 @Observed
 class SomeClass {
   needRenderProperty: NeedRenderProperty = new NeedRenderProperty();
 }
+
 @Entry
 @Component
 struct Page {
   @State someClass: SomeClass = new SomeClass();
   @State needRenderProperty: NeedRenderProperty = this.someClass.needRenderProperty;
+
   build() {
     Row() {
       Column() {
@@ -790,7 +851,6 @@ struct ListItemComponent {
 struct Index {
   @State currentIndex: number = 0; // 当前选中的列表项下标
   private listData: string[] = [];
-
 
   aboutToAppear(): void {
     for (let i = 0; i < 10; i++) {
@@ -911,6 +971,7 @@ Column() {
       ButtonComponent()
     }
   }
+
   Column() {
     Column() {
       List() {
@@ -948,6 +1009,7 @@ Button(`下标是${this.value}的倍数的组件文字变为红色`)
 ```ts
 // in ListItemComponent
 @State color: Color = Color.Black;
+
 aboutToAppear(): void {
   let event: emitter.InnerEvent = {
     eventId: 1
@@ -961,6 +1023,7 @@ aboutToAppear(): void {
   // 订阅eventId为1的事件
   emitter.on(event, callback);
 }
+
 build() {
   Column() {
     Text(this.myItem)
