@@ -1269,9 +1269,10 @@ export default class EntryAbility extends UIAbility {
 updateBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promise&lt;ContinuousTaskNotification&gt;
 
 更新长时任务，使用Promise异步回调。长时任务更新成功后，会有通知栏消息，没有提示音。
+</br>更新长时任务还存在如下约束限制：
 1. 本接口仅支持更新如下接口申请的长时任务：[startBackgroundRunning(context: Context, request: ContinuousTaskRequest): Promise&lt;ContinuousTaskNotification&gt;](#backgroundtaskmanagerstartbackgroundrunning21)。
-2. 已经合并的长时任务，且后台任务主类型和子类型均相同，仅支持更新ContinuousTaskRequest.wantAgent中的wants信息（(abilityName等)），如果类型不同，更新失败。
-3. 如果待更新的长时任务、指定的更新类型中均包含数据传输类型，则直接返回成功，不做任何操作。如果有有且只有一个包含数据传输类型，则更新失败。
+2. 已经合并的长时任务，且后台任务主类型和子类型均相同，仅支持更新ContinuousTaskRequest.wantAgent中的wants信息（abilityName等），如果类型不同，更新失败。
+3. 如果待更新的长时任务、指定的更新类型中均包含数据传输类型，则直接返回成功，不做任何操作。如果有且只有一个包含数据传输类型，则更新失败。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1458,7 +1459,7 @@ export default class EntryAbility extends UIAbility {
 | BLUETOOTH_INTERACTION   | 5    | 蓝牙相关业务。                  |
 | MULTI_DEVICE_CONNECTION | 6    | 多设备互联。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
 | VOIP<sup>13+</sup> | 8    | 音视频通话。<!--Del--><br/>**说明：** 系统应用申请/更新该类型的长时任务，没有通知栏消息。<!--DelEnd-->                 |
-| TASK_KEEPING            | 9    | 计算任务（仅对2in1设备开放）。        |
+| TASK_KEEPING            | 9    | 计算任务（仅对2in1设备开放）。<br/>**说明：** 从API version 21开始，对申请ACL权限为[ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM](../../../application-dev/security/AccessToken/restricted-permissions.md#ohospermissionkeep_background_running_system)的应用开放。        |
 
 ## ContinuousTaskNotification<sup>12+</sup>
 
@@ -1589,8 +1590,8 @@ export default class EntryAbility extends UIAbility {
 
 ## ContinuousTaskRequest<sup>21+</sup>
 
-通常作为[startBackgroundRunning()](#backgroundtaskmanagerstartbackgroundrunning21)和[updateBackgroundRunning](#backgroundtaskmanagerupdatebackgroundrunning21)接口的入参，用于指定申请或更新的长时任务信息。
-1. 通过[startBackgroundRunning()](#backgroundtaskmanagerstartbackgroundrunning21)接口申请长时任务时，如果待申请长时任务与已存在长时任务，两者的主类型和子类型均相同，且combinedTaskNotification均取值为true，则会合并通知。否则不会合并通知。
+通常作为[startBackgroundRunning()](#backgroundtaskmanagerstartbackgroundrunning21)和[updateBackgroundRunning](#backgroundtaskmanagerupdatebackgroundrunning21)接口的入参，用于指定申请或更新的长时任务信息。其中：
+1. 通过[startBackgroundRunning()](#backgroundtaskmanagerstartbackgroundrunning21)接口申请长时任务时，如果待申请长时任务与当前应用下已存在长时任务，两者的主类型和子类型均相同，且combinedTaskNotification均取值为true，则会合并通知。否则不会合并通知。
 2. 如果长时任务本身没有通知，则不会合并，长时任务类型是否会通知请参考[BackgroundTaskMode](#backgroundtaskmode21)。
 3. 如果长时任务类型中包含数据传输类型，则不会合并通知。
 4. 通知合并后不能取消合并，已合并的不能更新成不合并。
@@ -1613,7 +1614,7 @@ export default class EntryAbility extends UIAbility {
 
 isModeSupported(): boolean
 
-查询当前申请/更新的长时任务主类型，是否支持申请长时任务。根据[BackgroundTaskMode](#backgroundtaskmode21)的类型判断是否支持申请长时任务。
+查询当前[ContinuousTaskRequest](#continuoustaskrequest21)设置的长时任务主类型，是否支持申请长时任务。是否支持申请长时任务请参考[BackgroundTaskMode](#backgroundtaskmode21)的说明。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -1664,7 +1665,7 @@ export default class EntryAbility extends UIAbility {
 | 名称                     | 值  | 说明                    |
 | ------------------------ | ---- | --------------------- |
 | MODE_DATA_TRANSFER              | 1         | 数据传输。<br/>**说明：** 在数据传输时，应用需要更新进度，如果进度长时间（超过10分钟）未更新，数据传输的长时任务会被取消。<br/>更新进度的通知类型必须为实况窗，具体实现可参考[startBackgroundRunning()](#backgroundtaskmanagerstartbackgroundrunning12)中的示例。                 |
-| MODE_AUDIO_PLAYBACK             | 2         | 音视频播放。<br/>**说明：** 从API version 20开始，申请/更新AUDIO_PLAYBACK类型长时任务但不接入AVSession，申请/更新长时任务成功后会在通知栏显示通知。 <br/>接入AVSession后，后台任务模块不会发送通知栏通知，由AVSession发送通知。 <br/>对于API version 19及之前的版本，后台任务模块不会在通知栏显示通知。               |
+| MODE_AUDIO_PLAYBACK             | 2         | 音视频播放。<br/>**说明：** 申请/更新MODE_AUDIO_PLAYBACK类型长时任务但不接入AVSession，申请/更新长时任务成功后会在通知栏显示通知。 <br/>接入AVSession后，后台任务模块不会发送通知栏通知，由AVSession发送通知。              |
 | MODE_AUDIO_RECORDING            | 3         | 录制。<!--Del--><br/>**说明：** 系统应用申请/更新该类型的长时任务，没有通知栏消息。<!--DelEnd-->                 |
 | MODE_LOCATION                   | 4         | 定位导航。                  |
 | MODE_BLUETOOTH_INTERACTION      | 5         | 蓝牙相关业务。            |
