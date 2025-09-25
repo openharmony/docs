@@ -14,7 +14,7 @@
 
 type AudioRendererChangeInfoArray = Array&lt;Readonly&lt;AudioRendererChangeInfo&gt;&gt;
 
-数组类型，AudioRenderChangeInfo数组，只读。
+数组类型，AudioRendererChangeInfo数组，只读。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
