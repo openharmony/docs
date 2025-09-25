@@ -457,7 +457,7 @@ typedef void (*OH_AudioRenderer_OutputDeviceChangeCallback)(OH_AudioRenderer* re
 | -- | -- |
 | [OH_AudioRenderer](capi-ohaudio-oh-audiorendererstruct.md)* renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 |
 |  void* userData | 指向通过回调函数传递的应用数据指针。 |
-| [ OH_AudioStream_DeviceChangeReason](#oh_audiostream_devicechangereason) reason | 流设备变更原因。 |
+| [OH_AudioStream_DeviceChangeReason](#oh_audiostream_devicechangereason) reason | 流设备变更原因。 |
 
 ### OH_AudioRenderer_OnMarkReachedCallback()
 
