@@ -458,7 +458,6 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 | 名称                         | 值     | 说明                              |
 |----------------------------| ------ |---------------------------------|
-| ACCESSORY<sup>19+</sup>    | 26 | 附件设备，如遥控器上的麦克风。                 |
 | BLUETOOTH_SPP<sup>22+</sup> | 33 | 蓝牙设备SPP（Serial Port Profile）连接。 |
 | NEARLINK_PORT<sup>22+</sup> | 34 | 星闪设备PORT连接。                     |
 
@@ -466,13 +465,16 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 音频采集器选项信息。
 
+### preferredInputDevice<sup>22+</sup>
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
 | 名称                                | 类型                                                                   | 只读 | 可选 | 说明                                                                                                                                                                                                        |
 | ----------------------------------- |----------------------------------------------------------------------| ---- |---|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| preferredInputDevice<sup>20+</sup> | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor) | 否 | 是 | 指定设备的描述。<br>当SourceType指定为[SOURCE_TYPE_VOICE_TRANSCRIPTION](#sourcetype8)或者[SOURCE_TYPE_VOICE_RECOGNITION](arkts-apis-audio-e.md#sourcetype8)时可指定输入设备。<br>如果指定设备在线，系统会默认使用指定录音设备；如果指定设备不在线，系统会自动选择一个录音设备。 |
+| preferredInputDevice<sup>20+</sup> | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor) | 否 | 是 | * 此音频捕获器的首选输入设备。首选输入设备必须是一个输入设备，并且 {@link captureInfo} 中的源类型必须是 {@link SourceType#SOURCE_TYPE_RECONGITION} 或 {@link SourceType#SOURCE_TYPE_VOICE_TRANSCRIPTION}，否则此参数将被忽略。<br/>如果用户未指定设备，系统将自动为音频捕获器选择录音设备。当用户指定一个首选设备以创建识别或转录录音时，<br/>1） 如果首选设备在线，当前的音频捕获器可能会使用首选设备进行录音；如果首选设备在操作过程中离线，系统将自动选择一个录音设备。<br/>2） 如果首选设备离线，系统将自动选择录音设备；如果首选设备在操作过程中上线，可能会切换到首选设备进行录音。用户可以通过 {@link AudioCapturer#getCurrentAudioCapturerChangeInfo} 查询当前使用的设备。 |
+                                                                                                  
 
 ## AudioManager
 
