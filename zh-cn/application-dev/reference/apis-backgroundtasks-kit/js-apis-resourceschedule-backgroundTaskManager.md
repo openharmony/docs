@@ -7,7 +7,7 @@
 <!--Tester: @fenglili18-->
 <!--Adviser: @Brilliantry_Rui-->
 
-本模块提供申请后台任务的接口。当应用退至后台时，开发者可以通过本模块接口为应用申请短时、长时任务，避免应用进程被终止或挂起。开发指导请参考[长时任务开发指南](../../task-management/continuous-task.md)、[短时任务开发指南](../../task-management/transient-task.md)。
+本模块提供申请后台任务的接口。当应用退至后台时，开发者可以通过本模块接口为应用申请短时、长时任务，避免应用进程被终止或挂起。
 
 >  **说明：**
 >
@@ -123,7 +123,7 @@ backgroundTaskManager.getRemainingDelayTime(id, (error: BusinessError, res: numb
     if(error) {
         console.error(`callback => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
     } else {
-        console.info('callback => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
+        console.log('callback => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
     }
 })
 ```
@@ -171,7 +171,7 @@ import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
 
 let id = 1;
 backgroundTaskManager.getRemainingDelayTime(id).then((res: number) => {
-    console.info('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
+    console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
 }).catch((error: BusinessError) => {
     console.error(`promise => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
 })
@@ -1459,7 +1459,7 @@ export default class EntryAbility extends UIAbility {
 | BLUETOOTH_INTERACTION   | 5    | 蓝牙相关业务。                  |
 | MULTI_DEVICE_CONNECTION | 6    | 多设备互联。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
 | VOIP<sup>13+</sup> | 8    | 音视频通话。<!--Del--><br/>**说明：** 系统应用申请/更新该类型的长时任务，没有通知栏消息。<!--DelEnd-->                 |
-| TASK_KEEPING            | 9    | 计算任务（仅对2in1设备开放）。<br/>**说明：** 从API version 21开始，对申请ACL权限为[ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM](../../../application-dev/security/AccessToken/restricted-permissions.md#ohospermissionkeep_background_running_system)的应用开放。        |
+| TASK_KEEPING            | 9    | 计算任务（仅对2in1设备开放）。<br/>**说明：** 从API version 21开始，对PC/2in1设备、非PC/2in1设备但申请了ACL权限为[ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM](../../../application-dev/security/AccessToken/restricted-permissions.md#ohospermissionkeep_background_running_system)的应用开放。 API version 20及之前版本，仅对PC/2in1设备开放。        |
 
 ## ContinuousTaskNotification<sup>12+</sup>
 
@@ -1578,7 +1578,7 @@ export default class EntryAbility extends UIAbility {
 | abilityName | string   | 否    | 否    | UIAbility名称。          |
 | uid         | number   | 否    | 否    | 应用的UID。               |
 | pid         | number   | 否    | 否    | 应用进程的PID。               |
-| isFromWebView | boolean  | 否    | 否    | 是否通过Webview方式申请，即通过系统代理应用申请长时任务。true表示通过Webview方式申请，false表示不通过Webview方式申请。|
+| isFromWebView | boolean  | 否    | 否    | 是否通过Webview方式申请，即通过系统代理应用申请长时任务。      |
 | [backgroundModes](#backgroundmode) | string[] | 否    | 否    | 长时任务类型。               |
 | [backgroundSubModes](#backgroundsubmode16) | string[] | 否    | 否    | 长时任务子类型。              |
 | notificationId | number   | 否    | 否    | 通知 Id。                |
@@ -1671,7 +1671,7 @@ export default class EntryAbility extends UIAbility {
 | MODE_BLUETOOTH_INTERACTION      | 5         | 蓝牙相关业务。            |
 | MODE_MULTI_DEVICE_CONNECTION    | 6         | 多设备互联。            |
 | MODE_VOIP                       | 8         | 音视频通话。 <!--Del--><br/>**说明：** 系统应用申请/更新该类型的长时任务，没有通知栏消息。<!--DelEnd-->            |
-| MODE_TASK_KEEPING               | 9         | 计算任务（仅对PC/2in1设备开放，或者申请ACL权限为[ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM](../../../application-dev/security/AccessToken/restricted-permissions.md#ohospermissionkeep_background_running_system)的应用开放）。   |
+| MODE_TASK_KEEPING               | 9         | 计算任务（仅对PC/2in1设备开放，或者非PC/2in1设备但申请了ACL权限为[ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM](../../../application-dev/security/AccessToken/restricted-permissions.md#ohospermissionkeep_background_running_system)的应用开放）|
 
 ## BackgroundTaskSubmode<sup>21+</sup>
 
