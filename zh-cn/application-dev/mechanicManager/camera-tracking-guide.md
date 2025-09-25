@@ -43,7 +43,7 @@
 1. 导入机械设备管理模块文件。
 
     ```ts
-    import mechanicManager from '@kit.MechanicKit';
+    import { mechanicManager } from '@kit.MechanicKit';
     ```
 
 2. 获取已连接的机械设备列表。
