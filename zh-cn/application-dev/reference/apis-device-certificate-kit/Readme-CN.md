@@ -1,4 +1,10 @@
 # Device Certificate Kit（设备证书服务）
+<!--Kit: Device Certificate Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @chaceli-->
+<!--Designer: @chande-->
+<!--Tester: @zhangzhi1995-->
+<!--Adviser: @zengyawen-->
 
 - ArkTS API<!--device-certificate-arkts-->
   - [@ohos.security.cert (证书模块)](js-apis-cert.md)
