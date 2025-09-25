@@ -465,8 +465,6 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 音频采集器选项信息。
 
-### preferredInputDevice<sup>22+</sup>
-
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
