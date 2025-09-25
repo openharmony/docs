@@ -450,7 +450,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 ## DeviceType
 
-枚举，设备类型。
+表示设备类型的枚举。
 
 **系统接口：** 此接口为系统接口。
 
