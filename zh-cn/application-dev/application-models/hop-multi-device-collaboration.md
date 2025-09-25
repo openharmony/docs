@@ -1,6 +1,10 @@
 # 多端协同
-
-
+<!--Kit: Ability Kit-->
+<!--Subsystem: DistributedAbilityManager-->
+<!--Owner: @hobbycao-->
+<!--Designer: @gsxiaowen-->
+<!--Tester: @hanjiawei-->
+<!--Adviser: @w_Machine_cc-->
 ## 功能描述
 
 多端协同主要包括如下场景：
@@ -200,7 +204,7 @@
     @Entry
     @Component
     struct Page_CollaborateAbility {
-      private context = this.getUIContext().getHostContext();
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     
       build() {
         // ...
@@ -280,7 +284,7 @@
     @Entry
     @Component
     struct Page_CollaborateAbility {
-      private context = this.getUIContext().getHostContext();
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       build() {
         Column() {
           //...
@@ -330,7 +334,7 @@
     @Entry
     @Component
     struct Page_CollaborateAbility {
-      private context = this.getUIContext().getHostContext();
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
       build() {
         Column() {
@@ -405,7 +409,7 @@
     @Entry
     @Component
     struct Page_CollaborateAbility {
-      private context = this.getUIContext().getHostContext();
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       build() {
         Column() {
           //...
@@ -552,7 +556,7 @@
     @Entry
     @Component
     struct Page_CollaborateAbility {
-      private context = this.getUIContext().getHostContext();
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
    
       build() {
         Column() {
@@ -599,7 +603,7 @@
     @Entry
     @Component
     struct Page_CollaborateAbility {
-      private context = this.getUIContext().getHostContext();
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       build() {
         Column() {
           //...
@@ -857,7 +861,7 @@
         @Entry
         @Component
         struct Page_CollaborateAbility {
-          private context = this.getUIContext().getHostContext();
+          private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
           build() {
             Column() {
               //...
