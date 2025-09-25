@@ -150,14 +150,6 @@
             } else {
               console.error('byteBuffer is null');
             }
-            // 确保当前pixelMap没有在使用的情况下，可进行资源释放。
-            if (pixelMap != undefined) {
-              await pixelMap.release().then(() => {
-                console.info('Succeeded in releasing pixelMap object.');
-              }).catch((error: BusinessError) => {
-                console.error(`Failed to release pixelMap object. code is ${error.code}, message is ${error.message}`);
-              })
-            }
             // 确保当前buffer没有在使用的情况下，可进行资源释放。
             // 如果对buffer进行异步操作，需要在异步操作结束后再释放该资源（nextImage.release()）。
             nextImage.release();
