@@ -1323,7 +1323,7 @@ export default class EntryAbility extends UIAbility {
           abilityName: "EntryAbility"
         }
       ],
-      // 点击通知后的动作类型
+      // 设置点击通知后的动作类型
       actionType: wantAgent.OperationType.START_ABILITY,
       // 开发者自定义的请求码，用于标识将被执行的动作
       requestCode: 0,
