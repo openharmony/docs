@@ -1,5 +1,12 @@
 # ShellCmdResult
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @li-weifeng2024; @xuzhihao666-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 本模块提供Shell命令执行结果的能力。
 
 > **说明：**
@@ -42,7 +49,7 @@ abilityDelegator.executeShellCommand(cmd, (error: BusinessError, data) => {
   if (error) {
     console.error(`executeShellCommand fail, error: ${JSON.stringify(error)}`);
   } else {
-    console.log(`executeShellCommand success, data: ${JSON.stringify(data)}`);
+    console.info(`executeShellCommand success, data: ${JSON.stringify(data)}`);
   }
 });
 ```
