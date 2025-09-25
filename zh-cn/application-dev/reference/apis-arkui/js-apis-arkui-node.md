@@ -1,12 +1,18 @@
 # @ohos.arkui.node 
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 Node将自定义节点的二级模块API组织在一起，方便开发者进行导出使用。
 
 > **说明：**
 >
-> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 
-> 当前不支持在预览器中使用自定义节点。
+> - 当前不支持在预览器中使用自定义节点。
 
 ## BuilderNode
 
