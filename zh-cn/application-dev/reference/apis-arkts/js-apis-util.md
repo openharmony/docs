@@ -192,10 +192,7 @@ callbackWrapper(original: Function): (err: Object, value: Object)=&gt;void
 >
 > 该接口要求参数original必须是异步函数类型。如果传入的参数不是异步函数，不会进行拦截，但是会输出错误信息："callbackWrapper: The type of Parameter must be AsyncFunction"。
 >
-> 该接口用于将返回 Promise 的 async 函数（或任何返回 Promise 的函数）转换为错误优先回调风格的函数，调用此接口返回的函数接受一个回调函数作为第二个入参，调用此方法时会先执行original函数
-> 当original的Promise被resolve时，入参的回调函数的第一个参数为 null，第二个参数为 resolve 的值。
-> 当original的Promise被reject时，入参的回调函数的第一个参数为错误对象，第二个参数为 null。
-> 当original为无入参的函数时，调用此接口返回的函数第一个入参需传入一个无效的占位参数。
+> 该接口用于将返回Promise的async函数转换为错误优先回调风格的函数，调用此接口返回的函数接受一个回调函数作为第二个入参，调用此方法时会先执行original函数。当original的Promise被resolve时，入参的回调函数的第一个参数为 null，第二个参数为 resolve 的值。当original的Promise被reject时，入参的回调函数的第一个参数为错误对象，第二个参数为 null。当original为无入参的函数时，调用此接口返回的函数第一个入参需传入一个无效的占位参数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
