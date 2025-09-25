@@ -310,7 +310,7 @@ canLoop(isLoop: Optional\<boolean>)
 
 onChange(callback: (value: DatePickerResult) => void)
 
-选择日期时触发该事件。不能通过双向绑定的状态变量触发。
+滑动DatePicker文本内容后，选项完全归位至选中项位置时，触发该回调。不能通过双向绑定的状态变量触发。
 
 从API version 8 开始支持，从 API version 10 开始废弃，建议使用[onDateChange](#ondatechange10)。
 
@@ -326,7 +326,7 @@ onChange(callback: (value: DatePickerResult) => void)
 
 onDateChange(callback: Callback\<Date>)
 
-选择日期时触发该事件。不能通过双向绑定的状态变量触发。
+滑动DatePicker文本内容后，选项完全归位至选中项位置时，触发该回调。不能通过双向绑定的状态变量触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -342,7 +342,7 @@ onDateChange(callback: Callback\<Date>)
 
 onDateChange(callback: Optional\<Callback\<Date>>)
 
-选择日期时触发该事件。不能通过双向绑定的状态变量触发。与[onDateChange<sup>10+</sup>](#ondatechange10)相比，callback参数新增了对undefined类型的支持。
+滑动DatePicker文本内容后，选项完全归位至选中项位置时，触发该回调。不能通过双向绑定的状态变量触发。与[onDateChange<sup>10+</sup>](#ondatechange10)相比，callback参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
