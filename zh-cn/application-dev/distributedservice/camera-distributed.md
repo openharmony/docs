@@ -91,7 +91,7 @@
       let permissionNames: Array<Permissions> = ['ohos.permission.MEDIA_LOCATION', 'ohos.permission.READ_MEDIA',
         'ohos.permission.WRITE_MEDIA', 'ohos.permission.CAMERA', 'ohos.permission.MICROPHONE', 'ohos.permission.DISTRIBUTED_DATASYNC'];
       abilityAccessCtrl.createAtManager().requestPermissionsFromUser(this.context, permissionNames).then((data)=> {
-        console.log("testTag", data);
+        console.info("testTag", data);
       })
         .catch((err : BusinessError) => {
           console.error("testTag", err.message);
@@ -154,15 +154,15 @@
   ```ts
   // create camera input
   async createCameraInput(): Promise<void> {
-    console.log('createCameraInput called');
+    console.info('createCameraInput called');
     if (this.cameras && this.cameras.length > 0) {
       let came: camera.CameraDevice = this.cameras[this.cameraIndex];
-      console.log('[came]createCameraInput camera json:', JSON.stringify(came));
+      console.info('[came]createCameraInput camera json:', JSON.stringify(came));
       this.cameraInput = this.cameraManager?.createCameraInput(came);
       if (this.cameraInput) {
-        console.log('[camera] case createCameraInput success');
+        console.info('[camera] case createCameraInput success');
         await this.cameraInput.open().then(() => {
-          console.log('[camera] case cameraInput.open() success');
+          console.info('[camera] case cameraInput.open() success');
         }).catch((err: Error) => {
           console.error('[camera] cameraInput.open then.error:', JSON.stringify(err));
         });
@@ -188,22 +188,22 @@
 
   // create camera preview
   async createPreviewOutput(): Promise<void> {
-    console.log('createPreviewOutput called');
+    console.info('createPreviewOutput called');
     if (this.cameraOutputCapability && this.cameraManager) {
       this.previewProfiles = this.cameraOutputCapability.previewProfiles;
-      console.log('[camera] this.previewProfiles json ', JSON.stringify(this.previewProfiles));
+      console.info('[camera] this.previewProfiles json ', JSON.stringify(this.previewProfiles));
       if (this.previewProfiles[0].format === camera.CameraFormat.CAMERA_FORMAT_YUV_420_SP) {
-        console.log('[camera] case format is VIDEO_SOURCE_TYPE_SURFACE_YUV');
+        console.info('[camera] case format is VIDEO_SOURCE_TYPE_SURFACE_YUV');
         this.avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV;
       } else {
-        console.log('[camera] case format is VIDEO_SOURCE_TYPE_SURFACE_ES');
+        console.info('[camera] case format is VIDEO_SOURCE_TYPE_SURFACE_ES');
         this.avConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES;
       }
       this.previewOutput = this.cameraManager.createPreviewOutput(this.previewProfiles[0], this.surfaceId);
       if (!this.previewOutput) {
         console.error('create previewOutput failed!');
       }
-      console.log('createPreviewOutput done');
+      console.info('createPreviewOutput done');
     }
   }
   ```
@@ -214,7 +214,7 @@
   通过createPhotoOutput()方法创建拍照输出对象，通过createImageReceiver()方法创建ImageReceiver实例。
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import { fileio } from '@kit.CoreFileKit';
 
   private photoReceiver?: image.ImageReceiver;
   private photoOutput?: camera.PhotoOutput;
@@ -268,7 +268,7 @@
             fileio.write(this.mFileAssetId, img.byteBuffer)
             await this.closeFd()
             await image.release()
-            console.log('photoReceiver image.getComponent save success')
+            console.info('photoReceiver image.getComponent save success')
           })
         })
       })
@@ -277,9 +277,9 @@
           if (!this.photoOutput) {
             console.error('cameraManager.createPhotoOutput on error')
           }
-          console.log('cameraManager.createPhotoOutput success')
+          console.info('cameraManager.createPhotoOutput success')
           this.photoOutput?.on("captureStart", (err, captureId) => {
-            console.log('photoOutput.on captureStart')
+            console.info('photoOutput.on captureStart')
           })
         }).catch((err: Error) => {
           console.error('photoReceiver.getReceivingSurfaceId on error:' + err)
@@ -305,7 +305,7 @@
 
   // create camera capture session
   async createCaptureSession(): Promise<void> {
-    console.log('createCaptureSession called');
+    console.info('createCaptureSession called');
     if (this.cameraManager) {
       this.captureSession = this.cameraManager.createCaptureSession();
       if (!this.captureSession) {
@@ -324,7 +324,7 @@
         console.error('case addOutput error:' + JSON.stringify(e));
       }
       await this.captureSession.commitConfig().then(() => {
-        console.log('captureSession commitConfig success');
+        console.info('captureSession commitConfig success');
       }, this.failureCallback).catch(this.catchCallback);
     }
   }
@@ -337,7 +337,7 @@
   ```ts
   // start captureSession
   async startCaptureSession(): Promise<void> {
-    console.log('startCaptureSession called');
+    console.info('startCaptureSession called');
     if (!this.captureSession) {
       console.error('CaptureSession does not exist!');
       return;
@@ -362,69 +362,69 @@
   ```ts
   // 释放相机
   async releaseCameraInput(): Promise<void> {
-    console.log('releaseCameraInput called');
+    console.info('releaseCameraInput called');
     if (this.cameraInput) {
       this.cameraInput = undefined;
     }
-    console.log('releaseCameraInput done');
+    console.info('releaseCameraInput done');
   }
 
   // 释放预览
   async releasePreviewOutput(): Promise<void> {
-    console.log('releasePreviewOutput called');
+    console.info('releasePreviewOutput called');
     if (this.previewOutput) {
       await this.previewOutput.release().then(() => {
-        console.log('[camera] case main previewOutput release called');
+        console.info('[camera] case main previewOutput release called');
       }, this.failureCallback).catch(this.catchCallback);
       this.previewOutput = undefined;
     }
-    console.log('releasePreviewOutput done');
+    console.info('releasePreviewOutput done');
   }
 
   // 释放视频输出
   async releaseVideoOutput(): Promise<void> {
-    console.log('releaseVideoOutput called');
+    console.info('releaseVideoOutput called');
     if (this.videoOutput) {
       await this.videoOutput.release().then(() => {
-        console.log('[camera] case main videoOutput release called');
+        console.info('[camera] case main videoOutput release called');
       }, this.failureCallback).catch(this.catchCallback);
       this.videoOutput = undefined;
     }
-    console.log('releaseVideoOutput done');
+    console.info('releaseVideoOutput done');
   }
 
   // 停止拍照任务
   async stopCaptureSession(): Promise<void> {
-    console.log('stopCaptureSession called');
+    console.info('stopCaptureSession called');
     if (this.captureSession) {
       await this.captureSession.stop().then(() => {
-        console.log('[camera] case main captureSession stop success');
+        console.info('[camera] case main captureSession stop success');
       }, this.failureCallback).catch(this.catchCallback);
     }
-    console.log('stopCaptureSession done');
+    console.info('stopCaptureSession done');
   }
 
   // 释放拍照任务
   async releaseCaptureSession(): Promise<void> {
-    console.log('releaseCaptureSession called');
+    console.info('releaseCaptureSession called');
     if (this.captureSession) {
       await this.captureSession.release().then(() => {
-        console.log('[camera] case main captureSession release success');
+        console.info('[camera] case main captureSession release success');
       }, this.failureCallback).catch(this.catchCallback);
       this.captureSession = undefined;
     }
-    console.log('releaseCaptureSession done');
+    console.info('releaseCaptureSession done');
   }
 
   // 释放相机资源
   async releaseCamera(): Promise<void> {
-    console.log('releaseCamera called');
+    console.info('releaseCamera called');
     await this.stopCaptureSession();
     await this.releaseCameraInput();
     await this.releasePreviewOutput();
     await this.releaseVideoOutput();
     await this.releaseCaptureSession();
-    console.log('releaseCamera done');
+    console.info('releaseCamera done');
   }
   ```
 
