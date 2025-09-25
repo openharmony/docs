@@ -5240,6 +5240,68 @@ isSharedArrayBuffer(value: Object): boolean
   // 输出结果：result = true
   ```
 
+## AutoFinalizer&lt;T&gt;<sup>22+</sup>
+
+AutoFinalizer是一个接口类，用于在ArkTS对象释放时提供回调。通过实现回调接口，开发者可自定义对象被回收时自动触发的资源清理逻辑。
+
+> **说明：**
+>
+> AutoFinalizer&lt;T&gt;需要和AutoFinalizerCleaner&lt;T&gt;一起使用，只实现该接口类没有任何功能。
+
+### onFinalization<sup>22+</sup>
+
+onFinalization(heldValue: T): void
+
+开发者需要实现该接口，定义对象被回收时自动触发的资源清理回调。
+
+**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| heldValue | T | 是 | 当监听的对象被回收时，该值会被传递给`onFinalization`回调方法。 |
+
+## AutoFinalizerCleaner&lt;T&gt;<sup>22+</sup>
+
+AutoFinalizerCleaner是用于关联对象生命周期与资源清理逻辑的工具类。主要的作用是将实现了AutoFinalizer&lt;T&gt;接口的对象与特定值绑定，当对象被回收时自动触发资源清理回调。
+
+### register&lt;T&gt;<sup>22+</sup>
+
+static register&lt;T&gt;(obj: AutoFinalizer&lt;T&gt;, heldValue: T): void
+
+将`AutoFinalizer`接口的对象与输入值关联，当对象被回收时触发资源清理的回调。
+
+**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| obj | [AutoFinalizer&lt;T&gt;](#autofinalizert22) | 是 | 实现了`AutoFinalizer`接口的对象，其`onFinalization`方法会在该对象被回收时调用。 |
+| heldValue | T | 是 | 当监听的对象被回收时，该值会被传递给`obj.onFinalization`方法。 |
+
+**示例：**
+
+```ts
+class DeviceManageViewModel implements util.AutoFinalizer<string> {
+  constructor(heldValue: string) {
+    util.AutoFinalizerCleaner.register(this, heldValue);
+  }
+
+  onFinalization(heldValue: string) {
+    console.info("onFinalization: ", heldValue);
+    // 等待触发垃圾回收，触发后会输出结果：onFinalization: test
+  }
+}
+
+const device = new DeviceManageViewModel("test");
+```
+
 ## LruBuffer<sup>(deprecated)</sup>
 
 > **说明：**
