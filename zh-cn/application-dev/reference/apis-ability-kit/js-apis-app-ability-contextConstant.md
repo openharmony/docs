@@ -2,7 +2,7 @@
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @wangkailong; @yangxuguang-huawei; @Luobniz21-->
-<!--Designer: @ccllee1; @li-weifeng2-->
+<!--Designer: @ccllee1; @li-weifeng2024-->
 <!--Tester: @lixueqing513-->
 <!--Adviser: @huipeizi-->
 
