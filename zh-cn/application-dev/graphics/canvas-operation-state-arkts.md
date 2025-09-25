@@ -80,6 +80,7 @@ canvas.drawCircle(300, 300, 300);
 // 去除填充效果
 canvas.detachBrush();
 ```
+<!-- [arkts_graphics_draw_canvas_clip](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/CanvasOperationState.ets) -->
 
 
 | 原始图 | 裁剪后的图 |
@@ -133,6 +134,7 @@ canvas.drawRect({ left: 200, top: 200, right: 600, bottom: 600 });
 // 去除填充效果
 canvas.detachBrush();
 ```
+<!-- [arkts_graphics_draw_canvas_translation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/CanvasOperationState.ets) -->
 
 
 | 原始图 | 平移后的效果图 |
@@ -162,6 +164,7 @@ canvas.drawRect({ left: 200, top: 200, right: 600, bottom: 600 });
 // 去除填充效果
 canvas.detachBrush();
 ```
+<!-- [arkts_graphics_draw_canvas_rotation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/CanvasOperationState.ets) -->
 
 
 | 原始图 | 旋转后的效果图 |
@@ -191,6 +194,7 @@ canvas.drawRect({ left: 200, top: 200, right: 600, bottom: 600 });
 // 去除填充效果
 canvas.detachBrush();
 ```
+<!-- [arkts_graphics_draw_canvas_scale](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/CanvasOperationState.ets) -->
 
 
 | 原始图 | 缩放后的效果图 |
@@ -239,7 +243,7 @@ canvas.drawCircle(300, 300, 200);
 // 去除描边效果
 canvas.detachPen();
 ```
-
+<!-- [arkts_graphics_draw_canvas_state_operation](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Drawing/ArkTSGraphicsDraw/entry/src/main/ets/drawing/pages/CanvasOperationState.ets) -->
 
 ![Screenshot_20241129152510415](figures/Screenshot_20241129152510415.jpg)
 
