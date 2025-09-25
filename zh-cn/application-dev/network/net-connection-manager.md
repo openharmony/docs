@@ -64,17 +64,8 @@
     // 创建NetConnection对象。
     let conn = connection.createNetConnection(netSpecifier, timeout);
     ```
-
-4. 调用该对象的[register()](../reference/apis-network-kit/js-apis-net-connection.md#register)方法，订阅指定网络状态变化的通知。当网络可用时，会收到netAvailable事件的回调；当网络不可用时，会收到netUnavailable事件的回调。
-
-    ```ts
-    // 订阅指定网络状态变化的通知。
-    conn.register((err: BusinessError, data: void) => {
-      console.info(JSON.stringify(err));
-    });
-    ```
-
-5. 调用该对象的[on()](../reference/apis-network-kit/js-apis-net-connection.md#onnetavailable)方法，传入type和callback，订阅关心的事件。
+    
+4. 调用该对象的[on()](../reference/apis-network-kit/js-apis-net-connection.md#onnetavailable)方法，传入type和callback参数，订阅关心的事件。
 
     ```ts
     // 订阅事件，如果当前指定网络可用，通过on_netAvailable通知用户。
@@ -87,6 +78,16 @@
       console.info("net is unavailable, data is " + JSON.stringify(data));
     }));
     ```
+    
+5. 调用该对象的[register()](../reference/apis-network-kit/js-apis-net-connection.md#register)方法，订阅指定网络状态变化的通知，此接口要在调用on后调用。当网络可用时，会收到netAvailable事件的回调；当网络不可用时，会收到netUnavailable事件的回调。
+
+    ```ts
+    // 订阅指定网络状态变化的通知。
+    conn.register((err: BusinessError, data: void) => {
+      console.info(JSON.stringify(err));
+    });
+    ```
+    
 6. 当不使用该网络时，可以调用该对象的[unregister()](../reference/apis-network-kit/js-apis-net-connection.md#unregister)方法，取消订阅。
 
     ```ts
