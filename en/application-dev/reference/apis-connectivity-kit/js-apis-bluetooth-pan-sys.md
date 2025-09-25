@@ -1,5 +1,11 @@
 # @ohos.bluetooth.pan (Bluetooth PAN Module) (System API)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 The **pan** module provides APIs for accessing the Bluetooth personal area network (PAN).
 
 > **NOTE**
@@ -34,7 +40,7 @@ Disconnects from the PAN service of a device.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the remote device.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 
 **Error codes**
 
@@ -80,7 +86,7 @@ Sets Bluetooth tethering, which shares a mobile connection.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| value | boolean | Yes   | Whether to set tethering over a Bluetooth PAN. The value **true** means to set tethering over a Bluetooth PAN; the value **false** means the opposite.|
+| enable | boolean | Yes   | Whether to enable network sharing. The value **true** means to enable network sharing, and the value **false** means the opposite.|
 
 **Error codes**
 

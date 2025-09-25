@@ -101,7 +101,7 @@ Creates a **PasteData** object that contains multiple types of data.
 
 | Name| Type| Mandatory| Description |
 | -------- |------------------------------------------------| -------- |-----------|
-| data | [Record](../../quick-start/introduction-to-arkts.md#object-literals)&lt;string, [ValueType](#valuetype9)&gt;| Yes| The key of **Record** can be the MIME type corresponding to the pasteboard data, including HTML, WANT, plain text, URI, and PixelMap defined in [Constants](#constants). Alternatively, the key could be a custom MIME type, whose parameter, the length of **mimeType**, cannot exceed 1024 bytes.<br>The value of **Record** is the data corresponding to the MIME type specified in the key.<br>The first MIME type specified by the key-value in **Record** is used as the default MIME type of the first **PasteDataRecord** in the **PasteData** object. Data of non-default types can be read only by using the [getData](#getdata14) API.|
+| data | [Record](../../quick-start/introduction-to-arkts.md#object-literal)&lt;string, [ValueType](#valuetype9)&gt;| Yes| The key of **Record** can be the MIME type corresponding to the pasteboard data, including HTML, WANT, plain text, URI, and PixelMap defined in [Constants](#constants). Alternatively, the key could be a custom MIME type, whose parameter, the length of **mimeType**, cannot exceed 1024 bytes.<br>The value of **Record** is the data corresponding to the MIME type specified in the key.<br>The first MIME type specified by the key-value in **Record** is used as the default MIME type of the first **PasteDataRecord** in the **PasteData** object. Data of non-default types can be read only by using the [getData](#getdata14) API.|
 
 **Return value**
 
@@ -473,12 +473,12 @@ Defines the properties of all data records on the pasteboard, including the time
 
 | Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- |-------------------------------|
-| additions<sup>7+</sup> | {[key:string]:object} | No| Yes| Additional data. It does not allow for dynamic adding of attributes. Attributes can be added only by re-assigning values. For details, see the example of **setProperty**.|
+| additions<sup>7+</sup> | {[key:string]:object} | No| Yes| Additional data. It does not allow for dynamic adding of attributes. Attributes can be added only by re-assigning values. For details, see the example of **setProperty**. This parameter is left empty by default.|
 | mimeTypes<sup>7+</sup> | Array&lt;string&gt; | Yes| No| Non-repeating data types of the data records on the pasteboard.|
-| tag<sup>7+</sup> | string | No| Yes| Custom tag.|
+| tag<sup>7+</sup> | string | No| Yes| Custom tag. This parameter is left empty by default.|
 | timestamp<sup>7+</sup> | number | Yes| No| Timestamp when data is written to the pasteboard (unit: ms).|
 | localOnly<sup>7+</sup> | boolean | No| Yes| Whether the pasteboard content is for local access only. The default value is **false**. The value will be overwritten by the value of the **shareOption** attribute. You are advised to use the [ShareOption](#shareoption9) attribute instead.|
-| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | No| Yes| Pasteable ranges of pasteboard data.|
+| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | No| Yes| Pasteable ranges of pasteboard data. The default value is **CROSSDEVICE**.|
 
 ## FileConflictOptions<sup>15+</sup>
 
@@ -552,6 +552,7 @@ Cancels an ongoing copy-and-paste task.
 
 ```ts
 import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
+import { fileUri} from '@kit.CoreFileKit';
 @Entry
 @Component
 struct PasteboardTest {
@@ -566,15 +567,17 @@ struct PasteboardTest {
               let systemPasteboard = pasteboard.getSystemPasteboard();
         	  await systemPasteboard.setData(pasteData);
               let signal = new pasteboard.ProgressSignal;
-              let ProgressListener = (progress: pasteboard.ProgressInfo) => {
-    		    console.log('progressListener success, progress:' + progress.progress);
+              let progressListenerInfo = (progress: pasteboard.ProgressInfo) => {
+    		    console.info('progressListener success, progress:' + progress.progress);
                 signal.cancel();
-              }
+              };
+              let destPath: string = '/data/storage/el2/base/files/';
+              let destUri : string = fileUri.getUriFromPath(destPath);
               let params: pasteboard.GetDataParams = {
-                destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
+                destUri: destUri,
                 fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
                 progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
-                progressListener: ProgressListener
+                progressListener: progressListenerInfo,
               };
               systemPasteboard.getDataWithProgress(params).then((pasteData: pasteboard.PasteData) => {
                 console.error('getDataWithProgress succ');
@@ -599,11 +602,11 @@ Obtains parameters when an application uses the file copy capability provided by
 
 | Name               | Type                                         | Mandatory| Description                                                        |
 | ------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| destUri             | string                                        | No  | Destination path for copying files. If file processing is not supported, this parameter is not required. If the application involves complex file processing policies or needs to distinguish file multipathing storage, you are advised not to set this parameter but let the application copies files by itself.|
+| destUri             | string                                        | No  | Destination path for copying files. If file processing is not supported, this parameter is not required. If the application involves complex file processing policies or needs to distinguish file multipathing storage, you are advised not to set this parameter but let the application copies files by itself. This parameter is left empty by default.|
 | fileConflictOptions | [FileConflictOptions](#fileconflictoptions15) | No  | File conflict options for a copy-and-paste task. The default value is **OVERWRITE**.                 |
 | progressIndicator   | [ProgressIndicator](#progressindicator15)     | Yes  | Progress indicator options. You can choose whether to use the default progress indicator.        |
-| progressListener    | [ProgressListener](#progresslistener15)       | No  | Listener for progress data changes. If the default progress indicator is not used, you can set this parameter to obtain the paste progress.|
-| progressSignal      | [ProgressSignal](#progresssignal15)           | No  | Function for canceling the paste task. This parameter is valid only when [ProgressIndicator](#progressindicator15) is set to **NONE**.|
+| progressListener    | [ProgressListener](#progresslistener15)       | No  | Listener for progress data changes. If the default progress indicator is not used, you can set this parameter to obtain the paste progress. This parameter is left empty by default.|
+| progressSignal      | [ProgressSignal](#progresssignal15)           | No  | Function for canceling the paste task. This parameter is valid only when [ProgressIndicator](#progressindicator15) is set to **NONE**. This parameter is left empty by default.|
 
 ## PasteDataRecord<sup>7+</sup>
 
@@ -644,7 +647,7 @@ Forcibly converts HTML, plain, and URI content in a **PasteDataRecord** to the p
 **Example**
 
 ```ts
-let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_HTML, '<html>hello<html>');
+let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_HTML, '<html>hello</html>');
 let text: string = record.toPlainText();
 console.info(`Succeeded in converting to text. Text: ${text}`);
 ```
@@ -1411,7 +1414,7 @@ systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) =
         return;
     }
     pasteData.pasteStart();
-    console.log(`using data: ${pasteData.getPrimaryText()}`);
+    console.info(`using data: ${pasteData.getPrimaryText()}`);
     pasteData.pasteComplete();
 });
 ```
@@ -1436,7 +1439,7 @@ systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) =
         return;
     }
     pasteData.pasteStart();
-    console.log(`using data: ${pasteData.getPrimaryText()}`);
+    console.info(`using data: ${pasteData.getPrimaryText()}`);
     pasteData.pasteComplete();
 });
 ```
@@ -3011,6 +3014,7 @@ For details about the error codes, see [Pasteboard Error Codes](errorcode-pasteb
 
 ```ts
 import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
+import { fileUri} from '@kit.CoreFileKit';
 @Entry
 @Component
 struct PasteboardTest {
@@ -3024,14 +3028,16 @@ struct PasteboardTest {
               let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, text);
               let systemPasteboard = pasteboard.getSystemPasteboard();
         	  await systemPasteboard.setData(pasteData);
-              let ProgressListener = (progress: pasteboard.ProgressInfo) => {
-    		    console.log('progressListener success, progress:' + progress.progress);
-              }
+              let progressListenerInfo = (progress: pasteboard.ProgressInfo) => {
+    		    console.info('progressListener success, progress:' + progress.progress);
+              };
+              let destPath: string = '/data/storage/el2/base/files/';
+              let destUri : string = fileUri.getUriFromPath(destPath);
               let params: pasteboard.GetDataParams = {
-                destUri: '/data/storage/el2/base/haps/entry/files/dstFile.txt',
+                destUri: destUri,
                 fileConflictOptions: pasteboard.FileConflictOptions.OVERWRITE,
                 progressIndicator: pasteboard.ProgressIndicator.DEFAULT,
-                progressListener: ProgressListener
+                progressListener: progressListenerInfo,
               };
               systemPasteboard.getDataWithProgress(params).then((pasteData: pasteboard.PasteData) => {
                 console.error('getDataWithProgress succ');

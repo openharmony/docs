@@ -53,15 +53,15 @@ For details about the error codes, see [Device Status Awareness Error Codes](err
 
 **Example**
 
-  ```ts
-  try {
-    deviceStatus.on('steadyStandingDetect', (data:deviceStatus.SteadyStandingStatus) => {
-      console.info('now status = ' + data);
-    });
-  } catch (err) {
-    console.info('on failed, err = ' + err);
-  }
-  ```
+   ```ts
+   try {
+      deviceStatus.on('steadyStandingDetect', (data:deviceStatus.SteadyStandingStatus) => {
+         console.info('succeed to get status, now status = ' + data);
+      });
+   } catch (err) {
+      console.error('on failed, err = ' + err);
+   }
+   ```
 
 ## deviceStatus.off('steadyStandingDetect')
 
@@ -93,32 +93,32 @@ For details about the error codes, see [Device Status Awareness Error Codes](err
 
 Example 1: Unsubscribe from all callbacks of steady standing state change events.
 
-  ```ts
-  try {
-    deviceStatus.off('steadyStandingDetect');
-  } catch (err) {
-    console.info('off failed, err = ' + err);
-  }
-  ```
+   ```ts
+   try {
+      deviceStatus.off('steadyStandingDetect');
+   } catch (err) {
+      console.error('off failed, err = ' + err);
+   }
+   ```
 
 Example 2: Unsubscribe from a specific callback of steady standing state change events.
 
-  ```ts
-  import { Callback } from '@ohos.base';
-  // Define the callback variable.
-  let callback : Callback<deviceStatus.SteadyStandingStatus> = (data : deviceStatus.SteadyStandingStatus) => {
-    console.info('now status = ' + data);
-  };
-  // Subscribe to a specific callback of steady standing state change events.
-  try {
-    deviceStatus.on('steadyStandingDetect', callback);
-  } catch (err) {
-    console.info('on failed, err = ' + err);
-  }
-  // Unsubscribe from the specific callback of steady standing state change events.
-  try {
-    deviceStatus.off('steadyStandingDetect', callback);
-  } catch (err) {
-    console.info('off failed, err = ' + err);
-  }
-  ```
+   ```ts
+   import { Callback } from '@ohos.base';
+   // Define the callback variable.
+   let callback : Callback<deviceStatus.SteadyStandingStatus> = (data : deviceStatus. SteadyStandingStatus) => {
+      console.info('succeed to get status, now status = ' + data);
+   };
+   // Subscribe to a specific callback of steady standing state change events.
+   try {
+      deviceStatus.on('steadyStandingDetect', callback);
+   } catch (err) {
+      console.error('on failed, err = ' + err);
+   }
+   // Unsubscribe from the specific callback of steady standing state change events.
+   try {
+      deviceStatus.off('steadyStandingDetect', callback);
+   } catch (err) {
+      console.error('off failed, err = ' + err);
+   }
+   ```

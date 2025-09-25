@@ -1005,7 +1005,7 @@ async function SetAuxiliaryPicture(context: Context) {
 
   if (pictureObj != null) {
     let type: image.AuxiliaryPictureType = image.AuxiliaryPictureType.GAINMAP;
-    let auxPictureObj: image.AuxiliaryPicture | null = await auxPicture.getAuxiliaryPicture(type);
+    let auxPictureObj: image.AuxiliaryPicture | null = auxPicture.getAuxiliaryPicture(type);
     if (auxPictureObj != null) {
       pictureObj.setAuxiliaryPicture(type, auxPictureObj);
     }
@@ -1275,7 +1275,7 @@ Since API version 11, PixelMap supports cross-thread calls through workers. If a
 
 Before calling any API in PixelMap, you must use [image.createPixelMap](#imagecreatepixelmap8) to create a PixelMap object.
 
-To develop an atomic service, use [ImageSoure](#imagesource) to create a PixelMap object.
+To develop an atomic service, use [ImageSource](#imagesource) to create a PixelMap object.
 
 ### Properties
 
@@ -6448,6 +6448,7 @@ const path: string = context.filesDir + "/test.png";
 const imageSourceApi: image.ImageSource = image.createImageSource(path);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
 const filePath: string = context.filesDir + "/image_source.jpg";
+// For API version 19 and earlier, openSync is supported only on phones, PCs/2-in-1 devices, tablets, and TVs.
 let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(() => {

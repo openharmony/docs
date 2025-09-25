@@ -86,7 +86,11 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
 
 onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
 
-即将完成页面刷新或关闭当前页面时触发此回调。刷新或关闭当前页面应先通过点击等方式获取焦点，才会触发此回调。
+即将完成页面刷新或关闭当前页面时触发此回调。
+
+> **说明：**
+>
+> - 如果当前Web组件没有得到焦点，刷新或关闭当前页面时onBeforeUnload不会触发。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -960,7 +964,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
        photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
        // 设置最大选择数量
        photoSelectOptions.maxSelectNumber = 5;
-       let chooseFile: picker.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
+       let chooseFile: photoAccessHelper.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
        // 获取选择的文件列表
        result.handleFileList(chooseFile.photoUris);
      }
@@ -1448,7 +1452,7 @@ onClientAuthenticationRequest(callback: Callback\<OnClientAuthenticationEvent\>)
 安装私有凭证以实现双向认证。
 
 ```ts
-// xxx.ets API9
+// xxx.ets
 import { webview } from '@kit.ArkWeb';
 import { common } from '@kit.AbilityKit';
 import { certificateManager } from '@kit.DeviceCertificateKit';
@@ -1459,7 +1463,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct Index {
   controller: WebviewController = new webview.WebviewController();
-  context = getContext(this) as common.UIAbilityContext
+  uiContext : UIContext = this.getUIContext();
+  context : Context | undefined = this.uiContext.getHostContext() as common.UIAbilityContext;
   uri: string = ''
 
   aboutToAppear(): void {
@@ -1469,6 +1474,11 @@ struct Index {
   build() {
     Column() {
       Button("installPrivateCertificate").onClick(() => {
+        if (!this.context) {
+          return;
+        }
+
+        //注：badssl.com-client.p12需要替换为实际使用的证书文件
         let value: Uint8Array = this.context.resourceManager.getRawFileContentSync("badssl.com-client.p12");
         certificateManager.installPrivateCertificate(value, 'badssl.com', "1",
           async (err: BusinessError, data: certificateManager.CMResult) => {
@@ -1500,7 +1510,7 @@ struct Index {
         })
         .onErrorReceive((event) => {
           if (event) {
-            promptAction.showToast({
+            this.getUIContext().getPromptAction().showToast({
               message: `ErrorCode: ${event.error.getErrorCode()}, ErrorInfo: ${event.error.getErrorInfo()}`,
               alignment: Alignment.Center
             })
@@ -1648,7 +1658,7 @@ struct Index {
             })
             .onErrorReceive((event) => {
               if (event) {
-                promptAction.showToast({
+                this.getUIContext().getPromptAction().showToast({
                   message: `ErrorCode: ${event.error.getErrorCode()}, ErrorInfo: ${event.error.getErrorInfo()}`,
                   alignment: Alignment.Center
                 })
@@ -1808,6 +1818,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
     @State offsetX: number = 0;
     @State offsetY: number = 0;
     @State showMenu: boolean = false;
+    uiContext: UIContext = this.getUIContext();
 
     @Builder
     // 构建自定义菜单及触发功能接口
@@ -1893,7 +1904,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
             console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
             this.showMenu = true;
             this.offsetX = 0;
-            this.offsetY = Math.max(px2vp(event?.param.y() ?? 0) - 0, 0);
+            this.offsetY = Math.max(this.uiContext!.px2vp(event?.param.y() ?? 0) - 0, 0);
             return true;
           })
           .bindPopup(this.showMenu,
@@ -3480,9 +3491,8 @@ onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
 > **说明：**
 >
 > - POST请求不会触发该回调。  
-> - iframe加载HTTP(s)协议或about:blank时不会触发该回调，加载非HTTP(s)协议的跳转可以触发。  
-> - 调用loadUrl(String)主动触发的跳转不会触发该回调。  
-> - 不要使用相同的URL调用loadUrl(String)方法，然后返回true。这样做会不必要地取消当前的加载并重新使用相同的URL开始新的加载。继续加载给定URL的正确方式是直接返回false，而不是调用loadUrl(String)。
+> - iframe加载HTTP(s)协议或about:blank时不会触发该回调，而加载非HTTP(s)协议的跳转会触发；调用loadUrl(url: string)主动触发的跳转不会触发该回调。   
+> - 不要在回调中使用相同的URL调用loadUrl(url: string)方法，然后返回true。 这样会不必要地中止当前加载，并用相同的URL发起一次新的加载。 要继续加载当前请求URL的正确做法是直接返回false，而不是调用loadUrl(url: string)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3490,7 +3500,7 @@ onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback       | [OnOverrideUrlLoadingCallback](./ts-basic-components-web-t.md#onoverrideurlloadingcallback12) | 是 | onOverrideUrlLoading的回调。 <br>返回值boolean。返回ture表示当前Web中止加载URL，返回false表示Web继续加载URL |
+| callback       | [OnOverrideUrlLoadingCallback](./ts-basic-components-web-t.md#onoverrideurlloadingcallback12) | 是 | onOverrideUrlLoading的回调。 <br>返回值boolean。返回ture表示中止加载URL，返回false表示继续在Web中加载URL |
 
 **示例：**
 
@@ -3940,6 +3950,12 @@ onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object
 > 从API version 8开始支持，从API version 9开始废弃。建议使用[onShowFileSelector<sup>9+</sup>](#onshowfileselector9)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名    | 类型   | 必填   | 说明                  |
+| ------ | ------ | ---- | --------------------- |
+| callback | (event?: { callback: Function, fileSelector: object }) => void | 是 | 当触发文件选择器时需要执行的回调。 |
 
 ## onUrlLoadIntercept<sup>(deprecated)</sup>
 

@@ -1,5 +1,10 @@
 # AutoStartupInfo (系统接口)
-
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @duan-sizhao-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 定义开机自启动应用组件信息。
 
 > **说明：**

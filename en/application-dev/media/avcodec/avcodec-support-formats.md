@@ -35,7 +35,7 @@ For details about the development guide, see [Video Encoding](video-encoding.md)
 
 Currently, the following decoding capabilities are supported:
 
-AAC, MPEG (MP3), FLAC, Vorbis, AMR (AMR-NB and AMR-WB), G.711Mu, APE<!--RP1--><!--RP1End-->
+AAC, MPEG (MP3), FLAC, Vorbis, AMR (AMR-NB and AMR-WB), G711mu, APE<!--RP1--><!--RP1End-->
 
 For details about the development guide, see [Audio Decoding](audio-decoding.md).
 
@@ -44,7 +44,7 @@ For details about the development guide, see [Audio Decoding](audio-decoding.md)
 
 Currently, the following encoding capabilities are supported:
 
-AAC, FLAC, MP3, G.711Mu<!--RP3--><!--RP3End-->
+AAC, FLAC, MP3, G711mu<!--RP3--><!--RP3End-->
 
 For details about the development guide, see [Audio Encoding](audio-encoding.md).
 
@@ -95,81 +95,81 @@ Currently, the following muxer capabilities are supported:
 
 > **NOTE**
 >
-> - When the container format is MP4 and the audio codec type is MPEG (MP3), the sampling rate must be greater than or equal to 16000 Hz. 
-> - When the container format is MP4 or M4A and the audio codec type is AAC, the number of audio channels ranges from 1 to 7.
+> - When the container format is mp4 and the audio codec type is MPEG (MP3), the sample rate must be greater than or equal to 16000 Hz. 
+> - When the container format is mp4 or m4a and the audio codec type is AAC, the number of audio channels ranges from 1 to 7.
 
 Key values of configuration options are described as follows: 
 
-mp4 container format
-   |                key                 |         Description        |   aac  |   mp3  |  H.264  |  H.265  |  jpg   |  png   |  bmp   |
-   | ---------------------------------- | :------------------: | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
-   | OH_MD_KEY_AUD_SAMPLE_RATE          | Sampling rate               |  Mandatory |  Mandatory |   -    |   -    |   -   |   -   |   -   |
-   | OH_MD_KEY_AUD_CHANNEL_COUNT        | Number of audio channels               |  Mandatory |  Mandatory |   -    |   -    |   -   |   -   |   -   |
-   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | Output audio stream format        |  Optional |  Optional |   -    |   -    |   -   |   -   |   -   |
-   | OH_MD_KEY_CHANNEL_LAYOUT           | Channel layout             |  Optional |  Optional |   -    |   -    |   -   |   -   |   -   |
-   | OH_MD_KEY_PROFILE                  | Encoding profile             |  Optional |   -   |   -    |   -    |   -   |   -   |   -   |
-   | OH_MD_KEY_BITRATE                  | Bit rate                 |  Optional |  Optional |  Optional |  Optional |   -   |   -   |   -   |
-   | OH_MD_KEY_CODEC_CONFIG             | Codec-specific data      |  Optional |   -   |  Optional |  Optional |   -   |   -   |   -   |
-   | OH_MD_KEY_WIDTH                    | Width                 |   -   |   -   |  Mandatory |  Mandatory |  Mandatory |  Mandatory |  Mandatory |
-   | OH_MD_KEY_HEIGHT                   | Height                 |   -   |   -   |  Mandatory |  Mandatory |  Mandatory |  Mandatory |  Mandatory |
-   | OH_MD_KEY_FRAME_RATE               | Video stream frame rate           |   -   |   -   |  Optional |  Optional |   -   |   -   |   -   |
-   | OH_MD_KEY_COLOR_PRIMARIES          | Video color gamut             |   -   |   -   |  Optional |  Optional |   -   |   -   |   -   |
-   | OH_MD_KEY_TRANSFER_CHARACTERISTICS | Video transfer function         |   -   |   -   |  Optional |  Optional |   -   |   -   |   -   |
-   | OH_MD_KEY_MATRIX_COEFFICIENTS      | Video matrix coefficient         |   -   |   -   |  Optional |  Optional |   -   |   -   |   -   |
-   | OH_MD_KEY_RANGE_FLAG               | Value range flag             |   -   |   -   |  Optional |  Optional |   -   |   -   |   -   |
-   | OH_MD_KEY_VIDEO_IS_HDR_VIVID       | Whether the video track is an HDR Vivid|   -   |   -   |   -    |  Optional |   -   |   -   |   -   |
+mp4 container format:
+|                key                 |         Description        |   aac  |   mp3  |  H.264  |  H.265  |  jpg   |  png   |  bmp   |
+| ---------------------------------- | :------------------: | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
+| OH_MD_KEY_AUD_SAMPLE_RATE          | Sample rate.               |  Mandatory |  Mandatory |   -    |   -    |   -   |   -   |   -   |
+| OH_MD_KEY_AUD_CHANNEL_COUNT        | Audio channel count.               |  Mandatory |  Mandatory |   -    |   -    |   -   |   -   |   -   |
+| OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | Output audio stream format.        |  Optional |  Optional |   -    |   -    |   -   |   -   |   -   |
+| OH_MD_KEY_CHANNEL_LAYOUT           | Channel layout.             |  Optional |  Optional |   -    |   -    |   -   |   -   |   -   |
+| OH_MD_KEY_PROFILE                  | Encoding profile.             |  Optional |   -   |   -    |   -    |   -   |   -   |   -   |
+| OH_MD_KEY_BITRATE                  | Bit rate.                 |  Optional |  Optional |  Optional |  Optional |   -   |   -   |   -   |
+| OH_MD_KEY_CODEC_CONFIG             | Codec-specific data.      |  Optional |   -   |  Optional |  Optional |   -   |   -   |   -   |
+| OH_MD_KEY_WIDTH                    | Width.                 |   -   |   -   |  Mandatory |  Mandatory |  Mandatory |  Mandatory |  Mandatory |
+| OH_MD_KEY_HEIGHT                   | Height.                 |   -   |   -   |  Mandatory |  Mandatory |  Mandatory |  Mandatory |  Mandatory |
+| OH_MD_KEY_FRAME_RATE               | Video stream frame rate.           |   -   |   -   |  Optional |  Optional |   -   |   -   |   -   |
+| OH_MD_KEY_COLOR_PRIMARIES          | Video color gamut.             |   -   |   -   |  Optional |  Optional |   -   |   -   |   -   |
+| OH_MD_KEY_TRANSFER_CHARACTERISTICS | Video transfer characteristics function.         |   -   |   -   |  Optional |  Optional |   -   |   -   |   -   |
+| OH_MD_KEY_MATRIX_COEFFICIENTS      | Video matrix coefficient.         |   -   |   -   |  Optional |  Optional |   -   |   -   |   -   |
+| OH_MD_KEY_RANGE_FLAG               | Value range flag.             |   -   |   -   |  Optional |  Optional |   -   |   -   |   -   |
+| OH_MD_KEY_VIDEO_IS_HDR_VIVID       | Whether the video track is an HDR Vivid.|   -   |   -   |   -    |  Optional |   -   |   -   |   -   |
 
-m4a container format
-   |                key                 |         Description        |   aac  |  jpg   |  png   |  bmp   |
-   | ---------------------------------- | :------------------: | :----: | :----: | :----: | :----: |
-   | OH_MD_KEY_AUD_SAMPLE_RATE          | Sampling rate               |  Mandatory  |   -   |   -   |   -   |
-   | OH_MD_KEY_AUD_CHANNEL_COUNT        | Number of audio channels               |  Mandatory  |   -   |   -   |   -   |
-   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | Output audio stream format        |  Optional  |   -   |   -   |   -   |
-   | OH_MD_KEY_CHANNEL_LAYOUT           | Channel layout             |  Optional  |   -   |   -   |   -   |
-   | OH_MD_KEY_PROFILE                  | Encoding profile             |  Optional |   -   |   -   |   -   |
-   | OH_MD_KEY_BITRATE                  | Bit rate                 |  Optional  |   -   |   -   |   -   |
-   | OH_MD_KEY_CODEC_CONFIG             | Codec-specific data      |  Optional |   -   |   -   |   -   |
-   | OH_MD_KEY_WIDTH                    | Width                 |   -   |  Mandatory |  Mandatory |  Mandatory |
-   | OH_MD_KEY_HEIGHT                   | Height                 |   -   |  Mandatory |  Mandatory |  Mandatory |
+m4a container format:
+|                key                 |         Description        |   aac  |  jpg   |  png   |  bmp   |
+| ---------------------------------- | :------------------: | :----: | :----: | :----: | :----: |
+| OH_MD_KEY_AUD_SAMPLE_RATE          | Sample rate.               |  Mandatory  |   -   |   -   |   -   |
+| OH_MD_KEY_AUD_CHANNEL_COUNT        | Audio channel count.               |  Mandatory  |   -   |   -   |   -   |
+| OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | Output audio stream format.        |  Optional  |   -   |   -   |   -   |
+| OH_MD_KEY_CHANNEL_LAYOUT           | Channel layout.             |  Optional  |   -   |   -   |   -   |
+| OH_MD_KEY_PROFILE                  | Encoding profile.             |  Optional |   -   |   -   |   -   |
+| OH_MD_KEY_BITRATE                  | Bit rate.                 |  Optional  |   -   |   -   |   -   |
+| OH_MD_KEY_CODEC_CONFIG             | Codec-specific data.      |  Optional |   -   |   -   |   -   |
+| OH_MD_KEY_WIDTH                    | Width.                 |   -   |  Mandatory |  Mandatory |  Mandatory |
+| OH_MD_KEY_HEIGHT                   | Height.                 |   -   |  Mandatory |  Mandatory |  Mandatory |
 
-amr container format
-   |                key                 |         Description        | amr_nb | amr_wb |
-   | ---------------------------------- | :------------------: | :----: | :----: |
-   | OH_MD_KEY_AUD_SAMPLE_RATE          | Sampling rate               |  Mandatory |  Mandatory |
-   | OH_MD_KEY_AUD_CHANNEL_COUNT        | Number of audio channels               |  Mandatory |  Mandatory |
-   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | Output audio stream format        |  Optional |  Optional |
-   | OH_MD_KEY_CHANNEL_LAYOUT           | Channel layout             |  Optional |  Optional |
-   | OH_MD_KEY_BITRATE                  | Bit rate                 |  Optional |  Optional |
+amr container format:
+|                key                 |         Description        | amr_nb | amr_wb |
+| ---------------------------------- | :------------------: | :----: | :----: |
+| OH_MD_KEY_AUD_SAMPLE_RATE          | Sample rate.               |  Mandatory |  Mandatory |
+| OH_MD_KEY_AUD_CHANNEL_COUNT        | Audio channel count.               |  Mandatory |  Mandatory |
+| OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | Output audio stream format.        |  Optional |  Optional |
+| OH_MD_KEY_CHANNEL_LAYOUT           | Channel layout.             |  Optional |  Optional |
+| OH_MD_KEY_BITRATE                  | Bit rate.                 |  Optional |  Optional |
 
-mp3 container format
-   |                key                 |         Description        |   mp3  |  jpg   |
-   | ---------------------------------- | :------------------: | :----: | :----: |
-   | OH_MD_KEY_AUD_SAMPLE_RATE          | Sampling rate               |  Mandatory |   -   |
-   | OH_MD_KEY_AUD_CHANNEL_COUNT        | Number of audio channels               |  Mandatory |   -   |
-   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | Output audio stream format        |  Optional |   -   |
-   | OH_MD_KEY_CHANNEL_LAYOUT           | Channel layout             |  Optional |   -   |
-   | OH_MD_KEY_BITRATE                  | Bit rate                 |  Optional |   -   |
-   | OH_MD_KEY_WIDTH                    | Width                 |   -   |  Mandatory |
-   | OH_MD_KEY_HEIGHT                   | Height                 |   -   |  Mandatory |
+mp3 container format:
+|                key                 |         Description        |   mp3  |  jpg   |
+| ---------------------------------- | :------------------: | :----: | :----: |
+| OH_MD_KEY_AUD_SAMPLE_RATE          | Sample rate.               |  Mandatory |   -   |
+| OH_MD_KEY_AUD_CHANNEL_COUNT        | Audio channel count.               |  Mandatory |   -   |
+| OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | Output audio stream format.        |  Optional |   -   |
+| OH_MD_KEY_CHANNEL_LAYOUT           | Channel layout.             |  Optional |   -   |
+| OH_MD_KEY_BITRATE                  | Bit rate.                 |  Optional |   -   |
+| OH_MD_KEY_WIDTH                    | Width.                 |   -   |  Mandatory |
+| OH_MD_KEY_HEIGHT                   | Height.                 |   -   |  Mandatory |
 
-wav container format
-   |                key                 |         Description        | g711mu  |
-   | ---------------------------------- | :------------------: | :----: |
-   | OH_MD_KEY_AUD_SAMPLE_RATE          | Sampling rate               |  Mandatory |
-   | OH_MD_KEY_AUD_CHANNEL_COUNT        | Number of audio channels               |  Mandatory |
-   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | Output audio stream format        |  Optional |
-   | OH_MD_KEY_CHANNEL_LAYOUT           | Channel layout             |  Optional |
-   | OH_MD_KEY_BITRATE                  | Bit rate                 |  Mandatory |
+wav container format:
+|                key                 |         Description        | g711mu  |
+| ---------------------------------- | :------------------: | :----: |
+| OH_MD_KEY_AUD_SAMPLE_RATE          | Sample rate.               |  Mandatory |
+| OH_MD_KEY_AUD_CHANNEL_COUNT        | Audio channel count.               |  Mandatory |
+| OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | Output audio stream format.        |  Optional |
+| OH_MD_KEY_CHANNEL_LAYOUT           | Channel layout.             |  Optional |
+| OH_MD_KEY_BITRATE                  | Bit rate.                 |  Mandatory |
 
-aac container format
-   |                key                 |         Description        |  aac   |
-   | ---------------------------------- | :------------------: | :----: |
-   | OH_MD_KEY_AUD_SAMPLE_RATE          | Sampling rate               |  Mandatory |
-   | OH_MD_KEY_AUD_CHANNEL_COUNT        | Number of audio channels               |  Mandatory |
-   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | Output audio stream format        |  Optional |
-   | OH_MD_KEY_CHANNEL_LAYOUT           | Channel layout             |  Optional |
-   | OH_MD_KEY_BITRATE                  | Bit rate                 |  Optional |
-   | OH_MD_KEY_PROFILE                  | Encoding profile             |  Mandatory |
-   | OH_MD_KEY_AAC_IS_ADTS              | Whether the format is ADTS       |  Mandatory |
-   
+aac container format:
+|                key                 |         Description        |  aac   |
+| ---------------------------------- | :------------------: | :----: |
+| OH_MD_KEY_AUD_SAMPLE_RATE          | Sample rate.               |  Mandatory |
+| OH_MD_KEY_AUD_CHANNEL_COUNT        | Audio channel count.               |  Mandatory |
+| OH_MD_KEY_AUDIO_SAMPLE_FORMAT      | Output audio stream format.        |  Optional |
+| OH_MD_KEY_CHANNEL_LAYOUT           | Channel layout.             |  Optional |
+| OH_MD_KEY_BITRATE                  | Bit rate.                 |  Optional |
+| OH_MD_KEY_PROFILE                  | Encoding profile.             |  Mandatory |
+| OH_MD_KEY_AAC_IS_ADTS              | Whether the format is ADTS.       |  Mandatory |
+
 For details about the development guide, see [Media Data Multiplexing](audio-video-muxer.md).

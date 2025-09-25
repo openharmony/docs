@@ -135,7 +135,8 @@ stack.push(4);
 stack.push(5);
 stack.push(2);
 stack.push(4);
-let result = stack.pop();
+let result = stack.pop(); 
+console.log("result = " + result); // result = 4
 ```
 
 ### peek
@@ -219,7 +220,7 @@ let result = stack.locate(2);
 forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the elements in this Stack and obtain their indexes.
+Uses a callback to traverse each element in the **Stack** instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -260,6 +261,12 @@ stack.push(4);
 stack.forEach((value : number, index ?: number) :void => {
   console.log("value:" + value, "index:" + index);
 });
+/**
+ * value:2 index:0
+ * value:4 index:1
+ * value:5 index:2
+ * value:4 index:3
+ */
 ```
 
 ### isEmpty

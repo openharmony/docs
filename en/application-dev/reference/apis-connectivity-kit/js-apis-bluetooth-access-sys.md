@@ -1,5 +1,11 @@
 # @ohos.bluetooth.access (Bluetooth Access Module) (System API)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 The **access** module provides APIs for enabling and disabling Bluetooth and obtaining the Bluetooth status.
 
 > **NOTE**
@@ -108,7 +114,7 @@ try {
 
 ## access.getLocalAddress<sup>11+</sup><a name="getLocalAddress"></a>
 
-getLocalAddress(): string;
+getLocalAddress(): string
 
 Obtains the Bluetooth address of the local device.
 
@@ -139,6 +145,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let localAddr = access.getLocalAddress();
 } catch (err) {

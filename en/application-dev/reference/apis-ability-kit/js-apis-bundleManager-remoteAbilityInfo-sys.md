@@ -1,6 +1,6 @@
 # RemoteAbilityInfo (System API)
 
-The **RemoteAbilityInfo** module provides information about a remote ability, which can be obtained through [distributedBundle.getRemoteAbilityInfo](js-apis-distributedBundleManager-sys.md#distributedbundlegetremoteabilityinfo).
+The module provides information about a remote ability, which can be obtained through [distributedBundle.getRemoteAbilityInfo](js-apis-distributedBundleManager-sys.md#distributedbundlegetremoteabilityinfo).
 
 > **NOTE**
 >

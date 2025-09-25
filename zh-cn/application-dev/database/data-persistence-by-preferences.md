@@ -23,7 +23,7 @@
 XML存储指的是数据会以XML的形式存储到文件中，该模式的优点是通用性强，支持跨平台。当选择该模式时，首选项对数据的操作主要发生在内存中，开发者可以在需要的时候再调用[flush](../reference/apis-arkdata/js-apis-data-preferences.md#flush)接口进行数据持久化。针对单进程、小数据量场景，推荐使用该存储模式。
 
 ### GSKV存储
-GSKV是从API version 18起提供的一种存储模式，该模式的优点是支持多进程并发读写。当选择该模式时，首选项对数据的操作会实时落盘。针对多进程并发场景，推荐使用该存储模式。
+GSKV是从API version 18起提供的一种存储模式，数据以二进制的形式存储在文件中，该模式的优点是支持多进程并发读写。当选择该模式时，首选项对数据的操作会实时落盘。针对多进程并发场景，推荐使用该存储模式。
 
 ## 约束限制
 
@@ -140,7 +140,7 @@ GSKV是从API version 18起提供的一种存储模式，该模式的优点是�
 
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
-       let options: preferences.Options = { name: 'myStore' , storageType: preferences.StorageType.GSKV};
+       let options: preferences.Options = { name: 'myStore', storageType: preferences.StorageType.GSKV };
        dataPreferences = preferences.getPreferencesSync(this.context, options);
      }
    }
@@ -154,7 +154,7 @@ GSKV是从API version 18起提供的一种存储模式，该模式的优点是�
    import { BusinessError } from '@kit.BasicServicesKit';
 
    let context = featureAbility.getContext();
-   let options: preferences.Options =  { name: 'myStore' , storageType: preferences.StorageType.GSKV};
+   let options: preferences.Options =  { name: 'myStore', storageType: preferences.StorageType.GSKV };
    let dataPreferences: preferences.Preferences = preferences.getPreferencesSync(context, options);
    ```
    <!--DelEnd-->

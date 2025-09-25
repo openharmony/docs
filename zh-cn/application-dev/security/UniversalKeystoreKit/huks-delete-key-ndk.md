@@ -11,7 +11,7 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 
 以删除HKDF256密钥为例。
 
-1. 确定密钥别名keyAlias，密钥别名最大长度为128字节。paramSet为预留参数传空即可。
+1. 指定密钥别名，密钥别名命名规范参考[密钥生成介绍及算法规格](huks-key-generation-overview.md)。
 
 2. 调用接口[OH_Huks_DeleteKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_deletekeyitem)，删除密钥。
 

@@ -44,7 +44,7 @@ Set the **type** attribute to select the QR code type from rectangle and circle.
 ```html
 <!-- xxx.hml-->
 <div class="container">
-  <select onchange="settype">
+  <select onchange="setType">
     <option for="{{bcol_list}}" value="{{$item}}">{{$item}}</option>
   </select>
   <qrcode value="Hello" type="{{qr_type}}"></qrcode>
@@ -76,7 +76,7 @@ export default {
     qr_type: 'rect',
     bcol_list: ['rect','circle']
   },
-  settype(e) {
+  setType(e) {
     this.qr_type = e.newValue 
   },
 }

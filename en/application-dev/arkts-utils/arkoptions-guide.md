@@ -1,4 +1,9 @@
 # Configuring arkOptions in build-profile.json5
+<!--Kit: ArkTS-->
+<!--Subsystem: arkcompiler-->
+<!--Owner: @zju-wyx-->
+<!--Designer: @xiao-peiyang; @liyancheng-->
+<!--Tester: @kirl75; @zsw_zhushiwei-->
 
 ## Overview
 
@@ -62,7 +67,7 @@ let c: Global.ObjectType;
 
 ### Description
 
-Field **maxFlowDepth** in **arkOptions/tscConfig**
+  Field **maxFlowDepth** in **arkOptions/tscConfig**
 
 | Name| Description| Configuration Scope| Data Type| Optional|
 | -------- | -------- | -------- | -------- | -------- |
@@ -71,14 +76,15 @@ Field **maxFlowDepth** in **arkOptions/tscConfig**
 ### Example
 
 Below provides an example configuration of the **maxFlowDepth** field in **arkOptions/tscConfig**.
-
 Add the **maxFlowDepth** field to the **arkOptions/tscConfig** property in the **buildOption** section of the project-level **build-profile.json5** file.
 
 ```typescript
 // In projectName/build-profile.json5
-"arkOptions": {
-  "tscConfig": {
-    "maxFlowDepth": 2222
+{
+  "arkOptions": {
+    "tscConfig": {
+      "maxFlowDepth": 2222
+    }
   }
 }
 ```

@@ -242,6 +242,8 @@ getShortcutInfo(bundleName :string, callback: AsyncCallback\<Array\<[ShortcutInf
 
 Obtains the [shortcut information](js-apis-bundleManager-shortcutInfo-sys.md) of the current user based on the given bundle name of a main application. To obtain shortcut information about an application clone, use [getShortcutInfoByAppIndex](#launcherbundlemanagergetshortcutinfobyappindex20).
 
+No permission is required for obtaining the caller's own information.
+
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **System API**: This is a system API.
@@ -294,6 +296,8 @@ try {
 getShortcutInfo(bundleName : string) : Promise\<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)\>\>
 
 Obtains the [shortcut information](js-apis-bundleManager-shortcutInfo-sys.md) of the current user based on the given bundle name of a main application. To obtain shortcut information about an application clone, use [getShortcutInfoByAppIndex](#launcherbundlemanagergetshortcutinfobyappindex20).
+
+No permission is required for obtaining the caller's own information.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -351,7 +355,9 @@ getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleM
 
 Obtains the [shortcut information](js-apis-bundleManager-shortcutInfo-sys.md) of the current user based on the given bundle name of a main application. To obtain shortcut information about an application clone, use [getShortcutInfoByAppIndex](#launcherbundlemanagergetshortcutinfobyappindex20).
 
-*Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+No permission is required for obtaining the caller's own information.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **System API**: This is a system API.
 
@@ -402,6 +408,8 @@ try {
 getShortcutInfoSync(bundleName: string, userId: number) : Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)\>
 
 Obtains the [shortcut information](js-apis-bundleManager-shortcutInfo-sys.md) of the specified user based on the given bundle name of a main application. To obtain shortcut information about an application clone, use [getShortcutInfoByAppIndex](#launcherbundlemanagergetshortcutinfobyappindex20).
+
+No permission is required for obtaining the caller's own information.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 

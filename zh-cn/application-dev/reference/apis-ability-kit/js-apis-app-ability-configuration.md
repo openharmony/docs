@@ -1,5 +1,12 @@
 # @ohos.app.ability.Configuration (环境变量)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @wkljy-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 定义了应用运行时的环境变量，包含语言、深浅色、屏幕方向、字体等。开发者可以通过订阅环境变量，适配不同用户偏好，提升交互体验。
 
 > **说明：**
@@ -29,7 +36,6 @@ import { Configuration } from '@kit.AbilityKit';
 | fontWeightScale<sup>12<sup> | number | 否 | 是 | 表示字体粗细缩放比例，取值为非负数，默认值为1。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 | mcc<sup>12<sup> | string | 否  | 是 | 表示移动设备国家代码。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 | mnc<sup>12<sup> | string | 否  | 是 | 表示移动设备网络代码。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
-| locale<sup>20<sup> | [Intl.Locale](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale) | 否  | 是 | 表示区域设置。<br>应用会根据当前的区域设置自动调整其行为，以符合用户的本地化需求。该属性可以通过设置系统语言、设置系统地区和设置应用偏好语言等方式设置。<br>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 
@@ -55,13 +61,13 @@ export default class EntryAbility extends UIAbility {
         let mnc = config.mnc;
       },
       onMemoryLevel(level) {
-        console.log(`onMemoryLevel level: ${level}`);
+        console.info(`onMemoryLevel level: ${level}`);
       }
     };
     try {
       let applicationContext = this.context.getApplicationContext();
       let callbackId = applicationContext.on('environment', envCallback);
-      console.log(`callbackId: ${callbackId}`);
+      console.info(`callbackId: ${callbackId}`);
     } catch (paramError) {
       console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }

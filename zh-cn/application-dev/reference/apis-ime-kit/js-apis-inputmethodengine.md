@@ -273,7 +273,7 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 要取消监听的输入法软键盘类型。<br/>-'keyboardShow'表示显示输入法软键盘。<br/>-'keyboardHide'表示隐藏输入法软键盘。|
+| type     | string | 是   | 要取消监听的输入法软键盘事件类型。<br/>-'keyboardShow'表示显示输入法软键盘。<br/>-'keyboardHide'表示隐藏输入法软键盘。|
 | callback | () => void   | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
@@ -479,7 +479,7 @@ try {
 
 off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
-取消订阅输入法事件。使用callback异步回调。
+取消订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -538,7 +538,7 @@ try {
 
 off(type: 'setSubtype', callback?: (inputMethodSubtype: InputMethodSubtype) => void): void
 
-取消订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
+取消订阅设置输入法子类型事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -708,7 +708,7 @@ try {
 
 on(type: 'callingDisplayDidChange', callback: Callback\<number>): void
 
-订阅编辑框对应窗口所在屏幕ID变化。使用callback异步回调。
+订阅编辑框对应窗口所在屏幕ID变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -749,7 +749,7 @@ try {
 
 off(type: 'callingDisplayDidChange', callback?: Callback\<number>): void
 
-取消编辑框对应窗口所在屏幕ID变化。使用callback异步回调。
+取消订阅编辑框对应窗口所在屏幕ID变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2151,7 +2151,7 @@ try {
 
 off(type: 'show', callback?: () => void): void
 
-取消监听当前输入法面板的隐藏状态，使用callback异步回调。
+取消监听当前面板的显示状态，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2184,7 +2184,7 @@ try {
 
 off(type: 'hide', callback?: () => void): void
 
-取消监听当前面板隐藏状态，使用callback异步回调。
+取消监听当前面板的隐藏状态，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2355,7 +2355,7 @@ try {
 
 getImmersiveMode(): ImmersiveMode
 
-获取输入法应用沉浸模式。
+获取输入法应用的沉浸模式。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -3912,7 +3912,7 @@ try {
 
 selectByMovement(movement: Movement): Promise&lt;void&gt;
 
-根据索引范围选中文本。使用promise异步回调。
+根据光标移动方向选中文本。使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 

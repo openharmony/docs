@@ -388,7 +388,7 @@ Configures the playback behavior of **PixelMap** array animations displayed thro
 
 | Name     | Type   | Mandatory | Description                                   |
 | ---------- | ------ | -----| --------------------------------------- |
-| duration   | number | No  | Total playback duration for the **PixelMap** array animation. By default, each image is played for 1 second.<br> Value range: [0, +¡Þ).     |
+| duration   | number | No  | Total playback duration for the **PixelMap** array animation. By default, each image is played for 1 second.<br> Value range: [0, +âˆž).     |
 | iterations | number | No  | Number of times that the **PixelMap** array animation is played. The default value is **1**. A value of **-1** indicates infinite playback, **0** indicates no playback, and a value greater than 0 represents the number of playback times.|
 
 **Example**

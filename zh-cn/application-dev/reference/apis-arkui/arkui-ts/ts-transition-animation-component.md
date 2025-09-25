@@ -252,6 +252,7 @@ struct TransitionEffectExample1 {
         // Image的显示和消失配置为相同的过渡效果（出现和消失互为逆过程）
         // 出现时从指定的透明度为0、绕z轴旋转180°的状态，变为默认的透明度为1、旋转角为0的状态，透明度与旋转动画时长都为2000ms
         // 消失时从默认的透明度为1、旋转角为0的状态，变为指定的透明度为0、绕z轴旋转180°的状态，透明度与旋转动画时长都为2000ms
+        // $r('app.media.testImg')需要替换为开发者所需的图像资源文件。
         Image($r('app.media.testImg')).width(200).height(200)
           .transition(TransitionEffect.OPACITY.animation({ duration: 2000, curve: Curve.Ease }).combine(
             TransitionEffect.rotate({ z: 1, angle: 180 })
@@ -295,6 +296,7 @@ struct TransitionEffectExample2 {
         // Image的显示和消失配置为不同的过渡效果
         // 出现时做从指定的透明度为0变为默认的透明度1的动画，该动画时长为1000ms，以及做从指定的绕z轴旋转180°变为默认的旋转角为0的动画，该动画1000ms后播放，时长为1000ms
         // 消失时做从默认的透明度为1变为指定的透明度0的动画，该动画1000ms后播放，时长为1000ms，以及做从默认的旋转角0变为指定的绕z轴旋转180°的动画，该动画时长为1000ms
+        // $r('app.media.testImg')需要替换为开发者所需的图像资源文件。
         Image($r('app.media.testImg')).width(200).height(200)
           .transition(
             TransitionEffect.asymmetric(
@@ -307,6 +309,7 @@ struct TransitionEffectExample2 {
           )
         // 出现时做从x方向和y方向scale都为0变为默认的x方向和y方向scale都为1的动画，该动画时长为animateTo中指定的2000ms
         // 消失时无转场效果
+        // $r('app.media.testImg')需要替换为开发者所需的图像资源文件。
         Image($r('app.media.testImg')).width(200).height(200).margin({ top: 100 })
           .transition(
             TransitionEffect.asymmetric(
@@ -350,10 +353,12 @@ struct TransitionEffectExample3 {
         // id为"column1"的组件是这棵新出现/消失的子树的根节点。
         Column() {
           Row() {
+            // $r('app.media.testImg')需要替换为开发者所需的图像资源文件。
             Image($r('app.media.testImg')).width(150).height(150).id("image1")
               .transition(TransitionEffect.OPACITY.animation({ duration: 1000 }))
           }
 
+          // $r('app.media.testImg')需要替换为开发者所需的图像资源文件。
           Image($r('app.media.testImg'))
             .width(150)
             .height(150)

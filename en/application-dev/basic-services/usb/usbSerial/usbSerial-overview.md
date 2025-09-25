@@ -51,10 +51,10 @@ The USB serial port service consists of two phases:
 
 - SDK version configuration:
 
-  API version 18 or later.
+  API version 19 or later.
 
 ### Environment Setup
 
 - Install [DevEco Studio](https://developer.huawei.com/consumer/en/download/deveco-studio) 4.1 or later on the PC.
-- Update the public SDK to API version 18 or later.
+- Update the public SDK to API version 19 or later.
 - Prepare a USB-to-serial cable. Connect the USB port and the serial port of the cable to that of the OpenHarmony device.

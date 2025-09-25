@@ -1,4 +1,11 @@
 # @ohos.resourceschedule.deviceStandby (设备待机模块)(系统接口)
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: ResourceSchedule-->
+<!--Owner: @geng_wd-->
+<!--Designer: @geng_wd-->
+<!--Tester: @wzzqishi-->
+<!--Adviser: @Brilliantry_Rui-->
+
 当设备长时间未被使用或通过按键，可以使设备进入待机模式。待机模式不影响应用使用，还可以延长电池续航时间。通过本模块接口，可查询设备或应用是否为待机模式，以及为应用申请或取消待机资源管控。
 
 >  **说明**:
@@ -39,11 +46,11 @@ getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;Exempted
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202 | Not System App. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. |
-| 9800004 | System service operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters. |
+| 9800003 | Failed to complete inner transaction. |
+| 9800004 | Failed to get device standby service. Possible cause: A necessary system service is not ready. |
 | 18700001 | Caller information verification failed. |
 
 **示例**：
@@ -95,11 +102,11 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202 | Not System App. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. |
-| 9800004 | System service operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters. |
+| 9800003 | Failed to complete inner transaction. |
+| 9800004 | Failed to get device standby service. Possible cause: A necessary system service is not ready. |
 | 18700001 | Caller information verification failed. |
 
 **示例**：
@@ -143,11 +150,11 @@ requestExemptionResource(request: ResourceRequest): void
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202 | Not System App. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. |
-| 9800004 | System service operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters. |
+| 9800003 | Failed to complete inner transaction. |
+| 9800004 | Failed to get device standby service. Possible cause: A necessary system service is not ready. |
 | 18700001 | Caller information verification failed. |
 
 **示例**：
@@ -188,11 +195,11 @@ releaseExemptionResource(request: ResourceRequest): void
 | ---- | --------------------- |
 | 201  | Permission denied. |
 | 202 | Not System App. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
-| 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. |
-| 9800004 | System service operation failed. |
+| 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters. |
+| 9800003 | Failed to complete inner transaction. |
+| 9800004 | Failed to get device standby service. Possible cause: A necessary system service is not ready. |
 | 18700001 | Caller information verification failed. |
 
 **示例**：

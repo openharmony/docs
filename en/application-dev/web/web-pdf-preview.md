@@ -1,8 +1,8 @@
 # Previewing PDF Files
 
-The **Web** component provides the capability of previewing PDF files on web pages. An application can load a PDF file using the [src](../reference/apis-arkweb/ts-basic-components-web.md#web) parameter and [loadUrl()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#loadurl) API of the **Web** component. Based on the source, PDF files are classified into online PDF files, PDF files in the application sandbox, and local PDF files.
+The **Web** component provides the capability of previewing PDF files on web pages. An application can load a PDF file using the [src](../reference/apis-arkweb/ts-basic-components-web.md) parameter and [loadUrl()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#loadurl) API of the **Web** component. Based on the source, PDF files are classified into online PDF files, PDF files in the application sandbox, and local PDF files.
 
-To obtain online PDF files, configure the network access permission in the **module.json5** file. For details, see [Declare Permissions in the Configuration File](../security/AccessToken/declare-permissions.md).
+To obtain network documents, you need to configure the network access permission in the **module.json5** file. For details, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md#declaring-permissions-in-the-configuration-file).
 
   ```
   "requestPermissions":[
@@ -46,7 +46,7 @@ The PDF preview page uses **window.localStorage** to record the expansion status
   Web().domStorageAccess(true)
   ```
 
-Specify the PDF file to be loaded by default when the **Web** component is created. When the default PDF file is loaded, if you want to change the PDF file displayed on the **Web** component, you can call the [loadUrl()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#loadurl) API to load the specified PDF file. The value of the first parameter **src** of the [Web component](../reference/apis-arkweb/ts-basic-components-web.md#web) cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#loadurl).
+When creating a **Web** component, specify the PDF file to be loaded by default. When the default PDF file is loaded, if you want to change the PDF file displayed on the **Web** component, call the [loadUrl()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#loadurl) API to load the specified PDF file. The value of the first parameter **src** of the [Web component](../reference/apis-arkweb/ts-basic-components-web.md) cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#loadurl).
 
 There are three scenarios for loading and previewing PDF files:
 - Preview and load an online PDF file.
@@ -93,7 +93,7 @@ Currently, the following parameters are supported:
 | pdfbackgroundcolor=color 	| Specifies the background color of a PDF file. The value of **color** is a six-digit hexadecimal number in RGB format. The value ranges from 000000 to ffffff. For example, **ffffff** indicates white.|
 
 
-URL Examples: 
+URL Examples:
 ```
 https://example.com/test.pdf#Chapter6  
 https://example.com/test.pdf#page=3  

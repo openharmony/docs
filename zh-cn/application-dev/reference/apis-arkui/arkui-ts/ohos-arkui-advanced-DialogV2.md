@@ -544,9 +544,9 @@ struct Index {
 
 ![AlertDialog](figures/AlertDialog.png)
 
-### 示例5（进度条弹出框）
+### 示例5（进度加载类弹出框）
 
-进度条弹出框，包含content等内容。
+进度加载类弹出框，包含content等内容。
 
 ```ts
 import { LoadingDialogV2, UIContext } from '@kit.ArkUI';

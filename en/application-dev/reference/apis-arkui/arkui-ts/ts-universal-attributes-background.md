@@ -151,7 +151,7 @@ Sets the width and height of the background image for the component.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [SizeOptions](ts-universal-attributes-size.md#sizeoptions) \| [ImageSize](ts-appendix-enums.md#imagesize) | Yes  | Width and height of the background image. If the input is a **{width: Length, height: Length}** object and only one attribute is set, the other attribute is the set value multiplied by the original aspect ratio of the image. By default, the original image aspect ratio remains unchanged.<br>The value range of **width** and **height** is [0, +∞).<br>Default value: **ImageSize.Auto**.<br>**NOTE**<br>If both **width** and **height** are set to values less than or equal to 0, they are treated as 0. If either **width** or **height** is unset or set to a value less than or equal to 0, the other one is adjusted based on the original aspect ratio of the image.|
+| value  | [SizeOptions](ts-types.md#sizeoptions) \| [ImageSize](ts-appendix-enums.md#imagesize) | Yes  | Width and height of the background image. If the input is a **{width: Length, height: Length}** object and only one attribute is set, the other attribute is the set value multiplied by the original aspect ratio of the image. By default, the original image aspect ratio remains unchanged.<br>The value range of **width** and **height** is [0, +∞).<br>Default value: **ImageSize.Auto**.<br>**NOTE**<br>If both **width** and **height** are set to values less than or equal to 0, they are treated as 0. If either **width** or **height** is unset or set to a value less than or equal to 0, the other one is adjusted based on the original aspect ratio of the image.|
 
 **Return value**
 
@@ -813,7 +813,7 @@ struct BlurEffectsExample {
 ### Example 6: Setting Text Blur Effects
 
 This example applies anamorphic blur effects on text using **blendMode** and **backgroundEffect**.<br>
-If unwanted lines appear, make sure the sizes of the two owning components of **blendMode** are the same. If the issue persists, the component bounds may have fallen on the floating-point coordinates. In this case, set the universal attribute [pixelRound](ts-universal-attributes-pixelRound.md#pixelround) to align the component bounds on both sides of the unwanted lines with the integer pixel coordinates.
+If unwanted lines appear, make sure the sizes of the two owning components of **blendMode** are the same. If the issue persists, the component bounds may have fallen on the floating-point coordinates. In this case, set the universal attribute [pixelRound](ts-universal-attributes-pixelRoundForComponent.md#pixelround) to align the component bounds on both sides of the unwanted lines with the integer pixel coordinates.
 
 ```ts
 // xxx.ets

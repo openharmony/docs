@@ -1,5 +1,12 @@
 # UIAbilityContext (系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @duan-sizhao-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 UIAbilityContext是需要保存状态的[UIAbility](js-apis-app-ability-uiAbility.md)所对应的context，继承自[Context](js-apis-inner-application-context.md)，提供UIAbility的相关配置信息以及操作UIAbility和ServiceExtensionAbility的方法，如启动UIAbility，停止当前UIAbilityContext所属的UIAbility，启动、停止、连接、断开连接ServiceExtensionAbility等。
 
 > **说明：**
@@ -93,15 +100,16 @@ export default class EntryAbility extends UIAbility {
     let accountId = 100;
 
     try {
-      this.context.startAbilityForResultWithAccount(want, accountId, (err: BusinessError, result: common.AbilityResult) => {
-        if (err.code) {
-          // 处理业务逻辑错误
-          console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
-          return;
-        }
-        // 执行正常业务
-        console.info('startAbilityForResultWithAccount succeed');
-      });
+      this.context.startAbilityForResultWithAccount(want, accountId,
+        (err: BusinessError, result: common.AbilityResult) => {
+          if (err.code) {
+            // 处理业务逻辑错误
+            console.error(`startAbilityForResultWithAccount failed, code is ${err.code}, message is ${err.message}`);
+            return;
+          }
+          // 执行正常业务
+          console.info('startAbilityForResultWithAccount succeed');
+        });
     } catch (err) {
       // 处理入参错误异常
       let code = (err as BusinessError).code;
@@ -237,7 +245,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Ability被销毁时的回调函数，包含AbilityResult参数。 |
+| Promise&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Promise对象，包含AbilityResult参数。 |
 
 **错误码：**
 
@@ -921,8 +929,6 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 将当前Ability连接到一个指定account的ServiceExtensionAbility。仅支持在主线程调用。
 
-当前仅在phone、tablet设备上生效。
-
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
@@ -933,6 +939,8 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统接口**：此接口为系统接口。
+
+**设备行为差异**：该接口在Phone、Tablet中可正常调用，在其他设备类型中返回16000006错误码。
 
 **参数：**
 
@@ -1437,7 +1445,15 @@ startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+> - 跨设备场景下，调用方与目标方必须为同一应用，且该应用需要具备ohos.permission.DISTRIBUTED_DATASYNC权限，才能启动成功。
+>
+> - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请ohos.permission.START_INVISIBLE_ABILITY权限。
+>
+> - 如果指定的Ability有多个实例，调用方应用需申请ohos.permission.START_RECENT_ABILITY权限（该权限仅系统应用可申请），才能拉起最近启动的那个实例。
+>
+> - 如果调用方位于后台，还需要具备ohos.permission.START_ABILITIES_FROM_BACKGROUND（该权限仅系统应用可申请）。
+
+更多的组件启动规则详见[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1521,7 +1537,15 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt
 
 > **说明：**
 >
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+> - 跨设备场景下，调用方与目标方必须为同一应用，且该应用需要具备ohos.permission.DISTRIBUTED_DATASYNC权限，才能启动成功。
+>
+> - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请ohos.permission.START_INVISIBLE_ABILITY权限。
+>
+> - 如果指定的Ability有多个实例，调用方应用需申请ohos.permission.START_RECENT_ABILITY权限（该权限仅系统应用可申请），才能拉起最近启动的那个实例。
+>
+> - 如果调用方位于后台，还需要具备ohos.permission.START_ABILITIES_FROM_BACKGROUND（该权限仅系统应用可申请）。
+
+更多的组件启动规则详见[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1608,7 +1632,15 @@ startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+> - 跨设备场景下，调用方与目标方必须为同一应用，且该应用需要具备ohos.permission.DISTRIBUTED_DATASYNC权限，才能启动成功。
+>
+> - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请ohos.permission.START_INVISIBLE_ABILITY权限。
+>
+> - 如果指定的Ability有多个实例，调用方应用需申请ohos.permission.START_RECENT_ABILITY权限（该权限仅系统应用可申请），才能拉起最近启动的那个实例。
+>
+> - 如果调用方位于后台，还需要具备ohos.permission.START_ABILITIES_FROM_BACKGROUND（该权限仅系统应用可申请）。
+
+更多的组件启动规则详见[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1698,7 +1730,8 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;
 
-根据accountId对指定的Ability进行call调用，并且可以使用返回的Caller通信接口与被调用方进行通信。仅支持在主线程调用。
+根据accountId对指定的Ability进行call调用，并且可以使用返回的Caller通信接口与被调用方进行通信。仅支持在主线程调用。使用Promise异步回调。
+
 该接口不支持拉起启动模式为[specified模式](../../application-models/uiability-launch-type.md#specified启动模式)的UIAbility。
 
 使用规则：
@@ -1724,7 +1757,7 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[Caller](js-apis-app-ability-uiAbility.md#caller)&gt; | 获取要通讯的caller对象。 |
+| Promise&lt;[Caller](js-apis-app-ability-uiAbility.md#caller)&gt; | Promise对象，返回要通讯的caller对象。 |
 
 **错误码：**
 
@@ -1862,11 +1895,11 @@ export default class EntryAbility extends UIAbility {
     // 使用启动方的Caller身份信息启动新Ability
     this.context.startAbilityAsCaller(localWant, (err) => {
       if (err && err.code != 0) {
-        console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
+        console.error(`startAbilityAsCaller failed, code is ${err.code}, message is ${err.message}`);
       } else {
         console.info('startAbilityAsCaller success.');
       }
-    })
+    });
   }
 }
 ```
@@ -1941,11 +1974,11 @@ export default class EntryAbility extends UIAbility {
     // 使用启动方的Caller身份信息启动新Ability
     this.context.startAbilityAsCaller(localWant, option, (err) => {
       if (err && err.code != 0) {
-        console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
+        console.error(`startAbilityAsCaller failed, code is ${err.code}, message is ${err.message}`);
       } else {
         console.info('startAbilityAsCaller success.');
       }
-    })
+    });
   }
 }
 ```
@@ -2031,8 +2064,8 @@ export default class EntryAbility extends UIAbility {
         console.info('startAbilityAsCaller success.');
       })
       .catch((err: BusinessError) => {
-        console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
-      })
+        console.error(`startAbilityAsCaller failed, code is ${err.code}, message is ${err.message}`);
+      });
   }
 }
 ```

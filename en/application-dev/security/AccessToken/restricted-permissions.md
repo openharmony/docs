@@ -21,7 +21,6 @@ Modify the **"bundle-info"** &gt; **"apl"** field in the file.
 ```
 
 > **NOTE**
->
 > Modifying the HarmonyAppProvision configuration file applies to the applications in the debug phase, but not to the applications released to the app market. For a commercial application, apply for a release certificate and profile in the app market.
 
 <!--RP1End-->
@@ -474,7 +473,7 @@ With this permission, the application can call APIs to perform virtual screen ma
 
 **Authorization mode**: system_grant
 
-**Valid since**: 16
+**Valid since**: 18
 
 ### ohos.permission.kernel.DISABLE_GOTPLT_RO_PROTECTION
 
@@ -516,8 +515,6 @@ Allows an application to install plugins.
 
 Allows an application to read or set APN information.
 
-This permission is required for the applications that need to use private network APN information.
-
 <!--RP38--><!--RP38End-->
 
 **Permission level**: system_basic
@@ -525,3 +522,17 @@ This permission is required for the applications that need to use private networ
 **Authorization mode**: system_grant
 
 **Valid since**: 16
+
+### ohos.permission.GET_WIFI_LOCAL_MAC
+
+Allows an application to obtain the MAC address of the local Wi-Fi device.
+
+<!--RP43--><!--RP43End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 8
+
+**Change history:** For API versions 8 to 15, this permission is available only to system applications. For API versions 16 and later, this permission is available to common applications on PCs/2-in-1 devices, and is available only to system applications on other devices.

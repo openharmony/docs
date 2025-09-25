@@ -7,6 +7,10 @@ Before proceeding, you are advised to review [\@Builder](./arkts-builder.md) to 
 > **NOTE**
 >
 > This decorator is supported since API version 12.
+>
+> This decorator is supported in ArkTS widgets since API version 12.
+>
+> This decorator can be used in atomic services since API version 12.
 
 ## How to Use
 

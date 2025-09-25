@@ -711,9 +711,11 @@ type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) =>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
 | 参数名            | 类型               | 必填       | 说明                                       |
 | ------------- | ------------------   | -------------   | ---------------------- |
-| isExpanding | boolean | 是| 示组件的可见面积与自身面积的比值与上一次回调相比的情况，比值变大为true，比值变小为false。 |
+| isExpanding | boolean | 是| 视组件的可见面积与自身面积的比值与上一次回调相比的情况而定，比值变大为true，比值变小为false。 |
 | currentRatio | number | 是 | 触发回调时，组件可见面积与自身面积的比值。 |
 
 ## DividerStyleOptions<sup>12+</sup>

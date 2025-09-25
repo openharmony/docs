@@ -19,12 +19,12 @@ You may need to define and operate objects when using JSVM-API in development. F
 | OH_JSVM_CreateObject         | Creates a default JS object.                  |
 | OH_JSVM_ObjectFreeze         | Freezes a JS object. Once a JS object is frozen, new properties cannot be added to it, existing properties cannot be removed, the enumerability, configurability, or writability of existing properties cannot be changed, and the values of existing properties cannot be changed.                            |
 | OH_JSVM_ObjectSeal           |  Seals a JS object. Once a JS object is sealed, new properties cannot be added to it and all existing properties are marked as unconfigurable.                            |
-| OH_JSVM_Typeof                | Returns the type of a JS object. |
-| OH_JSVM_Instanceof            | Checks whether an object is an instance of a constructor.   |
-| OH_JSVM_TypeTagObject       | Associates the value of the **type_tag** pointer with a JS object or an external object.                 |
+| OH_JSVM_Typeof                | Returns the type of a JS object.|
+| OH_JSVM_Instanceof            | Checks whether an object is an instance of a constructor.|
+| OH_JSVM_TypeTagObject       | Associates the value of the **type_tag** pointer with a JS object or an external object.|
 | OH_JSVM_CheckObjectTypeTag | Checks whether a tag matches the tag type of an object.|
 | OH_JSVM_CreateSymbol         | Creates a symbol object based on the given descriptor.                    |
-|OH_JSVM_SymbolFor | Searches for a symbol with the given key in a global (runtime-wide) symbol registry. If a match is found, the symbol will be returned. Otherwise, a symbol will be created in the registry.|
+|OH_JSVM_SymbolFor | Searches for a symbol with the given key in a global (runtime-wide) symbol registry. If a match is found, the symbol will be returned. Otherwise, a symbol will be created in the Registry.|
 | OH_JSVM_CreateExternal       | Creates a JS object that wraps an external pointer.              |
 | OH_JSVM_GetValueExternal    | Obtains the external data pointer previously passed to **OH_JSVM_CreateExternal**.                 |
 
@@ -34,7 +34,7 @@ If you are just starting out with JSVM-API, see [JSVM-API Development Process](u
 
 ### OH_JSVM_GetPrototype
 
-Call **OH_JSVM_GetPrototype** to obtain the prototype of a JS object.
+This function is used to obtain the prototype of a given JavaScript object.
 
 CPP code:
 
@@ -73,14 +73,14 @@ const char* srcCallNative = R"JS(const myObject = {};
     console.log(proto === Object.prototype);)JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM GetPrototype success
 ```
 
 ### OH_JSVM_CreateObject
 
-Call **OH_JSVM_CreateObject** to create a default JS object.
+This function is used to create a default JavaScript object.
 
 CPP code:
 
@@ -124,7 +124,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS(createObject())JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM CreateObject success
 ```
@@ -173,14 +173,14 @@ const char* srcCallNative = R"JS(let obj = { data: 55, message: "hello world"};
   objectFreeze(obj))JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 Test JSVM OH_JSVM_ObjectFreeze success
 ```
 
 ### OH_JSVM_ObjectSeal
 
-Call **OH_JSVM_ObjectSeal** to seal a JS object. Once a JS object is sealed, new properties cannot be added to it and all existing properties are marked as unconfigurable.
+Seals a JS object. Once a JS object is sealed, new properties cannot be added to it and all existing properties are marked as unconfigurable.
 
 CPP code:
 
@@ -235,14 +235,14 @@ const char* srcCallNative = R"JS( let obj = { data: 55, message: "hello world"};
   objectSeal(obj))JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 Test JSVM OH_JSVM_ObjectSeal success
 ```
 
 ### OH_JSVM_Typeof
 
-Call **OH_JSVM_Typeof** to return the type of a JS object.
+Returns the type of a JS object.
 
 CPP code:
 
@@ -252,7 +252,8 @@ CPP code:
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
 // Define OH_JSVM_Typeof.
-static JSVM_Value GetTypeof(JSVM_Env env, JSVM_CallbackInfo info) {
+static JSVM_Value GetTypeof(JSVM_Env env, JSVM_CallbackInfo info)
+{
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
@@ -260,50 +261,50 @@ static JSVM_Value GetTypeof(JSVM_Env env, JSVM_CallbackInfo info) {
     OH_JSVM_Typeof(env, args[0], &valueType);
     JSVM_Value type = nullptr;
     switch (valueType) {
-    case JSVM_UNDEFINED:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is undefined");
-        OH_JSVM_CreateStringUtf8(env, "Input type is undefined", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_NULL:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is null");
-        OH_JSVM_CreateStringUtf8(env, "Input type is null", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_BOOLEAN:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is boolean");
-        OH_JSVM_CreateStringUtf8(env, "Input type is boolean", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_NUMBER:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is number");
-        OH_JSVM_CreateStringUtf8(env, "Input type is number", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_STRING:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is string");
-        OH_JSVM_CreateStringUtf8(env, "Input type is string", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_SYMBOL:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is symbol");
-        OH_JSVM_CreateStringUtf8(env, "Input type is symbol", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_OBJECT:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is object");
-        OH_JSVM_CreateStringUtf8(env, "Input type is object", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_FUNCTION:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is function");
-        OH_JSVM_CreateStringUtf8(env, "Input type is function", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_EXTERNAL:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is external");
-        OH_JSVM_CreateStringUtf8(env, "Input type is external", JSVM_AUTO_LENGTH, &type);
-        break;
-    case JSVM_BIGINT:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type is bigint");
-        OH_JSVM_CreateStringUtf8(env, "Input type is bigint", JSVM_AUTO_LENGTH, &type);
-        break;
-    default:
-        OH_LOG_INFO(LOG_APP, "JSVM Input type does not match any");
-        OH_JSVM_CreateStringUtf8(env, " ", JSVM_AUTO_LENGTH, &type);
-        break;
+        case JSVM_UNDEFINED:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is undefined");
+            OH_JSVM_CreateStringUtf8(env, "Input type is undefined", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_NULL:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is null");
+            OH_JSVM_CreateStringUtf8(env, "Input type is null", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_BOOLEAN:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is boolean");
+            OH_JSVM_CreateStringUtf8(env, "Input type is boolean", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_NUMBER:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is number");
+            OH_JSVM_CreateStringUtf8(env, "Input type is number", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_STRING:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is string");
+            OH_JSVM_CreateStringUtf8(env, "Input type is string", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_SYMBOL:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is symbol");
+            OH_JSVM_CreateStringUtf8(env, "Input type is symbol", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_OBJECT:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is object");
+            OH_JSVM_CreateStringUtf8(env, "Input type is object", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_FUNCTION:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is function");
+            OH_JSVM_CreateStringUtf8(env, "Input type is function", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_EXTERNAL:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is external");
+            OH_JSVM_CreateStringUtf8(env, "Input type is external", JSVM_AUTO_LENGTH, &type);
+            break;
+        case JSVM_BIGINT:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type is bigint");
+            OH_JSVM_CreateStringUtf8(env, "Input type is bigint", JSVM_AUTO_LENGTH, &type);
+            break;
+        default:
+            OH_LOG_INFO(LOG_APP, "JSVM Input type does not match any");
+            OH_JSVM_CreateStringUtf8(env, " ", JSVM_AUTO_LENGTH, &type);
+            break;
     }
     return type;
 }
@@ -320,14 +321,14 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS(getTypeof(true);)JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM Input type is boolean
 ```
 
 ### OH_JSVM_Instanceof
 
-Call **OH_JSVM_Instanceof** to check whether an object is an instance of a constructor.
+Checks whether an object is an instance of a constructor.
 
 CPP code:
 
@@ -376,18 +377,18 @@ const char* srcCallNative = R"JS(class Person {
      ;)JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM InstanceOf: 1
 ```
 
 ### OH_JSVM_TypeTagObject
 
-Call **OH_JSVM_TypeTagObject** to associate the value of the **type_tag** pointer with a JS object so that the object can be identified more accurately.
+The type tag type_tag is used to mark JavaScript objects. In this way, JavaScript objects can be identified more accurately in subsequent operations.
 
 ### OH_JSVM_CheckObjectTypeTag
 
-Call **OH_JSVM_CheckObjectTypeTag** to check whether a tag matches the tag type of an object.
+Checks whether a tag matches the tag type of an object.
 
 CPP code:
 
@@ -441,9 +442,9 @@ static JSVM_Value CheckObjectTypeTag(JSVM_Env env, JSVM_CallbackInfo info)
     bool checkResult = false;
     JSVM_Status status = OH_JSVM_CheckObjectTypeTag(env, args[0], &TagsData[index], &checkResult);
     if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM SetTypeTagToObject fail");
+        OH_LOG_ERROR(LOG_APP, "JSVM CheckObjectTypeTag fail");
     } else {
-        OH_LOG_INFO(LOG_APP, "JSVM SetTypeTagToObject:%{public}d", checkResult);
+        OH_LOG_INFO(LOG_APP, "JSVM CheckObjectTypeTag:%{public}d", checkResult);
     }
     // Convert the bool value to JSVM_Value and return it.
     JSVM_Value checked = nullptr;
@@ -472,16 +473,16 @@ const char* srcCallNative = R"JS(
          checkObjectTypeTag(obj,0);)JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM SetTypeTagToObject success
-JSVM SetTypeTagToObject:1
+JSVM CheckObjectTypeTag:1
 ```
 
 ### OH_JSVM_CreateExternal
 
 Call **OH_JSVM_CreateExternal** to create a JS object that wraps an external pointer.
-> **NOTE**<br>When a JS object is garbage-collected, the content pointed to by the wrapped external pointer is not directly managed by GC. Only the function corresponding to the third input parameter (if it is not nullptr) is called.
+**NOTE**<br>When a JS object is garbage-collected, the content pointed to by the wrapped external pointer is not directly managed by GC. Only the function corresponding to the third input parameter (if it is not nullptr) is called.
 
 CPP code:
 
@@ -490,6 +491,8 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
+#include <fstream>
+
 // Define OH_JSVM_CreateExternal.
 static JSVM_Value CreateExternal(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -527,7 +530,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS(createExternal())JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM CreateExternal success
 ```
@@ -580,7 +583,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS(getValueExternal())JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM OH_JSVM_CreateExternal success
 JSVM GetValueExternal success
@@ -627,14 +630,14 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS(createSymbol())JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM CreateSymbol Success
 ```
 
 ### OH_JSVM_SymbolFor
 
-Call **OH_JSVM_SymbolFor** to search for a symbol with the given key in a global (runtime-wide) symbol registry. If a match is found, the symbol will be returned. Otherwise, a symbol will be created in the Registry.
+Searches for a symbol with the given key in a global (runtime-wide) symbol registry. If a match is found, the symbol will be returned. Otherwise, a symbol will be created in the Registry.
 
 CPP code:
 
@@ -679,7 +682,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS(symbolFor())JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM OH_JSVM_SymbolFor success
 ```

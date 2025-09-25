@@ -56,7 +56,7 @@ struct Index {
           .onActionUpdate((event: GestureEvent|undefined) => {
             if(event){
               this.scaleValue = this.pinchValue * event.scale;
-              console.info('Pinch start');
+              console.info('Pinch update');
             }
           })
           .onActionEnd(() => {
@@ -79,7 +79,7 @@ struct Index {
 
   ArkWeb gestures are generated after the **Web** component receives touch events. You can use either of the following methods to judge ArkWeb gestures:
   1. Do not send touch events to the **Web** component. For details, see [Hit Testing](../ui/arkts-common-events-distribute.md).
-  2. Send the **TouchCancel** event to the **Web** component. For details, see [OH_ArkUI_TouchRecognizer_CancelTouch](../reference/apis-arkui/native__gesture_8h.md#functions).
+  2. Send the **TouchCancel** event to the **Web** component. For details, see OH_ArkUI_TouchRecognizer_CancelTouch](../reference/apis-arkui/native__gesture_8h.md#functions).
 
 
 ## FAQs
@@ -96,15 +96,18 @@ Override the **onBackPress** API to define the return logic and use **WebviewCon
 
 ```ts
 import web_webview from '@ohos.web.webview';
+
 @Entry
 @Component
 struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
+
   build() {
     Column() {
-      Web({ src: 'http://www.example.com', controller: this.controller })// Replace the URL with the actual URL.
+      Web({ src: 'https://www.example.com', controller: this.controller })// Replace the URL with the actual URL.
     }
   }
+
   onBackPress() {
     // Check whether a specific number of steps forward or backward can be performed on the current page. A positive number indicates forward, and a negative number indicates backward.
     if (this.controller.accessStep(-1)) {
@@ -116,5 +119,31 @@ struct Index {
       return false
     }
   }
+}
+```
+
+### Why cannot I interact with the web page after it is loaded?
+
+The web page may determine its behavior based on other platforms' **User-Agent**. To solve this problem, you can set a custom **User-Agent** in the **Web** component. For example:
+
+```ts
+import { webview } from '@kit.ArkWeb'
+
+@Entry
+@Component
+struct Index {
+    private webController: webview.WebviewController = new webview.WebviewController()
+    build(){
+      Column() {
+        Web({
+          src: 'https://www.example.com',
+          controller: this.webController,
+        }).onControllerAttached(() => {
+          // Customize User-Agent.
+          let customUA = 'Mozilla/5.0 (Phone; Android; OpenHarmony 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Mobile Safari/537.36'
+          this.webController.setCustomUserAgent(customUA)
+        })
+      }
+    }
 }
 ```

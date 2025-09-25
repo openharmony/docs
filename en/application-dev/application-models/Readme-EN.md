@@ -1,5 +1,12 @@
 # Ability Kit<!--ability-kit-->
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @jayleehw-->
+<!--Designer: @jayleehw-->
+<!--Tester: @lixueqing513-->
+
+
 - [Introduction to Ability Kit](abilitykit-overview.md)
 - [Application Models](application-models.md)
 - Stage Model Development<!--stage-model-development-->
@@ -19,11 +26,11 @@
       - [ServiceExtensionAbility (for System Applications Only)](serviceextensionability.md)
       - [UIServiceExtensionAbility (for System Applications Only)](uiserviceextension-sys.md)
       - [UIExtensionAbility (for System Applications Only)](uiextensionability.md)
-      - [AutoFillExtensionAbility (for System Applications Only)](autofillextensionablility-guide.md)
-      <!--DelEnd-->
+      - [Using AutoFillExtensionAbility for Auto-Fill (for System Applications Only)](autofillextensionablility-guide.md)
       - [Using UIServiceExtensionAbility for System Floating Windows](uiserviceextension.md)
+      <!--DelEnd-->
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
-    - [AbilityStage Component Container](abilitystage.md)
+    - [AbilityStage Component Manager](abilitystage.md)
     - [Context](application-context-stage.md)
     - Want<!--want-->
       - [Want Overview](want-overview.md)
@@ -150,3 +157,4 @@
     - [Storage Switching](storage-switch.md)
 <!--DelEnd-->
     - [Native Child Process Development (C/C++)](capi_nativechildprocess_development_guideline.md)
+- [Ability Kit Terminology](ability-terminology.md)

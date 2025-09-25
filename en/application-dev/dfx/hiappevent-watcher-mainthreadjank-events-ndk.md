@@ -6,7 +6,7 @@ For details, see [Main Thread Jank Event Overview](./hiappevent-watcher-mainthre
 
 ## Available APIs
 
-For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent).
+For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md).
 
 **Subscription APIs**
 
@@ -17,30 +17,32 @@ For details about how to use the APIs (such as parameter usage restrictions and 
 
 ## How to Develop
 
-1. Create a native C++ project and import the **jsoncpp** file to the project. The directory structure is as follows:
+1. Obtain the **jsoncpp.cpp**, **json.h**, and **json-forwards.h** files by referring to **Using JsonCpp in your project** in [the third-party open-source library JsonCpp](https://github.com/open-source-parsers/jsoncpp).
+
+2. Create a native C++ project and import the preceding files to the project. The directory structure is as follows:
 
    ```yml
    entry:
      src:
        main:
          cpp:
-           - json:
-               - json.h
-               - json-forwards.h
-           - types:
-               libentry:
-                 - index.d.ts
+           json:
+             - json.h
+             - json-forwards.h
+           types:
+             libentry:
+               - index.d.ts
            - CMakeLists.txt
-           - napi_init.cpp
            - jsoncpp.cpp
+           - napi_init.cpp
          ets:
-           - entryability:
-               - EntryAbility.ets
-           - pages:
-               - Index.ets
+           entryability:
+             - EntryAbility.ets
+           pages:
+             - Index.ets
    ```
 
-2. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
+3. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
 
    ```cmake
    # Add the jsoncpp.cpp file, which is used to parse the JSON strings in the subscription events.
@@ -49,7 +51,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libhiappevent_ndk.z.so)
    ```
 
-3. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
+4. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
 
    ```c++
    #include "napi/native_api.h"
@@ -61,11 +63,11 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    #define LOG_TAG "testTag"
    ```
 
-4. Subscribe to system events.
+5. Subscribe to system events.
 
-    - Watcher of the onReceive type.
+    - Watcher of the **onReceive** type.
 
-      In the **napi_init.cpp** file, define the methods related to the watcher of the onReceive type.
+      In the **napi_init.cpp** file, define the methods related to the watcher of the **onReceive** type.
 
       ```c++
       // Define a variable to cache the pointer to the created watcher.
@@ -129,7 +131,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
       }
       ```
 
-5. Register **RegisterWatcher** as an ArkTS API.
+6. Register **RegisterWatcher** as an ArkTS API.
 
    In the **napi_init.cpp** file, register **RegisterWatcher** as an ArkTS API.
 
@@ -150,7 +152,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    export const registerWatcher: () => void;
    ```
 
-6. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, add the following interface invocation to **onCreate()**.
+7. In the **entry/src/main/ets/entryability/EntryAbility.ets** file, add the following interface invocation to **onCreate()**.
 
    ```typescript
    // Import the dependent module.
@@ -161,7 +163,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
    testNapi.registerWatcher();
    ```
 
-7. In the **entry/src/main/ets/pages/Index.ets** file, add the **timeOut500** button with **onClick()** to trigger a main thread jank event when the button is clicked. The sample code is as follows:
+8. In the **entry/src/main/ets/pages/Index.ets** file, add the **timeOut500** button with **onClick()** to trigger a main thread jank event when the button is clicked. The sample code is as follows:
 
    ```typescript
       Button("timeOut350")
@@ -173,9 +175,9 @@ For details about how to use the APIs (such as parameter usage restrictions and 
       })
    ```
 
-8. In DevEco Studio, click the **Run** button to run the application project. Click the **timeOut350** button twice consecutively to trigger a main thread jank event.
+9. In DevEco Studio, click the **Run** button to run the application project. Click the **timeOut350** button twice consecutively to trigger a main thread jank event.
 
-9. After the main thread jank event is reported, you can view the following event information in the **Log** window.
+10. After the main thread jank event is reported, you can view the following event information in the **Log** window.
 
     ```text
       HiAppEvent eventInfo.domain=OS

@@ -1,10 +1,20 @@
 # tagSession (Standard NFC Tag Session) 
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @amunra03-->
+<!--Designer: @wenxiaolin-->
+<!--Tester: @zs_111-->
+
 The **tagSession** module provides common APIs for establishing connections and transferring data.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+> **NOTE**
+>
+> If an error is reported while importing the tag module editor, the capabilities of a specific device model may exceed the capability set defined for the default device. To use these capabilities, configure a custom SysCap by following instructions in [SystemCapability Development](https://developer.huawei.com/consumer/en/doc/harmonyos-references/syscap).
 
 ## **Modules to Import**
 
@@ -37,7 +47,7 @@ Obtains the **tagInfo** object provided by the NFC service when the tag is dispa
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| TagInfo  | **Taginfo** object obtained.|
+| tag.TagInfo  | **Taginfo** object obtained.|
 
 **Example**
 
@@ -618,8 +628,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 |401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100204 | The Tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
+| 3100204 | The tag I/O operation failed. |
 
 **Example**
 
@@ -684,7 +693,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 |401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100204 | The tag I/O operation failed.. |
 
 **Example**
 

@@ -19,16 +19,16 @@
 
 **表1** module.json与配置文件属性的对照表
 
-| module.json属性          | [module.json5](../quick-start/module-configuration-file.md#配置文件标签)配置项         | [app.json5](../quick-start/app-configuration-file.md#配置文件标签)配置项            | [工程级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile-app)配置项  |
-| ------------------------ | ------------------------ | -------------------------- | --------------------------       |
-| bundleName               | -                        | bundleName                 | -                                |
-| bundleType               | -                        | bundleType                 | -                                |
-| versionCode              | -                        | versionCode                | -                                |
-| debug                    | -                        | debug                      | -                                |
-| module/name              | module/name              | -                          | -                                |
-| minCompatibleVersionCode | -                        | minCompatibleVersionCode   | -                                |
-| minAPIVersion            | -                        | minAPIVersion              | compatibleSdkVersion             |
-| targetAPIVersion         | -                        | targetAPIVersion           | targetSdkVersion或compileSdkVersion  <br/>说明：targetSdkVersion存在时，targetAPIVersion由targetSdkVersion决定；<br/>否则，targetAPIVersion由compileSdkVersion决定。               |
+| module.json属性          | 含义          | [module.json5](../quick-start/module-configuration-file.md#配置文件标签)配置项         | [app.json5](../quick-start/app-configuration-file.md#配置文件标签)配置项            | [工程级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile-app)配置项  |
+| ------------------------ | ------------------------ | ------------------------ | -------------------------- | --------------------------       |
+| bundleName               | 应用的Bundle名称。        | -                        | bundleName                 | -                                |
+| bundleType               | 应用的Bundle类型。        | -                        | bundleType                 | -                                |
+| versionCode              | 应用的版本号。            | -                        | versionCode                | -                                |
+| debug                    | 应用是否可调试。          | -                        | debug                      | -                                |
+| module/name              | 当前Module的名称。        | module/name              | -                          | -                                |
+| minCompatibleVersionCode | 应用能够兼容的最低历史版本号。| -                        | minCompatibleVersionCode   | -                                |
+| minAPIVersion            | 应用运行所需的最小API版本。| -                        | minAPIVersion              | compatibleSdkVersion             |
+| targetAPIVersion         | 应用运行需要的API目标版本。 | -                        | targetAPIVersion           | targetSdkVersion/compileSdkVersion  <br/>说明：targetSdkVersion存在时，targetAPIVersion由targetSdkVersion决定；<br/>否则，targetAPIVersion由compileSdkVersion决定。               |
 
 ## 约束与限制
 
@@ -39,14 +39,19 @@
 
 开发者可以使用打包工具的JAR包对模块进行打包，通过传入打包选项、文件路径，生成所需的HAP包。
 
-- Stage模型示例：
+**打包HAP时的压缩规则：**
+- 应用配置compressNativeLibs为true时，会按照--compress-level设置的压缩等级对--lib-path指定目录下的文件进行压缩。
+- 出于运行时性能等考量，--lib-path指定目录外的文件不会进行压缩。
+
+示例：
+- [Stage模型](../../application-dev/application-models/application-models.md#应用模型概况)示例：
 
 
     ```
     java -jar app_packing_tool.jar --mode hap --json-path <path> [--resources-path <path>] [--ets-path <path>] [--index-path <path>] [--pack-info-path <path>] [--lib-path <path>] --out-path <path> [--force true] [--compress-level 5] [--pkg-context-path <path>] [--hnp-path <path>]
     ```
 
-- FA模型示例：
+- [FA模型](../../application-dev/application-models/application-models.md#应用模型概况)示例：
 
 
     ```
@@ -58,7 +63,7 @@
 | 指令             | 是否必选项 | 选项          | 描述                                                         | 备注            |
 | ---------------- | ---------- | ------------- | ------------------------------------------------------------ | --------------- |
 | --mode           | 是         | hap           | 打包类型。                                                   | NA              |
-| --json-path      | 是         | NA            | .json文件路径.FA模型文件名必须为config.json；Stage模型文件名必须为module.json。 | NA              |
+| --json-path      | 是         | NA            | .json文件路径。FA模型文件名必须为config.json；Stage模型文件名必须为module.json。 | NA              |
 | --profile-path   | 否         | NA            | CAPABILITY.profile文件路径。                                 | NA              |
 | --maple-so-path  | 否         | NA            | maple so文件输入路径，so文件路径，文件名必须以.so为后缀。如果是多个so需要用“，”分隔。 | NA              |
 | --maple-so-dir   | 否         | NA            | maple so目录输入路径。                                       | NA              |
@@ -68,20 +73,24 @@
 | --index-path     | 否         | NA            | .index文件路径，文件名必须为resources.index。                | NA              |
 | --pack-info-path | 否         | NA            | pack.info文件路径，文件名必须为pack.info。                   | NA              |
 | --rpcid-path     | 否         | NA            | rpcid.sc文件路径，文件名必须为rpcid.sc。                     | NA              |
-| --js-path        | 否         | NA            | 存放js文件目录路径。                                         | 仅stage模型生效。 |
-| --ets-path       | 否         | NA            | 存放ets文件目录路径。                                        | 仅stage模型生效。 |
+| --js-path        | 否         | NA            | 存放js文件目录路径。                                         | 仅Stage模型生效。 |
+| --ets-path       | 否         | NA            | 存放ets文件目录路径。                                        | 仅Stage模型生效。 |
 | --out-path       | 是         | NA            | 目标文件路径，文件名必须以.hap为后缀。                       | NA              |
 | --force          | 否         | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。  | NA              |
 | --an-path        | 否         | NA            | 存放[an文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-arkts-52-V5)的路径。| 仅stage模型生效。 |
 | --ap-path        | 否         | NA            | 存放[ap文件](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs-V5/faqs-arkts-52-V5)的路径。| 仅stage模型生效。 |
 | --dir-list       | 否         | NA            | 可指定目标文件夹列表，将其打入HAP包内。                      | NA              |
-| --compress-level | 否         | number        | 压缩等级，默认值1。可选等级1-9。在应用配置compressNativeLibs参数为true的情况下生效，数值越大压缩率越高、压缩速度越慢。 | NA  |
-| --pkg-context-path      | 否         | NA            | 可指定语境信息表文件路径，文件名必须为pkgContextInfo.json。 | 仅stage模型生效。              |
+| --compress-level | 否         | number        | lib库下文件压缩等级，默认值1。可选等级1-9。在应用配置compressNativeLibs参数为true的情况下生效，数值越大压缩率越高、压缩速度越慢。 | NA  |
+| --pkg-context-path      | 否         | NA            | 可指定语境信息表文件路径，文件名必须为pkgContextInfo.json。当app.json5配置文件中bundleType取值不是appPlugin，且module.json5配置文件中requestPermissions取值包含"ohos.permission.kernel.SUPPORT_PLUGIN"时，该参数必填。 | 仅Stage模型生效。              |
 | --hnp-path | 否 | NA | 指定native软件包文件路径，将native软件包打入HAP包内。 | NA |
 
 ## HSP打包指令
 
 HSP包实现了多个HAP对文件的共享，开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、文件路径，生成所需的HSP包。
+
+**打包HSP时的压缩规则：**
+- 应用配置compressNativeLibs为true时，会按照--compress-level设置的压缩等级对--lib-path指定目录下的文件进行压缩。
+- 出于运行时性能等考量，--lib-path指定目录外的文件不会进行压缩。
 
 示例：
 ```
@@ -104,8 +113,8 @@ java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <
 | --ets-path       | 否         | NA            | 存放ets文件目录路径。                                        |
 | --out-path       | 是         | NA            | 目标文件路径，文件名必须以.hsp为后缀。                       |
 | --force          | 否         | true或者false | 默认值为false。如果为true，表示当目标文件存在时，强制删除。  |
-| --compress-level | 否         | number        | 压缩等级，默认值1。可选等级1-9。在应用配置compressNativeLibs参数为true的情况下生效，数值越大压缩率越高、压缩速度越慢。 |
-| --pkg-context-path      | 否         | NA            | 可指定语境信息表文件路径，文件名必须为pkgContextInfo.json。 |
+| --compress-level | 否         | number        | lib库下文件压缩等级，默认值1，可选等级1-9。在应用配置compressNativeLibs参数为true的情况下生效，数值越大压缩率越高、压缩速度越慢。 |
+| --pkg-context-path      | 否         | NA            | 可指定语境信息表文件路径，文件名必须为pkgContextInfo.json。当app.json5配置文件中bundleType取值不是appPlugin，且module.json5配置文件中requestPermissions取值包含"ohos.permission.kernel.SUPPORT_PLUGIN"时，该参数必填。 |
 
 ## App打包指令
 
@@ -125,11 +134,15 @@ java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <
 | targetAPIVersion                 | 从API version 16开始，要求所有HAP的targetAPIVersion字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的targetAPIVersion字段值均保持一致。    |
 | versionName                | 从API version 12开始，不再对versionName校验。      |
 
->**说明：**
+> **说明：** 
 >
 > - module.json文件为DevEco Studio编译构建产物，其中的字段与配置文件的对应关系，请参考[表1 module.json与配置文件属性的对照表](packing-tool.md)。
 
 **打包App时的压缩规则：** 打包App时，对release模式的HAP、HSP包会进行压缩，对debug模式的HAP、HSP包不会压缩。
+
+> **说明：** 
+> 
+> 若HAP/HSP中已压缩的so文件，在打包APP时再次压缩，将不会有明显体积缩减。
 
 示例：
 
@@ -172,7 +185,7 @@ java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>
 | targetAPIVersion                 | 从API version 16开始，要求所有HAP的targetAPIVersion字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的targetAPIVersion字段值均保持一致。    |
 | versionName                | 从API version 12开始，不再对versionName校验。      |
 
->**说明：**
+> **说明：** 
 >
 > - module.json文件为DevEco Studio编译构建产物，其中的字段与配置文件的对应关系，请参考[表1 module.json与配置文件属性的对照表](packing-tool.md)。
 
@@ -318,11 +331,15 @@ java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-pa
 | minCompatibleVersionCode         | 从API version 16开始，要求所有HAP的minCompatibleVersionCode字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的minCompatibleVersionCode字段值均保持一致。    |
 | targetAPIVersion                 | 从API version 16开始，要求所有HAP的targetAPIVersion字段值均保持一致，且均不低于所有HSP对应字段的最大值。<br/>对于API version 15及之前版本，要求所有HAP/HSP的targetAPIVersion字段值均保持一致。    |
 
->**说明：**
+> **说明：** 
 >
 > - module.json文件为DevEco Studio编译构建产物，其中的字段与配置文件的对应关系，请参考[表1 module.json与配置文件属性的对照表](packing-tool.md)。
 
 **打包App时的压缩规则：** 打包App时，对release模式的HAP、HSP包会进行压缩，对debug模式的HAP、HSP包不会压缩。
+
+> **说明：** 
+> 
+> 若HAP/HSP中已压缩的so文件，在打包APP时再次压缩，将不会有明显体积缩减。
 
 示例：
 

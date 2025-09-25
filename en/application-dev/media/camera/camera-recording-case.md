@@ -14,7 +14,7 @@ After obtaining the output stream capabilities supported by the camera, create a
 ![Recording Development Process](figures/recording-development-process.png)
 
 
-## Sample Code
+## Complete Sample Code
 For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
 ```ts
@@ -91,7 +91,7 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
   // In this sample code, the first video profile is selected. You need to select a video profile as required.
   let videoProfile: camera.VideoProfile = videoProfilesArray[0];
   let isHdr = videoProfile.format === camera.CameraFormat.CAMERA_FORMAT_YCBCR_P010 || videoProfile.format === camera.CameraFormat.CAMERA_FORMAT_YCRCB_P010;
-  // Configure the parameters based on those supported by the hardware device.
+  // Configure the parameters based on those supported by the device.
   let aVRecorderProfile: media.AVRecorderProfile = {
     audioBitrate: 48000,
     audioChannels: 2,

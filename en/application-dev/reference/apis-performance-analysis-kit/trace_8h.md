@@ -5,67 +5,19 @@
 
 Defines APIs of the HiTraceMeter module for performance trace.
 
-The following is the sample code:
+The vertical bar (|) is used as the separator in user-mode trace format. Therefore, the string parameters passed by the HiTraceMeter APIs must exclude this character to avoid trace parsing exceptions.
 
-Synchronous time slice trace event:
-
-  
-```
-OH_HiTrace_StartTrace("hitraceTest");
-OH_HiTrace_FinishTrace();
-```
-
-Output:
-
-  
-```
-<...>-1668 (----—) [003] .... 135.059377: tracing_mark_write: B|1668|H:hitraceTest
-<...>-1668 (----—) [003] .... 135.059415: tracing_mark_write: E|1668|
-```
-
-Asynchronous time slice trace event:
-
-  
-```
-OH_HiTrace_StartAsyncTrace("hitraceTest", 123);
-OH_HiTrace_FinishAsyncTrace("hitraceTest", 123);
-```
-
-Output:
-
-  
-```
-<...>-2477 (----—) [001] .... 396.427165: tracing_mark_write: S|2477|H:hitraceTest 123
-<...>-2477 (----—) [001] .... 396.427196: tracing_mark_write: F|2477|H:hitraceTest 123
-```
-
-Integer value trace event:
-
-  
-```
-OH_HiTrace_CountTrace("hitraceTest", 500);
-```
-
-Output:
-
-  
-```
-<...>-2638 (----—) [002] .... 458.904382: tracing_mark_write: C|2638|H:hitraceTest 500
-```
+The maximum length of a user-mode trace is 512 characters. Excess characters will be truncated.
 
 **Library**: libhitrace_ndk.z.so
 
-**File to include**:
+**File to include**: <hitrace/trace.h>
 
-&lt;hitrace/trace.h&gt;
+**System capability**: SystemCapability.HiviewDFX.HiTrace
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[Hitrace](_hitrace.md)
+**Related module**: [HiTrace](_hitrace.md)
 
 
 ## Summary
@@ -82,23 +34,25 @@ Output:
 
 | Name| Description| 
 | -------- | -------- |
-| typedef enum [HiTraceId_Valid](_hitrace.md#hitraceid_valid) [HiTraceId_Valid](_hitrace.md#hitraceid_valid) | Defines an enum for whether a **HiTraceId** instance is valid. | 
+| typedef enum [HiTraceId_Valid](_hitrace.md#hitraceid_valid) [HiTraceId_Valid](_hitrace.md#hitraceid_valid) | Defines an enum for whether **HiTraceId** is valid. | 
 | typedef enum [HiTrace_Version](_hitrace.md#hitrace_version) [HiTrace_Version](_hitrace.md#hitrace_version) | Defines an enum for the HiTrace versions. | 
 | typedef enum [HiTrace_Flag](_hitrace.md#hitrace_flag) [HiTrace_Flag](_hitrace.md#hitrace_flag) | Defines an enum for the HiTrace flags. | 
 | typedef enum [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) | Defines an enum for the HiTrace tracepoint types. | 
-| typedef enum [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) | Defines an enum for the HiTrace communication modes. | 
-| typedef struct [HiTraceId](_hi_trace_id.md) [HiTraceId](_hi_trace_id.md) | Defines a struct for the HiTrace ID.| 
+| typedef enum [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) | Defines an enum for the communication modes. | 
+| typedef enum [HiTrace_Output_Level](_hitrace.md#hitrace_output_level) [HiTrace_Output_Level](_hitrace.md#hitrace_output_level) | Defines an enum for the HiTrace output levels. | 
+|  typedef struct [HiTraceId](_hi_trace_id.md)**HiTraceId** |  | 
 
 
 ### Enums
 
 | Name| Description| 
 | -------- | -------- |
-| [HiTraceId_Valid](_hitrace.md#hitraceid_valid) { HITRACE_ID_INVALID = 0, HITRACE_ID_VALID = 1 } | Enumerates whether a **HiTraceId** instance is valid. | 
-| [HiTrace_Version](_hitrace.md#hitrace_version) { HITRACE_VER_1 = 0 } | Enumerates the HiTrace versions. | 
-| [HiTrace_Flag](_hitrace.md#hitrace_flag) {<br>HITRACE_FLAG_DEFAULT = 0, HITRACE_FLAG_INCLUDE_ASYNC = 1 &lt;&lt; 0, HITRACE_FLAG_DONOT_CREATE_SPAN = 1 &lt;&lt; 1, HITRACE_FLAG_TP_INFO = 1 &lt;&lt; 2,<br>HITRACE_FLAG_NO_BE_INFO = 1 &lt;&lt; 3, HITRACE_FLAG_DONOT_ENABLE_LOG = 1 &lt;&lt; 4, HITRACE_FLAG_FAULT_TRIGGER = 1 &lt;&lt; 5, HITRACE_FLAG_D2D_TP_INFO = 1 &lt;&lt; 6<br>} | Enumerates the HiTrace flags. | 
-| [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) {<br>HITRACE_TP_CS = 0, HITRACE_TP_CR = 1, HITRACE_TP_SS = 2, HITRACE_TP_SR = 3,<br>HITRACE_TP_GENERAL = 4<br>} | Enumerates the HiTrace tracepoint types. | 
-| [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) { HITRACE_CM_DEFAULT = 0, HITRACE_CM_THREAD = 1, HITRACE_CM_PROCESS = 2, HITRACE_CM_DEVICE = 3 } | Enumerates the HiTrace communication modes. | 
+| [HiTraceId_Valid](_hitrace.md#hitraceid_valid) {<br>HITRACE_ID_INVALID = 0, <br>HITRACE_ID_VALID = 1<br>} | Enumerates whether a **HiTraceId** instance is valid. | 
+| [HiTrace_Version](_hitrace.md#hitrace_version) {<br>HITRACE_VER_1 = 0<br>} | Enumerates the HiTrace versions. | 
+| [HiTrace_Flag](_hitrace.md#hitrace_flag) {<br>HITRACE_FLAG_DEFAULT = 0, <br>HITRACE_FLAG_INCLUDE_ASYNC = 1 &lt;&lt; 0, <br>HITRACE_FLAG_DONOT_CREATE_SPAN = 1 &lt;&lt; 1, <br>HITRACE_FLAG_TP_INFO = 1 &lt;&lt; 2,<br>HITRACE_FLAG_NO_BE_INFO = 1 &lt;&lt; 3, <br>HITRACE_FLAG_DONOT_ENABLE_LOG = 1 &lt;&lt; 4, <br>HITRACE_FLAG_FAULT_TRIGGER = 1 &lt;&lt; 5, <br>HITRACE_FLAG_D2D_TP_INFO = 1 &lt;&lt; 6<br>} | Enumerates the HiTrace flags. | 
+| [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) {<br>HITRACE_TP_CS = 0, <br>HITRACE_TP_CR = 1, <br>HITRACE_TP_SS = 2, <br>HITRACE_TP_SR = 3,<br>HITRACE_TP_GENERAL = 4<br>} | Enumerates the HiTrace tracepoint types. | 
+| [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) {<br>HITRACE_CM_DEFAULT = 0, <br>HITRACE_CM_THREAD = 1, <br>HITRACE_CM_PROCESS = 2, <br>HITRACE_CM_DEVICE = 3<br>} | Enumerates the HiTrace communication modes. | 
+| [HiTrace_Output_Level](_hitrace.md#hitrace_output_level) {<br>HITRACE_LEVEL_DEBUG = 0, <br>HITRACE_LEVEL_INFO = 1, <br>HITRACE_LEVEL_CRITICAL = 2, <br>HITRACE_LEVEL_COMMERCIAL = 3, <br>HITRACE_LEVEL_MAX = HITRACE_LEVEL_COMMERCIAL<br>} | Enumerates the HiTrace output levels. | 
 
 
 ### Functions
@@ -131,3 +85,9 @@ Output:
 | void [OH_HiTrace_StartAsyncTrace](_hitrace.md#oh_hitrace_startasynctrace) (const char \*name, int32_t taskId) | Marks the start of an asynchronous trace. | 
 | void [OH_HiTrace_FinishAsyncTrace](_hitrace.md#oh_hitrace_finishasynctrace) (const char \*name, int32_t taskId) | Marks the end of an asynchronous trace. | 
 | void [OH_HiTrace_CountTrace](_hitrace.md#oh_hitrace_counttrace) (const char \*name, int64_t count) | Traces the value change of an integer variable based on its name. | 
+| void [OH_HiTrace_StartTraceEx](_hitrace.md#oh_hitrace_starttraceex) ([HiTrace_Output_Level](_hitrace.md#hitrace_output_level) level, const char \*name, const char \*customArgs) | Marks the start of a synchronous trace task with the trace output level specified. | 
+| void [OH_HiTrace_FinishTraceEx](_hitrace.md#oh_hitrace_finishtraceex) ([HiTrace_Output_Level](_hitrace.md#hitrace_output_level) level) | Marks the end of a synchronous trace task with the trace output level specified. | 
+| void [OH_HiTrace_StartAsyncTraceEx](_hitrace.md#oh_hitrace_startasynctraceex) ([HiTrace_Output_Level](_hitrace.md#hitrace_output_level) level, const char \*name, int32_t taskId, const char \*customCategory, const char \*customArgs) | Marks the start of an asynchronous trace task with the trace output level specified. | 
+| void [OH_HiTrace_FinishAsyncTraceEx](_hitrace.md#oh_hitrace_finishasynctraceex) ([HiTrace_Output_Level](_hitrace.md#hitrace_output_level) level, const char \*name, int32_t taskId) | Marks the end of an asynchronous trace task with the trace output level specified. | 
+| void [OH_HiTrace_CountTraceEx](_hitrace.md#oh_hitrace_counttraceex) ([HiTrace_Output_Level](_hitrace.md#hitrace_output_level) level, const char \*name, int64_t count) | Marks an integer variable trace task with the trace output level specified. | 
+| bool [OH_HiTrace_IsTraceEnabled](_hitrace.md#oh_hitrace_istraceenabled) (void) | Checks whether trace capture is enabled for an application. If not, HiTraceMeter performance tracing is invalid. | 

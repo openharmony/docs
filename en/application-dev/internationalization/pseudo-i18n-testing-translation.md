@@ -3,7 +3,7 @@
 
 ## Use Cases
 
-Pseudo-localization testing is used to identify problems that may cause abnormal UI, layout, or text display during translation.
+Pseudo-localization testing simulates the translation process of an application to identify UI layout and text display issues that may occur during actual translation.
 
 **Text truncation or abnormal UI layout**: For software components such as menus, text areas, keys, and check boxes, the text length is usually adjusted to adapt to the source language (usually English) during UI design, and then the text alignment, position, and line spacing are adjusted on this basis. However, the text length often increases after translation, leading to abnormal UI layout or text truncation in an inappropriate position. For example, Russian or Norwegian words are usually longer than English words. If the reserved space on the UI is small, the text that exceeds the scope is truncated, and consequently the translated text cannot be displayed completely.
 
@@ -13,11 +13,17 @@ Pseudo-localization testing is used to identify problems that may cause abnormal
 ## Test Process
 
 1. Switch to the target locale for pseudo-localization testing, for example, **en-XA**.
-   You can switch the locale through the code (system permission required):
+
+   >  **NOTE**
+   >
+   >  The **setSystemLanguage** API is a system API and needs to be called by the system applications. Once the target locale is successfully set, non-system applications can then perform pseudo-localization testing.
+   <!--RP1-->
    ```ts
    import { i18n } from '@kit.LocalizationKit';
-   i18n.System.setSystemLanguage('en-XA')
+
+   i18n.System.setSystemLanguage('en-XA');
    ```
+   <!--RP1End-->
 
 2. Traverse the applications to be tested.
 

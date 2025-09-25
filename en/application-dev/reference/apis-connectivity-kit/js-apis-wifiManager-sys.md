@@ -126,7 +126,7 @@ Sets whether scan is always allowed.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG (for system applications only)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -134,7 +134,7 @@ Sets whether scan is always allowed.
 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| isScanAlwaysAllowed | boolean | Yes| Whether scan is always allowed.|
+| isScanAlwaysAllowed | boolean | Yes| Whether scan is always allowed. The value **true** indicates that scan is always allowed, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -167,7 +167,7 @@ Obtains whether scan is always allowed.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG (for system applications only)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -291,7 +291,7 @@ Connects to the specified network. If the device is already connected to a hotsp
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.SET_WIFI_INFO, ohos.permission.SET_WIFI_CONFIG, and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications)
+**Required permissions**: ohos.permission.SET_WIFI_INFO, ohos.permission.SET_WIFI_CONFIG (for system applications only), and ohos.permission.MANAGE_WIFI_CONNECTION (for system applications only)
 
 **System capability**:
   SystemCapability.Communication.WiFi.STA
@@ -611,7 +611,7 @@ Updates network configuration.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG (for system applications only)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -743,7 +743,7 @@ Obtains the list of 5 GHz channels supported by this device.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG (for system applications only)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -783,7 +783,7 @@ Obtains the reason of the latest disconnection.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG (for system applications only)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -926,7 +926,7 @@ factoryReset(): void
 
 Resets Wi-Fi configurations.
 
-**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG (for system applications only)
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -1036,7 +1036,7 @@ Checks whether the hotspot supports dual band.
 
   | **Type**| **Description**|
   | -------- | -------- |
-  | boolean | Whether the hotspot supports dual band. The value **true** indicates dual band is supported, and the value **false** indicates the opposite.|
+  | boolean | Returns **true** if the hotspot supports dual band; returns **false** otherwise.|
 
 **Error codes**
 
@@ -1110,7 +1110,7 @@ Sets hotspot configuration.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG (for system applications only)
 
 **System capability**: SystemCapability.Communication.WiFi.AP.Core
 
@@ -1177,7 +1177,7 @@ Obtains hotspot configuration.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG (for system applications only)
 
 **System capability**: SystemCapability.Communication.WiFi.AP.Core
 
@@ -1676,7 +1676,7 @@ Subscribes to Wi-Fi device configuration changes. When the service exits, call o
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **deviceConfigChange**.|
-| callback | Callback&lt;number&gt; | Yes| Callback for device configuration changes.<br>**0**: Configuration is added. **1**: Configuration is modified. **2**: Configuration is deleted.|
+| callback | Callback&lt;number&gt; | Yes| Callback used to return the device configuration change, which can be any of the following values:<br>- **0**: device configuration added.<br>- **1**: device configuration changed.<br>- **2**: device configuration deleted.|
 
 **Error codes**
 
@@ -1707,7 +1707,7 @@ Unsubscribes from Wi-Fi device configuration changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **deviceConfigChange**.|
-| callback | Callback&lt;number&gt; | No| Callback for device configuration changes.<br>**0**: Configuration is added. **1**: Configuration is modified. **2**: Configuration is deleted.|
+| callback | Callback&lt;number&gt; | No| Callback to unregister. The device configuration change can be any of the following values:<br>- **0**: device configuration added.<br>- **1**: device configuration changed.<br>- **2**: device configuration deleted.|
 
 **Error codes**
 

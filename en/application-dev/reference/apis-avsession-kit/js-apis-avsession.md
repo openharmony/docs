@@ -4687,7 +4687,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 aVCastController.on('seekDone', (pos: number) => {
-  console.info(`on seekDone pos£º${pos} `);
+  console.info(`on seekDone posï¼š${pos} `);
 });
 ```
 

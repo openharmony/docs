@@ -1,4 +1,9 @@
 # Form Error Codes
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
 
 > **NOTE**
 >
@@ -242,7 +247,7 @@ Invalid input parameters are passed when the API is called.
 3. The number of parameters is incorrect.
 4. The input parameter is empty, for example, an empty string ('').
 5. Incorrect parameter format.
-6. Invalid parameter value. The input parameter must be the same as the corresponding configuration in [app.json5](../../quick-start/app-configuration-file.md) and [Configuring Widget Configuration Files](../../form/arkts-ui-widget-configuration.md).
+6. Invalid parameter value. The input parameters must be the same as those in [app.json5](../../quick-start/app-configuration-file.md) and [Configuring ArkTS Widget Configuration Files](../../form/arkts-ui-widget-configuration.md).
 
 **Solution**
 

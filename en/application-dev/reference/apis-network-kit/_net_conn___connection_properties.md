@@ -9,23 +9,24 @@ Defines the network connection information.
 
 **Related module**: [NetConnection](_net_connection.md)
 
+**Header file**: [net_connection_type.h](net__connection__type_8h.md)
 
 ## Summary
 
 
 ### Member Variables
 
-| Name| Use guide| 
+| Name| Description| 
 | -------- | -------- |
-| [ifaceName](#ifacename) [NETCONN_MAX_STR_LEN] | Network interface name.| 
-| [domain](#domain) [NETCONN_MAX_STR_LEN] | Domain name of the network connection.| 
-| [tcpBufferSizes](#tcpbuffersizes) [NETCONN_MAX_STR_LEN] | TCP buffer size.| 
+| [ifaceName](#ifacename) [[NETCONN_MAX_STR_LEN]](_net_connection.md#macros)| Network interface name.| 
+| [domain](#domain) [[NETCONN_MAX_STR_LEN]](_net_connection.md#macros)| Domain name of the network connection.| 
+| [tcpBufferSizes](#tcpbuffersizes) [[NETCONN_MAX_STR_LEN]](_net_connection.md#macros)| TCP buffer size.| 
 | [mtu](#mtu) | Maximum transmission unit.| 
-| [netAddrList](#netaddrlist) [NETCONN_MAX_ADDR_SIZE] | Address list.| 
+| [netAddrList](#netaddrlist) [[NETCONN_MAX_ADDR_SIZE]](_net_connection.md#macros)| Address list.| 
 | [netAddrListSize](#netaddrlistsize) | Actual size of the address list.| 
-| [dnsList](#dnslist) [NETCONN_MAX_ADDR_SIZE] | DNS list.| 
+| [dnsList](#dnslist) [[NETCONN_MAX_ADDR_SIZE]](_net_connection.md#macros)| DNS list.| 
 | [dnsListSize](#dnslistsize) | Actual size of the DNS list.| 
-| [routeList](#routelist) [NETCONN_MAX_ROUTE_SIZE] | Route list.| 
+| [routeList](#routelist) [[NETCONN_MAX_ROUTE_SIZE]](_net_connection.md#macros)| Route list.| 
 | [routeListSize](#routelistsize) | Actual size of the route list.| 
 | [httpProxy](#httpproxy) | HTTP proxy information.| 
 

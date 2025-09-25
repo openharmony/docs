@@ -1,6 +1,6 @@
 # IME Kit<!--ime-api-->
 
-- ArkTS API<!--ime-arkts-->
+- ArkTS APIs<!--ime-arkts-->
   - [@ohos.InputMethodExtensionAbility (InputMethodExtensionAbility)](js-apis-inputmethod-extension-ability.md)
   - [@ohos.InputMethodExtensionContext (InputMethodExtensionContext)](js-apis-inputmethod-extension-context.md)
   - [@ohos.inputMethod.Panel (Input Method Panel)](js-apis-inputmethod-panel.md)

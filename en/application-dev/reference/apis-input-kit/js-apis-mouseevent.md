@@ -66,10 +66,10 @@ Defines the mouse axis type and axis value.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-| Name   | Type  | Readable  | Writable  | Description  |
+| Name   | Type  | Read-Only  | Optional  | Description  |
 | ----- | ------ | ---- | ---- | ---- |
-| axis  | [Axis](#axis)   | Yes   | No   | Axis type. |
-| value | number | Yes   | No   | Axis value. |
+| axis  | [Axis](#axis)   | No   | No   | Axis type. |
+| value | number | No   | No   | Axis value. |
 
 ## ToolType<sup>11+</sup>
 
@@ -79,10 +79,10 @@ Enumerates tool types.
 
 | Name     | Value | Description   |
 | ------- | ------| ----- |
-| UNKNOWN<sup>11+</sup> | 0 | Unknown type. |
-| MOUSE<sup>11+</sup>  | 1 | Mouse.|
-| JOYSTICK<sup>11+</sup> | 2 | Joystick.|
-| TOUCHPAD<sup>11+</sup> | 3 | Touchpad.|
+| UNKNOWN | 0 | Unknown type. |
+| MOUSE  | 1 | Mouse.|
+| JOYSTICK | 2 | Joystick.|
+| TOUCHPAD | 3 | Touchpad.|
 
 ## MouseEvent
 
@@ -90,25 +90,25 @@ Defines the mouse event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-| Name            | Type       | Readable  | Writable  | Description                                      |
+| Name            | Type       | Read-Only  | Optional  | Description                                      |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
-| action         | [Action](#action)      | Yes   | No   | Enumerates mouse event actions.                                  |
-| screenX        | number      | Yes   | No   | Horizontal coordinate of the mouse pointer on the screen.                            |
-| screenY        | number      | Yes   | No   | Vertical coordinate of the mouse pointer on the screen.                            |
-| windowX        | number      | Yes   | No   | Horizontal coordinate of the mouse pointer in the window.                              |
-| windowY        | number      | Yes   | No   | Vertical coordinate of the mouse pointer in the window.                              |
-| rawDeltaX      | number      | Yes   | No   | Horizontal coordinate offset relative to the previous reported mouse pointer position.|
-| rawDeltaY      | number      | Yes   | No   | Vertical coordinate offset relative to the previous reported mouse pointer position.                         |
-| button         | [Button](#button)      | Yes   | No   | Mouse button.                      |        
-| pressedButtons | [Button](#button)[]    | Yes   | No   | Button being pressed.                             |
-| axes           | [AxisValue](#axisvalue)[] | Yes   | No   | All axis data contained in the event.                              |
-| pressedKeys    | [KeyCode](js-apis-keycode.md#keycode)[]   | Yes   | No   | List of pressed keys.                           |
-| ctrlKey        | boolean     | Yes   | No   | Whether ctrlKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.   |
-| altKey         | boolean     | Yes   | No   | Whether altKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.                        |
-| shiftKey       | boolean     | Yes   | No   | Whether shiftKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.                      |
-| logoKey        | boolean     | Yes   | No   | Whether logoKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.                       |
-| fnKey          | boolean     | Yes   | No   | Whether fnKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.                         |
-| capsLock       | boolean     | Yes   | No   | Whether capsLock is active.<br>The value **true** indicates that capsLock is active, and the value **false** indicates the opposite. |
-| numLock        | boolean     | Yes   | No   | Whether numLock is active.<br>The value **true** indicates that numLock is active, and the value **false** indicates the opposite.                       |
-| scrollLock     | boolean     | Yes   | No   | Whether scrollLock is active.<br>The value **true** indicates that scrollLock is active, and the value **false** indicates the opposite.                    |
-| toolType<sup>11+</sup> | [ToolType](#tooltype11) | Yes   | No   | Tool type.                    |
+| action         | [Action](#action)      | No   | No   | Enumerates mouse event actions.                                  |
+| screenX        | number      | No   | No   | X coordinate of the mouse event in the relative coordinate system with the upper-left corner of the specified screen as the origin. The value can only be set to an integer.|
+| screenY        | number      | No   | No   | X coordinate of the mouse event in the relative coordinate system with the upper-left corner of the specified screen as the origin. The value can only be set to an integer.|
+| windowX        | number      | No   | No   | X coordinate in the relative coordinate system with the upper-left corner of the window where the mouse is located as the origin. The value can only be set to an integer. |
+| windowY        | number      | No   | No   | Y coordinate in the relative coordinate system with the upper-left corner of the window where the mouse is located as the origin. The value can only be set to an integer. |
+| rawDeltaX      | number      | No   | No   | X coordinate offset of the current mouse event relative to the last event. The value can only be set to an integer.|
+| rawDeltaY      | number      | No   | No   | Y coordinate offset of the current mouse event relative to the last event. The value can only be set to an integer.|
+| button         | [Button](#button)      | No   | No   | Mouse button.                              |
+| pressedButtons | [Button](#button)[]    | No   | No   | Button being pressed.                             |
+| axes           | [AxisValue](#axisvalue)[] | No   | No   | All axis data contained in the event.                              |
+| pressedKeys    | [KeyCode](js-apis-keycode.md#keycode)[]   | No   | No   | List of pressed keys.                           |
+| ctrlKey        | boolean     | No   | No   | Whether ctrlKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.   |
+| altKey         | boolean     | No   | No   | Whether altKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.                        |
+| shiftKey       | boolean     | No   | No   | Whether shiftKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.                      |
+| logoKey        | boolean     | No   | No   | Whether logoKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.                       |
+| fnKey          | boolean     | No   | No   | Whether fnKey is being pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.                         |
+| capsLock       | boolean     | No   | No   | Whether capsLock is active.<br>The value **true** indicates that capsLock is active, and the value **false** indicates the opposite. |
+| numLock        | boolean     | No   | No   | Whether numLock is active.<br>The value **true** indicates that numLock is active, and the value **false** indicates the opposite.                       |
+| scrollLock     | boolean     | No   | No   | Whether scrollLock is active.<br>The value **true** indicates that scrollLock is active, and the value **false** indicates the opposite.                    |
+| toolType<sup>11+</sup> | [ToolType](#tooltype11) | No   | No   | Tool type.                    |

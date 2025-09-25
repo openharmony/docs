@@ -596,7 +596,7 @@ Sets whether to show this feature at the top of the lock screen so that the feat
 
 | Name      | Type                  | Mandatory  | Description                                      |
 | -------- | -------------------- | ---- | ---------------------------------------- |
-| show     | boolean              | Yes   | Whether to show this feature at the top of the lock screen. The value **true** means to show this feature at the top of the lock screen, and **false** means the opposite.|
+| show     | boolean              | Yes   | Whether to show this feature at the top of the lock screen. **true** to show, **false** otherwise.|
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the setting is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Example**
@@ -628,7 +628,7 @@ Sets whether to show this feature at the top of the lock screen so that the feat
 
 | Name  | Type     | Mandatory  | Description                                      |
 | ---- | ------- | ---- | ---------------------------------------- |
-| show | boolean | Yes   | Whether to show this feature at the top of the lock screen. The value **true** means to show this feature at the top of the lock screen, and **false** means the opposite.|
+| show | boolean | Yes   | Whether to show this feature at the top of the lock screen. **true** to show, **false** otherwise.|
 
 **Return value**
 
@@ -665,7 +665,7 @@ Sets whether to wake up the screen when this feature is restored. This API uses 
 
 | Name      | Type                  | Mandatory  | Description                               |
 | -------- | -------------------- | ---- | --------------------------------- |
-| wakeUp   | boolean              | Yes   | Whether to wake up the screen. The value **true** means to wake up the screen, and **false** means the opposite.|
+| wakeUp   | boolean              | Yes   | Whether to wake up the screen. **true** to wake up, **false** otherwise.|
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the setting is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Example**
@@ -697,7 +697,7 @@ Sets whether to wake up the screen when this feature is restored. This API uses 
 
 | Name    | Type     | Mandatory  | Description                               |
 | ------ | ------- | ---- | --------------------------------- |
-| wakeUp | boolean | Yes   | Whether to wake up the screen. The value **true** means to wake up the screen, and **false** means the opposite.|
+| wakeUp | boolean | Yes   | Whether to wake up the screen. **true** to wake up, **false** otherwise.|
 
 **Return value**
 
@@ -1392,7 +1392,7 @@ Checks whether the configuration of this ability is being updated. This API uses
 
 | Name      | Type                     | Mandatory  | Description                           |
 | -------- | ----------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result. The value **true** means that the configuration of the ability is being updated, and **false** means the opposite.|
+| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result. **true** if the configuration of the ability is being updated, **false** otherwise.|
 
 **Example**
 
@@ -1422,7 +1422,7 @@ Checks whether the configuration of this ability is being updated. This API uses
 
 | Type               | Description                           |
 | ----------------- | ----------------------------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the configuration of the ability is being updated, and **false** means the opposite.|
+| Promise\<boolean> | Promise used to return the result. **true** if the configuration of the ability is being updated, **false** otherwise.|
 
 **Example**
 
@@ -1493,17 +1493,17 @@ context.printDrawnCompleted().then((data) => {
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name  | Type    | Mandatory  | Description   |
-| ---- | ------ | ---- | ----- |
-| pid  |number | No   | Process ID.|
-| uid  |number | No   | User ID.|
+| Name  | Type    | Read-Only| Optional| Description   |
+| ---- | ------ | ---- | ----- | ----- |
+| pid  |number | No | Yes| Process ID.|
+| uid  |number | No | Yes| User ID.|
 
 ## PermissionRequestResult<sup>7+</sup>
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name        | Type            | Mandatory  | Description        |
-| ----------- |-------------- | ---- | ---------- |
-| requestCode | number         | Yes   | Request code passed.|
-| permissions | Array\<string> | Yes   | Permissions requested.  |
-| authResults | Array\<number> | Yes   | Permission request result.  |
+| Name        | Type           | Read-Only| Optional  | Description        |
+| ----------- |-------------- | ---- | ------- |---------- |
+| requestCode | number         | No |  No| Request code passed.|
+| permissions | Array\<string> | No |  No| Permissions requested.  |
+| authResults | Array\<number> | No |  No| Permission request result.  |

@@ -6,7 +6,15 @@
 >
 > - The initial APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 >
+> - The initial APIs of this interface are supported since API version 9.
+>
 > - You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
+
+## Modules to Import
+
+```ts
+import { webview } from '@kit.ArkWeb';
+```
 
 ## Properties
 
@@ -147,7 +155,7 @@ Sends a message of the [WebMessageType](./js-apis-webview-e.md#webmessagetype10)
 
 | Name | Type  | Mandatory| Description          |
 | ------- | ------ | ---- | :------------- |
-| message | [WebMessageExt](./js-apis-webview-WebMessageExt.md#class-webmessageext) | Yes  | Message to send.|
+| message | [WebMessageExt](./js-apis-webview-WebMessageExt.md) | Yes  | Message to send.|
 
 **Error codes**
 
@@ -170,7 +178,7 @@ Registers a callback on the application message port to receive messages of the 
 
 | Name  | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | :------------------- |
-| callback | (result: [WebMessageExt](./js-apis-webview-WebMessageExt.md#class-webmessageext)) => void | Yes  | Message received.|
+| callback | (result: [WebMessageExt](./js-apis-webview-WebMessageExt.md)) => void | Yes  | Message received.|
 
 **Error codes**
 

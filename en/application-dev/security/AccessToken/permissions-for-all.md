@@ -15,7 +15,8 @@ The [system_grant permissions](app-permission-mgmt-overview.md#system_grant-syst
 
 ## ohos.permission.USE_BLUETOOTH
 
-Allows an application to access Bluetooth configurations.
+Allows an application to access Bluetooth configurations, including the Bluetooth name, Bluetooth device type, and switch status.
+
 
 **Permission level**: normal
 
@@ -37,6 +38,8 @@ Allows an application to obtain basic information about another application.
 
 Allows an application to perform customized actions before being terminated.
 
+For example, the application can confirm with the user whether to terminate it through a pop-up window.
+
 **Permission level**: normal
 
 **Authorization mode**: system_grant
@@ -57,6 +60,8 @@ Allows an application to obtain the print framework capability.
 
 Allows an application to configure Bluetooth on a device, initiate or cancel a scan for Bluetooth devices, and pair with Bluetooth devices.
 
+ 
+
 **Permission level**: normal
 
 **Authorization mode**: system_grant
@@ -67,6 +72,8 @@ Allows an application to configure Bluetooth on a device, initiate or cancel a s
 
 Allows an application to read data from an acceleration sensor, uncalibrated acceleration sensor, or linear acceleration sensor.
 
+ 
+
 **Permission level**: normal
 
 **Authorization mode**: system_grant
@@ -76,6 +83,8 @@ Allows an application to read data from an acceleration sensor, uncalibrated acc
 ## ohos.permission.ACCESS_BIOMETRIC
 
 Allows an application to use biometric recognition for identity authentication.
+
+This permission allows the following operations: check the biometric recognition capability of the device, customize the authentication dialog box, start biometric recognition, and obtain biometric recognition prompts.
 
 **Permission level**: normal
 
@@ -121,6 +130,8 @@ With this permission, the application can activate or deactivate a network, and 
 
 Allows an application to obtain Wi-Fi information.
 
+The Wi-Fi information includes whether Wi-Fi is enabled, scan results, connection information, connection state, device capability, and peer-to-peer (P2P) state.
+
 **Permission level**: normal
 
 **Authorization mode**: system_grant
@@ -130,6 +141,8 @@ Allows an application to obtain Wi-Fi information.
 ## ohos.permission.GYROSCOPE
 
 Allows an application to read data from a gyroscope sensor or uncalibrated gyroscope sensor.
+
+ 
 
 **Permission level**: normal
 
@@ -161,6 +174,8 @@ Allows a Service ability to keep running in the background.
 
 Allows an application to implement card emulation.
 
+With this permission, the application can register the card emulation service and perform card emulation transactions.
+
 **Permission level**: normal
 
 **Authorization mode**: system_grant
@@ -170,6 +185,8 @@ Allows an application to implement card emulation.
 ## ohos.permission.NFC_TAG
 
 Allows an application to read and write NFC tags.
+
+With this permission, the application can receive a tag, and read data from and write data to a tag.
 
 **Permission level**: normal
 
@@ -203,6 +220,8 @@ Allows an application to use agent-powered reminders.
 
 Allows an application to set a Wi-Fi device.
 
+including scanning, enabling/disabling, connecting, and disabling Wi-Fi, modifying Wi-Fi settings, and using Wi-Fi P2P capabilities.
+
 **Permission level**: normal
 
 **Authorization mode**: system_grant
@@ -211,7 +230,9 @@ Allows an application to set a Wi-Fi device.
 
 ## ohos.permission.VIBRATE
 
-Allows an application to control vibration.
+Allows an application to control vibration,
+
+including one-time vibration, preset vibration, or custom vibration.
 
 **Permission level**: normal
 
@@ -223,6 +244,8 @@ Allows an application to control vibration.
 
 Allows an application to clear background processes based on their bundle names.
 
+With this permission, the application can detect associated background tasks based on the bundle names and selectively terminate these tasks to release system resources or optimize performance.
+
 **Permission level**: normal
 
 **Authorization mode**: system_grant
@@ -232,6 +255,8 @@ Allows an application to clear background processes based on their bundle names.
 ## ohos.permission.COMMONEVENT_STICKY
 
 Allows an application to publish sticky common events.
+
+With this permission, the application can publish sticky common events, so that subscribers can receive common events that have been sent before subscription.
 
 **Permission level**: normal
 
@@ -367,6 +392,8 @@ After the application obtains this permission, a directory in **/el5** will be a
 
 Allows an application to access the distributed travel service engine.
 
+With this permission, the application can obtain the connection information between a phone and a head unit, such as the connection status and display ID.
+
 **Permission level**: normal
 
 **Authorization mode**: system_grant
@@ -380,6 +407,8 @@ Allows an application to set pinned windows.
 **Permission level**: normal
 
 **Authorization mode**: system_grant
+
+**Supported devices**: PCs/2-in-1 devices
 
 **Valid since**: 13
 
@@ -395,13 +424,13 @@ With this permission, the application can obtain the maximum frequency supported
 
 **Valid since**: 12
 
-**Changelog**: This permission is available to system applications in API versions 12 to 15, and becomes available to normal applications since API version 16.
+**Changelog**: This permission is available to system applications in API versions 12 to 15, and available to normal applications since API version 16.
 
 ## ohos.permission.INPUT_KEYBOARD_CONTROLLER
 
-Allows an application to set the status of keyboard function keys.
+Allows an application to set the status of keyboard function keys,
 
-With this permission, the application can turn on or off the function keys, such as **CapsLock**. This permission is available only to input method applications.
+such as **CapsLock**. This permission is available only to input method applications.
 
 **Permission level**: normal
 
@@ -443,4 +472,4 @@ With this permission, the application can obtain the icon of the specified file 
 
 **Authorization mode**: system_grant
 
-**Valid since**: 17
+**Since**: 17

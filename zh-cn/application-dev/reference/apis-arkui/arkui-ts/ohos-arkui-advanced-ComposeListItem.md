@@ -91,9 +91,9 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 | button | [OperateButton](#operatebutton) | 否 | 右侧元素为按钮。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | switch | [OperateCheck](#operatecheck) | 否 | 右侧元素为开关。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | checkbox | [OperateCheck](#operatecheck) | 否 | 右侧元素为多选框，大小为24\*24vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| radio | [OperateCheck](#operatecheck) | 否 | 右侧元素为单选，大小为24\*24vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| radio | [OperateCheck](#operatecheck) | 否 | 右侧元素为单选框，大小为24\*24vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | image | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧元素为图片，大小为48\*48vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 右侧元素为Symbol，大小为48\*48vp。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| symbolStyle<sup>18+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 右侧元素为Symbol图标资源，大小为48\*48vp。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | text | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧元素为文字。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## OperateIcon

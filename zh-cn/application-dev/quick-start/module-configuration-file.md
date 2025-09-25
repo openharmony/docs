@@ -106,23 +106,23 @@ module.json5配置文件包含以下标签。
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| name | 标识当前Module的名称，确保该名称在整个应用中唯一。命名规则如下&nbsp;：<br/>-&nbsp;由字母、数字和下划线组成，且必须以字母开头。<br/>-&nbsp;最大长度31字节。<br/>应用升级时允许修改该名称，但需要应用适配Module相关数据目录的迁移，详见[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md)。 | 字符串 | 该标签不可缺省。 |
+| name | 标识当前Module的名称，确保该名称在整个应用中唯一。命名规则如下&nbsp;：<br/>-&nbsp;由字母、数字和下划线组成，且必须以字母开头。<br/>-&nbsp;最大长度128字节。<br/>应用升级时允许修改该名称，但需要应用适配Module相关数据目录的迁移，详见[文件管理接口](../reference/apis-core-file-kit/js-apis-file-fs.md)。 | 字符串 | 该标签不可缺省。 |
 | type | 标识当前Module的类型。支持的取值如下：<br/>-&nbsp;entry：应用的主模块。<br/>-&nbsp;feature：应用的动态特性模块。<br/>-&nbsp;har：静态共享包模块。<br/>-&nbsp;shared：动态共享包模块。 | 字符串 | 该标签不可缺省。 |
 | srcEntry | 标识AbilityStage组件的代码路径，详情参考[AbilityStage组件容器](../application-models/abilitystage.md)，取值为长度不超过127字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | description | 标识当前Module的描述信息，开发者可以通过该字段描述当前模块的功能与作用，取值为长度不超过255字节的字符串，可以采用字符串资源索引格式。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | <!--DelRow-->process | 标识当前Module的进程名，取值为长度不超过31字节的字符串。如果在HAP标签下配置了process，则该Module的所有UIAbility、DataShareExtensionAbility、ServiceExtensionAbility都运行在该进程中。<br/>**说明：**<br/>开启[多实例特权](../../device-dev/subsystems/subsys-app-privilege-config-guide.md#可由设备厂商配置的特权)生效，三方应用配置不生效。 | 字符串 | 该标签可缺省，缺省为app.json5文件下app标签下的bundleName。 |
 | mainElement | 标识当前Module的入口UIAbility名称，取值为长度不超过255字节的字符串。<br/>**说明：**<br/>如果在[abilities](#abilities标签)中配置了多个入口[UIAbility](../application-models/uiability-overview.md)，则桌面图标、名称和启动入口以该字段配置为准。如果该字段缺省或未匹配到，则按照ASCII字典序对UIAbility的name字段正序排序，返回第一个作为桌面图标、名称和启动入口。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | [deviceTypes](#devicetypes标签) | 标识当前Module可以运行在哪类设备上。<br/>**说明：**<br/>当存在多个模块时，各模块的配置可以不同，但都必须包含将要安装的设备类型，以确保正常运行。 | 字符串数组 | 该标签不可缺省。 |
-| deliveryWithInstall | 标识当前Module是否在用户主动安装的时候安装，即该Module对应的HAP/HSP是否跟随应用一起安装。<br/>-&nbsp;true：跟随应用一起安装。<br/>-&nbsp;false：不跟随应用一起安装。 | 布尔值 | 该标签不可缺省。 |
+| deliveryWithInstall | 标识当前Module是否在用户主动安装的时候安装，即该Module对应的HAP/HSP是否跟随应用一起安装。<br/>-&nbsp;true：跟随应用一起安装。<br/>-&nbsp;false：不跟随应用一起安装。<!--RP13--><!--RP13End--> | 布尔值 | 当前Module类型为HAP或HSP时，该标签不可缺省。 |
 | installationFree | 标识当前Module是否支持免安装特性。<br/>-&nbsp;true：表示支持免安装特性，且符合免安装约束。<br/>-&nbsp;false：表示不支持免安装特性。 | 布尔值 | 该标签可缺省。该字段在编译构建时自动生成，手动配置不生效。<br/>**说明：**<br/>当[bundleType](./app-configuration-file.md#配置文件标签)为原子化服务时，该字段自动配置为true。反之，该字段自动配置为false。 |
 | virtualMachine | 标识当前Module运行的目标虚拟机类型，供云端分发使用，如应用市场和分发中心。如果目标虚拟机类型为ArkTS引擎，则其值为“ark+版本号”。 | 字符串 | 该标签可缺省，手动配置不生效，由编译构建时自动生成。 |
-| [pages](#pages标签) | 标识当前Module的profile资源，用于列举每个页面信息，取值为长度不超过255字节的字符串。 | 字符串 | 在有UIAbility的场景下，该标签不可缺省。 |
+| [pages](#pages标签) | 标识当前Module的profile资源，用于列举每个页面信息，取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | [metadata](#metadata标签) | 标识当前Module的自定义元信息，可通过资源引用的方式配置[distributionFilter](#distributionfilter标签)、[shortcuts](#shortcuts标签)等信息。只对当前Module、UIAbility、ExtensionAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [abilities](#abilities标签) | 标识当前Module中UIAbility的配置信息，只对当前UIAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [extensionAbilities](#extensionabilities标签) | 标识当前Module中ExtensionAbility的配置信息，只对当前ExtensionAbility生效。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | <!--DelRow-->[definePermissions](#definepermissions标签) | 标识系统资源hap定义的权限，不支持应用自定义权限。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | [requestPermissions](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)| 标识当前应用运行时需向系统申请的权限集合。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-| [testRunner](#testrunner标签) | 标识用于测试当前Module的测试框架的配置。 | 对象 | 该标签可缺省，缺省值为空。 |
+| [testRunner](#testrunner标签) | 标识用于测试当前Module的测试框架的配置。详情请参考[启动测试框架命令](../tools/aa-tool.md#启动测试框架命令test)。 | 对象 | 该标签可缺省，缺省值为空。 |
 | [atomicService](#atomicservice标签)| 标识当前应用是原子化服务时，有关原子化服务的相关配置。| 对象 | 该标签可缺省，缺省值为空。  |
 | [dependencies](#dependencies标签)| 标识当前模块运行时依赖的共享库列表。| 对象数组 | 该标签可缺省，缺省值为空。手动配置不生效，由编译构建时自动生成。  |
 | targetModuleName | 标识当前包所指定的目标Module。取值为长度不超过128字节的字符串，不支持中文。配置该字段的Module具有overlay特性。仅在动态共享包（HSP）中适用。 |字符串|该标签可缺省，缺省值为空。|
@@ -136,7 +136,7 @@ module.json5配置文件包含以下标签。
 | querySchemes | 标识允许当前应用进行跳转查询的URL schemes，只允许entry类型模块配置，最多50个，每个字符串取值不超过128字节。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | [routerMap](#routermap标签) | 标识当前模块配置的路由表路径。取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | [appEnvironments](#appenvironments标签) | 标识当前模块配置的应用环境变量，只允许entry和feature模块配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-| appStartup | 标识当前Module启动框架配置路径，在Entry类型的HAP、HSP、HAR中生效。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| appStartup | 标识当前Module[启动框架](../application-models/app-startup.md)配置路径，只允许entry类型模块配置。<br>从API version 18开始，新增支持在HSP、HAR中配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | [hnpPackages](#hnppackages标签) | 标识当前应用包含的Native软件包信息。只允许entry类型模块配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | abilitySrcEntryDelegator | 标识当前Module需要重定向到的UIAbility的名称，与abilityStageSrcEntryDelegator字段组合使用，共同指定重定向的目标对象。<br/>**说明：**<br/>1.从API version 17开始，支持该字段。<br/>2.当UIAbility是通过[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口启动时，该字段不生效。<br/>3.不支持在HAR的配置文件中配置该字段，也不支持重定向到HAR的UIAbility。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | abilityStageSrcEntryDelegator | 标识当前Module需要重定向到的UIAbility对应的Module名称（不可为当前Module名称），与abilitySrcEntryDelegator字段组合使用，共同指定重定向的目标对象。<br/>**说明：**<br/>1.从API version 17开始，支持该字段。<br/>2.当UIAbility是通过[startAbilityByCall](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startabilitybycall)接口启动时，该字段不生效。<br/>3.不支持在HAR的配置文件中配置该字段，也不支持重定向到HAR的UIAbility。 | 字符串 | 该标签可缺省，缺省值为空。 |
@@ -326,12 +326,12 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | name | 标识当前UIAbility组件的名称，确保该名称在整个应用中唯一。取值为长度不超过127字节的字符串，以字母开头，可包含字母、数字、下划线（_）或点号（.）。 | 字符串 | 该标签不可缺省。 |
 | srcEntry | 标识当前UIAbility的代码路径，取值为长度不超过127字节的字符串。 | 字符串 | 该标签不可缺省。 |
 | [launchType](../application-models/uiability-launch-type.md) | 标识当前UIAbility组件的启动模式，支持的取值如下：<br/>-&nbsp;multiton：多实例模式，每次启动创建一个新实例。<br/>-&nbsp;singleton：单实例模式，仅第一次启动创建新实例。<br/>-&nbsp;specified：指定实例模式，运行时由开发者决定是否创建新实例。<br/>-&nbsp;standard：multiton的曾用名，效果与多实例模式一致。 | 字符串 | 该标签可缺省，该标签缺省为“singleton”。 |
-| description | 标识当前UIAbility组件的描述信息，开发者可以通过该字段描述当前组件的功能与作用，取值为长度不超过255字节的字符串。要求采用描述信息的资源索引，以支持多语言。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| description | 标识当前UIAbility组件的描述信息，开发者可以通过该字段描述当前组件的功能与作用，取值为长度不超过255字节的字符串。建议采用描述信息的资源索引，以支持多语言。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | icon | 标识当前UIAbility组件的[图标](layered-image.md)，取值为图标资源文件的索引。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | label | 标识当前UIAbility组件对用户显示的[名称](layered-image.md)，取值为字符串资源的索引，以支持多语言，长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | permissions | 标识当前UIAbility组件的权限信息。其他应用访问该UIAbility时，需要申请相应的权限。<br/>一个数组元素为一个权限名称，不超过255字节，取值为[系统预定义的权限](../security/AccessToken/app-permissions.md)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | [metadata](#metadata标签) | 标识当前UIAbility组件的元信息。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-| exported | 标识当前UIAbility组件是否可以被其他应用拉起。<br/>-&nbsp;true：表示可以被其他应用拉起。<br/>-&nbsp;false：表示不可以被其他应用拉起，只能由同应用或者具有ohos.permission.START_INVISIBLE_ABILITY权限（该权限仅系统应用支持申请）的应用拉起。<br/> 例如，配置为false时，桌面具备该权限，桌面点击应用图标、快捷方式或push通知消息可以拉起当前UIAbility组件，但aa命令行工具没有权限无法拉起。| 布尔值 | 该标签可缺省，缺省值为false。 |
+| exported | 标识当前UIAbility组件是否可以被其他应用拉起。<br/>-&nbsp;true：表示可以被其他应用拉起（入口UIAbility建议配置为true）。<br/>-&nbsp;false：只能由同应用或者具有ohos.permission.START_INVISIBLE_ABILITY权限（该权限仅系统应用支持申请）的应用拉起。<br/> 例如，配置为false时，桌面具备该权限，桌面图标、快捷方式或push通知消息可以拉起当前UIAbility组件，但aa命令行工具没有权限无法拉起。| 布尔值 | 该标签可缺省，缺省值为false。 |
 | continuable | 标识当前UIAbility组件是否支持跨端迁移。<br/>-&nbsp;true：表示支持迁移。<br/>-&nbsp;false：表示不支持迁移。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | [skills](#skills标签) | 标识当前UIAbility组件能够接收的[Want](../application-models/want-overview.md)特征集，为数组格式。<br/>配置规则：<br/>-&nbsp;对于Entry类型的HAP，应用可以配置多个具有入口能力的skills标签（即配置了ohos.want.action.home和entity.system.home）。<br/>-&nbsp;对于Feature类型的HAP，只有应用可以配置具有入口能力的skills标签，服务不允许配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | backgroundModes | 标识当前UIAbility组件的[长时任务](../task-management/continuous-task.md)集合，指定用于满足特定类型的长时任务。<br/>长时任务类型有如下：<br/>-&nbsp;dataTransfer：数据传输。<br/>-&nbsp;audioPlayback：音视频播放。<br/>-&nbsp;audioRecording：录制。<br/>-&nbsp;location：定位导航。<br/>-&nbsp;bluetoothInteraction：蓝牙相关业务。<br/>-&nbsp;multiDeviceConnection：多设备互联。<br/>-&nbsp;wifiInteraction：WLAN相关业务（仅对系统应用开放）。<br/>-&nbsp;voip：音视频通话。<br/>-&nbsp;taskKeeping：计算任务（仅对PC/2in1设备开放）。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
@@ -339,7 +339,7 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | startWindowBackground | 标识当前UIAbility组件启动页面背景颜色资源文件的索引，取值为长度不超过255字节的字符串。<br/>取值示例：$color:red。| 字符串 | 该标签不可缺省。 |
 | removeMissionAfterTerminate | 标识当前UIAbility组件销毁后，是否从任务列表中移除任务。<br/>-&nbsp;true表示销毁后移除任务。<br/>-&nbsp;false表示销毁后不移除任务。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | orientation | 标识当前UIAbility组件启动时的方向，支持配置枚举，或启动方向资源索引。<br/>**启动方向枚举支持的取值如下：**<br/>-&nbsp;unspecified：未指定方向，由系统自动判断显示方向。<br/>-&nbsp;landscape：横屏。<br/>-&nbsp;portrait：竖屏。<br/>-&nbsp;follow_recent：跟随背景窗口的旋转模式。<br/>-&nbsp;landscape_inverted：反向横屏。<br/>-&nbsp;portrait_inverted：反向竖屏。<br/>-&nbsp;auto_rotation：随传感器旋转。<br/>-&nbsp;auto_rotation_landscape：传感器横屏旋转，包括横屏和反向横屏。<br/>-&nbsp;auto_rotation_portrait：传感器竖屏旋转，包括竖屏和反向竖屏。<br/>-&nbsp;auto_rotation_restricted：传感器开关打开，方向可随传感器旋转。<br/>-&nbsp;auto_rotation_landscape_restricted：传感器开关打开，方向可随传感器旋转为横屏，&nbsp;包括横屏和反向横屏。<br/>-&nbsp;auto_rotation_portrait_restricted：传感器开关打开，方向随可传感器旋转为竖屏，&nbsp;包括竖屏和反向竖屏。<br/>-&nbsp;locked：传感器开关关闭，方向锁定。<br/>-&nbsp;auto_rotation_unspecified：受开关控制和由系统判定的自动旋转模式。<br/>-&nbsp;follow_desktop：跟随桌面的旋转模式。<br/>&nbsp;**配置启动方向的资源索引时**，取值为长度不超过255字节的字符串，配置示例：$string:orientation。<br/>&nbsp;**说明：**<br/>&nbsp;-&nbsp;从API version 14开始，支持配置启动方向资源索引。 | 字符串 | 该标签可缺省，缺省值为unspecified。 |
-| supportWindowMode | 标识当前UIAbility组件所支持的窗口模式。支持的取值如下：<br/>-&nbsp;fullscreen：全屏模式。<br/>-&nbsp;split：分屏模式。<br/>-&nbsp;floating：悬浮窗模式。 | 字符串数组 | 该标签可缺省，缺省值为<br/>["fullscreen",&nbsp;"split",&nbsp;"floating"]。 |
+| supportWindowMode | 标识当前UIAbility组件所支持的窗口模式。支持的取值如下：<br/>-&nbsp;fullscreen：全屏模式。<br/>-&nbsp;split：分屏模式。<br/>-&nbsp;floating：悬浮窗模式。<br/>在自由窗口状态下同时配置fullscreen和split时，如果应用的[targetAPIVersion](./app-configuration-file.md#配置文件标签)小于15，窗口将以悬浮窗模式启动；如果应用的[targetAPIVersion](./app-configuration-file.md#配置文件标签)大于等于15，窗口将以全屏模式启动。 | 字符串数组 | 该标签可缺省，缺省值为<br/>["fullscreen",&nbsp;"split",&nbsp;"floating"]。 |
 | <!--DelRow-->priority | 标识当前UIAbility组件的优先级。[隐式查询](../application-models/explicit-implicit-want-mappings.md)时，优先级越高，UIAbility在返回列表越靠前。取值范围0~10，数值越大，优先级越高。<br/>**说明：**<br/>三方应用的配置不生效，当前配置仅在系统应用中有效。 | 整型数值 | 该标签可缺省，缺省值为0。 |
 | maxWindowRatio | 标识当前UIAbility组件支持的最大的宽高比。该标签最小取值为0。 | 数值 | 该标签可缺省，缺省值为平台支持的最大的宽高比。 |
 | minWindowRatio | 标识当前UIAbility组件支持的最小的宽高比。该标签最小取值为0。 | 数值 | 该标签可缺省，缺省值为平台支持的最小的宽高比。 |
@@ -355,7 +355,7 @@ abilities标签描述UIAbility组件的配置信息，标签值为数组类型�
 | preferMultiWindowOrientation | 标识当前UIAbility组件多窗布局方向：<br/>-&nbsp;default：缺省值，参数不配置默认值，建议其他应用类配置。<br/>-&nbsp;portrait：多窗布局方向为竖向，建议竖向游戏类应用配置。<br/>-&nbsp;landscape：多窗布局方向为横向，配置后支持横屏悬浮窗和上下分屏，建议横向游戏类应用配置。<br/>-&nbsp;landscape_auto：多窗布局动态可变为横向，需要配合API enableLandScapeMultiWindow/disableLandScapeMultiWindow使用，建议视频类应用配置。 | 字符串 | 该标签可缺省，缺省值为default。 |
 | continueType | 标识当前UIAbility组件的跨端迁移类型。 | 字符串数组 | 该标签可缺省，缺省值为当前组件的名称。 |
 | continueBundleName | 标识当前应用支持跨端迁移的其它应用名称列表。<br/>**说明：**<br/>不能配置为本应用包名，仅为了做异包名迁移使用。<br/>从API version 13开始，支持该字段。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
-| process | 标识组件的进程标签。<br/>**说明：**<br/>仅在[2in1](./module-configuration-file.md#devicetypes标签)设备上生效，UIAbility组件和type为embeddedUI的ExtensionAbility组件标签一致时运行在同一个进程中。从API version 14开始，支持该字段。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| process | 标识组件的进程名称。具体使用方式参考[进程模型定义](../application-models/process-model-stage.md#其他进程类型)中的"静态指定进程"。<br/>**说明：**<br/>1. 仅在[PC/2in1](./module-configuration-file.md#devicetypes标签)和[Tablet](./module-configuration-file.md#devicetypes标签)设备上生效。<br/>2. UIAbility组件和type为embeddedUI的ExtensionAbility组件标签一致时运行在同一个进程中。<br/>3. 从API version 14开始，支持该标签。 | 字符串 | 该标签可缺省，缺省值为空。 |
 
 abilities示例：
 
@@ -421,7 +421,7 @@ abilities示例：
 | -------- | -------- | -------- | -------- |
 | actions | 标识能够接收的Action值集合，取值通常为系统预定义的action值，也允许自定义。<br>一个skill中不建议配置多个action，否则可能导致无法匹配预期场景。详情请参考[常见action与entities](../application-models/actions-entities.md)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | entities | 标识能够接收的Entity值的集合。<br>一个skill中不建议配置多个entity，否则可能导致无法匹配预期场景。详情请参考[常见action与entities](../application-models/actions-entities.md)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
-| uris | 标识与Want中URI（Uniform&nbsp;Resource&nbsp;Identifier）相匹配的集合。数组允许的最大数量为512。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+| uris | 标识与Want中URI（Uniform&nbsp;Resource&nbsp;Identifier）相匹配的集合。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | permissions | 标识当前UIAbility或ExtensionAbility组件的权限信息。其他应用访问该组件时，需要申请相应的权限。<br/>一个数组元素为一个权限名称，不超过255字节，取值为[系统预定义的权限](../security/AccessToken/app-permissions.md)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | domainVerify | 标识是否开启<!--RP6-->[域名校验](../application-models/app-linking-startup.md#实现原理)<!--RP6End-->。<br/>-&nbsp;true：表示开启域名校验。<br/>-&nbsp;false：表示不开启域名校验。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 
@@ -500,7 +500,7 @@ skills示例：
 | exported | 标识当前ExtensionAbility组件是否可以被其他应用调用。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用，包括无法被aa工具命令拉起应用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | extensionProcessMode | 标识当前ExtensionAbility组件的多进程实例模型,当前只对UIExtensionAbility以及从UIExtensionAbility扩展的ExtensionAbility生效。<br/>-&nbsp;instance：表示该ExtensionAbility每个实例一个进程。<br/>-&nbsp;type：表示该ExtensionAbility实例都运行在同一个进程里，与其他ExtensionAbility分离进程。<br/>-&nbsp;bundle：表示该ExtensionAbility实例都运行在应用统一进程里，与其他配置了bundle模型的ExtensionAbility共进程。<!--RP10--><!--RP10End--> | 字符串 | 该标签可缺省，缺省值为空。 |
 | dataGroupIds | 标识当前ExtensionAbility组件的dataGroupId集合。如果当前ExtensionAbility组件所在的应用在应用市场申请的证书里groupIds也申请了某个dataGroupId，那么当前ExtensionAbility组件可以和应用共享这一个dataGroupId生成的目录，所以ExtensionAbility组件的dataGroupId需要是应用的签名证书中groupIds字段里配置的才能生效。 且该字段仅在当前ExtensionAbility组件存在独立的沙箱目录时生效。<!--RP8--><!--RP8End--> | 字符串数组 | 该标签可缺省，缺省值为空。 |
-| process | 标识组件的进程标签，只有type为embeddedUI时可以配置该字段。<br/>**说明：**<br/>仅在[2in1](./module-configuration-file.md#devicetypes标签)设备上生效，UIAbility组件和ExtensionAbility组件标签一致时运行在同一个进程中。从API version 14开始，支持该字段。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| process | 标识组件的进程名称，只有type为embeddedUI时可以配置该标签。具体使用方式参考[进程模型定义](../application-models/process-model-stage.md#其他进程类型)中的"静态指定进程"。<br/>**说明：**<br/>1. 仅在[PC/2in1](./module-configuration-file.md#devicetypes标签)和[Tablet](./module-configuration-file.md#devicetypes标签)设备上生效。<br/>2. UIAbility组件和ExtensionAbility组件标签一致时运行在同一个进程中。<br/>3. 从API version 14开始，支持该标签。 | 字符串 | 该标签可缺省，缺省值为空。 |
 
 extensionAbilities示例：
 
@@ -1102,7 +1102,7 @@ fileContextMenu标签示例
 | -------- | -------- | -------- | -------- |
 | abilityName | 表示当前右键菜单对应的需要拉起的ability名称。 | 字符串 | 不可缺省。 |
 | menuItem | 右键菜单显示的信息。命名建议：<br/>原则一：[动作]+[应用名]，中文示例：用{App}打开、用{App} ({Plugin}插件) 打开；英文示例：Open with {App}、Open with {App} ({Plugin})。<br/>原则二：[动作]+[目的]，示例：压缩为{文件名}、压缩至{路径}、用{App}转换为{格式}。 | 资源id | 不可缺省。 |
-| menuHandler | 一个ability可以创建多个右键菜单， 用该字段来区分用户拉起的不同右键菜单项。该字段在用户点击右键菜单执行时，会作为参数传递给右键菜单应用。 | 字符串 | 不可缺省。 |
+| menuHandler | 一个ability可以创建多个右键菜单， 该字段与右键菜单显示项一一对应，用于区分用户拉起的不同右键菜单项。开发者可自定义该字段取值，确保该字段在整个ability中唯一。在用户点击右键菜单拉起应用时，会作为参数传递给应用。 | 字符串 | 不可缺省。 |
 | menuContext | 定义展示该菜单项需要的上下文，可以支持多种情况，类型为数组。 | 对象数组 | 不可缺省。 |
 
 **表26** menuContext标签配置说明

@@ -3,7 +3,7 @@
 
 ## Overview
 
-Provides logging functions.
+HiLog provides logging functionalities.
 
 For example, you can use logging functions to output logs of the specified log type, service domain, log tag, and log level.
 
@@ -19,48 +19,48 @@ For example, you can use logging functions to output logs of the specified log t
 
 | Name| Description| 
 | -------- | -------- |
-| [log.h](log_8h.md) | Defines the logging functions of the HiLog module. | 
+| [log.h](log_8h.md) | Defines the logging functionalities of the HiLog module. | 
 
 
 ### Macros
 
 | Name| Description| 
 | -------- | -------- |
-| [LOG_DOMAIN](#log_domain)&nbsp;&nbsp;&nbsp;0 | Indicates the service domain for a log file. Its value is a hexadecimal integer ranging from 0x0 to 0xFFFF. If the value exceeds the range, logs cannot be printed. | 
+| [LOG_DOMAIN](#log_domain)&nbsp;&nbsp;&nbsp;0 | Indicates the service domain for a log file. | 
 | [LOG_TAG](#log_tag)&nbsp;&nbsp;&nbsp;NULL | Indicates the string constant used to identify the class, file, or service. A tag can contain a maximum of 31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur. | 
-| [OH_LOG_DEBUG](#oh_log_debug)(type, ...)&nbsp;&nbsp;&nbsp;((void)[OH_LOG_Print](#oh_log_print)((type), LOG_DEBUG, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | Indicates DEBUG logs. This is a function-like macro. | 
-| [OH_LOG_INFO](#oh_log_info)(type, ...)&nbsp;&nbsp;&nbsp;((void)[OH_LOG_Print](#oh_log_print)((type), LOG_INFO, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | Indicates INFO logs. This is a function-like macro. | 
-| [OH_LOG_WARN](#oh_log_warn)(type, ...)&nbsp;&nbsp;&nbsp;((void)[OH_LOG_Print](#oh_log_print)((type), LOG_WARN, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | Indicates WARN logs. This is a function-like macro. | 
-| [OH_LOG_ERROR](#oh_log_error)(type, ...)&nbsp;&nbsp;&nbsp;((void)[OH_LOG_Print](#oh_log_print)((type), LOG_ERROR, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | Indicates ERROR logs. This is a function-like macro. | 
-| [OH_LOG_FATAL](#oh_log_fatal)(type, ...)&nbsp;&nbsp;&nbsp;((void)HiLogPrint((type), LOG_FATAL, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | Indicates FATAL logs. This is a function-like macro. | 
+| [OH_LOG_DEBUG](#oh_log_debug)(type, ...)&nbsp;&nbsp;&nbsp;((void)[OH_LOG_Print](#oh_log_print)((type), LOG_DEBUG, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | Indicates DEBUG logs. This is a function-like macro. Before using this macro, define the log service domain and log tag. Generally, you need to define them at the beginning of the source file.| 
+| [OH_LOG_INFO](#oh_log_info)(type, ...)&nbsp;&nbsp;&nbsp;((void)[OH_LOG_Print](#oh_log_print)((type), LOG_INFO, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | Indicates INFO logs. This is a function-like macro. Before using this macro, define the log service domain and log tag. Generally, you need to define them at the beginning of the source file.| 
+| [OH_LOG_WARN](#oh_log_warn)(type, ...)&nbsp;&nbsp;&nbsp;((void)[OH_LOG_Print](#oh_log_print)((type), LOG_WARN, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | Indicates WARN logs. This is a function-like macro. Before using this macro, define the log service domain and log tag. Generally, you need to define them at the beginning of the source file. | 
+| [OH_LOG_ERROR](#oh_log_error)(type, ...)&nbsp;&nbsp;&nbsp;((void)[OH_LOG_Print](#oh_log_print)((type), LOG_ERROR, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | Indicates ERROR logs. This is a function-like macro. Before using this macro, define the log service domain and log tag. Generally, you need to define them at the beginning of the source file. | 
+| [OH_LOG_FATAL](#oh_log_fatal)(type, ...)&nbsp;&nbsp;&nbsp;((void)[OH_LOG_Print](#oh_log_print)((type), LOG_FATAL, [LOG_DOMAIN](#log_domain), [LOG_TAG](#log_tag), \_\_VA_ARGS\_\_)) | Indicates FATAL logs. This is a function-like macro. Before using this macro, define the log service domain and log tag. Generally, you need to define them at the beginning of the source file.| 
 
 
 ### Types
 
 | Name| Description| 
 | -------- | -------- |
-| typedef void(\* [LogCallback](#logcallback)) (const [LogType](#logtype) type, const [LogLevel](#loglevel) level, const unsigned int domain, const char \*tag, const char \*msg) | Defines a function for customizing the processing of logs in the callback. | 
+| typedef void(\* [LogCallback](#logcallback)) (const [LogType](#logtype) type, const [LogLevel](#loglevel) level, const unsigned int domain, const char \*tag, const char \*msg) | Defines a callback function pointer for processing HiLog logs. | 
 
 
-### Enum
+### Enums
 
 | Name| Description| 
 | -------- | -------- |
 | [LogType](#logtype) { LOG_APP = 0 } | Enumerates the log types. | 
-| [LogLevel](#loglevel) {<br>LOG_DEBUG = 3,<br>LOG_INFO = 4,<br>LOG_WARN = 5,<br>LOG_ERROR = 6,<br>LOG_FATAL = 7<br>} | Enumerates the log levels. | 
+| [LogLevel](#loglevel) {<br>LOG_DEBUG = 3, LOG_INFO = 4, LOG_WARN = 5, LOG_ERROR = 6,<br>LOG_FATAL = 7<br>} | Log level. | 
 
 
 ### Functions
 
 | Name| Description| 
 | -------- | -------- |
-| int [OH_LOG_Print](#oh_log_print) ([LogType](#logtype) type, [LogLevel](#loglevel) level, unsigned int domain, const char \*tag, const char \*fmt,...) \_\_attribute\_\_((\_\_format\_\_(os_log, 5, 6))) | Outputs logs. | 
+| int [OH_LOG_Print](#oh_log_print) ([LogType](#logtype) type, [LogLevel](#loglevel) level, unsigned int domain, const char \*tag, const char \*fmt,...) __attribute__((__format__(os_log |  Outputs logs of the specified **type**, **level**, **domain**, **tag**, and variables determined by the format specifier and privacy identifier in the printf format. | 
+| int int [OH_LOG_PrintMsg](#oh_log_printmsg) ([LogType](#logtype) type, [LogLevel](#loglevel) level, unsigned int domain, const char \*tag, const char \*message) |  Outputs constant log strings of the specified **type**, **level**, **domain**, and **tag**. | 
+| int [OH_LOG_PrintMsgByLen](#oh_log_printmsgbylen) ([LogType](#logtype) type, [LogLevel](#loglevel) level, unsigned int domain, const char \*tag, size_t tagLen, const char \*message, size_t messageLen) |  Outputs constant log strings of the specified **domain**, **tag**, and **level**. The tag and string length must be specified. Unlike **OH_LOG_PrintMsg**, this API allows strings without terminators. | 
+| int [OH_LOG_VPrint](#oh_log_vprint) ([LogType](#logtype) type, [LogLevel](#loglevel) level, unsigned int domain, const char \*tag, const char \*fmt, va_list ap) __attribute__((__format__(os_log |  Outputs logs of the specified **type**, **level**, **domain**, **tag**, and variables determined by the format specifier and privacy identifier in the printf format. The variables are of the **va_list** type. | 
 | int bool [OH_LOG_IsLoggable](#oh_log_isloggable) (unsigned int domain, const char \*tag, [LogLevel](#loglevel) level) | Checks whether logs of the specified service domain, tag, and level can be printed. | 
 | void [OH_LOG_SetCallback](#oh_log_setcallback) ([LogCallback](#logcallback) callback) | Registers a callback function. | 
 | void [OH_LOG_SetMinLogLevel](#oh_log_setminloglevel) ([LogLevel](#loglevel) level) | Sets the minimum log level. When a process prints logs, both the minimum log level and global log level are verified.<br>Therefore, the minimum log level cannot be lower than the global log level. The default [global log level](../../dfx/hilog.md#displaying-and-setting-log-levels) is **Info**.| 
-| int [OH_LOG_PrintMsg](#oh_log_printmsg) ([LogType](#logtype) type, [LogLevel](#loglevel) level, unsigned int domain, const char \*tag, const char \*message) | Outputs constant log strings of the specified **type**, **level**, **domain**, and **tag**. | 
-| int [OH_LOG_PrintMsgByLen](#oh_log_printmsgbylen) ([LogType](#logtype) type, [LogLevel](#loglevel) level, unsigned int domain, const char \*tag, size_t tagLen, const char \*message, size_t messageLen) | Outputs log constant strings of the specified **domain**, **tag**, and **level**. The tag and string length must be specified. Unlike **OH_LOG_PrintMsg**, this API allows strings without terminators. | 
-| int [OH_LOG_VPrint](#oh_log_vprint)(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *fmt, va_list ap) | Outputs logs of the specified **type**, **level**, **domain**, **tag**, and variables determined by the format specifier and privacy identifier in the printf format. The variables are of the **va_list** type.|
 
 
 ## Macro Description
@@ -98,7 +98,7 @@ Indicates the string constant used to identify the class, file, or service. A ta
 **Description**
 Indicates DEBUG logs. This is a function-like macro.
 
-Before calling this function, define the log service domain and log tag. Generally, you need to define them at the beginning of the source file.
+Before using this macro, define the log service domain and log tag. Generally, you need to define them at the beginning of the source file.
 
 **Since**: 8
 
@@ -110,7 +110,7 @@ Before calling this function, define the log service domain and log tag. General
 | fmt | Format string, which is an enhancement of a printf format string and supports the privacy identifier. Specifically, **{public}** or **{private}** is added between the % character and the format specifier in each parameter. | 
 | ... | Parameter list corresponding to the parameter type in the format string. The number and type of parameters must be mapped onto the identifier in the format string. | 
 
-**See**
+**Reference**
 
 [OH_LOG_Print](#oh_log_print)
 
@@ -123,7 +123,7 @@ Before calling this function, define the log service domain and log tag. General
 **Description**
 Indicates ERROR logs. This is a function-like macro.
 
-Before calling this function, define the log service domain and log tag. Generally, you need to define them at the beginning of the source file.
+Before using this macro, define the log service domain and log tag. Generally, you need to define them at the beginning of the source file.
 
 **Since**: 8
 
@@ -135,7 +135,7 @@ Before calling this function, define the log service domain and log tag. General
 | fmt | Format string, which is an enhancement of a printf format string and supports the privacy identifier. Specifically, **{public}** or **{private}** is added between the % character and the format specifier in each parameter. | 
 | ... | Parameter list corresponding to the parameter type in the format string. The number and type of parameters must be mapped onto the identifier in the format string. | 
 
-**See**
+**Reference**
 
 [OH_LOG_Print](#oh_log_print)
 
@@ -143,12 +143,12 @@ Before calling this function, define the log service domain and log tag. General
 ### OH_LOG_FATAL
 
 ```
-#define OH_LOG_FATAL( type,  ... )   ((void)HiLogPrint((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, __VA_ARGS__))
+#define OH_LOG_FATAL( type,  ... )   ((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, __VA_ARGS__))
 ```
 **Description**
 Indicates FATAL logs. This is a function-like macro.
 
-Before calling this function, define the log service domain and log tag. Generally, you need to define them at the beginning of the source file.
+Before using this macro, define the log service domain and log tag. Generally, you need to define them at the beginning of the source file.
 
 **Since**: 8
 
@@ -160,7 +160,7 @@ Before calling this function, define the log service domain and log tag. General
 | fmt | Format string, which is an enhancement of a printf format string and supports the privacy identifier. Specifically, **{public}** or **{private}** is added between the % character and the format specifier in each parameter. | 
 | ... | Parameter list corresponding to the parameter type in the format string. The number and type of parameters must be mapped onto the identifier in the format string. | 
 
-**See**
+**Reference**
 
 [OH_LOG_Print](#oh_log_print)
 
@@ -173,7 +173,7 @@ Before calling this function, define the log service domain and log tag. General
 **Description**
 Indicates INFO logs. This is a function-like macro.
 
-Before calling this function, define the log service domain and log tag. Generally, you need to define them at the beginning of the source file.
+Before using this macro, define the log service domain and log tag. Generally, you need to define them at the beginning of the source file.
 
 **Since**: 8
 
@@ -185,7 +185,7 @@ Before calling this function, define the log service domain and log tag. General
 | fmt | Format string, which is an enhancement of a printf format string and supports the privacy identifier. Specifically, **{public}** or **{private}** is added between the % character and the format specifier in each parameter. | 
 | ... | Parameter list corresponding to the parameter type in the format string. The number and type of parameters must be mapped onto the identifier in the format string. | 
 
-**See**
+**Reference**
 
 [OH_LOG_Print](#oh_log_print)
 
@@ -198,7 +198,7 @@ Before calling this function, define the log service domain and log tag. General
 **Description**
 Indicates WARN logs. This is a function-like macro.
 
-Before calling this function, define the log service domain and log tag. Generally, you need to define them at the beginning of the source file.
+Before using this macro, define the log service domain and log tag. Generally, you need to define them at the beginning of the source file.
 
 **Since**: 8
 
@@ -210,7 +210,7 @@ Before calling this function, define the log service domain and log tag. General
 | fmt | Format string, which is an enhancement of a printf format string and supports the privacy identifier. Specifically, **{public}** or **{private}** is added between the % character and the format specifier in each parameter. | 
 | ... | Parameter list corresponding to the parameter type in the format string. The number and type of parameters must be mapped onto the identifier in the format string. | 
 
-**See**
+**Reference**
 
 [OH_LOG_Print](#oh_log_print)
 
@@ -248,7 +248,7 @@ Defines a function for customizing the processing of logs in the callback.
 enum LogLevel
 ```
 **Description**
-Enumerates the log levels.
+Log level.
 
 You are advised to select log levels based on their respective use cases. Log levels:
 
@@ -279,7 +279,7 @@ You are advised to select log levels based on their respective use cases. Log le
 enum LogType
 ```
 **Description**
-Enumerates the log types.
+Log type.
 
 You can use this function to specify the type of output logs. Currently, only **LOG_APP** is available.
 
@@ -342,6 +342,7 @@ Outputs logs of the specified **type**, **level**, **domain**, **tag**, and vari
 **Returns**
 
 **0** or a larger value if the operation is successful; a value smaller than **0** otherwise.
+Possible failure causes: The **LogLevel** passed in is lower than the allowed log level; the **domain** is out of range; the **tag** is a null pointer; the CPU is overloaded; the memory is insufficient; the number of logs on the device is too large.
 
 
 ### OH_LOG_PrintMsg()
@@ -367,6 +368,7 @@ int OH_LOG_PrintMsg (LogType type, LogLevel level, unsigned int domain, const ch
 **Returns**
 
 **0** or a larger value if the operation is successful; a value smaller than **0** otherwise.
+Possible failure causes: The **LogLevel** passed in is lower than the allowed log level; the **domain** is out of range; the **tag** is a null pointer; the CPU is overloaded; the memory is insufficient; the number of logs on the device is too large.
 
 
 ### OH_LOG_PrintMsgByLen()
@@ -394,6 +396,7 @@ int OH_LOG_PrintMsgByLen (LogType type, LogLevel level, unsigned int domain, con
 **Returns**
 
 **0** or a larger value if the operation is successful; a value smaller than **0** otherwise.
+Possible failure causes: The **LogLevel** passed in is lower than the allowed log level; the **domain** is out of range; the **tag** is a null pointer; the CPU is overloaded; the memory is insufficient; the number of logs on the device is too large.
 
 ### OH_LOG_VPrint()
 
@@ -407,23 +410,21 @@ int OH_LOG_VPrint(LogType type, LogLevel level, unsigned int domain, const char 
 
 **Since**: 18
 
-
 **Parameters**
 
-| Parameter| Description|
-| -- | -- |
-| LogType type | Log type. The type for third-party applications is defined by **LOG_APP**.|
-| LogLevel level | Log level. The value can be **LOG_DEBUG**, **LOG_INFO**, **LOG_WARN**, **LOG_ERROR**, and **LOG_FATAL**.|
-| unsigned int domain | Service domain. Its value is a hexadecimal integer ranging from 0x0 to 0xFFFF.|
-| const char *tag | Log tag, which is a string used to identify the class, file, or service. A tag can contain a maximum of 31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur.|
-| const char *fmt | Format string, which is an enhancement of a printf format string and supports the privacy identifier. Specifically, **{public}** or **{private}** is added between the % character and the format specifier in each parameter.|
-| va_list ap | Parameter list of the **va_list** type that corresponds to the parameter type in the format string. The number and type of parameters must be mapped onto the identifier in the format string.|
+| Name| Description| 
+| -------- | -------- |
+| type | Log type. The type for third-party applications is defined by **LOG_APP**. | 
+| level | Log level. The value can be **LOG_DEBUG**, **LOG_INFO**, **LOG_WARN**, **LOG_ERROR**, and **LOG_FATAL**. | 
+| domain | Service domain. Its value is a hexadecimal integer ranging from 0x0 to 0xFFFF. If the value exceeds the range, logs cannot be printed. | 
+| tag | Log tag, which is a string used to identify the class, file, or service. A tag can contain a maximum of 31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur. | 
+| fmt | Format string, which is an enhancement of a printf format string and supports the privacy identifier. Specifically, **{public}** or **{private}** is added between the % character and the format specifier in each parameter. | 
+| ap | Parameter list of the **va_list** type that corresponds to the parameter type in the format string. The number and type of parameters must be mapped onto the identifier in the format string. | 
 
 **Returns**
 
-| Type| Description|
-| -- | -- |
-| int | **0** or a larger value if the operation is successful; a value smaller than **0** otherwise.|
+**0** or a larger value if the operation is successful; a value smaller than **0** otherwise.
+Possible failure causes: The **LogLevel** passed in is lower than the allowed log level; the **domain** is out of range; the **tag** is a null pointer; the CPU is overloaded; the memory is insufficient; the number of logs on the device is too large.
 
 ### OH_LOG_SetCallback()
 

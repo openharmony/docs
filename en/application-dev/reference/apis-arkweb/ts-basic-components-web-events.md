@@ -4,7 +4,8 @@ The following universal events are supported: [onAppear](../apis-arkui/arkui-ts/
 
 > **NOTE**
 >
-> - This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this component are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>
 > - You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
 
 ## onAlert
@@ -67,7 +68,7 @@ Called when **alert()** is invoked to display an alert dialog box on the web pag
   <!DOCTYPE html>
   <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
     <h1>WebView onAlert Demo</h1>
@@ -85,7 +86,11 @@ Called when **alert()** is invoked to display an alert dialog box on the web pag
 
 onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
 
-Called when a user is about to leave, refresh, or close this page. This API takes effect only when the page has obtained focus.
+Called when the page refresh is about to complete or the current page is closed.
+
+> **NOTE**
+>
+> - If the current **Web** component does not have the focus, **onBeforeUnload** is not triggered when the page is refreshed or closed.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -93,7 +98,7 @@ Called when a user is about to leave, refresh, or close this page. This API take
 
 | Name    | Type                 | Mandatory  | Description           |
 | ------- | --------------------- | ---- | --------------- |
-| callback     | Callback\<[OnBeforeUnloadEvent](./ts-basic-components-web-i.md#onbeforeunloadevent12), boolean\>                | Yes   | <br>Return value: boolean<br>If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to notify the **Web** component whether to exit the current page based on the user's operation. The value **false** means that the custom dialog box drawn in the function is ineffective. |
+| callback     | Callback\<[OnBeforeUnloadEvent](./ts-basic-components-web-i.md#onbeforeunloadevent12), boolean\>                | Yes   | Callback triggered when the page refresh is about to complete or the current page is closed.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to notify the **Web** component whether to exit the current page based on the user's operation. The value **false** means that the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -147,7 +152,7 @@ Called when a user is about to leave, refresh, or close this page. This API take
   <!DOCTYPE html>
   <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body onbeforeunload="return myFunction()">
     <h1>WebView onBeforeUnload Demo</h1>
@@ -173,7 +178,7 @@ Called when **confirm()** is invoked by the web page.
 
 | Name    | Type                 | Mandatory  | Description           |
 | ------- | --------------------- | ---- | --------------- |
-| callback     | Callback\<[OnConfirmEvent](./ts-basic-components-web-i.md#onconfirmevent12), boolean\>                | Yes   | Called when **confirm()** is invoked by the web page.<br>Return value: boolean<br>If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to notify the **Web** component the confirmation result. If the callback returns **false**, the processing result of the dialog box is ineffective. |
+| callback     | Callback\<[OnConfirmEvent](./ts-basic-components-web-i.md#onconfirmevent12), boolean\>                | Yes   | Called when **confirm()** is invoked by the web page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to notify the **Web** component the confirmation result. If the callback returns **false**, the processing result of the dialog box is ineffective.|
 
 **Example**
 
@@ -227,7 +232,7 @@ Called when **confirm()** is invoked by the web page.
   <!DOCTYPE html>
   <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
   <body>
@@ -262,7 +267,7 @@ Called when **prompt()** is invoked by the web page.
 
 | Name    | Type                 | Mandatory  | Description           |
 | ------- | --------------------- | ---- | --------------- |
-| callback     | Callback\<[OnPromptEvent](./ts-basic-components-web-i.md#onpromptevent12), boolean\>                | Yes   | Callback used when **prompt()** is invoked by the web page.<br>Return value: boolean<br>If the callback returns **true**, the application can use the custom dialog box (allows the confirm, cancel, and input operations) and invoke the **JsResult** API to notify the **Web** component the processing result. If the callback returns **false**, the processing result of the dialog box is regarded as cancel. |
+| callback     | Callback\<[OnPromptEvent](./ts-basic-components-web-i.md#onpromptevent12), boolean\>                | Yes   | Callback used when **prompt()** is invoked by the web page.<br>Return value: boolean<br> If the callback returns **true**, the application can use the custom dialog box (allows the confirm, cancel, and input operations) and invoke the **JsResult** API to notify the **Web** component the processing result. If the callback returns **false**, the processing result of the dialog box is regarded as cancel.|
 
 **Example**
 
@@ -350,7 +355,7 @@ Called when **prompt()** is invoked by the web page.
   <!DOCTYPE html>
   <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
   <body>
@@ -381,7 +386,7 @@ Called to notify the host application of a JavaScript console message.
 
 | Name    | Type                             | Mandatory  | Description     |
 | ------- | --------------------------------- | ---- | --------- |
-| callback | Callback\<[OnConsoleEvent](./ts-basic-components-web-i.md#onconsoleevent12), boolean\> | Yes   | Callback used when the web page receives a JavaScript console message.<br>Return value: boolean<br>Returns **true** if the message will not be printed to the console; returns **false** otherwise. |
+| callback | Callback\<[OnConsoleEvent](./ts-basic-components-web-i.md#onconsoleevent12), boolean\> | Yes   | Callback used when the web page receives a JavaScript console message.<br>Return value: boolean<br> The value **true** means that the message will not be printed to HiLog logs, and **false** means the opposite.|
 
 **Example**
 
@@ -533,7 +538,7 @@ Called when an HTTP error (the response code is greater than or equal to 400) oc
 
 | Name     | Type                                    | Mandatory  | Description      |
 | -------- | ---------------------------------------- | ---- | ---------- |
-| callback  | Callback\<[OnHttpErrorReceiveEvent](./ts-basic-components-web-i.md#onhttperrorreceiveevent12)\> | Yes   | Callback invoked when an HTTP error occurs during web page resource loading. |
+| callback  | Callback\<[OnHttpErrorReceiveEvent](./ts-basic-components-web-i.md#onhttperrorreceiveevent12)\> | Yes   | Callback triggered when an HTTP error occurs during web page resource loading.|
 
 **Example**
 
@@ -619,7 +624,7 @@ Called when the web page starts to be loaded. This callback is called only for t
 
 onPageEnd(callback: Callback\<OnPageEndEvent\>)
 
-Called when the web page loading is complete. This callback is triggered only for the main frame content.
+Called when the web page loading is finished. This callback is called only for the main frame content, and not for the iframe or frameset content.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -694,7 +699,7 @@ Called when the web page loading progress changes.
 
 onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
 
-Called when the document title of the application page is changed. If the <title\> element is not set on the page to load, ArkWeb generates a title based on the URL and returns the title to the application.
+Called when the **\<title>** element of the page document changes. If no title is set on the current page, ArkWeb generates a title based on the page URL and returns it to the application before the loading is complete.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -702,7 +707,7 @@ Called when the document title of the application page is changed. If the <title
 
 | Name  | Type  | Mandatory  | Description         |
 | ----- | ------ | ---- | ------------- |
-| callback | Callback\<[OnTitleReceiveEvent](./ts-basic-components-web-i.md#ontitlereceiveevent12)\> | Yes   | Callback triggered when the document title of the application page is changed.|
+| callback | Callback\<[OnTitleReceiveEvent](./ts-basic-components-web-i.md#ontitlereceiveevent12)\> | Yes   | Callback triggered when the document title on the page is changed.|
 
 **Example**
 
@@ -959,7 +964,7 @@ Called to process an HTML form whose input type is **file**. If this function is
        photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
        // Set the maximum number of media files that can be selected.
        photoSelectOptions.maxSelectNumber = 5;
-       let chooseFile: picker.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
+       let chooseFile: photoAccessHelper.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
        // Obtain the list of selected files.
        result.handleFileList(chooseFile.photoUris);
      }
@@ -1033,7 +1038,7 @@ Called to process an HTML form whose input type is **file**. If this function is
    <!DOCTYPE html>
    <html>
    <head>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
    <body>
      <form id="upload-form" enctype="multipart/form-data">
@@ -1083,7 +1088,7 @@ Called to notify the **Web** component of the URL of the resource file to load.
 
 onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
 
-Called when the display ratio of this page changes.
+Called when the page display scale changes.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1091,7 +1096,7 @@ Called when the display ratio of this page changes.
 
 | Name   | Type  | Mandatory  | Description                 |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnScaleChangeEvent](./ts-basic-components-web-i.md#onscalechangeevent12)\> | Yes| Callback invoked when the display ratio of the page changes.|
+| callback | Callback\<[OnScaleChangeEvent](./ts-basic-components-web-i.md#onscalechangeevent12)\> | Yes| Callback triggered when the page display scale changes.|
 
 **Example**
 
@@ -1119,7 +1124,7 @@ Called when the display ratio of this page changes.
 
 onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceResponse>)
 
-Called when the **Web** component is about to access a URL. This API is used to block the URL and return the response data. This API can intercept all URLs, which needs to be determined based on specific services.
+Triggered when the **Web** component is about to access a URL. This API is used to block the URL and return the response data. The **onInterceptRequest** API can intercept all redirection requests and return response data, but cannot access POST request body content and obtain buffer data. In this scenario, use [WebSchemeHandler](./js-apis-webview.md#webschemehandler12) based on service requirements.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1265,6 +1270,11 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
 Called to notify users when an SSL error occurs with a request for the main frame.
 To include errors with requests for subframes, use the [OnSslErrorEvent](./ts-basic-components-web-events.md#onsslerrorevent12) API.
 
+> **NOTE**
+>
+> - Main resource: Entry file for the browser to load web pages, which is usually an HTML document. 
+> - Subresource: Dependency file referenced by the main resource, which is loaded when a specific tag is encountered during main resource parsing.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
@@ -1363,6 +1373,11 @@ onSslErrorEvent(callback: OnSslErrorEventCallback)
 
 Called to notify users when an SSL error occurs during the loading of resources (for the main frame and subframes). To handle SSL errors for requests for the main frame, use the [isMainFrame](./ts-basic-components-web.md#ismainframe) field to distinguish.
 
+> **NOTE**
+>
+> - Main resource: Entry file for the browser to load web pages, which is usually an HTML document. 
+> - Subresource: Dependency file referenced by the main resource, which is loaded when a specific tag is encountered during main resource parsing.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
@@ -1434,193 +1449,232 @@ Called when an SSL client certificate request is received.
 
   **Example**
 
-  This example shows two-way authentication when interconnection with certificate management is not supported.
+Installs a private credential to implement two-way authentication.
 
-  ```ts
-  // xxx.ets API9
-  import { webview } from '@kit.ArkWeb';
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { common } from '@kit.AbilityKit';
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-    uiContext: UIContext = this.getUIContext();
+@Entry
+@Component
+struct Index {
+  controller: WebviewController = new webview.WebviewController();
+  uiContext : UIContext = this.getUIContext();
+  context : Context | undefined = this.uiContext.getHostContext() as common.UIAbilityContext;
+  uri: string = ''
 
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .onClientAuthenticationRequest((event) => {
-            this.uiContext.showAlertDialog({
-              title: 'onClientAuthenticationRequest',
-              message: 'text',
-              primaryButton: {
-                value: 'confirm',
-                action: () => {
-                  event.handler.confirm("/system/etc/user.pk8", "/system/etc/chain-user.pem");
-                }
-              },
-              secondaryButton: {
-                value: 'cancel',
-                action: () => {
-                  event.handler.cancel();
-                }
-              },
-              cancel: () => {
-                event.handler.ignore();
-              }
+  aboutToAppear(): void {
+    webview.WebviewController.setRenderProcessMode(webview.RenderProcessMode.MULTIPLE)
+  }
+
+  build() {
+    Column() {
+      Button("installPrivateCertificate").onClick(() => {
+        if (!this.context) {
+          return;
+        }
+
+        //Note: Replace badssl.com-client.p12 with the actual certificate file.
+        let value: Uint8Array = this.context.resourceManager.getRawFileContentSync("badssl.com-client.p12");
+        certificateManager.installPrivateCertificate(value, 'badssl.com', "1",
+          async (err: BusinessError, data: certificateManager.CMResult) => {
+            console.log(`installPrivateCertificate, uri==========${JSON.stringify(data.uri)}`)
+            if (!err && data.uri) {
+              this.uri = data.uri;
+            }
+          });
+      })
+      Button('Load the website that requires the client SSL certificate')
+        .onClick(() => {
+          this.controller.loadUrl("https://client.badssl.com")
+        })
+      Web({
+        src: "https://www.bing.com/",
+        controller: this.controller,
+      }).domStorageAccess(true)
+        .fileAccess(true)
+        .onPageBegin(event => {
+          console.log("extensions onpagebegin url " + event.url);
+        })
+        .onClientAuthenticationRequest((event) => {
+          console.log("onClientAuthenticationRequest ");
+          event.handler.confirm(this.uri);
+          return true;
+        })
+        .onSslErrorEventReceive(e => {
+          console.log(`onSslErrorEventReceive->${e.error.toString()}`);
+        })
+        .onErrorReceive((event) => {
+          if (event) {
+            this.getUIContext().getPromptAction().showToast({
+              message: `ErrorCode: ${event.error.getErrorCode()}, ErrorInfo: ${event.error.getErrorInfo()}`,
+              alignment: Alignment.Center
             })
-          })
-      }
+            console.log('getErrorInfo:' + event.error.getErrorInfo());
+            console.log('getErrorCode:' + event.error.getErrorCode());
+            console.log('url:' + event.request.getRequestUrl());
+          }
+        })
+        .onTitleReceive(event  => {
+          console.log("title received " + event.title);
+        })
+
     }
   }
-  ```
+}
+```
 
-  This example shows two-way authentication when interconnection with certificate management is supported.
+Interconnect with certificate management to implement two-way authentication.
+  
+1. Construct the singleton object **GlobalContext**.
+    ```ts
+    // GlobalContext.ets
+    export class GlobalContext {
+      private constructor() {}
+      private static instance: GlobalContext;
+      private _objects = new Map<string, Object>();
 
-  1. Construct the singleton object **GlobalContext**.
+      public static getContext(): GlobalContext {
+        if (!GlobalContext.instance) {
+          GlobalContext.instance = new GlobalContext();
+        }
+        return GlobalContext.instance;
+      }
 
-     ```ts
-     // GlobalContext.ets
-     export class GlobalContext {
-       private constructor() {}
-       private static instance: GlobalContext;
-       private _objects = new Map<string, Object>();
+      getObject(value: string): Object | undefined {
+        return this._objects.get(value);
+      }
 
-       public static getContext(): GlobalContext {
-         if (!GlobalContext.instance) {
-           GlobalContext.instance = new GlobalContext();
-         }
-         return GlobalContext.instance;
-       }
+      setObject(key: string, objectClass: Object): void {
+        this._objects.set(key, objectClass);
+      }
+    }
+    ```
 
-       getObject(value: string): Object | undefined {
-         return this._objects.get(value);
-       }
+2. Constructs a **CertManagerService** object to interconnect with certificate management.
+<!--code_no_check-->
+    ```ts
+    // CertMgrService.ets
+    import { bundleManager, common, Want } from "@kit.AbilityKit";
+    import { BusinessError } from "@kit.BasicServicesKit";
+    import { GlobalContext } from './GlobalContext';
 
-       setObject(key: string, objectClass: Object): void {
-         this._objects.set(key, objectClass);
-       }
-     }
-     ```
+    export default class CertManagerService {
+      private static sInstance: CertManagerService;
+      private authUri = "";
+      private appUid = "";
 
+      public static getInstance(): CertManagerService {
+        if (CertManagerService.sInstance == null) {
+          CertManagerService.sInstance = new CertManagerService();
+        }
+        return CertManagerService.sInstance;
+      }
 
-  2. Implement two-way authentication.
+      async grantAppPm(): Promise<string> {
+        let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
+        // Note: Replace com.example.myapplication with the actual application name.
+        try {
+          const data = await bundleManager.getBundleInfoForSelf(bundleFlags)
+            .catch((err: BusinessError) => {
+              console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
+              return null;
+            });
+          this.appUid = data?.appInfo?.uid?.toString() ?? '';
+          console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
+        } catch (err) {
+          let message = (err as BusinessError).message;
+          console.error('getBundleInfoForSelf failed: %{public}s', message);
+        }
 
-     ```ts
-     // xxx.ets API10
-     import { webview } from '@kit.ArkWeb';
-     import { common, Want, bundleManager } from '@kit.AbilityKit';
-     import { BusinessError } from '@kit.BasicServicesKit';
-     import { GlobalContext } from '../GlobalContext';
+        // Note: Add GlobalContext.getContext().setObject("AbilityContext", this.context) to the onCreate function in the MainAbility.ts file.
+        let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext;
+        await abilityContext.startAbilityForResult(
+          {
+            bundleName: "com.ohos.certmanager",
+            abilityName: "MainAbility",
+            uri: "requestAuthorize",
+            parameters: {
+              appUid: this.appUid, // Pass the UID of the requesting application.
+            }
+          } as Want)
+          .then((data: common.AbilityResult) => {
+            if (!data.resultCode && data.want) {
+              if (data.want.parameters) {
+                this.authUri = data.want.parameters.authUri as string; // Obtain the returned authUri after successful authorization.
+              }
+            }
+          })
+        return this.authUri;
+      }
+    }
+    ```
+3. Implement two-way authentication.
+<!--code_no_check-->
+    ```ts
+    import { webview } from '@kit.ArkWeb';
+    import CertManagerService from './CertMgrService';
+    import { promptAction } from '@kit.ArkUI';
 
-     let uri = "";
+    @Entry
+    @Component
+    struct Index {
+      controller: WebviewController = new webview.WebviewController();
+      certManager = CertManagerService.getInstance();
 
-     export default class CertManagerService {
-       private static sInstance: CertManagerService;
-       private authUri = "";
-       private appUid = "";
+      aboutToAppear(): void {
+        webview.WebviewController.setRenderProcessMode(webview.RenderProcessMode.MULTIPLE)
+      }
 
-       public static getInstance(): CertManagerService {
-         if (CertManagerService.sInstance == null) {
-           CertManagerService.sInstance = new CertManagerService();
-         }
-         return CertManagerService.sInstance;
-       }
+      build() {
+        Column() {
+          Button('Load the website that requires the client SSL certificate')
+            .onClick(() => {
+              this.controller.loadUrl("https://client.badssl.com")
+            })
+          Web({
+            src: "https://www.bing.com/",
+            controller: this.controller,
+          }).domStorageAccess(true)
+            .fileAccess(true)
+            .onPageBegin(event => {
+              console.log("extensions onpagebegin url " + event.url);
+            })
+            .onClientAuthenticationRequest((event) => {
+              console.log("onClientAuthenticationRequest ");
 
-       async grantAppPm(callback: (message: string) => void) {
-         let message = '';
-         let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
-         // Note: Replace com.example.myapplication with the actual application name.
-         try {
-           bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
-             console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
-            this.appUid = data.appInfo.uid.toString();
-           }).catch((err: BusinessError) => {
-             console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
-           });
-         } catch (err) {
-           let message = (err as BusinessError).message;
-           console.error('getBundleInfoForSelf failed: %{public}s', message);
-         }
+              this.certManager.grantAppPm().then(result => {
+                console.log(`grantAppPm, URI==========${result}`);
+                event.handler.confirm(result);
+              })
+              return true;
+            })
+            .onSslErrorEventReceive(e => {
+              console.log(`onSslErrorEventReceive->${e.error.toString()}`);
+            })
+            .onErrorReceive((event) => {
+              if (event) {
+                this.getUIContext().getPromptAction().showToast({
+                  message: `ErrorCode: ${event.error.getErrorCode()}, ErrorInfo: ${event.error.getErrorInfo()}`,
+                  alignment: Alignment.Center
+                })
+                console.log('getErrorInfo:' + event.error.getErrorInfo());
+                console.log('getErrorCode:' + event.error.getErrorCode());
+                console.log('url:' + event.request.getRequestUrl());
+              }
+            })
+            .onTitleReceive(event  => {
+              console.log("title received " + event.title);
+            })
 
-         // Note: Add GlobalContext.getContext().setObject("AbilityContext", this.context) to the onCreate function in the MainAbility.ts file.
-         let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
-         await abilityContext.startAbilityForResult(
-           {
-             bundleName: "com.ohos.certmanager",
-             abilityName: "MainAbility",
-             uri: "requestAuthorize",
-             parameters: {
-               appUid: this.appUid, // Pass the UID of the requesting application.
-             }
-           } as Want)
-           .then((data: common.AbilityResult) => {
-             if (!data.resultCode && data.want) {
-               if (data.want.parameters) {
-                 this.authUri = data.want.parameters.authUri as string; // Obtain the returned authUri after successful authorization.
-               }
-             }
-           })
-         message += "after grantAppPm authUri: " + this.authUri;
-         uri = this.authUri;
-         callback(message)
-       }
-     }
-
-     @Entry
-     @Component
-     struct WebComponent {
-       controller: webview.WebviewController = new webview.WebviewController();
-       @State message: string = 'Hello World' // message is used for debugging and observation.
-       certManager = CertManagerService.getInstance();
-       uiContext: UIContext = this.getUIContext();
-
-       build() {
-         Row() {
-           Column() {
-             Row() {
-               // Step 1: Perform authorization to obtain the URI.
-               Button('GrantApp')
-                 .onClick(() => {
-                   this.certManager.grantAppPm((data) => {
-                     this.message = data;
-                   });
-                 })
-               // Step 2: After the authorization, in two-way authentication, the onClientAuthenticationRequest callback is used to send the URI to the web server for authentication.
-               Button("ClientCertAuth")
-                 .onClick(() => {
-                   this.controller.loadUrl('https://www.example2.com'); // Server website that supports two-way authentication.
-                 })
-             }
-
-             Web({ src: 'https://www.example1.com', controller: this.controller })
-               .fileAccess(true)
-               .javaScriptAccess(true)
-               .domStorageAccess(true)
-               .onlineImageAccess(true)
-
-               .onClientAuthenticationRequest((event) => {
-                 this.uiContext.showAlertDialog({
-                   title: 'ClientAuth',
-                   message: 'Text',
-                   confirm: {
-                     value: 'Confirm',
-                     action: () => {
-                       event.handler.confirm(uri);
-                     }
-                   },
-                   cancel: () => {
-                     event.handler.cancel();
-                   }
-                 })
-               })
-           }
-         }
-         .width('100%')
-         .height('100%')
-       }
-     }
-     ```
+        }
+      }
+    }
+    ```
 
 ## onPermissionRequest<sup>9+</sup>
 
@@ -1704,7 +1758,7 @@ Called when a permission request is received. To call this API, you need to decl
     <meta charset="UTF-8">
   </head>
   <body>
-  <video id="video" width="500px" height="500px" autoplay="autoplay"></video>
+  <video id="video" width="500px" height="500px" autoplay></video>
   <canvas id="canvas" width="500px" height="500px"></canvas>
   <br>
   <input type="button" title="HTML5 Camera" value="Enable Camera" onclick="getMedia()"/>
@@ -1723,6 +1777,8 @@ Called when a permission request is received. To call this API, you need to decl
       promise.then(function (MediaStream) {
         video.srcObject = MediaStream;
         video.play();
+      }).catch(function(error) {
+        console.error("Error accessing media devices.", error);
       });
     }
   </script>
@@ -1762,6 +1818,7 @@ Called when a context menu is displayed after the user clicks the right mouse bu
     @State offsetX: number = 0;
     @State offsetY: number = 0;
     @State showMenu: boolean = false;
+    uiContext: UIContext = this.getUIContext();
 
     @Builder
     // Build and trigger a custom menu.
@@ -1847,7 +1904,7 @@ Called when a context menu is displayed after the user clicks the right mouse bu
             console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
             this.showMenu = true;
             this.offsetX = 0;
-            this.offsetY = Math.max(px2vp(event?.param.y() ?? 0) - 0, 0);
+            this.offsetY = Math.max(this.uiContext!.px2vp(event?.param.y() ?? 0) - 0, 0);
             return true;
           })
           .bindPopup(this.showMenu,
@@ -1940,7 +1997,7 @@ Called to notify the global scrolling position of the web page.
 
 | Name   | Type  | Mandatory  | Description                 |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnScrollEvent](./ts-basic-components-web-i.md#onscrollevent12)\> | Yes| Callback invoked when the scrollbar scrolls to a specified position.|
+| callback | Callback\<[OnScrollEvent](./ts-basic-components-web-i.md#onscrollevent12)\> | Yes| Callback triggered when the page is scrolled to a specified position.|
 
 **Example**
 
@@ -2716,7 +2773,7 @@ Called when the **Web** component is about to access a URL. This API is used to 
 
 | Name   | Type  | Mandatory  | Description                 |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnLoadInterceptEvent](./ts-basic-components-web-i.md#onloadinterceptevent12), boolean\> | Yes| Callback invoked when the **Web** component is about to access a URL.<br>The return value is of the Boolean type. If **true** is returned, the access is blocked. Otherwise, the access is allowed.<br>Default value: **true**|
+| callback | Callback\<[OnLoadInterceptEvent](./ts-basic-components-web-i.md#onloadinterceptevent12), boolean\> | Yes| Callback invoked when the **Web** component is about to access a URL.<br>The return value is of the Boolean type. If **true** is returned, the access is blocked. Otherwise, the access is allowed.<br>Default value: **false**.|
 
 **Example**
 
@@ -2748,7 +2805,7 @@ Called when the **Web** component is about to access a URL. This API is used to 
 
 onRequestSelected(callback: () => void)
 
-Called when the **Web** component obtains the focus.
+Triggered when the **Web** component obtains the focus. If the **Web** component loads a web page in the unfocused state and successfully obtains the focus, the callback is triggered twice.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3202,7 +3259,7 @@ export default class EntryAbility extends UIAbility {
   HTML file to be loaded:
   ```html
   <!-- index.html -->
-  <!Document>
+  <!DOCTYPE html>
   <html>
   <head>
       <title>Same-Layer Rendering Test HTML</title>
@@ -3211,7 +3268,7 @@ export default class EntryAbility extends UIAbility {
   <body>
   <div>
       <div id="bodyId">
-          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test? params1=1?" style = "background-color:red"/>
+          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test? params1=1" style = "background-color:red"/>
       </div>
   </div>
   </body>
@@ -3362,7 +3419,7 @@ Called when a finger touches a same-layer tag.
 HTML file to be loaded:
   ```html
   <!-- index.html -->
-  <!Document>
+  <!DOCTYPE html>
   <html>
   <head>
       <title>Same-Layer Rendering Test HTML</title>
@@ -3371,7 +3428,7 @@ HTML file to be loaded:
   <body>
   <div>
       <div id="bodyId">
-         <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1?" style = "background-color:red"/>
+         <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1" style = "background-color:red"/>
       </div>
   </div>
   </body>
@@ -3429,13 +3486,13 @@ Called when the intelligent tracking prevention feature is enabled and the track
 
 onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
 
-Called to enable the host application to obtain control when the URL is about to be loaded to this **Web** component. If the callback returns **true**, the **Web** component stops loading the URL. If the callback returns **false**, the **Web** component continues to load the URL.
+Triggered when the URL is about to be loaded in the current web page, allowing the host application to obtain control and determine whether to prevent the web page from loading the URL.
 
-POST requests do not trigger this callback.
-
-This callback is triggered when the **iframe** loads the redirection of a non-HTTP(s) protocol, but is not triggered when the **iframe** loads the HTTP(s) protocol or **about:blank** and when the redirection initiated by **loadUrl(String)** is called.
-
-Do not use the same URL to call the **loadUrl(String)** API and then return **true**. Doing so would unnecessarily cancel the current loading and start a new load with the same URL. The correct way to continue loading the given URL is to simply return **false**, rather than calling **loadUrl(String)**.
+> **NOTE**
+>
+> - POST requests do not trigger this callback. 
+> - This callback is triggered when the iframe loads a non-HTTP(S) document, but not when it loads an HTTP(S) document, about:blank, or a redirect initiated by calling **loadUrl(url: string)**.  
+> - Do not call **loadUrl(url: string)** with the same URL in the callback and return **true**. Doing so would unnecessarily cancel the current loading and start an identical one. To continue loading the current request URL, return **false** instead of calling **loadUrl(url: string)**.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3443,7 +3500,7 @@ Do not use the same URL to call the **loadUrl(String)** API and then return **tr
 
 | Name   | Type  | Mandatory  | Description                 |
 | ------ | ------ | ---- | --------------------- |
-| callback       | [OnOverrideUrlLoadingCallback](./ts-basic-components-web-t.md#onoverrideurlloadingcallback12) | Yes| Callback for **onOverrideUrlLoading**.|
+| callback       | [OnOverrideUrlLoadingCallback](./ts-basic-components-web-t.md#onoverrideurlloadingcallback12) | Yes| Callback for **onOverrideUrlLoading**.<br>Return value: boolean<br> The value **true** means to stop loading the URL, and the value **false** means the opposite.|
 
 **Example**
 
@@ -3725,7 +3782,7 @@ Called before any editable element (such as the **input** tag) on the web page i
 
 onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
 
-Called when the visibility of a same-layer tag (such as an **Embed** tag or an **Object** tag) on a web page changes in the viewport. By default, the same-layer tag is invisible. If the rendering tag is visible when you access the page for the first time, the callback is triggered; otherwise, it is not triggered. That is, if the same-layer tag changes from a non-zero value to **0 x 0**, the callback is triggered. If the rendering tag size changes from **0 x 0** to a non-zero value, the callback is not triggered. If all the same-layer tags are invisible, they are reported as invisible. If all the same-layer rendering tags or part of them are visible, they are reported as visible. The visibility status changes of tags at the same layer due to CSS style changes, such as **display**, **opacity**, and **visibility**, cannot be reported.
+Called when the visibility of a same-layer tag (such as an **<embed\>** tag or an **<embed\>** tag) on a web page changes in the viewport. By default, the same-layer tag is invisible. If the rendering tag is visible when you access the page for the first time, the callback is triggered; otherwise, it is not triggered. That is, if the same-layer tag changes from a non-zero value to **0 x 0**, the callback is triggered. If the rendering tag size changes from **0 x 0** to a non-zero value, the callback is not triggered. If all the same-layer tags are invisible, they are reported as invisible. If all the same-layer rendering tags or part of them are visible, they are reported as visible. The visibility status changes of tags at the same layer due to CSS style changes, such as **display**, **opacity**, and **visibility**, cannot be reported.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3857,7 +3914,7 @@ Called when the visibility of a same-layer tag (such as an **Embed** tag or an *
   <body>
   <div>
       <div id="bodyId">
-          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1?" style = "background-color:red"/>
+          <embed id="nativeButton" type = "native/button" width="800" height="800" src="test?params1=1" style = "background-color:red"/>
       </div>
   </div>
   </body>
@@ -3876,6 +3933,12 @@ Called when an SSL error occurs during resource loading.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
+**Parameters**
+
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | (event?: { handler: Function, error: object }) => void | Yes| Callback triggered when a web page detects an SSL error.|
+
 ## onFileSelectorShow<sup>(deprecated)</sup>
 
 onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object }) => void)
@@ -3887,6 +3950,12 @@ Called to process an HTML form whose input type is **file**, in response to the 
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [onShowFileSelector<sup>9+</sup>](#onshowfileselector9) instead.
 
 **System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name   | Type  | Mandatory  | Description                 |
+| ------ | ------ | ---- | --------------------- |
+| callback | (event?: { callback: Function, fileSelector: object }) => void | Yes| Callback to be executed when the file selector is triggered.|
 
 ## onUrlLoadIntercept<sup>(deprecated)</sup>
 
@@ -3901,7 +3970,7 @@ This API is deprecated since API version 10. You are advised to use [onLoadInter
 
 | Name   | Type  | Mandatory  | Description                 |
 | ------ | ------ | ---- | --------------------- |
-| callback | (event?: { data:string \| [WebResourceRequest](./ts-basic-components-web.md#webresourcerequest) }) => boolean | Yes| Callback invoked when the **Web** component is about to access a URL.<br>The return value is of the Boolean type. If **true** is returned, the access is blocked. Otherwise, the access is allowed. |
+| callback | (event?: { data:string \| [WebResourceRequest](./ts-basic-components-web.md#webresourcerequest) }) => boolean | Yes| URL information.<br>The return value is of the Boolean type. If **true** is returned, the access is blocked. Otherwise, the access is allowed.|
 
 **Example**
 

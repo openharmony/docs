@@ -64,21 +64,21 @@ Defines the touch point information.
 | ----------- | ------ | ---- | ---- | ----------------------------------- |
 | id          | number | No   | No   | Touch event ID.                               |
 | pressedTime | number | No   | No   | Press timestamp, in μs.                          |
-| screenX     | number | No   | No   | X coordinate of the touch position on the screen.                       |
-| screenY     | number | No   | No   | Y coordinate of the touch position on the screen.                       |
-| windowX     | number | No   | No   | X coordinate of the touch position in the window.                       |
-| windowY     | number | No   | No   | Y coordinate of the touch position in the window.                       |
+| screenX     | number | No   | No   | X coordinate of the touch event in the relative coordinate system with the upper-left corner of the specified screen as the origin. The value can only be set to an integer.   |
+| screenY     | number | No   | No   | Y coordinate of the touch event in the relative coordinate system with the upper-left corner of the specified screen as the origin. The value can only be set to an integer.   |
+| windowX     | number | No   | No   | X coordinate in the relative coordinate system with the upper-left corner of the window where the touch is located as the origin. The value can only be set to an integer.|
+| windowY     | number | No   | No   | Y coordinate in the relative coordinate system with the upper-left corner of the window where the touch is located as the origin. The value can only be set to an integer.|
 | pressure    | number | No   | No   | Pressure value. The value range is [0.0, 1.0]. The value **0.0** indicates that the pressure is not supported.      |
-| width       | number | No   | No   | Width of the touch area.                          |
-| height      | number | No   | No   | Height of the touch area.                          |
+| width       | number | No   | No   | Width of the touch area. The value can only be set to an integer.        |
+| height      | number | No   | No   | Height of the touch area. The value can only be set to an integer.        |
 | tiltX       | number | No   | No   | Angle relative to the YZ plane. The value range is [-90, 90]. A positive value indicates a rightward tilt.|
 | tiltY       | number | No   | No   | Angle relative to the XZ plane. The value range is [-90, 90]. A positive value indicates a downward tilt.|
-| toolX       | number | No   | No   | X coordinate of the center point of the tool area.                          |
-| toolY       | number | No   | No   | Y coordinate of the center point of the tool area.                          |
-| toolWidth   | number | No   | No   | Width of the tool area.                             |
-| toolHeight  | number | No   | No   | Height of the tool area.                             |
-| rawX        | number | No   | No   | X coordinate of the input device.                         |
-| rawY        | number | No   | No   | Y coordinate of the input device.                          |
+| toolX       | number | No   | No   | X coordinate of the tool area center in the relative coordinate system with the upper-left corner of the specified screen as the origin. The value can only be set to an integer. |
+| toolY       | number | No   | No   | Y coordinate of the tool area center in the relative coordinate system with the upper-left corner of the specified screen as the origin. The value can only be set to an integer. |
+| toolWidth   | number | No   | No   | Width of the tool area. The value can only be set to an integer. |
+| toolHeight  | number | No   | No   | Height of the tool area. The value can only be set to an integer. |
+| rawX        | number | No   | No   | X coordinate of the input device. The value can only be set to an integer.|
+| rawY        | number | No   | No   | Y coordinate of the input device. The value can only be set to an integer.|
 | toolType    | [ToolType](#tooltype) | No   | No   | Tool type.                               |
 
 ## TouchEvent

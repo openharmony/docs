@@ -1749,9 +1749,9 @@ struct TextExample8 {
       Column() {
         Text(undefined, this.options) {
           Span('Hello World')
-          ImageSpan($r('app.media.icon'))
-            .width('100px')
-            .height('100px')
+          ImageSpan($r('app.media.startIcon'))// $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+            .width(50)
+            .height(50)
             .objectFit(ImageFit.Fill)
             .verticalAlign(ImageSpanAlignment.CENTER)
         }
@@ -1787,12 +1787,15 @@ struct TextExample8 {
     Column() {
       Menu() {
         MenuItemGroup() {
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 1", labelInfo: "" })
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          MenuItem({ startIcon: $r('app.media.startIcon'), content: "Right Click Menu 1", labelInfo: "" })
             .onClick((event) => {
               this.controller.closeSelectionMenu();
             })
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 2", labelInfo: "" })
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 3", labelInfo: "" })
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          MenuItem({ startIcon: $r('app.media.startIcon'), content: "Right Click Menu 2", labelInfo: "" })
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          MenuItem({ startIcon: $r('app.media.startIcon'), content: "Right Click Menu 3", labelInfo: "" })
         }
       }
       .MenuStyles()
@@ -1804,12 +1807,15 @@ struct TextExample8 {
     Column() {
       Menu() {
         MenuItemGroup() {
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 1", labelInfo: "" })
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          MenuItem({ startIcon: $r('app.media.startIcon'), content: "Long Press Image Menu 1", labelInfo: "" })
             .onClick((event) => {
               this.controller.closeSelectionMenu();
             })
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 2", labelInfo: "" })
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 3", labelInfo: "" })
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          MenuItem({ startIcon: $r('app.media.startIcon'), content: "Long Press Image Menu 2", labelInfo: "" })
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          MenuItem({ startIcon: $r('app.media.startIcon'), content: "Long Press Image Menu 3", labelInfo: "" })
         }
       }
       .MenuStyles()
@@ -1821,12 +1827,15 @@ struct TextExample8 {
     Column() {
       Menu() {
         MenuItemGroup() {
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 1", labelInfo: "" })
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          MenuItem({ startIcon: $r('app.media.startIcon'), content: "Select Mixed Menu 1", labelInfo: "" })
             .onClick((event) => {
               this.controller.closeSelectionMenu();
             })
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 2", labelInfo: "" })
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 3", labelInfo: "" })
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          MenuItem({ startIcon: $r('app.media.startIcon'), content: "Select Mixed Menu 2", labelInfo: "" })
+          // $r('app.media.startIcon')需要替换为开发者所需的图像资源文件。
+          MenuItem({ startIcon: $r('app.media.startIcon'), content: "Select Mixed Menu 3", labelInfo: "" })
         }
       }
       .MenuStyles()

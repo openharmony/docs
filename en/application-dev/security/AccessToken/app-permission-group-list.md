@@ -39,9 +39,9 @@
 ## Calendar
 
 - [ohos.permission.READ_CALENDAR](permissions-for-all-user.md#ohospermissionread_calendar)
-
+ 
 - [ohos.permission.WRITE_CALENDAR](permissions-for-all-user.md#ohospermissionwrite_calendar)
-
+ 
 <!--Del-->
 - [ohos.permission.READ_WHOLE_CALENDAR](permissions-for-system-apps-user.md#ohospermissionread_whole_calendar)
 
@@ -74,9 +74,11 @@
 
 - [ohos.permission.READ_AUDIO](restricted-permissions.md#ohospermissionread_audio)
 
-## <!--RP2-->Ad Tracking<!--RP2End-->
+<!--RP2-->
+## Ad Tracking
 
 - [ohos.permission.APP_TRACKING_CONSENT](permissions-for-all-user.md#ohospermissionapp_tracking_consent)
+<!--RP2End-->
 
 <!--Del-->
 ## Installed Bundle List
@@ -130,11 +132,14 @@
 
 - [ohos.permission.READ_PASTEBOARD](restricted-permissions.md#ohospermissionread_pasteboard)
 
+## Screenshots
+
+- [ohos.permission.CUSTOM_SCREEN_CAPTURE](permissions-for-all-user.md#ohospermissioncustom_screen_capture)
+
 ## Directory
 
 > **NOTE**
->
-> The following permissions are available only to 2-in-1 device applications.
+> <br>The permissions are available only to 2-in-1 device applications.
 
 - [ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY](permissions-for-all-user.md#ohospermissionread_write_download_directory)
 
@@ -144,7 +149,6 @@
 ## Files<sup>(deprecated)</sup>
 
 > **NOTE**
->
 > This permission group is deprecated since API version 12.
 
 <!--Del-->
@@ -160,7 +164,7 @@
 
 - To read or write images or videos in the media library:
 
-  - (Recommended) Use [Picker](../../media/medialibrary/photoAccessHelper-photoviewpicker.md) to read images and videos in the media library, and use [SaveButton](../../media/medialibrary/photoAccessHelper-savebutton.md) to save images and videos in the media library. This solution is recommended because the application does not need any permission.
+  - (Recommended) Use [Picker](../../media/medialibrary/photoAccessHelper-photoviewpicker.md) to read images and videos in the media library, and use the [SaveButton/authorization pop-up window](../../media/medialibrary/photoAccessHelper-savebutton.md) to save images and videos in the media library. This solution is recommended because the application does not need any permission.
   - Request the restricted permission [ohos.permission.READ_IMAGEVIDEO](restricted-permissions.md#ohospermissionread_imagevideo) or [ohos.permission.WRITE_IMAGEVIDEO](restricted-permissions.md#ohospermissionwrite_imagevideo).
 
 - To read audio clips in the media library:

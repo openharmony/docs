@@ -251,7 +251,7 @@ For a class that extends **Set**, the value changes of the **Set** instance can 
 
 6. The variables decorated by \@ObjectLink are read-only and cannot be assigned values. Otherwise, an error "Cannot set property when setter is undefined" is reported during runtime. If you need to replace all variables decorated by \@ObjectLink, you can replace them in the parent component.
 
-  [Incorrect Usage]
+  **Incorrect Usage**
 
   ```ts
   @Observed
@@ -292,7 +292,7 @@ For a class that extends **Set**, the value changes of the **Set** instance can 
   }
   ```
 
-  [Correct Usage]
+  **Correct Usage**
 
   ```ts
   @Observed
@@ -967,7 +967,7 @@ struct Child {
 
 It is not allowed to assign a value to an @ObjectLink decorated variable in the child component.
 
-[Incorrect Usage]
+**Incorrect Usage**
 
 ```ts
 @Observed
@@ -1018,7 +1018,7 @@ this.testNum = new Info(47);
 
 This is not allowed. For @ObjectLink that implements two-way data synchronization, assigning a value is equivalent to updating the array item or class property in the parent component, which is not supported in TypeScript/JavaScript and will result in a runtime error.
 
-[Correct Usage]
+**Correct Usage**
 
 ```ts
 @Observed
@@ -1067,7 +1067,7 @@ If you find your application UI not updating after a property in a nested object
 
 Each decorator has its scope of observable changes, and only those observed changes can cause the UI to update. The \@Observed decorator can observe the property changes of nested objects, while other decorators can observe only the changes at the first layer.
 
-[Incorrect Usage]
+**Incorrect Usage**
 
 In the following example, some UI components are not updated.
 
@@ -1168,7 +1168,7 @@ struct MyView {
   - Construct a child component for separate rendering of the **Child** instance. This child component can use \@ObjectLink **child : Child** or \@Prop **child : Child**. \@ObjectLink is generally used, unless local changes to the **Child** object are required.
   - The nested **Child** object must be decorated by \@Observed. When a **Child** object is created in **Cousin** (**Cousin(10, 20, 30)** in this example), it is wrapped in the ES6 proxy. When the **Child** property changes to **this.cousin.child.childId += 1**, the \@ObjectLink decorated variable is notified of the change.
 
-[Correct Usage]
+**Correct Usage**
 
 The following example uses \@Observed/\@ObjectLink to observe property changes for nested objects.
 
@@ -1280,7 +1280,7 @@ struct MyView {
 
 ### UI Not Updated on property Changes in Complex Nested Objects
 
-[Incorrect Usage]
+**Incorrect Usage**
 
 The following example creates a child component with an \@ObjectLink decorated variable to render **ParentCounter** with nested properties. Specifically, **SubCounter** nested in **ParentCounter** is decorated with \@Observed.
 
@@ -1384,7 +1384,7 @@ However, when **this.counter[0].setSubCounter(10)** is called in **onClick** of 
 
 However, when **this.counter[0].incrCounter()** is called for the first click event, it marks \@ObjectLink **value: ParentCounter** in the **CounterComp** component as changed. In this case, an update of **Text('${this.value.subCounter.counter}')** is triggered. If **this.counter[0].incrCounter()** is deleted from the first click event, the UI cannot be updated.
 
-[Correct Usage]
+**Correct Usage**
 
 To solve the preceding problem, you can use the following method to directly observe the properties in **SubCounter** so that the **this.counter[0].setSubCounter(10)** API works:
 
@@ -1625,7 +1625,7 @@ The following figure shows how \@ObjectLink works.
 
 ![en-us_image_0000001651665921](figures/en-us_image_0000001651665921.png)
 
-[Incorrect Usage]
+**Incorrect Usage**
 
 \@Prop is used instead of \@ObjectLink. Click **Text(this.subValue.counter: ${this.subValue.counter})**, and the UI is re-rendered properly. However, when you click **Text(this.value.counter: increase 7)**, \@Prop makes a local copy of the variable, and the first **Text** of **CounterComp** is not re-rendered.
 
@@ -1658,7 +1658,7 @@ The following figure shows how \@Prop works.
 
 ![en-us_image_0000001602146116](figures/en-us_image_0000001602146116.png)
 
-[Correct Usage]
+**Correct Usage**
 
 Make only one copy of \@Prop value: ParentCounter from **ParentComp** to **CounterComp**. Do not make another copy of **SubCounter**.
 
@@ -1783,7 +1783,7 @@ In state management, @Observed decorated classes are wrapped with a proxy. When 
 
 If the value change of a member variable occurs in the class constructor, the change does not pass through the proxy (because the change occurs in the data source). Therefore, even if the change is successful with a timer in the class constructor, the UI cannot be re-rendered.
 
-[Incorrect Usage]
+**Incorrect Usage**
 
 ```ts
 @Observed
@@ -1829,7 +1829,7 @@ struct Index {
 
 In the preceding example, a timer is used in the constructor of **RenderClass**. Though the value of **waitToRender** changes 1 second later, the UI is not re-rendered. After the button is clicked to forcibly refresh the **Text** component, you can see that the value of **waitToRender** is changed to **true**.
 
-[Correct Usage]
+**Correct Usage**
 
 ```ts
 @Observed
@@ -1982,7 +1982,7 @@ The **Text** component in **Parent** is not re-rendered because **this.info.pers
 
 In the **build** method, when the variable decorated by @Observed and @ObjectLink is of the object type and is called using the **a.b(this.object)** format, the original object of **this.object** is passed in the b method. If the property of **this.object** is changed, the UI cannot be re-rendered. In the following example, the UI re-render is not triggered when **this.weather.temperature** in the component is changed by using a static method or using **this** to call the internal method of the component.
 
-[Incorrect Usage]
+**Incorrect Usage**
 
 ```ts
 @Observed
@@ -2052,7 +2052,7 @@ struct Child {
 
 You can add a proxy for **this.weather** to re-render the UI by assigning a value to the variable and then calling the variable.
 
-[Correct Usage]
+**Correct Usage**
 
 ```ts
 @Observed

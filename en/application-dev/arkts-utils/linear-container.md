@@ -4,7 +4,7 @@
 Linear containers, underpinned by arrays, implement a data structure that enables sequential access. There are several types of linear containers: ArrayList, Vector, List, LinkedList, Deque, Queue, and Stack.
 
 
-Linear containers prioritize data access speed, enabling operations such as adding, removing, modifying, and accessing elements with a single bytecode instruction at runtime.
+Linear containers optimize data access speed, enabling operations such as adding, removing, modifying, and accessing elements with a single bytecode instruction at runtime.
 
 ## Comparison of Linear Container Types
 
@@ -13,10 +13,10 @@ Linear containers prioritize data access speed, enabling operations such as addi
 | ArrayList | Dynamic array, which occupies a contiguous block of memory. This type is recommended for frequent element access.|
 | List | Singly linked list, where memory can be non-contiguous. This type is recommended for frequent insertions and deletions when using a singly linked list.|
 | LinkedList | Doubly linked list, where memory can be non-contiguous. This type is recommended for frequent insertions and deletions when using a doubly linked list.|
-| Deque | Double-ended queue, which allows element operations at both ends, and occupies a contiguous block of memory. This type is recommended for frequent access and manipulation of head and tail elements.|
-| Queue | Queue, which inserts elements at the tail and removes them from the head, and occupies a contiguous block of memory. This type is suitable for First In First Out (FIFO) scenarios.|
-| Stack | Stack, which allows insertions and deletions only at one end, and occupies a contiguous block of memory. This type is suitable for Last In First Out (LIFO) scenarios.|
-| Vector | Dynamic array, which occupies a contiguous block of memory. This type is no longer maintained; use ArrayList instead.|
+| Deque | Double-ended queue, which allows element operations at both ends and occupies a contiguous block of memory. This type is recommended for frequent access and manipulation of head and tail elements.
+| Queue | Queue, which inserts elements at the tail and removes them from the head, and occupies a contiguous block of memory. This type is suitable for First In First Out (FIFO) scenarios.
+| Stack | Stack, which allows insertions and deletions only at one end, and occupies a contiguous block of memory. It is applicable to first-in-last-out scenarios.|
+| Vector | Dynamic array, which occupies a contiguous block of memory. This type is no longer maintained; use ArrayList instead.
 
 ## ArrayList
 
@@ -31,7 +31,7 @@ Common APIs for adding, removing, modifying, and accessing elements in ArrayList
 | Adding elements| add(element: T) | Adds an element to the end of the array.|
 | Adding elements| insert(element: T, index: number) | Inserts an element at the specified index.|
 | Accessing elements| arr[index: number] | Obtains the value at the specified index.|
-| Accessing elements| forEach(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) =&gt; void, thisArg?: Object) | Iterates over all elements in the ArrayList. **callbackFn** is a callback function used to process each element in the **forEach** method. It receives the current element, index, and original list as parameters.|
+| Accessing elements| forEach(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) =&gt; void, thisArg?: Object) | Iterates over all elements in the ArrayList. `callbackFn` is a callback function used to process each element in the `forEach` method. It receives the current element, index, and original list as parameters.|
 | Accessing elements| \[Symbol.iterator]():IterableIterator&lt;T&gt; | Creates an iterator for data access.|
 | Modifying elements| arr[index] = xxx | Modifies the value at the specified index.|
 | Removing elements| remove(element: T) | Removes the first matching element.|
@@ -45,14 +45,14 @@ Unlike [LinkedList](../reference/apis-arkts/js-apis-linkedlist.md), which is a d
 
 If elements need to be frequently inserted and deleted and a singly linked list is required, you are advised to use List.
 
-Common APIs for adding, removing, modifying, and accessing elements in List are as follows:
+Common APIs for adding, removing, modifying, and accessing elements in List are as follows.
 
 | Operation| API| Description|
 | --------- | ------- | ------- |
 | Adding elements| add(element: T) | Adds an element to the end of the array.|
 | Adding elements| insert(element: T, index: number) | Adds an element at the specified index.|
 | Accessing elements| get(index: number) | Obtains the element at the specified index.|
-| Accessing elements| list[index: number] | Obtains the element at the specified index. However, this will result in undefined behavior.|
+| Accessing elements| list[index: number] | Obtains the element at the specified index. However, this will result in undefined behavior. |
 | Accessing elements| getFirst() | Obtains the first element.|
 | Accessing elements| getLast() | Obtains the last element.|
 | Accessing elements| getIndexOf(element: T) | Obtains the index of the first matching element.|
@@ -73,16 +73,16 @@ Unlike [List](../reference/apis-arkts/js-apis-list.md), which is a singly linked
 
 Compared with [ArrayList](../reference/apis-arkts/js-apis-arraylist.md), LinkedList is more efficient for inserting data, whereas ArrayList is more efficient for querying data.
 
-If elements need to be frequently inserted and deleted and a doubly linked list is required, you are advised to use LinkedList.
+This type is recommended for frequent insertions and deletions when using a doubly linked list.
 
-Common APIs for adding, removing, modifying, and accessing elements in LinkedList are as follows:
+You can use the **get**/**set** APIs to modify the stored elements. Common APIs for adding, removing, modifying, and accessing elements in LinkedList are as follows:
 
 | Operation| API| Description|
 | --------- | ------- | ------- |
 | Adding elements| add(element: T) | Adds an element to the end of the array.|
 | Adding elements| insert(element: T, index: number) | Inserts an element at the specified index.|
 | Accessing elements| get(index: number) | Obtains the element at the specified index.|
-| Accessing elements| list[index: number] | Obtains the element at the specified index. However, this will result in undefined behavior.|
+| Accessing elements| list[index: number] | Obtains the element at the specified index. However, this will result in undefined behavior. |
 | Accessing elements| getFirst() | Obtains the first element.|
 | Accessing elements| getLast() | Obtains the last element.|
 | Accessing elements| getIndexOf(element: T) | Obtains the index of the first matching element.|
@@ -98,15 +98,15 @@ Common APIs for adding, removing, modifying, and accessing elements in LinkedLis
 
 [Deque](../reference/apis-arkts/js-apis-deque.md) is used to construct a double-ended queue (deque) that follows the principles of FIFO and LIFO. It allows insertion and removal of elements at both ends.
 
-Defined by generics, Deque requires a contiguous block of memory for storage, with an initial capacity of 8 and supports dynamic resizing, doubling its size each time. Deque is implemented using a circular queue, ensuring efficient enqueue and dequeue operations.
+Defined by generics, Deque requires a contiguous block of memory for storage, with an initial capacity of 8 and supports dynamic resizing, increasing its size by 2 times the original capacity each time. Deque is implemented using a circular queue, ensuring efficient enqueue and dequeue operations.
 
 Unlike [Queue](../reference/apis-arkts/js-apis-queue.md), which only allows element removal at the head and insertion at the tail, Deque allows operations at both ends.
 
-Compared with [Vector](../reference/apis-arkts/js-apis-vector.md), both support element operations at both ends, but Deque does not allow insertions in the middle. Deque is more efficient for inserting and deleting elements at the head, whereas Vector is more efficient for accessing elements.
+Compared with [Vector](../reference/apis-arkts/js-apis-vector.md), both support element operations at both ends, but Deque does not allow insertions in the middle. Deque is more efficient than a Vector for inserting and deleting elements at the front, whereas a Vector excels in element access efficiency.
 
-Deque is recommended for frequent insertions and deletions at both ends of the container.
+Deque is recommended for frequent insertions and deletions at both ends.
 
-Common APIs for adding, removing, modifying, and accessing elements in Deque are as follows:
+Common APIs for adding, deleting, modifying, and accessing elements in Deque are as follows.  
 
 | Operation| API| Description|
 | --------- | ------- | ------- |
@@ -123,13 +123,13 @@ Common APIs for adding, removing, modifying, and accessing elements in Deque are
 
 [Queue](../reference/apis-arkts/js-apis-queue.md) is used to construct a queue that follows the FIFO principle.
 
-Defined by generics, Queue requires a contiguous block of memory for storage, with an initial capacity of 8 and supports dynamic resizing, doubling its size each time. 
+Defined by generics, Queue requires a contiguous block of memory for storage, with an initial capacity of 8 and supports dynamic resizing, doubling its size each time.
 
 Queue is implemented using a circular queue, ensuring efficient enqueue and dequeue operations.
 
-Unlike [Deque](../reference/apis-arkts/js-apis-deque.md), which supports insertion and removal at both the ends, Queue supports insertion at one end and removal at the other.
+Unlike [Deque](../reference/apis-arkts/js-apis-deque.md), which supports insertion and removal at both the ends, Queue supports insertion at the tail and removal at the head.
 
-Queue is suitable for FIFO scenarios.
+Queue is suitable for first-in-first-out scenarios.
 
 Common APIs for adding, removing, modifying, and accessing elements in Queue are as follows:
 
@@ -149,7 +149,7 @@ Defined by generics, Stack requires a contiguous block of memory for storage, wi
 
 Unlike [Queue](../reference/apis-arkts/js-apis-queue.md), which is implemented using a circular queue and allows removal only from the front and addition only at the rear, Stack supports insertion and removal at one end.
 
-Stack is suitable for LOFI scenarios.
+Stack is suitable for first-in-last-out scenarios.
 
 Common APIs for adding, removing, modifying, and accessing elements in Stack are as follows:
 
@@ -168,9 +168,9 @@ Common APIs for adding, removing, modifying, and accessing elements in Stack are
 >
 > Since API version 9, this API is no longer maintained. Use [ArrayList](../reference/apis-arkts/js-apis-arraylist.md) instead.
 
-[Vector](../reference/apis-arkts/js-apis-vector.md) is a continuous storage structure used to construct a global array object. Defined by generics, Vector requires a contiguous block of memory for storage, with an initial capacity of 10 and supports dynamic resizing, doubling its size each time.
+[Vector](../reference/apis-arkts/js-apis-vector.md) is a continuous storage structure used to create a global array object. It is defined based on generics and requires that the storage space be contiguous. The initial capacity of Vector is 10, and it supports dynamic resizing, doubling its size each time.
 
-Vector, like [ArrayList](../reference/apis-arkts/js-apis-arraylist.md), is based on arrays but provides more array manipulation interfaces. In addition to operator access, Vector provides the getter and setter to provide more comprehensive verification and error tolerance mechanisms.
+Vector, like [ArrayList](../reference/apis-arkts/js-apis-arraylist.md), is based on arrays but provides more array manipulation APIs, supports operator access, and provides **get** and **set** APIs. In addition, Vector provides a more comprehensive verification and fault tolerance mechanism to meet requirements in different scenarios.
 
 Common APIs for adding, removing, modifying, and accessing elements in Vector are as follows:
 

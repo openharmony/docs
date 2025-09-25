@@ -1,30 +1,30 @@
 # Overview of Sendable Objects
 
+
 In traditional JS engines, there is only one way to optimize the overhead of concurrent object communication: moving the implementation to the native side and reducing costs through the transfer or sharing of [Transferable objects](transferabled-object.md). However, this solution falls short of addressing the extensive demand for concurrent object communication. The issue remains unresolved in current JS engine implementations.
 
 ArkTS introduces the concept of Sendable objects, which support pass-by-reference during concurrent communication.
 
-Sendable objects are designed to be shareable across threads, maintaining a consistent reference to the same JS object before and after crossing thread boundaries. If a Sendable object contains JS or native content, it can be directly shared. However, if the underlying implementation is native, thread safety must be carefully considered. The following figure shows the communication process.
+Sendable objects are designed to be shareable across threads, maintaining a consistent reference to the same JS object before and after crossing thread boundaries. If a Sendable object contains JS or native content, it can be directly shared. However, if the underlying implementation is native, thread safety must be ensured. The following figure shows the communication process.
 
 ![sendable](figures/sendable.png)
 
 Unlike other ArkTS objects, Sendable objects must have a fixed type at runtime.
 
-When multiple concurrent instances attempt to update Sendable data at the same time, data races occurs, such as multithreaded operations on [ArkTS shared container](arkts-collections-introduction.md). To address data race issues between concurrent instances and manage the timing of multithreaded data processing, ArkTS introduces the mechanisms of [asynchronous lock](arkts-async-lock-introduction.md) and [asynchronous waiting](arkts-condition-variable-introduction.md). Additionally, objects can be frozen using the [object freezing interface](sendable-freeze.md), making them read-only and thereby eliminating the risk of data races.
+When multiple concurrent instances attempt to update Sendable data at the same time, data races occur, such as multithreaded operations on [ArkTS shared container](arkts-collections-introduction.md). To address data race issues between concurrent instances and manage the timing of multithreaded data processing, ArkTS introduces the mechanisms of [asynchronous lock](arkts-async-lock-introduction.md) and [asynchronous waiting](arkts-condition-variable-introduction.md). Additionally, objects can be frozen using the [object freezing interface](sendable-freeze.md), making them read-only and thereby eliminating the risk of data races.
 
 Sendable objects offer efficient communication between concurrent instances by means of pass by reference. They are generally suitable for scenarios where large custom objects need to be transferred between threads, such as when a child thread reads data from a database and returns it to the main thread. For details about the code implementation, see [Transmitting Large Data Across Concurrent Instances](sendable-guide.md#transmitting-large-data-across-concurrent-instances).
-
 ## Basic Concepts
 
 ### Sendable Protocol
 
-The Sendable protocol defines the Sendable object system and its specifications in ArkTS. Data that complies with the Sendable protocol (referred to as Sendable objects) can be passed between concurrent instances in ArkTS.
+The Sendable protocol defines the Sendable object system and its specifications in ArkTS. Data that complies with the Sendable protocol (referred to as Sendable data) can be passed between concurrent instances in ArkTS.
 
 By default, Sendable data is passed by reference between concurrent instances (including the UI main thread, TaskPool thread, and Worker thread). Pass-by-copy is also supported.
 
 ### ISendable
 
-The interface **ISendable** is introduced to the ArkTS common library [@arkts.lang](../reference/apis-arkts/js-apis-arkts-lang.md). It has no required methods or properties. ISendable is the parent type of all Sendable types except for null and undefined. ISendable is mainly used when you want to customize Sendable data structures. The class decorator [@Sendable decorator](#sendable-decorator) is the syntax sugar for implementing ISendable.
+The interface **ISendable** is introduced to the ArkTS common library [@arkts.lang](../reference/apis-arkts/js-apis-arkts-lang.md). It has no methods or properties. ISendable is the parent type of all Sendable types except for null and undefined. ISendable is mainly used when you want to customize Sendable data structures. The class decorator [@Sendable decorator](#sendable-decorator) is the syntax sugar for implementing ISendable.
 
 ### Sendable Class
 
@@ -101,13 +101,13 @@ A Sendable interface must meet the following requirements:
 To implement pass-by-reference of [Sendable data](#sendable-data-types) between different concurrent instances, Sendable objects are allocated in a shared heap to achieve memory sharing across concurrent instances.
 
 
-The shared heap is a process-level heap space. Unlike the local heap of a virtual machine, which can only be accessed by a single concurrent instance, the shared heap can be accessed by all threads. The cross-thread behavior of a Sendable object is pass-by-reference. Therefore, a Sendable object may be referenced by multiple concurrent instances, and its liveness depends on whether any concurrent instance holds a reference to it.
+The shared heap is a process-level heap space. Unlike the local heap of a virtual machine, which can only be accessed by a single concurrent instance, the shared heap can be accessed by all threads. The cross-thread behavior of Sendable objects is pass-by-reference. Therefore, a Sendable object may be referenced by multiple concurrent instances, and its liveness depends on whether any concurrent instance holds a reference to it.
 
-Relationship between the shared heap and local heap
+**Relationship between the shared heap and local heap**
 
 ![image_0000002001521153](figures/image_0000002001521153.png)
 
-The local heap of each concurrent instance is isolated, whereas the shared heap is a process-level heap that can be referenced by all concurrent instances. However, the shared heap cannot reference objects in the local heap.
+The local heap of each concurrent instance is isolated, whereas the shared heap is a process-level heap that can be shared by all concurrent instances. However, the shared heap cannot reference objects in the local heap.
 
 
 ## \@Sendable Decorator

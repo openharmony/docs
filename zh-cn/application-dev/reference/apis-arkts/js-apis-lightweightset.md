@@ -747,7 +747,7 @@ equal(obj: Object): boolean
 
 > **说明：**
 >
-> 此接口从API version 10开始支持，从API version 12开始废弃。无替代接口。
+> 此接口从API version 8开始支持，从API version 12开始废弃。无替代接口。
 
 **系统能力：** SystemCapability.Utils.Lang
 

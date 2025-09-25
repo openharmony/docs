@@ -1,13 +1,13 @@
-# ApplicationContext (应用级别的上下文)
+# ApplicationContext (应用上下文)
+
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @zexin_c-->
 <!--Designer: @li-weifeng2-->
 <!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-ApplicationContext模块继承自[Context](js-apis-inner-application-context.md)，为开发者提供应用级别的上下文的能力，包括提供注册及取消注册应用内组件生命周期的监听接口
-
-ApplicationContext可以通过[getApplicationContext](js-apis-app-ability-application.md#applicationgetapplicationcontext14)接口获取。
+ApplicationContext作为应用上下文，继承自[Context](js-apis-inner-application-context.md)，提供了应用生命周期监听、进程管理、应用环境设置等应用级别的管控能力。
 
 > **说明：**
 >
@@ -41,7 +41,7 @@ on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| number | 返回此次注册的callbackID（每次注册该ID会自增+1，当超过监听上限数量2^63-1时，返回-1），该ID用于在[ApplicationContext.off('abilityLifecycle')](#applicationcontextoffabilitylifecycle)方法中取消注册对应的callback。 |
+| number | 返回此次注册的callbackID，该ID用于在[ApplicationContext.off('abilityLifecycle')](#applicationcontextoffabilitylifecycle)方法中取消注册对应的callback。 |
 
 **错误码**：
 
@@ -61,38 +61,38 @@ let lifecycleId: number;
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
-    console.log('MyAbility onCreate');
+    console.info('MyAbility onCreate');
     let AbilityLifecycleCallback: AbilityLifecycleCallback = {
       onAbilityCreate(ability) {
-        console.log(`AbilityLifecycleCallback onAbilityCreate ability: ${ability}`);
+        console.info(`AbilityLifecycleCallback onAbilityCreate ability: ${ability}`);
       },
       onWindowStageCreate(ability, windowStage) {
-        console.log(`AbilityLifecycleCallback onWindowStageCreate ability: ${ability}`);
-        console.log(`AbilityLifecycleCallback onWindowStageCreate windowStage: ${windowStage}`);
+        console.info(`AbilityLifecycleCallback onWindowStageCreate ability: ${ability}`);
+        console.info(`AbilityLifecycleCallback onWindowStageCreate windowStage: ${windowStage}`);
       },
       onWindowStageActive(ability, windowStage) {
-        console.log(`AbilityLifecycleCallback onWindowStageActive ability: ${ability}`);
-        console.log(`AbilityLifecycleCallback onWindowStageActive windowStage: ${windowStage}`);
+        console.info(`AbilityLifecycleCallback onWindowStageActive ability: ${ability}`);
+        console.info(`AbilityLifecycleCallback onWindowStageActive windowStage: ${windowStage}`);
       },
       onWindowStageInactive(ability, windowStage) {
-        console.log(`AbilityLifecycleCallback onWindowStageInactive ability: ${ability}`);
-        console.log(`AbilityLifecycleCallback onWindowStageInactive windowStage: ${windowStage}`);
+        console.info(`AbilityLifecycleCallback onWindowStageInactive ability: ${ability}`);
+        console.info(`AbilityLifecycleCallback onWindowStageInactive windowStage: ${windowStage}`);
       },
       onWindowStageDestroy(ability, windowStage) {
-        console.log(`AbilityLifecycleCallback onWindowStageDestroy ability: ${ability}`);
-        console.log(`AbilityLifecycleCallback onWindowStageDestroy windowStage: ${windowStage}`);
+        console.info(`AbilityLifecycleCallback onWindowStageDestroy ability: ${ability}`);
+        console.info(`AbilityLifecycleCallback onWindowStageDestroy windowStage: ${windowStage}`);
       },
       onAbilityDestroy(ability) {
-        console.log(`AbilityLifecycleCallback onAbilityDestroy ability: ${ability}`);
+        console.info(`AbilityLifecycleCallback onAbilityDestroy ability: ${ability}`);
       },
       onAbilityForeground(ability) {
-        console.log(`AbilityLifecycleCallback onAbilityForeground ability: ${ability}`);
+        console.info(`AbilityLifecycleCallback onAbilityForeground ability: ${ability}`);
       },
       onAbilityBackground(ability) {
-        console.log(`AbilityLifecycleCallback onAbilityBackground ability: ${ability}`);
+        console.info(`AbilityLifecycleCallback onAbilityBackground ability: ${ability}`);
       },
       onAbilityContinue(ability) {
-        console.log(`AbilityLifecycleCallback onAbilityContinue ability: ${ability}`);
+        console.info(`AbilityLifecycleCallback onAbilityContinue ability: ${ability}`);
       }
     }
     // 1.通过context属性获取applicationContext
@@ -101,9 +101,9 @@ export default class EntryAbility extends UIAbility {
       // 2.通过applicationContext注册监听应用内生命周期
       lifecycleId = applicationContext.on('abilityLifecycle', AbilityLifecycleCallback);
     } catch (paramError) {
-      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+      console.error(`error code: ${(paramError as BusinessError).code}, error msg: ${(paramError as BusinessError).message}`);
     }
-    console.log(`registerAbilityLifecycleCallback lifecycleId: ${lifecycleId}`);
+    console.info(`registerAbilityLifecycleCallback lifecycleId: ${lifecycleId}`);
   }
 }
 ```
@@ -145,17 +145,17 @@ let lifecycleId: number;
 export default class EntryAbility extends UIAbility {
   onDestroy() {
     let applicationContext = this.context.getApplicationContext();
-    console.log(`stage applicationContext: ${applicationContext}`);
+    console.info(`stage applicationContext: ${applicationContext}`);
     try {
       applicationContext.off('abilityLifecycle', lifecycleId, (error, data) => {
         if (error) {
           console.error(`unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}`);
         } else {
-          console.log(`unregisterAbilityLifecycleCallback success, data: ${JSON.stringify(data)}`);
+          console.info(`unregisterAbilityLifecycleCallback success, data: ${JSON.stringify(data)}`);
         }
       });
     } catch (paramError) {
-      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+      console.error(`error code: ${(paramError as BusinessError).code}, error code: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -182,7 +182,7 @@ off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码**：
 
@@ -203,11 +203,11 @@ let lifecycleId: number;
 export default class MyAbility extends UIAbility {
   onDestroy() {
     let applicationContext = this.context.getApplicationContext();
-    console.log(`stage applicationContext: ${applicationContext}`);
+    console.info(`stage applicationContext: ${applicationContext}`);
     try {
       applicationContext.off('abilityLifecycle', lifecycleId);
     } catch (paramError) {
-      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+      console.error(`error code: ${(paramError as BusinessError).code}, error msg: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -221,7 +221,7 @@ on(type: 'environment', callback: EnvironmentCallback): number
 
 > **说明：**
 >
-> 使用[onConfigurationUpdate](../apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)也可以实现对系统环境变量的监听。相较于onConfigurationUpdate接口，当前接口的使用场景更加灵活，不仅可以在应用组件中使用，还可以在页面中使用。
+> 使用[onConfigurationUpdate](../apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)也可以实现对系统环境变量的监听。相较于Ability的[onConfigurationUpdate](../apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)接口，当前接口的使用场景更加灵活，不仅可以在应用组件中使用，还可以在页面中使用，但是支持订阅的环境变量与Ability的[onConfigurationUpdate](../apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)接口存在差异，如不支持订阅direction、screenDensity、displayId，详见[Configuration](../apis-ability-kit/js-apis-app-ability-configuration.md#configuration)中各个环境变量的说明。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -238,7 +238,7 @@ on(type: 'environment', callback: EnvironmentCallback): number
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| number | 返回此次注册的callbackID（每次注册该ID会自增+1，当超过监听上限数量2^63-1时，返回-1），该ID用于在[ApplicationContext.off('environment')](#applicationcontextoffenvironment)方法中取消注册对应的callback。 |
+| number | 返回此次注册的callbackID，该ID用于在[ApplicationContext.off('environment')](#applicationcontextoffenvironment)方法中取消注册对应的callback。 |
 
 **错误码**：
 
@@ -258,13 +258,13 @@ let callbackId: number;
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
-    console.log('MyAbility onCreate')
+    console.info('MyAbility onCreate')
     let environmentCallback: EnvironmentCallback = {
       onConfigurationUpdated(config) {
-        console.log(`onConfigurationUpdated config: ${JSON.stringify(config)}`);
+        console.info(`onConfigurationUpdated config: ${JSON.stringify(config)}`);
       },
       onMemoryLevel(level) {
-        console.log(`onMemoryLevel level: ${level}`);
+        console.info(`onMemoryLevel level: ${level}`);
       }
     };
     // 1.获取applicationContext
@@ -273,9 +273,9 @@ export default class EntryAbility extends UIAbility {
       // 2.通过applicationContext注册监听系统环境变化
       callbackId = applicationContext.on('environment', environmentCallback);
     } catch (paramError) {
-      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+      console.error(`error code: ${(paramError as BusinessError).code}, error msg: ${(paramError as BusinessError).message}`);
     }
-    console.log(`registerEnvironmentCallback callbackId: ${callbackId}`);
+    console.info(`registerEnvironmentCallback callbackId: ${callbackId}`);
   }
 }
 ```
@@ -322,11 +322,11 @@ export default class EntryAbility extends UIAbility {
         if (error) {
           console.error(`unregisterEnvironmentCallback fail, err: ${JSON.stringify(error)}`);
         } else {
-          console.log(`unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}`);
+          console.info(`unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}`);
         }
       });
     } catch (paramError) {
-      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+      console.error(`error code: ${(paramError as BusinessError).code}, error msg: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -353,7 +353,7 @@ off(type: 'environment', callbackId: number): Promise\<void\>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码**：
 
@@ -416,7 +416,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class MyAbility extends UIAbility {
   onCreate() {
-    console.log('MyAbility onCreate');
+    console.info('MyAbility onCreate');
     let applicationStateChangeCallback: ApplicationStateChangeCallback = {
       onApplicationForeground() {
         console.info('applicationStateChangeCallback onApplicationForeground');
@@ -432,9 +432,9 @@ export default class MyAbility extends UIAbility {
       // 2.通过applicationContext注册当前应用进程状态监听
       applicationContext.on('applicationStateChange', applicationStateChangeCallback);
     } catch (paramError) {
-      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+      console.error(`error code: ${(paramError as BusinessError).code}, error msg: ${(paramError as BusinessError).message}`);
     }
-    console.log('Register applicationStateChangeCallback');
+    console.info('Register applicationStateChangeCallback');
   }
 }
 ```
@@ -444,10 +444,6 @@ export default class MyAbility extends UIAbility {
 off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
 取消对当前应用进程状态变化的监听。使用callback异步回调。仅支持主线程调用。
-
-> **说明：**
->
-> 使用该接口前，需要先使用[ApplicationContext.on('applicationStateChange')](#applicationcontextonapplicationstatechange10)注册事件监听。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -503,7 +499,7 @@ export default class MyAbility extends UIAbility {
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
-获取有关运行进程的信息。使用Promise异步回调。
+获取运行中的进程信息。使用Promise异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -535,9 +531,9 @@ export default class MyAbility extends UIAbility {
   onForeground() {
     let applicationContext = this.context.getApplicationContext();
     applicationContext.getRunningProcessInformation().then((data) => {
-      console.log(`The process running information is: ${JSON.stringify(data)}`);
+      console.info(`The process running information is: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
-      console.error(`error: ${JSON.stringify(error)}`);
+      console.error(`error code: ${error.code}, error msg: ${error.message}`);
     });
   }
 }
@@ -547,7 +543,7 @@ export default class MyAbility extends UIAbility {
 
 getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void
 
-获取有关运行进程的信息。使用callback异步回调。
+获取运行中的进程信息。使用callback异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -581,7 +577,7 @@ export default class MyAbility extends UIAbility {
       if (err) {
         console.error(`getRunningProcessInformation failed, err: ${JSON.stringify(err)}`);
       } else {
-        console.log(`The process running information is: ${JSON.stringify(data)}`);
+        console.info(`The process running information is: ${JSON.stringify(data)}`);
       }
     })
   }
@@ -606,7 +602,7 @@ killAllProcesses(): Promise\<void\>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码**：
 
@@ -654,7 +650,7 @@ killAllProcesses(clearPageStack: boolean): Promise\<void\>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码**：
 
@@ -832,7 +828,7 @@ export default class MyAbility extends UIAbility {
 
 clearUpApplicationData(): Promise\<void\>
 
-清理应用本身的数据，同时撤销应用向用户申请的权限。使用Promise异步回调。仅支持主线程调用。
+清理当前应用的数据，同时撤销应用向用户申请的权限。使用Promise异步回调。仅支持主线程调用。
 
 > **说明：**
 >
@@ -844,7 +840,7 @@ clearUpApplicationData(): Promise\<void\>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象，无返回结果。 |
 
 **错误码**：
 
@@ -872,7 +868,7 @@ export default class MyAbility extends UIAbility {
 
 clearUpApplicationData(callback: AsyncCallback\<void\>): void
 
-清理应用本身的数据，同时撤销应用向用户申请的权限。使用callback异步回调。仅支持主线程调用。
+清理当前应用的数据，同时撤销应用向用户申请的权限。使用callback异步回调。仅支持主线程调用。
 
 > **说明：**
 >
@@ -1034,7 +1030,6 @@ setFont(font: string): void
 **示例：**
 
 ```ts
-import { font } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 
 @Entry
@@ -1046,10 +1041,10 @@ struct Index {
   aboutToAppear() {
     this.getUIContext().getFont().registerFont({
       familyName: 'fontName',
-      familySrc: $rawfile('font/medium.ttf')
-    })
+      familySrc: $rawfile('font/medium.ttf')  // 'font/medium.ttf'仅作为示例，实际使用时请替换为真实的字体资源文件。
+    });
 
-    this.context.getApplicationContext().setFont("fontName");
+    this.context.getApplicationContext().setFont('fontName');
   }
 
   build() {
@@ -1070,12 +1065,11 @@ struct Index {
 
 setSupportedProcessCache(isSupported : boolean): void
 
-设置当前应用的进程是否支持缓存后快速启动。仅支持主线程调用。
+设置当前应用进程是否支持进程资源的缓存，便于应用再次启动时复用缓存的进程资源。仅支持主线程调用。
 
 该接口仅对单个进程实例生效，不同进程实例互不影响。应用进程实例销毁后，已设置的状态不保留，需要重新设置。
 
 > **说明：**
-> - 当前仅支持2in1、phone设备。
 > - 该接口仅表示应用自身是否为缓存后快速启动做好了准备，还需综合其他条件来判断最终是否为应用启用快速启动。
 > - 为了确保该接口在进程退出前生效，调用时机应尽量提前。建议在[AbilityStage](../../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)的`onCreate()`中调用该接口。
 > - 在同一进程多次调用该接口时，会以最后一次调用的结果为准。当存在多个AbilityStage时，为了确保结果符合预期，需要在各个AbilityStage中分别调用该接口并配置相同的取值。
@@ -1084,10 +1078,12 @@ setSupportedProcessCache(isSupported : boolean): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**设备行为差异**：该接口仅在Phone和2in1设备中可正常调用，在其他设备中返回801错误码。
+
 **参数：**
 | 参数名        | 类型     | 必填 | 说明                       |
 | ------------- | -------- | ---- | -------------------------- |
-| isSupported | boolean | 是 | 表示应用是否支持缓存后快速启动。true表示支持，false表示不支持。 |
+| isSupported | boolean | 是 | 表示应用是否支持进程资源的缓存。true表示支持，false表示不支持。 |
 
 **错误码**：
 
@@ -1171,11 +1167,9 @@ getCurrentInstanceKey(): string
 
 获取当前应用多实例的唯一实例标识。仅支持主线程调用。
 
-> **说明：**
->
-> 当前仅支持2in1设备。
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在2in1设备中可正常调用，在其他设备中返回16000078错误码。
 
 **返回值：**
 
@@ -1209,7 +1203,7 @@ class MyAbilityStage extends AbilityStage {
       let message = (error as BusinessError).message;
       console.error(`getCurrentInstanceKey fail, code: ${code}, msg: ${message}`);
     }
-    console.log(`currentInstanceKey: ${currentInstanceKey}`);
+    console.info(`currentInstanceKey: ${currentInstanceKey}`);
   }
 }
 ```
@@ -1219,10 +1213,6 @@ class MyAbilityStage extends AbilityStage {
 getAllRunningInstanceKeys(): Promise\<Array\<string>>;
 
 获取应用的所有多实例的唯一实例标识。使用Promise异步回调。仅支持主线程调用。
-
-> **说明：**
->
-> 当前仅支持2in1设备。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

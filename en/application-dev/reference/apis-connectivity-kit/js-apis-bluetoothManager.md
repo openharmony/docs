@@ -1,5 +1,11 @@
 # @ohos.bluetoothManager (Bluetooth)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
 
 > **NOTE**
@@ -223,7 +229,7 @@ setLocalName(name: string): void
 Sets the name of the local Bluetooth device.
 
 > **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10. Use **connection.setLocalName** instead.
+> This API is supported since API version 9 and deprecated since API version 10. Use [connection.setLocalName](js-apis-bluetooth-connection.md#connectionsetlocalnamedeprecated) instead.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -1244,11 +1250,11 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0 || code == null) {
+  if (code == null || code.code != 0) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1343,10 +1349,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0 || code == null) {
+  if (code == null || code.code != 0) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1393,10 +1399,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0 || code == null) {
+  if (code == null || code.code != 0) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1447,10 +1453,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0 || code == null) {
+  if (code == null || code.code != 0) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1500,10 +1506,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0 || code == null) {
+  if (code == null || code.code != 0) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1535,7 +1541,7 @@ Obtains a profile instance. API version 9 is added with **HidHostProfile** and *
 
 | Type                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [A2dpSourceProfile](#a2dpsourceprofile), [HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofiledeprecated), [HidHostProfile](#hidhostprofiledeprecated), or [PanProfile](#panprofile)| Profile instance obtained, which can be **A2dpSourceProfile**, **HandsFreeAudioGatewayProfile**, **HidHostProfile**, or **PanProfile**.|
+| [A2dpSourceProfile](#a2dpsourceprofile) \| [HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofiledeprecated) \| [HidHostProfile](#hidhostprofiledeprecated) \| [PanProfile](#panprofile) | Profile instance obtained, which can be **A2dpSourceProfile**, **HandsFreeAudioGatewayProfile**, **HidHostProfile**, or **PanProfile**.|
 
 **Error codes**
 
@@ -2083,10 +2089,6 @@ Subscribes to the A2DP connection state changes.
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates A2DP connection state changes.|
 | callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | Yes   | Callback used to return the A2DP connection state change.                              |
 
-**Return value**
-
-No value is returned.
-
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
@@ -2132,10 +2134,6 @@ Unsubscribes from the A2DP connection state changes.
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates A2DP connection state changes.|
 | callback | Callback&lt;[StateChangeParam](#statechangeparamdeprecated)&gt; | No   | Callback to unregister.                              |
 
-**Return value**
-
-No value is returned.
-
 **Error codes**
 
 For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
@@ -2169,7 +2167,7 @@ getPlayingState(device: string): PlayingState
 Obtains the playing state of a device.
 
 > **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10. Use **a2dp.A2dpSourceProfile#getPlayingState** instead.
+> This API is supported since API version 9 and deprecated since API version 10. Use [getPlayingState](js-apis-bluetooth-a2dp.md#getplayingstate) instead.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -2218,7 +2216,7 @@ try {
 Before using an API of **HandsFreeAudioGatewayProfile**, you need to create an instance of this class by using **getProfile()**.
 
 > **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10. Use **hfp.HandsFreeAudioGatewayProfile** instead.
+> This API is supported since API version 9 and deprecated since API version 10. Use [hfp.HandsFreeAudioGatewayProfile](js-apis-bluetooth-hfp.md#handsfreeaudiogatewayprofile) instead.
 
 
 ### connect
@@ -2505,7 +2503,7 @@ hidHost.off('connectionStateChange', onReceiveEvent);
 Before using an API of **PanProfile**, you need to create an instance of this class by using **getProfile()**.
 
 > **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10. Use **pan.PanProfile** instead.
+> This API is supported since API version 9 and deprecated since API version 10. Use [pan.createPanProfile](js-apis-bluetooth-pan.md#pancreatepanprofile) instead.
 
 
 
@@ -2606,7 +2604,7 @@ panProfile.off('connectionStateChange', onReceiveEvent);
 Implements the Generic Attribute Profile (GATT) server. Before using an API of this class, you need to create a **GattServer** instance using **createGattServer()**.
 
 > **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10. Use **ble.GattServer** instead. 
+> This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattServer](js-apis-bluetooth-ble.md#gattserver) instead. 
 
 
 ### startAdvertising<sup>(deprecated)</sup>
@@ -2982,7 +2980,7 @@ import { BusinessError } from '@ohos.base';
 /* send response */
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
-cccValue[0] = 1123;
+cccValue[0] = 1;
 let serverResponse: bluetoothManager.ServerResponse = {
     deviceId: 'XX:XX:XX:XX:XX:XX',
     transId: 0,
@@ -3036,7 +3034,7 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 import { BusinessError } from '@ohos.base';
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
-cccValue[0] = 1123;
+cccValue[0] = 1;
 function ReadCharacteristicReq(characteristicReadRequest: bluetoothManager.CharacteristicReadRequest) {
     let deviceId: string = characteristicReadRequest.deviceId;
     let transId: number = characteristicReadRequest.transId;
@@ -3236,10 +3234,10 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
-descValue[0] = 1101;
+descValue[0] = 1;
 function ReadDescriptorReq(descriptorReadRequest: bluetoothManager.DescriptorReadRequest) {
     let deviceId: string = descriptorReadRequest.deviceId;
     let transId: number = descriptorReadRequest.transId;
@@ -3762,14 +3760,14 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 function readCcc(code: BusinessError, BLECharacteristic: bluetoothManager.BLECharacteristic) {
     if (code.code != 0) {
         return;
     }
     console.log('bluetooth characteristic uuid: ' + BLECharacteristic.characteristicUuid);
     let value = new Uint8Array(BLECharacteristic.characteristicValue);
-    console.log('bluetooth characteristic value: ' + value[0] +','+ value[1]+','+ value[2]+','+ value[3]);
+    console.log('value length: ' + value.length);
 }
 
 let descriptors: Array<bluetoothManager.BLEDescriptor> = [];
@@ -4109,7 +4107,7 @@ setBLEMtuSize(mtu: number): void
 Sets the maximum transmission unit (MTU) that can be transmitted between the GATT client and its remote BLE device. This API can be used only after a connection is set up by calling [connect](#connect).
 
 > **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10. Use **ble.GattClientDevice#setBLEMtuSize** instead.
+> This API is supported since API version 9 and deprecated since API version 10. Use [ble.GattClientDevice#setBLEMtuSize](js-apis-bluetooth-ble.md#setblemtusize) instead.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 

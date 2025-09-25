@@ -1,5 +1,11 @@
 # @ohos.bluetooth.pan (Bluetooth PAN Module)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 The **pan** module provides APIs for accessing the Bluetooth personal area network (PAN).
 
 > **NOTE**
@@ -25,7 +31,7 @@ Defines **BaseProfile** APIs.
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md) | **BaseProfile** API definition.|
+| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md)| **BaseProfile** API definition.|
 
 
 ## pan.createPanProfile

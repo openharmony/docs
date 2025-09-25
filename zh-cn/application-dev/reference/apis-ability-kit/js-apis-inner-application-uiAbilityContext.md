@@ -40,7 +40,7 @@ import { common } from '@kit.AbilityKit';
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
-启动一个Ability。使用callback异步回调。仅支持在主线程调用。
+启动一个UIAbility。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -128,7 +128,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-启动一个Ability。使用callback异步回调。仅支持在主线程调用。
+启动一个UIAbility。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -223,7 +223,7 @@ export default class EntryAbility extends UIAbility {
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
-启动一个Ability。使用Promise异步回调。仅支持在主线程调用。
+启动一个UIAbility。使用Promise异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -244,7 +244,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象，包含接口执行结果。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -327,9 +327,9 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 启动一个UIAbility，并通过回调函数接收被拉起的UIAbility退出时的返回结果。使用callback异步回调。仅支持在主线程调用。
 
 UIAbility被启动后，有如下情况：
- - 正常情况下可通过调用[terminateSelfWithResult](#terminateselfwithresult)接口使之终止并且返回结果给调用方。
- - 异常情况下比如杀死UIAbility会返回异常信息给调用方，异常信息中resultCode为-1。
- - 如果被启动的UIAbility模式是单实例模式，不同应用多次调用该接口启动这个UIAbility，当这个UIAbility调用[terminateSelfWithResult](#terminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其它调用方返回异常信息，异常信息中resultCode为-1。
+ - 正常情况下可以通过调用[terminateSelfWithResult](#terminateselfwithresult)接口销毁自身，并将结果返回给调用方。	
+ - 异常情况下比如杀死UIAbility会将异常结果返回给调用方，异常结果中resultCode为-1。	
+ - 如果被启动的UIAbility是[单实例模式](../../application-models/uiability-launch-type.md#singleton启动模式)，且这个UIAbility被不同应用多次调用该接口启动，当这个UIAbility调用[terminateSelfWithResult](#terminateselfwithresult)接口销毁自身时，只将正常结果返回给最后一个调用方，其它调用方返回异常结果，异常结果中resultCode为-1。
 
 > **说明：**
 >
@@ -421,9 +421,9 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 启动一个UIAbility，并通过回调函数接收被拉起的UIAbility退出时的返回结果。使用callback异步回调。仅支持在主线程调用。
 
 UIAbility被启动后，有如下情况：
- - 正常情况下可通过调用[terminateSelfWithResult](#terminateselfwithresult)接口使之终止并且返回结果给调用方。
- - 异常情况下比如杀死UIAbility会返回异常信息给调用方，异常信息中resultCode为-1。
- - 如果被启动的UIAbility模式是单实例模式，不同应用多次调用该接口启动这个UIAbility，当这个UIAbility调用[terminateSelfWithResult](#terminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其它调用方返回异常信息，异常信息中resultCode为-1。
+ - 正常情况下可以通过调用[terminateSelfWithResult](#terminateselfwithresult)接口销毁自身，并将结果返回给调用方。	
+ - 异常情况下比如杀死UIAbility会将异常结果返回给调用方，异常结果中resultCode为-1。	
+ - 如果被启动的UIAbility是[单实例模式](../../application-models/uiability-launch-type.md#singleton启动模式)，且这个UIAbility被不同应用多次调用该接口启动，当这个UIAbility调用[terminateSelfWithResult](#terminateselfwithresult)接口销毁自身时，只将正常结果返回给最后一个调用方，其它调用方返回异常结果，异常结果中resultCode为-1。
 
 > **说明：**
 >
@@ -518,9 +518,9 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 启动一个UIAbility，并通过回调函数接收被拉起的UIAbility退出时的返回结果。使用Promise异步回调。仅支持在主线程调用。
 
 UIAbility被启动后，有如下情况：
- - 正常情况下可通过调用[terminateSelfWithResult](#terminateselfwithresult)接口使之终止并且返回结果给调用方。
- - 异常情况下比如杀死UIAbility会返回异常信息给调用方，异常信息中resultCode为-1。
- - 如果被启动的UIAbility模式是单实例模式，不同应用多次调用该接口启动这个UIAbility，当这个UIAbility调用[terminateSelfWithResult](#terminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其它调用方返回异常信息，异常信息中resultCode为-1。
+ - 正常情况下可以通过调用[terminateSelfWithResult](#terminateselfwithresult)接口销毁自身，并将结果返回给调用方。	
+ - 异常情况下比如杀死UIAbility会将异常结果返回给调用方，异常结果中resultCode为-1。	
+ - 如果被启动的UIAbility是[单实例模式](../../application-models/uiability-launch-type.md#singleton启动模式)，且这个UIAbility被不同应用多次调用该接口启动，当这个UIAbility调用[terminateSelfWithResult](#terminateselfwithresult)接口销毁自身时，只将正常结果返回给最后一个调用方，其它调用方返回异常结果，异常结果中resultCode为-1。
 
 > **说明：**
 >
@@ -709,7 +709,7 @@ terminateSelf(): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象，包含接口执行结果。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -869,7 +869,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象，包含接口执行结果。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1025,7 +1025,7 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1753,7 +1753,7 @@ export default class EntryAbility extends UIAbility {
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback, callback: AsyncCallback\<void>) : void
 
-通过type隐式启动UIExtensionAbility。使用callback异步回调。仅支持在主线程调用，仅支持处于前台的应用调用。
+通过type隐式启动[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。使用callback异步回调。仅支持在主线程调用，仅支持处于前台的应用调用。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1812,7 +1812,7 @@ export default class EntryAbility extends UIAbility {
 startAbilityByType(type: string, wantParam: Record<string, Object>,
     abilityStartCallback: AbilityStartCallback) : Promise\<void>
 
-通过type隐式启动UIExtensionAbility。使用Promise异步回调。仅支持在主线程调用，仅支持处于前台的应用调用。
+通过type隐式启动[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。使用Promise异步回调。仅支持在主线程调用，仅支持处于前台的应用调用。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1880,7 +1880,7 @@ showAbility(): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**设备行为差异**：该接口仅在2in1和tablet设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异**：该接口仅在2in1和Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 
@@ -1980,7 +1980,7 @@ hideAbility(): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**设备行为差异**：该接口仅在2in1和tablet设备中可正常调用，在其他设备中返回801错误码。
+**设备行为差异**：该接口仅在2in1和Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **返回值：**
 
@@ -2080,6 +2080,10 @@ moveAbilityToBackground(): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**设备行为差异**：
+- 从API version 12开始，该接口仅在Phone、Wearable和TV设备中可正常调用，在其他设备上返回16000061错误码。
+- 从API version 13开始，该接口仅在Phone、Tablet、Wearable和TV设备中可正常调用，在其他设备上返回16000061错误码。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -2136,12 +2140,12 @@ struct Index {
 
 openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;AbilityResult&gt;
 
-打开一个独立窗口的原子化服务，并返回结果。使用Promise异步回调。仅支持在主线程调用。
+启动一个独立窗口的原子化服务。使用Promise异步回调。仅支持在主线程调用。
 
 原子化服务被启动后，有如下情况：
- - 正常情况下原子化服务可通过[terminateSelfWithResult](#terminateselfwithresult)接口使之终止并且返回结果给调用方。
- - 异常情况下比如杀死原子化服务会返回异常信息给调用方，异常信息中resultCode为-1。
- - 如果不同应用多次调用该接口启动同一个原子化服务，当这个原子化服务调用[terminateSelfWithResult](#terminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息，异常信息中resultCode为-1。
+ - 正常情况下原子化服务可以通过[terminateSelfWithResult](#terminateselfwithresult)接口销毁自身，并且返回结果给调用方。
+ - 异常情况下比如杀死原子化服务会返回异常结果给调用方，异常结果的resultCode为-1。
+ - 如果不同应用多次调用该接口启动同一个原子化服务，当这个原子化服务调用[terminateSelfWithResult](#terminateselfwithresult)接口销毁自身时，只将正常结果返回给最后一个调用方, 其它调用方返回异常结果，异常结果中resultCode为-1。
 
 > **说明：**
 >
@@ -2221,7 +2225,7 @@ openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Ab
 
 通过<!--RP2-->[App Linking](../../application-models/app-linking-startup.md)<!--RP2End-->或[Deep Linking](../../application-models/deep-linking-startup.md)方式启动UIAbility，并通过回调函数接收被拉起的UIAbility退出时的返回结果。使用Promise异步回调。仅支持在主线程调用。
 
-通过在link字段中传入标准格式的URL，基于隐式want匹配规则拉起目标UIAbility。目标方必须具备以下过滤器特征，才能处理App Linking链接：
+通过在link字段中传入标准格式的URL，基于隐式want匹配规则拉起目标UIAbility。目标方必须同时具备以下过滤器特征，才能处理App Linking链接：
 - "actions"列表中包含"ohos.want.action.viewData"。
 - "entities"列表中包含"entity.system.browsable"。
 - "uris"列表中包含"scheme"为"https"且"domainVerify"为true的元素。

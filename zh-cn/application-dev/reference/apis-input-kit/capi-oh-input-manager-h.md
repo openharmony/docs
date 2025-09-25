@@ -5,6 +5,7 @@
 <!--Owner: @zhaoxueyuan-->
 <!--Designer: @hanruofei-->
 <!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ## 概述
 
@@ -2948,7 +2949,7 @@ Input_Result OH_Input_GetPreKeys(const Input_Hotkey *hotkey, int32_t **preKeys, 
 
 | 类型 | 说明 |
 | -- | -- |
-| [Input_Result](#input_result) | OH_Input_GetpressedKeys 函数错误码。<br>         若获取成功，返回[INPUT_SUCCESS](#input_result)；若获取失败，返回[INPUT_PARAMETER_ERROR](#input_result)。 |
+| [Input_Result](#input_result) | OH_Input_GetPreKeys 函数错误码。<br>         若获取成功，返回[INPUT_SUCCESS](#input_result)；若获取失败，返回[INPUT_PARAMETER_ERROR](#input_result)。 |
 
 ### OH_Input_SetFinalKey()
 
@@ -2998,7 +2999,7 @@ Input_Result OH_Input_GetFinalKey(const Input_Hotkey* hotkey, int32_t *finalKeyC
 
 | 类型 | 说明 |
 | -- | -- |
-| [Input_Result](#input_result) | OH_Input_GetfinalKey 函数错误码。<br>         若获取成功，返回[INPUT_SUCCESS](#input_result)；<br>         若获取失败，返回[INPUT_PARAMETER_ERROR](#input_result)。 |
+| [Input_Result](#input_result) | OH_Input_GetFinalKey 函数错误码。<br>         若获取成功，返回[INPUT_SUCCESS](#input_result)；<br>         若获取失败，返回[INPUT_PARAMETER_ERROR](#input_result)。 |
 
 ### OH_Input_CreateAllSystemHotkeys()
 
@@ -3025,7 +3026,7 @@ Input_Hotkey **OH_Input_CreateAllSystemHotkeys(int32_t count)
 
 | 类型 | 说明 |
 | -- | -- |
-| [Input_Hotkey](capi-input-hotkey.md) | OH_Input_CreateAllSystemHotkey 函数错误码。<br>         [INPUT_SUCCESS](#input_result) 创建实例数组的双指针成功。 |
+| [Input_Hotkey](capi-input-hotkey.md) | OH_Input_CreateAllSystemHotkeys 函数错误码。<br>         [INPUT_SUCCESS](#input_result) 创建实例数组的双指针成功。 |
 
 ### OH_Input_DestroyAllSystemHotkeys()
 
@@ -3125,7 +3126,7 @@ Input_Result OH_Input_GetRepeat(const Input_Hotkey* hotkey, bool *isRepeat)
 
 | 类型 | 说明 |
 | -- | -- |
-| [Input_Result](#input_result) | OH_Input_GetIsRepeat 函数错误码。<br>         若获取成功，返回[INPUT_SUCCESS](#input_result)；<br>         若获取失败，返回[INPUT_PARAMETER_ERROR](#input_result)。 |
+| [Input_Result](#input_result) | OH_Input_GetRepeat 函数错误码。<br>         若获取成功，返回[INPUT_SUCCESS](#input_result)；<br>         若获取失败，返回[INPUT_PARAMETER_ERROR](#input_result)。 |
 
 ### OH_Input_AddHotkeyMonitor()
 

@@ -76,7 +76,7 @@ An error occurs when the Wi-Fi service performs a hotspot-related operation.
 
 **Possible Causes**
 
-1. Communication between the Wi-Fi service and the hotspot failed.
+1. Communication between the Wi-Fi service and the STA failed.
 2. The Wi-Fi chip communication is abnormal.
 3. An unknown error has occurred.
 
@@ -97,7 +97,7 @@ An error occurs when the Wi-Fi service performs a hotspot-related operation.
 
 **Possible Causes**
 
-1. Communication between the Wi-Fi service and the hotspot failed.
+1. Communication between the Wi-Fi service and the STA failed.
 2. The Wi-Fi chip communication is abnormal.
 3. An unknown error has occurred.
 
@@ -135,15 +135,15 @@ Operation failed because the service is being closed.
 
 **Description**
 
-The operation for opening the Wi-Fi service failed because the service is being closed.
+The operation for opening the service failed because the service is being closed.
 
 **Possible Causes**
 
-The Wi-Fi service is being closed.
+The service is being closed.
 
 **Solution**
 
-Open the Wi-Fi service again later.
+Open the service again later.
 
 ## 2501004 Failed to Close the Service
 
@@ -153,12 +153,12 @@ Operation failed because the service is being opened.
 
 **Description**
 
-The operation for closing the Wi-Fi service failed because the service is being opened.
+The operation for closing the service failed because the service is being opened.
 
 **Possible Causes**
 
-The Wi-Fi service is being opened.
+The service is being opened.
 
 **Solution**
 
-Close the Wi-Fi service again later.
+Close the service again later.

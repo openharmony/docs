@@ -9,6 +9,7 @@ Network list.
 
 **Related module**: [NetConnection](_net_connection.md)
 
+**Header file**: [net_connection_type.h](net__connection__type_8h.md)
 
 ## Summary
 
@@ -17,7 +18,7 @@ Network list.
 
 | Name| Description.| 
 | -------- | -------- |
-| [netHandles](#nethandles) [NETCONN_MAX_NET_SIZE] | Network handle list.| 
+| [netHandles](#nethandles) [[NETCONN_MAX_NET_SIZE]](_net_connection.md#macros)| Network handle list.| 
 | [netHandleListSize](#nethandlelistsize) | Actual size of the network handle list.| 
 
 

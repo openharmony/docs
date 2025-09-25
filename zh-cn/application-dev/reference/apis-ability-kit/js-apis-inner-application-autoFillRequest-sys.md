@@ -1,6 +1,13 @@
 # AutoFillRequest (系统接口)
 
-当AutoFillExtensionAbility触发回调函数时，提供给开发者的页面数据和回调接口。
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+当AutoFillExtensionAbility触发回调函数时，会提供给开发者页面数据及回调接口。
 
 > **说明：**
 > 
@@ -94,8 +101,8 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
   onFillRequest(session: UIExtensionContentSession,
-                request: autoFillManager.FillRequest,
-                callback: autoFillManager.FillRequestCallback) {
+    request: autoFillManager.FillRequest,
+    callback: autoFillManager.FillRequestCallback) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
     try {
       let storageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
@@ -186,8 +193,8 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
   onFillRequest(session: UIExtensionContentSession,
-                request: autoFillManager.FillRequest,
-                callback: autoFillManager.FillRequestCallback) {
+    request: autoFillManager.FillRequest,
+    callback: autoFillManager.FillRequestCallback) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
     try {
       let storageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
@@ -279,8 +286,8 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
   onFillRequest(session: UIExtensionContentSession,
-                request: autoFillManager.FillRequest,
-                callback: autoFillManager.FillRequestCallback) {
+    request: autoFillManager.FillRequest,
+    callback: autoFillManager.FillRequestCallback) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
     try {
       let storageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData> = {
@@ -313,7 +320,7 @@ struct AutoFillPage {
   storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   fillCallback: autoFillManager.FillRequestCallback | undefined =
     this.storage?.get<autoFillManager.FillRequestCallback>('fillCallback');
-  
+
   build() {
     Row() {
       Column() {
@@ -367,9 +374,9 @@ setAutoFillPopupConfig(autoFillPopupConfig: AutoFillPopupConfig ): void
 
 ```ts
 // MyAutoFillExtensionAbility.ts
-// MyAutoFillExtensionAbility.ts
 import { AutoFillExtensionAbility, UIExtensionContentSession, autoFillManager } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class AutoFillAbility extends AutoFillExtensionAbility {
   storage: LocalStorage = new LocalStorage();
@@ -384,7 +391,7 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
 
   onSessionDestroy(session: UIExtensionContentSession) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onSessionDestroy');
-    hilog.info(0x0000, 'testTag', 'session content: %{public}s', JSON.stringify(session));
+    hilog.info(0x0000, 'testTag', 'session content: %{public}s', `session: ${JSON.stringify(session)}.`);
   }
 
   onForeground(): void {
@@ -402,7 +409,8 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
 
     if (fillCallback) {
       try {
-        hilog.info(0x0000, 'testTag', 'pageNodeInfos.value: ' + JSON.stringify(request.viewData.pageNodeInfos[0].value));
+        hilog.info(0x0000, 'testTag',
+          `pageNodeInfos.value: ${JSON.stringify(request.viewData.pageNodeInfos[0].value)}.`);
         fillCallback.setAutoFillPopupConfig({
           popupSize: {
             width: 400 + request.viewData.pageNodeInfos[0].value.length * 10,
@@ -411,24 +419,28 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
           placement: autoFillManager.PopupPlacement.TOP
         });
       } catch (err) {
-        hilog.info(0x0000, 'testTag', 'autoFillPopupConfig err: ' + err.code);
+        let code = (err as BusinessError).code;
+        let msg = (err as BusinessError).message;
+        hilog.info(0x0000, 'testTag', `autoFillPopupConfig failed, error code: ${code}, error msg: ${msg}.`);
       }
     }
   }
 
-  onFillRequest(session: UIExtensionContentSession, request: autoFillManager.FillRequest, callback: autoFillManager.FillRequestCallback) {
+  onFillRequest(session: UIExtensionContentSession, request: autoFillManager.FillRequest,
+    callback: autoFillManager.FillRequestCallback) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onFillRequest');
     hilog.info(0x0000, 'testTag', 'Fill RequestCallback: %{public}s ', JSON.stringify(callback));
     console.info(`testTag. Get fill request viewData: ${JSON.stringify(request.viewData)}.`);
     console.info(`testTag. Get fill request type: ${JSON.stringify(request.type)}.`);
 
     try {
-      let localStorageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData | autoFillManager.AutoFillType> = {
-        'message': 'AutoFill Page',
-        'fillCallback': callback,
-        'viewData': request.viewData,
-        'autoFillType': request.type
-      }
+      let localStorageData: Record<string, string | autoFillManager.FillRequestCallback | autoFillManager.ViewData | autoFillManager.AutoFillType> =
+        {
+          'message': 'AutoFill Page',
+          'fillCallback': callback,
+          'viewData': request.viewData,
+          'autoFillType': request.type
+        }
       let storage_fill = new LocalStorage(localStorageData);
       console.info(`testTag. Session: ${JSON.stringify(session)}.`);
       let size: autoFillManager.PopupSize = {
@@ -440,11 +452,15 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
       });
       session.loadContent('pages/SelectorList', storage_fill);
     } catch (err) {
-      hilog.error(0x0000, 'testTag', '%{public}s', 'autofill failed to load content: ' + JSON.stringify(err));
+      let code = (err as BusinessError).code;
+      let msg = (err as BusinessError).message;
+      hilog.error(0x0000, 'testTag', '%{public}s',
+        `autofill failed to load content, error code: ${code}, error msg: ${msg}.`);
     }
   }
 
-  onSaveRequest(session: UIExtensionContentSession, request: autoFillManager.SaveRequest, callback: autoFillManager.SaveRequestCallback) {
+  onSaveRequest(session: UIExtensionContentSession, request: autoFillManager.SaveRequest,
+    callback: autoFillManager.SaveRequestCallback) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onSaveRequest');
     try {
       let localStorageData: Record<string, string | autoFillManager.SaveRequestCallback> = {
@@ -491,10 +507,11 @@ onSuccess(): void
 // MyAutoFillExtensionAbility.ts
 import { AutoFillExtensionAbility, UIExtensionContentSession, autoFillManager } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+
 class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
   onSaveRequest(session: UIExtensionContentSession,
-                request: autoFillManager.SaveRequest,
-                callback: autoFillManager.SaveRequestCallback) {
+    request: autoFillManager.SaveRequest,
+    callback: autoFillManager.SaveRequestCallback) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'onSaveRequest');
     try {
       let storageData: Record<string, string | autoFillManager.SaveRequestCallback | autoFillManager.ViewData> = {
@@ -579,8 +596,8 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
   onSaveRequest(session: UIExtensionContentSession,
-                request: autoFillManager.SaveRequest,
-                callback: autoFillManager.SaveRequestCallback) {
+    request: autoFillManager.SaveRequest,
+    callback: autoFillManager.SaveRequestCallback) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'onSaveRequest');
     try {
       let storageData: Record<string, string | autoFillManager.SaveRequestCallback | autoFillManager.ViewData> = {
@@ -613,7 +630,7 @@ struct SavePage {
   storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
   saveCallback: autoFillManager.SaveRequestCallback | undefined =
     this.storage?.get<autoFillManager.SaveRequestCallback>('saveCallback');
-  
+
   build() {
     Row() {
       Column() {

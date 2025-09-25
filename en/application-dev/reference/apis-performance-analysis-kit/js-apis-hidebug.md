@@ -213,7 +213,7 @@ Obtains system service information.
 
 | Name  | Type  | Mandatory| Description                        |
 | -------- | ------ | ---- |----------------------------|
-| serviceid | number | Yes  | Obtains the system service information based on the specified service ID.|
+| serviceid | number | Yes  | Service ID used to obtain system service information.|
 | fd | number | Yes  | File descriptor to which data is written by the API.        |
 | args | Array&lt;string&gt; | Yes  | Parameter list of the **Dump** API of the system service.          |
 
@@ -228,6 +228,7 @@ For details about the error codes, see [HiDebug Error Codes](errorcode-hiviewdfx
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -235,6 +236,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let fileFd = -1;
 try {
+  // Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
   let path: string = this.getUIContext().getHostContext()!.filesDir + "/serviceInfo.txt";
   console.info("output path: " + path);
   fileFd = fileIo.openSync(path, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE).fd;
@@ -262,7 +264,7 @@ Starts the VM profiling method. **startJsCpuProfiling(filename: string)** and **
 
 | Name  | Type  | Mandatory| Description                                              |
 | -------- | ------ | ---- |--------------------------------------------------|
-| filename | string | Yes  | User-defined file name of the sampling data. The .json file is generated in the **files** directory of the application based on the specified file name.|
+| filename | string | Yes  | Custom file name of the sampling data. The .json file is generated in the **files** directory of the application based on the specified file name.|
 
 **Error codes**
 
@@ -322,7 +324,7 @@ Exports the heap data.
 
 | Name  | Type  | Mandatory| Description                                           |
 | -------- | ------ | ---- | ----------------------------------------------- |
-| filename | string | Yes  | User-defined file name of the sampling data. The .heapsnapshot file is generated in the **files** directory of the application based on the specified file name.|
+| filename | string | Yes  | Custom file name of the sampling data. The .heapsnapshot file is generated in the **files** directory of the application based on the specified file name.|
 
 **Error codes**
 
@@ -361,7 +363,7 @@ Starts the VM profiling method. **startProfiling(filename: string)** and **stopP
 
 | Name  | Type  | Mandatory| Description                                            |
 | -------- | ------ | ---- | ------------------------------------------------ |
-| filename | string | Yes  | User-defined file name of the sampling data. The .json file is generated in the **files** directory of the application based on the specified file name.|
+| filename | string | Yes  | Custom file name of the sampling data. The .json file is generated in the **files** directory of the application based on the specified file name.|
 
 **Example**
 
@@ -593,7 +595,7 @@ Obtains the memory limit of an application process.
 
 | Type | Description                     |
 | ------ | -------------------------- |
-| [MemoryLimit](#memorylimit12) | Defines the memory limit of the application process.|
+| [MemoryLimit](#memorylimit12) | Memory limit of the application process.|
 
 **Example**
 
@@ -645,6 +647,8 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 Sets the number of FDs, number of threads, JS memory, or native memory limit of the application.
 
+This API is used to construct a memory leak. For details, see [Subscribing to Resource Leak Events (ArkTS)](../../dfx/hiappevent-watcher-resourceleak-events-arkts.md) and [Subscribing to Resource Leak Events (C/C++)](../../dfx/hiappevent-watcher-resourceleak-events-ndk.md).
+
 > **NOTE**
 >
 > This API is valid only when the **Developer options** is enabled.
@@ -655,11 +659,11 @@ Sets the number of FDs, number of threads, JS memory, or native memory limit of 
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                                                        |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| type | string |  Yes | Types of leak resources:<br>- pss_memory (native memory)<br>- js_heap (JavaScript heap memory)<br>- fd (file descriptor)<br>- thread (thread)                                                                      |
+| Name  | Type  | Mandatory| Description                                                                                                                                                                     |
+| -------- | ------ | ---- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| type | string |  Yes | Types of leak resources:<br>- pss_memory (native memory)<br>- js_heap (JavaScript heap memory)<br>- fd (file descriptor)<br>- thread (thread)                                                                           |
 | value | number |  Yes | Value range of the maximum values of the leak resource types:<br>- pss_memory: **[1024, 4 x 1024 x 1024]** (Unit: KB)<br>- js_heap: **[85, 95]** (85% to 95% of the upper size limit of the JS heap memory)<br>- fd: **[10, 10000]**<br>- thread: **[1, 1000]**|
-| enableDebugLog | boolean |  Yes | Whether to enable external debug log. The default value is **false**. Set this parameter to **true** only in the gray version because collecting debug logs consumes too much CPU or memory.                                                                                    |
+| enableDebugLog | boolean |  Yes | Whether to enable external debugging logs. Enable external debugging logs only in the grayscale version (test version released to a small number of users before the official version is released). Collecting debugging logs occupies a large number of CPU and memory resources, which may cause application smoothness problems.<br>The value **true** means to enable external debugging logs, and false means the opposite.<br>                                     |
 
 **Error codes**
 
@@ -697,6 +701,7 @@ Obtains the memory information of the application process. This API is implement
 > **NOTE**
 >
 > Reading the **/proc/{pid}/smaps_rollup** node is time-consuming. Therefore, you are advised not to use this API in the main thread. You can use this API in the asynchronous thread started by calling [@ohos.taskpool](../apis-arkts/js-apis-taskpool.md) or [@ohos.worker](../apis-arkts/js-apis-worker.md) to avoid frame freezing.
+
 
 **Return value**
 
@@ -744,7 +749,7 @@ console.info(`totalMem: ${systemMemInfo.totalMem}, freeMem: ${systemMemInfo.free
 
 getVMRuntimeStats(): GcStats
 
-Obtains all system GC statistics.
+Obtains the system [GC](../../arkts-utils/gc-introduction.md) statistics.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -771,7 +776,7 @@ console.info(`fullgc-longtime-count: ${vMRuntimeStats['ark.gc.fullgc-longtime-co
 
 getVMRuntimeStat(item: string): number
 
-Obtains the specified system GC statistics based on parameters.
+Obtains the specified system [GC](../../arkts-utils/gc-introduction.md) statistics based on parameters.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -780,6 +785,12 @@ Obtains the specified system GC statistics based on parameters.
 | Name  | Type  | Mandatory| Description         |
 | -------- | ------ | ---- |-------------|
 | item | string | Yes  | Item of the GC statistics to be obtained.|
+
+**Return value**
+
+| Type    | Description                       |
+|--------|---------------------------|
+| number | System GC statistics returned based on the input parameters.|
 
 | Input Parameter                        | Return Value Description         |
 |------------------------------|----------------|
@@ -902,7 +913,7 @@ Describes memory information of the application process.
 | Name     | Type  | Mandatory| Description                                                                            |
 | --------- | ------ | ---- |--------------------------------------------------------------------------------|
 | pss  | bigint |  Yes | Size of the occupied physical memory (including the proportionally allocated memory occupied by the shared library), in KB. The value of this parameter is obtained by summing up the values of **Pss** and **SwapPss** in the **/proc/{pid}/smaps_rollup** node.|
-| vss  | bigint |  Yes |  Size of the occupied virtual memory (including the memory occupied by the shared library), in KB. The value of this parameter is obtained by multiplying the value of **size** in the **/proc/{pid}/statm** node by **4**.               |
+| vss  | bigint |  Yes | Size of the occupied virtual memory (including the memory occupied by the shared library), in KB. The value of this parameter is obtained by multiplying the value of **size** in the **/proc/{pid}/statm** node by **4**.               |
 | rss  | bigint |  Yes | Size of the occupied physical memory (including the memory occupied by the shared library), in KB. The value of this parameter is obtained by reading the value of **Rss** in the **/proc/{pid}/smaps_rollup** node.               |
 | sharedDirty  | bigint |  Yes | Size of the shared dirty memory, in KB. The value of this parameter is obtained by reading the value of **Shared_Dirty** in the **/proc/{pid}/smaps_rollup** node.                   |
 | privateDirty  | bigint |  Yes | Size of the private dirty memory, in KB. The value of this parameter is obtained by reading the value of **Private_Dirty** in the **/proc/{pid}/smaps_rollup** node.                  |
@@ -958,15 +969,15 @@ GcStats contains the following information:
 
 isDebugState(): boolean
 
-Obtains the debugging state of an application process. If the Ark or native layer of the application process is in debugging state, **true** is returned. Otherwise, **false** is returned.
+Obtains the debugging state of an application process.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **Return value**
 
-| Type | Description                     |
-| ------ | -------------------------- |
-| boolean | Whether an application process is in the debugging state.|
+| Type | Description                                                  |
+| ------ |------------------------------------------------------|
+| boolean | Whether the Ark or native layer of the application process is in the debugging state. The value **true** indicates that the layer is in the debugging state, and **false** indicates the opposite.|
 
 **Example**
 
@@ -1059,15 +1070,15 @@ Dumps the original heap snapshot of the VM for the current thread. The API uses 
 > **NOTE**
 >
 > This API is resource-consuming. Therefore, the calling frequency and times are strictly limited. You need to delete the files immediately after processing them.
-> You are advised to use this API only in the gray testing version of an application.  
+> You are advised to use this API only in the grayscale version of an application.  
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| Name                    | Type     | Mandatory| Description                                      |
-|-------------------------|---------|----|------------------------------------------|
-| needGC         | boolean | No | Whether GC is required when a heap snapshot is dumped. The default value is **true**. If this parameter is not specified, GC is triggered before dumping.|
+| Name                    | Type     | Mandatory| Description                                         |
+|-------------------------|---------|----|---------------------------------------------|
+| needGC         | boolean | No | Whether GC is required before storing heap snapshots. The value **true** indicates that GC is required, and **false** indicates the opposite. The default value is **true**.|
 
 **Return value**
 

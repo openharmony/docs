@@ -31,18 +31,18 @@
         - [Main Thread Jank Event Overview](hiappevent-watcher-mainthreadjank-events.md)
         - [Subscribing to Main Thread Jank Events (ArkTS)](hiappevent-watcher-mainthreadjank-events-arkts.md)
         - [Subscribing to Main Thread Jank Events (C/C++)](hiappevent-watcher-mainthreadjank-events-ndk.md)
-      - Task Execution Timeout Events
+      - Task Execution Timeout Events<!--app-hicollie-events-->
         - [Task Execution Timeout Event Overview](hiappevent-watcher-apphicollie-events.md)
         - [Subscribing to Task Execution Timeout Events (C/C++)](hiappevent-watcher-apphicollie-events-ndk.md)
   <!--Del-->
   - [Event Reporting](hiappevent-event-reporting.md)
   <!--DelEnd-->
 - HiTraceMeter<!--hitracemeter-->
-  - [Using HiTraceMeter (ArkTS/JS)](hitracemeter-guidelines-arkts.md)
+  - [Using HiTraceMeter (ArkTS)](hitracemeter-guidelines-arkts.md)
   - [Using HiTraceMeter (C/C++)](hitracemeter-guidelines-ndk.md)
   - [Viewing HiTraceMeter Logs](hitracemeter-view.md)
 - HiTraceChain<!--hitracechain-->
-  - [Using HiTraceChain (ArkTS/JS)](hitracechain-guidelines-arkts.md)
+  - [Using HiTraceChain (ArkTS)](hitracechain-guidelines-arkts.md)
   - [Using HiTraceChain (C/C++)](hitracechain-guidelines-ndk.md)
 - HiChecker<!--hichecker-->
   - [Using HiChecker (ArkTS/JS)](hichecker-guidelines-arkts.md)
@@ -61,12 +61,12 @@
   - [Analyzing Application Freeze](appfreeze-guidelines.md)
 - Command Line Tools<!--perform-command-line-utilities-->
   - [hdc](hdc.md)
-  - [HiLog](hilog.md)
+  - [hilog](hilog.md)
   - [hidumper](hidumper.md)
-  - [HiTrace](hitrace.md)
+  - [hitrace](hitrace.md)
   - [hiperf](hiperf.md)
+  - [uinput](uinput.md)
   <!--Del-->
   - [hisysevent](hisysevent.md)
-  - [uinput](uinput.md)
   <!--DelEnd-->
   

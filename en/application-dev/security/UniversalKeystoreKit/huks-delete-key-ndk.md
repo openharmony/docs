@@ -1,25 +1,24 @@
 # Deleting a Key (C/C++)
 
-
 To ensure data security, delete the key that is no longer required.
 
 ## Add the dynamic library in the CMake script.
 ```txt
-   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 ```
 
 ## How to Develop
 
 For example, delete a 256-bit HKDF key.
 
-1. Set the key alias (**keyAlias**), which cannot exceed 128 bytes. **paramSet** is a reserved parameter. Leave it empty.
+1. Specify the key alias. For details about the naming rules, see [Key Generation Overview and Algorithm Specifications](huks-key-generation-overview.md).
 
 2. Use [OH_Huks_DeleteKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_deletekeyitem) to delete the key.
 
 ```c++
-#include "napi/native_api.h"
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
+#include "napi/native_api.h"
 #include <string.h>
 static napi_value DeleteKey(napi_env env, napi_callback_info info)
 {

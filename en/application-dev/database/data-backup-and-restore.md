@@ -109,7 +109,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
        if (err) {
          console.error(`Fail to backup data.code:${err.code},message:${err.message}`);
        } else {
-         console.info('Succeeded in backupping data.');
+         console.info('Succeeded in backuping data.');
        }
      });
    } catch (e) {
@@ -423,7 +423,7 @@ The following example contains only the code snippet for the restore process. Th
                resultSet.close();
              } catch (e) {
                  if (e.code !== 14800014) {
-                   console.info(`Code:${err.code}, message:${err.message}`);
+                   console.error(`Code:${e.code}, message:${e.message}`);
                  }
              }
            }
@@ -436,9 +436,11 @@ The following example contains only the code snippet for the restore process. Th
              console.info(`Succeeded in restoring RdbStore.`);
            })
          }
-         console.info(`Code:${err.code}, message:${err.message}`);
+         console.error(`Code:${err.code}, message:${err.message}`);
      }
    }
    ```
 
 <!--DelEnd-->
+
+<!--RP1--><!--RP1End-->

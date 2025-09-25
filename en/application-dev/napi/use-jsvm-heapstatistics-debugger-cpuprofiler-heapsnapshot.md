@@ -19,16 +19,17 @@ JSVM-API provide APIs for retrieving JavaScript virtual machine (JSVM) instances
 | OH_JSVM_StopCpuProfiler    |  Stops the CPU profiler and outputs the result to a stream.|
 | OH_JSVM_TakeHeapSnapshot   |  Obtains a snapshot of the current heap and outputs it to a stream.|
 | OH_JSVM_OpenInspector      |  Opens an inspector instance on the specified host and port for debugging JS code.|
+| OH_JSVM_OpenInspectorWithName | Opens an inspector instance based on the PID and name.|
 | OH_JSVM_CloseInspector     |  Closes all remaining inspector connections.|
 | OH_JSVM_WaitForDebugger    |  Waits for the host to set up a socket connection with an inspector. After the connection is set up, the application continues to run. You can use **Runtime.runIfWaitingForDebugger** to run paused targets.|
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in debugging and profiling JS code.
+For details about the JSVM-API development process, see [Using JSVM-API to Implement Interactive Development Between JS and C/C++](use-jsvm-process.md). This document describes only the C++ code corresponding to the API.
 
 ### OH_JSVM_GetVM
 
-Use **OH_JSVM_GetVM** to obtain a VM instance.
+Retrieves VM instances in a given environment.
 
 CPP code:
 
@@ -65,11 +66,12 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 ```
 
-// Call C++ code from JS.
+JS Example
 
 ```c++
 const char *srcCallNative = R"JS(getVM())JS";
 ```
+
 
 ### OH_JSVM_GetHeapStatistics
 
@@ -127,19 +129,35 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 ```
 
-// Call C++ code from JS.
+JS Example
 
 ```c++
 const char *srcCallNative = R"JS(getHeapStatistics())JS";
 ```
+Expected result:
+```
+JSVM API heap totalHeapSize: 1597440
+JSVM API heap totalHeapSizeExecutable: 0
+JSVM API heap totalPhysicalSize: 1323008
+JSVM API heap totalAvailableSize: 1519203688
+JSVM API heap usedHeapSize: 178256
+JSVM API heap heapSizeLimit: 1518338048
+JSVM API heap mallocedMemory: 32848
+JSVM API heap externalMemory: 0
+JSVM API heap peakMallocedMemory: 40960
+JSVM API heap numberOfNativeContexts: 1
+JSVM API heap numberOfDetachedContexts: 0
+JSVM API heap totalGlobalHandlesSize: 8192
+JSVM API heap usedGlobalHandlesSize: 32
+```
 
 For details about the sample code of the previous APIs, see:
 
-[JSVM Debugging and Profiling](jsvm-debugger-cpuprofiler-heapsnapshot.md)
+[JSVM-API Debugging](./jsvm-debugger-cpuprofiler-heapsnapshot.md)
 
 ### OH_JSVM_StartCpuProfiler
 
-Use **OH_JSVM_StartCpuProfiler** to create and start a CPU profiler instance.
+Creates and starts a CPU profiler instance.
 
 ### OH_JSVM_StopCpuProfiler
 
@@ -147,7 +165,7 @@ Use **OH_JSVM_StopCpuProfiler** to stop the CPU profiler and output the result t
 
 ### OH_JSVM_TakeHeapSnapshot
 
-Use **OH_JSVM_TakeHeapSnapshot** to obtain a snapshot of the current heap and output it to a stream.
+Obtains the current heap snapshot and outputs it to the stream.
 
 ### OH_JSVM_OpenInspector
 
@@ -155,9 +173,8 @@ Use **OH_JSVM_OpenInspector** to open an inspector instance on the specified hos
 
 ### OH_JSVM_CloseInspector
 
-Use **OH_JSVM_CloseInspector** to close all remaining inspector connections.
+Closes all remaining inspector connections.
 
 ### OH_JSVM_WaitForDebugger
 
-Use **OH_JSVM_WaitForDebugger** to wait for the host to set up a socket connection with an inspector. After the connection is set up, the application continues to run. You can use **Runtime.runIfWaitingForDebugger** to run paused targets.
-
+Wait for the host to establish a socket connection with the inspector. After the connection is established, the program continues to run and sends the Runtime.runIfWaitingForDebugger command.

@@ -2,7 +2,7 @@
 
 ## Available APIs
 
-For details about how to use the APIs (such as parameter usage constraints and value ranges), see [Application Event Logging](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
+For details about how to use the APIs, see [Application Event Logging](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
 
 | API                                             | **Description**                                        |
 | --------------------------------------------------- | -------------------------------------------- |
@@ -76,7 +76,7 @@ The following describes how to subscribe to an address sanitizer event for an ar
    });
    ```
 
-4. Edit the **entry/src/main/cpp/types/libentry/index.d.ets** file. The sample code is as follows:
+4. Edit the **entry/src/main/cpp/types/libentry/index.d.ts** file. The sample code is as follows:
 
    ```ts
    export const test: () => void;
@@ -113,7 +113,7 @@ The following describes how to subscribe to an address sanitizer event for an ar
        .nm_register_func = Init,
        .nm_modname = "entry",
        .nm_priv = ((void*)0),
-       .reserved = { 0 },
+       .reserved = { 0 }
    };
 
    extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
@@ -125,7 +125,7 @@ The following describes how to subscribe to an address sanitizer event for an ar
 6. In the **entry/src/main/ets/pages/Index.ets** file, add a button to trigger the address sanitizer event.
 
    ```ts
-   import testNapi from 'libentry.so'
+   import testNapi from 'libentry.so';
 
    @Entry
    @Component

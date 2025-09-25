@@ -22,9 +22,10 @@ System applications can call these APIs to implement the following features:
 import bundleState from '@ohos.bundleState'
 ```
 
-## bundleState.queryBundleStateInfos
+## bundleState.queryBundleStateInfos<sup>(deprecated)</sup>
 
 queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;BundleActiveInfoResponse&gt;): void
+> This API is supported since API version 7 and deprecated since API version 9. Use [usageStatistics.queryBundleStatsInfos](js-apis-resourceschedule-deviceUsageStatistics-sys.md#usagestatisticsquerybundlestatsinfos) instead.
 
 Queries the application usage duration statistics based on the specified start time and end time. This API uses an asynchronous callback to return the result.
 
@@ -58,9 +59,10 @@ bundleState.queryBundleStateInfos(0, 20000000000000, (err: BusinessError ,
 });
 ```
 
-## bundleState.queryBundleStateInfos
+## bundleState.queryBundleStateInfos<sup>(deprecated)</sup>
 
 queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoResponse&gt;
+> This API is supported since API version 7 and deprecated since API version 9. Use [usageStatistics.queryBundleStatsInfos](js-apis-resourceschedule-deviceUsageStatistics-sys.md#usagestatisticsquerybundlestatsinfos-1) instead.
 
 Queries the application usage duration statistics based on the specified start time and end time. This API uses a promise to return the result.
 
@@ -81,7 +83,7 @@ Queries the application usage duration statistics based on the specified start t
 
 | Type                                      | Description                                    |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;[BundleActiveInfoResponse](js-apis-deviceUsageStatistics-sys.md#bundleactiveinforesponse)&gt; | Promise used to return the result. return the application usage duration statistics.|
+| Promise&lt;[BundleActiveInfoResponse](js-apis-deviceUsageStatistics-sys.md#bundleactiveinforesponse)&gt; | Promise used to return the application usage duration statistics.|
 
 **Example**
 
@@ -96,9 +98,10 @@ bundleState.queryBundleStateInfos(0, 20000000000000).then((res: bundleState.Bund
 });
 ```
 
-## bundleState.queryBundleStateInfoByInterval
+## bundleState.queryBundleStateInfoByInterval<sup>(deprecated)</sup>
 
 queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleStateInfo&gt;&gt;): void
+> This API is supported since API version 7 and deprecated since API version 9. Use [usageStatistics.queryBundleStatsInfoByInterval](js-apis-resourceschedule-deviceUsageStatistics-sys.md#usagestatisticsquerybundlestatsinfobyinterval) instead.
 
 Queries the application usage duration statistics in the specified time frame at the specified interval (daily, weekly, monthly, or annually). This API uses an asynchronous callback to return the result.
 
@@ -115,7 +118,7 @@ Queries the application usage duration statistics in the specified time frame at
 | byInterval | [IntervalType](js-apis-deviceUsageStatistics-sys.md#intervaltype)            | Yes   | Type of information to be queried.                                   |
 | begin      | number                                   | Yes   | Start time, in milliseconds.                                   |
 | end        | number                                   | Yes   | End time, in milliseconds.                                   |
-| callback   | AsyncCallback&lt;Array&lt;[BundleStateInfo](js-apis-deviceUsageStatistics-sys.md#bundlestateinfo)&gt;&gt; | Yes   | Callback used to return the application usage duration statistics.|
+| callback   | AsyncCallback&lt;Array&lt;[BundleStateInfo](js-apis-deviceUsageStatistics-sys.md#bundlestateinfodeprecated)&gt;&gt; | Yes   | Callback used to return the application usage duration statistics.|
 
 **Example**
 
@@ -135,9 +138,10 @@ bundleState.queryBundleStateInfoByInterval(bundleState.IntervalType.BY_OPTIMIZED
 });
 ```
 
-## bundleState.queryBundleStateInfoByInterval
+## bundleState.queryBundleStateInfoByInterval<sup>(deprecated)</sup>
 
 queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number): Promise&lt;Array&lt;BundleStateInfo&gt;&gt;
+> This API is supported since API version 7 and deprecated since API version 9. Use [usageStatistics.queryBundleStatsInfoByInterval](js-apis-resourceschedule-deviceUsageStatistics-sys.md#usagestatisticsquerybundlestatsinfobyinterval-1) instead.
 
 Queries the application usage duration statistics in the specified time frame at the specified interval (daily, weekly, monthly, or annually). This API uses a promise to return the result.
 
@@ -159,7 +163,7 @@ Queries the application usage duration statistics in the specified time frame at
 
 | Type                                      | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[BundleStateInfo](js-apis-deviceUsageStatistics-sys.md#bundlestateinfo)&gt;&gt; | Promise used to return the application usage duration statistics.|
+| Promise&lt;Array&lt;[BundleStateInfo](js-apis-deviceUsageStatistics-sys.md#bundlestateinfodeprecated)&gt;&gt; | Promise used to return the application usage duration statistics.|
 
 **Example**
 
@@ -177,9 +181,10 @@ bundleState.queryBundleStateInfoByInterval(bundleState.IntervalType.BY_OPTIMIZED
 });
 ```
 
-## bundleState.queryBundleActiveStates
+## bundleState.queryBundleActiveStates<sup>(deprecated)</sup>
 
 queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;): void
+> This API is supported since API version 7 and deprecated since API version 9. Use [usageStatistics.queryBundleEvents](js-apis-resourceschedule-deviceUsageStatistics-sys.md#usagestatisticsquerybundleevents) instead.
 
 Queries events of all applications based on the specified start time and end time. This API uses an asynchronous callback to return the result.
 
@@ -195,7 +200,7 @@ Queries events of all applications based on the specified start time and end tim
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | Yes   | Start time, in milliseconds.                                  |
 | end      | number                                   | Yes   | End time, in milliseconds.                                  |
-| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](js-apis-deviceUsageStatistics-sys.md#bundleactivestate)&gt;&gt; | Yes   | Callback used to return the events obtained.|
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](js-apis-deviceUsageStatistics-sys.md#bundleactivestatedeprecated)&gt;&gt; | Yes   | Callback used to return the events obtained.|
 
 **Example**
 
@@ -215,9 +220,10 @@ bundleState.queryBundleActiveStates(0, 20000000000000, (err: BusinessError, res:
 });
 ```
 
-## bundleState.queryBundleActiveStates
+## bundleState.queryBundleActiveStates<sup>(deprecated)</sup>
 
 queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleActiveState&gt;&gt;
+> This API is supported since API version 7 and deprecated since API version 9. Use [usageStatistics.queryBundleEvents](js-apis-resourceschedule-deviceUsageStatistics-sys.md#usagestatisticsquerybundleevents-1) instead.
 
 Queries events of all applications based on the specified start time and end time. This API uses a promise to return the result.
 
@@ -238,7 +244,7 @@ Queries events of all applications based on the specified start time and end tim
 
 | Type                                      | Description                                    |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleActiveState](js-apis-deviceUsageStatistics-sys.md#bundleactivestate)&gt;&gt; | Promise used to return the result. return the events obtained.|
+| Promise&lt;Array&lt;[BundleActiveState](js-apis-deviceUsageStatistics-sys.md#bundleactivestatedeprecated)&gt;&gt; | Promise used to return the events obtained.|
 
 **Example**
 
@@ -256,9 +262,10 @@ bundleState.queryBundleActiveStates(0, 20000000000000).then((res: Array<bundleSt
 });
 ```
 
-## bundleState.queryAppUsagePriorityGroup
+## bundleState.queryAppUsagePriorityGroup<sup>(deprecated)</sup>
 
 queryAppUsagePriorityGroup(): Promise&lt;number&gt;
+> This API is supported since API version 7 and deprecated since API version 9. Use [usageStatistics.queryAppGroup](js-apis-resourceschedule-deviceUsageStatistics-sys.md#usagestatisticsqueryappgroup) instead.
 
 Queries the priority group of this application. This API uses a promise to return the result.
 
@@ -284,9 +291,10 @@ bundleState.queryAppUsagePriorityGroup().then((res: number) => {
 });
 ```
 
-## bundleState.queryAppUsagePriorityGroup
+## bundleState.queryAppUsagePriorityGroup<sup>(deprecated)</sup>
 
 queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void
+> This API is supported since API version 7 and deprecated since API version 9. Use [usageStatistics.queryAppGroup](js-apis-resourceschedule-deviceUsageStatistics-sys.md#usagestatisticsqueryappgroup-1) instead.
 
 Queries the priority group of this application. This API uses an asynchronous callback to return the result.
 
@@ -314,9 +322,10 @@ bundleState.queryAppUsagePriorityGroup((err: BusinessError, res: number) => {
 });
 ```
 
-## bundleState.queryCurrentBundleActiveStates
+## bundleState.queryCurrentBundleActiveStates<sup>(deprecated)</sup>
 
 queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;): void
+> This API is supported since API version 7 and deprecated since API version 9. Use [usageStatistics.queryCurrentBundleEvents](js-apis-resourceschedule-deviceUsageStatistics-sys.md#usagestatisticsquerycurrentbundleevents) instead.
 
 Queries events of this application based on the specified start time and end time. This API uses an asynchronous callback to return the result.
 
@@ -330,7 +339,7 @@ Queries events of this application based on the specified start time and end tim
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | Yes   | Start time, in milliseconds.                                  |
 | end      | number                                   | Yes   | End time, in milliseconds.                                  |
-| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Yes   | Callback used to return the events.|
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestatedeprecated)&gt;&gt; | Yes   | Callback used to return the events.|
 
 **Example**
 
@@ -350,9 +359,10 @@ bundleState.queryCurrentBundleActiveStates(0, 20000000000000, (err: BusinessErro
 });
 ```
 
-## bundleState.queryCurrentBundleActiveStates
+## bundleState.queryCurrentBundleActiveStates<sup>(deprecated)</sup>
 
 queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleActiveState&gt;&gt;
+> This API is supported since API version 7 and deprecated since API version 9. Use [usageStatistics.queryCurrentBundleEvents](js-apis-resourceschedule-deviceUsageStatistics-sys.md#usagestatisticsquerycurrentbundleevents) instead.
 
 Queries events of this application based on the specified start time and end time. This API uses a promise to return the result.
 
@@ -371,7 +381,7 @@ Queries events of this application based on the specified start time and end tim
 
 | Type                                      | Description                                    |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Promise used to return the events.|
+| Promise&lt;Array&lt;[BundleActiveState](#bundleactivestatedeprecated)&gt;&gt; | Promise used to return the events.|
 
 **Example**
 
@@ -389,7 +399,8 @@ bundleState.queryCurrentBundleActiveStates(0, 20000000000000).then((res: Array<b
 });
 ```
 
-## BundleStateInfo
+## BundleStateInfo<sup>(deprecated)</sup>
+> This API is supported since API version 7 and deprecated since API version 9. Use [usageStatistics.BundleStatsInfo](js-apis-resourceschedule-deviceUsageStatistics-sys.md#bundlestatsinfo) instead.
 
 Provides the usage duration information of an application.
 
@@ -422,9 +433,10 @@ Merges the device usage statistics of applications with the same bundle name.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| toMerge | [BundleStateInfo](#bundlestateinfo) | Yes| Device usage statistics to merge.|
+| toMerge | [BundleStateInfo](#bundlestateinfodeprecated) | Yes| Device usage statistics to merge.|
 
-## BundleActiveState
+## BundleActiveState<sup>(deprecated)</sup>
+> This API is supported since API version 7 and deprecated since API version 9. Use [usageStatistics.BundleEvents](js-apis-resourceschedule-deviceUsageStatistics-sys.md#bundleevents) instead.
 
 Provides information about an application event.
 
@@ -439,7 +451,8 @@ Provides information about an application event.
 | indexOfLink           | string | No   | Shortcut ID.|
 | nameOfClass           | string | No   | Class name.|
 
-## BundleActiveInfoResponse
+## BundleActiveInfoResponse<sup>(deprecated)</sup>
+> This API is supported since API version 7 and deprecated since API version 9. Use [usageStatistics.BundleStatsMap](js-apis-resourceschedule-deviceUsageStatistics-sys.md#bundlestatsmap) instead.
 
 Provides the usage duration information of an application.
 
@@ -447,9 +460,10 @@ Provides the usage duration information of an application.
 
 | Name                           | Type                                      | Mandatory  | Description            |
 | ------------------------------ | ---------------------------------------- | ---- | -------------- |
-| [key: string]: BundleStateInfo | [key: string]: [BundleStateInfo](#bundlestateinfo) | Yes   | Usage duration information by application.|
+| [key: string]: BundleStateInfo | [key: string]: [BundleStateInfo](#bundlestateinfodeprecated) | Yes   | Usage duration information by application.|
 
-## IntervalType
+## IntervalType<sup>(deprecated)</sup>
+> This API is supported since API version 7 and deprecated since API version 9. Use [usageStatistics.intervaltype](js-apis-resourceschedule-deviceUsageStatistics-sys.md#intervaltype) instead.
 
 Enumerates the interval types for querying the application usage duration.
 

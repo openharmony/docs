@@ -49,6 +49,7 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 根据URL地址，建立一个WebSocket连接，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
 
 **需要权限**：ohos.permission.INTERNET
@@ -79,6 +80,7 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 | 2302999               | Internal error.             |
 
 > **错误码说明：**
+>
 > 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
 
 **示例：**
@@ -105,6 +107,7 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 根据URL地址，建立一个WebSocket连接，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
 
 **需要权限：**ohos.permission.INTERNET
@@ -136,6 +139,7 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 | 2302999               | Internal error.             |
 
 > **错误码说明：**
+>
 > 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
 
 **示例：**
@@ -171,6 +175,7 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 根据URL地址和header，建立一个WebSocket连接。使用Promise异步回调。
 
 > **说明：**
+>
 > 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
 
 **需要权限**：ohos.permission.INTERNET
@@ -207,6 +212,7 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 | 2302999               | Internal error.             |
 
 > **错误码说明：**
+>
 > 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
 
 **示例：**
@@ -530,6 +536,7 @@ off(type: 'open', callback?: AsyncCallback\<Object\>): void
 取消订阅WebSocket的打开事件，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -569,6 +576,7 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -601,6 +609,7 @@ off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 取消订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
@@ -660,6 +669,7 @@ off(type: 'close', callback?: AsyncCallback\<CloseResult\>): void
 取消订阅WebSocket的关闭事件，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -718,6 +728,7 @@ off(type: 'error', callback?: ErrorCallback): void
 取消订阅WebSocket的Error事件，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -773,6 +784,7 @@ off(type: 'dataEnd', callback?: Callback\<void\>): void
 取消订阅WebSocket的数据接收结束事件，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -826,6 +838,7 @@ off(type: 'headerReceive', callback?: Callback\<ResponseHeaders\>): void
 取消订阅HTTP Response Header事件，使用callback方式作为异步方法。
 
 > **说明：**
+>
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
@@ -1583,7 +1596,8 @@ type ClientConnectionCloseCallback = (clientConnection: WebSocketConnection, clo
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称 | 类型   | 只读 | 可选 | 说明                            |
-| ---------------- | ------------------- | ---- | ------ | --------------------------------------------- |
-| clientConnection | [WebSocketConnection](#websocketconnection19) | 否 | 否 | 客户端信息，包括客户端的ip地址和端口号port。             |
-| closeReason | [CloseResult](#closeresult10) | 否 | 否 | 关闭WebSocket连接时，订阅close事件得到的关闭结果。 |
+**参数**：
+| 参数名 | 类型    | 必填 | 说明                            |
+| ---------------- | -------------------  | ------ | --------------------------------------------- |
+| clientConnection | [WebSocketConnection](#websocketconnection19) | 是 | 客户端信息，包括客户端的ip地址和端口号port。             |
+| closeReason | [CloseResult](#closeresult10)  | 是 | 关闭WebSocket连接时，订阅close事件得到的关闭结果。 |

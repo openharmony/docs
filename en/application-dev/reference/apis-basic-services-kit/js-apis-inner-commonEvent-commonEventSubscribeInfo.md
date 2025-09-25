@@ -8,7 +8,7 @@ The **CommonEventSubscribeInfo** module provides APIs for providing subscriber i
 >
 > After users subscribing to custom common events, any application can send potential malicious common events to subscribers. Use the **publisherPermission** and **publisherBundleName** parameters of this module to restrict the publishing scope of common events.
 
-## Attributes
+## Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

@@ -117,7 +117,7 @@ Specifies whether to display the lunar calendar. Compared with [lunar](#lunar), 
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isLunar | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether to display the lunar calendar.<br>- **true**: Display the lunar calendar.<br>- **false**: Do not display the lunar calendar.<br>If **isLunar** is set to **undefined**, the default value **false** is used.|
+| isLunar | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | Yes  | Whether to display the lunar calendar.<br>- **true**: Display the lunar calendar.<br>- **false**: Do not display the lunar calendar.<br>If **isLunar** is set to **undefined**, the default value **false** is used.|
 
 ### disappearTextStyle<sup>10+</sup>
 
@@ -149,7 +149,7 @@ Sets the text style for the top and bottom items. Compared with [disappearTextSt
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10)> | Yes  | Font color, font size, and font weight of the top and bottom items.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](#pickertextstyle10)> | Yes  | Font color, font size, and font weight of the top and bottom items.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
 
 ### textStyle<sup>10+</sup>
 
@@ -181,7 +181,7 @@ Sets the text style for all items except the top, bottom, and selected items. Co
 
 | Name| Type                                         | Mandatory| Description                                                        |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| style | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10)> | Yes  | Font color, font size, and font weight of all items except the top, bottom, and selected items.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
+| style | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](#pickertextstyle10)> | Yes  | Font color, font size, and font weight of all items except the top, bottom, and selected items.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
 
 ### selectedTextStyle<sup>10+</sup>
 
@@ -213,7 +213,7 @@ Sets the text style for the selected item. Compared with [selectedTextStyle](#se
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10)> | Yes  | Font color, font size, and font weight of the selected item.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20vp', <br>weight: FontWeight.Medium<br>}<br>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[PickerTextStyle](#pickertextstyle10)> | Yes  | Font color, font size, and font weight of the selected item.<br>If **style** is set to **undefined**, the default value is used:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20vp', <br>weight: FontWeight.Medium<br>}<br>} |
 
 ### enableHapticFeedback<sup>18+</sup>
 
@@ -227,7 +227,7 @@ Sets whether to enable haptic feedback.
 
 | Name| Type                                         | Mandatory | Description                                                                                 |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| enable  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether to enable haptic feedback.<br>**true** (default): Haptic feedback is enabled.<br>**false**: Haptic feedback is disabled.|
+| enable  | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<boolean> | Yes  | Whether to enable haptic feedback.<br>**true** (default): Haptic feedback is enabled.<br>**false**: Haptic feedback is disabled.|
 
 >  **NOTE**
 >
@@ -251,7 +251,7 @@ Sets the sensitivity to the digital crown rotation.
 
 | Name  | Type                                    | Mandatory  | Description                     |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
-| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | Yes   | Sensitivity to the digital crown rotation.<br>Default value: **CrownSensitivity.MEDIUM**                   |
+| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | Yes   | Sensitivity to the digital crown rotation.<br>Default value: **CrownSensitivity.MEDIUM**                   |
 
 >  **NOTE**
 >
@@ -316,7 +316,7 @@ Triggered when a date is selected. Compared with [onDateChange](#ondatechange10)
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Callback](ts-types.md#callback12)\<Date>> | Yes  | Selected time, where the year, month, and day portions are subject to the selection, the hour and minute portions are subject to the current system time, and the second portion is always **00**.<br>If **callback** is set to **undefined**, the callback function is not used.|
+| callback | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[Callback](ts-types.md#callback12)\<Date>> | Yes  | Selected time, where the year, month, and day portions are subject to the selection, the hour and minute portions are subject to the current system time, and the second portion is always **00**.<br>If **callback** is set to **undefined**, the callback function is not used.|
 
 ## DatePickerResult
 

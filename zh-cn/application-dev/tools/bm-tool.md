@@ -25,6 +25,8 @@ Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、�
 | dump-shared | 查询应用间HSP应用信息。 |
 | dump-overlay | 打印overlay应用的overlayModuleInfo。 |
 | dump-target-overlay | 打印目标应用的所有关联overlay应用的overlayModuleInfo。 |
+| install-plugin | 安装插件命令，用于安装插件。|
+| uninstall-plugin | 卸载插件命令，用于卸载插件。|
 
 
 ## 帮助命令（help）
@@ -47,8 +49,8 @@ bm install [-h] [-p filePath] [-r] [-w waitingTime] [-s hspDirPath]
 | 参数 | 参数说明 |
 | -------- | -------- |
 | -h | 帮助信息。 |
-| -p | 必选参数，指定HAP路径，多HAP应用可指定多HAP所在文件夹路径。 |
-| -r | 可选参数，覆盖安装一个HAP。默认值为覆盖安装。 |
+| -p | 可选参数，指定HAP/HSP路径，多HAP/HSP应用可指定多HAP/HSP所在文件夹路径。 |
+| -r | 可选参数，覆盖安装一个HAP/HSP。默认值为覆盖安装。 |
 | -s | 根据场景判断，安装应用间HSP时为必选参数，其他场景为可选参数。安装应用间共享库， 每个路径目录下只能存在一个同包名的HSP。 |
 | -w | 可选参数，安装HAP时指定bm工具等待时间，最小的等待时长为5s，最大的等待时长为600s,&nbsp;默认缺省为5s。 |
 
@@ -81,9 +83,9 @@ bm uninstall [-h] [-n bundleName] [-m moduleName] [-k] [-s] [-v versionCode]
 | -------- | -------- |
 | -h | 帮助信息。 |
 | -n | 必选参数，指定Bundle名称卸载应用。|
-| -m | 可选参数，指定卸载应用的一个模块。默认卸载所有模块。 |
+| -m | 可选参数，应用模块名称，指定卸载应用的一个模块。默认卸载所有模块。 |
 | -k | 可选参数，卸载应用时保存应用数据。默认卸载应用时不保存应用数据。 |
-| -s | 根据场景判断，安装应用间HSP时必选参数，其他场景为可选参数。卸载指定的共享库。|
+| -s | 根据场景判断，卸载应用间HSP时必选参数，其他场景为可选参数。卸载指定的共享库。|
 | -v | 可选参数，指定共享包的版本号。默认卸载同包名的所有共享包。 |
 
 
@@ -93,7 +95,7 @@ bm uninstall [-h] [-n bundleName] [-m moduleName] [-k] [-s] [-v versionCode]
 # 卸载一个应用
 bm uninstall -n com.ohos.app
 # 卸载应用的一个模块
-bm uninstall -n com.ohos.app -m com.ohos.app.EntryAbility
+bm uninstall -n com.ohos.app -m entry
 # 卸载一个shared bundle
 bm uninstall -n com.ohos.example -s
 # 卸载一个shared bundle的指定版本
@@ -254,7 +256,7 @@ bm quickfix [-h] [-a -f filePath [-t targetPath] [-d] [-o]] [-q -b bundleName] [
 | -------- | -------- |
 | -h | 帮助信息。 |
 | -a&nbsp;-f | -a为可选参数，指定-a后，-f为必选参数。执行快速修复补丁安装命令，file-path对应hqf文件，支持传递1个或多个hqf文件，或传递hqf文件所在的目录。 |
-| -q&nbsp;-b | -q为可选参数，指定-q后，-b为必选参数，未指定-q。根据包名查询补丁信息。 |
+| -q&nbsp;-b | -q为可选参数，指定-q后，-b为必选参数。根据包名查询补丁信息。 |
 | -r&nbsp;-b | -r为可选参数，指定-r后，-b为必选参数。根据包名卸载未使能的补丁。|
 | -t | 可选参数，快速修复应用到指定目标路径。|
 | -d | 可选参数，应用快速修复调试模式。|
@@ -302,7 +304,7 @@ bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
 | -h | 帮助信息。 |
 | -a | 可选参数，查询系统中所有已安装的共享库。|
 | -n | 可选参数，查询指定包名的共享库详细信息。|
-| -m | 可选参数，查询指定包名和模块名的共享库详细信息。|
+| -m | 可选参数，查询指定模块名的共享库详细信息。|
 
 
 示例：
@@ -430,6 +432,51 @@ bm dump-target-overlay-b com.ohos.app
 # 根据包名和module来获取目标应用com.ohos.app中目标module为entry的所有关联的OverlayModuleInfo信息
 bm dump-target-overlay -b com.ohos.app -m entry
 ```
+
+## 安装插件命令（install-plugin）
+
+```bash
+bm install-plugin [-h] [-n hostBundleName] [-p filePath]
+```
+
+**install-plugin命令参数列表**
+| 参数 | 参数说明 |
+| -------- | -------- |
+| -h | 帮助信息。 |
+| -n | 必选参数，指定待安装插件的应用包名。|
+| -p | 必选参数，指定插件文件路径。|
+
+示例：
+
+```bash
+# 安装一个插件
+bm install-plugin -n com.ohos.app -p /data/plugin.hsp
+```
+> **说明：**
+>
+> 在同一个应用中安装同一个插件，则视作插件版本更新，插件不支持降级安装；插件版本更新后，需要重启应用插件才能生效。当前系统不支持安装与宿主应用模块同名的插件。
+
+
+## 卸载插件命令（uninstall-plugin）
+
+```bash
+bm uninstall-plugin [-h] [-n hostBundleName] [-p pluginBundleName]
+```
+
+**uninstall-plugin命令参数列表**
+| 参数 | 参数说明 |
+| -------- | -------- |
+| -h | 帮助信息。 |
+| -n | 必选参数，指定应用包名。|
+| -p | 必选参数，指定插件的包名。|
+
+示例：
+
+```bash
+# 卸载一个插件
+bm uninstall-plugin -n com.ohos.app -p com.ohos.plugin
+```
+
 
 ## bm工具错误码
 
@@ -739,13 +786,11 @@ error: install parse profile prop check error.
 ### 9568305 依赖的模块不存在
 **错误信息**
 
-error: dependent module does not exist.
-
-![示例图](figures/zh-cn_image_0000001560338986.png)
+error: Failed to install the HAP or HSP because the dependent module does not exist.
 
 **错误描述**
 
-在启动调试或运行应用/服务时，安装HAP出现错误，提示“error: dependent module does not exist”错误信息。
+在启动调试或运行应用/服务时，安装HAP出现错误，提示“error: Failed to install the HAP or HSP because the dependent module does not exist.”错误信息。
 
 **可能原因**
 
@@ -753,6 +798,7 @@ error: dependent module does not exist.
 
 **处理步骤**
 
+场景一：依赖的HSP与HAP在同一工程内：
 1. 先安装依赖的动态共享包（SharedLibrary）模块，再在应用运行配置页勾选Keep Application Data，点击OK保存配置，再运行/调试。
 ![示例图](figures/zh-cn_image_0000001560201786.png)
 2. 在运行配置页，选择Deploy Multi Hap标签页，勾选Deploy Multi Hap Packages，选择依赖的模块，点击OK保存配置，再进行运行/调试。
@@ -760,6 +806,9 @@ error: dependent module does not exist.
 3. 单击Run > Edit Configurations，在General中，勾选Auto Dependencies。点击OK保存配置，再运行/调试。
 ![示例图](figures/zh-cn_image_9568305.png)
 
+场景二：依赖的HSP与HAP不在同一工程内：
+在安装HAP前，使用[bm install](#安装命令install)命令安装依赖的HSP。
+  
 ### 9568259 安装解析配置文件缺少字段
 **错误信息**
 
@@ -978,13 +1027,13 @@ hdc shell df -h /data
 ### 9568289 权限请求失败导致安装失败
 **错误信息**
 
-error: install failed due to grant request permissions failed.
+error: install failed due to grant request permissions failed.<br>
 
-![示例图](figures/zh-cn_image_0000001585201996.png)
+![示例图](figures/zh-cn_image_9568289.png)
 
 **错误描述**
 
-在启动调试或运行应用/服务时，安装HAP出现错误，提示“error: install failed due to grant request permissions failed”错误信息。
+在启动调试或运行应用/服务时，安装HAP出现错误，提示授予请求权限失败。从API version 18开始，会在请求失败信息后打印具体的权限名称。
 
 **可能原因**
 
@@ -2623,6 +2672,159 @@ error: Installd get proxy error.
 # 导出日志文件
 hdc file recv /data/log/hilog/
 ```
+
+### 9568432 插件与应用之间的 pluginDistributionIDs 校验失败，导致安装失败
+**错误信息**
+
+error: Check pluginDistributionID between plugin and host application failed.
+
+**错误描述**
+
+应用与插件的 pluginDistributionIDs 之间校验失败。
+
+**可能原因**
+
+应用与插件的 pluginDistributionIDs 没有共同值，导致校验失败。
+
+**处理步骤**
+
+重新配置应用或者插件<!--RP5-->[签名证书profile文件](../security/app-provision-structure.md)<!--RP5End-->中的 pluginDistributionIDs。配置格式如下：
+```
+"app-services-capabilities":{
+    "ohos.permission.kernel.SUPPORT_PLUGIN":{
+        "pluginDistributionIDs":"value-1,value-2,···"
+    }
+}
+```
+
+### 9568433 应用缺少ohos.permission.SUPPORT_PLUGIN权限
+**错误信息**
+
+error: Failed to install the plugin because host application check permission failed.
+
+**错误描述**
+
+应用安装插件时，应用的权限校验失败。
+
+**可能原因**
+
+应用缺少ohos.permission.SUPPORT_PLUGIN权限。
+
+**处理步骤**
+
+1. 参考[权限申请指导](../security/AccessToken/declare-permissions.md)申请[ohos.permission.kernel.SUPPORT_PLUGIN权限](../security/AccessToken/restricted-permissions.md#ohospermissionkernelsupport_plugin)。
+<!--Del-->
+2. 该权限等级为system_basic，若[应用APL等级](../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)低于system_basic，请[申请受限权限](../security/AccessToken/declare-permissions-in-acl.md)。
+<!--DelEnd-->
+
+### 9568435 应用包名不存在
+**错误信息**
+
+error: Host application is not found.
+
+**错误描述**
+
+传入的应用包名不存在。
+
+**可能原因**
+
+应用没有安装。
+
+**处理步骤**
+
+检查传入的应用是否存在。
+
+### 9568434 设备不具备插件能力
+**错误信息**
+
+error: Failed to install the plugin because current device does not support plugin.
+
+**错误描述**
+
+当前设备不具备插件能力，导致安装插件失败。
+
+**可能原因**
+
+设备不具备插件能力。
+
+**处理步骤**
+
+使用[param工具](./param-tool.md)设置const.bms.support_plugin的值为true，即执行hdc shell param set const.bms.support_plugin true。
+
+### 9568436 多个HSP包信息不一致
+**错误信息**
+
+error: Failed to install the plugin because they have different configuration information.
+
+**错误描述**
+
+多HSP之间的包信息不一致，导致安装失败。
+
+**可能原因**
+
+安装的插件为多HSP时，多个HSP文件的包信息不一致。
+
+**处理步骤**
+
+检查多HSP之间的包信息是否一致，包括[app.json5配置文件](../quick-start/app-configuration-file.md#配置文件标签)中bundleName、bundleType、versionCode、apiReleaseType字段。
+
+### 9568437 插件的 pluginDistributionIDs 解析失败
+**错误信息**
+
+error: Failed to install the plugin because the plugin id failed to be parsed.
+
+**错误描述**
+
+插件的 pluginDistributionIDs 解析失败，导致安装失败。
+
+**可能原因**
+
+插件签名信息中的 pluginDistributionIDs 配置不符合规范，导致解析失败。
+
+**处理步骤**
+
+参考如下格式，重新配置插件<!--RP5-->[签名证书profile文件](../security/app-provision-structure.md)<!--RP5End-->中的"app-services-capabilities"字段。
+```
+"app-services-capabilities":{
+    "ohos.permission.kernel.SUPPORT_PLUGIN":{
+        "pluginDistributionIDs":"value-1,value-2,···"
+    }
+}
+```
+
+### 9568438 插件包名不存在
+**错误信息**
+
+error: The plugin is not found.
+
+**错误描述**
+
+插件不存在。
+
+**可能原因**
+
+当前应用没有安装该插件。
+
+**处理步骤**
+
+使用[bm dump -n 命令](#查询应用信息命令dump)查询应用的信息，检查传入的插件是否安装。
+
+### 9568439 插件与应用包名一致
+**错误信息**
+
+error: The plugin name is same as host bundle name.
+
+**错误描述**
+
+插件的包名与应用包名相同。
+
+**可能原因**
+
+插件包名与应用包名一致，导致插件安装失败。
+
+**处理步骤**
+
+重新配置插件的包名。
 
 <!--Del-->
 ## 常见问题

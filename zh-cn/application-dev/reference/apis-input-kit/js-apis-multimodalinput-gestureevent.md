@@ -1,5 +1,12 @@
 # @ohos.multimodalInput.gestureEvent (手势事件)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 设备上报的手势事件。
 
 >  **说明：**

@@ -13,11 +13,11 @@ The drag event represents a drag and drop interaction for transfer of data using
 
 ## Drag Process
 
-The drag process can be gesture-based or ​mouse-based. The following describes these two types work.
+The drag process encompasses both gesture-based dragging and mouse-based dragging. This distinction helps clarify the timing of callback event triggers.
 
 ### ​​Gesture-based Drag Process
 
-​If a drag operation is initiated by a gesture, ArkUI checks whether the current component is draggable. For draggable components ([Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md), [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md), [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md), [RichEditor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md), [Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md), [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md), <!--Del-->[FormComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md), <!--DelEnd-->[Hyperlink](../reference/apis-arkui/arkui-ts/ts-container-hyperlink.md)), ArkUI checks whether their [draggable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#draggable) attribute is set to **true** (this attribute is **true** by default if layered parameters are used); for other components, ArkUI checks whether the **onDragStart** callback is set. If the attribute or callback is set as required, ArkUI starts dragging once the user has long pressed the component for 500 ms or longer, and displays a drag preview once the user has long pressed the component for 800 ms. When the drag operation is used together with a menu controlled by the **isShow** attribute for visibility, avoid delaying the display of the menu by 800 ms after the user's action. Otherwise, unexpected behavior may occur.
+​If a drag operation is triggered by a long press gesture, ArkUI checks whether the current component is draggable before initiating the drag. For components that are draggable by default ([Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md), [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md), [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md), [RichEditor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md), [Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md), [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md), [Hyperlink](../reference/apis-arkui/arkui-ts/ts-container-hyperlink.md)), ArkUI checks whether their [draggable](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#draggable) attribute is set to **true** (the system predefines the default value of this attribute for these components through [system resources](../quick-start/resource-categories-and-access.md#system-resources)); for other components, ArkUI also checks whether the **onDragStart** callback is set. If the attribute or callback is set as required, ArkUI starts dragging once the user has long pressed the component for 500 ms or longer, and displays a drag preview once the user has long pressed the component for 800 ms. When the drag operation is used together with a menu controlled by the **isShow** attribute for visibility, avoid delaying the display of the menu by 800 ms after the user's action. Otherwise, unexpected behavior may occur.
 
 Below you can see the drag process initiated by a gesture (finger or stylus).
 
@@ -413,8 +413,9 @@ struct Index {
 }
 
 ```
+![commonDrag](figures/commonDrag.gif)
 
-## Multi-Select Drag and Drop Adaptation
+### Multi-Select Drag and Drop Adaptation
 
 Since API version 12, the **GridItem** and **ListItem** components, which are child components of [Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md) and [List](../reference/apis-arkui/arkui-ts/ts-container-list.md), respectively, support multi-select drag and drop, which can be initiated through the **onDragStart** API.
 
@@ -429,7 +430,7 @@ The following uses **Grid** as an example to describe the basic procedure for mu
       ForEach(this.numbers, (idx: number) => {
         GridItem() {
           Column()
-            .backgroundColor(this.colors[idx % 9])
+            .backgroundColor(Color.Blue)
             .width(50)
             .height(50)
             .opacity(1.0)
@@ -617,4 +618,423 @@ struct GridEts {
   }
 }
 ```
+![multiDrag](figures/multiDrag.gif)
+
+### Custom Drop Animation Adaptation
+
+When you need to create custom drop animations, you can disable the default system animations. Since API version 18, ArkUI provides the [executeDropAnimation](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#executedropanimation18) API, which allows you to define your own drop animations. The following provides step-by-step instructions using the **Image** component as an example, along with key points to keep in mind during development.
+
+1. Configure drag and drop settings for the component.
+   Set **draggable** to **true** and configure callbacks such as **onDragStart** and **onDragEnd**.
+    ```ts
+    Image($r('app.media.app_icon'))
+      .width(100)
+      .height(100)
+      .draggable(true)
+      .margin({ left: 15 ,top: 40})
+      .visibility(this.imgState)
+      .onDragStart((event) => {})
+      .onDragEnd((event) => {})
+    ```
+2. Define your custom animation.
+
+   Use the [animateTo](../reference/apis-arkui/js-apis-arkui-UIContext.md#animateto) API to create a custom animation. For example, you can change the size of the component.
+
+    ```ts
+      customDropAnimation = () => {
+        this.getUIContext().animateTo({ duration: 1000, curve: Curve.EaseOut, playMode: PlayMode.Normal }, () => {
+          this.imageWidth = 200;
+          this.imageHeight = 200;
+          this.imgState = Visibility.None;
+        })
+      }
+    ```
+
+3. Trigger the custom drop animation.
+
+   Configure the **onDrop** callback to receive the drag data. Execute your custom drop animation using the [executeDropAnimation](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#executedropanimation18) API. Set [useCustomDropAnimation](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7) to **true** to disable the default system animation.
+
+    ```ts
+      Column() {
+        Image(this.targetImage)
+          .width(this.imageWidth)
+          .height(this.imageHeight)
+      }
+      .draggable(true)
+      .margin({ left: 15 })
+      .border({ color: Color.Black, width: 1 })
+      .allowDrop([udmfType.UniformDataType.IMAGE])
+      .onDrop((dragEvent: DragEvent) => {
+        let records: Array<unifiedDataChannel.UnifiedRecord> = dragEvent.getData().getRecords();
+        let rect: Rectangle = dragEvent.getPreviewRect();
+        this.imageWidth = Number(rect.width);
+        this.imageHeight = Number(rect.height);
+        this.targetImage = (records[0] as udmf.Image).imageUri;
+        dragEvent.useCustomDropAnimation = true;
+        dragEvent.executeDropAnimation(this.customDropAnimation)
+      })
+    ```
+
+**Sample Code**
+
+```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+import { promptAction } from '@kit.ArkUI';
+
+
+@Entry
+@Component
+struct DropAnimationExample {
+  @State targetImage: string = '';
+  @State imageWidth: number = 100;
+  @State imageHeight: number = 100;
+  @State imgState: Visibility = Visibility.Visible;
+
+  customDropAnimation =
+    () => {
+      this.getUIContext().animateTo({ duration: 1000, curve: Curve.EaseOut, playMode: PlayMode.Normal }, () => {
+        this.imageWidth = 200;
+        this.imageHeight = 200;
+        this.imgState = Visibility.None;
+      })
+    }
+
+  build() {
+    Row() {
+      Column() {
+        Image($r('app.media.app_icon'))
+          .width(100)
+          .height(100)
+          .draggable(true)
+          .margin({ left: 15 ,top: 40})
+          .visibility(this.imgState)
+          .onDragStart((event) => {
+          })
+          .onDragEnd((event) => {
+            if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
+              console.info('Drag Success');
+            } else if (event.getResult() === DragResult.DRAG_FAILED) {
+              console.info('Drag failed');
+            }
+          })
+      }.width('45%')
+      .height('100%')
+      Column() {
+        Text('Drag Target Area')
+          .fontSize(20)
+          .width(180)
+          .height(40)
+          .textAlign(TextAlign.Center)
+          .margin(10)
+          .backgroundColor('rgb(240,250,255)')
+        Column() {
+          Image(this.targetImage)
+            .width(this.imageWidth)
+            .height(this.imageHeight)
+        }
+        .draggable(true)
+        .margin({ left: 15 })
+        .border({ color: Color.Black, width: 1 })
+        .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
+        .onDrop((dragEvent: DragEvent) => {
+          let records: Array<unifiedDataChannel.UnifiedRecord> = dragEvent.getData().getRecords();
+          let rect: Rectangle = dragEvent.getPreviewRect();
+          this.imageWidth = Number(rect.width);
+          this.imageHeight = Number(rect.height);
+          this.targetImage = (records[0] as unifiedDataChannel.Image).imageUri;
+          dragEvent.useCustomDropAnimation = true;
+          dragEvent.executeDropAnimation(this.customDropAnimation)
+        })
+        .width(this.imageWidth)
+        .height(this.imageHeight)
+      }.width('45%')
+      .height('100%')
+      .margin({ left: '5%' })
+    }
+    .height('100%')
+  }
+}
+```
+![executeDropAnimation](figures/executeDropAnimation.gif)
+
+### Handling Large Volumes of Data
+
+When dealing with a large number of items or large data volumes during drag and drop operations, processing all the data at once can negatively impact the user experience. The following uses the **Grid** component as an example to provide recommended practices for handling large data volumes during drag and drop operations, along with key points to keep in mind during development.
+
+1. Enable multi-select drag and drop.
+
+   Create **GridItem** child components and set their state to be selectable. Enable multi-select drag and drop by setting **isMultiSelectionEnabled** to **true**. Use the selected state to distinguish whether an item is selected.
+
+    ```ts
+    Grid() {
+      ForEach(this.numbers, (idx: number) => {
+        GridItem() {
+          Column()
+            .backgroundColor(Color.Blue)
+            .width(50)
+            .height(50)
+            .opacity(1.0)
+            .id('grid'+idx)
+        }
+        .dragPreview(this.previewData[idx])
+        .dragPreviewOptions({numberBadge: this.numberBadge},{isMultiSelectionEnabled:true,defaultAnimationBeforeLifting:true})
+        .selectable(true)
+        .selected(this.isSelectedGrid[idx])
+        .stateStyles({
+          normal : this.normalStyles,
+          selected: this.selectStyles
+        })
+        .onClick(() => {
+          this.isSelectedGrid[idx] = !this.isSelectedGrid[idx];
+        })
+      }, (idx: string) => idx)
+    }
+    ```
+
+   To maintain performance, limit the maximum number of items for multi-select drag and drop to 500.
+
+    ```ts
+    onPageShow(): void {
+      let i: number = 0
+      for(i=0;i<500;i++){
+        this.numbers.push(i)
+        this.isSelectedGrid.push(false)
+        this.previewData.push({})
+      }
+    }
+    ```
+2. Add data incrementally when items are selected.
+
+   When dealing with large data volumes, you are advised to add data records incrementally using [addRecord](../reference/apis-arkdata/js-apis-data-unifiedDataChannel.md#addrecord) as items are selected. This avoids significant performance overhead from processing all data at once during the drag operation.
+
+    ```ts
+    .onClick(()=>{
+      this.isSelectedGrid[idx] = !this.isSelectedGrid[idx];
+      if (this.isSelectedGrid[idx]) {
+        let data: UDC.Image = new UDC.Image();
+        data.uri = '/resource/image.jpeg';
+        if (!this.unifiedData) {
+          this.unifiedData = new UDC.UnifiedData(data);
+        }
+        this.unifiedData.addRecord(data);
+        this.numberBadge++;
+        let gridItemName = 'grid' + idx;
+        // Call the get API in componentSnapshot to obtain the component snapshot pixel map on selection.
+        this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
+          this.pixmap = pixmap;
+          this.previewData[idx] = {
+            pixelMap:this.pixmap
+          }
+        })
+      } else {
+        this.numberBadge--;
+        for (let i=0; i<this.isSelectedGrid.length; i++) {
+          if (this.isSelectedGrid[i] === true) {
+            let data: UDC.Image = new UDC.Image();
+            data.uri = '/resource/image.jpeg';
+            if (!this.unifiedData) {
+              this.unifiedData = new UDC.UnifiedData(data);
+            }
+            this.unifiedData.addRecord(data);
+          }
+        }
+      }
+    })
+    ```
+
+3. Prepare data in advance.
+
+   Use the **onPreDrag** callback to receive a signal that a drag operation is about to start. If the data volume is large, prepare the data in advance.
+
+    ```ts
+    .onPreDrag((status: PreDragStatus) => {
+      if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
+        this.loadData()
+      }
+    })
+    ```
+
+4. Block the drag operation if data preparation is not complete.
+
+   When initiating a drag operation, check whether the data is ready. If the data is not yet ready, send a [WAITING](../reference/apis-arkui/js-apis-arkui-dragController.md#dragstartrequeststatus18) signal to the system to block the drag operation. In this case, if the user performs a drag gesture, the drag preview will remain stationary until the application sends a READY signal or the maximum blocking time limit (5 seconds) is exceeded. If the data is ready, you can directly set it to [dragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7). Note that when using the blocking feature, you need to save the current **dragEvent** and set the data when preparation is complete. In non-blocking scenarios, saving the current **dragEvent** is not recommended.
+
+    ```ts
+    .onDragStart((event: DragEvent) => {
+      this.dragEvent = event;
+      if (this.finished == false) {
+        this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING);
+      } else {
+        event.setData(this.unifiedData);
+      }
+    })
+    ```
+
+**Sample Code**
+
+```ts
+import { image } from '@kit.ImageKit';
+import { unifiedDataChannel as UDC } from '@kit.ArkData';
+import { dragController } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct GridEts {
+  @State pixmap: image.PixelMap|undefined = undefined
+  @State numbers: number[] = []
+  @State isSelectedGrid: boolean[] = []
+  @State previewData: DragItemInfo[] = []
+  @State numberBadge: number = 0;
+  unifiedData: UnifiedData|undefined = undefined;
+  timeout: number = 1
+  finished: boolean = false;
+  dragEvent: DragEvent|undefined;
+
+  @Styles
+  normalStyles(): void{
+    .opacity(1.0)
+  }
+
+  @Styles
+  selectStyles(): void{
+    .opacity(0.4)
+  }
+
+  onPageShow(): void {
+    let i: number = 0
+    for(i=0;i<500;i++){
+      this.numbers.push(i)
+      this.isSelectedGrid.push(false)
+      this.previewData.push({})
+    }
+  }
+
+  loadData() {
+    this.timeout = setTimeout(() => {
+      // State after data preparation is complete.
+      if (this.dragEvent) {
+        this.dragEvent.setData(this.unifiedData);
+      }
+      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY);
+      this.finished = true;
+    }, 4000);
+  }
+
+  @Builder
+  RandomBuilder(idx: number) {
+    Column()
+      .backgroundColor(Color.Blue)
+      .width(50)
+      .height(50)
+      .opacity(1.0)
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Button('Select All')
+        .onClick(() => {
+          for (let i=0;i<this.isSelectedGrid.length;i++) {
+            if (this.isSelectedGrid[i] === false) {
+              this.numberBadge++;
+              this.isSelectedGrid[i] = true;
+              let data: UDC.Image = new UDC.Image();
+              data.uri = '/resource/image.jpeg';
+              if (!this.unifiedData) {
+                this.unifiedData = new UDC.UnifiedData(data);
+              }
+              this.unifiedData.addRecord(data);
+              let gridItemName = 'grid' + i;
+              // Call the get API in componentSnapshot to obtain the component snapshot pixel map on selection.
+              this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
+                this.pixmap = pixmap
+                this.previewData[i] = {
+                  pixelMap:this.pixmap
+                }
+              })
+            }
+          }
+        })
+      Grid() {
+        ForEach(this.numbers, (idx: number) => {
+          GridItem() {
+            Column()
+              .backgroundColor(Color.Blue)
+              .width(50)
+              .height(50)
+              .opacity(1.0)
+              .id('grid'+idx)
+          }
+          .dragPreview(this.previewData[idx])
+          .selectable(true)
+          .selected(this.isSelectedGrid[idx])
+          // Set the multi-select display effects.
+          .stateStyles({
+            normal : this.normalStyles,
+            selected: this.selectStyles
+          })
+          .onClick(()=>{
+            this.isSelectedGrid[idx] = !this.isSelectedGrid[idx];
+            if (this.isSelectedGrid[idx]) {
+              let data: UDC.Image = new UDC.Image();
+              data.uri = '/resource/image.jpeg';
+              if (!this.unifiedData) {
+                this.unifiedData = new UDC.UnifiedData(data);
+              }
+              this.unifiedData.addRecord(data);
+              this.numberBadge++;
+              let gridItemName = 'grid' + idx;
+              // Call the get API in componentSnapshot to obtain the component snapshot pixel map on selection.
+              this.getUIContext().getComponentSnapshot().get(gridItemName, (error: Error, pixmap: image.PixelMap)=>{
+                this.pixmap = pixmap;
+                this.previewData[idx] = {
+                  pixelMap:this.pixmap
+                }
+              })
+            } else {
+              this.numberBadge--;
+              for (let i=0; i<this.isSelectedGrid.length; i++) {
+                if (this.isSelectedGrid[i] === true) {
+                  let data: UDC.Image = new UDC.Image();
+                  data.uri = '/resource/image.jpeg';
+                  if (!this.unifiedData) {
+                    this.unifiedData = new UDC.UnifiedData(data);
+                  }
+                  this.unifiedData.addRecord(data);
+                }
+              }
+            }
+          })
+          .onPreDrag((status: PreDragStatus) => {
+            // 1. Long press notification. Callback upon 350 ms.
+            if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
+              // 2. The user presses and holds for a period of time without releasing, which may lead to dragging: Prepare data at this time.
+              this.loadData()
+            } else if (status == PreDragStatus.ACTION_CANCELED_BEFORE_DRAG) {
+              // 3. The user stops the drag operation: Cancel data preparation (simulation method: cancel the timer).
+              clearTimeout(this.timeout);
+            }
+          })
+          // Triggered when the component is pressed for 500 ms or longer and moved more than 10 vp.
+          .onDragStart((event: DragEvent) => {
+            this.dragEvent = event;
+            if (this.finished == false) {
+              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING);
+            } else {
+              event.setData(this.unifiedData);
+            }
+          })
+          .onDragEnd(() => {
+            this.finished = false;
+          })
+          .dragPreviewOptions({numberBadge: this.numberBadge},{isMultiSelectionEnabled:true,defaultAnimationBeforeLifting:true})
+        }, (idx: string) => idx)
+      }
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(5)
+      .rowsGap(10)
+      .backgroundColor(0xFAEEE0)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
 <!--RP1--><!--RP1End-->

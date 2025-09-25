@@ -147,3 +147,6 @@ The following describes how to subscribe to the freeze event triggered by a butt
    HiAppEvent eventInfo.params.log_over_limit=false
    HiAppEvent eventInfo.params.test_data=100
    ```
+
+<!--RP1-->
+<!--RP1End-->

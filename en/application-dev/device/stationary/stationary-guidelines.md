@@ -39,7 +39,7 @@ For details about the APIs, see [Stationary](../../reference/apis-multimodalawar
 
 ## Constraints
 
-The device must support the acceleration sensor.
+The device is required to support the acceleration sensor.
 Currently, only the algorithm framework is provided. The API test framework returns the following result: data={"type":3,"value":-1}.
 If the relative stationary and absolute stationary capabilities are required, you must implement them in **device_status/libs/src/algorithm**. The following code snippet is for reference:
 
@@ -74,7 +74,7 @@ If the relative stationary and absolute stationary capabilities are required, yo
    let reportLatencyNs = 1000000000;
    try {
       stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
-         console.log('data='+ JSON.stringify(data));
+         console.info('data='+ JSON.stringify(data));
       })
    } catch (error) {
       let message = (error as BusinessError).message;
@@ -89,7 +89,7 @@ If the relative stationary and absolute stationary capabilities are required, yo
    import { BusinessError } from '@kit.BasicServicesKit';
    try {
       stationary.once('still', (data) => {
-         console.log('data='+ JSON.stringify(data));
+         console.info('data='+ JSON.stringify(data));
       })
    } catch (error) {
       let message = (error as BusinessError).message;
@@ -104,7 +104,7 @@ If the relative stationary and absolute stationary capabilities are required, yo
    import { BusinessError } from '@kit.BasicServicesKit';
    try {
       stationary.off('still', stationary.ActivityEvent.ENTER, (data) => {
-         console.log('data='+ JSON.stringify(data));
+         console.info('data='+ JSON.stringify(data));
       })
    } catch (error) {
       let message = (error as BusinessError).message;

@@ -1,5 +1,4 @@
-# Overview of Application Configuration Files in FA Model
-
+# Application Configuration Files (FA Model)
 
 Each application project must have configuration files in its code directory. These configuration files provide basic application information for build tools, the operating system, and application markets.
 

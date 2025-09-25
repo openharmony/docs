@@ -70,9 +70,9 @@ The **Web** component provides the W3C CSS capability for calculating and adjust
   }
   ```
 
-## Setting the Web Page Layout in a Viewport
+## Setting the Web Page Layout in the Viewport
 
-Use **viewport-fit**, which is an attribute of the **\<meta name="viewport">** tag, to set the layout of a web page in a viewport as follows:
+Use **viewport-fit**, which is an attribute of the **\<meta name="viewport">** tag, to set the layout of a web page in the viewport. The setting method is as follows:
 
 ```html
 <meta name='viewport' content='viewport-fit=cover'>
@@ -90,7 +90,7 @@ As shown in Table 1, the default value of **viewport-fit** is **auto**, which ha
 
 > **NOTE**
 > 
-> Currently, the **Web** component does not support the feature of restricting the web page content to the safe area when the immersive mode is enabled. Therefore, the value **contain** of **viewport-fit** has the same effect as **cover**, that is, the web page content completely fills the **Web** component area.
+> Currently, the **Web** component does not support the feature of restricting the web page content to the safe area when the immersive mode is enabled. Therefore, the value **contain** of **viewport-fit** has the same effect as **cover**, that is, the web page content fills the **Web** component area.
 
 ## Avoidance Adaptation of Web Page Elements
 

@@ -9,6 +9,7 @@ Defines the route configuration.
 
 **Related module**: [NetConnection](_net_connection.md)
 
+**Header file**: [net_connection_type.h](net__connection__type_8h.md)
 
 ## Summary
 
@@ -17,7 +18,7 @@ Defines the route configuration.
 
 | Name| Use guide| 
 | -------- | -------- |
-| [iface](#iface) [NETCONN_MAX_STR_LEN] | Network interface.| 
+| [iface](#iface) [[NETCONN_MAX_STR_LEN]](_net_connection.md#macros)| Network interface.| 
 | [destination](#destination) | Destination address.| 
 | [gateway](#gateway) | Gateway address.| 
 | [hasGateway](#hasgateway) | Whether a gateway exists.| 

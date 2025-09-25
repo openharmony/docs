@@ -363,7 +363,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
 
 Provides information about the document to print. This API must be implemented by a third-party application.
 
-### onStartLayoutWrite
+### onStartLayoutWrite<sup>11+</sup>
 
 onStartLayoutWrite(jobId: string, oldAttrs: PrintAttributes, newAttrs: PrintAttributes, fd: number, writeResultCallback: (jobId: string, writeResult: PrintFileCreationState) => void): void
 
@@ -418,7 +418,7 @@ class MyPrintDocumentAdapter implements print.PrintDocumentAdapter {
 }
 ```
 
-### onJobStateChanged
+### onJobStateChanged<sup>11+</sup>
 
 onJobStateChanged(jobId: string, state: PrintDocumentAdapterState): void
 
@@ -705,7 +705,7 @@ Prints a file. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| jobName | string | Yes| Name of the file to print, for example, **test.pdf**. The printer uses the [onStartLayoutWrite](#onstartlayoutwrite) API to send the **fd** of the empty PDF file to the API caller. The API caller uses the new print attributes to update the file to print.|
+| jobName | string | Yes| Name of the file to print, for example, **test.pdf**. The printer uses the [onStartLayoutWrite](#onstartlayoutwrite11) API to send the **fd** of the empty PDF file to the API caller. The API caller uses the new print attributes to update the file to print.|
 | printAdapter | [PrintDocumentAdapter](#printdocumentadapter11) | Yes| [PrintDocumentAdapter](#printdocumentadapter11) API instance implemented by a third-party application.|
 | printAttributes | [PrintAttributes](#printattributes11) | Yes| Print attributes.|
 | context | Context | Yes| UIAbilityContext used to start the system print UI.|

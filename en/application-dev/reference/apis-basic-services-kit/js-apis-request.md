@@ -1,4 +1,9 @@
 # @ohos.request (Upload and Download)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Request-->
+<!--Owner: @huaxin05-->
+<!--Designer: @hu-kai45-->
+<!--Tester: @murphy1984-->
 
 The **request** module provides applications with basic upload, download, and background transmission agent capabilities.
 
@@ -97,7 +102,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 13400002 | File path not supported or invalid. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -157,7 +162,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 13400002 | File path not supported or invalid. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -298,6 +303,8 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 ## UploadTask
 
 Implements file uploads. Before using any APIs of this class, you must obtain an **UploadTask** object through [request.uploadFile<sup>9+</sup>](#requestuploadfile9) in promise mode or [request.uploadFile<sup>9+</sup>](#requestuploadfile9-1) in callback mode.
+
+
 
 ### on('progress')
 
@@ -858,7 +865,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 13400003 | Task service ability error. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -913,7 +920,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 13400003 | Task service ability error. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -930,7 +937,6 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
         console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
         return;
       }
-      let downloadTask: request.DownloadTask = data;
     });
   } catch (err) {
     console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
@@ -1076,7 +1082,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -1132,7 +1138,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -1188,7 +1194,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -1246,7 +1252,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -1335,7 +1341,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -1389,7 +1395,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -1445,7 +1451,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The permissions check fails. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -1455,8 +1461,7 @@ let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 try {
   // Replace the URL with the HTTP address of the real server.
   request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.delete().then((result: boolean) => {
+      data.delete().then((result: boolean) => {
       console.info('Succeeded in removing the download task.');
     }).catch((err: BusinessError) => {
       console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
@@ -1499,7 +1504,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The permissions check fails. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -1555,7 +1560,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The permissions check fails. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -1609,7 +1614,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The permissions check fails. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -1665,7 +1670,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The permissions check fails. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -1719,7 +1724,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The permissions check fails. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -1775,7 +1780,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The permissions check fails. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -1829,7 +1834,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The permissions check fails. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -1885,7 +1890,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The permissions check fails. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -1939,7 +1944,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201 | The permissions check fails. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
@@ -2567,18 +2572,16 @@ Describes the data structure of the task progress.
 
 Defines the cause of a task failure.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.Request.FileTransferAgent
 
 | Name| Value| Description                                                                            |
 | -------- | -------- |--------------------------------------------------------------------------------|
-| OTHERS | 0xFF | Other fault.                                                                       |
-| DISCONNECTED | 0x00 | Network disconnection.                                                                     |
-| TIMEOUT | 0x10 | Timeout.                                                                       |
-| PROTOCOL | 0x20 | Protocol error, for example, an internal server error (500) or a data range that cannot be processed (416).                                       |
+| OTHERS | 0xFF | Other fault.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                       |
+| DISCONNECTED | 0x00 | Network disconnection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                     |
+| TIMEOUT | 0x10 | Timeout.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                       |
+| PROTOCOL | 0x20 | Protocol error, for example, an internal server error (500) or a data range that cannot be processed (416).<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                       |
 | PARAM<sup>12+</sup> | 0x30 | Parameter error, for example, incorrect URL format.<br>**Atomic service API**: This API can be used in atomic services since API version 12.         |
-| FSIO | 0x40 | File system I/O error, for example, an error that occurs during the open, search, read, write, or close operation.                                                  |
+| FSIO | 0x40 | File system I/O error, for example, an error that occurs during the open, search, read, write, or close operation.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                  |
 | DNS<sup>12+</sup> | 0x50 | DNS resolution error.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
 | TCP<sup>12+</sup> | 0x60 | TCP connection error.<br>**Atomic service API**: This API can be used in atomic services since API version 12.             |
 | SSL<sup>12+</sup> | 0x70 | SSL connection error, for example, a certificate error or certificate verification failure.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -2715,7 +2718,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -2799,7 +2802,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -2883,7 +2886,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -2965,7 +2968,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3004,11 +3007,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task pause.');
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.on('pause', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
-    for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -3049,7 +3055,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3088,13 +3094,19 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task resume.');
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.on('resume', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
     for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause();
     for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.resume();
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -3135,7 +3147,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3174,11 +3186,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let createOnCallback = (progress: request.agent.Progress) => {
     console.info('upload task remove.');
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.on('remove', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
     for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     request.agent.remove(task.tid);
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -3215,7 +3230,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3300,7 +3315,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3393,7 +3408,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3485,7 +3500,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3575,7 +3590,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3665,7 +3680,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3755,7 +3770,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3841,7 +3856,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3933,7 +3948,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900007 | Operation with wrong task state. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4012,7 +4027,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900007 | Operation with wrong task state. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4081,7 +4096,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900007 | Operation with wrong task state. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4110,9 +4125,12 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
     for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause((err: BusinessError) => {
       if (err) {
         console.error(`Failed to pause the download task, Code: ${err.code}, message: ${err.message}`);
@@ -4150,7 +4168,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900007 | Operation with wrong task state. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4179,9 +4197,12 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
     for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause().then(() => {
       console.info(`Succeeded in pausing a download task. `);
     }).catch((err: BusinessError) => {
@@ -4220,7 +4241,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900007 | Operation with wrong task state. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4249,11 +4270,17 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
     for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause();
     for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.resume((err: BusinessError) => {
       if (err) {
         console.error(`Failed to resume the download task, Code: ${err.code}, message: ${err.message}`);
@@ -4294,7 +4321,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900007 | Operation with wrong task state. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4323,11 +4350,17 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
     for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.pause();
     for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.resume().then(() => {
       console.info(`Succeeded in resuming a download task. `);
     }).catch((err: BusinessError) => {
@@ -4365,7 +4398,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900007 | Operation with wrong task state. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4394,9 +4427,12 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
     for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.stop((err: BusinessError) => {
       if (err) {
         console.error(`Failed to stop the download task, Code: ${err.code}, message: ${err.message}`);
@@ -4437,7 +4473,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900007 | Operation with wrong task state. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4466,9 +4502,12 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, config).then((task: request.agent.Task) => {
+  request.agent.create(context, config).then(async (task: request.agent.Task) => {
     task.start();
     for(let t = Date.now(); Date.now() - t <= 1000;); // To prevent asynchronous out-of-order, wait for 1 second before performing the next operation.
+    await new Promise<void>((resolve) => {
+      setTimeout(() => resolve(),1000)
+    })
     task.stop().then(() => {
       console.info(`Succeeded in stopping a download task. `);
     }).catch((err: BusinessError) => {
@@ -4510,7 +4549,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 13400003 | Task service ability error.     |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4569,7 +4608,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900005 | Operation with wrong task mode. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4661,7 +4700,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900005 | Operation with wrong task mode. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4744,7 +4783,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 | 21900006 | Task removed or not found. |
 
 **Example**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';

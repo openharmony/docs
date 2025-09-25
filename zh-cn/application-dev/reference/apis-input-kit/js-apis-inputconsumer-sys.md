@@ -1,5 +1,12 @@
 # @ohos.multimodalInput.inputConsumer (全局快捷键)(系统接口)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 全局快捷键订阅模块，用于处理组合按键的订阅。
 
 > **说明：**

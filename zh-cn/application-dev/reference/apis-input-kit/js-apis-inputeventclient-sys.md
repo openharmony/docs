@@ -1,5 +1,12 @@
 # @ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 输入事件注入模块，提供输入事件注入能力。
 
 > **说明：**

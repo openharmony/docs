@@ -6,7 +6,40 @@ The **Webview** module provides APIs for web control. It can work with the [Web]
 >
 > - The initial APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 >
+>
 > - You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
+>
+> - Static methods must be used on the user interface (UI) thread.
+
+This module provides the following common functionalities for web control:
+
+- [AdsBlockManager](#adsblockmanager12): Ad filtering configuration.
+- [BackForwardCacheOptions](#backforwardcacheoptions12): Forward and backward cache configuration.
+- [BackForwardCacheSupportedFeatures](#backforwardcachesupportedfeatures12): Forward and backward cache feature configuration.
+- [GeolocationPermissions](./js-apis-webview-GeolocationPermissions.md): Geolocation permission configuration.
+- [JsMessageExt](#jsmessageext10): JavaScript execution result.
+- [MediaSourceInfo](#mediasourceinfo12): Media source information configuration.
+- [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12): Rendering information when the application takes over media playback.
+- [PdfData](#pdfdata14): Generated PDF output data.
+- [ProxyConfig](#proxyconfig15): Network proxy configuration.
+- [ProxyController](#proxycontroller15): Network proxy controller.
+- [WebviewController](./js-apis-webview-WebviewController.md): **Web** component controller.
+- [WebCookieManager](./js-apis-webview-WebCookieManager.md): Cookie management.
+- [WebDataBase](./js-apis-webview-WebDataBase.md): Database management.
+- [WebDownloadDelegate](#webdownloaddelegate11): Download task status event.
+- [WebDownloadItem](#webdownloaditem11): Download task.
+- [WebDownloadManager](#webdownloadmanager11): Download task management.
+- [WebHttpBodyStream](#webhttpbodystream12): HTTP request body.
+- [WebMessageExt](./js-apis-webview-WebMessageExt.md): Data object for communication between the frontend and application.
+- [WebResourceHandler](#webresourcehandler12): Resource loading control.
+- [WebSchemeHandler](#webschemehandler12): Request interceptor of a specified scheme.
+- [WebSchemeHandlerRequest](#webschemehandlerrequest12): Request intercepted by the interceptor.
+- [WebSchemeHandlerResponse](#webschemehandlerresponse12): Custom responses for intercepted requests.
+- [WebStorage](./js-apis-webview-WebStorage.md): Storage operation API of the **Web** component.
+- [BackForwardList](./js-apis-webview-BackForwardList.md): History information list.
+- [NativeMediaPlayerBridge](#nativemediaplayerbridge12): Bridge API for taking over web media players.
+- [NativeMediaPlayerHandler](#nativemediaplayerhandler12): Event API for taking over web media players.
+- [WebMessagePort](./js-apis-webview-WebMessagePort.md): Message port between the web page and application.
 
 ## Required Permissions
 
@@ -203,7 +236,7 @@ Describes a historical page record.
 
 | Name         | Type                                  | Read-Only| Optional| Description                        |
 | ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
-| icon          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | No  | **PixelMap** object of the icon on the historical page.|
+| icon          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | No  | No  | **PixelMap** object of the icon on the historical page.|
 | historyUrl    | string                                 | No  | No  | URL of the historical page.       |
 | historyRawUrl | string                                 | No  | No  | Original URL of the historical page.   |
 | title         | string                                 | No  | No  | Title of the historical page.          |
@@ -4025,11 +4058,11 @@ Provides the information about the media source.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name| Type| Mandatory| Description|
-|------|------|------|------|
-| type | [SourceType](./js-apis-webview-e.md#sourcetype12) | Yes| Type of the media source.|
-| source | string | Yes| Address of the media source.|
-| format | string | Yes| Format of the media source, which may be empty. You need to determine the format by yourself.|
+| Name| Type| Read-Only| Optional| Description|
+|------|------|------|------|------|
+| type | [SourceType](./js-apis-webview-e.md#sourcetype12) | No| No| Type of the media source.|
+| source | string | No| No| Address of the media source.|
+| format | string | No| No| Format of the media source, which may be empty. You need to determine the format by yourself.|
 
 ## NativeMediaPlayerSurfaceInfo<sup>12+<sup>
 
@@ -4037,10 +4070,10 @@ Provides the surface information used for same-layer rendering [when the applica
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name| Type| Mandatory| Description|
-|------|------|------|------|
-| id | string | Yes| Surface ID, which is the **psurfaceid** of the native image used for rendering at the same layer.<br>For details, see [NativeEmbedDataInfo](./ts-basic-components-web-i.md#nativeembeddatainfo11).|
-| rect | [RectEvent](#rectevent12) | Yes| Position of the surface.|
+| Name| Type| Read-Only| Optional | Description|
+|------|------|------|------|------|
+| id | string | No| No| Surface ID, which is the **psurfaceid** of the native image used for rendering at the same layer.<br>For details, see [NativeEmbedDataInfo](./ts-basic-components-web-i.md#nativeembeddatainfo11).|
+| rect | [RectEvent](#rectevent12) | No| No| Position of the surface.|
 
 ## MediaInfo<sup>12+<sup>
 
@@ -4049,20 +4082,19 @@ The object contains information about media on the web page. The application may
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name| Type| Mandatory| Description|
-|------|------|------|------|
-| embedID | string | Yes| ID of **\<video>** or **\<audio>** on the web page.|
-| mediaType | [MediaType](./js-apis-webview-e.md#mediatype12) | Yes| Type of the media.|
-| mediaSrcList | [MediaSourceInfo](#mediasourceinfo12)[] | Yes| Source of the media. There may be multiple sources. The application needs to select a supported source to play.|
-| surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | Yes| Surface information used for same-layer rendering.|
-| controlsShown | boolean | Yes| Whether the **controls** attribute exists in **\<video>** or **\<audio>**.<br>The value **true** means that the **controls** attribute exists in **\<video>** or **\<audio>**, and **false** means the opposite.|
-| controlList | string[] | Yes| Value of the **controlslist** attribute in **\<video>** or **\<audio>**.|
-| muted | boolean | Yes| Whether to mute the player.<br>The value **true** means to mute the player, and **false** means the opposite.|
-| posterUrl | string | Yes| URL of a poster.|
-| preload | [Preload](./js-apis-webview-e.md#preload12) | Yes| Whether preloading is required.|
-| headers | Record\<string, string\> | Yes| HTTP headers that need to be included in the player's request for media resources.|
-| attributes | Record\<string, string\> | Yes| Attributes in **\<video>** or **\<audio>**.|
-
+| Name| Type| Read-Only| Optional| Description|
+|------|------|------|------|------|
+| embedID | string | No| No | ID of **\<video>** or **\<audio>** on the web page.|
+| mediaType | [MediaType](./js-apis-webview-e.md#mediatype12) | No| No| Type of the media.|
+| mediaSrcList | [MediaSourceInfo](#mediasourceinfo12)[] | No| No| Source of the media. There may be multiple sources. The application needs to select a supported source to play.|
+| surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12)  | No| No| Surface information used for same-layer rendering.|
+| controlsShown | boolean | No| No| Whether the **controls** attribute exists in **\<video>** or **\<audio>**.<br>The value **true** means that the **controls** attribute exists in **\<video>** or **\<audio>**, and **false** means the opposite.|
+| controlList | string[] | No| No| Value of the **controlslist** attribute in **\<video>** or **\<audio>**.|
+| muted | boolean | No| No| Whether to mute the player.<br>The value **true** means to mute the player, and **false** means the opposite.|
+| posterUrl | string | No| No| URL of a poster.|
+| preload | [Preload](./js-apis-webview-e.md#preload12) | No| No| Whether preloading is required.|
+| headers | Record\<string, string\> | No| No| HTTP headers that need to be included in the player's request for media resources.|
+| attributes | Record\<string, string\> | No| No| Attributes in **\<video>** or **\<audio>**.|
 
 ## CreateNativeMediaPlayerCallback<sup>12+<sup>
 
@@ -4084,7 +4116,7 @@ This object is used to create a player to take over media playback of the web pa
 
 | Type| Description|
 |------|------|
-| [NativeMediaPlayerBridge](#nativemediaplayerbridge12) | Instance of the API class between the player that takes over web media and the ArkWeb kernel.<br>The application needs to implement the interface class.<br> Object used by the ArkWeb engine to control the player created by the application to take over web page media.<br>If the application returns **null**, the application does not take over the media playback, and the media will be played by the ArkWeb engine.|
+| [NativeMediaPlayerBridge](#nativemediaplayerbridge12) | Instance of the API class between the web media player and the ArkWeb kernel.<br>The application needs to implement the interface class.<br> Object used by the ArkWeb engine to control the player created by the application to take over web page media.<br>If the application returns **null**, the application does not take over the media playback, and the media will be played by the ArkWeb engine.|
 
 **Example**
 
@@ -4109,10 +4141,10 @@ Adds a page that uses any of the following features to the back-forward cache. F
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name| Type| Mandatory| Description|
-|------|------|------|------|
-| nativeEmbed | boolean | Yes| Whether to add a page that uses same-layer rendering to the back-forward cache.<br>When the value is set to **true**, you need to maintain the lifecycle of system components created for the same-layer rendering elements to avoid resource leak.<br>The value **true** means to add a page that uses same-layer rendering to the back-forward cache, and **false** means the opposite.<br>The default value is **false**.|
-| mediaTakeOver | boolean | Yes| Whether to add a page using media playback takeover to the back-forward cache.<br>When the value is set to **true**, you need to maintain the lifecycle of system components created for video elements to avoid resource leak.<br>The value **true** means to add a page using media playback takeover to the back-forward cache, and **false** means the opposite.<br>The default value is **false**.|
+| Name| Type| Read-Only| Optional| Description|
+|------|------|------|------|------|
+| nativeEmbed | boolean | No | No| Whether to add a page that uses same-layer rendering to the back-forward cache.<br>When the value is set to **true**, you need to maintain the lifecycle of system components created for the same-layer rendering elements to avoid resource leak.<br>The value **true** means to add a page that uses same-layer rendering to the back-forward cache, and **false** means the opposite.<br>The default value is **false**.|
+| mediaTakeOver | boolean | No | No| Whether to add a page using media playback takeover to the back-forward cache.<br>When the value is set to **true**, you need to maintain the lifecycle of system components created for video elements to avoid resource leak.<br>The value **true** means to add a page using media playback takeover to the back-forward cache, and **false** means the opposite.<br>The default value is **false**.|
 
 ### constructor<sup>12+</sup>
 
@@ -4128,10 +4160,10 @@ Implements a **BackForwardCacheOptions** object to set back-forward cache option
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name| Type| Mandatory| Description|
-|------|------|------|------|
-| size | number | Yes| The maximum number of pages that can be cached in a **Web** component.<br>The default value is **1**, and the maximum value is **50**.<br>If this parameter is set to **0** or a negative value, the back-forward cache is disabled.<br>The web reclaims the cache for memory pressure.|
-| timeToLive | number | Yes| The time that a **Web** component allows a page to stay in the back-forward cache.<br>If this parameter is set to **0** or a negative value, the back-forward cache is disabled.<br>Default value: **600**<br>Unit: second.|
+| Name| Type| Read-Only| Optional| Description|
+|------|------|------|------|------|
+| size | number | No | No| The maximum number of pages that can be cached in a **Web** component.<br>The default value is **1**, and the maximum value is **50**.<br>If this parameter is set to **0** or a negative value, the back-forward cache is disabled.<br>The web reclaims the cache for memory pressure.|
+| timeToLive | number | No | No| The time that a **Web** component allows a page to stay in the back-forward cache.<br>If this parameter is set to **0** or a negative value, the back-forward cache is disabled.<br>Default value: **600**<br>Unit: second.|
 
 ### constructor<sup>12+</sup>
 
@@ -4144,6 +4176,14 @@ Constructs a **BackForwardCacheOptions** instance.
 ## AdsBlockManager<sup>12+</sup>
 
 Implements an **AdsBlockManager** instance to set custom ad blocking configurations in the **Web** components and disable the ad blocking feature for specific websites. Each application's **Web** components share an **AdsBlockManager** instance.
+
+> **NOTE**
+>
+> - The initial APIs of this module are supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> - You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
+>
+> - Static methods must be used on the user interface (UI) thread.
 
 ### setAdsBlockRules<sup>12+</sup>
 
@@ -4162,7 +4202,7 @@ Sets a custom ad blocking rule file that conforms to the universal EasyList synt
 | Name    | Type  | Mandatory| Description                              |
 | ---------- | ------ | ---- | -------------------------------- |
 | rulesFile | string | Yes  | Path to the rule file that conforms to the universal EasyList syntax. The application needs to have read permission for this file.|
-| replace   | boolean | Yes  | Whether to replace the built-in default rules. The value **true** indicates that the built-in default rules will be forcibly replaced; **false** indicates that the custom rules will work alongside the built-in default rules.|
+| replace   | boolean | Yes  | Whether to replace the built-in default rules. The value **true** indicates that the built-in default rules will be forcibly replaced; **false** indicates that the custom rules will work alongside the built-in default rules.<br>The default value is **false**.|
 
 **Error codes**
 

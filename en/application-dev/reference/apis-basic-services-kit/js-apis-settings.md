@@ -51,7 +51,7 @@ Provides data items for setting the display effects. (Not supported yet.)
 
 | Name                         | Type  | Readable| Writable| Description                                                                                                                  |
 | ----------------------------- | ------ | ---- | ---- |----------------------------------------------------------------------------------------------------------------------|
-| FONT_SCALE                    | string | Yes  | Yes  | Scale factor of the font. The value is a floating point number. (In the current version, only fixed values can be queried.)                                                                                     |
+| FONT_SCALE                    | string | Yes  | Yes  | Scale factor of the font. The value is a floating point number.                                                                                     |
 | SCREEN_BRIGHTNESS_STATUS      | string | Yes  | Yes  | Screen brightness, with the value ranging from 0 to 255.                                                                                                    |
 | AUTO_SCREEN_BRIGHTNESS        | string | Yes  | Yes  | Whether automatic screen brightness adjustment is enabled.<br>- **AUTO_SCREEN_BRIGHTNESS_MODE**: Automatic screen brightness adjustment is enabled.<br>- **MANUAL_SCREEN_BRIGHTNESS_MODE**: Automatic screen brightness adjustment is disabled.        |
 | AUTO_SCREEN_BRIGHTNESS_MODE   | number | Yes  | Yes  | Value of **AUTO_SCREEN_BRIGHTNESS** when automatic screen brightness adjustment is enabled.                                                                                |
@@ -628,12 +628,7 @@ import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, (err, val) => {
-  if (err) {
-    console.error(`Failed to get the setting. ${err.message} `);
-    return;
-  }
-  console.log(`callback:value -> ${JSON.stringify(val)}`)
+settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, () => {
   let value:string = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
   console.log(`Promise:value -> ${value}`);
 });

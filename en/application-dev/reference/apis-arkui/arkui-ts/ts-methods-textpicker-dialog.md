@@ -1,9 +1,4 @@
 # Text Picker Dialog Box (TextPickerDialog)
-<!--Kit: ArkUI-->
-<!--Subsystem: ArkUI-->
-<!--Owner: @luoying_ace_admin-->
-<!--Designer: @weixin_52725220-->
-<!--Tester: @xiong0104-->
 
 A text picker dialog box is a dialog box that allows users to select text from the given range.
 
@@ -31,7 +26,7 @@ Shows a text picker in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Device behavior**: This API has no effect on wearables and works on other devices.
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 **Parameters**
 

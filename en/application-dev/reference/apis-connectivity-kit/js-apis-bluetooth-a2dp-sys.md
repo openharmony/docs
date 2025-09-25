@@ -1,5 +1,11 @@
 # @ohos.bluetooth.a2dp (Bluetooth A2DP Module) (System API)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 The **a2dp** module provides APIs for using the Bluetooth Advanced Audio Distribution Profile (A2DP), which defines how to stream high quality audio from one device to another over a Bluetooth connection.
 
 > **NOTE**
@@ -31,7 +37,7 @@ Connects to an A2DP device.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the device to connect.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 
 **Error codes**
 
@@ -77,7 +83,7 @@ Disconnects from an A2DP device.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the device to connect.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 
 **Error codes**
 
@@ -123,8 +129,8 @@ Checks whether a device supports the absolute volume capability. This API uses a
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the device to check.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the device supports absolute volume, **supported** is returned.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the result indicating the support for absolute volume. If the operation fails, **err** is an error object.|
 
 
 **Error codes**
@@ -171,13 +177,13 @@ Checks whether a device supports the absolute volume capability. This API uses a
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the device to check.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 
 **Return value**
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If the device supports absolute volume, **supported** is returned.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the device supports absolute volume, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -223,8 +229,8 @@ Checks whether the absolute volume capability is enabled for a device. Before us
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the device to check.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If absolute volume is enabled, **enabled** is returned.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the result indicating whether the absolute volume capability is enabled. If the operation fails, **err** is an error object.|
 
 
 **Error codes**
@@ -271,13 +277,13 @@ Checks whether the absolute volume capability is enabled for a device. Before us
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the device to check.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 
 **Return value**
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. If absolute volume is enabled, **enabled** is returned.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the absolute volume capability is enabled, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -323,7 +329,7 @@ Enables the absolute volume capability for a device. Before using this API, use 
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the device to check.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 
@@ -373,7 +379,7 @@ Enables the absolute volume capability for a device. Before using this API, use 
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the device to check.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 
 **Return value**
 
@@ -426,7 +432,7 @@ Disables the absolute volume capability for a device. Before using this API, use
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the device to check.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 
@@ -476,7 +482,7 @@ Disables the absolute volume capability for a device. Before using this API, use
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the device to check.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 
 **Return value**
 
@@ -528,13 +534,13 @@ Obtains the current codec information.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the device to check.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 
 **Return value**
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| [CodecInfo](js-apis-bluetooth-a2dp#codecinfo11)| Codec information obtained.|
+| [CodecInfo](js-apis-bluetooth-a2dp.md#codecinfo11)| Codec information obtained.|
 
 **Error codes**
 
@@ -562,6 +568,56 @@ try {
 }
 ```
 
+### getCurrentFullCodecInfo<sup>19+</sup>
+
+getCurrentFullCodecInfo(deviceId: string): CodecInfoList[]
+
+Obtains the full list of codecs supported by the device.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+
+**Return value**
+
+| Type                           | Description        |
+| ----------------------------- | ---------- |
+| [CodecInfoList](js-apis-bluetooth-a2dp.md#codecinfolist19)[]| Full list of codecs supported by the device.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+|2902008 | Current device is not an active device.  |
+
+**Example**
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    let codecInfoList : a2dp.CodecInfoList[] = a2dpSrc.getCurrentFullCodecInfo('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
 ### setCurrentCodecInfo<sup>11+</sup>
 
 setCurrentCodecInfo(deviceId: string, codecInfo: CodecInfo): void
@@ -578,7 +634,7 @@ Sets the current codec information.
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the target device.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 | codecInfo | [CodecInfo](js-apis-bluetooth-a2dp.md#codecinfo11) | Yes   | Codec information to set.|
 
 **Error codes**
@@ -630,8 +686,8 @@ Disables auto play of music for the specified duration after a device is connect
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the remote device, for example, **11:22:33:AA:BB:FF**.|
-| duration | number | Yes   | Duration for which auto play is disabled, in ms.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+| duration | number | Yes   | Interception duration, in milliseconds. The value range is [3000, 20000].|
 
 **Return value**
 
@@ -685,7 +741,7 @@ Enables auto play of music after a device is connected. This API uses a promise 
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the remote device, for example, **11:22:33:AA:BB:FF**.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 
 **Return value**
 
@@ -738,13 +794,13 @@ Obtains the auto-play disabled duration or auto play switch. This API uses a pro
 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | Yes   | Address of the remote device, for example, **11:22:33:AA:BB:FF**.|
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 
 **Return value**
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| Promise&lt;number&gt; | Promise used to return the result. **number** indicates the duration for which auto play is disabled, in ms. If -1 is returned, the device is allowed to automatically play music after being connected.|
+| Promise&lt;number&gt; | Promise used to return the result. **number** indicates the interception duration, in milliseconds. If **-1** is returned, the device is allowed to automatically play music after being connected.|
 
 **Error codes**
 

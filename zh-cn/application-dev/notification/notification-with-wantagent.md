@@ -43,8 +43,8 @@
      wants: [
        {
          deviceId: '',
-         bundleName: 'com.samples.notification',
-         abilityName: 'SecondAbility',
+         bundleName: 'com.samples.notification', // 需要替换为对应的bundleName。
+         abilityName: 'SecondAbility', // 需要替换为对应的abilityName。
          action: '',
          entities: [],
          uri: '',

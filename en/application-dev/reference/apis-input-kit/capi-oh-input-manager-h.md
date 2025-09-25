@@ -1,8 +1,16 @@
 # oh_input_manager.h
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+
 ## Overview
 
 Provides functions such as event injection and status query.
+
+**File to include**: <multimodalinput/oh_input_manager.h>
 
 **Library**: libohinput.so
 
@@ -80,10 +88,10 @@ Provides functions such as event injection and status query.
 | [void OH_Input_DestroyMouseEvent(struct Input_MouseEvent** mouseEvent)](#oh_input_destroymouseevent) | - | Destroys a mouse event object.|
 | [void OH_Input_SetMouseEventAction(struct Input_MouseEvent* mouseEvent, int32_t action)](#oh_input_setmouseeventaction) | - | Sets the action for a mouse event.|
 | [int32_t OH_Input_GetMouseEventAction(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventaction) | - | Obtains the action of a mouse event.|
-| [void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t displayX)](#oh_input_setmouseeventdisplayx) | - | Sets the X coordinate for a mouse event.|
-| [int32_t OH_Input_GetMouseEventDisplayX(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventdisplayx) | - | Obtains the X coordinate of a mouse event.|
-| [void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t displayY)](#oh_input_setmouseeventdisplayy) | - | Sets the Y coordinate for a mouse event.|
-| [int32_t OH_Input_GetMouseEventDisplayY(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventdisplayy) | - | Obtains the Y coordinate of a mouse event.|
+| [void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t displayX)](#oh_input_setmouseeventdisplayx) | - | Sets the X coordinate of the mouse event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
+| [int32_t OH_Input_GetMouseEventDisplayX(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventdisplayx) | - | Obtains the X coordinate of the mouse event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
+| [void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t displayY)](#oh_input_setmouseeventdisplayy) | - | Sets the Y coordinate of the mouse event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
+| [int32_t OH_Input_GetMouseEventDisplayY(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventdisplayy) | - | Obtains the Y coordinate of the mouse event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
 | [void OH_Input_SetMouseEventButton(struct Input_MouseEvent* mouseEvent, int32_t button)](#oh_input_setmouseeventbutton) | - | Sets the button for a mouse event.|
 | [int32_t OH_Input_GetMouseEventButton(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventbutton) | - | Obtains the button of a mouse event.|
 | [void OH_Input_SetMouseEventAxisType(struct Input_MouseEvent* mouseEvent, int32_t axisType)](#oh_input_setmouseeventaxistype) | - | Sets the axis type for a mouse event.|
@@ -101,10 +109,10 @@ Provides functions such as event injection and status query.
 | [int32_t OH_Input_GetTouchEventAction(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventaction) | - | Obtains the action of a touch event.|
 | [void OH_Input_SetTouchEventFingerId(struct Input_TouchEvent* touchEvent, int32_t id)](#oh_input_settoucheventfingerid) | - | Sets the finger ID for a touch event.|
 | [int32_t OH_Input_GetTouchEventFingerId(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventfingerid) | - | Obtains the finger ID of a touch event.|
-| [void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t displayX)](#oh_input_settoucheventdisplayx) | - | Sets the X coordinate for a touch event.|
-| [int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventdisplayx) | - | Obtains the X coordinate of a touch event.|
-| [void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t displayY)](#oh_input_settoucheventdisplayy) | - | Sets the Y coordinate for a touch event.|
-| [int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventdisplayy) | - | Obtains the Y coordinate of a touch event.|
+| [void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t displayX)](#oh_input_settoucheventdisplayx) | - | Sets the X coordinate of the touch event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
+| [int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventdisplayx) | - | Obtains the X coordinate of the touch event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
+| [void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t displayY)](#oh_input_settoucheventdisplayy) | - | Sets the Y coordinate of the touch event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
+| [int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventdisplayy) | - | Obtains the Y coordinate of the touch event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
 | [void OH_Input_SetTouchEventActionTime(struct Input_TouchEvent* touchEvent, int64_t actionTime)](#oh_input_settoucheventactiontime) | - | Sets the time when a touch event occurs.|
 | [int64_t OH_Input_GetTouchEventActionTime(const struct Input_TouchEvent* touchEvent)](#oh_input_gettoucheventactiontime) | - | Obtains the time when a touch event occurs.|
 | [void OH_Input_SetTouchEventWindowId(struct Input_TouchEvent* touchEvent, int32_t windowId)](#oh_input_settoucheventwindowid) | - | Sets the window ID of a touch event.|
@@ -116,10 +124,10 @@ Provides functions such as event injection and status query.
 | [Input_Result OH_Input_DestroyAxisEvent(Input_AxisEvent** axisEvent)](#oh_input_destroyaxisevent) | - | Destroys an axis event object.|
 | [Input_Result OH_Input_SetAxisEventAction(Input_AxisEvent* axisEvent, InputEvent_AxisAction action)](#oh_input_setaxiseventaction) | - | Sets the action for an axis event.|
 | [Input_Result OH_Input_GetAxisEventAction(const Input_AxisEvent* axisEvent, InputEvent_AxisAction *action)](#oh_input_getaxiseventaction) | - | Obtains the action of an axis event.|
-| [Input_Result OH_Input_SetAxisEventDisplayX(Input_AxisEvent* axisEvent, float displayX)](#oh_input_setaxiseventdisplayx) | - | Sets the X coordinate for an axis event.|
-| [Input_Result OH_Input_GetAxisEventDisplayX(const Input_AxisEvent* axisEvent, float* displayX)](#oh_input_getaxiseventdisplayx) | - | Obtains the X coordinate of an axis event.|
-| [Input_Result OH_Input_SetAxisEventDisplayY(Input_AxisEvent* axisEvent, float displayY)](#oh_input_setaxiseventdisplayy) | - | Sets the Y coordinate for an axis event.|
-| [Input_Result OH_Input_GetAxisEventDisplayY(const Input_AxisEvent* axisEvent, float* displayY)](#oh_input_getaxiseventdisplayy) | - | Obtains the Y coordinate of an axis event.|
+| [Input_Result OH_Input_SetAxisEventDisplayX(Input_AxisEvent* axisEvent, float displayX)](#oh_input_setaxiseventdisplayx) | - | Sets the X coordinate of the axis event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
+| [Input_Result OH_Input_GetAxisEventDisplayX(const Input_AxisEvent* axisEvent, float* displayX)](#oh_input_getaxiseventdisplayx) | - | Obtains the X coordinate of the axis event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
+| [Input_Result OH_Input_SetAxisEventDisplayY(Input_AxisEvent* axisEvent, float displayY)](#oh_input_setaxiseventdisplayy) | - | Sets the Y coordinate of the axis event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
+| [Input_Result OH_Input_GetAxisEventDisplayY(const Input_AxisEvent* axisEvent, float* displayY)](#oh_input_getaxiseventdisplayy) | - | Obtains the Y coordinate of the axis event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
 | [Input_Result OH_Input_SetAxisEventAxisValue(Input_AxisEvent* axisEvent,InputEvent_AxisType axisType, double axisValue)](#oh_input_setaxiseventaxisvalue) | - | Sets the axis value of the axis type specified by the axis event.|
 | [Input_Result OH_Input_GetAxisEventAxisValue(const Input_AxisEvent* axisEvent,InputEvent_AxisType axisType, double* axisValue)](#oh_input_getaxiseventaxisvalue) | - | Obtains the axis value for the specified axis type of the axis event.|
 | [Input_Result OH_Input_SetAxisEventActionTime(Input_AxisEvent* axisEvent, int64_t actionTime)](#oh_input_setaxiseventactiontime) | - | Sets the time when an axis event occurs.|
@@ -176,8 +184,8 @@ Provides functions such as event injection and status query.
 | [Input_Result OH_Input_GetDeviceVendor(Input_DeviceInfo *deviceInfo, int32_t *vendor)](#oh_input_getdevicevendor) | - | Obtains the vendor information of an input device.|
 | [Input_Result OH_Input_GetDeviceAddress(Input_DeviceInfo *deviceInfo, char **address)](#oh_input_getdeviceaddress) | - | Obtains the physical address of an input device.|
 | [Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state)](#oh_input_getfunctionkeystate) | - | Obtains the function key status.|
-| [int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent)](#oh_input_injecttouchevent) | - | Injects a touch event.|
-| [int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent)](#oh_input_injectmouseevent) | - | Injects a mouse event.|
+| [int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent)](#oh_input_injecttouchevent) | - | Injects a touch event by using coordinates in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
+| [int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent)](#oh_input_injectmouseevent) | - | Injects a mouse event by using coordinates in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
 | [int32_t OH_Input_GetMouseEventDisplayId(const struct Input_MouseEvent* mouseEvent)](#oh_input_getmouseeventdisplayid) | - | Obtains the screen ID of a mouse event.|
 
 ## Enum Description
@@ -816,7 +824,7 @@ Obtains the key event action.
 
 | Parameter| Description|
 | -- | -- |
-| const struct [Input_KeyEvent](capi-input-keyevent.md)* keyEvent | Key event object. You can call [OH_Input_CreateKeyEvent](#oh_input_createkeyevent) to create a key event object.<br>If key event object is no longer needed, destroy it by calling [OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent).|
+| const struct [Input_KeyEvent](capi-input-keyevent.md)* keyEvent | Key event object. You can call [OH_Input_CreateKeyEvent](#oh_input_createkeyevent) to create a key event object.<br>If the key event object is no longer needed, destroy it by calling [OH_Input_DestroyKeyEvent](#oh_input_destroykeyevent).|
 
 **Return value**
 
@@ -1118,7 +1126,7 @@ void OH_Input_SetMouseEventDisplayX(struct Input_MouseEvent* mouseEvent, int32_t
 
 **Description**
 
-Sets the X coordinate for a mouse event.
+Sets the X coordinate of the mouse event in the relative coordinate system with the upper-left corner of the specified screen as the origin.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -1130,7 +1138,7 @@ Sets the X coordinate for a mouse event.
 | Parameter| Description|
 | -- | -- |
 | struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | Mouse event object. You can call [OH_Input_CreateMouseEvent](#oh_input_createmouseevent) to create a mouse event object.<br>If the mouse event object is no longer needed, destroy it by calling [OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent).|
-| int32_t displayX | X coordinate on the screen.|
+| int32_t displayX | X coordinate of the mouse event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
 
 ### OH_Input_GetMouseEventDisplayX()
 
@@ -1140,7 +1148,7 @@ int32_t OH_Input_GetMouseEventDisplayX(const struct Input_MouseEvent* mouseEvent
 
 **Description**
 
-Obtains the X coordinate of a mouse event.
+Obtains the X coordinate of the mouse event in the relative coordinate system with the upper-left corner of the specified screen as the origin.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -1157,7 +1165,7 @@ Obtains the X coordinate of a mouse event.
 
 | Type| Description|
 | -- | -- |
-| int32_t | X coordinate on the screen.|
+| int32_t | X coordinate of the mouse event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
 
 ### OH_Input_SetMouseEventDisplayY()
 
@@ -1167,7 +1175,7 @@ void OH_Input_SetMouseEventDisplayY(struct Input_MouseEvent* mouseEvent, int32_t
 
 **Description**
 
-Sets the Y coordinate for a mouse event.
+Sets the Y coordinate of the mouse event in the relative coordinate system with the upper-left corner of the specified screen as the origin.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -1179,7 +1187,7 @@ Sets the Y coordinate for a mouse event.
 | Parameter| Description|
 | -- | -- |
 | struct [Input_MouseEvent](capi-input-mouseevent.md)* mouseEvent | Mouse event object. You can call [OH_Input_CreateMouseEvent](#oh_input_createmouseevent) to create a mouse event object.<br>If the mouse event object is no longer needed, destroy it by calling [OH_Input_DestroyMouseEvent](#oh_input_destroymouseevent).|
-| int32_t displayY | Y coordinate on the screen.|
+| int32_t displayY | Y coordinate of the mouse event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
 
 ### OH_Input_GetMouseEventDisplayY()
 
@@ -1189,7 +1197,7 @@ int32_t OH_Input_GetMouseEventDisplayY(const struct Input_MouseEvent* mouseEvent
 
 **Description**
 
-Obtains the Y coordinate of a mouse event.
+Obtains the Y coordinate of the mouse event in the relative coordinate system with the upper-left corner of the specified screen as the origin.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -1206,7 +1214,7 @@ Obtains the Y coordinate of a mouse event.
 
 | Type| Description|
 | -- | -- |
-| int32_t | Y coordinate on the screen.|
+| int32_t | Y coordinate of the mouse event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
 
 ### OH_Input_SetMouseEventButton()
 
@@ -1622,7 +1630,7 @@ void OH_Input_SetTouchEventDisplayX(struct Input_TouchEvent* touchEvent, int32_t
 
 **Description**
 
-Sets the X coordinate for a touch event.
+Sets the X coordinate of the touch event in the relative coordinate system with the upper-left corner of the specified screen as the origin.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -1634,7 +1642,7 @@ Sets the X coordinate for a touch event.
 | Parameter| Description|
 | -- | -- |
 | struct [Input_TouchEvent](capi-input-touchevent.md)* touchEvent | Touch event object. You can call [OH_Input_CreateTouchEvent](#oh_input_createtouchevent) to create a touch event object.<br>If the touch event object is no longer needed, destroy it by calling [OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent).|
-| int32_t displayX | X coordinate on the touchscreen.|
+| int32_t displayX | X coordinate of the touch event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
 
 ### OH_Input_GetTouchEventDisplayX()
 
@@ -1644,7 +1652,7 @@ int32_t OH_Input_GetTouchEventDisplayX(const struct Input_TouchEvent* touchEvent
 
 **Description**
 
-Obtains the X coordinate of a touch event.
+Obtains the X coordinate of the touch event in the relative coordinate system with the upper-left corner of the specified screen as the origin.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -1661,7 +1669,7 @@ Obtains the X coordinate of a touch event.
 
 | Type| Description|
 | -- | -- |
-| int32_t | X coordinate on the touchscreen.|
+| int32_t | X coordinate of the touch event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
 
 ### OH_Input_SetTouchEventDisplayY()
 
@@ -1671,7 +1679,7 @@ void OH_Input_SetTouchEventDisplayY(struct Input_TouchEvent* touchEvent, int32_t
 
 **Description**
 
-Sets the Y coordinate for a touch event.
+Sets the Y coordinate of the touch event in the relative coordinate system with the upper-left corner of the specified screen as the origin.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -1683,7 +1691,7 @@ Sets the Y coordinate for a touch event.
 | Parameter| Description|
 | -- | -- |
 | struct [Input_TouchEvent](capi-input-touchevent.md)* touchEvent | Touch event object. You can call [OH_Input_CreateTouchEvent](#oh_input_createtouchevent) to create a touch event object.<br>If the touch event object is no longer needed, destroy it by calling [OH_Input_DestroyTouchEvent](#oh_input_destroytouchevent).|
-| int32_t displayY | Y coordinate on the touchscreen.|
+| int32_t displayY | Y coordinate of the touch event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
 
 ### OH_Input_GetTouchEventDisplayY()
 
@@ -1693,7 +1701,7 @@ int32_t OH_Input_GetTouchEventDisplayY(const struct Input_TouchEvent* touchEvent
 
 **Description**
 
-Obtains the Y coordinate of a touch event.
+Obtains the Y coordinate of the touch event in the relative coordinate system with the upper-left corner of the specified screen as the origin.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -1710,7 +1718,7 @@ Obtains the Y coordinate of a touch event.
 
 | Type| Description|
 | -- | -- |
-| int32_t | Y coordinate on the touchscreen.|
+| int32_t | Y coordinate of the touch event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
 
 ### OH_Input_SetTouchEventActionTime()
 
@@ -1984,7 +1992,7 @@ Input_Result OH_Input_SetAxisEventDisplayX(Input_AxisEvent* axisEvent, float dis
 
 **Description**
 
-Sets the X coordinate for an axis event.
+Sets the X coordinate of the axis event in the relative coordinate system with the upper-left corner of the specified screen as the origin.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -1996,7 +2004,7 @@ Sets the X coordinate for an axis event.
 | Parameter| Description|
 | -- | -- |
 | [Input_AxisEvent](capi-input-axisevent.md)* axisEvent | Axis event object. You can call [OH_Input_CreateAxisEvent](#oh_input_createaxisevent) to create an axis event object.<br>If the axis event object is no longer needed, destroy it by calling [OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent).|
-| float displayX | X coordinate of the axis event.|
+| float displayX | X coordinate of the axis event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
 
 **Return value**
 
@@ -2012,7 +2020,7 @@ Input_Result OH_Input_GetAxisEventDisplayX(const Input_AxisEvent* axisEvent, flo
 
 **Description**
 
-Obtains the X coordinate of an axis event.
+Obtains the X coordinate of the axis event in the relative coordinate system with the upper-left corner of the specified screen as the origin.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -2024,7 +2032,7 @@ Obtains the X coordinate of an axis event.
 | Parameter| Description|
 | -- | -- |
 | const [Input_AxisEvent](capi-input-axisevent.md)* axisEvent | Axis event object. You can call [OH_Input_CreateAxisEvent](#oh_input_createaxisevent) to create an axis event object.<br>If the axis event object is no longer needed, destroy it by calling [OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent).|
-| float* displayX | X coordinate of the axis event.|
+| float* displayX | X coordinate of the axis event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
 
 **Return value**
 
@@ -2040,7 +2048,7 @@ Input_Result OH_Input_SetAxisEventDisplayY(Input_AxisEvent* axisEvent, float dis
 
 **Description**
 
-Sets the Y coordinate for an axis event.
+Sets the Y coordinate of the axis event in the relative coordinate system with the upper-left corner of the specified screen as the origin.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -2052,7 +2060,7 @@ Sets the Y coordinate for an axis event.
 | Parameter| Description|
 | -- | -- |
 | [Input_AxisEvent](capi-input-axisevent.md)* axisEvent | Axis event object. You can call [OH_Input_CreateAxisEvent](#oh_input_createaxisevent) to create an axis event object.<br>If the axis event object is no longer needed, destroy it by calling [OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent).|
-| float displayY | Y coordinate of the axis event.|
+| float displayY | Y coordinate of the axis event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
 
 **Return value**
 
@@ -2068,7 +2076,7 @@ Input_Result OH_Input_GetAxisEventDisplayY(const Input_AxisEvent* axisEvent, flo
 
 **Description**
 
-Obtains the Y coordinate of an axis event.
+Obtains the Y coordinate of the axis event in the relative coordinate system with the upper-left corner of the specified screen as the origin.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
@@ -2080,7 +2088,7 @@ Obtains the Y coordinate of an axis event.
 | Parameter| Description|
 | -- | -- |
 | const [Input_AxisEvent](capi-input-axisevent.md)* axisEvent | Axis event object. You can call [OH_Input_CreateAxisEvent](#oh_input_createaxisevent) to create an axis event object.<br>If the axis event object is no longer needed, destroy it by calling [OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent).|
-| float* displayY | Y coordinate of the axis event.|
+| float* displayY | Y coordinate of the axis event in the relative coordinate system with the upper-left corner of the specified screen as the origin.|
 
 **Return value**
 
@@ -2940,7 +2948,7 @@ Obtains the modifier key.
 
 | Type| Description|
 | -- | -- |
-| [Input_Result](#input_result) | Status code of the **OH_Input_GetpressedKeys** function, which is<br>         [INPUT_SUCCESS](#input_result) if the operation is successful; [INPUT_PARAMETER_ERROR](#input_result) otherwise.|
+| [Input_Result](#input_result) | Error code of the **OH_Input_GetPreKeys** function.<br>         [INPUT_SUCCESS](#input_result) if the operation is successful; [INPUT_PARAMETER_ERROR](#input_result) otherwise.|
 
 ### OH_Input_SetFinalKey()
 
@@ -2990,7 +2998,7 @@ Obtains the modified key.
 
 | Type| Description|
 | -- | -- |
-| [Input_Result](#input_result) | Status code of the **OH_Input_GetfinalKey** function, which is<br>         [INPUT_SUCCESS](#input_result) if the operation is successful;<br>         [INPUT_PARAMETER_ERROR](#input_result) otherwise.|
+| [Input_Result](#input_result) | Error code of the **OH_Input_GetFinalKey** function.<br>         [INPUT_SUCCESS](#input_result) if the operation is successful;<br>         [INPUT_PARAMETER_ERROR](#input_result) otherwise.|
 
 ### OH_Input_CreateAllSystemHotkeys()
 
@@ -3017,7 +3025,7 @@ Creates an array of [Input_Hotkey](capi-input-hotkey.md) instances.
 
 | Type| Description|
 | -- | -- |
-| [Input_Hotkey](capi-input-hotkey.md) | OH_Input_CreateAllSystemHotkey status code,<br>         which is [INPUT_SUCCESS](#input_result) if the operation is successful.|
+| [Input_Hotkey](capi-input-hotkey.md) | Error codes of the **OH_Input_CreateAllSystemHotkeys** function.<br>         which is [INPUT_SUCCESS](#input_result) if the operation is successful.|
 
 ### OH_Input_DestroyAllSystemHotkeys()
 
@@ -3117,7 +3125,7 @@ Checks whether to report repeated key events.
 
 | Type| Description|
 | -- | -- |
-| [Input_Result](#input_result) | OH_Input_GetIsRepeat status code, specifically,<br>         [INPUT_SUCCESS](#input_result) if the operation is successful;<br>         [INPUT_PARAMETER_ERROR](#input_result) otherwise.|
+| [Input_Result](#input_result) | Error code of the **OH_Input_GetRepeat** function.<br>         [INPUT_SUCCESS](#input_result) if the operation is successful;<br>         [INPUT_PARAMETER_ERROR](#input_result) otherwise.|
 
 ### OH_Input_AddHotkeyMonitor()
 
@@ -3605,7 +3613,7 @@ int32_t OH_Input_InjectTouchEvent(const struct Input_TouchEvent* touchEvent)
 
 **Description**
 
-Injects a touch event.
+Injects a touch event by using coordinates in the relative coordinate system with the upper-left corner of the specified screen as the origin.
 
 **Since**: 12
 
@@ -3630,7 +3638,7 @@ int32_t OH_Input_InjectMouseEvent(const struct Input_MouseEvent* mouseEvent)
 
 **Description**
 
-Injects a mouse event.
+Injects a mouse event by using coordinates in the relative coordinate system with the upper-left corner of the specified screen as the origin.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 

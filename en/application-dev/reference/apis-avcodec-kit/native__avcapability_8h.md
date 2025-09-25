@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **native_avcapability.h** file declares the native APIs used to query the codec capability.
+The file declares the native APIs used to query the codec capability.
 
 **Library**: libnative_media_codecbase.so
 
@@ -69,4 +69,4 @@ The **native_avcapability.h** file declares the native APIs used to query the co
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetSupportedLevelsForProfile](_a_v_capability.md#oh_avcapability_getsupportedlevelsforprofile) (OH_AVCapability \*capability, int32_t profile, const int32_t \*\*levels, uint32_t \*levelNum) | Obtains the codec levels supported by a profile. | 
 | bool [OH_AVCapability_AreProfileAndLevelSupported](_a_v_capability.md#oh_avcapability_areprofileandlevelsupported) (OH_AVCapability \*capability, int32_t profile, int32_t level) | Checks whether a codec supports the combination of a profile and level. | 
 | bool [OH_AVCapability_IsFeatureSupported](_a_v_capability.md#oh_avcapability_isfeaturesupported) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature) feature) | Checks whether a codec supports a feature. | 
-| [OH_AVFormat](_core.md#oh_avformat) \*[OH_AVCapability_GetFeatureProperties](_a_v_capability.md#oh_avcapability_getfeatureproperties) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature) feature) | Obtains the properties of a feature. You must manually release the **OH_AVFormat** instance in the return value. | 
+| [OH_AVFormat](_core.md#oh_avformat) \*[OH_AVCapability_GetFeatureProperties](_a_v_capability.md#oh_avcapability_getfeatureproperties) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature) feature) | Obtains the properties of a feature. You must manually release the OH_AVFormat instance in the return value. | 

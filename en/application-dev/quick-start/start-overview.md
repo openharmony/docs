@@ -40,8 +40,6 @@ To help you better understand the preceding basic concepts and application devel
 
 ## Tool Preparation
 
-1. Download the latest version of DevEco Studio.
+Install the latest version of [DevEco Studio](https://developer.huawei.com/consumer/en/download/).
 
-2. Install DevEco Studio and configure the development environment.
-
-When you are done, you can set out to [build your first ArkTS application in the stage model](start-with-ets-stage.md).
+When you finish tool preparation and basic concept learning, you can set out to [build your first ArkTS application in the stage model](start-with-ets-stage.md).

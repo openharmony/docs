@@ -9,7 +9,7 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 
 ## 开发步骤
 
-1. 确定密钥别名keyAlias，密钥别名最大长度为128字节。
+1. 指定密钥别名，密钥别名命名规范参考[密钥生成介绍及算法规格](huks-key-generation-overview.md)。
 
 2. 初始化参数集：通过[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset)、[OH_Huks_AddParams](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_addparams)、[OH_Huks_BuildParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_buildparamset)构造参数集paramSet，通过[OH_HUKS_TAG_ALGORITHM](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keyalg)、[OH_HUKS_TAG_KEY_SIZE](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keysize)、[OH_HUKS_TAG_PURPOSE](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keypurpose)分别指定算法、密钥大小、密钥用途属性。
 

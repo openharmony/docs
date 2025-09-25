@@ -98,7 +98,7 @@ export const add: (a: number, b: number) => number;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API 2 + 3 = %{public}d', testNapi.add(2, 3));
@@ -154,7 +154,7 @@ export const createObjectWithProperties: (data: string) => Object;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let value = testNapi.createObjectWithProperties('createObject');
@@ -204,7 +204,7 @@ export const createObjectWithNameProperties: (data: string) => string | { name: 
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let value = testNapi.createObjectWithNameProperties('ls');
@@ -258,7 +258,7 @@ export const runScriptPath: () => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 try {
@@ -548,7 +548,7 @@ ArkTS侧示例代码
 ```ts
 // index.ets
 import testNapi from 'libentry.so';
-import taskpool from '@ohos.taskpool';
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function getAddress() {
@@ -714,7 +714,7 @@ export const aboutSerialize: (obj: Object) => number;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 class Obj {
   numKey:number = 0;
@@ -788,7 +788,7 @@ export const isSendable: <T>(a: T) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let value = testNapi.isSendable('createObject');
@@ -887,7 +887,7 @@ export class SendableClass {
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let value = new testNapi.SendableClass();
@@ -925,7 +925,7 @@ export const getSendableObject: () => { x: true };
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let value = testNapi.getSendableObject();
@@ -958,7 +958,7 @@ export const getSendableArray: () => [];
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let value = testNapi.getSendableArray();
@@ -989,7 +989,7 @@ export const getSendableArrayWithLength: () => [];
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 let value = testNapi.getSendableArrayWithLength();
@@ -1028,7 +1028,7 @@ export const getSendableArrayBuffer: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 testNapi.getSendableArrayBuffer();
@@ -1070,7 +1070,7 @@ export const getSendableTypedArray: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 testNapi.getSendableTypedArray();
@@ -1111,7 +1111,7 @@ export const wrapSendable: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 testNapi.wrapSendable();
@@ -1152,7 +1152,7 @@ export const wrapSendableWithSize: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 testNapi.wrapSendableWithSize();
@@ -1197,7 +1197,7 @@ export const unwrapSendable: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 testNapi.unwrapSendable();
@@ -1242,7 +1242,7 @@ export const removeWrapSendable: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 testNapi.removeWrapSendable();
@@ -1308,7 +1308,7 @@ export const testNapiWrapEnhance: () => void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 testNapi.testNapiWrapEnhance();

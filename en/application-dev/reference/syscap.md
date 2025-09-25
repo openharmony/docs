@@ -8,7 +8,7 @@ SystemCapability (SysCap) refers to a standalone feature in the operating system
 
 ![image-SysCap.png](figures/image-SysCap.png)
 
-For details about the SysCap sets in OpenHarmony, see [SysCap List](syscap-list.md).
+For details about the SysCap sets in OpenHarmony, see [SysCap List](phone-syscap-list.md).
 
 ### Supported SysCap Set, Associated SysCap Set, and Required SysCap Set
 

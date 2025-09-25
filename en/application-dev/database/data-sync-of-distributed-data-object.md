@@ -102,11 +102,13 @@ You need to persist distributed data objects in the following scenarios:
 In a distributed object, [asset](../reference/apis-arkdata/js-apis-data-commonType.md#asset) is used to describe a local entity asset file. When the distributed object is synced across devices, the file is also synced to other devices with it. Currently, only asset is supported. The type [assets](../reference/apis-arkdata/js-apis-data-commonType.md#assets) is not supported. To synchronize multiple assets, use each asset as a root property of the distributed object.
 
 ## Constraints
+<!--RP5-->
+- Currently, distributed data objects can be used only in [cross-device migration](../application-models/hop-cross-device-migration.md) and [multi-device collaboration using the cross-device call](../application-models/hop-multi-device-collaboration.md#using-cross-device-call).
 
-- Currently, <!--RP2-->distributed data objects can be used only in [cross-device migration](../application-models/hop-cross-device-migration.md) and [multi-device collaboration using the cross-device call](../application-models/hop-multi-device-collaboration.md#using-cross-device-call).<!--RP2End-->
-
-- Only the data of the same application can be synced across devices, that is, the devices must have the same **bundleName**.
-
+- Currently, the cross-device continuation capability supports the following scenarios:
+  - [Migrating between abilities in the same application across devices](../application-models/hop-cross-device-migration.md#migrating-between-abilities-in-the-same-application-across-devices)
+  - [Migrating abilities with different bundle names in the same application across devices](../application-models/hop-cross-device-migration.md#migrating-abilities-with-different-bundle-names-in-the-same-application-across-devices)
+<!--RP5End-->
 - Data can be synced for the distributed data objects with the same session ID.
 
 - Each distributed data object occupies 100 KB to 150 KB of memory. Therefore, you are advised not to create too many distributed data objects.
@@ -167,6 +169,7 @@ Most of the APIs for cross-device sync of distributed data objects are executed 
 > **NOTE**
 >
 > - In cross-device migration, after **setsessionId()** is called on the source device to set **sessionId**, call **save()** to save data to the target device.
+> - When an application is launched as a result of a migration, the [onWindowStageRestore()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagerestore) lifecycle callback function, rather than [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate), is triggered following **onCreate()** or **onNewWant()**. This sequence occurs for both cold and hot starts. If you have performed some necessary initialization operations during application launch in **onWindowStageCreate()**, you must perform the same initialization operations in **onWindowStageRestore()** after the migration to avoid application exceptions.
 >
 <!--RP1-->
 > - The **continuable** tag must be set for cross-device migration. For details, see [How to Develop](../application-models/hop-cross-device-migration.md#how-to-develop).<!--RP1End-->
@@ -183,8 +186,6 @@ Most of the APIs for cross-device sync of distributed data objects are executed 
 
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { window } from '@kit.ArkUI';
 import { commonType, distributedDataObject } from '@kit.ArkData';
 import { fileIo, fileUri } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -351,9 +352,7 @@ export default class EntryAbility extends UIAbility {
  The sample code is as follows:
 
 ```ts
-import { AbilityConstant, Caller, common, UIAbility, Want } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { window } from '@kit.ArkUI';
+import { AbilityConstant, Caller, UIAbility, Want } from '@kit.AbilityKit';
 import { distributedDataObject } from '@kit.ArkData';
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import { BusinessError } from '@kit.BasicServicesKit';

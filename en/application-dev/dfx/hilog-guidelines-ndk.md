@@ -21,17 +21,19 @@ HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides
 | \#define OH_LOG_ERROR(type, ...) ((void)OH_LOG_Print((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | Outputs ERROR logs. This is a function-like macro.|
 | \#define OH_LOG_FATAL(type, ...) ((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \_\_VA_ARGS__)) | Outputs FATAL logs. This is a function-like macro.|
 | void OH_LOG_SetCallback(LogCallback callback) | Registers a callback function to return all logs for the process.|
-| void OH_LOG_SetMinLogLevel(LogLevel level)|Sets the minimum log level. When a process prints logs, both the minimum log level and the global log level are verified. Therefore, the minimum log level cannot be lower than the global log level. The default value of [global log level](hilog.md#displaying-and-setting-log-levels) is **Info**.|
+| void OH_LOG_SetMinLogLevel(LogLevel level)|Sets the minimum log level. When a process prints logs, both the minimum log level and the global log level are verified. Therefore, the minimum log level cannot be lower than the global log level.|
+
+<!--RP1-->
+> **NOTE**
+>
+> The default value of the global log level is **info**. For details, see [Displaying and Setting Log Levels](hilog.md#displaying-and-setting-log-levels).
+<!--RP1End-->
 
 ### Parameters
 
-> **NOTE**
->
-> The domains, tags, and levels specified in **OH_LOG_IsLoggable()** and **OH_LOG_Print()** must be the same.
-
 - **domain**: service domain of logs. The value range is 0x0000 to 0xFFFF. You can define the value as required.
 
-- **tag**: log identifier. It can be any string. You are advised to use this parameter to identify the class or service behavior of a method call. A tag can contain a maximum of 31 bytes. If a tag contains more than 31 bytes, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur.
+- **tag**: log identifier. It can be any string. You are advised to use this parameter to identify the class or service behavior of a method call. A tag can contain a maximum of 31 bytes. If a tag exceeds this limit, it will be truncated. Chinese characters are not recommended because garbled characters or alignment problems may occur.
 
 - **level**: log level. For details about the value, see [LogLevel](../reference/apis-performance-analysis-kit/_hi_log.md#loglevel).
 
@@ -44,8 +46,8 @@ HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides
 
   | Specifier| Description| Example|
   | -------- | -------- | -------- |
-  | d/i | Prints logs of the **number**, **bool**, and **bigint** types.| 123 |
-  | s | Prints logs of the **string**, **undefined**, and **null** types.| "123" |
+  | d/i | The **number** and **bool** types can be printed.| 123 |
+  | s | The char* type can be printed.| "hello" |
 
   You can set multiple parameters in the **format** string, for example, **%s World**, where **%s** is a variable of the string type and its value is defined by **args**. <!--Del-->
 
@@ -53,6 +55,18 @@ HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides
 <!--DelEnd-->
 
 - **args**: parameters of the types specified by **specifier** in **format**. This parameter can be left blank. The number and type of parameters must match **specifier**.
+
+> **NOTE**
+>
+> - The domains, tags, and levels specified in **OH_LOG_IsLoggable()** and **OH_LOG_Print()** must be the same.
+>
+> - **OH_LOG_IsLoggable()** returns **true** if the specified logs can be printed; returns **false** otherwise.
+>
+>   For debug applications, all log levels can be printed.
+>
+>   For release applications, logs are printed only if the log level is not lower than the global log level.
+>
+>   During debugging, you can change the log level. For details, see [Displaying and Setting Log Levels](hilog.md#displaying-and-setting-log-levels).
 
 ## Constraints
 
@@ -98,7 +112,7 @@ The maximum size of a log file is 4096 bytes. Excess content will be discarded.
 
 ### Registering a Log Callback
 
-> **Note**
+> **NOTE**
 >
 > Do not call the HiLog API recursively in the callback function. Otherwise, a cyclic call issue occurs.
 

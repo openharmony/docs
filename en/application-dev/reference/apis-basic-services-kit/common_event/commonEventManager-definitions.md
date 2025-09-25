@@ -214,11 +214,11 @@ When any of the following actions is performed, the event notification service i
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required permissions**: ohos.permission.RECEIVER_SPLIT_SCREEN
+**Required permissions**: none
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-**Value**: "usual.event.SPLIT_SCREEN"
+**Value**: "common.event.SPLIT_SCREEN"
 
 
 

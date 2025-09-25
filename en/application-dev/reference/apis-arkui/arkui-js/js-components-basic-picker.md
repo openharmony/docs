@@ -4,7 +4,7 @@
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-The **\<picker>** component supports common, date, time, data and time, and multi-column text selectors.
+The **\<picker>** component supports common, date, time, date and time, and multi-column text selectors.
 
 
 ## Required Permissions

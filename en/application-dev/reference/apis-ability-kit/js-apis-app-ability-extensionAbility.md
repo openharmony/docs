@@ -1,6 +1,12 @@
 # @ohos.app.ability.ExtensionAbility (ExtensionAbility Base Class)
 
-ExtensionAbility is the base class for scenario-specific ExtensionAbilities. It inherits from [Ability](js-apis-app-ability-ability.md), with no property or method added. You cannot inherit from this base class. For details about the inheritance relationship of each ability, see [Inheritance Relationship](./js-apis-app-ability-ability.md#ability-inheritance-relationship).
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @jsjzju-->
+<!--Designer: @jsjzju-->
+<!--Tester: @lixueqing513-->
+
+ExtensionAbility is the base class for scenario-specific ExtensionAbilities. It inherits from [Ability](js-apis-app-ability-ability.md), with no property or method added. You cannot directly inherit from ExtensionAbility. For details about the inheritance relationship of each ability, see [Inheritance Relationship](./js-apis-app-ability-ability.md#ability-inheritance-relationship).
 
 > **NOTE**
 > 

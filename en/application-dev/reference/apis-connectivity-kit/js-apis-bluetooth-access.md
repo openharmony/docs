@@ -1,5 +1,11 @@
 # @ohos.bluetooth.access (Bluetooth Access Module)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 The **access** module provides APIs for enabling and disabling Bluetooth and obtaining the Bluetooth status.
 
 > **NOTE**
@@ -125,7 +131,7 @@ try {
 
 on(type: 'stateChange', callback: Callback&lt;BluetoothState&gt;): void
 
-Subscribes to Bluetooth state changes. This API uses an asynchronous callback to return the result. Since API version 16, the **ohos.permission.ACCESS_BLUETOOTH** permission is no longer verified.
+Subscribes to Bluetooth state changes. This API uses an asynchronous callback to return the result. Since API version 18, the **ohos.permission.ACCESS_BLUETOOTH** permission is no longer verified.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -167,9 +173,7 @@ try {
 
 off(type: 'stateChange', callback?: Callback&lt;BluetoothState&gt;): void
 
-Unsubscribes from Bluetooth state changes.
-
-**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+Unsubscribes from Bluetooth state changes. Since API version 18, the **ohos.permission.ACCESS_BLUETOOTH** permission is no longer verified.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -188,7 +192,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------- |
-|201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
@@ -227,6 +230,13 @@ When using this API, ensure that the real address of the peer device correspondi
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | deviceId     | string                                   | Yes   | Virtual address of the peer device, for example, XX:XX:XX:XX:XX:XX. The address is generally obtained from Bluetooth scanning. |
+
+**Return value**
+
+| Type                           | Description        |
+| ----------------------------- | ---------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
 
 **Error codes**
 
@@ -273,6 +283,12 @@ Deletes a persistently stored virtual address.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | deviceId     | string                                   | Yes   | Virtual address of the peer device, for example, XX:XX:XX:XX:XX:XX. The address is generally obtained from Bluetooth scanning.          |
+
+**Return value**
+
+| Type                           | Description        |
+| ----------------------------- | ---------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 

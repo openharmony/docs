@@ -3,7 +3,7 @@
 
 Based on the application model, you can use any of the following ways to implement data synchronization between [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) components and UI pages:
 
-- [Using EventHub for Data Synchronization](#using-eventhub-for-data-synchronization): The [EventHub](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md) object is provided by the [base class Context](application-context-stage.md). It allows events to be transferred using the publish/subscribe (pub/sub) pattern. Specifically, after subscribing to an event, your application will receive the event and process it accordingly when the event is published.
+- [Using EventHub for Data Synchronization](#using-eventhub-for-data-synchronization): The [EventHub](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md) object is provided by the [base class Context](../reference/apis-ability-kit/js-apis-inner-application-context.md). It allows events to be transferred using the publish/subscribe (pub/sub) pattern. Specifically, after subscribing to an event, your application will receive the event and process it accordingly when the event is published.
 - [Using AppStorage or LocalStorage for Data Synchronization](#using-appstorage-or-localstorage-for-data-synchronization): ArkUI provides two application-level state management solutions: [AppStorage](../ui/state-management/arkts-appstorage.md) and [LocalStorage](../ui/state-management/arkts-localstorage.md), which implement application- and UIAbility-level data synchronization, respectively.
 
 
@@ -11,7 +11,7 @@ Based on the application model, you can use any of the following ways to impleme
 
 [EventHub](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md) provides an event mechanism for the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) component so that they can subscribe to, unsubscribe from, and trigger events.
 
-Before using the APIs provided by **EventHub**, you must obtain an **EventHub** object, which is provided by the [base class Context](application-context-stage.md).
+In the [base class Context](../reference/apis-ability-kit/js-apis-inner-application-context.md), the EventHub object is provided for communication within the UIAbility component instance. Before using EventHub to implement data communication between the UIAbility and UI, you must obtain an EventHub object. This section uses EventHub as an example. 
 
 1. Call [eventHub.on()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhubon) in the UIAbility in either of the following ways to register a custom event **event1**.
 

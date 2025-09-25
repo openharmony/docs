@@ -159,7 +159,7 @@ The following example registers the **test()** function with the frontend page. 
               "scheme": "https",   // Exact match. This field is mandatory and cannot be empty.
               "host": "xxx.com",   // Exact match. This field is mandatory and cannot be empty.
               "port": "",          // Exact match. If the value is empty, the check is not performed. This field is mandatory.
-              "path": ""           // Prefix match. If the value is empty, the check is not performed. This parameter is mandatory.
+              "path": ""           // Prefix match. If the value is empty, the check is not performed. This field is mandatory.
             },
             {
               "scheme": "resource",// Exact match. This field is mandatory and cannot be empty.
@@ -224,11 +224,11 @@ The following example registers the **test()** function with the frontend page. 
     constructor() {
     }
 
-    test(): Array<Number> {
+    test(): Array<number> {
       return [1, 2, 3, 4]
     }
 
-    toString(param: String): void {
+    toString(param: string): void {
       console.log('Web Component toString' + param);
     }
   }
@@ -653,7 +653,7 @@ The following example registers the **test()** function with the frontend page. 
       return p;
     }
 
-    toString(param: String): void {
+    toString(param: string): void {
       console.log(" " + param);
     }
   }
@@ -725,7 +725,7 @@ The following example registers the **test()** function with the frontend page. 
       setTimeout( () => { param("suc") }, 10000)
     }
 
-    toString(param:String): void {
+    toString(param:string): void {
       console.log(" " + param);
     }
   }
@@ -794,6 +794,6 @@ The following example registers the **test()** function with the frontend page. 
 
 2. Use an example to check whether the channel is successfully established.
 
-   The following example passes arrays between the application side and the frontend page described in [Usage of Complex Types](#usage-of-complex-types).
+   The following example passes arrays between the application side and the frontend page described in [Usage of Complex Types](#usage-of-complex-types). The debugging result is shown in the following figure.
 
-   
+   ![Example of successful verification using DevTools](figures/webtoolstest.png)

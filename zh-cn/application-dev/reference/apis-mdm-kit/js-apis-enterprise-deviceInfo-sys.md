@@ -8,9 +8,9 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2)后调用。
+> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-term.md#mdm应用设备管理应用)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2)后调用。
 > 
-> 当前页面仅包含本模块的系统接口，其他公开接口参见。其他公开接口参见[@ohos.enterprise.deviceInfo](js-apis-enterprise-deviceInfo.md)。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.enterprise.deviceInfo](js-apis-enterprise-deviceInfo.md)。
 
 ## 导入模块
 
@@ -29,6 +29,8 @@ getDeviceSerial(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -81,6 +83,8 @@ getDeviceSerial(admin: Want): Promise&lt;string&gt;
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -138,6 +142,8 @@ getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -189,6 +195,8 @@ getDisplayVersion(admin: Want): Promise&lt;string&gt;
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -246,6 +254,8 @@ getDeviceName(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -297,6 +307,8 @@ getDeviceName(admin: Want): Promise&lt;string&gt;
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 

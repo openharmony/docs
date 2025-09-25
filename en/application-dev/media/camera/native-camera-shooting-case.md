@@ -10,7 +10,7 @@ After obtaining the output stream capabilities supported by the camera, create a
 
 ![Photographing Development Process](figures/photographing-ndk-development-process.png)
 
-## Sample Code
+## Complete Sample Code
 
 1. Link the dynamic library in the CMake script.
     ```txt

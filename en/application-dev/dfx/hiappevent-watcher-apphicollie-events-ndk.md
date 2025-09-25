@@ -2,7 +2,7 @@
 
 ## Available APIs
 
-For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent).
+For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md).
 
 **Subscription APIs**
 
@@ -15,30 +15,32 @@ For details about how to use the APIs (such as parameter usage restrictions and 
 
 The following describes how to subscribe to the freeze event triggered by a button click.
 
-1. Create a native C++ project and import the **jsoncpp** file to the project. The directory structure is as follows:
+1. Obtain the **jsoncpp.cpp**, **json.h**, and **json-forwards.h** files by referring to **Using JsonCpp in your project** in [the third-party open-source library JsonCpp](https://github.com/open-source-parsers/jsoncpp).
+
+2. Create a native C++ project and import the preceding files to the project. The directory structure is as follows:
 
     ```yml
     entry:
       src:
         main:
           cpp:
-            - json:
+            json:
               - json.h
               - json-forwards.h
-            - types:
+            types:
               libentry:
                 - index.d.ts
             - CMakeLists.txt
-            - napi_init.cpp
             - jsoncpp.cpp
+            - napi_init.cpp
         ets:
-            - entryability:
-              - EntryAbility.ets
-              - pages:
-              - Index.ets
+          entryability:
+            - EntryAbility.ets
+          pages:
+            - Index.ets
     ```
 
-2. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
+3. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
 
     ```cmake
     # Add the jsoncpp.cpp file, which is used to parse the JSON strings in the subscription events.
@@ -47,7 +49,7 @@ The following describes how to subscribe to the freeze event triggered by a butt
     target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libohhicollie.so libhiappevent_ndk.z.so)
     ```
 
-3. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
+4. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
 
     ```c++
     #include "napi/native_api.h"
@@ -59,9 +61,9 @@ The following describes how to subscribe to the freeze event triggered by a butt
     #define LOG_TAG "testTag"
     ```
 
-4. Subscribe to system events.
+5. Subscribe to system events.
 
-    - Watcher of the onReceive type.
+    - Watcher of the **onReceive** type.
 
     In the **napi_init.cpp** file, define the methods related to the watcher of the **onReceive** type.
 
@@ -202,9 +204,9 @@ The following describes how to subscribe to the freeze event triggered by a butt
          OH_HiAppEvent_AddWatcher(systemEventWatcher);
          return {};
      }
-     ```
+    ```
 
-5. Register **RegisterWatcher** as an ArkTS API.
+6. Register **RegisterWatcher** as an ArkTS API.
 
     In the **napi_init.cpp** file, register **RegisterWatcher** as an ArkTS API.
 
@@ -225,11 +227,33 @@ The following describes how to subscribe to the freeze event triggered by a butt
     export const RegisterWatcher: () => void;
     ```
 
-6. Register **TestHiCollieTimerNdk** as an ArkTS API.
+7. Register **TestHiCollieTimerNdk** as an ArkTS API.
 
     In the **napi_init.cpp** file, register **testHiCollieTimerNdk** as an ArkTS API.
 
     ```c++
+    // Import the hicollie.h file.
+    #include "hicollie/hicollie.h"
+    #include <unistd.h>
+
+    static napi_value TestHiCollieTimerNdk(napi_env env, napi_callback_info info)
+    {
+        // Define the task execution timeout ID.
+        int id;  
+        // Define the task timeout detection parameters. When a task times out for 1s, logs are generated.
+        HiCollie_SetTimerParam param = {"testTimer", 1, nullptr, nullptr, HiCollie_Flag::HICOLLIE_FLAG_LOG};
+        // Set the detection.
+        HiCollie_ErrorCode errorCode = OH_HiCollie_SetTimer(param, &id);
+        if (errorCode == HICOLLIE_SUCCESS) {
+            OH_LOG_INFO(LogType::LOG_APP, "Timer Id is %{public}d", id);
+            // Construct a timeout interval of 2s.
+            sleep(2);
+            OH_HiCollie_CancelTimer(id);
+        }
+        return 0; 
+    }
+
+    EXTERN_C_START
     static napi_value Init(napi_env env, napi_value exports)
     {
         napi_property_descriptor desc[] = {
@@ -239,28 +263,17 @@ The following describes how to subscribe to the freeze event triggered by a butt
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
         return exports;
     }
-
-    // Import the hicollie.h file.
-    #include "hicollie/hicollie.h"
-    static napi_value TestHiCollieTimerNdk(napi_env env, napi_value exports)
-    {
-        // Define the task execution timeout ID.
-        int id;  
-        // Define the task timeout detection parameters. When a task times out for 1s, logs are generated.
-        HiCollie_SetTimerParam param = {"testTimer", 1, nullptr, nullptr, HiCollie_Flag::HICOLLIE_FLAG_LOG};
-        // Set the detection.
-        HiCollie_ErrorCode = OH_HiCollie_SetTimer(param, &id);
-        if (errorCode == HICOLLIE_SUCCESS) {
-            OH_LOG_INFO(LogType::LOG_APP, "Timer Id is %{public}d", id);
-            // Construct a timeout interval of 2s.
-            sleep(2);
-            OH_HiCollie_CancelTimer(id);
-        }
-        return 0; 
-    }
+    EXTERN_C_END
     ```
 
-7. In the **EntryAbility.ets** file, add the following API to **onCreate()**.
+    In the **index.d.ts** file, define the ArkTS API.
+
+    ```typescript
+    export const RegisterWatcher: () => void;
+    export const TestHiCollieTimerNdk: () => void;
+    ```
+
+8. In the **EntryAbility.ets** file, add the following API to **onCreate()**.
 
     ```typescript
     // Import the dependent module.
@@ -271,18 +284,34 @@ The following describes how to subscribe to the freeze event triggered by a butt
     testNapi.RegisterWatcher();
     ```
 
-8. In the **Index.ets** file, add a button to trigger the task execution timeout event.
+9. In the **Index.ets** file, add a button to trigger the task execution timeout event.
 
-    ```typescript
-    Button("TestHiCollieTimerNdk")
-      .fontSize(50)
-      .fontWeight(FontWeight.Bold)
-      .onClick(testNapi.TestHiCollieTimerNdk);
-    ```
+   ```ts
+   import testNapi from 'libentry.so';
+   
+   @Entry
+   @Component
+   struct Index {
+     @State message: string = 'Hello World';
+   
+     build() {
+       Row() {
+         Column() {
+           Button("TestHiCollieTimerNdk")
+             .fontSize(50)
+             .fontWeight(FontWeight.Bold)
+             .onClick(testNapi.TestHiCollieTimerNdk);  // Add a click event to trigger the TestHiCollieTimerNdk method.
+         }
+         .width('100%')
+       }
+       .height('100%')
+     }
+   }
+   ```
 
-9. In DevEco Studio, click the **Run** button to run the project. Then, click the **testHiCollieTimerNdk** button to trigger a task execution timeout event.
+10. In DevEco Studio, click the **Run** button to run the project. Then, click the **testHiCollieTimerNdk** button to trigger a task execution timeout event.
 
-10. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
+11. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
 
     ```text
     HiAppEvent eventInfo.domain=OS
@@ -304,7 +333,7 @@ The following describes how to subscribe to the freeze event triggered by a butt
     HiAppEvent eventInfo.params.log_over_limit=0
     ```
 
-11. Remove the event watcher.
+12. Remove the event watcher.
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -314,7 +343,7 @@ The following describes how to subscribe to the freeze event triggered by a butt
     }
     ```
 
-12. Destroy the event watcher.
+13. Destroy the event watcher.
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {

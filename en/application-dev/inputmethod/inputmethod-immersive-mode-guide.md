@@ -34,7 +34,7 @@ To implement consistent immersive experience, a communication mechanism between 
    - If the input method application receives **IMMERSIVE** from the foreground application, it is recommended that the input method application set the final immersive mode to **LIGHT_IMMERSIVE** or **DARK_IMMERSIVE** based on the current system color mode.
 
 
-   The following sample code shows how to set the immersive mode:
+   The following sample code shows how to set the immersive mode. You must first use [createPanel](../reference/apis-ime-kit/js-apis-inputmethodengine.md#createpanel10) to obtain a panel instance, and then call the **setImmersiveMode** API using the obtained instance.
    ```ts
    panel.setImmersiveMode(inputMethodEngine.ImmersiveMode.LIGHT_IMMERSIVE);
    ```

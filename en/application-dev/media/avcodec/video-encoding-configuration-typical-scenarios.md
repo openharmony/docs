@@ -1,5 +1,6 @@
 # Video Encoding Configurations for Typical Scenarios
 
+
 This topic provides recommended configuration parameters for AVCodec video encoding in various scenarios. It aims to help you configure video encoders according to your specific needs.
 
 Video encoding is used in many scenarios, including video calls, video meetings, live streaming, video editing, and video sharing. Based on user experience requirements, these scenarios can be grouped into three main categories: low-latency, real-time streaming, and offline encoding.
@@ -9,7 +10,7 @@ This topic offers the recommended parameter settings for video encoding in these
 
 ## General Development Steps
 
-**Linking Dynamic Link Libraries in the CMake Script**
+**Linking Dynamic Libraries in the CMake Script**
 
 ```cmake
 target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
@@ -54,7 +55,7 @@ This section describes only the steps involved in the encoder configuration phas
 2. Set encoder parameters.
 
     Configure parameters suitable for low-latency encoding scenarios.
-
+    
     In low-latency encoding scenarios, the recommended encoding parameters for typical resolution (using H.265 as an example) are as follows.
 
     | Resolution           | Frame Rate (fps)| Bit Rate (kbit/s)| Key Frame Interval (ms)| Bit Rate Control Mode|
@@ -67,7 +68,7 @@ This section describes only the steps involved in the encoder configuration phas
 
     In the code snippet below, the following variables are used:
 
-    **videoEnc**: pointer to a video encoder instance. For details, see step 2 in [Video Encoding Surface Mode](video-encoding.md#surface-input).
+    - **videoEnc**: pointer to a video encoder instance. For details, see step 2 in [Video Encoding in Surface Mode](video-encoding.md#surface-mode).
 
     ```c++
     // 2.1 Create an AVFormat parameter instance.
@@ -100,13 +101,14 @@ This section describes only the steps involved in the encoder configuration phas
     // 2.4 Destroy the AVFormat instance after the configuration is complete.
     OH_AVFormat_Destroy(format);
     ```
+
     > **NOTE**
     > 
     > A key frame interval of -1 indicates that only the first frame is a key frame. You can dynamically configure encoder parameters during running based on transmission conditions and image quality to insert new key frames (IDR).
 
 3. (Optional) Dynamically configure encoder parameters during running.
 
-    For details, see step 9 in [Video Encoding Surface Mode](video-encoding.md#surface-input).
+    For details, see step 9 in [Video Encoding in Surface Mode](video-encoding.md#surface-mode).
 
     ```c++
     // 3.1 Create an AVFormat parameter instance.

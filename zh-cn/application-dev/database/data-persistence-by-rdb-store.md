@@ -74,7 +74,7 @@
    // 此处示例在Ability中实现，使用者也可以在其他合理场景中使用
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
-       // 若希望使用分词器，可调用isStorageTypeSupported检查希望使用的分词器是否支持当前平台。
+       // 若希望使用分词器，可调用isTokenizerSupported检查希望使用的分词器是否支持当前平台。
        let tokenType = relationalStore.Tokenizer.ICU_TOKENIZER;
        let tokenTypeSupported = relationalStore.isTokenizerSupported(tokenType);
        if (!tokenTypeSupported) {
@@ -384,7 +384,7 @@
    }
    ```
 
-5. 在同路径下备份数据库。关系型数据库支持两种手动备份和自动备份（仅系统应用可用）两种方式，具体可见[关系型数据库备份](data-backup-and-restore.md#关系型数据库备份)。
+5. 在同路径下备份数据库。关系型数据库支手动备份和自动备份（仅系统应用可用）两种方式，具体可见[关系型数据库备份](data-backup-and-restore.md#关系型数据库备份)。
 
    此处以手动备份为例：
 

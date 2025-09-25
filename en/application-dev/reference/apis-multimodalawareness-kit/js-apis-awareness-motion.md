@@ -1,4 +1,4 @@
-# @ohos.multimodalawareness.motion (Motion Sensing)
+# @ohos.multimodalawareness.motion (Motion Awareness)
 
 The **motion** module provides the capability of sensing user motions, including user gestures and actions.
 
@@ -42,8 +42,8 @@ Subscribes to operating hand change events.
 
 | Name  | Type                            | Mandatory| Description                                                        |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                           | Yes  | Event type. Event type. This parameter has a fixed value of **operatingHandChanged**.|
-| callback | Callback&lt;[OperatingHandStatus](#operatinghandstatus)&gt; | Yes  | Callback used to return the operating hand status.                                  |
+| type     | string                           | Yes  | Event type. This parameter has a fixed value of **operatingHandChanged**.|
+| callback | Callback&lt;[OperatingHandStatus](#operatinghandstatus)&gt; | Yes  | Callback used to return the result.                                  |
 
 **Error codes**
 
@@ -54,15 +54,26 @@ For details about the error codes, see [Motion Sensing Error Codes](errorcode-mo
 | 201      | Permission denied. An attempt was made to subscribe operatingHandChanged event forbidden by permission: ohos.permission.ACTIVITY_MOTION. |
 | 401      | Parameter error. Parameter verification failed. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
-| 31500001 | Service exception. |
-| 31500002 | Subscribe Failed. |
+| 31500001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception; 2. N-API invocation exception, invalid N-API status. |
+| 31500002 | Subscribe Failed. Possible causes: 1. Callback registration failure; 2. Failed to bind native object to js wrapper; 3. N-API invocation exception, invalid N-API status; 4. IPC request exception. |
 
 **Example**
 
 ```ts
-motion.on('operatingHandChanged', (data:motion.OperatingHandStatus) => {
-    console.info('on success' + data);
-})
+import { BusinessError } from '@kit.BasicServicesKit';
+import { Callback } from '@ohos.base';
+
+let callback:Callback<motion.OperatingHandStatus> = (data:motion.OperatingHandStatus) => {
+    console.info('callback succeeded' + data);
+};
+
+try {
+    motion.on('operatingHandChanged', callback);  
+    console.info("on succeeded");
+} catch (err) {
+    let error = err as BusinessError;
+    console.error("Failed on and err code is " + error.code);
+}
 ```
 
 
@@ -81,8 +92,8 @@ Unsubscribes from operating hand change events.
 
 | Name  | Type                            | Mandatory| Description                                                        |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                           | Yes  | Event type. Event type. This parameter has a fixed value of **operatingHandChanged**.|
-| callback | Callback&lt;[OperatingHandStatus](#operatinghandstatus)&gt; | No  | Callback used to return the operating hand status.                                  |
+| type     | string                           | Yes  | Event type. This parameter has a fixed value of **operatingHandChanged**.|
+| callback | Callback&lt;[OperatingHandStatus](#operatinghandstatus)&gt; | No  | Callback used to return the result.                                  |
 
 **Error codes**
 
@@ -93,15 +104,21 @@ For details about the error codes, see [Motion Sensing Error Codes](errorcode-mo
 | 201      | Permission denied. An attempt was made to unsubscribe operatingHandChanged event forbidden by permission: ohos.permission.ACTIVITY_MOTION. |
 | 401      | Parameter error. Parameter verification failed. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
-| 31500001 | Service exception. |
-| 31500003 | Unsubscribe Failed. |
+| 31500001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception; 2. N-API invocation exception, invalid N-API status. |
+| 31500003 | Unsubscribe Failed. Possible causes: 1. Callback removal failure; 2. N-API invocation exception, invalid N-API status; 3. IPC request exception. |
 
 **Example**
 
 ```ts
-motion.off('operatingHandChanged', (data:motion.OperatingHandStatus) => {
-    console.info('off success' + data);
-})
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    motion.off('operatingHandChanged');
+    console.info("off succeeded");
+} catch (err) {
+    let error = err as BusinessError;
+    console.error("Failed off and err code is " + error.code);
+}
 ```
 
 
@@ -130,11 +147,18 @@ For details about the error codes, see [Motion Sensing Error Codes](errorcode-mo
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied. An attempt was made to get the recent operating hand status forbidden by permission: ohos.permission.ACTIVITY_MOTION. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
-| 31500001 | Service exception. |
+| 31500001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception; 2. N-API invocation exception, invalid N-API status. |
 
 **Example**
 
 ```ts
-let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
-console.info('get success' + data);
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
+    console.info('get succeeded' + data);
+} catch (err) {
+    let error = err as BusinessError;
+    console.error("Failed get and err code is " + error.code);
+}
 ```

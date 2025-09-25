@@ -164,25 +164,25 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fileshare from '@ohos.fileshare';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileShare } from '@kit.CoreFileKit';
   
   async function checkPersistentPermissionExample() {
     try {
-      let pathPolicyInfo1: fileshare.PathPolicyInfo = {
+      let pathPolicyInfo1: fileShare.PathPolicyInfo = {
         path: "/storage/Users/currentUser/Documents/1.txt",
-        operationMode: fileshare.OperationMode.READ_MODE,
+        operationMode: fileShare.OperationMode.READ_MODE,
       }
-      let pathPolicyInfo2: fileshare.PathPolicyInfo = {
+      let pathPolicyInfo2: fileShare.PathPolicyInfo = {
         path: "/storage/Users/currentUser/Desktop/2.txt",
-        operationMode: fileshare.OperationMode.READ_MODE,
+        operationMode: fileShare.OperationMode.READ_MODE,
       }
 
-      let policies: Array<fileshare.PathPolicyInfo> = [pathPolicyInfo1, pathPolicyInfo2];
-      let policyType: fileshare.PolicyType = fileshare.PolicyType.PERSISTENT_TYPE;
+      let policies: Array<fileShare.PathPolicyInfo> = [pathPolicyInfo1, pathPolicyInfo2];
+      let policyType: fileShare.PolicyType = fileShare.PolicyType.PERSISTENT_TYPE;
       let tokenid = 537688848; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
-      
-      fileshare.checkPathPermission(tokenid, policies, policyType).then((result:Array<boolean>) => {
+
+      fileShare.checkPathPermission(tokenid, policies, policyType).then((result:Array<boolean>) => {
         for (let x of result) {
           console.info('check permission result is', x);
         }

@@ -16,6 +16,8 @@ import { StartupTask } from '@kit.AbilityKit';
 
 ## StartupTask
 
+Provides capabilities related to startup tasks. It is decorated by [@Sendable](../../arkts-utils/arkts-sendable.md#sendable-decorator).
+
 ### onDependencyCompleted
 
 onDependencyCompleted?(dependency: string, result: Object): void

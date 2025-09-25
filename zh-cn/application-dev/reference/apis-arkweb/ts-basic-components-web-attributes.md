@@ -1453,7 +1453,7 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 > **说明：**
 >
-> - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未完全加载或渲染完毕。
+> - 网页文档根元素（HTML Element）创建后、但尚未加载任何其他内容之前注入脚本。
 >
 > - 该脚本按照字典序执行，非数组本身顺序，若需数组本身顺序，建议使用[runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15)接口。
 >
@@ -1600,7 +1600,7 @@ runJavaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 > **说明：**
 >
-> - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未完全加载或渲染完毕。
+> - 网页文档根元素（HTML Element）创建后、但尚未加载任何其他内容之前注入脚本。
 >
 > - 该脚本按照数组本身顺序执行。
 >
@@ -2580,6 +2580,7 @@ struct WebComponent {
   @State previewImage: Resource | string | undefined = undefined;
   @State previewWidth: number = 0;
   @State previewHeight: number = 0;
+  uiContext: UIContext = this.getUIContext();
 
   @Builder
   MenuBuilder() {
@@ -2618,8 +2619,8 @@ struct WebComponent {
               if (event.param.getLinkUrl()) {
                 return false;
               }
-              this.previewWidth = px2vp(event.param.getPreviewWidth());
-              this.previewHeight = px2vp(event.param.getPreviewHeight());
+              this.previewWidth = this.uiContext!.px2vp(event.param.getPreviewWidth());
+              this.previewHeight = this.uiContext!.px2vp(event.param.getPreviewHeight());
               if (event.param.getSourceUrl().indexOf("resource://rawfile/") == 0) {
                 this.previewImage = $rawfile(event.param.getSourceUrl().substr(19));
               } else {
@@ -2895,6 +2896,12 @@ password(password: boolean)
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名          | 类型   | 必填  | 说明                             |
+| ------------ | ------ | ---- | -------------------------------- |
+| password | boolean | 是   | 设置为true时，表示允许Web保存密码。<br>设置为false时，表示不允许Web保存密码。<br>默认值：false。 |
+
 ## textZoomAtio<sup>(deprecated)</sup>
 
 textZoomAtio(textZoomAtio: number)
@@ -2979,6 +2986,12 @@ tableData(tableData: boolean)
 > 从API version 10开始废弃，并且不再提供新的接口作为替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型   | 必填  | 说明                             |
+| ------------ | ------ | ---- | -------------------------------- |
+| tableData | boolean | 是   | 设置为true时，表示允许Web保存表单数据。<br>设置为false时，表示不允许Web保存表单数据。<br>默认值：false。 |
 
 ## wideViewModeAccess<sup>(deprecated)</sup>
 

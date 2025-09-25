@@ -26,8 +26,8 @@ The file URIs are in the following format:
 
 - *path*: specifies the application sandbox path of the file.
 
-##  
+> **NOTE**
+>
+> - URI processing involves encoding and decoding. The system cannot guarantee the availability of the URI address that an application combines by itself.
+> - You are advised to use the APIs provided by the system to obtain URIs, for example, [getUriFromPath](../reference/apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath).
 
- 
-
--  

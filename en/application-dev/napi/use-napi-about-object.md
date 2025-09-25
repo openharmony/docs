@@ -2,7 +2,7 @@
 
 ## Overview
 
-Node-API provides APIs for basic ArkTS object operations, including creating an object, obtaining the prototype of an object, freezing or sealing an object, and checking the object type. You can use these APIs to manage ArkTS objects.
+Node-APIs provide APIs for performing basic operations on objects, such as creating objects, obtaining prototypes, freezing and sealing objects, and checking object types.
 
 ## Basic Concepts
 
@@ -23,7 +23,7 @@ The following table lists the APIs for operating and managing ArkTS objects.
 | napi_typeof | Obtains the type of an ArkTS value.|
 | napi_instanceof | Checks whether an ArkTS object is an instance of the specified constructor.|
 | napi_type_tag_object | Associates the value of a tag pointer with an ArkTS object.|
-| napi_check_object_type_tag | Checks whether a tag pointer is associated with a ArkTS object.|
+| napi_check_object_type_tag | Checks whether a tag pointer is associated with an ArkTS object.|
 | napi_create_symbol | Creates an ArkTS **Symbol** object.|
 | napi_create_external | Creates an ArkTS external object, which can be used to pass custom data structs or objects in C/C++ to ArkTS so that it can be accessible from ArkTS.|
 | napi_get_value_external | Obtains the ArkTS data from the external object created by **napi_create_external**. This API can be used to pass data between ArkTS and C/C++.|
@@ -66,8 +66,8 @@ export const getPrototype: (object: Object) => Object;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 // Define a class.
 class Person {
   // Property.
@@ -88,7 +88,7 @@ let applePrototype = testNapi.getPrototype(person);
 if (applePrototype === Person.prototype) {
   hilog.info(0x0000, 'Node-API', 'get_prototype_success');
 } else {
-  hilog.info(0x0000, 'Node-API', 'get_prototype_fail');
+  hilog.error(0x0000, 'Node-API', 'get_prototype_fail');
 }
 ```
 
@@ -129,8 +129,8 @@ export const createObject: () => { name: string };
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 try {
   const myObject = testNapi.createObject();
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_object: %{public}s', myObject.name);
@@ -181,8 +181,8 @@ export const objectFreeze: (objFreeze: Object) => Obj;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 try {
   class Obj {
     data: number = 0
@@ -217,6 +217,9 @@ static napi_value ObjectSeal(napi_env env, napi_callback_info info)
     napi_status status = napi_object_seal(env, objSeal);
     if (status == napi_ok) {
         OH_LOG_INFO(LOG_APP, "Node-API napi_object_seal success");
+    } else {
+        napi_throw_error(env, nullptr, "Node-API napi_object_seal failed");
+        return nullptr;
     }
     // Return the sealed object to ArkTS.
     return objSeal;
@@ -238,14 +241,14 @@ export const objectSeal : (objSeal: Object) => Obj;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 try {
   class Obj {
     data: number = 0
     message: string = ""
     // Optional property.
-    address?: number = 0
+    address?: number
   }
   let obj: Obj = { data: 0, message: "hello world"};
   let objSeal = testNapi.objectSeal(obj);
@@ -260,7 +263,17 @@ try {
 
 ### napi_typeof
 
-Call **napi_typeof** to obtain the type of an ArkTS value.
+Obtains the ArkTS type of a given ArkTS value.
+
+**Note**: napi_typeof can be used to determine the following types:  
+undefined  
+null  
+boolean  
+number  
+string  
+object  
+function  
+bigint
 
 CPP code:
 
@@ -320,14 +333,14 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const napiTypeOf : <T>(value: T) => string | void;
+export const napiTypeOf : <T>(value: T) => string | undefined;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 try {
   let varUndefined: undefined;
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varUndefined));
@@ -345,8 +358,8 @@ try {
   }
   let varObject: Obj = {id: 1, name: "LiLei"};
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varObject));
-  const addNum = (a: number, b: number): number => a * b;
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(addNum));
+  const mulNum = (a: number, b: number): number => a * b;
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(mulNum));
   let varBigint = BigInt("1234567890123456789012345678901234567890");
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varBigint));
 } catch (error) {
@@ -388,14 +401,14 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const napiInstanceOf: (date: Object, construct: Object) => boolean | void;
+export const napiInstanceOf: (date: Object, construct: Object) => boolean | undefined;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 try {
   class Person {
     name: string;
@@ -489,15 +502,15 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const setTypeTagToObject: (obj: Object, index: number) => boolean | void;
+export const setTypeTagToObject: (obj: Object, index: number) => boolean | undefined;
 export const checkObjectTypeTag: (obj: Object, index: number) => boolean;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 class Obj {
   data: number = 0
   message: string = ""
@@ -519,6 +532,7 @@ CPP code:
 ```cpp
 #include <cstdlib>
 #include <string>
+#include "hilog/log.h"
 #include "napi/native_api.h"
 
 // Callback used to release the external data.
@@ -551,13 +565,17 @@ static napi_value CreateExternal(napi_env env, napi_callback_info info)
     const size_t dataSize = 10;
     // Allocate memory to the external data.
     void *data = malloc(dataSize);
+    if (data == nullptr) {
+        OH_LOG_ERROR(LOG_APP, "malloc failed");
+        return nullptr;
+    }
     // Initialize the external data.
     memset(data, 0, dataSize);
     napi_value result = nullptr;
     // Return an object with external data.
     napi_status status = napi_create_external(env, data, finalizeCallback, nullptr, &result);
     if (status != napi_ok) {
-        napi_throw_error(env, nullptr, " Node-API Failed to create external data");
+        OH_LOG_ERROR(LOG_APP, " Node-API Failed to create external data");
         return nullptr;
     }
     return result;
@@ -575,8 +593,8 @@ export const getExternalType: (externalData: Object) => boolean;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 const externalData = testNapi.createExternal();
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_external:%{public}s', testNapi.getExternalType(externalData));
 ```
@@ -617,8 +635,8 @@ export const getValueExternal: () => number;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 hilog.info(0x0000, 'Node-API', 'get_value_external:%{public}d', testNapi.getValueExternal());
 ```
 
@@ -630,16 +648,25 @@ CPP code:
 
 ```cpp
 #include "napi/native_api.h"
+#include "hilog/log.h"
 
 static napi_value CreateSymbol(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
     const char *des = "only";
     // Use napi_create_string_utf8 to create a description string.
-    napi_create_string_utf8(env, des, NAPI_AUTO_LENGTH, &result);
+    napi_status status = napi_create_string_utf8(env, des, NAPI_AUTO_LENGTH, &result);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "Node-API napi_create_string_utf8 failed");
+        return nullptr;
+    }
     napi_value returnSymbol = nullptr;
     // Create a symbol and return it.
-    napi_create_symbol(env, result, &returnSymbol);
+    status = napi_create_symbol(env, result, &returnSymbol);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "Node-API napi_create_symbol failed");
+        return nullptr;
+    }
     return returnSymbol;
 }
 ```
@@ -654,8 +681,8 @@ export const createSymbol : () => symbol;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 let varSymbol = testNapi.createSymbol();
 hilog.info(0x0000, 'Node-API', 'createSymbol:%{public}s', typeof varSymbol);
 ```
@@ -666,5 +693,5 @@ To print logs in the native CPP, add the following information to the **CMakeLis
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

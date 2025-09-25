@@ -1,8 +1,8 @@
 # Subscribing to Crash Events (C/C++)
 
-## Introduction
+## Subscription APIs
 
-The following describes how to subscribe to application crash events by using the C/C++ APIs provided by HiAppEvent. For details about how to use the APIs (such as parameter restrictions and value ranges), see [HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent).
+The following describes how to subscribe to application crash events by using the C/C++ APIs provided by HiAppEvent. For details about how to use the APIs (such as parameter restrictions and value ranges), see [HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md).
 
 > **NOTE**
 >
@@ -69,7 +69,7 @@ The following describes how to subscribe to the crash event triggered by a butto
 
    - Watcher of the onReceive type:
 
-     In the **napi_init.cpp** file, define the methods related to the watcher of the onReceive type.
+     In the **napi_init.cpp** file, define the methods related to the watcher of the **onReceive** type.
 
      ```c++
      // Define a variable to cache the pointer to the created watcher.
@@ -134,7 +134,7 @@ The following describes how to subscribe to the crash event triggered by a butto
 
    - Watcher of the **onTrigger** type:
 
-     In the **napi_init.cpp** file, define the methods related to the watcher of the OnTrigger type.
+     In the **napi_init.cpp** file, define the methods related to the watcher of the **OnTrigger** type.
 
      ```c++
      // Define a variable to cache the pointer to the created watcher.
@@ -221,7 +221,7 @@ The following describes how to subscribe to the crash event triggered by a butto
    }
    ```
 
-   In the **index.d.ts** file, define ArkTS APIs.
+   In the **index.d.ts** file, define the ArkTS API.
 
    ```typescript
    export const registerWatcher: () => void;
@@ -250,7 +250,7 @@ The following describes how to subscribe to the crash event triggered by a butto
 
 **JsError** is collected within the process and triggers a callback quickly. **NativeCrash** is collected outside the process and typically takes about 2 seconds on average to trigger a callback. The time required depends on the number of service threads and the time needed for inter-process communication. The collected fault information is reported asynchronously, which does not block the current service.
 
-### Checking Whether a Watcher Subscribes to Crash Events
+### Verifying the Subscription
 
 Depending on whether an application proactively captures crash events, callbacks are triggered for the events at different times. You need to check whether crash events are subscribed to at these different times.
 

@@ -191,10 +191,10 @@ notifyDataChange(accountId: string, bundleName: string, callback: AsyncCallback&
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
 
-| 名称     | 类型   | 必填 | 说明 |
-| ---------- | ------ | ---- | ---- |
-| eventId | string | 是   | 变更事件id。|
-| extraData | ExtraData | 是   | 云端数据变更信息。|
+| 名称     | 类型   | 只读 | 可选 | 说明 |
+| ---------- | ------ | ---- | ---- | ---- |
+| eventId | string | 否   | 否   | 变更事件id。|
+| extraData | string | 否   | 否   | 云端数据变更信息。|
 
 ## cloudSyncManager.notifyDataChange<sup>11+</sup>
 

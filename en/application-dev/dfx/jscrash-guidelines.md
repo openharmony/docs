@@ -1,6 +1,6 @@
 # Analyzing JS Crash
 
-When an application crashes dues to a JS exception, it generates a JS crash log file. You can view the log to locate the error code and analyze the cause of the crash.
+When an application crashes due to a JS exception, it generates a JS crash log file. You can view the log to locate the error code and analyze the cause of the crash.
 
 This topic describes the JS Crash capture, JS Crash analysis, and typical cases.
 
@@ -34,7 +34,7 @@ Stacktrace:
 
 You can identify the cause of the JS crash, mostly application issues, based on **Error message** and **Stacktrace** in the logs.
 
-### Formats of Exception Code Call Stacks
+### Exception Code Call Stack Formats
 
 In the debug and release modes, the formats of the exception code call stacks are different. Specifically, the debugging information is retained in the debug mode, and the debugging information is stripped in the release mode through code optimization and obfuscation.
 
@@ -317,7 +317,6 @@ Error message:Cannot read property xxx of undefined
         // Calculate the moving distance of the hand.
         this.translationUpY = (this.multiCardsNum >= 1)? sceneContainerSessionList[this.multiCardsNum - 1].needRenderTranslate.translateY: 0; ---> Number of the error line
         this.translationDownY = (this.multiCardsNum >= 2) ? sceneContainerSessionList[this.multiCardsNum - 2].needRenderTranslate.translateY : 0;
-        this.screenWidth = px2vp(screenWidth);
         this.recentScale = recentScale;
       }
     ```
@@ -334,7 +333,6 @@ Error message:Cannot read property xxx of undefined
         sceneContainerSessionList[this.multiCardsNum - 1]?.needRenderTranslate.translateY : 0;
       this.translationDownY = (this.multiCardsNum >= 2) ?
         sceneContainerSessionList[this.multiCardsNum - 2]?.needRenderTranslate.translateY : 0;
-      this.screenWidth = px2vp(screenWidth);
       this.recentScale = recentScale;
     }
     ```
@@ -372,7 +370,7 @@ To solve this problem, locate the problematic code line based on the fault log a
 
     ```text
     Error name:Error
-    Error message:BussinessError 2501000: Operation failed.
+    Error message:BusinessError 2501000: Operation failed.
     Error code:2501000
     Stacktrace:
     Cannot get SourceMap info, dump raw stack:
@@ -411,7 +409,7 @@ To solve this problem, locate the problematic code line based on the fault log a
 
 4. Solution
 
-    According to the analysis of the source code, **wifiManager.on()** throws "BussinessError 2501000: Operation failed" occasionally. If this exception does not cause the application to crash, use try-catch to capture and process the exception. Modify the code as follows:
+    According to the analysis of the source code, **wifiManager.on()** throws "BusinessError 2501000: Operation failed" occasionally. If this exception does not cause the application to crash, use try-catch to capture and process the exception. Modify the code as follows:
 
     ```ts
     onStart(): void {

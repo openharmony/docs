@@ -15,7 +15,7 @@ The basic dependency packages include:
 The sample code for accessing a DataAbility is as follows:
 
 
-1. Create a **DataAbilityHelper** instance.
+1. Create a DataAbilityHelper instance.
    
     ```ts
     import featureAbility from '@ohos.ability.featureAbility';

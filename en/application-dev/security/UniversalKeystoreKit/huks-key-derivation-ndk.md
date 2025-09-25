@@ -1,18 +1,17 @@
 # Key Derivation (C/C++)
 
-
 This topic walks you through on how to derive a 256-bit key using HKDF. For details about the scenarios and supported algorithms, see [Supported Algorithms](huks-key-generation-overview.md#supported-algorithms).
 
 ## Add the dynamic library in the CMake script.
 ```txt
-   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 ```
 
 ## How to Develop
 
 **Key Generation**
 
-1. Set the key alias.
+1. Specify the key alias. For details about the naming rules, see [Key Generation Overview and Algorithm Specifications](huks-key-generation-overview.md).
 
 2. Initialize the key property set. You can set **OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG** (optional) to specify how the key derived from this key is managed.
 
@@ -40,11 +39,11 @@ Alternatively, you can [import a key](huks-key-import-overview.md).
     | The tag is not set.| OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED | The key is returned to the caller for management.|
     | The tag is not set.| The tag is not set.| The key is returned to the caller for management.|
 
-    >**NOTE**<br>The tag value set in key derivation should not conflict with the tag value set in key generation. The above table lists only valid settings.
+    Note: The tag value set in key derivation should not conflict with the tag value set in key generation. The above table lists only valid settings.
 
 2. Use [OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession) to initialize a key session. The session handle is returned after the initialization.
 
-3. Use [OH_Huks_UpdateSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_updatesession)n to process data.
+3. Use [OH_Huks_UpdateSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_updatesession) to process data.
 
 4. Use [OH_Huks_FinishSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_finishsession) to derive a key.
 
@@ -55,6 +54,7 @@ Use **OH_Huks_DeleteKeyItem** to delete the key that is not required. For detail
 ```c++
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
+#include "napi/native_api.h"
 #include <string.h>
 OH_Huks_Result InitParamSet(
     struct OH_Huks_ParamSet **paramSet,

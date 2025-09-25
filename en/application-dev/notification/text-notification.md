@@ -11,7 +11,7 @@ You can publish text notifications to send SMS messages, alert messages, and mor
 
 ## Available APIs
 
-The following table describes the APIs for notification publishing. You specify the notification information – content, ID, slot type, and publish time – by setting the [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest) parameter in the APIs.
+The following table describes the APIs for notification publishing. You specify the notification information – content, ID, slot type, and publish time – by setting the [NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1) parameter in the APIs.
 
 | Name| Description|
 | -------- | -------- |

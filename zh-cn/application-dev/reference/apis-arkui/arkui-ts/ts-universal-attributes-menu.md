@@ -53,7 +53,7 @@ bindMenu(content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions):
 
 bindMenu(isShow: boolean, content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions): T
 
-给组件绑定菜单，点击后弹出菜单。弹出的菜单项支持图标+文本排列以及自定义组件两种功能。
+给组件绑定菜单，菜单的显隐通过控制绑定的isShow触发。弹出的菜单项支持图标+文本排列以及自定义组件两种功能。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -63,7 +63,7 @@ bindMenu(isShow: boolean, content: Array<MenuElement&gt; | CustomBuilder, option
 
 | 参数名               | 类型                                                         | 必填 | 说明                                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| isShow<sup>11+</sup> | boolean                                                      | 是   | 支持开发者通过状态变量控制显隐，值为true时弹出菜单，值为false时关闭菜单，默认值为false。菜单必须等待页面全部构建才能展示，因此不能在页面构建中设置为true，否则会导致显示位置及形状错误，该参数从API version13开始支持[!!语法](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
+| isShow<sup>11+</sup> | boolean                                                      | 是   | 支持开发者通过状态变量控制显隐，值为true时弹出菜单，值为false时关闭菜单，默认值为false。菜单必须等待页面全部构建才能展示，因此不能在页面构建中设置为true，否则会导致显示位置及形状错误，该参数从API version18开始支持[!!语法](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
 | content              | Array<[MenuElement](#menuelement)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置菜单项图标和文本的数组，或者自定义组件。                 |
 | options              | [MenuOptions](#menuoptions10)                                | 否   | 配置弹出菜单的参数。                                         |
 
@@ -116,7 +116,7 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 
 | 参数名       | 类型                                               | 必填 | 说明                                         |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| isShown | boolean | 是   | 支持开发者通过状态变量控制显隐，值为true时弹出菜单，值为false时关闭菜单，默认值为false。菜单必须等待页面全部构建完成后才能展示，如果在页面构建前或构建中设置为true，可能导致显示位置及形状错误、无法正常弹出显示等问题。不支持长按触发拖拽。该参数从API version13开始支持[!!语法](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
+| isShown | boolean | 是   | 支持开发者通过状态变量控制显隐，值为true时弹出菜单，值为false时关闭菜单，默认值为false。菜单必须等待页面全部构建完成后才能展示，如果在页面构建前或构建中设置为true，可能导致显示位置及形状错误、无法正常弹出显示等问题。不支持长按触发拖拽。该参数从API version 18开始支持[!!语法](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
 | content      | [CustomBuilder](ts-types.md#custombuilder8)        | 是   | 自定义菜单内容构造器。 |
 | options      | [ContextMenuOptions](#contextmenuoptions10)                      | 否   | 配置弹出菜单的参数。                         |
 

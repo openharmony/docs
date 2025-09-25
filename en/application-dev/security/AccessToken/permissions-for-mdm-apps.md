@@ -424,7 +424,7 @@ Allows a device administrator application to operate devices.
 
 ## ohos.permission.ENTERPRISE_ADMIN_MANAGE
 
-Allows a device administrator application to manage the device administrator.
+Allows an application to manage a device administrator application.
 
 **Permission level**: system_basic
 

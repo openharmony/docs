@@ -1,12 +1,18 @@
 # Permissions for Enterprise Applications
 
-The following permissions are available to <!--Del-->system applications and <!--DelEnd-->enterprise applications. Enterprise applications include normal enterprise apps and Mobile Device Management (MDM) applications.
+The following permissions are open to <!--Del-->system applications and <!--DelEnd-->enterprise applications.
 
-The distribution type of enterprise applications can be **enterprise_normal** (normal enterprise application) or **enterprise_mdm** (MDM application). You can <!--RP1-->obtain the distribution type from the **app-distribution-type** field in the [HarmonyAppProvision configuration file](../app-provision-structure.md).<!--RP1End-->
+Enterprise applications include normal enterprise applications and mobile device management (MDM) applications.
+
+Enterprise applications have the following characteristics:
+
+- It runs only on enterprise-customized devices and does not run on common consumer devices.
+- The distribution types are enterprise_normal (normal enterprise applications) and enterprise_mdm (MDM applications).
+<!--RP1--><!--RP1End-->
 
 For details about how to request the permissions for enterprise applications, see [declaring permissions](declare-permissions.md).
 
-> **NOTE**
+> **Note:**
 > 
 > The following permissions do not support automatic code signing. You must [manually sign the code](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section297715173233) during the debugging and release phases.
 
@@ -28,6 +34,8 @@ Allows an application to update the file guard policy.
 ## ohos.permission.FILE_GUARD_MANAGER
 
 Allows an application to scan media and sandbox and set file extended properties.
+
+Currently, the extended attributes include the file security level and file label.
 
 **Permission level**: system_basic
 
@@ -59,6 +67,8 @@ Allows an application to interact across local accounts.
 
 Allows an application to obtain running status information of another application.
 
+With this permission, the application can obtain the runtime information of other applications, including the **Ability**, **Extension**, and **Application** information.
+
 **Permission level**: system_basic
 
 **Authorization mode**: system_grant
@@ -87,7 +97,7 @@ Allows an application to listen for the state of another application.
 
 ## ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-Allows an application to obtain basic information and sensitive information about another application.
+Allows an application to obtain basic information and sensitive information about another application, such as the app bundle name and version.
 
 **Permission level**: system_basic
 
@@ -104,11 +114,11 @@ Allows an application to obtain basic information and sensitive information abou
 
 Allows an application to obtain the Wi-Fi configuration.
 
-Currently, this permission is available only to applications running on PCs and 2-in-1 devices.
-
 **Permission level**: system_basic
 
 **Authorization mode**: system_grant
+
+**Supported devices**: PCs/2-in-1 devices
 
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
@@ -120,6 +130,8 @@ Currently, this permission is available only to applications running on PCs and 
 ## ohos.permission.SET_WIFI_CONFIG
 
 Allows an application to configure Wi-Fi information.
+
+With this permission, the application can add and delete Wi-Fi networks, and modify Wi-Fi configurations.
 
 **Permission level**: system_basic
 
@@ -149,7 +161,7 @@ Allows an application to obtain domain account information.
 
 ## ohos.permission.QUERY_AUDIT_EVENT
 
-Allows an application to query security audit events.
+Allows an enterprise security application to query security audit events.
 
 **Permission level**: system_basic
 
@@ -164,7 +176,9 @@ Allows an application to query security audit events.
 
 ## ohos.permission.KILL_APP_PROCESSES
 
-Allows a system application to kill other applications.
+Allows a system application to kill other application processes.
+
+With this permission, the system application can terminate other running applications and manage processes in the system when necessary.
 
 **Permission level**: system_basic
 
@@ -177,7 +191,7 @@ Allows a system application to kill other applications.
 
 **Changelog**: This permission is available only to system applications in API versions 7 to 13. From API version 14, it is available to normal enterprise applications.
 
-### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+## ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
 
 Allows a system application or carrier application to set the eSIM nickname and activate the eSIM.
 
@@ -188,13 +202,15 @@ Allows a system application or carrier application to set the eSIM nickname and 
 <!--Del-->
 **Enable via ACL**: true<!--DelEnd-->
 
-**Valid since**: 14
+**Since**: 14
 
-**Changelog**: Since API version 14, the permission level is changed to system_basic, and this permission is available only to normal enterprise applications instead of all applications.
+**Changelog**: The permission level is **normal** in API versions 13 and **system_basic** since API versions 14.
 
 ## ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
 
 Allows an application to manage Wi-Fi connections.
+
+With this permission, the application can enable or disable Wi-Fi, connect to Wi-Fi, and disconnect from Wi-Fi.
 
 **Permission level**: system_basic
 

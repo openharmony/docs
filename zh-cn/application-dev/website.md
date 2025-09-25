@@ -74,7 +74,7 @@
             - [ServiceExtensionAbility（仅对系统应用开放）](application-models/serviceextensionability.md)
             - [UIServiceExtension（仅对系统应用开放）](application-models/uiserviceextension-sys.md)
             - [UIExtensionAbility（仅对系统应用开放）](application-models/uiextensionability.md)
-            - [AutoFillExtensionAbility（仅对系统应用开放）](application-models/autofillextensionablility-guide.md)
+            - [使用AutoFillExtensionAbility实现自动填充功能（仅对系统应用开放）](application-models/autofillextensionability-guide.md)
             - [使用通过UIServiceExtensionAbility实现的系统悬浮窗](application-models/uiserviceextension.md)
             <!--DelEnd-->
             - [EmbeddedUIExtensionAbility](application-models/embeddeduiextensionability.md)
@@ -178,7 +178,7 @@
         - [FA模型访问Stage模型DataShareExtensionAbility](application-models/access-datashareextensionability-from-fa.md)
         - [Stage模型启动FA模型PageAbility](application-models/start-pageability-from-stage.md)
         - [Stage模型绑定FA模型ServiceAbility](application-models/bind-serviceability-from-stage.md)
-      - FA模型切换Stage模型指导<!--fa-to-stage-switc-->
+      - FA模型切换Stage模型指导<!--fa-to-stage-switch-->
         - [模型切换概述](application-models/model-switch-overview.md)
         - 配置文件切换<!--configuration-file-switch-->
           - [配置文件的差异](application-models/configuration-file-diff.md)
@@ -205,6 +205,7 @@
           - [Storage接口切换](application-models/storage-switch.md)
       <!--DelEnd-->
       - [Native子进程开发指导（C/C++）](application-models/capi_nativechildprocess_development_guideline.md)
+      - [Ability Kit术语](application-models/ability-terminology.md)
     - ArkData（方舟数据管理）<!--arkdata-->
       - [ArkData简介](database/data-mgmt-overview.md)
       - 标准化数据定义<!--uniform-data-definition-->
@@ -851,12 +852,10 @@
       - 应用国际化<!--i18n-->
           - [国际化界面设计](internationalization/i18n-ui-design.md)
           - [区域ID与文化习惯划分](internationalization/i18n-locale-culture.md)
-          - 设置语言与用户偏好<!--i18n-language-user-preferences-->
-              - [设置系统语言与区域](internationalization/i18n-system-language-region.md)
-              - [设置应用偏好语言](internationalization/i18n-preferred-language.md)
-              <!--Del-->
-              - [设置用户偏好（仅对系统应用开放）](internationalization/i18n-user-preferences.md)
-              <!--DelEnd-->
+          - 语言与用户偏好<!--i18n-language-user-preferences-->
+              - [系统语言与区域](internationalization/i18n-system-language-region.md)
+              - [应用偏好语言](internationalization/i18n-preferred-language.md)
+              - [用户偏好](internationalization/i18n-user-preferences.md)
           - [时间日期国际化](internationalization/i18n-time-date.md)
           - [数字与度量衡国际化](internationalization/i18n-numbers-weights-measures.md)
           - [电话号码格式化](internationalization/i18n-phone-numbers.md)
@@ -1252,7 +1251,7 @@
         <!--DelEnd-->
         - 剪贴板服务<!--pasteboard-->
           - [申请访问剪贴板权限](basic-services/pasteboard/get-pastedata-permission-guidelines.md)
-          - [使用剪贴板进行复制粘贴](basic-services/pasteboard/use_pasteboard_to_copy_and_paste.md)
+          - [使用剪贴板进行复制粘贴](basic-services/pasteboard/use-pasteboard-to-copy-and-paste.md)
           - [使用剪贴板进行复制粘贴（C/C++）](basic-services/pasteboard/native-use-pasteboard.md)
           - [使用剪贴板进行延迟复制粘贴](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
         - 上传下载<!--upload-download-->
@@ -1289,6 +1288,7 @@
         - [MDM Kit简介](mdm/mdm-kit-intro.md)
         - [MDM Kit开发指南](mdm/mdm-kit-guide.md)
         - [EnterpriseAdminExtensionAbility开发指南](mdm/mdm-kit-admin.md)
+        - [MDM Kit术语](mdm/mdm-kit-term.md)
     - 硬件<!--system-hardware-->
       - Driver Development Kit（驱动开发服务）<!--driver-development-kit-->
         - [Driver Development Kit简介](device/driver/driverdevelopment-overview.md)
@@ -1930,6 +1930,7 @@
       - [避免在主线程中执行耗时操作](performance/avoid_time_consuming_operations_in_mainthread.md)
       - [图像模糊动效优化：静态模糊与动态模糊的性能对比解析](performance/fuzzy_scene_performance_optimization.md)
       - [复杂绘制场景下使用Native Drawing自绘制能力替代Canvas提升性能](performance/native_drawing_substitute_canvas.md)
+      - [合理处理高负载组件的渲染](performance/reasonably-dispose-highly-loaded-component-render.md)
     - 提升应用启动和响应速度
       - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
       - [提升应用响应速度](performance/improve-application-response.md)
@@ -1985,7 +1986,7 @@
           - [@ohos.app.ability.AbilityConstant (Ability相关常量)](reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md)
           - [@ohos.app.ability.abilityLifecycleCallback (UIAbility生命周期回调监听器)](reference/apis-ability-kit/js-apis-app-ability-abilityLifecycleCallback.md)
           - [@ohos.app.ability.AbilityStage (AbilityStage组件管理器)](reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)
-          - [@ohos.app.ability.ActionExtensionAbility (自定义服务扩展能力)](reference/apis-ability-kit/js-apis-app-ability-actionExtensionAbility.md)
+          - [@ohos.app.ability.ActionExtensionAbility (支持业务操作自定义的ExtensionAbility组件)](reference/apis-ability-kit/js-apis-app-ability-actionExtensionAbility.md)
           - [@ohos.app.ability.application (应用工具类)](reference/apis-ability-kit/js-apis-app-ability-application.md)
           - [@ohos.app.ability.ApplicationStateChangeCallback (应用进程状态变化监听器)](reference/apis-ability-kit/js-apis-app-ability-applicationStateChangeCallback.md)
           - [@ohos.app.ability.AtomicServiceOptions (EmbeddableUIAbility启动可选参数)](reference/apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md)
@@ -1996,20 +1997,20 @@
           - [@ohos.app.ability.ChildProcessOptions (子进程启动选项)](reference/apis-ability-kit/js-apis-app-ability-childProcessOptions.md)
           - [@ohos.app.ability.common (Ability公共模块)](reference/apis-ability-kit/js-apis-app-ability-common.md)
           - [@ohos.app.ability.contextConstant (Context相关常量)](reference/apis-ability-kit/js-apis-app-ability-contextConstant.md)
-          - [@ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility)](reference/apis-ability-kit/js-apis-app-ability-embeddableUIAbility.md)
-          - [@ohos.app.ability.EmbeddedUIExtensionAbility (跨进程界面嵌入扩展能力)](reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)
+          - [@ohos.app.ability.EmbeddableUIAbility (可嵌入式UIAbility组件)](reference/apis-ability-kit/js-apis-app-ability-embeddableUIAbility.md)
+          - [@ohos.app.ability.EmbeddedUIExtensionAbility (支持跨进程界面嵌入的ExtensionAbility组件)](reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)
           - [@ohos.app.ability.EnvironmentCallback (系统环境变化监听器)](reference/apis-ability-kit/js-apis-app-ability-environmentCallback.md)
           - [@ohos.app.ability.ExtensionAbility (扩展能力基类)](reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)
-          - [@ohos.app.ability.insightIntent (意图调用基础能力)](reference/apis-ability-kit/js-apis-app-ability-insightIntent.md)
+          - [@ohos.app.ability.insightIntent (意图框架基础定义)](reference/apis-ability-kit/js-apis-app-ability-insightIntent.md)
           - [@ohos.app.ability.InsightIntentContext (意图调用执行上下文)](reference/apis-ability-kit/js-apis-app-ability-insightIntentContext.md)
-          - [@ohos.app.ability.InsightIntentExecutor (意图调用执行基类)](reference/apis-ability-kit/js-apis-app-ability-insightIntentExecutor.md)
-          - [@ohos.app.ability.PhotoEditorExtensionAbility (图片编辑能力)](reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)
+          - [@ohos.app.ability.InsightIntentExecutor (意图执行基类)](reference/apis-ability-kit/js-apis-app-ability-insightIntentExecutor.md)
+          - [@ohos.app.ability.PhotoEditorExtensionAbility (支持图片编辑能力的ExtensionAbility组件)](reference/apis-ability-kit/js-apis-app-ability-photoEditorExtensionAbility.md)
           - [@ohos.app.ability.OpenLinkOptions (openLink的可选参数)](reference/apis-ability-kit/js-apis-app-ability-openLinkOptions.md)
-          - [@ohos.app.ability.ShareExtensionAbility (分享详情页扩展能力)](reference/apis-ability-kit/js-apis-app-ability-shareExtensionAbility.md)
+          - [@ohos.app.ability.ShareExtensionAbility (支持分享详情页接入的ExtensionAbility组件)](reference/apis-ability-kit/js-apis-app-ability-shareExtensionAbility.md)
           - [@ohos.app.ability.StartOptions (startAbility的可选参数)](reference/apis-ability-kit/js-apis-app-ability-startOptions.md)
           - [@ohos.app.ability.UIAbility (带界面的应用组件)](reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)
-          - [@ohos.app.ability.UIExtensionAbility (带界面扩展能力基类)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)
-          - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md)
+          - [@ohos.app.ability.UIExtensionAbility (带界面的ExtensionAbility组件)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)
+          - [@ohos.app.ability.UIExtensionContentSession (UIExtensionAbility界面操作类)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md)
           - [@ohos.app.ability.sendableContextManager (sendable上下文管理)](reference/apis-ability-kit/js-apis-app-ability-sendableContextManager.md)
           - [@ohos.app.appstartup.StartupConfig (启动框架配置信息)](reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md)
           - [@ohos.app.appstartup.StartupConfigEntry (启动框架配置)](reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md)
@@ -2021,15 +2022,15 @@
           - [@ohos.app.ability.application (Application)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-application-sys.md)
           - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-autoFillExtensionAbility-sys.md)
           - [@ohos.app.ability.autoFillManager (autoFillManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-autoFillManager-sys.md)
-          - [@ohos.app.ability.autoStartupManager(autoStartupManager)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-autoStartupManager-sys.md)
+          - [@ohos.app.ability.autoStartupManager (开机自启管理能力)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-autoStartupManager-sys.md)
           - [@ohos.app.ability.common (Ability公共模块)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-common-sys.md)
           - [@ohos.app.ability.dialogSession (dialogSession)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-dialogSession-sys.md)
-          - [@ohos.app.ability.insightIntent (insightIntent)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-insightIntent-sys.md)
+          - [@ohos.app.ability.insightIntent (意图框架基础定义)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-insightIntent-sys.md)
           - [@ohos.app.ability.insightIntentDriver (执行意图调用)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-insightIntentDriver-sys.md)
           - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)
           - [@ohos.app.ability.StartOptions (StartOptions)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-startOptions-sys.md)
           - [@ohos.app.ability.UIServiceExtensionAbility (UIServiceExtensionAbility)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md)
-          - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession-sys.md)
+          - [@ohos.app.ability.UIExtensionContentSession (UIExtensionAbility界面操作类)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession-sys.md)
           <!--DelEnd-->
         - FA模型能力的接口<!--fa-model-->
           - [@ohos.ability.ability (Ability模块)](reference/apis-ability-kit/js-apis-ability-ability.md)
@@ -2054,7 +2055,7 @@
           - [@ohos.app.ability.continueManager (跨端迁移)](reference/apis-ability-kit/js-apis-app-ability-continueManager.md)
           - [@ohos.app.ability.dataUriUtils (DataUriUtils模块)](reference/apis-ability-kit/js-apis-app-ability-dataUriUtils.md)
           - [@ohos.app.ability.dialogRequest (dialogRequest模块)](reference/apis-ability-kit/js-apis-app-ability-dialogRequest.md)
-          - [@ohos.app.ability.errorManager (错误观测管理)](reference/apis-ability-kit/js-apis-app-ability-errorManager.md)
+          - [@ohos.app.ability.errorManager (错误管理模块)](reference/apis-ability-kit/js-apis-app-ability-errorManager.md)
           - [@ohos.app.ability.Want (Want)](reference/apis-ability-kit/js-apis-app-ability-want.md)
           - [@ohos.app.ability.wantAgent (WantAgent模块)](reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)
           - [@ohos.app.ability.wantConstant (Want常量)](reference/apis-ability-kit/js-apis-app-ability-wantConstant.md)
@@ -2071,14 +2072,14 @@
           - [@ohos.app.businessAbilityRouter (业务路由模块)(系统接口)](reference/apis-ability-kit/js-apis-businessAbilityRouter-sys.md)
           - [@ohos.application.uriPermissionManager (URI权限管理)(系统接口)](reference/apis-ability-kit/js-apis-uripermissionmanager-sys.md)
           <!--DelEnd-->
-          - [@ohos.bundle.bundleManager (bundleManager模块)](reference/apis-ability-kit/js-apis-bundleManager.md)
+          - [@ohos.bundle.bundleManager (应用程序包管理模块)](reference/apis-ability-kit/js-apis-bundleManager.md)
           - [@ohos.bundle.defaultAppManager (默认应用管理)](reference/apis-ability-kit/js-apis-defaultAppManager.md)
           - [@ohos.bundle.launcherBundleManager (launcherBundleManager模块)](reference/apis-ability-kit/js-apis-launcherBundleManager.md)
           - [@ohos.bundle.overlay (overlay模块)](reference/apis-ability-kit/js-apis-overlay.md)
           <!--Del-->
           - [@ohos.bundle.appControl (appControl模块)(系统接口)](reference/apis-ability-kit/js-apis-appControl-sys.md)
           - [@ohos.bundle.appDomainVerify (应用域名校验)(系统接口)](reference/apis-ability-kit/js-apis-appDomainVerify-sys.md)
-          - [@ohos.bundle.bundleManager (bundleManager模块(系统接口))](reference/apis-ability-kit/js-apis-bundleManager-sys.md)
+          - [@ohos.bundle.bundleManager (应用程序包管理模块)(系统接口)](reference/apis-ability-kit/js-apis-bundleManager-sys.md)
           - [@ohos.bundle.bundleMonitor (bundleMonitor模块)(系统接口)](reference/apis-ability-kit/js-apis-bundleMonitor-sys.md)
           - [@ohos.bundle.bundleResourceManager (bundleResourceManager模块)(系统接口)](reference/apis-ability-kit/js-apis-bundleResourceManager-sys.md)
           - [@ohos.bundle.defaultAppManager (默认应用管理)(系统接口)](reference/apis-ability-kit/js-apis-defaultAppManager-sys.md)
@@ -2103,7 +2104,7 @@
             - [AbilityStageMonitor](reference/apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md)
             - [AbilityStartCallback](reference/apis-ability-kit/js-apis-inner-application-abilityStartCallback.md)
             - [AbilityStateData](reference/apis-ability-kit/js-apis-inner-application-abilityStateData.md)
-            - [ApplicationContext (应用级别的上下文)](reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)
+            - [ApplicationContext (应用上下文)](reference/apis-ability-kit/js-apis-inner-application-applicationContext.md)
             - [ApplicationStateObserver](reference/apis-ability-kit/js-apis-inner-application-applicationStateObserver.md)
             - [AppStateData](reference/apis-ability-kit/js-apis-inner-application-appStateData.md)
             - [BaseContext](reference/apis-ability-kit/js-apis-inner-application-baseContext.md)
@@ -2180,6 +2181,7 @@
             - [dispatchInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-dispatchInfo-sys.md)
             - [LauncherAbilityResourceInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)
             - [permissionDef (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-permissionDef-sys.md)
+            - [PluginBundleInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-pluginBundleInfo-sys.md)
             - [recoverableApplicationInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-recoverableApplicationInfo-sys.md)
             - [remoteAbilityInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-remoteAbilityInfo-sys.md)
             - [SharedBundleInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-sharedBundleInfo-sys.md)
@@ -2411,6 +2413,7 @@
         - [语言基础类库错误码](reference/apis-arkts/errorcode-utils.md)
         - [Typescript Compiler错误码](reference/apis-arkts/errorcode-tsc.md)
         - [编译工具链错误码](reference/apis-arkts/errorcode-ets-loader.md)
+        - [Es2abc编译器错误码](reference/apis-arkts/errorcode-es2abc.md)
     - ArkUI（方舟UI框架）<!--arkui-api-->
       - ArkTS API<!--arkui-arkts-->
         - UI界面<!--ui-->
@@ -4712,7 +4715,7 @@
           <!--DelEnd-->
       - C API<!--notification-c-->
         - 模块<!--notification-module-->
-          - [Notification](reference/apis-notification-kit/capi-notification.md)
+          - [NOTIFICATION](reference/apis-notification-kit/capi-notification.md)
         - 头文件<!--notification-struct-->
           - [notification.h](reference/apis-notification-kit/notification_8h.md)
       - 错误码<!--notification-arkts-errcode-->

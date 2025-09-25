@@ -28,6 +28,6 @@ Defines the information about a preinstalled application that can be restored af
 | moduleName       | string                         | Yes  | No  | Module name.|
 | labelId          | number                         | Yes  | No  | ID of the module label.    |
 | iconId           | number                         | Yes  | No  | ID of the module icon.   |
-| systemApp<sup>12+</sup>       | boolean                        | Yes  | No  | Whether the application is a system application. The value **true** means that the application is a system application, and **false** means the opposite. |
-| bundleType<sup>12+</sup>       |[BundleType](js-apis-bundleManager.md#bundletype)             | Yes  | No  | Bundle type, which can be **APP** (application) or **ATOMIC_SERVICE** (atomic service).                               |
+| systemApp<sup>12+</sup>       | boolean                        | Yes  | No  | Whether the application is a system application. **true** if it is a system application, **false** otherwise. |
+| bundleType<sup>12+</sup>       |[BundleType](js-apis-bundleManager.md#bundletype)             | Yes  | No  | Bundle type.                               |
 | codePaths<sup>12+</sup>        | Array\<string>                 | Yes  | No  | Installation directory of the application.         |

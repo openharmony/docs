@@ -1199,7 +1199,7 @@ Enumerates the video recording states. You can obtain the state through the **st
 
 Describes the video recording parameters.
 
-The **audioSourceType** and **videoSourceType** parameters are used to distinguish video-only recording from audio and video recording. (For audio-only recording, use [AVRecorder](js-apis-media.md#avrecorder9)»ò[AudioRecorder](js-apis-media.md#audiorecorderdeprecated).) For video-only recording, set only **videoSourceType**. For audio and video recording, set both **audioSourceType** and **videoSourceType**.
+The **audioSourceType** and **videoSourceType** parameters are used to distinguish video-only recording from audio and video recording. (For audio-only recording, use [AVRecorder](js-apis-media.md#avrecorder9) or [AudioRecorder](js-apis-media.md#audiorecorderdeprecated).) For video-only recording, set only **videoSourceType**. For audio and video recording, set both **audioSourceType** and **videoSourceType**.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 

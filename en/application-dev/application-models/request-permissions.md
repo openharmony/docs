@@ -11,5 +11,5 @@ To declare a permission in **config.json**, add **reqPermissions** under **modul
 
 For example, to request the permission to access the calendar, perform the following steps:
 
-1. Declare the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+1. Declare the ohos.permission.DISTRIBUTED_DATASYNC permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 2. Display a dialog box to ask for authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).

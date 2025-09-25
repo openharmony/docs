@@ -903,7 +903,7 @@ Shows a date picker dialog box in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Device behavior**: This API has no effect on wearables and works on other devices.
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 **Parameters**
 
@@ -972,7 +972,7 @@ Shows a time picker dialog box in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Device behavior**: This API has no effect on wearables and works on other devices.
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 **Parameters**
 
@@ -1035,7 +1035,7 @@ Shows a text picker dialog box in the given settings.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Device behavior**: This API has no effect on wearables and works on other devices.
+**Device behavior differences**: On wearables, calling this API results in a runtime exception indicating that the API is undefined. On other devices, the API works correctly.
 
 **Parameters**
 
@@ -3548,12 +3548,36 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { ComponentUtils } from '@kit.ArkUI';
 
-let componentUtils: ComponentUtils = uiContext.getComponentUtils();
-let modePosition = componentUtils.getRectangleById("onClick");
-let localOffsetWidth = modePosition.size.width;
-let localOffsetHeight = modePosition.size.height;
-let localOffsetX = modePosition.localOffset.x;// Obtain the x-axis offset of the component relative to its parent component.
-let localOffsetY = modePosition.localOffset.y;// Obtain the y-axis offset of the component relative to its parent component.
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    RelativeContainer() {
+      Text(this.message)
+        .id('HelloWorld')
+        .fontSize($r('app.float.page_text_font_size'))
+        .fontWeight(FontWeight.Bold)
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .onClick(() => {
+          this.message = 'Welcome';
+          let componentUtils: ComponentUtils = this.getUIContext().getComponentUtils();
+          let modePosition = componentUtils.getRectangleById("HelloWorld");
+          let width = modePosition.size.width; // Obtain the width of the component.
+          let height = modePosition.size.height; // Obtain the height of the component.
+          let localOffsetX = modePosition.localOffset.x; // Obtain the x-axis offset of the component relative to its parent component.
+          let localOffsetY = modePosition.localOffset.y; // Obtain the y-axis offset of the component relative to its parent component.
+          console.info(`width: ${width}, height: ${height}, localOffsetX: ${localOffsetX}, localOffsetY: ${localOffsetY}`);
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
 ```
 
 ## UIInspector
@@ -5256,14 +5280,6 @@ Sets the media query criteria and returns the corresponding listening handle.
 **Example**
 
 See the [mediaquery Example](js-apis-mediaquery.md#example).
-
-<!--code_no_check-->
-```ts
-import { MediaQuery } from '@kit.ArkUI';
-
-let mediaquery: MediaQuery = uiContext.getMediaQuery();
-let listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
-```
 
 ## Router
 

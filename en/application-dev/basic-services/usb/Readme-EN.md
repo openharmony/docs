@@ -1,9 +1,4 @@
 # USB Service<!--usb-->
-<!--Del-->
-  - [USB Service Development Overview](usbManager/usbHost-overview.md)
-  - USB Host Development<!--usb-host-dev-->
-
-<!--DelEnd-->
 
 - [USB Device Management](usbManager/usbHost/deviceManager.md)
 - [USB Control Transfer](usbManager/usbHost/controlTransfer.md)

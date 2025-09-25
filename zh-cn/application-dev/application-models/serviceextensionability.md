@@ -18,7 +18,7 @@ ServiceExtensionAbility可以被其他组件启动或连接，并根据调用者
 
 - Service一旦通过start的方式被拉起，将不会自动退出，系统应用可以调用[stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#stopserviceextensionability)方法将Service退出。
 
-- 只能在主线程线程中执行connect/disconnect操作，不要在Worker、TaskPool等子线程中执行connect/disconnect操作。
+- 只能在主线程中执行connect/disconnect操作，不要在Worker、TaskPool等子线程中执行connect/disconnect操作。
 
 > **说明：**
 >
@@ -549,7 +549,7 @@ ServiceExtensionAbility服务组件在onConnect()中返回[IRemoteObject](../ref
         // 成功连接后台服务
         hilog.info(DOMAIN_NUMBER, TAG, `sendRequest success, msg: ${msg}`);
       }).catch((error: BusinessError) => {
-        hilog.info(DOMAIN_NUMBER, TAG, `sendRequest failed, ${JSON.stringify(error)}`);
+        hilog.error(DOMAIN_NUMBER, TAG, `sendRequest failed, ${JSON.stringify(error)}`);
       });
     },
     onDisconnect(elementName): void {
@@ -599,7 +599,7 @@ ServiceExtensionAbility服务组件在onConnect()中返回[IRemoteObject](../ref
         }
         // 识别通过，执行正常业务逻辑
       }).catch((err: BusinessError) => {
-        hilog.info(DOMAIN_NUMBER, TAG, 'getBundleNameByUid failed: ' + err.message);
+        hilog.error(DOMAIN_NUMBER, TAG, 'getBundleNameByUid failed: ' + err.message);
       });
       //...
     };
@@ -614,7 +614,7 @@ ServiceExtensionAbility服务组件在onConnect()中返回[IRemoteObject](../ref
 
 - **通过callerTokenId对客户端进行鉴权**
 
-  通过调用[getCallingTokenId()](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid)接口获取客户端的tokenID，再调用[verifyAccessTokenSync()](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#verifyaccesstokensync9)接口判断客户端是否有某个具体权限，由于当前不支持自定义权限，因此只能校验当前[系统所定义的权限](../security/AccessToken/app-permissions.md)。示例代码如下：
+  通过调用[getCallingTokenId()](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid8)接口获取客户端的tokenID，再调用[verifyAccessTokenSync()](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#verifyaccesstokensync9)接口判断客户端是否有某个具体权限，由于当前不支持自定义权限，因此只能校验当前[系统所定义的权限](../security/AccessToken/app-permissions.md)。示例代码如下：
 
   ```ts
   import { abilityAccessCtrl, bundleManager } from '@kit.AbilityKit';
@@ -646,7 +646,7 @@ ServiceExtensionAbility服务组件在onConnect()中返回[IRemoteObject](../ref
         }
         // 识别通过，执行正常业务逻辑
       }).catch((err: BusinessError) => {
-        hilog.info(DOMAIN_NUMBER, TAG, 'getBundleNameByUid failed: ' + err.message);
+        hilog.error(DOMAIN_NUMBER, TAG, 'getBundleNameByUid failed: ' + err.message);
       });
   
       let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();

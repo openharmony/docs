@@ -1,7 +1,13 @@
 # 创建PageAbility
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @lidongrui-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-通过DevEco Studio开发平台创建PageAbility时，DevEco Studio会在app.js/app.ets中默认生成onCreate()和onDestroy()方法，其他方法需要开发者自行实现。接口说明参见前述章节，创建PageAbility示例如下：
+通过DevEco Studio开发平台创建PageAbility时，DevEco Studio会在app.js/app.ets中默认生成onCreate()和onDestroy()方法，其他方法需要开发者自行实现。接口说明参见[PageAbility的生命周期](pageability-lifecycle.md)，创建PageAbility示例如下：
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
@@ -88,7 +94,7 @@ PageAbility创建成功后，其abilities相关的配置项在config.json中体�
 ```
 
 
-FA模型中，可以通过featureAbility的getContext接口获取应用上下文，进而使用上下文提供的能力。
+[FA模型](ability-terminology.md#fa模型)中，可以通过featureAbility的getContext接口获取应用上下文，进而使用上下文提供的能力。
 
 
   **表1** featureAbility接口说明

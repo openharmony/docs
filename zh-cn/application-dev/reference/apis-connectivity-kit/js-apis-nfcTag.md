@@ -49,7 +49,7 @@
         "requestPermissions": [
             {
                 "name": "ohos.permission.NFC_TAG",
-                "reason": "$string:app_name",
+                "reason": "$string:app_name"
             }
         ]
     }
@@ -87,7 +87,7 @@ export default class EntryAbility extends UIAbility {
         } catch (error) {
             console.error("tag.getTagInfo catch error: " + error);
         }
-        if (tagInfo == null || tagInfo == undefined) {
+        if (tagInfo == null) {
             console.log("no TagInfo to be created, ignore it.");
             return;
         }
@@ -686,7 +686,7 @@ export default class MainAbility extends UIAbility {
         try {
             tag.unregisterForegroundDispatch(elementName);
         } catch (e) {
-            console.error("registerForegroundDispatch error: " + (e as BusinessError).message);
+            console.error("unregisterForegroundDispatch error: " + (e as BusinessError).message);
         }
     }
 
@@ -695,7 +695,7 @@ export default class MainAbility extends UIAbility {
         try {
             tag.unregisterForegroundDispatch(elementName);
         } catch (e) {
-            console.error("registerForegroundDispatch error: " + (e as BusinessError).message);
+            console.error("unregisterForegroundDispatch error: " + (e as BusinessError).message);
         }
     }
 
@@ -1134,7 +1134,7 @@ try {
 
 createNdefMessage(data: number[]): [NdefMessage](js-apis-nfctech.md#ndefmessage9)
 
-使用原始字节数据创建NDEF标签的Message。该数据必须符合NDEF Record数据格式，如果不符合格式，则返回的NdeMessage数据对象，所包含的NDE Record列表会为空。
+使用原始字节数据创建NDEF标签的Message。该数据必须符合NDEF Record数据格式，如果不符合格式，则返回的NdefMessage数据对象，所包含的NDE Record列表会为空。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 

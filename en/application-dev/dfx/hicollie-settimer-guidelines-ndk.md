@@ -23,16 +23,16 @@ The following describes how to add a button in the application and click the but
      src:
        main:
          cpp:
-           - types:
-               libentry:
-                 - index.d.ts
+           types:
+             libentry:
+               - index.d.ts
            - CMakeLists.txt
            - napi_init.cpp
          ets:
-           - entryability:
-               - EntryAbility.ts
-           - pages:
-               - Index.ets
+           entryability:
+             - EntryAbility.ts
+           pages:
+             - Index.ets
    ```
 
 2. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
@@ -67,8 +67,8 @@ The following describes how to add a button in the application and click the but
      HiCollie_ErrorCode errorCode = OH_HiCollie_SetTimer(param, &id);  // Register a HiCollieTimer function to execute a one-off timeout detection task.
      if (errorCode == HICOLLIE_SUCCESS) {  // The HiCollieTimer task is successfully registered.
        OH_LOG_INFO(LogType::LOG_APP, "HiCollieTimer taskId: %{public}d", id); // Log the task ID.
-       sleep(2); // Simulate a time-consuming function to block the thread for 2s.
-       OH_HiCollie_CancelTimer(id); // Cancel the registered timer based on the ID.
+       sleep (2); // Simulate a time-consuming function to block the thread for 2s.
+       OH_HiCollie_CancelTimer (id); // Cancel the registered timer based on the ID.
      }
      return 0;
    }
@@ -122,7 +122,7 @@ The following describes how to add a button in the application and click the but
            Button("TestHiCollieTimerNdk")
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
-             .onClick(testNapi.TestHiCollieTimerNdk);  //Add a click event to trigger the testHiCollieTimerNdk method.
+             .onClick(testNapi.TestHiCollieTimerNdk);  // Add a click event to trigger the TestHiCollieTimerNdk method.
          }
          .width('100%')
        }

@@ -1333,7 +1333,7 @@ Sets a **PhotoAsset** member parameter.
 | Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
 | member | string | Yes   | Name of the member parameter to set. For example, **[PhotoKeys](#photokeys).TITLE**. The value contains 1 to 255 characters.|
-| value | string | Yes   | Member parameter to set. Only the value of **[PhotoKeys](#photokeys).TITLE** can be modified. The title must meet the following requirements:<br>- It does not contain a file name extension.<br>- The file name, which is in the format of title+file name extension, does not exceed 255 characters.<br>- The title does not contain any of the following characters:\ / : * ? " ' ` < > \| { } [ ]  |
+| value | string | Yes   | Member parameter to set. Only the value of **[PhotoKeys](#photokeys).TITLE** can be modified. The title must meet the following requirements:<br>- It must not contain a file name extension.<br>- The total length of the file name, which is in the format of title+file name extension, must be between 1 and 255 characters.<br>- It must not contain any invalid characters, which are:\ / : * ? " ' ` < > \| { } [ ]  |
 
 **Error codes**
 
@@ -1920,7 +1920,7 @@ Clones a media asset. The file name can be set, but the file type cannot be chan
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| title| string | Yes   | Title of the cloned asset. The title must meet the following requirements:<br>- It does not contain a file name extension.<br>- The file name, which is in the format of title+file name extension, does not exceed 255 characters.<br>- The title does not contain any of the following characters:\ / : * ? " ' ` < > \| { } [ ] |
+| title| string | Yes   | Title of the cloned asset. The title must meet the following requirements:<br>- It must not contain a file name extension.<br>- The total length of the file name, which is in the format of title+file name extension, must be between 1 and 255 characters.<br>- It must not contain any invalid characters, which are:\ / : * ? " ' ` < > \| { } [ ] |
 
 **Return value**
 
@@ -3669,9 +3669,9 @@ Sets the media asset title.
 | title | string | Yes  | Title to set.|
 
 The title must meet the following requirements:
-- It does not contain a file name extension.
-- The file name cannot exceed 255 characters.
-- It does not contain any of the following characters:<br> . \ / : * ? " ' ` < > | { } [ ]
+- It must not contain a file name extension.
+- The total length of the file name must be between 1 and 255 characters.
+- It must not contain any invalid characters, which are:<br> . \ / : * ? " ' ` < > | { } [ ]
 
 **Error codes**
 
@@ -4130,9 +4130,9 @@ setAlbumName(name: string): void
 
 Sets the album name.
 
-The album name must comply with the following specifications:
-- It does not exceed 255 characters.
-- It does not contain any of the following characters:<br> . \ / : * ? " ' ` < > | { } [ ]
+The album name must meet the following requirements:
+- The total length of the album name must be between 1 and 255 characters.
+- It must not contain any invalid characters, which are:<br> . \ / : * ? " ' ` < > | { } [ ]
 - It is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -5336,9 +5336,9 @@ Enumerates the album keys.
 Options for creating an image or video asset.
 
 The title must meet the following requirements:
-- It does not contain a file name extension.
-- The file name cannot exceed 255 characters.
-- It does not contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- It must not contain a file name extension.
+- The total length of the file name must be between 1 and 255 characters.
+- It must meet the following requirements:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -5702,7 +5702,7 @@ Represents the configuration for saving a media asset (image or video) to the me
 
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| title | string | No | Title of the image or video. If this parameter is not passed, the system generates a title. The title must meet the following requirements:<br>- It does not contain a file name extension.<br>- The file name, which is in the format of title+file name extension, does not exceed 255 characters.<br>- The title does not contain any of the following characters:\ / : * ? " ' ` < > \| { } [ ]|
+| title | string | No | Title of the image or video. If this parameter is not passed, the system generates a title. The title must meet the following requirements:<br>- It must not contain a file name extension.<br>- The total length of the file name, which is in the format of title+file name extension, must be between 1 and 255 characters.<br>- It must not contain any invalid characters, which are:\ / : * ? " ' ` < > \| { } [ ]|
 | fileNameExtension | string | Yes | File name extension, for example, **'jpg'**.|
 | photoType | [PhotoType](#phototype) | Yes | Type of the file to create, which can be **IMAGE** or **VIDEO**. |
 | subtype | [PhotoSubtype](#photosubtype12) | No | Image or video file subtype. Currently, only **DEFAULT** is supported. |

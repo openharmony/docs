@@ -1,5 +1,11 @@
 # Subscribing to Common Events in Dynamic Mode
 
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @peixu-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 ## When to Use
 
@@ -17,13 +23,13 @@ Certain system common events [require specific permissions](../../security/Acces
 
 ## Available APIs
 
-For details about the APIs, see [API Reference](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagersubscribe).
+For details about the APIs, see [@ohos.commonEventManager (Common Event)](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md).
 
 | API| Description|
 | -------- | -------- |
-| createSubscriber(subscribeInfo:&nbsp;[CommonEventSubscribeInfo](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscribeInfo.md),&nbsp;callback:&nbsp;AsyncCallback&lt;[CommonEventSubscriber](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventSubscriber.md#how-to-use)&gt;):&nbsp;void| Creates a subscriber. This API uses an asynchronous callback to return the result.|
-| createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise&lt;CommonEventSubscriber&gt; | Creates a subscriber. This API uses a promise to return the result.|
-| subscribe(subscriber:&nbsp;CommonEventSubscriber,&nbsp;callback:&nbsp;AsyncCallback<CommonEventData\>):&nbsp;void | Subscribes to common events.|
+| [createSubscriber](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagercreatesubscriber)(subscribeInfo:&nbsp;CommonEventSubscribeInfo,&nbsp;callback:&nbsp;AsyncCallback&lt;CommonEventSubscriber&gt;):&nbsp;void | Creates a subscriber. This API uses an asynchronous callback to return the result.|
+| [createSubscriber](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagercreatesubscriber-1)(subscribeInfo:&nbsp;CommonEventSubscribeInfo):&nbsp;Promise&lt;CommonEventSubscriber&gt; | Creates a subscriber. This API uses a promise to return the result.|
+| [subscribe](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagersubscribe)(subscriber:&nbsp;CommonEventSubscriber,&nbsp;callback:&nbsp;AsyncCallback&lt;CommonEventData&gt;):&nbsp;void | Subscribes to common events.|
 
 
 ## How to Develop
@@ -73,7 +79,7 @@ For details about the APIs, see [API Reference](../../reference/apis-basic-servi
          hilog.error(DOMAIN_NUMBER, TAG, `Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
          return;
        }
-       // ...
+       console.info(`Succeeded in subscribing, data is ${JSON.stringify(data)}`);
      })
    } else {
      hilog.error(DOMAIN_NUMBER, TAG, `Need create subscriber`);

@@ -204,7 +204,7 @@ struct ScreenTest {
 
   setOrientation() {
     try {
-      window.getLastWindow(getContext(this), (err, data) => { // Obtain a Window instance.
+      window.getLastWindow(this.getUIContext().getHostContext(), (err, data) => { // Obtain a Window instance.
         if (err.code) {
           console.error(TAG, 'Failed to obtain the top window. Cause: ' + JSON.stringify(err));
           return;
@@ -246,7 +246,7 @@ struct ScreenTest {
 ```
 **References**
 
-[Setting the Window Orientation](../reference/apis-arkui/js-apis-window.md#setpreferredorientation9) 
+[Setting the Window Orientation](../reference/apis-arkui/js-apis-window.md#setpreferredorientation9)  
 
 [Subscribing to Display Changes](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
 
@@ -304,5 +304,48 @@ windowClass.on('avoidAreaChange', async (data) => {
   windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_CUTOUT);
 });
 ```
+
+## The screen dimensions obtained by calling display.getDefaultDisplaySync in the display.on('foldDisplayModeChange') callback are incorrect. What should I do? (API version 10)
+
+**Solution**
+
+For applications locked in landscape orientation, the **foldDisplayModeChange** event is triggered during device folding or unfolding. However, the **rotation** attribute of the Display instance has not been refreshed yet. The width and height retrieved via **getDefaultDisplaySync** correspond to the device's portrait orientation. To address this, you can use the **display.on('change')** API to track display device alterations and subsequently obtain the screen width and height through a Display instance within the callback function.
+
+**Example**
+
+```ts
+display.on('change', (data) => {
+  console.info('Succeeded in enabling the listener for display changes. Data: ' +
+  JSON.stringify(data));
+  let newDisplay: display.Display = display.getDefaultDisplaySync();
+  console.info('width: ' + newDisplay.width + ', height: ' + newDisplay.height);
+});
+```
+
+**References**
+
+[display.on('change')](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
+
+## What is the difference between orientation values 8 to 10 or 12 and values 13 to 16 (API version 9)?
+
+1. Windows with the orientation set to values 8 to 10 or 12 automatically rotate based on the sensor and are controlled by the rotation switch in Control Panel.
+2. Windows with the orientation set to values 13 to 16 temporarily rotate to the specified direction (for example, temporarily rotate to portrait in the case of value 13), then automatically rotate based on the sensor. They are controlled by the rotation switch in Control Panel, and the rotatable directions are determined by the system.
+
+The main difference is that for values 13 to 16, the window temporarily rotates to the specified direction, and the window orientation is maintained when switching between the foreground and background. However, for values 8 to 10 or 12, the window orientation is not maintained when switching between the foreground and background.
+
+**Example scenarios**:
+1. Holding the phone vertically with the rotation lock switch turned off -> The application orientation is set to AUTO_ROTATION_RESTRICTED -> Rotating the phone to landscape (**the application orientation is landscape**) -> The application exits to the background and goes to the home screen, holding the phone vertically (the orientation is portrait) -> The application switches to the foreground (**the application orientation is portrait**).
+2. Holding the phone vertically with the rotation lock switch turned off -> The application orientation is set to USER_ROTATION_PORTRAIT (the application orientation is portrait) -> Rotating the phone to landscape (**the application orientation is landscape**) -> The application exits to the background and goes to the home screen, holding the phone vertically (the orientation is portrait) -> The application switches to the foreground (**the application orientation is landscape**).
+
+| Name                              | Value | Rotatable Direction          | Automatic Rotation Based on Sensor| Rotation Switch Control|
+|----------------------------------|----|-----------------|-------------|-----------|
+| AUTO_ROTATION_RESTRICTED         | 8  | Landscape, portrait, reverse portrait, reverse landscape| Yes          | Yes        |
+| AUTO_ROTATION_PORTRAIT_RESTRICTED         | 9  | Portrait, reverse portrait| Yes          | Yes        |
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED         | 10 | Landscape, reverse landscape| Yes          | Yes        |
+| AUTO_ROTATION_UNSPECIFIED         | 12  | Determined by the system| Yes          | Yes        |
+| USER_ROTATION_PORTRAIT           | 13 | Determined by the system          | Yes          | Yes        |
+| USER_ROTATION_LANDSCAPE          | 14 | Determined by the system          | Yes          | Yes        |
+| USER_ROTATION_PORTRAIT_INVERTED  | 15 | Determined by the system          | Yes          | Yes        |
+| USER_ROTATION_LANDSCAPE_INVERTED | 16 | Determined by the system          | Yes          | Yes        |
 
 <!--no_check-->

@@ -36,7 +36,7 @@ Create a dual-channel preview to obtain the frame data.
 
 **Solution**
 
-1. Use the **\@ohos.multimedia.camera** module to obtain the physical camera information.
+1. Use the \@ohos.multimedia.camera module to obtain the physical camera information.
 
    ```
    let cameraManager = await camera.getCameraManager(context);
@@ -116,7 +116,7 @@ Applicable to: stage model
 
 **Solution**
 
-1. Configure the permissions **ohos.permission.READ_MEDIA** and **ohos.permission.WRITE_MEDIA** in the **module.json5** file.
+1. Configure the permissions ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA in the **module.json5** file.
 
    Example:
 
@@ -227,11 +227,11 @@ The embedded 3A processing is automatically enabled for the audio stream with th
 
 **Solution**
 
-To implement low latency audio recording, use the C APIs provided by the **AudioCapturer** class of the **OHAudio** module. For details, see [Using OHAudio for Audio Recording (C/C++)](../media/audio/using-ohaudio-for-recording.md).
+To implement low latency audio recording, use the C APIs provided by the **AudioCapturer** class of the OHAudio module. For details, see [Using OHAudio for Audio Recording (C/C++)](../media/audio/using-ohaudio-for-recording.md).
 
 **References**
 
-[ohaudio](../reference/apis-audio-kit/_o_h_audio.md)
+[OHAudio](../reference/apis-audio-kit/capi-ohaudio.md)
 
 ## How do I implement real-time video stream transmission? How do I implement live broadcast? (API version 10)
 
@@ -252,7 +252,8 @@ To continue background playback, the application must request a continuous task 
 
 **References**
 
-[Accessing AVSession](../media/avsession/avsession-access-scene.md)
+- [Continuous Task](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/ContinuousTask)
+- [Accessing AVSession](../media/avsession/avsession-access-scene.md)
 
 ## Why can't a third-party application create albums? (API version 10)
 
@@ -278,4 +279,4 @@ For lossy compression images, the target image size depends on the original imag
 **References**
 
 - [scale](../reference/apis-image-kit/js-apis-image.md#scale9)
-- [packing](../reference/apis-image-kit/js-apis-image.md#packing)
+- [packing](../reference/apis-image-kit/js-apis-image.md#packing13)

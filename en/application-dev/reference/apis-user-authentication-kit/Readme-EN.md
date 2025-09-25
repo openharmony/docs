@@ -1,6 +1,6 @@
 # User Authentication Kit (User Authentication Service)
 
-- ArkTS API<!--user-authentication-arkts-->
+- ArkTS APIs<!--user-authentication-arkts-->
   - [@ohos.userIAM.userAuth (User Authentication)](js-apis-useriam-userauth.md)
   <!--Del-->
   - [@ohos.userIAM.faceAuth (Facial Authentication) (System API)](js-apis-useriam-faceauth-sys.md)

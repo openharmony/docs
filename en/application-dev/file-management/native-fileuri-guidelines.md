@@ -6,7 +6,7 @@ FileUri provides APIs for basic file URI operations, such as converting URIs to 
 
 ## Basic Concepts
 
-**Result set**: path or URI that meets the service requirements.
+Result set: path or URI that meets the service requirements.
 
 ## Constraints
 
@@ -16,7 +16,7 @@ FileUri provides APIs for basic file URI operations, such as converting URIs to 
 
 ## Available APIs
 
-For details about the APIs, see [File URI](../reference/apis-core-file-kit/fileuri.md).
+For details about the APIs, see [API Reference](../reference/apis-core-file-kit/fileuri.md).
 
 | API| Description|
 | -------- |-------|

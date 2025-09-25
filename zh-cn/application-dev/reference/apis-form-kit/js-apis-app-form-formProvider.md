@@ -343,7 +343,7 @@ try {
 
 getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 
-获取设备上当前应用程序的卡片信息，使用Promise异步回调。
+获取设备上当前应用符合条件的卡片信息，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -425,7 +425,7 @@ openFormEditAbility(abilityName: string, formId: string, isMainPage?: boolean): 
 **示例：**
 
 ```ts
-import { router } from '@kit.ArkUI';
+import { formProvider } from '@kit.FormKit';
 
 const TAG: string = 'FormEditDemo-Page] -->';
 
@@ -463,7 +463,7 @@ struct Page {
 
 openFormManager(want: Want): void
 
-打开卡片管理页面。
+打开当前应用的卡片管理页面。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -474,6 +474,9 @@ openFormManager(want: Want): void
 | 参数名  | 类型    | 必填 | 说明                                                                                                                                                                                                                                                                                                      |
 |------| ------ | ---- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 打开卡片管理页面的请求中的want参数，需包含以下字段。<br>bundleName: 卡片所属应用的包名。<br>abilityName: 卡片所属的ability名称。<br>parameters:<br>- ohos.extra.param.key.form_dimension: [卡片尺寸](js-apis-app-form-formInfo.md#formdimension)。<br>- ohos.extra.param.key.form_name: 卡片名称。<br>- ohos.extra.param.key.module_name: 卡片所属的模块名称。 |
+> **说明：**
+>
+> 如果parameters参数没有填完整或者指定的卡片不存在，就会默认展示[form_config.json](../../form/arkts-ui-widget-configuration.md#卡片配置)中配置的默认卡片。
 
 **错误码：**
 

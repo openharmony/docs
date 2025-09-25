@@ -42,7 +42,7 @@ tabIndex(index: number): T
 
 >  **说明：**
 >
->  - tabIndex只能够自定义Tab键走焦，若想同时自定义方向键等走焦能力，建议使用[nextfocus](#nextfocus18)。
+>  - tabIndex只能够自定义Tab键走焦，若想同时自定义方向键等走焦能力，建议使用[nextFocus](#nextfocus18)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

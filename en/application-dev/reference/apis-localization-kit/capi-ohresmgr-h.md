@@ -1,8 +1,16 @@
 # ohresmgr.h
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @liule_123-->
+<!--Designer: @buda_wy-->
+<!--Tester: @lpw_work-->
+
 ## Overview
 
 Provides native APIs for obtaining resources.
+
+**File to include**: <resourcemanager/ohresmgr.h>
 
 **Library**: libohresmgr.so
 

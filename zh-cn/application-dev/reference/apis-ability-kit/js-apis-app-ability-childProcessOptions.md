@@ -1,11 +1,5 @@
 # @ohos.app.ability.ChildProcessOptions (子进程启动选项)
 
-<!--Kit: Ability Kit-->
-<!--Subsystem: Ability-->
-<!--Owner: @SKY2001-->
-<!--Designer: @jsjzju-->
-<!--Tester: @lixueqing513-->
-
 子进程的启动配置选项。通过[childProcessManager](js-apis-app-ability-childProcessManager.md)启动子进程时，可以通过ChildProcessOptions配置子进程启动选项。
 
 > **说明：**

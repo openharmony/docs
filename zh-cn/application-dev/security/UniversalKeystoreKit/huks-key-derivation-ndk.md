@@ -11,7 +11,7 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 
 **生成密钥**
 
-1. 指定密钥别名。
+1. 指定密钥别名，密钥别名命名规范参考[密钥生成介绍及算法规格](huks-key-generation-overview.md)。
 
 2. 初始化密钥属性集，可指定参数，OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG（可选），用于标识基于该密钥派生出的密钥是否由HUKS管理。
 

@@ -112,7 +112,8 @@ The type of data to transfer does not support serialization or is imported exter
 
 **Solution**
 
-Ensure that the data to transfer is a valid serialized object supported by Worker. For details, see [ArkTS Inter-Thread Communication Overview](../../arkts-utils/interthread-communication-overview.md).
+Ensure that the data to transfer is a valid serialized object supported by Worker. For details, see [ArkTS Inter-Thread Communication Overview](../../arkts-utils/interthread-communication-overview.md
+).
 
 ## 10200007 Abnormal Worker File Path
 
@@ -842,3 +843,22 @@ When [crypto](js-apis-arkts-decimal.md#decimalconfig) of **Decimal** is set or t
 Use [Decimal.set](js-apis-arkts-decimal.md#set) to cancel the encryption algorithm.
 
 Example: Decimal.set({crypto: false})
+
+## 10200301 Failed to Load the Native Module
+
+**Error Message**
+
+Loading native module failed.
+
+**Description**
+
+This error code is returned when the native module fails to be loaded.
+
+**Possible Causes**
+
+1. The native module does not exist in the corresponding path.
+2. The module content is incorrect and cannot be loaded correctly.
+
+**Solution**
+
+Check whether the native module to be loaded is in the current package.

@@ -12,9 +12,9 @@ The specific meaning of "internal state" varies by component. For example, for t
 > The **$$** operator is also used for [by-reference parameter passing in the @Builder decorator](arkts-builder.md#by-reference-parameter-passing). Pay attention to the differences between these two usages.
 
 
-## Rules of Use
+## Usage Rules
 
-- Currently, **$$** supports variables of basic types and variables decorated by [\@State](arkts-state.md), [\@Link](arkts-link.md), and [\@Prop](arkts-prop.md).
+- Currently, **$$** supports variables of basic types and variables decorated with [\@State](arkts-state.md), [\@Link](arkts-link.md), [\@Prop](arkts-prop.md), and [\@Provide](arkts-provide-and-consume.md).
 
 - Components supported by **$$** are listed below.
 

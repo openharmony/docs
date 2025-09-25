@@ -42,7 +42,7 @@ Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters?: FilterParam
 | -------- | -------- | -------- | -------- | -------- |
 | multiFilters | Array&lt;[FilterParams](#filterparams)&gt; | 是   | \@Prop | 多条件筛选列表。 |
 | additionFilters | [FilterParams](#filterparams) | 否   | \@Prop | 附加快捷筛选项。 |
-| filterType | [FilterType](#filtertype) | 否   | \@Prop | 筛选器的样式类型。 |
+| filterType | [FilterType](#filtertype) | 否   | \@Prop | 筛选器的样式类型。<br/>默认值：FilterType.LIST_FILTER |
 | onFilterChanged | (filterResults: Array&lt;[FilterResult](#filterresult)&gt;)&nbsp;=&gt;&nbsp;void | 是   | - | 用户点击后的回调事件。回调函数的参数为选中的筛选项结果列表。 |
 | container | ()=&gt;void | 是   | \@BuilderParam | 筛选结果展示区域自定义内容，通过尾随闭包形式传入。 |
 

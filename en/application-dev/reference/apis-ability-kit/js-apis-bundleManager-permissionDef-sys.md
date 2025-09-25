@@ -23,6 +23,6 @@ import { bundleManager } from '@kit.AbilityKit';
 | Name          | Type  | Read-Only| Optional| Description          |
 | -------------- | ------ | ---- | ---- | -------------- |
 | permissionName | string | Yes  | No  | Name of the permission.  |
-| grantMode      | number | Yes  | No  | [Grant mode of the permission](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/app-permission-mgmt-overview#authorization-mode). The value **0** means user authorization, and **1** means system authorization.|
+| grantMode      | number | Yes  | No  | [Grant mode of the permission](../../security/AccessToken/app-permission-mgmt-overview.md#authorization-mode). The value **0** means user authorization, and **1** means system authorization.|
 | labelId        | number | Yes  | No  | ID of the permission label.  |
 | descriptionId  | number | Yes  | No  | ID of the permission description.  |

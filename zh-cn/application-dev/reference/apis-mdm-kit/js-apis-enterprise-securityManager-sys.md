@@ -8,9 +8,9 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2)后调用。
+> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-term.md#mdm应用设备管理应用)开放，需将[设备管理应用激活](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin-2)后调用。
 >
-> 当前页面仅包含本模块的系统接口，其他公开接口参见。其他公开接口参见[@ohos.enterprise.securityManager](js-apis-enterprise-securityManager.md)。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.enterprise.securityManager](js-apis-enterprise-securityManager.md)。
 
 ## 导入模块
 
@@ -30,7 +30,7 @@ getSecurityPatchTag(admin: Want): string
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统API：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -87,7 +87,7 @@ getDeviceEncryptionStatus(admin: Want): DeviceEncryptionStatus
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统API：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **参数：**
 
@@ -143,7 +143,7 @@ getPasswordPolicy(): PasswordPolicy
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统API：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **返回值：**
 
@@ -180,7 +180,7 @@ try {
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统API**: 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称         | 类型     | 只读 | 可选 |  说明                            |
 | ----------- | --------| ---- | ----| ---------------------------- |

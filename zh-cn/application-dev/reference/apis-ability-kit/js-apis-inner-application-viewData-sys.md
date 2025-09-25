@@ -1,5 +1,12 @@
 # ViewData (系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 自动填充的视图数据信息。
 
 > **说明：**
@@ -20,5 +27,5 @@
 | pageUrl       | string            | 否   | 否   | 页面的url。                               |
 | pageNodeInfos | Array&lt;[PageNodeInfo](js-apis-inner-application-pageNodeInfo-sys.md)&gt;    | 否   | 否   | 页面节点的信息。                |
 | pageRect<sup>12+</sup>    | [AutoFillRect](js-apis-inner-application-autoFillRect-sys.md)     | 否   | 否   | 页面的坐标和宽高信息。                |
-| isUserSelected<sup>12+</sup> | boolean | 否   | 否   | 是否是用户选择的填充内容，true表示用户选择的填充内容，false表示非用户选择的填充内容。 |
-| isOtherAccount<sup>12+</sup> | boolean | 否   | 否   | 是否拉起密码箱中其它账号信息供用户选择，true表示拉起密码箱中其他账号信息供用户选择，false表示不拉起密码箱中其他账号信息。 |
+| isUserSelected<sup>12+</sup> | boolean | 否   | 否   | 表示填充内容是否由用户选择。true为用户选择，false为非用户选择。 |
+| isOtherAccount<sup>12+</sup> | boolean | 否   | 否   | 表示是否拉起密码箱中其他账号信息供用户选择。true为拉起其他账号信息，false为不拉起其他账号信息。 |

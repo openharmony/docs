@@ -53,7 +53,7 @@ For details about the development guide and sample, see [Obtaining Supported Cod
 | OH_AVCapability \*[OH_AVCodec_GetCapability](#oh_avcodec_getcapability) (const char \*mime, bool isEncoder) | Obtains the codec capability recommended by the system. | 
 | OH_AVCapability \*[OH_AVCodec_GetCapabilityByCategory](#oh_avcodec_getcapabilitybycategory) (const char \*mime, bool isEncoder, [OH_AVCodecCategory](#oh_avcodeccategory) category) | Obtains the codec capability by category,| 
 | bool [OH_AVCapability_IsHardware](#oh_avcapability_ishardware) (OH_AVCapability \*capability) | Checks whether a codec capability instance describes a hardware codec. | 
-| const char \* [OH_AVCapability_GetName](#oh_avcapability_getname) (OH_AVCapability \*capability) | Obtains the codec name. | 
+| const char \* [OH_AVCapability_GetName](#oh_avcapability_getname) (OH_AVCapabilitadd b-frame interface define.y \*capability) | Obtains the codec name. | 
 | int32_t [OH_AVCapability_GetMaxSupportedInstances](#oh_avcapability_getmaxsupportedinstances) (OH_AVCapability \*capability) | Obtains the maximum number of codec instances supported by a codec. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetEncoderBitrateRange](#oh_avcapability_getencoderbitraterange) (OH_AVCapability \*capability, [OH_AVRange](_o_h___a_v_range.md) \*bitrateRange) | Obtains the bit rate range supported by an encoder. | 
 | bool [OH_AVCapability_IsEncoderBitrateModeSupported](#oh_avcapability_isencoderbitratemodesupported) (OH_AVCapability \*capability, [OH_BitrateMode](_codec_base.md#oh_bitratemode) bitrateMode) | Checks whether an encoder supports a specific bit rate mode. | 
@@ -76,7 +76,7 @@ For details about the development guide and sample, see [Obtaining Supported Cod
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVCapability_GetSupportedLevelsForProfile](#oh_avcapability_getsupportedlevelsforprofile) (OH_AVCapability \*capability, int32_t profile, const int32_t \*\*levels, uint32_t \*levelNum) | Obtains the codec levels supported by a profile. | 
 | bool [OH_AVCapability_AreProfileAndLevelSupported](#oh_avcapability_areprofileandlevelsupported) (OH_AVCapability \*capability, int32_t profile, int32_t level) | Checks whether a codec supports the combination of a profile and level. | 
 | bool [OH_AVCapability_IsFeatureSupported](#oh_avcapability_isfeaturesupported) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](#oh_avcapabilityfeature) feature) | Checks whether a codec supports a feature. | 
-| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVCapability_GetFeatureProperties](#oh_avcapability_getfeatureproperties) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](#oh_avcapabilityfeature) feature) | Obtains the properties of a feature. You must manually release the **OH_AVFormat** instance in the return value. | 
+| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVCapability_GetFeatureProperties](#oh_avcapability_getfeatureproperties) (OH_AVCapability \*capability, [OH_AVCapabilityFeature](#oh_avcapabilityfeature) feature) | Obtains the properties of a feature. You must manually release the OH_AVFormat instance in the return value. | 
 
 
 ## Type Description
@@ -143,7 +143,7 @@ Enumerates the optional features that can be used in specific codec scenarios.
 | -------- | -------- |
 | VIDEO_ENCODER_TEMPORAL_SCALABILITY  | Temporal scalability feature, which is available only in video encoding scenarios.  | 
 | VIDEO_ENCODER_LONG_TERM_REFERENCE  | Long-term reference frame feature, which is available only in video encoding scenarios.  | 
-| VIDEO_LOW_LATENCY  | Low latency feature, which is available only in video encoding and decoding scenarios.  | 
+| VIDEO_LOW_LATENCY  | Low latency feature, which is available in video encoding and decoding scenarios.  | 
 
 
 ### OH_AVCodecCategory
@@ -191,7 +191,7 @@ Checks whether a codec supports the combination of a profile and level.
 
 **Returns**
 
-Returns **true** if the combination of the profile and level is supported; returns **false** otherwise.
+Check result for the support of the combination of the profile and level. **true** if supported, **false** otherwise.
 
 
 ### OH_AVCapability_AreVideoSizeAndFrameRateSupported()
@@ -218,7 +218,7 @@ Checks whether a video codec supports the combination of a video size and frame 
 
 **Returns**
 
-Returns **true** if the combination of the video size and frame rate is supported; returns **false** otherwise.
+Check result for the support of the combination of the video size and frame rate. **true** if supported, **false** otherwise.
 
 
 ### OH_AVCapability_GetAudioChannelCountRange()
@@ -239,13 +239,13 @@ Obtains the count range of audio channels supported by an audio codec.
 | Name| Description| 
 | -------- | -------- |
 | capability | Pointer to the audio codec capability. A pointer to the video codec capability cannot be filled in. | 
-| channelCountRange | Output parameter. Pointer to the count range of audio channels supported. | 
+| channelCountRange | Pointer to the count range of audio channels supported. | 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; one of the following error codes defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise:
 
-**AV_ERR_INVALID_VAL** is returned if the capability instance is invalid or the pointer to the count range of audio channels is null.
+**AV_ERR_INVALID_VAL**: The capability instance is invalid or the pointer to the count range of audio channels is null.
 
 
 ### OH_AVCapability_GetAudioSupportedSampleRates()
@@ -266,14 +266,14 @@ Obtains the sample rates supported by an audio codec.
 | Name| Description| 
 | -------- | -------- |
 | capability | Pointer to the audio codec capability. A pointer to the video codec capability cannot be filled in. | 
-| sampleRates | Output parameter. Double pointer to the sample rate array. | 
-| sampleRateNum | Output parameter. Pointer to the number of elements in the array. | 
+| sampleRates | Double pointer to the sample rate array. | 
+| sampleRateNum | Pointer to the number of elements in the array. | 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; one of the following error codes defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise:
 
-**AV_ERR_INVALID_VAL** is returned if the capability instance is invalid, the pointer to the sample rate array is null, or the pointer to the number of elements in the array is null. **AV_ERR_UNKNOWN** is returned in the case of an unknown error. **AV_ERR_NO_MEMORY** is returned if internal memory allocation fails.
+**AV_ERR_INVALID_VAL**: The capability instance is invalid, the pointer to the sample rate array is null, or the pointer to the number of elements in the array is null. **AV_ERR_UNKNOWN**: An unknown error occurs. **AV_ERR_NO_MEMORY**: Internal memory allocation fails.
 
 
 ### OH_AVCapability_GetEncoderBitrateRange()
@@ -294,13 +294,13 @@ Obtains the bit rate range supported by an encoder.
 | Name| Description| 
 | -------- | -------- |
 | capability | Pointer to the encoder capability. If a pointer to the decoder capability is provided, undefined behavior occurs. | 
-| bitrateRange | Output parameter. Pointer to the bit rate range supported. | 
+| bitrateRange | Pointer to the bit rate range supported. | 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; one of the following error codes defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise:
 
-**AV_ERR_INVALID_VAL** is returned if the capability instance is invalid or the pointer to the bit rate range is null.
+**AV_ERR_INVALID_VAL**: The capability instance is invalid or the pointer to the bit rate range is null.
 
 
 ### OH_AVCapability_GetEncoderComplexityRange()
@@ -321,13 +321,13 @@ Obtains the complexity range supported by an encoder.
 | Name| Description| 
 | -------- | -------- |
 | capability | Pointer to the encoder capability. If a pointer to the decoder capability is provided, undefined behavior occurs. | 
-| complexityRange | Output parameter. Pointer to the complexity range supported. | 
+| complexityRange | Pointer to the complexity range supported. | 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; one of the following error codes defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise:
 
-**AV_ERR_INVALID_VAL** is returned if the capability instance is invalid or the pointer to the complexity range is null.
+**AV_ERR_INVALID_VAL**: The capability instance is invalid or the pointer to the complexity range is null.
 
 
 ### OH_AVCapability_GetEncoderQualityRange()
@@ -348,13 +348,13 @@ Obtains the quality range supported by an encoder.
 | Name| Description| 
 | -------- | -------- |
 | capability | Pointer to the encoder capability. If a pointer to the decoder capability is provided, undefined behavior occurs. | 
-| qualityRange | Output parameter. Pointer to the quality range supported. | 
+| qualityRange | Pointer to the quality range supported. | 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; one of the following error codes defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise:
 
-**AV_ERR_INVALID_VAL** is returned if the capability instance is invalid or the pointer to the quality range is null.
+**AV_ERR_INVALID_VAL**: The capability instance is invalid or the pointer to the quality range is null.
 
 
 ### OH_AVCapability_GetFeatureProperties()
@@ -364,7 +364,7 @@ OH_AVFormat* OH_AVCapability_GetFeatureProperties (OH_AVCapability *capability, 
 ```
 **Description**
 
-Obtains the properties of a feature. You must manually release the **OH_AVFormat** instance in the return value.
+Obtains the properties of a feature. You must manually release the OH_AVFormat instance in the return value.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -379,7 +379,7 @@ Obtains the properties of a feature. You must manually release the **OH_AVFormat
 
 **Returns**
 
-Returns the pointer to an **OH_AVFormat** instance.
+Pointer to an OH_AVFormat instance.
 
 
 ### OH_AVCapability_GetMaxSupportedInstances()
@@ -403,7 +403,7 @@ Obtains the maximum number of codec instances supported by a codec.
 
 **Returns**
 
-Returns the maximum number of codec instances supported.
+Maximum number of codec instances supported.
 
 
 ### OH_AVCapability_GetName()
@@ -427,7 +427,7 @@ Obtains the codec name.
 
 **Returns**
 
-Returns the codec name string.
+Codec name string.
 
 
 ### OH_AVCapability_GetSupportedLevelsForProfile()
@@ -449,14 +449,14 @@ Obtains the codec levels supported by a profile.
 | -------- | -------- |
 | capability | Pointer to the codec capability. | 
 | profile | Codec profile. | 
-| levels | Output parameter. Double pointer to the codec level array. | 
-| levelNum | Output parameter. Pointer to the number of elements in the array. | 
+| levels | Double pointer to the codec level array. | 
+| levelNum | Pointer to the number of elements in the array. | 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; one of the following error codes defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise:
 
-**AV_ERR_INVALID_VAL** is returned if the capability instance is invalid, the level is not in the supported level array obtained through [OH_AVCapability_GetSupportedProfiles](#oh_avcapability_getsupportedprofiles), the pointer to the level array is null, or the pointer to the number of elements in the array is null. **AV_ERR_UNKNOWN** is returned in the case of an unknown error. **AV_ERR_NO_MEMORY** is returned if internal memory allocation fails.
+**AV_ERR_INVALID_VAL**: The capability instance is invalid, the level is not in the supported level array obtained through [OH_AVCapability_GetSupportedProfiles](#oh_avcapability_getsupportedprofiles), the pointer to the level array is null, or the pointer to the number of elements in the array is null. **AV_ERR_UNKNOWN**: An unknown error occurs. **AV_ERR_NO_MEMORY**: Internal memory allocation fails.
 
 
 ### OH_AVCapability_GetSupportedProfiles()
@@ -477,14 +477,14 @@ Obtains the profiles supported by a codec.
 | Name| Description| 
 | -------- | -------- |
 | capability | Pointer to the codec capability. | 
-| profiles | Output parameter. Double pointer to the profile array. | 
-| profileNum | Output parameter. Pointer to the number of profiles in the array. | 
+| profiles | Double pointer to the profile array. | 
+| profileNum | Pointer to the number of profiles in the array. | 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; one of the following error codes defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise:
 
-**AV_ERR_INVALID_VAL** is returned if the capability instance is invalid, the pointer to the profile array is null, or the pointer to the number of elements in the array is null. **AV_ERR_UNKNOWN** is returned in the case of an unknown error. **AV_ERR_NO_MEMORY** is returned if internal memory allocation fails.
+**AV_ERR_INVALID_VAL**: The capability instance is invalid, the pointer to the profile array is null, or the pointer to the number of elements in the array is null. **AV_ERR_UNKNOWN**: An unknown error occurs. **AV_ERR_NO_MEMORY**: Internal memory allocation fails.
 
 
 ### OH_AVCapability_GetVideoFrameRateRange()
@@ -505,13 +505,13 @@ Obtains the video frame rate range supported by a video codec.
 | Name| Description| 
 | -------- | -------- |
 | capability | Pointer to the video codec capability. A pointer to the audio codec capability cannot be filled in. | 
-| frameRateRange | Output parameter. Pointer to the video frame rate range supported. | 
+| frameRateRange | Pointer to the video frame rate range supported. | 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; one of the following error codes defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise:
 
-**AV_ERR_INVALID_VAL** is returned if the capability instance is invalid or the pointer to the video frame rate range is null.
+**AV_ERR_INVALID_VAL**: The capability instance is invalid or the pointer to the video frame rate range is null.
 
 
 ### OH_AVCapability_GetVideoFrameRateRangeForSize()
@@ -534,13 +534,13 @@ Obtains the video frame rate range supported by a video codec based on a given v
 | capability | Pointer to the video codec capability. A pointer to the audio codec capability cannot be filled in. | 
 | width | Number of horizontal video pixels. | 
 | height | Number of vertical video pixels. | 
-| frameRateRange | Output parameter. Pointer to the video frame rate range supported. | 
+| frameRateRange | Pointer to the video frame rate range supported. | 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; one of the following error codes defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise:
 
-**AV_ERR_INVALID_VAL** is returned if the capability instance is invalid, the combination of the width and height is not supported, or the pointer to the frame rate range is null.
+**AV_ERR_INVALID_VAL**: The capability instance is invalid, the combination of the width and height is not supported, or the pointer to the frame rate range is null.
 
 
 ### OH_AVCapability_GetVideoHeightAlignment()
@@ -561,13 +561,13 @@ Obtains the video height alignment supported by a video codec.
 | Name| Description| 
 | -------- | -------- |
 | capability | Pointer to the video codec capability. A pointer to the audio codec capability cannot be filled in. | 
-| heightAlignment | Output parameter. Pointer to the video height alignment supported. | 
+| heightAlignment | Pointer to the video height alignment supported. | 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; one of the following error codes defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise:
 
-**AV_ERR_INVALID_VAL** is returned if the capability instance is invalid or the pointer to the video height alignment is null.
+**AV_ERR_INVALID_VAL**: The capability instance is invalid or the pointer to the video height alignment is null.
 
 
 ### OH_AVCapability_GetVideoHeightRange()
@@ -588,13 +588,13 @@ Obtains the video height range supported by a video codec.
 | Name| Description| 
 | -------- | -------- |
 | capability | Pointer to the video codec capability. A pointer to the audio codec capability cannot be filled in. | 
-| heightRange | Output parameter. Pointer to the video height range supported. | 
+| heightRange |  Pointer to the video height range supported. | 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; one of the following error codes defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise:
 
-**AV_ERR_INVALID_VAL** is returned if the capability instance is invalid or the pointer to the video height range is null.
+**AV_ERR_INVALID_VAL**: The capability instance is invalid or the pointer to the video height range is null.
 
 
 ### OH_AVCapability_GetVideoHeightRangeForWidth()
@@ -616,13 +616,13 @@ Obtains the video height range supported by a video codec based on a given width
 | -------- | -------- |
 | capability | Pointer to the video codec capability. A pointer to the audio codec capability cannot be filled in. | 
 | width | Number of horizontal video pixels. | 
-| heightRange | Output parameter. Pointer to the video height range supported. | 
+| heightRange |  Pointer to the video height range supported. | 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; one of the following error codes defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise:
 
-**AV_ERR_INVALID_VAL** is returned if the capability instance is invalid, the width is not within the supported width range obtained through [OH_AVCapability_GetVideoWidthRange](#oh_avcapability_getvideowidthrange), or the pointer to the height range is null.
+**AV_ERR_INVALID_VAL**: The capability instance is invalid, the width is not within the supported width range obtained through [OH_AVCapability_GetVideoWidthRange](#oh_avcapability_getvideowidthrange), or the pointer to the height range is null.
 
 
 ### OH_AVCapability_GetVideoSupportedPixelFormats()
@@ -643,14 +643,14 @@ Obtains the video pixel formats supported by a video codec.
 | Name| Description| 
 | -------- | -------- |
 | capability | Pointer to the video codec capability. A pointer to the audio codec capability cannot be filled in. | 
-| pixelFormats | Output parameter. Double pointer to the video pixel format array. | 
-| pixelFormatNum | Output parameter. Pointer to the number of elements in the array. | 
+| pixelFormats | Double pointer to the video pixel format array. | 
+| pixelFormatNum | Pointer to the number of elements in the array. | 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; one of the following error codes defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise:
 
-**AV_ERR_INVALID_VAL** is returned if the capability instance is invalid, the pointer to the video pixel format array is null, or the pointer to the number of elements in the array is null. **AV_ERR_UNKNOWN** is returned in the case of an unknown error. **AV_ERR_NO_MEMORY** is returned if internal memory allocation fails.
+**AV_ERR_INVALID_VAL**: The capability instance is invalid, the pointer to the video pixel format array is null, or the pointer to the number of elements in the array is null. **AV_ERR_UNKNOWN**: An unknown error occurs. **AV_ERR_NO_MEMORY**: Internal memory allocation fails.
 
 
 ### OH_AVCapability_GetVideoWidthAlignment()
@@ -671,13 +671,13 @@ Obtains the video width alignment supported by a video codec.
 | Name| Description| 
 | -------- | -------- |
 | capability | Pointer to the video codec capability. A pointer to the audio codec capability cannot be filled in. | 
-| widthAlignment | Output parameter. Pointer to the video width alignment supported. | 
+| widthAlignment |  Pointer to the video width alignment supported. | 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; one of the following error codes defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise:
 
-**AV_ERR_INVALID_VAL** is returned if the capability instance is invalid or the pointer to the video width alignment is null.
+**AV_ERR_INVALID_VAL**: The capability instance is invalid or the pointer to the video width alignment is null.
 
 
 ### OH_AVCapability_GetVideoWidthRange()
@@ -698,13 +698,13 @@ Obtains the video width range supported by a video codec.
 | Name| Description| 
 | -------- | -------- |
 | capability | Pointer to the video codec capability. A pointer to the audio codec capability cannot be filled in. | 
-| widthRange | Output parameter. Pointer to the video width range supported. | 
+| widthRange |  Pointer to the video width range supported. | 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; one of the following error codes defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise:
 
-**AV_ERR_INVALID_VAL** is returned if the capability instance is invalid or the pointer to the video width range is null.
+**AV_ERR_INVALID_VAL**: The capability instance is invalid or the pointer to the video width range is null.
 
 
 ### OH_AVCapability_GetVideoWidthRangeForHeight()
@@ -726,13 +726,13 @@ Obtains the video width range supported by a video codec based on a given height
 | -------- | -------- |
 | capability | Pointer to the video codec capability. A pointer to the audio codec capability cannot be filled in. | 
 | height | Number of vertical video pixels. | 
-| widthRange | Output parameter. Pointer to the video width range supported. | 
+| widthRange | Pointer to the video width range supported. | 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+**AV_ERR_OK** if the operation is successful; one of the following error codes defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise:
 
-**AV_ERR_INVALID_VAL** is returned if the capability instance is invalid, the height is not within the supported height range obtained through [OH_AVCapability_GetVideoHeightRange](#oh_avcapability_getvideoheightrange), or the pointer to the width range is null.
+**AV_ERR_INVALID_VAL**: The capability instance is invalid, the height is not within the supported height range obtained through [OH_AVCapability_GetVideoHeightRange](#oh_avcapability_getvideoheightrange), or the pointer to the width range is null.
 
 
 ### OH_AVCapability_IsEncoderBitrateModeSupported()
@@ -757,7 +757,7 @@ Checks whether an encoder supports a specific bit rate mode.
 
 **Returns**
 
-Returns **true** if the bit rate mode is supported; returns **false** otherwise.
+Check result for the support of the bit rate mode. **true** if supported, **false** otherwise.
 
 
 ### OH_AVCapability_IsFeatureSupported()
@@ -782,7 +782,7 @@ Checks whether a codec supports a feature.
 
 **Returns**
 
-Returns **true** if the feature is supported; returns **false** otherwise.
+Check result for the feature. **true** if supported, **false** otherwise.
 
 
 ### OH_AVCapability_IsHardware()
@@ -806,7 +806,7 @@ Checks whether a codec capability instance describes a hardware codec.
 
 **Returns**
 
-Returns **true** if the codec capability instance describes a hardware codec; returns **false**.
+Check result for whether the codec capability instance describes a hardware codec. **true** if it describes a hardware codec, **false** otherwise.
 
 
 ### OH_AVCapability_IsVideoSizeSupported()
@@ -832,7 +832,7 @@ Checks whether a video codec supports a specific video size.
 
 **Returns**
 
-Returns **true** if the video size is supported; returns **false** otherwise.
+Check result for the support of the video size. **true** if supported, **false** otherwise.
 
 
 ### OH_AVCodec_GetCapability()
@@ -857,7 +857,7 @@ Obtains the codec capability recommended by the system.
 
 **Returns**
 
-Returns a pointer to the codec capability instance if an existing codec matches; returns NULL otherwise.
+Pointer to the codec capability instance. If no existing codec matches, NULL is returned.
 
 
 ### OH_AVCodec_GetCapabilityByCategory()
@@ -883,4 +883,4 @@ Obtains the codec capability by category, which can be a hardware codec or softw
 
 **Returns**
 
-Returns a pointer to the codec capability instance if an existing codec matches; returns NULL otherwise.
+Pointer to the codec capability instance. If no existing codec matches, NULL is returned.

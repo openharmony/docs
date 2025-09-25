@@ -65,14 +65,14 @@ struct Index {
     Row() {
       Column() {
         FullScreenLaunchComponent({
-          content: ColumChild,
+          content: ColumnChild,
           appId: this.appId,
           options: {},
           onTerminated: (info) => {
-            console.info("onTerminated code: " + info.code.toString());
+            console.info(`onTerminated code: ${info.code.toString()}`);
           },
           onError: (err) => {
-            console.error("onError code: " + err.code + ", message: ", err.message);
+            console.error(`onError code: ${err.code}, message: ${err.message}`);
           }
         }).width("80vp").height("80vp")
       }
@@ -83,9 +83,9 @@ struct Index {
 }
 
 @Builder
-function ColumChild() {
+function ColumnChild() {
   Column() {
-    Image($r('app.media.icon'))
+    Image($r('app.media.startIcon'))
     Text('test')
   }
 }

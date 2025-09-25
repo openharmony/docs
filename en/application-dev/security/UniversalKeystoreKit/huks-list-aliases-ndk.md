@@ -1,18 +1,18 @@
 # Querying Key Aliases (C/C++)
 
-
 This topic walks you through on how to query key aliases.
+
 >**NOTE**<br>
 > The mini-system devices do not support query of key aliases.
 
 ## Add the dynamic library in the CMake script.
 ```txt
-   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 ```
 
 ## How to Develop
 
-1. Initialize the key property set. The tag used for querying key aliases must be [OH_HUKS_TAG_AUTH_STORAGE_LEVEL](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_authstoragelevel).
+1. Initialize the key property set The tag used for querying key aliases must be [OH_HUKS_TAG_AUTH_STORAGE_LEVEL](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_authstoragelevel).
 
 2. Use [OH_Huks_ListAliases](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_listaliases) to query key aliases.
 
@@ -20,6 +20,7 @@ This topic walks you through on how to query key aliases.
 /* Query key aliases. */
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
+#include "napi/native_api.h"
 #include <string.h>
 OH_Huks_Result InitParamSet(
     struct OH_Huks_ParamSet **paramSet,

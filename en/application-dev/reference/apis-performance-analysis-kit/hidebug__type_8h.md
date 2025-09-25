@@ -82,5 +82,5 @@ Defines the structs of the HiDebug module. \@kit PerformanceAnalysisKit
 
 | Name| Description| 
 | -------- | -------- |
-| [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode-1) {<br>HIDEBUG_SUCCESS = 0,<br>HIDEBUG_INVALID_ARGUMENT = 401,<br>HIDEBUG_TRACE_CAPTURED_ALREADY = 11400102,<br>HIDEBUG_NO_PERMISSION = 11400103,<br>HIDEBUG_TRACE_ABNORMAL = 11400104,<br>HIDEBUG_NO_TRACE_RUNNING = 11400105<br>} | Enumerates the error codes used in the HiDebug module. | 
-| [HiDebug_TraceFlag](_hi_debug.md#hidebug_traceflag-1) {<br>HIDEBUG_TRACE_FLAG_MAIN_THREAD = 1,<br>HIDEBUG_TRACE_FLAG_ALL_THREADS = 2<br>} | Enumerates the thread types for trace collection. | 
+| [HiDebug_ErrorCode](_hi_debug.md#hidebug_errorcode-1) {<br/>HIDEBUG_SUCCESS = 0,<br/>HIDEBUG_INVALID_ARGUMENT = 401,<br/>HIDEBUG_TRACE_CAPTURED_ALREADY = 11400102,<br/>HIDEBUG_NO_PERMISSION = 11400103,<br/>HIDEBUG_TRACE_ABNORMAL = 11400104,<br/>HIDEBUG_NO_TRACE_RUNNING = 11400105<br/>} | Enumerates the error codes used in the HiDebug module. | 
+| [HiDebug_TraceFlag](_hi_debug.md#hidebug_traceflag-1) {<br/>HIDEBUG_TRACE_FLAG_MAIN_THREAD = 1,<br/>HIDEBUG_TRACE_FLAG_ALL_THREADS = 2<br/>} | Enumerates the thread types for trace collection. | 

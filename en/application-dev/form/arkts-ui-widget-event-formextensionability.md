@@ -1,6 +1,10 @@
 # Transferring Messages to an Application (message Event)
-
-On the widget page, you can trigger a message event via the [postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction) API to launch the **FormExtensionAbility**. The FormExtensionAbility then notifies the application through the **onFormEvent** callback. This process enables the functionality of passing messages to the application after a widget is touched. Subsequently, the **FormExtensionAbility** refreshes the widget content. Below is a simple example.
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+On the widget page, you can trigger a message event via the [postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction-1) API to launch the FormExtensionAbility. The FormExtensionAbility then notifies the application through the **onFormEvent** callback. This process enables the functionality of passing messages to the application after a widget is touched. Subsequently, the FormExtensionAbility refreshes the widget content. Below is a simple example.
 
 > **NOTE**
 >

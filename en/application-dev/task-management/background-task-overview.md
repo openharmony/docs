@@ -19,7 +19,7 @@ You can select a proper background task type to ensure that your application can
 
 - **Transient tasks**: suitable for tasks that have high requirements on real-time performance and can be completed in a short period of time, for example, status saving.
 
-- **Continuous tasks**: suitable for tasks that need to run in the background for a long time and can be perceived by users, such as music playback in the background, navigation, and device connection. Using continuous tasks to prevent application processes from being suspended.
+- **Continuous tasks**: suitable for tasks that need to run in the background for a long time and can be perceived by users, such as music playback in the background, navigation, and device connection. You can use continuous tasks to prevent application processes from being suspended.
 
 - **Deferred tasks**: suitable for tasks that do not have high requirements on real-time performance and can be executed at a later time. The system enqueues these tasks and schedules them in a unified manner based on the memory and power consumption.
 

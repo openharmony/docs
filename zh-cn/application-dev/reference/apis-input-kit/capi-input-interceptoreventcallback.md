@@ -1,5 +1,12 @@
 # Input_InterceptorEventCallback
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## 概述
 
 拦截回调事件结构体，拦截鼠标事件、触屏事件和轴事件。

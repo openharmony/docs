@@ -962,7 +962,7 @@ class EntryAbility extends ServiceExtensionAbility {
     // 使用启动方的Caller身份信息启动新Ability
     this.context.startAbilityAsCaller(localWant, (err) => {
       if (err && err.code != 0) {
-        console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
+        console.error(`startAbilityAsCaller failed, err: ${JSON.stringify(err)}`);
       } else {
         console.info('startAbilityAsCaller success.');
       }
@@ -1044,7 +1044,7 @@ class EntryAbility extends ServiceExtensionAbility {
     // 使用启动方的Caller身份信息启动新Ability
     this.context.startAbilityAsCaller(localWant, option, (err) => {
       if (err && err.code != 0) {
-        console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
+        console.error(`startAbilityAsCaller failed, err: ${JSON.stringify(err)}`);
       } else {
         console.info('startAbilityAsCaller success.');
       }
@@ -1137,7 +1137,7 @@ class EntryAbility extends ServiceExtensionAbility {
         console.info('startAbilityAsCaller success.');
       })
       .catch((err: BusinessError) => {
-        console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
+        console.error(`startAbilityAsCaller failed, err: ${JSON.stringify(err)}`);
       })
   }
 }
@@ -1621,8 +1621,6 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 将当前Ability连接到一个指定account的ServiceExtensionAbility。仅支持在主线程调用。
 
-当前仅在phone、tablet设备上生效。
-
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
@@ -1631,6 +1629,8 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 **需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口在Phone、Tablet中可正常调用，在其他设备类型中返回16000006错误码。
 
 **系统接口**：此接口为系统接口。
 
@@ -2653,9 +2653,9 @@ startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 **系统接口**：此接口为系统接口。
 
 **参数：**
-| 参数名 | 类型 | 只读 | 可选 | 说明                 |
-| ------ | ---- | ---- | -------------------- | -------------------- |
-| want   | [Want](js-apis-app-ability-want.md) | 是  | 否 | Want类型参数，传入需要启动的Ability的信息，如Ability名称，Bundle名称等。 |
+| 参数名 | 类型 | 必填 | 说明                 |
+| ------ | ---- | ---- | -------------------- |
+| want   | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，传入需要启动的Ability的信息，如Ability名称，Bundle名称等。 |
 
 **返回值：**
 

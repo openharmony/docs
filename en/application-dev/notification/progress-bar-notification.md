@@ -1,5 +1,10 @@
 # Publishing a Progress Notification
-
+<!--Kit: Notification Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
+<!--Adviser: @huipeizi-->
 
 The progress notification is a commonly used notification type, mainly used to display the progress of an ongoing operation, such as file downloading. When publishing a progress notification through the notification subsystem, you can use the readily available template by specifying the related attributes, such as the template name and template data.
 
@@ -7,11 +12,11 @@ In the [NotificationTemplate](https://gitee.com/openharmony/docs/blob/master/en/
 
 ## Available APIs
 
- 
+[isSupportTemplate()](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerissupporttemplate) is used to check whether a specific template is supported. Currently, only the progress bar template is supported.
 
 | Name| Description|
 | -------- | -------- |
-| isSupportTemplate(templateName: string): Promise\<boolean\> | Checks whether a specific template is supported. This API uses an asynchronous callback to return the result. For details, see [isSupportTemplate()](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerissupporttemplate).<br>Only the progress-type template is supported.|
+| isSupportTemplate(templateName: string): Promise\<boolean\> | Checks whether a specific template is supported.|
 
 
 ## How to Develop
@@ -31,8 +36,8 @@ In the [NotificationTemplate](https://gitee.com/openharmony/docs/blob/master/en/
    
    ```ts
    notificationManager.isSupportTemplate('downloadTemplate').then((data:boolean) => {
-     hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in supporting download template notification.');
      let isSupportTpl: boolean = data; // The value true means that the template of the downloadTemplate type is supported, and false means the opposite.
+     hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in supporting download template notification. data is ${isSupportTpl}`);
    }).catch((err: BusinessError) => {
      hilog.error(DOMAIN_NUMBER, TAG, `Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
    });

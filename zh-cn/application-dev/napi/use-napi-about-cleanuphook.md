@@ -129,7 +129,7 @@ ArkTS侧示例代码
 ```ts
 // index.ets
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 let wk = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 // 发送消息到worker线程
@@ -144,7 +144,7 @@ wk.onmessage = (message) => {
 ```ts
 // worker.ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 import testNapi from 'libentry.so';
 
 let parent = worker.workerPort;
@@ -153,7 +153,7 @@ parent.onmessage = (message) => {
   hilog.info(0x0000, 'testTag', 'Test Node-API message from main thread: %{public}s', JSON.stringify(message));
   // 发送消息到主线程
   parent.postMessage('Test Node-API worker:' + testNapi.napiEnvCleanUpHook());
-}
+};
 ```
 
 worker相关开发配置和流程参考以下链接：
@@ -272,6 +272,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_add_async_cleanup_hook: %{public}s', testNapi.napiAsyncCleanUpHook());
 } catch (error) {

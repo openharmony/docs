@@ -4,7 +4,7 @@ Double-Ended Queue (Deque) is a data structure implemented based on a circular q
 
 Queue allows element removal at the front and insertion at the rear. Compared with [Queue](js-apis-queue.md), which only allows element deletion at the front and insertion at the back, Deque permits insertion and deletion at both ends.
 
-Both [Vector](js-apis-vector.md) and Deque support insertion and deletion at the ends, but Deque does not support insertion in the middle. Deque is more efficient than a Vector for inserting and deleting elements at the front, whereas a Vector excels in element access efficiency.
+Both [ArrayList](js-apis-arraylist.md) and Deque support insertion and deletion at the ends, but Deque does not support insertion in the middle. Deque is more efficient than an ArrayList for inserting and deleting elements at the front, whereas an ArrayList excels in element access efficiency.
 
 **Recommended use case**: Use **Deque** when you need to frequently insert or remove elements at both the ends of a container.
 
@@ -213,6 +213,7 @@ deque.insertEnd(5);
 deque.insertFront(2);
 deque.insertFront(4);
 let result = deque.popFirst();
+console.log("result = ", result) // result =  4
 ```
 
 ### popLast
@@ -256,7 +257,7 @@ let result = deque.popLast();
 forEach(callbackFn: (value: T, index?: number, deque?: Deque&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the elements in this Deque and obtain their indexes.
+Uses a callback to traverse each element in the **Deque** instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

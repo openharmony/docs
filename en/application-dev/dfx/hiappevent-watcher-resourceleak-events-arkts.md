@@ -2,7 +2,7 @@
 
 ## Available APIs
 
-For details about how to use the APIs (such as parameter usage constraints and value ranges), see [Application Event Logging](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
+For details about how to use the APIs, see [Application Event Logging](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md).
 
 | API                                             | Description                                        |
 | --------------------------------------------------- | -------------------------------------------- |
@@ -118,3 +118,5 @@ To obtain profiler logs, enable **System resource leak log** in **Developer opti
     > After receiving the subscribed event, the application should obtain the path of the heap snapshot file from the **external_log** field of the event, move or upload the file to the cloud as soon as possible, and then delete the original heap snapshot file. Otherwise, the next heap snapshot file may fail to be generated due to insufficient storage space (up to 2 GB) of the application sandbox path directory.<br>
     > The value **field** in the JSON5 configuration file supports the key-value pair set **key1:value1;key2:value2;...**. Currently, the **oomdump** function can be enabled in the nolog version only for applications configured with the preceding key-value pairs.<br>
     > Change the extension of the .log file generated after subscription to **.rawheap**, use [rawheap-translator](../tools/rawheap-translator.md) to convert the file to a .heapsnapshot file, and open the file using DevEco Studio or a browser. For details, see [Importing Heap Snapshots Offline](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-snapshot-basic-operations#section6760173514388).
+   >
+   > Since API 14, you can change the log file name extension to **.rawheap** and import it to DevEco Studio for display. For details, see [Importing Raw Heap Data Offline](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-snapshot-basic-operations#section1888195110017).

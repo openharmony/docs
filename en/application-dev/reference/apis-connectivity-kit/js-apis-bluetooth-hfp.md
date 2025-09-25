@@ -1,4 +1,10 @@
-# @ohos.bluetooth.hfp (Bluetooth HFP Module)
+# @ohos.bluetooth.hfp (Bluetooth HFP)
+
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
 
 The **hfp** module provides APIs for using the Bluetooth Hands-Free Profile (HFP).
 
@@ -25,7 +31,7 @@ type BaseProfile = baseProfile.BaseProfile
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md) | **BaseProfile** API definition.|
+| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md)| **BaseProfile** API definition.|
 
 
 ## hfp.createHfpAgProfile
@@ -40,7 +46,7 @@ Creates an **HfpAgProfile** instance.
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| HandsFreeAudioGatewayProfile | **HfpAgProfile** instance created.|
+| [HandsFreeAudioGatewayProfile](#handsfreeaudiogatewayprofile) | **HfpAgProfile** instance created.|
 
 **Error codes**
 

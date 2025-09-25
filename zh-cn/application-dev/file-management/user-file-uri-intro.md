@@ -136,7 +136,7 @@ async function example(context: common.UIAbilityContext) {
 
 ### 媒体文件uri获取方式
 
-1. 通过[PhotoAccessHelper的PhotoViewPicker](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker)选择媒体文件，返回选择的媒体文件文件的URI。
+1. 通过[PhotoAccessHelper的PhotoViewPicker](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker)选择媒体文件，返回选择的媒体文件的URI。
 
 2. 通过[photoAccessHelper模块](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)中的[getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)或[createAsset](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createasset)接口获取媒体文件对应文件的URI。<!--Del-->
 
@@ -183,7 +183,7 @@ let uris: Array<string> = [];
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
 
 // 调用PhotoViewPicker.select选择图片
-async function photoPickerGetUri(context: common.UIAbilityContext) {
+async function photoPickerGetUri() {
   try {  
     let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
@@ -201,7 +201,7 @@ async function photoPickerGetUri(context: common.UIAbilityContext) {
   }
 }
 
-async function uriGetAssets() {
+async function uriGetAssets(context: common.UIAbilityContext) {
 try {
     let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();

@@ -11,7 +11,7 @@ The **dragController** module provides APIs for initiating drag actions. When re
 ## Modules to Import
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 ```
 
 ## dragController.executeDrag<sup>(deprecated)</sup>
@@ -54,7 +54,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 > You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
@@ -169,7 +169,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 > You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
 
 ```ts
-import { dragController } from "@kit.ArkUI"
+import { dragController } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
@@ -330,7 +330,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 > You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
@@ -377,7 +377,7 @@ struct DragControllerPage {
       Button('Drag Multiple Objects').onTouch((event?:TouchEvent) => {
         if(event){
           if (event.type == TouchType.Down) {
-            console.info("muti drag Down by listener");
+            console.info("multi drag Down by listener");
             this.customBuilders.splice(0, this.customBuilders.length);
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
@@ -458,7 +458,7 @@ Starts the drag service. This API uses a promise to return the result.
 > You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
@@ -479,7 +479,7 @@ struct DragControllerPage {
 
   build() {
     Column() {
-      Button('Touch to Drag').onTouch((event?:TouchEvent) => {
+      Button('touch to execute drag').onTouch((event?:TouchEvent) => {
         if(event){
           if (event.type == TouchType.Down) {
             this.customBuilders.splice(0, this.customBuilders.length);
@@ -535,7 +535,7 @@ Subscribes to drag state changes.
 > You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
@@ -617,7 +617,7 @@ Unsubscribes from drag state changes.
 > You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController } from '@kit.ArkUI';
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
@@ -854,7 +854,7 @@ export default class EntryAbility extends UIAbility {
 
 import { unifiedDataChannel } from '@kit.ArkData';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { dragController, curves, promptAction, UIContext } from "@kit.ArkUI";
+import { dragController, curves, promptAction, UIContext } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -927,7 +927,7 @@ struct DragControllerPage {
             this.getUIContext().getDragController().executeDrag(() => { // You are advised to usethis.getUIContext().getDragController().executeDrag().
               this.DraggingBuilder()
             }, dragInfo, (err , eve) => {
-              hilog.info(0x0000, `ljx ${JSON.stringify(err)}`, '')
+              hilog.info(0x0000, `${JSON.stringify(err)}`, '')
               if (eve && eve.event) {
                 if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
                   hilog.info(0x0000, 'success', '');

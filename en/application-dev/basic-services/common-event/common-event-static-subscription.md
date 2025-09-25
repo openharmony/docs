@@ -1,4 +1,9 @@
 # Subscribing to Common Events in Static Mode (for System Applications Only)
+<!--Kit: Basic Services Kit-->
+<!--Subsystem: Notification-->
+<!--Owner: @michael_woo888-->
+<!--Designer: @dongqingran; @wulong158-->
+<!--Tester: @wanghong1997-->
 
 ## When to Use
 
@@ -131,7 +136,7 @@ The [StaticSubscriberExtensionAbility](../../reference/apis-basic-services-kit/j
    | **Name**| **Description**                                                    | **Data Type**| **Initial Value Allowed**  |
    | ------------ | ------------------------------------------------------------ | ------------ | ---------------- |
    | event        | Name of the event to be filtered out for static subscription events. The event name should match with the event list; otherwise, the configuration is invalid.| String      | No|
-   | conditions   | Filter criteria of an event, which is obtained from [CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md#commoneventpublishdata).| Object        | No|
+   | conditions   | Filter criteria of an event, which is obtained from [CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md). | Object        | No|
 
    The **conditions** tag identifies the condition configuration for filtering static subscription events. The tag value is of the object type and contains three subtags: **code**, **data**, and **parameters**.
 
@@ -164,4 +169,3 @@ The [StaticSubscriberExtensionAbility](../../reference/apis-basic-services-kit/j
    > **NOTE**
    >
    > The **install_list_capability.json** file is available only for preinstalled applications.
-<!--no_check-->

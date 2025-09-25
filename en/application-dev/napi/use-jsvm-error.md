@@ -2,7 +2,7 @@
 
 ## Introduction
 
-JSVM-API provides APIs for handling errors occurred in JavaScript (JS) code using exceptions. Properly using these APIs helps improve module stability and reliability.
+The JSVM-API interface is used for error handling to better manage and respond to errors. Properly using these APIs helps improve module stability and reliability.
 
 ## Basic Concepts
 
@@ -30,7 +30,7 @@ These concepts are important in exception and error handling. Properly using met
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in error handling.
+For details about the JSVM-API development process, see [Using JSVM-API to Implement Interactive Development Between JS and C/C++](use-jsvm-process.md). This document describes only the C++ code corresponding to the APIs.
 
 ### OH_JSVM_Throw
 
@@ -50,8 +50,8 @@ static void GetLastErrorAndClean(JSVM_Env env) {
     JSVM_Value result = nullptr;
     JSVM_Status status = OH_JSVM_GetAndClearLastException(env, &result);
     // Log error information.
-    JSVM_Value message;
-    JSVM_Value errorCode;
+    JSVM_Value message = nullptr;
+    JSVM_Value errorCode = nullptr;
     OH_JSVM_GetNamedProperty((env), result, "message", &message);
     OH_JSVM_GetNamedProperty((env), result, "code", &errorCode);
     char messagestr[256];
@@ -113,7 +113,7 @@ static JSVM_Value JsVmThrowError(JSVM_Env env, JSVM_CallbackInfo info)
         // Throw an error if no parameter is passed in.
         OH_JSVM_ThrowError(env, "-1", "has Error");
     } else if (argc == 1) {
-        size_t length;
+        size_t length = 0;
         // Obtain the length of the string passed from JS from the input parameter.
         OH_JSVM_GetValueStringUtf8(env, argv[0], nullptr, 0, &length);
         char *buffer = new char[length + 1];
@@ -139,7 +139,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(jsVmThrowError();jsVmThrowError("self defined error message");)JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM error message: has Error, error code: -1
 JSVM error message: self defined error message, error code: self defined error code
@@ -162,13 +162,13 @@ static JSVM_Value JsVmThrowTypeError(JSVM_Env env, JSVM_CallbackInfo info) {
         // Throw an error if no parameter is passed in.
         OH_JSVM_ThrowTypeError(env, "-1", "throwing type error");
     } else if (argc == 1) {
-        size_t length;
+        size_t length = 0;
         // Obtain the length of the string in the input parameter passed from JS.
         OH_JSVM_GetValueStringUtf8(env, argv[0], nullptr, 0, &length);
         char *buffer = new char[length + 1];
         // Obtain the string of the input parameter.
         OH_JSVM_GetValueStringUtf8(env, argv[0], buffer, length + 1, nullptr);
-        // Populate the error information to OH_JSVM_ThrowError.
+        // Populate the error information to OH_JSVM_ThrowTypeError.
         OH_JSVM_ThrowTypeError(env, "self defined error code", buffer);
         delete[] buffer;
     }
@@ -188,7 +188,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(jsVmThrowTypeError();jsVmThrowTypeError("self defined error message");)JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM error message: throwing type error, error code: -1
 JSVM error message: self defined error message, error code: self defined error code
@@ -234,7 +234,7 @@ const char *srcCallNative = R"JS(jsVmThrowRangeError(1);)JS";
 ```
 
 
-**Expected output**
+Expected result:
 ```ts
 JSVM error message: Expected two numbers as arguments, error code: OH_JSVM_ThrowRangeError
 ```
@@ -282,7 +282,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(jsVmThrowSyntaxError();)JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM error message: throw syntax error, error code: JsVmThrowSyntaxError
 ```
@@ -327,7 +327,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(jsVmIsError(Error()))JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM API call OH_JSVM_IsError success, result is 1
 ```
@@ -370,7 +370,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(jsVmCreateTypeError();)JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM API Create TypeError SUCCESS
 ```
@@ -413,7 +413,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(jsVmCreateRangeError();)JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM API CreateRangeError SUCCESS
 ```
@@ -447,7 +447,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = JsVmCreateSyntaxError},
 };
 static JSVM_CallbackStruct *method = param;
-// Alias for the JsVmCreateThrowError method to be called from JS.
+// Alias for the JsVmCreateSyntaxError method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmCreateSyntaxError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -455,7 +455,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(jsVmCreateSyntaxError();)JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM API CreateSyntaxError SUCCESS
 ```
@@ -495,7 +495,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(jsVmGetAndClearLastException();)JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM API OH_JSVM_GetAndClearLastException SUCCESS
 ```
@@ -508,7 +508,7 @@ CPP code:
 
 ```cpp
 // hello.cpp
-// Define OH_JSVM_GetAndClearLastException.
+// Sample method of OH_JSVM_IsExceptionPending
 static JSVM_Value JsVmIsExceptionPending(JSVM_Env env, JSVM_CallbackInfo info) {
     JSVM_Status status;
     bool isExceptionPending = false;
@@ -547,7 +547,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(jsVmIsExceptionPending();)JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM API OH_JSVM_IsExceptionPending: SUCCESS
 ```
@@ -595,10 +595,10 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"jsVmGetLastErrorInfo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 // Call the C++ code from JS.
-const char *srcCallNative = R"JS(jsVmGetLastErrorInfo();)JS";}
+const char *srcCallNative = R"JS(jsVmGetLastErrorInfo();)JS";
 ```
 
-**Expected output**
+Expected result:
 ```ts
 JSVM API OH_JSVM_GetLastErrorInfo: SUCCESS, error message is A number was expected, error code is 6
 ```

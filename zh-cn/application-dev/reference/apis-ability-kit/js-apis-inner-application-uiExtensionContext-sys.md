@@ -1,5 +1,12 @@
 # UIExtensionContext (系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhangyafei-echo-->
+<!--Designer: @li-weifeng2-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 UIExtensionContext是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)，提供UIExtensionAbility的相关配置信息以及操作UIAbility的方法，如启动UIAbility等。
 
 > **说明：**
@@ -74,7 +81,7 @@ export default class UIExtension extends UIExtensionAbility {
       abilityName: 'EntryAbility',
       moduleName: 'entry'
     }).then((data) => {
-      console.log(`StartAbilityForResultAsCaller success, data: ${JSON.stringify(data)}.`);
+      console.info(`StartAbilityForResultAsCaller success, data: ${JSON.stringify(data)}.`);
     }).catch((error: BusinessError) => {
       console.error(`StartAbilityForResultAsCaller failed, err code: ${error.code}, err msg: ${error.message}.`);
     });
@@ -104,7 +111,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>
 
 | 类型 | 说明 |
 | ------ | ------ |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -193,7 +200,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 | 类型 | 说明 |
 | ------ | ------ |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -269,6 +276,8 @@ setHostPageOverlayForbidden(isForbidden: boolean) : void
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在Phone和Tablet设备中可正常调用，在其他设备中返回801错误码。
 
 **参数**：
 

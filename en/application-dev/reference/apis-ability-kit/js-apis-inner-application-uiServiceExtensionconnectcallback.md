@@ -95,7 +95,7 @@ struct UIServiceExtensionAbility {
       // Connect to the UIServiceExtensionAbility.
       context.connectUIServiceExtensionAbility(startWant, this.dataCallBack)
         .then((proxy: common.UIServiceProxy) => {
-          console.info(TAG + `try to connectUIServiceExtensionAbility ${proxy}}`);
+          console.info(TAG + `try to connectUIServiceExtensionAbility ${proxy}`);
           this.comProxy = proxy;
           let formData: Record<string, string> = {
             'PATH': '/tmp/aaa.jpg'

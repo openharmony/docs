@@ -1,6 +1,13 @@
 # @ohos.app.ability.autoStartupManager (autoStartupManager) (System API)
 
-The module provides APIs for listening for auto-startup status changes of application components and setting application components to automatically start upon system boot.
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhu-feimo; @Luobniz21-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
+The autoStartupManager module provides APIs to listen for auto-startup status changes of application components. You can use the APIs to get updates on these changes.
 
 > **NOTE**
 >
@@ -20,7 +27,7 @@ import { autoStartupManager } from '@kit.AbilityKit';
 
 on(type: 'systemAutoStartup', callback: AutoStartupCallback): void
 
-Subscribes to auto-startup status change events of an application component.
+Registers a callback to listen for auto-startup status changes of an application component.
 
 **Required permissions**: ohos.permission.MANAGE_APP_BOOT
 
@@ -31,7 +38,7 @@ Subscribes to auto-startup status change events of an application component.
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | type | string | Yes   | Event type. The value is fixed at **systemAutoStartup**, which can be called only by system applications.|
-| callback  | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md)   | Yes   | Callback used for subscription.     |
+| callback  | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md)   | Yes   | Callback used for registration.     |
 
 **Error codes**
 
@@ -62,7 +69,7 @@ try {
 } catch (err) {
   let code = (err as BusinessError).code;
   let msg = (err as BusinessError).message;
-  console.error(`autostartupmanager on success, err code: ${code}, err msg: ${msg}.`);
+  console.error(`autostartupmanager on failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -70,7 +77,7 @@ try {
 
 off(type: 'systemAutoStartup', callback?: AutoStartupCallback): void
 
-Unsubscribes from auto-startup status change events of an application component.
+Unregisters the callback used to listen for auto-startup status changes of an application component.
 
 **Required permissions**: ohos.permission.MANAGE_APP_BOOT
 
@@ -81,7 +88,7 @@ Unsubscribes from auto-startup status change events of an application component.
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | type | string              | Yes   | Event type. The value is fixed at **systemAutoStartup**, which can be called only by system applications.|
-| callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md)   | No| Callback used for unsubscription.|
+| callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md)   | No| Callback used for unregistration.|
 
 **Error codes**
 
@@ -112,7 +119,7 @@ try {
 } catch (err) {
   let code = (err as BusinessError).code;
   let msg = (err as BusinessError).message;
-  console.error(`autostartupmanager on success, err code: ${code}, err msg: ${msg}.`);
+  console.error(`autostartupmanager on failed, err code: ${code}, err msg: ${msg}.`);
 }
 ```
 
@@ -125,6 +132,10 @@ Sets an application component to automatically start upon system boot. This API 
 **Required permissions**: ohos.permission.MANAGE_APP_BOOT
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Device behavior differences**
+- Starting from API version 18, this API can be properly called on 2-in-1 devices and wearables. If it is called on other device types, error code 16000050 is returned.
+- For versions earlier than API version 18, this API can be properly called only on 2-in-1 devices. If it is called on other device types, error code 16000050 is returned.
 
 **Parameters**
 
@@ -179,6 +190,10 @@ Sets an application component to automatically start upon system boot. This API 
 **Required permissions**: ohos.permission.MANAGE_APP_BOOT
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Device behavior differences**
+- Starting from API version 18, this API can be properly called on 2-in-1 devices and wearables. If it is called on other device types, error code 16000050 is returned.
+- For versions earlier than API version 18, this API can be properly called only on 2-in-1 devices. If it is called on other device types, error code 16000050 is returned.
 
 **Parameters**
 
@@ -237,6 +252,10 @@ Cancels the auto-startup setting for an application component. This API uses an 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**Device behavior differences**
+- Starting from API version 18, this API can be properly called on 2-in-1 devices and wearables. If it is called on other device types, error code 16000050 is returned.
+- For versions earlier than API version 18, this API can be properly called only on 2-in-1 devices. If it is called on other device types, error code 16000050 is returned.
+
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description            |
@@ -290,6 +309,10 @@ Cancels the auto-startup setting for an application component. This API uses a p
 **Required permissions**: ohos.permission.MANAGE_APP_BOOT
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Device behavior differences**
+- Starting from API version 18, this API can be properly called on 2-in-1 devices and wearables. If it is called on other device types, error code 16000050 is returned.
+- For versions earlier than API version 18, this API can be properly called only on 2-in-1 devices. If it is called on other device types, error code 16000050 is returned.
 
 **Parameters**
 
@@ -348,6 +371,10 @@ Obtains information about all auto-startup application components. This API uses
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**Device behavior differences**
+- Starting from API version 18, this API can be properly called on 2-in-1 devices and wearables. If it is called on other device types, error code 16000050 is returned.
+- For versions earlier than API version 18, this API can be properly called only on 2-in-1 devices. If it is called on other device types, error code 16000050 is returned.
+
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description            |
@@ -395,6 +422,10 @@ Obtains information about all auto-startup application components. This API uses
 **Required permissions**: ohos.permission.MANAGE_APP_BOOT
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Device behavior differences**
+- Starting from API version 18, this API can be properly called on 2-in-1 devices and wearables. If it is called on other device types, error code 16000050 is returned.
+- For versions earlier than API version 18, this API can be properly called only on 2-in-1 devices. If it is called on other device types, error code 16000050 is returned.
 
 **Return value**
 

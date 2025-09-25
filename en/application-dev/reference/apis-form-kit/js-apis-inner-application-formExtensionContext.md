@@ -24,3 +24,22 @@ import { FormExtensionAbility } from '@kit.FormKit';
 **Model restriction**: This API can be used only in the stage model.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+## When to Use
+FormExtensionContext provides information about a FormExtensionAbility, module, and HAP. You can use the information based on service requirements.
+```ts
+import { FormExtensionAbility, formBindingData } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onAddForm(want: Want) {
+    console.info(`FormExtensionAbility onAddForm, want: ${want.abilityName}`);
+    let formData: Record<string, string> = {
+      'temperature': '11c',
+      'time': '11:00'
+    };
+    console.info("current language is: ", this.context.config.language);
+    return formBindingData.createFormBindingData(formData);
+  }
+};
+```

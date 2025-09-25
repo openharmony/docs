@@ -1640,6 +1640,151 @@ try {
 }
 ```
 
+## BundleInstaller.installPlugin<sup>19+</sup>
+
+installPlugin(hostBundleName: string, pluginFilePaths: Array\<string\>, pluginParam?: PluginParam): Promise\<void\> 
+
+应用安装插件，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INSTALL_PLUGIN_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名        | 类型                          | 必填 | 说明                                                          |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| hostBundleName   | string                        | 是   | 待安装插件的应用包名。                                           |
+| pluginFilePaths  | Array\<string\>                  | 是   | 存储插件程序包的路径。当传入多个文件路径或者一个目录时，需确保这些文件是同一插件程序的HSP，且这些HSP的签名需要保持一致。  |
+| pluginParam  | [PluginParam](#pluginparam19)      | 否   | 指定安装插件所需的参数，默认值：参照 [PluginParam](#pluginparam19) 的默认值。 |
+
+**返回值：**
+
+| 类型            | 说明                                   |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.INSTALL_PLUGIN_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 17700001 | The specified hostBundleName cannot be found or the bundle is not installed by the specified user. |
+| 17700004 | The userId is invalid. |
+| 17700010 | Failed to install the plugin because the plugin fails to be parsed. |
+| 17700011 | Failed to install the plugin because the plugin signature fails to be verified. |
+| 17700012 | Failed to install the plugin because the HSP path is invalid or the HSP is too large. |
+| 17700015 | Failed to install the plugin because they have different configuration information. |
+| 17700016 | Failed to install the plugin because of insufficient system disk space. |
+| 17700017 | Failed to install the plugin since the version of the plugin to install is too early. |
+| 17700048 | Failed to install the plugin because the code signature verification is failed. |
+| 17700052 | Failed to install the plugin because debug bundle cannot be installed under non-developer mode. |
+| 17700073 | Failed to install the plugin because a plugin with the same bundle name but different signature information exists on the device. |
+| 17700087 | Failed to install the plugin because the current device does not support plugin. |
+| 17700088 | Failed to install the plugin because the host application lacks ohos.permission.kernel.SUPPORT_PLUGIN. |
+| 17700089 | Failed to install the plugin because the plugin id fails to be parsed. |
+| 17700090 | Failed to install the plugin because the plugin id fails to be verified. |
+| 17700091 | Failed to install the plugin because the plugin name is same as host bundle name. |
+
+**示例：**
+```ts
+import { installer } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let hostBundleName = 'com.example.application';
+let pluginFilePaths = ['/data/bms_app_install/test.hsp'];
+let pluginParam : installer.PluginParam = {
+    userId : 100,
+};
+
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.installPlugin(hostBundleName, pluginFilePaths, pluginParam)
+            .then(() => {
+                console.info('installPlugin successfully.');
+        }).catch((error: BusinessError) => {
+            console.error('installPlugin failed:' + error.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('installPlugin failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
+## BundleInstaller.uninstallPlugin<sup>19+</sup>
+
+uninstallPlugin(hostBundleName: string, pluginBundleName: string, pluginParam?: PluginParam): Promise\<void\>
+
+应用卸载插件，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.UNINSTALL_PLUGIN_BUNDLE
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名        | 类型                          | 必填 | 说明                                                          |
+| ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
+| hostBundleName   | string                        | 是   | 待卸载插件的应用包名。                       |
+| pluginBundleName  | string                  | 是   |   插件的包名。 |
+| pluginParam  | [PluginParam](#pluginparam19)      | 否   | 指定卸载插件所需的参数，默认值：参照 [PluginParam](#pluginparam19) 的默认值。 |
+
+**返回值：**
+
+| 类型            | 说明                                   |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201 | Calling interface without permission 'ohos.permission.UNINSTALL_PLUGIN_BUNDLE'. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 17700001 | The specified bundle name is not found. |
+| 17700004 | The user id is invalid. |
+| 17700092 | Failed to uninstall the plugin because the specified plugin is not found. |
+
+**示例：**
+```ts
+import { installer } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let hostBundleName = 'com.example.application';
+let pluginBundleName = 'com.ohos.pluginDemo';
+let pluginParam : installer.PluginParam = {
+    userId : 100,
+};
+
+try {
+    installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.uninstallPlugin(hostBundleName, pluginBundleName, pluginParam)
+            .then(() => {
+                console.info('uninstallPlugin successfully.');
+        }).catch((error: BusinessError) => {
+            console.error('uninstallPlugin failed:' + error.message);
+        });
+    }).catch((error: BusinessError) => {
+        console.error('uninstallPlugin failed. Cause: ' + error.message);
+    });
+} catch (error) {
+    let message = (error as BusinessError).message;
+    console.error('getBundleInstaller failed. Cause: ' + message);
+}
+```
+
 ## HashParam
 
 应用程序安装卸载哈希参数信息。
@@ -1753,3 +1898,16 @@ PGO（Profile-guided Optimization）配置文件参数信息。
 | ----------- | ------ | ----| ---- | ------------------------------------------------------------ |
 | userId      | number | 否 | 是  | 指定删除分身应用所在的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。默认值：调用方所在用户。            |
 | parameters  | Array<[Parameters](#parameters15)> | 否 | 是   | 指定删除分身应用扩展参数，默认值为空。            |
+
+## PluginParam<sup>19+</sup>
+
+插件应用安装、卸载的参数信息。
+
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+ **系统接口：** 此接口为系统接口。
+
+| 名称        | 类型   | 只读 | 可选 | 说明                                                          |
+| ----------- | ------ | ---- | --- | ------------------------------------------------------------ |
+| userId      | number | 否   | 是 | 指定安装、卸载插件程序所在的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。默认值：调用方所在用户。            |
+| parameters  | Array<[Parameters](#parameters15)> | 否 | 是 | 指定安装、卸载插件程序的扩展参数，默认值为空。            |

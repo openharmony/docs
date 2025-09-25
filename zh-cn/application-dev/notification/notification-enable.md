@@ -40,7 +40,7 @@
       if(!data){
         notificationManager.requestEnableNotification(context).then(() => {
           hilog.info(DOMAIN_NUMBER, TAG, `[ANS] requestEnableNotification success`);
-        }).catch((err : BusinessError) => {
+        }).catch((err: BusinessError) => {
           if(1600004 == err.code){
             hilog.error(DOMAIN_NUMBER, TAG, `[ANS] requestEnableNotification refused, code is ${err.code}, message is ${err.message}`);
           } else {
@@ -48,7 +48,7 @@
           }
         });
       }
-    }).catch((err : BusinessError) => {
+    }).catch((err: BusinessError) => {
         hilog.error(DOMAIN_NUMBER, TAG, `isNotificationEnabled fail, code is ${err.code}, message is ${err.message}`);
     });
     ```
@@ -61,12 +61,14 @@
       hilog.info(DOMAIN_NUMBER, TAG, "isNotificationEnabled success, data: " + JSON.stringify(data));
       if(!data){
           notificationManager.openNotificationSettings(context).then(() => {
-            hilog.info(0x0000, 'testTag', `[ANS] openNotificationSettings success`);
+            hilog.info(DOMAIN_NUMBER, TAG, `[ANS] openNotificationSettings success`);
           }).catch((err: BusinessError) => {
-            hilog.error(0x0000, 'testTag', `[ANS] openNotificationSettings failed, code is ${err.code}, message is ${err.message}`);
+            hilog.error(DOMAIN_NUMBER, TAG, `[ANS] openNotificationSettings failed, code is ${err.code}, message is ${err.message}`);
           });
       }
-    })
+    }).catch((err: BusinessError) => {
+        hilog.error(DOMAIN_NUMBER, TAG, `isNotificationEnabled fail, code is ${err.code}, message is ${err.message}`);
+    });
     ```
 
 

@@ -24,7 +24,7 @@ In the following example, when a user clicks the **Upload** button on the fronte
       Column() {
         Web({ src: $rawfile('local.html'), controller: this.controller })
           .onShowFileSelector((event) => {
-            console.log('MyFileUploader onShowFileSelector invoked');
+            console.info('MyFileUploader onShowFileSelector invoked');
             const documentSelectOptions = new picker.DocumentSelectOptions();
             let uri: string | null = null;
             const documentViewPicker = new picker.DocumentViewPicker();
@@ -52,17 +52,17 @@ In the following example, when a user clicks the **Upload** button on the fronte
   <html>
   <head>
       <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width" />
       <title>Document</title>
   </head>
 
   <body>
   <!-- Click the Upload button -->
-  <input type="file" value="file"></br>
-  <meta name="viewport" content="width=device-width" />
+  <input type="file"><br>
   </body>
   </html>
   ```
-
+![web-app-document](./figures/web-app-document.gif)
 
 ## Starting Gallery Using onShowFileSelector
 
@@ -74,22 +74,21 @@ In the following example, when a user clicks the **Upload** button on the fronte
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
-  import { picker } from '@kit.CoreFileKit';
   import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController()
+    controller: webview.WebviewController = new webview.WebviewController();
 
     async selectFile(result: FileSelectorResult): Promise<void> {
       let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
       let photoPicker = new photoAccessHelper.PhotoViewPicker();
-      // Set the MIME file type to IMAGE.
+      // Set the mime file type to IMAGE_VIDEO.
       photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
       // Set the maximum number of media files that can be selected.
       photoSelectOptions.maxSelectNumber = 5;
-      let chooseFile: picker.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
+      let chooseFile: photoAccessHelper.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
       // Obtain the list of selected files.
       result.handleFileList(chooseFile.photoUris);
     }
@@ -116,17 +115,17 @@ In the following example, when a user clicks the **Upload** button on the fronte
   <html>
   <head>
       <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width" />
       <title>Document</title>
   </head>
 
   <body>
   <!-- Click the Upload button -->
-  <input type="file" value="file"></br>
-  <meta name="viewport" content="width=device-width" />
+  <input type="file"><br>
   </body>
   </html>
   ```
-
+![web-app-photo](./figures/web-app-photo.gif)
 
 ## Starting Camera Using onShowFileSelector
 
@@ -169,10 +168,10 @@ struct Index {
             //You can use event.fileSelector.getAcceptType() and event.fileSelector.isCapture() to determine the file type and filter files to start different file selectors.
             openCamera((result) => {
                 if (event) {
-                console.log('Title is ' + event.fileSelector.getTitle());
-                console.log('Mode is ' + event.fileSelector.getMode());
-                console.log('Accept types are ' + event.fileSelector.getAcceptType());
-                console.log('Capture is ' + event.fileSelector.isCapture());
+                console.info('Title is ' + event.fileSelector.getTitle());
+                console.info('Mode is ' + event.fileSelector.getMode());
+                console.info('Accept types are ' + event.fileSelector.getAcceptType());
+                console.info('Capture is ' + event.fileSelector.isCapture());
                 event.result.handleFileList([result]);
                 }
             }, this.getUIContext())
@@ -209,17 +208,17 @@ HTML page code:
                 () => {
                     // Convert the image file into a Base64 string.
                     img.src = fileReader.result;
+                    img.style.display = "block";
                 },
-                false,
+                false
             );
             fileReader.readAsDataURL(event.target.files[0]);
-            img.style.display = "block";
         }
     </script>
 </body>
 </html>
 ```
-
+![web-app-camera](./figures/web-app-camera.gif)
 
 ## Processing File Upload Requests Using the Default ArkWeb Mode
 
@@ -285,11 +284,11 @@ HTML page code:
                 () => {
                     // Convert the image file into a Base64 string.
                     img.src = fileReader.result;
+                    img.style.display = "block";
                 },
-                false,
+                false
             );
             fileReader.readAsDataURL(event.target.files[0]);
-            img.style.display = "block";
         }
     </script>
 </body>
@@ -304,7 +303,7 @@ import { webview } from '@kit.ArkWeb';
 @Entry
 @Component
 struct Index {
-  webviewController: webview.WebviewController = new webview.WebviewController()
+  webviewController: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
@@ -315,7 +314,7 @@ struct Index {
   }
 }
 ```
-
+![web-default-camera](./figures/web-default-camera.gif)
 
 ## FAQs
 
@@ -332,3 +331,9 @@ For example, if the value of **accept** is **video/mp4, .png**, **getAcceptType*
 ### What is the default ArkWeb dialog box used for?
 
 When a user selects **Image**, the gallery is started. The user can choose to upload images or videos based on the value of the **accept** attribute. When a user selects **Photo**, the camera is started. The user can choose to take photos or record videos based on the value of the **accept** attribute. When a user selects **File**, the file manager is started. The user can upload any content.
+
+### How to use handleFileList?
+
+This function submits the selected file path to ArkWeb. The input parameters are of two types.
+1. File protocol path. Currently, only the public path whose prefix is **file://media/** or **file://docs/** and the application bundle name path of `file://<packageName>/` are supported. Other file protocol paths do not have the permission.
+2. Sandbox directory. For details, see [Application Sandbox](../file-management/app-sandbox-directory.md).

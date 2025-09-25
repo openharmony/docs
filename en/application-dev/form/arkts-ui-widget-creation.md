@@ -1,33 +1,38 @@
 # Creating an ArkTS Widget
-## How to Create
-You can create a widget in either of the following modes:
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
+## Creating an ArkTS Widget
+You can use either of the following ways to create widgets.
 
-- When creating a project, select **Application**, and then right-click a module folder and choose **New** > **Service Widget** to create a widget.
-- When creating a project, select **Atomic Service**, and then right-click a module folder and choose **New** > **Service Widget** to create a widget.
+- Select **Application**, and then right-click a module folder and choose **New** > **Service Widget** to create a widget.
+- Select **Atomic Service**, and then right-click a module folder and choose **New** > **Service Widget** to create a widget.<br>
 
 ![WidgetCreateProject](figures/WidgetCreateProject.png)
 >**NOTE**
 >
->The UI may be different in DevEco Studio of a different version.
+> The UI may be different in DevEco Studio of a different version.
 
-To create an ArkTS widget in an existing project, perform the following steps:
+In an existing application project, right-click to create an ArkTS widget. The procedure is as follows:
 
-1. Right-click a module folder and choose **New** > **Service Widget**. 
+1. Right-click a module folder and choose **New** > **Service Widget**.
    ![WidgetProjectCreate1](figures/WidgetProjectCreate1.png)
 >**NOTE**
 >
->For a project developed using API version 10 or later based on the stage model, you can create a dynamic or static widget from the **Service Widget** menu. You can also change the widget type by setting the **isDynamic** parameter in the [form_config.json file](arkts-ui-widget-configuration.md) of the widget. If **isDynamic** is left unspecified or set to **true**, the widget is a [dynamic widget](./arkts-ui-widget-configuration.md#isdynamic-field). If **isDynamic** is set to **false**, the widget is a [static widget](./arkts-ui-widget-configuration.md#isdynamic-field).
+> In a project using the stage model of API version 10 or later, you can directly create dynamic widgets or static widgets through the **Service Widget** menu. After a widget is created, you can modify the widget type by setting the **isDynamic** parameter in the [form_config.json file](arkts-ui-widget-configuration.md) of the widget. If **isDynamic** is left empty or set to **true**, the widget is a [dynamic widget](./arkts-form-overview.md#dynamic-widget). If **isDynamic** is set to **false**, the widget is a [static widget](./arkts-form-overview.md#static-widget).
    
-2. Select a widget template based on the actual service scenario. 
+2. Select a widget template based on the actual service scenario.
    ![WidgetProjectCreate2](figures/WidgetProjectCreate2.png)
 
-3. Set **Language** to **ArkTS**, set **Support dimension** to the desired widget size, and then set **Default dimension** to the default widget dimension. You can refer to or modify the widget dimension in the [form_config.json](arkts-ui-widget-configuration.md) file. Then, you can click **Finish** to create an ArkTS widget. 
+- Set **Language** to **ArkTS**, **Support dimension** to the desired widget size, and **Default dimension** to the default widget dimension. Then click **Finish** to create an ArkTS widget. You can refer to or modify the widget dimension in the [form_config.json](arkts-ui-widget-configuration.md#fields-in-configuration-file) file.
    ![WidgetProjectCreate3](figures/WidgetProjectCreate3.png)
    
-   You are advised to name the widget based on the actual scenario. After an ArkTS widget is created, the following widget-related files are automatically added to the project directory: **EntryFormAbility.ets** (widget lifecycle management file), **WidgetCard.ets** (widget page file), and **form_config.json** (widget configuration file). 
+   You are advised to name the widget based on the actual scenario. After an ArkTS widget is created, the following widget-related files are automatically added to the project directory: **EntryFormAbility.ets** (widget lifecycle management file), **WidgetCard.ets** (widget page file), and **form_config.json** (widget configuration file).
    ![WidgetProjectView](figures/WidgetProjectView.png)
 ## Project Structure
-**Figure 1** ArkTS widget project directory and related modules 
+**Figure 1** ArkTS widget project directory and related modules
 ![WidgetModules](figures/WidgetModules.png)
 
 
@@ -47,4 +52,6 @@ To create an ArkTS widget in an existing project, perform the following steps:
 
 - [Widget configuration](arkts-ui-widget-configuration.md): includes FormExtensionAbility configuration and widget configuration.
    - Configure the FormExtensionAbility information under **extensionAbilities** in the [module.json5 file](../quick-start/module-configuration-file.md).
-   - Configure the widget configuration information (**WidgetCard.ets**) in the [form_config.json](arkts-ui-widget-configuration.md) file in **resources/base/profile**.
+   - Configure **WidgetCard.ets** in the [form_config.json](arkts-ui-widget-configuration.md#fields-in-configuration-file) file under the **resources/base/profile/** directory.
+
+

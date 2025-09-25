@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Node-API provides APIs for converting data between C/C++ and ArkTS data types and obtaining the ArkTS objects in specified format.
+With Node-API APIs, developers can interact with ArkTS objects in the Node-API module to transform data and obtain specific objects. These operations play an important role in different scenarios, enabling developers to process ArkTS values and objects more flexibly.
 
 ## Basic Concepts
 
@@ -12,22 +12,22 @@ Before using Node-API to operate ArkTS objects, you need to understand the follo
 
 ## Available APIs
 
-The following table lists the APIs for converting data between ArkTS and C/C++ types.
+The following APIs are used to interact with ArkTS from C/C++ code, transfer data, and perform operations.
 | API| Description|
 | -------- | -------- |
-| napi_coerce_to_bool | Forcibly converts an ArkTS value to an ArkTS Boolean value.|
-| napi_coerce_to_number | Forcibly converts an ArkTS value to an ArkTS number.|
-| napi_coerce_to_object | Forcibly converts an ArkTS value to an ArkTS object.|
-| napi_coerce_to_string | Forcibly converts an ArkTS value to an ArkTS string.|
-| napi_get_boolean | Obtains the ArkTS Boolean value based on the given C Boolean value.|
+| napi_coerce_to_bool | Forcibly converts the given ArkTS value to an ArkTS Boolean value.|
+| napi_coerce_to_number | Forcibly converts the given ArkTS value to an ArkTS number.|
+| napi_coerce_to_object | Forcibly converts the given ArkTS value to an ArkTS object.|
+| napi_coerce_to_string | Forcibly converts the given ArkTS value to an ArkTS string.|
+| napi_get_boolean | Obtains the ArkTS boolean value based on the given C boolean value.|
 | napi_get_value_bool | Obtains the C/C++ equivalent of the given ArkTS Boolean value.|
 | napi_get_global | Obtains an ArkTS global object so that it can be accessed and manipulated in C/C++.|
-| napi_get_null | Obtains the ArkTS **null**.|
-| napi_get_undefined | Obtains the ArkTS **undefined**.|
+| napi_get_null | Obtains ArkTS null.|
+| napi_get_undefined | Obtains ArkTS undefined.|
 
 ## Example
 
-If you are just starting out with Node-API, see [Node-API Development Process](use-napi-process.md). The following demonstrates only the C++ and ArkTS code involved in the primitive-related APIs.
+For details about the Node-API development process, see [Using Node-APIs to Implement Cross-Language Interactive Development](use-napi-process.md). This document describes only the C++ and ArkTS code corresponding to the APIs.
 
 ### napi_coerce_to_bool
 
@@ -62,8 +62,8 @@ export const coerceToBool: <T>(data: T) => boolean;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 let value = testNapi.coerceToBool<number>(0);
 let str = testNapi.coerceToBool<string>('111111111');
@@ -82,7 +82,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_bool:%{public}s', re
 
 ### napi_coerce_to_number
 
-Call **napi_coerce_to_number** to forcibly convert an ArkTS value to an ArkTS number.
+Forcibly converts the given ArkTS value to an ArkTS number.
 
 CPP code:
 
@@ -112,17 +112,15 @@ export const coerceToNumber: <T>(data: T) => number;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 let value = testNapi.coerceToNumber<string>('2556');
 let str = testNapi.coerceToNumber<string>('sssss');
 let bool = testNapi.coerceToNumber<boolean>(true);
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_number:%{public}d', value);
-// Not-a-Number (NaN) is returned since 'sssss' is not a valid number.
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_number:%{public}d', str);
-// The boolean value true is converted into 1.
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_number:%{public}d', bool);
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_number:%{public}d', str);    // The value is NAN.
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_number:%{public}d', bool);   // The value is 1.
 ```
 
 ### napi_coerce_to_object
@@ -157,8 +155,8 @@ export const coerceToObject: <T>(data: T) => Object;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 let value = testNapi.coerceToObject<string>('222222');
 let result = testNapi.coerceToObject<number>(111);
@@ -202,8 +200,8 @@ export const coerceToString: <T>(data: T) => string;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 let value = testNapi.coerceToString<number>(212);
 let obj = new Object();
@@ -216,12 +214,13 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_string:%{public}s', 
 
 ### napi_get_boolean
 
-Call **napi_get_boolean** to obtain the ArkTS Boolean value based on the given C Boolean value.
+Obtains the equivalent ArkTS Boolean value based on the given C Boolean value.
 
 CPP code:
 
 ```cpp
 #include "napi/native_api.h"
+#include "hilog/log.h"
 
 static napi_value GetBoolean(napi_env env, napi_callback_info info)
 {
@@ -229,14 +228,22 @@ static napi_value GetBoolean(napi_env env, napi_callback_info info)
     size_t argc = 2;
     napi_value argv[2];
     napi_valuetype data, value;
-    napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+    napi_status status = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_get_cb_info failed");
+        return nullptr;
+    }
     // Check the types of the two parameters.
     napi_typeof(env, argv[0], &data);
     napi_typeof(env, argv[1], &value);
 
     napi_value returnValue = nullptr;
     // Check whether the types of the two parameters are the same and return the result via a Boolean value.
-    napi_get_boolean(env, data == value, &returnValue);
+    status = napi_get_boolean(env, data == value, &returnValue);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_get_boolean failed");
+        return nullptr;
+    }
     // Return the result.
     return returnValue;
 }
@@ -246,14 +253,14 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const getBoolean: <T>(data: T, value: String) => boolean;
+export const getBoolean: <T>(data: T, value: string) => boolean;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 let value = testNapi.getBoolean<number>(1, '1');
 let data = testNapi.getBoolean<string>('sss', '1');
@@ -269,6 +276,7 @@ CPP code:
 
 ```cpp
 #include "napi/native_api.h"
+#include "hilog/log.h"
 
 static napi_value GetValueBool(napi_env env, napi_callback_info info)
 {
@@ -283,7 +291,11 @@ static napi_value GetValueBool(napi_env env, napi_callback_info info)
         return nullptr;
     }
     napi_value boolNapi = nullptr;
-    napi_get_boolean(env, bool_c, &boolNapi);
+    status = napi_get_boolean(env, bool_c, &boolNapi);
+    if (status != napi_ok) {
+        OH_LOG_ERROR(LOG_APP, "napi_get_boolean failed");
+        return nullptr;
+    }
     return boolNapi;
 }
 ```
@@ -292,14 +304,14 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const getValueBool: (value: boolean | string) => boolean | void;
+export const getValueBool: (value: boolean | string) => boolean | undefined;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 // Pass in a Boolean value and a non-Boolean value. After the Boolean value is passed in, the Boolean value is returned. After the non-Boolean value is passed in, undefined is returned.
 hilog.info(0x0000, 'Node-API', 'get_value_bool_not_bool %{public}s', testNapi.getValueBool ('Hello 123'));
@@ -309,7 +321,7 @@ hilog.info(0x0000, 'Node-API', 'get_value_bool_false %{public}s', testNapi.getVa
 
 ### napi_get_global
 
-Call **napi_get_global** to obtain an ArkTS global object. You can use this API to obtain the **napi_value** that represents an ArkTS global object, so that the global object of the ArkTS runtime can be called by C/C++.
+Obtains a global ArkTS object. This function is used to obtain the napi_value of the ArkTS global object so that the C/C++ module can interact with the ArkTS global object.
 
 CPP code:
 
@@ -335,8 +347,8 @@ export const getGlobal: () => Object;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 let globalObj = testNapi.getGlobal();
 // Check whether the obtained global object has its own properties.
@@ -345,7 +357,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_global:%{public}s', global
 
 ### napi_get_null
 
-Call **napi_get_null** to obtain **null** in ArkTS.
+Obtains the null value in ArkTS.
 
 CPP code:
 
@@ -370,8 +382,8 @@ export const getNull: () => null;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 let value = testNapi.getNull();
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_null:%{public}s', value);
@@ -379,7 +391,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_null:%{public}s', value);
 
 ### napi_get_undefined
 
-Call **napi_get_undefined** to obtain **undefined** in ArkTS.
+Obtains the undefined value in ArkTS.
 
 CPP code:
 
@@ -416,8 +428,8 @@ export const getUndefined: (value: undefined) => boolean;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import testNapi from 'libentry.so';
 
 let data: undefined = undefined;
 let value = testNapi.getUndefined(data);
@@ -430,5 +442,5 @@ To print logs in the native CPP, add the following information to the **CMakeLis
 // CMakeLists.txt
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
-target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)
 ```

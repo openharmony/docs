@@ -1,4 +1,9 @@
 # Developing a JS Widget (Stage Model)
+<!--Kit: Form Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @cx983299475-->
+<!--Designer: @xueyulong-->
+<!--Tester: @chenmingze-->
 The stage model is supported since API version 9. It is the mainstream model with a long evolution plan. This model is object-oriented and provides open application components as classes. You can derive application components for capability expansion.
 
 ## Available APIs
@@ -14,9 +19,9 @@ The **FormExtensionAbility** class has the following APIs. For details, see [For
 | onFormEvent(formId:&nbsp;string,&nbsp;message:&nbsp;string):&nbsp;void                           | Called to instruct the widget provider to process a widget event.|
 | onRemoveForm(formId:&nbsp;string):&nbsp;void                                                     | Called to notify the widget provider that a widget is being destroyed.|
 | onConfigurationUpdate(newConfig:&nbsp;Configuration):&nbsp;void                                  | Called when the configuration of the environment where the widget is running is being updated.|
-| onShareForm?(formId:&nbsp;string):&nbsp;Record&lt;string,&nbsp;Object&gt;                        | Called to notify the widget provider that the widget host is sharing the widget data.|
+| onShareForm?(formId:&nbsp;string):&nbsp;Record&lt;string,&nbsp;Object&gt;                        | Called to notify the widget provider that the widget host is sharing the widget data. |
 
-The **FormProvider** class has the following APIs. For details, see [FormProvider](../reference/apis-form-kit/js-apis-app-form-formProvider.md).
+The following table lists some APIs provided by the **formProvider** class. For details about the APIs, see [API Reference](../reference/apis-form-kit/js-apis-app-form-formProvider.md).
 
 | Name| Description|
 | -------- | -------- |
@@ -25,7 +30,7 @@ The **FormProvider** class has the following APIs. For details, see [FormProvide
 | updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;formBindingData.FormBindingData,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | Updates a widget. This API uses an asynchronous callback to return the result.|
 | updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;formBindingData.FormBindingData):&nbsp;Promise&lt;void&gt; | Updates a widget. This API uses a promise to return the result.|
 
-The **FormBindingData** class has the following APIs. For details, see [FormBindingData](../reference/apis-form-kit/js-apis-app-form-formBindingData.md).
+The **FormBindingData** class has the following APIs. For details, see [FormBindingData](../reference/apis-form-kit/js-apis-app-form-formProvider.md).
 
 | Name| Description|
 | -------- | -------- |

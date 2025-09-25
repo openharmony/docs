@@ -53,7 +53,7 @@ import { AbilityStage } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {
-    console.log('MyAbilityStage.onCreate is called');
+    console.info('MyAbilityStage.onCreate is called');
   }
 }
 ```
@@ -91,7 +91,7 @@ import { AbilityStage, Want } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
   onAcceptWant(want: Want) {
-    console.log('MyAbilityStage.onAcceptWant called');
+    console.info('MyAbilityStage.onAcceptWant called');
     return 'com.example.test';
   }
 }
@@ -111,9 +111,9 @@ onNewProcessRequest(want: Want): string
 仅支持sys/commonUI类型的UIExtensionAbility组件在[module.json5配置文件](../../quick-start/module-configuration-file.md)配置文件中配置isolationProcess字段为true。
 <!--DelEnd-->
 
-该接口仅在2in1和tablet设备上生效。
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：该接口仅在2in1和Tablet设备中可正常执行回调，在其他设备上不执行回调。
 
 **参数：**
 
@@ -134,7 +134,7 @@ import { AbilityStage, Want } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
   onNewProcessRequest(want: Want) {
-    console.log('MyAbilityStage.onNewProcessRequest called');
+    console.info('MyAbilityStage.onNewProcessRequest called');
     return 'com.example.test';
   }
 }
@@ -164,7 +164,7 @@ import { AbilityStage, Configuration } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
   onConfigurationUpdate(config: Configuration) {
-    console.log(`MyAbilityStage.onConfigurationUpdate, language: ${config.language}`);
+    console.info(`MyAbilityStage.onConfigurationUpdate, language: ${config.language}`);
   }
 }
 ```
@@ -194,7 +194,7 @@ import { AbilityStage, AbilityConstant } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
   onMemoryLevel(level: AbilityConstant.MemoryLevel) {
-    console.log(`MyAbilityStage.onMemoryLevel, level: ${JSON.stringify(level)}`);
+    console.info(`MyAbilityStage.onMemoryLevel, level: ${JSON.stringify(level)}`);
   }
 }
 ```
@@ -216,7 +216,7 @@ import { AbilityStage } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
   onDestroy() {
-    console.log('MyAbilityStage.onDestroy is called');
+    console.info('MyAbilityStage.onDestroy is called');
   }
 }
 ```
@@ -229,8 +229,6 @@ onPrepareTermination(): AbilityConstant.PrepareTermination
 
 > **说明：**
 >
-> - 从API version 15开始，该接口在2in1设备上生效；从API version 19开始，该接口在tablet设备上生效。
->
 > - 仅当应用正常退出（例如，通过doc栏/托盘关闭应用，或者应用随设备关机而退出）时会调用该接口。如果应用被强制关闭，则不会调用该接口。
 >
 > - 当[AbilityStage.onPrepareTerminationAsync](#onprepareterminationasync15)实现时，本回调函数将不执行。
@@ -240,6 +238,10 @@ onPrepareTermination(): AbilityConstant.PrepareTermination
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：
+- 从API version 15开始，该接口仅在2in1设备中可正常执行回调，在其他设备上不执行回调。
+- 从API version 19开始，该接口仅在2in1和Tablet设备中可正常执行回调，在其他设备上不执行回调。
 
 **返回值：**
 
@@ -268,8 +270,6 @@ onPrepareTerminationAsync(): Promise\<AbilityConstant.PrepareTermination>
 
 > **说明：**
 >
-> - 从API version 15开始，该接口在2in1设备上生效；从API version 19开始，该接口在tablet设备上生效。
->
 > - 仅当应用正常退出（例如，通过doc栏/托盘关闭应用，或者应用随设备关机而退出）时会调用该接口。如果应用被强制关闭，则不会调用该接口。
 >
 > - 若异步回调内发生crash，按超时处理，执行等待超过10秒未响应，应用将被强制关闭。
@@ -279,6 +279,10 @@ onPrepareTerminationAsync(): Promise\<AbilityConstant.PrepareTermination>
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**设备行为差异**：
+- 从API version 15开始，该接口仅在2in1设备中可正常执行回调，在其他设备上不执行回调。
+- 从API version 19开始，该接口仅在2in1和Tablet设备中可正常执行回调，在其他设备上不执行回调。
 
 **返回值：**
 

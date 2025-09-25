@@ -29,7 +29,7 @@ Checks whether the current device is active.
 
 **Error codes**
 
-For details about the error codes, see [Power Manager Error Codes](errorcode-power.md)¡£
+For details about the error codes, see [Power Manager Error Codes](errorcode-power.md).
 
 | ID   | Description    |
 |---------|---------|
@@ -87,7 +87,7 @@ Obtains the power mode of this device.
 
 **Error codes**
 
-For details about the error codes, see [Power Manager Error Codes](errorcode-power.md)¡£
+For details about the error codes, see [Power Manager Error Codes](errorcode-power.md).
 
 | ID   | Description    |
 |---------|---------|

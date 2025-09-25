@@ -1,8 +1,8 @@
 # WindowExtensionContext (System API)
 
-The **WindowExtensionContext** module, inherited from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md), is the context environment of the WindowExtensionAbility.
+The WindowExtensionContext module provides the context environment for the WindowExtensionAbility. It inherits from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md).
 
-The **WindowExtensionContext** module provides the capabilities of the [WindowExtensionAbility](js-apis-application-windowExtensionAbility-sys.md), including starting the ability.
+The module provides the capabilities of the [WindowExtensionAbility](js-apis-application-windowExtensionAbility-sys.md), including starting the ability.
 
 > **NOTE**
 >
@@ -14,7 +14,7 @@ The **WindowExtensionContext** module provides the capabilities of the [WindowEx
 
 ## Usage
 
-Before using the **WindowExtensionContext** module, you must define a child class that inherits from **WindowExtensionAbility**.
+Before using the WindowExtensionContext module, you must define a child class that inherits from WindowExtensionAbility.
 
 ```ts
 import { WindowExtensionAbility, WindowExtensionContext } from '@kit.ArkUI';

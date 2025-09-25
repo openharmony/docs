@@ -2,7 +2,7 @@
 
 ## Available APIs
 
-For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent).
+For details about how to use the APIs (such as parameter usage restrictions and value ranges), see [HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md).
 
 **Subscription APIs**
 
@@ -15,30 +15,32 @@ For details about how to use the APIs (such as parameter usage restrictions and 
 
 The following describes how to subscribe to the freeze event triggered by a button click.
 
-1. Create a native C++ project and import the **jsoncpp** file to the project. The directory structure is as follows:
+1. Obtain the **jsoncpp.cpp**, **json.h**, and **json-forwards.h** files by referring to **Using JsonCpp in your project** in [JsonCpp](https://github.com/open-source-parsers/jsoncpp).
+
+2. Create a native C++ project and import the preceding files to the project. The directory structure is as follows:
 
    ```yml
    entry:
      src:
        main:
          cpp:
-           - json:
-               - json.h
-               - json-forwards.h
-           - types:
-               libentry:
-                 - index.d.ts
+           json:
+             - json.h
+             - json-forwards.h
+           types:
+             libentry:
+               - index.d.ts
            - CMakeLists.txt
-           - napi_init.cpp
            - jsoncpp.cpp
+           - napi_init.cpp
          ets:
-           - entryability:
-               - EntryAbility.ets
-           - pages:
-               - Index.ets
+           entryability:
+             - EntryAbility.ets
+           pages:
+             - Index.ets
    ```
 
-2. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
+3. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
 
    ```cmake
    # Add the jsoncpp.cpp file, which is used to parse the JSON strings in the subscription events.
@@ -47,7 +49,7 @@ The following describes how to subscribe to the freeze event triggered by a butt
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libhiappevent_ndk.z.so)
    ```
 
-3. Import the dependency files to the **napi_init.cpp** file, and define **LOG_TAG**.
+4. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**.
 
    ```c++
    #include "napi/native_api.h"
@@ -59,11 +61,11 @@ The following describes how to subscribe to the freeze event triggered by a butt
    #define LOG_TAG "testTag"
    ```
 
-4. Subscribe to system events.
+5. Subscribe to system events.
 
-   - Watcher of the onReceive type:
+   - Watcher of the **onReceive** type.
 
-     In the **napi_init.cpp** file, define the methods related to the watcher of the onReceive type.
+     In the **napi_init.cpp** file, define the methods related to the watcher of the **onReceive** type.
 
      ```c++
      // Define a variable to cache the pointer to the created watcher.
@@ -138,9 +140,9 @@ The following describes how to subscribe to the freeze event triggered by a butt
      }
      ```
 
-   - Watcher of the onTrigger type:
+   - Watcher of the **onTrigger** type:
 
-     In the **napi_init.cpp** file, define the methods related to the watcher of the OnTrigger type.
+     In the **napi_init.cpp** file, define the methods related to the watcher of the **OnTrigger** type.
 
      ```c++
      // Define a variable to cache the pointer to the created watcher.
@@ -224,7 +226,7 @@ The following describes how to subscribe to the freeze event triggered by a butt
      }
      ```
 
-5. Register **RegisterWatcher** as an ArkTS API.
+6. Register **RegisterWatcher** as an ArkTS API.
 
    In the **napi_init.cpp** file, register **RegisterWatcher** as an ArkTS API.
 
@@ -245,18 +247,18 @@ The following describes how to subscribe to the freeze event triggered by a butt
    export const registerWatcher: () => void;
    ```
 
-6. In the **EntryAbility.ets** file, add the following interface invocation to **onCreate()**.
+7. In the **EntryAbility.ets** file, add the following API to **onCreate()**.
 
    ```typescript
    // Import the dependent module.
    import testNapi from 'libentry.so'
 
-   // Add the interface invocation to onCreate().
+   // Add the API to onCreate().
    // Register the system event watcher at startup.
    testNapi.registerWatcher();
    ```
 
-7. In the **Index.ets** file, add a button to trigger the freeze event.
+8. In the **Index.ets** file, add a button to trigger the freeze event.
 
    ```typescript
    Button("appFreeze").onClick(() => {
@@ -266,9 +268,9 @@ The following describes how to subscribe to the freeze event triggered by a butt
    })
    ```
 
-8. In DevEco Studio, click the **Run** button to run the project. Then, click the **appfreeze** button to trigger a freeze event.
+9. In DevEco Studio, click the **Run** button to run the project. Then, click the **appfreeze** button to trigger a freeze event.
 
-9. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
+10. The application crashes. After restarting the application, you can view the following event information in the **Log** window.
 
    ```text
    HiAppEvent eventInfo.domain=OS
@@ -294,7 +296,7 @@ The following describes how to subscribe to the freeze event triggered by a butt
    HiAppEvent eventInfo.params.log_over_limit=0
    ```
 
-10. Remove the event watcher.
+11. Remove the event watcher.
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -304,7 +306,7 @@ The following describes how to subscribe to the freeze event triggered by a butt
     }
     ```
 
-11. Destroy the event watcher.
+12. Destroy the event watcher.
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {

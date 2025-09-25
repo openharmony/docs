@@ -25,24 +25,29 @@ The performance tracing APIs are provided by the **HiTraceMeter** module. For de
 | void OH_HiTrace_FinishAsyncTraceEx(HiTrace_Output_Level level, const char* name, int32_t taskId) | Stops an asynchronous time slice trace with the trace output level specified. Stops a tracing task. The values of **name** and **taskId** must be the same as those in **OH_HiTrace_StartAsyncTraceEx**.<br>**Note**: This API is supported since API version 19.|
 | void OH_HiTrace_CountTraceEx(HiTrace_Output_Level level, const char* name, int64_t count) | Traces an integer with the trace output level specified. Traces the value changes of an integer variable.<br>**Note**: This API is supported since API version 19.|
 | bool OH_HiTrace_IsTraceEnabled(void)                         | Checks whether application trace capture is enabled. If not, HiTraceMeter performance tracing is invalid.<br>**Note**: This API is supported since API version 19.|
+| void OH_HiTrace_StartTrace(const char* name)                 | Starts a synchronous time slice trace.<br>Since API version 19, this API is not recommended. You are advised to use the [OH_HiTrace_StartTraceEx](../reference/apis-performance-analysis-kit/_hitrace.md#oh_hitrace_starttraceex) API.<br>Note: This API is supported since API version 10.|
+| void OH_HiTrace_FinishTrace()                                | Ends a synchronous time slice trace.<br>Since API version 19, this API is not recommended. You are advised to use the [OH_HiTrace_FinishTraceEx](../reference/apis-performance-analysis-kit/_hitrace.md#oh_hitrace_finishtraceex) API.<br>Note: This API is supported since API version 10.|
+| void OH_HiTrace_StartAsyncTrace(const char* name, int32_t taskId) | Starts an asynchronous time slice trace.<br>Since API version 19, this API is not recommended. You are advised to use the [OH_HiTrace_StartAsyncTraceEx](../reference/apis-performance-analysis-kit/_hitrace.md#oh_hitrace_startasynctraceex) API.<br>Note: This API is supported since API version 10.|
+| void OH_HiTrace_FinishAsyncTrace(const char* name, int32_t taskId) | Ends an asynchronous time slice trace.<br>Since API version 19, this API is not recommended. You are advised to use the [OH_HiTrace_FinishAsyncTraceEx](../reference/apis-performance-analysis-kit/_hitrace.md#oh_hitrace_finishasynctraceex) API.<br>Note: This API is supported since API version 10.|
+| void OH_HiTrace_CountTrace(const char* name, int64_t count)  | Performs an integer trace.<br>Since API version 19, this API is not recommended. You are advised to use the [OH_HiTrace_CountTraceEx](../reference/apis-performance-analysis-kit/_hitrace.md#oh_hitrace_counttraceex) API.<br>Note: This API is supported since API version 10.|
 
 > **NOTE**
 >
 > The vertical bar (|) is used as the separator in [user-mode trace format](./hitracemeter-view.md#user-mode-trace-format). Therefore, the string parameters passed by the HiTraceMeter APIs must exclude this character to avoid trace parsing exceptions.
 
-HiTraceMeter logging APIs are classified into three types by functionality/behavior: API for synchronous time slice tracing, API for asynchronous time slice tracing, and API for integer tracing. Both synchronous and asynchronous time slice tracing APIs are synchronous APIs. You can use HiTraceMeter APIs with [HiTraceChain](./hitracechain-guidelines-ndk.md) to perform tracing and analysis across devices, processes, and threads.
+HiTraceMeter logging APIs are classified into three types by functionality/behavior: API for synchronous time slice tracing, API for asynchronous time slice tracing, and API for integer tracing. Both synchronous and asynchronous time slice tracing APIs are synchronous APIs. HiTraceMeter APIs can be used with [HiTraceChain](./hitracechain-guidelines-ndk.md) to associate and analyze logging across devices, processes, or threads.
 
 - The synchronous time slice tracing APIs are used in the scenario where tasks are executed in sequence.
-- The asynchronous time slice tracing APIs are used in the scenario where tasks are executed asynchronously. The start and end of an asynchronous trace task are not in sequence. Therefore, the **name** and **taskId** parameters are used to identify the start and end of an asynchronous trace task.
+- The asynchronous time slice tracing APIs are used in the scenario where tasks are executed asynchronously. The start and end of an asynchronous tracing task are not in sequence. Therefore, the **name** and **taskId** parameters are used to identify the start and end of an asynchronous tracing task.
 - The integer tracing API is used to trace integer variables.
 
-**Parameter Description**
+**Parameters**
 
 | Name        | Type       | Description                                                        |
 | -------------- | ----------- | ------------------------------------------------------------ |
 | level          | enum        | Trace output level. Trace data whose levels are lower than the system threshold will not be output.<br>The log version threshold is **HITRACE_LEVEL_INFO**, and the nolog version threshold is **HITRACE_LEVEL_COMMERCIAL**.|
 | name           | const char* | Name of the task or integer variable to trace.                            |
-| taskId         | int32_t     | Task ID. If multiple tasks with the same **name** are executed at the same time, you must set different **taskId** when calling **OH_HiTrace_StartAsyncTraceEx**.|
+| taskId         | int32_t     | Task ID. If multiple tasks with the same **name** are executed at the same time, you must set different **taskId** when calling the API.|
 | count          | int64_t     | Value of an integer variable.                                              |
 | customCategory | const char* | Custom category name, which is used to collect asynchronous trace data of the same type.<br>If the category is not required, pass in an empty string.|
 | customArgs     | const char* | Custom key-value pair. If there are multiple key-value pairs, separate them with commas (,), for example, **key1=value1,key2=value2**.<br>If this parameter is not required, pass in an empty string.|
@@ -53,9 +58,11 @@ HiTraceMeter logging APIs are classified into three types by functionality/behav
 
 ## How to Develop
 
-In DevEco Studio, create a native C++ project and use the HiTraceMeter NDK_C logging API. The following is an example of a native C++ project.
+In DevEco Studio, create a native C++ project and use the HiTraceMeter NDK_C logging API. Before the application service starts, start tracing. After the application service is complete, stop tracing.
 
-1. Create a native C++ project. The project directory structure is as follows:
+### Using HiTraceMeter APIs (Supported since API Version 19)
+
+1. Create a native C++ application project, and set the SDK version to 19 or later. The project directory structure is as follows:
 
    ```text
    ├── entry
@@ -77,7 +84,7 @@ In DevEco Studio, create a native C++ project and use the HiTraceMeter NDK_C log
    │       │   │       └── Index.ets
    ```
 
-2. In the end of the **CMakeLists.txt** file, add **libhitrace_ndk.z.so** and **libhilog_ndk.z.so**.
+2. At the end of the **CMakeLists.txt** file, add **libhitrace_ndk.z.so** and **libhilog_ndk.z.so**.
 
    ```cmake
    target_link_libraries(entry PUBLIC libhitrace_ndk.z.so libhilog_ndk.z.so)
@@ -234,4 +241,160 @@ In DevEco Studio, create a native C++ project and use the HiTraceMeter NDK_C log
    myTraceTest running, trace is not enabled
    ```
 
+
+### Using HiTraceMeter APIs (Supported Before API Version 19)
+
+1. Create a native C++ project. The project directory structure is as follows:
+
+   ```text
+   ├── entry
+   │   ├── src
+   │       ├── main
+   │       │   ├── cpp
+   │       │   │   ├── CMakeLists.txt
+   │       │   │   ├── napi_init.cpp
+   │       │   │   └── types
+   │       │   │       └── libentry
+   │       │   │           ├── Index.d.ts
+   │       │   │           └── oh-package.json5
+   │       │   ├── ets
+   │       │   │   ├── entryability
+   │       │   │   │   └── EntryAbility.ets
+   │       │   │   ├── entrybackupability
+   │       │   │   │   └── EntryBackupAbility.ets
+   │       │   │   └── pages
+   │       │   │       └── Index.ets
+   ```
+
+2. At the end of the **CMakeLists.txt** file, add **libhitrace_ndk.z.so** and **libhilog_ndk.z.so**.
+
+   ```cmake
+   target_link_libraries(entry PUBLIC libhitrace_ndk.z.so libhilog_ndk.z.so)
+   ```
+
+3. In the **napi_init.cpp** file, call the HiTraceMeter NDK_C API in the **Add** function to trace the performance. The sample code is as follows:
+
+   ```c++
+   #include "hilog/log.h"
+   #include "hitrace/trace.h"
+   #include "napi/native_api.h"
    
+   #undef LOG_TAG
+   #define LOG_TAG "traceTest"
+   
+   static napi_value Add(napi_env env, napi_callback_info info)
+   {
+       // Start the first asynchronous tracing task.
+       OH_HiTrace_StartAsyncTrace("myTestAsyncTrace", 1001);
+       // Start the counting task.
+       int64_t traceCount = 0;
+       traceCount++;
+       OH_HiTrace_CountTrace("myTestCountTrace", traceCount);
+       // Keep the service process running.
+       OH_LOG_INFO(LogType::LOG_APP, "myTraceTest running, taskId: 1001");
+   
+       // Start the second asynchronous tracing task with the same name while the first task is still running. The tasks are running concurrently and therefore their taskId must be different.
+       OH_HiTrace_StartAsyncTrace("myTestAsyncTrace", 1002);
+       // Start the counting task.
+       traceCount++;
+       OH_HiTrace_CountTrace("myTestCountTrace", traceCount);
+       // Keep the service process running.
+       OH_LOG_INFO(LogType::LOG_APP, "myTraceTest running, taskId: 1002");
+   
+       // Stop the asynchronous tracing task whose taskId is 1001.
+       OH_HiTrace_FinishAsyncTrace("myTestAsyncTrace", 1001);
+       // Stop the asynchronous tracing task whose taskId is 1002.
+       OH_HiTrace_FinishAsyncTrace("myTestAsyncTrace", 1002);
+   
+       // Start a synchronous tracing task.
+       OH_HiTrace_StartTrace("myTestSyncTrace");
+       // Keep the service process running.
+       OH_LOG_INFO(LogType::LOG_APP, "myTraceTest running, synchronizing trace");
+       // Stop the synchronous tracing task.
+       OH_HiTrace_FinishTrace();
+   
+       size_t requireArgc = 2;
+       size_t argc = 2;
+       napi_value args[2] = {nullptr};
+   
+       napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
+   
+       napi_valuetype valuetype0;
+       napi_typeof(env, args[0], &valuetype0);
+   
+       napi_valuetype valuetype1;
+       napi_typeof(env, args[1], &valuetype1);
+   
+       double value0;
+       napi_get_value_double(env, args[0], &value0);
+   
+       double value1;
+       napi_get_value_double(env, args[1], &value1);
+   
+       napi_value sum;
+       napi_create_double(env, value0 + value1, &sum);
+   
+       return sum;
+   }
+   
+   EXTERN_C_START
+   static napi_value Init(napi_env env, napi_value exports)
+   {
+       napi_property_descriptor desc[] = {
+           { "add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr }
+       };
+       napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+       return exports;
+   }
+   EXTERN_C_END
+   
+   static napi_module demoModule = {
+       .nm_version = 1,
+       .nm_flags = 0,
+       .nm_filename = nullptr,
+       .nm_register_func = Init,
+       .nm_modname = "entry",
+       .nm_priv = ((void*)0),
+       .reserved = { 0 },
+   };
+   
+   extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+   {
+       napi_module_register(&demoModule);
+   }
+   ```
+
+4. Run the following command in DevEco Studio Terminal to enable trace capture:
+
+   ```shell
+   PS D:\xxx\xxx> hdc shell
+   $ hitrace --trace_begin app
+   ```
+
+5. In DevEco Studio, click the **Run** button to run the project. Click the string in the middle of the screen to execute the service logic that contains the HiTraceMeter logging. Then run the following command to capture trace data:
+
+   ```shell
+   $ hitrace --trace_dump | grep myTest
+   ```
+
+   The sample trace data is as follows:
+
+   ```text
+   <...>-21458   (-------) [009] .... 372404.331037: tracing_mark_write: S|21458|H:myTestAsyncTrace 1001
+   <...>-21458   (-------) [009] .... 372404.331040: tracing_mark_write: C|21458|H:myTestCountTrace 1
+   <...>-21458   (-------) [009] .... 372404.331083: tracing_mark_write: S|21458|H:myTestAsyncTrace 1002
+   <...>-21458   (-------) [009] .... 372404.331085: tracing_mark_write: C|21458|H:myTestCountTrace 2
+   <...>-21458   (-------) [009] .... 372404.331091: tracing_mark_write: F|21458|H:myTestAsyncTrace 1001
+   <...>-21458   (-------) [009] .... 372404.331093: tracing_mark_write: F|21458|H:myTestAsyncTrace 1002
+   <...>-21458   (-------) [009] .... 372404.331095: tracing_mark_write: B|21458|H:myTestSyncTrace
+   ```
+
+   > **NOTE**
+   >
+   > This is the user-mode trace data of a version earlier than API version 19. If the actual trace data format is different, see [User-Mode Trace Format](hitracemeter-view.md#user-mode-trace-format).
+
+6. Run the following command to stop the application trace capture:
+
+   ```shell
+   $ hitrace --trace_finish
+   ```

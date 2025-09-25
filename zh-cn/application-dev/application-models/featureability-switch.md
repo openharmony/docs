@@ -1,7 +1,13 @@
 # featureAbility接口切换
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @lidongrui-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
-  | FA模型接口 | Stage模型接口对应d.ts文件 | Stage模型对应接口 | 
+  | [FA模型](ability-terminology.md#fa模型)接口 | [Stage模型](ability-terminology.md#stage模型)接口对应d.ts文件 | Stage模型对应接口 | 
 | -------- | -------- | -------- |
 | [getWant(callback:&nbsp;AsyncCallback&lt;Want&gt;):&nbsp;void;](../reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitygetwant)<br/>[getWant():&nbsp;Promise&lt;Want&gt;;](../reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitygetwant-1) | \@ohos.app.ability.UIAbility.d.ts | [launchWant:&nbsp;Want;](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiability) | 
 | [startAbility(parameter:&nbsp;StartAbilityParameter,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):&nbsp;void;](../reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitystartability)<br/>[startAbility(parameter:&nbsp;StartAbilityParameter):&nbsp;Promise&lt;number&gt;;](../reference/apis-ability-kit/js-apis-ability-featureAbility.md#featureabilitystartability-1) | application\UIAbilityContext.d.ts | [startAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability)<br/>[startAbility(want:&nbsp;Want,&nbsp;options:&nbsp;StartOptions,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void;](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability-1)<br/>[startAbility(want:&nbsp;Want,&nbsp;options?:&nbsp;StartOptions):&nbsp;Promise&lt;void&gt;;](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability-2) |

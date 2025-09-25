@@ -5,10 +5,11 @@
 
 Defines a proxy method.
 
-**Since**: 14
+**Since**: 18
 
 **Related module**: [Web](_web.md)
 
+**Header file**: [arkweb_type.h](arkweb__type_8h.md)
 
 ## Summary
 

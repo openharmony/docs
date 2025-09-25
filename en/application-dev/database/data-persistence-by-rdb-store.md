@@ -6,8 +6,8 @@
 A relational database (RDB) store is used to store data in complex relational models, such as the student information including names, student IDs, and scores of each subject, or employee information including names, employee IDs, and positions, based on SQLite. The data is more complex than key-value (KV) pairs due to strict mappings. You can use **RelationalStore** to implement persistence of this type of data.
 
 Querying data from a large amount of data may take time or even cause application suspension. In this case, you can perform batch operations. For details, see [Batch Database Operations](../arkts-utils/batch-database-operations-guide.md). Moreover, observe the following:
-- The number of data records to be queried at a time should not exceed 5000.
-- Use [TaskPool](../reference/apis-arkts/js-apis-taskpool.md) if there is a large amount of data needs to be queried.
+- The maximum number of data records to query at a time is 5000.
+- Use [TaskPool](../reference/apis-arkts/js-apis-taskpool.md) if a large amount of data needs to be queried.
 - Keep concatenated SQL statements as concise as possible.
 - Query data in batches.
 
@@ -29,7 +29,7 @@ Querying data from a large amount of data may take time or even cause applicatio
 
 ## Constraints
 
-- The default logging mode is Write Ahead Log (WAL), and the default flushing mode is **FULL** mode.
+- The default logging mode is Write Ahead Log ([WAL](data-terminology.md#write-ahead-log-wal)), and the default flushing mode is [FULL](data-terminology.md#full) mode.
 
 - The RDB store supports four read connections and one write connection. Read connections can be dynamically expanded. If no read connection is available, a read connection is created to execute the read operation. Write connections cannot be dynamically expanded. If no write connection is available, the write operation is executed after the connection is released.
 
@@ -74,7 +74,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
    // In this example, Ability is used to obtain an RdbStore instance. You can use other implementations as required.
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
-       // Before using a tokenizer, call isStorageTypeSupported to check whether the tokenizer is supported by the current platform.
+       // Before using a tokenizer, call isTokenizerSupported to check whether the tokenizer is supported by the current platform.
        let tokenType = relationalStore.Tokenizer.ICU_TOKENIZER;
        let tokenTypeSupported = relationalStore.isTokenizerSupported(tokenType);
        if (!tokenTypeSupported) {
@@ -445,4 +445,4 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
    });
    ```
 
-<!--no_check-->
+ <!--no_check--> 

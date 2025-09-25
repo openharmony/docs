@@ -2,7 +2,7 @@
 
 The AlbumPickerComponent embedded in the UI of an application allows the application to access the albums in the user directory without any permission.
 
-This component must be used together with [PhotoPickerComponent](ohos-file-PhotoPickerComponent.md). When a user selects an album by using **AlbumPickerComponent**, **PhotoPickerComponent** is instructed to update the photos and videos in the album.
+This component must be used together with [PhotoPickerComponent](ohos-file-PhotoPickerComponent.md). When a user selects an album by using **AlbumPickerComponent**, **PhotoPickerComponent** is instructed to update the images and videos in the album.
 
 > **NOTE**
 >

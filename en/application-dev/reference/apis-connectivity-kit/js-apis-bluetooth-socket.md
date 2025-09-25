@@ -1,5 +1,11 @@
 # @ohos.bluetooth.socket (Bluetooth Socket Module)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @enjoy_sunshine-->
+<!--Designer: @chengguohong; @tangjia15-->
+<!--Tester: @wangfeng517-->
+
 The **socket** module provides APIs for operating and managing Bluetooth sockets.
 
 > **NOTE**
@@ -28,9 +34,9 @@ Creates a Serial Port Profile (SPP) listening socket for the server. This API us
 
 | Name     | Type                         | Mandatory  | Description                     |
 | -------- | --------------------------- | ---- | ----------------------- |
-| name     | string                      | Yes   | Name of the service.                 |
+| name     | string                      | Yes   | Service name, which is a string of 0 to 256 characters.                 |
 | options   | [SppOptions](#sppoptions)     | Yes   | SPP listening configuration.             |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the server socket ID.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**, and **data** is the ID of the server socket. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -82,8 +88,8 @@ Accepts a connection request from the client over a socket of the server. This A
 
 | Name         | Type                         | Mandatory  | Description                     |
 | ------------ | --------------------------- | ---- | ----------------------- |
-| serverSocket | number                      | Yes   | Server socket ID.          |
-| callback     | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the client socket ID.|
+| serverSocket | number                      | Yes   | Server socket ID.<br>You can obtain the value from the asynchronous callback returned after [sppListen](#socketspplisten) is called.          |
+| callback     | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**, and **data** is the ID of the client socket. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -110,7 +116,7 @@ let acceptClientSocket = (code: BusinessError, number: number) => {
     return;
   } else {
     clientNumber = number; // The obtained clientNumber is used as the socket ID for subsequent read/write operations on the client.
-    console.info('sppListen success, serverNumber = ' + clientNumber);
+    console.info('sppListen success, clientNumber = ' + clientNumber);
   }
 }
 try {
@@ -137,7 +143,7 @@ Initiates an SPP connection to a remote device from the client. This API uses an
 | -------- | --------------------------- | ---- | ------------------------------ |
 | deviceId | string                      | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
 | options   | [SppOptions](#sppoptions)     | Yes   | SPP listening configuration for client.                 |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the client socket ID.       |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**, and **data** is the ID of the client socket. Otherwise, **err** is an error object.       |
 
 **Error codes**
 
@@ -156,15 +162,15 @@ For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoo
 **Example**
 
 ```js
-import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let clientSocket = (code: BusinessError, number: number) => {
   if (code) {
-    console.error('sppListen error, code is ' + code);
+    console.error('sppConnect  error, code is ' + code);
     return;
   } else {
     // The obtained number is used as the socket ID for subsequent read/write operations on the client.
-    console.info('bluetooth serverSocket Number: ' + number);
+    console.info('bluetooth clientSocket Number: ' + number);
   }
 }
 let sppOption:socket.SppOptions = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};
@@ -188,13 +194,13 @@ Obtains the address of the peer device over a client socket. This API is applica
 
 | Name     | Type                         | Mandatory  | Description                            |
 | -------- | ------------------------------- | ---- | ------------------------------ |
-| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.|
+| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.<br>You can obtain the value from the asynchronous callback returned after [sppAccept](#socketsppaccept) or [sppConnect](#socketsppconnect) is called.|
 
 **Return value**
 
 | Type                                      | Description                        |
 | ---------------------------------------- | -------------------------- |
-| string | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+| string | IP address of the peer device.|
 
 **Error codes**
 
@@ -239,7 +245,7 @@ Closes a listening socket of the server.
 
 | Name   | Type    | Mandatory  | Description             |
 | ------ | ------ | ---- | --------------- |
-| socket | number | Yes   | Server socket ID, which is obtained by **sppListen()**.|
+| socket | number | Yes   | Server socket ID, which is obtained by **sppListen()**.<br>You can obtain the value from the asynchronous callback returned after [sppListen](#socketspplisten) is called.|
 
 **Error codes**
 
@@ -277,7 +283,7 @@ Closes a client socket.
 
 | Name   | Type    | Mandatory  | Description      |
 | ------ | ------ | ---- | ------------- |
-| socket | number | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.|
+| socket | number | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.<br>You can obtain the value from the asynchronous callback returned after [sppAccept](#socketsppaccept) or [sppConnect](#socketsppconnect) is called.|
 
 **Error codes**
 
@@ -315,7 +321,7 @@ Writes data to the remote device through a socket.
 
 | Name         | Type         | Mandatory  | Description           |
 | ------------ | ----------- | ---- | ------------- |
-| clientSocket | number      | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.|
+| clientSocket | number      | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.<br>You can obtain the value from the asynchronous callback returned after [sppAccept](#socketsppaccept) or [sppConnect](#socketsppconnect) is called.|
 | data         | ArrayBuffer | Yes   | Data to write.       |
 
 **Error codes**
@@ -357,9 +363,9 @@ Subscribes to the SPP read request events. This API uses an asynchronous callbac
 
 | Name         | Type                         | Mandatory  | Description                        |
 | ------------ | --------------------------- | ---- | -------------------------- |
-| type         | string                      | Yes   | Event type. The value is **sppRead**, which indicates an SPP read request event.|
-| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.             |
-| callback     | Callback&lt;ArrayBuffer&gt; | Yes   | Callback used to return the data read.         |
+| type         | string                      | Yes   | Event type. The value **sppRead** indicates the SPP read request event.<br>This event is triggered when data sent by the peer device is received.|
+| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.<br>You can obtain the value from the asynchronous callback returned after [sppAccept](#socketsppaccept) or [sppConnect](#socketsppconnect) is called.             |
+| callback     | Callback&lt;ArrayBuffer&gt; | Yes   | Callback used to return the read data.         |
 
 **Error codes**
 
@@ -401,9 +407,9 @@ Unsubscribes from the SPP read request events.
 
 | Name         | Type                         | Mandatory  | Description                                      |
 | ------------ | --------------------------- | ---- | ---------------------------------------- |
-| type         | string                      | Yes   | Event type. The value is **sppRead**, which indicates an SPP read request event.              |
-| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.                           |
-| callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
+| type         | string                      | Yes   | Event type. The value **sppRead** indicates the SPP read request event.              |
+| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.<br>You can obtain the value from the asynchronous callback returned after [sppAccept](#socketsppaccept) or [sppConnect](#socketsppconnect) is called.                           |
+| callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback to unregister.<br>If this parameter is specified, it must be the same as the callback in [socket.on('sppRead')](#socketonsppread). If this parameter is not specified, all callbacks corresponding to the event type are unregistered.|
 
 **Error codes**
 
@@ -439,14 +445,14 @@ Writes data to the remote device through the socket. This API uses a promise to 
 
 | Name         | Type                         | Mandatory  | Description                                      |
 | ------------ | --------------------------- | ---- | ---------------------------------------- |
-| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.                           |
+| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.<br>You can obtain the value from the asynchronous callback returned after [sppAccept](#socketsppaccept) or [sppConnect](#socketsppconnect) is called.                           |
 | data         | ArrayBuffer                 | Yes   | Data to write.|
 
 **Return value**
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -461,13 +467,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { socket } from '@kit.ConnectivityKit'
+import { socket } from '@kit.ConnectivityKit';
 import { AsyncCallback,BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // clientNumber is obtained by sppAccept or sppConnect.
 let arrayBuffer = new ArrayBuffer(8);
 let data = new Uint8Array(arrayBuffer);
 try {
-    await socket.sppWriteAsync(clientNumber, arrayBuffer);
+    socket.sppWriteAsync(clientNumber, arrayBuffer).then(() => {
+      console.info("sppWrite success");
+    });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -492,13 +500,13 @@ Reads data sent from the remote device through the socket. This API uses a promi
 
 | Name         | Type                         | Mandatory  | Description                                      |
 | ------------ | --------------------------- | ---- | ---------------------------------------- |
-| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.                           |
+| clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept()** or **sppConnect()**.<br>You can obtain the value from the asynchronous callback returned after [sppAccept](#socketsppaccept) or [sppConnect](#socketsppconnect) is called.                           |
 
 **Return value**
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| Promise&lt;ArrayBuffer&gt; | Promise used to return the result. If the operation is successful, the result is returned in **ArrayBuffer**. If the operation fails, the corresponding error code is returned.|
+| Promise&lt;ArrayBuffer&gt; | Promise used to return the read data.|
 
 **Error codes**
 
@@ -513,21 +521,22 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { socket } from '@kit.ConnectivityKit'
-import { AsyncCallback,BusinessError } from '@kit.BasicServicesKit';
+import { socket } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1; // clientNumber is obtained by sppAccept or sppConnect.
 let buffer = new ArrayBuffer(1024);
-let data = new Uint8Array(arrayBuffer);
+let data = new Uint8Array(buffer);
 let flag = 1;
 while (flag) {
   try {
-    buffer = await socket.sppReadAsync(this.clientNumber);
-    if (buffer != null) {
-      console.info('sppRead success, data = ' + JSON.stringify(buffer));
-      printArrayBuffer(buffer);
-    } else {
-      console.error('sppRead error, data is null');
-    }
+    socket.sppReadAsync(clientNumber).then((outBuffer: ArrayBuffer) => {
+      buffer = outBuffer;
+      if (buffer != null) {
+        console.info('sppRead success, data = ' + JSON.stringify(buffer));
+      } else {
+        console.error('sppRead error, data is null');
+      }
+    });
   } catch (err) {
     flag = 0;
     console.error('startSppRead errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -542,11 +551,11 @@ Defines the SPP configuration parameters.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name    | Type               | Readable  | Writable  | Description         |
+| Name    | Type               | Read-Only  | Optional  | Description         |
 | ------ | ------------------- | ---- | ---- | ----------- |
-| uuid   | string              | Yes   | Yes   | UUID of the SPP.|
-| secure | boolean             | Yes   | Yes   | Whether it is a secure channel. The value **true** indicates a secure channel, and the value **false** indicates a non-secure channel.   |
-| type   | [SppType](#spptype)            | Yes   | Yes   | Type of the SPP link.   |
+| uuid   | string              | No   | No   | UUID of the SPP.|
+| secure | boolean             | No   | No   | Whether it is a secure channel. The value **true** indicates a secure channel, and the value **false** indicates a non-secure channel.   |
+| type   | [SppType](#spptype)            | No   | No   | Type of the SPP link.   |
 
 
 ## SppType

@@ -1,17 +1,17 @@
 # Overview of Multithreaded Concurrency
 
-Multithreaded concurrency refers to the execution of multiple threads simultaneously within a single program, enhancing performance and resource utilization through parallel or alternating task execution. In the development of ArkTS applications, there are many service scenarios that require multithreaded concurrency. These scenarios can be categorized into three main types. For more details, [Multithreaded Development Practice Cases](batch-database-operations-guide.md).
+Multithreaded concurrency refers to the execution of multiple threads simultaneously within a single program, enhancing performance and resource utilization through parallel or alternating task execution. In ArkTS application development, multithreaded concurrency applies to multiple service scenarios. The common service scenarios are classified into the following three types. For more details, see [Multithreaded Development Practice Cases](batch-database-operations-guide.md).
 
-- Service logic that involves heavy computation or multiple I/O read/write operations, which require extended execution time, such as image/video encoding and decoding, compression/decompression, and database operations.
+- Service logic that involves heavy computation or frequent I/O read/write operations, which require extended execution time, such as image/video encoding and decoding, file compression and decompression, and database operations.
 
 - Service logic that includes listening for or periodically collecting data, which requires continuous operation over extended periods, such as periodically collecting sensor data.
 
-- Service logic that follows the main thread's lifecycle or is bound to the main thread, such as in gaming platforms.
+- Service logic that follows the main thread's lifecycle or is bound to the main thread, such as in gaming scenarios.
 
 
 Concurrency models are used to implement concurrent tasks in different usage scenarios. Common concurrency models include those based on shared memory and those based on message communication.
 
-The actor model is a typical example of a concurrency model based on message communication. It allows developers to avoid the complexity of dealing with locks and offers high concurrency, making it widely used.
+The actor model is a typical concurrency model based on message communication. It allows developers to avoid the complexity of dealing with locks and offers high concurrency, making it widely used.
 
 Currently, ArkTS provides two concurrency capabilities: TaskPool and Worker, both of which are implemented based on the actor model.
 
@@ -25,9 +25,9 @@ Actor model: In this model, each thread is an independent actor, which has its o
 
 Different from the shared memory concurrency model, the actor model provides independent memory space for each thread. As such, it avoids memory preemption and enhances development efficiency.
 
-In the actor model, tasks and task results are transmitted through the inter-thread communication.
+In the actor model, tasks and task results are transmitted through message transfer.
 
-This topic uses the classic producer-consumer problem as an example to illustrate the differences between these two models in solving specific problems.
+This section uses the classic producer-consumer pattern as an example to analyze the differences between these two models in solving the problem.
 
 ### Shared Memory Model
 
@@ -127,7 +127,7 @@ function Main(): void {
   let producer: Producer = new Producer();
   let threadNum: number = 10;
   for (let i = 0; i < threadNum; i++) {
-    // The following pseudocode simulates the startup of multiple threads to execute production tasks.
+    // Simulate the startup of multiple threads to execute a production task.
     // let thread = new Thread();
     // thread.run(producer.run());
     // consumer.run();

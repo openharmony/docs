@@ -60,10 +60,10 @@ Represents information about the device-cloud sync progress.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-| Name    | Type  | Mandatory| Description|
-| ---------- | ------ | ---- | ---- |
-| state | [SyncState](#syncstate12) | Yes  | Device-cloud sync state.|
-| error | [ErrorType](#errortype12) | Yes  | Sync error.|
+| Name    | Type  | Read-Only| Optional| Description|
+| ---------- | ------ | ---- | ---- | ---- |
+| state | [SyncState](#syncstate12) | No  | No  | Device-cloud sync state.|
+| error | [ErrorType](#errortype12) | No  | No  | Sync error.|
 
 ## State<sup>11+</sup>
 
@@ -86,13 +86,13 @@ Represents information about the download progress of a cloud file.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-| Name    | Type  | Mandatory| Description|
-| ---------- | ------ | ---- | ---- |
-| state | [State](#state11) | Yes  | File download state.|
-| processed | number | Yes  | Size of the downloaded data, in bytes. The value ranges from 0 to 9223372036854775807.|
-| size | number | Yes  | Size of the current cloud file, in bytes. The value ranges from 0 to 9223372036854775807.|
-| uri | string | Yes  | URI of the cloud file.|
-| error | [DownloadErrorType](#downloaderrortype11) | Yes  | Download error type.|
+| Name    | Type  | Read-Only| Optional| Description|
+| ---------- | ------ | ---- | ---- | ---- |
+| state | [State](#state11) | No  | No  | File download state.|
+| processed | number | No  | No  | Size of the downloaded data, in bytes. The value range is [0, 9223372036854775807].|
+| size | number | No  | No  | Size of the cloud file, in bytes. The value range is [0, 9223372036854775807].|
+| uri | string | No  | No  | URI of the cloud file.|
+| error | [DownloadErrorType](#downloaderrortype11) | No  | No  | Download error type.|
 
 ## FileSync<sup>12+</sup>
 
@@ -110,7 +110,7 @@ A constructor used to create a **FileSync** instance.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
@@ -139,7 +139,7 @@ Registers a listener for the device-cloud sync progress.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
@@ -174,7 +174,7 @@ Unregisters all listeners for the device-cloud sync progress.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
@@ -211,7 +211,7 @@ Starts device-cloud sync of a file in the Drive Kit. This API uses a promise to 
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
@@ -256,7 +256,7 @@ Starts device-cloud sync of a file in the Drive Kit. This API uses an asynchrono
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
@@ -299,7 +299,7 @@ Calling **stop** will stop the sync process. To resume the sync, call [start](#s
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
@@ -337,7 +337,7 @@ Calling **stop** will stop the sync process. To resume the sync, call [start](#s
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
@@ -375,7 +375,7 @@ Obtains the last sync time. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
@@ -413,7 +413,7 @@ Obtains the last sync time. This API uses an asynchronous callback to return the
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
@@ -452,6 +452,8 @@ A constructor used to create a **CloudFileCache** instance.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
 | 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
@@ -479,7 +481,7 @@ Registers a listener for the download progress of a file from the Drive Kit.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
@@ -520,7 +522,7 @@ Unregisters a listener for the download progress of a file from the Drive Kit.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
@@ -568,7 +570,7 @@ Starts to download a file from the Drive Kit to the local device. This API uses 
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
@@ -576,7 +578,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | 13600001  | IPC error. |
 | 13900002 | No such file or directory. |
 | 13900025 | No space left on device. |
-| 14000002 | Invalid uri. |
+| 14000002 | Invalid URI. |
 
 **Example**
 
@@ -620,7 +622,7 @@ Starts to download a file from the Drive Kit to the local device. This API uses 
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
@@ -628,7 +630,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | 13600001  | IPC error. |
 | 13900002 | No such file or directory. |
 | 13900025 | No space left on device. |
-| 14000002 | Invalid uri. |
+| 14000002 | Invalid URI. |
 
 **Example**
 
@@ -654,7 +656,7 @@ stop(uri: string, needClean?: boolean): Promise&lt;void&gt;
 
 Stops downloading a file from the Drive Kit to the local device. This API uses a promise to return the result.
 
-Calling **stop** will terminate the download of the current file and clear the cache file. You can use **start** to start the download again.
+When **stop()** is called, the current file download process terminates, and downloaded files are deleted. You can call **start()** to resume the download.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -673,7 +675,7 @@ Calling **stop** will terminate the download of the current file and clear the c
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
@@ -704,7 +706,7 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 Stops downloading a file from the Drive Kit to the local device. This API uses an asynchronous callback to return the result.
 
-Calling **stop** will terminate the download of the current file and clear the cache file. You can use **start** to start the download again.
+When **stop()** is called, the current file download process terminates, and downloaded files are deleted. You can call **start()** to resume the download.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -717,7 +719,7 @@ Calling **stop** will terminate the download of the current file and clear the c
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
@@ -777,7 +779,7 @@ Subscribes to the change of a file.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
@@ -821,7 +823,7 @@ Unsubscribes from the change of a file.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
@@ -872,4 +874,4 @@ Represents the data change information.
 | ---------- | ------ | ---- | ---- |
 | type | [NotifyType](#notifytype12) | Yes  | Type of the data change.|
 | isDirectory | Array&lt;boolean&gt; | Yes  | Whether the URIs with data changed are of directories. The value **true** means the URIs are of directories; the value **false** means the opposite.|
-| uris | Array&lt;string&gt; | Yes  | URIs of the files changed.|
+| uris | Array&lt;string&gt; | Yes  | List of URIs whose data needs to be changed.|

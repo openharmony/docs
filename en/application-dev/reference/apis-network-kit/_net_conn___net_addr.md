@@ -9,6 +9,7 @@ Defines network addresses.
 
 **Related module**: [NetConnection](_net_connection.md)
 
+**Header file**: [net_connection_type.h](net__connection__type_8h.md)
 
 ## Summary
 
@@ -20,7 +21,7 @@ Defines network addresses.
 | [family](#family) | Network address family.| 
 | [prefixlen](#prefixlen) | Prefix length.| 
 | [port](#port) | Port number.| 
-| [address](#address) [NETCONN_MAX_STR_LEN] | Network address.| 
+| [address](#address) [[NETCONN_MAX_STR_LEN]](_net_connection.md#macros)| Network address.| 
 
 
 ## Member Variable Description

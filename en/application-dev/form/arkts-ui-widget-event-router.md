@@ -1,6 +1,6 @@
 # Redirecting to an Application Page (router Event)
 
-The **router** capability of the [postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction) API can be used in a dynamic widget to quickly start a specific UIAbility of the widget provider. By leveraging this capability, an application can provide in the widget multiple buttons, each of which targets a different target UIAbility. For example, a camera widget can provide the buttons that redirect the user to the UIAbility for taking a photo and the UIAbility for recording a video.
+The **router** capability of the [postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction-1) API can be used in a dynamic widget to quickly start a specific UIAbility of the widget provider. By leveraging this capability, an application can provide in the widget multiple buttons, each of which targets a different target UIAbility. For example, a camera widget can provide the buttons that redirect the user to the UIAbility for taking a photo and the UIAbility for recording a video.
 
 ![WidgerCameraCard](figures/WidgerCameraCard.png)
 

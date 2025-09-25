@@ -240,7 +240,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 static getSystemLanguage(): string
 
-Obtains the current system language.
+Obtains the current system language. To listen for system language changes, enable listening for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed). For details, see [System Language and Region](../../internationalization/i18n-system-language-region.md#how-to-develop).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -263,7 +263,7 @@ Obtains the current system language.
 
 static getSystemRegion(): string
 
-Obtains the current system country/region.
+Obtains the current system country/region. To listen for system region changes, enable listening for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed). For details, see [System Language and Region](../../internationalization/i18n-system-language-region.md#how-to-develop).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -284,7 +284,7 @@ Obtains the current system country/region.
 
 static getSystemLocale(): string
 
-Obtains the current system locale.
+Obtains the current system locale. To listen for system locale changes, enable listening for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed). For details, see [System Language and Region](../../internationalization/i18n-system-language-region.md#how-to-develop).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -305,7 +305,7 @@ Obtains the current system locale.
 
 static is24HourClock(): boolean
 
-Checks whether the 24-hour clock is used.
+Checks whether the 24-hour clock is used. To listen for system time format changes, enable listening for [COMMON_EVENT_TIME_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_time_changed). For details, see [User Preference](../../internationalization/i18n-user-preferences.md#how-to-develop).
 
 **Widget capability**: Since API version 11, this feature is supported in ArkTS widgets.
 
@@ -2103,7 +2103,7 @@ Converts the input text from the source format to the target format.
 
 | Name | Type    | Mandatory  | Description    |
 | ---- | ------ | ---- | ------ |
-| text | string | Yes   | Input text.|
+| text | string | Yes   | **text** object.|
 
 **Return value**
 
@@ -2114,20 +2114,20 @@ Converts the input text from the source format to the target format.
 **Example**
   ```ts
   let transliterator: i18n.Transliterator = i18n.Transliterator.getInstance('Any-Latn');
-  let wordArray = ['China', 'Germany', 'US', 'France"]
+  let wordArray: string[] = ['China', 'Germany', 'US', 'France"]
   for (let i = 0; i < wordArray.length; i++) {
-    let transliterLatn =
+    let transliterateLatn: string =
       transliterator.transform(wordArray[i]); // transliterLatn: 'zhōng guó', 'dé guó', 'měi guó', 'fǎ guó'
   }
 
   // Chinese transliteration and tone removal
-  let transliter = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
-  let transliterAscii = transliter.transform('中国'); // transliterAscii ='zhong guo'
+  transliterator = i18n.Transliterator.getInstance('Any-Latn;Latin-Ascii');
+  let transliterateAscii: string = transliterator.transform ('中国'); // transliterateAscii = 'zhong guo'
 
   // Chinese surname pronunciation
-  let nameTransliter = i18n.Transliterator.getInstance('Han-Latin/Names');
-  let transliterNames = nameTransliter.transform('单老师'); // transliterNames = 'shàn lǎo shī'
-  transliterNames = nameTransliter.transform('长孙无忌'); // transliterNames = 'zhǎng sūn wú jì'
+  transliterator = i18n.Transliterator.getInstance('Han-Latin/Names');
+  let transliterateNames: string = transliterator.transform ('单老师'); // transliterateNames = 'hàn lǎo shī'
+  transliterateNames = transliterator.transform ('长孙无忌'); // transliterateNames = 'zhǎng sūn wú jì'
   ```
 
 
@@ -2775,7 +2775,7 @@ Normalizes input strings.
 
 | Name   | Type    | Mandatory  | Description                       |
 | ------ | ------ | ---- | ------------------------- |
-| text | string | Yes   | Input text.|
+| text | string | Yes   | **text** object.|
 
 **Return value**
 

@@ -561,7 +561,7 @@ export class BleScanManager {
     let manufactureId = 4567;
     let manufactureData: Uint8Array = new Uint8Array([1, 2, 3, 4]);
     let manufactureDataMask: Uint8Array = new Uint8Array([0xFF, 0xFF, 0xFF, 0xFF]);
-    let scanFilter: ble.ScanFilter = {// Define the filter based on service requirements.
+    let scanFilter: ble.ScanFilter = {// Define the ScanFilter instance based on service requirements.
       manufactureId: manufactureId,
       manufactureData: manufactureData.buffer,
       manufactureDataMask: manufactureDataMask.buffer
@@ -663,7 +663,7 @@ export class BleAdvertisingManager {
     // 2.3 Construct AdvertisingParams for starting the BLE advertising.
     let advertisingParams: ble.AdvertisingParams = {
       advertisingSettings: setting,
-      advertisingData: advData, // Note: The length of advertising packets cannot exceed 31 bytes.
+      advertisingData: advData, // The length of advertising packets cannot exceed 31 bytes.
       advertisingResponse: advResponse, // The length of advertising packets cannot exceed 31 bytes.
       duration: 0 // Advertising duration. This parameter is optional. If the value is greater than 0, advertising will stop after the specified duration elapses, but the allocated advertising resources will remain. You can start advertising again as needed.
     }

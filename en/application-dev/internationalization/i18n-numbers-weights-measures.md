@@ -1,5 +1,12 @@
 # Number and Unit of Measurement Formatting
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--Designer: @sunyaozu-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## Use Cases
 
 In different countries and cultures, numbers, currencies, and units of measurement are expressed in different ways, including what symbols are used as decimal separators, how many digits are displayed after separators, and what currencies and units of measurement are used. Suppose you want to display the number 1000 on the application UI to indicate the price of a product. If the fixed format **1,000** is used, it may be considered as 1 in some European countries where a comma is used as a decimal point. Formatting is therefore needed to format numbers, currencies, and units of measurement so that they are displayed on the application UI in line with local user habits.
@@ -278,7 +285,7 @@ formattedNumber = unitUsageFormat.format(123400); // formattedNumber = '304,928.
 
 ### Units of Measurement Conversion
 
-Units of measurement conversion and formatting are implemented by the [unitConvert](../reference/apis-localization-kit/js-apis-i18n.md#unitconvert9) API of the [I18NUtil](../reference/apis-localization-kit/js-apis-i18n.md#i18nutil9) class. The development procedure is as follows:
+Units of measurement include length, area, volume, and capacity. You can achieve the conversion and formatting of units of measurement via the [unitConvert](../reference/apis-localization-kit/js-apis-i18n.md#unitconvert9) API of the [I18NUtil](../reference/apis-localization-kit/js-apis-i18n.md#i18nutil9) class. The development procedure is as follows:
 
 1. Import the **intl** module.
    ```ts

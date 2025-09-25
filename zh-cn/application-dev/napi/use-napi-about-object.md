@@ -68,6 +68,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 // 定义一个类
 class Person {
   // 属性
@@ -131,6 +132,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 try {
   const myObject = testNapi.createObject();
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_object: %{public}s', myObject.name);
@@ -183,6 +185,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 try {
   class Obj {
     data: number = 0
@@ -243,6 +246,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 try {
   class Obj {
     data: number = 0
@@ -341,6 +345,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 try {
   let varUndefined: undefined;
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varUndefined));
@@ -409,6 +414,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 try {
   class Person {
     name: string;
@@ -511,6 +517,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 class Obj {
   data: number = 0
   message: string = ""
@@ -595,6 +602,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 const externalData = testNapi.createExternal();
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_external:%{public}s', testNapi.getExternalType(externalData));
 ```
@@ -637,6 +645,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 hilog.info(0x0000, 'Node-API', 'get_value_external:%{public}d', testNapi.getValueExternal());
 ```
 
@@ -683,6 +692,7 @@ ArkTS侧示例代码
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
+
 let varSymbol = testNapi.createSymbol();
 hilog.info(0x0000, 'Node-API', 'createSymbol:%{public}s', typeof varSymbol);
 ```

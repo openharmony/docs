@@ -1,6 +1,6 @@
 # AppStateData
 
-定义应用状态信息，可以通过[appManager.on('applicationState')](./js-apis-app-ability-appManager.md#appmanageronapplicationstate14)获取当前应用的相关信息。
+定义应用状态信息，使用接口[on](js-apis-app-ability-appManager.md#appmanageronapplicationstate14)注册应用状态变化监听后，当应用、进程或组件的状态变化时，系统通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)的[onForegroundApplicationChanged](js-apis-inner-application-applicationStateObserver.md#applicationstateobserveronforegroundapplicationchanged)等方法回调给开发者。
 
 > **说明：**
 > 
@@ -32,39 +32,39 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let applicationStateObserver: appManager.ApplicationStateObserver = {
   onForegroundApplicationChanged(appStateData) {
-    console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-    console.log(`appStateData.bundleName: ${appStateData.bundleName}`);
-    console.log(`appStateData.uid: ${appStateData.uid}`);
-    console.log(`appStateData.state: ${appStateData.state}`);
-    console.log(`appStateData.isSplitScreenMode: ${appStateData.isSplitScreenMode}`);
-    console.log(`appStateData.isFloatingWindowMode: ${appStateData.isFloatingWindowMode}`);
+    console.info(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
+    console.info(`appStateData.bundleName: ${appStateData.bundleName}`);
+    console.info(`appStateData.uid: ${appStateData.uid}`);
+    console.info(`appStateData.state: ${appStateData.state}`);
+    console.info(`appStateData.isSplitScreenMode: ${appStateData.isSplitScreenMode}`);
+    console.info(`appStateData.isFloatingWindowMode: ${appStateData.isFloatingWindowMode}`);
   },
   onAbilityStateChanged(abilityStateData) {
-    console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+    console.info(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
   },
   onProcessCreated(processData) {
-    console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
+    console.info(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
   },
   onProcessDied(processData) {
-    console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
+    console.info(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
   },
   onProcessStateChanged(processData) {
-    console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+    console.info(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
   },
   onAppStarted(appStateData) {
-    console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
+    console.info(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
   },
   onAppStopped(appStateData) {
-    console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
+    console.info(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
   }
 };
 
 try {
   const observerId = appManager.on('applicationState', applicationStateObserver);
-  console.log(`[appManager] observerCode: ${observerId}`);
+  console.info(`[appManager] observerCode: ${observerId}`);
 } catch (paramError) {
   let code = (paramError as BusinessError).code;
   let message = (paramError as BusinessError).message;
-  console.error(`[appManager] error: ${code}, ${message}`);
+  console.error(`[appManager] error code: ${code}, error msg: ${message}`);
 }
 ```

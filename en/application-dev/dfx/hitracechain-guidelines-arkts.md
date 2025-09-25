@@ -1,8 +1,8 @@
-# Using HiTraceChain (ArkTS/JS)
+# Using HiTraceChain (ArkTS)
 
 ## Overview
 
-HiTraceChain is a lightweight implementation of the cloud-based distributed call chain tracing on the device side. It allows the calls made in a service process to be traced, helping locating issues across threads, processes, and devices. With hiTraceChain, a unique ID is generated for a service process, passed throughout the service process, and associated with various output information (including application events, system time, and logs). During debugging and fault locating, you can use this unique ID to quickly correlate various information related to the service process. hiTraceChain provides APIs to implement call chain tracing throughout a service process. This can help you quickly obtain the run log for the call chain of a service process and locate faults across devices, processes, and threads.
+HiTraceChain is a lightweight implementation of the cloud-based distributed call chain tracing on the device side. It allows the calls made in a service process to be traced, helping locate issues across threads, processes, and devices. With hiTraceChain, a unique ID is generated for a service process, passed throughout the service process, and associated with various output information (including application events, system time, and logs). During debugging and fault locating, you can use the unique **chainId** to quickly correlate various information related to the service process. hiTraceChain provides APIs to implement call chain tracing throughout a service process. This can help you quickly obtain the run log for the call chain of a service process and locate faults across devices, processes, and threads.
 
 ## Basic Concepts
 

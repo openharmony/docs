@@ -62,14 +62,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { util } from '@kit.ArkTS';
 
-interface utilAddresstype {
+interface utilAddressType {
   city: string;
   country: string;
 }
-interface utilPersontype {
+interface utilPersonType {
   name: string;
   age: number;
-  address: utilAddresstype;
+  address: utilAddressType;
 }
 
 let name = 'John';
@@ -93,7 +93,7 @@ const obj: Record<string,number | string> = { "name": 'John', "age": 20 };
 formattedString = util.format('The object is %j', obj);
 console.info(formattedString);
 // Output: The object is {"name":"John","age":20}.
-const person: utilPersontype = {
+const person: utilPersonType = {
   name: 'John',
   age: 20,
   address: {
@@ -178,7 +178,7 @@ console.info("result = " + result);
 
 ## util.callbackWrapper
 
-callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
+callbackWrapper(original: Function): (err: Object, value: Object)=&gt;void
 
 Calls back an asynchronous function. In the callback, the first parameter indicates the cause of the rejection (the value is **null** if the promise has been resolved), and the second parameter indicates the resolved value.
 
@@ -200,7 +200,7 @@ Calls back an asynchronous function. In the callback, the first parameter indica
 
 | Type| Description|
 | -------- | -------- |
-| Function | Callback function, in which the first parameter **err** indicates the cause of the rejection (the value is **null** if the promise has been resolved) and the second parameter **value** indicates the resolved value.|
+| (err: Object, value: Object)=&gt;void | Callback function, in which the first parameter **err** indicates the cause of the rejection (the value is **null** if the promise has been resolved) and the second parameter **value** indicates the resolved value.|
 
 **Error codes**
 
@@ -238,7 +238,7 @@ Processes an asynchronous function and returns a promise.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| original | Function | Yes| Function, in which the first parameter **err** indicates the cause of the rejection (the value is **null** if the promise has been resolved) and the second parameter **value** indicates the resolved value. |
+| original | (err: Object, value: Object) =&gt; void | Yes| Function, in which the first parameter **err** indicates the cause of the rejection (the value is **null** if the promise has been resolved) and the second parameter **value** indicates the resolved value. |
 
 **Return value**
 
@@ -314,7 +314,7 @@ console.info("RFC 4122 Version 4 UUID:" + uuid);
 
 generateRandomBinaryUUID(entropyCache?: boolean): Uint8Array
 
-Uses a secure random number generator to generate a random UUID in RFC 4122 version 4.
+Uses a secure random number generator to generate a random universally unique identifier (UUID) of RFC 4122 version 4.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -462,7 +462,7 @@ Processes an asynchronous function and returns a promise.
 
 > **NOTE**
 >
-> This API is unavailable. You are advised to use [util.promisify<sup>9+</sup>](#utilpromisify9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [util.promisify<sup>9+</sup>](#utilpromisify9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -470,13 +470,13 @@ Processes an asynchronous function and returns a promise.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| original | Function | Yes| Asynchronous function.|
+| original | (err: Object, value: Object) =&gt; void | Yes| Asynchronous function.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Function | Function in the error-first style (that is, **(err, value) =>...** is called as the last parameter) and the promise.|
+| Object | Promise in the error-first style (that is, (err, value) => ... is called as the last parameter).|
 
 
 ## util.getHash<sup>12+</sup>
@@ -542,7 +542,7 @@ Describes decoding-related options, which include **fatal** and **ignoreBOM**.
 
 ## DecodeToStringOptions<sup>12+</sup>
 
-Describes the options used during decoding of a byte stream.
+Describes the behavioral parameters for the **decodeToString** method when decoding byte streams.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -799,12 +799,12 @@ util.Aspect.replace(MyClass, 'foo', false, (instance: MyClass, arg: string): str
 
 result = asp.foo('123');
 // Output: execute instead
-// Output: foo arg is 123
+// Output: arg is 123
 // Output: msg is changed to msg111
 console.info('result is ' + result);
 // Output: result is msg222
 console.info('asp.msg is ' + asp.msg);
-//Output: asp.msg is msg111
+// Output: asp.msg is msg111
 ```
 
 ## TextDecoder
@@ -1009,7 +1009,7 @@ A constructor used to create a **TextDecoder** object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | encoding | string | No| Encoding format. The default format is **'utf-8'**.|
-| options | object | No| Decoding-related options, which include **fatal** and **ignoreBOM**.|
+| options | { fatal?: boolean; ignoreBOM?: boolean } | No| Decoding-related options, which include **fatal** and **ignoreBOM**.|
 
   **Table 1** options
 
@@ -1041,7 +1041,7 @@ Decodes the input content into a string.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | input | Uint8Array | Yes| Uint8Array object to decode.|
-| options | object | No| Decoding-related options.|
+| options | { stream?: false } | No| Decoding-related options.|
 
 **Table 2** options
 
@@ -1076,11 +1076,13 @@ console.info("retStr = " + retStr);
 
 **System capability**: SystemCapability.Utils.Lang
 
-Describes the encoded data.
+Encrypted information, including the number of read characters and the number of written bytes.
+
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name     | Type| Readable |Writable | Description              |
+| Name     | Type| Read-Only |Optional | Description              |
 | --------- | -------- | -------- |-------- |------------------ |
 | read     | number  | Yes| No|Number of characters that have been read.|
 | written | number   | Yes|No|Number of bytes that have been written. |
@@ -1244,7 +1246,7 @@ Encodes the input content and stores the result into a Uint8Array object.
 
 | Type      | Description              |
 | ---------- | ------------------ |
-| [EncodeIntoUint8ArrayInfo](#encodeintouint8arrayinfo11) | Object obtained. **read** indicates the number of encoded characters, and **write** indicates the number of bytes in the encoded characters.|
+| [EncodeIntoUint8ArrayInfo](#encodeintouint8arrayinfo11) | Object obtained. **read** indicates the number of encoded characters, and **written** indicates the number of bytes in the encoded characters.|
 
 **Error codes**
 
@@ -1292,7 +1294,7 @@ Writes the generated UTF-8 encoded text to an array.
 
 | Type| Description|
 | -------- | -------- |
-| Uint8Array | Uint8Array object obtained.|
+| { read: number; written: number } | Object obtained. **read** indicates the number of encoded characters, and **written** indicates the number of bytes in the encoded characters.|
 
 **Example**
 
@@ -1401,7 +1403,7 @@ let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 
 ### createRationalFromString<sup>8+</sup>
 
-static createRationalFromString(rationalString: string): RationalNumber​
+static createRationalFromString(rationalString: string): RationalNumber
 
 Creates a **RationalNumber** object based on the given string.
 
@@ -2518,7 +2520,7 @@ console.info('result = ' + result);
 
 entries(): IterableIterator&lt;[K, V]&gt;
 
-Returns an iterator object that iterates over all key-value pairs ([key, value]) in the current object in the order they were inserted.
+Returns an iterator object that traverses all key-value pairs ([key, value]) in this object in the insertion order.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3416,7 +3418,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 encodeToStringSync(src: Uint8Array, options?: Type): string
 
-Encodes the input content into a string. This API returns the result synchronously.
+Performs Base64 encoding on the input Uint8Array byte array and returns a string. This method supports multiple encoding formats, including standard Base64 encoding, MIME-compliant Base64 encoding (with line breaks), and URL-safe Base64 encoding.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3446,8 +3448,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
+  // MIME encoding
   let base64Helper = new util.Base64Helper();
-  let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
+  let array =
+    new Uint8Array([77, 97, 110, 105, 115, 100, 105, 115, 116, 105, 110, 103, 117, 105, 115, 104, 101, 100, 110, 111, 116,
+      111, 110, 108, 121, 98, 121, 104, 105, 115, 114, 101, 97, 115, 111, 110, 98, 117, 116, 98, 121, 116, 104, 105, 115,
+      115, 105, 110, 103, 117, 108, 97, 114, 112, 97, 115, 115, 105, 111, 110, 102, 114, 111, 109, 111, 116, 104, 101,
+      114, 97, 110, 105, 109, 97, 108, 115, 119, 104, 105, 99, 104, 105, 115, 97, 108, 117, 115, 116, 111, 102, 116, 104,
+      101, 109, 105, 110, 100, 101, 120, 99, 101, 101, 100, 115, 116, 104, 101, 115, 104, 111, 114, 116, 118, 101, 104,
+      101, 109, 101, 110, 99, 101, 111, 102, 97, 110, 121, 99, 97, 114, 110, 97, 108, 112, 108, 101, 97, 115, 117, 114,
+      101]);
   let result = base64Helper.encodeToStringSync(array, util.Type.MIME);
   console.info("result = " + result);
   /*
@@ -3455,8 +3465,56 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   aW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl
   aGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=
   */
-  ```
 
+  // BASIC encoding
+  let base64Helper = new util.Base64Helper();
+  let array =
+    new Uint8Array([77, 97, 110, 105, 115, 100, 105, 115, 116, 105, 110, 103, 117, 105, 115, 104, 101, 100, 110, 111, 116,
+      111, 110, 108, 121, 98, 121, 104, 105, 115, 114, 101, 97, 115, 111, 110, 98, 117, 116, 98, 121, 116, 104, 105, 115,
+      115, 105, 110, 103, 117, 108, 97, 114, 112, 97, 115, 115, 105, 111, 110, 102, 114, 111, 109, 111, 116, 104, 101,
+      114, 97, 110, 105, 109, 97, 108, 115, 119, 104, 105, 99, 104, 105, 115, 97, 108, 117, 115, 116, 111, 102, 116, 104,
+      101, 109, 105, 110, 100, 101, 120, 99, 101, 101, 100, 115, 116, 104, 101, 115, 104, 111, 114, 116, 118, 101, 104,
+      101, 109, 101, 110, 99, 101, 111, 102, 97, 110, 121, 99, 97, 114, 110, 97, 108, 112, 108, 101, 97, 115, 117, 114,
+      101]);
+  let result = base64Helper.encodeToStringSync(array, util.Type.BASIC);
+  console.info("result = " + result);
+  /*
+  Output: result = TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNzaW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZlaGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=
+  */
+  
+  // MIME_URL_SAFE encoding
+  let base64Helper = new util.Base64Helper();
+  let array =
+    new Uint8Array([77, 97, 110, 105, 115, 100, 105, 115, 116, 105, 110, 103, 117, 105, 115, 104, 101, 100, 110, 111, 116,
+      111, 110, 108, 121, 98, 121, 104, 105, 115, 114, 101, 97, 115, 111, 110, 98, 117, 116, 98, 121, 116, 104, 105, 115,
+      115, 105, 110, 103, 117, 108, 97, 114, 112, 97, 115, 115, 105, 111, 110, 102, 114, 111, 109, 111, 116, 104, 101,
+      114, 97, 110, 105, 109, 97, 108, 115, 119, 104, 105, 99, 104, 105, 115, 97, 108, 117, 115, 116, 111, 102, 116, 104,
+      101, 109, 105, 110, 100, 101, 120, 99, 101, 101, 100, 115, 116, 104, 101, 115, 104, 111, 114, 116, 118, 101, 104,
+      101, 109, 101, 110, 99, 101, 111, 102, 97, 110, 121, 99, 97, 114, 110, 97, 108, 112, 108, 101, 97, 115, 117, 114,
+      101]);
+  let result = base64Helper.encodeToStringSync(array, util.Type.BASIC_URL_SAFE);
+  console.info("result = " + result);
+  /*
+  Output: result = TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNzaW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZlaGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU
+  */
+  // MIME_URL_SAFE encoding
+  let base64Helper = new util.Base64Helper();
+  let array =
+    new Uint8Array([77, 97, 110, 105, 115, 100, 105, 115, 116, 105, 110, 103, 117, 105, 115, 104, 101, 100, 110, 111, 116,
+      111, 110, 108, 121, 98, 121, 104, 105, 115, 114, 101, 97, 115, 111, 110, 98, 117, 116, 98, 121, 116, 104, 105, 115,
+      115, 105, 110, 103, 117, 108, 97, 114, 112, 97, 115, 115, 105, 111, 110, 102, 114, 111, 109, 111, 116, 104, 101,
+      114, 97, 110, 105, 109, 97, 108, 115, 119, 104, 105, 99, 104, 105, 115, 97, 108, 117, 115, 116, 111, 102, 116, 104,
+      101, 109, 105, 110, 100, 101, 120, 99, 101, 101, 100, 115, 116, 104, 101, 115, 104, 111, 114, 116, 118, 101, 104,
+      101, 109, 101, 110, 99, 101, 111, 102, 97, 110, 121, 99, 97, 114, 110, 97, 108, 112, 108, 101, 97, 115, 117, 114,
+      101]);
+  let result = base64Helper.encodeToStringSync(array, util.Type.MIME_URL_SAFE);
+  console.info("result = " + result);
+  /*
+  // Output: result = TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz
+  aW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl
+  aGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU
+  */
+  ```
 
 ### decodeSync<sup>9+</sup>
 
@@ -3584,7 +3642,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   base64Helper.encodeToString(array, util.Type.MIME).then((val) => {
     console.info(val);
     /*
-    // Output: TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz
+    Output: TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz
     aW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl
     aGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=
     */
@@ -6487,7 +6545,7 @@ A constructor used to create a **Base64** object.
 
 encodeSync(src: Uint8Array): Uint8Array
 
-Encodes the input content into a Uint8Array object. This API returns the result synchronously.
+Performs Base64 encoding on the input Uint8Array byte array and returns the encoded Uint8Array.
 
 > **NOTE**
 >
@@ -6521,7 +6579,7 @@ Encodes the input content into a Uint8Array object. This API returns the result 
 
 encodeToStringSync(src: Uint8Array): string
 
-Encodes the input content into a string. This API returns the result synchronously.
+Performs Base64 encoding on the input Uint8Array byte array and returns the encoded string.
 
 > **NOTE**
 >
