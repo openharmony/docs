@@ -93,7 +93,7 @@
 | idleWaitTime    | number                            | 否    | 空闲等待时间，单位为毫秒。           |
 | parameters      | [key: string]: number \| string \| boolean  | 否    | 携带参数信息。 |
 
-WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
+WorkInfo参数用于设置延迟任务的触发条件，参数设置时需遵循以下规则：
 
 - workId、bundleName、abilityName为必填项，bundleName需为本应用包名。
 
