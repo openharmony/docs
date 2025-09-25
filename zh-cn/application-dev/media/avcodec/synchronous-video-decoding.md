@@ -430,11 +430,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     std::unique_lock<std::shared_mutex> lock(codecMutex);
     OH_AVErrCode ret = AV_ERR_OK;
     if (videoDec != nullptr) {
-        ret = OH_VideoDecoder_Destroy(videoDec);
+        OH_VideoDecoder_Destroy(videoDec);
         videoDec = nullptr;
-    }
-    if (ret != AV_ERR_OK) {
-        // 异常处理。
     }
     ```
 
