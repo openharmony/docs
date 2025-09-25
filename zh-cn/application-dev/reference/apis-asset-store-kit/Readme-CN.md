@@ -1,4 +1,10 @@
 # Asset Store Kit（关键资产存储服务）
+<!--Kit: Asset Store Kit-->
+<!--Subsystem: Security-->
+<!--Owner: @JeremyXu-->
+<!--Designer: @skye_you-->
+<!--Tester: @nacyli-->
+<!--Adviser: @zengyawen-->
 
 - ArkTS API<!--asset-store-arkts-->
   - [@ohos.security.asset (关键资产存储服务)](js-apis-asset.md)
