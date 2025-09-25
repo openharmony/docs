@@ -103,7 +103,7 @@
 | REMOTE_DAUDIO<sup>18+</sup>        | 29 | 分布式设备。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | HEARING_AID<sup>20+</sup>        | 30 | 助听器设备。 |
 | NEARLINK<sup>20+</sup>        | 31 | 星闪设备。 |
-| SYSTEM_PRIVATE<sup>20+</sup> | 200 | 系统私有设备（由于该设备在系统中属于私有设备，因此应用程序可以忽略该设备）。 |
+| SYSTEM_PRIVATE<sup>22+</sup> | 200 | 系统私有设备（由于该设备在系统中属于私有设备，因此应用程序可以忽略该设备）。 |
 | DEFAULT<sup>9+</sup> | 1000   | 默认设备类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## CommunicationDeviceType<sup>9+</sup>
