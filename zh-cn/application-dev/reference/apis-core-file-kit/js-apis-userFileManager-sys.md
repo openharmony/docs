@@ -4504,30 +4504,38 @@ async function example(mgr: userFileManager.UserFileManager) {
 
 ## MemberType
 
-成员类型。
+type MemberType = number | string | boolean
+
+文件资产成员的类型。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称  |  类型 |  只读  |  可选  |  说明  |
-| ----- |  ---- |  ---- |  ---- |  ---- |
-| number |  number | 是 | 是 | number类型。 |
-| string |  string | 是 | 是 | string类型。|
-| boolean |  boolean | 是 | 是 | boolean类型。 |
+| 类型  | 说明                      |
+| ----- |  ---- |
+| number | number类型。 |
+| string | string类型。 |
+| boolean | boolean类型。 |
 
 ## ChangeEvent
 
+type ChangeEvent = 'deviceChange' | 'albumChange' | 'imageChange' | 'audioChange' | 'videoChange' | 'remoteFileChange'
+
 变更监听的媒体文件类型。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称   | 类型                     | 必填 | 说明                      |
-| -------- | ------------------------- | ---- | ----- |
-| deviceChange | string | 是    | 设备。 |
-| albumChange | string | 是    | 相册。 |
-| imageChange | string | 是    | 图片。 |
-| audioChange | string | 是    | 音频。 |
-| videoChange | string | 是    | 视频。 |
-| remoteFileChange | string | 是    | 远程文件。 |
+| 类型  | 说明                      |
+| ----- |  ---- |
+| 'deviceChange' | 表示设备，值固定为'deviceChange'字符串。 |
+| 'albumChange' | 表示相册，值固定为'albumChange'字符串。 |
+| 'imageChange' | 表示图片，值固定为'imageChange'字符串。 |
+| 'audioChange' | 表示音频，值固定为'audioChange'字符串。 |
+| 'videoChange' | 表示视频，值固定为'videoChange'字符串。 |
+| 'remoteFileChange' | 表示远程文件，值固定为'remoteFileChange'字符串。 |
 
 ## PeerInfo
 
@@ -4680,12 +4688,14 @@ async function example(mgr: userFileManager.UserFileManager) {
 
 图片或视频的创建选项。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称                   | 类型                | 必填 | 说明                                              |
-| ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| subType           | [PhotoSubType](#photosubtype10) | 否  | 图片或者视频的子类型。  |
-| cameraShotKey           | string | 否  | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。  |
+| 名称                   | 类型                | 只读 | 可选 | 说明                                              |
+| ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
+| subType           | [PhotoSubType](#photosubtype10) | 否   | 是   | 图片或者视频的子类型。 |
+| cameraShotKey           | string | 否   | 是   | 锁屏相机拍照或录像的标记字段（仅开放给系统相机，其key值由系统相机定义）。 |
 
 ## FetchOptions
 
