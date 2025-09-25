@@ -29,7 +29,7 @@ constructor()
 
 构造一个新的画刷对象。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **示例：**
 
@@ -45,7 +45,7 @@ constructor(brush: Brush)
 
 复制构造一个新的画刷对象。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -78,7 +78,7 @@ setColor(color: common2D.Color) : void
 
 设置画刷的颜色。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -110,7 +110,7 @@ setColor(alpha: number, red: number, green: number, blue: number): void
 
 设置画刷的颜色。性能优于[setColor_#setcolor)接口，推荐使用本接口。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
  
 **参数：**
 
@@ -144,7 +144,7 @@ setColor(color: number) : void
 
 设置画刷的颜色。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -175,7 +175,7 @@ setColor4f(color4f: common2D.Color4f, colorSpace: colorSpaceManager.ColorSpaceMa
 
 设置画刷的颜色以及标准色域，与[setColor_#setcolor)区别在于可以单独设置色域，适用于需要单独设置色域的场景。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -201,7 +201,7 @@ getColor(): common2D.Color
 
 获取画刷的颜色。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -226,7 +226,7 @@ getColor4f(): common2D.Color4f
 
 获取画刷的颜色，与[getColor_#getcolor12)的区别是返回值类型为浮点数，适用于需要浮点数类型的场景。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -252,7 +252,7 @@ getHexColor(): number
 
 获取画刷的颜色。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -278,7 +278,7 @@ setAntiAlias(aa: boolean) : void
 
 设置画刷是否开启抗锯齿。开启后，可以使得图形的边缘在显示时更平滑。未调用此接口设置时，系统默认关闭抗锯齿。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -309,7 +309,7 @@ isAntiAlias(): boolean
 
 获取画刷是否开启抗锯齿属性。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -332,7 +332,7 @@ setAlpha(alpha: number) : void
 
 设置画刷的透明度。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -363,7 +363,7 @@ getAlpha(): number
 
 获取画刷的透明度。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -386,7 +386,7 @@ setColorFilter(filter: ColorFilter) : void
 
 给画刷添加额外的颜色滤波器。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -418,7 +418,7 @@ setMaskFilter(filter: MaskFilter): void
 
 给画刷添加额外的蒙版滤镜。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -456,7 +456,7 @@ setShaderEffect(shaderEffect: ShaderEffect): void
 
 设置画刷着色器效果。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -488,7 +488,7 @@ setShadowLayer(shadowLayer: ShadowLayer): void
 
 设置画刷阴影层效果。当前仅在绘制文字时生效。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -554,7 +554,7 @@ setBlendMode(mode: BlendMode) : void
 
 设置画刷的混合模式。未调用此接口设置时，系统默认的混合模式为SRC_OVER。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -585,7 +585,7 @@ setImageFilter(filter: ImageFilter | null): void
 
 为画刷设置图像滤波器。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -618,7 +618,7 @@ getColorFilter(): ColorFilter
 
 获取画刷的颜色滤波器。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -643,7 +643,7 @@ reset(): void
 
 重置当前画刷为初始状态。
 
-**系统能力：** SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Web.Webview.Core
 
 **示例：**
 
