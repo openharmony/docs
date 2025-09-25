@@ -487,7 +487,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 ## WorkInfo
 
-延迟任务的具体信息。
+延迟任务的具体信息, 用于设置延迟任务的触发条件等。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
