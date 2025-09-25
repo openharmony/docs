@@ -35,7 +35,7 @@ for (int i = 0; i < 1000000; i++) {
 }
 ```
 
-在 for 循环中会创建大量的 handle，消耗大量资源。为了减小内存开销，N-API 提供创建局部 scope 的能力，在局部 scope 中间所创建 handle 的生命周期将与局部 scpoe 保持一致。一旦不再需要这些 handle，就可以直接关闭局部 scope。
+在 for 循环中会创建大量的 handle，消耗大量资源。为了减小内存开销，N-API 提供创建局部 scope 的能力，在局部 scope 中间所创建 handle 的生命周期将与局部 scope 保持一致。一旦不再需要这些 handle，就可以直接关闭局部 scope。
 
 * 打开和关闭 scope 的方法为 napi_open_handle_scope 和 napi_close_handle_scope；
 * N-API 中 scope 的层次结构是一个嵌套的层次结构，任何时候只有一个存活的 scope，所有新创建的 handle 都将在该 scope 处于存活状态时与之关联；
@@ -145,7 +145,7 @@ napi_remove_wrap(env, jsobject, &result);
 开发者可以通过如下示例将耗时任务用异步方式实现，大概逻辑包括以下三步： 
 * 用 napi_create_promise 接口创建 promise，将创建一个 deferred 对象并与 promise 一起返回，deferred 对象会绑定到已创建的 promise；
 * 执行耗时任务，并将执行结果传递给 promise；
-* 使用 napi_resolve_deferred 或 napi_reject_deffered 接口来 resolve 或 reject 创建的 promise，并释放 deferred 对象。此处不建议执行耗时操作，否则会阻塞主线程，导致丢帧等问题。  
+* 使用 napi_resolve_deferred 或 napi_reject_deferred 接口来 resolve 或 reject 创建的 promise，并释放 deferred 对象。此处不建议执行耗时操作，否则会阻塞主线程，导致丢帧等问题。  
 
 ```cpp
 // 在executeCB、completeCB之间传递数据
@@ -164,7 +164,7 @@ static void addExecuteCB(napi_env env, void *data) {
     addonData->result = addonData->args[0] + addonData->args[1];
 };
 
-// 3、使用 napi_resolve_deferred 或 napi_reject_deffered 接口来 resolve 或 reject 创建的 promise，并释放 deferred 对象。此处不建议执行耗时操作，否则会阻塞主线程，导致丢帧等问题。  
+// 3、使用 napi_resolve_deferred 或 napi_reject_deferred 接口来 resolve 或 reject 创建的 promise，并释放 deferred 对象。此处不建议执行耗时操作，否则会阻塞主线程，导致丢帧等问题。  
 static void addPromiseCompleteCB(napi_env env, napi_status status, void *data) {
     AddonData *addonData = (AddonData *)data;
     napi_value result = nullptr;
