@@ -291,7 +291,7 @@ ImageProcessing_ErrorCode OH_ImageProcessing_GetParameter(OH_ImageProcessing* im
 
 | 类型 | 说明 |
 | -- | -- |
-| [ImageProcessing_ErrorCode](capi-image-processing-types-h.md#imageprocessing_errorcode) | 如果获取参数不成功，则返回IMAGE_PROCESSING_SUCCESS。<br> 当该实例为空或该实例不是图片处理模块实例时，返回IMAGE_PROCESSING_ERROR_INVALID_INSTANCE。<br> 当参数为空时，返回IMAGE_PROCESSING_ERROR_INVALID_PARAMETER。 |
+| [ImageProcessing_ErrorCode](capi-image-processing-types-h.md#imageprocessing_errorcode) | 如果获取参数成功，则返回IMAGE_PROCESSING_SUCCESS。<br> 当该实例为空或该实例不是图片处理模块实例时，返回IMAGE_PROCESSING_ERROR_INVALID_INSTANCE。<br> 当参数为空时，返回IMAGE_PROCESSING_ERROR_INVALID_PARAMETER。 |
 
 ### OH_ImageProcessing_ConvertColorSpace()
 
