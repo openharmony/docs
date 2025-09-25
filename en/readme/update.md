@@ -67,11 +67,11 @@ base/update             # Update subsystem repository
 
 **Update subsystem**
 
-[update\_app](https://gitee.com/openharmony/update_app)
+[update\_app](https://gitcode.com/openharmony/update_app)
 
-[update\_updateservice](https://gitee.com/openharmony/update_updateservice)
+[update\_updateservice](https://gitcode.com/openharmony/update_updateservice)
 
-[update\_updater](https://gitee.com/openharmony/update_updater)
+[update\_updater](https://gitcode.com/openharmony/update_updater)
 
-[update\_packaging\_tools](https://gitee.com/openharmony/update_packaging_tools)
+[update\_packaging\_tools](https://gitcode.com/openharmony/update_packaging_tools)
 
