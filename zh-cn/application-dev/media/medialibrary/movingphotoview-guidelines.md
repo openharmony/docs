@@ -66,19 +66,19 @@
             .objectFit(ImageFit.Cover)
             // 播放时触发。
             .onStart(() => {
-              console.log('onStart');
+              console.info('onStart');
             })
             // 播放结束触发。
             .onFinish(() => {
-              console.log('onFinish');
+              console.info('onFinish');
             })
             // 播放停止触发。
             .onStop(() => {
-              console.log('onStop')
+              console.info('onStop')
             })
             // 出现错误触发。
             .onError(() => {
-              console.log('onError');
+              console.error('onError');
             })
     
           Row() {

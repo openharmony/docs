@@ -514,7 +514,7 @@ async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelp
     let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
     let sendablePhotoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let photoAsset: photoAccessHelper.PhotoAsset = sendablePhotoAsset.convertToPhotoAsset();
-    console.log(`get no sendable uri success : ${photoAsset.uri}`);
+    console.info(`get no sendable uri success : ${photoAsset.uri}`);
   } catch (err) {
     console.error(`convertToPhotoAsset failed. error: ${err.code}, ${err.message}`);
   }

@@ -142,7 +142,7 @@ class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<phot
     let videoFileUri: string = "file://com.example.temptest/data/storage/el2/base/haps/VideoFile.mp4";
     try {
       await movingPhoto.requestContent(imageFileUri, videoFileUri);
-      console.log("moving photo contents retrieved successfully");
+      console.info("moving photo contents retrieved successfully");
     } catch (err) {
       console.error(`failed to retrieve contents of moving photo, error code is ${err.code}, message is ${err.message}`);
     }
@@ -227,7 +227,7 @@ class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<phot
     let imageFileUri: string = "file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg";
     try {
       await movingPhoto.requestContent(photoAccessHelper.ResourceType.IMAGE_RESOURCE, imageFileUri);
-      console.log("moving photo image content retrieved successfully");
+      console.info("moving photo image content retrieved successfully");
     } catch (err) {
       console.error(`failed to retrieve image content of moving photo, error code is ${err.code}, message is ${err.message}`);
     }
@@ -309,7 +309,7 @@ class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<phot
     }
     try {
       let buffer: ArrayBuffer = await movingPhoto.requestContent(photoAccessHelper.ResourceType.IMAGE_RESOURCE);
-      console.log("moving photo image content retrieved successfully, buffer length: " + buffer.byteLength);
+      console.info("moving photo image content retrieved successfully, buffer length: " + buffer.byteLength);
     } catch (err) {
       console.error(`failed to retrieve image content of moving photo, error code is ${err.code}, message is ${err.message}`);
     }
