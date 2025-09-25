@@ -35,8 +35,6 @@
 
 5. 认证成功后，调用[UserAuthInstance.off](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#off20)接口取消订阅认证过程中的提示信息。
 
-**示例：**
-
 以跳过禁用的生物认证，订阅认证信息为例：
 
 ```ts
