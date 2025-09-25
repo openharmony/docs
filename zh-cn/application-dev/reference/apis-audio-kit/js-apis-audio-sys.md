@@ -460,7 +460,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 |----------------------------| ------ |---------------------------------|
 | ACCESSORY<sup>19+</sup>    | 26 | 附件设备，如遥控器上的麦克风。                 |
 | BLUETOOTH_SPP<sup>22+</sup> | 33 | 蓝牙设备SPP（Serial Port Profile）连接。 |
-| NEARLINK_PORT<sup>20+</sup> | 34 | 星闪设备PORT连接。                     |
+| NEARLINK_PORT<sup>22+</sup> | 34 | 星闪设备PORT连接。                     |
 
 ## AudioCapturerOptions<sup>8+</sup>
 
