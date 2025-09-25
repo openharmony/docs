@@ -21,7 +21,7 @@ import { drm } from '@kit.DrmKit';
 
 generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: number, options?: OptionsData[]): Promise<MediaKeyRequest\>
 
-生成媒体密钥请求。
+生成媒体密钥请求。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -73,7 +73,7 @@ mediaKeySession.generateMediaKeyRequest("video/avc", uint8pssh, drm.MediaKeyType
 
 processMediaKeyResponse(response: Uint8Array): Promise<Uint8Array\>
 
-处理媒体密钥响应。
+处理媒体密钥响应。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -205,7 +205,7 @@ try {
 
 generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array\>
 
-生成离线媒体密钥释放请求。
+生成离线媒体密钥释放请求。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -254,7 +254,7 @@ mediaKeySession.generateOfflineReleaseRequest(mediaKeyId).then((offlineReleaseRe
 
 processOfflineReleaseResponse(mediaKeyId: Uint8Array, response: Uint8Array): Promise<void\>
 
-处理离线媒体密钥释放响应。
+处理离线媒体密钥释放响应。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -311,7 +311,7 @@ mediaKeySession.processOfflineReleaseResponse(mediaKeyId, offlineReleaseResponse
 
 restoreOfflineMediaKeys(mediaKeyId: Uint8Array): Promise<void\>
 
-恢复离线媒体密钥。
+恢复离线媒体密钥。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -449,7 +449,7 @@ try {
 
 on(type: 'keyRequired', callback: (eventInfo: EventInfo) => void): void
 
-监听密钥请求事件。
+监听密钥请求事件。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -487,7 +487,7 @@ mediaKeySession.on('keyRequired', (eventInfo: drm.EventInfo) => {
 
 off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 
-注销密钥请求事件监听。
+注销密钥请求事件监听。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -523,7 +523,7 @@ mediaKeySession.off('keyRequired');
 
 on(type: 'keyExpired', callback: (eventInfo: EventInfo) => void): void
 
-监听密钥过期事件。
+监听密钥过期事件。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -561,7 +561,7 @@ mediaKeySession.on('keyExpired', (eventInfo: drm.EventInfo) => {
 
 off(type: 'keyExpired', callback?: (eventInfo: EventInfo) => void): void
 
-注销密钥过期事件监听。
+注销密钥过期事件监听。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -597,7 +597,7 @@ mediaKeySession.off('keyExpired');
 
 on(type: 'vendorDefined', callback: (eventInfo: EventInfo) => void): void
 
-监听DRM解决方案自定义事件。
+监听DRM解决方案自定义事件。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -635,7 +635,7 @@ mediaKeySession.on('vendorDefined', (eventInfo: drm.EventInfo) => {
 
 off(type: 'vendorDefined', callback?: (eventInfo: EventInfo) => void): void
 
-注销DRM解决方案自定义事件监听。
+注销DRM解决方案自定义事件监听。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -671,7 +671,7 @@ mediaKeySession.off('vendorDefined');
 
 on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
 
-监听密钥过期更新事件。
+监听密钥过期更新事件。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -709,7 +709,7 @@ mediaKeySession.on('expirationUpdate', (eventInfo: drm.EventInfo) => {
 
 off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 
-注销过期更新事件监听。
+注销过期更新事件监听。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -745,7 +745,7 @@ mediaKeySession.off('expirationUpdate');
 
 on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean) => void): void
 
-监听密钥变化事件。
+监听密钥变化事件。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -785,7 +785,7 @@ mediaKeySession.on('keysChange', (keyInfo: drm.KeysInfo[], newKeyAvailable: bool
 
 off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolean) => void): void
 
-注销密钥变化事件监听。
+注销密钥变化事件监听。使用callback异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
