@@ -79,7 +79,7 @@ lcd闪光灯信息项。
 
 | 名称   | 类型                            | 只读  | 可选       | 说明 |
 | ------ | ----------------------------- |-----| ---------- | ---------- |
-| raw<sup>12+</sup> | [image.Image](../apis-image-kit/arkts-apis-image-Image.md)| NA  | 是   | raw图。 |
+| raw<sup>12+</sup> | [image.Image](../apis-image-kit/arkts-apis-image-Image.md)| 否  | 是   | raw图。 |
 
 ## ExposureMode
 
@@ -154,7 +154,6 @@ createDepthDataOutput(profile: DepthProfile): DepthDataOutput
 | --------------- | --------------- |
 | 202                    |  Not System Application.               |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
-| 7400201                |  Camera service fatal error.               |
 
 **示例：**
 
@@ -575,7 +574,7 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 | ----------------------------- | --------------------------------------------------- | ---- | ---- |-------------------|
 | isCameraOccluded                 | boolean              |  是  | 否 |遮挡状态，true为遮挡状态，false为不遮挡状态。        |
 
-## CameraOutputCapability<sup>13+</sup>
+## CameraOutputCapability<sup>10+</sup>
 
 相机输出能力项。
 
@@ -597,6 +596,8 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 
 | 名称                     | 值        | 说明         |
 | ----------------------- | --------- | ------------ |
+| CAMERA_FORMAT_DNG<sup>12+</sup> |   4   | Digital Negative格式的图。      |
+| CAMERA_FORMAT_DNG_XDRAW<sup>18+</sup> |    5    | Extreme Digital格式的图。   |
 | CAMERA_FORMAT_DEPTH_16<sup>13+</sup> |   3000   | DEPTH_16格式的深度图。      |
 | CAMERA_FORMAT_DEPTH_32<sup>13+</sup> |   3001   | DEPTH_32格式的深度图。      |
 
@@ -2281,7 +2282,7 @@ function removeMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types:
 | 名称         | 类型                                        | 只读 | 可选 |说明                |
 | -----------  | ------------------------------------------- | ---- | ---- | ----------------- |
 | objectId<sup>13+</sup>     | number                                      |  是  |  否  | metadataObject Id序号。|
-| confidence<sup>13+</sup>   | number                                      |  是  |  否  | 检测置信度，取值范围[0,1]。|
+| confidence<sup>13+</sup>   | number                                      |  是  |  否  | 检测置信度，取值范围[0, 1]。|
 
 ## MetadataFaceObject<sup>13+</sup>
 
@@ -2294,7 +2295,7 @@ function removeMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types:
 | leftEyeBoundingBox     | [Rect](arkts-apis-camera-i.md#rect)                             |  是  |  否  | 左眼区域框|
 | rightEyeBoundingBox    | [Rect](arkts-apis-camera-i.md#rect)                            |  是  |  否  | 右眼区域框。|
 | emotion                | [Emotion](#emotion13)             |  是  |  否  | 检测到的情绪类型。|
-| emotionConfidence      | number                            |  是  |  否  | 情绪检测置信度，取值范围[0,1]。|
+| emotionConfidence      | number                            |  是  |  否  | 情绪检测置信度，取值范围[0, 1]。|
 | pitchAngle             | number                            |  是  |  否  | 俯仰角度，取值范围[-90, 90]，以向下为正。|
 | yawAngle               | number                            |  是  |  否  | 左右旋转角度，取值范围[-90, 90]，以向右为正。|
 | rollAngle              | number                            |  是  |  否  | 平面内旋转角度，取值范围[-180, 180]，以顺时针方向为正。|
@@ -5374,7 +5375,7 @@ ISO参数信息。
 
 | 名称        | 类型    | 只读 | 可选  | 说明       |
 | ----------- | ------- | ---- |-----| ---------- |
-| lumination  | number  | 是   | 是   | 范围[0,1],光照值归一化数值|
+| lumination  | number  | 是   | 是   | 范围[0, 1]，光照值归一化数值。|
 
 ## CameraFormat
 
@@ -5987,7 +5988,7 @@ function getFocusDriven(session: camera.VideoSessionForSys): camera.FocusDrivenT
 
 setFocusDistance(distance: number): void
 
-手动设置对焦距离，可设置范围为[0,1]之间的浮点数，0表现为近景，1表现为远景。
+手动设置对焦距离，可设置范围为[0, 1]之间的浮点数，0表现为近景，1表现为远景。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5997,7 +5998,7 @@ setFocusDistance(distance: number): void
 
 | 参数名      | 类型                     | 必填 | 说明                 |
 | -------- | ----------------------- | ---- | ------------------- |
-| distance | number | 是   | 范围0-1：该值为归一化值，0为近景，1为远景，<br>可在该范围内调节 |
+| distance | number | 是   | 范围[0, 1]：该值为归一化值，0为近景，1为远景，<br>可在该范围内调节。 |
 
 **错误码：**
 
@@ -6130,7 +6131,7 @@ getIsoRange(): Array\<number\>
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| Array\<number\>   | 用于获取ISO范围，范围为[50,100,...,6400]，实际根据底层能力返回为准，接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
+| Array\<number\>   | 用于获取ISO范围，范围为[50, 100, ..., 6400]，实际根据底层能力返回为准，接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
