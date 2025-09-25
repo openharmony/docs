@@ -33,6 +33,7 @@
 | <!--DelRow-->ECC/NoDigest | 签名是ASN1格式。<br/>NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。 | 9+ | 否 |
 | ED25519/NoDigest | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。 | 8+ | 是 |
 | SM2/SM3 | 签名是ASN1格式。 | 9+ | 是 |
+| SM2/NoDigest | 签名是ASN1格式。<br/>NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。由业务对明文做SM3哈希，再将哈希后的数据传入，哈希后的数据长度必须满足SM2签名验签支持的摘要算法规格。 | 22+ | 是 |
 
 **<!--RP4-->轻量级设备<!--RP4End-->规格**
 
