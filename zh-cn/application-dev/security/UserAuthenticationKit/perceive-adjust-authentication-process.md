@@ -7,11 +7,11 @@
 <!--Tester: @jane_lz-->
 <!--Adviser: @zengyawen-->
 
-从API version 20开始，在应用发起身份认证时，可通过接口调整认证方式，以及感知认证过程。
+从API version 20开始，在应用发起身份认证时，可通过接口调整认证过程，以及感知认证过程。
 
 调整认证过程：应用发起认证时通过[AuthParam](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#authparam10)参数的skipLockedBiometricAuth属性控制是否跳过已禁用的生物认证。
 
-感知认证过程：通过[on](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#on20)接口注册回调来获取认证过程中控件的拉起和退出提示，以及认证过程中用户的每一次认证失败尝试。正确的顺序为先通过on注册回调，再通过[start](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#start10)发起认证，start成功发起认证后on注册的回调才会收到信息。
+感知认证过程：通过[on](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#on20)接口注册回调来获取认证过程中控件的拉起和退出结果，以及认证过程中用户的每一次认证失败尝试。正确的顺序为先通过on注册回调，再通过[start](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#start10)发起认证，start成功发起认证后on注册的回调才会收到信息。
 
 ## 接口说明
 
