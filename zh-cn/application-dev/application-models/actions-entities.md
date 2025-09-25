@@ -1,5 +1,12 @@
 # 常见action与entities（不推荐使用）
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @li-weifeng2024-->
+<!--Designer: @li-weifeng2024-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 > **说明：**
 >
 > 由于action/entity被泛化使用，系统对应用声明action/entity的行为缺少管控，恶意应用虚假声明，抢占流量，导致跳转后功能不可用。后续系统会逐步废弃非必要action/entity，建议通过[指定类型的方式拉起应用](./start-intent-panel.md)。

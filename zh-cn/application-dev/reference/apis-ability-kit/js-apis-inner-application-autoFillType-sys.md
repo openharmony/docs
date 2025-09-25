@@ -1,5 +1,12 @@
 # AutoFillType (系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 表示提供自动填充类型的枚举。
 
 > **说明：**

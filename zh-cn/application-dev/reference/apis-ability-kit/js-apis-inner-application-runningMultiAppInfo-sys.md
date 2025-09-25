@@ -1,5 +1,12 @@
 # RunningMultiAppInfo (系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @altay-->
+<!--Designer: @altay-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 定义应用多开在运行态的结构信息。
 
 > **说明：**

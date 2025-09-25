@@ -1,5 +1,12 @@
 # AutoFillPopupConfig (系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 自动填充气泡弹窗的尺寸和位置信息。
 
 > **说明：**

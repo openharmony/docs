@@ -1,4 +1,12 @@
 # 启动指定页面
+
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @lidongrui-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 <!--deprecated_code_no_check-->
 
 当PageAbility的启动模式设置为单例时（具体设置方法和典型场景示例见[PageAbility的启动模式](pageability-launch-type.md)，缺省情况下是单实例模式），若PageAbility已被拉起，再次启动PageAbility会触发onNewWant回调（即非首次拉起）。应用开发者可以通过want传递启动参数，例如开发者希望指定页面启动PageAbility，可以通过want中的parameters参数传递pages信息，具体示例代码如下：

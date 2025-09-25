@@ -1,5 +1,11 @@
 # 跳转规则
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @lidongrui-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
 
 一般情况下，应用中的界面跳转由用户触发，应用本身通过startAbility启动跳转其他界面。
 

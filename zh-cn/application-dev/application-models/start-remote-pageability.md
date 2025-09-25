@@ -1,4 +1,12 @@
 # 启动远程PageAbility（仅对系统应用开放）
+
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @lidongrui-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 <!--deprecated_code_no_check-->
 
 启动远程PageAbility同样通过featureAbility中的startAbility接口实现。
