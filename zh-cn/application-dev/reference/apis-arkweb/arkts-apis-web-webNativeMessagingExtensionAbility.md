@@ -32,7 +32,7 @@ import WebNativeMessagingExtensionAbility from '@kit.ArkWeb';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ------ | ------ | ------ | ------ | ------ |
-| context | [WebNativeMessagingExtensionContext](arkts-apis-web-webNativeMessagingExtensionContext.md) | 是 | 否 | Web原生信息通信上下文。 |
+| context | [WebNativeMessagingExtensionContext](arkts-apis-web-webNativeMessagingExtensionContext.md) | 否 | 否 | Web原生信息通信上下文。 |
 
 ### onConnectNative
 
@@ -57,9 +57,9 @@ import { WebNativeMessagingExtensionAbility, ConnectionInfo } from '@kit.ArkWeb'
 
 export class MyWebNativeMessagingExtension extends WebNativeMessagingExtensionAbility {
   onConnectNative(info: ConnectionInfo): void {
-    console.log('Web Native connection established!');
-    console.log(`Connnection ID: ${info.connectionId}`);
-    console.log(`Caller bundle: ${info.bundleName}`);
+    console.info('Web Native connection established!');
+    console.info(`Connnection ID: ${info.connectionId}`);
+    console.info(`Caller bundle: ${info.bundleName}`);
     // 在此处处理连接建立后的业务逻辑
   }
 }
@@ -88,8 +88,8 @@ import { WebNativeMessagingExtensionAbility, ConnectionInfo } from '@kit.ArkWeb'
 
 export class MyWebNativeMessagingExtension extends WebNativeMessagingExtensionAbility {
   onDisconnectNative(info: ConnectionInfo): void {
-    console.log('Web Native connection closed!');
-    console.log(`Connnection ID: ${info.connectionId}`);
+    console.info('Web Native connection closed!');
+    console.info(`Connnection ID: ${info.connectionId}`);
     // 在此处处理连接断开后的清理工作
   }
 }
@@ -112,7 +112,7 @@ import { WebNativeMessagingExtensionAbility } from '@kit.ArkWeb';
 
 export class MyWebNativeMessagingExtension extends WebNativeMessagingExtensionAbility {
   onDestroy(): void {
-    console.log('WebNativeMessagingExtensionAbility is about to be destroyed!');
+    console.info('WebNativeMessagingExtensionAbility is about to be destroyed!');
     // 在此处释放资源或者执行清理操作
   }
 }
