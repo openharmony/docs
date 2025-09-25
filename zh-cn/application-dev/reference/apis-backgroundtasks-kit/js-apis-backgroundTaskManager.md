@@ -103,9 +103,9 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
   let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
   backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId, (err: BusinessError, res: number) => {
       if(err) {
-          console.log('callback => Operation getRemainingDelayTime failed. Cause: ' + err.code);
+          console.info('callback => Operation getRemainingDelayTime failed. Cause: ' + err.code);
       } else {
-          console.log('callback => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
+          console.info('callback => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
       }
   })
   ```
@@ -142,9 +142,9 @@ import { BusinessError } from '@ohos.base';
 
 let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
     backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId).then((res:number) => {
-    console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
+    console.info('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
 }).catch((err : BusinessError) => {
-    console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
+    console.info('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
 })
 ```
 
