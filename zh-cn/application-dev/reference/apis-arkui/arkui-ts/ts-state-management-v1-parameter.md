@@ -20,6 +20,6 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 必填 | 说明     |
-| ------ | ---- | ---- | ------------ |
-|allowOverride|string|否|配置\@Provide支持重写。默认不支持重写。|
+| 名称 | 类型 | 只读 | 可选   | 说明   |
+| ------ | ---- | ---- | ------------ | ------------ |
+|allowOverride|string|否|是|配置\@Provide支持重写。默认不支持重写。|
