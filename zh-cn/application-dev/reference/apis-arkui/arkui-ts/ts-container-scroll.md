@@ -1666,7 +1666,7 @@ struct ScrollExample {
 
 ### 示例9（划动翻页效果）
 
-该示例通过enablePaging接口，实现了Scroll组件划动翻页效果。
+该示例通过enablePaging接口，实现了Scroll组件滑动翻页效果。
 
 ```ts
 // xxx.ets
