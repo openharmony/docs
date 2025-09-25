@@ -721,7 +721,7 @@ struct ReusableChildComponent {
   }
 
   aboutToRecycle(): void {
-    console.log(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
+    console.info(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
 
     // 当开关为open，通过BuilderNode的reuse接口和recycle接口传递给其下的自定义组件，例如ChildComponent2，完成复用
     if (this.switch === 'open') {
@@ -730,7 +730,7 @@ struct ReusableChildComponent {
   }
 
   aboutToReuse(params: object): void {
-    console.log(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
+    console.info(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
 
     // 当开关为open，通过BuilderNode的reuse接口和recycle接口传递给其下的自定义组件，例如ChildComponent2，完成复用
     if (this.switch === 'open') {
@@ -752,11 +752,11 @@ struct ChildComponent2 {
   @Prop item: string = "false";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log(`${TEST_TAG} ChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
+    console.info(`${TEST_TAG} ChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log(`${TEST_TAG} ChildComponent2 aboutToRecycle ${this.item}`);
+    console.info(`${TEST_TAG} ChildComponent2 aboutToRecycle ${this.item}`);
   }
 
   build() {
@@ -774,11 +774,11 @@ struct ChildComponent3 {
   @Prop item: string = "false";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log(`${TEST_TAG} ChildComponent3 aboutToReuse ${JSON.stringify(params)}`);
+    console.info(`${TEST_TAG} ChildComponent3 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log(`${TEST_TAG} ChildComponent3 aboutToRecycle ${this.item}`);
+    console.info(`${TEST_TAG} ChildComponent3 aboutToRecycle ${this.item}`);
   }
 
   build() {
@@ -876,11 +876,11 @@ struct ReusableChildComponent {
   @Prop item: string = '';
 
   aboutToReuse(params: object): void {
-    console.log(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
+    console.info(`${TEST_TAG} ReusableChildComponent aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
+    console.info(`${TEST_TAG} ReusableChildComponent aboutToRecycle ${this.item}`);
   }
 
   build() {
@@ -894,11 +894,11 @@ struct ChildComponent2 {
   @Prop item: string = "";
 
   aboutToReuse(params: Record<string, object>) {
-    console.log(`${TEST_TAG} ChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
+    console.info(`${TEST_TAG} ChildComponent2 aboutToReuse ${JSON.stringify(params)}`);
   }
 
   aboutToRecycle(): void {
-    console.log(`${TEST_TAG} ChildComponent2 aboutToRecycle ${this.item}`);
+    console.info(`${TEST_TAG} ChildComponent2 aboutToRecycle ${this.item}`);
   }
 
   build() {

@@ -1,4 +1,10 @@
 # 属性更新器 (AttributeUpdater)
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @xiang-shouxing-->
+<!--Designer: @xiang-shouxing-->
+<!--Tester: @sally__-->
+<!--Adviser: @HelloCrease-->
 
 ## 概述
 
@@ -39,7 +45,7 @@ export declare class AttributeUpdater<T, C = Initializer<T>> implements Attribut
 组件初始化完成之后，开发者可以通过`AttributeUpdater`实例的`attribute`属性方法，获取到属性对象。通过属性对象直接修改属性，会立即触发组件属性的更新。
 
 ```ts
-import { AttributeUpdater } from '@ohos.arkui.modifier'
+import { AttributeUpdater } from '@kit.ArkUI';
 
 class MyButtonModifier extends AttributeUpdater<ButtonAttribute> {
   // 首次绑定时触发initializeModifier方法，进行属性初始化
@@ -79,7 +85,7 @@ struct updaterDemo {
 可以通过`AttributeUpdater`实例的`updateConstructorParams`方法，直接更新组件的构造参数。
 
 ```ts
-import { AttributeUpdater } from '@ohos.arkui.modifier'
+import { AttributeUpdater } from '@kit.ArkUI';
 
 class MyTextModifier extends AttributeUpdater<TextAttribute, TextInterface> {
   initializeModifier(instance: TextAttribute): void {
