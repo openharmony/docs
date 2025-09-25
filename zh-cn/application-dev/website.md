@@ -68,9 +68,11 @@
     - 真实数据-模块描述<!--reference-big-file-realdata-module-->
       - [模块描述](onlyfortest/reference/apis-arkgraphics2d/arkts-apis-graphics-drawing.md)
       - [Bursh](onlyfortest/reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Brush.md)
+      - [RoundRect](onlyfortest/reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-RoundRect.md)
     - 真实数据-组件描述<!--reference-big-file-realdata-components-->
       - [组件描述](onlyfortest/reference/apis-mindspore-lite-kit/arkts-basic-components-web.md)
-      - 
+      - [WebController](onlyfortest/reference/apis-mindspore-lite-kit/arkts-basic-components-web-WebController.md)
+      - [Types](onlyfortest/reference/apis-mindspore-lite-kit/arkts-basic-components-web-t.md)
     - ArkTs API<!--reference-big-file-module-arkts-->
       - [模块描述](onlyfortest/reference/apis-audio-kit/arkts-apis-graphics-drawing.md)
       - [元能力子系统错误码](onlyfortest/reference/apis-audio-kit/errorcode-audio.md)
