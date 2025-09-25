@@ -62,9 +62,8 @@ struct Model {
         this.cam.enabled = true;
         this.cam.position.z = 5;
         this.sceneOpt = { scene: this.scene, modelType: ModelType.SURFACE } as SceneOptions;
-      })
-      .catch((reason: string) => {
-        console.log(reason);
+      }).catch((error: Error) => {
+        console.error('Scene load failed:', error);
       });
     }
   }
