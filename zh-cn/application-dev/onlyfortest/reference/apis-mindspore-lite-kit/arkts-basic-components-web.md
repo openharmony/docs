@@ -1,4 +1,4 @@
-# 模块描述
+# 组件描述
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @yp99ustc; @aohui; @zourongchun-->
