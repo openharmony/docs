@@ -11,6 +11,7 @@
 
 - [密钥算法为ECC256、摘要算法为SHA256](#ecc256sha256)
 - [密钥算法为SM2、摘要算法为SM3](#sm2sm3)
+- [密钥算法为SM2、摘要算法为NoDigest](#sm2nodigest)
 - [密钥算法为RSA、摘要算法为SHA256、填充模式为PSS](#rsasha256pss)
 - [密钥算法为RSA、摘要算法为SHA256、填充模式为PKCS1_V1_5](#rsasha256pkcs1_v1_5)
 <!--RP1--><!--RP1End-->
@@ -459,6 +460,206 @@ async function testSignVerify() {
   await GenerateSm2Key(keyAlias);
   await Sign(keyAlias, plaintext);
   await Verify(keyAlias, plaintext, signature);
+  await DeleteSm2Key(keyAlias);
+}
+```
+### SM2/NoDigest
+```ts
+/*
+ * 密钥算法为SM2、摘要算法为NoDigest，由业务自己做SM3摘要
+ */
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit";
+
+let keyAlias = 'test_sm2KeyAlias';
+let handle: number;
+let hash = '12345678901234567890123456789012';
+let signature: Uint8Array;
+
+function StringToUint8Array(str: string) {
+  let arr: number[] = new Array();
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+function Uint8ArrayToString(fileData: Uint8Array) {
+  let dataString = '';
+  for (let i = 0; i < fileData.length; i++) {
+    dataString += String.fromCharCode(fileData[i]);
+  }
+  return dataString;
+}
+
+function GetSm2GenerateProperties() {
+  let properties: Array<huks.HuksParam> = [{
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_SM2
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_SM2_KEY_SIZE_256
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN |
+    huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_NONE
+  }];
+  return properties;
+}
+
+function GetSm2SignProperties() {
+  let properties: Array<huks.HuksParam> = [{
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_SM2
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_SM2_KEY_SIZE_256
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_NONE
+  }];
+  return properties;
+}
+
+function GetSm2VerifyProperties() {
+  let properties: Array<huks.HuksParam> = [{
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_SM2
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_SM2_KEY_SIZE_256
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_NONE
+  }];
+  return properties;
+}
+
+async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter generateKeyItem`);
+  try {
+    await huks.generateKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: generateKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: generateKeyItem input arg invalid`);
+  }
+}
+
+async function initSession(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter initSession`);
+  try {
+    await huks.initSession(keyAlias, huksOptions)
+      .then((data) => {
+        handle = data.handle;
+        console.info(`promise: initSession success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: initSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: initSession input arg invalid`);
+  }
+}
+
+async function updateSession(handle: number, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter updateSession`);
+  try {
+    await huks.updateSession(handle, huksOptions)
+      .then((data) => {
+        let outData = data.outData as Uint8Array;
+        console.info(`promise: updateSession success, data = ${Uint8ArrayToString(outData)}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: updateSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: updateSession input arg invalid`);
+  }
+}
+
+async function finishSession(handle: number, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter finishSession`);
+  try {
+    await huks.finishSession(handle, huksOptions)
+      .then((data) => {
+        signature = data.outData as Uint8Array;
+        console.info(`promise: finishSession success, data = ${Uint8ArrayToString(signature)}`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: finishSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: finishSession input arg invalid`);
+  }
+}
+
+async function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`promise: enter deleteKeyItem`);
+  try {
+    await huks.deleteKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: deleteKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: deleteKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: deleteKeyItem input arg invalid`);
+  }
+}
+
+async function GenerateSm2Key(keyAlias: string) {
+  console.info(`enter GenerateSm2Key`);
+  let genProperties = GetSm2GenerateProperties();
+  let options: huks.HuksOptions = {
+    properties: genProperties
+  };
+  await generateKeyItem(keyAlias, options);
+}
+
+async function Sign(keyAlias: string, plaintext: string) {
+  let signProperties = GetSm2SignProperties();
+  let options: huks.HuksOptions = {
+    properties: signProperties,
+    inData: StringToUint8Array(plaintext)
+  }
+  await initSession(keyAlias, options);
+  await finishSession(handle, options);
+}
+
+async function Verify(keyAlias: string, plaintext: string, signature: Uint8Array) {
+  let verifyProperties = GetSm2VerifyProperties()
+  let options: huks.HuksOptions = {
+    properties: verifyProperties,
+    inData: StringToUint8Array(plaintext)
+  }
+  await initSession(keyAlias, options);
+  await updateSession(handle, options);
+  options.inData = signature;
+  await finishSession(handle, options)
+}
+
+async function DeleteSm2Key(keyAlias: string) {
+  console.info(`enter DeleteRsaKey`);
+  let emptyOptions: huks.HuksOptions = {
+    properties: []
+  }
+  await deleteKeyItem(keyAlias, emptyOptions);
+}
+
+async function testSignVerify() {
+  await GenerateSm2Key(keyAlias);
+  await Sign(keyAlias, hash);
+  await Verify(keyAlias, hash, signature);
   await DeleteSm2Key(keyAlias);
 }
 ```
