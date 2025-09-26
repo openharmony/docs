@@ -138,7 +138,7 @@ try {
    display.off('captureStatusChange', callback2);
    ```
 
-3. 此外，还可以通过on('availableAreaChange')监听当前屏幕对象（Display对象）的可用区域变化；可通过on('availableAreaChange')关闭对应的监听。
+3. 此外，还可以通过on('availableAreaChange')监听当前屏幕对象（Display对象）的可用区域变化；可通过off('availableAreaChange')关闭对应的监听。
 
    ```ts
    import { Callback } from '@kit.BasicServicesKit';
