@@ -1,7 +1,7 @@
 # 支持键盘输入事件
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
-<!--Owner: @jiangtao92-->
+<!--Owner: @yihao-lin-->
 <!--Designer: @piggyguy-->
 <!--Tester: @songyanhong-->
 <!--Adviser: @HelloCrease-->
@@ -267,13 +267,13 @@ struct TextAreaDemo {
       Text('Submissions: ' + this.content)
       TextArea({ controller: this.controller, text: this.text })
         .onKeyPreIme((event: KeyEvent) => {
-          console.log(`${JSON.stringify(event)}`);
+          console.info(`${JSON.stringify(event)}`);
           if (event.keyCode === 2054 && event.type === KeyType.Down) { // 回车键物理码
             const hasCtrl = event?.getModifierKeyState?.(['Ctrl']);
             if (hasCtrl) {
-              console.log('Line break');
+              console.info('Line break');
             } else {
-              console.log('Submissions：' + this.text);
+              console.info('Submissions：' + this.text);
               this.content = this.text;
               this.text = '';
               event.stopPropagation();
