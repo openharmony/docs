@@ -1,4 +1,10 @@
 # switch
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @houguobiao-->
+<!--Designer: @houguobiao-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 开关选择器，通过开关，开启或关闭某个功能。
 
