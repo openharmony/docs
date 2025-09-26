@@ -1359,7 +1359,7 @@ struct RepeatBuilderPage {
 
   build() {
     Column({ space: 20 }) {
-      Text('Repeat与@Builder混用，左边是异常场景，右边是正常场景，向下滑动一段距离可以看出差别')
+      Text('Repeat与@Builder混用，左边是异常场景，右边是正常场景，向下滑动一段距离可以看出差别。')
         .fontSize(15)
         .fontColor(Color.Gray)
 
@@ -1378,6 +1378,7 @@ struct RepeatBuilderPage {
                 }
               }
               .border({ width: 1 })
+              .width('90%')
             }, { cachedCount: 3 })
         }
         .cachedCount(1)
@@ -1399,6 +1400,7 @@ struct RepeatBuilderPage {
                 }
               }
               .border({ width: 1 })
+              .width('90%')
             }, { cachedCount: 3 })
         }
         .cachedCount(1)
@@ -1432,7 +1434,7 @@ struct RepeatBuilderPage {
 
 界面展示如下图，进入页面后向下滑动一段距离可以看出差别，左边是错误用法，右边是正确用法（Text组件为黑色，Builder组件为红色）。上述代码展示了开发过程中易出错的场景，即在@Builder构造函数中传参方式为值传递。
 
-![Repeat-Builder](figures/Repeat-Builder.png)
+![Repeat-Builder](figures/Repeat-Builder.gif)
 
 ### Repeat子组件声明expandSafeArea属性时，子组件无法扩展到全屏
 
