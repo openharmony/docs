@@ -1,4 +1,10 @@
 # @ohos.vibrator (Vibrator)
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 The **vibrator** module allows precise control over the vibration of device vibrators. With the APIs provided by this module, you can start vibration in various modes such as specified duration, preset effect, and custom effect and stop any or all of them.
 
@@ -35,7 +41,7 @@ Starts vibration with the specified effect and attribute. This API uses an async
 
 **Error codes**
 
-For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md) and [Universal Error Codes](../errorcode-universal.md). Error codes and error information are reported as exceptions. You need to use **try catch** to capture the exceptions that may occur during an API call.
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -52,6 +58,7 @@ For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
+   // Use try catch to capture possible exceptions.
    try {
      // Check whether 'haptic.notice.success' is supported.
      vibrator.isSupportEffect('haptic.notice.success', (err: BusinessError, state: boolean) => {
@@ -126,9 +133,11 @@ For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator
                  } catch (err) {
                    let e: BusinessError = err as BusinessError;
                    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+                 } finally {
+                   vibrator.stopVibration();
+                   this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
                  }
                }
-               this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
              })
          }
          .width('100%')
@@ -191,7 +200,7 @@ Starts vibration with the specified effect and attribute. This API uses a promis
 
 **Error codes**
 
-For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md) and [Universal Error Codes](../errorcode-universal.md). Error codes and error information are reported as exceptions. You need to use **try catch** to capture the exceptions that may occur during an API call.
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -207,7 +216,8 @@ For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator
    ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-
+   
+   // Use try catch to capture possible exceptions.
    try {
      // Check whether 'haptic.notice.success' is supported.
      vibrator.isSupportEffect('haptic.notice.success', (err: BusinessError, state: boolean) => {
@@ -282,9 +292,11 @@ For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator
                  } catch (err) {
                    let e: BusinessError = err as BusinessError;
                    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+                 } finally {
+                   vibrator.stopVibration();
+                   this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
                  }
                }
-               this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
              })
          }
          .width('100%')
@@ -337,7 +349,7 @@ Stops vibration in the specified mode. This API uses an asynchronous callback to
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md). Error codes and error information are reported as exceptions. You need to use **try catch** to capture the exceptions that may occur during an API call.
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -352,6 +364,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
+   // Use try catch to capture possible exceptions.
    try {
      // Start vibration of the specified duration.
      vibrator.startVibration({
@@ -453,7 +466,7 @@ Stops vibration in the specified mode. This API uses a promise to return the res
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md). Error codes and error information are reported as exceptions. You need to use **try catch** to capture the exceptions that may occur during an API call.
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -468,6 +481,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
+   // Use try catch to capture possible exceptions.
    try {
      // Start vibration of the specified duration.
      vibrator.startVibration({
@@ -557,7 +571,7 @@ Stops vibration in all modes. This API uses an asynchronous callback to return t
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md). Error codes and error information are reported as exceptions. You need to use **try catch** to capture the exceptions that may occur during an API call.
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -568,7 +582,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
    ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-  
+
+   // Use try catch to capture possible exceptions.
    try {
      // Stop vibration in all modes.
      vibrator.stopVibration((error: BusinessError) => {
@@ -604,7 +619,7 @@ Stops vibration in all modes. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md). Error codes and error information are reported as exceptions. You need to use **try catch** to capture the exceptions that may occur during an API call.
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -615,7 +630,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
    ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-  
+
+   // Use try catch to capture possible exceptions.
    try {
      // Stop vibration in all modes.
      vibrator.stopVibration().then(() => {
@@ -653,7 +669,7 @@ Stops vibration based on the specified vibrator parameters. If no parameters are
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md). Error codes and error information are reported as exceptions. You need to use **try catch** to capture the exceptions that may occur during an API call.
 
 | ID| Error Message          |
 | -------- | ------------------ |
@@ -663,20 +679,36 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
   ```ts
-   import { vibrator } from '@kit.SensorServiceKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
-  
-   try {
-     vibrator.stopVibration({ deviceId: 1, vibratorId: 3 }).then(() => {
-       console.info('Succeed in stopping vibration');
-     }, (error: BusinessError) => {
-       console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-     });
-   } catch (error) {
-     let e: BusinessError = error as BusinessError;
-     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-   }
-   ```
+  import { vibrator } from '@kit.SensorServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  function vibratorDemo() {
+    // Query information about all vibrators.
+    const vibratorInfoList: vibrator.VibratorInfo[] = vibrator.getVibratorInfoSync();
+    // Obtain the target vibrator based on the actual service logic. The following example shows how to obtain the local vibrator. You need to adjust the filtering logic as required.
+    const targetVibrator = vibratorInfoList.find((vibrator: vibrator.VibratorInfo) => {
+      return vibrator.isLocalVibrator;
+    });
+    if (!targetVibrator) {
+      return;
+    }
+    // Call vibrator.startVibration to start vibration.
+    // ...
+
+    // Use try catch to capture possible exceptions.
+    try {
+      // Stop the vibration based on the actual service scenario.
+      vibrator.stopVibration({ deviceId: targetVibrator.deviceId, vibratorId: targetVibrator.vibratorId }).then(() => {
+        console.info('Succeed in stopping vibration');
+      }, (error: BusinessError) => {
+        console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+      });
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+    }
+  }
+  ```
 
 ## vibrator.stopVibrationSync<sup>12+</sup>
 
@@ -692,7 +724,7 @@ Stops any form of motor vibration.
 
 **Error codes**
 
-For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md) and [Universal Error Codes](../errorcode-universal.md). Error codes and error information are reported as exceptions. You need to use **try catch** to capture the exceptions that may occur during an API call.
 
 | ID| Error Message                |
 | -------- | ------------------------ |
@@ -704,7 +736,8 @@ For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator
    ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-  
+
+   // Use try catch to capture possible exceptions.
    try {
      // Stop any form of motor vibration.
      vibrator.stopVibrationSync()
@@ -727,12 +760,12 @@ Checks whether an effect ID is supported. This API uses an asynchronous callback
 
 | Name  | Type                        | Mandatory| Description                                                       |
 | -------- | ---------------------------- | ---- | ----------------------------------------------------------- |
-| effectId | string                       | Yes  | ID of the preset vibration effect.                                     |
+| effectId | string                       | Yes  | Effect ID. The value is a string of a maximum of 64 characters. If the length exceeds 64 characters, the first 64 characters are used.|
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that the effect ID is supported, and the value **false** means the opposite.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md). Error codes and error information are reported as exceptions. You need to use **try catch** to capture the exceptions that may occur during an API call.
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -744,7 +777,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
    ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-  
+
+   // Use try catch to capture possible exceptions.
    try {
      // Check whether 'haptic.notice.success' is supported.
      vibrator.isSupportEffect('haptic.notice.success', (err: BusinessError, state: boolean) => {
@@ -793,7 +827,7 @@ Checks whether an effect ID is supported. This API uses a promise to return the 
 
 | Name  | Type  | Mandatory| Description                  |
 | -------- | ------ | ---- | ---------------------- |
-| effectId | string | Yes  | ID of the preset vibration effect.|
+| effectId | string | Yes  | Effect ID. The value is a string of a maximum of 64 characters. If the length exceeds 64 characters, the first 64 characters are used.|
 
 **Return value**
 
@@ -803,7 +837,7 @@ Checks whether an effect ID is supported. This API uses a promise to return the 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md). Error codes and error information are reported as exceptions. You need to use **try catch** to capture the exceptions that may occur during an API call.
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -816,6 +850,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
+   // Use try catch to capture possible exceptions.
    try {
      // Check whether 'haptic.notice.success' is supported.
      vibrator.isSupportEffect('haptic.notice.success').then((state: boolean) => {
@@ -859,7 +894,7 @@ Checks whether the preset vibration effect is supported.
 
 | Name  | Type  | Mandatory| Description                  |
 | -------- | ------ | ---- | ---------------------- |
-| effectId | string | Yes  | ID of the preset vibration effect.|
+| effectId | string | Yes  | Effect ID. The value is a string of a maximum of 64 characters. If the length exceeds 64 characters, the first 64 characters are used.|
 
 **Return value**
 
@@ -869,7 +904,7 @@ Checks whether the preset vibration effect is supported.
 
 **Error codes**
 
-For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md) and [Universal Error Codes](../errorcode-universal.md). Error codes and error information are reported as exceptions. You need to use **try catch** to capture the exceptions that may occur during an API call.
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -882,6 +917,7 @@ For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
+   // Use try catch to capture possible exceptions.
    try {
      // Check whether the preset 'haptic.notice.success' is supported.
      let ret = vibrator.isSupportEffectSync('haptic.notice.success');
@@ -894,7 +930,7 @@ For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator
 
 ## vibrator.getEffectInfoSync<sup>19+</sup>
 
-getEffectInfoSync(effectId: string, param?: VibratorInfoParam): EffectInfo;
+getEffectInfoSync(effectId: string, param?: VibratorInfoParam): EffectInfo
 
 Obtains the preset vibration effect based on the device ID and vibrator ID to determine whether the preset vibration effect is supported.
 
@@ -904,12 +940,12 @@ Obtains the preset vibration effect based on the device ID and vibrator ID to de
 
 | Name  | Type                                                        | Mandatory| Description                         |
 | -------- | ------------------------------------------------------------ | ---- |-----------------------------|
-| effectId | string | Yes  | ID of the preset vibration effect.                |
+| effectId | string | Yes  | Effect ID. The value is a string of a maximum of 64 characters. If the length exceeds 64 characters, the first 64 characters are used.                |
 | param     | [VibratorInfoParam](#vibratorinfoparam19)                       | No  | Device ID and vibrator ID. If this parameter is left unspecified, this API applies to the local device by default.|
 
 **Error codes**
 
-For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md). Error codes and error information are reported as exceptions. You need to use **try catch** to capture the exceptions that may occur during an API call.
 
 | ID| Error Message                |
 | -------- | ------------------------ |
@@ -928,9 +964,10 @@ For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
+   // Use try catch to capture possible exceptions.
    try {
      const effectInfo: vibrator.EffectInfo = vibrator.getEffectInfoSync('haptic.clock.timer', { deviceId: 1, vibratorId: 3});
-     console.log(`isEffectSupported: ${effectInfo.isEffectSupported}`);
+     console.info(`isEffectSupported: ${effectInfo.isEffectSupported}`);
    } catch (error) {
      let e: BusinessError = error as BusinessError;
      console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
@@ -956,7 +993,7 @@ Queries the vibrator list of one or all devices.
 
 | Type                           | Description                                                     |
 |-------------------------------| --------------------------------------------------------- |
-| [VibratorInfo](#vibratorinfo19) | Vibrator information.|
+| Array&lt;[VibratorInfo](#vibratorinfo19)&gt; | Vibrator information.|
 
 
 **Example**
@@ -967,7 +1004,7 @@ Queries the vibrator list of one or all devices.
 
    try {
      const vibratorInfoList: vibrator.VibratorInfo[] = vibrator.getVibratorInfoSync({ deviceId: 1, vibratorId: 3 });
-     console.log(`vibratorInfoList: ${JSON.stringify(vibratorInfoList)}`);
+     console.info(`vibratorInfoList: ${JSON.stringify(vibratorInfoList)}`);
    } catch (error) {
      let e: BusinessError = error as BusinessError;
      console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
@@ -992,7 +1029,7 @@ Enables listening for vibrator status changes.
 
 **Error codes**
 
-For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md). Error codes and error information are reported as exceptions. You need to use **try catch** to capture the exceptions that may occur during an API call.
 
 | ID| Error Message                |
 | -------- | ------------------------ |
@@ -1007,9 +1044,10 @@ For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator
 
    // Callback
    const vibratorStateChangeCallback = (data: vibrator.VibratorStatusEvent) => {
-     console.log('vibrator state callback info:', JSON.stringify(data));
+     console.info('vibrator state callback info:', JSON.stringify(data));
    }
 
+   // Use try catch to capture possible exceptions.
    try {
      // Subscribe to vibratorStateChange events.
      vibrator.on('vibratorStateChange', vibratorStateChangeCallback);
@@ -1037,7 +1075,7 @@ Disables listening for vibrator status changes.
 
 **Error codes**
 
-For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md). Error codes and error information are reported as exceptions. You need to use **try catch** to capture the exceptions that may occur during an API call.
 
 | ID| Error Message                |
 | -------- | ------------------------ |
@@ -1052,8 +1090,9 @@ For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator
 
    // Callback
    const vibratorStateChangeCallback = (data: vibrator.VibratorStatusEvent) => {
-     console.log('vibrator state callback info:', JSON.stringify(data));
+     console.info('vibrator state callback info:', JSON.stringify(data));
    }
+   // Use try catch to capture possible exceptions.
    try {
      // Unsubscribe from specified vibratorStateChange events.
      vibrator.off('vibratorStateChange', vibratorStateChangeCallback);
@@ -1073,12 +1112,12 @@ Defines the vibrator status change event.
 **System capability**: SystemCapability.Sensors.MiscDevice
 
 
-| Name| Type   | Description                              |
-| ---- | ------ |----------------------------------|
-| timestamp    | number  | Event timestamp.                       |
-| deviceId    | number   | Device ID.                          |
-| vibratorCount    | number   | Number of vibrators on the device.                      |
-| isVibratorOnline    | boolean  | Vibrator status. The value **true** indicates that the device is online, and the value **false** indicates the opposite.|
+| Name              | Type     | Read-Only| Optional| Description                              |
+|------------------|---------|----|----|----------------------------------|
+| timestamp        | number  | Yes | No | Event timestamp.                       |
+| deviceId         | number  | Yes | No | Device ID.                          |
+| vibratorCount    | number  | Yes | No | Number of vibrators on the device.                      |
+| isVibratorOnline | boolean | Yes | No | Vibrator status. The value **true** indicates that the device is online, and the value **false** indicates the opposite.|
 
 
 ## VibratorInfoParam<sup>19+</sup>
@@ -1090,8 +1129,8 @@ Defines the vibrator parameters. If **VibratorInfoParam** is left unspecified, a
 
 | Name| Type  | Read-Only| Optional| Description                                                        |
 | ---- | ------ | ---- | ---- |------------------------------------------------------------|
-| deviceId    | number | No  | Yes  | Device ID. The default value is **-1**, which indicates the local device. You can use [getEffectInfoSync](#vibratorgeteffectinfosync19) to query other device IDs.|
-| vibratorId    | number | No  | Yes  | Vibrator ID. The default value is **-1**, which indicates all vibrator of the local device. You can use [getEffectInfoSync](#vibratorgeteffectinfosync19) to query other vibrator IDs.    |
+| deviceId    | number | No  | Yes  | Device ID. The default value is **-1**, indicating the local device. Since API version 19, you can use [getVibratorInfoSync](#vibratorgetvibratorinfosync19) or [on](#vibratoron19) to query the device ID.|
+| vibratorId    | number | No  | Yes  | Vibrator ID. The default value is **-1**, which indicates all vibrators of the local device. Since API version 19, you can use [getVibratorInfoSync](#vibratorgetvibratorinfosync19) or [on](#vibratoron19) to query the vibrator ID.    |
 
 
 
@@ -1102,22 +1141,24 @@ Defines the preset effect.
 **System capability**: SystemCapability.Sensors.MiscDevice
 
 
-| Name| Type   | Description        |
-| ---- | ------  |------------|
-| isEffectSupported   | boolean | Whether the preset effect is supported. The value **true** indicates that the preset effect is supported, and the value **false** indicates the opposite.|
+| Name               | Type     | Read-Only| Optional| Description                           |
+|-------------------|---------|----|----|-------------------------------|
+| isEffectSupported | boolean | Yes | No | Whether the preset effect is supported. The value **true** indicates that the preset effect is supported, and the value **false** indicates the opposite.|
 
 
 ## VibratorInfo<sup>19+</sup>
 
 Defines the vibrator information.
 
-| Name| Type   | Description       |
-| ---- | ------ |-----------|
-| deviceId    | number | Device ID.    |
-| vibratorId    | number | Vibrator ID.    |
-| deviceName    | string | Device name.    |
-| isHdHapticSupported    | boolean | Whether HD vibration is supported.|
-| isLocalVibrator    | boolean | Whether the device is a local device. |
+**System capability**: SystemCapability.Sensors.MiscDevice
+
+| Name                 | Type     | Read-Only| Optional| Description       |
+|---------------------|---------|----|----|-----------|
+| deviceId            | number  | Yes | No | Device ID.    |
+| vibratorId          | number  | Yes | No | Vibrator ID.    |
+| deviceName          | string  | Yes | No | Device name.    |
+| isHdHapticSupported | boolean | Yes | No | Whether HD vibration is supported.|
+| isLocalVibrator     | boolean | Yes | No | Whether the device is a local device. |
 
 
 ## vibrator.isHdHapticSupported<sup>12+</sup>
@@ -1136,7 +1177,7 @@ Checks whether HD vibration is supported.
 
 **Error codes**
 
-For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md).
+For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator.md). Error codes and error information are reported as exceptions. You need to use **try catch** to capture the exceptions that may occur during an API call.
 
 | ID| Error Message                |
 | -------- | ------------------------ |
@@ -1148,6 +1189,7 @@ For details about the error codes, see [Vibrator Error Codes](errorcode-vibrator
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
 
+   // Use try catch to capture possible exceptions.
    try {
      // Check whether HD vibration is supported.
      let ret = vibrator.isHdHapticSupported();
@@ -1172,8 +1214,8 @@ Adds a long vibration event as a **VibratorPattern** object.
 
 | Name  | Type                                 | Mandatory| Description                                                        |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| time     | number                                | Yes  | Start time of the long vibration, in ms. The value range is (0,1800000).|
-| duration | number                                | Yes  | Duration of the long vibration, in ms. The value range is (0,5000].|
+| time     | number                                | Yes  | Start time of the long vibration event, in ms. The value range is [0, 1800000].|
+| duration | number                                | Yes  | Duration of the long vibration event, in ms. The value range is (0, 5000].|
 | options  | [ContinuousParam](#continuousparam18) | No  | Optional parameters.                                    |
 
 **Return value**
@@ -1184,7 +1226,7 @@ Adds a long vibration event as a **VibratorPattern** object.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md). Error codes and error information are reported as exceptions. You need to use **try catch** to capture the exceptions that may occur during an API call.
 
 | ID| Error Message        |
 | -------- | ---------------- |
@@ -1197,6 +1239,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
    import { BusinessError } from '@kit.BasicServicesKit';
 
    let builder = new vibrator.VibratorPatternBuilder();
+   // Use try catch to capture possible exceptions.
    try {
      let pointsMe: vibrator.VibratorCurvePoint[] = [
 	     { time: 0, intensity: 0, frequency: -7 },
@@ -1237,7 +1280,7 @@ Adds a short vibration event as a **VibratorPattern** object.
 
 | Name | Type                               | Mandatory| Description                                                        |
 | ------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| time    | number                              | Yes  | Start time of the long vibration, in ms. The value range is (0,1800000).|
+| time    | number                              | Yes  | Start time of the long vibration event, in ms. The value range is [0, 1800000].|
 | options | [TransientParam](#transientparam18) | No  | Optional parameters.                                    |
 
 **Return value**
@@ -1248,7 +1291,7 @@ Adds a short vibration event as a **VibratorPattern** object.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md). Error codes and error information are reported as exceptions. You need to use **try catch** to capture the exceptions that may occur during an API call.
 
 | ID| Error Message        |
 | -------- | ---------------- |
@@ -1261,6 +1304,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
    import { BusinessError } from '@kit.BasicServicesKit';
 
    let builder = new vibrator.VibratorPatternBuilder();
+   // Use try catch to capture possible exceptions.
    try {
      let param: vibrator.TransientParam = {
 	     intensity: 80,
@@ -1268,7 +1312,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 	     index: 0
      }
      builder.addTransientEvent(0, param);
-     console.log(`addTransientEvent builder is ${builder.build()}`);
+     console.info(`addTransientEvent builder is ${builder.build()}`);
    } catch(error) {
      let e: BusinessError = error as BusinessError;
      console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
@@ -1303,7 +1347,7 @@ Constructor used to create a **VibratorPattern** object, which determines the vi
 	     index: 0
      }
      builder.addTransientEvent(0, param);
-     console.log(`addTransientEvent builder is ${builder.build()}`);
+     console.info(`addTransientEvent builder is ${builder.build()}`);
    } catch(error) {
      let e: BusinessError = error as BusinessError;
      console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
@@ -1370,7 +1414,7 @@ Enumerates vibration stop modes. This parameter is required for [vibrator.stopVi
 
 ## VibrateEffect<sup>9+</sup>
 
-Describes the vibration effect. This parameter is required for [vibrator.startVibration9+](#vibratorstartvibration9) or [vibrator.startVibration9+](#vibratorstartvibration9-1).
+Defines the vibration effect. This parameter is required for [vibrator.startVibration9+](#vibratorstartvibration9) or [vibrator.startVibration9+](#vibratorstartvibration9-1).
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
@@ -1379,7 +1423,7 @@ Describes the vibration effect. This parameter is required for [vibrator.startVi
 | [VibrateTime](#vibratetime9)          | Start vibration of the specified duration.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | [VibratePreset](#vibratepreset9)      | Vibration with a preset effect.                              |
 | [VibrateFromFile](#vibratefromfile10) | Vibration according to a custom vibration configuration file.                        |
-| VibrateFromPattern<sup>18+</sup>      | Triggers vibration with the custom effect. This API uses an asynchronous callback to return the result.                            |
+| [VibrateFromPattern<sup>18+</sup>](#vibratefrompattern18)      | Triggers vibration with the custom effect. This API uses an asynchronous callback to return the result.                            |
 
 ## VibrateTime<sup>9+</sup>
 
@@ -1403,7 +1447,7 @@ Represents the preset vibration effect. You can pass this value to [VibrateEffec
 | Name                   | Type    | Mandatory| Description                                                        |
 | ----------------------- | -------- | ---- | ------------------------------------------------------------ |
 | type                    | 'preset' | Yes  | The value **preset** means vibration with the specified effect.                |
-| effectId                | string   | Yes  | Preset vibration effect ID.                                          |
+| effectId                | string   | Yes  | Effect ID. The value is a string of a maximum of 64 characters. If the length exceeds 64 characters, the first 64 characters are used.                                          |
 | count                   | number   | No  | Number of repeated vibrations. This parameter is optional. The default value is **1**.                        |
 | intensity<sup>12+</sup> | number   | No  | Vibration intensity. This parameter is optional. The value range is [0, 100]. The default value is **100**. If vibration intensity adjustment is not supported, the default vibration intensity will be used.|
 
@@ -1524,10 +1568,10 @@ Describes the vibration attribute.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
-| Name                    | Type            | Mandatory| Description                                                        |
-|------------------------| ---------------- | ---- | ------------------------------------------------------------ |
-| id                     | number           | No  | Vibrator ID. The default value is **0**.                                      |
-| deviceId<sup>19+</sup> | number           | No  | Device ID.                                      | 
+| Name                  | Type            | Mandatory| Description                                                        |
+| ---------------------- | ---------------- | ---- | ------------------------------------------------------------ |
+| id                     | number           | No  | Vibrator ID. The default value is **0**.                                        |
+| deviceId<sup>19+</sup> | number           | No  | Device ID. The default value is **-1**, indicating the local device. Since API version 19, you can use [getVibratorInfoSync](#vibratorgetvibratorinfosync19) or [on](#vibratoron19) to query the device ID.<br>**Atomic service API**: This API can be used in atomic services since API version 19.|
 | usage                  | [Usage](#usage9) | Yes  | Vibration scenario. The default value is **unknown**. The value must be an enum defined in [Usage](#usage9).|
 
 ## Usage<sup>9+</sup>
@@ -1643,7 +1687,7 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sta
 
 | Name  | Type                 | Mandatory| Description              |
 | -------- | --------------------- | ---- | ------------------ |
-| effectId | [EffectId](#effectid) | Yes  | Preset vibration effect ID.|
+| effectId | [EffectId](#effectid) | Yes  | Effect ID. The value is a string of a maximum of 64 characters. If the length exceeds 64 characters, the first 64 characters are used. You are advised to check whether the effect ID is supported.|
 
 **Return value**
 
@@ -1681,7 +1725,7 @@ This API is deprecated since API version 9. You are advised to use [vibrator.sta
 
 | Name  | Type                     | Mandatory| Description                                                      |
 | -------- | ------------------------- | ---- | ---------------------------------------------------------- |
-| effectId | [EffectId](#effectid)     | Yes  | Preset vibration effect ID.                                        |
+| effectId | [EffectId](#effectid)     | Yes  | Effect ID. The value is a string of a maximum of 64 characters. If the length exceeds 64 characters, the first 64 characters are used. You are advised to check whether the effect ID is supported.                                        |
 | callback | AsyncCallback&lt;void&gt; | No  | Callback used to return the result. If the vibration starts, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**

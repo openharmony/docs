@@ -1,4 +1,10 @@
 # SMS Service Development
+<!--Kit: Telephony Kit-->
+<!--Subsystem: Telephony-->
+<!--Owner: @shao-yikai-->
+<!--Designer: @wnazgul-->
+<!--Tester: @jiang_99-->
+<!--Adviser: @zhang_yixin13-->
 
 ## When to Use
 
@@ -61,10 +67,10 @@ import { sms } from '@kit.TelephonyKit';
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
-    console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
+    console.info(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
 let deliveryCallback: AsyncCallback<sms.IDeliveryShortMessageCallback> = (err: BusinessError, data: sms.IDeliveryShortMessageCallback) => {
-    console.log(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
+    console.info(`deliveryCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
 }
 let slotId: number = 0;
 let content: string = 'Message content';
@@ -123,7 +129,7 @@ struct JumpMessage {
         };
 
         this.context.startAbilityForResult(want).then((data) => {
-            console.log("Success" + JSON.stringify(data));
+            console.info("Success" + JSON.stringify(data));
         }).catch(() => {
             console.error("error");
         });
@@ -166,7 +172,7 @@ sms:106XXXXXXXXXX?body=SMS message content
 
 ### Developing a Caller Application
 
-#### On Web Pages
+ **Starting from a Web Page**
 
 Hyperlinks on web pages must comply with the SMS protocol. The sample code is as follows:
 
@@ -176,11 +182,14 @@ Hyperlinks on web pages must comply with the SMS protocol. The sample code is as
 
 In actual development, replace the recipient number with the actual number. The SMS message content can be configured as required.
 
-#### On Applications
+ **Starting from an Application**
 
 Pass the sms string to the **uri** parameter. In the application, the context can be obtained through **this.getUIContext().getHostContext()** for a page and through **this.context** for an ability.
 
 ```ts
+// Sample code
+import { common, Want } from '@kit.AbilityKit';
+
 @Entry
 @Component
 struct Index {
@@ -199,7 +208,7 @@ struct Index {
             }
         
           context.startAbility(want).then((data) => {
-              console.log("Success" + JSON.stringify(data));
+              console.info("Success" + JSON.stringify(data));
           }).catch(() => {
               console.error("error");
           });
@@ -209,3 +218,4 @@ struct Index {
   }
 }
 ```
+

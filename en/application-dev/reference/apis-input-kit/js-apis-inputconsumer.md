@@ -1,5 +1,12 @@
 # @ohos.multimodalInput.inputConsumer (Global Shortcut Keys)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 The **inputConsumer** module implements listening for combination key events as well as listening and interception for volume key events.
 
 > **NOTE**
@@ -34,6 +41,8 @@ Sets the key event consumption configuration.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 
+**Device behavior differences**: This API takes effect only on phones and tablets. If this API is called on other devices, error code 801 is returned.
+
 | Name       | Type  | Read-Only  | Optional  | Description     |
 | --------- | ------ | ------- | ------- | ------- |
 | key       | number  | No     | No     | Key value.<br>Currently, only the [KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode) and [KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode) keys are supported.|
@@ -65,9 +74,22 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOptions>) => {
-  console.log(`List of system hotkeys : ${JSON.stringify(data)}`);
-});
+import { inputConsumer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOptions>) => {
+            console.info(`List of system hotkeys : ${JSON.stringify(data)}`);
+          });
+        })
+    }
+  }
+}
 ```
 
 ## inputConsumer.on('hotkeyChange')
@@ -100,20 +122,33 @@ For details about the error codes, see [Global Shortcut Key Error Codes](errorco
 **Example**
 
 ```js
-let leftCtrlKey = 2072;
-let zKey = 2042;
-let hotkeyOptions: inputConsumer.HotkeyOptions = {
-  preKeys: [ leftCtrlKey ],
-  finalKey: zKey,
-  isRepeat: true
-};
-let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
-  console.log(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
-}
-try {
-  inputConsumer.on("hotkeyChange", hotkeyOptions, hotkeyCallback);
-} catch (error) {
-  console.error(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputConsumer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let leftCtrlKey = 2072;
+          let zKey = 2042;
+          let hotkeyOptions: inputConsumer.HotkeyOptions = {
+            preKeys: [leftCtrlKey],
+            finalKey: zKey,
+            isRepeat: true
+          };
+          let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
+            console.info(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
+          }
+          try {
+            inputConsumer.on("hotkeyChange", hotkeyOptions, hotkeyCallback);
+          } catch (error) {
+            console.error(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -145,36 +180,62 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-let leftCtrlKey = 2072;
-let zKey = 2042;
-// Disable listening for a single callback.
-let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
-  console.log(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
-}
-let hotkeyOption: inputConsumer.HotkeyOptions = {preKeys: [leftCtrlKey], finalKey: zKey, isRepeat: true};
-try {
-  inputConsumer.on("hotkeyChange", hotkeyOption, hotkeyCallback);
-  inputConsumer.off("hotkeyChange", hotkeyOption, hotkeyCallback);
-  console.log(`Unsubscribe success`);
-} catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputConsumer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let leftCtrlKey = 2072;
+          let zKey = 2042;
+          // Disable listening for a single callback.
+          let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
+            console.info(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
+          }
+          let hotkeyOption: inputConsumer.HotkeyOptions = { preKeys: [leftCtrlKey], finalKey: zKey, isRepeat: true };
+          try {
+            inputConsumer.on("hotkeyChange", hotkeyOption, hotkeyCallback);
+            inputConsumer.off("hotkeyChange", hotkeyOption, hotkeyCallback);
+            console.info(`Unsubscribe success`);
+          } catch (error) {
+            console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
 ```js
-let leftCtrlKey = 2072;
-let zKey = 2042;
-// Disable listening for all callbacks.
-let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
-  console.log(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
-}
-let hotkeyOption: inputConsumer.HotkeyOptions = {preKeys: [leftCtrlKey], finalKey: zKey, isRepeat: true};
-try {
-  inputConsumer.on("hotkeyChange", hotkeyOption, hotkeyCallback);
-  inputConsumer.off("hotkeyChange", hotkeyOption);
-  console.log(`Unsubscribe success`);
-} catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputConsumer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let leftCtrlKey = 2072;
+          let zKey = 2042;
+          // Disable listening for all callbacks.
+          let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
+            console.info(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
+          }
+          let hotkeyOption: inputConsumer.HotkeyOptions = { preKeys: [leftCtrlKey], finalKey: zKey, isRepeat: true };
+          try {
+            inputConsumer.on("hotkeyChange", hotkeyOption, hotkeyCallback);
+            inputConsumer.off("hotkeyChange", hotkeyOption);
+            console.info(`Unsubscribe success`);
+          } catch (error) {
+            console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -182,11 +243,13 @@ try {
 
 on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent&gt;): void
 
-Subscribes to key press events. This API uses an asynchronous callback to return the result. If the current application is in the foreground focus window, a callback is triggered when the specified key is pressed. This API is available only for mobile phones and tablets.
+Subscribes to key press events. This API uses an asynchronous callback to return the result. If the current application is in the foreground focus window, a callback is triggered when the specified key is pressed.
 
 If the API call is successful, the system's default response to the key event will be intercepted; that is, system-level actions, such as volume adjustment, will no longer be triggered. To restore the system response, call [off](#inputconsumeroffkeypressed16) to disable listening for the key event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
+
+**Device behavior differences**: This API takes effect only on phones and tablets. If this API is called on other devices, error code 801 is returned.
 
 **Parameters**
 
@@ -208,17 +271,30 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  let options: inputConsumer.KeyPressedConfig = {
-    key: 16,
-    action: 1,
-    isRepeat: false,
+import { inputConsumer, KeyEvent } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            let options: inputConsumer.KeyPressedConfig = {
+              key: 16,
+              action: 1,
+              isRepeat: false,
+            }
+            inputConsumer.on('keyPressed', options, (event: KeyEvent) => {
+              console.info(`Subscribe success ${JSON.stringify(event)}`);
+            });
+          } catch (error) {
+            console.error(`Subscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
   }
-  inputConsumer.on('keyPressed', options, (event: KeyEvent) => {
-    console.log(`Subscribe success ${JSON.stringify(event)}`);
-  });
-} catch (error) {
-  console.error(`Subscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -226,9 +302,11 @@ try {
 
 off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
 
-Disables listening for the **keyPressed** event. This API uses an asynchronous callback to return the result. If the API call is successful, the system's default response to the key event will be resumed; that is, system-level actions, such as volume adjustment, will be triggered normally. This API is available only for mobile phones and tablets.
+Disables listening for the **keyPressed** event. This API uses an asynchronous callback to return the result. If the API call is successful, the system's default response to the key event will be resumed; that is, system-level actions, such as volume adjustment, will be triggered normally.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
+
+**Device behavior differences**: This API takes effect only on phones and tablets. If this API is called on other devices, error code 801 is returned.
 
 **Parameters**
 
@@ -249,14 +327,27 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  // Disable listening for a single callback.
-  inputConsumer.off('keyPressed', (event: KeyEvent) => {
-    console.log(`Unsubscribe success ${JSON.stringify(event)}`);
-  });
-  // Disable listening for all callbacks.
-  inputConsumer.off("keyPressed");
-} catch (error) {
-  console.error(`Unsubscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputConsumer, KeyEvent } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            // Disable listening for a single callback.
+            inputConsumer.off('keyPressed', (event: KeyEvent) => {
+              console.info(`Unsubscribe success ${JSON.stringify(event)}`);
+            });
+            // Disable listening for all callbacks.
+            inputConsumer.off("keyPressed");
+          } catch (error) {
+            console.error(`Unsubscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```

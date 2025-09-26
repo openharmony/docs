@@ -1,6 +1,5 @@
 # @ohos.app.ability.VpnExtensionAbility (Enhanced VPN Management)
 
-
 This module provides lifecycle callbacks for third-party VPNs, including VPN creation and destruction.
 
 >  **NOTE**
@@ -19,7 +18,7 @@ import { VpnExtensionAbility } from '@kit.NetworkKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core.
 
-| Name| Type| Read-only| Optional| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | context | [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md) | No| No| Context of the **VpnExtension**. This context is inherited from **ExtensionContext**.|
 

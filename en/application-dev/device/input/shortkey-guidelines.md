@@ -1,8 +1,15 @@
-# Shortcut Key Development
+# Preset Global Hotkey Development
+
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ## When to Use
 
-You can set the delay for starting an ability using the shortcut key. An example is to take a screenshot 5 seconds after the shortcut key is pressed.
+You can use the preset global hotkeys to set the delay time for starting an ability. An example is to take a screenshot 5 seconds after the shortcut key is pressed.
 
 ## Modules to Import
 
@@ -24,15 +31,28 @@ The following describes how to take a screenshot five seconds after the shortcut
 
 ```js
 import { shortKey } from '@kit.InputKit';
-try {
-  shortKey.setKeyDownDuration("screenshot", 500, (error) => {// Set the delay to 5 seconds (500 ms)
-    if (error) {
-      console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            shortKey.setKeyDownDuration("screenshot", 500, (error: BusinessError) => { // Set the delay to 5 seconds (500 ms).
+              if (error) {
+                console.error(`Set key down duration failed, error: ${JSON.stringify(error, ["code", "message"])}`);
+                return;
+              }
+              console.info(`Set key down duration success`);
+            });
+          } catch (error) {
+            console.error(`Set key down duration failed, error: ${JSON.stringify(error, ["code", "message"])}`);
+          }
+        })
     }
-    console.log(`Set key down duration success`);
-  });
-} catch (error) {
-  console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```

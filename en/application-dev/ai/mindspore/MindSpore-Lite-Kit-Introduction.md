@@ -1,5 +1,12 @@
 # Introduction to MindSpore Lite Kit
 
+<!--Kit: MindSpore Lite Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @zhuguodong8-->
+<!--Designer: @zhuguodong8; @jjfeing-->
+<!--Tester: @principal87-->
+<!--Adviser: @ge-yafang-->
+
 ## Use Cases
 
 MindSpore Lite is a lightweight AI engine built in OpenHarmony. Its open AI framework comes with a multi-processor architecture to empower intelligent applications in all scenarios. It brings data scientists, algorithm engineers, and developers with friendly development, efficient running, and flexible deployment, helping to build a prosperous open source ecosystem of AI hardware/software applications.
@@ -12,11 +19,11 @@ So far, MindSpore Lite has been widely used in applications such as image classi
 
 ## Constraints
 
-- This kit can run and be debugged on real devices, but not on emulators.
+- This kit is applicable to phones, tablets, PCs/2-in-1 devices, and TVs and can be debugged using the Emulator.
 
 ## Advantages
 
-MindSpore Lite provides AI model inference capabilities for hardware devices and end-to-end solutions for developers to empower intelligent applications in all scenarios. Its advantages include:
+MindSpore Lite provides AI model inference capabilities tailored for different hardware devices. Its key advantages include:
 
 - High performance: Efficient kernel algorithms and assembly-level optimization support high-performance inference on dedicated CPU and NNRt chips, maximizing computing power while minimizing inference latency and power consumption.
 - Lightweight: Provides an ultra-lightweight solution, and supports model quantization and compression to enable smaller models to run faster and empower AI model deployment in extreme environments.
@@ -26,7 +33,8 @@ MindSpore Lite provides AI model inference capabilities for hardware devices and
 ## Development Process
 
 **Figure 1** Development process for MindSpore Lite model inference
-![mindspore workflow](figures/mindspore_workflow.png)
+
+![mindspore workflow](figures/mindspore_workflow.jpg)
 
 The MindSpore Lite development process consists of two phases:
 

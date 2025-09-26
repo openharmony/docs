@@ -1,4 +1,11 @@
 # @ohos.wifiManager (WLAN)
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @qq_43802146-->
+<!--Designer: @qq_43802146-->
+<!--Tester: @furryfurry123-->
+<!--Adviser: @zhang_yixin13-->
+
 The **wifiManager** module provides basic WLAN functionalities (such as wireless access, wireless encryption, and wireless roaming), basic peer-to-peer (P2P) services, and WLAN notification services. It allows applications to interact with other devices through WLAN.
 
 > **NOTE**
@@ -83,6 +90,39 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
   }
 ```
 
+## wifiManager.disableWifi<sup>20+</sup>
+
+disableWifi(): void
+
+Disables WLAN.
+
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications) or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION (available only to enterprise applications)
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Wi-Fi Error Codes](errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501004  | Operation failed because the service is being opened. |
+
+**Example**
+
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+
+	try {
+		wifiManager.disableWifi();
+	}catch(error){
+		console.error(`disableWifi failed. ${error.message}`);
+	}
+```
+
 ## wifiManager.scan<sup>9+</sup><sup>(deprecated)</sup>
 
 scan(): void
@@ -129,7 +169,6 @@ Obtains the scan result. This API uses a promise to return the result.
 > This API is supported since API version 9 and deprecated since API version 10. Use [wifiManager.getScanInfoList](#wifimanagergetscaninfolist10) instead.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and (ohos.permission.GET_WIFI_PEERS_MAC or (ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION))
-ohos.permission.GET_WIFI_PEERS_MAC is available only for system applications.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -159,7 +198,6 @@ Obtains the scan result. This API uses an asynchronous callback to return the re
 > This API is supported since API version 9 and deprecated since API version 10. Use [wifiManager.getScanInfoList](#wifimanagergetscaninfolist10) instead.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and (ohos.permission.GET_WIFI_PEERS_MAC or (ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION))
-ohos.permission.GET_WIFI_PEERS_MAC is available only for system applications.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -232,7 +270,6 @@ Obtains the scan result. This API returns the result synchronously.
 > This API is supported since API version 9 and deprecated since API version 10. Use [wifiManager.getScanInfoList](#wifimanagergetscaninfolist10) instead.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and (ohos.permission.GET_WIFI_PEERS_MAC or (ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION))
-ohos.permission.GET_WIFI_PEERS_MAC is available only for system applications.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -285,7 +322,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 getScanInfoList(): Array&lt;WifiScanInfo&gt;
 
-Obtains the scanning result.
+Obtains the cached scan results within 30s before the current time point.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
@@ -297,7 +334,7 @@ Obtains the scanning result.
 
 | **Type**| **Description**|
 | -------- | -------- |
-| Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt; | Hotspots detected. If the caller has the ohos.permission.GET_WIFI_PEERS_MAC permission (available only for system applications), **bssid** in the return value is a real device address. Otherwise, **bssid** is a random device address.|
+| Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt; | Hotspots detected. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **bssid** in the return value is a real device address; otherwise, **bssid** is a random device address.|
 
 **Error codes**
 
@@ -349,21 +386,21 @@ Represents WLAN hotspot information.
 
 | **Name**| **Type**| **Read-only**| **Optional**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | Yes| No| Service set identifier (SSID) of the hotspot, in UTF-8 format. The maximum length is 32 bytes.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| bssid | string | Yes| No| Basic service set identifier (BSSID) of the hotspot, for example, **00:11:22:33:44:55**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| bssidType<sup>10+</sup>| [DeviceAddressType](#deviceaddresstype10) | Yes| No| BSSID type of the hotspot.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| capabilities | string | Yes| No| Hotspot capabilities.|
-| securityType | [WifiSecurityType](#wifisecuritytype9) | Yes| No| WLAN security type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| rssi | number | Yes| No| Received signal strength indicator (RSSI) of the hotspot, in dBm.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| band | number | Yes| No| Frequency band of the WLAN access point (AP). The value **1** indicates 2.4 GHz, and the value **2** indicates 5 GHz.|
-| frequency | number | Yes| No| Frequency of the WLAN AP.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| channelWidth | number | Yes| No| Channel width of the WLAN AP. For details, see [WifiChannelWidth](#wifichannelwidth9).|
-| centerFrequency0 | number | Yes| No| Center frequency of the hotspot.|
-| centerFrequency1 | number | Yes| No| Center frequency of the hotspot. If the hotspot uses two non-overlapping WLAN channels, two center frequencies, namely **centerFrequency0** and **centerFrequency1**, are returned.|
-| infoElems | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | Yes| No| Information elements.|
-| timestamp | number | Yes| No| Timestamp.|
-| supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | Yes| No| Highest Wi-Fi category supported by the hotspot.|
-| isHiLinkNetwork<sup>12+</sup> | boolean | Yes| No| Whether the hotspot supports HiLink. The value **true** indicates that the hotspot supports HiLink, and the value **false** indicates the opposite.|
+| ssid | string | No| No| Service set identifier (SSID) of the hotspot, in UTF-8 format. The maximum length is 32 bytes.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| bssid | string | No| No| Basic service set identifier (BSSID) of the hotspot, for example, **00:11:22:33:44:55**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| bssidType<sup>10+</sup>| [DeviceAddressType](#deviceaddresstype10) | No| No| BSSID type of the hotspot.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| capabilities | string | No| No| Hotspot capabilities.|
+| securityType | [WifiSecurityType](#wifisecuritytype9) | No| No| WLAN security type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| rssi | number | No| No| Received signal strength indicator (RSSI) of the hotspot, in dBm.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| band | number | No| No| Frequency band of the WLAN access point (AP). The value **1** indicates 2.4 GHz, and the value **2** indicates 5 GHz.|
+| frequency | number | No| No| Frequency of the WLAN AP.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| channelWidth | number | No| No| Channel width of the WLAN AP. For details, see [WifiChannelWidth](#wifichannelwidth9).|
+| centerFrequency0 | number | No| No| Center frequency of the hotspot.|
+| centerFrequency1 | number | No| No| Center frequency of the hotspot. If the hotspot uses two non-overlapping WLAN channels, two center frequencies, namely **centerFrequency0** and **centerFrequency1**, are returned.|
+| infoElems | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | No| No| Information elements.|
+| timestamp | number | No| No| Timestamp.|
+| supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | No| No| Highest Wi-Fi category supported by the hotspot.|
+| isHiLinkNetwork<sup>12+</sup> | boolean | No| No| Whether HiLink is supported by the hotspot. The value **true** indicates that HiLink is supported, and the value **false** indicates the opposite.|
 
 ## DeviceAddressType<sup>10+</sup>
 
@@ -439,8 +476,8 @@ Represents a WLAN information element.
 
 | **Name**| **Type**| **Read-only**| **Optional**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
-| eid | number | Yes| No| ID of the information element.|
-| content | Uint8Array | Yes| No| Content of the information element.|
+| eid | number | No| No| ID of the information element.|
+| content | Uint8Array | No| No| Content of the information element.|
 
 
 ## WifiChannelWidth<sup>9+</sup>
@@ -469,14 +506,14 @@ Represents the WLAN configuration.
 
 | **Name**| **Type**| **Read-only**| **Optional**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | Yes| No| Service set identifier (SSID) of the hotspot, in UTF-8 format. The maximum length is 32 bytes.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| bssid | string | Yes| Yes| Basic service set identifier (BSSID) of the hotspot, for example, **00:11:22:33:44:55**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| bssidType<sup>10+</sup> | [DeviceAddressType](#deviceaddresstype10) | Yes| Yes| BSSID type of the hotspot.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| preSharedKey | string | Yes| No| PSK of the hotspot, which cannot exceed 64 bytes.<br>When **securityType** is **WIFI_SEC_TYPE_OPEN**, this parameter must be an empty string. When **securityType** is any other value, this parameter cannot be empty.<br>When **securityType** is **WIFI_SEC_TYPE_WEP**, the PSK must be of 5, 10, 13, 26, 16, or 32 bytes. If the PSK length is 10, 26, 16, or 32 bytes, the PSK must be a hexadecimal number.<br>When **securityType** is **WIFI_SEC_TYPE_SAE**, the minimum PSK length is 1 byte.<br>When **securityType** is **WIFI_SEC_TYPE_PSK**, the minimum PSK length is 8 bytes.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| isHiddenSsid | boolean | Yes| Yes| Whether the network is hidden. The value **true** indicates that the the network is hidden, and the value **false** indicates the opposite.|
-| securityType | [WifiSecurityType](#wifisecuritytype9)| Yes| No| Security type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| eapConfig<sup>10+</sup> | [WifiEapConfig](#wifieapconfig10) | Yes| Yes| EAP configuration. This parameter is mandatory only when **securityType** is **WIFI_SEC_TYPE_EAP**.|
-| wapiConfig<sup>12+</sup> | [WifiWapiConfig](#wifiwapiconfig12) | Yes| Yes| WAPI configuration. This parameter is mandatory only when **securityType** is **WIFI_SEC_TYPE_WAPI_CERT** or** WIFI_SEC_TYPE_WAPI_PSK**.|
+| ssid | string | No| No| Service set identifier (SSID) of the hotspot, in UTF-8 format. The maximum length is 32 bytes.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| bssid | string | No| Yes| Basic service set identifier (BSSID) of the hotspot, for example, **00:11:22:33:44:55**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| bssidType<sup>10+</sup> | [DeviceAddressType](#deviceaddresstype10) | No| Yes| BSSID type of the hotspot.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| preSharedKey | string | No| No| PSK of the hotspot, which cannot exceed 64 bytes.<br>When **securityType** is **WIFI_SEC_TYPE_OPEN**, this parameter must be an empty string. When **securityType** is any other value, this parameter cannot be empty.<br>When **securityType** is **WIFI_SEC_TYPE_WEP**, the PSK must be of 5, 10, 13, 26, 16, or 32 bytes. If the PSK length is 10, 26, 16, or 32 bytes, the PSK must be a hexadecimal number.<br>When **securityType** is **WIFI_SEC_TYPE_SAE**, the minimum PSK length is 1 byte.<br>When **securityType** is **WIFI_SEC_TYPE_PSK**, the minimum PSK length is 8 bytes.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| isHiddenSsid | boolean | No| Yes| Whether the network is hidden. The value **true** indicates that the network is hidden; the value **false** indicates the opposite.|
+| securityType | [WifiSecurityType](#wifisecuritytype9)| No| No| Security type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| eapConfig<sup>10+</sup> | [WifiEapConfig](#wifieapconfig10) | No| Yes| EAP configuration. This parameter is mandatory only when **securityType** is **WIFI_SEC_TYPE_EAP**.|
+| wapiConfig<sup>12+</sup> | [WifiWapiConfig](#wifiwapiconfig12) | No| Yes| WAPI configuration. This parameter is mandatory only when **securityType** is **WIFI_SEC_TYPE_WAPI_CERT** or** WIFI_SEC_TYPE_WAPI_PSK**.|
 
 ## WifiEapConfig<sup>10+</sup>
 
@@ -486,21 +523,21 @@ Represents EAP configuration information.
 
 | **Name**| **Type**| **Read-only**| **Optional**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
-| eapMethod | [EapMethod](#eapmethod10) | Yes| No| EAP authentication method.|
-| phase2Method | [Phase2Method](#phase2method10) | Yes| No| Phase 2 authentication method. This parameter is mandatory only when **eapMethod** is **EAP_PEAP** or **EAP_TTLS**.|
-| identity | string | Yes| No| Identity Information. When **eapMethod** is **EAP_PEAP**, **EAP_TLS**, or **EAP_PWD**, this parameter cannot be empty.|
-| anonymousIdentity | string | Yes| No| Anonymous identity. This parameter is not used currently.|
-| password | string | Yes| No| Password. When **eapMethod** is **EAP_PEAP** or **EAP_PWD**, this parameter cannot be empty. The value contains a maximum of 128 bytes.|
-| caCertAlias | string | Yes| No| CA certificate alias.|
-| caPath | string | Yes| No| CA certificate path.|
-| clientCertAlias | string | Yes| No| Client certificate alias.|
-| certEntry | Uint8Array | Yes| No| CA certificate content. If **eapMethod** is **EAP_TLS** and this parameter is not specified, **clientCertAlias** cannot be empty.|
-| certPassword | string | Yes| No| CA certificate password. The value contains a maximum of 128 bytes.|
-| altSubjectMatch | string | Yes| No| A string to match the alternate subject.|
-| domainSuffixMatch | string | Yes| No| A string to match the domain suffix.|
-| realm | string | Yes| No| Realm for the passpoint credential.|
-| plmn | string | Yes| No| Public land mobile network (PLMN) of the passpoint credential provider.|
-| eapSubId | number | Yes| No| Sub-ID of the SIM card.|
+| eapMethod | [EapMethod](#eapmethod10) | No| No| EAP authentication method.|
+| phase2Method | [Phase2Method](#phase2method10) | No| No| Phase 2 authentication method. This parameter is mandatory only when **eapMethod** is **EAP_PEAP** or **EAP_TTLS**.|
+| identity | string | No| No| Identity Information. When **eapMethod** is **EAP_PEAP**, **EAP_TLS**, or **EAP_PWD**, this parameter cannot be empty.|
+| anonymousIdentity | string | No| No| Anonymous identity. This parameter is not used currently.|
+| password | string | No| No| Password. When **eapMethod** is **EAP_PEAP** or **EAP_PWD**, this parameter cannot be empty. The value contains a maximum of 128 bytes.|
+| caCertAlias | string | No| No| CA certificate alias.|
+| caPath | string | No| No| CA certificate path.|
+| clientCertAlias | string | No| No| Client certificate alias.|
+| certEntry | Uint8Array | No| No| CA certificate content. If **eapMethod** is **EAP_TLS** and this parameter is not specified, **clientCertAlias** cannot be empty.|
+| certPassword | string | No| No| CA certificate password. The value contains a maximum of 128 bytes.|
+| altSubjectMatch | string | No| No| A string to match the alternate subject.|
+| domainSuffixMatch | string | No| No| A string to match the domain suffix.|
+| realm | string | No| No| Realm for the passpoint credential.|
+| plmn | string | No| No| Public land mobile network (PLMN) of the passpoint credential provider.|
+| eapSubId | number | No| No| Sub-ID of the SIM card.|
 
 
 ## WifiWapiConfig<sup>12+</sup>
@@ -511,7 +548,7 @@ Represents WAPI configuration.
 
 | **Name**| **Type**| **Read-only**| **Optional**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
-| wapiPskType | [WapiPskType](#wapipsktype12)| Yes| No| Security type.|
+| wapiPskType | [WapiPskType](#wapipsktype12)| No| No| Security type.|
 | wapiAsCert | string | No| No| AS certificate.|
 | wapiUserCert | string | No| No| User Certificate.|
 
@@ -1105,7 +1142,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
       let configs = wifiManager.getDeviceConfigs();
       console.info("configs:" + JSON.stringify(configs));
     }catch(error){
-      console.error("failed:" + JSON.stringify(error));
+      console.error("failed:", error.code, error.message);
     }
 	
 ```
@@ -1208,7 +1245,7 @@ Obtains WLAN connection information. This API uses a promise to return the resul
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
-If **macType** to be obtained is **1** (device MAC address), the caller must have the **ohos.permission.GET_WIFI_LOCAL_MAC** permission, which is available only for system applications. Without this permission, a random MAC address is returned in **macAddress**.
+If **macType** is **1** (device MAC address), the caller must also have the **ohos.permission.GET_WIFI_LOCAL_MAC** permission. If the caller does not have this permission, a random MAC address will be returned. This permission is available only to system applications in API versions 8 to 15. From API version 16, it's also available to normal applications on PCs/2-in-1 devices while remaining exclusive to system applications on other devices.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1240,8 +1277,8 @@ Obtains WLAN connection information. This API uses an asynchronous callback to r
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
 > **NOTE**
-> - If **macType** is **1** (device MAC address), you need to request the **ohos.permission.GET_WIFI_LOCAL_MAC** permission, which is available only to system applications. If this permission is not granted, **macAddress** in the return result is empty.
-> - If the caller has the **ohos.permission.GET_WIFI_PEERS_MAC** permission (available only for system applications), **BSSID** in the return result is a real device address. Otherwise, **BSSID** is a random device address.
+> - If **macType** is **1** (device MAC address), the caller must also have the  **ohos.permission.GET_WIFI_LOCAL_MAC** permission. If the caller does not have this permission, the returned MAC address will be empty. This permission is available only to system applications in API versions 8 to 15. From API version 16, it's also available to normal applications on PCs/2-in-1 devices while remaining exclusive to system applications on other devices.
+> - If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **bssid** in the return value is a real BSSID; otherwise, **bssid** is a random device address.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -1266,18 +1303,10 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 **Example**
 ```ts
   import { wifiManager } from '@kit.ConnectivityKit';
-  
-  wifiManager.getLinkedInfo((err, data:wifiManager.WifiLinkedInfo) => {
-      if (err) {
-          console.error("get linked info error");
-          return;
-      }
-      console.info("get wifi linked info: " + JSON.stringify(data));
-  });
-  
+
   wifiManager.getLinkedInfo().then(data => {
       console.info("get wifi linked info: " + JSON.stringify(data));
-  }).catch((error:number) => {
+  }).catch((error) => {
       console.error("get linked info error");
   });
 ```
@@ -1291,8 +1320,8 @@ Obtains the WLAN connection information. This API returns the result synchronous
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
 > **NOTE**
-> - If **macType** is **1** (device MAC address), you need to request the **ohos.permission.GET_WIFI_LOCAL_MAC** permission, which is available only to system applications. If this permission is not granted, **macAddress** is empty.
-> - If the caller has the **ohos.permission.GET_WIFI_PEERS_MAC** permission (available only for system applications), **BSSID** in the return result is a real device address. Otherwise, **BSSID** is a random device address.
+> - If **macType** is **1** (device MAC address), the caller must also have the  **ohos.permission.GET_WIFI_LOCAL_MAC** permission. If the caller does not have this permission, the returned MAC address will be empty. This permission is available only to system applications in API versions 8 to 15. From API version 16, it's also available to normal applications on PCs/2-in-1 devices while remaining exclusive to system applications on other devices.
+> - If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **bssid** in the return value is a real BSSID; otherwise, **bssid** is a random device address.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -1332,26 +1361,26 @@ Represents the WLAN connection information.
 
 | Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | Yes| No| SSID of the hotspot, in UTF-8 format.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| bssid | string | Yes| No| BSSID of the hotspot.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| rssi | number | Yes| No| Received signal strength indicator (RSSI) of the hotspot, in dBm.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| band | number | Yes| No| Frequency band of the WLAN AP. The value **1** indicates 2.4 GHz, and the value **2** indicates 5 GHz.|
-| linkSpeed | number | Yes| No| Uplink speed of the WLAN AP, in Mbps.|
-| rxLinkSpeed<sup>10+</sup> | number | Yes| No| Downlink speed of the WLAN AP, in Mbps.|
-| maxSupportedTxLinkSpeed<sup>10+</sup> | number | Yes| No| Maximum uplink speed supported, in Mbps.|
-| maxSupportedRxLinkSpeed<sup>10+</sup> | number | Yes| No| Maximum downlink speed supported, in Mbps.|
-| frequency | number | Yes| No| Frequency of the WLAN AP.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| isHidden | boolean | Yes| No| Whether the WLAN AP is a hidden network. The value **true** indicates that the WLAN AP is a hidden network, and the value **false** indicates the opposite.|
-| isRestricted | boolean | Yes| No| Whether data volume is restricted at the WLAN AP. The value **true** indicates that data volume is restricted, and the value **false** indicates the opposite.|
-| macType | number | Yes| No| MAC address type. <br>The value **0** indicates a random MAC address, and the value **1** indicates device MAC address.|
-| macAddress | string | Yes| No| MAC address of the device.|
-| ipAddress | number | Yes| No| IP address of the device that sets up the WLAN connection.<br>1. You can view the IP address in Wi-Fi connection information and in **Settings** > **About phone** > **Status**.<br>2. The **ipAddress** value is of the number type and needs to be converted to the common IP address format. For details, see [IP Address Format Conversion](https://developer.huawei.com/consumer/en/doc/harmonyos-faqs/faqs-connectivity-4).|
-| connState | [ConnState](#connstate9) | Yes| No| WLAN connection state.|
-| channelWidth<sup>10+</sup> | [WifiChannelWidth](#wifichannelwidth9) | Yes| No| Channel bandwidth of the connected hotspot.|
-| wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | Yes| No| Wi-Fi standard used by the connected hotspot.|
-| supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | Yes| No| Highest Wi-Fi category supported by the hotspot.|
-| isHiLinkNetwork<sup>12+</sup> | boolean | Yes| No| Whether the hotspot supports HiLink. The value **true** indicates that the hotspot supports HiLink, and the value **false** indicates the opposite.|
-| wifiLinkType<sup>18+</sup> | [WifiLinkType](#wifilinktype18) | Yes| Yes|  Wi-Fi 7 connection type. |
+| ssid | string | No| No| SSID of the hotspot, in UTF-8 format.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| bssid | string | No| No| BSSID of the hotspot.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| rssi | number | No| No| Received signal strength indicator (RSSI) of the hotspot, in dBm.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| band | number | No| No| Frequency band of the WLAN AP. The value **1** indicates 2.4 GHz, and the value **2** indicates 5 GHz.|
+| linkSpeed | number | No| No| Uplink speed of the WLAN AP, in Mbps.|
+| rxLinkSpeed<sup>10+</sup> | number | No| No| Downlink speed of the WLAN AP, in Mbps.|
+| maxSupportedTxLinkSpeed<sup>10+</sup> | number | No| No| Maximum uplink speed supported, in Mbps.|
+| maxSupportedRxLinkSpeed<sup>10+</sup> | number | No| No| Maximum downlink speed supported, in Mbps.|
+| frequency | number | No| No| Frequency of the WLAN AP.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| isHidden | boolean | No| No| Whether the WLAN AP is hidden. The value **true** indicates that the WLAN AP is hidden; the value **false** indicates the opposite.|
+| isRestricted | boolean | No| No| Whether data volume is restricted at the WLAN AP. The value **true** indicates that data volume is restricted, and the value **false** indicates the opposite.|
+| macType | number | No| No| MAC address type. <br>The value **0** indicates a random MAC address, and the value **1** indicates device MAC address.|
+| macAddress | string | No| No| MAC address of the device.|
+| ipAddress | number | No| No| IP address of the device that sets up the WLAN connection.<br>1. You can view the IP address in Wi-Fi connection information and in **Settings** > **About phone** > **Status**.<br>2. The **ipAddress** value is of the number type and needs to be converted to the common IP address format. For details, see [IP Address Format Conversion](https://developer.huawei.com/consumer/en/doc/harmonyos-faqs/faqs-connectivity-4).|
+| connState | [ConnState](#connstate9) | No| No| WLAN connection state.|
+| channelWidth<sup>10+</sup> | [WifiChannelWidth](#wifichannelwidth9) | No| No| Channel bandwidth of the connected hotspot.|
+| wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | No| No| Wi-Fi standard used by the connected hotspot.|
+| supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | No| No| Highest Wi-Fi category supported by the hotspot.|
+| isHiLinkNetwork<sup>12+</sup> | boolean | No| No| Whether HiLink is supported by the hotspot. The value **true** indicates that HiLink is supported, and the value **false** indicates the opposite.|
+| wifiLinkType<sup>18+</sup> | [WifiLinkType](#wifilinktype18) | No| Yes|  Wi-Fi 7 connection type. |
 
 
 ## WifiLinkType<sup>18+</sup>
@@ -1526,6 +1555,50 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 ```
 
 
+## wifiManager.getDeviceMacAddress<sup>15+</sup>
+
+getDeviceMacAddress(): string[]
+
+Obtains the device MAC address.
+
+**Required permissions**: ohos.permission.GET_WIFI_LOCAL_MAC and ohos.permission.GET_WIFI_INFO
+
+This permission is available only to system applications in API versions 8 to 15. From API version 16, it's also available to normal applications on PCs/2-in-1 devices while remaining exclusive to system applications on other devices.
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Return value**
+
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | string[] | MAC address.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled.|
+
+**Example**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+
+	try {
+		let ret = wifiManager.getDeviceMacAddress();
+		console.info("deviceMacAddress:" + JSON.stringify(ret));
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+
+```
+
+
 ## wifiManager.getIpInfo<sup>9+</sup>
 
 getIpInfo(): IpInfo
@@ -1572,13 +1645,13 @@ Represents IPv4 information.
 
 | **Name**| **Type**| **Read-only**| **Optional**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
-| ipAddress | number | Yes| No| IP address. The **ipAddress** value is of the number type and needs to be converted to the common IP address format. For details, see [IP Address Format Conversion](https://developer.huawei.com/consumer/en/doc/harmonyos-faqs/faqs-connectivity-4).|
-| gateway | number | Yes| No| Gateway.|
-| netmask | number | Yes| No| Subnet mask.|
-| primaryDns | number | Yes| No| IP address of the preferred DNS server.|
-| secondDns | number | Yes| No| IP address of the alternate DNS server.|
-| serverIp | number | Yes| No| IP address of the DHCP server.|
-| leaseDuration | number | Yes| No| Lease duration of the IP address, in seconds.|
+| ipAddress | number | No| No| IP address. The **ipAddress** value is of the number type and needs to be converted to the common IP address format. For details, see [IP Address Format Conversion](https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs/faqs-connectivity-4).|
+| gateway | number | No| No| Gateway.|
+| netmask | number | No| No| Subnet mask.|
+| primaryDns | number | No| No| IP address of the preferred DNS server.|
+| secondDns | number | No| No| IP address of the alternate DNS server.|
+| serverIp | number | No| No| IP address of the DHCP server.|
+| leaseDuration | number | No| No| Lease duration of the IP address, in seconds.|
 
 
 ## wifiManager.getIpv6Info<sup>10+</sup>
@@ -1626,15 +1699,15 @@ Represents the IPv6 information.
 
 | **Name**| **Type**| **Read-only**| **Optional**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
-| linkIpv6Address | string | Yes| No| IPv6 address of the link.|
-| globalIpv6Address | string | Yes| No| Global IPv6 address.|
-| randomGlobalIpv6Address | string | Yes| No| Random global IPv6 address. This parameter is reserved.|
-| uniqueIpv6Address<sup>12+</sup> | string | Yes| Yes| Unique local address (ULA) in IPv6 format.|
-| randomUniqueIpv6Address<sup>12+</sup> | string | Yes| Yes| Random unique local address (RULA) in IPv6 format.|
-| gateway | string | Yes| No| Gateway.|
-| netmask | string | Yes| No| Subnet mask.|
-| primaryDNS | string | Yes| No| IPv6 address of the preferred DNS server.|
-| secondDNS | string | Yes| No| IPv6 address of the alternate DNS server.|
+| linkIpv6Address | string | No| No| IPv6 address of the link.|
+| globalIpv6Address | string | No| No| Global IPv6 address.|
+| randomGlobalIpv6Address | string | No| No| Random global IPv6 address. This parameter is reserved.|
+| uniqueIpv6Address<sup>12+</sup> | string | No| Yes| Unique local address (ULA) in IPv6 format.|
+| randomUniqueIpv6Address<sup>12+</sup> | string | No| Yes| Random unique local address (RULA) in IPv6 format.|
+| gateway | string | No| No| Gateway.|
+| netmask | string | No| No| Subnet mask.|
+| primaryDNS | string | No| No| IPv6 address of the preferred DNS server.|
+| secondDNS | string | No| No| IPv6 address of the alternate DNS server.|
 
 ## wifiManager.getCountryCode<sup>9+</sup>
 
@@ -1812,7 +1885,7 @@ Obtains P2P connection information. This API uses a promise to return the result
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
-To obtain **groupOwnerAddr**, the caller must also have the ohos.permission.GET_WIFI_LOCAL_MAC permission, which is available only for system applications. Without this permission, an all-zero address is returned in **groupOwnerAddr**.
+To obtain **groupOwnerAddr**, the caller must also have the **ohos.permission.GET_WIFI_LOCAL_MAC** permission. Without this permission, an all-zero address is returned in **groupOwnerAddr**. This permission is available only to system applications in API versions 8 to 15. From API version 16, it's also available to normal applications on PCs/2-in-1 devices while remaining exclusive to system applications on other devices.
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
@@ -1841,7 +1914,7 @@ Obtains P2P link information. This API uses an asynchronous callback to return t
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
-To obtain **groupOwnerAddr**, the caller must also have the ohos.permission.GET_WIFI_LOCAL_MAC permission, which is available only for system applications. Without this permission, an all-zero address is returned in **groupOwnerAddr**.
+To obtain **groupOwnerAddr**, the caller must also have the ohos.permission.GET_WIFI_LOCAL_MAC permission, which is available only for system applications. Without this permission, an all-zero address is returned in **groupOwnerAddr**. This permission is available only to system applications in API versions 8 to 15. From API version 16, it's also available to normal applications on PCs/2-in-1 devices while remaining exclusive to system applications on other devices.
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
@@ -1888,9 +1961,9 @@ Represents the P2P link information.
 
 | Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| connectState | [P2pConnectState](#p2pconnectstate9) | Yes| No| P2P connection state.|
-| isGroupOwner | boolean | Yes| No| Whether the device is the group owner. The value **true** indicates that the device is the group owner, and the value **false** indicates the opposite.|
-| groupOwnerAddr | string | Yes| No| IP address of the group.| 
+| connectState | [P2pConnectState](#p2pconnectstate9) | No| No| P2P connection state.|
+| isGroupOwner | boolean | No| No| Whether the device is the group owner. The value **true** indicates that the device is the group owner, and the value **false** indicates the opposite.|
+| groupOwnerAddr | string | No| No| IP address of the group.| 
 
 
 ## P2pConnectState<sup>9+</sup>
@@ -1920,7 +1993,7 @@ API version 10 and later: ohos.permission.GET_WIFI_INFO
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt; | Promise used to return the P2P group information obtained. If the caller has the ohos.permission.GET_WIFI_PEERS_MAC permission (available only for system applications), **deviceAddress** in the return value is a real device address. Otherwise, **deviceAddress** is a random device address.|
+| Promise&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt; | Promise used to return the P2P group information obtained. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
 
 **Error codes**
 
@@ -1948,7 +2021,7 @@ API version 10 and later: ohos.permission.GET_WIFI_INFO
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If the operation fails, **error** is not **0**. If the caller has the ohos.permission.GET_WIFI_PEERS_MAC permission (available only for system applications), **deviceAddress** in the return value is a real device address. Otherwise, **deviceAddress** is a random device address.|
+| callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo9)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If the operation fails, **error** is not **0**. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
 
 **Error codes**
 
@@ -1993,7 +2066,7 @@ API version 10 and later: ohos.permission.GET_WIFI_INFO
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | Promise used to return the peer device list. If the caller has the ohos.permission.GET_WIFI_PEERS_MAC permission (available only for system applications), **deviceAddress** in the return value is a real device address. Otherwise, **deviceAddress** is a random device address.|
+| Promise&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | Promise used to return the peer device list. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
 
 **Error codes**
 
@@ -2021,7 +2094,7 @@ API version 10 and later: ohos.permission.GET_WIFI_INFO
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the peer device list obtained. If the operation fails, **err** is not **0**. If the caller has the ohos.permission.GET_WIFI_PEERS_MAC permission (available only for system applications), **deviceAddress** in the return value is a real device address. Otherwise, **deviceAddress** is a random device address.|
+| callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the peer device list obtained. If the operation fails, **err** is not **0**. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
 
 **Error codes**
 
@@ -2059,12 +2132,12 @@ Represents the P2P device information.
 
 | Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| deviceName | string | Yes| No| Device name.|
-| deviceAddress | string | Yes| No| MAC address of the device.|
-| deviceAddressType<sup>10+</sup> | [DeviceAddressType](#deviceaddresstype10) | Yes| Yes| MAC address type of the device.|
-| primaryDeviceType | string | Yes| No| Type of the primary device.|
-| deviceStatus | [P2pDeviceStatus](#p2pdevicestatus9) | Yes| No| Device state.|
-| groupCapabilities | number | Yes| No| Group capabilities.|
+| deviceName | string | No| No| Device name.|
+| deviceAddress | string | No| No| MAC address of the device.|
+| deviceAddressType<sup>10+</sup> | [DeviceAddressType](#deviceaddresstype10) | No| Yes| MAC address type of the device.|
+| primaryDeviceType | string | No| No| Type of the primary device.|
+| deviceStatus | [P2pDeviceStatus](#p2pdevicestatus9) | No| No| Device state.|
+| groupCapabilities | number | No| No| Group capabilities.|
 
 
 ## P2pDeviceStatus<sup>9+</sup>
@@ -2209,12 +2282,12 @@ Represents P2P group configuration.
 
 | Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| deviceAddress | string | Yes| No| Device address.|
-| deviceAddressType<sup>10+</sup>| [DeviceAddressType](#deviceaddresstype10) | Yes| Yes| Device address type.|
-| netId | number | Yes| No| Network ID. The value **-1** indicates a temporary group, and the value **-2** indicates a persistent group.|
-| passphrase | string | Yes| No| Passphrase of the group.|
-| groupName | string | Yes| No| Group name.|
-| goBand | [GroupOwnerBand](#groupownerband9) | Yes| No| Frequency band of the group.|
+| deviceAddress | string | No| No| Device address.|
+| deviceAddressType<sup>10+</sup>| [DeviceAddressType](#deviceaddresstype10) | No| Yes| Device address type.|
+| netId | number | No| No| Network ID. The value **-1** indicates a temporary group, and the value **-2** indicates a persistent group.|
+| passphrase | string | No| No| Passphrase of the group.|
+| groupName | string | No| No| Group name.|
+| goBand | [GroupOwnerBand](#groupownerband9) | No| No| Frequency band of the group.|
 
 
 ## GroupOwnerBand<sup>9+</sup>
@@ -2466,8 +2539,8 @@ Obtains Wi-Fi connection information for multi-link operation (MLO).
 **Required permissions**: ohos.permission.GET_WIFI_INFO
 
 > **NOTE**
-> - If **macType** is **1** (device MAC address), you need to request the **ohos.permission.GET_WIFI_LOCAL_MAC** permission, which is available only to system applications. If this permission is not granted, **macAddress** is empty.
-> - If the caller has the **ohos.permission.GET_WIFI_PEERS_MAC** permission (available only for system applications), **BSSID** in the return result is a real device address. Otherwise, **BSSID** is a random device address.
+> - If **macType** is **1** (device MAC address), the caller must also have the  **ohos.permission.GET_WIFI_LOCAL_MAC** permission. If the caller does not have this permission, the returned MAC address will be empty. This permission is available only to system applications in API versions 8 to 15. From API version 16, it's also available to normal applications on PCs/2-in-1 devices while remaining exclusive to system applications on other devices.
+> - If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **bssid** in the return value is a real BSSID; otherwise, **bssid** is a random device address.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -2508,15 +2581,15 @@ Represents the P2P group information.
 
 | Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| isP2pGo | boolean | Yes| No| Whether the device is the group owner. The value **true** indicates that the device is the group owner, and the value **false** indicates the opposite.|
-| ownerInfo | [WifiP2pDevice](#wifip2pdevice9) | Yes| No| Device information of the group.|
-| passphrase | string | Yes| No| Passphrase of the group.|
-| interface | string | Yes| No| Interface name.|
-| groupName | string | Yes| No| Group name.|
-| networkId | number | Yes| No| Network ID.|
-| frequency | number | Yes| No| Frequency of the group.|
-| clientDevices | [WifiP2pDevice[]](#wifip2pdevice9) | Yes| No| List of connected devices.|
-| goIpAddress | string | Yes| No| IP address of the group.|
+| isP2pGo | boolean | No| No| Whether the device is the group owner. The value **true** indicates that the device is the group owner, and the value **false** indicates the opposite.|
+| ownerInfo | [WifiP2pDevice](#wifip2pdevice9) | No| No| Device information of the group.|
+| passphrase | string | No| No| Passphrase of the group.|
+| interface | string | No| No| Interface name.|
+| groupName | string | No| No| Group name.|
+| networkId | number | No| No| Network ID.|
+| frequency | number | No| No| Frequency of the group.|
+| clientDevices | [WifiP2pDevice[]](#wifip2pdevice9) | No| No| List of connected devices.|
+| goIpAddress | string | No| No| IP address of the group.|
 
 
 ## wifiManager.on('wifiStateChange')<sup>9+</sup>
@@ -3017,7 +3090,7 @@ Subscribes to P2P connection state changes. When the service exits, call off(typ
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type, which has a fixed value of **p2pConnectionChange**.|
-  | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | Yes| Callback used to return the P2P connection state change.|
+  | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | Yes| Callback used to return the WLAN state.|
 
 **Error codes**
 
@@ -3090,7 +3163,7 @@ API version 10 and later: ohos.permission.GET_WIFI_INFO
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type, which has a fixed value of **p2pDeviceChange**.|
-  | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | Yes| Callback used to return the P2P device state change.|
+  | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | Yes| Callback used to return the WLAN state.|
 
 **Error codes**
 
@@ -3161,7 +3234,7 @@ API version 10 and later: ohos.permission.GET_WIFI_INFO
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **p2pPeerDeviceChange**.|
-| callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | Yes| Callback used to return the peer device state change. If the caller has the ohos.permission.GET_WIFI_PEERS_MAC permission (available only for system applications), **deviceAddress** in the return value is a real device address. Otherwise, **deviceAddress** is a random device address.|
+| callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | Yes| Callback used to return the WLAN state. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
 
 **Error codes**
 
@@ -3187,7 +3260,7 @@ Unsubscribes from P2P peer device state changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **p2pPeerDeviceChange**.|
-| callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event. If the caller has the ohos.permission.GET_WIFI_PEERS_MAC permission (available only for system applications), **deviceAddress** in the return value is a real device address. Otherwise, **deviceAddress** is a random device address.|
+| callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | No| Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
 
 **Error codes**
 
@@ -3230,7 +3303,7 @@ Subscribes to P2P persistent group changes. When the service exits, call off(typ
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type, which has a fixed value of **p2pPersistentGroupChange**.|
-  | callback | Callback&lt;void&gt; | Yes| Callback used to return the persistent group state.|
+  | callback | Callback&lt;void&gt; | Yes| Callback used to return the WLAN state.|
 
 **Error codes**
 

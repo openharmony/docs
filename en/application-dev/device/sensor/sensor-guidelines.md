@@ -1,5 +1,10 @@
 # Sensor Development (ArkTS)
-
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 ## When to Use
 
@@ -32,7 +37,7 @@ The acceleration sensor is used as an example.
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. Obtain information about all sensors on the device.
+2. Obtain the list of all sensors on the device. If a sensor cannot be found, the sensor does not exist or is unavailable on the device. If you subscribe to events specific to this sensor, an exception will be thrown, and you need to implement the service logic to handle this exception.
 
     ```ts    
     sensor.getSensorList((error: BusinessError, data: Array<sensor.Sensor>) => {
@@ -55,10 +60,10 @@ The acceleration sensor is used as an example.
     ```ts
     try {
       const deviceId = 1;
-      // The deviceId parameter is optional. By default, it is set to the ID of the local device.
+      // The deviceId parameter is optional. The default value is the ID of the local device.
       const sensorList: sensor.Sensor[] = sensor.getSensorListByDeviceSync(deviceId);
-      console.log(`sensorList length: ${sensorList.length}`);
-      console.log(`sensorList: ${JSON.stringify(sensorList)}`);
+      console.info(`sensorList length: ${sensorList.length}`);
+      console.info(`sensorList: ${JSON.stringify(sensorList)}`);
     } catch (error) {
       let e: BusinessError = error as BusinessError;
       console.error(`Failed to get sensorList. Code: ${e.code}, message: ${e.message}`);
@@ -129,7 +134,7 @@ The acceleration sensor is used as an example.
     In **SensorStatusEvent**, the following information is included: event timestamp, sensor ID, sensor index, online/offline status, device ID, and device name.
     ```ts
     sensor.on('sensorStatusChange', (data: sensor.SensorStatusEvent) => {
-          console.log(`timestamp: ${data.timestamp},
+          console.info(`timestamp: ${data.timestamp},
             deviceId: ${data.deviceId} deviceName: ${data.deviceName}
             sensorId: ${data.sensorId} sensorIndex:${data.sensorIndex} isSensorOnline: ${data.isSensorOnline}`)
     });
@@ -137,6 +142,6 @@ The acceleration sensor is used as an example.
 
     Disable listening for sensor status changes.
     ```ts
-    // Before performing this operation, ensure that listening for sensor status changes has been enabled.
+    // Before disabling event listening, make that listening has been enabled by using on('sensorStatusChange',...). This API does not work if listening has not been enabled.
     sensor.off('sensorStatusChange');
     ```

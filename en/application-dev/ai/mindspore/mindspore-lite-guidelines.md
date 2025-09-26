@@ -1,5 +1,12 @@
 # Using MindSpore Lite for Model Inference (C/C++)
 
+<!--Kit: MindSpore Lite Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @zhuguodong8-->
+<!--Designer: @zhuguodong8; @jjfeing-->
+<!--Tester: @principal87-->
+<!--Adviser: @ge-yafang-->
+
 ## When to Use
 
 MindSpore Lite is an AI engine that provides AI model inference for different hardware devices. It has been used in a wide range of fields, such as image classification, target recognition, facial recognition, and character recognition.
@@ -37,7 +44,7 @@ APIs involved in MindSpore Lite model inference are categorized into context API
 | API       | Description       |
 | ------------------ | ----------------- |
 |OH_AI_ModelHandle OH_AI_ModelCreate()|Creates a model object.|
-|OH_AI_Status OH_AI_ModelBuildFromFile(OH_AI_ModelHandle model, const char *model_path,OH_AI_ModelType model_type, const OH_AI_ContextHandle model_context)|Loads and builds a MindSpore model from a model file.|
+|OH_AI_Status OH_AI_ModelBuildFromFile(OH_AI_ModelHandle model, const char *model_path,OH_AI_ModelType model_type, const OH_AI_ContextHandle model_context)|Loads and builds a MindSpore Lite model from a model file.|
 |void OH_AI_ModelDestroy(OH_AI_ModelHandle *model)|Destroys a model object.|
 
 ### Tensor APIs
@@ -126,7 +133,7 @@ The development process consists of the following main steps:
    <!--Del-->
    > **NOTE**
    >
-   > NNRT/CPU heterogeneous inference requires access of NNRT hardware. For details, see [OpenHarmony/ai_neural_network_runtime](https://gitee.com/openharmony/ai_neural_network_runtime).
+   > NNRt/CPU heterogeneous inference requires access of NNRt hardware. For details, see [OpenHarmony/ai_neural_network_runtime](https://gitcode.com/openharmony/ai_neural_network_runtime).
    <!--DelEnd-->
     ```c
     // Create a context, and set the number of runtime threads to 2 and the thread affinity mode to 1 (big cores first).
@@ -310,4 +317,4 @@ The development process consists of the following main steps:
 
 The following sample is provided to help you better understand how to use MindSpore Lite:
 
-- [Simple MindSpore Lite Tutorial](https://gitee.com/openharmony/third_party_mindspore/tree/OpenHarmony-3.2-Release/mindspore/lite/examples/quick_start_c)
+- [Simple MindSpore Lite Tutorial](https://gitcode.com/openharmony/third_party_mindspore/tree/OpenHarmony-3.2-Release/mindspore/lite/examples/quick_start_c)

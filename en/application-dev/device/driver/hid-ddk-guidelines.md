@@ -1,4 +1,10 @@
 # HID DDK Development
+<!--Kit: Driver Development Kit-->
+<!--Subsystem: Driver-->
+<!--Owner: @lixinsheng2-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 ## Overview
 
@@ -84,8 +90,8 @@ libhid.z.so
 
     ```c++
     // Construct HID device properties.
-    std::vector<Hid_DeviceProp> deviceProp = {HID_PROP_DIRECT}; // The vector header file needs to be imported.
-    std::string deviceName = "keyboard";
+    std::vector<Hid_DeviceProp> deviceProp = {HID_PROP_DIRECT}; // Import the header file using #include <vector>.
+    std::string deviceName = "keyboard"; // Import the header file using #include <string>.
     Hid_Device hidDevice = {
         .deviceName = deviceName.c_str(), 
         .vendorId = 0x6006, 
@@ -178,7 +184,7 @@ libhid.z.so
     OH_Hid_Open(deviceId, interfaceIndex2, &devFeature);
     ```
 
-3. Write/Send a report (a data packet exchanged between a HID device and a host) to the HID device.
+3. (Optional) Write or send reports from the host to the HID device as data packets.
     - If the report type is **HID_OUTPUT_REPORT** (output report), you can write/send the report in any of the following ways:
         - Call **OH_Hid_Write** in **hid_ddk_api.h** to write an output report to the HID device.
 
@@ -215,7 +221,7 @@ libhid.z.so
         int32_t ret = OH_Hid_SendReport(devFeature, HID_FEATURE_REPORT, data2, sizeof(data2));
         ```
 
-4. Read a report from the HID device.
+4. (Optional) Read reports from the HID device.
     - If the report type is **HID_INPUT_REPORT** (input report), you can read the report in any of the following ways:
         - Call **OH_Hid_Read** or **OH_Hid_ReadTimeout** in **hid_ddk_api.h** to read an input report from the HID device in blocking mode.
 
@@ -226,7 +232,6 @@ libhid.z.so
             int32_t ret = OH_Hid_Read(dev, data3, sizeof(data3), &bytesRead);
 
             uint8_t data4[9] = {0x00};
-            uint32_t bytesRead = 0;
             // Read a report from a HID device within the specified time.
             ret = OH_Hid_ReadTimeout(dev, data4, sizeof(data4), 10000, &bytesRead);
             ```
@@ -238,7 +243,7 @@ libhid.z.so
             int32_t ret = OH_Hid_SetNonBlocking(dev, 1);
 
             // Wait for user input if no data is input when the code is executed.
-            sleep(1);
+            sleep(1); // Import the header file using #include <unistd.h>.
             uint8_t data5[9] = {0};
             uint32_t bytesRead = 0;
             // Read a report from a HID device.
@@ -267,7 +272,7 @@ libhid.z.so
         int32_t ret = OH_Hid_GetReport(devFeature, HID_FEATURE_REPORT, data7, sizeof(data7));
         ```
 
-5. Obtain the raw device information, raw name, physical address, and raw unique identifier of a HID device.
+5. (Optional) Obtain the raw device information, raw name, physical address, and raw unique identifier of a HID device.
 
     Call **OH_Hid_GetRawInfo** in **hid_ddk_api.h** to obtain the raw information about a HID device.<br>Call **OH_Hid_GetRawName** to obtain the raw name of a HID device.<br>Call **OH_Hid_GetPhysicalAddress** to obtain the physical address of a HID device.<br>Call **OH_Hid_GetRawUniqueId** to obtain the raw unique identifier of a HID device. The obtained information can be referenced by applications, for example, displaying device information on the GUI.
 
@@ -285,7 +290,7 @@ libhid.z.so
     ret = OH_Hid_GetRawUniqueId(dev, uniqueIdData, sizeof(uniqueIdData));
     ```
 
-6. Obtain the report descriptor.
+6. (Optional) Obtain the report descriptor.
 
     Call **OH_Hid_GetReportDescriptor** in **hid_ddk_api.h** to obtain the HID device report descriptor.
 

@@ -59,7 +59,7 @@ You have logged in to devices A and B with the same HUAWEI ID and the two device
 
 ### Environment Setup
 
-1. Install [DevEco Studio](https://gitee.com/link?target=https%3A%2F%2Fdeveloper.huawei.com%2Fconsumer%2Fcn%2Fdownload%2Fdeveco-studio) 4.1 or later on the PC.
+1. Install [DevEco Studio](https://developer.huawei.com/consumer/en/download/) 4.1 or later on the PC.
 2. Update the public-SDK to API version 20 or later.
 3. Enable Bluetooth on devices A and B to implement networking.
 

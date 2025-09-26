@@ -1,4 +1,10 @@
 # Sensor Overview
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 ## Sensor Types
 
@@ -29,6 +35,7 @@ Sensors are an abstraction of underlying sensor hardware. Your application can a
 | WEAR_DETECTION              | Wear detection sensor    | Checks whether a user is wearing a wearable device.                                          | Detecting wearables            |
 | HALL                        | Hall effect sensor        | Detects a magnetic field around a device.                              | Smart cover mode of the device                          |
 
+The coordinate system of directional sensors is related to the device's component mounting orientation, and is basically based on the device's natural screen direction. (The natural screen direction may vary according to device models.)<br>Take a common bar phone for example: hold it vertically in front of you, with the screen directly facing you.<br>X-axis: the axis from left to right along the short edge of the screen.<br>Y-axis: the axis from bottom to top along the long edge of the screen.<br>Z-axis: axis perpendicular to the screen, pointing outward from the screen toward the user.<br>You can combine the device's natural screen direction and the current screen direction to determine how to interpret and use these raw data to meet your service demands. For example, a motion-sensing racing game requires the player to tilt the device to control the direction. Regardless of whether the player plays it in portrait or landscape mode, the X-axis and Y-axis data provided by the sensor is always relative to the natural screen direction. You need to determine whether to use the X-axis or Y-axis data to control the racing car's left and right steering based on the current screen direction and the application's UI display requirements, thereby ensuring a consistent user experience.<br>For the orientation sensor, you are advised to call the [display](../../reference/apis-arkui/js-apis-display.md#display) API of the DMS to obtain the screen orientation before starting development.
 
 ## Working Principles
 

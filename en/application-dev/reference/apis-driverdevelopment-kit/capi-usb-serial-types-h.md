@@ -12,7 +12,7 @@ Provides the enumerated variables, structures, and macros used in USB SERIAL DDK
 
 **File to include**: <usb_serial/usb_serial_types.h>
 
-**Library**: libusb_serial.z.so
+**Library:** libusb_serial_ndk.z.so
 
 **System capability**: SystemCapability.Driver.UsbSerial.Extension
 

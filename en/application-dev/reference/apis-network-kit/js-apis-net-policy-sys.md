@@ -1,6 +1,5 @@
 # @ohos.net.policy (Network Policy Management) (System API)
 
-
 The **policy** module provides APIs for managing network policies, through which you can control and manage the data volume used.
 
 > **NOTE**
@@ -137,7 +136,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 policy.isBackgroundAllowed((error: BusinessError, data: boolean) => {
   console.error(JSON.stringify(error));
- console.info(JSON.stringify(data));
+  console.info(JSON.stringify(data));
 });
 ```
 
@@ -201,7 +200,7 @@ Sets the metered network access policy for the application specified by a given 
 
 | Name  | Type                           | Mandatory| Description                                          |
 | -------- | ------------------------------- | ---- | ---------------------------------------------- |
-| uid      | number                          | Yes  | The app unique identifier, which is a positive integer within the range of int32_t.                               |
+| uid      | number                          | Yes  | The app unique identifier, which is a positive integer within the range of int32_t.                                |
 | policy   | [NetUidPolicy](#netuidpolicy10) | Yes  | Network access policy for the application.                                |
 | callback | AsyncCallback\<void>            | Yes  | Callback used to return the result. If the operation is successful, no value is returned. If the operation fails, an error message is returned.|
 
@@ -242,7 +241,7 @@ Sets the metered network access policy for the application specified by a given 
 
 | Name| Type                           | Mandatory| Description          |
 | ------ | ------------------------------- | ---- | -------------- |
-| uid    | number                          | Yes  | The unique identifier of the app, which is a positive integer within the range of int32_t.|
+| uid    | number                          | Yes  | The app unique identifier, which is a positive integer within the range of int32_t.|
 | policy | [NetUidPolicy](#netuidpolicy10) | Yes  | Network access policy for the application.|
 
 **Return value**
@@ -293,7 +292,7 @@ Obtains the network access policy for the application specified by a given UID. 
 
 | Name  | Type                                           | Mandatory| Description                                                    |
 | -------- | ----------------------------------------------- | ---- | -------------------------------------------------------- |
-| uid      | number                                          | Yes  | Unique app ID. The value is a positive integer within the int32_t range.                                          |
+| uid      | number                                          | Yes  | The app unique identifier, which is a positive integer within the range of int32_t.                                          |
 | callback | AsyncCallback\<[NetUidPolicy](#netuidpolicy10)> | Yes  | Callback used to return the result. If the operation is successful, the policy result is returned. If the operation fails, an error code is returned.|
 
 **Error codes**
@@ -334,7 +333,7 @@ Obtains the network access policy for the application specified by a given UID. 
 
 | Name| Type  | Mandatory| Description          |
 | ------ | ------ | ---- | -------------- |
-| uid    | number | Yes  | The app unique identifier, which is a positive integer within the int32_t range.|
+| uid    | number | Yes  | The app unique identifier, which is a positive integer within the range of int32_t.|
 
 **Return value**
 
@@ -475,7 +474,7 @@ Obtains the network quota policies. This API uses an asynchronous callback to re
 
 | Name  | Type                                                       | Mandatory| Description                    |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<Array\<[NetQuotaPolicy](#netquotapolicy10)>> | Yes  | Callback used to return the result.  .|
+| callback | AsyncCallback\<Array\<[NetQuotaPolicy](#netquotapolicy10)>> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -684,7 +683,7 @@ Checks whether the application specified by a given UID is allowed to access a m
 
 | Name   | Type                   | Mandatory| Description                                                     |
 | --------- | ----------------------- | ---- | --------------------------------------------------------- |
-| uid       | number                  | Yes  | The app unique identifier, which is a positive integer within the range of int32_t.                                          |
+| uid       | number                  | Yes  | The app unique identifier, which is a positive integer within the range of int32_t.                                        |
 | isMetered | boolean                 | Yes  | Whether the network is a metered network. The value **true** indicates that the network is a metered network, and the value **false** indicates the opposite.                                           |
 | callback  | AsyncCallback\<boolean> | Yes  | Callback used to return the result. The value **true** means that the application is allowed to access metered networks, and the value **false** means the opposite.|
 
@@ -962,7 +961,7 @@ Obtains the UIDs of applications that are on the device idle allowlist. This API
 
 | Name  | Type                          | Mandatory| Description                    |
 | -------- | ------------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback\<Array\<number>> | Yes  | Callback used to return the result.  .|
+| callback | AsyncCallback\<Array\<number>> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -1045,8 +1044,8 @@ Obtains the background network policy for the application specified by a given U
 
 | Name  | Type                                                         | Mandatory| Description                    |
 | -------- | ------------------------------------------------------------- | ---- | ------------------------ |
-| uid      | number                                                        | Yes  | Unique app identifier, which is a positive integer within the int32_t range.          |
-| callback | AsyncCallback\<[NetBackgroundPolicy](#netbackgroundpolicy10)> | Yes  | Callback used to return the result.  .|
+| uid      | number                                                        | Yes  | The app unique identifier, which is a positive integer within the range of int32_t.          |
+| callback | AsyncCallback\<[NetBackgroundPolicy](#netbackgroundpolicy10)> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -1086,7 +1085,7 @@ Obtains the background network policies configured for the specified application
 
 | Name| Type  | Mandatory| Description          |
 | ------ | ------ | ---- | -------------- |
-| uid    | number | Yes  | The app unique identifier, which is a positive integer within the int32_t range.|
+| uid    | number | Yes  | The app unique identifier, which is a positive integer within the range of int32_t.|
 
 **Return value**
 
@@ -1423,7 +1422,7 @@ Obtains the UID array of applications that are on the power-saving allowlist. Th
 
 | Name  | Type                          | Mandatory| Description                    |
 | -------- | ------------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback\<Array\<number>> | Yes  | Callback used to return the result.  .|
+| callback | AsyncCallback\<Array\<number>> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -1506,7 +1505,7 @@ Specifies whether an application with the specified UID can access the network. 
 
 | Name        | Type                                          | Mandatory| Description                                                                         |
 | ------------- | ---------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
-| uid           | number                                         | Yes  | The unique identifier of the app, which is a positive integer within the range of int32_t.                                                               |
+| uid           | number                                         | Yes  | The app unique identifier, which is a positive integer within the range of int32_t.                                                               |
 | policy        | [NetworkAccessPolicy](#networkaccesspolicy12)  | Yes  | Network policy.                                                                     |
 | isReconfirmed | boolean                                        | No  | Whether reconfirmation is required. The value **true** indicates that reconfirmation is not required and no dialog box is displayed. The value **false** indicates that reconfirmation is required and a dialog box is displayed when the application accesses the network. The default value is **false**. |
 
@@ -1675,7 +1674,7 @@ Subscribes to policy changes. This API uses an asynchronous callback to return t
 
 | Name  | Type                                                               | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                              | Yes  | Event type.<br/> The value **netUidPolicyChange** indicates a policy change event.                 |
+| type     | string                                                              | Yes  | Type of the event to unsubscribe from. The value **netUidPolicyChange** indicates a policy change event.                 |
 | callback | Callback\<[NetUidPolicyInfo](#netuidpolicyinfo11)> | Yes  | Callback used to return the result. It is called when the network policy changes.|
 
 **Error codes**
@@ -1781,7 +1780,7 @@ Subscribes to rule changes. This API uses an asynchronous callback to return the
 
 | Name  | Type                                                         | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                        | Yes  | Event type.<br/> The value **netUidRuleChange** indicates a rule change event.                   |
+| type     | string                                                        | Yes  | Type of the event to unsubscribe from. The value **netUidRuleChange** indicates a rule change event.                   |
 | callback | Callback\<[NetUidRuleInfo](#netuidruleinfo11)> | Yes  | Callback used to return the result. It is called when the rule changes.|
 
 **Error codes**
@@ -1887,7 +1886,7 @@ Subscribes to metered **iface** changes. This API uses an asynchronous callback 
 
 | Name  | Type                     | Mandatory| Description                                     |
 | -------- | ------------------------- | ---- | ----------------------------------------- |
-| type     | string                    | Yes  | Event type.<br/> The value **netMeteredIfacesChange** indicates a metered **iface** change event.                |
+| type     | string                    | Yes  | Type of the event to unsubscribe from. The value **netMeteredIfacesChange** indicates a metered **iface** change event.                |
 | callback | Callback\<Array\<string>> | Yes  | Callback used to return the result. It is called when the registered metered **iface** changes.|
 
 **Error codes**
@@ -1983,7 +1982,7 @@ Subscribes to network quota policy changes. This API uses an asynchronous callba
 
 | Name  | Type                                                  | Mandatory| Description                                      |
 | -------- | ------------------------------------------------------ | ---- | ------------------------------------------ |
-| type     | string                                                 | Yes  | Event type.<br/> The value **netQuotaPolicyChange** indicates a network quota policy change event.                |
+| type     | string                                                 | Yes  | Type of the event to unsubscribe from. The value **netQuotaPolicyChange** indicates a network quota policy change event.                |
 | callback | Callback\<Array\<[NetQuotaPolicy](#netquotapolicy10)>> | Yes  | Callback used to return the result. It is called when the registered network quota policy changes.|
 
 **Error codes**
@@ -2084,7 +2083,7 @@ Subscribes to background network policy changes. This API uses an asynchronous c
 
 | Name  | Type              | Mandatory| Description                                      |
 | -------- | ------------------ | ---- | ------------------------------------------ |
-| type     | string             | Yes  | Event type.<br/> The value **netBackgroundPolicyChange** indicates a background network policy change event.                |
+| type     | string             | Yes  | Type of the event to unsubscribe from. The value **netBackgroundPolicyChange** indicates a background network policy change event.                |
 | callback | Callback\<boolean> | Yes  | Callback used to return the result. It is called when the registered background network policy changes.|
 
 **Error codes**

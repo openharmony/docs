@@ -1,4 +1,10 @@
 # SCSI Peripheral DDK Development
+<!--Kit: Driver Development Kit-->
+<!--Subsystem: Driver-->
+<!--Owner: @lixinsheng2-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 ## Overview
 
@@ -120,11 +126,11 @@ libscsi.z.so
     uint64_t deviceId = 0x100000003;
     uint8_t interfaceIndex = 0;
     ScsiPeripheral_Device *dev = NULL;
-    // Open the SCSI device specified by deviceId and interfaceIndex1.
+    // Open the SCSI device specified by deviceId and interfaceIndex.
     ret = OH_ScsiPeripheral_Open(deviceId, interfaceIndex, &dev);
     ```
 
-3. Create a buffer.
+3. (Optional) Create a buffer.
 
     Use **OH_ScsiPeripheral_CreateDeviceMemMap** in **scsi_peripheral_api.h** to create the memory buffer **devMmap**.
 
@@ -134,7 +140,7 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_CreateDeviceMemMap(dev, DEVICE_MEM_MAP_SIZE, &g_scsiDeviceMemMap);
     ```
 
-4. Check whether the logical units are ready.
+4. (Optional) Check whether the logical unit is ready.
 
     Use **OH_ScsiPeripheral_TestUnitReady** in **scsi_peripheral_api.h** to check whether the logical unit is ready.
 
@@ -145,7 +151,7 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_TestUnitReady(dev, &testUnitReadyRequest, &testUnitReadyResponse);
     ```
 
-5. Query basic information about the SCSI device.
+5. (Optional) Query the basic information about the SCSI device.
 
     Use **OH_ScsiPeripheral_Inquiry** in **scsi_peripheral_api.h** to obtain the basic information about the SCSI device.
 
@@ -159,7 +165,7 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_Inquiry(dev, &inquiryRequest, &inquiryInfo, &inquiryResponse);
     ```
 
-6. Obtain the capacity information about the SCSI device.
+6. (Optional) Obtain the capacity information of the SCSI device.
 
     Use **OH_ScsiPeripheral_ReadCapacity10** in **scsi_peripheral_api.h** to obtain the SCSI device capacity information.
 
@@ -174,7 +180,7 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_ReadCapacity10(dev, &readCapacityRequest, &capacityInfo, &readCapacityResponse);
     ```
 
-7. Obtain sense data.
+7. (Optional) Obtain sense data.
 
     Use **OH_ScsiPeripheral_RequestSense** in **scsi_peripheral_api.h** to obtain sense data.
 
@@ -189,7 +195,7 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_RequestSense(dev, &senseRequest, &senseResponse);
     ```
 
-8. Parse the sense data.
+8. (Optional) Parse sense data.
 
     Use **OH_ScsiPeripheral_ParseBasicSenseInfo** in **scsi_peripheral_api.h** to parse basic sense data, including the **Information**, **Command specific information**, and **Sense key specific** fields.
 
@@ -198,7 +204,7 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_ParseBasicSenseInfo(senseResponse.senseData, SCSIPERIPHERAL_MAX_SENSE_DATA_LEN, &senseInfo); 
     ```
 
-9. Read data.
+9. (Optional) Read data.
 
     Use **OH_ScsiPeripheral_Read10** in **scsi_peripheral_api.h** to read data from a specified logical block.
 
@@ -215,7 +221,7 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_Read10(dev, &readRequest, &readResponse);
     ```
 
-10. Write data.
+10. (Optional) Write data.
 
     Use **OH_ScsiPeripheral_Write10** in **scsi_peripheral_api.h** to write data to a specified logical block of the device.
 
@@ -232,7 +238,7 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_Write10(dev, &writeRequest, &writeResponse);
     ```
 
-11. Verifies a specified logical block.
+11. (Optional) Verify a specified logical block.
 
     Use **OH_ScsiPeripheral_Verify10** in **scsi_peripheral_api.h** to verify a specified logical block.
 
@@ -245,14 +251,14 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_Verify10(dev, &verifyRequest, &verifyResponse);
     ```
 
-12. Send SCSI commands in CDB mode.
+12. (Optional) Send SCSI commands in CDB mode.
 
     Use **OH_SCSIPeripheral_SendRequestByCdb** in **scsi_peripheral_api.h** to send SCSI commands.
 
     ```c++
     ScsiPeripheral_Request sendRequest = {0};
-    uint8_t cdbData[SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN] = {0x28, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // The cstring header file needs to be imported.
-    memcpy(sendRequest.commandDescriptorBlock, cdbData, SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN);
+    uint8_t cdbData[SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN] = {0x28, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    memcpy(sendRequest.commandDescriptorBlock, cdbData, SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN); // You need to import the header file using #include <cstring>.
     sendRequest.cdbLength = 10;
     sendRequest.dataTransferDirection = -3;
     sendRequest.timeout = 5000;
@@ -261,7 +267,7 @@ libscsi.z.so
     ret = OH_ScsiPeripheral_SendRequestByCdb(dev, &sendRequest, &sendResponse);
     ```
 
-13. Destroy the buffer.
+13. (Optional) Destroy the buffer.
 
     After all requests are processed and before the program exits, use **OH_ScsiPeripheral_DestroyDeviceMemMap** in **scsi_peripheral_api.h** to destroy the buffer.
 

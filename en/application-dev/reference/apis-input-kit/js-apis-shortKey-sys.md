@@ -1,5 +1,12 @@
 #  @ohos.multimodalInput.shortKey (Preset Global Shortcut Keys) (System API)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 The **shortKey** module provides APIs to set the delay for starting an ability using a shortcut key. For example, you can set the delay to 3 seconds so that a screenshot is taken when you press and hold the shortcut key for 3 seconds.
 
 > **NOTE**
@@ -43,16 +50,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  shortKey.setKeyDownDuration("businessId", 500, (error) => {
-    if (error) {
-      console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { shortKey } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            shortKey.setKeyDownDuration("businessId", 500, (error) => {
+              if (error) {
+                console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.info(`Set key down duration success`);
+            });
+          } catch (error) {
+            console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Set key down duration success`);
-  });
-} catch (error) {
-  console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -73,7 +93,7 @@ Sets the delay for starting an ability using shortcut keys. This API uses a prom
 
 **Return value**
 
-| Parameters         | Description         |
+| Type         | Description         |
 | ------------- | ------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
@@ -89,12 +109,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  shortKey.setKeyDownDuration("businessId", 500).then(() => {
-    console.log(`Set key down duration success`);
-  });
-} catch (error) {
-  console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { shortKey } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            shortKey.setKeyDownDuration("businessId", 500).then(() => {
+              console.info(`Set key down duration success`);
+            });
+          } catch (error) {
+            console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -106,12 +139,11 @@ Enumerates key event types.
 
 | Name                | Value         | Description               |
 | ---------------------| ---------- | --------------------|
-| DOWN                 | 0x00000000 | Pressing down          |
-| UP                   | 0x00000001 | Lifting up          |
-| SLIDE                | 0x00000002 | Sliding          |
-| RETOUCH              | 0x00000003 | Retouching          |
-| CLICK                | 0x00000004 | Clicking          |
-
+| DOWN                 | 0 | Pressing down          |
+| UP                   | 1 | Lifting up          |
+| SLIDE                | 2 | Sliding          |
+| RETOUCH              | 3 | Retouching          |
+| CLICK                | 4 | Clicking          |
 
 ## FingerprintEvent<sup>12+</sup>
 
@@ -121,6 +153,6 @@ Defines the key event type and the offset position relative to the key.
 
 | Name     | Type                                      |Read Only  | Optional |Description                   |
 | --------  | ------------------------                  |-------|------ |--------               |
-| action    | [FingerprintAction](#fingerprintaction12)   | Yes   |  No  |Key event type.          |
-| distanceX | number                                    | Yes   |  No  |Offset position on the X axis. A positive number indicates that the pointer moves rightward, and a negative number indicates that the cursor moves leftward.|
-| distanceY | number                                    | Yes   |  No  |Offset position on the Y axis. A positive number indicates that the pointer moves upward, and a negative number indicates that the cursor moves downward.|
+| action    | [FingerprintAction](#fingerprintaction12)   | No   |  No  |Enumerates key event types.          |
+| distanceX | number                                    | No   |  No  |Offset position on the X axis. A positive number indicates that the pointer moves rightward, and a negative number indicates that the cursor moves leftward.|
+| distanceY | number                                    | No   |  No  |Offset position on the Y axis. A positive number indicates that the pointer moves upward, and a negative number indicates that the cursor moves downward.|

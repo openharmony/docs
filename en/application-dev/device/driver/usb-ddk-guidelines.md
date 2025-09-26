@@ -1,4 +1,10 @@
 # USB DDK Development
+<!--Kit: Driver Development Kit-->
+<!--Subsystem: Driver-->
+<!--Owner: @lixinsheng2-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 ## Overview
 
@@ -53,7 +59,7 @@ Before you get started, make necessary preparations by following instructions in
 | OH_Usb_SelectInterfaceSetting(uint64_t interfaceHandle, uint8_t settingIndex) | Activates the alternate setting of a USB interface.|
 | OH_Usb_GetCurrentInterfaceSetting(uint64_t interfaceHandle, uint8_t \*settingIndex) | Obtains the alternate setting of a USB interface.|
 | OH_Usb_SendControlReadRequest(uint64_t interfaceHandle, const struct UsbControlRequestSetup \*setup, uint32_t timeout, uint8_t \*data, uint32_t \*dataLen) | Sends a control read transfer request. This API returns the result synchronously.|
-| OH_Usb_SendControlWriteRequest(uint64_t interfaceHandle, const struct UsbControlRequestSetup \*setup, uint32_t, const uint8_t \*data, uint32_t dataLen) | Sends a control write transfer request. This API returns the result synchronously.|
+| OH_Usb_SendControlWriteRequest(uint64_t interfaceHandle, const struct UsbControlRequestSetup \*setup, uint32_t timeout, const uint8_t \*data, uint32_t dataLen) | Sends a control write transfer request. This API returns the result synchronously.|
 | OH_Usb_ReleaseInterface(uint64_t interfaceHandle) | Releases a USB interface.|
 | OH_Usb_SendPipeRequest(const struct UsbRequestPipe *pipe, UsbDeviceMemMap *devMmap) | Sends a pipe request. This API returns the result synchronously. It applies to interrupt transfer and bulk transfer.|
 | OH_Usb_CreateDeviceMemMap(uint64_t deviceId, size_t size, UsbDeviceMemMap **devMmap) | Create a buffer. To avoid resource leakage, use **OH_Usb_DestroyDeviceMemMap()** to destroy a buffer after use.|
@@ -108,7 +114,7 @@ libusb_ndk.z.so
     // Release the configuration descriptor.
     OH_Usb_FreeConfigDescriptor(config);
     ```
-3. Obtain the activated alternate setting of a USB interface.
+3. (Optional) Obtain the activated alternate setting of a USB interface.
 
     Call **OH_Usb_GetCurrentInterfaceSetting** of **usb_ddk_api.h** to obtain the alternate setting, and call **OH_Usb_SelectInterfaceSetting** to activate it.
 
@@ -118,9 +124,9 @@ libusb_ndk.z.so
     OH_Usb_GetCurrentInterfaceSetting(interfaceHandle, &settingIndex);
 
     // Activate the alternate setting.
-    OH_Usb_SelectInterfaceSetting(interfaceHandle, &settingIndex);
+    OH_Usb_SelectInterfaceSetting(interfaceHandle, settingIndex);
     ```
-4. Send control read requests and control write requests.
+4. (Optional) Send control read requests and control write requests.
 
     Call **OH_Usb_SendControlReadRequest** of **usb_ddk_api.h** to send a control read request, or call **OH_Usb_SendControlWriteRequest** to send a control write request.
 
@@ -148,10 +154,10 @@ libusb_ndk.z.so
     uint8_t dataWrite[256] = {0};
     uint32_t dataWriteLen = 256;
     // Send a control write request.
-    OH_Usb_SendControlWriteRequest(interfaceHandle, &setupWrite, timeout, dataWrite, &dataWriteLen);
+    OH_Usb_SendControlWriteRequest(interfaceHandle, &setupWrite, timeout, dataWrite, dataWriteLen);
     ```
 
-5. Create a buffer, and send a request.
+5. (Optional) Create a buffer, and send a request.
 
     Call **OH_Usb_CreateDeviceMemMap** of **usb_ddk_api.h** to create the buffer **devMmap**, and call **OH_Usb_SendPipeRequest** to send a request.
 

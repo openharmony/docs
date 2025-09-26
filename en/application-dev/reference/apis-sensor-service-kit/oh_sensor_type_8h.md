@@ -1,5 +1,10 @@
 # oh_sensor_type.h
-
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 ## Overview
 
@@ -21,9 +26,9 @@ The **oh_sensor_type.h** file declares the common sensor attributes.
 
 | Name| Description|
 | -------- | -------- |
-| [Sensor_Type](_sensor.md#sensor_type) | Defines an enum for sensor types. |
-| [Sensor_Result](_sensor.md#sensor_result)                    | Defines an enum for sensor result codes.                |
-| [Sensor_Accuracy](_sensor.md#sensor_accuracy) | Defines an enum for accuracy levels of data reported by a sensor. |
+| [Sensor_Type](_sensor.md#sensor_type) | Enumerates the sensor types. |
+| [Sensor_Result](_sensor.md#sensor_result)                    | Enumerates the sensor result codes.                |
+| [Sensor_Accuracy](_sensor.md#sensor_accuracy) | Enumerates the accuracy levels of data reported by a sensor. |
 | [Sensor_Info](_sensor.md#sensor_info) | Defines a struct for the sensor information. |
 | [Sensor_Event](_sensor.md#sensor_event) | Defines a struct for the sensor data information. |
 | [Sensor_SubscriptionId](_sensor.md#sensor_subscriptionid) | Defines a struct for the sensor subscription ID, which uniquely identifies a sensor. |
@@ -38,7 +43,7 @@ The **oh_sensor_type.h** file declares the common sensor attributes.
 | -------- | -------- |
 | [Sensor_Type](_sensor.md#sensor_type) {<br>SENSOR_TYPE_ACCELEROMETER = 1,<br>SENSOR_TYPE_GYROSCOPE = 2, <br>SENSOR_TYPE_AMBIENT_LIGHT = 5,<br>SENSOR_TYPE_MAGNETIC_FIELD = 6,<br>SENSOR_TYPE_BAROMETER = 8, <br>SENSOR_TYPE_HALL = 10,<br>SENSOR_TYPE_PROXIMITY = 12,<br>SENSOR_TYPE_ORIENTATION = 256,<br>SENSOR_TYPE_GRAVITY = 257, <br>SENSOR_TYPE_LINEAR_ACCELERATION = 258,<br>SENSOR_TYPE_ROTATION_VECTOR = 259,<br>SENSOR_TYPE_GAME_ROTATION_VECTOR = 262,<br>SENSOR_TYPE_PEDOMETER_DETECTION = 265, <br>SENSOR_TYPE_PEDOMETER = 266,<br>SENSOR_TYPE_HEART_RATE = 278<br>} | Enumerates the sensor types. |
 | [Sensor_Result](_sensor.md#sensor_result) {<br>SENSOR_SUCCESS = 0, <br>SENSOR_PERMISSION_DENIED = 201, <br>SENSOR_PARAMETER_ERROR = 401, <br>SENSOR_SERVICE_EXCEPTION = 14500101<br>} | Enumerates the sensor result codes. |
-| [Sensor_Accuracy](_sensor.md#sensor_accuracy) { <br>SENSOR_ACCURACY_UNRELIABLE = 0,<br>SENSOR_ACCURACY_LOW = 1, <br>SENSOR_ACCURACY_MEDIUM = 2,<br>SENSOR_ACCURACY_HIGH = 3<br>} | Defines an enum for accuracy levels of data reported by a sensor. |
+| [Sensor_Accuracy](_sensor.md#sensor_accuracy) { <br>SENSOR_ACCURACY_UNRELIABLE = 0,<br>SENSOR_ACCURACY_LOW = 1, <br>SENSOR_ACCURACY_MEDIUM = 2,<br>SENSOR_ACCURACY_HIGH = 3<br>} | Enumerates the accuracy levels of data reported by a sensor. |
 
 
 ### Functions
@@ -49,7 +54,7 @@ The **oh_sensor_type.h** file declares the common sensor attributes.
 | [OH_Sensor_DestroyInfos](_sensor.md#oh_sensor_destroyinfos)([Sensor_Info](_sensor.md#sensor_info) **sensors, uint32_t count) | Destroys an array of [Sensor_Info](_sensor.md#sensor_info) instances and reclaims memory.|
 | [OH_SensorInfo_GetName](_sensor.md#oh_sensorinfo_getname)([Sensor_Info](_sensor.md#sensor_info) *sensor, char *sensorName, uint32_t *length) | Obtains the sensor name.                                            |
 | [OH_SensorInfo_GetVendorName](_sensor.md#oh_sensorinfo_getvendorname)([Sensor_Info](_sensor.md#sensor_info) *sensor, char *vendorName, uint32_t *length) | Obtains the sensor's vendor name. |
-| [OH_SensorInfo_GetType](_sensor.md#oh_sensorinfo_gettype)([Sensor_Info](_sensor.md#sensor_info) *sensor, | Obtains the sensor type.                                            |
+| [OH_SensorInfo_GetType](_sensor.md#oh_sensorinfo_gettype)([Sensor_Info](_sensor.md#sensor_info) *sensor, [Sensor_Type](_sensor.md#sensor_type) *sensorType) | Obtains the sensor type.                                            |
 | [OH_SensorInfo_GetResolution](_sensor.md#oh_sensorinfo_getresolution) ([Sensor_Info](_sensor.md#sensor_info) *sensor, float *resolution) | Obtains the sensor resolution. |
 | [OH_SensorInfo_GetMinSamplingInterval](_sensor.md#oh_sensorinfo_getminsamplinginterval) ([Sensor_Info](_sensor.md#sensor_info) *sensor, int64_t *minSamplingInterval) | Obtains the minimum data reporting interval of a sensor. |
 | [OH_SensorInfo_GetMaxSamplingInterval](_sensor.md#oh_sensorinfo_getmaxsamplinginterval) ([Sensor_Info](_sensor.md#sensor_info) *sensor, int64_t *maxSamplingInterval) | Obtains the maximum data reporting interval of a sensor. |

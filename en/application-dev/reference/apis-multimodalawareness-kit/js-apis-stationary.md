@@ -1,4 +1,10 @@
 # @ohos.stationary (Device Status Awareness Framework)
+<!--Kit: Multimodal Awareness Kit-->
+<!--Subsystem: MultimodalAwareness-->
+<!--Owner: @dilligencer-->
+<!--Designer: @zou_ye-->
+<!--Tester: @judan-->
+<!--Adviser: @hu-zhiqiong-->
 
 The **stationary** module provides APIs to report the device status, including absolute still and relative still.
 
@@ -20,9 +26,9 @@ Defines the response interface to receive the device status.
 
 **System capability**: SystemCapability.Msdp.DeviceStatus.Stationary
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| state | [ActivityState](#activitystate) | Yes| No| New device status.|
+| state | [ActivityState](#activitystate) | No| No| New device status.|
 
 ## ActivityType
 
@@ -82,7 +88,7 @@ Subscribes to the device status.
 ```ts
 let reportLatencyNs = 1000000000;
 stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
-    console.log('data='+ JSON.stringify(data));
+    console.info('data=' + JSON.stringify(data));
 })
 ```
 
@@ -105,7 +111,7 @@ Obtains the device status.
 
 ```ts
 stationary.once('still', (data) => {
-    console.log("data="+ JSON.stringify(data));
+    console.info('data=' + JSON.stringify(data));
 })
 ```
 

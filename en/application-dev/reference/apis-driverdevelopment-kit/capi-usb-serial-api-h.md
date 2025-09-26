@@ -12,7 +12,7 @@ Declares the USB Serial DDK APIs used by the host to access the serial port devi
 
 **File to include**: <usb_serial/usb_serial_api.h>
 
-**Library**: libusb_serial.z.so
+**Library:** libusb_serial_ndk.z.so
 
 **System capability**: SystemCapability.Driver.UsbSerial.Extension
 

@@ -559,7 +559,7 @@ Disables listening for the **open** events of a WebSocket connection. This API u
 
 | Name  | Type                   | Mandatory| Description                         |
 | -------- | ----------------------- | ---- | ----------------------------- |
-| type     | string                  | Yes  | Type of the event to unsubscribe from. Event type. <br />**open**: event indicating that a WebSocket connection has been opened.|
+| type     | string                  | Yes  | Event type. <br /> **open**: event indicating that a WebSocket connection has been opened.|
 | callback | AsyncCallback\<Object\> | No  | Callback used to return the result.                   |
 
 **Example**
@@ -660,7 +660,7 @@ Enables listening for the **close** events of a WebSocket connection. This API u
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | Yes  | Event type.<br/> **close**: event indicating that a WebSocket connection has been closed.|
-| callback | AsyncCallback\<CloseResult\> | Yes  | Callback used to return the result.<br>**close** and **reason** indicate the error code and error cause for closing the connection, respectively.|
+| callback | AsyncCallback\<CloseResult\> | Yes  | Callback used to return the result.<br>**close** and **reason** indicate the error code and reason for closing the connection, respectively.|
 
 **Example**
 
@@ -692,8 +692,8 @@ Disables listening for the **close** events of a WebSocket connection. This API 
 
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                          | Yes  | Type of the event to unsubscribe from. Event type. <br />**close**: event indicating that a WebSocket connection has been closed.|
-| callback | AsyncCallback\<CloseResult\> | No  | Callback used to return the result.<br>**close** and **reason** indicate the error code and error cause for closing the connection, respectively.|
+| type     | string                                          | Yes  | Event type. <br /> **close**: event indicating that a WebSocket connection has been closed.|
+| callback | AsyncCallback\<CloseResult\> | No  | Callback used to return the result.<br>**close** and **reason** indicate the error code and reason for closing the connection, respectively.|
 
 **Example**
 
@@ -879,7 +879,7 @@ Creates a **WebSocketServer** object, which provides methods to start or stop th
 
 **System capability**: SystemCapability.Communication.NetStack
 
-**Device behavior differences**: This API can be properly called on TVs. If it is called on other device types, nullptr is returned.
+**Device behavior differences**: This API can be properly called on smart TVs. If it is called on other device types, **nullptr** is returned.
 
 **Return value**
 
@@ -1347,7 +1347,7 @@ Enables listening for the **close** events of a WebSocketServer connection. This
 | Name | Type                   | Mandatory| Description                                                    |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                          | Yes | Event type, which has a fixed value of **close**. Successful calling of **onclose()** indicates that the connection is closed successfully.|
-| callback | [ClientConnectionCloseCallback](#clientconnectionclosecallback19) | Yes | Callback used to return the result.<br>**close** and **reason** indicate the error code and error cause for closing the connection, respectively.|
+| callback | [ClientConnectionCloseCallback](#clientconnectionclosecallback19) | Yes | Callback used to return the result.<br>**close** and **reason** indicate the error code and reason for closing the connection, respectively.|
 
 **Example**
 
@@ -1378,7 +1378,7 @@ Disables listening for the **close** events of a WebSocketServer connection. Thi
 | Name | Type                   | Mandatory| Description                                                    |
 | -------- | ----------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                          | Yes | Event type, which has a fixed value of **close**. Successful calling of **offclose()** indicates that listening for the **close** events is canceled successfully.|
-| callback | [ClientConnectionCloseCallback](#clientconnectionclosecallback19) | No | Callback used to return the result.<br>**close** and **reason** indicate the error code and error cause for closing the connection, respectively.|
+| callback | [ClientConnectionCloseCallback](#clientconnectionclosecallback19) | No | Callback used to return the result.<br>**close** and **reason** indicate the error code and reason for closing the connection, respectively.|
 
 **Example**
 

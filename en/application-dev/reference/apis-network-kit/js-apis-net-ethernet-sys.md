@@ -1,6 +1,5 @@
 # @ohos.net.ethernet (Ethernet Connection Management) (System API)
 
-
 The **ethernet** module provides wired network capabilities, which allow users to set the IP address, subnet mask, gateway, and Domain Name System (DNS) server, and HTTP proxy of a wired network.
 
 > **NOTE**
@@ -153,7 +152,7 @@ Obtains the configuration of a network interface. This API uses an asynchronous 
 | Name  | Type                                           | Mandatory | Description        |
 | -------- | ----------------------------------------------- | ----- | ------------ |
 | iface    | string                                          | Yes   | Network interface.|
-| callback | AsyncCallback\<[InterfaceConfiguration](#interfaceconfiguration9)> | Yes   | Callback used to return the result. Returns information about the specified network interface.  |
+| callback | AsyncCallback\<[InterfaceConfiguration](#interfaceconfiguration9)> | Yes   | Callback used to return the result, which is the configuration of the specified network interface.  |
 
 **Error codes**
 

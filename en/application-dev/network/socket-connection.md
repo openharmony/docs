@@ -43,7 +43,7 @@ Applications can transmit data over TCP, UDP, Multicast, or TLS socket connectio
 
 The implementation is similar for UDP socket and TCP socket connections. The following uses data transmission over a TCP socket connection as an example.
 
-1. Import the required socket module.
+1. Import the required modules.
 
     ```ts
     import { socket } from '@kit.NetworkKit';
@@ -142,7 +142,7 @@ The implementation is similar for UDP socket and TCP socket connections. The fol
 
 The TCP socket connection process on the server is as follows:
 
-1. Import the required socket module.
+1. Import the required modules.
 
     ```ts
     import { socket } from '@kit.NetworkKit';
@@ -233,7 +233,7 @@ The TCP socket connection process on the server is as follows:
 
 ## Transmitting Data over Multicast Socket Connections
 
-1. Import the required socket module.
+1. Import the required module.
 
     ```ts
     import { socket } from '@kit.NetworkKit';
@@ -313,7 +313,7 @@ The TCP socket connection process on the server is as follows:
 
 ## Transmitting Data over Local Socket Connections
 
-1. Import the required socket module.
+1. Import the required modules.
 
     ```ts
     import { socket } from '@kit.NetworkKit';
@@ -395,7 +395,7 @@ The TCP socket connection process on the server is as follows:
 
 The local socket connection process on the server is as follows:
 
-1. Import the required socket module.
+1. Import the required modules.
 
     ```ts
     import { socket } from '@kit.NetworkKit';
@@ -484,7 +484,7 @@ The local socket connection process on the server is as follows:
 
 To implement the TLS socket process (two-way authentication) on the client, perform the following steps:
 
-1. Import the required socket module.
+1. Import the required modules.
 
     ```ts
     import { socket } from '@kit.NetworkKit';
@@ -588,7 +588,7 @@ To implement the TLS socket process (two-way authentication) on the client, perf
 
 To implement the TLS socket process (one-way authentication) on the client, perform the following steps:
 
-1. Import the required socket module.
+1. Import the required modules.
 
     ```ts
     import { socket } from '@kit.NetworkKit';
@@ -686,7 +686,7 @@ To implement the TLS socket process (one-way authentication) on the client, perf
 
 The following uses two-way authentication as an example to describe how to upgrade TCP Socket to TLS Socket on a client:
 
-1. Import the required socket module.
+1. Import the required modules.
 
     ```ts
     import { socket } from '@kit.NetworkKit';
@@ -816,7 +816,7 @@ The following uses two-way authentication as an example to describe how to upgra
 
 The TLS socket connection process on the server is as follows:
 
-1. Import the required socket module.
+1. Import the required modules.
 
     ```ts
     import { socket } from '@kit.NetworkKit';
@@ -908,4 +908,3 @@ The TLS socket connection process on the server is as follows:
     // Unsubscribe from events of the TLSSocketServer object.
     tlsServer.off('connect');
     ```
-

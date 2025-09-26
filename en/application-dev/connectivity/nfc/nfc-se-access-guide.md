@@ -1,5 +1,12 @@
 # SE Access Development
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @amunra03-->
+<!--Designer: @wenxiaolin-->
+<!--Tester: @zs_111-->
+<!--Adviser: @zhang_yixin13-->
+
 ## Introduction
 An electronic device may have one or more secure elements (SEs), such as the embedded SE (eSE) and SIM card. Access control for SEs is implemented in accordance with the Global Platform Access Control (GPAC) specification.
 
@@ -28,7 +35,12 @@ The following table describes the APIs for SE access.
 2. Check whether the device supports SEs.
 3. Access an SE and read or write data.
 4. Release channel resources.
-   
+
+> **NOTE**
+>
+> - Starting from API version 9, application development supports the stage model, which is recommended for long-term evolution.
+> - The high security level of SEs requires the build mode be set to Release for packaging; otherwise, the application will not run properly.
+
 ```ts
 import { omapi } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';

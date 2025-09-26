@@ -1,4 +1,10 @@
 # @ohos.distributedsched.proxyChannelManager (Proxy Channel Management)
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedSched-->
+<!--Owner: @huangkai71-->
+<!--Designer: @lee_jet520-->
+<!--Tester: @Ytt-test-->
+<!--Adviser: @w_Machine_cc-->
 
 DSoftBus provides stable and reliable underlying channels for cross-device communication. This module is developed based on DSoftBus. It supports efficient data exchange between phones and wearables, providing users with a seamless device interconnection experience. During collaboration between the phone application and watch application, if the phone application is not running in the foreground, its downlink messages are forwarded to the notification server and then sent to the watch through the proxy module. The core functions of this module include proxy channel management, data route management, application state awareness and wakeup, and link state monitoring.
 
@@ -14,13 +20,13 @@ DSoftBus provides stable and reliable underlying channels for cross-device commu
 >
 > The initial APIs of this module are supported since API version 20. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-## Modules to Import
+## Importing modules
 
 ```js
 import { proxyChannelManager } from '@kit.DistributedServiceKit';
 ```
 
-## How to Use
+## Instructions
 
 Before calling the APIs of this module, complete the following configurations:
 
@@ -48,7 +54,7 @@ Opens a proxy channel. This API uses a promise to return the result.
 
 | Type                 | Description              |
 | ------------------- | ---------------- |
-| &nbsp;Promise&lt;number&gt; | Channel ID of the proxy channel. The value range is [1, 2147483647]. The lifecycle of **channelId** is the same as that of the proxy channel. If the proxy is not closed, the returned **channelId** is the same as that passed in the API.|
+| &nbsp;Promise&lt;number&gt; | Proxy channel ID. The value range is [1, 2147483647]. The lifecycle of **channelId** is the same as that of the proxy channel. If the proxy is not closed, the returned **channelId** is the same as that passed in the API.|
 
 **Error codes**
 
@@ -471,7 +477,7 @@ Represents the received data, including the channel ID and data.
 
 | Name      | Type                                      | Read-Only  | Optional  | Description      |
 | --------- | ---------------------------------------- | ---- | ---- | -------- |
-| channelId | number | No| No   | Channel ID of the proxy channel.|
+| channelId | number | No| No   | Proxy channel ID.|
 | data | ArrayBuffer | No| No| Received byte array.|
 
 ## ChannelInfo
@@ -494,7 +500,7 @@ Represents the connection state information of the proxy channel.
 
 | Name      | Type                                      | Read-Only  | Optional  | Description      |
 | --------- | ---------------------------------------- | ---- | ---- | -------- |
-| channelId | number | No| No   | Channel ID of the proxy channel.|
+| channelId | number | No| No   | Proxy channel ID.|
 | state | [ChannelState](#channelstate) | No| No| Connection state of the proxy channel.|
 
 ## ChannelState

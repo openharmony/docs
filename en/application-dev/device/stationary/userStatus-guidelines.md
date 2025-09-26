@@ -12,7 +12,9 @@ For details about the APIs, see the [userStatus API Reference](../../reference/a
 
 ## How to Develop 
 ### When to Use
-An application can invoke the UserStatus module when it needs to obtain the age group of users. This way, the application can determine, for example, whether the individual interacting with the device is a child or an adult.
+The UserStatus module enables an application to obtain the age group of users. This way, the application can determine, for example, whether the individual interacting with the device is a child or an adult.
+
+The APIs of this module are supported since API version 20.
 
 ### Available APIs
 
@@ -24,7 +26,7 @@ An application can invoke the UserStatus module when it needs to obtain the age 
 ### Constraints
 
  - If the device does not support the age group detection function, error code 801 is returned.
-
+<!--RP1--> <!--RP1End-->
 ### Development Procedure
 
 1. Import the related modules.
@@ -32,7 +34,6 @@ An application can invoke the UserStatus module when it needs to obtain the age 
    ```ts
    import { userStatus } from '@kit.MultimodalAwarenessKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { Callback } from '@ohos.base';
    ```
 
 2. Define the callback used to receive the age group detection result.

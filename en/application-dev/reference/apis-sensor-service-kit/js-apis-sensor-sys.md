@@ -1,4 +1,10 @@
 # @ohos.sensor (Sensor) (System API)
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 The **Sensor** module provides APIs for obtaining the sensor list and subscribing to sensor data. It also provides some common sensor algorithms.
 
@@ -53,8 +59,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
   sensor.on(sensor.SensorId.COLOR, (data: sensor.ColorResponse) => {
-    console.log('Succeeded in getting the intensity of light: ' + data.lightIntensity);
-    console.log('Succeeded in getting the color temperature: ' + data.colorTemperature);
+    console.info('Succeeded in getting the intensity of light: ' + data.lightIntensity);
+    console.info('Succeeded in getting the color temperature: ' + data.colorTemperature);
   }, { interval: 100000000 });
   setTimeout(() => {
         sensor.off(sensor.SensorId.COLOR);
@@ -204,7 +210,7 @@ enum Ret { OK, Failed = -1 }
 
 // Sensor callback
 const sensorCallback = (response: sensor.ColorResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // Sensor type
 const sensorType = sensor.SensorId.COLOR;
@@ -219,9 +225,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -335,7 +348,7 @@ enum Ret { OK, Failed = -1 }
 
 // Sensor callback
 const sensorCallback = (response: sensor.SarResponse) => {
-  console.log(`callback response: ${JSON.stringify(response)}`);
+  console.info(`callback response: ${JSON.stringify(response)}`);
 }
 // Sensor type
 const sensorType = sensor.SensorId.SAR;
@@ -350,9 +363,16 @@ function sensorSubscribe(): Ret {
       return Ret.Failed;
     }
     // Obtain the target sensor based on the actual service logic.
-    const targetSensor: sensor.Sensor = sensorList[0];
-    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
-    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    const targetSensor = sensorList
+      // Filter all sensors with deviceId 1 and sensorId 2 as required. This example is for reference only. You need to adjust the filtering logic accordingly.
+      .filter((sensor: sensor.Sensor) => sensor.deviceId === 1 && sensor.sensorId === 2)
+      // Select the sensor with sensorIndex 0 among all sensors of the same type.
+      .find((sensor: sensor.Sensor) => sensor.sensorIndex === 0);
+    if (!targetSensor) {
+      return Ret.Failed;
+    }
+    sensorInfoParam.deviceId = targetSensor.deviceId;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex;
     // Subscribe to sensor events.
     sensor.on(sensorType, sensorCallback, { sensorInfoParam });
   } catch (error) {
@@ -398,8 +418,8 @@ Describes the color sensor data. It extends from [Response](js-apis-sensor.md#re
 
 | Name            | Type  | Read-Only| Optional| Description                         |
 | ---------------- | ------ | ---- | ---- | ----------------------------- |
-| lightIntensity   | number | Yes  | Yes  | Intensity of light, in lux.|
-| colorTemperature | number | Yes  | Yes  | Color temperature, in Kelvin.    |
+| lightIntensity   | number | No  | No  | Intensity of light, in lux.|
+| colorTemperature | number | No  | No  | Color temperature, in Kelvin.    |
 
 ## SarResponse<sup>10+ </sup>
 
@@ -412,7 +432,7 @@ Describes the SAR sensor data. It extends from [Response](js-apis-sensor.md#resp
 
 | Name           | Type  | Read-Only| Optional| Description                           |
 | --------------- | ------ | ---- | ---- | ------------------------------- |
-| absorptionRatio | number | Yes  | Yes  | Absorption ratio, in W/kg.|
+| absorptionRatio | number | No  | No  | Absorption ratio, in W/kg.|
 
 
 ## SensorInfoParam<sup>19+</sup>
@@ -421,8 +441,9 @@ Defines sensor parameters.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
-| Name| Type                  | Mandatory| Description                     |
-| ------ | ---------------------- | ---- |-------------------------|
-| deviceId   | number | No  | Device ID. The default value is **-1**, which indicates the local device.    |
-| sensorIndex   | number | No  | Sensor index. The default value is **0**, which indicates the default sensor on the device.|
+| Name        | Type    | Read-Only| Optional| Description                     |
+| ----------- | -------- | ---- | ---- | -------------------------- |
+| deviceId    | number   | No  | Yes  | Device ID. The default value is **-1**, indicating the local device. You can use [getSensorList](js-apis-sensor.md#sensorgetsensorlist9) or [on](js-apis-sensor.md#sensorstatuschange19) to obtain the device ID.<br>**Atomic service API**: This API can be used in atomic services since API version 19.  |
+| sensorIndex   | number | No  | Yes  | Sensor index. The default value is **0**, which indicates the default sensor on the device. You can use [getSensorList](js-apis-sensor.md#sensorgetsensorlist9) or [on](js-apis-sensor.md#sensorstatuschange19) to obtain the sensor ID.<br>**Atomic service API**: This API can be used in atomic services since API version 19.|

@@ -1,5 +1,12 @@
 # Using MindSpore Lite for Model Conversion
 
+<!--Kit: MindSpore Lite Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @zhuguodong8-->
+<!--Designer: @zhuguodong8; @jjfeing-->
+<!--Tester: @principal87-->
+<!--Adviser: @ge-yafang-->
+
 ## Basic Concepts
 
 - MindSpore Lite: a built-in AI inference engine of OpenHarmony that provides inference deployment for deep learning models.
@@ -44,7 +51,7 @@ You can obtain the MindSpore Lite model conversion tool in either of the followi
      -  CMake >= 3.18.3
      -  Git >= 2.28.0
 
-2. Obtain the [MindSpore Lite source code](https://gitee.com/openharmony/third_party_mindspore).
+2. Obtain the [MindSpore Lite source code](https://gitcode.com/openharmony/third_party_mindspore).
    The complete source code of MindSpore Lite is available at `mindspore-src/source/`.
 
 3. Start building.
@@ -63,10 +70,10 @@ You can obtain the MindSpore Lite model conversion tool in either of the followi
 After obtaining the model conversion tool, you need to add the dynamic link library (DLL) required by the conversion tool to the environment variable `LD_LIBRARY_PATH`.
 
 ```bash
-export LD_LIBRARY_PATH=${PACKAGE_ROOT_PATH}/tools/converter/lib:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=${PACKAGE_PATH}/tools/converter/lib:${LD_LIBRARY_PATH}
 ```
 
-${PACKAGE_ROOT_PATH} indicates the path where the MindSpore Lite release package is decompressed.
+${PACKAGE_PATH} indicates the path where the MindSpore Lite release package is decompressed.
 
 
 ## Parameter Description

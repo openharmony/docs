@@ -1,5 +1,12 @@
 # Event Interception Development (C/C++)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## Introduction
 
 The multimodal module provides applications with the ability to create and delete keystrokes and intercept input events. For example, you can intercept key, mouse, touch, and axis events.
@@ -39,7 +46,7 @@ Declare the required permission in the **module.json5** file. For details, see [
 
 ### Creating an Event Interceptor
 
-#### Key Events
+- **Key event**
 
 ```c++
 #include "multimodalinput/oh_input_manager.h"
@@ -60,7 +67,7 @@ void OnKeyEventCallback(const Input_KeyEvent* keyEvent)
     event.actionTime = OH_Input_GetKeyEventActionTime(keyEvent);
 }
 
-void TestInterceptor()
+void TestKeyEventInterceptor()
 {
     // Add the key event interceptor.
     Input_Result ret = OH_Input_AddKeyEventInterceptor(OnKeyEventCallback, nullptr);
@@ -69,7 +76,7 @@ void TestInterceptor()
 }
 ```
 
-#### Input Events
+- **Input Events (Mouse, Touch, and Axis Events)**
 
 ```c++
 #include "multimodalinput/oh_input_manager.h"
@@ -165,7 +172,7 @@ void OnAxisEventCallback(const Input_AxisEvent* axisEvent)
 // Structure of the input event callback function
 Input_InterceptorEventCallback g_eventCallback;
 
-void TestInterceptor()
+void TestInputEventInterceptor()
 {
     // Set the mouse event callback function.
     g_eventCallback.mouseCallback = OnMouseEventCallback;

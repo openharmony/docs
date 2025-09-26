@@ -1,5 +1,12 @@
 # @system.fetch (Data Request) (Deprecated)
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 > **NOTE**
 > - The APIs of this module are no longer maintained since API version 6. You are advised to use [`@ohos.net.http`](js-apis-http.md).
 > 
@@ -56,11 +63,11 @@ Obtains data through a network.
 
 **System capability**: SystemCapability.Communication.NetStack
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| code | number | Yes| No| Server status code.|
-| data | string \| Object | Yes| No| The type of the returned data is determined by **responseType**. For details, see the mapping between **responseType** and **data** in **success** callback.|
-| headers | Object | Yes| No| All headers in the response from the server.|
+| code | number | No| No| Server status code.|
+| data | string \| Object | No| No| The type of the returned data is determined by **responseType**. For details, see the mapping between **responseType** and **data** in **success** callback.|
+| headers | Object | No| No| All headers in the response from the server.|
 
 **Table 2** Mapping between responseType and data in success callback
 

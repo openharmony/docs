@@ -1,5 +1,12 @@
 # @ohos.nfc.tag (Standard NFC Tags)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @amunra03-->
+<!--Designer: @wenxiaolin-->
+<!--Tester: @zs_111-->
+<!--Adviser: @zhang_yixin13-->
+
 The **tag** module provides APIs for operating and managing NFC tags. The following tag read modes are available:
 <br>Background mode: The device reads the tag by using NFC without starting any application, and then searches for applications based on the tag type. If only one application is matched, the card reading page of that application will be started. If multiple applications are matched, an application selector will be started, asking the user to select an application.
 <br>Foreground mode: A foreground application has priority to read the NFC tag discovered.
@@ -43,7 +50,7 @@ To enable NFC tags to be read without starting an application, declare NFC-relat
         "requestPermissions": [
             {
                 "name": "ohos.permission.NFC_TAG",
-                "reason": "$string:app_name",
+                "reason": "$string:app_name"
             }
         ]
     }
@@ -81,7 +88,7 @@ export default class EntryAbility extends UIAbility {
         } catch (error) {
             console.error("tag.getTagInfo catch error: " + error);
         }
-        if (tagInfo == null || tagInfo == undefined) {
+        if (tagInfo == null) {
             console.error("no TagInfo to be created, ignore it.");
             return;
         }
@@ -527,7 +534,7 @@ Obtains a **BarcodeTag** object, which allows access to the tags in the BarcodeT
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| [BartcodeTag](js-apis-nfctech.md#barcodetag18) | **BarcodeTag** object obtained.|
+| [BarcodeTag](js-apis-nfctech.md#barcodetag18) | **BarcodeTag** object obtained.|
 
 **Error codes**
 
@@ -680,7 +687,7 @@ export default class MainAbility extends UIAbility {
         try {
             tag.unregisterForegroundDispatch(elementName);
         } catch (e) {
-            console.error("registerForegroundDispatch error: " + (e as BusinessError).message);
+            console.error("unregisterForegroundDispatch error: " + (e as BusinessError).message);
         }
     }
 
@@ -689,7 +696,7 @@ export default class MainAbility extends UIAbility {
         try {
             tag.unregisterForegroundDispatch(elementName);
         } catch (e) {
-            console.error("registerForegroundDispatch error: " + (e as BusinessError).message);
+            console.error("unregisterForegroundDispatch error: " + (e as BusinessError).message);
         }
     }
 
@@ -1221,7 +1228,7 @@ Defines the **TagInfo** object, which provides information about the tag technol
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-| **Name**                     | **Type**                                                     | **Readable**| **Writable**| **Description**                                                                                    |
+| **Name**                     | **Type**                                                     | **Read-Only**| **Optional**| **Description**                                                                                    |
 | ----------------------------- | ------------------------------------------------------------- | -------- | -------- | -------------------------------------------------------------------------------------------- |
 | uid<sup>9+</sup>              | number[]                                                      | Yes      | No      | Tag unique identifier (UID), which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                    |
 | technology<sup>9+</sup>       | number[]                                                      | Yes      | No      | Supported tag technologies. Each number is a constant indicating the supported technology.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                    |
@@ -1234,7 +1241,7 @@ Defines an NDEF record. For details, see *NFCForum-TS-NDEF_1.0*.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| **Name**| **Type**| **Readable**| **Writable**| **Description**                                                                                 |
+| **Name**| **Type**| **Read-Only**| **Optional**| **Description**                                                                                 |
 | -------- | -------- | -------- | -------- | ----------------------------------------------------------------------------------------- |
 | tnf      | number   | Yes      | No      | Type name field (TNF) of the NDEF record.                                                      |
 | rtdType  | number[] | Yes      | No      | Record type definition (RTD) of the NDEF record. It consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|

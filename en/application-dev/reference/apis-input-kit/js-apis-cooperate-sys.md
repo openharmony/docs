@@ -1,5 +1,12 @@
 # @ohos.multimodalInput.inputDeviceCooperate (Screen Hopping) (System API)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 The **inputDeviceCooperate** module implements screen hopping for two or more networked devices to share the keyboard and mouse for collaborative operations.
 
 > **NOTE**
@@ -46,16 +53,27 @@ For details about the following error codes, see [Screen Hopping Error Codes](..
 import { inputDeviceCooperate } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  inputDeviceCooperate.enable(true, (error: BusinessError) => {
-    if (error) {
-      console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            inputDeviceCooperate.enable(true, (error: BusinessError) => {
+              if (error) {
+                console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.info(`Keyboard mouse crossing enable success.`);
+            });
+          } catch (error) {
+            console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Keyboard mouse crossing enable success.`);
-  });
-} catch (error) {
-  console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -75,9 +93,9 @@ Specifies whether to enable screen hopping. This API uses a promise to return th
 
 **Return value**
 
-| Parameters                | Description                    |
+| Type                | Description                    |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt;      | Promise used to return the result.       |
+| Promise&lt;void&gt;      | Promise that returns no value.       |
 
 **Error codes**
 
@@ -93,14 +111,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { inputDeviceCooperate } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  inputDeviceCooperate.enable(true).then(() => {
-    console.log(`Keyboard mouse crossing enable success.`);
-  }, (error: BusinessError) => {
-    console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-  });
-} catch (error) {
-  console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            inputDeviceCooperate.enable(true).then(() => {
+              console.info(`Keyboard mouse crossing enable success.`);
+            }, (error: BusinessError) => {
+              console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            });
+          } catch (error) {
+            console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -136,18 +165,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { inputDeviceCooperate } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let sinkDeviceDescriptor = "descriptor";
-let srcInputDeviceId = 0;
-try {
-  inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId, (error: BusinessError) => {
-    if (error) {
-      console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let sinkDeviceDescriptor = "descriptor";
+          let srcInputDeviceId = 0;
+          try {
+            inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId, (error: BusinessError) => {
+              if (error) {
+                console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.info(`Start Keyboard mouse crossing success.`);
+            });
+          } catch (error) {
+            console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Start Keyboard mouse crossing success.`);
-  });
-} catch (error) {
-  console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -170,7 +210,7 @@ Starts screen hopping. This API uses a promise to return the result.
 
 **Return value**
 
-| Name                 | Description                            |
+| Type                 | Description                            |
 | ---------------------- | ------------------------------- |
 | Promise\<void>         | Promise used to return the result.      |
 
@@ -190,16 +230,27 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-co
 import { inputDeviceCooperate } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let sinkDeviceDescriptor = "descriptor";
-let srcInputDeviceId = 0;
-try {
-  inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId).then(() => {
-    console.log(`Start Keyboard mouse crossing success.`);
-  }, (error: BusinessError) => {
-    console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-  });
-} catch (error) {
-  console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let sinkDeviceDescriptor = "descriptor";
+          let srcInputDeviceId = 0;
+          try {
+            inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId).then(() => {
+              console.info(`Start Keyboard mouse crossing success.`);
+            }, (error: BusinessError) => {
+              console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            });
+          } catch (error) {
+            console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -231,16 +282,27 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { inputDeviceCooperate } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  inputDeviceCooperate.stop((error: BusinessError) => {
-    if (error) {
-      console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            inputDeviceCooperate.stop((error: BusinessError) => {
+              if (error) {
+                console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.info(`Stop Keyboard mouse crossing success.`);
+            });
+          } catch (error) {
+            console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Stop Keyboard mouse crossing success.`);
-  });
-} catch (error) {
-  console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -254,7 +316,7 @@ Stops screen hopping. This API uses a promise to return the result.
 
 **Return value**
 
-| Name               | Description                           |
+| Type               | Description                           |
 | --------             | ----------------------------   |
 | Promise\<void>       |  Promise used to return the result.     |
 
@@ -264,14 +326,25 @@ Stops screen hopping. This API uses a promise to return the result.
 import { inputDeviceCooperate } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  inputDeviceCooperate.stop().then(() => {
-    console.log(`Stop Keyboard mouse crossing success.`);
-  }, (error: BusinessError) => {
-    console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-  });
-} catch (error) {
-  console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            inputDeviceCooperate.stop().then(() => {
+              console.info(`Stop Keyboard mouse crossing success.`);
+            }, (error: BusinessError) => {
+              console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            });
+          } catch (error) {
+            console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -305,17 +378,28 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { inputDeviceCooperate } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let deviceDescriptor = "descriptor";
-try {
-  inputDeviceCooperate.getState(deviceDescriptor, (error: BusinessError, data: object) => {
-    if (error) {
-      console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let deviceDescriptor = "descriptor";
+          try {
+            inputDeviceCooperate.getState(deviceDescriptor, (error: BusinessError, data: object) => {
+              if (error) {
+                console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.info(`Get the status success, data: ${JSON.stringify(data)}`);
+            });
+          } catch (error) {
+            console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Get the status success, data: ${JSON.stringify(data)}`);
-  });
-} catch (error) {
-  console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -335,7 +419,7 @@ Checks whether screen hopping is enabled. This API uses a promise to return the 
 
 **Return value**
 
-| Parameters                       | Description                    |
+| Type                       | Description                    |
 | -------------------        | ------------------------------- |
 | Promise<{ state: boolean }>| Promise used to return the result. The value **true** indicates that screen hopping is enabled, and the **false** indicates the opposite.      |
 
@@ -354,15 +438,26 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { inputDeviceCooperate } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let deviceDescriptor = "descriptor";
-try {
-  inputDeviceCooperate.getState(deviceDescriptor).then((data: object) => {
-    console.log(`Get the status success, data: ${JSON.stringify(data)}`);
-  }, (error: BusinessError) => {
-    console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-  });
-} catch (error) {
-  console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let deviceDescriptor = "descriptor";
+          try {
+            inputDeviceCooperate.getState(deviceDescriptor).then((data: object) => {
+              console.info(`Get the status success, data: ${JSON.stringify(data)}`);
+            }, (error: BusinessError) => {
+              console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            });
+          } catch (error) {
+            console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -395,14 +490,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { inputDeviceCooperate } from '@kit.InputKit';
 
-let callback = (msg: object) => {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
-  return false;
-}
-try {
-  inputDeviceCooperate.on('cooperation', callback);
-} catch (error) {
-  console.error(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let callback = (msg: object) => {
+            console.info(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
+            return false;
+          }
+          try {
+            inputDeviceCooperate.on('cooperation', callback);
+          } catch (error) {
+            console.error(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -435,35 +541,57 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { inputDeviceCooperate } from '@kit.InputKit';
 
-// Unregister a single callback.
-let callbackOn = (msg: object) => {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
-  return false;
-}
-let callbackOff = () => {
-  console.log(`Keyboard mouse crossing event`);
-  return false;
-}
-try {
-  inputDeviceCooperate.on('cooperation', callbackOn);
-  inputDeviceCooperate.off("cooperation", callbackOff);
-} catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          // Unregister a single callback.
+          let callbackOn = (msg: object) => {
+            console.info(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
+            return false;
+          }
+          let callbackOff = () => {
+            console.info(`Keyboard mouse crossing event`);
+            return false;
+          }
+          try {
+            inputDeviceCooperate.on('cooperation', callbackOn);
+            inputDeviceCooperate.off("cooperation", callbackOff);
+          } catch (error) {
+            console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 ```ts
 import { inputDeviceCooperate } from '@kit.InputKit';
 
-// Unregister all callbacks.
-let callback = (msg: object) => {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
-  return false;
-}
-try {
-  inputDeviceCooperate.on('cooperation', callback);
-  inputDeviceCooperate.off("cooperation");
-} catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          // Unregister all callbacks.
+          let callback = (msg: object) => {
+            console.info(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
+            return false;
+          }
+          try {
+            inputDeviceCooperate.on('cooperation', callback);
+            inputDeviceCooperate.off("cooperation");
+          } catch (error) {
+            console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 

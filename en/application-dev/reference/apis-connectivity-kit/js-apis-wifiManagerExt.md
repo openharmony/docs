@@ -1,4 +1,11 @@
 # @ohos.wifiManagerExt (WLAN Extension)
+
+<!--Kit: Connectivity Kit-->	
+<!--Subsystem: Communication-->	
+<!--Owner: @qq_43802146-->	
+<!--Designer: @qq_43802146-->	
+<!--Tester: @furryfurry123-->	
+<!--Adviser: @zhang_yixin13-->	
 The **wifiManagerExt** module provides WLAN extension APIs for non-universal products.
 
 > **NOTE**
@@ -161,7 +168,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
   wifiManagerExt.getSupportedPowerMode().then(data => {
       console.info("get supported power mode info: " + JSON.stringify(data));
-  }).catch((error:number) => {
+  }).catch((error) => {
       console.error("get supported power mode error");
   });
 ```

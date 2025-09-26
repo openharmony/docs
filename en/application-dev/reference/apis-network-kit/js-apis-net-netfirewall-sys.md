@@ -1,6 +1,5 @@
 # @ohos.net.netFirewall (Network Firewall) (System API)
 
-
 The **netFirewall** module implements the firewall query functionality. It allows applications to query firewall interception records.
 
 > **NOTE**
@@ -30,7 +29,7 @@ Obtains interception records based on the specified user ID. You need to specify
 
 | Name      | Type                                                    | Mandatory| Description                                        |
 | ------------ | ------------------------------------------------------- | ---- | -------------------------------------------- |
-| userId       | number                                                  | Yes  | Existing user ID.|
+| userId       | number                                                  | Yes  | User ID. The value must be an existing user ID in the system.|
 | requestParam | [RequestParam](js-apis-net-netfirewall.md#requestparam) | Yes  | Query parameter.                                  |
 
 **Return value**
