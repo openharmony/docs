@@ -6723,6 +6723,49 @@ try {
 }
 ```
 
+### enableHardwareEntropy<sup>21+</sup>
+
+enableHardwareEntropy(): void
+
+开启硬件熵源。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework.Rand
+
+**错误码：**
+以下错误码的详细介绍请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ----------------- |
+| 801 | this operation is not supported.          |
+| 17620001 | memory operation failed.      |
+| 17620002 | failed to convert parameters between arkts and c. |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let rand = cryptoFramework.createRandom();
+rand.enableHardwareEntropy();
+rand.generateRandom(12, (err, randData) => {
+  if (err) {
+    console.error("[Callback] err: " + err.code);
+  } else {
+    console.info('[Callback]: generate random result: ' + randData.data);
+    try {
+      rand.setSeed(randData);
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error(`sync error, ${e.code}, ${e.message}`);
+    }
+  }
+});
+```
+
 ### setSeed
 
 setSeed(seed: DataBlob): void
