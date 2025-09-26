@@ -326,7 +326,7 @@ CommonEvent_ErrCode OH_CommonEvent_UnSubscribe(const CommonEvent_Subscriber* sub
 
 **描述**
 
-退阅公共事件。
+退订公共事件。
 
 **起始版本：** 12
 
