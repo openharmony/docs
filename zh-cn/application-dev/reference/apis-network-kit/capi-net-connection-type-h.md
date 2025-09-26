@@ -1,5 +1,11 @@
 # net_connection_type.h
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @qq_43802146-->
+<!--Designer: @qq_43802146-->
+<!--Tester: @furryfurry123-->
+<!--Adviser: @zhang_yixin13-->
 ## 概述
 
 为网络管理数据网络连接模块提供C接口。

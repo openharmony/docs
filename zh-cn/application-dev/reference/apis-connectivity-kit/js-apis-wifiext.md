@@ -1,5 +1,11 @@
 # @ohos.wifiext (WLAN扩展接口)
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @qq_43802146-->
+<!--Designer: @qq_43802146-->
+<!--Tester: @furryfurry123-->
+<!--Adviser: @zhang_yixin13-->
 该模块主要提供WLAN扩展接口，供非通用类型产品使用。
 
 > **说明：**
