@@ -7,6 +7,13 @@
 <!--Adviser: @Brilliantry_Rui-->
 
 目前HAR的使用存在打包多份，包膨胀的问题，导致整体应用包的体积很大，HSP可以很好地解决该问题，本文介绍如何通过配置项的变更将HAR工程转换为HSP工程。
+
+>
+> **说明：**
+>
+> 部分组件和模块在HAP、HSP、HAR中集成使用时存在差异，例如[加载HAR中Worker线程文件相比HSP存在单独的使用约束](../arkts-utils/worker-introduction.md#文件路径注意事项)，因此按照如下步骤完成HAR转HSP后，请关注对应组件和模块介绍并进行适配。
+>
+
 ## HAR转HSP的操作步骤
 
 1. 修改HAR模块下的module.json5文件，将type字段设置为shared，并新增deliveryWithInstall和pages字段。
