@@ -466,7 +466,7 @@ Sets whether the visible content position should remain unchanged when data is i
 > - When **maintainVisibleContentPosition** is set to **true**, inserting or deleting data above the visible area will trigger **onDidScroll** and **onScrollIndex** events.
 > - In a multi-column scenario, setting **maintainVisibleContentPosition** to **true** allows you to insert or delete entire rows of data while keeping the visible content position unchanged. If the insertion or deletion does not involve entire rows, however, the visible content position will still change.
 
-### stackFromEnd<sup>18+</sup>
+### stackFromEnd<sup>19+</sup>
 
 stackFromEnd(enabled: boolean)
 

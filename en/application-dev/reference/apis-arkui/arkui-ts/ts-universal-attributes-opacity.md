@@ -1,18 +1,26 @@
 # Opacity
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @CCFFWW-->
+<!--Designer: @CCFFWW-->
+<!--Tester: @lxl007-->
+<!--Adviser: @HelloCrease-->
 
 You can set the opacity of a component.
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  The initial APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## opacity
 
-opacity(value: number | Resource)
+opacity(value: number | Resource): T
 
 Sets the opacity of the component.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -20,10 +28,42 @@ Sets the opacity of the component.
 
 | Name| Type                                                | Mandatory| Description                                                        |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | number \| [Resource](ts-types.md#resource) | Yes  | Opacity of the component. The value ranges from 0 to 1. The value **1** means opaque, and **0** means completely transparent. When being completely transparent, the component is hidden, but still takes up space in the layout.<br> Default value: **1**<br>**NOTE**<br> A component inherits the opacity setting from its parent component and multiplies it by its own setting. For example, if the opacity of a component is 0.8 and that of its parent component is 0.1, then the actual opacity of the component is 0.1 x 0.8 = 0.8.|
+| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | Yes  | Component opacity. Value range: 0 to 1. Values less than 0 are treated as 0. Values greater than 1 are treated as 1. **1**: fully opaque. **0**: fully transparent (where the component is hidden but occupies layout space).<br> Default value: **1**.<br>**NOTE**<br> Child components inherit parent opacity and combine with their own opacity. Example: Parent opacity 0.1 x Child opacity 0.8 = Effective opacity 0.08.|
+
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
+
+## opacity<sup>18+</sup>
+
+opacity(opacity: Optional\<number | Resource>): T
+
+Sets the opacity of the component. Compared with [opacity](#opacity-1), this API supports the **undefined** type for the **opacity** parameter.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                                        | Mandatory| Description                                                        |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| opacity | Optional\<number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)> | Yes  | Component opacity. Value range: 0 to 1. Values less than 0 are treated as 0. Values greater than 1 are treated as 1. **1**: fully opaque. **0**: fully transparent (where the component is hidden but occupies layout space).<br> Default value: **1**.<br>**NOTE**<br> Child components inherit parent opacity and combine with their own opacity. Example: Parent opacity 0.1 x Child opacity 0.8 = Effective opacity 0.08.<br>When **opacity** is **undefined**, the component reverts to the default opacity of **1**.|
+
+**Return value**
+
+| Type  | Description                    |
+| ------ | ------------------------ |
+| T | Current component.|
 
 
 ## Example
+
+This example shows how to set the opacity of a component using **opacity**.
 
 ```ts
 // xxx.ets
