@@ -1454,7 +1454,7 @@ async function ReadPixelsRGBA(pixelMap : image.PixelMap) {
     pixelMap.readPixels(area).then(() => {
       console.info('Succeeded in reading the image data in the area.'); //符合条件则进入。
     }).catch((error: BusinessError) => {
-      console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入。
+      console.error("Failed to read the image data in the area. code is ", error);// 不符合条件则进入。
     })
   }
 }
@@ -1470,7 +1470,7 @@ async function ReadPixelsYUV(pixelMap : image.PixelMap) {
     pixelMap.readPixels(area).then(() => {
       console.info('Succeeded in reading the image data in the area.'); //符合条件则进入。
     }).catch((error: BusinessError) => {
-      console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// 不符合条件则进入。
+      console.error("Failed to read the image data in the area. code is ", error); // 不符合条件则进入。
     })
   }
 }
@@ -1517,7 +1517,7 @@ async function ReadPixelsRGBA(pixelMap : image.PixelMap) {
   if (pixelMap != undefined) {
     pixelMap.readPixels(area, (error: BusinessError) => {
       if (error) {
-        console.error(`Failed to read pixelmap from the specified area. code is ${error.code}, message is ${error.message}`);
+        console.error("Failed to read pixelmap from the specified area. code is", error);
         return;
       } else {
         console.info('Succeeded in reading pixelmap from the specified area.');
@@ -1536,7 +1536,7 @@ async function ReadPixelsYUV(pixelMap : image.PixelMap) {
   if (pixelMap != undefined) {
     pixelMap.readPixels(area, (error: BusinessError) => {
       if (error) {
-        console.error(`Failed to read pixelmap from the specified area. code is ${error.code}, message is ${error.message}`);
+        console.error("Failed to read pixelmap from the specified area. code is", error);
         return;
       } else {
         console.info('Succeeded in reading pixelmap from the specified area.');
@@ -1639,7 +1639,7 @@ async function WritePixelsRGBA() {
     pixelMap.writePixels(area).then(() => {
       console.info('Succeeded in writing pixelmap into the specified area.');
     }).catch((error: BusinessError) => {
-      console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
+      console.error("Failed to write pixelmap into the specified area. code is", error);
     })
   }
 }
@@ -1659,7 +1659,7 @@ async function WritePixelsYUV() {
     pixelMap.writePixels(area).then(() => {
       console.info('Succeeded in writing pixelmap into the specified area.');
     }).catch((error: BusinessError) => {
-      console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
+      console.error("Failed to write pixelmap into the specified area. code is", error);
     })
   }
 }
@@ -1708,7 +1708,7 @@ async function WritePixelsRGBA() {
   if (pixelMap != undefined) {
     pixelMap.writePixels(area, (error : BusinessError) => {
       if (error) {
-        console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
+        console.error("Failed to write pixelmap into the specified area. code is", error);
         return;
       } else {
         console.info('Succeeded in writing pixelmap into the specified area.');
@@ -1730,7 +1730,7 @@ async function WritePixelsYUV() {
   if (pixelMap != undefined) {
     pixelMap.writePixels(area, (error : BusinessError) => {
       if (error) {
-        console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
+        console.error("Failed to write pixelmap into the specified area. code is", error);
         return;
       } else {
         console.info('Succeeded in writing pixelmap into the specified area.');
@@ -3570,32 +3570,28 @@ setMetadata(key: HdrMetadataKey, value: HdrMetadataValue): Promise\<void>
 
 **示例：**
 
+创建DMA_ALLOC内存的PixelMap方法请参考: [系统默认的内存分配方式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/image-allocator-type#系统默认的内存分配方式)。
 ```ts
-import image from '@ohos.multimedia.image';
 import { BusinessError } from '@kit.BasicServicesKit';
+import {image} from '@kit.ImageKit';
 
-let staticMetadata: image.HdrStaticMetadata = {
-  displayPrimariesX: [1.1, 1.1, 1.1],
-  displayPrimariesY: [1.2, 1.2, 1.2],
-  whitePointX: 1.1,
-  whitePointY: 1.2,
-  maxLuminance: 2.1,
-  minLuminance: 1.0,
-  maxContentLightLevel: 2.1,
-  maxFrameAverageLightLevel: 2.1,
-};
-const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
-let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } };
-image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
+function SetMetadata(pixelMap: image.PixelMap) { // 入参pixelMap内存类型需为DMA_ALLOC内存类型，其创建方法请参考上方链接。
+  let staticMetadata: image.HdrStaticMetadata = {
+    displayPrimariesX: [1.1, 1.1, 1.1],
+    displayPrimariesY: [1.2, 1.2, 1.2],
+    whitePointX: 1.1,
+    whitePointY: 1.2,
+    maxLuminance: 2.1,
+    minLuminance: 1.0,
+    maxContentLightLevel: 2.1,
+    maxFrameAverageLightLevel: 2.1,
+  };
   pixelMap.setMetadata(image.HdrMetadataKey.HDR_STATIC_METADATA, staticMetadata).then(() => {
     console.info('Succeeded in setting pixelMap metadata.');
   }).catch((error: BusinessError) => {
-    console.error(`Failed to set the metadata.code ${error.code},message is ${error.message}`);
+    console.error("Failed to set the metadata.code ", error);
   })
-}).catch((error: BusinessError) => {
-  console.error(`Failed to create the PixelMap.code ${error.code},message is ${error.message}`);
-})
-
+}
 ```
 
 ### setTransferDetached<sup>12+<sup>
