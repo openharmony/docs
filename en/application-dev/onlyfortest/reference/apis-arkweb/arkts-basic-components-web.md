@@ -1,0 +1,298 @@
+# Component Description
+<!--Kit: ArkWeb-->
+<!--Subsystem: Web-->
+<!--Owner: @yp99ustc; @aohui; @zourongchun-->
+<!--Designer: @LongLie; @yaomingliu; @zhufenghao-->
+<!--Tester: @ghiker-->
+<!--Adviser: @HelloCrease-->
+
+The **Web** component can be used to display web pages. It can be used with the @ohos.web.webview_arkts-apis-webview.md module, which provides APIs for web control.
+
+> **NOTE**
+>
+> - The initial APIs of this component are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> - You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
+
+This module provides the following common functionalities related to web page display:
+
+- ClientAuthenticationHandler_./arkts-basic-components-web-ClientAuthenticationHandler.md: Client certificate request event.
+- ConsoleMessage_./arkts-basic-components-web-ConsoleMessage.md: Console information.
+- ControllerHandler_./arkts-basic-components-web-ControllerHandler.md: **WebviewController** object of the new **Web** component.
+- DataResubmissionHandler_./arkts-basic-components-web-DataResubmissionHandler.md: Form data operation object.
+- EventResult_./arkts-basic-components-web-EventResult.md: Same-layer event consumption result.
+- FileSelectorParam_./arkts-basic-components-web-FileSelectorParam.md: File selector object of the **Web** component.
+- FileSelectorResult_./arkts-basic-components-web-FileSelectorResult.md: File selection result of the **Web** component.
+- FullScreenExitHandler_./arkts-basic-components-web-FullScreenExitHandler.md: Object for exiting full screen of the **Web** component.
+- HttpAuthHandler_./arkts-basic-components-web-HttpAuthHandler.md: Object for performing operations related to HttpAuth authentication requests.
+- JsGeolocation_./arkts-basic-components-web-JsGeolocation.md: Geolocation permission related functionalities.
+- JsResult_./arkts-basic-components-web-JsResult.md: Dialog box operations.
+- PermissionRequest_./arkts-basic-components-web-PermissionRequest.md: Permission request.
+- ScreenCaptureHandler_./arkts-basic-components-web-ScreenCaptureHandler.md: Screen capture permission operations.
+- SslErrorHandler_./arkts-basic-components-web-SslErrorHandler.md: SSL error event operations.
+- WebContextMenuParam_./arkts-basic-components-web-WebContextMenuParam.md: Menu information displayed when the screen is long-pressed or the right mouse button is clicked.
+- WebContextMenuResult_./arkts-basic-components-web-WebContextMenuResult.md: Object that controls the menu displayed when the screen is long-pressed or the right mouse button is clicked.
+- WebCookie_./arkts-basic-components-web-WebCookie.md: Cookie management operations of the **Web** component in the current application.
+- WebKeyboardController_./arkts-basic-components-web-WebKeyboardController.md: Object that controls the custom keyboard.
+- WebResourceError_./arkts-basic-components-web-WebResourceError.md: Resource management error.
+- WebResourceRequest_./arkts-basic-components-web-WebResourceRequest.md: Resource obtaining request.
+- WebResourceResponse_./arkts-basic-components-web-WebResourceResponse.md: Resource obtaining response.
+
+## Required Permissions
+
+To use online resources, the application must have the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see Declaring Permissions_../../security/AccessToken/declare-permissions.md.
+
+## Child Components
+
+Not supported
+
+## APIs
+
+Web(value: WebOptions
+
+> **NOTE**
+>
+> Transition animation is not supported.
+>
+> **Web** components on the same page must be bound to different **WebviewController** instances.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name       | Type                                    | Mandatory  | Description                                    |
+| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| value        | WebOptions_./arkts-basic-components-web-i.md#weboptions   | Yes   | Define web options.|
+
+**Example**
+
+Example of loading online web pages:
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController(;
+
+    build( {
+      Column( {
+        Web({ src: 'www.example.com', controller: this.controller }
+      }
+    }
+  }
+  ```
+
+Example of loading online web pages in incognito mode:
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController(;
+
+    build( {
+      Column( {
+        Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true }
+      }
+    }
+  }
+  ```
+
+Example of rendering the **Web** component in synchronous mode:
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController(;
+
+    build( {
+      Column( {
+        Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER }
+      }
+    }
+  }
+  ```
+
+Example of using the **Web** component to specify the shared rendering process.
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller1: webview.WebviewController = new webview.WebviewController(;
+    controller2: webview.WebviewController = new webview.WebviewController(;
+
+    build( {
+      Column( {
+        Web({ src: 'www.example.com', controller: this.controller1, sharedRenderProcessToken: "111" }
+        Web({ src: 'www.w3.org', controller: this.controller2, sharedRenderProcessToken: "111" }
+      }
+    }
+  }
+  ```
+
+Example of loading local web pages using **$rawfile(**:
+
+ 
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController(;
+
+    build( {
+      Column( {
+        // Load a local resource file through $rawfile.
+        Web({ src: $rawfile("index.html", controller: this.controller }
+      }
+    }
+  }
+  ```
+
+Example of loading a link with the hash (# route through the resource protocol in WebView:
+
+When **$rawfile** is used to load a URL contains a number sign (#, the content following the number sign is treated as a fragment. To avoid this issue, you can use the **resource://rawfile/** protocol prefix instead.
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController(;
+
+    build( {
+      Column( {
+        // Load a local resource file through the resource protocol.
+        Web({ src: "resource://rawfile/index.html#home", controller: this.controller }
+      }
+    }
+  }
+  ```
+
+Create an **index.html** file in **src/main/resources/rawfile**.
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<body>
+<div id="content"></div>
+
+<script>
+	function loadContent( {
+	  var hash = window.location.hash;
+	  var contentDiv = document.getElementById('content';
+
+	  if (hash === '#home' {
+		contentDiv.innerHTML = '<h1>Home Page</h1><p>Welcome to the Home Page!</p>';
+	  } else {
+		contentDiv.innerHTML = '<h1>Default Page</h1><p>This is the default content.</p>';
+	  }
+	}
+
+	// Load the UI.
+	window.addEventListener('load', loadContent;
+
+	// Update the UI when the hash changes.
+	window.addEventListener('hashchange', loadContent;
+</script>
+</body>
+</html>
+```
+
+To load the local resource file in the sandbox path, you need to configure the fileAccess_./arkts-basic-components-web-attributes.md#fileaccess permission of the file system in the application.
+
+1. Obtain the sandbox path through the constructed singleton object **GlobalContext**.
+
+   ```ts
+   // GlobalContext.ets
+   export class GlobalContext {
+     private constructor( {}
+     private static instance: GlobalContext;
+     private _objects = new Map<string, Object>(;
+
+     public static getContext(: GlobalContext {
+       if (!GlobalContext.instance {
+         GlobalContext.instance = new GlobalContext(;
+       }
+       return GlobalContext.instance;
+     }
+
+     getObject(value: string: Object | undefined {
+       return this._objects.get(value;
+     }
+
+     setObject(key: string, objectClass: Object: void {
+       this._objects.set(key, objectClass;
+     }
+   }
+   ```
+
+   ```ts
+   // xxx.ets
+   import { webview } from '@kit.ArkWeb';
+   import { GlobalContext } from '../GlobalContext';
+
+   let url = 'file://' + GlobalContext.getContext(.getObject("filesDir" + '/index.html';
+
+   @Entry
+   @Component
+   struct WebComponent {
+     controller: webview.WebviewController = new webview.WebviewController(;
+
+     build( {
+       Column( {
+         // Load the files in the sandbox.
+         Web({ src: url, controller: this.controller }
+         .fileAccess(true
+       }
+     }
+   }
+   ```
+
+2. Modify the **EntryAbility.ets** file.
+
+   The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see Obtaining Application File Paths_../../application-models/application-context-stage.md#obtaining-application-file-paths.
+
+   ```ts
+   // xxx.ets
+   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+   import { webview } from '@kit.ArkWeb';
+   import { GlobalContext } from '../GlobalContext';
+
+   export default class EntryAbility extends UIAbility {
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam {
+       // Data synchronization between the UIAbility component and UI can be implemented by binding filesDir to the GlobalContext object.
+       GlobalContext.getContext(.setObject("filesDir", this.context.filesDir;
+       console.log("Sandbox path is " + GlobalContext.getContext(.getObject("filesDir";
+     }
+   }
+   ```
+
+   HTML file to be loaded:
+
+   ```html
+   <!-- index.html -->
+   <!DOCTYPE html>
+   <html>
+       <body>
+           <p>Hello World</p>
+       </body>
+   </html>
+   ```
