@@ -1,5 +1,12 @@
 # @ohos.fontManager (字体管理)
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @liule_123-->
+<!--Designer: @buda_wy-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
+
 字体管理模块，提供给系统应用安装和卸载三方字体的能力。
 
 >  **说明：**
