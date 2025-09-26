@@ -31,6 +31,7 @@ Worker的主要作用是为应用程序提供一个多线程的运行环境，�
 - 不支持在Worker工作线程中使用[AppStorage](../ui/state-management/arkts-appstorage.md)。
 - 从API version 18开始，可以在构造函数的参数[WorkerOptions](../reference/apis-arkts/js-apis-worker.md#workeroptions)中指定Worker线程的优先级。
 - 在Worker文件中禁止使用export语法导出任何内容，否则会导致jscrash问题。
+- 应用挂起后，该应用的Worker线程会[暂停运行](../task-management/background-task-overview.md)。
 
 除上述注意事项外，使用Worker时还需注意[并发注意事项](multi-thread-concurrency-overview.md#并发注意事项)。
 
