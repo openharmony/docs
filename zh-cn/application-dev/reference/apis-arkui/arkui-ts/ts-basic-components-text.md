@@ -604,15 +604,15 @@ selection(selectionStart: number, selectionEnd: number)
 
 选中区域高亮且显示手柄和文本选择菜单。
 
-当copyOption设置为CopyOptions.None时，设置selection属性不生效。
+当[copyOption](#copyoption9)设置为CopyOptions.None时，设置selection属性不生效。
 
-当overflow设置为TextOverflow.MARQUEE时，设置selection属性不生效。
+当[textOverflow](#textoverflow)设置为TextOverflow.MARQUEE时，设置selection属性不生效。
 
 当selectionStart大于等于selectionEnd时不选中。可选范围为[0, textSize]，其中textSize为文本内容最大字符数，入参小于0时处理为0，大于textSize时处理为textSize。
 
-当selectionStart或selectionEnd位于截断的不可见区域时，文本不选中。截断为false时，超出父组件的文本选中区域生效。
+当selectionStart或selectionEnd位于截断的不可见区域时，文本不选中。当[clip](./ts-universal-attributes-sharp-clipping.md#clip12)设置为false时，超出父组件的文本可以被选中。
 
-可通过[onTextSelectionChange](#ontextselectionchange11)接口获取选区位置变化结果。
+可通过[onTextSelectionChange](#ontextselectionchange11)接口获取选中区域位置变化结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -770,7 +770,7 @@ fontFeature属性列表：
 >
 >  当多个Text组件在[Row](ts-container-row.md)容器内布局且没有设置具体的布局分配信息时，Text会以Row的最大尺寸进行布局。如果需要子组件主轴累加的尺寸不超过Row容器主轴的尺寸，可以设置[layoutWeight](ts-universal-attributes-size.md#layoutweight)或者是以[Flex](ts-universal-attributes-flex-layout.md)布局来约束子组件的主轴尺寸。
 >
->  系统默认字体支持的liga连字：Th fb ff fb ffb ffh ffi ffk ffl fh fi fk。常导致Span、属性字符串的效果不符合预期，关闭liga连字特性可以规避。
+>  系统默认字体支持的liga连字：Th fb ff fb ffb ffh ffi ffk ffl fh fi fk fl rf rt rv rx ry。常导致Span、属性字符串的效果不符合预期，关闭liga连字特性可以规避。
 >
 >  文字特性效果与使用的字体文件密切相关。例如，8标点挤压功能在当前系统默认字体中仅对左侧标点符号生效，而右侧标点符号及感叹号、顿号、问号均不生效。
 
@@ -919,7 +919,7 @@ maxFontScale(scale: number | Resource)
 
 halfLeading(halfLeading: boolean)
 
-设置文本是否将行间距平分至行的顶部与底部。
+设置文本是否垂直居中。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -929,7 +929,7 @@ halfLeading(halfLeading: boolean)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| halfLeading | boolean | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
+| halfLeading | boolean | 是  | 设置文本是否垂直居中。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
 
 ### font<sup>12+</sup>
 
