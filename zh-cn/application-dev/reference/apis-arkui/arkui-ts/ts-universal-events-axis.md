@@ -108,6 +108,28 @@ getPinchAxisScaleValue(): number
 | ------- | --------------------------------- | 
 | number | 双指缩放比例。 |
 
+### hasAxis<sup>21+</sup>
+
+hasAxis(axisType: AxisType): boolean
+
+检测此轴事件是否包含指定的轴类型。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                              | 必填 | 说明                 |
+| ------ | --------------------------------- | ---- | -------------------- |
+| axisType  | [AxisType](ts-appendix-enums.md#axistype21) | 是   | 轴事件的轴类型。 |
+
+**返回值：**
+
+| 类型              |说明       |
+| ------- | --------------------------------- | 
+| boolean | 此轴事件是否包含指定的轴类型。<br>true：包含指定的轴类型；false：不包含指定的轴类型。 |
+
 ## 示例
 
 该示例中，对按钮设置轴事件，通过滚动鼠标滚轮可获取轴事件的相关参数。
@@ -130,7 +152,8 @@ struct AxisEventExample {
                 event.displayY + '\n  windowX:' + event.windowX + '\n  windowY:' + event.windowY + '\n  x:' + event.x +
                   '\n  y:' + event.y + '\n VerticalAxisValue:' + event.getVerticalAxisValue() +
                   '\n HorizontalAxisValue:' + event.getHorizontalAxisValue() + '\n axisPinch:' + event.axisPinch +
-                  '\n PinchAxisScaleValue:' + event.getPinchAxisScaleValue();
+                  '\n PinchAxisScaleValue:' + event.getPinchAxisScaleValue() +
+                  '\n HasAxis:' + event.hasAxis(AxisType.VERTICAL_AXIS);
             }
           })
       }.margin(20)
