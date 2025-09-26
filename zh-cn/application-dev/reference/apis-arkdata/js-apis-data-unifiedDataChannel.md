@@ -420,6 +420,7 @@ let types = unifiedData.getTypes();
 | -------- | -------- | -------- | -------- | -------- |
 | summary   | Record<string, number> | 否 | 否 | 是一个字典类型对象，key表示数据类型（见[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)），value为统一数据对象中该类型记录大小总和（单位：Byte）。 |
 | totalSize | number | 否 | 否 | 统一数据对象内记录总大小（单位：Byte）。 |
+| overview<sup>22+</sup>   | Record<string, number> | 是 | 否 | 统一数据对象中所有类型与该类型数据记录大小的映射关系，其中数据大小单位为Byte。 |
 
 **示例：**
 
@@ -440,6 +441,8 @@ function parseSummary(summary : unifiedDataChannel.Summary) {
       let value : string = info[1];
     }
   }
+  let overviewRecord = summary.overview as Record<string, number>;
+  let totalSize = summary.totalSize;
 }
 ```
 
