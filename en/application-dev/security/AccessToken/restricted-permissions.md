@@ -773,3 +773,19 @@ With this permission, the application can integrate its custom key handling proc
 **Device**: PC/2in1 | Tablet
 
 **Since**: 21
+
+## ohos.permission.WEB_NATIVE_MESSAGING
+
+Allows an application to use the web native messaging capability.
+
+With this permission, the application can enable communication between browser extensions and local applications.
+
+<!--RP54--><!--RP54End-->
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Device**：PC/2in1
+
+**Since**：21

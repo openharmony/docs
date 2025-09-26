@@ -840,3 +840,19 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **支持设备**：PC/2in1 | Tablet
 
 **起始版本**：21
+
+## ohos.permission.WEB_NATIVE_MESSAGING
+
+允许应用使用Web本地通信能力。
+
+应用获取此权限后，可以使用web本地通信能力，使浏览器扩展与本地应用进行通信。
+
+<!--RP54--><!--RP54End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**：PC/2in1
+
+**起始版本**：21
