@@ -877,11 +877,9 @@ createWebSocketServer(): WebSocketServer
 
 创建一个WebSocketServer对象，包括启动服务、发送数据、关闭连接、列出客户端信息、停止服务，订阅/取消订阅webSocket连接的连接事件、接收到客户端消息事件、关闭事件和错误事件。
 
-> **说明：**
->
-> 目前该接口在TV中可正常调用，在其他设备中无效果，返回nullptr。
-
 **系统能力**: SystemCapability.Communication.NetStack
+
+**设备行为差异：** 该接口在TV设备中可正常调用，在其他设备中返回nullptr。
 
 **返回值：**
 
