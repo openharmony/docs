@@ -1,5 +1,11 @@
 # oh_wifi.h
 
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @qq_43802146-->
+<!--Designer: @qq_43802146-->
+<!--Tester: @furryfurry123-->
+<!--Adviser: @zhang_yixin13-->
 ## 概述
 
 定义查询WIFI开关状态的接口。
