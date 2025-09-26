@@ -4,27 +4,27 @@ The OpenHarmony NDK provides industry standard libraries [libc](../reference/nat
 
 ##  C++ Compatibility
 
-In OpenHarmony, the system library and application native library use the C++ standard library. For details, see [libc++](../reference/native-lib/cpp.md). The C++ standard library on which the system library depends is upgraded with the image version, and the C++ standard library on which the application native library depends is upgraded with the SDK version used for compilation. Since both the C++ standard libraries have multiple major versions, the different update approach may cause ABI compatibility issues. To solve this problem, OpenHarmony distinguishes the C++ standard libraries on which the system library and application native library depend.
+In OpenHarmony, both the system library and application native library use C++ standard library (see [libc++](../reference/native-lib/cpp.md#libc-version)). However, the C++ standard library used by the system library is updated with the image version, and the C++ standard library used by the app native library is updated with the SDK used for compilation. Since both the C++ standard libraries have multiple major versions, the different update approach may cause ABI compatibility issues. To solve this problem, OpenHarmony differentiates the two C++ standard libraries as follows:
 
 - System library: uses **libc++.so**, which is released with the system image.
 - Application native library: uses **libc++_shared.so**, which is released with the application.
 
-The two libraries use different C++ namespaces. libc++.so uses __h, and libc++_shared.so uses __n1.
+The two libraries use different C++ namespaces. **libc++.so** uses **__h**, and **libc++_shared.so** uses **__n1**.
 
 > **NOTE**
 >
-> The C++ standard libraries of the system and applications cannot be used together. Native APIs can only be C APIs, which are used to isolate the C++ running environment. If the version of libc++_shared.so in the HAR package is different from that of the application, incompatibility may occur. To solve this problem, use the same SDK version to update the HAR package.
+> The system and application cannot use the same C++ standard library. Native APIs are C APIs, which are used to isolate the C++ running environment. If the **libc++_shared.so** version in the HAR file is different from that of the application, incompatibility issues may occur. To solve this problem, use the same SDK version to update the HAR file.
 
 **Known C++ Compatibility Issues**
 
-When the application is started or dlopen is executed, the error message " `symbol not found, s=__emutls_get_address`" is displayed in the HiLog. This is because libc++_shared.so of API 9 and earlier versions does not have this symbol, but libc++_shared.so of API 11 and later versions has this symbol. To solve this problem, update the SDK version of the app or HAR package.
+If "symbol not found, s=\_\_emutls_get_address" is reported when an application starts or when **dlopen()** is called, update the SDK of the application or HAR. This symbol is not provided by **libc++\_shared.so** in the API version 9 or earlier, and is available since API version 11.  
 
 ##  musl libc Dynamic Linker
 
 ### Linker Namespace
-Different from the namespace in C++, a linker namespace (also referred to as ns) is a mechanism provided by the dynamic linker to isolate shared libraries within different namespaces. For example, the system native library can load the native library in the system directories, such as **/system/lib64** or **/vendor/lib64**; a common application can load only the common application native library and NDK library, but cannot directly load the system native library.
+Unlike the namespace in C++, a linker namespace (also referred to as ns) is a mechanism provided by the dynamic linker to isolate shared libraries within different namespaces. For example, the system native library can load the native library in the system directories, such as **/system/lib64** or **/vendor/lib64**; a common application can load only the common application native library and NDK library, but cannot directly load the system native library.
 
-When the dynamic linker loads the shared library specified in the compilation dependency (DT_NEEDED) or calls `dlopen` to load the specified shared library, the dynamic linker needs to be associated with a specific NS.
+The dynamic linker must be associated with a specific namespace when it loads the shared library specified by **DT_NEEDED** in compilation or calls **dlopen** to load a shared library.
 
 OpenHarmony has the following types of linker namespaces:
 
@@ -72,34 +72,34 @@ File descriptor sanitizer ([fdsan](./fdsan.md)) helps detect the user-after-clos
 
 ##  Signal Usage
 To avoid conflicts with system reserved signals, comply with the following rules when using signals:
-- Signals 1 to 34 are reserved for internal use.
-- Signals 35 to 45: These signals have been occupied by internal modules (such as memory, DFX, runtime, and system services) of the system by API 19. To avoid conflicts with system behavior and unexpected problems, do not use signals within this range.
-- The value of SIGRTMIN and __libc_current_sigrtmin is 35, indicating the start number of real-time signals that can be used by the application. (The application can use only signals whose number is 46 or greater.)
+- Signals 1 to 34 are reserved for the system and cannot be used.
+- Signals 35 to 45 have been occupied by internal system modules (such as memory, DFX, runtime, and system services) by API version 19. To avoid conflicts with system behaviors and unexpected problems, do not use these signals.
+- The values of **SIGRTMIN** and **__libc_current_sigrtmin** are 35, indicating the start number of real-time signals available to applications (applications can actually use only signals 46 and later).
 
-The internal signal usage statistics of HarmonyOS are as follows:
+The HarmonyOS internal signals are as follows.
 
-| ID| Name     | Remarks            | ID| Name                                       | Remarks                     |
+| ID| Name     | Description            | ID| Name                                       | Description                     |
 |------|-----------|-----------------|------|--------------------------------------------|---------------------------|
-| 1    | SIGHUP    |  Control Terminal Suspension   | 24   | SIGXCPU                                    | The CPU time limit is exceeded.         | 
-| 2    | SIGINT    |  Interrupted          | 25   | SIGXFSZ                                    | The file size exceeds the upper limit.           |
-| 3    | SIGQUIT   |  Keyboard exit       | 26   | SIGVTALRM                                  | Virtual timer                |
-| 4    | SIGILL    |  Invalid instruction       | 27   | SIGPROF                                    | The profiling timer expires.      |
-| 5    | SIGTRAP   |  Debugging Breakpoints       | 28   | SIGWINCH                                   | Terminal window size change          |
-| 6    | SIGABRT   |  Abort signal       | 29   | SIGIO                                      | I/O availability notification              |
-| 7    | SIGBUS    |  Bus error       | 30   | SIGPWR                                     | Power Failure                  |
-| 8    | SIGFPE    |  Arithmetic exception       | 31   | SIGSYS                                     | Illegal system call              |
-| 9    | SIGKILL   |  Forcible termination       | 32   | SIGTIMER                                   | Timer timing signal            |
-| 10   | SIGUSR1   |  User-defined signal 1| 33   | SIGCANCEL                                  | Thread cancellation signal              |
-| 11   | SIGSEGV   |  Invalid memory access    | 34   | SIGSYNCCALL                                | Synchronous invocation signal              |
-| 12   | SIGUSR2   |  User-defined signal 2| 35   | MUSL_SIGNAL_NATIVE_REMOTE (SIGRTMIN + 0)   | System retention                  |
-| 13   | SIGPIPE   |  Pipe damage        | 36   | MUSL_SIGNAL_HOOK (SIGRTMIN + 1)            | System retention                 |
-| 14   | SIGALRM   |  Timer signal      | 37   | MUSL_SIGNAL_UNHOOK (SIGRTMIN + 2)          | System retention                 |
-| 15   | SIGTERM   |  Program termination request    | 38   | MUSL_SIGNAL_NATIVE_LOCAL (SIGRTMIN + 3)    | System retention                 |
-| 16   | SIGSTKFLT |  Coprocessor stack error   | 39  | MUSL_SIGNAL_JSHEAP (SIGRTMIN + 4)          | System retention                 |
-| 17   | SIGCHLD   |  Subprocess exit/stop  | 40  | MUSL_SIGNAL_JSHEAP_PRIV (SIGRTMIN + 5)     | System retention                 |
-| 18   | SIGCONT   |  Continue        | 41   | MUSL_SIGNAL_SAMPLE_STACK (SIGRTMIN + 6)    | System retention                 |
-| 19   | SIGSTOP   |  Forcibly Stop        | 42   | MUSL_SIGNAL_LEAK_STACK (SIGRTMIN + 7)      | System retention                 |
-| 20   | SIGTSTP   |  Stop inputting on the terminal.  | 43   | MUSL_SIGNAL_RECYCLE_JEMALLOC (SIGRTMIN + 8) | System retention                 |
-| 21   | SIGTTIN   |  Background read terminal      | 44   | MUSL_SIGNAL_MEMCHECK (SIGRTMIN + 9)         | System retention                 |
-| 22   | SIGTTOU   |  Background write terminal      | 45   | MUSL_SIGNAL_FDTRACK (SIGRTMIN + 10)         | System retention                 |
-| 23   | SIGURG    |  The socket has urgent data. |   -  |                          -                  |                 -        |
+| 1    | SIGHUP    |  Terminal suspension control.   | 24   | SIGXCPU                                    | CPU time limit exceeded.         | 
+| 2    | SIGINT    |  Interrupted.          | 25   | SIGXFSZ                                    | Maximum file size exceeded.           |
+| 3    | SIGQUIT   |  Keyboard exit.       | 26   | SIGVTALRM                                  | Virtual timer.                |
+| 4    | SIGILL    |  Invalid instruction.       | 27   | SIGPROF                                    | Profiling timer expired.      |
+| 5    | SIGTRAP   |  Debug breakpoint.       | 28   | SIGWINCH                                   | Terminal window size changed.          |
+| 6    | SIGABRT   |  Aborted.       | 29   | SIGIO                                      | I/O availability notification.              |
+| 7    | SIGBUS    |  Bus error.       | 30   | SIGPWR                                     | Power fault.                  |
+| 8    | SIGFPE    |  Arithmetic exception.       | 31   | SIGSYS                                     | Invalid system call.              |
+| 9    | SIGKILL   |  Forcible termination.       | 32   | SIGTIMER                                   | Timer.            |
+| 10   | SIGUSR1   |  Custom signal 1.| 33   | SIGCANCEL                                  | Thread canceled.              |
+| 11   | SIGSEGV   |  Invalid memory access.    | 34   | SIGSYNCCALL                                | Synchronous call.              |
+| 12   | SIGUSR2   |  Custom signal 2.| 35   | MUSL_SIGNAL_NATIVE_REMOTE (SIGRTMIN + 0)   | System reserved.                  |
+| 13   | SIGPIPE   |  Pipe damaged.        | 36   | MUSL_SIGNAL_HOOK (SIGRTMIN + 1)            | System reserved.                 |
+| 14   | SIGALRM   |  Alarm.      | 37   | MUSL_SIGNAL_UNHOOK (SIGRTMIN + 2)          | System reserved.                 |
+| 15   | SIGTERM   |  Application termination request.    | 38   | MUSL_SIGNAL_NATIVE_LOCAL (SIGRTMIN + 3)    | System reserved.                 |
+| 16   | SIGSTKFLT |  Coprocessor stack error.   | 39  | MUSL_SIGNAL_JSHEAP (SIGRTMIN + 4)          | System reserved.                 |
+| 17   | SIGCHLD   |  Child process exit/stop.  | 40  | MUSL_SIGNAL_JSHEAP_PRIV (SIGRTMIN + 5)     | System reserved.                 |
+| 18   | SIGCONT   |  Continue the execution.        | 41   | MUSL_SIGNAL_SAMPLE_STACK (SIGRTMIN + 6)    | System reserved.                 |
+| 19   | SIGSTOP   |  Forcible stop.        | 42   | MUSL_SIGNAL_LEAK_STACK (SIGRTMIN + 7)      | System reserved.                 |
+| 20   | SIGTSTP   |  Stop inputting on the terminal.  | 43   | MUSL_SIGNAL_RECYCLE_JEMALLOC (SIGRTMIN + 8) | System reserved.                 |
+| 21   | SIGTTIN   |  Background terminal reading.      | 44   | MUSL_SIGNAL_MEMCHECK (SIGRTMIN + 9)         | System reserved.                 |
+| 22   | SIGTTOU   |  Background terminal writing.      | 45   | MUSL_SIGNAL_FDTRACK (SIGRTMIN + 10)         | System reserved.                 |
+| 23   | SIGURG    |  Socket has urgent data. |   -  |                          -                  |                 -        |

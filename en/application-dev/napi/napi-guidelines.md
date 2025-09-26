@@ -370,12 +370,12 @@ extern "C" __attribute__((constructor)) void RegisterNativeRenderModule()
 }
 ```
 
-## dlopen and module registration
+## dlopen and Module Registration
 
 **[Rule]**
-If the module to be registered has been opened by dlopen, register the module as follows:
+If **dlopen** has been called, register the module as follows:
 
-The module needs to export the function with the fixed name napi_onLoad and call the registration function in this function. The napi_onLoad function is proactively called only in the import statement of the ArkTS code to prevent module registration from being triggered in advance when dlopen is executed.
+The module must export the function named **napi_onLoad**, and call the registration function in the function. **napi_onLoad** is only called by the import statement of ArkTS code, so that module registration is not triggered in advance when **dlopen** is called.
 
 **Example**
 
@@ -493,6 +493,6 @@ If the semantics are violated in strict mode (default), an error will be thrown.
 
 [How do I directly call ArkTS APIs in a C++ subthread on the native side without triggering callbacks on the ArkTS side?](https://developer.huawei.com/consumer/en/doc/harmonyos-faqs-V5/faqs-ndk-8-V5)
 
-[Are napi_env and napi_value instances shared across worker threads?](https://developer.huawei.com/consumer/en/doc/harmonyos-faqs-V5/faqs-ndk-55-V5)
+[Are napi_env and napi_value instances shared across worker threads?] (https://developer.huawei.com/consumer/en/doc/harmonyos-faqs-V5/faqs-ndk-55-V5)
 
 [How do I create a subthread on the native side? What are the restrictions? How does the native subthread communicate with the main thread?](https://developer.huawei.com/consumer/en/doc/harmonyos-faqs-V5/faqs-ndk-68-V5)

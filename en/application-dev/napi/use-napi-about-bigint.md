@@ -14,8 +14,8 @@ BigInt is a data type used to represent integers of any precision in ArkTS, with
 
 Before using Node-API to operate BigInt values, you need to understand the following basic concepts:
 
-- BigInt: a data type used to represent integers of any precision in ArkTS. Different from the Number type, BigInt can accurately represent very large integers without losing precision or causing overflows.
-- BigInt creation: You can use Node-API to create an ArkTS BigInt object from a C **Int64** or **Uint64** value. This makes it easy to create BigInt values using C/C++.
+- BigInt: a data type used to represent integers of any precision in ArkTS. Unlike the Number type, BigInt can accurately represent very large integers without losing precision or causing overflows.
+- BigInt creation: You can use Node-API to create a ArkTS BigInt object from a C **Int64** or **Uint64** value. This makes it easy to create BigInt values using C/C++.
 - BigInt operation: Node-API provides APIs for operating BigInt values. You can use these APIs to obtain and convert BigInt values and perform arithmetic and bitwise operations.
 
 ## Available APIs
@@ -66,7 +66,7 @@ export const createBigintInt64t: () => bigint;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_bigint_int64: %{public}d', testNapi.createBigintInt64t());
@@ -105,7 +105,7 @@ export const createBigintUint64t: () => bigint;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_bigint_uint64: %{public}d', testNapi.createBigintUint64t());
@@ -149,7 +149,7 @@ export const createBigintWords: () => bigint | undefined;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_bigint_words: %{public}d', testNapi.createBigintWords());
@@ -206,7 +206,7 @@ export const getValueBigintInt64t: (bigInt64: bigint) => boolean | undefined;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 let bigInt = BigInt(-5555555555555555);
 try {
@@ -260,7 +260,7 @@ export const getValueBigintUint64t: (bigUint64: bigint) => boolean | undefined;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 let bigUint = BigInt(5555555555555555);
 try {
@@ -313,7 +313,7 @@ static napi_value GetValueBigintWords(napi_env env, napi_callback_info info)
         napi_throw_error(env, nullptr, "napi_get_value_bigint_words fail");
         return nullptr;
     }
-    // The content of the words array can be processed here, for example, log output.
+    // Process the words array, for example, output logs.
     // ...
      // Convert the sign bit into a value of Int type and pass it.
     napi_value returnValue = nullptr;
@@ -335,7 +335,7 @@ export const getValueBigintWords: (bigIntWords: bigint) => bigint | undefined;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 let bigInt = BigInt(-5555555555555555);
 let bigUint = BigInt(5555555555555555);

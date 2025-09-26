@@ -12,7 +12,7 @@ This topic walks you through on how to create and use external strings using JSV
 
 ## Basic Concepts
 
-By using JSVM-API, you can create JS strings directly in the memory allocated for Latin1/UTF16 strings. This allows you to manipulate these strings like normal JS strings.
+By using JSVM-API, you can create JavaScript strings directly in the memory allocated for Latin1/UTF16 strings. This allows you to manipulate these strings like normal JavaScript strings.
 
 ## Available APIs
 

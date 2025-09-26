@@ -8,13 +8,13 @@
 
 ## Introduction
 
-BigInt is a data type used to represent integers of any precision in JavaScript (JS), with values greater than the value range of the Number type. The APIs provided by JSVM-API can be used to create, obtain, and operate BigInt values in the JSVM module.
+BigInt is a data type used to represent integers of any precision in JavaScript (JS), with values greater than the value range of the Number type. You can use JSVM-API to create, obtain, and operate JS BigInt values.
 
 ## Basic Concepts
 
 Before using JSVM-API to operate BigInt values, you need to understand the following basic concepts:
 
-- BigInt: a data type used to represent integers of any precision in JS. Different from the Number type, BigInt can accurately represent very large integers without losing precision or causing overflows.
+- BigInt: a data type used to represent integers of any precision in JS. Unlike the Number type, BigInt can accurately represent very large integers without losing precision or causing overflows.
 - BigInt creation: You can use JSVM-API to create a JS BigInt object from a C **Int64** or **Uint64** value. This makes it easy to create BigInt values using C/C++.
 - BigInt operation: JSVM-API provides APIs for operating BigInt values. You can use these APIs to obtain and convert BigInt values and perform arithmetic and bitwise operations.
 
@@ -31,7 +31,7 @@ Before using JSVM-API to operate BigInt values, you need to understand the follo
 
 ## Example
 
-For details about the JSVM-API development process, see [Using JSVM-API to Implement Interactive Development Between JS and C/C++](use-jsvm-process.md). This document describes only the C++ and ArkTS code corresponding to the APIs.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code and ArkTS code involved in related APIs.
 
 ### OH_JSVM_GetValueBigintWords
 
@@ -90,7 +90,7 @@ const char* srcCallNative = R"JS(getValueBigintWords(BigInt(5555555555555555)))J
 ```
 <!-- @[oh_jsvm_get_value_bigint_words](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/getvaluebigintwords/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 ```ts
 OH_JSVM_GetValueBigintWords wordCount:1.
 OH_JSVM_GetValueBigintWords signBit: 0.
@@ -138,14 +138,14 @@ const char* srcCallNative = R"JS(createBigintWords())JS";
 ```
 <!-- @[oh_jsvm_create_bigint_words](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/createbigintwords/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 ```ts
 JSVM OH_JSVM_CreateBigintWords success
 ```
 
 ### OH_JSVM_CreateBigintUint64
 
-Creates a JavaScript BigInt object based on the given Uint64 object.
+Use **OH_JSVM_CreateBigintUint64** to create a JavaScript BigInt object from a Uint64 object.
 
 CPP code:
 
@@ -183,7 +183,7 @@ const char* srcCallNative = R"JS(createBigintUint64())JS";
 ```
 <!-- @[oh_jsvm_create_bigint_uint64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/createbigintuint64/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 ```ts
 JSVM OH_JSVM_CreateBigintUint64 success
 
@@ -235,14 +235,14 @@ const char* srcCallNative = R"JS(getValueBigintUint64(BigInt(5555555555555555)))
 ```
 <!-- @[oh_jsvm_get_value_bigint_uint64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/getvaluebigintuint64/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 ```ts
 JSVM GetValueBigintUint64 success
 ```
 
 ### OH_JSVM_CreateBigintInt64
 
-Creates a JavaScript BigInt object based on the given Uint64 object.
+Use **OH_JSVM_CreateBigintInt64** to create a JavaScript BigInt object from an int64_t object.
 
 CPP code:
 
@@ -279,7 +279,7 @@ const char* srcCallNative = R"JS(createBigintInt64())JS";
 ```
 <!-- @[oh_jsvm_create_bigint_int64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/createbigintint64/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 ```ts
 JSVM OH_JSVM_CreateBigintInt64 success
 ```
@@ -330,7 +330,7 @@ const char* srcCallNative = R"JS(getBigintInt64(BigInt(-5555555555555555)))JS";
 ```
 <!-- @[oh_jsvm_get_value_bigint_int64](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/getvaluebigintint64/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected result:
 ```ts
 JSVM GetValueBigintUint64 success
 ```

@@ -26,7 +26,7 @@ napi_status napi_load_module_with_info(napi_env env, const char* path, const cha
 > 1. **bundleName** indicates the project name configured in **AppScope/app.json5**.
 > 2. **moduleName** must be set to the module name configured in the **module.json5** file in the HAP to which the module belongs.
 
-## When to Use
+## Scenarios Supported by napi_load_module_with_info
 
 | Scenario           | Description          | Description                        |
 | :------------- | :----------------------------- | :--------------------------- |
@@ -44,7 +44,7 @@ napi_status napi_load_module_with_info(napi_env env, const char* path, const cha
 > 3. If a third-party package is directly or indirectly used in a HAP/HSP and the third-party package has loaded another module, for example, module A, using **napi_load_module_with_info**, you must add module A in the dependencies of the HAP/HSP.
 
 ## Exception Scenarios
-1. During module loading, if the corresponding file is not found in the package or the build-profile.json5 configuration is incorrect, the error code `napi_generic_failure` is returned and an error log is recorded.
+1. When no file is found in the package or the **build-profile.json5** configuration is incorrect during module loading, the error code **napi_generic_failure** is returned and an error log is printed.
 ![napi_load_module_with_info](figures/napi_load_module_with_info.png)
 2. The module loading fails due to unexpected behavior on the system side, and **cppcrash** is thrown.
 

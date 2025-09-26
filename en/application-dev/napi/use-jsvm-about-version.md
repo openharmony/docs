@@ -8,7 +8,7 @@
 
 ## Introduction
 
-Obtains the JSVM API version.
+This topic walks you through how to use JSVM-API to obtain the JSVM-API version.
 
 ## Available APIs
 

@@ -8,11 +8,11 @@
 
 ## Introduction
 
-You can use the six string APIs of the JSVM-API to implement the interaction between the JSVM module and JavaScript character strings.
+This topic walks you through on how to use JSVM-API to convert data between native strings and JavaScript (JS) strings.
 
 ## Basic Concepts
 
-As a common data type in programming, It is used to store and manipulate text data. It can be used to construct user interface elements, such as labels, buttons, and text boxes, process user input, and validate and format data. Different encodings support different character sets and languages. Major encoding schemes include the following:
+Strings are a common data type in programming. They are used to store and manipulate text data, and can be employed to build user interface (UI) elements such as tags, buttons, and text boxes, as well as to process user input and validate and format data. Different encodings support different character sets and languages. Major encoding schemes include the following:
 
 - ASCII<br>ASCII is one of the earliest character encoding schemes. It uses 7 bits to represent English letters, digits, and some basic symbols. It serves as the foundation for encoding schemes.
 - UTF-8<br>UTF-8 is a variable-length encoding scheme that can represent any Unicode character. It uses 8 bits per character and uses byte sequences of different lengths depending on the range of the character. UTF-8 is widely used for web content.
@@ -32,7 +32,7 @@ As a common data type in programming, It is used to store and manipulate text da
 
 ## Example
 
-For details about the JSVM-API development process, see [Using JSVM-API to Implement Interactive Development Between JS and C/C++](use-jsvm-process.md). This document describes only the C++ code corresponding to the interface.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in related APIs.
 
 ### OH_JSVM_GetValueStringUtf8
 
@@ -209,7 +209,7 @@ Expected result:
 ```cpp
 JSVM GetValueStringUtf16 success: ahello.
 ```
-**Note**: The `arg` parameter of `getValueStringUtf16(arg)` must be a string. Otherwise, the API fails to be called.
+**Note**: The **arg** parameter of **getValueStringUtf16(arg)** must be a string. Otherwise, the API call fails.
 
 ### OH_JSVM_CreateStringUtf16
 
@@ -310,17 +310,17 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 // Call the C++ code from JS.
 const char *srcCallNative = R"JS(
-    let data = "中文";
+    let data = "Chinese";
     let script = getValueStringLatin1(data);
 )JS";
 ```
 <!-- @[oh_jsvm_get_value_string_latin1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringlatin1/src/main/cpp/hello.cpp) -->
 
-Expected result (ISO-8859-1 encoding does not support Chinese characters. If Chinese characters are input, garbled characters will be displayed.):
+Expected output (The ISO-8859-1 encoding does not support Chinese characters. If Chinese characters are passed in, garbled characters will be displayed.)
 
 ![GetValueStringLatin1](figures/jsvm_about_string_GetValueStringLatin1.png)
 
-**Note**: The `arg` input parameter must be of the string type. Otherwise, the interface fails to be called.
+**Note**: The input parameter **arg** of **getValueStringLatin1(arg)** must be a string. Otherwise, the API fails to be called.
 
 ### OH_JSVM_CreateStringLatin1
 
@@ -374,5 +374,3 @@ Expected result:
 ```cpp
 JSVM CreateStringLatin1 success: Hello, World! éçñ, successes to create Latin1 string!
 ```
-
-<!--no_check-->

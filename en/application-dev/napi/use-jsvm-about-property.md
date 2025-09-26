@@ -16,7 +16,7 @@ Before working with JS objects using JSVM-API, you need to understand the follow
 
 - Object: a composite data type that allows values of different types in an independent entity in JS. An object is a collection of properties and methods. A property is a value associated with the object, and a method is an operation that the object can perform.
 - Property: a feature, in the key-value format, of an object in JS. Each property has a name (key or identifier) and a value. The property value can be of any data type, including the basic type, object, and function.
-- Enumerable property: a property in JS with **enumerable** set to **true**. The enumerability determines whether an attribute can be traversed by `for...in`.
+- Enumerable property: a property in JS with **enumerable** set to **true**. An enumerable property can be traversed by **for...in**.
 - Own property: a property defined for an object rather than inherited from the prototype chain.
 
 ## Available APIs
@@ -37,7 +37,7 @@ Before working with JS objects using JSVM-API, you need to understand the follow
 
 ## Example
 
-For details, see [Using JSVM APIs to Implement Interaction Between JS and C/C++](use-jsvm-process.md). This document describes only the C++ code corresponding to the APIs.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in related APIs.
 
 ### OH_JSVM_GetPropertyNames
 
@@ -680,7 +680,7 @@ JSVM getterCallback success:Hello world!
 
 ### OH_JSVM_GetAllPropertyNames
 
-Obtains the names of all enumerable properties of a JS object as a JS array.
+Call **OH_JSVM_GetAllPropertyNames** to obtain the names of all enumerable properties of a JS object as a JS array.
 
 CPP code:
 

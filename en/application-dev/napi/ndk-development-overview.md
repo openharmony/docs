@@ -49,7 +49,7 @@ Before getting started, familiarity with the following basics is helpful.
   Basic knowledge of the Clang or LLVM compiler helps you compile better native dynamic libraries.
 
 - **[Node-API](napi-introduction.md)**
-  NAPI is a cross-language API provided by OpenHarmony for ArkTS/JS and C/C++. This API is extended based on Node.js Node-API but is not fully compatible.
+  Node-API, formerly called NAPI, is a set of APIs provided for you to use C and C++ code with OpenHarmony ArkTS/JS. Node-API is an extension of Node-API in Node.js but is not fully compatible.
 
 ### NDK Directory Structure
 
@@ -75,20 +75,20 @@ Before getting started, familiarity with the following basics is helpful.
 
 ## Common NDK Modules
 
-The following table describes the common modules of the NDK and their functions.
+The following table describes the common modules of the NDK and their functionalities.
 
 
 | Module| Description|
 | -------- | -------- |
-| C standard library| Provides standard C library APIs based on musl.|
-| C++ standard library| C++ runtime library interface, which provides C++ runtime capabilities.|
-| Log| Provides an interface for outputting HiLogs to the system.|
-| Node-API | Interaction interfaces between ArkTS/JS and C/C++ are supported.|
+| C standard library| Provides C standard library APIs based on musl.|
+| C++ standard library| Provides the C++ runtime APIs.|
+| Log| Provides APIs for outputting HiLog logs to the system.|
+| Node-API | Provides APIs for interaction between ArkTS/JS and C/C++.|
 | FFRT | Provides a task-based concurrent programming framework.|
 | libuv | Provides a third-party asynchronous I/O library.|
-| zlib | Provides the zlib library for compressing and decompressing basic data.|
-| Rawfile | Provides APIs for accessing built-in resources of applications, which can be used to read various resources packaged in applications.|
-| XComponent | Provides surface and touchscreen event interfaces for you to develop high-performance graphics applications.|
+| zlib | Provides the zlib library for basic data compression and decompression.|
+| Rawfile | Provides APIs for reading various packaged resources of an application.|
+| XComponent | Provides surface and touchscreen event APIs for you to develop high-performance graphics applications.|
 | Drawing | Provides a 2D graphics library for drawing on the surface.|
 | OpenGL | Provides OpenGL 3D graphics interfaces.|
-| OpenSL ES | Supports 2D and 3D audio acceleration.|
+| OpenSL ES | Provides APIs for 2D and 3D audio acceleration.|

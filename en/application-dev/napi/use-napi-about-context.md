@@ -1,19 +1,43 @@
-# Creating, Switching, and Destroying Contexts in the Current Thread Using Extended Node-APIs
+# Creating, Switching, and Destroying a Context in a Thread Using Node-API Extension APIs
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
 <!--Adviser: @fang-jinxu-->
-When an application is started, the main thread of the application is an ArkTS thread. The thread has a context environment managed by the system. When ArkTS needs to interact with C/C++, napi_env represents the context environment on the C/C++ side, each context has an independent globalThis object. Developers can create and destroy new context environments in the calling thread by using the extended interfaces napi_create_ark_context and napi_destroy_ark_context in the Node-API. The newly created context environments and the original context environment in the thread share a runtime virtual machine. Note that the napi_create_ark_context interface is only used to create a new context environment instead of a new runtime environment. When this interface is used to create a context environment, the napi_destroy_ark_context interface must be used to destroy the context environment. Otherwise, memory leakage occurs. The original context of the ArkTS thread cannot be destroyed using the napi_destroy_ark_context API. When you need to switch to a specified context, you can call the extended interface napi_switch_ark_context in the Node-API to switch to the specified context. Developers can access some attribute methods on globalThis in a new context environment or switch back to the original context environment after the access is complete to ensure context environment isolation.
+When an application is started, the main thread of the application is an ArkTS thread, which has a context managed by the system. When ArkTS interacts with C/C++, **napi_env** represents the context on the C/C++ side. Every context has an independent **globalThis** object.
 
-## When to Use
-You can use the napi_create_ark_context API to create a context environment in the current thread. The context environment has an independent globalThis object. This means that the original context environment and the newly created context environment on the calling thread are isolated from each other, that is, the globalThis object in the context environment is different. You can use the newly created context environment to perform modular loading. The generated modular object is mounted to the globalThis object in the current context environment. Different modules are loaded in different context environments, this prevents the modification of the attributes of the globalThis object by one module from affecting the access of another module to the attributes of the globalThis object. Context adaptation is also performed for some Node-API standard interfaces and extended interfaces. When these Node-API interfaces are called, the context environment proactively switches the context based on the napi_env input parameter of the interface. Developers do not need to proactively call napi_switch_ark_context to switch the context environment, when returning from the C++/C side to the ArkTS side, you need to proactively call the napi_switch_ark_context API to switch the context environment back to the corresponding context environment. Otherwise, the code on the ArkTS side will be executed in another context environment, causing unpredictable stability problems.
+You can use the extension APIs **napi_create_ark_context** and **napi_destroy_ark_context** in Node-API to create and destroy a new context in the current thread. The new context and the original context in the thread share the same runtime virtual machine.
 
-## Node-APIs That Support Multiple Runtime Contexts
-The NAPI interfaces listed in the following table can be executed in a multi-context environment. Some NAPI interfaces proactively switch the context even if the invoker does not proactively call napi_switch_ark_context to switch the runtime context, these APIs can determine whether to switch the context environment by checking whether the current running context environment is consistent with the runtime environment specified by the APIs. If the context environments are inconsistent, these APIs switch the current runtime environment to the context environment specified by the API parameters. Of course, APIs that do not involve active context switching are irrelevant to the runtime context. Any valid context environment can be used for execution.
+Note that **napi_create_ark_context** creates a new context but not a new runtime. The context created by this API must be destroyed by **napi_destroy_ark_context**. Otherwise, memory leaks may occur.
 
-| Interface| Whether to proactively switch the context|
+The original context of the ArkTS thread cannot be destroyed using the **napi_destroy_ark_context** API.
+
+To switch to a specified context, you can call the extension API **napi_switch_ark_context** in the Node-API.
+
+You can access some properties and methods on **globalThis** in a new context, and then switch back to the original context to ensure context isolation.
+
+## Scenario
+You can use the **napi_create_ark_context** API to create a context environment in the current thread, which has an independent **globalThis** object.
+
+This indicates that the original context on the current thread is isolated from the newly created context , that is, the **globalThis** objects in the contexts are different.
+
+You can use the newly created context to load modular objects, which are mounted to the **globalThis** object in the current context. Different modules are loaded to different contexts. This prevents one module's changes to **globalThis** from affecting another module's access to **globalThis**.
+
+Some standard and extension APIs of the Node-API are context-adaptive. When these APIs are called, the context is automatically switched based on the input parameter **napi_env**. You do not need to call **napi_switch_ark_context** to switch the context.
+
+Note that when returning from the C++/C side to the ArkTS side, you need to call **napi_switch_ark_context** to switch the context back to the corresponding context. Otherwise, the ArkTS code will be executed in another context, causing unpredictable stability issues.
+
+## Node-APIs That Support Multi-Runtime Context
+The following table lists the Node-APIs that can be executed in a multi-context environment. Some of these Node-APIs can automatically switch the context.
+
+Even if **napi_switch_ark_context** is not actively called to switch the runtime context, these APIs can still determine whether to switch the context by comparing whether the runtime context is the same as the runtime environment specified by the API.
+
+If the contexts are inconsistent, these Node-APIs switch the current runtime environment to the context specified by the API parameters.
+
+If an API does not involve context switching, it is irrelevant to the runtime context and can be executed in any valid context.
+
+| API| Whether to Proactively Switch the Context|
 | -------- | -------- |
 |napi_module_register | No|
 |napi_fatal_error | No|
@@ -174,8 +198,8 @@ node_api_get_module_file_name | No|
 |napi_call_threadsafe_function_with_priority | No|
 |napi_wrap_enhance | Yes|
 
-## Node-APIs That Do Not Support Multiple Runtime Contexts
-| Interface| Return values of multi-runtime context environment invoking|
+## Node-APIs That Do Not Support Multi-Runtime Context
+| API| Return Value of Multi-Runtime Context Call|
 | -------- | -------- |
 |napi_define_sendable_class | napi_invalid_arg |
 |napi_is_sendable | napi_invalid_arg |
@@ -192,7 +216,7 @@ node_api_get_module_file_name | No|
 |napi_stop_event_loop | napi_invalid_arg |
 |napi_get_uv_event_loop | napi_invalid_arg |
 
-### Sample code
+### Sample Code
 - Register the module.
     ```c++
     // napi_init.cpp
@@ -219,13 +243,13 @@ node_api_get_module_file_name | No|
         if (status != napi_ok) {
             OH_LOG_INFO(LOG_APP, "obtain GetLocation from plugin1 failed");
         }
-        // Create a new context environment newEnv2.
+        // Create a new context newEnv2.
         napi_env newEnv2 = nullptr;
         status = napi_create_ark_context(env, &newEnv2);
         if (status != napi_ok) {
             return nullptr;
         }
-        // Proactively switch to the new context environment newEnv2.
+        // Proactively switch to the new context newEnv2.
         status = napi_switch_ark_context(newEnv2);
         if (status != napi_ok) {
             OH_LOG_INFO(LOG_APP, "switch to newEnv2 failed");
@@ -258,7 +282,7 @@ node_api_get_module_file_name | No|
         if (status != napi_ok) {
             OH_LOG_INFO(LOG_APP, "napi_get_value_int32 of env failed");
         } else {
-            // globalThis.a in the context of plugin2 is 3000.
+            // The value of globalThis.a in the context of plugin2 is 3000.
             OH_LOG_INFO(LOG_APP, "ret is %{public}d", ret); // 3000
         }
         // Proactively switch back to the original context env.
@@ -271,13 +295,13 @@ node_api_get_module_file_name | No|
         if (status != napi_ok) {
             return nullptr;
         }
-        // Obtain the value returned after the GetLocation interface is called.
+        // Obtain the value returned after the GetLocation API is called.
         ret = 0;
         status = napi_get_value_int32(env, result, &ret);
         if (status != napi_ok) {
             return nullptr;
         } else {
-            // globalThis.a in the context of plugin1 is 2000.
+            // The value of globalThis.a in the context of plugin1 is 2000.
             OH_LOG_INFO(LOG_APP, "ret is %{public}d", ret); // 2000
         }
         // Destroy the created context.
@@ -288,7 +312,7 @@ node_api_get_module_file_name | No|
         return result;
     }
 
-    Register the module.
+    // Register the module.
     EXTERN_C_START
     static napi_value Init(napi_env env, napi_value exports) {
         napi_property_descriptor desc[] = {
@@ -315,13 +339,13 @@ node_api_get_module_file_name | No|
         napi_module_register(&demoModule);
     }
     ```
-- Interface declarations
+- API declaration
     ```ts
     // index.d.ts
     export const callFunctionInContext: (func: (func:()=>number)=>{}) => number;
     ```
 
-- Configure the **BUILD.gn** file.
+- Compilation configuration
 1. Configure the **CMakeLists.txt** file as follows:
     ```
     // CMakeLists.txt
@@ -365,7 +389,7 @@ node_api_get_module_file_name | No|
     ```ts
     // index.ets
     import testNapi from "libentry.so"
-    // This interface is used to execute the GetLocation method in the plugin1 or plugin2 module.
+    // Execute the GetLocation method in the plugin1 or plugin2 module.
     function getLocation(func: () => number) {
         return func();
     }

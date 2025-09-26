@@ -19,7 +19,7 @@
     - [Using fdsan](fdsan.md)
   - Using Node-API<!--using-napi-interaction-with-cpp-->
     - [Node-API Overview](napi-introduction.md)
-    - [Node-API Returned Status Codes](napi_status_introduction.md)
+    - [Node-API Status Codes](napi_status_introduction.md)
     - [Node-API Data Types and APIs](napi-data-types-interfaces.md)
     - [Node-API Development Specifications](napi-guidelines.md)
     - [Node-API Development Process](use-napi-process.md)
@@ -34,7 +34,7 @@
       - [Working with Cleanup Hooks Using Node-API](use-napi-about-cleanuphook.md)
       - [Working with Date Using Node-API](use-napi-about-date.md)
       - [Error Handling Using Node-API](use-napi-about-error.md)
-      - [Associating Data with a Running Environment to Tide Their Lifecycle Using Node-API](use-napi-about-environmental-life-cycle.md)
+      - [Associating Data with a Running Environment to Tie Their Lifecycle Using Node-API](use-napi-about-environmental-life-cycle.md)
       - [Working with Functions Using Node-API](use-napi-about-function.md)
       - [Performing Lifecycle Management Using Node-API](use-napi-life-cycle.md)
       - [Working with Objects Using Node-API](use-napi-about-object.md)
@@ -54,14 +54,14 @@
       - [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extension APIs](use-napi-event-loop.md)
       - [Loading a Module Using Node-API](use-napi-load-module-with-info.md)
       - [Passing a Task with the Specified Priority to an ArkTS Thread from an Asynchronous Thread Using Node-API](use-call-threadsafe-function-with-priority.md)
-      - [Creating, Switching, and Destroying Contexts in the Current Thread Using Extended Node-APIs](use-napi-about-context.md)
+      - [Creating, Switching, and Destroying a Context in a Thread Using Node-API Extension APIs](use-napi-about-context.md)
       - [Analyzing Exceptions and Crashes Triggered by Using Node-API](use-napi-about-crash.md)
       - [Calling an ArkTS Method with Return Value of a Promise Using Node-API](use-napi-method-promise.md)
     - Node-API FAQs<!--napi-questions-->
       - [Node-API FAQs](use-napi-faqs.md)
       - [FAQs About Stability](napi-faq-about-stability.md)
       - [FAQs About Memory Leaks](napi-faq-about-memory-leak.md)
-      - [FAQs About Basic Functions](napi-faq-about-common-basic.md)
+      - [FAQs About Basic Functionalities](napi-faq-about-common-basic.md)
   - Using JSVM-API<!--jsvm-->
     - [JSVM-API Overview](jsvm-introduction.md)
     - [JSVM-API Data Types and APIs](jsvm-data-types-interfaces.md)
@@ -105,7 +105,7 @@
       - [Working with Trace Using JSVM-API](use-jsvm-about-trace.md)
       - [Requesting the JIT Profile for JSVMs](jsvm-apply-jit-profile.md)
       - [JSVM-API Secure Shield Mode](jsvm-secure-shield-mode.md)
-      - [JSVM-API Memory Leakage Troubleshooting Guide](jsvm-locate-memory-leak.md)
+      - [Troubleshooting JSVM-API Memory Leaks](jsvm-locate-memory-leak.md)
       - JSVM-API Tuning and Performant Coding Cases<!--jsvm-usage-examples-->
         - [Creating and Destroying JSVMs Using JSVM-API](use-jsvm-runtime-task.md)
         - [Accelerating Compilation Using a Code Cache](use-jsvm-about-code-cache.md)
@@ -113,7 +113,7 @@
     - JSVM Performance Debugging Guides<!--jsvm-performance-->
       - [Collecting V8 Trace Data Using HiSmartPerf](use-jsvm-about-v8-trace.md)
   - Longque-JS-API<!--longque-->
-    - [Longque-JS-API Usage Guide](use-longque-js-api.md)
+    - [Using Longque JS APIs](use-longque-js-api.md)
   - OpenMP Support<!--openmp-->
     - [OpenMP Overview](openmp-overview.md)
     - [Building and Running Applications Using OpenMP](openmp-guideline.md)
@@ -121,14 +121,13 @@
     - [Raw File Development](rawfile-guidelines.md)
   - Thread Scheduling<!--thread-scheduling-->
     - [QoS Development](qos-guidelines.md)
-    - [Gewu Development Guide](gewu-ndk-api-guidelines.md)
+    - [Gewu Development](gewu-ndk-api-guidelines.md)
   - Memory Management<!--memory-management-->
     - [Purgeable Memory Development](purgeable-memory-guidelines.md)
   - Bundle Management<!--bundle-management-->
     - [Native Bundle Development](native-bundle-guidelines.md)
 - Debugging and Profiling<!--debugging-profiling-->
   - [Debugging and Profiling Overview](debug-performance-profiling-overview.md)
-  - [Debugging in DevEco Studio](debug-ide.md)
   - [C/C++ Memory Error Detection](debug-asan.md)
 - Hardware Compatibility<!--hardware-compatibility-->
   - [Introduction to Hardware Compatibility](hw-guide.md)

@@ -31,11 +31,11 @@ JSVM-API provide APIs for retrieving JavaScript virtual machine (JSVM) instances
 
 ## Example
 
-For details about the JSVM-API development process, see [Using JSVM-API to Implement Interactive Development Between JS and C/C++](use-jsvm-process.md). This document describes only the C++ code corresponding to the API.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in the APIs.
 
 ### OH_JSVM_GetVM
 
-Retrieves VM instances in a given environment.
+Retrieves VM instances in an environment.
 
 CPP code:
 
@@ -72,7 +72,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 ```
 
-JS Example
+JS example:
 
 ```c++
 const char *srcCallNative = R"JS(getVM())JS";
@@ -86,7 +86,7 @@ JSVM OH_JSVM_GetVM: success
 
 ### OH_JSVM_GetHeapStatistics
 
-Use **OH_JSVM_GetHeapStatistics** to obtain heap statistics of a VM.
+Obtains heap statistics of a VM.
 
 CPP code:
 
@@ -140,7 +140,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 ```
 
-JS Example
+JS example:
 
 ```c++
 const char *srcCallNative = R"JS(getHeapStatistics())JS";
@@ -173,7 +173,7 @@ Creates and starts a CPU profiler instance.
 
 ### OH_JSVM_StopCpuProfiler
 
-Use **OH_JSVM_StopCpuProfiler** to stop the CPU profiler and output the result to a stream.
+Stops the CPU profiler and output the result to a stream.
 
 ### OH_JSVM_TakeHeapSnapshot
 
@@ -181,7 +181,7 @@ Obtains the current heap snapshot and outputs it to the stream.
 
 ### OH_JSVM_OpenInspector
 
-Use **OH_JSVM_OpenInspector** to open an inspector instance on the specified host and port for debugging JS code.
+Opens an inspector instance on a specified host and port for debugging JS code.
 
 ### OH_JSVM_CloseInspector
 
@@ -189,4 +189,4 @@ Closes all remaining inspector connections.
 
 ### OH_JSVM_WaitForDebugger
 
-Wait for the host to establish a socket connection with the inspector. After the connection is established, the program continues to run and sends the Runtime.runIfWaitingForDebugger command.
+Waits for the host to set up a socket connection with the inspector. After the connection is set up, the application continues to run and sends the **Runtime.runIfWaitingForDebugger** command.

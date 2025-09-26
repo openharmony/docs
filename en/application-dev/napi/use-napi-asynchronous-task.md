@@ -18,9 +18,9 @@ For time-consuming operations, you can use [napi_create_async_work](../reference
 
 - Image processing: When large images need to be processed or complex image algorithms need to be executed, asynchronous work objects can ensure normal running of the main thread and improve the real-time performance of your application.
 
-The napi_queue_async_work API uses the uv_queue_work capability and manages the lifecycle of napi_value in the callback.
+**napi_queue_async_work** uses the **uv_queue_work** capability and manages the lifecycle of **napi_value** in the callback.
 
-Asynchronous calling supports two modes: callback and promise. You can select a mode as required. The following are the sample codes of the two methods:
+You can use a callback or a promise to implement asynchronous calls as required. The following is sample code for the two methods:
 
 ![](figures/napi_async_work.png)
 
@@ -98,7 +98,7 @@ Asynchronous calling supports two modes: callback and promise. You can select a 
    ```
    <!-- @[napi_second_call_back_main](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIAsynchronousTask/entry/src/main/cpp/napi_init.cpp) -->
 
-4. Initializes the module and calls APIs on the ArkTS side.
+4. Initialize the module and call the API from ArkTS.
 
    ```cpp
    // Initialize the module.
@@ -230,5 +230,5 @@ Asynchronous calling supports two modes: callback and promise. You can select a 
 ## NOTE
 - When the **napi_cancel_async_work** API is called, **napi_ok** is returned regardless of whether the underlying UV fails. If the task fails to be canceled due to the underlying UV, the corresponding error value is transferred to **status** in the complete callback. You need to perform the corresponding operation based on the value of **status**.
 - It is recommended that the asynchronous work item of Node-API (**napi_async_work**) be used only once. After **napi_queue_async_work** is called, you should release it through **napi_delete_async_work** during or after the execution of the **complete** callback. The same **napi_async_work** can be released only once. Repeated release attempts will cause undefined behavior.
-The `execute_cb` of `napi_async_work` runs in an independent working thread, which is obtained from the UV thread pool. Different worker threads do not affect each other.
-- In the task execution sequence, `napi_async_work` only ensures that `complete_cb` is executed after `execute_cb`. The `execute_cb`s of different `napi_async_work`s run on their own working threads. Therefore, the execution sequence of different `execute_cb`s cannot be ensured. If the task execution sequence is required, you are advised to use the `napi_threadsafe_function` series APIs, which are sequence-preserving. For details, see [Link](use-napi-thread-safety.md).
+The **execute_cb** of **napi_async_work** runs in an independent work thread, which is obtained from the uv thread pool. Different worker threads do not affect each other.
+- **napi_async_work** only ensures that **complete_cb** is executed after **execute_cb**. **execute_cb** of different **napi_async_work** runs on their respective worker threads. Therefore, their execution sequence cannot be ensured. If tasks need to be executed in sequence, you are advised to use the **napi_threadsafe_function** APIs. For details, see [Thread Safety Development Using Node-API](use-napi-thread-safety.md).

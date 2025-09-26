@@ -1,70 +1,70 @@
-# Longque-JS-API Usage Guide
-Longque JS APIs are provided by Longque JS Engine and can be used to build stable and high-performance applications on the OpenHarmony platform. All APIs are under the `__Longque__` object. You can use **__Longque__.version** to obtain the API version for determining features.
+# Using Longque JS APIs
+Provided by Longque JS Engine, Longque JS APIs are used to build stable and high-performance applications on OpenHarmony. They are under the **__Longque__** object. You can use **__Longque__.version** to obtain the API version for determining features.
 
-**Note: The Longque JS API is in the experiment phase. Before using it, read this document to evaluate its stability and compatibility.**
+Note: Longque JS APIs are in the experimental phase. Before using the APIs, read this topic to evaluate their stability and compatibility.
 
 ## Available APIs
-| Interface                      | Description                           |
+| Name                      | Description                           |
 |----------------------------|-------------------------------------|
-|createDelegate         | Create an agency.|
+|createDelegate         | Creates a delegate.|
 
-## Attributes
+## Properties
 | Name                      | Description                           |
 |----------------------------|-------------------------------------|
 |version         | Version of the Longque JS API.|
-|SKIP_PROTOTYPE_CHAIN |Attribute filter of createDelegate, which indicates that only its own attributes are entrusted and the prototype chain is not considered.|
-|SKIP_PREFIX_UNDERSCORE |Attribute filter of createDelegate, which filters out attributes whose names start with an underscore (_).|
-|SKIP_PREFIX_DOLLAR |Attribute filter of createDelegate, which filters out the attributes whose names start with $.|
-|SKIP_CONSTRUCTOR |Attribute filter of createDelegate, indicating that the'constructor' attribute is filtered out.|
+|SKIP_PROTOTYPE_CHAIN |Property filter of **createDelegate**, which skips the prototype chain.|
+|SKIP_PREFIX_UNDERSCORE |Property filter of **createDelegate**, which skips properties starting with an underscore (_).|
+|SKIP_PREFIX_DOLLAR |Property filter of **createDelegate**, which skips properties starting with a dollar sign ($).|
+|SKIP_CONSTRUCTOR |Property filter of **createDelegate**, which skips the **constructor** property.|
 
-## createDelegate interface
-> Version in which the interface is introduced: 1
+## createDelegate
+> API introduction version: 1
 
-### Interface Description
-| Interface | Name | Description|
+### Description
+| API | Usage | Description|
 | -- | -- | -- |
-| createDelegate | Creating an agency| Creates an agency object for `underlyingObject`. The read and write operations on the attributes of the agency object are mapped to `underlyingObject`. Use `initObject` to specify the initial delegate object and use `propertyFilterFlags` to specify the attribute filter. By default, all enumerable string key properties in the `underlyingObject` and its prototype chain are mapped.
+| createDelegate | Delegate creation.| Creates a delegate object for **underlyingObject**. The read and write operations on the delegate object are mapped to **underlyingObject**. You can specify the initial delegate object through **initObject** and the property filter through **propertyFilterFlags**. By default, all enumerable string key properties in **underlyingObject** and its prototype chain are mapped.
 
-### Name
-(1) `underlyingObject`: This parameter is mandatory. Underlying object to delegate. Parameter requirements:
-- `underlyingObject` must be an object. Otherwise, the `TypeError` exception is thrown.
-- If `underlyingObject` is a proxy object, the `TypeError` exception is thrown.
-- If the `SKIP_PROTOTYPE_CHAIN` filter is not specified and a proxy object exists in the `underlyingObject` prototype chain, a `TypeError` exception is thrown.
+### Parameters
+(1) **underlyingObject**: Underlying object to delegate. This parameter is mandatory. Parameter requirements:
+- **underlyingObject** must be an object. Otherwise, the **TypeError** exception is thrown.
+- If **underlyingObject** is a delegate object, a **TypeError** exception is thrown.
+- If the **SKIP_PROTOTYPE_CHAIN** filter is not specified and a delegate object exists in the **underlyingObject** prototype chain, a **TypeError** exception is thrown.
 
-(2) `initObject`: This parameter is optional. Initial delegate object. If undefined is passed, the initial object is not specified and is automatically created by the interface. Parameter requirements:
-- `initObject` must be an object. Otherwise, the `TypeError` exception is thrown.
-- If `initObject` is a proxy object, the `TypeError` exception is thrown.
-- The agency object cannot be used as `initObject`. Otherwise, the `TypeError` exception is thrown.
-- If the `initObject` is not extensible, a `TypeError` exception is thrown.
-- If some attributes in `initObject` cannot be defined, the `TypeError` exception is thrown. In this case, only some attributes in `initObject` are defined successfully.
+(2) **initObject**: Initial delegate object. This parameter is optional. If **undefined** is passed, the initial object is not specified and is automatically created by the API. Parameter requirements:
+- **initObject** must be an object. Otherwise, a **TypeError** exception is thrown.
+- If **initObject** is a delegate object, a **TypeError** exception is thrown.
+- The delegate object cannot be used as **initObject**. Otherwise, a **TypeError** exception is thrown.
+- If **initObject** is not extensible, a **TypeError** exception is thrown.
+- If some properties of **initObject** cannot be defined, a **TypeError** exception is thrown. In this case, only some properties of **initObject** are successfully defined.
 
-(3) `propertyFilterFlags`: This parameter is optional. Property filter. If undefined is passed, no filter is specified. Parameter requirements:
-- The following lists the currently supported attribute filters (which may be extended in the future).
+(3) **propertyFilterFlags**: Property filter. This parameter is optional. If **undefined** is passed, no filter is specified. Parameter requirements:
+- The following lists the supported property filters (which may be extended in the future).
 ```sh
-The __Longque__.SKIP_PROTOTYPE_CHAIN: delegates only the attributes of the underlyingObject and does not consider the prototype chain.
-Filter out attributes whose names start with an underscore (_) in __Longque__.SKIP_PREFIX_UNDERSCORE:.
-Filter out attributes whose names start with '$' in __Longque__.SKIP_PREFIX_DOLLAR:.
-The **constructor** attribute is filtered out from ** __Longque__.SKIP_CONSTRUCTOR:**.
+__Longque__.SKIP_PROTOTYPE_CHAIN: Delegates only the underlyingObject properties and skips the prototype chain.
+__Longque__.SKIP_PREFIX_UNDERSCORE: Skips properties whose names start with underscores (_).
+__Longque__.SKIP_PREFIX_DOLLAR: Skips properties whose names start with dollar signs ($).
+__Longque__.SKIP_CONSTRUCTOR: Skips the constructor property.
 ```
-- The listed filters must be used. Otherwise, the API behavior is not defined, which may cause code compatibility issues.
-- All filters are of the `number` type. You can use the | operator to specify multiple filters.
-- If `propertyFilterFlags` is not of the `number` type, a `TypeError` exception is thrown.
+- You must use any of the listed filters. Otherwise, the API behavior is not defined, which may cause code compatibility issues.
+- All filters are of the **number** type. You can use the | operator to specify multiple filters.
+- If **propertyFilterFlags** is not of the **number** type, a **TypeError** exception is thrown.
 
 ### Return Value
-The following information is returned only when the interface does not throw an exception:
-- If no initial agency object is specified, the newly created agency object is returned.
-- If an initial delegate object has been specified, the initial delegate object is returned.
+The API returns results correctly only if no exception is thrown.
+- If no initial delegate object is specified, the newly created delegate object is returned.
+- If the initial delegate object is specified, it is returned.
 
-### Important Notes
-(1) The attribute sequence of the delegate object may be different from that of the for-in and Object.keys methods. Do not depend on the attribute sequence.
+### Precautions
+(1) The property sequence of the delegate object may be different from the result of the **for-in** or **Object.keys** method. Do not depend on the property sequence.
 
-(2) The implementation of the delegate object is an internal mechanism of the engine. Do not rely on the returned results of calling APIs such as `Object.getOwnPropertyDescriptor`, `getOwnPropertyDescriptors`, and `Reflect.getOwnPropertyDescriptor` on the agency object.
+(2) The implementation of the delegate object is an internal mechanism of the engine. Do not depend on the return result of calling **Object.getOwnPropertyDescriptor**, **getOwnPropertyDescriptors** or **Reflect.getOwnPropertyDescriptor** on the delegate object.
 
 ### Sample Code
 
-This example shows how to use the Longque JS API in the JSVM. For details about the JSVM-API development process, see [Using JSVM-API to Implement Interactive Development Between JS and C/C++](use-jsvm-process.md). This document describes only the C++ code corresponding to the interface.
+The following example shows how to use the Longque JS API in JSVM. If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in using the Longque JS API.
 
-CPP code:
+C++ code:
 ``` cpp
 // JS code to be executed.
 static const char *STR_TASK = R"JS(

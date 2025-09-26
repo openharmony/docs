@@ -8,7 +8,7 @@
 
 ## Overview
 
-The JSVM-API provides an interface for enabling or disabling a specified debug option under a specific JSVM_Env. Currently, JSVM_SCOPE_CHECK is supported.
+JSVM-API provides an API to enable or disable a specified debug option in a specific JSVM_Env. Currently, **JSVM_SCOPE_CHECK** is supported.
  
 ## Debug Options
 
@@ -16,25 +16,25 @@ All debug options are of the JSVM_DebugOption type.
  
 ### JSVM_SCOPE_CHECK
 
-- During development, the JSVM_Value variable in HandleScope may be called after HandleScope ends. As a result, the program breaks down. JSVM_SCOPE_CHECK is a scope verification method. It checks whether the currently called variable of the JSVM_Value type exceeds the scope of HandleScope. If yes, the error message "Run in wrong HandleScope" is displayed.
-- After the debug option is enabled, if JSVM_Value is created by JSVM-API, ADD_VAL_TO_SCOPE_CHECK in function: [function name] is output in hilog, for example, ADD_VAL_TO_SCOPE_CHECK in function: OH_JSVM_GetBoolean. If JSVM_Value is used by JSVM-API, "CHECK_SCOPE in function: [function name]" is displayed in the hilog, indicating that HandleScope verification is performed on the used JSVM_Value, for example, " CHECK_SCOPE in function: OH_JSVM_IsBoolean."
+- During development, you may call **JSVM_Value** variables in the previous **HandleScope** after it ends, causing application crash. **JSVM_SCOPE_CHECK** is a method for checking whether the called **JSVM_Value** variable exceeds the scope of **HandleScope**. If yes, the error "Run in wrong HandleScope" is reported.
+- After this debug option is enabled, if JSVM-API creates a **JSVM_Value**, **ADD_VAL_TO_SCOPE_CHECK in function: [function name]** is output in HiLog logs, for example, **ADD_VAL_TO_SCOPE_CHECK in function: OH_JSVM_GetBoolean**. If JSVM-API uses **JSVM_Value**, **CHECK_SCOPE in function: [function name]** is output in HiLog logs, indicating that **HandleScope** verification is performed on the used **JSVM_Value**, for example, **CHECK_SCOPE in function: OH_JSVM_IsBoolean**.
  
 ## Available APIs
 
-| Interface                                   | Description                      |
+| Name                                   | Description                      |
 |-----------------------------------------|-------------------------------|
-| OH_JSVM_SetDebugOption                  | Enables or disables the specified debug option of a specific JSVM_Env. The input debug option parameter debugOption must be of the JSVM_DebugOption type. The Boolean value parameter isEnabled is used to determine whether to enable the debug option. This API is used only for debugging. After this API is enabled, the performance may deteriorate.|
+| OH_JSVM_SetDebugOption                  | Enables or disables a specified debug option in a specific **JSVM_Env**. The input **debugOption** must be of the **JSVM_DebugOption** type. The Boolean parameter **isEnabled** is used to control whether to enable the debug option. This API is used only for debugging. Enabling this API may cause performance deterioration.|
 
  
 ## Sample Code
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in proxy-related APIs.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in using the API.
 
 ### JSVM_DebugOption
 
-You only need to replace the TestJSVM () function in the example code [Using JSVM-API to Implement Interaction Between JS and C/C++](use-jsvm-process.md).
+Replace the **TestJSVM()** function in the sample code of [JSVM-API Development Process](use-jsvm-process.md).
 
-- Invoke the JSVM_Value variable in the correct HandleScope.
+- Call the JSVM_Value variable in the correct **HandleScope**.
 ```cpp
 static int32_t TestJSVM()
 {
@@ -53,7 +53,7 @@ static int32_t TestJSVM()
     // Create a JSVM environment.
     CHECK(OH_JSVM_CreateVM(nullptr, &vm));
     CHECK(OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env));
-    // Enable the JSVM_SCOPE_CHECK verification option.
+    // Enable the JSVM_SCOPE_CHECK option.
     CHECK(OH_JSVM_SetDebugOption(env, JSVM_SCOPE_CHECK, true));
     CHECK(OH_JSVM_OpenVMScope(vm, &vmScope));
     CHECK_RET(OH_JSVM_OpenEnvScope(env, &envScope));
@@ -68,7 +68,7 @@ static int32_t TestJSVM()
     CHECK_RET(OH_JSVM_RunScript(env, script, &result));
 
     bool boolResult = true;
-    // The OH_JSVM_IsBoolean interface calls the JSVM_Value variable result.
+    // The OH_JSVM_IsBoolean API calls the JSVM_Value variable result.
     JSVM_Status status = OH_JSVM_IsBoolean(env, result, &boolResult);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_IsBoolean: failed");
@@ -81,7 +81,7 @@ static int32_t TestJSVM()
     CHECK_RET(OH_JSVM_CloseHandleScope(env, handleScope));
     CHECK_RET(OH_JSVM_CloseEnvScope(env, envScope));
     CHECK(OH_JSVM_CloseVMScope(vm, vmScope));
-    // Disable the JSVM_SCOPE_CHECK verification option.
+    // Disable the JSVM_SCOPE_CHECK option.
     CHECK(OH_JSVM_SetDebugOption(env, JSVM_SCOPE_CHECK, false));
     CHECK(OH_JSVM_DestroyEnv(env));
     CHECK(OH_JSVM_DestroyVM(vm));
@@ -90,7 +90,7 @@ static int32_t TestJSVM()
 ```
 **Execution result**
 
-The following information is displayed in the hilog file:
+The following information is displayed in the HiLog:
 
 ```
 ADD_VAL_TO_SCOPE_CHECK in function: NewString
@@ -107,7 +107,7 @@ CHECK_SCOPE in function: OH_JSVM_IsBoolean
 JSVM OH_JSVM_IsBoolean: success: 1
 ```
 
-- The JSVM_Value variable is called in the incorrect HandleScope.
+- The **JSVM_Value** variable is called in an incorrect HandleScope.
 
 ```cpp
 static int32_t TestJSVM()
@@ -127,7 +127,7 @@ static int32_t TestJSVM()
     // Create a JSVM environment.
     CHECK(OH_JSVM_CreateVM(nullptr, &vm));
     CHECK(OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env));
-    // Enable the JSVM_SCOPE_CHECK verification option.
+    // Enable the JSVM_SCOPE_CHECK option.
     CHECK(OH_JSVM_SetDebugOption(env, JSVM_SCOPE_CHECK, true));
     CHECK(OH_JSVM_OpenVMScope(vm, &vmScope));
     CHECK_RET(OH_JSVM_OpenEnvScope(env, &envScope));
@@ -150,7 +150,7 @@ static int32_t TestJSVM()
     JSVM_Status status = OH_JSVM_IsBoolean(env, result, &boolResult);
     CHECK_RET(OH_JSVM_CloseEnvScope(env, envScope));
     CHECK(OH_JSVM_CloseVMScope(vm, vmScope));
-    // Disable the JSVM_SCOPE_CHECK verification option.
+    // Disable the JSVM_SCOPE_CHECK option.
     CHECK(OH_JSVM_SetDebugOption(env, JSVM_SCOPE_CHECK, false));
     CHECK(OH_JSVM_DestroyEnv(env));
     CHECK(OH_JSVM_DestroyVM(vm));
@@ -159,7 +159,7 @@ static int32_t TestJSVM()
 ```
 **Execution result**
 
-The program crashes, and the cppcrash log is generated. Information similar to the following can be found in the hilog:
+The application crashes, the cppcrash log is generated, and the following information is displayed in HiLog:
 ```
 JSVM Fatal Error Position : "../../../../../../../arkcompiler/jsvm/src/js_native_api_v8.cpp":4537
 JSVM Fatal Error Message : "Run in wrong HandleScope"

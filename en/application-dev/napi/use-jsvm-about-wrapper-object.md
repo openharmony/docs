@@ -8,11 +8,11 @@
 
 ## Introduction
 
-In JSVM-API, the Wrapper object determination API can quickly determine the packing type of an object through different APIs.
+This topic walks you through on how to use JSVM-API to quickly determine the wrapper object.
 
 ## Basic Concepts
 
-In the JSVM-API, the APIs related to the boxing type provide the capability of quickly determining five boxing types.
+JSVM-API provides the following APIs to quickly determine five wrapper objects.
 
 ## Available APIs
 
@@ -26,7 +26,7 @@ In the JSVM-API, the APIs related to the boxing type provide the capability of q
 
 ## Example
 
-For details about the JSVM-API development process, see [Using JSVM-API to Implement Interactive Development Between JS and C/C++](use-jsvm-process.md). This document describes only the C++ code corresponding to the API.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in the APIs.
 
 ### Determining a Number Object
 

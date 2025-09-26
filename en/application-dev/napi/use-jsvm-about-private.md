@@ -8,11 +8,11 @@
 
 ## Introduction
 
-JSVM-API provides interfaces for operating private attributes.
+This topic walks you through on how to use JSVM-API to set a private property.
 
 ## Basic Concepts
 
-JSVM-API provides the capability of creating a private key, using the key to create and delete attributes on an object, and persistently storing the private key symbol.
+JSVM-API provides the capability of creating private keys, creating and deleting properties on objects using the keys, and persistently saving private key symbols.
 
 ## Available APIs
 
@@ -22,8 +22,8 @@ JSVM-API provides the capability of creating a private key, using the key to cre
 | OH_JSVM_GetReferenceData               | Checks whether a specified reference is valid. If the reference is valid, the JavaScript data associated with the reference is returned; otherwise, **result** is set to **NULL**.|
 | OH_JSVM_CreatePrivate                  | Creates a JS private key object.  |
 | OH_JSVM_SetPrivate                     | Sets a private property for a passed-in object.  |
-| OH_JSVM_GetPrivate                     | Obtains the private attribute corresponding to the private key in the input object.  |
-| OH_JSVM_DeletePrivate                  | Deletes the private attribute corresponding to the private key in the passed object.  |
+| OH_JSVM_GetPrivate                     | Obtains the private property of an object based on the private key.  |
+| OH_JSVM_DeletePrivate                  | Deletes the private property of an object based on the private key.  |
 
 ## Example
 

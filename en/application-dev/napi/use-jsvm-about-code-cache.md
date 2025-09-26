@@ -113,7 +113,7 @@ const char* srcCallNative = R"JS(globalThis.UseCodeCache())JS";
 ```
 <!-- @[jsvm_code_cache](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmDebug/aboutcodecache/src/main/cpp/hello.cpp) -->
 
-The expected output is as follows:
+Expected result:
 ```
 first run result: 98304
 second run result: 98304

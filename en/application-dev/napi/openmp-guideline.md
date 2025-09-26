@@ -15,14 +15,14 @@ The OpenHarmony NDK provides dynamic and static library files of OpenMP so that 
 
 ### 2. Adding Dependencies
 
-The OpenMP library can be introduced through static linking or dynamic linking.
+There are two ways to incorporate the OpenMP library: static linking and dynamic linking.
 
 > **NOTE**
 > 
 > The [OpenMP Tools Interface (OMPT)](https://www.openmp.org/spec-html/5.0/openmpsu15.html#x25-240001.5.1) tool can be used only for static linking.
 >
 
-Static Linking
+**Static Linking**
 
 (1) Open the **entry/src/main/cpp/CMakeLists.txt** file, and add the static library **libomp.a** and log dependency **libhilog\_ndk.z.so** to **target\_link\_libraries**.
 

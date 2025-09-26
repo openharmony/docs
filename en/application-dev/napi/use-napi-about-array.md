@@ -16,9 +16,9 @@ Node-API can be used to create, access, modify, and traverse arrays. Before usin
 
 - Array creation: You can use **napi_create_array** to create an array and pass it to the ArkTS layer.
 - Array-related operations: You can use the APIs provides by the Node-API module to obtain the length of an ArkTS array, retrieve the element at the specified index, and set the element value at the specified index.
-- **TypedArray**: A **TypedArray** object in ArkTS is an array-like view of an underlying binary data buffer. It can be simply understood as an array of elements of the specified type. There is no constructor for **TypedArray** objects, but its child class constructor can be used to construct **TypedArray** data. The child classes of **TypedArray** include **Int8Array**, **Uint8Array**, **Uint8ClampedArray**, **Int16Array**, and **Int32Array**.
-- **DataView**: **DataView** is an ArkTS view that allows a variety of number types to be read and written in an **ArrayBuffer** object.
-- **ArrayBuffer**: **ArrayBuffer** is a data struct used to represent a binary data buffer of fixed length.
+- **TypedArray**: A **TypedArray** object in ArkTS is an array-like view of an underlying binary data buffer. It can be understood as an array of elements of the specified type. There is no constructor for **TypedArray** objects, but they can be constructed by their child class constructors. The child classes of **TypedArray** include **Int8Array**, **Uint8Array**, **Uint8ClampedArray**, **Int16Array**, and **Int32Array**.
+- **DataView**: **DataView** is a flexible binary data access view in ArkTS. It provides methods for reading and writing multiple number types from an **ArrayBuffer**. Unlike **TypedArray**, **DataView** does not require data to be aligned at specific bytes. Therefore, it can process data structures with arbitrary byte offsets. DataView supports the following methods (each method has a **get** and **set** version): **Int8**, **Uint8**, **Int16**, **Uint16**, **Int32**, **Uint32**, **Float32**, and **Float64**.
+- **ArrayBuffer**: **ArrayBuffer** is a data struct used to represent a binary data buffer of fixed length. It cannot be read or written directly, but its content can be operated through **TypedArray** or **DataView**.
 
 ## Available APIs
 

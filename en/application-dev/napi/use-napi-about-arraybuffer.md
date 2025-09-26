@@ -22,7 +22,7 @@ The following table lists the APIs used to manipulate data of the **ArrayBuffer*
 | -------- | -------- |
 | napi_is_arraybuffer | Checks whether a value is an **ArrayBuffer** object. Note that this API cannot be used to check whether a value is a **TypedArray** object. To check whether a value is a **TypedArray** object, use **napi_is_typedarray**.|
 | napi_get_arraybuffer_info | Obtains information of an **ArrayBuffer** object, including the pointer to the data and the data length.|
-| napi_detach_arraybuffer | Separates the ArrayBuffer underlying buffer from the ArrayBuffer object. After the data is detached, you can operate the data in C/C++.|
+| napi_detach_arraybuffer | Detaches the underlying data from an **ArrayBuffer** object. After the data is detached, you can operate the data in C/C++.|
 | napi_is_detached_arraybuffer | Checks whether an **ArrayBuffer** object has been detached.|
 | napi_create_arraybuffer | Creates an ArkTS **ArrayBuffer** object with the specified byte length.|
 
@@ -317,4 +317,4 @@ Test Node-API napi_create_arraybuffer:[object ArrayBuffer]
 ## NOTE
 
 - Lifecycle and memory management: When using Node-API to process **ArrayBuffer** objects, note that the lifecycle of the buffer data segment of the **void*** type is managed by the engine and [cannot be deleted by users. Otherwise, a double free error may occur](napi-guidelines.md#avoiding-releasing-the-obtained-buffer-repeatedly).
-- Pay attention to the allocated buffer size. When the value of **byte_length** is large, no exception is thrown upon an allocation failure, and the data parameter points to the nullptr buffer. It is recommended that strict judgment be performed on *data = = nullptr and the limit check be performed on the oversized byte_length to avoid OOM.
+- Allocated buffer size: When the value of byte_length is large, no exception is thrown when the allocation fails. The memory specified by **data** is **nullptr**. It is recommended that ***data == nullptr** be strictly checked and the upper limit of **byte_length** be checked to avoid OOM.

@@ -120,7 +120,7 @@ int OH_QoS_SetThreadQoS(QoS_Level level);
 QoS_Level level
 * QoS level to set.
 
-Return Value
+**Return Value**
 * Returns **0** if the operation is successful; returns **-1** otherwise.
 
 **Description**
@@ -157,7 +157,7 @@ int OH_QoS_ResetThreadQoS();
 **Parameters**
 * N/A.
 
-Return Value
+**Return Value**
 * Returns **0** if the operation is successful; returns **-1** otherwise.
 
 **Description**
@@ -196,7 +196,7 @@ int OH_QoS_GetThreadQoS(QoS_Level *level);
 QoS_Level *level
 * Pointer to the QoS level of the task.
 
-Return Value
+**Return Value**
 * Returns **0** if the operation is successful; returns **-1** otherwise.
 
 **Description**

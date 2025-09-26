@@ -8,7 +8,7 @@
 
 ## Introduction
 
-Start the task queue on the VM and check whether there are micro-tasks to be processed in the queue. The task queue may be cyclically executed by an external event.
+This topic describes how to start a task queue on a VM, check whether there are micro tasks waiting in the queue, and execute the task queue by external events.
 
 ## Basic Concepts
 
@@ -25,9 +25,9 @@ Start the task queue on the VM and check whether there are micro-tasks to be pro
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in proxy-related APIs.
-> **NOTE**<br>To run the WebAssembly (Wasm) bytecode, the application must have the JIT permission. For details about how to apply for the permission, see [Requesting the JIT Permission](jsvm-apply-jit-profile.md).
-Running restriction: In the current JSVM version, all functional modules of WebAssembly are disabled in Shield Guard mode. You need to evaluate the app compatibility based on this restriction. For details, see [JSVM Shield Guard Mode](jsvm-secure-shield-mode.md).
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in related APIs.
+**Permission requirements**: To run the Wasm bytecode, the application must have the JIT permission. For details about how to apply for the permission, see [Requesting the JIT Permission](jsvm-apply-jit-profile.md).
+**Running restrictions**: In the current JSVM version, all functional modules of WebAssembly are disabled in Secure Shield mode. You need to evaluate application compatibility based on the restrictions. For details, see [JSVM-API Secure Shield Mode](jsvm-secure-shield-mode.md).
 ### OH_JSVM_PumpMessageLoop & OH_JSVM_PerformMicrotaskCheckpoint
 
 Call **OH_JSVM_PumpMessageLoop** to start running a task queue.

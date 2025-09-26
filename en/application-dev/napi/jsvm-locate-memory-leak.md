@@ -1,4 +1,4 @@
-# JSVM-API Memory Leakage Troubleshooting Guide
+# Troubleshooting JSVM-API Memory Leaks
 <!--Kit: NDK Development-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @yuanxiaogou; @string_sz-->
@@ -6,22 +6,22 @@
 <!--Tester: @test_lzz-->
 <!--Adviser: @fang-jinxu-->
 
-The memory usage of the JSVM includes the native memory usage (memory usage on the C/C++ side) and the heap memory usage of the underlying JS engine. The JS engine maintains a heap to manage the generated JS objects. The lifecycle of the JS objects is maintained by the JS engine. Other memory is classified as the native memory. When using the JSVM, users may encounter the following two situations:
+JSVM memory usage includes native memory usage (C/C++ memory usage) and heap memory usage of the underlying JavaScript engine. Heap memory is used for maintaining a heap and its lifecycle to manage generated JavaScript objects by the JavaScript engine. Other memory is called native memory. When using the JSVM, you may encounter the two types of memory exceptions.
 
-This document describes how to perform qualitative analysis and how to locate native memory leaks and JS engine heap memory leaks.
+This topic describes how to determine the memory leak type and how to locate the native memory leak and JavaScript engine heap memory leak.
 
-## Qualitative Analysis
+## Determining the Memory Leak Type
 
-You can use the HDC to connect to the device, run the following command to sample the memory of the target application, and compare the memory changes within a period of time to determine whether the native memory leakage or JS memory leakage occurs. In the Pss Total column in the following figure, native heap indicates the native memory usage, and AnnonPage other indicates the JS heap memory usage.
+You can use hdc to connect to the device, run the following command to sample the memory of the target application, and compare the memory changes within a period of time to determine whether the native memory leaks or JavaScript memory leaks. In the **Pss Total** column in the following figure, **native heap** indicates the native memory usage, and **AnnonPage other** indicates the JavaScript heap memory usage.
 ```
 hidumper --mem $(pidof dest_app)
 ```
 <div align=left><img src="figures/jsvm_locate_memory_leak_hidump.png"/></div>
 
 
-## Locating Native Memory Leakage
-### Typical Use Case
-1. The OH_JSVM_CreateReference and OH_JSVM_DeleteReference interfaces are not called in pairs. As a result, the reference is not released.
+## Locating Native Memory Leaks
+### When to Use
+1. **OH_JSVM_CreateReference** and **OH_JSVM_DeleteReference** are not called in pairs. As a result, references are not released.
 ```c++
 JSVM_Value obj = nullptr;
 OH_JSVM_CreateObject(env, &obj);
@@ -29,7 +29,7 @@ OH_JSVM_CreateObject(env, &obj);
 JSVM_Ref reference;
 OH_JSVM_CreateReference(env, obj, 1, &reference);
 
-// Create a reference with a JS object.
+// Use the reference.
 JSVM_Value result;
 OH_JSVM_GetReferenceValue(env, reference, &result);
 
@@ -37,30 +37,30 @@ OH_JSVM_GetReferenceValue(env, reference, &result);
 // OH_JSVM_DeleteReference(env, reference);
 ```
 
-### **Locating Procedure**
-To analyze native memory leakage, you can use the memory analysis module of DevEco Studio. For details, see [Memory Analysis and Optimization](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-insight-session-allocations-memory).
-1. Use the Allocation module of Profiler to record the native memory information within a period of time.
+### How to Locate
+To analyze native memory leaks, you can use the memory analysis module of DevEco Studio. For details, see [Memory Analysis and Optimization](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-insight-session-allocations-memory).
+1. Use the **Allocation** module of Profiler to record the native memory information within a period of time.
 <div align=left><img src="figures/jsvm_locate_memory_leak_allocation1.png"/></div>  
 
-2. Compare the memory changes in the Created & Existing field during this period. If the unreleased memory accounts for a large proportion and the value of Count is large, memory leakage may occur. In this case, check the call stack.
+2. Compare the memory changes in **Created & Existing** during this period. If the unreleased memory accounts for a large proportion and the value of **Count** is large, a memory leak may occur. In this case, check the call stack.
 <div align=left><img src="figures/jsvm_locate_memory_leak_allocation2.png"/></div> 
 
 
-## Locating Heap Memory Leakage of the JS Engine
-### Typical Use Case
-1. Global variables are abused. As a result, dom elements are not released.
+## Locating JavaScript Engine Heap Memory Leaks
+### When to Use
+1. Global variables are misused. As a result, DOM elements are not released.
 ```js
 const elements = [];
 function createElements() {
   for (let i = 0; i < 1000; i++) {
     const el = document.createElement('div');
     document.body.appendChild(el);
-    elements.push(el); // The array retains the reference even if it is removed from the DOM.
+    elements.push(el); // Even if the element is removed from the DOM, the array still holds the reference.
   }
 }
 ```
 
-### **Locating Procedure**
-Currently, JSVM provides OH_JSVM_OpenInspector to enable the inspector. For details, see [Using OH_JSVM_OpenInspector](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/jsvm-debugger-cpuprofiler-heapsnapshot#%E4%BD%BF%E7%94%A8-oh_jsvm_openinspector). In addition, you can use the [Chrome inspect page for debugging](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/jsvm-debugger-cpuprofiler-heapsnapshot#%E4%BD%BF%E7%94%A8-chrome-inspect-%E9%A1%B5%E9%9D%A2%E8%BF%9B%E8%A1%8C%E8%B0%83%E8%AF%95).
-Use DevTools to take a snapshot of the heap memory in the target scenario (before taking the snapshot, click the garbage collection button to perform garbage collection). Use the snapshot comparison function to find the unreleased JS object and its location in the source code, and further locate the cause of the heap memory release failure.
+### How to Locate
+Currently, JSVM provides OH_JSVM_OpenInspector to enable the inspector. For details, see [Using OH_JSVM_OpenInspector](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/jsvm-debugger-cpuprofiler-heapsnapshot#using-oh_jsvm_openinspector) and [Using Chrome Inspect](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/jsvm-debugger-cpuprofiler-heapsnapshot#using-chrome-inspect).
+Use DevTools to take a snapshot of the heap memory in the target scenario (click the garbage collection button above before taking a snapshot). Compare the snapshots to find the unreleased JavaScript objects and their locations in the source code to further locate the cause of the unreleased heap memory.
 <div align=left><img src="figures/jsvm_locate_memory_leak_devtool.png"/></div> 

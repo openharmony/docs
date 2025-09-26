@@ -12,8 +12,8 @@
 
 ## Basic Concepts
 
-- **ArrayBuffer**: An **ArrayBuffer** object represents a generic, fixed-length buffer of raw binary data. The **ArrayBuffer** content cannot be directly operated. Instead, you need to use a TypedArray or **DataView** object to interpret the buffer data in specific formats. ArrayBuffer is used to process raw binary data of a fixed length, such as files and network data packets.
-- **Lifecycle and memory management**: When using JSVM to process ArrayBuffer, pay special attention to object lifecycle management to ensure that the memory is released in a timely manner.
+- **ArrayBuffer**: An **ArrayBuffer** object represents a generic, fixed-length buffer of raw binary data. The **ArrayBuffer** content cannot be directly operated. Instead, you need to use a TypedArray or **DataView** object to interpret the buffer data in specific formats. **ArrayBuffer** is used to process original binary data of a fixed length, such as files and network data packets.
+- Lifecycle and memory management: When using **ArrayBuffer** with JSVM-API, pay special attention to lifecycle and memory management, ensuring timely memory release.
 
 ## Available APIs
 
@@ -142,7 +142,7 @@ JSVM IsArrayBuffer: 1
 
 ### OH_JSVM_DetachArraybuffer
 
-Calls the **Detach()** operation of an **ArrayBuffer** object.
+Use **OH_JSVM_DetachArraybuffer** to call the **Detach()** operation of an **ArrayBuffer** object.
 
 ### OH_JSVM_IsDetachedArraybuffer
 
@@ -219,7 +219,7 @@ JSVM IsArrayBuffer: 1
 
 ### OH_JSVM_CreateArraybuffer
 
-Creates an **ArrayBuffer** object of the specified size.
+Use **OH_JSVM_CreateArraybuffer** to create an **ArrayBuffer** object of the specified size.
 
 CPP code:
 

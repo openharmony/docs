@@ -23,7 +23,7 @@ In JS, memory management and GC are performed automatically. The JSVM is respons
 
 ## Example
 
-For details about the JSVM-API development process, see [Using JSVM-API to Implement Interactive Development Between JS and C/C++](use-jsvm-process.md). This document describes only the C++ and ArkTS code corresponding to the APIs.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code and ArkTS code involved in related APIs.
 
 ### OH_JSVM_AdjustExternalMemory
 
@@ -64,21 +64,21 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 ```
 
-JS Example
+JS example:
 
 ```c++
 const char *srcCallNative = R"JS(adjustExternalMemory())JS";
 ```
 <!-- @[oh_jsvm_adjust_external_memory](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/adjustexternalmemory/src/main/cpp/hello.cpp) -->
-Output:
-The following information is displayed in the log:
+Expected result:
+ 
 ```cpp
 JSVM OH_JSVM_AdjustExternalMemory: success
 JSVM Allocate memory size: 1048576
 ```
 ### OH_JSVM_MemoryPressureNotification
 
-Notifies the VM of insufficient system memory and selectively triggers garbage collection.
+Call **OH_JSVM_MemoryPressureNotification** to notify the VM of insufficient system memory and selectively triggers garbage collection.
 
 CPP code:
 
@@ -111,14 +111,14 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 ```
 
-JS Example
+JS example:
 
 ```c++
 const char *srcCallNative = R"JS(memoryPressureNotification())JS";
 ```
 <!-- @[oh_jsvm_memory_pressure_notification](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/memorypressurenotification/src/main/cpp/hello.cpp) -->
-Output:
-The following information is displayed in the log:
+Expected result:
+ 
 ```cpp
 JSVM OH_JSVM_MemoryPressureNotification: success
 JSVM Current JSVM memory pressure level: 2

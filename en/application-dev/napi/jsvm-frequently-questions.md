@@ -14,7 +14,7 @@ If an unexpected behavior occurs during the running of the application, locate t
 
 ## Application Crash Issues
 
-1. Q: The application crashes when **OH_JSVM_RunScript** or **OH_JSVM_CallFunction** is called, and the stack top is **SetReturnValue**.
+1. Q: The application crashes when **OH_JSVM_RunScript** or **OH_JSVM_CallFunction** is called, and the stack top is **SetReturnValue**. What should I do?
 
    ```
    #00 pc 0000000000c68ef0 /system/lib64/ndk/libjsvm.so(v8impl::(anonymous namespace)::FunctionCallbackWrapper::SetReturnValue(JSVM_Value__*)+16)
@@ -46,9 +46,9 @@ If an unexpected behavior occurs during the running of the application, locate t
 
    A: **SetReturnValue** is used to set the return value of a JS function and is triggered after the native function injected by JS is called. Check whether the return value of the native function is correct. For example, check whether the return value (of the **JSVM_Value** type) is returned without initialization.
 
-2. Q: The application crashes when the native function injected during JSVM initialization is executed by JS.
+2. Q: What should I do if the application crashes when the native function injected during JSVM initialization is executed by JS?
 
-   A: Check whether `JSVM_CallbackStruct` is a variable on the stack. If the `JSVM_CallbackStruct` is used across functions, ensure that the lifecycle of the `JSVM_CallbackStruct` is longer than that of the `JSVM_Env`.
+   A: Check whether **JSVM_CallbackStruct** is a variable in the stack. When **JSVM_CallbackStruct** is used across functions, the lifecycle of **JSVM_CallbackStruct** must be greater than that of **JSVM_Env**.
 
    ```
    func {
@@ -70,13 +70,13 @@ If an unexpected behavior occurs during the running of the application, locate t
    }
    ```
 
-   In the preceding sample code, the JS engine instance is closed before the function ends. Therefore, you can directly use the `param` on the stack.
+   In the previous example, the JSVM instance is closed before the function ends. Therefore, the **JSVM_CallbackStruct param** in the stack can be used.
 
-3. Q: The application crashes when **OH_JSVM_ReferenceRef**, **OH_JSVM_ReferenceUnRef**, **OH_JSVM_CreateReference**, or **OH_JSVM_DeleteReference** is called.
+3. Q: What should I do if the application crashes when **OH_JSVM_ReferenceRef**, **OH_JSVM_ReferenceUnRef**, **OH_JSVM_CreateReference**, or **OH_JSVM_DeleteReference** is called?
 
    A: Check whether **JSVM_Ref** is held and released by multiple threads at the same time. For details, see [JSVM Instance Shared by Multiple Threads](jsvm-guidelines.md#jsvm-instance-shared-by-multiple-threads).
 
-4. Q: The application crashes when a JS data type instance is created (for example, **OH_JSVM_CreateDouble**) in a JSVM instance. The call stack is as follows:
+4. Q: What should I do if the application crashes when a JS data type instance is created (for example, **OH_JSVM_CreateDouble**) in a JSVM instance? The call stack is as follows:
 
    ```
    #00 pc 0000000001d209e4/system/lib64/ndk/libjsvm.so(v8::base::0S::Abort()+28)
@@ -88,14 +88,14 @@ If an unexpected behavior occurs during the running of the application, locate t
 
 ## JSVM-API Execution Failures
 
-1. Q: The JS function parameters failed to be obtained by using **OH_JSVM_GetCbInfo**.
+1. Q: What should I do if the JS function parameters failed to be obtained by using **OH_JSVM_GetCbInfo**?
 
    A: Check whether the function parameters are correctly passed. For details, see [Obtaining Arguments Passed from JS](jsvm-guidelines.md#obtaining-arguments-passed-from-js).
 
-2. Q: **JSVM_PENDING_EXCEPTION** is returned when functions such as **OH_JSVM_CreateFunction** are called.
+2. Q: What should I do if **JSVM_PENDING_EXCEPTION** is returned when functions such as **OH_JSVM_CreateFunction** are called?
 
    A: **JSVM_PENDING_EXCEPTION** indicates that the JSVM has pending exceptions. The pending exception may be caused by the current call, or an exception thrown by a previous call has not been cleared. You can use **OH_JSVM_GetAndClearLastException** before the current function is called to check whether there are uncleared exceptions. If there is uncleared exception, check for exception value that is not processed. If the exception is thrown by the current call, handle the exception. You can use **OH_JSVM_GetAndClearLastException** to obtain and clear the pending exception.
 
-3. Q: The class defined by **OH_JSVM_DefineClass** cannot be found during the JSVM execution.
+3. Q: What should I do if the class defined by **OH_JSVM_DefineClass** cannot be found during the JSVM execution?
 
    A: Check whether the defined class is bound to the JS context. For details, see [Binding Object Context](jsvm-guidelines.md#binding-object-context).

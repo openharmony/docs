@@ -9,19 +9,19 @@
 
 ## When to Use
 
-**napi_create_threadsafe_function** is a Node-API interface used to create a thread-safe JS function, which This function is used for sharing and invoking among multiple threads to avoid race conditions and deadlocks. The following scenarios are involved:
+**napi_create_threadsafe_function** is a Node-API interface used to create a thread-safe JS function, which can be called from multiple threads without race conditions or deadlocks. The following scenarios are involved:
 
 
-- Asynchronous computing: If time-consuming computing or I/O operations need to be performed, you can create thread-safe functions to complete the computing or I/O operations in another thread. This prevents the main thread from being blocked and improves the program response speed.
+- Asynchronous computing: If a time-consuming computing or I/O operation needs to be performed, you can create a thread-safe function to have the computing or I/O operation executed in a dedicated thread. This ensures normal running of the main thread and improves the response speed of your application.
 
-- Data sharing: If multiple threads need to access the same data, you can create a thread-safe function to prevent problems such as competition conditions or deadlocks during data read and write.
+- Data sharing: When multiple threads need to access the same data, using a thread-safe function can prevent race conditions or deadlocks during data read and write operations.
 
 - Multithread programming: In the case of multithread programming, a thread-safe function can ensure communication and synchronization between multiple threads.
 
 
 ## Example
 
-1. Define the thread-safe function at the native entry.
+1. Define a thread-safe function at the native entry.
    ```c++
    #include "napi/native_api.h"
    #include "hilog/log.h"
@@ -36,7 +36,7 @@
    {
        size_t argc = 1;
        napi_value jsCb = nullptr;
-       CallbackData *callbackData = new CallbackData (); // Released when the asynchronous task is complete.
+       CallbackData *callbackData = new CallbackData(); // Release when the asynchronous task is complete.
        napi_get_cb_info(env, info, &argc, &jsCb, nullptr, nullptr);
 
        // Create a thread-safe function.
@@ -148,7 +148,7 @@
    ```
    <!-- @[napi_thread_safety_cpp](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/NodeAPI/NodeAPIClassicUseCases/NodeAPIApplicationScenario/entry/src/main/cpp/thread_safety.cpp) -->
 
-5. Initialize the module and call the API on the ArkTS side.
+5. Initialize the module and call the API from ArkTS.
    ```c++
    // Initialize the module.
    static napi_value Init(napi_env env, napi_value exports) {
