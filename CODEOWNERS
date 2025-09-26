@@ -569,9 +569,20 @@ zh-cn/application-dev/file-management/user-file-overview.md @wang_zhangjun @zhua
 zh-cn/application-dev/file-management/user-file-uri-intro.md @wang_zhangjun @zhuangzhuang @wang_zhangjun @zhuangzhuang @renguang1116 @liuhonggang123 @yue-ye2 @juxiaopang @foryourself
 
 
-[开发-Driverdevelopment kit]
-zh-cn/application-dev/application-models/driverextensionability.md @w_Machine_cc @w00373942 @dong-dongzhen @hu-zhiqiong
-zh-cn/application-dev/device/externaldevice-guidelines.md @w_Machine_cc @w00373942 @dong-dongzhen @hu-zhiqiong
+[开发-Driver Development kit]
+zh-cn/application-dev/application-models/driverextensionability.md @w00373942 @dong-dongzhen @hu-zhiqiong
+zh-cn/application-dev/device/externaldevice-guidelines.md @w00373942 @dong-dongzhen @hu-zhiqiong
+zh-cn/application-dev/device/driverdevelopment-overview.md @w00373942 @dong-dongzhen @hu-zhiqiong
+zh-cn/application-dev/device/environmental-preparation.md @w00373942 @dong-dongzhen @hu-zhiqiong
+zh-cn/application-dev/device/driverextensionability.md @w00373942 @dong-dongzhen @hu-zhiqiong
+zh-cn/application-dev/device/externaldevice-guidelines.md @w00373942 @dong-dongzhen @hu-zhiqiong
+zh-cn/application-dev/device/usb-ddk-guidelines.md  @w00373942 @dong-dongzhen @hu-zhiqiong
+zh-cn/application-dev/device/hid-ddk-guidelines.md @w00373942 @dong-dongzhen @hu-zhiqiong
+zh-cn/application-dev/device/usb-serial-ddk-guidelines.md @w00373942 @dong-dongzhen @hu-zhiqiong
+zh-cn/application-dev/device/scsi-peripheral-ddk-guidelines.md  @w00373942 @dong-dongzhen @hu-zhiqiong
+zh-cn/application-dev/device/externaldevice-faqs.md  @w00373942 @dong-dongzhen @hu-zhiqiong
+zh-cn/application-dev/device/terms.md  @w00373942 @dong-dongzhen @hu-zhiqiong
+zh-cn/application-dev/device/driver/Readme-CN.md  @w00373942 @dong-dongzhen @hu-zhiqiong
 
 
 [开发-Form Kit]
@@ -1927,12 +1938,12 @@ zh-cn/application-dev/reference/apis-performance-analysis-kit/js-apis-loglibrary
 zh-cn/application-dev/reference/apis-performance-analysis-kit/Readme-CN.md @mzyan @liyueric @gcw_KuLfPSbe @foryourself
 
 
-[API参考-Distributedservice Kit]
-zh-cn/application-dev/reference/apis-distributedservice-kit/ @intermilano  @william-ligang @liuhonggang123 @w_Machine_cc @hu-zhiqiong
-zh-cn/application-dev/reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate.md @mayunteng_1 @liuhaonan2 @hu-zhiqiong @cococoler @alien0208  @hu-zhiqiong
+[API参考-Distributed Service Kit]
+zh-cn/application-dev/reference/apis-distributedservice-kit/ @intermilano  @william-ligang @liuhonggang123 @hu-zhiqiong
+zh-cn/application-dev/reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate.md @mayunteng_1 @liuhaonan2 @hu-zhiqiong @cococoler @alien0208 
 
 [API参考-Driverdevelopment kit]
-zh-cn/application-dev/reference/apis-driverdevelopment-kit/  @w_Machine_cc @w00373942 @dong-dongzhen @hu-zhiqiong
+zh-cn/application-dev/reference/apis-driverdevelopment-kit/   @w00373942 @dong-dongzhen @hu-zhiqiong
 
 
 
