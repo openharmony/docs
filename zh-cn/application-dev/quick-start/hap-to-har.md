@@ -7,6 +7,13 @@
 <!--Adviser: @Brilliantry_Rui-->
 
 HAP不支持导出接口或ArkUI组件给其他模块或应用使用，如果需要导出模块中的接口或ArkUI组件，并将模块作为二方库、三方库共享给其他模块或应用，可以使用HAR。本文介绍如何通过配置项的变更将HAP工程变成HAR工程。
+
+>
+> **说明：**
+>
+> 部分组件和模块在HAP、HSP、HAR中集成使用时存在差异，例如[加载HAR中Worker线程文件相比HSP存在单独的使用约束](../arkts-utils/worker-introduction.md#文件路径注意事项)，因此按照如下步骤完成HAP转HAR后，请关注对应组件和模块介绍并进行适配。
+>
+
 ## HAP转HAR的操作步骤
 
 1. 修改HAP模块下的[module.json5](./module-configuration-file.md)文件，具体操作如下：
