@@ -61,23 +61,23 @@
 
     try {
     const devices = mechanicManager.getAttachedMechDevices();
-    console.log('Connected devices:', devices);
+    console.info('Connected devices:', devices);
 
     devices.forEach(device => {
-        console.log(`Device ID: ${device.mechId}`);
-        console.log(`Device Name: ${device.mechName}`);
-        console.log(`Device Type: ${device.mechDeviceType}`);
+        console.info(`Device ID: ${device.mechId}`);
+        console.info(`Device Name: ${device.mechName}`);
+        console.info(`Device Type: ${device.mechDeviceType}`);
 
     //保存设备类型为 GIMBAL_DEVICE 的设备的 MechId。
         if (device.mechDeviceType === mechanicManager.MechDeviceType.GIMBAL_DEVICE) {
         savedMechanicIds.push(device.mechId);
-        console.log(`GIMBAL_TYPE device saved ID: ${device.mechId}`);
+        console.info(`GIMBAL_TYPE device saved ID: ${device.mechId}`);
         } else {
-        console.log(`Skip non-gimbal devices: ${device.mechId}`);
+        console.info(`Skip non-gimbal devices: ${device.mechId}`);
         }
     });
 
-    console.log('List of saved gimbal device IDs:', savedMechanicIds);
+    console.info('List of saved gimbal device IDs:', savedMechanicIds);
     } catch (err) {
     console.error('Error getting attached devices:', err);
     }
@@ -88,11 +88,11 @@
     ```ts
     const attachStateChangeCallback = (info: mechanicManager.AttachStateChangeInfo) => {
     if (info.state === mechanicManager.AttachState.ATTACHED) {
-        console.log('Device attached:', info.mechInfo);
+        console.info('Device attached:', info.mechInfo);
         // 处理设备连接逻辑
         handleDeviceAttached(info.mechInfo);
     } else if (info.state === mechanicManager.AttachState.DETACHED) {
-        console.log('Device detached:', info.mechInfo);
+        console.info('Device detached:', info.mechInfo);
         // 处理设备断开逻辑
         handleDeviceDetached(info.mechInfo);
     }
@@ -108,13 +108,13 @@
     mechanicManager.on('attachStateChange', attachStateChangeCallback);
 
     function handleDeviceAttached(mechInfo: mechanicManager.MechInfo) {
-    console.log(`New device is connected: ${mechInfo.mechName} (ID: ${mechInfo.mechId})`);
+    console.info(`New device is connected: ${mechInfo.mechName} (ID: ${mechInfo.mechId})`);
     savedMechanicIds.push(mechInfo.mechId);
     // To do sth.
     }
 
     function handleDeviceDetached(mechInfo:  mechanicManager.MechInfo) {
-    console.log(`Device disconnected: ${mechInfo.mechName} (ID: ${mechInfo.mechId})`);
+    console.info(`Device disconnected: ${mechInfo.mechName} (ID: ${mechInfo.mechId})`);
     savedMechanicIds.filter(id => id !== mechInfo.mechId);
     // To do sth.
     }
@@ -137,38 +137,38 @@
     try {
     // 初始化设备功能，例如获取设备状态
     const devices = mechanicManager.getAttachedMechDevices();
-    console.log('Connected devices:', devices);
+    console.info('Connected devices:', devices);
 
     devices.forEach(device => {
-        console.log(`Device ID: ${device.mechId}`);
-        console.log(`Device Name: ${device.mechName}`);
-        console.log(`Device Type: ${device.mechDeviceType}`);
+        console.info(`Device ID: ${device.mechId}`);
+        console.info(`Device Name: ${device.mechName}`);
+        console.info(`Device Type: ${device.mechDeviceType}`);
     });
 
     // 注册设备连接状态监听
     const attachStateChangeCallback = (info: mechanicManager.AttachStateChangeInfo) => {
         if (info.state === mechanicManager.AttachState.ATTACHED) {
-        console.log('Device attached:', info.mechInfo);
+        console.info('Device attached:', info.mechInfo);
         } else if (info.state === mechanicManager.AttachState.DETACHED) {
-        console.log('Device detached:', info.mechInfo);
+        console.info('Device detached:', info.mechInfo);
         }
     };
     mechanicManager.on('attachStateChange', attachStateChangeCallback);
     // 获取当前角度
     const currentAngles = mechanicManager.getCurrentAngles(savedMechanicIds[0]);
-    console.log('current angle:', currentAngles);
+    console.info('current angle:', currentAngles);
 
     // 获取旋转限制
     const rotationLimits = mechanicManager.getRotationLimits(savedMechanicIds[0]);
-    console.log('Rotation limit:', rotationLimits);
+    console.info('Rotation limit:', rotationLimits);
 
     // 获取最大旋转速度
     const maxSpeed = mechanicManager.getMaxRotationSpeed(savedMechanicIds[0]);
-    console.log('Maximum rotation speed:', maxSpeed);
+    console.info('Maximum rotation speed:', maxSpeed);
 
     // 获取速度控制最大持续时间
     const maxTime = mechanicManager.getMaxRotationTime(savedMechanicIds[0]);
-    console.log('Maximum spin time:', maxTime);
+    console.info('Maximum spin time:', maxTime);
     } catch (err) {
     console.error('Failed to query device status:', err);
     }
@@ -200,7 +200,7 @@
         console.error('Failed to retrieve rotation limits or limits are undefined.');
         return;
         }
-        console.log('Rotation limits:', rotationLimits);
+        console.info('Rotation limits:', rotationLimits);
 
         // 定义目标角度并确保类型正确
         const angles: mechanicManager.RotationAngles = {
@@ -242,7 +242,7 @@
 
         // 获取速度控制最大持续时间
         const maxTime = mechanicManager.getMaxRotationTime(mechId);
-        console.log('Maximum spin time:', maxTime);
+        console.info('Maximum spin time:', maxTime);
 
         // 获取最大旋转速度
         const maxSpeed = mechanicManager.getMaxRotationSpeed(mechId);
@@ -250,7 +250,7 @@
         console.error('Failed to retrieve maximum rotation speed or speed values are undefined.');
         return;
         }
-        console.log('Maximum rotation speed:', maxSpeed);
+        console.info('Maximum rotation speed:', maxSpeed);
         // 定义旋转速度和持续时间
         const speed : mechanicManager.RotationSpeed = {
         yawSpeed: maxSpeed.yawSpeed / 2,    // 偏航速度：最大速度的一半
@@ -272,17 +272,17 @@
 
     ```ts
     const rotationAxesCallback = (info: mechanicManager.RotationAxesStateChangeInfo) => {
-    console.log('Rotation Axes state change:', info);
+    console.info('Rotation Axes state change:', info);
     const mechId = info.mechId;
     const status = info.status;
 
-    console.log(`Device ${mechId} status update:`);
-    console.log(`- Yaw  axes enabled: ${status.yawEnabled}`);
-    console.log(`- Pitch axes enabled: ${status.pitchEnabled}`);
-    console.log(`- Roll axes enabled: ${status.rollEnabled}`);
+    console.info(`Device ${mechId} status update:`);
+    console.info(`- Yaw  axes enabled: ${status.yawEnabled}`);
+    console.info(`- Pitch axes enabled: ${status.pitchEnabled}`);
+    console.info(`- Roll axes enabled: ${status.rollEnabled}`);
 
     if (status.yawLimited !== undefined) {
-        console.log(`- Yaw axis restriction state: ${status.yawLimited}`);
+        console.info(`- Yaw axis restriction state: ${status.yawLimited}`);
     }
     };
 
@@ -297,7 +297,7 @@
     try {
         const mechId = savedMechanicIds[0];
         await mechanicManager.stopMoving(mechId);
-        console.log('The device has ceased moving.');
+        console.info('The device has ceased moving.');
     } catch (err) {
         console.error('Failed to stop device movement:', err);
     }
