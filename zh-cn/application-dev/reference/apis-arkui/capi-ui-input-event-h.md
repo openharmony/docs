@@ -101,6 +101,7 @@
 | [double OH_ArkUI_AxisEvent_GetHorizontalAxisValue(const ArkUI_UIInputEvent* event)](#oh_arkui_axisevent_gethorizontalaxisvalue) | 获取当前轴事件的水平滚动轴的值，通过在触控板上双指横向滑动产生。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | [double OH_ArkUI_AxisEvent_GetPinchAxisScaleValue(const ArkUI_UIInputEvent* event)](#oh_arkui_axisevent_getpinchaxisscalevalue) | 获取当前轴事件的捏合轴缩放的值。通过触控板双指缩放/捏合操作产生。上报的scale数值，为相对于初始状态时的当前scale值。初始状态为系统识别到用户通过触控板发生了捏合操作时的两指位置状态，此时的scale数值为1.0。在手指抬起前的本次捏合操作过程中，所上报的scale数值均将初始状态作为参考系，从初始状态往中心捏合，则上报的scale会从1.0逐步往0.0缩小；当从初始化状态往外扩大双指距离时，会从1.0逐步变大。                                                                                                                                                                                                                                                                                                                                                                   |
 | [int32_t OH_ArkUI_AxisEvent_GetAxisAction(const ArkUI_UIInputEvent* event)](#oh_arkui_axisevent_getaxisaction) | 获取当前轴事件的操作类型。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| [int32_t OH_ArkUI_AxisEvent_HasAxis(const ArkUI_UIInputEvent* event, int32_t axis)](#oh_arkui_axisevent_hasaxis) | 检测此轴事件是否包含指定的轴类型。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | [int32_t OH_ArkUI_PointerEvent_SetInterceptHitTestMode(const ArkUI_UIInputEvent* event, HitTestMode mode)](#oh_arkui_pointerevent_setintercepthittestmode) | 配置HitTest模式。仅适用于接收基础事件的场景，如使用NODE_ON_TOUCH接收touch事件场景。对于通过[OH_ArkUI_GestureEvent_GetRawInputEvent](capi-native-gesture-h.md#oh_arkui_gestureevent_getrawinputevent)接口从一个手势事件中获取到的ArkUI_UIInputEvent对象，无法使用该接口。                                                                                                                                                                                                                                                                                                                                                                         |
 | [int32_t OH_ArkUI_MouseEvent_GetMouseButton(const ArkUI_UIInputEvent* event)](#oh_arkui_mouseevent_getmousebutton) | 获取鼠标事件的按键类型的值。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | [int32_t OH_ArkUI_MouseEvent_GetMouseAction(const ArkUI_UIInputEvent* event)](#oh_arkui_mouseevent_getmouseaction) | 获取鼠标事件的鼠标动作类型的值。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
@@ -366,6 +367,25 @@ enum anonymous7
 | UI_AXIS_EVENT_ACTION_UPDATE = 2 | 轴事件更新。 |
 | UI_AXIS_EVENT_ACTION_END = 3 | 轴事件结束。 |
 | UI_AXIS_EVENT_ACTION_CANCEL = 4 | 轴事件取消。 |
+
+### AxisType
+
+```
+enum AxisType
+```
+
+**描述：**
+
+
+定义轴事件的轴类型。
+
+**起始版本：** 21
+
+| 枚举项 | 描述 |
+| -- | -- |
+| UI_AXIS_EVENT_VERTICAL_AXIS = 0 | 垂直滚动轴。 |
+| UI_AXIS_EVENT_HORIZONTAL_AXIS = 1 | 水平滚动轴。 |
+| UI_AXIS_EVENT_PINCH_AXIS = 2 | 捏合轴。 |
 
 
 ## 函数说明
@@ -1796,6 +1816,33 @@ int32_t OH_ArkUI_AxisEvent_GetAxisAction(const ArkUI_UIInputEvent* event)
 | 类型 | 说明 |
 | -- | -- |
 | int32_t | 返回当前轴事件的操作类型。 |
+
+### OH_ArkUI_AxisEvent_HasAxis()
+
+```
+int32_t OH_ArkUI_AxisEvent_HasAxis(const ArkUI_UIInputEvent* event, int32_t axis)
+```
+
+**描述：**
+
+
+检测此轴事件是否包含指定的轴类型。
+
+**起始版本：** 21
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [const ArkUI_UIInputEvent](capi-arkui-eventmodule-arkui-uiinputevent.md)* event | 表示指向当前UI输入事件的指针。 |
+| int32_t axis | 轴事件的轴类型。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 返回此轴事件是否包含指定的轴类型。返回true表示包含指定的轴类型，返回false表示不包含指定的轴类型。 |
 
 ### OH_ArkUI_PointerEvent_SetInterceptHitTestMode()
 

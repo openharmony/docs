@@ -1222,6 +1222,20 @@ type Nullable\<T> = T | undefined
 | END    | 3    | 轴事件结束。 |
 | CANCEL | 4    | 轴事件取消。 |
 
+## AxisType<sup>21+</sup>
+
+定义轴事件的轴类型。
+
+**原子化服务API：** 从API version 21开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 值   | 说明                               |
+| ------- | ---- | ---------------------------------- |
+| VERTICAL_AXIS   | 0    | 垂直滚动轴。 |
+| HORIZONTAL_AXIS  | 1    | 水平滚动轴。 |
+| PINCH_AXIS | 2    | 捏合轴。 |
+
 ## InteractionHand<sup>15+</sup>
 
 定义事件是由左手点击触发还是右手点击触发。
