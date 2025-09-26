@@ -36,7 +36,7 @@ import { request } from '@kit.BasicServicesKit';
 >
 > **下载任务状态码**：下载相关[getTaskInfo](#gettaskinfo9)返回值的status字段取值。
 
-| 名称 | 参数类型 | 数值 | 说明 |
+| 名称 | 类型 | 值 | 说明 |
 | -------- | -------- | -------- | -------- |
 | EXCEPTION_PERMISSION<sup>9+</sup> | number |   201   | 通用错误码：权限校验失败。 |
 | EXCEPTION_PARAMCHECK<sup>9+</sup> | number |   401   | 通用错误码：参数检查失败。 |
@@ -68,6 +68,8 @@ import { request } from '@kit.BasicServicesKit';
 | SESSION_PENDING<sup>7+</sup> | number |   2   | 下载任务状态码：下载会话正在被调度中。 |
 | SESSION_PAUSED<sup>7+</sup> | number |   3   | 下载任务状态码：下载会话已暂停。 |
 | SESSION_FAILED<sup>7+</sup> | number |   4   | 下载任务状态码：下载会话已失败，将不会重试。 |
+| VISIBILITY_COMPLETION<sup>21+</sup> | number |   1   | [通知栏](#notification15)展示类型：显示完成通知 |
+| VISIBILITY_PROGRESS<sup>21+</sup>   | number |   2   | [通知栏](#notification15)展示类型：显示进度通知 |
 
 
 ## request.uploadFile<sup>9+</sup>
@@ -2650,6 +2652,43 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 |------|--------|----|----|-------------------------------|
 | title   | string | 否 | 是 | 通知栏自定义标题。若不设置则使用默认显示方式。title长度上限为1024B。 |
 | text    | string | 否 | 是 | 通知栏自定义正文。若不设置则使用默认显示方式。text长度上限为3072B。  |
+| visibility<sup>21+</sup> | number | 否 | 是 | 设置任务的通知栏显示方式，通过[agent常量](#常量)的位运算方式决定显示方式。若不设置，则根据gauge字段来判断；若无gauge字段，则仅显示完成通知。|
+
+
+**示例：**
+  <!--code_no_check-->
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  let config: request.agent.Config = {
+    action: request.agent.Action.DOWNLOAD,
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
+    title: 'taskOnNotification',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.BACKGROUND,
+    overwrite: true,
+    method: "PUT",
+    saveas: "./",
+    network: request.agent.Network.ANY,
+    gauge: true,
+    notification: {
+      visibility: request.agent.VISIBILITY_COMPLETION | request.agent.VISIBILITY_PROGRESS
+    }
+  };
+  let createOnCallback = (progress: request.agent.Progress) => {
+    console.info('download task progress.');
+  };
+  request.agent.create(context, config).then((task: request.agent.Task) => {
+    task.on('progress', createOnCallback);
+    console.info(`Succeeded in creating a download task. result: ${task.tid}`);
+    task.start();
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
 
 ## GroupConfig<sup>15+</sup>
 
