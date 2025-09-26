@@ -1,5 +1,12 @@
 # @ohos.multimodalInput.pointer (Mouse Pointer)
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 The **pointer** module provides APIs related to pointer attribute management, such as querying and setting pointer attributes.
 
 > **NOTE**
@@ -39,16 +46,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setPointerVisible(true, (error: Error) => {
-    if (error) {
-      console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setPointerVisible(true, (error: Error) => {
+              if (error) {
+                console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.info(`Set pointer visible success`);
+            });
+          } catch (error) {
+            console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Set pointer visible success`);
-  });
-} catch (error) {
-  console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -84,12 +104,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setPointerVisible(false).then(() => {
-    console.log(`Set pointer visible success`);
-  });
-} catch (error) {
-  console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setPointerVisible(false).then(() => {
+              console.info(`Set pointer visible success`);
+            });
+          } catch (error) {
+            console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -118,11 +151,24 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setPointerVisibleSync(false);
-  console.log(`Set pointer visible success`);
-} catch (error) {
-  console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setPointerVisibleSync(false);
+            console.info(`Set pointer visible success`);
+          } catch (error) {
+            console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -151,16 +197,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.isPointerVisible((error: Error, visible: boolean) => {
-    if (error) {
-      console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.isPointerVisible((error: Error, visible: boolean) => {
+              if (error) {
+                console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.info(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
+            });
+          } catch (error) {
+            console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
-  });
-} catch (error) {
-  console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -181,12 +240,25 @@ Obtains the visible status of the mouse pointer. This API uses a promise to retu
 **Example**
 
 ```js
-try {
-  pointer.isPointerVisible().then((visible: boolean) => {
-    console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
-  });
-} catch (error) {
-  console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.isPointerVisible().then((visible: boolean) => {
+              console.info(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
+            });
+          } catch (error) {
+            console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -207,11 +279,24 @@ Obtains the visible status of the mouse pointer. This API returns the result syn
 **Example**
 
 ```js
-try {
-  let visible: boolean = pointer.isPointerVisibleSync();
-  console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
-} catch (error) {
-  console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            let visible: boolean = pointer.isPointerVisibleSync();
+            console.info(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
+          } catch (error) {
+            console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -241,27 +326,39 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
+import { pointer } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-  if (error.code) {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
-    return;
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+            if (error.code) {
+              console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+              return;
+            }
+            let windowId = win.getWindowProperties().id;
+            if (windowId < 0) {
+              console.info(`Invalid windowId`);
+              return;
+            }
+            try {
+              pointer.getPointerStyle(windowId, (error: Error, style: pointer.PointerStyle) => {
+                console.info(`Get pointer style success, style: ${JSON.stringify(style)}`);
+              });
+            } catch (error) {
+              console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            }
+          });
+        })
+    }
   }
-  let windowId = win.getWindowProperties().id;
-  if (windowId < 0) {
-    console.log(`Invalid windowId`);
-    return;
-  }
-  try {
-    pointer.getPointerStyle(windowId, (error: Error, style: pointer.PointerStyle) => {
-      console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
-    });
-  } catch (error) {
-    console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-  }
-});
+}
 ```
 
 ## pointer.getPointerStyle
@@ -295,27 +392,39 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
+import { pointer } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-  if (error.code) {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
-    return;
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+            if (error.code) {
+              console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+              return;
+            }
+            let windowId = win.getWindowProperties().id;
+            if (windowId < 0) {
+              console.info(`Invalid windowId`);
+              return;
+            }
+            try {
+              pointer.getPointerStyle(windowId).then((style: pointer.PointerStyle) => {
+                console.info(`Get pointer style success, style: ${JSON.stringify(style)}`);
+              });
+            } catch (error) {
+              console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            }
+          });
+        })
+    }
   }
-  let windowId = win.getWindowProperties().id;
-  if (windowId < 0) {
-    console.log(`Invalid windowId`);
-    return;
-  }
-  try {
-    pointer.getPointerStyle(windowId).then((style: pointer.PointerStyle) => {
-      console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
-    });
-  } catch (error) {
-    console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-  }
-});
+}
 ```
 
 ## pointer.getPointerStyleSync<sup>10+</sup>
@@ -351,12 +460,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
 import { pointer } from '@kit.InputKit';
 
-let windowId = -1;
-try {
-  let style: pointer.PointerStyle = pointer.getPointerStyleSync(windowId);
-  console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
-} catch (error) {
-  console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let windowId = -1;
+          try {
+            let style: pointer.PointerStyle = pointer.getPointerStyleSync(windowId);
+            console.info(`Get pointer style success, style: ${JSON.stringify(style)}`);
+          } catch (error) {
+            console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -387,27 +507,39 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
+import { pointer } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-  if (error.code) {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
-    return;
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+            if (error.code) {
+              console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+              return;
+            }
+            let windowId = win.getWindowProperties().id;
+            if (windowId < 0) {
+              console.info(`Invalid windowId`);
+              return;
+            }
+            try {
+              pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS, error => {
+                console.info(`Set pointer style success`);
+              });
+            } catch (error) {
+              console.error(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            }
+          });
+        })
+    }
   }
-  let windowId = win.getWindowProperties().id;
-  if (windowId < 0) {
-    console.log(`Invalid windowId`);
-    return;
-  }
-  try {
-    pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS, error => {
-      console.log(`Set pointer style success`);
-    });
-  } catch (error) {
-    console.error(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-  }
-});
+}
 ```
 ## pointer.setPointerStyle
 
@@ -441,27 +573,39 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
+import { pointer } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-  if (error.code) {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
-    return;
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+            if (error.code) {
+              console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+              return;
+            }
+            let windowId = win.getWindowProperties().id;
+            if (windowId < 0) {
+              console.info(`Invalid windowId`);
+              return;
+            }
+            try {
+              pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS).then(() => {
+                console.info(`Set pointer style success`);
+              });
+            } catch (error) {
+              console.error(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            }
+          });
+        })
+    }
   }
-  let windowId = win.getWindowProperties().id;
-  if (windowId < 0) {
-    console.log(`Invalid windowId`);
-    return;
-  }
-  try {
-    pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS).then(() => {
-      console.log(`Set pointer style success`);
-    });
-  } catch (error) {
-    console.error(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-  }
-});
+}
 ```
 
 ## pointer.setPointerStyleSync<sup>10+</sup>
@@ -489,26 +633,38 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 ```js
+import { pointer } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-  if (error.code) {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
-    return;
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+            if (error.code) {
+              console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+              return;
+            }
+            let windowId = win.getWindowProperties().id;
+            if (windowId < 0) {
+              console.info(`Invalid windowId`);
+              return;
+            }
+            try {
+              pointer.setPointerStyleSync(windowId, pointer.PointerStyle.CROSS);
+              console.info(`Set pointer style success`);
+            } catch (error) {
+              console.error(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            }
+          });
+        })
+    }
   }
-  let windowId = win.getWindowProperties().id;
-  if (windowId < 0) {
-    console.log(`Invalid windowId`);
-    return;
-  }
-  try {
-    pointer.setPointerStyleSync(windowId, pointer.PointerStyle.CROSS);
-    console.log(`Set pointer style success`);
-  } catch (error) {
-    console.error(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-  }
-});
+}
 ```
 
 ## PrimaryButton<sup>10+</sup>
@@ -589,6 +745,7 @@ Enumerates mouse pointer styles.
 | LOADING<sup>10+</sup> | 42 | Animation loading|![Loading.png](./figures/Loading.png)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | RUNNING<sup>10+</sup> | 43 | Animation running in the background|![Running.png](./figures/Running.png)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | MIDDLE_BTN_EAST_WEST<sup>18+</sup>          | 44   | Scrolling east-west|![MID_Btn_East_West.png](./figures/MID_Btn_East_West.png)|
+| SCREENRECORDER_CURSOR<sup>20+</sup>         | 48   | Screen recording |![ScreenRecorder_Cursor.png](./figures/ScreenRecorder_Cursor.png)|
 
 ## pointer.setCustomCursor<sup>11+</sup>
 
@@ -624,37 +781,50 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
+import { pointer } from '@kit.InputKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-// app_icon is an example resource. Configure the resource file based on the actual requirements.
-this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
-  const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
-  let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
-  let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-  svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-    window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-      let windowId = win.getWindowProperties().id;
-        try {
-          pointer.setCustomCursor(windowId, pixelMap).then(() => {
-            console.log(`setCustomCursor success`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          // app_icon is an example resource. Configure the resource file based on the actual requirements.
+          this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent(
+            $r("app.media.app_icon").id, (error: BusinessError, svgFileData: Uint8Array) => {
+            const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
+            let svgImageSource: image.ImageSource = image.createImageSource(svgBuffer);
+            let svgDecodingOptions: image.DecodingOptions = { desiredSize: { width: 50, height: 50 } };
+            svgImageSource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+              window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+                let windowId = win.getWindowProperties().id;
+                try {
+                  pointer.setCustomCursor(windowId, pixelMap).then(() => {
+                    console.info(`setCustomCursor success`);
+                  });
+                } catch (error) {
+                  console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                }
+              });
+            });
           });
-        } catch (error) {
-          console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-        }
-      });
-  });
-});
+        })
+    }
+  }
+}
 ```
 ## CustomCursor<sup>15+</sup>
 
 Pixel map resource.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
-| Name    | Type    | Readable    | Writable    | Description    |
+| Name    | Type    | Read-Only    | Optional    | Description    |
 | -------- | ------- | -------- | -------- | ------- |
-| pixelMap  | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | No  | No  | Defines a custom cursor. The minimum size is subject to the minimum limit of the image. The maximum size is 256 x 256 px.|
+| pixelMap  | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | No  | No  | Custom cursor. The minimum size is subject to the minimum limit of the image. The maximum size is 256 x 256 px.|
 | focusX  | number | No  | Yes  | Horizontal coordinate of the cursor focus. The coordinates are restricted by the size of the custom cursor. The minimum value is **0**, and the maximum value is the maximum width of the image. The default value is **0** if the parameter is left empty.|
 | focusY  | number | No  | Yes  | Vertical coordinate of the cursor focus. The coordinates are restricted by the size of the custom cursor. The minimum value is **0**, and the maximum value is the maximum height of the image. The default value is **0** if the parameter is left empty.|
 
@@ -664,7 +834,7 @@ Defines the custom cursor configuration.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
-| Name    | Type    | Readable    | Writable    | Description    |
+| Name    | Type    | Read-Only    | Optional    | Description    |
 | -------- | ------- | -------- | -------- | ------- |
 | followSystem  | boolean  | No  | No  | Whether to adjust the cursor size based on system settings. The value **true** means to adjust the cursor size based on system settings, and the value **false** means to use the custom cursor size. The adjustment range is [size of the cursor image, 256 x 256].|
 
@@ -698,33 +868,47 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message            |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
-| 26500001 | Invalid windowId. |
+| 26500001 | Invalid windowId. Possible causes: The window id does not belong to the current process. |
 
 **Example**
 
 ```js
+import { pointer } from '@kit.InputKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-// app_icon is an example resource. Configure the resource file based on the actual requirements.
-this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
-  const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
-  let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
-  let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-  svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-    window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-      let windowId = win.getWindowProperties().id;
-        try {
-          pointer.setCustomCursor(windowId, {pixelMap: pixelMap, focusX: 25, focusY: 25}, {followSystem: false}).then(() => {
-            console.log(`setCustomCursor success`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          // app_icon is an example resource. Configure the resource file based on the actual requirements.
+          this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent(
+            $r("app.media.app_icon").id, (error: BusinessError, svgFileData: Uint8Array) => {
+            const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
+            let svgImageSource: image.ImageSource = image.createImageSource(svgBuffer);
+            let svgDecodingOptions: image.DecodingOptions = { desiredSize: { width: 50, height: 50 } };
+            svgImageSource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+              window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+                let windowId = win.getWindowProperties().id;
+                try {
+                  pointer.setCustomCursor(windowId, { pixelMap: pixelMap, focusX: 25, focusY: 25 },
+                    { followSystem: false }).then(() => {
+                    console.info(`setCustomCursor success`);
+                  });
+                } catch (error) {
+                  console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                }
+              });
+            });
           });
-        } catch (error) {
-          console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-        }
-      });
-  });
-});
+        })
+    }
+  }
+}
 ```
 
 ## pointer.setCustomCursorSync<sup>11+</sup>
@@ -755,25 +939,38 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
+import { pointer } from '@kit.InputKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-// app_icon is an example resource. Configure the resource file based on the actual requirements.
-const svgFileData = this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
-  const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
-  let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
-  let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-  svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-    window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-      let windowId = win.getWindowProperties().id;
-        try {
-          pointer.setCustomCursorSync(windowId, pixelMap, 25, 25);
-          console.log(`setCustomCursorSync success`);
-        } catch (error) {
-          console.error(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-        }
-    });
-  });
-});
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          // app_icon is an example resource. Configure the resource file based on the actual requirements.
+          this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent(
+            $r("app.media.app_icon").id, (error: BusinessError, svgFileData: Uint8Array) => {
+            const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
+            let svgImageSource: image.ImageSource = image.createImageSource(svgBuffer);
+            let svgDecodingOptions: image.DecodingOptions = { desiredSize: { width: 50, height: 50 } };
+            svgImageSource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+              window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+                let windowId = win.getWindowProperties().id;
+                try {
+                  pointer.setCustomCursorSync(windowId, pixelMap, 25, 25);
+                  console.info(`setCustomCursorSync success`);
+                } catch (error) {
+                  console.error(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                }
+              });
+            });
+          });
+        })
+    }
+  }
+}
 ```

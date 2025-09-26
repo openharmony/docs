@@ -1,4 +1,10 @@
 # @ohos.distributedDeviceManager (Device Management) (System API)
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedHardware-->
+<!--Owner: @hwzhangchuang-->
+<!--Designer: @hwzhangchuang-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @hu-zhiqiong-->
 
 The **distributedDeviceManager** module provides APIs for distributed device management.
 
@@ -55,7 +61,7 @@ Defines the service profile information. It is populated based on the data retur
 
 **System API**: This is a system API.
 
-| Name          | Type | Read Only| Optional             |  Description   |
+| Name          | Type | Read-Only| Optional             |  Description   |
 | -------------- | ---- | --------| ------- | --------|
 | deviceId       | string  | No| No  |  Device ID.         |
 | serviceId       | string  | No|No  | Service ID.          |
@@ -130,7 +136,7 @@ Defines the device icon information.
 |  productId      | string  | No| No  |  Product ID.         |
 |  subProductId   | string  | No| Yes  |  Sub-product ID. This parameter is left unspecified by default.    |
 |  imageType      | string  | No| No  |  Image type. This parameter has a fixed value of **ID**, indicating the product's physical image.       |
-|  specName       | string  | No| No  |  Image specification name. Value:<br>- **lg**: large image (size: 1016 x 64 pixels)<br>- **sm**: small image (size: 655 x 36 pixels)        |
+|  specName       | string  | No| No  |  Image specification name. Value:<br>- **lg**: large image (size: 1016064 pixels)<br>- **sm**: small image (size: 65536 pixels)        |
 |  url            | string  | No| No  |  URL.         |
 |  icon           | ArrayBuffer | No| No| Icon.        |
 |  internalModel  | string  | No| Yes  |  Internal product model. This parameter is left unspecified by default.        |

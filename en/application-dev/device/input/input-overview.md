@@ -1,5 +1,12 @@
 # Introduction to Input Kit
 
+<!--Kit: Input Kit-->
+<!--Subsystem: MultimodalInput-->
+<!--Owner: @zhaoxueyuan-->
+<!--Designer: @hanruofei-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @Brilliantry_Rui-->
+
 ## Function Description
 
 Input Kit provides services for a plurality of input devices, such as the touchpad, touchscreen, mouse, and keyboard. It normalizes various input events to ensure unified and smooth experience for users when interacting with different input devices.
@@ -9,7 +16,7 @@ In addition to the basic input event services, Input Kit provides APIs for you t
 ## How Input Kit Works
 As a basic service provided by the system for applications, Input Kit fulfills input device management as well as input event management, receiving, preprocessing, and distribution, and reports the input events to applications through the inner SDK and JSkit. The operation mechanism is as follows:
 
-![MMI-operation](figures/MMI-operation.png)
+![MMI-operation](figures/MMI-operation-new.png)
 
 <!--Del-->
 ## Constraints

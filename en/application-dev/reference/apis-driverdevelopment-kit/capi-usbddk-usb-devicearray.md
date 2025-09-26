@@ -10,7 +10,7 @@
 
 Defines the device ID list, which is used to store the device IDs and device quantity obtained using **OH_Usb_GetDevices**.
 
-**Since**: 16
+**Since**: 18
 
 **Related module**: [UsbDDK](capi-usbddk.md)
 

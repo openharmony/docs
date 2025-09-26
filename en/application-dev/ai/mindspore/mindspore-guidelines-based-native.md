@@ -1,5 +1,12 @@
 # Using MindSpore Lite for Image Classification (C/C++)
 
+<!--Kit: MindSpore Lite Kit-->
+<!--Subsystem: AI-->
+<!--Owner: @zhuguodong8-->
+<!--Designer: @zhuguodong8; @jjfeing-->
+<!--Tester: @principal87-->
+<!--Adviser: @ge-yafang-->
+
 ## When to Use
 
 You can use [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to quickly deploy AI algorithms into your application to perform AI model inference for image classification.
@@ -29,9 +36,7 @@ This sample application uses [mobilenetv2.ms](https://download.mindspore.cn/mode
 
 If you have other pre-trained models for image classification, convert the original model into the .ms format by referring to [Using MindSpore Lite for Model Conversion](mindspore-lite-converter-guidelines.md).
 
-### Writing Code
-
-#### Image Input and Preprocessing
+### Writing the Code for Image Input and Preprocessing
 
 1. Call [@ohos.file.picker](../../reference/apis-core-file-kit/js-apis-file-picker.md) to pick up the desired image in the album.
 
@@ -68,8 +73,6 @@ If you have other pre-trained models for image classification, convert the origi
            .width('40%')
            .height('5%')
            .onClick(() => {
-             let resMgr = this.getUIContext()?.getHostContext()?.getApplicationContext().resourceManager;
-   
              // Obtain images in an album.
              // 1. Create an image picker instance.
              let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
@@ -103,6 +106,10 @@ If you have other pre-trained models for image classification, convert the origi
    
                    // 3. Perform image preprocessing through PixelMap.
                    let imageSource = image.createImageSource(file.fd);
+                   if (imageSource == undefined) {
+                     console.error('MS_LITE_ERR: createImageSource failed.')
+                     return
+                   }
                    imageSource.createPixelMap().then((pixelMap) => {
                      pixelMap.getImageInfo().then((info) => {
                        console.info('MS_LITE_LOG: info.width = ' + info.size.width);
@@ -161,7 +168,7 @@ If you have other pre-trained models for image classification, convert the origi
    }
    ```
 
-#### Writing Inference Code
+### Writing Inference Code
 
 Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to implement inference on the device. The operation process is as follows:
 
@@ -193,16 +200,20 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to i
        auto rawFile = OH_ResourceManager_OpenRawFile(nativeResourceManager, modelName.c_str());
        if (rawFile == nullptr) {
            LOGE("MS_LITE_ERR: Open model file failed");
+           OH_ResourceManager_CloseRawFile(rawFile);
            return nullptr;
        }
        long fileSize = OH_ResourceManager_GetRawFileSize(rawFile);
+       if (fileSize <= 0) {
+           LOGE("MS_LITE_ERR: FileSize not correct");
+       }
        void *modelBuffer = malloc(fileSize);
        if (modelBuffer == nullptr) {
-           LOGE("MS_LITE_ERR: OH_ResourceManager_ReadRawFile failed");
+           LOGE("MS_LITE_ERR: malloc failed");
        }
        int ret = OH_ResourceManager_ReadRawFile(rawFile, modelBuffer, fileSize);
        if (ret == 0) {
-           LOGI("MS_LITE_LOG: OH_ResourceManager_ReadRawFile failed");
+           LOGE("MS_LITE_ERR: OH_ResourceManager_ReadRawFile failed");
            OH_ResourceManager_CloseRawFile(rawFile);
            return nullptr;
        }
@@ -404,14 +415,14 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to i
    cmake_minimum_required(VERSION 3.4.1)
    project(MindSporeLiteCDemo)
    
-   set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+   set(NATIVERENDER_PATH ${CMAKE_CURRENT_SOURCE_DIR})
    
    if(DEFINED PACKAGE_FIND_FILE)
        include(${PACKAGE_FIND_FILE})
    endif()
    
-   include_directories(${NATIVERENDER_ROOT_PATH}
-                       ${NATIVERENDER_ROOT_PATH}/include)
+   include_directories(${NATIVERENDER_PATH}
+                       ${NATIVERENDER_PATH}/include)
    
    add_library(entry SHARED mslite_napi.cpp)
    target_link_libraries(entry PUBLIC mindspore_lite_ndk)
@@ -420,7 +431,7 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to i
    target_link_libraries(entry PUBLIC ace_napi.z)
    ```
 
-#### Use N-APIs to encapsulate the C++ dynamic library into an ArkTS module.
+### Use N-APIs to encapsulate the C++ dynamic library into an ArkTS module.
 
 1. In **entry/src/main/cpp/types/libentry/Index.d.ts**, define the ArkTS API **runDemo ()**. The content is as follows:
 
@@ -439,7 +450,7 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to i
    }
    ```
 
-#### Invoke the encapsulated ArkTS module for inference and output the result.
+### Invoke the encapsulated ArkTS module for inference and output the result.
 
 In **entry/src/main/ets/pages/Index.ets**, call the encapsulated ArkTS module to process the inference result.
 

@@ -1,5 +1,11 @@
 # Resource Manager Development
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @liule_123-->
+<!--Designer: @buda_wy-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
 
 ## How do I read an XML file in rawfile and convert the data in it to the string type? (API 9)
 
@@ -56,9 +62,9 @@ Because the application is installed in HAP mode and the HAP package is not deco
 
 To obtain the path of the **resource** directory, try either of the following ways:
 
-1. Use **$r** or **$rawfile** for access. This method applies to static access, during which the **resource** directory remains unchanged when the application is running.
+1. Use `$r` or `$rawfile` to access resources. This method applies to static access, during which the **resource** directory remains unchanged when the application is running.
 
-2. Use **ResourceManager** for access. This method applies to dynamic access, during which the **resource** directory dynamically changes when the application is running.
+2. Use **ResourceManager** to access resources. This method applies to dynamic access, during which the **resource** directory dynamically changes when the application is running.
 
 **Reference Link**
 
@@ -91,14 +97,14 @@ Use **getStringValue** of the **ResourceManager** module.
 
 **Solution**
 
-Resources are referenced in the **$r('app.type.name')** format. Where, **type** indicates the resource type, such as color, string, and media, and **name** indicates the resource name.
+Resources are referenced in the `$r('app.type.name')` format. Where, **type** indicates the resource type, such as color, string, and media, and **name** indicates the resource name.
 
 
 ## How do I convert resources to strings? (API 9)
 
 **Solution**
 
-If the resource type is set to **string**, the qualifier directory can be set as **this.context.resourceManager.getStringSync($r('app.string.test').id)** and can be converted synchronously. The **$r('app.string.test', 2)** mode is not supported.
+If the resource type is set to **string**, the qualifier directory can be set as `this.context.resourceManager.getStringSync($r('app.string.test').id)` and can be converted synchronously. The `$r('app.string.test', 2)` mode is not supported.
 
 **Reference Link**
 
@@ -107,14 +113,14 @@ If the resource type is set to **string**, the qualifier directory can be set as
 
 ## Can $ be used to reference constants in the form\_config.json file? (API 9)
 
-In the **form_config.json** file, **$** cannot be used to reference constants.
+In the `form_config.json` file, `$` cannot be used to reference constants.
 
 
 ## How does ArkTS parse XML files? (API 9)
 
 **Solution**
 
-1. Create the following XML file in the **rawfile** directory:
+1. Create the following XML file in the `rawfile` directory:
 
    ```
    <?xml version="1.0" encoding="utf-8"?>
@@ -126,16 +132,28 @@ In the **form_config.json** file, **$** cannot be used to reference constants.
 
 2. Use **resourceManager.getRawFileContent** to obtain the byte arrays of the XML file.
 
-   ```
-   import resourceManager from '@ohos.resourceManager';
-   resourceManager.getRawFileContent("test.xml", (error, value) => {
-     if (error != null) {
-       console.log("error is " + error);
-       return
-     }
-     let arrayBuffer = value.buffer; // unit8Array
-     var xmpParser = new xml.XmlPullParser(arrayBuffer);
-     var tagName = ""
-     //do something
-   }
-   ```
+```
+import resourceManager from '@ohos.resourceManager';
+import xml from '@ohos.xml';
+export default {
+    onCreate() {
+        resourceManager.getResourceManager((error, res) => {
+            if (error != null) {
+                console.log("error is " + error);
+                return
+            }
+            res.getRawFileContent("test.xml", (error, value) => {
+                if (error != null) {
+                    console.log("error is " + error);
+                    return
+                }
+                let arrayBuffer = value.buffer; // unit8Array
+                var xmpParser = new xml.XmlPullParser(arrayBuffer);
+                var tagName = ""
+                //do something
+                console.log("parse xml finished");
+            })
+        })
+    }
+};
+```

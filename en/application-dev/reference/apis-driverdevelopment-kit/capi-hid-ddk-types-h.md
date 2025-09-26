@@ -356,11 +356,11 @@ Enumerates the HID DDK error codes.
 | HID_DDK_NULL_PTR = 27300002 | Null pointer. The value is changed from **-4** to **27300002** since API version 16.|
 | HID_DDK_INVALID_OPERATION = 27300003 | Invalid operation. The value is changed from **-3** to **27300003** since API version 16.|
 | HID_DDK_TIMEOUT = 27300004 | Timeout. The value is changed from **-5** to **27300004** since API version 16.|
-| HID_DDK_INIT_ERROR = 27300005 | DDK initialization error. This enum is supported since API version 16.|
-| HID_DDK_SERVICE_ERROR = 27300006 | Service communication error. This enum is supported since API version 16.|
-| HID_DDK_MEMORY_ERROR  = 27300007 | Memory-related errors, such as memory data copy failure and memory allocation failure. This enum is supported since API version 16.|
-| HID_DDK_IO_ERROR = 27300008 | I/O operation failure. This enum is supported since API version 16.|
-| HID_DDK_DEVICE_NOT_FOUND = 27300009 | Device not found. This enum is supported since API version 16.|
+| HID_DDK_INIT_ERROR = 27300005 | DDK initialization error.<br> **Since**: 18|
+| HID_DDK_SERVICE_ERROR = 27300006 | Service communication error.<br> **Since**: 18|
+| HID_DDK_MEMORY_ERROR  = 27300007 | Memory errors, such as memory data copy failure and memory allocation failure.<br> **Since**: 18|
+| HID_DDK_IO_ERROR = 27300008 | I/O operation error.<br> **Since**: 18|
+| HID_DDK_DEVICE_NOT_FOUND = 27300009 | Device not found.<br> **Since**: 18|
 
 ### Hid_ReportType
 

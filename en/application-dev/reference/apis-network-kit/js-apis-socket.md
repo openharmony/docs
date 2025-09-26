@@ -2993,7 +2993,7 @@ Binds the IP address and port number. The port number can be specified or random
 
 | Type           | Description                                                        |
 |  -------------- |  ----------------------------------------------------------- |
-| Promise\<void\> | Promise No result is returned.|
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 

@@ -354,7 +354,7 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to p
        return {outputData, size};
    }
    
-   void SupressTokens(BinBuffer &logits, bool is_initial) {
+   void SuppressTokens(BinBuffer &logits, bool is_initial) {
        auto logits_data = static_cast<float *>(logits.first);
        if (is_initial) {
            logits_data[WHISPER_EOT] = NEG_INF;
@@ -380,7 +380,7 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to p
        }
        void *logits_init_src = static_cast<char *>(logits_init.first) + 51865 * 3 * sizeof(float);
        memcpy(logits.first, logits_init_src, logits.second);
-       SupressTokens(logits, true);
+       SuppressTokens(logits, true);
    
        std::vector<int> output_token;
        float *logits_data = static_cast<float *>(logits.first);
@@ -428,7 +428,7 @@ Call [MindSpore](../../reference/apis-mindspore-lite-kit/capi-mindspore.md) to p
            out_n_layer_self_k_cache_new = GetMSOutput(outputs.handle_list[1]);
            out_n_layer_self_v_cache_new = GetMSOutput(outputs.handle_list[2]);
            offset++;
-           SupressTokens(logits, false);
+           SuppressTokens(logits, false);
            logits_data = static_cast<float *>(logits.first);
            max_token = logits_data[0];
    

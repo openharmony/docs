@@ -1,5 +1,12 @@
 # @ohos.i18n (Internationalization) (System API)
 
+<!--Kit: Localization Kit-->
+<!--Subsystem: Global-->
+<!--Owner: @yliupy-->
+<!--Designer: @sunyaozu-->
+<!--Tester: @lpw_work-->
+<!--Adviser: @Brilliantry_Rui-->
+
  This module provides system-related or enhanced i18n capabilities, such as locale management, phone number formatting, and calendar, through supplementary i18n APIs that are not defined in ECMA 402. The [intl](js-apis-intl.md) module provides basic i18n capabilities through the standard i18n APIs defined in ECMA 402. It works with the **i18n** module to provide a complete suite of i18n capabilities.
 
 >  **NOTE**
@@ -18,13 +25,13 @@ import { i18n } from '@kit.LocalizationKit';
 
 ## System<sup>9+</sup>
 
+Provides capabilities of obtaining and setting system attributes.
+
 ### setSystemLanguage<sup>9+</sup>
 
 static setSystemLanguage(language: string): void
 
 Sets the system language.
-
-To listen for system language changes, enable listening for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed).
 
 **System API**: This is a system API.
 
@@ -36,7 +43,7 @@ To listen for system language changes, enable listening for [COMMON_EVENT_LOCALE
 
 | Name     | Type    | Mandatory  | Description   |
 | -------- | ------ | ---- | ----- |
-| language | string | Yes   | Valid language ID.|
+| language | string | Yes   | [Valid language ID](../../internationalization/i18n-locale-culture.md#how-it-works).|
 
 **Error codes**
 
@@ -50,7 +57,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 **Example**
   ```ts
-  import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // Set the system language
   try {
@@ -59,25 +66,6 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
- 
-  // Subscribe to a common event.
-  let subscriber: commonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
-  let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = { // Define subscriber information.
-    events: [commonEventManager.Support.COMMON_EVENT_LOCALE_CHANGED]
-  };
-  commonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:commonEventManager.CommonEventSubscriber) => { // Create a subscriber.
-      console.info("createSubscriber");
-      subscriber = commonEventSubscriber;
-      commonEventManager.subscribe(subscriber, (err, data) => {
-        if (err) {
-          console.error(`Failed to subscribe common event. error code: ${err.code}, message: ${err.message}.`);
-          return;
-        }
-        console.info("the subscribed event has occurred."); // Triggered when the subscribed event occurs.
-      })
-  }).catch((err: BusinessError) => {
-      console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
-  });  
   ```
 
 ### setSystemRegion<sup>9+</sup>
@@ -124,9 +112,11 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 
 
-### setSystemLocale<sup>9+</sup>
+### setSystemLocale<sup>(deprecated)</sup>
 
 static setSystemLocale(locale: string): void
+
+> This API is supported since API version 9 and deprecated since API version 20.
 
 Sets the system locale.
 
@@ -224,7 +214,7 @@ Adds a preferred language to the specified position on the preferred language li
 
 | Name     | Type    | Mandatory  | Description        |
 | -------- | ------ | ---- | ---------- |
-| language | string | Yes   | Valid ID of the language to be added as a preferred language. |
+| language | string | Yes   | [Valid language ID](../../internationalization/i18n-locale-culture.md#how-it-works). |
 | index    | number | No   | Position to which the preferred language is added. The default value is the length of the preferred language list.|
 
 **Error codes**
@@ -963,6 +953,8 @@ try {
 
 ## SystemLocaleManager<sup>10+</sup>
 
+Provides capabilities of sorting languages, countries/regions, and time zones.
+
 ### constructor<sup>10+</sup>
 
 constructor()
@@ -993,14 +985,14 @@ Obtains the list of languages after sorting.
 
 |   Name |      Type     | Mandatory|     Description     |
 | --------- | ------------- | ---- | ------------- |
-| languages | Array&lt;string&gt; | Yes  | Valid IDs of the languages to be sorted.|
-| options   | [SortOptions](#sortoptions10)   | No  | Language sorting option.|
+| languages | Array&lt;string&gt; | Yes  | List of [valid language IDs](../../internationalization/i18n-locale-culture.md#how-it-works).|
+| options   | [SortOptions](#sortoptions10)   | No  | Language sorting options.|
 
 **Return value**
 
 |       Type       |         Description         |
 | ----------------- | -------------------- |
-| Array&lt;[LocaleItem](#localeitem10)&gt; | Language list after sorting.|
+| Array&lt;[LocaleItem](#localeitem10)&gt; | List of languages after sorting.|
 
 **Error codes**
 
@@ -1034,7 +1026,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
 
 getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&lt;LocaleItem&gt;
 
-Obtains the IDs of the countries or regions after sorting.
+Obtains the IDs of the countries/regions after sorting.
 
 **System API**: This is a system API.
 
@@ -1044,14 +1036,14 @@ Obtains the IDs of the countries or regions after sorting.
 
 |   Name |      Type     | Mandatory|     Description     |
 | --------- | ------------- | ---- | ------------- |
-| regions   | Array&lt;string&gt; | Yes  | Valid IDs of the countries or regions to be sorted.|
+| regions   | Array&lt;string&gt; | Yes  | Valid IDs of the countries/regions to be sorted.|
 | options   | [SortOptions](#sortoptions10)   | No  | Country/region sorting option.<br>By default, **locale** is the current system locale, **isUseLocalName** is **false**, and **isSuggestedFirst** is **true**.|
 
 **Return value**
 
 |       Type       |         Description         |
 | ----------------- | -------------------- |
-| Array&lt;[LocaleItem](#localeitem10)&gt; | IDs of the countries or regions after sorting.|
+| Array&lt;[LocaleItem](#localeitem10)&gt; | IDs of the countries/regions after sorting.|
 
 **Error codes**
 
@@ -1111,7 +1103,7 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   try {
     let timeZoneCityItemArray: Array<i18n.TimeZoneCityItem> = i18n.SystemLocaleManager.getTimeZoneCityItemArray();
     for (let i = 0; i < timeZoneCityItemArray.length; i++) {
-        console.log(timeZoneCityItemArray[i].zoneId + ", " + timeZoneCityItemArray[i].cityId + ", " + timeZoneCityItemArray[i].cityDisplayName +
+        console.info(timeZoneCityItemArray[i].zoneId + ", " + timeZoneCityItemArray[i].cityId + ", " + timeZoneCityItemArray[i].cityDisplayName +
             ", " + timeZoneCityItemArray[i].offset + "\r\n");
     }
   } catch(error) {

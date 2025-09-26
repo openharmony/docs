@@ -1,6 +1,5 @@
 # @ohos.net.statistics (Traffic Management) (System API)
 
-
 The **statistics** module provides APIs to query real-time or historical traffic statistics by the specified network interface card (NIC) or user ID (UID).
 
 > **NOTE**

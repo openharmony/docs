@@ -381,4 +381,3 @@ This permission is of the **normal** level. Before applying for the permission, 
       console.info("Succeeded to get data: " + JSON.stringify(data));
     });
     ```
-

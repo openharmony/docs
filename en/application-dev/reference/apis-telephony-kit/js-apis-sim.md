@@ -1,4 +1,10 @@
 # @ohos.telephony.sim (SIM Management)
+<!--Kit: Telephony Kit-->
+<!--Subsystem: Telephony-->
+<!--Owner: @Fanyl8-->
+<!--Designer: @ghxbob-->
+<!--Tester: @weitiantian-->
+<!--Adviser: @zhang_yixin13-->
 
 The **sim** module provides basic SIM card management functions. With the APIs provided by this module, you can obtain the ISO country code, home PLMN ID, service provider name, SIM card status, type, installation status, and activation status of the SIM card in the specified slot.
 
@@ -1473,6 +1479,159 @@ promise.then((data: number) => {
 });
 ```
 
+## sim.getSimLabel<sup>20+</sup>
+
+getSimLabel(slotId: number, callback: AsyncCallback\<SimLabel\>): void
+
+Obtains the SIM card label. Slot 1 corresponds to SIM card 1 or SIM card 2, and slot 2 corresponds to SIM card 2 or eSIM X.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                                    |
+| -------- | ------------------------ | ---- | ---------------------------------------- |
+| slotId | number                      | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
+| callback | AsyncCallback\<[SimLabel](#simlabel20)\> | Yes  | Callback used to return the result, which is the SIM card label.|
+
+**Error codes**
+
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 8300001 | Invalid parameter value.                 |
+| 8300002  | Operation failed. Cannot connect to service.                      |
+| 8300003 | System internal error.                               |
+| 8300999  |Unknown error code.|
+
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
+
+async function exampleGetSimLabel(slotId) {
+    try {
+        const simLabel = await getSimLabel(slotId);
+        console.info(`SIM card label: ${simLabel}`);
+    } catch (err) {
+        console.error(`Failed to obtain the SIM card label: ${err.code} - ${err.message}`);
+    }
+}
+```
+
+## sim.getSimLabel<sup>20+</sup>
+
+getSimLabel(slotId: number): Promise\<SimLabel\>
+
+Obtains the SIM card label. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+
+| Name  | Type                    | Mandatory| Description                                    |
+| -------- | ------------------------ | ---- | ---------------------------------------- |
+| slotId | number                      | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type                 | Description                              |
+| --------------------- | ---------------------------------- |
+| Promise\<[SimLabel](#simlabel20) \>| Callback used to return the result, which is the SIM card label.|
+
+**Error codes**
+
+For details about the error codes, see [Telephony Error Codes](errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 8300001 | Invalid parameter value.                 |
+| 8300002  | Operation failed. Cannot connect to service.                      |
+| 8300003 | System internal error.                               |
+| 8300999  |Unknown error code.|
+
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
+
+async getSimLabel(slotId: number): Promise<sim.SimLabel|null> {
+    try {
+      const simLabel: sim.SimLabel =
+        await sim.getSimLabel(slotId);
+      return simLabel;
+    } catch (err) {
+      this.handleError(this.getSimLabel.name, err);
+      return null;
+    }
+  }
+```
+
+## sim.getSimLabelSync<sup>20+</sup>
+
+getSimLabelSync(slotId: number): SimLabel
+
+Obtains the SIM card label based on the specified SIM card slot ID.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                                    |
+| -------- | ------------------------ | ---- | ---------------------------------------- |
+| slotId | number                      | Yes  | Card slot ID.<br>- **0**: card slot 1.<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type                 | Description                              |
+| --------------------- | ---------------------------------- |
+| [SimLabel](#simlabel20) | SIM card label.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
+
+function exampleGetSimLabelSync() {
+    try {
+        const slotId = 0; 
+        const simLabel = getSimLabelSync(slotId);
+        console.info(`SIM card label: ${simLabel}`);
+    } catch (err) {
+        console.error (`Failed to obtain the SIM card label: ${err.message}`);
+    }
+}
+```
+
+## SimType<sup>20+</sup>
+
+Enumerates the SIM card types.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name               | Value|  Description                                                      |
+| --------------------- | ----| ---------------------------------------------------------- |
+| PSIM     | 0   |Physical SIM card.                     |
+| ESIM | 1   |eSIM card.     |
+
+
+## SimLabel<sup>20+</sup>
+
+Defines the SIM card label.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name        | Type| Read-Only| Optional | Description                                                      |
+| ---------------------|----|---- | ----| --------------------------------------------------- |
+|  simType   |  [SimType](#simtype20)  | No | No|SIM card type.                     |
+| index |  number   |  No |No| Unique index ID of the SIM card.     |
 
 ## SimState
 

@@ -1,4 +1,10 @@
 # USB Serial DDK Development
+<!--Kit: Driver Development Kit-->
+<!--Subsystem: Driver-->
+<!--Owner: @lixinsheng2-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 ## Overview
 
@@ -87,8 +93,8 @@ libusb_serial_ndk.z.so
 
 **Including Header Files**
 ```c++
-#include <serial/usb_serial_api.h>
-#include <serial/usb_serial_types.h>
+#include <usb_serial/usb_serial_api.h>
+#include <usb_serial/usb_serial_types.h>
 ```
 
 1. Initialize the USB Serial DDK.
@@ -112,7 +118,7 @@ libusb_serial_ndk.z.so
     OH_UsbSerial_Open(deviceId, interfaceIndex, &dev);
     ```
 
-3. Sets the parameters of the USB serial port device.
+3. (Optional) Set the parameters of the USB serial port device.
 
     Use **OH_UsbSerial_SetParams** in **usb_serial_api.h** to set the serial port parameters, or directly use **OH_UsbSerial_SetBaudRate** to set the baud rate, and use **OH_UsbSerial_SetTimeout** to set the timeout interval for reading data.
 
@@ -134,7 +140,7 @@ libusb_serial_ndk.z.so
     OH_UsbSerial_SetTimeout(dev, timeout);
     ```
 
-4. Set flow control and flush the buffer.
+4. (Optional) Set the flow control mode, and flush the buffer.
 
     Use **OH_UsbSerial_SetFlowControl** in **usb_serial_api.h** to set the flow control mode, use **OH_UsbSerial_Flush** to flush the buffer, use **OH_UsbSerial_FlushInput** to flush the input buffer, and use **OH_UsbSerial_FlushOutput** to flush the output buffer.
 
@@ -151,7 +157,7 @@ libusb_serial_ndk.z.so
     // Flush the output buffer.
     OH_UsbSerial_FlushOutput(dev);
     ```
-5. Write or read data to or from a USB serial port device.
+5. (Optional) Write data to or read data from a USB serial port device.
 
     Use **OH_UsbSerial_Write** in **usb_serial_api.h** to send data to the device, and use **OH_UsbSerial_Read** to read the data sent by the device.
 

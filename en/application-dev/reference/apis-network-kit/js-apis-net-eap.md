@@ -188,7 +188,7 @@ Starts EAP authentication on an Ethernet NIC.
 
 | Name                           | Type|Mandatory|Description|
 | ----------------------------- | ---------- |---------- |---------- |
-| netId| number|Yes|ID of the Ethernet NIC.|
+| netId| number|Yes|ID of the Ethernet NIC. If the default value **-1** is specified, the system automatically matches the Ethernet NIC to initiate EAP authentication.|
 | profile|[EthEapProfile](#etheapprofile) |Yes|EAP profile.|
 
 **Error codes**
@@ -249,7 +249,7 @@ Revokes the EAP-authenticated state of an Ethernet NIC.
 
 | Name                           | Type|Mandatory|Description|
 | ----------------------------- | ---------- |---------- |---------- |
-| netId | number|Yes|ID of the Ethernet NIC.|
+| netId | number|Yes|ID of the Ethernet NIC. If the default value **-1** is specified, the system automatically matches the Ethernet NIC to initiate EAP authentication.|
 
 **Error codes**
 

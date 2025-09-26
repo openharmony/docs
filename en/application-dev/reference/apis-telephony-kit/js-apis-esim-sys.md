@@ -1,4 +1,10 @@
 # @ohos.telephony.esim (eSIM Management) (System API)
+<!--Kit: Telephony Kit-->
+<!--Subsystem: Telephony-->
+<!--Owner: @yangyannanyangyannan-->
+<!--Designer: @ghxbob-->
+<!--Tester: @weitiantian-->
+<!--Adviser: @zhang_yixin13-->
 
 The **esim** module provides APIs for eSIM management and eSIM services.
 
@@ -851,26 +857,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 import { eSIM } from '@kit.TelephonyKit';
 
-eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).then((data: string) => {
+let transactionId = '';
+eSIM.cancelSession(0, transactionId, eSIM.CancelReason.CANCEL_REASON_END_USER_REJECTION)
+  .then((data: eSIM.ResultCode) => {
     console.log(`cancelSession, result: data->${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
+  })
+  .catch((err: BusinessError) => {
     console.error(`cancelSession execution failed: err->${JSON.stringify(err)}`);
-});
+  });
 ```
-
-## AccessRule<sup>18+</sup>
-
-Defines access rules.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Telephony.CoreService.Esim
-
-| Name| Type| Mandatory| Description|
-| ----- | ----- | ----- | -----|
-| certificateHashHexStr | string  |  Yes | Hex string of the certificate hash.|
-| packageName           | string  |  Yes | Package name.|
-| accessType            | number  |  Yes | Rule type.|
 
 ## GetDownloadableProfileMetadataResult<sup>18+</sup>
 
@@ -880,17 +875,17 @@ Obtains the metadata of the downloadable profile.
 
 **System capability**: SystemCapability.Telephony.CoreService.Esim
 
-| Name| Type| Mandatory| Description|
-| ----- | ----- | ----- | -----|
-| downloadableProfile | DownloadableProfile  |  Yes | Downloadable profile.  |
-| pprType             | number               |  Yes | Profile policy rule type.|
-| pprFlag             | boolean              |  Yes | Whether the profile has a policy rule. The value **true** indicates that the the profile has a policy rule, and the value **false** indicates the opposite.|
-| iccid               | string               |  Yes | Profile ICCID.    |
-| serviceProviderName | string               |  Yes | Service provider name.|
-| profileName         | string               |  Yes | Profile name.|
-| profileClass        | ProfileClass         |  Yes | Profile class.  |
-| solvableErrors      | SolvableErrors       |  Yes | Solvable errors.|
-| responseResult      | ResultCode           |  Yes | Operation result code.  |
+| Name| Type                                       | Read-Only| Optional| Description|
+| ----- |-------------------------------------------|---| ---- | -----|
+| downloadableProfile | [DownloadableProfile](./js-apis-esim.md#downloadableprofile18) | No| No| Downloadable profile.  |
+| pprType             | number                     | No| No| Profile policy rule type.|
+| pprFlag             | boolean                    | No| No| Whether the profile has a policy rule. The value **true** indicates that the the profile has a policy rule, and the value **false** indicates the opposite.|
+| iccid               | string                     | No| No| Profile ICCID.   |
+| serviceProviderName | string                     | No| No| Service provider name.|
+| profileName         | string                     | No| No| Profile name.|
+| profileClass        | [ProfileClass](#profileclass18)        | No| No| Profile class. |
+| solvableErrors      | [SolvableErrors](#solvableerrors18)      | No| No| Solvable errors.|
+| responseResult      | [ResultCode](#resultcode18)         | No| No| Operation result code. |
 
 ## GetDownloadableProfilesResult<sup>18+</sup>
 
@@ -900,10 +895,10 @@ Obtains the list of default downloadable profiles.
 
 **System capability**: SystemCapability.Telephony.CoreService.Esim
 
-| Name| Type| Mandatory| Description|
-| ----- | ----- | ----- | -----|
-| responseResult       | ResultCode                   |  Yes | Promise used to return the operation result.    |
-| downloadableProfiles | Array\<DownloadableProfile>  |  Yes | Downloadable file array.|
+| Name| Type                                               | Read-Only| Optional| Description|
+| ----- |---------------------------------------------------|---| ----- | -----|
+| responseResult       | [ResultCode](#resultcode18)                   | No| No| Promise used to return the operation result.    |
+| downloadableProfiles | Array\<[DownloadableProfile](./js-apis-esim.md#downloadableprofile18)\> | No| No| Downloadable file array.|
 
 ## DownloadProfileResult<sup>18+</sup>
 
@@ -913,11 +908,11 @@ Defines the profile download result.
 
 **System capability**: SystemCapability.Telephony.CoreService.Esim
 
-| Name| Type| Mandatory| Description|
-| ----- | ----- | ----- | -----|
-| responseResult | ResultCode     |  Yes | Operation result code.|
-| solvableErrors | SolvableErrors |  Yes | Solvable errors.|
-| cardId         | number         |  Yes | Card ID.  |
+| Name| Type                                 | Read-Only| Optional| Description|
+| ----- |-------------------------------------|----|---| -----|
+| responseResult | [ResultCode](#resultcode18)         | No | No| Operation result code.|
+| solvableErrors | [SolvableErrors](#solvableerrors18) | No | No| Solvable errors.|
+| cardId         | number                | No | No| Card ID.|
 
 ## GetEuiccProfileInfoListResult<sup>18+</sup>
 
@@ -927,11 +922,11 @@ Obtains the profile information list.
 
 **System capability**: SystemCapability.Telephony.CoreService.Esim
 
-| Name| Type| Mandatory| Description|
-| ----- | ----- | ----- | -----|
-| responseResult  |ResultCode            |  Yes | Promise used to return the operation result.   |
-| profiles        | Array\<EuiccProfile> |  Yes | Profile array.     |
-| isRemovable     | boolean              |  Yes | Whether the eUICC is removable. The value **true** indicates that the eUICC is removable, and the value **false** indicates the opposite.|
+| Name| Type                                    | Read-Only| Optional| Description  |
+| ----- |----------------------------------------|---| ---- |------|
+| responseResult  | [ResultCode](#resultcode18)            | No| No| Promise used to return the operation result.   |
+| profiles        | Array\<[EuiccProfile](#euiccprofile18)\> | No| No| Profile array.    |
+| isRemovable     | boolean                      | No| No| Whether the eUICC is removable. The value **true** indicates that the eUICC is removable, and the value **false** indicates the opposite.|
 
 ## OperatorId<sup>18+</sup>
 
@@ -941,12 +936,12 @@ Obtains information about the eUICC chip or device.
 
 **System capability**: SystemCapability.Telephony.CoreService.Esim
 
-| Name| Type| Mandatory| Description|
-| ----- | ----- | ----- | -----|
-| mcc  | string |  Yes | Mobile country code (MCC).|
-| mnc  | string |  Yes | Network code.    |
-| gid1 | string |  Yes | Group ID level 1.  |
-| gid2 | string |  Yes | Group ID level 2.  |
+| Name| Type| Read-Only| Optional| Description|
+| ----- | ----- |---| ----- | -----|
+| mcc  | string | No| No| Mobile country code (MCC).|
+| mnc  | string | No| No| Network code.   |
+| gid1 | string | No| No| Group ID level 1. |
+| gid2 | string | No| No| Group ID level 2. |
 
 ## EuiccProfile<sup>18+</sup>
 
@@ -956,17 +951,17 @@ Profile information.
 
 **System capability**: SystemCapability.Telephony.CoreService.Esim
 
-| Name| Type| Mandatory| Description|
-| ----- | ----- | ----- | -----|
-| iccid               | string             |  Yes | Profile ICCID.|
-| nickName            | string             |  Yes | Profile nickname.|
-| serviceProviderName | string             |  Yes | Service provider name.|
-| profileName         | string             |  Yes | Profile name.  |
-| state               | ProfileState       |  Yes | Profile status.|
-| profileClass        | ProfileClass       |  Yes | Profile class.    |
-| operatorId          | OperatorId         |  Yes | Operation ID of the profile.|
-| policyRules         | PolicyRules        |  Yes | Profile policy rules.  |
-| accessRules         | Array\<AccessRule> |  Yes | Profile access rules.  |
+| Name| Type                                                   | Read-Only| Optional| Description|
+| ----- |-------------------------------------------------------|---|---- |  -----|
+| iccid               | string                                                | No| No| Profile ICCID.|
+| nickName            | string                                                | No| No| Profile nickname.|
+| serviceProviderName | string                                                | No| No| Service provider name.|
+| profileName         | string                                                | No| No| Profile name.  |
+| state               | [ProfileState](#profilestate18)                       | No| No| Profile status.|
+| profileClass        | [ProfileClass](#profileclass18)                       | No| No| Profile class.    |
+| operatorId          | [OperatorId](#operatorid18)                           | No| No| Operation ID of the profile.|
+| policyRules         | [PolicyRules](#policyrules18)                         | No| No| Profile policy rules.  |
+| accessRules         | Array\<[AccessRule](./js-apis-esim.md#accessrule20)\> | No| No| Profile access rules.  |
 
 ## EuiccInfo<sup>18+</sup>
 
@@ -976,9 +971,9 @@ Defines the eUICC information.
 
 **System capability**: SystemCapability.Telephony.CoreService.Esim
 
-| Name| Type| Mandatory| Description|
-| ----- | ----- | ----- | -----|
-| osVersion | string |  Yes | OS version.|
+| Name| Type| Read-Only| Optional| Description|
+| ----- | ----- |----|----| -----|
+| osVersion | string | No | No | OS version.|
 
 ## ResetOption<sup>18+</sup>
 
@@ -1137,8 +1132,8 @@ Defines the download configuration.
 
 **System capability**: SystemCapability.Telephony.CoreService.Esim
 
-| Name| Type| Mandatory| Description|
-| ----- | ----- | ----- | -----|
-|switchAfterDownload | boolean | Yes| Whether to enable the profile after successful download. The value **true** means to enable the default profile, and the value **false** means the opposite.|
-|forceDisableProfile | boolean | Yes| Whether to forcibly deactivate the current profile during profile switching.<br> **true**: The current profile is forcibly deactivated, and profile switching can be directly performed.<br> **false**: An error is returned, and profile switching can be performed only after the user authorization is obtained.|
-|isPprAllowed        | boolean | Yes| Whether user authorization is obtained to implement the profile policy rule. The value **true** indicates that user authorization is obtained, and the value **false** indicates the opposite.|
+| Name| Type| Read-Only| Optional| Description|
+| ----- | ----- |----| ----- | -----|
+|switchAfterDownload | boolean | No | No| Whether to enable the profile after successful download. The value **true** means to enable the default profile, and the value **false** means the opposite.|
+|forceDisableProfile | boolean | No | No| Whether to forcibly deactivate the current profile during profile switching.<br> **true**: The current profile is forcibly deactivated, and profile switching can be directly performed.<br> **false**: An error is returned, and profile switching can be performed only after the user authorization is obtained.|
+|isPprAllowed        | boolean | No | No| Whether user authorization is obtained to implement the profile policy rule. The value **true** indicates that user authorization is obtained, and the value **false** indicates the opposite.|

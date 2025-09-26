@@ -1,6 +1,5 @@
 # # @ohos.net.ethernet (Ethernet Connection Management)
 
-
 The **ethernet** module provides Ethernet management functions such as configuring a network proxy and obtaining the network IP address.
 
 > **NOTE**

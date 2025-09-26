@@ -1,6 +1,5 @@
 # @ohos.net.sharing (Network Sharing Management) (System API)
 
-
 The Network Sharing module allows you to share your device's Internet connection with other connected devices by means of Wi-Fi hotspot, Bluetooth, and USB sharing. It also allows you to query the network sharing state and shared mobile data volume.
 
 > **NOTE**
@@ -941,7 +940,7 @@ Subscribes to network sharing state changes. This API uses an asynchronous callb
 
 | Name  | Type                   | Mandatory| Description                        |
 | -------- | ----------------------- | ---- | ---------------------------- |
-| type     | string                  | Yes  | Event type.<br/> The value **sharingStateChange** indicates a network sharing status change event.                  |
+| type     | string                  | Yes  | Event type. The value **sharingStateChange** indicates a network sharing status change event.                  |
 | callback | AsyncCallback\<boolean> | Yes  | Callback invoked when the network sharing state changes.|
 
 **Error codes**
@@ -1015,7 +1014,7 @@ Subscribes to network sharing state changes of a specified NIC. This API uses an
 
 | Name  | Type                                                                  | Mandatory| Description                                 |
 | -------- | -------------------------------------------------------------------- | ---- | ------------------------------------- |
-| type     | string                                                                | Yes  | Event type.<br/> The value **interfaceSharingStateChange** indicates a network sharing status change event of the NIC.                           |
+| type     | string                                                                | Yes  | Event type. The value **interfaceSharingStateChange** indicates a network sharing status change event of the NIC.                           |
 | callback | AsyncCallback\<[InterfaceSharingStateInfo](#interfacesharingstateinfo11)> | Yes  | Callback used to return the result. It is called when the network sharing state of a specified NIC changes.|
 
 **Error codes**
@@ -1089,7 +1088,7 @@ Subscribes to upstream network changes. This API uses an asynchronous callback t
 
 | Name  | Type                     | Mandatory| Description                          |
 | -------- | ------------------------- | ---- | ------------------------------ |
-| type     | string                    | Yes  | Event type.<br/> The value **sharingUpstreamChange** indicates an upstream network change event.                    |
+| type     | string                    | Yes  | Event type. The value **sharingUpstreamChange** indicates an upstream network change event.                    |
 | callback | AsyncCallback\<NetHandle> | Yes  | Callback invoked when the upstream network changes.|
 
 **Error codes**

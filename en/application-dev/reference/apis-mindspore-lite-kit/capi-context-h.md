@@ -27,8 +27,8 @@ Provides context-related APIs for configuring runtime information. These APIs ar
 
 | Name                                                          | typedef Keyword| Description                               |
 |--------------------------------------------------------------|------------|-----------------------------------|
-| [OH_AI_ContextHandle](capi-mindspore-oh-ai-contexthandle.md) | void*      | Defines the pointer to the MindSpore context. |
-| [OH_AI_DeviceInfoHandle](capi-mindspore-oh-ai-DeviceInfoHandle.md)   | void*          | Defines the pointer to the MindSpore device information.                                 |
+| [OH_AI_ContextHandle](capi-mindspore-oh-ai-contexthandle.md) | void*      | Defines the pointer to the MindSpore Lite context.|
+| [OH_AI_DeviceInfoHandle](capi-mindspore-oh-ai-DeviceInfoHandle.md)   | void*          | Defines the pointer to the MindSpore Lite device information.                                 |
 
 ### Functions
 
@@ -70,7 +70,7 @@ Provides context-related APIs for configuring runtime information. These APIs ar
 | [OH_AI_API OH_AI_PerformanceMode OH_AI_DeviceInfoGetPerformanceMode(const OH_AI_DeviceInfoHandle device_info)](#oh_ai_deviceinfogetperformancemode) | Obtains the NNRt performance mode. This function is available only for NNRt devices.|
 | [OH_AI_API void OH_AI_DeviceInfoSetPriority(OH_AI_DeviceInfoHandle device_info, OH_AI_Priority priority)](#oh_ai_deviceinfosetpriority) | Sets the priority of an NNRt task. This function is available only for NNRt devices.|
 | [OH_AI_API OH_AI_Priority OH_AI_DeviceInfoGetPriority(const OH_AI_DeviceInfoHandle device_info)](#oh_ai_deviceinfogetpriority) | Obtains the priority of an NNRt task. This function is available only for NNRt devices.|
-| [OH_AI_API OH_AI_Status OH_AI_DeviceInfoAddExtension(OH_AI_DeviceInfoHandle device_info, const char *name,const char *value, size_t value_size)](#oh_ai_deviceinfoaddextension) | Adds extended configuration in the form of key/value pairs to the device information. This function is available only for NNRt devices.<br> Note: Currently, only 11 key-value pairs are supported, including: {"CachePath": "YourCachePath"}, {"CacheVersion": "YourCacheVersion"},<br> {"QuantBuffer": "YourQuantBuffer"}, {"ModelName": "YourModelName"},<br> {"isProfiling": "YourisProfiling"}, {"opLayout": "YouropLayout"},<br> {"InputDims": "YourInputDims"}, {"DynamicDims": "YourDynamicDims"}<br> {"QuantConfigData": "YourQuantConfigData"}, {"BandMode": "YourBandMode"}, and<br> {"NPU_FM_SHARED": "YourNPU_FM_SHARED"}. Replace them as required.|
+| [OH_AI_API OH_AI_Status OH_AI_DeviceInfoAddExtension(OH_AI_DeviceInfoHandle device_info, const char *name,const char *value, size_t value_size)](#oh_ai_deviceinfoaddextension) | Adds extended configuration in the form of key/value pairs to the device information. This function is available only for NNRt devices.<br>Currently, only the following 11 keys are supported: {"CachePath": "YourCachePath"}, {"CacheVersion": "YourCacheVersion"},<br> {"QuantBuffer": "YourQuantBuffer"}, {"ModelName": "YourModelName"},<br> {"isProfiling": "YourProfilingSwitch"}, {"opLayout": "YourOpLayout"},<br> {"InputDims": "YourInputDims"}, {"DynamicDims": "YourDynamicDims"}<br> {"QuantConfigData": "YourQuantConfigData"}, {"BandMode": "YourBandMode"}, and<br> and {"NPU_FM_SHARED": "YourNPU_FM_SHARED"}. You can configure the value of each key based on the actual requirement.|
 
 ## Function Description
 
@@ -129,7 +129,7 @@ Sets the number of runtime threads.
 | Name| Description|
 | -- | -- |
 | [OH_AI_ContextHandle](capi-mindspore-oh-ai-contexthandle.md) context | [OH_AI_ContextHandle](capi-mindspore-oh-ai-contexthandle.md) that points to the context instance.|
-| int32_t thread_num | Number of runtime threads.|
+| int32_t thread_num | Number of runtime threads. The length is subject to system restrictions.|
 
 ### OH_AI_ContextGetThreadNum()
 
@@ -375,7 +375,7 @@ Sets the name of the provider.
 | Name| Description|
 | -- | -- |
 | [OH_AI_DeviceInfoHandle](capi-mindspore-oh-ai-DeviceInfoHandle.md) device_info | [OH_AI_DeviceInfoHandle](capi-mindspore-oh-ai-DeviceInfoHandle.md) that points to the device information instance.|
-| const char *provider | Provider name.|
+| const char *provider | Provider name. The string length is subject to system restrictions.|
 
 ### OH_AI_DeviceInfoGetProvider()
 
@@ -420,7 +420,7 @@ Sets the name of a provider device.
 | Name| Description|
 | -- | -- |
 | [OH_AI_DeviceInfoHandle](capi-mindspore-oh-ai-DeviceInfoHandle.md) device_info | [OH_AI_DeviceInfoHandle](capi-mindspore-oh-ai-DeviceInfoHandle.md) that points to the device information instance.|
-| const char *device | Name of the provider device, for example, CPU.|
+| const char *device | Name of the provider device, for example, CPU. The string length is subject to system restrictions.|
 
 ### OH_AI_DeviceInfoGetProviderDevice()
 
@@ -490,7 +490,7 @@ Sets whether to enable float16 inference. This function is available only for CP
 | Name| Description|
 | -- | -- |
 | [OH_AI_DeviceInfoHandle](capi-mindspore-oh-ai-DeviceInfoHandle.md) device_info | [OH_AI_DeviceInfoHandle](capi-mindspore-oh-ai-DeviceInfoHandle.md) that points to the device information instance.|
-| bool is_fp16 | Whether to enable the float16 inference mode.|
+| bool is_fp16 | Whether to enable the float16 inference mode. The value **true** means to enable the float16 inference mode, and the value **false** means the opposite.|
 
 ### OH_AI_DeviceInfoGetEnableFP16()
 
@@ -515,7 +515,7 @@ Checks whether float16 inference is enabled. This function is available only for
 
 | Type| Description|
 | -- | -- |
-| OH_AI_API bool | Whether float16 inference is enabled.|
+| OH_AI_API bool | Whether to enable the float16 inference mode. The value **true** means to enable the float16 inference mode, and the value **false** means the opposite.|
 
 ### OH_AI_DeviceInfoSetFrequency()
 
@@ -535,7 +535,7 @@ Sets the NPU frequency type. This function is available only for NPU devices.
 | Name| Description|
 | -- | -- |
 | [OH_AI_DeviceInfoHandle](capi-mindspore-oh-ai-DeviceInfoHandle.md) device_info | [OH_AI_DeviceInfoHandle](capi-mindspore-oh-ai-DeviceInfoHandle.md) that points to the device information instance.|
-| int frequency | NPU frequency type. The value ranges from **0** to **4**. The default value is **3**. **1**: low power consumption; **2**: balanced; **3**: high performance; **4**: ultra-high performance|
+| int frequency | NPU frequency type. The value ranges from **0** to **4**. The default value is **3**. Meanings of each value: **0**: auto system adjustment; **1**: low power consumption; **2**: balanced; **3**: high performance; **4**: ultra-high performance.|
 
 ### OH_AI_DeviceInfoGetFrequency()
 
@@ -560,7 +560,7 @@ Obtains the NPU frequency type. This function is available only for NPU devices.
 
 | Type| Description|
 | -- | -- |
-| OH_AI_API int | NPU frequency type. The value ranges from **0** to **4**. **1**: low power consumption; **2**: balanced; **3**: high performance; **4**: ultra-high performance|
+| OH_AI_API int | NPU frequency type. Meanings of each value: **0**: auto system adjustment; **1**: low power consumption; **2**: balanced; **3**: high performance; **4**: ultra-high performance.|
 
 ### OH_AI_GetAllNNRTDeviceDescs()
 
@@ -724,7 +724,7 @@ Searches for the NNRt device with the specified name and creates the NNRt device
 
 | Name| Description|
 | -- | -- |
-| const char *name | Name of the target NNRt device.|
+| const char *name | Name of the target NNRt device. The string length is subject to system restrictions.|
 
 **Returns**
 
@@ -900,7 +900,7 @@ OH_AI_API OH_AI_Status OH_AI_DeviceInfoAddExtension(OH_AI_DeviceInfoHandle devic
 
 **Description**
 
-Adds extended configuration in the form of key/value pairs to the device information. This function is available only for NNRt devices.<br> Note: Currently, only 11 key-value pairs are supported, including: {"CachePath": "YourCachePath"}, {"CacheVersion": "YourCacheVersion"},<br> {"QuantBuffer": "YourQuantBuffer"}, {"ModelName": "YourModelName"},<br> {"isProfiling": "YourisProfiling"}, {"opLayout": "YouropLayout"},<br> {"InputDims": "YourInputDims"}, {"DynamicDims": "YourDynamicDims"}<br> {"QuantConfigData": "YourQuantConfigData"}, {"BandMode": "YourBandMode"}, and<br> {"NPU_FM_SHARED": "YourNPU_FM_SHARED"}. Replace them as required.
+Adds extended configuration in the form of key/value pairs to the device information. This function is available only for NNRt devices.<br>Currently, only the following 11 keys are supported: {"CachePath": "YourCachePath"}, {"CacheVersion": "YourCacheVersion"},<br> {"QuantBuffer": "YourQuantBuffer"}, {"ModelName": "YourModelName"},<br> {"isProfiling": "YourProfilingSwitch"}, {"opLayout": "YourOpLayout"},<br> {"InputDims": "YourInputDims"}, {"DynamicDims": "YourDynamicDims"}<br> {"QuantConfigData": "YourQuantConfigData"}, {"BandMode": "YourBandMode"}, and<br> and {"NPU_FM_SHARED": "YourNPU_FM_SHARED"}. You can configure the value of each key based on the actual requirement.
 
 **Since**: 10
 
@@ -910,8 +910,8 @@ Adds extended configuration in the form of key/value pairs to the device informa
 | Name| Description|
 | -- | -- |
 | [OH_AI_DeviceInfoHandle](capi-mindspore-oh-ai-DeviceInfoHandle.md) device_info | [OH_AI_DeviceInfoHandle](capi-mindspore-oh-ai-DeviceInfoHandle.md) that points to the device information instance.|
-| const char *name | Key in an extended key/value pair. The value is a C string.|
-| const char *value |  Start address of the value in an extended key/value pair.|
+| const char *name | Key in an extended key/value pair. The value is a C string. The value contains up to 128 characters.|
+| const char *value |  Start address of the value in an extended key/value pair. The string length is subject to system restrictions.|
 | size_t value_size | Length of the value in an extended key/value pair.|
 
 **Returns**

@@ -16,9 +16,9 @@ On the WebSocket client: Use WebSocket to establish a bidirectional connection b
 
 On the WebSocket server (available only for smart TVs): Use WebSocket to establish a bidirectional connection between the server and client. Before doing this, you need to use [createWebSocketServer()](../reference/apis-network-kit/js-apis-webSocket.md#websocketcreatewebsocketserver19) to create a [WebSocketServer](../reference/apis-network-kit/js-apis-webSocket.md#websocketserver19) object and then use [start()](../reference/apis-network-kit/js-apis-webSocket.md#start19) to start the server to listen for connection requests from the client. If the connection is successful, the server receives the callback of the [connect](../reference/apis-network-kit/js-apis-webSocket.md#onconnect19) event. The server can then communicate with the client by using [send()](../reference/apis-network-kit/js-apis-webSocket.md#send19) or obtain information about all connected clients by using [listAllConnections()](../reference/apis-network-kit/js-apis-webSocket.md#listallconnections19). When the client sends a message to the server, the server receives the callback of the [messageReceive](../reference/apis-network-kit/js-apis-webSocket.md#onmessagereceive19) event. If the connection is no longer needed, the server can call [close()](../reference/apis-network-kit/js-apis-webSocket.md#close19) to close the connection. After successful disconnection, the server will receive a callback of the [close](../reference/apis-network-kit/js-apis-webSocket.md#onclose19) event. To stop the service, the server can use the [stop()](../reference/apis-network-kit/js-apis-webSocket.md#stop19) API. If an error occurs in any of the preceding processes, the server will receive a callback of the [error](../reference/apis-network-kit/js-apis-webSocket.md#onerror19) event.
 
-> **NOTE**
->
-> The WebSocket module supports the [heartbeat detection mechanism](https://datatracker.ietf.org/doc/html/rfc6455#section-5.5.2). After a WebSocket connection is established between the client and server or before the client receives a Pong frame from the server, the client sends a Ping frame to the server at an interval of 30 seconds. If the WebSocket server supports the WebSocket protocol, it automatically replies with a Pong frame after receiving a Ping frame, indicating that the connection is normal. If the server is abnormal or does not support the WebSocket protocol, the server does not reply with a Pong frame. If no Pong frame is received within 60 seconds, the connection is disconnected. You cannot disable the heartbeat detection mechanism.
+>**NOTE**
+>	
+>The WebSocket module supports the [heartbeat detection mechanism](https://datatracker.ietf.org/doc/html/rfc6455#section-5.5.2). After a WebSocket connection is established between the client and server or before the client receives a Pong frame from the server, the client sends a Ping frame to the server at an interval of 30s. If the WebSocket server supports the WebSocket protocol, it automatically replies with a Pong frame after receiving a Ping frame, indicating that the connection is normal. If the server is abnormal or does not support the WebSocket protocol, the server does not reply with a Pong frame. If no Pong frame is received within 60s, the server proactively disconnects the connection. The heartbeat detection mechanism cannot be disabled by developers.
 
 ## Client Development Procedure
 
@@ -340,5 +340,4 @@ localServer.stop().then((success: boolean) => {
   }
 });
 ```
-
 

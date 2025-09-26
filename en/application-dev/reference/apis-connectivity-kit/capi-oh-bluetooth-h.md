@@ -13,7 +13,7 @@ Defines the API for obtaining the Bluetooth switch state.
 
 **File to include**: <ConnectivityKit/bluetooth/oh_bluetooth.h>
 
-**Library:** libbluetooth_ndk.so
+**Library**: libbluetooth_ndk.so
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 

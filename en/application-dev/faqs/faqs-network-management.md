@@ -231,7 +231,7 @@ If the C APIs are not provided, use the AKI mechanism to call ArkTS APIs.
   
 **References**
 
-https://gitee.com/openharmony/interface_sdk_c/tree/master/network
+https://gitcode.com/openharmony/interface_sdk_c/tree/master/network
 
 ## Will the default certificate on the device be used if TLSConnectOptions is not specified?(API 11)
 

@@ -10,7 +10,9 @@ Regarding internationalization, a locale ID is an abstraction of a user group, i
 
 ## How It Works
 
-A locale ID consists of four parts: language, script, country/region, and extended parameters. The language is mandatory. For details, see Table 1. For supported extended parameters, see Table 2. For numeral systems corresponding to different languages, see Table 3. The Arabic numeral system is used for languages that are not listed in the table by default. 
+A locale ID consists of four parts: language, script, country/region, and extended parameters. The language is mandatory, and other parts are optional. These parts are connected by hyphens (-) in the sequence of language, script, country/region, and extended parameters. For details, see Table 1. For supported extended parameters, see Table 2. For numeral systems corresponding to different languages, see Table 3. The Arabic numeral system is used for languages that are not listed in the table by default.
+
+A language ID consists of the language, script, and country/region, and does not contain extended parameters. The other rules are the same as those of the locale ID.
 
 **Table 1** Description of the locale ID
 
@@ -49,4 +51,4 @@ A locale ID consists of four parts: language, script, country/region, and extend
 
 ## How to Develop
 
-See [Intl.Locale](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale).
+For details, see [Intl.Locale](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale).

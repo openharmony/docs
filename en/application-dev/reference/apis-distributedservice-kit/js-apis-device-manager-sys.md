@@ -1,4 +1,10 @@
 # @ohos.distributedHardware.deviceManager (Device Management) (System API)
+<!--Kit: Distributed Service Kit-->
+<!--Subsystem: DistributedHardware-->
+<!--Owner: @hwzhangchuang-->
+<!--Designer: @hwzhangchuang-->
+<!--Tester: @Lyuxin-->
+<!--Adviser: @hu-zhiqiong-->
 
 The APIs of this module are deprecated. You are advised to use [@ohos.distributedDeviceManager](js-apis-distributedDeviceManager.md).
 
@@ -32,7 +38,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 Creates a **DeviceManager** instance.
 
-> **NOTE**<br>This API is deprecated since API version 11. Use [deviceManager.createDeviceManager](js-apis-distributedDeviceManager.md#devicemanagercreatedevicemanager) instead.
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [distributedDeviceManager.createDeviceManager](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager) instead.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -268,7 +274,7 @@ release(): void
 
 Releases this **DeviceManager** instance when it is no longer used.
 
-> **NOTE**<br>This API is deprecated since API version 11. Use [deviceManager.releaseDeviceManager](js-apis-distributedDeviceManager.md#devicemanagerreleasedevicemanager) instead.
+> **NOTE**<br>This API is deprecated since API version 11. You are advised to use [distributedDeviceManager.releaseDeviceManager](js-apis-distributedDeviceManager.md#distributeddevicemanagerreleasedevicemanager) instead.
 
 **Required permissions**: ohos.permission.ACCESS_SERVICE_DM
 
@@ -431,7 +437,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
         console.error("getTrustedDeviceList errCode:" + err.code + ",errMessage:" + err.message);
         return;
       }
-      console.log('get trusted device info: ' + JSON.stringify(data));
+      console.info('get trusted device info: ' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -473,7 +479,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
   import { BusinessError } from '@ohos.base';
 
   dmInstance.getTrustedDeviceList().then((data: Array<deviceManager.DeviceInfo>) => {
-    console.log('get trusted device info: ' + JSON.stringify(data));
+    console.info('get trusted device info: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
       console.error("getTrustedDeviceList errCode:" + err.code + ",errMessage:" + err.message);
   });
@@ -563,7 +569,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
         console.error("getLocalDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
         return;
       }
-      console.log('get local device info: ' + JSON.stringify(data));
+      console.info('get local device info: ' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -605,7 +611,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
   import { BusinessError } from '@ohos.base';
 
   dmInstance.getLocalDeviceInfo().then((data: deviceManager.DeviceInfo) => {
-    console.log('get local device info: ' + JSON.stringify(data));
+    console.info('get local device info: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.error("getLocalDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
   });
@@ -654,7 +660,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
         console.error("getDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
         return;
       }
-      console.log('get device info: ' + JSON.stringify(data));
+      console.info('get device info: ' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -705,7 +711,7 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
   // Network ID of the device, which can be obtained from the trusted device list
   let networkId = "xxxxxxx";
   dmInstance.getDeviceInfo(networkId).then((data: deviceManager.DeviceInfo) => {
-    console.log('get device info: ' + JSON.stringify(data));
+    console.info('get device info: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.error("getDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
   });
@@ -1560,10 +1566,10 @@ For details about how to initialize `dmInstance` in the example, see [deviceMana
 
   try {
     dmInstance.on('uiStateChange', (data: Data) => {
-      console.log("uiStateChange executed, dialog closed" + JSON.stringify(data));
+      console.info("uiStateChange executed, dialog closed" + JSON.stringify(data));
       let tmpStr: TmpStr = JSON.parse(data.param);
       let isShow = tmpStr.verifyFailed;
-      console.log("uiStateChange executed, dialog closed" + isShow);
+      console.info("uiStateChange executed, dialog closed" + isShow);
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;

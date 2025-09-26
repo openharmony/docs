@@ -1,5 +1,10 @@
 # Sensor
-
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 ## Overview
 
@@ -535,6 +540,10 @@ For details about the development procedure, see [Sensor Development](../../devi
    static napi_value DestroySubscriptionAttribute(napi_env env, napi_callback_info info) {
        // Create a Sensor_SubscriptionAttribute instance.
        Sensor_SubscriptionAttribute *attr = OH_Sensor_CreateSubscriptionAttribute();
+       if (attr == nullptr) {
+           OH_LOG_Print(LOG_APP, LOG_ERROR, SENSOR_LOG_DOMAIN, TAG, "OH_Sensor_CreateSubscriptionAttribute failed");
+           return nullptr;
+       }
        // Destroy the Sensor_SubscriptionAttribute instance when it is no longer needed.
        int32_t ret = OH_Sensor_DestroySubscriptionAttribute(attr);
        if (ret != SENSOR_SUCCESS) {
@@ -722,7 +731,7 @@ For details about the development procedure, see [Sensor Development](../../devi
            OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_SensorSubscriptionId_SetType failed");
            return nullptr;
        }
-       // Create a **Sensor_SubscriptionAttribute** instance.
+       // Create a Sensor_SubscriptionAttribute instance.
        Sensor_SubscriptionAttribute *attr = OH_Sensor_CreateSubscriptionAttribute();
        // Set the sensor data reporting interval.
        ret = OH_SensorSubscriptionAttribute_SetSamplingInterval(attr, SENSOR_SAMPLE_PERIOD);
@@ -863,7 +872,7 @@ For details about the development procedure, see [Sensor Development](../../devi
            OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_SensorSubscriptionId_SetType failed");
            return nullptr;
        }
-       // Create a **Sensor_SubscriptionAttribute** instance.
+       // Create a Sensor_SubscriptionAttribute instance.
        Sensor_SubscriptionAttribute *attr = OH_Sensor_CreateSubscriptionAttribute();
        // Set the sensor data reporting interval.
        ret = OH_SensorSubscriptionAttribute_SetSamplingInterval(attr, SENSOR_SAMPLE_PERIOD);
@@ -1055,7 +1064,7 @@ For details about the development procedure, see [Sensor Development](../../devi
            OH_LOG_Print(LOG_APP, LOG_INFO, SENSOR_LOG_DOMAIN, TAG, "OH_SensorSubscriptionId_SetType failed");
            return nullptr;
        }
-       // Create a **Sensor_SubscriptionAttribute** instance.
+       // Create a Sensor_SubscriptionAttribute instance.
        Sensor_SubscriptionAttribute *attr = OH_Sensor_CreateSubscriptionAttribute();
        // Set the sensor data reporting interval.
        ret = OH_SensorSubscriptionAttribute_SetSamplingInterval(attr, SENSOR_SAMPLE_PERIOD);
@@ -1452,7 +1461,7 @@ For details about the development procedure, see [Sensor Development](../../devi
    const char *TAG = "[Sensor]";
 
    static napi_value SensorSubscriptionAttributeSetSamplingInterval(napi_env env, napi_callback_info info) {
-       // Create a **Sensor_SubscriptionAttribute** instance.
+       // Create a Sensor_SubscriptionAttribute instance.
        Sensor_SubscriptionAttribute *attr = OH_Sensor_CreateSubscriptionAttribute();
        int64_t sensorSamplePeriod = 200000000;
        int32_t ret = OH_SensorSubscriptionAttribute_SetSamplingInterval(attr, sensorSamplePeriod);

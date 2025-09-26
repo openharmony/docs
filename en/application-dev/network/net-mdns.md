@@ -156,4 +156,3 @@ The following describes the development procedure specific to each application s
       console.info(JSON.stringify(data));
     });
     ```
-

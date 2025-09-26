@@ -29,7 +29,7 @@ This error code is reported if the ExternalDeviceManager service is abnormal or 
 **Solution**
 
 1. Change the product type.
-2. Restart the device<!--RP1-->. You can also submit an [issue](https://gitee.com/openharmony/drivers_external_device_manager/issues/new) online.<!--RP1End-->
+2. Restart the device<!--RP1-->. You can also submit an [issue](https://gitcode.com/openharmony/drivers_external_device_manager/issues/create/choose) online.<!--RP1End-->
 3. Query the supported bus types using [deviceManager.BusType](js-apis-driver-deviceManager.md#bustype).
 
 ## 26300001 ExternalDeviceManager Service Exception
@@ -50,7 +50,7 @@ This error code is reported if the ExternalDeviceManager service is abnormal.
 **Solution**
 
 1. Change the product type.
-2. Restart the device<!--RP1-->. You can also submit an [issue](https://gitee.com/openharmony/drivers_external_device_manager/issues/new) online.<!--RP1End-->
+2. Restart the device<!--RP1-->. You can also submit an [issue](https://gitcode.com/openharmony/drivers_external_device_manager/issues/create/choose) online.<!--RP1End-->
 
 ## 26300002 Binding Driver Client to Driver Server Failed
 

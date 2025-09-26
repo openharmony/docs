@@ -52,7 +52,7 @@ For the complete list of APIs and example code, see [Network Sharing](../referen
 | getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<string>>): void;  | Obtains regular expressions of NICs of a specified type. This API uses an asynchronous callback to return the result.|
 | on(type: 'sharingStateChange', callback: Callback\<boolean>): void;        | Subscribes to network sharing state changes.                                                               |
 | off(type: 'sharingStateChange', callback?: Callback\<boolean>): void;      | Unsubscribes from network sharing state changes.                                                               |
-| unction on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void;    | Subscribes to network sharing state changes of the specified NIC.   |
+| function on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void;    | Subscribes to network sharing state changes of the specified NIC.   |
 | off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void; | Unsubscribes from network sharing state changes of the specified NIC.            |
 | on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void;               | Subscribes to upstream NIC changes.                                                                        |
 | off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void;             | Unsubscribes from upstream NIC changes.                                                                        |
@@ -103,7 +103,7 @@ sharing.on('sharingStateChange', (data: boolean) => {
 
 // Call stopSharing to stop network sharing of the specified type.
 sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
-  console.log('start wifi sharing successful');
+  console.log('stop wifi sharing successful');
 }).catch((error: BusinessError) => {
   console.error('start wifi sharing failed');
 });
@@ -139,7 +139,7 @@ sharing.getStatsTotalBytes().then((data: number) => {
 
 // Call stopSharing to stop network sharing of the specified type and clear the data volume of network sharing.
 sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
-  console.log('start wifi sharing successful');
+  console.log('stop wifi sharing successful');
 }).catch((error: BusinessError) => {
   console.error('start wifi sharing failed');
 });

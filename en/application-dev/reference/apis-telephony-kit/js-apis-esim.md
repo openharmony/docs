@@ -1,4 +1,10 @@
 # @ohos.telephony.esim (eSIM Management)
+<!--Kit: Telephony Kit-->
+<!--Subsystem: Telephony-->
+<!--Owner: @yangyannanyangyannan-->
+<!--Designer: @ghxbob-->
+<!--Tester: @weitiantian-->
+<!--Adviser: @zhang_yixin13-->
 
 The **esim** module provides basic eSIM management capabilities, including checking whether a specified card slot supports the eSIM function.
 
@@ -64,9 +70,9 @@ Launches the download page for the user to add a single profile. This API uses a
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                  |
-| ------ | ------ | ---- | -------------------------------------- |
-| profile | DownloadableProfile | Yes  | Profile that can be downloaded.|
+| Name| Type                                           | Mandatory| Description                                  |
+| ------ |-----------------------------------------------| ---- | -------------------------------------- |
+| profile | [DownloadableProfile](#downloadableprofile18) | Yes  | Profile that can be downloaded.|
 
 **Returns**
 
@@ -116,9 +122,21 @@ Defines a downloadable profile.
 
 **System capability**: SystemCapability.Telephony.CoreService.Esim
 
-| Name| Type| Mandatory| Description|
-| ----- | ----- | ----- | -----|
-| activationCode   | string             |  Yes | Activation code. For a profile that does not require an activation code, the value may be left empty.|
-| confirmationCode | string             |  No | Confirmation code.     |
-| carrierName      | string             |  No | Carrier name.   |
-| accessRules      | Array\<AccessRule> |  No | Access rule array.|
+| Name| Type                                  |  Read-Only| Optional| Description|
+| ----- |--------------------------------------| ----- | ---- | -----|
+| activationCode   | string                               |  No |  No | Activation code. For a profile that does not require an activation code, the value may be left empty.|
+| confirmationCode | string                               |  No |  Yes | Confirmation code.    |
+| carrierName      | string                               |  No |  Yes | Carrier name.  |
+| accessRules      | Array\<[AccessRule](#accessrule20)\> |  No |  Yes | Access rule array.|
+
+## AccessRule<sup>20+</sup>
+
+Defines access rules.
+
+**System capability**: SystemCapability.Telephony.CoreService.Esim
+
+| Name| Type| Read-Only| Optional| Description|
+| ----- | ----- |----|----| -----|
+| certificateHashHexStr | string  | No | No | Hex string of the certificate hash.|
+| packageName           | string  | No | No | Package name.|
+| accessType            | number  | No | No | Rule type.|

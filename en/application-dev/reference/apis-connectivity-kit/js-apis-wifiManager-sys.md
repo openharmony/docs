@@ -1,4 +1,11 @@
 # @ohos.wifiManager (WLAN) (System API)
+<!--Kit: Connectivity Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @qq_43802146-->
+<!--Designer: @qq_43802146-->
+<!--Tester: @furryfurry123-->
+<!--Adviser: @zhang_yixin13-->
+
 The **WLAN** module provides basic wireless local area network (WLAN) functions, peer-to-peer (P2P) functions, and WLAN message notification services. It allows applications to communicate with devices over WLAN.
 
 > **NOTE**
@@ -9,42 +16,6 @@ The **WLAN** module provides basic wireless local area network (WLAN) functions,
 
 ```ts
 import { wifiManager } from '@kit.ConnectivityKit';
-```
-
-## wifiManager.disableWifi<sup>9+</sup>
-
-disableWifi(): void
-
-Disables WLAN. This is an asynchronous API. You need to register a callback for the **wifiStateChange** event to check whether WLAN is successfully disabled.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications)
-
-**System capability**: SystemCapability.Communication.WiFi.STA
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | -------- |
-| 201 | Permission denied.                 |
-| 202 | System API is not allowed called by Non-system application. |
-| 801 | Capability not supported.          |
-| 2501000  | Operation failed.|
-| 2501004  | Operation failed because the service is being opened. |
-
-**Example**
-
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-
-	try {
-		wifiManager.disableWifi();
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
 ```
 
 ## wifiManager.enableSemiWifi<sup>12+</sup>
@@ -235,7 +206,7 @@ Enumerates the IP address types.
 | -------- | -------- | -------- |
 | STATIC | 0 | Static IP address.|
 | DHCP | 1 | IP address allocated by DHCP.|
-| UNKNOWN | 2 | Unspecified.|
+| UNKNOWN | 2 | Unknown.|
 
 
 ## IpConfig<sup>9+</sup>
@@ -342,10 +313,11 @@ Represents the WLAN connection information.
 
 | Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| networkId | number | Yes| No| Network configuration ID.<br> **System API**: This is a system API.|
-| chload | number | Yes| No| Channel load. A larger value indicates a higher load.<br> **System API**: This is a system API.|
-| snr | number | Yes| No| Signal-to-noise ratio (SNR).<br> **System API**: This is a system API.|
-| suppState | [SuppState](#suppstate9) | Yes| No| Supplicant state.<br> **System API**: This is a system API.|
+| networkId | number | No| No| Network configuration ID.<br> **System API**: This is a system API.|
+| chload | number | No| No| Channel load. A larger value indicates a higher load.<br> **System API**: This is a system API.|
+| snr | number | No| No| Signal-to-noise ratio (SNR).<br> **System API**: This is a system API.|
+| suppState | [SuppState](#suppstate9) | No| No| Supplicant state.<br> **System API**: This is a system API.|
+| isHiLinkProNetwork<sup>20+</sup> | boolean | No| Yes| Whether the network is a HiLinkPro network. The value **true** indicates that the network is a HiLinkPro network, and the value **false** indicates the opposite.<br> **System API**: This is a system API.|
 
 
 
@@ -430,50 +402,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 ```
 
-
-## wifiManager.getDeviceMacAddress<sup>15+</sup>
-
-getDeviceMacAddress(): string[]
-
-Obtains the device MAC address.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.GET_WIFI_LOCAL_MAC and ohos.permission.GET_WIFI_INFO (available only to system applications)
-
-**System capability**: SystemCapability.Communication.WiFi.STA
-
-**Return value**
-
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | string[] | MAC address.|
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | -------- |
-| 201 | Permission denied.                 |
-| 202 | System API is not allowed called by Non-system application. |
-| 801 | Capability not supported.          |
-| 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled.|
-
-**Example**
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-
-	try {
-		let ret = wifiManager.getDeviceMacAddress();
-		console.info("deviceMacAddress:" + JSON.stringify(ret));
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
-
-```
-
 ## wifiManager.getWifiDetailState<sup>12+</sup>
 
 getWifiDetailState(): WifiDetailState
@@ -526,7 +454,7 @@ Enumerates Wi-Fi states.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| UNKNOWN | -1 | Unidentified.|
+| UNKNOWN | -1 | Unknown.|
 | INACTIVE | 0 | Inactive.|
 | ACTIVATED | 1 | Activated.|
 | ACTIVATING | 2 | Activating.|
@@ -885,7 +813,7 @@ Enables or disables HiLink.
 | -------- | -------- | -------- | -------- |
 | isHiLinkEnable | boolean | Yes| Whether to enable hiLink. The value **true** means to enable HiLink, and the value **false** means the opposite.|
 | bssid | string | Yes| MAC address of the hotspot, for example, **00:11:22:33:44:55**.|
-| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration information. The value of **config.bssid** must be the same as that of the second parameter **bssid**. The default **bssidType** is random device address.|
+| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration. The value of **config.bssid** must be the same as that of the second parameter **bssid**. The default **bssidType** is random device address.|
 
 **Error codes**
 
@@ -1895,3 +1823,13 @@ wifiManager.on("hotspotStaLeave", recvHotspotStaLeaveFunc);
 wifiManager.off("hotspotStaLeave", recvHotspotStaLeaveFunc);
 
 ```
+
+## WifiScanInfo<sup>9+</sup>
+
+Represents the WLAN connection information.
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+| Name| Type| Read-only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| isHiLinkProNetwork<sup>20+</sup> | boolean | No| Yes| Whether the network is a HiLinkPro network. The value **true** indicates that the network is a HiLinkPro network, and the value **false** indicates the opposite.<br> **System API**: This is a system API.|

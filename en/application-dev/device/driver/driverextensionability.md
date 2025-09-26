@@ -1,4 +1,10 @@
 # UI-free Driver Development
+<!--Kit: Driver Development Kit-->
+<!--Subsystem: Driver-->
+<!--Owner: @lixinsheng2-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 ## When to Use
 
@@ -123,7 +129,7 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
                   "entity.system.home"
                 ],
                 "actions": [
-                  "action.system.home"
+                  "ohos.want.action.home"
                 ]
               }
             ]
@@ -173,7 +179,7 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
     }
     ```
 
-8. After completing development of the client and driver sample code, import the HAP to the device by following instructions in [Running Your App/Service on a Local Real Device](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-run-device-V13), and run **Hello** in the HAP to check whether **Hello world** is displayed. If yes, the IPC communication is ready for use.
+8. After completing development of the client and driver sample code, import the HAP to the device by following instructions in [Running Your App/Atomic Service on a Local Real Device](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-run-device), and run **Hello** in the HAP to check whether **Hello world** is displayed. If yes, the IPC communication is ready for use.
 
 ## Driver Development
 
@@ -209,5 +215,5 @@ You need to configure a signature file for your application to run on a device. 
       }
       ```
 
-Automatic signing: [Signing Your App/Service Automatically](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)
+Automatic signing: [Signing Your App/Service Automatically](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section18815157237)
 <!--RP1End-->

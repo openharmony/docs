@@ -9,7 +9,6 @@
 
 - [Introduction to Network Kit](net-mgmt-overview.md)
 
-- [Network Kit Terms](network-terminology.md)
 
 - Network Access<!--network-kit-data-transmission-->
     - [Using HTTP for Network Access](http-request.md)
@@ -33,3 +32,4 @@
     - [Ethernet Connection Management (for System Applications Only)](net-ethernet.md)  
     - [VPN Management (for System Applications Only)](net-vpn.md)
     <!--DelEnd-->
+- [Network Kit Terms](network-terminology.md)

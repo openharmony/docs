@@ -1,4 +1,10 @@
 # DriverExtensionContext
+<!--Kit: Driver Development Kit-->
+<!--Subsystem: Driver-->
+<!--Owner: @lixinsheng2-->
+<!--Designer: @w00373942-->
+<!--Tester: @dong-dongzhen-->
+<!--Adviser: @w_Machine_cc-->
 
 The **DriverExtensionContext** module provides the context of **DriverExtensionAbility**. It inherits from **ExtensionContext**.
 
@@ -32,7 +38,7 @@ Before using **DriverExtensionContext**, you need to obtain it through a **Drive
 
 ## DriverExtensionContext.updateDriverState
 
-updateDriverState(): void;
+updateDriverState(): void
 
 Updates the driver state. This interface is reserved and does not provide specific functionality currently.
 
@@ -41,6 +47,7 @@ Updates the driver state. This interface is reserved and does not provide specif
 **Example**
 
   ```ts
+  // The current code implementation depends on the code implementation in the previous section.
   if (context != null) {
     context.updateDriverState();
   }

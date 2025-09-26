@@ -1,5 +1,12 @@
 # @system.network (Network State)
 
+<!--Kit: Network Kit-->
+<!--Subsystem: Communication-->
+<!--Owner: @wmyao_mm-->
+<!--Designer: @guo-min_net-->
+<!--Tester: @tongxilin-->
+<!--Adviser: @zhang_yixin13-->
+
 > **NOTE**
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
@@ -122,7 +129,7 @@ network.unsubscribe();
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| metered | boolean | No|Whether to charge by traffic. The value **true** means to charge by traffic, and the value **false** means the opposite.|
-| type | string | Yes|Network type. The value can be **2G**, **3G**, **4G**, **5G**, **WiFi**, or **none**.|
+| Name  | Type                                          | Read-Only| Optional|Description                   |
+| -------- | ---------------------------------------------- | ---- | --- | ---------------------- |
+| metered | boolean | No| Yes |Whether to charge by traffic. The value **true** means to charge by traffic, and the value **false** means the opposite.|
+| type | string | No| No|Network type. The value can be **2G**, **3G**, **4G**, **5G**, **WiFi**, or **none**.|

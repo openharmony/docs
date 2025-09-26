@@ -1,5 +1,10 @@
 # vibrator.h
-
+<!--Kit: Sensor Service Kit-->
+<!--Subsystem: Sensors-->
+<!--Owner: @dilligencer-->
+<!--Designer: @butterls-->
+<!--Tester: @murphy84-->
+<!--Adviser: @hu-zhiqiong-->
 
 ## Overview
 
@@ -64,7 +69,7 @@ Controls the vibrator to vibrate continuously for a given duration.
 
 | Name| Description|
 | -------- | -------- |
-| duration | Vibration duration, in milliseconds. |
+| duration | Vibration duration, in milliseconds. The value range is (0,1800000]. |
 | attribute | Vibration attribute. For details, see [Vibrator_Attribute](_vibrator.md#vibrator_attribute).|
 
 **Returns**

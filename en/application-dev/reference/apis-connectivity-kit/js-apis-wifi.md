@@ -5,7 +5,7 @@ The **WLAN** module provides basic wireless local area network (WLAN) functions,
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs of this module are no longer maintained since API version 9. You are advised to use [@ohos.wifiManager (WLAN)](js-apis-wifiManager.md).
+> The APIs of this module are no longer maintained since API version 9. You are advised to use [`@ohos.wifiManager (WLAN)`](js-apis-wifiManager.md).
 
 
 ## Modules to Import
@@ -112,27 +112,6 @@ available only for system applications)
 ```ts
 import wifi from '@ohos.wifi';
 
-wifi.getScanInfos((err, result) => {
-    if (err) {
-        console.error("get scan info error");
-        return;
-    }
-
-    let len = result.length;
-    console.log("wifi received scan info: " + len);
-    for (let i = 0; i < len; ++i) {
-        console.info("ssid: " + result[i].ssid);
-        console.info("bssid: " + result[i].bssid);
-        console.info("capabilities: " + result[i].capabilities);
-        console.info("securityType: " + result[i].securityType);
-        console.info("rssi: " + result[i].rssi);
-        console.info("band: " + result[i].band);
-        console.info("frequency: " + result[i].frequency);
-        console.info("channelWidth: " + result[i].channelWidth);
-        console.info("timestamp: " + result[i].timestamp);
-    }
-});
-
 wifi.getScanInfos().then(result => {
     let len = result.length;
     console.log("wifi received scan info: " + len);
@@ -165,7 +144,7 @@ Represents WLAN hotspot information.
 | capabilities | string | Yes| No| Hotspot capabilities.|
 | securityType | [WifiSecurityType](#wifisecuritytype) | Yes| No| WLAN security type.|
 | rssi | number | Yes| No| Received signal strength indicator (RSSI) of the hotspot, in dBm.|
-| band | number | Yes| No| Frequency band of the WLAN access point (AP).|
+| band | number | Yes| No| Frequency band of the WLAN access point (AP). The value **1** indicates 2.4 GHz, and the value **2** indicates 5 GHz.|
 | frequency | number | Yes| No| Frequency of the WLAN AP.|
 | channelWidth | number | Yes| No| Channel width of the WLAN AP.|
 | timestamp | number | Yes| No| Timestamp.|
@@ -200,7 +179,7 @@ Represents the WLAN configuration.
 | ssid | string | Yes| No| Service set identifier (SSID) of the hotspot, in UTF-8 format. The maximum length is 32 bytes.|
 | bssid | string | Yes| No| Hotspot BSSID, for example, **00:11:22:33:44:55**.|
 | preSharedKey | string | Yes| No| PSK of the hotspot. The maximum length is 64 bytes.|
-| isHiddenSsid | boolean | Yes| No| Whether the network is hidden.|
+| isHiddenSsid | boolean | Yes| No| Whether the network is hidden. The value **true** indicates that the the network is hidden, and the value **false** indicates the opposite.|
 | securityType | [WifiSecurityType](#wifisecuritytype) | Yes| No| Security type.|
 
 
@@ -516,11 +495,11 @@ Represents the WLAN connection information.
 | ssid | string | Yes| No| Service set identifier (SSID) of the hotspot, in UTF-8 format. The maximum length is 32 bytes.|
 | bssid | string | Yes| No| Hotspot BSSID, for example, **00:11:22:33:44:55**.|
 | rssi | number | Yes| No| Received signal strength indicator (RSSI) of the hotspot, in dBm.|
-| band | number | Yes| No| Frequency band of the WLAN AP.|
-| linkSpeed | number | Yes| No| Speed of the WLAN AP.|
+| band | number | Yes| No| Frequency band of the WLAN access point (AP). The value **1** indicates 2.4 GHz, and the value **2** indicates 5 GHz.|
+| linkSpeed | number | Yes| No| Speed of the WLAN AP, in Mbit/s.|
 | frequency | number | Yes| No| Frequency of the WLAN AP.|
-| isHidden | boolean | Yes| No| Whether to hide the WLAN AP.|
-| isRestricted | boolean | Yes| No| Whether to restrict data volume at the WLAN AP.|
+| isHidden | boolean | Yes| No| Whether to hide the WLAN AP. The value **true** indicates that the the network is hidden, and the value **false** indicates the opposite.|
+| isRestricted | boolean | Yes| No| Whether to restrict data volume at the WLAN AP. The value **true** means to restrict data volume at the WLAN AP, and the value **false** indicates the opposite.|
 | macAddress | string | Yes| No| MAC address of the device.|
 | ipAddress | number | Yes| No| IP address of the device that sets up the WLAN connection.|
 | connState | [ConnState](#connstate) | Yes| No| WLAN connection state.|
@@ -701,7 +680,7 @@ Represents the P2P link information obtained.
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate8) | Yes| No| P2P connection state.|
-| isGroupOwner | boolean | Yes| No| Whether the device is the group owner.|
+| isGroupOwner | boolean | Yes| No| Whether the device is the group owner. The value **true** indicates that the device is the group owner, and the value **false** indicates the opposite.|
 | groupOwnerAddr | string | Yes| No| MAC address of the group.
 
 
@@ -837,7 +816,7 @@ Obtains the peer device list in the P2P connection. This API uses an asynchronou
 ```ts
 import wifi from '@ohos.wifi';
 
-wifi.getP2pPeerDevices((err, data:wifi.WifiP2pDevice) => {
+wifi.getP2pPeerDevices((err, data:wifi.WifiP2pDevice[]) => {
    if (err) {
        console.error("get P2P peer devices error");
        return;
@@ -1135,7 +1114,7 @@ Stops discovering devices.
 
   | Type| Description|
   | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+  | boolean | **true** if the operation is successful; **false** otherwise.|
 
 **Example**
 ```ts
@@ -1156,7 +1135,7 @@ Represents the P2P group information.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| isP2pGo | boolean | Yes| No| Whether the device is the group owner.|
+| isP2pGo | boolean | Yes| No| Whether the device is the group owner. The value **true** indicates that the device is the group owner, and the value **false** indicates the opposite.|
 | ownerInfo | [WifiP2pDevice](#wifip2pdevice8) | Yes| No| Device information of the group.|
 | passphrase | string | Yes| No| Passphrase of the group.|
 | interface | string | Yes| No| Interface name.|
