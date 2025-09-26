@@ -35,7 +35,7 @@ SymbolGlyphModifier的构造函数。
 
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| src | [Resource](../../apis-localization-kit/js-apis-resource.md#resource) | 否   | 资源信息。 |
+| src | [Resource](ts-types.md#resource) | 否   | 资源信息。 |
 
 ### applyNormalAttribute
 
