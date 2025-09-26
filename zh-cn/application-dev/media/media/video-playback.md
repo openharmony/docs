@@ -132,7 +132,7 @@
    应用需要从XComponent组件获取surfaceID，获取方式请参考[getXComponentSurfaceId](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9)。
 
     ```ts
-    // 通过getXComponentSurfaceId获取surfaceId
+    // 通过接口getXComponentSurfaceId获取surfaceId。
     let surfaceId = '';
     if (avPlayer == null) {
         return;
