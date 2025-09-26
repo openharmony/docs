@@ -276,7 +276,7 @@ console.info(`'Query rotation speed successful, speed limit information:' ${spee
 
 rotateBySpeed(mechId: number, speed: RotationSpeed, duration: number): Promise\<Result>
 
-以指定速度旋转当前机械体设备。
+以指定速度旋转当前机械体设备。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Mechanic.Core
 
@@ -289,6 +289,12 @@ rotateBySpeed(mechId: number, speed: RotationSpeed, duration: number): Promise\<
 | mechId | number | 是 | 机械体设备ID。 |
 | speed | [RotationSpeed](#rotationspeed) | 是 | 指定旋转速度。最大旋转速度不超过getMaxRotationSpeed的返回值大小，如果超过最大速度，默认取最大值。 |
 | duration | number | 是 | 旋转持续时间，单位：ms。最大时间不超过getMaxRotationTime的返回值大小，如果超过最大时间，默认取最大值。 |
+
+**返回值：**
+
+| 类型                                        | 说明        |
+| ------------------------------------------- | --------- |
+| Promise\<[Result](#result)> | Promise对象，返回旋转执行结果。 |
 
 **错误码：**
 
