@@ -1,6 +1,6 @@
 # NotificationSlot
 
-描述通知槽。
+描述通知渠道，不同通知渠道对应的通知提醒方式不同。
 
 > **说明：**
 >
@@ -12,7 +12,7 @@
 
 | 名称                 | 类型                 | 只读 | 可选 | 说明                   |
 | -------------------- | ---------------------|---- | --- |----------------------|
-| type<sup>(deprecated)</sup> | [notification.SlotType](js-apis-notification.md#slottype) | 否 | 是  | 通道类型。<br>从API version 11开始不再维护，建议使用notificationType代替。                |
+| type<sup>(deprecated)</sup> | [notification.SlotType](js-apis-notification.md#slottype) | 否 | 是  | 通道类型。<br>从API version 7开始支持，从API version 11开始废弃，建议使用notificationType替代。                |
 | notificationType<sup>11+</sup>                 | [notificationManager.SlotType](js-apis-notificationManager.md#slottype) | 否 | 是  | 通道类型。                |
 | level                | [notification.SlotLevel](../apis-notification-kit/js-apis-notificationManager.md#slotlevel)                | 否 | 是  | 通知级别。 |
 | desc                 | string                | 否 | 是  | 通知渠道描述信息。            |

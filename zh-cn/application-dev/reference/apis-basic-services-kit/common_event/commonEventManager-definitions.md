@@ -1361,7 +1361,7 @@ Store Kit面向应用发布如下系统公共事件。
 
 ### COMMON_EVENT_DISK_UNMOUNTED
 
-（预留事件，暂未支持）部存储设备状态变更为卸载时发送此公共事件。
+（预留事件，暂未支持）外部存储设备状态变更为卸载时发送此公共事件。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
