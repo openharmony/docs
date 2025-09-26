@@ -448,6 +448,33 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 | VOLUME_UP              | 0      | 向上调节音量。 |
 | VOLUME_DOWN            | 1      | 向下调节音量。 |
 
+## DeviceType
+
+表示设备类型的枚举。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称                         | 值     | 说明                              |
+|----------------------------| ------ |---------------------------------|
+| BLUETOOTH_SPP<sup>22+</sup> | 33 | 蓝牙设备SPP（Serial Port Profile）连接。 |
+| NEARLINK_PORT<sup>22+</sup> | 34 | 星闪设备PORT连接。                     |
+
+## AudioCapturerOptions<sup>8+</sup>
+
+音频采集器选项信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+| 名称                                | 类型                                                                   | 只读 | 可选 | 说明                                                                                                                                                                                                        |
+| ----------------------------------- |----------------------------------------------------------------------| ---- |---|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| preferredInputDevice<sup>22+</sup> | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor) | 否 | 是 | 当前音频采集器的偏好输入设备。<br/>此设备必须为输入设备，并且capturerInfo的source type必须为[SOURCE_TYPE_VOICE_RECOGNITION](arkts-apis-audio-e.md#sourcetype8)或[SOURCE_TYPE_VOICE_TRANSCRIPTION](#sourcetype8)。否则，此参数将会被忽略。<br/>1. 当调用者未指定偏好设备时，系统会自动选择一个设备。<br/>2. 当调用者指定了偏好设备创建语音识别或者语音转写流时：<br/>（1）设备在线，当前audiocapturer会使用偏好设备；如果运行过程中，偏好设备下线，系统会自动选择一个录音设备。<br/>（2）设备不在线，当前audiocapturer会自动选择一个录音设备；如果运行过程中，偏好设备上线，系统会自动切换到偏好设备上。<br/>3. 调用者可以通过[getCurrentAudioCapturerChangeInfo](arkts-apis-audio-AudioCapturer.md#getcurrentaudiocapturerchangeinfo11)查询当前实际使用的录音设备。 |
+
+                                                                                                  
+
 ## AudioManager
 
 管理音频音量和音频设备。在调用AudioManager的接口前，需要先通过[getAudioManager](arkts-apis-audio-f.md#audiogetaudiomanager)创建实例。
