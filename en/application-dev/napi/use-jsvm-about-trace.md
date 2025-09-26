@@ -12,9 +12,9 @@ You can use the trace-related APIs in JSVM-API to collect and output various typ
 
 ## Basic Concepts
 
-Trace-related APIs in JSVM-API can collect information about JSVM internal events of a specified category and output the information in JSON format through the callback function specified by the user.
+With the trace-related APIs, you can specify the categories for data collecting, collect information about JSVM internal events related to the specified categories, and return the collected information in JSON format via the specified callback.
 
-In JSVM-API, the JSVM module can be more closely integrated with the JavaScript environment by supporting trace-related capabilities, improving the capabilities of locating complex problems and analyzing performance.
+The trace capabilities provided by JSVM-API allow seamless integration of the JSVM module with the JavaScript environment, facilitating the identification of complex problems and system profiling.
 
 ## Available APIs
 

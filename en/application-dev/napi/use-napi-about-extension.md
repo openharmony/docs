@@ -649,7 +649,7 @@ Call **napi_coerce_to_native_binding_object** to add the **detach()** and **atta
 
 ### Example
 
-napi_run_event_loop and napi_stop_event_loop
+**napi_run_event_loop** and **napi_stop_event_loop**
 
 See [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extensions](use-napi-event-loop.md)
 
@@ -664,7 +664,7 @@ See [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API 
 
 ### Example
 
-napi_create_ark_runtime and napi_destroy_ark_runtime
+**napi_create_ark_runtime** and **napi_destroy_ark_runtime**
 
 See [Creating an ArkTs Runtime Environment Using Node-API](use-napi-ark-runtime.md).
 
@@ -680,7 +680,7 @@ See [Creating an ArkTs Runtime Environment Using Node-API](use-napi-ark-runtime.
 
 ### Example
 
-napi_serialize, napi_deserialize, and napi_delete_serialization_data
+**napi_serialize**, **napi_deserialize**, and **napi_delete_serialization_data**
 
 Call **napi_serialize** to convert an ArkTS object into native data; call **napi_deserialize** to convert native data into an ArkTS object; call **napi_delete_serialization_data** to delete serialized data.
 
@@ -1259,7 +1259,7 @@ testNapi.unwrapSendable();
 
 **napi_remove_wrap_sendable**
 
-Removes and obtains the native instance wrapped by an ArkTS object. After removal, the callback will no longer be triggered and must be manually deleted to free memory.
+Call **napi_remove_wrap_sendable** to remove and obtain the native instance wrapped by an ArkTS object. After removal, the callback will no longer be triggered and must be manually deleted to free memory.
 
 CPP code:
 
@@ -1371,17 +1371,17 @@ import testNapi from 'libentry.so';
 testNapi.testNapiWrapEnhance();
 ```
 
-## napi provides the multi-context environment capability.
+## Multi-context of Node-API
 
 ### Available APIs
 
 | API| Description|
 | -------- | -------- |
-| napi_create_ark_context | Create a basic runtime context environment.|
+| napi_create_ark_context | Creates a basic runtime context.|
 | napi_switch_ark_context | Switches to the specified runtime context environment.|
 | napi_destroy_ark_context | Destroys the basic runtime context.|
 ### Example
 
-**napi_create_ark_context, napi_switch_ark_context, napi_destroy_ark_context**
+**napi_create_ark_context, napi_switch_ark_context, and napi_destroy_ark_context**
 
-[Using the Extended Node-API to Create, Switch, and Destroy a Context Environment](use-napi-about-context.md)
+[Creating, Switching, and Destroying a Context in a Thread Using Node-API Extension APIs](use-napi-about-context.md)

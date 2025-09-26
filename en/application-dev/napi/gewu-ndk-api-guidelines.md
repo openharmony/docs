@@ -1,31 +1,31 @@
-# Gewu Development Guide
+# Gewu Development
 <!--Kit: Kernel Enhance Kit-->
 <!--Subsystem: Kernel-->
 <!--Owner: @gatieme-->
 <!--Designer: @tanyihua-->
 <!--Tester: @panny060-->
 <!--Adviser: @fang-jinxu-->
-## When to Use
+## Scenario
 
-The feature is supported since API version 20. The on-device inference scenario has advantages such as ensuring user data privacy, low deployment costs, low latency, and high availability that is not affected by a network. However, compared with cloud-based inference, on-device inference also faces greater challenges because on-device devices have limited memory resources and computing power and are sensitive to power consumption. In addition, user experience and no frame freezing need to be ensured when on-device inference services are running. To cope with these challenges of on-device inference, the grid service provides QoS-aware inference acceleration and resource management optimization capabilities. This document describes how to use the grid object API.
+The feature is supported since API version 20. On-device inference ensures user data privacy, low deployment costs, low latency, and high availability without being affected by networks. However, compared with cloud inference, on-device inference faces greater challenges such as limited memory resources, limited computing power, and sensitivity to power consumption. In addition, it needs to ensure user experience and prevent frame freezing when running services. To address these challenges, Gewu provides QoS-aware inference acceleration and resource management optimization. This topic describes how to use Gewu APIs.
 
 ## APIs
 
 ### Error Codes
 
-The `OH_QoS_GewuErrorCode` enumeration type is used as the error code type of the grid. For details about the error codes returned by each function interface, see the interface description.
+**OH_QoS_GewuErrorCode** is an enumeration type of Gewu error codes. For details about the error codes returned by each function, see the API description.
 
-### Session Handle
+### Session Handles
 
-Session handles are used for session management. When a session is successfully created using `OH_QoS_GewuSession`, the session handle can be obtained for submitting or terminating a request and destroying the session.
+Session handles are used to manage sessions. You can obtain a session handle by successfully creating a session through **OH_QoS_GewuSession**. The session handle can be used to submit or abort a request and destroy a session.
 
 ```C
 typedef unsigned int OH_QoS_GewuSession;
 ```
 
-### Request Handle
+### Request Handles
 
-Request handles are used to manage requests. When a request is successfully submitted using `OH_QoS_GewuSubmitRequest`, a request handle can be obtained to terminate the request.
+Request handles are used to manage requests. You can obtain a request handle by successfully submitting a request through **OH_QoS_GewuSubmitRequest**. The request handle can be used to abort a request.
 
 ```C
 typedef unsigned int OH_QoS_GewuRequest;
@@ -36,21 +36,21 @@ typedef unsigned int OH_QoS_GewuRequest;
 | Name                     | Description                      |
 | --------------------------- | -------------------------- |
 | `OH_QoS_GewuCreateSession`  | Creates a session.                  |
-| `OH_QoS_GewuDestroySession` | Destroys this session.                  |
-| `OH_QoS_GewuSubmitRequest`  | Submit the request.                  |
-| `OH_QoS_GewuAbortRequest`   | Abort request                  |
+| `OH_QoS_GewuDestroySession` | Destroys a session.                  |
+| `OH_QoS_GewuSubmitRequest`  | Submits a request.                  |
+| `OH_QoS_GewuAbortRequest`   | Aborts a request.                  |
 
 **`OH_QoS_GewuCreateSession`**
 
-Description
+**Description**
 
-The `OH_QoS_GewuCreateSession` interface is used to create a session.
+Creates a session asynchronously.
 
-This API asynchronously processes requests. That is, this API only initiates session creation and does not return a response after session resource allocation and model loading are complete. On-device inference resource management is optimized to dynamically load resources on demand.
+That is, this API only initiates a session creation request and does not wait until the session resource allocation and model loading are complete. Gewu optimizes on-device inference resource management and enables dynamic on-demand resource loading.
 
-The lifecycle of a session object starts when the `OH_QoS_GewuCreateSession` function is returned and ends when the `OH_QoS_GewuDestroySession` function is called.
+The lifecycle of a session object starts from the return of the **OH_QoS_GewuCreateSession** function and ends when the **OH_QoS_GewuDestroySession** function is called.
 
-Statement
+**Declaration**
 
 ```C
 typedef struct {
@@ -61,12 +61,12 @@ typedef struct {
 OH_QoS_GewuCreateSessionResult OH_QoS_GewuCreateSession(const char* attributes);
 ```
 
-Parameters
+**Parameters**
 
-* The `const char* attributes` parameter indicates the JSON string of the session attribute. The JSON string supports the following fields:
-    * "model": string Path of the model used by the session.
+* The **const char* attributes** parameter indicates the JSON string of the session attribute. It supports the following fields:
+    * **"model": string**: Path of the model used by the session.
 
-The following is an example of the JSON string of `attributes`:
+Example of the JSON string of `attributes`:
 
 ```json
 {
@@ -74,41 +74,41 @@ The following is an example of the JSON string of `attributes`:
 }
 ```
 
-Return value
+**Return Value**
 
-If the session is successfully created, `error` in `OH_QoS_GewuCreateSessionResult` is `OH_QOS_GEWU_OK`, and `session` is the handle of the created session.
-If a session fails to be created, `error` in `OH_QoS_GewuCreateSessionResult` indicates the error cause, and `OH_QOS_GEWU_NOMEM` indicates that the memory is insufficient for creating a session.
+If the session is created successfully, the value of **error** in the return value **OH_QoS_GewuCreateSessionResult** is **OH_QOS_GEWU_OK**, and the value of **session** is the created session handle.
+If the session fails to be created, the value of **error** in the return value **OH_QoS_GewuCreateSessionResult** is the cause of the error. **OH_QOS_GEWU_NOMEM** indicates that no sufficient memory is available for creating the session.
 
 **`OH_QoS_GewuDestroySession`**
 
-Description
+**Description**
 
-The `OH_QoS_GewuDestroySession` interface is used to destroy a session.
+Destroys a session.
 
-You are advised to wait until all requests are completed or terminated before invoking this interface to destroy the session. If there are ongoing requests when this interface is called, the requests will be terminated and the user will not receive any response. Note that the session object cannot be used after this interface is called.
+You are advised to wait until all requests are complete or aborted before calling this API. If there are ongoing requests when this API is called, the requests will be aborted, and you will not receive responses. Note that after this API is called, the session object cannot be used.
 
-Statement
+**Declaration**
 
 ```C
 OH_QoS_GewuErrorCode OH_QoS_GewuDestroySession(OH_QoS_GewuSession session);
 ```
 
-Parameters
+**Parameters**
 
-* The `OH_QoS_GewuSession session` parameter indicates the handle of the session to be destroyed.
+* **OH_QoS_GewuSession session**: Handle to the session to be destroyed.
 
-Return value
+**Return Value**
 
-If the session is successfully destroyed, the return value is `OH_QOS_GEWU_OK`.
-If the session fails to be destroyed, the return value is the error cause. In the return value, `OH_QOS_GEWU_NOENT` indicates that the session cannot be found.
+If the session is destroyed successfully, the return value is **OH_QOS_GEWU_OK**.
+If the session fails to be destroyed, the return value is the cause of the error. **OH_QOS_GEWU_NOENT** indicates that the session cannot be found.
 
 **`OH_QoS_GewuSubmitRequest`**
 
-Description
+**Description**
 
-The `OH_QoS_GewuSubmitRequest` interface is used to submit requests. This interface is used to asynchronously execute requests. That is, this interface only initiates requests but does not directly return results. When this interface returns results, the requests may not be executed. The request result is returned to the user by calling the callback provided by the user.
+Submits a request asynchronously. That is, this API only initiates a request but does not directly return a result. When this API returns, the request may not be executed. The result is returned through your callback.
 
-Statement
+**Declaration**
 
 ```C
 typedef struct {
@@ -122,68 +122,68 @@ OH_QoS_GewuSubmitRequestResult OH_QoS_GewuSubmitRequest(OH_QoS_GewuSession sessi
     OH_QoS_GewuOnResponse callback, void* context);
 ```
 
-Parameters
+**Parameters**
 
-The parameters of the `OH_QoS_GewuSubmitRequest` function are as follows:
+The parameters of the **OH_QoS_GewuSubmitRequest** function are as follows:
 
-* The `OH_QoS_GewuSession session` parameter is the session handle, indicating the session to which the request is submitted.
-* The `const char* request` parameter is the JSON string of the request. The following fields are supported:
-    * "messages": array. Message array. Each element in the array supports the following fields:
-        * "role": string. Role type of a message. "developer" indicates the instruction provided by the developer or system, "user" indicates the user input, and "assistant" indicates the model generation result.
-        * "content": string. Message content.
-    * "stream": boolean or null. Whether to enable streaming inference. Non-streaming inference is used by default.
-* The `OH_QoS_GewuOnResponse callback` parameter is the callback function of the request.
-* The `void* context` parameter is the context pointer provided by the user and is transferred to the callback function. Generally, the user code can use this parameter to find the request corresponding to the received reply and process the request accordingly.
+* **OH_QoS_GewuSession session**: Session handle, indicating the session to which the request is submitted.
+* **const char* request**: JSON string of the request. The following fields are supported:
+    * **"messages": array**: Array of messages, where each element supports the following fields:
+        * **"role": string**: Role type of the message. **developer** indicates indications provided by developers or the system, **user** indicates user input, and **assistant** indicates the result generated by the model.
+        * **"content": string**: Message content.
+    * **"stream": boolean or null**: Whether to enable stream inference. The default value is non-stream.
+* **OH_QoS_GewuOnResponse callback**: callback of the request.
+* **void* context**: context pointer provided by yourself, which is passed to the callback. In common cases, your code can find the request corresponding to the received response through this parameter for further processing.
 
-In addition, the parameters of the `OH_QoS_GewuOnResponse` callback function are as follows:
+The parameters of the **OH_QoS_GewuOnResponse** callback are as follows:
 
-* The `void* context` parameter is the `context` pointer transferred when `OH_QoS_GewuSubmitRequest` is called.
-* The `const char* response` parameter is the JSON string of the response, which contains the following fields:
-    * "message": reply message, including the following fields:
-        * "role": string. Role type of the message. The value must be assistant.
-        * "content": string. Message content.
-    * "finish_reason": string or null. Stop reason. Possible values are as follows:
-        * null: The process is not stopped. In streaming inference, there are multiple replies. Only the last reply has a non-empty "finish_reason." For non-streaming inference, there is only one response, and "finish_reason" is not empty.
-        * "stop": The service is stopped normally.
-        * "abort": The user proactively terminates the task in advance.
-        * "length": The number of tokens exceeds the upper limit.
+* **void* context**: **context** pointer passed in when **OH_QoS_GewuSubmitRequest** is called.
+* **const char* response**: JSON string of the response, which contains the following fields:
+    * **"message"**: response message, which contains the following fields:
+        * **"role": string**: Role of the message, which should be **assistant**.
+        * **"content": string**: Message content.
+    * **"finish_reason": string or null**: Stop reason, which can be:
+        * **null**: The request is not stopped. In streaming inference, there are multiple responses, and only the last response has a non-empty **finish_reason**. For non-streaming inference, there is only one response, and **finish_reason** is not empty.
+        * **"stop"**: The request is stopped normally.
+        * **"abort"**: The request is stopped by the user in advance.
+        * **"length"**: The number of tokens exceeds the upper limit.
 
-Return value
+**Return Value**
 
-If the request is successfully submitted, `error` in `OH_QoS_GewuSubmitRequestResult` is `OH_QOS_GEWU_OK`, and `request` is the request handle.
-If the request fails to be submitted, `error` in `OH_QoS_GewuSubmitRequestResult` indicates the error cause, and `OH_QOS_GEWU_NOMEM` indicates that the memory is insufficient to process the request.
+If the request is submitted successfully, the value of **error** in **OH_QoS_GewuSubmitRequestResult** is **OH_QOS_GEWU_OK**, and the value of **request** is the request handle.
+If the request fails to be submitted, the value of **error** in **OH_QoS_GewuSubmitRequestResult** is the cause of the error. **OH_QOS_GEWU_NOMEM** indicates that memory is insufficient for processing the request.
 
 **`OH_QoS_GewuAbortRequest`**
 
-Description
+**Description**
 
-The `OH_QoS_GewuAbortRequest` interface is used to terminate a request in advance.
+Aborts a request in advance.
 
-In normal cases, after calling the `OH_QoS_GewuSubmitRequest` API to submit a request, you do not need to call the `OH_QoS_GewuAbortRequest` API until the inference is complete (that is, a response indicating that `"finish_reason"` is not empty is received).
-The `OH_QoS_GewuAbortRequest` API needs to be called only when you want to terminate the inference request in advance.
+In normal cases, after calling the **OH_QoS_GewuSubmitRequest** API to submit a request, you only need to wait until the inference is complete (that is, the response where **finish_reason** is not empty is received); you do not need to call the **OH_QoS_GewuAbortRequest** API.
+You need to call the **OH_QoS_GewuAbortRequest** API only when you want to abort an inference request in advance.
 
-After this function is successfully called, the user does not receive the response to the request, and the request handle cannot be used.
+After this function is successfully called, you will not receive any response to the request, and the request handle cannot be used.
 
-Statement
+**Declaration**
 
 ```C
 OH_QoS_GewuErrorCode OH_QoS_GewuAbortRequest(OH_QoS_GewuSession session, OH_QoS_GewuRequest request);
 ```
 
-Parameters
+**Parameters**
 
-* The `OH_QoS_GewuSession session` parameter is a handle of the session to which the request belongs.
-* The `OH_QoS_GewuRequest request` parameter indicates the handle of the request to be aborted.
+* **OH_QoS_GewuSession session**: Handle to the request session.
+* **OH_QoS_GewuRequest request**: Handle to the request to be aborted.
 
-Return value
+**Return Value**
 
-If the request is aborted successfully, the return value is `OH_QOS_GEWU_OK`.
-If the request fails to be aborted, the return value is the error cause, where `OH_QOS_GEWU_NOENT` indicates that the request cannot be found.
+If the request is aborted successfully, the return value is **OH_QOS_GEWU_OK**.
+If the request fails to be aborted, the return value is the cause of the error. **OH_QOS_GEWU_NOENT** indicates that the request cannot be found.
 
 
-## Example
+## Examples
 
-Examples:
+The following is an example:
 
 ```CPP
 #include <future>
@@ -200,7 +200,7 @@ Examples:
 
 using json = nlohmann::json;
 
-/*Used to store the chat status*/
+/* Used to save the chat status */
 struct ChatContext {
 public:
     ChatContext()
@@ -221,7 +221,7 @@ public:
     bool earlyAbort = false;
 };
 
-/* Callback function when the inference result is received */
+/* Callback triggered when the inference result is received */
 void OnChatResponse(void *context, const char *response)
 {
     ChatContext *chatContext = static_cast<ChatContext *>(context);
@@ -254,12 +254,12 @@ int Demo(void)
 {
     DEMO_LOGI("Demo starts");
     json attrJson = {
-        /* Path of the model file. Change it based on the site requirements. */
+        /* Path of the model file. Change it with the actual path. */
         {"model", "/data/storage/el2/base/files/qwen2-awq"},
     };
     std::string attrStr = attrJson.dump(4);
 
-    /*Create a session.*/
+    /* Create a session */
     OH_QoS_GewuCreateSessionResult createResult = OH_QoS_GewuCreateSession(attrStr.c_str());
     if (createResult.error != OH_QOS_GEWU_OK) {
         DEMO_LOGE("failed to create session, error=%d", (int)createResult.error);
@@ -267,7 +267,7 @@ int Demo(void)
     }
     OH_QoS_GewuSession session = createResult.session;
 
-    /* Create and submit a request. */
+    /* Create and submit a request */
     ChatContext context;
     json requestJson = {
         {"messages", json::array({
@@ -286,7 +286,7 @@ int Demo(void)
     OH_QoS_GewuRequest request = submitResult.request;
     context.Join();
 
-    /* Abort the request in advance. */
+    /* Abort the request in advance */
     if (context.earlyAbort) {
         OH_QoS_GewuErrorCode error = OH_QoS_GewuAbortRequest(session, request);
         if (error != OH_QOS_GEWU_OK) {
@@ -295,10 +295,10 @@ int Demo(void)
         }
     }
 
-    /*Print the result.*/
+    /* Print the result */
     DEMO_LOGI("response: %s", context.responseContent.c_str());
 
-    /*Destroy the session.*/
+    /* Destroy the session */
     OH_QoS_GewuErrorCode error = OH_QoS_GewuDestroySession(session);
     if (error != OH_QOS_GEWU_OK) {
         DEMO_LOGE("failed to destroy session, error=%d", (int)error);

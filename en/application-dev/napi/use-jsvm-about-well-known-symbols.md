@@ -32,7 +32,7 @@ JSVM-API provides APIs for obtaining 11 well-known symbols.
 
 ## Example
 
-For details, see the JSVM-API interface development process in [Using JSVM-API to Implement Interaction Between JS and C/C++](use-jsvm-process.md). This document describes only the C++ code corresponding to the interface.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in symbol-related APIs.
 
 ### OH_JSVM_GetSymbolToStringTag
 

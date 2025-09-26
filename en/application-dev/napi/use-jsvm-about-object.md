@@ -30,7 +30,7 @@ You may need to define and operate objects when using JSVM-API in development. F
 | OH_JSVM_TypeTagObject       | Associates the value of the **type_tag** pointer with a JS object or an external object.|
 | OH_JSVM_CheckObjectTypeTag | Checks whether a tag matches the tag type of an object.|
 | OH_JSVM_CreateSymbol         | Creates a symbol object based on the given descriptor.                    |
-|OH_JSVM_SymbolFor | Searches for a symbol with the given key in a global (runtime-wide) symbol registry. If a match is found, the symbol will be returned. Otherwise, a symbol will be created in the Registry.|
+|OH_JSVM_SymbolFor | Searches for a symbol with the given key in a global (runtime-wide) symbol registry. If a match is found, the symbol will be returned. Otherwise, a symbol will be created in the registry.|
 | OH_JSVM_CreateExternal       | Creates a JS object that wraps an external pointer.              |
 | OH_JSVM_GetValueExternal    | Obtains the external data pointer previously passed to **OH_JSVM_CreateExternal**.                 |
 
@@ -40,7 +40,7 @@ If you are just starting out with JSVM-API, see [JSVM-API Development Process](u
 
 ### OH_JSVM_GetPrototype
 
-This function is used to obtain the prototype of a given JavaScript object.
+Call **OH_JSVM_GetPrototype** to obtain the prototype of a JS object.
 
 CPP code:
 
@@ -89,7 +89,7 @@ JSVM GetPrototype success
 
 ### OH_JSVM_CreateObject
 
-This function is used to create a default JavaScript object.
+Call **OH_JSVM_CreateObject** to create a default JS object.
 
 CPP code:
 
@@ -192,7 +192,7 @@ Test JSVM OH_JSVM_ObjectFreeze success
 
 ### OH_JSVM_ObjectSeal
 
-Seals a JS object. Once a JS object is sealed, new properties cannot be added to it and all existing properties are marked as unconfigurable.
+Call **OH_JSVM_ObjectSeal** to seal a JS object. Once a JS object is sealed, new properties cannot be added to it and all existing properties are marked as unconfigurable.
 
 CPP code:
 
@@ -255,7 +255,7 @@ Test JSVM OH_JSVM_ObjectSeal success
 
 ### OH_JSVM_Typeof
 
-Returns the type of a JS object.
+Call **OH_JSVM_Typeof** to return the type of a JS object.
 
 CPP code:
 
@@ -342,7 +342,7 @@ JSVM Input type is boolean
 
 ### OH_JSVM_Instanceof
 
-Checks whether an object is an instance of a constructor.
+Call **OH_JSVM_Instanceof** to check whether an object is an instance of a constructor.
 
 CPP code:
 
@@ -399,11 +399,11 @@ JSVM InstanceOf: 1
 
 ### OH_JSVM_TypeTagObject
 
-The type tag type_tag is used to mark JavaScript objects. In this way, JavaScript objects can be identified more accurately in subsequent operations.
+Call **OH_JSVM_TypeTagObject** to associate the value of the **type_tag** pointer with a JS object so that the object can be identified more accurately.
 
 ### OH_JSVM_CheckObjectTypeTag
 
-Checks whether a tag matches the tag type of an object.
+Call **OH_JSVM_CheckObjectTypeTag** to check whether a tag matches the tag type of an object.
 
 CPP code:
 
@@ -655,7 +655,7 @@ JSVM CreateSymbol Success
 
 ### OH_JSVM_SymbolFor
 
-Searches for a symbol with the given key in a global (runtime-wide) symbol registry. If a match is found, the symbol will be returned. Otherwise, a symbol will be created in the Registry.
+Call **OH_JSVM_SymbolFor** to search for a symbol with the given key in a global (runtime-wide) symbol registry. If a match is found, the symbol will be returned. Otherwise, a symbol will be created in the Registry.
 
 CPP code:
 

@@ -8,11 +8,11 @@
 
 ## Introduction
 
-Function calling allows you to call JavaScript functions from the JSVM module and transfer parameters, or directly create a JavaScript function in the JSVM module.
+JSVM-API provides APIs for calling JavaScript (JS) functions and passing parameters or creating JS methods in C/C++.
 
 ## Basic Concepts
 
-Functions are an important programming concept. They are used to execute specific tasks, improve code readability and reusability, simplify complex operations, and modularize and structure code for easy understanding, maintenance, and expansion.
+Functions are blocks of reusable code that performs specific tasks or operations.
 
 ## Available APIs
 
@@ -133,7 +133,7 @@ static int32_t TEST_FUNC() {
 ```
 <!-- @[jsvm_function_call](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/functioncall/src/main/cpp/hello.cpp) -->
 
-**Expected output**
+Expected output:
 ```
 jsvm: jsvm api call function; Hello World!
 jsvm: js source call function; Hello World!

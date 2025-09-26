@@ -8,7 +8,7 @@
 
 ## Overview
 
-Node-APIs provide APIs for performing basic operations on objects, such as creating objects, obtaining prototypes, freezing and sealing objects, and checking object types.
+Node-API provides APIs for basic object operations, including creating an object, obtaining the prototype of an object, freezing or sealing an object, and checking the object type.
 
 ## Basic Concepts
 
@@ -29,7 +29,7 @@ The following table lists the APIs for operating and managing ArkTS objects.
 | napi_typeof | Obtains the type of an ArkTS value.|
 | napi_instanceof | Checks whether an ArkTS object is an instance of the specified constructor.|
 | napi_type_tag_object | Associates the value of a tag pointer with an ArkTS object.|
-| napi_check_object_type_tag | Checks whether a tag pointer is associated with an ArkTS object.|
+| napi_check_object_type_tag | Checks whether a tag pointer is associated with a ArkTS object.|
 | napi_create_symbol | Creates an ArkTS **Symbol** object.|
 | napi_create_external | Creates an ArkTS external object, which can be used to pass custom data structs or objects in C/C++ to ArkTS so that it can be accessible from ArkTS.|
 | napi_get_value_external | Obtains the ArkTS data from the external object created by **napi_create_external**. This API can be used to pass data between ArkTS and C/C++.|
@@ -281,9 +281,9 @@ try {
 
 ### napi_typeof
 
-Obtains the ArkTS type of a given ArkTS value.
+Call **napi_typeof** to obtain the ArkTS type of an ArkTS value.
 
-**Note**: napi_typeof can be used to determine the following types:  
+**Note**: **napi_typeof** can determine the following types:  
 undefined  
 null  
 boolean  
@@ -552,7 +552,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_check_object_type_tag objB -> 
 
 ### napi_create_external
 
-Call **napi_create_external** to create an ArkTS external object wrapping a custom C/C++ object and expose it to ArkTS. With this API, you can create a Node-API value that contains a pointer to a custom C/C++ object so that the object can be accessed and managed by ArkTS.
+Call **napi_create_external** to create an ArkTS external object with a custom C/C++ object and expose it to ArkTS. With this API, you can create a Node-API value that contains a pointer to a custom C/C++ object so that the object can be accessed and managed by ArkTS.
 
 CPP code:
 

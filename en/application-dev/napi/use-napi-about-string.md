@@ -8,11 +8,11 @@
 
 ## Introduction
 
-You can use the six string-related APIs of Node-API to implement the interaction between the Node-API module and ArkTS strings.
+This topic walks you through on how to use Node-API to convert data between native strings and ArkTS strings.
 
 ## Basic Concepts
 
-Strings are commonly used data types in programming and are used to store and manipulate text data. It can represent and process character sequences, construct user interface elements (such as tags, buttons, and text boxes), process user input, and validate and format data. Different encoding formats support different character sets and languages. The following table lists the main encoding schemes and their differences.
+Strings are a common data type in programming. They are used to store and manipulate text data, and can be employed to represent and process character sequences, build user interface (UI) elements such as tags, buttons, and text boxes, as well as to process user input and validate and format data. Different encodings support different character sets and languages. Major encoding schemes include the following:
 
 - ASCII<br>ASCII is one of the earliest character encoding schemes. It uses 7 bits to represent English letters, digits, and some basic symbols. It serves as the foundation for encoding schemes.
 - UTF-8<br>UTF-8 is a variable-length encoding scheme that can represent any Unicode character. It uses 8 bits per character and uses byte sequences of different lengths depending on the range of the character. UTF-8 is widely used for web content.
@@ -244,7 +244,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_string_utf16:%{public}s
 
 ### napi_get_value_string_latin1
 
-Converts ArkTS character data to ISO-8859-1 encoding.
+Use **napi_get_value_string_latin1** to convert an ArkTS string into an ISO-8859-1-encoded string.
 
 CPP code:
 
@@ -288,7 +288,7 @@ import testNapi from 'libentry.so';
 // If non-character data is passed in, undefined will be returned.
 hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_latin1_not_string %{public}s', testNapi.getValueStringLatin1(10));
 // The ISO-8859-1 encoding does not support Chinese characters. If Chinese characters are passed in, garbled characters will be displayed.
-hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_latin1_string_chinese %{public}s', testNapi.getValueStringLatin1 ('Chinese characters');
+hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_latin1_string_chinese %{public}s', testNapi.getValueStringLatin1('Chinese characters'));
 // Passing in characters of other languages will not cause garbled characters.
 hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_latin1_string %{public}s', testNapi.getValueStringLatin1('abo ABP=-&*/'));
 ```

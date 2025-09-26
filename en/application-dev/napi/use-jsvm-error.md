@@ -8,7 +8,7 @@
 
 ## Introduction
 
-The JSVM-API interface is used for error handling to better manage and respond to errors. Properly using these APIs helps improve module stability and reliability.
+JSVM-API provides APIs for handling errors occurred in JS code using exceptions. Properly using these APIs helps improve module stability and reliability.
 
 ## Basic Concepts
 
@@ -36,7 +36,7 @@ These concepts are important in exception and error handling. Properly using met
 
 ## Example
 
-For details about the JSVM-API development process, see [Using JSVM-API to Implement Interactive Development Between JS and C/C++](use-jsvm-process.md). This document describes only the C++ code corresponding to the APIs.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in related APIs.
 
 ### OH_JSVM_Throw
 
@@ -97,7 +97,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(jsVmCreateThrowError();)JS";
 ```
 <!-- @[oh_jsvm_create_error](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/createerror/src/main/cpp/hello.cpp) -->
-**Expected output**
+Expected result:
 ```ts
 JSVM error message: HasError, error code: -1
 ```

@@ -8,7 +8,7 @@
 
 ## When to Use
 
-Use **createJsCore** to create a JavaScript virtual machine (JSVM), which is a runtime environment for executing JS code. The **createJsCore** returns a core ID, which uniquely identifies a VM.<br> Use **evaluateJS** to run JS code in the VM of the specified core ID and define a promise in the JS code and run the function asynchronously.<br> Use **releaseJsCore** to release a JSVM.
+Use **createJsCore** to create a JavaScript virtual machine (JSVM), which a runtime environment for executing JS code. The **createJsCore** returns a core ID, which uniquely identifies a VM. <br>Use **evaluateJS** to run JS code in the VM of the specified core ID and define a promise in the JS code and run the function asynchronously. <br>Use **releaseJsCore** to destroy a JSVM.
 
 ## Example
 

@@ -100,7 +100,7 @@ After the project is created, the **cpp** directory is created in the project di
     ```
     <!-- @[includes](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ResourceManagement/RawFile/entry/src/main/cpp/hello.cpp) -->
 
-    Declare the **DOMAIN** and **TAG** constants of hilog.
+    Declare the **DOMAIN** and **TAG** constants of HiLog.
     ```c++
     const int GLOBAL_RESMGR = 0xFF00;
     const char *TAG = "[Sample_rawfile]";
@@ -414,4 +414,4 @@ After the project is created, the **cpp** directory is created in the project di
 
  
 
-- [Obtaining Rawfile Resources (API 9)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkRawfile)
+- [Native Rawfile](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkRawfile)

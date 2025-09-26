@@ -12,7 +12,7 @@ JSVM-API provides APIs for converting data between C/C++ and JavaScript (JS) dat
 
 ## Basic Concepts
 
-Before using the JSVM to operate JavaScript objects, you need to understand the following basic concepts:
+Before using JSVM to operate JS objects, you need to understand the following basic concepts:
 
 - Conversion between JS and C/C primitives: You can use JSVM-API to convert JS values to C/C++ data types, for example, convert a JS value into a C/C++ integer and convert a JS string into a C/C++ string array. You can also convert C/C++ data into a JS value and return the JS value to JS.
 
@@ -32,7 +32,7 @@ Before using the JSVM to operate JavaScript objects, you need to understand the 
 
 ## Example
 
-For details about the JSVM-API development process, see [Using JSVM-API to Implement Interactive Development Between JS and C/C++](use-jsvm-process.md). This document describes only the C++ code corresponding to the interface.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in related APIs.
 
 ### OH_JSVM_CoerceToBool
 
@@ -382,7 +382,7 @@ JSVM OH_JSVM_GetGlobal success
 
 ### OH_JSVM_GetNull
 
-Obtains the JavaScript null object.
+Call **OH_JSVM_GetNull** to obtain a JavaScript null object.
 
 CPP code:
 
@@ -416,14 +416,14 @@ const char *srcCallNative = R"JS(getNull())JS";
 ```
 <!-- @[oh_jsvm_get_null](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/getnull/src/main/cpp/hello.cpp) -->
 
-Expected Results
+Expected result:
 ```
 JSVM OH_JSVM_GetNull success
 ```
 
 ### OH_JSVM_GetUndefined
 
-Obtains the JavaScript undefined object.
+Call **OH_JSVM_GetUndefined** to obtain a JavaScript undefined object.
 
 CPP code:
 
@@ -463,7 +463,7 @@ const char *srcCallNative = R"JS(getUndefined())JS";
 ```
 <!-- @[oh_jsvm_get_undefined](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPrimitive/getundefined/src/main/cpp/hello.cpp) -->
 
-Expected Results
+Expected result:
 ```
 JSVM OH_JSVM_GetUndefined success
 ```

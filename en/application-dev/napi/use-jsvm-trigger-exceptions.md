@@ -8,13 +8,13 @@
 
 ## Introduction
 
-JSVM-API provides APIs for handling JSVM exceptions. You can use these APIs to register callback functions with the JSVM. When the JSVM triggers an exception, the registered callback function is called.
-These APIs provide customized processing of JS engine errors to help developers manage runtime errors and exceptions.
+JSVM-API provides APIs for handling JSVM exceptions. You can use these APIs to register callbacks with a JSVM. When an exception occurs on the JSVM, the registered callback will be triggered.
+With these APIs, you can customize the handling of critical errors in the JS engine, streamlining error and exception handling during runtime.
 
 ## Basic Concepts
 
 JSVM-API provides APIs for handling the following errors: <br>Out-of-memory (OOM) error: You can use JSVM-API to register an OOM handler with a JSVM. When the JSVM encounters insufficient memory, the system will throw an OOM error and call the registered OOM error handler to perform cleanup or logging operations.
-When a fatal error occurs in the JavaScript engine, for example, an unrecoverable error occurs during JavaScript code execution, the system throws a fatal error and calls the preset processing function. In this processing function, additional logs can be output or errors can be reported to prevent the program from crashing.
+Fatal error: You can use JSVM-API to register a fatal error handler with a JSVM. When the JSVM encounters a fatal error, for example, an unrecoverable error while running JS code, the system will throw a fatal error and call the registered handler to output additional log information or report the error to prevent application crash.
 Promise rejection without a catch handler: You can use JSVM-API to register a promise rejection handler with a JSVM. When a promise in JS is rejected without being caught by a catch handler, the system will throw a Promise Reject error and call the registered handler to handle the promise rejection.
 
 ## Available APIs
@@ -32,7 +32,7 @@ If you are just starting out with JSVM-API, see [JSVM-API Development Process](u
 ### OH_JSVM_SetHandlerForOOMError
 Call **OH_JSVM_SetHandlerForOOMError** to set a function for handling the OOM error. If this API is called multiple times, only the last setting takes effect. If **NULL** is passed in for the function to set in this API, the previously set handler will be canceled.
 
-CPP code:
+**CPP Code**
 
 ```cpp
 #include <csetjmp>
@@ -88,19 +88,19 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"triggerOOMError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
-JS Example
+**JS Example**
 ```cpp
 const char *srcCallNative = R"JS(triggerOOMError();)JS";
 ```
-**Execution result**
+**Execution Result**
 
-Log output when the screen is clicked once:
+Log output:
 ```cpp
 JSVM Trigger OOM Error: success
 ```
 ### OH_JSVM_SetHandlerForFatalError
 Call **OH_JSVM_SetHandlerForFatalError** to set a function for handling the fatal error. If this API is called multiple times, only the last setting takes effect. If **NULL** is passed in for the function to set in this API, the previously set handler will be canceled.
-CPP code:
+**CPP Code**
 
 ```cpp
 #include <csetjmp>
@@ -155,19 +155,19 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"triggerFatalError", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
-JS Example
+**JS Example**
 ```cpp
 const char* srcCallNative = R"JS(triggerFatalError())JS";
 ```
-**Execution result:**
+**Execution Result**
 
-Log output when the screen is clicked once:
+Log output:
 ```cpp
 JSVM Trigger Fatal Error: success
 ```
 ### OH_JSVM_SetHandlerForPromiseReject
 Call **OH_JSVM_SetHandlerForPromiseReject** to set the function for handling promise rejection. If this API is called multiple times, only the last setting takes effect. If **NULL** is passed in for the function to set in this API, the previously set handler will be canceled.
-CPP code:
+**CPP Code**
 
 ```cpp
 static bool promiseRejectHandlerFinished = false;
@@ -231,13 +231,13 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"triggerPromiseReject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
-JS Example
+**JS Example**
 ```cpp
 const char* srcCallNative = R"JS(triggerPromiseReject())JS";
 ```
-**Execution result:**
+**Execution Result**
 
-Log output when the screen is clicked once:
+Log output:
 ```cpp
 JSVM Trigger Promise Reject: success
 ```

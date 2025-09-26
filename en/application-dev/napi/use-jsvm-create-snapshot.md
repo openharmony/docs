@@ -14,7 +14,7 @@ A JavaScript virtual machine (JSVM) snapshot records the state of a JSVM at a pa
 
 - VM startup snapshot: a snapshot of the VM status at a specific time, including all internal status and data of the VM. The snapshot can be used to quickly restore the VM to the state it was when the snapshot was created.
 
-Creating and using VM startup snapshots can simplify some complex programming tasks, improve VM management and maintenance efficiency in JSVM, and enhance program flexibility and stability.
+It helps simplify complex programming tasks and shorten the creation time of a JS context, making the application more efficient and stable.
 
 ## Available APIs
 
@@ -344,4 +344,4 @@ Test JSVM RunVMSnapshot read file blobSize = : 300032
 Test JSVM RunVMSnapshot read file blobSize = : 300176
 Test JSVM RunVMSnapshot read file blobSize = : 300048
 ```
-When the snapshot file is read, the value of blobSize is the size of the snapshot file (obtained through file.tellg()). The size of the snapshot file directly determines the value of blobSize. Therefore, different values are output.
+**blobSize** is the snapshot file size obtained through **file.tellg()** when the file is read. Therefore, different values are displayed.

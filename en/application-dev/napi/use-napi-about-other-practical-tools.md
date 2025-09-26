@@ -1,4 +1,4 @@
-# Using Other Practical APIs of Node-API
+# Working with Other Node-API Utilities
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
@@ -31,7 +31,7 @@ If you are just starting out with Node-API, see [Node-API Development Process](u
 
 ### node_api_get_module_file_name
 
-Obtains the absolute path of an add-in.
+Use **node_api_get_module_file_name** to obtain the absolute path of the module to be loaded.
 
 CPP code:
 

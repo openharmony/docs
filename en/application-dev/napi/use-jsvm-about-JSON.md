@@ -8,11 +8,11 @@
 
 ## Introduction
 
-When the JSVM-API interface is used to operate JSON data, the related interface in the JSVM module can directly process data in JSON format.
+This topic walks you through on how to use JSVM-API to manipulate data in JavaScript Object Notation (JSON).
 
 ## Basic Concepts
 
-- **JSON (JavaScript Object Notation) **: a common data exchange format used for data transfer, storage, and exchange between the frontend and backend. It can interact with multiple programming languages and is widely used for data processing in JavaScript.
+- **JSON (JavaScript Object Notation)**: a common data exchange format for data transfer, storage, and communication between the frontend and backend. It interacts with multiple programming languages and is widely used in JavaScript for data processing.
 
 ## Available APIs
 
@@ -23,11 +23,11 @@ When the JSVM-API interface is used to operate JSON data, the related interface 
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in proxy-related APIs.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in related APIs.
 
 ### OH_JSVM_JsonParse & OH_JSVM_JsonStringify
 
-Parses a JSON object and outputs a valid parsing result.
+Use **OH_JSVM_JsonParse** to parse a JSON object and **OH_JSVM_JsonStringify** to output the parsing result.
 
 CPP code:
 

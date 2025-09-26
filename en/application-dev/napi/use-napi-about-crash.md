@@ -8,7 +8,7 @@
 
 The maintenance and debugging measures mentioned in this topic rely on the Ark runtime multi-thread check. Therefore, you are advised to enable this feature before debugging. For details about how to enable Ark runtime multi-thread check, see [Analyzing CPP Crash](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-multi-thread-check).
 
-Unless otherwise specified, the maintenance and test methods described in this section immediately interrupt the process when the ArkTS multi-thread detection function is enabled.
+Unless otherwise specified, the maintenance and debugging measures used in this topic will interrupt the process once the Ark runtime multi-thread check is enabled.
 
 ## Inconsistent napi_env Between the Data Being Used and the Data Being Created
 
@@ -16,13 +16,13 @@ Unless otherwise specified, the maintenance and test methods described in this s
 
 The inconsistency in **napi_env** occurs in the following scenarios:
 
-1. The input parameter napi_env for invoking the napi method is different from the napi_env used for creating the napi data structure.
+1. The **napi_env** of the called Node-API is inconsistent with that used to create the Node-API struct.
 
    > **Log**<br>
    > param env not equal to its owner.
    >
 
-2. The input parameter napi_env for invoking the napi method is the same as napi_env used for creating the napi data structure, but the original napi_env has been released.
+2. The **napi_env** of the called Node-API is consistent with that used to create the Node-API struct, but the original **napi_env** has been destroyed.
 
    > **Log**<br>
    >
@@ -44,15 +44,15 @@ The following APIs may trigger this error:
 6. napi_call_threadsafe_function*
 7. napi_release_threadsafe_function*
 
-> Interfaces marked with \* can trigger only the maintenance and test information in the second scenario. Interfaces not marked with \* can trigger the maintenance and test information in the preceding two scenarios.
+> The APIs with an asterisk (\*) can only trigger the log information in the second scenario. The APIs without an asterisk (\*) can trigger the log information in both scenarios.
 
 ### Example
 
-> **NOTICE**
+> **NOTE**
 >
-> The following code is used only to construct an exception scenario and trigger DFX logs of the exception branch. Do not apply it to your code before you fully understand its purpose.
+> The following code is intended only to create exception scenarios and trigger DFX error logs. Do not apply it to your code before you fully understand its purpose.
 
-Utility Class
+**Utility Class**
 
 Define a utility class to construct the two exception scenarios.
 
@@ -189,9 +189,9 @@ private:
 };
 ```
 
-napi_ref APIs
+**napi_ref APIs**
 
-Sample code of napi_get_reference_value and napi_delete_reference
+Sample code of **napi_get_reference_value** and **napi_delete_reference**:
 
 ```cpp
 /*
@@ -208,7 +208,7 @@ napi_value TriggerDFXGetRef(napi_env env, napi_callback_info cbinfo)
         napi_value obj = nullptr;
         STRICT_NAPI_CALL(napi_create_object(localEnv, &obj));
         napi_ref ref = nullptr;
-        // napi_create_reference creates a strong reference for the JS object. You need to use napi_delete_reference to destroy the reference. Otherwise, the JS object cannot be reclaimed, causing memory leakage.
+        // napi_create_reference creates a strong reference for the JS object. You need to use napi_delete_reference to destroy the reference. Otherwise, the JS object cannot be reclaimed, causing memory leaks.
         napi_create_reference(localEnv, obj, 1, &ref);
         if (!localEnv.Recreate(same)) {
             if (ref != nullptr) {
@@ -236,7 +236,7 @@ napi_value TriggerDFXDelRef(napi_env, napi_callback_info info)
         napi_value obj = nullptr;
         STRICT_NAPI_CALL(napi_create_object(localEnv, &obj));
         napi_ref ref = nullptr;
-        // Call napi_delete_reference to release the reference to avoid memory leakage.
+        // Call napi_delete_reference to destroy the reference to avoid memory leaks.
         napi_create_reference(localEnv, obj, 1, &ref);
         if (!localEnv.RecreateSame()) {
             if (ref != nullptr) {
@@ -252,9 +252,9 @@ napi_value TriggerDFXDelRef(napi_env, napi_callback_info info)
 }
 ```
 
-napi_async_work APIs
+**napi_async_work APIs**
 
-Sample code of napi_queue_async_work, napi_queue_async_work_with_qos, and napi_cancel_async_work
+Sample code of **napi_queue_async_work**, **napi_queue_async_work_with_qos**, and **napi_cancel_async_work**:
 
 ```cpp
 /*
@@ -275,7 +275,7 @@ napi_value name(napi_env env, napi_callback_info cbinfo)                        
             napi_value taskName = nullptr;                                         \
             napi_create_string_utf8(localEnv, #name, NAPI_AUTO_LENGTH, &taskName); \
             /* Do not use an empty execute callback to create napi_async_work. */                    \
-            /*Memory leakage may occur here. This is only for reproducing DFX maintenance and test.*/\
+            /* Memory leak may occur here, which is only for DFX maintenance and debugging. */                            \
             napi_create_async_work(localEnv, nullptr, taskName,                    \
                 [](napi_env, void*) {}, [](napi_env, napi_status, void* ) {},      \
                 nullptr, &work);                                                   \
@@ -310,9 +310,9 @@ EXPAND_ASYNC_WORK_CASE(TriggerDFXCancelWork,
 #undef EXPAND_ASYNC_WORK_CASE
 ```
 
-napi_threadsafe_function APIs
+**napi_threadsafe_function APIs**
 
-Sample code of napi_call_threadsafe_function and napi_release_threadsafe_function
+Sample code of **napi_call_threadsafe_function** and **napi_release_threadsafe_function**:
 
 ```cpp
 /*
@@ -328,8 +328,8 @@ Sample code of napi_call_threadsafe_function and napi_release_threadsafe_functio
             {                                                                           \
                 napi_value taskName = nullptr;                                          \
                 napi_create_string_utf8(localEnv, "Test", NAPI_AUTO_LENGTH, &taskName); \
-                // napi_create_threadsafe_function creates a thread-safe function. After the task is complete,\
-                // Invoke napi_release_threadsafe_function to release the memory.
+                // napi_create_threadsafe_function creates a thread-safe function.      \
+                // After the task is complete, call napi_release_threadsafe_function to release it.
                 napi_create_threadsafe_function(                                        \
                     localEnv, nullptr, nullptr, taskName, 0, 1, nullptr,                \
                     [](napi_env, void *, void *) {}, nullptr,                           \
@@ -366,7 +366,7 @@ EXPAND_THREADSAFE_FUNCTION_CASE(TriggerDFXTsfnRelease,
 
 Most Node-API interfaces are not thread-safe. Additional measures are used to locate the errors caused by improper use of Node-API interfaces. 
 
-Unless otherwise specified, the maintenance and test methods described in this section interrupt the process immediately after the ArkTS multi-thread detection switch is turned on.
+Unless otherwise specified, the maintenance and debugging measures used in this topic will interrupt the process once the Ark runtime multi-thread check is enabled.
 
 > **Log**<br>
 >
@@ -384,13 +384,13 @@ The following APIs may trigger this type of error:
 
 ### Example
 
-> **NOTICE**
+> **NOTE**
 >
-> The following code is used only to construct an exception scenario and trigger DFX logs of the exception branch. Do not apply it to your code before you fully understand its purpose.
+> The following code is intended only to create exception scenarios and trigger DFX error logs. Do not apply it to your code before you fully understand its purpose.
 
-env_cleanup_hook APIs
+**env_cleanup_hook APIs**
 
-Sample code of napi_add_env_cleanup_hook and napi_remove_env_cleanup_hook
+Sample code of **napi_add_env_cleanup_hook** and **napi_remove_env_cleanup_hook**:
 
 ```cpp
 static void EnvCLeanUpCallback(void *arg) {
@@ -466,7 +466,7 @@ napi_value TriggerDFXClnRmMT(napi_env env, napi_callback_info info)
 }
 ```
 
-async_cleanup_hook APIs
+**async_cleanup_hook APIs**
 
 Sample code of **napi_add_async_cleanup_hook**:
 
@@ -489,7 +489,7 @@ napi_value TriggerDFXAsyncAddXT(napi_env env, napi_callback_info info)
 }
 ```
 
-instance_data APIs
+**instance_data APIs**
 
 Sample code of **napi_set_instance_data** and **napi_get_instance_data**:
 

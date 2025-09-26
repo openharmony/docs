@@ -12,7 +12,7 @@ In JavaScript (JS), the integer type represents a number without a decimal point
 
 ## Basic Concepts
 
-Before using the JSVM-API to create and obtain numeric types, you need to understand the following basic concepts:
+Before using JSVM-API to create and obtain numbers, you need to understand the following concepts:
 
 - Number type<br>When using JSVM-API, you may need to convert values of number types between C and JS. When converting the data, pay attention to the data range, signedness (signed or unsigned), and precision (single or double precision).
 - Error handling<br>You also need to use JSVM-API to capture and handle errors that may occur during the conversion. For example, when an integer is created, you may need to capture and handle memory allocation failures or other runtime errors.
@@ -144,7 +144,7 @@ JSVM GetValueInt32 success: -123
 
 ### OH_JSVM_GetValueInt64
 
-Use **OH_JSVM_GetValueInt32** to obtain a C Int64 value from a JS value.
+Use **OH_JSVM_GetValueInt64** to obtain a C Int64 value from a JS value.
 
 CPP code:
 
@@ -244,7 +244,7 @@ JSVM GetDouble success: -110.045600
 
 ### OH_JSVM_CreateInt32
 
-Creates a JavaScript number object based on the int32_t data.
+Use **OH_JSVM_CreateInt32** to create a JS number object from an int32_t object.
 
 CPP code:
 
@@ -294,7 +294,7 @@ JSVM CreateInt32 success: -20
 
 ### OH_JSVM_CreateUint32
 
-Creates a JavaScript number object based on the uint32_t data.
+Use **OH_JSVM_CreateUint32** to create a JS number object from a uint32_t object.
 
 CPP code:
 
@@ -348,7 +348,7 @@ JSVM CreateUInt32 success: 26
 
 ### OH_JSVM_CreateInt64
 
-Creates a JavaScript number object based on the int64_t data. If you need to indicate a large number of JS files, you are advised to use the BigInt interface.
+Use **OH_JSVM_CreateInt64** to create a JS number object from an int64_t object. You are advised to use the **BigInt** API to indicate the large JS number.
 
 CPP code:
 
@@ -398,7 +398,7 @@ JSVM CreateInt64 success: 2147483648
 
 ### OH_JSVM_CreateDouble
 
-Creates a JavaScript number object based on double data.
+Use **OH_JSVM_CreateDouble** to create a JS number object from a double object.
 
 CPP code:
 

@@ -12,7 +12,7 @@ Node-API provides APIs for customizing asynchronous (async for short) operations
 
 ## Basic Concepts
 
-Node-API supports asynchronous operations, which helps handle I/O-intensive or compute-intensive tasks. These tasks usually need to be executed in a non-blocking manner to avoid blocking the main thread. Before you get started, understand the following concepts:
+Async operations are used to complete I/O-intensive or compute-intensive tasks, which usually need to be executed without blocking the main thread. Before you get started, understand the following concepts:
 
 - Async model: Node-API provides APIs that implement async operations using a promise or a callback. Promise is a programming model based on future values. It allows results of async operations to be encapsulated in objects and called in a chain. Callback is a traditional async programming mode. It uses callback functions to process async operation results.
 - Temporary result: When a native method (Node-API) is called, it immediately returns a temporary result to the ArkTS caller. The temporary result is usually a flag indicating an async operation being performed or a handle for subsequent processing of an async operation result.
@@ -20,7 +20,7 @@ Node-API supports asynchronous operations, which helps handle I/O-intensive or c
 
 ## Available APIs
 
-The following table lists the APIs provided by the Node-API module for customizing async operations. You can use these APIs to implement ArkTS callbacks and manage the resource lifecycle in C/C++. These APIs help implement complex async operations and effective interaction with ArkTS. They are used in the following scenarios:
+The following table lists the APIs provided by the Node-API module for customizing async operations. You can use these APIs to implement ArkTS callbacks and manage the resource lifecycle in C/C++. These APIs help implement complex async operations and effective interaction with ArkTS. The following table lists the use cases of these APIs.
 | API| Description|
 | -------- | -------- |
 | napi_async_init, napi_async_destroy| Creates/Destroys an async context. You can use these APIs to handle time-consuming tasks, such as file I/O operations and network requests, without blocking the main thread. You can use **napi_async_init** to create an async context for executing the task, and use **napi_async_destroy** after the task is complete to destroy and release related resources.|
@@ -37,11 +37,11 @@ Use **napi_async_init** to create an async context, and use **napi_async_destroy
 
 ### napi_make_callback
 
-When writing the Node-API module, you need to call the ArkTS callback function after the asynchronous operation is complete. You can use napi_async_init to create an asynchronous resource context, and then use napi_make_callback to execute the ArkTS callback function.
+Use **napi_make_callback** to call and execute an ArkTS callback after an async operation is complete.
 
 ### napi_open_callback_scope, napi_close_callback_scope
 
-If you need to create a callback scope to ensure that the ArkTS environment is still available during asynchronous operations, you can use napi_open_callback_scope to create a callback scope and use napi_close_callback_scope to close the scope after the asynchronous operations are complete.
+Use **napi_open_callback_scope** to create a scope for the callback, and then use **napi_close_callback_scope** to close the scope after the asynchronous operation is complete.
 
 CPP code:
 

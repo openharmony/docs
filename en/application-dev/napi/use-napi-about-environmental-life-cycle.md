@@ -8,11 +8,11 @@
 
 ## Introduction
 
-Use Node-API to associate specific data with the currently running environment so that the data can be retrieved later when required.
+Node-API provides APIs to associate specific data with the currently running environment so that the data can be retrieved later when required.
 
 ## Basic Concepts
 
-In Node-API, associated data refers to the binding of a custom C++ data structure to the lifecycle of the current environment. This means that the associated data remains valid as long as the current runtime environment exists.
+By associating the data with the currently running environment, the C++ data struct is associated with that of the environment. This means the associated data remains valid as long as the running environment exists.
 
 ## Available APIs
 

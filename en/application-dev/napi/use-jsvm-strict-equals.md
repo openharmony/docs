@@ -8,7 +8,7 @@
 
 ## Introduction
 
-The function in JSVM-API is used to determine whether two JavaScript values are strictly equal, which is similar to the `===` operator in JavaScript. This function avoids type conversion and loose equality comparison to ensure that values and types are equal.
+This topic walks you through on how to use JSVM-API to check whether two JavaScript (JS) values are strictly equal (equal in both value and type). The API provided is equivalent to the JS strict equality operator (**===**). This API avoids type conversion and loose equality comparison, ensuring equal values and types.
 
 ## Basic Concepts
 

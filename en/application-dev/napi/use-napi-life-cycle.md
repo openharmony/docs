@@ -20,7 +20,7 @@ Scope is used to manage the **napi_value** lifecycle in the framework layer. You
 
 Node-API provides APIs for creating and manipulating ArkTS objects, managing references to and lifecycle of the ArkTS objects, and registering garbage collection (GC) callbacks in C/C++. Before you get started, you need to understand the following concepts:
 
-- **Scope**: used to manage the lifecycle of ArkTS objects. An object handle created in a scope can be used only in the scope by default. When a scope is closed, objects created in it cannot be accessed unless they are explicitly escaped from the current scope.
+- **Scope**: Used to manage the lifecycle of ArkTS objects. Object handles created in a scope can be used only within the scope by default. After the scope is closed, the objects created in the scope cannot be accessed unless they are explicitly escaped from the current scope.
 - Reference management: Node-API provides APIs for creating, deleting, and managing object references to extend the lifecycle of objects and prevent the use-after-free issues. In addition, reference management also helps prevent memory leaks.
 - Escapable scope: used to return the values created within the **escapable_handle_scope** to a parent scope. It is created by **napi_open_escapable_handle_scope** and closed by **napi_close_escapable_handle_scope**.
 - GC callback: You can register GC callbacks to perform specific cleanup operations when ArkTS objects are garbage-collected.
@@ -33,7 +33,7 @@ The following table lists the APIs for ArkTS object lifecycle management.
 | API| Description|
 | -------- | -------- |
 | napi_open_handle_scope<br>napi_close_handle_scope| Opens a scope and closes a scope respectively. When processing ArkTS objects with Node-API, you need to create a temporary scope to store object references so that the objects can be correctly accessed during the execution and closed after the execution.|
-| napi_open_escapable_handle_scope<br>napi_close_escapable_handle_scope| Creates an escape scope so that the ArkTS object created in the native function can be correctly returned to the external ArkTS environment that calls the function.|
+| napi_open_escapable_handle_scope<br>napi_close_escapable_handle_scope| Creates an escapable scope so that the ArkTS object created in the native function can be correctly returned to the external ArkTS environment that calls the function.|
 | napi_escape_handle | Promotes the handle to an ArkTS object so that it is valid for the lifetime of its parent scope.|
 | napi_create_reference<br>napi_delete_reference| Creates a reference to a value to extend the ArkTS object's lifespan and deletes a reference respectively.|
 | napi_reference_ref<br>napi_reference_unref| Increments the reference count and decrements the reference count respectively.|
@@ -46,7 +46,7 @@ If you are just starting out with Node-API, see [Node-API Development Process](u
 
 ### napi_open_handle_scope and napi_close_handle_scope
 
-Use the napi_open_handle_scope interface to create a context environment and use the napi_close_handle_scope interface to close the context environment. You can use these two APIs to manage the **napi_value** lifecycle of an ArkTS object, which prevents the object from being incorrectly garbage-collected. 
+Use **napi_open_handle_scope** to create a context and use **napi_close_handle_scope** to close the context. You can use these two APIs to manage the **napi_value** lifecycle of an ArkTS object, which prevents the object from being incorrectly garbage-collected. 
 Properly using these two APIs can minimize lifecycle and prevent memory leaks.
 
 For details about the code, see:
@@ -125,7 +125,7 @@ try {
 
 ### napi_open_escapable_handle_scope, napi_close_escapable_handle_scope, and napi_escape_handle
 
-Use **napi_open_escapable_handle_scope** to open an escapable scope, which allows the declared values in the scope to be returned to the parent scope. This scope needs to be disabled using napi_close_escapable_handle_scope. Use **napi_escape_handle** to promote the lifecycle of an ArkTS object so that it is valid for the lifetime of the parent scope.
+Use **napi_open_escapable_handle_scope** to open an escapable scope, which allows the declared values in the scope to be returned to the parent scope. The scope must be closed using **napi_close_escapable_handle_scope**. Use **napi_escape_handle** to promote the lifecycle of an ArkTS object so that it is valid for the lifetime of the parent scope.
 These APIs are helpful for managing ArkTS objects more flexibly in C/C++, especially when passing cross-scope values.
 
 CPP code:
@@ -210,32 +210,82 @@ CPP code:
 // log.h is used to print logs in C++.
 #include "hilog/log.h"
 #include "napi/native_api.h"
-// Create a pointer to napi_ref to store the created reference. Before calling napi_add_finalizer, you need to allocate a variable of the napi_ref type and pass its address to the parameter in result.
-napi_ref g_ref;
+// Create a pointer to napi_ref to store the created reference. Before calling napi_add_finalizer, allocate a variable of the napi_ref type and pass its address as the result parameter.
+napi_ref gRefFinalizer = nullptr;
+
+// Create a pointer to napi_ref to store the created reference. Before calling napi_create_reference, allocate a variable of the napi_ref type and pass its address as the result parameter.
+napi_ref gRef = nullptr;
 
 void Finalizer(napi_env env, void *data, void *hint)
 {
     // Clear resources.
-    OH_LOG_INFO(LOG_APP, "Node-API: Use terminators to release resources.");
+    OH_LOG_INFO(LOG_APP, "Test Node-API Use Finalizer to release resources.");
+    // Release resources.
+}
+
+static napi_value AddFinalizer(napi_env env, napi_callback_info info)
+{
+    napi_value obj = nullptr;
+    napi_status status = napi_create_object(env, &obj);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_create_object fail");
+        return nullptr;
+    }
+    napi_value value = nullptr;
+    status = napi_create_string_utf8(env, "AddFinalizer", NAPI_AUTO_LENGTH, &value);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_create_string_utf8 fail");
+        return nullptr;
+    }
+    // Add a property to the object.
+    status = napi_set_named_property(env, obj, "key", value);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_set_named_property fail");
+        return nullptr;
+    }
+
+    // Register a Finalizer to release resources.
+    void *data = {};
+    status = napi_add_finalizer(env, obj, data, Finalizer, nullptr, &gRefFinalizer);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_add_finalizer fail");
+        return nullptr;
+    }
+
+    return obj;
 }
 
 static napi_value CreateReference(napi_env env, napi_callback_info info)
 {
     napi_value obj = nullptr;
-    napi_create_object(env, &obj);
+    napi_status status = napi_create_object(env, &obj);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_create_object fail");
+        return nullptr;
+    }
     napi_value value = nullptr;
-    napi_create_string_utf8(env, "CreateReference", NAPI_AUTO_LENGTH, &value);
+    status = napi_create_string_utf8(env, "CreateReference", NAPI_AUTO_LENGTH, &value);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_create_string_utf8 fail");
+        return nullptr;
+    }
     // Add a property to the object.
-    napi_set_named_property(env, obj, "key", value);
-
-    // Add a terminator.
-    void *data = {};
-    napi_add_finalizer(env, obj, data, Finalizer, nullptr, &g_ref);
+    status = napi_set_named_property(env, obj, "key", value);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_set_named_property fail");
+        return nullptr;
+    }
+    // Create a reference to the ArkTS object.
+    status = napi_create_reference(env, obj, 1, &gRef);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_create_reference fail");
+        return nullptr;
+    }
     // Increment the reference count and return the new reference count.
     uint32_t result = 0;
-    napi_reference_ref(env, g_ref, &result);
-    OH_LOG_INFO(LOG_APP, "napi_reference_ref, count = %{public}d.", result);
-    if (result != 2) {
+    status = napi_reference_ref(env, gRef, &result);
+    OH_LOG_INFO(LOG_APP, "Test Node-API napi_reference_ref, count = %{public}d.", result);
+    if (status != napi_ok || result != 2) {
         // If the reference count passed in does not increase, throw an error.
         napi_throw_error(env, nullptr, "napi_reference_ref fail");
         return nullptr;
@@ -247,7 +297,7 @@ static napi_value UseReference(napi_env env, napi_callback_info info)
 {
     napi_value obj = nullptr;
     // Call napi_get_reference_value to obtain the referenced ArkTS object.
-    napi_status status = napi_get_reference_value(env, g_ref, &obj);
+    napi_status status = napi_get_reference_value(env, gRef, &obj);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "napi_get_reference_value fail");
         return nullptr;
@@ -261,21 +311,32 @@ static napi_value DeleteReference(napi_env env, napi_callback_info info)
     // Decrement the reference count and return the new reference count.
     uint32_t result = 0;
     napi_value count = nullptr;
-    napi_reference_unref(env, g_ref, &result);
-    OH_LOG_INFO(LOG_APP, "napi_reference_unref, count = %{public}d.", result);
-    if (result != 1) {
+    napi_status status = napi_reference_unref(env, gRef, &result);
+    OH_LOG_INFO(LOG_APP, "Test Node-API napi_reference_unref, count = %{public}d.", result);
+    if (status != napi_ok || result != 1) {
         // If the reference count passed in does not decrease, throw an error.
         napi_throw_error(env, nullptr, "napi_reference_unref fail");
         return nullptr;
     }
+
     // Call napi_delete_reference to delete the reference to the ArkTS object.
-    napi_status status = napi_delete_reference(env, g_ref);
+    status = napi_delete_reference(env, gRef);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_delete_reference fail");
+        return nullptr;
+    }
+
+    status = napi_delete_reference(env, gRefFinalizer);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "napi_delete_reference fail");
         return nullptr;
     }
     napi_value returnResult = nullptr;
-    napi_create_string_utf8(env, "napi_delete_reference success", NAPI_AUTO_LENGTH, &returnResult);
+    status = napi_create_string_utf8(env, "napi_delete_reference success", NAPI_AUTO_LENGTH, &returnResult);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "napi_create_string_utf8 fail");
+        return nullptr;
+    }
     return returnResult;
 }
 ```
@@ -285,6 +346,7 @@ API declaration:
 
 ```ts
 // index.d.ts
+export const addFinalizer: () => Object | undefined;
 export const createReference: () => Object | undefined;
 export const useReference: () => Object | undefined;
 export const deleteReference: () => string | undefined;
@@ -297,6 +359,7 @@ ArkTS code:
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import testNapi from 'libentry.so';
 try {
+  hilog.info(0x0000, 'testTag', 'Test Node-API addFinalizer: %{public}s', JSON.stringify(testNapi.addFinalizer()));
   hilog.info(0x0000, 'testTag', 'Test Node-API createReference: %{public}s', JSON.stringify(testNapi.createReference()));
   hilog.info(0x0000, 'testTag', 'Test Node-API useReference: %{public}s', JSON.stringify(testNapi.useReference()));
   hilog.info(0x0000, 'testTag', 'Test Node-API deleteReference: %{public}s', testNapi.deleteReference());

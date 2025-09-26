@@ -14,7 +14,7 @@ JSVM-API provides APIs for processing JavaScript (JS) **Date** objects in C/C++.
 
 In JSVM-API, the value of a JS **Date** object is the number of milliseconds elapsed since the Unix epoch (00:00:00 UTC on January 1, 1970).
 
-The JavaScript Date object is used to represent and manipulate date and time in JavaScript. With the **Date** object, you can create an object that represents a specific time, perform date- and time-related calculations (such as adding or subtracting time intervals), and format date as a string for display.
+JS Date objects are used to represent and manage date and time in JS. With the **Date** object, you can create an object that represents a specific time, perform date- and time-related calculations (such as adding or subtracting time intervals), and format date as a string for display.
 
 With the functions for interacting with the **Date** object, the JSVM module can be closely integrated with the JS environment to perform more complex date- and time-related operations.
 
@@ -22,17 +22,17 @@ With the functions for interacting with the **Date** object, the JSVM module can
 
 | API                      | Description                      |
 |----------------------------|--------------------------------|
-| OH_JSVM_CreateDate           | Use **OH_JSVM_IsTypedarray** to create a **Date** object representing the given number of milliseconds.|
+| OH_JSVM_CreateDate           | Creates a **Date** object representing the given number of milliseconds.|
 | OH_JSVM_GetDateValue        | Obtains the C double primitive of the time value for the given JS **Date** object. |
 | OH_JSVM_IsDate               | Checks whether a JS object is a date.|
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in proxy-related APIs.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in related APIs.
 
 ### OH_JSVM_CreateDate
 
-Use **OH_JSVM_IsTypedarray** to create a **Date** object representing the given number of milliseconds.
+Use **OH_JSVM_CreateDate** to create a **Date** object representing the given number of milliseconds.
 
 CPP code:
 
@@ -86,7 +86,7 @@ JSVM CreateDate success:Mon Jul 7 10:42:34 2025
 
 ### OH_JSVM_GetDateValue
 
-Obtains the C double primitive of the time value for the given JS **Date** object.
+Use **OH_JSVM_GetDateValue** to obtain the C double primitive of the time value for the given JS **Date** object.
 
 CPP code:
 
@@ -133,7 +133,7 @@ JSVM GetDateValue success:Mon Jul 7 10:47:08 2025
 
 ### OH_JSVM_IsDate
 
-Checks whether a JS object is a date.
+Use **OH_JSVM_IsDate** to check whether a JS object is a date.
 
 CPP code:
 

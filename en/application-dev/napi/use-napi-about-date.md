@@ -12,7 +12,7 @@ Node-API provides APIs for processing ArkTS **Date** objects in C/C++. These API
 
 ## Basic Concepts
 
-In Node-API, the value of an ArkTS **Date** object is the number of milliseconds elapsed since the Unix epoch (00:00:00 UTC on January 1, 1970).
+In Node-API, the value of a ArkTS **Date** object is the number of milliseconds elapsed since the Unix epoch (00:00:00 UTC on January 1, 1970).
 
 The ArkTS **Date** object provides a way to represent and manage date and time in ArkTS. With the **Date** object, you can create an object that represents a specific time, perform date- and time-related calculations (such as adding or subtracting time intervals), and format date as a string for display.
 
@@ -33,7 +33,7 @@ If you are just starting out with Node-API, see [Node-API Development Process](u
 
 ### napi_create_date
 
-Use **napi_create_date** to create an ArkTS **Date** instance from a C++ double value.
+Use **napi_create_date** to create an ArkTS **Date** object from a C++ double value.
 
 CPP code:
 
@@ -44,7 +44,7 @@ static napi_value CreateDate(napi_env env, napi_callback_info info)
 {
     // Obtain the Unix timestamp passed in.
     double value = 1501924876711;
-    // Call the napi_create_date API to convert the double value into an ArkTS object that indicates the date and time, and put the ArkTS object in returnValue.
+    // Call napi_create_date to convert the double value to an ArkTS object that indicates the date and time, and place the object in returnValue.
     napi_value returnValue = nullptr;
     napi_create_date(env, value, &returnValue);
     return returnValue;

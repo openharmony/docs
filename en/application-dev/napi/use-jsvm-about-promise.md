@@ -8,7 +8,7 @@
 
 ## Introduction
 
-JSVM-API provides APIs for implementing asynchronous operations. An asynchronous operation is used for a time-consuming task, for example, downloading data from network or reading a large file. Different from a synchronous operation which blocks the main thread, the asynchronous operation is executed in the background. When an asynchronous operation is complete, it will be put into the task queue and executed when the main thread is idle.
+JSVM-API provides APIs for implementing asynchronous operations. An asynchronous operation is used for a time-consuming task, for example, downloading data from network or reading a large file. Unlike a synchronous operation which blocks the main thread, the asynchronous operation is executed in the background. When an asynchronous operation is complete, it will be put into the task queue and executed when the main thread is idle.
 
 ## Basic Concepts
 
@@ -176,7 +176,7 @@ OH_JSVM_RejectDeferred reject
 
 ## OH_JSVM_PromiseRegisterHandler
 
-Sets the callback after Promise parsing or rejection, which is equivalent to calling the native `Promise.then()` or `Promise.catch()`.
+Call **OH_JSVM_PromiseRegisterHandler** to register a callback that is invoked after a promise is fulfilled rejected. It is equivalent to calling the native **Promise.then()** or **Promise.catch()**.
 
 The following describes only part of the C++ code. For details about other framework code, such as the **TestJSVM** function, see the implementation of **OH_JSVM_SetMicrotaskPolicy** in [Working with Tasks Using JSVM-API](use-jsvm-execute_tasks.md).
 

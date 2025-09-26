@@ -8,7 +8,7 @@
 
 ## Introduction
 
-JSVM-API provides the capability of registering callback functions to monitor the memory GC of the JavaScript VM. You can add custom logic before and after garbage collection to perform optimization, debugging, or performance monitoring during garbage collection.
+JSVM-API provides the capability of registering callbacks to monitor memory GC of the JSVM. You can customize logic to perform optimization, debugging, or performance monitoring before or after GC.
 
 ## Basic Concepts
 
@@ -29,10 +29,10 @@ If you are just starting out with JSVM-API, see [JSVM-API Development Process](u
 
 ### OH_JSVM_AddHandlerForGC & OH_JSVM_RemoveHandlerForGC
 
-You can call **OH_JSVM_AddHandlerForGC** multiple times to register callbacks with a JSVM, and all registered callbacks will take effect. During registration, the callback function pointer and native-data are used as keys. If the same key exists in multiple registrations, the registration is invalid and the error code JSVM_INVALID_ARG is returned. Under the same triggering condition, the callback sequence of the callback function is not strictly consistent with the registration sequence.
+You can call **OH_JSVM_AddHandlerForGC** multiple times to register callbacks with a JSVM, and all registered callbacks will take effect. During registration, the callback pointer and **native-data** are used as the key. If multiple registration behaviors have the same key, the registration will be considered invalid and the **JSVM_INVALID_ARG** error code will be returned. The order in which callbacks are invoked under the same triggering condition does not strictly follow the registration order.
 You can use **OH_JSVM_RemoveHandlerForGC** to remove a registered callback from a JSVM. Removing callbacks with the same key will be considered an invalid removal, and the **JSVM_INVALID_ARG** error will be returned.
 
-CPP code:
+**CPP Code**
 
 ```cpp
 // hello.cpp
@@ -136,11 +136,11 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"triggerGC", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
-JS Example
+**JS Example**
 ```cpp
 const char *srcCallNative = R"JS(triggerGC();)JS";
 ```
-**Execution result**
+**Execution Result**
 
 The following information is displayed in the log:
 ```cpp

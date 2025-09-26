@@ -592,7 +592,7 @@ try {
 
 ### napi_fatal_error
 
-Call **napi_fatal_error** to raise a fatal error to terminate the process immediately. Calling **napi_fatal_error** will terminate the application immediately. Avoid frequently calling this API in during normal operations.
+Call **napi_fatal_error** to raise a fatal error to terminate the process immediately. Calling **napi_fatal_error** will terminate the application immediately. Avoid frequently calling this API during normal operations.
 
 CPP code:
 

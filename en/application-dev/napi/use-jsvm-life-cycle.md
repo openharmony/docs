@@ -9,13 +9,13 @@
 ## Introduction
 
 In JSVM-API, **JSVM_Value** is an abstract data type that represents a JavaScript (JS) value of any type, which includes the basic type (such as number, string, or Boolean) and the composite type (such as array, function, or object).
-The lifecycle of JSVM_Value is related to the lifecycle of the JavaScript value. After the JavaScript value is garbage collected, the JSVM_Value is no longer valid. Do not use JSVM_Value when the JavaScript value does not exist.
+The **JSVM_Value** lifecycle is related to the lifecycle of the JS value. After the JS value is garbage collected, the **JSVM_Value** is no longer valid. Do not use **JSVM_Value** when the JS value does not exist.
 
 Scope is used to manage the **JSVM_Value** lifecycle in the framework layer. You can use **OH_JSVM_OpenHandleScope** to create a scope and use **OH_JSVM_CloseHandleScope** to destroy a scope. By creating a **JSVM_Value** in a scope, you can ensure that the **JSVM_Value** is automatically released when the scope ends. This helps prevent memory leaks.
 
 **JSVM_Ref** is a JSVM-API data type used to manage the **JSVM_Value** lifecycle. It allows reference to a **JSVM_Value** during its lifecycle, even if the value is beyond its original context. The reference allows a **JSVM_Value** to be shared in different contexts and released in a timely manner.
 
-Properly use OH_JSVM_OpenHandleScope and OH_JSVM_CloseHandleScope to manage the lifecycle of JSVM_Value to avoid memory leakage.
+You are advised to properly use **OH_JSVM_OpenHandleScope** and **OH_JSVM_CloseHandleScope** to manage the lifecycle of **JSVM_Value** instances, avoiding memory leaks.
 
 Each **JSVM_Value** belongs to a specific **HandleScope** instance, which is created by **OH_JSVM_OpenHandleScope** and closed by **OH_JSVM_CloseHandleScope**. After a **HandleScope** instance is closed, the corresponding **JSVM_Value** will be automatically released.
 
@@ -28,7 +28,7 @@ JSVM-API provides APIs for creating and manipulating JS objects, managing refere
 - Escapable scope: used to return the values created within the **escapable_handle_scope** to a parent scope. It is created by **OH_JSVM_OpenEscapableHandleScope** and closed by **OH_JSVM_CloseEscapableHandleScope**.
 - GC callback: You can register GC callbacks to perform specific cleanup operations when JS objects are garbage-collected.
 
-These basic concepts enable developers to safely and effectively manipulate JavaScript objects and ensure that the lifecycle of objects is correctly managed.
+Understanding these concepts helps you securely and effectively manipulate JavaScript objects and manage object lifecycles.
 
 ## Available APIs
 
@@ -48,11 +48,11 @@ These basic concepts enable developers to safely and effectively manipulate Java
 
 ## Example
 
-For details about the JSVM-API development process, see [Using JSVM-API to Implement Interactive Development Between JS and C/C++](use-jsvm-process.md). This document describes only the C++ code corresponding to the API.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in the related APIs.
 
 ### OH_JSVM_OpenHandleScope and OH_JSVM_CloseHandleScope
 
-Use the OH_JSVM_OpenHandleScope interface to create a context environment and use the OH_JSVM_CloseHandleScope interface to close the context environment. This is used to manage the lifecycle of JavaScript objects, ensure that JavaScript object handles are correctly processed in the JSVM-API module, and avoid garbage collection problems.
+Call **OH_JSVM_OpenHandleScope** to create a context and call **OH_JSVM_CloseHandleScope** to close the context. Properly managing JS handle scopes can prevent GC problems.
 
 CPP code:
 
@@ -177,7 +177,7 @@ The caller must manage the reference lifecycle. During the reference validity pe
 
 ### OH_JSVM_ReferenceRef and OH_JSVM_ReferenceUnref
 
-Call **OH_JSVM_ReferenceRef** to increment the reference count of a reference and call **OH_JSVM_ReferenceUnref** to decrement the reference count of a reference, and return the new count value. When the reference count is **0**, the reference will be set as a weak reference for the JS types that can be set as weak references (objects, functions, and external variables). The associated variable will be garbage-collected when the GC mechanism deems it necessary. After the variable is garbage-collected, calling **OH_JSVM_GetReferenceValue** will return JS **NULL**. For JS types that cannot be set as weak references, the reference will be cleared and calling **OH_JSVM_GetReferenceValue** will return JS **NULL**.
+Call **OH_JSVM_ReferenceRef** to increment the reference count of a reference and call **OH_JSVM_ReferenceUnref** to decrement the reference count of a reference, and return the new count value. When the reference count is **0**, the reference will be set as a weak reference for the JS types that can be set as weak references (objects, functions, and external variables). The associated variable will be garbage-collected when the GC mechanism deems it necessary. After the variable is garbage-collected, calling **OH_JSVM_GetReferenceValue** will return C **NULL**. For JS types that cannot be set as weak references, the reference will be cleared and calling **OH_JSVM_GetReferenceValue** will return C **NULL**.
 
 CPP code:
 
@@ -259,7 +259,7 @@ JSVM UseReference success
 
 ### OH_JSVM_AddFinalizer
 Call **OH_JSVM_AddFinalizer** to add the **JSVM_Finalize** callback to a JS object. The callback will be invoked when the JS object is garbage-collected. **OH_JSVM_AddFinalizer** is usually used to release the native object associated with a JS object. If the input parameter is not a JS object, the call will fail and return an error code.
-The Finalizer method cannot be canceled after being registered. If it is not executed before **OH_JSVM_DestroyEnv** is called, it will be executed when **OH_JVSM_DestroyEnv** is called.
+The Finalizer method cannot be canceled after being registered. If it is not executed before **OH_JSVM_DestroyEnv** is called, it will be executed when **OH_JSVM_DestroyEnv** is called.
 
 CPP code:
 
