@@ -5,7 +5,7 @@
 
 - 已提供如下方式进行调试和性能分析：
 
-  - [C/C++内存错误检测](debug-asan.md)
+  - [C/C++内存错误检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-asan)
   - 通过DevEco Studio调试
     - [1.C/C++调试](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-debug-native)
     - [2.使用真机进行调试](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-debug-device)
