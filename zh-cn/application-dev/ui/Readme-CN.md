@@ -350,5 +350,7 @@
   - [UI预览](ui-ide-previewer.md)
   - [UI调优](ui-inspector-profiler.md)
   - [UI高性能开发](ui-performance-overview.md)
+  - UI开发常见问题<!--ui-development-faq-->
+    - [自定义节点常见问题](arkts-user-defined-node-faq.md)
 - [窗口管理](../windowmanager/Readme-CN.md)
 - [屏幕管理](../displaymanager/Readme-CN.md)
