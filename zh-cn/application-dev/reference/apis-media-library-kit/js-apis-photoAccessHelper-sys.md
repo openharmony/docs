@@ -8220,7 +8220,7 @@ setHighlightAttribute(attribute: HighlightAlbumChangeAttribute, value: string): 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
 | attribute | [HighlightAlbumChangeAttribute](#highlightalbumchangeattribute21) | 是   | 需要设置的时刻属性。 |
-| value       | string   | 是    | 需要设置的时刻属性值。<br>当attribute为IS\_VIEWED或者IS\_FAVORITE时，取值为"0"或"1"；当attribute为NOTIFICATION\_TIME时，取值长度为8字节。 |
+| value       | string   | 是    | 需要设置的时刻属性值。<br>当attribute为IS\_VIEWED或者IS\_FAVORITE时，取值为"0"或"1"；当attribute为NOTIFICATION\_TIME时，取值范围为长度在8字节以内的数字字符串，例如"12345678"。 |
 
 **错误码：**
 
