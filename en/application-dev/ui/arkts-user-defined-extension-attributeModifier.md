@@ -75,7 +75,7 @@ declare class CommonMethod<T> {
 
     // The constructor allows for parameter passing when creating an instance.
     constructor(dark?: boolean) {
-      this.isDark = dark ? dark : false
+      this.isDark = dark ?? false
     }
 
     applyNormalAttribute(instance: ButtonAttribute): void {
@@ -128,7 +128,7 @@ If the same attribute is set on a component using both attribute methods and **a
     isDark: boolean = false
 
     constructor(dark?: boolean) {
-      this.isDark = dark ? dark : false
+      this.isDark = dark ?? false
     }
 
     applyNormalAttribute(instance: ButtonAttribute): void {
@@ -178,7 +178,7 @@ If **applyNormalAttribute** is used multiple times on a single component with di
     isDark: boolean = false
 
     constructor(dark?: boolean) {
-      this.isDark = dark ? dark : false
+      this.isDark = dark ?? false
     }
 
     applyNormalAttribute(instance: ButtonAttribute): void {

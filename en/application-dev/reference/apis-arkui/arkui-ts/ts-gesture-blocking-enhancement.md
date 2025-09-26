@@ -1,4 +1,10 @@
 # Gesture Blocking Enhancement
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @jiangtao92-->
+<!--Designer: @piggyguy-->
+<!--Tester: @songyanhong-->
+<!--Adviser: @HelloCrease-->
 
 Gesture blocking enhancement offers components the capability to block gestures. You can handle built-in gestures in parallel with gestures that have a higher priority as needed, and can dynamically control the triggering of gesture events.
 
@@ -10,7 +16,7 @@ Gesture blocking enhancement offers components the capability to block gestures.
 
 shouldBuiltInRecognizerParallelWith(callback: ShouldBuiltInRecognizerParallelWithCallback): T
 
-Provides a callback to set the parallel relationship between built-in gestures and gestures of other components in the response chain.
+Provides a callback to set the parallel relationship between built-in gestures and gestures of other components in the response chain. The corresponding C API is [setInnerGestureParallelTo](../capi-arkui-nativemodule-arkui-nativegestureapi-1.md#setinnergestureparallelto).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -41,403 +47,14 @@ Represents the callback used to set the parallel relationship between built-in g
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| current | [GestureRecognizer](#gesturerecognizer) | Yes  | Built-in gesture recognizer of the current component. Currently only a built-in gesture recognizer of the [PAN_GESTURE](ts-gesture-customize-judge.md#gesturejudgeresult11) type is supported.|
-| others | Array\<[GestureRecognizer](#gesturerecognizer)\> | Yes  | Gesture recognizers of the same type from other components with higher priority in the response chain.|
+| current | [GestureRecognizer](ts-gesture-common.md#gesturerecognizer12) | Yes  | Built-in gesture recognizer of the current component. Currently only a built-in gesture recognizer of the [GestureType](./ts-gesture-common.md#gesturetype11).PAN_GESTURE type is supported.|
+| others | Array\<[GestureRecognizer](ts-gesture-common.md#gesturerecognizer12)\> | Yes  | Gesture recognizers of the same type from other components with higher priority in the response chain.|
 
 **Return value**
 
 | Type    | Description       |
 | ------ | --------- |
-| [GestureRecognizer](#gesturerecognizer) | Gesture recognizer that is bound in parallel with the current recognizer.|
-
-## GestureRecognizer
-
-Defines a gesture recognizer object.
-
-### getTag
-
-getTag(): string
-
-Obtains the tag of this gesture recognizer.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type    | Description       |
-| ------ | --------- |
-| string | Tag of the current gesture recognizer.|
-
-### getType
-
-getType(): GestureControl.GestureType
-
-Obtains the type of this gesture recognizer.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type    | Description       |
-| ------ | --------- |
-| [GestureControl.GestureType](ts-gesture-customize-judge.md#gesturetype12) | Type of the current gesture recognizer.|
-
-### isBuiltIn
-
-isBuiltIn(): boolean
-
-Obtains whether this gesture recognizer is a built-in gesture.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type    | Description       |
-| ------ | --------- |
-| boolean | Whether the current gesture recognizer is a built-in gesture. The value **true** means that the gesture recognizer is a built-in gesture, and **false** means the opposite.|
-
-### setEnabled
-
-setEnabled(isEnabled: boolean): void
-
-Sets the enabled state of this gesture recognizer.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name    | Type                          | Mandatory  | Description |
-| ------- | ---------------------------------- | ---- | ----- |
-| isEnabled   | boolean         | Yes   | Enabled state to set. The value **true** means that the gesture recognizer is enabled and will trigger events, and **false** means the opposite.|
-
-### isEnabled
-
-isEnabled(): boolean
-
-Obtains the enabled state of this gesture recognizer.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type    | Description       |
-| ------ | --------- |
-| boolean | Enabled state of the gesture recognizer. The value **true** means that the gesture recognizer is enabled and will trigger events, and **false** means the opposite.|
-
-### getState
-
-getState(): GestureRecognizerState
-
-Obtains the state of this gesture recognizer.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type    | Description       |
-| ------ | --------- |
-| [GestureRecognizerState](#gesturerecognizerstate) | State of the gesture recognizer.|
-
-### getEventTargetInfo
-
-getEventTargetInfo(): EventTargetInfo
-
-Obtains the information about the component corresponding to this gesture recognizer.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type    | Description       |
-| ------ | --------- |
-| [EventTargetInfo](#eventtargetinfo) | Information about the component corresponding to the current gesture recognizer.|
-
-### isValid
-
-isValid(): boolean;
-
-Whether the current gesture recognizer is valid.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type    | Description       |
-| ------ | --------- |
-| boolean | Whether the current gesture recognizer is valid. Returns **false** if the component bound to this recognizer is destructed or if the recognizer is not on the response chain.|
-
-## GestureRecognizerState
-
-Enumerates the gesture recognizer states.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name   | Value  | Description                              |
-| ------- | ---- | ---------------------------------- |
-| READY | 0    | Ready.|
-| DETECTING    | 1    | Detecting.|
-| PENDING    | 2    | Pending.|
-| BLOCKED    | 3    | Blocked.|
-| SUCCESSFUL    | 4    | Successful.|
-| FAILED    | 5    | Failed.|
-
-## EventTargetInfo
-
-Provides the information about the component corresponding to the gesture recognizer.
-
-### getId
-
-getId(): string
-
-Obtains the ID of this component.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type    | Description       |
-| ------ | --------- |
-| string | [ID](./ts-universal-attributes-component-id.md#id) of the current component.|
-
-## ScrollableTargetInfo
-
-Provides the information about the scrollable container component corresponding to the gesture recognizer. It inherits from [EventTargetInfo](#eventtargetinfo).
-
-### isBegin
-
-isBegin(): boolean
-
-Checks whether this scrollable container component is scrolled to the top. If it is a **Swiper** component in loop mode, **false** is returned.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type    | Description       |
-| ------ | --------- |
-| boolean | Whether the current scrollable container component is scrolled to the top. The value **true** means that the component is scrolled to the top, and **false** means the opposite.|
-
-### isEnd
-
-isEnd(): boolean
-
-Checks whether this scrollable container component is scrolled to the bottom. If it is a **Swiper** component in loop mode, **false** is returned.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type    | Description       |
-| ------ | --------- |
-| boolean | Whether the current scrollable container component is scrolled to the bottom. The value **true** means that the component is scrolled to the bottom, and **false** means the opposite.|
-
-### getFingerCount<sup>18+</sup>
-
-getFingerCount(): number
-
-Obtains the number of fingers required to trigger the preset gesture.
-
-**Atomic service API**: This API can be used in atomic services since API version 18.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type    | Description       |
-| ------ | --------- |
-| number | Number of fingers required to trigger the preset gesture.<br>Value range: an integer from 1 to 10.|
-
-### isFingerCountLimit<sup>18+</sup>
-
-isFingerCountLimit(): boolean
-
-Checks whether the preset gesture will detect the number of fingers on the screen.
-
-**Atomic service API**: This API can be used in atomic services since API version 18.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type    | Description       |
-| ------ | --------- |
-| boolean | Whether the preset gesture will detect the number of fingers on the screen. Returns **true** if the gesture will detect the number of fingers on the touch screen; returns **false** otherwise.|
-
-## PanRecognizer
-
-Defines a pan gesture recognizer object. It inherits from [GestureRecognizer](#gesturerecognizer).
-
-### getPanGestureOptions
-
-getPanGestureOptions(): PanGestureOptions
-
-Obtains the properties of this pan gesture recognizer.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type    | Description       |
-| ------ | --------- |
-| [PanGestureOptions](./ts-basic-gestures-pangesture.md#pangestureoptions) | Properties of the current pan gesture recognizer.|
-
-## TapRecognizer<sup>18+</sup>
-
-Implements a tap gesture recognizer. It inherits from [GestureRecognizer](#gesturerecognizer).
-
-### getTapCount<sup>18+</sup>
-
-getTapCount(): number
-
-Obtains the number of consecutive taps required for the tap gesture to be recognized.
-
-**Atomic service API**: This API can be used in atomic services since API version 18.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type    | Description       |
-| ------ | --------- |
-| number | Number of consecutive taps required for the tap gesture to be recognized.<br>Value range: [0, +∞).|
-
-## LongPressRecognizer<sup>18+</sup>
-
-Implements a long press gesture recognizer. It inherits from [GestureRecognizer](#gesturerecognizer).
-
-### isRepeat<sup>18+</sup>
-
-isRepeat(): boolean
-
-Checks whether the long press gesture recognizer is set to trigger repeated callbacks.
-
-**Atomic service API**: This API can be used in atomic services since API version 18.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type    | Description       |
-| ------ | --------- |
-| boolean | Whether the long press gesture recognizer is set to trigger repeated callbacks. Returns **true** if the long press gesture recognizer is set to trigger repeated callbacks; returns **false** otherwise.|
-
-### getDuration<sup>18+</sup>
-
-getDuration(): number
-
-Obtains the minimum duration required for the long press gesture to be recognized.
-
-**Atomic service API**: This API can be used in atomic services since API version 18.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type    | Description       |
-| ------ | --------- |
-| number | Minimum duration required for the long press gesture to be recognized, in ms.<br>Value range: [0, +∞).|
-
-## SwipeRecognizer<sup>18+</sup>
-
-Implements a swipe gesture recognizer. It inherits from [GestureRecognizer](#gesturerecognizer).
-
-### getVelocityThreshold<sup>18+</sup>
-
-getVelocityThreshold(): number
-
-Obtains the minimum velocity required for the swipe gesture to be recognized.
-
-**Atomic service API**: This API can be used in atomic services since API version 18.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type    | Description       |
-| ------ | --------- |
-| number | Minimum velocity required for the swipe gesture to be recognized, in vp/s.<br>Value range: [0, +∞).|
-
-### getDirection<sup>18+</sup>
-
-getDirection(): SwipeDirection
-
-Obtains the direction for recognizing swipe gestures.
-
-**Atomic service API**: This API can be used in atomic services since API version 18.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type    | Description       |
-| ------ | --------- |
-| [SwipeDirection](./ts-basic-gestures-swipegesture.md#swipedirection) | Direction for recognizing swipe gestures.|
-
-## PinchRecognizer<sup>18+</sup>
-
-Implements a pinch gesture recognizer. It inherits from [GestureRecognizer](#gesturerecognizer).
-
-### getDistance<sup>18+</sup>
-
-getDistance(): number
-
-Obtains the minimum distance required for the pinch gesture to be recognized.
-
-**Atomic service API**: This API can be used in atomic services since API version 18.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type    | Description       |
-| ------ | --------- |
-| number | Minimum distance required for the pinch gesture to be recognized, in vp.<br>Value range: [0, +∞).|
-
-## RotationRecognizer<sup>18+</sup>
-
-Implements a rotation gesture recognizer. It inherits from [GestureRecognizer](#gesturerecognizer).
-
-### getAngle<sup>18+</sup>
-
-getAngle(): number
-
-Obtains the minimum angle change required for the rotation gesture to be recognized.
-
-**Atomic service API**: This API can be used in atomic services since API version 18.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Return value**
-
-| Type    | Description       |
-| ------ | --------- |
-| number | Minimum angle change required for the rotation gesture to be recognized, in degrees (deg).<br>Value range: [0, +∞).<br>**NOTE**<br>If the provided angle is less than or equal to 0 or greater than 360, it is converted to the default value **1**.|
+| [GestureRecognizer](ts-gesture-common.md#gesturerecognizer12) | Gesture recognizer that is bound in parallel with the current recognizer.|
 
 ## onGestureRecognizerJudgeBegin<sup>13+</sup>
 
@@ -445,8 +62,8 @@ onGestureRecognizerJudgeBegin(callback: GestureRecognizerJudgeBeginCallback, exp
 
 Binds a custom gesture recognizer judgment callback to the component.
 
-The **exposeInnerGesture** parameter indicates whether to expose the callback to the built-in components of ArkUI native composite components.<br>
-For scenarios where the callback does not need to be exposed to the built-in components of ArkUI native composite components, you are advised to use the [onGestureRecognizerJudgeBegin](#ongesturerecognizerjudgebegin) API. If the callback needs to be exposed to the built-in components of ArkUI native composite components, use this API and set **exposeInnerGesture** to **true**.
+The **exposeInnerGesture** parameter indicates whether to expose gestures from built-in components within ArkUI system composite components to developers. When this parameter is set to **true**, these internal gestures are exposed.<br>
+For scenarios where exposure of internal gestures is not required, use the original [onGestureRecognizerJudgeBegin](#ongesturerecognizerjudgebegin) API. Use this API with **exposeInnerGesture** set to **true** only when internal gesture exposure is necessary.
 
 **Atomic service API**: This API can be used in atomic services since API version 13.
 
@@ -455,8 +72,14 @@ For scenarios where the callback does not need to be exposed to the built-in com
 **Parameters**
 | Name       | Type                   | Mandatory | Description                         |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| callback      | [GestureRecognizerJudgeBeginCallback](#gesturerecognizerjudgebegincallback) | Yes    |  Custom gesture recognizer judgment callback to bind to the component. This callback is triggered when the gesture bound to the component is accepted to obtain the result.|
-| exposeInnerGesture   | boolean         | Yes   | Whether to expose the internal gesture.<br>Default value: **false**<br>**NOTE**<br>For a composite component, setting this parameter to **true** exposes the internal gesture recognizer of the composite component in the **current** parameter callback.<br>Currently, only the [Tabs](ts-container-tabs.md) component is supported. Do not set this parameter for other components.<br>When this parameter is set to **false**, this API provides the same functionality as the [onGestureRecognizerJudgeBegin](#ongesturerecognizerjudgebegin) API.|
+| callback      | [GestureRecognizerJudgeBeginCallback](#gesturerecognizerjudgebegincallback) | Yes    |  Custom gesture recognizer judgment callback to bind to the component. This callback is triggered when the gesture bound to the component is about to succeed, to obtain the result.|
+| exposeInnerGesture   | boolean         | Yes   | Whether to expose the internal gesture.<br>Default value: **false**<br>**NOTE**<br>For composite components, setting this parameter to **true** includes gesture recognizers from internal components in the current callback parameter.<br>Currently, only the [Tabs](ts-container-tabs.md) component is supported. Do not set this parameter for other components.<br>When this parameter is set to **false**, this API provides the same functionality as the [onGestureRecognizerJudgeBegin](#ongesturerecognizerjudgebegin) API.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 ## onGestureRecognizerJudgeBegin
 
@@ -471,7 +94,7 @@ Binds a custom gesture recognizer judgment callback to the component.
 **Parameters**
 | Name       | Type                   | Mandatory | Description                         |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| callback      | [GestureRecognizerJudgeBeginCallback](#gesturerecognizerjudgebegincallback) | Yes    |  Custom gesture recognizer judgment callback to bind to the component. This callback is triggered when the gesture bound to the component is accepted to obtain the result.|
+| callback      | [GestureRecognizerJudgeBeginCallback](#gesturerecognizerjudgebegincallback) | Yes    |  Custom gesture recognizer judgment callback. When a gesture bound to this component is about to succeed, the custom callback is triggered to obtain the result.|
 
 **Return value**
 
@@ -481,11 +104,9 @@ Binds a custom gesture recognizer judgment callback to the component.
 
 ## GestureRecognizerJudgeBeginCallback
 
-type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: GestureRecognizer, recognizers: Array\<GestureRecognizer\>) => GestureJudgeResult
+type GestureRecognizerJudgeBeginCallback = (event: BaseGestureEvent, current: GestureRecognizer, recognizers: Array\<GestureRecognizer\>, touchRecognizers?: Array\<TouchRecognizer\>) => GestureJudgeResult
 
-Represents a custom gesture recognizer judgment callback.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
+Represents a custom gesture recognizer judgment callback type.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -493,15 +114,54 @@ Represents a custom gesture recognizer judgment callback.
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| event | [BaseGestureEvent](./ts-gesture-customize-judge.md#basegestureevent) | Yes  | Information about the current basic gesture event.|
-| current | [GestureRecognizer](#gesturerecognizer) | Yes  | Gesture recognizer object that is about to respond.|
-| others | Array\<[GestureRecognizer](#gesturerecognizer)\> | Yes  | Other gesture recognizer objects in the response chain.|
-
+| event | [BaseGestureEvent](./ts-gesture-common.md#basegestureevent11) | Yes  | Information about the current basic gesture event.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| current | [GestureRecognizer](ts-gesture-common.md#gesturerecognizer12) | Yes  | Gesture recognizer object that is about to respond.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| recognizers | Array\<[GestureRecognizer](ts-gesture-common.md#gesturerecognizer12)\> | Yes  | Other gesture recognizer objects in the response chain.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| touchRecognizers<sup>20+</sup> | Array\<[TouchRecognizer](ts-gesture-common.md#touchrecognizer20)\> | No  | Touch recognizers in the response chain. The default value is **null**, indicating no responsive touch recognizers in the current gesture-bound component and its descendants.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 **Return value**
 
 | Type    | Description       |
 | ------ | --------- |
-| [GestureJudgeResult](ts-gesture-customize-judge.md#gesturejudgeresult11) | Result of whether the gesture judgment is successful.|
+| [GestureJudgeResult](./ts-gesture-common.md#gesturejudgeresult12) | Judgment result indicating whether gesture recognition succeeds.|
+
+## onTouchTestDone<sup>20+</sup>
+
+onTouchTestDone(callback: TouchTestDoneCallback): T
+
+Specifies whether gesture recognizers participate in subsequent processing after [hit testing](../../../ui/arkts-interaction-basic-principles.md#hit-testing) completes.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name       | Type                   | Mandatory | Description                         |
+| ---------- | -------------------------- | ------- | ----------------------------- |
+| callback      | [TouchTestDoneCallback](#touchtestdonecallback20) | Yes  |  Callback to specify gesture recognizer participation in subsequent processing. Triggered after [hit testing](../../../ui/arkts-interaction-basic-principles.md#hit-testing) completes but before user gesture recognition begins.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
+
+## TouchTestDoneCallback<sup>20+</sup>
+
+type TouchTestDoneCallback = (event: BaseGestureEvent, recognizers: Array\<GestureRecognizer\>) => void
+
+Represents the callback type for dynamically specifying gesture recognizer participation in gesture processing.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| event | [BaseGestureEvent](./ts-gesture-common.md#basegestureevent11) | Yes  | Basic gesture event information after [hit testing](../../../ui/arkts-interaction-basic-principles.md#hit-testing) completes.<br>**NOTE**<br>Only **BaseGestureEvent** information is contained, excluding child class extensions.<br>The values of **axisHorizontal** and **axisVertical** are **0**.|
+| recognizers | Array\<[GestureRecognizer](ts-gesture-common.md#gesturerecognizer12)\> | Yes  | All gesture recognizers after [hit testing](../../../ui/arkts-interaction-basic-principles.md#hit-testing) completes.|
 
 ## Example
 
@@ -514,12 +174,12 @@ This example demonstrates how to implement nested scrolling using **shouldBuiltI
 @Entry
 @Component
 struct FatherControlChild {
-  scroller: Scroller = new Scroller()
-  scroller2: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  private childRecognizer: GestureRecognizer = new GestureRecognizer()
-  private currentRecognizer: GestureRecognizer = new GestureRecognizer()
-  private lastOffset: number = 0
+  scroller: Scroller = new Scroller();
+  scroller2: Scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  private childRecognizer: GestureRecognizer = new GestureRecognizer();
+  private currentRecognizer: GestureRecognizer = new GestureRecognizer();
+  private lastOffset: number = 0;
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
@@ -573,7 +233,8 @@ struct FatherControlChild {
         for (let i = 0; i < others.length; i++) {
           let target = others[i].getEventTargetInfo();
           if (target) {
-            if (target.getId() == "inner" && others[i].isBuiltIn() && others[i].getType() == GestureControl.GestureType.PAN_GESTURE) { // Find the recognizer to form a parallel gesture.
+            if (target.getId() == "inner" && others[i].isBuiltIn() &&
+              others[i].getType() == GestureControl.GestureType.PAN_GESTURE) { // Identify the recognizer that to be bound to parallelGesture.
               this.currentRecognizer = current; // Save the recognizer of the current component.
               this.childRecognizer = others[i]; // Save the recognizer to form a parallel gesture.
               return others[i]; // Return the recognizer to form a parallel gesture.
@@ -582,11 +243,13 @@ struct FatherControlChild {
         }
         return undefined;
       })
-      .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer, others: Array<GestureRecognizer>) => { // When gesture recognition is about to be successful, set the recognizer's enabled state based on the current component state.
+      .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
+        others: Array<GestureRecognizer>) => { // When the implementation is about to succeed, set the recognizer enabling state based on the current component state.
         if (current) {
           let target = current.getEventTargetInfo();
           if (target) {
-            if (target.getId() == "outer" && current.isBuiltIn() && current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+            if (target.getId() == "outer" && current.isBuiltIn() &&
+              current.getType() == GestureControl.GestureType.PAN_GESTURE) {
               if (others) {
                 for (let i = 0; i < others.length; i++) {
                   let target = others[i].getEventTargetInfo() as ScrollableTargetInfo;
@@ -594,23 +257,23 @@ struct FatherControlChild {
                     let panEvent = event as PanGestureEvent;
                     if (target.isEnd()) { // Dynamically control the recognizer's enabled state based on the current component state and direction of movement.
                       if (panEvent && panEvent.offsetY < 0) {
-                        this.childRecognizer.setEnabled(false)
-                        this.currentRecognizer.setEnabled(true)
+                        this.childRecognizer.setEnabled(false);
+                        this.currentRecognizer.setEnabled(true);
                       } else {
-                        this.childRecognizer.setEnabled(true)
-                        this.currentRecognizer.setEnabled(false)
+                        this.childRecognizer.setEnabled(true);
+                        this.currentRecognizer.setEnabled(false);
                       }
                     } else if (target.isBegin()) {
                       if (panEvent.offsetY > 0) {
-                        this.childRecognizer.setEnabled(false)
-                        this.currentRecognizer.setEnabled(true)
+                        this.childRecognizer.setEnabled(false);
+                        this.currentRecognizer.setEnabled(true);
                       } else {
-                        this.childRecognizer.setEnabled(true)
-                        this.currentRecognizer.setEnabled(false)
+                        this.childRecognizer.setEnabled(true);
+                        this.currentRecognizer.setEnabled(false);
                       }
                     } else {
-                      this.childRecognizer.setEnabled(true)
-                      this.currentRecognizer.setEnabled(false)
+                      this.childRecognizer.setEnabled(true);
+                      this.currentRecognizer.setEnabled(false);
                     }
                   }
                 }
@@ -622,8 +285,9 @@ struct FatherControlChild {
       })
       .parallelGesture( // Bind a pan gesture as a dynamic controller.
         PanGesture()
-          .onActionUpdate((event: GestureEvent)=>{
-            if (this.childRecognizer.getState() != GestureRecognizerState.SUCCESSFUL || this.currentRecognizer.getState() != GestureRecognizerState.SUCCESSFUL) { // If neither recognizer is in the SUCCESSFUL state, no control is applied.
+          .onActionUpdate((event: GestureEvent) => {
+            if (this.childRecognizer.getState() != GestureRecognizerState.SUCCESSFUL ||
+              this.currentRecognizer.getState() != GestureRecognizerState.SUCCESSFUL) { // If the recognizer is not in the SUCCESSFUL state, no control is applied.
               return;
             }
             let target = this.childRecognizer.getEventTargetInfo() as ScrollableTargetInfo;
@@ -631,40 +295,41 @@ struct FatherControlChild {
             if (target instanceof ScrollableTargetInfo && currentTarget instanceof ScrollableTargetInfo) {
               if (target.isEnd()) { // Adjust the enabled state of the gesture recognizers based on the current component state during movement.
                 if ((event.offsetY - this.lastOffset) < 0) {
-                  this.childRecognizer.setEnabled(false)
+                  this.childRecognizer.setEnabled(false);
                   if (currentTarget.isEnd()) {
-                    this.currentRecognizer.setEnabled(false)
+                    this.currentRecognizer.setEnabled(false);
                   } else {
-                    this.currentRecognizer.setEnabled(true)
+                    this.currentRecognizer.setEnabled(true);
                   }
                 } else {
-                  this.childRecognizer.setEnabled(true)
-                  this.currentRecognizer.setEnabled(false)
+                  this.childRecognizer.setEnabled(true);
+                  this.currentRecognizer.setEnabled(false);
                 }
               } else if (target.isBegin()) {
                 if ((event.offsetY - this.lastOffset) > 0) {
-                  this.childRecognizer.setEnabled(false)
+                  this.childRecognizer.setEnabled(false);
                   if (currentTarget.isBegin()) {
-                    this.currentRecognizer.setEnabled(false)
+                    this.currentRecognizer.setEnabled(false);
                   } else {
-                    this.currentRecognizer.setEnabled(true)
+                    this.currentRecognizer.setEnabled(true);
                   }
                 } else {
-                  this.childRecognizer.setEnabled(true)
-                  this.currentRecognizer.setEnabled(false)
+                  this.childRecognizer.setEnabled(true);
+                  this.currentRecognizer.setEnabled(false);
                 }
               } else {
-                this.childRecognizer.setEnabled(true)
-                this.currentRecognizer.setEnabled(false)
+                this.childRecognizer.setEnabled(true);
+                this.currentRecognizer.setEnabled(false);
               }
             }
-            this.lastOffset = event.offsetY
+            this.lastOffset = event.offsetY;
           })
       )
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)
   }
 }
 ```
+![fatherControlChild](figures/fatherControlChild.gif)
 
 ### Example 2: Blocking Inner Container Gestures in Nested Scrolling
 
@@ -676,12 +341,13 @@ You can define variables to record the index of the inner **Tabs** container and
 @Entry
 @Component
 struct Index {
-  @State currentIndex: number = 0
-  @State selectedIndex: number = 0
-  @State fontColor: string = '#182431'
-  @State selectedFontColor: string = '#007DFF'
-  innerSelectedIndex: number = 0 // Record the index of the inner Tabs container.
+  @State currentIndex: number = 0;
+  @State selectedIndex: number = 0;
+  @State fontColor: string = '#182431';
+  @State selectedFontColor: string = '#007DFF';
+  innerSelectedIndex: number = 0; // Record the index of the inner Tabs container.
   controller?: TabsController = new TabsController();
+
   @Builder
   tabBuilder(index: number, name: string) {
     Column() {
@@ -697,17 +363,20 @@ struct Index {
         .opacity(this.selectedIndex === index ? 1 : 0)
     }.width('100%')
   }
+
   build() {
     Column() {
       Tabs({ barPosition: BarPosition.Start, index: this.currentIndex, controller: this.controller }) {
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Green)
         }.tabBar(this.tabBuilder(0, 'green'))
+
         TabContent() {
           Tabs() {
             TabContent() {
               Column().width('100%').height('100%').backgroundColor(Color.Blue)
             }.tabBar(new SubTabBarStyle('blue'))
+
             TabContent() {
               Column().width('100%').height('100%').backgroundColor(Color.Pink)
             }.tabBar(new SubTabBarStyle('pink'))
@@ -737,6 +406,7 @@ struct Index {
             return GestureJudgeResult.CONTINUE;
           }, true)
         }.tabBar(this.tabBuilder(1, 'blue and pink'))
+
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Brown)
         }.tabBar(this.tabBuilder(2, 'brown'))
@@ -832,3 +502,292 @@ struct Index {
 ```
 
  ![example](figures/gesture_recognizer_obtain_attributes.gif)
+
+ ### Example 4: Canceling Child Component Touch Events on Successful Gesture Trigger
+
+This example demonstrates how to use **onGestureRecognizerJudgeBegin** to implement gesture judgment. When the parent container's gesture is successfully triggered, it calls **cancelTouch()** to forcibly cancel touch events on child components, enabling precise switching between parent and child gesture control.
+
+ ```ts
+ // xxx.ets
+@Entry
+@Component
+struct FatherControlChild {
+  scroller: Scroller = new Scroller();
+  scroller2: Scroller = new Scroller()
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  private childRecognizer: GestureRecognizer = new GestureRecognizer();
+  private currentRecognizer: GestureRecognizer = new GestureRecognizer();
+  private lastOffset: number = 0;
+
+  @State outerState: string = "IDLE";
+  @State innerState: string = "IDLE";
+  @State willCancel: boolean = false;
+
+  build() {
+    Stack({ alignContent: Alignment.TopStart }) {
+      Scroll(this.scroller) { // Outer scrollable container.
+        Column() {
+          Text("Scroll Area")
+            .width('90%')
+            .height(150)
+            .backgroundColor(0xFFFFFF)
+            .borderRadius(15)
+            .fontSize(16)
+            .textAlign(TextAlign.Center)
+            .margin({ top: 10 })
+
+          Scroll(this.scroller2) { // Inner scrollable container.
+            Column() {
+              Text("Scroll Area2")
+                .width('90%')
+                .height(150)
+                .backgroundColor(0xFFFFFF)
+                .borderRadius(15)
+                .fontSize(16)
+                .textAlign(TextAlign.Center)
+                .margin({ top: 10 })
+
+              Column() {
+                ForEach(this.arr, (item: number) => {
+                  Text(item.toString())
+                    .width('90%')
+                    .height(150)
+                    .backgroundColor(0xFFFFFF)
+                    .borderRadius(15)
+                    .fontSize(16)
+                    .textAlign(TextAlign.Center)
+                    .margin({ top: 10 })
+                }, (item: string) => item)
+              }.width('100%')
+            }
+          }
+          .id("inner")
+          .width('100%')
+          .height(800)
+          .onTouch((event) => {
+            if (event.type === TouchType.Down) {
+              this.innerState = "TOUCHING";
+              this.willCancel = false;
+            } else if (event.type === TouchType.Up || event.type === TouchType.Cancel) {
+              if (this.willCancel) {
+                this.innerState = "CANCELLED";
+                setTimeout(() => {
+                  this.innerState = "IDLE";
+                  this.willCancel = false;
+                }, 1000);
+              } else {
+                this.innerState = "IDLE";
+              }
+            }
+          })
+        }.width('100%')
+      }
+      .id("outer")
+      .height('100%')
+      .scrollable(ScrollDirection.Vertical)
+      .scrollBar(BarState.On)
+      .scrollBarColor(Color.Gray)
+      .scrollBarWidth(10)
+      .edgeEffect(EdgeEffect.None)
+      .shouldBuiltInRecognizerParallelWith((current: GestureRecognizer, others: Array<GestureRecognizer>) => {
+        for (let i = 0; i < others.length; i++) {
+          let target = others[i].getEventTargetInfo();
+          if (target) {
+            if (target.getId() == "inner" && others[i].isBuiltIn() &&
+              others[i].getType() == GestureControl.GestureType.PAN_GESTURE) { // Identify the recognizer that to be bound to parallelGesture.
+              this.currentRecognizer = current; // Save the recognizer of the current component.
+              this.childRecognizer = others[i]; // Save the recognizer to form a parallel gesture.
+              return others[i]; // Return the recognizer to form a parallel gesture.
+            }
+          }
+        }
+        return undefined;
+      })
+      .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
+        others: Array<GestureRecognizer>,
+        touchRecognizers?: Array<TouchRecognizer>) => { // When the implementation is about to succeed, set the recognizer enabling state based on the current component state.
+        if (current && touchRecognizers) {
+          let target = current.getEventTargetInfo();
+          if (target) {
+            if (target.getId() == "outer" && current.isBuiltIn() &&
+              current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+              return GestureJudgeResult.CONTINUE
+            }
+            for (let index = 0; index < touchRecognizers.length; index++) {
+              const element = touchRecognizers![index];
+              let touchTarget = element.getEventTargetInfo()
+              if (touchTarget && touchTarget.getId() == "inner") {
+                this.willCancel = true;
+                element.cancelTouch();
+              }
+            }
+          }
+        }
+        return GestureJudgeResult.CONTINUE;
+      })
+      .onTouch((event) => {
+        if (event.type === TouchType.Down) {
+          this.outerState = "TOUCHING";
+        } else if (event.type === TouchType.Up || event.type === TouchType.Cancel) {
+          this.outerState = "IDLE";
+        }
+      })
+      .parallelGesture( // Bind a pan gesture as a dynamic controller.
+        PanGesture()
+          .onActionUpdate((event: GestureEvent) => {
+            if (this.childRecognizer.getState() != GestureRecognizerState.SUCCESSFUL ||
+              this.currentRecognizer.getState() != GestureRecognizerState.SUCCESSFUL) { // If the recognizer is not in the SUCCESSFUL state, no control is applied.
+              return;
+            }
+            let target = this.childRecognizer.getEventTargetInfo() as ScrollableTargetInfo;
+            let currentTarget = this.currentRecognizer.getEventTargetInfo() as ScrollableTargetInfo;
+            if (target instanceof ScrollableTargetInfo && currentTarget instanceof ScrollableTargetInfo) {
+              if (target.isEnd()) { // Adjust the enabled state of the gesture recognizers based on the current component state during movement.
+                if ((event.offsetY - this.lastOffset) < 0) {
+                  this.childRecognizer.setEnabled(false)
+                  if (currentTarget.isEnd()) {
+                    this.currentRecognizer.setEnabled(false)
+                  } else {
+                    this.currentRecognizer.setEnabled(true)
+                  }
+                } else {
+                  this.childRecognizer.setEnabled(true)
+                  this.currentRecognizer.setEnabled(false)
+                }
+              } else if (target.isBegin()) {
+                if ((event.offsetY - this.lastOffset) > 0) {
+                  this.childRecognizer.setEnabled(false)
+                  if (currentTarget.isBegin()) {
+                    this.currentRecognizer.setEnabled(false)
+                  } else {
+                    this.currentRecognizer.setEnabled(true)
+                  }
+                } else {
+                  this.childRecognizer.setEnabled(true)
+                  this.currentRecognizer.setEnabled(false)
+                }
+              } else {
+                this.childRecognizer.setEnabled(true)
+                this.currentRecognizer.setEnabled(false)
+              }
+            }
+            this.lastOffset = event.offsetY
+          })
+      )
+      Column() { // Display the outer layer status.
+        Text(`outer: ${this.outerState}`)
+          .fontSize(24)
+          .fontColor(this.outerState === "TOUCHING" ? Color.Green : Color.Gray)
+          .margin({ bottom: 10 })
+        // Display the inner layer status.
+        Text(`inner: ${this.innerState === "TOUCHING" ? "TOUCHING" : this.innerState}`)
+          .fontSize(24)
+          .fontColor(
+            this.innerState === "TOUCHING" ? Color.Blue :
+              this.innerState === "CANCELLED" ? Color.Red : Color.Gray
+          )
+      }
+      .width('90%')
+      .backgroundColor(Color.White)
+      .border({ width: 1, color: Color.Gray })
+      .position({ x: '5%', y: '80%'})
+      .padding(20)
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xDCDCDC)
+  }
+}
+```
+![example](figures/canceltouch.gif)
+
+ ### Example 5: Customizing Gesture Recognizer Participation in Gesture Processing
+
+This example shows how to use **onTouchTestDone** to specify whether gesture recognizers participate in subsequent gesture processing. When the callback is triggered, it calls **preventBegin()** to prevent gesture recognizers from participating in further processing.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TouchTestDoneExample {
+  @State tagList: string[] = ['Null', 'Tap1', 'Tap2', 'Tap3', 'Tap4'];
+  @State tagId: number = 0;
+  @State textValue: string = '';
+
+  // In the multi-layer nesting scenario, bind a tap gesture to each layer of components.
+  build() {
+    Column() {
+      Column() {
+        Text('Tap1')
+          .margin(20)
+        Column() {
+          Text('Tap2')
+            .margin(20)
+          Column() {
+            Text('Tap3')
+              .margin(20)
+            Column() {
+              Text('Tap4')
+                .margin(20)
+            }
+            .backgroundColor('#D5D5D5')
+            .width('80%')
+            .height('80%')
+            .gesture(TapGesture().tag('Tap4').onAction(() => {
+              this.textValue = 'Tap4';
+            }))
+          }
+          .backgroundColor('#F7F7F7')
+          .width('80%')
+          .height('80%')
+          .gesture(TapGesture().tag('Tap3').onAction(() => {
+            this.textValue = 'Tap3';
+          }))
+        }
+        .backgroundColor('#707070')
+        .width('80%')
+        .height('80%')
+        .gesture(TapGesture().tag('Tap2').onAction(() => {
+          this.textValue = 'Tap2';
+        }))
+      }
+      .backgroundColor('#D5D5D5')
+      .width('80%')
+      .height('80%')
+      .gesture(TapGesture().tag('Tap1').onAction(() => {
+        this.textValue = 'Tap1';
+      }))
+      // Use onTouchTestDone to customize gesture recognizer participation by calling preventBegin().
+      .onTouchTestDone((event, recognizers) => {
+        console.info('event is ' + JSON.stringify(event));
+        for (let i = 0; i < recognizers.length; i++) {
+          let recognizer = recognizers[i];
+          console.info('type is ' + JSON.stringify(recognizer.getType()))
+          // Block specific gesture recognizers based on the tag value.
+          if (recognizer.getTag() == this.tagList[this.tagId]) {
+            recognizer.preventBegin();
+          }
+        }
+      })
+
+      Text('Current Gesture: ' + this.textValue)
+        .margin(5)
+
+      Button('Click to change preventGesture')
+        .margin(5)
+        .onClick(() => {
+          this.tagId++;
+          this.tagId %= 5;
+        })
+      Text('Current prevent gesture tag: ' + this.tagList[this.tagId])
+        .margin(5)
+
+    }
+    .width('100%')
+    .height('100%')
+
+    // Demo behavior: When the overlapping area of Tap2 and Tap1 is tapped: Without preventBegin: The Tap2 gesture is triggered; with preventBegin blocking Tap2: The Tap1 gesture is triggered.
+  }
+}
+```
+![example](figures/touchTestDone.gif)

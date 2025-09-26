@@ -1,21 +1,27 @@
 # Flex
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @camlostshi-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
 
-The **Flex** component is a container that lays out its children using a flexible box model, providing an effective way to arrange, align, and distribute remaining space among child elements.
+The **Flex** component is a container that uses the flexible box model for layout. It provides an efficient mechanism for arranging and aligning child elements, as well as distributing available space among them.
 
 For details, see [Flex Layout](../../../ui/arkts-layout-development-flex-layout.md).
 
 > **NOTE**
 >
 > - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-> - The **Flex** component adapts the layout of flex items during rendering. This may affect the performance. Therefore, you are advised to use [Column](ts-container-column.md) or [Row](ts-container-row.md) instead under scenarios where consistently high performance is required.
-> - If the main axis of the **Flex** component is not set, it follows the size of the parent container. On the contrary, if the main axis of the [Column](ts-container-column.md) or [Row](ts-container-row.md) component is not set, it follows the size of their child component.
-> - You can set the main axis length of a **Flex** component to **auto** to make it adapt to the layout of its child components. This way, the **Flex** component's length is subject to the **constraintSize** attribute and the maximum and minimum lengths passed from the parent container, with **constraintSize** taking precedence.
+> - The **Flex** component adapts the layout of flex items during rendering. This may affect the performance. Therefore, you are advised to use [Column](ts-container-column.md) or [Row](ts-container-row.md) instead under scenarios where consistently high performance is required. For best practices, see [Using Layout Components Properly](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-improve-layout-performance#section12745188175420).
+> - If the main axis length of the **Flex** component is unspecified, it follows the size of the parent container. In contrast, if the main axis length of the [Column](ts-container-column.md) or [Row](ts-container-row.md) component is unspecified, it adjusts to fit its child components.
+> - If **Flex**, **Column**, or **Row** containers have no child components and no explicit width or height settings, their default width or height is **-1**.
+> - You can set the main axis length of a **Flex** component to **auto** to make it adapt to the layout of its child components. This way, the **Flex** component's length is subject to the **constraintSize** attribute and the maximum and minimum length constraints passed from the parent container, with **constraintSize** taking precedence.
 
 
 ## Child Components
 
-Supported
-
+This component can contain child components.
 
 ## APIs
 
@@ -41,27 +47,35 @@ Describes the layout and alignment of child components within the **Flex** compo
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name           | Type       | Mandatory  | Description                                    |
-| -------------- | ---------------------------------------- | ---- |  ---------------------------------------- |
-| direction      | [FlexDirection](ts-appendix-enums.md#flexdirection) | No    | Direction in which child components are arranged in the **Flex** component, that is, the direction of the main axis.<br>Default value: **FlexDirection.Row**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.           |
-| wrap           | [FlexWrap](ts-appendix-enums.md#flexwrap) | No    | Whether the **Flex** component has a single line or multiple lines.<br>Default value: **FlexWrap.NoWrap**<br>**NOTE**<br>When wrapped onto multiple lines, the child elements on the new line are stacked in the direction based on the cross axis direction.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | No    | Alignment mode of the child components in the **Flex** component along the main axis.<br>Default value: **FlexAlign.Start**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                 |
-| alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | No    | Alignment mode of the child components in the **Flex** component along the cross axis.<br>Default value: **ItemAlign.Start**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.              |
-| alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | No    | Alignment mode of the child components in a multi-row **Flex** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**.<br>Default value: **FlexAlign.Start**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| space<sup>12+</sup>          | [FlexSpaceOptions<sup>12+</sup>](ts-container-flex.md#flexspaceoptions12) | No  | Spacing between child components along the main axis or cross axis of the **Flex** component.<br>Default value: **{main:LengthMetrics.px(0), cross:LengthMetrics.px(0)}**<br>This parameter does not take effect if the value specified is a negative number or percentage, or if **justifyContent** is set to **FlexAlign.SpaceBetween**, **FlexAlign.SpaceAround**, or **FlexAlign.SpaceEvenly**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| direction      | [FlexDirection](ts-appendix-enums.md#flexdirection) | No| Yes    | Direction in which child components are arranged in the **Flex** component, that is, the direction of the main axis.<br>Default value: **FlexDirection.Row**<br>Invalid values are treated as the default value.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.           |
+| wrap           | [FlexWrap](ts-appendix-enums.md#flexwrap) | No| Yes    | Whether the **Flex** component has a single line or multiple lines.<br>Default value: **FlexWrap.NoWrap**<br>Invalid values are treated as the default value.<br>**NOTE**<br>When wrapped onto multiple lines, the child elements on the new line are stacked in the direction based on the cross axis direction.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | No| Yes    | Alignment mode of the child components in the **Flex** component along the main axis.<br>Default value: **FlexAlign.Start**<br>Invalid values are treated as the default value.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                 |
+| alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | No| Yes    | Alignment mode of the child components in the **Flex** component along the cross axis.<br>Default value: **ItemAlign.Start**<br>Invalid values are treated as the default value.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.              |
+| alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | No| Yes    | Alignment mode of the child components in a multi-row **Flex** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**.<br>Default value: **FlexAlign.Start**<br>Invalid values are treated as the default value.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| space<sup>12+</sup>          | [FlexSpaceOptions<sup>12+</sup>](ts-container-flex.md#flexspaceoptions12) | No| Yes  | Spacing between child components along the main axis or cross axis of the **Flex** component.<br>Default value: **{main: LengthMetrics.px(0), cross: LengthMetrics.px(0)}**<br>Invalid values are treated as the default value.<br>This parameter does not take effect if the value specified is a negative number or percentage, or if **justifyContent** is set to **FlexAlign.SpaceBetween**, **FlexAlign.SpaceAround**, or **FlexAlign.SpaceEvenly**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## FlexSpaceOptions<sup>12+</sup>
 
-Defines the spacing between child components along the main axis or cross axis of the **Flex** component.
+Sets the spacing between child components along the main axis or cross axis of the **Flex** component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name         | Type       |  Read Only    | Optional     | Description     |
+| Name         | Type       |  Read-Only    | Optional     | Description     |
 | ----------- | --------- | ----------- | --------- |----------- |
-| main   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | No| Yes| Space on the main axis of the **Flex** component.<br> space: {main: LengthMetrics.unit(value)} |
-| cross  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No| Yes| Space on the cross axis of the **Flex** component.<br> space: {cross: LengthMetrics.unit(value)} |
+| main   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | No| Yes| Space on the main axis of the **Flex** component.<br> Default value: **LengthMetrics.px(0)**.|
+| cross  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No| Yes| Space on the cross axis of the **Flex** component.<br> Default value: **LengthMetrics.px(0)**.|
+
+## Attributes
+
+The [universal attributes](ts-component-general-attributes.md) are supported.
+
+## Events
+
+The [universal events](ts-component-general-events.md) are supported.
 
 ## Example
 

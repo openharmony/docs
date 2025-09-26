@@ -1,4 +1,12 @@
 # Flex Layout
+<!--Kit: ArkUI-->
+<!--Subsystem: ArkUI-->
+<!--Owner: @camlostshi-->
+<!--Designer: @lanshouren-->
+<!--Tester: @liuli0427-->
+<!--Adviser: @HelloCrease-->
+
+The flex layout enables flexible arrangement, alignment, and space distribution among child components within a container. It allows elements to dynamically expand or shrink based on available space, meeting responsive layout requirements across different screen sizes.
 
 >  **NOTE**
 >  - The initial APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
@@ -59,6 +67,10 @@ flexShrink(value: number): T
 
 Sets the percentage of the parent container's shrink size that is allocated to the component. When the parent container is **Column** or **Row**, you must set the size along the main axis.
 
+>  **NOTE**
+>
+>  When [getInspectorByKey](ts-universal-attributes-component-id.md#getinspectorbykey9) is used to obtain the **flexShrink** attribute, if the node does not have **flexShrink** set, the default value of **1** is returned by default.
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -69,7 +81,7 @@ Sets the percentage of the parent container's shrink size that is allocated to t
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Percentage of the parent container's shrink size that is allocated to the component.<br>If the parent container is [Column](ts-container-column.md) or [Row](ts-container-row.md), the default value is **0**, and the value range is (0, +∞).<br> If the parent container is [Flex](ts-container-flex.md), the default value is **1**.<br>[constraintSize](ts-universal-attributes-size.md#constraintsize) limits the component's size range. For [Column](ts-container-column.md) and [Row](ts-container-row.md) components without explicit main axis size specified (through [width](ts-universal-attributes-size.md#width), [height](ts-universal-attributes-size.md#height), or [size](ts-universal-attributes-size.md#size)), the default layout behavior (adapt-to-fit child components) applies, and **flexShrink** has no effect.|
+| value  | number | Yes  | Percentage of the parent container's shrink size that is allocated to the component.<br>If the parent container is [Column](ts-container-column.md) or [Row](ts-container-row.md), the default value is **0**, and the value range is (0, +∞).<br> If the parent container is [Flex](ts-container-flex.md), the default value is **1**.<br>[constraintSize](ts-universal-attributes-size.md#constraintsize) limits the component's size range. For [Column](ts-container-column.md) and [Row](ts-container-row.md) components without explicit main axis size specified (through [width](ts-universal-attributes-size.md#width), [height](ts-universal-attributes-size.md#height), or [size](ts-universal-attributes-size.md#size-1)), the default layout behavior (adapt-to-fit child components) applies, even when [constraintSize](ts-universal-attributes-size.md#constraintsize) is configured. In this case, **flexShrink** has no effect.|
 
 **Return value**
 
