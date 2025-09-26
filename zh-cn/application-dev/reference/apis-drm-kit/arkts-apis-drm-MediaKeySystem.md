@@ -282,7 +282,7 @@ try {
 
 generateKeySystemRequest(): Promise<ProvisionRequest\>
 
-生成获取mediaKeySystem设备证书的请求。
+生成获取mediaKeySystem设备证书的请求。使用Promise异步回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -322,7 +322,7 @@ mediaKeySystem.generateKeySystemRequest().then((ProvisionRequest: drm.ProvisionR
 
 processKeySystemResponse(response: Uint8Array): Promise<void\>
 
-处理获得的设备证书请求的响应。
+处理获得的设备证书请求的响应。使用Promise异步回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -410,7 +410,7 @@ try {
 
 on(type: 'keySystemRequired', callback: (eventInfo: EventInfo) => void): void
 
-监听设备证书请求事件，获取事件信息。
+监听设备证书请求事件，获取事件信息。使用callback异步回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -447,7 +447,7 @@ mediaKeySystem.on('keySystemRequired', (eventInfo: drm.EventInfo) => {
 
 off(type: 'keySystemRequired', callback?: (eventInfo: EventInfo) => void): void
 
-注销设备证书请求事件的监听。
+注销设备证书请求事件的监听。使用callback异步回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
