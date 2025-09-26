@@ -1,5 +1,12 @@
 # Background Tasks Kit（后台任务开发服务）<!--background-tasks-api-->
 
+<!--Kit: Background Tasks Kit-->
+<!--Subsystem: Resourceschedule-->
+<!--Owner: @cheng-shichang-->
+<!--Designer: @zhouben25-->
+<!--Tester: @fenglili18-->
+<!--Adviser: @Brilliantry_Rui-->
+
 - ArkTS API<!--background-tasks-arkts-->
   - [@ohos.reminderAgentManager (后台代理提醒)](js-apis-reminderAgentManager.md)
   - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](js-apis-resourceschedule-backgroundTaskManager.md) 
