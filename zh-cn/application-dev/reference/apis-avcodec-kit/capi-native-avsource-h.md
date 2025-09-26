@@ -109,7 +109,7 @@ OH_AVSource *OH_AVSource_CreateWithURI(char *uri)
 
 **描述**
 
-为统一资源标识符对应的资源对象创建OH_AVSource实例，可以通过调用[OH_AVSource_Destroy](#oh_avsource_destroy)接口释放实例。仅支持HTTP渐进式流媒体，不支持HLS/DASH的流媒体；对于HLS/DASH的流媒体播放，推荐使用AVPlayer进行开发，或三方自研的方案。
+为统一资源标识符对应的资源对象创建OH_AVSource实例，可以通过调用[OH_AVSource_Destroy](#oh_avsource_destroy)接口释放实例。该接口仅支持HTTP渐进式流媒体，不支持HLS/DASH的流媒体；对于HLS/DASH的流媒体播放，推荐使用[AVPlayer](../apis-media-kit/capi-avplayer.md)进行开发。
 
 **系统能力：** SystemCapability.Multimedia.Media.Spliter
 
