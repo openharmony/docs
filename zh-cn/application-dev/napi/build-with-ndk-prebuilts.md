@@ -1,6 +1,12 @@
 # 在NDK工程中使用预构建库
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @fang-jinxu-->
+<!--Designer: @lingminghw-->
+<!--Tester: @RayShih-->
+<!--Adviser: @fang-jinxu-->
 
-在NDK工程中，可以通过CMake语法规则引入并使用预构建库。在引用预构建库时，模块libs目录中的预构建库，以及在`CMakeList.txt`编译脚本中声明的预构建库都会被打包。
+在NDK工程中，可以通过CMake语法规则引入并使用预构建库。在引用预构建库时，模块libs目录中的预构建库，以及在`CMakeLists.txt`编译脚本中声明的预构建库都会被打包。
 
 ## 预构建库使用约束
 
