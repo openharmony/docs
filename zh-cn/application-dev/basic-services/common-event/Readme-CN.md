@@ -1,4 +1,10 @@
 # 进程线程通信<!--app-events-->
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @fang-jinxu-->
+<!--Designer: @lingminghw-->
+<!--Tester: @RayShih-->
+<!--Adviser: @fang-jinxu-->
 
 - 使用公共事件进行进程间通信<!--common-event-communication-->
     - [公共事件简介](common-event-overview.md)

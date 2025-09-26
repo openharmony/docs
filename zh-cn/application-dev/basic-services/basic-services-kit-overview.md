@@ -1,4 +1,10 @@
 # Basic Services Kit简介
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @fang-jinxu-->
+<!--Designer: @lingminghw-->
+<!--Tester: @RayShih-->
+<!--Adviser: @fang-jinxu-->
 
 Basic Services Kit（基础服务）作为基础服务套件，为应用开发者提供常用的基础能力。比如常用的剪贴板读写、文件上传下载、文件压缩、文件打印、进程间/线程间通信、设备管理、应用账号管理等能力都由本Kit提供。
 
