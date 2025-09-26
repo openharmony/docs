@@ -50,13 +50,9 @@ libudmf.so, libhilog_ndk.z.so
 ## 引用头文件
 
 ```c
-#include <cstdio>
-#include <cstring>
-#include <database/udmf/utd.h>
 #include <database/udmf/uds.h>
 #include <database/udmf/udmf.h>
 #include <database/udmf/udmf_meta.h>
-#include <database/udmf/udmf_err_code.h>
 #include <hilog/log.h>
 
 #undef LOG_TAG
