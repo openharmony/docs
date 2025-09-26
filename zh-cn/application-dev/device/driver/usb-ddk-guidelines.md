@@ -8,7 +8,7 @@
 
 ## 简介
 
-USB DDK（USB Driver Develop Kit）是为开发者提供的USB驱动程序开发套件，支持开发者基于用户态，在应用层开发USB设备驱动。提供了一系列主机侧访问设备的接口，包括主机侧打开和关闭接口、管道同步异步读写通信、控制传输、中断传输等。
+USB DDK（USB Driver Development Kit）是为开发者提供的USB驱动程序开发套件，支持开发者基于用户态，在应用层开发USB设备驱动。提供了一系列主机侧访问设备的接口，包括主机侧打开和关闭接口、管道同步异步读写通信、控制传输、中断传输等。
 
 凡是采用USB总线，通过USB协议传输数据的设备都可以使用USB DDK开发设备驱动。特别是内核标准驱动不支持的扩展外设，可以通过USB DDK开发的扩展外设驱动应用实现其独特的设备能力。
 
@@ -22,7 +22,7 @@ USB DDK（USB Driver Develop Kit）是为开发者提供的USB驱动程序开发
 
 - **DDK**
 
-  DDK（Driver Develop Kit）是OpenHarmony基于扩展外设框架，为开发者提供的驱动应用开发的工具包，可针对非标USB串口设备，开发对应的驱动。
+  DDK（Driver Development Kit）是OpenHarmony基于扩展外设框架，为开发者提供的驱动应用开发的工具包，可针对非标USB串口设备，开发对应的驱动。
 
 ### 实现原理
 
