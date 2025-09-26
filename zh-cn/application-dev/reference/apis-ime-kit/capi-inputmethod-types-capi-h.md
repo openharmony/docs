@@ -33,7 +33,7 @@
 | [InputMethod_TextInputType](#inputmethod_textinputtype) | InputMethod_TextInputType | 文本输入类型。 |
 | [InputMethod_CommandValueType](#inputmethod_commandvaluetype) | InputMethod_CommandValueType | 私有数据类型。 |
 | [InputMethod_ErrorCode](#inputmethod_errorcode) | InputMethod_ErrorCode | 输入法错误码。 |
-| [InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason) | InputMethod_RequestKeyboardReason | 表示请求键盘输入原因。 |
+| [InputMethod_RequestKeyboardReason](#inputmethod_requestkeyboardreason) | InputMethod_RequestKeyboardReason | 表示请求键盘输入的原因。 |
 
 ## 枚举类型说明
 
@@ -115,7 +115,7 @@ enum InputMethod_ExtendAction
 | -- | -- |
 | IME_EXTEND_ACTION_SELECT_ALL = 0 | 全选。 |
 | IME_EXTEND_ACTION_CUT = 3 | 剪切。 |
-| IME_EXTEND_ACTION_COPY = 4 | 赋值。 |
+| IME_EXTEND_ACTION_COPY = 4 | 复制。 |
 | IME_EXTEND_ACTION_PASTE = 5 | 粘贴。 |
 
 ### InputMethod_TextInputType
@@ -203,7 +203,7 @@ enum InputMethod_RequestKeyboardReason
 
 **描述**
 
-表示请求键盘输入原因。
+表示请求键盘输入的原因。
 
 **起始版本：** 15
 
