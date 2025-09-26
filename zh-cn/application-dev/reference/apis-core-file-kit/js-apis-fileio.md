@@ -1952,7 +1952,7 @@ fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
   | 参数名      | 类型                        | 必填   | 说明              |
   | -------- | ------------------------- | ---- | --------------- |
   | fd       | number                    | 是    | 待同步文件的文件描述符。    |
-  | Callback | AsyncCallback&lt;void&gt; | 是    | 异步将文件数据同步之后的回调。 |
+  | callback | AsyncCallback&lt;void&gt; | 是    | 异步将文件数据同步之后的回调。 |
 
 **示例：**
 
