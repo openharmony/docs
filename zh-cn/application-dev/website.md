@@ -73,7 +73,7 @@
       - [组件描述](onlyfortest/reference/apis-mindspore-lite-kit/arkts-basic-components-web.md)
       - [WebController](onlyfortest/reference/apis-mindspore-lite-kit/arkts-basic-components-web-WebController.md)
       - [Types](onlyfortest/reference/apis-mindspore-lite-kit/arkts-basic-components-web-t.md)
-    - ArkTs API<!--reference-big-file-module-arkts-->
+    - ArkTs API module<!--reference-big-file-module-arkts-->
       - [模块描述](onlyfortest/reference/apis-audio-kit/arkts-apis-graphics-drawing.md)
       - [元能力子系统错误码](onlyfortest/reference/apis-audio-kit/errorcode-audio.md)
       - [ringtonePlayer (铃声播放器)(系统接口)](onlyfortest/reference/apis-audio-kit/js-apis-inner-multimedia-ringtonePlayer-sys.md)
@@ -87,7 +87,7 @@
       - [native_audiostream_base.h](onlyfortest/reference/apis-audio-kit/native__audiostream__base_8h.md)
       - [native_audiostreambuilder.h](onlyfortest/reference/apis-audio-kit/native__audiostreambuilder_8h.md)
       - [测试错误码标签](onlyfortest/reference/apis-mindspore-lite-kit/errorcode-i18n.md)
-    - ArkTs API<!--reference-big-file-components-arkts-->
+    - ArkTs API components<!--reference-big-file-components-arkts-->
       - [组件描述](onlyfortest/reference/apis-mindspore-lite-kit/arkts-basic-components-web.md)
       - [元能力子系统错误码](onlyfortest/reference/apis-audio-kit/errorcode-audio.md)
       - [ringtonePlayer (铃声播放器)(系统接口)](onlyfortest/reference/apis-audio-kit/js-apis-inner-multimedia-ringtonePlayer-sys.md)
@@ -147,7 +147,6 @@
         - 结构体<!--reference-big-file-c-avsession-struct-->
           - [组件描述](onlyfortest/reference/apis-mindspore-lite-kit/arkts-basic-components-web.md)
           - [AVSession_PlaybackPosition](onlyfortest/reference/apis-avsession-kit/_a_v_session___playback_position.md)
-
 - 非reference文件夹<!--not-reference-fold-->
   - C APIC API新增版本筛选标签需求<!--not-reference-fold-0624-->
     - [组件描述](onlyfortest/reference/apis-mindspore-lite-kit/arkts-basic-components-web.md)
