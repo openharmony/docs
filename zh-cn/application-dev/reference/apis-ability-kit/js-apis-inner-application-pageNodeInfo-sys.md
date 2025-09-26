@@ -1,5 +1,12 @@
 # PageNodeInfo (系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @hanchen45-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 用于自动填充的页面节点信息。
 
 > **说明：**

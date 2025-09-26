@@ -1,4 +1,12 @@
 # 附录：标准意图接入规范
+
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @linjunjie6-->
+<!--Designer: @zhangyafei-echo-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 ## 影音垂域（MediaDomain）
 ### 播放视频  
 播放视频操作，支持指定视频实体、分集信息等参数，并返回播放结果状态。

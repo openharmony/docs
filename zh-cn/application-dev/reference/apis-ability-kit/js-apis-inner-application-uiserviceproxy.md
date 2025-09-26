@@ -1,5 +1,12 @@
 # UIServiceProxy
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhangyafei-echo-->
+<!--Designer: @zhangyafei-echo-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 UIServiceProxy提供代理能力，可以从UIServiceExtension客户端发送数据到服务端。
 
 

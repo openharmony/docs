@@ -1,4 +1,12 @@
 # 意图开发概述
+
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @linjunjie6-->
+<!--Designer: @zhangyafei-echo-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 开发者可以通过如下两种方式来定义意图：
 
 | 意图定义方式 | 说明 | 使用场景 |

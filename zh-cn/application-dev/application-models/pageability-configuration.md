@@ -1,5 +1,12 @@
 # PageAbility组件配置
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @lidongrui-->
+<!--Designer: @ccllee1-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 
 PageAbility的相关配置在config.json配置文件的"module"对象的"abilities"对象中，"icon"属性表示Ability图标资源文件的索引，"label"属性表示Ability对用户显示的名称，"skills"属性表示Ability能够接收的want的特征。
 

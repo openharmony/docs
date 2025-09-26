@@ -1,5 +1,12 @@
 # UIServiceHostProxy (系统接口)
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @zhangyafei-echo-->
+<!--Designer: @zhangyafei-echo-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 UIServiceHostProxy提供代理能力，可以将数据从[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)服务端发送到客户端。
 
 

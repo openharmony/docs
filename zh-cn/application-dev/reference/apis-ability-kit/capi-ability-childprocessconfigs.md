@@ -1,5 +1,12 @@
 # Ability_ChildProcessConfigs
 
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--Designer: @ykzp-->
+<!--Tester: @lixueqing513-->
+<!--Adviser: @huipeizi-->
+
 ## 概述
 
 启动子进程的配置信息，包括子进程的进程名、以及数据沙箱与网络环境的共享模式。
