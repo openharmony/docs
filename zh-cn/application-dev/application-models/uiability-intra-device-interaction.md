@@ -2,8 +2,8 @@
 
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
-<!--Owner: @altay-->
-<!--Designer: @altay-->
+<!--Owner: @wendel-->
+<!--Designer: @wendel-->
 <!--Tester: @lixueqing513-->
 <!--Adviser: @huipeizi-->
 
