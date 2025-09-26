@@ -1,4 +1,10 @@
 # 账号管理<!--account-management-->
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @fang-jinxu-->
+<!--Designer: @lingminghw-->
+<!--Tester: @RayShih-->
+<!--Adviser: @fang-jinxu-->
 <!--Del-->
 - [账号管理概述](account-overview.md)
 - 系统账号（仅对系统应用开放）<!--os-account-->

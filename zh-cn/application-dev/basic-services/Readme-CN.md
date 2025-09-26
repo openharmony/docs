@@ -1,4 +1,10 @@
 # Basic Services Kit（基础服务）
+<!--Kit: Common-->
+<!--Subsystem: Common-->
+<!--Owner: @fang-jinxu-->
+<!--Designer: @lingminghw-->
+<!--Tester: @RayShih-->
+<!--Adviser: @fang-jinxu-->
 
 - [Basic Services Kit简介](basic-services-kit-overview.md)
 - [应用事件](common-event/Readme-CN.md)
