@@ -27,7 +27,7 @@ OpenHarmony文件系统需要适配如下HAL层接口：
 
   厂商适配相关接口的实现，请参考OpenHarmony中file的接口和hal层适配接口的定义：
   
-```
+```text
 //commonlibrary/utils_lite/file
 ├── BUILD.gn
 └── src
@@ -36,7 +36,7 @@ OpenHarmony文件系统需要适配如下HAL层接口：
 ```
 
   
-```
+```text
 //commonlibrary/utils_lite/hals
 └── file
     ├── BUILD.gn
@@ -47,7 +47,7 @@ OpenHarmony文件系统需要适配如下HAL层接口：
 其中commonlibrary/utils_lite/file/BUILD.gn的内容如下：
 
   
-```
+```text
 import("//build/lite/config/component/lite_component.gni")
  
 static_library("native_file") {
@@ -89,11 +89,12 @@ lite_component("file") {
 ## 移植实例
 
 1. “config.json”添加文件系统。
+
    路径：“vendor/MyVendorCompany/MyProduct/config.json”
 
      修改如下：
      
-   ```
+   ```json
    {
    "subsystem": "utils",
    "components": [
@@ -103,6 +104,7 @@ lite_component("file") {
    ```
 
 2. 添加适配文件。
+
    在“vendor/MyVendorCompany/MyProduct/config.json”文件中，vendor_adapter_dir配置项通常进行如下配置：
 
    "vendor_adapter_dir": "//device/board/MyDeviceCompany/MyBoard/adapter"。
@@ -110,7 +112,7 @@ lite_component("file") {
    在该目录下进行UtilsFile接口适配：
 
      
-   ```
+   ```text
    hals/utils/file
    ├── BUILD.gn
    └── src
@@ -119,7 +121,7 @@ lite_component("file") {
 
      其中BUILD.gn内容如下：
      
-   ```
+   ```gn
    import("//build/lite/config/component/lite_component.gni")
    static_library("hal_file_static") {     #目标名。
      sources = [ "src/hal_file.c" ]        #厂商适配的源文件。

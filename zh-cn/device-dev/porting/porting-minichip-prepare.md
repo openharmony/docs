@@ -16,7 +16,7 @@
 
 请参考[获取源码](../get-code/sourcecode-acquire.md)完成源码下载并进行编译。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本文档仅适用于OpenHarmony LTS 7.0.0及之前版本，所以请获取对应版本的源码。
 
 
@@ -40,13 +40,14 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
 厂商开展移植工作时，需要在工程中按照公司名、芯片型号、开发板型号等创建工作目录，并且将所创目录加入到OpenHarmony的编译框架中，使厂商的工作目录能够参与编译，开发者可参照以下步骤进行操作。
 
 1. 新增芯片厂商。
+
    基于某款芯片进行OpenHarmony的适配，需要在device目录下创建芯片厂商目录，目录内文件描述内核类型，编译工具链，编译链接选项，内核配置选项等。
 
    创建目录规则：“device/board/{芯片厂商}/{芯片开发板}”。
 
      例：“device/board/MyDeviceCompany/MyBoard”
      
-   ```
+   ```text
    device
    ├── board
    │   ├── hihope                                      # hihope芯片相关目录，创建目录时可供参考
@@ -67,7 +68,7 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
    路径：“device/board/MyDeviceCompany/MyBoard/BUILD.gn”
 
      
-   ```
+   ```gn
    group("MyBoard") {    #将此BUILD.gn文件加入解析
        print("MyDeviceCompany MyBoard is under developing.")
    }
@@ -78,7 +79,7 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
    路径：“device/board/MyDeviceCompany/MyBoard/liteos_m/config.gni”
 
      
-   ```
+   ```gni
    # Kernel type, e.g. "linux", "liteos_a", "liteos_m".
    kernel_type = "liteos_m"
     
@@ -136,13 +137,14 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
    | board_adapter_dir | 开发板适配文件路径。 | 
 
 1. 新增模组终端厂商。
+
    基于某款具备OpenHarmony能力的芯片进行模组终端开发，需要在vendor下创建模组厂商目录，目录内容主要是使用的OpenHarmony子系统能力。
 
    创建目录规则：“vendor/{产品模组厂商}/{产品模组名称}”。
 
      例：“vendor/MyVendorCompany/MyProduct”
      
-   ```
+   ```text
    vendor
    ├── hihope                                               # hihope 产品相关目录，可供参考
    ├── hisilicon                                            # hisilicon 产品相关目录，可供参考
@@ -159,7 +161,7 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
    路径：“vendor/MyVendorCompany/MyProduct/BUILD.gn”
 
      
-   ```
+   ```gn
    group("MyProduct") {
        print("MyVendorCompany MyProduct is under developing.")
    }
@@ -170,7 +172,7 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
    路径：“vendor/MyVendorCompany/MyProduct/config.json”
 
      
-   ```
+   ```json
    {
        "product_name": "MyProduct",
        "ohos_version": "OpenHarmony 1.0",
@@ -214,7 +216,7 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
    | third_party_dir | 芯片厂自身三方软件目录，例如mbedtls，lwip等。如果使用OpenHarmony提供的三方软件，可暂时设空，也可参考hispark_pegasus的配置&nbsp;。 | 
    | product_adapter_dir | 适配hal_token以及系统参数，一般指向vendor下目录。使用详见[启动恢复子系统移植实例步骤1。](porting-minichip-subsys-startup.md#移植实例) | 
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   > **说明：**
    > 1. 编译构建系统会对字段进行有效性检查，其中：
    > 
    > - device_company，board，kernel_type，kernel_version应与芯片厂商配置匹配。

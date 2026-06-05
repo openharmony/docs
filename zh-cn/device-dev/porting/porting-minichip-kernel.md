@@ -19,7 +19,7 @@
 
 
   
-```
+```text
 kernel/liteos_m/arch          # 不同版本路径有差异。
 ├── arm                       # arm系列。
 │   ├── arm9
@@ -63,7 +63,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
    参考编译脚本：“device/board/MyDeviceCompany/MyBoard/BUILD.gn”
 
      
-   ```
+   ```gn
    import("//build/lite/config/component/lite_component.gni")
     
    executable("OHOS_Image.elf") {    # 生成可执行程序。
@@ -122,7 +122,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
 
    参考文件路径：“device/soc/hisilicon/hi3861v100/sdk_liteos/platform/os/Huawei_LiteOS/targets/hi3861v100/include/target_config.h”
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   > **说明：**
    >
    > 1. 若已有的配置项不能满足需求，可查看“kernel/liteos_m/kernel/include/los_config.h”，其为liteos_m内核的全量配置文件。
    > 2. “target_config.h”文件中出现的配置将会覆盖“los_config.h”中的配置。
@@ -163,7 +163,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
 
       将“target_config.h”中的宏"LOSCFG_USE_SYSTEM_DEFINED_INTERRUPT"和"LOSCFG_PLATFORM_HWI"置为YES (1)。
 
-      > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+      > **说明：**
       > 重定向后的中断向量表g_hwiForm需要根据arch手册要求进行字节对齐，通常0x200字节对齐。
 
 
@@ -177,7 +177,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
 
      修改如下：
      
-   ```
+   ```json
    {
      "subsystem": "kernel",          # 添加内核子系统
      "components": [
@@ -197,7 +197,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
    路径："vendor/MyVendorCompany/MyProduct/kernel_configs/debug.config"
 
      
-   ```
+   ```conf
    LOSCFG_KERNEL_CPPSUPPORT=y     # 启用C++支持。
    LOSCFG_KERNEL_BACKTRACE=y      # 启用backtrace支持。
    LOSCFG_KERNEL_CPUP=y           # 启用CPU占用率支持。
@@ -213,7 +213,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
    路径："kernel/liteos_m/components/cppsupport/BUILD.gn"
 
      
-   ```
+   ```gn
    module_switch = defined(LOSCFG_KERNEL_CPPSUPPORT)                      # 通过LOSCFG_KERNEL_CPPSUPPORT宏控制是否编译。
    module_name = get_path_info(rebase_path("."), "name")
    kernel_module(module_name) {
@@ -227,7 +227,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
    路径："kernel/liteos_m/components/fs/fatfs/BUILD.gn"
 
      
-   ```
+   ```gn
    module_switch = defined(LOSCFG_FS_FAT)                                 # 通过LOSCFG_FS_FAT宏控制是否编译。
    module_name = get_path_info(rebase_path("."), "name")
    kernel_module(module_name) {
@@ -241,7 +241,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
    路径："kernel/liteos_m/kal/cmsis/BUILD.gn"
 
      
-   ```
+   ```gn
    module_switch = defined(LOSCFG_KAL_CMSIS)                              # 通过LOSCFG_KAL_CMSIS宏控制是否编译。
    module_name = get_path_info(rebase_path("."), "name")
    kernel_module(module_name) {
@@ -255,7 +255,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
    路径："kernel/liteos_m/kal/posix/BUILD.gn"
 
      
-   ```
+   ```gn
    module_switch = defined(LOSCFG_POSIX_API)                              # 通过LOSCFG_POSIX_API宏控制posix模块是否编译。
    module_name = get_path_info(rebase_path("."), "name")
    kernel_module(module_name) {
@@ -318,8 +318,6 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
    | LOSCFG_NET_LWIP | 启用lwip网络协议栈。 | n | 
    | LOSCFG_SHELL | 启用shell调试。 | n | 
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   > **说明：**
    > 1. 内核特性开关通过修改"vendor/MyVendorCompany/MyProduct/kernel_configs/"目录下的.config文件配置。
    > 2. 更多Kconfig配置项可查看"kernel/liteos_m/Kconfig"及其子目录中的Kconfig文件。
-
-
