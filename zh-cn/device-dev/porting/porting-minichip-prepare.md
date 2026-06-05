@@ -17,7 +17,7 @@
 请参考[获取源码](../get-code/sourcecode-acquire.md)完成源码下载并进行编译。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本文档仅适用于OpenHarmony LTS 3.0.1及之前版本，所以请获取对应版本的源码。
+> 本文档仅适用于OpenHarmony LTS 7.0.0及之前版本，所以请获取对应版本的源码。
 
 
 ### 目录介绍
@@ -42,25 +42,29 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
 1. 新增芯片厂商。
    基于某款芯片进行OpenHarmony的适配，需要在device目录下创建芯片厂商目录，目录内文件描述内核类型，编译工具链，编译链接选项，内核配置选项等。
 
-   创建目录规则：“device/{芯片厂商}/{芯片开发板}”。
+   创建目录规则：“device/board/{芯片厂商}/{芯片开发板}”。
 
-     例：“device/MyDeviceCompany/MyBoard”
+     例：“device/board/MyDeviceCompany/MyBoard”
      
    ```
    device
-   ├── hisilicon                                   # hisilicon芯片相关目录，创建目录时可供参考
-   ├── MyDeviceCompany                             # MyDeviceCompany 芯片厂商
-   │   └── MyBoard                                 # MyBoard 芯片型号
-   │          ├── BUILD.gn
-   │          ├── liteos_m
-   │          │   └── config.gni                   # 芯片工具链，编译链接选项
-   │          └── target_config.h                  # 内核配置选项
-   └── qemu                                        # qemu相关
+   ├── board
+   │   ├── hihope                                      # hihope芯片相关目录，创建目录时可供参考
+   │   ├── hisilicon                                   # hisilicon芯片相关目录，创建目录时可供参考
+   │   ├── revoview                                    # revoview芯片相关目录，创建目录时可供参考
+   │   └── MyDeviceCompany                             # MyDeviceCompany 芯片厂商
+   │       └── MyBoard                                 # MyBoard 芯片型号
+   │           ├── BUILD.gn
+   │           ├── liteos_m
+   │           │   └── config.gni                      # 芯片工具链，编译链接选项
+   │           └── target_config.h                     # 内核配置选项
+   ├── qemu                                            # qemu相关
+   └── soc                                             # soc相关
    ```
 
-   编译脚本：将“device/MyDeviceCompany/MyBoard”下的文件添加到OpenHarmony编译框架中。
+   编译脚本：将“device/board/MyDeviceCompany/MyBoard”下的文件添加到OpenHarmony编译框架中。
 
-   路径：“device/MyDeviceCompany/MyBoard/BUILD.gn”
+   路径：“device/board/MyDeviceCompany/MyBoard/BUILD.gn”
 
      
    ```
@@ -71,7 +75,7 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
 
    开发板编译配置：包括内核类型、工具链类型以及编译参数等内容（详见表2“config.gni”主要配置项）。
 
-   路径：“device/MyDeviceCompany/MyBoard/liteos_m/config.gni”
+   路径：“device/board/MyDeviceCompany/MyBoard/liteos_m/config.gni”
 
      
    ```
@@ -140,11 +144,14 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
      
    ```
    vendor
-   ├── hisilicon                                            # hisilicon 产品相关目录，可供参考。
-   └── MyVendorCompany                                      # MyVendorCompany 产品模组厂商。
-          └── MyProduct                                     # 具体产品。
+   ├── hihope                                               # hihope 产品相关目录，可供参考
+   ├── hisilicon                                            # hisilicon 产品相关目录，可供参考
+   ├── ohemu                                                # ohemu 产品相关目录，可供参考
+   ├── revoview                                             # revoview 产品相关目录，可供参考
+   └── MyVendorCompany                                      # MyVendorCompany 产品模组厂商
+          └── MyProduct                                     # 具体产品
                  ├── BUILD.gn
-                 └── config.json                            # 产品子系统列表。
+                 └── config.json                            # 产品子系统列表
    ```
 
    编译脚本：将“vendor/MyVendorCompany/MyProduct/BUILD.gn”下的文件添加到OpenHarmony编译框架中。
@@ -196,8 +203,8 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
    | -------- | -------- |
    | product_name | 产品名称，hb&nbsp;set时显示产品名称。 | 
    | ohos_version | OpenHarmony版本号，与实际版本保持一致即可。 | 
-   | device_company | 芯片厂商名称，与device的二级目录名称一致。 | 
-   | board | 开发板名称，与device的三级目录名称一致。 | 
+   | device_company | 芯片厂商名称，与device的三级目录名称一致。 | 
+   | board | 开发板名称，与device的四级目录名称一致。 | 
    | kernel_type | 内核类型，应与开发板移植的OpenHarmony系统内核类型匹配。 | 
    | kernel_version | 内核版本号，与config.gni中kernel_version值匹配。 | 
    | subsystem | 产品选择的子系统，应为OS支持的子系统。子系统定义请见build/lite/components目录下的各子系统描述文件。 | 

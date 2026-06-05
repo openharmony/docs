@@ -23,6 +23,7 @@ void OHOS_SystemInit(void)
     SYS_INIT(feature);          //执行.zinitcall.sys.featureX.init段中的函数。
     MODULE_INIT(run);           //执行.zinitcall.runX.init段中的函数。
     SAMGR_Bootstrap();          //SAMGR服务初始化。
+    LiteParamService();         ///初始化参数服务并加载持久化参数。
 }
 ```
 
