@@ -145,7 +145,6 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
    | LOSCFG_BASE_IPC_QUEUE_LIMIT | 最大支持消息队列量的个数。 | 64 | 
    | LOSCFG_BASE_CORE_SWTMR_LIMIT | 支持的最大软件定时器数量，而不是可用的软件定时器数量。 | 80 | 
    | LOSCFG_BASE_MEM_NODE_SIZE_CHECK | 配置内存节点大小检查。 | NO | 
-   | LOSCFG_PLATFORM_EXC | 异常模块配置项。 | YES | 
    | LOSCFG_USE_SYSTEM_DEFINED_INTERRUPT | 是否使用OS默认的中断。 | NO | 
 
 3. 修改内核中断。
@@ -190,9 +189,183 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
 
 2. 开启/关闭内核特性。
 
-   轻量级系统的内核特性通过Kconfig系统管理。Kconfig定义文件位于"kernel/liteos_m/Kconfig"及其子目录中。
+   轻量级系统的内核提供了一些特性，此步骤将指导如何查看、开启/关闭这些特性。
 
-   内核特性配置通过修改产品目录下的kernel_configs配置文件实现（具体参数介绍详见表3）。
+   内核特性：liteos_m提供了包括文件系统、backtrace在内的一系列内核特性开关。
+
+   liteos_m内核通过Kconfig进行内核特性进行统一配置。各组件BUILD.gn通过module_switch和kernel_module模板根据LOSCFG变量是否定义来决定是否参与编译。
+
+   路径："kernel/liteos_m/Kconfig"
+
+     
+   ```text
+   menu "Kernel"
+
+   config KERNEL_EXTKERNEL
+       bool "Enable Extend Kernel"
+       default y                            # 扩展内核总开关，以下特性均依赖此项。
+       help
+         This option will enable extend Kernel of LiteOS.  Extend kernel include
+       cppsupport, cpup, etc. You can select one or some
+       of them.
+
+   config KERNEL_BACKTRACE
+       bool "Enable Backtrace"
+       default n                            # 默认关闭。
+       depends on KERNEL_EXTKERNEL
+       help
+         If you wish to build LiteOS with support for backtrace.
+
+   config KERNEL_CPPSUPPORT
+       bool "Enable C++ Support"
+       default n                            # 默认关闭。
+       depends on KERNEL_EXTKERNEL
+       help
+         If you wish to build LiteOS with support for C++.
+
+   config KERNEL_CPUP
+       bool "Enable Cpup"
+       default n                            # 默认关闭。
+       depends on KERNEL_EXTKERNEL
+       select BASE_CORE_CPUP
+       help
+         If you wish to build LiteOS with support for cpup.
+
+   config PLATFORM_EXC
+       bool "Enable Platform Exc Hook"
+       default n                            # 默认关闭。
+       depends on KERNEL_EXTKERNEL
+
+   endmenu
+   ```
+
+   各组件BUILD.gn通过module_switch判断对应的LOSCFG变量是否定义，决定是否编译。以cppsupport为例：
+
+   路径：“kernel/liteos_m/components/cppsupport/BUILD.gn”
+
+     
+   ```gn
+   import("//kernel/liteos_m/liteos.gni")
+
+   module_switch = defined(LOSCFG_KERNEL_CPPSUPPORT)    # 对应Kconfig中的KERNEL_CPPSUPPORT。
+   module_name = get_path_info(rebase_path("."), "name")
+   kernel_module(module_name) {
+     sources = [ "los_cppsupport.c" ]
+     configs += [ "$LITEOSTOPDIR:warn_config" ]
+   }
+   ```
+
+   特性：可以选择cmsis接口或posix接口支持。
+
+   路径："kernel/liteos_m/kal/cmsis/Kconfig"
+
+     
+   ```text
+   config KAL_CMSIS
+       bool "Enable KAL CMSIS"
+       default y                            # cmsis接口，默认开启。
+       help
+         Answer Y to enable LiteOS Kernel Abstraction Layer support CMSIS API.
+   ```
+
+   路径：“kernel/liteos_m/kal/posix/Kconfig”
+
+     
+   ```text
+   config POSIX_API
+       bool "Enable POSIX API"
+       default y                            # posix接口，默认开启。
+       help
+         Answer Y to enable LiteOS support POSIX API.
+
+   if POSIX_API
+   config POSIX_THREAD_API
+       bool "Enable POSIX Thread API"
+       default y                            # posix线程接口，默认开启。
+       help
+         Answer Y to enable LiteOS support POSIX Thread API.
+   ......
+   endif
+   ```
+
+   路径：“kernel/liteos_m/kal/cmsis/BUILD.gn”
+
+     
+   ```gn
+   import("//kernel/liteos_m/liteos.gni")
+   import("$THIRDPARTY_CMSIS_DIR/cmsis.gni")
+
+   module_switch = defined(LOSCFG_KAL_CMSIS)     # 如果cmsis enable，加入cmsis目录编译。
+   module_name = get_path_info(rebase_path("."), "name")
+   kernel_module(module_name) {
+     sources = [ "cmsis_liteos2.c" ]
+     configs += [ "$LITEOSTOPDIR:warn_config" ]
+   }
+
+   config("public") {
+     include_dirs = CMSIS_INCLUDE_DIRS + [ "." ]
+   }
+   ```
+
+   路径：“kernel/liteos_m/kal/posix/BUILD.gn”
+
+     
+   ```gn
+   import("//kernel/liteos_m/liteos.gni")
+
+   module_switch = defined(LOSCFG_POSIX_API)     # 如果posix enable，加入posix目录编译。
+   module_name = get_path_info(rebase_path("."), "name")
+   kernel_module(module_name) {
+     sources = [
+       "src/errno.c",
+       "src/libc.c",
+       "src/map_error.c",
+     ]
+     configs += [ "$LITEOSTOPDIR:warn_config" ]
+   }
+   ......
+   config("public") {
+     include_dirs = [ "include" ]
+   }
+   ```
+
+   特性：可以选择fatfs支持。
+
+   路径：“kernel/liteos_m/components/fs/fatfs/Kconfig”
+
+     
+   ```text
+   config FS_FAT
+       bool "Enable FAT"
+       default n                            # fatfs，默认关闭。
+       depends on FS_VFS
+       select SUPPORT_FATFS
+       help
+         Answer Y to enable LiteOS support fat filesystem.
+   ```
+
+   组件BUILD.gn通过module_switch控制：
+
+   路径：“kernel/liteos_m/components/fs/fatfs/BUILD.gn”
+
+     
+   ```gn
+   import("//kernel/liteos_m/liteos.gni")
+   import("$THIRDPARTY_FATFS_DIR/FatFs.gni")
+
+   module_switch = defined(LOSCFG_FS_FAT)        # 如果fatfs enable，加入fatfs目录编译。
+   module_name = get_path_info(rebase_path("."), "name")
+   kernel_module(module_name) {
+     configs += [ "$LITEOSTOPDIR:warn_config" ]
+     sources = FATFS_SRC_FILES + [ "fatfs.c" ]
+   }
+
+   config("public") {
+     include_dirs = FATFS_INCLUDE_DIRS + [ "." ]
+   }
+   ```
+
+   内核特性开关在具体产品的目录下的kernel_configs配置文件实现。
 
    路径："vendor/MyVendorCompany/MyProduct/kernel_configs/debug.config"
 
@@ -205,118 +378,6 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
    LOSCFG_NET_LWIP=y              # 启用lwip网络协议栈。
    LOSCFG_SHELL=y                 # 启用shell调试。
    ```
-
-   编译时，各组件BUILD.gn通过"module_switch"判断对应LOSCFG_XXX宏是否定义来决定是否参与编译。
-
-   以cppsupport为例：
-
-   路径："kernel/liteos_m/components/cppsupport/BUILD.gn"
-
-     
-   ```gn
-   module_switch = defined(LOSCFG_KERNEL_CPPSUPPORT)                      # 通过LOSCFG_KERNEL_CPPSUPPORT宏控制是否编译。
-   module_name = get_path_info(rebase_path("."), "name")
-   kernel_module(module_name) {
-     sources = [ "los_cppsupport.c" ]
-     configs += [ "$LITEOSTOPDIR:warn_config" ]
-   }
-   ```
-
-   以fatfs为例：
-
-   路径："kernel/liteos_m/components/fs/fatfs/BUILD.gn"
-
-     
-   ```gn
-   module_switch = defined(LOSCFG_FS_FAT)                                 # 通过LOSCFG_FS_FAT宏控制是否编译。
-   module_name = get_path_info(rebase_path("."), "name")
-   kernel_module(module_name) {
-     configs += [ "$LITEOSTOPDIR:warn_config" ]
-     sources = FATFS_SRC_FILES + [ "fatfs.c" ]
-   }
-   ```
-
-   特性：可以选择cmsis接口或者posix接口支持。
-
-   路径："kernel/liteos_m/kal/cmsis/BUILD.gn"
-
-     
-   ```gn
-   module_switch = defined(LOSCFG_KAL_CMSIS)                              # 通过LOSCFG_KAL_CMSIS宏控制是否编译。
-   module_name = get_path_info(rebase_path("."), "name")
-   kernel_module(module_name) {
-     sources = [ "cmsis_liteos2.c" ]
-     configs += [ "$LITEOSTOPDIR:warn_config" ]
-   }
-   ```
-
-   其中posix模块支持按需开启子特性，通过Kconfig配置对应的宏即可加入编译。
-
-   路径："kernel/liteos_m/kal/posix/BUILD.gn"
-
-     
-   ```gn
-   module_switch = defined(LOSCFG_POSIX_API)                              # 通过LOSCFG_POSIX_API宏控制posix模块是否编译。
-   module_name = get_path_info(rebase_path("."), "name")
-   kernel_module(module_name) {
-     sources = [
-       "src/errno.c",
-       "src/libc.c",
-       "src/map_error.c",
-     ]
-     configs += [ "$LITEOSTOPDIR:warn_config" ]
-
-     if (defined(LOSCFG_POSIX_THREAD_API)) {
-       sources += [
-         "src/pthread.c",
-         "src/pthread_attr.c",
-         "src/pthread_cond.c",
-         "src/pthread_mutex.c",
-       ]
-     }
-
-     if (defined(LOSCFG_POSIX_CLOCK_API)) {
-       sources += [ "src/time.c" ]
-     }
-
-     if (defined(LOSCFG_POSIX_SEM_API)) {
-       sources += [ "src/semaphore.c" ]
-     }
-
-     if (defined(LOSCFG_POSIX_MQUEUE_API)) {
-       sources += [ "src/mqueue.c" ]
-     }
-
-     if (defined(LOSCFG_POSIX_PIPE_API)) {
-       sources += [ "src/pipe.c", "src/poll.c" ]
-     }
-
-     if (defined(LOSCFG_POSIX_SIGNAL_API)) {
-       sources += [ "src/signal.c" ]
-     }
-
-     if (defined(LOSCFG_POSIX_MALLOC_API)) {
-       sources += [ "src/malloc.c" ]
-     }
-   }
-   ```
-
-     **表3** Kconfig内核特性配置项
-   
-   | 配置项 | 说明 | 默认值 | 
-   | -------- | -------- | -------- |
-   | LOSCFG_KERNEL_EXTKERNEL | 启用扩展内核。 | y | 
-   | LOSCFG_KERNEL_CPPSUPPORT | 启用C++支持，依赖于LOSCFG_KERNEL_EXTKERNEL。 | n | 
-   | LOSCFG_KERNEL_BACKTRACE | 启用backtrace调用栈分析，依赖于LOSCFG_KERNEL_EXTKERNEL。 | n | 
-   | LOSCFG_KERNEL_CPUP | 启用CPU占用率统计，依赖于LOSCFG_KERNEL_EXTKERNEL。 | n | 
-   | LOSCFG_KERNEL_PM | 启用低功耗管理，依赖于LOSCFG_KERNEL_EXTKERNEL。 | n | 
-   | LOSCFG_PLATFORM_EXC | 启用异常钩子，依赖于LOSCFG_KERNEL_EXTKERNEL。 | n | 
-   | LOSCFG_KAL_CMSIS | 启用CMSIS接口。 | y | 
-   | LOSCFG_POSIX_API | 启用POSIX接口。 | y | 
-   | LOSCFG_FS_LITTLEFS | 启用littlefs文件系统。 | n | 
-   | LOSCFG_FS_FAT | 启用fatfs文件系统。 | n | 
-   | LOSCFG_NET_LWIP | 启用lwip网络协议栈。 | n | 
-   | LOSCFG_SHELL | 启用shell调试。 | n | 
 
    > **说明：**
    > 1. 内核特性开关通过修改"vendor/MyVendorCompany/MyProduct/kernel_configs/"目录下的.config文件配置。

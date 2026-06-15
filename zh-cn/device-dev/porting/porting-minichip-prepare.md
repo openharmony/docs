@@ -32,7 +32,7 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
 | kernel/liteos_m | 内核所在的目录，其中arch目录描述支撑的内核架构。 | 
 | device | 芯片厂商适配目录，其中“config.gni”描述当前芯片使用的arch，工具链，编译链接选项等。 | 
 | vendor | 终端模组厂商适配目录，其中“config.json”描述需要集成的OpenHarmony子系统列表。 | 
-| utils | file，kv等相关的适配。 | 
+| commonlibrary | file，kv等相关的适配。 | 
 
 
 ## 搭建编译框架
@@ -97,7 +97,7 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
    # Note: The default toolchain is "ohos-clang". It's not mandatory if you use the default toochain.
    board_toolchain = "arm-none-eabi-gcc"
     
-   # The toolchain path instatlled, it's not mandatory if you have added toolchian path to your ~/.bashrc.
+   # The toolchain path installed, it's not mandatory if you have added toolchain path to your ~/.bashrc.
    board_toolchain_path = ""
     
    # Compiler prefix.
@@ -175,8 +175,9 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
    ```json
    {
        "product_name": "MyProduct",
-       "ohos_version": "OpenHarmony 1.0",
+       "ohos_version": "OpenHarmony 7.0",
        "device_company": "MyDeviceCompany",
+       "device_build_path": "device/board/MyDeviceCompany/MyBoard",
        "board": "MyBoard",
        "kernel_type": "liteos_m",
        "kernel_version": "",
@@ -184,10 +185,11 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
          {
            "subsystem": "startup",
            "components": [
-             { "component": "bootstrap", "features":[] },
-             { "component": "syspara_lite", "features":
+             { "component": "bootstrap_lite", "features":[] },
+             { "component": "init", "features":
                [
-                 "enable_ohos_startup_syspara_lite_use_thirdparty_mbedtls = false"
+                 "init_feature_begetctl_liteos = true",
+                 "init_lite_use_thirdparty_mbedtls = true"
                ]
              }
            ]
@@ -206,12 +208,13 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
    | product_name | 产品名称，hb&nbsp;set时显示产品名称。 | 
    | ohos_version | OpenHarmony版本号，与实际版本保持一致即可。 | 
    | device_company | 芯片厂商名称，与device的三级目录名称一致。 | 
+   | device_build_path | 设备构建路径，指向device下的开发板目录。 |
    | board | 开发板名称，与device的四级目录名称一致。 | 
    | kernel_type | 内核类型，应与开发板移植的OpenHarmony系统内核类型匹配。 | 
    | kernel_version | 内核版本号，与config.gni中kernel_version值匹配。 | 
-   | subsystem | 产品选择的子系统，应为OS支持的子系统。子系统定义请见build/lite/components目录下的各子系统描述文件。 | 
-   | components | 产品选择的某个子系统下的组件，子系统支持的组件详见build/lite/components/{子系统}.json文件。 | 
-   | features | 产品配置的某个组件的特性，详见子系统源码目录对应的BUILD.gn文件。 | 
+   | subsystem | 产品选择的子系统，应为OS支持的子系统。子系统定义请见build/subsystem_config.json文件。 | 
+   | components | 产品选择的某个子系统下的组件，子系统支持的组件详见详见各组件源码目录下的bundle.json文件文件。 | 
+   | features | 产品配置的某个组件的特性，详见子系统源码目录对应的bundle.json文件。 | 
    | vendor_adapter_dir | 适配IOT外设，UtilsFile文件读写能力，一般指向device下目录。使用详见[文件子系统移植实例步骤2。](porting-minichip-subsys-filesystem.md#移植实例) | 
    | third_party_dir | 芯片厂自身三方软件目录，例如mbedtls，lwip等。如果使用OpenHarmony提供的三方软件，可暂时设空，也可参考hispark_pegasus的配置&nbsp;。 | 
    | product_adapter_dir | 适配hal_token以及系统参数，一般指向vendor下目录。使用详见[启动恢复子系统移植实例步骤1。](porting-minichip-subsys-startup.md#移植实例) | 
@@ -221,4 +224,4 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
    > 
    > - device_company，board，kernel_type，kernel_version应与芯片厂商配置匹配。
    > 
-   > - subsystem，component应与“build/lite/components”下的部件描述匹配。
+   > - subsystem，component应与build/subsystem_config.json及各组件bundle.json中的定义匹配。
