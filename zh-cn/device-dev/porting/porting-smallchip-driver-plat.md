@@ -78,7 +78,7 @@ HDF为所有的平台驱动都创建了驱动模型，移植平台驱动的主�
        int myData; // 以下是当前驱动自身需要的。
    };
    
-   // Bind 方法在HDF驱动中主要用户对外发布服务，这里我们不需要，直接返回成功即可。
+   // Bind 方法在HDF驱动中主要用于对外发布服务，这里我们不需要，直接返回成功即可。
    static int32_t GpioBind(struct HdfDeviceObject *device)
    {
        (void)device;
@@ -103,7 +103,7 @@ HDF为所有的平台驱动都创建了驱动模型，移植平台驱动的主�
    {
        // GpioCntlrFromHdfDev 方法能从抽象的设备对象中获得init方法注册进去的模型实例。
        struct GpioCntlr *cntlr = GpioCntlrFromHdfDev(device);
-       //资源释放...
+        // 资源释放...
        if (cntlr != NULL) {
            GpioCntlrRemove(cntlr);  // 注销GPIO模型实例。
        }
@@ -124,23 +124,23 @@ HDF为所有的平台驱动都创建了驱动模型，移植平台驱动的主�
    如前所述`device/soc/vendor_name/common/platform/lite.mk`是厂商驱动的构建的入口。我们需要从这个入口开始，进行构建。
 
      
-   ```
+   ```makefile
    #文件device/soc/vendor_name/common/platform/lite.mk。
    
-   SOC_COMPANY := $(subst $/",,$(LOSCFG_DEVICE_COMPANY))
-   SOC_PLATFORM := $(subst $/",,$(LOSCFG_PLATFORM))
-   SOC_BOARD := $(subst $/",,$(LOSCFG_PRODUCT_NAME))
+   SOC_COMPANY := $(subst $\",,$(LOSCFG_DEVICE_COMPANY))
+   SOC_PLATFORM := $(subst $\",,$(LOSCFG_PLATFORM))
+   SOC_BOARD := $(subst $\",,$(LOSCFG_PRODUCT_NAME))
    
-   # 指定SOC进行构建。
-   LIB_SUBDIRS += $(LITEOSTOPDIR)/../../device/soc/$(SOC_COMPANY)/common/platform/
+   # 根目录，后续各驱动按编译开关逐个加入LIB_SUBDIRS。
+   SOC_DRIVER_ROOT := $(LITEOSTOPDIR)/../../device/soc/$(SOC_COMPANY)/common/platform/
    ```
 
 3. 创建SOC驱动构建入口。
      
-   ```
+   ```makefile
    #文件device/soc/vendor_name/common/platform/lite.mk。
    
-   SOC_DRIVER_ROOT := $(LITEOSTOPDIR)/../../device/$(SOC_COMPANY)/common/platform/
+   SOC_DRIVER_ROOT := $(LITEOSTOPDIR)/../../device/soc/$(SOC_COMPANY)/common/platform/
    
    # 判断如果打开了GPIO的内核编译开关。
    ifeq ($(LOSCFG_DRIVERS_HDF_PLATFORM_GPIO), y)
@@ -156,7 +156,7 @@ HDF为所有的平台驱动都创建了驱动模型，移植平台驱动的主�
 4. 创建GPIO构建入口。
      
      
-   ```
+   ```makefile
    include $(LITEOSTOPDIR)/config.mk
    include $(LITEOSTOPDIR)/../../drivers/hdf_core/adapter/khdf/liteos/lite.mk
    
@@ -181,11 +181,11 @@ HDF为所有的平台驱动都创建了驱动模型，移植平台驱动的主�
 
    平台驱动请添加到platform的host中。
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   > **说明：**
    > moduleName要与驱动定义中的相同，deviceMatchAttr必须与私有配置中的匹配属性保持一致。
 
      
-   ```
+   ```hcs
    root {
        ...
        platform :: host {
@@ -210,4 +210,3 @@ HDF为所有的平台驱动都创建了驱动模型，移植平台驱动的主�
        }
    }
    ```
-
