@@ -7,7 +7,7 @@
 <!--Tester: @lpw_work-->
 <!--Adviser: @ningningW-->
 
-本模块提供rawfile文件所在hap的descriptor信息。
+本模块提供rawfile文件所在HAP包的文件描述符信息，包括文件描述符、rawfile文件的起始偏移和文件长度。
 
 > **说明：**
 >
@@ -28,5 +28,5 @@ import { resourceManager } from '@kit.LocalizationKit'
 | 名称     | 类型    | 只读   | 可选  | 说明           |
 | ------ | ------  | ---- | ---- | ------------------ |
 | fd     | number  | 否    | 否 | 文件描述符。 |
-| offset | number  | 否    | 否 | 起始偏移量。      |
-| length | number  | 否    | 否 | 文件长度。       |
+| offset | number  | 否    | 否 | 起始偏移量，表示rawfile文件在HAP包中的起始位置。单位为Byte。  |
+| length | number  | 否    | 否 | 文件长度，表示rawfile文件的大小。单位为Byte。       |
