@@ -27,7 +27,7 @@
 | double-conversion/README.md | - |
 | double-conversion/SConstruct | - |
 | double-conversion/WORKSPACE | - |
-
+| double-conversion/double-conversion.pc.in | - |
 
 ## 移植思路
 
@@ -48,7 +48,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
 1. 设置工具链。
      将下列clang工具链配置添加到该工程的顶层CMakeLists.txt（即表1中的该文件）中即可。
-     
+
    ```
    set(CMAKE_CROSSCOMPILING TRUE)
    set(CMAKE_SYSTEM_NAME Generic)
@@ -76,7 +76,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 2. 执行编译。
    linux命令行中进入double-conversion的源文件目录（即标1所示目录），执行下列命令：
 
-   
+
    ```
    mkdir build && cd build
    cmake .. -DBUILD_TESTING=ON -DOHOS_SYSROOT_PATH="..."
@@ -89,7 +89,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
    步骤2操作完成后，build目录下会生成静态库文件和测试用例：
 
      **表2** 编译生成文件目录结构
-   
+
    | 名称 | 描述 |
    | -------- | -------- |
    | double-conversion/build/libdouble-conversion.a | 生成的静态库文件。 |
@@ -122,7 +122,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
    - 挂载成功后执行下列命令可列出用例所有条目：
 
-     
+
      ```
      cd nfs
      ./cctest --list
@@ -130,7 +130,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
      上述命令执行结果部分展示：
 
-     
+
      ```
      test-bignum/Assign<
      test-bignum/ShiftLeft<
@@ -158,14 +158,14 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
    - 以test-bignum条目为例，执行下列命令开始测试：
 
-     
+
      ```
      ./cctest test-bignum
      ```
 
      测试结果如下则表示通过：
 
-     
+
      ```
      Ran 13 tests.
      ```
@@ -177,7 +177,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
    拷贝已经能够成功交叉编译的库到OpenHarmony的third_party目录，为了不修改要移植的三方库目录下的BUILD.gn文件，再添加一层目录放置新增的gn转CMake编译适配文件，新增的文件有BUILD.gn、build_thirdparty.py、 config.gni，新增后的目录结构如下所示。
 
      **表3** 添加到工程后的目录结构
-   
+
    | 名称 | 描述 |
    | -------- | -------- |
    | OpenHarmony/third_party/double-conversion/BUILD.gn | 将三方库加入工程的gn适配文件。 |
@@ -188,12 +188,14 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 2. 添加gn到CMake适配文件。
    - **新增的BUILD.gn文件实现如下，其他采用CMake方式可独立编译的三方库移植到OpenHarmony平台时只需修改路径即可**。
 
-     
+
      ```
      import("config.gni")
      group("double-conversion") {
          if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
              deps = [":make"]
+
+             
          }
      }
      if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
@@ -212,7 +214,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
    - **新增的config.gni用于配置该库，实现如下，其他采用CMake方式可独立编译的三方库移植到OpenHarmony时只需修改CMAKE_FLAG的配置即可。**
 
-     
+
      ```
      #CMAKE_FLAG: config compile feature
      CMAKE_FLAG = "-DBUILD_TESTING=ON -DCMAKE_CXX_STANDARD=11"
@@ -230,7 +232,6 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
    - **新增的build_thirdparty.py实现如下，其他采用CMake方式可独立编译的三方库移植到OpenHarmony时无需修改即可使用。**
 
-     
      ```
      import os
      import sys
@@ -277,7 +278,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
      在//build/lite/ohos_var.gni文件中添加下列配置：
 
-     
+
      ```
      declare_args() {
          ohos_build_thirdparty_migrated_from_fuchisa = true
@@ -289,7 +290,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
    执行下列命令：
 
-   
+
    ```
    hb build -T //third_party/double-conversion:double-conversion
    ```
