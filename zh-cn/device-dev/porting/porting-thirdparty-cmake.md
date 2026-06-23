@@ -76,7 +76,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
 
 
 2. 执行编译。
-   linux命令行中进入double-conversion的源文件目录（即标1所示目录），执行下列命令：
+   linux命令行中进入double-conversion的源文件目录（即表1所示目录），执行下列命令：
 
 
    ```text
