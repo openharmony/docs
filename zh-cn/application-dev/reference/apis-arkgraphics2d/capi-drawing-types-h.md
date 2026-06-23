@@ -8,7 +8,7 @@
 
 ## 概述
 
-文件中定义了用于绘制2d图形的数据类型，包括画布、画笔、画刷、位图和路径。<br>本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
+文件中定义了用于绘制2D图形的数据类型，包括画布、画笔、画刷、位图和路径。这些数据类型提供了完整的2D图形绘制能力，适用于需要在画布上绑定画笔和画刷绘制各种形状、图片和文字的场景，可以灵活定义路径和位图，帮助开发者高效实现自定义图形绘制、图像处理等功能，满足复杂的2D图形绘制需求。<br>本模块为单线程模型策略，需要调用方自行管理线程安全和上下文状态的切换。
 
 **引用文件：** <native_drawing/drawing_types.h>
 
@@ -95,7 +95,7 @@ enum OH_Drawing_ColorFormat
 
 | 枚举项 | 描述 |
 | -- | -- |
-| COLOR_FORMAT_UNKNOWN | 未知格式。|
+| COLOR_FORMAT_UNKNOWN | 未知格式。 |
 | COLOR_FORMAT_ALPHA_8 | 每个像素用一个8位的量表示，8个比特位表示透明度。 |
 | COLOR_FORMAT_RGB_565 | 每个像素用一个16位的量表示，高位到低位依次是5个比特位表示红，6个比特位表示绿，5个比特位表示蓝。 |
 | COLOR_FORMAT_ARGB_4444 | 每个像素用一个16位的量表示，高位到低位依次是4个比特位表示透明度，4个比特位表示红，4个比特位表示绿，4个比特位表示蓝。 |
@@ -118,8 +118,8 @@ enum OH_Drawing_AlphaFormat
 | -- | -- |
 | ALPHA_FORMAT_UNKNOWN | 未知格式。 |
 | ALPHA_FORMAT_OPAQUE | 位图无透明度。 |
-| ALPHA_FORMAT_PREMUL | 每个像素的颜色组件由透明度分量预先乘以。 |
-| ALPHA_FORMAT_UNPREMUL | 每个像素的颜色组件未由透明度分量预先乘以。 |
+| ALPHA_FORMAT_PREMUL | 每个像素的颜色组件已预先乘以透明度分量。 |
+| ALPHA_FORMAT_UNPREMUL | 每个像素的颜色组件未预先乘以透明度分量。 |
 
 ### OH_Drawing_BlendMode
 
@@ -150,20 +150,20 @@ enum OH_Drawing_BlendMode
 | BLEND_MODE_PLUS | r = min(s + d, 1)。 |
 | BLEND_MODE_MODULATE | r = s * d。 |
 | BLEND_MODE_SCREEN | 滤色模式，r = s + d - s * d。 |
-| BLEND_MODE_OVERLAY | 叠加模式。 |
+| BLEND_MODE_OVERLAY | 叠加模式，根据目标像素的亮度，选择性地应用MULTIPLY或SCREEN模式，增强对比度。 |
 | BLEND_MODE_DARKEN | 变暗模式，rc = s + d - max(s * da, d * sa), ra = s + (1 - sa) * d。 |
 | BLEND_MODE_LIGHTEN | 变亮模式，rc = s + d - min(s * da, d * sa), ra = s + (1 - sa) * d。 |
-| BLEND_MODE_COLOR_DODGE | 颜色减淡模式。 |
-| BLEND_MODE_COLOR_BURN | 颜色加深模式。 |
-| BLEND_MODE_HARD_LIGHT | 强光模式。 |
-| BLEND_MODE_SOFT_LIGHT | 柔光模式。 |
+| BLEND_MODE_COLOR_DODGE | 颜色减淡模式，通过减小对比度使目标像素变亮以反映源像素。 |
+| BLEND_MODE_COLOR_BURN | 颜色加深模式，通过增加对比度使目标像素变暗以反映源像素。 |
+| BLEND_MODE_HARD_LIGHT | 强光模式，根据源像素的亮度，选择性地应用MULTIPLY或SCREEN模式。 |
+| BLEND_MODE_SOFT_LIGHT | 柔光模式，根据源像素的亮度，柔和地变亮或变暗目标像素。 |
 | BLEND_MODE_DIFFERENCE | 差值模式，rc = s + d - 2 * (min(s * da, d * sa)), ra = s + (1 - sa) * d。 |
 | BLEND_MODE_EXCLUSION | 排除模式，rc = s + d - two(s * d), ra = s + (1 - sa) * d。 |
 | BLEND_MODE_MULTIPLY | 正片叠底，r = s * (1 - da) + d * (1 - sa) + s * d。 |
-| BLEND_MODE_HUE | 色相模式。 |
-| BLEND_MODE_SATURATION | 饱和度模式。 |
-| BLEND_MODE_COLOR | 颜色模式。 |
-| BLEND_MODE_LUMINOSITY | 亮度模式。 |
+| BLEND_MODE_HUE | 色相模式，使用源像素的色相，目标像素的饱和度和亮度。 |
+| BLEND_MODE_SATURATION | 饱和度模式，使用源像素的饱和度，目标像素的色相和亮度。 |
+| BLEND_MODE_COLOR | 颜色模式，使用源像素的色相和饱和度，目标像素的亮度。 |
+| BLEND_MODE_LUMINOSITY | 亮度模式，使用源像素的亮度，目标像素的色相和饱和度。 |
 
 ### OH_Drawing_TextEncoding
 
