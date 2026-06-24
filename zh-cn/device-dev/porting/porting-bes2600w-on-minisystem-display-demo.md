@@ -1022,7 +1022,7 @@ APP_FEATURE_INIT(WifiDHCPRpcServerCB);
 | APP_FEATURE_INIT(func) | 标识应用层功能的初始化启动入口。   |
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+><img src="public_sys-resources/icon-note.gif"alt=""/ ><b>说明：</b>
 > 通过上面加载的组件编译出来的lib文件需要手动加入强制链接。
 
 ​    如在 `vendor/bestechnic/display_demo/config.json` 中配置了`bootstrap_lite` 部件。
