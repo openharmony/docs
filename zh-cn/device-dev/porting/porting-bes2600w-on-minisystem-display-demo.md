@@ -1022,7 +1022,7 @@ APP_FEATURE_INIT(WifiDHCPRpcServerCB);
 | APP_FEATURE_INIT(func) | 标识应用层功能的初始化启动入口。   |
 
 
-> ![](../public_sys-resources/icon-note.gif) **说明：**<br>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 通过上面加载的组件编译出来的lib文件需要手动加入强制链接。
 
 ​    如在 `vendor/bestechnic/display_demo/config.json` 中配置了`bootstrap_lite` 部件。
@@ -1401,8 +1401,7 @@ APP_FEATURE_INIT(AppEntry);
 
 1. `launcher`应用，通过`InstallLauncher`安装`BundleName`为 `"com.example.launcher"`的`native ui`应用，在`AbilityMgrSliteFeature`启动后会调用`AbilityMgrHandler::StartLauncher()`启动`launcher`应用。
 
-2. `StartJSApp`应用，通过`StartAbility`启动任意`Want`，通过将`want data`传递`JS_APP_PATH`,
-   `SetWantData(&want, JS_APP_PATH, strlen(JS_APP_PATH) + 1)`。
+2. `StartJSApp`应用，通过`StartAbility`启动任意`Want`，通过将`want data`传递`JS_APP_PATH`，`SetWantData(&want, JS_APP_PATH, strlen(JS_APP_PATH) + 1)`。
 
 #### 包管理子系统适配
 
@@ -1468,7 +1467,7 @@ APP_FEATURE_INIT(AppEntry);
 
 步骤2：生成测试报告的`SHA`校验码。本案例是将`zip`文件传到在线生成`hash`的[网站]( https://tool.lmeee.com/jiami/filehash)生成`SHA`校验码。
 
-步骤3：进入`OpenHarmony`[兼容性测试网站](https://www.openharmony.cn/certification/)上传报告。
+步骤3：进入`OpenHarmony`[兼容性测试网站](https://www.openharmony.cn/certification/document/guid)上传报告。
 
  - 其中`API Level`填写报告中的`"sdkApiLevel"`字段
  - `OS`版本号填写报告中的`"OS Version"`字段。
