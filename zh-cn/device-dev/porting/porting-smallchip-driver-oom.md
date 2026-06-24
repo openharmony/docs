@@ -40,7 +40,7 @@
 
    产品的所有设备信息被定义在源码文件`//vendor/vendor_name/product_name/hdf_config/device_info/device_info.hcs`中。修改该文件，在display的host中，名为device_lcd的device中增加配置。
 
-   > **注意：**
+   > <img src="public_sys-resources/icon-caution.gif" alt="注意"/> <b>注意：</b>
    > moduleName 要与panel驱动中的moduleName相同。
 
    
@@ -131,7 +131,7 @@
 
    产品的所有设备信息被定义在源码文件`//vendor/vendor_name/product_name/hdf_config/device_info/device_info.hcs`中。修改该文件，在名为input的host中，名为device_touch_chip的device中增加配置。
 
-   > **说明：**
+   > <img src="public_sys-resources/icon-note.gif" alt="说明"/> <b>说明：</b>
    > moduleName 要与触摸屏驱动中的moduleName相同。
 
    
@@ -164,7 +164,7 @@ WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负
 | HdfChipDriver | drivers\hdf_core\framework\include\wifi\wifi_module.h | 每个WLAN端口对应一个HdfChipDriver，用来管理一个特定端口。 |
 | NetDeviceInterFace | drivers\hdf_core\framework\include\net\net_device.h | 与协议栈之间的接口，如发送数据、设置网络接口状态等。 |
 
-> **说明：**
+> <img src="public_sys-resources/icon-note.gif" alt="说明"/> <b>说明：</b>
 > 详细的接口开发指导，请参考[WLAN开发](../driver/driver-peripherals-external-des.md)。
 
 具体的移植步骤如下：
@@ -243,7 +243,7 @@ WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负
    }
    ```
 
-   > **说明：**
+   > <img src="public_sys-resources/icon-note.gif" alt="说明"/> <b>说明：</b>
    >
    > 路径和文件中的vendor_name、product_name、chip_name请替换成实际名称。
    > 
@@ -264,7 +264,7 @@ WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负
    }
    ```
 
-   > **说明：**
+   > <img src="public_sys-resources/icon-note.gif" alt="说明"/> <b>说明：</b>
    > moduleName 要与HDF WLAN 芯片驱动中的moduleName相同。
 
 4. 修改Kconfig文件，让移植的WLAN模组出现在内核配置中。
@@ -281,7 +281,7 @@ WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负
          Answer Y to enable chip_name Host driver.
    ```
 
-   > **说明：**
+   > <img src="public_sys-resources/icon-note.gif" alt="说明"/> <b>说明：</b>
    > 请替换模板中的chip_name为实际的芯片名称。
 
 5. 修改构建脚本，让驱动参与内核构建。
@@ -300,5 +300,5 @@ WLAN驱动分为两部分，一部分负责管理WLAN设备，另一个部分负
    endif
    ```
 
-   > **说明：**
+   > <img src="public_sys-resources/icon-note.gif" alt="说明"/> <b>说明：</b>
    > 请替换模板中的chip_name为实际的芯片名称。

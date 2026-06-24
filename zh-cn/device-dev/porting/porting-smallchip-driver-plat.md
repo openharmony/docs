@@ -181,7 +181,7 @@ HDF为所有的平台驱动都创建了驱动模型，移植平台驱动的主�
 
    平台驱动请添加到platform的host中。
 
-   > **说明：**
+   > <img src="public_sys-resources/icon-note.gif" alt="说明"/> <b>说明：</b>
    > moduleName要与驱动定义中的相同，deviceMatchAttr必须与私有配置中的匹配属性保持一致。
 
      
