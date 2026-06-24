@@ -118,6 +118,7 @@ echo "All tests completed successfully."
    ```
 
 2. 复制\*.xml内容到shell。
+
      以表3test目录下pi01.xml为例，内容如下，输入到shell并回车：
 
    ```xml
@@ -125,6 +126,7 @@ echo "All tests completed successfully."
    ```
 
 3. 比较shell中输出的内容与表3test目录中对应的\*.out文件是否一致。
+
    输出结果如下：
 
 
