@@ -203,13 +203,13 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
      ```gn
      import("config.gni")
      group("double-conversion") {
-         if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
+         if (ohos_build_thirdparty_migrated_from_fuchsia == true) {
              deps = [":make"]
 
              
          }
      }
-     if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
+     if (ohos_build_thirdparty_migrated_from_fuchsia == true) {
          action("make") {
              script = "//third_party/double-conversion/build_thirdparty.py"
              outputs = ["$root_out_dir/log_dc.txt"]
@@ -293,7 +293,7 @@ CMake方式可通过指定工具链进行交叉编译，修改并编译该库，
      ```gni
 
      declare_args() {
-         ohos_build_thirdparty_migrated_from_fuchisa = true
+         ohos_build_thirdparty_migrated_from_fuchsia = true
       }
      ```
 
