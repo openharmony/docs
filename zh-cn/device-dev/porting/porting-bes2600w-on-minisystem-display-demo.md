@@ -19,7 +19,7 @@ device
 ```text
 device
 ├── board                                --- 单板厂商目录。
-│   ├── hixxx                      --- 单板厂商名字：hixx
+│   ├── hixxx                      --- 单板厂商名字：hixxx
 │   └── fnlink                           --- 单板厂商名字：欧智通。
 │       └── v200zr                       --- 单板名：v200zr。
 └── soc                     --- SoC厂商目录。
@@ -96,7 +96,7 @@ $(error The selected product ($(ohos_product)) is not a liteos_m kernel type pro
 endif
 --- 将hb env的每一行输出转化为变量形式，例如将[OHOS INFO] device company: fnlink转换为ohos_device_company=fnlink
 
-……text
+……
 
 ifeq ($(BOARD_COMPANY),)
 BOARD_COMPANY:=$(ohos_device_company)
@@ -320,7 +320,7 @@ if (ohos_kernel_type == "liteos_m") {                    --- 由于多内核设�
 ...
     if(!ret) {
         ...
-        OhosSystemAdapterHooks();    --- 系统启动时候设置钩子，启动OpenHarmonyOHOS_SystemInit的之前完成打印和驱动的初始化
+        OhosSystemAdapterHooks();    --- 系统启动时候设置钩子，启动OpenHarmony OHOS_SystemInit的之前完成打印和驱动的初始化
         ...
         OHOS_SystemInit();          --- 启动OpenHarmony服务，以及组件初始化
     }
