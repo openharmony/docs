@@ -4,7 +4,7 @@
 
 ## 适配准备 
 
- - 下载[stm32cubemx](https://www.st.com.cn/zh/development-tools/stm32cubemx.html)图形工具。 
+ - 下载[stm32cubemx](https://www.st.com/zh/development-tools/stm32cubemx.html)图形工具。 
  - 准备ubuntu20.04系统环境，安装[arm-none-eabi-gcc](https://gitcode.com/openharmony/device_board_talkweb/blob/master/niobe407/docs/software/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E5%9B%BA%E4%BB%B6%E7%BC%96%E8%AF%91.md#%E5%AE%89%E8%A3%85%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E9%93%BE)交叉编译工具链。
 ### 生成可用工程
 
@@ -328,7 +328,7 @@ vendor
      ```boards
      menuconfig BOARD_NIOBE407
          bool "select board niobe407"
-         depends on SOC_STM32F407    --- niobe407使用的是stm32f407的SoC，只有SoC被选择后，niobe407的配置选项才可见、可以被选择。
+         depends on SOC_STM32F407    --- niobe407使用的是stm32f407的SoC，只有SoC被选择后，niobe407的配置选项才可见，可以被选择。
      ```
 
    - 在`//device/board/talkweb/niobe407/Kconfig.liteos_m.defconfig.board`中添加：
@@ -1144,7 +1144,7 @@ __zinitcall_exit_end = .;
     },
 ```
 
-​   `bootstrap_lite`部件会编译`//base/startup/bootstrap_lite/services/source/bootstrap_service.c`，该文件中，通过`SYS_SERVICE_INIT`将`Init`函数符号灌段到`__zinitcall_sys_service_start`和`__zinitcall_sys_service_end`中，由于`Init`函数是没有显式调用它，所以需要将它强制链接到最终的镜像。如下：
+​`bootstrap_lite`部件会编译`//base/startup/bootstrap_lite/services/source/bootstrap_service.c`，该文件中，通过`SYS_SERVICE_INIT`将`Init`函数符号灌段到`__zinitcall_sys_service_start`和`__zinitcall_sys_service_end`中，由于`Init`函数是没有显式调用它，所以需要将它强制链接到最终的镜像。如下：
 
 ```c
 static void Init(void)
@@ -1160,7 +1160,7 @@ static void Init(void)
 SYS_SERVICE_INIT(Init);   --- 通过SYS启动即SYS_INIT启动就需要强制链接生成的lib
 ```
 
-   在`//base/startup/bootstrap_lite/services/source/BUILD.gn`文件中，描述了在`//out/niobe407/niobe407/libs` 生成 `libbootstrap.a`，如下：
+在`//base/startup/bootstrap_lite/services/source/BUILD.gn`文件中，描述了在`//out/niobe407/niobe407/libs` 生成 `libbootstrap.a`，如下：
 
 ```gn
 static_library("bootstrap") {
