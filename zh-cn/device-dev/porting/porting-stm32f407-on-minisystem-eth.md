@@ -4,7 +4,7 @@
 
 ## 适配准备 
 
- - 下载[stm32cubemx](https://www.st.com/en/development-tools/stm32cubemx.html)图形工具。 
+ - 下载[stm32cubemx](https://www.st.com.cn/zh/development-tools/stm32cubemx.html)图形工具。 
  - 准备ubuntu20.04系统环境，安装[arm-none-eabi-gcc](https://gitcode.com/openharmony/device_board_talkweb/blob/master/niobe407/docs/software/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E5%9B%BA%E4%BB%B6%E7%BC%96%E8%AF%91.md#%E5%AE%89%E8%A3%85%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E9%93%BE)交叉编译工具链。
 ### 生成可用工程
 
