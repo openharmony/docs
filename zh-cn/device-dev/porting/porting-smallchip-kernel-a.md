@@ -107,7 +107,7 @@ LiteOS-A提供系统运行所需的系统初始化流程和定制化配置选项
 
   在单板SDK文件中
   
-```
+```text
 /* 内核启动框架头文件 */
 #include "los_init.h"
 ......
@@ -127,7 +127,7 @@ LOS_MODULE_INIT(OsSampleModInit, LOS_INIT_LEVEL_KMOD_EXTENDED);
 ## 验证
 
   
-```
+```text
 main core booting up...
 OsSampleModInit SUCCESS!
 releasing 1 secondary cores
@@ -140,7 +140,7 @@ cpu 0 entering scheduler
 系统启动完毕后进入内核态shell，能够运行task命令能够正常显示即可。
 
   
-```
+```shell
 OHOS # help
 ***shell commands:*
 
