@@ -12,7 +12,7 @@ typedef struct OH_Drawing_PositionAndAffinity OH_Drawing_PositionAndAffinity
 
 ## 概述
 
-用于接收字体的位置和亲和性。
+用于接收文本的位置和光标的亲和性。
 
 **起始版本：** 11
 

@@ -11,7 +11,7 @@ typedef struct OH_Drawing_FontParser OH_Drawing_FontParser
 
 ## 概述
 
-用来解析系统字体文件。
+用于解析系统字体文件。
 
 **起始版本：** 12
 
