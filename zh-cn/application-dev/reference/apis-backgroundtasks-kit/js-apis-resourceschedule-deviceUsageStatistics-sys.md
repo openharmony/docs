@@ -1955,7 +1955,7 @@ FA卡片的使用信息属性集合。
 
 ## AppStatsMap<sup>15+</sup>
 
-应用使用的具体信息(包含分身应用)。
+应用使用的具体信息（包含分身应用）。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
