@@ -63,7 +63,7 @@ setTextUndefinedGlyphDisplay(noGlyphShow: TextUndefinedGlyphDisplay): void
 
 设置字符映射到.notdef（未定义）字形时要使用的字形类型。
 
-此调用后呈现的所有文本将使用本接口设置的未定义字形显示方式。
+调用此接口后，后续渲染的文本若包含未定义字形，均按此设置显示。
 
 此配置会影响显示字体中未定义字符的方式：
 
@@ -159,7 +159,7 @@ getSystemFontFullNamesByType(fontType: SystemFontType): Promise&lt;Array&lt;stri
 
 根据字体类型返回该类型对应的所有字体的字体名称，使用Promise异步回调。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -228,7 +228,7 @@ getFontDescriptorByFullName(fullName: string, fontType: SystemFontType): Promise
 
 字体描述符是描述字体特征的数据结构，包含字体外观和属性的详细信息。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -544,7 +544,7 @@ struct isFontSupportedTest {
 
 文字渲染高对比度配置类型枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -558,7 +558,7 @@ struct isFontSupportedTest {
 
 文本未定义字形时的显示方式枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -571,7 +571,7 @@ struct isFontSupportedTest {
 
 文本处理状态的枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API版本26.0.0开始，该接口支持在原子化服务中使用。
 
@@ -593,7 +593,7 @@ struct isFontSupportedTest {
 
 文本显示状态的枚举。表示文本排版后的原生结果，与外部画布裁切、溢出屏幕等外部显示因素无关。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API版本26.0.0开始，该接口支持在原子化服务中使用。
 
@@ -612,7 +612,7 @@ struct isFontSupportedTest {
 
 文本对齐方式枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -629,7 +629,7 @@ struct isFontSupportedTest {
 
 文本垂直对齐方式枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -644,7 +644,7 @@ struct isFontSupportedTest {
 
 文本排版方向枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -657,7 +657,7 @@ struct isFontSupportedTest {
 
 断行策略枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -671,7 +671,7 @@ struct isFontSupportedTest {
 
 断词策略枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -686,7 +686,7 @@ struct isFontSupportedTest {
 
 文本装饰线。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -701,7 +701,7 @@ struct isFontSupportedTest {
 
 装饰线类型枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -716,7 +716,7 @@ struct isFontSupportedTest {
 
 装饰线样式枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -732,7 +732,7 @@ struct isFontSupportedTest {
 
 字重枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -752,7 +752,7 @@ struct isFontSupportedTest {
 
 字体宽度的枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -772,7 +772,7 @@ struct isFontSupportedTest {
 
 字体样式枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -786,7 +786,7 @@ struct isFontSupportedTest {
 
 文本高度修饰符模式枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -801,7 +801,7 @@ struct isFontSupportedTest {
 
 文本基线类型枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -816,7 +816,7 @@ struct isFontSupportedTest {
 
 EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 | 名称   | 值 | 说明      |
 | ------ | - | --------- |
@@ -830,7 +830,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 字体阴影。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -844,7 +844,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 矩形框样式。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -860,7 +860,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 文本字体特征。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -873,7 +873,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 可变字体属性。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 | 名称      | 类型                                                 | 只读 | 可选 | 说明                                       |
 | --------- | ---------------------------------------------------- | --  | ---  | ----------------------------------------- |
@@ -885,7 +885,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 文本上下标枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -899,7 +899,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 行高缩放基数枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -912,7 +912,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 文本样式，用于控制文本的视觉表现属性，包括字体、颜色、字号、间距、装饰线和阴影等。TextStyle通过[ParagraphBuilder](#paragraphbuilder)的[pushStyle](#pushstyle)方法应用到后续添加的文本内容，与[ParagraphStyle](#paragraphstyle)（控制段落级别属性）配合使用。同一段落中可通过多次pushStyle实现对不同文本片段应用不同样式。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -950,7 +950,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 支柱样式，用于控制绘制文本的行间距、基线对齐方式以及其他与行高相关的属性，默认不开启。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -1528,7 +1528,7 @@ setParagraphCachesEnabled(enable: boolean): void
 
 设置是否启用排版段落缓存。排版段落缓存可以加速重复文本的排版速度，但会占用额外的内存。未调用此接口前，系统默认开启排版段落缓存。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
 
@@ -1569,7 +1569,7 @@ struct Index {
 
 段落样式，用于控制段落的整体布局行为，包括对齐方式、断行策略和最大行数等属性。ParagraphStyle作为[ParagraphBuilder](#paragraphbuilder)构造函数的必要参数，与[TextStyle](#textstyle)（控制文本级别样式）分工协作，共同决定段落的最终排版效果。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 | 名称                 | 类型                                        | 只读 | 可选 | 说明                                          |
 | -------------------- | ------------------------------------------ | ---- | ---- | -------------------------------------------- |
@@ -1616,7 +1616,7 @@ struct Index {
 
 占位符相对于周围文本的纵向对齐方式。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -1642,7 +1642,7 @@ struct Index {
 
 描述占位符样式。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -1658,7 +1658,7 @@ struct Index {
 
 描述左闭右开区间。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -1873,7 +1873,7 @@ for (let i = 0; i < result.fitStrRange.length; ++i) {
 
 paint(canvas: drawing.Canvas, x: number, y: number): void
 
-在画布上以 (x, y) 为左上角绘制文本。调用前必须先调用排版接口进行排版，否则无法正确显示文本内容。
+在画布上以 (x, y) 为左上角绘制文本。调用前必须先调用[layout()](#layout18)接口进行排版，否则无法正确显示文本内容。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1901,7 +1901,7 @@ paragraph.paint(canvas, 0, 0);
 
 paintOnPath(canvas: drawing.Canvas, path: drawing.Path, hOffset: number, vOffset: number): void
 
-在画布上沿路径绘制文本。调用前必须先调用排版接口进行排版，否则无法正确显示文本内容。
+在画布上沿路径绘制文本。调用前必须先调用[layout()](#layout18)接口进行排版，否则无法正确显示文本内容。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2891,7 +2891,9 @@ function numberToRGBA(colorNum: number): common2D.Color {
 
 forceReuseRasterResult(isForce: boolean): void
 
-设置是否强制复用光栅化结果。适用于文本内容未发生变化但需要多次调用paint绘制的场景，通过复用光栅化结果可避免重复光栅化计算以提升绘制性能。设置后，在下次调用paint绘制时生效。true表示强制复用光栅化结果，false表示允许更新光栅化结果，默认值为false。
+设置是否强制复用光栅化结果。不调用此接口时，系统默认允许更新光栅化结果。
+
+适用于文本内容未发生变化但需要多次调用[paint](#paint)绘制的场景，通过复用光栅化结果可避免重复光栅化计算以提升绘制性能。设置后，在下次调用[paint](#paint)绘制时生效。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -3043,7 +3045,7 @@ let line : text.TextLine = lineTypeset.createLine(startIndex, count);
 
 描述文本行中连续文本块的布局信息和度量数据。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -3056,7 +3058,7 @@ let line : text.TextLine = lineTypeset.createLine(startIndex, count);
 
 描述文本布局中单行文字的度量信息。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -3078,7 +3080,7 @@ let line : text.TextLine = lineTypeset.createLine(startIndex, count);
 
 文本矩形区域，表示文本在布局时所占用的矩形空间。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -3091,7 +3093,7 @@ let line : text.TextLine = lineTypeset.createLine(startIndex, count);
 
 位置和亲和度。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -3104,7 +3106,7 @@ let line : text.TextLine = lineTypeset.createLine(startIndex, count);
 
 矩形区域宽度规格枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -3117,7 +3119,7 @@ let line : text.TextLine = lineTypeset.createLine(startIndex, count);
 
 矩形区域高度规格枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -3134,7 +3136,7 @@ let line : text.TextLine = lineTypeset.createLine(startIndex, count);
 
 位置亲和度枚举。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -3401,7 +3403,7 @@ struct Index {
 
 build(): Paragraph
 
-用于构建段落，生成可用于后续排版渲染的段落对象。build()调用后，如需再次构建文本，必须创建新的ParagraphBuilder实例。
+用于构建段落，生成可用于后续排版渲染的段落对象。调用build()后，如需再次构建文本，必须创建新的ParagraphBuilder实例。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -3546,7 +3548,7 @@ struct Index {
 
 文本行的排版边界。文本行排版边界与排版字体、排版字号有关，与字符本身无关，例如字符串为" a b "，'a'字符前面有1个空格，'b'字符后面有1个空格，排版边界就包括行首和末尾空格的边界。例如字符串为"j"或"E"，排版边界相同，即与字符本身无关。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -3577,7 +3579,7 @@ type CaretOffsetsCallback = (offset: number, index: number, leadingEdge: boolean
 
 将文本行中每个字符的偏移量和索引值作为参数的回调方法。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -4518,7 +4520,7 @@ function numberToRGBA(colorNum: number): common2D.Color {
 
 段落风格的文本制表符，储存了对齐方式和位置。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 
@@ -4545,7 +4547,7 @@ alignment为RIGHT，location为100，文本为"aabcdef/tg hi/tjkl/tmno/tp qr"：
 
 字体类型枚举，通过位或运算可实现组合类型。
 
-**系统能力**：SystemCapability.Graphics.Drawing
+**系统能力：** SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
 

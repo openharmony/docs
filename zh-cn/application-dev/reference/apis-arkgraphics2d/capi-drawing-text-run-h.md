@@ -68,7 +68,7 @@ OH_Drawing_Array* OH_Drawing_GetRunStringIndices(OH_Drawing_Run* run, int64_t st
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_Run](capi-drawing-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-drawing-oh-drawing-run.md)对象的指针。 |
-| int64_t start | 渲染单元内指定的开始位置，取值范围[0, glyphCount-1]，其中glyphCount为渲染单元字形数量。传入负数或超出渲染单元字形数量时，该方法返回空指针。 |
+| int64_t start | 渲染单元内指定的开始位置，取值范围为[0, glyphCount-1]，其中glyphCount为渲染单元字形数量。传入负数或超出渲染单元字形数量时，该方法返回空指针。 |
 | int64_t length | 渲染单元内指定的长度。length为0时获取渲染单元的所有字符索引数组；length小于0时该方法返回空指针；start+length超出渲染单元实际范围时，获取到渲染单元末尾的有效数据。 |
 
 **返回：**
@@ -169,15 +169,15 @@ float OH_Drawing_GetRunTypographicBounds(OH_Drawing_Run* run, float* ascent, flo
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_Run](capi-drawing-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-drawing-oh-drawing-run.md)对象的指针。 |
-| float* ascent | 渲染单元中最高字符到基准线的距离，单位：px。 |
-| float* descent | 渲染单元中最低字符到基准线的距离，单位：px。 |
-| float* leading | 渲染单元行间距，单位：px。 |
+| float* ascent | 渲染单元中最高字符到基准线的距离，单位为px。 |
+| float* descent | 渲染单元中最低字符到基准线的距离，单位为px。 |
+| float* leading | 渲染单元行间距，单位为px。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| float | 返回渲染单元排版宽度，单位：px。 |
+| float | 返回渲染单元排版宽度，单位为px。 |
 
 ### OH_Drawing_RunPaint()
 
@@ -200,8 +200,8 @@ void OH_Drawing_RunPaint(OH_Drawing_Canvas* canvas, OH_Drawing_Run* run, double 
 | -- | -- |
 | [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)对象的指针。 |
 | [OH_Drawing_Run](capi-drawing-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-drawing-oh-drawing-run.md)对象的指针。 |
-| double x | 渲染单元x坐标。单位：px。 |
-| double y | 渲染单元y坐标。单位：px。 |
+| double x | 渲染单元x坐标。单位为px。 |
+| double y | 渲染单元y坐标。单位为px。 |
 
 ### OH_Drawing_GetRunImageBounds()
 
@@ -271,7 +271,7 @@ OH_Drawing_Array* OH_Drawing_GetRunGlyphs(OH_Drawing_Run* run, int64_t start, in
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_Run](capi-drawing-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-drawing-oh-drawing-run.md)对象的指针。 |
-| int64_t start | 渲染单元内指定的开始位置，取值范围[0, glyphCount-1]，其中glyphCount为渲染单元字形数量。传入负数或超出渲染单元字形数量时，该方法返回空指针。 |
+| int64_t start | 渲染单元内指定的开始位置，取值范围为[0, glyphCount-1]，其中glyphCount为渲染单元字形数量。传入负数或超出渲染单元字形数量时，该方法返回空指针。 |
 | int64_t length | 渲染单元内指定的长度。length为0时获取渲染单元的所有字形；length小于0时该方法返回空指针；start+length超出渲染单元实际范围时，获取到渲染单元末尾的有效数据。 |
 
 **返回：**
@@ -349,7 +349,7 @@ OH_Drawing_Array* OH_Drawing_GetRunPositions(OH_Drawing_Run* run, int64_t start,
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_Run](capi-drawing-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-drawing-oh-drawing-run.md)对象的指针。 |
-| int64_t start | 渲染单元内指定的开始位置，取值范围[0, glyphCount-1]，其中glyphCount为渲染单元字形数量。传入负数或超出渲染单元字形数量时，该方法返回空指针。 |
+| int64_t start | 渲染单元内指定的开始位置，取值范围为[0, glyphCount-1]，其中glyphCount为渲染单元字形数量。传入负数或超出渲染单元字形数量时，该方法返回空指针。 |
 | int64_t length | 渲染单元内指定的长度。length为0时获取渲染单元的所有字形位置；length小于0时该方法返回空指针；start+length超出渲染单元实际范围时，获取到渲染单元末尾的有效数据。 |
 
 **返回：**
@@ -506,7 +506,7 @@ OH_Drawing_Array* OH_Drawing_GetRunGlyphAdvances(OH_Drawing_Run* run, uint32_t s
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_Run](capi-drawing-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-drawing-oh-drawing-run.md)对象的指针。 |
-| uint32_t start | 渲染单元内指定的开始位置，取值范围[0, glyphCount-1]，其中glyphCount为渲染单元字形数量。传入值超出渲染单元字形数量时，该方法返回空指针。 |
+| uint32_t start | 渲染单元内指定的开始位置，取值范围为[0, glyphCount-1]，其中glyphCount为渲染单元字形数量。传入值超出渲染单元字形数量时，该方法返回空指针。 |
 | uint32_t length | 渲染单元内指定的长度，length为0时获取从start开始到渲染单元结束的所有字形宽度。 |
 
 **返回：**
