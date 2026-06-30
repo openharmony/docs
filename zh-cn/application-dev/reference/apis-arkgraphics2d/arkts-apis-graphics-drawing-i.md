@@ -53,7 +53,7 @@
 | capHeight<sup>12+</sup> | number | 否   | 是   | 大写字母顶部相对于基线的垂直偏移量，浮点数，通常为负值。单位为物理像素px。 |
 | underlineThickness<sup>12+</sup> | number | 否   | 是   | 下划线的厚度，浮点数。单位为物理像素px。                                          |
 | underlinePosition<sup>12+</sup>  | number | 否   | 是   | 文本基线到下划线顶部的垂直距离，浮点数，通常是正数。单位为物理像素px。             |
-| strikethroughThickness<sup>12+</sup>  | number | 否   | 是   | 文本删除线的厚度，即贯穿文本字符的水平线的宽度,浮点数。单位为物理像素px。    |
+| strikethroughThickness<sup>12+</sup>  | number | 否   | 是   | 文本删除线的厚度，即贯穿文本字符的水平线的宽度，浮点数。单位为物理像素px。    |
 | strikethroughPosition<sup>12+</sup>  | number | 否 | 是 | 文本基线到删除线的垂直距离，浮点数，通常为负值。单位为物理像素px。 |
 
 ## FontFeature<sup>20+</sup>
