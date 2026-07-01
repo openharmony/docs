@@ -198,3 +198,21 @@ import { accessibility } from '@kit.AccessibilityKit';
 | HOVER_FOCUS                |  1 | 表示当前聚焦的场景为点击聚焦。         |
 | SWIPE_FOCUS                |  2 | 表示当前聚焦的场景为滑动聚焦。         |
 | SCROLL_FOCUS               |  3 | 表示当前聚焦的场景为滚动聚焦。         |
+
+## FocusRuleType
+
+表示聚焦规则类型的枚举。
+
+**起始版本**： 26.0.0
+
+**模型约束**： 此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+| 名称                         | 值    | 说明                       |
+| -------------------------- | ---- | ------------------------ |
+| DEFAULT                    | 1    | 表示默认聚焦类型。                 |
+| FOCUS_BY_LINK              | 2    | 表示按链接类型聚焦。                |
+| FOCUS_BY_TITLE             | 3    | 表示按标题类型聚焦。                |
