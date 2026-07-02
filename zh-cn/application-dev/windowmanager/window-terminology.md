@@ -111,6 +111,21 @@
 
 ## W
 
+### Window Posture Mode；窗口姿态模式
+
+窗口在设备满足特定物理形态条件下的布局模式。
+
+当前支持的窗口姿态模式：
+
+- 桌面模式（DESKTOP_MODE）：
+  1. 屏幕折叠状态为半折叠状态（[FoldStatus.FOLD_STATUS_HALF_FOLDED](../reference/apis-arkui/js-apis-display.md#foldstatus10)）；
+  2. 通过[display.getLiveCreaseRegion](../reference/apis-arkui/js-apis-display.md#getlivecreaseregion20)获取的creaseRects宽度大于高度；
+  3. 窗口尺寸与屏幕尺寸相同。
+
+  桌面模式适用于折叠屏设备半折叠状态下，窗口铺满整个屏幕并在上下半屏之间适配不同布局的场景，例如视频播放、阅读等。
+
+  ![window-desktop-mode](figures/window-desktop-mode.jpg)
+
 ### Window Privacy Mode；隐私模式
 
 窗口的一种特殊显示模式，设置为隐私模式的窗口称为隐私窗口。隐私窗口的窗口内容将无法被截屏、录屏、投屏，主要用于禁止截屏、录屏、投屏的场景，一般用于带有密码等敏感信息的页面。
