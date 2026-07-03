@@ -5150,7 +5150,7 @@ on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal. Possible cause: The window is not created or destoryed. |
+| 1300002  | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 
 **示例：**
 
@@ -5191,7 +5191,7 @@ off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002  | This window state is abnormal. Possible cause: The window is not created or destoryed. |
+| 1300002  | This window state is abnormal. Possible cause: The window is not created or destroyed. |
 
 **示例：**
 
