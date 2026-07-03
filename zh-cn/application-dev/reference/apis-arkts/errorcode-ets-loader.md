@@ -1,13 +1,14 @@
 # 编译工具链错误码
 <!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @aftott-->
-<!--Designer: @hufeng20-->
+<!--Owner: @luchenxu; @calyx1111-->
+<!--Designer: @luchenxu; @calyx1111-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
 <!--Adviser: @k1ngqaquuu-->
 
 > **说明：**
 >
+> 编译工具链错误码用于标识ArkTS编译过程中的各类错误，涵盖文件导入限制、模块解析、Kit配置与导入、编译执行及懒加载导入等场景，帮助开发者快速定位并解决编译相关问题。<br>
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
 ## 10311001 导入ArkTS文件错误
@@ -22,7 +23,7 @@ Importing ArkTS files in JS and TS files is forbidden.
 
 **可能原因**
 
-在JS和TS文件中导入了ArkTS文件。
+在混合语言项目开发中，JS或TS文件通过import语句引用了ArkTS文件中的模块或接口。
 
 **处理步骤**
 
@@ -47,7 +48,7 @@ Failed to resolve OhmUrl. Failed to get a resolved OhmUrl for `${filePath}` impo
 1. 检查`${filePath}`所属的`${pkgName}`模块是否配置正确。
 2. 检查对应的文件名是否正确（包括大小写敏感）。
 
-## 10311003 获取Kit配置文件错误
+## 10311003 获取Kit（开发套件）配置文件错误
 
 **错误信息**
 
@@ -59,7 +60,7 @@ Kit `${moduleRequest}` 在ArkTS SDK中没有对应的配置文件。
 
 **可能原因**
 
-1. Kit的API与SDK不一致。
+1. Kit的API版本与SDK版本不匹配，或Kit中提供的接口在SDK中不存在。
 2. Kit的API在本地被修改。
 
 **处理步骤**
@@ -83,7 +84,7 @@ Identifier `${this.importName}` comes from `${this.symbol.source}` which can not
 
 **处理步骤**
 
-请移除导入语句或将文件扩展名更改为.ets。
+请移除导入语句，或将文件扩展名更改为.ets。例如，将文件`example.ts`重命名为`example.ets`。
 
 ## 10311006 导入名称未从Kit中导出错误
 
@@ -102,8 +103,9 @@ Identifier `${this.importName}` comes from `${this.symbol.source}` which can not
 
 **处理步骤**
 
-1. 请确保Kit的API与SDK一致，并且Kit的API没有被本地修改。
-2. 有关Kit API的更多详细信息，请参考<!--RP1-->[开发说明](../development-intro-api.md)。<!--RP1End-->
+1. 请确保Kit的API与SDK一致。
+2. 请确保Kit的API没有被本地修改。
+3. 有关Kit API的更多详细信息，请参考<!--RP1-->[开发说明](../development-intro-api.md)。<!--RP1End-->
 
 ## 10311007 Kit命名空间导入或导出错误
 
@@ -141,7 +143,7 @@ Can not use empty import(side-effect import) statement with Kit `${(kitNode.modu
 
 请明确指定导入的符号。例如，`import "@kit.ArkUI";` -> `import { lang } from "@kit.ArkUI";`。
 
-## 10311009 ES2ABC执行错误
+## 10311009 es2abc执行错误
 
 **错误信息**
 
@@ -171,9 +173,10 @@ es2abc执行过程中出现错误。
 
 **可能原因**
 
-重新导出了经过懒加载导入的`${elementText}`。
+1. 重新导出了经过懒加载导入的`${elementText}`。
+2. 开启了autoLazyImport开关，被重新导出的静态导入可能被自动转为懒加载导入。
 
 **处理步骤**
 
 1. 请确保懒加载导入的命名绑定没有被重新导出。
-2. 请检查是否开启了autoLazyImport开关。
+2. 请检查是否开启了autoLazyImport开关。开启autoLazyImport开关后，部分静态导入可能被自动转为懒加载导入。若该导入的命名绑定被重新导出，则会触发此错误。如需关闭该开关，请在项目配置文件中将autoLazyImport设置为false。
