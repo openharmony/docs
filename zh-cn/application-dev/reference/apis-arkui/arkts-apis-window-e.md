@@ -40,7 +40,7 @@
 
 | 名称 | 值 | 说明 |
 | ---- | ---- | ---- |
-| DESKTOP_MODE | 0 | 桌面模式。当满足以下条件时处于桌面模式：<br/>1. 屏幕折叠状态为半折叠状态（[FoldStatus.FOLD_STATUS_HALF_FOLDED](js-apis-display.md#foldstatus10)）；<br/>2. 通过[display.getLiveCreaseRegion](js-apis-display.md#getlivecreaseregion20)获取的creaseRects宽度大于高度；<br/>3. 窗口尺寸与屏幕尺寸相同。 |
+| DESKTOP_MODE | 0 | 桌面模式。当满足以下条件时处于桌面模式：<br>1. 屏幕折叠状态为半折叠状态（[FoldStatus.FOLD_STATUS_HALF_FOLDED](js-apis-display.md#foldstatus10)）；<br>2. 通过[display.getLiveCreaseRegion](js-apis-display.md#getlivecreaseregion20)获取的creaseRects宽度大于高度；<br>3. 窗口尺寸与屏幕尺寸相同。 |
 
 ## AvoidAreaType<sup>7+</sup>
 

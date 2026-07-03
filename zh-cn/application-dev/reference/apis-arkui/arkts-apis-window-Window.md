@@ -11552,7 +11552,7 @@ isInWindowPostureMode(mode: WindowPostureMode): boolean
 
 | 类型 | 说明 |
 | ---- | ---- |
-| boolean | 查询当前窗口是否处于指定的窗口姿态模式的结果。true表示当前窗口处于指定的窗口姿态模式，false表示不处于。 |
+| boolean | 当前窗口是否处于指定的窗口姿态模式。true表示当前窗口处于指定的窗口姿态模式，false表示不处于。 |
 
 **错误码：**
 
@@ -11579,7 +11579,7 @@ try {
 
 onWindowPostureModeChange(mode: WindowPostureMode, callback: Callback&lt;boolean&gt;): void
 
-注册窗口切换到指定窗口姿态模式的回调。
+开启窗口所处指定姿态模式变化的监听。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -11594,7 +11594,7 @@ onWindowPostureModeChange(mode: WindowPostureMode, callback: Callback&lt;boolean
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
 | mode | [WindowPostureMode](arkts-apis-window-e.md#windowposturemode) | 是 | 监听的窗口姿态模式。 |
-| callback | Callback&lt;boolean&gt; | 是 | 回调函数。当窗口切换到指定的窗口姿态模式时触发，返回当前窗口是否处于指定的窗口姿态模式，true表示处于，false表示不处于。 |
+| callback | Callback&lt;boolean&gt; | 是 | 回调函数。当窗口所处指定窗口姿态模式变化时触发，返回当前窗口是否处于指定的窗口姿态模式，true表示处于，false表示不处于。 |
 
 **错误码：**
 
@@ -11622,7 +11622,7 @@ try {
 
 offWindowPostureModeChange(mode: WindowPostureMode, callback?: Callback&lt;boolean&gt;): void
 
-注销窗口切换到指定窗口姿态模式的回调。
+关闭窗口所处指定姿态模式变化的监听。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -11637,7 +11637,7 @@ offWindowPostureModeChange(mode: WindowPostureMode, callback?: Callback&lt;boole
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
 | mode | [WindowPostureMode](arkts-apis-window-e.md#windowposturemode) | 是 | 监听的窗口姿态模式。 |
-| callback | Callback&lt;boolean&gt; | 否 | 回调函数。返回当前窗口是否处于指定的窗口姿态模式。如果传入参数，则注销该回调；如果不传入参数，则注销所有注册到指定窗口姿态模式的回调。 |
+| callback | Callback&lt;boolean&gt; | 否 | 回调函数。返回当前窗口是否处于指定的窗口姿态模式。如果传入参数，则关闭该监听；如果不传入参数，则关闭所有注册到指定窗口姿态模式的监听。 |
 
 **错误码：**
 
@@ -11658,9 +11658,9 @@ const callback = (isInDesktopMode: boolean) => {
 try {
   // 通过on接口开启监听
   windowClass.onWindowPostureModeChange(window.WindowPostureMode.DESKTOP_MODE, callback);
-  // 注销指定callback的监听
+  // 关闭指定callback的监听
   windowClass.offWindowPostureModeChange(window.WindowPostureMode.DESKTOP_MODE, callback);
-  // 如果通过on开启多个callback进行监听，同时注销所有监听
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听
   windowClass.offWindowPostureModeChange(window.WindowPostureMode.DESKTOP_MODE);
 } catch (exception) {
   console.error(`Failed to disable the listener for window posture mode change. Cause code: ${exception.code}, message: ${exception.message}`);
