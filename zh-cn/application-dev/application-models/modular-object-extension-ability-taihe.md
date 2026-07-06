@@ -13,6 +13,10 @@
 
 Taihe提供了核心编译器工具[taihec](ability-terminology.md#taihec)，用于解析`ohidl`文件并将其编译为目标语言代码。本章节介绍如何使用`taihec`生成ModularObjectExtensionAbility在IPC通信场景下所需的Proxy和Stub代码。请参考模块化对象模型概述 (C/C++)的[基本概念](modular-object-extension-overview.md#基本概念)，了解Proxy与Stub。
 
+**taihec工具获取：**
+
+taihec工具随SDK发布，位于DevEco Studio/sdk/default/openharmony/toolchains/taihe/bin目录下。
+
 **命令基本格式：**
 
 ```bash
