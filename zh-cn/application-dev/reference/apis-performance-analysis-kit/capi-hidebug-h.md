@@ -611,6 +611,7 @@ HiDebug_ErrorCode OH_HiDebug_StartProfiler(OH_HiDebug_ResourceType type, OH_HiDe
 > 4. 当接口与命令行工具或系统采集任务发生冲突时，将调用失败，并返回相应的错误码；
 > 5. 同一个应用如存在多个进程，此接口最多可同时启动4个；
 > 6. 采集结果将保存在应用沙箱/data/storage/el2/base/files/目录下，文件名为“资源采集类型-进程名-进程号-时间戳.htrace”。
+> 7. 从API版本26.0.0开始，该接口将尽量丢弃已释放内存调用栈数据，减少采集文件大小，进一步降低采集过程中的性能开销。
 
 **起始版本：** 24
 
