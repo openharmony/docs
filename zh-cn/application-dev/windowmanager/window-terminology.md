@@ -113,14 +113,11 @@
 
 ### Window Posture Mode；窗口姿态模式
 
-窗口在设备满足特定物理形态条件下的布局模式。
+窗口姿态模式（WindowPostureMode）是指窗口在设备满足特定物理形态条件下的布局模式，应用可以根据窗口姿态模式调整应用内布局方式，从而提升不同设备物理形态下的交互体验。
 
 当前支持的窗口姿态模式：
 
 - 桌面模式（DESKTOP_MODE）：
-  1. 屏幕折叠状态为半折叠状态（[FoldStatus.FOLD_STATUS_HALF_FOLDED](../reference/apis-arkui/js-apis-display.md#foldstatus10)）；
-  2. 通过[display.getLiveCreaseRegion](../reference/apis-arkui/js-apis-display.md#getlivecreaseregion20)获取的creaseRects宽度大于高度；
-  3. 窗口模式为全屏模式（[WindowStatusType.FULL_SCREEN](../reference/apis-arkui/arkts-apis-window-e.md#windowstatustype11)）且窗口尺寸与屏幕尺寸相同。
 
   桌面模式适用于折叠屏设备半折叠状态下，窗口铺满整个屏幕并在上下半屏之间适配不同布局的场景，例如视频播放、阅读等。
 

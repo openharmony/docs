@@ -36,8 +36,6 @@
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
-**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。
-
 | 名称 | 值 | 说明 |
 | ---- | ---- | ---- |
 | DESKTOP_MODE | 0 | 桌面模式。当满足以下条件时处于桌面模式：<br>1. 窗口所在屏幕折叠状态为半折叠状态（[FoldStatus.FOLD_STATUS_HALF_FOLDED](js-apis-display.md#foldstatus10)）；<br>2. 通过[getLiveCreaseRegion()](js-apis-display.md#getlivecreaseregion20)获取的creaseRects宽度大于高度；<br>3. 窗口模式为全屏模式（[WindowStatusType.FULL_SCREEN](#windowstatustype11)）且窗口尺寸与屏幕尺寸相同。 |
