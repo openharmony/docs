@@ -45,6 +45,7 @@ import { ToolInfo, ToolSummary, SubCommandInfo } from '@kit.AbilityKit';
 | eventSchemas       | Record<string, Record<string, Object>> | 是   | 是   | 自定义事件的模式定义。以键值对形式存储，键为事件类型，值为该事件的JSON Schema定义。 |
 | hasSubCommand      | boolean                                                | 是   | 是   | 指示该工具是否支持子命令。true表示工具支持子命令，false表示不支持子命令。 |
 | subcommands        | Record<string, [SubCommandInfo](#subcommandinfo)>       | 是   | 是   | 子命令信息列表。以键值对形式存储，键为子命令名称，值为子命令的详细信息。 |
+| isLockScreenExecutionAllowed        | boolean       | 是   | 是   | 指示该工具是否支持在锁屏状态下执行。true表示工具支持在锁屏状态下执行，false表示工具不支持在锁屏状态下执行。 |
 
 ## ToolSummary
 
