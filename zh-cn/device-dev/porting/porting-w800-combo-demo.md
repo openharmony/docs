@@ -38,18 +38,18 @@
 
    ```json
    {
-     "product_name": "neptune_iotlink_demo",   --- 产品名
-      "ohos_version": "OpenHarmony 7.0",        --- 使用的OS版本
-      "type":"mini",                            --- 系统类型：mini
-      "version": "3.0",                         --- 系统版本：3.0
-      "device_company": "hihope",               --- 单板厂商：hihope
-      "device_build_path": "device/board/hihope/neptune100", --- 单板编译路径
-      "board": "neptune100",                    --- 单板名：neptune100
-      "kernel_type": "liteos_m",                --- 内核类型：liteos_m
-      "kernel_version": "3.0.0",                --- 内核版本：3.0.0
-      "subsystems": [],                         --- 子系统
-      "third_party_dir": "//third_party",       --- 第三方组件根目录路径
-      "product_adapter_dir": "//vendor/hihope/neptune_iotlink_demo/hals"  --- 产品适配路径
+      "product_name": "neptune_iotlink_demo",
+      "ohos_version": "OpenHarmony 7.0",
+      "type":"mini",
+      "version": "3.0",
+      "device_company": "hihope",
+      "device_build_path": "device/board/hihope/neptune100",
+      "board": "neptune100",
+      "kernel_type": "liteos_m",
+      "kernel_version": "3.0.0",
+      "subsystems": [],
+      "third_party_dir": "//third_party",
+      "product_adapter_dir": "//vendor/hihope/neptune_iotlink_demo/hals"
    }
    ```
 填入的信息与规划的目录相对应，其中`device_company`和`board`用于关联出`device/board/<device_company>/`目录。
@@ -358,10 +358,10 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
    ```json
     {
-      "bin_list": [                          --- demo list
+      "bin_list": [
         {
           "elf_name": "hihope",
-          "enable": "true",                  --- list开关
+          "enable": "true",
           "force_link_libs": [
             "bootstrap",
             "broadcast",
@@ -619,7 +619,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
    {
      "component": "wifi_lite",
      "targets": [
-       "//foundation/communication/wifi_lite:wifi"       --- wifi_lite的编译目标
+       "//foundation/communication/wifi_lite:wifi"
      ]
    }
    ```
@@ -776,7 +776,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
    {
      "subsystem": "startup",
      "components": [
-       { "component": "bootstrap_lite", "features":[] },
+       { "component": "bootstrap_lite", "features":[] }
      ]
    }
    ```
