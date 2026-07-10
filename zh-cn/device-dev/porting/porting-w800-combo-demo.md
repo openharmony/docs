@@ -41,12 +41,12 @@
      "product_name": "neptune_iotlink_demo",   --- 产品名
       "ohos_version": "OpenHarmony 7.0",        --- 使用的OS版本
       "type":"mini",                            --- 系统类型：mini
-      "version": "7.0",                         --- 系统版本：7.0
+      "version": "3.0",                         --- 系统版本：3.0
       "device_company": "hihope",               --- 单板厂商：hihope
       "device_build_path": "device/board/hihope/neptune100", --- 单板编译路径
       "board": "neptune100",                    --- 单板名：neptune100
       "kernel_type": "liteos_m",                --- 内核类型：liteos_m
-      "kernel_version": "7.0.0",                --- 内核版本：7.0.0
+      "kernel_version": "3.0.0",                --- 内核版本：3.0.0
       "subsystems": [],                         --- 子系统
       "third_party_dir": "//third_party",       --- 第三方组件根目录路径
       "product_adapter_dir": "//vendor/hihope/neptune_iotlink_demo/hals"  --- 产品适配路径
@@ -63,7 +63,7 @@
 kernel_type = "liteos_m"
 
 # Kernel version.
-kernel_version = "7.0.0"
+kernel_version = "3.0.0"
 
 # Board CPU type, e.g. "cortex-a7", "riscv32".
 board_cpu = "ck804ef"
@@ -657,13 +657,13 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
 
 ### 公共基础库子系统适配
 
-公共基础库子系统适配添加了`kv_store、file`部件，直接在`config.json`配置，如下：
+公共基础库子系统适配添加了`utils_lite、file`部件，直接在`config.json`配置，如下：
 
    ```json
    {
      "subsystem": "commonlibrary",
      "components": [
-       { "component": "kv_store", "features":[] },
+       { "component": "utils_lite", "features":["utils_lite_feature_file = true"] },
        { "component": "file", "features":[] }
      ]
    },
@@ -675,15 +675,21 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
 
 ### 启动恢复子系统适配
 
-启动恢复子系统适配添加了`bootstrap_lite`、`init`、`appspawn`部件，直接在`config.json`配置，如下：
+启动恢复子系统适配添加了`bootstrap_lite`、`init_lite`部件，直接在`config.json`配置，如下：
 
    ```json
    {
      "subsystem": "startup",
      "components": [
        { "component": "bootstrap_lite", "features":[] },
-       { "component": "init", "features":["init_feature_begetctl_liteos=true"] },
-       { "component": "appspawn", "features":[] }
+       { 
+          "component": "init_lite", 
+          "features": [ 
+            "enable_ohos_startup_init_feature_begetctl_liteos = true", 
+            "enable_ohos_startup_init_lite_use_posix_file_api = true",
+            "config_ohos_startup_init_lite_data_path = \"/data/\""
+          ] 
+        }
      ]
    },
    ```
