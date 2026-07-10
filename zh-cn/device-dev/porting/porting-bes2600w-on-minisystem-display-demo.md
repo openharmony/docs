@@ -78,7 +78,7 @@ vendor
 
    ![hb env](figures/bes2600_hb_env.png)
 
-   在执行`hb build`之前，需要准备好`LiteOS-M`内核适配，具体适配步骤请参[内核移植](#内核移植)。
+   在执行`hb build`之前，需要准备好`LiteOS-M`内核适配，具体适配步骤请参考[内核移植](#内核移植)。
    
 
 ## 内核移植
