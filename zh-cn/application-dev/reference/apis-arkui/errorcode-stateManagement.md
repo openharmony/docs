@@ -262,7 +262,7 @@ Illegal usage of not @Track'ed property on UI!
 
 \@Consume寻找\@Provide失败，一般有以下两种原因：
 1. \@Consume所在组件的父组件没有定义相同key的\@Provide，且\@Consume没有设置默认值，导致\@Consume初始化失败。
-2. \@Consume向上查找定义\@Provide所在组件时，其父组件或祖先节点已被销毁，导致\@Consume查找失败。
+2. \@Consume向上查找定义\@Provide所在组件时，\@Consume所在组件的父组件或祖先节点已被销毁，导致\@Consume查找失败。
 
 **处理步骤**
 
