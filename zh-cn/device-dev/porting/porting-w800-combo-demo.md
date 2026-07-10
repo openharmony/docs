@@ -357,21 +357,23 @@ OHOS Which product do you need?  neptune_iotlink_demo
 5. 为了组织一些产品侧的应用，需要强制链接到产品工程中来，本方案在vendor相应的`config.json`加入了相应的list来组织，在`vendor/hihope/neptune_iotlink_demo/config.json`增加对应的list：
 
    ```json
-    "bin_list": [                            --- demo list
-      {
-        "elf_name": "hihope",
-        "enable": "true",                   --- list开关
-        "force_link_libs": [
-          "bootstrap",
-          "broadcast",
-          "hctest",
-          "module_ActsBootstrapTest",
-          "module_ActsDfxFuncTest",
-          "module_ActsHieventLiteTest",
-          "module_ActsSamgrTest"
-        ]
-      }
-    ],
+    {
+      "bin_list": [                          --- demo list
+        {
+          "elf_name": "hihope",
+          "enable": "true",                  --- list开关
+          "force_link_libs": [
+            "bootstrap",
+            "broadcast",
+            "hctest",
+            "module_ActsBootstrapTest",
+            "module_ActsDfxFuncTest",
+            "module_ActsHieventLiteTest",
+            "module_ActsSamgrTest"
+          ]
+        }
+      ]
+    }
    ```
 
    将demo应用作为模块库来管理，开启/关闭某个demo，在bin_list中增减相应库文件即可。bin_list在gn中可以直接被读取，在`device/board/hihope/neptune100/liteos_m/config.gni`新增内容：
@@ -407,16 +409,19 @@ OHOS Which product do you need?  neptune_iotlink_demo
 在`vendor/hihope/neptune_iotlink_demo/config.json`添加内核子系统及相关配置，如下：
 
    ```json
-   "subsystems": [
-    {
-      "subsystem": "kernel",
-      "components": [
-        { 
-          "component": "liteos_m", "features":[] 
-        }
-      ]
-   },
-   ],
+   {
+    "subsystems": [
+      {
+        "subsystem": "kernel",
+        "components": [
+          {
+            "component": "liteos_m",
+            "features": []
+          }
+        ]
+      }
+    ]
+   }
    ```
 
 ### 内核启动适配
@@ -605,7 +610,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
          "optional": "true"
        }
      ]
-   },
+   }
    ```
 
 `wifi_lite`部件在 `build/lite/components/communication.json`文件中，描述如下：
@@ -616,7 +621,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
      "targets": [
        "//foundation/communication/wifi_lite:wifi"       --- wifi_lite的编译目标
      ]
-   },
+   }
    ```
 
 在本案例中，`wifi`适配源码可见`device/soc/winnermicro/wm800/board/src/wifi/wm_wifi.c`,如下：
@@ -652,7 +657,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
          "component": "samgr_lite"
        }
      ]
-   },
+   }
    ```
 
 ### 公共基础库子系统适配
@@ -666,7 +671,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
        { "component": "utils_lite", "features":["utils_lite_feature_file = true"] },
        { "component": "file", "features":[] }
      ]
-   },
+   }
    ```
 
 适配`kv_store`部件时，键值对会写到文件中。在轻量系统中，文件操作相关接口有`POSIX`接口与`HalFiles`接口这两套实现。
@@ -691,7 +696,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
           ] 
         }
      ]
-   },
+   }
    ```
 
 适配bootstrap_lite部件时，需要在链接脚本文件`device/soc/winnermicro/wm800/board/ld/w800/gcc_csky.ld`中手动新增如下段：
@@ -773,7 +778,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
      "components": [
        { "component": "bootstrap_lite", "features":[] },
      ]
-   },
+   }
    ```
 
 ​`bootstrap_lite`部件会编译`base/startup/bootstrap_lite/services/source/bootstrap_service.c`，该文件中，通过`SYS_SERVICE_INIT`将`Init`函数符号灌段到`__zinitcall_sys_service_start`和`__zinitcall_sys_service_end`中，由于`Init`函数是没有显式调用它，所以需要将它强制链接到最终的镜像。如下：
@@ -846,21 +851,23 @@ XTS子系统的适配，直接在`config.json`中加入组件选项：
 另外，XTS功能也使用了list来组织，在`config.json`文件中增减相应模块：
 
    ```json
-   "bin_list": [
-     {
-       "enable": "true",
-       "force_link_libs": [
-          "module_ActsParameterTest",
-          "module_ActsBootstrapTest",
-          "module_ActsDfxFuncTest",
-          "module_ActsHieventLiteTest",
-          "module_ActsSamgrTest",
-          "module_ActsUtilsFileTest",
-          "module_ActsKvStoreTest",
-          "module_ActsWifiServiceTest"
-       ]
-     }
-   ],
+   {
+    "bin_list": [
+      {
+        "enable": "true",
+        "force_link_libs": [
+            "module_ActsParameterTest",
+            "module_ActsBootstrapTest",
+            "module_ActsDfxFuncTest",
+            "module_ActsHieventLiteTest",
+            "module_ActsSamgrTest",
+            "module_ActsUtilsFileTest",
+            "module_ActsKvStoreTest",
+            "module_ActsWifiServiceTest"
+        ]
+      }
+    ]
+   }
    ```
 
 其它组件的适配过程与官方以及其它厂商的过程类似，不再赘述。
