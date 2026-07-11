@@ -613,7 +613,7 @@ Web同层渲染的配置。
 
 ## OnGeolocationShowEvent<sup>12+</sup>
 
-定义通知用户收到地理位置信息获取请求。
+定义收到地理位置获取请求时触发的回调信息，包括源信息和地理对象。适用于需要处理地理位置权限的场景。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
