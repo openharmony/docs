@@ -45,28 +45,28 @@ vendor
 
 1. 在`vendor/bestechnic/display_demo`目录下新增`config.json`文件，用于描述这个产品样例所使用的单板、内核等信息，描述信息可参考如下内容：
 
-```json
-   {
-      "product_name": "display_demo",       --- 用于hb set进行选择时，显示的产品名称。
-      "type": "mini",                       --- 构建系统的类型，mini/small/standard。
-      "version": "3.0",                     --- 构建系统的版本，1.0/2.0/3.0。
-      "device_company": "fnlink",           --- 单板厂商名，用于编译时找到/device/board/fnlink目录。
-      "board": "v200zr",                    --- 单板名，用于编译时找到/device/board/fnlink/v200zr目录。
-      "kernel_type": "liteos_m",            --- 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译。
-      "kernel_version": "3.0.0",            --- 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译。
-      "subsystems": [ ]                     --- 选择所需要编译构建的子系统。
-   }
-```
+   ```text
+      {
+         "product_name": "display_demo",       --- 用于hb set进行选择时，显示的产品名称。
+         "type": "mini",                       --- 构建系统的类型，mini/small/standard。
+         "version": "3.0",                     --- 构建系统的版本，1.0/2.0/3.0。
+         "device_company": "fnlink",           --- 单板厂商名，用于编译时找到/device/board/fnlink目录。
+         "board": "v200zr",                    --- 单板名，用于编译时找到/device/board/fnlink/v200zr目录。
+         "kernel_type": "liteos_m",            --- 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译。
+         "kernel_version": "3.0.0",            --- 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译。
+         "subsystems": [ ]                     --- 选择所需要编译构建的子系统。
+      }
+   ```
 
 2. 在`device/board/fnlink/v200zr/liteos_m`目录下新增`config.gni`文件，用于描述这个产品样例所使用的单板、内核等信息，描述信息可参考如下内容：
 
-```gni
-   # Kernel type, e.g. "linux", "liteos_a", "liteos_m".
-   kernel_type = "liteos_m"                --- 内核类型，跟config.json中kernel_type对应。
+   ```gni
+      # Kernel type, e.g. "linux", "liteos_a", "liteos_m".
+      kernel_type = "liteos_m"                --- 内核类型，跟config.json中kernel_type对应。
 
-   # Kernel version.
-   kernel_version = "3.0.0"                --- 内核版本，跟config.json中kernel_version对应。
-```
+      # Kernel version.
+      kernel_version = "3.0.0"                --- 内核版本，跟config.json中kernel_version对应。
+   ```
 
 3. 验证`hb set`配置是否正确，输入`hb set`能够显示如下图片表示配置正确。
 
@@ -345,9 +345,9 @@ int OhosSystemAdapterHooks(void)
 
 1. 配置指定目录放置打包文件系统`config.json`，通过`flash_partition_dir`指定目录：
 
-```json
-   "flash_partition_dir": "fs"      --- 表示在vendor/bestechnic/display_demo/fs目录下放置文件系统预置文件
-```
+   ```text
+      "flash_partition_dir": "fs"      --- 表示在vendor/bestechnic/display_demo/fs目录下放置文件系统预置文件
+   ```
 
 2. 在指定目录`vendor/bestechnic/display_demo/fs`下放置两部分内容：
 
@@ -631,7 +631,7 @@ static int32_t PanelDriverInit(struct HdfDeviceObject *object)
 
 首先，在`config.json`文件中，增加`communication`子系统的`wifi_lite`部件，如下：
 
-```json
+```text
     {
       "subsystem": "communication",
       "components": [
@@ -645,7 +645,7 @@ static int32_t PanelDriverInit(struct HdfDeviceObject *object)
 
 `wifi_lite`部件在`//build/lite/components/communication.json`文件中，描述如下：
 
-```json
+```text
     {
       "component": "wifi_lite",
 ……
@@ -723,7 +723,7 @@ int GetSignalLevel(int rssi, int band)     --- wifi_hotspot.c中获取wifi信号
 
 `LiteOS-M kernel`目录下默认配置了`lwip`，因而具有编译功能，可以在`kernel`组件中指定`lwip`编译的目录。如下：
 
-```json
+```text
     {
       "subsystem": "kernel",
       "components": [
@@ -803,18 +803,18 @@ ethernetif_init(struct netif *netif)
 
 在`config.json`中增加`dsoftbus`部件配置如下：
 
-```json
+```text
 {
   "component": "dsoftbus",
   "features": [
-    "softbus_adapter_config = \"//vendor/bestechnic/mini_distributed_music_player/dsoftbus_lite_config\""
+    "softbus_adapter_config = \"//vendor/bestechnic/display_demo/dsoftbus_lite_config\""
   ]
 },
 ```
 
 `dsoftbus`部件在`//foundation/communication/dsoftbus/dsoftbus.gni`文件中提供了`softbus_adapter_config`配置选项可供移植过程进行配置，该配置设定了软总线移植适配的路径。
 
-在本案例中，`softbus_adapter_config`配置为`//vendor/bestechnic/mini_distributed_music_player/dsoftbus_lite_config`路径，该路径下的内容为：
+在本案例中，`softbus_adapter_config`配置为`//vendor/bestechnic/display_demo/dsoftbus_lite_config`路径，该路径下的内容为：
 
 ```text
 .
@@ -882,7 +882,7 @@ APP_FEATURE_INIT(DSoftBus);
 
 在`config.json`中增加`rpc`部件配置如下：
 
-```json
+```text
 {
   "component": "rpc"
 }
@@ -920,7 +920,7 @@ APP_FEATURE_INIT(WifiDHCPRpcServerCB);
 
 启动恢复子系统适配`bootstrap_lite`/`syspara_lite`两个部件。请在`vendor/bestechnic/display_demo/config.json`中新增对应的配置选项。
 
-```json
+```text
 {
   "subsystem": "startup",
   "components": [
@@ -1027,7 +1027,7 @@ APP_FEATURE_INIT(WifiDHCPRpcServerCB);
 
 ​    如在 `vendor/bestechnic/display_demo/config.json` 中配置了`bootstrap_lite` 部件。
 
-```json
+```text
     {
       "subsystem": "startup",
       "components": [
@@ -1068,7 +1068,7 @@ static_library("bootstrap") {
 
 ​    那么需要在 `vendor/bestechnic/display_demo/config.json` 配置强制链接库`bootstrap`，如下：
 
-```json
+```text
   "bin_list": [
     {
       "elf_name": "wifiiot",
@@ -1144,7 +1144,7 @@ const char* HalGetSerial(void)
 
 进行`DFX`子系统适配需要添加`hilog_lite`部件，直接在`config.json`文件配置即可。
 
-```json
+```text
 {
   "subsystem": "hiviewdfx",
   "components": [
@@ -1175,7 +1175,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 进行系统服务管理子系统适配需要添加`samgr_lite`部件，直接在`config.json`配置即可。
 
-```json
+```text
 {
   "subsystem": "systemabilitymgr",
   "components": [
@@ -1195,7 +1195,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 进行安全子系统适配需要添加`huks/deviceauth_lite`部件，直接在`config.json`配置即可。
 
-```json
+```text
     {
       "subsystem": "security",
       "components": [
@@ -1228,7 +1228,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 进行媒体子系统适配需要添加`histreamer`部件，直接在`config.json`配置即可。
 
-```json
+```text
 {
   "subsystem": "multimedia",
   "components": [
@@ -1258,7 +1258,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 进行公共基础库子系统适配需要添加`kv_store`/`js_builtin`/`timer_task`/`kal_timer`部件，直接在`config.json`配置即可。
 
-```json
+```text
 {
   "subsystem": "utils",
   "components": [
@@ -1287,7 +1287,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 进行图形子系统适配需要添加`graphic_utils`部件，直接在`config.json`配置即可。
 
-```json
+```text
     {
       "components": [
         {
@@ -1347,7 +1347,7 @@ APP_FEATURE_INIT(AppEntry);
 #### ACE开发框架子系统适配
 
 进行`ACE`开发框架子系统适配需要添加`ace_engine_lite`部件，直接在`config.json`配置即可。
-```json
+```text
     {
       "subsystem": "ace",
       "components": [
@@ -1382,7 +1382,7 @@ APP_FEATURE_INIT(AppEntry);
 
 进行元能力子系统适配需要添加`aafwk_lite`部件，直接在`config.json`配置即可。
 
-```json
+```text
     {
       "subsystem": "aafwk",
       "components": [
@@ -1407,7 +1407,7 @@ APP_FEATURE_INIT(AppEntry);
 
 进行包管理子系统适配需要添加`appexecfwk_lite`部件，直接在`config.json`配置即可。
 
-```json
+```text
     {
       "subsystem": "appexecfwk",
       "components": [
@@ -1427,7 +1427,7 @@ APP_FEATURE_INIT(AppEntry);
 ### XTS用例
 
 `XTS`测试参考资料见[xts参考资料](../device-test/xts.md)，进行`XTS`子系统适配需要添加`xts_acts`/`xts_tools`部件，直接在`config.json`配置即可，配置如下：
-```json
+```text
     {
       "subsystem": "xts",
       "components": [
@@ -1467,7 +1467,7 @@ APP_FEATURE_INIT(AppEntry);
 
 步骤2：生成测试报告的`SHA`校验码。本案例是将`zip`文件传到在线生成`hash`的[网站]( https://tool.lmeee.com/jiami/filehash)生成`SHA`校验码。
 
-步骤3：进入`OpenHarmony`[兼容性测试网站](https://www.openharmony.cn/compatibility)上传报告。
+步骤3：进入`OpenHarmony`[兼容性测试网站](https://www.openharmony.cn/)上传报告。
 
 
  - 其中`API Level`填写报告中的`"sdkApiLevel"`字段
