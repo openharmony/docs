@@ -45,7 +45,7 @@ vendor
 
 1. 在`vendor/bestechnic/display_demo`目录下新增`config.json`文件，用于描述这个产品样例所使用的单板、内核等信息，描述信息可参考如下内容：
 
-   ```json   
+```json
    {
       "product_name": "display_demo",       --- 用于hb set进行选择时，显示的产品名称。
       "type": "mini",                       --- 构建系统的类型，mini/small/standard。
@@ -56,17 +56,17 @@ vendor
       "kernel_version": "3.0.0",            --- 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译。
       "subsystems": [ ]                     --- 选择所需要编译构建的子系统。
    }
-   ```
+```
 
 2. 在`device/board/fnlink/v200zr/liteos_m`目录下新增`config.gni`文件，用于描述这个产品样例所使用的单板、内核等信息，描述信息可参考如下内容：
 
-   ```gni
+```gni
    # Kernel type, e.g. "linux", "liteos_a", "liteos_m".
    kernel_type = "liteos_m"                --- 内核类型，跟config.json中kernel_type对应。
 
    # Kernel version.
    kernel_version = "3.0.0"                --- 内核版本，跟config.json中kernel_version对应。
-   ```
+```
 
 3. 验证`hb set`配置是否正确，输入`hb set`能够显示如下图片表示配置正确。
 
@@ -345,9 +345,9 @@ int OhosSystemAdapterHooks(void)
 
 1. 配置指定目录放置打包文件系统`config.json`，通过`flash_partition_dir`指定目录：
 
-   ```json
+```json
    "flash_partition_dir": "fs"      --- 表示在vendor/bestechnic/display_demo/fs目录下放置文件系统预置文件
-   ```
+```
 
 2. 在指定目录`vendor/bestechnic/display_demo/fs`下放置两部分内容：
 
@@ -640,7 +640,7 @@ static int32_t PanelDriverInit(struct HdfDeviceObject *object)
           "optional": "true"
         }
       ]
-    },
+    }
 ```
 
 `wifi_lite`部件在`//build/lite/components/communication.json`文件中，描述如下：
@@ -653,7 +653,7 @@ static int32_t PanelDriverInit(struct HdfDeviceObject *object)
         "//foundation/communication/wifi_lite:wifi"         --- wifi_lite的编译目标
       ],
 ……
-    },
+    }
 
 ```
 
@@ -734,7 +734,7 @@ int GetSignalLevel(int rssi, int band)     --- wifi_hotspot.c中获取wifi信号
           ]
         }
       ]
-    },
+    }
 ```
 
 在`//device/soc/bestechnic/bes2600/liteos_m/components/net/lwip-2.1/BUILD.gn`文件中，描述了`lwip`的编译，如下：
@@ -885,7 +885,7 @@ APP_FEATURE_INIT(DSoftBus);
 ```json
 {
   "component": "rpc"
-},
+}
 ```
 
 同样地，`rpc`部件需要通过启动框架调用`StartDBinderService`函数，由于该函数正常运行依赖主机已经获取`IP`地址，因此在`LWIP`协议栈注册`IP`地址变化事件的回调函数中调用该函数，如下：
@@ -934,7 +934,7 @@ APP_FEATURE_INIT(WifiDHCPRpcServerCB);
       ]
     }
   ]
-},
+}
 ```
 
 适配`bootstrap_lite`部件时，需要在连接脚本文件`//device/soc/bestechnic/bes2600/liteos_m/sdk/bsp/out/best2600w_liteos/_best2001.lds`中手动新增如下段：
@@ -1036,7 +1036,7 @@ APP_FEATURE_INIT(WifiDHCPRpcServerCB);
         },
         ...
       ]
-    },
+    }
 ```
 
 ​    `bootstrap_lite`部件会编译`//base/startup/bootstrap_lite/services/source/bootstrap_service.c`，该文件中，通过`SYS_SERVICE_INIT`将`Init`函数符号灌段到`__zinitcall_sys_service_start`和`__zinitcall_sys_service_end`中，由于`Init`函数是没有显式调用它，所以需要将它强制链接到最终的镜像。如下：
@@ -1080,7 +1080,7 @@ static_library("bootstrap") {
         "bootstrap",     --- 强制链接libbootstrap.a
         ...
       ]
-    },
+    }
 ```
 
 
@@ -1153,7 +1153,7 @@ const char* HalGetSerial(void)
       "optional": "true"
     }
   ]
-},
+}
 ```
 
 配置完成之后，在`//device/soc/bestechnic/bes2600/liteos_m/components/utils/src/hm_sys.c`中注册日志输出实现函数。
@@ -1186,7 +1186,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
       ]
     }
   ]
-},
+}
 ```
 
 在轻量系统中，`samgr_lite`配置的共享任务栈大小默认为`0x800`。当函数调用栈较大时，会出现栈溢出的问题。在本次适配过程中，将其调整为`0x1000`。
@@ -1242,7 +1242,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
       ]
     }
   ]
-},
+}
 ```
 
 `histreamer`部件配置项说明如下：
@@ -1278,7 +1278,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
       "component": "kal_timer",
     }
   ]
-},
+}
 ```
 
 与适配`syspara_lite`部件类似，适配`kv_store`部件时，键值对会写到文件中。在轻量系统中，文件操作相关接口有`POSIX`接口与`HalFiles`接口这两套实现。因为对接内核的文件系统，采用`POSIX`相关的接口，所以`features`需要增加`enable_ohos_utils_native_lite_kv_store_use_posix_kv_api = true`。如果对接`HalFiles`相关的接口实现的，则无须修改。
@@ -1300,7 +1300,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
           "component": "ui"
         }
       ]
-    },
+    }
 ```
 
 `graphic`配置文件见 `//vendor/bestechnic/display_demo/graphic_config/product_graphic_lite_config.h`。
@@ -1358,7 +1358,7 @@ APP_FEATURE_INIT(AppEntry);
           ]
         }
       ]
-    },
+    }
 ```
 `ace_engine_lite`部件配置文件见 `//vendor/bestechnic/display_demo/ace_lite_config/product_acelite_config.h`。
 
@@ -1394,7 +1394,7 @@ APP_FEATURE_INIT(AppEntry);
           ]
         }
       ]
-    },
+    }
 ```
 
 `aafwk_lite`相关的应用样例见`vendor/bestechnic/display_demo/tests/ability`目录，包含`launcher`和`js app`这两类应用，应用的函数调用流程描述如下：
@@ -1415,7 +1415,7 @@ APP_FEATURE_INIT(AppEntry);
           "component": "appexecfwk_lite"
         }
       ]
-    },
+    }
 ```
 
 ## 兼容性认证
