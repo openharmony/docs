@@ -12,6 +12,9 @@
   <source src="./figures/test.mp3" type="audio/mpeg">
   您的浏览器不支持音频播放。
 </audio>
+<video controls src="./figures/test.mp3"></video>
+
+[点击播放/下载音频](./figures/test.mp3)
 
 ## 使用场景
 
@@ -26,7 +29,6 @@
 |---------|---------|--------|------|
 | 均衡器 | EFFECT_NODE_TYPE_EQUALIZER | API 22+ | 频段调节，改变音频频率特性 |
 | 声音美化 | EFFECT_NODE_TYPE_VOICE_BEAUTIFIER | API 22+ | 提升音质和听感 |
-| 声场 | EFFECT_NODE_TYPE_SOUND_FIELD | API 22+ | 调整声音空间效果 |
 
 ---
 
@@ -114,8 +116,3 @@ OH_AudioSuiteEngine_SetVoiceBeautifierType(*node,
 ```
 
 ---
-
-## 相关文档
-
-- [音频离线编辑](audio-suite-manual-rendering.md)
-- [音频实时预览](audio-suite-real-time-rendering.md)
