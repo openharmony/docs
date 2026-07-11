@@ -1469,7 +1469,6 @@ APP_FEATURE_INIT(AppEntry);
 
 步骤3：进入`OpenHarmony`[兼容性测试网站](https://www.openharmony.cn/compatibility)上传报告。
 
-
  - 其中`API Level`填写报告中的`"sdkApiLevel"`字段
  - `OS`版本号填写报告中的`"OS Version"`字段。
 
