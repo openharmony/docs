@@ -619,7 +619,7 @@ Web同层渲染的配置。
 
 | 名称             | 类型      | 只读 | 可选    | 说明                                       |
 | -------------- | ---- | ---- | -------------|--------------------------- |
-| origin | string | 否 | 否 | 指定源的字符串索引。                       |
+| origin | string | 否 | 否 | 发起地理位置权限请求的网页源，用于标识特定网站的地理位置请求来源。 |
 | geolocation | [JsGeolocation](./arkts-basic-components-web-JsGeolocation.md) | 否 | 否 | 通知Web组件用户操作行为。                       |
 
 ## NativeEmbedVisibilityInfo<sup>12+</sup>

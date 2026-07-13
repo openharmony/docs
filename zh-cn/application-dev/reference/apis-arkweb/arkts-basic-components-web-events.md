@@ -2473,7 +2473,7 @@ onGeolocationShow(callback: Callback\<OnGeolocationShowEvent\>)
 
 onGeolocationHide(callback: () => void)
 
-通知用户先前被调用[onGeolocationShow](#ongeolocationshow)时收到地理位置信息获取请求已被取消。
+通知用户先前被调用[onGeolocationShow](#ongeolocationshow)时收到地理位置信息获取请求已被取消。用于清理定位相关资源，优化资源使用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

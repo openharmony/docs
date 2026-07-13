@@ -6,7 +6,7 @@
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
 
-GeolocationPermissions是Web组件的地理位置权限管理对象，提供对Web组件中已保存的地理位置权限状态的查询、授权、删除等管理能力。通过GeolocationPermissions，应用可以在网页发起地理位置请求之前预先授权特定源的访问权限，也可以主动查询或清除已保存的权限记录，而无需依赖网页请求时的弹窗授权流程。调用GeolocationPermissions下的方法前，需先加载Web组件。
+GeolocationPermissions是Web组件的地理位置权限管理对象，提供对Web组件中已保存的地理位置权限状态的查询、授权、删除等管理能力。通过GeolocationPermissions，应用可以在网页发起地理位置请求之前预先授权特定源的访问权限，也可以主动查询或清除已保存的权限记录，而无需依赖网页请求时的弹窗授权流程。
 
 GeolocationPermissions适用于需要主动管理Web组件地理位置权限的场景，例如：应用希望预先授权信任的网站访问地理位置，避免每次访问都弹出授权提示；或应用需要清除用户不再需要的地理位置权限记录。访问地理位置时需添加权限：ohos.permission.LOCATION、ohos.permission.APPROXIMATELY_LOCATION、ohos.permission.LOCATION_IN_BACKGROUND，具体权限说明请参考[申请位置权限开发指导](../../device/location/location-permission-guidelines.md)。
 
@@ -38,7 +38,7 @@ static allowGeolocation(origin: string, incognito?: boolean): void
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| origin | string | 是   | 指定源的字符串。<br>origin格式必须遵循RFC 6454中定义的格式。 |
+| origin | string | 是   | 指定源的字符串。<br>origin格式必须遵循RFC 6454中定义的格式。传入不符合RFC 6454格式的字符串时抛出异常，错误码17100011。 |
 | incognito<sup>11+</sup>    | boolean | 否   | true表示隐私模式下允许指定源使用地理位置，false表示正常非隐私模式下允许指定源使用地理位置。<br>默认值：false。<br>传入null或undefined时为false。 |
 
 **错误码：**
@@ -92,7 +92,7 @@ static deleteGeolocation(origin: string, incognito?: boolean): void
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| origin | string | 是   | 指定源的字符串。<br>origin格式必须遵循RFC 6454中定义的格式。 |
+| origin | string | 是   | 指定源的字符串。<br>origin格式必须遵循RFC 6454中定义的格式。传入不符合RFC 6454格式的字符串时抛出异常，错误码17100011。 |
 | incognito<sup>11+</sup>   | boolean | 否   | true表示隐私模式下清除指定源的地理位置权限状态，false表示正常非隐私模式下清除指定源的地理位置权限状态。<br>默认值：false。<br>传入null或undefined时为false。 |
 
 **错误码：**
@@ -146,7 +146,7 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| origin   | string                 | 是   | 指定源的字符串。<br>origin格式必须遵循RFC 6454中定义的格式。 |
+| origin   | string                 | 是   | 指定源的字符串。<br>origin格式必须遵循RFC 6454中定义的格式。传入不符合RFC 6454格式的字符串时抛出异常，错误码17100011。 |
 | callback | AsyncCallback\<boolean> | 是   | 返回指定源的地理位置权限状态。<br>获取成功，true表示已授权，false表示拒绝访问。<br>获取失败，表示不存在指定源的权限状态。 |
 | incognito<sup>11+</sup>    | boolean | 否   | true表示在隐私模式下获取指定源的地理位置权限状态，false表示在正常模式下获取。<br>默认值：false。<br>传入null或undefined时会抛出异常错误码401。 |
 
@@ -207,7 +207,7 @@ static getAccessibleGeolocation(origin: string, incognito?: boolean): Promise\<b
 
 | 参数名 | 类型 | 必填 | 说明             |
 | ------ | -------- | ---- | -------------------- |
-| origin | string   | 是   | 指定源的字符串。<br>origin格式必须遵循RFC 6454中定义的格式。 |
+| origin | string   | 是   | 指定源的字符串。<br>origin格式必须遵循RFC 6454中定义的格式。传入不符合RFC 6454格式的字符串时抛出异常，错误码17100011。 |
 | incognito<sup>11+</sup>    | boolean | 否   | true表示在隐私模式下获取指定源的地理位置权限状态，false表示在正常模式下获取。<br>默认值：false。<br>传入null或undefined时会抛出异常错误码401。 |
 
 **返回值：**
