@@ -16,7 +16,7 @@ ArkWeb Enums模块是ArkWeb（Web子系统）的枚举类型定义集合，为We
 
 ## WebHitTestType
 
-[getLastHitTest](./arkts-apis-webview-WebviewController.md#getlasthittest18)接口用于指示光标节点。
+[getLastHitTest](./arkts-apis-webview-WebviewController.md#getlasthittest18)接口用于指示光标命中的节点类型。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

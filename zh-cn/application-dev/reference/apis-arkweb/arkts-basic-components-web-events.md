@@ -8,13 +8,13 @@
 
 Web组件事件模块是ArkWeb框架中Web组件的事件回调接口集合，为开发者提供监听和响应Web组件各类运行时事件的机制。这些事件覆盖了Web页面加载的完整生命周期（从加载开始到完成）、JavaScript对话框交互、资源请求拦截与错误处理、安全认证（HTTP Auth、SSL错误、客户端证书）、权限管理、渲染进程状态、UI交互（上下文菜单、滚动、缩放、全屏）、窗口管理、同层渲染、性能度量以及多媒体设备状态等场景。开发者通过注册对应的事件回调，可以在Web组件运行过程中获取关键信息、拦截或自定义处理逻辑，实现应用对Web内容的精细管控和用户体验优化。
 
-当应用需要在嵌入式Web场景中对网页行为进行拦截、自定义或监控时——例如自定义JavaScript弹窗样式、拦截URL请求返回本地数据、处理SSL证书错误、管理摄像头/麦克风权限、监听页面加载进度、感知渲染进程异常、实现同层渲染交互等——应使用本模块提供的各事件回调API。
+在嵌入式Web场景中，若需对网页行为进行拦截、自定义或监控（如自定义JavaScript弹窗样式、拦截URL请求返回本地数据、处理SSL证书错误、管理摄像头/麦克风权限、监听页面加载进度、感知渲染进程异常、实现同层渲染交互），应使用本模块提供的各事件回调API。
 
 通用事件仅支持[onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear)、[onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)、[onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur)、[onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus)、[onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend10)、[onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter)、[onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart)、[onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove)、[onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave)、[onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop)、[onHover](../apis-arkui/arkui-ts/ts-universal-events-hover.md#onhover)、[onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse)、[onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent)、[onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch)、[onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)。
 
 > **说明：**
 >
-> - 该组件首批接口从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > - 示例效果请以真机运行为准。
 
@@ -22,7 +22,7 @@ Web组件事件模块是ArkWeb框架中Web组件的事件回调接口集合，�
 
 onAlert(callback: Callback\<OnAlertEvent, boolean\>)
 
-网页触发alert()告警弹窗时触发回调。若不调用[handleCancel](./arkts-basic-components-web-JsResult.md#handlecancel)或[handleConfirm](./arkts-basic-components-web-JsResult.md#handleconfirm)接口，会造成render进程阻塞。
+网页触发alert()告警弹窗时触发回调。用于自定义alert弹窗样式、实现统一的弹窗风格，替代浏览器默认弹窗以提升用户体验。若不调用[handleCancel](./arkts-basic-components-web-JsResult.md#handlecancel)或[handleConfirm](./arkts-basic-components-web-JsResult.md#handleconfirm)接口，会造成渲染进程阻塞。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -30,7 +30,7 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
 
 | 参数名     | 类型                   | 必填   | 说明            |
 | ------- | --------------------- | ---- | --------------- |
-| callback     | Callback\<[OnAlertEvent](./arkts-basic-components-web-i.md#onalertevent12), boolean\>                | 是    | 网页触发alert()告警弹窗时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终确认结果。当回调返回false时，弹窗的处理结果会被视为取消。 |
+| callback     | Callback\<[OnAlertEvent](./arkts-basic-components-web-i.md#onalertevent12), boolean\>                | 是    | 网页触发alert()告警弹窗时触发。<br>返回值boolean。当回调返回true时，应用可调用自定义弹窗能力（包括确认和取消），并根据用户的确认或取消操作调用JsResult通知Web组件最终确认结果。当回调返回false时，弹窗的处理结果会被视为取消。 |
 
 **示例：**
 
@@ -49,14 +49,15 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onAlert((event) => {
             if (event) {
-              console.info("event.url:" + event.url);
-              console.info("event.message:" + event.message);
+              console.info('event.url:' + event.url);
+              console.info('event.message:' + event.message);
               this.uiContext.showAlertDialog({
                 title: 'onAlert',
                 message: 'text',
                 primaryButton: {
                   value: 'ok',
                   action: () => {
+                    // 用户点击确认，调用handleConfirm通知Web组件确认结果
                     event.result.handleConfirm();
                   }
                 },
@@ -181,7 +182,7 @@ onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
 
 onConfirm(callback: Callback\<OnConfirmEvent, boolean\>)
 
-网页调用confirm()告警时触发此回调。若不调用[handleCancel](./arkts-basic-components-web-JsResult.md#handlecancel)或[handleConfirm](./arkts-basic-components-web-JsResult.md#handleconfirm)接口，会造成render进程阻塞。
+网页调用confirm()告警时触发此回调。用于自定义confirm确认对话框样式、实现统一的确认交互风格，替代浏览器默认确认弹窗以提升用户体验。若不调用[handleCancel](./arkts-basic-components-web-JsResult.md#handlecancel)或[handleConfirm](./arkts-basic-components-web-JsResult.md#handleconfirm)接口，会造成渲染进程阻塞。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -208,20 +209,22 @@ onConfirm(callback: Callback\<OnConfirmEvent, boolean\>)
         Web({ src: $rawfile("index.html"), controller: this.controller })
           .onConfirm((event) => {
             if (event) {
-              console.info("event.url:" + event.url);
-              console.info("event.message:" + event.message);
+              console.info('event.url:' + event.url);
+              console.info('event.message:' + event.message);
               this.uiContext.showAlertDialog({
                 title: 'onConfirm',
                 message: 'text',
                 primaryButton: {
                   value: 'cancel',
                   action: () => {
+                    // 用户点击取消，调用handleCancel通知Web组件取消结果
                     event.result.handleCancel();
                   }
                 },
                 secondaryButton: {
                   value: 'ok',
                   action: () => {
+                    // 用户点击确认，调用handleConfirm通知Web组件确认结果
                     event.result.handleConfirm();
                   }
                 },
@@ -270,7 +273,7 @@ onConfirm(callback: Callback\<OnConfirmEvent, boolean\>)
 
 onPrompt(callback: Callback\<OnPromptEvent, boolean\>)
 
-网页调用prompt()告警时触发此回调。若不调用[handleCancel](./arkts-basic-components-web-JsResult.md#handlecancel)或[handlePromptConfirm](./arkts-basic-components-web-JsResult.md#handlepromptconfirm9)接口，会造成render进程阻塞。
+网页调用prompt()告警时触发此回调。用于自定义prompt输入框样式、实现统一的输入交互风格，替代浏览器默认输入弹窗以提升用户体验。若不调用[handleCancel](./arkts-basic-components-web-JsResult.md#handlecancel)或[handlePromptConfirm](./arkts-basic-components-web-JsResult.md#handlepromptconfirm9)接口，会造成渲染进程阻塞。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -307,6 +310,7 @@ onPrompt(callback: Callback\<OnPromptEvent, boolean\>)
             buttonStyle: ButtonStyleMode.TEXTUAL,
             action: () => {
               console.info('Callback when the button is clicked');
+              // 用户点击取消，调用handleCancel通知Web组件取消结果
               this.result?.handleCancel()
             }
           },
@@ -314,12 +318,14 @@ onPrompt(callback: Callback\<OnPromptEvent, boolean\>)
             value: '确认',
             buttonStyle: ButtonStyleMode.TEXTUAL,
             action: () => {
+              // 用户点击确认，调用handlePromptConfirm通知Web组件确认结果并传入用户输入的内容
               this.result?.handlePromptConfirm(this.promptResult);
             }
           }
         ],
       }),
       onWillDismiss: () => {
+        // 弹窗被取消，调用handleCancel通知Web组件取消结果
         this.result?.handleCancel();
         this.dialogController.close();
       }
@@ -995,7 +1001,7 @@ onRenderProcessResponding(callback: OnRenderProcessRespondingCallback)
 
 onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
 
-调用此函数以处理具有“文件”输入类型的HTML表单。若不调用此函数或返回false，Web组件会提供默认的“选择文件”处理界面。若返回true，应用可以自定义“选择文件”的响应行为。
+用于处理具有“文件”输入类型的HTML表单。若不调用此函数或返回false，Web组件会提供默认的“选择文件”处理界面。若返回true，应用可以自定义“选择文件”的响应行为。用于实现文件上传前的图片预览、限制上传文件的类型和大小、实现云盘文件选择等功能。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1003,7 +1009,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
 
 | 参数名          | 类型                                     | 必填   | 说明              |
 | ------------ | ---------------------------------------- | ---- | ----------------- |
-| callback       | Callback\<[OnShowFileSelectorEvent](./arkts-basic-components-web-i.md#onshowfileselectorevent12), boolean\> | 是    | 用于通知Web组件文件选择的结果。<br>返回值boolean。当返回值为true时，用户可以调用系统提供的弹窗能力。当返回值为false时，函数中绘制的自定义弹窗无效。 |
+| callback       | Callback\<[OnShowFileSelectorEvent](./arkts-basic-components-web-i.md#onshowfileselectorevent12), boolean\> | 是    | 通知Web组件文件选择的结果。<br>返回值boolean。当返回值为true时，应用可以自定义“选择文件”的响应行为。当返回值为false时，函数中绘制的自定义弹窗无效，Web组件将使用系统默认的“选择文件”处理界面。 |
 
 **示例：**
 
@@ -2099,7 +2105,7 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
 
 onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
 
-长按特定元素（例如图片，链接）或鼠标右键，弹出菜单。
+长按特定元素（例如图片，链接）或鼠标右键，弹出菜单。用于自定义右键菜单项、实现复制、保存、分享等功能、隐藏默认菜单项，提供更好的上下文交互体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2107,7 +2113,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback  | Callback\<[OnContextMenuShowEvent](./arkts-basic-components-web-i.md#oncontextmenushowevent12), boolean\> | 是 | 调用时触发的回调，以允许自定义显示上下文菜单。<br>返回值boolean。返回true表示触发自定义菜单，返回false表示触发的自定义菜单无效。     |
+| callback  | Callback\<[OnContextMenuShowEvent](./arkts-basic-components-web-i.md#oncontextmenushowevent12), boolean\> | 是 | 调用时触发的回调，以允许自定义显示上下文菜单。<br>返回值boolean。返回true表示触发自定义菜单，返回false表示触发的自定义菜单无效，将使用系统默认菜单。     |
 
 **示例：**
 
@@ -2241,6 +2247,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
           // 触发自定义弹窗
           .onContextMenuShow((event) => {
             if (event) {
+              // 保存result供后续菜单操作使用
               this.result = event.result
               console.info(TAG + "x coord = " + event.param.x());
               console.info(TAG + "link url = " + event.param.getLinkUrl());
@@ -2298,7 +2305,7 @@ onContextMenuHide(callback: OnContextMenuHideCallback)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback  | [OnContextMenuHideCallback](./arkts-basic-components-web-t.md#oncontextmenuhidecallback11) | 是 | 菜单相关回调。     |
+| callback  | [OnContextMenuHideCallback](./arkts-basic-components-web-t.md#oncontextmenuhidecallback11) | 是 | 上下文菜单隐藏时触发。     |
 
 **示例：**
 
@@ -2326,7 +2333,7 @@ onContextMenuHide(callback: OnContextMenuHideCallback)
 
 onScroll(callback: Callback\<OnScrollEvent\>)
 
-通知网页全局滚动位置。
+通知网页全局滚动位置。用于实现滚动导航栏效果、滚动到底部时加载更多内容、记录滚动位置用于页面返回后恢复，提升页面滚动体验。
 
 > **说明：**
 >
@@ -3393,7 +3400,7 @@ onLoadIntercept(callback: Callback\<OnLoadInterceptEvent, boolean\>)
 
 onRequestSelected(callback: () => void)
 
-当Web组件获取焦点时触发回调。如果组件在未获焦状态下加载网页并成功获取焦点，将触发两次回调。
+当Web组件获取焦点时触发回调。如果组件在未获焦状态下加载网页并成功获取焦点，将触发两次回调：第一次回调表示组件获取到焦点，第二次回调表示网页开始加载。开发者可以通过回调的触发时机和上下文判断当前是哪一次回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5397,7 +5404,7 @@ onMicrophoneCaptureStateChange(callback: OnMicrophoneCaptureStateChangeCallback)
 
 onTextSelectionChange(callback: TextSelectionChangeCallback)
 
-设置Web组件选区文本改变时的回调函数，使用callback异步回调。
+设置Web组件选区文本改变时的回调函数。
 
 > **说明：**
 >
@@ -5413,7 +5420,7 @@ onTextSelectionChange(callback: TextSelectionChangeCallback)
 
 | 参数名   | 类型                                                         | 必填   | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| callback | [TextSelectionChangeCallback](./arkts-basic-components-web-t.md#textselectionchangecallback23) | 是    | 回调函数，所选区域文本内容改变时触发。 |
+| callback | [TextSelectionChangeCallback](./arkts-basic-components-web-t.md#textselectionchangecallback23) | 是    | 文本选区变化时触发。回调参数包含当前选中的文本内容。 |
 
 **示例：**
 

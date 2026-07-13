@@ -348,11 +348,11 @@ deleteJavaScriptRegister(name: string)
 
 getHitTest(): HitTestType
 
-获取当前被点击区域的元素类型。
+返回当前被点击区域的元素类型。
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[getHitTest<sup>(deprecated)</sup>](./arkts-apis-webview-WebviewController.md#gethittestdeprecated)代替。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[getHitTest<sup>(deprecated)</sup>](./arkts-apis-webview-WebviewController.md#gethittestdeprecated)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -360,7 +360,7 @@ getHitTest(): HitTestType
 
 | 类型                              | 说明          |
 | ------------------------------- | ----------- |
-| [HitTestType](./arkts-basic-components-web-e.md#hittesttypedeprecated) | 被点击区域的元素类型。 |
+| [HitTestType](./arkts-basic-components-web-e.md#hittesttypedeprecated) | 被点击区域的元素类型，用于判断点击的是图片、链接、文本等哪种类型的元素。取值范围如下：0表示未知类型，1表示编辑框，2表示电话号码，3表示电子邮件，4表示网页链接，5表示地图地址，6表示其他类型。 |
 
 **示例：**
 
