@@ -93,7 +93,7 @@ fileAccess(fileAccess: boolean)
 
 imageAccess(imageAccess: boolean)
 
-设置是否允许自动加载图片资源。当属性没有显式调用时，允许自动加载图片资源。
+设置是否允许自动加载图片资源。当属性没有显式调用时，默认允许。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -101,7 +101,7 @@ imageAccess(imageAccess: boolean)
 
 | 参数名         | 类型    | 必填   | 说明            |
 | ----------- | ------- | ---- | --------------- |
-| imageAccess | boolean | 是    | 设置是否允许自动加载图片资源。<br>true表示设置允许自动加载图片资源，false表示设置不允许自动加载图片资源。<br>传入undefined或null时为false。 |
+| imageAccess | boolean | 是    | 设置是否允许自动加载图片资源。<br>true表示允许，false表示不允许。<br>传入undefined或null时为false。 |
 
 **示例：**
   ```ts
@@ -304,7 +304,7 @@ mixedMode(mixedMode: MixedMode)
 
 onlineImageAccess(onlineImageAccess: boolean)
 
-设置是否允许从网络加载图片资源（通过HTTP和HTTPS访问的资源）。当属性没有显式调用时，默认允许从网络加载图片资源。
+设置是否允许从网络加载图片资源（通过HTTP和HTTPS访问的资源）。当属性没有显式调用时，默认允许。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -312,7 +312,7 @@ onlineImageAccess(onlineImageAccess: boolean)
 
 | 参数名               | 类型    | 必填   | 说明             |
 | ----------------- | ------- | ---- | ---------------- |
-| onlineImageAccess | boolean | 是    | 设置是否允许从网络加载图片资源。<br>true表示设置允许从网络加载图片资源，false表示设置不允许从网络加载图片资源。<br>传入undefined或null时为false。 |
+| onlineImageAccess | boolean | 是    | 设置是否允许从网络加载图片资源。<br>true表示允许，false表示不允许。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -480,7 +480,7 @@ geolocationAccess(geolocationAccess: boolean)
 
 mediaPlayGestureAccess(access: boolean)
 
-设置有声视频的自动播放是否需要用户手动点击，静音视频播放不受该接口管控。当该属性未显式设置时，默认有声视频的自动播放需要用户手动点击。
+设置有声视频的自动播放是否需要用户手动点击，静音视频播放不受该接口管控。当该属性未显式设置时，默认需要用户手动点击。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -488,7 +488,7 @@ mediaPlayGestureAccess(access: boolean)
 
 | 参数名    | 类型    | 必填   | 说明                |
 | ------ | ------- | ---- | ------------------- |
-| access | boolean | 是    | 设置有声视频的自动播放是否需要用户手动点击。<br>true表示设置有声视频的自动播放需要用户手动点击，false表示设置有声视频的自动播放不需要用户手动点击，能自动播放。<br>传入undefined或null时为false。 |
+| access | boolean | 是    | 设置有声视频的自动播放是否需要用户手动点击。<br>true表示需要用户手动点击，false表示不需要，能自动播放。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -2556,7 +2556,7 @@ enableNativeMediaPlayer(config: NativeMediaPlayerConfig)
 
 | 参数名  | 类型   | 必填   | 说明 |
 | ---- | ------ | ---- | ---------------------|
-| config | [NativeMediaPlayerConfig](./arkts-basic-components-web-i.md#nativemediaplayerconfig12) | 是    | enable: 是否开启该功能。<br/> shouldOverlay: 该功能开启后， 应用接管网页视频的播放器画面是否覆盖网页内容。<br>传入undefined或null时为`{enable: false, shouldOverlay: false}`。|
+| config | [NativeMediaPlayerConfig](./arkts-basic-components-web-i.md#nativemediaplayerconfig12) | 是    | 应用接管网页媒体播放功能的配置对象。包含以下属性：enable（boolean类型，是否开启该功能，默认为false），shouldOverlay（boolean类型，当功能开启后，应用接管网页视频的播放器画面是否覆盖网页内容，默认为false）。<br>传入undefined或null时为`{enable: false, shouldOverlay: false}`。|
 
   **示例：**
 
@@ -4626,7 +4626,7 @@ enableFullscreenVideoOverlay(enabled: boolean)
 
 | 参数名 | 类型 | 必填 | 说明                         |
 | ------ | -------- | ---- | -------------------------------- |
-| enabled | boolean  | 是   | 设置Web组件是否开启覆盖式全屏播放功能。<br>true表示开启该功能。<br>false表示不开启。 |
+| enabled | boolean  | 是   | 设置Web组件是否开启覆盖式全屏播放功能。<br>true表示开启该功能。<br>false表示不开启。<br>传入undefined或null时为false。 |
 
 **示例：**
 

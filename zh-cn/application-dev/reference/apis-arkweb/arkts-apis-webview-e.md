@@ -236,7 +236,7 @@ Scroll滚动类型，用于[setScrollable](./arkts-apis-webview-WebviewControlle
 | 名称 | 值 | 说明 |
 |------|----|------|
 | PAUSED  | 0 | 播放状态为暂停状态，表示媒体已暂停。 |
-| PLAYING | 1 | 播放状态为播放状态，表示媒体正在播放。 |
+| PLAYING | 1 | 表示媒体正在播放。 |
 
 ## NetworkState<sup>12+</sup>
 
@@ -262,7 +262,7 @@ Scroll滚动类型，用于[setScrollable](./arkts-apis-webview-WebviewControlle
 | HAVE_NOTHING      | 0 | 没有缓存。 |
 | HAVE_METADATA     | 1 | 只缓存了媒体元数据。 |
 | HAVE_CURRENT_DATA | 2 | 只缓存到当前的播放进度。 |
-| HAVE_FUTURE_DATA  | 3 | 缓存时长超过了当前的播放进度, 但是仍有可能导致卡顿。 |
+| HAVE_FUTURE_DATA  | 3 | 缓存时长超过了当前的播放进度，但是仍有可能导致卡顿。 |
 | HAVE_ENOUGH_DATA  | 4 | 缓存了足够的数据，保证播放流畅。 |
 
 ## MediaError<sup>12+</sup>

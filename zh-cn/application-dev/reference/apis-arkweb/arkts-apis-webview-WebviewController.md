@@ -4774,7 +4774,7 @@ struct Index {
 
 setAudioMuted(mute: boolean): void
 
-设置网页静音。
+设置网页静音。典型使用场景包括：应用需要控制网页音量（如提供静音开关）、后台播放时需要静音等。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -10763,6 +10763,10 @@ struct WebComponent {
   aboutToAppear(): void {
     let context: Context | undefined = this.uiContext.getHostContext() as common.UIAbilityContext;
     atManager.requestPermissionsFromUser(context, ['ohos.permission.MICROPHONE'], (err: BusinessError, data: PermissionRequestResult) => {
+      if (err) {
+        console.error(`ErrorCode: ${err.code}, Message: ${err.message}`);
+        return;
+      }
       console.info('data:' + JSON.stringify(data));
       console.info('data permissions:' + data.permissions);
       console.info('data authResults:' + data.authResults);
@@ -10862,7 +10866,7 @@ struct WebComponent {
 
 pauseMicrophone(): void
 
-暂停当前网页麦克风捕获。
+暂停当前网页捕获。**说明**：与resumeMicrophone和stopMicrophone的区别：pauseMicrophone仅暂停麦克风捕获，可通过resumeMicrophone恢复；stopMicrophone会停止捕获并释放资源。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
