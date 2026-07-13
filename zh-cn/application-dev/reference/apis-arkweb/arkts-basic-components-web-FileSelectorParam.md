@@ -54,11 +54,13 @@ getMode(): FileSelectorMode
 
 | 类型                                       | 说明          |
 | ---------------------------------------- | ----------- |
-| [FileSelectorMode](./arkts-basic-components-web-e.md#fileselectormode9) | 返回文件选择器模式的枚举值，表示当前文件选择器的选择模式类型。具体枚举值及其含义请参考[FileSelectorMode枚举说明](./arkts-basic-components-web-e.md#fileselectormode9)。 |
+| [FileSelectorMode](./arkts-basic-components-web-e.md#fileselectormode9) | 返回文件选择器模式的枚举值，表示当前文件选择器的选择模式类型。具体枚举值及其含义请参考[FileSelectorMode](./arkts-basic-components-web-e.md#fileselectormode9)枚举说明。 |
 
 ## getAcceptType<sup>9+</sup>
 
-> **说明：** 与getMimeTypes和getAcceptableFileTypes的对应关系：getAcceptType和getMimeTypes对应HTML option的accept属性，getAcceptableFileTypes对应HTML option的types属性。根据HTML规范，accept属性与types属性为互斥关系，不应同时使用。
+> **说明：**
+>
+> 与getMimeTypes和getAcceptableFileTypes的对应关系：getAcceptType和getMimeTypes对应HTML option的accept属性，getAcceptableFileTypes对应HTML option的types属性。根据HTML规范，accept属性与types属性为互斥关系，不应同时使用。
 
 getAcceptType(): Array\<string\>
 

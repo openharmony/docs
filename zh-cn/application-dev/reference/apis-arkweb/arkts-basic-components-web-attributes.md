@@ -1990,22 +1990,22 @@ nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
 > - 支持嵌套滚动的容器：[Grid](../apis-arkui/arkui-ts/ts-container-grid.md)、[List](../apis-arkui/arkui-ts/ts-container-list.md)、[Scroll](../apis-arkui/arkui-ts/ts-container-scroll.md)、[Swiper](../apis-arkui/arkui-ts/ts-container-swiper.md)、[Tabs](../apis-arkui/arkui-ts/ts-container-tabs.md)、[WaterFlow](../apis-arkui/arkui-ts/ts-container-waterflow.md)、[Refresh](../apis-arkui/arkui-ts/ts-container-refresh.md)、[bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)。
 > - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
 > - 嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置[overScrollMode](#overscrollmode11)为`OverScrollMode.NEVER`，避免影响此场景的用户体验。
->
-> ```mermaid
-> graph LR
->     A[用户手势/鼠标/触控板] --> B{检测滚动方向}
->     B -->|上下左右| C[NestedScrollOptionsExt]
->     B -->|前后| D[NestedScrollOptions]
->     C --> E{滚动优先级判断}
->     D --> E
->     E -->|SELF_FIRST| F[Web组件先响应]
->     E -->|PARENT_FIRST| G[父组件先响应]
->     F -->|Web滚动到边缘| H[触发滚动联动]
->     G -->|父组件滚动完成| H
->     H --> I{检查overScrollMode}
->     I -->|NEVER| J[无过界回弹]
->     I -->|非NEVER| K[有过界回弹效果]
-> ```
+
+ ```mermaid
+ graph LR
+     A[用户手势/鼠标/触控板] --> B{检测滚动方向}
+     B -->|上下左右| C[NestedScrollOptionsExt]
+     B -->|前后| D[NestedScrollOptions]
+     C --> E{滚动优先级判断}
+     D --> E
+     E -->|SELF_FIRST| F[Web组件先响应]
+     E -->|PARENT_FIRST| G[父组件先响应]
+     F -->|Web滚动到边缘| H[触发滚动联动]
+     G -->|父组件滚动完成| H
+     H --> I{检查overScrollMode}
+     I -->|NEVER| J[无过界回弹]
+     I -->|非NEVER| K[有过界回弹效果]
+ ```
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2736,7 +2736,7 @@ editMenuOptions(editMenu: EditMenuOptions)
 
 | 参数名              | 类型                              | 必填   | 说明          |
 | ------------------- | ------------------------------   | ------ | ------------- |
-| editMenu | [EditMenuOptions](../apis-arkui/arkui-ts/ts-text-common.md#editmenuoptions) | 是     | Web自定义文本菜单选项。EditMenuOptions对象包含以下属性：onCreateMenu（函数类型，用于创建菜单，参数为Array<TextMenuItem>，返回Array<TextMenuItem>），onMenuItemClick（函数类型，菜单项被点击时的回调，参数为menuItem和textRange，返回boolean），onPrepareMenu（函数类型，菜单显示前的回调，参数为Array<TextMenuItem>，返回Array<TextMenuItem>）。<br>菜单项数量，及菜单的content大小、icon图标尺寸，与ArkUI [Menu](../apis-arkui/arkui-ts/ts-basic-components-menu.md)组件保持一致。<br>菜单中系统自带的id枚举值（[TextMenuItemId](../apis-arkui/arkui-ts/ts-text-common.md#textmenuitemid12)）在Web中仅支持CUT、COPY、PASTE、SELECT_ALL、TRANSLATE、SEARCH、AI_WRITER七项。<br>onMenuItemClick函数中textRange参数在Web中无意义，传入值为-1。|
+| editMenu | [EditMenuOptions](../apis-arkui/arkui-ts/ts-text-common.md#editmenuoptions) | 是     | Web自定义文本菜单选项。EditMenuOptions对象包含以下属性：onCreateMenu（函数类型，用于创建菜单，参数为Array\<TextMenuItem>，返回Array\<TextMenuItem>），onMenuItemClick（函数类型，菜单项被点击时的回调，参数为menuItem和textRange，返回boolean），onPrepareMenu（函数类型，菜单显示前的回调，参数为Array\<TextMenuItem>，返回Array\<TextMenuItem>）。<br>菜单项数量，及菜单的content大小、icon图标尺寸，与ArkUI [Menu](../apis-arkui/arkui-ts/ts-basic-components-menu.md)组件保持一致。<br>菜单中系统自带的id枚举值（[TextMenuItemId](../apis-arkui/arkui-ts/ts-text-common.md#textmenuitemid12)）在Web中仅支持CUT、COPY、PASTE、SELECT_ALL、TRANSLATE、SEARCH、AI_WRITER七项。<br>onMenuItemClick函数中textRange参数在Web中无意义，传入值为-1。|
 
 **示例**
 
@@ -3576,7 +3576,7 @@ dataDetectorConfig(config: TextDataDetectorConfig)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| config | [TextDataDetectorConfig](../apis-arkui/arkui-ts/ts-text-common.md#textdatadetectorconfig11对象说明) | 是   | 文本识别配置。设置后，Web组件将根据配置识别网页中的文本实体（如电话、邮箱、网址等），并应用指定的颜色和下划线样式。<br>TextDataDetectorConfig对象包含以下属性：types（Array<TextDataDetectorType>类型，要识别的实体类型数组，如PHONE_NUMBER、EMAIL等），color（ResourceColor类型，识别实体的文本颜色），decoration（TextDecoration类型，识别实体的文本装饰样式），enablePreviewMenu（boolean类型，是否启用预览菜单）。<br>需配合enableDataDetector属性一起使用，当enableDataDetector为false或未设置时，dataDetectorConfig的配置不生效。<br>传入undefined或null时不启用文本识别配置。|
+| config | [TextDataDetectorConfig](../apis-arkui/arkui-ts/ts-text-common.md#textdatadetectorconfig11对象说明) | 是   | 文本识别配置。设置后，Web组件将根据配置识别网页中的文本实体（如电话、邮箱、网址等），并应用指定的颜色和下划线样式。<br>TextDataDetectorConfig对象包含以下属性：types（Array\<TextDataDetectorType>类型，要识别的实体类型数组，如PHONE_NUMBER、EMAIL等），color（ResourceColor类型，识别实体的文本颜色），decoration（TextDecoration类型，识别实体的文本装饰样式），enablePreviewMenu（boolean类型，是否启用预览菜单）。<br>需配合enableDataDetector属性一起使用，当enableDataDetector为false或未设置时，dataDetectorConfig的配置不生效。<br>传入undefined或null时不启用文本识别配置。|
 
 > **说明：** 
 > 

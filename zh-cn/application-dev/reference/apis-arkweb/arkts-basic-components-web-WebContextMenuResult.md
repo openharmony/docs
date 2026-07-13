@@ -47,7 +47,7 @@ copyImage(): void
 
 > **说明：**
 >
-> 完成操作后，应调用[closeContextMenu](#closeContextMenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
+> 完成操作后，应调用[closeContextMenu](#closecontextmenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -59,7 +59,7 @@ copy(): void
 
 > **说明：**
 >
-> 完成操作后，应调用[closeContextMenu](#closeContextMenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
+> 完成操作后，应调用[closeContextMenu](#closecontextmenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -71,7 +71,7 @@ paste(): void
 
 > **说明：**
 >
-> 完成操作后，应调用[closeContextMenu](#closeContextMenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
+> 完成操作后，应调用[closeContextMenu](#closecontextmenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
 
 > **说明：**
 >
@@ -87,7 +87,7 @@ cut(): void
 
 > **说明：**
 >
-> 完成操作后，应调用[closeContextMenu](#closeContextMenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
+> 完成操作后，应调用[closeContextMenu](#closecontextmenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -99,7 +99,7 @@ selectAll(): void
 
 > **说明：**
 >
-> 完成操作后，应调用[closeContextMenu](#closeContextMenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
+> 完成操作后，应调用[closeContextMenu](#closecontextmenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -115,7 +115,7 @@ undo(): void
 
 > **说明：**
 >
-> 完成操作后，应调用[closeContextMenu](#closeContextMenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
+> 完成操作后，应调用[closeContextMenu](#closecontextmenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -131,7 +131,7 @@ redo(): void
 
 > **说明：**
 >
-> 完成操作后，应调用[closeContextMenu](#closeContextMenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
+> 完成操作后，应调用[closeContextMenu](#closecontextmenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -143,7 +143,7 @@ pasteAndMatchStyle(): void
 
 > **说明：**
 >
-> 完成操作后，应调用[closeContextMenu](#closeContextMenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
+> 完成操作后，应调用[closeContextMenu](#closecontextmenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
 >
 > 需要配置权限：[ohos.permission.READ_PASTEBOARD](../../security/AccessToken/restricted-permissions.md#ohospermissionread_pasteboard)。
 
@@ -157,7 +157,7 @@ requestPasswordAutoFill(): void
 
 > **说明：**
 >
-> 完成操作后，应调用[closeContextMenu](#closeContextMenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
+> 完成操作后，应调用[closeContextMenu](#closecontextmenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -169,7 +169,7 @@ saveImage(): void
 
 > **说明：**
 >
-> 完成操作后，应调用[closeContextMenu](#closeContextMenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
+> 完成操作后，应调用[closeContextMenu](#closecontextmenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
