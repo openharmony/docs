@@ -62,4 +62,4 @@ grant(config: ScreenCaptureConfig): void
 
 | 参数名    | 类型                                     | 必填   | 说明    |
 | ------ | ---------------------------------------- | ---- | ------- |
-| config | [ScreenCaptureConfig](./arkts-basic-components-web-i.md#screencaptureconfig10) | 是   | 屏幕捕获配置，用于设置屏幕捕获的相关参数。配置对象包含捕获区域、分辨率、帧率等属性。配置对象的属性设置对授权效果产生影响。 |
+| config | [ScreenCaptureConfig](./arkts-basic-components-web-i.md#screencaptureconfig10) | 是   | 屏幕捕获配置，用于设置屏幕捕获的相关参数。 |
