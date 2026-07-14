@@ -193,7 +193,7 @@ suspendPlayer?(type: SuspendType): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| type | [SuspendType](./arkts-apis-webview-e.md#suspendtype12) | 是 | 播放器挂起类型，用于指定播放器挂起的方式。不同 SuspendType 取值对应不同的挂起场景，应根据实际挂起需求选择合适的类型。|
+| type | [SuspendType](./arkts-apis-webview-e.md#suspendtype12) | 是 | 播放器挂起类型，用于指定播放器挂起的方式。不同 SuspendType 取值对应不同的挂起场景。|
 
 **示例：**
 
