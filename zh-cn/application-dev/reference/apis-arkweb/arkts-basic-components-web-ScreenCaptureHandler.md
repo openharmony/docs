@@ -28,10 +28,10 @@ ScreenCaptureHandler的构造函数。
 
 deny(): void
 
-拒绝网页所请求的屏幕捕获操作。
+拒绝网页发起的屏幕捕获操作。用于用户选择不允许，或出于安全原因需要阻止屏幕捕获时调用。调用后将终止当前的屏幕捕获请求，系统会通知网页屏幕捕获权限被拒绝。拒绝操作不影响后续新的屏幕捕获请求。
 
 **调用约束：**
-- 与grant()方法互斥，对同一个ScreenCaptureHandler实例的同一请求只能调用其中一个。
+- 与 grant() 方法互斥，对同一个 ScreenCaptureHandler 实例的同一请求只能调用其中一个。
 - 调用后不应再对同一请求调用另一个方法。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -56,14 +56,10 @@ grant(config: ScreenCaptureConfig): void
 
 对网页访问的屏幕捕获操作进行授权。该方法会根据提供的配置参数授予屏幕捕获权限，授权后网页可以按照配置的参数进行屏幕捕获。配置参数会被验证，确保符合系统安全要求。用于用户同意网页的屏幕捕获请求后调用，或根据业务策略自动授权可信网页时使用。
 
-> **说明：**
->
-> - 需要配置权限：ohos.permission.MICROPHONE。
-
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
 
 | 参数名    | 类型                                     | 必填   | 说明    |
 | ------ | ---------------------------------------- | ---- | ------- |
-| config | [ScreenCaptureConfig](./arkts-basic-components-web-i.md#screencaptureconfig10) | 是   | 屏幕捕获配置。配置对象的属性设置对授权效果产生影响。 |
+| config | [ScreenCaptureConfig](./arkts-basic-components-web-i.md#screencaptureconfig10) | 是   | 屏幕捕获配置，用于设置屏幕捕获的相关参数。配置对象包含捕获区域、分辨率、帧率等属性。配置对象的属性设置对授权效果产生影响。 |
