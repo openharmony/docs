@@ -235,7 +235,7 @@ Scroll滚动类型，用于[setScrollable](./arkts-apis-webview-WebviewControlle
 
 | 名称 | 值 | 说明 |
 |------|----|------|
-| PAUSED  | 0 | 播放状态为暂停状态，表示媒体已暂停。 |
+| PAUSED  | 0 | 表示媒体已暂停。 |
 | PLAYING | 1 | 表示媒体正在播放。 |
 
 ## NetworkState<sup>12+</sup>
