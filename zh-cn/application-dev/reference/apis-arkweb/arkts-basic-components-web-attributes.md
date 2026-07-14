@@ -454,7 +454,7 @@ geolocationAccess(geolocationAccess: boolean)
 
 | 参数名               | 类型    | 必填   | 说明            |
 | ----------------- | ------- | ---- | --------------- |
-| geolocationAccess | boolean | 是    | 设置是否开启获取地理位置权限。<br>true表示开启,false表示不开启。<br>传入undefined或null时为false。 |
+| geolocationAccess | boolean | 是    | 设置是否开启获取地理位置权限。<br>true表示开启，false表示不开启。<br>传入undefined或null时为false。 |
 
 **示例：**
 
