@@ -95,7 +95,6 @@ Web媒体策略的配置。
 > **说明：**
 >
 > 从API version 12开始支持，从API version 20开始废弃。建议使用[editMenuOptions](./arkts-basic-components-web-attributes.md#editmenuoptions12)替代。
-自定义菜单扩展项。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
