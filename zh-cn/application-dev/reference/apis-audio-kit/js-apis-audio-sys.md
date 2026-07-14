@@ -473,6 +473,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 | micInStreamInfo                          | [AudioStreamInfo](arkts-apis-audio-i.md#audiostreaminfo8)                      | 否 | 否 | 麦克风音频流信息。   |
 | capturerInfo                        | [AudioCapturerInfo](arkts-apis-audio-i.md#audiocapturerinfo8)                   | 否 | 否 | 音频采集器信息。         |
 | ecStreamInfo | [AudioStreamInfo](arkts-apis-audio-i.md#audiostreaminfo8) | 否 | 是 | 回声消除音频流信息。<br>若未设置此属性，采集器将仅录制麦克风输入的音频流。    |
+| preferredInputDevice | [AudioDeviceDescriptor](arkts-apis-audio-i.md#audiodevicedescriptor) | 否 | 是 | 当前音频录音器的偏好输入设备。此设备必须为输入设备，并且**capturerInfo**中的源类型必须为[SOURCE_TYPE_VOICE_RECOGNITION](arkts-apis-audio-e.md#sourcetype8)或[SOURCE_TYPE_VOICE_TRANSCRIPTION](#sourcetype8)，否则此参数将被忽略。<br>如果用户未指定设备，系统会自动选择录音设备。<br>当用户指定偏好设备时：<br>1. 如果偏好设备在线，当前音频录音器可能使用该设备录音；如果录音过程中该设备离线，系统将选择其他设备。<br>2. 如果偏好设备离线，系统将选择录音设备；如果录音过程中该设备上线，可能切换到偏好设备。<br>用户可通过[getCurrentAudioCapturerChangeInfo](arkts-apis-audio-AudioCapturer.md#getcurrentaudiocapturerchangeinfo11)查询当前实际使用的设备。<br>**起始版本：** 26.0.0 |
 
 ## AudioCapturerMicInData<sup>24+</sup>
 
