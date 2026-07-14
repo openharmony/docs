@@ -1064,19 +1064,21 @@ LocalHandle对象内存录制功能要求被测应用在启动时替换加载维
 
 应用替换加载维测库方法：
 
-1.应用处于退出状态：下发LocalHandle对象内存录制命令，设置startup_mode参数为true，然后启动应用，应用启动后即可进行数据采集。
+1. 应用处于退出状态：下发LocalHandle对象内存录制命令，设置startup_mode参数为true，然后启动应用，应用启动后即可进行数据采集。
 
-2.应用处于运行状态：下发LocalHandle对象内存录制命令，设置startup_mode参数为true，然后重启应用，应用重启后即可进行数据采集。
+2. 应用处于运行状态：下发LocalHandle对象内存录制命令，设置startup_mode参数为true，然后重启应用，应用重启后即可进行数据采集。
 
 > **说明：**
 >
-> 1.应用加载维测库后，只要应用不退出，维测库持续生效。此后，可以通过非启动模式录制LocalHandle内存，此时startup_mode参数必须设置为false。
+> 1. 应用加载维测库后，只要应用不退出，维测库持续生效。此后，可以通过非启动模式录制LocalHandle内存，此时startup_mode参数必须设置为false。
 >
-> 2.使用此种方式后，此次应用打开的时长会变长，此次运行的性能上也会有损失。但不影响下次的使用。
+> 2. 使用此种方式后，此次应用打开的时长会变长，此次运行的性能上也会有损失。但不影响下次的使用。
 >
-> 3.此种方式抓取到的LocalHandle内存一定是泄漏的。
+> 3. 此种方式抓取到的LocalHandle内存一定是泄漏的。
 >
-> 4.命令行方式获取的trace文件，可以通过DevEco Profiler[离线导入](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-snapshot-basic-operations#section6760173514388)文件功能进行解析。导入的单个文件大小不超过1.5G。
+> 4. 命令行方式获取的trace文件，可以通过DevEco Profiler[离线导入](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-snapshot-basic-operations#section6760173514388)文件功能进行解析。导入的单个文件大小不超过1.5G。
+>
+> 5. 从API版本26.0.0开始，统计模式支持采集local/global handle地址信息能力。
 
 
 ### 手动控制采集时长
