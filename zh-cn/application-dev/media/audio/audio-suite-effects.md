@@ -104,7 +104,7 @@ OH_AudioSuiteNodeBuilder_SetNodeType(builder, OH_AudioNode_Type::EFFECT_NODE_TYP
 OH_AudioSuiteEngine_CreateNode(pipeline, builder, node);
 // 设置声音美化节点效果。
 OH_AudioSuiteEngine_SetVoiceBeautifierType(*node,
-                                            static_cast<OH_VoiceBeautifierType>(params.voiceBeautifierType));
+                                           static_cast<OH_VoiceBeautifierType>(params.voiceBeautifierType));
 ```
 
 ---
