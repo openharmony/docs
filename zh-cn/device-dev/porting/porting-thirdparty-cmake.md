@@ -28,6 +28,7 @@
 | double-conversion/SConstruct | - |
 | double-conversion/WORKSPACE | - |
 | double-conversion/double-conversion.pc.in | - |
+| double-conversion/MODULE.bazel | - |
 
 ## 移植思路
 
