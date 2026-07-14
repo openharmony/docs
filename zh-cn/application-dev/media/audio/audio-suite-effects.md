@@ -24,7 +24,7 @@
 
 ---
 
-## 均衡器效果
+## 均衡器
 
 均衡器效果节点[EFFECT_NODE_TYPE_EQUALIZER](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audionode_type)通过调整不同频段的增益来改变音频的频率特性，实现丰富的音乐风格效果。
 
@@ -78,7 +78,7 @@ OH_AudioSuiteEngine_SetEqualizerFrequencyBandGains(*node, gains);
 ```
 ---
 
-## 声音美化效果
+## 声音美化
 
 声音美化效果节点[EFFECT_NODE_TYPE_VOICE_BEAUTIFIER](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audionode_type)可以提升音频的音质和听感，为用户带来更加优质的听觉体验。
 
