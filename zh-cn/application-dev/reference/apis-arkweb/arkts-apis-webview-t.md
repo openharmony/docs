@@ -53,7 +53,7 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| handler | [NativeMediaPlayerHandler](./arkts-apis-webview-NativeMediaPlayerHandler.md) | 是 | 通过该对象，将播放器的状态报告给 ArkWeb 内核。应用通过该对象上报播放、暂停、错误等状态事件，使ArkWeb内核能够同步网页中的媒体播放状态。应用需要实现该接口定义的必要方法和属性。 |
+| handler | [NativeMediaPlayerHandler](./arkts-apis-webview-NativeMediaPlayerHandler.md) | 是 | 通过该对象，将播放器的状态报告给 ArkWeb 内核。应用通过该对象上报播放、暂停、错误等状态事件，使ArkWeb内核能够同步网页中的媒体播放状态。 |
 | mediaInfo | [MediaInfo](./arkts-apis-webview-i.md#mediainfo12) | 是 | 网页媒体的信息。 |
 
 **返回值：**
