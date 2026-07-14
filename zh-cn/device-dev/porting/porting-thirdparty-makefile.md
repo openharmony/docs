@@ -54,7 +54,7 @@
 
 2. 执行编译
 
-   linux命令行中进入yxml的源文件目录（即图1所示目录），执行下列命令：
+   linux命令行中进入yxml的源文件目录（即表1所示目录），执行下列命令：
 
 
    ```text
@@ -152,11 +152,11 @@ yxml库添加的过程除了适配文件build.gn和config.gni有些许变化外�
 ```gn
 import("config.gni")
 group("yxml") {
-    if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
+    if (ohos_build_thirdparty_migrated_from_fuchsia == true) {
         deps = [":make"]
     }
 }
-if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
+if (ohos_build_thirdparty_migrated_from_fuchsia == true) {
     action("make") {
         script = "//third_party/yxml/build_thirdparty.py"
         outputs = ["$target_out_dir/log_yxml.txt"]
