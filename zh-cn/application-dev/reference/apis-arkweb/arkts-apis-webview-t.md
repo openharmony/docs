@@ -45,7 +45,7 @@ type OnProxyConfigChangeCallback = () => void
 
 type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, mediaInfo: MediaInfo) => NativeMediaPlayerBridge
 
-[onCreateNativeMediaPlayer](./arkts-apis-webview-WebviewController.md#oncreatenativemediaplayer12)方法的参数。一个回调函数，在网页需要播放媒体时被调用，用于创建一个播放器接管网页中的媒体播放。通过接管机制，应用可以使用自定义播放器实现特殊功能或优化性能。
+[onCreateNativeMediaPlayer](./arkts-apis-webview-WebviewController.md#oncreatenativemediaplayer12)方法的参数。一个回调函数，创建播放器实例，用于接管网页中的媒体播放。通过接管机制，应用可以使用自定义播放器实现特殊功能或优化性能。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -53,7 +53,7 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| handler | [NativeMediaPlayerHandler](./arkts-apis-webview-NativeMediaPlayerHandler.md) | 是 | 通过该对象，将播放器的状态报告给 ArkWeb 内核。应用需要实现该接口定义的必要方法和属性。 |
+| handler | [NativeMediaPlayerHandler](./arkts-apis-webview-NativeMediaPlayerHandler.md) | 是 | 通过该对象，将播放器的状态报告给 ArkWeb 内核。应用通过该对象上报播放、暂停、错误等状态事件，使ArkWeb内核能够同步网页中的媒体播放状态。应用需要实现该接口定义的必要方法和属性。 |
 | mediaInfo | [MediaInfo](./arkts-apis-webview-i.md#mediainfo12) | 是 | 网页媒体的信息。 |
 
 **返回值：**
