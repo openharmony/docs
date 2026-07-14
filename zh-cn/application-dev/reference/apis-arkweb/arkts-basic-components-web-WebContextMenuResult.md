@@ -72,8 +72,6 @@ paste(): void
 > **说明：**
 >
 > 完成操作后，应调用[closeContextMenu](#closecontextmenu9)关闭菜单，未调用可能导致菜单资源未正确释放。
-
-> **说明：**
 >
 > 需要配置权限：[ohos.permission.READ_PASTEBOARD](../../security/AccessToken/restricted-permissions.md#ohospermissionread_pasteboard)。
 
