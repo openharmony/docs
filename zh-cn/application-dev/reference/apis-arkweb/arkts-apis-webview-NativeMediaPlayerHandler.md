@@ -55,7 +55,7 @@ handleVolumeChanged(volume: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| volume | number | 是 | 播放器的音量，取值范围：[0, 1.0]。超出范围时，ArkWeb 内核将忽略该值。|
+| volume | number | 是 | 播放器的音量，取值范围：[0, 1.0]。超出范围时，ArkWeb 内核将不会执行。|
 
 **示例：**
 
@@ -91,7 +91,7 @@ handlePlaybackRateChanged(playbackRate: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| playbackRate | number | 是 | 播放速率，取值范围：[0, +∞)。传入负数时，ArkWeb 内核将忽略该值。|
+| playbackRate | number | 是 | 播放速率，取值范围：[0, +∞)。传入负数时，ArkWeb 内核将不会执行。|
 
 **示例：**
 
@@ -109,7 +109,7 @@ handleDurationChanged(duration: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| duration | number | 是 | 媒体的总时长。<br>单位：秒，取值范围：[0, +∞)。传入负数时，ArkWeb 内核将忽略该值。|
+| duration | number | 是 | 媒体的总时长。<br>单位：秒，取值范围：[0, +∞)。传入负数时，ArkWeb 内核将不会执行。|
 
 **示例：**
 
@@ -127,7 +127,7 @@ handleTimeUpdate(currentPlayTime: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| currentPlayTime | number | 是 | 当前播放时间。<br>单位：秒，取值范围：[0, duration]。超出范围时，ArkWeb 内核将忽略该值。|
+| currentPlayTime | number | 是 | 当前播放时间。<br>单位：秒，取值范围：[0, duration]。超出范围时，ArkWeb 内核将不会执行。|
 
 **示例：**
 
@@ -145,7 +145,7 @@ handleBufferedEndTimeChanged(bufferedEndTime: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| bufferedEndTime | number | 是 | 媒体缓冲的时长。<br>单位：秒，取值范围：[0, duration]。超出范围时，ArkWeb 内核将忽略该值。|
+| bufferedEndTime | number | 是 | 媒体缓冲的时长。<br>单位：秒，取值范围：[0, duration]。超出范围时，ArkWeb 内核将不会执行。|
 
 **示例：**
 
