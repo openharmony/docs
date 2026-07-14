@@ -460,7 +460,11 @@ ArkWeb_BlanklessErrorCode OH_NativeArkWeb_SetBlanklessLoadingWithKey(const char*
 
 **描述：**
 
-设置无白屏加载是否启用。本接口必须与[OH_NativeArkWeb_GetBlanklessInfoWithKey](#oh_nativearkweb_getblanklessinfowithkey)接口配套使用。
+设置无白屏加载是否启用。本接口必须与OH_NativeArkWeb_GetBlanklessInfoWithKey接口配套使用。
+
+**使用场景：**
+
+根据页面首屏加载预测信息动态决定是否启用无白屏加载时使用，例如当相似度预测值较高时启用无白屏加载优化，当相似度较低时不启用以避免资源浪费。
 
 > **说明：**
 >
@@ -477,14 +481,14 @@ ArkWeb_BlanklessErrorCode OH_NativeArkWeb_SetBlanklessLoadingWithKey(const char*
 | 参数项                                                 | 描述 |
 |-----------------------------------------------------| -- |
 | const char* webTag  | Web组件名称。 |
-| const char* key | 唯一标识本页面的key值。必须与[OH_NativeArkWeb_GetBlanklessInfoWithKey](#oh_nativearkweb_getblanklessinfowithkey)接口的key值相同。<br>合法取值范围：非空，长度不超过2048个字符。<br>非法值设置行为：返回错误码[ArkWeb_BlanklessErrorCode](./capi-arkweb-error-code-h.md#arkweb_blanklesserrorcode)，插帧不生效。 |
-| bool isStarted | 是否启用开始插帧，true：启用，false：不启用。<br>默认值：false。 |
+| const char* key | 唯一标识本页面的key值。必须与[OH_NativeArkWeb_GetBlanklessInfoWithKey](#oh_nativearkweb_getblanklessinfowithkey)接口的key值相同。<br>合法取值范围：非空，长度不超过2048个字符。<br>非法值设置行为：返回错误码[ArkWeb_BlanklessErrorCode](capi-arkweb-error-code-h.md#arkweb_blanklesserrorcode)，插帧不生效。 |
+| bool isStarted | 是否启用插帧。true：启用插帧，当页面首屏相似度较高且需要减少白屏时间以提升加载体验时选择；false：不启用插帧，当页面跳变过大导致相似度较低或不需要优化加载体验时选择。<br>默认值：false。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [ArkWeb_BlanklessErrorCode](./capi-arkweb-error-code-h.md#arkweb_blanklesserrorcode) | 返回接口调用是否成功，具体见[ArkWeb_BlanklessErrorCode](./capi-arkweb-error-code-h.md#arkweb_blanklesserrorcode)定义。 |
+| [`ArkWeb_BlanklessErrorCode`](capi-arkweb-error-code-h.md#arkweb_blanklesserrorcode) | 返回错误码，具体见[ArkWeb_BlanklessErrorCode](capi-arkweb-error-code-h.md#arkweb_blanklesserrorcode)定义。 |
 
 ### OH_NativeArkWeb_ClearBlanklessLoadingCache()
 
@@ -508,8 +512,8 @@ void OH_NativeArkWeb_ClearBlanklessLoadingCache(const char* key[], uint32_t size
 
 | 参数项                                                 | 描述 |
 |-----------------------------------------------------| -- |
-| const char* key[] | 清除Blankless优化方案页面的key值列表，key值为[OH_NativeArkWeb_GetBlanklessInfoWithKey](#oh_nativearkweb_getblanklessinfowithkey)中指定过的。<br>默认值：所有Blankless优化方案缓存的页面key列表。<br>合法取值范围：长度不超过2048，key列表长度<=100。key和加载页面时输入给ArkWeb的相同。<br>非法值设置行为：key长度超过2048时该key不生效；长度超过100时，取前100个；当为NULL时，使用默认值。 |
-| uint32_t size | keys数组的大小。<br>默认值：0。<br>合法取值范围：0~100。取值超过100时，keys数组取前100个。<br>非法值设置行为：0。 |
+| const char* key[] | 清除Blankless优化方案页面的key值列表，key值为[OH_NativeArkWeb_GetBlanklessInfoWithKey](#oh_nativearkweb_getblanklessinfowithkey)中指定过的。<br>合法取值范围：长度不超过2048，keys数组长度<=100。key和加载页面时输入给ArkWeb的相同。<br>非法值设置行为：key长度超过2048时该key不生效；长度超过100时，取前100个；当为NULL时，清除所有缓存。 |
+| uint32_t size | keys数组的大小。<br>合法取值范围：0~100。取值超过100时，keys数组取前100个。<br>非法值设置行为：取值大于100时，取前100个。 |
 
 
 ### OH_NativeArkWeb_SetBlanklessLoadingCacheCapacity()
@@ -522,19 +526,23 @@ uint32_t OH_NativeArkWeb_SetBlanklessLoadingCacheCapacity(uint32_t capacity)
 
 设置无白屏加载方案的持久化缓存容量，返回实际生效值。默认缓存容量为30MB，最大值为100MB。当实际缓存超过容量时，将采用淘汰不常用的过渡帧的方式清理。
 
+**使用场景：**
+
+使用者需要自定义缓存容量的场景。
+
 **起始版本：** 20
 
 **参数：**
 
 | 参数项                                                 | 描述 |
 |-----------------------------------------------------| -- |
-| uint32_t capacity  | 设置持久化缓存设置，单位MB，最大设置不超过100MB。<br>默认值：30MB。<br>合法取值范围：0~100，当设置为0时，无缓存空间，则功能全局不开启。<br>非法值处理行为：大于100时生效值为100。 |
+| uint32_t capacity  | 设置持久化缓存容量，单位MB，最大设置不超过100MB。<br>默认值：30MB。<br>合法取值范围：0~100，当设置为0时，无缓存空间，则功能全局不开启。<br>非法值处理行为：大于100时生效值为100。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| uint32_t | 返回实际生效的容量值，范围0~100。<br>大于100时生效值为100。 |
+| uint32_t | 返回实际生效的容量值，单位为MB，范围0~100。<br>大于100时生效值为100。 |
 
 ### OH_NativeArkWeb_SetActiveWebEngineVersion()
 
