@@ -116,8 +116,8 @@
 | [double OH_Drawing_TypographyGetLongestLineWithIndent(OH_Drawing_Typography* typography)](#oh_drawing_typographygetlongestlinewithindent) | 获取排版对象最长行的宽度（该宽度包含当前行缩进的宽度），该接口需要在[OH_Drawing_TypographyLayout](capi-drawing-text-typography-h.md#oh_drawing_typographylayout)接口调用之后调用，建议实际使用时将返回值向上取整。当文本内容为空时，返回0.0。 |
 | [double OH_Drawing_TypographyGetMinIntrinsicWidth(OH_Drawing_Typography* typography)](#oh_drawing_typographygetminintrinsicwidth) | 获取排版对象的最小固有宽度，该接口需要在[OH_Drawing_TypographyLayout](capi-drawing-text-typography-h.md#oh_drawing_typographylayout)接口调用之后调用。 |
 | [double OH_Drawing_TypographyGetMaxIntrinsicWidth(OH_Drawing_Typography* typography)](#oh_drawing_typographygetmaxintrinsicwidth) | 获取排版对象的最大固有宽度，该接口需要在[OH_Drawing_TypographyLayout](capi-drawing-text-typography-h.md#oh_drawing_typographylayout)接口调用之后调用。 |
-| [double OH_Drawing_TypographyGetAlphabeticBaseline(OH_Drawing_Typography* typography)](#oh_drawing_typographygetalphabeticbaseline) | 获取排版样式字母文字基线，该接口需要在[OH_Drawing_TypographyLayout](capi-drawing-text-typography-h.md#oh_drawing_typographylayout)接口调用之后调用。 |
-| [double OH_Drawing_TypographyGetIdeographicBaseline(OH_Drawing_Typography* typography)](#oh_drawing_typographygetideographicbaseline) | 获取排版样式表意文字基线，该接口需要在[OH_Drawing_TypographyLayout](capi-drawing-text-typography-h.md#oh_drawing_typographylayout)接口调用之后调用。 |
+| [double OH_Drawing_TypographyGetAlphabeticBaseline(OH_Drawing_Typography* typography)](#oh_drawing_typographygetalphabeticbaseline) | 获取排版对象字母文字基线，该接口需要在[OH_Drawing_TypographyLayout](capi-drawing-text-typography-h.md#oh_drawing_typographylayout)接口调用之后调用。 |
+| [double OH_Drawing_TypographyGetIdeographicBaseline(OH_Drawing_Typography* typography)](#oh_drawing_typographygetideographicbaseline) | 获取排版对象表意文字基线，该接口需要在[OH_Drawing_TypographyLayout](capi-drawing-text-typography-h.md#oh_drawing_typographylayout)接口调用之后调用。 |
 | [void OH_Drawing_TypographyHandlerAddPlaceholder(OH_Drawing_TypographyCreate* handler,OH_Drawing_PlaceholderSpan* span)](#oh_drawing_typographyhandleraddplaceholder) | 设置占位符。 |
 | [bool OH_Drawing_TypographyDidExceedMaxLines(OH_Drawing_Typography* typography)](#oh_drawing_typographydidexceedmaxlines) | 获取排版对象中文本是否超过最大行，该接口需要在[OH_Drawing_TypographyLayout](capi-drawing-text-typography-h.md#oh_drawing_typographylayout)接口调用之后调用，如果没有通过[OH_Drawing_SetTypographyTextMaxLines](capi-drawing-text-typography-h.md#oh_drawing_settypographytextmaxlines)接口设置最大行，则返回false。 |
 | [OH_Drawing_TextBox* OH_Drawing_TypographyGetRectsForRange(OH_Drawing_Typography* typography,size_t start, size_t end, OH_Drawing_RectHeightStyle heightStyle, OH_Drawing_RectWidthStyle widthStyle)](#oh_drawing_typographygetrectsforrange) | 获取排版对象中指定范围内的文本框，该接口需要在[OH_Drawing_TypographyLayout](capi-drawing-text-typography-h.md#oh_drawing_typographylayout)接口调用之后调用。不再需要[OH_Drawing_TextBox](capi-drawing-oh-drawing-textbox.md)时，请使用[OH_Drawing_TypographyDestroyTextBox](capi-drawing-text-typography-h.md#oh_drawing_typographydestroytextbox)接口释放该对象的指针。 |
@@ -176,23 +176,23 @@
 | [void OH_Drawing_SetTypographyTextUseLineStyle(OH_Drawing_TypographyStyle* style, bool useLineStyle)](#oh_drawing_settypographytextuselinestyle) | 设置文本排版是否启用行样式。 |
 | [void OH_Drawing_SetTypographyTextLineStyleFontWeight(OH_Drawing_TypographyStyle* style, int weight)](#oh_drawing_settypographytextlinestylefontweight) | 设置排版样式中支柱样式的文本样式字重。在<!--RP1-->OpenHarmony 6.1<!--RP1End-->之前，仅系统字体中的可变字体支持字重调节；从<!--RP1-->OpenHarmony 6.1<!--RP1End-->开始，系统字体与三方注册字体中的可变字体均支持字重调节。非可变字体设置字重值小于semi-bold时字体粗细无变化，设置字重值大于等于semi-bold时可能会触发伪加粗效果。 |
 | [void OH_Drawing_SetTypographyTextLineStyleFontStyle(OH_Drawing_TypographyStyle* style, int fontStyle)](#oh_drawing_settypographytextlinestylefontstyle) | 设置文本排版样式中支柱样式的字体样式。 |
-| [void OH_Drawing_SetTypographyTextLineStyleFontFamilies(OH_Drawing_TypographyStyle* style, int fontFamiliesNumber, const char* fontFamilies[])](#oh_drawing_settypographytextlinestylefontfamilies) | 设置文本排版行样式字体类型。 |
+| [void OH_Drawing_SetTypographyTextLineStyleFontFamilies(OH_Drawing_TypographyStyle* style, int fontFamiliesNumber, const char* fontFamilies[])](#oh_drawing_settypographytextlinestylefontfamilies) | 设置文本排版行样式字体家族。 |
 | [void OH_Drawing_SetTypographyTextLineStyleFontSize(OH_Drawing_TypographyStyle* style, double lineStyleFontSize)](#oh_drawing_settypographytextlinestylefontsize) | 设置文本排版行样式字号。 |
 | [void OH_Drawing_SetTypographyTextLineStyleFontHeight(OH_Drawing_TypographyStyle* style, double lineStyleFontHeight)](#oh_drawing_settypographytextlinestylefontheight) | 设置文本排版行样式字体高度。 |
 | [void OH_Drawing_SetTypographyTextLineStyleHalfLeading(OH_Drawing_TypographyStyle* style, bool lineStyleHalfLeading)](#oh_drawing_settypographytextlinestylehalfleading) | 设置文本排版行样式是否为一半行间距。 |
 | [void OH_Drawing_SetTypographyTextLineStyleSpacingScale(OH_Drawing_TypographyStyle* style, double spacingScale)](#oh_drawing_settypographytextlinestylespacingscale) | 设置文本排版行样式间距比例。 |
 | [void OH_Drawing_SetTypographyTextLineStyleOnly(OH_Drawing_TypographyStyle* style, bool lineStyleOnly)](#oh_drawing_settypographytextlinestyleonly) | 设置文本排版是否仅启用行样式。 |
-| [OH_Drawing_TextShadow* OH_Drawing_CreateTextShadow(void)](#oh_drawing_createtextshadow) | 创建指向字体阴影对象的指针。不再需要[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)时，请使用[OH_Drawing_DestroyTextShadow](capi-drawing-text-typography-h.md#oh_drawing_destroytextshadow)接口释放该对象的指针。 |
-| [void OH_Drawing_DestroyTextShadow(OH_Drawing_TextShadow* shadow)](#oh_drawing_destroytextshadow) | 释放被字体阴影对象占据的内存。 |
-| [OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadows(OH_Drawing_TextStyle* style)](#oh_drawing_textstylegetshadows) | 获取字体阴影容器。不再需要[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)时，请使用[OH_Drawing_DestroyTextShadows](capi-drawing-text-typography-h.md#oh_drawing_destroytextshadows)接口释放该对象的指针。 |
-| [int OH_Drawing_TextStyleGetShadowCount(OH_Drawing_TextStyle* style)](#oh_drawing_textstylegetshadowcount) | 获取字体阴影容器的大小。 |
-| [void OH_Drawing_TextStyleAddShadow(OH_Drawing_TextStyle* style, const OH_Drawing_TextShadow* shadow)](#oh_drawing_textstyleaddshadow) | 字体阴影容器中添加字体阴影元素。 |
-| [void OH_Drawing_TextStyleClearShadows(OH_Drawing_TextStyle* style)](#oh_drawing_textstyleclearshadows) | 清除字体阴影容器中的所有元素。 |
-| [OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadowWithIndex(OH_Drawing_TextStyle* style, int index)](#oh_drawing_textstylegetshadowwithindex) | 根据下标获取字体阴影容器中的元素。 |
+| [OH_Drawing_TextShadow* OH_Drawing_CreateTextShadow(void)](#oh_drawing_createtextshadow) | 创建指向文本阴影对象的指针。不再需要[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)时，请使用[OH_Drawing_DestroyTextShadow](capi-drawing-text-typography-h.md#oh_drawing_destroytextshadow)接口释放该对象的指针。 |
+| [void OH_Drawing_DestroyTextShadow(OH_Drawing_TextShadow* shadow)](#oh_drawing_destroytextshadow) | 释放被文本阴影对象占据的内存。 |
+| [OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadows(OH_Drawing_TextStyle* style)](#oh_drawing_textstylegetshadows) | 获取文本阴影容器。不再需要[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)时，请使用[OH_Drawing_DestroyTextShadows](capi-drawing-text-typography-h.md#oh_drawing_destroytextshadows)接口释放该对象的指针。 |
+| [int OH_Drawing_TextStyleGetShadowCount(OH_Drawing_TextStyle* style)](#oh_drawing_textstylegetshadowcount) | 获取文本阴影容器的大小。 |
+| [void OH_Drawing_TextStyleAddShadow(OH_Drawing_TextStyle* style, const OH_Drawing_TextShadow* shadow)](#oh_drawing_textstyleaddshadow) | 文本阴影容器中添加文本阴影元素。 |
+| [void OH_Drawing_TextStyleClearShadows(OH_Drawing_TextStyle* style)](#oh_drawing_textstyleclearshadows) | 清除文本阴影容器中的所有元素。 |
+| [OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadowWithIndex(OH_Drawing_TextStyle* style, int index)](#oh_drawing_textstylegetshadowwithindex) | 根据下标获取文本阴影容器中的元素。 |
 | [void OH_Drawing_TypographySetIndents(OH_Drawing_Typography* typography, int indentsNumber, const float indents[])](#oh_drawing_typographysetindents) | 设置文本的排版缩进，不调用此接口默认文本无缩进。 |
 | [float OH_Drawing_TypographyGetIndentsWithIndex(OH_Drawing_Typography* typography, int index)](#oh_drawing_typographygetindentswithindex) | 根据行索引获取排版对象缩进容器中的元素，行索引从0开始。 |
 | [OH_Drawing_Range* OH_Drawing_TypographyGetLineTextRange(OH_Drawing_Typography* typography,int lineNumber, bool includeSpaces)](#oh_drawing_typographygetlinetextrange) | 获取排版对象中行的边界，该接口需要在[OH_Drawing_TypographyLayout](capi-drawing-text-typography-h.md#oh_drawing_typographylayout)接口调用之后调用。该接口只能获取已有行的边界，即输入行索引从0开始，最大行索引为[OH_Drawing_TypographyGetLineCount](capi-drawing-text-typography-h.md#oh_drawing_typographygetlinecount) - 1。 |
-| [void OH_Drawing_DestroyTextShadows(OH_Drawing_TextShadow* shadow)](#oh_drawing_destroytextshadows) | 释放由被字体阴影对象OH_Drawing_TextShadow构成的vector占据的内存。 |
+| [void OH_Drawing_DestroyTextShadows(OH_Drawing_TextShadow* shadow)](#oh_drawing_destroytextshadows) | 释放由被文本阴影对象OH_Drawing_TextShadow构成的vector占据的内存。 |
 | [OH_Drawing_FontConfigInfo* OH_Drawing_GetSystemFontConfigInfo(OH_Drawing_FontConfigInfoErrorCode* errorCode)](#oh_drawing_getsystemfontconfiginfo) | 获取系统字体配置信息。 |
 | [void OH_Drawing_DestroySystemFontConfigInfo(OH_Drawing_FontConfigInfo* drawFontCfgInfo)](#oh_drawing_destroysystemfontconfiginfo) | 释放系统字体配置信息占用的内存。 |
 | [void OH_Drawing_SetTextStyleFontStyleStruct(OH_Drawing_TextStyle* drawingTextStyle,OH_Drawing_FontStyleStruct fontStyle)](#oh_drawing_settextstylefontstylestruct) | 设置文本样式中的字体样式，包括字体字重、字体宽度和字体斜度。 |
@@ -226,7 +226,7 @@
 | [void OH_Drawing_TypographyStyleDestroyStrutStyle(OH_Drawing_StrutStyle* strutstyle)](#oh_drawing_typographystyledestroystrutstyle) | 释放被支柱样式对象占据的内存。 |
 | [bool OH_Drawing_TypographyStyleStrutStyleEquals(OH_Drawing_StrutStyle* from, OH_Drawing_StrutStyle* to)](#oh_drawing_typographystylestrutstyleequals) | 判断支柱样式结构体是否相同。 |
 | [void OH_Drawing_TypographyStyleSetHintsEnabled(OH_Drawing_TypographyStyle* style, bool hintsEnabled)](#oh_drawing_typographystylesethintsenabled) | 设置文本是否启用字形轮廓自动调整，字形轮廓自动调整用于在渲染小字号文本时改善其可读性和外观。 |
-| [void  OH_Drawing_TypographyMarkDirty(OH_Drawing_Typography* typography)](#oh_drawing_typographymarkdirty) | 将排版标记为脏数据，用于初始化排版状态。调用排版对象的属性获取接口前，需先调用[OH_Drawing_TypographyLayout](capi-drawing-text-typography-h.md#oh_drawing_typographylayout)接口进行排版布局。 |
+| [void OH_Drawing_TypographyMarkDirty(OH_Drawing_Typography* typography)](#oh_drawing_typographymarkdirty) | 将排版标记为脏数据，用于初始化排版状态。调用排版对象的属性获取接口前，需先调用[OH_Drawing_TypographyLayout](capi-drawing-text-typography-h.md#oh_drawing_typographylayout)接口进行排版布局。 |
 | [int32_t OH_Drawing_TypographyGetUnresolvedGlyphsCount(OH_Drawing_Typography* typography)](#oh_drawing_typographygetunresolvedglyphscount) | 获取文本中尚未解析的字形的数量，该接口需要在[OH_Drawing_TypographyLayout](capi-drawing-text-typography-h.md#oh_drawing_typographylayout)接口调用并生效之后调用。 |
 | [void OH_Drawing_TypographyUpdateFontSize(OH_Drawing_Typography* typography, size_t from, size_t to, float fontSize)](#oh_drawing_typographyupdatefontsize) | 更新排版对象中的字体大小。 |
 | [void OH_Drawing_TypographyUpdateFontColor(OH_Drawing_Typography* typography, uint32_t color)](#oh_drawing_typographyupdatefontcolor) | 更新排版对象中的字体颜色。如果当前装饰线未设置颜色，使用该接口也会同时更新装饰线的颜色。使用该接口更新字体颜色属性后，可直接使用[OH_Drawing_TypographyPaint](capi-drawing-text-typography-h.md#oh_drawing_typographypaint)进行绘制生效。 |
@@ -237,7 +237,7 @@
 | [OH_Drawing_FontWeight OH_Drawing_TypographyTextlineStyleGetFontWeight(OH_Drawing_TypographyStyle* style)](#oh_drawing_typographytextlinestylegetfontweight) | 获取文本排版行样式字重。 |
 | [OH_Drawing_FontStyle OH_Drawing_TypographyTextlineStyleGetFontStyle(OH_Drawing_TypographyStyle* style)](#oh_drawing_typographytextlinestylegetfontstyle) | 获取文本排版样式中支柱样式的字体样式。 |
 | [char** OH_Drawing_TypographyTextlineStyleGetFontFamilies(OH_Drawing_TypographyStyle* style, size_t* num)](#oh_drawing_typographytextlinestylegetfontfamilies) | 获取文本排版行样式字体家族名。 |
-| [void OH_Drawing_TypographyTextlineStyleDestroyFontFamilies(char** fontFamilies, size_t fontFamiliesNum)](#oh_drawing_typographytextlinestyledestroyfontfamilies) | 释放字体类型占用的内存。 |
+| [void OH_Drawing_TypographyTextlineStyleDestroyFontFamilies(char** fontFamilies, size_t fontFamiliesNum)](#oh_drawing_typographytextlinestyledestroyfontfamilies) | 释放字体家族占用的内存。 |
 | [double OH_Drawing_TypographyTextlineStyleGetFontSize(OH_Drawing_TypographyStyle* style)](#oh_drawing_typographytextlinestylegetfontsize) | 获取文本排版行样式字号。 |
 | [double OH_Drawing_TypographyTextlineStyleGetHeightScale(OH_Drawing_TypographyStyle* style)](#oh_drawing_typographytextlinestylegetheightscale) | 获取文本排版行样式的行高缩放系数。 |
 | [bool OH_Drawing_TypographyTextlineStyleGetHeightOnly(OH_Drawing_TypographyStyle* style)](#oh_drawing_typographytextlinestylegetheightonly) | 获取字体渲染过程中计算字体块高度相关参数的方法。 |
@@ -248,14 +248,14 @@
 | [OH_Drawing_TextDirection OH_Drawing_TypographyGetTextDirection(OH_Drawing_TypographyStyle* style)](#oh_drawing_typographygettextdirection) | 获取指定排版样式中的文本方向。 |
 | [size_t OH_Drawing_TypographyGetTextMaxLines(OH_Drawing_TypographyStyle* style)](#oh_drawing_typographygettextmaxlines) | 获取文本的最大行数。 |
 | [char* OH_Drawing_TypographyGetTextEllipsis(OH_Drawing_TypographyStyle* style)](#oh_drawing_typographygettextellipsis) | 获取指定排版样式设置的省略号文本。 |
-| [void OH_Drawing_TypographyDestroyEllipsis(char* ellipsis)](#oh_drawing_typographydestroyellipsis) | 释放省略号名称列表占用的内存。 |
+| [void OH_Drawing_TypographyDestroyEllipsis(char* ellipsis)](#oh_drawing_typographydestroyellipsis) | 释放省略号文本占用的内存。 |
 | [bool OH_Drawing_TypographyStyleEquals(OH_Drawing_TypographyStyle* from, OH_Drawing_TypographyStyle* to)](#oh_drawing_typographystyleequals) | 判断排版样式是否相同，当前文本高度修饰符模式[OH_Drawing_TextHeightBehavior](capi-drawing-text-typography-h.md#oh_drawing_textheightbehavior)没有被纳入比较。 |
 | [uint32_t OH_Drawing_TextStyleGetColor(OH_Drawing_TextStyle* style)](#oh_drawing_textstylegetcolor) | 获取文本颜色。 |
 | [OH_Drawing_TextDecorationStyle OH_Drawing_TextStyleGetDecorationStyle(OH_Drawing_TextStyle* style)](#oh_drawing_textstylegetdecorationstyle) | 获取文本装饰样式。 |
 | [OH_Drawing_FontWeight OH_Drawing_TextStyleGetFontWeight(OH_Drawing_TextStyle* style)](#oh_drawing_textstylegetfontweight) | 获取字重。 |
 | [OH_Drawing_FontStyle OH_Drawing_TextStyleGetFontStyle(OH_Drawing_TextStyle* style)](#oh_drawing_textstylegetfontstyle) | 获取指定文本样式的字体样式。 |
 | [OH_Drawing_TextBaseline OH_Drawing_TextStyleGetBaseline(OH_Drawing_TextStyle* style)](#oh_drawing_textstylegetbaseline) | 获取指定文本样式的字体基线位置。 |
-| [char** OH_Drawing_TextStyleGetFontFamilies(OH_Drawing_TextStyle* style, size_t* num)](#oh_drawing_textstylegetfontfamilies) | 获取字体类型名称列表。 |
+| [char** OH_Drawing_TextStyleGetFontFamilies(OH_Drawing_TextStyle* style, size_t* num)](#oh_drawing_textstylegetfontfamilies) | 获取字体家族名称列表。 |
 | [void OH_Drawing_TextStyleDestroyFontFamilies(char** fontFamilies, size_t num)](#oh_drawing_textstyledestroyfontfamilies) | 释放长度为num的字体家族名称列表占用的内存。 |
 | [double OH_Drawing_TextStyleGetFontSize(OH_Drawing_TextStyle* style)](#oh_drawing_textstylegetfontsize) | 获取指定文本样式字号。 |
 | [double OH_Drawing_TextStyleGetLetterSpacing(OH_Drawing_TextStyle* style)](#oh_drawing_textstylegetletterspacing) | 获取指定文本样式的字符间距。 |
@@ -264,7 +264,7 @@
 | [bool OH_Drawing_TextStyleGetHalfLeading(OH_Drawing_TextStyle* style)](#oh_drawing_textstylegethalfleading) | 获取指定文本样式一半行间距开关状态。 |
 | [const char* OH_Drawing_TextStyleGetLocale(OH_Drawing_TextStyle* style)](#oh_drawing_textstylegetlocale) | 获取语言环境。 |
 | [void OH_Drawing_TypographyDestroyTextBox(OH_Drawing_TextBox* textBox)](#oh_drawing_typographydestroytextbox) | 释放文本框占用的内存。 |
-| [void OH_Drawing_SetTextShadow(OH_Drawing_TextShadow* shadow, uint32_t color, OH_Drawing_Point* offset,double blurRadius)](#oh_drawing_settextshadow) | 设置字体阴影对象的参数。 |
+| [void OH_Drawing_SetTextShadow(OH_Drawing_TextShadow* shadow, uint32_t color, OH_Drawing_Point* offset,double blurRadius)](#oh_drawing_settextshadow) | 设置文本阴影对象的参数。 |
 | [OH_Drawing_TextTab* OH_Drawing_CreateTextTab(OH_Drawing_TextAlign alignment, float location)](#oh_drawing_createtexttab) | 创建文本制表符对象。 |
 | [void OH_Drawing_DestroyTextTab(OH_Drawing_TextTab* tab)](#oh_drawing_destroytexttab) | 释放文本制表符对象占据的内存。 |
 | [OH_Drawing_TextAlign OH_Drawing_GetTextTabAlignment(OH_Drawing_TextTab* tab)](#oh_drawing_gettexttabalignment) | 获取文本制表符对象的对齐方式。 |
@@ -3305,7 +3305,7 @@ void OH_Drawing_SetTypographyTextLineStyleFontStyle(OH_Drawing_TypographyStyle* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TypographyStyle](capi-drawing-oh-drawing-typographystyle.md)* style | 指向排版样式指向排版样式对象[OH_Drawing_TypographyStyle](capi-drawing-oh-drawing-typographystyle.md)的指针，由[OH_Drawing_CreateTypographyStyle](capi-drawing-text-typography-h.md#oh_drawing_createtypographystyle)获取。 |
+| [OH_Drawing_TypographyStyle](capi-drawing-oh-drawing-typographystyle.md)* style | 指向排版样式对象[OH_Drawing_TypographyStyle](capi-drawing-oh-drawing-typographystyle.md)的指针，由[OH_Drawing_CreateTypographyStyle](capi-drawing-text-typography-h.md#oh_drawing_createtypographystyle)获取。 |
 | int fontStyle | 设置字体样式，设置1为斜体，设置0或其它为非斜体，具体可见[OH_Drawing_FontStyle](capi-drawing-text-typography-h.md#oh_drawing_fontstyle)枚举。 |
 
 ### OH_Drawing_SetTypographyTextLineStyleFontFamilies()
@@ -3316,7 +3316,7 @@ void OH_Drawing_SetTypographyTextLineStyleFontFamilies(OH_Drawing_TypographyStyl
 
 **描述**
 
-设置文本排版行样式字体类型。
+设置文本排版行样式字体家族。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3449,7 +3449,7 @@ OH_Drawing_TextShadow* OH_Drawing_CreateTextShadow(void)
 
 **描述**
 
-创建指向字体阴影对象的指针。不再需要[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)时，请使用[OH_Drawing_DestroyTextShadow](capi-drawing-text-typography-h.md#oh_drawing_destroytextshadow)接口释放该对象的指针。
+创建指向文本阴影对象的指针。不再需要[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)时，请使用[OH_Drawing_DestroyTextShadow](capi-drawing-text-typography-h.md#oh_drawing_destroytextshadow)接口释放该对象的指针。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3459,7 +3459,7 @@ OH_Drawing_TextShadow* OH_Drawing_CreateTextShadow(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* | 指向创建的字体阴影对象。 |
+| [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* | 指向创建的文本阴影对象。 |
 
 ### OH_Drawing_DestroyTextShadow()
 
@@ -3469,7 +3469,7 @@ void OH_Drawing_DestroyTextShadow(OH_Drawing_TextShadow* shadow)
 
 **描述**
 
-释放被字体阴影对象占据的内存。
+释放被文本阴影对象占据的内存。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3480,7 +3480,7 @@ void OH_Drawing_DestroyTextShadow(OH_Drawing_TextShadow* shadow)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* shadow | 指向字体阴影对象[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)的指针，由[OH_Drawing_CreateTextShadow](capi-drawing-text-typography-h.md#oh_drawing_createtextshadow)获取。 |
+| [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* shadow | 指向文本阴影对象[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)的指针，由[OH_Drawing_CreateTextShadow](capi-drawing-text-typography-h.md#oh_drawing_createtextshadow)获取。 |
 
 ### OH_Drawing_TextStyleGetShadows()
 
@@ -3490,7 +3490,7 @@ OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadows(OH_Drawing_TextStyle* styl
 
 **描述**
 
-获取字体阴影容器。不再需要[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)时，请使用[OH_Drawing_DestroyTextShadows](capi-drawing-text-typography-h.md#oh_drawing_destroytextshadows)接口释放该对象的指针。
+获取文本阴影容器。不再需要[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)时，请使用[OH_Drawing_DestroyTextShadows](capi-drawing-text-typography-h.md#oh_drawing_destroytextshadows)接口释放该对象的指针。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3507,7 +3507,7 @@ OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadows(OH_Drawing_TextStyle* styl
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* | 返回指向字体阴影容器[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)的指针。 |
+| [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* | 返回指向文本阴影容器[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)的指针。 |
 
 ### OH_Drawing_TextStyleGetShadowCount()
 
@@ -3517,7 +3517,7 @@ int OH_Drawing_TextStyleGetShadowCount(OH_Drawing_TextStyle* style)
 
 **描述**
 
-获取字体阴影容器的大小。
+获取文本阴影容器的大小。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3534,7 +3534,7 @@ int OH_Drawing_TextStyleGetShadowCount(OH_Drawing_TextStyle* style)
 
 | 类型 | 说明 |
 | -- | -- |
-| int | 返回字体阴影容器的大小。 |
+| int | 返回文本阴影容器的大小。 |
 
 ### OH_Drawing_TextStyleAddShadow()
 
@@ -3544,7 +3544,7 @@ void OH_Drawing_TextStyleAddShadow(OH_Drawing_TextStyle* style, const OH_Drawing
 
 **描述**
 
-字体阴影容器中添加字体阴影元素。
+文本阴影容器中添加文本阴影元素。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3556,7 +3556,7 @@ void OH_Drawing_TextStyleAddShadow(OH_Drawing_TextStyle* style, const OH_Drawing
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)* style | 指向文本样式[OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)的指针，由[OH_Drawing_CreateTextStyle](capi-drawing-text-typography-h.md#oh_drawing_createtextstyle)获取。 |
-| const [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* shadow | 指向字体阴影对象[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)的指针，由[OH_Drawing_CreateTextShadow](capi-drawing-text-typography-h.md#oh_drawing_createtextshadow)获取。 |
+| const [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* shadow | 指向文本阴影对象[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)的指针，由[OH_Drawing_CreateTextShadow](capi-drawing-text-typography-h.md#oh_drawing_createtextshadow)获取。 |
 
 ### OH_Drawing_TextStyleClearShadows()
 
@@ -3566,7 +3566,7 @@ void OH_Drawing_TextStyleClearShadows(OH_Drawing_TextStyle* style)
 
 **描述**
 
-清除字体阴影容器中的所有元素。
+清除文本阴影容器中的所有元素。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3587,7 +3587,7 @@ OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadowWithIndex(OH_Drawing_TextSty
 
 **描述**
 
-根据下标获取字体阴影容器中的元素。
+根据下标获取文本阴影容器中的元素。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3605,7 +3605,7 @@ OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadowWithIndex(OH_Drawing_TextSty
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* | 返回指向字体阴影对象[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)的指针。 |
+| [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* | 返回指向文本阴影对象[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)的指针。 |
 
 ### OH_Drawing_TypographySetIndents()
 
@@ -3695,7 +3695,7 @@ void OH_Drawing_DestroyTextShadows(OH_Drawing_TextShadow* shadow)
 
 **描述**
 
-释放由被字体阴影对象OH_Drawing_TextShadow构成的vector占据的内存。
+释放由被文本阴影对象OH_Drawing_TextShadow构成的vector占据的内存。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3706,7 +3706,7 @@ void OH_Drawing_DestroyTextShadows(OH_Drawing_TextShadow* shadow)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* shadow | 指向字体阴影对象[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)的指针，由[OH_Drawing_CreateTextShadow](capi-drawing-text-typography-h.md#oh_drawing_createtextshadow)获取。 |
+| [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* shadow | 指向文本阴影对象[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)的指针，由[OH_Drawing_CreateTextShadow](capi-drawing-text-typography-h.md#oh_drawing_createtextshadow)获取。 |
 
 ### OH_Drawing_GetSystemFontConfigInfo()
 
@@ -4522,7 +4522,7 @@ void OH_Drawing_TypographyStyleSetHintsEnabled(OH_Drawing_TypographyStyle* style
 ### OH_Drawing_TypographyMarkDirty()
 
 ```c
-void  OH_Drawing_TypographyMarkDirty(OH_Drawing_Typography* typography)
+void OH_Drawing_TypographyMarkDirty(OH_Drawing_Typography* typography)
 ```
 
 **描述**
@@ -4807,7 +4807,7 @@ void OH_Drawing_TypographyTextlineStyleDestroyFontFamilies(char** fontFamilies, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| char** fontFamilies | 表示指向字体类型的指针。 |
+| char** fontFamilies | 表示指向字体家族的指针。 |
 | size_t fontFamiliesNum | 字体名称的数量。 |
 
 ### OH_Drawing_TypographyTextlineStyleGetFontSize()
@@ -5088,7 +5088,7 @@ void OH_Drawing_TypographyDestroyEllipsis(char* ellipsis)
 
 **描述**
 
-释放省略号名称列表占用的内存。
+释放省略号文本占用的内存。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5099,7 +5099,7 @@ void OH_Drawing_TypographyDestroyEllipsis(char* ellipsis)
 
 | 参数项 | 描述 |
 | -- | -- |
-| char* ellipsis | 表示指向省略号名称列表的指针。 |
+| char* ellipsis | 表示指向省略号文本的指针。 |
 
 ### OH_Drawing_TypographyStyleEquals()
 
@@ -5272,7 +5272,7 @@ char** OH_Drawing_TextStyleGetFontFamilies(OH_Drawing_TextStyle* style, size_t* 
 
 **描述**
 
-获取字体类型名称列表。
+获取字体家族名称列表。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5290,7 +5290,7 @@ char** OH_Drawing_TextStyleGetFontFamilies(OH_Drawing_TextStyle* style, size_t* 
 
 | 类型 | 说明 |
 | -- | -- |
-| char** | 返回获取到的字体类型列表。 |
+| char** | 返回获取到的字体家族名称列表。 |
 
 ### OH_Drawing_TextStyleDestroyFontFamilies()
 
@@ -5505,7 +5505,7 @@ void OH_Drawing_SetTextShadow(OH_Drawing_TextShadow* shadow, uint32_t color, OH_
 
 **描述**
 
-设置字体阴影对象的参数。
+设置文本阴影对象的参数。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5516,9 +5516,9 @@ void OH_Drawing_SetTextShadow(OH_Drawing_TextShadow* shadow, uint32_t color, OH_
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* shadow | 指向字体阴影对象[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)的指针，由[OH_Drawing_CreateTextShadow](capi-drawing-text-typography-h.md#oh_drawing_createtextshadow)获取。 |
-| uint32_t color | 字体阴影的颜色，例如入参为0xAABBCCDD，AA代表透明度，BB代表红色分量的值，CC代表绿色分量的值，DD代表蓝色分量的值。 |
-| [OH_Drawing_Point](capi-drawing-oh-drawing-point.md)* offset | 指向坐标点对象[OH_Drawing_Point](capi-drawing-oh-drawing-point.md)的指针，字体阴影基于当前文本的偏移位置。 |
+| [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* shadow | 指向文本阴影对象[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)的指针，由[OH_Drawing_CreateTextShadow](capi-drawing-text-typography-h.md#oh_drawing_createtextshadow)获取。 |
+| uint32_t color | 文本阴影的颜色，例如入参为0xAABBCCDD，AA代表透明度，BB代表红色分量的值，CC代表绿色分量的值，DD代表蓝色分量的值。 |
+| [OH_Drawing_Point](capi-drawing-oh-drawing-point.md)* offset | 指向坐标点对象[OH_Drawing_Point](capi-drawing-oh-drawing-point.md)的指针，文本阴影基于当前文本的偏移位置。 |
 | double blurRadius | 模糊半径，浮点数，没有单位，值为0.0时表示没有模糊效果。 |
 
 ### OH_Drawing_CreateTextTab()

@@ -39,7 +39,7 @@
 | [double OH_Drawing_TextLineGetTypographicBounds(OH_Drawing_TextLine* line, double* ascent, double* descent, double* leading)](#oh_drawing_textlinegettypographicbounds) | - | 获取文本行对象的排版边界。文本行排版边界与排版字体、排版字号有关，与字符本身无关。<br>例如字符串为" a b "，'a'字符前面有1个空格，'b'字符后面有1个空格，排版边界就包括行首和末尾空格的边界。例如字符串为"j"或"E"，排版边界相同，即与字符本身无关。<br>可通过height = ascent + descent + leading来计算文本高度。 |
 | [OH_Drawing_Rect* OH_Drawing_TextLineGetImageBounds(OH_Drawing_TextLine* line)](#oh_drawing_textlinegetimagebounds) | - | 获取文本行对象的图像边界。文本行图像边界与排版字体、排版字号、字符本身都有关，相当于视觉边界。<br>例如字符串为" a b "，'a'字符前面有1个空格，'b'字符后面有1个空格，用户在界面上只能看到"a b"，图像边界即为不包括行首和末尾空格的边界。<br>例如字符串为"j"或"E"，视觉边界不同，即与字符本身有关，"j"字符串的视觉边界宽度小于"E"字符串的视觉边界宽度，"j"字符串的视觉边界高度大于"E"字符串的视觉边界高度。 |
 | [double OH_Drawing_TextLineGetTrailingSpaceWidth(OH_Drawing_TextLine* line)](#oh_drawing_textlinegettrailingspacewidth) | - | 获取文本行对象尾部空白字符的宽度。 |
-| [int32_t OH_Drawing_TextLineGetStringIndexForPosition(OH_Drawing_TextLine* line, OH_Drawing_Point* point)](#oh_drawing_textlinegetstringindexforposition) | - | 获取文本行对象中指定位置处的字符索引。 |
+| [int32_t OH_Drawing_TextLineGetStringIndexForPosition(OH_Drawing_TextLine* line, OH_Drawing_Point* point)](#oh_drawing_textlinegetstringindexforposition) | - | 获取文本行对象中指定位置处的字符串索引。 |
 | [double OH_Drawing_TextLineGetOffsetForStringIndex(OH_Drawing_TextLine* line, int32_t index)](#oh_drawing_textlinegetoffsetforstringindex) | - | 获取文本行对象中指定字符串索引处的偏移量。 |
 | [typedef bool (\*Drawing_CaretOffsetsCallback)(double offset, int32_t index, bool leadingEdge)](#drawing_caretoffsetscallback) | Drawing_CaretOffsetsCallback | 用户自定义的回调函数。将文本行对象中每个字符的偏移量、索引值作为参数传递给用户自定义的回调函数。 |
 | [void OH_Drawing_TextLineEnumerateCaretOffsets(OH_Drawing_TextLine* line, Drawing_CaretOffsetsCallback callback)](#oh_drawing_textlineenumeratecaretoffsets) | - | 枚举文本行对象中每个字符的偏移量和索引值，传递给用户自定义的回调函数，用户可以使用偏移量和索引值进行其他操作。 |
@@ -416,7 +416,7 @@ int32_t OH_Drawing_TextLineGetStringIndexForPosition(OH_Drawing_TextLine* line, 
 
 **描述**
 
-获取文本行对象中指定位置处的字符索引。
+获取文本行对象中指定位置处的字符串索引。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 

@@ -26,7 +26,7 @@
 | 名称 | 描述 |
 | -- | -- |
 | [uint32_t OH_Drawing_RegisterFont(OH_Drawing_FontCollection* fontCollection, const char* fontFamily, const char* familySrc)](#oh_drawing_registerfont) | 用于在字体管理器中注册自定义字体，支持的字体文件格式包含：ttf、otf。 |
-| [uint32_t OH_Drawing_RegisterFontBuffer(OH_Drawing_FontCollection* fontCollection, const char* fontFamily, uint8_t* fontBuffer,size_t length)](#oh_drawing_registerfontbuffer) | 用于在字体管理器中注册字体缓冲区，支持从ttf、otf文件读取的数据。 |
+| [uint32_t OH_Drawing_RegisterFontBuffer(OH_Drawing_FontCollection* fontCollection, const char* fontFamily, uint8_t* fontBuffer, size_t length)](#oh_drawing_registerfontbuffer) | 用于在字体管理器中注册字体缓冲区，支持从ttf、otf文件读取的数据。 |
 | [uint32_t OH_Drawing_UnregisterFont(OH_Drawing_FontCollection* fontCollection, const char* fontFamily)](#oh_drawing_unregisterfont) | 通过字体名称取消注册自定义字体。<br> 取消注册当前正在使用的字体可能导致文本渲染异常，包括乱码或字形缺失。<br> 所有使用被取消注册的字体名称的排版对象都应该被销毁重建。 |
 | [uint32_t OH_Drawing_RegisterFontByIndex(OH_Drawing_FontCollection* fontCollection, const char* fontFamily, const char* familySrc, uint32_t index)](#oh_drawing_registerfontbyindex) | 使用ttc/otc文件注册自定义字体，通过index参数指定需要注册的字体索引。 |
 | [uint32_t OH_Drawing_RegisterFontBufferByIndex(OH_Drawing_FontCollection* fontCollection, const char* fontFamily, uint8_t* fontBuffer, size_t length, uint32_t index)](#oh_drawing_registerfontbufferbyindex) | 使用ttc/otc文件字节流注册字体。 |
@@ -67,7 +67,7 @@ uint32_t OH_Drawing_RegisterFont(OH_Drawing_FontCollection* fontCollection, cons
 ### OH_Drawing_RegisterFontBuffer()
 
 ```c
-uint32_t OH_Drawing_RegisterFontBuffer(OH_Drawing_FontCollection* fontCollection, const char* fontFamily, uint8_t* fontBuffer,size_t length)
+uint32_t OH_Drawing_RegisterFontBuffer(OH_Drawing_FontCollection* fontCollection, const char* fontFamily, uint8_t* fontBuffer, size_t length)
 ```
 
 **描述**
@@ -179,7 +179,7 @@ uint32_t OH_Drawing_RegisterFontBufferByIndex(OH_Drawing_FontCollection* fontCol
 
 | 类型 | 说明 |
 | -- | -- |
-| uint32_t | 函数执行结果。0表示函数执行成功，6表示fontBuffer为NULL，7表示缓冲区大小为0，8表示fontCollection为空，9表示文件损坏。 |
+| uint32_t | 函数执行结果。0表示函数执行成功，6表示fontBuffer为NULL，7表示缓冲区大小为0，8表示fontCollection为NULL，9表示文件损坏。 |
 
 ### OH_Drawing_IsFontSupportedFromPath()
 

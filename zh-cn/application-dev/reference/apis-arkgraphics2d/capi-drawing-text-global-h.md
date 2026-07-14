@@ -33,7 +33,7 @@
 | 名称 | 描述 |
 | -- | -- |
 | [void OH_Drawing_SetTextHighContrast(OH_Drawing_TextHighContrast action)](#oh_drawing_settexthighcontrast) | 设置文本渲染高对比度模式。 |
-| [void OH_Drawing_SetTextUndefinedGlyphDisplay(OH_Drawing_TextUndefinedGlyphDisplay undefinedGlyphDisplay)](#oh_drawing_settextundefinedglyphdisplay) | 控制未定义字形的呈现方式，调用此接口后影响本进程后续渲染的所有文本。 |
+| [void OH_Drawing_SetTextUndefinedGlyphDisplay(OH_Drawing_TextUndefinedGlyphDisplay undefinedGlyphDisplay)](#oh_drawing_settextundefinedglyphdisplay) | 设置未定义字形的呈现方式，调用此接口后影响本进程后续渲染的所有文本。 |
 
 ## 枚举类型说明
 
@@ -111,7 +111,7 @@ void OH_Drawing_SetTextUndefinedGlyphDisplay(OH_Drawing_TextUndefinedGlyphDispla
 
 **描述**
 
-控制未定义字形的呈现方式，调用此接口后影响本进程后续渲染的所有文本。
+设置未定义字形的呈现方式，调用此接口后影响本进程后续渲染的所有文本。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 

@@ -33,12 +33,12 @@
 | [OH_Drawing_FontStyleSet* OH_Drawing_FontMgrCreateFontStyleSet(OH_Drawing_FontMgr* drawingFontMgr, int index)](#oh_drawing_fontmgrcreatefontstyleset) | 由字体管理对象创建字体样式集对象。 |
 | [void OH_Drawing_FontMgrDestroyFontStyleSet(OH_Drawing_FontStyleSet* drawingFontStyleSet)](#oh_drawing_fontmgrdestroyfontstyleset) | 释放字体样式集对象占用的内存。 |
 | [OH_Drawing_FontStyleSet* OH_Drawing_FontMgrMatchFamily(OH_Drawing_FontMgr* drawingFontMgr, const char* familyName)](#oh_drawing_fontmgrmatchfamily) | 由指定的字体家族名称，获取字体样式集对象，不再需要该对象时，请使用[OH_Drawing_FontMgrDestroyFontStyleSet](capi-drawing-font-mgr-h.md#oh_drawing_fontmgrdestroyfontstyleset)释放该对象。 |
-| [OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyle(OH_Drawing_FontMgr* drawingFontMgr,const char* familyName, OH_Drawing_FontStyleStruct fontStyle)](#oh_drawing_fontmgrmatchfamilystyle) | 根据指定的字体样式信息和字体家族名称，获取字型对象，不再需要该对象时，使用[OH_Drawing_TypefaceDestroy](capi-drawing-typeface-h.md#oh_drawing_typefacedestroy)释放该对象。 |
-| [OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyleCharacter(OH_Drawing_FontMgr* drawingFontMgr,const char* familyName, OH_Drawing_FontStyleStruct fontStyle,const char* bcp47[], int bcp47Count, int32_t character)](#oh_drawing_fontmgrmatchfamilystylecharacter) | 为指定字符获取字型对象，仅在传入字体管理对象中无法找到传入UTF8字符值对应的字型对象时返回NULL。不再需要该对象时，使用[OH_Drawing_TypefaceDestroy](capi-drawing-typeface-h.md#oh_drawing_typefacedestroy)释放该对象。 |
+| [OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyle(OH_Drawing_FontMgr* drawingFontMgr, const char* familyName, OH_Drawing_FontStyleStruct fontStyle)](#oh_drawing_fontmgrmatchfamilystyle) | 根据指定的字体样式信息和字体家族名称，获取字型对象，不再需要该对象时，使用[OH_Drawing_TypefaceDestroy](capi-drawing-typeface-h.md#oh_drawing_typefacedestroy)释放该对象。 |
+| [OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyleCharacter(OH_Drawing_FontMgr* drawingFontMgr, const char* familyName, OH_Drawing_FontStyleStruct fontStyle, const char* bcp47[], int bcp47Count, int32_t character)](#oh_drawing_fontmgrmatchfamilystylecharacter) | 为指定字符获取字型对象，仅在传入字体管理对象中无法找到传入UTF8字符值对应的字型对象时返回NULL。不再需要该对象时，使用[OH_Drawing_TypefaceDestroy](capi-drawing-typeface-h.md#oh_drawing_typefacedestroy)释放该对象。 |
 | [OH_Drawing_Typeface* OH_Drawing_FontStyleSetCreateTypeface(OH_Drawing_FontStyleSet* fontStyleSet, int index)](#oh_drawing_fontstylesetcreatetypeface) | 为指定索引获取字型对象。不再需要该对象时，使用[OH_Drawing_TypefaceDestroy](capi-drawing-typeface-h.md#oh_drawing_typefacedestroy)释放该对象。 |
-| [OH_Drawing_FontStyleStruct OH_Drawing_FontStyleSetGetStyle(OH_Drawing_FontStyleSet* fontStyleSet, int32_t index,char** styleName)](#oh_drawing_fontstylesetgetstyle) | 获取字体样式，styleName会申请内存，不再需要styleName时，请使用[OH_Drawing_FontStyleSetFreeStyleName](#oh_drawing_fontstylesetfreestylename)释放该对象指针。 |
+| [OH_Drawing_FontStyleStruct OH_Drawing_FontStyleSetGetStyle(OH_Drawing_FontStyleSet* fontStyleSet, int32_t index, char** styleName)](#oh_drawing_fontstylesetgetstyle) | 获取字体样式，styleName会申请内存，不再需要styleName时，请使用[OH_Drawing_FontStyleSetFreeStyleName](#oh_drawing_fontstylesetfreestylename)释放该对象指针。 |
 | [void OH_Drawing_FontStyleSetFreeStyleName(char** styleName)](#oh_drawing_fontstylesetfreestylename) | 释放指定字体样式名称的内存。 |
-| [OH_Drawing_Typeface* OH_Drawing_FontStyleSetMatchStyle(OH_Drawing_FontStyleSet* fontStyleSet,OH_Drawing_FontStyleStruct fontStyleStruct)](#oh_drawing_fontstylesetmatchstyle) | 获取最接近字体样式（字重、字宽和倾斜度）的字型对象。不再需要该对象时，使用[OH_Drawing_TypefaceDestroy](capi-drawing-typeface-h.md#oh_drawing_typefacedestroy)释放该对象。 |
+| [OH_Drawing_Typeface* OH_Drawing_FontStyleSetMatchStyle(OH_Drawing_FontStyleSet* fontStyleSet, OH_Drawing_FontStyleStruct fontStyleStruct)](#oh_drawing_fontstylesetmatchstyle) | 获取最接近字体样式（字重、字宽和倾斜度）的字型对象。不再需要该对象时，使用[OH_Drawing_TypefaceDestroy](capi-drawing-typeface-h.md#oh_drawing_typefacedestroy)释放该对象。 |
 | [int OH_Drawing_FontStyleSetCount(OH_Drawing_FontStyleSet* fontStyleSet)](#oh_drawing_fontstylesetcount) | 获取字体样式集中字体的个数。 |
 
 ## 函数说明
@@ -137,7 +137,7 @@ char* OH_Drawing_FontMgrGetFamilyName(OH_Drawing_FontMgr* drawingFontMgr, int in
 
 | 类型 | 说明 |
 | -- | -- |
-| char* | 返回索引值对应的字体家族名称，不再需要时，请使用[OH_Drawing_FontMgrDestroyFamilyName](capi-drawing-font-mgr-h.md#oh_drawing_fontmgrdestroyfamilyname)释放该对象指针。 |
+| char* | 返回索引值对应的字体家族名称，不再需要时，请使用[OH_Drawing_FontMgrDestroyFamilyName](capi-drawing-font-mgr-h.md#oh_drawing_fontmgrdestroyfamilyname)释放该名称占用的内存。 |
 
 ### OH_Drawing_FontMgrDestroyFamilyName()
 
@@ -269,7 +269,7 @@ OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyle(OH_Drawing_FontMgr* draw
 ### OH_Drawing_FontMgrMatchFamilyStyleCharacter()
 
 ```c
-OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyleCharacter(OH_Drawing_FontMgr* drawingFontMgr,const char* familyName, OH_Drawing_FontStyleStruct fontStyle,const char* bcp47[], int bcp47Count, int32_t character)
+OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyleCharacter(OH_Drawing_FontMgr* drawingFontMgr, const char* familyName, OH_Drawing_FontStyleStruct fontStyle, const char* bcp47[], int bcp47Count, int32_t character)
 ```
 
 **描述**
@@ -288,7 +288,7 @@ OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyleCharacter(OH_Drawing_Font
 | [OH_Drawing_FontMgr](capi-drawing-oh-drawing-fontmgr.md)* drawingFontMgr | 指向字体管理对象[OH_Drawing_FontMgr](capi-drawing-oh-drawing-fontmgr.md)的指针，由[OH_Drawing_FontMgrCreate](capi-drawing-font-mgr-h.md#oh_drawing_fontmgrcreate)获取。 |
 | const char* familyName | 指定的字体家族名称。 |
 | [OH_Drawing_FontStyleStruct](capi-drawing-oh-drawing-fontstylestruct.md) fontStyle | 字体样式对象，包括字体字重、字体宽度和字体斜度信息。 |
-| bcp47 |  用来指示character语言编码数组，是ISO 639、15924和3166-1语言编码的组合。 |
+| const char* bcp47 |  用来指示character语言编码数组，是ISO 639、15924和3166-1语言编码的组合。 |
 | int bcp47Count | 参数bcp47数组大小，需与bcp47数组的实际元素个数一致。 |
 | int32_t character | 待匹配的UTF8字符值。 |
 

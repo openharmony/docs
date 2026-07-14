@@ -51,7 +51,7 @@
    import { text, drawing } from '@kit.ArkGraphics2D';
    ```
 
-2. 创建段落样式，并使用构造段落生成器ParagraphBuilder生成段落实例。
+2. 创建段落样式，并构造段落生成器ParagraphBuilder实例。
 
    <!-- @[ts_text_metrics_create_paragraphBuilder](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/TextMetrics/entry/src/main/ets/pages/Index.ets) -->
    
