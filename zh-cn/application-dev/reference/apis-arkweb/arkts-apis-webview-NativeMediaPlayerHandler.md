@@ -221,7 +221,7 @@ handleFullscreenChanged(fullscreen: boolean): void
 
 handleSeeking(): void
 
-当播放器进入seek状态时，调用该方法将seek进入事件通知 ArkWeb 内核。seek完成后，应调用handleSeekFinished将seek完成事件通知 ArkWeb 内核。
+当播放器进入 seek 状态时，调用该方法将 seek 进入事件通知 ArkWeb 内核。seek 完成后，应调用 handleSeekFinished 将 seek 完成事件通知 ArkWeb 内核。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -233,7 +233,7 @@ handleSeeking(): void
 
 handleSeekFinished(): void
 
-当播放器seek完成后，调用该方法将seek完成事件通知给 ArkWeb 内核。
+当播放器 seek 完成后，调用该方法将 seek 完成事件通知给 ArkWeb 内核。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
