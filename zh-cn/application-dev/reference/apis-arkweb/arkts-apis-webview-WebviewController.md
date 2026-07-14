@@ -1644,7 +1644,6 @@ struct WebComponent {
           try {
             let uiContext : UIContext = this.getUIContext();
             let context : Context | undefined = uiContext.getHostContext() as common.UIAbilityContext;
-            // 需要在Ability中正确获取context
             let filePath = context!.filesDir + 'test.txt';
             // 新建并打开文件。
             let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
