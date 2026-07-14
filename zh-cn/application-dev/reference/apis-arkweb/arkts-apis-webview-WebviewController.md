@@ -9110,6 +9110,7 @@ struct WebComponent {
       }
       .margin({ top: 10, bottom: 10 })
       Web({ src: $rawfile("index.html"), controller: this.controller })
+        .key("web_01")
         .overScrollMode(this.mode)
         .onTouch(() => {
           this.controllerX = this.controller.getScrollOffset().x;
