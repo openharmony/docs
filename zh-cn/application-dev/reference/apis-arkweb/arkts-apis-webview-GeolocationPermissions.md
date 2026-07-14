@@ -30,7 +30,7 @@ import { webview } from '@kit.ArkWeb';
 
 static allowGeolocation(origin: string, incognito?: boolean): void
 
-允许指定源使用地理位置接口。**使用场景**：在网页发起地理位置请求前预先授权信任的网站，避免每次访问都弹出授权提示；或应用需要主动管理特定源的地理位置权限时使用。
+允许指定源使用地理位置接口。可用于在网页发起地理位置请求前预先授权信任的网站，避免每次访问都弹出授权提示，或应用需要主动管理特定源的地理位置权限。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -71,7 +71,7 @@ struct WebComponent {
             // 允许指定源使用地理位置接口
             webview.GeolocationPermissions.allowGeolocation(this.origin);
           } catch (error) {
-            console.error(`Failed to allow geolocation. Code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+            console.error(`Failed to allow geolocation. Code: ${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -84,7 +84,7 @@ struct WebComponent {
 
 static deleteGeolocation(origin: string, incognito?: boolean): void
 
-清除指定源的地理位置权限状态。**使用场景**：用户撤销对特定网站的地理位置授权时；或在应用中提供权限管理功能，允许用户删除不再需要的地理位置权限记录时使用。
+清除指定源的地理位置权限状态。可用于撤销对特定网站的地理位置授权，或在应用中提供权限管理功能，允许用户删除不再需要的地理位置权限。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -125,7 +125,7 @@ struct WebComponent {
             // 清除指定源的地理位置权限状态
             webview.GeolocationPermissions.deleteGeolocation(this.origin);
           } catch (error) {
-            console.error(`Failed to delete geolocation. Code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+            console.error(`Failed to delete geolocation. Code: ${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -138,7 +138,7 @@ struct WebComponent {
 
 static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean>, incognito?: boolean): void
 
-以回调方式异步获取指定源的地理位置权限状态。**使用场景**：在设置界面显示特定网站的地理位置权限开关状态；或在用户访问网页前验证是否已预先授权地理位置权限时使用。
+以回调方式异步获取指定源的地理位置权限状态。可用于在设置界面显示特定网站的地理位置权限状态，或在用户访问网页前验证是否已预先授权地理位置权限。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -180,7 +180,7 @@ struct WebComponent {
             // 以回调方式异步获取指定源的地理位置权限状态
             webview.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
               if (error) {
-                console.error(`Failed to get accessible geolocation. Code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+                console.error(`Failed to get accessible geolocation. Code: ${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
                 return;
               }
               console.info('getAccessibleGeolocationAsync result: ' + result);
@@ -199,7 +199,7 @@ struct WebComponent {
 
 static getAccessibleGeolocation(origin: string, incognito?: boolean): Promise\<boolean>
 
-以Promise方式异步获取指定源的地理位置权限状态。**使用场景**：在设置界面显示特定网站的地理位置权限开关状态；或在用户访问网页前验证是否已预先授权地理位置权限时使用。
+以Promise方式异步获取指定源的地理位置权限状态。可用于在设置界面显示特定网站的地理位置权限状态，或在用户访问网页前验证是否已预先授权地理位置权限。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -248,7 +248,7 @@ struct WebComponent {
               .then(result => {
                 console.info('getAccessibleGeolocationPromise result: ' + result);
               }).catch((error: BusinessError) => {
-                console.error(`Failed to get accessible geolocation. Code: ${error.code}, message: ${error.message}`);
+                console.error(`Failed to get accessible geolocation. Code: ${error.code}, Message: ${error.message}`);
               });
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -264,7 +264,7 @@ struct WebComponent {
 
 static getStoredGeolocation(callback: AsyncCallback\<Array\<string>>, incognito?: boolean): void
 
-以回调方式异步获取已存储地理位置权限状态的所有源信息。**使用场景**：在隐私设置页面显示所有已授权地理位置权限的网站列表；或在权限管理界面让用户查看和管理地理位置权限记录时使用。
+以回调方式异步获取已存储地理位置权限状态的所有源信息。可用于在隐私设置页面显示所有已授权地理位置权限的网站列表，或在权限管理界面让用户查看和管理地理位置权限。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -303,7 +303,7 @@ struct WebComponent {
             // 以回调方式异步获取已存储地理位置权限状态的所有源信息
             webview.GeolocationPermissions.getStoredGeolocation((error, origins) => {
               if (error) {
-                console.error(`Failed to get stored geolocation. Code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+                console.error(`Failed to get stored geolocation. Code: ${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
                 return;
               }
               let originsStr: string = origins.join();
@@ -323,7 +323,7 @@ struct WebComponent {
 
 static getStoredGeolocation(incognito?: boolean): Promise\<Array\<string>>
 
-以Promise方式异步获取已存储地理位置权限状态的所有源信息。**使用场景**：在隐私设置页面显示所有已授权地理位置权限的网站列表；或在权限管理界面让用户查看和管理地理位置权限记录时使用。
+以Promise方式异步获取已存储地理位置权限状态的所有源信息。可用于在隐私设置页面显示所有已授权地理位置权限的网站列表，或在权限管理界面让用户查看和管理地理位置权限。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -370,7 +370,7 @@ struct WebComponent {
                 let originsStr: string = origins.join();
                 console.info('getStoredGeolocationPromise origins: ' + originsStr);
               }).catch((error: BusinessError) => {
-                console.error(`Failed to get stored geolocation. Code: ${error.code}, message: ${error.message}`);
+                console.error(`Failed to get stored geolocation. Code: ${error.code}, Message: ${error.message}`);
               });
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
@@ -386,7 +386,7 @@ struct WebComponent {
 
 static deleteAllGeolocation(incognito?: boolean): void
 
-清除所有源的地理位置权限状态。**使用场景**：用户退出登录或注销账户时清理所有地理位置权限记录；或在应用中提供一键清除所有地理位置权限功能时使用。
+清除所有源的地理位置权限状态。可用于用户退出登录时清除权限和一键清除权限的场景。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -416,7 +416,7 @@ struct WebComponent {
             // 清除所有源的地理位置权限状态
             webview.GeolocationPermissions.deleteAllGeolocation();
           } catch (error) {
-            console.error(`Failed to delete all geolocation. Code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+            console.error(`Failed to delete all geolocation. Code: ${(error as BusinessError).code}, Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
