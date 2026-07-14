@@ -30,15 +30,6 @@ target_link_libraries(sample PUBLIC libohaudio.so libohaudiosuite.so)
 #include <ohaudio/native_audiostreambuilder.h>
 ```
 
-## 音频效果节点
-
-[OHAudioSuite](../../reference/apis-audio-kit/capi-ohaudiosuite.md)提供多种音频效果节点，开发者可根据业务需求选择合适的效果节点对音频进行处理。各效果节点的详细说明请参考[音频效果](audio-suite-effects.md)。
-
-| 效果类型 | 节点类型 | 用途 |
-|---------|---------|------|
-| 均衡器 | EFFECT_NODE_TYPE_EQUALIZER | 频段调节，改变音频频率特性 |
-| 声音美化 | EFFECT_NODE_TYPE_VOICE_BEAUTIFIER | 提升音质和听感 |
-
 ## 开发步骤
 
 ### 接口调用
@@ -47,13 +38,11 @@ target_link_libraries(sample PUBLIC libohaudio.so libohaudiosuite.so)
 
 ### 均衡器效果
 
-本节以均衡器效果为例演示实时预览流程，其他效果节点的详细说明请参考[音频效果](audio-suite-effects.md)。
-
 **图1**：实时预览示意图
 
    ![OHAudioSuite realtime play](figures/audiosuite-audio-separation-time.png)
 
-开发者可以通过以下步骤来实现一个简单的均衡器效果节点实时预览功能。
+开发者可以通过以下步骤来实现一个简单的均衡器效果节点实时预览功能。本节以均衡器效果为例演示实时预览流程，其他效果节点的详细说明请参考[音频效果(C/C++)](audio-suite-effects.md)。
 
 1. 在初始化时，创建[OHAudioSuite](../../reference/apis-audio-kit/capi-ohaudiosuite.md)管线（包括输入节点、均衡器节点、输出节点）。
   

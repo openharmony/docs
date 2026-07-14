@@ -27,15 +27,6 @@ target_link_libraries(sample PUBLIC libohaudiosuite.so)
 #include <ohaudiosuite/native_audio_suite_engine.h>
 ```
 
-## 音频效果节点
-
-[OHAudioSuite](../../reference/apis-audio-kit/capi-ohaudiosuite.md)提供多种音频效果节点，开发者可根据业务需求选择合适的效果节点对音频进行处理。各效果节点的详细说明请参考[音频效果](audio-suite-effects.md)。
-
-| 效果类型 | 节点类型 | 用途 |
-|---------|---------|------|
-| 均衡器 | EFFECT_NODE_TYPE_EQUALIZER | 频段调节，改变音频频率特性 |
-| 声音美化 | EFFECT_NODE_TYPE_VOICE_BEAUTIFIER | 提升音质和听感 |
-
 ## 开发步骤
 
 详细的API说明请参考：[OHAudioSuite](../../reference/apis-audio-kit/capi-ohaudiosuite.md)。
@@ -52,7 +43,7 @@ target_link_libraries(sample PUBLIC libohaudiosuite.so)
 
 ### 基础离线编辑
 
-使用效果节点（如均衡器效果节点）处理输入的PCM（Pulse Code Modulation）音频数据，输出带有该音效的PCM音频数据。本节以均衡器效果为例演示基础离线编辑流程，其他效果节点的详细说明请参考[音频效果](audio-suite-effects.md)。
+使用效果节点（如均衡器效果节点）处理输入的PCM（Pulse Code Modulation）音频数据，输出带有该音效的PCM音频数据。本节以均衡器效果为例演示实时预览流程，其他效果节点的详细说明请参考[音频效果(C/C++)](audio-suite-effects.md)。
 
 **图1**：基础离线编辑示意图
 

@@ -8,14 +8,6 @@
 
 从API version 22开始，[OHAudioSuite](../../reference/apis-audio-kit/capi-ohaudiosuite.md)提供多种音频效果节点，开发者可根据业务需求选择合适的效果节点对音频进行处理。
 
-<audio controls>
-  <source src="./figures/test.mp3" type="audio/mpeg">
-  您的浏览器不支持音频播放。
-</audio>
-<video controls src="./figures/test.mp3"></video>
-
-[点击播放/下载音频](./figures/test.mp3)
-
 ## 使用场景
 
 音频效果节点可应用于以下场景：
@@ -27,8 +19,8 @@
 
 | 效果类型 | 节点类型 | API版本 | 用途 |
 |---------|---------|--------|------|
-| 均衡器 | EFFECT_NODE_TYPE_EQUALIZER | API 22+ | 频段调节，改变音频频率特性 |
-| 声音美化 | EFFECT_NODE_TYPE_VOICE_BEAUTIFIER | API 22+ | 提升音质和听感 |
+| 均衡器 | EFFECT_NODE_TYPE_EQUALIZER | API版本22 | 频段调节，改变音频频率特性 |
+| 声音美化 | EFFECT_NODE_TYPE_VOICE_BEAUTIFIER | API版本22 | 提升音质和听感 |
 
 ---
 
