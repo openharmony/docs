@@ -2716,8 +2716,8 @@ editMenuOptions(editMenu: EditMenuOptions)
 
 > **说明：**
 > 本接口与bindSelectionMenu功能类似，差异如下：
-> - editMenuOptions：在系统默认菜单风格基础上添加扩展项，触发条件不变
-> - bindSelectionMenu：完全自定义菜单风格和触发条件，由开发者定义
+> - editMenuOptions：在系统默认菜单风格基础上添加扩展项，触发条件不变。
+> - bindSelectionMenu：完全自定义菜单风格和触发条件，由开发者定义。
 > 两者不宜同时使用，建议根据自定义程度需求选择。
 
 用户可以通过该属性设置自定义的文本菜单。
