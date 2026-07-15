@@ -967,7 +967,7 @@ Web屏幕捕获的配置。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| aiSessionType | [AISessionType](./arkts-basic-components-web-e.md#aisessiontype) | 否 | 否 | AI会话类型，指定AI会话的功能种类，如TRANSLATOR（翻译模型）、LANGUAGE_DETECTOR（语言检测模型）等。 |
+| aiSessionType | [AISessionType](./arkts-basic-components-web-e.md#aisessiontype) | 否 | 否 | AI会话类型。 |
 | onCreateAISession | [OnCreateAISession](./arkts-basic-components-web-t.md#oncreateaisession) | 否 | 否 | AI会话创建时触发的回调函数。返回`true`跳过系统默认行为，返回`false`继续执行系统默认逻辑。 |
 | onExecuteAIAction | [OnExecuteAIAction](./arkts-basic-components-web-t.md#onexecuteaiaction) | 否 | 否 | AI会话执行操作时触发的回调函数。 |
 | onDestroyAISession | [OnDestroyAISession](./arkts-basic-components-web-t.md#ondestroyaisession) | 否 | 否 | AI会话销毁时触发的回调函数，用于清理与自定义AI模型关联的资源。 |
