@@ -834,7 +834,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
    let tcpSocket: socket.TCPSocket = socket.constructTCPSocketInstance();
    ```
 
-3. 绑定本地IP地址和端口，绑定成功后，连接到服务器端IP地址和端口，连接成功后使用该TCPSocket对象创建TLSSocket，配置双向认证上传客户端 CA 证书及数字证书，可以建立TLSSocket连接，连接使用完毕后，主动关闭并取消相关事件的订阅。。
+3. 绑定本地IP地址和端口，绑定成功后，连接到服务器端IP地址和端口，连接成功后使用该TCPSocket对象创建TLSSocket，配置双向认证上传客户端CA证书及数字证书，可以建立TLSSocket连接，连接使用完毕后，主动关闭并取消相关事件的订阅。
    ```ts
    // 连接到服务器端指定的IP地址和端口。
    let serverAddress: socket.NetAddress = {} as socket.NetAddress;
@@ -904,7 +904,7 @@ UDP与TCP流程大体类似，下面以TCP为例：
    });
    ```
 
-4. 连接使用完毕后，主动关闭。取消相关事件的订阅。。
+4. 连接使用完毕后，主动关闭。取消相关事件的订阅。
 
    <!-- @[tls_server_close](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_Datatransmission/Socket/entry/src/main/ets/workers/Tcp2TwoWayTlsWorker.ets) -->
    

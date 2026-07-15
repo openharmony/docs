@@ -784,7 +784,7 @@ isUidNetAllowed(uid: number, iface: string, callback: AsyncCallback\<boolean>): 
 | 参数名   | 类型                    | 必填 | 说明                                                         |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | uid      | number                  | 是   | app 唯一标识符，取值范围为int32_t范围内的正整数。                                               |
-| iface    | string                  | 是   | 网络对应的名称 。                                              |
+| iface    | string                  | 是   | 网络对应的名称。                                              |
 | callback | AsyncCallback\<boolean> | 是   | 回调函数。返回 true 表示这个 uid 可以访问对应 iface 的网络。 |
 
 **错误码：**
@@ -878,7 +878,7 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean, callback: Async
 | --------- | ------------------------------ | ---- | ---------------------------------------------- |
 | uids      | Array\<number>                 | 是   | app 唯一标识符。                                 |
 | isAllowed | boolean                        | 是   | 是否加入白名单。true：加入白名单；false：没有加入白名单。                                 |
-| callback  | callback: AsyncCallback\<void> | 是   | 回调函数。成功返回空，失败返回错误码错误信息。 |
+| callback  | AsyncCallback\<void> | 是   | 回调函数。成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -1339,7 +1339,7 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean, callback: AsyncC
 | --------- | ------------------------------ | ---- | ---------------------------------------------- |
 | uids      | Array\<number>                 | 是   | app 唯一标识符。                                |
 | isAllowed | boolean                        | 是   | 是否加入白名单。true：加入白名单；false：没有加入白名单。                                 |
-| callback  | callback: AsyncCallback\<void> | 是   | 回调函数。成功返回空，失败返回错误码错误信息。 |
+| callback  | AsyncCallback\<void> | 是   | 回调函数。成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -1500,7 +1500,7 @@ policy
 
 setNetworkAccessPolicy(uid: number, policy: NetworkAccessPolicy, isReconfirmed?: boolean): Promise\<void>
 
-设置指定 uid 应用能否能访问网络的策略，使用 Promise 异步回调。
+设置指定uid应用能否访问网络的策略，使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -2181,8 +2181,8 @@ try {
 | 名称                            | 值  | 说明                                       |
 | ------------------------------- | --- | ------------------------------------------ |
 | NET_BACKGROUND_POLICY_NONE      | 0   | 默认值。                                   |
-| NET_BACKGROUND_POLICY_ENABLE    | 1   | 应用在后台可以使用计量网路。               |
-| NET_BACKGROUND_POLICY_DISABLE   | 2   | 应用在后台不可以使用计量网路。             |
+| NET_BACKGROUND_POLICY_ENABLE    | 1   | 应用在后台可以使用计量网络。               |
+| NET_BACKGROUND_POLICY_DISABLE   | 2   | 应用在后台不可以使用计量网络。             |
 | NET_BACKGROUND_POLICY_TRUSTLIST | 3   | 只有应用指定的列表在后台可以使用计量网络。 |
 
 ## NetQuotaPolicy

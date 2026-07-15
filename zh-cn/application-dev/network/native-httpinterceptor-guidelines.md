@@ -34,7 +34,7 @@ HTTP全局拦截器常用接口如下表所示，详细的接口说明请参考[
 
 **添加动态链接库**
 
-CMakeLists.txt中添加以下lib:
+CMakeLists.txt中添加以下lib。
 
 ```txt
 libace_napi.z.so

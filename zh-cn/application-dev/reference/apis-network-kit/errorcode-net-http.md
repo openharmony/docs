@@ -670,18 +670,18 @@ HTTP模块内部错误，通常由底层网络库返回的未映射错误或其�
 
 **可能原因**
 
-1. **底层网络库未映射错误**：
+1. **底层网络库未映射错误**:
    - HTTP错误码映射规则为2300000 + CURL错误码。当CURL返回的错误码未在映射表中定义时，统一返回2300999。
    - 例如：CURL错误码1映射为2300001，CURL错误码28映射为2300028。若CURL返回的错误码没有对应映射，则返回2300999。
-   - **日志关键词**：`CURLcode result`（日志中会打印具体的CURL错误码数值）
+   - **日志关键词**:`CURLcode result`（日志中会打印具体的CURL错误码数值）
 
 2. **HTTP3协议问题**：
    - 使用HTTP3协议时，请求启动前存在其他配置错误。
-   - **日志关键词**：`error_.GetErrorCode()=`，且请求协议为HTTP3
+   - **日志关键词**:`error_.GetErrorCode()=`，且请求协议为HTTP3
 
 3. **全局拦截器校验失败**：
    - 全局请求拦截器校验未通过。
-   - **日志关键词**：`GlobalRequestInterceptorCheck fail`、`GlobalRequestInterceptorCheck failed`
+   - **日志关键词**:`GlobalRequestInterceptorCheck fail`、`GlobalRequestInterceptorCheck failed`
 
 **处理步骤**
 
