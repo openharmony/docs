@@ -53,8 +53,8 @@
 各效果节点的详细说明请参考[音频效果(C/C++)](audio-suite-effects.md)。
 | 效果类型 | 节点类型 | 用途 |
 |---------|---------|------|
-| [均衡器](https://gitcode.com/renzhaohu/docs_0709_ALL_EFFECT/blob/master/zh-cn/application-dev/media/audio/audio-suite-effects.md#%E5%9D%87%E8%A1%A1%E5%99%A8) | EFFECT_NODE_TYPE_EQUALIZER | 频段调节，改变音频频率特性 |
-| [声音美化](https://gitcode.com/renzhaohu/docs_0709_ALL_EFFECT/blob/master/zh-cn/application-dev/media/audio/audio-suite-effects.md#%E5%A3%B0%E9%9F%B3%E7%BE%8E%E5%8C%96) | EFFECT_NODE_TYPE_VOICE_BEAUTIFIER | 提升音质和听感 |
+| [均衡器](audio-suite-effects.md#均衡器) | EFFECT_NODE_TYPE_EQUALIZER | 频段调节，改变音频频率特性 |
+| [声音美化](audio-suite-effects.md#声音美化) | EFFECT_NODE_TYPE_VOICE_BEAUTIFIER | 提升音质和听感 |
 
 ## 管线
 

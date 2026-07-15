@@ -8,19 +8,12 @@
 
 从API version 22开始，[OHAudioSuite](../../reference/apis-audio-kit/capi-ohaudiosuite.md)提供多种音频效果节点，开发者可根据业务需求选择合适的效果节点对音频进行处理。
 
-## 使用场景
-
-音频效果节点可应用于以下场景：
-
-- **离线编辑**：适用于非实时预览场景，对音频数据进行离线处理。详见[音频离线编辑](audio-suite-manual-rendering.md)。
-- **实时预览**：适用于播放时实时处理场景，边播放边应用效果。详见[音频实时预览](audio-suite-real-time-rendering.md)。
-
 ## 效果节点类型
 
-| 效果类型 | 节点类型 | API版本 | 用途 |
+| 效果类型 | 节点类型 | 起始API版本 | 用途 |
 |---------|---------|--------|------|
-| 均衡器 | EFFECT_NODE_TYPE_EQUALIZER | API版本22 | 频段调节，改变音频频率特性 |
-| 声音美化 | EFFECT_NODE_TYPE_VOICE_BEAUTIFIER | API版本22 | 提升音质和听感 |
+| [均衡器](#均衡器) | EFFECT_NODE_TYPE_EQUALIZER | API版本22 | 频段调节，改变音频频率特性 |
+| [声音美化](#声音美化) | EFFECT_NODE_TYPE_VOICE_BEAUTIFIER | API版本22 | 提升音质和听感 |
 
 ---
 
@@ -63,7 +56,7 @@
 
 ### 设置方法
 
-创建均衡器节点后，可通过以下方式设置效果：
+可通过以下方式创建均衡器节点：
 
 <!-- @[audioSuite_SetEqualizerType](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSuiteSample/entry/src/main/cpp/audio_effect/audio_effect.h) -->
 
@@ -93,7 +86,7 @@ OH_AudioSuiteEngine_SetEqualizerFrequencyBandGains(*node, gains);
 
 ### 设置方法
 
-创建声音美化节点后，可通过以下方式设置效果：
+可通过以下方式创建美化节点：
 
 <!-- @[audioSuite_SetVoiceBeautifierType](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSuiteSample/entry/src/main/cpp/audio_effect/audio_effect.h) -->
 
@@ -104,7 +97,7 @@ OH_AudioSuiteNodeBuilder_SetNodeType(builder, OH_AudioNode_Type::EFFECT_NODE_TYP
 OH_AudioSuiteEngine_CreateNode(pipeline, builder, node);
 // 设置声音美化节点效果。
 OH_AudioSuiteEngine_SetVoiceBeautifierType(*node,
-                                           static_cast<OH_VoiceBeautifierType>(params.voiceBeautifierType));
+                                            static_cast<OH_VoiceBeautifierType>(params.voiceBeautifierType));
 ```
 
 ---

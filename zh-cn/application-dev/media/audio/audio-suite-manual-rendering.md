@@ -43,7 +43,7 @@ target_link_libraries(sample PUBLIC libohaudiosuite.so)
 
 ### 基础离线编辑
 
-使用效果节点（如均衡器效果节点）处理输入的PCM（Pulse Code Modulation）音频数据，输出带有该音效的PCM音频数据。本节以均衡器效果为例演示实时预览流程，其他效果节点的详细说明请参考[音频效果(C/C++)](audio-suite-effects.md)。
+使用效果节点（如均衡器效果节点）处理输入的PCM（Pulse Code Modulation）音频数据，输出带有该音效的PCM音频数据。本节以均衡器效果为例演示离线编辑流程，其他效果节点的详细说明请参考[音频效果(C/C++)](audio-suite-effects.md)。
 
 **图1**：基础离线编辑示意图
 
