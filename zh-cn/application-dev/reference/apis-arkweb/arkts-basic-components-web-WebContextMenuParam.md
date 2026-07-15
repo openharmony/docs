@@ -132,7 +132,7 @@ getMediaType(): ContextMenuMediaType
 
 | 类型                                       | 说明        |
 | ---------------------------------------- | --------- |
-| [ContextMenuMediaType](./arkts-basic-components-web-e.md#contextmenumediatype9) | 网页元素的媒体类型，包括图片、视频、音频等不同类型，用于区分用户点击的网页元素种类。 |
+| [ContextMenuMediaType](./arkts-basic-components-web-e.md#contextmenumediatype9) | 网页元素媒体类型。 |
 
 ## getSelectionText<sup>9+</sup>
 
