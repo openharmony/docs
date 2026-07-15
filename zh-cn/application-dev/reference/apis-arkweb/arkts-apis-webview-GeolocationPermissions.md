@@ -30,7 +30,7 @@ import { webview } from '@kit.ArkWeb';
 
 static allowGeolocation(origin: string, incognito?: boolean): void
 
-允许指定源使用地理位置接口。可用于在网页发起地理位置请求前预先授权信任的网站，避免每次访问都弹出授权提示，或应用需要主动管理特定源的地理位置权限。
+允许指定源使用地理位置接口。用于预先授权信任网站的地理位置权限，避免重复弹窗，或由应用主动管理特定源的地理位置授权。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -84,7 +84,7 @@ struct WebComponent {
 
 static deleteGeolocation(origin: string, incognito?: boolean): void
 
-清除指定源的地理位置权限状态。可用于撤销对特定网站的地理位置授权，或在应用中提供权限管理功能，允许用户删除不再需要的地理位置权限。
+清除指定源的地理位置权限状态。用于撤销指定网站的地理位置授权，或为应用提供按源管理权限的能力。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -138,7 +138,7 @@ struct WebComponent {
 
 static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean>, incognito?: boolean): void
 
-以回调方式异步获取指定源的地理位置权限状态。可用于在设置界面显示特定网站的地理位置权限状态，或在用户访问网页前验证是否已预先授权地理位置权限。
+以回调方式异步获取指定源的地理位置权限状态。用于查询指定网站的地理位置授权结果，如设置界面展示权限状态或访问前校验授权。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -199,7 +199,7 @@ struct WebComponent {
 
 static getAccessibleGeolocation(origin: string, incognito?: boolean): Promise\<boolean>
 
-以Promise方式异步获取指定源的地理位置权限状态。可用于在设置界面显示特定网站的地理位置权限状态，或在用户访问网页前验证是否已预先授权地理位置权限。
+以Promise方式异步获取指定源的地理位置权限状态。用于查询指定网站的地理位置授权结果，如设置界面展示权限状态或访问前校验授权。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -264,7 +264,7 @@ struct WebComponent {
 
 static getStoredGeolocation(callback: AsyncCallback\<Array\<string>>, incognito?: boolean): void
 
-以回调方式异步获取已存储地理位置权限状态的所有源信息。可用于在隐私设置页面显示所有已授权地理位置权限的网站列表，或在权限管理界面让用户查看和管理地理位置权限。
+以回调方式异步获取已存储地理位置权限状态的所有源信息。用于获取已授权地理位置权限的网站列表，如隐私设置页展示或权限管理界面的批量管理。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -323,7 +323,7 @@ struct WebComponent {
 
 static getStoredGeolocation(incognito?: boolean): Promise\<Array\<string>>
 
-以Promise方式异步获取已存储地理位置权限状态的所有源信息。可用于在隐私设置页面显示所有已授权地理位置权限的网站列表，或在权限管理界面让用户查看和管理地理位置权限。
+以Promise方式异步获取已存储地理位置权限状态的所有源信息。用于获取已授权地理位置权限的网站列表，如隐私设置页展示或权限管理界面的批量管理。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -386,7 +386,7 @@ struct WebComponent {
 
 static deleteAllGeolocation(incognito?: boolean): void
 
-清除所有源的地理位置权限状态。可用于用户退出登录时清除权限和一键清除权限的场景。
+清除所有源的地理位置权限状态。用于用户退出登录或一键清除等场景下批量撤销地理位置授权。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
