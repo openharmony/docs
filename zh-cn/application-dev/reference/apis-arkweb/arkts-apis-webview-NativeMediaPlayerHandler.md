@@ -8,15 +8,6 @@
 
 NativeMediaPlayerHandler 是[CreateNativeMediaPlayerCallback](./arkts-apis-webview-t.md#createnativemediaplayercallback12)回调函数的参数。当应用使用[NativeMediaPlayerBridge](./arkts-apis-webview-NativeMediaPlayerBridge.md)接管网页媒体播放时，需要通过将播放器的各种状态变化实时同步给 ArkWeb 内核，确保网页 JavaScript 能够获取正确的播放器状态，ArkWeb 内核会将这些状态转换为标准的 HTML5 Media Events，触发网页中注册的事件监听器，从而保证网页功能的正常运行。
 
-状态同步流程如下图所示：
-
-```mermaid
-graph LR
-    A[原生播放器] -->|状态变化| B[NativeMediaPlayerHandler]
-    B -->|同步状态| C[ArkWeb 内核]
-    C -->|转换为 HTML5 Media Events| D[网页 JavaScript 事件监听器]
-```
-
 > **说明：**
 >
 > - 本模块首批接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
