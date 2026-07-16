@@ -55,9 +55,9 @@ type BundleChangedEvent = 'add' | 'update' | 'remove'
 on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void
 
 注册监听应用的安装、卸载、更新。使用callback异步回调。
->**说明:**
+> **说明：**
 >
->该方法需要与[bundleMonitor.off](#bundlemonitoroff)配合使用，在组件、页面、应用的生命周期结束时，使用[bundleMonitor.off](#bundlemonitoroff)注销对应用的安装、卸载、更新等事件的监听。
+> 该方法需要与[bundleMonitor.off](#bundlemonitoroff)配合使用，在组件、页面、应用的生命周期结束时，使用[bundleMonitor.off](#bundlemonitoroff)注销对应用的安装、卸载、更新等事件的监听。
 
 **需要权限：** ohos.permission.LISTEN_BUNDLE_CHANGE
 

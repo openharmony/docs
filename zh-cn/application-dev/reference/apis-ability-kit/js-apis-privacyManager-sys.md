@@ -865,7 +865,7 @@ pid需要与[startUsingPermission](#privacymanagerstartusingpermission18)传入�
 | -------------- | ------ | ---- | ------------------------------------ |
 | tokenID        | number | 是   | 目标应用的身份标识。可通过应用[BundleInfo](js-apis-bundleManager-bundleInfo.md)中的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md#applicationinfo-1)的accessTokenId字段获取。该参数必须为大于0的整数，传入0时返回错误码12100001。|
 | permissionName | [Permissions](../../security/AccessToken/app-permissions.md) | 是   | 需要停止使用的权限名称。权限名长度不能超过256个字符，传入无效值时返回错误码12100001。|
-| pid            | number | 否   | 与[startUsingPermission](#privacymanagerstartusingpermission18)传入的pid相同。不满足配套关系可能导致API调用失败(错误码12100004)。<br>默认值：-1，表示不根据进程生命周期响应。|
+| pid            | number | 否   | 与[startUsingPermission](#privacymanagerstartusingpermission18)传入的pid相同。不满足配套关系可能导致API调用失败（错误码12100004）。<br>默认值：-1，表示不根据进程生命周期响应。|
 
 **返回值：**
 
