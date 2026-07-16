@@ -2521,7 +2521,7 @@ onFullScreenEnter(callback: OnFullScreenEnterCallback)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | [OnFullScreenEnterCallback](./arkts-basic-components-web-t.md#onfullscreenentercallback12) | 是 | Web组件进入全屏时的回调信息，包含 videoWidth、videoHeight 和 handler 字段。 |
+| callback | [OnFullScreenEnterCallback](./arkts-basic-components-web-t.md#onfullscreenentercallback12) | 是 | Web 组件进入全屏时的回调信息，包含 videoWidth、videoHeight 和 handler 字段。 |
 
 **示例：**
 
