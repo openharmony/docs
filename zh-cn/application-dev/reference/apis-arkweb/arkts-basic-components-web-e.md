@@ -222,7 +222,7 @@ Web布局模式的配置。
 
 ## ProtectedResourceType<sup>9+</sup>
 
-ProtectedResourceType 枚举定义了 Web 组件需要访问的受保护资源类型，用于控制MIDI、相机、麦克风、传感器等敏感资源的访问权限，帮助开发者在保护用户隐私的同时提供丰富的Web功能。
+ProtectedResourceType 枚举定义了 Web 组件需要访问的受保护资源类型，用于控制MIDI、相机、麦克风、传感器等敏感资源的访问权限，帮助开发者在保护用户隐私的同时提供丰富的 Web 功能。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
