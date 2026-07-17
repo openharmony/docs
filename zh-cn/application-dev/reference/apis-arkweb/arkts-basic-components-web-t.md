@@ -406,7 +406,7 @@ AI会话创建回调函数类型。允许自定义模型初始化和结果处理
 | ------ | --------------------------------------------- | -- | ------------------ |
 | id     | string                                        | 是  | 会话任务ID。            |
 | params | string                                        | 是  | 会话创建时传递的上下文数据，JSON字符串格式。|
-| result | [OnAISessionCallback](#onaisessioncallback) | 是  | 用于通知系统会话创建结果的回调函数 |
+| result | [OnAISessionCallback](#onaisessioncallback) | 是  | 用于通知系统会话创建结果的回调函数。 |
 
 **返回值：**
 
