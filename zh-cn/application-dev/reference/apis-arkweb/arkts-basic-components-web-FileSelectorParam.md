@@ -62,7 +62,7 @@ getMode(): FileSelectorMode
 
 > **说明：**
 >
-> 与getMimeTypes和getAcceptableFileTypes的对应关系：getAcceptType和getMimeTypes对应HTML option的accept属性，getAcceptableFileTypes对应HTML option的types属性。根据HTML规范，accept属性与types属性为互斥关系，不应同时使用。
+> 与getMimeTypes和getAcceptableFileTypes的对应关系：getAcceptType和getMimeTypes对应HTML input标签的accept属性，getAcceptableFileTypes对应HTML showOpenFilePicker、showDirectoryPicker、showSaveFilePicker接口参数options的types属性。根据HTML规范，accept属性与types属性为互斥关系，不应同时使用。
 
 getAcceptType(): Array\<string\>
 
@@ -74,7 +74,7 @@ getAcceptType(): Array\<string\>
 
 | 类型              | 说明        |
 | --------------- | --------- |
-| Array\<string\> | 返回文件过滤类型数组，包含用于限制文件选择器可选文件范围的类型信息。元素为文件MIME类型或扩展名（如'image/*'或'.png'），对应HTML accept属性。 |
+| Array\<string\> | 返回文件过滤类型数组，包含用于限制文件选择器可选文件范围的类型信息。元素为扩展名（如'.png'），对应HTML accept属性。 |
 
 ## isCapture<sup>9+</sup>
 
@@ -88,7 +88,7 @@ isCapture(): boolean
 
 | 类型      | 说明           |
 | ------- | ------------ |
-| boolean | 返回是否调用多媒体能力。<br>true表示需要调用摄像头或麦克风等多媒体设备来获取文件（如拍照或录音），false表示仅从存储设备中选择已有文件。对应HTML capture属性。|
+| boolean | 返回是否调用多媒体能力。<br>true表示需要调用摄像头或麦克风等多媒体设备来获取文件（如拍照或录音），false表示仅从存储设备中选择已有文件。对应HTML input标签的capture属性。|
 
 ## getMimeTypes<sup>18+</sup>
 
@@ -102,7 +102,7 @@ getMimeTypes(): Array\<string\>
 
 | 类型              | 说明        |
 | --------------- | --------- |
-| Array\<string\> | 返回文件MIME类型数组，包含指定允许选择的文件的MIME类型信息。 |
+| Array\<string\> | 原样返回HTML input标签的accept属性的值，包含指定允许选择的文件的MIME类型和扩展名信息。 |
 
 ## getSuggestedName<sup>23+</sup>
 

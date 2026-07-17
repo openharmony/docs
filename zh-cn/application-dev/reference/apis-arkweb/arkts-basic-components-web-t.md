@@ -405,8 +405,8 @@ AI会话创建回调函数类型。允许自定义模型初始化和结果处理
 | 参数名    | 类型                                            | 必填 | 说明                 |
 | ------ | --------------------------------------------- | -- | ------------------ |
 | id     | string                                        | 是  | 会话任务ID。            |
-| params | string                                        | 是  | 会话创建时传递的上下文数据，JSON字符串格式，包含会话配置相关的键值对信息。|
-| result | [OnAISessionCallback](#onaisessioncallback) | 是  | 会话创建结果的回调通知。 |
+| params | string                                        | 是  | 会话创建时传递的上下文数据，JSON字符串格式。|
+| result | [OnAISessionCallback](#onaisessioncallback) | 是  | 用于通知系统会话创建结果的回调函数 |
 
 **返回值：**
 
@@ -431,7 +431,7 @@ AI会话执行操作回调函数类型。用于自定义实现AI模型执行。
 | 参数名    | 类型                                            | 必填 | 说明                 |
 | ------ | --------------------------------------------- | -- | ------------------ |
 | id     | string                                        | 是  | 会话任务ID。            |
-| params | string                                        | 是  | 执行操作时传递的上下文数据，JSON字符串格式，包含操作指令和相关参数信息。|
+| params | string                                        | 是  | 执行操作时传递的上下文数据，JSON字符串格式。|
 | result | [OnAISessionCallback](#onaisessioncallback) | 是  | 用于通知系统操作执行结果的回调函数。 |
 
 ## OnDestroyAISession
@@ -468,7 +468,7 @@ AI会话操作结果回调函数类型。用于报告会话创建或执行的结
 
 | 参数名     | 类型                                                                             | 必填 | 说明              |
 | ------- | ------------------------------------------------------------------------------ | -- | --------------- |
-| state   | [AISessionResultType](./arkts-basic-components-web-e.md#aisessionresulttype) | 是  | AI会话创建或执行的状态结果。取值原则：不同的状态值表示AI会话的不同执行阶段或结果，具体取值参考AISessionResultType枚举定义。 |
+| state   | [AISessionResultType](./arkts-basic-components-web-e.md#aisessionresulttype) | 是  | AI会话创建或执行的状态结果。 |
 | content | string                                                                         | 是  | AI会话的响应内容，文本或JSON格式，包含AI模型生成的回复内容。|
 
 ## OnInputmethodAttachedCallback

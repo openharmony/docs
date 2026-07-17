@@ -66,7 +66,7 @@ Web媒体策略的配置。
 
 ## NestedScrollOptionsExt<sup>14+</sup>
 
-用于设置Web组件嵌套滚动规则，支持上下左右四个方向的滚动选项。适用于需要自定义Web组件滚动行为的场景，提升滚动交互的灵活性和用户体验。
+用于设置Web组件嵌套滚动规则，支持上下左右四个方向的滚动选项。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -90,7 +90,7 @@ Web媒体策略的配置。
 
 ## ExpandedMenuItemOptions<sup>(deprecated)</sup>
 
-用于定义自定义菜单扩展项，包括显示内容、图标和操作行为。适用于需要自定义Web菜单的场景（已废弃，建议使用[editMenuOptions](./arkts-basic-components-web-attributes.md#editmenuoptions12)替代）。
+自定义菜单扩展项。
 
 > **说明：**
 >
@@ -117,7 +117,7 @@ Web媒体策略的配置。
 
 ## SelectionMenuOptionsExt<sup>13+</sup>
 
-用于配置自定义选择菜单，包括菜单类型、预览内容和回调行为。适用于需要增强文本选择交互的场景，提升用户体验和功能扩展性。
+自定义菜单扩展项。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -154,7 +154,7 @@ Web同层渲染的配置。
 
 ## OnAlertEvent<sup>12+</sup>
 
-定义网页触发alert告警时的回调信息，包括URL和消息内容。适用于需要捕获和处理网页告警的场景，提升交互的定制性和用户体验。
+定义网页触发 `alert()` 告警时的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -179,7 +179,7 @@ Web同层渲染的配置。
 
 ## OnConfirmEvent<sup>12+</sup>
 
-定义网页触发confirm弹窗时的回调信息，包括URL和消息内容。适用于需要捕获和处理网页确认对话框的场景，提升交互的定制性和用户体验。
+定义网页触发 `confirm()` 弹窗时的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -191,7 +191,7 @@ Web同层渲染的配置。
 
 ## OnPromptEvent<sup>12+</sup>
 
-定义网页触发prompt弹窗时的回调信息，包括URL、消息和默认值。适用于需要捕获和处理网页输入对话框的场景，提升交互的定制性和用户体验。
+定义网页触发 `prompt()` 弹窗时的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -272,7 +272,7 @@ Web同层渲染的配置。
 
 ## OnShowFileSelectorEvent<sup>12+</sup>
 
-定义文件选择器结果的回调信息，包括结果和参数详情。适用于需要监控和处理文件选择的场景，提升文件交互的定制性和用户体验。
+定义文件选择器结果的回调信息，包括结果和参数详情。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -346,7 +346,7 @@ Web同层渲染的配置。
 
 ## OnContextMenuShowEvent<sup>12+</sup>
 
-定义调用时触发的回调信息，以允许自定义显示上下文菜单。适用于需要定制上下文菜单的场景，提升菜单交互的灵活性和用户体验。
+定义调用时触发的回调信息，以允许自定义显示上下文菜单。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -369,14 +369,14 @@ Web同层渲染的配置。
 
 ## OnScrollEvent<sup>12+</sup>
 
-定义滚动条滑动到指定位置时触发的回调信息，包括水平和垂直偏移量。适用于需要监控页面滚动行为的场景，提升滚动交互的定制性和用户体验。
+定义滚动条滑动到指定位置时触发的回调信息，包括水平和垂直偏移量。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称             | 类型      | 只读 | 可选 | 说明                                       |
 | -------------- | ---- | ---- | ---- | ---------------------------------------- |
-| xOffset | number |  否   | 否   | 以网页最左端为基准，水平滚动条滚动所在位置。正值表示向右滚动，负值表示向左滚动。<br>单位：vp。 |
-| yOffset | number |  否   | 否   | 以网页最上端为基准，竖直滚动条滚动所在位置。正值表示向下滚动，负值表示向上滚动。<br>单位：vp。 |
+| xOffset | number |  否   | 否   | 以网页最左端为基准，水平滚动条滚动所在位置。<br>单位：vp。 |
+| yOffset | number |  否   | 否   | 以网页最上端为基准，竖直滚动条滚动所在位置。<br>单位：vp。 |
 
 ## OnSslErrorEventReceiveEvent<sup>12+</sup>
 
@@ -547,7 +547,7 @@ Web同层渲染的配置。
 
 ## OnOverScrollEvent<sup>12+</sup>
 
-定义网页过度滚动时触发的回调信息，包括水平和垂直偏移量。适用于需要监控页面过度滚动行为的场景，提升滚动交互的定制性和用户体验。
+定义网页过度滚动时触发的回调信息，包括水平和垂直偏移量。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -934,7 +934,7 @@ Web屏幕捕获的配置。
 
 ## AcceptableFileType<sup>23+</sup>
 
-提供文件选择器推荐的文件类型信息，包括MIME类型和类型数组。适用于需要过滤文件选择类型的场景，提升文件选择体验的定制性和准确性。
+提供文件选择器推荐的文件类型信息，包括MIME类型和类型数组。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -957,7 +957,7 @@ Web屏幕捕获的配置。
 
 ## AISessionEvent
 
-自定义AI会话配置对象，用于定义AI会话的生命周期回调，包括创建、执行和销毁。适用于需要集成AI交互功能的场景，提升AI能力的定制性和用户体验。
+自定义AI会话配置对象，用于定义AI会话的生命周期回调，包括创建、执行和销毁。
 
 **起始版本：** 26.0.0
 

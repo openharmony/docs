@@ -101,7 +101,7 @@ bool OH_ArkWeb_RegisterScrollCallback(const char* webTag, ArkWeb_OnScrollCallbac
 
 **描述：**
 
-注册组件滚动时的回调函数。用于监听页面滚动事件，常见场景包括吸顶导航切换、虚拟列表渲染优化和滚动埋点上报等。
+注册组件滚动时的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -112,9 +112,9 @@ bool OH_ArkWeb_RegisterScrollCallback(const char* webTag, ArkWeb_OnScrollCallbac
 
 | 参数项 | 描述 |
 | -- | -- |
-| const char* webTag | Web组件的名称，需与ArkTS侧Web组件的id属性保持一致，用于标识特定的Web组件实例。需先在ArkTS侧创建Web组件并设置对应的tag名称。 |
-| [ArkWeb_OnScrollCallback](capi-arkweb-type-h.md#arkweb_onscrollcallback) callback | 页面滚动时的回调函数。由于滚动事件触发频率较高，建议在回调函数中避免执行耗时操作，并可考虑实现防抖或节流机制以提升性能。 |
-| void* userData | 用户自定义的数据指针，在回调函数触发时会原样传回给回调函数，用于在Native侧保存和传递上下文信息。可以为NULL，如果不传递自定义数据则设置为NULL。该数据的生命周期应与回调注册周期保持一致，由调用方负责内存管理，确保数据在回调执行期间始终有效。 |
+| const char* webTag | Web组件的名称。 |
+| [ArkWeb_OnScrollCallback](capi-arkweb-type-h.md#arkweb_onscrollcallback) callback | 页面滚动时的回调函数。 |
+| void* userData | 用户自定义的数据。 |
 
 **返回：**
 
