@@ -444,6 +444,10 @@ onAboutToCreateAbility(): void
 
 开发者可以通过重写此方法来执行在创建第一个Ability之前的准备工作。
 
+> **说明：**
+>
+> - 从API版本26.0.0开始，若实现了[AbilityStage.onAboutToCreateAbilityAsync](#onabouttocreateabilityasync2600)，则不会触发本回调函数。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **示例：**
@@ -455,6 +459,48 @@ export default class MyAbilityStage extends AbilityStage {
   onAboutToCreateAbility(): void {
     console.info('About to create first ability, preparing...');
     // 在此添加创建第一个Ability前的准备工作
+  }
+}
+```
+
+### onAboutToCreateAbilityAsync<sup>26.0.0+</sup>
+
+onAboutToCreateAbilityAsync(): Promise\<void\>
+
+当AbilityStage即将创建第一个Ability时调用。使用Promise异步回调。
+
+此方法返回的Promise成功resolve后，后续的生命周期回调才会继续执行；否则将被挂起。
+
+开发者可通过重写此方法，在AbilityStage创建首个Ability之前，执行必要的异步初始化与准备工作。
+
+> **说明：**
+>
+> 若同时实现[onAboutToCreateAbility](#onabouttocreateability24)和此方法，仅此方法生效。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void\> | Promise对象，无返回值。在Promise成功resolve后，后续的生命周期回调才会继续执行。 |
+
+**示例：**
+
+```ts
+import { AbilityStage } from '@kit.AbilityKit';
+
+export default class MyAbilityStage extends AbilityStage {
+  async onAboutToCreateAbilityAsync(): Promise<void> {
+    console.info('About to create first ability, preparing...');
+    // 执行异步初始化操作
+    await new Promise<void>((resolve) => {
+      setTimeout(() => {
+        console.info('Async preparation completed');
+        resolve();
+      }, 1000);
+    });
+    // 初始化完成后，才会继续创建Ability
   }
 }
 ```
