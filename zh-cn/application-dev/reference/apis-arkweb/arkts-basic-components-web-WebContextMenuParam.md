@@ -124,7 +124,7 @@ getMediaType(): ContextMenuMediaType
 获取网页元素的媒体类型。
 
 > **说明：**
-> 该方法从API 9开始支持；getContextMenuMediaType()从API 22开始支持，提供更丰富的媒体类型识别能力。如需兼容API 9及以上版本，请使用getMediaType()；如需使用API 22新增的媒体类型能力，请使用getContextMenuMediaType()。
+> 从API version 22开始，[getContextMenuMediaType](#getcontextmenumediatype22)提供更丰富的媒体类型识别能力。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

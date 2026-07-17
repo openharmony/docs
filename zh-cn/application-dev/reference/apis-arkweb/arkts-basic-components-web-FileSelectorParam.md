@@ -56,7 +56,7 @@ getMode(): FileSelectorMode
 
 | 类型                                       | 说明          |
 | ---------------------------------------- | ----------- |
-| [FileSelectorMode](./arkts-basic-components-web-e.md#fileselectormode9) | 返回文件选择器模式的枚举值，表示当前文件选择器的选择模式类型。具体枚举值及其含义请参考[FileSelectorMode](./arkts-basic-components-web-e.md#fileselectormode9)枚举说明。 |
+| [FileSelectorMode](./arkts-basic-components-web-e.md#fileselectormode9) | 返回文件选择器的模式。 |
 
 ## getAcceptType<sup>9+</sup>
 
