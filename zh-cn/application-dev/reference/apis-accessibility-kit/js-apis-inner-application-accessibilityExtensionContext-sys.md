@@ -1692,9 +1692,9 @@ findElementByFocusDirection(condition: FocusDirection, type: FocusRuleType): Pro
 
 **起始版本：** 26.0.0
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统接口**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
@@ -1711,7 +1711,7 @@ findElementByFocusDirection(condition: FocusDirection, type: FocusRuleType): Pro
 
 | 类型                                      | 描述                   |
 | ---------------------------------------- | --------------------- |
-| Promise\<[AccessibilityElement](#accessibilityelement)> | Promise对象，根据焦点方向和聚焦类型查找元素成功时返回对应元素，失败时抛出错误对象。 |
+| Promise\<[AccessibilityElement](#accessibilityelement)> | Promise对象，返回指定焦点方向上符合聚焦类型的元素。 |
 
 **错误码：**
 
@@ -1727,7 +1727,7 @@ findElementByFocusDirection(condition: FocusDirection, type: FocusRuleType): Pro
 
 ```ts
 // Page.ets
-// 点击二级标题1使其成为无障碍焦点元素，下一个聚焦类型为标题焦点元素是二级标题2。
+// 点击“二级标题1”，使其成为无障碍焦点元素。下一个聚焦类型为标题焦点元素，是“二级标题2”。
   build() {
     Text('Connect')
         .id('connect')
@@ -1760,7 +1760,6 @@ findElementByFocusDirection(condition: FocusDirection, type: FocusRuleType): Pro
       }]
     })
   }
-// ...
 
 // AccessibilityExtAbility.ets
 import { AccessibilityElement, FocusRuleType } from '@kit.AccessibilityKit';
@@ -1972,13 +1971,13 @@ axContext.getAccessibilityFocusedElement().then((focus: AccessibilityElement) =>
 
 findElementsByCondition(rule: FocusRule, condition: FocusCondition, type: FocusRuleType): Promise\<FocusMoveResult>
 
-查询满足条件的可聚焦节点。使用Promise异步回调。
+根据规则和查询条件查找目标类型的可聚焦节点。使用Promise异步回调。
 
 **起始版本：** 26.0.0
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
-**系统接口**：此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
@@ -1996,7 +1995,7 @@ findElementsByCondition(rule: FocusRule, condition: FocusCondition, type: FocusR
 
 | 类型                                      | 描述                   |
 | ---------------------------------------- | --------------------- |
-| Promise\<[FocusMoveResult](#focusmoveresult23)> | Promise对象，查询满足条件的可聚焦节点成功时返回查询结果对象，失败时抛出错误对象。 |
+| Promise\<[FocusMoveResult](#focusmoveresult23)> | Promise对象，返回查询结果对象。 |
 
 **错误码：**
 
@@ -2043,7 +2042,6 @@ findElementsByCondition(rule: FocusRule, condition: FocusCondition, type: FocusR
       }]
     })
   }
-// ...
 
 // AccessibilityExtAbility.ets
 
