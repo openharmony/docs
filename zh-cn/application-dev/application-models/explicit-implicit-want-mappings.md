@@ -195,7 +195,7 @@
 >
 > 本章节所述的linkFeature匹配规则适用于want参数中的parameters包含linkFeature键，且对应取值不为空的场景。
 
-将调用方传入的want参数的parameters与待匹配应用组件的skills配置中的uris进行匹配。为了简化描述，称调用方传入的want参数中的linkFeature参数为w_linkFeature, 具体的匹配规则如下：
+将调用方传入的want参数的parameters与待匹配应用组件的skills配置中的uris进行匹配。为了简化描述，称调用方传入的want参数中的linkFeature参数为w_linkFeature，具体的匹配规则如下：
 - want参数的uri和type均为空，只匹配linkFeature，当w_linkFeature和s_uri的linkFeature相同时匹配成功，否则匹配失败。
 - want参数的uri或type不为空，依次匹配linkFeature、uri、type (参见[want参数的uri和type匹配规则](#want参数的uri和type匹配规则))，当三个字段均匹配成功时，则匹配成功，否则匹配失败。
 
