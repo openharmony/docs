@@ -1194,7 +1194,7 @@ onResourceLoad(callback: Callback\<OnResourceLoadEvent\>)
 
 onScaleChange(callback: Callback\<OnScaleChangeEvent\>)
 
-当页面显示比例发生变化时，触发该回调。
+当页面显示比例发生变化时，触发该回调。用于监听用户缩放行为，提供更好的页面缩放体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4255,7 +4255,7 @@ onViewportFitChanged(callback: OnViewportFitChangedCallback)
 
 onInterceptKeyboardAttach(callback: WebKeyboardCallback)
 
-网页中可编辑元素（如input标签）拉起软键盘之前会回调该接口，应用可以使用该接口拦截系统软键盘的弹出，配置应用定制的软键盘（应用根据该接口可以决定使用系统默认软键盘/定制enter键的系统软键盘/全部由应用自定义的软键盘）。
+当网页中的可编辑元素（如input标签）需要弹出软键盘时触发此回调。应用可以在回调中拦截系统软键盘的弹出，配置应用定制的软键盘（应用根据该接口可以决定使用系统默认软键盘/定制enter键的系统软键盘/全部由应用自定义的软键盘）。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5538,7 +5538,7 @@ onInputmethodAttached(callback: OnInputmethodAttachedCallback)
 
 | 参数名        | 类型    | 必填   | 说明          |
 | ---------- | ------- | ---- | ------------- |
-| callback | [OnInputmethodAttachedCallback](./arkts-basic-components-web-t.md#oninputmethodattachedcallback) | 是    | 回调函数，设置Web组件检测到输入法绑定成功时的回调。 |
+| callback | [OnInputmethodAttachedCallback](./arkts-basic-components-web-t.md#oninputmethodattachedcallback) | 是    | 设置Web组件检测到输入法绑定成功时的回调函数。 |
 
 **示例：**
 

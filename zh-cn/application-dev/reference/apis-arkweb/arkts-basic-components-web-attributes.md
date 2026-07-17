@@ -338,7 +338,7 @@ onlineImageAccess(onlineImageAccess: boolean)
 
 zoomAccess(zoomAccess: boolean)
 
-设置是否支持手势进行缩放。该属性没有显式调用时，默认支持手势进行缩放。
+设置是否支持手势进行缩放。该属性没有显式调用时，默认支持。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -346,7 +346,7 @@ zoomAccess(zoomAccess: boolean)
 
 | 参数名        | 类型    | 必填   | 说明          |
 | ---------- | ------- | ---- | ------------- |
-| zoomAccess | boolean | 是    | 设置是否支持手势进行缩放。<br>true表示设置支持手势进行缩放，false表示设置不支持手势进行缩放。<br>传入undefined或null时为false。 |
+| zoomAccess | boolean | 是    | 设置是否支持手势进行缩放。<br>true表示支持，false表示不支持。<br>传入undefined或null时为false。 |
 
 **示例：**
 
@@ -822,7 +822,7 @@ textZoomRatio(textZoomRatio: number)
 
 initialScale(percent: number)
 
-设置整体页面的缩放百分比。该属性没有显式调用时，默认缩放百分比为100。
+设置整体页面的缩放百分比。该属性没有显式调用时，默认为100。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3228,7 +3228,7 @@ struct SelectionMenuLongPress {
 
 blurOnKeyboardHideMode(mode: BlurOnKeyboardHideMode)
 
-设置当软键盘收起时Web元素失焦模式。
+设置当软键盘收起时Web元素失焦模式。当属性没有显式调用时，默认按[BlurOnKeyboardHideMode.SILENT](./arkts-basic-components-web-e.md#bluronkeyboardhidemode14)模式处理。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4583,7 +4583,7 @@ struct WebComponent {
 
 keyboardAppearance(mode: WebKeyboardAppearanceMode)
 
-设置键盘外观。不调用该方法时，默认跟随系统的沉浸式模式。
+设置键盘外观模式，用于控制Web组件内输入框弹出键盘的外观样式，包括沉浸式和非沉浸式模式。不调用该方法时，默认跟随系统的沉浸式模式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

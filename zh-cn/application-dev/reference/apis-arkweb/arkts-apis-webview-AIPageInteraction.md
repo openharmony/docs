@@ -73,7 +73,7 @@
 
 ## click
 
-点击目标元素，使其响应点击事件(click event)。该命令仅使目标元素响应点击事件(click event)，不关注是否产生真实的鼠标事件(mouse event)。
+点击目标元素，使其响应点击事件(click event)，不关注是否产生真实的鼠标事件(mouse event)。
 
 ### ClickCommand
 
