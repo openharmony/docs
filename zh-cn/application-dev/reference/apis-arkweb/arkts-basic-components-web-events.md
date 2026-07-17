@@ -2038,19 +2038,19 @@ onPermissionRequest(callback: Callback\<OnPermissionRequestEvent\>)
                 primaryButton: {
                   value: 'deny',
                   action: () => {
-                    // 用户点击拒绝，调用 deny 通知 Web 组件拒绝权限请求
+                    // 用户点击拒绝，调用deny通知Web组件拒绝权限请求
                     event.request.deny();
                   }
                 },
                 secondaryButton: {
                   value: 'onConfirm',
                   action: () => {
-                    // 用户点击确认，调用 grant 通知 Web 组件授予权限
+                    // 用户点击确认，调用grant通知Web组件授予权限
                     event.request.grant(event.request.getAccessibleResource());
                   }
                 },
                 cancel: () => {
-                  // 用户取消对话框，调用 deny 通知 Web 组件拒绝权限请求
+                  // 用户取消对话框，调用deny通知Web组件拒绝权限请求
                   event.request.deny();
                 }
               })
@@ -2513,7 +2513,7 @@ onGeolocationHide(callback: () => void)
 
 onFullScreenEnter(callback: OnFullScreenEnterCallback)
 
-通知开发者 Web 组件进入全屏模式。用于隐藏状态栏和导航栏、调整页面布局以适应全屏、实现沉浸式视频播放等全屏体验。
+通知开发者Web组件进入全屏模式。用于隐藏状态栏和导航栏、调整页面布局以适应全屏、实现沉浸式视频播放等全屏体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2521,7 +2521,7 @@ onFullScreenEnter(callback: OnFullScreenEnterCallback)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | [OnFullScreenEnterCallback](./arkts-basic-components-web-t.md#onfullscreenentercallback12) | 是 | Web 组件进入全屏时的回调信息，包含 videoWidth、videoHeight 和 handler 字段。 |
+| callback | [OnFullScreenEnterCallback](./arkts-basic-components-web-t.md#onfullscreenentercallback12) | 是 | Web组件进入全屏时的回调信息，包含videoWidth、videoHeight和handler字段。 |
 
 **示例：**
 
@@ -2541,7 +2541,7 @@ onFullScreenEnter(callback: OnFullScreenEnterCallback)
           .onFullScreenEnter((event) => {
             console.info("onFullScreenEnter videoWidth: " + event.videoWidth +
               ", videoHeight: " + event.videoHeight);
-            // 保存 handler 供后续退出全屏使用
+            // 保存handler供后续退出全屏使用
             this.handler = event.handler;
           })
       }
@@ -2553,7 +2553,7 @@ onFullScreenEnter(callback: OnFullScreenEnterCallback)
 
 onFullScreenExit(callback: () => void)
 
-通知开发者 Web 组件退出全屏模式。用于恢复状态栏和导航栏、调整页面布局恢复正常显示、实现全屏与正常显示的平滑切换，提供更好的全屏交互体验。
+通知开发者Web组件退出全屏模式。用于恢复状态栏和导航栏、调整页面布局恢复正常显示、实现全屏与正常显示的平滑切换，提供更好的全屏交互体验。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3440,7 +3440,7 @@ onScreenCaptureRequest(callback: Callback\<OnScreenCaptureRequestEvent\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnScreenCaptureRequestEvent](./arkts-basic-components-web-i.md#onscreencapturerequestevent12)\> | 是 | 收到屏幕捕获请求时触发。事件对象包含请求来源 URL、请求的捕获模式等信息。 |
+| callback | Callback\<[OnScreenCaptureRequestEvent](./arkts-basic-components-web-i.md#onscreencapturerequestevent12)\> | 是 | 收到屏幕捕获请求时触发。事件对象包含请求来源URL、请求的捕获模式等信息。 |
 
 **示例：**
 
@@ -3465,19 +3465,19 @@ onScreenCaptureRequest(callback: Callback\<OnScreenCaptureRequestEvent\>)
                 primaryButton: {
                   value: 'deny',
                   action: () => {
-                    // 用户点击拒绝，调用 deny 通知 Web 组件拒绝屏幕捕获请求
+                    // 用户点击拒绝，调用deny通知Web组件拒绝屏幕捕获请求
                     event.handler.deny();
                   }
                 },
                 secondaryButton: {
                   value: 'onConfirm',
                   action: () => {
-                    // 用户点击确认，调用 grant 通知 Web 组件允许屏幕捕获，并指定捕获模式为 HOME_SCREEN
+                    // 用户点击确认，调用grant通知Web组件允许屏幕捕获，并指定捕获模式为HOME_SCREEN
                     event.handler.grant({ captureMode: WebCaptureMode.HOME_SCREEN });
                   }
                 },
                 cancel: () => {
-                  // 用户取消对话框，调用 deny 通知 Web 组件拒绝屏幕捕获请求
+                  // 用户取消对话框，调用deny通知Web组件拒绝屏幕捕获请求
                   event.handler.deny();
                 }
               })
@@ -5124,7 +5124,7 @@ onRenderExited(callback: (event?: { detail: object }) => boolean)
 
 onCameraCaptureStateChange(callback: OnCameraCaptureStateChangeCallback)
 
-通知应用当前网页的摄像头状态，摄像头有三个状态：无状态、捕获中、暂停中。使用 callback 异步回调。
+通知应用当前网页的摄像头状态，摄像头有三个状态：无状态、捕获中、暂停中。使用callback异步回调。
 
 可以通过startCamera，stopCamera，closeCamera这三个接口来切换摄像头的状态。这三个接口分别对应开启，暂停，停止摄像头功能。示例使用场景详见[startCamera](arkts-apis-webview-WebviewController.md#startcamera12)。
 
@@ -5261,7 +5261,7 @@ onCameraCaptureStateChange(callback: OnCameraCaptureStateChangeCallback)
 
 onMicrophoneCaptureStateChange(callback: OnMicrophoneCaptureStateChangeCallback)
 
-通知应用当前网页中麦克风状态，麦克风有三个状态：未工作、捕获中、暂停中。使用 callback 异步回调。
+通知应用当前网页中麦克风状态，麦克风有三个状态：未工作、捕获中、暂停中。使用callback异步回调。
 
 可以通过resumeMicrophone，pauseMicrophone，stopMicrophone这三个接口来切换麦克风的状态。这三个接口功能分别对应解除暂停，暂停，停止麦克风。示例使用场景详见[resumeMicrophone<sup>23+</sup>](./arkts-apis-webview-WebviewController.md#resumemicrophone23)。
 
