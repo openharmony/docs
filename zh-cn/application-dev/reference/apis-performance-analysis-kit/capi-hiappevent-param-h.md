@@ -211,6 +211,6 @@
 
 **描述**
 
-用于设置APP_CRASH事件中的CPP_CRASH类型的日志规格，是否在CPP_CRASH场景收集minidump日志。
+<!--RP2-->用于APP_CRASH事件，是否使能minidump。<!--RP2End-->
 
 **起始版本：** 26.0.0
