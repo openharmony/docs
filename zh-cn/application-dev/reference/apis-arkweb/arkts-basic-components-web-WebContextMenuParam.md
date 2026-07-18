@@ -152,7 +152,7 @@ getSelectionText(): string
 
 getSourceType(): ContextMenuSourceType
 
-获取上下文菜单事件的触发来源（如鼠标右键、长按操作等），用于根据不同来源调整菜单展示样式或提供差异化的菜单选项。
+获取上下文菜单事件的触发来源类型（如鼠标右键、长按操作等），用于根据不同来源调整菜单展示样式或提供差异化的菜单选项。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
