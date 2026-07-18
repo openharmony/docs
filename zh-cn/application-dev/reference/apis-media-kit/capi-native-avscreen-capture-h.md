@@ -114,7 +114,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_Init(struct OH_AVScreenCapture *c
 
 **描述**
 
-初始化[OH_AVScreenCapture](capi-avscreencapture-oh-avscreencapture.md)相关参数，包括下发的音频麦克风采样相关参数（可选）、音频内录采样相关参数、视频分辨率相关参数。<br> 录屏存文件场景，应用需要保证视频编码参数、视频采样参数、音频编码参数、音频内录采样参数均合法，音频麦克风采样参数合法（可选）。<br> 录屏出码流场景，应用需要保证音频内录采样参数、视频采样参数至少一个合法，音频麦克风采样参数合法（可选）。<br> 由于结构体变量在初始化时不会对成员进行初始化，应用必须根据使用场景正确设置各项参数。建议应用先将OH_AVScreenCaptureConfig结构体变量的所有内存字节均设置为0，然后再根据录屏场景设置合法参数。<br> 音频采样参数结构体[OH_AudioCaptureInfo](capi-avscreencapture-oh-audiocaptureinfo.md)，若audioSampleRate和audioChannels同时为0，则录屏实例OH_AVScreenCapture将忽略该类型的音频参数，且不采集该类型的音频数据。<br> 视频采样参数结构体[OH_VideoCaptureInfo](capi-avscreencapture-oh-videocaptureinfo.md)，若videoFrameWidth和videoFrameHeight同时为0，则录屏实例OH_AVScreenCapture将忽略对应视频参数，且不采集屏幕数据。
+初始化[OH_AVScreenCapture](capi-avscreencapture-oh-avscreencapture.md)相关参数，包括下发的音频麦克风采样相关参数（可选）、音频内录采样相关参数、视频分辨率相关参数。<br> 录屏存文件场景，应用需要保证视频编码参数、视频采样参数、音频编码参数、音频内录采样参数均合法，音频麦克风采样参数合法（可选）。<br> 录屏取码流场景，应用需要保证音频内录采样参数、视频采样参数至少一个合法，音频麦克风采样参数合法（可选）。<br> 由于结构体变量在初始化时不会对成员进行初始化，应用必须根据使用场景正确设置各项参数。建议应用先将OH_AVScreenCaptureConfig结构体变量的所有内存字节均设置为0，然后再根据录屏场景设置合法参数。<br> 音频采样参数结构体[OH_AudioCaptureInfo](capi-avscreencapture-oh-audiocaptureinfo.md)，若audioSampleRate和audioChannels同时为0，则录屏实例OH_AVScreenCapture将忽略该类型的音频参数，且不采集该类型的音频数据。<br> 视频采样参数结构体[OH_VideoCaptureInfo](capi-avscreencapture-oh-videocaptureinfo.md)，若videoFrameWidth和videoFrameHeight同时为0，则录屏实例OH_AVScreenCapture将忽略对应视频参数，且不采集屏幕数据。需先调用OH_AVScreenCapture_Create()创建实例，然后调用此方法进行参数初始化。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -532,6 +532,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCaptureWithSurface(str
 
 使用Surface模式录屏。
 
+需先调用OH_AVScreenCapture_Create()创建实例与调用OH_AVScreenCapture_Init()初始化参数，然后才能调用此方法开始录屏。
+
 与[OH_AVScreenCapture_StartScreenCapture](#oh_avscreencapture_startscreencapture)不同，本接口通过传入OHNativeWindow将视频数据直接输出到指定的Surface窗口，适用于需要将录屏数据渲染到特定窗口的场景；而OH_AVScreenCapture_StartScreenCapture通过回调获取原始码流数据，适用于需要自行处理音视频数据的场景。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
@@ -644,7 +646,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ContentFilter_AddAudioContent(str
 
 向ContentFilter实例添加可过滤的声音类型。
 
-适用于需要从录屏音频中排除特定声音的场景，如录制教程时过滤系统通知音、录制会议时排除其他应用音频等。
+必须先调用OH_AVScreenCapture_CreateContentFilter()创建ContentFilter实例，添加完成后，需调用OH_AVScreenCapture_ExcludeContent()将ContentFilter应用到OH_AVScreenCapture实例。适用于需要从录屏音频中排除特定声音的场景，如录制教程时过滤系统通知音、录制会议时排除其他应用音频等。调用顺序为CreateContentFilter → AddAudioContent/AddWindowContent → ExcludeContent → ReleaseContentFilter。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
