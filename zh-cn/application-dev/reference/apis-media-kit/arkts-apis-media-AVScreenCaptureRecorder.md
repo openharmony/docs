@@ -40,7 +40,7 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| Promise\<void> | Promise对象，无返回结果。Promise对象。无返回结果表示初始化成功，失败时返回错误码。 |
+| Promise\<void> | Promise对象，无返回结果。无返回结果表示初始化成功，失败时返回错误码。 |
 
 **错误码：**
 
@@ -321,10 +321,10 @@ addWatermark(watermark: image.PixelMap, config: WatermarkConfiguration): Promise
 
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
-| 5400102  | Operation not allowed. Return by promise. Possible cause: Called before startRecording or more than 5 watermarks have been added. Suggestion: Please ensure the method is called at the correct timing and the number of watermarks does not exceed 5. |
-| 5400103  | IO error. Return by promise. Possible cause: Watermark image resource unavailable or insufficient storage space. Suggestion: Please check the validity of the watermark image and available storage space.    |
-| 5400105  | Service died. Return by promise. Possible cause: System service terminated unexpectedly. Suggestion: Please release resources and retry. If the issue persists, restart the application. |
-| 5400108  | The parameter check failed, parameter value out of range. Possible cause: Watermark configuration parameters exceed the valid range. Suggestion: Please check whether the values of top, left, width, and height parameters are valid.    |
+| 5400102  | Operation not allowed. Return by promise. Possible cause: Called before startRecording or exceeded 5 watermarks. Suggestion: Please ensure proper timing of the call, and keep watermark count within 5. |
+| 5400103  | IO error. Return by promise. Possible cause: Watermark image resource unavailable or insufficient storage space. Suggestion: Please check watermark image validity and storage space.    |
+| 5400105  | Service died. Return by promise. Possible cause: System service terminated abnormally. Suggestion: Please release resources and retry. If the problem persists, restart the application. |
+| 5400108  | The parameter check failed, parameter value out of range. Possible cause: Watermark configuration parameters out of valid range. Suggestion: Please check if top, left, width, height parameter values are valid.    |
 
 **示例：**
 
