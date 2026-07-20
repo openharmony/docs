@@ -17,6 +17,7 @@ ScreenCaptureHandler 是 Web 组件提供的屏幕捕获权限处理类，用于
 > - 示例效果请以真机运行为准。
 >
 > -  [grant](./arkts-basic-components-web-ScreenCaptureHandler.md#grant10)()与 [deny](./arkts-basic-components-web-ScreenCaptureHandler.md#deny10)() 方法互斥，对同一个 ScreenCaptureHandler 实例的同一请求只能调用其中一个。
+>
 > - 调用后不应再对同一请求调用另一个方法。
 
 ## constructor<sup>10+</sup>
