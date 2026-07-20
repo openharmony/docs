@@ -173,7 +173,7 @@ exitFullscreen(): void
 
 resumePlayer?(): void
 
-通知应用重建播放器，并恢复播放器的状态信息。在 suspendPlayer 挂起后，当需要恢复媒体播放时由 ArkWeb 内核触发，应用应依据已保存的状态信息重建播放器并恢复到挂起前的播放状态。仅与 suspendPlayer 成对出现。
+通知应用重建播放器，并恢复播放器的状态信息。仅与 suspendPlayer 成对出现。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -185,7 +185,7 @@ resumePlayer?(): void
 
 suspendPlayer?(type: SuspendType): void
 
-通知应用销毁播放器，并保存播放器的状态信息。当系统资源需要释放或媒体播放需要临时挂起时由 ArkWeb 内核触发，应用应保存当前播放状态（如播放位置、音量等）以便后续恢复。仅与 resumePlayer 成对出现。
+通知应用销毁播放器，并保存播放器的状态信息。仅与 resumePlayer 成对出现。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
