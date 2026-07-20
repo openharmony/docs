@@ -15,6 +15,17 @@ PermissionRequest 是 Web 组件用于授权或拒绝权限请求的对象。当
 > - 本Class首批接口从API version 9开始支持。
 >
 > - 示例效果请以真机运行为准。
+>
+> - [grant](./arkts-basic-components-web-PermissionRequest.md#grant9)()与 [deny](./arkts-basic-components-web-PermissionRequest.md#deny9)() 方法互斥，对于同一个 PermissionRequest 对象，只能调用其中一个方法。
+>
+> - 调用 grant() 或 deny() 后，该 PermissionRequest 对象已完成响应，不允许重复调用。
+>
+> - 未调用任何方法响应的 PermissionRequest 对象会导致权限请求超时。
+>
+> - grant() 方法的 resources 参数通常使用 getAccessibleResource() 方法的返回值。
+>
+> - 典型使用流程：调用 getAccessibleResource() 获取请求的资源列表，选择需要授权的资源后调用 grant() 进行授权。
+
 
 ## constructor<sup>9+</sup>
 
@@ -65,15 +76,6 @@ getAccessibleResource(): Array\<string\>
 grant(resources: Array\<string\>): void
 
 对网页所请求的权限进行授权。
-
-**互斥制约：**
-- grant() 与 deny() 方法互斥，对于同一个 PermissionRequest 对象，只能调用其中一个方法。
-- 调用 grant() 或 deny() 后，该 PermissionRequest 对象已完成响应，不允许重复调用。
-- 未调用任何方法响应的 PermissionRequest 对象会导致权限请求超时。
-
-**使用说明：**
-- grant() 方法的 resources 参数通常使用 getAccessibleResource() 方法的返回值。
-- 典型使用流程：调用 getAccessibleResource() 获取请求的资源列表，选择需要授权的资源后调用 grant() 进行授权。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
