@@ -49,7 +49,7 @@ ArkWeb_ErrorCode (*postMessage)(const ArkWeb_WebMessagePortPtr webMessagePort, c
 
 **描述：**
 
-发送消息到HTML。**使用场景**：在Native代码向Web页面传递数据、指令或配置信息时使用，例如表单数据同步、控制指令下发等。
+发送消息到HTML。在Native代码向Web页面传递数据、指令或配置信息时使用，例如表单数据同步、控制指令下发等。
 
 **参数：**
 
@@ -61,8 +61,8 @@ ArkWeb_ErrorCode (*postMessage)(const ArkWeb_WebMessagePortPtr webMessagePort, c
 
 **返回：**
 
-| 类型                                                               | 说明                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-|------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 类型 | 说明 |
+| -- | -- |
 | [ArkWeb_ErrorCode](capi-arkweb-error-code-h.md#arkweb_errorcode) | [ARKWEB_SUCCESS](capi-arkweb-error-code-h.md#arkweb_errorcode) 执行成功。<br>[ARKWEB_INVALID_PARAM](capi-arkweb-error-code-h.md#arkweb_errorcode) 参数无效。<br><br>**可能原因：**<br>- webMessagePort或webMessage参数为空。<br>- 参数类型不正确。<br><br>**解决措施：**<br>- 检查参数是否为空指针。<br>- 确认参数类型是否符合接口要求。<br><br>[ARKWEB_INIT_ERROR](capi-arkweb-error-code-h.md#arkweb_errorcode) 初始化失败，没有找到与webTag绑定的Web组件。<br><br>**可能原因：**<br>- Web组件未正确初始化。<br>- webTag参数与实际Web组件名称不匹配。<br><br>**解决措施：**<br>- 确认Web组件已完成初始化。<br>- 检查webTag参数是否与Web组件名称一致。 |
 
 ### close()
@@ -91,7 +91,7 @@ void (*setMessageEventHandler)(const ArkWeb_WebMessagePortPtr webMessagePort, co
 
 **描述：**
 
-设置接收HTML消息的回调。**使用场景**：在需要接收和处理来自Web页面的消息、请求或事件通知时使用，例如接收用户输入、状态更新通知等。
+设置接收HTML消息的回调。在需要接收和处理来自Web页面的消息、请求或事件通知时使用。例如接收用户输入、状态更新通知等。
 
 **参数：**
 

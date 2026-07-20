@@ -57,11 +57,11 @@ enum ArkWeb_NativeAPIVariantKind
 
 | 枚举项 | 描述 |
 | -- | -- |
-| ARKWEB_NATIVE_COMPONENT | component相关API类型。 |
-| ARKWEB_NATIVE_CONTROLLER | controller相关API类型。 |
-| ARKWEB_NATIVE_WEB_MESSAGE_PORT | webMessagePort相关API类型。 |
-| ARKWEB_NATIVE_WEB_MESSAGE | webMessage相关API类型。 |
-| ARKWEB_NATIVE_COOKIE_MANAGER | cookieManager相关API类型。 |
+| ARKWEB_NATIVE_COMPONENT | Component相关API类型。 |
+| ARKWEB_NATIVE_CONTROLLER | Controller相关API类型。 |
+| ARKWEB_NATIVE_WEB_MESSAGE_PORT | WebMessagePort相关API类型。 |
+| ARKWEB_NATIVE_WEB_MESSAGE | WebMessage相关API类型。 |
+| ARKWEB_NATIVE_COOKIE_MANAGER | CookieManager相关API类型。 |
 | ARKWEB_NATIVE_JAVASCRIPT_VALUE | JavaScriptValue相关API类型。<br>**起始版本：** 18 |
 
 
@@ -75,7 +75,7 @@ ArkWeb_AnyNativeAPI* OH_ArkWeb_GetNativeAPI(ArkWeb_NativeAPIVariantKind type)
 
 **描述：**
 
-根据传入的API类型，获取对应的Native API结构体。典型使用场景包括：在Native代码中获取Controller以控制Web组件行为、获取CookieManager以管理Cookie、获取WebMessagePort以实现消息通信、获取JavaScriptValue以操作JavaScript对象等。
+根据传入的API类型，获取对应的Native API结构体。用于在Native代码中获取Controller以控制Web组件行为、获取CookieManager以管理Cookie、获取WebMessagePort以实现消息通信、获取JavaScriptValue以操作JavaScript对象等场景。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -85,13 +85,13 @@ ArkWeb_AnyNativeAPI* OH_ArkWeb_GetNativeAPI(ArkWeb_NativeAPIVariantKind type)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [ArkWeb_NativeAPIVariantKind](#arkweb_nativeapivariantkind) type | ArkWeb支持的Native API类型。 |
+| [ArkWeb_NativeAPIVariantKind](#arkweb_nativeapivariantkind) type | ArkWeb支持的Native API类型，不同API类型可能需要不同系统版本支持，详见枚举类型说明。<br>返回值使用说明：返回的指针由系统管理，无需开发者手动释放；多次调用相同参数可能返回同一指针；返回的Native API结构体在Web组件生命周期内有效；使用时请确保线程安全。 |
 
 **返回：**
 
 | 类型                                           | 说明 |
 |----------------------------------------------| -- |
-| [ArkWeb_AnyNativeAPI](capi-web-arkweb-anynativeapi.md)* | 根据传入的API类型，返回对应的Native API结构体指针，结构体第一个成员为当前结构体的大小。 |
+| [ArkWeb_AnyNativeAPI](capi-web-arkweb-anynativeapi.md)* | 根据传入的API类型，返回对应的Native API结构体指针，结构体第一个成员为当前结构体的大小，可用于访问Controller、Component、CookieManager等具体的Native API功能。若传入的API类型在当前系统版本不支持（如ARKWEB_NATIVE_JAVASCRIPT_VALUE在18以下版本不可用），则返回NULL。 |
 
 ### OH_ArkWeb_RegisterScrollCallback()
 
@@ -101,7 +101,7 @@ bool OH_ArkWeb_RegisterScrollCallback(const char* webTag, ArkWeb_OnScrollCallbac
 
 **描述：**
 
-注册组件滚动时的回调函数。典型使用场景包括：监测用户滚动行为以实现懒加载、检测滚动位置以实现回到顶部功能、记录用户浏览行为用于数据分析、实现滚动时的视觉特效等。
+注册组件滚动时的回调函数。用于监测用户滚动行为以实现懒加载、检测滚动位置以实现回到顶部功能、记录用户浏览行为用于数据分析、实现滚动时的视觉特效等场景。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

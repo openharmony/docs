@@ -52,11 +52,11 @@ ArkWeb_JavaScriptValuePtr (*createJavaScriptValue)(ArkWeb_JavaScriptValueType ty
 
 **参数：**
 
-| 参数项                             | 描述                                                                      |
-|---------------------------------|-------------------------------------------------------------------------|
-| ArkWeb_JavaScriptValueType type | JavaScript值的类型。                                                         |
-| void* data                                | JavaScript值的数据缓冲区。应按type对应的类型提供数据，内存由调用方管理并确保在返回前有效，对于无需数据的类型可传nullptr。 |
-| size_t dataLength                         | JavaScript值的数据缓冲区所指向的字节数。应与data所指向缓冲区长度一致，当data为nullptr时，该值应设为0。         |
+| 参数项 | 描述 |
+| -- | -- |
+| ArkWeb_JavaScriptValueType type | JavaScript值的类型。 |
+| void* data | JavaScript值的数据缓冲区。应按type对应的类型提供数据，内存由调用方管理并确保在返回前有效，对于无需数据的类型可传nullptr。 |
+| size_t dataLength | JavaScript值的数据缓冲区所指向的字节数。应与data所指向缓冲区长度一致，当data为nullptr时，该值应设为0。         |
 
 **返回：**
 

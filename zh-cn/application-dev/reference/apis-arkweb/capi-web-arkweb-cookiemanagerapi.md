@@ -33,13 +33,13 @@ CookieManager相关接口需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获�
 
 ### 成员函数
 
-| 名称                                                                                                                                      | 描述                |
-|-----------------------------------------------------------------------------------------------------------------------------------------|--------------------|
-| [ArkWeb_ErrorCode (\*fetchCookieSync)(const char* url, bool incognito, bool includeHttpOnly, char** cookieValue)](#fetchcookiesync)     | 获取指定URL对应的cookie值。 |
+| 名称 | 描述 |
+| -- | -- |
+| [ArkWeb_ErrorCode (\*fetchCookieSync)(const char* url, bool incognito, bool includeHttpOnly, char** cookieValue)](#fetchcookiesync) | 获取指定URL对应的cookie值。 |
 | [ArkWeb_ErrorCode (\*configCookieSync)(const char* url,const char* cookieValue, bool incognito, bool includeHttpOnly)](#configcookiesync) | 设置指定URL的cookie值。   |
-| [bool (*existCookies)(bool incognito)](#existcookies)                                                                                   | 检查cookie是否存在。      |
-| [void (*clearAllCookiesSync)(bool incognito)](#clearallcookiessync)                                                                     | 清除所有cookies。       |
-| [void (*clearSessionCookiesSync)()](#clearsessioncookiessync)                                                                           | 清除所有会话cookies。                   |
+| [bool (*existCookies)(bool incognito)](#existcookies) | 检查cookie是否存在。      |
+| [void (*clearAllCookiesSync)(bool incognito)](#clearallcookiessync) | 清除所有cookies。       |
+| [void (*clearSessionCookiesSync)()](#clearsessioncookiessync) | 清除所有会话cookies。                   |
 
 ## 成员函数说明
 
@@ -59,7 +59,7 @@ ArkWeb_ErrorCode (*fetchCookieSync)(const char* url, bool incognito, bool includ
 | -- | -- |
 | const char* url | 要获取的cookie所属的URL，建议使用完整的URL。 |
 |  bool incognito | true表示获取隐私模式下WebView的内存cookie（应用退出后自动清除），false表示获取非隐私模式下的cookie（持久化存储）。 |
-|  bool includeHttpOnly | true表示标记为HTTP-Only属性的cookie也将包含在cookieValue中，false表示不包含。注意：读取HTTP-Only cookie应确保符合安全合规要求。 |
+|  bool includeHttpOnly | true表示标记为HTTP-Only属性的cookie也将包含在cookieValue中，false表示不包含。<br/>**说明：** 读取HTTP-Only cookie应确保符合安全合规要求。 |
 |  char** cookieValue |  输出参数，用于获取与URL对应的cookie值。内存由函数内部分配，调用方需在使用完毕后释放。返回值为字符串格式，包含所有匹配的cookie项，格式为name=value，其中name和value分别为cookie的名称和值。 |
 
 **返回：**
@@ -85,7 +85,7 @@ ArkWeb_ErrorCode (*configCookieSync)(const char* url, const char* cookieValue, b
 | const char* url | 指定cookie所属的URL，建议填写完整的URL。 |
 | const char* cookieValue | 要设置的cookie的值。格式为name=value，其中name和value分别为cookie的名称和值。 |
 |  bool incognito | true表示在隐私模式下设置对应URL的cookie（应用退出后自动清除），false表示以非隐私模式设置对应URL的cookie（持久化存储）。 |
-|  bool includeHttpOnly | 是否包含或覆盖标记为HTTP-Only属性的cookie。如果为true，则标记为HTTP-Only属性的cookie也可以被包含在结果中或被覆盖；如果为false，则仅处理非HTTP-Only属性的cookie。注意：覆盖HTTP-Only cookie可能影响安全性，请确保符合业务安全要求。 |
+|  bool includeHttpOnly | 是否包含或覆盖标记为HTTP-Only属性的cookie。如果为true，则标记为HTTP-Only属性的cookie也可以被包含在结果中或被覆盖；如果为false，则仅处理非HTTP-Only属性的cookie。<br/>**说明：** 覆盖HTTP-Only cookie可能影响安全性，请确保符合业务安全要求。 |
 
 **返回：**
 
@@ -123,7 +123,7 @@ void (*clearAllCookiesSync)(bool incognito)
 
 **描述：**
 
-清除所有cookies（包括持久化cookies和会话cookies）。用于用户退出登录、清除隐私数据、重置用户状态等场景。若仅需清除会话cookies，建议使用clearSessionCookiesSync。该方法需在UI线程调用，调用前建议校验函数指针的可用性。
+清除所有cookies（包括持久化cookies和会话cookies）。用于用户退出登录、清除隐私数据、重置用户状态等场景。若仅需清除会话cookies，建议使用[clearSessionCookiesSync](#clearsessioncookiessync)。该方法需在UI线程调用，调用前建议校验函数指针的可用性。
 
 **参数：**
 

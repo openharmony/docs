@@ -44,7 +44,7 @@ type OnAdsBlockedCallback = (details: AdsBlockedDetails) => void
 
 type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
-用户加载资源时发生SSL错误时触发的回调。
+用户加载资源时发生SSL错误时触发的回调，返回SSL错误详细信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -52,7 +52,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| sslErrorEvent | [SslErrorEvent](./arkts-basic-components-web-i.md#sslerrorevent12)  | 是 | 用户加载资源时发生SSL错误时触发的回调详情。 |
+| sslErrorEvent | [SslErrorEvent](./arkts-basic-components-web-i.md#sslerrorevent12)  | 是 | 用户加载资源时发生SSL错误时传递的详细信息。 |
 
 ## OnVerifyPinCallback<sup>22+</sup>
 
@@ -214,7 +214,7 @@ type OnIntelligentTrackingPreventionCallback = (details: IntelligentTrackingPrev
 
 type OnOverrideUrlLoadingCallback = (webResourceRequest: WebResourceRequest) => boolean
 
-onOverrideUrlLoading的回调。
+用于拦截URL加载请求的回调，可阻止特定URL的加载或进行自定义处理。适用于需要拦截广告、阻止恶意网站跳转等场景。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

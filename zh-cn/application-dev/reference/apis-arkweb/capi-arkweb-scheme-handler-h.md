@@ -8,7 +8,7 @@
 
 ## 概述
 
-arkweb_scheme_handler.h是ArkWeb中用于拦截和自定义网络请求的完整C API头文件。该模块定义了注册自定义Scheme拦截器的ArkWeb_SchemeHandler、发送自定义响应的ArkWeb_ResourceHandler、构建HTTP响应的ArkWeb_Response、检查请求详情的ArkWeb_ResourceRequest，以及用于读取上传数据的ArkWeb_HttpBodyStream和访问请求头的ArkWeb_RequestHeaderList。该API配合ArkWeb_NativeAPIVariantKind系统使用，通过OH_ArkWeb_SetSchemeHandler或OH_ArkWebServiceWorker_SetSchemeHandler注册。开发者可以实现自定义协议的资源加载和响应，适用于本地资源替换、数据加密传输、离线缓存等场景。
+arkweb_scheme_handler.h是ArkWeb中用于拦截和自定义网络请求的完整C API头文件。该模块定义了注册自定义Scheme拦截器的ArkWeb_SchemeHandler、发送自定义响应的ArkWeb_ResourceHandler、构建HTTP响应的ArkWeb_Response、检查请求详情的ArkWeb_ResourceRequest，以及用于读取上传数据的ArkWeb_HttpBodyStream和访问请求头的ArkWeb_RequestHeaderList。该API配合ArkWeb_NativeAPIVariantKind系统使用，通过OH_ArkWeb_SetSchemeHandler或OH_ArkWebServiceWorker_SetSchemeHandler注册。开发者可以实现自定义协议的资源加载和响应，适用于本地资源替换、数据加密传输、离线缓存等场景，通过拦截和自定义网络请求，帮助开发者解决标准协议无法满足的特殊业务需求，提升应用的安全性和数据控制能力，优化网络资源加载效率。
 
 **引用文件：** <web/arkweb_scheme_handler.h>
 
@@ -28,8 +28,8 @@ arkweb_scheme_handler.h是ArkWeb中用于拦截和自定义网络请求的完整
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [ArkWeb_SchemeHandler_](capi-web-arkweb-schemehandler.md) | ArkWeb_SchemeHandler | 该类用于拦截指定scheme的请求。 |
-| [ArkWeb_ResourceHandler_](capi-web-arkweb-resourcehandler.md) | ArkWeb_ResourceHandler | 用于被拦截的URL请求。可以通过ArkWeb_ResourceHandler发送自定义请求头以及自定义请求体。 |
+| [ArkWeb_SchemeHandler_](capi-web-arkweb-schemehandler.md) | ArkWeb_SchemeHandler | 用于拦截指定scheme的请求。 |
+| [ArkWeb_ResourceHandler_](capi-web-arkweb-resourcehandler.md) | ArkWeb_ResourceHandler | 用于被拦截的URL请求。可以通过ArkWeb_ResourceHandler发送自定义响应头以及自定义响应体。 |
 | [ArkWeb_Response_](capi-web-arkweb-response.md) | ArkWeb_Response | 为被拦截的请求构造一个ArkWeb_Response。 |
 | [ArkWeb_ResourceRequest_](capi-web-arkweb-resourcerequest.md) | ArkWeb_ResourceRequest | 对应内核的一个请求，可以通过OH_ArkWebResourceRequest_系列接口获取请求的URL、method、post data以及其他信息。如通过[OH_ArkWebResourceRequest_GetUrl](capi-arkweb-scheme-handler-h.md#oh_arkwebresourcerequest_geturl)获取请求的URL。 |
 | [ArkWeb_RequestHeaderList_](capi-web-arkweb-requestheaderlist.md) | ArkWeb_RequestHeaderList | 请求头列表。 |
@@ -192,7 +192,7 @@ typedef void (*ArkWeb_OnRequestStart)(const ArkWeb_SchemeHandler* schemeHandler,
 
 **描述：**
 
-请求开始的回调，这将在IO线程上被调用。
+请求开始的回调，这将在IO线程上被调用。用于在请求开始时拦截和处理指定scheme的网络请求，开发者可通过此回调实现自定义协议处理、本地资源替换、数据加密传输等功能。
 
 > **说明：**
 >
@@ -220,7 +220,7 @@ typedef void (*ArkWeb_OnRequestStop)(const ArkWeb_SchemeHandler* schemeHandler,c
 
 **描述：**
 
-请求完成时的回调函数。这将在IO线程上被调用。
+请求完成时的回调函数。这将在IO线程上被调用。用于在请求完成时进行资源清理、状态更新或日志记录等操作。
 
 应该使用OH_ArkWebResourceRequest_Destroy销毁resourceRequest，并使用OH_ArkWebResourceHandler_Destroy销毁在ArkWeb_OnRequestStart中接收到的ArkWeb_ResourceHandler。
 
@@ -244,7 +244,7 @@ typedef void (*ArkWeb_HttpBodyStreamReadCallback)(const ArkWeb_HttpBodyStream* h
 
 **描述：**
 
-当OH_ArkWebHttpBodyStream_Read读取操作完成时的回调函数。
+当OH_ArkWebHttpBodyStream_Read读取操作完成时的回调函数。该回调函数会在ArkWeb工作线程中运行。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -257,7 +257,7 @@ typedef void (*ArkWeb_HttpBodyStreamReadCallback)(const ArkWeb_HttpBodyStream* h
 |-------------------------------------------------| -- |
 | const [ArkWeb_HttpBodyStream](capi-web-arkweb-httpbodystream.md)* httpBodyStream | ArkWeb_HttpBodyStream。 |
 | uint8_t* buffer                                 | 接收数据的buffer。 |
-| int bytesRead                                   | OH_ArkWebHttpBodyStream_Read后的回调函数。如果bytesRead大于0，则表示buffer已填充了bytesRead大小的数据。开发者可以从buffer中读取数据，如果OH_ArkWebHttpBodyStream_IsEof为false，则开发者可以继续读取剩余的数据。 |
+| int bytesRead                                   |  读取的字节数。如果bytesRead大于0，则表示buffer已填充了bytesRead字节的数据。开发者可以从buffer中读取数据，如果OH_ArkWebHttpBodyStream_IsEof为false，则开发者可以继续读取剩余的数据。 |
 
 ### ArkWeb_HttpBodyStreamAsyncReadCallback()
 
@@ -267,7 +267,7 @@ typedef void (*ArkWeb_HttpBodyStreamAsyncReadCallback)(const ArkWeb_HttpBodyStre
 
 **描述：**
 
-当OH_ArkWebHttpBodyStream_AsyncRead读取操作完成时的回调函数。
+当OH_ArkWebHttpBodyStream_AsyncRead读取操作完成时的回调函数。该回调函数会在ArkWeb工作线程中运行。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -280,7 +280,7 @@ typedef void (*ArkWeb_HttpBodyStreamAsyncReadCallback)(const ArkWeb_HttpBodyStre
 |-------------------------------------------------| -- |
 | const [ArkWeb_HttpBodyStream](capi-web-arkweb-httpbodystream.md)* httpBodyStream | ArkWeb_HttpBodyStream。 |
 | uint8_t* buffer                                 | 接收数据的缓冲区。 |
-| int bytesRead                                   | 标识异步读取操作执行结果的字节计数值。如果bytesRead大于0，则表示buffer已填充了bytesRead大小的数据。开发者可以从buffer中读取数据，如果OH_ArkWebHttpBodyStream_IsEof为false，则开发者可以继续读取剩余的数据。 |
+| int bytesRead                                   | 标识异步读取操作执行结果的字节计数值。如果bytesRead大于0，则表示buffer已填充了bytesRead字节的数据。开发者可以从buffer中读取数据，如果OH_ArkWebHttpBodyStream_IsEof为false，则开发者可以继续读取剩余的数据。 |
 
 ### ArkWeb_HttpBodyStreamInitCallback()
 
@@ -371,7 +371,7 @@ void OH_ArkWebRequestHeaderList_GetHeader(const ArkWeb_RequestHeaderList* reques
 | 参数项 | 描述 |
 | -- | -- |
 | const ArkWeb_RequestHeaderList* requestHeaderList | 请求头列表。 |
-| int32_t index | 请求头的索引。 |
+| int32_t index | 请求头的索引。取值范围为[0, size-1]，其中size是请求头列表的大小。超出范围时行为未定义。 |
 | char** key | 请求头的键（key）。调用者必须使用OH_ArkWeb_ReleaseString函数来释放这个字符串。 |
 | char** value | 请求头的值（value）。调用者必须使用OH_ArkWeb_ReleaseString函数来释放这个字符串。 |
 
@@ -383,7 +383,7 @@ int32_t OH_ArkWebResourceRequest_SetUserData(ArkWeb_ResourceRequest* resourceReq
 
 **描述：**
 
-将一个用户数据设置到ArkWeb_ResourceRequest对象中。
+将一个用户数据设置到ArkWeb_ResourceRequest对象中。用于在不同请求回调之间传递上下文信息或存储请求关联的状态，后续可通过[OH_ArkWebResourceRequest_GetUserData()](#oh_arkwebresourcerequest_getuserdata)获取。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -428,7 +428,7 @@ void* OH_ArkWebResourceRequest_GetUserData(const ArkWeb_ResourceRequest* resourc
 
 | 类型 | 说明 |
 | -- | -- |
-| void* | 设置的用户数据。 |
+| void* | 指向用户数据的指针。该指针由开发者通过[OH_ArkWebResourceRequest_SetUserData](#oh_arkwebresourcerequest_setuserdata)设置，可用于在回调中传递自定义上下文信息。 |
 
 ### OH_ArkWebResourceRequest_GetMethod()
 
@@ -619,7 +619,7 @@ void* OH_ArkWebHttpBodyStream_GetUserData(const ArkWeb_HttpBodyStream* httpBodyS
 
 | 类型 | 说明 |
 | -- | -- |
-| void* | 设置的用户数据。 |
+| void* | 指向用户数据的指针。该指针由开发者通过OH_ArkWebHttpBodyStream_SetUserData设置，可用于在回调中传递自定义上下文信息。 |
 
 ### OH_ArkWebHttpBodyStream_SetReadCallback()
 
@@ -686,7 +686,7 @@ int32_t OH_ArkWebHttpBodyStream_Init(ArkWeb_HttpBodyStream* httpBodyStream,ArkWe
 
 **描述：**
 
-初始化ArkWeb_HttpBodyStream。在调用任何其他函数之前，必须调用此函数。该接口需要在IO线程调用。
+初始化ArkWeb_HttpBodyStream。该函数负责建立httpBodyStream的内部数据结构和连接，为后续的读取操作做准备。初始化过程中会分配必要的资源、建立与工作线程的通信机制。在调用任何其他函数之前，必须调用此函数，否则其他操作将无法正常执行。该接口需要在IO线程调用，以确保线程安全和正确的初始化顺序。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -714,7 +714,7 @@ void OH_ArkWebHttpBodyStream_Read(const ArkWeb_HttpBodyStream* httpBodyStream, u
 
 **描述：**
 
-将请求的上传数据读取到buffer。buffer的大小必须大于bufLen。我们将从工作线程读取数据到buffer，因此在回调函数返回之前，不应在其他线程中使用buffer，以避免并发问题。
+将请求的上传数据读取到buffer。该函数采用异步读取机制，将读取任务提交到工作线程执行，通过回调函数返回读取结果。buffer的大小必须大于或等于bufLen，以确保能够容纳读取的数据。我们将从工作线程读取数据到buffer，因此在回调函数返回之前，不应在其他线程中使用buffer，以避免并发问题。读取操作完成后，将通过之前设置的回调函数通知调用者，并返回实际读取的字节数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -726,8 +726,8 @@ void OH_ArkWebHttpBodyStream_Read(const ArkWeb_HttpBodyStream* httpBodyStream, u
 | 参数项 | 描述 |
 | -- | -- |
 | const [ArkWeb_HttpBodyStream](capi-web-arkweb-httpbodystream.md)* httpBodyStream | ArkWeb_HttpBodyStream。 |
-| uint8_t* buffer | 接收数据的buffer。 |
-| int bufLen | 要读取的字节的大小。 |
+| uint8_t* buffer | 接收数据的buffer。buffer的大小必须大于bufLen。 |
+| int bufLen | 要读取的字节数。取值范围必须为正整数，传入负数时行为未定义。 |
 
 ### OH_ArkWebHttpBodyStream_AsyncRead()
 
@@ -750,7 +750,7 @@ void OH_ArkWebHttpBodyStream_AsyncRead(const ArkWeb_HttpBodyStream* httpBodyStre
 | -- | -- |
 | const [ArkWeb_HttpBodyStream](capi-web-arkweb-httpbodystream.md)* httpBodyStream | ArkWeb_HttpBodyStream。 |
 | uint8_t* buffer | 接收数据的缓冲区。 |
-| int bufLen | 要读取的字节的大小。 |
+| int bufLen | 要读取的字节数。 |
 
 ### OH_ArkWebHttpBodyStream_GetSize()
 
@@ -804,7 +804,7 @@ uint64_t OH_ArkWebHttpBodyStream_GetPosition(const ArkWeb_HttpBodyStream* httpBo
 
 | 类型 | 说明 |
 | -- | -- |
-| uint64_t | httpBodyStream当前的读取位置。如果httpBodyStream无效，则位置为0。 |
+| uint64_t | httpBodyStream当前的读取位置。如果httpBodyStream无效，则返回0。 |
 
 ### OH_ArkWebHttpBodyStream_IsChunked()
 
@@ -934,7 +934,7 @@ void OH_ArkWebResourceRequest_GetReferrer(const ArkWeb_ResourceRequest* resource
 | 参数项 | 描述 |
 | -- | -- |
 | const [ArkWeb_ResourceRequest](capi-web-arkweb-resourcerequest.md)* resourceRequest | ArkWeb_ResourceRequest。 |
-| char** referrer | 请求的Referrer。此函数将为referrer字符串分配内存，调用者必须使用 OH_ArkWeb_ReleaseString 释放该字符串。 |
+| char** referrer | 请求的Referrer。此函数将为referrer字符串分配内存，调用者必须使用OH_ArkWeb_ReleaseString释放该字符串。 |
 
 ### OH_ArkWebResourceRequest_GetRequestHeaders()
 
@@ -944,7 +944,7 @@ void OH_ArkWebResourceRequest_GetRequestHeaders(const ArkWeb_ResourceRequest* re
 
 **描述：**
 
-获取请求的请求头列表ArkWeb_RequestHeaderList。
+获取请求的请求头列表ArkWeb_RequestHeaderList。此函数将为requestHeaderList分配内存，调用者必须使用OH_ArkWebRequestHeaderList_Destroy释放requestHeaderList。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -983,7 +983,7 @@ bool OH_ArkWebResourceRequest_IsRedirect(const ArkWeb_ResourceRequest* resourceR
 
 | 类型 | 说明 |
 | -- | -- |
-| bool | 如果这是一个重定向，则返回true；否则返回false。 |
+| bool | 如果这是一个重定向，则返回true；如果不是重定向，则返回false。 |
 
 ### OH_ArkWebResourceRequest_IsMainFrame()
 
@@ -1010,7 +1010,7 @@ bool OH_ArkWebResourceRequest_IsMainFrame(const ArkWeb_ResourceRequest* resource
 
 | 类型 | 说明 |
 | -- | -- |
-| bool | 如果这是来自主框架，则返回true；否则返回false。 |
+| bool | 如果这是来自主框架，则返回true；如果不是来自主框架，则返回false。 |
 
 ### OH_ArkWebResourceRequest_HasGesture()
 
@@ -1037,7 +1037,7 @@ bool OH_ArkWebResourceRequest_HasGesture(const ArkWeb_ResourceRequest* resourceR
 
 | 类型 | 说明 |
 | -- | -- |
-| bool | 如果这是由用户手势触发的，则返回true；否则返回false。 |
+| bool | 如果这是由用户手势触发的，则返回true；如果不是由用户手势触发的，则返回false。 |
 
 ### OH_ArkWeb_RegisterCustomSchemes()
 
@@ -1058,8 +1058,8 @@ int32_t OH_ArkWeb_RegisterCustomSchemes(const char* scheme, int32_t option)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const char* scheme | 待注册的scheme。 |
-| int32_t option | scheme的配置（行为）。 |
+| const char* scheme | 待注册的scheme，需符合RFC 3986规范。 |
+| int32_t option | scheme的配置（行为），取值参考[ArkWeb_CustomSchemeOption](#arkweb_customschemeoption)枚举。 |
 
 **返回：**
 
@@ -1079,6 +1079,10 @@ bool OH_ArkWebServiceWorker_SetSchemeHandler(const char* scheme, ArkWeb_SchemeHa
 
 可以使用WebviewController.initializeWebEngine来初始化BrowserContext而无需创建ArkWeb。
 
+> **说明：**
+>
+> - 重定向后的URL无法单独拦截。如需拦截，必须同时对原始请求URL进行拦截。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 12
@@ -1088,7 +1092,7 @@ bool OH_ArkWebServiceWorker_SetSchemeHandler(const char* scheme, ArkWeb_SchemeHa
 
 | 参数项 | 描述 |
 | -- | -- |
-| const char* scheme | 需要被拦截的scheme。 |
+| const char* scheme | 需要被拦截的scheme，需符合RFC 3986规范。 |
 | [ArkWeb_SchemeHandler](capi-web-arkweb-schemehandler.md)* schemeHandler | 该scheme的拦截器ArkWeb_SchemeHandler。只有通过ServiceWorker触发的请求才会通过这个schemeHandler进行通知。 |
 
 **返回：**
@@ -1109,6 +1113,10 @@ bool OH_ArkWeb_SetSchemeHandler(const char* scheme, const char* webTag, ArkWeb_S
 
 可以使用WebviewController.initializeWebEngine来初始化BrowserContext而无需创建ArkWeb。
 
+> **说明：**
+>
+> - 重定向后的URL无法单独拦截。如需拦截，必须同时对原始请求URL进行拦截。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 12
@@ -1119,7 +1127,7 @@ bool OH_ArkWeb_SetSchemeHandler(const char* scheme, const char* webTag, ArkWeb_S
 | 参数项 | 描述 |
 | -- | -- |
 | const char* scheme | 需要被拦截的scheme。 |
-| const char* webTag | Web组件的标签名称，用于标识某个唯一组件，由开发者来保证名称唯一性。 |
+| const char* webTag | Web组件的标签名称，用于标识某个唯一组件，由开发者来保证名称唯一性。建议长度不超过256字符。 |
 | [ArkWeb_SchemeHandler](capi-web-arkweb-schemehandler.md)* schemeHandler | 该scheme的拦截器ArkWeb_SchemeHandler。只有从指定web触发的请求才会通过这个schemeHandler进行通知。 |
 
 **返回：**
@@ -1270,7 +1278,7 @@ void* OH_ArkWebSchemeHandler_GetUserData(const ArkWeb_SchemeHandler* schemeHandl
 
 | 类型 | 说明 |
 | -- | -- |
-| void* | 设置的用户数据。 |
+| void* | 指向用户数据的指针。该指针由开发者通过OH_ArkWebSchemeHandler_SetUserData设置，可用于在回调中传递自定义上下文信息。 |
 
 ### OH_ArkWebSchemeHandler_SetOnRequestStart()
 
@@ -1377,7 +1385,7 @@ int32_t OH_ArkWebResponse_SetUrl(ArkWeb_Response* response, const char* url)
 
 **描述：**
 
-设置经过重定向或由于HSTS而改变后的解析URL，设置后会触发跳转。
+设置经过重定向或由于HSTS而改变后的解析URL，设置后会触发跳转。用于在自定义响应中实现URL重定向，如URL规范化、域名重定向、HTTP到HTTPS升级等场景。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1417,7 +1425,7 @@ void OH_ArkWebResponse_GetUrl(const ArkWeb_Response* response, char** url)
 | 参数项 | 描述 |
 | -- | -- |
 | const [ArkWeb_Response](capi-web-arkweb-response.md)* response | ArkWeb_Response。 |
-| char** url | 解析后的URL。 |
+| char** url | 解析后的URL。此函数将为URL字符串分配内存，调用方必须通过OH_ArkWeb_ReleaseString释放该字符串。 |
 
 ### OH_ArkWebResponse_SetError()
 
@@ -1427,7 +1435,7 @@ int32_t OH_ArkWebResponse_SetError(ArkWeb_Response* response, ArkWeb_NetError er
 
 **描述：**
 
-给ArkWeb_Response对象设置一个错误码。
+给ArkWeb_Response对象设置一个错误码。用于与DidFailWithError配合使用，通过错误码告知客户端请求失败的具体原因，如权限错误、资源不存在等。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1494,7 +1502,7 @@ int32_t OH_ArkWebResponse_SetStatus(ArkWeb_Response* response, int status)
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkWeb_Response](capi-web-arkweb-response.md)* response | ArkWeb_Response。 |
-| int status | 请求的HTTP状态码。 |
+| int status | 响应的HTTP状态码。取值范围为100-599，应符合HTTP标准状态码规范（信息100-199、成功200-299、重定向300-399、客户端错误400-499、服务器错误500-599）。超出范围时行为未定义。 |
 
 **返回：**
 
@@ -1549,7 +1557,7 @@ int32_t OH_ArkWebResponse_SetStatusText(ArkWeb_Response* response, const char* s
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkWeb_Response](capi-web-arkweb-response.md)* response | ArkWeb_Response。 |
-| const char* statusText | 请求的状态文本。 |
+| const char* statusText | 响应的状态文本。设置状态文本会为HTTP状态码提供更详细的描述，例如：状态码200可以对应“OK”、状态码404可以对应“Not Found”等，帮助客户端更好地理解请求结果。 |
 
 **返回：**
 
@@ -1599,7 +1607,7 @@ int32_t OH_ArkWebResponse_SetMimeType(ArkWeb_Response* response, const char* mim
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkWeb_Response](capi-web-arkweb-response.md)* response | ArkWeb_Response。 |
-| const char* mimeType | 请求的媒体类型。 |
+| const char* mimeType | 响应的媒体类型。设置媒体类型会告诉客户端响应内容的类型，例如：text/html表示HTML文档、application/json表示JSON数据、image/png表示PNG图片等，浏览器会根据媒体类型选择合适的渲染方式。 |
 
 **返回：**
 
@@ -1649,7 +1657,7 @@ int32_t OH_ArkWebResponse_SetCharset(ArkWeb_Response* response, const char* char
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkWeb_Response](capi-web-arkweb-response.md)* response | ArkWeb_Response。 |
-| const char* charset | 请求的字符集。 |
+| const char* charset | 响应的字符集。设置字符集会告诉客户端响应内容使用的字符编码，例如：UTF-8表示使用UTF-8编码、GBK表示使用GBK编码等，浏览器会根据字符集正确解析和显示文本内容。 |
 
 **返回：**
 
@@ -1699,8 +1707,8 @@ int32_t OH_ArkWebResponse_SetHeaderByName(ArkWeb_Response* response,const char* 
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkWeb_Response](capi-web-arkweb-response.md)* response | ArkWeb_Response。 |
-| const char* name | header的名称。 |
-| const char* value | header的值。 |
+| const char* name | header的名称。指定要设置的HTTP响应头名称，例如：Content-Type、Content-Length、Cache-Control等，不同的header会影响浏览器如何处理响应。 |
+| const char* value | header的值。指定HTTP响应头的值，例如：对于Content-Type可以设置为text/html、对于Cache-Control可以设置为no-cache等，实际效果取决于header的名称和值的组合。 |
 | bool overwrite | 如果为true，将覆盖现有的header，否则不覆盖。 |
 
 **返回：**
@@ -1767,7 +1775,7 @@ int32_t OH_ArkWebResourceHandler_DidReceiveResponse(const ArkWeb_ResourceHandler
 
 **描述：**
 
-将构造的响应头传递给被拦截的请求。
+将构造的响应头传递给被拦截的请求。在拦截请求并准备返回自定义响应时调用，用于设置HTTP响应状态码、媒体类型、字符集等响应头信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1795,7 +1803,7 @@ int32_t OH_ArkWebResourceHandler_DidReceiveData(const ArkWeb_ResourceHandler* re
 
 **描述：**
 
-将构造的响应体传递给被拦截的请求。
+将构造的响应体传递给被拦截的请求。在设置响应头后调用，用于发送响应数据。可以多次调用来分块传输数据，在传输完成后需调用OH_ArkWebResourceHandler_DidFinish通知请求结束。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1808,7 +1816,7 @@ int32_t OH_ArkWebResourceHandler_DidReceiveData(const ArkWeb_ResourceHandler* re
 | -- | -- |
 | const [ArkWeb_ResourceHandler](capi-web-arkweb-resourcehandler.md)* resourceHandler | 该请求的ArkWeb_ResourceHandler。 |
 | const uint8_t* buffer | 要发送的buffer数据。 |
-| int64_t bufLen | buffer的大小。 |
+| int64_t bufLen | buffer的大小，单位：字节。 |
 
 **返回：**
 
@@ -1824,7 +1832,7 @@ int32_t OH_ArkWebResourceHandler_DidFinish(const ArkWeb_ResourceHandler* resourc
 
 **描述：**
 
-通知ArkWeb内核被拦截的请求已经完成，并且没有更多的数据可用。
+通知ArkWeb内核被拦截的请求已经完成，并且没有更多的数据可用。该函数向内核发送完成信号，内核将结束该请求的处理，并清理相关的内部资源。调用此函数后，不能再对该请求调用其他处理函数。如果请求过程中发生错误，应使用OH_ArkWebResourceHandler_DidFailWithError通知内核。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1851,7 +1859,7 @@ int32_t OH_ArkWebResourceHandler_DidFailWithError(const ArkWeb_ResourceHandler* 
 
 **描述：**
 
-通知ArkWeb内核，被拦截的请求应该失败。
+通知ArkWeb内核，被拦截的请求应该失败。在权限验证失败、资源不存在、网络错误等场景下调用，用于标记请求失败并通过错误码告知客户端具体失败原因。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1862,7 +1870,7 @@ int32_t OH_ArkWebResourceHandler_DidFailWithError(const ArkWeb_ResourceHandler* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [ArkWeb_ResourceHandler](capi-web-arkweb-resourcehandler.md)* resourceHandler | 用于被拦截的URL请求。可以通过ArkWeb_ResourceHandler发送自定义请求头以及自定义请求体。 |
+| const [ArkWeb_ResourceHandler](capi-web-arkweb-resourcehandler.md)* resourceHandler | 用于被拦截的URL请求。可以通过ArkWeb_ResourceHandler发送自定义响应头以及自定义响应体。 |
 | [ArkWeb_NetError](capi-arkweb-net-error-list-h.md#arkweb_neterror) errorCode | 该请求的错误码。请参考[arkweb_net_error_list.h](capi-arkweb-net-error-list-h.md)。 |
 
 **返回：**
@@ -1890,7 +1898,7 @@ int32_t OH_ArkWebResourceHandler_DidFailWithErrorV2(const ArkWeb_ResourceHandler
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [ArkWeb_ResourceHandler](capi-web-arkweb-resourcehandler.md)* resourceHandler | 用于被拦截的URL请求。可以通过ArkWeb_ResourceHandler发送自定义请求头以及自定义请求体。 |
+| const [ArkWeb_ResourceHandler](capi-web-arkweb-resourcehandler.md)* resourceHandler | 用于被拦截的URL请求。可以通过ArkWeb_ResourceHandler发送自定义响应头以及自定义响应体。 |
 | [ArkWeb_NetError](capi-arkweb-net-error-list-h.md#arkweb_neterror) errorCode | 该请求的错误码。请参考[arkweb_net_error_list.h](capi-arkweb-net-error-list-h.md)。 |
 | bool completeIfNoResponse | 若之前未调用过[OH_ArkWebResourceHandler_DidReceiveResponse](#oh_arkwebresourcehandler_didreceiveresponse)，调用[OH_ArkWebResourceHandler_DidFailWithErrorV2](#oh_arkwebresourcehandler_didfailwitherrorv2)时，此次网络请求是否完成；值为true时，若之前未调用过[OH_ArkWebResourceHandler_DidReceiveResponse](#oh_arkwebresourcehandler_didreceiveresponse)，则会自动生成一个response以完成此次网络请求，网络错误码为-104；值为false时，将等待应用调用[OH_ArkWebResourceHandler_DidReceiveResponse](#oh_arkwebresourcehandler_didreceiveresponse)并传入response，不会直接完成此次网络请求。 |
 

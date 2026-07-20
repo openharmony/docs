@@ -33,19 +33,19 @@ Controller相关接口需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取�
 
 ### 成员函数
 
-| 名称                                                                                                                                                                    | 描述 |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------| -- |
-| [void (\*runJavaScript)(const char* webTag, const ArkWeb_JavaScriptObject* javascriptObject)](#runjavascript)                                                         | 注入JavaScript脚本。 |
-| [void (\*registerJavaScriptProxy)(const char* webTag, const ArkWeb_ProxyObject* proxyObject)](#registerjavascriptproxy)                                               | 注入JavaScript对象到window对象中，并在window对象中调用该对象的同步方法。 |
-| [void (\*deleteJavaScriptRegister)(const char* webTag, const char* objName)](#deletejavascriptregister)                                                               | 删除通过registerJavaScriptProxy注册到window上的指定objName的应用侧JavaScript对象。 |
-| [void (\*refresh)(const char* webTag)](#refresh)                                                                                                                      | 刷新当前网页。刷新的同时会清理页面栈，导致当前页面无法前进后退。 |
-| [void (\*registerAsyncJavaScriptProxy)(const char* webTag, const ArkWeb_ProxyObject* proxyObject)](#registerasyncjavascriptproxy)                                     | 注入JavaScript对象到window对象中，并在window对象中调用该对象的异步方法。 |
-| [ArkWeb_WebMessagePortPtr* (\*createWebMessagePorts)(const char* webTag, size_t* size)](#createwebmessageports)                                                       | 创建Post Message端口。 |
-| [void (\*destroyWebMessagePorts)(ArkWeb_WebMessagePortPtr** ports, size_t size)](#destroywebmessageports)                                                             | 销毁端口。 |
+| 名称 | 描述 |
+| -- | -- |
+| [void (\*runJavaScript)(const char* webTag, const ArkWeb_JavaScriptObject* javascriptObject)](#runjavascript) | 注入JavaScript脚本。 |
+| [void (\*registerJavaScriptProxy)(const char* webTag, const ArkWeb_ProxyObject* proxyObject)](#registerjavascriptproxy) | 注入JavaScript对象到window对象中，并在window对象中调用该对象的同步方法。 |
+| [void (\*deleteJavaScriptRegister)(const char* webTag, const char* objName)](#deletejavascriptregister) | 删除通过registerJavaScriptProxy注册到window上的指定objName的应用侧JavaScript对象。 |
+| [void (\*refresh)(const char* webTag)](#refresh) | 刷新当前网页。刷新的同时会清理页面栈，导致当前页面无法前进后退。 |
+| [void (\*registerAsyncJavaScriptProxy)(const char* webTag, const ArkWeb_ProxyObject* proxyObject)](#registerasyncjavascriptproxy) | 注入JavaScript对象到window对象中，并在window对象中调用该对象的异步方法。 |
+| [ArkWeb_WebMessagePortPtr* (\*createWebMessagePorts)(const char* webTag, size_t* size)](#createwebmessageports) | 创建Post Message端口。 |
+| [void (\*destroyWebMessagePorts)(ArkWeb_WebMessagePortPtr** ports, size_t size)](#destroywebmessageports) | 销毁端口。 |
 | [ArkWeb_ErrorCode (\*postWebMessage)(const char* webTag, const char* name, ArkWeb_WebMessagePortPtr* webMessagePorts, size_t size, const char* url)](#postwebmessage) | 将端口发送到HTML主页面。 |
-| [const char* (\*getLastJavascriptProxyCallingFrameUrl)()](#getlastjavascriptproxycallingframeurl)                                                                     | 获取调用JavaScriptProxy最后一帧的url。在JavaScriptProxy调用的线程上调用。通过registerJavaScriptProxy或者javaScriptProxy注入JavaScript对象到window对象中。该接口可以获取最后一次调用注入对象frame的url。在被调用函数内部获取url才能获取到正确值，可以在函数内部获取url后保存下来。<br>**起始版本：** 14 |
-| [void (\*registerJavaScriptProxyEx)(const char* webTag, const ArkWeb_ProxyObjectWithResult* proxyObject, const char* permission)](#registerjavascriptproxyex)         | 注入JavaScript对象到window对象中，并在window对象中调用该对象的同步方法。该对象的同步方法可以带返回值。<br>**起始版本：** 18 |
-| [void (\*registerAsyncJavaScriptProxyEx)(const char* webTag, const ArkWeb_ProxyObject* proxyObject, const char* permission)](#registerasyncjavascriptproxyex)         | 注入JavaScript对象到window对象中，并在window对象中调用该对象的异步方法。<br>**起始版本：** 18 |
+| [const char* (\*getLastJavascriptProxyCallingFrameUrl)()](#getlastjavascriptproxycallingframeurl) | 获取调用JavaScriptProxy最后一帧的url。在JavaScriptProxy调用的线程上调用。通过registerJavaScriptProxy或者javaScriptProxy注入JavaScript对象到window对象中。该接口可以获取最后一次调用注入对象frame的url。在被调用函数内部获取url才能获取到正确值，可以在函数内部获取url后保存下来。<br>**起始版本：** 14 |
+| [void (\*registerJavaScriptProxyEx)(const char* webTag, const ArkWeb_ProxyObjectWithResult* proxyObject, const char* permission)](#registerjavascriptproxyex) | 注入JavaScript对象到window对象中，并在window对象中调用该对象的同步方法。该对象的同步方法可以带返回值。<br>**起始版本：** 18 |
+| [void (\*registerAsyncJavaScriptProxyEx)(const char* webTag, const ArkWeb_ProxyObject* proxyObject, const char* permission)](#registerasyncjavascriptproxyex) | 注入JavaScript对象到window对象中，并在window对象中调用该对象的异步方法。<br>**起始版本：** 18 |
 
 ## 成员函数说明
 
@@ -57,7 +57,7 @@ void (*runJavaScript)(const char* webTag, const ArkWeb_JavaScriptObject* javascr
 
 **描述：**
 
-注入JavaScript脚本。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。该方法将JavaScript脚本注入到Web组件的执行上下文中，在页面加载完成后执行。使用场景：例如动态执行页面逻辑、注入调试脚本、运行跨页面公共脚本等。
+注入JavaScript脚本。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。该方法将JavaScript脚本注入到Web组件的执行上下文中，在页面加载完成后执行。
 
 **参数：**
 
@@ -108,7 +108,7 @@ void (*refresh)(const char* webTag)
 
 **描述：**
 
-刷新当前网页。刷新的同时会清理页面栈，导致当前页面无法前进后退。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。使用场景：例如强制重载页面内容、同步远程配置变更、重置页面状态等。
+刷新当前网页。刷新的同时会清理页面栈，导致当前页面无法前进后退。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。
 
 **参数：**
 
@@ -216,7 +216,7 @@ const char* (*getLastJavascriptProxyCallingFrameUrl)()
 
 **描述：**
 
-获取调用JavaScriptProxy最后一帧的url。该方法通过帧栈追踪机制，记录最后一次JavaScript调用的frame上下文。在JavaScriptProxy调用的线程上调用。通过registerJavaScriptProxy或者JavaScriptProxy注入JavaScript对象到window对象中。该接口可以获取最后一次调用注入对象frame的url，如果从未调用过注入对象，返回值未定义。在被调用函数内部获取url才能获取到正确值，可以在函数内部获取url后保存下来。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。使用场景：例如安全溯源、调用来源审计、日志记录与监控。
+获取调用JavaScriptProxy最后一帧的url。该方法通过帧栈追踪机制，记录最后一次JavaScript调用的frame上下文。在JavaScriptProxy调用的线程上调用。通过registerJavaScriptProxy或者JavaScriptProxy注入JavaScript对象到window对象中。该接口可以获取最后一次调用注入对象frame的url，如果从未调用过注入对象，返回值未定义。在被调用函数内部获取url才能获取到正确值，可以在函数内部获取url后保存下来。需在UI线程中调用OH_ArkWeb_GetNativeAPI方法获取该接口。
 
 **起始版本：** 14
 

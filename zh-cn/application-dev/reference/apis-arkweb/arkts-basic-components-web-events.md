@@ -457,7 +457,7 @@ onConsole(callback: Callback\<OnConsoleEvent, boolean\>)
 
 onDownloadStart(callback: Callback\<OnDownloadStartEvent\>)
 
-通知主应用开始下载一个文件。
+通知主应用开始下载文件。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -465,7 +465,7 @@ onDownloadStart(callback: Callback\<OnDownloadStartEvent\>)
 
 | 参数名                | 类型   | 必填   | 说明                                |
 | ------------------ | ------ | ---- | ----------------------------------- |
-| callback           | Callback\<[OnDownloadStartEvent](./arkts-basic-components-web-i.md#ondownloadstartevent12)\> | 是    | 开始下载时触发。  |
+| callback           | Callback\<[OnDownloadStartEvent](./arkts-basic-components-web-i.md#ondownloadstartevent12)\> | 是    | 开始下载时触发此回调。  |
 
 **示例：**
 
@@ -1238,7 +1238,7 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnInterceptRequestEvent](./arkts-basic-components-web-i.md#oninterceptrequestevent12), [WebResourceResponse](./arkts-basic-components-web-WebResourceResponse.md)\> | 是 | 当Web组件加载url之前触发。<br>返回值[WebResourceResponse](./arkts-basic-components-web-WebResourceResponse.md)。返回响应数据则按照响应数据加载，无响应数据则返回null表示按照原来的方式加载。 |
+| callback | Callback\<[OnInterceptRequestEvent](./arkts-basic-components-web-i.md#oninterceptrequestevent12), [WebResourceResponse](./arkts-basic-components-web-WebResourceResponse.md)\> | 是 | 当Web组件加载url之前触发此回调。<br>返回值[WebResourceResponse](./arkts-basic-components-web-WebResourceResponse.md)。返回响应数据则按照响应数据加载，无响应数据则返回null表示按照原来的方式加载。 |
 
 **示例：**
 
@@ -1250,7 +1250,7 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    responseWeb: WebResourceResponse = new WebResourceResponse();
+    responseWeb: webview.WebResourceResponse = new webview.WebResourceResponse();
     heads: Header[] = new Array();
     webData: string = "<!DOCTYPE html>\n" +
       "<html>\n" +
@@ -1306,7 +1306,7 @@ onInterceptRequest(callback: Callback<OnInterceptRequestEvent, WebResourceRespon
 
 onHttpAuthRequest(callback: Callback\<OnHttpAuthRequestEvent, boolean\>)
 
-通知收到http auth认证请求。
+通知收到HTTP认证请求。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1314,7 +1314,7 @@ onHttpAuthRequest(callback: Callback\<OnHttpAuthRequestEvent, boolean\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback | Callback\<[OnHttpAuthRequestEvent](./arkts-basic-components-web-i.md#onhttpauthrequestevent12), boolean\> | 是 | 当浏览器需要用户的凭据时触发。<br>返回值boolean。返回true表示http auth认证成功，返回false表示http auth认证失败。   |
+| callback | Callback\<[OnHttpAuthRequestEvent](./arkts-basic-components-web-i.md#onhttpauthrequestevent12), boolean\> | 是 | 当浏览器需要用户的凭据时触发。<br>返回值boolean。返回true表示HTTP认证成功，返回false表示HTTP认证失败。   |
 
 **示例：**
 
@@ -1375,7 +1375,7 @@ onSslErrorEventReceive(callback: Callback\<OnSslErrorEventReceiveEvent\>)
 
 通知用户加载资源时发生SSL错误，只支持主资源。
 
-如果需要支持子资源，请使用[OnSslErrorEvent](./arkts-basic-components-web-events.md#onsslerrorevent12)接口。
+如果需要支持子资源，请使用[OnSslErrorEvent](#onsslerrorevent12)接口。
 
 > **说明：**
 >
@@ -1620,7 +1620,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  controller: WebviewController = new webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   uiContext : UIContext = this.getUIContext();
   context : Context | undefined = this.uiContext.getHostContext() as common.UIAbilityContext;
   uri: string = ''
@@ -1834,7 +1834,7 @@ struct Index {
     @Entry
     @Component
     struct Index {
-      controller: WebviewController = new webview.WebviewController();
+      controller: webview.WebviewController = new webview.WebviewController();
       certManager = CertManagerService.getInstance();
 
       aboutToAppear(): void {
@@ -1911,7 +1911,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  controller: WebviewController = new webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   uiContext : UIContext = this.getUIContext();
   context : Context | undefined = this.uiContext.getHostContext() as common.UIAbilityContext;
 
@@ -2988,7 +2988,7 @@ onSearchResultReceive(callback: Callback\<OnSearchResultReceiveEvent\>)
 
 onDataResubmitted(callback: Callback\<OnDataResubmittedEvent\>)
 
-设置网页表单可以重新提交时触发的回调函数。
+当网页表单可以重新提交时触发的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3128,7 +3128,7 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 
 onTouchIconUrlReceived(callback: Callback\<OnTouchIconUrlReceivedEvent\>)
 
-设置接收到apple-touch-icon url地址时的回调函数。
+接收到apple-touch-icon URL地址时触发的回调函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3136,7 +3136,7 @@ onTouchIconUrlReceived(callback: Callback\<OnTouchIconUrlReceivedEvent\>)
 
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
-| callback  | Callback\<[OnTouchIconUrlReceivedEvent](./arkts-basic-components-web-i.md#ontouchiconurlreceivedevent12)\>  | 是 | 接收到的apple-touch-icon url地址时触发。 |
+| callback  | Callback\<[OnTouchIconUrlReceivedEvent](./arkts-basic-components-web-i.md#ontouchiconurlreceivedevent12)\>  | 是 | 接收到的apple-touch-icon URL地址时触发。 |
 
 **示例：**
 
@@ -4947,7 +4947,7 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
 
 > **说明：**
 >
-> API version 8开始支持，从API version 10开始废弃，建议使用[onLoadIntercept<sup>10+</sup>](#onloadintercept10)代替。
+> 从API version 8开始支持，从API version 10开始废弃，建议使用[onLoadIntercept<sup>10+</sup>](#onloadintercept10)代替。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

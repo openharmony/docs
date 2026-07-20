@@ -142,11 +142,7 @@ void* (*getData)(ArkWeb_WebMessagePtr webMessage, size_t* dataLength)
 
 **描述**
 
-获取数据。用于获取消息的具体内容，支持从HTML页面接收文本、JSON或二进制数据并在Native代码中处理。
-
-**调用顺序：**
-- 必须先调用setData()设置数据，然后才能调用getData()获取数据。
-- 如果未调用setData()就调用getData()，将返回NULL，且dataLength为0。
+获取数据。用于获取消息的具体内容，支持从HTML页面接收文本、JSON或二进制数据并在Native代码中处理。必须先调用setData()设置数据，然后才能调用getData()获取数据；如果未调用setData()就调用getData()，将返回NULL，且dataLength为0。
 
 **参数：**
 
