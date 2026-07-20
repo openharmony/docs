@@ -26,12 +26,12 @@ typedef struct DRM_MediaKeyRequestInfo {...} DRM_MediaKeyRequestInfo
 
 | 名称 | 描述 |
 | -- | -- |
-| [DRM_MediaKeyType](capi-native-drm-common-h.md#drm_mediakeytype) type | 密钥类型。 |
-| int32_t initDataLen | 初始数据长度。 |
-| uint8_t initData[MAX_INIT_DATA_LEN] | base64解码后格式为PSSH的初始数据。 |
-| char mimeType[MAX_MIMETYPE_LEN] | 媒体上下文的MIME类型。 |
-| uint32_t optionsCount | 选项数据计数。 |
-| char optionName[MAX_MEDIA_KEY_REQUEST_OPTION_COUNT][MAX_MEDIA_KEY_REQUEST_OPTION_NAME_LEN] | 选项名称集合。 |
-| char optionData[MAX_MEDIA_KEY_REQUEST_OPTION_COUNT][MAX_MEDIA_KEY_REQUEST_OPTION_DATA_LEN] | 选项数据集合。 |
+| [DRM_MediaKeyType](capi-native-drm-common-h.md#drm_mediakeytype) type | 媒体密钥类型，指定请求的密钥用途。取值为DRM_MEDIA_KEY_TYPE_STREAMING（在线流媒体）或DRM_MEDIA_KEY_TYPE_OFFLINE（离线播放）。 |
+| int32_t initDataLen | 初始化数据的长度（单位：字节），表示initData数组中有效数据的字节数。取值范围为[1, MAX_INIT_DATA_LEN]。 |
+| uint8_t initData[MAX_INIT_DATA_LEN] | 初始化数据，包含DRM内容保护系统特定头（PSSH）格式的数据。通常从媒体内容的PSSH box中提取，需进行base64解码后传入。数组长度由MAX_INIT_DATA_LEN宏定义。 |
+| char mimeType[MAX_MIMETYPE_LEN] | 媒体内容的MIME类型，用于标识媒体内容的格式。常见取值如"video/mp4"、"video/webm"等，具体支持类型由DRM解决方案决定。数组长度由MAX_MIMETYPE_LEN宏定义。 |
+| uint32_t optionsCount | 选项数据的数量，表示optionName和optionData数组中有效元素的个数。取值范围为[0, MAX_MEDIA_KEY_REQUEST_OPTION_COUNT]。 |
+| char optionName[MAX_MEDIA_KEY_REQUEST_OPTION_COUNT][MAX_MEDIA_KEY_REQUEST_OPTION_NAME_LEN] | 选项名称数组，每行存储一个选项的名称。选项名称由DRM解决方案定义，用于传递特定的请求参数。数组维度由MAX_MEDIA_KEY_REQUEST_OPTION_COUNT和MAX_MEDIA_KEY_REQUEST_OPTION_NAME_LEN宏定义。 |
+| char optionData[MAX_MEDIA_KEY_REQUEST_OPTION_COUNT][MAX_MEDIA_KEY_REQUEST_OPTION_DATA_LEN] | 选项数据数组，每行存储对应optionName的选项值。数组维度由MAX_MEDIA_KEY_REQUEST_OPTION_COUNT和MAX_MEDIA_KEY_REQUEST_OPTION_DATA_LEN宏定义。 |
 
 
