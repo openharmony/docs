@@ -26,7 +26,6 @@ PermissionRequest 是 Web 组件用于授权或拒绝权限请求的对象。当
 >
 > - 典型使用流程：调用 getAccessibleResource() 获取请求的资源列表，选择需要授权的资源后调用 grant() 进行授权。
 
-
 ## constructor<sup>9+</sup>
 
 constructor()
