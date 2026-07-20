@@ -15,6 +15,9 @@ ScreenCaptureHandler 是 Web 组件提供的屏幕捕获权限处理类，用于
 > - 本Class首批接口从API version 10开始支持。
 >
 > - 示例效果请以真机运行为准。
+>
+> -  [grant](./arkts-basic-components-web-ScreenCaptureHandler.md#grant10)()与 [deny](./arkts-basic-components-web-ScreenCaptureHandler.md#deny10)() 方法互斥，对同一个 ScreenCaptureHandler 实例的同一请求只能调用其中一个。
+> - 调用后不应再对同一请求调用另一个方法。
 
 ## constructor<sup>10+</sup>
 
@@ -29,10 +32,6 @@ ScreenCaptureHandler的构造函数。
 deny(): void
 
 拒绝网页发起的屏幕捕获操作。用于用户选择不允许，或出于安全原因需要阻止屏幕捕获时调用。调用后将终止当前的屏幕捕获请求，系统会通知网页屏幕捕获权限被拒绝。拒绝操作不影响后续新的屏幕捕获请求。
-
-**调用约束：**
-- 与 grant() 方法互斥，对同一个 ScreenCaptureHandler 实例的同一请求只能调用其中一个。
-- 调用后不应再对同一请求调用另一个方法。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
