@@ -1200,7 +1200,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForPickerPopUp(OH_AVScree
 
 **描述**
 
-设置是否弹出屏幕捕获Picker界面。Picker时录屏源选择界面，用户可以在其中选择要录制的屏幕或窗口。
+设置是否弹出屏幕捕获Picker界面。Picker是录屏源选择界面，用户可以在其中选择要录制的屏幕或窗口。
 
 适用场景：需要用户交互选择录制源（如多屏环境下选择屏幕）时弹出Picker；应用已明确指定录制源或无需用户干预时可关闭Picker自动录制。
 
