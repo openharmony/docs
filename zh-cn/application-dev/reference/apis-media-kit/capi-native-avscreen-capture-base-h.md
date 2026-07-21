@@ -526,7 +526,7 @@ typedef void (*OH_AVScreenCapture_OnBufferAvailable)(OH_AVScreenCapture *capture
 
 当OH_AVScreenCapture实例操作期间音频或视频缓冲区可用时，系统将调用该函数指针通知应用程序。使用前需将该回调注册到OH_AVScreenCapture实例中。
 
-该回调方法执行结束返回后，数据缓冲区不再有效，应用需要在回调内技术处理数据。
+该回调方法执行结束返回后，数据缓冲区不再有效，应用需要在回调内及时处理数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 

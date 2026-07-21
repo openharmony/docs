@@ -204,7 +204,7 @@ pauseRecording(): Promise\<void>
 
 | 错误码ID | 错误信息                        |
 | -------- | -------------------------------- |
-| 5400102  | Operation not permitted. Return by promise. Possible cause: This operation is not allowed in the current state (e.g., pausing before initialization). Suggestion: Please ensure the interfaces are called in the correct sequence. |
+| 5400102  | Operation not allowed. Return by promise. Possible cause: This operation is not allowed in the current state (e.g., pausing before initialization). Suggestion: Please ensure the interfaces are called in the correct sequence. |
 | 5400103  | IO error. Return by promise. Possible cause: File path does not exist, insufficient read/write permissions, or insufficient storage space. Suggestion: Please check the file path, permissions, and available storage space.    |
 | 5400105  | Service died. Return by promise. Possible cause: System service terminated unexpectedly. Suggested action: Please release resources and retry. If the issue persists, restart the application. |
 
@@ -257,7 +257,7 @@ resumeRecording(): Promise\<void>
 
 | 错误码ID | 错误信息                        |
 | -------- | -------------------------------- |
-| 5400102  | Operation not permitted. Return by promise. Possible cause: This operation is not allowed in the current state (e.g., pausing before pauseRecording). Suggestion: Please ensure the interfaces are called in the correct sequence. |
+| 5400102  | Operation not allowed. Return by promise. Possible cause: This operation is not allowed in the current state (e.g., pausing before pauseRecording). Suggestion: Please ensure the interfaces are called in the correct sequence. |
 | 5400103  | IO error. Return by promise. Possible cause: File path does not exist, insufficient read/write permissions, or insufficient storage space. Suggestion: Please check the file path, permissions, and available storage space.     |
 | 5400105  | Service died. Return by promise. Possible cause: System service terminated unexpectedly. Suggested action: Please release resources and retry. If the issue persists, restart the application. |
 
