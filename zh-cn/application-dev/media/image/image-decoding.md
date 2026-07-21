@@ -6,7 +6,11 @@
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
 
-将所支持格式的图片文件解码成[PixelMap](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md)，以便在应用或系统中显示或处理图片。
+当应用需要读取图片内容、显示图片，或对图片进行缩放、裁剪等处理时，可使用[ImageSource](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md)完成图片解码。应用可通过图片在应用沙箱中的路径、文件描述符或缓冲区创建ImageSource，并将图片解码为PixelMap。
+
+解码后的PixelMap可用于图片显示、图像处理和编辑等场景。开发者还可在解码时设置图片尺寸、解码区域和输出像素格式，以适配不同的业务需求。
+
+## 解码支持的图片格式
 
 当前支持的图片文件格式包括JPEG、PNG、GIF、WebP、BMP、SVG、ICO、DNG、HEIC、TIFF<sup>23+</sup>、HEIFS<sup>23+</sup>、WBMP<sup>23+</sup>。
 
@@ -15,6 +19,32 @@
 部分格式的解码能力依赖于具体的设备硬件，建议在调用前使用[image.getImageSourceSupportedFormats](../../reference/apis-image-kit/arkts-apis-image-f.md#imagegetimagesourcesupportedformats20)接口，动态查询当前设备上的解码能力。
 
 从API version 22开始，支持对专业相机拍摄的CR2、CR3、ARW、NEF、RAF、NRW、ORF、RW2、PEF、SRW格式图片内嵌的预览图（通常为JPEG格式）进行解码。该解码能力不受运行设备类型限制。
+
+## 设置解码输出像素格式
+
+图片解码像素格式是指将图片解码为PixelMap后采用的数据存储格式。使用[createPixelMap](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md#createpixelmap7)和[createPixelMapUsingAllocator](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md#createpixelmapusingallocator15)解码图片时，通过设置[DecodingOptions](../../reference/apis-image-kit/arkts-apis-image-i.md#decodingoptions7)中的desiredPixelFormat可指定期望的输出像素格式[PixelMapFormat](../../reference/apis-image-kit/arkts-apis-image-e.md#pixelmapformat7)。
+
+不同像素格式在内存占用、透明度支持以及后续显示和图像处理场景中存在差异。当应用需要控制解码后的图像数据格式时，可设置desiredPixelFormat。
+
+实际支持的格式组合与输入图片格式、图片特征、动态范围和设备能力有关。解码完成后，可调用[getImageInfoSync](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md#getimageinfosync12) 获取ImageInfo.pixelFormat，确认实际输出像素格式。
+
+下表为不同图片格式支持的目标像素格式（desiredPixelFormat）：
+
+| 输入图片格式 | 支持的目标像素格式 |
+| --- | --- |
+| JPEG、BMP、DNG、HEIC、WBMP、HEIFS、AVIF、AVIS | RGB_565、RGBA_8888、BGRA_8888、NV21、NV12、ASTC_4x4 |
+| PNG、GIF、WebP、ICO | RGB_565（图片不带透明通道）、RGBA_8888、BGRA_8888、NV21、NV12、ASTC_4x4 |
+| TIFF、SVG | RGBA_8888、BGRA_8888、ASTC_4x4 |
+
+> **注意：**
+>
+> - 将desiredPixelFormat设置为UNKNOWN时，输出像素格式默认为RGBA_8888。
+>
+> - 对于PNG、GIF、ICO和WebP图片，将desiredPixelFormat设置为RGB_565时，仅支持解码不带透明通道的图片，带透明通道的图片解码失败。
+>
+> - 当前解码不支持ARGB_8888和RGBA_F16像素格式。对于JPEG、BMP、DNG、HEIC、WBMP、HEIFS、AVIF、AVIS、PNG、GIF、WebP和ICO图片，如果将desiredPixelFormat设置为ARGB_8888和RGBA_F16，则解码输出的像素格式为RGBA_8888。
+> 
+> - 当同时设置desiredPixelFormat和desiredDynamicRange时，前者用于指定期望的输出像素格式，后者用于指定解码后的动态范围。为满足SDR或HDR的解码要求，实际输出的PixelMap像素格式可能与desiredPixelFormat不同。建议调用[getImageInfoSync](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md#getimageinfosync12)获取ImageInfo.pixelFormat，确认实际输出像素格式。
 
 ## 开发步骤
 
