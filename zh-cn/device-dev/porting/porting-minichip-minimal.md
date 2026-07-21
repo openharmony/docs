@@ -19,9 +19,10 @@ Mini芯片最小系统由以下核心模块组成：
 | -------- | -------- |
 | init-启动恢复 | 内核启动后的系统关键进程和服务启动、系统参数管理 |
 | samgr-系统服务管理 | 系统服务注册、发现与统一管理 |
-| HCTEST | 兼容性测试框架，提供基本接口的测试验证能力 |
-| 三方库&编译链接 | 第三方库的适配适配与编译链接配置 |
 | DFX | 可维可测能力，包括日志、事件打点等 |
+| HCTEST-测试框架 | 兼容性测试框架，提供基本接口的测试验证能力 |
+| 三方库 | 第三方库的适配适配与集成 |
+| 编译链接 | 编译构建配置与链接脚本管理 |
 
 ## 适配流程
 
@@ -31,7 +32,7 @@ Mini芯片最小系统由以下核心模块组成：
 | -------- | -------- |
 | 1. 适配准备 | 下载代码、搭建编译环境、熟悉编译构建框架 |
 | 2. 内核适配 | 适配伙伴SDK到OpenHarmony平台，确认arch支持 |
-| 3. 模块适配 | 按本章各模块指导逐个适配init、samgr、HCTEST、三方库、DFX |
+| 3. 模块适配 | 按本章各模块指导逐个适配init、samgr、DFX、HCTEST、三方库、编译链接 |
 | 4. 适配验证 | 使用HCTEST兼容性测试套件验证，伙伴自有测试补充 |
 
 ---
@@ -200,91 +201,6 @@ Mini芯片最小系统由以下核心模块组成：
 
 ---
 
-## HCTEST
-
-HCTEST为OpenHarmony兼容性测试框架，提供基本接口的测试验证能力，用于在适配完成后对工程进行兼容性测试。
-
-### Feature列表
-
-| Feature名 | 说明 | 默认值 |
-| -------- | -------- | -------- |
-| hctest_rodata_opt | 是否使能测试只读数据优化 | true |
-| xts_overlay | 是否使能XTS覆盖层 | true |
-
-### Feature说明
-
-- **hctest_rodata_opt**：控制测试只读数据段优化。使能后可减少测试用例对ROM空间的占用，适用于Flash资源紧张的Mini芯片场景。
-
-- **xts_overlay**：控制XTS（X Test Suite）覆盖层功能。使能后支持测试套件的覆盖执行模式，允许对特定模块进行针对性测试。
-
-### 使用方法
-
-#### 1. 编译时配置HCTEST Feature
-
-HCTEST的Feature通过编译参数`--gn-args`传入，而非config.json中的features字段：
-
-```bash
-hb build --gn-args hctest_rodata_opt=true xts_overlay=true
-```
-
-#### 2. 执行兼容性测试
-
-**[待补充测试执行命令与步骤]**
-
-#### 3. 测试结果分析
-
-**[待补充]**
-
----
-
-## 三方库&编译链接
-
-三方库&编译链接模块负责第三方库的适配适配、编译构建配置与链接脚本管理，确保外部依赖库能正确集成到OpenHarmony编译体系中。
-
-### Feature列表
-
-| Feature名 | 说明 | 默认值 |
-| -------- | -------- | -------- |
-| ohos_stack_protector | 栈保护级别配置 | strong |
-| ohos_mem_opt_extra | 是否使能额外内存优化 | true |
-
-### Feature说明
-
-- **ohos_stack_protector**：设置栈保护（Stack Protector）级别。可选值：
-  - `strong`：强保护模式，为大部分函数插入栈保护代码，安全性高但略有性能开销
-  - `all`：全保护模式，为所有函数插入栈保护代码
-  - `none`：禁用栈保护
-
-- **ohos_mem_opt_extra**：控制是否使能额外的内存优化选项。开启后编译器会进行更激进的内存优化（如优化内存布局、减少冗余分配），适用于RAM资源受限的Mini芯片场景。
-
-### 使用方法
-
-#### 1. 编译时配置Feature
-
-通过编译参数`--gn-args`传入：
-
-```bash
-hb build --gn-args ohos_stack_protector=strong ohos_mem_opt_extra=true
-```
-
-#### 2. 基于CMake的三方库适配
-
-参考[porting-thirdparty-cmake](porting-thirdparty-cmake.md)。
-
-**[待补充具体步骤与注意事项]**
-
-#### 3. 基于Makefile的三方库适配
-
-参考[porting-thirdparty-makefile](porting-thirdparty-makefile.md)。
-
-**[待补充具体步骤与注意事项]**
-
-#### 4. 链接脚本配置
-
-**[待补充链接脚本的关键配置项与修改方法]**
-
----
-
 ## DFX
 
 DFX（Design for eXcellence）可维可测子系统提供日志、事件打点等维测能力，是系统运行态问题定位的关键基础设施。
@@ -345,6 +261,116 @@ DFX（Design for eXcellence）可维可测子系统提供日志、事件打点�
 
 ---
 
+## HCTEST-测试框架
+
+HCTEST为OpenHarmony兼容性测试框架，提供基本接口的测试验证能力，用于在适配完成后对工程进行兼容性测试。
+
+### Feature列表
+
+| Feature名 | 说明 | 默认值 |
+| -------- | -------- | -------- |
+| hctest_rodata_opt | 是否使能测试只读数据优化 | true |
+| xts_overlay | 是否使能XTS覆盖层 | true |
+
+### Feature说明
+
+- **hctest_rodata_opt**：控制测试只读数据段优化。使能后可减少测试用例对ROM空间的占用，适用于Flash资源紧张的Mini芯片场景。
+
+- **xts_overlay**：控制XTS（X Test Suite）覆盖层功能。使能后支持测试套件的覆盖执行模式，允许对特定模块进行针对性测试。
+
+### 使用方法
+
+#### 1. 编译时配置HCTEST Feature
+
+HCTEST的Feature通过编译参数`--gn-args`传入，也可以通过config.json中的features字段开启：
+
+```bash
+hb build --gn-args hctest_rodata_opt=true xts_overlay=true
+```
+
+#### 2. 执行兼容性测试
+
+**[待补充测试执行命令与步骤]**
+
+#### 3. 测试结果分析
+
+**[待补充]**
+
+---
+
+## 三方库
+
+三方库模块负责第三方库的适配适配与集成，确保外部依赖库能正确集成到OpenHarmony编译体系中。
+
+### 使用方法
+
+#### 1. 基于CMake的三方库适配
+
+参考[porting-thirdparty-cmake](porting-thirdparty-cmake.md)。
+
+**[待补充具体步骤与注意事项]**
+
+#### 2. 基于Makefile的三方库适配
+
+参考[porting-thirdparty-makefile](porting-thirdparty-makefile.md)。
+
+**[待补充具体步骤与注意事项]**
+
+---
+
+## 编译链接
+
+编译链接模块负责编译构建配置与链接脚本管理，确保编译选项和链接配置满足Mini芯片场景需求。
+
+### Feature列表
+
+| Feature名 | 说明 | 默认值 |
+| -------- | -------- | -------- |
+| ohos_stack_protector | 栈保护级别配置 | strong |
+| ohos_mem_opt_extra | 是否使能额外内存优化 | true |
+
+### Feature说明
+
+- **ohos_stack_protector**：设置栈保护（Stack Protector）级别。可选值：
+  - `strong`：强保护模式，为大部分函数插入栈保护代码，安全性高但略有性能开销
+  - `all`：全保护模式，为所有函数插入栈保护代码
+  - `none`：禁用栈保护
+
+- **ohos_mem_opt_extra**：控制是否使能额外的内存优化选项。开启后编译器会进行更激进的内存优化（如优化内存布局、减少冗余分配），适用于RAM资源受限的Mini芯片场景。
+
+### 使用方法
+
+#### 1. 编译时配置Feature
+
+通过编译参数`--gn-args`传入：
+
+```bash
+hb build --gn-args ohos_stack_protector=strong ohos_mem_opt_extra=true
+```
+
+#### 2. 链接脚本配置
+
+**[待补充链接脚本的关键配置项与修改方法]**
+
+---
+
+## 相关能力
+
+完成最小系统适配后，可根据产品需求选配以下子系统能力，以扩展芯片功能。各子系统均提供独立的移植指导文档，按需适配即可。
+
+| 子系统 | 能力说明 | 典型用途 | 资源影响 | 移植指导 |
+| -------- | -------- | -------- | -------- | -------- |
+| 通信子系统 | 提供Wi-Fi Station/SoftAP、蓝牙等无线通信能力 | 设备联网、数据交互、配网 | 增加ROM约100KB+，RAM约20KB+ | [移植通信子系统](porting-minichip-subsys-communication.md) |
+| 外设驱动子系统 | 提供GPIO、I2C、SPI、PWM、UART、FLASH、WATCHDOG等外设操作接口 | 传感器数据采集、外设控制、屏显驱动 | 按需引入，单接口增加ROM约2~10KB | [移植外设驱动子系统](porting-minichip-subsys-driver.md) |
+| 文件子系统 | 提供文件打开、关闭、读写、Seek等操作接口 | 日志存储、配置持久化、数据记录 | 增加ROM约10KB+，RAM约2KB+ | [移植文件子系统](porting-minichip-subsys-filesystem.md) |
+| 安全子系统 | 提供硬件随机数、密钥管理（huks）、设备认证（hichainsdk）等安全能力 | 安全连接、数据加密、设备鉴权 | 依赖mbedtls，增加ROM约50KB+ | [移植安全子系统](porting-minichip-subsys-security.md) |
+| 分布式调度子系统 | 提供系统服务注册与发现能力（SAMGR框架），无需额外移植 | 跨设备组件管理、服务发现 | 少量RAM开销 | [配置其他子系统](porting-minichip-subsys-others.md) |
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> - 上表资源影响为参考值，实际占用与芯片架构、编译器优化等级、使能的具体Feature有关。
+> - 选配子系统时，请根据芯片实际ROM/RAM资源情况评估，确保不超过硬件限制。
+> - 各子系统的详细移植步骤与接口定义，请参考对应的移植指导文档。
+
 ## 常见问题
 
 **[待各模块补充FAQ]**
@@ -352,6 +378,15 @@ DFX（Design for eXcellence）可维可测子系统提供日志、事件打点�
 | 问题 | 所属模块 | 解决方案 |
 | -------- | -------- | -------- |
 | [待补充] | [待补充] | [待补充] |
+
+## 参考配置
+
+以下为典型 minimal 产品的参考配置，可供适配时参考：
+
+| 芯片型号 | 产品路径 | 参考配置地址 |
+| -------- | -------- | -------- |
+| Hi3861 | hispark_pegasus | `vendor/hisilicon/hispark_pegasus_minimal/config.json` |
+| Hi3863 | KHD-3863B | `vendor/hihope/nearlink_dk_3863_xts_minimal/config.json` |
 
 ## 参考文档
 
