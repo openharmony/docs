@@ -16,7 +16,7 @@
 
 请参考[获取源码](../get-code/sourcecode-acquire.md)完成源码下载并进行编译。
 
-> **说明：**
+> <img src="public_sys-resources/icon-note.gif" alt="说明"/> <b>说明：</b>
 > 本文档仅适用于OpenHarmony LTS 7.0.0及之前版本，所以请获取对应版本的源码。
 
 
@@ -32,7 +32,7 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
 | kernel/liteos_m | 内核所在的目录，其中arch目录描述支撑的内核架构。 | 
 | device | 芯片厂商适配目录，其中“config.gni”描述当前芯片使用的arch，工具链，编译链接选项等。 | 
 | vendor | 终端模组厂商适配目录，其中“config.json”描述需要集成的OpenHarmony子系统列表。 | 
-| commonlibrary | file，kv等相关的适配。 | 
+| commonlibrary | 公共基础库，提供file、kal等相关适配。 | 
 
 
 ## 搭建编译框架
@@ -94,7 +94,7 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
     
    # Toolchain name used for system compiling.
    # E.g. gcc-arm-none-eabi, arm-linux-harmonyeabi-gcc, ohos-clang,  riscv32-unknown-elf.
-   # Note: The default toolchain is "ohos-clang". It's not mandatory if you use the default toochain.
+   # Note: The default toolchain is "ohos-clang". It's not mandatory if you use the default toolchain.
    board_toolchain = "arm-none-eabi-gcc"
     
    # The toolchain path installed, it's not mandatory if you have added toolchain path to your ~/.bashrc.
@@ -115,7 +115,13 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
    board_include_dirs = []
     
    # Board adapter dir for OHOS components.
-   board_adapter_dir =""
+   board_adapter_dir = ""
+
+   # Sysroot path.
+   board_configed_sysroot = ""
+
+   # Board storage type, it used for file system generation.
+   storage_type = ""
    ```
 
      **表2** “config.gni”主要配置项
@@ -126,7 +132,7 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
    | kernel_version | 开发板使用的内核版本。 | 
    | board_cpu | 开发板CPU类型，例如：“cortex-m4”，“cortex-a7”，“riscv32”。 | 
    | board_arch | 开发芯片arch指令集,&nbsp;例如：“armv7-a”。 | 
-   | board_toolchain | 开发板自定义的编译工具链名称，例如：“gcc-arm-none-eabi”。若为空，则使用默认为ohos-clang。 | 
+   | board_toolchain | 开发板自定义的编译工具链名称，例如：“arm-none-eabi-gcc”。若为空，则使用默认为ohos-clang。 | 
    | board_toolchain_path | 编译工具链路径，为空则默认使用环境变量中的工具链。 | 
    | board_toolchain_prefix | 编译工具链前缀，例如：“arm-none-eabi-”。 | 
    | board_toolchain_type | 编译工具链类型，目前支持gcc和clang。 | 
@@ -135,6 +141,8 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
    | board_ld_flags | 开发板配置的链接选项。 | 
    | board_include_dirs | 开发板配置的系统头文件路径列表。 | 
    | board_adapter_dir | 开发板适配文件路径。 | 
+   | board_configed_sysroot | 开发板的Sysroot路径。 | 
+   | storage_type | 开发板存储类型，例如："emmc"、"spinor"等。 | 
 
 1. 新增模组终端厂商。
 
@@ -175,6 +183,8 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
    ```json
    {
        "product_name": "MyProduct",
+       "type": "mini",
+       "version": "7.0",
        "ohos_version": "OpenHarmony 7.0",
        "device_company": "MyDeviceCompany",
        "device_build_path": "device/board/MyDeviceCompany/MyBoard",
@@ -206,22 +216,24 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
    | 配置项 | 介绍 | 
    | -------- | -------- |
    | product_name | 产品名称，hb&nbsp;set时显示产品名称。 | 
+   | type | 系统类型，轻量系统填写"mini"。 | 
+   | version | 配置文件版本，当前为"7.0"。 | 
    | ohos_version | OpenHarmony版本号，与实际版本保持一致即可。 | 
    | device_company | 芯片厂商名称，与device的三级目录名称一致。 | 
    | device_build_path | 设备构建路径，指向device下的开发板目录。 |
    | board | 开发板名称，与device的四级目录名称一致。 | 
    | kernel_type | 内核类型，应与开发板移植的OpenHarmony系统内核类型匹配。 | 
    | kernel_version | 内核版本号，与config.gni中kernel_version值匹配。 | 
-   | subsystem | 产品选择的子系统，应为OS支持的子系统。子系统定义请见build/subsystem_config.json文件。 | 
-   | components | 产品选择的某个子系统下的组件，子系统支持的组件详见详见各组件源码目录下的bundle.json文件文件。 | 
-   | features | 产品配置的某个组件的特性，详见子系统源码目录对应的bundle.json文件。 | 
+   | subsystem | 产品选择的子系统，应为OS支持的子系统。子系统定义请见build/lite/components目录下的各子系统描述文件。 | 
+   | components | 产品选择的某个子系统下的组件，子系统支持的组件详见build/lite/components/{子系统}.json文件。 | 
+   | features | 产品配置的某个组件的特性，详见子系统源码目录对应的BUILD.gn文件。 | 
    | vendor_adapter_dir | 适配IOT外设，UtilsFile文件读写能力，一般指向device下目录。使用详见[文件子系统移植实例步骤2。](porting-minichip-subsys-filesystem.md#移植实例) | 
    | third_party_dir | 芯片厂自身三方软件目录，例如mbedtls，lwip等。如果使用OpenHarmony提供的三方软件，可暂时设空，也可参考hispark_pegasus的配置&nbsp;。 | 
    | product_adapter_dir | 适配hal_token以及系统参数，一般指向vendor下目录。使用详见[启动恢复子系统移植实例步骤1。](porting-minichip-subsys-startup.md#移植实例) | 
 
-   > **说明：**
+   > <img src="public_sys-resources/icon-note.gif" alt="说明"/> <b>说明：</b>
    > 1. 编译构建系统会对字段进行有效性检查，其中：
    > 
    > - device_company，board，kernel_type，kernel_version应与芯片厂商配置匹配。
    > 
-   > - subsystem，component应与build/subsystem_config.json及各组件bundle.json中的定义匹配。
+   > - subsystem，component应与“build/lite/components”下的部件描述匹配。

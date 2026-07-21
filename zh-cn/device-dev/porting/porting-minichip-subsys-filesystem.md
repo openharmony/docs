@@ -1,7 +1,7 @@
 # 移植文件子系统
 
 
-utils部件可被各业务子系统及上层应用使用，依赖芯片文件系统实现，需要芯片平台提供文件打开、关闭、读写、获取大小等功能。
+utils_lite部件可被各业务子系统及上层应用使用，依赖芯片文件系统实现，需要芯片平台提供文件打开、关闭、读写、获取大小等功能。
 
 
 ## 移植指导
@@ -47,7 +47,7 @@ OpenHarmony文件系统需要适配如下HAL层接口：
 其中commonlibrary/utils_lite/file/BUILD.gn的内容如下：
 
   
-```text
+```gn
 import("//build/lite/config/component/lite_component.gni")
  
 static_library("native_file") {
@@ -69,9 +69,7 @@ static_library("native_file") {
 }
  
 lite_component("file") {
-  features = [
-    ":native_file",
-  ]
+  features = [ ":native_file" ]
 }
 ```
 
@@ -81,7 +79,7 @@ lite_component("file") {
 
 1. 直接flash读写，模拟文件的操作。
 
-2. 使用littlefs或者fatfs文件系统进行适配，littlefs或者fatfs都是轻量级文件系统适配简单，其中OpenHarmony的“//thirdparty”目录下已有FatFs可供参考。
+2. 使用littlefs或者fatfs文件系统进行适配，littlefs或者fatfs都是轻量级文件系统适配简单，其中OpenHarmony的“//third_party”目录下已有FatFs可供参考。
 
 3. 使用厂商已有的文件系统进行适配。
 
@@ -96,9 +94,9 @@ lite_component("file") {
      
    ```json
    {
-   "subsystem": "utils",
+   "subsystem": "commonlibrary",
    "components": [
-       { "component": "file", "features":[] }
+       { "component": "utils_lite", "features":[ "utils_lite_feature_file = true" ] }
      ]
    },
    ```

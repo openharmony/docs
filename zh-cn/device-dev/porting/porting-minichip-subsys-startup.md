@@ -42,14 +42,16 @@ void OHOS_SystemInit(void)
        "subsystem": "startup",
        "components": [
            { "component": "bootstrap_lite", "features":[] },
-           { "component": "syspara_lite", "features":[] }
+           { "component": "init", "features":["init_lite_use_thirdparty_mbedtls = true"] }
        ]
    },
    ```
 
-   在startup子系统中有部分部件（如：syspara_lite等），会依赖“$ohos_product_adapter_dir/utils”中的模块。其中“ohos_product_adapter_dir”就是在config.json文件中配置的“product_adapter_dir”，我们通常配置其为“vendor/MyVendorCompany/MyProduct/hals”。
+   在startup子系统中有部分部件（如：init等），会依赖“$ohos_product_adapter_dir/utils”中的模块。其中“ohos_product_adapter_dir”就是在config.json文件中配置的“product_adapter_dir”，我们通常配置其为“vendor/MyVendorCompany/MyProduct/hals”。
 
 1. 添加zinitcall以及run定义。
+
+   参考文件路径：“device/soc/hisilicon/hi3861v100/sdk_liteos/build/link/link.ld.S”
 
    在厂商ld链接脚本中.text段中，添加如下代码：
 

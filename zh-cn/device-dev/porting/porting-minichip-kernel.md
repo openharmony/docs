@@ -26,7 +26,12 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
 │   ├── common
 │   ├── cortex-m3
 │   ├── cortex-m4
+│   │   ├── gcc               # 使用gcc编译器编译的架构代码。
+│   │   ├── iar               # 使用iar编译器编译的架构代码。
+│   │   └── keil              # 使用keil编译器编译的架构代码。
 │   ├── cortex-m7
+│   │   ├── gcc               # 使用gcc编译器编译的架构代码。
+│   │   └── iar               # 使用iar编译器编译的架构代码。
 │   ├── cortex-m33
 │   │   ├── gcc               # 使用gcc编译器编译的架构代码。
 │   │   └── iar               # 使用iar编译器编译的架构代码。
@@ -64,50 +69,21 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
 
      
    ```gn
-   import("//build/lite/config/component/lite_component.gni")
-    
-   executable("OHOS_Image.elf") {    # 生成可执行程序。
-     libs = [
-       "xxx/xxx/libxxx.a",           # 链接厂商闭源静态库方法一。
-     ]
-     asmflags = [                    # 汇编编译参数。
-       "",
-     ]
-     ldflags = [
-       "-T./xxx/xxx/xxx.ld",         # 链接脚本文件。
-       "-Lxxx/xxx/",                 # 指定厂商静态库路径。
-       "-lxxx",                      # 链接厂商闭源静态库方法二。
-       "-Wl,--whole-archive",
-       "-lmodule_xxx",
-       "-Wl,--no-whole-archive",
-     ]
-     deps = [
-       "//build/lite:ohos",          # 依赖OpenHarmony静态库编译完成，链接OpenHarmony编译出来的静态库。
-       ":sdk",                       # 依赖厂商源码静态库编译完成，链接厂商源码生成的静态库。
-     ]
-   }
-    
-   copy("prebuilt") {                # 准备镜像生成工具等，一般把镜像生成工具拷贝到out目录。
-     sources = [ ]                   # 复制的源文件。
-     outputs = [ ]                   # 复制的目标文件。
-   }
-   static_library("sdk") {
-     sources = [ ]                   # 添加厂商源码编译成静态库。
-     include_dirs = [ ]              # 厂商源码包含头文件路径。
-   }
-   build_ext_component("image") {    # 调用shell命令，生成可烧写镜像文件 。                            
-     exec_path = rebase_path(root_out_dir)   #指定shell命令执行目录。
-     objcopy = "arm-none-eabi-objcopy"
-     objdump = "arm-none-eabi-objdump"
-     command = "$objcopy -O binary OHOS_Image.elf OHOS_Image.bin" 
-     command += " && sh -c '$objdump -t OHOS_Image.elf | sort > OHOS_Image.sym.sorted'" 
-     command += " && sh -c '$objdump -d OHOS_Image.elf > OHOS_Image.asm'"                  
-     deps = [
-       ":prebuilt",                  # 无需准备镜像生成工具等可以删除此依赖。
-       ":OHOS_Image.elf",            # 依赖elf文件的生成。
-     ]
-   }
    group("MyBoard") {                # MyBoard与当前路径名称一致。
+     deps = []
+     if (ohos_kernel_type == "linux") {
+       deps += [
+         ......
+       ]
+     } else if (ohos_kernel_type == "liteos_a") {
+       deps += [ 
+         ......
+       ]
+     } else if (ohos_kernel_type == "liteos_m") {
+       deps += [ 
+         ......
+       ]
+     }
    }
    ```
 
@@ -122,7 +98,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
 
    参考文件路径：“device/soc/hisilicon/hi3861v100/sdk_liteos/platform/os/Huawei_LiteOS/targets/hi3861v100/include/target_config.h”
 
-   > **说明：**
+   > <img src="public_sys-resources/icon-note.gif" alt="说明"/> <b>说明：</b>
    >
    > 1. 若已有的配置项不能满足需求，可查看“kernel/liteos_m/kernel/include/los_config.h”，其为liteos_m内核的全量配置文件。
    > 2. “target_config.h”文件中出现的配置将会覆盖“los_config.h”中的配置。
@@ -162,7 +138,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
 
       将“target_config.h”中的宏"LOSCFG_USE_SYSTEM_DEFINED_INTERRUPT"和"LOSCFG_PLATFORM_HWI"置为YES (1)。
 
-      > **说明：**
+      > <img src="public_sys-resources/icon-note.gif" alt="说明"/> <b>说明：</b>
       > 重定向后的中断向量表g_hwiForm需要根据arch手册要求进行字节对齐，通常0x200字节对齐。
 
 
@@ -181,7 +157,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
      "subsystem": "kernel",          # 添加内核子系统
      "components": [
        { 
-         "component": "liteos_m", "features":[""] 
+         "component": "liteos_m", "features":[] 
        }
      ]
    },
@@ -193,12 +169,12 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
 
    内核特性：liteos_m提供了包括文件系统、backtrace在内的一系列内核特性开关。
 
-   liteos_m内核通过Kconfig进行内核特性进行统一配置。各组件BUILD.gn通过module_switch和kernel_module模板根据LOSCFG变量是否定义来决定是否参与编译。
+   liteos_m内核通过Kconfig对内核特性进行统一配置。各组件BUILD.gn通过module_switch和kernel_module模板根据LOSCFG变量是否定义来决定是否参与编译。
 
    路径："kernel/liteos_m/Kconfig"
 
      
-   ```text
+   ```kconfig
    menu "Kernel"
 
    config KERNEL_EXTKERNEL
@@ -206,8 +182,8 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
        default y                            # 扩展内核总开关，以下特性均依赖此项。
        help
          This option will enable extend Kernel of LiteOS.  Extend kernel include
-       cppsupport, cpup, etc. You can select one or some
-       of them.
+         cppsupport, cpup, etc. You can select one or some
+         of them.
 
    config KERNEL_BACKTRACE
        bool "Enable Backtrace"
@@ -260,7 +236,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
    路径："kernel/liteos_m/kal/cmsis/Kconfig"
 
      
-   ```text
+   ```kconfig
    config KAL_CMSIS
        bool "Enable KAL CMSIS"
        default y                            # cmsis接口，默认开启。
@@ -271,7 +247,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
    路径：“kernel/liteos_m/kal/posix/Kconfig”
 
      
-   ```text
+   ```kconfig
    config POSIX_API
        bool "Enable POSIX API"
        default y                            # posix接口，默认开启。
@@ -334,7 +310,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
    路径：“kernel/liteos_m/components/fs/fatfs/Kconfig”
 
      
-   ```text
+   ```kconfig
    config FS_FAT
        bool "Enable FAT"
        default n                            # fatfs，默认关闭。
@@ -379,6 +355,6 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
    LOSCFG_SHELL=y                 # 启用shell调试。
    ```
 
-   > **说明：**
+   > <img src="public_sys-resources/icon-note.gif" alt="说明"/> <b>说明：</b>
    > 1. 内核特性开关通过修改"vendor/MyVendorCompany/MyProduct/kernel_configs/"目录下的.config文件配置。
    > 2. 更多Kconfig配置项可查看"kernel/liteos_m/Kconfig"及其子目录中的Kconfig文件。
