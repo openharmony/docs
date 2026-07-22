@@ -17,11 +17,11 @@ Mini芯片最小系统由以下核心模块组成：
 
 | 模块 | 职责 |
 | -------- | -------- |
-| init-启动恢复 | 内核启动后的系统关键进程和服务启动、系统参数管理 |
+| startup-启动恢复 | startup-启动恢复，提供启动引导功能以及系统参数管理 |
 | samgr-系统服务管理 | 系统服务注册、发现与统一管理 |
 | DFX | 可维可测能力，包括日志、事件打点等 |
 | HCTEST-测试框架 | 兼容性测试框架，提供基本接口的测试验证能力 |
-| 三方库 | 第三方库的适配适配与集成 |
+| 三方库 | 三方库mbedtls适配（当前仅适配ws63） |
 | 编译链接 | 编译构建配置与链接脚本管理 |
 
 ## 适配流程
@@ -37,21 +37,20 @@ Mini芯片最小系统由以下核心模块组成：
 
 ---
 
-## init-启动恢复
+## startup-启动恢复
 
-启动恢复子系统负责在内核启动之后到应用启动之前的系统关键进程和服务的启动过程。
+在mini系统中，startup包含两个模块：init和bootstrip_lite。init提供了系统属性设置、读取功能。bootstrip_lite提供了启动引导功能。
 
 ### Feature列表
 
 | Feature名 | 说明 | 默认值 |
 | -------- | -------- | -------- |
 | bootstrap_lite_enable_bootstrap_service | 是否使能bootstrap服务启动能力 | false |
-| init_lite_memory_size | 启动模块内存池大小（字节） | 8192 |
+| init_lite_memory_size | 参数空间总大小（字节） | 8192 |
 | init_lite_param_const_value_len_max | 常量参数值的最大长度 | 256 |
 | init_lite_param_value_len_max | 参数值的最大长度 | 48 |
 | init_lite_param_name_len_max | 参数名的最大长度 | 48 |
 | init_lite_persist_all | 是否持久化所有参数 | false |
-| acts_lite_deviceinfo_merge | 是否合并设备信息测试用例 | true |
 | acts_lite_param_value_len_max_48 | 是否将参数值最大长度限制为48（兼容测试） | true |
 
 ### Feature说明
@@ -116,7 +115,7 @@ Mini芯片最小系统由以下核心模块组成：
 | Feature名 | 说明 | 默认值 |
 | -------- | -------- | -------- |
 | enable_ohos_systemabilitymgr_samgr_lite_broadcast | 是否使能广播能力 | false |
-| enable_ohos_systemabilitymgr_samgr_lite_system_capability | 是否使能系统能力查询 | false |
+| enable_ohos_systemabilitymgr_samgr_lite_system_capability | 是否使能系统能力 | false |
 | config_ohos_systemabilitymgr_samgr_lite_shared_task_size | 共享任务栈大小（字节） | 2048 |
 | enable_ohos_systemabilitymgr_samgr_lite_specified_task | 是否使能指定任务模式 | false |
 | enable_ohos_systemabilitymgr_samgr_lite_no_task | 是否使能无任务模式 | false |
@@ -129,7 +128,7 @@ Mini芯片最小系统由以下核心模块组成：
 
 - **enable_ohos_systemabilitymgr_samgr_lite_broadcast**：控制SAMGR Lite是否提供广播（Broadcast）能力。广播能力允许服务向多个订阅者发布消息，适用于一对多的事件通知场景。开启后会增加内存占用。
 
-- **enable_ohos_systemabilitymgr_samgr_lite_system_capability**：控制是否使能系统能力（System Capability）查询功能。开启后，服务可查询系统中已注册的能力列表，支持服务的动态发现。
+- **enable_ohos_systemabilitymgr_samgr_lite_system_capability**：控制是否使能系统能力（System Capability）添加、查询功能。开启后，服务可查询系统中已注册的能力列表，支持服务的动态添加。
 
 - **config_ohos_systemabilitymgr_samgr_lite_shared_task_size**：设置SAMGR Lite共享任务栈的大小，单位为字节。默认2048字节。当多个服务共享同一个任务线程运行时，需确保栈空间足够。若服务处理逻辑较复杂或调用层级较深，需适当增大该值。
 
@@ -141,9 +140,9 @@ Mini芯片最小系统由以下核心模块组成：
 
 - **enable_ohos_test_xts_acts_use_samgr_lite_debug**：兼容性测试相关，控制是否使能SAMGR Lite调试模式，输出更多调试信息。
 
-- **enable_ohos_test_xts_acts_use_samgr_lite_taskpool_notask**：兼容性测试相关，控制测试用例是否使用无任务池模式运行。
+- **enable_ohos_test_xts_acts_use_samgr_lite_taskpool_notask**：兼容性测试相关，开启后，测试用例测试无任务池接口，需与enable_ohos_systemabilitymgr_samgr_lite_no_task配合使用。
 
-- **enable_ohos_test_xts_acts_use_samgr_lite_taskpool_specifiedtask**：兼容性测试相关，控制测试用例是否使用指定任务池模式运行。
+- **enable_ohos_test_xts_acts_use_samgr_lite_taskpool_specifiedtask**：兼容性测试相关，开启后，测试用例测试指定任务池接口，需与enable_ohos_systemabilitymgr_samgr_lite_specified_task配合使用。
 
 ### 使用方法
 
@@ -326,15 +325,15 @@ hb build --gn-args hctest_rodata_opt=true xts_overlay=true
 
 | Feature名 | 说明 | 默认值 |
 | -------- | -------- | -------- |
-| ohos_stack_protector | 栈保护级别配置 | strong |
-| ohos_mem_opt_extra | 是否使能额外内存优化 | true |
+| ohos_stack_protector | 栈保护级别配置，不使用该配置时产品原配置生效，为all | "" |
+| ohos_mem_opt_extra | 是否使能额外内存优化 | false |
 
 ### Feature说明
 
 - **ohos_stack_protector**：设置栈保护（Stack Protector）级别。可选值：
   - `strong`：强保护模式，为大部分函数插入栈保护代码，安全性高但略有性能开销
   - `all`：全保护模式，为所有函数插入栈保护代码
-  - `none`：禁用栈保护
+  - `no`：不支持all，配置ohos_stack_protector参数时，产品原配置为all
 
 - **ohos_mem_opt_extra**：控制是否使能额外的内存优化选项。开启后编译器会进行更激进的内存优化（如优化内存布局、减少冗余分配），适用于RAM资源受限的Mini芯片场景。
 
