@@ -35,6 +35,7 @@ repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboar
     - [配置其他子系统](porting-minichip-subsys-others.md)
   - [移植验证](porting-minichip-verification.md)
   - [常见问题](porting-chip-faqs.md)
+  - [轻量系统小型化适配指导](porting-minichip-minimal.md)
 - 小型系统芯片移植指导
   - 移植准备
     - [移植须知](porting-smallchip-prepare-needs.md)
