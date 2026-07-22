@@ -141,12 +141,17 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCapture(struct OH_AVSc
 
 **描述**
 
-开始录屏，采集原始码流。<br>
-调用后可执行以下操作：<br>
-1.通过（[OH_AVScreenCapture_OnBufferAvailable](capi-native-avscreen-capture-base-h.md#oh_avscreencapture_onbufferavailable)）回调来监听当前是否有码流的产生。<br>
-2.通过（[OH_AVScreenCapture_OnStateChange](capi-native-avscreen-capture-base-h.md#oh_avscreencapture_onstatechange)）回调监听启动状态。<br>
-3.调用（[OH_AVScreenCapture_AcquireAudioBuffer](#oh_avscreencapture_acquireaudiobuffer)）获取音频buffer。<br>
-4.调用（[OH_AVScreenCapture_AcquireVideoBuffer](#oh_avscreencapture_acquirevideobuffer)）获取视频buffer从而获取录屏的原始码流。
+开始录屏，采集原始码流。
+
+调用后可执行以下操作：
+
+1. 通过[OH_AVScreenCapture_OnBufferAvailable](capi-native-avscreen-capture-base-h.md#oh_avscreencapture_onbufferavailable)回调来监听当前是否有码流的产生。
+
+2. 通过[OH_AVScreenCapture_OnStateChange](capi-native-avscreen-capture-base-h.md#oh_avscreencapture_onstatechange)回调监听启动状态。
+
+3. 调用[OH_AVScreenCapture_AcquireAudioBuffer](#oh_avscreencapture_acquireaudiobuffer)获取音频buffer。
+
+4. 调用[OH_AVScreenCapture_AcquireVideoBuffer](#oh_avscreencapture_acquirevideobuffer)获取视频buffer从而获取录屏的原始码流。
 
 与[OH_AVScreenCapture_StartScreenRecording](#oh_avscreencapture_startscreenrecording)和[OH_AVScreenCapture_StartScreenCaptureWithSurface](#oh_avscreencapture_startscreencapturewithsurface)不同，本接口用于获取实时音视频原始码流数据，适用于需要对码流进行二次处理的场景；而[OH_AVScreenCapture_StartScreenRecording](#oh_avscreencapture_startscreenrecording)用于将录屏内容直接保存为文件，适用于仅需保存录屏的场景；[OH_AVScreenCapture_StartScreenCaptureWithSurface](#oh_avscreencapture_startscreencapturewithsurface)使用Surface模式输出，适用于需要直接渲染或与其他组件共享数据的场景。
 
