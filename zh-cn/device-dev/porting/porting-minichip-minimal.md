@@ -173,11 +173,7 @@
 // 2. .zinitcall.app.featureX.init 段 —— 注册服务Feature
 ```
 
-#### 3. 注册自定义系统服务
-
-**[待补充服务注册的示例代码与步骤]**
-
-#### 4. 兼容性测试Feature配置
+#### 3. 兼容性测试Feature配置
 
 执行HCTEST时，需按需开启测试相关Feature：
 
