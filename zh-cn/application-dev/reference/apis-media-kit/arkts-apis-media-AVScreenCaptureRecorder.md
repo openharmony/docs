@@ -34,13 +34,13 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 
 | 参数名 | 类型                                                         | 必填 | 说明                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
-| config | [AVScreenCaptureRecordConfig](arkts-apis-media-i.md#avscreencapturerecordconfig12) | 是   | 配置屏幕录制的相关参数。关键配置项包括：fd（文件描述符）、frameWidth（视频宽度）、frameHeight（视频高度）等。详细配置说明请参考[AVScreenCaptureRecordConfig](arkts-apis-media-i.md#avscreencapturerecordconfig12)。文件需要先由调用者创建，通常是MP4文件，赋予写权限，将文件fd传给此参数。 |
+| config | [AVScreenCaptureRecordConfig](arkts-apis-media-i.md#avscreencapturerecordconfig12) | 是   | 配置屏幕录制的相关参数。关键配置项包括：fd（文件描述符）、frameWidth（视频宽度）、frameHeight（视频高度）等。详细配置说明请参考[AVScreenCaptureRecordConfig](arkts-apis-media-i.md#avscreencapturerecordconfig12)。文件（通常是MP4）需要先由开发者创建，并赋予写权限，再将文件fd传给此参数。 |
 
 **返回值：**
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| Promise\<void> | Promise对象，无返回结果。无返回结果表示初始化成功，失败时返回错误码。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -50,7 +50,7 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 | -------- | ---------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. Return by promise. Suggestion: Please check that all required parameters are correctly passed and their types conform to the interface requirements. |
 | 5400103  | IO error. Return by promise. Possible cause: File path does not exist, insufficient read/write permissions, or insufficient storage space. Suggestion: Please check the file path, permissions, and available storage space.                  |
-| 5400105  | Service died. Return by promise. Possible cause: System service terminated unexpectedly. Suggested action: Please release resources and retry. If the issue persists, restart the application.              |
+| 5400105  | Service died. Return by promise. Possible cause: System service terminated unexpectedly. Suggestion: Please release resources and retry. If the issue persists, restart the application.              |
 
 **示例：**
 
@@ -98,7 +98,7 @@ startRecording(): Promise\<void>
 
 | 类型           | 说明                             |
 | -------------- | -------------------------------- |
-| Promise\<void> | Promise对象，无返回结果。无返回结果表示开始录屏成功，失败时返回错误码。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -144,7 +144,7 @@ stopRecording(): Promise\<void>
 
 | 类型           | 说明                              |
 | -------------- | --------------------------------- |
-| Promise\<void> | Promise对象，无返回结果。无返回结果表示结束录屏成功，失败时返回错误码。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -196,7 +196,7 @@ pauseRecording(): Promise\<void>
 
 | 类型           | 说明                             |
 | -------------- | --------------------------------- |
-| Promise\<void> | Promise对象，无返回结果。无返回结果表示暂停录屏成功，失败时返回错误码。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -206,7 +206,7 @@ pauseRecording(): Promise\<void>
 | -------- | -------------------------------- |
 | 5400102  | Operation not allowed. Return by promise. Possible cause: This operation is not allowed in the current state (e.g., pausing before initialization). Suggestion: Please ensure the interfaces are called in the correct sequence. |
 | 5400103  | IO error. Return by promise. Possible cause: File path does not exist, insufficient read/write permissions, or insufficient storage space. Suggestion: Please check the file path, permissions, and available storage space.    |
-| 5400105  | Service died. Return by promise. Possible cause: System service terminated unexpectedly. Suggested action: Please release resources and retry. If the issue persists, restart the application. |
+| 5400105  | Service died. Return by promise. Possible cause: System service terminated unexpectedly. Suggestion: Please release resources and retry. If the issue persists, restart the application. |
 
 **示例：**
 
@@ -249,7 +249,7 @@ resumeRecording(): Promise\<void>
 
 | 类型          | 说明                             |
 | -------------- | --------------------------------- |
-| Promise\<void> | Promise对象，无返回结果。无返回结果表示恢复录屏成功，失败时返回错误码。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -259,7 +259,7 @@ resumeRecording(): Promise\<void>
 | -------- | -------------------------------- |
 | 5400102  | Operation not allowed. Return by promise. Possible cause: This operation is not allowed in the current state (e.g., pausing before pauseRecording). Suggestion: Please ensure the interfaces are called in the correct sequence. |
 | 5400103  | IO error. Return by promise. Possible cause: File path does not exist, insufficient read/write permissions, or insufficient storage space. Suggestion: Please check the file path, permissions, and available storage space.     |
-| 5400105  | Service died. Return by promise. Possible cause: System service terminated unexpectedly. Suggested action: Please release resources and retry. If the issue persists, restart the application. |
+| 5400105  | Service died. Return by promise. Possible cause: System service terminated unexpectedly. Suggestion: Please release resources and retry. If the issue persists, restart the application. |
 
 **示例：**
 
@@ -373,7 +373,7 @@ skipPrivacyMode(windowIDs: Array\<number>): Promise\<void>
 
 | 类型           | 说明                             |
 | -------------- | -------------------------------- |
-| Promise\<void> | Promise对象，无返回结果。无返回结果表示设置隐私豁免成功，失败时返回错误码。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -431,7 +431,7 @@ setMicEnabled(enable: boolean): Promise\<void>
 
 | 类型           | 说明                                    |
 | -------------- | --------------------------------------- |
-| Promise\<void> | Promise对象，无返回结果。无返回结果表示设置麦克风开关成功，失败时返回错误码。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -486,7 +486,7 @@ setPickerMode(pickerMode: PickerMode): Promise\<void>
 
 | 类型           | 说明                                    |
 | -------------- | --------------------------------------- |
-| Promise\<void> | Promise对象，无返回结果。无返回结果表示设置Picker显示模式成功，失败时返回错误码。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -541,7 +541,7 @@ excludePickerWindows(excludedWindows: Array\<number>): Promise\<void>
 
 | 类型           | 说明                                    |
 | -------------- | --------------------------------------- |
-| Promise\<void> | Promise对象，无返回结果。无返回结果表示设置隐藏窗口列表成功，失败时返回错误码。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -597,7 +597,7 @@ presentPicker(): Promise\<void>
 
 | 类型           | 说明                              |
 | -------------- | --------------------------------- |
-| Promise\<void> | Promise对象，无返回结果。无返回结果表示弹出Picker成功，失败时返回错误码。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -706,7 +706,7 @@ release(): Promise\<void>
 
 | 类型           | 说明                              |
 | -------------- | --------------------------------- |
-| Promise\<void> | Promise对象，无返回结果。无返回结果表示释放录屏成功，失败时返回错误码。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 

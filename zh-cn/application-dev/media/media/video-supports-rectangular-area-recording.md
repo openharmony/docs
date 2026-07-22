@@ -62,7 +62,7 @@ target_link_libraries(sample PUBLIC libnative_avscreen_capture.so libnative_disp
 - region：需要捕获区域的坐标和宽高。类型为OH_Rect，包括成员变量x、y、width、height。
   - x、y分别为矩形区域起点的横坐标、纵坐标位置。
   - width、height分别为矩形区域的宽度和高度。
-  - 所有参数均为整数，需要通过OH_Rect结构体成员变量分别设置。
+  - 所有参数均为非负整数，需要通过OH_Rect结构体成员变量分别设置。
   - 使用前请确保传入参数有效，避免坐标和宽高为负数。
 
 > **注意**
