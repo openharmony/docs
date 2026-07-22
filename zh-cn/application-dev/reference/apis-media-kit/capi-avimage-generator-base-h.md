@@ -38,7 +38,7 @@ enum OH_AVImageGenerator_QueryOptions
 
 **描述**
 
-指定时间点与视频帧对应关系的枚举类型。
+指定查询视频帧时时间点与帧对应关系的选项的枚举类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
 
