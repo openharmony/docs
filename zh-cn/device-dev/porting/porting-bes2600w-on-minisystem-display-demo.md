@@ -1,6 +1,6 @@
 # 轻量带屏解决方案之恒玄芯片移植案例
 
-本文章基于恒玄科技`BES2600W`芯片的欧智通[Multi-modal V200Z-R开发板](https://gitcode.com/openharmony/device_board_fnlink)，进行轻量带屏开发板的标准移植，开发了智能开关面板样例，同时实现了`ace_engine_lite`、`arkui_ui_lite`、`aafwk_lite`、`appexecfwk_lite`、`HDF`等部件基于`OpenHarmony LiteOS-M`内核的适配。移植架构上采用`Board`与`SoC`分离的方案，工具链`Newlib C`库与`Musl C`库可选，`LiteOS-M`内核编译采用`gn`结合`Kconfig`图形化配置等需求。
+本文章基于恒玄科技`BES2600W`芯片的欧智通[Multi-modal V200Z-R开发板](https://gitee.com/openharmony/device_board_fnlink)，进行轻量带屏开发板的标准移植，开发了智能开关面板样例，同时实现了`ace_engine_lite`、`arkui_ui_lite`、`aafwk_lite`、`appexecfwk_lite`、`HDF`等部件基于`OpenHarmony LiteOS-M`内核的适配。移植架构上采用`Board`与`SoC`分离的方案，工具链`Newlib C`库与`Musl C`库可选，`LiteOS-M`内核编译采用`gn`结合`Kconfig`图形化配置等需求。
 
 ## 编译构建
 
@@ -8,7 +8,7 @@
 
 本案例在芯片移植架构方面进行了一些改进，以前的芯片适配目录规划为：
 
-```text
+```
 device
 └── <device_company>
     └── <device_name>
@@ -16,23 +16,22 @@ device
 
 这样会导致，小熊派`BearPi-HM Nano`开发板与润和的`HiSpark Pegasus`开发板使用小海思的`hi3861`的`SoC`时，需要在这两款开发板里面都放置一份重复的代码。为了解决该问题，本案例将单板厂商与`SoC`厂商进行分离，可以参考[Board和SoC解耦的设计思路](https://gitee.com/openharmony-sig/sig-content/blob/master/devboard/docs/board-soc-arch-design.md)，并把芯片适配目录规划为：
 
-```text
+```
 device
 ├── board                                --- 单板厂商目录。
-│   ├── hixxx                      --- 单板厂商名字：hixxx
 │   └── fnlink                           --- 单板厂商名字：欧智通。
 │       └── v200zr                       --- 单板名：v200zr。
-└── soc                     --- SoC厂商目录。
+└── soc					 --- SoC厂商目录。
     └── bestechnic                       --- SoC厂商名字：恒玄。
-        └── bes2600                 --- SoC Series名：bes2600是一个系列，里面包含bes2600w等SoC名。
+        └── bes2600		         --- SoC Series名：bes2600是一个系列，里面包含bes2600w等SoC名。
 ```
 
 产品样例目录规划为：
 
-```text
+```
 vendor
-└── bestechnic                 --- 开发产品样例厂商目录，恒玄开发的带屏样例，因此以bestechnic命名。
-    └── display_demo                  --- 产品名字：以智能开关面板的带屏显示样例。
+└── bestechnic				 --- 开发产品样例厂商目录，恒玄开发的带屏样例，因此以bestechnic命名。
+    └── display_demo         		 --- 产品名字：以智能开关面板的带屏显示样例。
 ```
 
 ### 预编译适配
@@ -45,27 +44,27 @@ vendor
 
 1. 在`vendor/bestechnic/display_demo`目录下新增`config.json`文件，用于描述这个产品样例所使用的单板、内核等信息，描述信息可参考如下内容：
 
-   ```text
-      {
-         "product_name": "display_demo",       --- 用于hb set进行选择时，显示的产品名称。
-         "type": "mini",                       --- 构建系统的类型，mini/small/standard。
-         "version": "3.0",                     --- 构建系统的版本，1.0/2.0/3.0。
-         "device_company": "fnlink",           --- 单板厂商名，用于编译时找到/device/board/fnlink目录。
-         "board": "v200zr",                    --- 单板名，用于编译时找到/device/board/fnlink/v200zr目录。
-         "kernel_type": "liteos_m",            --- 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译。
-         "kernel_version": "3.0.0",            --- 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译。
-         "subsystems": [ ]                     --- 选择所需要编译构建的子系统。
-      }
+   ```json   
+   {
+      "product_name": "display_demo",       --- 用于hb set进行选择时，显示的产品名称。
+      "type": "mini",                       --- 构建系统的类型，mini/small/standard。
+      "version": "3.0",                     --- 构建系统的版本，1.0/2.0/3.0。
+      "device_company": "fnlink",           --- 单板厂商名，用于编译时找到/device/board/fnlink目录。
+      "board": "v200zr",                    --- 单板名，用于编译时找到/device/board/fnlink/v200zr目录。
+      "kernel_type": "liteos_m",            --- 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译。
+      "kernel_version": "3.0.0",            --- 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译。
+      "subsystems": [ ]                     --- 选择所需要编译构建的子系统。
+   }
    ```
 
 2. 在`device/board/fnlink/v200zr/liteos_m`目录下新增`config.gni`文件，用于描述这个产品样例所使用的单板、内核等信息，描述信息可参考如下内容：
 
-   ```gni
-      # Kernel type, e.g. "linux", "liteos_a", "liteos_m".
-      kernel_type = "liteos_m"                --- 内核类型，跟config.json中kernel_type对应。
+   ```
+   # Kernel type, e.g. "linux", "liteos_a", "liteos_m".
+   kernel_type = "liteos_m"                --- 内核类型，跟config.json中kernel_type对应。
 
-      # Kernel version.
-      kernel_version = "3.0.0"                --- 内核版本，跟config.json中kernel_version对应。
+   # Kernel version.
+   kernel_version = "3.0.0"                --- 内核版本，跟config.json中kernel_version对应。
    ```
 
 3. 验证`hb set`配置是否正确，输入`hb set`能够显示如下图片表示配置正确。
@@ -78,8 +77,7 @@ vendor
 
    ![hb env](figures/bes2600_hb_env.png)
 
-   在执行`hb build`之前，需要准备好`LiteOS-M`内核适配，具体适配步骤请参考[内核移植](#内核移植)。
-   
+   在执行`hb build`之前，需要准备好`LiteOS-M`内核适配，具体适配步骤请参[内核移植](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/porting/porting-bes2600w-on-minisystem-display-demo.md#%E5%86%85%E6%A0%B8%E7%A7%BB%E6%A4%8D)。
 
 ## 内核移植
 
@@ -89,7 +87,7 @@ vendor
 
 在`//kernel/liteos_m`目录下执行`make menuconfig`命令，完成编译配置选项的选择。在`Makefile`文件中，会将`hb env`的结果转换成环境变量，即`PRODUCT_PATH`、`DEVICE_PATH`和`BOARD_COMPANY`。如下代码块所示：
 
-```text
+```
 $(foreach line,$(shell hb env | sed 's/\[OHOS INFO\]/ohos/g;s/ /_/g;s/:_/=/g' || true),$(eval $(line)))
 ifneq ($(ohos_kernel),liteos_m)
 $(error The selected product ($(ohos_product)) is not a liteos_m kernel type product)
@@ -108,7 +106,7 @@ export BOARD_COMPANY
 
 在`//kernel/liteos_m/Kconfig`文件中使用这些导出的环境变量，`Kconfiglib`采用`ulfalizer`开发基于`python`的版本，[源码地址](https://github.com/ulfalizer/Kconfiglib)，[功能介绍连接参考](https://github.com/zephyrproject-rtos/zephyr/blob/main/scripts/kconfig/kconfiglib.py)，里面用到了`orsource`关键字，其中`o`表示`optional`，表示这个文件是否存在可选，`r`表示`relative`，表示这个文件相对当前文件的相对路径。
 
-```text
+```
 config SOC_COMPANY
     string "SoC company name to locate soc build path"
     help
@@ -141,7 +139,7 @@ orsource "../../device/soc/*/Kconfig.liteos_m.soc"                              
 
 从`//kernel/liteos_m/Kconfig`文件可以看出需要在`//device/board/fnlink`目录下新增如下`Kconfig`文件进行适配：
 
-```text
+```
 .
 ├── v200zr                                       --- v200zr单板配置目录
 │   ├── Kconfig.liteos_m.board                   --- 提供v200zr单板的配置选项
@@ -149,12 +147,12 @@ orsource "../../device/soc/*/Kconfig.liteos_m.soc"                              
 │   └── liteos_m
 │       └── config.gni
 ├── Kconfig.liteos_m.boards                      --- 提供fnlink单板厂商下Boards配置信息
-├── Kconfig.liteos_m.defconfig.boards         --- 提供fnlink单板厂商下Boards默认配置信息
-├── Kconfig.liteos_m.shields             --- 提供fnlink单板厂商下扩展板配置信息
-└── shields                     --- fnlink单板厂商的扩展板目录
-    ├── v200zr-t0                 --- fnlink单板厂商的扩展板v200zr-t0
-    │   ├── Kconfig.liteos_m.defconfig.shield     --- 扩展板v200zr-t0默认配置
-    │   └── Kconfig.liteos_m.shield         --- 扩展板v200zr-t0配置信息
+├── Kconfig.liteos_m.defconfig.boards		 --- 提供fnlink单板厂商下Boards默认配置信息
+├── Kconfig.liteos_m.shields			 --- 提供fnlink单板厂商下扩展板配置信息
+└── shields					 --- fnlink单板厂商的扩展板目录
+    ├── v200zr-t0				 --- fnlink单板厂商的扩展板v200zr-t0
+    │   ├── Kconfig.liteos_m.defconfig.shield	 --- 扩展板v200zr-t0默认配置
+    │   └── Kconfig.liteos_m.shield		 --- 扩展板v200zr-t0配置信息
     ├── v200zr-t1
     │   ├── Kconfig.liteos_m.defconfig.shield
     │   └── Kconfig.liteos_m.shield
@@ -163,18 +161,18 @@ orsource "../../device/soc/*/Kconfig.liteos_m.soc"                              
 
 在 `v200zr/Kconfig.liteos_m.board`需要配置选择该单板的选项，以及它依赖的`SoC`，如下：
 
-```text
+```
 config BOARD_v200zr
     bool "select board v200zr"
-    depends on SOC_BES2600W         --- v200zr单板用的bes2600w的SoC，只有 bes2600w的SoC被选择后，v200zr单板配置选项才可见，可以被选择。
+    depends on SOC_BES2600W		 --- v200zr单板用的bes2600w的SoC，只有 bes2600w的SoC被选择后，v200zr单板配置选项才可见，可以被选择。
 ```
 
 在 `v200zr/Kconfig.liteos_m.defconfig.board`需要配置选择该单板后，默认定义 `BOARD` 的名字为 `"v200zr"` ，如下：
 
-```text
+```
 if BOARD_v200zr
 config BOARD
-    string         --- string后没有带提示，因此用户不可见
+    string		 --- string后没有带提示，因此用户不可见
     default "v200zr"
 
 endif # BOARD_v200zr
@@ -182,38 +180,38 @@ endif # BOARD_v200zr
 
 从`//kernel/liteos_m/Kconfig`文件可以看出需要在`//device/soc/bestechnic`目录下新增如下`Kconfig`文件进行适配：
 
-```text
+```
 .
-├── bes2600                     --- bes2600 SoC系列
-│   ├── Kconfig.liteos_m.defconfig.bes2600w     --- bestechnic芯片厂商bes2600w SoC Series配置
-│   ├── Kconfig.liteos_m.defconfig.series     --- bestechnic芯片厂商bes2600默认配置
-│   ├── Kconfig.liteos_m.series             --- bestechnic芯片厂商bes2600 SoC Series配置
-│   └── Kconfig.liteos_m.soc             --- bestechnic芯片厂商bes2600 SoC配置
-├── Kconfig.liteos_m.defconfig             --- bestechnic芯片厂商SoC默认配置
-├── Kconfig.liteos_m.series             --- bestechnic芯片厂商SoC Series配置
-└── Kconfig.liteos_m.soc             --- bestechnic芯片厂商 SoC配置
+├── bes2600					 --- bes2600 SoC系列
+│   ├── Kconfig.liteos_m.defconfig.bes2600w	 --- bestechnic芯片厂商bes2600w SoC Series配置
+│   ├── Kconfig.liteos_m.defconfig.series	 --- bestechnic芯片厂商bes2600默认配置
+│   ├── Kconfig.liteos_m.series			 --- bestechnic芯片厂商bes2600 SoC Series配置
+│   └── Kconfig.liteos_m.soc			 --- bestechnic芯片厂商bes2600 SoC配置
+├── Kconfig.liteos_m.defconfig			 --- bestechnic芯片厂商SoC默认配置
+├── Kconfig.liteos_m.series			 --- bestechnic芯片厂商SoC Series配置
+└── Kconfig.liteos_m.soc			 --- bestechnic芯片厂商 SoC配置
 ```
 
 在 `bes2600/Kconfig.liteos_m.series` 需要配置`bes2600 SoC series`，以及它的芯片架构等信息，如下：
 
-```text
-config SOC_SERIES_BES2600         --- 提供bes2600 SoC Series选项
+```
+config SOC_SERIES_BES2600	     --- 提供bes2600 SoC Series选项
     bool "Bestechnic 2600 Series"
-    select ARM                 --- 选择bes2600后，默认选择ARM架构
+    select ARM			     --- 选择bes2600后，默认选择ARM架构
     select SOC_COMPANY_BESTECHNIC    --- 选择bes2600后，默认选择bestechnic芯片公司，驱动会依赖这个宏配置，选择配置编译对应厂商的驱动
-    select CPU_CORTEX_M33         --- 选择bes2600后，默认选择cortex-m33 CPU
+    select CPU_CORTEX_M33	     --- 选择bes2600后，默认选择cortex-m33 CPU
     help
         Enable support for Bestechnic 2600 series
 ```
 
 在 `bes2600/Kconfig.liteos_m.soc` 需要提供`bes2600 SoC series`下有多少个具体的`SoC`可供选择，如下：
 
-```text
+```
 choice
     prompt "Bestechnic 2600 series SoC"
-    depends on SOC_SERIES_BES2600     --- 只有选择了bes2600 Series后，才会出现如下配置选项
+    depends on SOC_SERIES_BES2600	 --- 只有选择了bes2600 Series后，才会出现如下配置选项
 
-config SOC_BES2600W             --- 增加bes2600w SoC配置选择项
+config SOC_BES2600W			 --- 增加bes2600w SoC配置选择项
     bool "SoC BES2600w"
 
 endchoice
@@ -221,12 +219,12 @@ endchoice
 
 在 `bes2600/Kconfig.liteos_m.defconfig.series` 需要提供`bes2600 SoC series`选择后的默认配置，如下：
 
-```text
-if SOC_SERIES_BES2600                 --- 选择了bes2600 Series后，才会增加如下默认配置选项
+```
+if SOC_SERIES_BES2600				 --- 选择了bes2600 Series后，才会增加如下默认配置选项
 
-rsource "Kconfig.liteos_m.defconfig.bes2600w"     --- 增加bes2600w SoC的默认配置
+rsource "Kconfig.liteos_m.defconfig.bes2600w"	 --- 增加bes2600w SoC的默认配置
 
-config SOC_SERIES                 --- 增加SOC_SERIES的默认配置
+config SOC_SERIES				 --- 增加SOC_SERIES的默认配置
     string
     default "bes2600"
 
@@ -235,25 +233,25 @@ endif
 
 配置完成后，还需要根据 `kernel/liteos_m/Makefile` 文件配置`make menuconfig`的`defconfig`保存路径：
 
-```text
+```
 ifeq ($(TEE:1=y),y)
 tee = _tee
 endif
 ifeq ($(RELEASE:1=y),y)
 CONFIG ?= $(PRODUCT_PATH)/kernel_configs/release$(tee).config
 else
-CONFIG ?= $(PRODUCT_PATH)/kernel_configs/debug$(tee).config         --- 配置文件保存在$(CONFIG)中，由产品最终定义
+CONFIG ?= $(PRODUCT_PATH)/kernel_configs/debug$(tee).config		 --- 配置文件保存在$(CONFIG)中，由产品最终定义
 endif
 
 ……
 
 update_config menuconfig:
-    $(HIDE)test -f "$(CONFIG)" && cp -v "$(CONFIG)" .config && menuconfig $(args) && savedefconfig --out "$(CONFIG)"
+	$(HIDE)test -f "$(CONFIG)" && cp -v "$(CONFIG)" .config && menuconfig $(args) && savedefconfig --out "$(CONFIG)"
 ```
 
 在这个例子中，`defconfig`配置路径为 `$(PRODUCT_PATH)/kernel_configs/debug.config`，创建该文件后，内容为空，产品的目录文件结构如下：
 
-```text
+```
 .
 └── display_demo
     ├── config.json
@@ -271,21 +269,21 @@ update_config menuconfig:
 
 在上一步`Kconfig`的图形化配置后，将其生成的配置结果可以作为`gn`编译的输入，以控制不同模块是否编译。另外为了解决之前`gn`编写时，随意include的问题，内核编译做了模块化编译的设计，使得整个编译逻辑更加清晰，设计思路请参考[LiteOS-M内核BUILD.gn编写指南](https://gitee.com/caoruihong/kernel_liteos_m/wikis/LiteOS-M%E5%86%85%E6%A0%B8BUILD.gn%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97)。
 
-在 `kernel/liteos_m/BUILD.gn` 中，指定了`Board`和`SoC`的编译入口为`$DEVICE_BOARD_DIR/$device_company`和`$DEVICE_SOC_DIR/$LOSCFG_SOC_COMPANY`，其中`DEVICE_BOARD_DIR`和`DEVICE_SOC_DIR`在`kernel/liteos_m/liteos.gni`中分别定义为`//device/board`和`//device/soc`。
+在 `kernel/liteos_m/BUILD.gn` 中，指定了`Board`和`SoC`的编译入口为`//device/board/fnlink`和`//device/soc/bestechnic`。
 
-```gn
-deps += [ "$DEVICE_BOARD_DIR/$device_company" ]
-deps += [ "$DEVICE_SOC_DIR/$LOSCFG_SOC_COMPANY" ]
+```
+deps += [ "//device/board/$device_company" ]
+deps += [ "//device/soc/$LOSCFG_SOC_COMPANY" ]
 ```
 
 在`//device/board/fnlink/BUILD.gn`中，新增内容如下：
 
-```gn
+```
 if (ohos_kernel_type == "liteos_m") {                    --- 由于多内核设计，对于LiteOS-M内核适配，需要用宏来隔离
-  import("//kernel/liteos_m/liteos.gni")         --- 引入内核gn编写模板
-  module_name = get_path_info(rebase_path("."), "name")     --- 动态获取当前文件目录作为模块名，防止目录名修改后，这里还需要跟着修改
-  module_group(module_name) {                 --- 采用module_group模板
-    modules = [                         --- 添加需要编译的模块
+  import("//kernel/liteos_m/liteos.gni")		 --- 引入内核gn编写模板
+  module_name = get_path_info(rebase_path("."), "name")	 --- 动态获取当前文件目录作为模块名，防止目录名修改后，这里还需要跟着修改
+  module_group(module_name) {				 --- 采用module_group模板
+    modules = [						 --- 添加需要编译的模块
     ]
   }
 }
@@ -316,24 +314,24 @@ if (ohos_kernel_type == "liteos_m") {                    --- 由于多内核设�
 
 第3步中`board_main`在启动`OHOS_SystemInit`之前，需要初始化必要的动作，如下：
 
-```c
+```
 ...
     if(!ret) {
         ...
-        OhosSystemAdapterHooks();    --- 系统启动时候设置钩子，启动OpenHarmony OHOS_SystemInit的之前完成打印和驱动的初始化
+        OhosSystemAdapterHooks();    --- 系统启动时候设置钩子，启动OpenHarmonyOHOS_SystemInit的之前完成打印和驱动的初始化
         ...
-        OHOS_SystemInit();          --- 启动OpenHarmony服务，以及组件初始化
+        OHOS_SystemInit(); 	     --- 启动OpenHarmony服务，以及组件初始化
     }
 ....
 ```
 
 `OhosSystemAdapterHooks`函数在`device/soc/bestechnic/bes2600/liteos_m/components/utils/src/hm_sys.c`文件中，如下：
 
-```c
+```
 int OhosSystemAdapterHooks(void)
 {
-    init_trace_system();      --- 初始化打印函数
-    DeviceManagerStart();      --- 调用DeviceManagerStart函数进行HDF驱动初始化，这个过程会调用单板代码中的驱动配置文件hdf.hcs以及drivers源码实现
+    init_trace_system(); 	 --- 初始化打印函数
+    DeviceManagerStart(); 	 --- 调用DeviceManagerStart函数进行HDF驱动初始化，这个过程会调用单板代码中的驱动配置文件hdf.hcs以及drivers源码实现
     return 0;
 }
 
@@ -345,8 +343,8 @@ int OhosSystemAdapterHooks(void)
 
 1. 配置指定目录放置打包文件系统`config.json`，通过`flash_partition_dir`指定目录：
 
-   ```text
-      "flash_partition_dir": "fs"      --- 表示在vendor/bestechnic/display_demo/fs目录下放置文件系统预置文件
+   ```
+   "flash_partition_dir": "fs" 	 --- 表示在vendor/bestechnic/display_demo/fs目录下放置文件系统预置文件
    ```
 
 2. 在指定目录`vendor/bestechnic/display_demo/fs`下放置两部分内容：
@@ -365,7 +363,7 @@ int OhosSystemAdapterHooks(void)
 
 4. 在`//device/soc/bestechnic/bes2600/liteos_m/components/hdf_config/hdf.hcs`文件配置文件系统的烧录的起始地址、文件系统的大小以及读数据块的大小`block_size`等信息，参考配置如下：
 
-   ```hcs
+   ```
     misc {
         fs_config {
             example_config {
@@ -430,7 +428,7 @@ int OhosSystemAdapterHooks(void)
 
 ### C库适配
 
-在轻量系统中，C库适配比较复杂，由于我们的工具链采用 [gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2](https://gitcode.com/link?target=https%3A%2F%2Fdeveloper.arm.com%2F-%2Fmedia%2FFiles%2Fdownloads%2Fgnu-rm%2F10.3-2021.10%2Fgcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2) 自带`newlib`的C库，那么系统移植整体采用`newlib`的C库。那么在内核的`make menuconfig`中选择`newlib`，如下图：
+在轻量系统中，C库适配比较复杂，设计思路请参考[LiteOS-M内核支持musl与newlib平滑切换方案](https://gitcode.com/arvinzzz/ohos_kernel_design_specification/blob/master/liteos_m/%E6%94%AF%E6%8C%81newlib/%E5%86%85%E6%A0%B8%E9%80%82%E9%85%8Dnewlib%E6%96%B9%E6%A1%88%E6%80%9D%E8%B7%AF.md)，由于我们的工具链采用 [gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2](https://gitcode.com/link?target=https%3A%2F%2Fdeveloper.arm.com%2F-%2Fmedia%2FFiles%2Fdownloads%2Fgnu-rm%2F10.3-2021.10%2Fgcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2) 自带`newlib`的C库，那么系统移植整体采用`newlib`的C库。那么在内核的`make menuconfig`中选择`newlib`，如下图：
 
 ![image-20211212191013553](figures/bes2600_newlib_make_menuconfig.png)
 
@@ -444,11 +442,11 @@ malloc适配参考[The Red Hat newlib C Library-malloc](https://sourceware.org/n
 
 为了方便地根据业务进行内存分配算法调优和问题定位，在这两种方法中，本案例选择后者。
 
-首先，由于`newlib`中已经存在这些函数的符号，因此需要用到`gcc`的`wrap`的链接选项替换这些函数符号为内核的实现，内核的实现为 `//kernel/liteos_m/kal/posix/src/malloc.c`。
+首先，由于`newlib`中已经存在这些函数的符号，因此需要用到`gcc`的`wrap`的链接选项替换这些函数符号为内核的实现，内核的实现为 `//kernel/liteos_m/kal/libc/newlib/porting/src/malloc.c`。
 
 然后，在`//device/board/fnlink/v200zr/liteos_m/config.gni`的新增这些函数的`wrap`链接选项。
 
-```gni
+```
 board_ld_flags += [
      "-Wl,--wrap=_malloc_r",
      "-Wl,--wrap=_realloc_r",
@@ -467,7 +465,7 @@ board_ld_flags += [
 
 然后，在`//device/board/fnlink/v200zr/liteos_m/config.gni`的新增这些函数的wrap链接选项。
 
-```gni
+```
 board_ld_flags += [
      "-Wl,--wrap=printf",
      "-Wl,--wrap=sprintf",
@@ -479,9 +477,9 @@ board_ld_flags += [
 
 #### open等适配
 
-这部分实现由内核统一实现，芯片适配无须关注。内核在//kernel/liteos_m/components/fs/vfs/目录下实现了文件系统适配接口，newlib的标准IO函数（如_read、_write、_lseek等）最终会调用到VFS层的read、write、lseek等函数，如下：
+这部分实现由内核统一实现，芯片适配无须关注，内核文件`//kernel/liteos_m/kal/libc/newlib/porting/src/fs.c`，适配了`newlib`的`_read`、`_write`等函数，如下：
 
-```c
+```
 ……
 ssize_t _read(int fd, void *buf, size_t nbyte)
 {
@@ -506,23 +504,21 @@ off_t _lseek(int fd, off_t offset, int whence)
 
 #### SoC芯片平台HDF驱动移植
 
-驱动适配相关文件放置在`drivers/hdf_core/adapter/platform`中，对应有`gpio`，`i2c`，`pwm`，`spi`，`uart`，`watchdog`，都是通过`HDF`机制加载，本章节以`gpio`为例进行详细说明。
+驱动适配相关文件放置在`drivers/adapter/platform`中，对应有`gpio`，`i2c`，`pwm`，`spi`，`uart`，`watchdog`，都是通过`HDF`机制加载，本章节以`gpio`为例进行详细说明。
 
 ##### GPIO驱动适配
 
 `gpio`驱动适配需要完成编译的适配、源码的适配。
 
-在`//drivers/hdf_core/adapter/platform/gpio/BUILD.gn`文件中，描述了恒玄`gpio`驱动的编译适配。如下：
+在`//drivers/adapter/platform/gpio/BUILD.gn`文件中，描述了恒玄`gpio`驱动的编译适配。如下：
 
-```gn
-import("../../khdf/liteos_m/hdf.gni")             --- 引入HDF驱动编译模板
-
-module_switch = defined(LOSCFG_DRIVERS_HDF_PLATFORM_GPIO)     --- 如果打开HDF的GPIO配置开关，才进行如下编译
+```
+module_switch = defined(LOSCFG_DRIVERS_HDF_PLATFORM_GPIO)	 --- 如果打开HDF的GPIO配置开关，才进行如下编译
 module_name = get_path_info(rebase_path("."), "name")
 
 hdf_driver(module_name) {
   sources = []
-  if (defined(LOSCFG_SOC_COMPANY_BESTECHNIC)) {                 --- 如果打开恒玄的芯片配置开关，才进行恒玄GPIO的驱动编译
+  if (defined(LOSCFG_SOC_COMPANY_BESTECHNIC)) {		         --- 如果打开恒玄的芯片配置开关，才进行恒玄GPIO的驱动编译
     sources += [ "gpio_bes.c" ]
   }
 
@@ -530,11 +526,10 @@ hdf_driver(module_name) {
 }
 ```
 
-在`//drivers/hdf_core/adapter/platform/gpio/gpio_bes.c`文件中，描述了恒玄`gpio`驱动的源码适配。
-
+在`//drivers/adapter/platform/gpio/gpio_bes.c`文件中，描述了恒玄`gpio`驱动的源码适配。
 首先，按照`OpenHarmony`的`HDF`驱动框架加载驱动基本适配框架，如下：
 
-```c
+```
 struct HdfDriverEntry g_GpioDriverEntry = {
     .moduleVersion = 1,
     .moduleName = "BES_GPIO_MODULE_HDF",
@@ -542,12 +537,12 @@ struct HdfDriverEntry g_GpioDriverEntry = {
     .Init = GpioDriverInit,
     .Release = GpioDriverRelease,
 };
-HDF_INIT(g_GpioDriverEntry);      --- 通过HDF_INIT 加载GPIO驱动
+HDF_INIT(g_GpioDriverEntry); 	 --- 通过HDF_INIT 加载GPIO驱动
 ```
 
 然后，在初始化的时候会获取`hcs`参数进行初始化，如下：
 
-```c
+```
 static int32_t GpioDriverInit(struct HdfDeviceObject *device)
 {
     int32_t ret;
@@ -558,12 +553,12 @@ static int32_t GpioDriverInit(struct HdfDeviceObject *device)
         return HDF_ERR_INVALID_PARAM;
     }
 
-    gpioCntlr = GpioCntlrFromHdfDev(device);      --- gpioCntlr节点变量就可以获取具体gpio配置
+    gpioCntlr = GpioCntlrFromDevice(device); 	 --- gpioCntlr节点变量就可以获取具体gpio配置
     if (gpioCntlr == NULL) {
       ...
 ```
 
-编码规范和设计思想见[bes 驱动适配PR](https://gitee.com/openharmony/drivers_hdf_core/pulls/278)的评论。
+编码规范和设计思想见[bes 驱动适配PR](https://gitee.com/openharmony/drivers_adapter/pulls/278)的评论。
 
 #### Board外设器件HDF驱动移植
 
@@ -573,7 +568,7 @@ static int32_t GpioDriverInit(struct HdfDeviceObject *device)
 
 同`SoC`驱动适配，在`//device/board/fnlink/drivers/liteos_m/display/BUILD.gn`文件中，根据`hdf_driver`模板加载驱动模块，如下：
 
-```gn
+```
 module_name = get_path_info(rebase_path("."), "name")
 hdf_driver(module_name) {
   sources = [
@@ -588,7 +583,7 @@ hdf_driver(module_name) {
 
 在`//device/board/fnlink/drivers/liteos_m/display/zzw395.c`文件中，根据驱动框架加载显示驱动，如下：
 
-```c
+```
 static struct HdfDriverEntry g_ZZW395DriverEntry = {
     .moduleVersion = 1,
     .moduleName = "HDF_PANEL_ZZW395",
@@ -602,7 +597,7 @@ HDF_INIT(g_ZZW395DriverEntry);
 
 其中的驱动参数根据`hcs`配置，在`PanelDriverInit`初始化时加载，如下：
 
-```c
+```
 static int32_t PanelDriverInit(struct HdfDeviceObject *object)
 {
     if (object == NULL) {
@@ -631,7 +626,7 @@ static int32_t PanelDriverInit(struct HdfDeviceObject *object)
 
 首先，在`config.json`文件中，增加`communication`子系统的`wifi_lite`部件，如下：
 
-```text
+```
     {
       "subsystem": "communication",
       "components": [
@@ -640,28 +635,28 @@ static int32_t PanelDriverInit(struct HdfDeviceObject *object)
           "optional": "true"
         }
       ]
-    }
+    },
 ```
 
 `wifi_lite`部件在`//build/lite/components/communication.json`文件中，描述如下：
 
-```text
+```
     {
       "component": "wifi_lite",
 ……
       "targets": [
-        "//foundation/communication/wifi_lite:wifi"         --- wifi_lite的编译目标
+        "//foundation/communication/wifi_lite:wifi"		 --- wifi_lite的编译目标
       ],
 ……
-    }
+    },
 
 ```
 
 在`//foundation/communication/wifi_lite/BUILD.gn`文件中，描述需要适配的接口头文件路径，如下：
 
-```gn
+```
 config("include") {
-  include_dirs = [ "interfaces/wifiservice" ]     --- 因为wifi_lite只提供头文件，不提供wifi的具体实现，所以wifi模块暴露出适配的目录路径提供给硬件厂商来适配，厂商提供wifi协议栈源码实现。
+  include_dirs = [ "interfaces/wifiservice" ]	 --- 因为wifi_lite只提供头文件，不提供wifi的具体实现，所以wifi模块暴露出适配的目录路径提供给硬件厂商来适配，厂商提供wifi协议栈源码实现。
 }
 
 group("wifi") {
@@ -671,9 +666,9 @@ group("wifi") {
 
 因为在本案例中，`wifi`属于`SoC`提供的功能，所以适配源码放在`SoC`的`//device/soc/bestechnic/hals/communication/wifi_lite/wifiservice`目录下，包含`wifi_device.c`和`wifi_hotspot.c`分别适配`wifi_device.h`和`wifi_hotspot.h`。如下：
 
-```c
+```
 ……
-WifiErrorCode Scan(void)     --- wifi_device.c中扫描wifi热点的函数，对wifi_device.h中Scan函数的适配实现
+WifiErrorCode Scan(void)	 --- wifi_device.c中扫描wifi热点的函数，对wifi_device.h中Scan函数的适配实现
 {
     WifiErrorCode ret = ERROR_WIFI_BUSY;
 
@@ -692,7 +687,7 @@ WifiErrorCode Scan(void)     --- wifi_device.c中扫描wifi热点的函数，对
     return ret;
 }
 ……
-int GetSignalLevel(int rssi, int band)     --- wifi_hotspot.c中获取wifi信号热点函数，对wifi_hotspot.h中GetSignalLevel函数的适配实现。
+int GetSignalLevel(int rssi, int band)	 --- wifi_hotspot.c中获取wifi信号热点函数，对wifi_hotspot.h中GetSignalLevel函数的适配实现。
 {
     if (band == HOTSPOT_BAND_TYPE_2G) {
         if (rssi >= RSSI_LEVEL_4_2_G)
@@ -723,32 +718,32 @@ int GetSignalLevel(int rssi, int band)     --- wifi_hotspot.c中获取wifi信号
 
 `LiteOS-M kernel`目录下默认配置了`lwip`，因而具有编译功能，可以在`kernel`组件中指定`lwip`编译的目录。如下：
 
-```text
+```
     {
       "subsystem": "kernel",
       "components": [
         {
           "component": "liteos_m",
           "features": [
-            "ohos_kernel_liteos_m_lwip_path = \"//device/soc/bestechnic/bes2600/liteos_m/components/net/lwip-2.1\""         --- 指定在芯片厂商目录中进行适配
+            "ohos_kernel_liteos_m_lwip_path = \"//device/soc/bestechnic/bes2600/liteos_m/components/net/lwip-2.1\""		 --- 指定在芯片厂商目录中进行适配
           ]
         }
       ]
-    }
+    },
 ```
 
 在`//device/soc/bestechnic/bes2600/liteos_m/components/net/lwip-2.1/BUILD.gn`文件中，描述了`lwip`的编译，如下：
 
-```gn
+```
 import("//kernel/liteos_m/liteos.gni")
-import("THIRDPARTY_LWIP_DIR/lwip.gni")
-import("LITEOSTOPDIR/components/net/lwip-2.1/lwip_porting.gni")
+import("$LITEOSTHIRDPARTY/lwip/lwip.gni")
+import("$LITEOSTOPDIR/components/net/lwip-2.1/lwip_porting.gni")
 
 module_switch = defined(LOSCFG_NET_LWIP_SACK)
 module_name = "lwip"
 kernel_module(module_name) {
   sources = LWIP_PORTING_FILES + LWIPNOAPPSFILES -
-            [ "$LWIPDIR/api/sockets.c" ] + [ "porting/src/ethernetif.c" ]         --- 增加ethernetif.c文件，用以适配ethernet网卡的初始化适配
+            [ "$LWIPDIR/api/sockets.c" ] + [ "porting/src/ethernetif.c" ]		 --- 增加ethernetif.c文件，用以适配ethernet网卡的初始化适配
   defines = [ "LITEOS_LWIP=1" ]
   defines += [ "CHECKSUM_BY_HARDWARE=1" ]
 }
@@ -763,15 +758,15 @@ config("public") {
 
 在`//device/soc/bestechnic/bes2600/liteos_m/components/net/lwip-2.1/porting/include/lwip/lwipopts.h`文件中，说明原有`lwip`配置选项保持不变，软总线会依赖这些配置选项，并且新增硬件适配的配置项，如下：
 
-```c
+```
 #ifndef _PORTING_LWIPOPTS_H_
 #define _PORTING_LWIPOPTS_H_
 
-#include_next "lwip/lwipopts.h"                 --- 保持原来的配置项不变
+#include_next "lwip/lwipopts.h"				 --- 保持原来的配置项不变
 
 #define LWIP_NETIF_STATUS_CALLBACK      1
 #define LWIP_CHECKSUM_ON_COPY           0
-#define CHECKSUM_GEN_UDP                0     --- 新增硬件适配选项
+#define CHECKSUM_GEN_UDP                0	 --- 新增硬件适配选项
 
 #endif /* _PORTING_LWIPOPTS_H_ */
 
@@ -779,7 +774,7 @@ config("public") {
 
 在`//device/soc/bestechnic/bes2600/liteos_m/components/net/lwip-2.1/porting/src/ethernetif.c`文件中，说明对`ethernet`网卡初始化的适配，如下：
 
-```c
+```
 err_t
 ethernetif_init(struct netif *netif)
 {
@@ -803,25 +798,25 @@ ethernetif_init(struct netif *netif)
 
 在`config.json`中增加`dsoftbus`部件配置如下：
 
-```text
+```
 {
   "component": "dsoftbus",
   "features": [
-    "softbus_adapter_config = \"//vendor/bestechnic/display_demo/dsoftbus_lite_config\""
+    "softbus_adapter_config = \"//vendor/bestechnic/mini_distributed_music_player/dsoftbus_lite_config\""
   ]
 },
 ```
 
 `dsoftbus`部件在`//foundation/communication/dsoftbus/dsoftbus.gni`文件中提供了`softbus_adapter_config`配置选项可供移植过程进行配置，该配置设定了软总线移植适配的路径。
 
-在本案例中，`softbus_adapter_config`配置为`//vendor/bestechnic/display_demo/dsoftbus_lite_config`路径，该路径下的内容为：
+在本案例中，`softbus_adapter_config`配置为`//vendor/bestechnic/mini_distributed_music_player/dsoftbus_lite_config`路径，该路径下的内容为：
 
-```text
+```
 .
-├── feature_config                    --- 软总线功能特性配置，例如是否开启自发现功能等
+├── feature_config					--- 软总线功能特性配置，例如是否开启自发现功能等
 │   └── mini
 │       └── config.gni
-└── spec_config                        --- 软总线规格特性配置，例如设置软总线日志级别设置
+└── spec_config						--- 软总线规格特性配置，例如设置软总线日志级别设置
     ├── softbus_config_adapter.c
     ├── softbus_config_adapter.h
     └── softbus_config_type.h
@@ -857,7 +852,7 @@ ethernetif_init(struct netif *netif)
 
 因为软总线配置了后，不会默认启动，所以需要在通过启动框架调用`InitSoftBusServer`函数，如下：
 
-```c
+```
 static void DSoftBus(void)
 {
     osThreadAttr_t attr;
@@ -882,15 +877,15 @@ APP_FEATURE_INIT(DSoftBus);
 
 在`config.json`中增加`rpc`部件配置如下：
 
-```text
+```
 {
   "component": "rpc"
-}
+},
 ```
 
 同样地，`rpc`部件需要通过启动框架调用`StartDBinderService`函数，由于该函数正常运行依赖主机已经获取`IP`地址，因此在`LWIP`协议栈注册`IP`地址变化事件的回调函数中调用该函数，如下：
 
-```c
+```
 static void RpcServerWifiDHCPSucCB(struct netif *netif, netif_nsc_reason_t reason,
                                    const netif_ext_callback_args_t *args)
 {
@@ -918,28 +913,28 @@ APP_FEATURE_INIT(WifiDHCPRpcServerCB);
 
 #### 启动恢复子系统适配
 
-启动恢复子系统适配`bootstrap_lite`/`syspara_lite`两个部件。请在`vendor/bestechnic/display_demo/config.json`中新增对应的配置选项。
+启动恢复子系统适配`bootstrap_lite`/`syspara_lite`两个部件。请在`vendor/bestechnic_bak/display_demo/config.json`中新增对应的配置选项。
 
-```text
+```
 {
   "subsystem": "startup",
   "components": [
-    {
-      "component": "bootstrap_lite"         --- bootstrap_lite 部件
-    },
-    {
-      "component": "syspara_lite",         --- syspara_lite 部件
-      "features": [
-        "enable_ohos_startup_syspara_lite_use_posix_file_api = true"
-      ]
-    }
+	{
+	  "component": "bootstrap_lite"		 --- bootstrap_lite 部件
+	},
+	{
+	  "component": "syspara_lite",		 --- syspara_lite 部件
+	  "features": [
+		"enable_ohos_startup_syspara_lite_use_posix_file_api = true"
+	  ]
+	}
   ]
-}
+},
 ```
 
 适配`bootstrap_lite`部件时，需要在连接脚本文件`//device/soc/bestechnic/bes2600/liteos_m/sdk/bsp/out/best2600w_liteos/_best2001.lds`中手动新增如下段：
 
-```lds
+```
        __zinitcall_bsp_start = .;
       KEEP (*(.zinitcall.bsp0.init))
       KEEP (*(.zinitcall.bsp1.init))
@@ -1012,7 +1007,7 @@ APP_FEATURE_INIT(WifiDHCPRpcServerCB);
       __zinitcall_exit_end = .;
 ```
 
-需要新增上述段是因为`bootstrap_init`提供的对外接口，见`//commonlibrary/utils_lite/include/ohos_init.h`文件，采用的是灌段的形式，最终会保存到上述链接段中。主要的服务自动初始化宏如下表格所示：
+需要新增上述段是因为`bootstrap_init`提供的对外接口，见`//utils/native/lite/include/ohos_init.h`文件，采用的是灌段的形式，最终会保存到上述链接段中。主要的服务自动初始化宏如下表格所示：
 
 | 接口名                 | 描述                             |
 | ---------------------- | -------------------------------- |
@@ -1021,13 +1016,12 @@ APP_FEATURE_INIT(WifiDHCPRpcServerCB);
 | APP_SERVICE_INIT(func) | 标识应用层服务的初始化启动入口。   |
 | APP_FEATURE_INIT(func) | 标识应用层功能的初始化启动入口。   |
 
+![](../public_sys-resources/icon-note.gif) **说明：** 
+	通过上面加载的组件编译出来的lib文件需要手动加入强制链接。
 
-><img src="public_sys-resources/icon-note.gif"alt=""/ ><b>说明：</b>
-> 通过上面加载的组件编译出来的lib文件需要手动加入强制链接。
+​	如在 `vendor/bestechnic/display_demo/config.json` 中配置了`bootstrap_lite` 部件。
 
-​    如在 `vendor/bestechnic/display_demo/config.json` 中配置了`bootstrap_lite` 部件。
-
-```text
+```
     {
       "subsystem": "startup",
       "components": [
@@ -1036,12 +1030,12 @@ APP_FEATURE_INIT(WifiDHCPRpcServerCB);
         },
         ...
       ]
-    }
+    },
 ```
 
-​    `bootstrap_lite`部件会编译`//base/startup/bootstrap_lite/services/source/bootstrap_service.c`，该文件中，通过`SYS_SERVICE_INIT`将`Init`函数符号灌段到`__zinitcall_sys_service_start`和`__zinitcall_sys_service_end`中，由于`Init`函数是没有显式调用它，所以需要将它强制链接到最终的镜像。如下：
+​	`bootstrap_lite`部件会编译`//base/startup/bootstrap_lite/services/source/bootstrap_service.c`，该文件中，通过`SYS_SERVICE_INIT`将`Init`函数符号灌段到`__zinitcall_sys_service_start`和`__zinitcall_sys_service_end`中，由于`Init`函数是没有显式调用它，所以需要将它强制链接到最终的镜像。如下：
 
-```c
+```
 static void Init(void)
 {
     static Bootstrap bootstrap;
@@ -1055,9 +1049,9 @@ static void Init(void)
 SYS_SERVICE_INIT(Init);   --- 通过SYS启动即SYS_INIT启动就需要强制链接生成的lib
 ```
 
-​    在`//base/startup/bootstrap_lite/services/source/BUILD.gn`文件中，描述了在`out/v200zr/display_demo/libs` 生成 `libbootstrap.a`，如下：
+​	在`//base/startup/bootstrap_lite/services/source/BUILD.gn`文件中，描述了在`out/v200zr/display_demo/libs` 生成 `libbootstrap.a`，如下：
 
-```gn
+```
 static_library("bootstrap") {
   sources = [
     "bootstrap_service.c",
@@ -1066,9 +1060,9 @@ static_library("bootstrap") {
   ....
 ```
 
-​    那么需要在 `vendor/bestechnic/display_demo/config.json` 配置强制链接库`bootstrap`，如下：
+​	那么需要在 `vendor/bestechnic/display_demo/config.json` 配置强制链接库`bootstrap`，如下：
 
-```text
+```
   "bin_list": [
     {
       "elf_name": "wifiiot",
@@ -1077,10 +1071,10 @@ static_library("bootstrap") {
       "burn_name": "rtos_main",
       "enable": "true",
       "force_link_libs": [
-        "bootstrap",     --- 强制链接libbootstrap.a
+        "bootstrap",	 --- 强制链接libbootstrap.a
         ...
       ]
-    }
+    },
 ```
 
 
@@ -1093,7 +1087,7 @@ static_library("bootstrap") {
 
 在适配`GetSerial`接口时，开发板不像产线生产过程那样，会写入一个具体的`Serial Number`，因而需要确定一个数据对开发板进行唯一标识。本案例采用`WiFi Mac`地址进行适配。
 
-```c
+```
 #define ETH_ALEN 6
 #define MAC_BITS 4
 #define MAC_HIGH_MASK 0xf0
@@ -1105,15 +1099,15 @@ static_library("bootstrap") {
 
 typedef unsigned char               u8;
 
-static char serialNumber[2*ETH_ALEN + 1];         --- 最后一位留作'\0'结束符标识
+static char serialNumber[2*ETH_ALEN + 1];		 --- 最后一位留作'\0'结束符标识
 
 
 static char Hex2Char(u8 hex)
 {
     if (hex < HEX_A) {
-        return hex + CHAR_NUM_OFFSET;             --- 将数值0转为char的'0'
+        return hex + CHAR_NUM_OFFSET;			 --- 将数值0转为char的'0'
     } else {
-        return hex + CHAR_CAPITAL_OFFSET;         --- 将数值0xa转为char的'A'
+        return hex + CHAR_CAPITAL_OFFSET;		 --- 将数值0xa转为char的'A'
     }
 }
 
@@ -1122,9 +1116,9 @@ const char* HalGetSerial(void)
     char macAddr[ETH_ALEN];
     // as devboard has no production serial number, we just
     // use wifi mac address as device serial number.
-    if (serialNumber[0] == STR_END_FLAG) {         --- 只有第一次调用时，才去获取mac地址
+    if (serialNumber[0] == STR_END_FLAG) {		 --- 只有第一次调用时，才去获取mac地址
         extern int bwifi_get_own_mac(u8 *addr);
-        bwifi_get_own_mac(macAddr);                 --- 获取mac地址
+        bwifi_get_own_mac(macAddr);				 --- 获取mac地址
         int j = 0;
         for (int i = 0; i < ETH_ALEN; i++) {
             u8 lowFour, highFour;
@@ -1134,7 +1128,7 @@ const char* HalGetSerial(void)
             lowFour = macAddr[i] & MAC_LOW_MASK;
             serialNumber[j] = Hex2Char(lowFour);
             j++;
-        }         --- 将mac地址值转化为serial number
+        }		 --- 将mac地址值转化为serial number
     }
     return serialNumber;
 }
@@ -1144,28 +1138,28 @@ const char* HalGetSerial(void)
 
 进行`DFX`子系统适配需要添加`hilog_lite`部件，直接在`config.json`文件配置即可。
 
-```text
+```
 {
   "subsystem": "hiviewdfx",
   "components": [
-    {
-      "component": "hilog_lite",
-      "optional": "true"
-    }
+	{
+	  "component": "hilog_lite",
+	  "optional": "true"
+	}
   ]
-}
+},
 ```
 
 配置完成之后，在`//device/soc/bestechnic/bes2600/liteos_m/components/utils/src/hm_sys.c`中注册日志输出实现函数。
 
-```c
+```
 boolean HilogProc_Impl(const HiLogContent *hilogContent, uint32 len)
 {
     char tempOutStr[LOG_FMT_MAX_LEN] = {0};
     if (LogContentFmt(tempOutStr, sizeof(tempOutStr), hilogContent) > 0) {
         printf(tempOutStr);
     }
-    return TRUE;   
+	return TRUE;   
 }
 
 HiviewRegisterHilogProc(HilogProc_Impl);
@@ -1175,18 +1169,18 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 进行系统服务管理子系统适配需要添加`samgr_lite`部件，直接在`config.json`配置即可。
 
-```text
+```
 {
   "subsystem": "systemabilitymgr",
   "components": [
-    {
-      "component": "samgr_lite",
-      "features": [
-        "config_ohos_systemabilitymgr_samgr_lite_shared_task_size = 4096"
-      ]
-    }
+	{
+	  "component": "samgr_lite",
+	  "features": [
+		"config_ohos_systemabilitymgr_samgr_lite_shared_task_size = 4096"
+	  ]
+	}
   ]
-}
+},
 ```
 
 在轻量系统中，`samgr_lite`配置的共享任务栈大小默认为`0x800`。当函数调用栈较大时，会出现栈溢出的问题。在本次适配过程中，将其调整为`0x1000`。
@@ -1195,7 +1189,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 进行安全子系统适配需要添加`huks/deviceauth_lite`部件，直接在`config.json`配置即可。
 
-```text
+```
     {
       "subsystem": "security",
       "components": [
@@ -1228,7 +1222,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 进行媒体子系统适配需要添加`histreamer`部件，直接在`config.json`配置即可。
 
-```text
+```
 {
   "subsystem": "multimedia",
   "components": [
@@ -1242,7 +1236,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
       ]
     }
   ]
-}
+},
 ```
 
 `histreamer`部件配置项说明如下：
@@ -1258,27 +1252,27 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 进行公共基础库子系统适配需要添加`kv_store`/`js_builtin`/`timer_task`/`kal_timer`部件，直接在`config.json`配置即可。
 
-```text
+```
 {
   "subsystem": "utils",
   "components": [
-    {
-      "component": "kv_store",
-      "features": [
-        "enable_ohos_utils_native_lite_kv_store_use_posix_kv_api = true"
-      ]
-    },
-    {
-      "component": "js_builtin"
-    },
-    {
-      "component": "timer_task"
-    },
-    {
-      "component": "kal_timer",
-    }
+	{
+	  "component": "kv_store",
+	  "features": [
+		"enable_ohos_utils_native_lite_kv_store_use_posix_kv_api = true"
+	  ]
+	},
+	{
+	  "component": "js_builtin"
+	},
+	{
+	  "component": "timer_task"
+	},
+	{
+	  "component": "kal_timer",
+	}
   ]
-}
+},
 ```
 
 与适配`syspara_lite`部件类似，适配`kv_store`部件时，键值对会写到文件中。在轻量系统中，文件操作相关接口有`POSIX`接口与`HalFiles`接口这两套实现。因为对接内核的文件系统，采用`POSIX`相关的接口，所以`features`需要增加`enable_ohos_utils_native_lite_kv_store_use_posix_kv_api = true`。如果对接`HalFiles`相关的接口实现的，则无须修改。
@@ -1287,7 +1281,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 进行图形子系统适配需要添加`graphic_utils`部件，直接在`config.json`配置即可。
 
-```text
+```
     {
       "components": [
         {
@@ -1300,7 +1294,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
           "component": "ui"
         }
       ]
-    }
+    },
 ```
 
 `graphic`配置文件见 `//vendor/bestechnic/display_demo/graphic_config/product_graphic_lite_config.h`。
@@ -1313,10 +1307,10 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 图形子系统层次：
 
-```text
+```
 aafwk_lite + appexecfwk_lite    (AAFWK + APPEXECFWK)
       |
-ace_engine_lite + jerryscript + i18n_lite + resmgr_lite + commonlibrary/utils_lite/... (ACE,JS引擎及其依赖)
+ace_engine_lite + jerryscript + i18n_lite + resmgr_lite + utils/native/lite/... (ACE,JS引擎及其依赖)
       |
 arkui_ui_lite + graphic_utils      (图形框架)
       |
@@ -1325,14 +1319,14 @@ giflib + libjpeg + libpng + qrcodegen + freetype... (图形第三方库)
 
 图形应用示例见文件`//vendor/bestechnic/display_demo/tests/app.cpp`，如下：
 
-```cpp
+```
 /* ui app entry */
 void RunApp()
 {
 #ifdef UI_TEST
-    AnimatorDemoStart();      --- native ui demo
+    AnimatorDemoStart(); 	 --- native ui demo
 #elif defined(ABILITY_TEST)
-    StartJSApp();              --- js demo
+    StartJSApp(); 			 --- js demo
 #endif
 }
 
@@ -1347,7 +1341,7 @@ APP_FEATURE_INIT(AppEntry);
 #### ACE开发框架子系统适配
 
 进行`ACE`开发框架子系统适配需要添加`ace_engine_lite`部件，直接在`config.json`配置即可。
-```text
+
     {
       "subsystem": "ace",
       "components": [
@@ -1358,8 +1352,8 @@ APP_FEATURE_INIT(AppEntry);
           ]
         }
       ]
-    }
-```
+    },
+
 `ace_engine_lite`部件配置文件见 `//vendor/bestechnic/display_demo/ace_lite_config/product_acelite_config.h`。
 
 `ace_lite`的应用采用js语言进行开发，详细步骤如下：
@@ -1368,7 +1362,7 @@ APP_FEATURE_INIT(AppEntry);
 2. 使用预览功能进行预览，并且得到js包：`entry\.preview\intermediates\res\debug\lite\assets\js\default`。
 3. 将js包放到对应的文件系统目录下，文件系统路径为`vendor/bestechnic/display_demo/fs/data/data/js`，如下：
 
-   ```text
+   ```
    ├── app.js
    ├── common
    ├── i18n
@@ -1382,32 +1376,33 @@ APP_FEATURE_INIT(AppEntry);
 
 进行元能力子系统适配需要添加`aafwk_lite`部件，直接在`config.json`配置即可。
 
-```text
+```
     {
       "subsystem": "aafwk",
       "components": [
         {
           "component": "aafwk_lite",
           "features": [
-            "ability_lite_enable_ohos_appexecfwk_feature_ability = true",     --- 支持FA特性，即包含图形能力
-            "ability_lite_config_ohos_aafwk_ams_task_size = 4096"             --- 配置aafwk栈的大小
+            "ability_lite_enable_ohos_appexecfwk_feature_ability = true",	 --- 支持FA特性，即包含图形能力
+            "ability_lite_config_ohos_aafwk_ams_task_size = 4096"			 --- 配置aafwk栈的大小
           ]
         }
       ]
-    }
+    },
 ```
 
 `aafwk_lite`相关的应用样例见`vendor/bestechnic/display_demo/tests/ability`目录，包含`launcher`和`js app`这两类应用，应用的函数调用流程描述如下：
 
 1. `launcher`应用，通过`InstallLauncher`安装`BundleName`为 `"com.example.launcher"`的`native ui`应用，在`AbilityMgrSliteFeature`启动后会调用`AbilityMgrHandler::StartLauncher()`启动`launcher`应用。
-
-2. `StartJSApp`应用，通过`StartAbility`启动任意`Want`，通过将`want data`传递`JS_APP_PATH`，`SetWantData(&want, JS_APP_PATH, strlen(JS_APP_PATH) + 1)`。
+  
+2. `StartJSApp`应用，通过`StartAbility`启动任意`Want`，通过将`want data`传递`JS_APP_PATH`,
+   `SetWantData(&want, JS_APP_PATH, strlen(JS_APP_PATH) + 1)`。
 
 #### 包管理子系统适配
 
 进行包管理子系统适配需要添加`appexecfwk_lite`部件，直接在`config.json`配置即可。
 
-```text
+```
     {
       "subsystem": "appexecfwk",
       "components": [
@@ -1415,7 +1410,7 @@ APP_FEATURE_INIT(AppEntry);
           "component": "appexecfwk_lite"
         }
       ]
-    }
+    },
 ```
 
 ## 兼容性认证
@@ -1427,7 +1422,7 @@ APP_FEATURE_INIT(AppEntry);
 ### XTS用例
 
 `XTS`测试参考资料见[xts参考资料](../device-test/xts.md)，进行`XTS`子系统适配需要添加`xts_acts`/`xts_tools`部件，直接在`config.json`配置即可，配置如下：
-```text
+
     {
       "subsystem": "xts",
       "components": [
@@ -1440,7 +1435,7 @@ APP_FEATURE_INIT(AppEntry);
         { "component": "xts_tools", "features":[] }
       ]
     }
-```
+
 其中，
 
 - `config_ohos_xts_acts_utils_lite_kv_store_data_path` 是配置挂载文件系统根目录的名字。
@@ -1448,7 +1443,7 @@ APP_FEATURE_INIT(AppEntry);
 
 全部跑完会有显示`xx Tests xx Failures xx Ignored`，如下：
 
-```text
+```
 ...
 [16:53:43:438]../../../test/xts/acts/utils_lite/kv_store_hal/src/kvstore_func_test.c:793:testKvStoreMaxSize004:PASS
 [16:53:43:438]+-------------------------------------------+
@@ -1467,8 +1462,7 @@ APP_FEATURE_INIT(AppEntry);
 
 步骤2：生成测试报告的`SHA`校验码。本案例是将`zip`文件传到在线生成`hash`的[网站]( https://tool.lmeee.com/jiami/filehash)生成`SHA`校验码。
 
-步骤3：进入`OpenHarmony`[兼容性测试网站](https://www.openharmony.cn/)上传报告。
-
+步骤3：进入`OpenHarmony`[兼容性测试网站](https://www.openharmony.cn/certification/document/guid)上传报告。
 
  - 其中`API Level`填写报告中的`"sdkApiLevel"`字段
  - `OS`版本号填写报告中的`"OS Version"`字段。
