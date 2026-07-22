@@ -29,14 +29,14 @@
 | -------- | -------- |
 | 1. 适配准备 | 下载代码、搭建编译环境、熟悉编译构建框架 |
 | 2. 内核适配 | 适配伙伴SDK到OpenHarmony平台，确认arch支持 |
-| 3. 模块适配 | 按本章各模块指导逐个适配init、samgr、DFX、HCTEST、三方库、编译链接 |
+| 3. 模块适配 | 按本章各模块指导逐个适配startup、samgr、DFX、HCTEST、三方库、编译链接 |
 | 4. 适配验证 | 使用HCTEST兼容性测试套件验证，伙伴自有测试补充 |
 
 ---
 
 ## startup-启动恢复
 
-在轻量系统中，startup包含两个模块：init和bootstrip_lite。init提供了系统属性设置、读取功能。bootstrip_lite提供了启动引导功能。
+在轻量系统中，startup包含两个模块：init和bootstrap_lite。init提供了系统属性设置、读取功能。bootstrap_lite提供了启动引导功能。
 
 ### Feature列表
 
@@ -261,29 +261,29 @@ HCTEST为OpenHarmony兼容性测试框架，提供基本接口的测试验证能
 
 ### Feature列表
 
- | Feature名 | 说明 | 默认值 |
- | -------- | -------- | -------- |
- | hctest_rodata_opt | 是否开启测试套描述放.rodata | false |
- | xts_overlay | 是否开启最小集测试.bss共享同一VMA | false |
- | hctest_task_stack_size | 配置测试任务栈大小 | 6144 |
- | hctest_task_queue_size | 配置测试任务队列大小 | 20 |
- | hctest_task_type | 配置测试任务类型 | `SINGLE_TASK` |
+| Feature名 | 说明 | 默认值 |
+| -------- | -------- | -------- |
+| hctest_rodata_opt | 是否开启测试套描述放.rodata | false |
+| xts_overlay | 是否开启最小集测试.bss共享同一VMA | false |
+| hctest_task_stack_size | 配置测试任务栈大小 | 6144 |
+| hctest_task_queue_size | 配置测试任务队列大小 | 20 |
+| hctest_task_type | 配置测试任务类型 | `SINGLE_TASK` |
 
- ### Feature说明
+### Feature说明
 
- - **hctest_rodata_opt**：测试套件描述放在Flash(.rodata)减少RAM占用。使能后xts跑在独立线程。
+- **hctest_rodata_opt**：测试套件描述放在Flash(.rodata)减少RAM占用。使能后xts跑在独立线程。
 
- - **xts_overlay**：多个测试模块的.bss复用同一块overlay区域，节省BSS。
+- **xts_overlay**：多个测试模块的.bss复用同一块overlay区域，节省BSS。
 
 
- ### 使用方法
+### 使用方法
 
- #### 1. 编译时配置HCTEST Feature
+#### 1. 编译时配置HCTEST Feature
 
- HCTEST的Feature通过编译参数`--gn-args`传入，也可以通过config.json中的features字段开启：
+HCTEST的Feature通过编译参数`--gn-args`传入，也可以通过config.json中的features字段开启：
 
  ```bash
- hb build --gn-args hctest_rodata_opt=true xts_overlay=true hctest_task_stack_size=2048 hctest_task_queue_size=1 'hctest_task_type="SHARED_TASK"'
+hb build --gn-args hctest_rodata_opt=true xts_overlay=true hctest_task_stack_size=2048 hctest_task_queue_size=1 'hctest_task_type="SHARED_TASK"'
  ```
 
  config.json配置方法参考 vendor/hisilicon/hispark_pegasus_minimal/config.json
@@ -315,7 +315,9 @@ HCTEST为OpenHarmony兼容性测试框架，提供基本接口的测试验证能
 
 #### 1. Feature化生效
 
+```bash
 --gn-args mbedtls_featureized=true
+```
 
 #### 2. Feature说明
 
@@ -336,7 +338,7 @@ HCTEST为OpenHarmony兼容性测试框架，提供基本接口的测试验证能
 
 #### 3. 注意事项
 
-算法间存在依赖依赖关系，违反时编译失败；
+算法间存在依赖关系，违反时编译失败；
 若要在产品文件中通过配置的方式开启，需将对应的feature声明在bundle.json的features中。
 
 ---
@@ -396,13 +398,11 @@ hb build --gn-args ohos_stack_protector=strong ohos_mem_opt_extra=true
 | 外设驱动子系统 | 提供GPIO、I2C、SPI、PWM、UART、FLASH、WATCHDOG等外设操作接口 | 传感器数据采集、外设控制、屏显驱动 | 按需引入，单接口增加ROM约2~10KB | [移植外设驱动子系统](porting-minichip-subsys-driver.md) |
 | 文件子系统 | 提供文件打开、关闭、读写、Seek等操作接口 | 日志存储、配置持久化、数据记录 | 增加ROM约10KB+，RAM约2KB+ | [移植文件子系统](porting-minichip-subsys-filesystem.md) |
 | 安全子系统 | 提供硬件随机数、密钥管理（huks）、设备认证（hichainsdk）等安全能力 | 安全连接、数据加密、设备鉴权 | 依赖mbedtls，增加ROM约50KB+ | [移植安全子系统](porting-minichip-subsys-security.md) |
-| 分布式调度子系统 | 提供系统服务注册与发现能力（SAMGR框架），无需额外移植 | 跨设备组件管理、服务发现 | 少量RAM开销 | [配置其他子系统](porting-minichip-subsys-others.md) |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 上表资源影响为参考值，实际占用与芯片架构、编译器优化等级、使能的具体Feature有关。
 > - 选配子系统时，请根据芯片实际ROM/RAM资源情况评估，确保不超过硬件限制。
 > - 各子系统的详细移植步骤与接口定义，请参考对应的移植指导文档。
-
 
 ## 参考配置
 
@@ -418,8 +418,8 @@ hb build --gn-args ohos_stack_protector=strong ohos_mem_opt_extra=true
 - [概述](porting-minichip-overview.md)
 - [移植准备](porting-minichip-prepare.md)
 - [移植内核](porting-minichip-kernel.md)
-- [移植启动恢复子系统](porting-minichip-subsys-startup.md)
 - [移植子系统概述](porting-minichip-subsys-overview.md)
+- [移植启动恢复子系统](porting-minichip-subsys-startup.md)
 - [配置其他子系统](porting-minichip-subsys-others.md)
 - [三方库CMake适配](porting-thirdparty-cmake.md)
 - [三方库Makefile适配](porting-thirdparty-makefile.md)
