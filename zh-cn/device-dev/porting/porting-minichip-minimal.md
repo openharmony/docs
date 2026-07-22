@@ -200,16 +200,16 @@ DFX（Design for eXcellence）可维可测子系统提供日志、事件打点�
 | Feature名 | 所属部件 | 说明 | 默认值 |
 | -------- | -------- | -------- | -------- |
 | hilog_lite_mini | hilog_lite | 是否使能轻量系统日志功能 | true |
-| hievent_lite_mini | hievent_lite | 是否使能轻量系统事件打点功能 | true |
-| hiview_lite_mini | hiview_lite | 是否使能轻量系统维测视图功能 | true |
+| hievent_lite_mini | hievent_lite | 是否使能轻量系统事件日志输出功能 | true |
+| hiview_lite_mini | hiview_lite | 是否使能轻量维测基础配置功能 | true |
 
 ### Feature说明
 
-- **hilog_lite_mini**：控制hilog_lite部件在轻量系统下的使能。开启后提供轻量级日志输出能力，支持日志分级（DEBUG/INFO/WARN/ERROR/FATAL）、按模块过滤等功能。关闭后可减少ROM和RAM占用，但将失去运行态日志输出能力。
+- **hilog_lite_mini**：控制hilog_lite部件在轻量系统下的使能。开启后仅提供轻量级日志输出能力，减少ROM和RAM占用。
 
-- **hievent_lite_mini**：控制hievent_lite部件在轻量系统下的使能。开启后提供轻量级事件打点能力，支持关键事件的记录与上报，用于系统行为分析和故障定位。
+- **hievent_lite_mini**：控制hievent_lite部件在轻量系统下的使能。开启后提供轻量级事件控制台日志输出能力。
 
-- **hiview_lite_mini**：控制hiview_lite部件在轻量系统下的使能。开启后提供维测视图能力，支持日志和事件的统一管理与查询。
+- **hiview_lite_mini**：控制hiview_lite部件在轻量系统下的使能。为hilog_lite和hievent_lite模块提供基础配置和公共函数封装。hiview_lite_mini不可单独使能，hiview_lite_mini需要和hilog_lite_mini、hievent_lite_mini一起配合使用。
 
 ### 使用方法
 
@@ -236,18 +236,6 @@ DFX（Design for eXcellence）可维可测子系统提供日志、事件打点�
     ]
 },
 ```
-
-#### 2. 日志功能使用
-
-**[待补充hilog_lite的使用示例与API说明]**
-
-#### 3. 事件打点功能使用
-
-**[待补充hievent_lite的使用示例与API说明]**
-
-#### 4. 维测视图功能使用
-
-**[待补充hiview_lite的使用示例与API说明]**
 
 ---
 
@@ -373,7 +361,7 @@ hb build --gn-args ohos_stack_protector=strong ohos_mem_opt_extra=true
 
 #### 2. 链接脚本配置
 
-仅支持hi3861与hi3863的minimal产品
+参考hi3861与hi3863的minimal产品
 添加配置
 "ohos_stack_protector=strong",
 "ohos_mem_opt_extra=true"
