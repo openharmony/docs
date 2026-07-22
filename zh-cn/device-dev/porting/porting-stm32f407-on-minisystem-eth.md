@@ -328,7 +328,7 @@ vendor
      ```boards
      menuconfig BOARD_NIOBE407
          bool "select board niobe407"
-         depends on SOC_STM32F407    --- niobe407使用的是stm32f407的SoC，只有SoC被选择后，niobe407的配置选项才可见、可以被选择。
+         depends on SOC_STM32F407    --- niobe407使用的是stm32f407的SoC，只有SoC被选择后，niobe407的配置选项才可见，可以被选择。
      ```
 
    - 在`//device/board/talkweb/niobe407/Kconfig.liteos_m.defconfig.board`中添加：
@@ -1144,7 +1144,7 @@ __zinitcall_exit_end = .;
     },
 ```
 
-   ​`bootstrap_lite`部件会编译`//base/startup/bootstrap_lite/services/source/bootstrap_service.c`，该文件中，通过`SYS_SERVICE_INIT`将`Init`函数符号灌段到`__zinitcall_sys_service_start`和`__zinitcall_sys_service_end`中，由于`Init`函数是没有显式调用它，所以需要将它强制链接到最终的镜像。如下：
+​`bootstrap_lite`部件会编译`//base/startup/bootstrap_lite/services/source/bootstrap_service.c`，该文件中，通过`SYS_SERVICE_INIT`将`Init`函数符号灌段到`__zinitcall_sys_service_start`和`__zinitcall_sys_service_end`中，由于`Init`函数是没有显式调用它，所以需要将它强制链接到最终的镜像。如下：
 
 ```c
 static void Init(void)
