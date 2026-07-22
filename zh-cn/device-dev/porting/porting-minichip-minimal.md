@@ -309,7 +309,9 @@ hb build --gn-args hctest_rodata_opt=true xts_overlay=true hctest_task_stack_siz
 ## 三方库
 
 三方库模块，对thirdparty下mbedtls进行了算法feature化改造，以ws63产品为范例（当前仅适配了ws63），展现feature化对内存的影响。
-> 注：非必须，按需配置，当前对ws63内存无正面优化效果。
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 非必须，按需配置，当前对ws63内存无正面优化效果。
 
 ### 使用方法
 
@@ -351,7 +353,7 @@ hb build --gn-args hctest_rodata_opt=true xts_overlay=true hctest_task_stack_siz
 
 | Feature名 | 说明 | 默认值 |
 | -------- | -------- | -------- |
-| ohos_stack_protector | 栈保护级别配置，不使用该配置时产品原配置生效，为all | "" |
+| ohos_stack_protector | 栈保护级别配置，提供no和strong级别的配置，默认为""表示使用产品本身配置 | "" |
 | ohos_mem_opt_extra | 是否使能额外内存优化 | false |
 
 ### Feature说明
@@ -359,7 +361,7 @@ hb build --gn-args hctest_rodata_opt=true xts_overlay=true hctest_task_stack_siz
 - **ohos_stack_protector**：设置栈保护（Stack Protector）级别。可选值：
   - `strong`：强保护模式，为大部分函数插入栈保护代码，安全性高但略有性能开销
   - `no`：无保护模式，内存优化最佳，安全性最低
-> 注：ohos_stack_protector仅支持 "",all,no三值，为""或不配置时，配置不生效
+  - `""`：使用产品本身配置
 
 - **ohos_mem_opt_extra**：控制是否使能额外的内存优化选项。开启后编译器会进行更激进的内存优化（如优化内存布局、减少冗余分配），适用于RAM资源受限的轻量系统芯片场景。
 
