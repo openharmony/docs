@@ -53,9 +53,9 @@ vendor
     ```json
     {
       "product_name": "bearpi_hm_micro",    --- 用于hb set进行选择时，显示的产品名称
-      "version": "7.0",                     --- 构建系统的版本，1.0/2.0/3.0/7.0
+      "version": "3.0",                     --- 构建系统的版本，1.0/2.0/3.0/7.0等
       "type": "small",                      --- 构建系统的类型，mini/small/standard
-      "ohos_version": "OpenHarmony 7.0",    --- OpenHarmony系统版本
+      "ohos_version": "OpenHarmony 3.0",    --- OpenHarmony系统版本
       "device_company": "bearpi",           --- 单板厂商名，用于编译时找到/device/board/bearpi目录
       "device_build_path": "device/board/bearpi/bearpi_hm_micro", --- 单板编译路径
       "board": "bearpi_hm_micro",           --- 单板名，用于编译时找到/device/board/bearpi/bearpi_hm_micro目录
