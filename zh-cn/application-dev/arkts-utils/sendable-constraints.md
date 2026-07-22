@@ -227,11 +227,11 @@ class A {
 
 ```ts
 enum B {
-    b1 = "bbb"
+    b1 = 'bbb'
 }
 @Sendable
 class A {
-    ["aaa"]: number = 1; // 编译报错，不支持["aaa"]
+    ['aaa']: number = 1; // 编译报错，不支持['aaa']
     [B.b1]: number = 2; // 编译报错，不支持[B.b1]
 }
 ```
@@ -270,7 +270,7 @@ class B {
 
 ## 泛型规则
 
-### 泛型类中的Sendable类、SendableLruCache、collections.Array、collections.Map和collections.Set的模板类型必须是Sendable类型
+### 泛型类中的Sendable类、SendableLruCache、collections.Array、collections.ConcatArray、collections.Map和collections.Set的模板类型必须是Sendable类型
 
 Sendable数据不能持有非Sendable数据，因此泛型类中的Sendable数据的模版类型必须是Sendable类型。
 
@@ -410,6 +410,9 @@ type SendableFuncType = () => void;
 ```ts
 @Sendable
 type A = number; // 编译报错
+
+@Sendable
+class C {}
 
 @Sendable
 type D = C; // 编译报错
