@@ -150,9 +150,9 @@ createCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calend
 
 **需要权限**：
 
-API版本21+：ohos.permission.WRITE_CALENDAR或ohos.permission.WRITE_WHOLE_CALENDAR
+- API版本 21+：ohos.permission.WRITE_CALENDAR 或 ohos.permission.WRITE_WHOLE_CALENDAR
 
-API版本10-20：ohos.permission.WRITE_CALENDAR
+- API版本10-20：ohos.permission.WRITE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -208,9 +208,9 @@ createCalendar(calendarAccount: CalendarAccount): Promise\<Calendar>
 
 **需要权限**：
 
-API版本21+：ohos.permission.WRITE_CALENDAR或ohos.permission.WRITE_WHOLE_CALENDAR
+- API版本21+：ohos.permission.WRITE_CALENDAR 或 ohos.permission.WRITE_WHOLE_CALENDAR
 
-API版本10-20：ohos.permission.WRITE_CALENDAR
+- API版本10-20：ohos.permission.WRITE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -266,9 +266,9 @@ deleteCalendar(calendar: Calendar, callback: AsyncCallback\<void>): void
 
 **需要权限**：
 
-API版本21+：ohos.permission.WRITE_CALENDAR或ohos.permission.WRITE_WHOLE_CALENDAR
+- API版本21+：ohos.permission.WRITE_CALENDAR 或 ohos.permission.WRITE_WHOLE_CALENDAR
 
-API版本10-20：ohos.permission.WRITE_CALENDAR权限
+- API版本10-20：ohos.permission.WRITE_CALENDAR权限
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -333,9 +333,9 @@ deleteCalendar(calendar: Calendar): Promise\<void>
 
 **需要权限**： 
 
-API版本21+：ohos.permission.WRITE_CALENDAR或ohos.permission.WRITE_WHOLE_CALENDAR
+- API版本21+：ohos.permission.WRITE_CALENDAR 或 ohos.permission.WRITE_WHOLE_CALENDAR
 
-API版本10-20：ohos.permission.WRITE_CALENDAR
+- API版本10-20：ohos.permission.WRITE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -402,9 +402,9 @@ getCalendar(callback: AsyncCallback\<Calendar>): void
 
 **需要权限**：
 
-API版本21+：ohos.permission.READ_CALENDAR或ohos.permission.READ_WHOLE_CALENDAR
+- API版本21+：ohos.permission.READ_CALENDAR 或 ohos.permission.READ_WHOLE_CALENDAR
 
-API版本10-20：ohos.permission.READ_CALENDAR
+- API版本10-20：ohos.permission.READ_CALENDAR
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -453,9 +453,9 @@ getCalendar(calendarAccount: CalendarAccount, callback: AsyncCallback\<Calendar>
 
 **需要权限**：
 
-API版本21+：ohos.permission.READ_CALENDAR或ohos.permission.READ_WHOLE_CALENDAR
+- API版本21+：ohos.permission.READ_CALENDAR 或 ohos.permission.READ_WHOLE_CALENDAR
 
-API版本10-20：ohos.permission.READ_CALENDAR
+- API版本10-20：ohos.permission.READ_CALENDAR
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -516,9 +516,9 @@ getCalendar(calendarAccount?: CalendarAccount): Promise\<Calendar>
 
 **需要权限**：
 
-API版本21+：ohos.permission.READ_CALENDAR或ohos.permission.READ_WHOLE_CALENDAR
+- API版本21+：ohos.permission.READ_CALENDAR 或 ohos.permission.READ_WHOLE_CALENDAR
 
-API版本10-20：ohos.permission.READ_CALENDAR
+- API版本10-20：ohos.permission.READ_CALENDAR
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -572,9 +572,9 @@ getAllCalendars(callback: AsyncCallback\<Calendar[]>): void
 
 **需要权限**：
 
-API版本21+：ohos.permission.READ_CALENDAR或ohos.permission.READ_WHOLE_CALENDAR
+- API版本21+：ohos.permission.READ_CALENDAR 或 ohos.permission.READ_WHOLE_CALENDAR
 
-API版本10-20：ohos.permission.READ_CALENDAR 
+- API版本10-20：ohos.permission.READ_CALENDAR 
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -624,9 +624,9 @@ getAllCalendars(): Promise\<Calendar[]>
 
 **需要权限**：
 
-API版本21+：ohos.permission.READ_CALENDAR或ohos.permission.READ_WHOLE_CALENDAR
+- API版本21+：ohos.permission.READ_CALENDAR 或 ohos.permission.READ_WHOLE_CALENDAR
 
-API版本10-20：ohos.permission.READ_CALENDAR
+- API版本10-20：ohos.permission.READ_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -737,9 +737,9 @@ addEvent(event: Event, callback: AsyncCallback\<number>): void
 
 **需要权限**：
 
-API版本21+：ohos.permission.WRITE_CALENDAR或ohos.permission.WRITE_WHOLE_CALENDAR
+- API版本21+：ohos.permission.WRITE_CALENDAR 或 ohos.permission.WRITE_WHOLE_CALENDAR
 
-API版本10-20：ohos.permission.WRITE_CALENDAR
+- API版本10-20：ohos.permission.WRITE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -801,9 +801,9 @@ addEvent(event: Event): Promise\<number>
 
 **需要权限**：
 
-API版本21+：ohos.permission.WRITE_CALENDAR或ohos.permission.WRITE_WHOLE_CALENDAR
+- API版本21+：ohos.permission.WRITE_CALENDAR 或 ohos.permission.WRITE_WHOLE_CALENDAR
 
-API版本10-20：ohos.permission.WRITE_CALENDAR
+- API版本10-20：ohos.permission.WRITE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -868,9 +868,9 @@ addEvents(events: Event[], callback: AsyncCallback\<void>): void
 
 **需要权限**：
 
-API版本21+：ohos.permission.WRITE_CALENDAR或ohos.permission.WRITE_WHOLE_CALENDAR
+- API版本21+：ohos.permission.WRITE_CALENDAR 或 ohos.permission.WRITE_WHOLE_CALENDAR
 
-API版本10-20：ohos.permission.WRITE_CALENDAR
+- API版本10-20：ohos.permission.WRITE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -939,9 +939,9 @@ addEvents(events: Event[]): Promise\<void>
 
 **需要权限**：
 
-API版本21+：ohos.permission.WRITE_CALENDAR或ohos.permission.WRITE_WHOLE_CALENDAR
+- API版本21+：ohos.permission.WRITE_CALENDAR 或 ohos.permission.WRITE_WHOLE_CALENDAR
 
-API版本10-20：ohos.permission.WRITE_CALENDAR
+- API版本10-20：ohos.permission.WRITE_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -1400,9 +1400,9 @@ API version 20之前，默认查询字段包括id、type、title、startTime、e
 
 **需要权限**：
 
-API版本21+：ohos.permission.READ_CALENDAR或ohos.permission.READ_WHOLE_CALENDAR
+- API版本21+：ohos.permission.READ_CALENDAR 或 ohos.permission.READ_WHOLE_CALENDAR
 
-API版本10-20：ohos.permission.READ_CALENDAR
+- API版本10-20：ohos.permission.READ_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -1456,9 +1456,9 @@ getEvents(eventFilter: EventFilter, eventKey: (keyof Event)[], callback: AsyncCa
 
 **需要权限**：
 
-API版本21+：ohos.permission.READ_CALENDAR或ohos.permission.READ_WHOLE_CALENDAR
+- API版本21+：ohos.permission.READ_CALENDAR 或 ohos.permission.READ_WHOLE_CALENDAR
 
-API版本10-20：ohos.permission.READ_CALENDAR
+- API版本10-20：ohos.permission.READ_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -1545,9 +1545,9 @@ getEvents(eventFilter?: EventFilter, eventKey?: (keyof Event)[]): Promise\<Event
 
 **需要权限**：
 
-API版本21+：ohos.permission.READ_CALENDAR或ohos.permission.READ_WHOLE_CALENDAR
+- API版本21+：ohos.permission.READ_CALENDAR 或 ohos.permission.READ_WHOLE_CALENDAR
 
-API版本10-20：ohos.permission.READ_CALENDAR
+- API版本10-20：ohos.permission.READ_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
@@ -1807,9 +1807,9 @@ queryEventInstances(start: number, end: number, ids?: number[], eventKey?: (keyo
 
 **需要权限**：
 
-API版本21+：ohos.permission.READ_CALENDAR或ohos.permission.READ_WHOLE_CALENDAR
+- API版本21+：ohos.permission.READ_CALENDAR 或 ohos.permission.READ_WHOLE_CALENDAR
 
-API版本18-20：ohos.permission.READ_CALENDAR
+- API版本18-20：ohos.permission.READ_CALENDAR
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
