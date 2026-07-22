@@ -48,7 +48,7 @@
 | [OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetDataCallback(struct OH_AVScreenCapture *capture, OH_AVScreenCapture_OnBufferAvailable callback, void *userData)](#oh_avscreencapture_setdatacallback) | 设置数据处理回调方法，在开始录制前调用。 |
 | [OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetErrorCallback(struct OH_AVScreenCapture *capture, OH_AVScreenCapture_OnError callback, void *userData)](#oh_avscreencapture_seterrorcallback) | 设置错误处理回调方法，在开始录制前调用。 |
 | [OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCaptureWithSurface(struct OH_AVScreenCapture *capture, OHNativeWindow *window)](#oh_avscreencapture_startscreencapturewithsurface) | 使用Surface模式录屏。与[OH_AVScreenCapture_StartScreenCapture](#oh_avscreencapture_startscreencapture)不同，本接口通过传入OHNativeWindow将视频数据直接输出到指定的Surface窗口，适用于需要将录屏数据渲染到特定窗口的场景；而OH_AVScreenCapture_StartScreenCapture通过回调获取原始码流数据，适用于需要自行处理音视频数据的场景。 |
-| [OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCanvasRotation(struct OH_AVScreenCapture *capture, bool canvasRotation)](#oh_avscreencapture_setcanvasrotation) | 设置录屏屏幕数据是否旋转。<br> 当canvasRotation为true时，打开录屏屏幕数据旋转功能，录制的屏幕数据保持正向。<br> 默认为false。 |
+| [OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCanvasRotation(struct OH_AVScreenCapture *capture, bool canvasRotation)](#oh_avscreencapture_setcanvasrotation) | 是否打开录屏屏幕数据旋转功能。<br> 当canvasRotation为true时，打开录屏屏幕数据旋转功能，录制的屏幕数据保持正向。当canvasRotation为false时，关闭录屏屏幕数据旋转功能，录制的屏幕数据将不自动保持正向。<br> 默认为false。 |
 | [struct OH_AVScreenCapture_ContentFilter *OH_AVScreenCapture_CreateContentFilter(void)](#oh_avscreencapture_createcontentfilter) | 创建ContentFilter。 |
 | [OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ReleaseContentFilter(struct OH_AVScreenCapture_ContentFilter *filter)](#oh_avscreencapture_releasecontentfilter) | 释放ContentFilter。 |
 | [OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ContentFilter_AddAudioContent(struct OH_AVScreenCapture_ContentFilter *filter, OH_AVScreenCaptureFilterableAudioContent content)](#oh_avscreencapture_contentfilter_addaudiocontent) | 向ContentFilter实例添加可过滤的声音类型。 |
@@ -561,13 +561,13 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCanvasRotation(struct OH_AVScr
 
 **描述**
 
-设置录屏屏幕数据旋转。应在录屏启动之前被调用。<br> 调用该方法可以设置录屏屏幕数据是否旋转，当canvasRotation为true时，打开录屏屏幕数据旋转功能，录制的屏幕数据保持正向。<br> 默认为false。
+设置录屏屏幕数据旋转。应在录屏启动之前被调用。<br> 调用该方法可以设置录屏屏幕数据是否旋转，当canvasRotation为true时，打开录屏屏幕数据旋转功能，录制的屏幕数据保持正向。当canvasRotation为false时，关闭录屏屏幕数据旋转功能，录制的屏幕数据将不自动保持正向。<br> 默认为false。
 
 与[OH_AVScreenCapture_StrategyForCanvasFollowRotation](#oh_avscreencapture_strategyforcanvasfollowrotation)不同，本接口是静态旋转设置，仅在canvasRotation为true时将录屏数据保持正向；而StrategyForCanvasFollowRotation是自动跟随旋转策略，会在屏幕旋转时自动调换虚拟屏尺寸以保持画面正向。建议仅在需要固定正向输出时使用本接口，在需要动态跟随旋转时使用StrategyForCanvasFollowRotation。
 
 > **说明：**
 >
-> 从API version 20开始，支持折叠PC/2in1设备。其他具体支持的设备品类请参考系统能力说明或在实际设备上测试验证。
+> 从API version 20开始，支持折叠PC/2in1设备。其他具体支持的设备品类请在实际设备上测试验证。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 

@@ -50,7 +50,7 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 | -------- | ---------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. Return by promise. Suggestion: Please check that all required parameters are correctly passed and their types conform to the interface requirements. |
 | 5400103  | IO error. Return by promise. Possible cause: File path does not exist, insufficient read/write permissions, or insufficient storage space. Suggestion: Please check the file path, permissions, and available storage space.                  |
-| 5400105  | Service died. Return by promise. Possible cause: System service terminated unexpectedly. Suggestion: Please release resources and retry. If the issue persists, restart the application.              |
+| 5400105  | Service died. Return by promise. Possible cause: System service terminated unexpectedly. Suggestion: Please release resources and retry. If the issue persists, restart the application. |
 
 **示例：**
 
@@ -471,7 +471,11 @@ setPickerMode(pickerMode: PickerMode): Promise\<void>
 
 设置Picker显示模式，在下一次显示Picker时生效。使用Promise异步回调。
 
-可根据录制需求选择不同模式，SCREEN_ONLY适用于只需要录制整个屏幕的场景；WINDOW_ONLY适用于只需要录制特定应用窗口的场景；SCREEN_AND_WINDOW适用于需要让用户自由选择录制屏幕或窗口的场景。
+可根据录制需求选择不同模式。
+
+- SCREEN_ONLY适用于只需要录制整个屏幕的场景。
+- WINDOW_ONLY适用于只需要录制特定应用窗口的场景。
+- SCREEN_AND_WINDOW适用于需要让用户自由选择录制屏幕或窗口的场景。
 
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture

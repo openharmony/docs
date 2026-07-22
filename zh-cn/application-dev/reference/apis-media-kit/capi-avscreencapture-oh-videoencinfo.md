@@ -29,7 +29,7 @@ typedef struct OH_VideoEncInfo {...} OH_VideoEncInfo
 | 名称 | 描述 |
 | -- | -- |
 | [OH_VideoCodecFormat](capi-native-avscreen-capture-base-h.md#oh_videocodecformat) videoCodec | 视频编码格式。不同编码格式影响视频的压缩效率与兼容性，具体各格式效果参见[OH_VideoCodecFormat](capi-native-avscreen-capture-base-h.md#oh_videocodecformat)枚举说明。 |
-| int32_t videoBitrate | 视频编码比特率，单位：bit/s。取值范围需根据编码格式和实际需求确定，默认取值为10000000，值越大画质越好但文件也越大。 |
-| int32_t videoFrameRate | 视频编码帧率，单位：FPS。常见取值范围为15~60 FPS。 |
+| int32_t videoBitrate | 视频编码比特率，单位为比特每秒（bit/s）。取值范围需根据编码格式和实际需求确定，默认取值为10000000，值越大画质越好但文件也越大。 |
+| int32_t videoFrameRate | 视频编码帧率，单位为帧/秒（FPS）。常见取值范围为15~60 FPS。 |
 
 

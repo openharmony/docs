@@ -435,7 +435,7 @@ typedef void (*OH_AVScreenCaptureOnAudioBufferAvailable)(OH_AVScreenCapture *cap
 
 **描述**
 
-当OH_AVScreenCapture实例操作期间音频缓冲区可用时，系统将调用此函数指针通知应用程序。<br> 从API version 12开始，推荐使用接口[OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)替代。OH_AVScreenCapture_OnBufferAvailable将音频和视频缓冲区回调统一为一个接口，通过bufferType参数区分缓冲区数据类型，同时增加了timestamp和userData参数支持，开发者无需分别注册音频和视频回调。
+当OH_AVScreenCapture实例操作期间音频缓冲区可用时，系统将调用该函数指针通知应用程序。<br> 从API version 12开始，推荐使用接口[OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)替代。OH_AVScreenCapture_OnBufferAvailable将音频和视频缓冲区回调统一为一个接口，通过bufferType参数区分缓冲区数据类型，同时增加了timestamp和userData参数支持，开发者无需分别注册音频和视频回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -447,7 +447,7 @@ typedef void (*OH_AVScreenCaptureOnAudioBufferAvailable)(OH_AVScreenCapture *cap
 | -- | -- |
 | [OH_AVScreenCapture](capi-avscreencapture-oh-avscreencapture.md) *capture | 指向OH_AVScreenCapture实例的指针。 |
 |  bool isReady | 音频缓冲区是否可用。true表示音频缓冲区可用，false表示音频缓冲区不可用。 |
-| [OH_AudioCaptureSourceType](#oh_audiocapturesourcetype) type | 音频源类型，用于标识音频数据的来源。OH_MIC表示麦克风音频数据，OH_ALL_PLAYBACK表示系统内录音频数据，OH_APP_PLAYBACK表示指定应用播放的音频数据。开发者应根据type值对音频数据进行相应处理。 |
+| [OH_AudioCaptureSourceType](#oh_audiocapturesourcetype) type | 音频源类型，用于标识音频数据的来源。OH_MIC表示麦克风音频数据；OH_ALL_PLAYBACK表示系统内录音频数据；OH_APP_PLAYBACK表示指定应用播放的音频数据。开发者应根据type值对音频数据进行相应处理。 |
 
 ### OH_AVScreenCaptureOnVideoBufferAvailable()
 
@@ -457,7 +457,7 @@ typedef void (*OH_AVScreenCaptureOnVideoBufferAvailable)(OH_AVScreenCapture *cap
 
 **描述**
 
-当OH_AVScreenCapture实例操作期间视频缓冲区可用时，系统将调用此函数指针通知应用程序。<br> 从API version 12开始，推荐使用接口[OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)替代。
+当OH_AVScreenCapture实例操作期间视频缓冲区可用时，系统将调用该函数指针通知应用程序。<br> 从API version 12开始，推荐使用接口[OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)替代。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
