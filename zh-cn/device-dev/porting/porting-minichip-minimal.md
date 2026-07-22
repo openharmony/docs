@@ -45,13 +45,13 @@ Mini芯片最小系统由以下核心模块组成：
 
 | Feature名 | 说明 | 默认值 |
 | -------- | -------- | -------- |
-| bootstrap_lite_enable_bootstrap_service | 是否使能bootstrap服务启动能力 | false |
+| bootstrap_lite_enable_bootstrap_service | 是否使能Bootstrap服务任务 | true |
 | init_lite_memory_size | 参数空间总大小（字节） | 8192 |
 | init_lite_param_const_value_len_max | 常量参数值的最大长度 | 256 |
 | init_lite_param_value_len_max | 参数值的最大长度 | 48 |
 | init_lite_param_name_len_max | 参数名的最大长度 | 48 |
 | init_lite_persist_all | 是否持久化所有参数 | false |
-| acts_lite_param_value_len_max_48 | 是否将参数值最大长度限制为48（兼容测试） | true |
+| acts_lite_param_value_len_max_48 | 是否将xts用例中value的值替换为48字节的字符串（兼容测试） | true |
 
 ### Feature说明
 
@@ -140,9 +140,9 @@ Mini芯片最小系统由以下核心模块组成：
 
 - **enable_ohos_test_xts_acts_use_samgr_lite_debug**：兼容性测试相关，控制是否使能SAMGR Lite调试模式，输出更多调试信息。
 
-- **enable_ohos_test_xts_acts_use_samgr_lite_taskpool_notask**：兼容性测试相关，开启后，测试用例测试无任务池接口，需与enable_ohos_systemabilitymgr_samgr_lite_no_task配合使用。
+- **enable_ohos_test_xts_acts_use_samgr_lite_taskpool_notask**：兼容性测试相关，开启后，测试用例测试无任务池接口，需与`enable_ohos_systemabilitymgr_samgr_lite_no_task`配合使用。
 
-- **enable_ohos_test_xts_acts_use_samgr_lite_taskpool_specifiedtask**：兼容性测试相关，开启后，测试用例测试指定任务池接口，需与enable_ohos_systemabilitymgr_samgr_lite_specified_task配合使用。
+- **enable_ohos_test_xts_acts_use_samgr_lite_taskpool_specifiedtask**：兼容性测试相关，开启后，测试用例测试指定任务池接口，需与`enable_ohos_systemabilitymgr_samgr_lite_specified_task`配合使用。
 
 ### 使用方法
 
