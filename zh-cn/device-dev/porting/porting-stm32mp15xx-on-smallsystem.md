@@ -138,7 +138,7 @@ vendor
 
 详细移植步骤参考：[LiteOS-A内核移植](porting-smallchip-kernel-a.md)
 ### Kconfig适配
-1. 在`//kernel/liteos_a/platform/Kconfig`中添加芯片、产品名称、厂商名称相关配置。
+1. 在//device/board/bearpi/bearpi_hm_micro/liteos_a/drivers/Kconfig中添加芯片、产品名称、厂商名称相关配置。
     ```text
     config PLATFORM
         string
@@ -372,7 +372,7 @@ vendor
     #ifdef LOSCFG_DRIVERS_NETDEV
         dprintf("net init ...\n");
         net_init();
-        dprintf("\n************************************************************\n");
+        dprintf("net init  end...\n");
     #endif
 
     #ifdef LOSCFG_DRIVERS_HDF
