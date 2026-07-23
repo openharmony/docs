@@ -51,10 +51,20 @@
 ### 效果节点
 
 各效果节点的详细说明请参考[音频效果(C/C++)](audio-suite-effects.md)。
-| 效果类型 | 节点类型 | 用途 |
-|---------|---------|------|
-| [均衡器](audio-suite-effects.md#均衡器) | EFFECT_NODE_TYPE_EQUALIZER | 频段调节，改变音频频率特性 |
-| [声音美化](audio-suite-effects.md#声音美化) | EFFECT_NODE_TYPE_VOICE_BEAUTIFIER | 提升音质和听感 |
+| 效果类型 | 节点类型 | 起始API版本 | 用途 |
+|---------|---------|--------|------|
+| [均衡器](audio-suite-effects.md#均衡器) | EFFECT_NODE_TYPE_EQUALIZER | API版本22 | 频段调节，改变音频频率特性 |
+| [声音美化](audio-suite-effects.md#声音美化) | EFFECT_NODE_TYPE_VOICE_BEAUTIFIER | API版本22 | 提升音质和听感 |
+| [声场](audio-suite-effects.md#声场) | EFFECT_NODE_TYPE_SOUND_FIELD | API版本22 | 调整声音空间感和声场范围 |
+| [音源分离](audio-suite-effects.md#音源分离) | EFFECT_MULTII_OUTPUT_NODE_TYPE_AUDIO_SEPARATION | API版本22 | 分离人声与伴奏（多路输出） |
+| [声音美化](audio-suite-effects.md#声音美化) | EFFECT_NODE_TYPE_VOICE_BEAUTIFIER | API版本22 | 提升音质和听感 |
+| [环境效果](audio-suite-effects.md#环境效果) | EFFECT_NODE_TYPE_ENVIRONMENT_EFFECT | API版本22 | 模拟不同环境的声学效果 |
+| [混音](audio-suite-effects.md#混音) | EFFECT_NODE_TYPE_AUDIO_MIXER | API版本22 | 多路音频混合为一路 |
+| [空间渲染](audio-suite-effects.md#空间渲染) | EFFECT_NODE_TYPE_SPACE_RENDER | API版本23 | 3D空间音频定位与渲染 |
+| [传统变声](audio-suite-effects.md#传统变声) | EFFECT_NODE_TYPE_PURE_VOICE_CHANGE | API版本23 | 基于性别与音调的传统变声 |
+| [通用变声](audio-suite-effects.md#通用变声) | EFFECT_NODE_TYPE_GENERAL_VOICE_CHANGE | API版本23 | 多种风格化变声效果 |
+| [变速变调](audio-suite-effects.md#变速变调) | EFFECT_NODE_TYPE_TEMPO_PITCH | API版本23 | 改变音频速度与音调 |
+| [HOA转双耳空间音频](audio-suite-effects.md#hoa转双耳空间音频) | EFFECT_NODE_TYPE_HOA_SPACE_RENDER | API版本26.0.0 | HOA高阶 Ambisonics 转双耳渲染 |
 
 ## 管线
 
