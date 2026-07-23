@@ -574,7 +574,7 @@ module_switch = defined(LOSCFG_NET_LWIP_SACK)
 module_name = "lwip"
 kernel_module(module_name) {
   sources = LWIP_PORTING_FILES + LWIPNOAPPSFILES -
-            [ "$LWIPDIR/api/sockets.c" ] + [ "porting/src/ethernetif.c" ]		 //增加ethernetif.c文件，用以适配ethernet网卡的初始化适配
+  [ "$LWIPDIR/api/sockets.c" ] + [ "porting/src/ethernetif.c" ] // 增加ethernetif.c文件，用以适配ethernet网卡的初始化适配
   defines = [ "LITEOS_LWIP=1" ]
   defines += [ "CHECKSUM_BY_HARDWARE=1" ]
 }
@@ -643,7 +643,7 @@ static err_t net_if_init(struct netif *net_if)
   "subsystem": "startup",
   "components": [
     {
-      "component": "bootstrap_lite",		 // bootstrap_lite 部件
+      "component": "bootstrap_lite", // bootstrap_lite 部件
       "features":[]
     },
     {
