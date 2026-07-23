@@ -26,7 +26,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_AVImageGenerator_QueryOptions](#oh_avimagegenerator_queryoptions) | OH_AVImageGenerator_QueryOptions | 指定时间点与视频帧对应关系的枚举类型。 |
+| [OH_AVImageGenerator_QueryOptions](#oh_avimagegenerator_queryoptions) | OH_AVImageGenerator_QueryOptions | 指定查询视频帧时，时间点与帧对应关系选项的枚举类型。 |
 
 ## 枚举类型说明
 
