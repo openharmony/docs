@@ -5,7 +5,7 @@
 ## 约束与限制
 
 - 本文档适用于OpenHarmony轻量系统的小型化适配场景
-- 目标芯片架构以cortex-m、risc-v系列为典型代表
+- 目标芯片架构包括cortex-m、risc-v等系列
 - 各模块Feature以config.json中的features配置项为入口进行裁剪与使能
 
 ## 整体架构
@@ -18,7 +18,7 @@
 | samgr-系统服务管理 | 系统服务注册、发现与统一管理 |
 | DFX | 可维可测能力，包括日志、事件打点等 |
 | HCTEST-测试框架 | 兼容性测试框架，提供基本接口的测试验证能力 |
-| 三方库 | 三方库mbedtls 算法feature化改造（非必须，当前仅适配ws63） |
+| 三方库 | 三方库mbedtls算法feature化改造（可配置功能，目前仅支持ws63平台） |
 | 编译链接 | 编译构建配置与链接脚本管理 |
 
 ## 适配流程
@@ -28,9 +28,8 @@
 | 步骤 | 说明 |
 | -------- | -------- |
 | 1. 适配准备 | 下载代码、搭建编译环境、熟悉编译构建框架 |
-| 2. 内核适配 | 适配伙伴SDK到OpenHarmony平台，确认arch支持 |
-| 3. 模块适配 | 按本章各模块指导逐个适配startup、samgr、DFX、HCTEST、三方库、编译链接 |
-| 4. 适配验证 | 使用HCTEST兼容性测试套件验证，伙伴自有测试补充 |
+| 2. 模块适配 | 按本章各模块指导逐个适配startup、samgr、DFX、HCTEST、三方库、编译链接 |
+| 3. 适配验证 | 使用HCTEST兼容性测试套件验证，并使用伙伴自有测试用例进行补充验证 |
 
 ---
 
@@ -54,13 +53,13 @@
 
 - **bootstrap_lite_enable_bootstrap_service**：控制是否使能Bootstrap服务任务。设为true时，bootstrap_service向samgr注册回调任务以触发INIT_APP_CALL，从而注册App级服务并异步推进启动流程；设为false时，由samgr直接调用INIT_APP_CALL，同步完成App级服务注册并推进启动流程。
 
-- **init_lite_memory_size**：设置init模块参数空间总大小，默认8192字节。若需要使用更多的参数，可适当增大该值。
+- **init_lite_memory_size**：设置init模块参数空间总大小，默认8192字节。若需要使用更多的参数，可根据实际需求增大该值。
 
-- **init_lite_param_const_value_len_max**：设置常量参数值的最大允许长度，默认256字节。若需要使用更长的参数值，可适当增大该值。
+- **init_lite_param_const_value_len_max**：设置常量参数值的最大允许长度，默认256字节。若需要使用更长的参数值，可根据实际需求增大该值。
 
-- **init_lite_param_value_len_max**：设置非常量参数值的最大允许长度，默认48字节。若需要使用更长的参数值，可适当增大该值。与`acts_lite_param_value_len_max_48`配合使用。
+- **init_lite_param_value_len_max**：设置非常量参数值的最大允许长度，默认48字节。若需要使用更长的参数值，可根据实际需求增大该值。与`acts_lite_param_value_len_max_48`配合使用。
 
-- **init_lite_param_name_len_max**：设置参数名的最大允许长度，默认48字节。若需要使用更长的参数名，可适当增大该值。
+- **init_lite_param_name_len_max**：设置参数名的最大允许长度，默认48字节。若需要使用更长的参数名，可根据实际需求增大该值。
 
 - **init_lite_persist_all**：控制是否将所有系统参数持久化存储。默认false，仅持久化标记为persist的参数；设为true则持久化全部参数。开启后会增加Flash写入开销。
 
@@ -129,7 +128,7 @@
 
 - **enable_ohos_systemabilitymgr_samgr_lite_specified_task**：控制是否使能指定任务模式。开启后，服务可运行在指定的独立任务线程中，而非共享任务池。适用于对实时性或隔离性要求较高的服务。
 
-- **enable_ohos_systemabilitymgr_samgr_lite_no_task**：控制是否使能无任务模式。开启后，服务不创建独立任务线程，由调用者线程直接执行服务逻辑。适用于极轻量场景，可节省任务创建开销。
+- **enable_ohos_systemabilitymgr_samgr_lite_no_task**：控制是否使能无任务模式。开启后，服务不创建独立任务线程，由调用者线程直接执行服务逻辑。适用于轻量场景，可节省任务创建开销。
 
 - **enable_ohos_test_xts_acts_use_samgr_lite_broadcast**：兼容性测试相关，控制测试用例是否依赖SAMGR Lite的广播能力。需与`enable_ohos_systemabilitymgr_samgr_lite_broadcast`配合使用。
 
@@ -288,6 +287,156 @@ hb build --gn-args hctest_rodata_opt=true xts_overlay=true hctest_task_stack_siz
   },
  ```
 
+#### 2. 链接脚本配置
+
+参考hi3861与hi3863的minimal产品
+添加配置
+"ohos_stack_protector=strong",
+"ohos_mem_opt_extra=true"
+- 3861：
+  - vendor/hisilicon/hispark_pegasus_minimal/config.json
+  - product_wifiiot_hispark_pegasus_minimal的features
+- 3863：
+  - vendor/hihope/nearlink_dk_3863_xts_minimal/config.json
+  - product_nearlink_dk_3863_xts_minimal的features
+
+#### 3. 链接脚本适配
+
+当开启HCTEST的hctest_rodata_opt或xts_overlay时，需在板侧链接脚本中完成对应的段布局适配。本节给出与板无关的适配契约、两种典型构建系统的差异、链接脚本逐处改法及约束。参考实现为hi3861（scons/make，模板build/link/link.ld.S）与hi3863/ws63（cmake，模板`drivers/boards/.../linker.prelds）两份补丁，目标板可参照构建系统相近的一份适配。
+
+##### 1. 适配契约：flag 传递链
+
+所有板侧都必须复刻如下传递链，确保开关从GN构建参数一路到达链接脚本预处理器：
+
+```bash
+GN args: xts_overlay / hctest_rodata_opt            （由 hctest_opt_args.gni 的 declare_args() 声明）
+   │   BUILD.gn 将 args 序列化为构建脚本能读取的信道
+   ▼
+hm_build.sh: 读取 args → 变量名转译 + HCTEST_NEW_RUNNER 析取 → 写入/导出板侧配置
+   │
+   ▼
+链接脚本预处理器: 接收 -DXTS_OVERLAY_ENABLE / -DHCTEST_NEW_RUNNER
+   │   （cpp -P -E 预处理模板，生成最终 .lds）
+   ▼
+链接脚本模板: #if defined(...) 条件包含 OVERLAY 段 / .xts_init KEEP / .bss EXCLUDE_FILE
+ ```
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 全链路必须以#if defined(...)/if (... STREQUAL "true")/ifeq(...,y)门控。所有flag关闭时，预处理产出的链接脚本应与未适配构建逐字节一致，以保证对现有工程零回归。若任一段链路断裂，宏无法到达模板，#if defined()永不成立，会静默退化为"不开优化"状态——无报错但无收益，需特别排查。
+
+**表2** 两种构建系统的 flag 链形状
+
+| 链路段 | scons / make（参考 hi3861） | cmake（参考 hi3863/ws63） |
+| -------- | -------- | -------- |
+| GN → shell | BUILD.gn将arg作为hm_build.sh的位置参数传入（第3/4参数，值为xts_overlay/no_xts_overlay字面量） | BUILD.gn将arg拼入build_env字符串（XTS_OVERLAY_ARG=${xts_overlay}，值为true/false） |
+| shell → 预处理器 | hm_build.sh改写build/config/usr_config.mk，写入CONFIG_XTS_OVERLAY=y/CONFIG_HCTEST_NEW_RUNNER=y；由common_env.py的set_config(...,'link_scripts_flag',...)翻译为-D宏，config.mk以ifeq加入LINK_SCRIPTS_FLAG | hm_build.sh直接export XTS_OVERLAY_ENABLE=true；build_linker.cmake读取$ENV{...}加入LDS_DEFINES |
+| 预处理器 | scons以LINK_SCRIPTS_FLAG中的-D预处理link.ld.S | cmake以CMAKE_C_COMPILER -P -E+LDS_DEFINES预处理linker.prelds |
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> 变量名转译与析取合并是hm_build.sh的职责（GN侧无法表达跨两个arg的析取）。HCTEST_NEW_RUNNER不单独对应一个GN arg，而是xts_overlay OR hctest_rodata_opt的运行时副作用合并，须在shell中以||表达。
+
+##### 2. 链接脚本逐处适配
+
+###### 1. rodata优化：.xts_init KEEP块（门控HCTEST_NEW_RUNNER）
+
+插入位置：.rodata段内，紧跟现有*(.rodata*)之后、段尾对齐符号之前。
+
+```bash
+#if defined(HCTEST_NEW_RUNNER)
+        . = ALIGN(4);
+        xts_init_<Module>_start = .;
+        KEEP(*(.xts_init.<Module>))
+        xts_init_<Module>_stop = .;
+        /* 对每个 XTS 模块重复上述三行 */
+#endif  /* HCTEST_NEW_RUNNER */
+```
+
+适配要求：
+ - 模块名契约（硬约束）：<Module>及xts_init_<Module>_start/stop符号名必须与共享hctest.c中的XTS_MODULE_LINKER_SYMS列表逐字一致。符号名错一个即导致该模块注册失败、运行时找不到入口。适配前请先读取hctest.c取得实际列表，勿直接照抄参考补丁。
+ - 建议列全量模块：参考补丁列出12个模块（ActsBootstrapTest/ActsDfxFuncTest/ActsHieventLiteTest/ActsParameterTest/ActsSamgrTest/ActsKvStoreTest/ActsLwipTest/ActsHuksHalFunctionTest/ActsDeviceAttestTest/ActsUpdaterFuncTest/ActsWifiIotTest/ActsUtilsFileTest）。未实际编译的模块其.xts_init.<Module>段为空，KEEP空段无害；列出全量可避免将来扩展acts时反复改脚本。
+ - 必须置于.rodata（Flash/XIP只读区）：函数指针运行时只读，放Flash可节省RAM，由XIP直接读取。切勿放.data。
+ - KEEP不可省略：否则--gc-sections会将未被静态引用的指针表作为未引用段回收，运行时_stop - _start == 0，全部模块注册失败。
+ - 整段以#if defined(HCTEST_NEW_RUNNER)包裹：关闭时不产生任何符号与段，保证预处理产物与原构建一致。
+
+###### 2. bss overlay：.bss段 EXCLUDE_FILE（门控XTS_OVERLAY_ENABLE）
+
+插入位置：主.bss段内，替换原有*(.bss) *(.bss*)。
+
+scons/make写法（带SORT）：
+```bash
+#if defined(XTS_OVERLAY_ENABLE)
+        SORT(*)(EXCLUDE_FILE(*libmodule_ActsDfxFuncTest.a *libmodule_ActsHieventLiteTest.a *libmodule_ActsBootstrapTest.a *libmodule_ActsParameterTest.a *libmodule_ActsSamgrTest.a) .bss*)
+#else
+        SORT(*)(.bss*)
+#endif
+```
+
+cmake写法（.bss与.bss*分列，EXCLUDE_FILE各自重复）：
+```bash
+#if defined(XTS_OVERLAY_ENABLE)
+        *(EXCLUDE_FILE(*libmodule_ActsDfxFuncTest.a *libmodule_ActsHieventLiteTest.a *libmodule_ActsBootstrapTest.a *libmodule_ActsParameterTest.a *libmodule_ActsSamgrTest.a) .bss)
+        *(EXCLUDE_FILE(*libmodule_ActsDfxFuncTest.a *libmodule_ActsHieventLiteTest.a *libmodule_ActsBootstrapTest.a *libmodule_ActsParameterTest.a *libmodule_ActsSamgrTest.a) .bss*)
+#else
+        *(.bss)
+        *(.bss*)
+#endif
+```
+
+适配要求：
+
+ - 被排除的模块集 = 实际同时链接进固件的minimal集：参考补丁使用5个模块（ActsDfxFuncTest/ActsHieventLiteTest/ActsBootstrapTest/ActsParameterTest/ActsSamgrTest）。若目标板minimal集不同，EXCLUDE_FILE、OVERLAY子段、ASSERT三处的模块列表必须同步修改并保持一致，三者不一致将导致链接错乱。
+ - .sbss*与COMMON必须保留在主.bss（架构硬约束）：.sbss为RISC-V gp相对寻址小数据段，必须位于_gp_（在.data中设置）附近；移入OVERLAY将破坏gp寻址语义，导致链接失败或运行时访问错误地址。COMMON在-fno-common下为空，保留原位为无害占位。若目标板无gp寻址机制，该约束可放宽，但默认保留原位最为安全。
+ - EXCLUDE_FILE文件匹配：*libmodule_<Module>.a匹配该模块静态库的全部.bss*。注意不同构建系统下EXCLUDE_FILE的写法差异，请沿用目标板已有的EXCLUDE_FILE风格。
+ - #else分支必须保留原*(.bss) *(.bss*)：关闭时与原脚本一致。
+
+###### 3. bss overlay：OVERLAY段（门控XTS_OVERLAY_ENABLE）
+
+插入位置：主.bss段结束之后、.heap之前（参考补丁置于_end = .;/__bss_size__定义之后）。
+
+```bash
+#if defined(XTS_OVERLAY_ENABLE)
+      xts_overlay_start = .;
+      OVERLAY . :
+      {
+          .xts_bss_<M1> { *libmodule_<M1>.a:*(.bss*) }
+          .xts_bss_<M2> { *libmodule_<M2>.a:*(.bss*) }
+          /* ... */
+          .xts_bss_<M_last> { *libmodule_<M_last>.a:*(.bss*) }   /* .bss 最大的模块必须排在最后 */
+      } > <RAM 或 SRAM，须与主 .bss 同区>
+      xts_overlay_end = .;
+      ASSERT(xts_overlay_end - xts_overlay_start >= SIZEOF(.xts_bss_<M1>), "XTS overlay error: <M1> > last module, reorder OVERLAY block")
+      /* 对每个模块重复 ASSERT */
+#endif  /* XTS_OVERLAY_ENABLE */
+```
+
+适配要求：
+ - GNU ld OVERLAY语义：块内子段共享同一VMA，LMA依次排列；区域大小等于最后一个列出子段的大小（非各子段之和，亦非最大值）。
+ - 最大模块必须排在末尾（锚定）：因区域大小取最后一个子段，必须将.bss最大的模块置于OVERLAY列表末尾，否则该模块运行时被截断、丢失数据。ASSERT为编译期安全网：若某模块.bss大于区域（即大于最后一个子段），ASSERT失败并提示重排。
+ - xts_overlay_start/xts_overlay_end为运行时契约符号：hctest.c须以extern声明并在切换模块前清零[start, end)区间，使下一模块获得零初始化的.bss（C静态变量零初始化语义）。符号名不可更改。
+ - > <区>必须与主.bss同区：VMA重叠合法的前提。区名按目标板memory region定义填写（参考板为RAM/SRAM）。
+ - 仅适用于顺序执行的模块：XTS一次仅运行一个模块，共享.bss安全。不得对会并发执行的模块使用overlay。
+ - 整段以#if defined包裹（含ASSERT）：关闭时不产生该段。
+
+**表3** 内存区名对照
+
+| 项 | hi3861 | hi3863/ws63 |
+| -------- | -------- | -------- |
+| .xts_init所在只读段 | .rodata，Flash（NON_ROM_TEXT_REGION） | .rodata/flashtext，PROGRAM（Flash，XIP） |
+| OVERLAY区所在内存区 | > RAM | > SRAM |
+| 主.bss所在区 | RAM | SRAM |
+
+KEEP块须落在真正Flash/XIP只读区；OVERLAY须落在.bss所在可读写RAM区且与主.bss同区。
+
+适配步骤
+
+> 1. 读取hctest.c取得XTS_MODULE_LINKER_SYMS实际列表，确定.xts_init KEEP块的模块与符号命名。
+> 2. 确定minimal实编模块集，确定EXCLUDE_FILE/OVERLAY/ASSERT三处列出的模块（三处须一致）。
+> 3. 识别构建系统，按表2对应列复刻flag链三段（GN → shell → 预处理器）。
+> 4. 定位链接脚本模板与.rodata/.bss/内存区名，按上文修改链接脚本。
+> 5. 测量各模块.bss大小（map文件或size工具），将最大模块排到OVERLAY末尾，确保ASSERT编译期通过。
+> 6. 关闭flag验证零回归：不开启flag完整编译，比对预处理产物（linker.lds/预处理后.lds）与未适配构建一致。
+> 7. 开启flag实编译并烧录全量验证，按下文约束逐项确认。
+
 ---
 
 ## 三方库
@@ -320,12 +469,12 @@ hb build --gn-args hctest_rodata_opt=true xts_overlay=true hctest_task_stack_siz
     - --gn-args mbedtls_feature_x509=true
     - --gn-args mbedtls_feature_ssl_tls12=true
     - --gn-args mbedtls_feature_ssl_misc=true
-    - ws63的minimal产品并未使用到mbedtls
+    - ws63的minimal产品暂不使用mbedtls
 
 #### 3. 注意事项
 
 算法间存在依赖关系，违反时编译失败；
-若要在产品文件中通过配置的方式开启，需将对应的feature声明在bundle.json的features中。
+若要在产品的bundle.json文件中通过配置的方式开启，需将对应的feature声明在bundle.json的features中。
 
 ---
 
