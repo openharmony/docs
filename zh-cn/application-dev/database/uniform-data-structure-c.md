@@ -34,7 +34,7 @@
 | int OH_UdsFileUri_SetFileUri(OH_UdsFileUri* pThis, const char* fileUri)                 | 设置文件Uri类型对象的Uri信息 |
 | int OH_UdsFileUri_SetFileType(OH_UdsFileUri* pThis, const char* fileType)               | 设置文件Uri类型对象的文件类型 |
 | int OH_UdmfRecord_AddFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri)              | 增加文件Uri类型数据至统一数据记录中 |
-| int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData,char* key, unsigned int keyLen) | 从统一数据管理框架数据库中写入统一数据对象数据 |
+| int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData,char* key, unsigned int keyLen) | 向统一数据管理框架数据库中写入统一数据对象数据 |
 | void OH_UdsPlainText_Destroy(OH_UdsPlainText* pThis)                                    | 销毁纯文本类型数据指针指向的实例对象 |
 | void OH_UdmfData_Destroy(OH_UdmfData* pThis)                                            | 销毁统一数据对象指针指向的实例对象 |
 | void OH_UdsFileUri_Destroy(OH_UdsFileUri* pThis)                                        | 销毁文件Uri类型的实例对象 |

@@ -880,7 +880,7 @@ int32_t OH_ArkUI_DragEvent_StartDataLoading(ArkUI_DragEvent* event, OH_UdmfGetDa
 | -- | -- |
 | [ArkUI_DragEvent](capi-arkui-nativemodule-arkui-dragevent.md)* event | ArkUI_DragEvent事件指针。 |
 | [OH_UdmfGetDataParams](../apis-arkdata/capi-udmf-oh-udmfgetdataparams.md)* options | 数据获取参数指针，用于配置本次拖拽数据同步时的数据请求选项。 |
-| char* key | 返回数据设置成功之后的key值，用于接收key值的字符数组长度不小于[UDMF_KEY_BUFFER_LEN](../apis-arkdata/capi-udmf-h.md#udmf_key_buffer_len)。 |
+| char* key | 返回数据设置成功之后的key值，用于接收key值的字符数组长度不小于[UDMF_KEY_BUFFER_LEN](../apis-arkdata/capi-udmf-h.md#宏定义)。 |
 | unsigned int keyLen | 表示key字符串的长度。 |
 
 **返回：**

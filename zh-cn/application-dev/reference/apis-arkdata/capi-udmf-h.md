@@ -46,11 +46,16 @@
 | [Udmf_ProgressIndicator](#udmf_progressindicator) | Udmf_ProgressIndicator | 定义进度条指示选项，可选择是否采用系统默认进度显示。 |
 | [Udmf_Visibility](#udmf_visibility) | Udmf_Visibility | 定义数据的可见性等级。 |
 
+## 宏定义
+
+| 名称 | 描述 |
+| -- | -- |
+| UDMF_KEY_BUFFER_LEN (512)  | 统一数据对象唯一标识符最小空间长度。<br>**起始版本：** 12 |
+
 ### 函数
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [UDMF_KEY_BUFFER_LEN (512)](#udmf_key_buffer_len) | - | 统一数据对象唯一标识符最小空间长度。 |
 | [typedef void (\*OH_Udmf_DataProgressListener)(OH_Udmf_ProgressInfo* progressInfo, OH_UdmfData* data)](#oh_udmf_dataprogresslistener) | OH_Udmf_DataProgressListener | 定义获取进度信息和数据的监听回调函数。<br>使用时需要判断数据是否返回空指针。只有当进度达到100%时，才会返回数据。 |
 | [OH_UdmfData* OH_UdmfData_Create()](#oh_udmfdata_create) | - | 创建统一数据对象[OH_UdmfData](capi-udmf-oh-udmfdata.md)指针及实例对象。当不再需要使用指针时，请使用[OH_UdmfData_Destroy](capi-udmf-h.md#oh_udmfdata_destroy)销毁实例对象，否则会导致内存泄漏。 |
 | [void OH_UdmfData_Destroy(OH_UdmfData* pThis)](#oh_udmfdata_destroy) | - | 销毁统一数据对象[OH_UdmfData](capi-udmf-oh-udmfdata.md)指针指向的实例对象。 |
@@ -110,8 +115,8 @@
 | [int OH_UdmfOptions_Reset(OH_UdmfOptions* pThis)](#oh_udmfoptions_reset) | - | 重置数据操作选项[OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)实例为空。 |
 | [int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfData* unifiedData)](#oh_udmf_getunifieddata) | - | 从统一数据管理框架数据库中获取统一数据对象[OH_UdmfData](capi-udmf-oh-udmfdata.md)数据。 |
 | [int OH_Udmf_GetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData** dataArray, unsigned int* dataSize)](#oh_udmf_getunifieddatabyoptions) | - | 通过数据通路类型从统一数据管理框架数据库中获取统一数据对象[OH_UdmfData](capi-udmf-oh-udmfdata.md)数据。 |
-| [int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData, char* key, unsigned int keyLen)](#oh_udmf_setunifieddata) | - | 从统一数据管理框架数据库中写入统一数据对象[OH_UdmfData](capi-udmf-oh-udmfdata.md)数据。 |
-| [int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData *unifiedData, char *key, unsigned int keyLen)](#oh_udmf_setunifieddatabyoptions) | - | 从统一数据管理框架数据库中写入统一数据对象[OH_UdmfData](capi-udmf-oh-udmfdata.md)数据。 |
+| [int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData, char* key, unsigned int keyLen)](#oh_udmf_setunifieddata) | - | 向统一数据管理框架数据库中写入统一数据对象[OH_UdmfData](capi-udmf-oh-udmfdata.md)数据。 |
+| [int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData *unifiedData, char *key, unsigned int keyLen)](#oh_udmf_setunifieddatabyoptions) | - | 向统一数据管理框架数据库中写入统一数据对象[OH_UdmfData](capi-udmf-oh-udmfdata.md)数据。 |
 | [int OH_Udmf_UpdateUnifiedData(OH_UdmfOptions* options, OH_UdmfData* unifiedData)](#oh_udmf_updateunifieddata) | - | 对统一数据管理框架数据库中的统一数据对象[OH_UdmfData](capi-udmf-oh-udmfdata.md)数据进行数据更改。 |
 | [int OH_Udmf_DeleteUnifiedData(OH_UdmfOptions* options, OH_UdmfData** dataArray, unsigned int* dataSize)](#oh_udmf_deleteunifieddata) | - | 删除统一数据管理框架数据库中的统一数据对象[OH_UdmfData](capi-udmf-oh-udmfdata.md)数据。 |
 | [void OH_Udmf_DestroyDataArray(OH_UdmfData** dataArray, unsigned int dataSize)](#oh_udmf_destroydataarray) | - | 销毁数据数组内存。 |
@@ -523,18 +528,6 @@ int OH_UdmfOptions_SetVisibility(OH_UdmfOptions* pThis, Udmf_Visibility visibili
 | -- | -- |
 | int | 返回执行结果。请参阅错误码定义[Udmf_ErrCode](capi-udmf-err-code-h.md#udmf_errcode)。<br> 若返回UDMF_E_OK，表示执行成功。<br> 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。 |
 
-### UDMF_KEY_BUFFER_LEN()
-
-```c
-UDMF_KEY_BUFFER_LEN (512)
-```
-
-**描述**
-
-统一数据对象唯一标识符最小空间长度。
-
-**起始版本：** 12
-
 ### OH_Udmf_DataProgressListener()
 
 ```c
@@ -854,7 +847,7 @@ void OH_UdmfRecord_Destroy(OH_UdmfRecord* pThis)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_UdmfRecord](capi-udmf-oh-udmfrecord.md)* pThis | 表示指向统一数据对象[OH_UdmfRecord](capi-udmf-oh-udmfrecord.md)实例的指针。 |
+| [OH_UdmfRecord](capi-udmf-oh-udmfrecord.md)* pThis | 表示指向统一数据记录[OH_UdmfRecord](capi-udmf-oh-udmfrecord.md)实例的指针。 |
 
 ### OH_UdmfRecord_AddGeneralEntry()
 
@@ -2016,7 +2009,7 @@ int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData, c
 
 **描述**
 
-从统一数据管理框架数据库中写入统一数据对象[OH_UdmfData](capi-udmf-oh-udmfdata.md)数据。
+向统一数据管理框架数据库中写入统一数据对象[OH_UdmfData](capi-udmf-oh-udmfdata.md)数据。
 
 **起始版本：** 12
 
@@ -2044,7 +2037,7 @@ int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData *unifie
 
 **描述**
 
-从统一数据管理框架数据库中写入统一数据对象[OH_UdmfData](capi-udmf-oh-udmfdata.md)数据。
+向统一数据管理框架数据库中写入统一数据对象[OH_UdmfData](capi-udmf-oh-udmfdata.md)数据。
 
 **起始版本：** 20
 
@@ -2055,7 +2048,7 @@ int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData *unifie
 | -- | -- |
 | [OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)* options | 指向数据操作选项[OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)实例的指针。 |
 | [OH_UdmfData](capi-udmf-oh-udmfdata.md) *unifiedData | 指向统一数据对象[OH_UdmfData](capi-udmf-oh-udmfdata.md)实例的指针。 |
-| char *key | 成功将数据设置到数据库后对应数据的唯一标识符，内存大小不小于[UDMF_KEY_BUFFER_LEN](#udmf_key_buffer_len)。 |
+| char *key | 成功将数据设置到数据库后对应数据的唯一标识符，内存大小不小于[UDMF_KEY_BUFFER_LEN](#宏定义)。 |
 | unsigned int keyLen | 唯一标识符参数的空间大小。 |
 
 **返回：**
@@ -2207,7 +2200,7 @@ OH_UdmfGetDataParams* OH_UdmfGetDataParams_Create()
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)* | 执行成功则返回一个指向属性[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)实例对象的指针，否则返回nullptr。 |
+| [OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)* | 执行成功则返回一个指向[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)实例对象的指针，否则返回nullptr。 |
 
 ### OH_UdmfGetDataParams_Destroy()
 
