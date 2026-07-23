@@ -33,14 +33,14 @@ vendor
 
 ```json5
 {
-     "product_name": "wifi_demo",          //产品名	 
-     "type": "mini",                       //系统类型: mini	 
-     "version": "3.0",                     //系统版本: 3.0	 
-     "device_company": "lango",            //单板厂商：lango	 
-     "board": "dev_wifi_a",                //单板名：dev_wifi_a	 
-     "kernel_type": "liteos_m",            //内核类型：liteos_m	 
-     "kernel_version": "3.0.0",            //内核版本：3.0.0	 
-     "subsystems": []                      //子系统
+     "product_name": "wifi_demo",          // 产品名	 
+     "type": "mini",                       // 系统类型: mini	 
+     "version": "3.0",                     // 系统版本: 3.0	 
+     "device_company": "lango",            // 单板厂商：lango	 
+     "board": "dev_wifi_a",                // 单板名：dev_wifi_a	 
+     "kernel_type": "liteos_m",            // 内核类型：liteos_m	 
+     "kernel_version": "3.0.0",            // 内核版本：3.0.0	 
+     "subsystems": []                      // 子系统
 }
 ```
 这里的device_company和board用于关联出//device/board/<device_company>/\<board\>目录。
@@ -233,11 +233,11 @@ LOSCFG_SOC_ASR5822S=y
 5. 为了组织一些产品侧的应用，本方案在vendor相应的config.json加入了相应的list来组织，以`//vendor/asrmicro/wifi_demo/config.json`为例，在config.json增加对应的list：
 
    ```json5
-   "tests_list": [            //demo list
+   "tests_list": [            // demo list
      {
-       "enable": "true",      //list开关
+       "enable": "true",      // list开关
        "test_modules": [
-         "example",           //OS基础demo
+         "example",           // OS基础demo
          "wifi_test"          // Wi-Fi demo
        ]
      }

@@ -46,16 +46,16 @@ vendor
 1. 在`vendor/bestechnic/display_demo`目录下新增`config.json`文件，用于描述这个产品样例所使用的单板、内核等信息，描述信息可参考如下内容：
 
     ```json5 
-    {	 
-       "product_name": "display_demo",       //用于hb set进行选择时，显示的产品名称。	 
-       "type": "mini",                       //构建系统的类型，mini/small/standard。	 
-       "version": "3.0",                     //构建系统的版本，1.0/2.0/3.0。	 
-       "device_company": "fnlink",           //单板厂商名，用于编译时找到/device/board/fnlink目录。	 
-       "board": "v200zr",                    //单板名，用于编译时找到/device/board/fnlink/v200zr目录。	 
-       "kernel_type": "liteos_m",            //内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译。	 
-       "kernel_version": "3.0.0",            //内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译。	 
-       "subsystems": [ ]                     //选择所需要编译构建的子系统。	 
-    }	 
+    {
+      "product_name": "display_demo",       // 用于hb set进行选择时，显示的产品名称。
+      "type": "mini",                       // 构建系统的类型，mini/small/standard。
+      "version": "3.0",                     // 构建系统的版本，1.0/2.0/3.0。
+      "device_company": "fnlink",           // 单板厂商名，用于编译时找到/device/board/fnlink目录。
+      "board": "v200zr",                    // 单板名，用于编译时找到/device/board/fnlink/v200zr目录。
+      "kernel_type": "liteos_m",            // 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译。
+      "kernel_version": "3.0.0",            // 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译。
+      "subsystems": [ ]                     // 选择所需要编译构建的子系统。
+    }
     ```
 
 2. 在`device/board/fnlink/v200zr/liteos_m`目录下新增`config.gni`文件，用于描述这个产品样例所使用的单板、内核等信息，描述信息可参考如下内容：
@@ -648,11 +648,11 @@ static int32_t PanelDriverInit(struct HdfDeviceObject *object)
 ```json5
     {
       "component": "wifi_lite",
-//……
+// ……
       "targets": [
-        "//foundation/communication/wifi_lite:wifi" 		 //wifi_lite的编译目标
+      "//foundation/communication/wifi_lite:wifi"     //wifi_lite的编译目标
       ],
-//……
+// ……
     }
 
 ```
@@ -925,10 +925,10 @@ APP_FEATURE_INIT(WifiDHCPRpcServerCB);
   "subsystem": "startup",
   "components": [
     {
-      "component": "bootstrap_lite"		 //bootstrap_lite 部件
+      "component": "bootstrap_lite"     // bootstrap_lite 部件
     },
     {
-      "component": "syspara_lite",		 //syspara_lite 部件
+      "component": "syspara_lite",     // syspara_lite 部件
       "features": [
         "enable_ohos_startup_syspara_lite_use_posix_file_api = true"
       ]
@@ -1027,7 +1027,7 @@ APP_FEATURE_INIT(WifiDHCPRpcServerCB);
 
 ​    如在 `vendor/bestechnic/display_demo/config.json` 中配置了`bootstrap_lite` 部件。
 
-```json
+```json5
     {
       "subsystem": "startup",
       "components": [
@@ -1078,7 +1078,7 @@ static_library("bootstrap") {
       "burn_name": "rtos_main",
       "enable": "true",
       "force_link_libs": [
-        "bootstrap"	 //强制链接libbootstrap.a
+        "bootstrap"     // 强制链接libbootstrap.a
        // ...
       ]
     }
@@ -1391,7 +1391,7 @@ APP_FEATURE_INIT(AppEntry);
         {
           "component": "aafwk_lite",
           "features": [
-            "ability_lite_enable_ohos_appexecfwk_feature_ability = true",  //支持FA特性，即包含图形能力
+            "ability_lite_enable_ohos_appexecfwk_feature_ability = true",  // 支持FA特性，即包含图形能力
             "ability_lite_config_ohos_aafwk_ams_task_size = 4096"   // 配置aafwk栈的大小
           ]
         }

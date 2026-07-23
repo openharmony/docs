@@ -31,12 +31,12 @@ vendor
 以vendor/chipsea/iotlink_demo为例，这里描述了产品使用的内核、单板、子系统等信息。其中，内核、单板型号、单板厂商需要提前规划好，也是预编译指令所关注的信息。这里填入的信息与规划的目录相对应。例如：
 ```json5
 {
-   "product_name": "iotlink_demo",        // 产品名	 
-   "version": "3.0",                      // 系统版本：3.0	 
-   "device_company": "chipsea",           // 单板厂商：chipsea	 
-   "board": "cst85_wblink",               // 单板名：cst85_wblink	 
-   "kernel_type": "liteos_m",             // 内核类型：liteos_m	 
-   "kernel_version": "3.0.0",             // 内核版本：3.0.0	 
+   "product_name": "iotlink_demo",        // 产品名
+   "version": "3.0",                      // 系统版本：3.0
+   "device_company": "chipsea",           // 单板厂商：chipsea
+   "board": "cst85_wblink",               // 单板名：cst85_wblink
+   "kernel_type": "liteos_m",             // 内核类型：liteos_m
+   "kernel_version": "3.0.0",             // 内核版本：3.0.0
    "subsystems": []                       // 子系统
 }
 ```
@@ -453,22 +453,22 @@ board_ld_flags += [
 
 3. 在`//device/soc/chipsea/cst85/liteos_m/components/hdf_config/device_info.hcs`添加gpio硬件描述信息文件gpio.hcs, 映射后的gpio0控制板卡上的可编程LED，hcs内容如下：
 
-   ```hcs
+   ```text
    root {
-       platform :: host {
-            hostName = "platform_host";
-            priority = 50;
-            device_gpio :: device {
-                gpio0 :: deviceNode {
-                    policy = 0;
-                    priority = 100;
-                    moduleName = "HDF_PLATFORM_GPIO";
-                    serviceName = "HDF_PLATFORM_GPIO";
-                    deviceMatchAttr = "gpio_config";
-            }
+    platform :: host {
+      hostName = "platform_host";
+      priority = 50;
+      device_gpio :: device {
+        gpio0 :: deviceNode {
+          policy = 0;
+          priority = 100;
+          moduleName = "HDF_PLATFORM_GPIO";
+          serviceName = "HDF_PLATFORM_GPIO";
+          deviceMatchAttr = "gpio_config";
+          }
        }
     }
-  }
+   }
    ```
 
 
@@ -556,7 +556,7 @@ kernel子系统，我们需要配置跟wifi密切相关的lwip组件，使用社
         {
           "component": "liteos_m",
           "features": [
-             "ohos_kernel_liteos_m_lwip_path = \"//device/soc/chipsea/cst85/liteos_m/sdk/modules/lwip-2.1\""    //  指定在芯片厂商目录中进行适配
+             "ohos_kernel_liteos_m_lwip_path = \"//device/soc/chipsea/cst85/liteos_m/sdk/modules/lwip-2.1\""    // 指定在芯片厂商目录中进行适配
           ]
         }
       ]
