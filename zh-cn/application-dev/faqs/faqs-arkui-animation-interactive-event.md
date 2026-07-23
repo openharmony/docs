@@ -149,7 +149,7 @@ struct Index {
 
 **解决措施**
 
-可以使用pageTransition函数来实现页面转场效果，通过PageTransitionEnter和PageTransitionExit指定页面进入和退出的动画效果，将其slide属性设置为SlideEffect.Bottom，则页面入场时从下边划入，出场时滑出到下边，即可实现上下切换效果。
+可以使用pageTransition函数来实现页面转场效果，通过PageTransitionEnter和PageTransitionExit指定页面进入和退出的动画效果，将其slide属性设置为SlideEffect.Bottom，则页面入场时从下边滑入，出场时滑出到下边，即可实现上下切换效果。
 
 **代码示例**
 <!--deprecated_code_no_check-->

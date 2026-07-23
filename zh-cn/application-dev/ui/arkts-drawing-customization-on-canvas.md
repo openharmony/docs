@@ -869,7 +869,7 @@ export interface Position {
 
 - [分布式五子棋（ArkTS）（Full SDK）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/DistributedDataGobang)
 
-- [ArkTS时钟（ArkTS）(API9)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/ArkTSClock)
+- [ArkTS时钟（ArkTS）（API9）](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/ArkTSClock)
 
 - [Lottie动画](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Lottie)
 

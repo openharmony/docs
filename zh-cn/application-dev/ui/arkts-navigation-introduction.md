@@ -29,7 +29,7 @@
 
 5. 基于组件属性动效和共享元素动效能力，将页面切换动效转换为组件属性动效实现，提供更加丰富和灵活的切换动效；
 
-6. 开放了页面栈对象，开发者可以继承，能更好的管理页面显示。
+6. 开放了页面栈对象，开发者可以继承，能更好地管理页面显示。
 
 ## 能力对比
 
@@ -57,7 +57,7 @@
 | geometryTransition共享元素动画                | 支持（NavDestination之间共享）。        | 不支持                                 |
 | 页面生命周期监听                              | [UIObserver.on('navDestinationUpdate')](../reference/apis-arkui/arkts-apis-uicontext-uiobserver.md#onnavdestinationupdate11) | [UIObserver.on('routerPageUpdate')](../reference/apis-arkui/arkts-apis-uicontext-uiobserver.md#onrouterpageupdate11)     |
 | 获取页面栈对象                                | 支持                                  | 不支持                                 |
-| 路由拦截                                      | 支持通过[setInterception](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#setinterception12)做路由拦截 。      | 不支持                                 |
+| 路由拦截                                      | 支持通过[setInterception](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#setinterception12)做路由拦截。      | 不支持                                 |
 | 路由栈信息查询                                | 支持                                  | [getState()](../reference/apis-arkui/arkts-apis-uicontext-router.md#getstate)|
 | 路由栈move操作                                | [moveToTop](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#movetotop10)   & [moveIndexToTop](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#moveindextotop10)             | 不支持                                 |
 | 沉浸式页面                                    | 支持                                  | 不支持，需通过window配置。               |
