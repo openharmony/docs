@@ -244,7 +244,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
    orsource "../../device/soc/*/Kconfig.liteos_m.soc"
    ```
 
-3. 在`device/board/hihope`下创建相应的的`Kconfig`文件：
+3. 在`device/board/hihope`下创建相应的`Kconfig`文件：
 
    ```text
    ├──  neptune100                                  --- neptune100单板配置目录
@@ -278,7 +278,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
      用于添加 BOARD_NEPTUNE100默认配置。
 
-5. 在`device/soc/winnermicro`下创建相应的的`Kconfig`文件：
+5. 在`device/soc/winnermicro`下创建相应的`Kconfig`文件：
 
    ```text
    ├── wm800                                        --- W800系列
