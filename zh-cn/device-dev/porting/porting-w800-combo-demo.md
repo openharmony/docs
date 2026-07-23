@@ -36,18 +36,80 @@
 
 `vendor/hihope/neptune_iotlink_demo/config.json`文件下，描述了产品使用的内核、单板、子系统等信息。其中，内核、单板型号、单板厂商需提前规划好，是预编译指令`hb set`关注的。例如：
 
-   ```json
+   ```json5
    {
-      "product_name": "neptune_iotlink_demo",
-      "ohos_version": "OpenHarmony 7.0",
-      "type":"mini",
-      "version": "3.0",
-      "device_company": "hihope",
-      "device_build_path": "device/board/hihope/neptune100",
-      "board": "neptune100",
-      "kernel_type": "liteos_m",
-      "kernel_version": "3.0.0",
-      "subsystems": [],
+      "product_name": "neptune_iotlink_demo",                // 产品名称
+      "ohos_version": "OpenHarmony 3.1",                     // 使用的OS版本
+      "type":"mini",                                         // 系统类型：mini
+      "version": "3.0",                                      // 系统版本：3.0
+      "device_company": "hihope",                            // 单板厂商：hihope
+      "board": "neptune100",                                 // 单板名：neptune100
+      "kernel_type": "liteos_m",                             // 内核类型：liteos_m
+      "kernel_version": "3.0.0",                             // 内核版本：3.0.0
+      "subsystems": [                                        // 子系统
+      {
+      "subsystem": "kernel",
+      "components": [
+          { "component": "liteos_m", "features": [] }
+        ]
+      },
+      {
+        "subsystem": "startup",
+        "components": [
+          { "component": "bootstrap_lite", "features":[] },
+          {
+            "component": "init_lite",
+            "features": [
+              "enable_ohos_startup_init_feature_begetctl_liteos = true",
+              "enable_ohos_startup_init_lite_use_posix_file_api = true",
+              "config_ohos_startup_init_lite_data_path = \"/data/\""
+            ]
+          }
+        ]
+      },
+      {
+        "subsystem": "hiviewdfx",
+        "components": [
+          { "component": "hilog_lite", "features":[] },
+          { "component": "hievent_lite", "features":[] }
+        ]
+      },
+      {
+        "subsystem": "systemabilitymgr",
+        "components": [
+          { "component": "samgr_lite", "features":[] }
+        ]
+      },
+        {
+          "subsystem": "communication",
+          "components": [
+            {
+              "component": "wifi_lite",
+              "optional": "true"
+            }
+          ]
+        },
+      {
+        "subsystem": "commonlibrary",
+        "components": [
+          { "component": "utils_lite", "features":[ "utils_lite_feature_file = true" ] }
+        ]
+      },
+        {
+          "subsystem": "xts",
+          "components": [
+            { 
+              "component": "acts",
+              "features":
+              [
+                "config_ohos_xts_acts_utils_lite_kv_store_data_path = \"/data\"",
+                "enable_ohos_test_xts_acts_use_thirdparty_lwip = true"
+              ]
+            },
+            { "component": "tools", "features":[] }
+          ]
+        }
+      ],
       "third_party_dir": "//third_party",
       "product_adapter_dir": "//vendor/hihope/neptune_iotlink_demo/hals"
    }
@@ -356,12 +418,12 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
 5. 为了组织一些产品侧的应用，需要强制链接到产品工程中来，本方案在vendor相应的`config.json`加入了相应的list来组织，在`vendor/hihope/neptune_iotlink_demo/config.json`增加对应的list：
 
-   ```json
+   ```json5
     {
-      "bin_list": [
+      "bin_list": [                            // demo list
         {
           "elf_name": "hihope",
-          "enable": "true",
+          "enable": "true",                    // list开关
           "force_link_libs": [
             "bootstrap",
             "broadcast",
@@ -615,11 +677,11 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
 
 `wifi_lite`部件在 `build/lite/components/communication.json`文件中，描述如下：
 
-   ```json
+   ```json5
    {
      "component": "wifi_lite",
      "targets": [
-       "//foundation/communication/wifi_lite:wifi"
+       "//foundation/communication/wifi_lite:wifi"    // wifi_lite的编译目标
      ]
    }
    ```
