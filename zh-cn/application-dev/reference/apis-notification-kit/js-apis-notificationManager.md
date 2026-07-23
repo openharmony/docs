@@ -499,7 +499,7 @@ getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 
 | 参数名     | 类型                              | 必填 | 说明                                                        |
 | -------- | --------------------------------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype)                          | 是   | 通知渠道类型，例如社交通讯、服务提醒、内容咨询等类型。 |
+| slotType | [SlotType](#slottype)                          | 是   | 通知渠道类型，例如社交通信、服务提醒、内容咨询等类型。 |
 | callback | AsyncCallback\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 是   | 回调函数。当获取通知渠道成功，err为undefined，data为获取到的`NotificationSlot`，否则为错误对象。                                        |
 
 **错误码：**
@@ -544,7 +544,7 @@ getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 
 | 参数名     | 类型     | 必填 | 说明                                                        |
 | -------- | -------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype) | 是   | 通知渠道类型，例如社交通讯、服务提醒、内容咨询等类型。 |
+| slotType | [SlotType](#slottype) | 是   | 通知渠道类型，例如社交通信、服务提醒、内容咨询等类型。 |
 
 **返回值：**
 
@@ -672,7 +672,7 @@ removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                                                        |
 | -------- | --------------------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype)              | 是   | 通知渠道类型，例如社交通讯、服务提醒、内容咨询等类型。需传入已创建的渠道类型，否则删除操作无效。 |
+| slotType | [SlotType](#slottype)              | 是   | 通知渠道类型，例如社交通信、服务提醒、内容咨询等类型。需传入已创建的渠道类型，否则删除操作无效。 |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。当删除指定类型的通知渠道成功，err为undefined，否则为错误对象。                                        |
 
 **错误码：**
@@ -717,7 +717,7 @@ removeSlot(slotType: SlotType): Promise\<void\>
 
 | 参数名     | 类型     | 必填 | 说明                                                        |
 | -------- | -------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype) | 是   | 通知渠道类型，例如社交通讯、服务提醒、内容咨询等类型。需传入已创建的渠道类型，否则删除操作无效。 |
+| slotType | [SlotType](#slottype) | 是   | 通知渠道类型，例如社交通信、服务提醒、内容咨询等类型。需传入已创建的渠道类型，否则删除操作无效。 |
 
 **返回值：**
 

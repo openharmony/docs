@@ -673,7 +673,7 @@ if (wakeupManager != null) {
 
 clearUserData(): Promise&lt;void&gt;
 
-清楚用户数据，使用Promise异步回调。
+清除用户数据，使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -854,7 +854,7 @@ if (wakeupManager != null) {
 | 名称   | 类型                            | 只读 | 可选 | 说明       |
 | ------ | ----------------------------- |----|----| ---------- |
 | bundleName | string | 否  | 否  | 唤醒应用的bundleName。 |
-| abilityName | string | 否  | 否  | 唤醒应用的ailityName。 |
+| abilityName | string | 否  | 否  | 唤醒应用的abilityName。 |
 
 ## WakeupIntelligentVoiceEventType
 
@@ -2025,7 +2025,7 @@ if (wakeupIntelligentVoiceEngine != null) {
 
 setWakeupHapInfo(info: WakeupHapInfo): Promise\<void\>
 
-设置唤醒应用的hap信息，使用promise异步回调。
+设置唤醒应用的hap信息，使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
@@ -2617,7 +2617,7 @@ on(type: 'wakeupIntelligentVoiceEvent', callback: Callback\<WakeupIntelligentVoi
 
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| type     | string          | 是   | 唤醒智能语音事件，固定取为'wakeupIntelligentVoiceEvent'，表示智能语音唤醒事件。 |
+| type     | string          | 是   | 唤醒智能语音事件，固定值取为'wakeupIntelligentVoiceEvent'，表示智能语音唤醒事件。 |
 | callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceenginecallbackinfo)\>                           | 是   | 收到唤醒事件的对应处理。 |
 
 **错误码：**
@@ -2655,7 +2655,7 @@ off(type: 'wakeupIntelligentVoiceEvent', callback?: Callback\<WakeupIntelligentV
 
 | 参数名     | 类型                              | 必填 | 说明                                          |
 | -------- | -------------------------------- | --- | ------------------------------------------- |
-| type     |string           | 是   | 唤醒智能语音事件，固定取为'wakeupIntelligentVoiceEvent'。 |
+| type     |string           | 是   | 唤醒智能语音事件，固定值取为'wakeupIntelligentVoiceEvent'。 |
 | callback     | Callback\<[WakeupIntelligentVoiceEngineCallbackInfo](#wakeupintelligentvoiceenginecallbackinfo)\>                           | 否   | 收到唤醒事件的对应处理。无参数，则取消所有的订阅，否则，取消对应的订阅 |
 
 **错误码：**

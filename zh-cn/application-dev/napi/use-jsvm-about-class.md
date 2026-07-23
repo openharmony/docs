@@ -27,7 +27,7 @@
 | OH_JSVM_Wrap           | 在JavaScript对象中封装原生实例。稍后可以使用OH_JSVM_Unwrap()解包原生实例。|
 | OH_JSVM_Unwrap         | 解包先前封装在JavaScript对象中的原生实例。|
 | OH_JSVM_RemoveWrap     | 解包先前封装在JavaScript对象中的原生实例，并释放封装。|
-|OH_JSVM_DefineClassWithOptions | 定义一个具有给定类名、构造函数、属性和回调处理程序、父类的JavaScript类，并根据传入了DefineClassOptions来决定是否需要为所定义的Class设置属性代理、预留internal-field槽位、为class作为函数进行调用时设置函数回调。|
+|OH_JSVM_DefineClassWithOptions | 定义一个具有给定类名、构造函数、属性和回调处理程序、父类的JavaScript类，并根据传入的DefineClassOptions来决定是否需要为所定义的Class设置属性代理、预留internal-field槽位、为class作为函数进行调用时设置函数回调。|
 
 ## 使用示例
 
@@ -341,7 +341,7 @@ JSVM deref_item
 > 传入的父类class必须是通过OH_JSVM_DefineClass系列接口创建出来的，否则被视为无效参数，返回JSVM_INVALID_ARG错误码。
 目前支持以下的DefineClassOptions:
 - JSVM_DEFINE_CLASS_NORMAL: 按正常模式创建Class。默认缺省状态为JSVM_DEFINE_CLASS_NORMAL状态。
-- JSVM_DEFINE_CLASS_WITH_COUNT: 为所创建的Class预留interfield槽位。
+- JSVM_DEFINE_CLASS_WITH_COUNT: 为所创建的Class预留inter-field槽位。
 - JSVM_DEFINE_CLASS_WITH_PROPERTY_HANDLER: 为所创建的Class设置监听拦截属性以及设置作为函数调用时回调函数。
 
 cpp部分代码

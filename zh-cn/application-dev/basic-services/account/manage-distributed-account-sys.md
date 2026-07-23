@@ -136,7 +136,7 @@ OEM厂商可以通过[@ohos.account.distributedAccount](../../reference/apis-bas
 
 具体开发实例如下：
 
-1. 确定目标系统账号，并定义待登出的分布式账号信息。其中，登录场景下需将event指定为"Ohos.account.event.LOGOUT"。
+1. 确定目标系统账号，并定义待登出的分布式账号信息。其中，登出场景下需将event指定为"Ohos.account.event.LOGOUT"。
 
    ```ts
     let localId: number = 100;

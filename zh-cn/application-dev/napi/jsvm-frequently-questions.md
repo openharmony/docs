@@ -86,11 +86,11 @@
 
    A：检查HandleScope的使用是否正确，参考[生命周期管理](jsvm-guidelines.md#生命周期管理)
 
-5. Q: 调用JSVM-API时出现 `JSVM Fatal Error Message:(openHandleScopes)==(openHandleScopesBefore)` 错误
+5. Q：调用JSVM-API时出现 `JSVM Fatal Error Message:(openHandleScopes)==(openHandleScopesBefore)` 错误
    
-   A: 调用JSVM-API时未遵循其使用规范正确管理HandleScopes生命周期，导致HandleScopes层数发生变化，调用结束后无法通过JSVM系统层检查，则返回该报错。修改请参考[JSVM-API使用规范](jsvm-guidelines.md)，优先排查注入回调函数中的JSVM-API调用点。
+   A：调用JSVM-API时未遵循其使用规范正确管理HandleScopes生命周期，导致HandleScopes层数发生变化，调用结束后无法通过JSVM系统层检查，则返回该报错。修改请参考[JSVM-API使用规范](jsvm-guidelines.md)，优先排查注入回调函数中的JSVM-API调用点。
 
-6. Q: 在调用JSVM-API时出现如下两种报错：
+6. Q：在调用JSVM-API时出现如下两种报错：
    ```txt
    #00 pc 00000000068f670/system/lib64/libv8_shared.so(v8::internal::PagedSpaceBase::RelinkFreeListCategories(v8::internal::PageMetadata*)+72)
    #01 pc 00000000068f670/system/lib64/libv8_shared.so(v8::internal::PagedSpaceBase::RelinkFreeListCategories(v8::internal::PageMetadata*)+80)
@@ -113,7 +113,7 @@
    #07 pc 0000000008269a8/system/lib64/libv8_shared.so
    ```
 
-   A: 这两种报错可能指向同一问题，即应用侧执行[OH_JSVM_DestroyEnv()](../reference/common/capi-jsvm-h.md#oh_jsvm_destroyenv)(释放JSVM环境)后，仍在执行业务逻辑，尝试调用JSVM-API，触发报错。该报错可能由三种情况产生：
+   A：这两种报错可能指向同一问题，即应用侧执行[OH_JSVM_DestroyEnv()](../reference/common/capi-jsvm-h.md#oh_jsvm_destroyenv)(释放JSVM环境)后，仍在执行业务逻辑，尝试调用JSVM-API，触发报错。该报错可能由三种情况产生：
 
       a) 回调函数中含有对JSVM-API的调用，在被触发时应用侧已经执行完OH_JSVM_DestroyEnv()，此时直接在回调函数内尝试调用JSVM-API，则可能会导致该错误。开发者应当保证所有JSVM-C-API在同一个js线程上调用，并在此线程上为每个JSVM实例添加对应标记(thread_local_flag)，在执行OH_JSVM_DestroyEnv()后将对应thread_local_flag置为true。回调函数中调用JSVM-API时，应当先判断当前是否在上述js线程上，若是，则直接根据thread_local_flag判断是否能够调用API，若不是，则把该任务抛到上述js线程上再进行判断和执行。
 
