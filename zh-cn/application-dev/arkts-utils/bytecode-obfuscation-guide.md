@@ -157,7 +157,7 @@
         ```
 
     2. 若代码中使用点语法访问未在ArkTS/TS/JS代码中定义的字段，比如访问native实现的so库，字段固定的json文件与数据库等场景：
-        1. 若在代码中引用so库的api，如`import testNapi from 'library.so'`; `testNapi.foo()`;需要使用`-keep-property-name`，foo保留属性名称。
+        1. 若在代码中引用so库的API，如`import testNapi from 'library.so'`; `testNapi.foo()`；需要使用`-keep-property-name foo`来保留属性名称foo。
         2. 若在代码中使用json文件中的字段，需要使用`-keep-property-name`保留json文件中的字段名称。
         3. 若在代码中使用数据库相关的字段，需要使用`-keep-property-name`保留数据库中的字段名称。
     3. 若构建HAR模块并发布给其他模块使用的情况，要在HAR模块中的consumer-rules.txt文件中将不能被二次混淆的属性使用`-keep-property-name`保留。consumer-rules.txt文件在构建HAR时会生成obfuscation.txt文件。此HAR被其它模块依赖时，DevEco Studio会解析obfuscation.txt文件，读取文件中的白名单。
@@ -166,7 +166,7 @@
 3. 待上述选项应用适配成功后，开启`-enable-export-obfuscation`选项。此选项开启后以下场景需要适配：
     1. 若构建HSP模块，它会提供接口及其属性给其它模块调用，因此需要将对外接口使用`-keep-global-name`来保留、将对外暴露的class/interface等语法中的属性使用`-keep-property-name`保留。
     2. 若构建HAR模块并发布给其他模块使用的场景，要在HAR模块中的obfuscation-rules.txt文件中将对外接口使用`-keep-global-name`来保留、将对外暴露的class/interface等语法中的属性使用`-keep-property-name`保留。
-    3. 若在代码中引用so库的api，如`import { napiA } from 'library.so'`；需要使用`-keep-global-name` napiA保留so接口名称。
+    3. 若在代码中引用so库的API，如`import { napiA } from 'library.so'`；需要使用`-keep-global-name napiA`来保留so接口名称napiA。
     4. 验证应用功能以及模块被依赖时的接口调用功能，排查遗漏的场景。若应用出现功能异常，可依据混淆后的报错栈，在模块的 **`build/default/[...]/release/obfuscation/`** 目录下查阅 **`nameCache.json`**（名称映射表）、**`config.json`**（混淆项与白名单）等产物，按[查看混淆效果](#查看混淆效果)对照定位源码行；并按需使用`-keep-global-name`、`-keep-property-name`等进行保留。
 4. 待上述选项应用适配成功后，开启`-enable-filename-obfuscation`选项。此选项开启后以下场景需要适配：
     1. 若代码中有动态import语句，如`const path = './filePath'; import (path)`，会出现文件引用失败的情况，需要使用`-keep-file-name`，filePath来保留这个文件名。

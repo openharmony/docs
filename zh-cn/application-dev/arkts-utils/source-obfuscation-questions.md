@@ -22,7 +22,7 @@
 4. 若以下报错案例中未找到相似场景，建议依据各项配置功能正向定位（若不需要相应功能，可删除对应配置项）。
 5. 应用运行时崩溃分析方法：
    1. 打开应用运行日志，或点击DevEco Studio中出现的Crash弹窗，找到运行时崩溃栈。
-   2. 应用运行时异常栈中的行号为[编译产物](source-obfuscation-guide.md#查看混淆效果)的行号，方法名也可能为混淆后名称；因此排查时建议直接根据异常栈查看编译产物，进而分析哪些名称不能被混淆，然后将其配置到白名单中。
+   2. 应用运行时异常栈中的行号为[编译产物](./source-obfuscation-guide.md#查看混淆效果)的行号，方法名也可能为混淆后名称；因此排查时建议直接根据异常栈查看编译产物，进而分析哪些名称不能被混淆，然后将其配置到白名单中。
 6. 应用在运行时未崩溃但出现功能异常（如白屏）的分析方法：
    1. 打开应用运行日志：选择HiLog，检索与功能异常直接相关的日志，定位问题发生的上下文。
 
@@ -87,9 +87,9 @@ import jsonData from './ImportJson.json';
 let jsonProp = jsonData.jsonObj.jsonProperty;
 ```
 
-```ts
+``` TypeScript
 // 混淆后
-import jsonData from "./test.json";
+import jsonData from "./ImportJson.json";
 
 let jsonProp = jsonData.i.j;
 ```
@@ -136,21 +136,21 @@ export namespace NS {
 <!-- @[ns_import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTSCompilationToolchain/ArkGuardForSourceCodeObfuscation/CodeObfuscationIssues/entry/src/main/ets/pages/Index.ets) --> 
 
 ``` TypeScript
-// import.ts
+// Index.ets
 import { NS } from './ExportNs';
   // ...
   NS.foo();
 ```
 
-```ts
+``` TypeScript
 // 混淆后
-// export.ts
+// ExportNs.ts
 export namespace i {
   export function j() {}
 }
 
-// import.ts
-import { i } from './export';
+// Index.ets
+import { i } from './ExportNs';
 
 i.foo();
 ```
@@ -196,7 +196,7 @@ export function add(a: number, b: number): number {
 <!-- @[add_call](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTSCompilationToolchain/ArkGuardForSourceCodeObfuscation/CodeObfuscationIssues/entry/src/main/ets/pages/Index.ets) --> 
 
 ``` TypeScript
-// main.ts
+// Index.ets
 async function loadAndUseAdd() {
   let result: number = 0;
   try {
@@ -211,18 +211,20 @@ async function loadAndUseAdd() {
 loadAndUseAdd();
 ```
 
-```ts
+``` TypeScript
 // 混淆后
-// utils.ts
+// ExportUtils.ts
 export function c1(d1: number, e1: number): number {
     return d1 + e1;
 }
 
-// main.ts
+// Index.ets
 async function i() {
+    let b1: number = 0;
     try {
-        const a1 = await import("@normalized:N&&&entry/src/main/ets/pages/utils&");
-        const b1 = a1.add(2, 3);
+        const a1 = await import("@normalized:N&&&entry/src/main/ets/pages/ExportUtils&");
+        b1 = a1.add(2, 3);
+        console.info(`result = ${b1}`);
     }
     catch (z) {
         console.error('Failure reason:', z);
@@ -276,7 +278,7 @@ import testNapi from 'libentry.so';
   let sun = testNapi.addNum(1, 2);
 ```
 
-```ts
+``` TypeScript
 // example.ets
 // 混淆后
 import testNapi from "@normalized:Y&&&libentry.so&";
@@ -328,15 +330,17 @@ import { addNum } from 'sharedlibrary';
 addNum(1, 2);
 ```
 
-```ts
+``` TypeScript
 // 混淆后
 // hsp模块
-export function b() {}
+export function b(c: number, d: number): number {
+  return c + d;
+}
 
 // entry模块
 import { n } from '@normalized:N&sharedlibrary&&sharedlibrary/Index&';
 
-n();
+n(1, 2);
 ```
 
 **问题原因**
@@ -390,7 +394,7 @@ import { Want } from '@kit.AbilityKit';
   }
 ```
 
-```ts
+``` TypeScript
 // 混淆后
 import type Want from "@ohos:app.ability.Want";
 
@@ -425,10 +429,10 @@ linkSource
 ```text
 -enable-property-obfuscation
 -keep
-./file1.ts
+./FileInside.ts
 ```
 
-在`file2.ts`中导入`file1.ts`的接口。该接口包含一个对象类型的属性。此对象属性在`file1.ts`中被保留，但在`file2.ts`中被混淆，导致调用时出现功能异常。
+在`Index.ets`中导入`FileInside.ts`的接口。该接口包含一个对象类型的属性。此对象属性在`FileInside.ts`中被保留，但在`Index.ets`中被混淆，导致调用时出现功能异常。
 
 示例代码如下：
 
@@ -448,7 +452,7 @@ export interface MyInfo {
 <!-- @[call_myInfo](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTSCompilationToolchain/ArkGuardForSourceCodeObfuscation/CodeObfuscationIssues/entry/src/main/ets/pages/Index.ets) --> 
 
 ``` TypeScript
-// FileOutside.ts
+// Index.ets
 import { MyInfo } from './FileInside';
   // ...
   const person: MyInfo = {
@@ -459,9 +463,9 @@ import { MyInfo } from './FileInside';
   }
 ```
 
-```ts
+``` TypeScript
 // 混淆后
-// file1.ts
+// FileInside.ts
 export interface MyInfo {
   age: number;
   address: {
@@ -469,8 +473,8 @@ export interface MyInfo {
   }
 }
 
-// file2.ts
-import { MyInfo } from './file1';
+// Index.ets
+import { MyInfo } from './FileInside';
 
 const person: MyInfo = {
   age: 20,
@@ -482,7 +486,7 @@ const person: MyInfo = {
 
 **问题原因**
 
-使用`-keep`选项保留`file1.ts`文件时，该文件中的代码不会被混淆。导出属性（如address）所属类型内的属性不会自动加入白名单，因此在其他文件中使用时会被混淆。
+使用`-keep`选项保留`FileInside.ts`文件时，该文件中的代码不会被混淆。导出属性（如address）所属类型内的属性不会自动加入白名单，因此在其他文件中使用时会被混淆。
 
 **解决方案**
 
@@ -512,7 +516,7 @@ city1
 
 **问题现象**
 
-```ts
+``` TypeScript
 // 混淆前
 const person = {
   myAge: 18
@@ -520,7 +524,7 @@ const person = {
 person["myAge"] = 20;
 ```
 
-```ts
+``` TypeScript
 // 混淆后
 const person = {
   myAge: 18

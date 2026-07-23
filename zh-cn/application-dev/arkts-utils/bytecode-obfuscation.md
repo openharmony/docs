@@ -147,7 +147,7 @@ class TestA {
 TestA.prop1;
 ```
 
-```ts
+``` TypeScript
 // 混淆后：
 class TestA {
     static i: number = 0;
@@ -227,7 +227,7 @@ let person = {'firstName': 'abc'};
 person['personAge'] = 22;
 ```
 
-```ts
+``` TypeScript
 // 混淆后：
 let person = {"a": "abc"};
 person["b"] = 22;
@@ -572,7 +572,7 @@ lastName
   // test.ets
   import testNapi from 'libentry.so'
   // ...
-  testNapi.add(2, 3); // add需要保留，示例如：-keep-property-name foo
+  testNapi.add(2, 3); // add需要保留，示例如：-keep-property-name add
   ```
 
 4.JSON数据解析及对象序列化时，需要保留使用到的字段，例如：
@@ -775,7 +775,7 @@ entry
 ```
 
 **使用该选项时，需要注意以下事项：**
-**1.** 被-`keep filepath`所保留的文件，其依赖链路上的文件中导出名称及其属性都会被保留。
+**1.** 被`-keep filepath`所保留的文件，其依赖链路上的文件中导出名称及其属性都会被保留。
 **2.** 该功能不影响文件名混淆`-enable-filename-obfuscation`的功能。
 
 ## 保留选项支持的通配符
