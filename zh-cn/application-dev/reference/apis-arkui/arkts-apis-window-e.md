@@ -38,7 +38,7 @@
 
 | 名称 | 值 | 说明 |
 | ---- | ---- | ---- |
-| DESKTOP_MODE | 0 | 桌面模式。当满足以下条件时处于桌面模式：<br>1. 当前设备折叠状态为半折叠状态（[FoldStatus.FOLD_STATUS_HALF_FOLDED](js-apis-display.md#foldstatus10)）；<br>2. 窗口所在屏幕通过[getLiveCreaseRegion()](js-apis-display.md#getlivecreaseregion20)获取的creaseRects宽度大于高度；<br>3. 窗口模式为全屏模式（[WindowStatusType.FULL_SCREEN](#windowstatustype11)）且窗口尺寸与屏幕尺寸相同。 |
+| DESKTOP_MODE | 0 | 桌面模式。当满足以下条件时处于桌面模式：<br>1. 当前设备折叠状态为半折叠状态（[FoldStatus.FOLD_STATUS_HALF_FOLDED](js-apis-display.md#foldstatus10)）；<br>2. 窗口所在屏幕通过[getLiveCreaseRegion()](js-apis-display.md#getlivecreaseregion20)获取的creaseRects宽度大于高度；<br>3. 窗口模式为全屏模式（[WindowStatusType.FULL_SCREEN](#windowstatustype11)）或最大化模式（[WindowStatusType.MAXIMIZE](#windowstatustype11)）。<br>4. 屏幕折痕区域位于窗口显示区域内。 |
 
 ## AvoidAreaType<sup>7+</sup>
 
