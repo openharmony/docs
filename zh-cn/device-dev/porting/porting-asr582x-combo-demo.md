@@ -30,17 +30,16 @@ vendor
 ### 产品定义
 
 以`vendor/asrmicro/wifi_demo`为例，这里描述了产品使用的内核、单板、子系统等信息。其中，内核、单板型号、单板厂商需要提前规划好，也是预编译指令（`hb set`）所关注的。这里填入的信息与规划的目录相对应。例如：
-
 ```json5
 {
-     "product_name": "wifi_demo",          // 产品名	 
-     "type": "mini",                       // 系统类型: mini	 
-     "version": "3.0",                     // 系统版本: 3.0	 
-     "device_company": "lango",            // 单板厂商：lango	 
-     "board": "dev_wifi_a",                // 单板名：dev_wifi_a	 
-     "kernel_type": "liteos_m",            // 内核类型：liteos_m	 
-     "kernel_version": "3.0.0",            // 内核版本：3.0.0	 
-     "subsystems": []                      // 子系统
+  "product_name": "wifi_demo",   // 产品名
+  "type": "mini",                // 系统类型: mini
+  "version": "3.0",              // 系统版本: 3.0
+  "device_company": "lango",     // 单板厂商：lango
+  "board": "dev_wifi_a",         // 单板名：dev_wifi_a
+  "kernel_type": "liteos_m",     // 内核类型：liteos_m
+  "kernel_version": "3.0.0",     // 内核版本：3.0.0
+  "subsystems": []               // 子系统
 }
 ```
 这里的device_company和board用于关联出//device/board/<device_company>/\<board\>目录。
