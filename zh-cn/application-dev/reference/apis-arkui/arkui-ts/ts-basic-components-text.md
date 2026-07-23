@@ -90,7 +90,7 @@ Text(content?: string \| Resource , value?: TextOptions)
 | 属性 | 说明 |
 |------|------|
 | enableAutoSpacing<sup>20+</sup> | 设置是否开启中文与西文的自动间距。 |
-| lineHeight | 设置文本的文本行高。 |
+| lineHeight | 设置文本的行高。 |
 | lineHeightMultiple<sup>22+</sup> | 设置文本的行高倍数。 |
 | lineSpacing<sup>12+</sup> | 设置文本的行间距。 |
 | lineSpacing<sup>20+</sup> | 设置文本的行间距。当不配置LineSpacingOptions时，首行上方和尾行下方默认会有行间距。当与lineHeightMultiple同时设置且lineHeightMultiple使用有效值时，仅lineHeightMultiple生效。 |
@@ -242,7 +242,7 @@ contentTransition(transition: Optional\<ContentTransition>)
 
 | 参数名 | 类型                                             | 必填 | 说明                                                       |
 | ------ | ------------------------------------------------ | ---- | ---------------------------------------------------------- |
-| transition  | Optional\<[ContentTransition](ts-text-common.md#contenttransition20)> | 是   | 文本动效属性，用于配置文本内容变化时的过渡动画效果。可设置为数字翻牌动效[NumericTextTransition](ts-text-common.md#numerictexttransition20)，实现数字变化时的翻牌动画效果。 |
+| transition  | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[ContentTransition](ts-text-common.md#contenttransition20)> | 是   | 文本动效属性，用于配置文本内容变化时的过渡动画效果。可设置为数字翻牌动效[NumericTextTransition](ts-text-common.md#numerictexttransition20)，实现数字变化时的翻牌动画效果。<br>值为undefined时，无翻牌效果。 |
 
 ### copyOption<sup>9+</sup>
 
@@ -410,7 +410,7 @@ enableAutoSpacing(enabled: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| enabled | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br>true为开启自动间距，false为不开启。 |
+| enabled | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br>true为开启自动间距，false为不开启。<br>值为undefined时，不开启中文与西文的自动间距。 |
 
 ### enableDataDetector<sup>11+</sup>
 
@@ -506,7 +506,7 @@ AI菜单生效时，选中范围内需包括且仅包括一个完整的AI实体�
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable  | boolean \| undefined | 是   | 是否对选中文本进行实体识别。<br>true：开启识别，false：关闭识别。 |
+| enable  | boolean \| undefined | 是   | 是否对选中文本进行实体识别。<br>true：开启识别，false：关闭识别。默认值为：true。<br>取值为undefined时，按默认值处理。 |
 
 ### font<sup>10+</sup>
 
@@ -927,7 +927,7 @@ lineHeightMultiple(value: number \| undefined)
 
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| value  | number&nbsp;\|&nbsp;undefined | 是   | 使用行高的倍数数值。<br>取值范围：[0, +∞)<br>**说明：**<br>- 设置的值小于0时，lineHeightMultiple不生效。<br>- 设置的值等于0时，等效于设置为1，表现为行高没有变化。<br>- 支持小数输入。 |
+| value  | number&nbsp;\|&nbsp;undefined | 是   | 使用行高的倍数数值。<br>取值范围：[0, +∞)<br>**说明：**<br>- 设置的值小于0时，lineHeightMultiple不生效。<br>- 设置的值等于0时，等效于设置为1，表现为行高没有变化。<br>- 支持小数输入。<br>- 值为undefined时，使用默认行高高度。 |
 
 ### lineSpacing<sup>12+</sup>
 
@@ -988,7 +988,7 @@ marqueeOptions(options: Optional\<TextMarqueeOptions>)
 
 | 参数名 | 类型                                       | 必填 | 说明                                       |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
-| options | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[TextMarqueeOptions](#textmarqueeoptions18对象说明)> | 是 | 当Text组件的textOverflow属性设置为MARQUEE时，可通过marqueeOptions设置跑马灯动效具体的属性，如开关、步长、循环次数、方向等。 |
+| options | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[TextMarqueeOptions](#textmarqueeoptions18对象说明)> | 是 | 当Text组件的textOverflow属性设置为MARQUEE时，可通过marqueeOptions设置跑马灯动效具体的属性，如开关、步长、循环次数、方向等。<br>取值为undefined时，按[TextMarqueeOptions](#textmarqueeoptions18对象说明)中的默认值处理。 |
 
 ### maxFontScale<sup>12+</sup>
 
@@ -1056,7 +1056,7 @@ maxLineHeight小于minLineHeight时，maxLineHeight按照minLineHeight属性的�
 
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;undefined | 是   | 文本的最大行高，不支持百分比。<br>设置的值不大于0时按0处理，设置为0时，最大行高不受限制。 |
+| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;undefined | 是   | 文本的最大行高，不支持百分比。<br>设置的值不大于0时按0处理，设置为0时，最大行高不受限制。<br>取值为undefined时，不生效。 |
 
 ### selectedDragPreviewStyle<sup>23+</sup>
 
@@ -1160,7 +1160,7 @@ minLineHeight(value: LengthMetrics \| undefined)
 
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;undefined | 是   | 文本的最小行高，不支持百分比。<br>设置的值不大于0时按0处理。 |
+| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;undefined | 是   | 文本的最小行高，不支持百分比。<br>设置的值不大于0时按0处理。<br>取值为undefined时，不生效。 |
 
 ### minLines<sup>22+</sup>
 
@@ -1186,7 +1186,7 @@ minLines(minLines: Optional\<number>)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| minLines  | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number> | 是   | 文本最小行数。<br>取值范围：[0, INT32_MAX]<br>设置的值小于0时按0处理。<br>**说明：** <br>与[maxLines](#maxlines)同时配置时，最小行数对应的显示高度不会超过最大行数对应的高度限制。 |
+| minLines  | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<number> | 是   | 文本最小行数。<br>取值范围：[0, INT32_MAX]<br>设置的值小于0时按0处理。<br>值为undefined时，最小行数无限制。<br>**说明：** <br>与[maxLines](#maxlines)同时配置时，最小行数对应的显示高度不会超过最大行数对应的高度限制。 |
 
 ### includeFontPadding<sup>23+</sup>
 
@@ -1204,7 +1204,7 @@ includeFontPadding(include: Optional\<boolean>)
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| include | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean> | 是   | 是否在首行和尾行增加间距以避免文字截断。<br>true表示在首行和尾行增加间距；false表示在首行和尾行不增加间距。 |
+| include | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean> | 是   | 是否在首行和尾行增加间距以避免文字截断。<br>true表示在首行和尾行增加间距；false表示在首行和尾行不增加间距。<br>undefined表示在首行和尾行不增加间距。 |
 
 ### fallbackLineSpacing<sup>23+</sup>
 
@@ -1222,7 +1222,7 @@ fallbackLineSpacing(enabled: Optional\<boolean>)
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| enabled | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean> | 是   | 行高是否基于文字实际高度自适应。<br>true表示行高基于文字实际高度自适应；false表示行高不基于文字实际高度自适应。 |
+| enabled | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean> | 是   | 行高是否基于文字实际高度自适应。<br>true表示行高基于文字实际高度自适应；false表示行高不基于文字实际高度自适应。<br>undefined表示行高不基于文字实际高度自适应。 |
 
 ### optimizeTrailingSpace<sup>20+</sup>
 
@@ -1250,7 +1250,7 @@ optimizeTrailingSpace(optimize: Optional\<boolean>)
 
 | 参数名           | 类型             | 必填 | 说明                                            |
 | ---------------- | ------- | ---- | ----------------------------------------------- |
-| optimize         | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean> | 是   | 是否优化每行末尾的空格。<br>true表示优化末尾空格，false则不优化。 |
+| optimize         | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean> | 是   | 是否优化每行末尾的空格。<br>true表示优化末尾空格，false则不优化。<br>值为undefined时，不优化末尾空格。 |
 
 ### compressLeadingPunctuation<sup>23+</sup>
 
@@ -1274,7 +1274,7 @@ compressLeadingPunctuation(enabled: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| enabled | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean> | 是   | 是否开启行首标点符号压缩。<br>true表示开启行首标点符号压缩；false表示不开启行首标点符号压缩。 |
+| enabled | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<boolean> | 是   | 是否开启行首标点符号压缩。<br>true表示开启行首标点符号压缩；false表示不开启行首标点符号压缩；undefined表示不开启。 |
 
 ### orphanCharOptimization
 
@@ -1645,7 +1645,7 @@ textVerticalAlign(textVerticalAlign: Optional\<TextVerticalAlign>)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                       |
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
-| textVerticalAlign  | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[TextVerticalAlign](ts-text-common.md#textverticalalign20)> | 是   | 文本段落在垂直方向的对齐方式。 |
+| textVerticalAlign  | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[TextVerticalAlign](ts-text-common.md#textverticalalign20)> | 是   | 文本段落在垂直方向的对齐方式。<br/>默认值：TextVerticalAlign.BASELINE<br/>取值为undefined时，按照TextVerticalAlign.BASELINE处理，对齐文本基线。 |
 
 ### wordBreak<sup>11+</sup>
 
@@ -2093,7 +2093,7 @@ struct TextExample1 {
 
 ### 示例2（设置文本样式）
 
-该示例通过[decoration](#decoration)、[letterSpacing](#letterspacing)、[textCase](#textcase)、[fontFamily](#fontfamily)、[textShadow](#textshadow10)（从API version 10开始）、fontStyle、[textIndent](#textindent10)（从API version 10开始）、[fontWeight](#fontweight12)（从API version 12开始，支持设置字重无极调节配置项）属性展示了不同样式的文本效果。
+该示例通过[decoration](#decoration)、[letterSpacing](#letterspacing)、[textCase](#textcase)、[fontFamily](#fontfamily)、[textShadow](#textshadow10)（从API version 10开始）、[fontStyle](#fontstyle)、[textIndent](#textindent10)（从API version 10开始）、[fontWeight](#fontweight12)（从API version 12开始，支持设置字重无极调节配置项）属性展示了不同样式的文本效果。
 
 ```ts
 // xxx.ets
@@ -2551,12 +2551,6 @@ struct TextExample7 {
           .borderWidth(1)
           .padding(10)
           .width('100%')
-        TextInput({ text: 'TextInput这个是输入框内容' })
-          .copyOption(CopyOptions.LocalDevice)
-        TextArea({ text: 'TextArea这个是输入框内容' })
-          .copyOption(CopyOptions.LocalDevice)
-        Search()
-          .copyOption(CopyOptions.LocalDevice)
       }
       .width('100%')
       // 使用parallelGesture中的TapGesture替代onClick属性，达到非冒泡事件类似冒泡
