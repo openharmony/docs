@@ -131,11 +131,11 @@ struct ParentComponent {
   | ------ | ------ | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
   | routeName | string | 否 | 是 | 表示作为命名路由页面的名字。 |
   | storage | [LocalStorage](arkts-localstorage.md) | 否 | 是 | 页面级的UI状态存储。当未传入时，框架会创建一个新的LocalStorage实例作为默认值。 |
-  | useSharedStorage<sup>12+</sup> | boolean | 否 | 是 | 是否使用[loadContent](../../reference/apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)传入的LocalStorage实例对象。默认值false。true：使用共享的[LocalStorage](arkts-localstorage.md)实例对象。false：不使用共享的[LocalStorage](arkts-localstorage.md)实例对象。 |
+  | useSharedStorage<sup>12+</sup> | boolean | 否 | 是 | 是否使用[loadContent](../../reference/apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)传入的LocalStorage实例对象。默认值false。值为true时：若loadContent传入了LocalStorage实例，则使用该LocalStorage实例对象，否则会新建一个LocalStorage实例。值为false时：不使用共享的LocalStorage实例对象。 |
 
   > **说明：**
   >
-  > 当useSharedStorage设置为true且storage已赋值时，useSharedStorage的值优先级更高。
+  > 当useSharedStorage设置为true且storage已赋值时，useSharedStorage的优先级高于storage参数，此时无论loadContent中是否传入LocalStorage实例，都不会使用传入的storage参数。
 
   <!-- @[routeName_myPage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/createCustomComponents/entry/src/main/ets/component/RouteName.ets) -->  
   
