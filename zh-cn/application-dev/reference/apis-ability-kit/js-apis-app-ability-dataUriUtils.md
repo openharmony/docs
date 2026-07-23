@@ -1,6 +1,12 @@
 # @ohos.app.ability.dataUriUtils (DataUriUtils模块)
+<!--Kit: Ability Kit-->
+<!--Subsystem: Ability-->
+<!--Owner: @SKY2001-->
+<!--Designer: @yzkp-->
+<!--Tester: @liangchengguang-->
+<!--Adviser: @HelloCrease-->
 
-DataUriUtils模块提供用于处理uri对象的能力，包括获取、绑定、删除和更新指定uri对象的路径末尾的ID。
+DataUriUtils模块提供用于处理uri对象的能力，包括获取、附加、删除和更新指定uri对象的路径末尾的ID。
 
 > **说明：**
 > 
@@ -24,7 +30,7 @@ getId(uri: string): number
 
 | 参数名 | 类型   | 必填 | 说明                        |
 | ---- | ------ | ---- | --------------------------- |
-| uri  | string | 是   | 表示uri对象。 |
+| uri  | string | 是   | 表示要附加ID的uri对象。 |
 
 **返回值：**
 
@@ -48,7 +54,7 @@ import { dataUriUtils } from '@kit.AbilityKit';
 try {
   let id = dataUriUtils.getId('com.example.dataUriUtils/1221');
   console.info(`get id: ${id}`);
-} catch(err) {
+} catch (err) {
   console.error(`get id err ,check the uri ${err}`);
 }
 ```
@@ -67,7 +73,7 @@ attachId(uri: string, id: number): string
 
 | 参数名 | 类型   | 必填 | 说明                        |
 | ---- | ------ | ---- | --------------------------- |
-| uri  | string | 是   | 表示uri对象。 |
+| uri  | string | 是   | 表示要附加ID的uri对象。 |
 | id   | number | 是   | 表示要附加的ID。            |
 
 **返回值：**
@@ -98,7 +104,7 @@ try {
   );
   console.info(`attachId the uri is: ${uri}`);
 } catch (err) {
-  console.error(`get id err, code: ${JSON.stringify((err as BusinessError).code)}, msg: ${JSON.stringify((err as BusinessError).message)}`);
+  console.error(`attachId err, code: ${JSON.stringify((err as BusinessError).code)}, msg: ${JSON.stringify((err as BusinessError).message)}`);
 }
 ```
 
@@ -160,8 +166,8 @@ updateId(uri: string, id: number): string
 
 | 参数名 | 类型   | 必填 | 说明                |
 | ---- | ------ | ---- | ------------------- |
-| uri  | string | 是   | 表示uri对象 |
-| id   | number | 是   | 表示要更新的ID            |
+| uri  | string | 是   | 表示要更新ID的uri对象。 |
+| id   | number | 是   | 表示要更新的ID。 |
 
 **返回值：**
 

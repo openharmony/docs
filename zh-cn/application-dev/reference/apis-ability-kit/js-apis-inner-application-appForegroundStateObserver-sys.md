@@ -6,7 +6,7 @@
 <!--Tester: @liangchengguang-->
 <!--Adviser: @HelloCrease-->
 
-定义应用启动和退出的状态监听，可以作为[appManager.on('appForegroundState')](js-apis-app-ability-appManager-sys.md#appmanageronappforegroundstate11)的入参监听所有应用的启动和退出的变化。
+定义应用启动、前后台和退出的状态监听，可以作为[appManager.on('appForegroundState')](js-apis-app-ability-appManager-sys.md#appmanageronappforegroundstate11)的入参监听所有应用的启动、前后台和退出的变化。
 
 > **说明：**
 >
@@ -25,7 +25,7 @@ import { appManager } from '@kit.AbilityKit';
 
 onAppStateChanged(appStateData: AppStateData): void
 
-应用启动和退出状态发生变化时，系统会触发该回调。
+应用启动、前后台和退出状态发生变化时，系统会触发该回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

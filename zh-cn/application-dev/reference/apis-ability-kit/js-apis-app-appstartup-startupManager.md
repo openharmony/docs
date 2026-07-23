@@ -39,7 +39,7 @@ run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| startupTasks | Array\<string\> | 是 | 表示准备执行的启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称或预加载so名称的数组。 |
+| startupTasks | Array\<string\> | 是 | 表示准备执行的启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称或预加载so名称的数组。该接口不支持feature类型HAP中的启动任务。名称需与配置文件startup_config.json中配置的name取值保持一致，详见[定义启动任务配置](../../application-models/app-startup.md#定义启动任务配置)和[定义预加载so任务配置](../../application-models/app-startup.md#定义预加载so任务配置)。 |
 | config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | 否 | 表示启动任务配置信息，包含启动框架超时时间与启动任务监听器配置。 |
 
 **返回值：**
@@ -102,7 +102,7 @@ run(startupTasks: Array\<string\>, context: common.AbilityStageContext, config: 
 
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| startupTasks | Array\<string\>                                              | 是   | 表示准备执行的启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称或预加载so名称的数组。 |
+| startupTasks | Array\<string\>                                              | 是   | 表示准备执行的启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称或预加载so名称的数组。名称需与配置文件startup_config.json中配置的name取值保持一致，详见[定义启动任务配置](../../application-models/app-startup.md#定义启动任务配置)和[定义预加载so任务配置](../../application-models/app-startup.md#定义预加载so任务配置)。 |
 | context      | [common.AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | 是   | 表示执行启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的AbilityStage上下文，作为入参传给启动任务的[init](js-apis-app-appstartup-startupTask.md#init)。 |
 | config       | [StartupConfig](./js-apis-app-appstartup-startupConfig.md)   | 是   | 表示启动任务配置信息，包含启动框架超时时间与启动任务监听器配置。 |
 
@@ -134,7 +134,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class MyAbilityStage extends AbilityStage {
   onCreate(): void {
     hilog.info(0x0000, 'testTag', 'AbilityStage onCreate');
-    let onCompletedCallback = (error: BusinessError<void>) => {
+    let onCompletedCallback = (error: BusinessError) => {
       if (error) {
         hilog.error(0x0000, 'testTag', `onCompletedCallback error code: ${error.code}, error msg: ${error.message}`);
       } else {
@@ -153,7 +153,7 @@ export default class MyAbilityStage extends AbilityStage {
       // 手动调用run方法
       startupManager.run(['StartupTask_001', 'libentry_001'], this.context, config).then(() => {
         hilog.info(0x0000, 'testTag', '%{public}s', 'startupManager.run success');
-      }).catch((error: BusinessError<void>) => {
+      }).catch((error: BusinessError) => {
         hilog.error(0x0000, 'testTag', `startupManager.run promise catch error code: ${error.code}, error msg: ${error.message}`);
       })
     } catch (error) {
@@ -224,7 +224,7 @@ getStartupTaskResult(startupTask: string): Object
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| startupTask | string | 是 | 启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称或预加载so名称。 |
+| startupTask | string | 是 | 启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称或预加载so名称。名称需与配置文件startup_config.json中配置的name取值保持一致，详见[定义启动任务配置](../../application-models/app-startup.md#定义启动任务配置)和[定义预加载so任务配置](../../application-models/app-startup.md#定义预加载so任务配置)。 |
 
 **返回值：**
 
@@ -319,7 +319,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     try {
       startupManager.run(['StartupTask_001', 'libentry_001']).then(() => {
-      hilog.info(0x0000, 'testTag', 'StartupTask_001 init successful');
+        hilog.info(0x0000, 'testTag', 'StartupTask_001 init successful');
       }).catch((error: BusinessError) => {
         hilog.error(0x0000, 'testTag', `StartupTask_001 promise catch failed, error code: ${error.code}, error msg: ${error.message}`);
       });
@@ -358,9 +358,9 @@ export default class EntryAbility extends UIAbility {
 
 removeStartupTaskResult(startupTask: string): void
 
-删除指定启动任务或so预加载任务的初始化结果。
+删除指定启动任务或so预加载任务的结果。
 
-- 输入为启动任务名时，删除指定启动任务的初始化结果。
+- 输入为启动任务名时，删除指定启动任务的结果。
 
 - 输入为so文件时，将该so文件置为未加载，缓存中已加载的so文件不会被移除。
 
@@ -370,7 +370,7 @@ removeStartupTaskResult(startupTask: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| startupTask | string | 是 | 启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称或预加载so名称。 |
+| startupTask | string | 是 | 启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称或预加载so名称。名称需与配置文件startup_config.json中配置的name取值保持一致，详见[定义启动任务配置](../../application-models/app-startup.md#定义启动任务配置)和[定义预加载so任务配置](../../application-models/app-startup.md#定义预加载so任务配置)。 |
 
 **错误码：**
 

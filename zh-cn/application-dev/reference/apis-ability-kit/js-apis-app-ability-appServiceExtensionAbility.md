@@ -16,7 +16,7 @@ AppServiceExtensionAbility模块提供后台服务相关扩展能力，包括后
 
 ## 约束限制
 
-- 当前仅支持2in1设备。
+- 当前仅支持PC/2in1设备。
 - 应用集成AppServiceExtensionAbility的组件需要申请ACL权限（ohos.permission.SUPPORT_APP_SERVICE_EXTENSION）。该ACL权限当前只对企业普通应用开放申请，申请方式参考[权限申请指导](../../security/AccessToken/declare-permissions.md)。
 
 ## 生命周期
@@ -70,7 +70,7 @@ AppServiceExtensionAbility模块提供后台服务相关扩展能力，包括后
 
 onCreate(want: Want): void
 
-在AppServiceExtensionAbility实例创建时，系统会触发该回调。应用可以在该接口中执行自己的业务逻辑初始化操作，例如注册公共事件监听等。
+在AppServiceExtensionAbility实例创建时，系统会触发该回调。应用可以在该接口中执行业务逻辑初始化操作，例如注册公共事件监听等。
 
 > **说明：**
 >
@@ -105,7 +105,7 @@ onCreate(want: Want): void
 
 onDestroy(): void
 
-在AppServiceExtensionAbility实例销毁时，系统会触发该回调。应用可以在该接口中执行资源清理等操作，如注销监听等。
+在AppServiceExtensionAbility实例销毁时，系统会触发该回调。应用可以在该接口中执行资源清理等操作，如注销监听。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -175,7 +175,7 @@ onConnect(want: Want): rpc.RemoteObject
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want |  [Want](js-apis-app-ability-want.md)| 是 | 调用方拉起当前AppServiceExtensionAbility实例时传递的Want类型信息，包括Ability名称、Bundle名称等。 |
+| want |  [Want](js-apis-app-ability-want.md)| 是 | 调用方连接当前AppServiceExtensionAbility实例时传递的Want类型信息，包括Ability名称、Bundle名称等。 |
 
 **返回值：**
 

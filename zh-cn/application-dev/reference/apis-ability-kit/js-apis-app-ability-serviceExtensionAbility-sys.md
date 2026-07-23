@@ -6,7 +6,7 @@
 <!--Tester: @liangchengguang-->
 <!--Adviser: @HelloCrease-->
 
-ServiceExtensionAbility模块提供后台服务相关扩展能力，提供后台服务创建、销毁、连接、断开等生命周期回调。
+ServiceExtensionAbility模块提供后台服务相关扩展能力，提供后台服务创建、销毁、连接、断开等生命周期回调；适用于需要在后台运行服务、处理长时间任务的场景，如文件下载、后台计算等。
 
 > **说明：**
 >
@@ -115,7 +115,7 @@ import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 
 class ServiceExt extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
-    console.info('onRequest, want: ${want.abilityName}');
+    console.info(`onRequest, want: ${want.abilityName}`);
   }
 }
 ```
@@ -125,7 +125,7 @@ class ServiceExt extends ServiceExtensionAbility {
 
 onConnect(want: Want): rpc.RemoteObject | Promise<rpc.RemoteObject>
 
-Extension生命周期回调，如果是connectAbility拉起的服务，会在onCreate之后回调。返回一个RemoteObject对象，用于客户端和服务端进行通信。
+Extension生命周期回调，如果通过connectAbility连接服务，会在onCreate之后回调。返回一个RemoteObject对象，用于客户端和服务端进行通信。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -158,7 +158,7 @@ class StubTest extends rpc.RemoteObject{
 }
 class ServiceExt extends ServiceExtensionAbility {
   onConnect(want: Want) {
-    console.info('onConnect , want: ${want.abilityName}');
+    console.info(`onConnect, want: ${want.abilityName}`);
     return new StubTest('test');
   }
 }
@@ -194,7 +194,7 @@ class ServiceExt extends ServiceExtensionAbility {
 
 onDisconnect(want: Want): void | Promise\<void>
 
-Extension的生命周期回调，客户端执行断开连接服务时回调。
+Extension的生命周期回调，客户端断开服务连接时回调。
 
 使用同步回调或Promise异步回调。
 
@@ -218,7 +218,7 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| void \| Promise\<void> | 无返回结果或者无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -270,7 +270,7 @@ import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 
 class ServiceExt extends ServiceExtensionAbility {
   onReconnect(want: Want) {
-    console.info('onReconnect, want: ${want.abilityName}');
+    console.info(`onReconnect, want: ${want.abilityName}`);
   }
 }
 ```
@@ -317,13 +317,13 @@ onDump(params: Array\<string>): Array\<string>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| params | Array\<string> | 是 | 表示命令形式的参数。|
+| params | Array\<string> | 是 | 表示命令行方式传入的参数数组。|
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Array\<string> | 表示转存客户端信息数组。 |
+| Array\<string> | 表示转储客户端信息数组。 |
 
 **示例：**
     
