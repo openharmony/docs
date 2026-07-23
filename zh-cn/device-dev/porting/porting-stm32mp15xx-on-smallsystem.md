@@ -52,18 +52,18 @@ vendor
 
     ```json
     {
-      "product_name": "bearpi_hm_micro",    --- 用于hb set进行选择时，显示的产品名称
-      "version": "3.0",                     --- 构建系统的版本，1.0/2.0/3.0等
-      "type": "small",                      --- 构建系统的类型，mini/small/standard
-      "ohos_version": "OpenHarmony 3.0",    --- OpenHarmony系统版本
-      "device_company": "bearpi",           --- 单板厂商名，用于编译时找到/device/board/bearpi目录
-      "device_build_path": "device/board/bearpi/bearpi_hm_micro", --- 单板编译路径
-      "board": "bearpi_hm_micro",           --- 单板名，用于编译时找到/device/board/bearpi/bearpi_hm_micro目录
-      "kernel_type": "liteos_a",            --- 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译
-      "kernel_version": "",                 --- 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译
-      "subsystems": [ ]                     --- 选择所需要编译构建的子系统
-      "third_party_dir": "//third_party",   --- 第三方组件根目录路径
-      "product_adapter_dir": "//vendor/bearpi/bearpi_hm_micro/hals" --- 产品硬件适配层（HAL）目录路径
+      "product_name": "bearpi_hm_micro",    // 用于hb set进行选择时，显示的产品名称
+      "version": "3.0",                     // 构建系统的版本，1.0/2.0/3.0等
+      "type": "small",                      // 构建系统的类型，mini/small/standard
+      "ohos_version": "OpenHarmony 3.0",    // OpenHarmony系统版本
+      "device_company": "bearpi",           // 单板厂商名，用于编译时找到/device/board/bearpi目录
+      "device_build_path": "device/board/bearpi/bearpi_hm_micro", // 单板编译路径
+      "board": "bearpi_hm_micro",           // 单板名，用于编译时找到/device/board/bearpi/bearpi_hm_micro目录
+      "kernel_type": "liteos_a",            // 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译
+      "kernel_version": "",                 // 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译
+      "subsystems": [],                     // 选择所需要编译构建的子系统
+      "third_party_dir": "//third_party",   // 第三方组件根目录路径
+      "product_adapter_dir": "//vendor/bearpi/bearpi_hm_micro/hals" // 产品硬件适配层（HAL）目录路径
     }
     ```
 
@@ -554,7 +554,7 @@ vendor
         { "component": "init", "features":["init_feature_begetctl_liteos=true"] },
         { "component": "appspawn", "features":[] }
      ]
-    },
+    }
 ```
 系统启动时会根据`//vendor/bearpi/bearpi_hm_micro/init_configs`中的启动配置来启动系统。
 
@@ -570,7 +570,7 @@ vendor
             { "component": "hilog_lite", "features":[] },
             { "component": "hidumper_lite", "features":[] }
         ]
-    },
+    }
 ```
 
 #### 系统服务管理子系统适配
@@ -584,7 +584,7 @@ vendor
         { "component": "samgr_lite", "features":[] },
         { "component": "safwk_lite", "features":[] }
     ]
-    },
+    }
 ```
 
 #### 安全子系统适配
@@ -606,7 +606,7 @@ vendor
         ]
         }
     ]
-    },
+    }
 ```
 
 
@@ -621,7 +621,7 @@ vendor
           { "component": "kv_store", "features":[] },
           { "component": "os_dump", "features":[] }
         ]
-      },
+      }
 ```
 
 #### 图形子系统适配
@@ -634,7 +634,7 @@ vendor
         "components": [
           { "component": "graphic_utils_lite", "features":[] }
         ]
-      },
+      }
 ```
 
 同时需要添加`window_manager_lite`部件用于窗口管理，直接在`config.json`配置即可。
@@ -645,7 +645,7 @@ vendor
         "components": [
           { "component": "window_manager_lite", "features":[] }
         ]
-      },
+      }
 ```
 
 #### ArkUI开发框架子系统适配
@@ -661,7 +661,7 @@ vendor
             "features": [ "" ]
         }
         ]
-    },
+    }
 ```
 
 #### 元能力子系统适配
@@ -675,14 +675,14 @@ vendor
         {
         "component": "ability_lite",
         "features": [
-            "ability_lite_enable_ohos_appexecfwk_feature_ability = true"    --- 支持FA特性，即包含图形能力。
+            "ability_lite_enable_ohos_appexecfwk_feature_ability = true"    // 支持FA特性，即包含图形能力。
         ]
         },
         {
         "component": "dmsfwk_lite", "features":[]
         }
     ]
-    },
+    }
 ```
 
 
@@ -698,5 +698,5 @@ vendor
         "component": "bundle_framework_lite"
         }
     ]
-    },
+    }
 ```

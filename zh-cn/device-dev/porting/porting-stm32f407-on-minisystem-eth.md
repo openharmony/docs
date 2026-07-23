@@ -113,17 +113,17 @@ vendor
 
    ```json
    {
-     "product_name": "niobe407",           --- 用于hb set进行选择时，显示的产品名称
-     "type": "mini",                       --- 构建系统的类型，mini/small/standard
-     "version": "7.0",                     --- 构建系统的版本，1.0/2.0/3.0/7.0
-     "ohos_version": "OpenHarmony 7.0",    --- OpenHarmony系统版本
-     "device_company": "talkweb",          --- 单板厂商名，用于编译时找到/device/board/talkweb目录
-     "device_build_path": "device/board/talkweb/niobe407", --- 单板编译路径
-     "board": "niobe407",                  --- 单板名，用于编译时找到/device/board/talkweb/niobe407目录
-     "kernel_type": "liteos_m",            --- 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译
-     "kernel_version": "7.0.0",            --- 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译
-     "subsystems": [ ]                     --- 选择所需要编译构建的子系统
-     "third_party_dir": "//third_party",   --- 第三方组件根目录路径
+     "product_name": "niobe407",           // 用于hb set进行选择时，显示的产品名称
+     "type": "mini",                       // 构建系统的类型，mini/small/standard
+     "version": "7.0",                     // 构建系统的版本，1.0/2.0/3.0/7.0
+     "ohos_version": "OpenHarmony 7.0",    // OpenHarmony系统版本
+     "device_company": "talkweb",          // 单板厂商名，用于编译时找到/device/board/talkweb目录
+     "device_build_path": "device/board/talkweb/niobe407", // 单板编译路径
+     "board": "niobe407",                  // 单板名，用于编译时找到/device/board/talkweb/niobe407目录
+     "kernel_type": "liteos_m",            // 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译
+     "kernel_version": "7.0.0",            // 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译
+     "subsystems": [],                     // 选择所需要编译构建的子系统
+     "third_party_dir": "//third_party",   // 第三方组件根目录路径
    }
    ```
 
@@ -1139,9 +1139,8 @@ __zinitcall_exit_end = .;
         {
           "component": "bootstrap_lite"
         },
-        ...
       ]
-    },
+    }
 ```
 
 ​`bootstrap_lite`部件会编译`//base/startup/bootstrap_lite/services/source/bootstrap_service.c`，该文件中，通过`SYS_SERVICE_INIT`将`Init`函数符号灌段到`__zinitcall_sys_service_start`和`__zinitcall_sys_service_end`中，由于`Init`函数是没有显式调用它，所以需要将它强制链接到最终的镜像。如下：
@@ -1281,7 +1280,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
           "features": []
         }
       ]
-},
+}
 ```
 
 与适配`syspara_lite`部件类似，适配`kv_store`部件时，键值对会写到文件中。在轻量系统中，文件操作相关接口有`POSIX`接口与`HalFiles`接口这两套实现。因为对接内核的文件系统，采用`POSIX`相关的接口，所以`features`需要增加`enable_ohos_utils_native_lite_kv_store_use_posix_kv_api = true`。如果对接`HalFiles`相关的接口实现的，则无须修改。
