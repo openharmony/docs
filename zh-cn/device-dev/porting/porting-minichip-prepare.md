@@ -207,7 +207,7 @@ OpenHarmony源码重要目录介绍见表1 OpenHarmony重要目录，其中devic
        ],
        "vendor_adapter_dir": "",
        "third_party_dir": "",
-       "product_adapter_dir": "//vendor/MyVendorCompany/MyProduct/hals",
+       "product_adapter_dir": "//vendor/MyVendorCompany/MyProduct/hals"
    }
    ```
 

@@ -39,12 +39,12 @@ void OHOS_SystemInit(void)
      
    ```json
    {
-       "subsystem": "startup",
-       "components": [
-           { "component": "bootstrap_lite", "features":[] },
-           { "component": "init", "features":["init_lite_use_thirdparty_mbedtls = true"] }
-       ]
-   },
+     "subsystem": "startup",
+     "components": [
+       { "component": "bootstrap_lite", "features":[] },
+       { "component": "init", "features":["init_lite_use_thirdparty_mbedtls = true"] }
+     ]
+   }
    ```
 
    在startup子系统中有部分部件（如：init等），会依赖“$ohos_product_adapter_dir/utils”中的模块。其中“ohos_product_adapter_dir”就是在config.json文件中配置的“product_adapter_dir”，我们通常配置其为“vendor/MyVendorCompany/MyProduct/hals”。

@@ -87,11 +87,6 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
    }
    ```
 
-     
-   **图1** 目标的依赖执行顺序 
-
-   ![zh-cn_image_0000001378481233](figures/zh-cn_image_0000001378481233.png)
-
 2. 自定义芯片厂“target_config.h”文件。
 
    厂商应在“device/board/MyDeviceCompany/MyBoard”下合适位置创建内核配置文件“target_config.h”，并根据芯片的硬件资源修改参数（具体参数介绍详见表2target_config.h文件主要配置项）。
@@ -154,13 +149,13 @@ kernel/liteos_m/arch          # 不同版本路径有差异。
      
    ```json
    {
-     "subsystem": "kernel",          # 添加内核子系统
+     "subsystem": "kernel",
      "components": [
        { 
-         "component": "liteos_m", "features":[] 
+         "component": "liteos_m", "features":[]
        }
      ]
-   },
+   }
    ```
 
 2. 开启/关闭内核特性。

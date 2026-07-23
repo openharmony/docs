@@ -94,11 +94,11 @@ lite_component("file") {
      
    ```json
    {
-   "subsystem": "commonlibrary",
-   "components": [
+     "subsystem": "commonlibrary",
+     "components": [
        { "component": "utils_lite", "features":[ "utils_lite_feature_file = true" ] }
      ]
-   },
+   }
    ```
 
 2. 添加适配文件。
