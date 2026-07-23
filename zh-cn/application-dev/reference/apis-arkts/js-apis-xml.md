@@ -1032,7 +1032,7 @@ XML解析选项，用于配置XmlPullParser的解析行为。开发者可通过s
 | tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | 否   | 是   | 解析开始标签、标签值和结束标签，返回true表示继续解析，返回false表示停止解析，默认值为undefined，表示不解析。 <br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
 | attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否   | 是   | 解析属性和属性值，返回true表示继续解析，返回false表示停止解析，默认值为undefined，表示不解析。 <br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
 | tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | 否   | 是   | 解析元素事件类型([EventType](#eventtype))和[ParseInfo](#parseinfo)属性，默认值为undefined，表示不解析。 <br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
-| attributeWithTagCallbackFunction<sup>20+</sup> | [AttributeWithTagCb](#attributewithtagcb20) | 否 | 是   | 解析标签名称、属性名称及属性的值，默认值为为undefined，表示不执行解析。 <br/>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。|
+| attributeWithTagCallbackFunction<sup>20+</sup> | [AttributeWithTagCb](#attributewithtagcb20) | 否 | 是   | 解析标签名称、属性名称及属性的值，默认值为undefined，表示不执行解析。 <br/>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## ParseInfo
 
