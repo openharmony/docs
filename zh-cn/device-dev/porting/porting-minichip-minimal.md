@@ -39,31 +39,31 @@
 
 ### Feature列表
 
-| Feature名 | 说明 | 默认值 |
-| -------- | -------- | -------- |
-| bootstrap_lite_enable_bootstrap_service | 是否使能Bootstrap服务任务 | false |
-| init_lite_memory_size | 参数空间总大小（字节） | 8192 |
-| init_lite_param_const_value_len_max | 常量参数值的最大长度 | 256 |
-| init_lite_param_value_len_max | 参数值的最大长度 | 48 |
-| init_lite_param_name_len_max | 参数名的最大长度 | 48 |
-| init_lite_persist_all | 是否持久化所有参数 | false |
-| acts_lite_param_value_len_max_48 | 是否将xts用例中value的值替换为48字节的字符串（兼容测试） | true |
+| Feature名 | 说明 | 默认值 | 小型化建议值 |
+| -------- | -------- | -------- | -------- |
+| bootstrap_lite_enable_bootstrap_service | 是否使能Bootstrap服务任务 | true | false |
+| init_lite_memory_size | 参数空间总大小（字节） | 15360 | 8192 |
+| init_lite_param_const_value_len_max | 常量参数值的最大长度 | 4096 | 256 |
+| init_lite_param_value_len_max | 参数值的最大长度 | 96 | 48 |
+| init_lite_param_name_len_max | 参数名的最大长度 | 96 | 48 |
+| init_lite_persist_all | 是否持久化所有参数 | true | false |
+| acts_lite_param_value_len_max_48 | 是否将xts用例中value的值替换为48字节的字符串（兼容测试） | false | true |
 
 ### Feature说明
 
 - **bootstrap_lite_enable_bootstrap_service**：控制是否使能Bootstrap服务任务。设为true时，bootstrap_service向samgr注册回调任务以触发INIT_APP_CALL，从而注册App级服务并异步推进启动流程；设为false时，由samgr直接调用INIT_APP_CALL，同步完成App级服务注册并推进启动流程。
 
-- **init_lite_memory_size**：设置init模块参数空间总大小，默认8192字节。若需要使用更多的参数，可根据实际需求增大该值。
+- **init_lite_memory_size**：设置init模块参数空间总大小，默认15360字节。可根据实际需求调整该值。
 
-- **init_lite_param_const_value_len_max**：设置常量参数值的最大允许长度，默认256字节。若需要使用更长的参数值，可根据实际需求增大该值。
+- **init_lite_param_const_value_len_max**：设置常量参数值的最大允许长度，默认4096字节。可根据实际需求调整该值。
 
-- **init_lite_param_value_len_max**：设置非常量参数值的最大允许长度，默认48字节。若需要使用更长的参数值，可根据实际需求增大该值。与`acts_lite_param_value_len_max_48`配合使用。
+- **init_lite_param_value_len_max**：设置非常量参数值的最大允许长度，默认96字节。可根据实际需求调整该值。与`acts_lite_param_value_len_max_48`配合使用。
 
-- **init_lite_param_name_len_max**：设置参数名的最大允许长度，默认48字节。若需要使用更长的参数名，可根据实际需求增大该值。
+- **init_lite_param_name_len_max**：设置参数名的最大允许长度，默认96字节。可根据实际需求调整该值。
 
-- **init_lite_persist_all**：控制是否将所有系统参数持久化存储。默认false，仅持久化标记为persist的参数；设为true则持久化全部参数。开启后会增加Flash写入开销。
+- **init_lite_persist_all**：控制是否将所有系统参数持久化存储。设为false时，仅持久化标记为persist的参数；设为true时，则持久化标记全部参数，会增加Flash写入开销。
 
-- **acts_lite_param_value_len_max_48**：控制是否将xts用例中value的值替换为48字节的字符串。与`init_lite_param_value_len_max`配合使用的兼容性修改。默认true。
+- **acts_lite_param_value_len_max_48**：控制是否将xts用例中value的值替换为48字节的字符串。与`init_lite_param_value_len_max`配合使用的兼容性修改。默认false。
 
 ### 使用方法
 
@@ -196,11 +196,11 @@ DFX（Design for eXcellence）可维可测子系统提供日志、事件打点�
 
 ### Feature列表
 
-| Feature名 | 所属部件 | 说明 | 默认值 |
-| -------- | -------- | -------- | -------- |
-| hilog_lite_mini | hilog_lite | 是否使能轻量系统日志功能 | true |
-| hievent_lite_mini | hievent_lite | 是否使能轻量系统事件日志输出功能 | true |
-| hiview_lite_mini | hiview_lite | 是否使能轻量维测基础配置功能 | true |
+| Feature名 | 所属部件 | 说明 | 默认值 | 小型化建议值 |
+| -------- | -------- | -------- | -------- | -------- |
+| hilog_lite_mini | hilog_lite | 是否使能轻量系统日志功能 | true | true |
+| hievent_lite_mini | hievent_lite | 是否使能轻量系统事件日志输出功能 | true | true |
+| hiview_lite_mini | hiview_lite | 是否使能轻量维测基础配置功能 | true | true |
 
 ### Feature说明
 
