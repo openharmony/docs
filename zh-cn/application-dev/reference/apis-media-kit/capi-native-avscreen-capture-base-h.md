@@ -601,8 +601,6 @@ typedef void (*OH_AVScreenCapture_OnUserSelected)(OH_AVScreenCapture* capture, O
 
 需要通过相关注册方法设置到OH_AVScreenCapture实例中。应在启动授权流程前完成注册以便接收用户选择结果。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
-
 **起始版本：** 20
 
 **参数：**
