@@ -50,7 +50,7 @@ vendor
 
 1. 在`vendor/bearpi/bearpi_hm_micro`目录下新增`config.json`文件，用于描述这个产品样例所使用的单板、内核等信息，描述信息可参考如下内容：
 
-    ```json
+    ```json5
     {
       "product_name": "bearpi_hm_micro",    // 用于hb set进行选择时，显示的产品名称
       "version": "3.0",                     // 构建系统的版本，1.0/2.0/3.0等
@@ -668,7 +668,7 @@ vendor
 
 进行元能力子系统适配需要添加`ability_lite`部件，直接在`config.json`配置即可。
 
-```json
+```json5
     {
     "subsystem": "ability",
     "components": [

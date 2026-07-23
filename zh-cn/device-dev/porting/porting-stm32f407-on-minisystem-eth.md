@@ -111,7 +111,7 @@ vendor
 
 1. 在`vendor/talkweb/niobe407`目录下新增`config.json`文件，用于描述这个产品样例所使用的单板、内核等信息，描述信息可参考如下内容：
 
-   ```json
+   ```json5
    {
      "product_name": "niobe407",           // 用于hb set进行选择时，显示的产品名称
      "type": "mini",                       // 构建系统的类型，mini/small/standard
@@ -123,7 +123,7 @@ vendor
      "kernel_type": "liteos_m",            // 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译
      "kernel_version": "7.0.0",            // 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译
      "subsystems": [],                     // 选择所需要编译构建的子系统
-     "third_party_dir": "//third_party",   // 第三方组件根目录路径
+     "third_party_dir": "//third_party"   // 第三方组件根目录路径
    }
    ```
 
@@ -1138,7 +1138,7 @@ __zinitcall_exit_end = .;
       "components": [
         {
           "component": "bootstrap_lite"
-        },
+        }
       ]
     }
 ```
