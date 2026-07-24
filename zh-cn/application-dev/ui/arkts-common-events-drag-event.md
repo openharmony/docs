@@ -1309,7 +1309,7 @@ Spring Loading的整个过程包含三个阶段：悬停检测 -> 回调通知 -
 >**说明**
 >
 >1. 在同一个组件内持续保持不动，整个Spring Loading仅会触发一轮，不会重复触发，直到拖离当前组件后再重新进入。
->2. 同一个组件上即可以实现Spring Loading，也可以实现onDrop/onDragEnter等拖拽事件。
+>2. 同一个组件上既可以实现Spring Loading，也可以实现onDrop/onDragEnter等拖拽事件。
 
 
 ### 触发自定义
@@ -1318,7 +1318,7 @@ Spring Loading的整个过程包含三个阶段：悬停检测 -> 回调通知 -
 
 1. 触发参数自定义
 
-  [onDragSpringLoading](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragspringloading20)接口还提供了一个可选参数configuration供应用自定义静止检测时长以及触发间隔与次数等配置，可以通过此参数来个性化定义Spring Loading触发条件。但绝大数多情况下，不需要进行修改，使用系统默认配置即可。
+  [onDragSpringLoading](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragspringloading20)接口还提供了一个可选参数configuration供应用自定义静止检测时长以及触发间隔与次数等配置，可以通过此参数来个性化定义Spring Loading触发条件。但绝大多数情况下，不需要进行修改，使用系统默认配置即可。
   
   configuration参数必须在检测开始前准备就绪。系统一旦启动Spring Loading检测过程，将不再从该参数读取配置。然而，可以通过回调中传入的context对象中的updateConfiguration方法动态更新配置。此动态更新仅对当前触发有效，不会影响通过configuration的配置。
   

@@ -456,7 +456,7 @@ export struct ArcListArcIndexerBar {
 
 [ArcListItem](../reference/apis-arkui/arkui-ts/ts-container-arclistitem.md)的[swipeAction](../reference/apis-arkui/arkui-ts/ts-container-arclistitem.md#swipeaction)属性可用于实现列表项的左右滑动功能。[swipeAction](../reference/apis-arkui/arkui-ts/ts-container-arclistitem.md#swipeaction)属性方法初始化时存在必填[SwipeActionOptions](../reference/apis-arkui/arkui-ts/ts-container-listitem.md#swipeactionoptions9对象说明)参数start和end。其中，start表示设置列表项右滑时起始端滑出的组件，end表示设置列表项左滑时尾端滑出的组件。
 
-在联系人列表中，end参数表示设置[ArcListItem](../reference/apis-arkui/arkui-ts/ts-container-arclistitem.md)左滑时尾端划出自定义组件，即删除按钮。在初始化end方法时，将滑动列表项的索引传入删除按钮组件，当用户点击删除按钮时，可以根据数据索引来删除列表项对应的数据，从而实现侧滑删除功能。
+在联系人列表中，end参数表示设置[ArcListItem](../reference/apis-arkui/arkui-ts/ts-container-arclistitem.md)左滑时尾端滑出自定义组件，即删除按钮。在初始化end方法时，将滑动列表项的索引传入删除按钮组件，当用户点击删除按钮时，可以根据数据索引来删除列表项对应的数据，从而实现侧滑删除功能。
 
 1. 首先，实现尾端滑出组件的构建。
 
