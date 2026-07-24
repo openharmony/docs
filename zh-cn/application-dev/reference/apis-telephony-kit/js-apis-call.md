@@ -1155,7 +1155,7 @@ call.getCallTransferInfo(type, number)
 |        名称              | 类型                               | 只读 | 可选 | 说明                                                                                             |
 | ------------------------ | ---------------------------------- | ---- | ---- | ----------------------------------------------------------------------------------------------- |
 | isHideDialScreen               | boolean                            | 否   | 是   | 是否隐藏拨号界面，true表示隐藏，false表示不隐藏。   |
-| isCustomAccessibility               | boolean                            | 否   | 是   | 应用是否支持自定义无障碍能力，默认为false。true表示支持，false表示不支持。  <br>**起始版本:** 26.0.0|
+| isCustomAccessibility               | boolean                            | 否   | 是   | 应用是否支持自定义无障碍能力，默认为false。true表示支持，false表示不支持。  <br>**起始版本:** 26.0.0 <br>**原子化服务API**：从API version 24开始，该接口支持在原子化服务中使用。|
 
 
 ## TelCallState<sup>21+</sup>
