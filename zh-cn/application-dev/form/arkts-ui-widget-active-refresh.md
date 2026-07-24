@@ -397,21 +397,21 @@
              temporary: false,
            })
              .size({
-               width:200,
-               height:200,
+               width: 200,
+               height: 200,
              })
              .borderColor(Color.Black)
              .borderRadius(10)
              .borderWidth(1)
              .onAcquired((form: FormCallbackInfo) => {
-               hilog.info(DOMAIN_NUMBER, TAG, `onAcquired: ${JSON.stringify(form)}`)
+               hilog.info(DOMAIN_NUMBER, TAG, `onAcquired: ${form.id}`)
                this.formId = form.id.toString();
              })
              .onRouter(() => {
                hilog.info(DOMAIN_NUMBER, TAG, `onRouter`)
              })
              .onError((error) => {
-               hilog.error(DOMAIN_NUMBER, TAG, `onError: ${JSON.stringify(error)}`)
+               hilog.error(DOMAIN_NUMBER, TAG, `onError: code: ${error?.errcode}, message: ${error?.msg}`)
              })
            // ...
            Button($r('app.string.button_update'))
@@ -422,7 +422,8 @@
                  formHost.requestForm(this.formId).then(() => {
                    hilog.info(DOMAIN_NUMBER, TAG, 'EntryFormAbility requestForm success.');
                  }).catch((error: BusinessError) => {
-                   hilog.error(DOMAIN_NUMBER, TAG, `EntryFormAbility requestForm fail, code: ${error?.code}, message: ${error?.message}`);
+                   hilog.error(DOMAIN_NUMBER, TAG,
+                     `EntryFormAbility requestForm fail, code: ${error?.code}, message: ${error?.message}`);
                    hilog.error(DOMAIN_NUMBER, TAG, `EntryFormAbility requestForm fail, code: ${this.formId}`);
                  })
                }
