@@ -191,7 +191,7 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
    }
    ```
 
-4. 数据传输。当前仅支持批量传输和控制传输。
+5. 数据传输。当前仅支持批量传输和控制传输。
 
     - 批量传输
    <!-- @[bulkTransfer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/USB/USBManagerSample/entry/src/main/ets/pages/Index.ets) -->
