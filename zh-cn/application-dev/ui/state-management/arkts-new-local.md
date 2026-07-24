@@ -672,7 +672,7 @@ struct Index {
 
 在下面的场景中，[animateTo](../../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#animateto)暂不支持直接在状态管理V2中使用。
 
-<!-- @[Local_Question_V2_animateTo](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/local/LocalQuestionV2animateTo.ets) -->
+<!-- @[Local_AnimateTo_V2_Problem](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/local/LocalAnimateToV2Problem.ets) -->
 
 ``` TypeScript
 @Entry
@@ -716,7 +716,7 @@ struct Index {
 
 从API version 22开始，可以使用[applySync接口](./arkts-new-applySync-flushUpdates-flushUIUpdates.md)实现预期的显示效果。
 
-<!-- @[Local_Question_Expected_Effect](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/local/LocalQuestionExpectedEffect.ets) -->
+<!-- @[Local_ApplySync_Effect](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ParadigmStateManagement/entry/src/main/ets/pages/local/LocalApplySyncEffect.ets) -->
 
 ``` TypeScript
 import { UIUtils } from '@kit.ArkUI';

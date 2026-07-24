@@ -834,7 +834,7 @@ function globalBuilder() {
 struct CustomBuilderDemo {
   build() {
     Column() {
-      // 由于未对@Require装饰的变量ChildBuilder进行赋值，此处无论是编译还是编辑，均会报错。
+      // 由于未对@Require装饰的变量ChildBuilder进行赋值，会出现编译和编辑报错。
       ChildPage()
     }
   }
