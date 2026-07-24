@@ -149,9 +149,9 @@ libnative_window.so
     <!-- @[request_buffer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/NdkNativeWindow/entry/src/main/cpp/NativeRender.cpp) -->
     
     ``` C++
-    int fenceFd = -1;
+    int releaseFenceFd = -1;
     OHNativeWindowBuffer *nativeWindowBuffer = nullptr;
-    ret = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow, &nativeWindowBuffer, &fenceFd);
+    ret = OH_NativeWindow_NativeWindowRequestBuffer(nativeWindow, &nativeWindowBuffer, &releaseFenceFd);
     if (ret != 0 || nativeWindowBuffer == nullptr) {
         return;
     }
@@ -174,14 +174,14 @@ libnative_window.so
     ``` C++
     int retCode = -1;
     uint32_t timeout = 3000;
-    if (fenceFd != -1) {
+    if (releaseFenceFd != -1) {
         struct pollfd pollfds = {0};
-        pollfds.fd = fenceFd;
+        pollfds.fd = releaseFenceFd;
         pollfds.events = POLLIN;
         do {
             retCode = poll(&pollfds, 1, timeout);
         } while (retCode == -1 && (errno == EINTR || errno == EAGAIN));
-        close(fenceFd);
+        close(releaseFenceFd);
     }
     uint32_t *pixel = static_cast<uint32_t *>(mappedAddr);
     for (uint64_t x = 0; x < bufferHandle->width; x++) {
@@ -197,7 +197,8 @@ libnative_window.so
     
     ``` C++
     struct Region *region = new Region();
-    ret = OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, nativeWindowBuffer, fenceFd, *region);
+    int acquireFenceFd = -1;
+    ret = OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, nativeWindowBuffer, acquireFenceFd, *region);
     if (ret != NATIVE_ERROR_OK) {
         LOGE("flush failed");
         (void)OH_NativeWindow_NativeWindowAbortBuffer(nativeWindow, nativeWindowBuffer);
