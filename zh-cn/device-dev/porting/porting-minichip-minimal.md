@@ -67,7 +67,7 @@
 
 ### 使用方法
 
-#### 1. 在config.json中添加启动子系统
+#### 在config.json中添加启动子系统
 
 路径："vendor/MyVendorCompany/MyProduct/config.json"
 
@@ -92,10 +92,10 @@
             ]
         }
     ]
-},
+}
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > `acts_lite_param_value_len_max_48`为兼容性测试相关Feature，在执行HCTEST时需按需配置。
 
 ---
@@ -140,7 +140,7 @@
 
 ### 使用方法
 
-#### 1. 在config.json中添加samgr子系统
+#### 在config.json中添加samgr子系统
 
 路径："vendor/MyVendorCompany/MyProduct/config.json"
 
@@ -159,10 +159,10 @@
             ]
         }
     ]
-},
+}
 ```
 
-#### 2. SAMGR启动流程
+#### SAMGR启动流程
 
 `OHOS_SystemInit()`中调用`SAMGR_Bootstrap()`完成服务框架初始化，各服务通过zinitcall段注册：
 
@@ -172,7 +172,7 @@
 // 2. .zinitcall.app.featureX.init 段 —— 注册服务Feature
 ```
 
-#### 3. 兼容性测试Feature配置
+#### 兼容性测试Feature配置
 
 执行HCTEST时，需按需开启测试相关Feature：
 
@@ -212,7 +212,7 @@ DFX（Design for eXcellence）可维可测子系统提供日志、事件打点�
 
 ### 使用方法
 
-#### 1. 在config.json中添加DFX子系统
+#### 在config.json中添加DFX子系统
 
 路径："vendor/MyVendorCompany/MyProduct/config.json"
 
@@ -233,7 +233,7 @@ DFX（Design for eXcellence）可维可测子系统提供日志、事件打点�
             "features": ["hiview_lite_mini = true"]
         }
     ]
-},
+}
 ```
 
 ---
@@ -266,37 +266,38 @@ HCTEST为OpenHarmony兼容性测试框架，提供基本接口的测试验证能
 
 ### 使用方法
 
-#### 1. 编译时配置HCTEST Feature
+#### 编译时配置HCTEST Feature
 
 HCTEST的Feature通过编译参数`--gn-args`传入，也可以通过config.json中的features字段开启：
 
- ```bash
+```bash
 hb build --gn-args hctest_rodata_opt=true xts_overlay=true hctest_task_stack_size=2048 hctest_task_queue_size=1 'hctest_task_type="SHARED_TASK"'
- ```
+```
 
- config.json配置方法参考 vendor/hisilicon/hispark_pegasus_minimal/config.json
- ```json
- {
-   "subsystem": "xts",
-   "components": [
-     { "component": "acts", "features":[
-        "enable_ohos_test_xts_acts_use_thirdparty_lwip = false",
-        "hctest_rodata_opt = true",
-        "xts_overlay = true",
-        "hctest_task_stack_size = 2048",
-        "hctest_task_queue_size = 1",
-        "hctest_task_type = SHARED_TASK"
-     ] },
-     { "component": "tools", "features":[] }
-    ]
-  },
- ```
+config.json配置方法参考 vendor/hisilicon/hispark_pegasus_minimal/config.json
 
-#### 2. 链接脚本适配
+```json
+{
+  "subsystem": "xts",
+  "components": [
+    { "component": "acts", "features":[
+       "enable_ohos_test_xts_acts_use_thirdparty_lwip = false",
+       "hctest_rodata_opt = true",
+       "xts_overlay = true",
+       "hctest_task_stack_size = 2048",
+       "hctest_task_queue_size = 1",
+       "hctest_task_type = SHARED_TASK"
+    ] },
+    { "component": "tools", "features":[] }
+   ]
+ },
+```
 
-##### 1. 开启 hctest_rodata_opt 需要的链接器适配
+#### 链接脚本适配
 
-###### 1.1 链接脚本改动
+##### 开启 hctest_rodata_opt 需要的链接器适配
+
+###### 链接脚本改动
 
 在链接脚本的 Flash/rodata 区域内，为每个测试模块添加 KEEP 段 + 边界符号：
 
@@ -314,7 +315,7 @@ xts_init_ActsDfxFuncTest_stop = .;
 /* ... 每个模块一组 ... */
  ```
 
-###### 1.2 模块列表
+###### 模块列表
 
 必须与 test/xts/tools/lite/hctest/src/hctest.c 的 g_xtsModules[] 数组完全一致：
 
@@ -332,12 +333,12 @@ ActsUpdaterFuncTest
 ActsWifiIotTest
 ActsUtilsFileTest
 ```
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 新增测试模块时，g_xtsModules[] 和链接脚本两处都要加。
 
-##### 2. 开启 xts_overlay 需要的链接器适配
+##### 开启 xts_overlay 需要的链接器适配
 
-###### 2.1 .bss EXCLUDE_FILE
+###### .bss EXCLUDE_FILE
 
 在链接脚本的 .bss 收集处，排除 5 个 overlay 模块的 .bss，使其落入下方的 OVERLAY 块：
 
@@ -347,7 +348,7 @@ ActsUtilsFileTest
                *libmodule_ActsSamgrTest.a) .bss*)
 ```
 
-###### 2.2 OVERLAY 块
+###### OVERLAY 块
 
 在 .bss 段之后、.heap 之前，创建 5 模块共享的 overlay 区域：
 
@@ -364,7 +365,7 @@ OVERLAY . :
 xts_overlay_end = .;
 ```
 
-###### 2.3 ASSERT 校验
+###### ASSERT 校验
 
 每个子段必须 ≤ overlay 区域大小（最大的模块应放最后）：
 
@@ -373,14 +374,15 @@ ASSERT(xts_overlay_end - xts_overlay_start >= SIZEOF(.xts_bss_ActsDfxFuncTest), 
 /* ... 每个模块一条 ... */
 ```
 
-###### 2.4 5个 overlay 模块
+###### 5个 overlay 模块
 
 ActsDfxFuncTest、ActsHieventLiteTest、ActsBootstrapTest、ActsParameterTest、ActsSamgrTest。
-OVERLAY 块中的 .a 文件名格式为 *libmodule_<ModuleName>.a，与 GN 编译 acts 测试模块时的 target 名一致。
 
-##### 3. Feature 隔离
+OVERLAY 块中的 .a 文件名格式为 *libmodule_\<ModuleName\>.a，与 GN 编译 acts 测试模块时的 target 名一致。
 
-###### 3.1 Feature 说明
+##### Feature 隔离
+
+###### Feature 说明
 
 | Feature | 编译宏 | 作用 |
 | -------- | -------- | -------- |
@@ -388,11 +390,11 @@ OVERLAY 块中的 .a 文件名格式为 *libmodule_<ModuleName>.a，与 GN 编�
 | hctest_rodata_opt | HCTEST_RODATA_OPT | 测试套描述 放 Flash(.rodata) + xts 跑独立线程 |
 | （派生）任一开启 | HCTEST_NEW_RUNNER | 切换xts测试入口 + .xts_init 延迟注册机制 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 两个 Feature 正交，可单独开启或同时开启。派生宏 HCTEST_NEW_RUNNER = xts_overlay OR hctest_rodata_opt。
 
 如需支持 Feature 关闭时回到原始行为（链接脚本与未适配前一致），需要：
-###### 3.2 链接脚本：用 #if defined() 包裹新增代码
+###### 链接脚本：用 #if defined() 包裹新增代码
 
 ```ld
 /* .xts_init KEEP 段 */
@@ -420,7 +422,7 @@ OVERLAY 块中的 .a 文件名格式为 *libmodule_<ModuleName>.a，与 GN 编�
 #endif
 ```
 
-###### 3.3 预处理器入口：条件化传递 -D宏
+###### 预处理器入口：条件化传递 -D宏
 
 根据 GN Feature 状态条件传递-D宏。完整链路：
 
@@ -503,7 +505,7 @@ set_config('env_cfg', 'CONFIG_XTS_OVERLAY', 'y', ['-DXTS_OVERLAY_ENABLE'], 'link
 set_config('env_cfg', 'CONFIG_HCTEST_NEW_RUNNER', 'y', ['-DHCTEST_NEW_RUNNER'], 'link_scripts_flag', 'common')
 ```
 
-##### 4. 3861 与 3863 已适配对比
+##### 3861 与 3863 已适配对比
 
 | 环节 | 3861 (hi3861v100) | 3863 (ws63v100) |
 | -------- | -------- | -------- |
@@ -513,7 +515,7 @@ set_config('env_cfg', 'CONFIG_HCTEST_NEW_RUNNER', 'y', ['-DHCTEST_NEW_RUNNER'], 
 | BSS 段名 | .bss* | .bss + .bss* |
 | RAM 段名 | RAM | SRAM |
 
-##### 5. 验证
+##### 验证
 
 ```bash
 # .xts_init KEEP 段符号（HCTEST_NEW_RUNNER 生效时）
@@ -523,7 +525,7 @@ nm <elf> | grep xts_init_Acts    # 每个模块的 _start/_stop 符号对
 nm <elf> | grep xts_overlay      # xts_overlay_start / xts_overlay_end
 ```
 
-##### 6. 注意事项
+##### 注意事项
 
 1. **模块列表同步**：链接脚本的 `.xts_init` 模块列表必须与 `hctest.c` 的 `g_xtsModules[]` 一致。新增测试模块时两处都要改。
 2. **OVERLAY 模块顺序**：最大的模块应放最后，ASSERT 会检查每个子段 ≤ overlay 区域大小。
@@ -536,18 +538,18 @@ nm <elf> | grep xts_overlay      # xts_overlay_start / xts_overlay_end
 
 三方库模块，对thirdparty下mbedtls进行了算法feature化改造，以ws63产品为范例（当前仅适配了ws63），展现feature化对内存的影响。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 非必须，按需配置，当前对ws63内存无正面优化效果。
 
 ### 使用方法
 
-#### 1. Feature化生效
+#### Feature化生效
 
 ```bash
 --gn-args mbedtls_featureized=true
 ```
 
-#### 2. Feature说明
+#### Feature说明
 
 - 在third_party/mbedtls/mbedtls_feature.gni中配置了算法相关feature，
 - 通过 --gn-args mbedtls_feature_xxx = true的方式可开启
@@ -564,9 +566,10 @@ nm <elf> | grep xts_overlay      # xts_overlay_start / xts_overlay_end
     - --gn-args mbedtls_feature_ssl_misc=true
     - ws63的minimal产品暂不使用mbedtls
 
-#### 3. 注意事项
+#### 注意事项
 
-算法间存在依赖关系，违反时编译失败；
+算法间存在依赖关系，违反时编译失败。
+
 若要在产品的bundle.json文件中通过配置的方式开启，需将对应的feature声明在bundle.json的features中。
 
 ---
@@ -593,7 +596,7 @@ nm <elf> | grep xts_overlay      # xts_overlay_start / xts_overlay_end
 
 ### 使用方法
 
-#### 1. 编译时配置Feature
+#### 编译时配置Feature
 
 通过编译参数`--gn-args`传入：
 
@@ -601,12 +604,14 @@ nm <elf> | grep xts_overlay      # xts_overlay_start / xts_overlay_end
 hb build --gn-args ohos_stack_protector=strong ohos_mem_opt_extra=true
 ```
 
-#### 2. 链接脚本配置
+#### 链接脚本配置
 
-参考hi3861与hi3863的minimal产品
-添加配置
+参考hi3861与hi3863的minimal产品，在config.json中添加配置：
+
+```json
 "ohos_stack_protector=strong",
 "ohos_mem_opt_extra=true"
+```
 - 3861：
   - vendor/hisilicon/hispark_pegasus_minimal/config.json
   - product_wifiiot_hispark_pegasus_minimal的features
@@ -627,7 +632,7 @@ hb build --gn-args ohos_stack_protector=strong ohos_mem_opt_extra=true
 | 文件子系统 | 提供文件打开、关闭、读写、Seek等操作接口 | 日志存储、配置持久化、数据记录 | 增加ROM约10KB+，RAM约2KB+ | [移植文件子系统](porting-minichip-subsys-filesystem.md) |
 | 安全子系统 | 提供硬件随机数、密钥管理（huks）、设备认证（hichainsdk）等安全能力 | 安全连接、数据加密、设备鉴权 | 依赖mbedtls，增加ROM约50KB+ | [移植安全子系统](porting-minichip-subsys-security.md) |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 上表资源影响为参考值，实际占用与芯片架构、编译器优化等级、使能的具体Feature有关。
 > - 选配子系统时，请根据芯片实际ROM/RAM资源情况评估，确保不超过硬件限制。
 > - 各子系统的详细移植步骤与接口定义，请参考对应的移植指导文档。
