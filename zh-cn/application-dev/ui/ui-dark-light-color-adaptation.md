@@ -460,7 +460,7 @@ onCreate(): void {
     本示例展示OH_ArkUI_SetForceDarkConfig接口的基础使用方式，自定义反色算法根据开发者实际场景进行设置，便于深浅色切换时展示不同的颜色值。
 
       ```c++
-      OH_ArkUI_SetForceDarkConfig(nullptr, true, ArkUI_NodeType::ARKUI_NODE_UNDEFINED, nullptr); // 对所有组件使用x系统默认反色算法，即三原色取反。
+      OH_ArkUI_SetForceDarkConfig(nullptr, true, ArkUI_NodeType::ARKUI_NODE_UNDEFINED, nullptr); // 对所有组件使用系统默认反色算法，即三原色取反。
       ```
 
       ```ts

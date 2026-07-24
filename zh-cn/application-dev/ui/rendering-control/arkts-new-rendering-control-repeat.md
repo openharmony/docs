@@ -99,7 +99,7 @@ struct RepeatExample {
 
 Repeat提供渲染模板（template）能力，可以在同一个数据源中渲染多种子组件。每个数据项会根据[.templateId()](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#templateid)得到template type，从而渲染type对应的`.template()`中的子组件。
 
-> **说明:**
+> **说明：**
 >
 > - `.template()`需要在[懒加载模式](#懒加载能力说明)下使用。
 > - `.each()`等价于template type为空字符串的`.template()`。
@@ -167,7 +167,7 @@ Repeat的[.key()](../../reference/apis-arkui/arkui-ts/ts-rendering-control-repea
 
 当`.key()`缺省时，Repeat会生成新的随机键值。当发现有重复key时，Repeat会在已有键值的基础上递归生成新的键值，直到没有重复键值。
 
-> **说明:**
+> **说明：**
 >
 > - 键值（key）与索引（index）的区别：键值是数据项的唯一标识符，Repeat根据键值是否发生变化判断数据项是否更新；索引只标识数据项在数组中的位置。
 > - 在[懒加载模式](#懒加载能力说明)下，Repeat也会通过状态管理机制监听数据本身的变化，从而实现高效的更新。

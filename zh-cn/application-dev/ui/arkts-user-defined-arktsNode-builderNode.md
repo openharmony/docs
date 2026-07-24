@@ -37,7 +37,7 @@ BuilderNode仅可作为叶子节点进行使用。如有更新需要，建议通
 > 
 > - 如果BuilderNode的FrameNode通过[getRenderNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#getrendernode)形式将自己的节点挂载在RenderNode节点上，由于其FrameNode未上树，其大小默认为0，需要通过构造函数中的[selfIdealSize](../reference/apis-arkui/js-apis-arkui-builderNode.md#renderoptions)显式指定布局约束大小，才能正常显示。
 > 
-> - BuilderNode的预加载并不会减少组件的创建时间。Web组件创建的时候需要在内核中加载资源，预创建不能减少Web组件的创建的时间，但是可以让内核进行预加载，减少正式使用时候内核的加载耗时。
+> - BuilderNode的预加载并不会减少组件的创建时间。Web组件创建的时候需要在内核中加载资源，预创建不能减少Web组件的创建时间，但是可以让内核进行预加载，减少正式使用时候内核的加载耗时。
 
 ## 创建BuilderNode对象
 
@@ -53,7 +53,7 @@ BuilderNode对象为一个模板类，需要在创建的时候指定类型。该
 >
 > build方法中对应的@Builder支持一个参数作为入参。
 >
-> build中对于@Builder嵌套@Builder进行使用的场景，需要保证嵌套的参数与build的中提供的入参一致。
+> build中对于@Builder嵌套@Builder进行使用的场景，需要保证嵌套的参数与build中提供的入参一致。
 > 
 > 对于@Builder嵌套@Builder进行使用的场景，如果入参类型不一致，则要求增加[BuildOptions](../reference/apis-arkui/js-apis-arkui-builderNode.md#buildoptions12)字段作为[build](../reference/apis-arkui/js-apis-arkui-builderNode.md#build12)的入参。
 > 

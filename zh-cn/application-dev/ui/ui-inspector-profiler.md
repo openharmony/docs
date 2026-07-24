@@ -88,7 +88,7 @@ hdc shell hidumper -s WindowManagerService -a '-a'
    - `View Hierarchy`：前端自定义组件树结构信息。
    - `State variables`：根节点状态变量。从下面的信息可以看到`Page`下有状态变量`@State 'message'[0]`的具体信息：
      - `[0]`代表状态变量id。
-     - `Owned by @Component 'Page'[4]`：当前状态变量属于组件`'Page'[4]`,`[4]`为自定义组件id。
+     - `Owned by @Component 'Page'[4]`：当前状态变量属于组件`'Page'[4]`，`[4]`为自定义组件id。
      - `Sync peers`：当前状态变量的同步对象，即`@State message`改变会通知`@Link 'message'[-1] <@Component 'Child'[7]>`刷新。
      - `dependencies`：
        - `variable assignment affects elmtIds`：状态变量改变会触发的组件的刷新。例如，`@State message`的改变会触发`Text[6]`的刷新。

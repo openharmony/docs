@@ -577,7 +577,7 @@ Router可以通过命名路由的方式实现跨包跳转。
 
 Navigation作为路由组件，默认支持跨包跳转。
 
-1. 从HSP（HAR）中完成自定义组件（需要跳转的目标页面）开发，将自定义组件申明为export。
+1. 从HSP（HAR）中完成自定义组件（需要跳转的目标页面）开发，将自定义组件声明为export。
 
    <!-- @[router_hsp21](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/Navigation/entry/src/main/ets/pages/routerToNavigation/router/Hsp21.ets) -->
    
