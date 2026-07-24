@@ -205,8 +205,8 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
    let pipe: usbManager.USBDevicePipe = this.pipe_;
    let interface1: usbManager.USBInterface = this.interface_;
    /*
-   读取数据，在device信息中选取对应数据接收的endpoint来做数据传输
-   （endpoint.direction == 0x80）；dataUint8Array是要读取的数据，类型为Uint8Array。
+     读取数据，在device信息中选取对应数据接收的endpoint来做数据传输
+    （endpoint.direction == 0x80）；dataUint8Array是要读取的数据，类型为Uint8Array。
     */
    let inEndpoint: usbManager.USBEndpoint = interface1.endpoints?.[1];
    let outEndpoint: usbManager.USBEndpoint = interface1.endpoints?.[0];
