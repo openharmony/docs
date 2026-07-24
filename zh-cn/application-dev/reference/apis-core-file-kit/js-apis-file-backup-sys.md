@@ -1,12 +1,12 @@
 # @ohos.file.backup (备份恢复)(系统接口)
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
-<!--Owner: @lvzhenjie-->
-<!--Designer: @chenxi0605-->
+<!--Owner: @rainlost-->
+<!--Designer: @rainlost-->
 <!--Tester: @zsyztt; @yue-ye2; @fuwei-->
 <!--Adviser: @jinqiuheng-->
 
-该模块为应用提供备份/恢复数据的能力。
+该模块为应用提供备份/恢复数据的能力，解决应用数据迁移、系统升级、换机场景中的数据保存与恢复问题。工具应用可通过SessionBackup执行全量备份，通过SessionRestore执行恢复，通过IncrementalBackupSession执行增量备份。备份恢复服务通过GeneralCallbacks通知应用备份/恢复阶段、文件句柄、进度和结果。
 
 > **说明：**
 >
@@ -27,8 +27,9 @@ import { backup } from '@kit.CoreFileKit';
 
 | 名称       | 类型   | 只读 | 可选 | 说明                                                                                                |
 | ---------- | ------ | ---- | ---- |--------------------------------------------------------------------------------------------------- |
-| bundleName | string | 否   | 否 | 应用名称，可通过[bundleManager.BundleInfo](../apis-ability-kit/js-apis-bundleManager-bundleInfo.md)提供的获取方式获取。 |
-| uri        | string | 否   | 否 | 应用沙箱内待传输文件的名称，当前uri尚未升级为标准格式，仅接受0-9a-zA-Z下划线(_)点(.)组成的名称。      |
+| bundleName | string | 否   | 否 | 应用名称，可通过[bundleManager.BundleInfo](../apis-ability-kit/js-apis-bundleManager-bundleInfo.md)提供的获取方式获取。备份服务根据该名称查找并处理对应应用的数据。 |
+| uri        | string | 否   | 否 | 应用沙箱内待传输文件的名称，当前uri尚未升级为标准格式，仅接受0-9a-zA-Z下划线(_)点(.)组成的名称。备份服务根据该名称查找并处理对应应用的数据。      |
+| uris        | Array&lt;string&gt; | 否   | 是 | 应用沙箱内待传输文件的名称数组，当前uris尚未升级为标准格式，仅接受0-9a-zA-Z下划线(_)点(.)组成的名称。<br>**模型约束**：此接口仅可在Stage模型下使用。<br>**起始版本**：26.0.0      |
 
 ## FileData
 
@@ -42,15 +43,15 @@ import { backup } from '@kit.CoreFileKit';
 
 | 名称 | 类型   | 只读 | 可选 | 说明                                     |
 | ---- | ------ | ---- | --- |---------------------------------------- |
-| fd   | number | 否   | 否 |已经打开的文件描述符，通过备份服务获取。 |
+| fd   | number | 否   | 否 | 已经打开的文件描述符，通过备份服务获取，可用于读取或写入备份/恢复文件内容。 |
 
 ## FileManifestData<sup>12+</sup>
 
-文件的元数据，包含一个已经打开的文件描述符。FileManifestData所打开的内容是一个清单文件，用于描述应用增量备份/恢复时对应文件的基础信息。FileManifestData在执行增量备份/恢复时是不可缺少的对象。
+文件的元数据，包含一个已经打开的文件描述符。FileManifestData所打开的内容是一个清单文件，用于描述应用增量备份/恢复时对应文件的基础信息。增量备份时，备份服务根据manifestFd读取清单文件，对比上次增量时间和文件基础信息，识别需要处理的增量文件。FileManifestData在执行增量备份/恢复时是不可缺少的对象。
 
 > **说明：**
 >
-> 关闭的方法可参考[fileIo.closeSync](js-apis-file-fs.md#fileioclosesync)等关闭接口。
+> FileManifestData使用完成后必须关闭，如不关闭会出现内存泄露问题。关闭的方法可参考[fileIo.closeSync](js-apis-file-fs.md#fileioclosesync)等关闭接口。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
@@ -71,23 +72,23 @@ import { backup } from '@kit.CoreFileKit';
 
 ## BackupParams<sup>12+</sup>
 
-为备份恢复提供可选配置参数以json格式的字符串形式存在。
+为备份恢复提供可选配置参数，以JSON格式的字符串形式存在。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
 | 名称       | 类型   | 只读 | 可选 | 说明                                               |
 | ---------- | ------ | ---- | ---- | -------------------------------------------------- |
-| parameters | string | 否   | 是 | 以json格式为配置项的字符串，为备份恢复提供可选选项。默认为空。 |
+| parameters | string | 否   | 是 | 以JSON格式为配置项的字符串，为备份恢复提供可选选项，字段由备份恢复业务约定。默认为空，表示不使用额外配置。 |
 
 ## BackupPriority<sup>12+</sup>
 
-为备份恢复提供优先级配置。
+为备份恢复提供优先级配置。多个应用同时备份或恢复时，可通过该配置让优先级较高的应用先执行。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
 | 名称     | 类型   | 只读 | 可选 | 说明                                                   |
 | -------- | ------ | ---- | ---- | ------------------------------------------------------ |
-| priority | number | 否   | 是 | 数值越大优先级越高；优先级相同的情况下，先调用的先执行。默认为0。 |
+| priority | number | 否   | 是 | 数值越大优先级越高。优先级相同的情况下，先调用的先执行。默认为0。 |
 
 ## IncrementalBackupData<sup>12+</sup>
 
@@ -95,7 +96,7 @@ import { backup } from '@kit.CoreFileKit';
 
 > **说明：**
 >
-> 记录应用最后一次的增量时间以及增量备份清单文件的文件描述符，清单文件中记录着增量时间内已备份的文件信息。可选参数包含了备份恢复的可选配置项，优先级配置项。
+> 记录应用最后一次的增量时间以及增量备份清单文件的文件描述符。清单文件中记录着增量时间内已备份的文件信息。备份服务根据lastIncrementalTime和manifestFd判断需要增量处理的文件范围。parameters用于传递业务约定的额外配置，priority用于控制多个应用的备份/恢复执行顺序。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
@@ -107,7 +108,7 @@ import { backup } from '@kit.CoreFileKit';
 
 > **说明：**
 >
-> file.backup.File与@ohos.file.fs中的提供的[File](js-apis-file-fs.md#file)是带有不同的涵义，前者是继承[FileMeta](#filemeta)和[FileData](#filedata)的对象而后者只有一个文件描述符的对象。请注意区分，不要混淆。
+> file.backup.File与@ohos.file.fs中提供的[File](js-apis-file-fs.md#file)含义不同。前者是继承[FileMeta](#filemeta)和[FileData](#filedata)的对象，后者是只有一个文件描述符的对象。请注意区分，不要混淆。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
@@ -119,7 +120,7 @@ import { backup } from '@kit.CoreFileKit';
 
 > **说明：**
 >
-> file.backup.File与@ohos.file.fs中的提供的[File](js-apis-file-fs.md#file)是带有不同的涵义，前者是继承[FileMeta](#filemeta)和[FileData](#filedata)的对象而后者只有一个文件描述符的对象。请注意区分，不要混淆。
+> file.backup.File与@ohos.file.fs中提供的[File](js-apis-file-fs.md#file)含义不同。前者是继承[FileMeta](#filemeta)、[FileData](#filedata)和[FileManifestData](#filemanifestdata12)的对象，后者是只有一个文件描述符的对象。请注意区分，不要混淆。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
@@ -131,13 +132,13 @@ import { backup } from '@kit.CoreFileKit';
 
 **系统接口**：此接口为系统接口。
 
-**系统能力**：SystemCapability.FileManagement.StorageService.backup
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
 | 名称        | 类型   | 只读 | 可选 | 说明                                                   |
 | ----------- | ------ | ---- | ---- | ------------------------------------------------------ |
-| triggerType | number |  否  |  否  | 制定碎片清理的触发类型，当前仅支持触发类型0，表示执行器件碎片清理功能。|
-| writeSize   | number |  否  |  否  | 碎片清理功能的清理目标，预期可清理出目标大小的可用存储单元。单位：MB，取值范围：0-2097152MB。|
-| waitTime    | number |  否  |  否  | 执行碎片清理功能最大允许时间，超过此时间认为任务超时。单位：秒，取值范围：0-180秒。|
+| triggerType | number |  否  |  否  | 指定碎片清理的触发类型，取值范围为0，表示执行存储器件碎片清理功能，清理碎片空间以改善存储性能，其他取值返回参数错误。|
+| writeSize   | number |  否  |  否  | 碎片清理功能的清理目标，预期可清理出目标大小的可用存储单元。单位：MB，取值范围：0-2097152MB，超出范围返回参数错误。|
+| waitTime    | number |  否  |  否  | 执行碎片清理功能最大允许时间，超过此时间认为任务超时。单位：秒，取值范围：0-300秒，超出范围返回参数错误。|
 
 ## PathInfo
 
@@ -153,8 +154,8 @@ import { backup } from '@kit.CoreFileKit';
 
 | 名称       | 类型   | 只读 | 可选 | 说明                                     |
 | ---------- | ------ | ---- | --- | ---------------------------------------- |
-| srcPath | string | 否   | 否 | 迁移的源路径。长度限制为4096个字符，不支持使用相对路径和软链接。 |
-| destPath | string | 否   | 否 | 迁移的目标路径。长度限制为4096个字符，不支持使用相对路径和软链接。 |
+| srcPath | string | 否   | 否 | 迁移的源路径。长度限制为4096个字符，不支持使用相对路径和软链接，超出长度限制返回参数错误。 |
+| destPath | string | 否   | 否 | 迁移的目标路径。长度限制为4096个字符，不支持使用相对路径和软链接，超出长度限制返回参数错误。 |
 
 ## GeneralCallbacks
 
@@ -170,18 +171,19 @@ import { backup } from '@kit.CoreFileKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| onBackupSizeReport<sup>18+</sup>  | [OnBackupSizeReport](#onbackupsizereport18) | 否 | 是 |  框架获取到的待备份的数据量大小的信息。 |
-| onMigrateResult | AsyncCallback&lt;string, void \| string&gt; | 否 | 是 | 迁移文件流程结束的回调，返回迁移文件的结果信息。当迁移操作成功，err为undefined，data为string（应用名称）；否则为错误对象。<br>**起始版本**：26.0.0<br>**模型约束**：此接口仅可在Stage模型下使用。<br>**错误码**：<br>以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](errorcode-filemanagement.md)。<br>- 202：Permission verification failed, application which is not a system application uses system API.<br>- 13600001：IPC error.<br>- 13900001：Operation not permitted.<br>- 13900005：I/O error.<br>- 13900011：Out of memory.<br>- 13900020：Invalid argument.<br>- 13900025：No space left on device. |
+| onBackupSizeReport<sup>18+</sup>  | [OnBackupSizeReport](#onbackupsizereport18) | 否 | 是 |  与getBackupDataSize配套使用，返回待备份数据量信息。不设置该回调时，不接收数据量扫描结果。 |
+| onMigrateResult | AsyncCallback&lt;string, void \| string&gt; | 否 | 是 | 迁移文件流程结束的回调，返回迁移文件的结果信息。当迁移操作成功，err为undefined，data为string（应用名称）；否则为错误对象。不设置该回调时，不接收文件迁移结果。<br>**起始版本**：26.0.0<br>**模型约束**：此接口仅可在Stage模型下使用。<br>**错误码**：<br>以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](errorcode-filemanagement.md)。<br>- 202：Permission verification failed, application which is not a system application uses system API.<br>- 13600001：IPC error.<br>- 13900001：Operation not permitted.<br>- 13900005：I/O error.<br>- 13900011：Out of memory.<br>- 13900020：Invalid argument.<br>- 13900025：No space left on device. |
+| onFileReadyBatch | [OnFileReadyBatch](#onfilereadybatch) | 否 | 是 | 当一批文件准备好发送给客户端时触发的回调。<br>**起始版本**：26.0.0<br>**模型约束**：此接口仅可在Stage模型下使用。<br>**错误码**：<br>以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](errorcode-filemanagement.md)。<br>- 202：Permission verification failed, application which is not a system application uses system API.<br>- 13600001：IPC error.<br>- 13900005：I/O error.<br>- 13900011：Out of memory.<br>- 13900020：Invalid argument.<br>- 13900025：No space left on device. |
 
 ### onFileReady
 
 onFileReady : AsyncCallback&lt;File&gt;
 
-回调函数。当服务端返向客户端发送文件，如果成功触发回调，返回对应文件的[File](#file)内容；如果触发失败，则返回err错误对象。
+回调函数。当服务端向客户端发送文件，如果成功触发回调，返回对应文件的[File](#file)内容。如果触发失败，则返回err错误对象。
 
 > **说明：**
 >
-> AsyncCallback回调中返回的File所属file.backup.[File](#file)类型。返回的文件归备份服务所有，一旦文件关闭，备份服务将选择合适的时机去清理，但客户端必须关闭文件句柄。
+> AsyncCallback回调中返回的File属于file.backup.[File](#file)类型。返回的文件归备份服务所有，客户端必须在文件操作完成后关闭文件句柄。文件句柄关闭后，备份服务会在后续流程中清理该文件。
 
 **系统接口**：此接口为系统接口。
 
@@ -191,7 +193,7 @@ onFileReady : AsyncCallback&lt;File&gt;
 
 | 参数名     | 类型          | 必填 | 说明                                                        |
 | ---------- | ------------- | ---- | ----------------------------------------------------------- |
-| File | [File](#file)     | 是   | 返回对应文件的[File](#file)内容。                       |
+| file | [File](#file)     | 是   | 返回对应文件的[File](#file)内容。                       |
 
 **错误码：**
 
@@ -226,7 +228,7 @@ onFileReady : AsyncCallback&lt;File&gt;
 
 onBundleBegin: AsyncCallback&lt;string, void | string&gt;
 
-回调函数。当应用备份/恢复开始时，如果成功触发回调，返回对应的bundleName；如果触发失败，则返回err错误对象。从API version 12开始，返回err的同时，将同时返回第二个string参数bundleName。
+回调函数。当应用备份/恢复开始时，如果成功触发回调，返回对应的bundleName。如果触发失败，则返回err错误对象。从API version 12开始，返回err时也会返回第二个string参数bundleName。
 
 **系统接口**：此接口为系统接口。
 
@@ -236,8 +238,8 @@ onBundleBegin: AsyncCallback&lt;string, void | string&gt;
 
 | 参数名     | 类型          | 必填 | 说明                                                        |
 | ---------- | ------------- | ---- | ----------------------------------------------------------- |
-| bundleName | string        | 是   | 服务返回的应用名称。                                          |
-| err        | BusinessError | 否   | 当发生err时，为错误对象；否则为undefined data为bundle名称。 |
+| err        | BusinessError | 否   | 当发生错误时，为错误对象，否则为undefined。 |
+| bundleName | string        | 是   | 服务返回的应用名称，表示当前开始备份/恢复的应用包名。开发者可根据该参数记录当前应用的备份/恢复开始状态、初始化进度展示或准备后续处理。                                          |
 
 **错误码：**
 
@@ -272,7 +274,7 @@ onBundleBegin: AsyncCallback&lt;string, void | string&gt;
 
 onBundleEnd: AsyncCallback&lt;string, void | string&gt;
 
-回调函数。当应用备份/恢复结束后，如果成功触发回调，返回对应的bundleName；如果触发失败，则返回err错误对象。从API version 12开始，返回err的同时，将同时返回第二个string参数bundleName。
+回调函数。当应用备份/恢复结束后，如果成功触发回调，返回对应的bundleName。如果触发失败，则返回err错误对象。从API version 12开始，返回err的同时，将同时返回第二个string参数bundleName。
 
 **系统接口**：此接口为系统接口。
 
@@ -282,8 +284,8 @@ onBundleEnd: AsyncCallback&lt;string, void | string&gt;
 
 | 参数名     | 类型          | 必填 | 说明                                                        |
 | ---------- | ------------- | ---- | ----------------------------------------------------------- |
-| bundleName | string        | 是   | 服务返回的应用名称。                                          |
-| err        | BusinessError | 否   | 当发生err时，为错误对象，否则为undefined data为bundle名称。 |
+| err        | BusinessError | 否   | 当发生错误时，为错误对象，否则为undefined。 |
+| bundleName | string        | 是   | 服务返回的应用名称，表示当前结束备份/恢复的应用包名。开发者可根据该参数记录当前应用的备份/恢复结束状态、更新结果展示或清理临时状态。                                          |
 
 **错误码：**
 
@@ -355,7 +357,7 @@ onAllBundlesEnd: AsyncCallback&lt;undefined&gt;
 
 onBackupServiceDied: Callback&lt;undefined&gt;
 
-回调函数。备份服务死亡时触发回调，如果触发失败，则返回err错误对象。
+回调函数。备份服务死亡时触发回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -384,7 +386,7 @@ onResultReport (bundleName: string, result: string)
 | 参数名     | 类型   | 必填 | 说明                            |
 | ---------- | ------ | ---- | ------------------------------- |
 | bundleName | string | 是   | 应用包名。                        |
-| result     | string | 是   | json格式返回的应用备份/恢复信息。 |
+| result     | string | 是   | JSON格式返回的应用备份/恢复信息，包含备份/恢复数量或异常信息等，可用于判断备份/恢复结果并展示给用户。 |
 
 **错误码：**
 
@@ -426,7 +428,7 @@ onProcess (bundleName: string, process: string): void
 | 参数名     | 类型   | 必填 | 说明                            |
 | ---------- | ------ | ---- | ------------------------------- |
 | bundleName | string | 是   | 应用包名。                        |
-| process     | string | 是   | json格式返回应用备份/恢复的进度信息。 |
+| process     | string | 是   | JSON格式返回应用备份/恢复的进度信息，可包含进度百分比、已完成文件数或异常信息等，用于展示备份/恢复进度。 |
 
 **错误码：**
 
@@ -460,7 +462,7 @@ onProcess (bundleName: string, process: string): void
 
 fileSystemServiceRequest(config: FileSystemRequestConfig): Promise&lt;number&gt;
 
-整理存储器件碎片化空间，改善用户卡顿体验。使用Promise异步回调。
+整理存储器件碎片化空间，改善用户卡顿体验。适用于存储空间紧张、存储性能下降或需要主动进行存储维护的场景。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -473,13 +475,13 @@ fileSystemServiceRequest(config: FileSystemRequestConfig): Promise&lt;number&gt;
 **参数**：
 | 参数名   | 类型                                       | 必填 | 说明                                               |
 | -------- | ------------------------------------------ | ---- | -------------------------------------------------- |
-|  config  | [FileSystemRequestConfig](#filesystemrequestconfig23)| 是 | 系统执行碎片清理所需参数。 |
+|  config  | [FileSystemRequestConfig](#filesystemrequestconfig23)| 是 | 系统执行碎片清理所需参数。设置后将触发碎片清理任务，并根据triggerType、writeSize和waitTime控制清理类型、目标大小和最大执行时间。 |
 
 **返回值：**
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| Promise&lt;number&gt;  | Promise对象。返回执行碎片清理操作时产生的错误码。 |
+| Promise&lt;number&gt;  | Promise对象，返回执行碎片清理操作时产生的错误码。 |
 
 **错误码：**
 
@@ -516,7 +518,7 @@ async function testFunction(size: number) {
 
 getBackupVersion(): string
 
-获取备份恢复版本号信息。
+获取备份恢复版本号信息，可用于确认当前备份恢复框架版本，进行版本兼容性检查或升级前后能力对比。
 
 **系统接口**：此接口为系统接口。
 
@@ -528,7 +530,7 @@ getBackupVersion(): string
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| string | 返回备份恢复版本号信息。<br/>版本号格式为API版本。内部版本，例如API16，则版本号为16.0。 |
+| string | 返回备份恢复版本号信息。<br/>版本号格式为“API版本号.内部版本号”，例如API16对应的版本号为16.0。 |
 
 **错误码：**
 
@@ -548,7 +550,7 @@ getBackupVersion(): string
   function getBackupVersion() {
     try {
       let result = backup.getBackupVersion();
-      console.info('getBackupVersion success， result: ' + result);
+      console.info('getBackupVersion success, result: ' + result);
     } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error(`getBackupVersion failed. Code: ${err.code}, message: ${err.message}`);
@@ -566,7 +568,7 @@ getBackupVersion(): string
 
 getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
 
-用于获取一个描述本地能力的Json文件。使用callback异步回调。
+用于获取一个描述本地能力的JSON文件，可用于备份前确认应用是否支持备份、恢复前校验能力匹配或生成恢复所需能力文件。使用callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -578,7 +580,7 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
 
 | 参数名   | 类型                                       | 必填 | 说明                                               |
 | -------- | ------------------------------------------ | ---- | -------------------------------------------------- |
-| callback | AsyncCallback&lt;[FileData](#filedata)&gt; | 是   | 异步获取本地能力文件之后的回调。返回FileData对象。 |
+| callback | AsyncCallback&lt;[FileData](#filedata)&gt; | 是   | 异步获取本地能力文件之后的回调。返回FileData对象，使用完成后需要关闭其中的文件描述符。 |
 
 **错误码：**
 
@@ -614,7 +616,7 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
   }
   ```
 
-**能力文件可以通过[@ohos.file.fs](js-apis-file-fs.md)提供的[fileIo.stat](js-apis-file-fs.md#fileiostat-1)等相关接口获取，能力文件内容示例：**
+**能力文件可以通过[@ohos.file.fs](js-apis-file-fs.md)提供的[fileIo.stat](js-apis-file-fs.md#fileiostat)等相关接口获取，能力文件内容示例：**
 
  ```json
  {
@@ -637,7 +639,7 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
 
 getLocalCapabilities(): Promise&lt;FileData&gt;
 
-用于获取一个描述本地能力的Json文件。使用Promise异步回调。
+用于获取一个描述本地能力的JSON文件，可用于备份前确认应用是否支持备份、恢复前校验能力匹配或生成恢复所需能力文件。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -649,7 +651,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 
 | 类型                                 | 说明                            |
 | ------------------------------------ | ------------------------------- |
-| Promise&lt;[FileData](#filedata)&gt; | Promise对象。返回FileData对象。 |
+| Promise&lt;[FileData](#filedata)&gt; | Promise对象，返回FileData对象，包含可读取本地能力文件内容的文件描述符，使用完成后需要关闭。 |
 
 **错误码：**
 
@@ -705,7 +707,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 
 getLocalCapabilities(dataList:Array&lt;IncrementalBackupTime&gt;): Promise&lt;FileData&gt;
 
-用于获取一个描述本地能力的Json文件，根据dataList内传递的参数查询对应应用的本地能力数据。使用Promise异步回调。
+用于获取一个描述本地能力的JSON文件，根据dataList内传递的参数查询对应应用的本地能力数据。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -717,13 +719,13 @@ getLocalCapabilities(dataList:Array&lt;IncrementalBackupTime&gt;): Promise&lt;Fi
 
 | 参数名   | 类型                                                           | 必填 | 说明                                           |
 | -------- | -------------------------------------------------------------- | ---- | ---------------------------------------------- |
-| dataList | Array&lt;[IncrementalBackupTime](#incrementalbackuptime12)&gt; | 是   | 增量备份数据列表，用于描述增量备份的文件信息。 |
+| dataList | Array&lt;[IncrementalBackupTime](#incrementalbackuptime12)&gt; | 是   | 增量备份数据列表，用于描述待查询应用和最后一次增量备份时间。 |
 
 **返回值：**
 
 | 类型                                 | 说明                            |
 | ------------------------------------ | ------------------------------- |
-| Promise&lt;[FileData](#filedata)&gt; | Promise对象。返回FileData对象。 |
+| Promise&lt;[FileData](#filedata)&gt; | Promise对象，返回FileData对象，包含可读取本地能力文件内容的文件描述符，使用完成后需要关闭。 |
 
 **错误码：**
 
@@ -749,7 +751,7 @@ getLocalCapabilities(dataList:Array&lt;IncrementalBackupTime&gt;): Promise&lt;Fi
   async function getLocalCapabilities() {
     try {
       let backupApps: backup.IncrementalBackupTime[] = [{
-        bundleName: "com.example.hiworld",
+        bundleName: 'com.example.hiworld',
         lastIncrementalTime: 1700107870 // 调用者根据上次记录的增量备份时间
       }];
       let fileData = await backup.getLocalCapabilities(backupApps);
@@ -767,7 +769,7 @@ getLocalCapabilities(dataList:Array&lt;IncrementalBackupTime&gt;): Promise&lt;Fi
 
 getBackupInfo(bundleToBackup: string): string
 
-获取需要备份的应用信息。
+获取需要备份的应用信息，可用于备份前确认应用状态、获取应用上报的备份详情或排查备份问题。
 
 **系统接口**：此接口为系统接口。
 
@@ -785,7 +787,7 @@ getBackupInfo(bundleToBackup: string): string
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| string | 返回应用上报的信息。 |
+| string | 返回应用上报的备份信息，具体内容和格式由应用自定义，可用于描述应用状态、备份范围或其他业务信息。 |
 
 **错误码：**
 
@@ -805,9 +807,9 @@ getBackupInfo(bundleToBackup: string): string
 
   function getBackupInfo() {
     try {
-      let backupApp = "com.example.hiworld";
+      let backupApp = 'com.example.hiworld';
       let result = backup.getBackupInfo(backupApp);
-      console.info('getBackupInfo success， result: ' + result);
+      console.info('getBackupInfo success, result: ' + result);
     } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error(`getBackupInfo failed. Code: ${err.code}, message: ${err.message}`);
@@ -819,7 +821,7 @@ getBackupInfo(bundleToBackup: string): string
 
 updateTimer(bundleName: string, timeout: number): boolean
 
-设置应用备份或恢复的时长，调用时机为onBundleBegin之后，onBundleEnd之前。
+设置应用备份或恢复的时长，调用时机为onBundleBegin之后、onBundleEnd之前。适用于大数据量备份恢复、网络不稳定或应用需要更长处理时间的场景。
 
 **系统接口**：此接口为系统接口。
 
@@ -832,13 +834,13 @@ updateTimer(bundleName: string, timeout: number): boolean
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
 | bundleName | string | 是   | 需要设置备份或恢复时长的应用名称。 |
-| timeout | number | 是   | 备份或恢复的限制时长，入参范围[0,14400000]，单位：ms。 |
+| timeout | number | 是   | 备份或恢复的限制时长，入参范围[0,14400000]，单位：ms，超出范围返回参数错误。 |
 
 **返回值：**
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| boolean | 超时时间是否设置成功。true为设置成功；false为设置失败。 |
+| boolean | 超时时间是否设置成功。true为设置成功，false为设置失败。 |
 
 **错误码：**
 
@@ -859,7 +861,7 @@ updateTimer(bundleName: string, timeout: number): boolean
   function updateTimer() {
     try {
       let timeout = 30000;
-      let bundleName = "com.example.hiworld";
+      let bundleName = 'com.example.hiworld';
       let result = backup.updateTimer(bundleName, timeout);
       if (result) {
         console.info('updateTimer success');
@@ -877,7 +879,7 @@ updateTimer(bundleName: string, timeout: number): boolean
 
 updateSendRate(bundleName: string, sendRate: number): boolean
 
-更新备份应用发送fd的速率，调用时机为onBundleBegin之后，onBundleEnd之前。
+更新备份应用发送fd的速率，调用时机为onBundleBegin之后、onBundleEnd之前。适用于网络带宽受限、服务端处理能力有限或需要避免系统过载的场景。
 
 **系统接口**：此接口为系统接口。
 
@@ -889,14 +891,14 @@ updateSendRate(bundleName: string, sendRate: number): boolean
 
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
-| bundleName|string | 是   | 需要控制速率对应的应用名称。 |
-| sendRate | number | 是   | 需要应用设置的fd发送速率大小，以秒为单位，范围0~800，默认60/秒。当为0时，表示停止发送，等到设置非0值时激活发送。如果设置值超过最大值800，按照800进行发送。 |
+| bundleName | string | 是   | 需要控制速率对应的应用名称。 |
+| sendRate | number | 是   | 需要应用设置的fd发送速率大小，单位为个/秒，范围0~800，默认60个/秒。当为0时，表示停止发送，等到设置非0值时激活发送。如果设置值超过最大值800，按照800个/秒发送。 |
 
 **返回值：**
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| boolean | 发送速率是否设置成功。true为设置成功；false为设置失败。 |
+| boolean | 发送速率是否设置成功。true为设置成功，false为设置失败。 |
 
 **错误码：**
 
@@ -916,7 +918,7 @@ updateSendRate(bundleName: string, sendRate: number): boolean
 
   function updateSendRate() {
     try {
-      let bundleName = "com.example.myApp";
+      let bundleName = 'com.example.myApp';
       let sendRate = 300;
       let result = backup.updateSendRate(bundleName, sendRate);
       if (result) {
@@ -945,7 +947,7 @@ type OnBackupSizeReport = (reportInfo: string) => void
 
 | 参数名   | 类型                                  | 必填 | 说明                 |
 | -------- | ------------------------------------- | ---- | -------------------- |
-| reportInfo | string | 是   | 框架获取到的应用待备份数据量大小的信息。 |
+| reportInfo | string | 是   | 框架获取到的应用待备份数据量大小的信息，JSON格式字符串，包含scanned和scanning字段。scanned表示本次已扫描完成的应用数据量列表，scanning表示当前正在扫描的应用包名，开发者可通过JSON.parse解析后使用。 |
 
 **示例：**
 
@@ -958,15 +960,54 @@ type OnBackupSizeReport = (reportInfo: string) => void
   }
   ```
 
+## OnFileReadyBatch
+
+type OnFileReadyBatch = (error: BusinessError&lt;void&gt;, files: Array&lt;[File](#file)&gt;) => void
+
+当服务器将文件发送回客户端时触发的回调函数。
+
+**起始版本**：26.0.0
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                            |
+| ---------- | ------ | ---- | ------------------------------- |
+| error | BusinessError&lt;void&gt; | 是   | 当获取文件句柄成功，error为undefined，否则为错误对象。 |
+| files     | Array&lt;[File](#file)&gt; | 是   | 当获取文件句柄成功，返回获取到的文件句柄数组。 |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo, backup } from '@kit.CoreFileKit';
+
+  const onFileReadyBatch: backup.OnFileReadyBatch = (error: BusinessError<void>, files: Array<backup.File>): void => {
+    if (error) {
+      console.error(`onFileReadyBatch failed. Code: ${error.code}, message: ${error.message}`);
+      return;
+    }
+    for (let file of files) {
+      console.info(`onFileReadyBatch success with file: ${file.bundleName}, ${file.uri}`);
+      fileIo.closeSync(file.fd);
+    }
+  };
+  ```
+
 ## SessionBackup
 
-备份流程对象，用来支撑应用备份的流程。在使用前，需要先创建SessionBackup实例。
+备份流程对象，用来支撑应用全量备份流程。在使用前，需要先创建SessionBackup实例。SessionBackup适用于需要备份应用全部数据的场景。IncrementalBackupSession适用于根据上次增量备份时间和清单文件只处理变化数据的场景。
 
 ### constructor
 
 constructor(callbacks: GeneralCallbacks)
 
-备份流程的构造函数，用于获取SessionBackup类的实例。
+备份流程的构造函数，用于获取SessionBackup类的实例。典型流程为：创建SessionBackup实例，调用appendBundles添加待备份应用，等待回调返回备份结果，流程结束后调用release释放资源。
 
 **系统接口**：此接口为系统接口。
 
@@ -995,14 +1036,14 @@ constructor(callbacks: GeneralCallbacks)
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
-        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.data}`);
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -1033,7 +1074,7 @@ constructor(callbacks: GeneralCallbacks)
 
 getLocalCapabilities(): Promise&lt;FileData&gt;
 
-用于在备份业务中获取一个描述本地能力的Json文件。使用Promise异步回调。
+用于在备份业务中获取一个描述本地能力的JSON文件。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -1045,7 +1086,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 
 | 类型                                 | 说明                            |
 | ------------------------------------ | ------------------------------- |
-| Promise&lt;[FileData](#filedata)&gt; | Promise对象。返回FileData对象。 |
+| Promise&lt;[FileData](#filedata)&gt; | Promise对象，返回FileData对象，包含可读取本地能力文件内容的文件描述符，使用完成后需要关闭。 |
 
 **错误码：**
 
@@ -1066,8 +1107,8 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   import { fileIo, backup } from '@kit.CoreFileKit';
 
-  interface test { // 用于解析能力文件
-    bundleInfos: [];
+  interface LocalCapabilities { // 用于解析能力文件
+    bundleInfos: BundleInfo[];
     deviceType: string;
     systemFullName: string;
   }
@@ -1084,7 +1125,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
     extensionName: string;
     restoreDeps: string;
     supportScene: string;
-    extraInfo: object;
+    extraInfo: Record<string, Object>;
   }
 
   let generalCallbacks: backup.GeneralCallbacks = { // 定义备份/恢复过程中的通用回调
@@ -1096,14 +1137,14 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -1149,7 +1190,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
     }
     let data = fileIo.readTextSync(path, 'utf8'); // 从本地的能力文件中获取信息
     try {
-      const jsonsObj: test | null = JSON.parse(data); // 解析本地的能力文件并打印部分信息
+      const jsonsObj: LocalCapabilities | null = JSON.parse(data); // 解析本地的能力文件并打印部分信息
       if (jsonsObj) {
         const infos:BundleInfo [] = jsonsObj.bundleInfos;
         for (let i = 0; i < infos.length; i++) {
@@ -1163,12 +1204,13 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
         console.info('deviceType: ' + deviceType);
       }
     } catch (error) {
-      console.error(`parse failed. message: ${error.message}`);
+      let err: BusinessError = error as BusinessError;
+      console.error(`parse failed. Code: ${err.code}, message: ${err.message}`);
     }
   }
   ```
 
-**能力文件可以通过[@ohos.file.fs](js-apis-file-fs.md)提供的[fileIo.stat](js-apis-file-fs.md#fileiostat-1)等相关接口获取，能力文件内容示例：**
+**能力文件可以通过[@ohos.file.fs](js-apis-file-fs.md)提供的[fileIo.stat](js-apis-file-fs.md#fileiostat)等相关接口获取，能力文件内容示例：**
 
  ```json
  {
@@ -1191,7 +1233,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 
 getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime\>): Promise&lt;void&gt;
 
-用于获取应用待备份数据量，在appendBundles之前调用。 与onBackupSizeReport配套使用。使用Promise异步回调。
+用于获取应用待备份数据量，在appendBundles之前调用。与onBackupSizeReport配套使用，扫描结果通过onBackupSizeReport回调返回。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -1203,14 +1245,14 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
 
 | 参数名        | 类型                                                     | 必填 | 说明                                                         |
 | ------------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isPreciseScan | boolean                                                  | 是   | 是否精确扫描。true为精确扫描，false为非精确扫描。非精确扫描速度快，为估算数据量；精确扫描速度慢，结果更准确。但由于在实际备份过程中待备份数据可能发生变动，精确扫描结果和实际备份数据量不保证完全匹配。 |
+| isPreciseScan | boolean                                                  | 是   | 是否精确扫描。true为精确扫描，false为非精确扫描。非精确扫描速度快，为估算数据量。精确扫描速度慢，结果更准确。但由于在实际备份过程中待备份数据可能发生变动，精确扫描结果和实际备份数据量不保证完全匹配。 |
 | dataList      | Array<[IncrementalBackupTime](#incrementalbackuptime12)> | 是   | 备份应用列表，用于描述待获取数据量的应用和上一次备份时间（全量备份填0）。 |
 
 **返回值：**
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回值。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1232,7 +1274,7 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
   import { BusinessError } from '@kit.BasicServicesKit';
   import { fileIo, backup } from '@kit.CoreFileKit';
 
-  interface scannedInfos { // 用于解析扫描结果
+  interface ScannedInfos { // 用于解析扫描结果
     scanned: [];
     scanning: string;
   }
@@ -1252,14 +1294,14 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -1282,9 +1324,11 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
     onProcess: (bundleName: string, process: string) => {
       console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     },
-    onBackupSizeReport: (OnBackupSizeReport) => { // 回调函数 与getBackupDataSize配套使用，返回已获取到应用的数据量大小和正在获取数据量的应用的包名。generalCallbacks中的onBackupSizeReport每隔5秒（如果5秒内获取完则立即返回）返回一次扫描结果，直到dataList中所有的应用数据量全部返回。
+    // 回调函数与getBackupDataSize配套使用，返回已获取到应用的数据量大小和正在获取数据量的应用的包名。
+    // generalCallbacks中的onBackupSizeReport每隔5秒（如果5秒内获取完则立即返回）返回一次扫描结果，直到dataList中所有的应用数据量全部返回。
+    onBackupSizeReport: (OnBackupSizeReport) => {
       console.info('dataSizeCallback success');
-      const jsonObj: scannedInfos | null = JSON.parse(OnBackupSizeReport); // 解析返回的信息并打印
+      const jsonObj: ScannedInfos | null = JSON.parse(OnBackupSizeReport); // 解析返回的信息并打印
       if (jsonObj) {
         const infos: ScannedInfo [] = jsonObj.scanned;
         for (let i = 0; i < infos.length; i++) {
@@ -1300,7 +1344,7 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
 
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
   let backupApps: backup.IncrementalBackupTime[] = [{
-    bundleName: "com.example.hiworld",
+    bundleName: 'com.example.hiworld',
     lastIncrementalTime: 0 // 调用者根据上次记录的增量备份时间，全量时为0
   }];
   try {
@@ -1335,7 +1379,7 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
 
 appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void
 
-添加需要备份的应用。当前整个流程中，在获取SessionBackup类的实例后只能调用一次。使用callback异步回调。
+添加需要备份的应用。当前整个流程中，在获取SessionBackup类的实例后只能调用一次。备份流程结束后需要调用release释放资源。使用callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -1356,13 +1400,13 @@ appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): v
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900001 | Operation not permitted |
-| 13900005 | I/O error               |
-| 13900011 | Out of memory           |
-| 13900020 | Invalid argument        |
-| 13900025 | No space left on device |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900001 | Operation not permitted. |
+| 13900005 | I/O error.               |
+| 13900011 | Out of memory.           |
+| 13900020 | Invalid argument. |
+| 13900025 | No space left on device. |
+| 13900042 | Unknown error.           |
 
 **示例：**
 
@@ -1379,14 +1423,14 @@ appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): v
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -1432,7 +1476,7 @@ appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): v
 
 appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 
-添加需要备份的应用。当前整个流程中，在获取SessionBackup类的实例后只能调用一次。使用Promise异步回调。
+添加需要备份的应用。当前整个流程中，在获取SessionBackup类的实例后只能调用一次。备份流程结束后需要调用release释放资源。使用Promise异步回调。
 
 从API version 12开始, 新增可选参数infos, 可携带备份时各应用所需要的扩展信息, infos和bundlesToBackup根据索引一一对应。
 
@@ -1447,13 +1491,13 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
 | bundlesToBackup | string[] | 是   | 需要备份的应用名称的数组。 |
-| infos           | string[] | 否   | 备份时各应用所需扩展信息的数组, 与bundlesToBackup根据索引一一对应。默认值为空。从API version 12开始支持。|
+| infos           | string[] | 否   | 备份时各应用所需扩展信息的数组，与bundlesToBackup根据索引一一对应。默认值为空。从API version 12开始支持。|
 
 **返回值：**
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回值。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1461,13 +1505,13 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
-| 13600001 | IPC error               |
-| 13900001 | Operation not permitted |
-| 13900005 | I/O error               |
-| 13900011 | Out of memory           |
-| 13900020 | Invalid argument        |
-| 13900025 | No space left on device |
-| 13900042 | Unknown error           |
+| 13600001 | IPC error.               |
+| 13900001 | Operation not permitted. |
+| 13900005 | I/O error.               |
+| 13900011 | Out of memory.           |
+| 13900020 | Invalid argument.        |
+| 13900025 | No space left on device. |
+| 13900042 | Unknown error.           |
 
 **示例：**
 
@@ -1484,14 +1528,14 @@ appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -1590,7 +1634,7 @@ release(): Promise&lt;void&gt;
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回值。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1621,14 +1665,14 @@ release(): Promise&lt;void&gt;
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -1653,15 +1697,22 @@ release(): Promise&lt;void&gt;
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
-  sessionBackup.release(); // 备份业务执行完成后，释放session
-  console.info('release success');
+  async function release() {
+    try {
+      await sessionBackup.release(); // 备份业务执行完成后，释放session
+      console.info('release success');
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`release failed. Code: ${err.code}, message: ${err.message}`);
+    }
+  }
   ```
 
 ### cancel<sup>18+</sup>
 
 cancel(bundleName: string): number
 
-备份任务过程中，工具应用发现数据异常，需要取消某应用的备份时调用此接口，使此应用的备份任务终止。
+备份任务过程中，工具应用发现数据异常，需要取消某应用的备份时调用此接口，使此应用的备份任务终止。该接口在对应应用备份任务开始后、任务结束前调用。
 
 **系统接口**：此接口为系统接口。
 
@@ -1679,7 +1730,7 @@ cancel(bundleName: string): number
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| number | 返回取消状态。<br/>0：取消任务下发成功；<br/> 13500011：想要取消的任务未开始；<br/> 13500012：想要取消的任务不存在。|
+| number | 返回取消状态。<br/>0：取消任务下发成功，<br/> 13500011：想要取消的任务未开始，<br/> 13500012：想要取消的任务不存在。|
 
 **错误码：**
 
@@ -1701,7 +1752,7 @@ cancel(bundleName: string): number
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         // 文件fd传输失败，调用取消接口，取消此应用的备份任务
-        let result = sessionBackup.cancel(err.name);
+        let result = sessionBackup.cancel(file.bundleName);
         console.info('cancel result:' + result);
         console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -1709,14 +1760,14 @@ cancel(bundleName: string): number
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -1741,8 +1792,15 @@ cancel(bundleName: string): number
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
-  let backupBundles: Array<string> = ["com.example.helloWorld"];
-  sessionBackup.appendBundles(backupBundles);
+  async function cancelTest() {
+    let backupBundles: Array<string> = ['com.example.helloWorld'];
+    try {
+      await sessionBackup.appendBundles(backupBundles);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`appendBundles failed. Code: ${err.code}, message: ${err.message}`);
+    }
+  }
   ```
 
 ### cleanBundleTempDir<sup>20+</sup>
@@ -1767,7 +1825,7 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示清理成功；返回false表示清理失败。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示清理成功，返回false表示清理失败。 |
 
 **错误码：**
 
@@ -1809,7 +1867,7 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
       fileIo.closeSync(file.fd);
     },
     // 应用备份/恢复开始回调
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -1817,7 +1875,7 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
       console.info(`onBundleBegin succeeded.`);
     },
     // 应用备份/恢复结束回调，在此处调用cleanBundleTempDir进行清理
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -1861,13 +1919,13 @@ getCompatibilityInfo(bundleName: string, extInfo: string): Promise&lt;string&gt;
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
 | bundleName | string | 是   | 需要查询能力信息的应用名称。 |
-| extInfo | string | 是   | 需要传递给应用的额外信息，由应用自行处理。 |
+| extInfo | string | 是   | 需要传递给应用的扩展信息。 |
 
 **返回值：**
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| Promise&lt;string&gt; | Promise对象。应用自定义的能力描述信息。 |
+| Promise&lt;string&gt; | Promise对象，返回应用自定义的能力描述信息。 |
 
 **错误码：**
 
@@ -1875,7 +1933,7 @@ getCompatibilityInfo(bundleName: string, extInfo: string): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息                                                                                       |
 | -------- | ---------------------------------------------------------------------------------------------- |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 201      | Permission verification failed, usually the ENAME_MODE仅支持临时授权”有充分的设result returned by VerifyAccessToken.              |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
 
 **示例：**
@@ -1893,14 +1951,14 @@ getCompatibilityInfo(bundleName: string, extInfo: string): Promise&lt;string&gt;
       console.info(`onFileReady succeeded.`);
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info(`onBundleBegin succeeded.`);
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -1951,7 +2009,7 @@ getCompatibilityInfo(bundleName: string, extInfo: string): Promise&lt;string&gt;
 
 constructor(callbacks: GeneralCallbacks)
 
-恢复流程的构造函数，用于获取SessionRestore类的实例。
+恢复流程的构造函数，用于获取SessionRestore类的实例。典型流程为：创建SessionRestore实例，调用appendBundles添加待恢复应用，通过getFileHandle获取文件句柄并写入恢复数据，必要时调用publishFile发布文件，流程结束后调用release释放资源。
 
 **系统接口**：此接口为系统接口。
 
@@ -1980,14 +2038,14 @@ constructor(callbacks: GeneralCallbacks)
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -2018,7 +2076,7 @@ constructor(callbacks: GeneralCallbacks)
 
 getLocalCapabilities(): Promise&lt;FileData&gt;
 
-用于在恢复业务中获取一个描述本地能力的Json文件。使用Promise异步回调。
+用于在恢复业务中获取一个描述本地能力的JSON文件。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -2030,7 +2088,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 
 | 类型                                 | 说明                            |
 | ------------------------------------ | ------------------------------- |
-| Promise&lt;[FileData](#filedata)&gt; | Promise对象。返回FileData对象。 |
+| Promise&lt;[FileData](#filedata)&gt; | Promise对象，返回FileData对象，包含可读取本地能力文件内容的文件描述符，使用完成后需要关闭。 |
 
 **错误码：**
 
@@ -2051,8 +2109,8 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
   import { fileIo, backup } from '@kit.CoreFileKit';
 
-  interface test { // 用于解析能力文件
-    bundleInfos: [];
+  interface LocalCapabilities { // 用于解析能力文件
+    bundleInfos: BundleInfo[];
     deviceType: string;
     systemFullName: string;
   }
@@ -2069,7 +2127,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
     extensionName: string;
     restoreDeps: string;
     supportScene: string;
-    extraInfo: object;
+    extraInfo: Record<string, Object>;
   }
 
   let generalCallbacks: backup.GeneralCallbacks = { // 定义备份/恢复过程中的通用回调
@@ -2081,14 +2139,14 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -2134,7 +2192,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
     }
     let data = fileIo.readTextSync(path, 'utf8'); // 从本地的能力文件中获取信息
     try {
-      const jsonsObj: test | null = JSON.parse(data); // 解析本地的能力文件并打印部分信息
+      const jsonsObj: LocalCapabilities | null = JSON.parse(data); // 解析本地的能力文件并打印部分信息
       if (jsonsObj) {
         const infos:BundleInfo [] = jsonsObj.bundleInfos;
         for (let i = 0; i < infos.length; i++) {
@@ -2148,12 +2206,13 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
         console.info('deviceType: ' + deviceType);
       }
     } catch (error) {
-      console.error(`parse failed with code: ${error.code}, message: ${error.message}`);
+      let err: BusinessError = error as BusinessError;
+      console.error(`parse failed with code: ${err.code}, message: ${err.message}`);
     }
   }
   ```
 
-**能力文件可以通过[@ohos.file.fs](js-apis-file-fs.md)提供的[fileIo.stat](js-apis-file-fs.md#fileiostat-1)等相关接口获取，能力文件内容示例：**
+**能力文件可以通过[@ohos.file.fs](js-apis-file-fs.md)提供的[fileIo.stat](js-apis-file-fs.md#fileiostat)等相关接口获取，能力文件内容示例：**
 
  ```json
  {
@@ -2176,12 +2235,12 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 
 appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void
 
-添加需要恢复的应用。当前整个流程中，在获取SessionRestore类的实例后只能调用一次，使用callback异步回调。
+添加需要恢复的应用。当前整个流程中，在获取SessionRestore类的实例后只能调用一次。恢复流程结束后需要调用release释放资源。使用callback异步回调。
 
 > **说明：**
 >
 > - 服务在恢复时需要其能力文件进行相关校验。
-> - 因此remoteCapabilitiesFd可通过备份端服务所提供的[getLocalCapabilities](#backupgetlocalcapabilities)接口获取，可对其内容根据恢复应用的实际状况修改参数。也可通过getLocalCapabilities提供的json示例自行生成能力文件。
+> - 因此remoteCapabilitiesFd可通过备份端服务所提供的[getLocalCapabilities](#backupgetlocalcapabilities)接口获取，可对其内容根据恢复应用的实际状况修改参数。也可通过getLocalCapabilities提供的JSON示例自行生成能力文件。
 
 **系统接口**：此接口为系统接口。
 
@@ -2226,14 +2285,14 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback:
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -2290,13 +2349,13 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
 
 添加需要恢复的应用。从API version 12开始，新增可选参数infos，可携带应用恢复所需信息，infos和bundlesToBackup根据索引一一对应。
 
-当前整个流程中，在获取SessionRestore类的实例后只能调用一次。使用Promise异步回调。
+当前整个流程中，在获取SessionRestore类的实例后只能调用一次。恢复流程结束后需要调用release释放资源。使用Promise异步回调。
 
 > **说明：**
 >
 > - 服务在恢复时需要其能力文件进行相关校验。
 > - 因此remoteCapabilitiesFd可通过备份端服务所提供的[getLocalCapabilities](#backupgetlocalcapabilities)接口获取，
-    可对其内容根据恢复应用的实际状况修改参数。也可通过getLocalCapabilities提供的json示例自行生成能力文件。
+    可对其内容根据恢复应用的实际状况修改参数。也可通过getLocalCapabilities提供的JSON示例自行生成能力文件。
 
 **系统接口**：此接口为系统接口。
 
@@ -2316,7 +2375,7 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回值。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -2347,14 +2406,14 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -2433,7 +2492,7 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> - 这个接口是零拷贝特性（减少不必要的内存拷贝，实现了更高效率的传输）的一部分。零拷贝方法可参考由[@ohos.file.fs](js-apis-file-fs.md)提供的[fileIo.copyFile](js-apis-file-fs.md#fileiocopyfile)等相关零拷贝接口。
+> - 这个接口是零拷贝特性（减少不必要的内存拷贝，实现了更高效率的传输）的一部分。服务端通过文件描述符共享待恢复文件，客户端通过onFileReady获取文件句柄后，可使用[fileIo.copyFile](js-apis-file-fs.md#fileiocopyfile)等接口直接在文件描述符之间拷贝数据，避免先读入应用内存再写出。
 > - 使用getFileHandle前需要获取SessionRestore类的实例，并且成功通过appendBundles添加需要待恢复的应用。
 > - 开发者可以通过onFileReady回调来获取文件句柄，当客户端完成文件操作时，需要使用publishFile来进行发布。
 > - 根据所需要恢复的文件个数，可以多次调用getFileHandle。
@@ -2478,14 +2537,14 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -2511,7 +2570,7 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
   };
   let sessionRestore = new backup.SessionRestore(generalCallbacks); // 创建恢复流程
   let fileMeta: backup.FileMeta = {
-    bundleName: "com.example.hiworld",
+    bundleName: 'com.example.hiworld',
     uri: "test.txt"
   }
   sessionRestore.getFileHandle(fileMeta, (err: BusinessError) => {
@@ -2530,7 +2589,7 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
 
 > **说明：**
 >
-> - 这个接口是零拷贝特性（减少不必要的内存拷贝，实现了更高效率的传输）的一部分。零拷贝方法可参考由[@ohos.file.fs](js-apis-file-fs.md)提供的[fileIo.copyFile](js-apis-file-fs.md#fileiocopyfile)等相关零拷贝接口。
+> - 这个接口是零拷贝特性（减少不必要的内存拷贝，实现了更高效率的传输）的一部分。服务端通过文件描述符共享待恢复文件，客户端通过onFileReady获取文件句柄后，可使用[fileIo.copyFile](js-apis-file-fs.md#fileiocopyfile)等接口直接在文件描述符之间拷贝数据，避免先读入应用内存再写出。
 > - 使用getFileHandle前需要获取SessionRestore类的实例，并且成功通过appendBundles添加需要待恢复的应用。
 > - 开发者可以通过onFileReady回调来获取文件句柄，当客户端完成文件操作时，需要使用publishFile来进行发布。
 > - 根据所需要恢复的文件个数，可以多次调用getFileHandle。
@@ -2552,7 +2611,7 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回值。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -2580,14 +2639,14 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -2615,7 +2674,7 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
   async function getFileHandle() {
     try {
       let fileMeta: backup.FileMeta = {
-        bundleName: "com.example.hiworld",
+        bundleName: 'com.example.hiworld',
         uri: "test.txt"
       }
       await sessionRestore.getFileHandle(fileMeta);
@@ -2702,14 +2761,14 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
           });
         }
       },
-      onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      onBundleBegin: (err: BusinessError, bundleName: string) => {
         if (err) {
           console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onBundleBegin success');
       },
-      onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      onBundleEnd: (err: BusinessError, bundleName: string) => {
         if (err) {
           console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
           return;
@@ -2767,7 +2826,7 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回值。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -2817,14 +2876,14 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
         }
         console.info('publishFile success');
       },
-      onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      onBundleBegin: (err: BusinessError, bundleName: string) => {
         if (err) {
           console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onBundleBegin success');
       },
-      onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      onBundleEnd: (err: BusinessError, bundleName: string) => {
         if (err) {
           console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
           return;
@@ -2870,7 +2929,7 @@ release(): Promise&lt;void&gt;
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回值。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -2925,14 +2984,14 @@ release(): Promise&lt;void&gt;
           });
         }
       },
-      onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      onBundleBegin: (err: BusinessError, bundleName: string) => {
         if (err) {
           console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
           return;
         }
         console.info('onBundleBegin success');
       },
-      onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      onBundleEnd: (err: BusinessError, bundleName: string) => {
         if (err) {
           console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
           return;
@@ -2960,15 +3019,22 @@ release(): Promise&lt;void&gt;
     return sessionRestore;
   }
   g_session = createSessionRestore();
-  g_session.release();
-  console.info('release success');
+  async function releaseSession() {
+    try {
+      await g_session.release();
+      console.info('release success');
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`release failed. Code: ${err.code}, message: ${err.message}`);
+    }
+  }
   ```
 
 ### cancel<sup>18+</sup>
 
 cancel(bundleName: string): number
 
-恢复任务过程中，工具应用发现数据异常，需要取消某应用的恢复时调用此接口，使此应用的恢复任务终止。
+恢复任务过程中，工具应用发现数据异常，需要取消某应用的恢复时调用此接口，使此应用的恢复任务终止。该接口在对应应用恢复任务开始后、任务结束前调用。
 
 **系统接口**：此接口为系统接口。
 
@@ -2980,13 +3046,13 @@ cancel(bundleName: string): number
 
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
-| bundleName | string | 是   | 需要取消备份的应用名称。 |
+| bundleName | string | 是   | 需要取消恢复的应用名称。 |
 
 **返回值：**
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| number | 返回取消状态。<br/>0：取消任务下发成功；<br/> 13500011：想要取消的任务未开始；<br/> 13500012：想要取消的任务不存在。|
+| number | 返回取消状态。<br/>0：取消任务下发成功，<br/> 13500011：想要取消的任务未开始，<br/> 13500012：想要取消的任务不存在。|
 
 **错误码：**
 
@@ -3008,7 +3074,7 @@ cancel(bundleName: string): number
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         // 文件fd传输失败，调用取消接口，取消此应用的恢复任务
-        let result = sessionRestore.cancel(err.name);
+        let result = sessionRestore.cancel(file.bundleName);
         console.info('cancel result:' + result);
         console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -3016,14 +3082,14 @@ cancel(bundleName: string): number
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -3053,8 +3119,15 @@ cancel(bundleName: string): number
       fd: -1
     }
     fileData = await backup.getLocalCapabilities(); // 备份恢复框架提供的getLocalCapabilities接口获取能力集文件。
-    let backupBundles: Array<string> = ["com.example.helloWorld"];
-    sessionRestore.appendBundles(fileData.fd, backupBundles);
+    let backupBundles: Array<string> = ['com.example.helloWorld'];
+    try {
+      await sessionRestore.appendBundles(fileData.fd, backupBundles);
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`appendBundles failed. Code: ${err.code}, message: ${err.message}`);
+    } finally {
+      fileIo.closeSync(fileData.fd);
+    }
   }
   ```
 
@@ -3080,7 +3153,7 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示清理成功；返回false表示清理失败。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示清理成功，返回false表示清理失败。 |
 
 **错误码：**
 
@@ -3122,7 +3195,7 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
       fileIo.closeSync(file.fd);
     },
     // 应用备份/恢复开始回调
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -3130,7 +3203,7 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
       console.info(`onBundleBegin succeeded.`);
     },
     // 应用备份/恢复结束回调，在此处调用cleanBundleTempDir进行清理
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -3174,13 +3247,13 @@ getCompatibilityInfo(bundleName: string, extInfo: string): Promise&lt;string&gt;
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
 | bundleName | string | 是   | 需要查询能力信息的应用名称。 |
-| extInfo | string | 是   | 需要传递给应用的额外信息，由应用自行处理。 |
+| extInfo | string | 是   | 需要传递给应用的扩展信息。 |
 
 **返回值：**
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| Promise&lt;string&gt; | Promise对象。应用自定义的能力描述信息。 |
+| Promise&lt;string&gt; | Promise对象，返回应用自定义的能力描述信息。 |
 
 **错误码：**
 
@@ -3206,14 +3279,14 @@ getCompatibilityInfo(bundleName: string, extInfo: string): Promise&lt;string&gt;
       console.info(`onFileReady succeeded.`);
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info(`onBundleBegin succeeded.`);
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -3260,7 +3333,7 @@ getCompatibilityInfo(bundleName: string, extInfo: string): Promise&lt;string&gt;
 
 migrateFile(pathInfo: PathInfo, fileMeta: FileMeta): Promise&lt;void&gt;
 
-用于将文件从源路径迁移到目标路径。使用Promise异步回调。
+用于将文件从源路径迁移到目标路径。使用前需要获取SessionRestore类的实例，并且成功通过appendBundles添加待恢复应用。该接口用于恢复过程中需要调整文件路径、迁移存储位置或处理数据升级迁移的场景，执行结果通过onMigrateResult回调返回。使用Promise异步回调。
 
 **起始版本**：26.0.0
 
@@ -3276,7 +3349,7 @@ migrateFile(pathInfo: PathInfo, fileMeta: FileMeta): Promise&lt;void&gt;
 
 | 参数名     | 类型   | 必填 | 说明                            |
 | ---------- | ------ | ---- | ------------------------------- |
-| pathInfo | [PathInfo](#pathinfo) | 是   | 路径信息，包含源路径和目标路径。 |
+| pathInfo | [PathInfo](#pathinfo) | 是   | 路径信息，包含源路径和目标路径。路径长度限制和相对路径、软链接限制请参见[PathInfo](#pathinfo)。 |
 | fileMeta | [FileMeta](#filemeta) | 是   | 文件元数据，包含bundleName和uri。 |
 
 **返回值：**
@@ -3313,14 +3386,14 @@ let generalCallbacks: backup.GeneralCallbacks = {
     console.info(`onFileReady succeeded.`);
     fileIo.closeSync(file.fd);
   },
-  onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+  onBundleBegin: (err: BusinessError, bundleName: string) => {
     if (err) {
       console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info(`onBundleBegin succeeded.`);
   },
-  onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+  onBundleEnd: (err: BusinessError, bundleName: string) => {
     if (err) {
       console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3343,7 +3416,7 @@ let generalCallbacks: backup.GeneralCallbacks = {
   onProcess: (bundleName: string, process: string) => {
     console.info(`onProcess succeeded, bundleName: ${bundleName}, process: ${process}`);
   },
-  onMigrateResult: (err: BusinessError<string|void>, bundleName: string) => {
+  onMigrateResult: (err: BusinessError, bundleName: string) => {
     if (err) {
       console.error(`onMigrateResult failed. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3361,7 +3434,7 @@ async function testMigrateFile() {
         destPath: "/data/storage/el2/base/files/"
       },
       {
-        bundleName: "com.example.app",
+        bundleName: 'com.example.app',
         uri: "" // 按目录迁移文件时，将uri置为空
       }
     );
@@ -3377,7 +3450,7 @@ async function testMigrateFile() {
 
 getApkFileHandle(path: string, fileName: string): Promise&lt;FileData&gt;
 
-用于获取APK文件的文件句柄。使用Promise异步回调。
+用于在恢复流程中获取APK文件的文件句柄。使用前需要获取SessionRestore类的实例，并且成功通过appendBundles添加待恢复应用。返回的FileData使用完成后需要关闭。使用Promise异步回调。
 
 **起始版本**：26.0.0
 
@@ -3393,14 +3466,14 @@ getApkFileHandle(path: string, fileName: string): Promise&lt;FileData&gt;
 
 | 参数名     | 类型   | 必填 | 说明                            |
 | ---------- | ------ | ---- | ------------------------------- |
-| path | string | 是   | APK文件的路径，与fileName拼接后的总长度限制为4096个字符，不支持使用相对路径和软链接。 |
-| fileName | string | 是   | APK文件的名称。 |
+| path | string | 是   | APK文件的路径，与fileName拼接后的总长度限制为4096个字符，不支持使用相对路径和软链接，超出长度限制返回参数错误。 |
+| fileName | string | 是   | APK文件的名称，与path拼接后的总长度限制为4096个字符，不支持使用相对路径和软链接，超出长度限制返回参数错误。 |
 
 **返回值：**
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| Promise&lt;[FileData](#filedata)&gt; | Promise对象，返回FileData对象，包含文件描述符。返回的文件是临时文件，关闭时会自动删除。 |
+| Promise&lt;[FileData](#filedata)&gt; | Promise对象，返回FileData对象，包含文件描述符和文件特性。返回的文件是临时文件，关闭时会自动删除。 |
 
 **错误码：**
 
@@ -3430,14 +3503,14 @@ let generalCallbacks: backup.GeneralCallbacks = {
     console.info(`onFileReady succeeded.`);
     fileIo.closeSync(file.fd);
   },
-  onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+  onBundleBegin: (err: BusinessError, bundleName: string) => {
     if (err) {
       console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info(`onBundleBegin succeeded.`);
   },
-  onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+  onBundleEnd: (err: BusinessError, bundleName: string) => {
     if (err) {
       console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3460,7 +3533,7 @@ let generalCallbacks: backup.GeneralCallbacks = {
   onProcess: (bundleName: string, process: string) => {
     console.info(`onProcess succeeded, bundleName: ${bundleName}, process: ${process}`);
   },
-  onMigrateResult: (err: BusinessError<string|void>, bundleName: string) => {
+  onMigrateResult: (err: BusinessError, bundleName: string) => {
     if (err) {
       console.error(`onMigrateResult failed. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3483,15 +3556,138 @@ async function testGetApkFileHandle() {
 }
 ```
 
+### getFileHandles
+
+getFileHandles(fileMeta: FileMeta): Promise&lt;void&gt;
+
+从服务中获取共享文件的句柄。使用Promise异步回调。
+
+> **说明：**
+>
+> - 该接口属于零拷贝特性，可以减少不必要的内存拷贝，提升传输效率。零拷贝方法详见[@ohos.file.fs](js-apis-file-fs.md)提供的零拷贝接口，如[fileIo.copyFile](js-apis-file-fs.md#fileiocopyfile)。
+> - 使用[getFileHandles](#getfilehandles)接口前，需要先获取[SessionRestore](#sessionrestore)实例，并通过[appendBundles](#appendbundles-2)方法添加需要恢复数据的应用。
+> - 可以通过[onFileReadyBatch](#onfilereadybatch)获取文件句柄，当客户端文件操作完成后，需要使用[publishFile](#publishfile)发布文件。
+> - 根据待恢复文件数量，可多次调用getFileHandles接口。
+> - 待恢复文件不能是相对路径（../）或软链接。
+
+**起始版本**：26.0.0
+
+**需要权限**：ohos.permission.BACKUP
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明               |
+| -------- | --------------------- | ---- | ------------------ |
+| fileMeta | [FileMeta](#filemeta) | 是   | 待发送文件的元数据，文件应来自备份流程或[getLocalCapabilities](#getlocalcapabilities18-1)方法。 |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 13600001 | IPC error.              |
+| 13900001 | Operation not permitted. |
+| 13900020 | Invalid argument.        |
+
+**示例：**
+
+  ```ts
+  import { fileIo, backup } from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let generalCallbacks: backup.GeneralCallbacks = {
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('onFileReady success');
+      fileIo.closeSync(file.fd);
+    },
+    onFileReadyBatch: (error: BusinessError<void>, files: Array<backup.File>): void => {
+      if (error) {
+        console.error(`onFileReadyBatch failed. Code: ${error.code}, message: ${error.message}`);
+        return;
+      }
+      for (let file of files) {
+        console.info(`onFileReadyBatch success with file: ${file.bundleName}, ${file.uri}`);
+        fileIo.closeSync(file.fd);
+      }
+    },
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
+    }
+  };
+  // 创建恢复流程实例。
+  let sessionRestore = new backup.SessionRestore(generalCallbacks);
+  async function getFileHandles() {
+    let testArray: string[] = ["test1", "test2"];
+    try {
+      let fileMeta: backup.FileMeta = {
+        bundleName: "com.example.hiworld",
+        uri: "test.txt",
+        uris: testArray
+      };
+      await sessionRestore.getFileHandles(fileMeta);
+      console.info('getFileHandles success');
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`getFileHandles failed. Code: ${err.code}, message: ${err.message}`);
+    }
+  }
+  ```
+
 ## IncrementalBackupSession<sup>12+</sup>
 
-增量备份流程对象，用来支撑应用增量备份的流程。在使用前，需要先创建IncrementalBackupSession实例。
+增量备份流程对象，用来支撑应用增量备份的流程。在使用前，需要先创建IncrementalBackupSession实例。该流程根据上次增量备份时间和清单文件识别变化数据，适用于备份应用增量数据的场景。
 
 ### constructor<sup>12+</sup>
 
 constructor(callbacks: GeneralCallbacks)
 
-增量备份流程的构造函数，用于获取IncrementalBackupSession类的实例。
+增量备份流程的构造函数，用于获取IncrementalBackupSession类的实例。典型流程为：创建IncrementalBackupSession实例，调用appendBundles添加待增量备份应用，等待回调返回增量备份结果，流程结束后调用release释放资源。
 
 **系统接口**：此接口为系统接口。
 
@@ -3530,14 +3726,14 @@ constructor(callbacks: GeneralCallbacks)
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -3568,7 +3764,7 @@ constructor(callbacks: GeneralCallbacks)
 
 getLocalCapabilities(): Promise&lt;FileData&gt;
 
-用于在增量备份业务中获取一个描述本地能力的Json文件。使用Promise异步回调。
+用于在增量备份业务中获取一个描述本地能力的JSON文件。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -3580,7 +3776,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 
 | 类型                                 | 说明                            |
 | ------------------------------------ | ------------------------------- |
-| Promise&lt;[FileData](#filedata)&gt; | Promise对象。返回FileData对象。 |
+| Promise&lt;[FileData](#filedata)&gt; | Promise对象，返回FileData对象，包含可读取本地能力文件内容的文件描述符，使用完成后需要关闭。 |
 
 **错误码：**
 
@@ -3601,8 +3797,8 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
   import { fileIo, backup} from '@kit.CoreFileKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  interface test { // 用于解析能力文件
-    bundleInfos: [];
+  interface LocalCapabilities { // 用于解析能力文件
+    bundleInfos: BundleInfo[];
     deviceType: string;
     systemFullName: string;
   }
@@ -3619,7 +3815,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
     extensionName: string;
     restoreDeps: string;
     supportScene: string;
-    extraInfo: object;
+    extraInfo: Record<string, Object>;
   }
 
   let generalCallbacks: backup.GeneralCallbacks = { // 定义备份/恢复过程中的通用回调
@@ -3631,14 +3827,14 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -3684,7 +3880,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
     }
     let data = fileIo.readTextSync(path, 'utf8'); // 从本地的能力文件中获取信息
     try {
-      const jsonsObj: test | null = JSON.parse(data); // 解析本地的能力文件并打印部分信息
+      const jsonsObj: LocalCapabilities | null = JSON.parse(data); // 解析本地的能力文件并打印部分信息
       if (jsonsObj) {
         const infos:BundleInfo [] = jsonsObj.bundleInfos;
         for (let i = 0; i < infos.length; i++) {
@@ -3698,12 +3894,13 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
         console.info('deviceType: ' + deviceType);
       }
     } catch (error) {
-      console.error(`parse failed. Code: ${error.code}, message: ${error.message}`);
+      let err: BusinessError = error as BusinessError;
+      console.error(`parse failed. Code: ${err.code}, message: ${err.message}`);
     }
   }
   ```
 
-**能力文件可以通过[@ohos.file.fs](js-apis-file-fs.md)提供的[fileIo.stat](js-apis-file-fs.md#fileiostat-1)等相关接口获取，能力文件内容示例：**
+**能力文件可以通过[@ohos.file.fs](js-apis-file-fs.md)提供的[fileIo.stat](js-apis-file-fs.md#fileiostat)等相关接口获取，能力文件内容示例：**
 
  ```json
  {
@@ -3726,7 +3923,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 
 getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime\>): Promise&lt;void&gt;
 
-用于获取应用待备份数据量，在appendBundles之前调用。 与onBackupSizeReport配套使用。使用Promise异步回调。
+用于获取应用待备份数据量，在appendBundles之前调用。与onBackupSizeReport配套使用，扫描结果通过onBackupSizeReport回调返回。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -3738,14 +3935,14 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
 
 | 参数名        | 类型                                                     | 必填 | 说明                                                         |
 | ------------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isPreciseScan | boolean                                                  | 是   | 是否精确扫描。true为精确扫描，false为非精确扫描。非精确扫描速度快，为估算数据量；精确扫描速度慢，结果更准确。但由于在实际备份过程中待备份数据可能发生变动，精确扫描结果和实际备份数据量不保证完全匹配。 |
+| isPreciseScan | boolean                                                  | 是   | 是否精确扫描。true为精确扫描，false为非精确扫描。非精确扫描速度快，为估算数据量。精确扫描速度慢，结果更准确。但由于在实际备份过程中待备份数据可能发生变动，精确扫描结果和实际备份数据量不保证完全匹配。 |
 | dataList      | Array<[IncrementalBackupTime](#incrementalbackuptime12)> | 是   | 备份应用列表，用于描述待获取数据量的应用和上一次备份时间（全量备份填0）。 |
 
 **返回值：**
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回值。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -3767,7 +3964,7 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
   import { fileIo, backup} from '@kit.CoreFileKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  interface scannedInfos { // 用于解析扫描结果
+  interface ScannedInfos { // 用于解析扫描结果
     scanned: [];
     scanning: string;
   }
@@ -3787,14 +3984,14 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -3817,9 +4014,11 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
     onProcess: (bundleName: string, process: string) => {
       console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
     },
-    onBackupSizeReport: (OnBackupSizeReport) => { // 回调函数 与getBackupDataSize配套使用，返回已获取到应用的数据量大小和正在获取数据量的应用的包名。generalCallbacks中的onBackupSizeReport每隔5秒（如果5秒内获取完则立即返回）返回一次扫描结果，直到dataList中所有的应用数据量全部返回。
+    // 回调函数与getBackupDataSize配套使用，返回已获取到应用的数据量大小和正在获取数据量的应用的包名。
+    // generalCallbacks中的onBackupSizeReport每隔5秒（如果5秒内获取完则立即返回）返回一次扫描结果，直到dataList中所有的应用数据量全部返回。
+    onBackupSizeReport: (OnBackupSizeReport) => {
       console.info('dataSizeCallback success');
-      const jsonObj: scannedInfos | null = JSON.parse(OnBackupSizeReport); // 解析返回的信息并打印
+      const jsonObj: ScannedInfos | null = JSON.parse(OnBackupSizeReport); // 解析返回的信息并打印
       if (jsonObj) {
         const infos: ScannedInfo [] = jsonObj.scanned;
         for (let i = 0; i < infos.length; i++) {
@@ -3836,7 +4035,7 @@ getBackupDataSize(isPreciseScan: boolean, dataList: Array\<IncrementalBackupTime
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
 
   let backupApps: backup.IncrementalBackupTime[] = [{
-    bundleName: "com.example.hiworld",
+    bundleName: 'com.example.hiworld',
     lastIncrementalTime: 1700107870 // 调用者根据上次记录的增量备份时间
   }];
   try {
@@ -3889,7 +4088,7 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;): Promise&lt;v
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回值。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -3922,14 +4121,14 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;): Promise&lt;v
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -3955,9 +4154,9 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;): Promise&lt;v
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
   let incrementalBackupData: backup.IncrementalBackupData = {
-    bundleName: "com.example.hiworld",
+    bundleName: 'com.example.hiworld',
     lastIncrementalTime: 1700107870, // 调用者传递上一次备份的时间戳
-    manifestFd:1 // 调用者传递上一次备份的manifest文件句柄
+    manifestFd: fileIo.openSync('/data/storage/el2/base/backup/manifest.json').fd // 调用者传递上一次备份的manifest文件句柄
   }
   let incrementalBackupDataArray: backup.IncrementalBackupData[] = [incrementalBackupData];
   incrementalBackupSession.appendBundles(incrementalBackupDataArray).then(() => {
@@ -3971,7 +4170,7 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;): Promise&lt;v
 
 appendBundles(bundlesToAppend: Array&lt;IncrementalBackupData&gt;, infos: string[]): Promise&lt;void&gt;
 
-添加需要增量备份的应用。当前整个流程中，触发Release接口之前都可以进行appendBundles的调用。使用Promise异步回调。
+添加需要增量备份的应用。当前整个流程中，触发release接口之前都可以进行appendBundles的调用。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -3984,13 +4183,13 @@ appendBundles(bundlesToAppend: Array&lt;IncrementalBackupData&gt;, infos: string
 | 参数名          | 类型                                                           | 必填 | 说明                       |
 | --------------- | -------------------------------------------------------------- | ---- | -------------------------- |
 | bundlesToAppend | Array&lt;[IncrementalBackupData](#incrementalbackupdata12)&gt; | 是   | 需要增量备份的应用的数组。 |
-| infos  | string[] | 是   | 备份时各应用所需要扩展信息的数组, 与bundlesToBackup根据索引一一对应。从API version 12开始支持。 |
+| infos  | string[] | 是   | 备份时各应用所需要扩展信息的数组，与bundlesToAppend根据索引一一对应。从API version 12开始支持。 |
 
 **返回值：**
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回值。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -4023,14 +4222,14 @@ appendBundles(bundlesToAppend: Array&lt;IncrementalBackupData&gt;, infos: string
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -4056,9 +4255,9 @@ appendBundles(bundlesToAppend: Array&lt;IncrementalBackupData&gt;, infos: string
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
   let incrementalBackupData: backup.IncrementalBackupData = {
-    bundleName: "com.example.hiworld",
+    bundleName: 'com.example.hiworld',
     lastIncrementalTime: 1700107870, // 调用者传递上一次备份的时间戳
-    manifestFd:1 // 调用者传递上一次备份的manifest文件句柄
+    manifestFd: fileIo.openSync('/data/storage/el2/base/backup/manifest.json').fd // 调用者传递上一次备份的manifest文件句柄
   }
       let infos: Array<string> = [
         `
@@ -4125,7 +4324,7 @@ release(): Promise&lt;void&gt;
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回值。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -4156,14 +4355,14 @@ release(): Promise&lt;void&gt;
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -4188,15 +4387,22 @@ release(): Promise&lt;void&gt;
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
-  incrementalBackupSession.release(); // 结束增量备份流程
-  console.info('release success');
+  async function release() {
+    try {
+      await incrementalBackupSession.release(); // 结束增量备份流程
+      console.info('release success');
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`release failed. Code: ${err.code}, message: ${err.message}`);
+    }
+  }
   ```
 
 ### cancel<sup>18+</sup>
 
 cancel(bundleName: string): number
 
-增量备份任务过程中，工具应用发现数据异常，需要取消某应用的增量备份时调用此接口，使此应用的增量备份任务终止。
+增量备份任务过程中，工具应用发现数据异常，需要取消某应用的增量备份时调用此接口，使此应用的增量备份任务终止。该接口在对应应用增量备份任务开始后、任务结束前调用。
 
 **系统接口**：此接口为系统接口。
 
@@ -4208,13 +4414,13 @@ cancel(bundleName: string): number
 
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
-| bundleName | string | 是   | 需要取消备份的应用名称。 |
+| bundleName | string | 是   | 需要取消增量备份的应用名称。 |
 
 **返回值：**
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| number | 返回取消状态。<br/>0：取消任务下发成功；<br/> 13500011：想要取消的任务未开始；<br/> 13500012：想要取消的任务不存在。|
+| number | 返回取消状态。<br/>0：取消任务下发成功，<br/> 13500011：想要取消的任务未开始，<br/> 13500012：想要取消的任务不存在。|
 
 **错误码：**
 
@@ -4244,14 +4450,14 @@ cancel(bundleName: string): number
       console.info('onFileReady success');
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -4278,12 +4484,16 @@ cancel(bundleName: string): number
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
   let backupBundles: Array<backup.IncrementalBackupData> = [];
   let bundleData: backup.IncrementalBackupData = {
-    bundleName: "com.example.helloWorld",
+    bundleName: 'com.example.helloWorld',
     lastIncrementalTime: 1700107870, // 调用者传递上一次备份的时间戳
-    manifestFd: 1 // 调用者传递上一次备份的manifest文件句柄
+    manifestFd: fileIo.openSync('/data/storage/el2/base/backup/manifest.json').fd // 调用者传递上一次备份的manifest文件句柄
   }
   backupBundles.push(bundleData);
-  incrementalBackupSession.appendBundles(backupBundles);
+  incrementalBackupSession.appendBundles(backupBundles).then(() => {
+    console.info('appendBundles success');
+  }).catch((err: BusinessError) => {
+    console.error(`appendBundles failed. Code: ${err.code}, message: ${err.message}`);
+  });
 
   ```
 
@@ -4309,7 +4519,7 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示清理成功；返回false表示清理失败。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示清理成功，返回false表示清理失败。 |
 
 **错误码：**
 
@@ -4351,7 +4561,7 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
       fileIo.closeSync(file.fd);
     },
     // 应用备份/恢复开始回调
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -4359,7 +4569,7 @@ cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
       console.info(`onBundleBegin succeeded.`);
     },
     // 应用备份/恢复结束回调，在此处调用cleanBundleTempDir进行清理
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;
@@ -4403,13 +4613,13 @@ getCompatibilityInfo(bundleName: string, extInfo: string): Promise&lt;string&gt;
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
 | bundleName | string | 是   | 需要查询能力信息的应用名称。 |
-| extInfo | string | 是   | 需要传递给应用的额外信息，由应用自行处理。 |
+| extInfo | string | 是   | 需要传递给应用的扩展信息。 |
 
 **返回值：**
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| Promise&lt;string&gt; | Promise对象。应用自定义的能力描述信息。 |
+| Promise&lt;string&gt; | Promise对象，返回应用自定义的能力描述信息。 |
 
 **错误码：**
 
@@ -4435,14 +4645,14 @@ getCompatibilityInfo(bundleName: string, extInfo: string): Promise&lt;string&gt;
       console.info(`onFileReady succeeded.`);
       fileIo.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
         return;
       }
       console.info(`onBundleBegin succeeded.`);
     },
-    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError, bundleName: string) => {
       if (err) {
         console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
         return;

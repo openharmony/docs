@@ -1,14 +1,14 @@
 # fileUri
 <!--Kit: Core File Kit-->
 <!--Subsystem: FileManagement-->
-<!--Owner: @lvzhenjie-->
-<!--Designer: @wang_zhangjun; @chenxi0605-->
+<!--Owner: @rainlost-->
+<!--Designer: @rainlost-->
 <!--Tester: @liuhonggang123-->
 <!--Adviser: @jinqiuheng-->
 
 ## 概述
 
-文件统一资源标识符（File Uniform Resource Identifier）。<br> 支持fileuri与路径path的转换，和fileuri的有效性校验。<br> 该类主要用于 URI 格式验证和 URI 转换处理。且uri用于应用间文件分享场景，将应用沙箱路径按照固定关系转换为URI;<br> 调用者需保证所有接口入参的有效性，接口按照固定规则转换输出结果，并不检查其是否存在。
+文件统一资源标识符（File Uniform Resource Identifier）。<br> 支持fileUri与路径之间的转换，以及fileUri的格式校验。该模块主要用于URI格式验证和URI转换处理，URI用于应用间文件分享场景，可将应用沙箱路径按系统规则转换为URI，避免直接传递沙箱路径。调用者需保证所有接口入参的有效性，接口按照固定规则转换输出结果，并不检查对应文件或目录是否存在。
 
 **系统能力：** SystemCapability.FileManagement.AppFileService
 
@@ -17,4 +17,4 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| [oh_file_uri.h](capi-oh-file-uri-h.md) | 提供uri和路径path之间的相互转换，目录uri获取，以及uri的有效性校验的方法。 |
+| [oh_file_uri.h](capi-oh-file-uri-h.md) | 提供URI和路径之间的相互转换、目录URI获取以及URI格式校验的方法，适用于文件分享场景中的URI转换和校验。 |
