@@ -106,17 +106,17 @@
 
 ### Feature列表
 
-| Feature名 | 说明 | 默认值 |
-| -------- | -------- | -------- |
-| enable_ohos_systemabilitymgr_samgr_lite_broadcast | 是否使能广播能力 | false |
-| enable_ohos_systemabilitymgr_samgr_lite_system_capability | 是否使能系统能力 | false |
-| config_ohos_systemabilitymgr_samgr_lite_shared_task_size | 共享任务栈大小（字节） | 2048 |
-| enable_ohos_systemabilitymgr_samgr_lite_specified_task | 是否使能指定任务模式 | false |
-| enable_ohos_systemabilitymgr_samgr_lite_no_task | 是否使能无任务模式 | false |
-| enable_ohos_test_xts_acts_use_samgr_lite_broadcast | 兼容性测试：是否使用广播能力 | false |
-| enable_ohos_test_xts_acts_use_samgr_lite_debug | 兼容性测试：是否使能调试模式 | false |
-| enable_ohos_test_xts_acts_use_samgr_lite_taskpool_notask | 兼容性测试：是否使用无任务池模式 | false |
-| enable_ohos_test_xts_acts_use_samgr_lite_taskpool_specifiedtask | 兼容性测试：是否使用指定任务池模式 | false |
+| Feature名 | 说明 | 默认值 | 小型化建议值 |
+| -------- | -------- | -------- | -------- |
+| enable_ohos_systemabilitymgr_samgr_lite_broadcast | 是否使能广播能力 | true | false |
+| enable_ohos_systemabilitymgr_samgr_lite_system_capability | 是否使能系统能力 | true | false |
+| config_ohos_systemabilitymgr_samgr_lite_shared_task_size | 共享任务栈大小（字节） | 2048 | 1024 |
+| enable_ohos_systemabilitymgr_samgr_lite_specified_task | 是否使能指定任务模式 | true | false |
+| enable_ohos_systemabilitymgr_samgr_lite_no_task | 是否使能无任务模式 | true | false |
+| enable_ohos_test_xts_acts_use_samgr_lite_broadcast | 兼容性测试：是否使用广播能力 | true | false |
+| enable_ohos_test_xts_acts_use_samgr_lite_debug | 兼容性测试：是否使能调试模式 | true | false |
+| enable_ohos_test_xts_acts_use_samgr_lite_taskpool_notask | 兼容性测试：是否使用无任务池模式 | true | false |
+| enable_ohos_test_xts_acts_use_samgr_lite_taskpool_specifiedtask | 兼容性测试：是否使用指定任务池模式 | true | false |
 
 ### Feature说明
 
