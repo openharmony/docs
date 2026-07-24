@@ -296,58 +296,9 @@ vendor
     }
     ```
 ### 内核启动适配
-1. 在`//device/board/bearpi/bearpi_hm_micro/liteos_a/board/os_adapt/os_adapt.c`中添加以下内核启动相关代码，详细解释参考[LiteOS-A内核移植](porting-smallchip-kernel-a.md)。
+1. 在//device/board/bearpi/bearpi_hm_micro/liteos_a/board/os_adapt/os_adapt.c中添加以下内核启动相关代码，详细解释参考[LiteOS-A内核移植](porting-smallchip-kernel-a.md)。
     ```c
     ...
-    #include "target_config.h"
-    #include "los_typedef.h"
-
-    #include "stdlib.h"
-    #include "stdio.h"
-    #include "los_process_pri.h"
-    #ifdef LOSCFG_FS_VFS
-    #include "disk.h"
-    #endif
-    #include "los_bootargs.h"
-    #include "los_rootfs.h"
-    #ifdef LOSCFG_SHELL
-    #include "shell.h"
-    #include "shcmd.h"
-    #endif
-
-    #ifdef LOSCFG_DRIVERS_RANDOM
-    #include "los_random.h"
-    #include "soc/random.h"
-    #endif
-
-    #ifdef LOSCFG_DRIVERS_MEM
-    #include "los_dev_mem.h"
-    #endif
-
-    #ifdef LOSCFG_DRIVERS_HDF_PLATFORM_UART
-    #include "console.h"
-    #include "soc/uart.h"
-    #endif
-
-    #ifdef LOSCFG_DRIVERS_HDF
-    #include "devmgr_service_start.h"
-    #endif
-
-    #ifdef LOSCFG_DRIVERS_NETDEV
-    #include "lwip/tcpip.h"
-    void net_init(void)
-    {
-        tcpip_init(NULL, NULL);
-    }
-    #endif
-
-    #ifdef LOSCFG_DRIVERS_MEM
-    int mem_dev_register(void)
-    {
-        return DevMemRegister();
-    }
-    #endif
-
     void SystemInit(void)
     {
     #ifdef LOSCFG_DRIVERS_RANDOM
@@ -359,21 +310,9 @@ vendor
         extern int mem_dev_register(void);
         mem_dev_register();
     #endif
-    
-    #ifdef LOSCFG_DRIVERS_MMZ_CHAR_DEVICE
-        dprintf("DevMmzRegister...\n");
-        extern int DevMmzRegister(void);
-        DevMmzRegister();
-    #endif
 
         dprintf("Date:%s.\n", __DATE__);
         dprintf("Time:%s.\n", __TIME__);
-
-    #ifdef LOSCFG_DRIVERS_NETDEV
-        dprintf("net init ...\n");
-        net_init();
-        dprintf("net init  end...\n");
-    #endif
 
     #ifdef LOSCFG_DRIVERS_HDF
         dprintf("DeviceManagerStart start ...\n");
@@ -382,41 +321,40 @@ vendor
         }
         dprintf("DeviceManagerStart end ...\n");
     #endif
+        net_init();
 
     #ifdef LOSCFG_PLATFORM_ROOTFS
         dprintf("OsMountRootfs start ...\n");
         if (LOS_GetCmdLine()) {
-            PRINT_ERR("get cmdline error!\n");
+            dprintf("get cmdline error!\n");
         }
         if (LOS_ParseBootargs()) {
-            PRINT_ERR("parse bootargs error!\n");
+            dprintf("parse bootargs error!\n");
         }
         if (OsMountRootfs()) {
-            PRINT_ERR("mount rootfs error!\n");
+            dprintf("mount rootfs error!\n");
         }
         dprintf("OsMountRootfs end ...\n");
     #endif
 
+        dprintf("Before PLATFORM_UART ...\n");
+
     #ifdef LOSCFG_DRIVERS_HDF_PLATFORM_UART
-        dprintf("virtual_serial_init start ...\n");
         if (virtual_serial_init(TTY_DEVICE) != 0) {
             PRINT_ERR("virtual_serial_init failed");
         }
-        dprintf("virtual_serial_init end ...\n");
-        dprintf("system_console_init start ...\n");
         if (system_console_init(SERIAL) != 0) {
             PRINT_ERR("system_console_init failed\n");
         }
-        dprintf("system_console_init end ...\n");
     #endif
 
-        dprintf("OsUserInitProcess start ...\n");
+        dprintf("After PLATFORM_UART ...\n");
 
         if (OsUserInitProcess()) {
             PRINT_ERR("Create user init process failed!\n");
             return;
         }
-        dprintf("OsUserInitProcess end ...\n");
+        dprintf("cat log shell end\n");
         return;
     }
     ...
