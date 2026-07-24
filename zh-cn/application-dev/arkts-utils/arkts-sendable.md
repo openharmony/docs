@@ -206,14 +206,14 @@ class SendableTestClass {
   desc: string = 'sendable: this is SendableTestClass ';
   num: number = 5;
   printName() {
-    console.info('sendable: SendableTestClass desc is: ' + this.desc);
+    console.info(`sendable: SendableTestClass desc is: ${this.desc}`);
   }
   get getNum(): number {
     return this.num;
   }
 }
 
-let object = new SendableTestClass;
+let object = new SendableTestClass();
 export { object }
 ```
 
