@@ -13,14 +13,14 @@
 
 ## 约束限制
 
-- "use shared"需要与"use strict"一样写在ArkTS文件顶层，写在import语句之后其他语句之前。
+- "use shared"需要写在ArkTS文件顶层，即写在import语句之后其他语句之前。
 
   共享属性不具备传递性。非共享模块A即使引入了共享模块B，也不会因此变成共享模块。
 
 
 - 共享模块只支持ets文件。
 
-- 共享模块内不允许使用side-effects-import。
+- 共享模块内不允许使用[side-effects-import](arkts-module-side-effects.md)。
 
   共享模块在同一进程内仅加载一次，可在不同线程间共享。<br/>
   共享模块加载时，导入的非共享模块不会立即加载。在共享模块内访问依赖的非共享模块导出变量时，当前线程会懒加载对应的非共享模块。非共享模块在线程间隔离，不同线程访问时会进行一次懒加载。<br/>
@@ -55,7 +55,7 @@
   // 共享模块
   'use shared'
   export * from './test'; // 编译报错
-  export {num, str} from './test'; // 产生运行时报错
+  export {num, str} from './test'; // 可能导致运行时的未知异常
   ```
 
 
