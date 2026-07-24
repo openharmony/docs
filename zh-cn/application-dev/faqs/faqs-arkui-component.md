@@ -373,7 +373,7 @@ struct TextInputDemo {
 
 **参考链接**
 
-[Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md#currentoffset)
+[Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md)
 
 
 ## 如何实现文本竖向排列(API 9)
@@ -578,7 +578,7 @@ struct VideoCreateComponent {
 
 **参考链接**
 
-[Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#start)
+[Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md)
 
 ## 如何设置组件不同状态下的样式(API 9)
 
@@ -791,7 +791,7 @@ Canvas组件最终的显示内容分两种，一种是组件通用属性的绘�
 
 **原因分析**
 
-List没有设置高度时，如果子组件总高度大于List父组件的高度时，List会取List父组件高度。如果List有其他兄弟节点，可能会把List部分顶出父组件显示区域外，看起来像是划不到底部。
+List没有设置高度时，如果子组件总高度大于List父组件的高度时，List会取List父组件高度。如果List有其他兄弟节点，可能会把List部分顶出父组件显示区域外，看起来像是滑不到底部。
 
 **解决措施**
 
