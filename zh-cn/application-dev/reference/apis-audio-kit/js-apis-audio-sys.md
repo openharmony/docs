@@ -281,7 +281,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 | STREAM_USAGE_VOICE_CALL_ASSISTANT<sup>12+</sup>     | 21     | 通话辅助语音。 |
 | STREAM_USAGE_ANNOUNCEMENT<sup>24+</sup>   | 22     | 通知音。<br>**模型约束：** 此接口仅可在Stage模型下使用。|
 | STREAM_USAGE_EMERGENCY<sup>24+</sup>      | 23     | 告警音。<br>**模型约束：** 此接口仅可在Stage模型下使用。|
-| STREAM_USAGE_VOICE_ASSISTANT_SYSTEM<sup>26+</sup>      | 27     | 播报音(小艺语音播报音)。|
+| STREAM_USAGE_VOICE_ASSISTANT_SYSTEM<sup>26.0.0+</sup>      | 27     | 播报音(系统内置语音播报音)。|
 
 ## InterruptRequestType<sup>9+</sup>
 
